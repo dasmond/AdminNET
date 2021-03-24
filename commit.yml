@@ -2,46 +2,16 @@
 branches: {
   }
 fileChange:
-  /frontend:
-    newFile: !uuid '8185199fae7bad54847dea952b8c2dc98cc1353e'
-    oldFile: !uuid '6d789f1bc2561db41f03faa559f18c62ff729688'
-  /frontend/public:
-    newFile: !uuid '634fd3b545f12885b762af9b335b06e29e8b004c'
-    oldFile: !uuid 'ff3d8c6222584a4ee5b18013fe621dfacc861866'
-  /frontend/public/index.html:
-    newFile: !uuid '59f946f0a489a8ba360976873085cf26cd6d5a8f'
-    oldFile: !uuid 'fb1a74675ebe2d70423ea930930a5a594b3ff08f'
-  /frontend/src:
-    newFile: !uuid '2ef58a332b202daff776e737fb6791cd51b9b9f2'
-    oldFile: !uuid '28d44201532668b3610f722166ba0c598afbb25b'
-  /frontend/src/components:
-    newFile: !uuid 'eaea906e959892037479998d5e0bf5d36f929991'
-    oldFile: !uuid 'eb356b385e9f77cf32ef5c3eaeb1692481a81373'
-  /frontend/src/components/GlobalFooter:
-    newFile: !uuid '9ffac461e4f1ec660974b819baa692dda3b68710'
-    oldFile: !uuid '6b090aefbe605b9aa5ba678ee28b92c14d19944c'
-  /frontend/src/components/GlobalFooter/GlobalFooter.vue:
-    newFile: !uuid '980a6f8cbd728e4d529f069cadf91de65d7630a9'
-    oldFile: !uuid '2b85e8cd8722c4261e29c7f13915bce480aec42a'
-  /frontend/src/layouts:
-    newFile: !uuid '7cdf01c25f69d5ee750b5ac7e7026bc2fb987204'
-    oldFile: !uuid 'd80d7c4af0ddb244f9cdab68adf1a32e646945cf'
-  /frontend/src/layouts/UserLayout.vue:
-    newFile: !uuid '9d66888778148e881af5531b0af8b1b4f225b72d'
-    oldFile: !uuid '5047f11df85e5b8ce8bcc2f8d5a5e319ceec588e'
-  /frontend/src/views:
-    newFile: !uuid 'f469a9cded34f4a6327dcc433aa7771f9423a63a'
-    oldFile: !uuid '65f2cc1afe376b8e2fe23913946790b18ac158c8'
-  /frontend/src/views/system:
-    newFile: !uuid '48924033ea56ba77f3d755a6067a5213f2e0edee'
-    oldFile: !uuid '13a1c5f8e5ca47ead046ec682649fe7e64304663'
-  /frontend/src/views/system/dashboard:
-    newFile: !uuid 'ca875ba69613e80d5ed9ecd0240eb962256de52c'
-    oldFile: !uuid 'e3d0981ad904673a1b5f278170750cca0a0ff182'
-  /frontend/src/views/system/dashboard/Workplace.vue:
-    newFile: !uuid 'b9efa00ec5726f3ac670519fe59175b7deaa61c9'
-    oldFile: !uuid 'c693bc58e88df0b898997b3f6a4f97c09dcc215b'
-gitCommitId: !uuid '1a6d856473552ef995c482fff3e746c4cb198f28'
+  /backend:
+    newFile: !uuid '58da21eb64c9091da331d3dce832e7ae6e7c528c'
+    oldFile: !uuid '4c567e5ddbed39aaadec1fb6c98366232e011dc1'
+  /backend/Dilon.Core:
+    newFile: !uuid '180f66cfc4b616cafbab88773f191413b94a34d6'
+    oldFile: !uuid '195ef33ec248ff9fe7955c4ed770e81701e82737'
+  /backend/Dilon.Core/Dilon.Core.csproj:
+    newFile: !uuid 'd27365c3d04793156d32c5d02eb0105351f0642d'
+    oldFile: !uuid 'a765c94fa40c97cca9af0c925c7bac24091bd4a9'
+gitCommitId: !uuid 'df9307f106c6fca914aaa592d9ba250e7a74cfb7'
 renames: {
   }
-revisionId: 17
+revisionId: 18
