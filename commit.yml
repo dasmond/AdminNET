@@ -2,22 +2,67 @@
 branches: {
   }
 fileChange:
-  /backend:
-    newFile: !uuid 'b84cd74caa0b3b47f476c8ab030d7665c2c7415b'
-    oldFile: !uuid 'bed5a249c88f49ea737b3d881eb6f4353f9a2b23'
-  /backend/Dilon.Core:
-    newFile: !uuid '460301acc4ed4c547cbe6528fa57e86551169fd4'
-    oldFile: !uuid '9fd45e367c46689a107cdb199688f04b2c105e06'
-  /backend/Dilon.Core/Service:
-    newFile: !uuid 'a3237251c33699cebec3496bd4cd694997cf250a'
-    oldFile: !uuid '58f53573a2eaaa2be67f99bdf1cffdf4f3a152c5'
-  /backend/Dilon.Core/Service/Emp:
-    newFile: !uuid 'b69cf3da04a18ddbf54519f8aab0eab12a17abb1'
-    oldFile: !uuid '019178e400768633efa215e4bec3f2a8362a5c34'
-  /backend/Dilon.Core/Service/Emp/SysEmpService.cs:
-    newFile: !uuid 'b07a14596739f5b906372ef1b4d168baa50c6fda'
-    oldFile: !uuid 'be34b3c7bd4b7276ee6fbc641a3934e09093036c'
-gitCommitId: !uuid '23a549dd0eecf18dc72cb5c67d241f4e3255f36a'
+  /frontend:
+    newFile: !uuid '0847b8514917e38d5c94153cb676f58b136e29e7'
+    oldFile: !uuid '8185199fae7bad54847dea952b8c2dc98cc1353e'
+  /frontend/public:
+    newFile: !uuid '62acaddc482cb1cfc4389707b669c8d173abb9f8'
+    oldFile: !uuid '634fd3b545f12885b762af9b335b06e29e8b004c'
+  /frontend/public/index.html:
+    newFile: !uuid 'aa87c41bcd38b81984850121f4c55330f44dbbc9'
+    oldFile: !uuid '59f946f0a489a8ba360976873085cf26cd6d5a8f'
+  /frontend/src:
+    newFile: !uuid 'ee5e02b83dce0359712441afa42e488d18dfc554'
+    oldFile: !uuid '2ef58a332b202daff776e737fb6791cd51b9b9f2'
+  /frontend/src/components:
+    newFile: !uuid '5b47f05691fee590647e1ab5a47f3bf2dc0b46f2'
+    oldFile: !uuid 'eaea906e959892037479998d5e0bf5d36f929991'
+  /frontend/src/components/Table:
+    newFile: !uuid '16b61e7884c75a9bffd9b1e855d7d6095ab8a084'
+    oldFile: !uuid 'cd72c4f6f0b6d949a4ee4beb02db8b7b63345fc2'
+  /frontend/src/components/Table/README.md:
+    newFile: !uuid '0568dd9682c7cd54dec442249ae24364e78503fc'
+    oldFile: !uuid '80de48e6239eb9ddc3d320de99f01bb2c45e65d9'
+  /frontend/src/components/tools:
+    newFile: !uuid 'ef7ac8a4bd20096eed8b94ae763e1dd4b281814a'
+    oldFile: !uuid '267ee1eb0e734ec864a68174d3db73de263d6b53'
+  /frontend/src/components/tools/UserMenu.vue:
+    newFile: !uuid '98fce25fd4435d119df807ea3f6f521d41c90c83'
+    oldFile: !uuid '65ce592d84bb5b84226b14d0845cd16a3e7f4371'
+  /frontend/src/mock:
+    newFile: !uuid '303bf0a2478534371c01776061408146f6390848'
+    oldFile: !uuid 'f03ed9705f285ae413957b19c2477840f07ca25a'
+  /frontend/src/mock/services:
+    newFile: !uuid 'bbf492ce636f5878ee95660b2562f92785e4dcee'
+    oldFile: !uuid 'f5f0dcc750a1efb09c6906b200cceb82392e4144'
+  /frontend/src/mock/services/article.js:
+    newFile: !uuid 'b3519b9462814fba525a9e84e217199c93c23f45'
+    oldFile: !uuid '37057f7f44b4f4cce9807ba2fce6b0ff32e6bd09'
+  /frontend/src/mock/services/manage.js:
+    newFile: !uuid '746dfd0d37f6dd884d04050a5d2eb891ef40febe'
+    oldFile: !uuid '9ac472e47f8129e2e9f60a8bc4d27e0d7d786fa8'
+  /frontend/src/utils:
+    newFile: !uuid 'f3bafddaf3e43dc26c493a9192cc22e92365371a'
+    oldFile: !uuid '78be5974831923f02cc6ee1bd03403db5989226d'
+  /frontend/src/utils/domUtil.js:
+    newFile: !uuid '89e8f687e9615ed24f905ac9dd8d3bd75139a470'
+    oldFile: !uuid '479967072ecb3325ef8773f2ef6587fbcb5dcf13'
+  /frontend/src/views:
+    newFile: !uuid 'c29634bcd501f9686df259bfdd4e42d795f5f904'
+    oldFile: !uuid 'f469a9cded34f4a6327dcc433aa7771f9423a63a'
+  /frontend/src/views/system:
+    newFile: !uuid 'c96d5b29c3e3f4183c1690a7364db4e432e86f3b'
+    oldFile: !uuid '48924033ea56ba77f3d755a6067a5213f2e0edee'
+  /frontend/src/views/system/menu:
+    newFile: !uuid '01f4fec57538d3ca49e4060bb4b01aaf1b378bf7'
+    oldFile: !uuid '61b3aade3e1baae9ab066a57196468c96de37532'
+  /frontend/src/views/system/menu/addForm.vue:
+    newFile: !uuid '26835ac0cca8c084ca97231902d432a40720afe0'
+    oldFile: !uuid '30cad95b61c8417c8c2beec976dd20c37cd08d48'
+  /frontend/src/views/system/menu/editForm.vue:
+    newFile: !uuid 'a382171265e7a1aa37958e7880b1507cfb65b482'
+    oldFile: !uuid '714b24ee838c27d4e348980427a4e9241533f52c'
+gitCommitId: !uuid '64aec2b1b048a1385a3aeb29e465b366a5b782bf'
 renames: {
   }
-revisionId: 26
+revisionId: 27
