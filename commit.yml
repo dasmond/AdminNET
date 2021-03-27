@@ -2,46 +2,10 @@
 branches: {
   }
 fileChange:
-  /backend:
-    newFile: !uuid '1f4b67677da9c14091f43766a2460005bc544237'
-    oldFile: !uuid 'c910bdf775b42037004d2c296624a41adf388886'
-  /backend/Dilon.Application:
-    newFile: !uuid '0eed040a20ddb15cdff7789c13dc6828a5843dee'
-    oldFile: !uuid '9b3bda6ca0ae72fbc1c3fccd64f5163db7047ff1'
-  /backend/Dilon.Application/Dilon.Application.csproj:
-    newFile: !uuid '9f5b37470c8239ced9844cd144b72462c94f2f83'
-    oldFile: !uuid '601609df98cbae5a7b39a8542765ddda04aa78a4'
-  /backend/Dilon.Application/Dilon.Application.xml:
-    newFile: !uuid '7b3a41d8de767822259c381255ed45790560ea5f'
-    oldFile: !uuid 'a8787f9387018bcf768d2b5b08844184b6e15f16'
-  /backend/Dilon.Core:
-    newFile: !uuid '6799491392448b0b126c509a4b42dd998a888f78'
-    oldFile: !uuid '58aa38606fc37a01359f7b756600bc2c46b008a7'
-  /backend/Dilon.Core/Dilon.Core.xml:
-    newFile: !uuid '891a1418ca667fcaa8dedc4b85e6ecca5993d983'
-    oldFile: !uuid '6404ffb1b65f240c17604477a9c9968b9682ecda'
-  /backend/Dilon.Core/Service:
-    newFile: !uuid '3c8b394a66e8370c0df072507b3cff09737250f1'
-    oldFile: !uuid '39f909809aedf3a54b7c514747d1dad5a4052f5f'
-  /backend/Dilon.Core/Service/Menu:
-    newFile: !uuid 'c23d87124f5d18d057984289d7824d9b0f4a6550'
-    oldFile: !uuid 'bb8dba8f8b208f1f715cef979cd5c0b7fd22c8e2'
-  /backend/Dilon.Core/Service/Menu/SysMenuService.cs:
-    newFile: !uuid 'fae614c9c7e458d8ffe6b3afb3ddf2a8cb415fab'
-    oldFile: !uuid '95b05856e6f30730d8d8bf58322ad88f998ef277'
-  /backend/Dilon.EntityFramework.Core:
-    newFile: !uuid 'd31f926a049bbb1ac7b9103dc7c9c3bbad8474a5'
-    oldFile: !uuid '9e2b1e589c6a8d83e85d481b14cae3e69b0a7208'
-  /backend/Dilon.EntityFramework.Core/Startup.cs:
-    newFile: !uuid '54af8a5fff2aeaf1e7ee1085b8dacca25f413d4e'
-    oldFile: !uuid 'f3f3724bb02abbd73b3e23caa57b5ca4dda16d95'
-  /backend/Dilon.Web.Entry:
-    newFile: !uuid '2b21fe3d68d3d04a9d7a2c20370c3984d1f01586'
-    oldFile: !uuid '86eaad932443b230dcbf313258c5900450cb211c'
-  /backend/Dilon.Web.Entry/Dilon.db:
-    newFile: !uuid '6a4197d9691142fc66329a87aa945a26658292af'
-    oldFile: !uuid 'fcd9deda188cfe1632c9926cb904b24ee6f6ed87'
-gitCommitId: !uuid '4875d6a9af53d09ab186eba38db5ad291da8f183'
+  /.gitignore:
+    newFile: !uuid '0c02256670f7bc58e29b824ad8557afc22691d76'
+    oldFile: !uuid '091baeb45e690119a77396a655ee204165e95226'
+gitCommitId: !uuid '2ea4d963839d3d6f33b8136e01c175d6c8f35611'
 renames: {
   }
-revisionId: 37
+revisionId: 38
