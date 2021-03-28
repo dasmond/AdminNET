@@ -2,10 +2,109 @@
 branches: {
   }
 fileChange:
-  /.gitignore:
-    newFile: !uuid '0c02256670f7bc58e29b824ad8557afc22691d76'
-    oldFile: !uuid '091baeb45e690119a77396a655ee204165e95226'
-gitCommitId: !uuid '2ea4d963839d3d6f33b8136e01c175d6c8f35611'
+  /backend:
+    newFile: !uuid '02dfc5103aff3831b88e0df17611d8936e8f5754'
+    oldFile: !uuid '1f4b67677da9c14091f43766a2460005bc544237'
+  /backend/Dilon.Core:
+    newFile: !uuid '93d558cb5dbf267b292bec12c2cc117f92f43b45'
+    oldFile: !uuid '6799491392448b0b126c509a4b42dd998a888f78'
+  /backend/Dilon.Core/Entity:
+    newFile: !uuid '200fd4a23d00322817d9cf8e3dfbc76d4aedd44b'
+    oldFile: !uuid 'ee9438b50068a0e96616ced3fc0d03c52ec85c71'
+  /backend/Dilon.Core/Entity/DEntityBase.cs:
+    newFile: !uuid '50e7135b2d709dbb1f68b42f636487d8a1585405'
+    oldFile: !uuid '54471780bdc6d1312f717431c16ad178379d867e'
+  /backend/Dilon.Core/Entity/SysApp.cs:
+    newFile: !uuid 'aab29d944e5b0b4c39f18450692e2dc8d2bf90c1'
+    oldFile: !uuid 'dca247b47cccad9e68ed5e87e4452c314ed8867f'
+  /backend/Dilon.Core/Entity/SysCodeGen.cs:
+    newFile: !uuid '983eee1cefae01563e05dd2d06dc89145e3d0f8a'
+    oldFile: !uuid 'db0ae6b1abf49f338596e220828f7794c8ef5f33'
+  /backend/Dilon.Core/Entity/SysConfig.cs:
+    newFile: !uuid '7c0f8ab238e4c2bbd9eb932127588b49eb2dafc5'
+    oldFile: !uuid '294aea0b952d1720715d9d1ea26cc0e5688dbf00'
+  /backend/Dilon.Core/Entity/SysDictData.cs:
+    newFile: !uuid '6c8fc56fc11dd15ecdf80cfd4934d501d5190b7d'
+    oldFile: !uuid '6f17fcd3012247cc4ade05cdeea98557a81a2dba'
+  /backend/Dilon.Core/Entity/SysDictType.cs:
+    newFile: !uuid 'bea631285d211a017dbf8ce522fe2f9b6dc7a174'
+    oldFile: !uuid '9784ce7175a28ac23ecc82ebfee52e1a44d7c089'
+  /backend/Dilon.Core/Entity/SysFile.cs:
+    newFile: !uuid '948161d2f05d4d4fd501a63f05083f7785945b68'
+    oldFile: !uuid 'd8ffb2da44d2b2920edc4552126c72c3b037b095'
+  /backend/Dilon.Core/Entity/SysMenu.cs:
+    newFile: !uuid 'd176b00f0c1763005bb96fa33e6dbe152879be4b'
+    oldFile: !uuid '2c7f42f6a6f02edb52cc136c2cd5f35d2fbeb17d'
+  /backend/Dilon.Core/Entity/SysNotice.cs:
+    newFile: !uuid '97ce3d77aaac80f192922a44ad185e00ab472165'
+    oldFile: !uuid '8538c72793e26b75f13719fd0d4af20d50a3216c'
+  /backend/Dilon.Core/Entity/SysOauthUser.cs:
+    newFile: !uuid '99beecc65ed156983a15ddb5707834ec807dd905'
+    oldFile: !uuid '659a0e51e3fa2d12f3dbf22eb977140ed747e3a5'
+  /backend/Dilon.Core/Entity/SysOrg.cs:
+    newFile: !uuid '24e8f525935b6a6c983db848da55a997b73741b7'
+    oldFile: !uuid '994de229e4073f71986441a573447dcf14153f9e'
+  /backend/Dilon.Core/Entity/SysPos.cs:
+    newFile: !uuid 'e6d4dd3d66b8b73da60da21efbf8e1fa18db5709'
+    oldFile: !uuid 'a28330d342425b4d47edcb5a6fab4f56dbfcc426'
+  /backend/Dilon.Core/Entity/SysRole.cs:
+    newFile: !uuid '820ebf130fffd714d139172ca007265f81274cf5'
+    oldFile: !uuid '7e3b0296c2fe84becd2f923645b2653384777d0d'
+  /backend/Dilon.Core/Entity/SysTimer.cs:
+    newFile: !uuid '9f1d895d0701b23b1bbc28e75602d1f87eb816d4'
+    oldFile: !uuid 'a7c9a03a58c737c873d62c41f6ad4ca87f0fa071'
+  /backend/Dilon.Core/Entity/SysUser.cs:
+    newFile: !uuid '3d533bfd8e16981386ce0664cda457d62018a823'
+    oldFile: !uuid 'e4f09e9bd296c2728f2cf0ce6a3414efdbdf7016'
+  /backend/Dilon.Core/SeedData:
+    newFile: !uuid '2476a128fcf47eaebd15e9af14def5f64d25b8d5'
+    oldFile: !uuid '8617ff495b201292bf7a5c05f837fc076fa55cae'
+  /backend/Dilon.Core/SeedData/SysAppSeedData.cs:
+    newFile: !uuid '70643978eaee564e57762aa5fdd73cf5fd1868fa'
+    oldFile: !uuid 'bf0889b44c57df578dbe80fcf73ce4cfae687c2e'
+  /backend/Dilon.Core/SeedData/SysConfigSeedData.cs:
+    newFile: !uuid 'ee67f1e898614965f27f7a846beab51ce6331749'
+    oldFile: !uuid '900903413f563e8ea921ec336dc5dcef8cb47e09'
+  /backend/Dilon.Core/SeedData/SysDictDataSeedData.cs:
+    newFile: !uuid '85de0a51bdcdc3aa505ca15b6c544629201f36ba'
+    oldFile: !uuid 'b111e11484437347c158bbd64ed4f6f275a0dab9'
+  /backend/Dilon.Core/SeedData/SysDictTypeSeedData.cs:
+    newFile: !uuid '3d5219921a6bae40210705d34fddbfc5000d182e'
+    oldFile: !uuid 'fa14cfd5089f578df8a1d801c8d3f16f06297f75'
+  /backend/Dilon.Core/SeedData/SysEmpExtOrgPosSeedData.cs:
+    newFile: !uuid 'ba6d02ccce204150d21b82e2a0e61133eafcdf0a'
+    oldFile: !uuid '9ef936b9ead7fff45137e6416d497298e87abaa2'
+  /backend/Dilon.Core/SeedData/SysEmpPosSeedData.cs:
+    newFile: !uuid '98b5240117797127907da4fdae51b2a8226c0ccd'
+    oldFile: !uuid '7a6ef91d815dd6b3dbe84443f8dacd043c13336a'
+  /backend/Dilon.Core/SeedData/SysEmpSeedData.cs:
+    newFile: !uuid '7f1bc5283acda63c471428721b5b2adedc4b7ea3'
+    oldFile: !uuid '7ff483146db616441b6c246cb0c944c26f817c5c'
+  /backend/Dilon.Core/SeedData/SysMenuSeedData.cs:
+    newFile: !uuid 'b25eb9b96e585b6b627c92978b7021498e6f6d9d'
+    oldFile: !uuid '8dcb52471a702dd5b130b9d33d207dd39e098e9a'
+  /backend/Dilon.Core/SeedData/SysOrgSeedData.cs:
+    newFile: !uuid '16ab9f778b0997198d63ad9a7810a51760dc7ea3'
+    oldFile: !uuid 'e2ee06e9b8cd61c04d660161a761b5de7b326d98'
+  /backend/Dilon.Core/SeedData/SysPosSeedData.cs:
+    newFile: !uuid '1d00272e7c5a2018108ae7a8dd08f264ff2c76d4'
+    oldFile: !uuid 'd7e8fe00a911ac66b33080da0c8a105f272eb69f'
+  /backend/Dilon.Core/SeedData/SysRoleSeedData.cs:
+    newFile: !uuid '0bf52081b304c7287d25a0996b518deaab44735f'
+    oldFile: !uuid 'a99345c5ffa5cfe5d78c044bc96e1046e59c6077'
+  /backend/Dilon.Core/SeedData/SysTimerSeedData.cs:
+    newFile: !uuid 'd251c3ac3f5b6f85cd0902d7afac17d77aecb96c'
+    oldFile: !uuid '6e4049d43618bb2bd0c3d5567539f262c0a38c0f'
+  /backend/Dilon.Core/SeedData/SysUserSeedData.cs:
+    newFile: !uuid '1847d7ab65f8f752421e0830d41825133ad49ea2'
+    oldFile: !uuid '578aa3f3ed10b0bc7cf1fb44832b41034d0d8d4e'
+  /backend/Dilon.Web.Entry:
+    newFile: !uuid 'c682d556c1369b0aa8f9a9bb5a4eedb120d0f821'
+    oldFile: !uuid '2b21fe3d68d3d04a9d7a2c20370c3984d1f01586'
+  /backend/Dilon.Web.Entry/Dilon.db:
+    newFile: !uuid '273382b53dd47d5c201afdacab0649ae2b4704f5'
+    oldFile: !uuid '6a4197d9691142fc66329a87aa945a26658292af'
+gitCommitId: !uuid '757716f5ead5eb8d24d84e1d70a7481ef8227e0d'
 renames: {
   }
-revisionId: 38
+revisionId: 39
