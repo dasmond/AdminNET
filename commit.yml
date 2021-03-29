@@ -3,27 +3,21 @@ branches: {
   }
 fileChange:
   /backend:
-    newFile: !uuid 'fcfe9f80a3ce072ef982497d9b8fa306188bd3ae'
-    oldFile: !uuid 'da7f9b3141edbdc834b2517dc4c7028e4e195c49'
+    newFile: !uuid '8ab49943d9f2b785117b7e69a6168ffad24416ae'
+    oldFile: !uuid 'fcfe9f80a3ce072ef982497d9b8fa306188bd3ae'
   /backend/Dilon.Core:
-    newFile: !uuid '8c0304d122f4a13d9bbd2a69e1af016c78b7f001'
-    oldFile: !uuid '656affef9545199c6ca809e95693bf150c3e2a7b'
+    newFile: !uuid 'df6493bfa9a3208d807b201ba0b3e1ba02c9c709'
+    oldFile: !uuid '8c0304d122f4a13d9bbd2a69e1af016c78b7f001'
   /backend/Dilon.Core/Service:
-    newFile: !uuid 'fde549d51376be00bdffe47abeacdf907b8599ea'
-    oldFile: !uuid 'f4abfc27ee819d345766a4e874eb295e53b5c52f'
-  /backend/Dilon.Core/Service/Dict:
-    newFile: !uuid '442a714ed6e0ad8e1769e7cdfe7ff625bd2890ae'
-    oldFile: !uuid '73656e43b392863cdb36be249bdb8e59c9117cd9'
-  /backend/Dilon.Core/Service/Dict/Dto:
-    newFile: !uuid '93922ed0b52ea30401d8966efe6d0301ef447f19'
-    oldFile: !uuid 'bb742446250d69148b17a6d8f374f3ac3be383fb'
-  /backend/Dilon.Core/Service/Dict/Dto/DictDataInput.cs:
-    newFile: !uuid 'a5df89fe719224b807232827674d20823760f229'
-    oldFile: !uuid 'b483cf158c3e2aead43e29793e4792f87c30671a'
-  /backend/Dilon.Core/Service/Dict/Dto/DictDataOutput.cs:
-    newFile: !uuid 'f19daff7dbc7ee69c57773b13b3c0b91bcbb41fb'
-    oldFile: !uuid '8410d5c90a2e5affafa811935f4ae2330f06be03'
-gitCommitId: !uuid 'd5d5080f10a6e307f39747514b5c5440c3e020b6'
+    newFile: !uuid 'b9d6c672f6f23d0581c5746c38fc33eae512c1fe'
+    oldFile: !uuid 'fde549d51376be00bdffe47abeacdf907b8599ea'
+  /backend/Dilon.Core/Service/Menu:
+    newFile: !uuid 'ab0b54cb244e807c93071a794d95d1a59fe4d927'
+    oldFile: !uuid 'd3ac850fb4af5b466e25c03104a15b0f0a23ebbe'
+  /backend/Dilon.Core/Service/Menu/SysMenuService.cs:
+    newFile: !uuid '69090eb32f7de942c61dc2689969ff983e1da4e3'
+    oldFile: !uuid '554d2c45017cceee30a6cd2f83394280a5968d6e'
+gitCommitId: !uuid '49a1a2dbda46dd9906c843acb7f71a455482390a'
 renames: {
   }
-revisionId: 50
+revisionId: 51
