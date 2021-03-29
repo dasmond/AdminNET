@@ -3,132 +3,24 @@ branches: {
   }
 fileChange:
   /backend:
-    newFile: !uuid 'f5a1852e5052e7fe1194712defaa63de8eb794ab'
-    oldFile: !uuid '2439008b6b54cdbea2970fdd1fdc1bba3766b9a8'
+    newFile: !uuid 'da7f9b3141edbdc834b2517dc4c7028e4e195c49'
+    oldFile: !uuid 'f5a1852e5052e7fe1194712defaa63de8eb794ab'
   /backend/Dilon.Core:
-    newFile: !uuid 'b42dd93c18e633169d8a1d94779578098620bb90'
-    oldFile: !uuid '02f001aa882b4c679edf621334447f637c8ebd07'
-  /backend/Dilon.Core/Captcha:
-    newFile: !uuid '07709274884bbbd2de216ded432dd0db32f4a7bb'
-    oldFile: !uuid '3c82518a4f8624ec62719feb323a278d6a202df1'
-  /backend/Dilon.Core/Captcha/ClickWord:
-    newFile: !uuid '0063e54697bfd0e5275c6c90bce67ae0caf1bdf5'
-    oldFile: !uuid 'cf5d0e9b5f863bcc32eb9f724b6227a87b9c3864'
-  /backend/Dilon.Core/Captcha/ClickWord/ClickWordCaptcha.cs:
-    newFile: !uuid '6f997547bd4ea61db04b01f50eed702689134ed5'
-    oldFile: !uuid 'e2d951b79822e5cf76527a0fe0df1e2d9118041e'
-  /backend/Dilon.Core/Captcha/ClickWord/Data:
-    newFile: null
-    oldFile: !uuid '9b88c9154a3f2c41f5d866f52fe98a550a7f4ad8'
-  /backend/Dilon.Core/Captcha/ClickWord/Data/Font:
-    newFile: null
-    oldFile: !uuid '2a316b0499384d2ded6adf6c860be733b58a84d1'
-  /backend/Dilon.Core/Captcha/ClickWord/Data/Font/站酷酷黑体.ttf:
-    newFile: null
-    oldFile: !uuid '8d2a1d7f36632aa84f0841a843af97724f72e71e'
-  /backend/Dilon.Core/Captcha/ClickWord/Data/Image:
-    newFile: null
-    oldFile: !uuid '471eb442057f2c7296092fce3eb7ee1b33599116'
-  /backend/Dilon.Core/Captcha/ClickWord/Data/Image/1.jpg:
-    newFile: null
-    oldFile: !uuid 'e77f91ee1f51b2fde95b7c3303b808112a4d0c6a'
-  /backend/Dilon.Core/Captcha/ClickWord/Data/Image/10.jpg:
-    newFile: null
-    oldFile: !uuid '93fed9887bdb03fe3e9202fe6011f200258956b9'
-  /backend/Dilon.Core/Captcha/ClickWord/Data/Image/11.jpg:
-    newFile: null
-    oldFile: !uuid '51c56e1d2e0eb3cbf249a5af5bac0d695e308e60'
-  /backend/Dilon.Core/Captcha/ClickWord/Data/Image/12.jpg:
-    newFile: null
-    oldFile: !uuid 'e50ac9021b2da348a6dadb7cbd62625d0922b6d8'
-  /backend/Dilon.Core/Captcha/ClickWord/Data/Image/2.jpg:
-    newFile: null
-    oldFile: !uuid 'f5c91169878e3b0c58408dedb8bb9d50e5b01390'
-  /backend/Dilon.Core/Captcha/ClickWord/Data/Image/3.jpg:
-    newFile: null
-    oldFile: !uuid '851c3129db805e215cf641fa01d8105e85dfb63c'
-  /backend/Dilon.Core/Captcha/ClickWord/Data/Image/4.jpg:
-    newFile: null
-    oldFile: !uuid '688e74fcd11075b197b606412bae73ca3808b784'
-  /backend/Dilon.Core/Captcha/ClickWord/Data/Image/5.jpg:
-    newFile: null
-    oldFile: !uuid '07bbdbdf937f2f02e9f2d326615a3b7b30c98c3f'
-  /backend/Dilon.Core/Captcha/ClickWord/Data/Image/6.jpg:
-    newFile: null
-    oldFile: !uuid '1acf7017c6219db3b59ea96865c8c4f450e5d489'
-  /backend/Dilon.Core/Captcha/ClickWord/Data/Image/7.jpg:
-    newFile: null
-    oldFile: !uuid '99068640dd64a11066e451752ab175443bc8263f'
-  /backend/Dilon.Core/Captcha/ClickWord/Data/Image/8.jpg:
-    newFile: null
-    oldFile: !uuid 'def81aeaa355b9c3bc23ce4ef6eb248d61d0fc6f'
-  /backend/Dilon.Core/Captcha/ClickWord/Data/Image/9.jpg:
-    newFile: null
-    oldFile: !uuid '548f36bf0b0912a9f241df8af0627b7cad0f4d7f'
-  /backend/Dilon.Core/Data:
-    newFile: !uuid '9b88c9154a3f2c41f5d866f52fe98a550a7f4ad8'
-    oldFile: null
-  /backend/Dilon.Core/Data/Font:
-    newFile: !uuid '2a316b0499384d2ded6adf6c860be733b58a84d1'
-    oldFile: null
-  /backend/Dilon.Core/Data/Font/站酷酷黑体.ttf:
-    newFile: !uuid '8d2a1d7f36632aa84f0841a843af97724f72e71e'
-    oldFile: null
-  /backend/Dilon.Core/Data/Image:
-    newFile: !uuid '471eb442057f2c7296092fce3eb7ee1b33599116'
-    oldFile: null
-  /backend/Dilon.Core/Data/Image/1.jpg:
-    newFile: !uuid 'e77f91ee1f51b2fde95b7c3303b808112a4d0c6a'
-    oldFile: null
-  /backend/Dilon.Core/Data/Image/10.jpg:
-    newFile: !uuid '93fed9887bdb03fe3e9202fe6011f200258956b9'
-    oldFile: null
-  /backend/Dilon.Core/Data/Image/11.jpg:
-    newFile: !uuid '51c56e1d2e0eb3cbf249a5af5bac0d695e308e60'
-    oldFile: null
-  /backend/Dilon.Core/Data/Image/12.jpg:
-    newFile: !uuid 'e50ac9021b2da348a6dadb7cbd62625d0922b6d8'
-    oldFile: null
-  /backend/Dilon.Core/Data/Image/2.jpg:
-    newFile: !uuid 'f5c91169878e3b0c58408dedb8bb9d50e5b01390'
-    oldFile: null
-  /backend/Dilon.Core/Data/Image/3.jpg:
-    newFile: !uuid '851c3129db805e215cf641fa01d8105e85dfb63c'
-    oldFile: null
-  /backend/Dilon.Core/Data/Image/4.jpg:
-    newFile: !uuid '688e74fcd11075b197b606412bae73ca3808b784'
-    oldFile: null
-  /backend/Dilon.Core/Data/Image/5.jpg:
-    newFile: !uuid '07bbdbdf937f2f02e9f2d326615a3b7b30c98c3f'
-    oldFile: null
-  /backend/Dilon.Core/Data/Image/6.jpg:
-    newFile: !uuid '1acf7017c6219db3b59ea96865c8c4f450e5d489'
-    oldFile: null
-  /backend/Dilon.Core/Data/Image/7.jpg:
-    newFile: !uuid '99068640dd64a11066e451752ab175443bc8263f'
-    oldFile: null
-  /backend/Dilon.Core/Data/Image/8.jpg:
-    newFile: !uuid 'def81aeaa355b9c3bc23ce4ef6eb248d61d0fc6f'
-    oldFile: null
-  /backend/Dilon.Core/Data/Image/9.jpg:
-    newFile: !uuid '548f36bf0b0912a9f241df8af0627b7cad0f4d7f'
-    oldFile: null
-  /backend/Dilon.Core/Dilon.Core.csproj:
-    newFile: !uuid 'fe40e4bc01b0d0178d2406bb3dd9e25563acc255'
-    oldFile: !uuid 'adb6eb1b19180f1333e330a5cbf51a5edae9a23f'
-gitCommitId: !uuid '3e5d714900b9be2e5f60b4b76b5fcefd9ce05b09'
-renames:
-  /backend/Dilon.Core/Data/Font/站酷酷黑体.ttf: /backend/Dilon.Core/Captcha/ClickWord/Data/Font/站酷酷黑体.ttf
-  /backend/Dilon.Core/Data/Image/1.jpg: /backend/Dilon.Core/Captcha/ClickWord/Data/Image/1.jpg
-  /backend/Dilon.Core/Data/Image/10.jpg: /backend/Dilon.Core/Captcha/ClickWord/Data/Image/10.jpg
-  /backend/Dilon.Core/Data/Image/11.jpg: /backend/Dilon.Core/Captcha/ClickWord/Data/Image/11.jpg
-  /backend/Dilon.Core/Data/Image/12.jpg: /backend/Dilon.Core/Captcha/ClickWord/Data/Image/12.jpg
-  /backend/Dilon.Core/Data/Image/2.jpg: /backend/Dilon.Core/Captcha/ClickWord/Data/Image/2.jpg
-  /backend/Dilon.Core/Data/Image/3.jpg: /backend/Dilon.Core/Captcha/ClickWord/Data/Image/3.jpg
-  /backend/Dilon.Core/Data/Image/4.jpg: /backend/Dilon.Core/Captcha/ClickWord/Data/Image/4.jpg
-  /backend/Dilon.Core/Data/Image/5.jpg: /backend/Dilon.Core/Captcha/ClickWord/Data/Image/5.jpg
-  /backend/Dilon.Core/Data/Image/6.jpg: /backend/Dilon.Core/Captcha/ClickWord/Data/Image/6.jpg
-  /backend/Dilon.Core/Data/Image/7.jpg: /backend/Dilon.Core/Captcha/ClickWord/Data/Image/7.jpg
-  /backend/Dilon.Core/Data/Image/8.jpg: /backend/Dilon.Core/Captcha/ClickWord/Data/Image/8.jpg
-  /backend/Dilon.Core/Data/Image/9.jpg: /backend/Dilon.Core/Captcha/ClickWord/Data/Image/9.jpg
-revisionId: 48
+    newFile: !uuid '656affef9545199c6ca809e95693bf150c3e2a7b'
+    oldFile: !uuid 'b42dd93c18e633169d8a1d94779578098620bb90'
+  /backend/Dilon.Core/Service:
+    newFile: !uuid 'f4abfc27ee819d345766a4e874eb295e53b5c52f'
+    oldFile: !uuid 'f0e929480fc1adb64af7e176c9230cd6da10d374'
+  /backend/Dilon.Core/Service/Dict:
+    newFile: !uuid '73656e43b392863cdb36be249bdb8e59c9117cd9'
+    oldFile: !uuid 'ff71266f820f741b99197c3c5e73994432c25ef6'
+  /backend/Dilon.Core/Service/Dict/Dto:
+    newFile: !uuid 'bb742446250d69148b17a6d8f374f3ac3be383fb'
+    oldFile: !uuid 'bd66b4ab75905662c3a82c1a40cf29fa09203e70'
+  /backend/Dilon.Core/Service/Dict/Dto/DictDataInput.cs:
+    newFile: !uuid 'b483cf158c3e2aead43e29793e4792f87c30671a'
+    oldFile: !uuid '1b3893783d4a4ea9935872a180f5ddf966e913fa'
+gitCommitId: !uuid 'f043c7ed5c6a2119f11376a379d7f01d959bbc58'
+renames: {
+  }
+revisionId: 49
