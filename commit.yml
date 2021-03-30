@@ -2,22 +2,55 @@
 branches: {
   }
 fileChange:
-  /doc:
-    newFile: !uuid '0d26c841a93188a0e6067a3ea64f927d09a67a59'
-    oldFile: !uuid 'bad63099d11ff720908bbae0c32ce051043b3894'
-  /doc/img:
-    newFile: !uuid '9d4311d87cbaf271a46a63e552ecf08c91805afd'
-    oldFile: !uuid '22d9dc42e56f7e4bbf436bb59ec0f38a4b632d73'
-  /doc/img/11.png:
-    newFile: !uuid '0a35d0270de9fff0e0b2b93876de4725fcb45aea'
-    oldFile: !uuid 'c97f80e514232ebea4f60cd0efff8db399514124'
-  /doc/img/12.png:
-    newFile: !uuid 'c97f80e514232ebea4f60cd0efff8db399514124'
-    oldFile: !uuid '0a35d0270de9fff0e0b2b93876de4725fcb45aea'
-  /doc/img/13.png:
-    newFile: null
-    oldFile: !uuid 'c97f80e514232ebea4f60cd0efff8db399514124'
-gitCommitId: !uuid '459c041efad9a0333f42553f4fa73d6a5817b6e1'
+  /.gitignore:
+    newFile: !uuid '2e55070d89a1725b803e37afff2a8051b050f839'
+    oldFile: !uuid '8b7dce8572dbe24260e77ae8e6d1ee22820b5eda'
+  /backend:
+    newFile: !uuid 'cbc3abee31b9af17992b210fcac2b17b9ed11930'
+    oldFile: !uuid 'c0b12e05a3f19ed4bd2d5c87cebe4c87ff53ca34'
+  /backend/Dilon.Web.Entry:
+    newFile: !uuid '092b94aaf221a9122603716b67e8e66d06d2dc08'
+    oldFile: !uuid '0f5f4f9154dcdd92a248b7e117434be0de86d64d'
+  /backend/Dilon.Web.Entry/wwwroot:
+    newFile: !uuid '2867602c0bb7e1d201d55a0b70174c3f1874ef35'
+    oldFile: null
+  /backend/Dilon.Web.Entry/wwwroot/Captcha:
+    newFile: !uuid 'eeb45e85c688fa3e1ee84786fd9ed88779c950bf'
+    oldFile: null
+  /backend/Dilon.Web.Entry/wwwroot/Captcha/Font:
+    newFile: !uuid '2a316b0499384d2ded6adf6c860be733b58a84d1'
+    oldFile: null
+  /backend/Dilon.Web.Entry/wwwroot/Captcha/Font/站酷酷黑体.ttf:
+    newFile: !uuid '8d2a1d7f36632aa84f0841a843af97724f72e71e'
+    oldFile: null
+  /backend/Dilon.Web.Entry/wwwroot/Captcha/Image:
+    newFile: !uuid 'e3160ac23c0f1180311f28ee2abff253dd43aa8e'
+    oldFile: null
+  /backend/Dilon.Web.Entry/wwwroot/Captcha/Image/1.jpg:
+    newFile: !uuid 'e77f91ee1f51b2fde95b7c3303b808112a4d0c6a'
+    oldFile: null
+  /backend/Dilon.Web.Entry/wwwroot/Captcha/Image/2.jpg:
+    newFile: !uuid 'f5c91169878e3b0c58408dedb8bb9d50e5b01390'
+    oldFile: null
+  /backend/Dilon.Web.Entry/wwwroot/Captcha/Image/3.jpg:
+    newFile: !uuid '851c3129db805e215cf641fa01d8105e85dfb63c'
+    oldFile: null
+  /backend/Dilon.Web.Entry/wwwroot/Captcha/Image/4.jpg:
+    newFile: !uuid '688e74fcd11075b197b606412bae73ca3808b784'
+    oldFile: null
+  /backend/Dilon.Web.Entry/wwwroot/Captcha/Image/5.jpg:
+    newFile: !uuid '07bbdbdf937f2f02e9f2d326615a3b7b30c98c3f'
+    oldFile: null
+  /backend/Dilon.Web.Entry/wwwroot/Captcha/Image/6.jpg:
+    newFile: !uuid '1acf7017c6219db3b59ea96865c8c4f450e5d489'
+    oldFile: null
+  /backend/Dilon.Web.Entry/wwwroot/Captcha/Image/7.jpg:
+    newFile: !uuid '99068640dd64a11066e451752ab175443bc8263f'
+    oldFile: null
+  /backend/Dilon.Web.Entry/wwwroot/Captcha/Image/8.jpg:
+    newFile: !uuid 'def81aeaa355b9c3bc23ce4ef6eb248d61d0fc6f'
+    oldFile: null
+gitCommitId: !uuid 'c5e53d097776be4fc541dcb9eb4bbb7826716ba8'
 renames: {
   }
-revisionId: 64
+revisionId: 65
