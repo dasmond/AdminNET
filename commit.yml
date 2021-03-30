@@ -3,24 +3,15 @@ branches: {
   }
 fileChange:
   /backend:
-    newFile: !uuid '98ad614fceb577bf9b1f10067fb9ab9c7b08a168'
-    oldFile: !uuid 'cbc3abee31b9af17992b210fcac2b17b9ed11930'
-  /backend/Dilon.Core:
-    newFile: !uuid 'c5e39e2692781deda2204e5efd9e9169e0cba6b2'
-    oldFile: !uuid '77b1e405167eca9b2d41ce93ae24562e08eb46ea'
-  /backend/Dilon.Core/Service:
-    newFile: !uuid '3b0b1ed645350682b5d79bbddc6a7525dceeb9fa'
-    oldFile: !uuid '0d10999b8e76eee791f89f9b1308eb02eea2e67b'
-  /backend/Dilon.Core/Service/Log:
-    newFile: !uuid '39007cc903c5b17ed8b7dc3584beb4e0d96d7d07'
-    oldFile: !uuid '8e29e7f09084b412a3b1706ec339b9407606c046'
-  /backend/Dilon.Core/Service/Log/SysOpLogService.cs:
-    newFile: !uuid '9ea2c7e795860a1c854fa3b61c46fe98d24ded55'
-    oldFile: !uuid '47c7734cfe0711ca6797dd9b74bdb2a94d43bbda'
-  /backend/Dilon.Core/Service/Log/SysVisLogService.cs:
-    newFile: !uuid 'bff1bc759afc1369baf6fde26582439b75f6ab5b'
-    oldFile: !uuid '35659d89a8a998d611573c487a2b9b3930d7330d'
-gitCommitId: !uuid 'dca25d227f89022d39c7657b1c8766f13c916347'
+    newFile: !uuid '328ece46418f8c5a5fd602e92ac2ea8179e381b7'
+    oldFile: !uuid '98ad614fceb577bf9b1f10067fb9ab9c7b08a168'
+  /backend/Dilon.Web.Core:
+    newFile: !uuid 'd59ab774cfbd3e42a909d74e971e574a180fc323'
+    oldFile: !uuid 'dadf4b20016e011a74a2f2c0e28dc04840b0f954'
+  /backend/Dilon.Web.Core/Startup.cs:
+    newFile: !uuid '55dd92a8a12c0c562e5c4d9a8f43c6af2b042c99'
+    oldFile: !uuid '822f52eabd208f40f14dc19e3e9b4c0497b68eff'
+gitCommitId: !uuid '2b61e440bc0d9235c49323443f913c0267e63a9b'
 renames: {
   }
-revisionId: 66
+revisionId: 67
