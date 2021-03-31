@@ -16,7 +16,7 @@
 [![GitHub license](https://img.shields.io/badge/license-Apache2-yellow)](https://gitee.com/dotnetchina/Furion/blob/master/LICENSE)
 
 </div>
-
+1
 ### 🍟 概述
 
 * 基于.NET5实现的通用权限管理平台（RBAC模式）。整合最新技术高效快速开发，前后端分离模式，开箱即用。
