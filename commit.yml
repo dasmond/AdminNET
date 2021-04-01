@@ -2,25 +2,25 @@
 branches: {
   }
 fileChange:
-  /backend:
-    newFile: !uuid '4fd593f7814cb4c95ff7be17fbaa4d0457a26019'
-    oldFile: !uuid 'ffa47ff84defffa6036b15913b359f175222d4de'
-  /backend/Dilon.Core:
-    newFile: !uuid '485bb74e08eea2fb82e04b1ff1d94d034809e8a4'
-    oldFile: !uuid '59f1cac6346b579365fc340b941fdfdedaf03145'
-  /backend/Dilon.Core/Dilon.Core.csproj:
-    newFile: !uuid '5b4fc4b5045a56b8addf1796be02e97d6a9123c3'
-    oldFile: !uuid '593037a78be5a92edb8b147eaeb9e58a6564f0ef'
-  /backend/Dilon.Core/Service:
-    newFile: !uuid 'ffab239ca5f72c1f8cd1829b3d19a31757079d4a'
-    oldFile: !uuid 'cdacaadfd54076738fe9307144c8e58b9941e001'
-  /backend/Dilon.Core/Service/Notice:
-    newFile: !uuid 'ca6e229d1729ca3d3e3dd9a648976125ba1fb585'
-    oldFile: !uuid '7d454ce955b758deea8f43622e12c6d7ad9346b8'
-  /backend/Dilon.Core/Service/Notice/SysNoticeUserService.cs:
-    newFile: !uuid '1b5bebe74d1c088921c5c4272f0c6e7b696ef01a'
-    oldFile: !uuid '849f14de372191f0886dad85eecf759931be7ea4'
-gitCommitId: !uuid 'd1e71fc48551a00852bccf39170d36f159531c4f'
+  /frontend:
+    newFile: !uuid 'bb6349ffb783de1be41ba10ac183c510441ed2cc'
+    oldFile: !uuid '5415494271b0391a9246761ddc458976b0cd362b'
+  /frontend/src:
+    newFile: !uuid 'ad5d97544729b9546e83a1109763c173f090f047'
+    oldFile: !uuid '12aa57dbf438a7b0a19400d734058536013c9f0d'
+  /frontend/src/views:
+    newFile: !uuid '8d909e3a035693898d636fc33bd3ecf6e0c6f219'
+    oldFile: !uuid '47181412e89e5f1caca28aed0d32bff50779b8f1'
+  /frontend/src/views/system:
+    newFile: !uuid '4ba187603e3f9e72d46de68c3d02eef3dc0fbd2a'
+    oldFile: !uuid 'a92120193c6bbb8dafd19983494438e1f0571016'
+  /frontend/src/views/system/role:
+    newFile: !uuid 'a24d9c0f91c62c04af8cedae797d69cf1e629845'
+    oldFile: !uuid '69568068facb8916ac0ed6404e8550cd39ce7cce'
+  /frontend/src/views/system/role/roleMenuForm.vue:
+    newFile: !uuid '364efa7d45810e0564aa66e6ebe0199bef56c53b'
+    oldFile: !uuid 'e2eac56b0950c2b28e28c23526d023e669ee5c0e'
+gitCommitId: !uuid '212097613942a2c0735183de3389cc9438766c74'
 renames: {
   }
-revisionId: 72
+revisionId: 73
