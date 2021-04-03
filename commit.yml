@@ -2,43 +2,16 @@
 branches: {
   }
 fileChange:
-  /frontend:
-    newFile: !uuid '9ca621db2095c8a141b6777e8d3bf9a13b9fe37f'
-    oldFile: !uuid 'bb6349ffb783de1be41ba10ac183c510441ed2cc'
-  /frontend/src:
-    newFile: !uuid '9c6b7f6933f9ca9b497b8494c5535c3ba2bd0cdd'
-    oldFile: !uuid 'ad5d97544729b9546e83a1109763c173f090f047'
-  /frontend/src/api:
-    newFile: !uuid '11d692c915e3b9378b81fd7037644a4332b13c67'
-    oldFile: !uuid '43d72696b425d947ba70d444a3cde4e9ba9a8c9f'
-  /frontend/src/api/modular:
-    newFile: !uuid 'ae495874af491dcc3cdedb82f055380cd3cbd3ef'
-    oldFile: !uuid '48d47a9833aa684bbc85c7db35c3f5e1b091b231'
-  /frontend/src/api/modular/system:
-    newFile: !uuid 'aa59a64e25185f20d99e32a38e5e322270d90688'
-    oldFile: !uuid 'a5a15b1327086057186485c66382df61be236e46'
-  /frontend/src/api/modular/system/tenantManage.js:
-    newFile: !uuid '4d881e284133910af8e2b75214519d9c19962a1a'
+  /doc:
+    newFile: !uuid '2bc3b247ad1fb851259ab55a723e4fb51a3c32ba'
+    oldFile: !uuid '0d26c841a93188a0e6067a3ea64f927d09a67a59'
+  /doc/img:
+    newFile: !uuid 'c52e3221d09087be487c78e56bfb253335684edd'
+    oldFile: !uuid '9d4311d87cbaf271a46a63e552ecf08c91805afd'
+  /doc/img/13.png:
+    newFile: !uuid '2dde63edbe50536b176826c15af929cbb494bfb4'
     oldFile: null
-  /frontend/src/views:
-    newFile: !uuid '6d17220ac8bc696f3c2fa0980f66f57a7a99bf50'
-    oldFile: !uuid '8d909e3a035693898d636fc33bd3ecf6e0c6f219'
-  /frontend/src/views/system:
-    newFile: !uuid 'ea6a36d884c660c3b8bc59cd6ea956b6ff332aeb'
-    oldFile: !uuid '4ba187603e3f9e72d46de68c3d02eef3dc0fbd2a'
-  /frontend/src/views/system/tenant:
-    newFile: !uuid 'ddd1b1304a1ac3d1e0c67a063b1db182525a97bd'
-    oldFile: null
-  /frontend/src/views/system/tenant/addForm.vue:
-    newFile: !uuid '334d7201fc724f078ab5f6f6a4ebf8ad3162c390'
-    oldFile: null
-  /frontend/src/views/system/tenant/editForm.vue:
-    newFile: !uuid '919b8c93bc2ecc1d02d944fc2b4476cfaf8a7ed9'
-    oldFile: null
-  /frontend/src/views/system/tenant/index.vue:
-    newFile: !uuid 'f8521e26ea9c10fcba8ba555cc3019b5d41f8cdd'
-    oldFile: null
-gitCommitId: !uuid '0bbb3a0cd8f7adf557de806ad45a4c45b8a473f5'
+gitCommitId: !uuid '44eba6c57a5ae762808185233ace6cdfd7a3409e'
 renames: {
   }
-revisionId: 78
+revisionId: 79
