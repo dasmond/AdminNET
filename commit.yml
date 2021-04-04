@@ -2,82 +2,10 @@
 branches: {
   }
 fileChange:
-  /backend:
-    newFile: !uuid '6cc51315f9e5dd5dd084303810ff6f059a5b4794'
-    oldFile: !uuid '6761c124f5774065d7eb66233c3a3382c5240131'
-  /backend/Dilon.Core:
-    newFile: !uuid 'd9be779eda4e49b887a083da7b3b5a11b62a7311'
-    oldFile: !uuid 'cda21233ae4d59d031c0ad3598ffe44a04531350'
-  /backend/Dilon.Core/Dilon.Core.xml:
-    newFile: !uuid '07c3e1a779fc3cf0f54fc5400dd6947d26beb2ca'
-    oldFile: !uuid 'b0e741c9a26cace63e89d2ff2c2fe7647125e155'
-  /backend/Dilon.Core/Enum:
-    newFile: !uuid 'a29a4712687f2836f5746751905a603d239c1bdd'
-    oldFile: !uuid '88ce898cae933c8762fe46a128ab9fa857b85b03'
-  /backend/Dilon.Core/Enum/QueryTypeEnum.cs:
-    newFile: !uuid 'cc68646042fec27bbbf4ee6e38bc4e7102a47fc7'
-    oldFile: null
-  /backend/Dilon.Core/Service:
-    newFile: !uuid 'd33b80ee272eb125fe8f9cc394166b40d043a209'
-    oldFile: !uuid '5af2659b565223cd3efb5daa28bd1d9bda8b8f1d'
-  /backend/Dilon.Core/Service/CodeGen:
-    newFile: !uuid 'af8bd71ae35dfba34ba33d44573cfb5b21fdfe1e'
-    oldFile: !uuid '676516f95d463b6d2fb4ffadbd983369f670c742'
-  /backend/Dilon.Core/Service/CodeGen/CodeGenConfigService.cs:
-    newFile: !uuid '85d4beea70b8a02a8defb75312204cba322e4e99'
-    oldFile: null
-  /backend/Dilon.Core/Service/CodeGen/CodeGenService.cs:
-    newFile: !uuid 'dec5a479a61381b27992ba337f0769e321937f1c'
-    oldFile: !uuid 'e7c3465a845dfa15a34f29179caf123be85a7a05'
-  /backend/Dilon.Core/Service/CodeGen/Dto:
-    newFile: !uuid 'f0d1e0cf549f5dfb948e2c4eab469f7aaebe7edf'
-    oldFile: !uuid 'c5a29ef7250a7ea4b970537705fac1a2d45e17e6'
-  /backend/Dilon.Core/Service/CodeGen/Dto/CodeGenConfigDto.cs:
-    newFile: !uuid '8b5edcb792d11fc6f4f7732b817433a4f14ca28d'
-    oldFile: null
-  /backend/Dilon.Core/Service/CodeGen/Dto/TableColumnOuput.cs:
-    newFile: !uuid '18415f95faeb1f331b983cca0730b6b3916fab38'
-    oldFile: null
-  /backend/Dilon.Web.Entry:
-    newFile: !uuid '9d4317569a4839a526d665b37d7bf6c37767d89f'
-    oldFile: !uuid '9bfea5225858ff2a8ec3f010e1e8752509fd8ac8'
-  /backend/Dilon.Web.Entry/wwwroot:
-    newFile: !uuid '1c3b5a96fa34a05d3c6b0ec765561b7b771cf05c'
-    oldFile: !uuid '2867602c0bb7e1d201d55a0b70174c3f1874ef35'
-  /backend/Dilon.Web.Entry/wwwroot/Template:
-    newFile: !uuid '21ef985157370b948e7ce9f77c808d2ef2e683b5'
-    oldFile: null
-  /backend/Dilon.Web.Entry/wwwroot/Template/Manage.js.vm:
-    newFile: !uuid 'acce32ebd75102a0b04771291f056af5d8f5bf07'
-    oldFile: null
-  /backend/Dilon.Web.Entry/wwwroot/Template/addForm.vue.vm:
-    newFile: !uuid 'dc437d040f91d586304e30c2e2d90d6faa87105b'
-    oldFile: null
-  /backend/Dilon.Web.Entry/wwwroot/Template/editForm.vue.vm:
-    newFile: !uuid '6a36c328a7aadd0fec8bb670c5d45104674eb547'
-    oldFile: null
-  /backend/Dilon.Web.Entry/wwwroot/Template/index.vue.vm:
-    newFile: !uuid 'f66725475ded74cf770d511e86a278db6fe505bd'
-    oldFile: null
-  /frontend:
-    newFile: !uuid '635dccf7ddafdd06196afef4e86a22d3db60490d'
-    oldFile: !uuid '9ca621db2095c8a141b6777e8d3bf9a13b9fe37f'
-  /frontend/src:
-    newFile: !uuid 'e65909dbac2974115045342b08bf57138a33b38a'
-    oldFile: !uuid '9c6b7f6933f9ca9b497b8494c5535c3ba2bd0cdd'
-  /frontend/src/views:
-    newFile: !uuid '77dd3644474689e8de79f3594c306a612183c310'
-    oldFile: !uuid '6d17220ac8bc696f3c2fa0980f66f57a7a99bf50'
-  /frontend/src/views/gen:
-    newFile: !uuid '2c8da6ae0ecf950d6c5204ad5fef74c2a9ec92e5'
-    oldFile: !uuid 'd32124950d334f400dd2f8a4c29f421e1caf2fc5'
-  /frontend/src/views/gen/codeGenerate:
-    newFile: !uuid '02d72d5a7fa8e6aadcf43268cebd4da7a2074adc'
-    oldFile: !uuid '7e83f95e547df26a8f07f6b1f2e90221274091a5'
-  /frontend/src/views/gen/codeGenerate/index.vue:
-    newFile: !uuid '031f914e06b7bc0d40fbc88dc84d55d13b821a6b'
-    oldFile: !uuid '816903d05635de14c9720eb80edf19c8b82669a7'
-gitCommitId: !uuid '469e3616897df588f908bdaac2db4c368bfb7bc4'
+  /README.en.md:
+    newFile: null
+    oldFile: !uuid '798d0dda69c0de520d90d895fdae0369371012f3'
+gitCommitId: !uuid '4ac875890349ac534353b3b0135798864138d307'
 renames: {
   }
-revisionId: 85
+revisionId: 86
