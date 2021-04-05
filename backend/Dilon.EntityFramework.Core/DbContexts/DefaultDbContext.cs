@@ -2,23 +2,62 @@
 using Dilon.Core.Service;
 using Furion;
 using Furion.DatabaseAccessor;
+using Furion.DependencyInjection;
 using Furion.FriendlyException;
+using Furion.JsonSerialization;
 using Furion.Snowflake;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Microsoft.Extensions.Caching.Distributed;
 using System;
 using System.Linq;
 
 namespace Dilon.EntityFramework.Core
 {
     [AppDbContext("DefaultConnection", DbProvider.Sqlite)]
-    public class DefaultDbContext : AppDbContext<DefaultDbContext>, IModelBuilderFilter
+    public class DefaultDbContext : AppDbContext<DefaultDbContext>, IMultiTenantOnDatabase, IModelBuilderFilter
     {
         public DefaultDbContext(DbContextOptions<DefaultDbContext> options) : base(options)
         {
             // 启用实体数据更改监听
             EnabledEntityChangedListener = true;
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseSqlite(GetDatabaseConnectionString());
+
+            base.OnConfiguring(optionsBuilder);
+        }
+
+        public string GetDatabaseConnectionString()
+        {
+            // 如果没有实现多租户方式，则无需查询
+            if (!typeof(IPrivateMultiTenant).IsAssignableFrom(GetType())) return default;
+
+            // 判断 HttpContext 是否存在
+            var httpContext = App.HttpContext;
+            if (httpContext == null) return default;
+
+            // 当前根据主机名称获取租户信息（可自由处理，比如请求参数等）
+            var host = httpContext.Request.Host.Value;
+
+            // 从分布式缓存中读取或查询数据库
+            var tenantCachedKey = $"MULTI_TENANT:{host}";
+            var distributedCache = App.GetService<IDistributedCache>();
+            var cachedValue = distributedCache.GetString(tenantCachedKey);
+
+            var jsonSerializerProvider = App.GetService<IJsonSerializerProvider>();
+            SysTenant currentTenant;
+            if (string.IsNullOrEmpty(cachedValue))
+            {
+                currentTenant = Db.GetDbContext<MultiTenantDbContextLocator>().Set<SysTenant>().FirstOrDefault(u => u.Host == host);
+                if (currentTenant != null)
+                    distributedCache.SetString(tenantCachedKey, jsonSerializerProvider.Serialize(currentTenant));
+            }
+            else currentTenant = jsonSerializerProvider.Deserialize<SysTenant>(cachedValue);
+            return currentTenant?.Connection ?? App.Configuration["ConnectionStrings:DefaultConnection"];
         }
 
         /// <summary>
@@ -61,9 +100,10 @@ namespace Dilon.EntityFramework.Core
                     throw Oops.Oh(ErrorCode.D1200);
             }
 
+            // 当前操作用户信息
             var userId = App.User.FindFirst(ClaimConst.CLAINM_USERID)?.Value;
-
-            // 获取所有已更改的实体
+            var userName = App.User.FindFirst(ClaimConst.CLAINM_ACCOUNT)?.Value;
+      
             foreach (var entity in entities)
             {
                 if (entity.Entity.GetType().IsSubclassOf(typeof(DEntityBase)))
@@ -76,12 +116,14 @@ namespace Dilon.EntityFramework.Core
                         if (!string.IsNullOrEmpty(userId))
                         {
                             obj.CreatedUserId = long.Parse(userId);
+                            obj.CreatedUserName = userName;
                         }
                     }
                     else if (entity.State == EntityState.Modified)
                     {
                         obj.UpdatedTime = DateTimeOffset.Now;
                         obj.UpdatedUserId = long.Parse(userId);
+                        obj.UpdatedUserName = userName;
                     }
                 }
 

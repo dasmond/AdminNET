@@ -313,11 +313,6 @@
             主键Id
             </summary>
         </member>
-        <member name="P:Dilon.Core.DEntityBase.TenantId">
-            <summary>
-            租户Id
-            </summary>
-        </member>
         <member name="P:Dilon.Core.DEntityBase.CreatedTime">
             <summary>
             创建时间
@@ -333,9 +328,19 @@
             创建者Id
             </summary>
         </member>
+        <member name="P:Dilon.Core.DEntityBase.CreatedUserName">
+            <summary>
+            创建者名称
+            </summary>
+        </member>
         <member name="P:Dilon.Core.DEntityBase.UpdatedUserId">
             <summary>
             修改者Id
+            </summary>
+        </member>
+        <member name="P:Dilon.Core.DEntityBase.UpdatedUserName">
+            <summary>
+            修改者名称
             </summary>
         </member>
         <member name="P:Dilon.Core.DEntityBase.IsDeleted">
@@ -374,94 +379,114 @@
             排序
             </summary>
         </member>
-        <member name="T:Dilon.Core.Entity.SysCodeGen">
+        <member name="T:Dilon.Core.SysCodeGen">
             <summary>
             代码生成表
             </summary>
         </member>
-        <member name="P:Dilon.Core.Entity.SysCodeGen.AuthorName">
+        <member name="P:Dilon.Core.SysCodeGen.AuthorName">
             <summary>
             作者姓名
             </summary>
         </member>
-        <member name="P:Dilon.Core.Entity.SysCodeGen.ClassName">
-            <summary>
-            类名
-            </summary>
-        </member>
-        <member name="P:Dilon.Core.Entity.SysCodeGen.TablePrefix">
+        <member name="P:Dilon.Core.SysCodeGen.TablePrefix">
             <summary>
             是否移除表前缀
             </summary>
         </member>
-        <member name="P:Dilon.Core.Entity.SysCodeGen.GenerateType">
+        <member name="P:Dilon.Core.SysCodeGen.GenerateType">
             <summary>
             生成方式
             </summary>
         </member>
-        <member name="P:Dilon.Core.Entity.SysCodeGen.TableName">
+        <member name="P:Dilon.Core.SysCodeGen.TableName">
             <summary>
             数据库表名
             </summary>
         </member>
-        <member name="P:Dilon.Core.Entity.SysCodeGen.PackageName">
+        <member name="P:Dilon.Core.SysCodeGen.Namespace">
             <summary>
-            包名
+            命名空间
             </summary>
         </member>
-        <member name="P:Dilon.Core.Entity.SysCodeGen.BusName">
+        <member name="P:Dilon.Core.SysCodeGen.BusName">
             <summary>
             业务名（业务代码包名称）
             </summary>
         </member>
-        <member name="P:Dilon.Core.Entity.SysCodeGen.TableComment">
+        <member name="P:Dilon.Core.SysCodeGenConfig.CodeGenId">
             <summary>
-            功能名（数据库表名称）
+            代码生成主表ID
             </summary>
         </member>
-        <member name="T:Dilon.Core.Entity.System.SysFile">
+        <member name="P:Dilon.Core.SysCodeGenConfig.ColumnName">
             <summary>
-            文件信息表
+            数据库字段名
             </summary>
         </member>
-        <member name="P:Dilon.Core.Entity.System.SysFile.FileLocation">
+        <member name="P:Dilon.Core.SysCodeGenConfig.ColumnComment">
             <summary>
-            文件存储位置（1:阿里云，2:腾讯云，3:minio，4:本地）
+            字段描述
             </summary>
         </member>
-        <member name="P:Dilon.Core.Entity.System.SysFile.FileBucket">
+        <member name="P:Dilon.Core.SysCodeGenConfig.NetType">
             <summary>
-            文件仓库
+            .NET类型
             </summary>
         </member>
-        <member name="P:Dilon.Core.Entity.System.SysFile.FileOriginName">
+        <member name="P:Dilon.Core.SysCodeGenConfig.EffectType">
             <summary>
-            文件名称（上传时候的文件名）
+            作用类型（字典）
             </summary>
         </member>
-        <member name="P:Dilon.Core.Entity.System.SysFile.FileSuffix">
+        <member name="P:Dilon.Core.SysCodeGenConfig.DictTypeCode">
             <summary>
-            文件后缀
+            字典code
             </summary>
         </member>
-        <member name="P:Dilon.Core.Entity.System.SysFile.FileSizeKb">
+        <member name="P:Dilon.Core.SysCodeGenConfig.WhetherRetract">
             <summary>
-            文件大小kb
+            列表是否缩进（字典）
             </summary>
         </member>
-        <member name="P:Dilon.Core.Entity.System.SysFile.FileSizeInfo">
+        <member name="P:Dilon.Core.SysCodeGenConfig.WhetherRequired">
             <summary>
-            文件大小信息，计算后的
+            是否必填（字典）
             </summary>
         </member>
-        <member name="P:Dilon.Core.Entity.System.SysFile.FileObjectName">
+        <member name="P:Dilon.Core.SysCodeGenConfig.QueryWhether">
             <summary>
-            存储到bucket的名称（文件唯一标识id）
+            是否是查询条件
             </summary>
         </member>
-        <member name="P:Dilon.Core.Entity.System.SysFile.FilePath">
+        <member name="P:Dilon.Core.SysCodeGenConfig.QueryType">
             <summary>
-            存储路径
+            查询方式
+            </summary>
+        </member>
+        <member name="P:Dilon.Core.SysCodeGenConfig.WhetherTable">
+            <summary>
+            列表显示
+            </summary>
+        </member>
+        <member name="P:Dilon.Core.SysCodeGenConfig.WhetherAddUpdate">
+            <summary>
+            增改
+            </summary>
+        </member>
+        <member name="P:Dilon.Core.SysCodeGenConfig.ColumnKey">
+            <summary>
+            主外键
+            </summary>
+        </member>
+        <member name="P:Dilon.Core.SysCodeGenConfig.DataType">
+            <summary>
+            数据库中类型（物理类型）
+            </summary>
+        </member>
+        <member name="P:Dilon.Core.SysCodeGenConfig.WhetherCommon">
+            <summary>
+            是否是通用字段
             </summary>
         </member>
         <member name="T:Dilon.Core.SysConfig">
@@ -690,6 +715,51 @@
         <member name="P:Dilon.Core.SysEmpPos.SysPos">
             <summary>
             一对一引用（职位）
+            </summary>
+        </member>
+        <member name="T:Dilon.Core.SysFile">
+            <summary>
+            文件信息表
+            </summary>
+        </member>
+        <member name="P:Dilon.Core.SysFile.FileLocation">
+            <summary>
+            文件存储位置（1:阿里云，2:腾讯云，3:minio，4:本地）
+            </summary>
+        </member>
+        <member name="P:Dilon.Core.SysFile.FileBucket">
+            <summary>
+            文件仓库
+            </summary>
+        </member>
+        <member name="P:Dilon.Core.SysFile.FileOriginName">
+            <summary>
+            文件名称（上传时候的文件名）
+            </summary>
+        </member>
+        <member name="P:Dilon.Core.SysFile.FileSuffix">
+            <summary>
+            文件后缀
+            </summary>
+        </member>
+        <member name="P:Dilon.Core.SysFile.FileSizeKb">
+            <summary>
+            文件大小kb
+            </summary>
+        </member>
+        <member name="P:Dilon.Core.SysFile.FileSizeInfo">
+            <summary>
+            文件大小信息，计算后的
+            </summary>
+        </member>
+        <member name="P:Dilon.Core.SysFile.FileObjectName">
+            <summary>
+            存储到bucket的名称（文件唯一标识id）
+            </summary>
+        </member>
+        <member name="P:Dilon.Core.SysFile.FilePath">
+            <summary>
+            存储路径
             </summary>
         </member>
         <member name="T:Dilon.Core.SysLogAudit">
@@ -1365,6 +1435,46 @@
             一对一引用（系统菜单）
             </summary>
         </member>
+        <member name="T:Dilon.Core.SysTenant">
+            <summary>
+            租户表
+            </summary>
+        </member>
+        <member name="P:Dilon.Core.SysTenant.Name">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:Dilon.Core.SysTenant.Host">
+            <summary>
+            主机
+            </summary>
+        </member>
+        <member name="P:Dilon.Core.SysTenant.Email">
+            <summary>
+            电子邮箱
+            </summary>
+        </member>
+        <member name="P:Dilon.Core.SysTenant.Phone">
+            <summary>
+            电话
+            </summary>
+        </member>
+        <member name="P:Dilon.Core.SysTenant.Connection">
+            <summary>
+            数据库连接
+            </summary>
+        </member>
+        <member name="P:Dilon.Core.SysTenant.Schema">
+            <summary>
+            架构
+            </summary>
+        </member>
+        <member name="P:Dilon.Core.SysTenant.Remark">
+            <summary>
+            备注
+            </summary>
+        </member>
         <member name="T:Dilon.Core.SysTimer">
             <summary>
             定时任务
@@ -1926,6 +2036,16 @@
             演示环境禁止修改数据
             </summary>
         </member>
+        <member name="F:Dilon.Core.ErrorCode.D1300">
+            <summary>
+            已存在同名或同主机租户
+            </summary>
+        </member>
+        <member name="F:Dilon.Core.ErrorCode.D1400">
+            <summary>
+            该表代码模板已经生成过
+            </summary>
+        </member>
         <member name="F:Dilon.Core.ErrorCode.xg1000">
             <summary>
             已存在同名或同编码项目
@@ -2159,6 +2279,51 @@
         <member name="F:Dilon.Core.NoticeUserStatus.READ">
             <summary>
             已读
+            </summary>
+        </member>
+        <member name="T:Dilon.Core.QueryTypeEnum">
+            <summary>
+            查询类型的枚举
+            </summary>
+        </member>
+        <member name="F:Dilon.Core.QueryTypeEnum.eq">
+            <summary>
+            等于
+            </summary>
+        </member>
+        <member name="F:Dilon.Core.QueryTypeEnum.like">
+            <summary>
+            模糊
+            </summary>
+        </member>
+        <member name="F:Dilon.Core.QueryTypeEnum.gt">
+            <summary>
+            大于
+            </summary>
+        </member>
+        <member name="F:Dilon.Core.QueryTypeEnum.lt">
+            <summary>
+            小于
+            </summary>
+        </member>
+        <member name="F:Dilon.Core.QueryTypeEnum.ne">
+            <summary>
+            不等于
+            </summary>
+        </member>
+        <member name="F:Dilon.Core.QueryTypeEnum.ge">
+            <summary>
+            大于等于
+            </summary>
+        </member>
+        <member name="F:Dilon.Core.QueryTypeEnum.le">
+            <summary>
+            小于等于
+            </summary>
+        </member>
+        <member name="F:Dilon.Core.QueryTypeEnum.isNotNull">
+            <summary>
+            不为空
             </summary>
         </member>
         <member name="T:Dilon.Core.YesOrNot">
@@ -2700,6 +2865,11 @@
             系统应用参数
             </summary>
         </member>
+        <member name="P:Dilon.Core.Service.AppOutput.Id">
+            <summary>
+            应用Id
+            </summary>
+        </member>
         <member name="P:Dilon.Core.Service.AppOutput.Name">
             <summary>
             名称
@@ -3059,54 +3229,436 @@
             <param name="key"></param>
             <returns></returns>
         </member>
+        <member name="T:Dilon.Core.Service.CodeGenConfigService">
+            <summary>
+            代码生成详细配置服务
+            </summary>
+        </member>
+        <member name="M:Dilon.Core.Service.CodeGenConfigService.List(Dilon.Core.Service.CodeGenConfig)">
+            <summary>
+            代码生成详细配置列表
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Dilon.Core.Service.CodeGenConfigService.Add(Dilon.Core.Service.CodeGenConfig)">
+            <summary>
+            增加
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Dilon.Core.Service.CodeGenConfigService.Delete(System.Int64)">
+            <summary>
+            删除
+            </summary>
+            <param name="codeGenId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Dilon.Core.Service.CodeGenConfigService.Update(System.Collections.Generic.List{Dilon.Core.Service.CodeGenConfig})">
+            <summary>
+            更新
+            </summary>
+            <param name="inputList"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Dilon.Core.Service.CodeGenConfigService.Detail(Dilon.Core.Service.CodeGenConfig)">
+            <summary>
+            详情
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Dilon.Core.Service.CodeGenConfigService.AddList(System.Collections.Generic.List{Dilon.Core.Service.TableColumnOuput},Dilon.Core.SysCodeGen)">
+            <summary>
+            批量增加
+            </summary>
+            <param name="tableColumnOuputList"></param>
+            <param name="codeGenerate"></param>
+        </member>
+        <member name="M:Dilon.Core.Service.CodeGenConfigService.DataTypeToEff(System.String)">
+            <summary>
+            数据类型转显示类型
+            </summary>
+            <param name="dataType"></param>
+            <returns></returns>
+        </member>
         <member name="T:Dilon.Core.Service.CodeGen.CodeGenService">
             <summary>
             代码生成器服务
             </summary>
         </member>
-        <member name="T:Dilon.Core.Service.CodeGen.Dto.CodeGenInput">
+        <member name="M:Dilon.Core.Service.CodeGen.CodeGenService.QueryCodeGenPageList(Dilon.Core.Service.CodeGenInput)">
+            <summary>
+            分页查询
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Dilon.Core.Service.CodeGen.CodeGenService.AddCodeGen(Dilon.Core.Service.AddCodeGenInput)">
+            <summary>
+            增加
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Dilon.Core.Service.CodeGen.CodeGenService.DeleteCodeGen(System.Collections.Generic.List{Dilon.Core.Service.DeleteCodeGenInput})">
+            <summary>
+            删除
+            </summary>
+            <param name="inputs"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Dilon.Core.Service.CodeGen.CodeGenService.UpdateCodeGen(Dilon.Core.Service.UpdateCodeGenInput)">
+            <summary>
+            更新
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Dilon.Core.Service.CodeGen.CodeGenService.GetCodeGen(Dilon.Core.Service.QueryCodeGenInput)">
+            <summary>
+            详情
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Dilon.Core.Service.CodeGen.CodeGenService.GetTableList">
+            <summary>
+            获取数据库表(实体)集合
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Dilon.Core.Service.CodeGen.CodeGenService.GetColumnList(Dilon.Core.Service.AddCodeGenInput)">
+            <summary>
+            获取数据表列（实体属性）集合
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Dilon.Core.Service.CodeGen.CodeGenService.RunLocal(Dilon.Core.Service.CodeGenInput)">
+            <summary>
+            代码生成_本地项目
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Dilon.Core.Service.CodeGenConfig">
+            <summary>
+            代码生成详细配置参数
+            </summary>
+        </member>
+        <member name="P:Dilon.Core.Service.CodeGenConfig.Id">
+            <summary>
+            主键
+            </summary>
+        </member>
+        <member name="P:Dilon.Core.Service.CodeGenConfig.CodeGenId">
+            <summary>
+            代码生成主表ID
+            </summary>
+        </member>
+        <member name="P:Dilon.Core.Service.CodeGenConfig.ColumnName">
+            <summary>
+            数据库字段名
+            </summary>
+        </member>
+        <member name="P:Dilon.Core.Service.CodeGenConfig.ColumnComment">
+            <summary>
+            字段描述
+            </summary>
+        </member>
+        <member name="P:Dilon.Core.Service.CodeGenConfig.NetType">
+            <summary>
+            .NET类型
+            </summary>
+        </member>
+        <member name="P:Dilon.Core.Service.CodeGenConfig.EffectType">
+            <summary>
+            作用类型（字典）
+            </summary>
+        </member>
+        <member name="P:Dilon.Core.Service.CodeGenConfig.DictTypeCode">
+            <summary>
+            字典code
+            </summary>
+        </member>
+        <member name="P:Dilon.Core.Service.CodeGenConfig.WhetherRetract">
+            <summary>
+            列表是否缩进（字典）
+            </summary>
+        </member>
+        <member name="P:Dilon.Core.Service.CodeGenConfig.WhetherRequired">
+            <summary>
+            是否必填（字典）
+            </summary>
+        </member>
+        <member name="P:Dilon.Core.Service.CodeGenConfig.QueryWhether">
+            <summary>
+            是否是查询条件
+            </summary>
+        </member>
+        <member name="P:Dilon.Core.Service.CodeGenConfig.QueryType">
+            <summary>
+            查询方式
+            </summary>
+        </member>
+        <member name="P:Dilon.Core.Service.CodeGenConfig.WhetherTable">
+            <summary>
+            列表显示
+            </summary>
+        </member>
+        <member name="P:Dilon.Core.Service.CodeGenConfig.WhetherAddUpdate">
+            <summary>
+            增改
+            </summary>
+        </member>
+        <member name="P:Dilon.Core.Service.CodeGenConfig.ColumnKey">
+            <summary>
+            主外键
+            </summary>
+        </member>
+        <member name="P:Dilon.Core.Service.CodeGenConfig.DataType">
+            <summary>
+            数据库中类型（物理类型）
+            </summary>
+        </member>
+        <member name="P:Dilon.Core.Service.CodeGenConfig.WhetherCommon">
+            <summary>
+            是否是通用字段
+            </summary>
+        </member>
+        <member name="T:Dilon.Core.Service.CodeGenInput">
             <summary>
             代码生成参数类
             </summary>
         </member>
-        <member name="P:Dilon.Core.Service.CodeGen.Dto.CodeGenInput.AuthorName">
+        <member name="P:Dilon.Core.Service.CodeGenInput.AuthorName">
             <summary>
             作者姓名
             </summary>
         </member>
-        <member name="P:Dilon.Core.Service.CodeGen.Dto.CodeGenInput.ClassName">
+        <member name="P:Dilon.Core.Service.CodeGenInput.ClassName">
             <summary>
             类名
             </summary>
         </member>
-        <member name="P:Dilon.Core.Service.CodeGen.Dto.CodeGenInput.TablePrefix">
+        <member name="P:Dilon.Core.Service.CodeGenInput.TablePrefix">
             <summary>
             是否移除表前缀
             </summary>
         </member>
-        <member name="P:Dilon.Core.Service.CodeGen.Dto.CodeGenInput.GenerateType">
+        <member name="P:Dilon.Core.Service.CodeGenInput.GenerateType">
             <summary>
             生成方式
             </summary>
         </member>
-        <member name="P:Dilon.Core.Service.CodeGen.Dto.CodeGenInput.TableName">
+        <member name="P:Dilon.Core.Service.CodeGenInput.TableName">
             <summary>
             数据库表名
             </summary>
         </member>
-        <member name="P:Dilon.Core.Service.CodeGen.Dto.CodeGenInput.PackageName">
+        <member name="P:Dilon.Core.Service.CodeGenInput.PackageName">
             <summary>
             包名
             </summary>
         </member>
-        <member name="P:Dilon.Core.Service.CodeGen.Dto.CodeGenInput.BusName">
+        <member name="P:Dilon.Core.Service.CodeGenInput.BusName">
             <summary>
             业务名（业务代码包名称）
             </summary>
         </member>
-        <member name="P:Dilon.Core.Service.CodeGen.Dto.CodeGenInput.TableComment">
+        <member name="P:Dilon.Core.Service.CodeGenInput.TableComment">
             <summary>
             功能名（数据库表名称）
+            </summary>
+        </member>
+        <member name="P:Dilon.Core.Service.AddCodeGenInput.AuthorName">
+            <summary>
+            作者姓名
+            </summary>
+        </member>
+        <member name="P:Dilon.Core.Service.AddCodeGenInput.ClassName">
+            <summary>
+            类名
+            </summary>
+        </member>
+        <member name="P:Dilon.Core.Service.AddCodeGenInput.TablePrefix">
+            <summary>
+            是否移除表前缀
+            </summary>
+        </member>
+        <member name="P:Dilon.Core.Service.AddCodeGenInput.GenerateType">
+            <summary>
+            生成方式
+            </summary>
+        </member>
+        <member name="P:Dilon.Core.Service.AddCodeGenInput.TableName">
+            <summary>
+            数据库表名
+            </summary>
+        </member>
+        <member name="P:Dilon.Core.Service.AddCodeGenInput.BusName">
+            <summary>
+            业务名（业务代码包名称）
+            </summary>
+        </member>
+        <member name="P:Dilon.Core.Service.AddCodeGenInput.TableComment">
+            <summary>
+            功能名（数据库表名称）
+            </summary>
+        </member>
+        <member name="P:Dilon.Core.Service.DeleteCodeGenInput.Id">
+            <summary>
+            代码生成器Id
+            </summary>
+        </member>
+        <member name="P:Dilon.Core.Service.UpdateCodeGenInput.Id">
+            <summary>
+            代码生成器Id
+            </summary>
+        </member>
+        <member name="T:Dilon.Core.Service.CodeGenOutput">
+            <summary>
+            代码生成参数类
+            </summary>
+        </member>
+        <member name="P:Dilon.Core.Service.CodeGenOutput.Id">
+            <summary>
+            代码生成器Id
+            </summary>
+        </member>
+        <member name="P:Dilon.Core.Service.CodeGenOutput.AuthorName">
+            <summary>
+            作者姓名
+            </summary>
+        </member>
+        <member name="P:Dilon.Core.Service.CodeGenOutput.ClassName">
+            <summary>
+            类名
+            </summary>
+        </member>
+        <member name="P:Dilon.Core.Service.CodeGenOutput.TablePrefix">
+            <summary>
+            是否移除表前缀
+            </summary>
+        </member>
+        <member name="P:Dilon.Core.Service.CodeGenOutput.GenerateType">
+            <summary>
+            生成方式
+            </summary>
+        </member>
+        <member name="P:Dilon.Core.Service.CodeGenOutput.TableName">
+            <summary>
+            数据库表名
+            </summary>
+        </member>
+        <member name="P:Dilon.Core.Service.CodeGenOutput.PackageName">
+            <summary>
+            包名
+            </summary>
+        </member>
+        <member name="P:Dilon.Core.Service.CodeGenOutput.BusName">
+            <summary>
+            业务名（业务代码包名称）
+            </summary>
+        </member>
+        <member name="P:Dilon.Core.Service.CodeGenOutput.TableComment">
+            <summary>
+            功能名（数据库表名称）
+            </summary>
+        </member>
+        <member name="T:Dilon.Core.Service.TableColumnOuput">
+            <summary>
+            数据库表列
+            </summary>
+        </member>
+        <member name="P:Dilon.Core.Service.TableColumnOuput.ColumnName">
+            <summary>
+            字段名
+            </summary>
+        </member>
+        <member name="P:Dilon.Core.Service.TableColumnOuput.DataType">
+            <summary>
+            数据库中类型
+            </summary>
+        </member>
+        <member name="P:Dilon.Core.Service.TableColumnOuput.ColumnComment">
+            <summary>
+            字段描述
+            </summary>
+        </member>
+        <member name="P:Dilon.Core.Service.TableColumnOuput.ColumnKey">
+            <summary>
+            主外键
+            </summary>
+        </member>
+        <member name="T:Dilon.Core.Service.TableOutput">
+            <summary>
+            数据库表列表参数
+            </summary>
+        </member>
+        <member name="P:Dilon.Core.Service.TableOutput.TableName">
+            <summary>
+            表名（字母形式的）
+            </summary>
+        </member>
+        <member name="P:Dilon.Core.Service.TableOutput.CreateTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="P:Dilon.Core.Service.TableOutput.UpdateTime">
+            <summary>
+            更新时间
+            </summary>
+        </member>
+        <member name="P:Dilon.Core.Service.TableOutput.TableComment">
+            <summary>
+            表名称描述（注释）（功能名）
+            </summary>
+        </member>
+        <member name="P:Dilon.Core.Service.XnCodeGenOutput.AuthorName">
+            <summary>
+            作者姓名
+            </summary>
+        </member>
+        <member name="P:Dilon.Core.Service.XnCodeGenOutput.TablePrefix">
+            <summary>
+            是否移除表前缀
+            </summary>
+        </member>
+        <member name="P:Dilon.Core.Service.XnCodeGenOutput.GenerateType">
+            <summary>
+            生成方式
+            </summary>
+        </member>
+        <member name="P:Dilon.Core.Service.XnCodeGenOutput.TableName">
+            <summary>
+            数据库表名
+            </summary>
+        </member>
+        <member name="P:Dilon.Core.Service.XnCodeGenOutput.TableNameAss">
+            <summary>
+            数据库表名（经过组装的）
+            </summary>
+        </member>
+        <member name="P:Dilon.Core.Service.XnCodeGenOutput.PackageName">
+            <summary>
+            代码包名
+            </summary>
+        </member>
+        <member name="P:Dilon.Core.Service.XnCodeGenOutput.CreateTimestring">
+            <summary>
+            生成时间（string类型的）
+            </summary>
+        </member>
+        <member name="P:Dilon.Core.Service.XnCodeGenOutput.ConfigList">
+            <summary>
+            数据库表中字段集合
+            </summary>
+        </member>
+        <member name="P:Dilon.Core.Service.XnCodeGenOutput.BusName">
+            <summary>
+            业务名
             </summary>
         </member>
         <member name="T:Dilon.Core.Service.ConfigInput">
@@ -5325,6 +5877,166 @@
         <member name="M:Dilon.Core.Service.SysRoleService.OwnData(Dilon.Core.Service.QueryRoleInput)">
             <summary>
             获取角色拥有数据Id集合
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Dilon.Core.Service.TenantInput">
+            <summary>
+            租户参数
+            </summary>
+        </member>
+        <member name="P:Dilon.Core.Service.TenantInput.Name">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:Dilon.Core.Service.TenantInput.Host">
+            <summary>
+            主机
+            </summary>
+        </member>
+        <member name="P:Dilon.Core.Service.TenantInput.Email">
+            <summary>
+            电子邮箱
+            </summary>
+        </member>
+        <member name="P:Dilon.Core.Service.TenantInput.Phone">
+            <summary>
+            电话号码
+            </summary>
+        </member>
+        <member name="P:Dilon.Core.Service.TenantInput.Schema">
+            <summary>
+            模式
+            </summary>
+        </member>
+        <member name="P:Dilon.Core.Service.TenantInput.Connection">
+            <summary>
+            数据库连接
+            </summary>
+        </member>
+        <member name="P:Dilon.Core.Service.TenantInput.Remark">
+            <summary>
+            备注
+            </summary>
+        </member>
+        <member name="P:Dilon.Core.Service.TenantInput.CreatedTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="P:Dilon.Core.Service.AddTenantInput.Name">
+            <summary>
+            租户名称
+            </summary>
+        </member>
+        <member name="P:Dilon.Core.Service.AddTenantInput.Host">
+            <summary>
+            主机名称
+            </summary>
+        </member>
+        <member name="P:Dilon.Core.Service.AddTenantInput.Connection">
+            <summary>
+            数据库连接
+            </summary>
+        </member>
+        <member name="P:Dilon.Core.Service.DeleteTenantInput.Id">
+            <summary>
+            租户Id
+            </summary>
+        </member>
+        <member name="P:Dilon.Core.Service.UpdateTenantInput.Id">
+            <summary>
+            租户Id
+            </summary>
+        </member>
+        <member name="T:Dilon.Core.Service.TenantOutput">
+            <summary>
+            租户参数
+            </summary>
+        </member>
+        <member name="P:Dilon.Core.Service.TenantOutput.Id">
+            <summary>
+            租户Id
+            </summary>
+        </member>
+        <member name="P:Dilon.Core.Service.TenantOutput.Name">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:Dilon.Core.Service.TenantOutput.Host">
+            <summary>
+            主机
+            </summary>
+        </member>
+        <member name="P:Dilon.Core.Service.TenantOutput.Email">
+            <summary>
+            电子邮箱
+            </summary>
+        </member>
+        <member name="P:Dilon.Core.Service.TenantOutput.Phone">
+            <summary>
+            电话号码
+            </summary>
+        </member>
+        <member name="P:Dilon.Core.Service.TenantOutput.Schema">
+            <summary>
+            模式
+            </summary>
+        </member>
+        <member name="P:Dilon.Core.Service.TenantOutput.Connection">
+            <summary>
+            数据库连接
+            </summary>
+        </member>
+        <member name="P:Dilon.Core.Service.TenantOutput.Remark">
+            <summary>
+            备注
+            </summary>
+        </member>
+        <member name="P:Dilon.Core.Service.TenantOutput.CreatedTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="T:Dilon.Core.Service.SysTenantService">
+            <summary>
+            租户服务
+            </summary>
+        </member>
+        <member name="M:Dilon.Core.Service.SysTenantService.QueryTenantPageList(Dilon.Core.Service.TenantInput)">
+            <summary>
+            分页查询租户
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Dilon.Core.Service.SysTenantService.AddTenant(Dilon.Core.Service.AddTenantInput)">
+            <summary>
+            增加租户
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Dilon.Core.Service.SysTenantService.DeleteTenant(Dilon.Core.Service.DeleteTenantInput)">
+            <summary>
+            删除租户
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Dilon.Core.Service.SysTenantService.UpdateTenant(Dilon.Core.Service.UpdateTenantInput)">
+            <summary>
+            更新租户
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Dilon.Core.Service.SysTenantService.GetTenant(Dilon.Core.Service.QueryTenantInput)">
+            <summary>
+            获取租户
             </summary>
             <param name="input"></param>
             <returns></returns>

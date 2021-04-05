@@ -1,4 +1,5 @@
 ﻿using Furion;
+using Furion.DatabaseAccessor;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Dilon.EntityFramework.Core
@@ -9,7 +10,10 @@ namespace Dilon.EntityFramework.Core
         {
             services.AddDatabaseAccessor(options =>
             {
-                options.AddDbPool<DefaultDbContext>();
+                options.CustomizeMultiTenants(); // 自定义租户
+
+                options.AddDb<DefaultDbContext>();
+                options.AddDb<MultiTenantDbContext, MultiTenantDbContextLocator>();
             }, "Dilon.Database.Migrations");
         }
     }

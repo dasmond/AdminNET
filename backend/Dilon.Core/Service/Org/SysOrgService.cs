@@ -218,6 +218,11 @@ namespace Dilon.Core.Service
             if (input.Id == input.Pid)
                 throw Oops.Oh(ErrorCode.D2001);
 
+            // 如果是编辑，父id不能为自己的子节点
+            var childIdListById = await GetChildIdListWithSelfById(long.Parse(input.Id));
+            if (childIdListById.Contains(long.Parse(input.Pid)))
+                throw Oops.Oh(ErrorCode.D2001);
+
             var sysOrg = await _sysOrgRep.DetachedEntities.FirstOrDefaultAsync(u => u.Id == long.Parse(input.Id));
 
             // 检测数据范围能不能操作这个机构
@@ -229,13 +234,20 @@ namespace Dilon.Core.Service
             if (isExist)
                 throw Oops.Oh(ErrorCode.D2002);
 
-            //如果名称有变化，则修改对应员工的机构相关信息
+            // 如果名称有变化，则修改对应员工的机构相关信息
             if (!sysOrg.Name.Equals(input.Name))
                 await _sysEmpService.UpdateEmpOrgInfo(sysOrg.Id, sysOrg.Name);
 
             sysOrg = input.Adapt<SysOrg>();
             await FillPids(sysOrg);
             await sysOrg.UpdateAsync(ignoreNullValues: true);
+
+            //// 将所有子的父id进行更新
+            //childIdListById.ForEach(u=> {
+            //    var child = _sysOrgRep.DetachedEntities.FirstOrDefaultAsync(u => u.Id == u.Id);
+            //    var newInput = child.Adapt<UpdateOrgInput>();
+            //    UpdateOrg(newInput).GetAwaiter();
+            //});
         }
 
         /// <summary>
