@@ -1,15 +1,16 @@
-﻿using Furion.DatabaseAccessor;
+﻿using Furion;
+using Furion.DatabaseAccessor;
 using Furion.DatabaseAccessor.Extensions;
 using Furion.DependencyInjection;
 using Furion.DynamicApiController;
 using Furion.FriendlyException;
+using Furion.ViewEngine;
 using Mapster;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
-using System.Reflection;
 using System.Threading.Tasks;
 
 namespace Dilon.Core.Service.CodeGen
@@ -22,11 +23,13 @@ namespace Dilon.Core.Service.CodeGen
     {
         private readonly IRepository<SysCodeGen> _sysCodeGenRep;    // 代码生成器仓储
         private readonly CodeGenConfigService _codeGenConfigService;
+        private readonly IViewEngine _viewEngine;
 
-        public CodeGenService(IRepository<SysCodeGen> sysCodeGenRep, CodeGenConfigService codeGenConfigService)
+        public CodeGenService(IRepository<SysCodeGen> sysCodeGenRep, CodeGenConfigService codeGenConfigService, IViewEngine viewEngine)
         {
             _sysCodeGenRep = sysCodeGenRep;
             _codeGenConfigService = codeGenConfigService;
+            _viewEngine = viewEngine;
         }
 
         /// <summary>
@@ -149,13 +152,20 @@ namespace Dilon.Core.Service.CodeGen
         /// </summary>
         /// <returns></returns>
         [HttpPost("/codeGenerate/runLocal")]
-        public void RunLocal(CodeGenInput input)
+        public async void RunLocal(SysCodeGen input)
         {
-            XnCodeGenOutput xnCodeGenParam = input.Adapt<XnCodeGenOutput>();
-            //xnCodeGenParam.FunctionName = input.TableComment;
-            xnCodeGenParam.ConfigList = null;
-            xnCodeGenParam.CreateTimestring = DateTimeOffset.Now.ToString();
-        }
+            var tContent = File.ReadAllText(App.WebHostEnvironment.WebRootPath + "\\Template\\index.vue.vm");
 
+            var codeGenConfigList = await _codeGenConfigService.List(new CodeGenConfig() { CodeGenId = input.Id });
+            var tResult = _viewEngine.RunCompile(tContent, new
+            {
+                ClassName = input.TableName, // 类名
+                QueryWhetherList = codeGenConfigList.Select(u => u.QueryWhether == YesOrNot.Y.ToString()), // 前端查询集合
+                TableField = codeGenConfigList // 字段集合
+            }); 
+
+            File.WriteAllText("C:\\1.vue", tResult);
+
+        }
     }
 }
