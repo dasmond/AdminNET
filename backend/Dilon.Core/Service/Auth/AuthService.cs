@@ -77,7 +77,7 @@ namespace Dilon.Core.Service
             _ = user ?? throw Oops.Oh(ErrorCode.D1000);
 
             // 验证账号是否被冻结
-            if (user.Status == (int)CommonStatus.DISABLE)
+            if (user.Status == CommonStatus.DISABLE)
                 throw Oops.Oh(ErrorCode.D1017);
 
             // 生成Token令牌
@@ -116,7 +116,8 @@ namespace Dilon.Core.Service
             var loginOutput = user.Adapt<LoginOutput>();
 
             loginOutput.LastLoginTime = user.LastLoginTime = DateTimeOffset.Now;
-            loginOutput.LastLoginIp = user.LastLoginIp = httpContext.GetRemoteIpAddressToIPv4();
+            var ip = httpContext.Request.Headers["X-Real-IP"].FirstOrDefault();
+            loginOutput.LastLoginIp = user.LastLoginIp = string.IsNullOrEmpty(user.LastLoginIp) ? httpContext.GetRemoteIpAddressToIPv4() : ip;
 
             //var ipInfo = IpTool.Search(loginOutput.LastLoginIp);
             //loginOutput.LastLoginAddress = ipInfo.Country + ipInfo.Province + ipInfo.City + "[" + ipInfo.NetworkOperator + "][" + ipInfo.Latitude + ipInfo.Longitude + "]";
@@ -192,7 +193,7 @@ namespace Dilon.Core.Service
         /// <returns></returns>
         [HttpGet("/getCaptchaOpen")]
         [AllowAnonymous]
-        public async Task<dynamic> GetCaptchaOpen()
+        public async Task<bool> GetCaptchaOpen()
         {
             return await _sysConfigService.GetCaptchaOpenFlag();
         }

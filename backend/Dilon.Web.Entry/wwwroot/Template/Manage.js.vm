@@ -1,0 +1,66 @@
+import { axios } from '@@/utils/request'
+
+/**
+ * 查询@(@Model.BusName)
+ *
+ * @@author @Model.AuthorName
+ */
+export function @(@Model.ClassName)Page (parameter) {
+  return axios({
+    url: '/@Model.ClassName/page',
+    method: 'get',
+    params: parameter
+  })
+}
+
+/**
+ * @(@Model.BusName)列表
+ *
+ * @@author @Model.AuthorName
+ */
+export function @(@Model.ClassName)List (parameter) {
+  return axios({
+    url: '/@Model.ClassName/list',
+    method: 'get',
+    params: parameter
+  })
+}
+
+/**
+ * 添加@(@Model.BusName)
+ *
+ * @@author @Model.AuthorName
+ */
+export function @(@Model.ClassName)Add (parameter) {
+  return axios({
+    url: '/@Model.ClassName/add',
+    method: 'post',
+    data: parameter
+  })
+}
+
+/**
+ * 编辑@(@Model.BusName)
+ *
+ * @@author @Model.AuthorName
+ */
+export function @(@Model.ClassName)Edit (parameter) {
+  return axios({
+    url: '/@Model.ClassName/edit',
+    method: 'post',
+    data: parameter
+  })
+}
+
+/**
+ * 删除@(@Model.BusName)
+ *
+ * @@author @Model.AuthorName
+ */
+export function @(@Model.ClassName)Delete (parameter) {
+  return axios({
+    url: '/@Model.ClassName/delete',
+    method: 'post',
+    data: parameter
+  })
+}

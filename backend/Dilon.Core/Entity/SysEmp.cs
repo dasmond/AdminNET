@@ -16,6 +16,7 @@ namespace Dilon.Core
         /// <summary>
         /// 用户Id
         /// </summary>
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public long Id { get; set; }
 
         /// <summary>

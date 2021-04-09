@@ -26,6 +26,9 @@
     "CacheType": "MemoryCache", // RedisCache
     "RedisConnectionString": "127.0.0.1:6379,password=,defaultDatabase=2"
   },
+  "SnowId": {
+    "WorkerId": "1" // 取值范围0~63,默认1
+  },
   "OAuth": {
     "Wechat": {
       "app_id": "wx2959fdd3abc05362",
@@ -37,25 +40,25 @@
   "UploadFile": {
     // 头像
     "Avatar": {
-      "path": "/upload/avatar/",
+      "path": "Upload/Avatar",
       "maxSize": 1048576,
       "contentType": [ "image/jpg", "image/png", "image/jpeg", "image/gif" ]
     },
     // 文档
     "Document": {
-      "path": "/upload/document/",
+      "path": "Upload/Document",
       "maxSize": 1048576,
       "contentType": [ "image/jpg", "image/png", "image/jpeg", "image/gif", "image/bmp", "text/plain", "application/pdf", "application/msword", "application/vnd.ms-excel", "application/vnd.openxmlformats-officedocument.presentationml.presentation" ]
     },
     // 商店
     "Shop": {
-      "path": "/upload/shop/",
+      "path": "Upload/Shop",
       "maxSize": 1048576,
       "contentType": [ "image/jpg", "image/png", "image/jpeg", "image/gif" ]
     },
     // 默认
     "Default": {
-      "path": "/upload/default/",
+      "path": "Upload/Default",
       "maxSize": 1048576,
       "contentType": [ "image/jpg", "image/png", "image/jpeg", "image/gif", "image/bmp", "text/plain", "application/pdf", "application/msword", "application/vnd.ms-excel", "application/vnd.openxmlformats-officedocument.presentationml.presentation" ]
     }

@@ -116,7 +116,7 @@ namespace Dilon.Core.Service.Notice
                 notice.PublicTime = DateTimeOffset.Now;
                 await UpdatePublicInfo(notice);
             }
-            await notice.UpdateNowAsync();
+            await notice.UpdateAsync();
 
             // 通知到的人
             var noticeUserIdList = input.NoticeUserIdList;
@@ -185,7 +185,7 @@ namespace Dilon.Core.Service.Notice
             {
                 notice.PublicTime = DateTimeOffset.Now;
             }
-            await notice.UpdateNowAsync();
+            await notice.UpdateAsync();
         }
 
         /// <summary>
@@ -197,7 +197,7 @@ namespace Dilon.Core.Service.Notice
         public async Task<dynamic> ReceivedNoticePageList([FromQuery] NoticeInput input)
         {
             var searchValue = !string.IsNullOrEmpty(input.SearchValue?.Trim());
-            var notices = await _sysNoticeRep.DetachedEntities.Join(_sysNoticeUserRep.AsQueryable(), u => u.Id, e => e.NoticeId, (u, e) => new { u, e })
+            var notices = await _sysNoticeRep.DetachedEntities.Join(_sysNoticeUserRep.DetachedEntities, u => u.Id, e => e.NoticeId, (u, e) => new { u, e })
                                              .Where(u => u.e.UserId == _userManager.UserId)
                                              .Where(searchValue, u => EF.Functions.Like(u.u.Title, $"%{input.SearchValue.Trim()}%") || EF.Functions.Like(u.u.Content, $"%{input.SearchValue.Trim()}%"))
                                              .Where(input.Type > 0, u => u.u.Type == input.Type)

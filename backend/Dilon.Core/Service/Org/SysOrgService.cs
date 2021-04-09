@@ -61,7 +61,7 @@ namespace Dilon.Core.Service
                                               (pId, u => EF.Functions.Like(u.Pids, $"%[{input.Pid.Trim()}]%")
                                                          || u.Id == long.Parse(input.Pid.Trim()))) // 根据父机构id查询
                                        .Where(dataScopeList.Count > 0, u => dataScopeList.Contains(u.Id)) // 非管理员范围限制
-                                       .Where(u => u.Status != (int)CommonStatus.DELETED).OrderBy(u => u.Sort)
+                                       .Where(u => u.Status != CommonStatus.DELETED).OrderBy(u => u.Sort)
                                        .Select(u => u.Adapt<OrgOutput>())
                                        .ToPagedListAsync(input.PageNo, input.PageSize);
             return XnPageResult<OrgOutput>.PageResult(orgs);
@@ -107,7 +107,7 @@ namespace Dilon.Core.Service
             var orgs = await _sysOrgRep.DetachedEntities
                                        .Where(pId, u => u.Pid == long.Parse(input.Pid))
                                        .Where(dataScopeList.Count > 0, u => dataScopeList.Contains(u.Id))
-                                       .Where(u => u.Status != (int)CommonStatus.DELETED).OrderBy(u => u.Sort).ToListAsync();
+                                       .Where(u => u.Status != CommonStatus.DELETED).OrderBy(u => u.Sort).ToListAsync();
             return orgs.Adapt<List<OrgOutput>>();
         }
 
@@ -139,7 +139,7 @@ namespace Dilon.Core.Service
 
             var sysOrg = input.Adapt<SysOrg>();
             await FillPids(sysOrg);
-            await sysOrg.InsertNowAsync();
+            await sysOrg.InsertAsync();
         }
 
         /// <summary>
@@ -166,6 +166,7 @@ namespace Dilon.Core.Service
         /// <param name="input"></param>
         /// <returns></returns>
         [HttpPost("/sysOrg/delete")]
+        [UnitOfWork]
         public async Task DeleteOrg(DeleteOrgInput input)
         {
             var sysOrg = await _sysOrgRep.DetachedEntities.FirstOrDefaultAsync(u => u.Id == long.Parse(input.Id));
@@ -190,7 +191,7 @@ namespace Dilon.Core.Service
             var orgs = await _sysOrgRep.Where(u => childIdList.Contains(u.Id)).ToListAsync();
             orgs.ForEach(u =>
             {
-                u.DeleteNow();
+                u.Delete();
             });
 
             // 级联删除该机构及子机构对应的角色-数据范围关联信息
@@ -206,6 +207,7 @@ namespace Dilon.Core.Service
         /// <param name="input"></param>
         /// <returns></returns>
         [HttpPost("/sysOrg/edit")]
+        [UnitOfWork]
         public async Task UpdateOrg(UpdateOrgInput input)
         {
             if (input.Pid != "0" && !string.IsNullOrEmpty(input.Pid))
@@ -214,6 +216,11 @@ namespace Dilon.Core.Service
                 _ = org ?? throw Oops.Oh(ErrorCode.D2000);
             }
             if (input.Id == input.Pid)
+                throw Oops.Oh(ErrorCode.D2001);
+
+            // 如果是编辑，父id不能为自己的子节点
+            var childIdListById = await GetChildIdListWithSelfById(long.Parse(input.Id));
+            if (childIdListById.Contains(long.Parse(input.Pid)))
                 throw Oops.Oh(ErrorCode.D2001);
 
             var sysOrg = await _sysOrgRep.DetachedEntities.FirstOrDefaultAsync(u => u.Id == long.Parse(input.Id));
@@ -227,13 +234,20 @@ namespace Dilon.Core.Service
             if (isExist)
                 throw Oops.Oh(ErrorCode.D2002);
 
-            //如果名称有变化，则修改对应员工的机构相关信息
+            // 如果名称有变化，则修改对应员工的机构相关信息
             if (!sysOrg.Name.Equals(input.Name))
                 await _sysEmpService.UpdateEmpOrgInfo(sysOrg.Id, sysOrg.Name);
 
             sysOrg = input.Adapt<SysOrg>();
             await FillPids(sysOrg);
-            await sysOrg.UpdateNowAsync(ignoreNullValues: true);
+            await sysOrg.UpdateAsync(ignoreNullValues: true);
+
+            //// 将所有子的父id进行更新
+            //childIdListById.ForEach(u=> {
+            //    var child = _sysOrgRep.DetachedEntities.FirstOrDefaultAsync(u => u.Id == u.Id);
+            //    var newInput = child.Adapt<UpdateOrgInput>();
+            //    UpdateOrg(newInput).GetAwaiter();
+            //});
         }
 
         /// <summary>

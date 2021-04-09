@@ -1,5 +1,4 @@
-﻿using Furion.Snowflake;
-using System;
+﻿using System;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Dilon.Core
@@ -10,13 +9,6 @@ namespace Dilon.Core
     [Table("sys_notice")]
     public class SysNotice : DEntityBase
     {
-        public SysNotice()
-        {
-            Id = IDGenerator.NextId();
-            CreatedTime = DateTimeOffset.Now;
-            IsDeleted = false;
-        }
-
         /// <summary>
         /// 标题
         /// </summary>

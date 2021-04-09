@@ -1,6 +1,7 @@
-﻿using Furion.DependencyInjection;
-using Furion.FriendlyException;
+﻿using Furion;
+using Furion.DependencyInjection;
 using Furion.JsonSerialization;
+using Furion.Snowflake;
 using Microsoft.Extensions.Caching.Memory;
 using System;
 using System.Collections.Generic;
@@ -44,19 +45,18 @@ namespace Dilon.Core
 
             Color[] colorArray = { Color.Black, Color.DarkBlue, Color.Green, Color.Orange, Color.Brown, Color.DarkCyan, Color.Purple };
 
-            string bgImagesDir = Path.Combine(AppContext.BaseDirectory, "Captcha/ClickWord/Data", "Image");
+            string bgImagesDir = Path.Combine(App.WebHostEnvironment.WebRootPath, "Captcha/Image");
             string[] bgImagesFiles = Directory.GetFiles(bgImagesDir);
-
-            if (bgImagesFiles == null || bgImagesFiles.Length == 0)
-                throw Oops.Oh("背景图片文件丢失");
+            //if (bgImagesFiles == null || bgImagesFiles.Length == 0)
+            //    throw Oops.Oh("背景图片文件丢失");
 
             // 字体来自：https://www.zcool.com.cn/special/zcoolfonts/
-            string fontsDir = Path.Combine(AppContext.BaseDirectory, "Captcha/ClickWord/Data", "Font");
+            string fontsDir = Path.Combine(App.WebHostEnvironment.WebRootPath, "Captcha/Font");
             string[] fontFiles = new DirectoryInfo(fontsDir)?.GetFiles()
                 ?.Where(m => m.Extension.ToLower() == ".ttf")
                 ?.Select(m => m.FullName).ToArray();
-            if (fontFiles == null || fontFiles.Length == 0)
-                throw Oops.Oh("字体文件丢失");
+            //if (fontFiles == null || fontFiles.Length == 0)
+            //    throw Oops.Oh("字体文件丢失");
 
             int imgIndex = random.Next(bgImagesFiles.Length);
             string randomImgFile = bgImagesFiles[imgIndex];
@@ -105,7 +105,7 @@ namespace Dilon.Core
             bitmap.Dispose();
             ms.Dispose();
             rtnResult.repData.originalImageBase64 = Convert.ToBase64String(ms.GetBuffer()); //"data:image/jpg;base64," +
-            rtnResult.repData.token = Guid.NewGuid().ToString("N");
+            rtnResult.repData.token = IDGenerator.NextId().ToString();
 
             // 缓存验证码正确位置集合
             var cacheOptions = new MemoryCacheEntryOptions().SetSlidingExpiration(TimeSpan.FromSeconds(30));

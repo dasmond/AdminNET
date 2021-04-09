@@ -328,6 +328,18 @@ namespace Dilon.Core
         D1200,
 
         /// <summary>
+        /// 已存在同名或同主机租户
+        /// </summary>
+        [ErrorCodeItemMetadata("已存在同名或同主机租户")]
+        D1300,
+
+        /// <summary>
+        /// 该表代码模板已经生成过
+        /// </summary>
+        [ErrorCodeItemMetadata("该表代码模板已经生成过")]
+        D1400,
+
+        /// <summary>
         /// 已存在同名或同编码项目
         /// </summary>
         [ErrorCodeItemMetadata("已存在同名或同编码项目")]
