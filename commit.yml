@@ -3,48 +3,21 @@ branches: {
   }
 fileChange:
   /backend:
-    newFile: !uuid '134ca0249bb21e404e0c1213a9bbbb96adf99c3e'
-    oldFile: !uuid 'c522e22d24b65475d6c96cdb2f548eaadc9d5018'
-  /backend/Dilon.Application:
-    newFile: !uuid 'f631d24b7b48c0e3a1faba9919aca85c3b55d91a'
-    oldFile: !uuid '86949f7b740cdeebffed8e2531f896a44871d678'
-  /backend/Dilon.Application/Dilon.Application.xml:
-    newFile: !uuid 'd85f32eefc5a113255d989b8e8502394908bbeb1'
-    oldFile: !uuid '9a2e2f5ce7535009fbcf2b3018fc11fb25a409e1'
+    newFile: !uuid 'cafbed9f0f790d10bec9c04897d96ea3ac802b44'
+    oldFile: !uuid '134ca0249bb21e404e0c1213a9bbbb96adf99c3e'
   /backend/Dilon.Web.Entry:
-    newFile: !uuid '39e1d93cc62209247cf42c722ecaa4a947f76fad'
-    oldFile: !uuid '8c4f95f25ac74475da0413029380ebdb5dc60172'
+    newFile: !uuid '2a17d4a6f79c633bc201b7cde7558e70c37c7af7'
+    oldFile: !uuid '39e1d93cc62209247cf42c722ecaa4a947f76fad'
   /backend/Dilon.Web.Entry/wwwroot:
-    newFile: !uuid '2282a5b072577cbb9074dd32b5ce8cf572ea6aba'
-    oldFile: !uuid 'c37198d9785ac9addd1bb4c310b9d189305dff17'
+    newFile: !uuid '4000eb2e748ca642c6baefee971536633c970fdc'
+    oldFile: !uuid '2282a5b072577cbb9074dd32b5ce8cf572ea6aba'
   /backend/Dilon.Web.Entry/wwwroot/Template:
-    newFile: !uuid 'e8953b62f35a9aa89fae57699cba492c2b50487e'
-    oldFile: !uuid '53f38149ae16fe5866880d5a6156fbbc0d40d11f'
-  /backend/Dilon.Web.Entry/wwwroot/Template/addForm.vue.vm:
-    newFile: !uuid 'a7d028610fae428487280d15db108d0552d5854f'
-    oldFile: !uuid '1bbf7a390e24eac9669a5b57d7c7d050c19f44ef'
-  /backend/Dilon.Web.Entry/wwwroot/Template/editForm.vue.vm:
-    newFile: !uuid '68e4d19239ec0bcfa9a593374b8215354ed20d61'
-    oldFile: !uuid '41968bb5b82b8093eb883175d42ba756587e8da9'
-  /frontend:
-    newFile: !uuid '4b07b6df31c97d634d15867e980e131dbf187f89'
-    oldFile: !uuid 'dc36de7d93dce36aa4ead8d7f778480c0f1b43e8'
-  /frontend/src:
-    newFile: !uuid '7bae0b848d2a2109b7e56d9c2a96715fa456c83f'
-    oldFile: !uuid '5560f892746bac40d4d38816706133d73ff7ceb5'
-  /frontend/src/views:
-    newFile: !uuid '075b1adf7615f804d86f3bda605df8085704fe97'
-    oldFile: !uuid '47d73c3de3a67c2e70c9a6a5252bc7bad5f5d6e8'
-  /frontend/src/views/gen:
-    newFile: !uuid 'bc0a017067f823b1f132ce7b7ff84dd066850d1e'
-    oldFile: !uuid 'fe6fcc7db97d587d47d8d98042628c3b35fc8e5e'
-  /frontend/src/views/gen/codeGenerate:
-    newFile: !uuid 'a15fd636e5816da9686120df4dfdc703cb1175f5'
-    oldFile: !uuid 'b0ba778b8f0069e2c126b9979af70dde86e8359a'
-  /frontend/src/views/gen/codeGenerate/addForm.vue:
-    newFile: !uuid '0b971f85894833b568616708be8dfa79a4986539'
-    oldFile: !uuid '7282065eefb27e5668ba1af999921a4bee16962e'
-gitCommitId: !uuid '5572d84a1f9e05ed08d0d2ecd4d17475e907a325'
+    newFile: !uuid 'a212f688ee4f4c881eaab40b3f2faf9eac2786de'
+    oldFile: !uuid 'e8953b62f35a9aa89fae57699cba492c2b50487e'
+  /backend/Dilon.Web.Entry/wwwroot/Template/index.vue.vm:
+    newFile: !uuid 'd660080a982e9b5ba4a5e581849927210d904458'
+    oldFile: !uuid '41167aaa4884558e69f9ffe812a7919d8d19c5f2'
+gitCommitId: !uuid 'f796ec52febffef8231c26228ecfba2e78bcdbd4'
 renames: {
   }
-revisionId: 119
+revisionId: 120
