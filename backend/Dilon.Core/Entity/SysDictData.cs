@@ -1,6 +1,4 @@
-﻿using Furion.Snowflake;
-using System;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Dilon.Core
 {
@@ -10,14 +8,6 @@ namespace Dilon.Core
     [Table("sys_dict_data")]
     public class SysDictData : DEntityBase
     {
-        public SysDictData()
-        {
-            Id = IDGenerator.NextId();
-            CreatedTime = DateTimeOffset.Now;
-            IsDeleted = false;
-            Status = (int)CommonStatus.ENABLE;
-        }
-
         /// <summary>
         /// 字典类型Id
         /// </summary>
@@ -46,7 +36,7 @@ namespace Dilon.Core
         /// <summary>
         /// 状态（字典 0正常 1停用 2删除）
         /// </summary>
-        public int Status { get; set; }
+        public CommonStatus Status { get; set; } = CommonStatus.ENABLE;
 
         /// <summary>
         /// 所属类型

@@ -7,11 +7,21 @@
 <div align="center"><h1 align="center">Admin.NET</h1></div>
 <div align="center"><h3 align="center">前后端分离架构，开箱即用，紧随前沿技术</h3></div>
 
+<div align="center">
+
+[![star](https://gitee.com/zuohuaijun/Admin.NET/badge/star.svg?theme=dark)](https://gitee.com/zuohuaijun/Admin.NET/stargazers)
+[![fork](https://gitee.com/zuohuaijun/Admin.NET/badge/fork.svg?theme=dark)](https://gitee.com/zuohuaijun/Admin.NET/members)
+[![star](https://gitee.com/dotnetchina/Furion/badge/star.svg?theme=gvp)](https://gitee.com/dotnetchina/Furion/stargazers)
+[![star](https://gitee.com/xiaonuobase/xiaonuo-vue/badge/star.svg?theme=gray)](https://gitee.com/xiaonuobase/xiaonuo-vue/stargazers)
+[![GitHub license](https://img.shields.io/badge/license-Apache2-yellow)](https://gitee.com/dotnetchina/Furion/blob/master/LICENSE)
+
+</div>
+
 ### 🍟 概述
 
-* 基于.NET5实现的通用权限管理平台（RBAC模式）。整合最新技术高效快速开发，前后端分离模式，开箱即用。
+* 基于.NET 5实现的通用权限管理平台（RBAC模式）。整合最新技术高效快速开发，前后端分离模式，开箱即用。
+* 前端基于小诺Vue（antd）框架，整体RBAC基础数据结构+API接口风格采用小诺vue版本模式。
 * 后台基于Furion框架，多租户、分库读写分离、缓存、数据校验、鉴权、动态API、gRPC等众多黑科技集一身。
-前端Antd-Vue-Pro + Vue2.X开发，紧跟前沿技术，前端自带字典翻译。
 * 模块化架构设计，层次清晰，业务层推荐写到单独模块，框架升级不影响业务!
 * 核心模块包括：用户、角色、职位、组织机构、菜单、字典、日志、多应用管理、文件管理、定时任务等功能。
 * 代码量少、通俗易懂、功能强大、易扩展，轻松开发从现在开始！
@@ -20,12 +30,18 @@
 如果对您有帮助，您可以点右上角 “Star” 收藏一下 ，获取第一时间更新，谢谢！
 ```
 
+### 🔊 注意事项
+
+1. 如果同时用两种类型的数据库，迁移的时候先去掉多租户实现接口【IMultiTenantOnDatabase】和重写方法【OnConfiguring】
+2. 如果集成其他ORM，请参照各自操作使用说明。系统默认EF不会处理其他ORM实体或者表等。
+
 ### 🥞 更新日志
 
 更新日志 [点击查看](https://gitee.com/zuohuaijun/Admin.NET/commits/master)
 
 ### ⚡ 近期计划
 
+- [x] 集成多租户功能
 - [ ] 集成代码生成器
 - [ ] 在线用户及黑名单
 - [ ] 邮件发送
@@ -36,9 +52,7 @@
 
 ### 🍿 在线体验
 
-~~体验地址：[http://dilon.zicp.net:55221/](http://dilon.zicp.net:55221/)（用户名：superAdmin，密码：123456）~~  
-
-`【个人电脑临时部署，偶尔在线，可以试试看】`
+体验地址：[http://39.107.123.76:82/](http://39.107.123.76:82/)（用户名：superAdmin，密码：123456）
 
 ### 🍄 快速启动
 
@@ -72,6 +86,14 @@
         <td><img src="https://gitee.com/zuohuaijun/Admin.NET/raw/master/doc/img/8.png"/></td>
         <td><img src="https://gitee.com/zuohuaijun/Admin.NET/raw/master/doc/img/9.png"/></td>
     </tr>
+    <tr>
+        <td><img src="https://gitee.com/zuohuaijun/Admin.NET/raw/master/doc/img/10.png"/></td>
+        <td><img src="https://gitee.com/zuohuaijun/Admin.NET/raw/master/doc/img/11.png"/></td>
+        <td><img src="https://gitee.com/zuohuaijun/Admin.NET/raw/master/doc/img/12.png"/></td>
+    </tr>
+    <tr>
+        <td><img src="https://gitee.com/zuohuaijun/Admin.NET/raw/master/doc/img/13.png"/></td>
+    </tr>
 </table>
 
 ### 🍖 详细功能
@@ -87,13 +109,13 @@
 9. 访问日志、用户的登录和退出日志的查看和管理。
 10. 操作日志、用户的操作业务的日志的查看和管理。
 11. 服务监控、服务器的运行状态，CPU、内存、网络等信息数据的查看。
-12. 在线用户、当前系统在线用户的查看。【正在实现中...】
+12. 在线用户、当前系统在线用户的查看。
 13. 公告管理、系统的公告的管理。
-14. 文件管理、文件的上传下载查看等操作，文件可使用本地存储，阿里云oss，腾讯cos接入，支持拓展。【目前只支持本地存储...】
+14. 文件管理、文件的上传下载查看等操作，文件可使用本地存储，阿里云oss，腾讯cos接入，支持拓展。
 15. 定时任务、定时任务的维护，通过cron表达式控制任务的执行频率。
-16. 系统配置、系统运行的参数的维护，参数的配置与系统运行机制息息相关。【完善中...】
-17. 邮件发送、发送邮件功能。【正在实现中...】
-18. 短信发送、短信发送功能，可使用阿里云sms，腾讯云sms，支持拓展。【正在实现中...】
+16. 系统配置、系统运行的参数的维护，参数的配置与系统运行机制息息相关。
+17. 邮件发送、发送邮件功能。
+18. 短信发送、短信发送功能，可使用阿里云sms，腾讯云sms，支持拓展。
 
 
 ### 👀 数据库切换
@@ -118,7 +140,7 @@
 
 ### 🥦 补充说明
 
-* 基于.NET5平台Furion开发框架与小诺VUE版本相结合，实时跟随基架升级而升级！
+* 基于.NET 5平台Furion开发框架与小诺Vue版本相结合，实时跟随基架升级而升级！
 * 持续集百家所长，完善与丰富本框架基础设施，为.NET生态增加一种选择！
 * 后期会推出基于此框架的相关应用场景案例，提供给大家使用！
 * 有问题讨论的小伙伴可加群一起学习讨论。 QQ群【87333204】

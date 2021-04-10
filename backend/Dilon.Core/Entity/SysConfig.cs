@@ -1,7 +1,6 @@
 ﻿using Dilon.Core.Service;
 using Furion;
 using Furion.DatabaseAccessor;
-using Furion.Snowflake;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -14,14 +13,6 @@ namespace Dilon.Core
     [Table("sys_config")]
     public class SysConfig : DEntityBase, IEntityChangedListener<SysConfig>
     {
-        public SysConfig()
-        {
-            Id = IDGenerator.NextId();
-            CreatedTime = DateTimeOffset.Now;
-            IsDeleted = false;
-            Status = (int)CommonStatus.ENABLE;
-        }
-
         /// <summary>
         /// 名称
         /// </summary>
@@ -50,7 +41,7 @@ namespace Dilon.Core
         /// <summary>
         /// 状态（字典 0正常 1停用 2删除）
         /// </summary>
-        public int Status { get; set; }
+        public CommonStatus Status { get; set; } = CommonStatus.ENABLE;
 
         /// <summary>
         /// 常量所属分类的编码，来自于“常量的分类”字典

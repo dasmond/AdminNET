@@ -59,15 +59,15 @@ namespace Dilon.Core.Service
             var sysOrgRep = Db.GetRepository<SysOrg>();
             var dataScopes = await GetUserDataScopeIdList(_userManager.UserId);
             var users = await _sysUserRep.DetachedEntities
-                                         .Join(sysEmpRep.AsQueryable(), u => u.Id, e => e.Id, (u, e) => new { u, e })
-                                         .Join(sysOrgRep.AsQueryable(), n => n.e.OrgId, o => o.Id, (n, o) => new { n, o })
+                                         .Join(sysEmpRep.DetachedEntities, u => u.Id, e => e.Id, (u, e) => new { u, e })
+                                         .Join(sysOrgRep.DetachedEntities, n => n.e.OrgId, o => o.Id, (n, o) => new { n, o })
                                          .Where(!string.IsNullOrEmpty(searchValue), x => (x.n.u.Account.Contains(input.SearchValue) ||
                                                                                     x.n.u.Name.Contains(input.SearchValue) ||
                                                                                     x.n.u.Phone.Contains(input.SearchValue)))
                                          .Where(!string.IsNullOrEmpty(pid), x => (x.n.e.OrgId == long.Parse(pid) ||
                                                                             x.o.Pids.Contains($"[{pid.Trim()}]")))
                                          .Where(input.SearchStatus >= 0, x => x.n.u.Status == input.SearchStatus)
-                                         .Where(!superAdmin, x => x.n.u.AdminType != (int)AdminType.SuperAdmin)
+                                         .Where(!superAdmin, x => x.n.u.AdminType != AdminType.SuperAdmin)
                                          .Where(!superAdmin && dataScopes.Count > 0, x => dataScopes.Contains(x.n.e.OrgId))
                                          .Select(u => u.n.u.Adapt<UserOutput>()).ToPagedListAsync(input.PageNo, input.PageSize);
 
@@ -90,6 +90,7 @@ namespace Dilon.Core.Service
         /// <param name="input"></param>
         /// <returns></returns>
         [HttpPost("/sysUser/add")]
+        [UnitOfWork]
         public async Task AddUser(AddUserInput input)
         {
             // 数据范围检查
@@ -116,17 +117,18 @@ namespace Dilon.Core.Service
         /// <param name="input"></param>
         /// <returns></returns>
         [HttpPost("/sysUser/delete")]
+        [UnitOfWork]
         public async Task DeleteUser(DeleteUserInput input)
         {
             var user = await _sysUserRep.FirstOrDefaultAsync(u => u.Id == long.Parse(input.Id));
-            if (user.AdminType == (int)AdminType.SuperAdmin)
+            if (user.AdminType == AdminType.SuperAdmin)
                 throw Oops.Oh(ErrorCode.D1014);
 
             // 数据范围检查
             CheckDataScope(input);
 
             // 直接删除用户
-            await user.DeleteNowAsync();
+            await user.DeleteAsync();
 
             // 删除员工及附属机构职位信息
             await _sysEmpService.DeleteEmpInfoByUserId(user.Id);
@@ -144,6 +146,7 @@ namespace Dilon.Core.Service
         /// <param name="input"></param>
         /// <returns></returns>
         [HttpPost("/sysUser/edit")]
+        [UnitOfWork]
         public async Task UpdateUser(UpdateUserInput input)
         {
             // 数据范围检查
@@ -154,7 +157,7 @@ namespace Dilon.Core.Service
             if (isExist) throw Oops.Oh(ErrorCode.D1003);
 
             var user = input.Adapt<SysUser>();
-            await user.UpdateExcludeNowAsync(new[] { nameof(SysUser.Password), nameof(SysUser.Status), nameof(SysUser.AdminType) }, true);
+            await user.UpdateExcludeAsync(new[] { nameof(SysUser.Password), nameof(SysUser.Status), nameof(SysUser.AdminType) }, true);
             input.SysEmpParam.Id = user.Id.ToString();
             // 更新员工及附属机构职位信息
             await _sysEmpService.AddOrUpdate(input.SysEmpParam);
@@ -170,7 +173,10 @@ namespace Dilon.Core.Service
         {
             var user = await _sysUserRep.DetachedEntities.FirstOrDefaultAsync(u => u.Id == long.Parse(input.Id));
             var userDto = user.Adapt<UserOutput>();
-            userDto.SysEmpInfo = await _sysEmpService.GetEmpInfo(user.Id);
+            if (userDto != null)
+            {
+                userDto.SysEmpInfo = await _sysEmpService.GetEmpInfo(user.Id);
+            }
             return userDto;
         }
 
@@ -183,7 +189,7 @@ namespace Dilon.Core.Service
         public async Task ChangeUserStatus(UpdateUserInput input)
         {
             var user = await _sysUserRep.FirstOrDefaultAsync(u => u.Id == long.Parse(input.Id));
-            if (user.AdminType == (int)AdminType.SuperAdmin)
+            if (user.AdminType == AdminType.SuperAdmin)
                 throw Oops.Oh(ErrorCode.D1015);
 
             if (!Enum.IsDefined(typeof(CommonStatus), input.Status))
@@ -226,7 +232,7 @@ namespace Dilon.Core.Service
         public async Task UpdateUserInfo(UpdateUserInput input)
         {
             var user = input.Adapt<SysUser>();
-            await user.UpdateNowAsync();
+            await user.UpdateAsync();
         }
 
         /// <summary>
@@ -302,8 +308,8 @@ namespace Dilon.Core.Service
             var name = !string.IsNullOrEmpty(input.Name?.Trim());
             return await _sysUserRep.DetachedEntities
                                     .Where(name, u => EF.Functions.Like(u.Name, $"%{input.Name.Trim()}%"))
-                                    .Where(u => u.Status != (int)CommonStatus.DELETED)
-                                    .Where(u => u.AdminType != (int)AdminType.SuperAdmin)
+                                    .Where(u => u.Status != CommonStatus.DELETED)
+                                    .Where(u => u.AdminType != AdminType.SuperAdmin)
                                     .Select(u => new
                                     {
                                         u.Id,
@@ -343,7 +349,7 @@ namespace Dilon.Core.Service
         public async Task SaveAuthUserToUser(AuthUserInput authUser, UserInput sysUser)
         {
             var user = sysUser.Adapt<SysUser>();
-            user.AdminType = (int)AdminType.None; // 非管理员
+            user.AdminType = AdminType.None; // 非管理员
 
             // oauth账号与系统账号判断
             var isExist = await _sysUserRep.DetachedEntities.AnyAsync(u => u.Account == authUser.Username);

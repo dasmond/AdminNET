@@ -1,4 +1,4 @@
-﻿using Furion.DatabaseAccessor;
+using Furion.DatabaseAccessor;
 using Furion.DatabaseAccessor.Extensions;
 using Furion.DependencyInjection;
 using Furion.DynamicApiController;
@@ -227,7 +227,10 @@ namespace Dilon.Core.Service
             var menu = input.Adapt<SysMenu>();
             menu.Pids = await CreateNewPids(input.Pid);
             menu.Status = (int)CommonStatus.ENABLE;
-            await menu.InsertNowAsync();
+            await menu.InsertAsync();
+
+            // 清除缓存
+            await _sysCacheService.DelByPatternAsync(CommonConst.CACHE_KEY_MENU);
         }
 
         /// <summary>
@@ -236,20 +239,23 @@ namespace Dilon.Core.Service
         /// <param name="input"></param>
         /// <returns></returns>
         [HttpPost("/sysMenu/delete")]
+        [UnitOfWork]
         public async Task DeleteMenu(DeleteMenuInput input)
         {
-            var childIdList = await _sysMenuRep.DetachedEntities.Where(u => EF.Functions.Like(u.Pids, $"%[{input.Id}]%"))
+            var childIdList = await _sysMenuRep.DetachedEntities.Where(u => u.Pids.Contains(input.Id.ToString()))
                                                                 .Select(u => u.Id).ToListAsync();
             childIdList.Add(input.Id);
 
             var menus = await _sysMenuRep.Where(u => childIdList.Contains(u.Id)).ToListAsync();
             menus.ForEach(u =>
             {
-                u.DeleteNow();
+                u.Delete();
             });
-
             // 级联删除该菜单及子菜单对应的角色-菜单表信息
             await _sysRoleMenuService.DeleteRoleMenuListByMenuIdList(childIdList);
+
+            // 清除缓存
+            await _sysCacheService.DelByPatternAsync(CommonConst.CACHE_KEY_MENU);
         }
 
         /// <summary>
@@ -260,6 +266,7 @@ namespace Dilon.Core.Service
         [HttpPost("/sysMenu/edit"),]
         public async Task UpdateMenu(UpdateMenuInput input)
         {
+            // Pid和Id不能一致，一致会导致无限递归
             if (input.Id == input.Pid)
                 throw Oops.Oh(ErrorCode.D4006);
 
@@ -269,6 +276,11 @@ namespace Dilon.Core.Service
 
             // 校验参数
             CheckMenuParam(input);
+            // 如果是编辑，父id不能为自己的子节点
+            var childIdList = await _sysMenuRep.DetachedEntities.Where(u => u.Pids.Contains(input.Id.ToString()))
+                                                                .Select(u => u.Id).ToListAsync();
+            if (childIdList.Contains(input.Pid))
+                throw Oops.Oh(ErrorCode.D4006);
 
             var oldMenu = await _sysMenuRep.DetachedEntities.FirstOrDefaultAsync(u => u.Id == input.Id);
 
@@ -327,7 +339,10 @@ namespace Dilon.Core.Service
             // 更新当前菜单
             oldMenu = input.Adapt<SysMenu>();
             oldMenu.Pids = newPids;
-            await oldMenu.UpdateNowAsync(ignoreNullValues: true);
+            await oldMenu.UpdateAsync(ignoreNullValues: true);
+
+            // 清除缓存
+            await _sysCacheService.DelByPatternAsync(CommonConst.CACHE_KEY_MENU);
         }
 
         /// <summary>
@@ -405,7 +420,7 @@ namespace Dilon.Core.Service
         [NonAction]
         public async Task<bool> HasMenu(string appCode)
         {
-            return await _sysMenuRep.DetachedEntities.AnyAsync(u => u.Application == appCode && u.Status != (int)CommonStatus.DELETED);
+            return await _sysMenuRep.DetachedEntities.AnyAsync(u => u.Application == appCode && u.Status != CommonStatus.DELETED);
         }
 
         /// <summary>
