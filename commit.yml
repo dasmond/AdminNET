@@ -2,37 +2,10 @@
 branches: {
   }
 fileChange:
-  /backend:
-    newFile: !uuid 'b78173f10a70a6722b787b39fd5172c829b864cc'
-    oldFile: !uuid '680ea2b2c73dde900407c86707c2351abae16e79'
-  /backend/Dilon.Core:
-    newFile: !uuid '515b0fa6144d98f86202005d391f52f76fddbde0'
-    oldFile: !uuid '9c8c1400655bddea1d7d2e2ee4cbb1c700581883'
-  /backend/Dilon.Core/SeedData:
-    newFile: !uuid 'c50a0d5f6b9000170e8e5fa1ff1eb8fa5538b626'
-    oldFile: !uuid '88339df113549084809214f6936313a89c1ac862'
-  /backend/Dilon.Core/SeedData/SysTimerSeedData.cs:
-    newFile: !uuid 'e9810ee72d9c1443f8346e3ae88ce7a7136d17fa'
-    oldFile: !uuid 'd251c3ac3f5b6f85cd0902d7afac17d77aecb96c'
-  /backend/Dilon.Core/Service:
-    newFile: !uuid '9c2a781253d31030f6b38f43552c2363ef493d08'
-    oldFile: !uuid '8d3436fbeebb4ef281be3faf8ed022a87a1845c8'
-  /backend/Dilon.Core/Service/Timer:
-    newFile: !uuid '53ab595908db3331d548d569988732596a183a4f'
-    oldFile: !uuid '478d220c8004f4f0f1360061d84b164711961f23'
-  /backend/Dilon.Core/Service/Timer/HttpJob.cs:
-    newFile: !uuid 'a728763eb9f92a1d62798c65eba2070ad34eed2f'
-    oldFile: !uuid '8cba5ad36aa98c5ec3b02a769f6ec29084ea36ff'
-  /backend/Dilon.Web.Entry:
-    newFile: !uuid 'ab7e3675b2f4470a41b54f5f04b10280883eefab'
-    oldFile: !uuid 'db2d8ab3b23b150c0161a8cec3c243caf98b1250'
-  /backend/Dilon.Web.Entry/Dilon.db:
-    newFile: !uuid '0175d4aced456e03c55e95c0efcb538ecb17351e'
-    oldFile: !uuid '8bb659f3de4fd5e1372ae40d89a5b21075dc7f76'
-  /backend/Dilon.Web.Entry/Dilon_1.db:
-    newFile: !uuid '0175d4aced456e03c55e95c0efcb538ecb17351e'
-    oldFile: !uuid '88f82ca65789ae983f01aaded9290aec1467b522'
-gitCommitId: !uuid 'a199b6ebda7ad2cfbc9f73ce395e29264ba9723a'
+  /README.md:
+    newFile: !uuid 'e26dce768926dbb7cd3a27b4984c70bfac353301'
+    oldFile: !uuid 'd1738421484fe220bbc12bd1b397f55b91df00a2'
+gitCommitId: !uuid '4ffb1aa66c48dd5af6a232b79348798f2cc68036'
 renames: {
   }
-revisionId: 131
+revisionId: 132
