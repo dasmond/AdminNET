@@ -143,15 +143,25 @@ namespace Dilon.Core.Service.CodeGen
         [NonAction]
         public List<TableColumnOuput> GetColumnList(AddCodeGenInput input)
         {
-            var entityType = Db.GetDbContext().Model.GetEntityTypes().FirstOrDefault(u => u.ClrType.Name == input.TableName);
+            // 获取实体属性
+            var entityType = Db.GetDbContext().Model.GetEntityTypes()
+                .FirstOrDefault(u => u.ClrType.Name == input.TableName);
             if (entityType == null) return null;
+            
+            // 获取原始属性
+            var type = entityType.ClrType;
+            if (type == null) return null;
 
-            return entityType.GetProperties().Select(u => new TableColumnOuput
+            return type.GetProperties().Select(u =>
             {
-                ColumnName = u.Name,
-                ColumnKey = u.IsKey().ToString(),
-                DataType = u.PropertyInfo.PropertyType.ToString(),
-                ColumnComment = u.GetComment()
+                var entityProperty = entityType.GetProperty(u.Name);
+                return new TableColumnOuput
+                {
+                    ColumnName = u.Name,
+                    ColumnKey = entityProperty.IsKey().ToString(),
+                    DataType = u.PropertyType.ToString(),
+                    ColumnComment = entityProperty.GetComment()
+                };
             }).ToList();
         }
 
