@@ -3,60 +3,24 @@ branches: {
   }
 fileChange:
   /backend:
-    newFile: !uuid '17af4f45b7704eb93f50d0437ccad895e64e1c3c'
-    oldFile: !uuid 'f4c4fe1442a861a5f4f50db77472cd65c4ad42b3'
-  /backend/Dilon.Core:
-    newFile: !uuid '52403e3847fb8e2d946eed364aba637d313a3c2e'
-    oldFile: !uuid 'da070638853fa2f1e9d2c4ecfee5f97beb66f102'
-  /backend/Dilon.Core/Dilon.Core.xml:
-    newFile: !uuid '2d6559ef09064d78f8a1042977f43cc6ae54cf8d'
-    oldFile: !uuid 'f299453ebc8191e8289fdbbf9391a62cce568b82'
-  /backend/Dilon.Core/Entity:
-    newFile: !uuid '98a121497da2188ffd2ea2f82e38f466471870e6'
-    oldFile: !uuid '6481bd9d72b59bcee01cc415964fb27a5642b1ba'
-  /backend/Dilon.Core/Entity/SysEmpExtOrgPos.cs:
-    newFile: !uuid '15c0870e107fc87489fa90552b88fa2c212c24f4'
-    oldFile: !uuid '842da8c953cd1e0adb5fb37c99e42d56ec1ec896'
-  /backend/Dilon.Core/Entity/SysEmpPos.cs:
-    newFile: !uuid 'bf82363336b36f7728340eab18160cc8b0836331'
-    oldFile: !uuid 'f25c5b6c43f3bf9454b2b9930e42da2208e5ea07'
-  /backend/Dilon.Core/Entity/SysRoleDataScope.cs:
-    newFile: !uuid '564b929e03f37e9316ba3d964467045746780134'
-    oldFile: !uuid 'fe9e90d46e6bd56c8b05021d3f385d2bd541c109'
-  /backend/Dilon.Core/Entity/SysRoleMenu.cs:
-    newFile: !uuid '9974a4834ed19b58fdbc938679332ce42278234c'
-    oldFile: !uuid '00224a761168c26a82b7ac3cb1538554f4b0d45b'
-  /backend/Dilon.Core/Entity/SysUserDataScope.cs:
-    newFile: !uuid '1c7cd5be97dc4533706f1ba34c75c60f9e1d6afe'
-    oldFile: !uuid 'a6a2ac4a83b8830af26ceb5fb1ee791a5e73695f'
-  /backend/Dilon.Core/Entity/SysUserRole.cs:
-    newFile: !uuid 'd618637f7bcd78f3675a66479be44a86e8fea27c'
-    oldFile: !uuid 'c547344fa68a47ca1d5c904624ff068050583e5d'
-  /backend/Dilon.Core/SeedData:
-    newFile: !uuid '4f5a2ce4cd71e94dfdb15cc64e0d9b85ca5fab14'
-    oldFile: !uuid 'd2e789538e1d2748b9fb6105954779413af7d99f'
-  /backend/Dilon.Core/SeedData/SysEmpPosSeedData.cs:
-    newFile: !uuid 'c0dcdc146c177eca3229a28d77e6def47f64f35b'
-    oldFile: !uuid '4af660691dc751041e80f3715229227043b782d6'
-  /backend/Dilon.Database.Migrations:
-    newFile: !uuid '8da7f91c306a737ef286827d176df9666f1f5367'
-    oldFile: !uuid '554cf9265176ac7fe24b4fddee93c5777753fa93'
-  /backend/Dilon.Database.Migrations/Dilon.Database.Migrations.csproj:
-    newFile: !uuid '182731d7629c7f6497e3064cde1190cda42bcc8e'
-    oldFile: !uuid 'c77c857cb2099d9e67da6980836a45e28a6703b6'
+    newFile: !uuid '9b9fd98e8105a3401ce20d6e289be30634ed41a8'
+    oldFile: !uuid '17af4f45b7704eb93f50d0437ccad895e64e1c3c'
+  /backend/Dilon.EntityFramework.Core:
+    newFile: !uuid 'adfe2d6d566da0a176b4d2f255658d7ecc860f76'
+    oldFile: !uuid 'b255062834e778fd68a388f39e3454db6a4720ef'
+  /backend/Dilon.EntityFramework.Core/DbContexts:
+    newFile: !uuid '170399097e421f547c3cbbf1f8b947b470d4486c'
+    oldFile: !uuid 'e108c8727d44d5aa12916c8dbae479e6fcb4532f'
+  /backend/Dilon.EntityFramework.Core/DbContexts/DefaultDbContext.cs:
+    newFile: !uuid 'aff561ade0e388a3f1b5c42c179b2f2900c54de4'
+    oldFile: !uuid '879fb4179059848c7824e59d082a011b9378cec4'
   /backend/Dilon.Web.Entry:
-    newFile: !uuid 'fe78d7027da2201ebfc9144c9cad8fd8a699dc9a'
-    oldFile: !uuid '10dd65d29e74e535e02abc3e2211bf76e74f5593'
-  /backend/Dilon.Web.Entry/Dilon.db:
-    newFile: !uuid 'a65fced5a4bd32b924798bcc94f5cc68caf7560e'
-    oldFile: !uuid '4ab8466c7758a1f90fd9812291500c16825ad24f'
-  /backend/Dilon.Web.Entry/Dilon.db-shm:
-    newFile: !uuid 'fc4ee1b0a5955f707f50fe9cebfa3143e7c84c7d'
-    oldFile: !uuid '972657b92c33ff7799d0850e45c25ebf91a8eb87'
+    newFile: !uuid 'a818ed47af1fd0362a5ae56ab80659835335d808'
+    oldFile: !uuid 'fe78d7027da2201ebfc9144c9cad8fd8a699dc9a'
   /backend/Dilon.Web.Entry/Dilon.db-wal:
-    newFile: !uuid 'c91b66b9e638d17d55dce8ad2d81d2aaa1ea1068'
-    oldFile: !uuid 'bbf127203a01bc157f7b959c677be21b312d570a'
-gitCommitId: !uuid '4f5940ef0aa3fe1d57cdb155a16d70d844fa4251'
+    newFile: !uuid '3616e5f18a4858011f5be450c8120f0694fb196f'
+    oldFile: !uuid 'c91b66b9e638d17d55dce8ad2d81d2aaa1ea1068'
+gitCommitId: !uuid '3a86eb74170b379852e79bbf4c33ac650992baac'
 renames: {
   }
-revisionId: 153
+revisionId: 154
