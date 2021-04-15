@@ -3,15 +3,12 @@ branches: {
   }
 fileChange:
   /frontend:
-    newFile: !uuid '8a8d32de19ae056447a748c62757378a742a6497'
-    oldFile: !uuid '6a1090f1b614b346806820fbaafb4bc50f74ca73'
-  /frontend/src:
-    newFile: !uuid 'bb60acab3622106ea228d6e705bf6453894a4489'
-    oldFile: !uuid 'dfd7b643c2be208f3fd5061f9e966ba461ede053'
-  /frontend/src/main.js:
-    newFile: !uuid '020e1f425eff916925005e64b2e77233633a4946'
-    oldFile: !uuid '171d4fdbc7dc93164fc857b135201c79d9cd04f1'
-gitCommitId: !uuid '434772d19e313593e0007e066093ff4934d90f49'
+    newFile: !uuid '5573a1c94d7d15d4e678fe46f6d93dd969440f94'
+    oldFile: !uuid '8a8d32de19ae056447a748c62757378a742a6497'
+  /frontend/package-lock.json:
+    newFile: !uuid 'a212db4524e3e73cbc45f401e0e193ca21d88d49'
+    oldFile: !uuid 'eef0714a8c6b03711bf37eebfca0116a2596d65b'
+gitCommitId: !uuid '86e2b2d3a6c68ce21350448411ddf1f5788716ee'
 renames: {
   }
-revisionId: 158
+revisionId: 159
