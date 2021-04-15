@@ -3,12 +3,24 @@ branches: {
   }
 fileChange:
   /frontend:
-    newFile: !uuid '338c5c1ef766866dafde70d3a0efd37661248d55'
-    oldFile: !uuid 'd98b3ddaf20d6d98f682b238b0f3f28e8fee5323'
-  /frontend/package-lock.json:
-    newFile: !uuid 'eef0714a8c6b03711bf37eebfca0116a2596d65b'
-    oldFile: !uuid 'f19a485a8fdba75b6bfc48ef88bdd72ffff58dce'
-gitCommitId: !uuid 'f1421a8619bb7bc001b6b7ffec5f8bfe2cc0d8c7'
+    newFile: !uuid '4ad16cca1da92e9a230586dac92fa911632b8cb4'
+    oldFile: !uuid '338c5c1ef766866dafde70d3a0efd37661248d55'
+  /frontend/src:
+    newFile: !uuid 'bee6c8f2ae53745d27790beb4d86c30c264a6d28'
+    oldFile: !uuid 'e325c3884314ef92c8e988ef94a76c433a93e450'
+  /frontend/src/api:
+    newFile: !uuid '11d692c915e3b9378b81fd7037644a4332b13c67'
+    oldFile: !uuid '787b3583778ad0c1f9fa1db3d513a00576f0dd97'
+  /frontend/src/api/modular:
+    newFile: !uuid 'ae495874af491dcc3cdedb82f055380cd3cbd3ef'
+    oldFile: !uuid 'a35b5e0b23def1e12f0d46a177d1934c0d1ee9ee'
+  /frontend/src/api/modular/system:
+    newFile: !uuid 'aa59a64e25185f20d99e32a38e5e322270d90688'
+    oldFile: !uuid '1ff3f053b02d7337094bf4f6994d1afcb82b7f38'
+  /frontend/src/api/modular/system/registManage.js:
+    newFile: null
+    oldFile: !uuid '3c135b7322c0278621bd01c88cd6bc8ad24eae6c'
+gitCommitId: !uuid 'c095104c038d872467ccf6cc0c1c906facdf5aa7'
 renames: {
   }
-revisionId: 151
+revisionId: 152
