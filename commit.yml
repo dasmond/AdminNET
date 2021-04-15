@@ -3,30 +3,27 @@ branches: {
   }
 fileChange:
   /backend:
-    newFile: !uuid '8d3275ac315ae4e366d2648e480dbaee21f2b250'
-    oldFile: !uuid 'd830ebda45aca2d74c7fc5fef23416ce6ba18d87'
+    newFile: !uuid '4a55a8136a14313474476599cabc75b64bc889f8'
+    oldFile: !uuid '8d3275ac315ae4e366d2648e480dbaee21f2b250'
   /backend/Dilon.Core:
-    newFile: !uuid 'd3f6718f397d1a9861e83d5fef47c185977a4e3c'
-    oldFile: !uuid 'e3668abea62e0c0b376473a2a703d0b595da939d'
-  /backend/Dilon.Core/SeedData:
-    newFile: !uuid '96df30e37342c136c2f282cf63d9bdbe3cb12db2'
-    oldFile: !uuid 'a6a1fa8a1ad26fa97b58f520425eba51f067fe6c'
-  /backend/Dilon.Core/SeedData/SysMenuSeedData.cs:
-    newFile: !uuid 'b4f16ef9326704d1196d7222ffaf9d8a62e64414'
-    oldFile: !uuid '728f74955a78d7dd96895046635a88fee83a46e7'
-  /backend/Dilon.Core/SeedData/SysRoleMenuSeedData.cs:
-    newFile: !uuid 'ef1fe0f83194e0e562ded51b1273a5989a8510dd'
-    oldFile: !uuid 'afc43105f420cfa055ac623c4e7c620108b391eb'
+    newFile: !uuid '323021126d9a5b0baaecffd91614f3d19b3cb79b'
+    oldFile: !uuid 'd3f6718f397d1a9861e83d5fef47c185977a4e3c'
+  /backend/Dilon.Core/Service:
+    newFile: !uuid '1cdd5d97709cc4729403e6dfea1cd57a387973a3'
+    oldFile: !uuid '48e55b7ccaa6aebff92b93488ca43bd5967d41f7'
+  /backend/Dilon.Core/Service/Menu:
+    newFile: !uuid '52ed91b827de7bd699602e1db5537d2fcc0795aa'
+    oldFile: !uuid '95889ffda8adcf99c80fa4f3d75bd733c20e86e8'
+  /backend/Dilon.Core/Service/Menu/SysMenuService.cs:
+    newFile: !uuid '7d28a31076882b498260058f0a42f9d21ed16073'
+    oldFile: !uuid '31ef339efe24b40cd597a6d6e92a37790ded736c'
   /backend/Dilon.Web.Entry:
-    newFile: !uuid '3f4cb3f86aa40d72fbedc169c70db061b76cfbd5'
-    oldFile: !uuid '2a6834ac33309b9e3d6ffb895b6d4acde35fbabb'
-  /backend/Dilon.Web.Entry/Dilon.db-shm:
-    newFile: !uuid '204820cb85b1e21b844f93d024a1e7755cc05b1d'
-    oldFile: null
+    newFile: !uuid 'd3fe7b259dfcbec0b0fc20e8cc4540c2875a88af'
+    oldFile: !uuid '3f4cb3f86aa40d72fbedc169c70db061b76cfbd5'
   /backend/Dilon.Web.Entry/Dilon.db-wal:
-    newFile: !uuid '11831c926c5f9cd43212f08d22c8b4c3947ddada'
-    oldFile: null
-gitCommitId: !uuid 'edc2b90936657187ada60fa4b766bede75e2a41e'
+    newFile: !uuid '3b4671dfe2fcfa282513420cdbefb0e3ce91fd89'
+    oldFile: !uuid '11831c926c5f9cd43212f08d22c8b4c3947ddada'
+gitCommitId: !uuid '86cd3501928a055a056c3a09466cff11d113ff1d'
 renames: {
   }
-revisionId: 165
+revisionId: 166
