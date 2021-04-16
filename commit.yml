@@ -3,15 +3,27 @@ branches: {
   }
 fileChange:
   /frontend:
-    newFile: !uuid '2defe5288a469b00616478e95bb2f26dd762b6b0'
-    oldFile: !uuid '920db7df250981ebee979961ede84fe4e6c67574'
-  /frontend/package-lock.json:
-    newFile: !uuid '6bfe967ce5a9670221e2e8014e14242a72ebc714'
-    oldFile: !uuid 'a212db4524e3e73cbc45f401e0e193ca21d88d49'
-  /frontend/package.json:
-    newFile: !uuid 'c265e531d0c9f05d02b2d142837949477cd8034f'
-    oldFile: !uuid '163f46e4a03d627155b56cb80d04cf531d9f53af'
-gitCommitId: !uuid '8b0e3317c25fd541fffa02dbae83314348c290ba'
+    newFile: !uuid '60bca0fa1ee8b78b31095e33e88aa7ccbdd618b9'
+    oldFile: !uuid '2defe5288a469b00616478e95bb2f26dd762b6b0'
+  /frontend/src:
+    newFile: !uuid 'b58f76e5bed97bb3fdc0b205c054a41ae98ac4f8'
+    oldFile: !uuid '03cd46cfb047adf3ec8d7de1d1ee610d8faa6f0c'
+  /frontend/src/views:
+    newFile: !uuid 'b60ba0c6f40b597b4c2d3b06e15f402c3f82078e'
+    oldFile: !uuid '73397ebf4772b321340a3e662627a547d0146440'
+  /frontend/src/views/system:
+    newFile: !uuid 'de331c04e940e5f9664df8b8eaf74a4fb859aeaa'
+    oldFile: !uuid '9cca48e53bf0df969130fad341adfc21b7941c88'
+  /frontend/src/views/system/notice:
+    newFile: !uuid '389a739483d7af9f665076524316dd4c9aabae5a'
+    oldFile: !uuid '2c37ac0e63b6f1f9f7394b86a8cd871a24748cc7'
+  /frontend/src/views/system/notice/addForm.vue:
+    newFile: !uuid '9c592b04a2ef90c668e87f3d084b464259fb9c5d'
+    oldFile: !uuid 'e6e41ea3d8531d4db462da64d7efeacad224f0c5'
+  /frontend/src/views/system/notice/editForm.vue:
+    newFile: !uuid '231b1accd4a489dfad9419a7a65047ce3b82dadd'
+    oldFile: !uuid '604df460c71d6e9a1dcf34252f37f4370dfdf7c6'
+gitCommitId: !uuid '2ae24d3ab29f247a825f6db18bd62a641e8cfbff'
 renames: {
   }
-revisionId: 177
+revisionId: 178
