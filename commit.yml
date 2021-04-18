@@ -3,48 +3,18 @@ branches: {
   }
 fileChange:
   /backend:
-    newFile: !uuid '6b1a71394541370c908f319dde8bcdea4c0a2609'
-    oldFile: !uuid '5c75bb4361dd72dd098a9e558a38ec78413258cb'
-  /backend/Dilon.Core:
-    newFile: !uuid '6096c7bf29fe08551661cbd2b0a8aa50284bd23a'
-    oldFile: !uuid '359062b12dce0e7e8f7b0c548fb329f6f8859d86'
-  /backend/Dilon.Core/Filter:
-    newFile: !uuid '23d718c1ed102a403a77f2ad507b9310ff185ebc'
-    oldFile: !uuid '4984872a6ea200fb57093eb89f122c16526f1064'
-  /backend/Dilon.Core/Filter/RequestActionFilter.cs:
-    newFile: !uuid '2d59a7d9ae5f84cdd2db33f75150927a225b70d6'
-    oldFile: !uuid '35d96c22391cb9272b853156e645f2aded32a8b5'
-  /backend/Dilon.Core/Service:
-    newFile: !uuid '7050c53ab712cd485a09f3efd14b4114f7fa11c3'
-    oldFile: !uuid '5693f1a7905197a17b5bdeef8748ee26d53772cc'
-  /backend/Dilon.Core/Service/Menu:
-    newFile: !uuid 'fb40781d6256d66ad3ae3eb2f422798593852762'
-    oldFile: !uuid '52ed91b827de7bd699602e1db5537d2fcc0795aa'
-  /backend/Dilon.Core/Service/Menu/SysMenuService.cs:
-    newFile: !uuid 'bfc9ab7dc2fb24e7317601215014981b8661ea4e'
-    oldFile: !uuid '7d28a31076882b498260058f0a42f9d21ed16073'
-  /backend/Dilon.Core/Service/Org:
-    newFile: !uuid '691b88b0ce90da2e80591cff057d9ead5fca6794'
-    oldFile: !uuid '88990e844ba5e1df1b1429ffdeff4925a0c745f2'
-  /backend/Dilon.Core/Service/Org/ISysOrgService.cs:
-    newFile: !uuid '13152e37f4c8690d35c5566b16af4b26992e22ae'
-    oldFile: !uuid '06c25276ae73fae8bebbbd0a1ef0edd7bd214604'
-  /backend/Dilon.Core/Service/Org/SysOrgService.cs:
-    newFile: !uuid '03b43ccea6daacd1f262ca9d6a55fe973aefa64d'
-    oldFile: !uuid '1b456cded0a79774d51bd55d240fc5d34d6900d0'
-  /backend/Dilon.Core/Service/User:
-    newFile: !uuid '48de1cd77bd3d18966a4d1abb1236eb1b0e9462a'
-    oldFile: !uuid 'fbbbbd6d21a3b5d66dd8c271105ef0e4795590b8'
-  /backend/Dilon.Core/Service/User/SysUserService.cs:
-    newFile: !uuid '0953a76d94a50da38a88320add7104a04ed48437'
-    oldFile: !uuid '8c7a2da508656f173d00943daba2c43ced920553'
-  /backend/Dilon.Web.Entry:
-    newFile: !uuid '83c75de1891b5407db0e754c25756342f9e79ea3'
-    oldFile: !uuid 'f33a83a503d51b8149e4ded6f7ab424e14201be2'
-  /backend/Dilon.Web.Entry/Dilon.db:
-    newFile: !uuid '1c6e8c253b889a71882ed6c8b7ff6e64bacf847d'
-    oldFile: !uuid 'f1e32eeb2bd41ee394d8a216bd6c69adb59fe736'
-gitCommitId: !uuid 'bc5b2cdaaec1594043bab58eddafc78877eb641e'
+    newFile: !uuid '29deaa349ff020149272b906bf065ccaad8ba5c5'
+    oldFile: !uuid '6b1a71394541370c908f319dde8bcdea4c0a2609'
+  /backend/Dilon.EntityFramework.Core:
+    newFile: !uuid '2df5f3a58809f30fba898f1f61275cfe4cc19998'
+    oldFile: !uuid 'd483af0ffc9a9e44918640419a4963766b0feee9'
+  /backend/Dilon.EntityFramework.Core/DbContexts:
+    newFile: !uuid 'cd235f7d9cf8495d323bff9c411494a4a444603c'
+    oldFile: !uuid '055bac1b93417dcfcfef9f4b4b3171d9fe1a4324'
+  /backend/Dilon.EntityFramework.Core/DbContexts/DefaultDbContext.cs:
+    newFile: !uuid '005ebf746c6f12f5f475e7a9ef517e3a917843c9'
+    oldFile: !uuid '24af260b824d3b62ec1ec019c0a13947271516c9'
+gitCommitId: !uuid '4ffd5c4b91b0eabe7f62c3af9db035a13879eaa6'
 renames: {
   }
-revisionId: 187
+revisionId: 188
