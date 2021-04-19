@@ -1,4 +1,5 @@
-﻿using Furion.DatabaseAccessor.Extensions;
+﻿using Furion;
+using Furion.JsonSerialization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.AspNetCore.Mvc.Filters;
@@ -29,32 +30,31 @@ namespace Dilon.Core
 
             // 判断是否请求成功（没有异常就是请求成功）
             var isRequestSucceed = actionContext.Exception == null;
-
-            var clent = Parser.GetDefault().Parse(httpContext.Request.Headers["User-Agent"]);
+            var headers = httpContext.Request.Headers;
+            var clientInfo = headers.ContainsKey("User-Agent") ? Parser.GetDefault().Parse(headers["User-Agent"]) : null;
             var actionDescriptor = context.ActionDescriptor as ControllerActionDescriptor;
-            var descAtt = Attribute.GetCustomAttribute(actionDescriptor.MethodInfo, typeof(DescriptionAttribute)) as DescriptionAttribute;
+            // _ = Attribute.GetCustomAttribute(actionDescriptor.MethodInfo, typeof(DescriptionAttribute)) as DescriptionAttribute;
 
-            var sysOpLog = new SysLogOp
+            // 日志写入简单队列
+            var _logOpQueue = App.GetService<IConcurrentQueue<SysLogOp>>();
+            _logOpQueue.Add(new SysLogOp
             {
-                Name = descAtt != null ? descAtt.Description : actionDescriptor.ActionName,
-                OpType = 1,
-                Success = isRequestSucceed ? YesOrNot.Y.ToString() : YesOrNot.N.ToString(),
-                //Message = isRequestSucceed ? "成功" : "失败",
+                Name = httpContext.User?.FindFirstValue(ClaimConst.CLAINM_NAME),
+                Success = isRequestSucceed ? YesOrNot.Y : YesOrNot.N,
                 Ip = httpContext.GetRemoteIpAddressToIPv4(),
                 Location = httpRequest.GetRequestUrlAddress(),
-                Browser = clent.UA.Family + clent.UA.Major,
-                Os = clent.OS.Family + clent.OS.Major,
+                Browser = clientInfo?.UA.Family + clientInfo?.UA.Major,
+                Os = clientInfo?.OS.Family + clientInfo?.OS.Major,
                 Url = httpRequest.Path,
                 ClassName = context.Controller.ToString(),
                 MethodName = actionDescriptor.ActionName,
                 ReqMethod = httpRequest.Method,
-                //Param = JsonSerializerUtility.Serialize(context.ActionArguments),
-                //Result = JsonSerializerUtility.Serialize(actionContext.Result),
+                Param = JSON.Serialize(context.ActionArguments.Count < 1 ? "" : context.ActionArguments),
+                //Result = JSON.Serialize(actionContext.Result), // 序列化异常，比如验证码
                 ElapsedTime = sw.ElapsedMilliseconds,
                 OpTime = DateTimeOffset.Now,
                 Account = httpContext.User?.FindFirstValue(ClaimConst.CLAINM_ACCOUNT)
-            };
-            await sysOpLog.InsertAsync();
+            });
         }
     }
 }
