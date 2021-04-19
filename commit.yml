@@ -3,105 +3,21 @@ branches: {
   }
 fileChange:
   /backend:
-    newFile: !uuid '77bb315e41551c6fae9897bead94786b3b295f49'
-    oldFile: !uuid '29deaa349ff020149272b906bf065ccaad8ba5c5'
+    newFile: !uuid '9b64029780b5d8123584702469d3f1e0731ffa4e'
+    oldFile: !uuid '77bb315e41551c6fae9897bead94786b3b295f49'
   /backend/Dilon.Core:
-    newFile: !uuid '7aee88ba7a5904a179b4042b298e6224b15e6793'
-    oldFile: !uuid '6096c7bf29fe08551661cbd2b0a8aa50284bd23a'
-  /backend/Dilon.Core/Dilon.Core.csproj:
-    newFile: !uuid '388736a1cc5c24c59cbe707f480970c9f5ef97cf'
-    oldFile: !uuid '9b753b93dfe3e0be5d20451e74faa590c0e6de9c'
-  /backend/Dilon.Core/Dilon.Core.xml:
-    newFile: !uuid '67f8924a71d5a915e6cdda8eb463d38e7206ef8c'
-    oldFile: !uuid '57fbd04460f96766f81917b67b732c4704ac6d48'
-  /backend/Dilon.Core/Entity:
-    newFile: !uuid 'b59aead158dec97a18261bf111c7bbbc7d70f66b'
-    oldFile: !uuid '292a83731223db546cef6feaebe391657516e4ec'
-  /backend/Dilon.Core/Entity/SysTimer.cs:
-    newFile: !uuid '1bfc61d771a1f80050273285a8b432aac2bf91e4'
-    oldFile: !uuid '7f6225d47dcfa3b97098079b6250b1e0ef0d97a6'
-  /backend/Dilon.Core/Enum:
-    newFile: !uuid 'e474180c362dc6c1543ad6b1ebf8c3425c17f066'
-    oldFile: !uuid 'd2d7fd48fe5c6d726b373baf41748cf33e301e2e'
-  /backend/Dilon.Core/Enum/RequestTypeEnum.cs:
-    newFile: !uuid 'e5a4cda436340a9bfe044380c38810d631100676'
-    oldFile: null
-  /backend/Dilon.Core/SeedData:
-    newFile: !uuid '6eb2bc2927d571fac52a0241591c1a48168f0b9d'
-    oldFile: !uuid 'f0ba964a6f4beaf9a52649e4382fc3b83db7af89'
-  /backend/Dilon.Core/SeedData/SysTimerSeedData.cs:
-    newFile: !uuid 'da1bdd4225012aeadc74556d2f65ce64cfe5cd21'
-    oldFile: !uuid 'e9810ee72d9c1443f8346e3ae88ce7a7136d17fa'
-  /backend/Dilon.Core/Service:
-    newFile: !uuid '69fe27fd1ca87e562701fa6ed2b56f5e821fb91f'
-    oldFile: !uuid '7050c53ab712cd485a09f3efd14b4114f7fa11c3'
-  /backend/Dilon.Core/Service/CodeGen:
-    newFile: !uuid '71fc97f92db5df3dc0f3a28cfcd7791a5976ea4d'
-    oldFile: !uuid '587246b2a6dd0aedea9003a2e5b85626f952e46d'
-  /backend/Dilon.Core/Service/CodeGen/CodeGenService.cs:
-    newFile: !uuid '82b59454539c7472959c5352cc8b07d5ffc13288'
-    oldFile: !uuid '677bf6787a28f36fef7f41eea372bc651c99b21a'
-  /backend/Dilon.Core/Service/Timer:
-    newFile: !uuid '42b1213fecefa26787c40e00445236c2ad5104c0'
-    oldFile: !uuid '53ab595908db3331d548d569988732596a183a4f'
-  /backend/Dilon.Core/Service/Timer/Dto:
-    newFile: !uuid '86b1a4eb3c6b9eed59f1b6fddf00865e37447009'
-    oldFile: !uuid 'acab7098567e41471a4428b698cd5c71a057d7b9'
-  /backend/Dilon.Core/Service/Timer/Dto/JobInput.cs:
-    newFile: !uuid '14d24e2229f66138d55c519ec8af57dfca05d7c2'
-    oldFile: !uuid '981ef0b902c82adac51806e58dc69cae68f660d2'
-  /backend/Dilon.Core/Service/Timer/Dto/JobOutput.cs:
-    newFile: !uuid 'bea87d786f1b2c8c64bdfb4788dfeb52f7601ce4'
-    oldFile: !uuid 'ed65b1e75743f069424b710522cdb9a64e9238b6'
-  /backend/Dilon.Core/Service/Timer/HttpJob.cs:
-    newFile: null
-    oldFile: !uuid 'a728763eb9f92a1d62798c65eba2070ad34eed2f'
-  /backend/Dilon.Core/Service/Timer/ISysTimerService.cs:
-    newFile: !uuid 'ff7c221dd0567aca88e2ebfb59c3422b602f50f2'
-    oldFile: !uuid 'fb71f462a7a76ee11ddff46c014a42f79d20f4b5'
-  /backend/Dilon.Core/Service/Timer/SchedulerCenter.cs:
-    newFile: null
-    oldFile: !uuid '876b7cb2606ecb29d4f891ec8f4b1a0aca33aff6'
-  /backend/Dilon.Core/Service/Timer/SchedulerDef.cs:
-    newFile: null
-    oldFile: !uuid 'df0a5c0a7a86faa01a4c0c6f5f707e1a66094bf6'
-  /backend/Dilon.Core/Service/Timer/SysTimerService.cs:
-    newFile: !uuid 'b51d4a3a9c900386620999df3d39532b073e817e'
-    oldFile: !uuid '21b24b0e0aa0d0729ea9baf7347245b8359d02a0'
-  /backend/Dilon.Web.Entry:
-    newFile: !uuid '157a20f18be8b2b8530b54a41afe549d3ebf13e8'
-    oldFile: !uuid '83c75de1891b5407db0e754c25756342f9e79ea3'
-  /backend/Dilon.Web.Entry/Dilon.db:
-    newFile: !uuid '68d1d57251536f172640bfe57273bcd0e15e04fb'
-    oldFile: !uuid '1c6e8c253b889a71882ed6c8b7ff6e64bacf847d'
-  /backend/Dilon.Web.Entry/Program.cs:
-    newFile: !uuid '0769b5bf82bb01cd8b6b161f7f7b4d336b5118f7'
-    oldFile: !uuid '3d78e19efda3a40599ee7454667759e0278937dd'
-  /frontend:
-    newFile: !uuid '824d9e412c208e9123ac37db616c3ecfad158ad7'
-    oldFile: !uuid '60813c5d25508dc0eedf8cb759561d3e02495122'
-  /frontend/src:
-    newFile: !uuid '2b7b1ccb455f50d27744bd3324338f2c76191a39'
-    oldFile: !uuid '450112dc6b68ff84e14f5aa7f5ebb2adfdea0ce1'
-  /frontend/src/views:
-    newFile: !uuid 'c40ed74b53e296047a558521153257296cd5cc3d'
-    oldFile: !uuid 'e54ca63c492d1131a70802cccef56cf0e3b74e04'
-  /frontend/src/views/system:
-    newFile: !uuid '1c7b7be36dbc412f1ed4d5b386f7c65f9fbd99d0'
-    oldFile: !uuid '9a363c35bf0c5dd3d85ac835b815b0ef2bdf75f9'
-  /frontend/src/views/system/timers:
-    newFile: !uuid 'c6cb2175491e89e9a9334d9e766d98528857e372'
-    oldFile: !uuid '8d0de748b529269d0aab500834e1ccd51284251f'
-  /frontend/src/views/system/timers/addForm.vue:
-    newFile: !uuid '123ed9d225a76bb7b8691f545be00177b9ccfa5d'
-    oldFile: !uuid '05c3db1ca24f225a0682ee71e1b64d2704a44c9d'
-  /frontend/src/views/system/timers/editForm.vue:
-    newFile: !uuid '7e0c9f7f94f5496842b91605c1f846d4b4414df1'
-    oldFile: !uuid 'a97d3f2a3ee7a7900dd0f34bac0b748f8fa46507'
-  /frontend/src/views/system/timers/index.vue:
-    newFile: !uuid 'b0d44e0e1e187b8e2d63e8c0995a286a6ff6300f'
-    oldFile: !uuid '9af48641577d3a283fd0566a426e02982f40c3eb'
-gitCommitId: !uuid 'de7ad1f080c44728186a6bfe43933d9eb185617d'
+    newFile: !uuid '5457b568fa771a1ca8a8015865853c43ca47bf5d'
+    oldFile: !uuid '7aee88ba7a5904a179b4042b298e6224b15e6793'
+  /backend/Dilon.Core/Captcha:
+    newFile: !uuid 'a61af7d5ab26882e092a92ecb7acc99482bc35e6'
+    oldFile: !uuid 'bdb14d6c3817b17992e926920b438290df292912'
+  /backend/Dilon.Core/Captcha/ClickWord:
+    newFile: !uuid '11fe815cc390cf0c47bceead2eeec361350e863e'
+    oldFile: !uuid '30ebcce605fb8af15f4adcb132bba0cf860c0ad6'
+  /backend/Dilon.Core/Captcha/ClickWord/ClickWordCaptcha.cs:
+    newFile: !uuid '76dbf61ca34f99f63bc55ad7879233bd34f4a86b'
+    oldFile: !uuid '7cf8ced626695257a3983e12945a2b6388240090'
+gitCommitId: !uuid 'f4e1d323f5748025314af8f07c9c2d15f57fb638'
 renames: {
   }
-revisionId: 189
+revisionId: 190
