@@ -2,22 +2,22 @@
 branches: {
   }
 fileChange:
-  /backend:
-    newFile: !uuid 'a15dc1459b0e7d14b7b7f5e0e521fd86fe0e64fc'
-    oldFile: !uuid '828cd36a43b5f8b35e42eefef603cec5c7ece3d3'
-  /backend/Dilon.Core:
-    newFile: !uuid '1b4d8384907b8cb446851326d00e5a192af8682e'
-    oldFile: !uuid 'f8f52fa67b4561950255d2402bcf31f995398e4b'
-  /backend/Dilon.Core/Service:
-    newFile: !uuid '116d5992fea2f24046902dc3152293a5bf9b3b95'
-    oldFile: !uuid '65ab62908df924020c1a1d91ffddcece0f7b8d3e'
-  /backend/Dilon.Core/Service/App:
-    newFile: !uuid 'ce48988bd97db1ecded191efe261d8aaef0076ec'
-    oldFile: !uuid 'a86fd918f072ed878817fbdf6c1e2647acc67bad'
-  /backend/Dilon.Core/Service/App/SysAppService.cs:
-    newFile: !uuid '5e0919db6e3b02180dd3ef62412737d9eb38474f'
-    oldFile: !uuid '80132bb30b9c25f4ade66d67d24fd0157f66c3d2'
-gitCommitId: !uuid '982d0f674b4ea4d839131ede640ca631fcfdd901'
+  /frontend:
+    newFile: !uuid '4b2349fb97b78431b4e5bef4fd1f22d00728d76d'
+    oldFile: !uuid '3be9f273069b52e2b3f61ae22ddd554712426a16'
+  /frontend/src:
+    newFile: !uuid 'ed14f60663c98ad4d62204c2a5835d4c385f00cf'
+    oldFile: !uuid 'c0f11a1a1fe6fc2977f9b23db14d45e780da4467'
+  /frontend/src/components:
+    newFile: !uuid 'f9c1ec13eb78241908b45e415b32f6bfd3158560'
+    oldFile: !uuid 'cf32e96d765ec301daa9b47ae56df87f17c8d788'
+  /frontend/src/components/SettingDrawer:
+    newFile: !uuid 'bd854184b4112511c789a74a8d990452d2a3034c'
+    oldFile: !uuid '55a8ebfb6e976b63c73a2bb00f42dd099b827d1a'
+  /frontend/src/components/SettingDrawer/SettingDrawer.vue:
+    newFile: !uuid 'e638668bc970e25cd77f3ab4edd36cd87dadba89'
+    oldFile: !uuid 'fec9d01a36b8386afd3f53012b3798f6aca27ba9'
+gitCommitId: !uuid '256a4946266b887b37a11fd5b4cbaac534798c8d'
 renames: {
   }
-revisionId: 194
+revisionId: 195
