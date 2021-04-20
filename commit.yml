@@ -2,10 +2,28 @@
 branches: {
   }
 fileChange:
-  /.gitignore:
-    newFile: !uuid '3fcac3f7f3d4d1e1ea8007432513be9605c3a76b'
-    oldFile: !uuid '222de2321b41113e5d85da84e889607f73b37191'
-gitCommitId: !uuid '0a2de3ef48ef9356ecca7bbbd45d46291b61da8e'
+  /frontend:
+    newFile: !uuid 'c78af18b4c26071fa0433b75a01a2d06cde3a9ad'
+    oldFile: !uuid 'c37adc19e2a423fb1ecb3c56a6585559f3b29ac5'
+  /frontend/src:
+    newFile: !uuid '700db3cd9fdf8b728cd12385e50bd4e51a338d8f'
+    oldFile: !uuid '705c2667488badc2862b1e19dd8d310821794dc7'
+  /frontend/src/views:
+    newFile: !uuid '519ea82db4180f4bfe0c00aeee8495c940c02220'
+    oldFile: !uuid '2670312f8e35fdfc9d22179a848a1dbcf7fe2e0f'
+  /frontend/src/views/system:
+    newFile: !uuid '95018761d07eac4af3c9b11f42bf4d605547ec75'
+    oldFile: !uuid 'db7d7be16b387635f8fc683ab4136de447be5a3e'
+  /frontend/src/views/system/log:
+    newFile: !uuid 'f4293eeda10bc37458bbafcaf065618207901178'
+    oldFile: !uuid '902637af6385d504ce100de33fac8dc0468b4f62'
+  /frontend/src/views/system/log/oplog:
+    newFile: !uuid '80cb7957908c905e93ca32fbd77f81de7db7b96a'
+    oldFile: !uuid 'ee55f542131f596d23996144eb9bb13bf5f09de2'
+  /frontend/src/views/system/log/oplog/index.vue:
+    newFile: !uuid 'a5e98496326a6ee2ec9fe3f4e74cb568b345babf'
+    oldFile: !uuid '3d5d55d6ef160f0c66bf010f299b1ef8733d5031'
+gitCommitId: !uuid '1023c7d31852e3f65dac342617a47a894bcf6252'
 renames: {
   }
-revisionId: 204
+revisionId: 205
