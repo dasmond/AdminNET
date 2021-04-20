@@ -3,30 +3,21 @@ branches: {
   }
 fileChange:
   /backend:
-    newFile: !uuid '5789de40b54d79ab5404dd33c5648290d62c5d3f'
-    oldFile: !uuid 'ee0547b81b9c0d9576817d2f4d050daf107eb96f'
-  /backend/Dilon.Core:
-    newFile: !uuid 'f582e9ce794cad54e0948be7c3263c9862591951'
-    oldFile: !uuid 'a3688cef859f1601f9bf7970de44f7bd0488140a'
-  /backend/Dilon.Core/Dilon.Core.csproj:
-    newFile: !uuid '03d35616c024c0eb2fa09ab2a7f58ebdd30f0871'
-    oldFile: !uuid '2ffb18272078bac30d64810a698de80e3809e7c6'
-  /backend/Dilon.Core/Service:
-    newFile: !uuid 'f07ca5739c50007a0ca5ec05c851359f8707f87e'
-    oldFile: !uuid '07b66278a1d500806108a792de61b86a355599a5'
-  /backend/Dilon.Core/Service/Timer:
-    newFile: !uuid 'fe9fd7899c440fc2f3298d27992a22d36b5a8a28'
-    oldFile: !uuid '93df91eb55fba5f3c495ea0876fac77ba32d6ec9'
-  /backend/Dilon.Core/Service/Timer/Dto:
-    newFile: !uuid '83b19a1ec2907b32a05702aee7d47016422cbe40'
-    oldFile: !uuid '86b1a4eb3c6b9eed59f1b6fddf00865e37447009'
-  /backend/Dilon.Core/Service/Timer/Dto/JobOutput.cs:
-    newFile: !uuid 'bac985ccc9d3e55a4b6b6c86973911d9958b8148'
-    oldFile: !uuid 'bea87d786f1b2c8c64bdfb4788dfeb52f7601ce4'
-  /backend/Dilon.Core/Service/Timer/SysTimerService.cs:
-    newFile: !uuid '0c8ba52bc696c3b3063349a20fc744089a961f5a'
-    oldFile: !uuid '3b18708ec681fcebff5a63a7fae4eb40385bfb71'
-gitCommitId: !uuid '475425c98b2d6b6794f887c08cc9507d94bb85bf'
+    newFile: !uuid '319a91742ca72658539c351903f2ee0a990479d7'
+    oldFile: !uuid '5789de40b54d79ab5404dd33c5648290d62c5d3f'
+  /backend/Dilon.Web.Entry:
+    newFile: !uuid 'aaec707930c66d1bffcc4dff7423fcc72d5272ec'
+    oldFile: !uuid '393e53be70f5bb06be8195aa78cc1bfacee8a8ba'
+  /backend/Dilon.Web.Entry/wwwroot:
+    newFile: !uuid '0d6178789cfc657b6fce88b05c4e27308f3733a4'
+    oldFile: !uuid 'b853010ed9840af93ed96b5cc0d809a0ba876bf7'
+  /backend/Dilon.Web.Entry/wwwroot/Template:
+    newFile: !uuid 'f4e64ab133f90e1fb4034013c33814c7ec7165ca'
+    oldFile: !uuid '0ffc068d01c0c149714b43edf751f5cf67802d2e'
+  /backend/Dilon.Web.Entry/wwwroot/Template/index.vue.vm:
+    newFile: !uuid '929af436df3034ccd178faa71a26aca390886c3e'
+    oldFile: !uuid '16c181ad39ea7cdce9076537863e5b73d13f0db8'
+gitCommitId: !uuid '20e707ab74a1e1fac9fbd9db6b4f78e637aa1363'
 renames: {
   }
-revisionId: 197
+revisionId: 198
