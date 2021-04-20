@@ -153,6 +153,12 @@ namespace Dilon.Core
         D2005,
 
         /// <summary>
+        /// 只能增加下级机构
+        /// </summary>
+        [ErrorCodeItemMetadata("只能增加下级机构")]
+        D2006,
+
+        /// <summary>
         /// 字典类型不存在
         /// </summary>
         [ErrorCodeItemMetadata("字典类型不存在")]
@@ -320,12 +326,47 @@ namespace Dilon.Core
         [ErrorCodeItemMetadata("任务调度不存在")]
         D1101,
 
-
         /// <summary>
         /// 演示环境禁止修改数据
         /// </summary>
         [ErrorCodeItemMetadata("演示环境禁止修改数据")]
         D1200,
+
+        /// <summary>
+        /// 已存在同名或同主机租户
+        /// </summary>
+        [ErrorCodeItemMetadata("已存在同名或同主机租户")]
+        D1300,
+
+        /// <summary>
+        /// 该表代码模板已经生成过
+        /// </summary>
+        [ErrorCodeItemMetadata("该表代码模板已经生成过")]
+        D1400,
+
+        /// <summary>
+        /// 该类型不存在
+        /// </summary>
+        [ErrorCodeItemMetadata("该类型不存在")]
+        D1501,
+
+        /// <summary>
+        /// 该字段不存在
+        /// </summary>
+        [ErrorCodeItemMetadata("该字段不存在")]
+        D1502,
+
+        /// <summary>
+        /// 该类型不是枚举类型
+        /// </summary>
+        [ErrorCodeItemMetadata("该类型不是枚举类型")]
+        D1503,
+
+        /// <summary>
+        /// 该实体不存在
+        /// </summary>
+        [ErrorCodeItemMetadata("该实体不存在")]
+        D1504,
 
         /// <summary>
         /// 已存在同名或同编码项目

@@ -1,5 +1,5 @@
-﻿using Furion.DatabaseAccessor;
-using Furion.Snowflake;
+﻿using Dilon.Core.Entity;
+using Furion.DatabaseAccessor;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
@@ -13,16 +13,9 @@ namespace Dilon.Core
     /// 用户表
     /// </summary>
     [Table("sys_user")]
-    public class SysUser : DEntityBase, IEntityTypeBuilder<SysUser>
+    [Comment("用户表")]
+    public class SysUser : DBEntityTenant, IEntityTypeBuilder<SysUser>
     {
-        public SysUser()
-        {
-            Id = IDGenerator.NextId();
-            CreatedTime = DateTimeOffset.Now;
-            IsDeleted = false;
-            Status = (int)CommonStatus.ENABLE;
-        }
-
         /// <summary>
         /// 账号
         /// </summary>
@@ -67,7 +60,7 @@ namespace Dilon.Core
         /// 性别-男_1、女_2
         /// </summary>
         [Comment("性别-男_1、女_2")]
-        public int Sex { get; set; }
+        public Gender Sex { get; set; }
 
         /// <summary>
         /// 邮箱
@@ -107,13 +100,13 @@ namespace Dilon.Core
         /// 管理员类型-超级管理员_1、非管理员_2
         /// </summary>
         [Comment("管理员类型-超级管理员_1、非管理员_2")]
-        public int AdminType { get; set; }
+        public AdminType AdminType { get; set; }
 
         /// <summary>
         /// 状态-正常_0、停用_1、删除_2
         /// </summary>
         [Comment("状态-正常_0、停用_1、删除_2")]
-        public int Status { get; set; }
+        public CommonStatus Status { get; set; } = CommonStatus.ENABLE;
 
         /// <summary>
         /// 多对多（角色）

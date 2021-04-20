@@ -1,6 +1,5 @@
 ﻿using Furion;
 using Furion.DatabaseAccessor;
-using Furion.DatabaseAccessor.Extensions;
 using Furion.DataEncryption;
 using Furion.DependencyInjection;
 using Furion.DynamicApiController;
@@ -24,17 +23,20 @@ namespace Dilon.Core.Service
     [ApiDescriptionSettings(Name = "Auth", Order = 160)]
     public class AuthService : IAuthService, IDynamicApiController, ITransient
     {
-        private readonly IRepository<SysUser> _sysUserRep;     // 用户表仓储  
         private readonly IHttpContextAccessor _httpContextAccessor;
+
+        private readonly IRepository<SysUser> _sysUserRep;     // 用户表仓储
         private readonly IUserManager _userManager; // 用户管理
 
-        private readonly ISysUserService _sysUserService; // 系统用户服务  
-        private readonly ISysEmpService _sysEmpService;   // 系统员工服务      
-        private readonly ISysRoleService _sysRoleService; // 系统角色服务  
+        private readonly ISysUserService _sysUserService; // 系统用户服务
+        private readonly ISysEmpService _sysEmpService;   // 系统员工服务
+        private readonly ISysRoleService _sysRoleService; // 系统角色服务
         private readonly ISysMenuService _sysMenuService; // 系统菜单服务
         private readonly ISysAppService _sysAppService;   // 系统应用服务
         private readonly IClickWordCaptcha _captchaHandle;// 验证码服务
         private readonly ISysConfigService _sysConfigService; // 验证码服务
+
+        private readonly IConcurrentQueue<SysLogVis> _logVisQueue; // 登录日志队列
 
         public AuthService(IRepository<SysUser> sysUserRep,
                            IHttpContextAccessor httpContextAccessor,
@@ -45,7 +47,8 @@ namespace Dilon.Core.Service
                            ISysMenuService sysMenuService,
                            ISysAppService sysAppService,
                            IClickWordCaptcha captchaHandle,
-                           ISysConfigService sysConfigService)
+                           ISysConfigService sysConfigService,
+                           IConcurrentQueue<SysLogVis> logVisQueue)
         {
             _sysUserRep = sysUserRep;
             _httpContextAccessor = httpContextAccessor;
@@ -57,6 +60,7 @@ namespace Dilon.Core.Service
             _sysAppService = sysAppService;
             _captchaHandle = captchaHandle;
             _sysConfigService = sysConfigService;
+            _logVisQueue = logVisQueue;
         }
 
         /// <summary>
@@ -67,17 +71,17 @@ namespace Dilon.Core.Service
         /// <returns></returns>
         [HttpPost("/login")]
         [AllowAnonymous]
-        public async Task<string> LoginAsync([Required] LoginInput input)
+        public string LoginAsync([Required] LoginInput input)
         {
             // 获取加密后的密码
             var encryptPasswod = MD5Encryption.Encrypt(input.Password);
 
-            // 判断用户名和密码是否正确
-            var user = await _sysUserRep.FirstOrDefaultAsync(u => u.Account.Equals(input.Account) && u.Password.Equals(encryptPasswod));
+            // 判断用户名和密码是否正确 忽略全局过滤器
+            var user = _sysUserRep.Where(u => u.Account.Equals(input.Account) && u.Password.Equals(encryptPasswod), null, true).FirstOrDefault();
             _ = user ?? throw Oops.Oh(ErrorCode.D1000);
 
             // 验证账号是否被冻结
-            if (user.Status == (int)CommonStatus.DISABLE)
+            if (user.Status == CommonStatus.DISABLE)
                 throw Oops.Oh(ErrorCode.D1017);
 
             // 生成Token令牌
@@ -85,6 +89,7 @@ namespace Dilon.Core.Service
             var accessToken = JWTEncryption.Encrypt(new Dictionary<string, object>
             {
                 { ClaimConst.CLAINM_USERID, user.Id },
+                { ClaimConst.TENANT_ID, user.TenantId },
                 { ClaimConst.CLAINM_ACCOUNT, user.Account },
                 { ClaimConst.CLAINM_NAME, user.Name },
                 { ClaimConst.CLAINM_SUPERADMIN, user.AdminType },
@@ -116,7 +121,8 @@ namespace Dilon.Core.Service
             var loginOutput = user.Adapt<LoginOutput>();
 
             loginOutput.LastLoginTime = user.LastLoginTime = DateTimeOffset.Now;
-            loginOutput.LastLoginIp = user.LastLoginIp = httpContext.GetRemoteIpAddressToIPv4();
+            var ip = httpContext.Request.Headers["X-Real-IP"].FirstOrDefault();
+            loginOutput.LastLoginIp = user.LastLoginIp = string.IsNullOrEmpty(user.LastLoginIp) ? httpContext.GetRemoteIpAddressToIPv4() : ip;
 
             //var ipInfo = IpTool.Search(loginOutput.LastLoginIp);
             //loginOutput.LastLoginAddress = ipInfo.Country + ipInfo.Province + ipInfo.City + "[" + ipInfo.NetworkOperator + "][" + ipInfo.Latitude + ipInfo.Longitude + "]";
@@ -143,23 +149,24 @@ namespace Dilon.Core.Service
             // 菜单信息
             if (loginOutput.Apps.Count > 0)
             {
-                var defaultActiveAppCode = loginOutput.Apps.FirstOrDefault(u => u.Active == YesOrNot.Y.ToString()).Code; // loginOutput.Apps[0].Code;
+                var activeApp = loginOutput.Apps.FirstOrDefault(u => u.Active == YesOrNot.Y.ToString());
+                var defaultActiveAppCode = activeApp != null ? activeApp.Code : loginOutput.Apps.FirstOrDefault().Code;
                 loginOutput.Menus = await _sysMenuService.GetLoginMenusAntDesign(userId, defaultActiveAppCode);
             }
 
             // 增加登录日志
-            await new SysLogVis
+            _logVisQueue.Add(new SysLogVis
             {
-                Name = "登录",
-                Success = YesOrNot.Y.ToString(),
+                Name = loginOutput.Name,
+                Success = YesOrNot.Y,
                 Message = "登录成功",
                 Ip = loginOutput.LastLoginIp,
                 Browser = loginOutput.LastLoginBrowser,
                 Os = loginOutput.LastLoginOs,
-                VisType = 1,
+                VisType = LoginType.LOGIN,
                 VisTime = loginOutput.LastLoginTime,
                 Account = loginOutput.Account
-            }.InsertAsync();
+            });
 
             return loginOutput;
         }
@@ -171,17 +178,20 @@ namespace Dilon.Core.Service
         [HttpGet("/logout")]
         public async Task LogoutAsync()
         {
+            var user = _userManager.User;
             _httpContextAccessor.SignoutToSwagger();
             //_httpContextAccessor.HttpContext.Response.Headers["access-token"] = "invalid token";
 
             // 增加退出日志
-            await new SysLogVis
+            _logVisQueue.Add(new SysLogVis
             {
-                Name = "退出",
-                Success = YesOrNot.Y.ToString(),
+                Name = user.Name,
+                Success = YesOrNot.Y,
                 Message = "退出成功",
-                VisType = 2
-            }.InsertAsync();
+                VisType = LoginType.LOGOUT,
+                VisTime = DateTimeOffset.Now,
+                Account = user.Account
+            });
 
             await Task.CompletedTask;
         }
@@ -192,7 +202,7 @@ namespace Dilon.Core.Service
         /// <returns></returns>
         [HttpGet("/getCaptchaOpen")]
         [AllowAnonymous]
-        public async Task<dynamic> GetCaptchaOpen()
+        public async Task<bool> GetCaptchaOpen()
         {
             return await _sysConfigService.GetCaptchaOpenFlag();
         }
