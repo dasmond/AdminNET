@@ -6107,6 +6107,12 @@
             <param name="orgId"></param>
             <returns></returns>
         </member>
+        <member name="M:Dilon.Core.Service.SysOrgService.GetAllDataScopeIdList">
+            <summary>
+            获取所有的机构组织Id集合
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:Dilon.Core.Service.SysOrgService.GetUserDataScopeIdList">
             <summary>
             获取用户数据范围（机构Id集合）
