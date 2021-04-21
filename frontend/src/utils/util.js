@@ -65,3 +65,59 @@ export function removeLoadingAnimate (id = '', timeout = 1500) {
     document.body.removeChild(document.getElementById(id))
   }, timeout)
 }
+
+  /**
+   * 让浏览器全屏切换
+   * @returns {boolean} 是否是全屏状态
+   */
+  export function toggleFullscreen(el, fullscreen) {
+    if (!el) {
+        el = document.documentElement;
+        if (fullscreen === undefined) {
+            fullscreen = !(
+            document.fullscreenElement || 
+            document.webkitFullscreenElement ||
+            document.mozFullScreenElement ||
+            document.msFullscreenElement
+            );
+        }
+    }
+    if (fullscreen) {
+        const rfs = (
+            el.requestFullScreen ||
+            el.webkitRequestFullScreen ||
+            el.mozRequestFullScreen ||
+            el.msRequestFullScreen
+        );
+        if (rfs) {
+            rfs.call(el);
+        } else {
+            throw new Error('您的浏览器不支持全屏模式');
+        }
+    } else {
+        const cfs = (
+            document.exitFullScreen ||
+            document.webkitCancelFullScreen ||
+            document.mozCancelFullScreen ||
+            document.msExitFullscreen
+        );
+        if (cfs) {
+            cfs.call(document);
+        }
+    }
+    return fullscreen;
+}
+/**
+ * 获取屏幕宽度
+ * @returns {number}
+ */
+export function screenWidth() {
+    return document.documentElement.clientWidth || document.body.clientWidth;
+}
+/**
+ * 获取屏幕高度
+ * @returns {number}
+ */
+export function screenHeight() {
+    return document.documentElement.clientHeight || document.body.clientHeight;
+}

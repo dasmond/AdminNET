@@ -1,17 +1,21 @@
 <template>
   <div class="user-wrapper">
     <div class="content-box">
-      <!--<a href="" target="_blank">
+      <!-- <a href="" target="_blank">
         <span class="action">
           <a-icon type="question-circle-o"></a-icon>
         </span>
-      </a>-->
-
-      <notice-icon class="action"/>
-
+      </a> -->
+      <!-- 全屏 -->
+      <div class="action" @click="fullSwitch">
+         <a-icon type="fullscreen-exit" v-if="isFullscreen" />
+        <a-icon type="fullscreen" v-else />
+      </div>
+      <!-- 用户信息 -->
+      <notice-icon class="action" />
       <a-dropdown>
-        <span class="action ant-dropdown-link user-dropdown-menu">
-          <a-avatar class="avatar" size="small" :src="avatar"/>
+        <span class="action ant-dropdown-link user-dropdown-menu ">
+          <a-avatar class="avatar" size="small" src="https://cdn.eleadmin.com/20200610/avatar.jpg" />
           <span>{{ nickname }}</span>
         </span>
         <a-menu slot="overlay" class="user-dropdown-menu-wrapper">
@@ -42,6 +46,12 @@
           </a-menu-item>
         </a-menu>
       </a-dropdown>
+
+      <!-- 主题 -->
+      <span class="action" style="padding: 0 18px;" @click="toggle">
+        <a-icon type="setting" />
+        <setting-drawer ref="mychild" ></setting-drawer>
+      </span>
     </div>
     <a-modal
       title="切换应用"
@@ -77,11 +87,13 @@ import { mapActions, mapGetters } from 'vuex'
 import { ALL_APPS_MENU } from '@/store/mutation-types'
 import Vue from 'vue'
 import { message } from 'ant-design-vue/es'
-
+import { toggleFullscreen } from '@/utils/util'
+import SettingDrawer from '@/components/SettingDrawer'
 export default {
   name: 'UserMenu',
   components: {
-    NoticeIcon
+    NoticeIcon,
+    SettingDrawer
   },
   props: {
     mode: {
@@ -103,16 +115,26 @@ export default {
       visible: false,
       confirmLoading: false,
       form1: this.$form.createForm(this),
-      defApp: []
+      defApp: [],
+      // 是否全屏状态
+      isFullscreen: false,
+      isShowset:false
     }
   },
 
   computed: {
     ...mapGetters(['nickname', 'avatar', 'userInfo'])
   },
+  mounted(){
+    // 监听浏览器窗口大小改变
+    window.addEventListener('resize', this.onResizeListener);
+  },
+  unmounted() {
+    // 销毁浏览器窗口大小改变监听
+    window.removeEventListener('resize', this.onResizeListener);
+  },
   methods: {
     ...mapActions(['Logout', 'MenuChange']),
-
     handleLogout () {
       this.$confirm({
         title: '提示',
@@ -135,7 +157,7 @@ export default {
         }
       })
     },
-
+    
     /**
      * 打开切换应用框
      */
@@ -159,6 +181,18 @@ export default {
     handleCancel () {
       this.form1.resetFields()
       this.visible = false
+    },
+    // 全屏
+    fullSwitch () {
+      try {
+        this.isFullscreen = toggleFullscreen();
+      } catch (e) {
+        this.$message.error('您的浏览器不支持全屏模式');
+      }
+    },
+    // 主题色按钮
+    toggle(){
+      this.$refs.mychild.showDrawer()
     }
   }
 }

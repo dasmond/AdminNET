@@ -16,4 +16,4 @@ export const setDocumentTitle = function (title) {
   }
 }
 
-export const domTitle = 'Admin.NET'
+export const domTitle = '云才综合管理系统'

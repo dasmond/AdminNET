@@ -5,7 +5,7 @@
         <div class="header">
           <a href="/">
             <img src="~@/assets/logo.png" class="logo" alt="logo">
-            <span class="title">Admin.NET</span>
+            <span class="title">云才综合管理系统</span>
           </a>
         </div>
         <div class="desc">
@@ -22,7 +22,7 @@
           <a href="_self">条款</a>
         </div>
         <div class="copyright">
-          Copyright © 2021 <a target="_blank" href="https://gitee.com/zuohuaijun/Admin.NET">Admin.NET</a> All rights reserved. v1.3.2
+          Copyright © 2021 <a target="_blank" href="https://www.ynzp.com">云南云才人力资源咨询有限公司</a> All rights reserved. v1.0.1
         </div>
       </div>
     </div>
