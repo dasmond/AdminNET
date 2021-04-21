@@ -209,32 +209,3 @@ export function sysUserUpdateInfo (parameter) {
     data: parameter
   })
 }
-
-/**
- * 导出用户信息
- *
- * @author zuohuaijun
- * @date 2021/4/20 01:00
- */
-export function sysUserExport (parameter) {
-  return axios({
-    url: '/sysUser/export',
-    method: 'get',
-    data: parameter,
-    responseType: 'blob'
-  })
-}
-
-/**
- * 导入用户信息
- *
- * @author zuohuaijun
- * @date 2021/4/20 01:00
- */
-export function sysUserImport (parameter) {
-  return axios({
-    url: '/sysUser/import',
-    method: 'post',
-    data: parameter
-  })
-}

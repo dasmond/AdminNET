@@ -7,13 +7,15 @@
       :closable="false"
       :visible="visible"
       :drawer-style="{ position: 'absolute' }"
-      style="z-index: 999"
+      style="position: absolute"
     >
       <div class="setting-drawer-index-content">
-
         <div :style="{ marginBottom: '24px' }">
-          <h3 class="setting-drawer-index-title">整体风格设置</h3>
-
+          <h3 class="setting-drawer-index-title   ">
+            <span>整体风格设置</span>
+            <a-icon class="set-close" @click="onClose" type="close" />
+          </h3>
+          
           <div class="setting-drawer-index-blockChecbox">
             <a-tooltip>
               <template slot="title">
@@ -58,7 +60,8 @@
         </div>
         <a-divider />
 
-        <div :style="{ marginBottom: '24px' }">
+
+        <div v-if="isShoeMore" :style="{ marginBottom: '24px' }" >
           <h3 class="setting-drawer-index-title">导航模式</h3>
 
           <div class="setting-drawer-index-blockChecbox">
@@ -128,7 +131,7 @@
         </div>
         <a-divider />
 
-        <div :style="{ marginBottom: '24px' }">
+        <div :style="{ marginBottom: '24px' }" v-if="isShoeMore">
           <h3 class="setting-drawer-index-title">其他设置</h3>
           <div>
             <a-list :split="false">
@@ -148,7 +151,7 @@
           </div>
         </div>
         <a-divider />
-        <div :style="{ marginBottom: '24px' }">
+        <!-- <div :style="{ marginBottom: '24px' }">
           <a-button
             @click="doCopy"
             icon="copy"
@@ -160,12 +163,12 @@
               <a href="https://github.com/sendya/ant-design-pro-vue/blob/master/src/config/defaultSettings.js" target="_blank">src/config/defaultSettings.js</a>
             </span>
           </a-alert>
-        </div>
+        </div> -->
       </div>
-      <div class="setting-drawer-index-handle" @click="toggle" slot="handle">
+      <!-- <div class="setting-drawer-index-handle" @click="toggle" slot="handle">
         <a-icon type="setting" v-if="!visible"/>
         <a-icon type="close" v-else/>
-      </div>
+      </div> -->
     </a-drawer>
   </div>
 </template>
@@ -186,7 +189,8 @@ export default {
   data () {
     return {
       visible: false,
-      colorList
+      colorList,
+      isShoeMore:false
     }
   },
   watch: {
@@ -221,23 +225,23 @@ export default {
     doCopy () {
       // get current settings from mixin or this.$store.state.app, pay attention to the property name
       const text = `export default {
-  primaryColor: '${this.primaryColor}', // primary color of ant design
-  navTheme: '${this.navTheme}', // theme for nav menu
-  layout: '${this.layoutMode}', // nav menu position: sidemenu or topmenu
-  contentWidth: '${this.contentWidth}', // layout of content: Fluid or Fixed, only works when layout is topmenu
-  fixedHeader: ${this.fixedHeader}, // sticky header
-  fixSiderbar: ${this.fixSiderbar}, // sticky siderbar
-  autoHideHeader: ${this.autoHideHeader}, //  auto hide header
-  colorWeak: ${this.colorWeak},
-  multiTab: ${this.multiTab},
-  production: process.env.NODE_ENV === 'production' && process.env.VUE_APP_PREVIEW !== 'true',
-  // vue-ls options
-  storageOptions: {
-    namespace: 'pro__',
-    name: 'ls',
-    storage: 'local',
-  }
-}`
+        primaryColor: '${this.primaryColor}', // primary color of ant design
+        navTheme: '${this.navTheme}', // theme for nav menu
+        layout: '${this.layoutMode}', // nav menu position: sidemenu or topmenu
+        contentWidth: '${this.contentWidth}', // layout of content: Fluid or Fixed, only works when layout is topmenu
+        fixedHeader: ${this.fixedHeader}, // sticky header
+        fixSiderbar: ${this.fixSiderbar}, // sticky siderbar
+        autoHideHeader: ${this.autoHideHeader}, //  auto hide header
+        colorWeak: ${this.colorWeak},
+        multiTab: ${this.multiTab},
+        production: process.env.NODE_ENV === 'production' && process.env.VUE_APP_PREVIEW !== 'true',
+        // vue-ls options
+        storageOptions: {
+          namespace: 'pro__',
+          name: 'ls',
+          storage: 'local',
+        }
+      }`
       this.$copyText(text).then(message => {
         console.log('copy', message)
         this.$message.success('复制完毕')
@@ -279,7 +283,11 @@ export default {
 
 <style lang="less" scoped>
 
-  .setting-drawer-index-content {
+  .setting-drawer-index-content { 
+    // 隐藏部分的背景
+    .ant-divider{
+      background: transparent !important;
+    }
 
     .setting-drawer-index-blockChecbox {
       display: flex;
@@ -289,7 +297,6 @@ export default {
         position: relative;
         border-radius: 4px;
         cursor: pointer;
-
         img {
           width: 48px;
         }
@@ -325,6 +332,20 @@ export default {
         font-size: 14px;
       }
     }
+  }
+  .setting-drawer-index-title{
+    display:flex;
+    justify-content: space-between;
+  }
+  .set-close{
+    cursor: pointer;
+    display:flex;
+    align-items: center;
+    color:rgba(0, 0, 0, 0.45);
+  }
+  .set-close:hover{
+    color:rgba(0, 0, 0, 0.8);
+    transition: color 0.3s
   }
 
   .setting-drawer-index-handle {

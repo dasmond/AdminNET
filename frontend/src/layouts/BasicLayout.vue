@@ -82,6 +82,15 @@ export default {
     GlobalFooter,
     SettingDrawer
   },
+  props:{
+    isShow:Boolean
+  },
+  watch:{
+    isShow:function(v){
+      console.log(v)
+    }
+
+  },
   data () {
     return {
       production: config.production,
@@ -114,6 +123,7 @@ export default {
     }
   },
   created () {
+    
     this.setMenus()
     /* const routes = convertRoutes(this.mainMenu.find(item => item.path === '/'))
     this.menus = (routes && routes.children) || [] */
