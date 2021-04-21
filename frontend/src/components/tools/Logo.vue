@@ -1,7 +1,8 @@
 <template>
   <div class="logo">
     <router-link :to="{name:'Console'}">
-      <LogoSvg alt="logo" />
+      <!-- <LogoSvg alt="logo" /> -->
+      <img class="logo-img" src="@/assets/logo.png" mode="" />
       <h1 v-if="showTitle">{{ this.titles }}</h1>
     </router-link>
   </div>
@@ -25,7 +26,7 @@ export default {
   props: {
     title: {
       type: String,
-      default: 'Admin.NET',
+      default: 'Ynzp Admin',
       required: false
     },
     showTitle: {
@@ -51,3 +52,11 @@ export default {
   }
 }
 </script>
+<style scoped>
+  .logo-img{
+    width:300px;
+    height: 300px;
+    display: inline-block;
+  }
+
+</style>

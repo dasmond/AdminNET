@@ -3,7 +3,7 @@
     <div class="links">
     </div>
     <div class="copyright">
-      Copyright © 2021 <a target="_blank" href="https://gitee.com/zuohuaijun/Admin.NET">Admin.NET</a> All rights reserved. v1.3.2
+      Copyright © 2021 <a target="_blank" href="https://www.ynzp.com">云南云才人力资源咨询有限公司</a> All rights reserved. v1.0.1
     </div>
   </div>
 </template>

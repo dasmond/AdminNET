@@ -7,6 +7,7 @@ function resolve (dir) {
 }
 
 const isProd = process.env.NODE_ENV === 'production'
+console.log("host地址======",process.env.VUE_APP_API_BASE_URL);
 
 const assetsCDN = {
   // webpack build externals
@@ -28,6 +29,7 @@ const assetsCDN = {
 
 // vue.config.js
 const vueConfig = {
+
   configureWebpack: {
     // webpack plugins
     plugins: [
@@ -83,7 +85,11 @@ const vueConfig = {
   },
 
   devServer: {
+    // host:'192.168.0.246',
     port: 81,
+    // https:false,
+    // hostOnly:false,
+    // open:true,
     proxy: {
       '/api': {
         target: process.env.VUE_APP_API_BASE_URL,
@@ -98,7 +104,8 @@ const vueConfig = {
 
   // disable source map in production
   productionSourceMap: false,
-  lintOnSave: undefined,
+  // 关闭eslint校验
+  lintOnSave: false,
   // babel-loader no-ignore node_modules/*
   transpileDependencies: []
 }
@@ -112,3 +119,4 @@ if (process.env.VUE_APP_PREVIEW === 'true') {
 }
 
 module.exports = vueConfig
+
