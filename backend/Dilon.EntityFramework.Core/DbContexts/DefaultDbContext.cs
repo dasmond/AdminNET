@@ -14,7 +14,7 @@ using System.Linq.Expressions;
 
 namespace Dilon.EntityFramework.Core
 {
-    [AppDbContext("DefaultConnection", DbProvider.Sqlite)]
+    [AppDbContext("DefaultConnection", DbProvider.MySql)]
     public class DefaultDbContext : AppDbContext<DefaultDbContext>, IMultiTenantOnTable, IModelBuilderFilter
     {
         public DefaultDbContext(DbContextOptions<DefaultDbContext> options) : base(options)

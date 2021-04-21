@@ -54,6 +54,118 @@
             创建时间
             </summary>
         </member>
+        <member name="T:Dilon.Application.CodeGenTestService">
+            <summary>
+            代码生成业务服务
+            </summary>
+        </member>
+        <member name="M:Dilon.Application.CodeGenTestService.Page(Dilon.Application.CodeGenTestInput)">
+            <summary>
+            分页查询代码生成业务
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Dilon.Application.CodeGenTestService.Add(Dilon.Application.AddCodeGenTestInput)">
+            <summary>
+            增加代码生成业务
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Dilon.Application.CodeGenTestService.Delete(Dilon.Application.DeleteCodeGenTestInput)">
+            <summary>
+            删除代码生成业务
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Dilon.Application.CodeGenTestService.Update(Dilon.Application.UpdateCodeGenTestInput)">
+            <summary>
+            更新代码生成业务
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Dilon.Application.CodeGenTestService.Get(Dilon.Application.QueryeCodeGenTestInput)">
+            <summary>
+            获取代码生成业务
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Dilon.Application.CodeGenTestService.List(Dilon.Application.CodeGenTestInput)">
+            <summary>
+            获取代码生成业务列表
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Dilon.Application.CodeGenTestInput">
+            <summary>
+            代码生成业务输入参数
+            </summary>
+        </member>
+        <member name="P:Dilon.Application.CodeGenTestInput.Name">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:Dilon.Application.CodeGenTestInput.NickName">
+            <summary>
+            昵称
+            </summary>
+        </member>
+        <member name="P:Dilon.Application.CodeGenTestInput.Birthday">
+            <summary>
+            生日
+            </summary>
+        </member>
+        <member name="P:Dilon.Application.CodeGenTestInput.Age">
+            <summary>
+            年龄
+            </summary>
+        </member>
+        <member name="P:Dilon.Application.DeleteCodeGenTestInput.Id">
+            <summary>
+            Id主键
+            </summary>
+        </member>
+        <member name="P:Dilon.Application.UpdateCodeGenTestInput.Id">
+            <summary>
+            Id主键
+            </summary>
+        </member>
+        <member name="T:Dilon.Application.CodeGenTestOutput">
+            <summary>
+            代码生成业务输出参数
+            </summary>
+        </member>
+        <member name="P:Dilon.Application.CodeGenTestOutput.Name">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:Dilon.Application.CodeGenTestOutput.NickName">
+            <summary>
+            昵称
+            </summary>
+        </member>
+        <member name="P:Dilon.Application.CodeGenTestOutput.Birthday">
+            <summary>
+            生日
+            </summary>
+        </member>
+        <member name="P:Dilon.Application.CodeGenTestOutput.Age">
+            <summary>
+            年龄
+            </summary>
+        </member>
+        <member name="P:Dilon.Application.CodeGenTestOutput.Id">
+            <summary>
+            Id主键
+            </summary>
+        </member>
         <member name="T:Dilon.Application.TestService">
             <summary>
             业务服务及集成SqlSugar用法事例
@@ -62,6 +174,119 @@
         <member name="M:Dilon.Application.TestService.GetDescription">
             <summary>
             测试方法
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Dilon.Application.Tools.OSSClientHelper">
+            <summary>
+            阿里云oss文件上传工具类
+            </summary>
+        </member>
+        <member name="M:Dilon.Application.Tools.OSSClientHelper.PushMedia_internal(System.String,System.String)">
+            <summary>
+            上传本地文件
+            </summary>
+            <param name="objectName"></param>
+            <param name="bucket"></param>
+            <param name="contentType"></param>
+            <param name="localFilename"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Dilon.Application.Tools.OSSClientHelper.PushImg(System.String,System.String)">
+            <summary>
+            上传一个图片
+            </summary>
+            <param name="base64Code">图片经过base64加密后的结果</param>
+            <param name="fileName">文件名,例如:Emplyoee/dzzBack.jpg</param>
+        </member>
+        <member name="M:Dilon.Application.Tools.OSSClientHelper.PushMedia(System.String,System.String)">
+            <summary>
+            上传本地文件
+            </summary>
+            <param name="objectName"></param>
+            <param name="localFilename"></param>
+            返回参数说明  1.本地文件不存在  2.文件oss上已存在  3.上传失败  4.上传成功
+            <returns></returns>
+        </member>
+        <member name="M:Dilon.Application.Tools.OSSClientHelper.PushImg(System.Byte[],System.String,System.String@)">
+            <summary>
+            上传一个图片
+            </summary>
+            <param name="filebyte">图片字节 </param>
+            <param name="fileName">文件名,例如:Emplyoee/dzzBack.jpg</param>
+        </member>
+        <member name="M:Dilon.Application.Tools.OSSClientHelper.GetImg(System.String)">
+            <summary>
+            获取鉴权后的URL,URL有效日期默认一小时
+            </summary>
+            <param name="fileName">文件名,例如:Emplyoee/dzzBack.jpg</param>
+            <returns></returns>
+        </member>
+        <member name="M:Dilon.Application.Tools.OSSClientHelper.GetMediaFileUrl(System.String,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="filePath">文件地址</param>
+            <param name="typeSource">1.安卓APP，2.IOSAPP，3 安卓小程序,4 ios小程序，5.PC</param>
+            <returns></returns>
+        </member>
+        <member name="M:Dilon.Application.Tools.OSSClientHelper.GetPlayUrl(System.String,System.String,System.Boolean)">
+            <summary>
+            从OSS上获取播放地址
+            </summary>
+            <param name="filePath"></param>
+            <param name="systemUrl"></param>
+            <param name="IsOSSPlay"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Dilon.Application.Tools.OSSClientHelper.GetPlayUrl_CND(System.String,System.String,System.Boolean)">
+            <summary>
+            从CDN上获取播放地址
+            </summary>
+            <param name="filePath"></param>
+            <param name="systemUrl"></param>
+            <param name="IsOSSPlay"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Dilon.Application.Tools.OSSClientHelper.GetImg(System.String,System.DateTime)">
+            <summary>
+            获取鉴权后的URL
+            </summary>
+            <param name="fileName">文件名,例如:Emplyoee/dzzBack.jpg</param>
+            <param name="expiration">URL有效日期,例如:DateTime.Now.AddHours(1) </param>
+            <returns></returns>
+        </member>
+        <member name="M:Dilon.Application.Tools.OSSClientHelper.AuthGetFileData(System.String)">
+            <summary>
+            将文件转换成byte[] 数组
+            </summary>
+            <param name="fileUrl">文件路径文件名称</param>
+            <returns>byte[]</returns>
+        </member>
+        <member name="M:Dilon.Application.Tools.OSSClientHelper.deletefileCode(System.String)">
+            <summary>
+            删除文件
+            </summary>
+            <param name="fileCode">文件id</param>
+            <returns>文件url</returns>
+        </member>
+        <member name="M:Dilon.Application.Tools.OSSClientHelper.DeleteFolder(System.String)">
+            <summary>
+            删除文件夹
+            </summary>
+            <param name="fileCode">文件id</param>
+            <returns>文件url</returns>
+        </member>
+        <member name="M:Dilon.Application.Tools.OSSClientHelper.DoesObjectExist(System.String)">
+            <summary>
+            判断文件是否存在
+            </summary>
+            <param name="fileName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Dilon.Application.Tools.OSSClientHelper.TypeTo(System.String)">
+            <summary>
+            类型转换
             </summary>
             <returns></returns>
         </member>

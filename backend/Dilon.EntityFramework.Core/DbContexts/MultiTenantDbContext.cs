@@ -11,7 +11,7 @@ using System.Linq;
 
 namespace Dilon.EntityFramework.Core
 {
-    [AppDbContext("MultiTenantConnection", DbProvider.Sqlite)]
+    [AppDbContext("MultiTenantConnection", DbProvider.MySql)]
     public class MultiTenantDbContext : AppDbContext<MultiTenantDbContext, MultiTenantDbContextLocator>
     {
         public MultiTenantDbContext(DbContextOptions<MultiTenantDbContext> options) : base(options)
