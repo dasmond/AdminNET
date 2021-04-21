@@ -7491,32 +7491,6 @@
             <param name="fileName">文件名,例如:Emplyoee/dzzBack.jpg</param>
             <returns></returns>
         </member>
-        <member name="M:Dilon.Core.OSSClientHelper.GetMediaFileUrl(System.String,System.Int32)">
-            <summary>
-            
-            </summary>
-            <param name="filePath">文件地址</param>
-            <param name="typeSource">1.安卓APP，2.IOSAPP，3 安卓小程序,4 ios小程序，5.PC</param>
-            <returns></returns>
-        </member>
-        <member name="M:Dilon.Core.OSSClientHelper.GetPlayUrl(System.String,System.String,System.Boolean)">
-            <summary>
-            从OSS上获取播放地址
-            </summary>
-            <param name="filePath"></param>
-            <param name="systemUrl"></param>
-            <param name="IsOSSPlay"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Dilon.Core.OSSClientHelper.GetPlayUrl_CND(System.String,System.String,System.Boolean)">
-            <summary>
-            从CDN上获取播放地址
-            </summary>
-            <param name="filePath"></param>
-            <param name="systemUrl"></param>
-            <param name="IsOSSPlay"></param>
-            <returns></returns>
-        </member>
         <member name="M:Dilon.Core.OSSClientHelper.GetImg(System.String,System.DateTime)">
             <summary>
             获取鉴权后的URL

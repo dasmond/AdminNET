@@ -16,12 +16,12 @@ namespace Dilon.Core
     public class OSSClientHelper
     {
 
-        public static string accessKeyId = "LTAI4GDZsvyEpCFkg4GFnHBS";
-        public static string accessKeySecret = "BoIpi3b4D9a59M7ofbaALHXEEeS9Pf";
+        public static string accessKeyId = "accessKeyId";
+        public static string accessKeySecret = "accessKeySecret";
         //const string endpoint = "oss-cn-huhehaote-internal.aliyuncs.com";
-        private static string internalEndpoint = "oss-cn-beijing-internal.aliyuncs.com"; //内网传输连接
-        const string endpoint = "oss-cn-beijing.aliyuncs.com"; //"oss-cn-beijing.aliyuncs.com";// "oss-cn-huhehaote-internal.aliyuncs.com";//"oss-cn-huhehaote.aliyuncs.com" ;
-        public static string bucketName = "quyixian-nb";
+        private static string internalEndpoint = "internalEndpoint"; //内网传输连接
+        const string endpoint = "endpoint"; //"oss-cn-beijing.aliyuncs.com";// "oss-cn-huhehaote-internal.aliyuncs.com";//"oss-cn-huhehaote.aliyuncs.com" ;
+        public static string bucketName = "bucketName";
 
         public static OssClient GetClient()
         {
@@ -33,7 +33,7 @@ namespace Dilon.Core
 
             var conf = new ClientConfiguration();
             conf.IsCname = true;
-            return new OssClient("cdnmedia.zhibuji.com", accessKeyId, accessKeySecret, conf);
+            return new OssClient("cdnmedia.aliyuncs.com", accessKeyId, accessKeySecret, conf);
         }
         public static OssClient GetClient_internal()
         {
@@ -185,135 +185,6 @@ namespace Dilon.Core
                 Expiration = DateTime.Now.AddHours(1)
             };
             return client.GeneratePresignedUri(req).ToString();
-        }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="filePath">文件地址</param>
-        /// <param name="typeSource">1.安卓APP，2.IOSAPP，3 安卓小程序,4 ios小程序，5.PC</param>
-        /// <returns></returns>
-        public static string GetMediaFileUrl(string filePath, int typeSource)
-        {
-            filePath = filePath.Replace(" ", "");
-            string systemUrl = "http://localhost:8056";
-            // 资源播放地址支持:1.本地、2.OSS、3.CDN、4.本地+OSS 四种配置
-            string PlaySource = "1";
-            string result = string.Empty;
-
-            string strLocalUrl = string.Empty;
-            string strOSSUrl = string.Empty;
-
-            bool IsOSSPlay = false;
-            //如果是从OSS或CDN上获取文件，先验证一下文件是否存在。
-            if (PlaySource == "2" || PlaySource == "3" || PlaySource == "4")
-            {
-                //确认OSS上有此文件
-                if (DoesObjectExist(filePath) == true)
-                {
-                    IsOSSPlay = true;
-                }
-            }
-
-            switch (PlaySource)
-            {
-                //1.本地
-                case "1":
-                    result = systemUrl + string.Format("/Resource/{0}", filePath.Trim());
-                    break;
-                //2.OSS
-                case "2":
-                    {
-                        result = GetPlayUrl(filePath, systemUrl, IsOSSPlay);
-                    }
-                    break;
-                //3.CDN
-                case "3":
-                    {
-                        result = GetPlayUrl_CND(filePath, systemUrl, IsOSSPlay);
-                    }
-                    break;
-                //4.本地+OSS
-                case "4":
-                    {
-                        int number = new Random(Guid.NewGuid().GetHashCode()).Next(1, 3);
-                        if (number >= 2)
-                        {
-                            result = GetPlayUrl(filePath, systemUrl, IsOSSPlay);
-                        }
-                        else
-                        {
-                            result = systemUrl + string.Format("/Resource/{0}", filePath.Trim());
-                        }
-                    }
-                    break;
-                default:
-                    break;
-            }
-            //if (typeSource == 5)
-            //{
-            //    result = result.Replace(".mp4","_pc.mp4");
-            //}
-            //else
-            //{
-            //    result = result.Replace(".mp4", "_pc.mp4");
-            //}
-            return result;
-        }
-        /// <summary>
-        /// 从OSS上获取播放地址
-        /// </summary>
-        /// <param name="filePath"></param>
-        /// <param name="systemUrl"></param>
-        /// <param name="IsOSSPlay"></param>
-        /// <returns></returns>
-        private static string GetPlayUrl(string filePath, string systemUrl, bool IsOSSPlay)
-        {
-            string result;
-            //确定从OSS上播放
-            if (IsOSSPlay)
-            {
-                //var client = GetClient();
-                //var key = filePath;
-                //var req = new GeneratePresignedUriRequest(bucketName, key, SignHttpMethod.Get);
-                //result = client.GeneratePresignedUri(req).ToString();
-                result = $"http://zbjmedia.oss-cn-huhehaote.aliyuncs.com/{filePath}";
-            }
-            else
-            {
-                result = systemUrl + string.Format("/Resource/{0}", filePath.Trim());
-
-            }
-
-            return result;
-        }
-        /// <summary>
-        /// 从CDN上获取播放地址
-        /// </summary>
-        /// <param name="filePath"></param>
-        /// <param name="systemUrl"></param>
-        /// <param name="IsOSSPlay"></param>
-        /// <returns></returns>
-        private static string GetPlayUrl_CND(string filePath, string systemUrl, bool IsOSSPlay)
-        {
-            string result;
-            if (IsOSSPlay)
-            {
-                //var client = GetClient_CND();
-                //var key = filePath;
-                //var req = new GeneratePresignedUriRequest(bucketName, key, SignHttpMethod.Get)
-                //{
-                //    Expiration = DateTime.Now.AddHours(1)
-                //};
-                //result = client.GeneratePresignedUri(req).ToString();
-                //result = $"http://cdnmedia.zhibuji.com/{filePath}";
-                result = $"http://allmedia.zhibuji.com/{filePath}";
-            }
-            else
-            {
-                result = systemUrl + string.Format("/Resource/{0}", filePath.Trim());
-            }
-
-            return result;
         }
 
 
