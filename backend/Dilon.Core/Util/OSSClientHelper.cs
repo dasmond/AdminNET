@@ -16,12 +16,12 @@ namespace Dilon.Core
     public class OSSClientHelper
     {
 
-        public static string accessKeyId = "accessKeyId";
-        public static string accessKeySecret = "accessKeySecret";
+        public static string accessKeyId = "LTAI4GDZsvyEpCFkg4GFnHBS";
+        public static string accessKeySecret = "BoIpi3b4D9a59M7ofbaALHXEEeS9Pf";
         //const string endpoint = "oss-cn-huhehaote-internal.aliyuncs.com";
-        private static string internalEndpoint = "internalEndpoint"; //内网传输连接
-        const string endpoint = "endpoint"; //"oss-cn-beijing.aliyuncs.com";// "oss-cn-huhehaote-internal.aliyuncs.com";//"oss-cn-huhehaote.aliyuncs.com" ;
-        public static string bucketName = "bucketName";
+        private static string internalEndpoint = "oss-cn-beijing-internal.aliyuncs.com"; //内网传输连接
+        const string endpoint = "oss-cn-beijing.aliyuncs.com"; //"oss-cn-beijing.aliyuncs.com";// "oss-cn-huhehaote-internal.aliyuncs.com";//"oss-cn-huhehaote.aliyuncs.com" ;
+        public static string bucketName = "quyixian-nb";
 
         public static OssClient GetClient()
         {
