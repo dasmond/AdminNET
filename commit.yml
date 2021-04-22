@@ -3,72 +3,15 @@ branches: {
   }
 fileChange:
   /backend:
-    newFile: !uuid '0cfccee013c2d9ca18c0bdecf6540359021535e5'
-    oldFile: !uuid '9cc65bbc8f3949e15d93f4b7a14b4744903dd3b5'
+    newFile: !uuid 'e693a9072f663c0888a825afab52527110c719cd'
+    oldFile: !uuid '0cfccee013c2d9ca18c0bdecf6540359021535e5'
   /backend/Dilon.Application:
-    newFile: !uuid 'e9c5cc4e1a02f53605579015c86e0f5e1dca59eb'
-    oldFile: !uuid '8db80fcc29333b49e5c79c7fdc6296888c2e0489'
-  /backend/Dilon.Application/Dilon.Application.csproj:
-    newFile: !uuid '34483f3019adf36b89c5982e060102ad3500336b'
-    oldFile: !uuid 'abd537ac851a7cfda84dc9a96b87321c80f81741'
+    newFile: !uuid '50d00a4d3f3259dbcc47b2c0c97b463283373407'
+    oldFile: !uuid 'e9c5cc4e1a02f53605579015c86e0f5e1dca59eb'
   /backend/Dilon.Application/Dilon.Application.xml:
-    newFile: !uuid '8d4dcd32771f62146998ea9bf7514068724b39c2'
-    oldFile: !uuid 'd1774e47c15ae875e84f882e0ca585e2b97b287c'
-  /backend/Dilon.Application/Service:
-    newFile: !uuid '1ff8afb9aba94748d62f371ae2fd9fab8d4a532c'
-    oldFile: !uuid 'ef42f95c2a3ec4ad080d72fce58da2a0b81909fb'
-  /backend/Dilon.Application/Service/TestService.cs:
-    newFile: !uuid '8c6b97b71989dc0fe568a38931706213a7d0041b'
-    oldFile: !uuid 'ef260bd11f906443dcbb8931c40ec681493cb574'
-  /backend/Dilon.Core:
-    newFile: !uuid '759e6c90c57d8e4886e75a15437ae177b673e634'
-    oldFile: !uuid '221bffd14d0a6ae2318f4cb723c628fa154c306e'
-  /backend/Dilon.Core/Captcha:
-    newFile: !uuid 'dd799e297e15ccb1ec78ef9d1ed798afb5bd78bb'
-    oldFile: !uuid 'ac6e76eb29a26c162cc0a6b444897dbb2b5ea487'
-  /backend/Dilon.Core/Captcha/ClickWord:
-    newFile: !uuid '3d46916eaac67f1ae44c242de1bbf68f7342e89e'
-    oldFile: !uuid 'a83384a69d95dffe21d38d162050ef892e9026fc'
-  /backend/Dilon.Core/Captcha/ClickWord/ClickWordCaptcha.cs:
-    newFile: !uuid 'fe182b48f8c9d89f9e2880b8a3fadec550fe9826'
-    oldFile: !uuid 'be81deb0b57beae8cab12402a89d2edb538d2226'
-  /backend/Dilon.Core/Dilon.Core.csproj:
-    newFile: !uuid 'd67b4dee5be0d5bc0fbc0796d660e3af72cc11c8'
-    oldFile: !uuid '3868329820002cc3c524b049ea8a58af2898b8a4'
-  /backend/Dilon.Core/Service:
-    newFile: !uuid '339924a7a441ea38603414e8bfb063a42213768d'
-    oldFile: !uuid '85a42e007f8ef77b41ff20af19a7d977fabe93f7'
-  /backend/Dilon.Core/Service/File:
-    newFile: !uuid '3ccc288e1b01c517234a742dfc17afe1823ee1d0'
-    oldFile: !uuid 'b8f080f26f0bd6e3a93431d5e884d8f42fb1da30'
-  /backend/Dilon.Core/Service/File/SysFileService.cs:
-    newFile: !uuid '926959542037114cd6bb9199b4c0b1c21c1cfe83'
-    oldFile: !uuid '4fa000f7703d85bd429063a2cf54891d368c7937'
-  /backend/Dilon.Core/Service/User:
-    newFile: !uuid '8b1d20bf218e05bc728bbe2cd728d6ab3051f182'
-    oldFile: !uuid 'fb96665429940ac73017b96aed7726bbeb0cb8e0'
-  /backend/Dilon.Core/Service/User/SysUserService.cs:
-    newFile: !uuid '6febe60911b4167547fa52e00ae3993ab3056e1c'
-    oldFile: !uuid '22721925211ddb9c44ed8595c3598a053ea57512'
-  /backend/Dilon.EntityFramework.Core:
-    newFile: !uuid '0e6570cb6ca6ed239e9c4de47f1f124b10d36cfc'
-    oldFile: !uuid '2934d34c3ec333a5285d9613bd72a99773e1fcb1'
-  /backend/Dilon.EntityFramework.Core/DbContexts:
-    newFile: !uuid '3b527dfab335f530d06eb1b58c7588a6c4c16c29'
-    oldFile: !uuid 'adc49e9e0484896c7b50147420a12aec274c7d04'
-  /backend/Dilon.EntityFramework.Core/DbContexts/DefaultDbContext.cs:
-    newFile: !uuid 'c59d6d0abf296803733348644395b1a5de2c3fd5'
-    oldFile: !uuid 'fd668b84ecde2f3be2499954e8d39d4b3a2c0c9f'
-  /backend/Dilon.EntityFramework.Core/DbContexts/MultiTenantDbContext.cs:
-    newFile: !uuid '60144d08f903bb55bdcf0773e6fec9d6f183bb6b'
-    oldFile: !uuid 'ad712e00fde209499f48bdf7e1a3215da8ad3dde'
-  /backend/Dilon.Web.Core:
-    newFile: !uuid '8f3dd10668accdff9324e9f6f921ba572c95d555'
-    oldFile: !uuid '1aecd1d20c90f1f0704730838bb11a6b796902c0'
-  /backend/Dilon.Web.Core/Startup.cs:
-    newFile: !uuid '9a9b10c96214e4a1dc4d0f14a7e95483f4edbb6d'
-    oldFile: !uuid '6eba93c8a825fb8fb2713e1b25efc89f470a03c8'
-gitCommitId: !uuid 'befa26470bcd963cb15eb9cba81718378bd7da55'
+    newFile: !uuid 'd1774e47c15ae875e84f882e0ca585e2b97b287c'
+    oldFile: !uuid '8d4dcd32771f62146998ea9bf7514068724b39c2'
+gitCommitId: !uuid 'bb961a7b7a6d7546f5c7194c75ea42ad99bf1f9d'
 renames: {
   }
-revisionId: 223
+revisionId: 224
