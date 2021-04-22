@@ -3,15 +3,33 @@ branches: {
   }
 fileChange:
   /backend:
-    newFile: !uuid 'e693a9072f663c0888a825afab52527110c719cd'
-    oldFile: !uuid '0cfccee013c2d9ca18c0bdecf6540359021535e5'
-  /backend/Dilon.Application:
-    newFile: !uuid '50d00a4d3f3259dbcc47b2c0c97b463283373407'
-    oldFile: !uuid 'e9c5cc4e1a02f53605579015c86e0f5e1dca59eb'
-  /backend/Dilon.Application/Dilon.Application.xml:
-    newFile: !uuid 'd1774e47c15ae875e84f882e0ca585e2b97b287c'
-    oldFile: !uuid '8d4dcd32771f62146998ea9bf7514068724b39c2'
-gitCommitId: !uuid 'bb961a7b7a6d7546f5c7194c75ea42ad99bf1f9d'
+    newFile: !uuid 'b0892144df76d6d7ebf3ae986946135e2f05eff8'
+    oldFile: !uuid 'e693a9072f663c0888a825afab52527110c719cd'
+  /backend/Dilon.Core:
+    newFile: !uuid '8eb08ba18daa7539f7ca161b05af31c165705b4d'
+    oldFile: !uuid '759e6c90c57d8e4886e75a15437ae177b673e634'
+  /backend/Dilon.Core/Dilon.Core.csproj:
+    newFile: !uuid '55fc851c7b939adb850bc644f182c69ddb8bcbcc'
+    oldFile: !uuid 'd67b4dee5be0d5bc0fbc0796d660e3af72cc11c8'
+  /backend/Dilon.Core/Service:
+    newFile: !uuid '88759c8c8d8c5178894fe1d5373b22f44587bb50'
+    oldFile: !uuid '339924a7a441ea38603414e8bfb063a42213768d'
+  /backend/Dilon.Core/Service/File:
+    newFile: !uuid 'c5808ea72475d8765bcdc365c7b838dd90b93e9d'
+    oldFile: !uuid '3ccc288e1b01c517234a742dfc17afe1823ee1d0'
+  /backend/Dilon.Core/Service/File/SysFileService.cs:
+    newFile: !uuid 'c0a1b34a9d42656098f1c6e99e9b9888ebdda050'
+    oldFile: !uuid '926959542037114cd6bb9199b4c0b1c21c1cfe83'
+  /backend/Dilon.Core/Util:
+    newFile: !uuid 'cc99a5c11c874743c604e90a1659afa63b61da54'
+    oldFile: !uuid '3f6921837573d5319cb4291e20cc0e7dfb5508d8'
+  /backend/Dilon.Core/Util/OSSClientHelper.cs:
+    newFile: !uuid 'b3b09a6eb538b1b2066ad2f311d0d9c994c4e2b8'
+    oldFile: null
+  /backend/Dilon.Core/applicationconfig.json:
+    newFile: !uuid 'aed546a4418f0f6b6a2f205cd561099eb6fc1a5c'
+    oldFile: !uuid 'e4035019c1af32d90029255bada660f1e325399e'
+gitCommitId: !uuid 'e2e2f3eb3e8881964e011462a0f3025be374d144'
 renames: {
   }
-revisionId: 224
+revisionId: 225
