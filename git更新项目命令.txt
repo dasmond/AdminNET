@@ -1,0 +1,8 @@
+1.使用git 命令查看当前的remote信息     git remote -v
+2. 关键的操作来了，接下来我们添加源码的原仓库，作为我们本git仓库的上游，
+git remote add upstream https://gitee.com/zuohuaijun/Admin.NET.git
+3. 添加完成后再次查看remote 信息，会显示如下：   git remote -v
+4.获取源仓库的最新代码   git fetch  upstream 
+5. 例如源代码的master分支有更新，我们要合并到我们本地的代码分支上只需要执行如下操作git merge upstream/master
+6. 执行完成后，就会发现本地代码已经更新到最新，如果有冲突需要我们解决冲突，解决完成后，执行git push origin
+
