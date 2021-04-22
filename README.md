@@ -1,17 +1,27 @@
 <div align="center">
     <p align="center">
-        <img src="./frontend/public/logo.png" height="50" alt="logo"/>
+        <img src="https://gitee.com/zuohuaijun/Admin.NET/raw/master/frontend/public/logo.png" height="50" alt="logo"/>
     </p>
 </div>
 
 <div align="center"><h1 align="center">Admin.NET</h1></div>
 <div align="center"><h3 align="center">前后端分离架构，开箱即用，紧随前沿技术</h3></div>
 
+<div align="center">
+
+[![star](https://gitee.com/zuohuaijun/Admin.NET/badge/star.svg?theme=dark)](https://gitee.com/zuohuaijun/Admin.NET/stargazers)
+[![fork](https://gitee.com/zuohuaijun/Admin.NET/badge/fork.svg?theme=dark)](https://gitee.com/zuohuaijun/Admin.NET/members)
+[![star](https://gitee.com/dotnetchina/Furion/badge/star.svg?theme=gvp)](https://gitee.com/dotnetchina/Furion/stargazers)
+[![star](https://gitee.com/xiaonuobase/snowy/badge/star.svg?theme=gray)](https://gitee.com/xiaonuobase/snowy/stargazers)
+[![GitHub license](https://img.shields.io/badge/license-Apache2-yellow)](https://gitee.com/dotnetchina/Furion/blob/master/LICENSE)
+
+</div>
+
 ### 🍟 概述
 
-* 基于.NET5实现的通用权限管理平台（RBAC模式）。整合最新技术高效快速开发，前后端分离模式，开箱即用。
-* 后台基于Furion框架，多租户、分库读写分离、缓存、数据校验、鉴权、动态API、gRPC等众多黑科技集一身。
-前端Antd-Vue-Pro + Vue2.X开发，紧跟前沿技术，前端自带字典翻译。
+* 基于.NET 5实现的通用权限管理平台（RBAC模式）。整合最新技术高效快速开发，前后端分离模式，开箱即用。
+* 前端基于小诺Vue（antd）框架，整体RBAC基础数据结构+API接口风格采用小诺vue版本模式。
+* 后台基于Furion框架，EFCore、多租户、分库读写分离、缓存、数据校验、鉴权、动态API、gRPC等众多黑科技集一身。
 * 模块化架构设计，层次清晰，业务层推荐写到单独模块，框架升级不影响业务!
 * 核心模块包括：用户、角色、职位、组织机构、菜单、字典、日志、多应用管理、文件管理、定时任务等功能。
 * 代码量少、通俗易懂、功能强大、易扩展，轻松开发从现在开始！
@@ -20,13 +30,23 @@
 如果对您有帮助，您可以点右上角 “Star” 收藏一下 ，获取第一时间更新，谢谢！
 ```
 
+### 😎 衍生版本
+
+【Admin.NET】隆重推出SqlSugar版本
+
+- 👉 SqlSugar版本：[https://gitee.com/zhengguojing/admin-net-sqlsugar](https://gitee.com/zhengguojing/admin-net-sqlsugar)
+
+`如果集成其他ORM，请参照各自操作使用说明。系统默认EFCore不会处理其他ORM实体等，请自行处理。`
+
 ### 🥞 更新日志
 
 更新日志 [点击查看](https://gitee.com/zuohuaijun/Admin.NET/commits/master)
 
 ### ⚡ 近期计划
 
-- [ ] 集成代码生成器
+- [x] 集成多租户功能
+- [x] 集成代码生成器
+- [x] 集成导入导出
 - [ ] 在线用户及黑名单
 - [ ] 邮件发送
 - [ ] 短信发送
@@ -36,9 +56,10 @@
 
 ### 🍿 在线体验
 
-~~体验地址：[http://dilon.zicp.net:55221/](http://dilon.zicp.net:55221/)（用户名：superAdmin，密码：123456）~~  
-
-`【个人电脑临时部署，偶尔在线，可以试试看】`
+- 体验地址：[http://39.107.123.76:82/](http://39.107.123.76:82/)
+- 开发者租户：用户名：superAdmin，密码：123456
+- 公司1租户： 公司1租户管理员（用户名：admin1 密码：123456），公司1租户普通用户（用户名：zuohuaijun1 密码：123456）
+           
 
 ### 🍄 快速启动
 
@@ -72,6 +93,16 @@
         <td><img src="https://gitee.com/zuohuaijun/Admin.NET/raw/master/doc/img/8.png"/></td>
         <td><img src="https://gitee.com/zuohuaijun/Admin.NET/raw/master/doc/img/9.png"/></td>
     </tr>
+    <tr>
+        <td><img src="https://gitee.com/zuohuaijun/Admin.NET/raw/master/doc/img/10.png"/></td>
+        <td><img src="https://gitee.com/zuohuaijun/Admin.NET/raw/master/doc/img/11.png"/></td>
+        <td><img src="https://gitee.com/zuohuaijun/Admin.NET/raw/master/doc/img/12.png"/></td>
+    </tr>
+    <tr>
+        <td><img src="https://gitee.com/zuohuaijun/Admin.NET/raw/master/doc/img/13.png"/></td>
+        <td><img src="https://gitee.com/zuohuaijun/Admin.NET/raw/master/doc/img/14.png"/></td>
+        <td><img src="https://gitee.com/zuohuaijun/Admin.NET/raw/master/doc/img/15.png"/></td>
+    </tr>
 </table>
 
 ### 🍖 详细功能
@@ -87,13 +118,13 @@
 9. 访问日志、用户的登录和退出日志的查看和管理。
 10. 操作日志、用户的操作业务的日志的查看和管理。
 11. 服务监控、服务器的运行状态，CPU、内存、网络等信息数据的查看。
-12. 在线用户、当前系统在线用户的查看。【正在实现中...】
+12. 在线用户、当前系统在线用户的查看。
 13. 公告管理、系统的公告的管理。
-14. 文件管理、文件的上传下载查看等操作，文件可使用本地存储，阿里云oss，腾讯cos接入，支持拓展。【目前只支持本地存储...】
+14. 文件管理、文件的上传下载查看等操作，文件可使用本地存储，阿里云oss，腾讯cos接入，支持拓展。
 15. 定时任务、定时任务的维护，通过cron表达式控制任务的执行频率。
-16. 系统配置、系统运行的参数的维护，参数的配置与系统运行机制息息相关。【完善中...】
-17. 邮件发送、发送邮件功能。【正在实现中...】
-18. 短信发送、短信发送功能，可使用阿里云sms，腾讯云sms，支持拓展。【正在实现中...】
+16. 系统配置、系统运行的参数的维护，参数的配置与系统运行机制息息相关。
+17. 邮件发送、发送邮件功能。
+18. 短信发送、短信发送功能，可使用阿里云sms，腾讯云sms，支持拓展。
 
 
 ### 👀 数据库切换
@@ -110,7 +141,7 @@
 1. Dilon.EntityFramework.Core 项目安装 ``` Microsoft.EntityFrameworkCore.SqlServer ```
 2. DefaultDbContext.cs 指定 DbProvider , ```[AppDbContext("DefaultConnection", DbProvider.SqlServer)]```
 3. dbsettings.json 配置 "DefaultConnection": ```"Server=localhost;Database=Dilon;User=sa;Password=000000;MultipleActiveResultSets=True;"```
-4. 打开程序包管理器控制台，默认项目Dilon.Database.Migrations 执行命令:```Add-Migration Init和update-database```
+4. 打开程序包管理器控制台，默认项目Dilon.Database.Migrations 执行命令:```Add-Migration Init 和 update-database```
 
 ```
 提示：其他类型数据库依次类推，首先添加EF的Core版包，然后指定数据库类型，修改数据库连接字符串，执行EF命令即可。
@@ -118,14 +149,18 @@
 
 ### 🥦 补充说明
 
-* 基于.NET5平台Furion开发框架与小诺VUE版本相结合，实时跟随基架升级而升级！
+* 基于.NET 5平台 Furion 开发框架与小诺 Vue 版本相结合，实时跟随基架升级而升级！
 * 持续集百家所长，完善与丰富本框架基础设施，为.NET生态增加一种选择！
 * 后期会推出基于此框架的相关应用场景案例，提供给大家使用！
 * 有问题讨论的小伙伴可加群一起学习讨论。 QQ群【87333204】
 <a target="_blank" href="https://qm.qq.com/cgi-bin/qm/qr?k=pN8R-P3pJaW9ILoOXwpRGN2wdCHWtUTE&jump_from=webapi"><img border="0" src="//pub.idqqimg.com/wpa/images/group.png" alt="Admin.NET" title="Admin.NET"></a>
 
 ### 💐 特别鸣谢
-- 👉Furion：  [https://dotnetchina.gitee.io/furion](https://dotnetchina.gitee.io/furion)
-- 👉 xiaonuo：[https://gitee.com/xiaonuobase/xiaonuo-vue](https://gitee.com/xiaonuobase/xiaonuo-vue)
+- 👉 Furion：  [https://dotnetchina.gitee.io/furion](https://dotnetchina.gitee.io/furion)
+- 👉 xiaonuo：[https://gitee.com/xiaonuobase/snowy](https://gitee.com/xiaonuobase/snowy)
+- 👉 k-form-design：[https://gitee.com/kcz66/k-form-design](https://gitee.com/kcz66/k-form-design)
+- 👉 MiniExcel：[https://gitee.com/dotnetchina/MiniExcel](https://gitee.com/dotnetchina/MiniExcel)
+- 👉 SqlSugar：[https://gitee.com/dotnetchina/SqlSugar](https://gitee.com/dotnetchina/SqlSugar)
 
-如果对您有帮助，您可以点 "Star" 支持一下，这样才有持续下去的动力，谢谢！
+
+如果对您有帮助，您可以点 "Star" 支持一下，这样才有持续下去的动力，谢谢！！！

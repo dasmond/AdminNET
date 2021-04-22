@@ -50,7 +50,7 @@ namespace Dilon.Core.Service.Notice
                                              .Where(searchValue, u => EF.Functions.Like(u.Title, $"%{input.SearchValue.Trim()}%") || 
                                                                       EF.Functions.Like(u.Content, $"%{input.SearchValue.Trim()}%"))
                                              .Where(input.Type > 0, u => u.Type == input.Type)
-                                             .Where(u => u.Status != (int)NoticeStatus.DELETED)
+                                             .Where(u => u.Status != NoticeStatus.DELETED)
                                              .ToPagedListAsync(input.PageNo, input.PageSize);
             return XnPageResult<SysNotice>.PageResult(notices);
         }
@@ -63,19 +63,19 @@ namespace Dilon.Core.Service.Notice
         [HttpPost("/sysNotice/add")]
         public async Task AddNotice(AddNoticeInput input)
         {
-            if (input.Status != (int)NoticeStatus.DRAFT && input.Status != (int)NoticeStatus.PUBLIC)
+            if (input.Status != NoticeStatus.DRAFT && input.Status != NoticeStatus.PUBLIC)
                 throw Oops.Oh(ErrorCode.D7000);
 
             var notice = input.Adapt<SysNotice>();
             await UpdatePublicInfo(notice);
             // 如果是发布，则设置发布时间
-            if (input.Status == (int)NoticeStatus.PUBLIC)
+            if (input.Status == NoticeStatus.PUBLIC)
                 notice.PublicTime = DateTimeOffset.Now;
             var newItem = await notice.InsertNowAsync();
 
             // 通知到的人
             var noticeUserIdList = input.NoticeUserIdList;
-            var noticeUserStatus = (int)NoticeUserStatus.UNREAD;
+            var noticeUserStatus = NoticeUserStatus.UNREAD;
             await _sysNoticeUserService.Add(newItem.Entity.Id, noticeUserIdList, noticeUserStatus);
         }
 
@@ -88,7 +88,7 @@ namespace Dilon.Core.Service.Notice
         public async Task DeleteNotice(DeleteNoticeInput input)
         {
             var notice = await _sysNoticeRep.FirstOrDefaultAsync(u => u.Id == input.Id);
-            if (notice.Status != (int)NoticeStatus.DRAFT && notice.Status != (int)NoticeStatus.CANCEL) // 只能删除草稿和撤回的
+            if (notice.Status != NoticeStatus.DRAFT && notice.Status != NoticeStatus.CANCEL) // 只能删除草稿和撤回的
                 throw Oops.Oh(ErrorCode.D7001);
 
             //notice.Status = (int)NoticeStatus.DELETED;
@@ -103,24 +103,24 @@ namespace Dilon.Core.Service.Notice
         [HttpPost("/sysNotice/edit")]
         public async Task UpdateNotice(UpdateNoticeInput input)
         {
-            if (input.Status != (int)NoticeStatus.DRAFT && input.Status != (int)NoticeStatus.PUBLIC)
+            if (input.Status != NoticeStatus.DRAFT && input.Status != NoticeStatus.PUBLIC)
                 throw Oops.Oh(ErrorCode.D7000);
 
             //  非草稿状态
-            if (input.Status != (int)NoticeStatus.DRAFT)
+            if (input.Status != NoticeStatus.DRAFT)
                 throw Oops.Oh(ErrorCode.D7002);
 
             var notice = input.Adapt<SysNotice>();
-            if (input.Status == (int)NoticeStatus.PUBLIC)
+            if (input.Status == NoticeStatus.PUBLIC)
             {
                 notice.PublicTime = DateTimeOffset.Now;
                 await UpdatePublicInfo(notice);
             }
-            await notice.UpdateNowAsync();
+            await notice.UpdateAsync();
 
             // 通知到的人
             var noticeUserIdList = input.NoticeUserIdList;
-            var noticeUserStatus = (int)NoticeUserStatus.UNREAD;
+            var noticeUserStatus = NoticeUserStatus.UNREAD;
             await _sysNoticeUserService.Update(input.Id, noticeUserIdList, noticeUserStatus);
         }
 
@@ -157,8 +157,8 @@ namespace Dilon.Core.Service.Notice
             noticeResult.NoticeUserIdList = noticeUserIdList;
             noticeResult.NoticeUserReadInfoList = noticeUserReadInfoList;
             // 如果该条通知公告为已发布，则将当前用户的该条通知公告设置为已读
-            if (notice.Status == (int)NoticeStatus.PUBLIC)
-                await _sysNoticeUserService.Read(notice.Id, _userManager.UserId, (int)NoticeUserStatus.READ);
+            if (notice.Status == NoticeStatus.PUBLIC)
+                await _sysNoticeUserService.Read(notice.Id, _userManager.UserId, NoticeUserStatus.READ);
             return noticeResult;
         }
 
@@ -171,21 +171,21 @@ namespace Dilon.Core.Service.Notice
         public async Task ChangeStatus(ChangeStatusNoticeInput input)
         {
             // 状态应为撤回或删除或发布
-            if (input.Status != (int)NoticeStatus.CANCEL && input.Status != (int)NoticeStatus.DELETED && input.Status != (int)NoticeStatus.PUBLIC)
+            if (input.Status != NoticeStatus.CANCEL && input.Status != NoticeStatus.DELETED && input.Status != NoticeStatus.PUBLIC)
                 throw Oops.Oh(ErrorCode.D7000);
 
             var notice = await _sysNoticeRep.FirstOrDefaultAsync(u => u.Id == input.Id);
             notice.Status = input.Status;
 
-            if (input.Status == (int)NoticeStatus.CANCEL)
+            if (input.Status == NoticeStatus.CANCEL)
             {
                 notice.CancelTime = DateTimeOffset.Now;
             }
-            else if (input.Status == (int)NoticeStatus.PUBLIC)
+            else if (input.Status == NoticeStatus.PUBLIC)
             {
                 notice.PublicTime = DateTimeOffset.Now;
             }
-            await notice.UpdateNowAsync();
+            await notice.UpdateAsync();
         }
 
         /// <summary>
@@ -197,11 +197,11 @@ namespace Dilon.Core.Service.Notice
         public async Task<dynamic> ReceivedNoticePageList([FromQuery] NoticeInput input)
         {
             var searchValue = !string.IsNullOrEmpty(input.SearchValue?.Trim());
-            var notices = await _sysNoticeRep.DetachedEntities.Join(_sysNoticeUserRep.AsQueryable(), u => u.Id, e => e.NoticeId, (u, e) => new { u, e })
+            var notices = await _sysNoticeRep.DetachedEntities.Join(_sysNoticeUserRep.DetachedEntities, u => u.Id, e => e.NoticeId, (u, e) => new { u, e })
                                              .Where(u => u.e.UserId == _userManager.UserId)
                                              .Where(searchValue, u => EF.Functions.Like(u.u.Title, $"%{input.SearchValue.Trim()}%") || EF.Functions.Like(u.u.Content, $"%{input.SearchValue.Trim()}%"))
                                              .Where(input.Type > 0, u => u.u.Type == input.Type)
-                                             .Where(u => u.u.Status != (int)NoticeStatus.DELETED)
+                                             .Where(u => u.u.Status != NoticeStatus.DELETED)
                                              .Select(u => u.u.Adapt<NoticeReceiveOutput>())
                                              .ToPagedListAsync(input.PageNo, input.PageSize);
             return XnPageResult<NoticeReceiveOutput>.PageResult(notices);

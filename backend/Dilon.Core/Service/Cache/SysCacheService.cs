@@ -32,7 +32,7 @@ namespace Dilon.Core.Service
         /// <returns></returns>
         public async Task<List<long>> GetDataScope(long userId)
         {
-            var cacheKey = $"{userId}" + CommonConst.CACHE_KEY_DATASCOPE;
+            var cacheKey = CommonConst.CACHE_KEY_DATASCOPE + $"{userId}";
             return await _cache.GetAsync<List<long>>(cacheKey);
         }
 
@@ -45,7 +45,7 @@ namespace Dilon.Core.Service
         [NonAction]
         public async Task SetDataScope(long userId, List<long> dataScopes)
         {
-            var cacheKey = $"{userId}" + CommonConst.CACHE_KEY_DATASCOPE;
+            var cacheKey = CommonConst.CACHE_KEY_DATASCOPE + $"{userId}";
             await _cache.SetAsync(cacheKey, dataScopes);
         }
 
@@ -57,7 +57,7 @@ namespace Dilon.Core.Service
         /// <returns></returns>
         public async Task<List<AntDesignTreeNode>> GetMenu(long userId, string appCode)
         {
-            var cacheKey = $"{userId}-{appCode}" + CommonConst.CACHE_KEY_MENU;
+            var cacheKey = CommonConst.CACHE_KEY_MENU + $"{userId}-{appCode}";
             return await _cache.GetAsync<List<AntDesignTreeNode>>(cacheKey);
         }
 
@@ -71,7 +71,7 @@ namespace Dilon.Core.Service
         [NonAction]
         public async Task SetMenu(long userId, string appCode, List<AntDesignTreeNode> menus)
         {
-            var cacheKey = $"{userId}-{appCode}" + CommonConst.CACHE_KEY_MENU;
+            var cacheKey = CommonConst.CACHE_KEY_MENU + $"{userId}-{appCode}";
             await _cache.SetAsync(cacheKey, menus);
         }
 
@@ -82,7 +82,7 @@ namespace Dilon.Core.Service
         /// <returns></returns>
         public async Task<List<string>> GetPermission(long userId)
         {
-            var cacheKey = $"{userId}" + CommonConst.CACHE_KEY_PERMISSION;
+            var cacheKey = CommonConst.CACHE_KEY_PERMISSION + $"{userId}";
             return await _cache.GetAsync<List<string>>(cacheKey);
         }
 
@@ -95,7 +95,7 @@ namespace Dilon.Core.Service
         [NonAction]
         public async Task SetPermission(long userId, List<string> permissions)
         {
-            var cacheKey = $"{userId}" + CommonConst.CACHE_KEY_PERMISSION;
+            var cacheKey = CommonConst.CACHE_KEY_PERMISSION + $"{userId}";
             await _cache.SetAsync(cacheKey, permissions);
         }
 
@@ -105,11 +105,9 @@ namespace Dilon.Core.Service
         /// <returns></returns>
         public List<string> GetAllCacheKeys()
         {
-            const BindingFlags flags = BindingFlags.Instance | BindingFlags.NonPublic;
-            var entries = _cache.GetType().GetField("_entries", flags).GetValue(_cache);
-            if (entries.GetType().GetProperty("Keys").GetValue(entries) is not ICollection<object> cacheItems) return new List<string>();
-            return cacheItems.Where(u => !u.ToString().StartsWith("mini-profiler"))
-                             .Select(u => u.ToString()).ToList();
+            var cacheItems = _cache.GetAllKeys();
+            if (cacheItems == null) return new List<string>();
+            return cacheItems.Where(u => !u.ToString().StartsWith("mini-profiler")).Select(u => u).ToList();
         }
 
         /// <summary>
@@ -120,6 +118,17 @@ namespace Dilon.Core.Service
         public Task<bool> DelAsync(string key)
         {
             _cache.DelAsync(key);
+            return Task.FromResult(true);
+        }
+
+        /// <summary>
+        /// 删除某特征关键字缓存
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        public Task<bool> DelByPatternAsync(string key)
+        {
+            _cache.DelByPatternAsync(key);
             return Task.FromResult(true);
         }
 

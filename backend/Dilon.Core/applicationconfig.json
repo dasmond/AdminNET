@@ -6,7 +6,7 @@
       {
         "Group": "Default",
         "Title": "Admin.NET通用权限管理平台",
-        "Description": "前后端分离架构，开箱即用，紧随前沿技术。<br/>后台.NET5平台基于Furion框架，前端基于XiaoNuo生态技术框架的vue版本。<br/><a href='https://dotnetchina.gitee.io/furion/'>Furion框架,让 .NET 开发更简单，更通用，更流行</a><br/><a href='https://gitee.com/xiaonuobase/xiaonuo-vue/'>XiaoNuo前端框架采用Vue2.x + AntDesign Vue pro1.x + Axios</a>",
+        "Description": "前后端分离架构，开箱即用，紧随前沿技术。<br/><a href='https://gitee.com/zuohuaijun/Admin.NET/'>https://gitee.com/zuohuaijun/Admin.NET</a>",
         "Version": "1.0.0"
       }
     ]
@@ -26,6 +26,9 @@
     "CacheType": "MemoryCache", // RedisCache
     "RedisConnectionString": "127.0.0.1:6379,password=,defaultDatabase=2"
   },
+  "SnowId": {
+    "WorkerId": "1" // 取值范围0~63,默认1
+  },
   "OAuth": {
     "Wechat": {
       "app_id": "wx2959fdd3abc05362",
@@ -37,25 +40,25 @@
   "UploadFile": {
     // 头像
     "Avatar": {
-      "path": "/upload/avatar/",
+      "path": "Upload/Avatar",
       "maxSize": 1048576,
       "contentType": [ "image/jpg", "image/png", "image/jpeg", "image/gif" ]
     },
     // 文档
     "Document": {
-      "path": "/upload/document/",
+      "path": "Upload/Document",
       "maxSize": 1048576,
       "contentType": [ "image/jpg", "image/png", "image/jpeg", "image/gif", "image/bmp", "text/plain", "application/pdf", "application/msword", "application/vnd.ms-excel", "application/vnd.openxmlformats-officedocument.presentationml.presentation" ]
     },
     // 商店
     "Shop": {
-      "path": "/upload/shop/",
+      "path": "Upload/Shop",
       "maxSize": 1048576,
       "contentType": [ "image/jpg", "image/png", "image/jpeg", "image/gif" ]
     },
     // 默认
     "Default": {
-      "path": "/upload/default/",
+      "path": "Upload/Default",
       "maxSize": 1048576,
       "contentType": [ "image/jpg", "image/png", "image/jpeg", "image/gif", "image/bmp", "text/plain", "application/pdf", "application/msword", "application/vnd.ms-excel", "application/vnd.openxmlformats-officedocument.presentationml.presentation" ]
     }

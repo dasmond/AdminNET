@@ -4,11 +4,15 @@ using Furion.DataEncryption;
 using Furion.DependencyInjection;
 using Furion.DynamicApiController;
 using Furion.FriendlyException;
+using Furion.Snowflake;
 using Mapster;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using MiniExcelLibs;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -27,13 +31,15 @@ namespace Dilon.Core.Service
         private readonly ISysEmpService _sysEmpService;
         private readonly ISysUserDataScopeService _sysUserDataScopeService;
         private readonly ISysUserRoleService _sysUserRoleService;
+        private readonly ISysOrgService _sysOrgService;
 
         public SysUserService(IRepository<SysUser> sysUserRep,
                               IUserManager userManager,
                               ISysCacheService sysCacheService,
                               ISysEmpService sysEmpService,
                               ISysUserDataScopeService sysUserDataScopeService,
-                              ISysUserRoleService sysUserRoleService)
+                              ISysUserRoleService sysUserRoleService,
+                              ISysOrgService sysOrgService)
         {
             _sysUserRep = sysUserRep;
             _userManager = userManager;
@@ -41,6 +47,7 @@ namespace Dilon.Core.Service
             _sysEmpService = sysEmpService;
             _sysUserDataScopeService = sysUserDataScopeService;
             _sysUserRoleService = sysUserRoleService;
+            _sysOrgService = sysOrgService;
         }
 
         /// <summary>
@@ -59,15 +66,15 @@ namespace Dilon.Core.Service
             var sysOrgRep = Db.GetRepository<SysOrg>();
             var dataScopes = await GetUserDataScopeIdList(_userManager.UserId);
             var users = await _sysUserRep.DetachedEntities
-                                         .Join(sysEmpRep.AsQueryable(), u => u.Id, e => e.Id, (u, e) => new { u, e })
-                                         .Join(sysOrgRep.AsQueryable(), n => n.e.OrgId, o => o.Id, (n, o) => new { n, o })
+                                         .Join(sysEmpRep.DetachedEntities, u => u.Id, e => e.Id, (u, e) => new { u, e })
+                                         .Join(sysOrgRep.DetachedEntities, n => n.e.OrgId, o => o.Id, (n, o) => new { n, o })
                                          .Where(!string.IsNullOrEmpty(searchValue), x => (x.n.u.Account.Contains(input.SearchValue) ||
                                                                                     x.n.u.Name.Contains(input.SearchValue) ||
                                                                                     x.n.u.Phone.Contains(input.SearchValue)))
                                          .Where(!string.IsNullOrEmpty(pid), x => (x.n.e.OrgId == long.Parse(pid) ||
                                                                             x.o.Pids.Contains($"[{pid.Trim()}]")))
                                          .Where(input.SearchStatus >= 0, x => x.n.u.Status == input.SearchStatus)
-                                         .Where(!superAdmin, x => x.n.u.AdminType != (int)AdminType.SuperAdmin)
+                                         .Where(!superAdmin, x => x.n.u.AdminType != AdminType.SuperAdmin)
                                          .Where(!superAdmin && dataScopes.Count > 0, x => dataScopes.Contains(x.n.e.OrgId))
                                          .Select(u => u.n.u.Adapt<UserOutput>()).ToPagedListAsync(input.PageNo, input.PageSize);
 
@@ -90,6 +97,7 @@ namespace Dilon.Core.Service
         /// <param name="input"></param>
         /// <returns></returns>
         [HttpPost("/sysUser/add")]
+        [UnitOfWork]
         public async Task AddUser(AddUserInput input)
         {
             // 数据范围检查
@@ -116,17 +124,18 @@ namespace Dilon.Core.Service
         /// <param name="input"></param>
         /// <returns></returns>
         [HttpPost("/sysUser/delete")]
+        [UnitOfWork]
         public async Task DeleteUser(DeleteUserInput input)
         {
             var user = await _sysUserRep.FirstOrDefaultAsync(u => u.Id == long.Parse(input.Id));
-            if (user.AdminType == (int)AdminType.SuperAdmin)
+            if (user.AdminType == AdminType.SuperAdmin)
                 throw Oops.Oh(ErrorCode.D1014);
 
             // 数据范围检查
             CheckDataScope(input);
 
             // 直接删除用户
-            await user.DeleteNowAsync();
+            await user.DeleteAsync();
 
             // 删除员工及附属机构职位信息
             await _sysEmpService.DeleteEmpInfoByUserId(user.Id);
@@ -144,6 +153,7 @@ namespace Dilon.Core.Service
         /// <param name="input"></param>
         /// <returns></returns>
         [HttpPost("/sysUser/edit")]
+        [UnitOfWork]
         public async Task UpdateUser(UpdateUserInput input)
         {
             // 数据范围检查
@@ -154,7 +164,7 @@ namespace Dilon.Core.Service
             if (isExist) throw Oops.Oh(ErrorCode.D1003);
 
             var user = input.Adapt<SysUser>();
-            await user.UpdateExcludeNowAsync(new[] { nameof(SysUser.Password), nameof(SysUser.Status), nameof(SysUser.AdminType) }, true);
+            await user.UpdateExcludeAsync(new[] { nameof(SysUser.Password), nameof(SysUser.Status), nameof(SysUser.AdminType) }, true);
             input.SysEmpParam.Id = user.Id.ToString();
             // 更新员工及附属机构职位信息
             await _sysEmpService.AddOrUpdate(input.SysEmpParam);
@@ -170,7 +180,10 @@ namespace Dilon.Core.Service
         {
             var user = await _sysUserRep.DetachedEntities.FirstOrDefaultAsync(u => u.Id == long.Parse(input.Id));
             var userDto = user.Adapt<UserOutput>();
-            userDto.SysEmpInfo = await _sysEmpService.GetEmpInfo(user.Id);
+            if (userDto != null)
+            {
+                userDto.SysEmpInfo = await _sysEmpService.GetEmpInfo(user.Id);
+            }
             return userDto;
         }
 
@@ -183,7 +196,7 @@ namespace Dilon.Core.Service
         public async Task ChangeUserStatus(UpdateUserInput input)
         {
             var user = await _sysUserRep.FirstOrDefaultAsync(u => u.Id == long.Parse(input.Id));
-            if (user.AdminType == (int)AdminType.SuperAdmin)
+            if (user.AdminType == AdminType.SuperAdmin)
                 throw Oops.Oh(ErrorCode.D1015);
 
             if (!Enum.IsDefined(typeof(CommonStatus), input.Status))
@@ -226,7 +239,7 @@ namespace Dilon.Core.Service
         public async Task UpdateUserInfo(UpdateUserInput input)
         {
             var user = input.Adapt<SysUser>();
-            await user.UpdateNowAsync();
+            await user.UpdateAsync();
         }
 
         /// <summary>
@@ -302,8 +315,8 @@ namespace Dilon.Core.Service
             var name = !string.IsNullOrEmpty(input.Name?.Trim());
             return await _sysUserRep.DetachedEntities
                                     .Where(name, u => EF.Functions.Like(u.Name, $"%{input.Name.Trim()}%"))
-                                    .Where(u => u.Status != (int)CommonStatus.DELETED)
-                                    .Where(u => u.AdminType != (int)AdminType.SuperAdmin)
+                                    .Where(u => u.Status != CommonStatus.DELETED)
+                                    .Where(u => u.AdminType != AdminType.SuperAdmin)
                                     .Select(u => new
                                     {
                                         u.Id,
@@ -312,14 +325,46 @@ namespace Dilon.Core.Service
         }
 
         /// <summary>
-        /// 用户导出(未实现)
+        /// 用户导出
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
         [HttpGet("/sysUser/export")]
-        public async Task ExportUser([FromQuery] UserInput input)
+        public async Task<IActionResult> ExportUser([FromQuery] UserInput input)
         {
-            await Task.CompletedTask;
+            var users = _sysUserRep.DetachedEntities.AsQueryable();
+
+            var memoryStream = new MemoryStream();
+            memoryStream.SaveAs(users);
+            memoryStream.Seek(0, SeekOrigin.Begin);
+            return await Task.FromResult(new FileStreamResult(memoryStream, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
+            {
+                FileDownloadName = "user.xlsx"
+            });
+        }
+
+        /// <summary>
+        /// 用户导入
+        /// </summary>
+        /// <param name="file"></param>
+        /// <returns></returns>
+        [HttpPost("/sysUser/import")]
+        public async Task ImportUser(IFormFile file)
+        {
+            var path = Path.Combine(Path.GetTempPath(), $"{IDGenerator.NextId()}.xlsx");
+            using (var stream = File.Create(path))
+            {
+                await file.CopyToAsync(stream);
+            }
+
+            var rows = MiniExcel.Query(path); // 解析
+            foreach (var row in rows)
+            {
+                var a = row.A;
+                var b = row.B;
+                // 入库等操作
+
+            }
         }
 
         /// <summary>
@@ -343,14 +388,14 @@ namespace Dilon.Core.Service
         public async Task SaveAuthUserToUser(AuthUserInput authUser, UserInput sysUser)
         {
             var user = sysUser.Adapt<SysUser>();
-            user.AdminType = (int)AdminType.None; // 非管理员
+            user.AdminType = AdminType.None; // 非管理员
 
             // oauth账号与系统账号判断
             var isExist = await _sysUserRep.DetachedEntities.AnyAsync(u => u.Account == authUser.Username);
             user.Account = isExist ? authUser.Username + DateTime.Now.Ticks : authUser.Username;
             user.Name = user.NickName = authUser.Nickname;
             user.Email = authUser.Email;
-            user.Sex = (int)authUser.Gender;
+            user.Sex = authUser.Gender;
             await user.InsertAsync();
         }
 
@@ -365,16 +410,19 @@ namespace Dilon.Core.Service
             var dataScopes = await _sysCacheService.GetDataScope(userId); // 先从缓存里面读取
             if (dataScopes == null || dataScopes.Count < 1)
             {
-                var orgId = await _sysEmpService.GetEmpOrgId(userId);
-
-                // 获取该用户对应的数据范围集合
-                var userDataScopeIdListForUser = await _sysUserDataScopeService.GetUserDataScopeIdList(userId);
-
-                // 获取该用户的角色对应的数据范围集合
-                var userDataScopeIdListForRole = await _sysUserRoleService.GetUserRoleDataScopeIdList(userId, orgId);
-
-                dataScopes = userDataScopeIdListForUser.Concat(userDataScopeIdListForRole).Distinct().ToList(); // 并集
-
+                if (!_userManager.SuperAdmin)
+                {
+                    var orgId = await _sysEmpService.GetEmpOrgId(userId);
+                    // 获取该用户对应的数据范围集合
+                    var userDataScopeIdListForUser = await _sysUserDataScopeService.GetUserDataScopeIdList(userId);
+                    // 获取该用户的角色对应的数据范围集合
+                    var userDataScopeIdListForRole = await _sysUserRoleService.GetUserRoleDataScopeIdList(userId, orgId);
+                    dataScopes = userDataScopeIdListForUser.Concat(userDataScopeIdListForRole).Distinct().ToList(); // 并集
+                }
+                else
+                {
+                    dataScopes = await _sysOrgService.GetAllDataScopeIdList();
+                }
                 await _sysCacheService.SetDataScope(userId, dataScopes); // 缓存结果
             }
             return dataScopes;

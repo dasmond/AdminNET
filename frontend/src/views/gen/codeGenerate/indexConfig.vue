@@ -17,11 +17,11 @@
       <template slot="columnComment" slot-scope="text, record">
         <a-input v-model="record.columnComment" />
       </template>
-      <template slot="javaType" slot-scope="text, record">
+      <!--      <template slot="javaType" slot-scope="text, record">
         <a-select style="width: 120px" v-model="record.javaType" :disabled="judgeColumns(record)">
           <a-select-option v-for="(item,index) in javaTypeData" :key="index" :value="item.code">{{ item.name }}</a-select-option>
         </a-select>
-      </template>
+      </template> -->
       <template slot="effectType" slot-scope="text, record">
         <a-select style="width: 120px" v-model="record.effectType" :disabled="judgeColumns(record)">
           <a-select-option v-for="(item,index) in effectTypeData" :key="index" :value="item.code">{{ item.name }}</a-select-option>
@@ -70,23 +70,23 @@
         // 表头
         columns: [
           {
-            title: 'java字段',
-            dataIndex: 'javaName'
+            title: '字段',
+            dataIndex: 'columnName'
           },
           {
-            title: '字段描述',
+            title: '描述',
             dataIndex: 'columnComment',
             scopedSlots: { customRender: 'columnComment' }
           },
           {
-            title: '物理类型',
-            dataIndex: 'dataType'
+            title: '类型',
+            dataIndex: 'netType'
           },
-          {
-            title: 'java类型',
-            dataIndex: 'javaType',
-            scopedSlots: { customRender: 'javaType' }
-          },
+          // {
+          //   title: 'java类型',
+          //   dataIndex: 'javaType',
+          //   scopedSlots: { customRender: 'javaType' }
+          // },
           {
             title: '作用类型',
             dataIndex: 'effectType',
@@ -103,12 +103,12 @@
             dataIndex: 'whetherTable',
             scopedSlots: { customRender: 'whetherTable' }
           },
-          {
-            title: '列字段省略',
-            align: 'center',
-            dataIndex: 'whetherRetract',
-            scopedSlots: { customRender: 'whetherRetract' }
-          },
+          // {
+          //   title: '列字段省略',
+          //   align: 'center',
+          //   dataIndex: 'whetherRetract',
+          //   scopedSlots: { customRender: 'whetherRetract' }
+          // },
           {
             title: '增改',
             align: 'center',
@@ -152,7 +152,7 @@
         this.indexConfigShow = true
         this.tableLoading = true
         const dictOption = this.$options
-        this.javaTypeData = dictOption.filters['dictData']('code_gen_java_type')
+        this.javaTypeData = dictOption.filters['dictData']('code_gen_net_type')
         this.effectTypeData = dictOption.filters['dictData']('code_gen_effect_type')
         this.dictDataAll = dictOption.filters['dictDataAll']()
         this.yesOrNoData = dictOption.filters['dictData']('yes_or_no')
@@ -194,10 +194,11 @@
             }
           }
         })
-        const param = {
-          sysCodeGenerateConfigParamList: loadDatas
-        }
-        sysCodeGenerateConfigEdit(param).then((res) => {
+        // const param = {
+        //   sysCodeGenerateConfigParamList: loadDatas
+        // }
+        console.log(loadDatas)
+        sysCodeGenerateConfigEdit(loadDatas).then((res) => {
           this.tableLoading = false
           if (res.success) {
             this.$message.success('编辑成功')
@@ -211,11 +212,11 @@
        * 判断是否（用于是否能选择或输入等）
        */
       judgeColumns (data) {
-        if (data.columnName.indexOf('create_user') > -1 ||
-            data.columnName.indexOf('create_time') > -1 ||
-            data.columnName.indexOf('update_user') > -1 ||
-            data.columnName.indexOf('update_time') > -1 ||
-            data.columnKey === 'PRI') {
+        if (data.columnName.indexOf('createdUserName') > -1 ||
+            data.columnName.indexOf('createdTime') > -1 ||
+            data.columnName.indexOf('updatedUserName') > -1 ||
+            data.columnName.indexOf('updatedTime') > -1 ||
+            data.columnKey === 'True') {
           return true
         }
         return false

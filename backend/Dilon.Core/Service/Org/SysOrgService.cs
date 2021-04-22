@@ -21,7 +21,7 @@ namespace Dilon.Core.Service
     {
         private readonly IRepository<SysOrg> _sysOrgRep;  // 组织机构表仓储 
         private readonly IUserManager _userManager;
-
+        private readonly ISysCacheService _sysCacheService;
         private readonly ISysEmpService _sysEmpService;
         private readonly ISysEmpExtOrgPosService _sysEmpExtOrgPosService;
         private readonly ISysRoleDataScopeService _sysRoleDataScopeService;
@@ -29,6 +29,7 @@ namespace Dilon.Core.Service
 
         public SysOrgService(IRepository<SysOrg> sysOrgRep,
                              IUserManager userManager,
+                             ISysCacheService sysCacheService,
                              ISysEmpService sysEmpService,
                              ISysEmpExtOrgPosService sysEmpExtOrgPosService,
                              ISysRoleDataScopeService sysRoleDataScopeService,
@@ -36,6 +37,7 @@ namespace Dilon.Core.Service
         {
             _sysOrgRep = sysOrgRep;
             _userManager = userManager;
+            _sysCacheService = sysCacheService;
             _sysEmpService = sysEmpService;
             _sysEmpExtOrgPosService = sysEmpExtOrgPosService;
             _sysRoleDataScopeService = sysRoleDataScopeService;
@@ -61,7 +63,7 @@ namespace Dilon.Core.Service
                                               (pId, u => EF.Functions.Like(u.Pids, $"%[{input.Pid.Trim()}]%")
                                                          || u.Id == long.Parse(input.Pid.Trim()))) // 根据父机构id查询
                                        .Where(dataScopeList.Count > 0, u => dataScopeList.Contains(u.Id)) // 非管理员范围限制
-                                       .Where(u => u.Status != (int)CommonStatus.DELETED).OrderBy(u => u.Sort)
+                                       .Where(u => u.Status != CommonStatus.DELETED).OrderBy(u => u.Sort)
                                        .Select(u => u.Adapt<OrgOutput>())
                                        .ToPagedListAsync(input.PageNo, input.PageSize);
             return XnPageResult<OrgOutput>.PageResult(orgs);
@@ -87,9 +89,11 @@ namespace Dilon.Core.Service
                     var sysOrg = _sysOrgRep.DetachedEntities.FirstOrDefault(c => c.Id == u);
                     var parentAndChildIdListWithSelf = sysOrg.Pids.TrimEnd(',').Replace("[", "").Replace("]", "")
                                                                   .Split(",").Select(u => long.Parse(u)).ToList();
+                    parentAndChildIdListWithSelf.Add(sysOrg.Id);
                     dataScopeList.AddRange(parentAndChildIdListWithSelf);
                 });
             }
+
             return dataScopeList;
         }
 
@@ -107,7 +111,7 @@ namespace Dilon.Core.Service
             var orgs = await _sysOrgRep.DetachedEntities
                                        .Where(pId, u => u.Pid == long.Parse(input.Pid))
                                        .Where(dataScopeList.Count > 0, u => dataScopeList.Contains(u.Id))
-                                       .Where(u => u.Status != (int)CommonStatus.DELETED).OrderBy(u => u.Sort).ToListAsync();
+                                       .Where(u => u.Status != CommonStatus.DELETED).OrderBy(u => u.Sort).ToListAsync();
             return orgs.Adapt<List<OrgOutput>>();
         }
 
@@ -122,24 +126,36 @@ namespace Dilon.Core.Service
             var isExist = await _sysOrgRep.DetachedEntities.AnyAsync(u => u.Name == input.Name || u.Code == input.Code);
             if (isExist)
                 throw Oops.Oh(ErrorCode.D2002);
-
+            var dataScopes = await GetUserDataScopeIdList();
             if (!_userManager.SuperAdmin)
             {
                 // 如果新增的机构父Id不是0，则进行数据权限校验
                 if (input.Pid != "0" && !string.IsNullOrEmpty(input.Pid))
                 {
                     // 新增组织机构的父机构不在自己的数据范围内
-                    var dataScopes = await GetUserDataScopeIdList();
+
                     if (dataScopes.Count < 1 || !dataScopes.Contains(long.Parse(input.Pid)))
                         throw Oops.Oh(ErrorCode.D2003);
                 }
                 else
-                    throw Oops.Oh(ErrorCode.D2003);
+                    throw Oops.Oh(ErrorCode.D2006);
             }
 
             var sysOrg = input.Adapt<SysOrg>();
             await FillPids(sysOrg);
-            await sysOrg.InsertNowAsync();
+            var newOrg = await _sysOrgRep.InsertNowAsync(sysOrg);
+            // 当前用户不是超级管理员时，将新增的公司加到用户的数据权限
+            if (App.User.FindFirst(ClaimConst.CLAINM_SUPERADMIN)?.Value != ((int)AdminType.SuperAdmin).ToString())
+            {
+                var userId = App.User.FindFirst(ClaimConst.CLAINM_USERID)?.Value;
+                new SysUserDataScope
+                {
+                    SysUserId = long.Parse(userId),
+                    SysOrgId = newOrg.Entity.Id
+                }.Insert();
+                dataScopes.Add(newOrg.Entity.Id);
+                await _sysCacheService.SetDataScope(long.Parse(userId), dataScopes); // 缓存新结果
+            }
         }
 
         /// <summary>
@@ -166,6 +182,7 @@ namespace Dilon.Core.Service
         /// <param name="input"></param>
         /// <returns></returns>
         [HttpPost("/sysOrg/delete")]
+        [UnitOfWork]
         public async Task DeleteOrg(DeleteOrgInput input)
         {
             var sysOrg = await _sysOrgRep.DetachedEntities.FirstOrDefaultAsync(u => u.Id == long.Parse(input.Id));
@@ -180,6 +197,12 @@ namespace Dilon.Core.Service
             if (hasOrgEmp)
                 throw Oops.Oh(ErrorCode.D2004);
 
+            // 该机构下面子机构若有员工，则不能删
+            var orgIds = await _sysOrgRep.DetachedEntities.Where(u => u.Pids.Contains(input.Id)).Select(u => u.Id).ToListAsync();
+            var emps = await _sysEmpService.HasOrgEmp(orgIds);
+            if (emps.Count > 0)
+                throw Oops.Oh(ErrorCode.D2004);
+
             // 该附属机构下若有员工，则不能删
             var hasExtOrgEmp = await _sysEmpExtOrgPosService.HasExtOrgEmp(sysOrg.Id);
             if (hasExtOrgEmp)
@@ -190,7 +213,7 @@ namespace Dilon.Core.Service
             var orgs = await _sysOrgRep.Where(u => childIdList.Contains(u.Id)).ToListAsync();
             orgs.ForEach(u =>
             {
-                u.DeleteNow();
+                u.Delete();
             });
 
             // 级联删除该机构及子机构对应的角色-数据范围关联信息
@@ -206,6 +229,7 @@ namespace Dilon.Core.Service
         /// <param name="input"></param>
         /// <returns></returns>
         [HttpPost("/sysOrg/edit")]
+        [UnitOfWork]
         public async Task UpdateOrg(UpdateOrgInput input)
         {
             if (input.Pid != "0" && !string.IsNullOrEmpty(input.Pid))
@@ -214,6 +238,11 @@ namespace Dilon.Core.Service
                 _ = org ?? throw Oops.Oh(ErrorCode.D2000);
             }
             if (input.Id == input.Pid)
+                throw Oops.Oh(ErrorCode.D2001);
+
+            // 如果是编辑，父id不能为自己的子节点
+            var childIdListById = await GetChildIdListWithSelfById(long.Parse(input.Id));
+            if (childIdListById.Contains(long.Parse(input.Pid)))
                 throw Oops.Oh(ErrorCode.D2001);
 
             var sysOrg = await _sysOrgRep.DetachedEntities.FirstOrDefaultAsync(u => u.Id == long.Parse(input.Id));
@@ -227,13 +256,20 @@ namespace Dilon.Core.Service
             if (isExist)
                 throw Oops.Oh(ErrorCode.D2002);
 
-            //如果名称有变化，则修改对应员工的机构相关信息
+            // 如果名称有变化，则修改对应员工的机构相关信息
             if (!sysOrg.Name.Equals(input.Name))
                 await _sysEmpService.UpdateEmpOrgInfo(sysOrg.Id, sysOrg.Name);
 
             sysOrg = input.Adapt<SysOrg>();
             await FillPids(sysOrg);
-            await sysOrg.UpdateNowAsync(ignoreNullValues: true);
+            await sysOrg.UpdateAsync(ignoreNullValues: true);
+
+            //// 将所有子的父id进行更新
+            //childIdListById.ForEach(u=> {
+            //    var child = _sysOrgRep.DetachedEntities.FirstOrDefaultAsync(u => u.Id == u.Id);
+            //    var newInput = child.Adapt<UpdateOrgInput>();
+            //    UpdateOrg(newInput).GetAwaiter();
+            //});
         }
 
         /// <summary>
@@ -319,6 +355,16 @@ namespace Dilon.Core.Service
                 orgIdList.Add(orgId);
             }
             return orgIdList;
+        }
+
+        /// <summary>
+        /// 获取所有的机构组织Id集合
+        /// </summary>
+        /// <returns></returns>
+        [NonAction]
+        public async Task<List<long>> GetAllDataScopeIdList()
+        {
+            return await _sysOrgRep.DetachedEntities.Select(u => u.Id).ToListAsync();
         }
 
         /// <summary>

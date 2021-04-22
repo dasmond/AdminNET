@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -9,7 +10,8 @@ namespace Dilon.Core.Service
         Task AddUser(AddUserInput input);
         Task ChangeUserStatus(UpdateUserInput input);
         Task DeleteUser(DeleteUserInput input);
-        Task ExportUser([FromQuery] UserInput input);
+        Task<IActionResult> ExportUser([FromQuery] UserInput input);
+        Task ImportUser(IFormFile file);
         Task<dynamic> GetUser([FromQuery] QueryUserInput input);
         Task<dynamic> GetUserById(long userId);
         Task<List<long>> GetUserDataScopeIdList();
