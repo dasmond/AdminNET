@@ -645,6 +645,11 @@
             员工表
             </summary>
         </member>
+        <member name="P:Dilon.Core.SysEmp.Id">
+            <summary>
+            用户Id
+            </summary>
+        </member>
         <member name="P:Dilon.Core.SysEmp.JobNum">
             <summary>
             工号
@@ -1486,11 +1491,6 @@
             角色菜单表
             </summary>
         </member>
-        <member name="P:Dilon.Core.SysRoleMenu.TenantId">
-            <summary>
-            租户id
-            </summary>
-        </member>
         <member name="P:Dilon.Core.SysRoleMenu.SysRoleId">
             <summary>
             角色Id
@@ -1628,7 +1628,7 @@
         </member>
         <member name="P:Dilon.Core.SysUser.Password">
             <summary>
-            密码（采用MD5加密）
+            密码（默认MD5加密）
             </summary>
         </member>
         <member name="P:Dilon.Core.SysUser.NickName">
@@ -1779,9 +1779,14 @@
             超级管理员
             </summary>
         </member>
+        <member name="F:Dilon.Core.AdminType.Admin">
+            <summary>
+            管理员
+            </summary>
+        </member>
         <member name="F:Dilon.Core.AdminType.None">
             <summary>
-            非管理员
+            普通账号
             </summary>
         </member>
         <member name="T:Dilon.Core.CommonStatus">
@@ -2868,14 +2873,6 @@
             <param name="context"></param>
             <returns></returns>
         </member>
-        <member name="M:Dilon.Core.XnRestfulResultProvider.OnResponseStatusCodes(Microsoft.AspNetCore.Http.HttpContext,System.Int32)">
-            <summary>
-            处理输出状态码
-            </summary>
-            <param name="context"></param>
-            <param name="statusCode"></param>
-            <returns></returns>
-        </member>
         <member name="M:Dilon.Core.XnRestfulResultProvider.OnSucceeded(Microsoft.AspNetCore.Mvc.Filters.ActionExecutedContext)">
             <summary>
             成功返回值
@@ -2892,6 +2889,15 @@
             <param name="validationResults"></param>
             <param name="validateFailedMessage"></param>
             <returns></returns>    
+        </member>
+        <member name="M:Dilon.Core.XnRestfulResultProvider.OnResponseStatusCodes(Microsoft.AspNetCore.Http.HttpContext,System.Int32,Furion.UnifyResult.UnifyResultStatusCodesOptions)">
+            <summary>
+            处理输出状态码
+            </summary>
+            <param name="context"></param>
+            <param name="statusCode"></param>
+            <param name="options"></param>
+            <returns></returns>
         </member>
         <member name="T:Dilon.Core.XnRestfulResult`1">
             <summary>
@@ -2938,23 +2944,6 @@
             <summary>
             请求日志拦截
             </summary>
-        </member>
-        <member name="T:Dilon.Core.LogHostedService">
-            <summary>
-            后台日志写入服务
-            </summary>
-        </member>
-        <member name="M:Dilon.Core.LogHostedService.DoWork">
-            <summary>
-            工作线程
-            </summary>
-        </member>
-        <member name="M:Dilon.Core.LogHostedService.StartAsync(System.Threading.CancellationToken)">
-            <summary>
-            任务开始
-            </summary>
-            <param name="cancellationToken"></param>
-            <returns></returns>
         </member>
         <member name="T:Dilon.Core.UserManager">
             <summary>
@@ -7317,36 +7306,6 @@
             </summary>
             <param name="userParam"></param>
             <returns></returns>
-        </member>
-        <member name="T:Dilon.Core.SimpleQueue`1">
-            <summary>
-            简单泛型队列
-            </summary>
-            <typeparam name="T"></typeparam>
-        </member>
-        <member name="M:Dilon.Core.SimpleQueue`1.Add(`0)">
-            <summary>
-            新增
-            </summary>
-            <param name="obj"></param>
-        </member>
-        <member name="M:Dilon.Core.SimpleQueue`1.Try(`0@)">
-            <summary>
-            取出
-            </summary>
-            <param name="obj"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Dilon.Core.SimpleQueue`1.Count">
-            <summary>
-            总数
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Dilon.Core.SimpleQueue`1.Clear">
-            <summary>
-            清理
-            </summary>
         </member>
         <member name="T:Dilon.Core.MachineUtil">
             <summary>
