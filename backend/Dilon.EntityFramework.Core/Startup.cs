@@ -16,8 +16,8 @@ namespace Dilon.EntityFramework.Core
             {
                 options.CustomizeMultiTenants(); // 自定义租户
 
-                options.AddDb<DefaultDbContext>();
-                options.AddDb<MultiTenantDbContext, MultiTenantDbContextLocator>();
+                options.AddDb<DefaultDbContext>($"{DbProvider.MySql}@8.0.19");
+                options.AddDb<MultiTenantDbContext, MultiTenantDbContextLocator>($"{DbProvider.MySql}@8.0.19");
             }, "Dilon.Database.Migrations");
         }
 
