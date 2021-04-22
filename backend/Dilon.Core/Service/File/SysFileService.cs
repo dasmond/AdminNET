@@ -219,6 +219,7 @@ namespace Dilon.Core.Service
             var fileSuffix = Path.GetExtension(file.FileName).ToLower(); // 文件后缀
             var finalName = fileId + fileSuffix; // 生成文件的最终名称            
 
+            //阿里云OSS
             if (fileLocation == (int)FileLocation.ALIYUN)
             {
                 var filePath = pathType + finalName;
@@ -227,6 +228,7 @@ namespace Dilon.Core.Service
                 var stream = file.OpenReadStream();
                 var result = OSSClientHelper.PushMedia(stream, filePath);
             }
+            //本地存储
             else if (fileLocation == (int)FileLocation.LOCAL) 
             {
                 var filePath = Path.Combine(App.WebHostEnvironment.WebRootPath, pathType);

@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 namespace Dilon.Core
 {
     /// <summary>
-    /// 阿里云oss文件上传工具类
+    /// 阿里云oss文件上传工具类  by--jck
     /// </summary>
     public class OSSClientHelper
     {
