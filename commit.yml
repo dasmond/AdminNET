@@ -2,25 +2,22 @@
 branches: {
   }
 fileChange:
-  /frontend:
-    newFile: !uuid 'fe924a348759abbb6e1c5a8618ccbe852d80d796'
-    oldFile: !uuid 'e8a352867797035a81f165cac9dbaa2ae36273ba'
-  /frontend/src:
-    newFile: !uuid '97e16f254a15fac185f69e69c66e7d2668d50410'
-    oldFile: !uuid '0e86a3a763b63ab7dfa9992c10293d23757b35f2'
-  /frontend/src/views:
-    newFile: !uuid '42b66fe2b0d2c6aa0ba1eeb3f61bb06a17e51517'
-    oldFile: !uuid '79aad0ac557ebdd2a449867656ebfe90f7be2043'
-  /frontend/src/views/system:
-    newFile: !uuid '87079bc3f3d93ac5eb296edefea330be50dd64af'
-    oldFile: !uuid '82ef6a3ee1728a4ea608dc846603cd03a29e02be'
-  /frontend/src/views/system/tenant:
-    newFile: !uuid '5b0d49d2bb097238c61c68e0ba5a82e4c066699a'
-    oldFile: !uuid '0f75c299486d0daaa084665833bad8de980d23fe'
-  /frontend/src/views/system/tenant/tenantMenuForm.vue:
-    newFile: !uuid '8cd498d3d513d2b16f62b346d695375dbf1eefad'
-    oldFile: null
-gitCommitId: !uuid 'd07b337677e7171d7ec6652c2f154ce12e55ecb9'
+  /backend:
+    newFile: !uuid '9cc65bbc8f3949e15d93f4b7a14b4744903dd3b5'
+    oldFile: !uuid '78d6509edf79c784af33644302af1133581aea1d'
+  /backend/Dilon.Core:
+    newFile: !uuid '221bffd14d0a6ae2318f4cb723c628fa154c306e'
+    oldFile: !uuid '053c8382dc996e8fc3b78b1efbc39ff7dc3bc014'
+  /backend/Dilon.Core/Service:
+    newFile: !uuid '85a42e007f8ef77b41ff20af19a7d977fabe93f7'
+    oldFile: !uuid '2d9ed2a6c56abfb943ac6fd81da6d1285e8766b1'
+  /backend/Dilon.Core/Service/Tenant:
+    newFile: !uuid '91b5b52c1ff2e643236757d51d395d4da248acba'
+    oldFile: !uuid '9250d8dcf90e0571b0eaf73106371a16f0b5fa8a'
+  /backend/Dilon.Core/Service/Tenant/SysTenantService.cs:
+    newFile: !uuid '764bc0b00095f0b4e75754fdc433190268489678'
+    oldFile: !uuid '325bd929f09431c3874b3be6b50661b2c8631d98'
+gitCommitId: !uuid 'e1cc59fd173ec2ec39d4329961886ac0bc8264c0'
 renames: {
   }
-revisionId: 221
+revisionId: 222
