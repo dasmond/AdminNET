@@ -22,6 +22,12 @@ import KFormDesign from 'k-form-design'
 // import KFormDesign from 'k-form-design/lib/k-form-design-mini.umd.min'
 import 'k-form-design/lib/k-form-design.css'
 import 'ant-design-vue/dist/antd.less'
+// 引入vxe-table
+import 'xe-utils'
+import VXETable from 'vxe-table'
+import 'vxe-table/lib/style.css'
+
+Vue.use(VXETable)
 Vue.use(KFormDesign)
 
 Vue.use(VueAxios)
