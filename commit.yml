@@ -3,114 +3,18 @@ branches: {
   }
 fileChange:
   /backend:
-    newFile: !uuid '6dcf0edc32ccaef0ba4c1e938a694137e821c6ce'
-    oldFile: !uuid '61bb4fff15d928f2680628b6f7836c0ed18ea1ea'
-  /backend/Dilon.Application:
-    newFile: !uuid '9747fb72b55b7be671b8059aa59aaf0d6ce6d0b0'
-    oldFile: !uuid 'ebcd451440a6526ce7f070c7e3497c3e96636649'
-  /backend/Dilon.Application/Dilon.Application.xml:
-    newFile: !uuid 'e8f10c11e9ac34aa7156a537c6bf120889ad3c2f'
-    oldFile: !uuid '8d4dcd32771f62146998ea9bf7514068724b39c2'
-  /backend/Dilon.Application/Entity:
-    newFile: !uuid 'e284acfbb02a3542c150b26340da8368520248d5'
-    oldFile: !uuid '592ba4175bf520c7b0cab9b9edcb00fb657ab4eb'
-  /backend/Dilon.Application/Entity/CodeGenTest.cs:
-    newFile: !uuid 'd20b02bbce80fec6cd3277bf60e405b7b1459044'
-    oldFile: !uuid '601062c83e563ca285958c143908ab977c132bda'
-  /backend/Dilon.Application/Entity/CodeGenTestChild.cs:
-    newFile: !uuid 'cf8bebb69743a7544059c1f574e9bb502cb82d45'
-    oldFile: !uuid '56d26e29c0a7232f971ec4264499176f3324447a'
+    newFile: !uuid '7196c5e70bf5e1bd02e38755921de0f73ecf9fa5'
+    oldFile: !uuid '6dcf0edc32ccaef0ba4c1e938a694137e821c6ce'
   /backend/Dilon.Core:
-    newFile: !uuid '0896a3c85544bf0aa8643f181be4cba093ff6bd8'
-    oldFile: !uuid '8b91bd87863f9d2708dcc2aa93bce9056a8c6cba'
-  /backend/Dilon.Core/Dilon.Core.xml:
-    newFile: !uuid 'adc82481041c92a4ec88e7eabc51d4ce8326abd7'
-    oldFile: !uuid '4198394dc5e43aa1b1cb1ad64de8f1063c2c5c00'
-  /backend/Dilon.Core/Entity:
-    newFile: !uuid 'fd58638797632e769e5d19059cc572517a5d25c9'
-    oldFile: !uuid 'c85c7044c477464881c71c903cc72579ec665535'
-  /backend/Dilon.Core/Entity/SysCodeGenConfig.cs:
-    newFile: !uuid '3fe4fdcbc04130ba4ce9c72d9c9f3084c3bb8b05'
-    oldFile: !uuid 'b94fa07a0207c896139aa7a78c30e4640d8518a8'
+    newFile: !uuid '7e72101b9cef746560c0f1c10a3dc08c5d351017'
+    oldFile: !uuid '0896a3c85544bf0aa8643f181be4cba093ff6bd8'
   /backend/Dilon.Core/Extension:
-    newFile: !uuid '98c290113b57a0f086c438c3d7ff481db3ad1016'
-    oldFile: !uuid '80c3511a73b2666bb37484097825dd333a7b4ba0'
+    newFile: !uuid 'fda843dfe759246fd6c1e8944fd9a2152201cbe7'
+    oldFile: !uuid '98c290113b57a0f086c438c3d7ff481db3ad1016'
   /backend/Dilon.Core/Extension/XnPageResult.cs:
-    newFile: !uuid '1d43113f2489d295f42678413939cdec60d6be70'
-    oldFile: !uuid '1fb6d4b1cef18eb3f852b834afb96b68b1ca9370'
-  /backend/Dilon.Core/SeedData:
-    newFile: !uuid '37e3a1f4806693a2b4f7336943aaf5e01a31aa55'
-    oldFile: !uuid '6a3300b30d57a7ccdba5c4c1a806f2681125e6a9'
-  /backend/Dilon.Core/SeedData/SysDictDataSeedData.cs:
-    newFile: !uuid 'a88d92e87c9daa4284f3b6c5f0bd43aa10f47386'
-    oldFile: !uuid '6d78ea39198ed08ad6c8183958ac5ba23c9ac5ee'
-  /backend/Dilon.Core/Service:
-    newFile: !uuid 'fd61218d17d286d262a6bccfbb4842e690d9019e'
-    oldFile: !uuid '72a5624411f2769250d8a4e442b543403dea6791'
-  /backend/Dilon.Core/Service/CodeGen:
-    newFile: !uuid '1f591e6ab012be7270fd0fe35368a199e26b9b4a'
-    oldFile: !uuid '3232d09c2e78b8932686c869621cb9470fcfc814'
-  /backend/Dilon.Core/Service/CodeGen/CodeGenConfigService.cs:
-    newFile: !uuid '3f20267ba510ce51deb9c5f361de1bc02273e869'
-    oldFile: !uuid '2954410953cc3d8de3078bc35d760719ec0bac8f'
-  /backend/Dilon.Core/Service/CodeGen/CodeGenService.cs:
-    newFile: !uuid '3920ec5c8a7dc8153e3d66671cfe168bf882e822'
-    oldFile: !uuid '5ad122661c5a149e0bd517fdbc521858dac4426f'
-  /backend/Dilon.Core/Service/CodeGen/Dto:
-    newFile: !uuid '76db510d1aa0b09b2b8b6a8c82b2158b1e2c1e07'
-    oldFile: !uuid '25edacd30d0e980484402a13909a118d05d32e5f'
-  /backend/Dilon.Core/Service/CodeGen/Dto/CodeGenConfig.cs:
-    newFile: !uuid 'cbee3886011d71b966ff6dc32753fda2aa13f64b'
-    oldFile: !uuid '531142e52380231c46a3487c2a3761e5e1458072'
-  /backend/Dilon.Core/Util:
-    newFile: !uuid '4594449991e7f217ce99fb3926cf34b88d26d9d8'
-    oldFile: !uuid '2ca1c1a96083b7c46803bbd3b45374dcf03dd7e3'
-  /backend/Dilon.Core/Util/CodeGenUtil.cs:
-    newFile: !uuid '4be13794a3ff5f3d9ae4eedcd49a120dd28839ca'
-    oldFile: null
-  /backend/Dilon.Core/Util/GenCodeUtil.cs:
-    newFile: null
-    oldFile: !uuid '51b4ce21e141bfddbddfdab72c8815aba73509bf'
-  /backend/Dilon.Web.Entry:
-    newFile: !uuid 'a9277139777b1d82c9f722241dfe6e9c5f4783ec'
-    oldFile: !uuid '699bc31525550097bc6ca33fe75126d7a3a2ff31'
-  /backend/Dilon.Web.Entry/Dilon.db:
-    newFile: !uuid '9585a8eaeef9ecd93f44e79d946f9c137f52f01c'
-    oldFile: !uuid 'c0d7f6c25e080476d1d532cabcb14cafb7509220'
-  /frontend:
-    newFile: !uuid '0caa72ed85d86762ac55a85b2dd483dc40ed6f53'
-    oldFile: !uuid '7ae0f862cc95253985964fdad1030f03df56f8ff'
-  /frontend/src:
-    newFile: !uuid 'd39d47c24fef3f141be4384441bc87fd9fa657f0'
-    oldFile: !uuid 'd248f39d91e0f82082681225dab831cb6b283b69'
-  /frontend/src/api:
-    newFile: !uuid '3ce56881a45b706e4ad5f2d7e11b6f24494c262c'
-    oldFile: !uuid '83a5a933cd83ee4e2f98092cb028ff914aa89215'
-  /frontend/src/api/modular:
-    newFile: !uuid '655917dfca03a28f1e4e479ad5de44846d22f9cc'
-    oldFile: !uuid '755dd97a7bdab102bca6577ce2a27e39014eb397'
-  /frontend/src/api/modular/gen:
-    newFile: !uuid 'af4255f58e5c7f33eb96162171d40b3758038c69'
-    oldFile: !uuid '4e7792dc7c28450c9f97f75a36c1e7f887f39b77'
-  /frontend/src/api/modular/gen/codeGenerateManage.js:
-    newFile: !uuid 'c61239e73d61488acf2d8503a731164b134bdbaf'
-    oldFile: !uuid 'd9a6ba66ef7f9cd50256b00ef266c5b4453352bc'
-  /frontend/src/views:
-    newFile: !uuid '8ec3e12ee4d752deddd41f0294a09dcd64c53ca0'
-    oldFile: !uuid '7ae8391222e0736c79d8d009819c99efad072a7f'
-  /frontend/src/views/gen:
-    newFile: !uuid 'a7638b20f461c91ef0605ff0283a240b4345532b'
-    oldFile: !uuid '5fa06edcff6a3ff3b897b0964d062ce4bf9160ff'
-  /frontend/src/views/gen/codeGenerate:
-    newFile: !uuid '985e5a066bedebb6d1b0402a248f13e046189f1c'
-    oldFile: !uuid 'b83a450030c4ef2300812b95c79ef8d6bde8062f'
-  /frontend/src/views/gen/codeGenerate/fkModal.vue:
-    newFile: !uuid 'cd235bb23dfdb7ea61c677631b3ce187fb3a14c4'
-    oldFile: !uuid '84116a0478e63a9f6e97796ddeaf00a82b9553ff'
-  /frontend/src/views/gen/codeGenerate/indexConfig.vue:
-    newFile: !uuid 'cd6941a972809ee350c7f7db7e1159c17f9cd832'
-    oldFile: !uuid '74946249baf8f93d4157b1d894c03a1faaa600f7'
-gitCommitId: !uuid 'f274ab893db6332fce7c734f2470465114da7189'
+    newFile: !uuid '2f481202b1dcae27599f44ca367123bc2761cb25'
+    oldFile: !uuid '1d43113f2489d295f42678413939cdec60d6be70'
+gitCommitId: !uuid '455a6f9d09960c8b04a69be8d56322f169e252ac'
 renames: {
   }
-revisionId: 236
+revisionId: 237
