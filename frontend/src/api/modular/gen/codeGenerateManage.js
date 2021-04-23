@@ -12,7 +12,7 @@ import { axios } from '@/utils/request'
  * @author yubaoshan
  * @date 2020/12/23 15:00
  */
-export function codeGeneratePage (parameter) {
+export function codeGeneratePage(parameter) {
   return axios({
     url: '/codeGenerate/page',
     method: 'get',
@@ -26,7 +26,7 @@ export function codeGeneratePage (parameter) {
  * @author yubaoshan
  * @date 2020/12/23 15:00
  */
-export function codeGenerateAdd (parameter) {
+export function codeGenerateAdd(parameter) {
   return axios({
     url: '/codeGenerate/add',
     method: 'post',
@@ -40,7 +40,7 @@ export function codeGenerateAdd (parameter) {
  * @author yubaoshan
  * @date 2020/12/23 15:00
  */
-export function codeGenerateEdit (parameter) {
+export function codeGenerateEdit(parameter) {
   return axios({
     url: '/codeGenerate/edit',
     method: 'post',
@@ -54,7 +54,7 @@ export function codeGenerateEdit (parameter) {
  * @author yubaoshan
  * @date 2020/12/23 15:00
  */
-export function codeGenerateDelete (parameter) {
+export function codeGenerateDelete(parameter) {
   return axios({
     url: '/codeGenerate/delete',
     method: 'post',
@@ -68,11 +68,25 @@ export function codeGenerateDelete (parameter) {
  * @author yubaoshan
  * @date 2020/12/23 15:00
  */
-export function codeGenerateInformationList (parameter) {
+export function codeGenerateInformationList(parameter) {
   return axios({
     url: '/codeGenerate/InformationList',
     method: 'get',
     params: parameter
+  })
+}
+
+/**
+ * 根据表名获取列
+ *
+ * @export
+ * @param {*} tableName 表名
+ * @return {*}
+ */
+export function codeGenerateColumnList(tableName) {
+  return axios({
+    url: `/codeGenerate/ColumnList/${tableName}`,
+    method: 'get'
   })
 }
 
@@ -82,7 +96,7 @@ export function codeGenerateInformationList (parameter) {
  * @author yubaoshan
  * @date 2020/12/23 15:00
  */
-export function codeGenerateRunLocal (parameter) {
+export function codeGenerateRunLocal(parameter) {
   return axios({
     url: '/codeGenerate/runLocal',
     method: 'post',
@@ -96,7 +110,7 @@ export function codeGenerateRunLocal (parameter) {
  * @author yubaoshan
  * @date 2020/12/23 15:00
  */
-export function codeGenerateRunDown (parameter) {
+export function codeGenerateRunDown(parameter) {
   return axios({
     url: '/codeGenerate/runDown',
     method: 'get',
