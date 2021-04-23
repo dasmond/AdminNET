@@ -12,7 +12,7 @@
       :pagination="false"
       :alert="true"
       :loading="tableLoading"
-      :rowKey="(record) => record.id"
+      :rowKey="record => record.id"
     >
       <template slot="columnComment" slot-scope="text, record">
         <a-input v-model="record.columnComment" />
@@ -23,7 +23,12 @@
         </a-select>
       </template> -->
       <template slot="effectType" slot-scope="text, record">
-        <a-select style="width: 120px" v-model="record.effectType" :disabled="judgeColumns(record)">
+        <a-select
+          style="width: 120px"
+          v-model="record.effectType"
+          :disabled="judgeColumns(record)"
+          @change="effectTypeChange(record, $event)"
+        >
           <a-select-option v-for="(item, index) in effectTypeData" :key="index" :value="item.code">{{
             item.name
           }}</a-select-option>
@@ -173,7 +178,7 @@ export default {
       const params = {
         codeGenId: data.id
       }
-        sysCodeGenerateConfigList(params).then((res) => {
+      sysCodeGenerateConfigList(params).then(res => {
         this.loadData = res.data
         this.loadData.forEach(item => {
           for (const key in item) {
@@ -211,7 +216,7 @@ export default {
       //   sysCodeGenerateConfigParamList: loadDatas
       // }
       console.log(loadDatas)
-        sysCodeGenerateConfigEdit(loadDatas).then((res) => {
+      sysCodeGenerateConfigEdit(loadDatas).then(res => {
         this.tableLoading = false
         if (res.success) {
           this.$message.success('编辑成功')
@@ -241,6 +246,7 @@ export default {
      */
     effectTypeChange(data, value) {
       if (value === 'fk') {
+        console.log(11)
         this.$refs.fkModal.show(data)
       }
     },

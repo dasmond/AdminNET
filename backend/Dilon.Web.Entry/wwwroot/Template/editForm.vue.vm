@@ -140,12 +140,14 @@ if(@column.EffectType != "datepicker"){
 @if(DateQuery == "Y"){
   @:import moment from 'moment'
 }
-  import { @(@Model.ClassName)Edit } from '@@/api/modular/main/@(@Model.ClassName)Manage'
+  import {
 @foreach (var column in Model.TableField){
 if(@column.EffectType == "fk" && @column.FkEntityName != "" && @column.FkColumnName != ""){
-  @:import { @(@Model.ClassName)Fk@(@column.FkEntityName)List } from '@@/api/modular/main/@(@Model.ClassName)Manage'
+    @:@(@Model.ClassName)Fk@(@column.FkEntityName)List,
 }
 }
+    @(@Model.ClassName)Edit
+  } from '@@/api/modular/main/@(@Model.ClassName)Manage'
   export default {
     data () {
       return {
@@ -182,7 +184,7 @@ if(@column.EffectType == "fk" && @column.FkEntityName != "" && @column.FkColumnN
     methods: {
 @foreach (var column in Model.TableField){
 if(@column.EffectType == "fk" && @column.FkEntityName != "" && @column.FkColumnName != ""){
-      @:@(@Model.ClassName)Fk@(@column.FkEntityName)List(){
+      @:@(@Model.ClassName)Fk@(@column.FkEntityName)List() {
           @:@(@Model.ClassName)Fk@(@column.FkEntityName)List().then(res => {
             @:this.@(@column.FkEntityName)Data = res.data
           @:})
