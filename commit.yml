@@ -3,90 +3,57 @@ branches: {
   }
 fileChange:
   /backend:
-    newFile: !uuid 'd8cad29cef66149b8d239d1ff58581104d92a7f3'
-    oldFile: !uuid '45fd1f9c13d60153243164d7d2945dc560ec605b'
+    newFile: !uuid '4df97c05755cc5b7a95cf14dca0cdffa1938e876'
+    oldFile: !uuid 'd8cad29cef66149b8d239d1ff58581104d92a7f3'
   /backend/Dilon.Core:
-    newFile: !uuid 'f4ef5874f508664b1d37ff37e7925b64872244cb'
-    oldFile: !uuid '99c19da45bcd02dc7be67d67899908116daa9857'
-  /backend/Dilon.Core/Dilon.Core.xml:
-    newFile: !uuid 'e82a9a57ef0961f859736ce122956ed7a678af2e'
-    oldFile: !uuid '2d1f7680b2c93e43ca2e5a199852d3ac6bf69ac0'
+    newFile: !uuid 'fff3a708392c381e3a0c6482cda48d9db46bce22'
+    oldFile: !uuid 'f4ef5874f508664b1d37ff37e7925b64872244cb'
+  /backend/Dilon.Core/Dilon.Core.csproj:
+    newFile: !uuid 'ccead3757d83873c33a52a2d9bf87367c05fdbdf'
+    oldFile: !uuid 'c2f80e602ab25cb1fa37b7ecdc0f4544963dc020'
   /backend/Dilon.Core/Service:
-    newFile: !uuid '81eab7f1a0c92d4b77853435c16d58331cd9f693'
-    oldFile: !uuid '622c5653dee94bd27e1c96f8850508abc166b2fa'
+    newFile: !uuid '9aa6186ccd60207ce3fa382a07dc7a65c082c3f8'
+    oldFile: !uuid '81eab7f1a0c92d4b77853435c16d58331cd9f693'
   /backend/Dilon.Core/Service/User:
-    newFile: !uuid '1cb4f19926ef8eb20f07ae22e6e4d4262f72341c'
-    oldFile: !uuid '58e901ec37df1b48297c2d0daf23c22e135cb20e'
-  /backend/Dilon.Core/Service/User/Dto:
-    newFile: !uuid '3c0f346956680c0c058853ee2ab69bab907e2807'
-    oldFile: !uuid '3b7e8bedc0844dd0a08fbef5c076f2ea3b95c955'
-  /backend/Dilon.Core/Service/User/Dto/UserInput.cs:
-    newFile: !uuid 'dec7adb06da929c3527085e2947a337b3aae03f2'
-    oldFile: !uuid 'a20afb3099d7152db747bb3bec4dd6d398a8b17f'
-  /backend/Dilon.Core/Service/User/SysUserDataScopeService.cs:
-    newFile: !uuid '9dcd032855c7ba9aebc985c804648a244d4ccf73'
-    oldFile: !uuid 'e32961e3218e44d79f6eb538cf190c416c45f94d'
-  /backend/Dilon.Core/Service/User/SysUserRoleService.cs:
-    newFile: !uuid 'd68b2fe6be75a4dcfdbbf725e57fd6090ceb6c93'
-    oldFile: !uuid '11dba24d6f033a8591cab44ae89800d13df454da'
+    newFile: !uuid '6e42dfa030b825c914bbeb35341f87fd5bfe7704'
+    oldFile: !uuid '1cb4f19926ef8eb20f07ae22e6e4d4262f72341c'
   /backend/Dilon.Core/Service/User/SysUserService.cs:
-    newFile: !uuid '350d686dbf89484f09c06963589949caaa4a96f3'
-    oldFile: !uuid 'd87fccc2308b17de365e9973f4e2f00b9fce2408'
+    newFile: !uuid '5f17431c339be11a2faada5fddc65627459c8e5e'
+    oldFile: !uuid '350d686dbf89484f09c06963589949caaa4a96f3'
   /backend/Dilon.Web.Entry:
-    newFile: !uuid '7d5c6a703e85c43449bf3f843fb4b06d751f67c5'
-    oldFile: !uuid '6cfe81b55bb19f9d5cd882d559e12b9dadecc327'
+    newFile: !uuid 'fe9edfcb37604a752f998b93a84beb846a4b659c'
+    oldFile: !uuid '7d5c6a703e85c43449bf3f843fb4b06d751f67c5'
   /backend/Dilon.Web.Entry/Dilon.db:
-    newFile: !uuid '2010cc4bf9bc57a4dfbc425ad470e8d063646af1'
-    oldFile: !uuid '252f248f6cb083f12e2dd55430d6e506c49a9943'
+    newFile: !uuid 'a252a920e44b0572e778ccc2b96f904145429ce9'
+    oldFile: !uuid '2010cc4bf9bc57a4dfbc425ad470e8d063646af1'
   /frontend:
-    newFile: !uuid 'bea890db71e718e225bf17f58ef7128b08d805bf'
-    oldFile: !uuid 'fe924a348759abbb6e1c5a8618ccbe852d80d796'
+    newFile: !uuid '242b9881fe0175cce0d17e6f92b871ba1eb5c3a2'
+    oldFile: !uuid 'bea890db71e718e225bf17f58ef7128b08d805bf'
   /frontend/src:
-    newFile: !uuid '3c6d5d019efa36aa74b6a959ab7b76b89b793c49'
-    oldFile: !uuid '97e16f254a15fac185f69e69c66e7d2668d50410'
-  /frontend/src/api:
-    newFile: !uuid '1b91f9a1113d71c8a44483c435f43cd76cf9b8bd'
-    oldFile: !uuid '16b42591fd74afb60f29a337b3e24149e85d08db'
-  /frontend/src/api/modular:
-    newFile: !uuid '2f681bf5ce9a8c42a9c9d7cd3fd55efaa0393c82'
-    oldFile: !uuid '9e2e4f9f5c2b97a474f0fe6fa5e8892183f2005a'
-  /frontend/src/api/modular/system:
-    newFile: !uuid '161cdeaee46dca153a0a6634b6707cbbc3632a7e'
-    oldFile: !uuid 'a2b6e2620fb702f3a7a5b53a9ac46f5108fdd9ca'
-  /frontend/src/api/modular/system/userManage.js:
-    newFile: !uuid 'cf4e7c4e78d253c8dfda4b47ff94978e54957bf4'
-    oldFile: !uuid 'f388b45d82ed325833b94d9e9b73c2d1f7d468ee'
-  /frontend/src/components:
-    newFile: !uuid '38075cf8ae2f00e540d459298923c2a6bb8c641a'
-    oldFile: !uuid '2e1810acc31271966b81d4cb643d2b2b58bb04bc'
-  /frontend/src/components/tools:
-    newFile: !uuid '34e1066262632bbeb845206080c096ed5af41ca7'
-    oldFile: !uuid 'ef7ac8a4bd20096eed8b94ae763e1dd4b281814a'
-  /frontend/src/components/tools/UserMenu.vue:
-    newFile: !uuid '598c7692c2009d146880d1dbd41fc1771230490a'
-    oldFile: !uuid '98fce25fd4435d119df807ea3f6f521d41c90c83'
+    newFile: !uuid '81e4e0701f21cfe43f6e001a6599cc4cb659422b'
+    oldFile: !uuid '3c6d5d019efa36aa74b6a959ab7b76b89b793c49'
   /frontend/src/views:
-    newFile: !uuid '4f8cfe48cffd366dcefdda86a731eaa6d1649559'
-    oldFile: !uuid '42b66fe2b0d2c6aa0ba1eeb3f61bb06a17e51517'
+    newFile: !uuid 'd71efcd92e7f880a97fb3bcb489f07b95bd1ad47'
+    oldFile: !uuid '4f8cfe48cffd366dcefdda86a731eaa6d1649559'
   /frontend/src/views/system:
-    newFile: !uuid '3f0e6def76391138d47862c4369a67ba23754ed2'
-    oldFile: !uuid '87079bc3f3d93ac5eb296edefea330be50dd64af'
+    newFile: !uuid '88d4b59b8dd2626e0dd169ccde22a559ff679c49'
+    oldFile: !uuid '3f0e6def76391138d47862c4369a67ba23754ed2'
   /frontend/src/views/system/account:
-    newFile: !uuid '26601f8f2fd4ec7ec4f32301f719fe1a1732fc0f'
-    oldFile: !uuid 'bfd99ceca527deae6eea4a66c8def96c0ad7a51b'
+    newFile: !uuid '361184283a7752ec5240a03e73f68234bdf6dcc0'
+    oldFile: !uuid '26601f8f2fd4ec7ec4f32301f719fe1a1732fc0f'
   /frontend/src/views/system/account/settings:
-    newFile: !uuid 'a9fd9d67c7aeb20d9ce6f74dfe5b2cc8b0ecba3d'
-    oldFile: !uuid '1f332b5e2f4827c141416cf3a0f24a9fa253ed2d'
-  /frontend/src/views/system/account/settings/BaseSetting.vue:
-    newFile: !uuid '30b28f0605264bab873cda3e0f56a3ea7e408c7a'
-    oldFile: !uuid 'c7b11cf2854fe4abbe851961e9c9213b1a323990'
+    newFile: !uuid '84db0a3ebb18c9ae994e9e0cf4f4f58fe9efaa8e'
+    oldFile: !uuid 'a9fd9d67c7aeb20d9ce6f74dfe5b2cc8b0ecba3d'
+  /frontend/src/views/system/account/settings/AvatarModal.vue:
+    newFile: !uuid '8ae5837a1e35482156fd66da738f8d46bacd6ed3'
+    oldFile: !uuid '289c9d03fd82a87a17a85f7f9d311bc6ff7f552a'
   /frontend/src/views/system/account/settings/securityItem:
-    newFile: !uuid '27b4b5941e626003068ceee08b5e4b91e40d7c4b'
-    oldFile: !uuid '0155fc208ce358106e276373039806416c318128'
+    newFile: !uuid 'd09e2ff5fe916d34b6a272d438ced111bd53f141'
+    oldFile: !uuid '27b4b5941e626003068ceee08b5e4b91e40d7c4b'
   /frontend/src/views/system/account/settings/securityItem/updPwd.vue:
-    newFile: !uuid '30872a2211937851edb898f7e9d339ce0911aab8'
-    oldFile: !uuid 'a3bbcb17d84dd06010db9a568995f81ec884a2b3'
-gitCommitId: !uuid 'd5a09bfbb008e4d917d2b0eb708abf62a1ac122d'
+    newFile: !uuid '62f4ee5ddf44c4edb811ff7f1204f0e86c9f216b'
+    oldFile: !uuid '30872a2211937851edb898f7e9d339ce0911aab8'
+gitCommitId: !uuid '25b4b750a067c01de42d842647cfcb77d348c498'
 renames: {
   }
-revisionId: 230
+revisionId: 231
