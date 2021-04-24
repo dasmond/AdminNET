@@ -16,8 +16,6 @@ export default {
   data () {
     return {
       tableData: [
-        { id: 10001, code: 'Test1', name: 'Develop' },
-        { id: 10002, code: 'Test2', name: 'Test' }
       ]
     }
   },
