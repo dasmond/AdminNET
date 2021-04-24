@@ -2,40 +2,16 @@
 branches: {
   }
 fileChange:
-  /frontend:
-    newFile: !uuid 'e6b55fcae414266d9f443cdde06b8148ff783656'
-    oldFile: !uuid 'fb0d4738b6657ad0510a26b225bdc0b89942826c'
-  /frontend/src:
-    newFile: !uuid '1f23467de9a257240e7058fa26b715d4937f95f1'
-    oldFile: !uuid 'e7973fccec9a7398a652107f469b460f2c0a1e5d'
-  /frontend/src/views:
-    newFile: !uuid 'c6de0708cfd2dce3d1fbd74f4300ebdc4c624c7e'
-    oldFile: !uuid 'c08df5cbc77fd8edc5171c37214f9d625abed28e'
-  /frontend/src/views/gen:
-    newFile: !uuid '00fbbae8d23fefae0b73e833ea576c69c5b7e8ae'
-    oldFile: !uuid 'b3d59f56cfde0b8664b9f52bb4f6ed4a75f8a7d8'
-  /frontend/src/views/gen/codeGenerate:
-    newFile: !uuid 'b8c064adb43f832a315df48202f8ae85bb10a5be'
-    oldFile: !uuid '9173d7bbdd23050f328e989da710bcde836e072e'
-  /frontend/src/views/gen/codeGenerate/addForm.vue:
-    newFile: !uuid 'b4929f4ab42471f708a16179ff623a92070d2b5c'
-    oldFile: !uuid 'ba75d45f529526d71f167bc67dd14938c96f5e81'
-  /frontend/src/views/gen/codeGenerate/editForm.vue:
-    newFile: !uuid 'eda2516e1d1d3f68affa448a395ae8bb365a42aa'
-    oldFile: !uuid 'ba78e83dc6a270406fc8a5ad3fd0f1ed4a8d5ecf'
-  /frontend/src/views/system:
-    newFile: !uuid '93a251f8deb961dc8c4a5e5c59d1bff1b9e697c2'
-    oldFile: !uuid '11cfa3d0b0cb014563cd7f777cb23babbb4a3762'
-  /frontend/src/views/system/account:
-    newFile: !uuid '185e30f9763c89f3925adbe4709d6e744742f7c6'
-    oldFile: !uuid '476b50672efdfe5edd35cd329473231855cf9be7'
-  /frontend/src/views/system/account/settings:
-    newFile: !uuid '8d76088e6fcae293c62d507a1775b5d969931370'
-    oldFile: !uuid 'ec60e07fd882827def1b7aad39e437b5669f7244'
-  /frontend/src/views/system/account/settings/BaseSetting.vue:
-    newFile: !uuid '2a154bc8a7831defee1e9892263c928cfa642cba'
-    oldFile: !uuid '75988a557497caf0409bf97dd57f0330fb19b540'
-gitCommitId: !uuid '2e69305464e7cbfb61fd288eb8aa68f40ad19e5b'
+  /backend:
+    newFile: !uuid 'e776c930f3a342216873b91152c85120f772020b'
+    oldFile: !uuid '94ebb796820851da166a83c1b6a30b0709a01204'
+  /backend/Dilon.Core:
+    newFile: !uuid '96110d0007e4dfdeb367ed479722fc1aaf88fb2b'
+    oldFile: !uuid 'e8b19ce1f88a1ab33baa23de9b1ff0396e9c545b'
+  /backend/Dilon.Core/Dilon.Core.csproj:
+    newFile: !uuid 'cc12bb09ecb402617a1e8e9bcf71bbcbd77218d3'
+    oldFile: !uuid 'ccead3757d83873c33a52a2d9bf87367c05fdbdf'
+gitCommitId: !uuid '7e15561dbbbaa9dcc06421c1bfc0a7db56b3facb'
 renames: {
   }
-revisionId: 244
+revisionId: 245
