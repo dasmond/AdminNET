@@ -3,15 +3,18 @@ branches: {
   }
 fileChange:
   /backend:
-    newFile: !uuid 'e776c930f3a342216873b91152c85120f772020b'
-    oldFile: !uuid '94ebb796820851da166a83c1b6a30b0709a01204'
+    newFile: !uuid 'e1cbfd3cd664ed265c79647e0598379b6364b7aa'
+    oldFile: !uuid 'e776c930f3a342216873b91152c85120f772020b'
   /backend/Dilon.Core:
-    newFile: !uuid '96110d0007e4dfdeb367ed479722fc1aaf88fb2b'
-    oldFile: !uuid 'e8b19ce1f88a1ab33baa23de9b1ff0396e9c545b'
-  /backend/Dilon.Core/Dilon.Core.csproj:
-    newFile: !uuid 'cc12bb09ecb402617a1e8e9bcf71bbcbd77218d3'
-    oldFile: !uuid 'ccead3757d83873c33a52a2d9bf87367c05fdbdf'
-gitCommitId: !uuid '7e15561dbbbaa9dcc06421c1bfc0a7db56b3facb'
+    newFile: !uuid 'e42d956d5f3fd2ae6d0e521164d03e2dd1ba5a6f'
+    oldFile: !uuid '96110d0007e4dfdeb367ed479722fc1aaf88fb2b'
+  /backend/Dilon.Core/SeedData:
+    newFile: !uuid 'fa3b9e57d3acd5f37e04f54bc0ae07910e8be835'
+    oldFile: !uuid 'd2a5c21785f4023272226b120af6bb572d1ec245'
+  /backend/Dilon.Core/SeedData/SysMenuSeedData.cs:
+    newFile: !uuid '1e71933862a590727c8beb442910f5e53436a6e0'
+    oldFile: !uuid 'ecf6e5894e78ccefda4fe1330547ecdd6431721e'
+gitCommitId: !uuid '5579f28d9f1f3d885b45a482d759e3f6583689e5'
 renames: {
   }
-revisionId: 245
+revisionId: 246
