@@ -225,6 +225,9 @@ namespace Dilon.Core.Service
         [HttpPost("/sysUser/grantData")]
         public async Task GrantUserData(UpdateUserInput input)
         {
+            // 清除缓存
+            await _sysCacheService.DelAsync(CommonConst.CACHE_KEY_DATASCOPE + $"{input.Id}");
+
             // 数据范围检查
             CheckDataScope(input);
             await _sysUserDataScopeService.GrantData(input);
@@ -291,17 +294,15 @@ namespace Dilon.Core.Service
         }
 
         /// <summary>
-        /// 修改用户头像(未实现)
+        /// 修改用户头像
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
         [HttpPost("/sysUser/updateAvatar")]
-        public async Task UpdateAvatar(UpdateUserInput input)
+        public async Task UpdateAvatar(UploadAvatarInput input)
         {
             var user = await _sysUserRep.FirstOrDefaultAsync(u => u.Id == input.Id);
-            // 调用文件上传
-            //sysFileInfoService.assertFile(input.Avatar);
-            user.Avatar = input.Avatar;
+            user.Avatar = input.Avatar.ToString();
         }
 
         /// <summary>

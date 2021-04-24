@@ -46,6 +46,27 @@ namespace Dilon.Core
         public string EffectType { get; set; }
 
         /// <summary>
+        /// 外键实体名称
+        /// </summary>
+        [Comment("外键实体名称")]
+        [MaxLength(50)]
+        public string FkEntityName { get; set; }
+
+        /// <summary>
+        /// 外键显示字段
+        /// </summary>
+        [Comment("外键显示字段")]
+        [MaxLength(50)]
+        public string FkColumnName { get; set; }
+
+        /// <summary>
+        /// 外键显示字段.NET类型
+        /// </summary>
+        [Comment("外键显示字段.NET类型")]
+        [MaxLength(50)]
+        public string FkColumnNetType { get; set; }
+
+        /// <summary>
         /// 字典code
         /// </summary>
         [Comment("字典Code")]
@@ -95,9 +116,9 @@ namespace Dilon.Core
         public string WhetherAddUpdate { get; set; }
 
         /// <summary>
-        /// 主外键
+        /// 主键
         /// </summary>
-        [Comment("主外键")]
+        [Comment("主键")]
         [MaxLength(5)]
         public string ColumnKey { get; set; }
 
