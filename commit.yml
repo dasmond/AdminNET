@@ -2,28 +2,22 @@
 branches: {
   }
 fileChange:
-  /frontend:
-    newFile: !uuid '83e360ec53964a5afcf9709fede16f471b188416'
-    oldFile: !uuid '7f9e00bec41bfa6d0bee5df4707d4f3386f5ec0f'
-  /frontend/src:
-    newFile: !uuid 'd9395ca98a4056bf0810947d5faaa2b05e78b970'
-    oldFile: !uuid 'af91ed6025b3d2780577ec0c8e1963de59d883ab'
-  /frontend/src/views:
-    newFile: !uuid '91ce66d31b5c63d95247b25b43b12b6acd389833'
-    oldFile: !uuid '60e95037afca766c14b27bd04c746be5c98a1408'
-  /frontend/src/views/system:
-    newFile: !uuid '59c1b4a1df98b213f049923df4d3565145929f4c'
-    oldFile: !uuid 'f526ee65147b449fdd60365a28156dc7fe2ffc09'
-  /frontend/src/views/system/tenant:
-    newFile: !uuid '6569f28a590e1ba17d63ebb93de4227b75401e13'
-    oldFile: !uuid '5b0d49d2bb097238c61c68e0ba5a82e4c066699a'
-  /frontend/src/views/system/tenant/addForm.vue:
-    newFile: !uuid 'ad83e6d31a1f847595da56eb29a04dba8fd0bdbd'
-    oldFile: !uuid '39a1cb0f13069eb791181a04355032a7b532ab2e'
-  /frontend/src/views/system/tenant/editForm.vue:
-    newFile: !uuid '4961fa73821c4a591e8d04de0427e7e85ea28f20'
-    oldFile: !uuid '1c4ee3d14e8e30a89804d9aa56838af3a59a785e'
-gitCommitId: !uuid '8776979e114df323ca14b9bf15cf1ff13be2820d'
+  /backend:
+    newFile: !uuid '156526162430d6088f1eeda298e74b3c0148dd3c'
+    oldFile: !uuid '7a72a68e7d3e2f52488f77387627915a1237cfad'
+  /backend/Dilon.Core:
+    newFile: !uuid 'd105202ba4cefba8e7bef2cfe8fc8facd64046fc'
+    oldFile: !uuid 'f7cf7bdfdcf1b6d5cf64b798514745452cd25e5a'
+  /backend/Dilon.Core/Service:
+    newFile: !uuid '57b67534b1dd43d3105477a9032c6ac86bf7bb63'
+    oldFile: !uuid '5aa06fb61d11cf4e121bc7abe2aef9ad783861c1'
+  /backend/Dilon.Core/Service/Role:
+    newFile: !uuid '7e75c6a3a49c4f1bdf86e0c430b71dab0e2f6c99'
+    oldFile: !uuid '3e35412998ccb39b12738a90e0fd89561bdff344'
+  /backend/Dilon.Core/Service/Role/SysRoleService.cs:
+    newFile: !uuid 'b595d55b8ff0cfb7a3b332bdd621bf816aef2093'
+    oldFile: !uuid '740a79db5b08972eb22a7d43f214672107a7dffa'
+gitCommitId: !uuid '3d1fd8ce6296899564003f07243b66db63c30d78'
 renames: {
   }
-revisionId: 239
+revisionId: 240
