@@ -2,22 +2,124 @@
 branches: {
   }
 fileChange:
+  /README.md:
+    newFile: !uuid 'a168a344eedfecb10b8b90b9213f4c2e8d7f1c71'
+    oldFile: !uuid '25ef5d91eab1b4b61fe00c06f2e55e5939115fc4'
   /backend:
-    newFile: !uuid 'e0ccc32f3e92bed2647893863e9ac057bb88f8b3'
-    oldFile: !uuid '39e988c09dc5b0996203a076f452f4c67485db2b'
-  /backend/Dilon.Application:
-    newFile: !uuid 'ad4d6af683a3ba1a1c610d943734b27f7b7fabe5'
-    oldFile: !uuid '0db38e7f141747189c9005a838736eeae5988c50'
-  /backend/Dilon.Application/Dilon.Application.xml:
-    newFile: !uuid 'e8f10c11e9ac34aa7156a537c6bf120889ad3c2f'
-    oldFile: !uuid 'c6c821d809ea7baa4d24424871535dd81a6eee0b'
-  /backend/Dilon.Web.Core:
-    newFile: !uuid 'fee311fab5a0c9692f456e9041b1d4230099ff89'
-    oldFile: !uuid '0ad2da36f429dc0bbb1d79aa0075c0951d8deaed'
-  /backend/Dilon.Web.Core/Startup.cs:
-    newFile: !uuid '5310c6115a03ff9cd9dae585e4ebf18ebf1e3fc5'
-    oldFile: !uuid 'a234a905357a5375215c3ec2886c098d8d828de1'
-gitCommitId: !uuid '0e19cf96d29b52514d2f5630144bbff7d01444a3'
+    newFile: !uuid '6b91d422b19dcb072ba985ce843c2e0e7c39e59a'
+    oldFile: !uuid 'e0ccc32f3e92bed2647893863e9ac057bb88f8b3'
+  /backend/Dilon.Core:
+    newFile: !uuid 'c7c1996923155a5f272ff47c7763d0ccfc45b33a'
+    oldFile: !uuid 'e2974de405c6d688714aa6832873ce31556d801a'
+  /backend/Dilon.Core/Dilon.Core.csproj:
+    newFile: !uuid 'e88dabb0f8f14f020be721bf25d3d35f25b0a376'
+    oldFile: !uuid '8958c6c548b21f513e2eb26e10be837cce07bf34'
+  /frontend:
+    newFile: !uuid '3668a61f1faed7c583d81a1e7c0f9428f7567237'
+    oldFile: !uuid '64e49e24ef3dc22d021330a5005f2a8a42bd4fb7'
+  /frontend/package-lock.json:
+    newFile: !uuid '70055a738119733095fb21fd0552329368afec1d'
+    oldFile: !uuid '6bfe967ce5a9670221e2e8014e14242a72ebc714'
+  /frontend/package.json:
+    newFile: !uuid '8a8d18d02e9243ee660227499664ec6ff6c02f32'
+    oldFile: !uuid 'ece0c8c37a1d91fcef23c988e3f04ed2efa8e39f'
+  /frontend/src:
+    newFile: !uuid 'b942e37c6a3f0162a2a698ea60b86780fd0f6595'
+    oldFile: !uuid 'db07b713cef1e791ff7e2f4c47d871283fd09ebe'
+  /frontend/src/main.js:
+    newFile: !uuid '26d54104c27e8f7bab0a37cb3129c6c6b8237582'
+    oldFile: !uuid '020e1f425eff916925005e64b2e77233633a4946'
+  /frontend/src/views:
+    newFile: !uuid 'a4d06facfeed5eec29d018e1620b3da925c39004'
+    oldFile: !uuid 'fbc98d671246ea00bd201b6f5d72060759faeccf'
+  /frontend/src/views/main:
+    newFile: !uuid '50046ae1ee069efeb8e27102aeed83ab38990a45'
+    oldFile: !uuid '0a2f2ec3243ea4125be68020af97b23b04774618'
+  /frontend/src/views/main/screenMonitor:
+    newFile: !uuid 'd87e32155cbb0828c632308e96f09e99a17d7b3c'
+    oldFile: null
+  /frontend/src/views/main/screenMonitor/LabelTag.vue:
+    newFile: !uuid '5bd56ac0a1809ff2e2510ce6dfe73dce17febef5'
+    oldFile: null
+  /frontend/src/views/main/screenMonitor/TopMiddleCmp.vue:
+    newFile: !uuid '30261d9f0612d946119fa619ece35aa9ef8ed6e3'
+    oldFile: null
+  /frontend/src/views/main/screenMonitor/cards.vue:
+    newFile: !uuid '41588a7ad8c9f371fc4ff83628719ec76628d165'
+    oldFile: null
+  /frontend/src/views/main/screenMonitor/digitalFlop.vue:
+    newFile: !uuid '815450305a8ccdfdc90be09ffd46f7f0679e3728'
+    oldFile: null
+  /frontend/src/views/main/screenMonitor/img:
+    newFile: !uuid '06a152f20597f92888abd2bccb20c38972a7eb5e'
+    oldFile: null
+  /frontend/src/views/main/screenMonitor/img/bg.png:
+    newFile: !uuid 'dbcebaeeebc83e74f801a1b15ee31bae1903850a'
+    oldFile: null
+  /frontend/src/views/main/screenMonitor/img/map.jpg:
+    newFile: !uuid '8e1c4f77d9aed198de5538665f4e2f65e14d637e'
+    oldFile: null
+  /frontend/src/views/main/screenMonitor/img/map.png:
+    newFile: !uuid 'dfbc8ffa9bd92eeb35c268243dad0599f886303c'
+    oldFile: null
+  /frontend/src/views/main/screenMonitor/img/map2.png:
+    newFile: !uuid '5e409053eadacfc6504011728f7e8e7f224d2043'
+    oldFile: null
+  /frontend/src/views/main/screenMonitor/img/mapCenterPoint.png:
+    newFile: !uuid '255f69c3c02ed6f161e078f52d43f466bb4abcdf'
+    oldFile: null
+  /frontend/src/views/main/screenMonitor/img/mapPoint.png:
+    newFile: !uuid 'bb6c0be7cc9a5fd99a2ae09489b747c2cfb27e65'
+    oldFile: null
+  /frontend/src/views/main/screenMonitor/index.vue:
+    newFile: !uuid '000fd32a7f08191e28226814dac0e931cdce900d'
+    oldFile: null
+  /frontend/src/views/main/screenMonitor/left1.vue:
+    newFile: !uuid '726c50f46473ee4bc463b9d96031eaf7e2e701b8'
+    oldFile: null
+  /frontend/src/views/main/screenMonitor/left12.vue:
+    newFile: !uuid '4d6ce24da5f0036afc7167b2d5fa05f3e6620c47'
+    oldFile: null
+  /frontend/src/views/main/screenMonitor/left2.vue:
+    newFile: !uuid 'fd872378c5d86e958cee87b6d0f5264eda9e1b6b'
+    oldFile: null
+  /frontend/src/views/main/screenMonitor/left22.vue:
+    newFile: !uuid 'baad4ef353778e8b92bdecee8096a7980619eb4c'
+    oldFile: null
+  /frontend/src/views/main/screenMonitor/left23.vue:
+    newFile: !uuid 'b4069c016f1a708398e01be606f3cef3a5f11380'
+    oldFile: null
+  /frontend/src/views/main/screenMonitor/middle1.vue:
+    newFile: !uuid '0928ea1a9409f0c9a4d58ce116fc0d2e7424159c'
+    oldFile: null
+  /frontend/src/views/main/screenMonitor/middle2.vue:
+    newFile: !uuid '7e6e989aeaf92863cc61aa4783178b07a30f9a4a'
+    oldFile: null
+  /frontend/src/views/main/screenMonitor/middle3.vue:
+    newFile: !uuid 'b2d06cbbafd546ab94fe505599bd3861b477806a'
+    oldFile: null
+  /frontend/src/views/main/screenMonitor/rankingBoard.vue:
+    newFile: !uuid 'eff271331afd9d03b5ecd3f293fddf784ef74144'
+    oldFile: null
+  /frontend/src/views/main/screenMonitor/right1.vue:
+    newFile: !uuid 'f08586937f4f4c6aef9c68a1a663336513426bd7'
+    oldFile: null
+  /frontend/src/views/main/screenMonitor/right2.vue:
+    newFile: !uuid 'd073fb48cdd0833138b91ea28d1292aae098c350'
+    oldFile: null
+  /frontend/src/views/main/screenMonitor/right3.vue:
+    newFile: !uuid 'a778c4dd6dff44a78d60a35d852bc7bec2901045'
+    oldFile: null
+  /frontend/src/views/main/screenMonitor/right4.vue:
+    newFile: !uuid '967d067ecf9ea825da079eca12cdeca2e5863cdc'
+    oldFile: null
+  /frontend/src/views/main/screenMonitor/scrollBoard.vue:
+    newFile: !uuid 'a64ca29fbfa149a04152fd880ecf19d5deaa4f2a'
+    oldFile: null
+  /frontend/src/views/main/screenMonitor/topHeader.vue:
+    newFile: !uuid '38c8cac7e69749142636721ee635541598db6820'
+    oldFile: null
+gitCommitId: !uuid 'fca4fc1e1a1398588129278fa0fc98e514527a54'
 renames: {
   }
-revisionId: 260
+revisionId: 261
