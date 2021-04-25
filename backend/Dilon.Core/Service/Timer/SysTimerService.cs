@@ -1,4 +1,5 @@
-﻿using Furion.DatabaseAccessor;
+﻿using Furion;
+using Furion.DatabaseAccessor;
 using Furion.DatabaseAccessor.Extensions;
 using Furion.DependencyInjection;
 using Furion.DynamicApiController;
@@ -9,8 +10,10 @@ using Furion.TaskScheduler;
 using Mapster;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 
 namespace Dilon.Core.Service
@@ -22,10 +25,12 @@ namespace Dilon.Core.Service
     public class SysTimerService : ISysTimerService, IDynamicApiController, IScoped
     {
         private readonly IRepository<SysTimer> _sysTimerRep;  // 任务表仓储 
+        private readonly ISysCacheService _cache;
 
-        public SysTimerService(IRepository<SysTimer> sysTimerRep)
+        public SysTimerService(IRepository<SysTimer> sysTimerRep, ISysCacheService cache)
         {
             _sysTimerRep = sysTimerRep;
+            _cache = cache;
         }
 
         /// <summary>
@@ -38,11 +43,10 @@ namespace Dilon.Core.Service
         {
             var workers = SpareTime.GetWorkers().ToList();
 
-            var jobName = !string.IsNullOrEmpty(input.JobName?.Trim());
             var timers = await _sysTimerRep.DetachedEntities
-                                  .Where((jobName, u => EF.Functions.Like(u.JobName, $"%{input.JobName.Trim()}%")))
-                                  .Select(u => u.Adapt<JobOutput>())
-                                  .ToPagedListAsync(input.PageNo, input.PageSize);
+                                           .Where(!string.IsNullOrEmpty(input.JobName?.Trim()), u => EF.Functions.Like(u.JobName, $"%{input.JobName.Trim()}%"))
+                                           .Select(u => u.Adapt<JobOutput>())
+                                           .ToPagedListAsync(input.PageNo, input.PageSize);
 
             timers.Items.ToList().ForEach(u =>
             {
@@ -55,6 +59,20 @@ namespace Dilon.Core.Service
                 }
             });
             return XnPageResult<JobOutput>.PageResult(timers);
+        }
+
+        /// <summary>
+        /// 获取所有本地任务
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("/sysTimers/localJobList")]
+        public async Task<dynamic> GetLocalJobList()
+        {
+            // 获取本地所有任务方法
+            var LocalJobs = await GetTaskMethods();
+
+            // TaskMethodInfo继承自LocalJobOutput，直接强转为LocalJobOutput再返回
+            return LocalJobs.Select(t => (LocalJobOutput)t);
         }
 
         /// <summary>
@@ -150,8 +168,9 @@ namespace Dilon.Core.Service
             var timer = SpareTime.GetWorkers().ToList().Find(u => u.WorkerName == input.JobName);
             if (timer == null)
                 AddTimerJob(input);
-            else
-                SpareTime.Start(input.JobName);
+
+            // 如果 StartNow 为 flase , 执行 AddTimerJob 并不会启动任务
+            SpareTime.Start(input.JobName);
         }
 
         /// <summary>
@@ -161,50 +180,141 @@ namespace Dilon.Core.Service
         [NonAction]
         public void AddTimerJob(JobInput input)
         {
-            if (input.TimerType == SpareTimeTypes.Interval)
+            Action<SpareTimer, long> action = null;
+
+            switch (input.RequestType)
             {
-                SpareTime.Do(input.Interval * 1000, async (timer, count) =>
-                {
-                    await InitTimerJob(input);
-                }, input.JobName, input.Remark, startNow: true);
+                // 创建本地方法委托
+                case RequestTypeEnum.Run:
+                    {
+                        // 查询符合条件的任务方法
+                        var taskMethod = GetTaskMethods().Result.FirstOrDefault(m => m.RequestUrl == input.RequestUrl);
+                        if (taskMethod == null) break;
+
+                        // 创建任务对象
+                        var typeInstance = Activator.CreateInstance(taskMethod.DeclaringType);
+
+                        // 创建委托
+                        action = (Action<SpareTimer, long>)Delegate.CreateDelegate(typeof(Action<SpareTimer, long>), typeInstance, taskMethod.MethodName);
+                        break;
+                    }
+                // 创建网络任务委托
+                default:
+                    {
+                        action = async (_, _) =>
+                        {
+                            var requestUrl = input.RequestUrl.Trim();
+                            requestUrl = requestUrl?.IndexOf("http") == 0 ? requestUrl : "http://" + requestUrl;
+                            var requestParameters = input.RequestParameters;
+                            var headersString = input.Headers;
+                            var headers = string.IsNullOrEmpty(headersString)
+                                ? null
+                                : JSON.Deserialize<Dictionary<string, string>>(headersString);
+
+                            switch (input.RequestType)
+                            {
+                                case RequestTypeEnum.Get:
+                                    await requestUrl.SetHeaders(headers).GetAsync();
+                                    break;
+                                case RequestTypeEnum.Post:
+                                    await requestUrl.SetHeaders(headers).SetQueries(requestParameters).PostAsync();
+                                    break;
+                                case RequestTypeEnum.Put:
+                                    await requestUrl.SetHeaders(headers).SetQueries(requestParameters).PutAsync();
+                                    break;
+                                case RequestTypeEnum.Delete:
+                                    await requestUrl.SetHeaders(headers).DeleteAsync();
+                                    break;
+                            }
+                        };
+                        break;
+                    }
             }
-            else if (!string.IsNullOrEmpty(input.Cron))
+
+            if (action == null)
+                throw Oops.Oh($"定时任务委托创建失败！JobName:{input.JobName}");
+
+            // 缓存任务配置参数，以供任务运行时读取
+            if (input.RequestType == RequestTypeEnum.Run)
             {
-                SpareTime.Do(input.Cron, async (timer, count) =>
-                {
-                    await InitTimerJob(input);
-                }, input.JobName, input.Remark, startNow: true);
+                var jobParametersName = $"{input.JobName}_Parameters";
+                var jobParameters = _cache.Exists(jobParametersName);
+                var requestParametersIsNull = string.IsNullOrEmpty(input.RequestParameters);
+
+                // 如果没有任务配置却又存在缓存，则删除缓存
+                if (requestParametersIsNull && jobParameters)
+                    _cache.Del(jobParametersName);
+                else if (!requestParametersIsNull)
+                    _cache.Set(jobParametersName, JSON.Deserialize<Dictionary<string, string>>(input.RequestParameters));
+            }
+
+            // 创建定时任务
+            switch (input.TimerType)
+            {
+                case SpareTimeTypes.Interval:
+                    if (input.DoOnce)
+                        SpareTime.DoOnce(input.Interval * 1000, action, input.JobName, input.Remark, input.StartNow, executeType: input.ExecuteType);
+                    else
+                        SpareTime.Do(input.Interval * 1000, action, input.JobName, input.Remark, input.StartNow, executeType: input.ExecuteType);
+                    break;
+                case SpareTimeTypes.Cron:
+                    SpareTime.Do(input.Cron, action, input.JobName, input.Remark, input.StartNow, executeType: input.ExecuteType);
+                    break;
             }
         }
 
         /// <summary>
-        /// 初始化定时任务
+        /// 启动自启动任务
         /// </summary>
-        /// <param name="input"></param>
-        /// <returns></returns>
-        private async Task InitTimerJob(JobInput input)
+        [NonAction]
+        public void StartTimerJob()
         {
-            var requestUrl = input.RequestUrl.Trim();
-            requestUrl = requestUrl?.IndexOf("http") == 0 ? requestUrl : "http://" + requestUrl;
-            var requestParameters = input.RequestParameters;
-            var headersString = input.Headers;
-            var headers = string.IsNullOrEmpty(headersString) ? null : JSON.Deserialize<Dictionary<string, string>>(headersString);
-            var requestType = input.RequestType;
-            switch (requestType)
-            {
-                case RequestTypeEnum.Get:
-                    await requestUrl.SetHeaders(headers).GetAsync();
-                    break;
-                case RequestTypeEnum.Post:
-                    await requestUrl.SetHeaders(headers).SetQueries(requestParameters).PostAsync();
-                    break;
-                case RequestTypeEnum.Put:
-                    await requestUrl.SetHeaders(headers).SetQueries(requestParameters).PutAsync();
-                    break;
-                case RequestTypeEnum.Delete:
-                    await requestUrl.SetHeaders(headers).DeleteAsync();
-                    break;
-            }
+            var sysTimerList = _sysTimerRep.DetachedEntities.Where(t => t.StartNow).Select(u => u.Adapt<JobInput>()).ToList();
+            sysTimerList.ForEach(AddTimerJob);
+        }
+
+        /// <summary>
+        /// 获取所有本地任务
+        /// </summary>
+        /// <returns></returns>
+        [NonAction]
+        public async Task<IEnumerable<TaskMethodInfo>> GetTaskMethods()
+        {
+            // 有缓存就返回缓存
+            var taskMethods = await _cache.GetAsync<IEnumerable<TaskMethodInfo>>("TaskMethodInfos");
+            if (taskMethods != null) return taskMethods;
+
+            // 获取所有本地任务方法，必须有spareTimeAttribute特性
+            taskMethods = App.EffectiveTypes
+                .Where(u => u.IsClass && !u.IsInterface && !u.IsAbstract && typeof(ISpareTimeWorker).IsAssignableFrom(u))
+                .SelectMany(u => u.GetMethods(BindingFlags.Public | BindingFlags.Instance)
+                .Where(m => m.IsDefined(typeof(SpareTimeAttribute), false) &&
+                       m.GetParameters().Length == 2 &&
+                       m.GetParameters()[0].ParameterType == typeof(SpareTimer) &&
+                       m.GetParameters()[1].ParameterType == typeof(long) && m.ReturnType == typeof(void))
+                .Select(m =>
+                {
+                    // 默认获取第一条任务特性
+                    var spareTimeAttribute = m.GetCustomAttribute<SpareTimeAttribute>();
+                    return new TaskMethodInfo
+                    {
+                        JobName = spareTimeAttribute.WorkerName,
+                        RequestUrl = $"{m.DeclaringType.Name}/{m.Name}",
+                        Cron = spareTimeAttribute.CronExpression,
+                        DoOnce = spareTimeAttribute.DoOnce,
+                        ExecuteType = spareTimeAttribute.ExecuteType,
+                        Interval = (int)spareTimeAttribute.Interval / 1000,
+                        StartNow = spareTimeAttribute.StartNow,
+                        RequestType = RequestTypeEnum.Run,
+                        Remark = spareTimeAttribute.Description,
+                        TimerType = string.IsNullOrEmpty(spareTimeAttribute.CronExpression) ? SpareTimeTypes.Interval : SpareTimeTypes.Cron,
+                        MethodName = m.Name,
+                        DeclaringType = m.DeclaringType
+                    };
+                }));
+
+            await _cache.SetAsync("TaskMethodInfos", taskMethods);
+            return taskMethods;
         }
     }
 }

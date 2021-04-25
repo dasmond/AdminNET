@@ -1,6 +1,5 @@
 ﻿using Furion.DataValidation;
 using Furion.TaskScheduler;
-using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace Dilon.Core.Service
@@ -13,7 +12,23 @@ namespace Dilon.Core.Service
         /// <summary>
         /// 任务名称
         /// </summary>
+
         public string JobName { get; set; }
+
+        /// <summary>
+        /// 只执行一次
+        /// </summary>
+        public bool DoOnce { get; set; } = false;
+
+        /// <summary>
+        /// 立即执行（默认等待启动）
+        /// </summary>
+        public bool StartNow { get; set; } = false;
+
+        /// <summary>
+        /// 执行类型(并行、列队)
+        /// </summary>
+        public SpareTimeExecuteTypes ExecuteType { get; set; }
 
         /// <summary>
         /// 执行间隔时间（单位秒）
@@ -30,11 +45,6 @@ namespace Dilon.Core.Service
         /// 定时器类型
         /// </summary>
         public SpareTimeTypes TimerType { get; set; }
-
-        /// <summary>
-        /// 执行次数
-        /// </summary>
-        public int? RunNumber { get; set; }
 
         /// <summary>
         /// 请求url

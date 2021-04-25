@@ -1,5 +1,5 @@
-﻿using Furion.DatabaseAccessor.Extensions;
-using Furion.JsonSerialization;
+﻿using Furion.JsonSerialization;
+using Furion.TaskScheduler;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.AspNetCore.Mvc.Filters;
@@ -23,36 +23,40 @@ namespace Dilon.Core
 
             var sw = new Stopwatch();
             sw.Start();
-
             var actionContext = await next();
             sw.Stop();
 
             // 判断是否请求成功（没有异常就是请求成功）
             var isRequestSucceed = actionContext.Exception == null;
-            var headers = httpContext.Request.Headers;
-            var clientInfo = headers.ContainsKey("User-Agent") ? Parser.GetDefault().Parse(headers["User-Agent"]) : null;
+            var headers = httpRequest.Headers;
+            var clientInfo = headers.ContainsKey("User-Agent")
+                ? Parser.GetDefault().Parse(headers["User-Agent"])
+                : null;
             var actionDescriptor = context.ActionDescriptor as ControllerActionDescriptor;
             // _ = Attribute.GetCustomAttribute(actionDescriptor.MethodInfo, typeof(DescriptionAttribute)) as DescriptionAttribute;
 
-            // 请求日志入库
-            await new SysLogOp
-            {
-                Name = httpContext.User?.FindFirstValue(ClaimConst.CLAINM_NAME),
-                Success = isRequestSucceed ? YesOrNot.Y : YesOrNot.N,
-                Ip = httpContext.GetRemoteIpAddressToIPv4(),
-                Location = httpRequest.GetRequestUrlAddress(),
-                Browser = clientInfo?.UA.Family + clientInfo?.UA.Major,
-                Os = clientInfo?.OS.Family + clientInfo?.OS.Major,
-                Url = httpRequest.Path,
-                ClassName = context.Controller.ToString(),
-                MethodName = actionDescriptor.ActionName,
-                ReqMethod = httpRequest.Method,
-                Param = JSON.Serialize(context.ActionArguments.Count < 1 ? "" : context.ActionArguments),
-                //Result = JSON.Serialize(actionContext.Result), // 序列化异常，比如验证码
-                ElapsedTime = sw.ElapsedMilliseconds,
-                OpTime = DateTimeOffset.Now,
-                Account = httpContext.User?.FindFirstValue(ClaimConst.CLAINM_ACCOUNT)
-            }.InsertAsync();
+            // 执行后台任务及写入简单队列
+            //SpareTime.DoIt(() =>
+            //{
+                SimpleQueue<SysLogOp>.Add(new SysLogOp
+                {
+                    Name = httpContext.User?.FindFirstValue(ClaimConst.CLAINM_NAME),
+                    Success = isRequestSucceed ? YesOrNot.Y : YesOrNot.N,
+                    Ip = httpContext.GetRemoteIpAddressToIPv4(),
+                    Location = httpRequest.GetRequestUrlAddress(),
+                    Browser = clientInfo?.UA.Family + clientInfo?.UA.Major,
+                    Os = clientInfo?.OS.Family + clientInfo?.OS.Major,
+                    Url = httpRequest.Path,
+                    ClassName = context.Controller.ToString(),
+                    MethodName = actionDescriptor?.ActionName,
+                    ReqMethod = httpRequest.Method,
+                    Param = JSON.Serialize(context.ActionArguments.Count < 1 ? "" : context.ActionArguments),
+                    // Result = JSON.Serialize(actionContext.Result), // 序列化异常，比如验证码
+                    ElapsedTime = sw.ElapsedMilliseconds,
+                    OpTime = DateTimeOffset.Now,
+                    Account = httpContext.User?.FindFirstValue(ClaimConst.CLAINM_ACCOUNT)
+                });
+            //});
         }
     }
 }

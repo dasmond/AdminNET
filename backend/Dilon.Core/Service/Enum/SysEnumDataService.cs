@@ -12,7 +12,7 @@ namespace Dilon.Core.Service
     /// <summary>
     /// 枚举值服务
     /// </summary>
-    [ApiDescriptionSettings(Name = "EnumData")]
+    [ApiDescriptionSettings(Name = "EnumData", Order = 100)]
     public class SysEnumDataService : ISysEnumDataService, IDynamicApiController, ITransient
     {
         /// <summary>
@@ -33,7 +33,7 @@ namespace Dilon.Core.Service
                    EnumExtensions.GetEnumDescDictionary(enumType)
                    .Select(x => new EnumDataOutput
                    {
-                       Code = x.Key.ToString(),
+                       Code = x.Key,
                        Value = x.Value
                    }));
         }
@@ -60,7 +60,7 @@ namespace Dilon.Core.Service
                    EnumExtensions.GetEnumDescDictionary(fieldType)
                    .Select(x => new EnumDataOutput
                    {
-                       Code = x.Key.ToString(),
+                       Code = x.Key,
                        Value = x.Value
                    }));
         }

@@ -3,7 +3,6 @@ using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Dilon.Core
@@ -96,7 +95,7 @@ namespace Dilon.Core
 
         public List<string> GetAllKeys()
         {
-           return RedisHelper.Keys("").ToList();
+            return RedisHelper.Keys("").ToList();
         }
     }
 }

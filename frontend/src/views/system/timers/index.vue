@@ -83,8 +83,8 @@
   import addForm from './addForm'
   import editForm from './editForm'
   import {
-    sysDictTypeDropDown
-  } from '@/api/modular/system/dictManage'
+    sysEnumDataList
+  } from '@/api/modular/system/enumManage'
   export default {
     // name: 'PosIndex',
     components: {
@@ -115,11 +115,15 @@
             }
           },
           {
-            title: '执行间隔',
+            title: '请求参数',
+            dataIndex: 'requestParameters'
+          },
+          {
+            title: '间隔',
             dataIndex: 'interval'
           },
           {
-            title: 'Cron表达式',
+            title: 'Cron',
             dataIndex: 'cron'
           },
           {
@@ -135,7 +139,8 @@
           },
           {
             title: '备注',
-            dataIndex: 'remark'
+            dataIndex: 'remark',
+            width: 100
           }
         ],
         // 加载数据方法 必须为 Promise 对象
@@ -146,11 +151,11 @@
         },
         selectedRowKeys: [],
         selectedRows: [],
-        requestTypeDictTypeDropDown: []
+        requestTypeEnumDataDropDown: []
       }
     },
     created() {
-      this.sysDictTypeDropDown()
+      this.sysEnumDataList()
       if (this.hasPerm('sysTimers:edit') || this.hasPerm('sysTimers:delete')) {
         this.columns.push({
           title: '操作',
@@ -164,18 +169,18 @@
     },
     methods: {
       /**
-       * 获取字典数据
+       * 获取枚举数据
        */
-      sysDictTypeDropDown() {
-        sysDictTypeDropDown({
-          code: 'request_type'
+      sysEnumDataList() {
+        sysEnumDataList({
+          enumName: 'RequestTypeEnum'
         }).then((res) => {
-          this.requestTypeDictTypeDropDown = res.data
+          this.requestTypeEnumDataDropDown = res.data
         })
       },
       requestTypeFilter(requestType) {
         // eslint-disable-next-line eqeqeq
-        const values = this.requestTypeDictTypeDropDown.filter(item => item.code == requestType)
+        const values = this.requestTypeEnumDataDropDown.filter(item => item.code == requestType)
         if (values.length > 0) {
           return values[0].value
         }
