@@ -3,15 +3,21 @@ branches: {
   }
 fileChange:
   /backend:
-    newFile: !uuid '4944d0bf8f0bda8c6fcf4159f6a799bb40f9e66e'
+    newFile: !uuid 'e0ccc32f3e92bed2647893863e9ac057bb88f8b3'
     oldFile: !uuid '39e988c09dc5b0996203a076f452f4c67485db2b'
-  /backend/Dilon.Core:
-    newFile: !uuid 'c7c1996923155a5f272ff47c7763d0ccfc45b33a'
-    oldFile: !uuid 'e2974de405c6d688714aa6832873ce31556d801a'
-  /backend/Dilon.Core/Dilon.Core.csproj:
-    newFile: !uuid 'e88dabb0f8f14f020be721bf25d3d35f25b0a376'
-    oldFile: !uuid '8958c6c548b21f513e2eb26e10be837cce07bf34'
-gitCommitId: !uuid 'e8848734202b96a1c5d4d473ceefa2749f801f28'
+  /backend/Dilon.Application:
+    newFile: !uuid 'ad4d6af683a3ba1a1c610d943734b27f7b7fabe5'
+    oldFile: !uuid '0db38e7f141747189c9005a838736eeae5988c50'
+  /backend/Dilon.Application/Dilon.Application.xml:
+    newFile: !uuid 'e8f10c11e9ac34aa7156a537c6bf120889ad3c2f'
+    oldFile: !uuid 'c6c821d809ea7baa4d24424871535dd81a6eee0b'
+  /backend/Dilon.Web.Core:
+    newFile: !uuid 'fee311fab5a0c9692f456e9041b1d4230099ff89'
+    oldFile: !uuid '0ad2da36f429dc0bbb1d79aa0075c0951d8deaed'
+  /backend/Dilon.Web.Core/Startup.cs:
+    newFile: !uuid '5310c6115a03ff9cd9dae585e4ebf18ebf1e3fc5'
+    oldFile: !uuid 'a234a905357a5375215c3ec2886c098d8d828de1'
+gitCommitId: !uuid '0e19cf96d29b52514d2f5630144bbff7d01444a3'
 renames: {
   }
-revisionId: 259
+revisionId: 260
