@@ -41,7 +41,7 @@ namespace Dilon.Core.Service
                                              .Where((name, u => EF.Functions.Like(u.Name, $"%{input.Name.Trim()}%")),
                                                     (code, u => EF.Functions.Like(u.Code, $"%{input.Code.Trim()}%")),
                                                     (groupCode, u => EF.Functions.Like(u.Code, $"%{input.GroupCode.Trim()}%")))
-                                             .Where(u => u.Status != (int)CommonStatus.DELETED).OrderBy(u => u.GroupCode)
+                                             .Where(u => u.Status != CommonStatus.DELETED).OrderBy(u => u.GroupCode)
                                              .ToPagedListAsync(input.PageNo, input.PageSize);
             return XnPageResult<SysConfig>.PageResult(configs);
         }
@@ -54,7 +54,7 @@ namespace Dilon.Core.Service
         [HttpGet("/sysConfig/list")]
         public async Task<dynamic> GetConfigList([FromQuery] ConfigInput input)
         {
-            return await _sysConfigRep.DetachedEntities.Where(u => u.Status != (int)CommonStatus.DELETED).ToListAsync();
+            return await _sysConfigRep.DetachedEntities.Where(u => u.Status != CommonStatus.DELETED).ToListAsync();
         }
 
         /// <summary>
@@ -70,7 +70,7 @@ namespace Dilon.Core.Service
                 throw Oops.Oh(ErrorCode.D9000);
 
             var config = input.Adapt<SysConfig>();
-            await config.InsertNowAsync();
+            await config.InsertAsync();
         }
 
         /// <summary>
@@ -86,7 +86,7 @@ namespace Dilon.Core.Service
             if (config.SysFlag == YesOrNot.Y.ToString())
                 throw Oops.Oh(ErrorCode.D9001);
 
-            await config.DeleteNowAsync();
+            await config.DeleteAsync();
         }
 
         /// <summary>
@@ -102,7 +102,7 @@ namespace Dilon.Core.Service
                 throw Oops.Oh(ErrorCode.D9000);
 
             var config = input.Adapt<SysConfig>();
-            await config.UpdateNowAsync(ignoreNullValues: true);
+            await config.UpdateAsync(ignoreNullValues: true);
         }
 
         /// <summary>
@@ -132,7 +132,7 @@ namespace Dilon.Core.Service
             }
             return value;
         }
-        
+
         /// <summary>
         /// 更新配置缓存
         /// </summary>

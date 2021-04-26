@@ -14,10 +14,12 @@ namespace Dilon.Core.Service
     public class SysRoleMenuService : ISysRoleMenuService, ITransient
     {
         private readonly IRepository<SysRoleMenu> _sysRoleMenuRep;  // 角色菜单表仓储   
+        private readonly ISysCacheService _sysCacheService;
 
-        public SysRoleMenuService(IRepository<SysRoleMenu> sysRoleMenuRep)
+        public SysRoleMenuService(IRepository<SysRoleMenu> sysRoleMenuRep, ISysCacheService sysCacheService)
         {
             _sysRoleMenuRep = sysRoleMenuRep;
+            _sysCacheService = sysCacheService;
         }
 
         /// <summary>
@@ -37,12 +39,13 @@ namespace Dilon.Core.Service
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
+        [UnitOfWork]
         public async Task GrantMenu(GrantRoleMenuInput input)
         {
             var roleMenus = await _sysRoleMenuRep.DetachedEntities.Where(u => u.SysRoleId == input.Id).ToListAsync();
             roleMenus.ForEach(u =>
             {
-                u.DeleteNow();
+                u.Delete();
             });
 
             input.GrantMenuIdList.ForEach(u =>
@@ -51,8 +54,12 @@ namespace Dilon.Core.Service
                 {
                     SysRoleId = input.Id,
                     SysMenuId = u
-                }.InsertNow();
+                }.Insert();
             });
+
+            // 清除缓存
+            await _sysCacheService.DelByPatternAsync(CommonConst.CACHE_KEY_MENU);
+            await _sysCacheService.DelByPatternAsync(CommonConst.CACHE_KEY_PERMISSION);
         }
 
         /// <summary>
@@ -65,7 +72,7 @@ namespace Dilon.Core.Service
             var roleMenus = await _sysRoleMenuRep.DetachedEntities.Where(u => menuIdList.Contains(u.SysMenuId)).ToListAsync();
             roleMenus.ForEach(u =>
             {
-                u.DeleteNow();
+                u.Delete();
             });
         }
 
@@ -79,7 +86,7 @@ namespace Dilon.Core.Service
             var roleMenus = await _sysRoleMenuRep.DetachedEntities.Where(u => u.SysRoleId == roleId).ToListAsync();
             roleMenus.ForEach(u =>
             {
-                u.DeleteNow();
+                u.Delete();
             });
         }
     }

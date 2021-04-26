@@ -1,7 +1,8 @@
 ﻿using Furion.DependencyInjection;
 using Microsoft.Extensions.Options;
 using System;
-using System.Text.RegularExpressions;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Dilon.Core
@@ -32,8 +33,7 @@ namespace Dilon.Core
             if (string.IsNullOrEmpty(pattern))
                 return default;
 
-            pattern = Regex.Replace(pattern, @"\{.*\}", "*");
-
+            //pattern = Regex.Replace(pattern, @"\{.*\}", "*");
             var keys = (await RedisHelper.KeysAsync(pattern));
             if (keys != null && keys.Length > 0)
             {
@@ -91,6 +91,11 @@ namespace Dilon.Core
         public Task<bool> SetAsync(string key, object value, TimeSpan expire)
         {
             return RedisHelper.SetAsync(key, value, expire);
+        }
+
+        public List<string> GetAllKeys()
+        {
+            return RedisHelper.Keys("").ToList();
         }
     }
 }

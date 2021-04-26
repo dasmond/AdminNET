@@ -1,11 +1,10 @@
-﻿using System;
+﻿using Furion.DependencyInjection;
+using Microsoft.Extensions.Caching.Memory;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using Furion.DependencyInjection;
-using Microsoft.Extensions.Caching.Memory;
 
 namespace Dilon.Core
 {
@@ -45,14 +44,10 @@ namespace Dilon.Core
             if (string.IsNullOrEmpty(pattern))
                 return default;
 
-            pattern = Regex.Replace(pattern, @"\{.*\}", "(.*)");
-
-            var keys = GetAllKeys().Where(k => Regex.IsMatch(k, pattern));
-
-            if (keys != null && keys.Count() > 0)
-            {
+            //pattern = Regex.Replace(pattern, @"\{*.\}", "(.*)");
+            var keys = GetAllKeys().Where(k => k.StartsWith(pattern));
+            if (keys != null && keys.Any())
                 return await DelAsync(keys.ToArray());
-            }
 
             return default;
         }
@@ -111,7 +106,7 @@ namespace Dilon.Core
             return Task.FromResult(true);
         }
 
-        private List<string> GetAllKeys()
+        public List<string> GetAllKeys()
         {
             const BindingFlags flags = BindingFlags.Instance | BindingFlags.NonPublic;
             var entries = _memoryCache.GetType().GetField("_entries", flags).GetValue(_memoryCache);

@@ -1,5 +1,4 @@
-﻿using Dilon.Core.Entity.System;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -14,7 +13,7 @@ namespace Dilon.Core.Service
         Task<List<SysFile>> GetFileInfoList([FromQuery] FileOutput input);
         Task<IActionResult> PreviewFileInfo([FromQuery] QueryFileInoInput input);
         Task<dynamic> QueryFileInfoPageList([FromQuery] FileInput input);
-        Task UploadFileAvatar(IFormFile file);
+        Task<long> UploadFileAvatar(IFormFile file);
         Task UploadFileDefault(IFormFile file);
         Task UploadFileDocument(IFormFile file);
         Task UploadFileShop(IFormFile file);

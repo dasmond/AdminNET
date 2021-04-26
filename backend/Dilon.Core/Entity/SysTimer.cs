@@ -1,6 +1,6 @@
-﻿using Dilon.Core.Service;
-using Furion.Snowflake;
-using System;
+﻿using Furion.TaskScheduler;
+using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Dilon.Core
@@ -9,86 +9,88 @@ namespace Dilon.Core
     /// 定时任务
     /// </summary>
     [Table("sys_timer")]
+    [Comment("定时任务表")]
     public class SysTimer : DEntityBase
     {
-        public SysTimer()
-        {
-            Id = IDGenerator.NextId();
-            CreatedTime = DateTimeOffset.Now;
-            IsDeleted = false;
-        }
-
         /// <summary>
         /// 任务名称
         /// </summary>
         /// <example>dilon</example>
+        [Comment("任务名称")]
+        [Required, MaxLength(20)]
         public string JobName { get; set; }
 
         /// <summary>
-        /// 任务分组
+        /// 只执行一次
         /// </summary>
-        /// <example>dilon</example>
-        public string JobGroup { get; set; }
+        [Comment("只执行一次")]
+        public bool DoOnce { get; set; } = false;
 
         /// <summary>
-        /// 开始时间
+        /// 立即执行（默认等待启动）
         /// </summary>
-        public DateTimeOffset BeginTime { get; set; } = DateTimeOffset.Now;
+        [Comment("立即执行")]
+        public bool StartNow { get; set; } = false;
 
         /// <summary>
-        /// 结束时间
+        /// 执行类型(并行、列队)
         /// </summary>
-        /// <example>null</example>
-        public DateTimeOffset? EndTime { get; set; }
+        [Comment("执行类型")]
+        public SpareTimeExecuteTypes ExecuteType { get; set; } = SpareTimeExecuteTypes.Parallel;
+
+        /// <summary>
+        /// 执行间隔时间（单位秒）
+        /// </summary>
+        /// <example>5</example>
+        [Comment("间隔时间")]
+        public int? Interval { get; set; } = 5;
 
         /// <summary>
         /// Cron表达式
         /// </summary>
         /// <example></example>
+        [Comment("Cron表达式")]
+        [MaxLength(20)]
         public string Cron { get; set; }
 
         /// <summary>
-        /// 执行次数（默认无限循环）
+        /// 定时器类型
         /// </summary>
-        /// <example>10</example>
-        public int? RunNumber { get; set; }
-
-        /// <summary>
-        /// 执行间隔时间，单位秒（如果有Cron，则IntervalSecond失效）
-        /// </summary>
-        /// <example>5</example>
-        public int? Interval { get; set; } = 5;
-
-        /// <summary>
-        /// 触发器类型
-        /// </summary>
-        public TriggerTypeEnum TriggerType { get; set; } = TriggerTypeEnum.Simple;
+        [Comment("定时器类型")]
+        public SpareTimeTypes TimerType { get; set; } = SpareTimeTypes.Interval;
 
         /// <summary>
         /// 请求url
         /// </summary>
+        [Comment("请求url")]
+        [MaxLength(200)]
         public string RequestUrl { get; set; }
 
         /// <summary>
         /// 请求参数（Post，Put请求用）
         /// </summary>
+        [Comment("请求参数")]
         public string RequestParameters { get; set; }
 
         /// <summary>
         /// Headers(可以包含如：Authorization授权认证)
         /// 格式：{"Authorization":"userpassword.."}
         /// </summary>
+        [Comment("Headers")]
         public string Headers { get; set; }
 
         /// <summary>
         /// 请求类型
         /// </summary>
         /// <example>2</example>
+        [Comment("请求类型")]
         public RequestTypeEnum RequestType { get; set; } = RequestTypeEnum.Post;
 
         /// <summary>
-        /// 描述
+        /// 备注
         /// </summary>
+        [Comment("备注")]
+        [MaxLength(100)]
         public string Remark { get; set; }
     }
 }

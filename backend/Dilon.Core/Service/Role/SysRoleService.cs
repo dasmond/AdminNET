@@ -6,6 +6,7 @@ using Furion.FriendlyException;
 using Mapster;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -25,13 +26,15 @@ namespace Dilon.Core.Service
         private readonly ISysRoleDataScopeService _sysRoleDataScopeService;
         private readonly ISysOrgService _sysOrgService;
         private readonly ISysRoleMenuService _sysRoleMenuService;
+        private readonly ISysCacheService _sysCacheService;
 
         public SysRoleService(IRepository<SysRole> sysRoleRep,
                               IRepository<SysUserRole> sysUserRoleRep,
                               IUserManager userManager,
                               ISysRoleDataScopeService sysRoleDataScopeService,
                               ISysOrgService sysOrgService,
-                              ISysRoleMenuService sysRoleMenuService)
+                              ISysRoleMenuService sysRoleMenuService,
+                              ISysCacheService sysCacheService)
         {
             _sysRoleRep = sysRoleRep;
             _sysUserRoleRep = sysUserRoleRep;
@@ -39,6 +42,7 @@ namespace Dilon.Core.Service
             _sysRoleDataScopeService = sysRoleDataScopeService;
             _sysOrgService = sysOrgService;
             _sysRoleMenuService = sysRoleMenuService;
+            _sysCacheService = sysCacheService;
         }
 
         /// <summary>
@@ -49,7 +53,7 @@ namespace Dilon.Core.Service
         [NonAction]
         public async Task<List<RoleOutput>> GetUserRoleList(long userId)
         {
-            return await _sysRoleRep.DetachedEntities.Join(_sysUserRoleRep.AsQueryable(), u => u.Id, e => e.SysRoleId, (u, e) => new { u, e })
+            return await _sysRoleRep.DetachedEntities.Join(_sysUserRoleRep.DetachedEntities, u => u.Id, e => e.SysRoleId, (u, e) => new { u, e })
                                     .Where(x => x.e.SysUserId == userId)
                                     .Select(x => x.u.Adapt<RoleOutput>()).ToListAsync();
         }
@@ -67,7 +71,7 @@ namespace Dilon.Core.Service
             var roles = await _sysRoleRep.DetachedEntities
                                          .Where((name, u => EF.Functions.Like(u.Name, $"%{input.Name.Trim()}%")),
                                                 (code, u => EF.Functions.Like(u.Code, $"%{input.Code.Trim()}%")))
-                                         .Where(u => u.Status == (int)CommonStatus.ENABLE).OrderBy(u => u.Sort)
+                                         .Where(u => u.Status == CommonStatus.ENABLE).OrderBy(u => u.Sort)
                                          .ToPagedListAsync(input.PageNo, input.PageSize);
             return XnPageResult<SysRole>.PageResult(roles);
         }
@@ -85,7 +89,7 @@ namespace Dilon.Core.Service
             return await _sysRoleRep.DetachedEntities
                                     .Where((name, u => EF.Functions.Like(u.Name, $"%{input.Name.Trim()}%")),
                                            (code, u => EF.Functions.Like(u.Code, $"%{input.Code.Trim()}%")))
-                                    .Where(u => u.Status == (int)CommonStatus.ENABLE).OrderBy(u => u.Sort)
+                                    .Where(u => u.Status == CommonStatus.ENABLE).OrderBy(u => u.Sort)
                                     .Select(u => new
                                     {
                                         u.Id,
@@ -107,7 +111,7 @@ namespace Dilon.Core.Service
 
             return await _sysRoleRep.DetachedEntities
                                     .Where(roles.Count > 0, u => roles.Contains(u.Id))
-                                    .Where(u => u.Status == (int)CommonStatus.ENABLE)
+                                    .Where(u => u.Status == CommonStatus.ENABLE)
                                     .Select(u => new
                                     {
                                         u.Id,
@@ -129,8 +133,8 @@ namespace Dilon.Core.Service
                 throw Oops.Oh(ErrorCode.D1006);
 
             var role = input.Adapt<SysRole>();
-            role.DataScopeType = 1; // 新角色默认全部数据范围
-            await role.InsertNowAsync();
+            role.DataScopeType = DataScopeType.ALL; // 新角色默认全部数据范围
+            await role.InsertAsync();
         }
 
         /// <summary>
@@ -139,10 +143,11 @@ namespace Dilon.Core.Service
         /// <param name="input"></param>
         /// <returns></returns>
         [HttpPost("/sysRole/delete")]
+        [UnitOfWork]
         public async Task DeleteRole(DeleteRoleInput input)
         {
             var sysRole = await _sysRoleRep.FirstOrDefaultAsync(u => u.Id == input.Id);
-            await sysRole.DeleteNowAsync();
+            await sysRole.DeleteAsync();
 
             //级联删除该角色对应的角色-数据范围关联信息
             await _sysRoleDataScopeService.DeleteRoleDataScopeListByRoleId(sysRole.Id);
@@ -152,7 +157,7 @@ namespace Dilon.Core.Service
             var userRoles = await _sysUserRoleRep.Where(u => u.SysRoleId == sysRole.Id).ToListAsync();
             userRoles.ForEach(u =>
             {
-                u.DeleteNow();
+                u.Delete();
             });
 
             //级联删除该角色对应的角色-菜单表关联信息
@@ -172,7 +177,7 @@ namespace Dilon.Core.Service
                 throw Oops.Oh(ErrorCode.D1006);
 
             var sysRole = input.Adapt<SysRole>();
-            await sysRole.UpdateNowAsync();
+            await sysRole.UpdateAsync();
         }
 
         /// <summary>
@@ -198,13 +203,16 @@ namespace Dilon.Core.Service
         }
 
         /// <summary>
-        /// 授权角色数据
+        /// 授权角色数据范围
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
         [HttpPost("/sysRole/grantData")]
         public async Task GrantData(GrantRoleDataInput input)
         {
+            // 清除所有用户数据范围缓存
+            await _sysCacheService.DelByPatternAsync(CommonConst.CACHE_KEY_DATASCOPE);
+
             var role = await _sysRoleRep.FirstOrDefaultAsync(u => u.Id == input.Id);
             var dataScopeType = input.DataScopeType;
             if (!_userManager.SuperAdmin)
@@ -227,7 +235,7 @@ namespace Dilon.Core.Service
                     }
                 }
             }
-            role.DataScopeType = dataScopeType;
+            role.DataScopeType = (DataScopeType)dataScopeType;
             await _sysRoleDataScopeService.GrantDataScope(input);
         }
 
@@ -249,10 +257,10 @@ namespace Dilon.Core.Service
                 var roles = await _sysRoleRep.DetachedEntities.Where(u => roleIdList.Contains(u.Id)).ToListAsync();
                 roles.ForEach(u =>
                 {
-                    if (u.DataScopeType == (int)DataScopeType.DEFINE)
+                    if (u.DataScopeType == DataScopeType.DEFINE)
                         customDataScopeRoleIdList.Add(u.Id);
-                    else if (u.DataScopeType <= strongerDataScopeType)
-                        strongerDataScopeType = u.DataScopeType;
+                    else if ((int)u.DataScopeType <= strongerDataScopeType)
+                        strongerDataScopeType = (int)u.DataScopeType;
                 });
             }
 

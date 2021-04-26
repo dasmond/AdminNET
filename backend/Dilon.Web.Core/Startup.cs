@@ -1,12 +1,13 @@
-﻿using Dilon.Core;
+using Dilon.Core;
+using Dilon.Core.Service;
 using Furion;
-using Furion.Snowflake;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Serilog;
 using System.Text.Json;
+using Yitter.IdGenerator;
 
 namespace Dilon.Web.Core
 {
@@ -25,12 +26,14 @@ namespace Dilon.Web.Core
             services.AddControllersWithViews()
                     .AddMvcFilter<RequestActionFilter>()
                     .AddInjectWithUnifyResult<XnRestfulResultProvider>()
-                    .AddFriendlyException() // 注册友好异常服务
                     .AddJsonOptions(options =>
                     {
+                        //options.JsonSerializerOptions.DefaultBufferSize = 10_0000;//返回较大数据数据序列化时会截断，原因：默认缓冲区大小（以字节为单位）为16384。
                         options.JsonSerializerOptions.Converters.AddDateFormatString("yyyy-MM-dd HH:mm:ss");
-                        //options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles; // 忽略循环引用
+                        //options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles; // 忽略循环引用 仅.NET 6支持
                     });
+
+            services.AddViewEngine();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -48,7 +51,7 @@ namespace Dilon.Web.Core
             // 添加状态码拦截中间件
             app.UseUnifyResultStatusCodes();
 
-            app.UseHttpsRedirection();
+            app.UseHttpsRedirection(); // 强制https
             app.UseStaticFiles();
 
             // Serilog请求日志中间件---必须在 UseStaticFiles 和 UseRouting 之间
@@ -69,6 +72,13 @@ namespace Dilon.Web.Core
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+
+            // 设置雪花id的workerId，确保每个实例workerId都应不同
+            var workerId = ushort.Parse(App.Configuration["SnowId:WorkerId"] ?? "1");
+            YitIdHelper.SetIdGenerator(new IdGeneratorOptions { WorkerId = workerId });
+
+            // 开启自启动定时任务
+            App.GetService<ISysTimerService>().StartTimerJob();
         }
     }
 }

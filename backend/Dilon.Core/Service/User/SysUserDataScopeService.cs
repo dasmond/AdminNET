@@ -25,21 +25,22 @@ namespace Dilon.Core.Service
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
+        [UnitOfWork]
         public async Task GrantData(UpdateUserInput input)
         {
-            var dataScopes = await _sysUserDataScopeRep.Where(u => u.SysUserId == long.Parse(input.Id)).ToListAsync();
+            var dataScopes = await _sysUserDataScopeRep.Where(u => u.SysUserId == input.Id).ToListAsync();
             dataScopes.ForEach(u =>
             {
-                u.DeleteNow();
+                u.Delete();
             });
 
             input.GrantOrgIdList.ForEach(u =>
             {
                 new SysUserDataScope
                 {
-                    SysUserId = long.Parse(input.Id),
+                    SysUserId = input.Id,
                     SysOrgId = u
-                }.InsertNow();
+                }.Insert();
             });
         }
 
@@ -65,7 +66,7 @@ namespace Dilon.Core.Service
             var dataScopes = await _sysUserDataScopeRep.Where(u => orgIdList.Contains(u.SysOrgId)).ToListAsync();
             dataScopes.ForEach(u =>
             {
-                u.DeleteNow();
+                u.Delete();
             });
         }
 
@@ -79,7 +80,7 @@ namespace Dilon.Core.Service
             var dataScopes = await _sysUserDataScopeRep.Where(u => u.SysUserId == userId).ToListAsync();
             dataScopes.ForEach(u =>
             {
-                u.DeleteNow();
+                u.Delete();
             });
         }
     }

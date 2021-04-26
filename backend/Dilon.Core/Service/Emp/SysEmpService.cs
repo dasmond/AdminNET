@@ -3,6 +3,8 @@ using Furion.DatabaseAccessor.Extensions;
 using Furion.DependencyInjection;
 using Mapster;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Dilon.Core.Service
@@ -47,6 +49,7 @@ namespace Dilon.Core.Service
         /// 增加或编辑员工相关信息
         /// </summary>
         /// <returns></returns>
+        [UnitOfWork]
         public async Task AddOrUpdate(EmpOutput2 sysEmpParam)
         {
             // 先删除员工信息
@@ -58,7 +61,7 @@ namespace Dilon.Core.Service
 
             // 再新增新员工信息
             var emp = sysEmpParam.Adapt<SysEmp>();
-            await _sysEmpRep.InsertNowAsync(emp);
+            await _sysEmpRep.InsertAsync(emp);
 
             // 更新附属机构职位信息
             await _sysEmpExtOrgPosService.AddOrUpdate(emp.Id, sysEmpParam.ExtIds);
@@ -97,11 +100,12 @@ namespace Dilon.Core.Service
         /// </summary>
         /// <param name="empId"></param>
         /// <returns></returns>
+        [UnitOfWork]
         public async Task DeleteEmpInfoByUserId(long empId)
         {
             // 删除员工信息
             var emp = await _sysEmpRep.FirstOrDefaultAsync(u => u.Id == empId);
-            await emp.DeleteNowAsync();
+            await emp.DeleteAsync();
 
             // 级联删除对应的员工-附属信息
             await _sysEmpExtOrgPosService.DeleteEmpExtInfoByUserId(empId);
@@ -118,6 +122,16 @@ namespace Dilon.Core.Service
         public async Task<long> GetEmpOrgId(long empId)
         {
             return (await _sysEmpRep.FirstOrDefaultAsync(u => u.Id == empId, false)).OrgId;
+        }
+
+        /// <summary>
+        /// 获取子机构用户
+        /// </summary>
+        /// <param name="orgIds"></param>
+        /// <returns></returns>
+        public async Task<List<SysEmp>> HasOrgEmp(List<long> orgIds)
+        {
+            return await _sysEmpRep.DetachedEntities.Where(u => orgIds.Contains(u.OrgId)).ToListAsync();
         }
     }
 }

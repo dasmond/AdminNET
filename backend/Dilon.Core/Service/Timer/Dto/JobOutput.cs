@@ -1,4 +1,4 @@
-﻿using Quartz;
+﻿using Furion.TaskScheduler;
 using System;
 
 namespace Dilon.Core.Service
@@ -6,7 +6,34 @@ namespace Dilon.Core.Service
     /// <summary>
     /// 任务信息---任务详情
     /// </summary>
-    public class JobOutput
+    public class JobOutput : LocalJobOutput
+    {
+        /// <summary>
+        /// Id
+        /// </summary>
+        public long Id { get; set; }
+
+        /// <summary>
+        /// 已执行次数
+        /// </summary>
+        public long? RunNumber { get; set; }
+
+
+        /// <summary>
+        /// 定时器状态
+        /// </summary>
+        public SpareTimeStatus TimerStatus { get; set; } = SpareTimeStatus.Stopped;
+
+        /// <summary>
+        /// 异常信息
+        /// </summary>
+        public string Exception { get; set; }
+    }
+
+    /// <summary>
+    /// 本地任务信息
+    /// </summary>
+    public class LocalJobOutput
     {
         /// <summary>
         /// 任务名称
@@ -14,83 +41,65 @@ namespace Dilon.Core.Service
         public string JobName { get; set; }
 
         /// <summary>
-        /// 任务组名
+        /// 只执行一次
         /// </summary>
-        public string JobGroup { get; set; }
+        public bool DoOnce { get; set; } = false;
 
         /// <summary>
-        /// 下次执行时间
+        /// 立即执行（默认等待启动）
         /// </summary>
-        public DateTime? NextFireTime { get; set; }
+        public bool StartNow { get; set; } = false;
 
         /// <summary>
-        /// 上次执行时间
+        /// 执行类型(并行、列队)
         /// </summary>
-        public DateTime? PreviousFireTime { get; set; }
+        public SpareTimeExecuteTypes ExecuteType { get; set; }
 
         /// <summary>
-        /// 开始时间
+        /// 执行间隔时间（单位秒）
         /// </summary>
-        public DateTime BeginTime { get; set; }
+        public int Interval { get; set; }
 
         /// <summary>
-        /// 结束时间
+        /// Cron表达式
         /// </summary>
-        public DateTime? EndTime { get; set; }
+        public string Cron { get; set; }
 
         /// <summary>
-        /// 上次执行的异常信息
+        /// 定时器类型
         /// </summary>
-        public string LastErrMsg { get; set; }
+        public SpareTimeTypes TimerType { get; set; }
 
         /// <summary>
-        /// 任务状态
-        /// </summary>
-        public TriggerState TriggerState { get; set; }
-
-        /// <summary>
-        /// 描述
-        /// </summary>
-        public string Remark { get; set; }
-
-        /// <summary>
-        /// 显示状态
-        /// </summary>
-        public string DisplayState
-        {
-            get
-            {
-                return TriggerState switch
-                {
-                    TriggerState.Normal => "正常",
-                    TriggerState.Paused => "暂停",
-                    TriggerState.Complete => "完成",
-                    TriggerState.Error => "异常",
-                    TriggerState.Blocked => "阻塞",
-                    TriggerState.None => "不存在",
-                    _ => "未知",
-                };
-            }
-        }
-
-        /// <summary>
-        /// 时间间隔
-        /// </summary>
-        public string Interval { get; set; }
-
-        /// <summary>
-        /// 请求地址
+        /// 请求url
         /// </summary>
         public string RequestUrl { get; set; }
 
         /// <summary>
         /// 请求类型
         /// </summary>
-        public string RequestType { get; set; }
+        /// <example>2</example>
+        public RequestTypeEnum RequestType { get; set; }
 
         /// <summary>
-        /// 已经执行的次数
+        /// 备注
         /// </summary>
-        public string RunNumber { get; set; }
+        public string Remark { get; set; }
+    }
+
+    /// <summary>
+    /// 任务方法信息
+    /// </summary>
+    public class TaskMethodInfo : LocalJobOutput
+    {
+        /// <summary>
+        /// 方法名
+        /// </summary>
+        public string MethodName { get; set; }
+
+        /// <summary>
+        /// 方法所属类的Type对象
+        /// </summary>
+        public Type DeclaringType { get; set; }
     }
 }
