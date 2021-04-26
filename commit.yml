@@ -2,43 +2,61 @@
 branches: {
   }
 fileChange:
+  /backend:
+    newFile: !uuid '310f393f1ea46f2e6ddb6e695b4ebe951af16782'
+    oldFile: !uuid 'c6829609f07334a3747bbb083ddb34dd556dd2da'
+  /backend/Dilon.Core:
+    newFile: !uuid '97de7fd116ff94ca31620660f0371da019de1c04'
+    oldFile: !uuid '703c824c619b1702b67ad3299457b7853a0c48fc'
+  /backend/Dilon.Core/Entity:
+    newFile: !uuid '7696eb1177558aa9dd00128a85d78b33c67cc006'
+    oldFile: !uuid 'd507e4aa4708bed7d44404c103d88c334feb5224'
+  /backend/Dilon.Core/Entity/SysNotice.cs:
+    newFile: !uuid '1a247c67a9a074215db0b4874d105cfd638f6754'
+    oldFile: !uuid '65eccfaf897a91c9d9a8f27f90f94a61341c9707'
+  /backend/Dilon.Core/Entity/SysNoticeUser.cs:
+    newFile: !uuid 'c79b8359304cb473354cb0af099eb847ef77a4a2'
+    oldFile: !uuid '9504d5cfcf1f451fd2dd66d219b8f9a4dc4a7df1'
+  /backend/Dilon.Core/SeedData:
+    newFile: !uuid 'ea3f2263b5d1dddf8588ad36f7eb32e3279b2e62'
+    oldFile: !uuid 'df35ab08059348d41728f5216f211c81609a9f11'
+  /backend/Dilon.Core/SeedData/SysMenuSeedData.cs:
+    newFile: !uuid '4b34caf3fc5ac97127a4cdd080d41a794184a973'
+    oldFile: !uuid '6f2adff5452ca2709368f4703000c02d56ed79c5'
+  /backend/Dilon.Core/Service:
+    newFile: !uuid '70ccb9bd3dd347181951cb0a561588db7e18e218'
+    oldFile: !uuid 'f4a447c20465baf65649f8ae07a712d5c3fe10ae'
+  /backend/Dilon.Core/Service/Notice:
+    newFile: !uuid 'da2b1be42832ba207272bcebc828a7b80ae83a28'
+    oldFile: !uuid '37c1af87ad5c432bd4effaa636dcdc425552b8b3'
+  /backend/Dilon.Core/Service/Notice/SysNoticeUserService.cs:
+    newFile: !uuid '01886c153fe08cce695daaedf03cc31fbc252bd6'
+    oldFile: !uuid '0873a9b9134ed6028564a132f564dc404c869bfe'
+  /backend/Dilon.Web.Entry:
+    newFile: !uuid '787342b75a1b8eaa26a0dc3c20743a2246479aab'
+    oldFile: !uuid '5577110062c2ebfd970cdcfa2198d4c86a86f36a'
+  /backend/Dilon.Web.Entry/Dilon.db:
+    newFile: !uuid 'fd06d5412a4e2e8a7082dbd13c79546f4b970a3f'
+    oldFile: !uuid '06aea6bea39ef6e3b77c964ded6a79b4a8d80241'
   /frontend:
-    newFile: !uuid '2d6d6f01a4fa747b7e246e3363f41694187248b6'
-    oldFile: !uuid '88f7e50222347a5b321b2ec6a798df150afef92c'
-  /frontend/package-lock.json:
-    newFile: !uuid '214c91b3bd6c0eec941a2bf69d018b648419c5a2'
-    oldFile: !uuid '70055a738119733095fb21fd0552329368afec1d'
-  /frontend/package.json:
-    newFile: !uuid '8befbe0fe9fe795da1b4a740b76525d4ed98aa45'
-    oldFile: !uuid '8a8d18d02e9243ee660227499664ec6ff6c02f32'
+    newFile: !uuid 'd4d8ba184d3ea4f6fd950c3139872d0450358eeb'
+    oldFile: !uuid '2d6d6f01a4fa747b7e246e3363f41694187248b6'
   /frontend/src:
-    newFile: !uuid 'b056427b89c83083bd60bf3d8f30e19d3ff5a571'
-    oldFile: !uuid 'b942e37c6a3f0162a2a698ea60b86780fd0f6595'
+    newFile: !uuid '54e21abe0b7bd30c092acef8edc4b64bcc8f4c25'
+    oldFile: !uuid 'b056427b89c83083bd60bf3d8f30e19d3ff5a571'
   /frontend/src/views:
-    newFile: !uuid '5944ffb960627c79b8aafefaabc8774960beffdf'
-    oldFile: !uuid 'a4d06facfeed5eec29d018e1620b3da925c39004'
-  /frontend/src/views/main:
-    newFile: !uuid '5597cbb78225b41a39fa09f96ca5e522ba44b7f9'
-    oldFile: !uuid '50046ae1ee069efeb8e27102aeed83ab38990a45'
-  /frontend/src/views/main/map:
-    newFile: !uuid '092f7c7006c9d8694f7f5f27809d1b1f60fbbb61'
-    oldFile: null
-  /frontend/src/views/main/map/index.vue:
-    newFile: !uuid '0ecc17c59e8d1f6715dc475b3b93e182fb56c839'
-    oldFile: null
+    newFile: !uuid 'b6ff67f56d2a855a741cc206ddd33794d9ce74fe'
+    oldFile: !uuid '5944ffb960627c79b8aafefaabc8774960beffdf'
   /frontend/src/views/system:
-    newFile: !uuid 'b0efe1bcee914fe0d1497486b97bcc0488cf53b6'
-    oldFile: !uuid '65b2e20acdbba8e04e80b9d10d5d7b2a3452d295'
-  /frontend/src/views/system/menu:
-    newFile: !uuid '75267d5e0fbc342de6782c44ae37092ddf6edb9a'
-    oldFile: !uuid '01f4fec57538d3ca49e4060bb4b01aaf1b378bf7'
-  /frontend/src/views/system/menu/addForm.vue:
-    newFile: !uuid 'a763c45dd0ef4ca607a0792e561b6f5c379f99e2'
-    oldFile: !uuid '26835ac0cca8c084ca97231902d432a40720afe0'
-  /frontend/src/views/system/menu/editForm.vue:
-    newFile: !uuid 'e25d5e393b2aacec8f1d10be59b10729b2ae81dd'
-    oldFile: !uuid 'a382171265e7a1aa37958e7880b1507cfb65b482'
-gitCommitId: !uuid 'a348114afefe76d825f78d88e6ad454bdd821df0'
+    newFile: !uuid 'cccbc8faae51c6fa4cfcd519aa978b521c498c15'
+    oldFile: !uuid 'b0efe1bcee914fe0d1497486b97bcc0488cf53b6'
+  /frontend/src/views/system/notice:
+    newFile: !uuid '724ee2d9bc6d2ebbae0a1d960a613984ac5bb92a'
+    oldFile: !uuid '389a739483d7af9f665076524316dd4c9aabae5a'
+  /frontend/src/views/system/notice/index.vue:
+    newFile: !uuid '2ef7b75cc8e5161e5f5e22d1b5f52a245e6d10c1'
+    oldFile: !uuid '0e59a74ce77865caa694af884c8b339f6930a85d'
+gitCommitId: !uuid '1a1a62a4f6451d4c205d1ef9b1f8eb01fdea7ad0'
 renames: {
   }
-revisionId: 268
+revisionId: 269
