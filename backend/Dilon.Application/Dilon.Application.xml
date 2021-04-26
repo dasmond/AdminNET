@@ -85,6 +85,19 @@
             创建时间
             </summary>
         </member>
+        <member name="T:Dilon.Application.SeedData.BasicTableModelSeedData">
+            <summary>
+            基本表格表种子数据
+            </summary>
+        </member>
+        <member name="M:Dilon.Application.SeedData.BasicTableModelSeedData.HasData(Microsoft.EntityFrameworkCore.DbContext,System.Type)">
+            <summary>
+            种子数据
+            </summary>
+            <param name="dbContext"></param>
+            <param name="dbContextLocator"></param>
+            <returns></returns>
+        </member>
         <member name="T:Dilon.Application.Service.Tables.BasicTable.BasicTableService">
             <summary>
             基本表格服务

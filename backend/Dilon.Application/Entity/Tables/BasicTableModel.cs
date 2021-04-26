@@ -11,7 +11,7 @@ namespace Dilon.Application.Entity.Tables
     /// <summary>
     /// 基本表格
     /// </summary>
-    [SugarTable("tbl_basictable", TableDescription = "基本表格")]
+    [SugarTable("BasicTableModel", TableDescription = "基本表格")]
     public class BasicTableModel : DEntityBase
     {
         /// <summary>
