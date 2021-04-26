@@ -1,7 +1,7 @@
 {
   "ConnectionStrings": {
-    "DefaultConnection": "Data Source=./Dilon.db",
-    "MultiTenantConnection": "Data Source=./Dilon_SaaS.db",
-    "PgSqlConnection": "HOST=127.0.0.1;PORT=5432;DATABASE=dilon;PASSWORD=123qwe;USER ID=postgres;",
+    "DefaultConnection": "Server=www.tengyunlt.com;Database=housing;User=sa;Password=zhipu314115;MultipleActiveResultSets=True;",
+    "MultiTenantConnection": "Server=www.tengyunlt.com;Database=housing_SaaS;User=sa;Password=zhipu314115;MultipleActiveResultSets=True;",
+    "PgSqlConnection": "HOST=127.0.0.1;PORT=5432;DATABASE=dilon;PASSWORD=123qwe;USER ID=postgres;"
   }
 }
