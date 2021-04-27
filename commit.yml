@@ -2,25 +2,28 @@
 branches: {
   }
 fileChange:
-  /backend:
-    newFile: !uuid '1966aaa5a68a44bce762a5a42ebe04d4d19229d1'
-    oldFile: !uuid '629151b4859306d2117e39c96ea34b8f1f9b1ce3'
-  /backend/Dilon.Core:
-    newFile: !uuid '0a217fc16e5177e15e06281bcbd8c9ca118601ea'
-    oldFile: !uuid 'd093efb0c25208178db74a4d6405d29765a1023d'
-  /backend/Dilon.Core/Dilon.Core.csproj:
-    newFile: !uuid '195537c950a688eea8688d577a8e369c993bbdc3'
-    oldFile: !uuid '420c0a5b896ced920570f28dc74096cd69452256'
-  /backend/Dilon.EntityFramework.Core:
-    newFile: !uuid '1010e636b92a73f54b90a142defe56263afd097f'
-    oldFile: !uuid '4f2cac3251d27a5fb7f0140addde34a2989b61dd'
-  /backend/Dilon.EntityFramework.Core/DbContexts:
-    newFile: !uuid '11072acca05cbae8b8cc25f5ea195902c98fa383'
-    oldFile: !uuid '60c6f1554194aa047017ccb43ad0ef4deb3afa28'
-  /backend/Dilon.EntityFramework.Core/DbContexts/DefaultDbContext.cs:
-    newFile: !uuid '95b4fcc7bca0f30afcf3e70bf832e58060d597b9'
-    oldFile: !uuid 'c59d6d0abf296803733348644395b1a5de2c3fd5'
-gitCommitId: !uuid '87db379e5b7f7a2bd203566dcba151b802d0d11a'
+  /.gitignore:
+    newFile: !uuid '68b9b85c68fb3c73d9c8c33101bdac180c74ce5f'
+    oldFile: !uuid '4ab51b6d813f88cef1ce40d12796d10608e4cd94'
+  /README.md:
+    newFile: !uuid '2a0d86e8cef65c5fbd58aecd4ce44f72724095c4'
+    oldFile: !uuid '1859f706f09038c169cd85df5fd8553987754a9c'
+  /build:
+    newFile: !uuid 'cbad45c73ccf25d81cfe5bb4ff74d843222abd71'
+    oldFile: null
+  /build/build-all.ps1:
+    newFile: !uuid '9bc322b64afe881cc0d15c427ca140bf0c63c9d6'
+    oldFile: null
+  /build/build-core.ps1:
+    newFile: !uuid 'dfb4bb19a1d30c3f270d27cc96b6829d5421b212'
+    oldFile: null
+  /build/build-vue.ps1:
+    newFile: !uuid 'a9fb8b78e352e07ced296080e0749ee87a7389e1'
+    oldFile: null
+  /build/readme.md:
+    newFile: !uuid '97ab2a4b7bfb3f80b2979cb70b97bbca1d62cda0'
+    oldFile: null
+gitCommitId: !uuid '327a4f9dc712f20965ed313b9f46e21917555376'
 renames: {
   }
-revisionId: 277
+revisionId: 278
