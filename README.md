@@ -20,14 +20,13 @@
 ### 🍟 概述
 
 * 基于.NET 5实现的通用权限管理平台（RBAC模式）。整合最新技术高效快速开发，前后端分离模式，开箱即用。
-* 前端基于小诺Vue（antd）框架，整体RBAC基础数据结构+API接口风格采用小诺vue版本模式。
-* 后台基于Furion框架，EFCore、多租户、分库读写分离、缓存、数据校验、鉴权、动态API、gRPC等众多黑科技集一身。
+* 后台基于Furion框架，前端基于小诺Vue Antd框架。EFCore、多租户、分库读写分离、缓存、数据校验、鉴权、动态API、gRPC等众多黑科技集一身。
 * 模块化架构设计，层次清晰，业务层推荐写到单独模块，框架升级不影响业务!
 * 核心模块包括：用户、角色、职位、组织机构、菜单、字典、日志、多应用管理、文件管理、定时任务等功能。
-* 代码量少、通俗易懂、功能强大、易扩展，轻松开发从现在开始！
+* 代码量少、上手简单、功能强大、易扩展，轻松开发从现在开始！
 
 ```
-如果对您有帮助，您可以点右上角 “Star” 收藏一下 ，获取第一时间更新，谢谢！
+如果对您有帮助，您可以点右上角 💘Star💘收藏一下 ，获取第一时间更新，谢谢！！！
 ```
 
 ### 😎 衍生版本
@@ -38,35 +37,30 @@
 
 `如果集成其他ORM，请参照各自操作使用说明。系统默认EFCore不会处理其他ORM实体等，请自行处理。`
 
+### 👑 多租户简介
+
+框架目前采用基于共享数据库TenantId的方式实现，后期可无缝迁移转换到基于多库或者Schema模式。
+
+* 平台超管对租户进行增删改查操作，对各租户进行权限（菜单）的分配，租户管理员密码默认123456
+* 租户管理员根据平台分配的权限再对本租户内用户进一步权限划分
+* 针对新开发的业务功能，平台超管可以针对性分配给各租户（比如某租户购买后才有此功能菜单等） 
+
 ### 🥞 更新日志
 
 更新日志 [点击查看](https://gitee.com/zuohuaijun/Admin.NET/commits/master)
-
-### ⚡ 近期计划
-
-- [x] 集成多租户功能
-- [x] 集成代码生成器
-- [x] 集成导入导出
-- [ ] 在线用户及黑名单
-- [ ] 邮件发送
-- [ ] 短信发送
-- [ ] 集成微信开发
-- [ ] 实现电商应用插件
-- [ ] 集成工作流
 
 ### 🍿 在线体验
 
 - 体验地址：[http://39.107.123.76:82/](http://39.107.123.76:82/)
 - 开发者租户：用户名：superAdmin，密码：123456
-- 公司1租户： 公司1租户管理员（用户名：admin1 密码：123456），公司1租户普通用户（用户名：zuohuaijun1 密码：123456）
-           
+- 公司1租户： 公司1租户管理员（用户名：admin1 密码：123456），公司1租户普通用户（用户名：zuohuaijun1 密码：123456）           
 
 ### 🍄 快速启动
 
 需要安装：VS2019（最新版）、npm或yarn（最新版）
 
 * 启动后台：打开backend/Dilon.sln解决方案，直接运行（F5）即可启动（数据库默认SQLite）
-* 启动前端：打开frontend文件夹，进行依赖下载，运行npm install或yarn命令，再运行npm run serve或 yarn run serve
+* 启动前端：VSCode或HBuilder，打开frontend文件夹，进行依赖下载，运行npm install或yarn命令，再运行npm run serve或 yarn run serve
 * 浏览器访问：`http://localhost:81` （默认前端端口为：81，后台端口为：5566）
 <table>
     <tr>
@@ -74,6 +68,18 @@
         <td><img src="https://gitee.com/zuohuaijun/Admin.NET/raw/master/doc/img/f0.png"/></td>
     </tr>
 </table>
+
+### 🏀 分层说明
+```
+├─Dilon.Application             ->业务应用层，在此写您具体业务代码🌻🌻🌻
+├─Dilon.Core                    ->框架核心层，后期准备做成NuGet包直接引用即可
+├─Dilon.Database.Migrations     ->架构维护层，主要存放迁移中间文件
+├─Dilon.EntityFramework.Core    ->EF Core配置层，主要配置数据库及相关
+├─Dilon.Web.Core                ->Web核心层，主要是服务注册及鉴权
+├─Dilon.Web.Entry               ->Web入口层/启动层，可任意更换
+注：建议自己的业务代码直接写在【Dilon.Application】层里面，包括实体与服务等，或者单独新建个业务应用工程，进行模块化开发。
+😛其他层尽量不要管，可随框架升级而无缝升级。
+```
 
 ### 📖 帮助文档
 
@@ -86,6 +92,11 @@
 1. Ant Design Pro of Vue 使用文档 [https://pro.antdv.com/docs/getting-started](https://pro.antdv.com/docs/getting-started)
 2. Ant Design of Vue 组件文档 [https://www.antdv.com/docs/vue/getting-started-cn/](https://www.antdv.com/docs/vue/getting-started-cn/)
 3. Vue 开发文档 [https://cn.vuejs.org/v2/guide/](https://cn.vuejs.org/v2/guide/)
+
+👉快捷部署到 linux 文档：
+
+- [Admin.NET 快捷部署到 linux 方案 | Wynnyo Blog](http://wynnyo.com/archives/publish-linux)
+- [本地 md文件](./build/readme.md)
 
 😎通读以上文档，您就可以玩转本项目了（其实您已经是高手了）。项目使用上的问题，文档中基本都可以找到答案。
 
@@ -142,7 +153,9 @@
 18. 短信发送、短信发送功能，可使用阿里云sms，腾讯云sms，支持拓展。
 
 
-### 👀 数据库切换
+### 💪 数据库操作
+
+本框架ORM默认采用EF Core开发，加上拓展比如SqlSugar，理论上兼容并支持所有类型数据库。😜
 
 【MySQL】
 
@@ -159,12 +172,24 @@
 4. 打开程序包管理器控制台，默认项目Dilon.Database.Migrations 执行命令:```Add-Migration Init 和 update-database```
 
 ```
-提示：其他类型数据库依次类推，首先添加EF的Core版包，然后指定数据库类型，修改数据库连接字符串，执行EF命令即可。
+提示：其他类型数据库依次类推，首先添加EF的Core版包，然后指定数据库类型，修改数据库连接字符串，执行EF迁移命令即可。
 ```
+
+### ⚡ 近期计划
+
+- [x] 集成多租户功能
+- [x] 集成代码生成器
+- [x] 集成导入导出
+- [ ] 在线用户及黑名单
+- [ ] 邮件发送
+- [ ] 短信发送
+- [ ] 集成微信开发
+- [ ] 实现电商应用插件
+- [ ] 集成工作流
 
 ### 🥦 补充说明
 
-* 基于.NET 5平台 Furion 开发框架与小诺 Vue 版本相结合，实时跟随基架升级而升级！
+* 基于.NET 5平台 Furion 开发框架与小诺Antd Vue版本相结合，实时跟随基架升级而升级！
 * 持续集百家所长，完善与丰富本框架基础设施，为.NET生态增加一种选择！
 * 后期会推出基于此框架的相关应用场景案例，提供给大家使用！
 * 有问题讨论的小伙伴可加群一起学习讨论。 QQ群【87333204】
@@ -178,4 +203,4 @@
 - 👉 SqlSugar：[https://gitee.com/dotnetchina/SqlSugar](https://gitee.com/dotnetchina/SqlSugar)
 
 
-如果对您有帮助，您可以点 "Star" 支持一下，这样才有持续下去的动力，谢谢！！！
+如果对您有帮助，您可以点右上角 💘Star💘支持一下，这样我们才有持续下去的动力，谢谢！！！

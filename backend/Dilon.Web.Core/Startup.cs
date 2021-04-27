@@ -1,5 +1,6 @@
 using Dilon.Core;
 using Dilon.Core.Service;
+using Dilon.Web.Core.Hubs;
 using Furion;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -16,13 +17,9 @@ namespace Dilon.Web.Core
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddJwt<JwtHandler>(enableGlobalAuthorize: true);
-
             services.AddCorsAccessor();
-
             services.AddRemoteRequest();
-
             services.AddConfigurableOptions<CacheOptions>();
-
             services.AddControllersWithViews()
                     .AddMvcFilter<RequestActionFilter>()
                     .AddInjectWithUnifyResult<XnRestfulResultProvider>()
@@ -32,8 +29,9 @@ namespace Dilon.Web.Core
                         options.JsonSerializerOptions.Converters.AddDateFormatString("yyyy-MM-dd HH:mm:ss");
                         //options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles; // 忽略循环引用 仅.NET 6支持
                     });
-
             services.AddViewEngine();
+            services.AddSignalR();
+            services.AddSimpleEventBus();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -68,6 +66,8 @@ namespace Dilon.Web.Core
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapHub<ChatHub>("/hubs/chathub");
+
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");

@@ -3,8 +3,8 @@ using Furion.DatabaseAccessor;
 using Furion.DataEncryption;
 using Furion.DependencyInjection;
 using Furion.DynamicApiController;
+using Furion.EventBus;
 using Furion.FriendlyException;
-using Furion.TaskScheduler;
 using Mapster;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -153,23 +153,18 @@ namespace Dilon.Core.Service
                 loginOutput.Menus = await _sysMenuService.GetLoginMenusAntDesign(userId, defaultActiveAppCode);
             }
 
-            // 后台任务写登录日志
-            //SpareTime.DoIt(() =>
-            //{
-                SimpleQueue<SysLogVis>.Add(new SysLogVis
-                {
-                    Name = loginOutput.Name,
-                    Success = YesOrNot.Y,
-                    Message = "登录成功",
-                    Ip = loginOutput.LastLoginIp,
-                    Browser = loginOutput.LastLoginBrowser,
-                    Os = loginOutput.LastLoginOs,
-                    VisType = LoginType.LOGIN,
-                    VisTime = loginOutput.LastLoginTime,
-                    Account = loginOutput.Account
-                });
-            //});
-
+            MessageCenter.Send("create:vislog", new SysLogVis
+            {
+                Name = loginOutput.Name,
+                Success = YesOrNot.Y,
+                Message = "登录成功",
+                Ip = loginOutput.LastLoginIp,
+                Browser = loginOutput.LastLoginBrowser,
+                Os = loginOutput.LastLoginOs,
+                VisType = LoginType.LOGIN,
+                VisTime = loginOutput.LastLoginTime,
+                Account = loginOutput.Account
+            });
             return loginOutput;
         }
 
@@ -184,19 +179,15 @@ namespace Dilon.Core.Service
             _httpContextAccessor.SignoutToSwagger();
             //_httpContextAccessor.HttpContext.Response.Headers["access-token"] = "invalid token";
 
-            // 后台任务写退出日志
-            //SpareTime.DoIt(() =>
-            //{
-                SimpleQueue<SysLogVis>.Add(new SysLogVis
-                {
-                    Name = user.Name,
-                    Success = YesOrNot.Y,
-                    Message = "退出成功",
-                    VisType = LoginType.LOGOUT,
-                    VisTime = DateTimeOffset.Now,
-                    Account = user.Account
-                });
-            //});
+            MessageCenter.Send("create:vislog", new SysLogVis
+            {
+                Name = user.Name,
+                Success = YesOrNot.Y,
+                Message = "退出成功",
+                VisType = LoginType.LOGOUT,
+                VisTime = DateTimeOffset.Now,
+                Account = user.Account
+            });
 
             await Task.CompletedTask;
         }

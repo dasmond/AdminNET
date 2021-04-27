@@ -39,7 +39,7 @@ namespace Dilon.Core
 
         public void Configure(EntityTypeBuilder<SysNoticeUser> entityBuilder, DbContext dbContext, Type dbContextLocator)
         {
-            entityBuilder.HasNoKey();
+            entityBuilder.HasKey(c => new { c.NoticeId, c.UserId });
         }
     }
 }

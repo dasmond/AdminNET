@@ -1,10 +1,9 @@
 ﻿using Furion;
 using Furion.DatabaseAccessor;
-using Furion.DependencyInjection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+<<<<<<< HEAD
 using SqlSugar;
 using System.Collections.Generic;
 using System.Linq;
