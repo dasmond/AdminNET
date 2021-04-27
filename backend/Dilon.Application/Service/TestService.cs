@@ -7,7 +7,7 @@ namespace Dilon.Application
     /// <summary>
     /// 业务服务及集成SqlSugar用法事例
     /// </summary>
-    [ApiDescriptionSettings("自己的业务", Name = "Test", Order = 100)]
+    [ApiDescriptionSettings("住建平台", Name = "Test", Order = 100)]
     public class TestService : ITestService, IDynamicApiController, ITransient
     {
         //private readonly ISqlSugarRepository<Test> _testRep;
