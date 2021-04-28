@@ -2,31 +2,10 @@
 branches: {
   }
 fileChange:
-  /backend:
-    newFile: !uuid 'de3869c1193ab9bf8cc2192f71e098cf5003f536'
-    oldFile: !uuid 'ac7d8b25e5a3c13b93be65c2685231fc073c666f'
-  /backend/Dilon.Core:
-    newFile: !uuid '809caed47b1f5f560b198baf32216318744bccd3'
-    oldFile: !uuid '119cf4f3d324fdcb5d5e22ce1ce60ce82caa8f2b'
-  /backend/Dilon.Core/Service:
-    newFile: !uuid '31c8d5a5a2839846e790589daa40ef2bf10c264d'
-    oldFile: !uuid '35c649ffcdcddd130f8999681b82e8f9f3f5e4be'
-  /backend/Dilon.Core/Service/Dict:
-    newFile: !uuid '13a8434f6104d5d1ae4f53ff7c4e6c77dea281d4'
-    oldFile: !uuid '182dc1e2b5adcddcdc665c29c0492f878233b5f3'
-  /backend/Dilon.Core/Service/Dict/SysDictDataService.cs:
-    newFile: !uuid '4c78901c2f3ca20884745d34d5b92b390581d8af'
-    oldFile: !uuid '5b7874103aa975466f6689205d0d7e17aab4ae9f'
-  /backend/Dilon.Core/Service/Dict/SysDictTypeService.cs:
-    newFile: !uuid '20a07b47393c07935b7cbf214583be2e4a25908f'
-    oldFile: !uuid '6647039bd0bd814eb8cbc51cae8b2d6c2f10bc75'
-  /backend/Dilon.Core/Service/Enum:
-    newFile: !uuid 'fc791a8f04962bfc2e4d7d1d0815cf3864b7bf0d'
-    oldFile: !uuid 'c02613a57ecfd47640939654a58e7c89ce019e80'
-  /backend/Dilon.Core/Service/Enum/SysEnumDataService.cs:
-    newFile: !uuid 'b5edc5ce3dd6bdaa25a32f8e7448af95fdfd8910'
-    oldFile: !uuid 'ea03cea5956eb8eb1c6bbd9f78c913e87883f613'
-gitCommitId: !uuid 'ebb09fc53bf9f59d59135d76749413416ea9dc23'
+  /README.md:
+    newFile: !uuid '3e23850d33ec535ce4346df27a3ed5339afb2215'
+    oldFile: !uuid '2a0d86e8cef65c5fbd58aecd4ce44f72724095c4'
+gitCommitId: !uuid '85cd57344bee51cabd074aaf880b83dacdc2fd9b'
 renames: {
   }
-revisionId: 285
+revisionId: 286
