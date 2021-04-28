@@ -3,9 +3,15 @@ branches: {
   }
 fileChange:
   /README.md:
-    newFile: !uuid '3e23850d33ec535ce4346df27a3ed5339afb2215'
-    oldFile: !uuid '2a0d86e8cef65c5fbd58aecd4ce44f72724095c4'
-gitCommitId: !uuid '4d0e280ff2d78f56dc64d4c648e823f1e2da6bf3'
+    newFile: !uuid 'eef3991899658ff357ac913e45b04d07c4e20084'
+    oldFile: !uuid '3e23850d33ec535ce4346df27a3ed5339afb2215'
+  /doc:
+    newFile: !uuid '8560a6a6b6a62497df19d6785cffc99dfda3db50'
+    oldFile: !uuid '43df552c8ecccc6f4cb954ca78bec412da0ffac6'
+  /doc/代码生成器使用.md:
+    newFile: !uuid '65643c7d05490e6aca0224b4602905130bc5a02b'
+    oldFile: null
+gitCommitId: !uuid '316fc8b94418fae79b4824652786e285f7f699e8'
 renames: {
   }
-revisionId: 288
+revisionId: 289
