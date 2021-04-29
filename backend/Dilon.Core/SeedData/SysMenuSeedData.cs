@@ -195,7 +195,10 @@ namespace Dilon.Core
 
                 new SysMenu{Id=142307070922877, Pid=0, Pids="[0],", Name="大屏监控", Code="main_screen_monitor", Type=MenuType.MENU, Icon="desktop", Router="/monitor", Component="main/screenMonitor/index", Application="busiapp", OpenType=MenuOpenType.NONE, Visible="Y", Weight=MenuWeight.DEFAULT_WEIGHT, Sort=100, Status=CommonStatus.ENABLE },
 
-                new SysMenu{Id=142307070922878, Pid=0, Pids="[0],", Name="地理信息", Code="main_map", Type=MenuType.MENU, Icon="global", Router="/map", Component="main/map/index", Application="busiapp", OpenType=MenuOpenType.NONE, Visible="Y", Weight=MenuWeight.DEFAULT_WEIGHT, Sort=100, Status=CommonStatus.ENABLE }
+                new SysMenu{Id=142307070922878, Pid=0, Pids="[0],", Name="地理信息", Code="main_map", Type=MenuType.MENU, Icon="global", Router="/map", Component="main/map/index", Application="busiapp", OpenType=MenuOpenType.NONE, Visible="Y", Weight=MenuWeight.DEFAULT_WEIGHT, Sort=100, Status=CommonStatus.ENABLE },
+
+                new SysMenu{Id=153658608574533, Pid=0, Pids="[0],", Name="表格示例", Code="table", Type=MenuType.DIR, Icon="area-chart", Router="/table", Component="PageView", Application="busiapp", OpenType=MenuOpenType.NONE, Visible="Y", Redirect="", Weight=MenuWeight.DEFAULT_WEIGHT, Sort=1, Status=CommonStatus.ENABLE },
+                new SysMenu{Id=153659188850757, Pid=153658608574533, Pids="[0],[153658608574533],", Name="基础表格", Code="table_basic", Type=MenuType.MENU, Router="/tables/tableDemo", Component="tables/tableDemo", Application="busiapp", OpenType=MenuOpenType.NONE, Visible="Y", Weight=MenuWeight.DEFAULT_WEIGHT, Sort=100, Status=CommonStatus.ENABLE },
             };
         }
     }
