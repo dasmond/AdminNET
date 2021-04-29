@@ -33,15 +33,15 @@ Vue.use(VXETable)
 Vue.use(KFormDesign)
 Vue.use(dataV)
 
+Vue.use(KFormDesign)
+Vue.use(dataV)
+Vue.use(socket)
+
 Vue.use(VueAxios)
 Vue.use(Dialog)
 Vue.prototype.hasPerm = hasBtnPermission
 Vue.prototype.applocation = sysApplication
 Vue.config.productionTip = false
-
-Vue.use(KFormDesign)
-Vue.use(dataV)
-Vue.use(socket)
 
 new Vue({
   router,
