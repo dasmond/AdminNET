@@ -1303,6 +1303,26 @@
             用户备注（各平台中的用户个人介绍）
             </summary>
         </member>
+        <member name="T:Dilon.Core.OnlineUser">
+            <summary>
+            在线用户表
+            </summary>
+        </member>
+        <member name="P:Dilon.Core.OnlineUser.ConnectionId">
+            <summary>
+            连接Id
+            </summary>
+        </member>
+        <member name="P:Dilon.Core.OnlineUser.UserId">
+            <summary>
+            用户Id
+            </summary>
+        </member>
+        <member name="P:Dilon.Core.OnlineUser.LastTime">
+            <summary>
+            最后连接时间
+            </summary>
+        </member>
         <member name="T:Dilon.Core.SysOrg">
             <summary>
             组织机构表
@@ -2928,7 +2948,7 @@
             <param name="modelStates"></param>
             <param name="validationResults"></param>
             <param name="validateFailedMessage"></param>
-            <returns></returns>    
+            <returns></returns>
         </member>
         <member name="M:Dilon.Core.XnRestfulResultProvider.OnResponseStatusCodes(Microsoft.AspNetCore.Http.HttpContext,System.Int32,Furion.UnifyResult.UnifyResultStatusCodesOptions)">
             <summary>
@@ -5756,7 +5776,7 @@
         </member>
         <member name="M:Dilon.Core.Service.SysMenuService.CreateNewPids(System.Int64)">
             <summary>
-            创建Pids格式 
+            创建Pids格式
             如果pid是0顶级节点，pids就是 [0];
             如果pid不是顶级节点，pids就是 pid菜单的 pids + [pid] + ,
             </summary>
@@ -6154,6 +6174,17 @@
             <param name="openId"></param>
             <returns></returns>
         </member>
+        <member name="T:Dilon.Core.Service.SysOnlineUserService">
+            <summary>
+            在线用户服务
+            </summary>
+        </member>
+        <member name="M:Dilon.Core.Service.SysOnlineUserService.List">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:Dilon.Core.Service.OrgInput">
             <summary>
             组织机构参数
@@ -6339,7 +6370,7 @@
         </member>
         <member name="M:Dilon.Core.Service.SysOrgService.GetOrgTree(Dilon.Core.Service.OrgInput)">
             <summary>
-            获取组织机构树       
+            获取组织机构树
             </summary>
             <returns></returns>
         </member>
@@ -7460,7 +7491,7 @@
         </member>
         <member name="M:Dilon.Core.Service.SysUserService.AddUser(Dilon.Core.Service.AddUserInput)">
             <summary>
-            增加用户       
+            增加用户
             </summary>
             <param name="input"></param>
             <returns></returns>
@@ -7575,7 +7606,7 @@
             根据用户Id获取用户
             </summary>
             <param name="userId"></param>
-            <returns></returns>       
+            <returns></returns>
         </member>
         <member name="M:Dilon.Core.Service.SysUserService.SaveAuthUserToUser(Dilon.Core.Service.AuthUserInput,Dilon.Core.Service.UserInput)">
             <summary>
@@ -7590,7 +7621,7 @@
             获取用户数据范围（机构Id集合）并缓存
             </summary>
             <param name="userId"></param>
-            <returns></returns>       
+            <returns></returns>
         </member>
         <member name="M:Dilon.Core.Service.SysUserService.GetUserDataScopeIdList">
             <summary>
@@ -7632,6 +7663,11 @@
         <member name="M:Dilon.Core.SimpleQueue`1.Clear">
             <summary>
             清理
+            </summary>
+        </member>
+        <member name="T:Dilon.Core.LogSubscribeHandler">
+            <summary>
+            日志订阅处理
             </summary>
         </member>
         <member name="T:Dilon.Core.CodeGenUtil">
@@ -7727,9 +7763,9 @@
             <returns></returns>
         </member>
         <member name="T:Dilon.Core.NetworkInfo">
-            <summary>
+             <summary>
             
-            </summary>
+             </summary>
         </member>
         <member name="M:Dilon.Core.NetworkInfo.GetNetworkInfo">
             <summary>

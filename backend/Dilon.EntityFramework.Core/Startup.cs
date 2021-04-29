@@ -3,7 +3,6 @@ using Furion.DatabaseAccessor;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
-<<<<<<< HEAD
 using SqlSugar;
 using System.Collections.Generic;
 using System.Linq;
