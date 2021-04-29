@@ -3,33 +3,75 @@ branches: {
   }
 fileChange:
   /README.md:
-    newFile: !uuid '4065a3e382066b07bd37c6f48862f9d19f9423c5'
-    oldFile: !uuid 'eef3991899658ff357ac913e45b04d07c4e20084'
+    newFile: !uuid '20ce5d32a4b5cc7dc22b69d4118b9cf15b5575bb'
+    oldFile: !uuid '4065a3e382066b07bd37c6f48862f9d19f9423c5'
   /backend:
-    newFile: !uuid 'd7d49c5d00fa1b19ab7c01d7e0ce16a66d482d3f'
-    oldFile: !uuid '2a1c3240de0839c1bda2206b817c87c5402a516c'
+    newFile: !uuid 'bcd178c4242402ef757b3c4cf5ab093109a3c648'
+    oldFile: !uuid 'd7d49c5d00fa1b19ab7c01d7e0ce16a66d482d3f'
+  /backend/Dilon.Application:
+    newFile: !uuid '8edf837e72d7eabb4087a0b7961a3044785eb048'
+    oldFile: !uuid '651bb3cc94a07a659a439491eac40fde6e2942df'
+  /backend/Dilon.Application/Service:
+    newFile: !uuid '050e57d8f306835b979746843f70ef607def7e44'
+    oldFile: !uuid '900c1e38b6fe16aa89d6b3c9bfb28aa2239bae4c'
+  /backend/Dilon.Application/Service/ITestService.cs:
+    newFile: !uuid '7d26f82839470d821546a57a8ae78a7076566ee6'
+    oldFile: !uuid '9183a4667e909369d9b2460d59982f68ed43d80a'
+  /backend/Dilon.Application/Service/TestService.cs:
+    newFile: !uuid 'b51afd9b64d44a432b136f461391156c4a667c99'
+    oldFile: !uuid 'e976463fe889f0bb2509190d7be07186daeedf8a'
   /backend/Dilon.Core:
-    newFile: !uuid '7e2076cd72aaf2c75a13221f9b7a22e9f2555209'
-    oldFile: !uuid '02b89290baf8f5ac33cf9d66810267c1e5d97a7e'
-  /backend/Dilon.Core/Const:
-    newFile: !uuid '294b28170a3e9b6bcaf790d4c12d33cc4e812eed'
-    oldFile: !uuid '6b60bf3655eb087465b5b12638a556ebe33a2186'
-  /backend/Dilon.Core/Const/ClaimConst.cs:
-    newFile: !uuid '534fe244ef588d465550962536e7a486273f90b7'
-    oldFile: !uuid 'ad8ab9ba0627b64d3f4d803258cae51f531fab74'
-  /build:
-    newFile: !uuid 'ce4f4f59b605927731b2252afe570e63d94ad526'
-    oldFile: !uuid 'cbad45c73ccf25d81cfe5bb4ff74d843222abd71'
-  /build/readme.md:
-    newFile: !uuid 'a903825ce34a7148ff99e76e8e2b1fe60652155a'
-    oldFile: !uuid '97ab2a4b7bfb3f80b2979cb70b97bbca1d62cda0'
-  /doc:
-    newFile: !uuid '03e08c78fb7c1bea8f7c3e067bfaa0058b9bb2ab'
-    oldFile: !uuid '8560a6a6b6a62497df19d6785cffc99dfda3db50'
-  /doc/fork项目后该这样做后续开发.md:
-    newFile: !uuid '529418d394b20e1953d4c07deec6102aef4e0580'
+    newFile: !uuid '9fd7de356eb281e4f200b98c67355a9dcadab8ef'
+    oldFile: !uuid '7e2076cd72aaf2c75a13221f9b7a22e9f2555209'
+  /backend/Dilon.Core/Hubs:
+    newFile: !uuid '4725e1d550f6e41848b983e280855e132585506a'
     oldFile: null
-gitCommitId: !uuid '1ef8ba108edc4cb74d9fce3b596f3f7f5bcae310'
-renames: {
-  }
-revisionId: 294
+  /backend/Dilon.Core/Hubs/ChatHub.cs:
+    newFile: !uuid '5bcda2e74ed33da3ddeb70a23879f5d573609fda'
+    oldFile: null
+  /backend/Dilon.Web.Core:
+    newFile: !uuid '3db1a0f2b7262bbe7fed4a1743f87713010abb93'
+    oldFile: !uuid '03c54e0b90a1ead2cdc89667080a5ffd66cdb519'
+  /backend/Dilon.Web.Core/Hubs:
+    newFile: null
+    oldFile: !uuid 'fcba2b58ce107a1c96e043d0b39bb29ca1b8c5fd'
+  /backend/Dilon.Web.Core/Hubs/ChatHub.cs:
+    newFile: null
+    oldFile: !uuid '21419003f8b992acdcdcc665d856778cfe225df7'
+  /backend/Dilon.Web.Core/Startup.cs:
+    newFile: !uuid 'b6f37b9762bcc8216f1def27b4a3a2db5db9eceb'
+    oldFile: !uuid '0af87d2e0d6d077024c4182b3c96e07734390424'
+  /build:
+    newFile: !uuid '4594f2b7db5e96a13abe355ef13d36a30fb9b687'
+    oldFile: !uuid 'ce4f4f59b605927731b2252afe570e63d94ad526'
+  /build/readme.md:
+    newFile: !uuid 'd25f61b5ca1b6963688efea6557114e0c10978fe'
+    oldFile: !uuid 'a903825ce34a7148ff99e76e8e2b1fe60652155a'
+  /frontend:
+    newFile: !uuid 'cb192f5d51ca6bb0bb2d7bca671351c8e6c38dee'
+    oldFile: !uuid '69e0640140ab4028d1dde6a8c72055c216f52605'
+  /frontend/src:
+    newFile: !uuid '5b17e3c512cc1098d3526f89581d83d4abb221f0'
+    oldFile: !uuid '1e92b9b58353b270a35d2409a597042b80dd2b3a'
+  /frontend/src/components:
+    newFile: !uuid '44daecbeb6ea3463434e8f9e9d15c01d05c45f95'
+    oldFile: !uuid '53068f1c3fb6a8a34718b09ff1c5d794a530381e'
+  /frontend/src/components/tools:
+    newFile: !uuid '3d1e4b9effdbe99b3b0ff156feac0549625afcb5'
+    oldFile: !uuid 'a7727fa5f58e264243c81956a2f85123d5781433'
+  /frontend/src/components/tools/UserMenu.vue:
+    newFile: !uuid 'e63c583937f50ffb2b165c917742b9327ec4a8b2'
+    oldFile: !uuid '3c93efa72f480a54e9ee1f7ba4c52b0f43c5b49d'
+  /frontend/src/main.js:
+    newFile: !uuid '4b0aefa31df30d35dda9802e46b974878c645498'
+    oldFile: !uuid '0d641ac06d09eea19496b417ccfbcf1235d1c709'
+  /frontend/src/utils:
+    newFile: !uuid 'ca17d3d70e71ef881efeb9a46463435e0815ea41'
+    oldFile: !uuid 'ca30c99b6124fc8d49ebcf2bd41b16f42464d5ce'
+  /frontend/src/utils/socket.js:
+    newFile: !uuid 'ff5859045881152e343351bad5acb77f511c1b3c'
+    oldFile: !uuid 'f7051d8a36bc1ca690773779402d2daa04ce567e'
+gitCommitId: !uuid '97caa17cb618b5313af96cb5cc140e16aec0836c'
+renames:
+  /backend/Dilon.Core/Hubs/ChatHub.cs: /backend/Dilon.Web.Core/Hubs/ChatHub.cs
+revisionId: 295
