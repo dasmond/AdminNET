@@ -2,103 +2,34 @@
 branches: {
   }
 fileChange:
+  /README.md:
+    newFile: !uuid '4065a3e382066b07bd37c6f48862f9d19f9423c5'
+    oldFile: !uuid 'eef3991899658ff357ac913e45b04d07c4e20084'
   /backend:
-    newFile: !uuid '2a1c3240de0839c1bda2206b817c87c5402a516c'
-    oldFile: !uuid 'ba9a669053e4fef72382ea0d66c5ebd319d17a43'
+    newFile: !uuid 'd7d49c5d00fa1b19ab7c01d7e0ce16a66d482d3f'
+    oldFile: !uuid '2a1c3240de0839c1bda2206b817c87c5402a516c'
   /backend/Dilon.Core:
-    newFile: !uuid '02b89290baf8f5ac33cf9d66810267c1e5d97a7e'
-    oldFile: !uuid '4230eecd67858bfe7a36a0c22c33e3ec5219d2dc'
-  /backend/Dilon.Core/Cache:
-    newFile: null
-    oldFile: !uuid '1f6ef08d4e26a512c34f806e2826d78114656cde'
-  /backend/Dilon.Core/Cache/CacheOptions.cs:
-    newFile: null
-    oldFile: !uuid '1ca712b94265056f94b82398b2d1c937827f1935'
-  /backend/Dilon.Core/Cache/ICache.cs:
-    newFile: null
-    oldFile: !uuid '7aa900713d2a1da680e5e91967b001be822c2eeb'
-  /backend/Dilon.Core/Cache/MemoryCache.cs:
-    newFile: null
-    oldFile: !uuid '90d1fe90109e729f09d0bba33351274bba9b595f'
-  /backend/Dilon.Core/Cache/RedisCache.cs:
-    newFile: null
-    oldFile: !uuid '19ebb39ab20160b919de79c4a60dd063bf8506c5'
+    newFile: !uuid '7e2076cd72aaf2c75a13221f9b7a22e9f2555209'
+    oldFile: !uuid '02b89290baf8f5ac33cf9d66810267c1e5d97a7e'
   /backend/Dilon.Core/Const:
-    newFile: !uuid '6b60bf3655eb087465b5b12638a556ebe33a2186'
-    oldFile: !uuid '283127ecec21ef720d30838c2f1c4137e38a1dde'
-  /backend/Dilon.Core/Const/CommonConst.cs:
-    newFile: !uuid '6b8018a04b79d21bfc68209e2166fd45a1c985ca'
-    oldFile: !uuid '17fef02886acff7b71513feb36b6008b1f56f8f3'
-  /backend/Dilon.Core/Dilon.Core.csproj:
-    newFile: !uuid '845776abe5320c627fe0e00da61c052a08f23b87'
-    oldFile: !uuid '29eecee6bb449c4fed8dbe8f424b98a1057a1a26'
-  /backend/Dilon.Core/Job:
-    newFile: null
-    oldFile: !uuid '043ca0392b238260ac55ba7c7330aad5d52ca833'
-  /backend/Dilon.Core/Job/LogJobWorker.cs:
-    newFile: null
-    oldFile: !uuid '63f7cf6f0c20b541b1d2f3ab834b19d53ec3aa3d'
-  /backend/Dilon.Core/SeedData:
-    newFile: !uuid '75c6935895c684179e2ed8ac128e044d7c2c39cc'
-    oldFile: !uuid '3205d1e0f2bc612a6e8a11bc43d21eaec7b09d37'
-  /backend/Dilon.Core/SeedData/SysMenuSeedData.cs:
-    newFile: !uuid '2c2998a7dbaad8a9f93ed1966cdfaa8ce484b8b4'
-    oldFile: !uuid 'ea9e95f8508f4523cb7697d38fe3a65c8d9a89e8'
-  /backend/Dilon.Core/SeedData/SysTimerSeedData.cs:
-    newFile: !uuid '5578561e5dfb767b40fe530e6c5a0d3403f8ed75'
-    oldFile: !uuid '1ffd9fdcbc78957ac11ad49147d7a04ed7e15bbf'
-  /backend/Dilon.Core/Service:
-    newFile: !uuid '0032bd980ec36370e68fcddfb8185a436826f380'
-    oldFile: !uuid '2297213c2a570c28b257f0866c879fb9e1281212'
-  /backend/Dilon.Core/Service/Cache:
-    newFile: !uuid 'b6ea6e3db1795d39c92d0e6b5efde93f6de12971'
-    oldFile: !uuid '433d8fd88053cb589424e65cb14adb65c5b1af6a'
-  /backend/Dilon.Core/Service/Cache/ISysCacheService.cs:
-    newFile: !uuid '729c11bff8094fbffa64eb348493c998999a9748'
-    oldFile: !uuid 'e05b06950f1e423c8fd1adeb4991d1936616b311'
-  /backend/Dilon.Core/Service/Cache/SysCacheService.cs:
-    newFile: !uuid 'bfaaed9b39b1ccc39a29934531b462b7a77a13ba'
-    oldFile: !uuid '9dd45522f6bfd890f443931675bd126b811c125f'
-  /backend/Dilon.Core/Service/Config:
-    newFile: !uuid '0e2968052028b32f895635ac3fe7643df33cc301'
-    oldFile: !uuid '5969537bdc21e8b92bdcbe49b92eb1e43b2ac790'
-  /backend/Dilon.Core/Service/Config/SysConfigService.cs:
-    newFile: !uuid '367ba4359f8d9f4a9f8dafb34b3317514f179c47'
-    oldFile: !uuid 'f2db4e6524fedb252daab1089fe59258fd9712dd'
-  /backend/Dilon.Core/Service/Timer:
-    newFile: !uuid '447c5616a45edcccf53028538b46756733a39641'
-    oldFile: !uuid '5e5c674e89d0578066095bfcf5de7de6a971c190'
-  /backend/Dilon.Core/Service/Timer/SysTimerService.cs:
-    newFile: !uuid '3fdd090847dafc4159198a5a47574ab1860d64de'
-    oldFile: !uuid '4fcbb2d3891c5d19da873dae27100d2a54ac43d3'
-  /backend/Dilon.Core/Service/User:
-    newFile: !uuid '2a78952a3b57e433c3ce8ba1e0c8c143a9520523'
-    oldFile: !uuid '5b9602289de6386c364179d5f0347b8b255845cc'
-  /backend/Dilon.Core/Service/User/SysUserService.cs:
-    newFile: !uuid '1f1964b4e1766366d6b1f2d15846f2a9af3b5062'
-    oldFile: !uuid '15b0cd67dac22998186ae88edb27b981f1cff319'
-  /backend/Dilon.Core/SimpleQueue:
-    newFile: null
-    oldFile: !uuid 'cb90ec66c1c5ff2e3e4c2d5b8cfeb1b84cee6592'
-  /backend/Dilon.Core/SimpleQueue/SimpleQueue.cs:
-    newFile: null
-    oldFile: !uuid '0c1d2686dafdb1783c65eeec39b7f0b5932bc35d'
-  /backend/Dilon.Core/applicationconfig.json:
-    newFile: !uuid 'afa88da124d0bbeec8c4463c074d66f930aaf412'
-    oldFile: !uuid '50e66ec24369e08c4d1cb5b01ffec7ff6f5950b2'
-  /backend/Dilon.Web.Core:
-    newFile: !uuid '03c54e0b90a1ead2cdc89667080a5ffd66cdb519'
-    oldFile: !uuid '35f89688786c085ac64ccf277de897bbacbf3c0b'
-  /backend/Dilon.Web.Core/Startup.cs:
-    newFile: !uuid '0af87d2e0d6d077024c4182b3c96e07734390424'
-    oldFile: !uuid 'c496fd64158cfe57cffc4692f84f1f268f868b68'
-  /backend/Dilon.Web.Entry:
-    newFile: !uuid 'cb0dadaca583b6bc8d17a8696debdd316f76f845'
-    oldFile: !uuid 'df0258960f81a7c39167944edb95ce8a92bdb686'
-  /backend/Dilon.Web.Entry/Dilon.db:
-    newFile: !uuid '222ae9ed1454b36f28030147ca4300c0ea06906c'
-    oldFile: !uuid '2a959d6d7da16d5d8bf4ae122c0e0eb8487424a1'
-gitCommitId: !uuid '08deabb88e6a578692f46cf9658d157a6f884c41'
+    newFile: !uuid '294b28170a3e9b6bcaf790d4c12d33cc4e812eed'
+    oldFile: !uuid '6b60bf3655eb087465b5b12638a556ebe33a2186'
+  /backend/Dilon.Core/Const/ClaimConst.cs:
+    newFile: !uuid '534fe244ef588d465550962536e7a486273f90b7'
+    oldFile: !uuid 'ad8ab9ba0627b64d3f4d803258cae51f531fab74'
+  /build:
+    newFile: !uuid 'ce4f4f59b605927731b2252afe570e63d94ad526'
+    oldFile: !uuid 'cbad45c73ccf25d81cfe5bb4ff74d843222abd71'
+  /build/readme.md:
+    newFile: !uuid 'a903825ce34a7148ff99e76e8e2b1fe60652155a'
+    oldFile: !uuid '97ab2a4b7bfb3f80b2979cb70b97bbca1d62cda0'
+  /doc:
+    newFile: !uuid '03e08c78fb7c1bea8f7c3e067bfaa0058b9bb2ab'
+    oldFile: !uuid '8560a6a6b6a62497df19d6785cffc99dfda3db50'
+  /doc/fork项目后该这样做后续开发.md:
+    newFile: !uuid '529418d394b20e1953d4c07deec6102aef4e0580'
+    oldFile: null
+gitCommitId: !uuid '1ef8ba108edc4cb74d9fce3b596f3f7f5bcae310'
 renames: {
   }
-revisionId: 293
+revisionId: 294
