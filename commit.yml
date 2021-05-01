@@ -3,84 +3,24 @@ branches: {
   }
 fileChange:
   /backend:
-    newFile: !uuid '1d5fd0b63b017bcec4cfe300f1d05d1e082bb4f4'
-    oldFile: !uuid '00c8bf0fecf4a7262d374ff6eb187270c9d203db'
+    newFile: !uuid '1c9d9eb53b11d7185e1df1a87e58a6bf4d1a92f5'
+    oldFile: !uuid '1d5fd0b63b017bcec4cfe300f1d05d1e082bb4f4'
   /backend/Dilon.Core:
-    newFile: !uuid '1b16dc77d52516d6909ac4b07f63d90741b0ef13'
-    oldFile: !uuid '05aaa58ac433c72d1fbf94a0ff13e8f9f194c7d3'
+    newFile: !uuid 'ff979eb22f0658d439e4503329ba9ffd36c8346d'
+    oldFile: !uuid '1b16dc77d52516d6909ac4b07f63d90741b0ef13'
   /backend/Dilon.Core/Service:
-    newFile: !uuid '1f430794a36f033b3fde58c314e1c1c81ca85f1f'
-    oldFile: !uuid '98f868b1510e78d4a7cab72f9e05ea8f8ced829e'
+    newFile: !uuid '1e21e499237eb3f0c401c8b9832f13cd4360c4d8'
+    oldFile: !uuid '1f430794a36f033b3fde58c314e1c1c81ca85f1f'
   /backend/Dilon.Core/Service/Dict:
-    newFile: !uuid '3762e8ee15d0daf3a17ab621be6327ea4241dfbf'
-    oldFile: !uuid '13a8434f6104d5d1ae4f53ff7c4e6c77dea281d4'
-  /backend/Dilon.Core/Service/Dict/Dto:
-    newFile: !uuid 'bd3167dd0c8eb01a8892f595bfab488e925687dd'
-    oldFile: !uuid 'da60f5eb27963af438306672d8bd8d84aafafff8'
-  /backend/Dilon.Core/Service/Dict/Dto/DictDataInput.cs:
-    newFile: !uuid '819c56ff9d66aa2899b2d107f3c54d84f2c54151'
-    oldFile: !uuid '818c99c695c6a2c0660369941de0e65ed47bc069'
-  /backend/Dilon.Core/Service/Dict/Dto/DictTypeInput.cs:
-    newFile: !uuid 'f86d63405f4d9e4e4e8430aaf3da8d3e2a383b57'
-    oldFile: !uuid 'bbf3398d8b82ef8ba06f02c887fd3b06aa769eae'
-  /backend/Dilon.Core/Service/Dict/ISysDictDataService.cs:
-    newFile: !uuid '999efb82c7bc2223784ac38f32801809c6cbc471'
-    oldFile: !uuid '54a1d6a0973beb2d057aecf6ade17e185b8a232c'
-  /backend/Dilon.Core/Service/Dict/ISysDictTypeService.cs:
-    newFile: !uuid '5c55e0ef03460b320c951e835327504b174e5f82'
-    oldFile: !uuid '1966b044d735c1c901d309adc4ff4022d9dbb0db'
+    newFile: !uuid '270e190d6c4b4eb500f727c1ff28546b0d1a2c35'
+    oldFile: !uuid '3762e8ee15d0daf3a17ab621be6327ea4241dfbf'
   /backend/Dilon.Core/Service/Dict/SysDictDataService.cs:
-    newFile: !uuid '4b5b3bb9d12c8e3062d5fe75badba53177701875'
-    oldFile: !uuid '4c78901c2f3ca20884745d34d5b92b390581d8af'
+    newFile: !uuid '30c1ab9f29fbe2cfd17905e28cb82878e28c7422'
+    oldFile: !uuid '4b5b3bb9d12c8e3062d5fe75badba53177701875'
   /backend/Dilon.Core/Service/Dict/SysDictTypeService.cs:
-    newFile: !uuid '915c2f1fa75da2dac8e52974a14c731ca51f81ef'
-    oldFile: !uuid '20a07b47393c07935b7cbf214583be2e4a25908f'
-  /backend/Dilon.Web.Entry:
-    newFile: !uuid 'd46b4d567344c15b9054b8f665966683dc06baaa'
-    oldFile: !uuid 'a3eb688eab5f5be31c35c6cde49bf5b80f2da6f7'
-  /backend/Dilon.Web.Entry/Dilon.db:
-    newFile: !uuid '78e26e6063e7fe179e44a4e69ac7408637b06c11'
-    oldFile: !uuid '40132ad5ecc0375cc19ec3a0abae3f77877e9dcc'
-  /frontend:
-    newFile: !uuid 'c32eccc6e61a224bd95e1c9a79da4596ab78b74b'
-    oldFile: !uuid '5822a89080ecaffaf9f6de91ce72fe3a8216d024'
-  /frontend/src:
-    newFile: !uuid '55b3f9b2d7ad5c16dff9139a984297889155b48a'
-    oldFile: !uuid 'c7990f810bbd77f4500c026d8313e34c01f3c341'
-  /frontend/src/api:
-    newFile: !uuid 'b3aa7bc88fd66bb990a578de0312d5edcffeae84'
-    oldFile: !uuid 'd3d61c06959cbbfde6d90e656c84b135d5b1f6bc'
-  /frontend/src/api/modular:
-    newFile: !uuid '5037742abc3e22c586339a68da79ee0a31dc42b2'
-    oldFile: !uuid '7c467d10f235d62549ad0f399299f157b7e8b8fe'
-  /frontend/src/api/modular/system:
-    newFile: !uuid '913f965dbbf60a5759f51cb893e2d5bc6c7a34de'
-    oldFile: !uuid '1366813e126e928ad8b39174b7ac3ec2041ab6c6'
-  /frontend/src/api/modular/system/dictDataManage.js:
-    newFile: !uuid '967083fdc171dc1951c72c89e24dae56b1db3960'
-    oldFile: !uuid '2240b849142e83a11c867b060d0dbc507c5461d5'
-  /frontend/src/api/modular/system/dictManage.js:
-    newFile: !uuid '64e30d6d08cbec56f66affd728438a40eac9a5b6'
-    oldFile: !uuid 'bbc44bd40e21cd97593a8d6c941213dc1f01715b'
-  /frontend/src/views:
-    newFile: !uuid 'c079fdc7397468c31b14d9ccaf21b877613d4edb'
-    oldFile: !uuid '59c120eafab6d86dbf36ff9dbc477ad354b38812'
-  /frontend/src/views/system:
-    newFile: !uuid '24457068842d1736a16020a9582e7b093758848f'
-    oldFile: !uuid 'df9e6f2e81d7e2b502906a812e5bbb410d4f8627'
-  /frontend/src/views/system/dict:
-    newFile: !uuid '9ea8f4a0d7aa3de53359a599986f077222238978'
-    oldFile: !uuid 'd5afa55efe6cfd1a54da0c1df8c46d53aac68b13'
-  /frontend/src/views/system/dict/dictdata:
-    newFile: !uuid '4e468fa0fab478a8a6ef4653e897f95fbcb15f9b'
-    oldFile: !uuid '6bda162af8a74b7c4996eefaab0fc708cfe28806'
-  /frontend/src/views/system/dict/dictdata/index.vue:
-    newFile: !uuid '829b1be65b9bcb4ffbfc22add31143494663bec7'
-    oldFile: !uuid 'ee6835c4448daf0036083e471f86f3d60697ac2e'
-  /frontend/src/views/system/dict/index.vue:
-    newFile: !uuid '9b0d0bedb242c50f88a6a2242c2199af26390e7d'
-    oldFile: !uuid '1b49d4bf6fbb988c2069b089f987f96f26b2ed09'
-gitCommitId: !uuid 'd8a4b434bc52f22a16dd5de1188b8e90be1e5c55'
+    newFile: !uuid '86f4772513fd96cec5a0b28badd5b52448344dd0'
+    oldFile: !uuid '915c2f1fa75da2dac8e52974a14c731ca51f81ef'
+gitCommitId: !uuid '96e1bdce4d37328f9cb38211a4ffcf3ae027c152'
 renames: {
   }
-revisionId: 308
+revisionId: 309
