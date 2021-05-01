@@ -3,63 +3,42 @@ branches: {
   }
 fileChange:
   /backend:
-    newFile: !uuid '00c8bf0fecf4a7262d374ff6eb187270c9d203db'
-    oldFile: !uuid 'c7198f25cca52256c79b188e5ffceee097403d53'
-  /backend/Dilon.Core:
-    newFile: !uuid '05aaa58ac433c72d1fbf94a0ff13e8f9f194c7d3'
-    oldFile: !uuid '90d9fe33b936d3d309119cf7cbe429c7265b4513'
-  /backend/Dilon.Core/Hubs:
-    newFile: !uuid 'f7f16749cb07c6048efa903d61ca26e975577f7f'
-    oldFile: !uuid '00850d9d442f5d84ccef5094610c59e78731d463'
-  /backend/Dilon.Core/Hubs/ChatHub.cs:
-    newFile: !uuid '815ae83fb100f18963442419ca06d395f9a11a4a'
-    oldFile: !uuid '0573c148276970f85c141169d678bf64380c8494'
-  /backend/Dilon.Core/Service:
-    newFile: !uuid '98f868b1510e78d4a7cab72f9e05ea8f8ced829e'
-    oldFile: !uuid '0032bd980ec36370e68fcddfb8185a436826f380'
-  /backend/Dilon.Core/Service/Auth:
-    newFile: !uuid '16604a422f51c4cdf4f73fa911b9656ff2ddd479'
-    oldFile: !uuid '4adf0263782cf115cd989bc6896d6c248759d27d'
-  /backend/Dilon.Core/Service/Auth/AuthService.cs:
-    newFile: !uuid '3fdeaf5bee952a92875082001ecef7b48238ba91'
-    oldFile: !uuid 'c187e88e3434932f68c5c4b64305db3f26dbbd7d'
-  /backend/Dilon.Core/Service/OnlineUser:
-    newFile: !uuid '106091d70a2af7308cbfb7f7bf3f6eeb221ed82b'
-    oldFile: !uuid 'aa6027d7758957cad64191ae6b3f69b017071b1a'
-  /backend/Dilon.Core/Service/OnlineUser/SysOnlineUserService.cs:
-    newFile: !uuid 'c2316c43433735fed6827ae7d9ede645072f7e4e'
-    oldFile: !uuid 'f7bd8ba233abb551377b8b2e024f18a44c5949bd'
-  /backend/Dilon.Core/Service/User:
-    newFile: !uuid 'faeae35a1987507106c16e351dcfdd183e97dbd8'
-    oldFile: !uuid '2a78952a3b57e433c3ce8ba1e0c8c143a9520523'
-  /backend/Dilon.Core/Service/User/SysUserService.cs:
-    newFile: !uuid '2d2ce3947d3147d8b149b13b3e5159afc5e80139'
-    oldFile: !uuid '1f1964b4e1766366d6b1f2d15846f2a9af3b5062'
+    newFile: !uuid '2861827d3e413d01ddcd19888b48fe7d89065ddb'
+    oldFile: !uuid '00c8bf0fecf4a7262d374ff6eb187270c9d203db'
   /backend/Dilon.Web.Entry:
-    newFile: !uuid 'a3eb688eab5f5be31c35c6cde49bf5b80f2da6f7'
-    oldFile: !uuid 'ab3299a762fc64b76681d58b184cb045c553b495'
-  /backend/Dilon.Web.Entry/Dilon.db:
-    newFile: !uuid '40132ad5ecc0375cc19ec3a0abae3f77877e9dcc'
-    oldFile: !uuid '690e693b124921be5a37560ff9d020f6ea99e061'
+    newFile: !uuid '3347e3612e53ec8271e2c3ec164b0eff6e203844'
+    oldFile: !uuid 'a3eb688eab5f5be31c35c6cde49bf5b80f2da6f7'
+  /backend/Dilon.Web.Entry/Dockerfile:
+    newFile: !uuid '365767ed484ebbcc2b6c404cc006837abc9fdbe0'
+    oldFile: !uuid 'c8a50217ef52ee9d317b8d8691686ec7884ef4ac'
+  /build:
+    newFile: !uuid '5be0d7b65c4a69184b1df081d1ac9750c00a0209'
+    oldFile: !uuid '4594f2b7db5e96a13abe355ef13d36a30fb9b687'
+  /build/build-docker.ps1:
+    newFile: !uuid '6d1bd7ef04f01bec5379523456642dda246d2722'
+    oldFile: null
+  /build/core:
+    newFile: !uuid '9e85047c869a53dc4629ce058355dcdb9401bb3e'
+    oldFile: null
+  /build/core/docker-compose.yml:
+    newFile: !uuid 'b0766e02bc9052850b39a8ca4a371e528b0b14e4'
+    oldFile: null
+  /build/vue:
+    newFile: !uuid 'dd3024ca8ab9f4c3a77bd09d99f58c73d60a3d3b'
+    oldFile: null
+  /build/vue/docker-compose.yml:
+    newFile: !uuid '1f0966483d668fa125767e7701b2c167215beaac'
+    oldFile: null
+  /build/vue/nginx.conf:
+    newFile: !uuid '5883acba1257268c91af6607afa8cb0ecf46efea'
+    oldFile: null
   /frontend:
-    newFile: !uuid '5822a89080ecaffaf9f6de91ce72fe3a8216d024'
-    oldFile: !uuid '5d4106e137b356b1415220b625721b3862be0ca5'
-  /frontend/src:
-    newFile: !uuid 'c7990f810bbd77f4500c026d8313e34c01f3c341'
-    oldFile: !uuid 'd5b8955ff2ffe438eb55478ce12ecc55083420d5'
-  /frontend/src/views:
-    newFile: !uuid '59c120eafab6d86dbf36ff9dbc477ad354b38812'
-    oldFile: !uuid 'b6fae486c558c188d5604cd19dd393bce9edd3e9'
-  /frontend/src/views/system:
-    newFile: !uuid 'df9e6f2e81d7e2b502906a812e5bbb410d4f8627'
-    oldFile: !uuid 'ac14553e8834538690978ebdc18ad5afa20567fd'
-  /frontend/src/views/system/onlineUser:
-    newFile: !uuid 'c5e24ca2ed29faee38c9a8d47b90e1cfe8313290'
-    oldFile: !uuid '78c53cf8a98f7a47f83add795477e2ba0a77819b'
-  /frontend/src/views/system/onlineUser/index.vue:
-    newFile: !uuid 'eee69a2c453d5a5b35b2c0c536bac93e69b9f150'
-    oldFile: !uuid '864d99a0939bd0b5afbc9a0623d0e2f1e83ce8e9'
-gitCommitId: !uuid '9a8cd6f6006136003e478994b728aeb88acef610'
+    newFile: !uuid '4176565a67c19e4ea82a6a8ba16c443af502881f'
+    oldFile: !uuid '5822a89080ecaffaf9f6de91ce72fe3a8216d024'
+  /frontend/Dockerfile:
+    newFile: !uuid 'cc6654108474f45d2c17a5bb916a3c9b6bc9625e'
+    oldFile: null
+gitCommitId: !uuid 'f32a0308cb183890dce79a6ca3954f01214b2693'
 renames: {
   }
-revisionId: 297
+revisionId: 298
