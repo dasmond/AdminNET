@@ -2,16 +2,25 @@
 branches: {
   }
 fileChange:
-  /build:
-    newFile: !uuid '47280ae865521e49042e5c90d03fa395c6ee3cec'
-    oldFile: !uuid '5be0d7b65c4a69184b1df081d1ac9750c00a0209'
-  /build/vue:
-    newFile: !uuid '526840b6252c6a7a855a4db99e3f390b9f57e4b4'
-    oldFile: !uuid 'dd3024ca8ab9f4c3a77bd09d99f58c73d60a3d3b'
-  /build/vue/nginx.conf:
-    newFile: !uuid '0c4b0f04422647fa59d2712dd680be5aeaa02c64'
-    oldFile: !uuid '5883acba1257268c91af6607afa8cb0ecf46efea'
-gitCommitId: !uuid '8ff3d6367ac17d60e8e680ef842029d47db6156e'
+  /backend:
+    newFile: !uuid 'b046ef0e6fe5e5838c0652bcaf106f414c0579f4'
+    oldFile: !uuid 'dcb1b7856fdeab70904c53a635a9e0a83d42aef8'
+  /backend/Dilon.Core:
+    newFile: !uuid '0aa0506d8e18e94c9765f17bf01052f673e57267'
+    oldFile: !uuid '497e6cbd17ec8730c7a2269428e8f8b91537b3d5'
+  /backend/Dilon.Core/Service:
+    newFile: !uuid '3861e170a5cd24b7642f570a8201f27c4447cdb2'
+    oldFile: !uuid 'ecee6380f00ecba6649fd9d128eb0093272a00e3'
+  /backend/Dilon.Core/Service/Dict:
+    newFile: !uuid '68e8d7c2e19ac59835124a143116177a26cfa93e'
+    oldFile: !uuid '3762e8ee15d0daf3a17ab621be6327ea4241dfbf'
+  /backend/Dilon.Core/Service/Dict/SysDictDataService.cs:
+    newFile: !uuid '82b60ecaa9099a0070865421227220a94dec23eb'
+    oldFile: !uuid '4b5b3bb9d12c8e3062d5fe75badba53177701875'
+  /backend/Dilon.Core/Service/Dict/SysDictTypeService.cs:
+    newFile: !uuid '7d4c7bcba23fedd24d9e3ebbbb01cd1bbadd3b26'
+    oldFile: !uuid '915c2f1fa75da2dac8e52974a14c731ca51f81ef'
+gitCommitId: !uuid 'c250e70b866ae2d97b9f7d2bef2d796b45276f67'
 renames: {
   }
-revisionId: 300
+revisionId: 301
