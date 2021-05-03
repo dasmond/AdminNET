@@ -3,24 +3,15 @@ branches: {
   }
 fileChange:
   /backend:
-    newFile: !uuid 'c776e1443802018408b1c712a94ad9c9232d2278'
-    oldFile: !uuid 'b046ef0e6fe5e5838c0652bcaf106f414c0579f4'
+    newFile: !uuid 'aed5ae6cf9bd8dfcdab5ee1a18554240c59caba1'
+    oldFile: !uuid 'c776e1443802018408b1c712a94ad9c9232d2278'
   /backend/Dilon.Core:
-    newFile: !uuid '8082a558de2e57f678fc428d8dbb6012937d2f28'
-    oldFile: !uuid '0aa0506d8e18e94c9765f17bf01052f673e57267'
-  /backend/Dilon.Core/Service:
-    newFile: !uuid '38d92696adc18f74f59fe14162fa8025a0245d4a'
-    oldFile: !uuid '3861e170a5cd24b7642f570a8201f27c4447cdb2'
-  /backend/Dilon.Core/Service/Dict:
-    newFile: !uuid '5ba5b69ec41c966286a2ee6d13ea6d856d08a68b'
-    oldFile: !uuid '68e8d7c2e19ac59835124a143116177a26cfa93e'
-  /backend/Dilon.Core/Service/Dict/SysDictDataService.cs:
-    newFile: !uuid 'a4164448dd738b102820f9db393b7beecf19de25'
-    oldFile: !uuid '82b60ecaa9099a0070865421227220a94dec23eb'
-  /backend/Dilon.Core/Service/Dict/SysDictTypeService.cs:
-    newFile: !uuid 'c0c359e137a98d3d2c90be72c5532210c693676e'
-    oldFile: !uuid '7d4c7bcba23fedd24d9e3ebbbb01cd1bbadd3b26'
-gitCommitId: !uuid '1c6839628e34f0c1c1c0d607283d1569a736db41'
+    newFile: !uuid '3975a4f3688ca37b1b7cd5f8b75522bcc8769e0e'
+    oldFile: !uuid '8082a558de2e57f678fc428d8dbb6012937d2f28'
+  /backend/Dilon.Core/Dilon.Core.csproj:
+    newFile: !uuid 'cc07aca8f4dd516bfbaf6d4bff46ff25d482688a'
+    oldFile: !uuid '845776abe5320c627fe0e00da61c052a08f23b87'
+gitCommitId: !uuid 'ce58e22039ae8df8173feace6397149be04d85ba'
 renames: {
   }
-revisionId: 302
+revisionId: 303
