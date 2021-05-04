@@ -31,5 +31,20 @@
         /// 验证码缓存
         /// </summary>
         public const string CACHE_KEY_CODE = "vercode_";
+
+        /// <summary>
+        /// 所有缓存关键字集合
+        /// </summary>
+        public const string CACHE_KEY_ALL = "allkey";
+
+        /// <summary>
+        /// 定时任务缓存
+        /// </summary>
+        public const string CACHE_KEY_TIMER_JOB = "timerjob";
+
+        /// <summary>
+        /// 在线用户缓存
+        /// </summary>
+        public const string CACHE_KEY_ONLINE_USER = "onlineuser";
     }
 }

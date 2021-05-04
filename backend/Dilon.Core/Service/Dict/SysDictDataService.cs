@@ -21,10 +21,12 @@ namespace Dilon.Core.Service
     public class SysDictDataService : ISysDictDataService, IDynamicApiController, ITransient
     {
         private readonly IRepository<SysDictData> _sysDictDataRep;  // 字典类型表仓储
+        private readonly IUserManager _userManager;
 
-        public SysDictDataService(IRepository<SysDictData> sysDictDataRep)
+        public SysDictDataService(IRepository<SysDictData> sysDictDataRep, IUserManager userManager)
         {
             _sysDictDataRep = sysDictDataRep;
+            _userManager = userManager;
         }
 
         /// <summary>
@@ -35,13 +37,14 @@ namespace Dilon.Core.Service
         [HttpGet("/sysDictData/page")]
         public async Task<dynamic> QueryDictDataPageList([FromQuery] DictDataInput input)
         {
+            bool supperAdmin = _userManager.SuperAdmin;
             var code = !string.IsNullOrEmpty(input.Code?.Trim());
             var value = !string.IsNullOrEmpty(input.Value?.Trim());
             var dictDatas = await _sysDictDataRep.DetachedEntities
                                   .Where(u => u.TypeId == input.TypeId)
                                   .Where((code, u => EF.Functions.Like(u.Code, $"%{input.Code.Trim()}%")),
                                          (value, u => EF.Functions.Like(u.Value, $"%{input.Value.Trim()}%")))
-                                  .Where(u => u.Status != CommonStatus.DELETED).OrderBy(u => u.Sort)
+                                  .Where(u => (u.Status != CommonStatus.DELETED && !supperAdmin) || (u.Status <= CommonStatus.DELETED && supperAdmin)).OrderBy(u => u.Sort)
                                   .Select(u => u.Adapt<DictDataOutput>())
                                   .ToPagedListAsync(input.PageNo, input.PageSize);
             return XnPageResult<DictDataOutput>.PageResult(dictDatas);
@@ -82,8 +85,19 @@ namespace Dilon.Core.Service
         {
             var dictData = await _sysDictDataRep.FirstOrDefaultAsync(u => u.Id == input.Id);
             if (dictData == null) throw Oops.Oh(ErrorCode.D3004);
-
-            await dictData.DeleteAsync();
+            if (dictData.Status == CommonStatus.DELETED)
+            {
+                await _sysDictDataRep.DeleteAsync();
+            }
+            else
+            {
+                dictData.UpdatedUserId = _userManager.UserId;
+                dictData.UpdatedUserName = _userManager.Name;
+                dictData.UpdatedTime = DateTime.Now;
+                dictData.Status = CommonStatus.DELETED;
+                dictData.IsDeleted = true;
+                await _sysDictDataRep.UpdateAsync(dictData);
+            }
         }
 
         /// <summary>
@@ -122,14 +136,19 @@ namespace Dilon.Core.Service
         /// <param name="input"></param>
         /// <returns></returns>
         [HttpPost("/sysDictData/changeStatus")]
-        public async Task ChangeDictDataStatus(UpdateDictDataInput input)
+        public async Task ChangeDictDataStatus(ChageStateDictDataInput input)
         {
             var dictData = await _sysDictDataRep.FirstOrDefaultAsync(u => u.Id == input.Id);
             if (dictData == null) throw Oops.Oh(ErrorCode.D3004);
 
             if (!Enum.IsDefined(typeof(CommonStatus), input.Status))
                 throw Oops.Oh(ErrorCode.D3005);
+            dictData.UpdatedUserId = _userManager.UserId;
+            dictData.UpdatedUserName = _userManager.Name;
+            dictData.UpdatedTime = DateTime.Now;
             dictData.Status = input.Status;
+            dictData.IsDeleted = false;
+            await _sysDictDataRep.UpdateAsync(dictData);
         }
 
         /// <summary>
