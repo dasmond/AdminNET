@@ -199,6 +199,7 @@ namespace Dilon.Core
 
                 new SysMenu{Id=153658608574533, Pid=0, Pids="[0],", Name="表格示例", Code="table", Type=MenuType.DIR, Icon="area-chart", Router="/table", Component="PageView", Application="busiapp", OpenType=MenuOpenType.NONE, Visible="Y", Redirect="", Weight=MenuWeight.DEFAULT_WEIGHT, Sort=1, Status=CommonStatus.ENABLE },
                 new SysMenu{Id=153659188850757, Pid=153658608574533, Pids="[0],[153658608574533],", Name="基础表格", Code="table_basic", Type=MenuType.MENU, Router="/tables/tableDemo", Component="tables/tableDemo", Application="busiapp", OpenType=MenuOpenType.NONE, Visible="Y", Weight=MenuWeight.DEFAULT_WEIGHT, Sort=100, Status=CommonStatus.ENABLE },
+                new SysMenu{Id=153659188850758, Pid=153658608574533, Pids="[0],[153658608574533],", Name="斑马线表格", Code="table_stripe", Type=MenuType.MENU, Router="/tables/stripeTable", Component="tables/stripeTable", Application="busiapp", OpenType=MenuOpenType.NONE, Visible="Y", Weight=MenuWeight.DEFAULT_WEIGHT, Sort=100, Status=CommonStatus.ENABLE },
             };
         }
     }

@@ -11,7 +11,7 @@
 <script>
 import {
     getBasicTableList
-  } from '@/api/modular/tables/basicTable'
+  } from '@/api/modular/tables/table'
 export default {
   data () {
     return {
