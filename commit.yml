@@ -3,15 +3,51 @@ branches: {
   }
 fileChange:
   /backend:
-    newFile: !uuid 'aed5ae6cf9bd8dfcdab5ee1a18554240c59caba1'
+    newFile: !uuid 'a9a90b4fbd47f525b36bb7ad2617fe89c53e0258'
     oldFile: !uuid 'c776e1443802018408b1c712a94ad9c9232d2278'
   /backend/Dilon.Core:
-    newFile: !uuid '3975a4f3688ca37b1b7cd5f8b75522bcc8769e0e'
+    newFile: !uuid '2d4efc184833ba132ad625875ebebc8709f44f9d'
     oldFile: !uuid '8082a558de2e57f678fc428d8dbb6012937d2f28'
-  /backend/Dilon.Core/Dilon.Core.csproj:
-    newFile: !uuid 'cc07aca8f4dd516bfbaf6d4bff46ff25d482688a'
-    oldFile: !uuid '845776abe5320c627fe0e00da61c052a08f23b87'
-gitCommitId: !uuid 'ce58e22039ae8df8173feace6397149be04d85ba'
+  /backend/Dilon.Core/Service:
+    newFile: !uuid '98ead2c53e7a80c97c8275edace26a835277d329'
+    oldFile: !uuid '38d92696adc18f74f59fe14162fa8025a0245d4a'
+  /backend/Dilon.Core/Service/File:
+    newFile: !uuid '6b971678b7a9a10f6844fc311043311e56e1ade3'
+    oldFile: !uuid 'bb56377deb543cd2e7b320b8cf1bde23fbf71d5a'
+  /backend/Dilon.Core/Service/File/ISysFileService.cs:
+    newFile: !uuid 'e94046369314d37acbed84923e6fc342cb3ce69b'
+    oldFile: !uuid '6cf0ebf7b75173439d4b5a439c4201e9e97349df'
+  /backend/Dilon.Core/Service/File/SysFileService.cs:
+    newFile: !uuid '3abc65a8e9f669f27329d92cb069b3ceee4e0eea'
+    oldFile: !uuid 'a45356190bc5b51be163e968698f5236a6d2cfe6'
+  /frontend:
+    newFile: !uuid 'f2562318ff07b457d23572e79630d5033507ac37'
+    oldFile: !uuid '1db44c0527db2abc494e66f29c207ad058c2e0a8'
+  /frontend/src:
+    newFile: !uuid 'c2f6d86c51151e6818b076f96975609e82990b5c'
+    oldFile: !uuid 'f1b529cf73010ef7fc06b9fb7e828a742bec72ea'
+  /frontend/src/views:
+    newFile: !uuid '778e311ae36818bb78157fd352312418a05eba11'
+    oldFile: !uuid 'adf99b5de0b70cd454b1dee99f04af53377113d7'
+  /frontend/src/views/system:
+    newFile: !uuid 'bea9ff7c8c1253d2bd509066e1097df27a0e7f4c'
+    oldFile: !uuid 'efa616eb5e32d09241802a454b97876048b3673f'
+  /frontend/src/views/system/email:
+    newFile: !uuid 'ad2cbb28c88c0ede544fc579515472ce3ab25385'
+    oldFile: !uuid '9ab9a0aa4721bf53ab2bda8485c8625a6440bd5f'
+  /frontend/src/views/system/email/index.vue:
+    newFile: !uuid '5c8543a292d213d7b603b9d76711d145b40f0121'
+    oldFile: !uuid 'bf53e326ff319dafe40bcd6c99a5e9962620203e'
+  /frontend/src/views/system/notice:
+    newFile: !uuid '131a8b1bb615237d8e3fb7ce7256fae798726abe'
+    oldFile: !uuid '724ee2d9bc6d2ebbae0a1d960a613984ac5bb92a'
+  /frontend/src/views/system/notice/addForm.vue:
+    newFile: !uuid '98e34bf7d8ca1dd7d5df823cdd87ebb6d23677fa'
+    oldFile: !uuid '9c592b04a2ef90c668e87f3d084b464259fb9c5d'
+  /frontend/src/views/system/notice/editForm.vue:
+    newFile: !uuid 'bde5f8d581d842fb8fb4a988f16e77982a5d9aeb'
+    oldFile: !uuid '231b1accd4a489dfad9419a7a65047ce3b82dadd'
+gitCommitId: !uuid 'f85d1190103b515b819201db334e6aed041d91a5'
 renames: {
   }
-revisionId: 303
+revisionId: 304
