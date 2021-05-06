@@ -3,21 +3,111 @@ branches: {
   }
 fileChange:
   /backend:
-    newFile: !uuid 'a97db1d1759d85026e44c9a168315dd744df609d'
-    oldFile: !uuid 'c1d8a7b8eaccbe8ed612aab08076c22f7f954216'
+    newFile: !uuid '3b6720786f0875cce5a749d329fb1a3e1fe9d6f9'
+    oldFile: !uuid 'a97db1d1759d85026e44c9a168315dd744df609d'
   /backend/Dilon.Core:
-    newFile: !uuid 'f4e3174aa0e2966eef748ee1f7ac552bf6593efb'
-    oldFile: !uuid 'd26e85e85d4b3ba876bfef5af514b58b7787dc95'
+    newFile: !uuid 'bf93559fc16258a2c0f4f984bd4b368ec64ce56c'
+    oldFile: !uuid 'f4e3174aa0e2966eef748ee1f7ac552bf6593efb'
+  /backend/Dilon.Core/Dilon.Core.csproj:
+    newFile: !uuid 'cc07aca8f4dd516bfbaf6d4bff46ff25d482688a'
+    oldFile: !uuid '845776abe5320c627fe0e00da61c052a08f23b87'
+  /backend/Dilon.Core/Enum:
+    newFile: !uuid '86c45b40f932d0533497d6853944647ce95c7f17'
+    oldFile: !uuid '9529540d1c0da2cb0b48cbed9e16d6507792a12d'
+  /backend/Dilon.Core/Enum/ErrorCode.cs:
+    newFile: !uuid 'c03c40645decf730bfca8c38d7df011b36dbacfc'
+    oldFile: !uuid '7bc0afb1cab2522d1ed304d143ad0a1282d61256'
   /backend/Dilon.Core/Service:
-    newFile: !uuid '27ba00637153760a3e4cd92fdcd151ac2134b3a2'
-    oldFile: !uuid '783a430fef9b7b4401efc9d907b9bfebab6cae97'
+    newFile: !uuid '6759f02367c3cde08568688420b078e17f40822b'
+    oldFile: !uuid '27ba00637153760a3e4cd92fdcd151ac2134b3a2'
   /backend/Dilon.Core/Service/Dict:
-    newFile: !uuid '5909728c6bd2fc3967b8ae38dab9827066a252c7'
-    oldFile: !uuid '8c0f8939ba5aaf4e74a9450880c095f2dbe900a1'
+    newFile: !uuid 'b3c4a650aa28381e84a0f1562e1ffc92a431e060'
+    oldFile: !uuid '5909728c6bd2fc3967b8ae38dab9827066a252c7'
   /backend/Dilon.Core/Service/Dict/SysDictDataService.cs:
-    newFile: !uuid '447e3f0414c027ba2509be1b1c45abf64417247f'
-    oldFile: !uuid '80ff12842088d0fe6999b460fc8303db177e0350'
-gitCommitId: !uuid 'f69df59c1651f65a783a105003779b9a1db480ca'
+    newFile: !uuid '0b44263c94f20e2809b66e43bc5b1d4f72652249'
+    oldFile: !uuid '447e3f0414c027ba2509be1b1c45abf64417247f'
+  /backend/Dilon.Core/Service/Dict/SysDictTypeService.cs:
+    newFile: !uuid 'eeb935f61b89bc168fc6a753cab86e5bc61be619'
+    oldFile: !uuid '11db094892048e2526e6a4ea16a13ff725a07502'
+  /backend/Dilon.Core/Service/File:
+    newFile: !uuid '0d387ca6d14c9bc3443f550787eac475e969ae57'
+    oldFile: !uuid 'bb56377deb543cd2e7b320b8cf1bde23fbf71d5a'
+  /backend/Dilon.Core/Service/File/ISysFileService.cs:
+    newFile: !uuid 'e94046369314d37acbed84923e6fc342cb3ce69b'
+    oldFile: !uuid '6cf0ebf7b75173439d4b5a439c4201e9e97349df'
+  /backend/Dilon.Core/Service/File/SysFileService.cs:
+    newFile: !uuid '74b33c75d62a875d067ab77ebe9ed43a8fcb8880'
+    oldFile: !uuid 'a45356190bc5b51be163e968698f5236a6d2cfe6'
+  /backend/Dilon.Core/Service/Tenant:
+    newFile: !uuid '32fcbef989a5ceafb1fb826d285eb50c03babb6d'
+    oldFile: !uuid 'ff23c1e3516fa7af3ad1931bdc6dfe7759e2c43f'
+  /backend/Dilon.Core/Service/Tenant/SysTenantService.cs:
+    newFile: !uuid 'ad2b4b847d6d4c54214622f256e3479917a39544'
+    oldFile: !uuid 'f0071df721486b29ba4fe36cd6ad3d57e1933918'
+  /backend/Dilon.Web.Entry:
+    newFile: !uuid 'acef793d450b32b018218caaea2feb9f92121643'
+    oldFile: !uuid 'bef4f8880dea34cab2a241599c1176458a231ac4'
+  /backend/Dilon.Web.Entry/Dockerfile:
+    newFile: !uuid '365767ed484ebbcc2b6c404cc006837abc9fdbe0'
+    oldFile: !uuid 'c8a50217ef52ee9d317b8d8691686ec7884ef4ac'
+  /build:
+    newFile: !uuid '47280ae865521e49042e5c90d03fa395c6ee3cec'
+    oldFile: !uuid '4594f2b7db5e96a13abe355ef13d36a30fb9b687'
+  /build/build-docker.ps1:
+    newFile: !uuid '6d1bd7ef04f01bec5379523456642dda246d2722'
+    oldFile: null
+  /build/core:
+    newFile: !uuid '9e85047c869a53dc4629ce058355dcdb9401bb3e'
+    oldFile: null
+  /build/core/docker-compose.yml:
+    newFile: !uuid 'b0766e02bc9052850b39a8ca4a371e528b0b14e4'
+    oldFile: null
+  /build/vue:
+    newFile: !uuid '526840b6252c6a7a855a4db99e3f390b9f57e4b4'
+    oldFile: null
+  /build/vue/docker-compose.yml:
+    newFile: !uuid '1f0966483d668fa125767e7701b2c167215beaac'
+    oldFile: null
+  /build/vue/nginx.conf:
+    newFile: !uuid '0c4b0f04422647fa59d2712dd680be5aeaa02c64'
+    oldFile: null
+  /frontend:
+    newFile: !uuid 'a9d32ccd8bfb455ab27a0600802306770b46d69e'
+    oldFile: !uuid '985acd1b71104364152f83d5e73e6c9fc841bd40'
+  /frontend/Dockerfile:
+    newFile: !uuid 'cc6654108474f45d2c17a5bb916a3c9b6bc9625e'
+    oldFile: null
+  /frontend/src:
+    newFile: !uuid 'a8ae2613993ea844c6972d06990bae9b71feac24'
+    oldFile: !uuid 'f1b529cf73010ef7fc06b9fb7e828a742bec72ea'
+  /frontend/src/views:
+    newFile: !uuid '39ef26cf5544db13e425716f90dbf1c753c1bb0e'
+    oldFile: !uuid 'adf99b5de0b70cd454b1dee99f04af53377113d7'
+  /frontend/src/views/system:
+    newFile: !uuid '5ccc7d4017e52f374a61129a1b382addfdc72b55'
+    oldFile: !uuid 'efa616eb5e32d09241802a454b97876048b3673f'
+  /frontend/src/views/system/email:
+    newFile: !uuid '749a9a7177bcd240b690ed306c522eb9873840cb'
+    oldFile: !uuid '9ab9a0aa4721bf53ab2bda8485c8625a6440bd5f'
+  /frontend/src/views/system/email/index.vue:
+    newFile: !uuid '937c3736836eeca2f36a9fce24b2612fbd9abc40'
+    oldFile: !uuid 'bf53e326ff319dafe40bcd6c99a5e9962620203e'
+  /frontend/src/views/system/notice:
+    newFile: !uuid '639e69f98a8ab741e78559eb7f14d221c33f4346'
+    oldFile: !uuid '724ee2d9bc6d2ebbae0a1d960a613984ac5bb92a'
+  /frontend/src/views/system/notice/addForm.vue:
+    newFile: !uuid '9a5ffaad8157de95b12ab19a8d2d305428b288f8'
+    oldFile: !uuid '9c592b04a2ef90c668e87f3d084b464259fb9c5d'
+  /frontend/src/views/system/notice/detailForm.vue:
+    newFile: !uuid 'a5c54ab795fab20b83959f7177d65b539de6ff1e'
+    oldFile: !uuid 'dc837b061073f8ae1475992aec2a7802bb7048d3'
+  /frontend/src/views/system/notice/editForm.vue:
+    newFile: !uuid '94caab4bed09905a54ea3426f1a17fe0b470df91'
+    oldFile: !uuid '231b1accd4a489dfad9419a7a65047ce3b82dadd'
+  /frontend/src/views/system/notice/index.vue:
+    newFile: !uuid '65b67715d6d2c84eb5eff051533e3e06940f89cb'
+    oldFile: !uuid '2ef7b75cc8e5161e5f5e22d1b5f52a245e6d10c1'
+gitCommitId: !uuid '94a5f7e90014862feed889edd6a668f177ae018e'
 renames: {
   }
-revisionId: 313
+revisionId: 314
