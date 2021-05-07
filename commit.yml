@@ -3,33 +3,18 @@ branches: {
   }
 fileChange:
   /backend:
-    newFile: !uuid 'a0ee55fad1a14b5ca3d10a155c289419218bcc00'
-    oldFile: !uuid '03642b24f64e8654552a390453ab48c28f68d401'
-  /backend/Dilon.Core:
-    newFile: !uuid '9b634eb41de5ac487e117b91dbb9231380c286fe'
-    oldFile: !uuid '38a3e98aee24e0d98316df73fbf6bb08826ff0ed'
-  /backend/Dilon.Core/Manager:
-    newFile: !uuid '1d012b9c3981c9594aed03b599b665f15b985831'
-    oldFile: !uuid '409bdc2b9473be8104c37251ff3daacf8131690c'
-  /backend/Dilon.Core/Manager/UserManager.cs:
-    newFile: !uuid '1a0f74b7e662b58dd47e1390c6da2a6e83dea709'
-    oldFile: !uuid 'e89a9d6a66d4bab5ba606ae9184e4e0d8fea1c3a'
+    newFile: !uuid '82fed7cf5bb1cf9333f276b69f187f51c057c54c'
+    oldFile: !uuid 'a0ee55fad1a14b5ca3d10a155c289419218bcc00'
   /backend/Dilon.EntityFramework.Core:
-    newFile: !uuid 'f6ff9ed9e8713b958c00cac45db477e831ae7327'
-    oldFile: !uuid '60fea50c5ec74947e88d13ecb73164df06cfa7ea'
+    newFile: !uuid '6603141198066d973605f99cc2cf511806167f50'
+    oldFile: !uuid 'f6ff9ed9e8713b958c00cac45db477e831ae7327'
   /backend/Dilon.EntityFramework.Core/DbContexts:
-    newFile: !uuid 'f66d395e8742db1db4c6d9f1b655112e906619a7'
-    oldFile: !uuid '668ae7acf806442b7addb038701a8b0077fb9f29'
+    newFile: !uuid 'e4bcd3c16565ca38d84e05b56ce2781d56afc7e5'
+    oldFile: !uuid 'f66d395e8742db1db4c6d9f1b655112e906619a7'
   /backend/Dilon.EntityFramework.Core/DbContexts/DefaultDbContext.cs:
-    newFile: !uuid 'f13bd67df77389cec74867e5f444cfd2ef695032'
-    oldFile: !uuid 'd7e20da81b9b03d2c25a185eb4563cecebab9840'
-  /backend/Dilon.EntityFramework.Core/Dilon.EntityFramework.Core.csproj:
-    newFile: !uuid '11bce1117cff668d6ce0f7ad712d5dc344cd1713'
-    oldFile: !uuid 'ef96baa15a17b4e494b3eabdd1fcfb261c93ef52'
-  /backend/Dilon.EntityFramework.Core/dbsettings.json:
-    newFile: !uuid '6459a1b187867635966f05f737873396fb8711e9'
-    oldFile: !uuid 'be4d135c7950b921df862f28fd67d9327182fdeb'
-gitCommitId: !uuid '211374bf060719531c4ee30a0aaaf228cbbf25a5'
+    newFile: !uuid '0badaca37e7ead249f8991143b92cb0c1528cd03'
+    oldFile: !uuid 'f13bd67df77389cec74867e5f444cfd2ef695032'
+gitCommitId: !uuid '23183db8d53e2e3c15bd3a40b04bb82e3c55bdc0'
 renames: {
   }
-revisionId: 322
+revisionId: 323
