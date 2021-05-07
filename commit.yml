@@ -3,18 +3,21 @@ branches: {
   }
 fileChange:
   /backend:
-    newFile: !uuid '72754ade629552fc11ee8933fe2787cbef0141a8'
-    oldFile: !uuid '365b8ee724a286118eaccf5d64cfcc50020300fd'
+    newFile: !uuid '6f4f4fe71e30adc617b764c056a89a4196720e8a'
+    oldFile: !uuid '72754ade629552fc11ee8933fe2787cbef0141a8'
   /backend/Dilon.Core:
-    newFile: !uuid 'e0aaded57db868fda5e7a1f11bd0e444928efc06'
-    oldFile: !uuid 'b236c1a0d9d39a64e421609830ec085400764e8b'
-  /backend/Dilon.Core/Hubs:
-    newFile: !uuid 'acf4b076b45542015c13f0ad590ac4f01ef8565e'
-    oldFile: !uuid 'f7f16749cb07c6048efa903d61ca26e975577f7f'
-  /backend/Dilon.Core/Hubs/ChatHub.cs:
-    newFile: !uuid 'c13001ef00074046f5a8be64f08d806e5f6c8224'
-    oldFile: !uuid '815ae83fb100f18963442419ca06d395f9a11a4a'
-gitCommitId: !uuid 'db0f44d867cc07257820a881744925a3ea059677'
+    newFile: !uuid '37f4e52c58a94a422bfeaef2b148df31c0d899b1'
+    oldFile: !uuid 'e0aaded57db868fda5e7a1f11bd0e444928efc06'
+  /backend/Dilon.Core/Service:
+    newFile: !uuid '44318646f6351ad914b951863d371bd82157aff5'
+    oldFile: !uuid '4c2ea119e055314afacee29d47dcd55a3bfd20d4'
+  /backend/Dilon.Core/Service/Emp:
+    newFile: !uuid '4da4f900a3ab3419db28e25bf1fe8cd9a9038b97'
+    oldFile: !uuid 'fdd7dcb9fba44f3b138e970d2d1ba591220e5853'
+  /backend/Dilon.Core/Service/Emp/SysEmpService.cs:
+    newFile: !uuid 'c3589c41961d78060b6a52051f2a4df700230232'
+    oldFile: !uuid 'da58b248a1aa00e228c946b7cbc4cf3a92d2b75f'
+gitCommitId: !uuid '49611b69eef25b3fab77cb6dd7279a3e9de261df'
 renames: {
   }
-revisionId: 330
+revisionId: 331
