@@ -28,8 +28,10 @@ import dataV from '@jiaminghi/data-view'
 import 'xe-utils'
 import VXETable from 'vxe-table'
 import 'vxe-table/lib/style.css'
+import * as echarts from 'echarts'
 
 Vue.use(VXETable)
+// Vue.use(echarts)
 Vue.use(KFormDesign)
 Vue.use(dataV)
 
@@ -42,6 +44,7 @@ Vue.use(Dialog)
 Vue.prototype.hasPerm = hasBtnPermission
 Vue.prototype.applocation = sysApplication
 Vue.config.productionTip = false
+Vue.prototype.$echarts = echarts
 
 new Vue({
   router,
