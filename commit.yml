@@ -3,27 +3,24 @@ branches: {
   }
 fileChange:
   /backend:
-    newFile: !uuid '0d2cb7dab50130cb3e3097e52e12f2076714f1f2'
-    oldFile: !uuid 'c6510f4622ab9f4e28e112655984b5a1c7723801'
+    newFile: !uuid 'ae71a9fa199196650f3917a1fbe5a9883f371406'
+    oldFile: !uuid '0d2cb7dab50130cb3e3097e52e12f2076714f1f2'
   /backend/Dilon.Core:
-    newFile: !uuid '88fef166ff855e9bddd658259db994aaea44e256'
-    oldFile: !uuid '862aae78026cc8cd4493e4dc9c1a54a20ae5fccd'
-  /backend/Dilon.Core/Service:
-    newFile: !uuid '30edcff9cc5db63af818e744604efd5f12e39a30'
-    oldFile: !uuid 'b41b0928095d931598e1b8e708e1315f0a507ccb'
-  /backend/Dilon.Core/Service/Role:
-    newFile: !uuid '0af4179c8c8c954343ae1cd295283673f9d457af'
-    oldFile: !uuid '90c7c2f0f3bceb21bc43374da150bef0e62098d5'
-  /backend/Dilon.Core/Service/Role/SysRoleService.cs:
-    newFile: !uuid '0eccfaf4614b1aaaa237c863c9972d5bfe18e61b'
-    oldFile: !uuid '7822c52c2233dba1f7d26017f456d07996ea2298'
-  /backend/Dilon.Core/Service/Tenant:
-    newFile: !uuid 'fa6a7a690254be36ab43509cb19701ed47b319e4'
-    oldFile: !uuid '8feaacd754da506b96f2b7e8fbd4045e2fceec6e'
-  /backend/Dilon.Core/Service/Tenant/SysTenantService.cs:
-    newFile: !uuid 'b2cbf550e3cfdd195b6786d9e2a06d7d82706da5'
-    oldFile: !uuid 'f83bf1fd69f26b2307f60eec7883e4102df0bfc7'
-gitCommitId: !uuid '6d75e6b07a7b7f5acd9880df5a8a67d61e0adf5b'
+    newFile: !uuid 'd12a43e811d7a1bda709070497e908880e67215c'
+    oldFile: !uuid '88fef166ff855e9bddd658259db994aaea44e256'
+  /backend/Dilon.Core/Captcha:
+    newFile: !uuid 'cb1cdc8d89b0f07b5f71ce82522e286c1fe2fe8c'
+    oldFile: !uuid '62ef4061ff1776d71f56ef5f18a07abf97508f87'
+  /backend/Dilon.Core/Captcha/General:
+    newFile: !uuid '0823c616d38402acf994d62f3569dc11127dfab6'
+    oldFile: !uuid 'eaa502aa68a2f97378c1ce35854b55c23942e2d6'
+  /backend/Dilon.Core/Captcha/General/GeneralCaptcha.cs:
+    newFile: !uuid '040593262d8f19a4f9bf8d91931612bb5809ed5a'
+    oldFile: !uuid 'd74ba543d49bdded5f674ef9f34e2a5aff7cce85'
+  /backend/Dilon.Core/Captcha/General/IGeneralCaptcha.cs:
+    newFile: !uuid '3e4c04377d9c2b20f13617043feb5ccbc971178c'
+    oldFile: !uuid '37f1e675a7360491b002f478e652f134f0f166da'
+gitCommitId: !uuid 'e7cd5a645ab1c77fee438da8257f189b9f02ba83'
 renames: {
   }
-revisionId: 342
+revisionId: 343
