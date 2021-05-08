@@ -82,4 +82,8 @@ namespace Dilon.Core.Service
     public class GrantRoleDataInput : GrantRoleMenuInput
     {
     }
+
+    public class GrantRoleOrgInput : GrantRoleMenuInput
+    {
+    }
 }

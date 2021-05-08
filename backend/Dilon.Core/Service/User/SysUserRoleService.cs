@@ -14,13 +14,19 @@ namespace Dilon.Core.Service
     public class SysUserRoleService : ISysUserRoleService, ITransient
     {
         private readonly IRepository<SysUserRole> _sysUserRoleRep;  // 用户权限表仓储
-
+        private readonly IRepository<SysRoleOrgScope> _sysRoleOrgScopeRep;  // 角色关联组织表仓储
+        private readonly ISysEmpService _sysEmpService;
         private readonly ISysRoleService _sysRoleService;
 
-        public SysUserRoleService(IRepository<SysUserRole> sysUserRoleRep, ISysRoleService sysRoleService)
+        public SysUserRoleService(IRepository<SysUserRole> sysUserRoleRep,
+                                  ISysRoleService sysRoleService,
+                                  ISysEmpService sysEmpService,
+                                  IRepository<SysRoleOrgScope> sysRoleOrgScopeRep)
         {
+            _sysEmpService = sysEmpService;
             _sysUserRoleRep = sysUserRoleRep;
             _sysRoleService = sysRoleService;
+            _sysRoleOrgScopeRep = sysRoleOrgScopeRep;
         }
 
         /// <summary>
@@ -30,7 +36,19 @@ namespace Dilon.Core.Service
         /// <returns></returns>
         public async Task<List<long>> GetUserRoleIdList(long userId)
         {
-            return await _sysUserRoleRep.DetachedEntities.Where(u => u.SysUserId == userId).Select(u => u.SysRoleId).ToListAsync();
+            var userRoleIds = await _sysUserRoleRep.DetachedEntities.Where(u => u.SysUserId == userId).Select(u => u.SysRoleId).ToListAsync();
+            var userOrgIds = await _sysEmpService.GetEmpOrgIds(userId);
+            var list = new List<long>();
+            list.AddRange(userRoleIds);
+            if (userOrgIds != null && userOrgIds.Count > 0)
+            {
+                var orgRoleIds = await _sysRoleOrgScopeRep.DetachedEntities.Where(c => userOrgIds.Contains(c.SysRoleId)).Select(u => u.SysRoleId).ToListAsync();
+                if (orgRoleIds != null && orgRoleIds.Count > 0)
+                {
+                    list = userRoleIds.Union(orgRoleIds).ToList();
+                }
+            }
+            return list;
         }
 
         /// <summary>

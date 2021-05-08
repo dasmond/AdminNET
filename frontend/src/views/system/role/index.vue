@@ -48,6 +48,9 @@
               <a-menu-item v-if="hasPerm('sysRole:grantData')">
                 <a @click="$refs.roleOrgForm.roleOrg(record)">授权数据</a>
               </a-menu-item>
+              <a-menu-item v-if="hasPerm('sysRole:grantOrg')">
+                <a @click="$refs.roleOrgRelForm.roleOrgRel(record)">授权组织</a>
+              </a-menu-item>
               <a-menu-item v-if="hasPerm('sysRole:delete')">
                 <a-popconfirm placement="topRight" title="确认删除？" @confirm="() => sysRoleDelete(record)">
                   <a>删除</a>
@@ -63,6 +66,7 @@
       <edit-form ref="editForm" @ok="handleOk" />
       <role-menu-form ref="roleMenuForm" @ok="handleOk"/>
       <role-org-form ref="roleOrgForm" @ok="handleOk"/>
+      <role-org-rel-form ref="roleOrgRelForm" @ok="handleOk"/>
 
     </a-card>
   </div>
@@ -75,6 +79,7 @@
   import editForm from './editForm'
   import roleMenuForm from './roleMenuForm'
   import roleOrgForm from './roleOrgForm'
+  import roleOrgRelForm from './roleOrgRelForm'
   export default {
     components: {
       XCard,
@@ -82,7 +87,8 @@
       addForm,
       editForm,
       roleMenuForm,
-      roleOrgForm
+      roleOrgForm,
+      roleOrgRelForm
     },
 
     data () {
