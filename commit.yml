@@ -3,36 +3,27 @@ branches: {
   }
 fileChange:
   /backend:
-    newFile: !uuid 'c6510f4622ab9f4e28e112655984b5a1c7723801'
-    oldFile: !uuid '640d9435ef4866fd83bba029b97be1cbf6cc33f5'
+    newFile: !uuid '0d2cb7dab50130cb3e3097e52e12f2076714f1f2'
+    oldFile: !uuid 'c6510f4622ab9f4e28e112655984b5a1c7723801'
   /backend/Dilon.Core:
-    newFile: !uuid '862aae78026cc8cd4493e4dc9c1a54a20ae5fccd'
-    oldFile: !uuid '70897031db3611265b4525c6aed278d2b8c50625'
+    newFile: !uuid '88fef166ff855e9bddd658259db994aaea44e256'
+    oldFile: !uuid '862aae78026cc8cd4493e4dc9c1a54a20ae5fccd'
   /backend/Dilon.Core/Service:
-    newFile: !uuid 'b41b0928095d931598e1b8e708e1315f0a507ccb'
-    oldFile: !uuid 'a3c559e216c345c9156b6484bbca6691001a1a2b'
-  /backend/Dilon.Core/Service/BaseDto:
-    newFile: null
-    oldFile: !uuid 'c7d44d37976e03292c85cb2f8f0c2ab879cfd1b3'
-  /backend/Dilon.Core/Service/BaseDto/BaseId.cs:
-    newFile: null
-    oldFile: !uuid 'b52ee1a843dd2f9b4dfd897f014b28cf880b87e9'
-  /backend/Dilon.Core/Service/BaseId.cs:
-    newFile: !uuid '96c912f8c11ec9968d491f2e2070631e50d97d55'
-    oldFile: null
-  /backend/Dilon.Core/Service/Config:
-    newFile: !uuid '649eb36320bbbfb59dc8be08b20ae58c0b942bd9'
-    oldFile: !uuid 'eb343433572472ce769ed749327b6bec718d40e5'
-  /backend/Dilon.Core/Service/Config/SysConfigService.cs:
-    newFile: !uuid '0c5fad8567addd4ac623909698fadcf1021cdd3f'
-    oldFile: !uuid '3461042f917bc50ad2eb8b01e5ca90d2d249a59b'
-  /backend/Dilon.Core/Service/User:
-    newFile: !uuid '8f5f13fdb8128d616320e30ec394d940bffdcb46'
-    oldFile: !uuid '9f3e9bed94494084ac5fcf8aab45c3bc9e1f072a'
-  /backend/Dilon.Core/Service/User/SysUserService.cs:
-    newFile: !uuid '993585a58a40734415486ce9f2332fa30a56d611'
-    oldFile: !uuid '5cd94b7dad432fe3b61a5173ffc47506a3a77304'
-gitCommitId: !uuid '3b989d8b7f2ec5cc2500569b9e97bfc8e29af5ed'
-renames:
-  /backend/Dilon.Core/Service/BaseId.cs: /backend/Dilon.Core/Service/BaseDto/BaseId.cs
-revisionId: 341
+    newFile: !uuid '30edcff9cc5db63af818e744604efd5f12e39a30'
+    oldFile: !uuid 'b41b0928095d931598e1b8e708e1315f0a507ccb'
+  /backend/Dilon.Core/Service/Role:
+    newFile: !uuid '0af4179c8c8c954343ae1cd295283673f9d457af'
+    oldFile: !uuid '90c7c2f0f3bceb21bc43374da150bef0e62098d5'
+  /backend/Dilon.Core/Service/Role/SysRoleService.cs:
+    newFile: !uuid '0eccfaf4614b1aaaa237c863c9972d5bfe18e61b'
+    oldFile: !uuid '7822c52c2233dba1f7d26017f456d07996ea2298'
+  /backend/Dilon.Core/Service/Tenant:
+    newFile: !uuid 'fa6a7a690254be36ab43509cb19701ed47b319e4'
+    oldFile: !uuid '8feaacd754da506b96f2b7e8fbd4045e2fceec6e'
+  /backend/Dilon.Core/Service/Tenant/SysTenantService.cs:
+    newFile: !uuid 'b2cbf550e3cfdd195b6786d9e2a06d7d82706da5'
+    oldFile: !uuid 'f83bf1fd69f26b2307f60eec7883e4102df0bfc7'
+gitCommitId: !uuid '6d75e6b07a7b7f5acd9880df5a8a67d61e0adf5b'
+renames: {
+  }
+revisionId: 342
