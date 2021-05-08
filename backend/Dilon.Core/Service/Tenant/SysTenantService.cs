@@ -47,7 +47,7 @@ namespace Dilon.Core.Service
         /// <param name="input"></param>
         /// <returns></returns>
         [HttpGet("/sysTenant/page")]
-        public async Task<dynamic> QueryTenantPageList([FromQuery] TenantInput input)
+        public async Task<dynamic> QueryTenantPageList([FromQuery] TenantPageInput input)
         {
             var name = !string.IsNullOrEmpty(input.Name?.Trim());
             var host = !string.IsNullOrEmpty(input.Host?.Trim());
@@ -91,7 +91,7 @@ namespace Dilon.Core.Service
                 Pid = 0,
                 Pids = "[0],",
                 Name = companyName,
-                Code = "1",
+                Code = companyName,
                 Contacts = newTenant.AdminName,
                 Tel = newTenant.Phone
             }.InsertNowAsync();
@@ -100,8 +100,9 @@ namespace Dilon.Core.Service
             var newRole = await new SysRole
             {
                 TenantId = tenantId,
-                Code = "1",
+                Code = "sys_manager_role",
                 Name = "系统管理员",
+                DataScopeType = DataScopeType.ALL,
                 SysOrgs = new List<SysOrg>() { newOrg.Entity }
             }.InsertNowAsync();
 
@@ -124,7 +125,7 @@ namespace Dilon.Core.Service
             new SysEmp
             {
                 Id = newUser.Entity.Id,
-                JobNum = "1",
+                JobNum = "D001",
                 OrgId = newOrg.Entity.Id,
                 OrgName = newOrg.Entity.Name
             }.InsertNow();

@@ -1,4 +1,4 @@
-﻿using Furion.DatabaseAccessor;
+using Furion.DatabaseAccessor;
 using Furion.DatabaseAccessor.Extensions;
 using Furion.DependencyInjection;
 using Furion.DynamicApiController;
@@ -66,7 +66,7 @@ namespace Dilon.Core.Service
         /// <param name="input"></param>
         /// <returns></returns>
         [HttpGet("/sysRole/page")]
-        public async Task<dynamic> QueryRolePageList([FromQuery] RoleInput input)
+        public async Task<dynamic> QueryRolePageList([FromQuery] RolePageInput input)
         {
             var name = !string.IsNullOrEmpty(input.Name?.Trim());
             var code = !string.IsNullOrEmpty(input.Code?.Trim());
@@ -179,7 +179,7 @@ namespace Dilon.Core.Service
                 throw Oops.Oh(ErrorCode.D1006);
 
             var sysRole = input.Adapt<SysRole>();
-            await sysRole.UpdateAsync();
+            await sysRole.UpdateExcludeAsync(new[] { nameof(SysRole.DataScopeType) }, true);
         }
 
         /// <summary>
@@ -232,7 +232,9 @@ namespace Dilon.Core.Service
                     {
                         if (dataScopes.Count < 1)
                             throw Oops.Oh(ErrorCode.D1016);
-                        else if (!dataScopes.All(u => grantOrgIdList.Any(c => c == u)))
+                        //else if (!dataScopes.All(u => grantOrgIdList.Any(c => c == u)))
+                        //    throw Oops.Oh(ErrorCode.D1016);
+                        else if (!grantOrgIdList.All(u => dataScopes.Any(c => c == u)))
                             throw Oops.Oh(ErrorCode.D1016);
                     }
                 }
