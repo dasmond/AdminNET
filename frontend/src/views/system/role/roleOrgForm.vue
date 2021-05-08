@@ -87,7 +87,7 @@
         this.visible = true
         this.formLoading = true
         this.sysDictTypeDropDown()
-        this.form.getFieldDecorator('dataScopeType', { initialValue: record.dataScopeType.toString() })
+        // this.form.getFieldDecorator('dataScopeType', { initialValue: record.dataScopeType.toString() })
         this.handleChange(record.dataScopeType)
       },
 
@@ -99,6 +99,9 @@
         sysDictTypeDropDown({ code: 'data_scope_type' }).then((res) => {
           this.dataScopeTypeData = res.data
           this.formLoading = false
+          if (this.dataScopeTypeData !== undefined && this.dataScopeTypeData.length > 0) {
+            this.form.getFieldDecorator('dataScopeType', { initialValue: this.dataScopeTypeData[0].value.toString() })
+          }
         })
       },
 
