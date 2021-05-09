@@ -2,31 +2,2310 @@
 branches: {
   }
 fileChange:
-  /template:
-    newFile: !uuid '2d3f05e17e29226c65e75da59465a271a990e5e1'
-    oldFile: !uuid 'b7723a602f3700716cac1a8f27724d1b16d2a858'
-  /template/Admin.NETTemplate:
-    newFile: !uuid 'bacbf9a122e6774dc017e6e0b1c498ef33f6dd60'
-    oldFile: !uuid 'b0a55aa280580bb82be4f4e929f1a655080dec03'
-  /template/Admin.NETTemplate/Admin.NET.Template.App.nuspec:
-    newFile: null
-    oldFile: !uuid '0b25f7ace8a00b9bc8594b271cd82da9fc629e4a'
-  /template/Admin.NETTemplate/Furion.Admin.NET.Template.App.nuspec:
-    newFile: !uuid '992526a9b2c566e71db7d3d2cbbacc36db560f08'
+  /.gitignore:
+    newFile: !uuid '9fdef0ed608cb3903e9aaff8622eeec39faf3780'
+    oldFile: !uuid 'd8dd24d49d6811f9c0a1512580a64a602e68dd53'
+  /backend:
+    newFile: !uuid 'cdc9b094fda63b70a7baf3910ff182bbf5f77fe8'
+    oldFile: !uuid 'e105eacb8f0759f20f446fdba66f4bac55bdef66'
+  /backend/Admin.NET.Application:
+    newFile: !uuid '60707fd65d1bfcd1a1249065e3d1701d64e93e35'
     oldFile: null
-  /template/Admin.NETTemplate/src:
-    newFile: !uuid '1ea73c1e910db5c638971b05e752056ed6e50d4e'
-    oldFile: !uuid 'f23bc334b64e8f17b170773da2e36e389cbb47ff'
-  /template/Admin.NETTemplate/src/.template.config:
-    newFile: !uuid '799367fb58423642750949a87f38e30820b576d1'
-    oldFile: !uuid 'bdc64359e334145d2f923182a2cb0a3cc4f691d0'
-  /template/Admin.NETTemplate/src/.template.config/template.json:
-    newFile: !uuid 'e2572d30229ebe5fe21c81efe5565e51eb61bebb'
-    oldFile: !uuid 'a923979fe33cedcce6f936c13f2238dc7c963281'
-  /template/README.md:
-    newFile: !uuid 'df6c030575c3981e61bca6cbc80e0ca5e80e5932'
-    oldFile: !uuid 'dff632a7d22bb4ed688be7c0e896c606b3dc4b5b'
-gitCommitId: !uuid '4022ab7aa750dc382220cebb8f47ae2da4f4ff69'
+  /backend/Admin.NET.Application/Admin.NET.Application.csproj:
+    newFile: !uuid 'bcfa64eb1383cadf208537e97ae62f3755e6f99a'
+    oldFile: null
+  /backend/Admin.NET.Application/System:
+    newFile: !uuid 'c13246df7d1a98ccce46a261003d6860214ee8ce'
+    oldFile: null
+  /backend/Admin.NET.Application/System/Dtos:
+    newFile: !uuid 'd95df6e0f7465cdbdb3e88292987b43dd23c7718'
+    oldFile: null
+  /backend/Admin.NET.Application/System/Dtos/Mapper.cs:
+    newFile: !uuid '38a0673b5c4820e0ebc1443eac1d105ddbf2f7a9'
+    oldFile: null
+  /backend/Admin.NET.Application/System/Services:
+    newFile: !uuid '5bc40703b015ff4885363aab5736c09bc019bae9'
+    oldFile: null
+  /backend/Admin.NET.Application/System/Services/ISystemService.cs:
+    newFile: !uuid 'a1b7efdd782b2b435a5be204c7190232d33e9284'
+    oldFile: null
+  /backend/Admin.NET.Application/System/Services/SystemService.cs:
+    newFile: !uuid '8cd8cb3782910c65602934f4cc1a99ee5ad158bc'
+    oldFile: null
+  /backend/Admin.NET.Application/System/SystemAppService.cs:
+    newFile: !uuid 'd14c7a3b3f489f34782d67980d84d1c0fbb0a07b'
+    oldFile: null
+  /backend/Admin.NET.Application/applicationsettings.json:
+    newFile: !uuid '29091fa5825d17dacb9ec0e5d7f55707802c56ea'
+    oldFile: null
+  /backend/Admin.NET.Core:
+    newFile: !uuid '07a274f6a86b27d394fcb8c194ff13c769f5307d'
+    oldFile: null
+  /backend/Admin.NET.Core/Admin.NET.Core.csproj:
+    newFile: !uuid 'fcbb7a6810ff20609ae36ef30265f0b75ecbfc9c'
+    oldFile: null
+  /backend/Admin.NET.Core/Captcha:
+    newFile: !uuid '10cc1e433b0ad9953c9904d6e1deb711aacfaba5'
+    oldFile: null
+  /backend/Admin.NET.Core/Captcha/ClickWord:
+    newFile: !uuid 'c605eb1ec0568e2131969b0ccada43963638d078'
+    oldFile: null
+  /backend/Admin.NET.Core/Captcha/ClickWord/ClickWordCaptcha.cs:
+    newFile: !uuid 'c5e3c857591edd337a7d4ea7b641e89d6e1f0b01'
+    oldFile: null
+  /backend/Admin.NET.Core/Captcha/ClickWord/ClickWordCaptchaInput.cs:
+    newFile: !uuid 'b44a802ca521205594b51e68bca1f1ec5979a5c3'
+    oldFile: null
+  /backend/Admin.NET.Core/Captcha/ClickWord/ClickWordCaptchaResult.cs:
+    newFile: !uuid 'aac31ba6cc7acc13448248f9f5189da05bbcd2e2'
+    oldFile: null
+  /backend/Admin.NET.Core/Captcha/ClickWord/IClickWordCaptcha.cs:
+    newFile: !uuid '9d118da208b632d9697751dc8890a645be5f9061'
+    oldFile: null
+  /backend/Admin.NET.Core/Captcha/General:
+    newFile: !uuid '5a69e11103d87f8d73e9f4594bebe49ce1fdadef'
+    oldFile: null
+  /backend/Admin.NET.Core/Captcha/General/GeneralCaptcha.cs:
+    newFile: !uuid 'c79b74aae334d28403a9c5cb49080ee43a56b074'
+    oldFile: null
+  /backend/Admin.NET.Core/Captcha/General/GeneralCaptchaInput.cs:
+    newFile: !uuid 'ec88642985e5dab67f443bf71a7098b4b9bd985b'
+    oldFile: null
+  /backend/Admin.NET.Core/Captcha/General/IGeneralCaptcha.cs:
+    newFile: !uuid '50d8bb6eed02a4ace929564edbdade1e730cf3a6'
+    oldFile: null
+  /backend/Admin.NET.Core/Const:
+    newFile: !uuid '3e827b33381489c3213a957c70d60653d302dd82'
+    oldFile: null
+  /backend/Admin.NET.Core/Const/ClaimConst.cs:
+    newFile: !uuid '10392bbd573bcb9d607207fb25801a04f9ba012a'
+    oldFile: null
+  /backend/Admin.NET.Core/Const/CommonConst.cs:
+    newFile: !uuid 'add4356170f4a8bd318b4fc41997604998e6029d'
+    oldFile: null
+  /backend/Admin.NET.Core/Entity:
+    newFile: !uuid '41bc2ec899628ab1d458dee91e8260a104de590d'
+    oldFile: null
+  /backend/Admin.NET.Core/Entity/DBEntityTenant.cs:
+    newFile: !uuid '8ceeee15401c67d0e56c804821cf874045269b50'
+    oldFile: null
+  /backend/Admin.NET.Core/Entity/DEntityBase.cs:
+    newFile: !uuid '767591dd75ea8cb0fde776f5fe84c13e26d34cf9'
+    oldFile: null
+  /backend/Admin.NET.Core/Entity/SysApp.cs:
+    newFile: !uuid '310f5614bff42e1ad9969d8f47d24903ca789ae4'
+    oldFile: null
+  /backend/Admin.NET.Core/Entity/SysCodeGen.cs:
+    newFile: !uuid '60f27677eb26ac17c7386a9fa20983eb877fa410'
+    oldFile: null
+  /backend/Admin.NET.Core/Entity/SysCodeGenConfig.cs:
+    newFile: !uuid '86acd545287af1f3282f9287f5075f519900f070'
+    oldFile: null
+  /backend/Admin.NET.Core/Entity/SysConfig.cs:
+    newFile: !uuid '1f1b2426592e8932409016e33aba6f5fb130d030'
+    oldFile: null
+  /backend/Admin.NET.Core/Entity/SysDictData.cs:
+    newFile: !uuid 'e2c905f250feaa40d4f48c71b7dcb4d6a3a57a62'
+    oldFile: null
+  /backend/Admin.NET.Core/Entity/SysDictType.cs:
+    newFile: !uuid '2e1630795ddc83a64a855f984ab750f01c5dfb08'
+    oldFile: null
+  /backend/Admin.NET.Core/Entity/SysEmp.cs:
+    newFile: !uuid '6931cbd53495a96644ecc7d97346a4176704fae5'
+    oldFile: null
+  /backend/Admin.NET.Core/Entity/SysEmpExtOrgPos.cs:
+    newFile: !uuid 'c47dfcb6c3532ddb35151bb231006e973cdc116e'
+    oldFile: null
+  /backend/Admin.NET.Core/Entity/SysEmpPos.cs:
+    newFile: !uuid '09d76c9b44188c4a7c17b62ce888ee9c10de571d'
+    oldFile: null
+  /backend/Admin.NET.Core/Entity/SysFile.cs:
+    newFile: !uuid 'dcc46b8e5a1a5aca516924bb32994af4db63afb3'
+    oldFile: null
+  /backend/Admin.NET.Core/Entity/SysLogAudit.cs:
+    newFile: !uuid 'fb4fd0429e3b591833e4f2d5b23e24d198724de1'
+    oldFile: null
+  /backend/Admin.NET.Core/Entity/SysLogEx.cs:
+    newFile: !uuid '0d3fb4762615b03205e359fd4e2101f6891fdac6'
+    oldFile: null
+  /backend/Admin.NET.Core/Entity/SysLogOp.cs:
+    newFile: !uuid '4bb871cb0412cfa56a015649d168b9d33f7f1962'
+    oldFile: null
+  /backend/Admin.NET.Core/Entity/SysLogVis.cs:
+    newFile: !uuid 'e87d8d8dcdd954070767145f615adcd78975ba4f'
+    oldFile: null
+  /backend/Admin.NET.Core/Entity/SysMenu.cs:
+    newFile: !uuid 'ea1c3b4e6f470d9abc1333e05fc489c57e3db466'
+    oldFile: null
+  /backend/Admin.NET.Core/Entity/SysNotice.cs:
+    newFile: !uuid '2cc0b5d7190e2be47c1a720bfe373f73883d3333'
+    oldFile: null
+  /backend/Admin.NET.Core/Entity/SysNoticeUser.cs:
+    newFile: !uuid '161a3007fd8c5a8e1d085d23b4c3ac8144f3c149'
+    oldFile: null
+  /backend/Admin.NET.Core/Entity/SysOauthUser.cs:
+    newFile: !uuid '0b2cabb68fe397020598cda79f5a701705f34039'
+    oldFile: null
+  /backend/Admin.NET.Core/Entity/SysOnlineUser.cs:
+    newFile: !uuid '381afaca87659d695a91c8e99ac4c523a75313c8'
+    oldFile: null
+  /backend/Admin.NET.Core/Entity/SysOrg.cs:
+    newFile: !uuid 'c8fd10e097d0ac8ff33a22cf7474738fc3968417'
+    oldFile: null
+  /backend/Admin.NET.Core/Entity/SysPos.cs:
+    newFile: !uuid 'ea390940040e68bd72c01803345546a8630fc0f1'
+    oldFile: null
+  /backend/Admin.NET.Core/Entity/SysRole.cs:
+    newFile: !uuid '8b13395b3e95e7135c060a9ca37bd4d62657ce52'
+    oldFile: null
+  /backend/Admin.NET.Core/Entity/SysRoleDataScope.cs:
+    newFile: !uuid '9a041279ccc5c6a6cbd0769098955edfe24739bd'
+    oldFile: null
+  /backend/Admin.NET.Core/Entity/SysRoleMenu.cs:
+    newFile: !uuid '8933f65a8a6c19a633b6f53207525bc6db7247aa'
+    oldFile: null
+  /backend/Admin.NET.Core/Entity/SysTenant.cs:
+    newFile: !uuid 'd0662c1d1b0f739c0f2aa80403b16cb78fa004ab'
+    oldFile: null
+  /backend/Admin.NET.Core/Entity/SysTimer.cs:
+    newFile: !uuid '6187f1c3835def9afec11839679cace6608a37a2'
+    oldFile: null
+  /backend/Admin.NET.Core/Entity/SysUser.cs:
+    newFile: !uuid 'cf4cc42dbfa4a4514767723178e0741f58a1fa0d'
+    oldFile: null
+  /backend/Admin.NET.Core/Entity/SysUserDataScope.cs:
+    newFile: !uuid '10ecb6e7302141e8770e74b18d8fd493b1ccfc42'
+    oldFile: null
+  /backend/Admin.NET.Core/Entity/SysUserRole.cs:
+    newFile: !uuid '08aead951b8022e3263fbc49a186796d5323547e'
+    oldFile: null
+  /backend/Admin.NET.Core/Enum:
+    newFile: !uuid 'e74824ebe8ee311e8fd9ed86b4a4ea83984ae406'
+    oldFile: null
+  /backend/Admin.NET.Core/Enum/AdminType.cs:
+    newFile: !uuid '2adffc9674b31aee4679a31f3c0454855939aff3'
+    oldFile: null
+  /backend/Admin.NET.Core/Enum/CommonStatus.cs:
+    newFile: !uuid '26744e546094d0bc4db036f3bbaf6dc65f592e29'
+    oldFile: null
+  /backend/Admin.NET.Core/Enum/DataOpType.cs:
+    newFile: !uuid '8df13a3270b78a0084440420be32c2c65088b7ad'
+    oldFile: null
+  /backend/Admin.NET.Core/Enum/DataScopeType.cs:
+    newFile: !uuid '09afa03f855665853d90130eef1c0d0b6e7b4a57'
+    oldFile: null
+  /backend/Admin.NET.Core/Enum/ErrorCode.cs:
+    newFile: !uuid 'ada1cdcde62bd73da5e946f33a8ce2472ea4e7cd'
+    oldFile: null
+  /backend/Admin.NET.Core/Enum/FileLocation.cs:
+    newFile: !uuid 'd9d0c6b4ba13716a35865b24db6aaddec126667f'
+    oldFile: null
+  /backend/Admin.NET.Core/Enum/Gender.cs:
+    newFile: !uuid '933d5c793ce3e0cbfc81f0a1903e6916627434f2'
+    oldFile: null
+  /backend/Admin.NET.Core/Enum/HttpStatusCode.cs:
+    newFile: !uuid '0fc638412579cad14c5c62ee23fda72bf22f7ebc'
+    oldFile: null
+  /backend/Admin.NET.Core/Enum/LoginType.cs:
+    newFile: !uuid '6f0b59fc8d280f1e6fbba9bf59ed357f0d7fe341'
+    oldFile: null
+  /backend/Admin.NET.Core/Enum/MenuOpenType.cs:
+    newFile: !uuid '5533fb3574416376ac03fc1a1031157a6b667c10'
+    oldFile: null
+  /backend/Admin.NET.Core/Enum/MenuType.cs:
+    newFile: !uuid 'b6c1cb6eb9fa1a1dd31181d9a7bd56bc8eaf284d'
+    oldFile: null
+  /backend/Admin.NET.Core/Enum/MenuWeight.cs:
+    newFile: !uuid '9baeb33ff88e10ce659e306b270c0c0073595097'
+    oldFile: null
+  /backend/Admin.NET.Core/Enum/NoticeStatus.cs:
+    newFile: !uuid 'f6f8b73103fabc3ec360fbacf842947acc58ac81'
+    oldFile: null
+  /backend/Admin.NET.Core/Enum/NoticeUserStatus.cs:
+    newFile: !uuid '505db06eb02ac2889d88c43b0547ac41536d5aae'
+    oldFile: null
+  /backend/Admin.NET.Core/Enum/QueryTypeEnum.cs:
+    newFile: !uuid 'ec30d9fa43fac864325ed11e9780784376443557'
+    oldFile: null
+  /backend/Admin.NET.Core/Enum/RequestTypeEnum.cs:
+    newFile: !uuid 'd10645260b063585f16af1899ca7dbf667856e19'
+    oldFile: null
+  /backend/Admin.NET.Core/Enum/YesOrNot.cs:
+    newFile: !uuid '11773636ac536753e258fe0bcda72da6ef2923c0'
+    oldFile: null
+  /backend/Admin.NET.Core/Extension:
+    newFile: !uuid '5d003719ad526cb06aacfc733c2abfa8a91699f2'
+    oldFile: null
+  /backend/Admin.NET.Core/Extension/DictionaryExtensions.cs:
+    newFile: !uuid '4d30a29682e9f718260d864733439d7a137a01f0'
+    oldFile: null
+  /backend/Admin.NET.Core/Extension/EnumExtensions.cs:
+    newFile: !uuid '22a3490b67ae57e350b86dc800a7f0534a8fd905'
+    oldFile: null
+  /backend/Admin.NET.Core/Extension/PageInputOrder.cs:
+    newFile: !uuid 'ca00f2ef87663e4bbcd99da6e47ded787f9ba2b1'
+    oldFile: null
+  /backend/Admin.NET.Core/Extension/XnInputBase.cs:
+    newFile: !uuid '511097e5c71745642ec45908ebbab45113be643c'
+    oldFile: null
+  /backend/Admin.NET.Core/Extension/XnPageResult.cs:
+    newFile: !uuid '09c367033a3d8c3c13f68eedcf8bac1b22c96506'
+    oldFile: null
+  /backend/Admin.NET.Core/Extension/XnRestfulResultProvider.cs:
+    newFile: !uuid '7c3dcee1de12111a126faff12edc3d41ece04d20'
+    oldFile: null
+  /backend/Admin.NET.Core/Filter:
+    newFile: !uuid '500835e643211482f0093c1ee6e361f61f2c4703'
+    oldFile: null
+  /backend/Admin.NET.Core/Filter/LogExceptionHandler.cs:
+    newFile: !uuid '696f8833761c8c5e8f01a57432f28ba2dd35f7fa'
+    oldFile: null
+  /backend/Admin.NET.Core/Filter/RequestActionFilter.cs:
+    newFile: !uuid '6fbc47d3af7d5bac7cfdf6ccffe7719539380239'
+    oldFile: null
+  /backend/Admin.NET.Core/Hubs:
+    newFile: !uuid '2c25891c69cca4d2b80c3d71f360e11eecd11bbb'
+    oldFile: null
+  /backend/Admin.NET.Core/Hubs/ChatHub.cs:
+    newFile: !uuid '10b000620779cf79ac00f307ea8fa87038faebbc'
+    oldFile: null
+  /backend/Admin.NET.Core/Manager:
+    newFile: !uuid '8f942eb2cc466d1df93ebf0219a4ebb3352d5fd4'
+    oldFile: null
+  /backend/Admin.NET.Core/Manager/IUserManager.cs:
+    newFile: !uuid 'd507c70441f1c85c954a388c46209fee99fe6361'
+    oldFile: null
+  /backend/Admin.NET.Core/Manager/UserManager.cs:
+    newFile: !uuid 'f29554d171f7009811959ce74527b045744bcf22'
+    oldFile: null
+  /backend/Admin.NET.Core/OAuth:
+    newFile: !uuid '57ed97463624e7ad24db5163c912520c90ff98d5'
+    oldFile: null
+  /backend/Admin.NET.Core/OAuth/IWechatOAuth.cs:
+    newFile: !uuid '9133b83e71e305d52c6c9aea15069ac24c615304'
+    oldFile: null
+  /backend/Admin.NET.Core/OAuth/OAuthConfig.cs:
+    newFile: !uuid '555fd0a7db6a7bc6fb4bd688787ef10cf3328bf3'
+    oldFile: null
+  /backend/Admin.NET.Core/OAuth/TokenModel.cs:
+    newFile: !uuid 'deeb83b69d058d4d6503e8d5383d15d88652a0d0'
+    oldFile: null
+  /backend/Admin.NET.Core/OAuth/UserInfoModel.cs:
+    newFile: !uuid 'ccb93a685388a4a0a21e585c7805c71b18f7db3c'
+    oldFile: null
+  /backend/Admin.NET.Core/OAuth/WechatOAuth.cs:
+    newFile: !uuid '748bd04f658581d1def527b9d7341590f0afc62f'
+    oldFile: null
+  /backend/Admin.NET.Core/SeedData:
+    newFile: !uuid '5ff102bdb0012b4b2dc755cc6fd5b4213188cf2b'
+    oldFile: null
+  /backend/Admin.NET.Core/SeedData/SysAppSeedData.cs:
+    newFile: !uuid 'cdf7a0b514c68e44b62f23128a3b1da9cc8b542e'
+    oldFile: null
+  /backend/Admin.NET.Core/SeedData/SysConfigSeedData.cs:
+    newFile: !uuid '55ddaf57f87a07b1b7fae2cdd2aabec608b3eb72'
+    oldFile: null
+  /backend/Admin.NET.Core/SeedData/SysDictDataSeedData.cs:
+    newFile: !uuid '4c81cd9d4d892c8466d2741414c68627eb64ce90'
+    oldFile: null
+  /backend/Admin.NET.Core/SeedData/SysDictTypeSeedData.cs:
+    newFile: !uuid '06d6102af523dd7de25a773963bb60dfc851bd9d'
+    oldFile: null
+  /backend/Admin.NET.Core/SeedData/SysEmpExtOrgPos.cs:
+    newFile: !uuid '29c07054a1dafd57681382fed86072d066a95bc7'
+    oldFile: null
+  /backend/Admin.NET.Core/SeedData/SysEmpPosSeedData.cs:
+    newFile: !uuid '73cf1c0140ce78745594c65671aaa61a87f88183'
+    oldFile: null
+  /backend/Admin.NET.Core/SeedData/SysEmpSeedData.cs:
+    newFile: !uuid '2f8342857f96fe71c7543ea3dc8935db0a23ec54'
+    oldFile: null
+  /backend/Admin.NET.Core/SeedData/SysMenuSeedData.cs:
+    newFile: !uuid '8b53dec4688b1dad02a175ea2efc22558ca61382'
+    oldFile: null
+  /backend/Admin.NET.Core/SeedData/SysOrgSeedData.cs:
+    newFile: !uuid 'dc3a69baaf99f3ae3d39a77df38df3c05b303d4d'
+    oldFile: null
+  /backend/Admin.NET.Core/SeedData/SysPosSeedData.cs:
+    newFile: !uuid 'daa91d9469a239b39841821a58ef91bbdf9d2511'
+    oldFile: null
+  /backend/Admin.NET.Core/SeedData/SysRoleMenuSeedData.cs:
+    newFile: !uuid 'f921dacc6f88a3b957a696160e504c5619666e15'
+    oldFile: null
+  /backend/Admin.NET.Core/SeedData/SysRoleSeedData.cs:
+    newFile: !uuid 'd8573760f12d2c040d0505bd7dbca7733e287ac9'
+    oldFile: null
+  /backend/Admin.NET.Core/SeedData/SysTenantSeedData.cs:
+    newFile: !uuid '67841307669e41499d9e8bdeee777b87595d606b'
+    oldFile: null
+  /backend/Admin.NET.Core/SeedData/SysTimerSeedData.cs:
+    newFile: !uuid '8b18813688c133a3e4e5c1a453261845459b7cd6'
+    oldFile: null
+  /backend/Admin.NET.Core/SeedData/SysUserDataScopeSeedData.cs:
+    newFile: !uuid 'a250481d1d77b63c8dff202790d53d10fd47ff39'
+    oldFile: null
+  /backend/Admin.NET.Core/SeedData/SysUserRoleSeedData.cs:
+    newFile: !uuid 'd21e4f56451e0e033dd4df7871798dc99a1c5f02'
+    oldFile: null
+  /backend/Admin.NET.Core/SeedData/SysUserSeedData.cs:
+    newFile: !uuid 'e9b91ef826e41aa2e386982bf8d44e1cb86f5e65'
+    oldFile: null
+  /backend/Admin.NET.Core/Service:
+    newFile: !uuid '11aac287cd0c49ac986d51907bf10c357cb84100'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/App:
+    newFile: !uuid '0b472ac597ca8b5283adde20430d55b624708891'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/App/Dto:
+    newFile: !uuid 'dece4482a6a8384b118d14d1abfdf46ed0509694'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/App/Dto/AppInput.cs:
+    newFile: !uuid '3935725c4bcc00a5fa00bded0f5eb1c4e0974e14'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/App/Dto/AppOutput.cs:
+    newFile: !uuid '77b356d227b371b3cd0239aaa4a66db5e7e15daa'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/App/ISysAppService.cs:
+    newFile: !uuid 'd28e498e82963c60bd79a0407899357a252617e6'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/App/SysAppService.cs:
+    newFile: !uuid '92e9f9a3eeec475553f24798a8971896920af1f3'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/Auth:
+    newFile: !uuid '2b3b4a7b526109081de7a263a499414a2e385236'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/Auth/AuthService.cs:
+    newFile: !uuid '79c472f058a7963c142d7b04b48e555095ef786a'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/Auth/Dto:
+    newFile: !uuid 'e285720e731b86e8036f66b1cc8d2934897c9723'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/Auth/Dto/LoginInput.cs:
+    newFile: !uuid '70e32ad85c2fbc75f8212ad96c441c7af0f3b2d2'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/Auth/Dto/LoginOutput.cs:
+    newFile: !uuid '1e6fcb23f92cf523f568bd81cdd996f2b5fad70b'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/Auth/Dto/RegistInput.cs:
+    newFile: !uuid '4f6c7b8682d68a69034b725d67363a940f826d5c'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/Auth/IAuthService.cs:
+    newFile: !uuid '4f095f2f0bd70d22348b05b753c2262f15f32de7'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/BaseId.cs:
+    newFile: !uuid '29f0ef5fd77f3c2dcbbf0366d45b0a1a68d4bfe1'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/Cache:
+    newFile: !uuid 'a0318b36467a2e0b4a9000612a80b4c1528dfea3'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/Cache/ISysCacheService.cs:
+    newFile: !uuid '00b9ba5daa64eb09d3f06569debbb7b7bb797b1e'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/Cache/SysCacheService.cs:
+    newFile: !uuid 'b431998c7a9bb852fd5541c89421f18b15cf36ef'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/CodeGen:
+    newFile: !uuid '3591971f6d556d67ab02823c761dc5c19140066a'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/CodeGen/CodeGenConfigService.cs:
+    newFile: !uuid '959483e123761b479ddb93335075f3e109128339'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/CodeGen/CodeGenService.cs:
+    newFile: !uuid 'd5c1fb0e2b361a554bd59fe1b34b00c010c65c43'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/CodeGen/Dto:
+    newFile: !uuid '90968f4891afe87eb2c24e09dd1a9b0402ba5bf1'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/CodeGen/Dto/CodeGenConfig.cs:
+    newFile: !uuid '8a588f955a83d12a03225c777b3897d22056bacc'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/CodeGen/Dto/CodeGenInput.cs:
+    newFile: !uuid '215561dbf36e1c433fa0df68b9829fdd95d75cf8'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/CodeGen/Dto/CodeGenOutput.cs:
+    newFile: !uuid 'd13181bacbc2d503a9858420b1e0d1b3658d8fcc'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/CodeGen/Dto/TableColumnOuput.cs:
+    newFile: !uuid '829003f259d80486e79be5896fc3471b96eebeaa'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/CodeGen/Dto/TableOutput.cs:
+    newFile: !uuid 'db619950692c385f7555bc09cf0589b0eae154fe'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/CodeGen/Dto/XnCodeGenOutput.cs:
+    newFile: !uuid 'b97a11de1645943ac096156df7b5c560662e0625'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/CodeGen/ICodeGenConfigService.cs:
+    newFile: !uuid 'ec21c5f2478f145dd20f5a681983a28879fdd627'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/CodeGen/ICodeGenService.cs:
+    newFile: !uuid '3810b7dc381f70bbf58e4e8896cd1a8ddee985a1'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/Config:
+    newFile: !uuid 'f49fac6d7fa6b404abdf263adf1932c096703cec'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/Config/Dto:
+    newFile: !uuid '93adafc883ac65af3c0c75b855a9f842323f5096'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/Config/Dto/ConfigInput.cs:
+    newFile: !uuid 'a49a46f4358aba2e4f99c6c86d64f216044f6d97'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/Config/ISysConfigService.cs:
+    newFile: !uuid '43f65d5e344ba4b3fc8a2676f3961c352371b73d'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/Config/SysConfigService.cs:
+    newFile: !uuid '224eb9d2bf0f56aff18018c09a46db502dc0160c'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/Dict:
+    newFile: !uuid '0dc6a4781422add11a7a647bfed75c323d23e954'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/Dict/Dto:
+    newFile: !uuid '93c20594529304f8a4c92d7e3655fbabd08f1b0b'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/Dict/Dto/DictDataInput.cs:
+    newFile: !uuid 'd2badbb5ac4784a32512bacd968cfa3b639aa3d9'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/Dict/Dto/DictDataOutput.cs:
+    newFile: !uuid '8024dd88a50bfb3a843aba4cddf9ecc957c8d2dd'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/Dict/Dto/DictTreeOutput.cs:
+    newFile: !uuid '61cb7ca525b48d1c0650b0cefec11864adc204b8'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/Dict/Dto/DictTypeInput.cs:
+    newFile: !uuid 'e9a42a2d32001e20f57e16cb2ffd906b4a04191c'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/Dict/ISysDictDataService.cs:
+    newFile: !uuid '15a217103bb66bcfb8576f6ff264278e8e7ce78c'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/Dict/ISysDictTypeService.cs:
+    newFile: !uuid '36a719ea6446b850a40452b4d5881af5569e0fde'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/Dict/SysDictDataService.cs:
+    newFile: !uuid '77bd9a53a0dd37310fbd97dddfb4dc9393071622'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/Dict/SysDictTypeService.cs:
+    newFile: !uuid 'd9e62cabee91007039e577a990f2d3d08cb9d75c'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/Emp:
+    newFile: !uuid '6c98fe161279bac9afeab3f2c753d5c923ffef96'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/Emp/Dto:
+    newFile: !uuid '66185eb1607c67dcb79e09f23905af389d6ec9ba'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/Emp/Dto/EmpExtOrgPosOutput.cs:
+    newFile: !uuid '7fb925accf0bd2ca87dcdb9f3ad7e14b0e89915e'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/Emp/Dto/EmpOutput.cs:
+    newFile: !uuid '4705bd09e9f3a01f9258cdcf52f229b5ce3fcf20'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/Emp/Dto/EmpOutput2.cs:
+    newFile: !uuid 'e07d2f7f0b7b3b0f71514eb0c9953cc0e99cff03'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/Emp/Dto/EmpPosOutput.cs:
+    newFile: !uuid '1e50c65d922b7b324f88f00bdec360c888eb4bfc'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/Emp/ISysEmpExtOrgPosService.cs:
+    newFile: !uuid 'a8e646a9e41f4f7562f9d980ad864c7bbb634fbc'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/Emp/ISysEmpPosService.cs:
+    newFile: !uuid '22f01220b461aed4d18ab32068aa2312d69c80b2'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/Emp/ISysEmpService.cs:
+    newFile: !uuid '5babc57f07f5414a2a448deb33eeb6d1715b50a2'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/Emp/SysEmpExtOrgPosService.cs:
+    newFile: !uuid 'acf99e04ae3d2b44ee36bfa2050d2822f9811575'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/Emp/SysEmpPosService.cs:
+    newFile: !uuid 'b0bf7e13df4c0bde92784285b42d8e7c87d1f845'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/Emp/SysEmpService.cs:
+    newFile: !uuid '4a90f5a4112f89a57f9ca1681ef1d6f6fa7667b5'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/Enum:
+    newFile: !uuid '74eecba5b5669f48d4465b8526474bfb9a145a68'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/Enum/Dto:
+    newFile: !uuid '52db18e3e810a2a410be271f582810365e8f4db6'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/Enum/Dto/EnumDataInput.cs:
+    newFile: !uuid '229587a636eb468e77981a47c99ba61db108fc89'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/Enum/Dto/EnumDataOutput.cs:
+    newFile: !uuid '730532ec5c74a69eb4ed4c811556101fbd33b63f'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/Enum/ISysEnumDataService.cs:
+    newFile: !uuid '2c87c4dc702e3c32929c59db9f62e4eab7dc3810'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/Enum/SysEnumDataService.cs:
+    newFile: !uuid '534a69448db76f7e48a6f98c2cd6c03ab0b4578b'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/File:
+    newFile: !uuid '539a14956a846e021480d430da04555a78c16be4'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/File/Dto:
+    newFile: !uuid '3992ef46933fe18de4b968e67b60ae9c1b39bce1'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/File/Dto/FileInput.cs:
+    newFile: !uuid '20ade33cc155961ce185d14377fa7cdd17050470'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/File/Dto/FileOutput.cs:
+    newFile: !uuid '857f0cdc96e7207e7d85f56c2336eb89cb24ca45'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/File/ISysFileService.cs:
+    newFile: !uuid 'e3cd7677d96ffd94008fa4cdf8577f53c029127b'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/File/SysFileService.cs:
+    newFile: !uuid '466b5cb54c2916326062da5a32ffcb11abf5b3d5'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/Log:
+    newFile: !uuid '36843b32e5cd1bfd408652a4ec10a22e224eec74'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/Log/Dto:
+    newFile: !uuid '8a58a268a21704b5ce58d70e44e9b28006e95174'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/Log/Dto/ExLogInput.cs:
+    newFile: !uuid 'c64b61613916659ee9da6e2834f2ea6bfca6d609'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/Log/Dto/ExLogOutput.cs:
+    newFile: !uuid 'd0c7c94bf022cdc537a41c784f463d2729de9e6f'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/Log/Dto/OpLogInput.cs:
+    newFile: !uuid 'c346793e3783e3ba54dbcb6eeb83bae25b58f252'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/Log/Dto/OpLogOutput.cs:
+    newFile: !uuid 'f840ed9095f66ee8ba5977b5e68c021e18d703bb'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/Log/Dto/VisLogInput.cs:
+    newFile: !uuid 'ce7c7edcb7ebee118267226f5526e262fc139469'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/Log/Dto/VisLogOutput.cs:
+    newFile: !uuid 'bee14e2c9ecf516e5d35fe00f4475e0495d59ebb'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/Log/ISysExLogService.cs:
+    newFile: !uuid '40a74e8374eabc9d1f687f01fae0592ae0024e8c'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/Log/ISysOpLogService.cs:
+    newFile: !uuid 'a3310ed6c201c484828375d247169f703bc8c913'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/Log/ISysVisLogService.cs:
+    newFile: !uuid '7b464b3d07a8226ab4b11e44b647f05d77960e4d'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/Log/SysExLogService.cs:
+    newFile: !uuid 'ecbb0d50480dfde2d3b376135f88f8a9833c37ea'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/Log/SysOpLogService.cs:
+    newFile: !uuid '415130a168b1f36173941ae78be878f251b7b63e'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/Log/SysVisLogService.cs:
+    newFile: !uuid '5a64ea9b47c218fc132b2b0590ccfe7a94c7f24f'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/Menu:
+    newFile: !uuid '9b7747c40b9c6f2e0ce860f4416ffba173b3edda'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/Menu/Dto:
+    newFile: !uuid 'dc043c9b3e86d2714af44e519e38f8396f2d8e3c'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/Menu/Dto/AntDesignTreeNode.cs:
+    newFile: !uuid 'feaa4925e3c8c2bcbe9d5139bf9db4826e7e335b'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/Menu/Dto/MenuInput.cs:
+    newFile: !uuid '2bfbf7d978593d43f7ba838c3ca4acba92559ee4'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/Menu/Dto/MenuOutput.cs:
+    newFile: !uuid '1b6ea85560a61f9aca413ca6d904c077028b1754'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/Menu/Dto/MenuTreeOutput.cs:
+    newFile: !uuid 'a1b2893e21627302f3a549a0f68036eee6802e1f'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/Menu/ISysMenuService.cs:
+    newFile: !uuid '676d66ce5ba971e71de14973fa06fd5092be72cb'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/Menu/SysMenuService.cs:
+    newFile: !uuid '55c08de2ee785accbfe82cb306a78a5e8e7016db'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/Monitor:
+    newFile: !uuid '9206d226541642819b265a426d32ece47a9b33d0'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/Monitor/IMachineService.cs:
+    newFile: !uuid '69b7120414513ece03ee1933a313d522834f3d45'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/Monitor/MachineService.cs:
+    newFile: !uuid 'ae9bb444187b4f765558da8e5723c66d834d58e1'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/Notice:
+    newFile: !uuid '6834121726bb20c96a7cd8b1f037d628975cc8e2'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/Notice/Dto:
+    newFile: !uuid '8b785e5b25025eb0e80177d31cfdf1508c06103b'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/Notice/Dto/NoticeBase.cs:
+    newFile: !uuid '5fdec1dd84deaa0cb56fa6d564e59028e338f3a6'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/Notice/Dto/NoticeDetailOutput.cs:
+    newFile: !uuid '1930e06fe8d6ef34df468dcb892000c6027b07ee'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/Notice/Dto/NoticeInput.cs:
+    newFile: !uuid 'afe11d95a826fe3c9d5d6df7309c2378779e11bd'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/Notice/Dto/NoticeReceiveOutput.cs:
+    newFile: !uuid 'df4a262c42bf0acd7e0b5f7412342447e0c600ce'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/Notice/ISysNoticeService.cs:
+    newFile: !uuid 'c1bc2dfc0fd189a944b0aecb2ec5af7feb8046ee'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/Notice/ISysNoticeUserService.cs:
+    newFile: !uuid 'bf65135e901030682a6d82fcd4d633573f72e28d'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/Notice/SysNoticeService.cs:
+    newFile: !uuid 'e5ef39f2109c98870f9dbfc6d755dbc3d89009e3'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/Notice/SysNoticeUserService.cs:
+    newFile: !uuid 'a882a36fb515904a2d01aa98da11e48c971c4ba4'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/OAuth:
+    newFile: !uuid 'ca4f25db97b99b7b81259918734695865d6781a0'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/OAuth/ISysOauthService.cs:
+    newFile: !uuid 'ace89a4734954901ea22a0ff9a3be2d44058a836'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/OAuth/SysOauthService.cs:
+    newFile: !uuid '7a7671d80dd734ac54cefce5c2c956dbce7ba3c5'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/OnlineUser:
+    newFile: !uuid 'd321d8657fde1336c94b5cd26f5c775cedfb6e77'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/OnlineUser/ISysOnlineUserService.cs:
+    newFile: !uuid '90605182f2f65a3532901abcccbf24114a839e28'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/OnlineUser/SysOnlineUserService.cs:
+    newFile: !uuid 'a1eab308774c8d8931c32ac6f693ac633db1a4d8'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/Org:
+    newFile: !uuid 'a081ace296b41fd25b664823b4686e98420800d9'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/Org/Dto:
+    newFile: !uuid '0953781a27520562312de4cc67c3ff97b44318a5'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/Org/Dto/OrgInput.cs:
+    newFile: !uuid '8470b8ad1822bf0fa116ef9dee00873f018404e2'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/Org/Dto/OrgOutput.cs:
+    newFile: !uuid '84db7426be6361064143ad92f19a4586cad786f7'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/Org/Dto/OrgTreeNode.cs:
+    newFile: !uuid 'c7bac6431c3587eb01516d463a2bc6f6bd7bcceb'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/Org/ISysOrgService.cs:
+    newFile: !uuid '4d8b8399bee099260f64df751d273ca70ed8a1c9'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/Org/SysOrgService.cs:
+    newFile: !uuid 'c8c3feb8a21c8aa232fb9a9250e0d4ec01e3931f'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/Pos:
+    newFile: !uuid '909c585bec6386bb9f056456ed22e399d0f2ee5b'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/Pos/Dto:
+    newFile: !uuid 'b80ab8f12a421ff57577772e53b2d8e831c5f898'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/Pos/Dto/PosInput.cs:
+    newFile: !uuid 'ab5cf61946b27a7876bc4119fc7d9e5e4a3d38ab'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/Pos/ISysPosService.cs:
+    newFile: !uuid '52d86e05e6505f0484a0a6f33bccbb4888a99ac1'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/Pos/SysPosService.cs:
+    newFile: !uuid '5e8a09447378f9a2b2f9e95c7940e024abcbbaa1'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/Role:
+    newFile: !uuid 'ad69bb7805f340937192e8812570136a3b19557a'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/Role/Dto:
+    newFile: !uuid '85144e7b96d30da35e51a97603363b187b2a81cd'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/Role/Dto/RoleInput.cs:
+    newFile: !uuid 'e6901bd84fa49c883b30d3f9c007a54cb07b55e8'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/Role/Dto/RoleOutput.cs:
+    newFile: !uuid '362921f54561e416d9ff9c7fb009904ead413be2'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/Role/ISysRoleDataScopeService.cs:
+    newFile: !uuid '4a95cda8199b1bb82d63efc8eb0844911da5b605'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/Role/ISysRoleMenuService.cs:
+    newFile: !uuid '452c306d85529954dafa05262096684c11b95e06'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/Role/ISysRoleService.cs:
+    newFile: !uuid 'e3b9e879acfced0896c61a306df5392e5eae1536'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/Role/SysRoleDataScopeService.cs:
+    newFile: !uuid '2ebad24bc6eda214d8eee804ca8cf6bfa32b2ef1'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/Role/SysRoleMenuService.cs:
+    newFile: !uuid 'e1d6fb561ed3b8306adc3e0adf6828ff73e2b7ae'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/Role/SysRoleService.cs:
+    newFile: !uuid '2b833d3a131cf86c8993938c0c00a39f77053bd3'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/Tenant:
+    newFile: !uuid '389d718f757b295239ad20bac0894a43abd867e5'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/Tenant/Dto:
+    newFile: !uuid '5fa9340d4005235da7635fb36f9c9f61a2deb370'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/Tenant/Dto/TenantInput.cs:
+    newFile: !uuid '59d4e4edf37799f1c369b9224ef98cfa437d4418'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/Tenant/Dto/TenantOutput.cs:
+    newFile: !uuid '5aa1d97173a3d23254abcab1aafb8e56e8691f6a'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/Tenant/ISysTenantService.cs:
+    newFile: !uuid 'ce165d133391abd01619693fc078af539f5793ac'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/Tenant/SysTenantService.cs:
+    newFile: !uuid 'cf58fb30b3f17567757d8027ec9622b736b0cf5a'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/Timer:
+    newFile: !uuid '43fd16053dd95b59480b8d652119e39a527b7cb6'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/Timer/Dto:
+    newFile: !uuid 'e57163c946f6b45e4b0b498b331fda9e3e996ca2'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/Timer/Dto/JobInput.cs:
+    newFile: !uuid '6daf84424fc5815d9963940a5d897736a4c0f753'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/Timer/Dto/JobOutput.cs:
+    newFile: !uuid '6e268bd7e9b3cd345a4dc2ae1a02c709b28968ca'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/Timer/ISysTimerService.cs:
+    newFile: !uuid '6d34871edc7edae2913c2a2b4f97d76a8bac8683'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/Timer/SysTimerService.cs:
+    newFile: !uuid 'f869297d0741f9fb3f8943691088b441d570b211'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/User:
+    newFile: !uuid '1d16e394ffe1de824d0a2893d8c403fe709d71f5'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/User/Dto:
+    newFile: !uuid '4446a0842f2c9b51d5db3db58966c5fca178f608'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/User/Dto/AuthToken.cs:
+    newFile: !uuid '0ca5f08b5f565fbec6e828c2aafb355af2e550ce'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/User/Dto/AuthUserInput.cs:
+    newFile: !uuid 'e8d9197a8fe958ea65fa1e0a11dbfc71cfa4632d'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/User/Dto/UserInput.cs:
+    newFile: !uuid '5ca96e9ae12ba382578cc482995fa6dbc17bc089'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/User/Dto/UserOutput.cs:
+    newFile: !uuid 'e5b63633b1fec467274a2b5ed3ba35d74b3dd47b'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/User/ISysUserDataScopeService.cs:
+    newFile: !uuid '14693d784d12541e03cbe3c38e94785155f6cb15'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/User/ISysUserRoleService.cs:
+    newFile: !uuid 'f72a24063a9514e7d5914a594c05f610878f5870'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/User/ISysUserService.cs:
+    newFile: !uuid '3c55e1f469bcd15a481e8c995f4cb355dda67df5'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/User/SysUserDataScopeService.cs:
+    newFile: !uuid 'fefddd5c738534bab6a9ada66f26fb380ebf4d3b'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/User/SysUserRoleService.cs:
+    newFile: !uuid '22ba795c4ea697ab86510014c4f4379334db56fd'
+    oldFile: null
+  /backend/Admin.NET.Core/Service/User/SysUserService.cs:
+    newFile: !uuid 'b4ec6726b72e794d948ac6f51fbe2df286084bb4'
+    oldFile: null
+  /backend/Admin.NET.Core/SubscribeHandler:
+    newFile: !uuid 'c1e3e237f9a450aa9ca400226bbd50d3c2f68456'
+    oldFile: null
+  /backend/Admin.NET.Core/SubscribeHandler/LogSubscribeHandler.cs:
+    newFile: !uuid 'e30ebf656503f8031c98313ed2c9419d8a7c7fca'
+    oldFile: null
+  /backend/Admin.NET.Core/Util:
+    newFile: !uuid 'f21b8365e66549b1aedd61a40a74373eaff2cbb0'
+    oldFile: null
+  /backend/Admin.NET.Core/Util/CodeGenUtil.cs:
+    newFile: !uuid '019a0e1ff8ebb08acd71865b1dcb71a577fdd4e9'
+    oldFile: null
+  /backend/Admin.NET.Core/Util/MachineUtil.cs:
+    newFile: !uuid '758c8c5b9471bba9cc9163caed67165cc3ef73c1'
+    oldFile: null
+  /backend/Admin.NET.Core/Util/ReflectionUtil.cs:
+    newFile: !uuid 'c7253e3637e3042cd2dc84325bc19714ccf8aec9'
+    oldFile: null
+  /backend/Admin.NET.Core/Util/TreeBuildUtil.cs:
+    newFile: !uuid 'd10e02c68411adf98e2286d07520e978c3dc71c3'
+    oldFile: null
+  /backend/Admin.NET.Core/applicationconfig.json:
+    newFile: !uuid 'afa88da124d0bbeec8c4463c074d66f930aaf412'
+    oldFile: null
+  /backend/Admin.NET.Core/logo.png:
+    newFile: !uuid '5a014a8a0c19ba9d886d4404627d3ad5ab23a2fc'
+    oldFile: null
+  /backend/Admin.NET.Database.Migrations:
+    newFile: !uuid '2deb0f557516093d647cae7a9ce0098bb56352be'
+    oldFile: null
+  /backend/Admin.NET.Database.Migrations/Admin.NET.Database.Migrations.csproj:
+    newFile: !uuid '54c904a0644b30de5900166989dca9efc33e4014'
+    oldFile: null
+  /backend/Admin.NET.EntityFramework.Core:
+    newFile: !uuid 'bf58291ffcce2e9c0bd259b167e511f92597b43d'
+    oldFile: null
+  /backend/Admin.NET.EntityFramework.Core/Admin.NET.EntityFramework.Core.csproj:
+    newFile: !uuid '86da107fae4317f51b92ffb3e8ea05817b4e8766'
+    oldFile: null
+  /backend/Admin.NET.EntityFramework.Core/DbContexts:
+    newFile: !uuid 'fb75ed02ded86b19d24c1ada03be6c6b273cbe5c'
+    oldFile: null
+  /backend/Admin.NET.EntityFramework.Core/DbContexts/DefaultDbContext.cs:
+    newFile: !uuid 'a7a3376f78d01d66fc41123ff946a97883b2da9d'
+    oldFile: null
+  /backend/Admin.NET.EntityFramework.Core/DbContexts/MultiTenantDbContext.cs:
+    newFile: !uuid '67428110d90b8b713a1018cf3366b80927b8738a'
+    oldFile: null
+  /backend/Admin.NET.EntityFramework.Core/Startup.cs:
+    newFile: !uuid 'b0dd7896b9f1c71c269031594380f1531971ef98'
+    oldFile: null
+  /backend/Admin.NET.EntityFramework.Core/dbsettings.json:
+    newFile: !uuid '14f7652b398952219c85173ded3709a87a380442'
+    oldFile: null
+  /backend/Admin.NET.Web.Core:
+    newFile: !uuid '01e6814feb2137229b9d5340a63fbf096413e3a8'
+    oldFile: null
+  /backend/Admin.NET.Web.Core/Admin.NET.Web.Core.csproj:
+    newFile: !uuid 'e0653e4e90a6ff1d6de6964d13d0ee088923bf6e'
+    oldFile: null
+  /backend/Admin.NET.Web.Core/Handlers:
+    newFile: !uuid '08d22adfbc902620e257b70160dcc839a856134d'
+    oldFile: null
+  /backend/Admin.NET.Web.Core/Handlers/JwtHandler.cs:
+    newFile: !uuid '9581fa17691e280eec8b605fc7b18ff3a30f5bd9'
+    oldFile: null
+  /backend/Admin.NET.Web.Core/Startup.cs:
+    newFile: !uuid '0b5cae14ebb8118d34c68544224c0cb6a787d70f'
+    oldFile: null
+  /backend/Admin.NET.Web.Entry:
+    newFile: !uuid '1aad624d5e45b34a3609689c312b394d8dbeadd9'
+    oldFile: null
+  /backend/Admin.NET.Web.Entry/Admin.NET.Web.Entry.csproj:
+    newFile: !uuid '3bce92c92c37bf6e31fc6efe649d3a46ee0a4d50'
+    oldFile: null
+  /backend/Admin.NET.Web.Entry/Admin.NET.db:
+    newFile: !uuid 'ab9a71638fefd665f2345642fd8ffd6b3f92084e'
+    oldFile: null
+  /backend/Admin.NET.Web.Entry/Admin.NET_SaaS.db:
+    newFile: !uuid 'dcad0bf471c98b8b7196e3968a3500f2348ef025'
+    oldFile: null
+  /backend/Admin.NET.Web.Entry/Controllers:
+    newFile: !uuid 'de2841a14a23efc348b4fc8e364140bad4d5e1be'
+    oldFile: null
+  /backend/Admin.NET.Web.Entry/Controllers/HomeController.cs:
+    newFile: !uuid 'cd7205db4d2f1ec710ed0cc6e5ebdb24e67ec796'
+    oldFile: null
+  /backend/Admin.NET.Web.Entry/Program.cs:
+    newFile: !uuid '7a6cc056e8faa059d68478919f07509c09af962b'
+    oldFile: null
+  /backend/Admin.NET.Web.Entry/Properties:
+    newFile: !uuid '0ac16e6f40cbd304df5f5bc6bfe004c25b20a33c'
+    oldFile: null
+  /backend/Admin.NET.Web.Entry/Properties/launchSettings.json:
+    newFile: !uuid 'ccd6950344791ee1e3a52194cf82a457b712d387'
+    oldFile: null
+  /backend/Admin.NET.Web.Entry/Startup.cs:
+    newFile: !uuid '9bbfb96e5d7c92f2690d67565c319450a48d7421'
+    oldFile: null
+  /backend/Admin.NET.Web.Entry/Views:
+    newFile: !uuid 'f20b0946d8333eb93233e4e73788aca90c70ee10'
+    oldFile: null
+  /backend/Admin.NET.Web.Entry/Views/Home:
+    newFile: !uuid 'd1f5728258f29e8c9b99e7637b99672500610bec'
+    oldFile: null
+  /backend/Admin.NET.Web.Entry/Views/Home/Index.cshtml:
+    newFile: !uuid '007173b02c58134fd495382e331f97265cf03f67'
+    oldFile: null
+  /backend/Admin.NET.Web.Entry/Views/Shared:
+    newFile: !uuid '5b8caf8e0a51ed91ea2fa8ceef4a5e391e64919f'
+    oldFile: null
+  /backend/Admin.NET.Web.Entry/Views/Shared/_Layout.cshtml:
+    newFile: !uuid 'f5f94a03823d0885df7e8d1d46ec28040967dd6a'
+    oldFile: null
+  /backend/Admin.NET.Web.Entry/Views/_ViewImports.cshtml:
+    newFile: !uuid 'ae2e7b9eb9dbd71535f9c5689753ea7b5a3fd629'
+    oldFile: null
+  /backend/Admin.NET.Web.Entry/Views/_ViewStart.cshtml:
+    newFile: !uuid '1af6e49466ab706ca1e18961f8c678ddd0563231'
+    oldFile: null
+  /backend/Admin.NET.Web.Entry/appsettings.Development.json:
+    newFile: !uuid '8983e0fc1c5e2795ccfde0c771c6d66c88ef4a42'
+    oldFile: null
+  /backend/Admin.NET.Web.Entry/appsettings.json:
+    newFile: !uuid '67b02601940a7034a44efafc20f72fac8fb05931'
+    oldFile: null
+  /backend/Admin.NET.Web.Entry/wwwroot:
+    newFile: !uuid '2ff8f7a7a3da01d7be02676676113b67e21a89f5'
+    oldFile: null
+  /backend/Admin.NET.Web.Entry/wwwroot/Captcha:
+    newFile: !uuid 'eeb45e85c688fa3e1ee84786fd9ed88779c950bf'
+    oldFile: null
+  /backend/Admin.NET.Web.Entry/wwwroot/Captcha/Font:
+    newFile: !uuid '2a316b0499384d2ded6adf6c860be733b58a84d1'
+    oldFile: null
+  /backend/Admin.NET.Web.Entry/wwwroot/Captcha/Font/站酷酷黑体.ttf:
+    newFile: !uuid '8d2a1d7f36632aa84f0841a843af97724f72e71e'
+    oldFile: null
+  /backend/Admin.NET.Web.Entry/wwwroot/Captcha/Image:
+    newFile: !uuid 'e3160ac23c0f1180311f28ee2abff253dd43aa8e'
+    oldFile: null
+  /backend/Admin.NET.Web.Entry/wwwroot/Captcha/Image/1.jpg:
+    newFile: !uuid 'e77f91ee1f51b2fde95b7c3303b808112a4d0c6a'
+    oldFile: null
+  /backend/Admin.NET.Web.Entry/wwwroot/Captcha/Image/2.jpg:
+    newFile: !uuid 'f5c91169878e3b0c58408dedb8bb9d50e5b01390'
+    oldFile: null
+  /backend/Admin.NET.Web.Entry/wwwroot/Captcha/Image/3.jpg:
+    newFile: !uuid '851c3129db805e215cf641fa01d8105e85dfb63c'
+    oldFile: null
+  /backend/Admin.NET.Web.Entry/wwwroot/Captcha/Image/4.jpg:
+    newFile: !uuid '688e74fcd11075b197b606412bae73ca3808b784'
+    oldFile: null
+  /backend/Admin.NET.Web.Entry/wwwroot/Captcha/Image/5.jpg:
+    newFile: !uuid '07bbdbdf937f2f02e9f2d326615a3b7b30c98c3f'
+    oldFile: null
+  /backend/Admin.NET.Web.Entry/wwwroot/Captcha/Image/6.jpg:
+    newFile: !uuid '1acf7017c6219db3b59ea96865c8c4f450e5d489'
+    oldFile: null
+  /backend/Admin.NET.Web.Entry/wwwroot/Captcha/Image/7.jpg:
+    newFile: !uuid '99068640dd64a11066e451752ab175443bc8263f'
+    oldFile: null
+  /backend/Admin.NET.Web.Entry/wwwroot/Captcha/Image/8.jpg:
+    newFile: !uuid 'def81aeaa355b9c3bc23ce4ef6eb248d61d0fc6f'
+    oldFile: null
+  /backend/Admin.NET.Web.Entry/wwwroot/Image:
+    newFile: !uuid '6c2b1ffcb73d5b6005f6ae13845de72cb5d3e45b'
+    oldFile: null
+  /backend/Admin.NET.Web.Entry/wwwroot/Image/logo.png:
+    newFile: !uuid '5a014a8a0c19ba9d886d4404627d3ad5ab23a2fc'
+    oldFile: null
+  /backend/Admin.NET.Web.Entry/wwwroot/Template:
+    newFile: !uuid 'c10c44b5fdffb129369925ecf4da394554a795f8'
+    oldFile: null
+  /backend/Admin.NET.Web.Entry/wwwroot/Template/Dto.cs.vm:
+    newFile: !uuid 'bfa1ecd0ff9fc0f2e2ce8da46d9f621c6a4e5c97'
+    oldFile: null
+  /backend/Admin.NET.Web.Entry/wwwroot/Template/IService.cs.vm:
+    newFile: !uuid 'a22d2a37fb23d9afdad8b8297f95b80e033acd2e'
+    oldFile: null
+  /backend/Admin.NET.Web.Entry/wwwroot/Template/Input.cs.vm:
+    newFile: !uuid 'c94ed671c918c35ac6d00fa8e1b3b2dc4b9068cf'
+    oldFile: null
+  /backend/Admin.NET.Web.Entry/wwwroot/Template/Manage.js.vm:
+    newFile: !uuid '80fbeca1282f675f37e4cb2b148ca934922a5667'
+    oldFile: null
+  /backend/Admin.NET.Web.Entry/wwwroot/Template/Output.cs.vm:
+    newFile: !uuid '6a1d40b7eafbf8670af1ce591d5d6f494dc693d9'
+    oldFile: null
+  /backend/Admin.NET.Web.Entry/wwwroot/Template/Service.cs.vm:
+    newFile: !uuid 'f2647ac54f723d8694959afd40675dab50ab091b'
+    oldFile: null
+  /backend/Admin.NET.Web.Entry/wwwroot/Template/addForm.vue.vm:
+    newFile: !uuid '133e15e6f07540d2fb38b181ddffe7d1cf422c98'
+    oldFile: null
+  /backend/Admin.NET.Web.Entry/wwwroot/Template/editForm.vue.vm:
+    newFile: !uuid '99f93a2da258b322058192937c12b8762e570bc3'
+    oldFile: null
+  /backend/Admin.NET.Web.Entry/wwwroot/Template/index.vue.vm:
+    newFile: !uuid '3f0f0dd5fa0579cfff4baeba4766b8c372e889f7'
+    oldFile: null
+  /backend/Admin.NET.sln:
+    newFile: !uuid 'b6a6e54109816a2a38351587347395fd193c9dec'
+    oldFile: null
+  /backend/Dilon.Application:
+    newFile: null
+    oldFile: !uuid 'bf36648390f373400a8456bc771fba9ee49ce2d2'
+  /backend/Dilon.Application/Dilon.Application.csproj:
+    newFile: null
+    oldFile: !uuid '601609df98cbae5a7b39a8542765ddda04aa78a4'
+  /backend/Dilon.Application/Dilon.Application.csproj.user:
+    newFile: null
+    oldFile: !uuid '88a550947edbc3c5003a41726f0749201fdb6822'
+  /backend/Dilon.Application/Entity:
+    newFile: null
+    oldFile: !uuid '1138704127ccbcb534062a2904bad1f6d68e1652'
+  /backend/Dilon.Application/Entity/CodeGenTest.cs:
+    newFile: null
+    oldFile: !uuid 'aa1e046e187fe1fac16970d5c7d99d3e62962b60'
+  /backend/Dilon.Application/Entity/CodeGenTestChild.cs:
+    newFile: null
+    oldFile: !uuid '5735afd2093aca8c355a1e12b7624d909752b90a'
+  /backend/Dilon.Application/Entity/README.md:
+    newFile: null
+    oldFile: !uuid '59bc7dd94b06c43793c4b9d7a0c99e35c565a069'
+  /backend/Dilon.Application/Entity/Test.cs:
+    newFile: null
+    oldFile: !uuid 'bd9fb845bdfd26b6f9a5b7b1229160ff81acb87b'
+  /backend/Dilon.Application/README.md:
+    newFile: null
+    oldFile: !uuid '11a79cda6841dcc0ff2556e43e92203244703df6'
+  /backend/Dilon.Application/Service:
+    newFile: null
+    oldFile: !uuid 'd8b731e52262039920cfda2707f22baf64aeb533'
+  /backend/Dilon.Application/Service/ITestService.cs:
+    newFile: null
+    oldFile: !uuid '7d26f82839470d821546a57a8ae78a7076566ee6'
+  /backend/Dilon.Application/Service/TestService.cs:
+    newFile: null
+    oldFile: !uuid '059bfd1c236213c228d0a590b169121132591d7f'
+  /backend/Dilon.Application/Startup.cs:
+    newFile: null
+    oldFile: !uuid '8baf862ecbd2786ee7b7760ad6f4728c9577572d'
+  /backend/Dilon.Application/applicationsettings.json:
+    newFile: null
+    oldFile: !uuid '8593c62d9656937ba4beb1f95c063522161e2a20'
+  /backend/Dilon.Core:
+    newFile: null
+    oldFile: !uuid '906e9933294b1e2033111cae176160a068244163'
+  /backend/Dilon.Core/Captcha:
+    newFile: null
+    oldFile: !uuid '2af24fd94e3b95e8ee8575c6c185e13f5fef2d09'
+  /backend/Dilon.Core/Captcha/ClickWord:
+    newFile: null
+    oldFile: !uuid '3b09a9ffbc81bc5045de92cc19db999cf6587f16'
+  /backend/Dilon.Core/Captcha/ClickWord/ClickWordCaptcha.cs:
+    newFile: null
+    oldFile: !uuid '752724b7f617cf6d27e8741a83fc1319427a7333'
+  /backend/Dilon.Core/Captcha/ClickWord/ClickWordCaptchaInput.cs:
+    newFile: null
+    oldFile: !uuid '3bfb6d798d7e4bdced931d976fb0e830a968bebd'
+  /backend/Dilon.Core/Captcha/ClickWord/ClickWordCaptchaResult.cs:
+    newFile: null
+    oldFile: !uuid '6715b3d891bf03b537c02199797a1133a80b0f6a'
+  /backend/Dilon.Core/Captcha/ClickWord/IClickWordCaptcha.cs:
+    newFile: null
+    oldFile: !uuid '83d708c589c73b73092adb8ef85451370a3b6b72'
+  /backend/Dilon.Core/Captcha/General:
+    newFile: null
+    oldFile: !uuid '93a326f8c5a5ef78e88f2e810d8122778998117f'
+  /backend/Dilon.Core/Captcha/General/GeneralCaptcha.cs:
+    newFile: null
+    oldFile: !uuid '01a92a48cbb5b7386d324454e1c872ac016db71a'
+  /backend/Dilon.Core/Captcha/General/GeneralCaptchaInput.cs:
+    newFile: null
+    oldFile: !uuid '712ac45a73beb075450824d0319856d08a93be3c'
+  /backend/Dilon.Core/Captcha/General/IGeneralCaptcha.cs:
+    newFile: null
+    oldFile: !uuid 'b00745b1e0c3bea95ab1bc9edd79af2b8b3e5a0f'
+  /backend/Dilon.Core/Const:
+    newFile: null
+    oldFile: !uuid 'c3603796703ff5b19f7d501a0bd8ff6fcb5189f9'
+  /backend/Dilon.Core/Const/ClaimConst.cs:
+    newFile: null
+    oldFile: !uuid '534fe244ef588d465550962536e7a486273f90b7'
+  /backend/Dilon.Core/Const/CommonConst.cs:
+    newFile: null
+    oldFile: !uuid 'e5868ef83d864aa86fca08d48f56329194af943f'
+  /backend/Dilon.Core/Dilon.Core.csproj:
+    newFile: null
+    oldFile: !uuid '9ed269afd03f2215e2319bc0b6dd90a28a3917d3'
+  /backend/Dilon.Core/Entity:
+    newFile: null
+    oldFile: !uuid 'aec72af8f33835bc499f1ae074663259eae85d5b'
+  /backend/Dilon.Core/Entity/DBEntityTenant.cs:
+    newFile: null
+    oldFile: !uuid 'e38d9543ce5036b4648b5a7afb7f69db0cb18a49'
+  /backend/Dilon.Core/Entity/DEntityBase.cs:
+    newFile: null
+    oldFile: !uuid '67001c92006bb78c16536ea6693b534cbc9ea232'
+  /backend/Dilon.Core/Entity/SysApp.cs:
+    newFile: null
+    oldFile: !uuid '895f6bae6280b33818222198074fe6a0ed105b1c'
+  /backend/Dilon.Core/Entity/SysCodeGen.cs:
+    newFile: null
+    oldFile: !uuid '05ac1eaeda867f8db2df5136ae1ed1349a3c9b78'
+  /backend/Dilon.Core/Entity/SysCodeGenConfig.cs:
+    newFile: null
+    oldFile: !uuid '2a1949b4df66a5915a041627b761896dd2b1cf6a'
+  /backend/Dilon.Core/Entity/SysConfig.cs:
+    newFile: null
+    oldFile: !uuid '9955d5af93de38c8ade7acb94fcd172fe4f34f3d'
+  /backend/Dilon.Core/Entity/SysDictData.cs:
+    newFile: null
+    oldFile: !uuid 'a54365a03ae5d979cf615c8902ba7763ecd02de3'
+  /backend/Dilon.Core/Entity/SysDictType.cs:
+    newFile: null
+    oldFile: !uuid 'b3d0b5e2f87f048634b4f87260875a2575cda2a5'
+  /backend/Dilon.Core/Entity/SysEmp.cs:
+    newFile: null
+    oldFile: !uuid 'd669d0343b3563e83bafc2e98ab73732d512274e'
+  /backend/Dilon.Core/Entity/SysEmpExtOrgPos.cs:
+    newFile: null
+    oldFile: !uuid 'e83fbe6cb5c295724b7483e2b12c5bbd2e697c34'
+  /backend/Dilon.Core/Entity/SysEmpPos.cs:
+    newFile: null
+    oldFile: !uuid '17c9c460a7d5e1c0e253f50d5b8d5e84c73cbe66'
+  /backend/Dilon.Core/Entity/SysFile.cs:
+    newFile: null
+    oldFile: !uuid '2ef8e3e963d385da076a86d6a20854c960980760'
+  /backend/Dilon.Core/Entity/SysLogAudit.cs:
+    newFile: null
+    oldFile: !uuid '002c4d1746f28832e76ec09f82ad5b83eaf8a6a2'
+  /backend/Dilon.Core/Entity/SysLogEx.cs:
+    newFile: null
+    oldFile: !uuid '1b410890317c1ffd84a348c7d8431bda2db7f498'
+  /backend/Dilon.Core/Entity/SysLogOp.cs:
+    newFile: null
+    oldFile: !uuid '495e80a4421034bac11af4a583919987463a620a'
+  /backend/Dilon.Core/Entity/SysLogVis.cs:
+    newFile: null
+    oldFile: !uuid 'deaaeaec36445ab7757bd7a4ca8421e2b0d61a3e'
+  /backend/Dilon.Core/Entity/SysMenu.cs:
+    newFile: null
+    oldFile: !uuid '5f15b5462726923bd81601700c3c8c00c8b4e01e'
+  /backend/Dilon.Core/Entity/SysNotice.cs:
+    newFile: null
+    oldFile: !uuid '90ca4a0cc69737b5da1bd4392199c5d280b9ad1d'
+  /backend/Dilon.Core/Entity/SysNoticeUser.cs:
+    newFile: null
+    oldFile: !uuid '5b154fb86a7cf34cf865f4a7013bb9329cfd3a3d'
+  /backend/Dilon.Core/Entity/SysOauthUser.cs:
+    newFile: null
+    oldFile: !uuid '118c12fc14d8090713ed6ff5b0a789aa2935ecb0'
+  /backend/Dilon.Core/Entity/SysOnlineUser.cs:
+    newFile: null
+    oldFile: !uuid '2fcd61137f387e477053b520ce8db1777c698b35'
+  /backend/Dilon.Core/Entity/SysOrg.cs:
+    newFile: null
+    oldFile: !uuid 'e35d1ad887d8d390e859e9a5f9e73f4e0ac7d23d'
+  /backend/Dilon.Core/Entity/SysPos.cs:
+    newFile: null
+    oldFile: !uuid '05b477865a55da38d99f831d14d3525ae267acd9'
+  /backend/Dilon.Core/Entity/SysRole.cs:
+    newFile: null
+    oldFile: !uuid '5c334755a1dbb0935d7fd76ecfc072486f7059ef'
+  /backend/Dilon.Core/Entity/SysRoleDataScope.cs:
+    newFile: null
+    oldFile: !uuid 'cf112ff8109bfa58618bd7c891bf280aa4ca213b'
+  /backend/Dilon.Core/Entity/SysRoleMenu.cs:
+    newFile: null
+    oldFile: !uuid 'd63afafda28b8c8b67ceb2130afe434eced1e85e'
+  /backend/Dilon.Core/Entity/SysTenant.cs:
+    newFile: null
+    oldFile: !uuid 'eb62051aac3f53a4fc9d905a615f242c431d9eae'
+  /backend/Dilon.Core/Entity/SysTimer.cs:
+    newFile: null
+    oldFile: !uuid '009c5ccf445c905a2d732e6d925de19c54e29a7d'
+  /backend/Dilon.Core/Entity/SysUser.cs:
+    newFile: null
+    oldFile: !uuid '0b82afca13161a5e4f5781fe205bb7a4565276a8'
+  /backend/Dilon.Core/Entity/SysUserDataScope.cs:
+    newFile: null
+    oldFile: !uuid '9b9beb3297f8304cfe1fc1bf636de9a167542967'
+  /backend/Dilon.Core/Entity/SysUserRole.cs:
+    newFile: null
+    oldFile: !uuid 'c3f166717de5d92259e119270a58264936ac15e8'
+  /backend/Dilon.Core/Enum:
+    newFile: null
+    oldFile: !uuid '86c45b40f932d0533497d6853944647ce95c7f17'
+  /backend/Dilon.Core/Enum/AdminType.cs:
+    newFile: null
+    oldFile: !uuid '3514eea526de35084201f0eed060d9d378235f3e'
+  /backend/Dilon.Core/Enum/CommonStatus.cs:
+    newFile: null
+    oldFile: !uuid 'ea874eefe568a1dfa33e19d090d0a6d5822f10c8'
+  /backend/Dilon.Core/Enum/DataOpType.cs:
+    newFile: null
+    oldFile: !uuid '8496e029e1a57451eb04729af3671fd8c09117c1'
+  /backend/Dilon.Core/Enum/DataScopeType.cs:
+    newFile: null
+    oldFile: !uuid '1f32dcf6828abfe228b1d44d5d4e9cc4a4324ed1'
+  /backend/Dilon.Core/Enum/ErrorCode.cs:
+    newFile: null
+    oldFile: !uuid 'c03c40645decf730bfca8c38d7df011b36dbacfc'
+  /backend/Dilon.Core/Enum/FileLocation.cs:
+    newFile: null
+    oldFile: !uuid 'c59cedc09a19e72f3756cbf0d8c0fd663c0f6aef'
+  /backend/Dilon.Core/Enum/Gender.cs:
+    newFile: null
+    oldFile: !uuid '9ef19f55f84795f83dd155eb7f66c0290888d3d6'
+  /backend/Dilon.Core/Enum/HttpStatusCode.cs:
+    newFile: null
+    oldFile: !uuid 'd7077fca4e03cbdc34dd2dba06c38c11e2580766'
+  /backend/Dilon.Core/Enum/LoginType.cs:
+    newFile: null
+    oldFile: !uuid '2a7dade929fd4f90d8b4c7f0ae4aa477e8cac901'
+  /backend/Dilon.Core/Enum/MenuOpenType.cs:
+    newFile: null
+    oldFile: !uuid '005873c387d6f2d855e51be1b3180f7e0014f495'
+  /backend/Dilon.Core/Enum/MenuType.cs:
+    newFile: null
+    oldFile: !uuid 'acf5f61f1bb3fef0548fc99fcbbfb19e200de799'
+  /backend/Dilon.Core/Enum/MenuWeight.cs:
+    newFile: null
+    oldFile: !uuid 'a4e2d468dfcc3d480a9dcee2aea7c786c7ce0e2e'
+  /backend/Dilon.Core/Enum/NoticeStatus.cs:
+    newFile: null
+    oldFile: !uuid '6a0da1e88e4b4e62e99df14c71932e7408670350'
+  /backend/Dilon.Core/Enum/NoticeUserStatus.cs:
+    newFile: null
+    oldFile: !uuid 'dd080e23d07b7ffb7ecdc6dec69ec4e37aaae195'
+  /backend/Dilon.Core/Enum/QueryTypeEnum.cs:
+    newFile: null
+    oldFile: !uuid '5353283dd2409a466f600812d73119ef4102eb7d'
+  /backend/Dilon.Core/Enum/RequestTypeEnum.cs:
+    newFile: null
+    oldFile: !uuid 'ae6a740f0f35431bb0efe22208f2b58130276256'
+  /backend/Dilon.Core/Enum/YesOrNot.cs:
+    newFile: null
+    oldFile: !uuid 'fcb1ca1cc5fe22719cdc3bda7d147e0323d37f60'
+  /backend/Dilon.Core/Extension:
+    newFile: null
+    oldFile: !uuid '264e15b042d718ae948f2ff88c258579ca682c54'
+  /backend/Dilon.Core/Extension/DictionaryExtensions.cs:
+    newFile: null
+    oldFile: !uuid '819c382c034e3607bbb8f7cab966d534977496b3'
+  /backend/Dilon.Core/Extension/EnumExtensions.cs:
+    newFile: null
+    oldFile: !uuid '637483c12bd8763930a0681e42a09a910ea74fbd'
+  /backend/Dilon.Core/Extension/PageInputOrder.cs:
+    newFile: null
+    oldFile: !uuid '1c29f3ddbe6bd0abb3f3f27833f0200fc6375c48'
+  /backend/Dilon.Core/Extension/XnInputBase.cs:
+    newFile: null
+    oldFile: !uuid 'fe4269ec79d58e442c85b2cbf784132052740505'
+  /backend/Dilon.Core/Extension/XnPageResult.cs:
+    newFile: null
+    oldFile: !uuid '685e6fd536e76cd1c2474e75cfacf930993f7c55'
+  /backend/Dilon.Core/Extension/XnRestfulResultProvider.cs:
+    newFile: null
+    oldFile: !uuid '07c4a1a0d275e056b84ddbb8e0e79b5721262364'
+  /backend/Dilon.Core/Filter:
+    newFile: null
+    oldFile: !uuid 'd9a8990e726873f31bab5b0d987e6a97e122e612'
+  /backend/Dilon.Core/Filter/LogExceptionHandler.cs:
+    newFile: null
+    oldFile: !uuid '8802e38e57f14954f884efb799a70e89c31a7237'
+  /backend/Dilon.Core/Filter/RequestActionFilter.cs:
+    newFile: null
+    oldFile: !uuid '786ad119a97440d4ab4eea451fd8928c970ba840'
+  /backend/Dilon.Core/Hubs:
+    newFile: null
+    oldFile: !uuid 'de0f0269dd1a8136782a52d066572df7bcb440b1'
+  /backend/Dilon.Core/Hubs/ChatHub.cs:
+    newFile: null
+    oldFile: !uuid 'e6abfa48c9d58d207b0b99c6421e0b21f8a8b7e8'
+  /backend/Dilon.Core/Manager:
+    newFile: null
+    oldFile: !uuid '1d012b9c3981c9594aed03b599b665f15b985831'
+  /backend/Dilon.Core/Manager/IUserManager.cs:
+    newFile: null
+    oldFile: !uuid '7fb71d539ad710a25a9a280ad0bf1cc260a17971'
+  /backend/Dilon.Core/Manager/UserManager.cs:
+    newFile: null
+    oldFile: !uuid '1a0f74b7e662b58dd47e1390c6da2a6e83dea709'
+  /backend/Dilon.Core/OAuth:
+    newFile: null
+    oldFile: !uuid 'ed933fdf5efdf4618b72ab01a066c9b4ba321520'
+  /backend/Dilon.Core/OAuth/IWechatOAuth.cs:
+    newFile: null
+    oldFile: !uuid '285cd6b999e51c8685a8f663f73c68a26d60237f'
+  /backend/Dilon.Core/OAuth/OAuthConfig.cs:
+    newFile: null
+    oldFile: !uuid 'd2d99eafb2f081c385dc56437e80e56e685eba49'
+  /backend/Dilon.Core/OAuth/TokenModel.cs:
+    newFile: null
+    oldFile: !uuid '1417b8de857c83d66dd0ce6377ac3dd64d6d4ec2'
+  /backend/Dilon.Core/OAuth/UserInfoModel.cs:
+    newFile: null
+    oldFile: !uuid 'c7477fb5e3336123900b401fe23862ace295da7f'
+  /backend/Dilon.Core/OAuth/WechatOAuth.cs:
+    newFile: null
+    oldFile: !uuid 'f41e2be3ee33c4155a9f35dfa8bf8517cc3fd455'
+  /backend/Dilon.Core/SeedData:
+    newFile: null
+    oldFile: !uuid 'f45212c1da4db560a5639322ee3318a7cba62bc3'
+  /backend/Dilon.Core/SeedData/SysAppSeedData.cs:
+    newFile: null
+    oldFile: !uuid '91260cb82d050fdf426fbffacd7b2ac8a0f1e688'
+  /backend/Dilon.Core/SeedData/SysConfigSeedData.cs:
+    newFile: null
+    oldFile: !uuid '4abe36e905402779e032ca7fe2c06aebb1565404'
+  /backend/Dilon.Core/SeedData/SysDictDataSeedData.cs:
+    newFile: null
+    oldFile: !uuid '9159635a7785db3e170b6d4390dd03642abcc632'
+  /backend/Dilon.Core/SeedData/SysDictTypeSeedData.cs:
+    newFile: null
+    oldFile: !uuid '3f08f2edc98621fa5b23c1a8aef0f16d97b6bdb6'
+  /backend/Dilon.Core/SeedData/SysEmpExtOrgPos.cs:
+    newFile: null
+    oldFile: !uuid '2715ffe0e2cc8a12c610a33be31f56a879b8f526'
+  /backend/Dilon.Core/SeedData/SysEmpPosSeedData.cs:
+    newFile: null
+    oldFile: !uuid '491b4d007af88fbb249b93a36d2e134a1d33707b'
+  /backend/Dilon.Core/SeedData/SysEmpSeedData.cs:
+    newFile: null
+    oldFile: !uuid '1fe42253b70ca9cf0844ec4dd3fbe29fba529806'
+  /backend/Dilon.Core/SeedData/SysMenuSeedData.cs:
+    newFile: null
+    oldFile: !uuid '4dfcf5430c07a9d7bd8f7abca9b2384bd5a81b0f'
+  /backend/Dilon.Core/SeedData/SysOrgSeedData.cs:
+    newFile: null
+    oldFile: !uuid 'b7d6514d655bf7f54f58fd91b2553481e5b9fae2'
+  /backend/Dilon.Core/SeedData/SysPosSeedData.cs:
+    newFile: null
+    oldFile: !uuid '71fb0519d2d5d2f4201d4725ee0669b5e0470f7d'
+  /backend/Dilon.Core/SeedData/SysRoleMenuSeedData.cs:
+    newFile: null
+    oldFile: !uuid 'e052021071accceb9b7c43d3608684f04642e3e7'
+  /backend/Dilon.Core/SeedData/SysRoleSeedData.cs:
+    newFile: null
+    oldFile: !uuid '03a98c8fc14a9612dcc5c7f791be9ae98c227857'
+  /backend/Dilon.Core/SeedData/SysTenantSeedData.cs:
+    newFile: null
+    oldFile: !uuid '1975c106ca0313beff62f042849a3b58b5bb8b5c'
+  /backend/Dilon.Core/SeedData/SysTimerSeedData.cs:
+    newFile: null
+    oldFile: !uuid '5578561e5dfb767b40fe530e6c5a0d3403f8ed75'
+  /backend/Dilon.Core/SeedData/SysUserDataScopeSeedData.cs:
+    newFile: null
+    oldFile: !uuid 'b1b70a3ad2e2e07ea53e9bef9759b10cc99a7650'
+  /backend/Dilon.Core/SeedData/SysUserRoleSeedData.cs:
+    newFile: null
+    oldFile: !uuid '92db5289f06af4835a110609a027b18e750686b8'
+  /backend/Dilon.Core/SeedData/SysUserSeedData.cs:
+    newFile: null
+    oldFile: !uuid 'fec58009885801a404ae99194487f8c36b2fc2e0'
+  /backend/Dilon.Core/Service:
+    newFile: null
+    oldFile: !uuid '4d19cf41807958d362ebe33e51cd0decc5726cb3'
+  /backend/Dilon.Core/Service/App:
+    newFile: null
+    oldFile: !uuid '45ff841a909a0a8b7df156f5e14c9ca88c30743f'
+  /backend/Dilon.Core/Service/App/Dto:
+    newFile: null
+    oldFile: !uuid '9449cebf714073b6b1272abc5a8664067836b79f'
+  /backend/Dilon.Core/Service/App/Dto/AppInput.cs:
+    newFile: null
+    oldFile: !uuid 'ae21176c53ef61a936891da0a8595d5236a39e35'
+  /backend/Dilon.Core/Service/App/Dto/AppOutput.cs:
+    newFile: null
+    oldFile: !uuid 'f2291a3933141e377cfd0707a894801c9bb180e2'
+  /backend/Dilon.Core/Service/App/ISysAppService.cs:
+    newFile: null
+    oldFile: !uuid '5e610696115e65ac28043090b8bf3e93d1944bd3'
+  /backend/Dilon.Core/Service/App/SysAppService.cs:
+    newFile: null
+    oldFile: !uuid '85935643bcb0365bf36609c93abebcc090bacaaa'
+  /backend/Dilon.Core/Service/Auth:
+    newFile: null
+    oldFile: !uuid '61a6cf193d5ed2931003c483712beaf7743efda3'
+  /backend/Dilon.Core/Service/Auth/AuthService.cs:
+    newFile: null
+    oldFile: !uuid 'c05909dcc661633fc8e946d44fcdd6365430b120'
+  /backend/Dilon.Core/Service/Auth/Dto:
+    newFile: null
+    oldFile: !uuid '500b8864bb0e79c1388dd120525284d10b3ec742'
+  /backend/Dilon.Core/Service/Auth/Dto/LoginInput.cs:
+    newFile: null
+    oldFile: !uuid '62754dca9897b0aa6b3c276381a422148ea671e2'
+  /backend/Dilon.Core/Service/Auth/Dto/LoginOutput.cs:
+    newFile: null
+    oldFile: !uuid '6429f301216541deb73ead8e4be3eb2ccf2547c1'
+  /backend/Dilon.Core/Service/Auth/Dto/RegistInput.cs:
+    newFile: null
+    oldFile: !uuid '08249ebc2cf573af9c6181fd1f45ed922c51dd4a'
+  /backend/Dilon.Core/Service/Auth/IAuthService.cs:
+    newFile: null
+    oldFile: !uuid '995f5589d8829fe8a70cbe3a6ba587c1f74ae5a6'
+  /backend/Dilon.Core/Service/BaseId.cs:
+    newFile: null
+    oldFile: !uuid '8fa706301f5d7455b9088fc202bc8014028c996f'
+  /backend/Dilon.Core/Service/Cache:
+    newFile: null
+    oldFile: !uuid '827842d3b9f90945b547fa48e012e064eb5222ea'
+  /backend/Dilon.Core/Service/Cache/ISysCacheService.cs:
+    newFile: null
+    oldFile: !uuid 'f61d7224691c9ef64c8d725035c081c2acc4632a'
+  /backend/Dilon.Core/Service/Cache/SysCacheService.cs:
+    newFile: null
+    oldFile: !uuid '28853b6a470e94bbc21326a3815bef9dbd0523ec'
+  /backend/Dilon.Core/Service/CodeGen:
+    newFile: null
+    oldFile: !uuid 'd3b63def28c2e3b5b693e92077bd75dab988aa6b'
+  /backend/Dilon.Core/Service/CodeGen/CodeGenConfigService.cs:
+    newFile: null
+    oldFile: !uuid '90525d1584654a460cb900ac417343b6299e6a5f'
+  /backend/Dilon.Core/Service/CodeGen/CodeGenService.cs:
+    newFile: null
+    oldFile: !uuid 'cf43fe80fa5ca6c92cc8d55e85adcaeca7885fb6'
+  /backend/Dilon.Core/Service/CodeGen/Dto:
+    newFile: null
+    oldFile: !uuid '626201df41fa101300264817d24a9099ace4ee6f'
+  /backend/Dilon.Core/Service/CodeGen/Dto/CodeGenConfig.cs:
+    newFile: null
+    oldFile: !uuid 'cbee3886011d71b966ff6dc32753fda2aa13f64b'
+  /backend/Dilon.Core/Service/CodeGen/Dto/CodeGenInput.cs:
+    newFile: null
+    oldFile: !uuid '6c0d0a26af0b420c0157d7a0fbcd06dffcf8f587'
+  /backend/Dilon.Core/Service/CodeGen/Dto/CodeGenOutput.cs:
+    newFile: null
+    oldFile: !uuid '92fbc534f01dd7eafb039052a2866735ed9ed0b6'
+  /backend/Dilon.Core/Service/CodeGen/Dto/TableColumnOuput.cs:
+    newFile: null
+    oldFile: !uuid '3540c964499cd7a5d4d9e3b789a8f39db2aa52e5'
+  /backend/Dilon.Core/Service/CodeGen/Dto/TableOutput.cs:
+    newFile: null
+    oldFile: !uuid 'bc19518a415364653b4eee49c413a54cedc10273'
+  /backend/Dilon.Core/Service/CodeGen/Dto/XnCodeGenOutput.cs:
+    newFile: null
+    oldFile: !uuid '1dbddc18c779ffcb97bea44f116cf131aceb057b'
+  /backend/Dilon.Core/Service/CodeGen/ICodeGenConfigService.cs:
+    newFile: null
+    oldFile: !uuid '4ab2297b1138346a3e7240c4bf1e5902c978a8a3'
+  /backend/Dilon.Core/Service/CodeGen/ICodeGenService.cs:
+    newFile: null
+    oldFile: !uuid 'ee4417bfa410ad4e51f4988e4a6f07ca40911604'
+  /backend/Dilon.Core/Service/Config:
+    newFile: null
+    oldFile: !uuid '649eb36320bbbfb59dc8be08b20ae58c0b942bd9'
+  /backend/Dilon.Core/Service/Config/Dto:
+    newFile: null
+    oldFile: !uuid 'f4ed2abd6e99b39cd9d091e7eb4bfaab563a1299'
+  /backend/Dilon.Core/Service/Config/Dto/ConfigInput.cs:
+    newFile: null
+    oldFile: !uuid '6fa84360052ca78c068a95cc8b4566e340aeb721'
+  /backend/Dilon.Core/Service/Config/ISysConfigService.cs:
+    newFile: null
+    oldFile: !uuid '43bbc464d959c5ae47ed87ebaed4caeb94c5f04e'
+  /backend/Dilon.Core/Service/Config/SysConfigService.cs:
+    newFile: null
+    oldFile: !uuid '0c5fad8567addd4ac623909698fadcf1021cdd3f'
+  /backend/Dilon.Core/Service/Dict:
+    newFile: null
+    oldFile: !uuid '5fb6390f13d34e7dcb0769e103517ba76bf73b71'
+  /backend/Dilon.Core/Service/Dict/Dto:
+    newFile: null
+    oldFile: !uuid '3ebe6669a7f23f93bc42bdf5a7e37f97ed8c3936'
+  /backend/Dilon.Core/Service/Dict/Dto/DictDataInput.cs:
+    newFile: null
+    oldFile: !uuid 'c640315f080dd51254a57653c94cae7358f3cfcb'
+  /backend/Dilon.Core/Service/Dict/Dto/DictDataOutput.cs:
+    newFile: null
+    oldFile: !uuid '36b99901f2083d3f0a6ee705147c00ffc82a1882'
+  /backend/Dilon.Core/Service/Dict/Dto/DictTreeOutput.cs:
+    newFile: null
+    oldFile: !uuid '038f4af070859aabf3dd04d5581adcc59a6bed7a'
+  /backend/Dilon.Core/Service/Dict/Dto/DictTypeInput.cs:
+    newFile: null
+    oldFile: !uuid '6fcab373bc8a4a129cb9da5a302fe2ad0bdf7934'
+  /backend/Dilon.Core/Service/Dict/ISysDictDataService.cs:
+    newFile: null
+    oldFile: !uuid '415d81e71603e86c80f8e4298a3b81f155478a41'
+  /backend/Dilon.Core/Service/Dict/ISysDictTypeService.cs:
+    newFile: null
+    oldFile: !uuid '2cee29a52c98224b18833cea7f8debb2ea46a1fc'
+  /backend/Dilon.Core/Service/Dict/SysDictDataService.cs:
+    newFile: null
+    oldFile: !uuid '415430654d7ad7896995db354a982556252de021'
+  /backend/Dilon.Core/Service/Dict/SysDictTypeService.cs:
+    newFile: null
+    oldFile: !uuid '74c7453a470f0c4ce12e94c76b4bc0dcec0c2531'
+  /backend/Dilon.Core/Service/Emp:
+    newFile: null
+    oldFile: !uuid 'dcad96893b1b2b311a75cbcdbef73c3c40703516'
+  /backend/Dilon.Core/Service/Emp/Dto:
+    newFile: null
+    oldFile: !uuid '6f191fc0bce2853f2cdf22db2e3a3d7d36b44fbc'
+  /backend/Dilon.Core/Service/Emp/Dto/EmpExtOrgPosOutput.cs:
+    newFile: null
+    oldFile: !uuid 'c14b7079a428e7ed74feaee48ad4fcd25103b508'
+  /backend/Dilon.Core/Service/Emp/Dto/EmpOutput.cs:
+    newFile: null
+    oldFile: !uuid '35542077cb65291f31aec9faf149388a6191a74e'
+  /backend/Dilon.Core/Service/Emp/Dto/EmpOutput2.cs:
+    newFile: null
+    oldFile: !uuid '7d2421a7d38164b0cc0b43d22e9c45a0c0ab2233'
+  /backend/Dilon.Core/Service/Emp/Dto/EmpPosOutput.cs:
+    newFile: null
+    oldFile: !uuid '2a36a7d8af702e14fb52e3df325c014864a6b4c8'
+  /backend/Dilon.Core/Service/Emp/ISysEmpExtOrgPosService.cs:
+    newFile: null
+    oldFile: !uuid '74e0818d1cbb5b610ceced626a2fa9838890fe69'
+  /backend/Dilon.Core/Service/Emp/ISysEmpPosService.cs:
+    newFile: null
+    oldFile: !uuid '28daa23fea437aceab3cfcab5fc1124b070b5f32'
+  /backend/Dilon.Core/Service/Emp/ISysEmpService.cs:
+    newFile: null
+    oldFile: !uuid '2880aa3c631a4495b09e5b8358b3a6cc5bfa547d'
+  /backend/Dilon.Core/Service/Emp/SysEmpExtOrgPosService.cs:
+    newFile: null
+    oldFile: !uuid 'b8e11a68e26a237454c12035563a59fca49fa5e4'
+  /backend/Dilon.Core/Service/Emp/SysEmpPosService.cs:
+    newFile: null
+    oldFile: !uuid '3e4b332fc6d499ee4c9b42b6388ebcf864c603d0'
+  /backend/Dilon.Core/Service/Emp/SysEmpService.cs:
+    newFile: null
+    oldFile: !uuid 'c3589c41961d78060b6a52051f2a4df700230232'
+  /backend/Dilon.Core/Service/Enum:
+    newFile: null
+    oldFile: !uuid 'fc791a8f04962bfc2e4d7d1d0815cf3864b7bf0d'
+  /backend/Dilon.Core/Service/Enum/Dto:
+    newFile: null
+    oldFile: !uuid '682d6c037b79f705ef2fb7b5bdec2b5e03c998ae'
+  /backend/Dilon.Core/Service/Enum/Dto/EnumDataInput.cs:
+    newFile: null
+    oldFile: !uuid 'c82703ab4b120fae479c54b56531e7296ee504bf'
+  /backend/Dilon.Core/Service/Enum/Dto/EnumDataOutput.cs:
+    newFile: null
+    oldFile: !uuid 'c01e4c197b060bf2e3b68e999fde120050a55241'
+  /backend/Dilon.Core/Service/Enum/ISysEnumDataService.cs:
+    newFile: null
+    oldFile: !uuid '5d71e1f4c3d46f9bf4f175596873721de42631d5'
+  /backend/Dilon.Core/Service/Enum/SysEnumDataService.cs:
+    newFile: null
+    oldFile: !uuid 'b5edc5ce3dd6bdaa25a32f8e7448af95fdfd8910'
+  /backend/Dilon.Core/Service/File:
+    newFile: null
+    oldFile: !uuid '61bcf722571d8d21babe7186a774348d8acec808'
+  /backend/Dilon.Core/Service/File/Dto:
+    newFile: null
+    oldFile: !uuid 'c201078c310d18af0e3e6b93ce70db2e1628d3f6'
+  /backend/Dilon.Core/Service/File/Dto/FileInput.cs:
+    newFile: null
+    oldFile: !uuid '49de4be855852da265bc48d7fa48bffd53f5770e'
+  /backend/Dilon.Core/Service/File/Dto/FileOutput.cs:
+    newFile: null
+    oldFile: !uuid 'e85619a1c13549484a17611db1425ce9b85c75b0'
+  /backend/Dilon.Core/Service/File/ISysFileService.cs:
+    newFile: null
+    oldFile: !uuid '27766426ac436708e73d4f40da9d9c743ddacf57'
+  /backend/Dilon.Core/Service/File/SysFileService.cs:
+    newFile: null
+    oldFile: !uuid '7da5774720f0bb12327d3c09040b4101e2b4b77e'
+  /backend/Dilon.Core/Service/Log:
+    newFile: null
+    oldFile: !uuid '0f293dc6cd56193c604a1db89b9e2b6eae780f60'
+  /backend/Dilon.Core/Service/Log/Dto:
+    newFile: null
+    oldFile: !uuid '1f5223685d13d873585821fa11dec9fdad28ae8a'
+  /backend/Dilon.Core/Service/Log/Dto/ExLogInput.cs:
+    newFile: null
+    oldFile: !uuid '477f8f2d70f9226a3312a6f7851d5bd5011bd50b'
+  /backend/Dilon.Core/Service/Log/Dto/ExLogOutput.cs:
+    newFile: null
+    oldFile: !uuid '121aa793e22b03c61e108afeaac5f8adbc8b42e9'
+  /backend/Dilon.Core/Service/Log/Dto/OpLogInput.cs:
+    newFile: null
+    oldFile: !uuid '6514fb4077a2a236f0c27f4b16760cc93916f784'
+  /backend/Dilon.Core/Service/Log/Dto/OpLogOutput.cs:
+    newFile: null
+    oldFile: !uuid '80d5ed46cd0afea6c9ee524d6ae81ab83c5a9ca2'
+  /backend/Dilon.Core/Service/Log/Dto/VisLogInput.cs:
+    newFile: null
+    oldFile: !uuid '0108461652265f7936dbe389c755936dd0ac78cd'
+  /backend/Dilon.Core/Service/Log/Dto/VisLogOutput.cs:
+    newFile: null
+    oldFile: !uuid '5e429a9d91e52061e9796459cee29a6124be9ed2'
+  /backend/Dilon.Core/Service/Log/ISysExLogService.cs:
+    newFile: null
+    oldFile: !uuid 'df6d3a9bd017592688b0253c4f2963d8ade7f5a2'
+  /backend/Dilon.Core/Service/Log/ISysOpLogService.cs:
+    newFile: null
+    oldFile: !uuid '15a3668506ac2eeef515b3551002f710d6b704ac'
+  /backend/Dilon.Core/Service/Log/ISysVisLogService.cs:
+    newFile: null
+    oldFile: !uuid '919a8d068df1d8d857a2fbd6de03240a0bc39959'
+  /backend/Dilon.Core/Service/Log/SysExLogService.cs:
+    newFile: null
+    oldFile: !uuid '604d0321c8a082f7426392922295da2df4803b03'
+  /backend/Dilon.Core/Service/Log/SysOpLogService.cs:
+    newFile: null
+    oldFile: !uuid '5cf06967a9825715ca70fd3fa212011d00f35837'
+  /backend/Dilon.Core/Service/Log/SysVisLogService.cs:
+    newFile: null
+    oldFile: !uuid 'e794b193ef373db4dd4a45b75bb11e7d553c7579'
+  /backend/Dilon.Core/Service/Menu:
+    newFile: null
+    oldFile: !uuid '3fa7a2738398bbd864dc67d56d065535de0b4dfd'
+  /backend/Dilon.Core/Service/Menu/Dto:
+    newFile: null
+    oldFile: !uuid 'ee88244e1f1f3de89a73e2137f0399113b7ee984'
+  /backend/Dilon.Core/Service/Menu/Dto/AntDesignTreeNode.cs:
+    newFile: null
+    oldFile: !uuid '62e6f0258f44634016923a2a4084cb94fa06f785'
+  /backend/Dilon.Core/Service/Menu/Dto/MenuInput.cs:
+    newFile: null
+    oldFile: !uuid 'be6c1d1b2e98833be4c00f686d474dab07ad3f8c'
+  /backend/Dilon.Core/Service/Menu/Dto/MenuOutput.cs:
+    newFile: null
+    oldFile: !uuid '0ec201f862688bf067e5bfc8fa743fc258c3d17d'
+  /backend/Dilon.Core/Service/Menu/Dto/MenuTreeOutput.cs:
+    newFile: null
+    oldFile: !uuid '3786226bb8e9446437054a06ec168fb7667227a9'
+  /backend/Dilon.Core/Service/Menu/ISysMenuService.cs:
+    newFile: null
+    oldFile: !uuid 'dcee54bb89fab5969adcd3177709084f4b037937'
+  /backend/Dilon.Core/Service/Menu/SysMenuService.cs:
+    newFile: null
+    oldFile: !uuid '87e19135e389347b2341cf686f29694b2841c7db'
+  /backend/Dilon.Core/Service/Monitor:
+    newFile: null
+    oldFile: !uuid '886612660dfd1100140bdb03d09685a689f5f606'
+  /backend/Dilon.Core/Service/Monitor/IMachineService.cs:
+    newFile: null
+    oldFile: !uuid 'c8e72704f95e5d0bd1501c22ba090860f68a2d2c'
+  /backend/Dilon.Core/Service/Monitor/MachineService.cs:
+    newFile: null
+    oldFile: !uuid '8ec4f523df1fdbd472b01a41d964cdb6df857c7e'
+  /backend/Dilon.Core/Service/Notice:
+    newFile: null
+    oldFile: !uuid '966060dd820eb93a54d39047b2c147ee5cf77f47'
+  /backend/Dilon.Core/Service/Notice/Dto:
+    newFile: null
+    oldFile: !uuid 'f8bb6c03b3698e59f618562019ead418066dc72b'
+  /backend/Dilon.Core/Service/Notice/Dto/NoticeBase.cs:
+    newFile: null
+    oldFile: !uuid '624bb8c5347fa4382a03855bda6d2ae4f4a94e5e'
+  /backend/Dilon.Core/Service/Notice/Dto/NoticeDetailOutput.cs:
+    newFile: null
+    oldFile: !uuid '3e0b5b5286b27c6564ee3f72612b4f82a847014e'
+  /backend/Dilon.Core/Service/Notice/Dto/NoticeInput.cs:
+    newFile: null
+    oldFile: !uuid '4a67160f0c9f01d65fde3354c68c728ed36cf486'
+  /backend/Dilon.Core/Service/Notice/Dto/NoticeReceiveOutput.cs:
+    newFile: null
+    oldFile: !uuid '15a3ced26535b5778fdffd447c52aca29310be84'
+  /backend/Dilon.Core/Service/Notice/ISysNoticeService.cs:
+    newFile: null
+    oldFile: !uuid '515a7ca9dcfe306fd97b36b7007ee29220708937'
+  /backend/Dilon.Core/Service/Notice/ISysNoticeUserService.cs:
+    newFile: null
+    oldFile: !uuid '34f0d11a6711da40e8a8e47d4d17db6f0a10b31c'
+  /backend/Dilon.Core/Service/Notice/SysNoticeService.cs:
+    newFile: null
+    oldFile: !uuid '2e666c9c2c9cf5d6fc6c129efdea8c256ddd5f5f'
+  /backend/Dilon.Core/Service/Notice/SysNoticeUserService.cs:
+    newFile: null
+    oldFile: !uuid '92476bfbe63bca60e4e90ef496b64dd60b7ea7e0'
+  /backend/Dilon.Core/Service/OAuth:
+    newFile: null
+    oldFile: !uuid '0552bb404b24313958b4c7b85e4cdf88aaeaf95a'
+  /backend/Dilon.Core/Service/OAuth/ISysOauthService.cs:
+    newFile: null
+    oldFile: !uuid '83a02a0db9b95e8166d256fed1ccb63dd80d221a'
+  /backend/Dilon.Core/Service/OAuth/SysOauthService.cs:
+    newFile: null
+    oldFile: !uuid '5e264e10fba759232b2ff4d37bdeaea13b4a01d6'
+  /backend/Dilon.Core/Service/OnlineUser:
+    newFile: null
+    oldFile: !uuid 'd4bf2311fc00c1c19c47b2daed40e21d1ce3329e'
+  /backend/Dilon.Core/Service/OnlineUser/ISysOnlineUserService.cs:
+    newFile: null
+    oldFile: !uuid '11a4cabeece679cf4064fe8220db820a70a80c13'
+  /backend/Dilon.Core/Service/OnlineUser/SysOnlineUserService.cs:
+    newFile: null
+    oldFile: !uuid '7fa85b1644b752f73fb44583875cee963756e7f1'
+  /backend/Dilon.Core/Service/Org:
+    newFile: null
+    oldFile: !uuid '79e80a9d83bb0fac484abead847da91eac201586'
+  /backend/Dilon.Core/Service/Org/Dto:
+    newFile: null
+    oldFile: !uuid '4811d0cf50988d5d4d54a6c3fc5e26057185be97'
+  /backend/Dilon.Core/Service/Org/Dto/OrgInput.cs:
+    newFile: null
+    oldFile: !uuid '21b0b905dfecc75e21f77350d348864e4b667849'
+  /backend/Dilon.Core/Service/Org/Dto/OrgOutput.cs:
+    newFile: null
+    oldFile: !uuid 'ad42d691bda20c93335d742716999c20eb9d1b42'
+  /backend/Dilon.Core/Service/Org/Dto/OrgTreeNode.cs:
+    newFile: null
+    oldFile: !uuid 'a2ce37fb586d611d9fb4032272252cfb18f406ae'
+  /backend/Dilon.Core/Service/Org/ISysOrgService.cs:
+    newFile: null
+    oldFile: !uuid 'b9fcc23cf0bc2847ae51c23b4b0a6e06eec54ad0'
+  /backend/Dilon.Core/Service/Org/SysOrgService.cs:
+    newFile: null
+    oldFile: !uuid '94fc8445d2b9bc2dc8d2f8d6bba910b396b199c0'
+  /backend/Dilon.Core/Service/Pos:
+    newFile: null
+    oldFile: !uuid '912a11350da03645228e51a650d3482703002dae'
+  /backend/Dilon.Core/Service/Pos/Dto:
+    newFile: null
+    oldFile: !uuid '84f55fc54dc425e1768d40be0c12bae62590deb0'
+  /backend/Dilon.Core/Service/Pos/Dto/PosInput.cs:
+    newFile: null
+    oldFile: !uuid '42b05c4269d8289616f630402d4fc07e4e09813e'
+  /backend/Dilon.Core/Service/Pos/ISysPosService.cs:
+    newFile: null
+    oldFile: !uuid '5f2e77b7207c5484ecd4ce54018d54df91adb635'
+  /backend/Dilon.Core/Service/Pos/SysPosService.cs:
+    newFile: null
+    oldFile: !uuid '28308c7208fb8fe84b3fb5d6cdd2bc5b21ba59fe'
+  /backend/Dilon.Core/Service/Role:
+    newFile: null
+    oldFile: !uuid 'f4c14792fe60020cf9c04abc64ec6ac4531deb54'
+  /backend/Dilon.Core/Service/Role/Dto:
+    newFile: null
+    oldFile: !uuid '26d694563de8802efdac4a3e6bf1198c88b5dfe0'
+  /backend/Dilon.Core/Service/Role/Dto/RoleInput.cs:
+    newFile: null
+    oldFile: !uuid 'ad517439f6dd784e94a3607e733ba393f167a01a'
+  /backend/Dilon.Core/Service/Role/Dto/RoleOutput.cs:
+    newFile: null
+    oldFile: !uuid '8eb278621551e1935019e6b6659e8810907e605f'
+  /backend/Dilon.Core/Service/Role/ISysRoleDataScopeService.cs:
+    newFile: null
+    oldFile: !uuid 'ed47ae25998c03a9c614a95862e666bec82c30ed'
+  /backend/Dilon.Core/Service/Role/ISysRoleMenuService.cs:
+    newFile: null
+    oldFile: !uuid '8ead53ba860d0d25208d62e746d36eb232b8dd6a'
+  /backend/Dilon.Core/Service/Role/ISysRoleService.cs:
+    newFile: null
+    oldFile: !uuid '332e8284b8d3759a93440d001d923230d4a53555'
+  /backend/Dilon.Core/Service/Role/SysRoleDataScopeService.cs:
+    newFile: null
+    oldFile: !uuid 'f3ff93a3312557c6ac310b5322a1037389335906'
+  /backend/Dilon.Core/Service/Role/SysRoleMenuService.cs:
+    newFile: null
+    oldFile: !uuid '1903af9a0e6a283064f89ca3a60e597cbb60867a'
+  /backend/Dilon.Core/Service/Role/SysRoleService.cs:
+    newFile: null
+    oldFile: !uuid '72afbeaa5eccbb24554b5faf15e206140cd33e02'
+  /backend/Dilon.Core/Service/Tenant:
+    newFile: null
+    oldFile: !uuid 'e31fae39d7ffe179540cd2da43a4989855288ecd'
+  /backend/Dilon.Core/Service/Tenant/Dto:
+    newFile: null
+    oldFile: !uuid '895551367289fa3ff0210a645219dcace61ef64a'
+  /backend/Dilon.Core/Service/Tenant/Dto/TenantInput.cs:
+    newFile: null
+    oldFile: !uuid '42aa627bb3e2906bd14f70a76c5328ad28962d67'
+  /backend/Dilon.Core/Service/Tenant/Dto/TenantOutput.cs:
+    newFile: null
+    oldFile: !uuid '322e1ed3f342505d6ff80f64c7df181ef280acd2'
+  /backend/Dilon.Core/Service/Tenant/ISysTenantService.cs:
+    newFile: null
+    oldFile: !uuid 'bae30b0ccac7691cc5fa05eb6ce6cb91b99bac30'
+  /backend/Dilon.Core/Service/Tenant/SysTenantService.cs:
+    newFile: null
+    oldFile: !uuid 'fb103070b2f92db500e9a5fc5939a2133b6cf8c2'
+  /backend/Dilon.Core/Service/Timer:
+    newFile: null
+    oldFile: !uuid 'b22a4e2751aed3b1fecd428c9a46460bec4cba20'
+  /backend/Dilon.Core/Service/Timer/Dto:
+    newFile: null
+    oldFile: !uuid '6b77ab9d066680e37baa14932cfd18723f97f807'
+  /backend/Dilon.Core/Service/Timer/Dto/JobInput.cs:
+    newFile: null
+    oldFile: !uuid 'bb769b767afe909a7f3196e5a07607a51fa8728d'
+  /backend/Dilon.Core/Service/Timer/Dto/JobOutput.cs:
+    newFile: null
+    oldFile: !uuid '2e4df957216a74323d4b1d0867dd25b81d369c73'
+  /backend/Dilon.Core/Service/Timer/ISysTimerService.cs:
+    newFile: null
+    oldFile: !uuid 'f37d60fd10372b166b454f665deac4f34012ae1e'
+  /backend/Dilon.Core/Service/Timer/SysTimerService.cs:
+    newFile: null
+    oldFile: !uuid '87cca0eec85be1aafe944751ad46bffa5b5a1def'
+  /backend/Dilon.Core/Service/User:
+    newFile: null
+    oldFile: !uuid 'b6258e6bf01b1596650ac4cc7a088ded43811942'
+  /backend/Dilon.Core/Service/User/Dto:
+    newFile: null
+    oldFile: !uuid '086ba2eaf9f560dec2542d803da7061775c5965c'
+  /backend/Dilon.Core/Service/User/Dto/AuthToken.cs:
+    newFile: null
+    oldFile: !uuid '948f0afaa20c15cfd4af47fb6c00b3475668f135'
+  /backend/Dilon.Core/Service/User/Dto/AuthUserInput.cs:
+    newFile: null
+    oldFile: !uuid '60bf26790b4f92dd6dc7ce87b9d4e75141a38500'
+  /backend/Dilon.Core/Service/User/Dto/UserInput.cs:
+    newFile: null
+    oldFile: !uuid 'bb9f8afe83f7c1fed959ff99c8115a3bd242bd56'
+  /backend/Dilon.Core/Service/User/Dto/UserOutput.cs:
+    newFile: null
+    oldFile: !uuid '5e4cfadd8d61ac414d2219e5c029f9c58a021069'
+  /backend/Dilon.Core/Service/User/ISysUserDataScopeService.cs:
+    newFile: null
+    oldFile: !uuid '96d4d669f831b3e8f9b7f499336ef55c4a970ed8'
+  /backend/Dilon.Core/Service/User/ISysUserRoleService.cs:
+    newFile: null
+    oldFile: !uuid '8a5b400ead69c009252ddb4477e1e7558d58321a'
+  /backend/Dilon.Core/Service/User/ISysUserService.cs:
+    newFile: null
+    oldFile: !uuid 'ae66587577c35c813fe52678f0ae1030c9a2d2cc'
+  /backend/Dilon.Core/Service/User/SysUserDataScopeService.cs:
+    newFile: null
+    oldFile: !uuid '2697f89854f4d818d0c1cb91c169390595a44179'
+  /backend/Dilon.Core/Service/User/SysUserRoleService.cs:
+    newFile: null
+    oldFile: !uuid '082e93837bfaee730254574057be3ff9e1475371'
+  /backend/Dilon.Core/Service/User/SysUserService.cs:
+    newFile: null
+    oldFile: !uuid '1b5d5b775b67d3a5d4165e925603df8c5d85aca0'
+  /backend/Dilon.Core/SubscribeHandler:
+    newFile: null
+    oldFile: !uuid 'db04025378c42650bdad04fd8a463b492cdb6515'
+  /backend/Dilon.Core/SubscribeHandler/LogSubscribeHandler.cs:
+    newFile: null
+    oldFile: !uuid 'be239298dd2a931b6cce09030640b7ef8226f80f'
+  /backend/Dilon.Core/Util:
+    newFile: null
+    oldFile: !uuid '82b9bfa16934ce8bda17102c419f92a18d7d6626'
+  /backend/Dilon.Core/Util/CodeGenUtil.cs:
+    newFile: null
+    oldFile: !uuid '41aa72fa5873f621ce0e0d9a3c353207238d3517'
+  /backend/Dilon.Core/Util/MachineUtil.cs:
+    newFile: null
+    oldFile: !uuid 'df9df17dd9af5d116ffa7ee081b9ef74e7273db9'
+  /backend/Dilon.Core/Util/ReflectionUtil.cs:
+    newFile: null
+    oldFile: !uuid '071c1b54aea3f4cd077860cbdd9215503a5f345b'
+  /backend/Dilon.Core/Util/TreeBuildUtil.cs:
+    newFile: null
+    oldFile: !uuid 'c22417979281b9ea62d356a8a535e6a5dfc9db47'
+  /backend/Dilon.Core/applicationconfig.json:
+    newFile: null
+    oldFile: !uuid 'afa88da124d0bbeec8c4463c074d66f930aaf412'
+  /backend/Dilon.Core/logo.png:
+    newFile: null
+    oldFile: !uuid '5a014a8a0c19ba9d886d4404627d3ad5ab23a2fc'
+  /backend/Dilon.Database.Migrations:
+    newFile: null
+    oldFile: !uuid '8da7f91c306a737ef286827d176df9666f1f5367'
+  /backend/Dilon.Database.Migrations/Dilon.Database.Migrations.csproj:
+    newFile: null
+    oldFile: !uuid '182731d7629c7f6497e3064cde1190cda42bcc8e'
+  /backend/Dilon.EntityFramework.Core:
+    newFile: null
+    oldFile: !uuid '5716fb7348be142a27cf7a9e2bdd813e68cf5856'
+  /backend/Dilon.EntityFramework.Core/DbContexts:
+    newFile: null
+    oldFile: !uuid '767f8d9de3b0617562a76a773450606b9d35373f'
+  /backend/Dilon.EntityFramework.Core/DbContexts/DefaultDbContext.cs:
+    newFile: null
+    oldFile: !uuid 'd120794fdd805891019b741659d03fa3d236ec1e'
+  /backend/Dilon.EntityFramework.Core/DbContexts/MultiTenantDbContext.cs:
+    newFile: null
+    oldFile: !uuid '77eda2683f9f6ebb44050ab9c019412d00df7087'
+  /backend/Dilon.EntityFramework.Core/DbContexts/README.md:
+    newFile: null
+    oldFile: !uuid '31aea87359c2a69821a2c7bb66ecb9c6a810b3aa'
+  /backend/Dilon.EntityFramework.Core/Dilon.EntityFramework.Core.csproj:
+    newFile: null
+    oldFile: !uuid 'be319d23ad937b4ed3c0e1fedf037d46631390f0'
+  /backend/Dilon.EntityFramework.Core/Startup.cs:
+    newFile: null
+    oldFile: !uuid '4ae031455cc1376c6b333a34ad255320db985a95'
+  /backend/Dilon.EntityFramework.Core/dbsettings.json:
+    newFile: null
+    oldFile: !uuid '6459a1b187867635966f05f737873396fb8711e9'
+  /backend/Dilon.Web.Core:
+    newFile: null
+    oldFile: !uuid 'f2c6899f07fb8e9b10c6115ff3ca3206550c85dd'
+  /backend/Dilon.Web.Core/Dilon.Web.Core.csproj:
+    newFile: null
+    oldFile: !uuid 'c2a34fc9784c9da8d0a4dd6f8d9afe9045b1f0da'
+  /backend/Dilon.Web.Core/Handlers:
+    newFile: null
+    oldFile: !uuid 'aa77275bde38175145c2eb689929e86cbe260e58'
+  /backend/Dilon.Web.Core/Handlers/JwtHandler.cs:
+    newFile: null
+    oldFile: !uuid 'e06b0fdfda8c4a919ae90731d2ef8cf3b4704279'
+  /backend/Dilon.Web.Core/Startup.cs:
+    newFile: null
+    oldFile: !uuid '59053588d350bd8470d51343795ab198f354ea6e'
+  /backend/Dilon.Web.Entry:
+    newFile: null
+    oldFile: !uuid 'e0587d01e45f5ce989aa2df49a1fd059142e3687'
+  /backend/Dilon.Web.Entry/.config:
+    newFile: null
+    oldFile: !uuid '6e05f93c247c74817c6555063f7758657d99a2d7'
+  /backend/Dilon.Web.Entry/.config/dotnet-tools.json:
+    newFile: null
+    oldFile: !uuid 'aaaa036bb4a8274e5813d840399cb6d9da7cf26d'
+  /backend/Dilon.Web.Entry/Controllers:
+    newFile: null
+    oldFile: !uuid '03b8351aef393bd270c8033653a284b0f879b38b'
+  /backend/Dilon.Web.Entry/Controllers/HomeController.cs:
+    newFile: null
+    oldFile: !uuid '72fdb5532cead9dd361c7019f16e3f71804f958e'
+  /backend/Dilon.Web.Entry/Dilon.Web.Entry.csproj:
+    newFile: null
+    oldFile: !uuid 'c96781d1b9903ea3aeb703d5d7f94ac8ed570bb7'
+  /backend/Dilon.Web.Entry/Dilon.db:
+    newFile: null
+    oldFile: !uuid '53916d500598231327d16bff63ddd5fda4ba7d3d'
+  /backend/Dilon.Web.Entry/Dilon_SaaS.db:
+    newFile: null
+    oldFile: !uuid 'a4120a34f50a1ad040efe7b49adab1eb3158a90a'
+  /backend/Dilon.Web.Entry/Dockerfile:
+    newFile: null
+    oldFile: !uuid '365767ed484ebbcc2b6c404cc006837abc9fdbe0'
+  /backend/Dilon.Web.Entry/Program.cs:
+    newFile: null
+    oldFile: !uuid 'a6923154e38ca2a1fc70c984991f9fe203432a80'
+  /backend/Dilon.Web.Entry/Properties:
+    newFile: null
+    oldFile: !uuid '147db4b4eb62c37e70bbb7e0197ed9b1fd2f35fd'
+  /backend/Dilon.Web.Entry/Properties/launchSettings.json:
+    newFile: null
+    oldFile: !uuid '610a8de1adc0d17b8d649bdff12dce45dadb0956'
+  /backend/Dilon.Web.Entry/Startup.cs:
+    newFile: null
+    oldFile: !uuid 'dbfc2657e162043d25e52ca6fff0630fd934eaf5'
+  /backend/Dilon.Web.Entry/Views:
+    newFile: null
+    oldFile: !uuid '61a681f015db8a49ab7d79a0b310efa069a10816'
+  /backend/Dilon.Web.Entry/Views/Home:
+    newFile: null
+    oldFile: !uuid '3cea2ecc00b166ca79b35f9ef2d2b365d98c7cea'
+  /backend/Dilon.Web.Entry/Views/Home/Index.cshtml:
+    newFile: null
+    oldFile: !uuid '6c8868631b550e3ad00455d64192ebb897354707'
+  /backend/Dilon.Web.Entry/Views/Shared:
+    newFile: null
+    oldFile: !uuid 'e811fd7ee0d085ff217f2a981a32e7afeac5e8ba'
+  /backend/Dilon.Web.Entry/Views/Shared/_Layout.cshtml:
+    newFile: null
+    oldFile: !uuid '84dc8a30cb362682e5a91afc1fe6b53de10fbe2b'
+  /backend/Dilon.Web.Entry/Views/_ViewImports.cshtml:
+    newFile: null
+    oldFile: !uuid '196cbc61e5bb7cca35a52c9db0d156a530856c70'
+  /backend/Dilon.Web.Entry/Views/_ViewStart.cshtml:
+    newFile: null
+    oldFile: !uuid 'd641c67f333acdb9b80269d7aa6e3b5ad6775f56'
+  /backend/Dilon.Web.Entry/appsettings.Development.json:
+    newFile: null
+    oldFile: !uuid '45fe774a9f86f1e84f718cc516e30f7390408b1e'
+  /backend/Dilon.Web.Entry/appsettings.json:
+    newFile: null
+    oldFile: !uuid '9491da84144493f4b592f986d7d63a8b8c6b79ef'
+  /backend/Dilon.Web.Entry/wwwroot:
+    newFile: null
+    oldFile: !uuid '256ec4736c7301501cef9ab9fb861380e1e6ab57'
+  /backend/Dilon.Web.Entry/wwwroot/Captcha:
+    newFile: null
+    oldFile: !uuid 'eeb45e85c688fa3e1ee84786fd9ed88779c950bf'
+  /backend/Dilon.Web.Entry/wwwroot/Captcha/Font:
+    newFile: null
+    oldFile: !uuid '2a316b0499384d2ded6adf6c860be733b58a84d1'
+  /backend/Dilon.Web.Entry/wwwroot/Captcha/Font/站酷酷黑体.ttf:
+    newFile: null
+    oldFile: !uuid '8d2a1d7f36632aa84f0841a843af97724f72e71e'
+  /backend/Dilon.Web.Entry/wwwroot/Captcha/Image:
+    newFile: null
+    oldFile: !uuid 'e3160ac23c0f1180311f28ee2abff253dd43aa8e'
+  /backend/Dilon.Web.Entry/wwwroot/Captcha/Image/1.jpg:
+    newFile: null
+    oldFile: !uuid 'e77f91ee1f51b2fde95b7c3303b808112a4d0c6a'
+  /backend/Dilon.Web.Entry/wwwroot/Captcha/Image/2.jpg:
+    newFile: null
+    oldFile: !uuid 'f5c91169878e3b0c58408dedb8bb9d50e5b01390'
+  /backend/Dilon.Web.Entry/wwwroot/Captcha/Image/3.jpg:
+    newFile: null
+    oldFile: !uuid '851c3129db805e215cf641fa01d8105e85dfb63c'
+  /backend/Dilon.Web.Entry/wwwroot/Captcha/Image/4.jpg:
+    newFile: null
+    oldFile: !uuid '688e74fcd11075b197b606412bae73ca3808b784'
+  /backend/Dilon.Web.Entry/wwwroot/Captcha/Image/5.jpg:
+    newFile: null
+    oldFile: !uuid '07bbdbdf937f2f02e9f2d326615a3b7b30c98c3f'
+  /backend/Dilon.Web.Entry/wwwroot/Captcha/Image/6.jpg:
+    newFile: null
+    oldFile: !uuid '1acf7017c6219db3b59ea96865c8c4f450e5d489'
+  /backend/Dilon.Web.Entry/wwwroot/Captcha/Image/7.jpg:
+    newFile: null
+    oldFile: !uuid '99068640dd64a11066e451752ab175443bc8263f'
+  /backend/Dilon.Web.Entry/wwwroot/Captcha/Image/8.jpg:
+    newFile: null
+    oldFile: !uuid 'def81aeaa355b9c3bc23ce4ef6eb248d61d0fc6f'
+  /backend/Dilon.Web.Entry/wwwroot/Template:
+    newFile: null
+    oldFile: !uuid '7c7c2bca28c6bba24c8f17eb19a64a9601a2c5f0'
+  /backend/Dilon.Web.Entry/wwwroot/Template/Dto.cs.vm:
+    newFile: null
+    oldFile: !uuid '6aee85ad4580c766220557092e7bcd86fccfa9cc'
+  /backend/Dilon.Web.Entry/wwwroot/Template/IService.cs.vm:
+    newFile: null
+    oldFile: !uuid 'dcd84bc306309219d498bb6dd3b85043d43414e6'
+  /backend/Dilon.Web.Entry/wwwroot/Template/Input.cs.vm:
+    newFile: null
+    oldFile: !uuid '5dd8d25384ad3294e1d0f006142b281418289197'
+  /backend/Dilon.Web.Entry/wwwroot/Template/Manage.js.vm:
+    newFile: null
+    oldFile: !uuid '80fbeca1282f675f37e4cb2b148ca934922a5667'
+  /backend/Dilon.Web.Entry/wwwroot/Template/Output.cs.vm:
+    newFile: null
+    oldFile: !uuid '6a1d40b7eafbf8670af1ce591d5d6f494dc693d9'
+  /backend/Dilon.Web.Entry/wwwroot/Template/Service.cs.vm:
+    newFile: null
+    oldFile: !uuid '52dcd079a97f3aa5659199deb5501b277e74cb13'
+  /backend/Dilon.Web.Entry/wwwroot/Template/addForm.vue.vm:
+    newFile: null
+    oldFile: !uuid '97e93d49c7a60a319faf2175f339c79c585e6a4d'
+  /backend/Dilon.Web.Entry/wwwroot/Template/editForm.vue.vm:
+    newFile: null
+    oldFile: !uuid '0a4274800725604368874e4b49336f366c8200de'
+  /backend/Dilon.Web.Entry/wwwroot/Template/index.vue.vm:
+    newFile: null
+    oldFile: !uuid '19bd0f642f5cca99bee05a0df1353629dcda630e'
+  /backend/Dilon.sln:
+    newFile: null
+    oldFile: !uuid '86afe000a58e61f09adcee7cd8cd636c7bd633f0'
+gitCommitId: !uuid '23c2d0cfbec95b7808011a799c09768ee16c855c'
 renames:
-  /template/Admin.NETTemplate/Furion.Admin.NET.Template.App.nuspec: /template/Admin.NETTemplate/Admin.NET.Template.App.nuspec
-revisionId: 354
+  /backend/Admin.NET.Application/Admin.NET.Application.csproj: /backend/Dilon.Application/Dilon.Application.csproj
+  /backend/Admin.NET.Application/applicationsettings.json: /backend/Dilon.Application/applicationsettings.json
+  /backend/Admin.NET.Core/Admin.NET.Core.csproj: /backend/Dilon.Core/Dilon.Core.csproj
+  /backend/Admin.NET.Core/Captcha/ClickWord/ClickWordCaptcha.cs: /backend/Dilon.Core/Captcha/ClickWord/ClickWordCaptcha.cs
+  /backend/Admin.NET.Core/Captcha/ClickWord/ClickWordCaptchaInput.cs: /backend/Dilon.Core/Captcha/ClickWord/ClickWordCaptchaInput.cs
+  /backend/Admin.NET.Core/Captcha/ClickWord/ClickWordCaptchaResult.cs: /backend/Dilon.Core/Captcha/ClickWord/ClickWordCaptchaResult.cs
+  /backend/Admin.NET.Core/Captcha/ClickWord/IClickWordCaptcha.cs: /backend/Dilon.Core/Captcha/ClickWord/IClickWordCaptcha.cs
+  /backend/Admin.NET.Core/Captcha/General/GeneralCaptcha.cs: /backend/Dilon.Core/Captcha/General/GeneralCaptcha.cs
+  /backend/Admin.NET.Core/Captcha/General/GeneralCaptchaInput.cs: /backend/Dilon.Core/Captcha/General/GeneralCaptchaInput.cs
+  /backend/Admin.NET.Core/Captcha/General/IGeneralCaptcha.cs: /backend/Dilon.Core/Captcha/General/IGeneralCaptcha.cs
+  /backend/Admin.NET.Core/Const/ClaimConst.cs: /backend/Dilon.Core/Const/ClaimConst.cs
+  /backend/Admin.NET.Core/Const/CommonConst.cs: /backend/Dilon.Core/Const/CommonConst.cs
+  /backend/Admin.NET.Core/Entity/DBEntityTenant.cs: /backend/Dilon.Core/Entity/DBEntityTenant.cs
+  /backend/Admin.NET.Core/Entity/DEntityBase.cs: /backend/Dilon.Core/Entity/DEntityBase.cs
+  /backend/Admin.NET.Core/Entity/SysApp.cs: /backend/Dilon.Core/Entity/SysApp.cs
+  /backend/Admin.NET.Core/Entity/SysCodeGen.cs: /backend/Dilon.Core/Entity/SysCodeGen.cs
+  /backend/Admin.NET.Core/Entity/SysCodeGenConfig.cs: /backend/Dilon.Core/Entity/SysCodeGenConfig.cs
+  /backend/Admin.NET.Core/Entity/SysConfig.cs: /backend/Dilon.Core/Entity/SysConfig.cs
+  /backend/Admin.NET.Core/Entity/SysDictData.cs: /backend/Dilon.Core/Entity/SysDictData.cs
+  /backend/Admin.NET.Core/Entity/SysDictType.cs: /backend/Dilon.Core/Entity/SysDictType.cs
+  /backend/Admin.NET.Core/Entity/SysEmp.cs: /backend/Dilon.Core/Entity/SysEmp.cs
+  /backend/Admin.NET.Core/Entity/SysEmpExtOrgPos.cs: /backend/Dilon.Core/Entity/SysEmpExtOrgPos.cs
+  /backend/Admin.NET.Core/Entity/SysEmpPos.cs: /backend/Dilon.Core/Entity/SysEmpPos.cs
+  /backend/Admin.NET.Core/Entity/SysFile.cs: /backend/Dilon.Core/Entity/SysFile.cs
+  /backend/Admin.NET.Core/Entity/SysLogAudit.cs: /backend/Dilon.Core/Entity/SysLogAudit.cs
+  /backend/Admin.NET.Core/Entity/SysLogEx.cs: /backend/Dilon.Core/Entity/SysLogEx.cs
+  /backend/Admin.NET.Core/Entity/SysLogOp.cs: /backend/Dilon.Core/Entity/SysLogOp.cs
+  /backend/Admin.NET.Core/Entity/SysLogVis.cs: /backend/Dilon.Core/Entity/SysLogVis.cs
+  /backend/Admin.NET.Core/Entity/SysMenu.cs: /backend/Dilon.Core/Entity/SysMenu.cs
+  /backend/Admin.NET.Core/Entity/SysNotice.cs: /backend/Dilon.Core/Entity/SysNotice.cs
+  /backend/Admin.NET.Core/Entity/SysNoticeUser.cs: /backend/Dilon.Core/Entity/SysNoticeUser.cs
+  /backend/Admin.NET.Core/Entity/SysOauthUser.cs: /backend/Dilon.Core/Entity/SysOauthUser.cs
+  /backend/Admin.NET.Core/Entity/SysOnlineUser.cs: /backend/Dilon.Core/Entity/SysOnlineUser.cs
+  /backend/Admin.NET.Core/Entity/SysOrg.cs: /backend/Dilon.Core/Entity/SysOrg.cs
+  /backend/Admin.NET.Core/Entity/SysPos.cs: /backend/Dilon.Core/Entity/SysPos.cs
+  /backend/Admin.NET.Core/Entity/SysRole.cs: /backend/Dilon.Core/Entity/SysRole.cs
+  /backend/Admin.NET.Core/Entity/SysRoleDataScope.cs: /backend/Dilon.Core/Entity/SysRoleDataScope.cs
+  /backend/Admin.NET.Core/Entity/SysRoleMenu.cs: /backend/Dilon.Core/Entity/SysRoleMenu.cs
+  /backend/Admin.NET.Core/Entity/SysTenant.cs: /backend/Dilon.Core/Entity/SysTenant.cs
+  /backend/Admin.NET.Core/Entity/SysTimer.cs: /backend/Dilon.Core/Entity/SysTimer.cs
+  /backend/Admin.NET.Core/Entity/SysUser.cs: /backend/Dilon.Core/Entity/SysUser.cs
+  /backend/Admin.NET.Core/Entity/SysUserDataScope.cs: /backend/Dilon.Core/Entity/SysUserDataScope.cs
+  /backend/Admin.NET.Core/Entity/SysUserRole.cs: /backend/Dilon.Core/Entity/SysUserRole.cs
+  /backend/Admin.NET.Core/Enum/AdminType.cs: /backend/Dilon.Core/Enum/AdminType.cs
+  /backend/Admin.NET.Core/Enum/CommonStatus.cs: /backend/Dilon.Core/Enum/CommonStatus.cs
+  /backend/Admin.NET.Core/Enum/DataOpType.cs: /backend/Dilon.Core/Enum/DataOpType.cs
+  /backend/Admin.NET.Core/Enum/DataScopeType.cs: /backend/Dilon.Core/Enum/DataScopeType.cs
+  /backend/Admin.NET.Core/Enum/ErrorCode.cs: /backend/Dilon.Core/Enum/ErrorCode.cs
+  /backend/Admin.NET.Core/Enum/FileLocation.cs: /backend/Dilon.Core/Enum/FileLocation.cs
+  /backend/Admin.NET.Core/Enum/Gender.cs: /backend/Dilon.Core/Enum/Gender.cs
+  /backend/Admin.NET.Core/Enum/HttpStatusCode.cs: /backend/Dilon.Core/Enum/HttpStatusCode.cs
+  /backend/Admin.NET.Core/Enum/LoginType.cs: /backend/Dilon.Core/Enum/LoginType.cs
+  /backend/Admin.NET.Core/Enum/MenuOpenType.cs: /backend/Dilon.Core/Enum/MenuOpenType.cs
+  /backend/Admin.NET.Core/Enum/MenuType.cs: /backend/Dilon.Core/Enum/MenuType.cs
+  /backend/Admin.NET.Core/Enum/MenuWeight.cs: /backend/Dilon.Core/Enum/MenuWeight.cs
+  /backend/Admin.NET.Core/Enum/NoticeStatus.cs: /backend/Dilon.Core/Enum/NoticeStatus.cs
+  /backend/Admin.NET.Core/Enum/NoticeUserStatus.cs: /backend/Dilon.Core/Enum/NoticeUserStatus.cs
+  /backend/Admin.NET.Core/Enum/QueryTypeEnum.cs: /backend/Dilon.Core/Enum/QueryTypeEnum.cs
+  /backend/Admin.NET.Core/Enum/RequestTypeEnum.cs: /backend/Dilon.Core/Enum/RequestTypeEnum.cs
+  /backend/Admin.NET.Core/Enum/YesOrNot.cs: /backend/Dilon.Core/Enum/YesOrNot.cs
+  /backend/Admin.NET.Core/Extension/DictionaryExtensions.cs: /backend/Dilon.Core/Extension/DictionaryExtensions.cs
+  /backend/Admin.NET.Core/Extension/EnumExtensions.cs: /backend/Dilon.Core/Extension/EnumExtensions.cs
+  /backend/Admin.NET.Core/Extension/PageInputOrder.cs: /backend/Dilon.Core/Extension/PageInputOrder.cs
+  /backend/Admin.NET.Core/Extension/XnInputBase.cs: /backend/Dilon.Core/Extension/XnInputBase.cs
+  /backend/Admin.NET.Core/Extension/XnPageResult.cs: /backend/Dilon.Core/Extension/XnPageResult.cs
+  /backend/Admin.NET.Core/Extension/XnRestfulResultProvider.cs: /backend/Dilon.Core/Extension/XnRestfulResultProvider.cs
+  /backend/Admin.NET.Core/Filter/LogExceptionHandler.cs: /backend/Dilon.Core/Filter/LogExceptionHandler.cs
+  /backend/Admin.NET.Core/Filter/RequestActionFilter.cs: /backend/Dilon.Core/Filter/RequestActionFilter.cs
+  /backend/Admin.NET.Core/Hubs/ChatHub.cs: /backend/Dilon.Core/Hubs/ChatHub.cs
+  /backend/Admin.NET.Core/Manager/IUserManager.cs: /backend/Dilon.Core/Manager/IUserManager.cs
+  /backend/Admin.NET.Core/Manager/UserManager.cs: /backend/Dilon.Core/Manager/UserManager.cs
+  /backend/Admin.NET.Core/OAuth/IWechatOAuth.cs: /backend/Dilon.Core/OAuth/IWechatOAuth.cs
+  /backend/Admin.NET.Core/OAuth/OAuthConfig.cs: /backend/Dilon.Core/OAuth/OAuthConfig.cs
+  /backend/Admin.NET.Core/OAuth/TokenModel.cs: /backend/Dilon.Core/OAuth/TokenModel.cs
+  /backend/Admin.NET.Core/OAuth/UserInfoModel.cs: /backend/Dilon.Core/OAuth/UserInfoModel.cs
+  /backend/Admin.NET.Core/OAuth/WechatOAuth.cs: /backend/Dilon.Core/OAuth/WechatOAuth.cs
+  /backend/Admin.NET.Core/SeedData/SysAppSeedData.cs: /backend/Dilon.Core/SeedData/SysAppSeedData.cs
+  /backend/Admin.NET.Core/SeedData/SysConfigSeedData.cs: /backend/Dilon.Core/SeedData/SysConfigSeedData.cs
+  /backend/Admin.NET.Core/SeedData/SysDictDataSeedData.cs: /backend/Dilon.Core/SeedData/SysDictDataSeedData.cs
+  /backend/Admin.NET.Core/SeedData/SysDictTypeSeedData.cs: /backend/Dilon.Core/SeedData/SysDictTypeSeedData.cs
+  /backend/Admin.NET.Core/SeedData/SysEmpExtOrgPos.cs: /backend/Dilon.Core/SeedData/SysEmpExtOrgPos.cs
+  /backend/Admin.NET.Core/SeedData/SysEmpPosSeedData.cs: /backend/Dilon.Core/SeedData/SysEmpPosSeedData.cs
+  /backend/Admin.NET.Core/SeedData/SysEmpSeedData.cs: /backend/Dilon.Core/SeedData/SysEmpSeedData.cs
+  /backend/Admin.NET.Core/SeedData/SysMenuSeedData.cs: /backend/Dilon.Core/SeedData/SysMenuSeedData.cs
+  /backend/Admin.NET.Core/SeedData/SysOrgSeedData.cs: /backend/Dilon.Core/SeedData/SysOrgSeedData.cs
+  /backend/Admin.NET.Core/SeedData/SysPosSeedData.cs: /backend/Dilon.Core/SeedData/SysPosSeedData.cs
+  /backend/Admin.NET.Core/SeedData/SysRoleMenuSeedData.cs: /backend/Dilon.Core/SeedData/SysRoleMenuSeedData.cs
+  /backend/Admin.NET.Core/SeedData/SysRoleSeedData.cs: /backend/Dilon.Core/SeedData/SysRoleSeedData.cs
+  /backend/Admin.NET.Core/SeedData/SysTenantSeedData.cs: /backend/Dilon.Core/SeedData/SysTenantSeedData.cs
+  /backend/Admin.NET.Core/SeedData/SysTimerSeedData.cs: /backend/Dilon.Core/SeedData/SysTimerSeedData.cs
+  /backend/Admin.NET.Core/SeedData/SysUserDataScopeSeedData.cs: /backend/Dilon.Core/SeedData/SysUserDataScopeSeedData.cs
+  /backend/Admin.NET.Core/SeedData/SysUserRoleSeedData.cs: /backend/Dilon.Core/SeedData/SysUserRoleSeedData.cs
+  /backend/Admin.NET.Core/SeedData/SysUserSeedData.cs: /backend/Dilon.Core/SeedData/SysUserSeedData.cs
+  /backend/Admin.NET.Core/Service/App/Dto/AppInput.cs: /backend/Dilon.Core/Service/App/Dto/AppInput.cs
+  /backend/Admin.NET.Core/Service/App/Dto/AppOutput.cs: /backend/Dilon.Core/Service/App/Dto/AppOutput.cs
+  /backend/Admin.NET.Core/Service/App/ISysAppService.cs: /backend/Dilon.Core/Service/App/ISysAppService.cs
+  /backend/Admin.NET.Core/Service/App/SysAppService.cs: /backend/Dilon.Core/Service/App/SysAppService.cs
+  /backend/Admin.NET.Core/Service/Auth/AuthService.cs: /backend/Dilon.Core/Service/Auth/AuthService.cs
+  /backend/Admin.NET.Core/Service/Auth/Dto/LoginInput.cs: /backend/Dilon.Core/Service/Auth/Dto/LoginInput.cs
+  /backend/Admin.NET.Core/Service/Auth/Dto/LoginOutput.cs: /backend/Dilon.Core/Service/Auth/Dto/LoginOutput.cs
+  /backend/Admin.NET.Core/Service/Auth/Dto/RegistInput.cs: /backend/Dilon.Core/Service/Auth/Dto/RegistInput.cs
+  /backend/Admin.NET.Core/Service/Auth/IAuthService.cs: /backend/Dilon.Core/Service/Auth/IAuthService.cs
+  /backend/Admin.NET.Core/Service/BaseId.cs: /backend/Dilon.Core/Service/BaseId.cs
+  /backend/Admin.NET.Core/Service/Cache/ISysCacheService.cs: /backend/Dilon.Core/Service/Cache/ISysCacheService.cs
+  /backend/Admin.NET.Core/Service/Cache/SysCacheService.cs: /backend/Dilon.Core/Service/Cache/SysCacheService.cs
+  /backend/Admin.NET.Core/Service/CodeGen/CodeGenConfigService.cs: /backend/Dilon.Core/Service/CodeGen/CodeGenConfigService.cs
+  /backend/Admin.NET.Core/Service/CodeGen/CodeGenService.cs: /backend/Dilon.Core/Service/CodeGen/CodeGenService.cs
+  /backend/Admin.NET.Core/Service/CodeGen/Dto/CodeGenConfig.cs: /backend/Dilon.Core/Service/CodeGen/Dto/CodeGenConfig.cs
+  /backend/Admin.NET.Core/Service/CodeGen/Dto/CodeGenInput.cs: /backend/Dilon.Core/Service/CodeGen/Dto/CodeGenInput.cs
+  /backend/Admin.NET.Core/Service/CodeGen/Dto/CodeGenOutput.cs: /backend/Dilon.Core/Service/CodeGen/Dto/CodeGenOutput.cs
+  /backend/Admin.NET.Core/Service/CodeGen/Dto/TableColumnOuput.cs: /backend/Dilon.Core/Service/CodeGen/Dto/TableColumnOuput.cs
+  /backend/Admin.NET.Core/Service/CodeGen/Dto/TableOutput.cs: /backend/Dilon.Core/Service/CodeGen/Dto/TableOutput.cs
+  /backend/Admin.NET.Core/Service/CodeGen/Dto/XnCodeGenOutput.cs: /backend/Dilon.Core/Service/CodeGen/Dto/XnCodeGenOutput.cs
+  /backend/Admin.NET.Core/Service/CodeGen/ICodeGenConfigService.cs: /backend/Dilon.Core/Service/CodeGen/ICodeGenConfigService.cs
+  /backend/Admin.NET.Core/Service/CodeGen/ICodeGenService.cs: /backend/Dilon.Core/Service/CodeGen/ICodeGenService.cs
+  /backend/Admin.NET.Core/Service/Config/Dto/ConfigInput.cs: /backend/Dilon.Core/Service/Config/Dto/ConfigInput.cs
+  /backend/Admin.NET.Core/Service/Config/ISysConfigService.cs: /backend/Dilon.Core/Service/Config/ISysConfigService.cs
+  /backend/Admin.NET.Core/Service/Config/SysConfigService.cs: /backend/Dilon.Core/Service/Config/SysConfigService.cs
+  /backend/Admin.NET.Core/Service/Dict/Dto/DictDataInput.cs: /backend/Dilon.Core/Service/Dict/Dto/DictDataInput.cs
+  /backend/Admin.NET.Core/Service/Dict/Dto/DictDataOutput.cs: /backend/Dilon.Core/Service/Dict/Dto/DictDataOutput.cs
+  /backend/Admin.NET.Core/Service/Dict/Dto/DictTreeOutput.cs: /backend/Dilon.Core/Service/Dict/Dto/DictTreeOutput.cs
+  /backend/Admin.NET.Core/Service/Dict/Dto/DictTypeInput.cs: /backend/Dilon.Core/Service/Dict/Dto/DictTypeInput.cs
+  /backend/Admin.NET.Core/Service/Dict/ISysDictDataService.cs: /backend/Dilon.Core/Service/Dict/ISysDictDataService.cs
+  /backend/Admin.NET.Core/Service/Dict/ISysDictTypeService.cs: /backend/Dilon.Core/Service/Dict/ISysDictTypeService.cs
+  /backend/Admin.NET.Core/Service/Dict/SysDictDataService.cs: /backend/Dilon.Core/Service/Dict/SysDictDataService.cs
+  /backend/Admin.NET.Core/Service/Dict/SysDictTypeService.cs: /backend/Dilon.Core/Service/Dict/SysDictTypeService.cs
+  /backend/Admin.NET.Core/Service/Emp/Dto/EmpExtOrgPosOutput.cs: /backend/Dilon.Core/Service/Emp/Dto/EmpExtOrgPosOutput.cs
+  /backend/Admin.NET.Core/Service/Emp/Dto/EmpOutput.cs: /backend/Dilon.Core/Service/Emp/Dto/EmpOutput.cs
+  /backend/Admin.NET.Core/Service/Emp/Dto/EmpOutput2.cs: /backend/Dilon.Core/Service/Emp/Dto/EmpOutput2.cs
+  /backend/Admin.NET.Core/Service/Emp/Dto/EmpPosOutput.cs: /backend/Dilon.Core/Service/Emp/Dto/EmpPosOutput.cs
+  /backend/Admin.NET.Core/Service/Emp/ISysEmpExtOrgPosService.cs: /backend/Dilon.Core/Service/Emp/ISysEmpExtOrgPosService.cs
+  /backend/Admin.NET.Core/Service/Emp/ISysEmpPosService.cs: /backend/Dilon.Core/Service/Emp/ISysEmpPosService.cs
+  /backend/Admin.NET.Core/Service/Emp/ISysEmpService.cs: /backend/Dilon.Core/Service/Emp/ISysEmpService.cs
+  /backend/Admin.NET.Core/Service/Emp/SysEmpExtOrgPosService.cs: /backend/Dilon.Core/Service/Emp/SysEmpExtOrgPosService.cs
+  /backend/Admin.NET.Core/Service/Emp/SysEmpPosService.cs: /backend/Dilon.Core/Service/Emp/SysEmpPosService.cs
+  /backend/Admin.NET.Core/Service/Emp/SysEmpService.cs: /backend/Dilon.Core/Service/Emp/SysEmpService.cs
+  /backend/Admin.NET.Core/Service/Enum/Dto/EnumDataInput.cs: /backend/Dilon.Core/Service/Enum/Dto/EnumDataInput.cs
+  /backend/Admin.NET.Core/Service/Enum/Dto/EnumDataOutput.cs: /backend/Dilon.Core/Service/Enum/Dto/EnumDataOutput.cs
+  /backend/Admin.NET.Core/Service/Enum/ISysEnumDataService.cs: /backend/Dilon.Core/Service/Enum/ISysEnumDataService.cs
+  /backend/Admin.NET.Core/Service/Enum/SysEnumDataService.cs: /backend/Dilon.Core/Service/Enum/SysEnumDataService.cs
+  /backend/Admin.NET.Core/Service/File/Dto/FileInput.cs: /backend/Dilon.Core/Service/File/Dto/FileInput.cs
+  /backend/Admin.NET.Core/Service/File/Dto/FileOutput.cs: /backend/Dilon.Core/Service/File/Dto/FileOutput.cs
+  /backend/Admin.NET.Core/Service/File/ISysFileService.cs: /backend/Dilon.Core/Service/File/ISysFileService.cs
+  /backend/Admin.NET.Core/Service/File/SysFileService.cs: /backend/Dilon.Core/Service/File/SysFileService.cs
+  /backend/Admin.NET.Core/Service/Log/Dto/ExLogInput.cs: /backend/Dilon.Core/Service/Log/Dto/ExLogInput.cs
+  /backend/Admin.NET.Core/Service/Log/Dto/ExLogOutput.cs: /backend/Dilon.Core/Service/Log/Dto/ExLogOutput.cs
+  /backend/Admin.NET.Core/Service/Log/Dto/OpLogInput.cs: /backend/Dilon.Core/Service/Log/Dto/OpLogInput.cs
+  /backend/Admin.NET.Core/Service/Log/Dto/OpLogOutput.cs: /backend/Dilon.Core/Service/Log/Dto/OpLogOutput.cs
+  /backend/Admin.NET.Core/Service/Log/Dto/VisLogInput.cs: /backend/Dilon.Core/Service/Log/Dto/VisLogInput.cs
+  /backend/Admin.NET.Core/Service/Log/Dto/VisLogOutput.cs: /backend/Dilon.Core/Service/Log/Dto/VisLogOutput.cs
+  /backend/Admin.NET.Core/Service/Log/ISysExLogService.cs: /backend/Dilon.Core/Service/Log/ISysExLogService.cs
+  /backend/Admin.NET.Core/Service/Log/ISysOpLogService.cs: /backend/Dilon.Core/Service/Log/ISysOpLogService.cs
+  /backend/Admin.NET.Core/Service/Log/ISysVisLogService.cs: /backend/Dilon.Core/Service/Log/ISysVisLogService.cs
+  /backend/Admin.NET.Core/Service/Log/SysExLogService.cs: /backend/Dilon.Core/Service/Log/SysExLogService.cs
+  /backend/Admin.NET.Core/Service/Log/SysOpLogService.cs: /backend/Dilon.Core/Service/Log/SysOpLogService.cs
+  /backend/Admin.NET.Core/Service/Log/SysVisLogService.cs: /backend/Dilon.Core/Service/Log/SysVisLogService.cs
+  /backend/Admin.NET.Core/Service/Menu/Dto/AntDesignTreeNode.cs: /backend/Dilon.Core/Service/Menu/Dto/AntDesignTreeNode.cs
+  /backend/Admin.NET.Core/Service/Menu/Dto/MenuInput.cs: /backend/Dilon.Core/Service/Menu/Dto/MenuInput.cs
+  /backend/Admin.NET.Core/Service/Menu/Dto/MenuOutput.cs: /backend/Dilon.Core/Service/Menu/Dto/MenuOutput.cs
+  /backend/Admin.NET.Core/Service/Menu/Dto/MenuTreeOutput.cs: /backend/Dilon.Core/Service/Menu/Dto/MenuTreeOutput.cs
+  /backend/Admin.NET.Core/Service/Menu/ISysMenuService.cs: /backend/Dilon.Core/Service/Menu/ISysMenuService.cs
+  /backend/Admin.NET.Core/Service/Menu/SysMenuService.cs: /backend/Dilon.Core/Service/Menu/SysMenuService.cs
+  /backend/Admin.NET.Core/Service/Monitor/IMachineService.cs: /backend/Dilon.Core/Service/Monitor/IMachineService.cs
+  /backend/Admin.NET.Core/Service/Monitor/MachineService.cs: /backend/Dilon.Core/Service/Monitor/MachineService.cs
+  /backend/Admin.NET.Core/Service/Notice/Dto/NoticeBase.cs: /backend/Dilon.Core/Service/Notice/Dto/NoticeBase.cs
+  /backend/Admin.NET.Core/Service/Notice/Dto/NoticeDetailOutput.cs: /backend/Dilon.Core/Service/Notice/Dto/NoticeDetailOutput.cs
+  /backend/Admin.NET.Core/Service/Notice/Dto/NoticeInput.cs: /backend/Dilon.Core/Service/Notice/Dto/NoticeInput.cs
+  /backend/Admin.NET.Core/Service/Notice/Dto/NoticeReceiveOutput.cs: /backend/Dilon.Core/Service/Notice/Dto/NoticeReceiveOutput.cs
+  /backend/Admin.NET.Core/Service/Notice/ISysNoticeService.cs: /backend/Dilon.Core/Service/Notice/ISysNoticeService.cs
+  /backend/Admin.NET.Core/Service/Notice/ISysNoticeUserService.cs: /backend/Dilon.Core/Service/Notice/ISysNoticeUserService.cs
+  /backend/Admin.NET.Core/Service/Notice/SysNoticeService.cs: /backend/Dilon.Core/Service/Notice/SysNoticeService.cs
+  /backend/Admin.NET.Core/Service/Notice/SysNoticeUserService.cs: /backend/Dilon.Core/Service/Notice/SysNoticeUserService.cs
+  /backend/Admin.NET.Core/Service/OAuth/ISysOauthService.cs: /backend/Dilon.Core/Service/OAuth/ISysOauthService.cs
+  /backend/Admin.NET.Core/Service/OAuth/SysOauthService.cs: /backend/Dilon.Core/Service/OAuth/SysOauthService.cs
+  /backend/Admin.NET.Core/Service/OnlineUser/ISysOnlineUserService.cs: /backend/Dilon.Core/Service/OnlineUser/ISysOnlineUserService.cs
+  /backend/Admin.NET.Core/Service/OnlineUser/SysOnlineUserService.cs: /backend/Dilon.Core/Service/OnlineUser/SysOnlineUserService.cs
+  /backend/Admin.NET.Core/Service/Org/Dto/OrgInput.cs: /backend/Dilon.Core/Service/Org/Dto/OrgInput.cs
+  /backend/Admin.NET.Core/Service/Org/Dto/OrgOutput.cs: /backend/Dilon.Core/Service/Org/Dto/OrgOutput.cs
+  /backend/Admin.NET.Core/Service/Org/Dto/OrgTreeNode.cs: /backend/Dilon.Core/Service/Org/Dto/OrgTreeNode.cs
+  /backend/Admin.NET.Core/Service/Org/ISysOrgService.cs: /backend/Dilon.Core/Service/Org/ISysOrgService.cs
+  /backend/Admin.NET.Core/Service/Org/SysOrgService.cs: /backend/Dilon.Core/Service/Org/SysOrgService.cs
+  /backend/Admin.NET.Core/Service/Pos/Dto/PosInput.cs: /backend/Dilon.Core/Service/Pos/Dto/PosInput.cs
+  /backend/Admin.NET.Core/Service/Pos/ISysPosService.cs: /backend/Dilon.Core/Service/Pos/ISysPosService.cs
+  /backend/Admin.NET.Core/Service/Pos/SysPosService.cs: /backend/Dilon.Core/Service/Pos/SysPosService.cs
+  /backend/Admin.NET.Core/Service/Role/Dto/RoleInput.cs: /backend/Dilon.Core/Service/Role/Dto/RoleInput.cs
+  /backend/Admin.NET.Core/Service/Role/Dto/RoleOutput.cs: /backend/Dilon.Core/Service/Role/Dto/RoleOutput.cs
+  /backend/Admin.NET.Core/Service/Role/ISysRoleDataScopeService.cs: /backend/Dilon.Core/Service/Role/ISysRoleDataScopeService.cs
+  /backend/Admin.NET.Core/Service/Role/ISysRoleMenuService.cs: /backend/Dilon.Core/Service/Role/ISysRoleMenuService.cs
+  /backend/Admin.NET.Core/Service/Role/ISysRoleService.cs: /backend/Dilon.Core/Service/Role/ISysRoleService.cs
+  /backend/Admin.NET.Core/Service/Role/SysRoleDataScopeService.cs: /backend/Dilon.Core/Service/Role/SysRoleDataScopeService.cs
+  /backend/Admin.NET.Core/Service/Role/SysRoleMenuService.cs: /backend/Dilon.Core/Service/Role/SysRoleMenuService.cs
+  /backend/Admin.NET.Core/Service/Role/SysRoleService.cs: /backend/Dilon.Core/Service/Role/SysRoleService.cs
+  /backend/Admin.NET.Core/Service/Tenant/Dto/TenantInput.cs: /backend/Dilon.Core/Service/Tenant/Dto/TenantInput.cs
+  /backend/Admin.NET.Core/Service/Tenant/Dto/TenantOutput.cs: /backend/Dilon.Core/Service/Tenant/Dto/TenantOutput.cs
+  /backend/Admin.NET.Core/Service/Tenant/ISysTenantService.cs: /backend/Dilon.Core/Service/Tenant/ISysTenantService.cs
+  /backend/Admin.NET.Core/Service/Tenant/SysTenantService.cs: /backend/Dilon.Core/Service/Tenant/SysTenantService.cs
+  /backend/Admin.NET.Core/Service/Timer/Dto/JobInput.cs: /backend/Dilon.Core/Service/Timer/Dto/JobInput.cs
+  /backend/Admin.NET.Core/Service/Timer/Dto/JobOutput.cs: /backend/Dilon.Core/Service/Timer/Dto/JobOutput.cs
+  /backend/Admin.NET.Core/Service/Timer/ISysTimerService.cs: /backend/Dilon.Core/Service/Timer/ISysTimerService.cs
+  /backend/Admin.NET.Core/Service/Timer/SysTimerService.cs: /backend/Dilon.Core/Service/Timer/SysTimerService.cs
+  /backend/Admin.NET.Core/Service/User/Dto/AuthToken.cs: /backend/Dilon.Core/Service/User/Dto/AuthToken.cs
+  /backend/Admin.NET.Core/Service/User/Dto/AuthUserInput.cs: /backend/Dilon.Core/Service/User/Dto/AuthUserInput.cs
+  /backend/Admin.NET.Core/Service/User/Dto/UserInput.cs: /backend/Dilon.Core/Service/User/Dto/UserInput.cs
+  /backend/Admin.NET.Core/Service/User/Dto/UserOutput.cs: /backend/Dilon.Core/Service/User/Dto/UserOutput.cs
+  /backend/Admin.NET.Core/Service/User/ISysUserDataScopeService.cs: /backend/Dilon.Core/Service/User/ISysUserDataScopeService.cs
+  /backend/Admin.NET.Core/Service/User/ISysUserRoleService.cs: /backend/Dilon.Core/Service/User/ISysUserRoleService.cs
+  /backend/Admin.NET.Core/Service/User/ISysUserService.cs: /backend/Dilon.Core/Service/User/ISysUserService.cs
+  /backend/Admin.NET.Core/Service/User/SysUserDataScopeService.cs: /backend/Dilon.Core/Service/User/SysUserDataScopeService.cs
+  /backend/Admin.NET.Core/Service/User/SysUserRoleService.cs: /backend/Dilon.Core/Service/User/SysUserRoleService.cs
+  /backend/Admin.NET.Core/Service/User/SysUserService.cs: /backend/Dilon.Core/Service/User/SysUserService.cs
+  /backend/Admin.NET.Core/SubscribeHandler/LogSubscribeHandler.cs: /backend/Dilon.Core/SubscribeHandler/LogSubscribeHandler.cs
+  /backend/Admin.NET.Core/Util/CodeGenUtil.cs: /backend/Dilon.Core/Util/CodeGenUtil.cs
+  /backend/Admin.NET.Core/Util/MachineUtil.cs: /backend/Dilon.Core/Util/MachineUtil.cs
+  /backend/Admin.NET.Core/Util/ReflectionUtil.cs: /backend/Dilon.Core/Util/ReflectionUtil.cs
+  /backend/Admin.NET.Core/Util/TreeBuildUtil.cs: /backend/Dilon.Core/Util/TreeBuildUtil.cs
+  /backend/Admin.NET.Core/applicationconfig.json: /backend/Dilon.Core/applicationconfig.json
+  /backend/Admin.NET.Core/logo.png: /backend/Dilon.Core/logo.png
+  /backend/Admin.NET.EntityFramework.Core/Admin.NET.EntityFramework.Core.csproj: /backend/Dilon.EntityFramework.Core/Dilon.EntityFramework.Core.csproj
+  /backend/Admin.NET.EntityFramework.Core/DbContexts/DefaultDbContext.cs: /backend/Dilon.EntityFramework.Core/DbContexts/DefaultDbContext.cs
+  /backend/Admin.NET.EntityFramework.Core/DbContexts/MultiTenantDbContext.cs: /backend/Dilon.EntityFramework.Core/DbContexts/MultiTenantDbContext.cs
+  /backend/Admin.NET.EntityFramework.Core/Startup.cs: /backend/Dilon.EntityFramework.Core/Startup.cs
+  /backend/Admin.NET.Web.Core/Handlers/JwtHandler.cs: /backend/Dilon.Web.Core/Handlers/JwtHandler.cs
+  /backend/Admin.NET.Web.Core/Startup.cs: /backend/Dilon.Web.Core/Startup.cs
+  /backend/Admin.NET.Web.Entry/Admin.NET.db: /backend/Dilon.Web.Entry/Dilon.db
+  /backend/Admin.NET.Web.Entry/Admin.NET_SaaS.db: /backend/Dilon.Web.Entry/Dilon_SaaS.db
+  /backend/Admin.NET.Web.Entry/Program.cs: /backend/Dilon.Web.Entry/Program.cs
+  /backend/Admin.NET.Web.Entry/Properties/launchSettings.json: /backend/Dilon.Web.Entry/Properties/launchSettings.json
+  /backend/Admin.NET.Web.Entry/Startup.cs: /backend/Dilon.Web.Entry/Startup.cs
+  /backend/Admin.NET.Web.Entry/Views/Shared/_Layout.cshtml: /backend/Dilon.Web.Entry/Views/Shared/_Layout.cshtml
+  /backend/Admin.NET.Web.Entry/Views/_ViewImports.cshtml: /backend/Dilon.Web.Entry/Views/_ViewImports.cshtml
+  /backend/Admin.NET.Web.Entry/Views/_ViewStart.cshtml: /backend/Dilon.Web.Entry/Views/_ViewStart.cshtml
+  /backend/Admin.NET.Web.Entry/appsettings.Development.json: /backend/Dilon.Web.Entry/appsettings.Development.json
+  /backend/Admin.NET.Web.Entry/appsettings.json: /backend/Dilon.Web.Entry/appsettings.json
+  /backend/Admin.NET.Web.Entry/wwwroot/Captcha/Font/站酷酷黑体.ttf: /backend/Dilon.Web.Entry/wwwroot/Captcha/Font/站酷酷黑体.ttf
+  /backend/Admin.NET.Web.Entry/wwwroot/Captcha/Image/1.jpg: /backend/Dilon.Web.Entry/wwwroot/Captcha/Image/1.jpg
+  /backend/Admin.NET.Web.Entry/wwwroot/Captcha/Image/2.jpg: /backend/Dilon.Web.Entry/wwwroot/Captcha/Image/2.jpg
+  /backend/Admin.NET.Web.Entry/wwwroot/Captcha/Image/3.jpg: /backend/Dilon.Web.Entry/wwwroot/Captcha/Image/3.jpg
+  /backend/Admin.NET.Web.Entry/wwwroot/Captcha/Image/4.jpg: /backend/Dilon.Web.Entry/wwwroot/Captcha/Image/4.jpg
+  /backend/Admin.NET.Web.Entry/wwwroot/Captcha/Image/5.jpg: /backend/Dilon.Web.Entry/wwwroot/Captcha/Image/5.jpg
+  /backend/Admin.NET.Web.Entry/wwwroot/Captcha/Image/6.jpg: /backend/Dilon.Web.Entry/wwwroot/Captcha/Image/6.jpg
+  /backend/Admin.NET.Web.Entry/wwwroot/Captcha/Image/7.jpg: /backend/Dilon.Web.Entry/wwwroot/Captcha/Image/7.jpg
+  /backend/Admin.NET.Web.Entry/wwwroot/Captcha/Image/8.jpg: /backend/Dilon.Web.Entry/wwwroot/Captcha/Image/8.jpg
+  /backend/Admin.NET.Web.Entry/wwwroot/Image/logo.png: /backend/Dilon.Core/logo.png
+  /backend/Admin.NET.Web.Entry/wwwroot/Template/Dto.cs.vm: /backend/Dilon.Web.Entry/wwwroot/Template/Dto.cs.vm
+  /backend/Admin.NET.Web.Entry/wwwroot/Template/IService.cs.vm: /backend/Dilon.Web.Entry/wwwroot/Template/IService.cs.vm
+  /backend/Admin.NET.Web.Entry/wwwroot/Template/Input.cs.vm: /backend/Dilon.Web.Entry/wwwroot/Template/Input.cs.vm
+  /backend/Admin.NET.Web.Entry/wwwroot/Template/Manage.js.vm: /backend/Dilon.Web.Entry/wwwroot/Template/Manage.js.vm
+  /backend/Admin.NET.Web.Entry/wwwroot/Template/Output.cs.vm: /backend/Dilon.Web.Entry/wwwroot/Template/Output.cs.vm
+  /backend/Admin.NET.Web.Entry/wwwroot/Template/Service.cs.vm: /backend/Dilon.Web.Entry/wwwroot/Template/Service.cs.vm
+  /backend/Admin.NET.Web.Entry/wwwroot/Template/addForm.vue.vm: /backend/Dilon.Web.Entry/wwwroot/Template/addForm.vue.vm
+  /backend/Admin.NET.Web.Entry/wwwroot/Template/editForm.vue.vm: /backend/Dilon.Web.Entry/wwwroot/Template/editForm.vue.vm
+  /backend/Admin.NET.Web.Entry/wwwroot/Template/index.vue.vm: /backend/Dilon.Web.Entry/wwwroot/Template/index.vue.vm
+revisionId: 355
