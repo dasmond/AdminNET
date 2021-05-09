@@ -2,10 +2,31 @@
 branches: {
   }
 fileChange:
-  /README.md:
-    newFile: !uuid '0e3c0fe63512507af9a8acc273c1db75cacb076c'
-    oldFile: !uuid 'b64815ce619b40b51b0f2a7a3ff3df6f1ae76a14'
-gitCommitId: !uuid '47bea8bb8bbdbd42d9b53f71b6b35150e9d6f1ca'
-renames: {
-  }
-revisionId: 353
+  /template:
+    newFile: !uuid '2d3f05e17e29226c65e75da59465a271a990e5e1'
+    oldFile: !uuid 'b7723a602f3700716cac1a8f27724d1b16d2a858'
+  /template/Admin.NETTemplate:
+    newFile: !uuid 'bacbf9a122e6774dc017e6e0b1c498ef33f6dd60'
+    oldFile: !uuid 'b0a55aa280580bb82be4f4e929f1a655080dec03'
+  /template/Admin.NETTemplate/Admin.NET.Template.App.nuspec:
+    newFile: null
+    oldFile: !uuid '0b25f7ace8a00b9bc8594b271cd82da9fc629e4a'
+  /template/Admin.NETTemplate/Furion.Admin.NET.Template.App.nuspec:
+    newFile: !uuid '992526a9b2c566e71db7d3d2cbbacc36db560f08'
+    oldFile: null
+  /template/Admin.NETTemplate/src:
+    newFile: !uuid '1ea73c1e910db5c638971b05e752056ed6e50d4e'
+    oldFile: !uuid 'f23bc334b64e8f17b170773da2e36e389cbb47ff'
+  /template/Admin.NETTemplate/src/.template.config:
+    newFile: !uuid '799367fb58423642750949a87f38e30820b576d1'
+    oldFile: !uuid 'bdc64359e334145d2f923182a2cb0a3cc4f691d0'
+  /template/Admin.NETTemplate/src/.template.config/template.json:
+    newFile: !uuid 'e2572d30229ebe5fe21c81efe5565e51eb61bebb'
+    oldFile: !uuid 'a923979fe33cedcce6f936c13f2238dc7c963281'
+  /template/README.md:
+    newFile: !uuid 'df6c030575c3981e61bca6cbc80e0ca5e80e5932'
+    oldFile: !uuid 'dff632a7d22bb4ed688be7c0e896c606b3dc4b5b'
+gitCommitId: !uuid '4022ab7aa750dc382220cebb8f47ae2da4f4ff69'
+renames:
+  /template/Admin.NETTemplate/Furion.Admin.NET.Template.App.nuspec: /template/Admin.NETTemplate/Admin.NET.Template.App.nuspec
+revisionId: 354
