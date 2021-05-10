@@ -29,7 +29,6 @@ namespace Admin.NET.Web.Core
                         options.JsonSerializerOptions.Converters.AddDateFormatString("yyyy-MM-dd HH:mm:ss");
                         //options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles; // 忽略循环引用 仅.NET 6支持
                     });
-            services.AddRemoteRequest();
             services.AddViewEngine();
             services.AddSignalR();
             services.AddSimpleEventBus();
