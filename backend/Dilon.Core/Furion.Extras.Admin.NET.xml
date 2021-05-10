@@ -202,42 +202,42 @@
             自定义实体基类
             </summary>
         </member>
-        <member name="P:Dilon.Core.DEntityBase.Id">
+        <member name="P:Dilon.Core.PrivateDEntityBase`1.Id">
             <summary>
             主键Id
             </summary>
         </member>
-        <member name="P:Dilon.Core.DEntityBase.CreatedTime">
+        <member name="P:Dilon.Core.PrivateDEntityBase`1.CreatedTime">
             <summary>
             创建时间
             </summary>
         </member>
-        <member name="P:Dilon.Core.DEntityBase.UpdatedTime">
+        <member name="P:Dilon.Core.PrivateDEntityBase`1.UpdatedTime">
             <summary>
             更新时间
             </summary>
         </member>
-        <member name="P:Dilon.Core.DEntityBase.CreatedUserId">
+        <member name="P:Dilon.Core.PrivateDEntityBase`1.CreatedUserId">
             <summary>
             创建者Id
             </summary>
         </member>
-        <member name="P:Dilon.Core.DEntityBase.CreatedUserName">
+        <member name="P:Dilon.Core.PrivateDEntityBase`1.CreatedUserName">
             <summary>
             创建者名称
             </summary>
         </member>
-        <member name="P:Dilon.Core.DEntityBase.UpdatedUserId">
+        <member name="P:Dilon.Core.PrivateDEntityBase`1.UpdatedUserId">
             <summary>
             修改者Id
             </summary>
         </member>
-        <member name="P:Dilon.Core.DEntityBase.UpdatedUserName">
+        <member name="P:Dilon.Core.PrivateDEntityBase`1.UpdatedUserName">
             <summary>
             修改者名称
             </summary>
         </member>
-        <member name="P:Dilon.Core.DEntityBase.IsDeleted">
+        <member name="P:Dilon.Core.PrivateDEntityBase`1.IsDeleted">
             <summary>
             软删除
             </summary>
@@ -2114,7 +2114,7 @@
         </member>
         <member name="F:Dilon.Core.ErrorCode.D1300">
             <summary>
-            已存在同名或同主机租户
+            已存在同名或同管理员或同主机租户
             </summary>
         </member>
         <member name="F:Dilon.Core.ErrorCode.D1400">
@@ -3080,6 +3080,19 @@
             </summary>
         </member>
         <member name="M:Dilon.Core.SysDictTypeSeedData.HasData(Microsoft.EntityFrameworkCore.DbContext,System.Type)">
+            <summary>
+            种子数据
+            </summary>
+            <param name="dbContext"></param>
+            <param name="dbContextLocator"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Dilon.Core.SysEmpExtOrgPosData">
+            <summary>
+            系统员工附属机构职位表种子数据
+            </summary>
+        </member>
+        <member name="M:Dilon.Core.SysEmpExtOrgPosData.HasData(Microsoft.EntityFrameworkCore.DbContext,System.Type)">
             <summary>
             种子数据
             </summary>
