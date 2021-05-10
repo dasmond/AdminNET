@@ -3,15 +3,42 @@ branches: {
   }
 fileChange:
   /backend:
-    newFile: !uuid '44611a3720925e90ba9f31ecf78ccf8ccdaeb97f'
-    oldFile: !uuid '4c883640a5a14fff4e7f6f56fcacdcdbb32a104a'
+    newFile: !uuid '16cb158b3dd38e7dbb4b6c120670e2b39e70e75c'
+    oldFile: !uuid '44611a3720925e90ba9f31ecf78ccf8ccdaeb97f'
   /backend/Admin.NET.Core:
-    newFile: !uuid '14f284984147735c86de9469ef07c751fca59835'
-    oldFile: !uuid '451c2398bef10d2ba6ff58b0251f012f1168a485'
+    newFile: !uuid 'da359faccf02f19e605c1a23cd345e5b37dfc5b1'
+    oldFile: !uuid '14f284984147735c86de9469ef07c751fca59835'
   /backend/Admin.NET.Core/Admin.NET.Core.csproj:
-    newFile: !uuid '6edf0587286aab4c5a0edc0ad01247a46f4cbf7e'
-    oldFile: !uuid 'fcbb7a6810ff20609ae36ef30265f0b75ecbfc9c'
-gitCommitId: !uuid 'bcc67e566144e94651bec86a43bf4a0ea9adb1e6'
+    newFile: !uuid '349d9d8f981b1574ed19f3130b397e34fdea28b2'
+    oldFile: !uuid '6edf0587286aab4c5a0edc0ad01247a46f4cbf7e'
+  /backend/Admin.NET.Core/Entity:
+    newFile: !uuid 'd9d6f42aa50cb7678a0cf6cb39ceaabbebfafff5'
+    oldFile: !uuid '41bc2ec899628ab1d458dee91e8260a104de590d'
+  /backend/Admin.NET.Core/Entity/DBEntityTenant.cs:
+    newFile: !uuid 'f1a3212b4d5cc84b00a5bebaabaeca0a848a7ff3'
+    oldFile: !uuid '8ceeee15401c67d0e56c804821cf874045269b50'
+  /backend/Admin.NET.Core/Entity/SysOrg.cs:
+    newFile: !uuid '66125d7db50a91a1577b8184b283b9790c6f0d20'
+    oldFile: !uuid 'c8fd10e097d0ac8ff33a22cf7474738fc3968417'
+  /backend/Admin.NET.Core/Entity/SysPos.cs:
+    newFile: !uuid '902f602b91d4cc92d47d9d6446d94f91758c3024'
+    oldFile: !uuid 'ea390940040e68bd72c01803345546a8630fc0f1'
+  /backend/Admin.NET.Core/Entity/SysRole.cs:
+    newFile: !uuid 'ce564b7915e9766e185f69366af17a13c5a5fcc0'
+    oldFile: !uuid '8b13395b3e95e7135c060a9ca37bd4d62657ce52'
+  /backend/Admin.NET.Core/Entity/SysUser.cs:
+    newFile: !uuid 'a63c2e54e9467ee86e40458bbdb6ee725a760837'
+    oldFile: !uuid 'cf4cc42dbfa4a4514767723178e0741f58a1fa0d'
+  /backend/Admin.NET.EntityFramework.Core:
+    newFile: !uuid '997ff5d0535fb780a8542c022a7f9d0dd6b82904'
+    oldFile: !uuid 'd6b9dbce189829447cc98a351410e82e58d3e033'
+  /backend/Admin.NET.EntityFramework.Core/DbContexts:
+    newFile: !uuid '0cd45b125c6747016efc8400d7a7f927044f5db1'
+    oldFile: !uuid 'fb75ed02ded86b19d24c1ada03be6c6b273cbe5c'
+  /backend/Admin.NET.EntityFramework.Core/DbContexts/DefaultDbContext.cs:
+    newFile: !uuid '45e85976859c132fd62370703d6eb001f9c8d9cf'
+    oldFile: !uuid 'a7a3376f78d01d66fc41123ff946a97883b2da9d'
+gitCommitId: !uuid '207d2596317f5fdd5c9a50f80660327cad95f4d5'
 renames: {
   }
-revisionId: 368
+revisionId: 369
