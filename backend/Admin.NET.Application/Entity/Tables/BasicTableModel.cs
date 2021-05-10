@@ -1,4 +1,4 @@
-﻿using Dilon.Core;
+﻿using Admin.NET.Core;
 using SqlSugar;
 using System;
 using System.Collections.Generic;
@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Dilon.Application.Entity.Tables
+namespace Admin.NET.Application.Entity.Tables
 {
     /// <summary>
     /// 基本表格

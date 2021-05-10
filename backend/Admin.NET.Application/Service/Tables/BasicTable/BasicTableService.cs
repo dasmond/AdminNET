@@ -1,5 +1,5 @@
-﻿using Dilon.Application.Entity.Tables;
-using Dilon.Core;
+﻿using Admin.NET.Core;
+using Admin.NET.Application.Entity.Tables;
 using Furion.DependencyInjection;
 using Furion.DynamicApiController;
 using Microsoft.AspNetCore.Mvc;
@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Dilon.Application.Service.Tables.BasicTable
+namespace Admin.NET.Application.Service.Tables.BasicTable
 {
     /// <summary>
     /// 基本表格服务

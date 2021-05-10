@@ -1,4 +1,4 @@
-﻿using Dilon.Application.Entity.Tables;
+﻿using Admin.NET.Application.Entity.Tables;
 using Furion.DatabaseAccessor;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Dilon.Application.SeedData
+namespace Admin.NET.Application.SeedData
 {
     /// <summary>
     /// 基本表格表种子数据

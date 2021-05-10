@@ -1,8 +1,8 @@
-﻿using Dilon.Core;
+﻿using Admin.NET.Core;
 using SqlSugar;
 using System;
 
-namespace Dilon.Application.Entity.Tables
+namespace Admin.NET.Application.Entity.Tables
 {
     /// <summary>
     /// 斑马线表格

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Dilon.Application.Service.Tables.StripeTable
+namespace Admin.NET.Application.Service.Tables.StripeTable
 {
     public interface IStripeTableService
     {

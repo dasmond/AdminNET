@@ -36,23 +36,12 @@
   </ItemGroup>
 
   <ItemGroup>
-<<<<<<< HEAD:backend/Dilon.Core/Dilon.Core.csproj
-    <Compile Remove="OAuth\AuthorizeResult.cs" />
-    <Compile Remove="OAuth\IUserInfoModel.cs" />
-    <Compile Remove="OAuth\OAuthLoginBase.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Remove="Dilon.Core.xml" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="CSRedisCore" Version="3.6.6" />
+	<PackageReference Include="Furion.Extras.DatabaseAccessor.SqlSugar" Version="2.1.2" />
     <PackageReference Include="Furion" Version="2.3.7" />
     <PackageReference Include="Furion.Extras.Authentication.JwtBearer" Version="2.3.7" />
     <PackageReference Include="Furion.Extras.Logging.Serilog" Version="2.3.7" />
     <PackageReference Include="Furion.Extras.ObjectMapper.Mapster" Version="2.3.7" />
-	<PackageReference Include="Furion.Extras.DatabaseAccessor.SqlSugar" Version="2.1.2" />
     <PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="5.0.1" />
     <PackageReference Include="MiniExcel" Version="0.14.1" />
     <PackageReference Include="OnceMi.AspNetCore.OSS" Version="1.0.3" />

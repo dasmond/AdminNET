@@ -1,10 +1,10 @@
-﻿using Dilon.Application.Entity.Tables;
+﻿using Admin.NET.Application.Entity.Tables;
 using Furion.DatabaseAccessor;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 
-namespace Dilon.Application.SeedData
+namespace Admin.NET.Application.SeedData
 {
     public class StripeTableModelSeedData : IEntitySeedData<StripeTableModel>
     {

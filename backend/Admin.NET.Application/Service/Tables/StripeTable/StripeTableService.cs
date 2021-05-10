@@ -1,12 +1,12 @@
-﻿using Dilon.Application.Entity.Tables;
-using Dilon.Core;
+﻿using Admin.NET.Application.Entity.Tables;
+using Admin.NET.Core;
 using Furion.DependencyInjection;
 using Furion.DynamicApiController;
 using Microsoft.AspNetCore.Mvc;
 using SqlSugar;
 using System.Threading.Tasks;
 
-namespace Dilon.Application.Service.Tables.StripeTable
+namespace Admin.NET.Application.Service.Tables.StripeTable
 {
     /// <summary>
     /// 斑马线表格服务
