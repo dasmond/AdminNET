@@ -43,7 +43,7 @@ namespace Admin.NET.Core
                 new SysConfig{Id=142307070902362, Name="Linux/Mac本地上传文件路径", Code="DILON_FILE_UPLOAD_PATH_FOR_LINUX", Value="/tmp",SysFlag="Y", Remark="Linux/Mac本地上传文件路径", Status=0, GroupCode="FILE_PATH"},
                 new SysConfig{Id=142307070902363, Name="放开XSS过滤的接口", Code="DILON_UN_XSS_FILTER_URL", Value="/demo/xssfilter,/demo/unxss",SysFlag="Y", Remark="多个url可以用英文逗号隔开", Status=0, GroupCode="DEFAULT"},
                 new SysConfig{Id=142307070902364, Name="单用户登陆的开关", Code="DILON_ENABLE_SINGLE_LOGIN", Value="false",SysFlag="Y", Remark="true-打开，false-关闭，如果一个人登录两次，就会将上一次登陆挤下去", Status=0, GroupCode="DEFAULT"},
-                new SysConfig{Id=142307070902365, Name="登录验证码的开关", Code="DILON_CAPTCHA_OPEN", Value="true",SysFlag="Y", Remark="true-打开，false-关闭", Status=0, GroupCode="DEFAULT"},
+                new SysConfig{Id=142307070902365, Name="登录验证码的开关", Code="DILON_CAPTCHA_OPEN", Value="false",SysFlag="Y", Remark="true-打开，false-关闭", Status=0, GroupCode="DEFAULT"},
                 new SysConfig{Id=142307070902366, Name="Druid监控登录账号", Code="DILON_DRUID_USERNAME", Value="superAdmin",SysFlag="Y", Remark="Druid监控登录账号", Status=0, GroupCode="DEFAULT"},
                 new SysConfig{Id=142307070902367, Name="Druid监控界面登录密码", Code="DILON_DRUID_PASSWORD", Value="123456",SysFlag="Y", Remark="Druid监控界面登录密码", Status=0, GroupCode="DEFAULT"},
                 new SysConfig{Id=142307070902368, Name="阿里云定位api接口地址", Code="DILON_IP_GEO_API", Value="http://api01.aliyun.venuscn.com/ip?ip=%s",SysFlag="Y", Remark="阿里云定位api接口地址", Status=0, GroupCode="DEFAULT"},

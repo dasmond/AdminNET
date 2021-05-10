@@ -1,0 +1,189 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Dilon.Application</name>
+    </assembly>
+    <members>
+        <member name="T:Dilon.Application.CodeGenTest">
+            <summary>
+            代码生成实体事例（EF）
+            </summary>
+        </member>
+        <member name="P:Dilon.Application.CodeGenTest.Name">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:Dilon.Application.CodeGenTest.NickName">
+            <summary>
+            昵称
+            </summary>
+        </member>
+        <member name="P:Dilon.Application.CodeGenTest.Birthday">
+            <summary>
+            生日
+            </summary>
+        </member>
+        <member name="P:Dilon.Application.CodeGenTest.Age">
+            <summary>
+            年龄
+            </summary>
+        </member>
+        <member name="T:Dilon.Application.Entity.Tables.BasicTableModel">
+            <summary>
+            基本表格
+            </summary>
+        </member>
+        <member name="P:Dilon.Application.Entity.Tables.BasicTableModel.Name">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:Dilon.Application.Entity.Tables.BasicTableModel.Code">
+            <summary>
+            编码
+            </summary>
+        </member>
+        <member name="P:Dilon.Application.Entity.Tables.BasicTableModel.Active">
+            <summary>
+            是否默认激活（Y-是，N-否）,只能有一个系统默认激活
+            用户登录后默认展示此系统菜单
+            </summary>
+        </member>
+        <member name="P:Dilon.Application.Entity.Tables.BasicTableModel.Status">
+            <summary>
+            状态（字典 0正常 1停用 2删除）
+            </summary>
+        </member>
+        <member name="P:Dilon.Application.Entity.Tables.BasicTableModel.Sort">
+            <summary>
+            排序
+            </summary>
+        </member>
+        <member name="T:Dilon.Application.Entity.Tables.StripeTableModel">
+            <summary>
+            斑马线表格
+            </summary>
+        </member>
+        <member name="P:Dilon.Application.Entity.Tables.StripeTableModel.Name">
+            <summary>
+            名字
+            </summary>
+        </member>
+        <member name="P:Dilon.Application.Entity.Tables.StripeTableModel.Sex">
+            <summary>
+            性别
+            </summary>
+        </member>
+        <member name="P:Dilon.Application.Entity.Tables.StripeTableModel.Age">
+            <summary>
+            年龄
+            </summary>
+        </member>
+        <member name="P:Dilon.Application.Entity.Tables.StripeTableModel.Address">
+            <summary>
+            街道
+            </summary>
+        </member>
+        <member name="P:Dilon.Application.Entity.Tables.StripeTableModel.Active">
+            <summary>
+            是否默认激活（Y-是，N-否）,只能有一个系统默认激活
+            用户登录后默认展示此系统菜单
+            </summary>
+        </member>
+        <member name="P:Dilon.Application.Entity.Tables.StripeTableModel.Status">
+            <summary>
+            状态（字典 0正常 1停用 2删除）
+            </summary>
+        </member>
+        <member name="P:Dilon.Application.Entity.Tables.StripeTableModel.Sort">
+            <summary>
+            排序
+            </summary>
+        </member>
+        <member name="T:Dilon.Application.SeedData.BasicTableModelSeedData">
+            <summary>
+            基本表格表种子数据
+            </summary>
+        </member>
+        <member name="M:Dilon.Application.SeedData.BasicTableModelSeedData.HasData(Microsoft.EntityFrameworkCore.DbContext,System.Type)">
+            <summary>
+            种子数据
+            </summary>
+            <param name="dbContext"></param>
+            <param name="dbContextLocator"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Dilon.Application.SeedData.StripeTableModelSeedData.HasData(Microsoft.EntityFrameworkCore.DbContext,System.Type)">
+            <summary>
+            种子数据
+            </summary>
+            <param name="dbContext"></param>
+            <param name="dbContextLocator"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Dilon.Application.ITestService.SendMessage">
+            <summary>
+            发送消息到客户端
+            </summary>
+        </member>
+        <member name="T:Dilon.Application.Service.Tables.BasicTable.BasicTableService">
+            <summary>
+            基本表格服务
+            </summary>
+        </member>
+        <member name="M:Dilon.Application.Service.Tables.BasicTable.BasicTableService.GetBasicTableList">
+            <summary>
+            获取基本表格数据
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Dilon.Application.Service.Tables.StripeTable.StripeTableService">
+            <summary>
+            斑马线表格服务
+            </summary>
+        </member>
+        <member name="M:Dilon.Application.Service.Tables.StripeTable.StripeTableService.GetStripeTableList">
+            <summary>
+            获取斑马线表格数据
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Dilon.Application.TestService">
+            <summary>
+            业务服务及集成SqlSugar用法事例
+            </summary>
+        </member>
+        <member name="M:Dilon.Application.TestService.GetDescription">
+            <summary>
+            测试方法
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Dilon.Application.TestService.SendMessage">
+            <summary>
+            发送消息到客户端
+            </summary>
+        </member>
+        <member name="T:Dilon.Core.CodeGenTestChild">
+            <summary>
+            代码生成事例子表
+            </summary>
+        </member>
+        <member name="P:Dilon.Core.CodeGenTestChild.CodeGenId">
+            <summary>
+            主表外键
+            </summary>
+        </member>
+        <member name="P:Dilon.Core.CodeGenTestChild.Code">
+            <summary>
+            编码
+            </summary>
+        </member>
+        <member name="P:Dilon.Core.CodeGenTestChild.Name">
+            <summary>
+            名称
+            </summary>
+        </member>
+    </members>
+</doc>
