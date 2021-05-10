@@ -23,6 +23,7 @@ namespace Admin.NET.Core.Service
 
         private readonly IUserManager _userManager;
         private readonly ISysRoleDataScopeService _sysRoleDataScopeService;
+        private readonly ISysRoleOrgScopeService _sysRoleOrgScopeService;
         private readonly ISysOrgService _sysOrgService;
         private readonly ISysRoleMenuService _sysRoleMenuService;
         private readonly ISysCacheService _sysCacheService;
@@ -33,7 +34,8 @@ namespace Admin.NET.Core.Service
                               ISysRoleDataScopeService sysRoleDataScopeService,
                               ISysOrgService sysOrgService,
                               ISysRoleMenuService sysRoleMenuService,
-                              ISysCacheService sysCacheService)
+                              ISysCacheService sysCacheService,
+                              ISysRoleOrgScopeService sysRoleOrgScopeService)
         {
             _sysRoleRep = sysRoleRep;
             _sysUserRoleRep = sysUserRoleRep;
@@ -42,6 +44,7 @@ namespace Admin.NET.Core.Service
             _sysOrgService = sysOrgService;
             _sysRoleMenuService = sysRoleMenuService;
             _sysCacheService = sysCacheService;
+            _sysRoleOrgScopeService = sysRoleOrgScopeService;
         }
 
         /// <summary>
@@ -238,6 +241,19 @@ namespace Admin.NET.Core.Service
         }
 
         /// <summary>
+        /// 授权角色数据范围
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        [HttpPost("/sysRole/grantOrg")]
+        public async Task GrantOrg(GrantRoleOrgInput input)
+        {
+            // 清除所有用户数据范围缓存
+            await _sysCacheService.DelByPatternAsync(CommonConst.CACHE_KEY_DATASCOPE);
+            await _sysRoleOrgScopeService.GrantOrgScope(input);
+        }
+
+        /// <summary>
         /// 根据角色Id集合获取数据范围Id集合
         /// </summary>
         /// <param name="roleIdList"></param>
@@ -305,6 +321,17 @@ namespace Admin.NET.Core.Service
         public async Task<List<long>> OwnData([FromQuery] QueryRoleInput input)
         {
             return await _sysRoleDataScopeService.GetRoleDataScopeIdList(new List<long> { input.Id });
+        }
+
+        /// <summary>
+        /// 获取角色拥有数据Id集合
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        [HttpGet("/sysRole/ownOrgData")]
+        public async Task<List<long>> OwnOrgData([FromQuery] QueryRoleInput input)
+        {
+            return await _sysRoleOrgScopeService.GetRoleOrgScopeIdList(new List<long> { input.Id });
         }
     }
 }

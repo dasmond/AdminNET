@@ -181,4 +181,8 @@ namespace Admin.NET.Core.Service
         public List<long> GrantRoleIdList { get; set; }
         public List<long> GrantOrgIdList { get; set; }
     }
+
+    public class GrantRoleOrgInput : GrantRoleMenuInput
+    {
+    }
 }

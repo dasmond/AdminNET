@@ -122,6 +122,23 @@ namespace Admin.NET.Core.Service
         }
 
         /// <summary>
+        /// 获取员工机构Id
+        /// </summary>
+        /// <param name="empId"></param>
+        /// <returns></returns>
+        public async Task<IList<long>> GetEmpOrgIds(long empId)
+        {
+            var orgId = (await _sysEmpRep.FirstOrDefaultAsync(u => u.Id == empId, false)).OrgId;
+            var extOrgIds = (await _sysEmpExtOrgPosService.GetEmpExtOrgPosList(empId))?.Select(c => c.OrgId)?.Distinct()?.ToList();
+            var listOrdIds = new List<long> { orgId };
+            if (extOrgIds != null && extOrgIds.Count > 0)
+            {
+                listOrdIds.AddRange(extOrgIds);
+            }
+            return listOrdIds;
+        }
+
+        /// <summary>
         /// 获取子机构用户
         /// </summary>
         /// <param name="orgIds"></param>

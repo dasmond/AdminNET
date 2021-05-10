@@ -13,6 +13,8 @@ namespace Admin.NET.Core.Service
 
         Task<long> GetEmpOrgId(long empId);
 
+        Task<IList<long>> GetEmpOrgIds(long empId);
+
         Task<bool> HasOrgEmp(long orgId);
 
         Task UpdateEmpOrgInfo(long orgId, string orgName);

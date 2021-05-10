@@ -139,3 +139,31 @@ export function sysRoleGrantData (parameter) {
     data: parameter
   })
 }
+
+/**
+ * 拥有角色
+ *
+ * @author xusn
+ * @date 2021/5/8 10:09
+ */
+ export function sysRoleOwnOrgData (parameter) {
+  return axios({
+    url: '/sysRole/ownOrgData',
+    method: 'get',
+    params: parameter
+  })
+}
+
+/**
+ * 授权角色
+ *
+ * @author xusn
+ * @date 2021/5/8 10:09
+ */
+ export function sysRoleGrantOrg (parameter) {
+  return axios({
+    url: '/sysRole/grantOrg',
+    method: 'post',
+    data: parameter
+  })
+}
