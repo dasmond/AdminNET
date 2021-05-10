@@ -3,21 +3,15 @@ branches: {
   }
 fileChange:
   /backend:
-    newFile: !uuid '4c883640a5a14fff4e7f6f56fcacdcdbb32a104a'
-    oldFile: !uuid '7763c69b558961fad4d4dcf6fe20e8d17d2de6d4'
+    newFile: !uuid '44611a3720925e90ba9f31ecf78ccf8ccdaeb97f'
+    oldFile: !uuid '4c883640a5a14fff4e7f6f56fcacdcdbb32a104a'
   /backend/Admin.NET.Core:
-    newFile: !uuid '451c2398bef10d2ba6ff58b0251f012f1168a485'
-    oldFile: !uuid '9a15cae7339eafdd08048ff151ce0c1aa5d67123'
-  /backend/Admin.NET.Core/Service:
-    newFile: !uuid 'a13dfd328557b6ee65aba37000187c5ffa7eb307'
-    oldFile: !uuid 'a8e5ef3d55cb018f3380392ff94773f9273e3b06'
-  /backend/Admin.NET.Core/Service/Org:
-    newFile: !uuid '4e6bb07463ebf2f3467a451b7b4478af00f224e3'
-    oldFile: !uuid 'a081ace296b41fd25b664823b4686e98420800d9'
-  /backend/Admin.NET.Core/Service/Org/SysOrgService.cs:
-    newFile: !uuid '075246daa987a4af4623fd5562fad9a7fec4f62e'
-    oldFile: !uuid 'c8c3feb8a21c8aa232fb9a9250e0d4ec01e3931f'
-gitCommitId: !uuid 'bdff1821f588ea3cbb3db53a751c4a3a346f461d'
+    newFile: !uuid '14f284984147735c86de9469ef07c751fca59835'
+    oldFile: !uuid '451c2398bef10d2ba6ff58b0251f012f1168a485'
+  /backend/Admin.NET.Core/Admin.NET.Core.csproj:
+    newFile: !uuid '6edf0587286aab4c5a0edc0ad01247a46f4cbf7e'
+    oldFile: !uuid 'fcbb7a6810ff20609ae36ef30265f0b75ecbfc9c'
+gitCommitId: !uuid 'bcc67e566144e94651bec86a43bf4a0ea9adb1e6'
 renames: {
   }
-revisionId: 367
+revisionId: 368
