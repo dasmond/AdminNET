@@ -1,10 +1,5 @@
-<div align="center">
-    <p align="center">
-        <img src="https://gitee.com/zuohuaijun/Admin.NET/raw/master/frontend/public/logo.png" height="50" alt="logo"/>
-    </p>
-</div>
 
-<div align="center"><h1 align="center">Admin.NET</h1></div>
+<div align="center"><h1 align="center">Admin.NET</a></h1></div>
 <div align="center"><h3 align="center">前后端分离架构，开箱即用，紧随前沿技术</h3></div>
 
 <div align="center">
@@ -20,13 +15,44 @@
 ### 🍟 概述
 
 * 基于.NET 5实现的通用权限管理平台（RBAC模式）。整合最新技术高效快速开发，前后端分离模式，开箱即用。
-* 后台基于Furion框架，前端基于小诺Vue Antd框架。EFCore、多租户、分库读写分离、缓存、数据校验、鉴权、动态API、gRPC等众多黑科技集一身。
+* 后台基于Furion框架，前端基于小诺Antd Vue框架。集EFCore、多租户、分库读写分离、缓存、数据校验、鉴权、动态API、gRPC等众多黑科技于一身。
 * 模块化架构设计，层次清晰，业务层推荐写到单独模块，框架升级不影响业务!
 * 核心模块包括：用户、角色、职位、组织机构、菜单、字典、日志、多应用管理、文件管理、定时任务等功能。
 * 代码量少、上手简单、功能强大、易扩展，轻松开发从现在开始！
 
 ```
 如果对您有帮助，您可以点右上角 💘Star💘收藏一下 ，获取第一时间更新，谢谢！！！
+```
+
+## 🍁 框架拓展包
+
+|                                                                 包类型                                                                             | 名称                             |                                                                                 版本                                                                                                        | 描述                   |
+| :------------------------------------------------------------------------------------------------------------------------------------------------: | -------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | ---------------------- |
+|       [![nuget](https://shields.io/badge/-Nuget-yellow?cacheSeconds=604800)](https://www.nuget.org/packages/Furion.Extras.Admin.NET/)              | Furion.Extras.Admin.NET          |              [![nuget](https://img.shields.io/nuget/v/Furion.Admin.NET.Template.App.svg?cacheSeconds=10800)](https://www.nuget.org/packages/Furion.Extras.Admin.NET/)                          | Admin.NET 核心包       |
+
+```
+可自行按照 Furion 框架脚手架初始化工程，然后引用此包即可，其他层配置见源代码。
+```
+
+## 🍀 框架脚手架
+
+|                                                                 模板类型                                                                           | 名称                             |                                                                                 版本                                                                                                      | 描述                   |
+| :------------------------------------------------------------------------------------------------------------------------------------------------: | -------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | ---------------------- |
+|       [![nuget](https://shields.io/badge/-Nuget-yellow?cacheSeconds=604800)](https://www.nuget.org/packages/Furion.Admin.NET.Template.App/)        | Furion.Admin.NET.Template.App    |              [![nuget](https://img.shields.io/nuget/v/Furion.Admin.NET.Template.App.svg?cacheSeconds=10800)](https://www.nuget.org/packages/Furion.Admin.NET.Template.App/)              | Admin.NET 框架模板     |
+
+```
+打开 CMD 或 Powershell 执行dotnet命令
+
+1、安装脚手架
+dotnet new --install Furion.Admin.NET.Template.App
+
+2、更新脚手架
+dotnet new --install Furion.Admin.NET.Template.App
+
+3、使用脚手架（生成之后推荐将所有的 nuget 包更新到最新版本）
+dotnet new Admin.NET -n 你的项目名称
+
+其实安装之后可以直接在VS里面进行可视化及创建工程
 ```
 
 ### 😎 衍生版本
@@ -59,7 +85,7 @@
 
 需要安装：VS2019（最新版）、npm或yarn（最新版）
 
-* 启动后台：打开backend/Dilon.sln解决方案，直接运行（F5）即可启动（数据库默认SQLite）
+* 启动后台：打开backend/Admin.NET.sln解决方案，直接运行（F5）即可启动（数据库默认SQLite）
 * 启动前端：VSCode或HBuilder，打开frontend文件夹，进行依赖下载，运行npm install或yarn命令，再运行npm run serve或 yarn run serve
 * 浏览器访问：`http://localhost:81` （默认前端端口为：81，后台端口为：5566）
 <table>
@@ -71,13 +97,13 @@
 
 ### 🏀 分层说明
 ```
-├─Dilon.Application             ->业务应用层，在此写您具体业务代码🌻🌻🌻
-├─Dilon.Core                    ->框架核心层，后期准备做成NuGet包直接引用即可
-├─Dilon.Database.Migrations     ->架构维护层，主要存放迁移中间文件
-├─Dilon.EntityFramework.Core    ->EF Core配置层，主要配置数据库及相关
-├─Dilon.Web.Core                ->Web核心层，主要是服务注册及鉴权
-├─Dilon.Web.Entry               ->Web入口层/启动层，可任意更换
-注：建议自己的业务代码直接写在【Dilon.Application】层里面，包括实体与服务等，或者单独新建个业务应用工程，进行模块化开发。
+├─Admin.NET.Application             ->业务应用层，在此写您具体业务代码🌻🌻🌻
+├─Admin.NET.Core                    ->框架核心层，后期准备做成NuGet包直接引用即可
+├─Admin.NET.Database.Migrations     ->架构维护层，主要存放迁移中间文件
+├─Admin.NET.EntityFramework.Core    ->EF Core配置层，主要配置数据库及相关
+├─Admin.NET.Web.Core                ->Web核心层，主要是服务注册及鉴权
+├─Admin.NET.Web.Entry               ->Web入口层/启动层，可任意更换
+注：建议自己的业务代码直接写在【Admin.NET.Application】层里面，包括实体与服务等，或者单独新建个业务应用工程，进行模块化开发。
 😛其他层尽量不要管，可随框架升级而无缝升级。
 ```
 
@@ -171,28 +197,37 @@
 
 【MySQL】
 
-1. Dilon.EntityFramework.Core 项目安装 ``` Pomelo.EntityFrameworkCore.MySql，Nuget 需勾选预览版且安装 .Alpha.2 版本 (支持 MySql 5.x +)  MySql.EntityFrameworkCore：支持 (MySql 8.x +) ```
+1. Admin.NET.EntityFramework.Core 项目安装 ``` Pomelo.EntityFrameworkCore.MySql，Nuget 需安装 5.0 版本 (支持 MySql 5.x +)  MySql.EntityFrameworkCore：支持 (MySql 8.x +) ```
 2. DefaultDbContext.cs 指定 DbProvider , ```[AppDbContext("DefaultConnection", DbProvider.MySql)]```
-3. dbsettings.json 配置 "DefaultConnection": ```"Data Source=localhost;Database=Dilon;User ID=root;Password=000000;pooling=true;port=3306;sslmode=none;CharSet=utf8;"```
-4. 打开程序包管理器控制台，默认项目Dilon.Database.Migrations 执行命令:```Add-Migration Init和update-database```
+3. dbsettings.json 配置 "DefaultConnection": ```"Data Source=localhost;Database=Admin.NET;User ID=root;Password=000000;pooling=true;port=3306;sslmode=none;CharSet=utf8;"```
+4. 打开程序包管理器控制台，默认项目Admin.NET.Database.Migrations 执行命令:```Add-Migration Init和update-database```
 
 【SQLServer】
 
-1. Dilon.EntityFramework.Core 项目安装 ``` Microsoft.EntityFrameworkCore.SqlServer ```
+1. Admin.NET.EntityFramework.Core 项目安装 ``` Microsoft.EntityFrameworkCore.SqlServer ```
 2. DefaultDbContext.cs 指定 DbProvider , ```[AppDbContext("DefaultConnection", DbProvider.SqlServer)]```
-3. dbsettings.json 配置 "DefaultConnection": ```"Server=localhost;Database=Dilon;User=sa;Password=000000;MultipleActiveResultSets=True;"```
-4. 打开程序包管理器控制台，默认项目Dilon.Database.Migrations 执行命令:```Add-Migration Init 和 update-database```
+3. dbsettings.json 配置 "DefaultConnection": ```"Server=localhost;Database=Admin.NET;User=sa;Password=000000;MultipleActiveResultSets=True;"```
+4. 打开程序包管理器控制台，默认项目Admin.NET.Database.Migrations 执行命令:```Add-Migration Init 和 update-database```
 
 ```
 提示：其他类型数据库依次类推，首先添加EF的Core版包，然后指定数据库类型，修改数据库连接字符串，执行EF迁移命令即可。
 ```
+
+【EF批量操作】
+
+使用 Zack.EFCore.Batch [https://hub.fastgit.org/yangzhongke/Zack.EFCore.Batch](https://hub.fastgit.org/yangzhongke/Zack.EFCore.Batch) 安装对应包即可
+1. MSSQL：Zack.EFCore.Batch.MSSQL
+2. MySql：Zack.EFCore.Batch.MySQL.Pomelo
+3. Npgsql：Zack.EFCore.Batch.Npgsql
+4. Oracle：Zack.EFCore.Batch.Oracle
+5. Sqlite：Zack.EFCore.Batch.Sqlite
 
 ### ⚡ 近期计划
 
 - [x] 集成多租户功能
 - [x] 集成代码生成器
 - [x] 集成导入导出
-- [ ] 在线用户及黑名单
+- [x] 在线用户及黑名单
 - [ ] 邮件发送
 - [ ] 短信发送
 - [ ] 集成微信开发
@@ -206,6 +241,15 @@
 * 后期会推出基于此框架的相关应用场景案例，提供给大家使用！
 * 有问题讨论的小伙伴可加群一起学习讨论。 QQ群【87333204】
 <a target="_blank" href="https://qm.qq.com/cgi-bin/qm/qr?k=pN8R-P3pJaW9ILoOXwpRGN2wdCHWtUTE&jump_from=webapi"><img border="0" src="//pub.idqqimg.com/wpa/images/group.png" alt="Admin.NET" title="Admin.NET"></a>
+
+## 🍻 贡献代码
+
+`Admin.NET` 遵循 `Apache-2.0` 开源协议，欢迎大家提交 `PR` 或 `Issue`。
+
+感谢每一位贡献代码的朋友。**感谢 [TLog 作者](https://gitee.com/bryan31) 提供的贡献者实时头像。**
+
+[![Giteye chart](https://chart.giteye.net/gitee/zuohuaijun/Admin.NET/JRFF5WLM.png)](https://giteye.net/chart/JRFF5WLM)
+
 
 ### 💐 特别鸣谢
 - 👉 Furion：  [https://dotnetchina.gitee.io/furion](https://dotnetchina.gitee.io/furion)
