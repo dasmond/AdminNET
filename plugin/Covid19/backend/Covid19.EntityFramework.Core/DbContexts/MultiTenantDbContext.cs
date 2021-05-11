@@ -1,4 +1,4 @@
-using Admin.NET.Core;
+﻿using Admin.NET.Core;
 using Admin.NET.Core.Service;
 using Furion;
 using Furion.DatabaseAccessor;
@@ -9,7 +9,7 @@ using System;
 using System.Linq;
 using Yitter.IdGenerator;
 
-namespace Admin.NET.EntityFramework.Core
+namespace Covid19.EntityFramework.Core
 {
     [AppDbContext("MultiTenantConnection", DbProvider.Sqlite)]
     public class MultiTenantDbContext : AppDbContext<MultiTenantDbContext, MultiTenantDbContextLocator>
@@ -40,9 +40,9 @@ namespace Admin.NET.EntityFramework.Core
 
             foreach (var entity in entities)
             {
-               if (entity.Entity.GetType().IsSubclassOf(typeof(DEntityBase<long, MultiTenantDbContextLocator>)))
+                if (entity.Entity.GetType().IsSubclassOf(typeof(DEntityBase)))
                 {
-                    var obj = entity.Entity as DEntityBase<long, MultiTenantDbContextLocator>;
+                    var obj = entity.Entity as DEntityBase;
                     if (entity.State == EntityState.Added)
                     {
                         obj.Id = YitIdHelper.NextId();
