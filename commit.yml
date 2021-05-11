@@ -2,10 +2,391 @@
 branches: {
   }
 fileChange:
-  /README.md:
-    newFile: !uuid '4581c24a4aae98787f4a29f3b084c8bd0ab622e3'
-    oldFile: !uuid 'ac2fce94980f7a60027bf7f79f7a32a70180aedf'
-gitCommitId: !uuid 'a71d323595c4eff1b33417f5f5c309e4667eca99'
+  /backend:
+    newFile: !uuid '295f34e33a3841ebfd61b26673278cc13bb0cc72'
+    oldFile: !uuid '5ba68176bdd10b6c0dc8d259eabc449880a1ef44'
+  /backend/Admin.NET.Web.Entry:
+    newFile: !uuid '8046e1627ccc09a92f62a08c728066d4d8fb13cb'
+    oldFile: !uuid 'f679896018c2f961afd9704d1deb32956535204a'
+  /backend/Admin.NET.Web.Entry/Admin.NET.db:
+    newFile: !uuid '08a631bd7bade8eb86566200b9c4ce322ce70abb'
+    oldFile: !uuid 'ab9a71638fefd665f2345642fd8ffd6b3f92084e'
+  /plugin:
+    newFile: !uuid '85b800ded679bced387754604b50f40edcd0c6f2'
+    oldFile: null
+  /plugin/Covid19:
+    newFile: !uuid '4f1608319eb432f0e2ead6da1bb341c711432182'
+    oldFile: null
+  /plugin/Covid19/backend:
+    newFile: !uuid '248d052994f0d3421af84d5ffb33e096ef559619'
+    oldFile: null
+  /plugin/Covid19/backend/Covid19.Application:
+    newFile: !uuid '7b70e7439449d99fa58abc8b4d677331db2bcb13'
+    oldFile: null
+  /plugin/Covid19/backend/Covid19.Application/Covid19.Application.csproj:
+    newFile: !uuid '482e91bf0f3b36e786865ce379b9c3382114e216'
+    oldFile: null
+  /plugin/Covid19/backend/Covid19.Application/System:
+    newFile: !uuid '6538ca28eef848a11c61773cff4cde11bc6376a8'
+    oldFile: null
+  /plugin/Covid19/backend/Covid19.Application/System/Dtos:
+    newFile: !uuid '9c396a715126b982c1bdc2c5043e40418caa9d62'
+    oldFile: null
+  /plugin/Covid19/backend/Covid19.Application/System/Dtos/Mapper.cs:
+    newFile: !uuid '44735a20e5b0419a67a37719c39e86620f00df46'
+    oldFile: null
+  /plugin/Covid19/backend/Covid19.Application/System/Services:
+    newFile: !uuid '62d54e91b253ac51a5a8237c520b28b8cbbc6aa9'
+    oldFile: null
+  /plugin/Covid19/backend/Covid19.Application/System/Services/ISystemService.cs:
+    newFile: !uuid 'f8796bd519fb29d9f25238f57416871d3313623e'
+    oldFile: null
+  /plugin/Covid19/backend/Covid19.Application/System/Services/SystemService.cs:
+    newFile: !uuid '8a586e4fd3926525bd8e4c32ad151fab0ad38316'
+    oldFile: null
+  /plugin/Covid19/backend/Covid19.Application/System/SystemAppService.cs:
+    newFile: !uuid '1452339ad013f20220fba7f5d7a8b869eb21d038'
+    oldFile: null
+  /plugin/Covid19/backend/Covid19.Application/applicationsettings.json:
+    newFile: !uuid 'e043107d5484d0d8708ca70bcf99f7a9f1dee0d3'
+    oldFile: null
+  /plugin/Covid19/backend/Covid19.Core:
+    newFile: !uuid '586be8711f8c83b2a7aeaed4100d495f212ab763'
+    oldFile: null
+  /plugin/Covid19/backend/Covid19.Core/Covid19.Core.csproj:
+    newFile: !uuid 'aaf1dd5a1eca9a79459d69c876544dca69e30979'
+    oldFile: null
+  /plugin/Covid19/backend/Covid19.Database.Migrations:
+    newFile: !uuid '4a41206b322b387bebed130247a36427b056278e'
+    oldFile: null
+  /plugin/Covid19/backend/Covid19.Database.Migrations/Covid19.Database.Migrations.csproj:
+    newFile: !uuid '788eedcdc5f772c51e7c2fdf889dd7b345ce1ea5'
+    oldFile: null
+  /plugin/Covid19/backend/Covid19.EntityFramework.Core:
+    newFile: !uuid '65e799d39fd209b3fb0e72008449376e80115e65'
+    oldFile: null
+  /plugin/Covid19/backend/Covid19.EntityFramework.Core/Covid19.EntityFramework.Core.csproj:
+    newFile: !uuid '5320e8a56b7d31be1026f5e95e223e02880a035d'
+    oldFile: null
+  /plugin/Covid19/backend/Covid19.EntityFramework.Core/DbContexts:
+    newFile: !uuid '20aec3abe34c72ebebb5b72a2515241b926e45c8'
+    oldFile: null
+  /plugin/Covid19/backend/Covid19.EntityFramework.Core/DbContexts/DefaultDbContext.cs:
+    newFile: !uuid 'df6da0cfe9d41b1ac33d8a7d5952f49321275338'
+    oldFile: null
+  /plugin/Covid19/backend/Covid19.EntityFramework.Core/DbContexts/MultiTenantDbContext.cs:
+    newFile: !uuid '4b7bce2ee79a089ad24956c7303cbf7e0a4ba09c'
+    oldFile: null
+  /plugin/Covid19/backend/Covid19.EntityFramework.Core/Startup.cs:
+    newFile: !uuid '75f16c71cbe06b452240269c8b3ac57fc78ecc2f'
+    oldFile: null
+  /plugin/Covid19/backend/Covid19.EntityFramework.Core/dbsettings.json:
+    newFile: !uuid '3863f8f59e64caa68c714da8558c04909a74bc47'
+    oldFile: null
+  /plugin/Covid19/backend/Covid19.Plugin:
+    newFile: !uuid '396b509dcd13d15b2c39d2d50ac70e16746e4de5'
+    oldFile: null
+  /plugin/Covid19/backend/Covid19.Plugin/Const:
+    newFile: !uuid 'bf7c2101a272d3fe57f9705e0cfd4528f756e8c3'
+    oldFile: null
+  /plugin/Covid19/backend/Covid19.Plugin/Const/ApiGroup.cs:
+    newFile: !uuid 'b88ec2f3b4efbbd4c3aaff7a7f7bcf76d748ccab'
+    oldFile: null
+  /plugin/Covid19/backend/Covid19.Plugin/Covid19.Plugin.csproj:
+    newFile: !uuid 'cf27cb2d7de25a6987b0049ee757c3929482e57a'
+    oldFile: null
+  /plugin/Covid19/backend/Covid19.Plugin/Entity:
+    newFile: !uuid '95fa67c6a049d8e056bf022edea788f8c55dcb0e'
+    oldFile: null
+  /plugin/Covid19/backend/Covid19.Plugin/Entity/XgCollector.cs:
+    newFile: !uuid '1c4d0d61ef33285f2497cf47f172207ba1b6af44'
+    oldFile: null
+  /plugin/Covid19/backend/Covid19.Plugin/Entity/XgTest.cs:
+    newFile: !uuid '12779cb363d83fe3d06175e48ac08a19bc95562c'
+    oldFile: null
+  /plugin/Covid19/backend/Covid19.Plugin/Entity/XgTestItem.cs:
+    newFile: !uuid '0756a1ae727f8cc7557fc9549f794353b7f427a9'
+    oldFile: null
+  /plugin/Covid19/backend/Covid19.Plugin/SeedData:
+    newFile: !uuid 'cffe236a65f183ac7e3aa5c1d95453c864651d87'
+    oldFile: null
+  /plugin/Covid19/backend/Covid19.Plugin/SeedData/SysMenuSeedData.cs:
+    newFile: !uuid 'f9a67f68f31ad8d6021a91537802b085502bded6'
+    oldFile: null
+  /plugin/Covid19/backend/Covid19.Plugin/SeedData/SysPosSeedData.cs:
+    newFile: !uuid '18b4c065df179dabe7fa83a8a803a15212280e32'
+    oldFile: null
+  /plugin/Covid19/backend/Covid19.Plugin/SeedData/SysRoleSeedData.cs:
+    newFile: !uuid '800ccdc046d48fb79288c988712663a274c6fb52'
+    oldFile: null
+  /plugin/Covid19/backend/Covid19.Plugin/Service:
+    newFile: !uuid '438bfb5ef9f7998a003da909332d8818826de332'
+    oldFile: null
+  /plugin/Covid19/backend/Covid19.Plugin/Service/Dto:
+    newFile: !uuid '61babb9085b89b40117b0eb18ea5bba67c02ff4a'
+    oldFile: null
+  /plugin/Covid19/backend/Covid19.Plugin/Service/Dto/XgCollectorInput.cs:
+    newFile: !uuid '63c9e68fba1d7568f65b7006184863cc5f033b6e'
+    oldFile: null
+  /plugin/Covid19/backend/Covid19.Plugin/Service/Dto/XgTestInput.cs:
+    newFile: !uuid '2cdd51255ad56110a04fad5675022ad7254faaf8'
+    oldFile: null
+  /plugin/Covid19/backend/Covid19.Plugin/Service/Dto/XgTestItemInput.cs:
+    newFile: !uuid 'e2f6efef146ed296300ce5d18b60b5ca36d88ad8'
+    oldFile: null
+  /plugin/Covid19/backend/Covid19.Plugin/Service/Dto/XgTestOutput.cs:
+    newFile: !uuid '996646c9d41ed473747c31e3d53b4743bf9ab67b'
+    oldFile: null
+  /plugin/Covid19/backend/Covid19.Plugin/Service/IXgCollectorService.cs:
+    newFile: !uuid 'abb6d5ea765b51a9e493c42450e6347ef0ef16ab'
+    oldFile: null
+  /plugin/Covid19/backend/Covid19.Plugin/Service/IXgTestItemService.cs:
+    newFile: !uuid '514071f371d5e556506dc77ea020bdce2c20b349'
+    oldFile: null
+  /plugin/Covid19/backend/Covid19.Plugin/Service/IXgTestService.cs:
+    newFile: !uuid '85b68f12a4531951cf4dbc3467adc275eb6d39bf'
+    oldFile: null
+  /plugin/Covid19/backend/Covid19.Plugin/Service/XgCollectorService.cs:
+    newFile: !uuid '455e7830010eaf02e8058e7f79c9ca00683f2424'
+    oldFile: null
+  /plugin/Covid19/backend/Covid19.Plugin/Service/XgTestItemService.cs:
+    newFile: !uuid '87990376a9403c093b7793674f5821aca8542031'
+    oldFile: null
+  /plugin/Covid19/backend/Covid19.Plugin/Service/XgTestService.cs:
+    newFile: !uuid '150169fc8c31a7b4e48aa923243dc512685b841e'
+    oldFile: null
+  /plugin/Covid19/backend/Covid19.Web.Core:
+    newFile: !uuid '86060f2d4fcbc9472fb1ec625e072d68cc5db47d'
+    oldFile: null
+  /plugin/Covid19/backend/Covid19.Web.Core/Covid19.Web.Core.csproj:
+    newFile: !uuid 'a886f436ea2cad2097e6f8d15ced5675229f5bfc'
+    oldFile: null
+  /plugin/Covid19/backend/Covid19.Web.Core/Handlers:
+    newFile: !uuid '81544858daa92d682ba0fee682dc6565c51ab3f9'
+    oldFile: null
+  /plugin/Covid19/backend/Covid19.Web.Core/Handlers/JwtHandler.cs:
+    newFile: !uuid 'b2a6f0265c17492c7af9651120f1c1f257ca72a9'
+    oldFile: null
+  /plugin/Covid19/backend/Covid19.Web.Core/Startup.cs:
+    newFile: !uuid 'c9407f94dcba1412c2bfe33d8dd26c85dc94558c'
+    oldFile: null
+  /plugin/Covid19/backend/Covid19.Web.Entry:
+    newFile: !uuid 'd0a2789194ed1bd97d2dfaefd86bfab2b1419dfd'
+    oldFile: null
+  /plugin/Covid19/backend/Covid19.Web.Entry/Controllers:
+    newFile: !uuid '8e83af1901df9a517e1c793be3557e54dfb1b965'
+    oldFile: null
+  /plugin/Covid19/backend/Covid19.Web.Entry/Controllers/HomeController.cs:
+    newFile: !uuid 'd7a0362bc47d704979502f00701f869479c27272'
+    oldFile: null
+  /plugin/Covid19/backend/Covid19.Web.Entry/Covid19.Web.Entry.csproj:
+    newFile: !uuid 'bb719e4e7db84782c05e869153be63ce9d0d4642'
+    oldFile: null
+  /plugin/Covid19/backend/Covid19.Web.Entry/Covid19.db:
+    newFile: !uuid '08a631bd7bade8eb86566200b9c4ce322ce70abb'
+    oldFile: null
+  /plugin/Covid19/backend/Covid19.Web.Entry/Program.cs:
+    newFile: !uuid '7113704fb904b9d897206e392754efa07153d6fa'
+    oldFile: null
+  /plugin/Covid19/backend/Covid19.Web.Entry/Properties:
+    newFile: !uuid '778c3c2b5a0409329d947245649c13d480ef13af'
+    oldFile: null
+  /plugin/Covid19/backend/Covid19.Web.Entry/Properties/launchSettings.json:
+    newFile: !uuid 'e3f79007051b4b4e814c1bf5ba37a2b7955575e9'
+    oldFile: null
+  /plugin/Covid19/backend/Covid19.Web.Entry/Startup.cs:
+    newFile: !uuid 'b4ee350726d2e5511be874f61587fea2d95d1d3c'
+    oldFile: null
+  /plugin/Covid19/backend/Covid19.Web.Entry/Views:
+    newFile: !uuid 'd979e6c9f799c81e2e10edd2050d06369c21948f'
+    oldFile: null
+  /plugin/Covid19/backend/Covid19.Web.Entry/Views/Home:
+    newFile: !uuid 'd1f5728258f29e8c9b99e7637b99672500610bec'
+    oldFile: null
+  /plugin/Covid19/backend/Covid19.Web.Entry/Views/Home/Index.cshtml:
+    newFile: !uuid '007173b02c58134fd495382e331f97265cf03f67'
+    oldFile: null
+  /plugin/Covid19/backend/Covid19.Web.Entry/Views/Shared:
+    newFile: !uuid '5b8caf8e0a51ed91ea2fa8ceef4a5e391e64919f'
+    oldFile: null
+  /plugin/Covid19/backend/Covid19.Web.Entry/Views/Shared/_Layout.cshtml:
+    newFile: !uuid 'f5f94a03823d0885df7e8d1d46ec28040967dd6a'
+    oldFile: null
+  /plugin/Covid19/backend/Covid19.Web.Entry/Views/_ViewImports.cshtml:
+    newFile: !uuid 'fb362f2f2957bd86826d3128898771ad9f2288b6'
+    oldFile: null
+  /plugin/Covid19/backend/Covid19.Web.Entry/Views/_ViewStart.cshtml:
+    newFile: !uuid '1af6e49466ab706ca1e18961f8c678ddd0563231'
+    oldFile: null
+  /plugin/Covid19/backend/Covid19.Web.Entry/appsettings.Development.json:
+    newFile: !uuid '45fe774a9f86f1e84f718cc516e30f7390408b1e'
+    oldFile: null
+  /plugin/Covid19/backend/Covid19.Web.Entry/appsettings.json:
+    newFile: !uuid 'dfbea752003039905a0919c14a61f6386ecf30ea'
+    oldFile: null
+  /plugin/Covid19/backend/Covid19.Web.Entry/logs:
+    newFile: !uuid 'b4587558c3c2d6902da835adfd169bf2dec2aedb'
+    oldFile: null
+  /plugin/Covid19/backend/Covid19.Web.Entry/logs/20210511.log:
+    newFile: !uuid 'e20f438d09be88226c3ffaec2ddf79b37756cff5'
+    oldFile: null
+  /plugin/Covid19/backend/Covid19.Web.Entry/logs/application20210511.log:
+    newFile: !uuid '761ea59707e428d62078048d6e376a4915ebe60c'
+    oldFile: null
+  /plugin/Covid19/backend/Covid19.Web.Entry/wwwroot:
+    newFile: !uuid '335e376eb4e3a7f21dd73102965e16e155c8028a'
+    oldFile: null
+  /plugin/Covid19/backend/Covid19.Web.Entry/wwwroot/Captcha:
+    newFile: !uuid 'eeb45e85c688fa3e1ee84786fd9ed88779c950bf'
+    oldFile: null
+  /plugin/Covid19/backend/Covid19.Web.Entry/wwwroot/Captcha/Font:
+    newFile: !uuid '2a316b0499384d2ded6adf6c860be733b58a84d1'
+    oldFile: null
+  /plugin/Covid19/backend/Covid19.Web.Entry/wwwroot/Captcha/Font/站酷酷黑体.ttf:
+    newFile: !uuid '8d2a1d7f36632aa84f0841a843af97724f72e71e'
+    oldFile: null
+  /plugin/Covid19/backend/Covid19.Web.Entry/wwwroot/Captcha/Image:
+    newFile: !uuid 'e3160ac23c0f1180311f28ee2abff253dd43aa8e'
+    oldFile: null
+  /plugin/Covid19/backend/Covid19.Web.Entry/wwwroot/Captcha/Image/1.jpg:
+    newFile: !uuid 'e77f91ee1f51b2fde95b7c3303b808112a4d0c6a'
+    oldFile: null
+  /plugin/Covid19/backend/Covid19.Web.Entry/wwwroot/Captcha/Image/2.jpg:
+    newFile: !uuid 'f5c91169878e3b0c58408dedb8bb9d50e5b01390'
+    oldFile: null
+  /plugin/Covid19/backend/Covid19.Web.Entry/wwwroot/Captcha/Image/3.jpg:
+    newFile: !uuid '851c3129db805e215cf641fa01d8105e85dfb63c'
+    oldFile: null
+  /plugin/Covid19/backend/Covid19.Web.Entry/wwwroot/Captcha/Image/4.jpg:
+    newFile: !uuid '688e74fcd11075b197b606412bae73ca3808b784'
+    oldFile: null
+  /plugin/Covid19/backend/Covid19.Web.Entry/wwwroot/Captcha/Image/5.jpg:
+    newFile: !uuid '07bbdbdf937f2f02e9f2d326615a3b7b30c98c3f'
+    oldFile: null
+  /plugin/Covid19/backend/Covid19.Web.Entry/wwwroot/Captcha/Image/6.jpg:
+    newFile: !uuid '1acf7017c6219db3b59ea96865c8c4f450e5d489'
+    oldFile: null
+  /plugin/Covid19/backend/Covid19.Web.Entry/wwwroot/Captcha/Image/7.jpg:
+    newFile: !uuid '99068640dd64a11066e451752ab175443bc8263f'
+    oldFile: null
+  /plugin/Covid19/backend/Covid19.Web.Entry/wwwroot/Captcha/Image/8.jpg:
+    newFile: !uuid 'def81aeaa355b9c3bc23ce4ef6eb248d61d0fc6f'
+    oldFile: null
+  /plugin/Covid19/backend/Covid19.Web.Entry/wwwroot/Image:
+    newFile: !uuid '6c2b1ffcb73d5b6005f6ae13845de72cb5d3e45b'
+    oldFile: null
+  /plugin/Covid19/backend/Covid19.Web.Entry/wwwroot/Image/logo.png:
+    newFile: !uuid '5a014a8a0c19ba9d886d4404627d3ad5ab23a2fc'
+    oldFile: null
+  /plugin/Covid19/backend/Covid19.Web.Entry/wwwroot/Template:
+    newFile: !uuid 'fc8aa5a1afe80fea5221f2cae5dbf4441eb87254'
+    oldFile: null
+  /plugin/Covid19/backend/Covid19.Web.Entry/wwwroot/Template/Dto.cs.vm:
+    newFile: !uuid 'd30ddb1c6b01e5c0418f352bd5031754524a89a5'
+    oldFile: null
+  /plugin/Covid19/backend/Covid19.Web.Entry/wwwroot/Template/IService.cs.vm:
+    newFile: !uuid '0d8ae16f376388fb7964f27d905140083f47996a'
+    oldFile: null
+  /plugin/Covid19/backend/Covid19.Web.Entry/wwwroot/Template/Input.cs.vm:
+    newFile: !uuid '1ce1a2fef6e827c158fb2ae33d2ed6a0f128442e'
+    oldFile: null
+  /plugin/Covid19/backend/Covid19.Web.Entry/wwwroot/Template/Manage.js.vm:
+    newFile: !uuid '80fbeca1282f675f37e4cb2b148ca934922a5667'
+    oldFile: null
+  /plugin/Covid19/backend/Covid19.Web.Entry/wwwroot/Template/Output.cs.vm:
+    newFile: !uuid '6a1d40b7eafbf8670af1ce591d5d6f494dc693d9'
+    oldFile: null
+  /plugin/Covid19/backend/Covid19.Web.Entry/wwwroot/Template/Service.cs.vm:
+    newFile: !uuid '945c843d61ba7d3c01f7b7566e94d5f7a37b9312'
+    oldFile: null
+  /plugin/Covid19/backend/Covid19.Web.Entry/wwwroot/Template/addForm.vue.vm:
+    newFile: !uuid '133e15e6f07540d2fb38b181ddffe7d1cf422c98'
+    oldFile: null
+  /plugin/Covid19/backend/Covid19.Web.Entry/wwwroot/Template/editForm.vue.vm:
+    newFile: !uuid '99f93a2da258b322058192937c12b8762e570bc3'
+    oldFile: null
+  /plugin/Covid19/backend/Covid19.Web.Entry/wwwroot/Template/index.vue.vm:
+    newFile: !uuid '3f0f0dd5fa0579cfff4baeba4766b8c372e889f7'
+    oldFile: null
+  /plugin/Covid19/backend/Covid19.sln:
+    newFile: !uuid '8ac2b9bc763b4fce3773a4a45ac72d7c4fb6b27f'
+    oldFile: null
+  /plugin/Covid19/frontend:
+    newFile: !uuid 'abec3815f06cdc4a268347f1b63f14bc33eb812d'
+    oldFile: null
+  /plugin/Covid19/frontend/src:
+    newFile: !uuid 'c6e06f534a662c21c105adbbdc82d256add5f69a'
+    oldFile: null
+  /plugin/Covid19/frontend/src/api:
+    newFile: !uuid '53b24f3f276306a71bce1200c8859ec0506de5d7'
+    oldFile: null
+  /plugin/Covid19/frontend/src/api/modular:
+    newFile: !uuid 'dfbae5f8cc13600a9895c7ee0d8eb44b7205c90f'
+    oldFile: null
+  /plugin/Covid19/frontend/src/api/modular/main:
+    newFile: !uuid 'b6d9781ae954eb8390bba870d240a26518b30bb2'
+    oldFile: null
+  /plugin/Covid19/frontend/src/api/modular/main/covid19:
+    newFile: !uuid 'cc6be269a703bf8995162359a4168764b87adf1f'
+    oldFile: null
+  /plugin/Covid19/frontend/src/api/modular/main/covid19/xgCollector.js:
+    newFile: !uuid '210daed989eef11bba678a2c85ef669fc272c331'
+    oldFile: null
+  /plugin/Covid19/frontend/src/api/modular/main/covid19/xgTest.js:
+    newFile: !uuid '5ca47279892ee0cb0e50782bb40e29e9e32a65ba'
+    oldFile: null
+  /plugin/Covid19/frontend/src/api/modular/main/covid19/xgTestItem.js:
+    newFile: !uuid 'b21d7cae6c0dc71efb582eaf61d12725beadf4ef'
+    oldFile: null
+  /plugin/Covid19/frontend/src/views:
+    newFile: !uuid '4889f65cc8be64c40c4e8c8b5e220d71fbf36245'
+    oldFile: null
+  /plugin/Covid19/frontend/src/views/main:
+    newFile: !uuid '6c6d2878b2d379d7d078feb3d17e890be687bb62'
+    oldFile: null
+  /plugin/Covid19/frontend/src/views/main/covid19:
+    newFile: !uuid '3313aa2fc7983d9ed64bac63a7a4c47a584327a0'
+    oldFile: null
+  /plugin/Covid19/frontend/src/views/main/covid19/xgCollector:
+    newFile: !uuid 'a139addc98526b973b8ca18b613e320e9f691211'
+    oldFile: null
+  /plugin/Covid19/frontend/src/views/main/covid19/xgCollector/addForm.vue:
+    newFile: !uuid '337d3364c9bb114aa3031cc63aef024e43011ade'
+    oldFile: null
+  /plugin/Covid19/frontend/src/views/main/covid19/xgCollector/editForm.vue:
+    newFile: !uuid '8883f5b8a4cedfb765309af7b384f4444f81ee7b'
+    oldFile: null
+  /plugin/Covid19/frontend/src/views/main/covid19/xgCollector/index.vue:
+    newFile: !uuid 'a1e5f9b19b2c2b0c93fb6fe07f3b34676479c567'
+    oldFile: null
+  /plugin/Covid19/frontend/src/views/main/covid19/xgCollector/printForm.vue:
+    newFile: !uuid '4b0c8cd3aa8bbea4f16ddceba1977b488a7150c7'
+    oldFile: null
+  /plugin/Covid19/frontend/src/views/main/covid19/xgTest:
+    newFile: !uuid 'e2fff10d69f1db7f74845e6a4a0ab4316e6d2880'
+    oldFile: null
+  /plugin/Covid19/frontend/src/views/main/covid19/xgTest/index.vue:
+    newFile: !uuid 'c97f206895d540e781b52ca700cdfd01ccb3cd89'
+    oldFile: null
+  /plugin/Covid19/frontend/src/views/main/covid19/xgTest/printForm.vue:
+    newFile: !uuid 'b5c1ef7be40ed2c01071116dbbea7a570a1d32e9'
+    oldFile: null
+  /plugin/Covid19/frontend/src/views/main/covid19/xgTest/testForm.vue:
+    newFile: !uuid 'cb0aa13df11580f2d821c9d2c21bad820cf72e7f'
+    oldFile: null
+  /plugin/Covid19/frontend/src/views/main/covid19/xgTestItem:
+    newFile: !uuid '672beee9e3d9ff31bf27ce4476547194454d70f8'
+    oldFile: null
+  /plugin/Covid19/frontend/src/views/main/covid19/xgTestItem/addForm.vue:
+    newFile: !uuid '8ba3d02625755b5d13127817754bbf3994893e10'
+    oldFile: null
+  /plugin/Covid19/frontend/src/views/main/covid19/xgTestItem/editForm.vue:
+    newFile: !uuid '5cba4e5d38cb967c0e351d7d4552e97f0788d04a'
+    oldFile: null
+  /plugin/Covid19/frontend/src/views/main/covid19/xgTestItem/index.vue:
+    newFile: !uuid '4b1bc8086a44b08cd15d331790ea09c7bcd70252'
+    oldFile: null
+gitCommitId: !uuid '43a7d1044eb1a5c3fb9b2e6c30d098865af64d94'
 renames: {
   }
-revisionId: 371
+revisionId: 372
