@@ -25,7 +25,7 @@ export default {
   props: {
     title: {
       type: String,
-      default: 'Admin.NET',
+      default: '后台管理系统',
       required: false
     },
     showTitle: {
