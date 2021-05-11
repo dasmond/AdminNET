@@ -1,5 +1,4 @@
 ﻿using Admin.NET.Core;
-using Admin.NET.Core.Entity;
 using Admin.NET.Core.Service;
 using Furion;
 using Furion.DatabaseAccessor;
@@ -137,7 +136,7 @@ namespace Admin.NET.EntityFramework.Core
         /// <param name="isDeletedKey"></param>
         /// <param name="filterValue"></param>
         /// <returns></returns>
-        protected LambdaExpression TenantIdAndFakeDeleteQueryFilterExpression(EntityTypeBuilder entityBuilder, DbContext dbContext, string onTableTenantId = null, string isDeletedKey = null, object filterValue = null)
+        protected static LambdaExpression TenantIdAndFakeDeleteQueryFilterExpression(EntityTypeBuilder entityBuilder, DbContext dbContext, string onTableTenantId = null, string isDeletedKey = null, object filterValue = null)
         {
             onTableTenantId ??= "TenantId";
             isDeletedKey ??= "IsDeleted";
