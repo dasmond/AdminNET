@@ -2,10 +2,22 @@
 branches: {
   }
 fileChange:
-  /README.md:
-    newFile: !uuid '650d28bf32488d362ae3432c6bfc57b2bbcd6f76'
-    oldFile: !uuid 'd0d7254f3133dae6fb4e2ac2da44f782735e12bf'
-gitCommitId: !uuid 'a84ed3e7439dd7d220eef496b0177c2e5b8a79b8'
+  /backend:
+    newFile: !uuid 'c70e4f7b7eb93c9f3bf1ed02b381154705c8d6fa'
+    oldFile: !uuid '295f34e33a3841ebfd61b26673278cc13bb0cc72'
+  /backend/Admin.NET.Core:
+    newFile: !uuid 'a132618faebca34e290631c03c0b52d706eb3234'
+    oldFile: !uuid '51e155ee0418153f6568919fcb0fcd181ea7cd27'
+  /backend/Admin.NET.Core/Service:
+    newFile: !uuid 'be0c659671ec291ddb49ccf7357681b192aac1e5'
+    oldFile: !uuid 'a13dfd328557b6ee65aba37000187c5ffa7eb307'
+  /backend/Admin.NET.Core/Service/File:
+    newFile: !uuid 'd1527769a93383a4ca982dd76cced496e4986aa5'
+    oldFile: !uuid '539a14956a846e021480d430da04555a78c16be4'
+  /backend/Admin.NET.Core/Service/File/SysFileService.cs:
+    newFile: !uuid '8dace44b60c2049b24fb36dce54f54cd81c07cd6'
+    oldFile: !uuid '466b5cb54c2916326062da5a32ffcb11abf5b3d5'
+gitCommitId: !uuid '55e432fe3b1a9a4c8c7fb982f0615a5bb141cc4d'
 renames: {
   }
-revisionId: 376
+revisionId: 377
