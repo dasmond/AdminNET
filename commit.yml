@@ -3,21 +3,30 @@ branches: {
   }
 fileChange:
   /backend:
-    newFile: !uuid 'f23cd98ac3acc464c44e167048f4d01bc7e86ec7'
-    oldFile: !uuid '0d2f08be8dd6da414c603e1d8c98ca63578dc941'
+    newFile: !uuid 'a952397d4e17360be7d768c4ed00d96ce84e6797'
+    oldFile: !uuid 'f23cd98ac3acc464c44e167048f4d01bc7e86ec7'
   /backend/Admin.NET.Core:
-    newFile: !uuid 'a135d51b57f4822dd430204ea6fa38df73685202'
-    oldFile: !uuid 'a132618faebca34e290631c03c0b52d706eb3234'
-  /backend/Admin.NET.Core/Service:
-    newFile: !uuid '80a59de8ffe203510040f035d748a97700ebf751'
-    oldFile: !uuid 'be0c659671ec291ddb49ccf7357681b192aac1e5'
-  /backend/Admin.NET.Core/Service/Tenant:
-    newFile: !uuid '9896a38132f88e71df09d7eb5463000c3ca59e57'
-    oldFile: !uuid '389d718f757b295239ad20bac0894a43abd867e5'
-  /backend/Admin.NET.Core/Service/Tenant/SysTenantService.cs:
-    newFile: !uuid '60eba2651b1f95079e9cbad18a1f29a16d933594'
-    oldFile: !uuid 'cf58fb30b3f17567757d8027ec9622b736b0cf5a'
-gitCommitId: !uuid '425016596c8f2172bdb7a11f6c8b8189003dceff'
+    newFile: !uuid 'fb6320488f99c32382f0501a67ad7e5911605c8d'
+    oldFile: !uuid 'a135d51b57f4822dd430204ea6fa38df73685202'
+  /backend/Admin.NET.Core/SeedData:
+    newFile: !uuid 'ba30404b0cbe6be587b67117f36476fb1b6608da'
+    oldFile: !uuid '5ff102bdb0012b4b2dc755cc6fd5b4213188cf2b'
+  /backend/Admin.NET.Core/SeedData/SysMenuSeedData.cs:
+    newFile: !uuid '31c389fe10b05b5d8d2673e9edab4df0513c7f1c'
+    oldFile: !uuid '8b53dec4688b1dad02a175ea2efc22558ca61382'
+  /backend/Admin.NET.Web.Entry:
+    newFile: !uuid '3b5ac365cf1fd94c7f83ba11f3de9ed037d1a622'
+    oldFile: !uuid '8046e1627ccc09a92f62a08c728066d4d8fb13cb'
+  /backend/Admin.NET.Web.Entry/Admin.NET.Web.Entry.csproj:
+    newFile: !uuid '3aeef0af70e4bd88df58f6aa42dde127164b5dec'
+    oldFile: !uuid '45c3535d4bd9bd38d8bf72564de65e9eab78636a'
+  /backend/Admin.NET.Web.Entry/Admin.NET.db:
+    newFile: !uuid '68d913002a834b43e57418d78ffb9ab96e832967'
+    oldFile: !uuid '08a631bd7bade8eb86566200b9c4ce322ce70abb'
+  /backend/Admin.NET.Web.Entry/appsettings.json:
+    newFile: !uuid 'dfbea752003039905a0919c14a61f6386ecf30ea'
+    oldFile: !uuid '049bac9cdb5a2096e10fc42dd6511801b95bc1a3'
+gitCommitId: !uuid '1f934b5e12b75449ba13525d1250fc932a73052a'
 renames: {
   }
-revisionId: 379
+revisionId: 380
