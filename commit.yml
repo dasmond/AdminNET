@@ -2,40 +2,10 @@
 branches: {
   }
 fileChange:
-  /backend:
-    newFile: !uuid '5ba68176bdd10b6c0dc8d259eabc449880a1ef44'
-    oldFile: !uuid '16cb158b3dd38e7dbb4b6c120670e2b39e70e75c'
-  /backend/Admin.NET.Core:
-    newFile: !uuid '51e155ee0418153f6568919fcb0fcd181ea7cd27'
-    oldFile: !uuid 'da359faccf02f19e605c1a23cd345e5b37dfc5b1'
-  /backend/Admin.NET.Core/Admin.NET.Core.csproj:
-    newFile: !uuid '050c0bd383508b988c23b357d12447bcae39a4f0'
-    oldFile: !uuid '349d9d8f981b1574ed19f3130b397e34fdea28b2'
-  /backend/Admin.NET.EntityFramework.Core:
-    newFile: !uuid '01501dff0cfb6bfd8a90102df354b2ece8ee75d9'
-    oldFile: !uuid '997ff5d0535fb780a8542c022a7f9d0dd6b82904'
-  /backend/Admin.NET.EntityFramework.Core/DbContexts:
-    newFile: !uuid '2dee44f6e522878e295abe6458f17660f8fa3068'
-    oldFile: !uuid '0cd45b125c6747016efc8400d7a7f927044f5db1'
-  /backend/Admin.NET.EntityFramework.Core/DbContexts/DefaultDbContext.cs:
-    newFile: !uuid 'ffc74f753d4e53e06eb17fa46ded3ccc4b83fb4f'
-    oldFile: !uuid '45e85976859c132fd62370703d6eb001f9c8d9cf'
-  /backend/Admin.NET.Web.Core:
-    newFile: !uuid '88201b1949845cc67cea06d0b9082b76780fff9c'
-    oldFile: !uuid '01e6814feb2137229b9d5340a63fbf096413e3a8'
-  /backend/Admin.NET.Web.Core/Handlers:
-    newFile: !uuid 'a75632914bd8b33b62ed6d3544820a27bf71758c'
-    oldFile: !uuid '08d22adfbc902620e257b70160dcc839a856134d'
-  /backend/Admin.NET.Web.Core/Handlers/JwtHandler.cs:
-    newFile: !uuid '8a063300861272d9ade69d31b1fc4a794f3aaf4d'
-    oldFile: !uuid '9581fa17691e280eec8b605fc7b18ff3a30f5bd9'
-  /backend/Admin.NET.Web.Entry:
-    newFile: !uuid 'f679896018c2f961afd9704d1deb32956535204a'
-    oldFile: !uuid '2f61ad30421459b7adda5c36efa00f3d77133bb8'
-  /backend/Admin.NET.Web.Entry/appsettings.json:
-    newFile: !uuid '049bac9cdb5a2096e10fc42dd6511801b95bc1a3'
-    oldFile: !uuid '67b02601940a7034a44efafc20f72fac8fb05931'
-gitCommitId: !uuid '8f8ab2ca0a70754ca5a10e20ba10f44d5fefe6b6'
+  /README.md:
+    newFile: !uuid '4581c24a4aae98787f4a29f3b084c8bd0ab622e3'
+    oldFile: !uuid 'ac2fce94980f7a60027bf7f79f7a32a70180aedf'
+gitCommitId: !uuid 'a71d323595c4eff1b33417f5f5c309e4667eca99'
 renames: {
   }
-revisionId: 370
+revisionId: 371
