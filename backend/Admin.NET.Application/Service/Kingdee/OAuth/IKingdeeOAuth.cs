@@ -8,6 +8,6 @@ namespace Admin.NET.Application.Service.Kingdee.OAuth
 {
     public interface IKingdeeOAuth
     {
-        string GetAccessTokenAsync();
+        Task<string> GetAccessTokenAsync();
     }
 }
