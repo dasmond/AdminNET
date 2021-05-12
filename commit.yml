@@ -2,10 +2,43 @@
 branches: {
   }
 fileChange:
-  /README.md:
-    newFile: !uuid '60e7a17f4513f85d2d8cdeed44857fc2291d7f71'
-    oldFile: !uuid '767d5a88ca335312223b8c01ab4bd4cb35449b7f'
-gitCommitId: !uuid '965c78ec790d634a8c7a8ecaa84c38892aecc49e'
+  /backend:
+    newFile: !uuid '65c73c88cab654cbac0447509473f6dae2cff97f'
+    oldFile: !uuid '4201a4d20e5f01594d6cc4b62f1242f32c92545d'
+  /backend/Admin.NET.Core:
+    newFile: !uuid 'e4d1af584e377491f94a99e4e134afd9a550b9d7'
+    oldFile: !uuid 'c2fec1e36eb4d348d4f15972b191603ca1988923'
+  /backend/Admin.NET.Core/Admin.NET.Core.csproj:
+    newFile: !uuid '5a84576f53424694defa95a3da836814a317b915'
+    oldFile: !uuid '050c0bd383508b988c23b357d12447bcae39a4f0'
+  /backend/Admin.NET.Core/Extension:
+    newFile: !uuid 'b8e4e12dddb62753daaef6e3d73616f88684bf4e'
+    oldFile: !uuid '300da2b0ea44e28f430e79ccc6f17e65e65224cf'
+  /backend/Admin.NET.Core/Extension/NewtonsoftJsonSerializerProvider.cs:
+    newFile: !uuid 'db16043e667485a2bf4575970be6e41a761b326c'
+    oldFile: null
+  /backend/Admin.NET.Core/Filter:
+    newFile: !uuid '613f2c1d0e646f034f733f3c0fd07e6f390e94fe'
+    oldFile: !uuid '500835e643211482f0093c1ee6e361f61f2c4703'
+  /backend/Admin.NET.Core/Filter/RequestActionFilter.cs:
+    newFile: !uuid 'bca9879662b05a6c6ba471fcb422dd37a5c94ef6'
+    oldFile: !uuid '6fbc47d3af7d5bac7cfdf6ccffe7719539380239'
+  /backend/Admin.NET.Core/Service:
+    newFile: !uuid '86d67ac5810d5f519fad5f713c07e3328f81f681'
+    oldFile: !uuid '7a3d70819f3ceea6bb7bc82276dc5cf3921b9587'
+  /backend/Admin.NET.Core/Service/Timer:
+    newFile: !uuid '3fa65b5a15af963ccff171d0a69ea742402c5dec'
+    oldFile: !uuid '43fd16053dd95b59480b8d652119e39a527b7cb6'
+  /backend/Admin.NET.Core/Service/Timer/SysTimerService.cs:
+    newFile: !uuid 'fb0fa7d7fa2264be36cc20731fef03e0cbd96505'
+    oldFile: !uuid 'f869297d0741f9fb3f8943691088b441d570b211'
+  /backend/Admin.NET.Web.Core:
+    newFile: !uuid '357ccf7bf1bada591e525add75b423eff606a97a'
+    oldFile: !uuid 'ff19d72c10f1af55e5e589fe20fb067ce2c63c93'
+  /backend/Admin.NET.Web.Core/Startup.cs:
+    newFile: !uuid 'b9b6578a72292d886e6b0ee0622b803388abb2bd'
+    oldFile: !uuid '4e9246c3271eee27c156b54eda68336961598662'
+gitCommitId: !uuid '07706b62b6066de0135a33ccffd5d268c2f89fb1'
 renames: {
   }
-revisionId: 386
+revisionId: 387
