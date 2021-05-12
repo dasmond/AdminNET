@@ -2,16 +2,58 @@
 branches: {
   }
 fileChange:
-  /README.md:
-    newFile: !uuid 'bdb23fd840b8d8c4402008812675bb5b036fa67d'
-    oldFile: !uuid '60e7a17f4513f85d2d8cdeed44857fc2291d7f71'
-  /doc:
-    newFile: !uuid 'ba89aedb50c069d13e8ec410e71d800e43d4fcb2'
-    oldFile: !uuid 'db8dc1ac0dfe233c438a17b2081b2582ca6be52b'
-  /doc/快捷部署到IIS方案.md:
-    newFile: !uuid 'e2c998f0d791c08b55b661f35e6e6da9f69e8d75'
+  /backend:
+    newFile: !uuid '32d9abc46b1e563d456f938028fdd046dd88e75f'
+    oldFile: !uuid '4201a4d20e5f01594d6cc4b62f1242f32c92545d'
+  /backend/Admin.NET.Application:
+    newFile: !uuid 'ab0918deff541964c3118c24890a5f36d89cd5fa'
+    oldFile: !uuid '60707fd65d1bfcd1a1249065e3d1701d64e93e35'
+  /backend/Admin.NET.Application/SpareTimes:
+    newFile: !uuid 'de5506fd8f620372eb9e4bdb65ed68c08024c316'
     oldFile: null
-gitCommitId: !uuid 'ba8682de5dd10cd5cb966de3c39f388a7f40c891'
+  /backend/Admin.NET.Application/SpareTimes/SpareTimeDemo.cs:
+    newFile: !uuid '97330fae7ce43ac3bb434d98a8599ad2a82f0ad9'
+    oldFile: null
+  /backend/Admin.NET.Core:
+    newFile: !uuid '1cbd420d632a37ac5c93ac87253974db0b0546d9'
+    oldFile: !uuid 'c2fec1e36eb4d348d4f15972b191603ca1988923'
+  /backend/Admin.NET.Core/Admin.NET.Core.csproj:
+    newFile: !uuid '330cacf2accfe7aa747bcad86e9958fee8f11039'
+    oldFile: !uuid '050c0bd383508b988c23b357d12447bcae39a4f0'
+  /backend/Admin.NET.Core/Providers:
+    newFile: !uuid '84e80dd9859820c625eef95202affe09f6aac270'
+    oldFile: null
+  /backend/Admin.NET.Core/Providers/NewtonsoftJsonSerializerProvider.cs:
+    newFile: !uuid '11f4ea3beec3d43b53454a43431c6da2f4e9891e'
+    oldFile: null
+  /backend/Admin.NET.Web.Core:
+    newFile: !uuid 'eeac842fa64cc14e409b78903896aa9df8a92b65'
+    oldFile: !uuid 'ff19d72c10f1af55e5e589fe20fb067ce2c63c93'
+  /backend/Admin.NET.Web.Core/Startup.cs:
+    newFile: !uuid '1da744e1a2d16b84687ea9599c636b0019e5512f'
+    oldFile: !uuid '4e9246c3271eee27c156b54eda68336961598662'
+  /backend/Admin.NET.Web.Entry:
+    newFile: !uuid 'd11be73b3b608dd588f41920a2e6c16b769e19e3'
+    oldFile: !uuid '6d0e193e4ace63b15d4dc1d38fa5b9667501100b'
+  /backend/Admin.NET.Web.Entry/Admin.NET.Web.Entry.csproj:
+    newFile: !uuid 'a60b460457dc8f825fb93aeccc3ff593544ece6d'
+    oldFile: !uuid 'd768816be745548fd47897d01a2b3229abd767bb'
+  /backend/Admin.NET.Web.Entry/Admin.NET.db:
+    newFile: !uuid 'd75b5bcfa8a289f3b4abdfe28c9536a4eb6434b9'
+    oldFile: !uuid '68d913002a834b43e57418d78ffb9ab96e832967'
+  /backend/Admin.NET.Web.Entry/Program.cs:
+    newFile: !uuid '2275699025024b30604dbd8752cb7f90c3453b5c'
+    oldFile: !uuid '7a6cc056e8faa059d68478919f07509c09af962b'
+  /backend/Admin.NET.Web.Entry/appsettings.json:
+    newFile: !uuid '17e69a15c63b71d43b12f54f13eb6bb16a1c9da7'
+    oldFile: !uuid 'dfbea752003039905a0919c14a61f6386ecf30ea'
+  /frontend:
+    newFile: !uuid '3f951374f691d0b19bdd02979e0493b28c64a15f'
+    oldFile: !uuid 'b1db16fdbe306f01a2984bef4ad0e885b2ff8ccc'
+  /frontend/package-lock.json:
+    newFile: !uuid '7bff84269a00afa9df2ddaa77d58b408faf54938'
+    oldFile: !uuid 'fe81498a0ed89e722fd8d8ab28ff4a3172ce7ffc'
+gitCommitId: !uuid 'a23274b8a69d746df0b1b5e84b6e4c5a4cc3249f'
 renames: {
   }
-revisionId: 390
+revisionId: 391
