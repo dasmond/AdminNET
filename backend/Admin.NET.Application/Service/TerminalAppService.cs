@@ -14,9 +14,13 @@ namespace Admin.NET.Application.Service
     public class TerminalAppService : IDynamicApiController
     {
         [AllowAnonymous]
-        public string ShowName() 
+        public async Task<Terminal> ShowName() 
         {
-            return "ShowName";
+            var result = new Terminal()
+            {
+                ShowName = "测试 fock"
+            };
+            return await Task.Run(()=> { return result; });
         }
     }
 }
