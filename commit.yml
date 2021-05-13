@@ -3,15 +3,68 @@ branches: {
   }
 fileChange:
   /backend:
-    newFile: !uuid 'eac54ec057d22019ccca172326ec5d232ca0c7ad'
-    oldFile: !uuid '28cc0c9d2724d8f2f783bfe2d950b4eda19d24d3'
+    newFile: !uuid '4b31dbc48d30bc708ac10404aed58ffe83782b48'
+    oldFile: !uuid 'eac54ec057d22019ccca172326ec5d232ca0c7ad'
   /backend/Admin.NET.Core:
-    newFile: !uuid 'c929916990f5e9433a02ef61dcb8560e46308837'
-    oldFile: !uuid '6d73feb0ce96d75305a323595b4f57860e61c4d7'
-  /backend/Admin.NET.Core/Admin.NET.Core.csproj:
-    newFile: !uuid '240b236f2a479af04189715761dbca0626b9ada9'
-    oldFile: !uuid '5a84576f53424694defa95a3da836814a317b915'
-gitCommitId: !uuid '890f93b06cdf56edc22ba482c66a144ede235e07'
-renames: {
-  }
-revisionId: 400
+    newFile: !uuid '9bb7ffa22d3615ae38a19b32c34b6118897294c8'
+    oldFile: !uuid 'c929916990f5e9433a02ef61dcb8560e46308837'
+  /backend/Admin.NET.Core/Extension:
+    newFile: !uuid 'd2768b8908d2527c5cde52c40342ec22d2845c70'
+    oldFile: !uuid 'ad32f90fab8f831822c2ad4a5905b64498e31057'
+  /backend/Admin.NET.Core/Extension/EnumExtensions.cs:
+    newFile: null
+    oldFile: !uuid '22a3490b67ae57e350b86dc800a7f0534a8fd905'
+  /backend/Admin.NET.Core/Extension/NewtonsoftJsonSerializerProvider.cs:
+    newFile: null
+    oldFile: !uuid 'db16043e667485a2bf4575970be6e41a761b326c'
+  /backend/Admin.NET.Core/Extension/PageInputOrder.cs:
+    newFile: null
+    oldFile: !uuid 'e6c7be5f7a672bb3a82693441a75dccc2341c176'
+  /backend/Admin.NET.Core/Extension/XnInputBase.cs:
+    newFile: null
+    oldFile: !uuid '511097e5c71745642ec45908ebbab45113be643c'
+  /backend/Admin.NET.Core/Extension/XnPageResult.cs:
+    newFile: null
+    oldFile: !uuid '09c367033a3d8c3c13f68eedcf8bac1b22c96506'
+  /backend/Admin.NET.Core/Extension/XnRestfulResultProvider.cs:
+    newFile: null
+    oldFile: !uuid 'fd581f9729916ed9472f68f18573e4bb0a6bf497'
+  /backend/Admin.NET.Core/Service:
+    newFile: !uuid '9a7305310dd8bba712ab2c959d3ad19c9fbdc0fb'
+    oldFile: !uuid '63d70c5990bb5d6c9555b0d2391912d42b9d2c87'
+  /backend/Admin.NET.Core/Service/Enum:
+    newFile: !uuid '444167da4691daafd02152096a749c962df865b4'
+    oldFile: !uuid '74eecba5b5669f48d4465b8526474bfb9a145a68'
+  /backend/Admin.NET.Core/Service/Enum/SysEnumDataService.cs:
+    newFile: !uuid 'b48bbdf042813a9b2056b4ccd4e1f76ea8f88be5'
+    oldFile: !uuid '534a69448db76f7e48a6f98c2cd6c03ab0b4578b'
+  /backend/Admin.NET.Core/Util:
+    newFile: !uuid '6a3c59b3bb4fa55a9a1c85cc25220479f4bf5ba0'
+    oldFile: !uuid 'f21b8365e66549b1aedd61a40a74373eaff2cbb0'
+  /backend/Admin.NET.Core/Util/EnumUtil.cs:
+    newFile: !uuid '0b737f162d59f1d5abb202517d1c0d159785ea1e'
+    oldFile: null
+  /backend/Admin.NET.Core/Util/NewtonsoftJsonSerializerProvider.cs:
+    newFile: !uuid 'db16043e667485a2bf4575970be6e41a761b326c'
+    oldFile: null
+  /backend/Admin.NET.Core/Util/PageInputOrder.cs:
+    newFile: !uuid 'ce9cebefd2f3a380154a03077ccb5ea465d69bc6'
+    oldFile: null
+  /backend/Admin.NET.Core/Util/XnInputBase.cs:
+    newFile: !uuid '511097e5c71745642ec45908ebbab45113be643c'
+    oldFile: null
+  /backend/Admin.NET.Core/Util/XnPageResult.cs:
+    newFile: !uuid '09c367033a3d8c3c13f68eedcf8bac1b22c96506'
+    oldFile: null
+  /backend/Admin.NET.Core/Util/XnRestfulResultProvider.cs:
+    newFile: !uuid 'fd581f9729916ed9472f68f18573e4bb0a6bf497'
+    oldFile: null
+gitCommitId: !uuid 'b50b3ee5cea814010b5f3e5c830535f855f0de2d'
+renames:
+  /backend/Admin.NET.Core/Util/EnumUtil.cs: /backend/Admin.NET.Core/Extension/EnumExtensions.cs
+  /backend/Admin.NET.Core/Util/NewtonsoftJsonSerializerProvider.cs: /backend/Admin.NET.Core/Extension/NewtonsoftJsonSerializerProvider.cs
+  /backend/Admin.NET.Core/Util/PageInputOrder.cs: /backend/Admin.NET.Core/Extension/PageInputOrder.cs
+  /backend/Admin.NET.Core/Util/XnInputBase.cs: /backend/Admin.NET.Core/Extension/XnInputBase.cs
+  /backend/Admin.NET.Core/Util/XnPageResult.cs: /backend/Admin.NET.Core/Extension/XnPageResult.cs
+  /backend/Admin.NET.Core/Util/XnRestfulResultProvider.cs: /backend/Admin.NET.Core/Extension/XnRestfulResultProvider.cs
+revisionId: 401
