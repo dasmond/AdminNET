@@ -47,6 +47,15 @@ namespace Admin.NET.Core
         public string NameSpace { get; set; }
 
         /// <summary>
+        /// 程序集
+        /// </summary>
+        [NotMapped]
+        public string ProName
+        {
+            get { return NameSpace.TrimEnd(new char[] { '.', 'A', 'p', 'p', 'l', 'i', 'c', 'a', 't', 'i', 'o', 'n' }); }
+        }
+
+        /// <summary>
         /// 业务名
         /// </summary>
         [Comment("业务名")]

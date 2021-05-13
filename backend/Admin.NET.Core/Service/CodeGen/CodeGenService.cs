@@ -217,9 +217,10 @@ namespace Admin.NET.Core.Service.CodeGen
                     input.AuthorName,
                     input.BusName,
                     input.NameSpace,
+                    input.ProName,
                     ClassName = input.TableName,
                     QueryWhetherList = queryWhetherList,
-                    TableField = tableFieldList
+                    TableField = tableFieldList                    
                 });
 
                 var dirPath = new DirectoryInfo(targetPathList[i]).Parent.FullName;
@@ -366,7 +367,7 @@ namespace Admin.NET.Core.Service.CodeGen
         /// <returns></returns>
         private List<string> GetTargetPathList(SysCodeGen input)
         {
-            var backendPath = new DirectoryInfo(App.WebHostEnvironment.ContentRootPath).Parent.FullName + @"\Admin.NET.Application\Service\" + input.TableName + @"\";
+            var backendPath = new DirectoryInfo(App.WebHostEnvironment.ContentRootPath).Parent.FullName + @"\" + input.NameSpace + @"\Service\" + input.TableName + @"\";
             var servicePath = backendPath + input.TableName + "Service.cs";
             var iservicePath = backendPath + "I" + input.TableName + "Service.cs";
             var inputPath = backendPath + @"Dto\" + input.TableName + "Input.cs";
