@@ -2,10 +2,85 @@
 branches: {
   }
 fileChange:
-  /README.md:
-    newFile: !uuid 'd957c268a464a24394183ba9f252cd467e9f6258'
-    oldFile: !uuid 'bdb23fd840b8d8c4402008812675bb5b036fa67d'
-gitCommitId: !uuid '715511547d9c69a4483952a25ece650ffc49575b'
+  /backend:
+    newFile: !uuid '865ff2b07dde4adde2e0203a48c3d3055990b383'
+    oldFile: !uuid 'c78be58be42219ad349eecd5c612405cce52a4be'
+  /backend/Admin.NET.Core:
+    newFile: !uuid 'f6f435baf4bb6f5c89292b0eca2f7e792f0c9b4b'
+    oldFile: !uuid '42869c1633f88e3a7f76c8220a5e5b3eecd45220'
+  /backend/Admin.NET.Core/Admin.NET.Core.csproj:
+    newFile: !uuid '084ee0d0482deaaeaddeed43f21d30bdffb03fb6'
+    oldFile: !uuid '240b236f2a479af04189715761dbca0626b9ada9'
+  /backend/Admin.NET.Core/Captcha:
+    newFile: !uuid 'c6c6ba886e67b4608832b3366ea251c4ed569c4a'
+    oldFile: !uuid '10cc1e433b0ad9953c9904d6e1deb711aacfaba5'
+  /backend/Admin.NET.Core/Captcha/ClickWord:
+    newFile: !uuid '9447f848e13e23755d0de1fe5b96d258516a9b66'
+    oldFile: !uuid 'c605eb1ec0568e2131969b0ccada43963638d078'
+  /backend/Admin.NET.Core/Captcha/ClickWord/ClickWordCaptcha.cs:
+    newFile: !uuid '635e958c05f1c919dbacb8c3bc5eb59eedd4e718'
+    oldFile: !uuid 'c5e3c857591edd337a7d4ea7b641e89d6e1f0b01'
+  /backend/Admin.NET.Core/Captcha/ClickWord/ClickWordCaptchaInput.cs:
+    newFile: !uuid 'd465bbd526d0bc2162edc674fd64617fffd4a0b4'
+    oldFile: !uuid 'b44a802ca521205594b51e68bca1f1ec5979a5c3'
+  /backend/Admin.NET.Core/Captcha/ClickWord/ClickWordCaptchaResult.cs:
+    newFile: !uuid '4d9ebc4260b03418fe08e36cfb516f47037aba68'
+    oldFile: !uuid 'aac31ba6cc7acc13448248f9f5189da05bbcd2e2'
+  /backend/Admin.NET.Core/Captcha/General:
+    newFile: !uuid '221c3b06be47e59bad9ae651745e13998bf4144b'
+    oldFile: !uuid '5a69e11103d87f8d73e9f4594bebe49ce1fdadef'
+  /backend/Admin.NET.Core/Captcha/General/GeneralCaptchaInput.cs:
+    newFile: !uuid 'bcebba2f33cd7273f9e96e8ff8da50cfcf8100a6'
+    oldFile: !uuid 'ec88642985e5dab67f443bf71a7098b4b9bd985b'
+  /backend/Admin.NET.Core/Service:
+    newFile: !uuid 'f99025732e645023f32c58dd1a4eb55e352b7142'
+    oldFile: !uuid 'fcf18d2cb385cef43471b47206e8e39ef55e3f4f'
+  /backend/Admin.NET.Core/Service/Auth:
+    newFile: !uuid '8f1b9a35673b2a457fa233613e34470c56033eb3'
+    oldFile: !uuid 'c3348d5de60ba12bd87cd5a3559dec4c232fafea'
+  /backend/Admin.NET.Core/Service/Auth/Dto:
+    newFile: !uuid '9fe8c8526d69b19e2dd186024459502a36bfda5d'
+    oldFile: !uuid 'e285720e731b86e8036f66b1cc8d2934897c9723'
+  /backend/Admin.NET.Core/Service/Auth/Dto/LoginInput.cs:
+    newFile: !uuid '04d9d78228e58d60c8fd68629f63240e6c6ccc93'
+    oldFile: !uuid '70e32ad85c2fbc75f8212ad96c441c7af0f3b2d2'
+  /backend/Admin.NET.Core/Service/Auth/Dto/LoginOutput.cs:
+    newFile: !uuid 'c71f301bb14c517d47440153f946f3dc51fc7d7a'
+    oldFile: !uuid '1e6fcb23f92cf523f568bd81cdd996f2b5fad70b'
+  /backend/Admin.NET.Core/Service/Auth/Dto/RegistInput.cs:
+    newFile: !uuid '4e7eda6ec65e8a5ffead9509641a4817ca0335de'
+    oldFile: !uuid '4f6c7b8682d68a69034b725d67363a940f826d5c'
+  /backend/Admin.NET.Core/Util:
+    newFile: !uuid '83ef87bc9176bb88bbe917f1367001bb06f87832'
+    oldFile: !uuid '6a3c59b3bb4fa55a9a1c85cc25220479f4bf5ba0'
+  /backend/Admin.NET.Core/Util/XnRestfulResultProvider.cs:
+    newFile: !uuid '59b13ccb4e29378f9310f297ecd89443cc94d43d'
+    oldFile: !uuid 'fd581f9729916ed9472f68f18573e4bb0a6bf497'
+  /frontend:
+    newFile: !uuid '8c30acf527fa17bb3392d82a5a5c0eb1a42ab77f'
+    oldFile: !uuid '26bc1fc0340b8b957c135df2e8de69993d6772ef'
+  /frontend/src:
+    newFile: !uuid '2459bfd592eab169717a1f637193dfff5ecdc541'
+    oldFile: !uuid '66eff01f0f1d9845d9ba966917142a8737f3d996'
+  /frontend/src/views:
+    newFile: !uuid '8c83eb86b418d2389130e09e1840f002351c1a22'
+    oldFile: !uuid 'b88ba6a91fa0e06178279592d995beca882e281a'
+  /frontend/src/views/system:
+    newFile: !uuid 'f89edee9f37d9aaded759857508fa23ec7a87e7d'
+    oldFile: !uuid '816ed689e51c286954f96b04cf9d4baa9c81bfbe'
+  /frontend/src/views/system/file:
+    newFile: !uuid 'b59d0792dd6e4ea8d4c880b8289606814499687e'
+    oldFile: !uuid '1ee7aa61c88cd4de861d3ef91b94b645bc7ecc89'
+  /frontend/src/views/system/file/index.vue:
+    newFile: !uuid 'fbdd9c2c34a42d1e20f8fde9df10aa4f8e77d689'
+    oldFile: !uuid '0f40ef4d815162ac9b13a02521668a0f1bf35bd6'
+  /frontend/src/views/userLoginReg:
+    newFile: !uuid 'b20ecd8f08e6b7766734140c76717743f953ac90'
+    oldFile: !uuid 'e819f08bccd98a301b659bff43a77eaad4525523'
+  /frontend/src/views/userLoginReg/Login.vue:
+    newFile: !uuid '8891822154aaba80b85683328d3e3dd68dee2bad'
+    oldFile: !uuid 'a653978498d210523994a32e9fdb6fc16a464889'
+gitCommitId: !uuid '2a7ff5d66454e8fdd5ccc49274d72ef69a0ecf62'
 renames: {
   }
-revisionId: 405
+revisionId: 406
