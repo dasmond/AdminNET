@@ -3,68 +3,36 @@ branches: {
   }
 fileChange:
   /backend:
-    newFile: !uuid '4b31dbc48d30bc708ac10404aed58ffe83782b48'
-    oldFile: !uuid 'eac54ec057d22019ccca172326ec5d232ca0c7ad'
+    newFile: !uuid '6f9095a2b8ae7ab1b5f3bc83e7de13bf25d038a3'
+    oldFile: !uuid '4b31dbc48d30bc708ac10404aed58ffe83782b48'
   /backend/Admin.NET.Core:
-    newFile: !uuid '9bb7ffa22d3615ae38a19b32c34b6118897294c8'
-    oldFile: !uuid 'c929916990f5e9433a02ef61dcb8560e46308837'
-  /backend/Admin.NET.Core/Extension:
-    newFile: !uuid 'd2768b8908d2527c5cde52c40342ec22d2845c70'
-    oldFile: !uuid 'ad32f90fab8f831822c2ad4a5905b64498e31057'
-  /backend/Admin.NET.Core/Extension/EnumExtensions.cs:
-    newFile: null
-    oldFile: !uuid '22a3490b67ae57e350b86dc800a7f0534a8fd905'
-  /backend/Admin.NET.Core/Extension/NewtonsoftJsonSerializerProvider.cs:
-    newFile: null
-    oldFile: !uuid 'db16043e667485a2bf4575970be6e41a761b326c'
-  /backend/Admin.NET.Core/Extension/PageInputOrder.cs:
-    newFile: null
-    oldFile: !uuid 'e6c7be5f7a672bb3a82693441a75dccc2341c176'
-  /backend/Admin.NET.Core/Extension/XnInputBase.cs:
-    newFile: null
-    oldFile: !uuid '511097e5c71745642ec45908ebbab45113be643c'
-  /backend/Admin.NET.Core/Extension/XnPageResult.cs:
-    newFile: null
-    oldFile: !uuid '09c367033a3d8c3c13f68eedcf8bac1b22c96506'
-  /backend/Admin.NET.Core/Extension/XnRestfulResultProvider.cs:
-    newFile: null
-    oldFile: !uuid 'fd581f9729916ed9472f68f18573e4bb0a6bf497'
-  /backend/Admin.NET.Core/Service:
-    newFile: !uuid '9a7305310dd8bba712ab2c959d3ad19c9fbdc0fb'
-    oldFile: !uuid '63d70c5990bb5d6c9555b0d2391912d42b9d2c87'
-  /backend/Admin.NET.Core/Service/Enum:
-    newFile: !uuid '444167da4691daafd02152096a749c962df865b4'
-    oldFile: !uuid '74eecba5b5669f48d4465b8526474bfb9a145a68'
-  /backend/Admin.NET.Core/Service/Enum/SysEnumDataService.cs:
-    newFile: !uuid 'b48bbdf042813a9b2056b4ccd4e1f76ea8f88be5'
-    oldFile: !uuid '534a69448db76f7e48a6f98c2cd6c03ab0b4578b'
-  /backend/Admin.NET.Core/Util:
-    newFile: !uuid '6a3c59b3bb4fa55a9a1c85cc25220479f4bf5ba0'
-    oldFile: !uuid 'f21b8365e66549b1aedd61a40a74373eaff2cbb0'
-  /backend/Admin.NET.Core/Util/EnumUtil.cs:
-    newFile: !uuid '0b737f162d59f1d5abb202517d1c0d159785ea1e'
-    oldFile: null
-  /backend/Admin.NET.Core/Util/NewtonsoftJsonSerializerProvider.cs:
-    newFile: !uuid 'db16043e667485a2bf4575970be6e41a761b326c'
-    oldFile: null
-  /backend/Admin.NET.Core/Util/PageInputOrder.cs:
-    newFile: !uuid 'ce9cebefd2f3a380154a03077ccb5ea465d69bc6'
-    oldFile: null
-  /backend/Admin.NET.Core/Util/XnInputBase.cs:
-    newFile: !uuid '511097e5c71745642ec45908ebbab45113be643c'
-    oldFile: null
-  /backend/Admin.NET.Core/Util/XnPageResult.cs:
-    newFile: !uuid '09c367033a3d8c3c13f68eedcf8bac1b22c96506'
-    oldFile: null
-  /backend/Admin.NET.Core/Util/XnRestfulResultProvider.cs:
-    newFile: !uuid 'fd581f9729916ed9472f68f18573e4bb0a6bf497'
-    oldFile: null
-gitCommitId: !uuid 'b50b3ee5cea814010b5f3e5c830535f855f0de2d'
-renames:
-  /backend/Admin.NET.Core/Util/EnumUtil.cs: /backend/Admin.NET.Core/Extension/EnumExtensions.cs
-  /backend/Admin.NET.Core/Util/NewtonsoftJsonSerializerProvider.cs: /backend/Admin.NET.Core/Extension/NewtonsoftJsonSerializerProvider.cs
-  /backend/Admin.NET.Core/Util/PageInputOrder.cs: /backend/Admin.NET.Core/Extension/PageInputOrder.cs
-  /backend/Admin.NET.Core/Util/XnInputBase.cs: /backend/Admin.NET.Core/Extension/XnInputBase.cs
-  /backend/Admin.NET.Core/Util/XnPageResult.cs: /backend/Admin.NET.Core/Extension/XnPageResult.cs
-  /backend/Admin.NET.Core/Util/XnRestfulResultProvider.cs: /backend/Admin.NET.Core/Extension/XnRestfulResultProvider.cs
-revisionId: 401
+    newFile: !uuid 'edb07961c58c00f387182c8c9c7a58bf21a9bce1'
+    oldFile: !uuid '9bb7ffa22d3615ae38a19b32c34b6118897294c8'
+  /backend/Admin.NET.Core/Filter:
+    newFile: !uuid '6ffea3d3310e0e3cc31a751590303c7f17b58e2e'
+    oldFile: !uuid '613f2c1d0e646f034f733f3c0fd07e6f390e94fe'
+  /backend/Admin.NET.Core/Filter/RequestActionFilter.cs:
+    newFile: !uuid '030ca0b5bbf422acfe29f2884037cafefa1f3e17'
+    oldFile: !uuid 'bca9879662b05a6c6ba471fcb422dd37a5c94ef6'
+  /frontend:
+    newFile: !uuid '26bc1fc0340b8b957c135df2e8de69993d6772ef'
+    oldFile: !uuid '45c3c3b93072e4b0c012e3405ec354275a751264'
+  /frontend/src:
+    newFile: !uuid '66eff01f0f1d9845d9ba966917142a8737f3d996'
+    oldFile: !uuid '789cf06a93a11d093153e3c0b3042c8af1e8e612'
+  /frontend/src/views:
+    newFile: !uuid 'b88ba6a91fa0e06178279592d995beca882e281a'
+    oldFile: !uuid '7c7a6a47f957d3f5e31e6535cace1dce57cfe343'
+  /frontend/src/views/system:
+    newFile: !uuid '816ed689e51c286954f96b04cf9d4baa9c81bfbe'
+    oldFile: !uuid '38212cab2e2f2f56adab8c4378c555890e2122e6'
+  /frontend/src/views/system/file:
+    newFile: !uuid '1ee7aa61c88cd4de861d3ef91b94b645bc7ecc89'
+    oldFile: !uuid 'e27d2eea50830007921a6f5f7e21d80559f29d1a'
+  /frontend/src/views/system/file/index.vue:
+    newFile: !uuid '0f40ef4d815162ac9b13a02521668a0f1bf35bd6'
+    oldFile: !uuid 'd364d14c2db09b25c7c966de9e40b21657001eae'
+gitCommitId: !uuid 'b3aa8ba225c1fe76a0c970afde29b9c344ff8d56'
+renames: {
+  }
+revisionId: 402
