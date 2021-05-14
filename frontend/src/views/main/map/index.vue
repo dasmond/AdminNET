@@ -1,3 +1,4 @@
+
 <template>
   <div>
     <div id="map">
@@ -17,6 +18,7 @@
 </template>
 
 <script>
+  
   import L from 'leaflet'
   import {
     LMap,
