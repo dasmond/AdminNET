@@ -3,18 +3,21 @@ branches: {
   }
 fileChange:
   /backend:
-    newFile: !uuid 'eeadd228fa175288152f8dbc37a582d2d829dd80'
-    oldFile: !uuid '6ca5bef77f1fef9b0132ac51ac4b7efd78f60188'
+    newFile: !uuid 'f319474f8e33f1b4666d98f88c8fb1f64e93d384'
+    oldFile: !uuid 'eeadd228fa175288152f8dbc37a582d2d829dd80'
   /backend/Admin.NET.Core:
-    newFile: !uuid 'fcb6062e03046292a74ccf53ec0b470767be5cce'
-    oldFile: !uuid '103a50496d1df704fc2c9079bc063d27c6c77eff'
-  /backend/Admin.NET.Core/Filter:
-    newFile: !uuid '30fe414bfcdf166be5b690569d4adefc99daa5ec'
-    oldFile: !uuid '6ffea3d3310e0e3cc31a751590303c7f17b58e2e'
-  /backend/Admin.NET.Core/Filter/RequestActionFilter.cs:
-    newFile: !uuid '35ad47969785cc0653d6ce22967d73f1f1843b21'
-    oldFile: !uuid '030ca0b5bbf422acfe29f2884037cafefa1f3e17'
-gitCommitId: !uuid '2f4eeb3734410c5266cc773b747099635d667273'
+    newFile: !uuid '5f1c0983990ce0a613130228cca1e50bcdc78cca'
+    oldFile: !uuid 'fcb6062e03046292a74ccf53ec0b470767be5cce'
+  /backend/Admin.NET.Core/Service:
+    newFile: !uuid '95094d42b9dbeea0c01f9d6970296994d85ca589'
+    oldFile: !uuid 'd863720a91ec8edb8e9753923933bd269307caa9'
+  /backend/Admin.NET.Core/Service/Log:
+    newFile: !uuid 'e45abf0f96946b398cfd72b3fbb122084c8639c7'
+    oldFile: !uuid '7c6c3d1fc7c891c8fe5e55056fb5a9d319dabcd3'
+  /backend/Admin.NET.Core/Service/Log/SysVisLogService.cs:
+    newFile: !uuid 'efe3727bf2afd63463ade89b901ca9c7d8cdb960'
+    oldFile: !uuid '5a64ea9b47c218fc132b2b0590ccfe7a94c7f24f'
+gitCommitId: !uuid '4710c6e30c69217df8ab7e8f55cfe0690d2ae5d7'
 renames: {
   }
-revisionId: 414
+revisionId: 415
