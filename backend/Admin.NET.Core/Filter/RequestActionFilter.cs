@@ -35,6 +35,7 @@ namespace Admin.NET.Core
                 : null;
             var actionDescriptor = context.ActionDescriptor as ControllerActionDescriptor;
 
+
             MessageCenter.Send("create:oplog", new SysLogOp
             {
                 Name = httpContext.User?.FindFirstValue(ClaimConst.CLAINM_NAME),
@@ -48,7 +49,7 @@ namespace Admin.NET.Core
                 MethodName = actionDescriptor?.ActionName,
                 ReqMethod = httpRequest.Method,
                 Param = JSON.Serialize(context.ActionArguments.Count < 1 ? "" : context.ActionArguments),
-                Result = actionContext.Result.GetType() == typeof(JsonResult) ? JSON.Serialize(actionContext.Result) : "",
+                Result = actionContext.Exception == null?(actionContext.Result.GetType() == typeof(JsonResult) ? JSON.Serialize(actionContext.Result) : ""): actionContext.Exception.Message,
                 ElapsedTime = sw.ElapsedMilliseconds,
                 OpTime = DateTimeOffset.Now,
                 Account = httpContext.User?.FindFirstValue(ClaimConst.CLAINM_ACCOUNT)
