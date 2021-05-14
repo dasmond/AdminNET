@@ -3,27 +3,18 @@ branches: {
   }
 fileChange:
   /backend:
-    newFile: !uuid '1297a76dc62a72dd5d4b8c290ac45f38982f1f21'
-    oldFile: !uuid 'f3bb89a7180059d21b8df8888b92a6ff1673f50a'
+    newFile: !uuid 'e301d0712d6bfac49dec236cda6ac2b13a9e765f'
+    oldFile: !uuid '1297a76dc62a72dd5d4b8c290ac45f38982f1f21'
   /backend/Admin.NET.Core:
-    newFile: !uuid '6f2814ef7bbbc4b038fb60c99b07d2848e6d677a'
-    oldFile: !uuid 'a9279fae452bc4fcf6f4c886657ab89e1f3a96c0'
-  /backend/Admin.NET.Core/Service:
-    newFile: !uuid 'ed347b882181006137ceba8a56a03c0552b4b797'
-    oldFile: !uuid '8dbc7f58499e3cb7a4b4c5a94cd6def6986c241b'
-  /backend/Admin.NET.Core/Service/Tenant:
-    newFile: !uuid '9590feb8565d29d4253aea10d25b025a59501c77'
-    oldFile: !uuid '8bd350a3e3262f51b80102184c0662ccc6028726'
-  /backend/Admin.NET.Core/Service/Tenant/Dto:
-    newFile: !uuid 'b7cad9d9040f0037e27b9bbd2b3517a6c3ea7407'
-    oldFile: !uuid '140ee962ce830d6d5bc9c2194fa48cf26946c5f7'
-  /backend/Admin.NET.Core/Service/Tenant/Dto/TenantOutput.cs:
-    newFile: !uuid '8c98dac0fbd05b46ebfa586418f6c132851c58d2'
-    oldFile: !uuid '241eb2d4ce66605231313b962b85df029a0fd816'
-  /backend/Admin.NET.Core/Service/Tenant/SysTenantService.cs:
-    newFile: !uuid '75efb7209c2c70775a828d2dedb7bebb9c3d61fd'
-    oldFile: !uuid 'ebb49ceae7700ee8a085f6fd7c9be707afd86931'
-gitCommitId: !uuid '9915a5ead05d8cfd8451d8e74db26103696566d2'
+    newFile: !uuid 'd151ec793a323b2fbd37c1a59447cb4077351d5c'
+    oldFile: !uuid '6f2814ef7bbbc4b038fb60c99b07d2848e6d677a'
+  /backend/Admin.NET.Core/Entity:
+    newFile: !uuid '6e028215c944a3e1b3f2151abc9fb2a675bbbe59'
+    oldFile: !uuid '249be827c8f9e2ea9264731b78c8f350b9e9ad6a'
+  /backend/Admin.NET.Core/Entity/SysUser.cs:
+    newFile: !uuid '880d6a329f419af25ee6b1eb50379d670c9238d9'
+    oldFile: !uuid 'a63c2e54e9467ee86e40458bbdb6ee725a760837'
+gitCommitId: !uuid '3b085018d67e288c06c21768ce2b75b2de4e48ff'
 renames: {
   }
-revisionId: 418
+revisionId: 419
