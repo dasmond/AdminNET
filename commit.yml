@@ -3,21 +3,24 @@ branches: {
   }
 fileChange:
   /backend:
-    newFile: !uuid 'f319474f8e33f1b4666d98f88c8fb1f64e93d384'
-    oldFile: !uuid 'eeadd228fa175288152f8dbc37a582d2d829dd80'
+    newFile: !uuid '570fb03fec4ef7f43af3a8f566dc53c5e1a222e1'
+    oldFile: !uuid 'f319474f8e33f1b4666d98f88c8fb1f64e93d384'
   /backend/Admin.NET.Core:
-    newFile: !uuid '5f1c0983990ce0a613130228cca1e50bcdc78cca'
-    oldFile: !uuid 'fcb6062e03046292a74ccf53ec0b470767be5cce'
+    newFile: !uuid 'e2397638859ab1d2bffe6bc37eedc616b5fe1c45'
+    oldFile: !uuid '5f1c0983990ce0a613130228cca1e50bcdc78cca'
   /backend/Admin.NET.Core/Service:
-    newFile: !uuid '95094d42b9dbeea0c01f9d6970296994d85ca589'
-    oldFile: !uuid 'd863720a91ec8edb8e9753923933bd269307caa9'
-  /backend/Admin.NET.Core/Service/Log:
-    newFile: !uuid 'e45abf0f96946b398cfd72b3fbb122084c8639c7'
-    oldFile: !uuid '7c6c3d1fc7c891c8fe5e55056fb5a9d319dabcd3'
-  /backend/Admin.NET.Core/Service/Log/SysVisLogService.cs:
-    newFile: !uuid 'efe3727bf2afd63463ade89b901ca9c7d8cdb960'
-    oldFile: !uuid '5a64ea9b47c218fc132b2b0590ccfe7a94c7f24f'
-gitCommitId: !uuid '4710c6e30c69217df8ab7e8f55cfe0690d2ae5d7'
+    newFile: !uuid '5d91aa75cfb7cb3ba7c4459a53208dcdb51e83ae'
+    oldFile: !uuid '95094d42b9dbeea0c01f9d6970296994d85ca589'
+  /backend/Admin.NET.Core/Service/Tenant:
+    newFile: !uuid '0b22e90d0b3d932a8b7a84539872f147b190018d'
+    oldFile: !uuid '9896a38132f88e71df09d7eb5463000c3ca59e57'
+  /backend/Admin.NET.Core/Service/Tenant/Dto:
+    newFile: !uuid '140ee962ce830d6d5bc9c2194fa48cf26946c5f7'
+    oldFile: !uuid '5fa9340d4005235da7635fb36f9c9f61a2deb370'
+  /backend/Admin.NET.Core/Service/Tenant/Dto/TenantOutput.cs:
+    newFile: !uuid '241eb2d4ce66605231313b962b85df029a0fd816'
+    oldFile: !uuid '5aa1d97173a3d23254abcab1aafb8e56e8691f6a'
+gitCommitId: !uuid '14b13a6b300e5c2f2a626624691719d2f9ec7387'
 renames: {
   }
-revisionId: 415
+revisionId: 416
