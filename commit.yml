@@ -2,19 +2,28 @@
 branches: {
   }
 fileChange:
-  /backend:
-    newFile: !uuid 'ffa0489d3dc32396354a65b3dd564b4ac239b634'
-    oldFile: !uuid 'f276d977760514d8fd014e5aab778cdf0cb5e2f0'
-  /backend/Admin.NET.EntityFramework.Core:
-    newFile: !uuid 'e27a504bcf6bb394d3f206cbcae886ac0defdd53'
-    oldFile: !uuid '595ac7faa29dd6f3eef22fd22d7be71e9d63de42'
-  /backend/Admin.NET.EntityFramework.Core/DbContexts:
-    newFile: !uuid '33d2a6020aef76cc1c7b8b0fa6eedcf30ba8b0e6'
-    oldFile: !uuid 'f43bd7355215e2cf6154e884e8b49aebb06694cf'
-  /backend/Admin.NET.EntityFramework.Core/DbContexts/MultiTenantDbContext.cs:
-    newFile: !uuid 'd672ef4f789371c6dbd0f6227c8b0d5087bea222'
-    oldFile: !uuid 'cf84dbc702d2d83079a495e4be517a3f7ae7d629'
-gitCommitId: !uuid 'e1989f2b485ebddd0c20f3815e354e30c021f935'
+  /frontend:
+    newFile: !uuid '02ea6bd6abc9453738b9ec135f2c95a05d05a2a2'
+    oldFile: !uuid '8c30acf527fa17bb3392d82a5a5c0eb1a42ab77f'
+  /frontend/src:
+    newFile: !uuid '071f300e98b6177d9cd8b562ea955264895251fa'
+    oldFile: !uuid '2459bfd592eab169717a1f637193dfff5ecdc541'
+  /frontend/src/views:
+    newFile: !uuid 'a63e8a6fd2a61ac3285b7d330078e6b9d6da574b'
+    oldFile: !uuid '8c83eb86b418d2389130e09e1840f002351c1a22'
+  /frontend/src/views/system:
+    newFile: !uuid '194c926a401ce135ce880d888cb0580c166dc546'
+    oldFile: !uuid 'f89edee9f37d9aaded759857508fa23ec7a87e7d'
+  /frontend/src/views/system/account:
+    newFile: !uuid 'ddfa6acd33ba2869c2a89a663c16737e9e3546f7'
+    oldFile: !uuid '043a3fa29476b51f3cf14afd63844cc0b9488593'
+  /frontend/src/views/system/account/settings:
+    newFile: !uuid '57e4b62cb43c1f9d7f53bbe78c60c0e31ca3f662'
+    oldFile: !uuid '827fb4595e519c0117f49bed51740606366fb808'
+  /frontend/src/views/system/account/settings/BaseSetting.vue:
+    newFile: !uuid 'faa96037bad531d8232c012489936f38e9c50014'
+    oldFile: !uuid '17984fb8dcf4a16587573deef1b6c1482c9f0c9a'
+gitCommitId: !uuid '4084a0e1eb30602c99956ccf23510e0150414ef5'
 renames: {
   }
-revisionId: 411
+revisionId: 412
