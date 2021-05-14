@@ -2,28 +2,25 @@
 branches: {
   }
 fileChange:
-  /frontend:
-    newFile: !uuid '02ea6bd6abc9453738b9ec135f2c95a05d05a2a2'
-    oldFile: !uuid '8c30acf527fa17bb3392d82a5a5c0eb1a42ab77f'
-  /frontend/src:
-    newFile: !uuid '071f300e98b6177d9cd8b562ea955264895251fa'
-    oldFile: !uuid '2459bfd592eab169717a1f637193dfff5ecdc541'
-  /frontend/src/views:
-    newFile: !uuid 'a63e8a6fd2a61ac3285b7d330078e6b9d6da574b'
-    oldFile: !uuid '8c83eb86b418d2389130e09e1840f002351c1a22'
-  /frontend/src/views/system:
-    newFile: !uuid '194c926a401ce135ce880d888cb0580c166dc546'
-    oldFile: !uuid 'f89edee9f37d9aaded759857508fa23ec7a87e7d'
-  /frontend/src/views/system/account:
-    newFile: !uuid 'ddfa6acd33ba2869c2a89a663c16737e9e3546f7'
-    oldFile: !uuid '043a3fa29476b51f3cf14afd63844cc0b9488593'
-  /frontend/src/views/system/account/settings:
-    newFile: !uuid '57e4b62cb43c1f9d7f53bbe78c60c0e31ca3f662'
-    oldFile: !uuid '827fb4595e519c0117f49bed51740606366fb808'
-  /frontend/src/views/system/account/settings/BaseSetting.vue:
-    newFile: !uuid 'faa96037bad531d8232c012489936f38e9c50014'
-    oldFile: !uuid '17984fb8dcf4a16587573deef1b6c1482c9f0c9a'
-gitCommitId: !uuid '4084a0e1eb30602c99956ccf23510e0150414ef5'
+  /backend:
+    newFile: !uuid '6ca5bef77f1fef9b0132ac51ac4b7efd78f60188'
+    oldFile: !uuid 'ffa0489d3dc32396354a65b3dd564b4ac239b634'
+  /backend/Admin.NET.Core:
+    newFile: !uuid '103a50496d1df704fc2c9079bc063d27c6c77eff'
+    oldFile: !uuid 'f9bfc0477db5bbfa3d42cf985b75fa1572b5d275'
+  /backend/Admin.NET.Core/Service:
+    newFile: !uuid 'd863720a91ec8edb8e9753923933bd269307caa9'
+    oldFile: !uuid 'f99025732e645023f32c58dd1a4eb55e352b7142'
+  /backend/Admin.NET.Core/Service/User:
+    newFile: !uuid '2b909de6e93ee98738873d5eefe9438cfe9ac283'
+    oldFile: !uuid '1d16e394ffe1de824d0a2893d8c403fe709d71f5'
+  /backend/Admin.NET.Core/Service/User/Dto:
+    newFile: !uuid '5907d8acc40f6e780ac208dd86272368dfee3c81'
+    oldFile: !uuid '4446a0842f2c9b51d5db3db58966c5fca178f608'
+  /backend/Admin.NET.Core/Service/User/Dto/UserInput.cs:
+    newFile: !uuid '962ba5570d11962c9e1a778ff2d91cb473afbdf0'
+    oldFile: !uuid '5ca96e9ae12ba382578cc482995fa6dbc17bc089'
+gitCommitId: !uuid 'e953787279a87ecc6da9cd21823a29261cc0aa06'
 renames: {
   }
-revisionId: 412
+revisionId: 413
