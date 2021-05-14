@@ -1,7 +1,7 @@
 {
   "ConnectionStrings": {
-    "DefaultConnection": "Data Source=./Admin.NET.db",
-    "MultiTenantConnection": "Data Source=./Admin.NET_SaaS.db",
+    "DefaultConnection": "Data Source=rm-bp164p33jz4uuf969125010om.mysql.rds.aliyuncs.com;Database=homecustom;User ID=homecustom;Password=Luohe0395;pooling=true;port=3306;SslMode=None;CharSet=utf8;",
+    "MultiTenantConnection": "Data Source=rm-bp164p33jz4uuf969125010om.mysql.rds.aliyuncs.com;Database=homecustom_saas;User ID=homecustom;Password=Luohe0395;pooling=true;port=3306;SslMode=None;CharSet=utf8;",
     "PgSqlConnection": "HOST=127.0.0.1;PORT=5432;DATABASE=Admin.NET;PASSWORD=123qwe;USER ID=postgres;"
   }
 }
