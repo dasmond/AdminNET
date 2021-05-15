@@ -2,19 +2,34 @@
 branches: {
   }
 fileChange:
-  /frontend:
-    newFile: !uuid '8a52041a46f5f727d47a57aa5527ee79efece874'
-    oldFile: !uuid 'fd80225f08f4076e4478eaa468a73e62d1ce7771'
-  /frontend/src:
-    newFile: !uuid '278760fa651c512afa3091fcc8de424fed790219'
-    oldFile: !uuid '050fe2514c187e9c97bd1ef6f224374bd312bb95'
-  /frontend/src/utils:
-    newFile: !uuid '5c9eb7ca19b2ee64efdf751ae9ca9dfdc0afe7b7'
-    oldFile: !uuid 'bd60b3cab7299b3eeacbfb6239682924bc9fd16a'
-  /frontend/src/utils/socket.js:
-    newFile: !uuid '328fbf77f5bbbfb123e99ba393866303324c6e60'
-    oldFile: !uuid 'b0cabd8ab94ecaa0684e56568da65a72cf1a9bee'
-gitCommitId: !uuid 'dcef18b9f6a19d8044329a3e482642ba90d35074'
+  /backend:
+    newFile: !uuid 'a6f341a3ccf8c2e5100f009b30ea2d0b81344dac'
+    oldFile: !uuid '94fc427b024375dbc8eb4d978082909a214216aa'
+  /backend/Admin.NET.Core:
+    newFile: !uuid '91e9acc24427f5e7ae4742cfb16b8d28c20498f2'
+    oldFile: !uuid '381f9851d05be7be0a1a160832961fbc0327abbd'
+  /backend/Admin.NET.Core/Service:
+    newFile: !uuid '0efb30a35987f1dd1e55a02940576501552fb517'
+    oldFile: !uuid 'ed347b882181006137ceba8a56a03c0552b4b797'
+  /backend/Admin.NET.Core/Service/Menu:
+    newFile: !uuid '395799385ba1cb57634cd5b6bbe027669fa2960f'
+    oldFile: !uuid '9b7747c40b9c6f2e0ce860f4416ffba173b3edda'
+  /backend/Admin.NET.Core/Service/Menu/SysMenuService.cs:
+    newFile: !uuid '3d689c582c10aeb30e01897ac66d2601704bd297'
+    oldFile: !uuid '55c08de2ee785accbfe82cb306a78a5e8e7016db'
+  /backend/Admin.NET.Core/Service/Org:
+    newFile: !uuid '66391a5751190320b187e63f8c1f1cf8d7ca7514'
+    oldFile: !uuid '4e6bb07463ebf2f3467a451b7b4478af00f224e3'
+  /backend/Admin.NET.Core/Service/Org/SysOrgService.cs:
+    newFile: !uuid '815b7b3f69f26c6a91b79cdfead3ad3e631f7781'
+    oldFile: !uuid '075246daa987a4af4623fd5562fad9a7fec4f62e'
+  /backend/Admin.NET.Core/Util:
+    newFile: !uuid '0902e363e2c88cc7858264ab6e5a91d89588537d'
+    oldFile: !uuid '83ef87bc9176bb88bbe917f1367001bb06f87832'
+  /backend/Admin.NET.Core/Util/TreeBuildUtil.cs:
+    newFile: !uuid '4ec2e745a1bd6828b0fb68332f75788c81774c1a'
+    oldFile: !uuid 'd10e02c68411adf98e2286d07520e978c3dc71c3'
+gitCommitId: !uuid '2103f958a91b843cb4c354093dcf53377ae03764'
 renames: {
   }
-revisionId: 427
+revisionId: 428
