@@ -3,27 +3,21 @@ branches: {
   }
 fileChange:
   /backend:
-    newFile: !uuid 'f96f8d5142c78c63fed3d1c8dee17df5a3ed642b'
-    oldFile: !uuid '40826a02a2a5bf86e4f258e408a8538bea9b48dd'
+    newFile: !uuid '33e4c094f7a1aab84b388ec876b3727366bea2c9'
+    oldFile: !uuid 'f96f8d5142c78c63fed3d1c8dee17df5a3ed642b'
   /backend/Admin.NET.Core:
-    newFile: !uuid 'f8967838281189d1f14333e4f260c8595ab4dd62'
-    oldFile: !uuid 'd272c7d4cf7d7e9d5775ce81dfeb51735e28f15b'
-  /backend/Admin.NET.Core/Admin.NET.Core.csproj:
-    newFile: !uuid 'd5d618819fe907a3eadb60cead8bd6326dc54182'
-    oldFile: !uuid '970eda1d24c84ebe5ade2fe5ffb8cd277e99f5dd'
+    newFile: !uuid 'a8875fba9f06922201d287cd7e3452d308d98a99'
+    oldFile: !uuid 'f8967838281189d1f14333e4f260c8595ab4dd62'
   /backend/Admin.NET.Core/Service:
-    newFile: !uuid '21063495cc573e2d3810c36693e630b549e64e77'
-    oldFile: !uuid 'daca15ab0440fd2921d8032b682e2dc49fbb022e'
-  /backend/Admin.NET.Core/Service/CodeGen:
-    newFile: !uuid '5aa72428fff1f7ff280e63d6ac0b5afa923ceb93'
-    oldFile: !uuid '13b74e500f47545338f8e033034f6c1ac3748afd'
-  /backend/Admin.NET.Core/Service/CodeGen/CodeGenConfigService.cs:
-    newFile: !uuid '144ea9b1e693e72e371aa7c29402a9ad764ecc92'
-    oldFile: !uuid '6082212b5d0750fff7400f0f4ff92e674c2653e6'
-  /backend/Admin.NET.Core/Service/CodeGen/ICodeGenConfigService.cs:
-    newFile: !uuid 'fc3cd2b0fe3f93497d755e838c83db9a22816957'
-    oldFile: !uuid 'ec21c5f2478f145dd20f5a681983a28879fdd627'
-gitCommitId: !uuid 'b3ad057e83962b9c99d9020d13486c518596a274'
+    newFile: !uuid '5c9270c4669f49badb12886477bea13d3eb8f19c'
+    oldFile: !uuid '21063495cc573e2d3810c36693e630b549e64e77'
+  /backend/Admin.NET.Core/Service/Menu:
+    newFile: !uuid 'e7b1c7bb7ff3d599003c5a3e2b570236b5419bbf'
+    oldFile: !uuid '1f4bc871b694b65d32e42a576f5dc0757bcd32be'
+  /backend/Admin.NET.Core/Service/Menu/SysMenuService.cs:
+    newFile: !uuid 'e18ee991feb9ac29a637a40996d11213831d9c5f'
+    oldFile: !uuid 'dec1b810b3f910a8781def2018ac65ba2e41fc29'
+gitCommitId: !uuid '12e557ef23033ee4a7a0dbd265939c829a683200'
 renames: {
   }
-revisionId: 432
+revisionId: 433
