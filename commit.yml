@@ -2,16 +2,22 @@
 branches: {
   }
 fileChange:
-  /doc:
-    newFile: !uuid 'eda92cd7188dbf6b43c1d38266f4d5d3bb8bffde'
-    oldFile: !uuid 'caed4c6c093a638064820c5d7133582aea3e709a'
-  /doc/img:
-    newFile: !uuid '32fe5a8ff4e401649d83f8e37766b3f87a62272c'
-    oldFile: !uuid 'ca8fb6e2686581c99700b265566cb1d612af67ef'
-  /doc/img/bf-01.png:
-    newFile: !uuid 'fe00d82aeac6fc07f74d0f8c0af2e86baa375f4f'
-    oldFile: !uuid '503dccb148d1e82561948a359ea7e777abefa46c'
-gitCommitId: !uuid '97cca6b8edbb374a218ee53925f49fa70b3a86df'
+  /backend:
+    newFile: !uuid '3c30b2c22602258712498b5f1644668856cc24cc'
+    oldFile: !uuid 'b1c0291cb2ab378a547ae6b0b5fac15624b8b829'
+  /backend/Admin.NET.Core:
+    newFile: !uuid 'e9883c535a6106e6e8e1c6d5a85e4eacfd41fc31'
+    oldFile: !uuid 'ec6d6d15459628a721ed661e69bef1c3e331a4e8'
+  /backend/Admin.NET.Core/DynamicConditions:
+    newFile: !uuid '0389895411b00e0dbe9e927e1ae1b2ef21b92df2'
+    oldFile: null
+  /backend/Admin.NET.Core/DynamicConditions/LambdaExpressionBuilder.cs:
+    newFile: !uuid 'd6b683617b301ec5a866fc8620ed8a613a1039fb'
+    oldFile: null
+  /backend/Admin.NET.Core/DynamicConditions/QueryableExstenstions.cs:
+    newFile: !uuid '1f71e18e13172ab90501b85574beaee8b70c4213'
+    oldFile: null
+gitCommitId: !uuid '66fd394ff30477e7fbb58cb6d54dccc3471f572d'
 renames: {
   }
-revisionId: 443
+revisionId: 444
