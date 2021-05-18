@@ -3,30 +3,57 @@ branches: {
   }
 fileChange:
   /backend:
-    newFile: !uuid 'eb812e988083a58bfbe2e10b323933fca7c7a346'
-    oldFile: !uuid 'df0bbbb190d55ac14fa0cef3bab3fa3c8993ff22'
+    newFile: !uuid '00d12a1107bdf7c9ffa77a402ad7a13479f89b85'
+    oldFile: !uuid 'eb812e988083a58bfbe2e10b323933fca7c7a346'
+  /backend/Admin.NET.Application:
+    newFile: !uuid 'e623d955cb0911010af8796396553113ba9b5d3b'
+    oldFile: !uuid '50dbfa1e0128707b6ba9268a7ea2008e0e27e2df'
+  /backend/Admin.NET.Application/Entity:
+    newFile: !uuid 'f9430582e37786e5340835c57854bc369698b676'
+    oldFile: null
+  /backend/Admin.NET.Application/Entity/Car.cs:
+    newFile: !uuid '5a31e2fc690d5ddffebcdcb469c5a2a2d23b4190'
+    oldFile: null
+  /backend/Admin.NET.Application/Service:
+    newFile: !uuid 'b887ca810a8e4ac447352e9a7e4af870b523ab8b'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/Car:
+    newFile: !uuid '3247b9226728421954c9bfc7dc6cdad6eee8ad1e'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/Car/CarService.cs:
+    newFile: !uuid '33081afcf7f783ac368767da15966a3c2808113f'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/Car/Dto:
+    newFile: !uuid 'c1e777df8f2ecd85c9cc8106d87bf8bd2b90a5c5'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/Car/Dto/CarInput.cs:
+    newFile: !uuid '7c4e812cfddb2b451097139a412d5ea8c2cd67e1'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/Car/Dto/CarOutput.cs:
+    newFile: !uuid '5f8bc66021acc9055f4196922dc1f910c8154fc0'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/Car/ICarService.cs:
+    newFile: !uuid 'e24b17811f533b9cd6be97eea2454bf519718aae'
+    oldFile: null
   /backend/Admin.NET.Core:
-    newFile: !uuid '9ce50037f5a492f8ef2b159e50d461fbf59d9e15'
-    oldFile: !uuid 'adf5480b3d8d3defe8ed4ef02721c8cf6a61a154'
-  /backend/Admin.NET.Core/Admin.NET.Core.csproj:
-    newFile: !uuid '4527ad0793286a331564a22b31c4b01b76eff0b1'
-    oldFile: !uuid '8b7a934881224aaf4b8f055e9207861f013abfa3'
+    newFile: !uuid 'b7acf2e62209e92cd67f056ca53735d4d58d9337'
+    oldFile: !uuid '9ce50037f5a492f8ef2b159e50d461fbf59d9e15'
   /backend/Admin.NET.Core/Service:
-    newFile: !uuid 'd13a248b4433b6f0920037dc4eb06e623ac71926'
-    oldFile: !uuid '2eb3a164001e917bf0a967df5f01ba6e5edc3bbf'
+    newFile: !uuid 'af2d9b232a28c36b9665d14e27baba6ad3238905'
+    oldFile: !uuid 'd13a248b4433b6f0920037dc4eb06e623ac71926'
   /backend/Admin.NET.Core/Service/Base:
-    newFile: !uuid '3c2a7d70b7447c39f63f4ae9d7c88a726b46806a'
-    oldFile: null
+    newFile: !uuid '4ec7675e3fb3525f31192543ce7dd1c05066664d'
+    oldFile: !uuid '3c2a7d70b7447c39f63f4ae9d7c88a726b46806a'
   /backend/Admin.NET.Core/Service/Base/BaseService.cs:
-    newFile: !uuid '1788b91f1282dfd95ce45f618b8608465a001fcf'
-    oldFile: null
-  /backend/Admin.NET.Core/Service/Base/Dto:
-    newFile: !uuid '59929b20d201cca54caa365b45f2a5d50eaef880'
-    oldFile: null
-  /backend/Admin.NET.Core/Service/Base/Dto/BaseDto.cs:
-    newFile: !uuid '4789dd2eab66d2239d85e8127e8843af5944ec41'
-    oldFile: null
-gitCommitId: !uuid 'b28825ac8734b0c1736ab64e2ff6704113b6579c'
+    newFile: !uuid 'c8ead86033b88db4c485a2a448d0031e0ab870d9'
+    oldFile: !uuid '1788b91f1282dfd95ce45f618b8608465a001fcf'
+  /backend/Admin.NET.Web.Entry:
+    newFile: !uuid '90d914efbe6c244e31e1dbaae957103aa4c5184b'
+    oldFile: !uuid 'e0d7d0b179447a0580da687b900df13fd1b6d502'
+  /backend/Admin.NET.Web.Entry/Admin.NET.db:
+    newFile: !uuid 'd3ec4589b2e33bcd621f36175fcc479685118b14'
+    oldFile: !uuid '1dfef2f4bb3b427dc2eb825351ad055db93b079a'
+gitCommitId: !uuid 'f807b17f61b6af0aff77cc8ec54d1ceaacbbdcb7'
 renames: {
   }
-revisionId: 448
+revisionId: 449
