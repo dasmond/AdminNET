@@ -2,31 +2,16 @@
 branches: {
   }
 fileChange:
-  /template:
-    newFile: !uuid 'c726998f11ae539820257efd7d1080e131c2b02e'
-    oldFile: !uuid '2e369a9cbe4e565ec6d45d7306e29104b9cf26d3'
-  /template/Admin.NETTemplate:
-    newFile: !uuid '6f03e595bd1cc05e1125c68abb7a301ccf4033dc'
-    oldFile: !uuid '983c7946fb2298ec14bf8a213424ea6f16c3a94c'
-  /template/Admin.NETTemplate/Furion.Admin.NET.Template.App.nuspec:
-    newFile: !uuid 'b8d664bfe6b00bf1adfbab5d3dd0dbfb284baeda'
-    oldFile: !uuid '456537d3d9b9e8f6a16316b71361a9ff9d0bfc96'
-  /template/Admin.NETTemplate/src:
-    newFile: !uuid '0d91ed9ff9b781f78965534877403f610f7e2ec4'
-    oldFile: !uuid 'a79dfb2adb5aa7e9dff79f0a20abe1749f7280e5'
-  /template/Admin.NETTemplate/src/Admin.NETApp.Core:
-    newFile: !uuid 'a5357eb7e8d3d5d0e1c3d9aafe66a571841f16c1'
-    oldFile: !uuid 'c4583aeac86776a7fbb443fa91bcd73ce78d10f3'
-  /template/Admin.NETTemplate/src/Admin.NETApp.Core/Admin.NETApp.Core.csproj:
-    newFile: !uuid 'd3369dfcd5034422b0a5480fe998423ca57d220f'
-    oldFile: !uuid 'a35af7dfbdf62079b826120ffb6acbf5dfb7b568'
-  /template/Admin.NETTemplate/src/Admin.NETApp.Web.Core:
-    newFile: !uuid '18f7ecfdeb8c04ced54e9c476281a67eec09398e'
-    oldFile: !uuid '17ff8e83759e16d7e363ddc327598fe34a769ded'
-  /template/Admin.NETTemplate/src/Admin.NETApp.Web.Core/Startup.cs:
-    newFile: !uuid 'f3431d18766d7052b2c2d10aaff5fbc533424e51'
-    oldFile: !uuid 'd534cba4d2be96ca629a8d25d9bf5aa9b191b27c'
-gitCommitId: !uuid '2354494194440be505b5d7a6d209b8fa1c0a81ee'
+  /backend:
+    newFile: !uuid '59a15faee8ca3ff8ffd9304c730e66d2123d4824'
+    oldFile: !uuid '15ece7b7e81f05ca98e3ac13f834356bcb3bbb54'
+  /backend/Admin.NET.Core:
+    newFile: !uuid 'd799b8963f8d9bf67636b717184e4569f480b212'
+    oldFile: !uuid '8c293dea94576c69921d12698a2a46d48563c4a9'
+  /backend/Admin.NET.Core/Furion.Extras.Admin.NET.xml:
+    newFile: !uuid '5d2d9319e5809651822aa2ba9633b4eb6a5182e0'
+    oldFile: null
+gitCommitId: !uuid '5e16d4af1a1cda0a4d96d8c40e0b1935934f43d6'
 renames: {
   }
-revisionId: 439
+revisionId: 440
