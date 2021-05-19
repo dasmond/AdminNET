@@ -2,16 +2,28 @@
 branches: {
   }
 fileChange:
-  /backend:
-    newFile: !uuid 'bb555d0a4f56600dd17141e862c23749f4764739'
-    oldFile: !uuid '523edae1629a9e80f04a32e3c1ea361c9a24887b'
-  /backend/Admin.NET.Core:
-    newFile: !uuid '673e510389bc169e4679712b62dca3f19472bfed'
-    oldFile: !uuid '6687f22f25a59f5f50aa5769ba554848da8b17a0'
-  /backend/Admin.NET.Core/Furion.Extras.Admin.NET.xml:
-    newFile: !uuid '79bb45070dff33cbb2863a3b11adab7e2b977a7b'
-    oldFile: !uuid '5d2d9319e5809651822aa2ba9633b4eb6a5182e0'
-gitCommitId: !uuid '2c49ea6371294265390959cda41af45e758fd0d4'
+  /frontend:
+    newFile: !uuid '9f0d6cf97d4c8c8725e9e2ced9f691e517b0604c'
+    oldFile: !uuid 'c0d8869f0c5765e2caf0bfdb8d8e37e7eeafb57a'
+  /frontend/src:
+    newFile: !uuid '035d2b0062a3f51d6d42e97eb477516a230dcb8b'
+    oldFile: !uuid '7cb68009cd78d676396c2bfce893fa19755aa5f3'
+  /frontend/src/components:
+    newFile: !uuid '8df60582182c38dfe3ea90a46437c92fdd940a9a'
+    oldFile: !uuid '349c5e64ee5d725bfa40ad19d8a7f2d71e14fd56'
+  /frontend/src/components/PageHeader:
+    newFile: !uuid '4c7e5ac1efdd66530970f6de26fdb9bcff37e96e'
+    oldFile: !uuid 'd1c6ede439de4c52c0e8946c1e01a2d32c44a106'
+  /frontend/src/components/PageHeader/PageHeader.vue:
+    newFile: !uuid '42351084e6f49c1079fc9ceda7fed96229f17498'
+    oldFile: !uuid 'aeb02276c9eeb3d78a4f76678926ad6c205af55c'
+  /frontend/src/components/tools:
+    newFile: !uuid 'c1e61c6d739e706652987126cb03348bece7c4ec'
+    oldFile: !uuid '9998068276f5939be9dc3dddcab9ec6acaaa6e98'
+  /frontend/src/components/tools/Breadcrumb.vue:
+    newFile: !uuid '9bc141c02c38306bc3e96cf235c8b0e3b3e4080a'
+    oldFile: !uuid '794a3859224f057adc6991890b61b8ced6593da5'
+gitCommitId: !uuid '2b95b77bd22066dccdd4168f31d36ae8e151a62b'
 renames: {
   }
-revisionId: 453
+revisionId: 454
