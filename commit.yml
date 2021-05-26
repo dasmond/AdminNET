@@ -3,21 +3,30 @@ branches: {
   }
 fileChange:
   /backend:
-    newFile: !uuid '5223589a1a22765f44a505c4c03ebb23b3f06bc1'
-    oldFile: !uuid '5dcc6925f1e72eef3ac75732590cd4c6f68b0d41'
-  /backend/Admin.NET.Web.Entry:
-    newFile: !uuid '9b00b5f0792329a0bd7b4db2bde5dc7424991019'
-    oldFile: !uuid '89f3b7ebcf7f25b22ddac9d154e5d056ee337d01'
-  /backend/Admin.NET.Web.Entry/wwwroot:
-    newFile: !uuid '6ee42498ecd7ad49d40dae7ed67e294173f5a472'
-    oldFile: !uuid '4c77182a49451931331e5304d4f5529dd42306fb'
-  /backend/Admin.NET.Web.Entry/wwwroot/Template:
-    newFile: !uuid 'ecd35cf0994974a22360e995141a2100d747a470'
-    oldFile: !uuid '4b140a9af63fb904f62867831cfc33073d72ffba'
-  /backend/Admin.NET.Web.Entry/wwwroot/Template/IService.cs.vm:
-    newFile: !uuid 'f7f42cc9964a4fc12b3af90c191fe39813eeb32b'
-    oldFile: !uuid 'a22d2a37fb23d9afdad8b8297f95b80e033acd2e'
-gitCommitId: !uuid 'f6e62fb7bc69a96dbdca450740e17e40c183b39e'
+    newFile: !uuid '22c44e81dd73e0c332ea07443eaefb771e16b7a3'
+    oldFile: !uuid '5223589a1a22765f44a505c4c03ebb23b3f06bc1'
+  /backend/Furion.Extras.Admin.NET:
+    newFile: !uuid '10a6ea848a2b2f266930bdc0b6c6f3c786bc6009'
+    oldFile: !uuid '388a84b687b0c0737a9e23975fe91f6f8b7fee1d'
+  /backend/Furion.Extras.Admin.NET/Entity:
+    newFile: !uuid '96c95081fe0e4deeb021eb3e5e9ae472f89e5a91'
+    oldFile: !uuid '29f38fec3ee44e7079b4b90f3b87db7ee2ef2399'
+  /backend/Furion.Extras.Admin.NET/Entity/DEntityBase.cs:
+    newFile: !uuid '643d69482918d1f6f65b34e6af11f4a87c1b278c'
+    oldFile: !uuid 'cc958140d4b7d8aa64fa3791f3e0f20955d45207'
+  /backend/Furion.Extras.Admin.NET/Service:
+    newFile: !uuid 'bfdbc53418db00f78b3890eb1a5f55f2d5c09876'
+    oldFile: !uuid 'f09062ceb4296777b5d7b2177f44d611370af59e'
+  /backend/Furion.Extras.Admin.NET/Service/Base:
+    newFile: !uuid '6bcf6beb86206418dfb27e82586430e188cc5b50'
+    oldFile: !uuid 'e91846f1ce3254c815ccf08e06de7455947c8850'
+  /backend/Furion.Extras.Admin.NET/Service/Base/Dto:
+    newFile: !uuid 'c4133d46ea3326478bf44b863178e8445208a009'
+    oldFile: !uuid '090d496bb9e4e51d7e563356bfc22893d4b23116'
+  /backend/Furion.Extras.Admin.NET/Service/Base/Dto/BaseDto.cs:
+    newFile: !uuid '1f0d3b44ff6275d40e4d3d1b5a4a627e073b1159'
+    oldFile: !uuid '4d6140bf940ad63480b55e58f58e2fc8d32f5a46'
+gitCommitId: !uuid '9afaa24d1d68c8935b316523edabec20089421fd'
 renames: {
   }
-revisionId: 466
+revisionId: 467
