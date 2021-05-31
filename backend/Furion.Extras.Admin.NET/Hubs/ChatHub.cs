@@ -1,4 +1,4 @@
-﻿using Furion.Extras.Admin.NET.Service;
+using Furion.Extras.Admin.NET.Service;
 using Furion.DataEncryption;
 using Microsoft.AspNetCore.SignalR;
 using System;
@@ -58,7 +58,7 @@ namespace Furion.Extras.Admin.NET
                     if (onlineUsers[i].ConnectionId == Context.ConnectionId)
                     {
                         onlineUsers.RemoveAt(i);
-                        return;
+                        continue;
                     }
                 }
 
