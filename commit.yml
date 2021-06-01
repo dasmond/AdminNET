@@ -2,10 +2,13 @@
 branches: {
   }
 fileChange:
-  /README.md:
-    newFile: !uuid 'f70d63c4a907ae3938244e839d0ec9a02eb5eb91'
-    oldFile: !uuid '9506b83a9812ef1d071464ac456fbfa282d0ca2d'
-gitCommitId: !uuid 'f2b41fdf1586d5aa3267c47e37ba354d879cfa12'
+  /doc:
+    newFile: !uuid 'ec5b5d386af56cb314838d3968599d58be11c028'
+    oldFile: !uuid 'eda92cd7188dbf6b43c1d38266f4d5d3bb8bffde'
+  /doc/fork项目后该这样做后续开发.md:
+    newFile: !uuid '79f27c0274e0c1b65b26117f4c2f4850ee893073'
+    oldFile: !uuid '529418d394b20e1953d4c07deec6102aef4e0580'
+gitCommitId: !uuid '22398c9d5809618ba39f3efd2daeb56fa2dddc65'
 renames: {
   }
-revisionId: 473
+revisionId: 474
