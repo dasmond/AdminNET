@@ -51,7 +51,7 @@ export const TimerApiAxiosParamCreator = function (configuration?: Configuration
 
             // authentication Bearer required
 
-            localVarHeaderParameter['Content-Type'] = 'application/xml';
+            localVarHeaderParameter['Content-Type'] = 'application/json';
 
             const query = new URLSearchParams(localVarUrlObj.search);
             for (const key in localVarQueryParameter) {
@@ -92,7 +92,7 @@ export const TimerApiAxiosParamCreator = function (configuration?: Configuration
 
             // authentication Bearer required
 
-            localVarHeaderParameter['Content-Type'] = 'application/xml';
+            localVarHeaderParameter['Content-Type'] = 'application/json';
 
             const query = new URLSearchParams(localVarUrlObj.search);
             for (const key in localVarQueryParameter) {
@@ -178,7 +178,7 @@ export const TimerApiAxiosParamCreator = function (configuration?: Configuration
 
             // authentication Bearer required
 
-            localVarHeaderParameter['Content-Type'] = 'application/xml';
+            localVarHeaderParameter['Content-Type'] = 'application/json';
 
             const query = new URLSearchParams(localVarUrlObj.search);
             for (const key in localVarQueryParameter) {
@@ -391,7 +391,7 @@ export const TimerApiAxiosParamCreator = function (configuration?: Configuration
 
             // authentication Bearer required
 
-            localVarHeaderParameter['Content-Type'] = 'application/xml';
+            localVarHeaderParameter['Content-Type'] = 'application/json';
 
             const query = new URLSearchParams(localVarUrlObj.search);
             for (const key in localVarQueryParameter) {
@@ -432,7 +432,7 @@ export const TimerApiAxiosParamCreator = function (configuration?: Configuration
 
             // authentication Bearer required
 
-            localVarHeaderParameter['Content-Type'] = 'application/xml';
+            localVarHeaderParameter['Content-Type'] = 'application/json';
 
             const query = new URLSearchParams(localVarUrlObj.search);
             for (const key in localVarQueryParameter) {

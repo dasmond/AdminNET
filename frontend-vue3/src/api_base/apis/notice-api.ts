@@ -49,7 +49,7 @@ export const NoticeApiAxiosParamCreator = function (configuration?: Configuratio
 
             // authentication Bearer required
 
-            localVarHeaderParameter['Content-Type'] = 'application/xml';
+            localVarHeaderParameter['Content-Type'] = 'application/json';
 
             const query = new URLSearchParams(localVarUrlObj.search);
             for (const key in localVarQueryParameter) {
@@ -90,7 +90,7 @@ export const NoticeApiAxiosParamCreator = function (configuration?: Configuratio
 
             // authentication Bearer required
 
-            localVarHeaderParameter['Content-Type'] = 'application/xml';
+            localVarHeaderParameter['Content-Type'] = 'application/json';
 
             const query = new URLSearchParams(localVarUrlObj.search);
             for (const key in localVarQueryParameter) {
@@ -131,7 +131,7 @@ export const NoticeApiAxiosParamCreator = function (configuration?: Configuratio
 
             // authentication Bearer required
 
-            localVarHeaderParameter['Content-Type'] = 'application/xml';
+            localVarHeaderParameter['Content-Type'] = 'application/json';
 
             const query = new URLSearchParams(localVarUrlObj.search);
             for (const key in localVarQueryParameter) {
@@ -217,7 +217,7 @@ export const NoticeApiAxiosParamCreator = function (configuration?: Configuratio
 
             // authentication Bearer required
 
-            localVarHeaderParameter['Content-Type'] = 'application/xml';
+            localVarHeaderParameter['Content-Type'] = 'application/json';
 
             const query = new URLSearchParams(localVarUrlObj.search);
             for (const key in localVarQueryParameter) {
