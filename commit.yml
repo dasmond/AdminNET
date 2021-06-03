@@ -2,13 +2,16 @@
 branches: {
   }
 fileChange:
-  /doc:
-    newFile: !uuid 'ec5b5d386af56cb314838d3968599d58be11c028'
-    oldFile: !uuid 'eda92cd7188dbf6b43c1d38266f4d5d3bb8bffde'
-  /doc/fork项目后该这样做后续开发.md:
-    newFile: !uuid '79f27c0274e0c1b65b26117f4c2f4850ee893073'
-    oldFile: !uuid '529418d394b20e1953d4c07deec6102aef4e0580'
-gitCommitId: !uuid '22398c9d5809618ba39f3efd2daeb56fa2dddc65'
+  /backend:
+    newFile: !uuid 'd7ff0ee752898e8822b239dfeec9fbf71cd6312a'
+    oldFile: !uuid '532e5c8d41465cf13132e54a8ae3267d86817cba'
+  /backend/Admin.NET.Web.Core:
+    newFile: !uuid 'ca5bb04f0f6707de50afc29e7af841e9179180c0'
+    oldFile: !uuid '5d294dba45ba79cd54170dd0291329f255e1aa08'
+  /backend/Admin.NET.Web.Core/Startup.cs:
+    newFile: !uuid '2d61805f6371cbe76f18d83b7f9be39502624811'
+    oldFile: !uuid 'd741e60cfa005e003780a208af3eb5beb3a4299a'
+gitCommitId: !uuid '84865712bb7233b1d0c30a45bab61e007f994d3c'
 renames: {
   }
-revisionId: 474
+revisionId: 475
