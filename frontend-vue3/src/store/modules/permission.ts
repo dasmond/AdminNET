@@ -16,7 +16,7 @@ import { PermissionModeEnum } from '/@/enums/appEnum';
 import { asyncRoutes } from '/@/router/routes';
 import { ERROR_LOG_ROUTE, PAGE_NOT_FOUND_ROUTE } from '/@/router/routes/basic';
 
-import { filter, listToTree } from '/@/utils/helper/treeHelper';
+import { filter, listToTree,listToTree_my } from '/@/utils/helper/treeHelper';
 
 // import { getMenuListById } from '/@/api/sys/menu';
 // import { getPermCodeByUserId } from '/@/api/sys/user';
@@ -122,22 +122,13 @@ export const usePermissionStore = defineStore({
           //this.changePermissionCode('1');
           this.setPermCodeList(userStore.getUserInfo?.permissions); // 按钮权限列表
 
-          // 默认首页
-          const dashboardRoute = {
-            id: 142307070926940,
-            pid: 0,
-            path: '/dashboard',
-            name: 'Welcome',
-            component: '/dashboard/analysis/index',
-            meta: {
-              title: 'routes.dashboard.analysis',
-              affix: true,
-              icon: 'bx:bx-home',
-            },
-          };
+          
           let menuList = userStore.getUserInfo?.menus;
-          menuList = [dashboardRoute, ...menuList];
-          const menuTree = listToTree(menuList);
+          //menuList = [dashboardRoute, ...menuList];
+          //const menuTree = listToTree(menuList);
+		  const menuTree = [];
+          //后端数据, 根级树数组,  根级 PID
+          listToTree_my(menuList, menuTree, 0);
           routeList = menuTree as AppRouteRecordRaw[]; // (await getMenuListById({ id: paramId })) as AppRouteRecordRaw[];
         } catch (error) {
           console.error(error);

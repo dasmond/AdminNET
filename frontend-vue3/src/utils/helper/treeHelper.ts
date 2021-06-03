@@ -11,6 +11,39 @@ const DEFAULT_CONFIG: TreeHelperConfig = {
 
 const getConfig = (config: Partial<TreeHelperConfig>) => Object.assign({}, DEFAULT_CONFIG, config);
 
+/**
+ * 数组转树形结构
+ * @param list 源数组
+ * @param tree 树
+ * @param parentId 父ID
+ */
+ export function listToTree_my(list: any[], tree: any[], parentId: any){
+  list.forEach(item => {
+    // 判断是否为父级菜单
+    // eslint-disable-next-line eqeqeq
+    if (item.pid == parentId) {
+      const child = {
+        ...item,
+        key: item.key || item.name,
+        children: []
+      }
+      // 迭代 list， 找到当前菜单相符合的所有子菜单
+      listToTree_my(list, child.children, item.id)
+      // 删掉不存在 children 值的属性
+      if (child.children.length <= 0) {
+        delete child.children;
+        //console.log(child.component);
+        child.component = '/' + child.component;
+      }else{
+        delete child.component;
+      }
+
+      // 加入到树中
+      tree.push(child)
+    }
+  })
+}
+
 // tree from list
 export function listToTree<T = any>(list: any[], config: Partial<TreeHelperConfig> = {}): T[] {
   const conf = getConfig(config) as TreeHelperConfig;
