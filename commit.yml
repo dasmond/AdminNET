@@ -2,16 +2,22 @@
 branches: {
   }
 fileChange:
-  /README.md:
-    newFile: !uuid 'f70d63c4a907ae3938244e839d0ec9a02eb5eb91'
-    oldFile: !uuid '9506b83a9812ef1d071464ac456fbfa282d0ca2d'
-  /doc:
-    newFile: !uuid 'ec5b5d386af56cb314838d3968599d58be11c028'
-    oldFile: !uuid 'eda92cd7188dbf6b43c1d38266f4d5d3bb8bffde'
-  /doc/fork项目后该这样做后续开发.md:
-    newFile: !uuid '79f27c0274e0c1b65b26117f4c2f4850ee893073'
-    oldFile: !uuid '529418d394b20e1953d4c07deec6102aef4e0580'
-gitCommitId: !uuid 'ac17292d6c1858407a1d8cf7db9146fdef331035'
+  /backend:
+    newFile: !uuid '47deca3e08524cce8b967097c9445ad8e0e8ba0b'
+    oldFile: !uuid 'd7ff0ee752898e8822b239dfeec9fbf71cd6312a'
+  /backend/Admin.NET.EntityFramework.Core:
+    newFile: !uuid '34836568c46ba9982f061963f165e7c830d78d1d'
+    oldFile: !uuid 'f233c17c0a7f25f246f03548013c7e3f24920174'
+  /backend/Admin.NET.EntityFramework.Core/Admin.NET.EntityFramework.Core.csproj:
+    newFile: !uuid 'e8e0a00e544845464df69429cf6d263e595e66ed'
+    oldFile: !uuid 'f96d49db275da90f52e934311cb927638bc94f22'
+  /backend/Furion.Extras.Admin.NET:
+    newFile: !uuid '4ba2d6842ed04b33c48b68e3f010228ce5ed891b'
+    oldFile: !uuid 'fec21973c44dd301e543311d6e223d1101b9e767'
+  /backend/Furion.Extras.Admin.NET/Furion.Extras.Admin.NET.csproj:
+    newFile: !uuid 'f602654f9c1a6050d54a8814f4cc9dc6a00a3e7d'
+    oldFile: !uuid '9c920fdd93f4324addf312860dc5dba414a5fabb'
+gitCommitId: !uuid '28b8258e5ec15d372102e925ed373b295cbe68b6'
 renames: {
   }
-revisionId: 476
+revisionId: 477
