@@ -2,22 +2,31 @@
 branches: {
   }
 fileChange:
-  /backend:
-    newFile: !uuid '47deca3e08524cce8b967097c9445ad8e0e8ba0b'
-    oldFile: !uuid 'd7ff0ee752898e8822b239dfeec9fbf71cd6312a'
-  /backend/Admin.NET.EntityFramework.Core:
-    newFile: !uuid '34836568c46ba9982f061963f165e7c830d78d1d'
-    oldFile: !uuid 'f233c17c0a7f25f246f03548013c7e3f24920174'
-  /backend/Admin.NET.EntityFramework.Core/Admin.NET.EntityFramework.Core.csproj:
-    newFile: !uuid 'e8e0a00e544845464df69429cf6d263e595e66ed'
-    oldFile: !uuid 'f96d49db275da90f52e934311cb927638bc94f22'
-  /backend/Furion.Extras.Admin.NET:
-    newFile: !uuid '4ba2d6842ed04b33c48b68e3f010228ce5ed891b'
-    oldFile: !uuid 'fec21973c44dd301e543311d6e223d1101b9e767'
-  /backend/Furion.Extras.Admin.NET/Furion.Extras.Admin.NET.csproj:
-    newFile: !uuid 'f602654f9c1a6050d54a8814f4cc9dc6a00a3e7d'
-    oldFile: !uuid '9c920fdd93f4324addf312860dc5dba414a5fabb'
-gitCommitId: !uuid '28b8258e5ec15d372102e925ed373b295cbe68b6'
+  /template:
+    newFile: !uuid '0fc98a0154402889d16bb14a2a02366f857c5d78'
+    oldFile: !uuid '5d19a868225fd19708bead04e2dacd9395e4e8aa'
+  /template/Admin.NETTemplate:
+    newFile: !uuid '271620c45d51f8ee6139a82502ac09f3f12bb8ea'
+    oldFile: !uuid '1537eea7ba8940cdc899a8905fcf2eba6817b9a8'
+  /template/Admin.NETTemplate/Furion.Admin.NET.Template.App.nuspec:
+    newFile: !uuid '8003ea8d3ab36d83a4215fbccf0a85c08fa609d1'
+    oldFile: !uuid 'a635588a13a4f8b5bf65897e208f897a897740f4'
+  /template/Admin.NETTemplate/src:
+    newFile: !uuid '6d987e922c8ee7154ce0d57ac32d1585cdaf3429'
+    oldFile: !uuid '47300de876febf0d3388aae0705c6723d5c8ac33'
+  /template/Admin.NETTemplate/src/Admin.NETApp.Core:
+    newFile: !uuid 'f71fcefa80280d09ea0bbf3baeaffc771b044c91'
+    oldFile: !uuid '42284e0494600e5cff32dd092a7ea6382fe87bea'
+  /template/Admin.NETTemplate/src/Admin.NETApp.Core/Admin.NETApp.Core.csproj:
+    newFile: !uuid '1383cdd15f9184b9eadec9f47c1f965dbb750d11'
+    oldFile: !uuid '8c8ed855c4c4fd01101ddbf71096ec42445cea2b'
+  /template/Admin.NETTemplate/src/Admin.NETApp.EntityFramework.Core:
+    newFile: !uuid '25b4d678a2ccef44fa0775b155beb3d6994b68bb'
+    oldFile: !uuid '2a807e3948af74e6ea6201e59e4789096b02aa1b'
+  /template/Admin.NETTemplate/src/Admin.NETApp.EntityFramework.Core/Admin.NETApp.EntityFramework.Core.csproj:
+    newFile: !uuid '8804f94287e3bc88249aec369fc33bb191066cc8'
+    oldFile: !uuid '22b224ef0a70c0aaf227ac5a1bc5dcb9230e0167'
+gitCommitId: !uuid '73c0c4983270553d1b31bc21c08bc00579b4d503'
 renames: {
   }
-revisionId: 477
+revisionId: 478
