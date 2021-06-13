@@ -3,21 +3,27 @@ branches: {
   }
 fileChange:
   /backend:
-    newFile: !uuid '3137270a8134c6cb48d4c8a6ee29cb3d4fa23d92'
+    newFile: !uuid 'f0d49e9f3ba1974790a2b750577eacaf98fbb253'
     oldFile: !uuid '47deca3e08524cce8b967097c9445ad8e0e8ba0b'
+  /backend/Admin.NET.EntityFramework.Core:
+    newFile: !uuid '297f963036e4349193b8f533a01fe10292fc48ac'
+    oldFile: !uuid '34836568c46ba9982f061963f165e7c830d78d1d'
+  /backend/Admin.NET.EntityFramework.Core/Admin.NET.EntityFramework.Core.csproj:
+    newFile: !uuid '193193a097fd9fed2689d7444367c6d8c1644168'
+    oldFile: !uuid 'e8e0a00e544845464df69429cf6d263e595e66ed'
+  /backend/Admin.NET.Web.Entry:
+    newFile: !uuid 'ac842dcc555809e22ddf0e4d153972782ca2dbb5'
+    oldFile: !uuid '9b00b5f0792329a0bd7b4db2bde5dc7424991019'
+  /backend/Admin.NET.Web.Entry/Admin.NET.Web.Entry.csproj:
+    newFile: !uuid '964fe803018bf0591aef4cf64edb63f38257386d'
+    oldFile: !uuid '16bcf4ce40ac2343fbe07f18354a3d2e5e8b5be3'
   /backend/Furion.Extras.Admin.NET:
-    newFile: !uuid '13429a6baf8d4558c89c2fb0425117ae66bf3e9f'
+    newFile: !uuid '7cf4fce639b7c478137ebbf23d354c0b11a84593'
     oldFile: !uuid '4ba2d6842ed04b33c48b68e3f010228ce5ed891b'
-  /backend/Furion.Extras.Admin.NET/Service:
-    newFile: !uuid '2d7867582bd888498db75a860d0db8623f70a66e'
-    oldFile: !uuid 'bfdbc53418db00f78b3890eb1a5f55f2d5c09876'
-  /backend/Furion.Extras.Admin.NET/Service/Config:
-    newFile: !uuid 'fcd8100927f047559dc3ad3e1f9d85b11082810e'
-    oldFile: !uuid 'a4347740c705e90dd917aa5efb2c3dbaf2d10401'
-  /backend/Furion.Extras.Admin.NET/Service/Config/SysConfigService.cs:
-    newFile: !uuid '3fe0aa9975e501f06031653d6ae7d28f917f7c36'
-    oldFile: !uuid '79b8e8681c42b117afb283852a10bd78aebf7519'
-gitCommitId: !uuid '77917c57e46d1a914a8028b8f38739258f1d7a73'
+  /backend/Furion.Extras.Admin.NET/Furion.Extras.Admin.NET.csproj:
+    newFile: !uuid '7db36602589335ede0d047fc725bb9cf3512c7b6'
+    oldFile: !uuid 'f602654f9c1a6050d54a8814f4cc9dc6a00a3e7d'
+gitCommitId: !uuid '796fa01d8b581dac65b394414b93a9cbd129c6b0'
 renames: {
   }
-revisionId: 479
+revisionId: 480
