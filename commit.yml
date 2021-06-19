@@ -2,10 +2,16 @@
 branches: {
   }
 fileChange:
-  /README.md:
-    newFile: !uuid 'f49083647e36399bb2cc24d54e6c98aca514b6b7'
-    oldFile: !uuid 'f70d63c4a907ae3938244e839d0ec9a02eb5eb91'
-gitCommitId: !uuid 'def48947cb3bffb2cee065bea176194b2e245126'
+  /frontend:
+    newFile: !uuid '066c985344edb6cf7b3994eaa8703440db539f56'
+    oldFile: !uuid '7f935baf585e7f087f52b4a7be72a396e3c428b3'
+  /frontend/package-lock.json:
+    newFile: !uuid 'd60be567614105acd49d0a7c3ecbaf7c8ef67502'
+    oldFile: !uuid '941de6fca0d305ba52ba668a2e51da4757315075'
+  /frontend/vue.config.js:
+    newFile: !uuid 'baba63b471887864b0b7738e7a4424b3620fbd36'
+    oldFile: !uuid '6ebf66c3c7e2bd34334468684d390bf546d77800'
+gitCommitId: !uuid '5df8262cbef754ab475063e5d8dcb562dbe06607'
 renames: {
   }
-revisionId: 483
+revisionId: 484
