@@ -3,15 +3,30 @@ branches: {
   }
 fileChange:
   /backend:
-    newFile: !uuid '757294a517b81c0785d458c3e93da4167ba867d0'
-    oldFile: !uuid 'd8ce0c82ddfcf73be7f4bc3e766a8875ee911f6d'
+    newFile: !uuid '87a97bd0034b45016e2bbc7a270b90074d27452a'
+    oldFile: !uuid '757294a517b81c0785d458c3e93da4167ba867d0'
+  /backend/Admin.NET.EntityFramework.Core:
+    newFile: !uuid '38e0d3ace4a89a168e3bc5a08cf3ab401a233fb5'
+    oldFile: !uuid '297f963036e4349193b8f533a01fe10292fc48ac'
+  /backend/Admin.NET.EntityFramework.Core/DbContexts:
+    newFile: !uuid 'a217e0d15e54f7f2416f5ad0fb5012e7478db840'
+    oldFile: !uuid 'b437d7a6f44917e968c6716789e400658710cc06'
+  /backend/Admin.NET.EntityFramework.Core/DbContexts/DefaultDbContext.cs:
+    newFile: !uuid '766c7d041c2039f5ca5eb3f56af7d51957e3aaf0'
+    oldFile: !uuid '4a4c3cab0ae5507eb73c3da6c1a7c6a2bbc53983'
   /backend/Furion.Extras.Admin.NET:
-    newFile: !uuid '0c6298675d3053f44967be64901abf2c6593250d'
-    oldFile: !uuid 'f510e294d7f74ec4f1a1bb5a4920f94b03dca32b'
-  /backend/Furion.Extras.Admin.NET/Furion.Extras.Admin.NET.csproj:
-    newFile: !uuid 'd5d123688710237ade6f7aa67fb9c4b8dc8afe62'
-    oldFile: !uuid '9be9de7256437ab96c66430de3e7b06927c29221'
-gitCommitId: !uuid '0a9df477546c2ce02badb7ca0d0b44093bd7cb04'
+    newFile: !uuid 'a20393518c08d675c2de1e06e06646b7c6fdf977'
+    oldFile: !uuid '0c6298675d3053f44967be64901abf2c6593250d'
+  /backend/Furion.Extras.Admin.NET/Service:
+    newFile: !uuid '991cb215534b44721e136e83b6ff0c1ecfe26b7a'
+    oldFile: !uuid '2d7867582bd888498db75a860d0db8623f70a66e'
+  /backend/Furion.Extras.Admin.NET/Service/File:
+    newFile: !uuid 'a7a4e009eb66beb35e831b840b457790180b25b3'
+    oldFile: !uuid '1975d8f4a2127d400f70fdcb880240a7fec5ceb9'
+  /backend/Furion.Extras.Admin.NET/Service/File/SysFileService.cs:
+    newFile: !uuid '381524e9bd6b8f0e1d66a2a9d95eabb510dd3ebe'
+    oldFile: !uuid '4ef2609e97fc0021b73708978cde14cf02ad049d'
+gitCommitId: !uuid '3b3ce11d1e43d51a2e46c4e42cfea374985ad8ae'
 renames: {
   }
-revisionId: 485
+revisionId: 486
