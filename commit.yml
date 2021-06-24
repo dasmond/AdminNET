@@ -3,33 +3,21 @@ branches: {
   }
 fileChange:
   /backend:
-    newFile: !uuid 'c26c92e155e04c40df4a13bfc91a8870ffc2fc33'
-    oldFile: !uuid '55e85220c3b778faee5fa15bfefc489b634c25a3'
+    newFile: !uuid '41cbe4169222241b56814d1473c5c4c1bf37bae0'
+    oldFile: !uuid 'c26c92e155e04c40df4a13bfc91a8870ffc2fc33'
   /backend/Furion.Extras.Admin.NET:
-    newFile: !uuid '6fc3ebc53b9061d5402d5e54e681e7de63663861'
-    oldFile: !uuid '3b5e544d83311ec05b97c9f99c9034f054a74732'
-  /backend/Furion.Extras.Admin.NET/Furion.Extras.Admin.NET.csproj:
-    newFile: !uuid 'f9363bc5c761353b0aabd8802d79ad8a5b06123f'
-    oldFile: !uuid '1c459ca456f2914878616acafdf3d788be6637c3'
-  /template:
-    newFile: !uuid '00ee5570e5fb92e8c7f0a5336847ea45fd7059ab'
-    oldFile: !uuid '6334411150fc1c5ffe84b8222cf7d95545651bcb'
-  /template/Admin.NETTemplate:
-    newFile: !uuid 'b81abfd7c12a723beaff8b770fb9263e6b318183'
-    oldFile: !uuid '9ed50e76cb4102509c095dddd9ed2f985d3bb10c'
-  /template/Admin.NETTemplate/Furion.Admin.NET.Template.App.nuspec:
-    newFile: !uuid '8c0bb37b405a929246ddfd7566fba20948e3a498'
-    oldFile: !uuid '4467381f2c94220e0d779c5cf6c1151f4cbb733a'
-  /template/Admin.NETTemplate/src:
-    newFile: !uuid '8bd2b0c54a66e718a7a9ac9675ba44252da2b70f'
-    oldFile: !uuid 'c83bd5d1af8ba03f2650934311dddfaa30a6e5ff'
-  /template/Admin.NETTemplate/src/Admin.NETApp.Core:
-    newFile: !uuid 'b987257e7723247d8146514ecde5f808a7aa3822'
-    oldFile: !uuid '56f44cbb599c976fbcf8bc5f15abea023ea342b6'
-  /template/Admin.NETTemplate/src/Admin.NETApp.Core/Admin.NETApp.Core.csproj:
-    newFile: !uuid '559d4d94394e376fb518e875234faa8b5e583e00'
-    oldFile: !uuid '0a054e5811f979d1adbe9905942a243824284c66'
-gitCommitId: !uuid '265a95de395057692bc6076a7e6333dc6ecf2beb'
+    newFile: !uuid 'fd34860568da2485225df6b701a015a38f00dcc3'
+    oldFile: !uuid '6fc3ebc53b9061d5402d5e54e681e7de63663861'
+  /backend/Furion.Extras.Admin.NET/Service:
+    newFile: !uuid 'e4aeceba7a8c99d8665deb55d37705ba1cdf2148'
+    oldFile: !uuid '991cb215534b44721e136e83b6ff0c1ecfe26b7a'
+  /backend/Furion.Extras.Admin.NET/Service/Config:
+    newFile: !uuid '05a07a471dff93de06fac48e1cb2c6ab8067d4ae'
+    oldFile: !uuid 'fcd8100927f047559dc3ad3e1f9d85b11082810e'
+  /backend/Furion.Extras.Admin.NET/Service/Config/SysConfigService.cs:
+    newFile: !uuid '297eee2d1758aa52c2cd27e196381dbe77f370ac'
+    oldFile: !uuid '3fe0aa9975e501f06031653d6ae7d28f917f7c36'
+gitCommitId: !uuid 'be58be53f1d22555e282299ab97fa6e31808ece0'
 renames: {
   }
-revisionId: 488
+revisionId: 489
