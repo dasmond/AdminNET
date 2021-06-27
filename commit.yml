@@ -3,30 +3,57 @@ branches: {
   }
 fileChange:
   /backend:
-    newFile: !uuid '87a97bd0034b45016e2bbc7a270b90074d27452a'
-    oldFile: !uuid '757294a517b81c0785d458c3e93da4167ba867d0'
+    newFile: !uuid '55e85220c3b778faee5fa15bfefc489b634c25a3'
+    oldFile: !uuid '87a97bd0034b45016e2bbc7a270b90074d27452a'
   /backend/Admin.NET.EntityFramework.Core:
-    newFile: !uuid '38e0d3ace4a89a168e3bc5a08cf3ab401a233fb5'
-    oldFile: !uuid '297f963036e4349193b8f533a01fe10292fc48ac'
+    newFile: !uuid '181e4d2ec454e45d7e55a63fcf562225346abbb0'
+    oldFile: !uuid '38e0d3ace4a89a168e3bc5a08cf3ab401a233fb5'
   /backend/Admin.NET.EntityFramework.Core/DbContexts:
-    newFile: !uuid 'a217e0d15e54f7f2416f5ad0fb5012e7478db840'
-    oldFile: !uuid 'b437d7a6f44917e968c6716789e400658710cc06'
+    newFile: !uuid '1f45c42fa3f9af8ed113b0734248329f4dd03311'
+    oldFile: !uuid 'a217e0d15e54f7f2416f5ad0fb5012e7478db840'
   /backend/Admin.NET.EntityFramework.Core/DbContexts/DefaultDbContext.cs:
-    newFile: !uuid '766c7d041c2039f5ca5eb3f56af7d51957e3aaf0'
-    oldFile: !uuid '4a4c3cab0ae5507eb73c3da6c1a7c6a2bbc53983'
+    newFile: !uuid 'f3a353789fef10395960f04b38302efd88f0c4ec'
+    oldFile: !uuid '766c7d041c2039f5ca5eb3f56af7d51957e3aaf0'
   /backend/Furion.Extras.Admin.NET:
-    newFile: !uuid 'a20393518c08d675c2de1e06e06646b7c6fdf977'
-    oldFile: !uuid '0c6298675d3053f44967be64901abf2c6593250d'
-  /backend/Furion.Extras.Admin.NET/Service:
-    newFile: !uuid '991cb215534b44721e136e83b6ff0c1ecfe26b7a'
-    oldFile: !uuid '2d7867582bd888498db75a860d0db8623f70a66e'
-  /backend/Furion.Extras.Admin.NET/Service/File:
-    newFile: !uuid 'a7a4e009eb66beb35e831b840b457790180b25b3'
-    oldFile: !uuid '1975d8f4a2127d400f70fdcb880240a7fec5ceb9'
-  /backend/Furion.Extras.Admin.NET/Service/File/SysFileService.cs:
-    newFile: !uuid '381524e9bd6b8f0e1d66a2a9d95eabb510dd3ebe'
-    oldFile: !uuid '4ef2609e97fc0021b73708978cde14cf02ad049d'
-gitCommitId: !uuid '3b3ce11d1e43d51a2e46c4e42cfea374985ad8ae'
+    newFile: !uuid '3b5e544d83311ec05b97c9f99c9034f054a74732'
+    oldFile: !uuid 'a20393518c08d675c2de1e06e06646b7c6fdf977'
+  /backend/Furion.Extras.Admin.NET/Entity:
+    newFile: !uuid '8b64ba88d55cf522db412506981d4bb2e73c1308'
+    oldFile: !uuid '96c95081fe0e4deeb021eb3e5e9ae472f89e5a91'
+  /backend/Furion.Extras.Admin.NET/Entity/DEntityBase.cs:
+    newFile: !uuid 'ea56966fa6db04759536a227259a762d44eda5d9'
+    oldFile: !uuid '643d69482918d1f6f65b34e6af11f4a87c1b278c'
+  /backend/Furion.Extras.Admin.NET/Furion.Extras.Admin.NET.csproj:
+    newFile: !uuid '1c459ca456f2914878616acafdf3d788be6637c3'
+    oldFile: !uuid 'd5d123688710237ade6f7aa67fb9c4b8dc8afe62'
+  /template:
+    newFile: !uuid '6334411150fc1c5ffe84b8222cf7d95545651bcb'
+    oldFile: !uuid '8f55a9adb04649b6fca2cf290f2354557ed5925d'
+  /template/Admin.NETTemplate:
+    newFile: !uuid '9ed50e76cb4102509c095dddd9ed2f985d3bb10c'
+    oldFile: !uuid '67c727f12a331675a98ece259adfea878f45b0d5'
+  /template/Admin.NETTemplate/Furion.Admin.NET.Template.App.nuspec:
+    newFile: !uuid '4467381f2c94220e0d779c5cf6c1151f4cbb733a'
+    oldFile: !uuid '8fc49119808507af7c67f0d6649277e2e5f18655'
+  /template/Admin.NETTemplate/src:
+    newFile: !uuid 'c83bd5d1af8ba03f2650934311dddfaa30a6e5ff'
+    oldFile: !uuid '28cb607ef52819a933240a5875a908e1483a4b8f'
+  /template/Admin.NETTemplate/src/Admin.NETApp.Core:
+    newFile: !uuid '56f44cbb599c976fbcf8bc5f15abea023ea342b6'
+    oldFile: !uuid 'bac17bc88c859fb056ccf75890ead94e4e871238'
+  /template/Admin.NETTemplate/src/Admin.NETApp.Core/Admin.NETApp.Core.csproj:
+    newFile: !uuid '0a054e5811f979d1adbe9905942a243824284c66'
+    oldFile: !uuid '700b3d6526f01a534aa6326b9a0ad03ad2c607a3'
+  /template/Admin.NETTemplate/src/Admin.NETApp.EntityFramework.Core:
+    newFile: !uuid '77d64e15e838758248e6e75fa2cd444aacb84aab'
+    oldFile: !uuid 'fe6851573dac6e0be38ad034bd3807bc57b4ed6e'
+  /template/Admin.NETTemplate/src/Admin.NETApp.EntityFramework.Core/DbContexts:
+    newFile: !uuid '96535bbcef56b6accf47166715da65656c3e0e16'
+    oldFile: !uuid 'ee12b79be9d1bfcefb00b91e157ef1e63d665c24'
+  /template/Admin.NETTemplate/src/Admin.NETApp.EntityFramework.Core/DbContexts/DefaultDbContext.cs:
+    newFile: !uuid '710021fc2c637f92955dd058f90a8e9dacaf18b1'
+    oldFile: !uuid 'dab5d400d854ad54839c2d729ca00bb1749132b8'
+gitCommitId: !uuid 'e9f450081866a28dc3459f5696eb1a77fc5faa4c'
 renames: {
   }
-revisionId: 486
+revisionId: 487
