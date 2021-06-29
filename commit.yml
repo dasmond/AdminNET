@@ -2,22 +2,37 @@
 branches: {
   }
 fileChange:
-  /backend:
-    newFile: !uuid '41cbe4169222241b56814d1473c5c4c1bf37bae0'
-    oldFile: !uuid 'c26c92e155e04c40df4a13bfc91a8870ffc2fc33'
-  /backend/Furion.Extras.Admin.NET:
-    newFile: !uuid 'fd34860568da2485225df6b701a015a38f00dcc3'
-    oldFile: !uuid '6fc3ebc53b9061d5402d5e54e681e7de63663861'
-  /backend/Furion.Extras.Admin.NET/Service:
-    newFile: !uuid 'e4aeceba7a8c99d8665deb55d37705ba1cdf2148'
-    oldFile: !uuid '991cb215534b44721e136e83b6ff0c1ecfe26b7a'
-  /backend/Furion.Extras.Admin.NET/Service/Config:
-    newFile: !uuid '05a07a471dff93de06fac48e1cb2c6ab8067d4ae'
-    oldFile: !uuid 'fcd8100927f047559dc3ad3e1f9d85b11082810e'
-  /backend/Furion.Extras.Admin.NET/Service/Config/SysConfigService.cs:
-    newFile: !uuid '297eee2d1758aa52c2cd27e196381dbe77f370ac'
-    oldFile: !uuid '3fe0aa9975e501f06031653d6ae7d28f917f7c36'
-gitCommitId: !uuid 'be58be53f1d22555e282299ab97fa6e31808ece0'
+  /frontend:
+    newFile: !uuid '4deb89ac4f8f65e7974ab1d3489a6015c3931e5f'
+    oldFile: !uuid '066c985344edb6cf7b3994eaa8703440db539f56'
+  /frontend/src:
+    newFile: !uuid '4cb707de6c12ba978bf7ee7f415afba53949ae9e'
+    oldFile: !uuid 'e2e181fb211831459568f51dea1176e4d953134b'
+  /frontend/src/store:
+    newFile: !uuid 'b73520635251bcbef0b92f7638add453758f445d'
+    oldFile: !uuid '78af659441f45dfd2b1205b07a5c540947c494af'
+  /frontend/src/store/modules:
+    newFile: !uuid 'bf5f16e438207edf482dfb0b75fe56237659cd5f'
+    oldFile: !uuid 'bc2880a512096e67877c631f3f6312db1a3aff4a'
+  /frontend/src/store/modules/user.js:
+    newFile: !uuid '07b888ea3e2e7a1c1f043db90b9eab707496418d'
+    oldFile: !uuid '290764a919bac9d8ca0d51320881dc82d5a7d11d'
+  /frontend/src/views:
+    newFile: !uuid '09c6814a2bbe74957aecc8a264a28277520ab378'
+    oldFile: !uuid 'f2c2be9a449a061a3c6b2ec15af5579a395e2782'
+  /frontend/src/views/system:
+    newFile: !uuid '848cdb7ce9db7da050bdd0c9b2d002f4a97e8524'
+    oldFile: !uuid '915ea7bc5db48951328214a0a355b22c705c196e'
+  /frontend/src/views/system/account:
+    newFile: !uuid '77232cff1887438aea9e0fe585acd8ebd9cf75e4'
+    oldFile: !uuid 'ddfa6acd33ba2869c2a89a663c16737e9e3546f7'
+  /frontend/src/views/system/account/settings:
+    newFile: !uuid 'b07ac52992641fc9f0b4b3a06f759eadc502566f'
+    oldFile: !uuid '57e4b62cb43c1f9d7f53bbe78c60c0e31ca3f662'
+  /frontend/src/views/system/account/settings/BaseSetting.vue:
+    newFile: !uuid '5de007325ba313d23a5a5de3628f7b5fbf049a68'
+    oldFile: !uuid 'faa96037bad531d8232c012489936f38e9c50014'
+gitCommitId: !uuid 'df01431227813b73e3c69725d4fd1aa9082f8d0b'
 renames: {
   }
-revisionId: 489
+revisionId: 490
