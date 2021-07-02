@@ -3,36 +3,12 @@ branches: {
   }
 fileChange:
   /frontend:
-    newFile: !uuid '4deb89ac4f8f65e7974ab1d3489a6015c3931e5f'
-    oldFile: !uuid '066c985344edb6cf7b3994eaa8703440db539f56'
-  /frontend/src:
-    newFile: !uuid '4cb707de6c12ba978bf7ee7f415afba53949ae9e'
-    oldFile: !uuid 'e2e181fb211831459568f51dea1176e4d953134b'
-  /frontend/src/store:
-    newFile: !uuid 'b73520635251bcbef0b92f7638add453758f445d'
-    oldFile: !uuid '78af659441f45dfd2b1205b07a5c540947c494af'
-  /frontend/src/store/modules:
-    newFile: !uuid 'bf5f16e438207edf482dfb0b75fe56237659cd5f'
-    oldFile: !uuid 'bc2880a512096e67877c631f3f6312db1a3aff4a'
-  /frontend/src/store/modules/user.js:
-    newFile: !uuid '07b888ea3e2e7a1c1f043db90b9eab707496418d'
-    oldFile: !uuid '290764a919bac9d8ca0d51320881dc82d5a7d11d'
-  /frontend/src/views:
-    newFile: !uuid '09c6814a2bbe74957aecc8a264a28277520ab378'
-    oldFile: !uuid 'f2c2be9a449a061a3c6b2ec15af5579a395e2782'
-  /frontend/src/views/system:
-    newFile: !uuid '848cdb7ce9db7da050bdd0c9b2d002f4a97e8524'
-    oldFile: !uuid '915ea7bc5db48951328214a0a355b22c705c196e'
-  /frontend/src/views/system/account:
-    newFile: !uuid '77232cff1887438aea9e0fe585acd8ebd9cf75e4'
-    oldFile: !uuid 'ddfa6acd33ba2869c2a89a663c16737e9e3546f7'
-  /frontend/src/views/system/account/settings:
-    newFile: !uuid 'b07ac52992641fc9f0b4b3a06f759eadc502566f'
-    oldFile: !uuid '57e4b62cb43c1f9d7f53bbe78c60c0e31ca3f662'
-  /frontend/src/views/system/account/settings/BaseSetting.vue:
-    newFile: !uuid '5de007325ba313d23a5a5de3628f7b5fbf049a68'
-    oldFile: !uuid 'faa96037bad531d8232c012489936f38e9c50014'
-gitCommitId: !uuid 'df01431227813b73e3c69725d4fd1aa9082f8d0b'
+    newFile: !uuid '63d6f69cdedc8a381b3a73d0b08686157eef9ba2'
+    oldFile: !uuid '4deb89ac4f8f65e7974ab1d3489a6015c3931e5f'
+  /frontend/vue.config.js:
+    newFile: !uuid 'cf74c630fc3be09a3f438d06bb743f0dab476dbf'
+    oldFile: !uuid 'baba63b471887864b0b7738e7a4424b3620fbd36'
+gitCommitId: !uuid 'b9e9310cd2fc949d0ddc0ebd0f6ddd32573bc139'
 renames: {
   }
-revisionId: 490
+revisionId: 491
