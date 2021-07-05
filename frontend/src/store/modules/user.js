@@ -85,6 +85,8 @@ const user = {
                 this.$message.error('预览错误：' + err.message)
               })
               // commit('SET_AVATAR', process.env.VUE_APP_API_BASE_URL + '/sysFileInfo/preview?id=' + data.avatar)
+            } else {
+              commit('SET_AVATAR', '/avatar2.jpg')
             }
             resolve(data)
           } else {
@@ -139,7 +141,7 @@ const user = {
       return new Promise((resolve) => {
         sysMenuChange({ application: application.code }).then((res) => {
           const apps = { 'code': '', 'name': '', 'active': '', 'menu': '' }
-          apps.active = true
+          apps.active = 'Y'
           apps.menu = res.data
           // eslint-disable-next-line camelcase
           const all_app_menu = Vue.ls.get(ALL_APPS_MENU)
@@ -147,8 +149,8 @@ const user = {
           const new_false_all_app_menu = []
           // 先去除所有默认的，以为此时切换的即将成为前端缓存默认的应用
           all_app_menu.forEach(item => {
-            if (item.active) {
-              item.active = false
+            if (item.active === 'Y') {
+              item.active = 'N'
             }
             new_false_all_app_menu.push(item)
           })
