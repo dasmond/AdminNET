@@ -7,6 +7,8 @@ namespace Furion.Extras.Admin.NET.Service
     {
         Task ClearExLog();
 
+        Task<dynamic> QueryExLogPageListV3(ExLogPageInput input);
+
         Task<dynamic> QueryExLogPageList([FromQuery] ExLogPageInput input);
     }
 }

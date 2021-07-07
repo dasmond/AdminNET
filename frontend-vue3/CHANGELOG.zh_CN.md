@@ -1,10 +1,35 @@
-## Wip
+## 2.4.1(2021-06-01)
+
+### ✨ Features
+
+- 可编辑表格新增`DatePicker`和`TimePicker`组件
+- `Tree` 组件新增`defaultExpandLevel`配置
+
+### ⚡ Performance Improvements
+
+- 菜单搜索默认聚焦
+
+### 🐛 Bug Fixes
+
+- 修复`CodeEditor`已知问题
+- 修复`i18n`控制台警告问题
+- 修复可编辑表格`align`配置不生效问题
+- 确保`axios`只对`Object`参数进行处理
+- 修复`Tree`组件 `defaultExpandAll` 配置失效
+- 修复`TableAction` 分割线丢失问题
+- 修复表格已知问题
+- 修复首次加载或改变语言导致重载时，不会设置 HTML 的 lang 属性
+
+## 2.4.0 (2021-05-25)
 
 ### ✨ Features
 
 - 新增图形编辑器示例
 - 新增代码编辑器(包含 Json 编辑器)
 - 新增 `JsonPreview`Json 数据查看组件
+- 表格的数据列(column)和操作列(actionColumn)的字段可以根据权限和业务来控制是否显示
+- 新增权限控制表格示例(AuthColumn.vue)
+- 新增用户登录过期示例
 
 ### ⚡ Performance Improvements
 
@@ -15,6 +40,7 @@
 - 修复黑暗主题刷新闪烁的白屏
 - 修复标签页关闭其他功能失效问题
 - 修复表单已知问题
+- 修复自动锁屏失效
 
 ## 2.3.0 (2021-04-10)
 

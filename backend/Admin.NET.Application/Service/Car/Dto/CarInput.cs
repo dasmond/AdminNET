@@ -10,7 +10,7 @@ using System.ComponentModel.DataAnnotations;
 namespace Admin.NET.Application.Dto
 {
     //TSearchDto, TAddDto, TDelDto, TUpdateDto, TImportDto
-    public class CarSeaarch : PageInputBase
+    public class CarSearch : PageInputBase
     {
         public string CarName { get; set; }
         public string CarNo { get; set; }

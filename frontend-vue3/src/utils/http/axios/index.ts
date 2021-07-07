@@ -11,6 +11,8 @@ import { checkStatus } from './checkStatus';
 import { useGlobSetting } from '/@/hooks/setting';
 import { useMessage } from '/@/hooks/web/useMessage';
 
+import router from '/@/router';
+import { PageEnum } from '/@/enums/pageEnum';
 import { RequestEnum, ResultEnum, ContentTypeEnum } from '/@/enums/httpEnum';
 
 import { isString } from '/@/utils/is';
@@ -18,7 +20,7 @@ import { getToken } from '/@/utils/auth';
 import { setObjToUrlParams, deepMerge } from '/@/utils';
 import { useErrorLogStoreWithOut } from '/@/store/modules/errorLog';
 
-import { errorResult } from './const';
+//import { errorResult } from './const';
 import { useI18n } from '/@/hooks/web/useI18n';
 import { createNow, formatRequestDate } from './helper';
 
@@ -31,11 +33,15 @@ const { createMessage, createErrorModal } = useMessage();
  */
 const transform: AxiosTransform = {
   /**
-   * @description: 处理请求数据
+   * @description: 处理请求数据。如果数据不是预期格式，可直接抛出错误
    */
   transformRequestHook: (res: AxiosResponse<Result>, options: RequestOptions) => {
     const { t } = useI18n();
-    const { isTransformRequestResult } = options;
+    const { isTransformRequestResult, isReturnNativeResponse } = options;
+    // 是否返回原生响应头 比如：需要获取响应头时使用该属性
+    if (isReturnNativeResponse) {
+      return res;
+    }
     // 不进行任何处理，直接返回
     // 用于页面代码可能需要直接获取code，data，message这些信息时开启
     if (!isTransformRequestResult) {
@@ -46,25 +52,11 @@ const transform: AxiosTransform = {
     const { data } = res;
     if (!data) {
       // return '[HTTP] Request has no return value';
-      return errorResult;
+      throw new Error(t('sys.api.apiRequestFailed'));
+      //return errorResult;
     }
     //  这里 code，result，message为 后台统一的字段，需要在 types.ts内修改为项目自己的接口返回格式
-    const { code, result, message } = data;
-
-    // 这里逻辑可以根据项目进行修改
-    const hasSuccess = data && Reflect.has(data, 'code') && code === ResultEnum.SUCCESS;
-    if (!hasSuccess) {
-      if (message) {
-        // errorMessageMode=‘modal’的时候会显示modal错误弹窗，而不是消息提示，用于一些比较重要的错误
-        if (options.errorMessageMode === 'modal') {
-          createErrorModal({ title: t('sys.api.errorTip'), content: message });
-        } else if (options.errorMessageMode === 'message') {
-          createMessage.error(message);
-        }
-      }
-      Promise.reject(new Error(message));
-      return errorResult;
-    }
+    const { code, result = data.data, message } = data;
 
     // 接口请求成功，直接返回结果
     if (code === ResultEnum.SUCCESS) {
@@ -74,25 +66,32 @@ const transform: AxiosTransform = {
     if (code === ResultEnum.ERROR) {
       if (message) {
         createMessage.error(data.message);
-        Promise.reject(new Error(message));
+        throw new Error(message);
       } else {
         const msg = t('sys.api.errorMessage');
         createMessage.error(msg);
-        Promise.reject(new Error(msg));
+        throw new Error(msg);
       }
-      return errorResult;
+      //return errorResult;
     }
     // 登录超时
     if (code === ResultEnum.TIMEOUT) {
-      const timeoutMsg = t('sys.api.timeoutMessage');
-      createErrorModal({
-        title: t('sys.api.operationFailed'),
-        content: timeoutMsg,
-      });
-      Promise.reject(new Error(timeoutMsg));
-      return errorResult;
+      router.push(PageEnum.BASE_LOGIN);
+      setTimeout(() => {
+        location.reload();
+        createMessage.error(message);
+      }, 500);
     }
-    return errorResult;
+    if (message) {
+      // errorMessageMode=‘modal’的时候会显示modal错误弹窗，而不是消息提示，用于一些比较重要的错误
+      if (options.errorMessageMode === 'modal') {
+        createErrorModal({ title: t('sys.api.errorTip'), content: message });
+      } else if (options.errorMessageMode === 'message') {
+        createMessage.error(message);
+      }
+    }
+    throw new Error(t('sys.api.apiRequestFailed'));
+    //return errorResult;
   },
 
   // 请求之前处理config
@@ -192,6 +191,8 @@ function createAxios(opt?: Partial<CreateAxiosOptions>) {
         requestOptions: {
           // 默认将prefix 添加到url
           joinPrefix: true,
+          // 是否返回原生响应头 比如：需要获取响应头时使用该属性
+          isReturnNativeResponse: false,
           // 需要对返回数据进行处理
           isTransformRequestResult: true,
           // post请求的时候添加参数到url

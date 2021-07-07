@@ -23,6 +23,17 @@ namespace Furion.Extras.Admin.NET.Service
         {
             _sysOpLogRep = sysOpLogRep;
         }
+        
+        /// <summary>
+        /// 分页查询
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        [HttpPost("/sysOpLog/page@3")]
+        public async Task<dynamic> QueryOpLogPageListV3(OpLogPageInput input)
+        {
+            return await QueryOpLogPageList(input);
+        }
 
         /// <summary>
         /// 分页查询操作日志

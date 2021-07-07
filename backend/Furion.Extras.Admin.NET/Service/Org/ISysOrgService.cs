@@ -20,6 +20,9 @@ namespace Furion.Extras.Admin.NET.Service
 
         Task<dynamic> QueryOrgPageList([FromQuery] OrgPageInput input);
 
+
+        Task<dynamic> QueryOrgPageListV3(OrgPageInput input);
+
         Task UpdateOrg(UpdateOrgInput input);
 
         Task<List<long>> GetAllDataScopeIdList();

@@ -21,6 +21,8 @@ namespace Furion.Extras.Admin.NET.Service
 
         Task<dynamic> QueryDictDataPageList([FromQuery] DictDataPageInput input);
 
+        Task<dynamic> QueryDictDataPageListV3(DictDataPageInput input);
+
         Task UpdateDictData(UpdateDictDataInput input);
     }
 }

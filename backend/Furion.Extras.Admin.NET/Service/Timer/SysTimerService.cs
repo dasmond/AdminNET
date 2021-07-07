@@ -62,6 +62,17 @@ namespace Furion.Extras.Admin.NET.Service
         }
 
         /// <summary>
+        /// 分页获取任务列表
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        [HttpPost("/sysTimers/page@3")]
+        public async Task<dynamic> GetTimerPageListV3(JobPageInput input)
+        {
+            return await GetTimerPageList(input);
+        }
+
+        /// <summary>
         /// 获取所有本地任务
         /// </summary>
         /// <returns></returns>

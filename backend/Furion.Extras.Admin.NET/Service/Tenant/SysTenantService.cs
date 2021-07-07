@@ -54,6 +54,17 @@ namespace Furion.Extras.Admin.NET.Service
         }
 
         /// <summary>
+        /// 分页查询租户
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        [HttpPost("/sysTenant/page@3")]
+        public async Task<dynamic> QueryTenantPageListV3(TenantPageInput input)
+        {
+            return await QueryTenantPageList(input);
+        }
+
+        /// <summary>
         /// 增加租户
         /// </summary>
         /// <param name="input"></param>

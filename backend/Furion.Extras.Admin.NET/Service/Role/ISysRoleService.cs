@@ -32,6 +32,8 @@ namespace Furion.Extras.Admin.NET.Service
 
         Task<dynamic> QueryRolePageList([FromQuery] RolePageInput input);
 
+        Task<dynamic> QueryRolePageListV3(RolePageInput input);
+
         Task UpdateRole(UpdateRoleInput input);
     }
 }

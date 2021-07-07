@@ -5,8 +5,10 @@ export default {
     errorMessage: '操作失败,系统异常!',
     timeoutMessage: '登录超时,请重新登录!',
     apiTimeoutMessage: '接口请求超时,请刷新页面重试!',
+    apiRequestFailed: '请求出错，请稍候重试',
     networkException: '网络异常',
     networkExceptionMsg: '请检查您的网络连接是否正常!',
+    assertParamExists: '调用 {0} 时, 参数 {1} 不可为空或未定义.',
 
     errMsg401: '用户没有权限（令牌、用户名、密码错误）!',
     errMsg403: '用户得到授权，但是访问是被禁止的。!',
@@ -65,7 +67,7 @@ export default {
     forgetFormTitle: '重置密码',
 
     signInTitle: '开箱即用的中后台管理系统',
-    signInDesc: '基于 Furion 框架，让开发更简单，更通用，更流行',
+    signInDesc: '输入您的个人详细信息开始使用！',
     policy: '我同意xxx隐私政策',
     scanSign: `扫码后点击"确认"，即可完成登录`,
 

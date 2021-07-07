@@ -168,6 +168,87 @@ namespace Furion.Extras.Admin.NET.Service
         }
 
         /// <summary>
+        /// 获取当前登录用户基本信息
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("/getLoginUser@3")]
+        public async Task<LoginUserOutput> GetLoginUserV3Async()
+        {
+            var user = _userManager.User;
+            if (user == null)
+                throw Oops.Oh(ErrorCode.D1011);
+            var userId = user.Id;
+
+            var httpContext = _httpContextAccessor.HttpContext;
+            var loginOutput = user.Adapt<LoginUserOutput>();
+
+            loginOutput.LastLoginTime = user.LastLoginTime = DateTimeOffset.Now;
+            loginOutput.LastLoginIp = user.LastLoginIp = httpContext.GetRemoteIpAddressToIPv4();
+
+            //var ipInfo = IpTool.Search(loginOutput.LastLoginIp);
+            //loginOutput.LastLoginAddress = ipInfo.Country + ipInfo.Province + ipInfo.City + "[" + ipInfo.NetworkOperator + "][" + ipInfo.Latitude + ipInfo.Longitude + "]";
+
+            var clent = Parser.GetDefault().Parse(httpContext.Request.Headers["User-Agent"]);
+            loginOutput.LastLoginBrowser = clent.UA.Family + clent.UA.Major;
+            loginOutput.LastLoginOs = clent.OS.Family + clent.OS.Major;
+
+            // 员工信息
+            loginOutput.LoginEmpInfo = await _sysEmpService.GetEmpInfo(userId);
+
+            // 角色信息
+            loginOutput.Roles = await _sysRoleService.GetUserRoleList(userId);
+
+            MessageCenter.Send("create:vislog", new SysLogVis
+            {
+                Name = loginOutput.Name,
+                Success = YesOrNot.Y,
+                Message = "V3登录成功",
+                Ip = loginOutput.LastLoginIp,
+                Browser = loginOutput.LastLoginBrowser,
+                Os = loginOutput.LastLoginOs,
+                VisType = LoginType.LOGIN,
+                VisTime = loginOutput.LastLoginTime,
+                Account = loginOutput.Account
+            });
+            return loginOutput;
+        }
+
+        /// <summary>
+        /// 获取当前登录用户权限信息
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("/getLoginUserAuth")]
+        public async Task<LoginAuthOutput> GetLoginUserAuthAsync()
+        {
+            var user = _userManager.User;
+            if (user == null)
+                throw Oops.Oh(ErrorCode.D1011);
+            var userId = user.Id;
+
+            var loginOutput = new LoginAuthOutput
+            {
+                // 权限信息
+                Permissions = await _sysMenuService.GetLoginPermissionList(userId),
+                
+                // 数据范围信息(机构Id集合)
+                DataScopes = await _sysUserService.GetUserDataScopeIdList(userId),
+
+                // 具备应用信息（多系统，默认激活一个，可根据系统切换菜单）,返回的结果中第一个为激活的系统
+                Apps = await _sysAppService.GetLoginApps(userId)
+            };
+
+            // 菜单信息
+            if (loginOutput.Apps.Count > 0)
+            {
+                var activeApp = loginOutput.Apps.FirstOrDefault(u => u.Active == YesOrNot.Y.ToString());
+                var defaultActiveAppCode = activeApp != null ? activeApp.Code : loginOutput.Apps.FirstOrDefault()?.Code;
+                loginOutput.Menus = await _sysMenuService.GetLoginMenusAntDesign(userId, defaultActiveAppCode);
+            }
+            
+            return loginOutput;
+        }
+        
+        /// <summary>
         /// 退出
         /// </summary>
         /// <returns></returns>

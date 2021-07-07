@@ -42,7 +42,18 @@ if(@column.EffectType == "fk" && @column.FkEntityName != "" && @column.FkColumnN
 }
             _rep = rep;
         }
-
+        
+        /// <summary>
+        /// 分页查询@(@Model.BusName)
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        [HttpGet("/@Model.ClassName/page@3")]
+        public async Task<dynamic> PageV3(@(@Model.ClassName)Input input)
+        {
+            return await Page(input);
+        }
+        
         /// <summary>
         /// 分页查询@(@Model.BusName)
         /// </summary>

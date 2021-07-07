@@ -56,6 +56,17 @@ namespace Furion.Extras.Admin.NET.Service.Notice
         }
 
         /// <summary>
+        /// 分页查询通知公告
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        [HttpPost("/sysNotice/page@3")]
+        public async Task<dynamic> QueryNoticePageListV3(NoticePageInput input)
+        {
+            return await QueryNoticePageList(input);
+        }
+
+        /// <summary>
         /// 增加通知公告
         /// </summary>
         /// <param name="input"></param>

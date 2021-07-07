@@ -20,6 +20,8 @@ namespace Furion.Extras.Admin.NET.Service
 
         Task<dynamic> QueryTenantPageList([FromQuery] TenantPageInput input);
 
+        Task<dynamic> QueryTenantPageListV3(TenantPageInput input);
+
         Task ResetUserPwd(QueryTenantInput input);
 
         Task UpdateTenant(UpdateTenantInput input);

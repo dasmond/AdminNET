@@ -1,5 +1,6 @@
 import { ErrorTypeEnum } from '/@/enums/exceptionEnum';
 import { MenuModeEnum, MenuTypeEnum } from '/@/enums/menuEnum';
+import {LoginOutput} from "/@/api_base/models";
 
 // Lock screen information
 export interface LockInfo {
@@ -29,11 +30,7 @@ export interface ErrorLogInfo {
   time?: string;
 }
 
-export interface UserInfo {
-  userId: string | number;
-  username: string;
-  realName: string;
-  desc?: string;
+export interface UserInfo extends LoginOutput{
 }
 
 export interface BeforeMiniState {

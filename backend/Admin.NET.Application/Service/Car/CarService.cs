@@ -12,7 +12,7 @@ namespace Admin.NET.Application
 
     [Route("api/[controller]")]
     [ApiDescriptionSettings("自己的业务", Name = "Car", Order = 90)]
-    public class CarService : BaseService<Car, CarSeaarch, CarAdd, CarUpdate, CarImport, CarDetail, CarPageList, CarExport, CarPrint>, IDynamicApiController, ITransient
+    public class CarService : BaseService<Car, CarSearch, CarAdd, CarUpdate, CarImport, CarDetail, CarPageList, CarExport, CarPrint>, IDynamicApiController, ITransient
     {
         public CarService(IRepository<Car> repository) : base(repository)
         {
