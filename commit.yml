@@ -2,34 +2,16 @@
 branches: {
   }
 fileChange:
-  /frontend:
-    newFile: !uuid '99ba73082142b780b6ddd73fb9f07bc80014499f'
-    oldFile: !uuid '63d6f69cdedc8a381b3a73d0b08686157eef9ba2'
-  /frontend/src:
-    newFile: !uuid '1f8c830eb6624313b4d1a2c3ee0dffe35594e81a'
-    oldFile: !uuid '4cb707de6c12ba978bf7ee7f415afba53949ae9e'
-  /frontend/src/components:
-    newFile: !uuid '90921587c03fc2dfc4ccb7ccbc24d3c598719185'
-    oldFile: !uuid '8df60582182c38dfe3ea90a46437c92fdd940a9a'
-  /frontend/src/components/GlobalHeader:
-    newFile: !uuid '7851d64ffb28e9a5b60f1783e3246fdf052d6b4f'
-    oldFile: !uuid 'b93f876c9c09224c6a9a51ee5592f8d77e2e371a'
-  /frontend/src/components/GlobalHeader/GlobalHeader.vue:
-    newFile: !uuid 'bccb7f89243615cbb7c11c6d96824cdc9193017a'
-    oldFile: !uuid '08b1c84d18b88e874380b50a2bf58b301a9797fb'
-  /frontend/src/permission.js:
-    newFile: !uuid 'fab30caab491c7160482c7056c2bdcd3b858939b'
-    oldFile: !uuid '5de7ac61edeae48f6649e3459d0368a2339a23a4'
-  /frontend/src/store:
-    newFile: !uuid '7e8462d6b06e31dd2bffa19cb6075430c6dacd93'
-    oldFile: !uuid 'b73520635251bcbef0b92f7638add453758f445d'
-  /frontend/src/store/modules:
-    newFile: !uuid 'c43b07735aacd6987c740cf4b5af730708629b9a'
-    oldFile: !uuid 'bf5f16e438207edf482dfb0b75fe56237659cd5f'
-  /frontend/src/store/modules/user.js:
-    newFile: !uuid 'e1f7965c2909bb7ea66bcd48a4db192dbd23e52b'
-    oldFile: !uuid '07b888ea3e2e7a1c1f043db90b9eab707496418d'
-gitCommitId: !uuid '385ee2764f0e7a569225995f4c1ddcbf099e67d2'
+  /backend:
+    newFile: !uuid '8caa77dfe7bf4bf4af9d35749bb0b71aa22c58e4'
+    oldFile: !uuid '29e7d79fe1a936cdfa28b0b8c31aee7483a58904'
+  /backend/Furion.Extras.Admin.NET:
+    newFile: !uuid 'a694cb48a2a54453e843225bed81a80f730a9371'
+    oldFile: !uuid '0b3558ac141d494a86c158163580b6a64fc8b98e'
+  /backend/Furion.Extras.Admin.NET/Furion.Extras.Admin.NET.csproj:
+    newFile: !uuid '6089df6427b352b35523c1ae9b086334db8906a7'
+    oldFile: !uuid 'f9363bc5c761353b0aabd8802d79ad8a5b06123f'
+gitCommitId: !uuid '7ccc0c2f6655f38ede718c2d63e9b48ccc424593'
 renames: {
   }
-revisionId: 493
+revisionId: 494
