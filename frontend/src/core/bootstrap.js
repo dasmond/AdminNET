@@ -1,3 +1,11 @@
+/*
+ * @Author: your name
+ * @Date: 2021-05-18 23:01:53
+ * @LastEditTime: 2021-05-19 00:57:22
+ * @LastEditors: your name
+ * @Description: In User Settings Edit
+ * @FilePath: \frontend\src\core\bootstrap.js
+ */
 import Vue from 'vue'
 import store from '@/store/'
 import {
@@ -11,13 +19,13 @@ import {
   DEFAULT_FIXED_HEADER_HIDDEN,
   DEFAULT_FIXED_SIDEMENU,
   DEFAULT_CONTENT_WIDTH_TYPE,
-  DEFAULT_MULTI_TAB
+  DEFAULT_MULTI_TAB,
+  DEFAULT_CRUMBS_STATE
 } from '@/store/mutation-types'
+
 import config from '@/config/defaultSettings'
 
 export default function Initializer () {
-  // console.log(`API_URL: ${process.env.VUE_APP_API_BASE_URL}`)
-
   store.commit('SET_SIDEBAR_TYPE', Vue.ls.get(SIDEBAR_TYPE, true))
   store.commit('TOGGLE_THEME', Vue.ls.get(DEFAULT_THEME, config.navTheme))
   store.commit('TOGGLE_LAYOUT_MODE', Vue.ls.get(DEFAULT_LAYOUT_MODE, config.layout))
@@ -28,7 +36,6 @@ export default function Initializer () {
   store.commit('TOGGLE_WEAK', Vue.ls.get(DEFAULT_COLOR_WEAK, config.colorWeak))
   store.commit('TOGGLE_COLOR', Vue.ls.get(DEFAULT_COLOR, config.primaryColor))
   store.commit('TOGGLE_MULTI_TAB', Vue.ls.get(DEFAULT_MULTI_TAB, config.multiTab))
+  store.commit('TOGGLE_CRUMBS_STATE', Vue.ls.get(DEFAULT_CRUMBS_STATE, config.crumbsSate))
   store.commit('SET_TOKEN', Vue.ls.get(ACCESS_TOKEN))
-
-  // last step
 }

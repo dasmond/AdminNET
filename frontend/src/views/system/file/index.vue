@@ -196,7 +196,7 @@
         // eslint-disable-next-line handle-callback-err
         }).catch((err) => {
           this.cardLoading = false
-          this.$message.error('下载错误：获取文件流错误')
+          this.$message.error('下载错误：获取文件流错误' + err)
         })
       },
       downloadfile (res) {

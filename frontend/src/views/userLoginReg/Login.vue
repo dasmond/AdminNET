@@ -21,8 +21,7 @@
               type="text"
               placeholder="账号"
               v-decorator="[
-                'account',
-                { initialValue:'superAdmin', rules: [{ required: true, message: '请输入帐户名' }, { validator: handleUsernameOrEmail }], validateTrigger: 'change'}
+                'account',{ initialValue:'superAdmin', rules: [{ required: true, message: '请输入帐户名' }, { validator: handleUsernameOrEmail }], validateTrigger: 'change'}
               ]"
             >
               <a-icon slot="prefix" type="user" :style="{ color: 'rgba(0,0,0,.25)' }"/>
@@ -219,14 +218,14 @@ export default {
           }
           const loginParams = { ...values }
           delete loginParams.account
-          loginParams[!state.loginType ? 'email' : 'account'] = values.account
+          loginParams[!state.loginType ? 'account' : 'account'] = values.account
           loginParams.password = values.password
           if (this.tenantOpen) {
             loginParams.tenantCode = values.tenantCode
           }
           Login(loginParams)
             .then((res) => this.loginSuccess(res))
-            .catch(err => this.requestFailed(err))
+            .catch(err => this.requestFailed(JSON.stringify(err)))
             .finally(() => {
               state.loginBtn = false
             })
@@ -243,7 +242,7 @@ export default {
     verifySuccess(params) {
       this.loginParams.code = params.captchaVerification
       this.Login(this.loginParams).then((res) => this.loginSuccess(res))
-        .catch(err => this.requestFailed(err))
+        .catch(err => this.requestFailed(JSON.stringify(err)))
         .finally(() => {
           this.state.loginBtn = false
         })

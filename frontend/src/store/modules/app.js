@@ -9,7 +9,8 @@ import {
   DEFAULT_FIXED_SIDEMENU,
   DEFAULT_FIXED_HEADER_HIDDEN,
   DEFAULT_CONTENT_WIDTH_TYPE,
-  DEFAULT_MULTI_TAB
+  DEFAULT_MULTI_TAB,
+  DEFAULT_CRUMBS_STATE
 } from '@/store/mutation-types'
 
 const app = {
@@ -24,7 +25,9 @@ const app = {
     autoHideHeader: false,
     color: null,
     weak: false,
-    multiTab: true
+    multiTab: true,
+    crumbsState: true,
+    hasError: false
   },
   mutations: {
     SET_SIDEBAR_TYPE: (state, type) => {
@@ -74,6 +77,14 @@ const app = {
     TOGGLE_MULTI_TAB: (state, bool) => {
       Vue.ls.set(DEFAULT_MULTI_TAB, bool)
       state.multiTab = bool
+    },
+    TOGGLE_CRUMBS_STATE: (state, bool) => {
+      debugger
+      Vue.ls.set(DEFAULT_CRUMBS_STATE, bool)
+      state.crumbsState = bool
+    },
+    SET_HAS_ERROR: (state, bool) => {
+      state.hasError = bool
     }
   },
   actions: {
@@ -115,6 +126,12 @@ const app = {
     },
     ToggleMultiTab ({ commit }, bool) {
       commit('TOGGLE_MULTI_TAB', bool)
+    },
+    ToggleCrumbsState ({ commit }, bool) {
+      commit('TOGGLE_CRUMBS_STATE', bool)
+    },
+    SetHasError ({ commit }, bool) {
+      commit('SET_HAS_ERROR', bool)
     }
   }
 }

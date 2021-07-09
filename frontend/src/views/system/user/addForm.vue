@@ -47,7 +47,7 @@
               <a-input
                 placeholder="请输入密码"
                 type="password"
-                v-decorator="['password', {rules: [{required: true, message: '请输入密码！'},{
+                v-decorator="['password', {rules: [{required: true, min: 5, message: '请输入至少五个字符的密码！'},{
                   validator: validateToNextPassword,
                 },]}]" />
             </a-form-item>
@@ -121,7 +121,7 @@
               :wrapperCol="wrapperCol"
               has-feedback
             >
-              <a-input placeholder="请输入邮箱" v-decorator="['email']" />
+              <a-input placeholder="请输入邮箱" v-decorator="['email',{rules: [{ required: true, message: '请输入电子邮箱！' }]}]" />
             </a-form-item>
           </a-form>
         </a-col>
@@ -445,7 +445,7 @@
                 this.$emit('ok', values)
                 this.handleCancel()
               } else {
-                this.$message.error('新增失败：' + res.message)
+                this.$message.error('新增失败：' + JSON.stringify(res.message))
               }
             }).finally((res) => {
               this.confirmLoading = false

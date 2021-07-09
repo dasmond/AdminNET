@@ -19,7 +19,7 @@ const assetsCDN = {
   css: [],
   // https://unpkg.com/browse/vue@2.6.10/
   js: [
-    '//cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.min.js',
+    '//cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.min.js',
     '//cdn.jsdelivr.net/npm/vue-router@3.1.3/dist/vue-router.min.js',
     '//cdn.jsdelivr.net/npm/vuex@3.1.1/dist/vuex.min.js',
     '//cdn.jsdelivr.net/npm/axios@0.19.0/dist/axios.min.js'
@@ -28,6 +28,8 @@ const assetsCDN = {
 
 // vue.config.js
 const vueConfig = {
+  lintOnSave: false,//关闭eslintrc语法检查
+  
   configureWebpack: {
     // webpack plugins
     plugins: [
@@ -72,8 +74,8 @@ const vueConfig = {
     loaderOptions: {
       less: {
         modifyVars: {
-          'primary-color': '#1890FF',
-          'layout-color': '#1890FF',
+          'primary-color': '#FA541C',
+          'layout-color': '#FA541C',
           'border-radius-base': '2px'
         },
         // DO NOT REMOVE THIS LINE
@@ -92,6 +94,11 @@ const vueConfig = {
         pathRewrite: {
           '^/api': '' // 需要rewrite的,
         }
+      },
+      '/hubs': {
+        target: process.env.VUE_APP_SOCKET_BASE_URL,
+        ws: true,
+        changeOrigin: true
       }
     }
   },
