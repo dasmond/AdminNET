@@ -2,22 +2,31 @@
 branches: {
   }
 fileChange:
-  /backend:
-    newFile: !uuid 'e445771fde0bd54706bbb01daf0489128335ca4a'
-    oldFile: !uuid '237250db1f81bc64ae242e73d3702676c19f4a30'
-  /backend/Furion.Extras.Admin.NET:
-    newFile: !uuid '6f21c2bd45c46adaf4ec7313b26fe08503e216b6'
-    oldFile: !uuid '3281f9ad672180ee01ed6bf36dcdcc2a8bdf44c8'
-  /backend/Furion.Extras.Admin.NET/Service:
-    newFile: !uuid 'e6b0e424a75e19c360b346357f07d7f90e640a9e'
-    oldFile: !uuid 'd8296f34daafb948a05429468ea65478cfdfb39d'
-  /backend/Furion.Extras.Admin.NET/Service/Role:
-    newFile: !uuid 'a488967f3b7981345a44f24962aab232b22ce56b'
-    oldFile: !uuid 'b47ef60ec4d7d7e570ca4ec1a33fce0837257d22'
-  /backend/Furion.Extras.Admin.NET/Service/Role/SysRoleMenuService.cs:
-    newFile: !uuid 'df0c4bb99cf3ec658d6633090fefcd373d18499d'
-    oldFile: !uuid 'dc3790621c8d9df8abb3d810898fc61d7020bbcc'
-gitCommitId: !uuid '15f086ab26781b46b6af49211da357909effc180'
+  /frontend:
+    newFile: !uuid 'ffa70fad7de4134df62bb46b92ee34ca97e5ba66'
+    oldFile: !uuid 'd260d8d03bf7e5ff08355b9c4990757c922f89fe'
+  /frontend/src:
+    newFile: !uuid '13678e586e695f19c7ea08cfba5f4d46dba8b100'
+    oldFile: !uuid '2b172e7377c9aa1a11f0d8b6aaff2512cd86f8da'
+  /frontend/src/store:
+    newFile: !uuid '4d7cef325e97195e4f592f9e9d875486de5af565'
+    oldFile: !uuid '7e8462d6b06e31dd2bffa19cb6075430c6dacd93'
+  /frontend/src/store/modules:
+    newFile: !uuid '98ff68062dc420507bff657577b643e100a1d308'
+    oldFile: !uuid 'c43b07735aacd6987c740cf4b5af730708629b9a'
+  /frontend/src/store/modules/app.js:
+    newFile: !uuid '24bf36533087e252473282fbd366c4321a197643'
+    oldFile: !uuid 'a2d51a897d8584164780afd27135352053ac7e1d'
+  /frontend/src/views:
+    newFile: !uuid '3a6ea424f8ae0fa896fe9dd5af6d477fcb191c75'
+    oldFile: !uuid 'a0343a3c10bc6c30a84bf2903c51eb7e786da52a'
+  /frontend/src/views/userLoginReg:
+    newFile: !uuid '255605b2425a2838b25272d1b99657cf011cdefe'
+    oldFile: !uuid 'b20ecd8f08e6b7766734140c76717743f953ac90'
+  /frontend/src/views/userLoginReg/Login.vue:
+    newFile: !uuid 'a2e9d3abc9ce09e80e2570cfb30b2367e3d8bf7f'
+    oldFile: !uuid '8891822154aaba80b85683328d3e3dd68dee2bad'
+gitCommitId: !uuid 'a356641be2f8a6616250aa15275dc6579f4583e5'
 renames: {
   }
-revisionId: 497
+revisionId: 498
