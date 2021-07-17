@@ -2,73 +2,43 @@
 branches: {
   }
 fileChange:
+  /.gitignore:
+    newFile: !uuid '72de34f1eabb388d76d2d82499542f742620988f'
+    oldFile: !uuid '9fdef0ed608cb3903e9aaff8622eeec39faf3780'
   /backend:
-    newFile: !uuid '6e2d1a20ec72151d22d2ffeb3b04dcca90a18c1e'
-    oldFile: !uuid '8caa77dfe7bf4bf4af9d35749bb0b71aa22c58e4'
-  /backend/Admin.NET.EntityFramework.Core:
-    newFile: !uuid 'efd7799dcf398cb75a29f755903bcea5303baae1'
-    oldFile: !uuid '181e4d2ec454e45d7e55a63fcf562225346abbb0'
-  /backend/Admin.NET.EntityFramework.Core/Admin.NET.EntityFramework.Core.csproj:
-    newFile: !uuid 'a4b3fe17f3b44bdc6cc51bccad00eb89443fe41c'
-    oldFile: !uuid '193193a097fd9fed2689d7444367c6d8c1644168'
-  /backend/Admin.NET.Web.Entry:
-    newFile: !uuid '1d66941c86464a41a8ba762f9a2e335ee866c933'
-    oldFile: !uuid 'ac842dcc555809e22ddf0e4d153972782ca2dbb5'
-  /backend/Admin.NET.Web.Entry/Admin.NET.Web.Entry.csproj:
-    newFile: !uuid '1583482bcdba1e08197d220eae8aaecb3e6672b8'
-    oldFile: !uuid '964fe803018bf0591aef4cf64edb63f38257386d'
+    newFile: !uuid '237250db1f81bc64ae242e73d3702676c19f4a30'
+    oldFile: !uuid '6e2d1a20ec72151d22d2ffeb3b04dcca90a18c1e'
   /backend/Furion.Extras.Admin.NET:
-    newFile: !uuid '77d0927ad5a3e72181974392686177cc9500250e'
-    oldFile: !uuid 'a694cb48a2a54453e843225bed81a80f730a9371'
-  /backend/Furion.Extras.Admin.NET/Furion.Extras.Admin.NET.csproj:
-    newFile: !uuid '791a6bddf0c547540ba5a4b0bd7bfb9ba2044a38'
-    oldFile: !uuid '6089df6427b352b35523c1ae9b086334db8906a7'
-  /backend/Furion.Extras.Admin.NET/Util:
-    newFile: !uuid 'cb6d674a3d39b75d69eee547dc10365a6679b6cd'
-    oldFile: !uuid 'fe820dcf95a377889788a77d3bd0d3750e5aaa01'
-  /backend/Furion.Extras.Admin.NET/Util/NewtonsoftJsonSerializerProvider.cs:
-    newFile: !uuid '463b74f31b530f9373fa1a75dcc8c34bc320d3f5'
-    oldFile: !uuid '8180d11d9281fdf3e679ae5bfbd3e5b1fe83e672'
-  /template:
-    newFile: !uuid '0ebcb4880343d4c06bd11a241209030fec8e0357'
-    oldFile: !uuid '00ee5570e5fb92e8c7f0a5336847ea45fd7059ab'
-  /template/Admin.NETTemplate:
-    newFile: !uuid '77795223e7adfff618af5e578de455492bb7cbbb'
-    oldFile: !uuid 'b81abfd7c12a723beaff8b770fb9263e6b318183'
-  /template/Admin.NETTemplate/Furion.Admin.NET.Template.App.nuspec:
-    newFile: !uuid 'ecec267b0e9e4285fe71f5d7cd93ad646fa8bf03'
-    oldFile: !uuid '8c0bb37b405a929246ddfd7566fba20948e3a498'
-  /template/Admin.NETTemplate/src:
-    newFile: !uuid '7ab5e76842b11821d49d9335cb6778c03f061560'
-    oldFile: !uuid '8bd2b0c54a66e718a7a9ac9675ba44252da2b70f'
-  /template/Admin.NETTemplate/src/Admin.NETApp.Core:
-    newFile: !uuid '570ea54f705a7657a7aa9d01df9ba0647cca6cc4'
-    oldFile: !uuid 'b987257e7723247d8146514ecde5f808a7aa3822'
-  /template/Admin.NETTemplate/src/Admin.NETApp.Core/Admin.NETApp.Core.csproj:
-    newFile: !uuid 'e25e955c288a06de5aa11ae7620d3c1695a6b9db'
-    oldFile: !uuid '559d4d94394e376fb518e875234faa8b5e583e00'
-  /template/Admin.NETTemplate/src/Admin.NETApp.EntityFramework.Core:
-    newFile: !uuid '88676e8b3fafb3eff213038c538f9b9d079afef8'
-    oldFile: !uuid '77d64e15e838758248e6e75fa2cd444aacb84aab'
-  /template/Admin.NETTemplate/src/Admin.NETApp.EntityFramework.Core/Admin.NETApp.EntityFramework.Core.csproj:
-    newFile: !uuid 'c1ae9fdd08b42e887be9d01e8c41ce4cc22d743a'
-    oldFile: !uuid '5275f0c85d9d049dc1ef93bdfc09f12e2d0448af'
-  /template/Admin.NETTemplate/src/Admin.NETApp.Web.Core:
-    newFile: !uuid 'db1380962c6a2fa322d759818e4d615a52137ecb'
-    oldFile: !uuid 'af1ae437565e2d976ffd79257349d9a41d02366f'
-  /template/Admin.NETTemplate/src/Admin.NETApp.Web.Core/Handlers:
-    newFile: !uuid 'd5b5e6dc38a8ba591382dff10a9be14cc6e5ef16'
-    oldFile: !uuid 'cc560393e0c3773b992457ca4d4273b7dfafb4b3'
-  /template/Admin.NETTemplate/src/Admin.NETApp.Web.Core/Handlers/JwtHandler.cs:
-    newFile: !uuid 'd2ac576a56729e2652db59ffe55ce41bfa16ec4c'
-    oldFile: !uuid '15fafc13e6f98f1c070e7c9ef2baf96fcd04b773'
-  /template/Admin.NETTemplate/src/Admin.NETApp.Web.Entry:
-    newFile: !uuid 'f14d210f940c98a04e26addca86adc1d84af3929'
-    oldFile: !uuid '6df2cf8fcff489e3abab2d298cd1334c66c4afac'
-  /template/Admin.NETTemplate/src/Admin.NETApp.Web.Entry/Admin.NETApp.Web.Entry.csproj:
-    newFile: !uuid '1c1eb39681582b8e41db2ad2685d7a71aa8eaf5e'
-    oldFile: !uuid 'd05b3fa763a6c398250b7a23dbd6bd03c1c0a54d'
-gitCommitId: !uuid '7af66c91f072fec5850e158063d55d4b229eccee'
+    newFile: !uuid '3281f9ad672180ee01ed6bf36dcdcc2a8bdf44c8'
+    oldFile: !uuid '77d0927ad5a3e72181974392686177cc9500250e'
+  /backend/Furion.Extras.Admin.NET/Service:
+    newFile: !uuid 'd8296f34daafb948a05429468ea65478cfdfb39d'
+    oldFile: !uuid 'dc3042240ec614a1ff3eec1e4f028f4a18e5db08'
+  /backend/Furion.Extras.Admin.NET/Service/Role:
+    newFile: !uuid 'b47ef60ec4d7d7e570ca4ec1a33fce0837257d22'
+    oldFile: !uuid 'c3fe39564b9d0828cc2ad1234271e311a32aa0d0'
+  /backend/Furion.Extras.Admin.NET/Service/Role/SysRoleMenuService.cs:
+    newFile: !uuid 'dc3790621c8d9df8abb3d810898fc61d7020bbcc'
+    oldFile: !uuid '9973aa86870e440db17c8c82f912fe1558c0030c'
+  /frontend:
+    newFile: !uuid 'd260d8d03bf7e5ff08355b9c4990757c922f89fe'
+    oldFile: !uuid '99ba73082142b780b6ddd73fb9f07bc80014499f'
+  /frontend/src:
+    newFile: !uuid '2b172e7377c9aa1a11f0d8b6aaff2512cd86f8da'
+    oldFile: !uuid '1f8c830eb6624313b4d1a2c3ee0dffe35594e81a'
+  /frontend/src/views:
+    newFile: !uuid 'a0343a3c10bc6c30a84bf2903c51eb7e786da52a'
+    oldFile: !uuid '09c6814a2bbe74957aecc8a264a28277520ab378'
+  /frontend/src/views/system:
+    newFile: !uuid 'efb2bd317f0649e1c9f251514e9f10a315703425'
+    oldFile: !uuid '848cdb7ce9db7da050bdd0c9b2d002f4a97e8524'
+  /frontend/src/views/system/menu:
+    newFile: !uuid 'cf889e387b77195206acb6c9939b5a12aeba695b'
+    oldFile: !uuid 'da229133e693165f90ad4baac1a74d371f28f190'
+  /frontend/src/views/system/menu/editForm.vue:
+    newFile: !uuid '74af8906192e4ff784369dec1179fc182aa14be2'
+    oldFile: !uuid 'e25d5e393b2aacec8f1d10be59b10729b2ae81dd'
+gitCommitId: !uuid 'ec0247196aa6f880375cd1e075b1e709a7ef06c8'
 renames: {
   }
-revisionId: 495
+revisionId: 496
