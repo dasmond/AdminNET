@@ -2,31 +2,52 @@
 branches: {
   }
 fileChange:
-  /frontend:
-    newFile: !uuid 'ffa70fad7de4134df62bb46b92ee34ca97e5ba66'
-    oldFile: !uuid 'd260d8d03bf7e5ff08355b9c4990757c922f89fe'
-  /frontend/src:
-    newFile: !uuid '13678e586e695f19c7ea08cfba5f4d46dba8b100'
-    oldFile: !uuid '2b172e7377c9aa1a11f0d8b6aaff2512cd86f8da'
-  /frontend/src/store:
-    newFile: !uuid '4d7cef325e97195e4f592f9e9d875486de5af565'
-    oldFile: !uuid '7e8462d6b06e31dd2bffa19cb6075430c6dacd93'
-  /frontend/src/store/modules:
-    newFile: !uuid '98ff68062dc420507bff657577b643e100a1d308'
-    oldFile: !uuid 'c43b07735aacd6987c740cf4b5af730708629b9a'
-  /frontend/src/store/modules/app.js:
-    newFile: !uuid '24bf36533087e252473282fbd366c4321a197643'
-    oldFile: !uuid 'a2d51a897d8584164780afd27135352053ac7e1d'
-  /frontend/src/views:
-    newFile: !uuid '3a6ea424f8ae0fa896fe9dd5af6d477fcb191c75'
-    oldFile: !uuid 'a0343a3c10bc6c30a84bf2903c51eb7e786da52a'
-  /frontend/src/views/userLoginReg:
-    newFile: !uuid '255605b2425a2838b25272d1b99657cf011cdefe'
-    oldFile: !uuid 'b20ecd8f08e6b7766734140c76717743f953ac90'
-  /frontend/src/views/userLoginReg/Login.vue:
-    newFile: !uuid 'a2e9d3abc9ce09e80e2570cfb30b2367e3d8bf7f'
-    oldFile: !uuid '8891822154aaba80b85683328d3e3dd68dee2bad'
-gitCommitId: !uuid 'a356641be2f8a6616250aa15275dc6579f4583e5'
+  /backend:
+    newFile: !uuid 'd376a96a3fb43f13d6e22fcfb19de528fa297563'
+    oldFile: !uuid 'e445771fde0bd54706bbb01daf0489128335ca4a'
+  /backend/Furion.Extras.Admin.NET:
+    newFile: !uuid 'ecfc0029334977674cb875ed01fe78590dea8539'
+    oldFile: !uuid '6f21c2bd45c46adaf4ec7313b26fe08503e216b6'
+  /backend/Furion.Extras.Admin.NET/Entity:
+    newFile: !uuid '0552130c2ddff6b5fab4e3e455a39ca148ed0c72'
+    oldFile: !uuid '8b64ba88d55cf522db412506981d4bb2e73c1308'
+  /backend/Furion.Extras.Admin.NET/Entity/SysUser.cs:
+    newFile: !uuid 'ae06ad661af8f9db22e7ba92b92f4c912dc2dc11'
+    oldFile: !uuid '87140149cfb480829eda60274ab910ff6f67bd2c'
+  /backend/Furion.Extras.Admin.NET/Enum:
+    newFile: !uuid '10c0302f39145cb4f4eedf80dcedf1297428bf5b'
+    oldFile: !uuid '945696979eb66f4d4c3e8b165624edc58837231a'
+  /backend/Furion.Extras.Admin.NET/Enum/ErrorCode.cs:
+    newFile: !uuid '1c4f03677cda009aa1242482b008dbf38bd0618e'
+    oldFile: !uuid '960d0f5c69062e1f6b3149e38bfa1b9877d5cb7a'
+  /backend/Furion.Extras.Admin.NET/SeedData:
+    newFile: !uuid '7937a840a7c54d36dba6b8d1fa59f15d47071726'
+    oldFile: !uuid 'f01f966747a165898732ea210e2244d985e0d016'
+  /backend/Furion.Extras.Admin.NET/SeedData/SysUserRoleSeedData.cs:
+    newFile: !uuid 'ac48eebeec9a7798dc683af0ab3a8d6823610209'
+    oldFile: !uuid '4f5162769bb37531acf66518711b248958b58bc5'
+  /backend/Furion.Extras.Admin.NET/Service:
+    newFile: !uuid '4b724fe3c387883aa1a6b567d3e814a8294bd752'
+    oldFile: !uuid 'e6b0e424a75e19c360b346357f07d7f90e640a9e'
+  /backend/Furion.Extras.Admin.NET/Service/Role:
+    newFile: !uuid '3ec451f7a4dcabffdacb7ee13f0e89ab9b030862'
+    oldFile: !uuid 'a488967f3b7981345a44f24962aab232b22ce56b'
+  /backend/Furion.Extras.Admin.NET/Service/Role/SysRoleService.cs:
+    newFile: !uuid '15d27c5861b4265395c0caea6ef29234c259f0a4'
+    oldFile: !uuid 'c26efb59f8506c2a11f79a57d9e8cf4dd6f2fea3'
+  /backend/Furion.Extras.Admin.NET/Service/Tenant:
+    newFile: !uuid '4eac8b5fe0edafab3e64c8df8b36a056bf4da6a5'
+    oldFile: !uuid 'aad97a48568fe6d30ae794d3e8722df517b48134'
+  /backend/Furion.Extras.Admin.NET/Service/Tenant/SysTenantService.cs:
+    newFile: !uuid '76125dfb89c5b12f52ca13db9ddcfac9f3ef2756'
+    oldFile: !uuid '8c97daa2abda09a827f8f8f48f79c08cbc59986d'
+  /backend/Furion.Extras.Admin.NET/Service/User:
+    newFile: !uuid '5e3d8253db86f661fe22fc02824967cc587a051d'
+    oldFile: !uuid 'd4fb57d380f49fa517756542c16c24ff4e7e5199'
+  /backend/Furion.Extras.Admin.NET/Service/User/SysUserService.cs:
+    newFile: !uuid '977007ccb6620d23dc29d371f76e6ecb26a41502'
+    oldFile: !uuid '08c15e051fe31ecbc1c0a8f834bd1e735c4a09fc'
+gitCommitId: !uuid '44f743e184e4159efea43ce7786ccb91e33a5b75'
 renames: {
   }
-revisionId: 498
+revisionId: 499
