@@ -2,61 +2,22 @@
 branches: {
   }
 fileChange:
-  /backend:
-    newFile: !uuid '6c9f84bce70349f80105d5bd5d217e724bcc6ddd'
-    oldFile: !uuid 'f8d3fde3c619c6fd07ffaf597e153ca5b693c490'
-  /backend/Furion.Extras.Admin.NET:
-    newFile: !uuid '0c23f4bd45953abb0c489a1c9159d96640b6a0b3'
-    oldFile: !uuid '82f877a09fa2c37bd05427bd874c8b7533e9b8fd'
-  /backend/Furion.Extras.Admin.NET/Service:
-    newFile: !uuid '0225b4e5dac21f78aebff4f6207f8c535446a950'
-    oldFile: !uuid '7571435f6cdddd442f41268be4be096afc9e87ef'
-  /backend/Furion.Extras.Admin.NET/Service/Auth:
-    newFile: !uuid 'e453469bada4ecd4d60cdfd7b5efaa5f8b473a6b'
-    oldFile: !uuid '6652b331b98292a7ae341378a0b02638416a9329'
-  /backend/Furion.Extras.Admin.NET/Service/Auth/AuthService.cs:
-    newFile: !uuid '189d00bbe9a4047a4eff94e84576ade121c53cca'
-    oldFile: !uuid '0df933337a5e0c1abd1d52286aad637c83f2935a'
-  /backend/Furion.Extras.Admin.NET/Service/Auth/Dto:
-    newFile: !uuid 'c46a8dc2a8671f38a79e595d65cef20cb3084f5c'
-    oldFile: !uuid '72643bcb840d07151936a0dc7767361671bab9ea'
-  /backend/Furion.Extras.Admin.NET/Service/Auth/Dto/LoginOutput.cs:
-    newFile: !uuid '5818d1afae081e56298e992bde99bac2b8b486c5'
-    oldFile: !uuid '64b54e311141c156d44b62c076c530cf91507cf0'
-  /backend/Furion.Extras.Admin.NET/Service/Menu:
-    newFile: !uuid 'cbeb2eef52c28519f38f42df7e9cb48ea40d969d'
-    oldFile: !uuid '2bd267a681e6fb58c60d55028b0ffc2f18d998fb'
-  /backend/Furion.Extras.Admin.NET/Service/Menu/ISysMenuService.cs:
-    newFile: !uuid '3dde7617694782abf2bfc7ea0cecb8f5c10a1716'
-    oldFile: !uuid 'bc1d49cf375475260ec15fa2e0f408c154a9bf3f'
-  /backend/Furion.Extras.Admin.NET/Service/Menu/SysMenuService.cs:
-    newFile: !uuid '1e1f925b61d136cfdb62a271b5e95b8e89560ea3'
-    oldFile: !uuid 'e1ba7c708aa1410302d9457f409a600cb015fc90'
   /frontend:
-    newFile: !uuid 'dcf7defb3bc51f45f4fb85f7da236e49b23c924a'
-    oldFile: !uuid 'ffa70fad7de4134df62bb46b92ee34ca97e5ba66'
+    newFile: !uuid '6f79a7edec6e5b489c7a918061cd8e25c0dc0a6d'
+    oldFile: !uuid 'dcf7defb3bc51f45f4fb85f7da236e49b23c924a'
   /frontend/src:
-    newFile: !uuid 'a1c678279e1974fb36ad4bd18aacfabde042e9bf'
-    oldFile: !uuid '13678e586e695f19c7ea08cfba5f4d46dba8b100'
-  /frontend/src/store:
-    newFile: !uuid 'b3dbfe35bea7d11257dcf0f1b0f356b6be33d901'
-    oldFile: !uuid '4d7cef325e97195e4f592f9e9d875486de5af565'
-  /frontend/src/store/getters.js:
-    newFile: !uuid '03ecbd9f791403195c11d00df422fd05911b51b3'
-    oldFile: !uuid '69929b90146f95b1b1aa9e8f651fb2c74652fb53'
-  /frontend/src/store/modules:
-    newFile: !uuid 'b73fde8f0128d4056db5df9dbf465fa5141f386d'
-    oldFile: !uuid '98ff68062dc420507bff657577b643e100a1d308'
-  /frontend/src/store/modules/user.js:
-    newFile: !uuid '99028972f1b66d264d04954b97343025b6575c24'
-    oldFile: !uuid 'e1f7965c2909bb7ea66bcd48a4db192dbd23e52b'
-  /frontend/src/utils:
-    newFile: !uuid 'd37bbf6f14e53020e33a95e29f598e08054ec8d1'
-    oldFile: !uuid '9cc131f69e1b824cae92e9074461baf152901560'
-  /frontend/src/utils/permissions.js:
-    newFile: !uuid 'fb1cd910e549d3a531c62ee4a70c69f8477f65eb'
-    oldFile: !uuid 'ce0376fd4d3dad961ec9fad9ff4e874eac8b9a82'
-gitCommitId: !uuid 'fd766e2b1667fba2a112d5cfdaa0d7026329fb0e'
+    newFile: !uuid '146772653310e354ec0ae099ab349655ee05ef8b'
+    oldFile: !uuid 'a1c678279e1974fb36ad4bd18aacfabde042e9bf'
+  /frontend/src/views:
+    newFile: !uuid '161b3544f241d974f7545ca34c2ebe9952c72aba'
+    oldFile: !uuid '3a6ea424f8ae0fa896fe9dd5af6d477fcb191c75'
+  /frontend/src/views/userLoginReg:
+    newFile: !uuid '152aa67f7e8986f9224a4f133cce4a55bd3f14fe'
+    oldFile: !uuid '255605b2425a2838b25272d1b99657cf011cdefe'
+  /frontend/src/views/userLoginReg/Login.vue:
+    newFile: !uuid '2131eaebeb2d30168cd1a21e9171c38338bbcc5a'
+    oldFile: !uuid 'a2e9d3abc9ce09e80e2570cfb30b2367e3d8bf7f'
+gitCommitId: !uuid '053582b5da0662e6b4a326250f6a88e9ce776fce'
 renames: {
   }
-revisionId: 501
+revisionId: 502
