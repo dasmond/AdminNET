@@ -50,7 +50,11 @@ namespace Furion.Extras.Admin.NET
             // 处理内容结果
             if (context.Result is ContentResult contentResult) data = contentResult.Content;
             // 处理对象结果
-            else if (context.Result is ObjectResult objectResult) data = objectResult.Value;
+            else if (context.Result is ObjectResult objectResult)
+            {
+                data = objectResult.Value;
+                context.HttpContext.Response.Headers.Add("Access-Control-Expose-Headers", "access-token,x-access-token");
+            }
             else if (context.Result is EmptyResult) data = null;
             else if (context.Result is FileStreamResult)
             {
