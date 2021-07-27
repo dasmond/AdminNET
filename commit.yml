@@ -3,102 +3,24 @@ branches: {
   }
 fileChange:
   /backend:
-    newFile: !uuid 'ebb5fc87759597e2a50fcda8823f93973567e2aa'
-    oldFile: !uuid '7da6aef1a8ca609808d103b77b6af945805a01c4'
+    newFile: !uuid '9a46929ab5aae8e97e0f16a054d91a0080d90d0d'
+    oldFile: !uuid 'ebb5fc87759597e2a50fcda8823f93973567e2aa'
   /backend/Furion.Extras.Admin.NET:
-    newFile: !uuid '1cf9e56a651214acc7cc442ea8f6df9503144d61'
-    oldFile: !uuid 'af50a2101fc983922e29f9888c342d241218ca57'
-  /backend/Furion.Extras.Admin.NET/Entity:
-    newFile: !uuid '38d75c85e6158199a38af240068906bfec062f9a'
-    oldFile: !uuid '0552130c2ddff6b5fab4e3e455a39ca148ed0c72'
-  /backend/Furion.Extras.Admin.NET/Entity/SysOnlineUser.cs:
-    newFile: !uuid 'a46c57615f9d3aa80ad7b70edeb714bcfabd2b1b'
-    oldFile: !uuid 'f8e28df90b87ca4cd19ba59caf066c0c7d73dade'
+    newFile: !uuid '81fb20242549f87728062206b956e32f9538f9b0'
+    oldFile: !uuid '1cf9e56a651214acc7cc442ea8f6df9503144d61'
   /backend/Furion.Extras.Admin.NET/Furion.Extras.Admin.NET.csproj:
-    newFile: !uuid 'ff4b02e2a28db4fb9681af1342081f65f562077a'
-    oldFile: !uuid '4972c3d36ce6ca13fd7f8cadb2fe37ad7a985a86'
+    newFile: !uuid '18baf949cf6b25270a925b8a23ddd17f241bcb92'
+    oldFile: !uuid 'ff4b02e2a28db4fb9681af1342081f65f562077a'
   /backend/Furion.Extras.Admin.NET/Furion.Extras.Admin.NET.xml:
-    newFile: !uuid 'f9fe7a2123bc6361716bed20d9e3c630415ffe56'
-    oldFile: !uuid '5be9f27fe7a35f870e3328570891043f6042ffae'
-  /backend/Furion.Extras.Admin.NET/Hubs:
-    newFile: !uuid '5fb03c49a54e1a57cc867eedaff8d146b4f94147'
-    oldFile: !uuid '79defee22c66e90c00f33ee96f29110c2d6e1e67'
-  /backend/Furion.Extras.Admin.NET/Hubs/ChatHub.cs:
-    newFile: !uuid 'c590a2cb4a9e9aa68984323e2a4179c2dde58f11'
-    oldFile: !uuid 'babafa931eac2f5ac08a1116ed421a75e3ac9516'
-  /backend/Furion.Extras.Admin.NET/Hubs/IChatClient.cs:
-    newFile: !uuid '52ce28d14d2d9812ac86a98dd018b17c8d32b6b6'
-    oldFile: null
-  /backend/Furion.Extras.Admin.NET/SeedData:
-    newFile: !uuid 'ec5cdcf4f210788076a4abe37db3a83e77e19c7c'
-    oldFile: !uuid '7937a840a7c54d36dba6b8d1fa59f15d47071726'
-  /backend/Furion.Extras.Admin.NET/SeedData/SysMenuSeedData.cs:
-    newFile: !uuid '70a2cfeb22832ddb6218020165d4af6a5836c39b'
-    oldFile: !uuid '8f9afc7f2eeec2c0a7e2e274fb5812c9b09d9b27'
-  /backend/Furion.Extras.Admin.NET/Service:
-    newFile: !uuid '1d666859d4031c21e6329cd8b089505766cbf818'
-    oldFile: !uuid '24bd7dd7efc8652e9e0bdd7b7ca55eb94262c6a7'
-  /backend/Furion.Extras.Admin.NET/Service/Auth:
-    newFile: !uuid '09e483c934d74284efe943268f643d4041b829ad'
-    oldFile: !uuid 'a655115747e1e6dbe5207b490a1bc6185150bc4c'
-  /backend/Furion.Extras.Admin.NET/Service/Auth/AuthService.cs:
-    newFile: !uuid 'ee4812da5a403800b9d0c6c23075efbd1461fa3b'
-    oldFile: !uuid '5820edd8739a19f66457cae96d7e5ea235343484'
-  /backend/Furion.Extras.Admin.NET/Service/OnlineUser:
-    newFile: !uuid '3b16c34973962f5a360496a12cf2baa5e6e34a2e'
-    oldFile: !uuid '9f9e96cefbce328dbbdda8475dc28554a2a029eb'
-  /backend/Furion.Extras.Admin.NET/Service/OnlineUser/Dto:
-    newFile: !uuid 'e76130939b7962687854bba1a0280f1dcbeb8144'
-    oldFile: null
-  /backend/Furion.Extras.Admin.NET/Service/OnlineUser/Dto/OnlineUserOutput.cs:
-    newFile: !uuid 'fc8a90a36fb4f02272390df2d1061265ea3a36d2'
-    oldFile: null
-  /backend/Furion.Extras.Admin.NET/Service/OnlineUser/ISysOnlineUserService.cs:
-    newFile: !uuid 'a58a6ee8c8c0cef9bfc2879b75eaaa2177f4a3dd'
-    oldFile: !uuid '9f77435e67ffbdbcf57a8a663bccfe73abbb49db'
-  /backend/Furion.Extras.Admin.NET/Service/OnlineUser/SysOnlineUserService.cs:
-    newFile: !uuid '2c6ccad2e144418abe3cca4ac34d48220d33188b'
-    oldFile: !uuid 'b357ee484095e59c44f13224660abbaf6367e550'
-  /frontend:
-    newFile: !uuid '4a852abd96d585ba67c043775506f76e1e6f939f'
-    oldFile: !uuid '5414f7be307006b76302ee5656418feb2401d7fb'
-  /frontend/src:
-    newFile: !uuid 'ac7b1dcca6370525c0900e5c89fe6ddc9a8ace6d'
-    oldFile: !uuid 'c2f22a52362405dd08537db5afc9d0d7536b9a7b'
-  /frontend/src/api:
-    newFile: !uuid '41374a9b52502e04e957577d9b545d704c45251f'
-    oldFile: !uuid '9eb1b7a4e25a11c09c259cefd1f338c77f4b8fbe'
-  /frontend/src/api/modular:
-    newFile: !uuid 'ed0eeb7d39d3d64bdef8702aae27444f1a4125ad'
-    oldFile: !uuid '2918cf15ecc86aed2ca39d87debfd1ac7bb58c77'
-  /frontend/src/api/modular/system:
-    newFile: !uuid '2e15289370bb5b289b7370ba9433ba995768a653'
-    oldFile: !uuid '3c1bad58781d47b6cfb0bc1e176aa5cf97f8e9e9'
-  /frontend/src/api/modular/system/onlineUserManage.js:
-    newFile: !uuid 'dd92dc797650cdc52036b3ae1bacba7e9e09845c'
-    oldFile: !uuid 'cc08bda9a403cccef4ac9963250036cb44da6bfd'
-  /frontend/src/utils:
-    newFile: !uuid '6519fa8e6fe0c0ba0ad8e56d831fcca4839d0319'
-    oldFile: !uuid '567bde75190bd3d576675c4662fe6b0d8f0a1969'
-  /frontend/src/utils/request.js:
-    newFile: !uuid 'b7c6d61508157b58c6f6fe59a0d97f4c88a9060e'
-    oldFile: !uuid '7ea60e370951580f1e115e1cc10543554c3c68ba'
-  /frontend/src/utils/socket.js:
-    newFile: !uuid '4ec0aabd6fb720e7afdc37d5cf623fb356696e5c'
-    oldFile: !uuid '328fbf77f5bbbfb123e99ba393866303324c6e60'
-  /frontend/src/views:
-    newFile: !uuid 'e9f1a06983520bcaf818bc769423ac7d0542a78f'
-    oldFile: !uuid '161b3544f241d974f7545ca34c2ebe9952c72aba'
-  /frontend/src/views/system:
-    newFile: !uuid '376e3fa64c06339960bcd636091bff3c3187f013'
-    oldFile: !uuid 'efb2bd317f0649e1c9f251514e9f10a315703425'
-  /frontend/src/views/system/onlineUser:
-    newFile: !uuid 'dc712ba931eda3895446a722c787e42cca2fda7f'
-    oldFile: !uuid 'c5e24ca2ed29faee38c9a8d47b90e1cfe8313290'
-  /frontend/src/views/system/onlineUser/index.vue:
-    newFile: !uuid 'd1ddd36622f255de8bcdba94c9b43466939db2d5'
-    oldFile: !uuid 'eee69a2c453d5a5b35b2c0c536bac93e69b9f150'
-gitCommitId: !uuid 'a3fb429aad42fde73862022e90138d51beaa5775'
+    newFile: !uuid '30a2674c4ac937526adca8e09daf817c864eccbd'
+    oldFile: !uuid 'f9fe7a2123bc6361716bed20d9e3c630415ffe56'
+  /backend/Furion.Extras.Admin.NET/Util:
+    newFile: !uuid 'b81be085628b337e04706b1046ac4babcaefb4ed'
+    oldFile: !uuid '1d29d50400dad383322817533a79fd996797a8cc'
+  /backend/Furion.Extras.Admin.NET/Util/XnRestfulResultProvider.cs:
+    newFile: !uuid '2111512471ba15df8743fe2a2dd010f7c94b2c53'
+    oldFile: !uuid '8bd8efa91c773242dec81f3aab848168609f2ce3'
+gitCommitId: !uuid '2a3ba0f3abd8b0c292c83d1c696d89138e3c40f9'
 renames: {
   }
-revisionId: 510
+revisionId: 511
