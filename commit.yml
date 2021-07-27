@@ -3,24 +3,24 @@ branches: {
   }
 fileChange:
   /backend:
-    newFile: !uuid '01f8c42ed56c24cbad18db16502ea1d84a587227'
-    oldFile: !uuid '9a46929ab5aae8e97e0f16a054d91a0080d90d0d'
-  /backend/Admin.NET.Web.Entry:
-    newFile: !uuid 'f10ae7cfded7b12436ade5ce113b0761c4048af8'
-    oldFile: !uuid '1d66941c86464a41a8ba762f9a2e335ee866c933'
-  /backend/Admin.NET.Web.Entry/wwwroot:
-    newFile: !uuid 'db304944592962e5ccf50b7e1cdfac9dac75034a'
-    oldFile: !uuid '6ee42498ecd7ad49d40dae7ed67e294173f5a472'
-  /backend/Admin.NET.Web.Entry/wwwroot/Template:
-    newFile: !uuid '23adf53644ba11e3d61f3aacf5657a3f971c206d'
-    oldFile: !uuid 'ecd35cf0994974a22360e995141a2100d747a470'
-  /backend/Admin.NET.Web.Entry/wwwroot/Template/Service.cs.vm:
-    newFile: !uuid '83d64689201b287fdfe1f4696e532acfd199bda0'
-    oldFile: !uuid '54698efc4e584512c5f0313bf67d84cc5e37c247'
-  /backend/Admin.NET.Web.Entry/wwwroot/Template/editForm.vue.vm:
-    newFile: !uuid '70ea9c00c20c8057201d74bfa31ca186c4a9d9e1'
-    oldFile: !uuid '99f93a2da258b322058192937c12b8762e570bc3'
-gitCommitId: !uuid '9f4ffeb0fa50080fdcfb38ab00e504bebb20ee2f'
+    newFile: !uuid 'b285b857b6772e4cd670db633e2bc9227d875b0a'
+    oldFile: !uuid '01f8c42ed56c24cbad18db16502ea1d84a587227'
+  /backend/Furion.Extras.Admin.NET:
+    newFile: !uuid 'd9a304ce9124e01ee61ca587d8d81bc26e719522'
+    oldFile: !uuid '81fb20242549f87728062206b956e32f9538f9b0'
+  /backend/Furion.Extras.Admin.NET/Furion.Extras.Admin.NET.csproj:
+    newFile: !uuid 'a2c344863931bced58d4376c37202ce849e86b4b'
+    oldFile: !uuid '18baf949cf6b25270a925b8a23ddd17f241bcb92'
+  /backend/Furion.Extras.Admin.NET/Furion.Extras.Admin.NET.xml:
+    newFile: !uuid '25130c091b9b70f0687c58228944562d7e87ddf9'
+    oldFile: !uuid '30a2674c4ac937526adca8e09daf817c864eccbd'
+  /backend/Furion.Extras.Admin.NET/Util:
+    newFile: !uuid '52e86eaec4586bd1acff7f3f923c9906736addab'
+    oldFile: !uuid 'b81be085628b337e04706b1046ac4babcaefb4ed'
+  /backend/Furion.Extras.Admin.NET/Util/XnRestfulResultProvider.cs:
+    newFile: !uuid '39d0f4498356bd296c0834249368d4294f733335'
+    oldFile: !uuid '2111512471ba15df8743fe2a2dd010f7c94b2c53'
+gitCommitId: !uuid '28c15f2786bb84d39fa35098f1e7309317888b64'
 renames: {
   }
-revisionId: 512
+revisionId: 513
