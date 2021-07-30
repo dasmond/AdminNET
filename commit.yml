@@ -3,24 +3,21 @@ branches: {
   }
 fileChange:
   /backend:
-    newFile: !uuid 'b285b857b6772e4cd670db633e2bc9227d875b0a'
-    oldFile: !uuid '01f8c42ed56c24cbad18db16502ea1d84a587227'
-  /backend/Furion.Extras.Admin.NET:
-    newFile: !uuid 'd9a304ce9124e01ee61ca587d8d81bc26e719522'
-    oldFile: !uuid '81fb20242549f87728062206b956e32f9538f9b0'
-  /backend/Furion.Extras.Admin.NET/Furion.Extras.Admin.NET.csproj:
-    newFile: !uuid 'a2c344863931bced58d4376c37202ce849e86b4b'
-    oldFile: !uuid '18baf949cf6b25270a925b8a23ddd17f241bcb92'
-  /backend/Furion.Extras.Admin.NET/Furion.Extras.Admin.NET.xml:
-    newFile: !uuid '25130c091b9b70f0687c58228944562d7e87ddf9'
-    oldFile: !uuid '30a2674c4ac937526adca8e09daf817c864eccbd'
-  /backend/Furion.Extras.Admin.NET/Util:
-    newFile: !uuid '52e86eaec4586bd1acff7f3f923c9906736addab'
-    oldFile: !uuid 'b81be085628b337e04706b1046ac4babcaefb4ed'
-  /backend/Furion.Extras.Admin.NET/Util/XnRestfulResultProvider.cs:
-    newFile: !uuid '39d0f4498356bd296c0834249368d4294f733335'
-    oldFile: !uuid '2111512471ba15df8743fe2a2dd010f7c94b2c53'
-gitCommitId: !uuid '28c15f2786bb84d39fa35098f1e7309317888b64'
+    newFile: !uuid '447d9d8153aeab9b6137777bb65adee578448e15'
+    oldFile: !uuid 'b285b857b6772e4cd670db633e2bc9227d875b0a'
+  /backend/Admin.NET.Web.Entry:
+    newFile: !uuid 'edb4635f237a32a07c38509dc51049e0971c67bf'
+    oldFile: !uuid 'f10ae7cfded7b12436ade5ce113b0761c4048af8'
+  /backend/Admin.NET.Web.Entry/wwwroot:
+    newFile: !uuid 'de02612f1e66d7893e002c78510e2d5f3c21bcaf'
+    oldFile: !uuid 'db304944592962e5ccf50b7e1cdfac9dac75034a'
+  /backend/Admin.NET.Web.Entry/wwwroot/Template:
+    newFile: !uuid '906e07d71a95f253d9dba3b2f8c17352dad797f1'
+    oldFile: !uuid '23adf53644ba11e3d61f3aacf5657a3f971c206d'
+  /backend/Admin.NET.Web.Entry/wwwroot/Template/editForm.vue.vm:
+    newFile: !uuid '4dcac33a9edab35fd63718568a5ece150c0ce800'
+    oldFile: !uuid '70ea9c00c20c8057201d74bfa31ca186c4a9d9e1'
+gitCommitId: !uuid 'a70ffcdfb3df531d3c2282faf818cb75019f8318'
 renames: {
   }
-revisionId: 513
+revisionId: 514
