@@ -3,18 +3,21 @@ branches: {
   }
 fileChange:
   /backend:
-    newFile: !uuid 'c211ae717f34d09c4ea9681ceaee9f094d95570c'
-    oldFile: !uuid 'a8ac07e5a080b3b8ca0fa047aaf3fcdc9c334cc1'
-  /backend/Admin.NET.EntityFramework.Core:
-    newFile: !uuid '6b4f0c41b117d91aadb12a8e4ce1ce3eb0bb490b'
-    oldFile: !uuid 'efd7799dcf398cb75a29f755903bcea5303baae1'
-  /backend/Admin.NET.EntityFramework.Core/DbContexts:
-    newFile: !uuid 'ef1ec71f585d2b90a699e1eba73c9d04ab3208fc'
-    oldFile: !uuid '1f45c42fa3f9af8ed113b0734248329f4dd03311'
-  /backend/Admin.NET.EntityFramework.Core/DbContexts/DefaultDbContext.cs:
-    newFile: !uuid 'e442c9d77d8adb62b3ede9c9fe54fb07bc09da9f'
-    oldFile: !uuid 'f3a353789fef10395960f04b38302efd88f0c4ec'
-gitCommitId: !uuid '03265d31de8836be1502c8404f7c1b611751e97b'
+    newFile: !uuid 'd3149e4e08f8554cd86860c07f908071051f2b25'
+    oldFile: !uuid 'c211ae717f34d09c4ea9681ceaee9f094d95570c'
+  /backend/Admin.NET.Web.Entry:
+    newFile: !uuid '5b73b7e356061abba30fa9b3a331df4cae3e4467'
+    oldFile: !uuid 'f7e0ccd8643387edd8d1e89b0365472c85c32cab'
+  /backend/Admin.NET.Web.Entry/wwwroot:
+    newFile: !uuid 'f0e5c9338098d81d2e60072edff1542086c57374'
+    oldFile: !uuid 'e0a8093e5b531e1f8c39e6e2a78818f5da267a84'
+  /backend/Admin.NET.Web.Entry/wwwroot/Template:
+    newFile: !uuid '4030ea983e21ee83523b126d079825c948220ab7'
+    oldFile: !uuid 'c40e3b692f56f86dddccc018e7b2287739050d03'
+  /backend/Admin.NET.Web.Entry/wwwroot/Template/editForm.vue.vm:
+    newFile: !uuid 'd60ecae259165482a329d6c8352570b4b84fa4bf'
+    oldFile: !uuid '4dcac33a9edab35fd63718568a5ece150c0ce800'
+gitCommitId: !uuid '6dba1a7ca3d6f03043376e34d89c405de15b1f93'
 renames: {
   }
-revisionId: 516
+revisionId: 517
