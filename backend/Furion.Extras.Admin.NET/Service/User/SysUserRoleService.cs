@@ -26,10 +26,18 @@ namespace Furion.Extras.Admin.NET.Service
         /// 获取用户的角色Id集合
         /// </summary>
         /// <param name="userId"></param>
+        /// <param name="checkRoleStatus"></param>
         /// <returns></returns>
-        public async Task<List<long>> GetUserRoleIdList(long userId)
+        public async Task<List<long>> GetUserRoleIdList(long userId, bool checkRoleStatus = true)
         {
-            return await _sysUserRoleRep.DetachedEntities.Where(u => u.SysRole.Status == CommonStatus.ENABLE).Where(u => u.SysUserId == userId).Select(u => u.SysRoleId).ToListAsync();
+            return await _sysUserRoleRep
+                // 检查role状态，跳过全局tenantId&delete过滤器，超级管理员使用
+                .Where(!checkRoleStatus, u => u.SysRole.Status == CommonStatus.ENABLE && !u.SysRole.IsDeleted, ignoreQueryFilters: true)
+                // 当不是超级管理员的时候检查role状态和全局tenantId&delete过滤器
+                .Where(checkRoleStatus, u => u.SysRole.Status == CommonStatus.ENABLE)
+                .Where(u => u.SysUserId == userId)
+                .Select(u => u.SysRoleId)
+                .ToListAsync();
         }
 
         /// <summary>
