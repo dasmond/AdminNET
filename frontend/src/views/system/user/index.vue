@@ -336,9 +336,10 @@
           type: 'application/octet-stream;charset=UTF-8'
         })
         var contentDisposition = res.headers['content-disposition']
-        var patt = new RegExp('filename=([^;]+\\.[^\\.;]+);*')
-        var result = patt.exec(contentDisposition)
-        var filename = result[1]
+        const filenameRegex = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/;
+        var result = filenameRegex.exec(contentDisposition)
+        const matches = filenameRegex.exec(disposition);
+        var filename = matches[1].replace(/['"]/g, '');
         var downloadElement = document.createElement('a')
         var href = window.URL.createObjectURL(blob) // 创建下载的链接
         var reg = /^["](.*)["]$/g
