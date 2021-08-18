@@ -246,7 +246,7 @@ dotnet new Admin.NET -n 你的项目名称
 1. Admin.NET.EntityFramework.Core 项目安装 ``` Microsoft.EntityFrameworkCore.SqlServer ```
 2. DefaultDbContext.cs 指定 DbProvider , ```[AppDbContext("DefaultConnection", DbProvider.SqlServer)]```
 3. dbsettings.json 配置 "DefaultConnection": ```"Server=localhost;Database=Admin.NET;User=sa;Password=000000;MultipleActiveResultSets=True;"```
-4. 打开程序包管理器控制台，默认项目Admin.NET.Database.Migrations 执行命令:```Add-Migration Init 和 update-database```
+4. 打开程序包管理器控制台，默认项目Admin.NET.Database.Migrations 执行命令:```Add-Migration Init -c DefaultDbContext 和 update-database -Context DefaultDbContext ```
 
 ```
 提示：其他类型数据库依次类推，首先添加EF的Core版包，然后指定数据库类型，修改数据库连接字符串，执行EF迁移命令即可。
