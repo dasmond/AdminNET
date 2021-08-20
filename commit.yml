@@ -2,19 +2,22 @@
 branches: {
   }
 fileChange:
-  /frontend:
-    newFile: !uuid 'd869af2d4d3acf6f38590678fa8926d421c8dd3d'
-    oldFile: !uuid '7dbe119707d12853dafbd24b69b13c92f2b10861'
-  /frontend/src:
-    newFile: !uuid '107199ead33b4e5b5b60fcaa0d9e42f8bc9ff7b0'
-    oldFile: !uuid '1a916e245724e2eaa6057bafd6ad3b50545790d1'
-  /frontend/src/router:
-    newFile: !uuid '18b2e371f434321be830950409768a80f2f9cc81'
-    oldFile: !uuid 'e9f20992bf96c597a32cb2ca28cde448db62a196'
-  /frontend/src/router/generator-routers.js:
-    newFile: !uuid '457ea1fea03e8e24d8341138cef4406b52724cfa'
-    oldFile: !uuid '4106ec6e0284e4282d24327db0a498bfa1687a9f'
-gitCommitId: !uuid 'd9000468ba5d17d9fb3f75a60e03807200e80383'
+  /backend:
+    newFile: !uuid '1f4edaffc1256be607c5a44533711952e3c5f994'
+    oldFile: !uuid 'd65dc5c77c40ff4cb7c19bc3e585d6ffde6c1e0d'
+  /backend/Admin.NET.Web.Entry:
+    newFile: !uuid 'bc103d271330ff37b825f1721a46275f9e679666'
+    oldFile: !uuid '96ed1abb0cce2920f7ee0053250d8f59e3364de8'
+  /backend/Admin.NET.Web.Entry/wwwroot:
+    newFile: !uuid '0441556e590a7892993d4dc0602d078852e27ca1'
+    oldFile: !uuid '59768bacf52bceeaced8a4fbcfe92ae451d0c21d'
+  /backend/Admin.NET.Web.Entry/wwwroot/Template:
+    newFile: !uuid '29ae13182b6511205ae1a080f45e63f03c0069cf'
+    oldFile: !uuid 'a8fa1e9f4d8be186df58fe95260e7d87be71eaf8'
+  /backend/Admin.NET.Web.Entry/wwwroot/Template/Service.cs.vm:
+    newFile: !uuid 'deb0ef082f8117288b6e732d6d6e6201c09dcb3c'
+    oldFile: !uuid '54698efc4e584512c5f0313bf67d84cc5e37c247'
+gitCommitId: !uuid 'b0ef67c4b9ab9ee1799c245f69e3c54994e50f32'
 renames: {
   }
-revisionId: 532
+revisionId: 533
