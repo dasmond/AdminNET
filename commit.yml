@@ -2,22 +2,19 @@
 branches: {
   }
 fileChange:
-  /backend:
-    newFile: !uuid 'd65dc5c77c40ff4cb7c19bc3e585d6ffde6c1e0d'
-    oldFile: !uuid 'dea567b854250c5000499efa689bc7211bc7bb27'
-  /backend/Furion.Extras.Admin.NET:
-    newFile: !uuid 'de1c8ad7307ddb3b7b93a681efaf10eeb3654943'
-    oldFile: !uuid '21923cfa8999713a027a14f66fae52e460df3ed9'
-  /backend/Furion.Extras.Admin.NET/Service:
-    newFile: !uuid '99899af80d4e093ab9da2827a6711d5b8edc559e'
-    oldFile: !uuid '43788a669b0b04c395ed4aeed62a605ee9bf0daa'
-  /backend/Furion.Extras.Admin.NET/Service/File:
-    newFile: !uuid '27424cf943432f471dad443147084a981a01bb44'
-    oldFile: !uuid '257c1193bd8319f49849ed4f6881c169844df9da'
-  /backend/Furion.Extras.Admin.NET/Service/File/SysFileService.cs:
-    newFile: !uuid '5ea590a91fdb520f36728aebb73ff36a8db07dd8'
-    oldFile: !uuid 'b869c3569742b89b19770905a6a59ab7415a887f'
-gitCommitId: !uuid '31d7aaff0cc083942427dff2693683acd3ca8081'
+  /frontend:
+    newFile: !uuid 'd869af2d4d3acf6f38590678fa8926d421c8dd3d'
+    oldFile: !uuid '7dbe119707d12853dafbd24b69b13c92f2b10861'
+  /frontend/src:
+    newFile: !uuid '107199ead33b4e5b5b60fcaa0d9e42f8bc9ff7b0'
+    oldFile: !uuid '1a916e245724e2eaa6057bafd6ad3b50545790d1'
+  /frontend/src/router:
+    newFile: !uuid '18b2e371f434321be830950409768a80f2f9cc81'
+    oldFile: !uuid 'e9f20992bf96c597a32cb2ca28cde448db62a196'
+  /frontend/src/router/generator-routers.js:
+    newFile: !uuid '457ea1fea03e8e24d8341138cef4406b52724cfa'
+    oldFile: !uuid '4106ec6e0284e4282d24327db0a498bfa1687a9f'
+gitCommitId: !uuid 'd9000468ba5d17d9fb3f75a60e03807200e80383'
 renames: {
   }
-revisionId: 531
+revisionId: 532
