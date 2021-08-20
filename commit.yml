@@ -2,25 +2,25 @@
 branches: {
   }
 fileChange:
-  /frontend:
-    newFile: !uuid '7dbe119707d12853dafbd24b69b13c92f2b10861'
-    oldFile: !uuid '06d62d1677a4c475af39d99c49837d57f3f4bdd0'
-  /frontend/src:
-    newFile: !uuid '1a916e245724e2eaa6057bafd6ad3b50545790d1'
-    oldFile: !uuid 'ac7b1dcca6370525c0900e5c89fe6ddc9a8ace6d'
-  /frontend/src/views:
-    newFile: !uuid 'd4c1106d2ba11199af6143c1f83814ad20ee109e'
-    oldFile: !uuid 'e9f1a06983520bcaf818bc769423ac7d0542a78f'
-  /frontend/src/views/system:
-    newFile: !uuid '2b50574deabda66f58461aff0b9282693ab36491'
-    oldFile: !uuid '376e3fa64c06339960bcd636091bff3c3187f013'
-  /frontend/src/views/system/user:
-    newFile: !uuid '60bc951c716ea0f9c7c1c6b59b4c5c3cdac2834f'
-    oldFile: !uuid 'dfc22bb4564f73d3633a86f3a1c02b392063e00a'
-  /frontend/src/views/system/user/index.vue:
-    newFile: !uuid '59121467f18dda1a7a382c4f76b98a474616d944'
-    oldFile: !uuid 'b34fbe27a2bc113c929c9351528f16ff2dc1961b'
-gitCommitId: !uuid '4ff6f8406ad5f309b08bf7919179c438f16463eb'
+  /backend:
+    newFile: !uuid 'fb23492fa0a52f0a6c6494b907a58cc899eca4c7'
+    oldFile: !uuid '11f29bad69f95e531d4cd0a2bd38fe6f0ea45f12'
+  /backend/Furion.Extras.Admin.NET:
+    newFile: !uuid 'dfe37f376c7a6eee996e30ad844a288ddacf9c51'
+    oldFile: !uuid 'f84848167a6a88ad334331ebf135a24628a4e082'
+  /backend/Furion.Extras.Admin.NET/Service:
+    newFile: !uuid '2a56d95c5fac4fe12899c5be30c45e13bdcd153d'
+    oldFile: !uuid 'd98b5c3f6f6230d353607753eb1b1d5f03d41eac'
+  /backend/Furion.Extras.Admin.NET/Service/File:
+    newFile: !uuid 'b098b0b6fcab71115069b8479807d8a49b945196'
+    oldFile: !uuid '384ad341a1f0000fb57983c5119ccfa98ee3beb6'
+  /backend/Furion.Extras.Admin.NET/Service/File/Dto:
+    newFile: !uuid 'e2d00ac774ca8c8dfc0ff24b69272cb41f2d2a0d'
+    oldFile: !uuid '79e49161d942816df613ea98ed309e7db4771d1c'
+  /backend/Furion.Extras.Admin.NET/Service/File/Dto/FileInput.cs:
+    newFile: !uuid '7fcfb7ee1fef0e0bbf897c97dd53fe48f949e118'
+    oldFile: !uuid '5970c36b18109bdf0539f856fdf12693282425ff'
+gitCommitId: !uuid 'bef5a91cb0fa97822d73d9bb5c0bc9737ee40aad'
 renames: {
   }
-revisionId: 528
+revisionId: 529
