@@ -3,24 +3,12 @@ branches: {
   }
 fileChange:
   /frontend:
-    newFile: !uuid 'd31aa28303adb5a38372b555fa51791c834ed73f'
-    oldFile: !uuid 'd869af2d4d3acf6f38590678fa8926d421c8dd3d'
-  /frontend/src:
-    newFile: !uuid '83bbb10c00c3085d68bf9f44fb983ec2d3e6a43f'
-    oldFile: !uuid '107199ead33b4e5b5b60fcaa0d9e42f8bc9ff7b0'
-  /frontend/src/views:
-    newFile: !uuid '5c3ba8255103be100e5ee4e6f401f48deaa7f42d'
-    oldFile: !uuid 'd4c1106d2ba11199af6143c1f83814ad20ee109e'
-  /frontend/src/views/system:
-    newFile: !uuid '9b1228fcf8819a16344aa4044ec6601fa7cb1786'
-    oldFile: !uuid '2b50574deabda66f58461aff0b9282693ab36491'
-  /frontend/src/views/system/user:
-    newFile: !uuid '89a7b62eb4a08c355a36d301830f5ffa4a2e1244'
-    oldFile: !uuid '60bc951c716ea0f9c7c1c6b59b4c5c3cdac2834f'
-  /frontend/src/views/system/user/index.vue:
-    newFile: !uuid '6cc9db5dc0fc05dfe4e31f3a163751b46d407e5c'
-    oldFile: !uuid '59121467f18dda1a7a382c4f76b98a474616d944'
-gitCommitId: !uuid '64ef730796d568418c671b0b46473a809ce135bb'
+    newFile: !uuid 'd9ca22918a6493ccee8c49b8639b17f010d8666a'
+    oldFile: !uuid 'd31aa28303adb5a38372b555fa51791c834ed73f'
+  /frontend/vue.config.js:
+    newFile: !uuid '7bd6ebe521a45e7dfee36fc85c7a8e3e2f71030f'
+    oldFile: !uuid 'b1b779321d6424d34e34ff7b54381d9f9e49613e'
+gitCommitId: !uuid '6ba09936f31e08fcadd5d0c74d4a9273e86a110b'
 renames: {
   }
-revisionId: 539
+revisionId: 540
