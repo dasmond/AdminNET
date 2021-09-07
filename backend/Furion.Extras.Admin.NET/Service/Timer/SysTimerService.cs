@@ -189,7 +189,7 @@ namespace Furion.Extras.Admin.NET.Service
                         if (taskMethod == null) break;
 
                         // 创建任务对象
-                        var typeInstance = Activator.CreateInstance(taskMethod.DeclaringType);
+                        var typeInstance = Activator.CreateInstance(taskMethod.AssemblyName, taskMethod.TypeName);
 
                         // 创建委托
                         action = (Action<SpareTimer, long>)Delegate.CreateDelegate(typeof(Action<SpareTimer, long>), typeInstance, taskMethod.MethodName);
@@ -309,7 +309,8 @@ namespace Furion.Extras.Admin.NET.Service
                         Remark = spareTimeAttribute.Description,
                         TimerType = string.IsNullOrEmpty(spareTimeAttribute.CronExpression) ? SpareTimeTypes.Interval : SpareTimeTypes.Cron,
                         MethodName = m.Name,
-                        DeclaringType = m.DeclaringType
+                        AssemblyName = m.DeclaringType.Assembly.FullName,
+                        TypeName = m.DeclaringType.GetType().FullName
                     };
                 }));
 
