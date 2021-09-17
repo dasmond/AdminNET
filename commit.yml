@@ -3,24 +3,18 @@ branches: {
   }
 fileChange:
   /backend:
-    newFile: !uuid '1262a2e38eecb2c3035520b55b452e5379f370f3'
-    oldFile: !uuid 'fae10f31e89d34ac2358a904d7ff742706b22d53'
+    newFile: !uuid '1317d39b9fe84c78e7bb1bd17067ee6c0440a74c'
+    oldFile: !uuid '1262a2e38eecb2c3035520b55b452e5379f370f3'
   /backend/Furion.Extras.Admin.NET:
-    newFile: !uuid '4f155f3a3e168157b9491553ab04ed08de178b48'
-    oldFile: !uuid 'dc07dd8b40443b99df54bb55d83a001c8a0c4123'
-  /backend/Furion.Extras.Admin.NET/Service:
-    newFile: !uuid 'ffd9e1f772e94c25aee200bbe5807ebbc52e0dad'
-    oldFile: !uuid 'a733f81dfa15ac9649ba7391ce2af23a4d0ddd43'
-  /backend/Furion.Extras.Admin.NET/Service/Emp:
-    newFile: !uuid 'd6973f1ade54394e2dcbc6ddd29a34e55d5dc27b'
-    oldFile: !uuid 'dd95d6f97f0e11669ac4784d1bf9e933d25bb0e8'
-  /backend/Furion.Extras.Admin.NET/Service/Emp/SysEmpExtOrgPosService.cs:
-    newFile: !uuid 'bc354c63345ae19e178b54d7a8b7c488caa2adc8'
-    oldFile: !uuid 'c171ebcfd8fde1694d2026d874c668a8ff23ece2'
-  /backend/Furion.Extras.Admin.NET/Service/Emp/SysEmpService.cs:
-    newFile: !uuid '51521b9eb08d6ce52550141f7c5ed775a509c378'
-    oldFile: !uuid '04013a68ffd76b5f85da322c666f4b8986b24d21'
-gitCommitId: !uuid '7878e1c73f47c58e588c62820053e4bcedf49e01'
+    newFile: !uuid '224cfb012e062b207fc6a95db5421a144ecc79d3'
+    oldFile: !uuid '4f155f3a3e168157b9491553ab04ed08de178b48'
+  /backend/Furion.Extras.Admin.NET/Extension:
+    newFile: !uuid 'cdff785b06d208d161c42746dab61f66607e1205'
+    oldFile: !uuid 'cec0f11da7a3e89b2f42e567b56e9f6f1abb561c'
+  /backend/Furion.Extras.Admin.NET/Extension/FakeDeleteExtensions.cs:
+    newFile: !uuid '3dd8e20c50664fa356182cf45847f12f4bcc68f6'
+    oldFile: null
+gitCommitId: !uuid '0d7db18d711da211717c9a1898b2d21f9a8def4b'
 renames: {
   }
-revisionId: 545
+revisionId: 546
