@@ -3,69 +3,18 @@ branches: {
   }
 fileChange:
   /backend:
-    newFile: !uuid '66b7b5b8c8b3597ae79535cec761e81d7b8ec74e'
-    oldFile: !uuid '2d6f064d21ce3efb8e8bcb2af1476028491064f8'
+    newFile: !uuid '31f1264166e8fe7470a1d5ef27a4e4e0e7a9075a'
+    oldFile: !uuid '66b7b5b8c8b3597ae79535cec761e81d7b8ec74e'
   /backend/Furion.Extras.Admin.NET:
-    newFile: !uuid 'b5ef7cae4bf439adf64ea0fe4e0ef9eb71feaf55'
-    oldFile: !uuid 'f5ce8be8da06ae7ae95dfd5c8892c0bee197748e'
-  /backend/Furion.Extras.Admin.NET/Enum:
-    newFile: !uuid '7effeb805902ba016e0f396f1436a55383810b2b'
-    oldFile: !uuid '10c0302f39145cb4f4eedf80dcedf1297428bf5b'
-  /backend/Furion.Extras.Admin.NET/Enum/MessageType.cs:
-    newFile: !uuid 'd5b0c527bd8f4b9abd67008acc6e91eba52e1c8c'
-    oldFile: null
-  /backend/Furion.Extras.Admin.NET/Furion.Extras.Admin.NET.xml:
-    newFile: !uuid '77090f3ef98c2e9e7da4a668ba9102cea9caad4c'
-    oldFile: !uuid '29a231663b3177c4df8134bdcb04613cf29aac4b'
-  /backend/Furion.Extras.Admin.NET/Hubs:
-    newFile: !uuid 'f056d6291566a9ca446149552ce78f931296d3c0'
-    oldFile: !uuid '5fb03c49a54e1a57cc867eedaff8d146b4f94147'
-  /backend/Furion.Extras.Admin.NET/Hubs/ChatHub.cs:
-    newFile: !uuid 'e84b599d671ae234843cb66e8cbe937d317b9334'
-    oldFile: !uuid 'c590a2cb4a9e9aa68984323e2a4179c2dde58f11'
-  /backend/Furion.Extras.Admin.NET/Hubs/Dto:
-    newFile: !uuid '5c839910d11cd1b6250cf577b53e56a4b713d5ca'
-    oldFile: null
-  /backend/Furion.Extras.Admin.NET/Hubs/Dto/MessageinputDto.cs:
-    newFile: !uuid '5460426ed88a266790f21d964e3d22b7565bbff8'
-    oldFile: null
-  /backend/Furion.Extras.Admin.NET/Hubs/IChatClient.cs:
-    newFile: !uuid '1483c51779d1ae1a1905e65dc7446bf095f4b2b7'
-    oldFile: !uuid '52ce28d14d2d9812ac86a98dd018b17c8d32b6b6'
-  /backend/Furion.Extras.Admin.NET/Service:
-    newFile: !uuid '8ff6d6424c4abdee6946c5096daa9dc14cac2f1e'
-    oldFile: !uuid 'a95668cf242e935c1c7a5cf7e2bdcddd3574398f'
-  /backend/Furion.Extras.Admin.NET/Service/Message:
-    newFile: !uuid '3d2118fe2912cc496a3d293279adfe113235bbb3'
-    oldFile: null
-  /backend/Furion.Extras.Admin.NET/Service/Message/ISendMessageService.cs:
-    newFile: !uuid '349869dfb57e110855827f245a7fcb76b09626f4'
-    oldFile: null
-  /backend/Furion.Extras.Admin.NET/Service/Message/SendMessageService.cs:
-    newFile: !uuid 'f4927d402643c46f47d9418e1a06a24cb0ae546e'
-    oldFile: null
-  /frontend:
-    newFile: !uuid 'cf15dbab9d1e52c0531bd74561f92e3b4ec5eaf8'
-    oldFile: !uuid '66afb948e822f6dcc444238f7c2d72116e2a4794'
-  /frontend/src:
-    newFile: !uuid '131c786e97003e2c704eadf5ab4cd78b583fbdc2'
-    oldFile: !uuid 'b213123c2cde5eef01b46876d2241a081ed9a2aa'
-  /frontend/src/components:
-    newFile: !uuid 'd3520dc1f68c7621bebf6efdeb6ab4332e35d0c6'
-    oldFile: !uuid '90921587c03fc2dfc4ccb7ccbc24d3c598719185'
-  /frontend/src/components/tools:
-    newFile: !uuid 'ef9f06b1a06599b627b02155f02f4092ec540117'
-    oldFile: !uuid 'c1e61c6d739e706652987126cb03348bece7c4ec'
-  /frontend/src/components/tools/UserMenu.vue:
-    newFile: !uuid 'fcaf5bd3514b98d369d0e05c462e10ec5c52f117'
-    oldFile: !uuid '6d793547d4a1ec9c09cf2c064ca0a3469c1d7ae3'
-  /frontend/src/utils:
-    newFile: !uuid 'db3c8d42e735ed74676810dc1fd9f7b6adcbccef'
-    oldFile: !uuid '6519fa8e6fe0c0ba0ad8e56d831fcca4839d0319'
-  /frontend/src/utils/messagesend.js:
-    newFile: !uuid 'd041ef2128aa4fcaff0bb9f5ab587014db4c2fed'
-    oldFile: null
-gitCommitId: !uuid '1e51bb46d3627f67b1f85fbc57568039cde20011'
+    newFile: !uuid '2e9fe717d8d4e64451472c319f096f4bd65ea1d6'
+    oldFile: !uuid 'b5ef7cae4bf439adf64ea0fe4e0ef9eb71feaf55'
+  /backend/Furion.Extras.Admin.NET/Extension:
+    newFile: !uuid '853f5335ff5011f759dac2923f1e7ff5c7eb5a30'
+    oldFile: !uuid 'cdff785b06d208d161c42746dab61f66607e1205'
+  /backend/Furion.Extras.Admin.NET/Extension/FakeDeleteExtensions.cs:
+    newFile: !uuid 'e2c8be517e5566c6750175f6ee168540531a7315'
+    oldFile: !uuid '3dd8e20c50664fa356182cf45847f12f4bcc68f6'
+gitCommitId: !uuid 'd66a56a6a98708ba496dc455a18d80bf05ec6584'
 renames: {
   }
-revisionId: 548
+revisionId: 549
