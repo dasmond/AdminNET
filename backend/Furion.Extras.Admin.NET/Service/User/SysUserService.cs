@@ -87,6 +87,17 @@ namespace Furion.Extras.Admin.NET.Service
         }
 
         /// <summary>
+        /// 分页查询用户
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        [HttpPost("/sysUser/page@3")]
+        public async Task<dynamic> QueryUserPageListV3(UserPageInput input)
+        {
+            return await QueryUserPageList(input);
+        }
+
+        /// <summary>
         /// 增加用户
         /// </summary>
         /// <param name="input"></param>

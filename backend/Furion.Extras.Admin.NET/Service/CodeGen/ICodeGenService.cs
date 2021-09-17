@@ -18,6 +18,8 @@ namespace Furion.Extras.Admin.NET.Service.CodeGen
 
         Task<dynamic> QueryCodeGenPageList([FromQuery] CodeGenPageInput input);
 
+        Task<dynamic> QueryCodeGenPageListV3(CodeGenPageInput input);
+
         Task RunLocal(SysCodeGen input);
 
         Task UpdateCodeGen(UpdateCodeGenInput input);

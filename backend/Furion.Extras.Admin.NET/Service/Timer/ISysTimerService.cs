@@ -15,6 +15,8 @@ namespace Furion.Extras.Admin.NET.Service
 
         Task<dynamic> GetTimerPageList([FromQuery] JobPageInput input);
 
+        Task<dynamic> GetTimerPageListV3(JobPageInput input);
+
         void StartTimerJob(AddJobInput input);
 
         void StopTimerJob(StopJobInput input);

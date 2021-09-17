@@ -50,6 +50,17 @@ namespace Furion.Extras.Admin.NET.Service
         }
 
         /// <summary>
+        /// 分页获取职位
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        [HttpPost("/sysPos/page@3")]
+        public async Task<dynamic> QueryPosPageListV3(PosInput input)
+        {
+            return await QueryPosPageList(input);
+        }
+
+        /// <summary>
         /// 获取职位列表
         /// </summary>
         /// <returns></returns>

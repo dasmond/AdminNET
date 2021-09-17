@@ -22,6 +22,17 @@ namespace Furion.Extras.Admin.NET.Service
         {
             _sysVisLogRep = sysVisLogRep;
         }
+        
+        /// <summary>
+        /// 分页查询
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        [HttpPost("/sysVisLog/page@3")]
+        public async Task<dynamic> QueryVisLogPageListV3(VisLogPageInput input)
+        {
+            return await QueryVisLogPageList(input);
+        }
 
         /// <summary>
         /// 分页查询访问日志

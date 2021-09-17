@@ -1,0 +1,132 @@
+{{#withSeparateModelsAndApi}}
+/* tslint:disable */
+/* eslint-disable */
+{{>licenseInfo}}
+import { defHttp } from '/@/utils/http/axios';
+import { RequestOptions, UploadFileParams } from '/@/utils/http/axios/types';
+import { assertParamExists } from '{{apiRelativeToRoot}}common';
+import {
+   {{#imports}}
+   {{classname}},
+   {{/imports}}
+   } from '{{apiRelativeToRoot}}{{tsModelPackage}}';
+{{/withSeparateModelsAndApi}}
+{{^withSeparateModelsAndApi}}
+{{/withSeparateModelsAndApi}}
+{{#operations}}
+    {{#operation}}
+
+{{^hasFormParams}}
+         /**
+         {{#summary}}
+         * @summary {{&summary}}
+         {{/summary}}
+         {{#allParams}}
+         * @param {{=<% %>=}}{<%&dataType%>}<%={{ }}=%>{{^required}}[{{/required}}{{paramName}}{{^required}}]{{/required}}{{#description}} {{description}}{{/description}}
+         {{/allParams}}
+         * @param {RequestOptions}options 额外配置，用来设置错误提示方法，是否返回原始数据，是否返回原始响应头，参数是否拼接到url等等
+         {{#isDeprecated}}
+         * @deprecated
+         {{/isDeprecated}}
+         */
+         export function {{nickname}}({{#allParams}}{{paramName}}{{^required}}?{{/required}}: {{{dataType}}}, {{/allParams}}options?: RequestOptions) {
+    {{!必填验证}}
+    {{#allParams}}
+    {{#required}}
+            // verify required parameter '{{paramName}}' is not null or undefined
+            assertParamExists('{{nickname}}', '{{paramName}}', {{paramName}})
+    {{/required}}
+    {{#-first}}
+            const params = { {{^queryParams}} ...{{paramName}} {{/queryParams}} }{{#hasQueryParams}} as any{{/hasQueryParams}}
+    {{/-first}}
+    {{/allParams}}
+    {{!如果是query}}
+    {{#queryParams}}
+            {{#isArray}}
+            if ({{paramName}}) {
+            {{#isCollectionFormatMulti}}
+                {{#uniqueItems}}
+                params['{{baseName}}'] = Array.from({{paramName}});
+                {{/uniqueItems}}
+                {{^uniqueItems}}
+                params['{{baseName}}'] = {{paramName}};
+                {{/uniqueItems}}
+            {{/isCollectionFormatMulti}}
+            {{^isCollectionFormatMulti}}
+                {{#uniqueItems}}
+                params['{{baseName}}'] = Array.from({{paramName}}).join(COLLECTION_FORMATS.{{collectionFormat}});
+                {{/uniqueItems}}
+                {{^uniqueItems}}
+                params['{{baseName}}'] = {{paramName}}.join(COLLECTION_FORMATS.{{collectionFormat}});
+                {{/uniqueItems}}
+            {{/isCollectionFormatMulti}}
+            }
+            {{/isArray}}
+            {{^isArray}}
+            if ({{paramName}} !== undefined) {
+                {{#isDateTime}}
+                params['{{baseName}}'] = ({{paramName}} as any instanceof Date) ?
+                    ({{paramName}} as any).toISOString() :
+                    {{paramName}};
+                {{/isDateTime}}
+                {{^isDateTime}}
+                {{#isDate}}
+                params['{{baseName}}'] = ({{paramName}} as any instanceof Date) ?
+                    ({{paramName}} as any).toISOString().substr(0,10) :
+                    {{paramName}};
+                {{/isDate}}
+                {{^isDate}}
+                params['{{baseName}}'] = {{paramName}};
+                {{/isDate}}
+                {{/isDateTime}}
+            }
+            {{/isArray}}
+    {{/queryParams}}
+            return defHttp.request<{{#returnType}}{{{returnType}}}{{/returnType}}{{^returnType}}void{{/returnType}}>(
+              {
+                url: '{{{path}}}',
+                method: '{{httpMethod}}',
+    {{!定义Content-Type}}
+            {{^consumes}}
+                headers: {'Content-Type': 'application/json'},
+            {{/consumes}}
+            {{#consumes.0}}
+                headers: {'Content-Type': '{{mediaType}}'},
+            {{/consumes.0}}
+    {{#allParams}}
+    {{#-first}}
+                params
+    {{/-first}}
+    {{/allParams}}
+              },
+              options
+            )
+         }
+{{/hasFormParams}}
+{{#formParams}}
+  {{#isFile}}
+        /**
+         {{#summary}}
+         * @summary {{&summary}}
+         {{/summary}}
+         {{#allParams}}
+         * @param {UploadFileParams} params 文件信息
+         * @param {(progressEvent: ProgressEvent) => void} onUploadProgress 上传进度
+         {{/allParams}}
+         {{#isDeprecated}}
+         * @deprecated
+         {{/isDeprecated}}
+         */
+         export function {{nickname}}(params: UploadFileParams, onUploadProgress: (progressEvent: ProgressEvent) => void) {
+           return defHttp.uploadFile<{{#returnType}}{{{returnType}}}{{/returnType}}{{^returnType}}void{{/returnType}}>(
+             {
+               url: '{{{path}}}',
+               onUploadProgress
+             },
+             params
+           )
+         }
+  {{/isFile}}
+{{/formParams}}
+    {{/operation}}
+{{/operations}}

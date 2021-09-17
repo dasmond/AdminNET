@@ -70,6 +70,17 @@ namespace Furion.Extras.Admin.NET.Service
         }
 
         /// <summary>
+        /// 分页查询组织机构
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        [HttpPost("/sysOrg/page@3")]
+        public async Task<dynamic> QueryOrgPageListV3(OrgPageInput input)
+        {
+            return await QueryOrgPageList(input);
+        }
+
+        /// <summary>
         /// (非管理员)获取当前用户数据范围（机构Id）
         /// </summary>
         /// <param name="dataScopes"></param>

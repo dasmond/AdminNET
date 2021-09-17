@@ -35,6 +35,17 @@ namespace Furion.Extras.Admin.NET.Service
         }
 
         /// <summary>
+        /// 分页查询
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        [HttpPost("/sysDictType/page@3")]
+        public async Task<dynamic> QueryDictTypePageListV3(DictTypePageInput input)
+        {
+            return await QueryDictTypePageList(input);
+        }
+
+        /// <summary>
         /// 分页查询字典类型
         /// </summary>
         /// <returns></returns>

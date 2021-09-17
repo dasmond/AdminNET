@@ -5,9 +5,11 @@ export default {
     errorMessage: 'The operation failed, the system is abnormal!',
     timeoutMessage: 'Login timed out, please log in again!',
     apiTimeoutMessage: 'The interface request timed out, please refresh the page and try again!',
+    apiRequestFailed: 'The interface request failed, please try again later!',
     networkException: 'network anomaly',
     networkExceptionMsg:
       'Please check if your network connection is normal! The network is abnormal',
+    assertParamExists: 'Required parameter {0} was null or undefined when calling {1}.',
 
     errMsg401: 'The user does not have permission (token, user name, password error)!',
     errMsg403: 'The user is authorized, but access is forbidden!',
@@ -71,7 +73,7 @@ export default {
     forgetFormTitle: 'Reset password',
 
     signInTitle: 'Backstage management system',
-    signInDesc: 'Make .NET development easier, more versatile, and more popular. ',
+    signInDesc: 'Enter your personal details and get started!',
     policy: 'I agree to the xxx Privacy Policy',
     scanSign: `scanning the code to complete the login`,
 

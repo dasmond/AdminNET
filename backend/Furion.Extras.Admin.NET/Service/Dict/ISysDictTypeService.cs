@@ -20,6 +20,8 @@ namespace Furion.Extras.Admin.NET.Service
 
         Task<dynamic> GetDictTypeList();
 
+        Task<dynamic> QueryDictTypePageListV3(DictTypePageInput input);
+
         Task<dynamic> QueryDictTypePageList([FromQuery] DictTypePageInput input);
 
         Task UpdateDictType(UpdateDictTypeInput input);

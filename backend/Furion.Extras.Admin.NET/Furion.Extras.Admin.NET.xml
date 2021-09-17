@@ -978,6 +978,11 @@
             组件地址
             </summary>
         </member>
+        <member name="P:Furion.Extras.Admin.NET.SysMenu.IgnoreKeepAlive">
+            <summary>
+            忽略缓存
+            </summary>
+        </member>
         <member name="P:Furion.Extras.Admin.NET.SysMenu.Permission">
             <summary>
             权限标识
@@ -3408,6 +3413,13 @@
             <param name="input"></param>
             <returns></returns>
         </member>
+        <member name="M:Furion.Extras.Admin.NET.Service.SysAppService.QueryAppPageListV3(Furion.Extras.Admin.NET.Service.AppPageInput)">
+            <summary>
+            分页查询系统应用
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
         <member name="M:Furion.Extras.Admin.NET.Service.SysAppService.AddApp(Furion.Extras.Admin.NET.Service.AddAppInput)">
             <summary>
             增加系统应用
@@ -3472,6 +3484,18 @@
         <member name="M:Furion.Extras.Admin.NET.Service.AuthService.GetLoginUserAsync">
             <summary>
             获取当前登录用户信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Furion.Extras.Admin.NET.Service.AuthService.GetLoginUserV3Async">
+            <summary>
+            获取当前登录用户基本信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Furion.Extras.Admin.NET.Service.AuthService.GetLoginUserAuthAsync">
+            <summary>
+            获取当前登录用户权限信息
             </summary>
             <returns></returns>
         </member>
@@ -3633,6 +3657,126 @@
             </summary>
         </member>
         <member name="P:Furion.Extras.Admin.NET.Service.LoginOutput.DataScopes">
+            <summary>
+            数据范围（机构）信息
+            </summary>
+        </member>
+        <member name="T:Furion.Extras.Admin.NET.Service.LoginUserOutput">
+            <summary>
+            用户基本信息输出参数
+            </summary>
+        </member>
+        <member name="P:Furion.Extras.Admin.NET.Service.LoginUserOutput.Id">
+            <summary>
+            主键
+            </summary>
+        </member>
+        <member name="P:Furion.Extras.Admin.NET.Service.LoginUserOutput.Account">
+            <summary>
+            账号
+            </summary>
+        </member>
+        <member name="P:Furion.Extras.Admin.NET.Service.LoginUserOutput.NickName">
+            <summary>
+            昵称
+            </summary>
+        </member>
+        <member name="P:Furion.Extras.Admin.NET.Service.LoginUserOutput.Name">
+            <summary>
+            姓名
+            </summary>
+        </member>
+        <member name="P:Furion.Extras.Admin.NET.Service.LoginUserOutput.Avatar">
+            <summary>
+            头像
+            </summary>
+        </member>
+        <member name="P:Furion.Extras.Admin.NET.Service.LoginUserOutput.Birthday">
+            <summary>
+            生日
+            </summary>
+        </member>
+        <member name="P:Furion.Extras.Admin.NET.Service.LoginUserOutput.Sex">
+            <summary>
+            性别(字典 1男 2女)
+            </summary>
+        </member>
+        <member name="P:Furion.Extras.Admin.NET.Service.LoginUserOutput.Email">
+            <summary>
+            邮箱
+            </summary>
+        </member>
+        <member name="P:Furion.Extras.Admin.NET.Service.LoginUserOutput.Phone">
+            <summary>
+            手机
+            </summary>
+        </member>
+        <member name="P:Furion.Extras.Admin.NET.Service.LoginUserOutput.Tel">
+            <summary>
+            电话
+            </summary>
+        </member>
+        <member name="P:Furion.Extras.Admin.NET.Service.LoginUserOutput.AdminType">
+            <summary>
+            管理员类型（0超级管理员 1非管理员）
+            </summary>
+        </member>
+        <member name="P:Furion.Extras.Admin.NET.Service.LoginUserOutput.LastLoginIp">
+            <summary>
+            最后登陆IP
+            </summary>
+        </member>
+        <member name="P:Furion.Extras.Admin.NET.Service.LoginUserOutput.LastLoginTime">
+            <summary>
+            最后登陆时间
+            </summary>
+        </member>
+        <member name="P:Furion.Extras.Admin.NET.Service.LoginUserOutput.LastLoginAddress">
+            <summary>
+            最后登陆地址
+            </summary>
+        </member>
+        <member name="P:Furion.Extras.Admin.NET.Service.LoginUserOutput.LastLoginBrowser">
+            <summary>
+            最后登陆所用浏览器
+            </summary>
+        </member>
+        <member name="P:Furion.Extras.Admin.NET.Service.LoginUserOutput.LastLoginOs">
+            <summary>
+            最后登陆所用系统
+            </summary>
+        </member>
+        <member name="P:Furion.Extras.Admin.NET.Service.LoginUserOutput.LoginEmpInfo">
+            <summary>
+            员工信息
+            </summary>
+        </member>
+        <member name="P:Furion.Extras.Admin.NET.Service.LoginUserOutput.Roles">
+            <summary>
+            角色信息
+            </summary>
+        </member>
+        <member name="T:Furion.Extras.Admin.NET.Service.LoginAuthOutput">
+            <summary>
+            用户权限输出参数
+            </summary>
+        </member>
+        <member name="P:Furion.Extras.Admin.NET.Service.LoginAuthOutput.Apps">
+            <summary>
+            具备应用信息
+            </summary>
+        </member>
+        <member name="P:Furion.Extras.Admin.NET.Service.LoginAuthOutput.Permissions">
+            <summary>
+            权限信息
+            </summary>
+        </member>
+        <member name="P:Furion.Extras.Admin.NET.Service.LoginAuthOutput.Menus">
+            <summary>
+            登录菜单信息---AntDesign版本菜单
+            </summary>
+        </member>
+        <member name="P:Furion.Extras.Admin.NET.Service.LoginAuthOutput.DataScopes">
             <summary>
             数据范围（机构）信息
             </summary>
@@ -4064,6 +4208,13 @@
             <summary>
             代码生成器服务
             </summary>
+        </member>
+        <member name="M:Furion.Extras.Admin.NET.Service.CodeGen.CodeGenService.QueryCodeGenPageListV3(Furion.Extras.Admin.NET.Service.CodeGenPageInput)">
+            <summary>
+            分页查询
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
         </member>
         <member name="M:Furion.Extras.Admin.NET.Service.CodeGen.CodeGenService.QueryCodeGenPageList(Furion.Extras.Admin.NET.Service.CodeGenPageInput)">
             <summary>
@@ -4632,6 +4783,13 @@
             系统参数配置服务
             </summary>
         </member>
+        <member name="M:Furion.Extras.Admin.NET.Service.SysConfigService.QueryConfigPageListV3(Furion.Extras.Admin.NET.Service.ConfigPageInput)">
+            <summary>
+            分页查询
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
         <member name="M:Furion.Extras.Admin.NET.Service.SysConfigService.QueryConfigPageList(Furion.Extras.Admin.NET.Service.ConfigPageInput)">
             <summary>
             分页获取系统参数配置
@@ -4955,6 +5113,13 @@
             字典值服务
             </summary>
         </member>
+        <member name="M:Furion.Extras.Admin.NET.Service.SysDictDataService.QueryDictDataPageListV3(Furion.Extras.Admin.NET.Service.DictDataPageInput)">
+            <summary>
+            分页查询
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
         <member name="M:Furion.Extras.Admin.NET.Service.SysDictDataService.QueryDictDataPageList(Furion.Extras.Admin.NET.Service.DictDataPageInput)">
             <summary>
             分页查询字典值
@@ -5020,6 +5185,13 @@
             <summary>
             字典类型服务
             </summary>
+        </member>
+        <member name="M:Furion.Extras.Admin.NET.Service.SysDictTypeService.QueryDictTypePageListV3(Furion.Extras.Admin.NET.Service.DictTypePageInput)">
+            <summary>
+            分页查询
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
         </member>
         <member name="M:Furion.Extras.Admin.NET.Service.SysDictTypeService.QueryDictTypePageList(Furion.Extras.Admin.NET.Service.DictTypePageInput)">
             <summary>
@@ -5456,6 +5628,13 @@
             文件服务
             </summary>
         </member>
+        <member name="M:Furion.Extras.Admin.NET.Service.SysFileService.QueryFileInfoPageListV3(Furion.Extras.Admin.NET.Service.FilePageInput)">
+            <summary>
+            分页查询
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
         <member name="M:Furion.Extras.Admin.NET.Service.SysFileService.QueryFileInfoPageList(Furion.Extras.Admin.NET.Service.FilePageInput)">
             <summary>
             分页获取文件列表
@@ -5793,6 +5972,13 @@
             异常日志服务
             </summary>
         </member>
+        <member name="M:Furion.Extras.Admin.NET.Service.SysExLogService.QueryExLogPageListV3(Furion.Extras.Admin.NET.Service.ExLogPageInput)">
+            <summary>
+            分页查询
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
         <member name="M:Furion.Extras.Admin.NET.Service.SysExLogService.QueryExLogPageList(Furion.Extras.Admin.NET.Service.ExLogPageInput)">
             <summary>
             分页查询异常日志
@@ -5811,6 +5997,13 @@
             操作日志服务
             </summary>
         </member>
+        <member name="M:Furion.Extras.Admin.NET.Service.SysOpLogService.QueryOpLogPageListV3(Furion.Extras.Admin.NET.Service.OpLogPageInput)">
+            <summary>
+            分页查询
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
         <member name="M:Furion.Extras.Admin.NET.Service.SysOpLogService.QueryOpLogPageList(Furion.Extras.Admin.NET.Service.OpLogPageInput)">
             <summary>
             分页查询操作日志
@@ -5828,6 +6021,13 @@
             <summary>
             访问日志服务
             </summary>
+        </member>
+        <member name="M:Furion.Extras.Admin.NET.Service.SysVisLogService.QueryVisLogPageListV3(Furion.Extras.Admin.NET.Service.VisLogPageInput)">
+            <summary>
+            分页查询
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
         </member>
         <member name="M:Furion.Extras.Admin.NET.Service.SysVisLogService.QueryVisLogPageList(Furion.Extras.Admin.NET.Service.VisLogPageInput)">
             <summary>
@@ -6663,6 +6863,13 @@
             <param name="input"></param>
             <returns></returns>
         </member>
+        <member name="M:Furion.Extras.Admin.NET.Service.Notice.SysNoticeService.QueryNoticePageListV3(Furion.Extras.Admin.NET.Service.NoticePageInput)">
+            <summary>
+            分页查询通知公告
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
         <member name="M:Furion.Extras.Admin.NET.Service.Notice.SysNoticeService.AddNotice(Furion.Extras.Admin.NET.Service.AddNoticeInput)">
             <summary>
             增加通知公告
@@ -7109,6 +7316,13 @@
             <param name="input"></param>
             <returns></returns>
         </member>
+        <member name="M:Furion.Extras.Admin.NET.Service.SysOrgService.QueryOrgPageListV3(Furion.Extras.Admin.NET.Service.OrgPageInput)">
+            <summary>
+            分页查询组织机构
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
         <member name="M:Furion.Extras.Admin.NET.Service.SysOrgService.GetDataScopeList(System.Collections.Generic.List{System.Int64})">
             <summary>
             (非管理员)获取当前用户数据范围（机构Id）
@@ -7292,6 +7506,13 @@
             </summary>
         </member>
         <member name="M:Furion.Extras.Admin.NET.Service.SysPosService.QueryPosPageList(Furion.Extras.Admin.NET.Service.PosInput)">
+            <summary>
+            分页获取职位
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Furion.Extras.Admin.NET.Service.SysPosService.QueryPosPageListV3(Furion.Extras.Admin.NET.Service.PosInput)">
             <summary>
             分页获取职位
             </summary>
@@ -7602,6 +7823,13 @@
             <param name="input"></param>
             <returns></returns>
         </member>
+        <member name="M:Furion.Extras.Admin.NET.Service.SysRoleService.QueryRolePageListV3(Furion.Extras.Admin.NET.Service.RolePageInput)">
+            <summary>
+            分页获取角色列表
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
         <member name="M:Furion.Extras.Admin.NET.Service.SysRoleService.GetRoleList(Furion.Extras.Admin.NET.Service.RoleInput)">
             <summary>
             获取角色列表
@@ -7852,6 +8080,13 @@
             </summary>
         </member>
         <member name="M:Furion.Extras.Admin.NET.Service.SysTenantService.QueryTenantPageList(Furion.Extras.Admin.NET.Service.TenantPageInput)">
+            <summary>
+            分页查询租户
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Furion.Extras.Admin.NET.Service.SysTenantService.QueryTenantPageListV3(Furion.Extras.Admin.NET.Service.TenantPageInput)">
             <summary>
             分页查询租户
             </summary>
@@ -8262,6 +8497,13 @@
             </summary>
         </member>
         <member name="M:Furion.Extras.Admin.NET.Service.SysTimerService.GetTimerPageList(Furion.Extras.Admin.NET.Service.JobPageInput)">
+            <summary>
+            分页获取任务列表
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Furion.Extras.Admin.NET.Service.SysTimerService.GetTimerPageListV3(Furion.Extras.Admin.NET.Service.JobPageInput)">
             <summary>
             分页获取任务列表
             </summary>
@@ -8774,6 +9016,13 @@
             </summary>
         </member>
         <member name="M:Furion.Extras.Admin.NET.Service.SysUserService.QueryUserPageList(Furion.Extras.Admin.NET.Service.UserPageInput)">
+            <summary>
+            分页查询用户
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Furion.Extras.Admin.NET.Service.SysUserService.QueryUserPageListV3(Furion.Extras.Admin.NET.Service.UserPageInput)">
             <summary>
             分页查询用户
             </summary>

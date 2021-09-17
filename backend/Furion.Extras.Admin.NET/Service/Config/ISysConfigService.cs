@@ -13,6 +13,8 @@ namespace Furion.Extras.Admin.NET.Service
 
         Task<dynamic> GetConfigList();
 
+        Task<dynamic> QueryConfigPageListV3(ConfigPageInput input);
+
         Task<dynamic> QueryConfigPageList([FromQuery] ConfigPageInput input);
 
         Task UpdateConfig(UpdateConfigInput input);

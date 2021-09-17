@@ -17,6 +17,8 @@ namespace Furion.Extras.Admin.NET.Service
 
         Task<dynamic> QueryAppPageList([FromQuery] AppPageInput input);
 
+        Task<dynamic> QueryAppPageListV3(AppPageInput input);
+
         Task SetAsDefault(SetDefaultAppInput input);
 
         Task UpdateApp(UpdateAppInput input);

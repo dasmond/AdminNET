@@ -24,6 +24,17 @@ namespace Furion.Extras.Admin.NET.Service
         }
 
         /// <summary>
+        /// 分页查询
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        [HttpPost("/sysExLog/page@3")]
+        public async Task<dynamic> QueryExLogPageListV3(ExLogPageInput input)
+        {
+            return await QueryExLogPageList(input);
+        }
+
+        /// <summary>
         /// 分页查询异常日志
         /// </summary>
         /// <param name="input"></param>

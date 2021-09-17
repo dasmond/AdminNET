@@ -37,6 +37,8 @@ namespace Furion.Extras.Admin.NET.Service
 
         Task<dynamic> QueryUserPageList([FromQuery] UserPageInput input);
 
+        Task<dynamic> QueryUserPageListV3(UserPageInput input);
+
         Task ResetUserPwd(QueryUserInput input);
 
         Task SaveAuthUserToUser(AuthUserInput authUser, CreateUserInput sysUser);

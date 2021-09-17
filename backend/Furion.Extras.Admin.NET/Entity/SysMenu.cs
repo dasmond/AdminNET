@@ -48,7 +48,7 @@ namespace Furion.Extras.Admin.NET
         /// 图标
         /// </summary>
         [Comment("图标")]
-        [MaxLength(20)]
+        [MaxLength(50)]
         public string Icon { get; set; }
 
         /// <summary>
@@ -64,6 +64,12 @@ namespace Furion.Extras.Admin.NET
         [Comment("组件地址")]
         [MaxLength(100)]
         public string Component { get; set; }
+
+        /// <summary>
+        /// 忽略缓存
+        /// </summary>
+        [Comment("忽略缓存")]
+        public bool IgnoreKeepAlive { get; set; }
 
         /// <summary>
         /// 权限标识

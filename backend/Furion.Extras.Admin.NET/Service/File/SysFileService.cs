@@ -43,6 +43,17 @@ namespace Furion.Extras.Admin.NET.Service
         }
 
         /// <summary>
+        /// 分页查询
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        [HttpPost("/sysFileInfo/page@3")]
+        public async Task<dynamic> QueryFileInfoPageListV3(FilePageInput input)
+        {
+            return await QueryFileInfoPageList(input);
+        }
+
+        /// <summary>
         /// 分页获取文件列表
         /// </summary>
         /// <param name="input"></param>

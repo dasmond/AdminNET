@@ -76,6 +76,17 @@ namespace Furion.Extras.Admin.NET.Service
         }
 
         /// <summary>
+        /// 分页获取角色列表
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        [HttpPost("/sysRole/page@3")]
+        public async Task<dynamic> QueryRolePageListV3(RolePageInput input)
+        {
+            return await QueryRolePageList(input);
+        }
+
+        /// <summary>
         /// 获取角色列表
         /// </summary>
         /// <param name="input"></param>

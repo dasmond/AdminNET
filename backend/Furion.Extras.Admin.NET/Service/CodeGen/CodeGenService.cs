@@ -44,6 +44,17 @@ namespace Furion.Extras.Admin.NET.Service.CodeGen
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
+        [HttpPost("/codeGenerate/page@3")]
+        public async Task<dynamic> QueryCodeGenPageListV3(CodeGenPageInput input)
+        {
+            return await QueryCodeGenPageList(input);
+        }
+
+        /// <summary>
+        /// 分页查询
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
         [HttpGet("/codeGenerate/page")]
         public async Task<dynamic> QueryCodeGenPageList([FromQuery] CodeGenPageInput input)
         {

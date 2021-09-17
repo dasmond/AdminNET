@@ -15,6 +15,8 @@ namespace Furion.Extras.Admin.NET.Service
 
         Task<dynamic> QueryPosPageList([FromQuery] PosInput input);
 
+        Task<dynamic> QueryPosPageListV3(PosInput input);
+
         Task UpdatePos(UpdatePosInput input);
     }
 }

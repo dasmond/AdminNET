@@ -27,6 +27,17 @@ namespace Furion.Extras.Admin.NET.Service
         }
 
         /// <summary>
+        /// 分页查询
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        [HttpPost("/sysConfig/page@3")]
+        public async Task<dynamic> QueryConfigPageListV3(ConfigPageInput input)
+        {
+            return await QueryConfigPageList(input);
+        }
+
+        /// <summary>
         /// 分页获取系统参数配置
         /// </summary>
         /// <param name="input"></param>

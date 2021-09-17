@@ -1,23 +1,21 @@
 import { isArray, isFunction, isObject, isString, isNullOrUnDef } from '/@/utils/is';
 import { dateUtil } from '/@/utils/dateUtil';
-
 import { unref } from 'vue';
 import type { Ref, ComputedRef } from 'vue';
-import type { FieldMapToTime, FormSchema } from '../types/form';
+import type { FormProps, FormSchema } from '../types/form';
+import { set } from 'lodash-es';
 
 interface UseFormValuesContext {
-  transformDateFuncRef: Ref<Fn>;
-  fieldMapToTimeRef: Ref<FieldMapToTime>;
   defaultValueRef: Ref<any>;
   getSchema: ComputedRef<FormSchema[]>;
+  getProps: ComputedRef<FormProps>;
   formModel: Recordable;
 }
 export function useFormValues({
-  transformDateFuncRef,
-  fieldMapToTimeRef,
   defaultValueRef,
   getSchema,
   formModel,
+  getProps,
 }: UseFormValuesContext) {
   // Processing form values
   function handleFormValues(values: Recordable) {
@@ -28,21 +26,21 @@ export function useFormValues({
     for (const item of Object.entries(values)) {
       let [, value] = item;
       const [key] = item;
-      if ((isArray(value) && value.length === 0) || isFunction(value)) {
+      if (!key || (isArray(value) && value.length === 0) || isFunction(value)) {
         continue;
       }
-      const transformDateFunc = unref(transformDateFuncRef);
+      const transformDateFunc = unref(getProps).transformDateFunc;
       if (isObject(value)) {
-        value = transformDateFunc(value);
+        value = transformDateFunc?.(value);
       }
       if (isArray(value) && value[0]?._isAMomentObject && value[1]?._isAMomentObject) {
-        value = value.map((item) => transformDateFunc(item));
+        value = value.map((item) => transformDateFunc?.(item));
       }
       // Remove spaces
       if (isString(value)) {
         value = value.trim();
       }
-      res[key] = value;
+      set(res, key, value);
     }
     return handleRangeTimeValue(res);
   }
@@ -51,7 +49,7 @@ export function useFormValues({
    * @description: Processing time interval parameters
    */
   function handleRangeTimeValue(values: Recordable) {
-    const fieldMapToTime = unref(fieldMapToTimeRef);
+    const fieldMapToTime = unref(getProps).fieldMapToTime;
 
     if (!fieldMapToTime || !Array.isArray(fieldMapToTime)) {
       return values;

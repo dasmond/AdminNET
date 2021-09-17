@@ -79,6 +79,17 @@ namespace Furion.Extras.Admin.NET.Service
         }
 
         /// <summary>
+        /// 分页查询系统应用
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        [HttpPost("/sysApp/page@3")]
+        public async Task<dynamic> QueryAppPageListV3(AppPageInput input)
+        {
+            return await QueryAppPageList(input);
+        }
+
+        /// <summary>
         /// 增加系统应用
         /// </summary>
         /// <param name="input"></param>

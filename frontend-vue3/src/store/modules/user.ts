@@ -1,35 +1,22 @@
-import type { UserInfo } from '/#/store';
-import type { ErrorMessageMode } from '/@/utils/http/axios/types';
-
+﻿import type { UserInfo } from '/#/store';
+import type { ErrorMessageMode } from '/#/axios';
 import { defineStore } from 'pinia';
 import { store } from '/@/store';
-
 import { RoleEnum } from '/@/enums/roleEnum';
 import { PageEnum } from '/@/enums/pageEnum';
 import { ROLES_KEY, TOKEN_KEY, USER_INFO_KEY } from '/@/enums/cacheEnum';
-
 import { getAuthCache, setAuthCache } from '/@/utils/auth';
-import {
-  GetUserInfoByUserIdModel,
-  GetUserInfoByUserIdParams,
-  LoginParams,
-} from '/@/api/sys/model/userModel';
-
-import { getUserInfoById, loginApi } from '/@/api/sys/user';
-
-import { t, useI18n } from '/@/hooks/web/useI18n';
+import { useI18n } from '/@/hooks/web/useI18n';
 import { useMessage } from '/@/hooks/web/useMessage';
-import router from '/@/router';
-import { AuthApi } from '/@/api_base/apis/auth-api';
-import { defHttp } from '/@/utils/http/axios';
-import { LoginOutput, XnRestfulResultOfLoginOutput } from '/@/api_base/models';
-
-const { createMessage, createErrorModal } = useMessage();
+import { router } from '/@/router';
+import { loginPost, getLoginUserGet, logoutGet } from '/@/api_base/api/auth-api';
+import { LoginInput } from '/@/api_base/models/login-input';
 
 interface UserState {
-  userInfo: Nullable<LoginOutput>;
+  userInfo: Nullable<UserInfo>;
   token?: string;
   roleList: RoleEnum[];
+  sessionTimeout?: boolean;
 }
 
 export const useUserStore = defineStore({
@@ -41,10 +28,12 @@ export const useUserStore = defineStore({
     token: undefined,
     // roleList
     roleList: [],
+    // Whether the login expired
+    sessionTimeout: false,
   }),
   getters: {
-    getUserInfo(): LoginOutput {
-      return this.userInfo || getAuthCache<LoginOutput>(USER_INFO_KEY) || {};
+    getUserInfo(): UserInfo {
+      return this.userInfo || getAuthCache<UserInfo>(USER_INFO_KEY) || {};
     },
     getToken(): string {
       return this.token || getAuthCache<string>(TOKEN_KEY);
@@ -52,9 +41,12 @@ export const useUserStore = defineStore({
     getRoleList(): RoleEnum[] {
       return this.roleList.length > 0 ? this.roleList : getAuthCache<RoleEnum[]>(ROLES_KEY);
     },
+    getSessionTimeout(): boolean {
+      return !!this.sessionTimeout;
+    },
   },
   actions: {
-    setToken(info: string) {
+    setToken(info: string | undefined) {
       this.token = info;
       setAuthCache(TOKEN_KEY, info);
     },
@@ -62,55 +54,57 @@ export const useUserStore = defineStore({
       this.roleList = roleList;
       setAuthCache(ROLES_KEY, roleList);
     },
-    setUserInfo(info: LoginOutput) {
+    setUserInfo(info: UserInfo) {
       this.userInfo = info;
       setAuthCache(USER_INFO_KEY, info);
+    },
+    setSessionTimeout(flag: boolean) {
+      this.sessionTimeout = flag;
     },
     resetState() {
       this.userInfo = null;
       this.token = '';
       this.roleList = [];
+      this.sessionTimeout = false;
     },
     /**
      * @description: login
      */
     async login(
-      params: LoginParams & {
+      params: LoginInput & {
         goHome?: boolean;
         mode?: ErrorMessageMode;
       }
-    ): Promise<LoginOutput | null> {
+    ): Promise<UserInfo | null> {
       try {
         const { goHome = true, mode, ...loginParams } = params;
         // const data = await loginApi(loginParams, mode);
-        // const { token, userId } = data;
+        // const { token } = data;
 
-        var authApi = new AuthApi(undefined, undefined, defHttp.getAxios());
-        var user = await authApi.loginPost(loginParams);
-        if(user.data.code !== 200) {
-          createMessage.error(user.data.message);
-          return null;
-        }
+        const token = await loginPost(loginParams, { errorMessageMode: 'modal' });
 
         // save token
-        this.setToken("Bearer " + user.data.data);
+        this.setToken('Bearer ' + token);
 
         // get user info
-        // const userInfo = await this.getUserInfoAction({ userId });
-        const userInfo =  await authApi.getLoginUserGet();
+        // const userInfo = await this.getUserInfoAction();
+        const userInfo = await getLoginUserGet();
+        this.setUserInfo(userInfo);
+
         //const { roles } = userInfo.data;
         //const roleList = roles.map((item) => item.value) as RoleEnum[];
-        this.setUserInfo(userInfo.data.data);
         //this.setRoleList(roleList);
 
-        goHome && (await router.replace(PageEnum.BASE_HOME));
-        return userInfo.data.data;
+        const sessionTimeout = this.sessionTimeout;
+        sessionTimeout && this.setSessionTimeout(false);
+        !sessionTimeout && goHome && (await router.replace(PageEnum.BASE_HOME));
+        return userInfo;
       } catch (error) {
-        return null;
+        return Promise.reject(error);
       }
     },
-    // async getUserInfoAction({ userId }: GetUserInfoByUserIdParams) {
-    //   const userInfo =  await getUserInfoById({ userId });
+    // async getUserInfoAction() {
+    //   const userInfo =  await getUserInfo();
     //   const { roles } = userInfo;
     //   const roleList = roles.map((item) => item.value) as RoleEnum[];
     //   this.setUserInfo(userInfo);
@@ -120,7 +114,14 @@ export const useUserStore = defineStore({
     /**
      * @description: logout
      */
-    logout(goLogin = false) {
+    async logout(goLogin = false) {
+      try {
+        await logoutGet();
+      } catch {
+        console.log('注销Token失败');
+      }
+      this.setToken(undefined);
+      this.setSessionTimeout(false);
       goLogin && router.push(PageEnum.BASE_LOGIN);
     },
 
@@ -143,6 +144,6 @@ export const useUserStore = defineStore({
 });
 
 // Need to be used outside the setup
-export function useUserStoreWidthOut() {
+export function useUserStoreWithOut() {
   return useUserStore(store);
 }
