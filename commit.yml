@@ -3,18 +3,30 @@ branches: {
   }
 fileChange:
   /backend:
-    newFile: !uuid '1317d39b9fe84c78e7bb1bd17067ee6c0440a74c'
-    oldFile: !uuid '1262a2e38eecb2c3035520b55b452e5379f370f3'
+    newFile: !uuid '2d6f064d21ce3efb8e8bcb2af1476028491064f8'
+    oldFile: !uuid '1317d39b9fe84c78e7bb1bd17067ee6c0440a74c'
+  /backend/Admin.NET.Web.Entry:
+    newFile: !uuid '0965ea738c442a2468c0ac3d5772802b88b8d922'
+    oldFile: !uuid 'be9a09856aed1c90d490c4140232a0b07d1cafe8'
+  /backend/Admin.NET.Web.Entry/Admin.NET.db:
+    newFile: !uuid '59ebb3fdacefaa3e44bfdf3647a87e04a7352901'
+    oldFile: !uuid '158264f6afa0460da1b09f881fdaec16a31f14d3'
+  /backend/Admin.NET.Web.Entry/Admin.NET_SaaS.db:
+    newFile: !uuid 'a5456b744ad55b3469b2fab9f5b878e8c0c8b6a9'
+    oldFile: !uuid 'c3eddf073050c5f011647e87f800c8758446d2bd'
   /backend/Furion.Extras.Admin.NET:
-    newFile: !uuid '224cfb012e062b207fc6a95db5421a144ecc79d3'
-    oldFile: !uuid '4f155f3a3e168157b9491553ab04ed08de178b48'
-  /backend/Furion.Extras.Admin.NET/Extension:
-    newFile: !uuid 'cdff785b06d208d161c42746dab61f66607e1205'
-    oldFile: !uuid 'cec0f11da7a3e89b2f42e567b56e9f6f1abb561c'
-  /backend/Furion.Extras.Admin.NET/Extension/FakeDeleteExtensions.cs:
-    newFile: !uuid '3dd8e20c50664fa356182cf45847f12f4bcc68f6'
-    oldFile: null
-gitCommitId: !uuid '0d7db18d711da211717c9a1898b2d21f9a8def4b'
+    newFile: !uuid 'f5ce8be8da06ae7ae95dfd5c8892c0bee197748e'
+    oldFile: !uuid '224cfb012e062b207fc6a95db5421a144ecc79d3'
+  /backend/Furion.Extras.Admin.NET/Service:
+    newFile: !uuid 'a95668cf242e935c1c7a5cf7e2bdcddd3574398f'
+    oldFile: !uuid 'ffd9e1f772e94c25aee200bbe5807ebbc52e0dad'
+  /backend/Furion.Extras.Admin.NET/Service/Emp:
+    newFile: !uuid '5e983450137fb41008d8354481404dc32503f629'
+    oldFile: !uuid 'd6973f1ade54394e2dcbc6ddd29a34e55d5dc27b'
+  /backend/Furion.Extras.Admin.NET/Service/Emp/SysEmpService.cs:
+    newFile: !uuid '8fd2e1d43a9f38d29cde690ceecd269c6f74beb6'
+    oldFile: !uuid '51521b9eb08d6ce52550141f7c5ed775a509c378'
+gitCommitId: !uuid 'd401cabd52b542939ffca5adf241a2380587de8d'
 renames: {
   }
-revisionId: 546
+revisionId: 547
