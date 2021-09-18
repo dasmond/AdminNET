@@ -3,21 +3,18 @@ branches: {
   }
 fileChange:
   /backend:
-    newFile: !uuid '1ad9e319cd0f79a39612079926b23116676657f4'
-    oldFile: !uuid '31f1264166e8fe7470a1d5ef27a4e4e0e7a9075a'
-  /backend/Furion.Extras.Admin.NET:
-    newFile: !uuid 'ec3cc4738ae6c324666611b0645511c8020ea07b'
-    oldFile: !uuid '2e9fe717d8d4e64451472c319f096f4bd65ea1d6'
-  /backend/Furion.Extras.Admin.NET/Extension:
-    newFile: !uuid '11683622e03e0def923d49eb0e27a59c29f1893a'
-    oldFile: !uuid '853f5335ff5011f759dac2923f1e7ff5c7eb5a30'
-  /backend/Furion.Extras.Admin.NET/Extension/NewtonsoftJsonSerializerProvider .cs:
-    newFile: !uuid '72f22b0d68e0d9a0cbfb3f9664e04a550f59bb79'
-    oldFile: null
-  /backend/Furion.Extras.Admin.NET/Furion.Extras.Admin.NET.xml:
-    newFile: !uuid '240fe10fadd0f96f90882504567440b7333da738'
-    oldFile: !uuid '77090f3ef98c2e9e7da4a668ba9102cea9caad4c'
-gitCommitId: !uuid '5251d7c9bc370ea5111de6519640d8eb7599efcf'
+    newFile: !uuid '7fffd531b7620727fbbf25b7e7fccf99ee652c1c'
+    oldFile: !uuid '1ad9e319cd0f79a39612079926b23116676657f4'
+  /backend/Admin.NET.Web.Core:
+    newFile: !uuid 'fb803fc091f63efa7ce563e7ce98e6dc417175d0'
+    oldFile: !uuid '2153e200e1811ca3ee3182b23a2bef6b25bc95ac'
+  /backend/Admin.NET.Web.Core/Handlers:
+    newFile: !uuid '15b084be1cd320c3940b5608461156b9de2e7445'
+    oldFile: !uuid '2e00b9dcb6854192f4f33cb39113a6b0a8061851'
+  /backend/Admin.NET.Web.Core/Handlers/JwtHandler.cs:
+    newFile: !uuid 'e83e07e171f2dd55e3a8ed7fc4d01e743daddab0'
+    oldFile: !uuid '5c47841225d2053d1904035c973136a6b33a3fc3'
+gitCommitId: !uuid '7b8e0be1ba82cc30ef5395e29caaf05fcfc4ca0d'
 renames: {
   }
-revisionId: 550
+revisionId: 551
