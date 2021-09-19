@@ -3,18 +3,30 @@ branches: {
   }
 fileChange:
   /backend:
-    newFile: !uuid '7fffd531b7620727fbbf25b7e7fccf99ee652c1c'
-    oldFile: !uuid '1ad9e319cd0f79a39612079926b23116676657f4'
+    newFile: !uuid '10969c15eaf9e553f7e104db99a7a100e4554ef0'
+    oldFile: !uuid '7fffd531b7620727fbbf25b7e7fccf99ee652c1c'
   /backend/Admin.NET.Web.Core:
-    newFile: !uuid 'fb803fc091f63efa7ce563e7ce98e6dc417175d0'
-    oldFile: !uuid '2153e200e1811ca3ee3182b23a2bef6b25bc95ac'
+    newFile: !uuid '2153e200e1811ca3ee3182b23a2bef6b25bc95ac'
+    oldFile: !uuid 'fb803fc091f63efa7ce563e7ce98e6dc417175d0'
   /backend/Admin.NET.Web.Core/Handlers:
-    newFile: !uuid '15b084be1cd320c3940b5608461156b9de2e7445'
-    oldFile: !uuid '2e00b9dcb6854192f4f33cb39113a6b0a8061851'
+    newFile: !uuid '2e00b9dcb6854192f4f33cb39113a6b0a8061851'
+    oldFile: !uuid '15b084be1cd320c3940b5608461156b9de2e7445'
   /backend/Admin.NET.Web.Core/Handlers/JwtHandler.cs:
-    newFile: !uuid 'e83e07e171f2dd55e3a8ed7fc4d01e743daddab0'
-    oldFile: !uuid '5c47841225d2053d1904035c973136a6b33a3fc3'
-gitCommitId: !uuid '7b8e0be1ba82cc30ef5395e29caaf05fcfc4ca0d'
+    newFile: !uuid '5c47841225d2053d1904035c973136a6b33a3fc3'
+    oldFile: !uuid 'e83e07e171f2dd55e3a8ed7fc4d01e743daddab0'
+  /backend/Furion.Extras.Admin.NET:
+    newFile: !uuid 'a388bd6e1b1e71b5f0cabcba5f02c63bf4554887'
+    oldFile: !uuid 'ec3cc4738ae6c324666611b0645511c8020ea07b'
+  /backend/Furion.Extras.Admin.NET/Service:
+    newFile: !uuid 'c6808b76ddd6e90305a902991eb28e9c8ae2a02a'
+    oldFile: !uuid '8ff6d6424c4abdee6946c5096daa9dc14cac2f1e'
+  /backend/Furion.Extras.Admin.NET/Service/User:
+    newFile: !uuid 'f7a622b70ffe504da78654375e8f054bf30aba98'
+    oldFile: !uuid '6aee76e4356174161506476ccc6961cfeb85bb97'
+  /backend/Furion.Extras.Admin.NET/Service/User/SysUserService.cs:
+    newFile: !uuid 'ea9dae24b787716dbdf34db1d371857a98fcb091'
+    oldFile: !uuid 'c47632dc6d37b7ad169baf0d8ecba228f36df419'
+gitCommitId: !uuid '3343b1c31afa588facd645d7e902288e172d3337'
 renames: {
   }
-revisionId: 551
+revisionId: 552
