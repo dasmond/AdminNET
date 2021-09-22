@@ -3,6 +3,7 @@ using Furion.DataEncryption;
 using Furion.DependencyInjection;
 using Furion.DynamicApiController;
 using Furion.EventBus;
+using Furion.Extras.Admin.NET.Options;
 using Furion.FriendlyException;
 using Mapster;
 using Microsoft.AspNetCore.Authorization;
@@ -13,7 +14,6 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
-using Furion.Extras.Admin.NET.Options;
 using UAParser;
 
 namespace Furion.Extras.Admin.NET.Service
@@ -81,6 +81,8 @@ namespace Furion.Extras.Admin.NET.Service
             // 验证账号是否被冻结
             if (user.Status == CommonStatus.DISABLE)
                 throw Oops.Oh(ErrorCode.D1017);
+            // 员工信息
+            var empInfo = _sysEmpService.GetEmpInfo(user.Id).Result;
 
             // 生成Token令牌
             //var accessToken = await _jwtBearerManager.CreateTokenAdmin(user);
@@ -91,6 +93,8 @@ namespace Furion.Extras.Admin.NET.Service
                 { ClaimConst.CLAINM_ACCOUNT, user.Account },
                 { ClaimConst.CLAINM_NAME, user.Name },
                 { ClaimConst.CLAINM_SUPERADMIN, user.AdminType },
+                { ClaimConst.CLAINM_ORGID, empInfo.OrgId },
+                { ClaimConst.CLAINM_ORGNAME, empInfo.OrgName },
             });
 
             // 设置Swagger自动登录
