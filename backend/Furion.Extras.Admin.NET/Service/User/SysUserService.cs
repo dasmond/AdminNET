@@ -1,4 +1,4 @@
-﻿using Furion.DatabaseAccessor;
+using Furion.DatabaseAccessor;
 using Furion.DatabaseAccessor.Extensions;
 using Furion.DataEncryption;
 using Furion.DependencyInjection;
@@ -321,7 +321,6 @@ namespace Furion.Extras.Admin.NET.Service
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [AllowAnonymous] //公告中需要使用，开放权限
         [HttpGet("/sysUser/selector")]
         public async Task<dynamic> GetUserSelector([FromQuery] UserSelectorInput input)
         {
