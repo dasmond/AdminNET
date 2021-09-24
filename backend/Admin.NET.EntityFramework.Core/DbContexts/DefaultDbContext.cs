@@ -88,7 +88,6 @@ namespace Admin.NET.EntityFramework.Core
                             if (tenantId == null || (long)tenantId == 0)
                                 entity.Property(nameof(Entity.TenantId)).CurrentValue = long.Parse(GetTenantId().ToString());
 
-                            obj.Id = obj.Id == 0 ? YitIdHelper.NextId() : obj.Id;
                             obj.CreatedTime = DateTimeOffset.Now;
                             if (!string.IsNullOrEmpty(userId))
                             {
@@ -118,8 +117,7 @@ namespace Admin.NET.EntityFramework.Core
                 {
                     var obj = entity.Entity as DEntityBase;
                     if (entity.State == EntityState.Added)
-                    {
-                        obj.Id = obj.Id == 0 ? YitIdHelper.NextId() : obj.Id;
+                    {                        
                         obj.CreatedTime = DateTimeOffset.Now;
                         if (!string.IsNullOrEmpty(userId))
                         {
