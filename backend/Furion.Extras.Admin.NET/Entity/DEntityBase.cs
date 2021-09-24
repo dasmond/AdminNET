@@ -12,6 +12,10 @@ namespace Furion.Extras.Admin.NET
     /// </summary>
     public abstract class DEntityBase : DEntityBase<long, MasterDbContextLocator>
     {
+        public DEntityBase()
+        {
+            Id = Id == 0 ? Yitter.IdGenerator.YitIdHelper.NextId() : Id;
+        }
     }
 
     public abstract class DEntityBase<TKey, TDbContextLocator1> : PrivateDEntityBase<TKey>
