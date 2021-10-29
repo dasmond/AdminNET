@@ -290,6 +290,11 @@
             生成方式
             </summary>
         </member>
+        <member name="P:Furion.Extras.Admin.NET.SysCodeGen.DatabaseName">
+            <summary>
+            数据库名
+            </summary>
+        </member>
         <member name="P:Furion.Extras.Admin.NET.SysCodeGen.TableName">
             <summary>
             数据库表名
@@ -2844,6 +2849,11 @@
         <member name="F:Furion.Extras.Admin.NET.YesOrNot.N">
             <summary>
             否
+            </summary>
+        </member>
+        <member name="T:Furion.Extras.Admin.NET.LogEventHandler">
+            <summary>
+            日志订阅处理
             </summary>
         </member>
         <member name="T:Furion.Extras.Admin.NET.DictionaryExtensions">
@@ -9120,11 +9130,6 @@
             </summary>
             <param name="orgId"></param>
             <returns></returns>
-        </member>
-        <member name="T:Furion.Extras.Admin.NET.LogEventHandler">
-            <summary>
-            日志订阅处理
-            </summary>
         </member>
         <member name="T:Furion.Extras.Admin.NET.CodeGenUtil">
             <summary>
