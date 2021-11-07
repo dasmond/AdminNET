@@ -37,10 +37,10 @@ namespace Furion.Extras.Admin.NET
         /// 顶级节点的父节点Id(默认0)
         /// </summary>
         private long _rootParentId = 0L;
-        //private readonly long _rootParentId = 0L;
 
         /// <summary>
-        /// 设置根节点
+        /// 设置根节点方法
+        /// 查询数据可以设置其他节点为根节点，避免父节点永远是0，查询不到数据的问题
         /// </summary>
         public void SetRootParentId(long rootParentId)
         {
