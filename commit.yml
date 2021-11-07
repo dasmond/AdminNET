@@ -2,10 +2,115 @@
 branches: {
   }
 fileChange:
-  /README.md:
-    newFile: !uuid '92c8652503ebeaa35794db0010eb7906ba450717'
-    oldFile: !uuid '30b69dce2e8efbcb89c8a642c6c2bbda76f034af'
-gitCommitId: !uuid 'f66987718fdcde6eefae1e31790e515c2c1fc138'
+  /backend:
+    newFile: !uuid 'c2834fc24d43d783f8115630e01d204c9db83c41'
+    oldFile: !uuid 'c4f83ca3edb7b082075e762511a81622fffd1e7b'
+  /backend/Admin.NET.Web.Entry:
+    newFile: !uuid '0166c9080af76157369901115acaa4eca403a2fb'
+    oldFile: !uuid '0965ea738c442a2468c0ac3d5772802b88b8d922'
+  /backend/Admin.NET.Web.Entry/Admin.NET.db:
+    newFile: !uuid '1e452dea3877257843a64d0b8509d94e95ba0bce'
+    oldFile: !uuid '59ebb3fdacefaa3e44bfdf3647a87e04a7352901'
+  /backend/Admin.NET.Web.Entry/wwwroot:
+    newFile: !uuid 'dce89d8004546ad07e1b0fcb43a58bfee8102988'
+    oldFile: !uuid '176e7bf89d29954bae9f0ef48852ab411911291d'
+  /backend/Admin.NET.Web.Entry/wwwroot/Template:
+    newFile: !uuid 'c4ec1d2b7faff2d1499530c202edff1984a66fe9'
+    oldFile: !uuid '98a53781c2ca2fdd49bbcb07d657e0c3cb1932af'
+  /backend/Admin.NET.Web.Entry/wwwroot/Template/Service.cs.vm:
+    newFile: !uuid '646c815ce9a52207b3cdb0564ef94a7e663ebc9a'
+    oldFile: !uuid 'deb0ef082f8117288b6e732d6d6e6201c09dcb3c'
+  /backend/Furion.Extras.Admin.NET:
+    newFile: !uuid '2a8585d7d6d2255ac4902950078090e631f4dbc6'
+    oldFile: !uuid '1c82e1bad759b08bc2b93c9870cd8ece1c4bce36'
+  /backend/Furion.Extras.Admin.NET/Entity:
+    newFile: !uuid '0c2936442f7706b381c1b2f1569b5bfe67a9a74a'
+    oldFile: !uuid '3e192dbf6365199e82c8766df8757cde495459a5'
+  /backend/Furion.Extras.Admin.NET/Entity/SysCodeGen.cs:
+    newFile: !uuid '04c9ab06185e5ffca8f55816328e437490f46b16'
+    oldFile: !uuid 'df21ba6330a9a6271f8bcd9c26c6b657785aa224'
+  /backend/Furion.Extras.Admin.NET/Furion.Extras.Admin.NET.xml:
+    newFile: !uuid 'dbc5539660bd9c3585ba13d80d4a3ba009f19335'
+    oldFile: !uuid '9ccd1e69c547e7854bc9b7cdcee2d92686e21d4a'
+  /backend/Furion.Extras.Admin.NET/Service:
+    newFile: !uuid 'd8aa10189c37f58491b5500e4daedd8c9183b5aa'
+    oldFile: !uuid '320a866764efea5f62a92e74f827816407801281'
+  /backend/Furion.Extras.Admin.NET/Service/CodeGen:
+    newFile: !uuid '756219ba67aa069a27aacd5decfa79bb23727dde'
+    oldFile: !uuid 'e8454251ac2d8177213da01b8e1674b2c2076a51'
+  /backend/Furion.Extras.Admin.NET/Service/CodeGen/CodeGenConfigService.cs:
+    newFile: !uuid '42814840f43f6cb5afa132f9436fbf9f6c20a689'
+    oldFile: !uuid 'ea853ccf6e8816f267732c58a4d5472b933b939e'
+  /backend/Furion.Extras.Admin.NET/Service/CodeGen/CodeGenService.cs:
+    newFile: !uuid '83f544981eba85c61e0b7c5ae3bb553462476a00'
+    oldFile: !uuid 'cf0333f64a75e884fc39aa494e05deb20eee6072'
+  /backend/Furion.Extras.Admin.NET/Service/CodeGen/Dto:
+    newFile: !uuid '1efdfb8493ade40942308e42c2a3ea76f6b8eb6e'
+    oldFile: !uuid 'fd75a36598d26c68042f13b657869a25362c90b1'
+  /backend/Furion.Extras.Admin.NET/Service/CodeGen/Dto/CodeGenConfig.cs:
+    newFile: !uuid '9f0bf08057e4be9fa6717f81b911cebfc0bedbd8'
+    oldFile: !uuid 'f4c7a7b68052c5644b00b0d2094420a4493d6da6'
+  /backend/Furion.Extras.Admin.NET/Service/CodeGen/Dto/CodeGenInput.cs:
+    newFile: !uuid 'eb6eb6fdbd5a2b18a1282d7079b0792314e33405'
+    oldFile: !uuid 'c6b76804632d1b28932e15d1c39cae91282e2394'
+  /backend/Furion.Extras.Admin.NET/Service/CodeGen/Dto/CodeGenModel.cs:
+    newFile: !uuid 'df0f0c946224777c9885311e74f1a87160c6e4dc'
+    oldFile: null
+  /backend/Furion.Extras.Admin.NET/Service/CodeGen/Dto/CodeGenOutput.cs:
+    newFile: !uuid '0aea4b0c71491b8b11488e9669d720520647235a'
+    oldFile: !uuid 'b9c1b00436a5115b53a5db55980517d80eef6f80'
+  /backend/Furion.Extras.Admin.NET/Service/CodeGen/Dto/DatabaseOutput.cs:
+    newFile: !uuid 'f433f8879f501383af5b9b44105e037ef63ddeda'
+    oldFile: null
+  /backend/Furion.Extras.Admin.NET/Service/CodeGen/Dto/TableOutput.cs:
+    newFile: !uuid 'b9d925d5e09652855aa45916b5a2f7a5c3b910f3'
+    oldFile: !uuid '744bfdb531ed712a58941c5742a9d82612cc9b80'
+  /backend/Furion.Extras.Admin.NET/Service/CodeGen/ICodeGenService.cs:
+    newFile: !uuid '4c6046a2aaab2743e36f9802f0887419d53d2318'
+    oldFile: !uuid '9a6810d84fa337b1d4753a4888fd06080568ee62'
+  /frontend:
+    newFile: !uuid 'f20d5e146f39302647d6bf7c82a32708367f5387'
+    oldFile: !uuid '6128beb5bcaec3143f82a12597fe394888d602d2'
+  /frontend/src:
+    newFile: !uuid 'd66d554e8c469b02433603e417934a821f44c356'
+    oldFile: !uuid 'b609c666f7bb2cb848afc5e1c89a0365b804a8cf'
+  /frontend/src/api:
+    newFile: !uuid '92821ae4e4e76af0e011b9489d6ebee3982e6f14'
+    oldFile: !uuid '41374a9b52502e04e957577d9b545d704c45251f'
+  /frontend/src/api/modular:
+    newFile: !uuid '7142394f073f1bf67108f7c2f8d7d8092ce90f22'
+    oldFile: !uuid 'ed0eeb7d39d3d64bdef8702aae27444f1a4125ad'
+  /frontend/src/api/modular/gen:
+    newFile: !uuid '14c1035abbdfeca907204076a851d0c7abdc121a'
+    oldFile: !uuid 'af4255f58e5c7f33eb96162171d40b3758038c69'
+  /frontend/src/api/modular/gen/codeGenerateManage.js:
+    newFile: !uuid 'ff4ee9e8573236f666b0bc5d494a108beb62ae4f'
+    oldFile: !uuid 'c61239e73d61488acf2d8503a731164b134bdbaf'
+  /frontend/src/views:
+    newFile: !uuid '61f64eb61bdb35d9d5db5a30846ffe59e52cc66d'
+    oldFile: !uuid '5c3ba8255103be100e5ee4e6f401f48deaa7f42d'
+  /frontend/src/views/gen:
+    newFile: !uuid '91a52cd17a122249d99dbbb9da94635f00ae4a39'
+    oldFile: !uuid '0ad4b7a0288e12f4297e1e40e8c0057edede42ab'
+  /frontend/src/views/gen/codeGenerate:
+    newFile: !uuid '78bfd3babbcb9d941816d578ec03c7449e0cfa2c'
+    oldFile: !uuid 'dc948c8471ea9c511b38dfc5f4ba8be55d831000'
+  /frontend/src/views/gen/codeGenerate/addForm.vue:
+    newFile: !uuid 'ff2db6483f7354a92e1c395110195756724aafa3'
+    oldFile: !uuid '65bfe9411973944094b96294df31cdc07d44828a'
+  /frontend/src/views/gen/codeGenerate/editForm.vue:
+    newFile: !uuid 'cc843d58c92666fb2b5a6480ed87bac5f097841b'
+    oldFile: !uuid 'eda2516e1d1d3f68affa448a395ae8bb365a42aa'
+  /frontend/src/views/gen/codeGenerate/fkModal.vue:
+    newFile: !uuid '0dcc4220741110e79c8046772cdc5340d4fed692'
+    oldFile: !uuid 'cd235bb23dfdb7ea61c677631b3ce187fb3a14c4'
+  /frontend/src/views/gen/codeGenerate/index.vue:
+    newFile: !uuid '293d520347969254a2bd4c42b5e1e16514b8b23c'
+    oldFile: !uuid '00e996d68e0f5f3373c1074d6caca37d85649170'
+  /frontend/src/views/gen/codeGenerate/indexConfig.vue:
+    newFile: !uuid 'c8ad22e1076737170e10f2c805fe6b2361d1750c'
+    oldFile: !uuid '07f4a58838993e30394592f4d002c6200b55fdfe'
+gitCommitId: !uuid 'fb3a7ca869af6c9c63bfc0c1373968311746481c'
 renames: {
   }
-revisionId: 565
+revisionId: 566
