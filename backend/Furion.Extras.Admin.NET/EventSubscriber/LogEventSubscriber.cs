@@ -21,7 +21,7 @@ namespace Furion.Extras.Admin.NET
             using var scope = Services.CreateScope();
             var _repository = scope.ServiceProvider.GetRequiredService<IRepository<SysLogOp>>();
             var log = (SysLogOp)context.Source.Payload;
-            await _repository.InsertAsync(log);
+            await _repository.InsertNowAsync(log);
         }
 
         [EventSubscribe("Create:ExLog")]
@@ -30,7 +30,7 @@ namespace Furion.Extras.Admin.NET
             using var scope = Services.CreateScope();
             var _repository = scope.ServiceProvider.GetRequiredService<IRepository<SysLogEx>>();
             var log = (SysLogEx)context.Source.Payload;
-            await _repository.InsertAsync(log);
+            await _repository.InsertNowAsync(log);
         }
 
         [EventSubscribe("Create:VisLog")]
@@ -39,7 +39,7 @@ namespace Furion.Extras.Admin.NET
             using var scope = Services.CreateScope();
             var _repository = scope.ServiceProvider.GetRequiredService<IRepository<SysLogVis>>();
             var log = (SysLogVis)context.Source.Payload;
-            await _repository.InsertAsync(log);
+            await _repository.InsertNowAsync(log);
         }
     }
 }
