@@ -33,13 +33,22 @@ namespace Furion.Extras.Admin.NET
             sw.Start();
             var actionContext = await next();
             sw.Stop();
-
+            
             // 判断是否请求成功（没有异常就是请求成功）
             var isRequestSucceed = actionContext.Exception == null;
             var headers = httpRequest.Headers;
             var clientInfo = headers.ContainsKey("User-Agent") ? Parser.GetDefault().Parse(headers["User-Agent"]) : null;
             var actionDescriptor = context.ActionDescriptor as ControllerActionDescriptor;
 
+            //判断是否需有禁用操作日志属性
+            foreach (var metadata in actionDescriptor.EndpointMetadata)
+            {                
+                if (metadata.GetType() == typeof(DisableOpLogAttribute))
+                {
+                    //禁用操作日志，直接返回
+                    return;
+                }
+            }
             await _eventPublisher.PublishAsync(new ChannelEventSource("Create:OpLog",
                 new SysLogOp
                 {
