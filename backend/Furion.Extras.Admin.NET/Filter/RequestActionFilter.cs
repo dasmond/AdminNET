@@ -39,6 +39,11 @@ namespace Furion.Extras.Admin.NET
             var headers = httpRequest.Headers;
             var clientInfo = headers.ContainsKey("User-Agent") ? Parser.GetDefault().Parse(headers["User-Agent"]) : null;
             var actionDescriptor = context.ActionDescriptor as ControllerActionDescriptor;
+            var ip = httpRequest.Headers["X-Forwarded-For"].FirstOrDefault();
+            if (string.IsNullOrEmpty(ip))
+            {
+                ip = httpRequest.HttpContext.Connection.RemoteIpAddress.MapToIPv4().ToString();
+            }
 
             //判断是否需有禁用操作日志属性
             foreach (var metadata in actionDescriptor.EndpointMetadata)
@@ -54,7 +59,7 @@ namespace Furion.Extras.Admin.NET
                 {
                     Name = httpContext.User?.FindFirstValue(ClaimConst.CLAINM_NAME),
                     Success = isRequestSucceed ? YesOrNot.Y : YesOrNot.N,
-                    Ip = httpContext.GetRemoteIpAddressToIPv4(),
+                    Ip = ip,
                     Location = httpRequest.GetRequestUrlAddress(),
                     Browser = clientInfo?.UA.Family + clientInfo?.UA.Major,
                     Os = clientInfo?.OS.Family + clientInfo?.OS.Major,
