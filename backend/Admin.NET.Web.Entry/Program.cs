@@ -1,22 +1,12 @@
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Hosting;
 
-namespace Admin.NET.Web.Entry
+try
 {
-    public class Program
-    {
-        public static void Main(string[] args)
-        {
-            CreateHostBuilder(args).Build().Run();
-        }
-
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(webBuilder =>
-                {
-                    webBuilder.Inject()
-                              .UseStartup<Startup>()
-                              .UseSerilogDefault();
-                });
-    }
+    var builder = WebApplication.CreateBuilder(args).Inject();
+    builder.Host.UseSerilogDefault();
+    var app = builder.Build();
+    app.Run();
+}
+catch (Exception ex)
+{
+    throw new Exception(ex.Message.ToString());
 }
