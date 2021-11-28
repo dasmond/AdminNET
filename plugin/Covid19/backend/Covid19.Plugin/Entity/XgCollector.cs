@@ -1,4 +1,4 @@
-﻿using Admin.NET.Core;
+﻿using Furion.Extras.Admin.NET;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.ComponentModel.DataAnnotations;
@@ -11,7 +11,7 @@ namespace Covid19.Plugin
     /// </summary>
     [Table("xg_collector")]
     [Comment("样本采集人员表")]
-    public class XgCollector : DBEntityTenant
+    public class XgCollector : DEntityTenant
     {
         /// <summary>
         /// 姓名
