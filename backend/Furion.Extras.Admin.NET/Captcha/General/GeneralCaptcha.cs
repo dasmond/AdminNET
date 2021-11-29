@@ -26,7 +26,7 @@ namespace Furion.Extras.Admin.NET
         /// </summary>
         /// <param name="length"></param>
         /// <returns></returns>
-        public dynamic CreateCaptchaImage(int length = 4)
+        public ClickWordCaptchaResult CreateCaptchaImage(int length = 4)
         {
             var rtnResult = new ClickWordCaptchaResult();
 
@@ -106,7 +106,7 @@ namespace Furion.Extras.Admin.NET
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        public dynamic CheckCode(GeneralCaptchaInput input)
+        public ClickWordCaptchaResult CheckCode(GeneralCaptchaInput input)
         {
             var res = new ClickWordCaptchaResult();
 

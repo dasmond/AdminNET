@@ -46,13 +46,13 @@ namespace Furion.Extras.Admin.NET.Service.CodeGen
         /// <param name="input"></param>
         /// <returns></returns>
         [HttpGet("/codeGenerate/page")]
-        public async Task<dynamic> QueryCodeGenPageList([FromQuery] CodeGenPageInput input)
+        public async Task<PageResult<SysCodeGen>> QueryCodeGenPageList([FromQuery] CodeGenPageInput input)
         {
             var tableName = !string.IsNullOrEmpty(input.TableName?.Trim());
             var codeGens = await _sysCodeGenRep.DetachedEntities
                                                .Where((tableName, u => EF.Functions.Like(u.TableName, $"%{input.TableName.Trim()}%")))
                                                .ToPagedListAsync(input.PageNo, input.PageSize);
-            return XnPageResult<SysCodeGen>.PageResult(codeGens);
+            return codeGens;
         }
 
         /// <summary>

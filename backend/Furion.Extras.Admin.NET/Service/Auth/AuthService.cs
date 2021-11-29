@@ -120,7 +120,7 @@ namespace Furion.Extras.Admin.NET.Service
             var loginOutput = user.Adapt<LoginOutput>();
 
             loginOutput.LastLoginTime = user.LastLoginTime = DateTimeOffset.Now;
-            loginOutput.LastLoginIp = user.LastLoginIp = httpContext.GetRemoteIpAddressToIPv4();
+            loginOutput.LastLoginIp = user.LastLoginIp = httpContext.GetRequestIPv4();
 
             //var ipInfo = IpTool.Search(loginOutput.LastLoginIp);
             //loginOutput.LastLoginAddress = ipInfo.Country + ipInfo.Province + ipInfo.City + "[" + ipInfo.NetworkOperator + "][" + ipInfo.Latitude + ipInfo.Longitude + "]";
@@ -156,7 +156,7 @@ namespace Furion.Extras.Admin.NET.Service
             }
 
             // 更新用户最后登录Ip和时间
-            await _sysUserRep.UpdateIncludeAsync(user, new[] {nameof(SysUser.LastLoginIp), nameof(SysUser.LastLoginTime)});
+            await _sysUserRep.UpdateIncludeAsync(user, new[] { nameof(SysUser.LastLoginIp), nameof(SysUser.LastLoginTime) });
 
             // 增加登录日志
             await _eventPublisher.PublishAsync(new ChannelEventSource("Create:VisLog",
@@ -183,6 +183,7 @@ namespace Furion.Extras.Admin.NET.Service
         [AllowAnonymous]
         public async Task LogoutAsync()
         {
+            var ip = _httpContextAccessor.HttpContext.GetRequestIPv4();
             _httpContextAccessor.HttpContext.SignoutToSwagger();
             //_httpContextAccessor.HttpContext.Response.Headers["access-token"] = "invalid token";
 
@@ -195,7 +196,8 @@ namespace Furion.Extras.Admin.NET.Service
                     Message = "退出成功",
                     VisType = LoginType.LOGOUT,
                     VisTime = DateTimeOffset.Now,
-                    Account = _userManager.Account
+                    Account = _userManager.Account,
+                    Ip = ip
                 }));
         }
 

@@ -7,6 +7,7 @@ using Mapster;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -38,7 +39,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// <param name="userId"></param>
         /// <returns></returns>
         [NonAction]
-        public async Task<dynamic> GetLoginApps(long userId)
+        public async Task<List<AppOutput>> GetLoginApps(long userId)
         {
             var apps = _sysAppRep.DetachedEntities.Where(u => u.Status == CommonStatus.ENABLE);
             if (!_userManager.SuperAdmin)
@@ -65,7 +66,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// <param name="input"></param>
         /// <returns></returns>
         [HttpGet("/sysApp/page")]
-        public async Task<dynamic> QueryAppPageList([FromQuery] AppPageInput input)
+        public async Task<PageResult<SysApp>> QueryAppPageList([FromQuery] AppPageInput input)
         {
             var name = !string.IsNullOrEmpty(input.Name?.Trim());
             var code = !string.IsNullOrEmpty(input.Code?.Trim());
@@ -75,7 +76,7 @@ namespace Furion.Extras.Admin.NET.Service
                                        //.Where(u => u.Status == CommonStatus.ENABLE)
                                        .OrderBy(u => u.Sort)
                                        .ToPagedListAsync(input.PageNo, input.PageSize);
-            return XnPageResult<SysApp>.PageResult(apps);
+            return apps;
         }
 
         /// <summary>
@@ -157,7 +158,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// </summary>
         /// <returns></returns>
         [HttpGet("/sysApp/list")]
-        public async Task<dynamic> GetAppList()
+        public async Task<List<SysApp>> GetAppList()
         {
             return await _sysAppRep.DetachedEntities.Where(u => u.Status == CommonStatus.ENABLE).OrderBy(u => u.Sort).ToListAsync();
         }

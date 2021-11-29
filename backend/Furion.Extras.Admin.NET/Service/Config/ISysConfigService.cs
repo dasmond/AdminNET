@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Furion.Extras.Admin.NET.Service
@@ -11,9 +12,9 @@ namespace Furion.Extras.Admin.NET.Service
 
         Task<SysConfig> GetConfig([FromQuery] QueryConfigInput input);
 
-        Task<dynamic> GetConfigList();
+        Task<List<SysConfig>> GetConfigList();
 
-        Task<dynamic> QueryConfigPageList([FromQuery] ConfigPageInput input);
+        Task<PageResult<SysConfig>> QueryConfigPageList([FromQuery] ConfigPageInput input);
 
         Task UpdateConfig(UpdateConfigInput input);
 

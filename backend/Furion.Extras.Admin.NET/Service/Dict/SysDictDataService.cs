@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -35,7 +36,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// <param name="input"></param>
         /// <returns></returns>
         [HttpGet("/sysDictData/page")]
-        public async Task<dynamic> QueryDictDataPageList([FromQuery] DictDataPageInput input)
+        public async Task<PageResult<DictDataOutput>> QueryDictDataPageList([FromQuery] DictDataPageInput input)
         {
             bool supperAdmin = _userManager.SuperAdmin;
             var code = !string.IsNullOrEmpty(input.Code?.Trim());
@@ -47,7 +48,7 @@ namespace Furion.Extras.Admin.NET.Service
                                   .Where(u => (u.Status != CommonStatus.DELETED && !supperAdmin) || (u.Status <= CommonStatus.DELETED && supperAdmin)).OrderBy(u => u.Sort)
                                   .Select(u => u.Adapt<DictDataOutput>())
                                   .ToPagedListAsync(input.PageNo, input.PageSize);
-            return XnPageResult<DictDataOutput>.PageResult(dictDatas);
+            return dictDatas;
         }
 
         /// <summary>
@@ -55,9 +56,12 @@ namespace Furion.Extras.Admin.NET.Service
         /// </summary>
         /// <returns></returns>
         [HttpGet("/sysDictData/list")]
-        public async Task<dynamic> GetDictDataList([FromQuery] QueryDictDataListInput input)
+        public async Task<List<SysDictData>> GetDictDataList([FromQuery] QueryDictDataListInput input)
         {
-            return await _sysDictDataRep.DetachedEntities.Where(u => u.TypeId == input.TypeId).Where(u => u.Status != CommonStatus.DELETED).OrderBy(u => u.Sort).ToListAsync();
+            return await _sysDictDataRep.DetachedEntities.Where(u => u.TypeId == input.TypeId)
+                .Where(u => u.Status != CommonStatus.DELETED)
+                .OrderBy(u => u.Sort)
+                .ToListAsync();
         }
 
         /// <summary>
@@ -121,7 +125,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// <param name="input"></param>
         /// <returns></returns>
         [HttpGet("/sysDictData/detail")]
-        public async Task<dynamic> GetDictData([FromQuery] QueryDictDataInput input)
+        public async Task<SysDictData> GetDictData([FromQuery] QueryDictDataInput input)
         {
             return await _sysDictDataRep.FirstOrDefaultAsync(u => u.Id == input.Id, false);
         }
@@ -150,15 +154,11 @@ namespace Furion.Extras.Admin.NET.Service
         /// <param name="dictTypeId"></param>
         /// <returns></returns>
         [NonAction]
-        public async Task<dynamic> GetDictDataListByDictTypeId(long dictTypeId)
+        public async Task<List<SysDictData>> GetDictDataListByDictTypeId(long dictTypeId)
         {
             return await _sysDictDataRep.DetachedEntities.Where(u => u.SysDictType.Id == dictTypeId)
                                                          .Where(u => u.Status == CommonStatus.ENABLE).OrderBy(u => u.Sort)
-                                                         .Select(u => new
-                                                         {
-                                                             u.Code,
-                                                             u.Value
-                                                         }).ToListAsync();
+                                                         .ToListAsync();
         }
 
         /// <summary>

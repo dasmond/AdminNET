@@ -17,7 +17,7 @@ namespace Furion.Extras.Admin.NET.Service
 
         Task<IActionResult> PreviewFileInfo([FromQuery] QueryFileInfoInput input);
 
-        Task<dynamic> QueryFileInfoPageList([FromQuery] FilePageInput input);
+        Task<PageResult<FileOutput>> QueryFileInfoPageList([FromQuery] FilePageInput input);
 
         Task<long> UploadFileAvatar(IFormFile file);
 

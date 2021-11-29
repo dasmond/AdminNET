@@ -1,4 +1,4 @@
-﻿using Admin.NET.Core;
+﻿using Furion.Extras.Admin.NET;
 using System.ComponentModel.DataAnnotations;
 
 namespace Covid19.Plugin

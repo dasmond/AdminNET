@@ -16,7 +16,7 @@ namespace Furion.Extras.Admin.NET.Service.CodeGen
 
         List<TableOutput> GetTableList(string dbContextLocatorName);
 
-        Task<dynamic> QueryCodeGenPageList([FromQuery] CodeGenPageInput input);
+        Task<PageResult<SysCodeGen>> QueryCodeGenPageList([FromQuery] CodeGenPageInput input);
 
         Task RunLocal(SysCodeGen input);
 

@@ -57,7 +57,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// <param name="input"></param>
         /// <returns></returns>
         [HttpGet("/sysUser/page")]
-        public async Task<dynamic> QueryUserPageList([FromQuery] UserPageInput input)
+        public async Task<PageResult<UserOutput>> QueryUserPageList([FromQuery] UserPageInput input)
         {
             var superAdmin = _userManager.SuperAdmin;
             var searchValue = input.SearchValue;
@@ -80,11 +80,11 @@ namespace Furion.Extras.Admin.NET.Service
                                          .Select(u => u.n.u.Adapt<UserOutput>())
                                          .ToPagedListAsync(input.PageNo, input.PageSize);
 
-            foreach (var user in users.Items)
+            foreach (var user in users.Rows)
             {
                 user.SysEmpInfo = await _sysEmpService.GetEmpInfo(long.Parse(user.Id));
             }
-            return XnPageResult<UserOutput>.PageResult(users);
+            return users;
         }
 
         /// <summary>
@@ -180,7 +180,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// </summary>
         /// <returns></returns>
         [HttpGet("/sysUser/detail")]
-        public async Task<dynamic> GetUser(long id)
+        public async Task<UserOutput> GetUser(long id)
         {
             var user = await _sysUserRep.DetachedEntities.FirstOrDefaultAsync(u => u.Id == id);
             var userDto = user.Adapt<UserOutput>();
@@ -276,7 +276,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// <param name="input"></param>
         /// <returns></returns>
         [HttpGet("/sysUser/ownRole")]
-        public async Task<dynamic> GetUserOwnRole([FromQuery] QueryUserInput input)
+        public async Task<List<long>> GetUserOwnRole([FromQuery] QueryUserInput input)
         {
             return await _sysUserRoleService.GetUserRoleIdList(input.Id);
         }
@@ -287,7 +287,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// <param name="input"></param>
         /// <returns></returns>
         [HttpGet("/sysUser/ownData")]
-        public async Task<dynamic> GetUserOwnData([FromQuery] QueryUserInput input)
+        public async Task<List<long>> GetUserOwnData([FromQuery] QueryUserInput input)
         {
             return await _sysUserDataScopeService.GetUserDataScopeIdList(input.Id);
         }
@@ -323,18 +323,15 @@ namespace Furion.Extras.Admin.NET.Service
         /// <returns></returns>
         [AllowAnonymous] //公告中需要使用，开放权限
         [HttpGet("/sysUser/selector")]
-        public async Task<dynamic> GetUserSelector([FromQuery] UserSelectorInput input)
+        public async Task<List<UserOutput>> GetUserSelector([FromQuery] UserSelectorInput input)
         {
             var name = !string.IsNullOrEmpty(input.Name?.Trim());
             return await _sysUserRep.DetachedEntities
                                     .Where(name, u => EF.Functions.Like(u.Name, $"%{input.Name.Trim()}%"))
                                     .Where(u => u.Status != CommonStatus.DELETED)
                                     .Where(u => u.AdminType != AdminType.SuperAdmin)
-                                    .Select(u => new
-                                    {
-                                        u.Id,
-                                        u.Name
-                                    }).ToListAsync();
+                                    .ProjectToType<UserOutput>()
+                                    .ToListAsync();
         }
 
         /// <summary>
@@ -385,7 +382,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// <param name="userId"></param>
         /// <returns></returns>
         [NonAction]
-        public async Task<dynamic> GetUserById(long userId)
+        public async Task<SysUser> GetUserById(long userId)
         {
             return await _sysUserRep.DetachedEntities.FirstOrDefaultAsync(u => u.Id == userId);
         }

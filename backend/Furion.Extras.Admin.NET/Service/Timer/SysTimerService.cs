@@ -39,16 +39,16 @@ namespace Furion.Extras.Admin.NET.Service
         /// <param name="input"></param>
         /// <returns></returns>
         [HttpGet("/sysTimers/page")]
-        public async Task<dynamic> GetTimerPageList([FromQuery] JobPageInput input)
+        public async Task<PageResult<JobOutput>> GetTimerPageList([FromQuery] JobPageInput input)
         {
             var workers = SpareTime.GetWorkers().ToList();
 
             var timers = await _sysTimerRep.DetachedEntities
                                            .Where(!string.IsNullOrEmpty(input.JobName?.Trim()), u => EF.Functions.Like(u.JobName, $"%{input.JobName.Trim()}%"))
-                                           .Select(u => u.Adapt<JobOutput>())
+                                           .ProjectToType<JobOutput>()
                                            .ToPagedListAsync(input.PageNo, input.PageSize);
 
-            timers.Items.ToList().ForEach(u =>
+            timers.Rows.ToList().ForEach(u =>
             {
                 var timer = workers.FirstOrDefault(m => m.WorkerName == u.JobName);
                 if (timer != null)
@@ -58,7 +58,7 @@ namespace Furion.Extras.Admin.NET.Service
                     u.Exception = JSON.Serialize(timer.Exception);
                 }
             });
-            return XnPageResult<JobOutput>.PageResult(timers);
+            return timers;
         }
 
         /// <summary>
@@ -66,7 +66,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// </summary>
         /// <returns></returns>
         [HttpGet("/sysTimers/localJobList")]
-        public async Task<dynamic> GetLocalJobList()
+        public async Task<IEnumerable<TaskMethodInfo>> GetLocalJobList()
         {
             // 获取本地所有任务方法
             return await GetTaskMethods();
@@ -138,7 +138,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// <param name="input"></param>
         /// <returns></returns>
         [HttpGet("/sysTimers/detail")]
-        public async Task<dynamic> GetTimer([FromQuery] QueryJobInput input)
+        public async Task<SysTimer> GetTimer([FromQuery] QueryJobInput input)
         {
             return await _sysTimerRep.DetachedEntities.FirstOrDefaultAsync(u => u.Id == input.Id);
         }

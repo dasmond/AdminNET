@@ -68,7 +68,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// <param name="input"></param>
         /// <returns></returns>
         [HttpGet("/sysRole/page")]
-        public async Task<dynamic> QueryRolePageList([FromQuery] RolePageInput input)
+        public async Task<PageResult<SysRole>> QueryRolePageList([FromQuery] RolePageInput input)
         {
             var name = !string.IsNullOrEmpty(input.Name?.Trim());
             var code = !string.IsNullOrEmpty(input.Code?.Trim());
@@ -77,7 +77,7 @@ namespace Furion.Extras.Admin.NET.Service
                                                 (code, u => EF.Functions.Like(u.Code, $"%{input.Code.Trim()}%")))
                                          .Where(u => u.Status == CommonStatus.ENABLE).OrderBy(u => u.Sort)
                                          .ToPagedListAsync(input.PageNo, input.PageSize);
-            return XnPageResult<SysRole>.PageResult(roles);
+            return roles;
         }
 
         /// <summary>
@@ -86,19 +86,17 @@ namespace Furion.Extras.Admin.NET.Service
         /// <param name="input"></param>
         /// <returns></returns>
         [NonAction]
-        public async Task<dynamic> GetRoleList([FromQuery] RoleInput input)
+        public async Task<List<RoleOutput>> GetRoleList([FromQuery] RoleInput input)
         {
             var name = !string.IsNullOrEmpty(input.Name?.Trim());
             var code = !string.IsNullOrEmpty(input.Code?.Trim());
             return await _sysRoleRep.DetachedEntities
                                     .Where((name, u => EF.Functions.Like(u.Name, $"%{input.Name.Trim()}%")),
                                            (code, u => EF.Functions.Like(u.Code, $"%{input.Code.Trim()}%")))
-                                    .Where(u => u.Status == CommonStatus.ENABLE).OrderBy(u => u.Sort)
-                                    .Select(u => new
-                                    {
-                                        u.Id,
-                                        Name = u.Name + "[" + u.Code + "]"
-                                    }).ToListAsync();
+                                    .Where(u => u.Status == CommonStatus.ENABLE)
+                                    .OrderBy(u => u.Sort)
+                                    .ProjectToType<RoleOutput>()
+                                    .ToListAsync();
         }
 
         /// <summary>
@@ -106,7 +104,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// </summary>
         /// <returns></returns>
         [HttpGet("/sysRole/dropDown")]
-        public async Task<dynamic> GetRoleDropDown()
+        public async Task<List<RoleOutput>> GetRoleDropDown()
         {
             // 如果不是超级管理员，则查询自己拥有的角色集合
             var roles = _userManager.SuperAdmin
@@ -116,12 +114,8 @@ namespace Furion.Extras.Admin.NET.Service
             return await _sysRoleRep.DetachedEntities
                                     .Where(roles.Count > 0, u => roles.Contains(u.Id))
                                     .Where(u => u.Status == CommonStatus.ENABLE)
-                                    .Select(u => new
-                                    {
-                                        u.Id,
-                                        u.Code,
-                                        u.Name
-                                    }).ToListAsync();
+                                    .ProjectToType<RoleOutput>()
+                                    .ToListAsync();
         }
 
         /// <summary>

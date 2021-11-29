@@ -7,6 +7,6 @@ namespace Furion.Extras.Admin.NET.Service
     {
         Task ClearOpLog();
 
-        Task<dynamic> QueryOpLogPageList([FromQuery] OpLogPageInput input);
+        Task<PageResult<OpLogOutput>> QueryOpLogPageList([FromQuery] OpLogPageInput input);
     }
 }

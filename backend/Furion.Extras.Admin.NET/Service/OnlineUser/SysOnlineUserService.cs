@@ -41,36 +41,21 @@ namespace Furion.Extras.Admin.NET.Service
         /// <param name="input"></param>
         /// <returns></returns>
         [HttpGet("/sysOnlineUser/page")]
-        public async Task<dynamic> QueryOnlineUserPageList([FromQuery] PageInputBase input)
+        public async Task<PageResult<OnlineUserOutput>> QueryOnlineUserPageList([FromQuery] PageInputBase input)
         {
-            var pageIndex = input.PageNo;
-            var pageSize = input.PageSize;
-
             var onlineUsers = await _sysCacheService.GetAsync<List<OnlineUser>>(CommonConst.CACHE_KEY_ONLINE_USER) ?? new List<OnlineUser>();
             var onlineUserOutputs = onlineUsers
                 .Where(!_userManager.SuperAdmin, o => o.TenantId == _userManager.User.TenantId)
                 .Where(!string.IsNullOrWhiteSpace(input.SearchValue), o => o.Account.Contains(input.SearchValue) || o.Name.Contains(input.SearchValue))
-                .Select(o => o.Adapt<OnlineUserOutput>())
-                .ToList();
+                .Select(o => o.Adapt<OnlineUserOutput>());
 
-            var totalCount = onlineUserOutputs.Count;
-            var list = onlineUserOutputs.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
-            var num = (int)Math.Ceiling((double)totalCount / pageSize);
+            var currentPageData = onlineUserOutputs.ToPagedList(input.PageNo, input.PageSize);
 
             //填充租户名称
             var tenants = await _sysTenantRep.DetachedEntities.ToListAsync();
-            list.ForEach(o => o.TenantName = tenants.FirstOrDefault(p => p.Id == o.TenantId)?.Name);
+            currentPageData.Rows.ToList().ForEach(o => o.TenantName = tenants.FirstOrDefault(p => p.Id == o.TenantId)?.Name);
 
-            return XnPageResult<OnlineUserOutput>.PageResult(new PagedList<OnlineUserOutput>
-            {
-                PageIndex = pageIndex,
-                PageSize = pageSize,
-                Items = list,
-                TotalCount = totalCount,
-                TotalPages = num,
-                HasNextPages = pageIndex < num,
-                HasPrevPages = pageIndex - 1 > 0
-            });
+            return currentPageData;
         }
 
         /// <summary>

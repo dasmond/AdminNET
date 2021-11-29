@@ -48,7 +48,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// <param name="input"></param>
         /// <returns></returns>
         [HttpGet("/sysFileInfo/page")]
-        public async Task<dynamic> QueryFileInfoPageList([FromQuery] FilePageInput input)
+        public async Task<PageResult<FileOutput>> QueryFileInfoPageList([FromQuery] FilePageInput input)
         {
             var fileBucket = !string.IsNullOrEmpty(input.FileBucket?.Trim());
             var fileOriginName = !string.IsNullOrEmpty(input.FileOriginName?.Trim());
@@ -58,7 +58,7 @@ namespace Furion.Extras.Admin.NET.Service
                                              .Where(fileOriginName, u => EF.Functions.Like(u.FileOriginName, $"%{input.FileOriginName.Trim()}%"))
                                              .Select(u => u.Adapt<FileOutput>())
                                              .ToPagedListAsync(input.PageNo, input.PageSize);
-            return XnPageResult<FileOutput>.PageResult(files);
+            return files;
         }
 
         /// <summary>

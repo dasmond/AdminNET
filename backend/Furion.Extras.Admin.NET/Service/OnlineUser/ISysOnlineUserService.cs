@@ -10,7 +10,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        Task<dynamic> QueryOnlineUserPageList(PageInputBase input);
+        Task<PageResult<OnlineUserOutput>> QueryOnlineUserPageList(PageInputBase input);
 
         /// <summary>
         /// 获取在线用户信息

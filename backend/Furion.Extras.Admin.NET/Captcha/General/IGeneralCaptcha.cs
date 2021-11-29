@@ -2,8 +2,8 @@
 {
     public interface IGeneralCaptcha
     {
-        dynamic CheckCode(GeneralCaptchaInput input);
+        ClickWordCaptchaResult CheckCode(GeneralCaptchaInput input);
 
-        dynamic CreateCaptchaImage(int length = 4);
+        ClickWordCaptchaResult CreateCaptchaImage(int length = 4);
     }
 }

@@ -30,7 +30,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// <param name="input"></param>
         /// <returns></returns>
         [HttpGet("/sysOpLog/page")]
-        public async Task<dynamic> QueryOpLogPageList([FromQuery] OpLogPageInput input)
+        public async Task<PageResult<OpLogOutput>> QueryOpLogPageList([FromQuery] OpLogPageInput input)
         {
             var name = !string.IsNullOrEmpty(input.Name?.Trim());
             var success = !string.IsNullOrEmpty(input.Success.ToString());
@@ -45,7 +45,7 @@ namespace Furion.Extras.Admin.NET.Service
                                            .OrderBy(PageInputOrder.OrderBuilder(input)) // 封装了任意字段排序示例
                                            .Select(u => u.Adapt<OpLogOutput>())
                                            .ToPagedListAsync(input.PageNo, input.PageSize);
-            return XnPageResult<OpLogOutput>.PageResult(opLogs);
+            return opLogs;
         }
 
         /// <summary>
