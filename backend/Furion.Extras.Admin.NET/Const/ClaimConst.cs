@@ -26,5 +26,15 @@
         /// 租户Id
         /// </summary>
         public const string TENANT_ID = "TenantId";
+
+        /// <summary>
+        /// 用户组织机构Id
+        /// </summary>
+        public const string CLAINM_ORGID = "OrgId";
+
+        /// <summary>
+        /// 用户组织机构名称
+        /// </summary>
+        public const string CLAINM_ORGNAME = "OrgName";
     }
 }

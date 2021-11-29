@@ -134,6 +134,16 @@
             租户Id
             </summary>
         </member>
+        <member name="F:Furion.Extras.Admin.NET.ClaimConst.CLAINM_ORGID">
+            <summary>
+            用户组织机构Id
+            </summary>
+        </member>
+        <member name="F:Furion.Extras.Admin.NET.ClaimConst.CLAINM_ORGNAME">
+            <summary>
+            用户组织机构名称
+            </summary>
+        </member>
         <member name="F:Furion.Extras.Admin.NET.CommonConst.DEFAULT_PASSWORD">
             <summary>
             默认密码
@@ -237,6 +247,31 @@
         <member name="P:Furion.Extras.Admin.NET.DEntityTenant.TenantId">
             <summary>
             租户id
+            </summary>
+        </member>
+        <member name="T:Furion.Extras.Admin.NET.Entity.IDataPermissions">
+            <summary>
+            数据权限接口，实现数据权限必须继承本接口
+            </summary>
+        </member>
+        <member name="P:Furion.Extras.Admin.NET.Entity.IDataPermissions.CreatedUserOrgId">
+            <summary>
+            创建用户部门id
+            </summary>
+        </member>
+        <member name="P:Furion.Extras.Admin.NET.Entity.IDataPermissions.CreatedUserOrgName">
+            <summary>
+            创建用户部门名称
+            </summary>
+        </member>
+        <member name="P:Furion.Extras.Admin.NET.Entity.IDataPermissions.CreatedUserId">
+            <summary>
+            创建者Id
+            </summary>
+        </member>
+        <member name="P:Furion.Extras.Admin.NET.Entity.IDataPermissions.CreatedUserName">
+            <summary>
+            创建者名称
             </summary>
         </member>
         <member name="T:Furion.Extras.Admin.NET.SysApp">

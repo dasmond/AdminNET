@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
-using Furion.DatabaseAccessor;
+﻿using Furion.DatabaseAccessor;
 using Furion.DataEncryption;
 using Furion.DependencyInjection;
 using Furion.DynamicApiController;
@@ -14,6 +9,11 @@ using Mapster;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Threading.Tasks;
 using UAParser;
 
 namespace Furion.Extras.Admin.NET.Service
@@ -80,6 +80,9 @@ namespace Furion.Extras.Admin.NET.Service
             if (user.Status == CommonStatus.DISABLE)
                 throw Oops.Oh(ErrorCode.D1017);
 
+            // 员工信息
+            var empInfo = _sysEmpService.GetEmpInfo(user.Id).Result;
+
             // 生成Token令牌
             //var accessToken = await _jwtBearerManager.CreateTokenAdmin(user);
             var accessToken = JWTEncryption.Encrypt(new Dictionary<string, object>
@@ -89,6 +92,8 @@ namespace Furion.Extras.Admin.NET.Service
                 {ClaimConst.CLAINM_ACCOUNT, user.Account},
                 {ClaimConst.CLAINM_NAME, user.Name},
                 {ClaimConst.CLAINM_SUPERADMIN, user.AdminType},
+                {ClaimConst.CLAINM_ORGID, empInfo.OrgId},
+                {ClaimConst.CLAINM_ORGNAME, empInfo.OrgName},
             });
 
             // 设置Swagger自动登录
