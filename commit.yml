@@ -2,214 +2,25 @@
 branches: {
   }
 fileChange:
-  /backend:
-    newFile: !uuid '0520a50879d0bdc648a70836b8f4e428c5ad4b77'
-    oldFile: !uuid 'f7fa2279db164d0dabcc781935d51c948e56032f'
-  /backend/Admin.NET.Application:
-    newFile: !uuid '6f020b0b4e9917f41f2a3a9e0e31bf35405669f8'
-    oldFile: !uuid '97f9a5b5f9d78ef425943d6370f8151a5d339d52'
-  /backend/Admin.NET.Application/Admin.NET.Application.csproj:
-    newFile: !uuid '3e48d614d5cc9ba2ddef0abc49461c8bd1c5da5d'
-    oldFile: !uuid 'bfb433154a0b7b10802ba6a896b4d02d496ee394'
-  /backend/Admin.NET.Application/Admin.NET.Application.xml:
-    newFile: !uuid '7ae13504eec90c4c78f00a79ed6b124ad0633bbd'
-    oldFile: !uuid '6a9d5f3796003d58c16f9a69706ce9589fdf5d23'
-  /backend/Admin.NET.Application/Service:
-    newFile: !uuid '97b44a03c7af2b8611540d23e4078f7565881c6e'
-    oldFile: !uuid '83f0282657cfc7e0d863e2a60df643d60f8de8a5'
-  /backend/Admin.NET.Application/Service/Car:
-    newFile: !uuid 'a38175fd3848150b509ec50e74f5e95f96f5bc39'
-    oldFile: !uuid '190daee59b8fb80ec1c6ecec8b5c0ff3ea14aa09'
-  /backend/Admin.NET.Application/Service/Car/CarService.cs:
-    newFile: !uuid '3f91f69408ab32d548cf4b4e9ada2acc36401e3a'
-    oldFile: !uuid '4ccc3878c5d18a3f0159dc83def2ee253f80883f'
-  /backend/Admin.NET.Application/Service/Car/Dto:
-    newFile: !uuid 'fc5f05e7815ff72c25d10ffcc6c9c6ba975addcf'
-    oldFile: !uuid '776572a5c237cf5b65b7fbf46264c406aeefa30f'
-  /backend/Admin.NET.Application/Service/Car/Dto/CarDto.cs:
-    newFile: !uuid 'e479d87ac7ea923c8721e418ffac9f55815b240d'
-    oldFile: null
-  /backend/Admin.NET.Application/Service/Car/Dto/CarInput.cs:
-    newFile: !uuid 'ec6b9bab7b93a6736100ad3dc51a137ae16ba34f'
-    oldFile: !uuid '2b244919732ae6392ea45b376f6af22c72eb2642'
-  /backend/Admin.NET.Application/Service/Car/Dto/CarOutput.cs:
-    newFile: !uuid '76da2294e4b232322ab6ee69c6dd4f75fc8e20df'
-    oldFile: !uuid '9d1ad3918c0b3c99b7a4064944e3c8fad6278c8f'
-  /backend/Admin.NET.Application/Service/Car/ICarService.cs:
-    newFile: !uuid '86ba6db9c06ff2369acb09f6df44b9d8c5844f15'
-    oldFile: !uuid '1691ced08387f3aa06779406263e34c541622ae6'
-  /backend/Admin.NET.Web.Entry:
-    newFile: !uuid 'c067c2d8d9db3e4e1c72fa024a88f372d4bc5abc'
-    oldFile: !uuid '29b0cb19d818a9a5237819457246c67800171d01'
-  /backend/Admin.NET.Web.Entry/Admin.NET.db:
-    newFile: !uuid '21d69d2205a95998db1d8f67a450d11bf7814e26'
-    oldFile: !uuid '8d2ccd2656d47e42161843e7befd0c07c4be44c9'
-  /backend/Admin.NET.Web.Entry/wwwroot:
-    newFile: !uuid 'f7880aa479e3f71308c14b3013428df7bab84e0d'
-    oldFile: !uuid 'dce89d8004546ad07e1b0fcb43a58bfee8102988'
-  /backend/Admin.NET.Web.Entry/wwwroot/Template:
-    newFile: !uuid 'd12975fb4fcf608a4d094f9fe3e48855cd8a70b4'
-    oldFile: !uuid 'c4ec1d2b7faff2d1499530c202edff1984a66fe9'
-  /backend/Admin.NET.Web.Entry/wwwroot/Template/IService.cs.vm:
-    newFile: !uuid '431df63e50c04a82e6348c5b52c04857dda7da78'
-    oldFile: !uuid 'f7f42cc9964a4fc12b3af90c191fe39813eeb32b'
-  /backend/Admin.NET.Web.Entry/wwwroot/Template/Input.cs.vm:
-    newFile: !uuid 'bb1d16415abc3aba22cbbc3553494bf63781eded'
-    oldFile: !uuid 'fd25adc49e5227ef12556d924d50950de1829e14'
-  /backend/Admin.NET.Web.Entry/wwwroot/Template/Service.cs.vm:
-    newFile: !uuid '5af83bfcc16a99eee15cb07b4b00492ec0f431ce'
-    oldFile: !uuid '646c815ce9a52207b3cdb0564ef94a7e663ebc9a'
-  /backend/Furion.Extras.Admin.NET:
-    newFile: !uuid 'caaaeced01fef076e4773349746cfe8f0edaaa9f'
-    oldFile: !uuid '2090e5eb7786d59a6aac6e2e94660cb0128308d1'
-  /backend/Furion.Extras.Admin.NET/Furion.Extras.Admin.NET.xml:
-    newFile: !uuid '0a968740b469a1b305ce194afcc76e895768fda3'
-    oldFile: !uuid 'b3a5253d478f240cfbfd34b658af091cf1d1344f'
-  /backend/Furion.Extras.Admin.NET/Service:
-    newFile: !uuid 'e6aa0f644dd8f370a2ed61d151ff8c3390eb9806'
-    oldFile: !uuid '9b73dbf9fc989232eb2086f0fd3a990d80bc0675'
-  /backend/Furion.Extras.Admin.NET/Service/App:
-    newFile: !uuid '1dc9f3d0330947e945b15c0e7fa2668db7cadc5b'
-    oldFile: !uuid 'ecf7287e29ec3588fa28a7c9a2b214be9267d3c0'
-  /backend/Furion.Extras.Admin.NET/Service/App/SysAppService.cs:
-    newFile: !uuid '508c01f2469cf0e365e41ee809375caf948ce2a7'
-    oldFile: !uuid '32ecf457d9d14c6d06b0a189677b32293a3f1ab9'
-  /backend/Furion.Extras.Admin.NET/Service/Base:
-    newFile: !uuid '8a7d680265b06efb0263846f7c1c731b5fb8f507'
-    oldFile: !uuid 'ac0d94574b6b9b92523740baeb92b9c15b669151'
-  /backend/Furion.Extras.Admin.NET/Service/Base/BaseService.cs:
-    newFile: !uuid '137879a995fdc4d5a24e845aabae697ee6eeaba6'
-    oldFile: !uuid '5084683280ee57d8c1d2e6f2f11196711de0b858'
-  /backend/Furion.Extras.Admin.NET/Service/CodeGen:
-    newFile: !uuid '14d1f3b6a57965a4d39b78df4a022e1d41fb7a89'
-    oldFile: !uuid '57d36ea2ea0ba839de16fa280440d38d7b2362b7'
-  /backend/Furion.Extras.Admin.NET/Service/CodeGen/CodeGenService.cs:
-    newFile: !uuid '9b173629b55befe89e91a04818d94cd2ac276e36'
-    oldFile: !uuid '52bcf6c057e581c147e9b7645e0cedd8aa8c0886'
-  /backend/Furion.Extras.Admin.NET/Service/Config:
-    newFile: !uuid '4c5c73609b4102077110696e8da975e9b8fff662'
-    oldFile: !uuid 'b7276635866ef4ec9885a3016251cfa8f5930d95'
-  /backend/Furion.Extras.Admin.NET/Service/Config/SysConfigService.cs:
-    newFile: !uuid '016cdf78d05095d392ed89211085644e97eab7bb'
-    oldFile: !uuid '96745713a7fd0df424c864f48aa9b1bf971f206c'
-  /backend/Furion.Extras.Admin.NET/Service/Dict:
-    newFile: !uuid 'daceff833a668b1acd4cc186b1fba8fa748c001d'
-    oldFile: !uuid 'bcd7eac251ef1fe3c5e6865fe9126f05cb74b2e4'
-  /backend/Furion.Extras.Admin.NET/Service/Dict/SysDictDataService.cs:
-    newFile: !uuid '8214c619344e8bb56fe12317af351149c04e8c3d'
-    oldFile: !uuid 'eb6005d8690fb594fff969430de02e57ab3dfd04'
-  /backend/Furion.Extras.Admin.NET/Service/Dict/SysDictTypeService.cs:
-    newFile: !uuid 'f3ab0e559128a04be1aefefb82e832859aa70834'
-    oldFile: !uuid '3ca22f32574f5c02215c4c2c973865714e41cc91'
-  /backend/Furion.Extras.Admin.NET/Service/File:
-    newFile: !uuid '5cce5146ef357822374d6d8aa93604e2bc2ef42e'
-    oldFile: !uuid 'd6e3279be0412ce43b0a459e48a52deb57459515'
-  /backend/Furion.Extras.Admin.NET/Service/File/SysFileService.cs:
-    newFile: !uuid '9d3227b4ae16596b5f9b5e749bbe71dbafd2f0a2'
-    oldFile: !uuid '871f01123fd715561c635077c66bdac102be410b'
-  /backend/Furion.Extras.Admin.NET/Service/Log:
-    newFile: !uuid '7dbe9a7861e3474031cd5720883a06b899b7198b'
-    oldFile: !uuid 'da41b1cd33264436a60b5f9ba6021c40177ec84d'
-  /backend/Furion.Extras.Admin.NET/Service/Log/SysExLogService.cs:
-    newFile: !uuid 'b16957d54f4f1a30841d443db3659c4c1b39c3ae'
-    oldFile: !uuid '3f18b9de52fb3e09e70235fb9f3995e670716810'
-  /backend/Furion.Extras.Admin.NET/Service/Log/SysOpLogService.cs:
-    newFile: !uuid '46812e60c9705af0eb9ee7fc49f676d09bb21448'
-    oldFile: !uuid '3a4d2a9c613487c642196e1a5c75c6545f4d2207'
-  /backend/Furion.Extras.Admin.NET/Service/Log/SysVisLogService.cs:
-    newFile: !uuid 'ad36cc2527291214873e91e9e318e2553fef4ac7'
-    oldFile: !uuid 'ba58255a25f13f599f2300f279db798a33bc6d6b'
-  /backend/Furion.Extras.Admin.NET/Service/Notice:
-    newFile: !uuid 'd8edbc925e2913c2492c98f995cb49704e9f6d24'
-    oldFile: !uuid '4bc814c72657e621213c9bc2ae7af5274a0ebb42'
-  /backend/Furion.Extras.Admin.NET/Service/Notice/SysNoticeService.cs:
-    newFile: !uuid 'eb11548cfd7d346f0d2e50c749eb6a669cbeabc6'
-    oldFile: !uuid 'ee7e073e67826c4d9f09e8d38129c2a99ce96579'
-  /backend/Furion.Extras.Admin.NET/Service/OnlineUser:
-    newFile: !uuid 'c70f3974cb89b633e69dcb4f6e7ed02396c06817'
-    oldFile: !uuid '0574e31e95fc12875d52c64f27cb93102ce6c7ac'
-  /backend/Furion.Extras.Admin.NET/Service/OnlineUser/SysOnlineUserService.cs:
-    newFile: !uuid 'bacd90422c24730eba769a6fd7502f0181fce6a0'
-    oldFile: !uuid '87659aab33183851f4c4fdcb7db270224ab94901'
-  /backend/Furion.Extras.Admin.NET/Service/Org:
-    newFile: !uuid '0b718a75252e147f285d1cfa0f30cc5c459e5d07'
-    oldFile: !uuid 'e0cbf3d1a8b109fdf38202c0dac4c737e53bb138'
-  /backend/Furion.Extras.Admin.NET/Service/Org/SysOrgService.cs:
-    newFile: !uuid 'db9bb547d4b4814bfc387f669798d2c6b3694161'
-    oldFile: !uuid '2b92998671212f2bc63fb0ca1e4c99dd3f05b287'
-  /backend/Furion.Extras.Admin.NET/Service/Pos:
-    newFile: !uuid 'da5b26ef645328ba70143381ea69efc88aad67ee'
-    oldFile: !uuid 'b95c82ae0193f112462eb8fcc7fe585291849344'
-  /backend/Furion.Extras.Admin.NET/Service/Pos/SysPosService.cs:
-    newFile: !uuid 'd5a4db5c9efc845356101842e1b247122b430feb'
-    oldFile: !uuid '2f4ceb9cc4c83951b93e37e7f0ab1371719f6645'
-  /backend/Furion.Extras.Admin.NET/Service/Role:
-    newFile: !uuid '74a2b28ee57f9ead8da5540cb9f4389a7cfcd45f'
-    oldFile: !uuid '66b26ac5574d1228ad63f32e3aec14391a92053d'
-  /backend/Furion.Extras.Admin.NET/Service/Role/SysRoleService.cs:
-    newFile: !uuid '6eabd5cf895348da129293775d1f02befa1fcb9c'
-    oldFile: !uuid 'd42556c164aff66d39746baf95d3610790c630c7'
-  /backend/Furion.Extras.Admin.NET/Service/Tenant:
-    newFile: !uuid 'abfafb87d4ff205631822074a29fadd2bbdd843e'
-    oldFile: !uuid '47dbb91c1e31136b660ea6bbe61224152904b07f'
-  /backend/Furion.Extras.Admin.NET/Service/Tenant/SysTenantService.cs:
-    newFile: !uuid '703901672d409d97d46435126fb3adb024d5ccfe'
-    oldFile: !uuid '3f48e48aa0fbc5d7c4805a7ee75d22e1f00e4308'
-  /backend/Furion.Extras.Admin.NET/Service/Timer:
-    newFile: !uuid 'efbcb94eb2550caa43b688bcc60244cdbe42a84d'
-    oldFile: !uuid '025071cedf04d5efd9f3f8e6202522e98ff7ce8b'
-  /backend/Furion.Extras.Admin.NET/Service/Timer/SysTimerService.cs:
-    newFile: !uuid '0805a6dfe19a51accf3d6109951b950e8e67749d'
-    oldFile: !uuid '13f2c0e773bb53dd50145e3c7d6215f6a33a492b'
-  /backend/Furion.Extras.Admin.NET/Service/User:
-    newFile: !uuid '1440a1d24388ccf0acf402c695027b9c2e96ca8f'
-    oldFile: !uuid '26477e8067eaf99c7b423497338ee429b2620df0'
-  /backend/Furion.Extras.Admin.NET/Service/User/SysUserService.cs:
-    newFile: !uuid '814ad980d8e63bc2eb793a84af0438baf20624a2'
-    oldFile: !uuid '25508add518a6c7e9a72c899972ae017616e344b'
-  /backend/Furion.Extras.Admin.NET/Util:
-    newFile: !uuid '30f80f0a7a64612ba16a6aedd40677fd1750b846'
-    oldFile: !uuid '67b051876195e782bf92feb75c59da2bc4328627'
-  /backend/Furion.Extras.Admin.NET/Util/PagedUtil.cs:
-    newFile: !uuid 'e33b707e9ebdab83c662c42cd81a702183027c38'
-    oldFile: !uuid '572c10f1f9c61480e9e8fc19d1c7c57c650943be'
   /frontend:
-    newFile: !uuid '4f65d7905ed2029483f090e42d75983eec57bfc6'
-    oldFile: !uuid '177099c429a8ff60eb56945d765662f0e4be7547'
+    newFile: !uuid '68865ece1c667d1bfa9382343a46d1c60372158e'
+    oldFile: !uuid '4f65d7905ed2029483f090e42d75983eec57bfc6'
   /frontend/src:
-    newFile: !uuid 'e322adf6996fc73f2d34c4af1276995fcc1e9eb6'
-    oldFile: !uuid 'e5bb57ed2d485cdeac96ac50e9dbde9f4d19c1a0'
-  /frontend/src/api:
-    newFile: !uuid '4cd3e87a7b597cca7bc820807a22d4d71404e37f'
-    oldFile: !uuid '92821ae4e4e76af0e011b9489d6ebee3982e6f14'
-  /frontend/src/api/modular:
-    newFile: !uuid '9d408cc08d3f46b4903cbd3fdf267e58d4a0b1c1'
-    oldFile: !uuid '7142394f073f1bf67108f7c2f8d7d8092ce90f22'
-  /frontend/src/api/modular/main:
-    newFile: !uuid '9fde7b78cc675b71864079ec31989f6fa229aec4'
-    oldFile: !uuid '0a2f2ec3243ea4125be68020af97b23b04774618'
-  /frontend/src/api/modular/main/CarManage.js:
-    newFile: !uuid 'cec7c0f6913855f485679b6ba4357dbe8f449252'
-    oldFile: null
+    newFile: !uuid '20953f39b297f8dd7a2c6d230c2985ec452355e8'
+    oldFile: !uuid 'e322adf6996fc73f2d34c4af1276995fcc1e9eb6'
   /frontend/src/views:
-    newFile: !uuid '53472079c6890a2c19aadf1bf5f8b945a6d67464'
-    oldFile: !uuid '29d5440a81773afa6c1365e8c583ce7debf6e497'
-  /frontend/src/views/main:
-    newFile: !uuid 'c964d31537463d2539c2ba2eaf996679a7497a46'
-    oldFile: !uuid 'c613043652e3517a6d2ae627f551a3ecf8d680be'
-  /frontend/src/views/main/Car:
-    newFile: !uuid '3658b9cdf712298b2298f008b8d80bd62033157c'
-    oldFile: null
-  /frontend/src/views/main/Car/addForm.vue:
-    newFile: !uuid '1ed87b469d9a4cd7e44343e1b551744afc2cdeef'
-    oldFile: null
-  /frontend/src/views/main/Car/editForm.vue:
-    newFile: !uuid '268e61c6f9ac0f3fe3b1e8b2282b4955015d8562'
-    oldFile: null
-  /frontend/src/views/main/Car/index.vue:
-    newFile: !uuid '847013890325e8b61fc7f138470a110b0b6043c0'
-    oldFile: null
-gitCommitId: !uuid '63a61df7d04185aec09019f8d218803db81742cb'
+    newFile: !uuid '360ab4cf6ad30c4466126b2a76cd3a7253a01737'
+    oldFile: !uuid '53472079c6890a2c19aadf1bf5f8b945a6d67464'
+  /frontend/src/views/system:
+    newFile: !uuid '21d3a7c1590c5f084b5c3bdcc7b0125b5a68e3a3'
+    oldFile: !uuid 'a734664dfd3be7c73ccf0e8932d459d64f2be725'
+  /frontend/src/views/system/menu:
+    newFile: !uuid '92a96a8e04abdba92e90a415971c75ebfbf09d6d'
+    oldFile: !uuid 'cf889e387b77195206acb6c9939b5a12aeba695b'
+  /frontend/src/views/system/menu/index.vue:
+    newFile: !uuid '97bea409363f133f5acc1ee310eb7a93213917d3'
+    oldFile: !uuid '78c0b11e1d7a29e3b89e034376d461ad50a6e6d7'
+gitCommitId: !uuid 'be56953dd585d7e7c9961c4c284942621001618c'
 renames: {
   }
-revisionId: 583
+revisionId: 584
