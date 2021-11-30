@@ -2,46 +2,28 @@
 branches: {
   }
 fileChange:
-  /backend:
-    newFile: !uuid 'f7fa2279db164d0dabcc781935d51c948e56032f'
-    oldFile: !uuid '105aa0da41047f7e31d8b68032214f773fb7adf8'
-  /backend/Admin.NET.EntityFramework.Core:
-    newFile: !uuid '4dfe2aedb0f83ac4fb38f9557b1f808a92252354'
-    oldFile: !uuid '654bd00c228b45d9daa184d56846a1a5877d1d82'
-  /backend/Admin.NET.EntityFramework.Core/DbContexts:
-    newFile: !uuid '10da2e84fc202793bf6f58929440791207aae89f'
-    oldFile: !uuid '261e276a9fecb153f93fb86a444246bee5b7fc6c'
-  /backend/Admin.NET.EntityFramework.Core/DbContexts/DefaultDbContext.cs:
-    newFile: !uuid 'f2a54d74ce7ea42680a89b11d9f74f7015b8bc0e'
-    oldFile: !uuid 'd1a27f3df59657eded536e2399c349fb9e3381e4'
-  /backend/Furion.Extras.Admin.NET:
-    newFile: !uuid '2090e5eb7786d59a6aac6e2e94660cb0128308d1'
-    oldFile: !uuid 'f6eab3d9e040c1df1eb1aa36b2acc972ecb44945'
-  /backend/Furion.Extras.Admin.NET/Const:
-    newFile: !uuid '8977a07f314c5b3d0f9a47076c609ddd3f88203a'
-    oldFile: !uuid '782cf919549dc862f275aeb28f74045382177b1b'
-  /backend/Furion.Extras.Admin.NET/Const/ClaimConst.cs:
-    newFile: !uuid 'ca1bca16e09a3bc7d58ea1db1796b8a8c00dbba4'
-    oldFile: !uuid '9e4261bd729a36dc9a5942dd797de543df374e8e'
-  /backend/Furion.Extras.Admin.NET/Entity:
-    newFile: !uuid '55f505eff0afde4d724120cd94f32da5849fb10f'
-    oldFile: !uuid '0c2936442f7706b381c1b2f1569b5bfe67a9a74a'
-  /backend/Furion.Extras.Admin.NET/Entity/IDataPermissions.cs:
-    newFile: !uuid '0c25fbe80e2e4c4294a8d79f5325addcd758312b'
-    oldFile: null
-  /backend/Furion.Extras.Admin.NET/Furion.Extras.Admin.NET.xml:
-    newFile: !uuid 'b3a5253d478f240cfbfd34b658af091cf1d1344f'
-    oldFile: !uuid '8de05d04bcf21265bdbc3d92faba841d9424f69b'
-  /backend/Furion.Extras.Admin.NET/Service:
-    newFile: !uuid '9b73dbf9fc989232eb2086f0fd3a990d80bc0675'
-    oldFile: !uuid 'a040a931804e056f9f020c292dd489def21cc9f2'
-  /backend/Furion.Extras.Admin.NET/Service/Auth:
-    newFile: !uuid '6f172bc0e6628e4f9c3f3aadaf1577965a291da3'
-    oldFile: !uuid 'cc218eba4f75c38271b4ac8bc5f4435090841a90'
-  /backend/Furion.Extras.Admin.NET/Service/Auth/AuthService.cs:
-    newFile: !uuid 'd693691ddf65c2a49a81103e60af773bf5ef10b3'
-    oldFile: !uuid '7f51b784a4501ec9b6d677dab4ccf2889614db08'
-gitCommitId: !uuid '9450dcde06dd52ab2f82eccc76db3bd40cd546bd'
+  /frontend:
+    newFile: !uuid '177099c429a8ff60eb56945d765662f0e4be7547'
+    oldFile: !uuid '01ab5e74c58a2fa152d6e74418eda603ecfb77d7'
+  /frontend/src:
+    newFile: !uuid 'e5bb57ed2d485cdeac96ac50e9dbde9f4d19c1a0'
+    oldFile: !uuid '1942753e2072f92ca4fa2a0ced39d33a42487e24'
+  /frontend/src/views:
+    newFile: !uuid '29d5440a81773afa6c1365e8c583ce7debf6e497'
+    oldFile: !uuid '61f64eb61bdb35d9d5db5a30846ffe59e52cc66d'
+  /frontend/src/views/system:
+    newFile: !uuid 'a734664dfd3be7c73ccf0e8932d459d64f2be725'
+    oldFile: !uuid '9b1228fcf8819a16344aa4044ec6601fa7cb1786'
+  /frontend/src/views/system/notice:
+    newFile: !uuid '435798443f5cf690c6b86f8d3ce8c2e430efdd01'
+    oldFile: !uuid '639e69f98a8ab741e78559eb7f14d221c33f4346'
+  /frontend/src/views/system/notice/addForm.vue:
+    newFile: !uuid '7dd98c2c34c97c9c9ff6ac7249e2910c1cf13e1b'
+    oldFile: !uuid '9a5ffaad8157de95b12ab19a8d2d305428b288f8'
+  /frontend/src/views/system/notice/editForm.vue:
+    newFile: !uuid 'f808a0b753e9c5632bc82c6eb8677aaef922a2aa'
+    oldFile: !uuid '94caab4bed09905a54ea3426f1a17fe0b470df91'
+gitCommitId: !uuid 'a06d3d5e94c2d150c08f1007aa18ee0d83ddba18'
 renames: {
   }
-revisionId: 581
+revisionId: 582
