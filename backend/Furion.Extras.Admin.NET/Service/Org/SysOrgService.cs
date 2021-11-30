@@ -50,7 +50,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// <param name="input"></param>
         /// <returns></returns>
         [HttpGet("/sysOrg/page")]
-        public async Task<dynamic> QueryOrgPageList([FromQuery] OrgPageInput input)
+        public async Task<PageResult<OrgOutput>> QueryOrgPageList([FromQuery] OrgPageInput input)
         {
             var dataScopeList = GetDataScopeList(await GetUserDataScopeIdList());
 
@@ -66,7 +66,7 @@ namespace Furion.Extras.Admin.NET.Service
                                        .Where(u => u.Status != CommonStatus.DELETED).OrderBy(u => u.Sort)
                                        .Select(u => u.Adapt<OrgOutput>())
                                        .ToPagedListAsync(input.PageNo, input.PageSize);
-            return XnPageResult<OrgOutput>.PageResult(orgs);
+            return orgs;
         }
 
         /// <summary>
@@ -310,15 +310,10 @@ namespace Furion.Extras.Admin.NET.Service
                 dataScopeList = GetDataScopeList(dataScopes);
             }
             var orgs = await _sysOrgRep.DetachedEntities.Where(dataScopeList.Count > 0, u => dataScopeList.Contains(u.Id))
-                                                        .Where(u => u.Status == CommonStatus.ENABLE).OrderBy(u => u.Sort)
-                                                        .Select(u => new OrgTreeNode
-                                                        {
-                                                            Id = u.Id,
-                                                            ParentId = u.Pid,
-                                                            Title = u.Name,
-                                                            Value = u.Id.ToString(),
-                                                            Weight = u.Sort
-                                                        }).ToListAsync();
+                                                        .Where(u => u.Status == CommonStatus.ENABLE)
+                                                        .OrderBy(u => u.Sort)
+                                                        .ProjectToType<OrgTreeNode>()
+                                                        .ToListAsync();
 
             return new TreeBuildUtil<OrgTreeNode>().Build(orgs);
         }

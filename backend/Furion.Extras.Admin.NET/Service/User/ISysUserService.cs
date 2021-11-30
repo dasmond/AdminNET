@@ -15,19 +15,19 @@ namespace Furion.Extras.Admin.NET.Service
 
         Task<IActionResult> ExportUser();
 
-        Task<dynamic> GetUser(long id);
+        Task<UserOutput> GetUser(long id);
 
-        Task<dynamic> GetUserById(long userId);
+        Task<SysUser> GetUserById(long userId);
 
         Task<List<long>> GetUserDataScopeIdList();
 
         Task<List<long>> GetUserDataScopeIdList(long userId);
 
-        Task<dynamic> GetUserOwnData([FromQuery] QueryUserInput input);
+        Task<List<long>> GetUserOwnData([FromQuery] QueryUserInput input);
 
-        Task<dynamic> GetUserOwnRole([FromQuery] QueryUserInput input);
+        Task<List<long>> GetUserOwnRole([FromQuery] QueryUserInput input);
 
-        Task<dynamic> GetUserSelector([FromQuery] UserSelectorInput input);
+        Task<List<UserOutput>> GetUserSelector([FromQuery] UserSelectorInput input);
 
         Task GrantUserData(UpdateUserRoleDataInput input);
 
@@ -35,7 +35,7 @@ namespace Furion.Extras.Admin.NET.Service
 
         Task ImportUser(IFormFile file);
 
-        Task<dynamic> QueryUserPageList([FromQuery] UserPageInput input);
+        Task<PageResult<UserOutput>> QueryUserPageList([FromQuery] UserPageInput input);
 
         Task ResetUserPwd(QueryUserInput input);
 

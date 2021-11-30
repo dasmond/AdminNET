@@ -43,7 +43,7 @@ namespace Furion.Extras.Admin.NET.Service.Notice
         /// <param name="input"></param>
         /// <returns></returns>
         [HttpGet("/sysNotice/page")]
-        public async Task<dynamic> QueryNoticePageList([FromQuery] NoticePageInput input)
+        public async Task<PageResult<SysNotice>> QueryNoticePageList([FromQuery] NoticePageInput input)
         {
             var searchValue = !string.IsNullOrEmpty(input.SearchValue?.Trim());
             var notices = await _sysNoticeRep.DetachedEntities
@@ -52,7 +52,7 @@ namespace Furion.Extras.Admin.NET.Service.Notice
                                              .Where(input.Type > 0, u => u.Type == input.Type)
                                              .Where(u => u.Status != NoticeStatus.DELETED)
                                              .ToPagedListAsync(input.PageNo, input.PageSize);
-            return XnPageResult<SysNotice>.PageResult(notices);
+            return notices;
         }
 
         /// <summary>
@@ -194,7 +194,7 @@ namespace Furion.Extras.Admin.NET.Service.Notice
         /// <param name="input"></param>
         /// <returns></returns>
         [HttpGet("/sysNotice/received")]
-        public async Task<dynamic> ReceivedNoticePageList([FromQuery] NoticePageInput input)
+        public async Task<PageResult<NoticeReceiveOutput>> ReceivedNoticePageList([FromQuery] NoticePageInput input)
         {
             var searchValue = !string.IsNullOrEmpty(input.SearchValue?.Trim());
             var notices = await _sysNoticeRep.DetachedEntities.Join(_sysNoticeUserRep.DetachedEntities, u => u.Id, e => e.NoticeId, (u, e) => new { u, e })
@@ -205,7 +205,7 @@ namespace Furion.Extras.Admin.NET.Service.Notice
                                              .Where(u => u.u.Status != NoticeStatus.DELETED)
                                              .Select(u => u.u.Adapt(u.e.Adapt<NoticeReceiveOutput>()))
                                              .ToPagedListAsync(input.PageNo, input.PageSize);
-            return XnPageResult<NoticeReceiveOutput>.PageResult(notices);
+            return notices;
         }
 
         /// <summary>

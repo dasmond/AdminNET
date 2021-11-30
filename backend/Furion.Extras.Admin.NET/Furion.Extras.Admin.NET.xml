@@ -134,6 +134,16 @@
             租户Id
             </summary>
         </member>
+        <member name="F:Furion.Extras.Admin.NET.ClaimConst.CLAINM_ORGID">
+            <summary>
+            用户组织机构Id
+            </summary>
+        </member>
+        <member name="F:Furion.Extras.Admin.NET.ClaimConst.CLAINM_ORGNAME">
+            <summary>
+            用户组织机构名称
+            </summary>
+        </member>
         <member name="F:Furion.Extras.Admin.NET.CommonConst.DEFAULT_PASSWORD">
             <summary>
             默认密码
@@ -237,6 +247,31 @@
         <member name="P:Furion.Extras.Admin.NET.DEntityTenant.TenantId">
             <summary>
             租户id
+            </summary>
+        </member>
+        <member name="T:Furion.Extras.Admin.NET.Entity.IDataPermissions">
+            <summary>
+            数据权限接口，实现数据权限必须继承本接口
+            </summary>
+        </member>
+        <member name="P:Furion.Extras.Admin.NET.Entity.IDataPermissions.CreatedUserOrgId">
+            <summary>
+            创建用户部门id
+            </summary>
+        </member>
+        <member name="P:Furion.Extras.Admin.NET.Entity.IDataPermissions.CreatedUserOrgName">
+            <summary>
+            创建用户部门名称
+            </summary>
+        </member>
+        <member name="P:Furion.Extras.Admin.NET.Entity.IDataPermissions.CreatedUserId">
+            <summary>
+            创建者Id
+            </summary>
+        </member>
+        <member name="P:Furion.Extras.Admin.NET.Entity.IDataPermissions.CreatedUserName">
+            <summary>
+            创建者名称
             </summary>
         </member>
         <member name="T:Furion.Extras.Admin.NET.SysApp">
@@ -7140,56 +7175,6 @@
             <param name="openId"></param>
             <returns></returns>
         </member>
-        <member name="P:Furion.Extras.Admin.NET.Service.OnlineUserOutput.ConnectionId">
-            <summary>
-            连接Id
-            </summary>
-        </member>
-        <member name="P:Furion.Extras.Admin.NET.Service.OnlineUserOutput.UserId">
-            <summary>
-            用户Id
-            </summary>
-        </member>
-        <member name="P:Furion.Extras.Admin.NET.Service.OnlineUserOutput.Account">
-            <summary>
-            账号
-            </summary>
-        </member>
-        <member name="P:Furion.Extras.Admin.NET.Service.OnlineUserOutput.Name">
-            <summary>
-            姓名
-            </summary>
-        </member>
-        <member name="P:Furion.Extras.Admin.NET.Service.OnlineUserOutput.LastTime">
-            <summary>
-            最后连接时间
-            </summary>
-        </member>
-        <member name="P:Furion.Extras.Admin.NET.Service.OnlineUserOutput.LastLoginIp">
-            <summary>
-            最后登录IP
-            </summary>
-        </member>
-        <member name="P:Furion.Extras.Admin.NET.Service.OnlineUserOutput.LastLoginBrowser">
-            <summary>
-            最后登录所用浏览器
-            </summary>
-        </member>
-        <member name="P:Furion.Extras.Admin.NET.Service.OnlineUserOutput.LastLoginOs">
-            <summary>
-            最后登录所用系统
-            </summary>
-        </member>
-        <member name="P:Furion.Extras.Admin.NET.Service.OnlineUserOutput.TenantId">
-            <summary>
-            租户id
-            </summary>
-        </member>
-        <member name="P:Furion.Extras.Admin.NET.Service.OnlineUserOutput.TenantName">
-            <summary>
-            租户名称
-            </summary>
-        </member>
         <member name="M:Furion.Extras.Admin.NET.Service.ISysOnlineUserService.QueryOnlineUserPageList(Furion.Extras.Admin.NET.PageInputBase)">
             <summary>
             分页获取在线用户信息
@@ -9289,6 +9274,56 @@
             <param name="orgId"></param>
             <returns></returns>
         </member>
+        <member name="P:Furion.Extras.Admin.NET.OnlineUserOutput.ConnectionId">
+            <summary>
+            连接Id
+            </summary>
+        </member>
+        <member name="P:Furion.Extras.Admin.NET.OnlineUserOutput.UserId">
+            <summary>
+            用户Id
+            </summary>
+        </member>
+        <member name="P:Furion.Extras.Admin.NET.OnlineUserOutput.Account">
+            <summary>
+            账号
+            </summary>
+        </member>
+        <member name="P:Furion.Extras.Admin.NET.OnlineUserOutput.Name">
+            <summary>
+            姓名
+            </summary>
+        </member>
+        <member name="P:Furion.Extras.Admin.NET.OnlineUserOutput.LastTime">
+            <summary>
+            最后连接时间
+            </summary>
+        </member>
+        <member name="P:Furion.Extras.Admin.NET.OnlineUserOutput.LastLoginIp">
+            <summary>
+            最后登录IP
+            </summary>
+        </member>
+        <member name="P:Furion.Extras.Admin.NET.OnlineUserOutput.LastLoginBrowser">
+            <summary>
+            最后登录所用浏览器
+            </summary>
+        </member>
+        <member name="P:Furion.Extras.Admin.NET.OnlineUserOutput.LastLoginOs">
+            <summary>
+            最后登录所用系统
+            </summary>
+        </member>
+        <member name="P:Furion.Extras.Admin.NET.OnlineUserOutput.TenantId">
+            <summary>
+            租户id
+            </summary>
+        </member>
+        <member name="P:Furion.Extras.Admin.NET.OnlineUserOutput.TenantName">
+            <summary>
+            租户名称
+            </summary>
+        </member>
         <member name="T:Furion.Extras.Admin.NET.CodeGenUtil">
             <summary>
             代码生成帮助类
@@ -9351,6 +9386,13 @@
             <param name="assembly"></param>
             <returns></returns>
         </member>
+        <member name="M:Furion.Extras.Admin.NET.IPUtil.GetRequestIPv4(Microsoft.AspNetCore.Http.HttpContext)">
+            <summary>
+            获取请求的ip4
+            </summary>
+            <param name="context"></param>
+            <returns></returns>
+        </member>
         <member name="T:Furion.Extras.Admin.NET.MachineUtil">
             <summary>
             获取服务器信息
@@ -9411,26 +9453,6 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="T:Furion.Extras.Admin.NET.ShellUtil">
-            <summary>
-            系统Shell命令
-            </summary>
-        </member>
-        <member name="M:Furion.Extras.Admin.NET.ShellUtil.Bash(System.String)">
-            <summary>
-            Bash命令
-            </summary>
-            <param name="command"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Furion.Extras.Admin.NET.ShellUtil.Cmd(System.String,System.String)">
-            <summary>
-            cmd命令
-            </summary>
-            <param name="fileName"></param>
-            <param name="args"></param>
-            <returns></returns>
-        </member>
         <member name="T:Furion.Extras.Admin.NET.NetworkInfo">
              <summary>
             
@@ -9447,6 +9469,37 @@
             获取当前网卡的网络速度
             </summary>
             <param name="Milliseconds"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Furion.Extras.Admin.NET.PagedUtil.ToPagedList``1(System.Linq.IQueryable{``0},System.Int32,System.Int32)">
+            <summary>
+            分页拓展
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <param name="entities"></param>
+            <param name="pageIndex">页码，必须大于0</param>
+            <param name="pageSize"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Furion.Extras.Admin.NET.PagedUtil.ToPagedListAsync``1(System.Linq.IQueryable{``0},System.Int32,System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            分页拓展
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <param name="entities"></param>
+            <param name="pageIndex">页码，必须大于0</param>
+            <param name="pageSize"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Furion.Extras.Admin.NET.PagedUtil.ToPagedList``1(System.Collections.Generic.IEnumerable{``0},System.Int32,System.Int32)">
+            <summary>
+            分页拓展
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <param name="entities"></param>
+            <param name="pageIndex">页码，必须大于0</param>
+            <param name="pageSize"></param>
             <returns></returns>
         </member>
         <member name="T:Furion.Extras.Admin.NET.PageInputOrder">
@@ -9482,6 +9535,26 @@
             </summary>
             <param name="field"></param>
             <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="T:Furion.Extras.Admin.NET.ShellUtil">
+            <summary>
+            系统Shell命令
+            </summary>
+        </member>
+        <member name="M:Furion.Extras.Admin.NET.ShellUtil.Bash(System.String)">
+            <summary>
+            Bash命令
+            </summary>
+            <param name="command"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Furion.Extras.Admin.NET.ShellUtil.Cmd(System.String,System.String)">
+            <summary>
+            cmd命令
+            </summary>
+            <param name="fileName"></param>
+            <param name="args"></param>
             <returns></returns>
         </member>
         <member name="T:Furion.Extras.Admin.NET.ITreeNode">
@@ -9608,12 +9681,6 @@
             <summary>
             复杂查询条件
             </summary>
-        </member>
-        <member name="T:Furion.Extras.Admin.NET.XnPageResult`1">
-            <summary>
-            小诺分页列表结果
-            </summary>
-            <typeparam name="T"></typeparam>
         </member>
         <member name="T:Furion.Extras.Admin.NET.XnRestfulResultProvider">
             <summary>

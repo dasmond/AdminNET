@@ -88,6 +88,7 @@
         editorContentText: '',
         editorUploadConfig: {
           method: 'http',
+          uploadImgServer: '/sysFileInfo/upload',
           callback: this.editorUploadImage
         },
         mockData: [],

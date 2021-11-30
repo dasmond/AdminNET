@@ -12,11 +12,11 @@ namespace Furion.Extras.Admin.NET.Service
 
         Task<string> GetNameByRoleId(long roleId);
 
-        Task<dynamic> GetRoleDropDown();
+        Task<List<RoleOutput>> GetRoleDropDown();
 
         Task<SysRole> GetRoleInfo([FromQuery] QueryRoleInput input);
 
-        Task<dynamic> GetRoleList([FromQuery] RoleInput input);
+        Task<List<RoleOutput>> GetRoleList([FromQuery] RoleInput input);
 
         Task<List<long>> GetUserDataScopeIdList(List<long> roleIdList, long orgId);
 
@@ -30,7 +30,7 @@ namespace Furion.Extras.Admin.NET.Service
 
         Task<List<long>> OwnMenu([FromQuery] QueryRoleInput input);
 
-        Task<dynamic> QueryRolePageList([FromQuery] RolePageInput input);
+        Task<PageResult<SysRole>> QueryRolePageList([FromQuery] RolePageInput input);
 
         Task UpdateRole(UpdateRoleInput input);
     }

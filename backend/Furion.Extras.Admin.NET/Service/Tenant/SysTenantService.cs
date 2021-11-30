@@ -42,15 +42,15 @@ namespace Furion.Extras.Admin.NET.Service
         /// <param name="input"></param>
         /// <returns></returns>
         [HttpGet("/sysTenant/page")]
-        public async Task<dynamic> QueryTenantPageList([FromQuery] TenantPageInput input)
+        public async Task<PageResult<TenantOutput>> QueryTenantPageList([FromQuery] TenantPageInput input)
         {
             var name = !string.IsNullOrEmpty(input.Name?.Trim());
             var host = !string.IsNullOrEmpty(input.Host?.Trim());
             var tenants = await _sysTenantRep.DetachedEntities
                                              .Where((name, u => EF.Functions.Like(u.Name, $"%{input.Name.Trim()}%")))
-                                             .Select(u => u.Adapt<TenantOutput>())
+                                             .ProjectToType<TenantOutput>()
                                              .ToPagedListAsync(input.PageNo, input.PageSize);
-            return XnPageResult<TenantOutput>.PageResult(tenants);
+            return tenants;
         }
 
         /// <summary>

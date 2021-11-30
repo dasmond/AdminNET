@@ -14,13 +14,13 @@ namespace Furion.Extras.Admin.NET.Service
 
         Task<List<DictTreeOutput>> GetDictTree();
 
-        Task<dynamic> GetDictType([FromQuery] QueryDictTypeInfoInput input);
+        Task<SysDictType> GetDictType([FromQuery] QueryDictTypeInfoInput input);
 
-        Task<dynamic> GetDictTypeDropDown([FromQuery] DropDownDictTypeInput input);
+        Task<List<SysDictData>> GetDictTypeDropDown([FromQuery] DropDownDictTypeInput input);
 
-        Task<dynamic> GetDictTypeList();
+        Task<List<SysDictType>> GetDictTypeList();
 
-        Task<dynamic> QueryDictTypePageList([FromQuery] DictTypePageInput input);
+        Task<PageResult<SysDictType>> QueryDictTypePageList([FromQuery] DictTypePageInput input);
 
         Task UpdateDictType(UpdateDictTypeInput input);
     }

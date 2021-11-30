@@ -1,5 +1,5 @@
-﻿using Admin.NET.Core;
-using Furion.DatabaseAccessor;
+﻿using Furion.DatabaseAccessor;
+using Furion.Extras.Admin.NET;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;

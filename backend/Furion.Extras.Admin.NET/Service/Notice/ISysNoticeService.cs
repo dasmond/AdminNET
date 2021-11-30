@@ -13,9 +13,9 @@ namespace Furion.Extras.Admin.NET.Service.Notice
 
         Task<NoticeDetailOutput> GetNotice([FromQuery] QueryNoticeInput input);
 
-        Task<dynamic> QueryNoticePageList([FromQuery] NoticePageInput input);
+        Task<PageResult<SysNotice>> QueryNoticePageList([FromQuery] NoticePageInput input);
 
-        Task<dynamic> ReceivedNoticePageList([FromQuery] NoticePageInput input);
+        Task<PageResult<NoticeReceiveOutput>> ReceivedNoticePageList([FromQuery] NoticePageInput input);
 
         Task UpdateNotice(UpdateNoticeInput input);
     }

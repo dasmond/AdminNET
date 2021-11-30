@@ -29,7 +29,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// <param name="input"></param>
         /// <returns></returns>
         [HttpGet("/sysExLog/page")]
-        public async Task<dynamic> QueryExLogPageList([FromQuery] ExLogPageInput input)
+        public async Task<PageResult<ExLogOutput>> QueryExLogPageList([FromQuery] ExLogPageInput input)
         {
             var name = !string.IsNullOrEmpty(input.Name?.Trim());
             var className = !string.IsNullOrEmpty(input.ClassName?.Trim());
@@ -46,7 +46,7 @@ namespace Furion.Extras.Admin.NET.Service
                                            .OrderByDescending(u => u.Id)
                                            .Select(u => u.Adapt<ExLogOutput>())
                                            .ToPagedListAsync(input.PageNo, input.PageSize);
-            return XnPageResult<ExLogOutput>.PageResult(exLogs);
+            return exLogs;
         }
 
         /// <summary>

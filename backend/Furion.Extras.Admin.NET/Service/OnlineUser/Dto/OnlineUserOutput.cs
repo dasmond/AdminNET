@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Furion.Extras.Admin.NET.Service
+namespace Furion.Extras.Admin.NET
 {
     public class OnlineUserOutput
     {

@@ -197,7 +197,7 @@ namespace Furion.Extras.Admin.NET
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        public dynamic CheckCode(ClickWordCaptchaInput input)
+        public ClickWordCaptchaResult CheckCode(ClickWordCaptchaInput input)
         {
             var res = new ClickWordCaptchaResult();
 

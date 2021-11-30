@@ -18,7 +18,7 @@ namespace Furion.Extras.Admin.NET.Service
 
         Task<List<long>> OwnMenu([FromQuery] QueryTenantInput input);
 
-        Task<dynamic> QueryTenantPageList([FromQuery] TenantPageInput input);
+        Task<PageResult<TenantOutput>> QueryTenantPageList([FromQuery] TenantPageInput input);
 
         Task ResetUserPwd(QueryTenantInput input);
 

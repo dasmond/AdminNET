@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
-using Furion.DatabaseAccessor;
+﻿using Furion.DatabaseAccessor;
 using Furion.DataEncryption;
 using Furion.DependencyInjection;
 using Furion.DynamicApiController;
@@ -14,6 +9,11 @@ using Mapster;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Threading.Tasks;
 using UAParser;
 
 namespace Furion.Extras.Admin.NET.Service
@@ -80,6 +80,9 @@ namespace Furion.Extras.Admin.NET.Service
             if (user.Status == CommonStatus.DISABLE)
                 throw Oops.Oh(ErrorCode.D1017);
 
+            // 员工信息
+            var empInfo = _sysEmpService.GetEmpInfo(user.Id).Result;
+
             // 生成Token令牌
             //var accessToken = await _jwtBearerManager.CreateTokenAdmin(user);
             var accessToken = JWTEncryption.Encrypt(new Dictionary<string, object>
@@ -89,6 +92,8 @@ namespace Furion.Extras.Admin.NET.Service
                 {ClaimConst.CLAINM_ACCOUNT, user.Account},
                 {ClaimConst.CLAINM_NAME, user.Name},
                 {ClaimConst.CLAINM_SUPERADMIN, user.AdminType},
+                {ClaimConst.CLAINM_ORGID, empInfo.OrgId},
+                {ClaimConst.CLAINM_ORGNAME, empInfo.OrgName},
             });
 
             // 设置Swagger自动登录
@@ -120,7 +125,7 @@ namespace Furion.Extras.Admin.NET.Service
             var loginOutput = user.Adapt<LoginOutput>();
 
             loginOutput.LastLoginTime = user.LastLoginTime = DateTimeOffset.Now;
-            loginOutput.LastLoginIp = user.LastLoginIp = httpContext.GetRemoteIpAddressToIPv4();
+            loginOutput.LastLoginIp = user.LastLoginIp = httpContext.GetRequestIPv4();
 
             //var ipInfo = IpTool.Search(loginOutput.LastLoginIp);
             //loginOutput.LastLoginAddress = ipInfo.Country + ipInfo.Province + ipInfo.City + "[" + ipInfo.NetworkOperator + "][" + ipInfo.Latitude + ipInfo.Longitude + "]";
@@ -156,7 +161,7 @@ namespace Furion.Extras.Admin.NET.Service
             }
 
             // 更新用户最后登录Ip和时间
-            await _sysUserRep.UpdateIncludeAsync(user, new[] {nameof(SysUser.LastLoginIp), nameof(SysUser.LastLoginTime)});
+            await _sysUserRep.UpdateIncludeAsync(user, new[] { nameof(SysUser.LastLoginIp), nameof(SysUser.LastLoginTime) });
 
             // 增加登录日志
             await _eventPublisher.PublishAsync(new ChannelEventSource("Create:VisLog",
@@ -183,6 +188,7 @@ namespace Furion.Extras.Admin.NET.Service
         [AllowAnonymous]
         public async Task LogoutAsync()
         {
+            var ip = _httpContextAccessor.HttpContext.GetRequestIPv4();
             _httpContextAccessor.HttpContext.SignoutToSwagger();
             //_httpContextAccessor.HttpContext.Response.Headers["access-token"] = "invalid token";
 
@@ -195,7 +201,8 @@ namespace Furion.Extras.Admin.NET.Service
                     Message = "退出成功",
                     VisType = LoginType.LOGOUT,
                     VisTime = DateTimeOffset.Now,
-                    Account = _userManager.Account
+                    Account = _userManager.Account,
+                    Ip = ip
                 }));
         }
 

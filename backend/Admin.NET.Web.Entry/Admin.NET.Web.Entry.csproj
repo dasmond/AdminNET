@@ -18,10 +18,4 @@
     <ProjectReference Include="..\Admin.NET.Web.Core\Admin.NET.Web.Core.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <None Update="Admin.NET_SaaS.db">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-
 </Project>

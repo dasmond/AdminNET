@@ -80,7 +80,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// 分页数据返回前处理
         /// </summary>
         /// <returns></returns>
-        protected Action<PagedList<TEntity>> PageListHandle = null;
+        protected Action<PageResult<TEntity>> PageListHandle = null;
 
         /// <summary>
         /// 分页查询
@@ -89,7 +89,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// <returns></returns>
         /// <exception cref="Exception"></exception>
         [HttpPost("page")]
-        public virtual async Task<PageResult<TPageListDto>> PageList(TSearchDto searchDto)
+        public virtual async Task<PageResult<TEntity>> PageList(TSearchDto searchDto)
         {
             IQueryable<TEntity> queryable;
             if (SearchQueryable != null)
@@ -108,11 +108,11 @@ namespace Furion.Extras.Admin.NET.Service
                     queryable = queryable.Where(SearchExpression(searchDto));
             }
 
-            PagedList<TEntity> pageList = await queryable.ToPagedListAsync(searchDto.PageNo, searchDto.PageSize);
+            var pageList = await queryable.ToPagedListAsync(searchDto.PageNo, searchDto.PageSize);
 
             PageListHandle?.Invoke(pageList);
 
-            return XnPageResult<TEntity>.PageResult<TPageListDto>(pageList);
+            return pageList;
         }
 
         #endregion

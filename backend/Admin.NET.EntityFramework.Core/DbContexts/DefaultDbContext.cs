@@ -1,13 +1,15 @@
-﻿using Furion.Extras.Admin.NET;
-using Furion.Extras.Admin.NET.Service;
-using Furion;
+﻿using Furion;
 using Furion.DatabaseAccessor;
+using Furion.Extras.Admin.NET;
+using Furion.Extras.Admin.NET.Entity;
+using Furion.Extras.Admin.NET.Service;
 using Furion.FriendlyException;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using Yitter.IdGenerator;
@@ -17,8 +19,13 @@ namespace Admin.NET.EntityFramework.Core
     [AppDbContext("DefaultConnection", DbProvider.Sqlite)]
     public class DefaultDbContext : AppDbContext<DefaultDbContext>, IMultiTenantOnTable, IModelBuilderFilter
     {
-        public DefaultDbContext(DbContextOptions<DefaultDbContext> options) : base(options)
+        //缓存服务
+        private readonly ISysCacheService _sysCacheService;
+        public DefaultDbContext(ISysCacheService sysCacheService, DbContextOptions<DefaultDbContext> options) : base(options)
         {
+            //缓存服务
+            _sysCacheService = sysCacheService;
+
             // 启用实体数据更改监听
             EnabledEntityChangedListener = true;
 
@@ -49,6 +56,10 @@ namespace Admin.NET.EntityFramework.Core
             LambdaExpression expression = TenantIdAndFakeDeleteQueryFilterExpression(entityBuilder, dbContext);
             if (expression != null)
                 entityBuilder.HasQueryFilter(expression);
+            // 配置数据权限动态表达式
+            LambdaExpression dataScopesExpression = DataScopesFilterExpression(entityBuilder, dbContext);
+            if (dataScopesExpression != null)
+                entityBuilder.HasQueryFilter(dataScopesExpression);
         }
 
         protected override void SavingChangesEvent(DbContextEventData eventData, InterceptionResult<int> result)
@@ -195,5 +206,98 @@ namespace Admin.NET.EntityFramework.Core
 
             return Expression.Lambda(finialExpression, parameterExpression);
         }
+
+        #region 数据权限
+        /// <summary>
+        /// 获取用户Id
+        /// </summary>
+        /// <returns></returns>
+        public object GetUserId()
+        {
+            if (App.User == null) return null;
+            return Convert.ToInt64(App.User.FindFirst(ClaimConst.CLAINM_USERID)?.Value);
+        }
+
+        /// <summary>
+        /// 获取数据范围
+        /// </summary>
+        /// <returns></returns>
+        public List<object> GetDataScopes()
+        {
+            var userId = this.GetUserId();
+            if (userId == null)
+            {
+                return new List<object>();
+            }
+
+            var dataScopes = _sysCacheService.GetDataScope(Convert.ToInt64(userId)).Result; // 先从缓存里面读取
+            if (dataScopes != null)
+            {
+                var dataScopesList = dataScopes.ConvertAll(i => (object)i);
+                return dataScopesList;
+            }
+            return new List<object>();
+        }
+
+        /// <summary>
+        /// 构建数据范围过滤器
+        /// </summary>
+        /// <param name="entityBuilder"></param>
+        /// <param name="dbContext"></param>
+        /// <param name="onTableCreatedUserId"></param>
+        /// <param name="onTableCreatedUserOrgId"></param>
+        /// <param name="filterValue"></param>
+        /// <returns></returns>
+        protected LambdaExpression DataScopesFilterExpression(EntityTypeBuilder entityBuilder, DbContext dbContext, string onTableCreatedUserId = null, string onTableCreatedUserOrgId = null, object filterValue = null)
+        {
+
+            onTableCreatedUserId ??= nameof(IDataPermissions.CreatedUserId);//用户id字段
+            onTableCreatedUserOrgId ??= nameof(IDataPermissions.CreatedUserOrgId);//用户部门字段
+
+            IMutableEntityType metadata = entityBuilder.Metadata;
+            if (metadata.FindProperty(onTableCreatedUserId) == null || metadata.FindProperty(onTableCreatedUserOrgId) == null)
+            {
+                return null;
+            }
+
+            Expression finialExpression = Expression.Constant(true);
+            ParameterExpression parameterExpression = Expression.Parameter(metadata.ClrType, "u");
+
+
+
+            // 个人用户数据过滤器
+            if (metadata.FindProperty(onTableCreatedUserId) != null)
+            {
+                ConstantExpression constantExpression = Expression.Constant(onTableCreatedUserId);
+                MethodCallExpression right = Expression.Call(Expression.Constant(dbContext), dbContext.GetType().GetMethod("GetUserId"));
+                finialExpression = Expression.AndAlso(finialExpression, Expression.Equal(Expression.Call(typeof(EF), "Property", new Type[1]
+                {
+                        typeof(object)
+                }, parameterExpression, constantExpression), right));
+            }
+
+
+            //数据权限过滤器
+            if (metadata.FindProperty(onTableCreatedUserOrgId) != null)
+            {
+                ConstantExpression constantExpression = Expression.Constant(onTableCreatedUserOrgId);
+
+                MethodCallExpression dataScopesLeft = Expression.Call(Expression.Constant(dbContext), dbContext.GetType().GetMethod("GetDataScopes"));
+                var firstOrDefaultCall = Expression.Call(typeof(EF), "Property", new Type[1]
+                    {
+                        typeof(object)
+                    }, parameterExpression, constantExpression);
+
+                var createdUserOrgIdQueryExpression = Expression.Call(dataScopesLeft, typeof(List<object>).GetMethod("Contains"), firstOrDefaultCall);
+
+                finialExpression = Expression.Or(finialExpression, createdUserOrgIdQueryExpression);
+            }
+
+            return Expression.Lambda(finialExpression, parameterExpression);
+        }
+
+
+        #endregion
+
     }
 }

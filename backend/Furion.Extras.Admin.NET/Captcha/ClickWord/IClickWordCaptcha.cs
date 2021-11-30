@@ -2,7 +2,7 @@
 {
     public interface IClickWordCaptcha
     {
-        dynamic CheckCode(ClickWordCaptchaInput input);
+        ClickWordCaptchaResult CheckCode(ClickWordCaptchaInput input);
 
         ClickWordCaptchaResult CreateCaptchaImage(string code, int width, int height);
 

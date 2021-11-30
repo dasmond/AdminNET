@@ -1,4 +1,4 @@
-﻿using Admin.NET.Core;
+﻿using Furion.Extras.Admin.NET;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -10,7 +10,7 @@ namespace Covid19.Plugin
     /// </summary>
     [Table("xg_test_item")]
     [Comment("参数配置表")]
-    public class XgTestItem : DBEntityTenant
+    public class XgTestItem : DEntityTenant
     {
         /// <summary>
         /// 名称

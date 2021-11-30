@@ -11,9 +11,9 @@ namespace Furion.Extras.Admin.NET.Service
 
         Task DeleteTimer(DeleteJobInput input);
 
-        Task<dynamic> GetTimer([FromQuery] QueryJobInput input);
+        Task<SysTimer> GetTimer([FromQuery] QueryJobInput input);
 
-        Task<dynamic> GetTimerPageList([FromQuery] JobPageInput input);
+        Task<PageResult<JobOutput>> GetTimerPageList([FromQuery] JobPageInput input);
 
         void StartTimerJob(AddJobInput input);
 

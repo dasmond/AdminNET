@@ -29,7 +29,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// <param name="input"></param>
         /// <returns></returns>
         [HttpGet("/sysVisLog/page")]
-        public async Task<dynamic> QueryVisLogPageList([FromQuery] VisLogPageInput input)
+        public async Task<PageResult<VisLogOutput>> QueryVisLogPageList([FromQuery] VisLogPageInput input)
         {
             var name = !string.IsNullOrEmpty(input.Name?.Trim());
             var success = !string.IsNullOrEmpty(input.Success.ToString());
@@ -41,9 +41,9 @@ namespace Furion.Extras.Admin.NET.Service
                                              .Where(searchBeginTime, u => u.VisTime >= DateTime.Parse(input.SearchBeginTime.Trim()) &&
                                                                      u.VisTime <= DateTime.Parse(input.SearchEndTime.Trim()))
                                              .OrderByDescending(u => u.Id)
-                                             .Select(u => u.Adapt<VisLogOutput>())
+                                             .ProjectToType<VisLogOutput>()
                                              .ToPagedListAsync(input.PageNo, input.PageSize);
-            return XnPageResult<VisLogOutput>.PageResult(visLogs);
+            return visLogs;
         }
 
         /// <summary>

@@ -6,6 +6,7 @@ using Furion.FriendlyException;
 using Mapster;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -37,16 +38,17 @@ namespace Furion.Extras.Admin.NET.Service
         /// <param name="input"></param>
         /// <returns></returns>
         [HttpGet("/sysPos/page")]
-        public async Task<dynamic> QueryPosPageList([FromQuery] PosInput input)
+        public async Task<PageResult<SysPos>> QueryPosPageList([FromQuery] PosInput input)
         {
             var name = !string.IsNullOrEmpty(input.Name?.Trim());
             var code = !string.IsNullOrEmpty(input.Code?.Trim());
             var pos = await _sysPosRep.DetachedEntities
                                       .Where((name, u => EF.Functions.Like(u.Name, $"%{input.Name.Trim()}%")),
                                              (code, u => EF.Functions.Like(u.Code, $"%{input.Code.Trim()}%")))
-                                      .Where(u => u.Status == CommonStatus.ENABLE).OrderBy(u => u.Sort)
+                                      .Where(u => u.Status == CommonStatus.ENABLE)
+                                      .OrderBy(u => u.Sort)
                                       .ToPagedListAsync(input.PageNo, input.PageSize);
-            return XnPageResult<SysPos>.PageResult(pos);
+            return pos;
         }
 
         /// <summary>
@@ -54,7 +56,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// </summary>
         /// <returns></returns>
         [HttpGet("/sysPos/list")]
-        public async Task<dynamic> GetPosList([FromQuery] PosInput input)
+        public async Task<List<SysPos>> GetPosList([FromQuery] PosInput input)
         {
             var code = !string.IsNullOrEmpty(input.Code?.Trim());
             return await _sysPosRep.DetachedEntities.Where(code, u => EF.Functions.Like(u.Code, $"%{input.Code.Trim()}%"))

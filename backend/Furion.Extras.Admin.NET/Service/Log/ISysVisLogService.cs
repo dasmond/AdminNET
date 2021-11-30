@@ -7,6 +7,6 @@ namespace Furion.Extras.Admin.NET.Service
     {
         Task ClearVisLog();
 
-        Task<dynamic> QueryVisLogPageList([FromQuery] VisLogPageInput input);
+        Task<PageResult<VisLogOutput>> QueryVisLogPageList([FromQuery] VisLogPageInput input);
     }
 }

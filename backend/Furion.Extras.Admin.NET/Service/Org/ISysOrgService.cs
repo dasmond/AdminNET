@@ -18,7 +18,7 @@ namespace Furion.Extras.Admin.NET.Service
 
         Task<dynamic> GetOrgTree();
 
-        Task<dynamic> QueryOrgPageList([FromQuery] OrgPageInput input);
+        Task<PageResult<OrgOutput>> QueryOrgPageList([FromQuery] OrgPageInput input);
 
         Task UpdateOrg(UpdateOrgInput input);
 

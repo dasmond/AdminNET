@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Furion.Extras.Admin.NET.Service
@@ -11,11 +12,11 @@ namespace Furion.Extras.Admin.NET.Service
 
         Task<SysApp> GetApp([FromQuery] QueryAppInput input);
 
-        Task<dynamic> GetAppList();
+        Task<List<SysApp>> GetAppList();
 
-        Task<dynamic> GetLoginApps(long userId);
+        Task<List<AppOutput>> GetLoginApps(long userId);
 
-        Task<dynamic> QueryAppPageList([FromQuery] AppPageInput input);
+        Task<PageResult<SysApp>> QueryAppPageList([FromQuery] AppPageInput input);
 
         Task SetAsDefault(SetDefaultAppInput input);
 

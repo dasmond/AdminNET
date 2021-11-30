@@ -47,7 +47,7 @@ namespace Furion.Extras.Admin.NET
                 ConnectionId = Context.ConnectionId,
                 UserId = long.Parse(userId),
                 LastTime = DateTime.Now,
-                LastLoginIp = App.HttpContext.GetRemoteIpAddressToIPv4(),
+                LastLoginIp = App.HttpContext.GetRequestIPv4(),
                 LastLoginBrowser = loginBrowser,
                 LastLoginOs = loginOs,
                 Account = account,
