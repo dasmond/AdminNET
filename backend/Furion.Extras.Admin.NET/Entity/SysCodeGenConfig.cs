@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -133,7 +133,7 @@ namespace Furion.Extras.Admin.NET
         /// 数据库中类型（物理类型）
         /// </summary>
         [Comment("数据库中类型")]
-        [MaxLength(50)]
+        [MaxLength(128)]
         public string DataType { get; set; }
 
         /// <summary>
