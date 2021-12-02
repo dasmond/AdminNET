@@ -2,25 +2,13 @@
 branches: {
   }
 fileChange:
-  /backend:
-    newFile: !uuid '79cc77b3efed18cf5e0d192e4d809e6f2cf3e153'
-    oldFile: !uuid '0520a50879d0bdc648a70836b8f4e428c5ad4b77'
-  /backend/Furion.Extras.Admin.NET:
-    newFile: !uuid '636ffad5b827b2d1082bcc011dff53b6711cf655'
-    oldFile: !uuid 'caaaeced01fef076e4773349746cfe8f0edaaa9f'
-  /backend/Furion.Extras.Admin.NET/Entity:
-    newFile: !uuid '6700a74313a3e116c641e2c0529a592f7bee92f9'
-    oldFile: !uuid '55f505eff0afde4d724120cd94f32da5849fb10f'
-  /backend/Furion.Extras.Admin.NET/Entity/SysCodeGenConfig.cs:
-    newFile: !uuid '5732ccd90fec9642243bbbf6c519d78bc6b25e14'
-    oldFile: !uuid '00e18f2cd2fcddaa3fb5cef1a7d1c5b523b56e18'
-  /backend/Furion.Extras.Admin.NET/Entity/SysLogOp.cs:
-    newFile: !uuid '54ddd80a43ff27227907e3b8cba8c2ba90af3c29'
-    oldFile: !uuid '7039b48497eee6652c15a3882696d8c73a2c1c59'
-  /backend/Furion.Extras.Admin.NET/Entity/SysLogVis.cs:
-    newFile: !uuid 'f3b88237d08eae6dae94ed27e59e0389ca5a617f'
-    oldFile: !uuid 'de2e45b693461fc7f1eac1df560997aee5498d21'
-gitCommitId: !uuid '2e61f8ae3c97f9e284c7b71ef9989cc0622713c6'
+  /build:
+    newFile: !uuid 'b172dd0343aa9ee21c78aa9537bd655480bbda63'
+    oldFile: !uuid '6dd6bf446cb893a590cd2c86ff996acd94c6929b'
+  /build/readme.md:
+    newFile: !uuid '2e8866fa4c5b3b7435c0fb070554b784240401e0'
+    oldFile: !uuid '750fe13e9c324e7c89000af3c963aec3ae83444c'
+gitCommitId: !uuid '1fcd44b0d564a13d810b5f1c6b548fc52636ae26'
 renames: {
   }
-revisionId: 585
+revisionId: 586
