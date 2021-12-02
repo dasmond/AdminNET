@@ -102,6 +102,28 @@
         >确定</a-button>
       </a-form-item>
 
+      <a-form-item style="margin-top:-14px" v-if="!production">
+        <a-button size="large" type="Default" @click="QuickLogin" class="login-button">快速选择用户(测试功能)</a-button>
+      </a-form-item>
+
+      <a-modal
+        :visible="QuickLoginVisible"
+        :confirm-loading="false"
+        @ok="handleOk"
+        @cancel="handleCancel"
+        :footer="null"
+      >
+        <p>快速选择用户</p>
+        <a-row :gutter="10" style="margin: -10px 0px -10px 0px;">
+          <a-col v-for="(user, index) in users" :key="index" :span="6">
+            <div class="page-login--quick-user" @click="handleUserBtnClick(user)">
+              <a-avatar :size="46" icon="user" />
+              <span>{{ user.name }}</span>
+            </div>
+          </a-col>
+        </a-row>
+      </a-modal>
+
       <div class="user-login-other">
         <span>其他登录方式</span>
         <a>
@@ -132,6 +154,7 @@ import TwoStepCaptcha from '@/components/tools/TwoStepCaptcha'
 import { mapActions } from 'vuex'
 import { getSmsCaptcha, getCaptchaOpen } from '@/api/modular/system/loginManage'
 import Verify from '@/components/verifition/Verify'
+import config from '@/config/defaultSettings'
 
 export default {
   components: {
@@ -140,6 +163,20 @@ export default {
   },
   data () {
     return {
+      users: [
+        {
+          name: '超级管理员',
+          username: 'superAdmin',
+          password: '123456'
+        },
+        {
+          name: '超级租户1',
+          username: 'zuohuaijun',
+          password: '123456'
+        }
+      ],
+      production: config.production,
+      QuickLoginVisible: false,
       customActiveKey: 'tab1',
       loginBtn: false,
       // login type: 0 email, 1 username, 2 telephone
@@ -170,6 +207,26 @@ export default {
     this.getLocalStorageData()
   },
   methods: {
+    handleUserBtnClick(user) {
+      const loginParams = {
+        account: user.username,
+        password: user.password
+      }
+
+      this.Login(loginParams)
+        .then(res => this.loginSuccess(res))
+        .catch(err => this.requestFailed(JSON.stringify(err)))
+        .finally(() => {})
+    },
+    QuickLogin() {
+      this.QuickLoginVisible = true
+    },
+    handleOk() {
+      this.QuickLoginVisible = false
+    },
+    handleCancel() {
+      this.QuickLoginVisible = false
+    },
     ...mapActions(['Login', 'Logout', 'dictTypeData']),
     /**
      * 获取验证码开关
@@ -334,6 +391,36 @@ export default {
 </script>
 
 <style lang="less" scoped>
+@color-bg: #f8f8f9;
+@color-text-normal: #000000;
+@color-text-sub: #333333;
+
+// 快速选择用户面板
+.page-login--quick-user {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 10px 0px;
+  border-radius: 4px;
+
+  &:hover {
+    background-color: @color-bg;
+
+    span {
+      color: @color-text-normal;
+      font-size: 13px;
+      font-weight: 500;
+    }
+  }
+
+  span {
+    font-size: 12px;
+    margin-top: 10px;
+    color: @color-text-sub;
+  }
+}
+
 .user-layout-login {
   label {
     font-size: 14px;
