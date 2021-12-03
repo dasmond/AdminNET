@@ -2,13 +2,22 @@
 branches: {
   }
 fileChange:
-  /build:
-    newFile: !uuid 'b172dd0343aa9ee21c78aa9537bd655480bbda63'
-    oldFile: !uuid '6dd6bf446cb893a590cd2c86ff996acd94c6929b'
-  /build/readme.md:
-    newFile: !uuid '2e8866fa4c5b3b7435c0fb070554b784240401e0'
-    oldFile: !uuid '750fe13e9c324e7c89000af3c963aec3ae83444c'
-gitCommitId: !uuid 'a09f74c42563c7329be9e9ddcddaefd830a2d4af'
+  /backend:
+    newFile: !uuid '87e16d85c223d9ccb2256c0d33b4f7dd98002136'
+    oldFile: !uuid 'b2d30c40b1b1bc99b668e4e85d560fe1fb926331'
+  /backend/Furion.Extras.Admin.NET:
+    newFile: !uuid '2c008d46266b46bd453255c8cdab7692e0609494'
+    oldFile: !uuid '5d1e876e029f9eedbb4b191b2f65153ac38cc016'
+  /backend/Furion.Extras.Admin.NET/Service:
+    newFile: !uuid 'c6ab241cbfd697196ad542343b0728fbfc9b55ee'
+    oldFile: !uuid '8690e4588fb7dd2fce34ebafc733e7e70d74346a'
+  /backend/Furion.Extras.Admin.NET/Service/Role:
+    newFile: !uuid '309fd2a5dafd3227cc55225cbc5c2c746efd060a'
+    oldFile: !uuid 'beefa298ad3c55b87891ad523e22df5f4c95d2b6'
+  /backend/Furion.Extras.Admin.NET/Service/Role/ISysRoleService.cs:
+    newFile: !uuid '3410058a593a558e7dd5d318d52045c3f6c9e918'
+    oldFile: !uuid 'bf62c6907ba6916c308ab4b461be9bbe6b769639'
+gitCommitId: !uuid '8a22a2451b4837a822160cf9965d305d0d39e7dc'
 renames: {
   }
-revisionId: 588
+revisionId: 589
