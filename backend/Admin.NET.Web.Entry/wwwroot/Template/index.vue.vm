@@ -282,6 +282,9 @@ if(@column.EffectType == "datepicker"){
         @:    if (queryParam@(@column.ColumnName).length < 1) {
         @:        delete this.queryParam.@(@column.ColumnName)
         @:    }
+        @:}else
+        @:{
+        @:  delete this.queryParam.@(@column.ColumnName)
         @:}
 }
 }
