@@ -3,78 +3,21 @@ branches: {
   }
 fileChange:
   /backend:
-    newFile: !uuid '7854d9fcb6a620228827db3a35781bc91de1684a'
-    oldFile: !uuid '8e2532f2384a6eb9d7e96c23725d2544479b1e5f'
-  /backend/.dockerignore:
-    newFile: !uuid '3729ff0cd1acce411e814ec416b82ac0f239a4e0'
-    oldFile: null
-  /backend/Admin.NET.EntityFramework.Core:
-    newFile: !uuid 'be4ff20a0912682e0ac3789ec8cd6e0c4178da41'
-    oldFile: !uuid '4dfe2aedb0f83ac4fb38f9557b1f808a92252354'
-  /backend/Admin.NET.EntityFramework.Core/Admin.NET.EntityFramework.Core.csproj:
-    newFile: !uuid '23a18baf44087efcdebc2087cf19b5864e2abc87'
-    oldFile: !uuid 'cf8f21732805276a1dc3ba7e4233ae2acca03b28'
-  /backend/Admin.NET.Web.Entry:
-    newFile: !uuid 'f8657bb4430824832db857aaca2ae203aec7638a'
-    oldFile: !uuid 'a682cbecb827a775dedd8f5539b85418ef837dbf'
-  /backend/Admin.NET.Web.Entry/Admin.NET.Web.Entry.csproj:
-    newFile: !uuid 'a6dcf3649f96a316ecaf819b0b47be5786b03d86'
-    oldFile: !uuid '5bfb41a666390c3e5f2b3d90437467d6efd8c82e'
+    newFile: !uuid '87ede35e516a91d5bcc6db414f8d5783eb43d2eb'
+    oldFile: !uuid '7854d9fcb6a620228827db3a35781bc91de1684a'
   /backend/Furion.Extras.Admin.NET:
-    newFile: !uuid 'd95bd73bb904924c93ac2aeaa4d9a8eaf4f9ca22'
-    oldFile: !uuid '2c008d46266b46bd453255c8cdab7692e0609494'
-  /backend/Furion.Extras.Admin.NET/Furion.Extras.Admin.NET.csproj:
-    newFile: !uuid 'e3b00d767f283cf120beb6225db09fd9a5e1386a'
-    oldFile: !uuid 'ac95bc8d056453ba4108bb5d422d369d8161d9aa'
+    newFile: !uuid 'bdd267d29726858bfa1fdfac3caadc89d8eb2580'
+    oldFile: !uuid 'd95bd73bb904924c93ac2aeaa4d9a8eaf4f9ca22'
   /backend/Furion.Extras.Admin.NET/Service:
-    newFile: !uuid '83e6bf2a9cfd755e52111186c2412a9c630aaa16'
-    oldFile: !uuid 'c6ab241cbfd697196ad542343b0728fbfc9b55ee'
-  /backend/Furion.Extras.Admin.NET/Service/CodeGen:
-    newFile: !uuid 'c4ba762eb4b23fa0d86f737123ecde0b56c6558f'
-    oldFile: !uuid '14d1f3b6a57965a4d39b78df4a022e1d41fb7a89'
-  /backend/Furion.Extras.Admin.NET/Service/CodeGen/CodeGenConfigService.cs:
-    newFile: !uuid 'a6cc49b6ec2a1146127f68f1d9b6ee606f92e672'
-    oldFile: !uuid '42814840f43f6cb5afa132f9436fbf9f6c20a689'
-  /backend/Furion.Extras.Admin.NET/Service/Dict:
-    newFile: !uuid 'fc141aa2530ea296f7755491fa94cb29834f3dc3'
-    oldFile: !uuid 'daceff833a668b1acd4cc186b1fba8fa748c001d'
-  /backend/Furion.Extras.Admin.NET/Service/Dict/SysDictDataService.cs:
-    newFile: !uuid '836f3294857481a383c2cb209b8a56cdfb3d38b4'
-    oldFile: !uuid '8214c619344e8bb56fe12317af351149c04e8c3d'
-  /backend/Furion.Extras.Admin.NET/Service/File:
-    newFile: !uuid '35fe5f7410299d34100ba0b9d6e727c5f6bba544'
-    oldFile: !uuid '5cce5146ef357822374d6d8aa93604e2bc2ef42e'
-  /backend/Furion.Extras.Admin.NET/Service/File/SysFileService.cs:
-    newFile: !uuid '27a786ad759e984ce497fb5fc8571da868c2bc44'
-    oldFile: !uuid '9d3227b4ae16596b5f9b5e749bbe71dbafd2f0a2'
-  /backend/Furion.Extras.Admin.NET/Service/Log:
-    newFile: !uuid '0e708a534d4516480c8cd2a23ad261e81903b5fd'
-    oldFile: !uuid '7dbe9a7861e3474031cd5720883a06b899b7198b'
-  /backend/Furion.Extras.Admin.NET/Service/Log/SysExLogService.cs:
-    newFile: !uuid '1570bae6e680d8ec42ba689b5bb166da22df82ec'
-    oldFile: !uuid 'b16957d54f4f1a30841d443db3659c4c1b39c3ae'
-  /backend/Furion.Extras.Admin.NET/Service/Log/SysOpLogService.cs:
-    newFile: !uuid '79562ca3cfd3d067f4a73c0161987a6cbc91bc82'
-    oldFile: !uuid '46812e60c9705af0eb9ee7fc49f676d09bb21448'
-  /backend/Furion.Extras.Admin.NET/Service/Menu:
-    newFile: !uuid '015195cd6a2ced20cf7ae65ace03ab6225e6c8b0'
-    oldFile: !uuid '351c7d6b4662feb4c4c38f30fa07fdfc66668ae5'
-  /backend/Furion.Extras.Admin.NET/Service/Menu/SysMenuService.cs:
-    newFile: !uuid '6f6ffa834bae6626807e413ca80d07d1a0221be4'
-    oldFile: !uuid '284667b6481383ff046b9bdaf6f82331aa448eb7'
-  /backend/Furion.Extras.Admin.NET/Service/Org:
-    newFile: !uuid '27a175f1d11be21b0e8bbcce661621bb39792565'
-    oldFile: !uuid '0b718a75252e147f285d1cfa0f30cc5c459e5d07'
-  /backend/Furion.Extras.Admin.NET/Service/Org/SysOrgService.cs:
-    newFile: !uuid 'fcef545a14abcfd11add0a2ff8ba2d86fe609ee0'
-    oldFile: !uuid 'db9bb547d4b4814bfc387f669798d2c6b3694161'
-  /backend/Furion.Extras.Admin.NET/Service/Timer:
-    newFile: !uuid 'be28baba3bae145d05473c9beeceef4deac551d1'
-    oldFile: !uuid 'efbcb94eb2550caa43b688bcc60244cdbe42a84d'
-  /backend/Furion.Extras.Admin.NET/Service/Timer/SysTimerService.cs:
-    newFile: !uuid '7a895acae8ff1e3657b3ac5c1c00966039699e63'
-    oldFile: !uuid '0805a6dfe19a51accf3d6109951b950e8e67749d'
-gitCommitId: !uuid 'eabb7bd2df69a17f02eea62def2b2cc457c4d6f5'
+    newFile: !uuid '3a9a6c3e1b1811b66a88ef8d215c56ca99d61e7f'
+    oldFile: !uuid '83e6bf2a9cfd755e52111186c2412a9c630aaa16'
+  /backend/Furion.Extras.Admin.NET/Service/Cache:
+    newFile: !uuid 'ffac1cda937d6c947fea340859d38373553594b9'
+    oldFile: !uuid '0fe44e29918a31a392fa93c57b8170d75395047d'
+  /backend/Furion.Extras.Admin.NET/Service/Cache/SysCacheService.cs:
+    newFile: !uuid 'f9403cd32e0bf0ab17450882e1cbaedbc75e8082'
+    oldFile: !uuid 'ef3b8e93093cc1adef812973640c17f9dde27d51'
+gitCommitId: !uuid 'ee707dbec03635fb2764c33bffe93d6cdfc8ee59'
 renames: {
   }
-revisionId: 592
+revisionId: 593
