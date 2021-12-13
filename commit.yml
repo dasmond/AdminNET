@@ -3,18 +3,15 @@ branches: {
   }
 fileChange:
   /backend:
-    newFile: !uuid '1e48c6362eb329b0de8fd4d7bb4850fb8ed9b4e4'
-    oldFile: !uuid '87ede35e516a91d5bcc6db414f8d5783eb43d2eb'
-  /backend/Furion.Extras.Admin.NET:
-    newFile: !uuid '07efa93925c79788be1bd365ecf275b10cababe6'
-    oldFile: !uuid 'bdd267d29726858bfa1fdfac3caadc89d8eb2580'
-  /backend/Furion.Extras.Admin.NET/Filter:
-    newFile: !uuid '1560f13297097db24bf789cb16eb7a9763bb8bac'
-    oldFile: !uuid '1d522518e1492ebcb5c03c5a9237537cdd7e42f1'
-  /backend/Furion.Extras.Admin.NET/Filter/RequestActionFilter.cs:
-    newFile: !uuid '386aaa4b976aeda8e0af8e5682b280fb60e8efdc'
-    oldFile: !uuid 'f92ff5137dd6fa654144c91152ec50b7b33322be'
-gitCommitId: !uuid '0e80ef3b7ec36b1d88839696282bc7382e7854c9'
+    newFile: !uuid 'e2e94c8f08bb1baae354449c155725822bc0e4e0'
+    oldFile: !uuid '1e48c6362eb329b0de8fd4d7bb4850fb8ed9b4e4'
+  /backend/Admin.NET.Web.Core:
+    newFile: !uuid '71e3de71d75b0176b0a839b14eaee6f5ea2c9815'
+    oldFile: !uuid '53d166a8878ec1ee5bfb55b33f1eb5601ed4733b'
+  /backend/Admin.NET.Web.Core/Startup.cs:
+    newFile: !uuid '62cdf38f3bb54af570fa6adc2a335ff566a6ca56'
+    oldFile: !uuid '7f5a908cb0f1d33ab8b29460cc73c31d4e84da4c'
+gitCommitId: !uuid 'ea2c065850ee397a8e5c2548a724768c430c3d02'
 renames: {
   }
-revisionId: 595
+revisionId: 596
