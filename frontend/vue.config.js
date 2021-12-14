@@ -37,12 +37,20 @@ const vueConfig = {
     plugins: [
       // Ignore all locale files of moment.js
       new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+      //maxChunks：使用大于或等于 1 的值，来限制 chunk 的最大数量。使用 1 防止添加任何其他额外的 chunk，这是因为entry/main chunk 也会包含在计数之中。
+      //minChunkSize: 设置 chunk 的最小大小。
+      //在合并 chunk 时，webpack 会尝试识别出具有重复模块的 chunk，并优先进行合并。任何模块都不会被合并到 entry   chunk 中，以免影响初始页面加载时间。
+      new webpack.optimize.LimitChunkCountPlugin({
+        maxChunks: 5,
+        minChunkSize: 100
+      }),
       // 配置compression-webpack-plugin压缩
       new CompressionWebpackPlugin({
         algorithm: 'gzip',
         test: new RegExp('\\.(' + productionGzipExtensions.join('|') + ')$'),
         threshold: 10240,
-        minRatio: 0.8
+        minRatio: 0.8,
+        deleteOriginalAssets: false // 是否删除源文件 默认为true   如果Nginx配置了gzip可以true，否则删了源文件就不能正常访问了
       })
     ],
     // if prod, add externals
