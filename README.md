@@ -281,6 +281,44 @@ GIT完成后默认为SqlLite数据库，使用其他数据库可通过基于EF C
 提示：记得修改Admin.NET.EntityFramework.Core层里面Startup注册服务类型 opt.UseBatchEF_Sqlite()， 改成相应得库类型。
 ```
 
+### 🚗 前端优化
+
+经过 [12df9c7](https://gitee.com/zuohuaijun/Admin.NET/commit/12df9c7980007afb3bcadfe10777c3b36c0ca17d)的优化之后，打包从200多个文件，到现在的十多个文件。
+但是js的chunk-vendors文件大小还是高达5.8M。各位小伙伴可以通过以下方式来继续深度优化。
+* 安装`webpack-bundle-analyzer`来分析打包文件方法：
+
+``` 
+//1.安装依赖
+npm install --save-dev webpack-bundle-analyzer
+//2.配置
+vue.config.js:
+  chainWebpack: (config) => {
+    config
+    .plugin('webpack-bundle-analyzer')
+    .use(require('webpack-bundle-analyzer').BundleAnalyzerPlugin)
+//3.启动 or 打包
+```
+
+* 移除表单设计器。主要移除`k-form-design`的依赖，此优化节省主js(chunk.vendors)体积`2.3M`,节省gizp体积`700kb`
+
+```
+1.main.js注释k-form-design相关
+2.注释src/views/system/formDesign/index..vue 所有代码
+```
+
+* 移除`antv`，以及`viser-vue`(引入了antv/g2)。此优化节省了主js(chunk.vendors)体积`1.3M`,节省gizp体积`400kb`
+
+```
+1.全局搜索antv，删除components中使用antv的组件(MiniArea、MiniBar、TagCloud)
+2.注释src\components\index.js中相关组件的引用
+3.移除src\core\lazy_use.js的viser-vue相关引用和use
+4.移除src\core\use.js的viser-vue相关引用和use
+5.移除package.json的antv和viser-vue。
+6.重新 npm i
+```
+
+目前，仅仅移除掉表单设计器和antv，主js(chunk.vendors)体积为**2.2M**，gzip体积为**680kb**。
+
 ### ⚡ 近期计划
 
 - [x] 集成多租户功能
