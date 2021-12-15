@@ -2,13 +2,19 @@
 branches: {
   }
 fileChange:
-  /frontend:
-    newFile: !uuid '3cbe32c4f50684a7dcb8373419cd920e6083cb25'
-    oldFile: !uuid '68865ece1c667d1bfa9382343a46d1c60372158e'
-  /frontend/vue.config.js:
-    newFile: !uuid 'e19946df4259ebb42371d0ebbeaed6e8635a24a6'
-    oldFile: !uuid '7bd6ebe521a45e7dfee36fc85c7a8e3e2f71030f'
-gitCommitId: !uuid 'c188c9244641ba8f8a9661a0f11c1a27a8f14971'
+  /backend:
+    newFile: !uuid '611cc2d4c5eafd2b468205d67662fca1d65a9b05'
+    oldFile: !uuid 'e2e94c8f08bb1baae354449c155725822bc0e4e0'
+  /backend/Admin.NET.EntityFramework.Core:
+    newFile: !uuid '0eeea7bb4dde151ea46c75298f743933a8806e5a'
+    oldFile: !uuid 'be4ff20a0912682e0ac3789ec8cd6e0c4178da41'
+  /backend/Admin.NET.EntityFramework.Core/DbContexts:
+    newFile: !uuid '0f185d4063063c3df56cfae20766ca751732b28a'
+    oldFile: !uuid '10da2e84fc202793bf6f58929440791207aae89f'
+  /backend/Admin.NET.EntityFramework.Core/DbContexts/DefaultDbContext.cs:
+    newFile: !uuid '3deb3c87f7f0dd6792da616605df9e4d60bfddfe'
+    oldFile: !uuid 'f2a54d74ce7ea42680a89b11d9f74f7015b8bc0e'
+gitCommitId: !uuid '0a064bb9604cf762bf6aa6dd043cbcb20803d11d'
 renames: {
   }
-revisionId: 597
+revisionId: 598
