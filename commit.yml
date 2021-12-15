@@ -2,16 +2,13 @@
 branches: {
   }
 fileChange:
-  /backend:
-    newFile: !uuid 'e2e94c8f08bb1baae354449c155725822bc0e4e0'
-    oldFile: !uuid '1e48c6362eb329b0de8fd4d7bb4850fb8ed9b4e4'
-  /backend/Admin.NET.Web.Core:
-    newFile: !uuid '71e3de71d75b0176b0a839b14eaee6f5ea2c9815'
-    oldFile: !uuid '53d166a8878ec1ee5bfb55b33f1eb5601ed4733b'
-  /backend/Admin.NET.Web.Core/Startup.cs:
-    newFile: !uuid '62cdf38f3bb54af570fa6adc2a335ff566a6ca56'
-    oldFile: !uuid '7f5a908cb0f1d33ab8b29460cc73c31d4e84da4c'
-gitCommitId: !uuid 'ea2c065850ee397a8e5c2548a724768c430c3d02'
+  /frontend:
+    newFile: !uuid '3cbe32c4f50684a7dcb8373419cd920e6083cb25'
+    oldFile: !uuid '68865ece1c667d1bfa9382343a46d1c60372158e'
+  /frontend/vue.config.js:
+    newFile: !uuid 'e19946df4259ebb42371d0ebbeaed6e8635a24a6'
+    oldFile: !uuid '7bd6ebe521a45e7dfee36fc85c7a8e3e2f71030f'
+gitCommitId: !uuid 'c188c9244641ba8f8a9661a0f11c1a27a8f14971'
 renames: {
   }
-revisionId: 596
+revisionId: 597
