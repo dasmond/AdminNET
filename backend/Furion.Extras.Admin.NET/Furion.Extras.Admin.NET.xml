@@ -2716,6 +2716,16 @@
             删除
             </summary>
         </member>
+        <member name="F:Furion.Extras.Admin.NET.NoticeType.NOTICE">
+            <summary>
+            通知
+            </summary>
+        </member>
+        <member name="F:Furion.Extras.Admin.NET.NoticeType.ANNOUNCEMENT">
+            <summary>
+            公告
+            </summary>
+        </member>
         <member name="T:Furion.Extras.Admin.NET.NoticeUserStatus">
             <summary>
             通知公告用户状态
@@ -6959,6 +6969,36 @@
             阅读时间
             </summary>
         </member>
+        <member name="T:Furion.Extras.Admin.NET.Service.NoticeInput">
+            <summary>
+            通知公告参数
+            </summary>
+        </member>
+        <member name="P:Furion.Extras.Admin.NET.Service.NoticeInput.Title">
+            <summary>
+            标题
+            </summary>
+        </member>
+        <member name="P:Furion.Extras.Admin.NET.Service.NoticeInput.Content">
+            <summary>
+            内容
+            </summary>
+        </member>
+        <member name="P:Furion.Extras.Admin.NET.Service.NoticeInput.Type">
+            <summary>
+            类型（字典 1通知 2公告）
+            </summary>
+        </member>
+        <member name="P:Furion.Extras.Admin.NET.Service.NoticeInput.Status">
+            <summary>
+            状态（字典 0草稿 1发布 2撤回 3删除）
+            </summary>
+        </member>
+        <member name="P:Furion.Extras.Admin.NET.Service.NoticeInput.NoticeUserIdList">
+            <summary>
+            通知到的人
+            </summary>
+        </member>
         <member name="T:Furion.Extras.Admin.NET.Service.NoticePageInput">
             <summary>
             通知公告参数
@@ -7108,6 +7148,13 @@
             更新发布信息
             </summary>
             <param name="notice"></param>
+        </member>
+        <member name="M:Furion.Extras.Admin.NET.Service.Notice.SysNoticeService.UnReadNoticeList(Furion.Extras.Admin.NET.Service.NoticeInput)">
+            <summary>
+            未处理消息
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
         </member>
         <member name="T:Furion.Extras.Admin.NET.Service.Notice.SysNoticeUserService">
             <summary>
@@ -9336,6 +9383,26 @@
             <param name="dataType"></param>
             <returns></returns>
         </member>
+        <member name="T:Furion.Extras.Admin.NET.EnumEntity">
+            <summary>
+            枚举的Entity类
+            </summary>
+        </member>
+        <member name="P:Furion.Extras.Admin.NET.EnumEntity.Describe">
+            <summary>  
+            枚举的描述  
+            </summary>  
+        </member>
+        <member name="P:Furion.Extras.Admin.NET.EnumEntity.Name">
+            <summary>  
+            枚举名称  
+            </summary>  
+        </member>
+        <member name="P:Furion.Extras.Admin.NET.EnumEntity.Value">
+            <summary>  
+            枚举对象的值  
+            </summary>  
+        </member>
         <member name="T:Furion.Extras.Admin.NET.EnumUtil">
             <summary>
             枚举扩展
@@ -9384,6 +9451,35 @@
             从程序集中加载所有枚举类型
             </summary>
             <param name="assembly"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Furion.Extras.Admin.NET.EnumUtil.GetDescription(System.Enum)">
+            <summary>
+            获取枚举的Description
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Furion.Extras.Admin.NET.EnumUtil.GetDescription(System.Object)">
+            <summary>
+            获取枚举的Description
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Furion.Extras.Admin.NET.EnumUtil.EnumToList(System.Type)">
+            <summary>
+            将枚举转成枚举信息集合
+            </summary>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Furion.Extras.Admin.NET.EnumUtil.EnumToList``1(System.Type)">
+            <summary>
+            枚举ToList
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="type"></param>
             <returns></returns>
         </member>
         <member name="M:Furion.Extras.Admin.NET.IPUtil.GetRequestIPv4(Microsoft.AspNetCore.Http.HttpContext)">
