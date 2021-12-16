@@ -51,7 +51,8 @@ import {
   Empty,
   PageHeader,
   Descriptions,
-  Result
+  Result,
+  Cascader
 } from 'ant-design-vue'
 // import VueCropper from 'vue-cropper'
 
@@ -101,6 +102,7 @@ Vue.use(Empty)
 Vue.use(PageHeader)
 Vue.use(Descriptions)
 Vue.use(Result)
+Vue.use(Cascader)
 
 Vue.prototype.$confirm = Modal.confirm
 Vue.prototype.$message = message

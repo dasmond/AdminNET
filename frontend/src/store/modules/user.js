@@ -2,10 +2,14 @@ import Vue from 'vue'
 import { login, getLoginUser, logout } from '@/api/modular/system/loginManage'
 import { sysDictTypeTree } from '@/api/modular/system/dictManage'
 import { sysMenuChange } from '@/api/modular/system/menuManage'
-import { ACCESS_TOKEN, ALL_APPS_MENU, DICT_TYPE_TREE_DATA } from '@/store/mutation-types'
+// eslint-disable-next-line no-unused-vars
+import { ACCESS_TOKEN, ALL_APPS_MENU, DICT_TYPE_TREE_DATA, NOTICE_RECEIVED } from '@/store/mutation-types'
 import { sysFileInfoPreview } from '@/api/modular/system/fileManage'
+import {
+  unReadNotice
+} from '@/api/modular/system/noticeReceivedManage'
 
-import { welcome } from '@/utils/util'
+import { welcome, dateFormat } from '@/utils/util'
 import store from '../index'
 import router from '../../router'
 
@@ -19,7 +23,8 @@ const user = {
     allButtons: [], // 所有按钮权限
     admintype: '', // 是否是超管
     roles: [],
-    info: {}
+    info: {},
+    notices: [] // 接收的通知公告
   },
 
   mutations: {
@@ -47,6 +52,47 @@ const user = {
     },
     SET_ADMINTYPE: (state, admintype) => {
       state.admintype = admintype
+    },
+    SET_NOTICES: (state, notices) => {
+      state.notices = notices
+    },
+    APPEND_NOTICE: (state, notice) => {
+      notice.publicTime = dateFormat(notice.publicTime, 'YYYY-mm-dd HH:MM:SS')
+      const notices = state.notices
+      const temp = notices.rows.filter(m => { return m.value === notice.type })[0]
+      const other = notices.rows.filter(m => { return m.value !== notice.type })
+      temp.noticeData.unshift(notice)
+      notices.totalRows++
+      if (temp.noticeData.length > 6) {
+        temp.noticeData.pop()
+      }
+      notices.rows = []
+      notices.rows.push(temp)
+      notices.rows.push.apply(notices.rows, other)
+      notices.rows.sort((obj1, obj2) => {
+        return obj1.index - obj2.index
+      })
+      state.notices = notices
+    },
+    SUBTRACT_NOTICE: (state, notice) => {
+      // 查看通知后在消息提示中消除已经查看过的，此函数 可能 存在未知bug
+      // notice.publicTime = dateFormat(notice.publicTime, 'YYYY-mm-dd HH:MM:SS')
+      const notices = state.notices
+      // debugger
+      const temp = notices.rows.filter(m => { return m.value === notice.type })[0]
+      const other = notices.rows.filter(m => { return m.value !== notice.type })
+      temp.noticeData.shift(notice)
+      notices.totalRows--
+      if (temp.noticeData.length > 6) {
+        temp.noticeData.pop()
+      }
+      notices.rows = []
+      notices.rows.pop(temp)
+      notices.rows.pop.apply(notices.rows, other)
+      notices.rows.sort((obj1, obj2) => {
+        return obj1.index - obj2.index
+      })
+      state.notices = notices
     }
   },
 
@@ -59,10 +105,9 @@ const user = {
             reject(response.message)
             return
           }
-          // 从响应 Header 中读取，处理逻辑移至 request.js 中处理
-          // const result = response.data
-          // Vue.ls.set(ACCESS_TOKEN, result, 7 * 24 * 60 * 60 * 1000)
-          // commit('SET_TOKEN', result)
+          const result = response.data
+          Vue.ls.set(ACCESS_TOKEN, result, 7 * 24 * 60 * 60 * 1000)
+          commit('SET_TOKEN', result)
           resolve()
         // eslint-disable-next-line handle-callback-err
         }).catch(error => {
@@ -100,11 +145,9 @@ const user = {
             // eslint-disable-next-line no-undef
             reject(new Error(data.message))
           }
+        }).catch(error => {
+          reject(error)
         })
-        //登录过期后前端会发生高频访问后端的问题
-        //.catch(error => {
-        //  reject(error)
-        //})
       })
     },
 
@@ -152,7 +195,7 @@ const user = {
       return new Promise((resolve) => {
         sysMenuChange({ application: application.code }).then((res) => {
           const apps = { 'code': '', 'name': '', 'active': '', 'menu': '' }
-          apps.active = 'Y'
+          apps.active = true
           apps.menu = res.data
           // eslint-disable-next-line camelcase
           const all_app_menu = Vue.ls.get(ALL_APPS_MENU)
@@ -160,8 +203,8 @@ const user = {
           const new_false_all_app_menu = []
           // 先去除所有默认的，以为此时切换的即将成为前端缓存默认的应用
           all_app_menu.forEach(item => {
-            if (item.active === 'Y') {
-              item.active = 'N'
+            if (item.active) {
+              item.active = false
             }
             new_false_all_app_menu.push(item)
           })
@@ -181,6 +224,27 @@ const user = {
           // window.location.reload()
         }).catch(() => {
           resolve()
+        })
+      })
+    },
+    // 获取收到的通知
+    getNoticReceiveList({
+      commit
+    }) {
+      return new Promise((resolve, reject) => {
+        unReadNotice({
+          pageSize: 6
+        }).then((data) => {
+          if (data.success) {
+            const result = data.data
+            commit('SET_NOTICES', result)
+            resolve()
+          } else {
+            // eslint-disable-next-line no-undef
+            reject(new Error(data.message))
+          }
+        }).catch(error => {
+          reject(error)
         })
       })
     }

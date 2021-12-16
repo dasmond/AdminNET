@@ -12,7 +12,7 @@ import { timeFix } from '@/utils/util'/// es/notification
 import Enumerable from 'linq'
 
 NProgress.configure({ showSpinner: false })
-const whiteList = ['login', 'register', 'registerResult'] // no redirect whitelist
+const whiteList = ['login', 'register', 'registerResult', 'wechat'] // no redirect whitelist
 // 无默认首页的情况
 const defaultRoutePath = '/welcome'
 
@@ -50,7 +50,7 @@ router.beforeEach((to, from, next) => {
               const applocation = []
               res.apps.forEach(item => {
                 const apps = { 'code': '', 'name': '', 'active': '', 'menu': '' }
-                if (item.active === 'Y') {
+                if (item.active) {
                   apps.code = item.code
                   apps.name = item.name
                   apps.active = item.active
@@ -80,12 +80,7 @@ router.beforeEach((to, from, next) => {
                 })
               }, 1000)
             } else {
-              var actiove = Vue.ls.get(ALL_APPS_MENU)
-              actiove.forEach(element => {
-                if (element.active === 'Y') {
-                  antDesignmenus = element.menu
-                }
-              })
+              antDesignmenus = Vue.ls.get(ALL_APPS_MENU)[0].menu
             }
             store.dispatch('GenerateRoutes', { antDesignmenus }).then(() => {
               // 动态添加可访问路由表
@@ -107,6 +102,7 @@ router.beforeEach((to, from, next) => {
               next({ path: '/user/login', query: { redirect: to.fullPath } })
             })
           })
+          store.dispatch('getNoticReceiveList').then((res) => {})
       } else {
         next()
       }
