@@ -46,7 +46,7 @@
       detail (record) {
         this.confirmLoading = false
         this.visible = true
-        this.contentRecord = record
+        this.sysNoticeDetail(record.id)
       },
 
       /**

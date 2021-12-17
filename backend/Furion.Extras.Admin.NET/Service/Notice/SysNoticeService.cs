@@ -1,4 +1,4 @@
-﻿using Furion.DatabaseAccessor;
+using Furion.DatabaseAccessor;
 using Furion.DatabaseAccessor.Extensions;
 using Furion.DependencyInjection;
 using Furion.DynamicApiController;
@@ -221,5 +221,39 @@ namespace Furion.Extras.Admin.NET.Service.Notice
             notice.PublicOrgId = emp.OrgId;
             notice.PublicOrgName = emp.OrgName;
         }
+
+        /// <summary>
+        /// 未处理消息
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        [HttpGet("/sysNotice/unread")]
+        public async Task<dynamic> UnReadNoticeList([FromQuery] NoticeInput input)
+        {
+            var dic = typeof(NoticeType).EnumToList();
+            var notices = await (from n in _sysNoticeRep.AsQueryable() join u in _sysNoticeUserRep.AsQueryable() on n.Id equals u.NoticeId where u.UserId == _userManager.UserId && u.ReadStatus == NoticeUserStatus.UNREAD orderby n.CreatedTime descending select new NoticeReceiveOutput { CancelTime = n.CancelTime, Id = n.Id, Content = n.Content, Title = n.Title, Status = (int)n.Status, Type = (int)n.Type, PublicOrgId = n.PublicOrgId, PublicOrgName = n.PublicOrgName, PublicTime = n.PublicTime, PublicUserId = n.PublicUserId, PublicUserName = n.PublicUserName, ReadStatus = u.ReadStatus, ReadTime = u.ReadTime }).Skip(input.PageNo > 0 ? input.PageNo - 1 : input.PageNo).Take(input.PageSize).ToListAsync();
+            var count = notices.Count();
+
+            List<dynamic> noticeClays = new List<dynamic>();
+            int index = 0;
+            foreach (var item in dic)
+            {
+                noticeClays.Add(
+                    new
+                    {
+                        Index = index++,
+                        Key = item.Describe,
+                        Value = item.Value,
+                        NoticeData = notices.Where(m => m.Type == item.Value).ToList()
+                    }
+                );
+            }
+            return new
+            {
+                Rows = noticeClays,
+                TotalRows = count
+            };
+        }
+
     }
 }

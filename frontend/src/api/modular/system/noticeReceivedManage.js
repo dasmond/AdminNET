@@ -13,3 +13,12 @@ export function sysNoticeReceived (parameter) {
     params: parameter
   })
 }
+
+export function unReadNotice (parameter) {
+  return axios({
+    url: '/sysNotice/unread',
+    method: 'get',
+    params: parameter
+  })
+}
+

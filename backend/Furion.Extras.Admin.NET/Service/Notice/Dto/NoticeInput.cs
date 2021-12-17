@@ -6,6 +6,37 @@ namespace Furion.Extras.Admin.NET.Service
     /// <summary>
     /// 通知公告参数
     /// </summary>
+    public class NoticeInput : PageInputBase
+    {
+        /// <summary>
+        /// 标题
+        /// </summary>
+        public virtual string Title { get; set; }
+
+        /// <summary>
+        /// 内容
+        /// </summary>
+        public virtual string Content { get; set; }
+
+        /// <summary>
+        /// 类型（字典 1通知 2公告）
+        /// </summary>
+        public virtual NoticeType Type { get; set; }
+
+        /// <summary>
+        /// 状态（字典 0草稿 1发布 2撤回 3删除）
+        /// </summary>
+        public virtual NoticeStatus Status { get; set; }
+
+        /// <summary>
+        /// 通知到的人
+        /// </summary>
+        public virtual List<long> NoticeUserIdList { get; set; }
+    }
+
+    /// <summary>
+    /// 通知公告参数
+    /// </summary>
     public class NoticePageInput : PageInputBase
     {
         /// <summary>

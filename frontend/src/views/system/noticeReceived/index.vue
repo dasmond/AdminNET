@@ -88,6 +88,7 @@
         // 加载数据方法 必须为 Promise 对象
         loadData: parameter => {
           return sysNoticeReceived(Object.assign(parameter, this.queryParam)).then((res) => {
+            // this.$store.commit('SET_NOTICES', res.data)
             return res.data
           })
         },

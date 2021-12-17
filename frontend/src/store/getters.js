@@ -11,6 +11,7 @@ const getters = {
   allButtons: state => state.user.allButtons,
   admintype: state => state.user.admintype,
   userInfo: state => state.user.info,
+  userNotices: state => state.user.notices,
   addRouters: state => state.permission.addRouters,
   multiTab: state => state.app.multiTab,
   lang: state => state.i18n.lang

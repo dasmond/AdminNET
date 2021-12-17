@@ -145,5 +145,62 @@ namespace Furion.Extras.Admin.NET
             ConcurrentDictionary<string, Type> enumTypeDict = new(dict);
             return enumTypeDict;
         }
+
+        /// <summary>
+        /// 获取枚举的Description
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static string GetDescription(this System.Enum value)
+        {
+            return value.GetType().GetMember(value.ToString()).FirstOrDefault()?.GetCustomAttribute<DescriptionAttribute>()
+                ?.Description;
+        }
+        /// <summary>
+        /// 获取枚举的Description
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static string GetDescription(this object value)
+        {
+            return value.GetType().GetMember(value.ToString() ?? string.Empty).FirstOrDefault()
+                ?.GetCustomAttribute<DescriptionAttribute>()?.Description;
+        }
+
+        /// <summary>
+        /// 将枚举转成枚举信息集合
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        public static List<EnumEntity> EnumToList(this Type type)
+        {
+            if (!type.IsEnum)
+                throw new ArgumentException("Type '" + type.Name + "' is not an enum.");
+            var arr = System.Enum.GetNames(type);
+            return arr.Select(sl =>
+            {
+                var item = System.Enum.Parse(type, sl);
+                return new EnumEntity
+                {
+                    Name = item.ToString(),
+                    Describe = item.GetDescription(),
+                    Value = item.GetHashCode()
+                };
+            }).ToList();
+        }
+
+        /// <summary>
+        /// 枚举ToList
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        public static List<T> EnumToList<T>(this Type type)
+        {
+            if (!type.IsEnum)
+                throw new ArgumentException("Type '" + type.Name + "' is not an enum.");
+            var arr = System.Enum.GetNames(type);
+            return arr.Select(name => (T)System.Enum.Parse(type, name)).ToList();
+        }
     }
 }
