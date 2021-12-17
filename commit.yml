@@ -2,10 +2,139 @@
 branches: {
   }
 fileChange:
-  /README.md:
-    newFile: !uuid '8121a77e09d0379c89416ab0736c0c11ff0b4692'
-    oldFile: !uuid '2cf1a5d9dbcb3e2a23a9d578625bb5d00cb33088'
-gitCommitId: !uuid '3c43281904076c4e450ce59b263dbcb4791d9a54'
+  /backend:
+    newFile: !uuid 'd2fd6d9c804445283301a042de433d2aada7986a'
+    oldFile: !uuid '611cc2d4c5eafd2b468205d67662fca1d65a9b05'
+  /backend/Admin.NET.EntityFramework.Core:
+    newFile: !uuid '0f0b58d2fdf9a987ae45c1cfa187f17301b7a32b'
+    oldFile: !uuid '0eeea7bb4dde151ea46c75298f743933a8806e5a'
+  /backend/Admin.NET.EntityFramework.Core/DbContexts:
+    newFile: !uuid '18de01cee2da1c14bf3ceb840db359eed14d24db'
+    oldFile: !uuid '0f185d4063063c3df56cfae20766ca751732b28a'
+  /backend/Admin.NET.EntityFramework.Core/DbContexts/DefaultDbContext.cs:
+    newFile: !uuid '2fc0e0cf7a5e769b30fe0c8bba784aaa4162f099'
+    oldFile: !uuid '3deb3c87f7f0dd6792da616605df9e4d60bfddfe'
+  /backend/Furion.Extras.Admin.NET:
+    newFile: !uuid '5509fc4319bcc0ec34c348eab129c5a0a663ed1e'
+    oldFile: !uuid '07efa93925c79788be1bd365ecf275b10cababe6'
+  /backend/Furion.Extras.Admin.NET/Enum:
+    newFile: !uuid '1c1b2862fd8a431e858e8dde4dac6b8995c0c31b'
+    oldFile: !uuid '7effeb805902ba016e0f396f1436a55383810b2b'
+  /backend/Furion.Extras.Admin.NET/Enum/NoticeType.cs:
+    newFile: !uuid '9c95034839d25855814c2feb7c8e8639107fcf75'
+    oldFile: null
+  /backend/Furion.Extras.Admin.NET/Furion.Extras.Admin.NET.xml:
+    newFile: !uuid '5f1e0dfc88a8d832ff3328239161d83297d53e82'
+    oldFile: !uuid '0a968740b469a1b305ce194afcc76e895768fda3'
+  /backend/Furion.Extras.Admin.NET/Service:
+    newFile: !uuid '41d6f4186e685527c6b5b21c23e6ffef7e0f8ecc'
+    oldFile: !uuid '3a9a6c3e1b1811b66a88ef8d215c56ca99d61e7f'
+  /backend/Furion.Extras.Admin.NET/Service/Notice:
+    newFile: !uuid 'a764ff5c21fb757bcbe936269ee534c62756d5f7'
+    oldFile: !uuid 'd8edbc925e2913c2492c98f995cb49704e9f6d24'
+  /backend/Furion.Extras.Admin.NET/Service/Notice/Dto:
+    newFile: !uuid 'ececd9bd84e10f1593c78ecd8bfd57b8885cf9cb'
+    oldFile: !uuid 'acf48baa13762a84b30c0005911ab35be37dfaf2'
+  /backend/Furion.Extras.Admin.NET/Service/Notice/Dto/NoticeInput.cs:
+    newFile: !uuid '5396dd2f09f0c358e195147f578e3d47ae6c3f2e'
+    oldFile: !uuid '04cbc7a79719e348bfab4616bb0bf75995dfb987'
+  /backend/Furion.Extras.Admin.NET/Service/Notice/ISysNoticeService.cs:
+    newFile: !uuid 'af2c806a32af50a3a13a53ddbe854701e34190d0'
+    oldFile: !uuid '54607638039efd4d501d6075cffca92bba71893c'
+  /backend/Furion.Extras.Admin.NET/Service/Notice/SysNoticeService.cs:
+    newFile: !uuid '62464a455127856b2594e2b9c19598d64de8770f'
+    oldFile: !uuid 'eb11548cfd7d346f0d2e50c749eb6a669cbeabc6'
+  /backend/Furion.Extras.Admin.NET/Util:
+    newFile: !uuid 'cdab2e2976e47d35f73c82fc2e379ca879f63090'
+    oldFile: !uuid '30f80f0a7a64612ba16a6aedd40677fd1750b846'
+  /backend/Furion.Extras.Admin.NET/Util/EnumEntity.cs:
+    newFile: !uuid 'a86a7ba7b1ebae68340c58ca031656612654225c'
+    oldFile: null
+  /backend/Furion.Extras.Admin.NET/Util/EnumUtil.cs:
+    newFile: !uuid '4d1135ebe7139e76c2b245019b55b4bc7294313f'
+    oldFile: !uuid 'a02acb2d0934124f55913202d747151fd2991415'
+  /frontend:
+    newFile: !uuid '485fef19c32a97291e43a1d197f3ea2dab392823'
+    oldFile: !uuid '3cbe32c4f50684a7dcb8373419cd920e6083cb25'
+  /frontend/src:
+    newFile: !uuid '7cea3d86c2ab2ea77d4e49b535b460919a0e3f91'
+    oldFile: !uuid '20953f39b297f8dd7a2c6d230c2985ec452355e8'
+  /frontend/src/api:
+    newFile: !uuid 'b73ea7cc3bd6a0dfb8a71fd3672ab629c9cc9e19'
+    oldFile: !uuid '4cd3e87a7b597cca7bc820807a22d4d71404e37f'
+  /frontend/src/api/modular:
+    newFile: !uuid '3b9997c0b9040f056465fc6bd91cbc9bee70bd96'
+    oldFile: !uuid '9d408cc08d3f46b4903cbd3fdf267e58d4a0b1c1'
+  /frontend/src/api/modular/system:
+    newFile: !uuid 'af2f9478a53696e01fe749127a0fcf8cafb440ea'
+    oldFile: !uuid '2e15289370bb5b289b7370ba9433ba995768a653'
+  /frontend/src/api/modular/system/noticeReceivedManage.js:
+    newFile: !uuid 'd28174ad4badc5a02624bf9566aac834e40cc19c'
+    oldFile: !uuid 'a87237e60ff6ce94ce17fe819b4c668065d94ff2'
+  /frontend/src/assets:
+    newFile: !uuid '8c4472e2358f33a015137a5793eb2c4563f0b8e2'
+    oldFile: !uuid '7000b9177a68bc027f0b8afbbd62b7c70b3d93c4'
+  /frontend/src/assets/notice.png:
+    newFile: !uuid 'b713953e71c2f3990a382da2b3217cb13e60a5e1'
+    oldFile: null
+  /frontend/src/components:
+    newFile: !uuid '8f8dbda96b995d6ce6dab6ee53e575194c473fde'
+    oldFile: !uuid 'd3520dc1f68c7621bebf6efdeb6ab4332e35d0c6'
+  /frontend/src/components/NoticeIcon:
+    newFile: !uuid '6e5ef0b61528ef4958a10dda09a458f05c506570'
+    oldFile: !uuid 'fce484c5480060f7537095950f75b310d403735d'
+  /frontend/src/components/NoticeIcon/NoticeIcon.vue:
+    newFile: !uuid '191da8967ce2dcf57bf85a2b1e6578c9e90dd535'
+    oldFile: !uuid 'f5e341fe09920f1dbd24be87050623933ddff8e4'
+  /frontend/src/core:
+    newFile: !uuid '96f8ac553c2e555ab51a4dd78ba701397823ccac'
+    oldFile: !uuid 'd06228a21ec09912b2bffafb99972c3592717b7e'
+  /frontend/src/core/lazy_lib:
+    newFile: !uuid 'b79ec229d49d90afdae9688a2ba8328ada4c206d'
+    oldFile: !uuid '723b3656d5832f6e952b0cc670f4cc154c5e4aad'
+  /frontend/src/core/lazy_lib/components_use.js:
+    newFile: !uuid '4fdd55765570cde51c78251b1d9b9b074e2b9f29'
+    oldFile: !uuid 'c14737458cd9c592079dd97cb9d5ca5b9ce4554e'
+  /frontend/src/permission.js:
+    newFile: !uuid '1fbd261b4816de277d4fdf34ed2441357326f83b'
+    oldFile: !uuid '80ac1e6b97ab25b6639dad915e8fc47efb8c2129'
+  /frontend/src/store:
+    newFile: !uuid 'd6abaeeb974cd21175f3177fbb9c7d84d950341b'
+    oldFile: !uuid '0fedb60a87a0bd8ff27adca67bff106b15faf7ec'
+  /frontend/src/store/getters.js:
+    newFile: !uuid '0d3f37d3d4f180887049862b82ad76d92075be18'
+    oldFile: !uuid '03ecbd9f791403195c11d00df422fd05911b51b3'
+  /frontend/src/store/modules:
+    newFile: !uuid '585b76113b56a1726a73501dd328291fea66bf0f'
+    oldFile: !uuid '7db41f457fa21487471422b661f7282690d3cd56'
+  /frontend/src/store/modules/user.js:
+    newFile: !uuid 'd8bb6f99b6f5fc6f6811a1c3f8f3387ae1e78523'
+    oldFile: !uuid '742f5808754fa84b14c4b2d8b14579732bc8e675'
+  /frontend/src/store/mutation-types.js:
+    newFile: !uuid 'ca372f834fdec81d97f198dd911a56544f620d11'
+    oldFile: !uuid '5c0fe5082c58d57266c19449caa9d7cd8584a383'
+  /frontend/src/utils:
+    newFile: !uuid '1f73486fca7c62b96309939f72443dc1ca58ad00'
+    oldFile: !uuid '64e1748e94defd71d588a99918b88a2a5cd54ff5'
+  /frontend/src/utils/util.js:
+    newFile: !uuid 'e584441a0327cb735b0f43c939837bb46792eca8'
+    oldFile: !uuid '311f74612eaafb60ec2b8e0d09ba344ea4c3ec89'
+  /frontend/src/views:
+    newFile: !uuid 'ddc953bb20c8482ab34a104e4b7b16d0ce917854'
+    oldFile: !uuid '360ab4cf6ad30c4466126b2a76cd3a7253a01737'
+  /frontend/src/views/system:
+    newFile: !uuid 'd57247337de7ed09645638275e044fd7900ddd6b'
+    oldFile: !uuid '21d3a7c1590c5f084b5c3bdcc7b0125b5a68e3a3'
+  /frontend/src/views/system/noticeReceived:
+    newFile: !uuid '208a9e68fdb51b5887ef0bc8f95f10fdf7ef6e30'
+    oldFile: !uuid 'a6831a0ac2fe00fdd1314a382a80d0900e640828'
+  /frontend/src/views/system/noticeReceived/detailForm.vue:
+    newFile: !uuid 'a4b43edcb6298cfa5ce3fd2da901db4f39cb5eeb'
+    oldFile: !uuid '98092a5dc890ad87bb9d50f6d4190a6d5eee554e'
+  /frontend/src/views/system/noticeReceived/index.vue:
+    newFile: !uuid 'b9d24d103caf6069ddd0decb44078c70955d79f7'
+    oldFile: !uuid '5e83322647aa008d8a3cebb6c52a231689f5ec8f'
+gitCommitId: !uuid '35190fa3e9979ff8772d26809a64967b8847891c'
 renames: {
   }
-revisionId: 599
+revisionId: 600
