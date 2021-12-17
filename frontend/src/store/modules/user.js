@@ -105,9 +105,10 @@ const user = {
             reject(response.message)
             return
           }
-          const result = response.data
-          Vue.ls.set(ACCESS_TOKEN, result, 7 * 24 * 60 * 60 * 1000)
-          commit('SET_TOKEN', result)
+         // 从响应 Header 中读取，处理逻辑移至 request.js 中处理
+          // const result = response.data
+          // Vue.ls.set(ACCESS_TOKEN, result, 7 * 24 * 60 * 60 * 1000)
+          // commit('SET_TOKEN', result)
           resolve()
         // eslint-disable-next-line handle-callback-err
         }).catch(error => {
@@ -145,9 +146,11 @@ const user = {
             // eslint-disable-next-line no-undef
             reject(new Error(data.message))
           }
-        }).catch(error => {
-          reject(error)
         })
+        //登录过期后前端会发生高频访问后端的问题
+        //.catch(error => {
+        //  reject(error)
+        //})
       })
     },
 
