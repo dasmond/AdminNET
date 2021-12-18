@@ -330,6 +330,11 @@ namespace Furion.Extras.Admin.NET
         /// </summary>
         [ErrorCodeItemMetadata("通知公告编辑失败，类型必须为草稿")]
         D7002,
+        /// <summary>
+        /// 通知公告操作失败，非发布者不能进行操作
+        /// </summary>
+        [ErrorCodeItemMetadata("通知公告操作失败，非发布者不能进行操作")]
+        D7003,
 
         /// <summary>
         /// 文件不存在

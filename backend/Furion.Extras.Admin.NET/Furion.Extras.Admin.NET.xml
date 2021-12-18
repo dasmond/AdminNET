@@ -2199,6 +2199,11 @@
             通知公告编辑失败
             </summary>
         </member>
+        <member name="F:Furion.Extras.Admin.NET.ErrorCode.D7003">
+            <summary>
+            通知公告操作失败，非发布者不能进行操作
+            </summary>
+        </member>
         <member name="F:Furion.Extras.Admin.NET.ErrorCode.D8000">
             <summary>
             文件不存在
@@ -2739,6 +2744,11 @@
         <member name="F:Furion.Extras.Admin.NET.NoticeUserStatus.READ">
             <summary>
             已读
+            </summary>
+        </member>
+        <member name="F:Furion.Extras.Admin.NET.NoticeUserStatus.NONOTICE">
+            <summary>
+            暂不通知
             </summary>
         </member>
         <member name="T:Furion.Extras.Admin.NET.OrgTypeEnum">
