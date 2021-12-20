@@ -139,9 +139,9 @@ namespace Furion.Extras.Admin.NET.Service
         /// <param name="code"></param>
         /// <param name="value"></param>
         /// <returns></returns>
-        public async Task UpdateConfigCache(string code, object value)
+        public async Task UpdateConfigCache(string code, string value)
         {
-            await _sysCacheService.SetAsync(code, value);
+            await _sysCacheService.SetStringAsync(code, value);
         }
 
         /// <summary>

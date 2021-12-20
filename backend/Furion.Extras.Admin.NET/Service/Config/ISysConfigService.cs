@@ -22,6 +22,6 @@ namespace Furion.Extras.Admin.NET.Service
 
         Task<bool> GetCaptchaOpenFlag();
 
-        Task UpdateConfigCache(string code, object value);
+        Task UpdateConfigCache(string code, string value);
     }
 }
