@@ -179,10 +179,10 @@ namespace Furion.Extras.Admin.NET.Service.Notice
             noticeResult.NoticeUserReadInfoList = noticeUserReadInfoList;
             if(noticeResult.Status==(int)NoticeStatus.CANCEL)
             {
-                noticeResult.Content = "<h1 style=\"text - align: center; \">该内容已被发布者撤回</h1>";
+                noticeResult.Content = "<h1 style=\"text-align: center; \">该内容已被发布者撤回</h1>";
             }
             // 如果该条通知公告为已发布，则将当前用户的该条通知公告设置为已读
-            if (notice.Status == NoticeStatus.PUBLIC)
+            if (notice.Status == NoticeStatus.PUBLIC || notice.Status==NoticeStatus.CANCEL)
                 await _sysNoticeUserService.Read(notice.Id, _userManager.UserId, NoticeUserStatus.READ);
             return noticeResult;
         }
