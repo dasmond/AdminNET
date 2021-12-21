@@ -3,27 +3,51 @@ branches: {
   }
 fileChange:
   /backend:
-    newFile: !uuid '4f7872c29350a689e6a1cc7ae44b008adc1521ed'
-    oldFile: !uuid 'd2fd6d9c804445283301a042de433d2aada7986a'
+    newFile: !uuid '458878dfb950987de45f6827f186c44e433a20f2'
+    oldFile: !uuid '4f7872c29350a689e6a1cc7ae44b008adc1521ed'
   /backend/Furion.Extras.Admin.NET:
-    newFile: !uuid '254048615b6f6197944148df84ccb5116b5bcc77'
-    oldFile: !uuid '5509fc4319bcc0ec34c348eab129c5a0a663ed1e'
+    newFile: !uuid '5395c69d9f56a1cc0ab70d0d1a1a9284f84afd67'
+    oldFile: !uuid '254048615b6f6197944148df84ccb5116b5bcc77'
+  /backend/Furion.Extras.Admin.NET/Enum:
+    newFile: !uuid 'ae09a25c1c31af6146e8492939deb25261a8ca5d'
+    oldFile: !uuid '1c1b2862fd8a431e858e8dde4dac6b8995c0c31b'
+  /backend/Furion.Extras.Admin.NET/Enum/ErrorCode.cs:
+    newFile: !uuid '9df09b880a39d8ff6950aa70328665f99dc713cb'
+    oldFile: !uuid '1c4f03677cda009aa1242482b008dbf38bd0618e'
+  /backend/Furion.Extras.Admin.NET/Enum/NoticeUserStatus.cs:
+    newFile: !uuid '77b00d2c849069068ce29ee401a1bf2281c6ea14'
+    oldFile: !uuid '3211f5060ef6944a7b7e68f8a2a7c282f3d95def'
   /backend/Furion.Extras.Admin.NET/Furion.Extras.Admin.NET.xml:
-    newFile: !uuid 'd2211f6c3f4d1d955e9fb6e23ffb59f9dc9b2fae'
-    oldFile: !uuid '5f1e0dfc88a8d832ff3328239161d83297d53e82'
+    newFile: !uuid '9e45f7c0c4d2a7c6081479b1dac266919098296c'
+    oldFile: !uuid 'd2211f6c3f4d1d955e9fb6e23ffb59f9dc9b2fae'
   /backend/Furion.Extras.Admin.NET/Service:
-    newFile: !uuid '8e0d6de80f8b1e2dd8f6af877733d707bde432fa'
-    oldFile: !uuid '41d6f4186e685527c6b5b21c23e6ffef7e0f8ecc'
-  /backend/Furion.Extras.Admin.NET/Service/Config:
-    newFile: !uuid 'acaab71b88d864344300b9fd2d03691dc5b5fe22'
-    oldFile: !uuid '4c5c73609b4102077110696e8da975e9b8fff662'
-  /backend/Furion.Extras.Admin.NET/Service/Config/ISysConfigService.cs:
-    newFile: !uuid '4caa3c020090c20736835fed3d69c4d3db76ecc2'
-    oldFile: !uuid '0ce435b64b2014792477164a100460c92535b8b1'
-  /backend/Furion.Extras.Admin.NET/Service/Config/SysConfigService.cs:
-    newFile: !uuid '782cad2664c416a1215346c6aeefa44ea13cef57'
-    oldFile: !uuid '016cdf78d05095d392ed89211085644e97eab7bb'
-gitCommitId: !uuid 'b015c3aecc58819017258f7f19105c8718827cee'
+    newFile: !uuid '6ececc817a1264b996d8303aa111eceb9c7c6bd6'
+    oldFile: !uuid '8e0d6de80f8b1e2dd8f6af877733d707bde432fa'
+  /backend/Furion.Extras.Admin.NET/Service/Notice:
+    newFile: !uuid '518db8c703da77abce1c285fe098bb564d54820c'
+    oldFile: !uuid 'a764ff5c21fb757bcbe936269ee534c62756d5f7'
+  /backend/Furion.Extras.Admin.NET/Service/Notice/SysNoticeService.cs:
+    newFile: !uuid 'c161c2f7ca1678f325e547a15c2e4800081fd408'
+    oldFile: !uuid '62464a455127856b2594e2b9c19598d64de8770f'
+  /frontend:
+    newFile: !uuid 'cfeb7ad8520e5877c0e36e3c7ad9a7c5e54ee6c8'
+    oldFile: !uuid '4ed7a3f0f41af905dddd37b0d9e7a526d0132341'
+  /frontend/src:
+    newFile: !uuid '2be1566a4e97f71aecce1d79dd428a9cb04ffe01'
+    oldFile: !uuid '370003d773777be550f1a1f50a084de2a995fd20'
+  /frontend/src/views:
+    newFile: !uuid '153603671e8c65fc2ecb5bdade8a7d857b9e4278'
+    oldFile: !uuid 'ddc953bb20c8482ab34a104e4b7b16d0ce917854'
+  /frontend/src/views/system:
+    newFile: !uuid '2b4da0a2856ce28bc8067a91c7f7ddaded5d253b'
+    oldFile: !uuid 'd57247337de7ed09645638275e044fd7900ddd6b'
+  /frontend/src/views/system/notice:
+    newFile: !uuid 'ada84e4109da852bd72744434a5edf08032fb22b'
+    oldFile: !uuid '435798443f5cf690c6b86f8d3ce8c2e430efdd01'
+  /frontend/src/views/system/notice/index.vue:
+    newFile: !uuid 'af491fdb4199755a74f8a888e4559581c0c601f9'
+    oldFile: !uuid '65b67715d6d2c84eb5eff051533e3e06940f89cb'
+gitCommitId: !uuid 'df6f9bb433071d8a57ee6af0e208729ede40f925'
 renames: {
   }
-revisionId: 602
+revisionId: 603
