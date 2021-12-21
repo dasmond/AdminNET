@@ -2,19 +2,28 @@
 branches: {
   }
 fileChange:
-  /frontend:
-    newFile: !uuid '4ed7a3f0f41af905dddd37b0d9e7a526d0132341'
-    oldFile: !uuid '485fef19c32a97291e43a1d197f3ea2dab392823'
-  /frontend/src:
-    newFile: !uuid '370003d773777be550f1a1f50a084de2a995fd20'
-    oldFile: !uuid '7cea3d86c2ab2ea77d4e49b535b460919a0e3f91'
-  /frontend/src/utils:
-    newFile: !uuid 'f0afe80d5f3f6128ae009d7a9251eac320c495f1'
-    oldFile: !uuid '1f73486fca7c62b96309939f72443dc1ca58ad00'
-  /frontend/src/utils/request.js:
-    newFile: !uuid '3a8cc66907e8c79841b6ecb0542b2652c7937501'
-    oldFile: !uuid 'b7c6d61508157b58c6f6fe59a0d97f4c88a9060e'
-gitCommitId: !uuid 'f15b32cf1f8682d85dd13ce4bb0df18786b2297a'
+  /backend:
+    newFile: !uuid '4f7872c29350a689e6a1cc7ae44b008adc1521ed'
+    oldFile: !uuid 'd2fd6d9c804445283301a042de433d2aada7986a'
+  /backend/Furion.Extras.Admin.NET:
+    newFile: !uuid '254048615b6f6197944148df84ccb5116b5bcc77'
+    oldFile: !uuid '5509fc4319bcc0ec34c348eab129c5a0a663ed1e'
+  /backend/Furion.Extras.Admin.NET/Furion.Extras.Admin.NET.xml:
+    newFile: !uuid 'd2211f6c3f4d1d955e9fb6e23ffb59f9dc9b2fae'
+    oldFile: !uuid '5f1e0dfc88a8d832ff3328239161d83297d53e82'
+  /backend/Furion.Extras.Admin.NET/Service:
+    newFile: !uuid '8e0d6de80f8b1e2dd8f6af877733d707bde432fa'
+    oldFile: !uuid '41d6f4186e685527c6b5b21c23e6ffef7e0f8ecc'
+  /backend/Furion.Extras.Admin.NET/Service/Config:
+    newFile: !uuid 'acaab71b88d864344300b9fd2d03691dc5b5fe22'
+    oldFile: !uuid '4c5c73609b4102077110696e8da975e9b8fff662'
+  /backend/Furion.Extras.Admin.NET/Service/Config/ISysConfigService.cs:
+    newFile: !uuid '4caa3c020090c20736835fed3d69c4d3db76ecc2'
+    oldFile: !uuid '0ce435b64b2014792477164a100460c92535b8b1'
+  /backend/Furion.Extras.Admin.NET/Service/Config/SysConfigService.cs:
+    newFile: !uuid '782cad2664c416a1215346c6aeefa44ea13cef57'
+    oldFile: !uuid '016cdf78d05095d392ed89211085644e97eab7bb'
+gitCommitId: !uuid 'b015c3aecc58819017258f7f19105c8718827cee'
 renames: {
   }
-revisionId: 601
+revisionId: 602
