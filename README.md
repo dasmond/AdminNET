@@ -285,7 +285,7 @@ GIT完成后默认为SqlLite数据库，使用其他数据库可通过基于EF C
 
 经过 [12df9c7](https://gitee.com/zuohuaijun/Admin.NET/commit/12df9c7980007afb3bcadfe10777c3b36c0ca17d)的优化之后，打包从200多个文件，到现在的十多个文件。
 但是js的chunk-vendors文件大小还是高达5.8M。各位小伙伴可以通过以下方式来继续深度优化。
-* 安装`webpack-bundle-analyzer`来分析打包文件方法：
+* 安装`webpack-bundle-analyzer`来分析打包文件方法(此步骤可忽略)：
 
 ``` 
 //1.安装依赖
