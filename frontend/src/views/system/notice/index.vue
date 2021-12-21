@@ -56,6 +56,14 @@
               @confirm="() => editNoticeStatus(1,record)">
               <a>发布</a>
             </a-popconfirm>
+            <a-divider type="vertical" v-if="hasPerm('sysNotice:changeStatus') & hasPerm('sysNotice:delete')" />
+            <a-popconfirm
+              v-if="hasPerm('sysNotice:delete')"
+              placement="topRight"
+              title="确认删除？"
+              @confirm="() => sysNoticeDelete(record)">
+              <a>删除</a>
+            </a-popconfirm>
           </div>
           <div v-if="record.status == 1">
             <a v-if="hasPerm('sysNotice:detail')" @click="$refs.detailForm.detail(record)">查看</a>
