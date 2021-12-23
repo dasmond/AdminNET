@@ -79,19 +79,19 @@
 
     methods: {
       // 初始化方法
-      roleMenu(record) {
+      async roleMenu(record) {
         this.formLoading = true
         this.roleEntity = record
         this.visible = true
-        this.getMenuTree()
-        this.expandedMenuKeys(record)
+        await this.getMenuTree()
+        await this.expandedMenuKeys(record)
       },
 
       /**
        * 获取菜单列表
        */
       getMenuTree() {
-        SysMenuTreeForGrant().then((res) => {
+        return SysMenuTreeForGrant().then((res) => {
           if (res.success) {
             this.menuTreeData = res.data
             // 默认展开目录级
@@ -106,7 +106,7 @@
        * 此角色已有菜单权限
        */
       expandedMenuKeys(record) {
-        sysRoleOwnMenu({
+        return sysRoleOwnMenu({
           id: record.id
         }).then((res) => {
           if (res.success) {
