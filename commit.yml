@@ -3,51 +3,21 @@ branches: {
   }
 fileChange:
   /backend:
-    newFile: !uuid '5735e9a186cfd39580eb6185b687e7e0c4d362ab'
-    oldFile: !uuid '458878dfb950987de45f6827f186c44e433a20f2'
-  /backend/Admin.NET.Application:
-    newFile: !uuid '78b1bb89a0d913df9dd7cc8290c3ceb75d6c2a52'
-    oldFile: !uuid '6f020b0b4e9917f41f2a3a9e0e31bf35405669f8'
-  /backend/Admin.NET.Application/Admin.NET.Application.csproj:
-    newFile: !uuid '9c8ca15a4b19a7ecf3cb1387ee9385612a17914c'
-    oldFile: !uuid '3e48d614d5cc9ba2ddef0abc49461c8bd1c5da5d'
-  /backend/Admin.NET.Core:
-    newFile: !uuid '05cde0f8a45b6bf114b4a023949feb2ef25a4475'
-    oldFile: !uuid '656218853ff87bcfa76e33cd2ab5b471f6b8cdf8'
-  /backend/Admin.NET.Core/Admin.NET.Core.csproj:
-    newFile: !uuid '69ae8c1f0c59d018dd081a36cdf1c134084e0d69'
-    oldFile: !uuid '99288e7a32453eefcbaf41d326781861892bf539'
-  /backend/Admin.NET.Database.Migrations:
-    newFile: !uuid '8783bfb49ecd23061fc400c4a57c164c06c84062'
-    oldFile: !uuid '2deb0f557516093d647cae7a9ce0098bb56352be'
-  /backend/Admin.NET.Database.Migrations/Admin.NET.Database.Migrations.csproj:
-    newFile: !uuid 'd7877ee6306ce1c24bccec8fd3d53281e13a35ff'
-    oldFile: !uuid '54c904a0644b30de5900166989dca9efc33e4014'
-  /backend/Admin.NET.EntityFramework.Core:
-    newFile: !uuid 'a8fff4fb640980de8ad4f087239eda225e3f314b'
-    oldFile: !uuid '0f0b58d2fdf9a987ae45c1cfa187f17301b7a32b'
-  /backend/Admin.NET.EntityFramework.Core/Admin.NET.EntityFramework.Core.csproj:
-    newFile: !uuid 'eda36590d47e5733fb6bf1867d9b980ae3553e8e'
-    oldFile: !uuid '23a18baf44087efcdebc2087cf19b5864e2abc87'
-  /backend/Admin.NET.Web.Core:
-    newFile: !uuid 'bcb88dcca0fb32a49a323c2f8598be7e1874a9df'
-    oldFile: !uuid '71e3de71d75b0176b0a839b14eaee6f5ea2c9815'
-  /backend/Admin.NET.Web.Core/Admin.NET.Web.Core.csproj:
-    newFile: !uuid '0d890dad1ee095653c613238d419e0a9f54f2e0e'
-    oldFile: !uuid 'e0653e4e90a6ff1d6de6964d13d0ee088923bf6e'
+    newFile: !uuid 'ce151ff25e86931f4bdcf5a24c2eb1573a114107'
+    oldFile: !uuid '5735e9a186cfd39580eb6185b687e7e0c4d362ab'
   /backend/Admin.NET.Web.Entry:
-    newFile: !uuid '1ad92d917fe630709a83bb0ecce85b06e8946cb8'
-    oldFile: !uuid 'f8657bb4430824832db857aaca2ae203aec7638a'
+    newFile: !uuid 'da387eada5858e74c9c352ca2003171f6d1bddc1'
+    oldFile: !uuid '1ad92d917fe630709a83bb0ecce85b06e8946cb8'
   /backend/Admin.NET.Web.Entry/Admin.NET.Web.Entry.csproj:
-    newFile: !uuid '04a8d51254448ea5ad99dd4e035740ba2ed595e6'
-    oldFile: !uuid 'a6dcf3649f96a316ecaf819b0b47be5786b03d86'
-  /backend/Furion.Extras.Admin.NET:
-    newFile: !uuid 'f6dee24ccaf845b93a8085a8960a9f846f3594b3'
-    oldFile: !uuid '5395c69d9f56a1cc0ab70d0d1a1a9284f84afd67'
-  /backend/Furion.Extras.Admin.NET/Furion.Extras.Admin.NET.csproj:
-    newFile: !uuid 'f1ecf377f247b48546fd0cb03f673c257083d225'
-    oldFile: !uuid 'e3b00d767f283cf120beb6225db09fd9a5e1386a'
-gitCommitId: !uuid 'f12cae1ac597064601ce3b3990c7d35cf8567858'
+    newFile: !uuid '43f2f230b76937d3a56130de52b139c937ffc5f1'
+    oldFile: !uuid '04a8d51254448ea5ad99dd4e035740ba2ed595e6'
+  /backend/Admin.NET.Web.Entry/Program.cs:
+    newFile: !uuid '814f5272167f09672bf988730f996ad5026675eb'
+    oldFile: !uuid '7a6cc056e8faa059d68478919f07509c09af962b'
+  /backend/Admin.NET.Web.Entry/Startup.cs:
+    newFile: null
+    oldFile: !uuid '9bbfb96e5d7c92f2690d67565c319450a48d7421'
+gitCommitId: !uuid 'fed76e002089f502f5a58c03c35ea24e9e7446bb'
 renames: {
   }
-revisionId: 606
+revisionId: 607
