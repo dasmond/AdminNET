@@ -2,10 +2,25 @@
 branches: {
   }
 fileChange:
-  /README.md:
-    newFile: !uuid '0191a9314120cb0a5dcb048be5847b697c608d24'
-    oldFile: !uuid '8121a77e09d0379c89416ab0736c0c11ff0b4692'
-gitCommitId: !uuid '77106ae3e91c2305ba30f16ed86d09cc7ebe876f'
+  /frontend:
+    newFile: !uuid '0e711fd890910f61cfda8226a30ba704aa1fe196'
+    oldFile: !uuid 'cfeb7ad8520e5877c0e36e3c7ad9a7c5e54ee6c8'
+  /frontend/src:
+    newFile: !uuid 'fe6f60695707211dc77befcfa3de3829223fc422'
+    oldFile: !uuid '2be1566a4e97f71aecce1d79dd428a9cb04ffe01'
+  /frontend/src/views:
+    newFile: !uuid '374b022a0e1adf69e9e4482aa72a7fdb54930075'
+    oldFile: !uuid '153603671e8c65fc2ecb5bdade8a7d857b9e4278'
+  /frontend/src/views/system:
+    newFile: !uuid '5d1eff276d263641c3ed67cb083dd26c22af5dab'
+    oldFile: !uuid '2b4da0a2856ce28bc8067a91c7f7ddaded5d253b'
+  /frontend/src/views/system/role:
+    newFile: !uuid 'cf5d38b34fcfbac37876535da4bda10d9a0dc0a9'
+    oldFile: !uuid 'd609d25abe0661986b27fd1259b13b87728ccfba'
+  /frontend/src/views/system/role/roleMenuForm.vue:
+    newFile: !uuid '75f1657de58b534ea3f065c9533a256a2bc444ea'
+    oldFile: !uuid '9754b90feef44ac4ab1c631dfb9eba0f900c7e5b'
+gitCommitId: !uuid '54c2fc790420dc1ed98d9af2e8ee4517e1aed425'
 renames: {
   }
-revisionId: 604
+revisionId: 605
