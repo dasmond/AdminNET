@@ -119,6 +119,8 @@ dotnet new Admin.NET -n 你的项目名称
 - 开发者租户：用户名：superAdmin，密码：123456
 - 公司1租户： 公司1租户管理员（用户名：zuohuaijun@163.com 密码：123456），公司1租户普通用户（用户名：dilon@163.com 密码：123456）           
 
+访问地址：[http://1.117.110.74:8080/](http://1.117.110.74:8080/) PS: 1m带宽小水管，首次加载20左右~
+
 ### 🍄 快速启动
 
 需要安装：VS2019（最新版）、npm或yarn（最新版）
@@ -233,23 +235,36 @@ dotnet new Admin.NET -n 你的项目名称
 
 本框架ORM默认采用EF Core开发，加上拓展比如SqlSugar，理论上兼容并支持所有类型数据库。😜
 
-【MySQL】
 
+【MySQL】
 1. Admin.NET.EntityFramework.Core 项目安装 ``` Pomelo.EntityFrameworkCore.MySql，Nuget 需安装 5.0 版本 (支持 MySql 5.x +)  MySql.EntityFrameworkCore：支持 (MySql 8.x +) ```
 2. DefaultDbContext.cs 指定 DbProvider , ```[AppDbContext("DefaultConnection", DbProvider.MySql)]```
 3. dbsettings.json 配置 "DefaultConnection": ```"Data Source=localhost;Database=Admin.NET;User ID=root;Password=000000;pooling=true;port=3306;sslmode=none;CharSet=utf8;"```
-4. 打开程序包管理器控制台，默认项目Admin.NET.Database.Migrations 执行命令:```Add-Migration Init和update-database```
+4. 按照【EF批量操作】操作修改为指定包。
+5. 按照【数据库初始化操作】里执行数据库迁移。
 
 【SQLServer】
-
 1. Admin.NET.EntityFramework.Core 项目安装 ``` Microsoft.EntityFrameworkCore.SqlServer ```
 2. DefaultDbContext.cs 指定 DbProvider , ```[AppDbContext("DefaultConnection", DbProvider.SqlServer)]```
 3. dbsettings.json 配置 "DefaultConnection": ```"Server=localhost;Database=Admin.NET;User=sa;Password=000000;MultipleActiveResultSets=True;"```
-4. 打开程序包管理器控制台，默认项目Admin.NET.Database.Migrations 执行命令:```Add-Migration Init 和 update-database```
+4. 按照【EF批量操作】操作修改为指定包。
+5. 按照【数据库初始化操作】里执行数据库迁移。
 
 ```
 提示：其他类型数据库依次类推，首先添加EF的Core版包，然后指定数据库类型，修改数据库连接字符串，执行EF迁移命令即可。
 ```
+
+【EF批量操作】
+
+修改Admin.NET.EntityFramework.Core层里面Startup注册服务类型 opt.UseBatchEF_Sqlite()， 改成相应得库类型。
+
+使用 Zack.EFCore.Batch [https://hub.fastgit.org/yangzhongke/Zack.EFCore.Batch](https://hub.fastgit.org/yangzhongke/Zack.EFCore.Batch) 安装对应包即可
+1. MSSQL：Zack.EFCore.Batch.MSSQL_NET6
+2. MySql：Zack.EFCore.Batch.MySQL.Pomelo_NET6
+3. Npgsql：Zack.EFCore.Batch.Npgsql_NET6
+4. Oracle：Zack.EFCore.Batch.Oracle_NET6
+5. Sqlite：Zack.EFCore.Batch.Sqlite_NET6
+
 【数据库初始化操作】
 GIT完成后默认为SqlLite数据库，使用其他数据库可通过基于EF Core的CodeFirst初始化,添加好拓展包，创建好空数据库，设置好数据库信息和后，即可通过此操作可进行数据库初始化操作。
 1. 启动项目设置为 XXXX.Web.Entry
@@ -268,18 +283,9 @@ GIT完成后默认为SqlLite数据库，使用其他数据库可通过基于EF C
     Add-Migration v1.0.1 -Context MultiTenantDbContext
     update-database v1.0.1 -Context MultiTenantDbContext
 ```
-【EF批量操作】
+建议调试库不存储重要数据，如需初始数据在seed中添加。方便随时清库（删除Migrations目录，重新1.0.0)解决数据交互出现的各种问题。
 
-使用 Zack.EFCore.Batch [https://hub.fastgit.org/yangzhongke/Zack.EFCore.Batch](https://hub.fastgit.org/yangzhongke/Zack.EFCore.Batch) 安装对应包即可
-1. MSSQL：Zack.EFCore.Batch.MSSQL_NET6
-2. MySql：Zack.EFCore.Batch.MySQL.Pomelo_NET6
-3. Npgsql：Zack.EFCore.Batch.Npgsql_NET6
-4. Oracle：Zack.EFCore.Batch.Oracle_NET6
-5. Sqlite：Zack.EFCore.Batch.Sqlite_NET6
 
-```
-提示：记得修改Admin.NET.EntityFramework.Core层里面Startup注册服务类型 opt.UseBatchEF_Sqlite()， 改成相应得库类型。
-```
 
 ### 🚗 前端优化
 
