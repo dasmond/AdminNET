@@ -75,7 +75,7 @@ namespace Furion.Extras.Admin.NET
         /// 访问人
         /// </summary>
         [Comment("访问人")]
-        [MaxLength(20)]
+        [MaxLength(50)]
         public string Account { get; set; }
     }
 }

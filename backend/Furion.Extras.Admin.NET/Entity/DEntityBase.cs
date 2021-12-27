@@ -54,7 +54,7 @@ namespace Furion.Extras.Admin.NET
         /// 创建者名称
         /// </summary>
         [Comment("创建者名称")]
-        [MaxLength(20)]
+        [MaxLength(50)]
         public virtual string CreatedUserName { get; set; }
 
         /// <summary>
@@ -67,7 +67,7 @@ namespace Furion.Extras.Admin.NET
         /// 修改者名称
         /// </summary>
         [Comment("修改者名称")]
-        [MaxLength(20)]
+        [MaxLength(50)]
         public virtual string UpdatedUserName { get; set; }
 
         /// <summary>
