@@ -54,7 +54,7 @@ namespace Furion.Extras.Admin.NET
         /// 操作人名称
         /// </summary>
         [Comment("操作人名称")]
-        [MaxLength(20)]
+        [MaxLength(50)]
         public string UserName { get; set; }
 
         /// <summary>

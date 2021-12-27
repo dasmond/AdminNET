@@ -115,7 +115,7 @@ namespace Furion.Extras.Admin.NET
         /// 操作人
         /// </summary>
         [Comment("操作人")]
-        [MaxLength(20)]
+        [MaxLength(50)]
         public string Account { get; set; }
     }
 }
