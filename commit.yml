@@ -3,30 +3,39 @@ branches: {
   }
 fileChange:
   /backend:
-    newFile: !uuid '7c372ffb0f60e82f17ef71ba50a2ab054a14aedc'
-    oldFile: !uuid '4bbdb2a07918462e376c71a88707ca585764c44c'
+    newFile: !uuid '8e51555190544555b593fc640c734f544f7e75a2'
+    oldFile: !uuid '7c372ffb0f60e82f17ef71ba50a2ab054a14aedc'
   /backend/Furion.Extras.Admin.NET:
-    newFile: !uuid '1c486fd6302c493705dd562328b9fab0615afcc4'
-    oldFile: !uuid 'b57c13499cad0e2b49b5afafcf757a7d0b364ec1'
-  /backend/Furion.Extras.Admin.NET/Entity:
-    newFile: !uuid 'c0b892942762ecc93a3d06a4f59a58f0b8822b9c'
-    oldFile: !uuid '0517c3e0f6500051ad338c8f00925f9dd55d05f1'
-  /backend/Furion.Extras.Admin.NET/Entity/DEntityBase.cs:
-    newFile: !uuid 'e02f826b1776cf108b20f0f7e20ffe5b3452d987'
-    oldFile: !uuid '329e1f47c7939df866af739172f289731ab5f400'
-  /backend/Furion.Extras.Admin.NET/Entity/SysLogAudit.cs:
-    newFile: !uuid 'fbd7a110e96ac388da83b6471e9ec1800d7d3646'
-    oldFile: !uuid '62b7ebeb43f4bdcb62f4688279e6e706b078ae3c'
-  /backend/Furion.Extras.Admin.NET/Entity/SysLogEx.cs:
-    newFile: !uuid '93dc311f7d55ac7ecfcb0e63a9679cda58e646b7'
-    oldFile: !uuid '38f37d9c2be7833e1abca206dc2eb775dd856b24'
-  /backend/Furion.Extras.Admin.NET/Entity/SysLogOp.cs:
-    newFile: !uuid '6fa8a0d6b86fa5da09e82cce45ccdc8cbcb166de'
-    oldFile: !uuid 'fd436d12d335eaf104f63af051384fbb99441927'
-  /backend/Furion.Extras.Admin.NET/Entity/SysLogVis.cs:
-    newFile: !uuid 'ec9c99bd6f8334bb3d02a1f53028fec2e682f31d'
-    oldFile: !uuid 'acfca3961c640f5f7b0d8152be0766599164c1cb'
-gitCommitId: !uuid '8eb2aa1eaf284a601bab9f2590831f79ed07f5ce'
+    newFile: !uuid '5cd3ff2943a7d5096563824c4475f9dda2e674a0'
+    oldFile: !uuid '1c486fd6302c493705dd562328b9fab0615afcc4'
+  /backend/Furion.Extras.Admin.NET/Service:
+    newFile: !uuid '38a4a4a90d5ca5df980366f67579ebd91c706277'
+    oldFile: !uuid '63942d2328a367965d125059e5e75c648d5c8e34'
+  /backend/Furion.Extras.Admin.NET/Service/CodeGen:
+    newFile: !uuid '998665059f705eb3e87b2321b82d8231dabebf4d'
+    oldFile: !uuid '5697c1aff85de445c4c74e53ef67ea303b68fe3d'
+  /backend/Furion.Extras.Admin.NET/Service/CodeGen/CodeGenService.cs:
+    newFile: !uuid '0832114fed8729803d54c43160e8ea72d9ae0670'
+    oldFile: !uuid '1850ad95e94bbd0f6063ec42d896b25c1ab84d5f'
+  /frontend:
+    newFile: !uuid '6c2af23dde1d0a7e22cf327f6c95c96f1a804e01'
+    oldFile: !uuid '0e711fd890910f61cfda8226a30ba704aa1fe196'
+  /frontend/src:
+    newFile: !uuid 'a24e992083b66922247cdd9538c76c895ec01561'
+    oldFile: !uuid 'fe6f60695707211dc77befcfa3de3829223fc422'
+  /frontend/src/views:
+    newFile: !uuid '30e4872c11500adfcee3653dd4c0dcbd96b0f37c'
+    oldFile: !uuid '374b022a0e1adf69e9e4482aa72a7fdb54930075'
+  /frontend/src/views/gen:
+    newFile: !uuid 'a4ac7f222112eac93b8f9c4d287a6c22ff69e7d3'
+    oldFile: !uuid '91a52cd17a122249d99dbbb9da94635f00ae4a39'
+  /frontend/src/views/gen/codeGenerate:
+    newFile: !uuid '32920feb48fe0c17bdc0443900c9a6263217d55c'
+    oldFile: !uuid '78bfd3babbcb9d941816d578ec03c7449e0cfa2c'
+  /frontend/src/views/gen/codeGenerate/addForm.vue:
+    newFile: !uuid '5fc286c219da504911528cdb68e447450a39981e'
+    oldFile: !uuid 'ff2db6483f7354a92e1c395110195756724aafa3'
+gitCommitId: !uuid '8f6c4b06068962033ccfa25907bcd1c90233af66'
 renames: {
   }
-revisionId: 617
+revisionId: 618
