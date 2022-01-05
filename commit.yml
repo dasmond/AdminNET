@@ -3,18 +3,15 @@ branches: {
   }
 fileChange:
   /backend:
-    newFile: !uuid 'ea29dc19dc68906e0067d2be43b6e6ee8a9aa88c'
-    oldFile: !uuid '28cf100fe637a8baa4f8e753545ea21e769e773b'
-  /backend/Admin.NET.Web.Entry:
-    newFile: !uuid '3591df1d7b64f8dd0e698486a9f8a5ad5cc95e73'
-    oldFile: !uuid '0b500f6d7155f62c9059759054036f28be36bb6a'
-  /backend/Admin.NET.Web.Entry/Admin.NET.db:
-    newFile: null
-    oldFile: !uuid '21d69d2205a95998db1d8f67a450d11bf7814e26'
-  /backend/Admin.NET.Web.Entry/Admin.NET_SaaS.db:
-    newFile: null
-    oldFile: !uuid '1dc2aa2cbae3571c8ed5cd8b8e53e364482d4be7'
-gitCommitId: !uuid 'e4d7f1363db59542c2a1f7a6357313f76b3806bf'
+    newFile: !uuid 'd73c7d02c73bbb2e1c128ac2292cef757e17c84c'
+    oldFile: !uuid 'ea29dc19dc68906e0067d2be43b6e6ee8a9aa88c'
+  /backend/Admin.NET.EntityFramework.Core:
+    newFile: !uuid '8a9c9528da289382f5f6a323d684c2245692a8a4'
+    oldFile: !uuid '6ba47454e209f877d8d339bb90e2f85e95dc1072'
+  /backend/Admin.NET.EntityFramework.Core/dbsettings.json:
+    newFile: !uuid '8e3f5cd6bed4e400b9160c178648429a4d2442b6'
+    oldFile: !uuid '14f7652b398952219c85173ded3709a87a380442'
+gitCommitId: !uuid '65951b585740cc469ed10398a8dfd10e4fd35b42'
 renames: {
   }
-revisionId: 630
+revisionId: 631
