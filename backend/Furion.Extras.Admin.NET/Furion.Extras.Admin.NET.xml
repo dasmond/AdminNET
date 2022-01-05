@@ -2209,6 +2209,16 @@
             文件不存在
             </summary>
         </member>
+        <member name="F:Furion.Extras.Admin.NET.ErrorCode.D8001">
+            <summary>
+            不允许的文件类型
+            </summary>
+        </member>
+        <member name="F:Furion.Extras.Admin.NET.ErrorCode.D8002">
+            <summary>
+            文件超过允许大小
+            </summary>
+        </member>
         <member name="F:Furion.Extras.Admin.NET.ErrorCode.D9000">
             <summary>
             已存在同名或同编码参数配置
@@ -5866,7 +5876,7 @@
             上传文件
             </summary>
             <param name="file"></param>
-            <param name="pathType"></param>
+            <param name="key"></param>
             <returns></returns>
         </member>
         <member name="M:Furion.Extras.Admin.NET.Service.SysFileService.UploadFile(Microsoft.AspNetCore.Http.IFormFile,System.String,Furion.Extras.Admin.NET.FileLocation)">
@@ -5874,7 +5884,7 @@
             上传文件
             </summary>
             <param name="file">文件</param>
-            <param name="pathType">存储路径</param>
+            <param name="key">对象存储键</param>
             <param name="fileLocation">文件存储位置</param>
             <returns></returns>
         </member>

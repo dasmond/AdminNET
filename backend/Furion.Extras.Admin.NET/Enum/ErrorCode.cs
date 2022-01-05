@@ -343,6 +343,18 @@ namespace Furion.Extras.Admin.NET
         D8000,
 
         /// <summary>
+        /// 不允许的文件类型
+        /// </summary>
+        [ErrorCodeItemMetadata("不允许的文件类型")]
+        D8001,
+
+        /// <summary>
+        /// 文件超过允许大小
+        /// </summary>
+        [ErrorCodeItemMetadata("文件超过允许大小")]
+        D8002,
+
+        /// <summary>
         /// 已存在同名或同编码参数配置
         /// </summary>
         [ErrorCodeItemMetadata("已存在同名或同编码参数配置")]
