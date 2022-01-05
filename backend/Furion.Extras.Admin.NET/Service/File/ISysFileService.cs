@@ -26,5 +26,7 @@ namespace Furion.Extras.Admin.NET.Service
         Task UploadFileDocument(IFormFile file);
 
         Task UploadFileShop(IFormFile file);
+
+        Task<long> UploadFile(IFormFile file, string key);
     }
 }
