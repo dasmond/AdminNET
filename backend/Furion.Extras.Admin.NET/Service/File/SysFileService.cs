@@ -232,7 +232,8 @@ namespace Furion.Extras.Admin.NET.Service
             if (!Directory.Exists(filePath))
                 Directory.CreateDirectory(filePath);
 
-            var allowContentType = _configuration[$"{key}:contentType"].Cast<string>();
+           
+            var allowContentType = _configuration.GetSection($"{key}:contentType").Get<IEnumerable<string>>();
 
             if (!allowContentType.Contains(file.ContentType)) throw Oops.Oh(ErrorCode.D8001);
 
