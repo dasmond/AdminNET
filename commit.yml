@@ -3,21 +3,24 @@ branches: {
   }
 fileChange:
   /backend:
-    newFile: !uuid '03556f553ee8fe49acf8282901d0887e446362ca'
-    oldFile: !uuid '329bc115c4fd590e9368699f8270e821bb7f2bf3'
-  /backend/Furion.Extras.Admin.NET:
-    newFile: !uuid '2649dcbe1331e8e518779adeb26d3f5fc9aeb527'
-    oldFile: !uuid '4f4374fca937a288ebfab2481b83d5b5ae40a073'
-  /backend/Furion.Extras.Admin.NET/Service:
-    newFile: !uuid 'f563a3bd0e5f0b3ed49e3d3e7676429e23b92d09'
-    oldFile: !uuid '124cdc55508d7d21f06a765c7db9187b00d92cd9'
-  /backend/Furion.Extras.Admin.NET/Service/File:
-    newFile: !uuid 'c846838dc8444690c75c2ec15bb7f84466bf228b'
-    oldFile: !uuid '7fa884259d30bdf42f16b842856ff70714e95f6b'
-  /backend/Furion.Extras.Admin.NET/Service/File/SysFileService.cs:
-    newFile: !uuid 'd4817952e2c742de6445fdd222bd5a6db5b75137'
-    oldFile: !uuid 'e49598ab13cd6e5534639ee81f3b83f67983882b'
-gitCommitId: !uuid '1281762fa6cdaae51e4d34d639482dc5ae98f67c'
+    newFile: !uuid '48afd812cb379986d4359c54d93a415cadd28e5a'
+    oldFile: !uuid '03556f553ee8fe49acf8282901d0887e446362ca'
+  /backend/Admin.NET.EntityFramework.Core:
+    newFile: !uuid '13cc9d9e6b3da8b272e8dfc5ddc026c94db3a16d'
+    oldFile: !uuid '8a9c9528da289382f5f6a323d684c2245692a8a4'
+  /backend/Admin.NET.EntityFramework.Core/dbsettings.json:
+    newFile: !uuid '6d3093cdbc4ee0b8670e0fffad4245d02b5b652c'
+    oldFile: !uuid '8e3f5cd6bed4e400b9160c178648429a4d2442b6'
+  /backend/Admin.NET.Web.Entry:
+    newFile: !uuid 'eeada655a1e4fb9950151a3a7770911ebaf71fd6'
+    oldFile: !uuid '3591df1d7b64f8dd0e698486a9f8a5ad5cc95e73'
+  /backend/Admin.NET.Web.Entry/Properties:
+    newFile: !uuid 'cfb56c8d5df1fd9876988b2a479dc72faec7f53b'
+    oldFile: !uuid '778c3c2b5a0409329d947245649c13d480ef13af'
+  /backend/Admin.NET.Web.Entry/Properties/launchSettings.json:
+    newFile: !uuid '9b4160d5522288857065943260bdc671d4db8ed4'
+    oldFile: !uuid 'e3f79007051b4b4e814c1bf5ba37a2b7955575e9'
+gitCommitId: !uuid 'f1616eb9b9188cc06264e9bd8b49302dfc1e4ad2'
 renames: {
   }
-revisionId: 634
+revisionId: 635
