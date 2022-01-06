@@ -3,15 +3,30 @@ branches: {
   }
 fileChange:
   /backend:
-    newFile: !uuid 'd73c7d02c73bbb2e1c128ac2292cef757e17c84c'
-    oldFile: !uuid 'ea29dc19dc68906e0067d2be43b6e6ee8a9aa88c'
-  /backend/Admin.NET.EntityFramework.Core:
-    newFile: !uuid '8a9c9528da289382f5f6a323d684c2245692a8a4'
-    oldFile: !uuid '6ba47454e209f877d8d339bb90e2f85e95dc1072'
-  /backend/Admin.NET.EntityFramework.Core/dbsettings.json:
-    newFile: !uuid '8e3f5cd6bed4e400b9160c178648429a4d2442b6'
-    oldFile: !uuid '14f7652b398952219c85173ded3709a87a380442'
-gitCommitId: !uuid '65951b585740cc469ed10398a8dfd10e4fd35b42'
+    newFile: !uuid 'dcf410e47095eadf2c37a32804cdfdc906f0cd5f'
+    oldFile: !uuid 'd73c7d02c73bbb2e1c128ac2292cef757e17c84c'
+  /backend/Furion.Extras.Admin.NET:
+    newFile: !uuid 'defb79ceec3ae3c151a3b0d06eb21814ac1433cb'
+    oldFile: !uuid '5c804bc9ff964e946c237d63aa630b26cc6d853d'
+  /backend/Furion.Extras.Admin.NET/Enum:
+    newFile: !uuid 'fe75653cfc252472613df88449ec639340d12a92'
+    oldFile: !uuid '06010f9e4ea96b8000e222bd47d196ca1f35c7d2'
+  /backend/Furion.Extras.Admin.NET/Enum/ErrorCode.cs:
+    newFile: !uuid '3ef3606fce1b884cc1020d080db60498a2449775'
+    oldFile: !uuid 'fc4d6dc928e4d8f27ae3ce4f99f8e9f2d5b54f3a'
+  /backend/Furion.Extras.Admin.NET/Service:
+    newFile: !uuid '854f11a94637a3ca07a590603249de81d391cab9'
+    oldFile: !uuid '86b861719b3bdbde04e55cd2311d33b61a209b70'
+  /backend/Furion.Extras.Admin.NET/Service/File:
+    newFile: !uuid 'e89b52af6dfc9230a8aad2bf45d97bee177f008d'
+    oldFile: !uuid '9071e293f84c8b2babc6728bf55ec3d87c932585'
+  /backend/Furion.Extras.Admin.NET/Service/File/ISysFileService.cs:
+    newFile: !uuid '02ad9e230fac15a73ecc5c26af3386a9fbe75f35'
+    oldFile: !uuid '560f3bc29fcaf06daab70e7e249a60760fe923f2'
+  /backend/Furion.Extras.Admin.NET/Service/File/SysFileService.cs:
+    newFile: !uuid '35f28eb8189a2cb3297daa74721d5550c15fced3'
+    oldFile: !uuid '17ae3aee529d84d4be0f83f501a78707d80cf061'
+gitCommitId: !uuid '2f6ae23b6637e7591a22a9c0918354fb6e785e40'
 renames: {
   }
-revisionId: 631
+revisionId: 632
