@@ -3,18 +3,15 @@ branches: {
   }
 fileChange:
   /doc:
-    newFile: !uuid 'f60ca9bf2c73b22d9408d64cc40df69d8485a71a'
-    oldFile: !uuid 'f4e424161c417091e3eb47e23f7034a6c436a4c5'
+    newFile: !uuid 'ec5b5d386af56cb314838d3968599d58be11c028'
+    oldFile: !uuid 'f60ca9bf2c73b22d9408d64cc40df69d8485a71a'
   /doc/img:
-    newFile: !uuid '90f13910316b83119f64a76abbfd4f91ea23d40a'
-    oldFile: !uuid '4d7c952a9e599b691937160d0480c5465da12730'
-  /doc/img/qrcode_for_gh_46000fe3fef2_258.jpg:
+    newFile: !uuid '32fe5a8ff4e401649d83f8e37766b3f87a62272c'
+    oldFile: !uuid '90f13910316b83119f64a76abbfd4f91ea23d40a'
+  /doc/img/手摸手二维码.jpg:
     newFile: null
     oldFile: !uuid '62f5b4eac7f7963648a6d3c7de7ee934a6087649'
-  /doc/img/手摸手二维码.jpg:
-    newFile: !uuid '62f5b4eac7f7963648a6d3c7de7ee934a6087649'
-    oldFile: null
-gitCommitId: !uuid 'd3bb600e87bc2ac4834d19978ebf7bae3b85e8d9'
-renames:
-  /doc/img/手摸手二维码.jpg: /doc/img/qrcode_for_gh_46000fe3fef2_258.jpg
-revisionId: 637
+gitCommitId: !uuid 'bc76d16af44293fcc166e03b16bba8d75e2b2b43'
+renames: {
+  }
+revisionId: 638
