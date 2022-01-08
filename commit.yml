@@ -2,25 +2,16 @@
 branches: {
   }
 fileChange:
-  /backend:
-    newFile: !uuid '48afd812cb379986d4359c54d93a415cadd28e5a'
-    oldFile: !uuid '03556f553ee8fe49acf8282901d0887e446362ca'
-  /backend/Admin.NET.EntityFramework.Core:
-    newFile: !uuid '13cc9d9e6b3da8b272e8dfc5ddc026c94db3a16d'
-    oldFile: !uuid '8a9c9528da289382f5f6a323d684c2245692a8a4'
-  /backend/Admin.NET.EntityFramework.Core/dbsettings.json:
-    newFile: !uuid '6d3093cdbc4ee0b8670e0fffad4245d02b5b652c'
-    oldFile: !uuid '8e3f5cd6bed4e400b9160c178648429a4d2442b6'
-  /backend/Admin.NET.Web.Entry:
-    newFile: !uuid 'eeada655a1e4fb9950151a3a7770911ebaf71fd6'
-    oldFile: !uuid '3591df1d7b64f8dd0e698486a9f8a5ad5cc95e73'
-  /backend/Admin.NET.Web.Entry/Properties:
-    newFile: !uuid 'cfb56c8d5df1fd9876988b2a479dc72faec7f53b'
-    oldFile: !uuid '778c3c2b5a0409329d947245649c13d480ef13af'
-  /backend/Admin.NET.Web.Entry/Properties/launchSettings.json:
-    newFile: !uuid '9b4160d5522288857065943260bdc671d4db8ed4'
-    oldFile: !uuid 'e3f79007051b4b4e814c1bf5ba37a2b7955575e9'
-gitCommitId: !uuid 'f1616eb9b9188cc06264e9bd8b49302dfc1e4ad2'
+  /doc:
+    newFile: !uuid 'f4e424161c417091e3eb47e23f7034a6c436a4c5'
+    oldFile: !uuid 'ec5b5d386af56cb314838d3968599d58be11c028'
+  /doc/img:
+    newFile: !uuid '4d7c952a9e599b691937160d0480c5465da12730'
+    oldFile: !uuid '32fe5a8ff4e401649d83f8e37766b3f87a62272c'
+  /doc/img/qrcode_for_gh_46000fe3fef2_258.jpg:
+    newFile: !uuid '62f5b4eac7f7963648a6d3c7de7ee934a6087649'
+    oldFile: null
+gitCommitId: !uuid '38fa2b8ad11f955574ed955a2778ac65ef5e400a'
 renames: {
   }
-revisionId: 635
+revisionId: 636
