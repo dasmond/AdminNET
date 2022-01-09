@@ -2,10 +2,16 @@
 branches: {
   }
 fileChange:
-  /README.md:
-    newFile: !uuid '7e440b1db11cce55e917057930d823141d8b3970'
-    oldFile: !uuid '54a87fe979b19afaebe73b29f8b41b12a085fb54'
-gitCommitId: !uuid '9323840f4491a8a96fae3f6f54b0a3b1463ce8ac'
+  /doc:
+    newFile: !uuid 'ec5b5d386af56cb314838d3968599d58be11c028'
+    oldFile: !uuid '82258efdf35a373de41fef61085664bacdf6a059'
+  /doc/img:
+    newFile: !uuid '32fe5a8ff4e401649d83f8e37766b3f87a62272c'
+    oldFile: !uuid '9d44bdd640531d5505fcb91ae740c7d499e79819'
+  /doc/img/shoumoshou_qrcode.png:
+    newFile: null
+    oldFile: !uuid '526c881f65ea803bca6431ebf418e24c1e032abd'
+gitCommitId: !uuid '608618d397a0b0960b1cf66977d613ec937eb4b7'
 renames: {
   }
-revisionId: 642
+revisionId: 643
