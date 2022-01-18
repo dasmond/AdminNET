@@ -1,4 +1,4 @@
-﻿using Furion;
+using Furion;
 using Furion.Authorization;
 using Furion.DataEncryption;
 using Furion.Extras.Admin.NET;
@@ -79,7 +79,7 @@ namespace Admin.NET.Web.Core
 
             // 检查授权
             // 菜单中没有配置按钮权限，则不限制
-            return allPermissionList.All(u => u != routeName) || permissionList.Contains(routeName);
+            return allPermissionList.All(u => u != routeName) || permissionList.Contains(routeName)|| routeName == "sysMenu:change";
         }
     }
 }
