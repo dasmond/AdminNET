@@ -3,18 +3,21 @@ branches: {
   }
 fileChange:
   /backend:
-    newFile: !uuid '64fe2c1c6d7deae0db727059a8bfd66fc8d0b6cb'
-    oldFile: !uuid '3a58c578869b9af791129c683245ebb31898c273'
-  /backend/Admin.NET.Web.Core:
-    newFile: !uuid '71471070dea6b78c400c400d5afbc3c4587fd7ad'
-    oldFile: !uuid 'c007d9be00952973d73141c11b642a7f777bbd24'
-  /backend/Admin.NET.Web.Core/Handlers:
-    newFile: !uuid '867b281ac2ed1d252147ba36d1014e4885c47ee6'
-    oldFile: !uuid 'cbf125b826a9d732252eae00431a09f24f6ed5bb'
-  /backend/Admin.NET.Web.Core/Handlers/JwtHandler.cs:
-    newFile: !uuid 'f0880843ce495858257db66486455fc89601ea17'
-    oldFile: !uuid '7b9e021d5262246884595ccd3ff04c161e60de73'
-gitCommitId: !uuid '06eb0791d9b5d3e80ccf45e8303bbbbe7576f740'
+    newFile: !uuid '04c89f8285d368880f5f85332935e2bf5c2c56d2'
+    oldFile: !uuid '64fe2c1c6d7deae0db727059a8bfd66fc8d0b6cb'
+  /backend/Furion.Extras.Admin.NET:
+    newFile: !uuid '8369482d821abc8414d8e9ac105284bab2d8c317'
+    oldFile: !uuid '8a7786eeb5411b01d588b8c69a76f71b98ffaf06'
+  /backend/Furion.Extras.Admin.NET/Captcha:
+    newFile: !uuid '29601591e7aeabe0496c6b8391e87d7ce3eadf98'
+    oldFile: !uuid '6a7ca42f5c6f90d6c7c509a7dcb65904926c220c'
+  /backend/Furion.Extras.Admin.NET/Captcha/ClickWord:
+    newFile: !uuid 'd1ca8984d6ab1c72216d6a28085acadcf16ed5a4'
+    oldFile: !uuid '2639c743e2416f5a505475aa927935c50478e55d'
+  /backend/Furion.Extras.Admin.NET/Captcha/ClickWord/ClickWordCaptcha.cs:
+    newFile: !uuid '3a704c9d67ed74425b8bb6610f604e2f575b3827'
+    oldFile: !uuid '15018189b03dbd580bd5877a26f6102637191d21'
+gitCommitId: !uuid '7a8eab51784dfb6f8302d1812de2e7057ed32d0d'
 renames: {
   }
-revisionId: 650
+revisionId: 651
