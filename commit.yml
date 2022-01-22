@@ -3,27 +3,27 @@ branches: {
   }
 fileChange:
   /backend:
-    newFile: !uuid '9f40f42ff19be1c81e6d78dd99a6ac9d8c7686dc'
-    oldFile: !uuid '5e3853a1df7ee01b1f1bd540e4f5a8540845c93f'
+    newFile: !uuid 'fef590133d022b62f7f90e7a518728e4add361c4'
+    oldFile: !uuid '9f40f42ff19be1c81e6d78dd99a6ac9d8c7686dc'
   /backend/Furion.Extras.Admin.NET:
-    newFile: !uuid '246b717c24971919c8e5491780370f969046fb52'
-    oldFile: !uuid 'd2a921d9aff5784aef18adfb9a5181ba2ca6f017'
+    newFile: !uuid 'a038753c1d3759f9fd25b2b74b39fb725c8cb26b'
+    oldFile: !uuid '246b717c24971919c8e5491780370f969046fb52'
   /backend/Furion.Extras.Admin.NET/Service:
-    newFile: !uuid '60d0f2f33e1fdf2edd8bb7e9c4225119113f00c0'
-    oldFile: !uuid 'be19a2885554cca45c7ffdd855fc8440c2e8e4c6'
+    newFile: !uuid '9942cf8ba5d613feb9fb8ad2ee9411969f196ec9'
+    oldFile: !uuid '60d0f2f33e1fdf2edd8bb7e9c4225119113f00c0'
   /backend/Furion.Extras.Admin.NET/Service/Log:
-    newFile: !uuid '9036d599516e0261ef90fab6875af8104ee6b9c0'
-    oldFile: !uuid 'b15358c8a655594fcb5c5f4f5627ee34239769b6'
-  /backend/Furion.Extras.Admin.NET/Service/Log/SysExLogService.cs:
-    newFile: !uuid '387bec9472183e798a47b1a88dd2fb7fa9b605b2'
-    oldFile: !uuid 'c1917b84e6de6f7a8e34a899a8357aca4739a021'
-  /backend/Furion.Extras.Admin.NET/Service/Log/SysOpLogService.cs:
-    newFile: !uuid 'd8facf2ea2dff213d05c52ae5f5a55980514020a'
-    oldFile: !uuid '61bf53527384e4ac04d83f32dac9b0b855228dff'
-  /backend/Furion.Extras.Admin.NET/Service/Log/SysVisLogService.cs:
-    newFile: !uuid 'f3cd01d98eea1b438c6c71ca57b437691f766d9d'
-    oldFile: !uuid 'd93a2f2aee742ba6138a097ed006c288386ed54e'
-gitCommitId: !uuid '8512b51e081ad55cd588c016dab66bec16b8a9aa'
+    newFile: !uuid 'b91c4b29b08238dd2512b06f8e6c52f22ada5832'
+    oldFile: !uuid '9036d599516e0261ef90fab6875af8104ee6b9c0'
+  /backend/Furion.Extras.Admin.NET/Service/Log/Dto:
+    newFile: !uuid '8afc3e859b52e44681c1e4c7137c6e4d58605de3'
+    oldFile: !uuid '9b0ab46840e5e5e1bb47eb9642385fb28f15fb13'
+  /backend/Furion.Extras.Admin.NET/Service/Log/Dto/OpLogInput.cs:
+    newFile: !uuid '81f3ea7e18d30f45805bfd42b312886c676c3a1d'
+    oldFile: !uuid '0cb5c0bb00224975b43480db27eb6e0fd1b0078d'
+  /backend/Furion.Extras.Admin.NET/Service/Log/Dto/VisLogInput.cs:
+    newFile: !uuid '9a2afab9f68010ff2c8773cc58aeee5283f66d60'
+    oldFile: !uuid '0b78cb5666c42e1a53e51402b7182b9ee8a117f2'
+gitCommitId: !uuid 'af528c048d65da9ecf815bb0b859fb3bba99d47b'
 renames: {
   }
-revisionId: 655
+revisionId: 656
