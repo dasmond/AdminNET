@@ -50,8 +50,7 @@ namespace Furion.Extras.Admin.NET.Service
         [HttpPost("/sysVisLog/delete")]
         public async Task ClearVisLog()
         {
-            var visLogs = await _sysVisLogRep.Entities.ToListAsync();
-            await _sysVisLogRep.DeleteAsync(visLogs);
+            await _sysVisLogRep.Context.DeleteRangeAsync<SysLogVis>();
         }
     }
 }
