@@ -3,24 +3,21 @@ branches: {
   }
 fileChange:
   /backend:
-    newFile: !uuid '1d3b028005573cd9ebab68bdd11326c3d2b2f61b'
-    oldFile: !uuid 'fef590133d022b62f7f90e7a518728e4add361c4'
+    newFile: !uuid '797ed74b5ab4c3485c30f445ebc564dc9da6e981'
+    oldFile: !uuid '1d3b028005573cd9ebab68bdd11326c3d2b2f61b'
   /backend/Furion.Extras.Admin.NET:
-    newFile: !uuid '5bfb8a15c146e8f4379732bdfa6634729cc3b82b'
-    oldFile: !uuid 'a038753c1d3759f9fd25b2b74b39fb725c8cb26b'
+    newFile: !uuid 'b019466f07a23f9abcc094925c3c00cdd54dd96c'
+    oldFile: !uuid '5bfb8a15c146e8f4379732bdfa6634729cc3b82b'
   /backend/Furion.Extras.Admin.NET/Service:
-    newFile: !uuid '33b1eefa3236d555a658e6f33cc157fbd8e66fb2'
-    oldFile: !uuid '9942cf8ba5d613feb9fb8ad2ee9411969f196ec9'
-  /backend/Furion.Extras.Admin.NET/Service/Log:
-    newFile: !uuid 'd008cbe7ba00f40bb1ca361144137d1b076678ef'
-    oldFile: !uuid 'b91c4b29b08238dd2512b06f8e6c52f22ada5832'
-  /backend/Furion.Extras.Admin.NET/Service/Log/Dto:
-    newFile: !uuid '911922bb2b02c4a5a9c6028efd9723bae505104d'
-    oldFile: !uuid '8afc3e859b52e44681c1e4c7137c6e4d58605de3'
-  /backend/Furion.Extras.Admin.NET/Service/Log/Dto/VisLogInput.cs:
-    newFile: !uuid '778736d82019156883674e6283de222a2d0a3b54'
-    oldFile: !uuid '9a2afab9f68010ff2c8773cc58aeee5283f66d60'
-gitCommitId: !uuid 'c797e4d8bdf3f02fb1bf4db454ac210a43ed1226'
+    newFile: !uuid 'b28b5809f867b1abf34cecdc1346a626e4f308ad'
+    oldFile: !uuid '33b1eefa3236d555a658e6f33cc157fbd8e66fb2'
+  /backend/Furion.Extras.Admin.NET/Service/Org:
+    newFile: !uuid '48add7e24ab77a96b8799057d9049609280b24d3'
+    oldFile: !uuid '486d43c88b09be5ac7654978a7c466efe6618f99'
+  /backend/Furion.Extras.Admin.NET/Service/Org/SysOrgService.cs:
+    newFile: !uuid '73b7d2656a117bb78876950a5486107816d8b6aa'
+    oldFile: !uuid '8736e5fdd66099e21ab0a57c8c2badaa1221b192'
+gitCommitId: !uuid '273e034c5a78a79af1a442f80ba6dde02d6032a5'
 renames: {
   }
-revisionId: 657
+revisionId: 658
