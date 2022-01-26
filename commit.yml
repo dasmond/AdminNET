@@ -2,22 +2,16 @@
 branches: {
   }
 fileChange:
-  /backend:
-    newFile: !uuid '797ed74b5ab4c3485c30f445ebc564dc9da6e981'
-    oldFile: !uuid '1d3b028005573cd9ebab68bdd11326c3d2b2f61b'
-  /backend/Furion.Extras.Admin.NET:
-    newFile: !uuid 'b019466f07a23f9abcc094925c3c00cdd54dd96c'
-    oldFile: !uuid '5bfb8a15c146e8f4379732bdfa6634729cc3b82b'
-  /backend/Furion.Extras.Admin.NET/Service:
-    newFile: !uuid 'b28b5809f867b1abf34cecdc1346a626e4f308ad'
-    oldFile: !uuid '33b1eefa3236d555a658e6f33cc157fbd8e66fb2'
-  /backend/Furion.Extras.Admin.NET/Service/Org:
-    newFile: !uuid '48add7e24ab77a96b8799057d9049609280b24d3'
-    oldFile: !uuid '486d43c88b09be5ac7654978a7c466efe6618f99'
-  /backend/Furion.Extras.Admin.NET/Service/Org/SysOrgService.cs:
-    newFile: !uuid '73b7d2656a117bb78876950a5486107816d8b6aa'
-    oldFile: !uuid '8736e5fdd66099e21ab0a57c8c2badaa1221b192'
-gitCommitId: !uuid '273e034c5a78a79af1a442f80ba6dde02d6032a5'
-renames: {
-  }
-revisionId: 658
+  /build:
+    newFile: !uuid '9ae0b7e2e4f468df8c49ceca406a9c87b30e2921'
+    oldFile: !uuid 'b172dd0343aa9ee21c78aa9537bd655480bbda63'
+  /build/readme.md:
+    newFile: null
+    oldFile: !uuid '2e8866fa4c5b3b7435c0fb070554b784240401e0'
+  /build/部署到 linux 方案.md:
+    newFile: !uuid '2e8866fa4c5b3b7435c0fb070554b784240401e0'
+    oldFile: null
+gitCommitId: !uuid 'cbe0a29457994159ad71ae05875b3639c6a4e991'
+renames:
+  /build/部署到 linux 方案.md: /build/readme.md
+revisionId: 659
