@@ -2,16 +2,13 @@
 branches: {
   }
 fileChange:
-  /build:
-    newFile: !uuid '9ae0b7e2e4f468df8c49ceca406a9c87b30e2921'
-    oldFile: !uuid 'b172dd0343aa9ee21c78aa9537bd655480bbda63'
-  /build/readme.md:
-    newFile: null
-    oldFile: !uuid '2e8866fa4c5b3b7435c0fb070554b784240401e0'
-  /build/部署到 linux 方案.md:
-    newFile: !uuid '2e8866fa4c5b3b7435c0fb070554b784240401e0'
+  /doc:
+    newFile: !uuid 'ff6ca664ee0501cc9937b85e652a50d208a6a43a'
+    oldFile: !uuid '8217734d057a7f696f342ec578ffa3540d726f14'
+  /doc/快捷部署到 linux 方案.md:
+    newFile: !uuid 'e69de29bb2d1d6434b8b29ae775ad8c2e48c5391'
     oldFile: null
-gitCommitId: !uuid 'cbe0a29457994159ad71ae05875b3639c6a4e991'
-renames:
-  /build/部署到 linux 方案.md: /build/readme.md
-revisionId: 659
+gitCommitId: !uuid '14b595d694aed4974f22bcc80c470afc69bc6a04'
+renames: {
+  }
+revisionId: 660
