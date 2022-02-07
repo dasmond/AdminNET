@@ -2,13 +2,16 @@
 branches: {
   }
 fileChange:
-  /doc:
-    newFile: !uuid 'dd4fd69bed6aba18fa534909ce5273b7442871a8'
-    oldFile: !uuid 'ff6ca664ee0501cc9937b85e652a50d208a6a43a'
-  /doc/快捷部署到 linux 方案.md:
-    newFile: !uuid 'daabf208b28a6ffab9e4b24564f9fc91c9835929'
-    oldFile: !uuid 'e69de29bb2d1d6434b8b29ae775ad8c2e48c5391'
-gitCommitId: !uuid '3068ada43c22ed00031f74e066fcf554ce80a8ca'
+  /backend:
+    newFile: !uuid 'a875ef84064dad5f5879231deaa5a3e076b26655'
+    oldFile: !uuid '797ed74b5ab4c3485c30f445ebc564dc9da6e981'
+  /backend/Furion.Extras.Admin.NET:
+    newFile: !uuid '951d064d5acc80dd0f11b0a3069d65cce8c9d33a'
+    oldFile: !uuid 'b019466f07a23f9abcc094925c3c00cdd54dd96c'
+  /backend/Furion.Extras.Admin.NET/Furion.Extras.Admin.NET.csproj:
+    newFile: !uuid '8fd1c1d5fa6c0556478c7dcabfe6d0d2b9fd9d8d'
+    oldFile: !uuid 'e1b609b59804176840aaa56e20640973d754da1f'
+gitCommitId: !uuid 'fd8f981847121be791543d364200d1ebf60931ed'
 renames: {
   }
-revisionId: 661
+revisionId: 662
