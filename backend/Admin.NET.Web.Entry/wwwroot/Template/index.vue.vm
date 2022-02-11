@@ -128,7 +128,7 @@ if(@column.WhetherRetract == "Y" && (@column.EffectType == "select" || @column.E
 }else if(@column.WhetherRetract == "Y"){
           @:<ellipsis :length="10" tooltip>{{ text }}</ellipsis>
 }else if(@column.EffectType == "checkbox"){
-          @:<a-tag v-for="textData in JSON.parse(text)" :key="textData.code" color="green">{{ 'sex' | dictType(textData) }}</a-tag>
+          @:<a-tag v-for="textData in JSON.parse(text)" :key="textData.code" color="green">{{ '@column.DictTypeCode' | dictType(textData) }}</a-tag>
 } else {
           @:{{ '@column.DictTypeCode' | dictType(text) }}
 }
