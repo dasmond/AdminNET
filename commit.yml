@@ -2,25 +2,19 @@
 branches: {
   }
 fileChange:
-  /README.md:
-    newFile: !uuid '4069ed377747168a48f37c426535db83c8c86722'
-    oldFile: !uuid '04613101e443c250958b0b0501900f6a68878659'
-  /frontend:
-    newFile: !uuid '5136abc000e2b38eaad96bc1a182a737b2f7d519'
-    oldFile: !uuid '7608dee78b67c4a7b172d8c778a61f42475367b9'
-  /frontend/src:
-    newFile: !uuid '47b3b2d0eedfc25f40140c19cb89dd343506de7f'
-    oldFile: !uuid '3f59c2e0609aec9a3d1b17b13b818bdd30d84277'
-  /frontend/src/store:
-    newFile: !uuid 'aa1abe113e562696a174ac675273958726c18523'
-    oldFile: !uuid 'd6abaeeb974cd21175f3177fbb9c7d84d950341b'
-  /frontend/src/store/modules:
-    newFile: !uuid '71ee5f13edbe97166e4160e32f9c606414679b7d'
-    oldFile: !uuid '585b76113b56a1726a73501dd328291fea66bf0f'
-  /frontend/src/store/modules/user.js:
-    newFile: !uuid '207a9238450efab5d781154669194d2051808aab'
-    oldFile: !uuid 'd8bb6f99b6f5fc6f6811a1c3f8f3387ae1e78523'
-gitCommitId: !uuid '870ca6ad2d4317eda231d0579673c067b73bb98b'
+  /backend:
+    newFile: !uuid 'fadd9e39cd113d6d4ccebb8e5809176a300201de'
+    oldFile: !uuid '78cfff9429630b1c88642038b8c96d0be53c846d'
+  /backend/Admin.NET.Web.Entry:
+    newFile: !uuid '7eeb11729ce103af54e0ae194ebee05b32c28de7'
+    oldFile: !uuid '7c8a2970b4bf032b4560314f29e0e3e6a1d9ad0e'
+  /backend/Admin.NET.Web.Entry/Properties:
+    newFile: !uuid 'b5bd691b9a5a49888a1828bf6f1e3b3691f137a3'
+    oldFile: !uuid 'f1d74ce5c6183e6ffaedd6cd9b7905b609c93b51'
+  /backend/Admin.NET.Web.Entry/Properties/launchSettings.json:
+    newFile: !uuid 'd928be92fec7572336ca517deec47d34295c8636'
+    oldFile: !uuid '13e7f27bd8af9de52b55227a01f0b5fa488f1415'
+gitCommitId: !uuid '48238661f6c8b22015af18bc642f6ac430df8855'
 renames: {
   }
-revisionId: 664
+revisionId: 665
