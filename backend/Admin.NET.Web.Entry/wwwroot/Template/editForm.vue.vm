@@ -261,6 +261,7 @@ if(@column.EffectType == "fk" && @column.FkEntityName != "" && @column.FkColumnN
         validateFields((errors, values) => {
           if (!errors) {
             for (const key in values) {
+              if (values[key] == null) continue
               if (typeof (values[key]) === 'object') {
                 values[key] = JSON.stringify(values[key])
                  this.record[key] = values[key]

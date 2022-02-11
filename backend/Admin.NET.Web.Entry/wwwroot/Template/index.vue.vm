@@ -203,10 +203,10 @@ if (@column.WhetherOrderBy == "Y"){
 @:sorter: true,
 }			
 if(@column.EffectType == "switch"){
-            @:customRender: (vlaue) => (vlaue ? <a-tag color="green">True</a-tag> : <a-tag color="volcano">False</a-tag>),
+            @:customRender: (value) => (value ? <a-tag color="green">True</a-tag> : <a-tag color="volcano">False</a-tag>),
 }
 if(@column.EffectType == "fk"){
-            @:customRender: (vlaue, record) => record.@(@column.LowerFkEntityName)@(@column.FkColumnName),
+            @:customRender: (value, record) => record.@(@column.LowerFkEntityName).@(@column.FkColumnName),
 }
 if(@column.WhetherRetract == "Y" || @column.EffectType == "select" || @column.EffectType == "radio" || @column.EffectType == "checkbox"){
             @:dataIndex: '@column.ColumnName',
