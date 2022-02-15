@@ -3,21 +3,30 @@ branches: {
   }
 fileChange:
   /backend:
-    newFile: !uuid 'edef9cae3e131087ef49651e85478f06028c3012'
+    newFile: !uuid 'b142e5640b8df66c3c75bd395277fa69d895c2c9'
     oldFile: !uuid 'fadd9e39cd113d6d4ccebb8e5809176a300201de'
   /backend/Admin.NET.Web.Entry:
-    newFile: !uuid '8a3c06f4e15b76ff30ff5fd6d9b7fedd46a3b8a2'
+    newFile: !uuid '1b037897b9b9f0bfa93b1b8028c1c685f415c3ad'
     oldFile: !uuid '7eeb11729ce103af54e0ae194ebee05b32c28de7'
-  /backend/Admin.NET.Web.Entry/wwwroot:
-    newFile: !uuid '36546dbedf413169eca6ce0c552f7bd6649cceae'
-    oldFile: !uuid 'e3a6d13f25bf62ca970327ce600dd21ddb4e6bcc'
-  /backend/Admin.NET.Web.Entry/wwwroot/Template:
-    newFile: !uuid '85f64cf15d7273bf200db92bc115f72ec686c4d6'
-    oldFile: !uuid 'baaea98942a28e71b9c477c777fd7f2b26bd3f61'
-  /backend/Admin.NET.Web.Entry/wwwroot/Template/index.vue.vm:
-    newFile: !uuid 'faf6ec927184f11d639f936ae8ff39dcd314cabe'
-    oldFile: !uuid '0089c0ac060c0cfcd366d2b23847d19fa6093e16'
-gitCommitId: !uuid '4079d23d9b9440c39765557c8461f30cfd7a8a27'
+  /backend/Admin.NET.Web.Entry/appsettings.Development.json:
+    newFile: !uuid 'dfbea752003039905a0919c14a61f6386ecf30ea'
+    oldFile: !uuid '049bac9cdb5a2096e10fc42dd6511801b95bc1a3'
+  /backend/Furion.Extras.Admin.NET:
+    newFile: !uuid 'd77ea9da932f6194aeedd82383c863596d970cb0'
+    oldFile: !uuid '951d064d5acc80dd0f11b0a3069d65cce8c9d33a'
+  /backend/Furion.Extras.Admin.NET/Captcha:
+    newFile: !uuid '57023e1751143daf954c1dabc797fab36fa63714'
+    oldFile: !uuid 'b939bb0518b906f721208cd6ea649af3583d3ee1'
+  /backend/Furion.Extras.Admin.NET/Captcha/ClickWord:
+    newFile: !uuid 'ffd917216a8d88a86620bb1682140339a2a65bb2'
+    oldFile: !uuid '897bbe58af41eb09318d64f84aeb66c94b555244'
+  /backend/Furion.Extras.Admin.NET/Captcha/ClickWord/ClickWordCaptcha.cs:
+    newFile: !uuid 'e85ea5d33cd5a5916080f97961c3bdf4ad01402e'
+    oldFile: !uuid '987a231687e5b48955ce511cf59c2ac26db58369'
+  /backend/Furion.Extras.Admin.NET/Furion.Extras.Admin.NET.csproj:
+    newFile: !uuid '5e69b13895a5ded654a25b54a6c46940c977ca4d'
+    oldFile: !uuid '8fd1c1d5fa6c0556478c7dcabfe6d0d2b9fd9d8d'
+gitCommitId: !uuid '557ee82746383cff2145ce1b6ed7ec9539bbefaf'
 renames: {
   }
-revisionId: 666
+revisionId: 667
