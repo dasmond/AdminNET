@@ -33,6 +33,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Caching.CSRedis" Version="3.6.80" />
+    <PackageReference Include="CSRedisCore" Version="3.6.8" />
     <PackageReference Include="Furion" Version="3.0.6" />
     <PackageReference Include="Furion.Extras.Authentication.JwtBearer" Version="3.0.6" />
     <PackageReference Include="Furion.Extras.Logging.Serilog" Version="3.0.6" />
