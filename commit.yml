@@ -3,27 +3,18 @@ branches: {
   }
 fileChange:
   /backend:
-    newFile: !uuid 'b8834d9785d4bc934e52259646e2e099a9a3bdc5'
-    oldFile: !uuid '65b2e9238dccd232da513d99da81c5500fa96449'
-  /backend/Admin.NET.Web.Core:
-    newFile: !uuid '0364bd41f64d10d7b4cdd4476be7168b0c99a02e'
-    oldFile: !uuid '71471070dea6b78c400c400d5afbc3c4587fd7ad'
-  /backend/Admin.NET.Web.Core/Startup.cs:
-    newFile: !uuid '3a5f2fea6c286cbdb24f4fb47115a9118c690910'
-    oldFile: !uuid 'a0bd7cf3cb2b0e4e6ff98978b707cf9459b9ea2c'
-  /backend/Furion.Extras.Admin.NET:
-    newFile: !uuid 'e49b07265b434e994878901268f30efbacf9a5da'
-    oldFile: !uuid '6f104e834ba12be5f33859a76a97b38d0654722c'
-  /backend/Furion.Extras.Admin.NET/Extension:
-    newFile: !uuid 'db8492db3e91b2d9f3f1c158e1ec3b6d8fd342e0'
-    oldFile: !uuid 'b5ee10544bdee06efea92368e724a178b3a4da4a'
-  /backend/Furion.Extras.Admin.NET/Extension/CsRedisExtensions.cs:
-    newFile: !uuid 'fcfafdd767d6811dd70183ecaed78d443f0120f1'
-    oldFile: null
-  /backend/Furion.Extras.Admin.NET/Furion.Extras.Admin.NET.csproj:
-    newFile: !uuid 'c10db1c8b6924a2d96b2cb797992185f6d0d3642'
-    oldFile: !uuid '5e69b13895a5ded654a25b54a6c46940c977ca4d'
-gitCommitId: !uuid 'e5fbef5a91accd02ea1c8b0cefad6f20299a0e84'
+    newFile: !uuid '42b64be053a0eee0e43dfb564cf751d08f1fb139'
+    oldFile: !uuid 'b8834d9785d4bc934e52259646e2e099a9a3bdc5'
+  /backend/Admin.NET.EntityFramework.Core:
+    newFile: !uuid '3e87a96fee9210929c57f5a7bb4084f28ab6e34d'
+    oldFile: !uuid 'b2b1a004126c93daffd24335f07a1df046cbba9c'
+  /backend/Admin.NET.EntityFramework.Core/DbContexts:
+    newFile: !uuid '2e34d3446bd4e79d158532fcf5cf57595f38e638'
+    oldFile: !uuid '9c204d7f4806036b210c2fbc702c2639973807c8'
+  /backend/Admin.NET.EntityFramework.Core/DbContexts/DefaultDbContext.cs:
+    newFile: !uuid '6810f76ab2796677ad8ee01dd6606abe0e46e2b2'
+    oldFile: !uuid 'a4b06d976283ccb6d2b54ff6f6d37885fa2191ca'
+gitCommitId: !uuid '508ce8a99b6d780cca3bd96cdcdde4bbfba0f1ae'
 renames: {
   }
-revisionId: 675
+revisionId: 676
