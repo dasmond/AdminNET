@@ -3,18 +3,18 @@ branches: {
   }
 fileChange:
   /backend:
-    newFile: !uuid '42b64be053a0eee0e43dfb564cf751d08f1fb139'
-    oldFile: !uuid 'b8834d9785d4bc934e52259646e2e099a9a3bdc5'
-  /backend/Admin.NET.EntityFramework.Core:
-    newFile: !uuid '3e87a96fee9210929c57f5a7bb4084f28ab6e34d'
-    oldFile: !uuid 'b2b1a004126c93daffd24335f07a1df046cbba9c'
-  /backend/Admin.NET.EntityFramework.Core/DbContexts:
-    newFile: !uuid '2e34d3446bd4e79d158532fcf5cf57595f38e638'
-    oldFile: !uuid '9c204d7f4806036b210c2fbc702c2639973807c8'
-  /backend/Admin.NET.EntityFramework.Core/DbContexts/DefaultDbContext.cs:
-    newFile: !uuid '6810f76ab2796677ad8ee01dd6606abe0e46e2b2'
-    oldFile: !uuid 'a4b06d976283ccb6d2b54ff6f6d37885fa2191ca'
-gitCommitId: !uuid '508ce8a99b6d780cca3bd96cdcdde4bbfba0f1ae'
+    newFile: !uuid 'eea3097a510de14cf2f96801b8978af71400296e'
+    oldFile: !uuid '42b64be053a0eee0e43dfb564cf751d08f1fb139'
+  /backend/Furion.Extras.Admin.NET:
+    newFile: !uuid 'c2d3d18a3f69d70b805bc7ce9884d5d312d63b65'
+    oldFile: !uuid 'e49b07265b434e994878901268f30efbacf9a5da'
+  /backend/Furion.Extras.Admin.NET/Entity:
+    newFile: !uuid 'bc20af4d14ed203fd3b058666fbfe0a946f4bd0c'
+    oldFile: !uuid '524fea63f3dd1e60787dd464da04aeda61f0c439'
+  /backend/Furion.Extras.Admin.NET/Entity/SysOrg.cs:
+    newFile: !uuid '6df529b16119f8938e6fc976c1b295c07e0f46ee'
+    oldFile: !uuid '43e9e0b2f7a716675f2c143ab73c5aa6ae331b9d'
+gitCommitId: !uuid '94ab38e535ee2dc7be1f4583fb415c3ca8e7ae94'
 renames: {
   }
-revisionId: 676
+revisionId: 677
