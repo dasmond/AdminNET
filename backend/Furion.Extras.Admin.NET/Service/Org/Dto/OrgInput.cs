@@ -19,7 +19,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// 机构类型-品牌_1、总店(加盟/直营)_2、直营店_3、加盟店_4
         /// </summary>
         [Required(ErrorMessage = "请选择机构类型")]
-        public OrgTypeEnum OrgType { get; set; }
+        public string OrgType { get; set; }
 
         /// <summary>
         /// 名称
@@ -79,7 +79,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// 机构类型-品牌_1、总店(加盟/直营)_2、直营店_3、加盟店_4
         /// </summary>
         [Required(ErrorMessage = "请选择机构类型")]
-        public OrgTypeEnum OrgType { get; set; }
+        public string OrgType { get; set; }
 
         /// <summary>
         /// 机构Id
@@ -144,8 +144,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// <summary>
         /// 机构类型-品牌_1、总店(加盟/直营)_2、直营店_3、加盟店_4
         /// </summary>
-        [Required(ErrorMessage = "请选择机构类型")]
-        public OrgTypeEnum OrgType { get; set; }
+        public string OrgType { get; set; }
 
         public string Id { get; set; }
 

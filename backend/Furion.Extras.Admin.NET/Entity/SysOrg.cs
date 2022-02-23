@@ -71,10 +71,9 @@ namespace Furion.Extras.Admin.NET
         public CommonStatus Status { get; set; } = CommonStatus.ENABLE;
 
         /// <summary>
-        /// 机构类型-品牌_1、总店(加盟/直营)_2、直营店_3、加盟店_4
+        /// 机构类型
         /// </summary>
-        [Comment("机构类型-品牌_1、总店(加盟/直营)_2、直营店_3、加盟店_4")]
-        public OrgTypeEnum OrgType { get; set; }
+        public string OrgType { get; set; }
 
         /// <summary>
         /// 多对多（用户）
