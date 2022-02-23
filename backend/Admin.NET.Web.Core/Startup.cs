@@ -1,5 +1,6 @@
 ﻿using Furion;
 using Furion.Extras.Admin.NET;
+using Furion.Extras.Admin.NET.Extension;
 using Furion.Extras.Admin.NET.Options;
 using Furion.Extras.Admin.NET.Service;
 using Microsoft.AspNetCore.Builder;
@@ -46,12 +47,16 @@ namespace Admin.NET.Web.Core
 
             if (App.Configuration["Cache:CacheType"] == "RedisCache")
             {
-                services.AddStackExchangeRedisCache(options =>
-                {
-                    options.Configuration = App.Configuration["Cache:RedisConnectionString"]; // redis连接配置
-                    options.InstanceName = App.Configuration["Cache:InstanceName"]; // 键名前缀
-                });
+                //框架原注册StackExchangeRedisCache服务
+                //services.AddStackExchangeRedisCache(options =>
+                //{
+                //    options.Configuration = App.Configuration["Cache:RedisConnectionString"]; // redis连接配置
+                //     options.InstanceName = App.Configuration["Cache:InstanceName"]; // 键名前缀
+                // });
+
+                services.UseCsRedis();
             }
+
 
             //// default minio
             //// 添加默认对象储存配置信息

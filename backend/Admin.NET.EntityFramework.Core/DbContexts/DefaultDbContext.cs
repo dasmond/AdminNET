@@ -225,7 +225,7 @@ namespace Admin.NET.EntityFramework.Core
             onTableTenantId ??= "TenantId";
             isDeletedKey ??= "IsDeleted";
             IMutableEntityType metadata = entityBuilder.Metadata;
-            if (metadata.FindProperty(onTableTenantId) == null || metadata.FindProperty(isDeletedKey) == null)
+            if (metadata.FindProperty(onTableTenantId) == null && metadata.FindProperty(isDeletedKey) == null)
             {
                 return null;
             }
