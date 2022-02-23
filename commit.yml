@@ -3,18 +3,57 @@ branches: {
   }
 fileChange:
   /backend:
-    newFile: !uuid 'eea3097a510de14cf2f96801b8978af71400296e'
-    oldFile: !uuid '42b64be053a0eee0e43dfb564cf751d08f1fb139'
+    newFile: !uuid '1e3a7b1dcbcb1397fc13a5c6bee028232ac3691d'
+    oldFile: !uuid '65b2e9238dccd232da513d99da81c5500fa96449'
   /backend/Furion.Extras.Admin.NET:
-    newFile: !uuid 'c2d3d18a3f69d70b805bc7ce9884d5d312d63b65'
-    oldFile: !uuid 'e49b07265b434e994878901268f30efbacf9a5da'
+    newFile: !uuid '864795d1b81a701527782f485b624c4fb1ce08c4'
+    oldFile: !uuid '6f104e834ba12be5f33859a76a97b38d0654722c'
   /backend/Furion.Extras.Admin.NET/Entity:
-    newFile: !uuid 'bc20af4d14ed203fd3b058666fbfe0a946f4bd0c'
+    newFile: !uuid '27261791560caef9ac3816d712aca4f7b56f47c0'
     oldFile: !uuid '524fea63f3dd1e60787dd464da04aeda61f0c439'
   /backend/Furion.Extras.Admin.NET/Entity/SysOrg.cs:
-    newFile: !uuid '6df529b16119f8938e6fc976c1b295c07e0f46ee'
+    newFile: !uuid '9fc8ea4a4676289fc0c5c2bc00db516664ff1641'
     oldFile: !uuid '43e9e0b2f7a716675f2c143ab73c5aa6ae331b9d'
-gitCommitId: !uuid '94ab38e535ee2dc7be1f4583fb415c3ca8e7ae94'
+  /backend/Furion.Extras.Admin.NET/Enum:
+    newFile: !uuid 'f74c8aff3a0693d790a251ab71cb487a2c2b71d2'
+    oldFile: !uuid 'fe75653cfc252472613df88449ec639340d12a92'
+  /backend/Furion.Extras.Admin.NET/Enum/OrgTypeEnum.cs:
+    newFile: null
+    oldFile: !uuid '7342a0734dbd025f3bc4220e0c3ac1af4727b46a'
+  /backend/Furion.Extras.Admin.NET/Service:
+    newFile: !uuid '042d4ec2794f313abadbf9e63a4594d7ca9056af'
+    oldFile: !uuid 'b66600ef73567b71ef74845c3e08c6d16bb059cc'
+  /backend/Furion.Extras.Admin.NET/Service/Org:
+    newFile: !uuid '4358730b10ef539dcf0ec379a2d7ff3e995aeedf'
+    oldFile: !uuid '48add7e24ab77a96b8799057d9049609280b24d3'
+  /backend/Furion.Extras.Admin.NET/Service/Org/Dto:
+    newFile: !uuid '10812df771550b1514fdbf6535814788edc8d04b'
+    oldFile: !uuid 'a3133fd1e0267217c5b11ab6f2220bd37f064667'
+  /backend/Furion.Extras.Admin.NET/Service/Org/Dto/OrgInput.cs:
+    newFile: !uuid 'e0c84442877f4a07b9be096848dbc16467594177'
+    oldFile: !uuid 'd7bfcc1fe0ea5998e935b2a51c319733c578cf84'
+  /backend/Furion.Extras.Admin.NET/Service/Org/Dto/OrgOutput.cs:
+    newFile: !uuid '1be9bbe068954571c97d52fa28eb60e1b61cd5b3'
+    oldFile: !uuid 'fb808380f8c6174a000579adc5ff02080e3deb80'
+  /frontend:
+    newFile: !uuid '737abf55653c579af0fc98a5617d8b274adab504'
+    oldFile: !uuid '5136abc000e2b38eaad96bc1a182a737b2f7d519'
+  /frontend/src:
+    newFile: !uuid '604e96b5c0fb8faad2cf706e473ac19923d2dac9'
+    oldFile: !uuid '47b3b2d0eedfc25f40140c19cb89dd343506de7f'
+  /frontend/src/views:
+    newFile: !uuid '7f69fe5370db6ffef1884ac14205f4685104532c'
+    oldFile: !uuid '30e4872c11500adfcee3653dd4c0dcbd96b0f37c'
+  /frontend/src/views/system:
+    newFile: !uuid '436db51f50d52de63621a8f3bc097c0fc5c1850d'
+    oldFile: !uuid '5d1eff276d263641c3ed67cb083dd26c22af5dab'
+  /frontend/src/views/system/org:
+    newFile: !uuid '3afee7c7461c3f5de7ad282b8709c2f9770a3ae5'
+    oldFile: !uuid 'fe604660e32769e9b6bbde8d9076004bed8dd79f'
+  /frontend/src/views/system/org/editForm.vue:
+    newFile: !uuid 'f72c90d5fa03543f4703304a15e81fb127a4703c'
+    oldFile: !uuid 'abc06261007238908490d85753cf2756e9fbba7a'
+gitCommitId: !uuid '82834ba6e2793dec8533e845c2b9d9bd52f8623e'
 renames: {
   }
-revisionId: 677
+revisionId: 678
