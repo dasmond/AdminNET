@@ -2,28 +2,16 @@
 branches: {
   }
 fileChange:
-  /frontend:
-    newFile: !uuid '97bde8792c85391cfb673438f8784f3102cff8c1'
-    oldFile: !uuid '737abf55653c579af0fc98a5617d8b274adab504'
-  /frontend/src:
-    newFile: !uuid '1ef70f82329271fff9014a4a42534db42aede66b'
-    oldFile: !uuid '604e96b5c0fb8faad2cf706e473ac19923d2dac9'
-  /frontend/src/views:
-    newFile: !uuid '2e0f7ab2c6fcc9dcb38f860be87652948acd2995'
-    oldFile: !uuid '7f69fe5370db6ffef1884ac14205f4685104532c'
-  /frontend/src/views/system:
-    newFile: !uuid 'b601839941100be804885e11e5153943f318c88b'
-    oldFile: !uuid '436db51f50d52de63621a8f3bc097c0fc5c1850d'
-  /frontend/src/views/system/timers:
-    newFile: !uuid 'b3ee47c7543a6966efc02590999985fe29a5f7d6'
-    oldFile: !uuid '88c0dfb8d13a8d33dffc759c856069b7520fdd19'
-  /frontend/src/views/system/timers/addForm.vue:
-    newFile: !uuid 'c071d3b9cd9d688ee3d3194e880127e9729b8114'
-    oldFile: !uuid 'f0f83847b4e12db89820523c5a0f43a508d4ff6d'
-  /frontend/src/views/system/timers/editForm.vue:
-    newFile: !uuid '4a862b0edd9586a00ca12426af62364d6a00ae5d'
-    oldFile: !uuid '87d95f75e0fce7e2a2da79ae22fb907da2aa1081'
-gitCommitId: !uuid 'aa60b97acbb775664c7fbcb66455fe24a2ebde30'
-renames: {
-  }
-revisionId: 680
+  /doc:
+    newFile: !uuid 'c8908369c76c0b4741ada31b73cb6fc2ac53b97b'
+    oldFile: !uuid 'dd4fd69bed6aba18fa534909ce5273b7442871a8'
+  /doc/快捷部署到 linux 方案.md:
+    newFile: null
+    oldFile: !uuid 'daabf208b28a6ffab9e4b24564f9fc91c9835929'
+  /doc/快捷部署到linux方案.md:
+    newFile: !uuid 'daabf208b28a6ffab9e4b24564f9fc91c9835929'
+    oldFile: null
+gitCommitId: !uuid 'e8e6fa98b8d41a90956fa61b548b91000a5bae00'
+renames:
+  /doc/快捷部署到linux方案.md: /doc/快捷部署到 linux 方案.md
+revisionId: 681
