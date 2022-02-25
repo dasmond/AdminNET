@@ -168,7 +168,7 @@
 👉快捷部署到 linux 文档：
 
 - [Admin.NET 快捷部署到 linux 方案 | Wynnyo Blog](http://wynnyo.com/archives/publish-linux)
-- [本地 md文件](./build/readme.md)
+- [本地 md文件](./doc/快捷部署到linux方案.md)
 
 👉代码生成器使用教程：
 
