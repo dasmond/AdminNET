@@ -1,4 +1,4 @@
-﻿using Furion.DependencyInjection;
+using Furion.DependencyInjection;
 using Furion.DynamicApiController;
 using Furion.JsonSerialization;
 using Microsoft.AspNetCore.Mvc;
@@ -224,7 +224,7 @@ namespace Furion.Extras.Admin.NET.Service
         public async Task AddCacheKey(string cacheKey)
         {
             var res = await _cache.GetStringAsync(CommonConst.CACHE_KEY_ALL);
-            var allkeys = string.IsNullOrWhiteSpace(res) ? new List<string>() : JSON.Deserialize<List<string>>(res);
+            var allkeys = string.IsNullOrWhiteSpace(res) ? new HashSet<string>() : JSON.Deserialize<HashSet<string>>(res);
             if (!allkeys.Any(m => m == cacheKey))
             {
                 allkeys.Add(cacheKey);
@@ -241,7 +241,7 @@ namespace Furion.Extras.Admin.NET.Service
         public async Task DelCacheKey(string cacheKey)
         {
             var res = await _cache.GetStringAsync(CommonConst.CACHE_KEY_ALL);
-            var allkeys = string.IsNullOrWhiteSpace(res) ? new List<string>() : JSON.Deserialize<List<string>>(res);
+            var allkeys = string.IsNullOrWhiteSpace(res) ? new HashSet<string>() : JSON.Deserialize<HashSet<string>>(res);
             if (allkeys.Any(m => m == cacheKey))
             {
                 allkeys.Remove(cacheKey);
