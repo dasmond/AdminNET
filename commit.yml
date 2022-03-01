@@ -2,10 +2,22 @@
 branches: {
   }
 fileChange:
-  /README.md:
-    newFile: !uuid '9f00088521385f42380375af73d9721a650ed10b'
-    oldFile: !uuid '7f32df3ec26390356aa93690aeed916ee1aa008f'
-gitCommitId: !uuid '5bc96c1ece913b7a67096afa199f5640341bb9f9'
+  /backend:
+    newFile: !uuid 'b46f3fec640990076db76d719b6567e671b8cee8'
+    oldFile: !uuid '931491957bd7c9ae846d10d95256bad9767dc258'
+  /backend/Furion.Extras.Admin.NET:
+    newFile: !uuid '2f7b010c9a7c743a5c73c2be166a8bd50489af40'
+    oldFile: !uuid '7d2ac537ed8e29df67cded1fb49b3903a4785365'
+  /backend/Furion.Extras.Admin.NET/Service:
+    newFile: !uuid '9299ee9782bef0c6aea5a7d90d0178f3e4e58b54'
+    oldFile: !uuid '042d4ec2794f313abadbf9e63a4594d7ca9056af'
+  /backend/Furion.Extras.Admin.NET/Service/Cache:
+    newFile: !uuid '85700d82b1550e10a10d2ea68896cc9183826324'
+    oldFile: !uuid '01c756e4c6be53ac5120df6c7aed94593344eaa4'
+  /backend/Furion.Extras.Admin.NET/Service/Cache/SysCacheService.cs:
+    newFile: !uuid '5fc603a4ca45a71458f6fa6e4e974eace09f8a42'
+    oldFile: !uuid '27f02b59f06625bae45ee65eb3896fba65c5d44e'
+gitCommitId: !uuid '119eab355cfde461d299524f17d7c8559402c751'
 renames: {
   }
-revisionId: 682
+revisionId: 683
