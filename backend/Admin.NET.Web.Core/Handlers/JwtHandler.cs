@@ -6,6 +6,7 @@ using Furion.Extras.Admin.NET.Options;
 using Furion.Extras.Admin.NET.Service;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -58,8 +59,7 @@ namespace Admin.NET.Web.Core
         private static async Task<bool> CheckAuthorzieAsync(DefaultHttpContext httpContext)
         {
             // 管理员跳过判断
-            var userManager = App.GetService<IUserManager>();
-            if (userManager.SuperAdmin) return true;
+            if (App.User.FindFirst(ClaimConst.CLAINM_SUPERADMIN)?.Value == ((int)AdminType.SuperAdmin).ToString()) return true;
 
             // 路由名称
             var routeName = httpContext.Request.Path.Value[1..].Replace("/", ":");
@@ -75,7 +75,8 @@ namespace Admin.NET.Web.Core
 
             // 获取用户权限集合（按钮或API接口）
             var allPermissionList = await App.GetService<ISysMenuService>().GetAllPermissionList();
-            var permissionList = await App.GetService<ISysMenuService>().GetLoginPermissionList(userManager.UserId);
+            var currUserId = Convert.ToInt64(App.User.FindFirst(ClaimConst.CLAINM_USERID)?.Value);
+            var permissionList = await App.GetService<ISysMenuService>().GetLoginPermissionList(currUserId);
 
             // 检查授权
             // 菜单中没有配置按钮权限，则不限制

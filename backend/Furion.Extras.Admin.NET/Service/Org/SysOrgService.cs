@@ -16,7 +16,6 @@ namespace Furion.Extras.Admin.NET.Service
     public class SysOrgService : ISysOrgService, IDynamicApiController, ITransient
     {
         private readonly IRepository<SysOrg> _sysOrgRep;  // 组织机构表仓储
-        private readonly IUserManager _userManager;
         private readonly ISysCacheService _sysCacheService;
         private readonly ISysEmpService _sysEmpService;
         private readonly ISysEmpExtOrgPosService _sysEmpExtOrgPosService;
@@ -24,7 +23,6 @@ namespace Furion.Extras.Admin.NET.Service
         private readonly ISysUserDataScopeService _sysUserDataScopeService;
 
         public SysOrgService(IRepository<SysOrg> sysOrgRep,
-                             IUserManager userManager,
                              ISysCacheService sysCacheService,
                              ISysEmpService sysEmpService,
                              ISysEmpExtOrgPosService sysEmpExtOrgPosService,
@@ -32,7 +30,6 @@ namespace Furion.Extras.Admin.NET.Service
                              ISysUserDataScopeService sysUserDataScopeService)
         {
             _sysOrgRep = sysOrgRep;
-            _userManager = userManager;
             _sysCacheService = sysCacheService;
             _sysEmpService = sysEmpService;
             _sysEmpExtOrgPosService = sysEmpExtOrgPosService;
@@ -74,7 +71,7 @@ namespace Furion.Extras.Admin.NET.Service
         {
             var dataScopeList = new List<long>();
             // 如果是超级管理员则获取所有组织机构，否则只获取其数据范围的机构数据
-            if (!_userManager.SuperAdmin)
+            if (!CurrentUserInfo.IsSuperAdmin)
             {
                 if (dataScopes.Count < 1)
                     return dataScopeList;
@@ -129,7 +126,7 @@ namespace Furion.Extras.Admin.NET.Service
             if (isExist)
                 throw Oops.Oh(ErrorCode.D2002);
             var dataScopes = await GetUserDataScopeIdList();
-            if (!_userManager.SuperAdmin)
+            if (!CurrentUserInfo.IsSuperAdmin)
             {
                 // 如果新增的机构父Id不是0，则进行数据权限校验
                 if (input.Pid != "0" && !string.IsNullOrEmpty(input.Pid))
@@ -147,16 +144,16 @@ namespace Furion.Extras.Admin.NET.Service
             await FillPids(sysOrg);
             var newOrg = await _sysOrgRep.InsertNowAsync(sysOrg);
             // 当前用户不是超级管理员时，将新增的公司加到用户的数据权限
-            if (App.User.FindFirst(ClaimConst.CLAINM_SUPERADMIN)?.Value != ((int)AdminType.SuperAdmin).ToString())
+            if (!CurrentUserInfo.IsSuperAdmin)
             {
-                var userId = App.User.FindFirst(ClaimConst.CLAINM_USERID)?.Value;
+                var userId = CurrentUserInfo.UserId;
                 new SysUserDataScope
                 {
-                    SysUserId = long.Parse(userId),
+                    SysUserId = userId,
                     SysOrgId = newOrg.Entity.Id
                 }.Insert();
                 dataScopes.Add(newOrg.Entity.Id);
-                await _sysCacheService.SetDataScope(long.Parse(userId), dataScopes); // 缓存新结果
+                await _sysCacheService.SetDataScope(userId, dataScopes); // 缓存新结果
             }
         }
 
@@ -191,7 +188,7 @@ namespace Furion.Extras.Admin.NET.Service
 
             // 检测数据范围能不能操作这个机构
             var dataScopes = await GetUserDataScopeIdList();
-            if (!_userManager.SuperAdmin && (dataScopes.Count < 1 || !dataScopes.Contains(sysOrg.Id)))
+            if (!CurrentUserInfo.IsSuperAdmin && (dataScopes.Count < 1 || !dataScopes.Contains(sysOrg.Id)))
                 throw Oops.Oh(ErrorCode.D2003);
 
             // 该机构下有员工，则不能删
@@ -248,7 +245,7 @@ namespace Furion.Extras.Admin.NET.Service
 
             // 检测数据范围能不能操作这个机构
             var dataScopes = await GetUserDataScopeIdList();
-            if (!_userManager.SuperAdmin && (dataScopes.Count < 1 || !dataScopes.Contains(sysOrg.Id)))
+            if (!CurrentUserInfo.IsSuperAdmin && (dataScopes.Count < 1 || !dataScopes.Contains(sysOrg.Id)))
                 throw Oops.Oh(ErrorCode.D2003);
 
             var isExist = await _sysOrgRep.DetachedEntities.AnyAsync(u => (u.Name == input.Name || u.Code == input.Code) && u.Id != sysOrg.Id);
@@ -304,7 +301,7 @@ namespace Furion.Extras.Admin.NET.Service
         public async Task<dynamic> GetOrgTree()
         {
             var dataScopeList = new List<long>();
-            if (!_userManager.SuperAdmin)
+            if (!CurrentUserInfo.IsSuperAdmin)
             {
                 var dataScopes = await GetUserDataScopeIdList();
                 if (dataScopes.Count < 1)

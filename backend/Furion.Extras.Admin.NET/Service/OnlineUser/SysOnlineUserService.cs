@@ -15,19 +15,17 @@ namespace Furion.Extras.Admin.NET.Service
     public class SysOnlineUserService : ISysOnlineUserService, IDynamicApiController, ITransient
     {
         private readonly ISysCacheService _sysCacheService;
-        private readonly IRepository<SysUser> _sysUerRep;// 用户表仓储
+        private readonly IRepository<SysUser> _sysUserRep;// 用户表仓储
         private readonly IRepository<SysTenant, MultiTenantDbContextLocator> _sysTenantRep;// 租户仓储
-        private readonly IUserManager _userManager;
         private readonly IHubContext<ChatHub, IChatClient> _chatHubContext;
 
         public SysOnlineUserService(ISysCacheService sysCacheService, IRepository<SysUser> sysUerRep,
-            IRepository<SysTenant, MultiTenantDbContextLocator> sysTenantRep, IUserManager userManager,
+            IRepository<SysTenant, MultiTenantDbContextLocator> sysTenantRep,
             IHubContext<ChatHub, IChatClient> chatHubContext)
         {
             _sysCacheService = sysCacheService;
-            _sysUerRep = sysUerRep;
+            _sysUserRep = sysUerRep;
             _sysTenantRep = sysTenantRep;
-            _userManager = userManager;
             _chatHubContext = chatHubContext;
         }
 
@@ -40,8 +38,9 @@ namespace Furion.Extras.Admin.NET.Service
         public async Task<PageResult<OnlineUserOutput>> QueryOnlineUserPageList([FromQuery] PageInputBase input)
         {
             var onlineUsers = await _sysCacheService.GetAsync<List<OnlineUser>>(CommonConst.CACHE_KEY_ONLINE_USER) ?? new List<OnlineUser>();
+            var currUser = _sysUserRep.FirstOrDefault(u => u.Id == CurrentUserInfo.UserId, false);
             var onlineUserOutputs = onlineUsers
-                .Where(!_userManager.SuperAdmin, o => o.TenantId == _userManager.User.TenantId)
+                .Where(!CurrentUserInfo.IsSuperAdmin, o => o.TenantId == currUser.TenantId)
                 .Where(!string.IsNullOrWhiteSpace(input.SearchValue), o => o.Account.Contains(input.SearchValue) || o.Name.Contains(input.SearchValue))
                 .Select(o => o.Adapt<OnlineUserOutput>());
 
@@ -62,8 +61,9 @@ namespace Furion.Extras.Admin.NET.Service
         public async Task<List<OnlineUserOutput>> List()
         {
             var onlineUsers = await _sysCacheService.GetAsync<List<OnlineUser>>(CommonConst.CACHE_KEY_ONLINE_USER) ?? new List<OnlineUser>();
+            var currUser = _sysUserRep.FirstOrDefault(u => u.Id == CurrentUserInfo.UserId, false);
             var onlineUserOutputs = onlineUsers
-                .Where(!_userManager.SuperAdmin, o => o.TenantId == _userManager.User.TenantId)
+                .Where(!CurrentUserInfo.IsSuperAdmin, o => o.TenantId == currUser.TenantId)
                 .Select(o => o.Adapt<OnlineUserOutput>())
                 .ToList();
 

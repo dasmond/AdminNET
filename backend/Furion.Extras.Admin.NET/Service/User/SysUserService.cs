@@ -21,8 +21,6 @@ namespace Furion.Extras.Admin.NET.Service
     public class SysUserService : ISysUserService, IDynamicApiController, ITransient
     {
         private readonly IRepository<SysUser> _sysUserRep;  // 用户表仓储
-        private readonly IUserManager _userManager;
-
         private readonly ISysCacheService _sysCacheService;
         private readonly ISysEmpService _sysEmpService;
         private readonly ISysUserDataScopeService _sysUserDataScopeService;
@@ -30,7 +28,6 @@ namespace Furion.Extras.Admin.NET.Service
         private readonly ISysOrgService _sysOrgService;
 
         public SysUserService(IRepository<SysUser> sysUserRep,
-                              IUserManager userManager,
                               ISysCacheService sysCacheService,
                               ISysEmpService sysEmpService,
                               ISysUserDataScopeService sysUserDataScopeService,
@@ -38,7 +35,6 @@ namespace Furion.Extras.Admin.NET.Service
                               ISysOrgService sysOrgService)
         {
             _sysUserRep = sysUserRep;
-            _userManager = userManager;
             _sysCacheService = sysCacheService;
             _sysEmpService = sysEmpService;
             _sysUserDataScopeService = sysUserDataScopeService;
@@ -54,13 +50,12 @@ namespace Furion.Extras.Admin.NET.Service
         [HttpGet("/sysUser/page")]
         public async Task<PageResult<UserOutput>> QueryUserPageList([FromQuery] UserPageInput input)
         {
-            var superAdmin = _userManager.SuperAdmin;
             var searchValue = input.SearchValue;
             var pid = input.SysEmpParam.OrgId;
 
             var sysEmpRep = Db.GetRepository<SysEmp>();
             var sysOrgRep = Db.GetRepository<SysOrg>();
-            var dataScopes = await GetUserDataScopeIdList(_userManager.UserId);
+            var dataScopes = await GetUserDataScopeIdList(CurrentUserInfo.UserId);
             var users = await _sysUserRep.DetachedEntities
                                          .Join(sysEmpRep.DetachedEntities, u => u.Id, e => e.Id, (u, e) => new { u, e })
                                          .Join(sysOrgRep.DetachedEntities, n => n.e.OrgId, o => o.Id, (n, o) => new { n, o })
@@ -71,7 +66,7 @@ namespace Furion.Extras.Admin.NET.Service
                                                                             x.o.Pids.Contains($"[{pid.Trim()}]")))
                                          .Where(input.SearchStatus >= 0, x => x.n.u.Status == input.SearchStatus)
                                          .Where(x => x.n.u.AdminType != AdminType.SuperAdmin)//排除超级管理员
-                                         .Where(!superAdmin && dataScopes.Count > 0, x => dataScopes.Contains(x.n.e.OrgId))
+                                         .Where(!CurrentUserInfo.IsSuperAdmin && dataScopes.Count > 0, x => dataScopes.Contains(x.n.e.OrgId))
                                          .Select(u => u.n.u.Adapt<UserOutput>())
                                          .ToADPagedListAsync(input.PageNo, input.PageSize);
 
@@ -129,7 +124,7 @@ namespace Furion.Extras.Admin.NET.Service
             if (user.AdminType == AdminType.Admin)
                 throw Oops.Oh(ErrorCode.D1018);
 
-            if (user.Id == _userManager.UserId)
+            if (user.Id == CurrentUserInfo.UserId)
                 throw Oops.Oh(ErrorCode.D1001);
 
             // 直接删除用户
@@ -411,7 +406,7 @@ namespace Furion.Extras.Admin.NET.Service
             var dataScopes = await _sysCacheService.GetDataScope(userId); // 先从缓存里面读取
             if (dataScopes == null || dataScopes.Count < 1)
             {
-                if (!_userManager.SuperAdmin)
+                if (!CurrentUserInfo.IsSuperAdmin)
                 {
                     var orgId = await _sysEmpService.GetEmpOrgId(userId);
                     // 获取该用户对应的数据范围集合
@@ -436,7 +431,7 @@ namespace Furion.Extras.Admin.NET.Service
         [NonAction]
         public async Task<List<long>> GetUserDataScopeIdList()
         {
-            var userId = _userManager.UserId;
+            var userId = CurrentUserInfo.UserId;
             var dataScopes = await GetUserDataScopeIdList(userId);
             return dataScopes;
         }
@@ -450,9 +445,9 @@ namespace Furion.Extras.Admin.NET.Service
         private async void CheckDataScope(string orgId)
         {
             // 如果当前用户不是超级管理员，则进行数据范围校验
-            if (!_userManager.SuperAdmin)
+            if (!CurrentUserInfo.IsSuperAdmin)
             {
-                var dataScopes = await GetUserDataScopeIdList(_userManager.UserId);
+                var dataScopes = await GetUserDataScopeIdList(CurrentUserInfo.UserId);
                 if (dataScopes == null || (orgId != null && !dataScopes.Any(u => u == long.Parse(orgId))))
                     throw Oops.Oh(ErrorCode.D1013);
             }
