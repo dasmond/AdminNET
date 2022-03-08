@@ -1,4 +1,4 @@
-﻿using Furion.DatabaseAccessor;
+using Furion.DatabaseAccessor;
 using Furion.DatabaseAccessor.Extensions;
 using Furion.DataEncryption;
 using Furion.DependencyInjection;
@@ -329,13 +329,30 @@ namespace Furion.Extras.Admin.NET.Service
         public async Task<IActionResult> ExportUser()
         {
             var users = _sysUserRep.DetachedEntities.AsQueryable();
-
-            var memoryStream = new MemoryStream();
-            memoryStream.SaveAs(users);
-            memoryStream.Seek(0, SeekOrigin.Begin);
-            return await Task.FromResult(new FileStreamResult(memoryStream, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
+            var result = users.ToList().Select(n => new
             {
-                FileDownloadName = "user.xlsx"
+                n.Account,
+                n.Name,
+                n.Sex,
+                n.Phone,
+                n.Email
+            });
+            var values = new List<Dictionary<string, object>>();
+            foreach (var user in users)
+            {
+                values.Add(new Dictionary<string, object> {
+                    { "账号", user.Account },
+                    { "姓名", user.Name },
+                    { "性别", user.Sex },
+                    { "手机", user.Phone }
+                });
+            }
+            var memoryStream = new MemoryStream();
+            memoryStream.SaveAs(values);
+            memoryStream.Seek(0, SeekOrigin.Begin);
+            return await Task.FromResult(new FileStreamResult(memoryStream, "application/octet-stream")
+            {
+                FileDownloadName = Guid.NewGuid().ToString() + ".xlsx"
             });
         }
 
