@@ -144,7 +144,7 @@ const user = {
             resolve(data)
           } else {
             // eslint-disable-next-line no-undef
-            reject(new Error(data.message))
+            reject(new Error(response.message))
           }
         })
         //登录过期后前端会发生高频访问后端的问题
