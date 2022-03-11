@@ -105,7 +105,6 @@ export default {
   methods: {
     // 初始化方法
     edit(record) {
-      console.log(record)
       this.visible = true
       this.getOrgTree()
       this.form.getFieldDecorator('orgtype', {

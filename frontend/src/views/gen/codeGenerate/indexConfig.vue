@@ -207,7 +207,6 @@
         }
         sysCodeGenerateConfigList(params).then((res) => {
           this.loadData = res.data
-          console.log(res.data);
           this.loadData.forEach(item => {
             for (const key in item) {
               if (item[key] === 'Y') {

@@ -45,7 +45,6 @@ export default {
   },
   methods: {
     fetchUser(key) {
-      console.log('fetching user', key)
       this.data = []
       this.fetching = true
 

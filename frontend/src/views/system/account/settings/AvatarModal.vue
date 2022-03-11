@@ -137,7 +137,6 @@
         })
       } else {
         this.$refs.cropper.getCropData((data) => {
-          console.log(data)
         })
       }
     },

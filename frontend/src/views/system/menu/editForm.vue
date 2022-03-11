@@ -622,7 +622,6 @@
         this.visibleIcon = true
       },
       handleIconChange(icon) {
-        // console.log('新图标：'+icon)
         this.form.getFieldDecorator('icon', {
           initialValue: icon
         })
