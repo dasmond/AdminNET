@@ -1,4 +1,4 @@
-﻿using Furion.DatabaseAccessor;
+using Furion.DatabaseAccessor;
 using Furion.DatabaseAccessor.Extensions;
 using Furion.DataEncryption;
 using Furion.DependencyInjection;
@@ -313,12 +313,12 @@ namespace Furion.Extras.Admin.NET.Service
         public async Task<List<UserOutput>> GetUserSelector([FromQuery] UserSelectorInput input)
         {
             var name = !string.IsNullOrEmpty(input.Name?.Trim());
-            return await _sysUserRep.DetachedEntities
+            var result= await _sysUserRep.DetachedEntities
                                     .Where(name, u => EF.Functions.Like(u.Name, $"%{input.Name.Trim()}%"))
                                     .Where(u => u.Status != CommonStatus.DELETED)
                                     .Where(u => u.AdminType != AdminType.SuperAdmin)
-                                    .ProjectToType<UserOutput>()
                                     .ToListAsync();
+            return result.Adapt<List<UserOutput>>();
         }
 
         /// <summary>
