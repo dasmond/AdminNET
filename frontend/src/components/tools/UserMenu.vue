@@ -11,7 +11,7 @@
         <a-icon type="fullscreen-exit" v-if="isFullscreen" />
         <a-icon type="fullscreen" v-else />
       </span>
-      <notice-icon class="action" />
+      <notice-icon class="action" v-if="hasPerm('sysNotice:received')" />
 
       <a-dropdown>
         <span class="action ant-dropdown-link user-dropdown-menu">
