@@ -42,7 +42,7 @@ namespace Admin.NET.Core.Service
             {
                 var menuList = await _sysMenuRep.AsQueryable()
                     .Where(u => u.Type != MenuTypeEnum.Btn)
-                    .ToTreeAsync(u => u.Children, u => u.Pid, 0);
+                    .OrderBy(u => u.OrderNo).ToTreeAsync(u => u.Children, u => u.Pid, 0);
                 return menuList.Adapt<List<MenuOutput>>();
             }
             else
@@ -51,7 +51,7 @@ namespace Admin.NET.Core.Service
                 var menuList = await _sysMenuRep.AsQueryable()
                     .Where(u => u.Type != MenuTypeEnum.Btn)
                     .Where(u => menuIdList.Contains(u.Id))
-                    .ToTreeAsync(u => u.Children, u => u.Pid, 0);
+                    .OrderBy(u => u.OrderNo).ToTreeAsync(u => u.Children, u => u.Pid, 0);
                 return menuList.Adapt<List<MenuOutput>>();
             }
         }
