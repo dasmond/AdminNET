@@ -29,14 +29,19 @@ namespace Admin.NET.Web.Core
 
         public void UseDefault()
         {
-            System.Console.WriteLine(@"  ___      _           _         _   _  _____ _____ 
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine(@"  ___      _           _         _   _  _____ _____ 
  / _ \    | |         (_)       | \ | ||  ___|_   _|
 / /_\ \ __| |_ __ ___  _ _ __   |  \| || |__   | |  
 |  _  |/ _` | '_ ` _ \| | '_ \  | . ` ||  __|  | |  
 | | | | (_| | | | | | | | | | |_| |\  || |___  | |  
-\_| |_/\__,_|_| |_| |_|_|_| |_(_)_| \_/\____/  \_/  
+\_| |_/\__,_|_| |_| |_|_|_| |_(_)_| \_/\____/  \_/  ");
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine(@"
 
-gitee:https://gitee.com/zuohuaijun/Admin.NET
+gitee: https://gitee.com/zuohuaijun/Admin.NET");
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine(@"期待您的PR，让.net更好！
 
 ");
         }
