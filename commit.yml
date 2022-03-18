@@ -2,22 +2,22 @@
 branches: {
   }
 fileChange:
-  /frontend:
-    newFile: !uuid 'b5b9698f3aa10d00f40e553fa11d84238a743eaf'
-    oldFile: !uuid 'e35bcc332ca1ceb01284a584ed09ec25a04e9750'
-  /frontend/src:
-    newFile: !uuid '1aaa9668369d92fe729a85b63937e8dffa12a7b8'
-    oldFile: !uuid '8812a0e9bcb49bef4b84105158cebc2a1123daaa'
-  /frontend/src/components:
-    newFile: !uuid 'eaf236c487c55354df4e0164f49a24efea59a865'
-    oldFile: !uuid '241e96fcb3294ab43613bbbee74bd2d5d0cf3248'
-  /frontend/src/components/tools:
-    newFile: !uuid '6eb4a5a40be8a76473102e4a3f84dd82382326e3'
-    oldFile: !uuid '3a795398c4f963c51c7163e86ed47304292db227'
-  /frontend/src/components/tools/UserMenu.vue:
-    newFile: !uuid '5c90607fe36f19284532ab24e3114c60ef2860b9'
-    oldFile: !uuid 'fcaf5bd3514b98d369d0e05c462e10ec5c52f117'
-gitCommitId: !uuid '201d263ea5ccb7587fba6bb78346c2a9b2f0736e'
+  /backend:
+    newFile: !uuid '5a03b2d66cdb7c813fc36e0aafaee6b0a3e3b540'
+    oldFile: !uuid 'd1d386063f11bda990bf5e53627d542b3f50afe4'
+  /backend/Admin.NET.Web.Core:
+    newFile: !uuid 'dc71eddb21fbf08f6b24d1597bc5c0452ca123c3'
+    oldFile: !uuid '6ec339f46b29d7d9f9469a14d9c24edec8cae55f'
+  /backend/Admin.NET.Web.Core/ServiceExtension:
+    newFile: !uuid '9e586705658e8498167818dc00d5b4e19e8ecbfc'
+    oldFile: null
+  /backend/Admin.NET.Web.Core/ServiceExtension/BStyleServiceExtension.cs:
+    newFile: !uuid '617162faffcb56cde8a6a8ce662947513bfd217e'
+    oldFile: null
+  /backend/Admin.NET.Web.Core/Startup.cs:
+    newFile: !uuid '3620e54181973e8a494bdd89e3d50e2a4a7fd20c'
+    oldFile: !uuid '3a5f2fea6c286cbdb24f4fb47115a9118c690910'
+gitCommitId: !uuid '8101e2043965bd0a42eff010df6c5677a6270884'
 renames: {
   }
-revisionId: 689
+revisionId: 690
