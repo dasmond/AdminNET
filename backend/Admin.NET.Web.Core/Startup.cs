@@ -20,6 +20,7 @@ namespace Admin.NET.Web.Core
     {
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddBStyle(c => c.UseDefault());
             services.AddConfigurableOptions<RefreshTokenSettingOptions>();
             services.AddJwt<JwtHandler>(enableGlobalAuthorize: true);
             services.AddCorsAccessor();
