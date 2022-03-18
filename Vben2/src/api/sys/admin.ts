@@ -1,21 +1,3 @@
-import type {
-  UserItem,
-  UserPageParams,
-  GrantUserRoleItem,
-  RoleItem,
-  RolePageParams,
-  GrantMenuItem,
-  GrantDataItem,
-  MenuItem,
-  OrgItem,
-  PosItem,
-  LogPageParams,
-  FilePageParams,
-  ConfigItem,
-  ConfigPageParams,
-  TimerItem,
-  TimerPageParams,
-} from './model/adminModel';
 import { defHttp } from '/@/utils/http/axios';
 
 enum Api {
@@ -89,16 +71,16 @@ enum Api {
 
 ////////// 账号管理接口 //////////
 // 获取账号分页列表
-export const getUserPageList = (params?: UserPageParams) =>
+export const getUserPageList = (params?: any) =>
   defHttp.get<any>({ url: Api.UserPageList, params });
 // 获取账号列表
-export const getUserList = (params?: UserItem) => defHttp.get<any>({ url: Api.RoleList, params });
+export const getUserList = (params?: any) => defHttp.get<any>({ url: Api.RoleList, params });
 // 增加账号
-export const addUser = (params: UserItem) => defHttp.post({ url: Api.AddUser, params });
+export const addUser = (params: any) => defHttp.post({ url: Api.AddUser, params });
 // 删除账号
 export const deleteUser = (id: number) => defHttp.post({ url: Api.DeleteUser, params: { id } });
 // 更新账号
-export const updateUser = (params: UserItem) => defHttp.post({ url: Api.UpdateUser, params });
+export const updateUser = (params: any) => defHttp.post({ url: Api.UpdateUser, params });
 // 设置账号状态
 export const setUserStatus = (id: number, status: number) =>
   defHttp.post({ url: Api.SetUserStatus, params: { id, status } });
@@ -109,26 +91,24 @@ export const userOwnRoleList = (id: number) =>
 export const userOwnOrgList = (id: number) =>
   defHttp.get<any>({ url: Api.UserOwnOrgList, params: { id } });
 // 授权账号角色
-export const grantUserRole = (params: GrantUserRoleItem) =>
-  defHttp.post({ url: Api.GrantUserRole, params });
+export const grantUserRole = (params: any) => defHttp.post({ url: Api.GrantUserRole, params });
 // 授权账号机构
-export const grantUserOrg = (params: GrantDataItem) =>
-  defHttp.post({ url: Api.GrantUserOrg, params });
+export const grantUserOrg = (params: any) => defHttp.post({ url: Api.GrantUserOrg, params });
 // 重置账号密码
 export const resetUserPwd = (id: number) => defHttp.post({ url: Api.ResetUserPwd, params: { id } });
 
 ////////// 角色管理接口 //////////
 // 获取角色分页列表
-export const getRolePageList = (params?: RolePageParams) =>
+export const getRolePageList = (params?: any) =>
   defHttp.get<any>({ url: Api.RolePageList, params });
 // 获取角色列表
-export const getRoleList = (params?: RoleItem) => defHttp.get<any>({ url: Api.RoleList, params });
+export const getRoleList = (params?: any) => defHttp.get<any>({ url: Api.RoleList, params });
 // 增加角色
-export const addRole = (params: RoleItem) => defHttp.post({ url: Api.AddRole, params });
+export const addRole = (params: any) => defHttp.post({ url: Api.AddRole, params });
 // 删除角色
 export const deleteRole = (id: number) => defHttp.post({ url: Api.DeleteRole, params: { id } });
 // 更新角色
-export const updateRole = (params: RoleItem) => defHttp.post({ url: Api.UpdateRole, params });
+export const updateRole = (params: any) => defHttp.post({ url: Api.UpdateRole, params });
 // 设置角色状态
 export const setRoleStatus = (id: number, status: number) =>
   defHttp.post({ url: Api.SetRoleStatus, params: { id, status } });
@@ -139,64 +119,62 @@ export const ownMenuList = (id: number) =>
 export const ownOrgList = (id: number) =>
   defHttp.get<any>({ url: Api.RoleOwnOrgList, params: { id } });
 // 授权角色菜单
-export const grantRoleMenu = (params: GrantMenuItem) =>
-  defHttp.post({ url: Api.GrantRoleMenu, params });
+export const grantRoleMenu = (params: any) => defHttp.post({ url: Api.GrantRoleMenu, params });
 // 授权角色数据
-export const grantRoleData = (params: GrantDataItem) =>
-  defHttp.post({ url: Api.GrantRoleData, params });
+export const grantRoleData = (params: any) => defHttp.post({ url: Api.GrantRoleData, params });
 
 ////////// 菜单管理接口 //////////
 // 获取菜单列表
-export const getMenuList = (params?: MenuItem) => defHttp.get<any>({ url: Api.MenuList, params });
+export const getMenuList = (params?: any) => defHttp.get<any>({ url: Api.MenuList, params });
 // 增加菜单
-export const addMenu = (params: MenuItem) => defHttp.post({ url: Api.AddMenu, params });
+export const addMenu = (params: any) => defHttp.post({ url: Api.AddMenu, params });
 // 删除菜单
 export const deleteMenu = (id: number) => defHttp.post({ url: Api.DeleteMenu, params: { id } });
 // 更新菜单
-export const updateMenu = (params: MenuItem) => defHttp.post({ url: Api.UpdateMenu, params });
+export const updateMenu = (params: any) => defHttp.post({ url: Api.UpdateMenu, params });
 
 ////////// 机构管理接口 //////////
 // 获取机构列表
-export const getOrgList = (params?: OrgItem) => defHttp.get<any>({ url: Api.OrgList, params });
+export const getOrgList = (params?: any) => defHttp.get<any>({ url: Api.OrgList, params });
 // 增加机构
-export const addOrg = (params: OrgItem) => defHttp.post({ url: Api.AddOrg, params });
+export const addOrg = (params: any) => defHttp.post({ url: Api.AddOrg, params });
 // 删除机构
 export const deleteOrg = (id: number) => defHttp.post({ url: Api.DeleteOrg, params: { id } });
 // 更新机构
-export const updateOrg = (params: OrgItem) => defHttp.post({ url: Api.UpdateOrg, params });
+export const updateOrg = (params: any) => defHttp.post({ url: Api.UpdateOrg, params });
 
 ////////// 职位管理接口 //////////
 // 获取职位列表
-export const getPosList = (params?: PosItem) => defHttp.get<any>({ url: Api.PosList, params });
+export const getPosList = (params?: any) => defHttp.get<any>({ url: Api.PosList, params });
 // 增加职位
-export const addPos = (params: PosItem) => defHttp.post({ url: Api.AddPos, params });
+export const addPos = (params: any) => defHttp.post({ url: Api.AddPos, params });
 // 删除职位
 export const deletePos = (id: number) => defHttp.post({ url: Api.DeletePos, params: { id } });
 // 更新职位
-export const updatePos = (params: PosItem) => defHttp.post({ url: Api.UpdatePos, params });
+export const updatePos = (params: any) => defHttp.post({ url: Api.UpdatePos, params });
 
 ////////// 日志管理接口 //////////
 // 获取访问日志分页列表
-export const getVisLogPageList = (params?: LogPageParams) =>
+export const getVisLogPageList = (params?: any) =>
   defHttp.get<any>({ url: Api.VislogPageList, params });
 //清空访问日志
 export const clearVisLog = () => defHttp.post({ url: Api.ClearVisLog });
 
 // 获取操作日志分页列表
-export const getOpLogPageList = (params?: LogPageParams) =>
+export const getOpLogPageList = (params?: any) =>
   defHttp.get<any>({ url: Api.OplogPageList, params });
 //清空操作日志
 export const clearOpLog = () => defHttp.post({ url: Api.ClearOpLog });
 
 // 获取异常日志分页列表
-export const getExLogPageList = (params?: LogPageParams) =>
+export const getExLogPageList = (params?: any) =>
   defHttp.get<any>({ url: Api.ExlogPageList, params });
 //清空异常日志
 export const clearExLog = () => defHttp.post({ url: Api.ClearExLog });
 
 ////////// 文件管理接口 //////////
 // 获取文件分页列表
-export const getFilePageList = (params?: FilePageParams) =>
+export const getFilePageList = (params?: any) =>
   defHttp.get<any>({ url: Api.FilePageList, params });
 // 上传文件
 import { UploadApiResult } from './model/uploadModel';
@@ -224,25 +202,25 @@ export const deleteFile = (id: number) => defHttp.post({ url: Api.DeleteFile, pa
 
 ////////// 系统配置管理接口 //////////
 // 获取配置分页列表
-export const getConfigPageList = (params?: ConfigPageParams) =>
+export const getConfigPageList = (params?: any) =>
   defHttp.get<any>({ url: Api.ConfigPageList, params });
 // 增加配置
-export const addConfig = (params: ConfigItem) => defHttp.post({ url: Api.AddConfig, params });
+export const addConfig = (params: any) => defHttp.post({ url: Api.AddConfig, params });
 // 删除配置
 export const deleteConfig = (id: number) => defHttp.post({ url: Api.DeleteConfig, params: { id } });
 // 更新配置
-export const updateConfig = (params: ConfigItem) => defHttp.post({ url: Api.UpdateConfig, params });
+export const updateConfig = (params: any) => defHttp.post({ url: Api.UpdateConfig, params });
 
 ////////// 定时任务管理接口 //////////
 // 获取定时任务分页列表
-export const getTimerPageList = (params?: TimerPageParams) =>
+export const getTimerPageList = (params?: any) =>
   defHttp.get<any>({ url: Api.TimerPageList, params });
 // 增加定时任务
-export const addTimer = (params: TimerItem) => defHttp.post({ url: Api.AddTimer, params });
+export const addTimer = (params: any) => defHttp.post({ url: Api.AddTimer, params });
 // 删除定时任务
 export const deleteTimer = (id: number) => defHttp.post({ url: Api.DeleteTimer, params: { id } });
 // 更新定时任务
-export const updateTimer = (params: TimerItem) => defHttp.post({ url: Api.UpdateTimer, params });
+export const updateTimer = (params: any) => defHttp.post({ url: Api.UpdateTimer, params });
 // 设置定时任务状态
 export const setTimerStatus = (timerName: string, status: number) =>
   defHttp.post({ url: Api.SetTimerStatus, params: { timerName, status } });
