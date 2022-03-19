@@ -35,7 +35,7 @@ namespace Admin.NET.Core.Service
             return await _sysConfigRep.AsQueryable()
                 .WhereIF(!string.IsNullOrWhiteSpace(input.Name?.Trim()), u => u.Name.Contains(input.Name))
                 .WhereIF(!string.IsNullOrWhiteSpace(input.Code?.Trim()), u => u.Code.Contains(input.Code))
-                .OrderBy(u => u.Order).ToPagedListAsync(input.PageIndex, input.PageSize);
+                .OrderBy(u => u.Order).ToPagedListAsync(input.Page, input.PageSize);
         }
 
         /// <summary>

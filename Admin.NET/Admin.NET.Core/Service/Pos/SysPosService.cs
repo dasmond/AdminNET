@@ -27,6 +27,7 @@ namespace Admin.NET.Core.Service
         /// <summary>
         /// 获取职位列表
         /// </summary>
+        /// <param name="input"></param>
         /// <returns></returns>
         [HttpGet("/sysPos/list")]
         public async Task<List<SysPos>> GetPosList([FromQuery] PosInput input)

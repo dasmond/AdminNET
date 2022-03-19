@@ -54,7 +54,7 @@ namespace Admin.NET.Core.Service
                 .WhereIF(!string.IsNullOrWhiteSpace(input.Phone), u => u.Phone.Contains(input.Phone))
                 .WhereIF(input.OrgId > 0, u => orgList.Contains(u.OrgId))
                 .WhereIF(!_userManager.SuperAdmin, u => u.UserType != UserTypeEnum.SuperAdmin)
-                .ToPagedListAsync(input.PageIndex, input.PageSize);
+                .ToPagedListAsync(input.Page, input.PageSize);
         }
 
         /// <summary>

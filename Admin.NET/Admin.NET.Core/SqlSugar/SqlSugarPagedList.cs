@@ -12,7 +12,7 @@ namespace Admin.NET.Core
         /// <summary>
         /// 页码
         /// </summary>
-        public int PageIndex { get; set; }
+        public int Page { get; set; }
 
         /// <summary>
         /// 页容量
@@ -22,7 +22,7 @@ namespace Admin.NET.Core
         /// <summary>
         /// 总条数
         /// </summary>
-        public int TotalCount { get; set; }
+        public int Total { get; set; }
 
         /// <summary>
         /// 总页数
@@ -37,11 +37,11 @@ namespace Admin.NET.Core
         /// <summary>
         /// 是否有上一页
         /// </summary>
-        public bool HasPrevPages { get; set; }
+        public bool HasPrevPage { get; set; }
 
         /// <summary>
         /// 是否有下一页
         /// </summary>
-        public bool HasNextPages { get; set; }
+        public bool HasNextPage { get; set; }
     }
 }

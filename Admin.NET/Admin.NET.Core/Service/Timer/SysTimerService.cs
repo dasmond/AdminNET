@@ -44,7 +44,7 @@ namespace Admin.NET.Core.Service
             var timers = await _sysTimerRep.AsQueryable()
                 .WhereIF(!string.IsNullOrWhiteSpace(input.TimerName), u => u.TimerName.Contains(input.TimerName))
                 .Select<TimerOutput>()
-                .ToPagedListAsync(input.PageIndex, input.PageSize);
+                .ToPagedListAsync(input.Page, input.PageSize);
 
             timers.Items.ToList().ForEach(u =>
             {

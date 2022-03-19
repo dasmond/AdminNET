@@ -53,7 +53,7 @@ namespace Admin.NET.Core.Service
                 .WhereIF(!string.IsNullOrWhiteSpace(input.StartTime.ToString()) && !string.IsNullOrWhiteSpace(input.EndTime.ToString()),
                             u => u.CreateTime >= input.StartTime && u.CreateTime <= input.EndTime)
                 .OrderBy(u => u.CreateTime, SqlSugar.OrderByType.Desc)
-                .ToPagedListAsync(input.PageIndex, input.PageSize);
+                .ToPagedListAsync(input.Page, input.PageSize);
             return files;
         }
 

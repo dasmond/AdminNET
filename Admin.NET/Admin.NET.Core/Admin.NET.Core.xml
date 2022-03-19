@@ -2050,6 +2050,11 @@
             <param name="context"></param>
             <returns></returns>
         </member>
+        <member name="T:Admin.NET.Core.LogoExtension">
+            <summary>
+            logo显示
+            </summary>
+        </member>
         <member name="T:Admin.NET.Core.ObjectExtension">
             <summary>
             对象拓展类
@@ -3613,6 +3618,7 @@
             <summary>
             获取职位列表
             </summary>
+            <param name="input"></param>
             <returns></returns>
         </member>
         <member name="M:Admin.NET.Core.Service.SysPosService.AddPos(Admin.NET.Core.Service.AddPosInput)">
@@ -4625,7 +4631,7 @@
             </summary>
             <typeparam name="TEntity"></typeparam>
         </member>
-        <member name="P:Admin.NET.Core.SqlSugarPagedList`1.PageIndex">
+        <member name="P:Admin.NET.Core.SqlSugarPagedList`1.Page">
             <summary>
             页码
             </summary>
@@ -4635,7 +4641,7 @@
             页容量
             </summary>
         </member>
-        <member name="P:Admin.NET.Core.SqlSugarPagedList`1.TotalCount">
+        <member name="P:Admin.NET.Core.SqlSugarPagedList`1.Total">
             <summary>
             总条数
             </summary>
@@ -4650,12 +4656,12 @@
             当前页集合
             </summary>
         </member>
-        <member name="P:Admin.NET.Core.SqlSugarPagedList`1.HasPrevPages">
+        <member name="P:Admin.NET.Core.SqlSugarPagedList`1.HasPrevPage">
             <summary>
             是否有上一页
             </summary>
         </member>
-        <member name="P:Admin.NET.Core.SqlSugarPagedList`1.HasNextPages">
+        <member name="P:Admin.NET.Core.SqlSugarPagedList`1.HasNextPage">
             <summary>
             是否有下一页
             </summary>
@@ -4795,7 +4801,7 @@
             全局分页查询输入参数
             </summary>
         </member>
-        <member name="P:Admin.NET.Core.BasePageInput.PageIndex">
+        <member name="P:Admin.NET.Core.BasePageInput.Page">
             <summary>
             当前页码
             </summary>

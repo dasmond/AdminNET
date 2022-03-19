@@ -68,6 +68,7 @@ namespace Admin.NET.Core.Service
                 var resUserInfo = await _wechatApiClient.ExecuteSnsUserInfoAsync(reqUserInfo);
                 wxUser = resUserInfo.Adapt<WechatUser>();
                 wxUser.Avatar = resUserInfo.HeadImageUrl;
+                wxUser.NickName = resUserInfo.Nickname;
                 wxUser = await _wechatUserRep.AsInsertable(wxUser).ExecuteReturnEntityAsync();
             }
             else

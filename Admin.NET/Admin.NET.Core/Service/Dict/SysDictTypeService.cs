@@ -40,7 +40,7 @@ namespace Admin.NET.Core.Service
                 .WhereIF(code, u => u.Code.Contains(input.Code))
                 .WhereIF(name, u => u.Code.Contains(input.Name))
                 .OrderBy(u => u.Order)
-                .ToPagedListAsync(input.PageIndex, input.PageSize);
+                .ToPagedListAsync(input.Page, input.PageSize);
         }
 
         /// <summary>

@@ -52,7 +52,7 @@ namespace Admin.NET.Core.Service
             return await _sysRoleRep.AsQueryable()
                 .WhereIF(!string.IsNullOrWhiteSpace(input.Name), u => u.Name.Contains(input.Name))
                 .WhereIF(input.Status > 0, u => u.Status == (StatusEnum)input.Status)
-                .OrderBy(u => u.Order).ToPagedListAsync(input.PageIndex, input.PageSize);
+                .OrderBy(u => u.Order).ToPagedListAsync(input.Page, input.PageSize);
         }
 
         /// <summary>

@@ -8,7 +8,7 @@
         /// <summary>
         /// 当前页码
         /// </summary>
-        public virtual int PageIndex { get; set; }
+        public virtual int Page { get; set; }
 
         /// <summary>
         /// 页码容量

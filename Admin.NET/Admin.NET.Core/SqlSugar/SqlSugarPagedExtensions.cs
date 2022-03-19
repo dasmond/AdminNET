@@ -19,18 +19,18 @@ namespace Admin.NET.Core
         public static SqlSugarPagedList<TEntity> ToPagedList<TEntity>(this ISugarQueryable<TEntity> entity, int pageIndex, int pageSize)
             where TEntity : new()
         {
-            var totalCount = 0;
-            var items = entity.ToPageList(pageIndex, pageSize, ref totalCount);
-            var totalPages = (int)Math.Ceiling(totalCount / (double)pageSize);
+            var total = 0;
+            var items = entity.ToPageList(pageIndex, pageSize, ref total);
+            var totalPages = (int)Math.Ceiling(total / (double)pageSize);
             return new SqlSugarPagedList<TEntity>
             {
-                PageIndex = pageIndex,
+                Page = pageIndex,
                 PageSize = pageSize,
                 Items = items,
-                TotalCount = totalCount,
+                Total = total,
                 TotalPages = totalPages,
-                HasNextPages = pageIndex < totalPages,
-                HasPrevPages = pageIndex - 1 > 0
+                HasNextPage = pageIndex < totalPages,
+                HasPrevPage = pageIndex - 1 > 0
             };
         }
 
@@ -44,18 +44,18 @@ namespace Admin.NET.Core
         public static async Task<SqlSugarPagedList<TEntity>> ToPagedListAsync<TEntity>(this ISugarQueryable<TEntity> entity, int pageIndex, int pageSize)
             where TEntity : new()
         {
-            RefAsync<int> totalCount = 0;
-            var items = await entity.ToPageListAsync(pageIndex, pageSize, totalCount);
-            var totalPages = (int)Math.Ceiling(totalCount / (double)pageSize);
+            RefAsync<int> total = 0;
+            var items = await entity.ToPageListAsync(pageIndex, pageSize, total);
+            var totalPages = (int)Math.Ceiling(total / (double)pageSize);
             return new SqlSugarPagedList<TEntity>
             {
-                PageIndex = pageIndex,
+                Page = pageIndex,
                 PageSize = pageSize,
                 Items = items,
-                TotalCount = totalCount,
+                Total = total,
                 TotalPages = totalPages,
-                HasNextPages = pageIndex < totalPages,
-                HasPrevPages = pageIndex - 1 > 0
+                HasNextPage = pageIndex < totalPages,
+                HasPrevPage = pageIndex - 1 > 0
             };
         }
     }

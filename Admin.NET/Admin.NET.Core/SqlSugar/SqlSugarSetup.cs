@@ -108,13 +108,12 @@ namespace Admin.NET.Core
                     SetDataEntityFilter(db);
                 });
 
-            services.AddSingleton<ISqlSugarClient>(sqlSugar); // 这边是SqlSugarScope用AddSingleton
+            services.AddSingleton<ISqlSugarClient>(sqlSugar); // SqlSugarScope用AddSingleton单例
             services.AddScoped(typeof(SqlSugarRepository<>)); // 注册仓储
 
-            // 初始化数据库结构
-            if (!bool.Parse(configuration.GetConnectionString("InitTable")))
-                return;
-            InitDataBase(sqlSugar);
+            // 初始化数据库结构及种子数据
+            if (bool.Parse(configuration.GetConnectionString("InitTable")))
+                InitDataBase(sqlSugar);
         }
 
         /// <summary>
@@ -184,25 +183,25 @@ namespace Admin.NET.Core
         /// </summary>
         public static async void SetDataEntityFilter(SqlSugarClient db)
         {
-            // 取当前用户机构Id集合缓存
-            var userId = App.User?.FindFirst(ClaimConst.UserId)?.Value;
-            if (string.IsNullOrWhiteSpace(userId)) return;
-            var orgIds = await App.GetService<SysCacheService>().GetOrgIdList(long.Parse(userId));
-            if (orgIds == null) return;
-            var orgIdList = orgIds.ConvertAll(x => x.ToString());
-
             // 获取业务数据表集合
             var dataEntityTypes = App.EffectiveTypes.Where(u => !u.IsInterface && !u.IsAbstract && u.IsClass
                 && u.BaseType == typeof(DataEntityBase));
             if (!dataEntityTypes.Any()) return;
+
+            var userId = App.User?.FindFirst(ClaimConst.UserId)?.Value;
+            if (string.IsNullOrWhiteSpace(userId)) return;
+
+            // 获取用户机构Id集合
+            var orgIds = await App.GetService<SysCacheService>().GetOrgIdList(long.Parse(userId));
+            if (orgIds == null) return;
+
             foreach (var dataEntityType in dataEntityTypes)
             {
                 foreach (var orgId in orgIds)
                 {
-                    //动态构造这种表达式
-                    Expression<Func<DataEntityBase, bool>> dynamicExpression = it => it.CreateUserId == orgId;
+                    Expression<Func<DataEntityBase, bool>> dynamicExpression = u => u.CreateOrgId == orgId;
                     Expression exp = dynamicExpression;
-                    db.QueryFilter.Add(new TableFilterItem<object>(dataEntityType, exp)); // 设置过滤器 
+                    db.QueryFilter.Add(new TableFilterItem<object>(dataEntityType, exp)); // 设置表过滤器 
                 }
             }
         }
