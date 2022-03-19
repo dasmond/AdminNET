@@ -61,8 +61,11 @@ namespace Admin.NET.Core.Service
         /// <returns></returns>
         public async Task<List<SysRole>> GetUserRoleList(long userId)
         {
-            return await _sysUserRoleRep.AsQueryable().Mapper(u => u.SysRole, u => u.RoleId)
-                .Where(u => u.UserId == userId).Select<SysRole>().ToListAsync();
+            var result = await _sysUserRoleRep.AsQueryable().Mapper(u => u.SysRole, u => u.RoleId)
+                .Where(u => u.UserId == userId).ToListAsync();
+            var list = new List<SysRole>();
+            result.ForEach(u => list.Add(u.SysRole));
+            return list;
         }
 
         /// <summary>
