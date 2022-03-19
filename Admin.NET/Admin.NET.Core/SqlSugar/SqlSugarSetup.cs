@@ -104,8 +104,8 @@ namespace Admin.NET.Core
                         }
                     };
 
-                    //// 配置业务数据权限过滤器
-                    //SetDataEntityFilter(db);
+                    // 配置业务数据权限过滤器
+                    SetDataEntityFilter(db);
                 });
 
             services.AddSingleton<ISqlSugarClient>(sqlSugar); // 这边是SqlSugarScope用AddSingleton
@@ -197,9 +197,13 @@ namespace Admin.NET.Core
             if (!dataEntityTypes.Any()) return;
             foreach (var dataEntityType in dataEntityTypes)
             {
-                var exp = DynamicExpressionParser.ParseLambda(new[] { Expression.Parameter(dataEntityType, "u") },
-                    typeof(bool), $"{orgIdList.Contains("u.CreateOrgId")}", false);
-                db.QueryFilter.Add(new TableFilterItem<object>(dataEntityType, exp)); // 设置过滤器
+                foreach (var orgId in orgIds)
+                {
+                    //动态构造这种表达式
+                    Expression<Func<DataEntityBase, bool>> dynamicExpression = it => it.CreateUserId == orgId;
+                    Expression exp = dynamicExpression;
+                    db.QueryFilter.Add(new TableFilterItem<object>(dataEntityType, exp)); // 设置过滤器 
+                }
             }
         }
 
