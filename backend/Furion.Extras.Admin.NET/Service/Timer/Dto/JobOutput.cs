@@ -90,9 +90,14 @@ namespace Furion.Extras.Admin.NET.Service
         public string MethodName { get; set; }
 
         /// <summary>
-        /// 方法所属类的Type对象
+        /// 方法所属类的Type名称
         /// </summary>
-        public Type DeclaringType { get; set; }
+        public string TypeName { get; set; }
+
+        /// <summary>
+        /// 方法所属类的Assembly名称
+        /// </summary>
+        public string AssemblyName { get; set; }
 
         /// <summary>
         /// 任务名称
