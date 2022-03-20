@@ -137,42 +137,33 @@ export const formSchema: FormSchema[] = [
     label: '用户名',
     component: 'Input',
     required: true,
-    colProps: {
-      span: 12,
-    },
+    colProps: { span: 12 },
   },
   {
     field: 'nickName',
     label: '昵称',
     component: 'Input',
-    colProps: {
-      span: 12,
-    },
+    colProps: { span: 12 },
   },
   {
     field: 'realName',
     label: '真实姓名',
     component: 'Input',
     required: true,
-    colProps: {
-      span: 12,
-    },
+    colProps: { span: 12 },
   },
   {
     field: 'birthday',
     label: '出生日期',
     component: 'DatePicker',
-    colProps: {
-      span: 12,
-    },
+    colProps: { span: 12 },
+    componentProps: { style: { width: '100%' } },
   },
   {
     field: 'sex',
     label: '性别',
     component: 'RadioGroup',
-    colProps: {
-      span: 12,
-    },
+    colProps: { span: 12 },
     componentProps: {
       options: [
         {
@@ -190,26 +181,20 @@ export const formSchema: FormSchema[] = [
     field: 'phone',
     label: '手机号码',
     component: 'Input',
-    colProps: {
-      span: 12,
-    },
+    colProps: { span: 12 },
     required: true,
   },
   {
     field: 'email',
     label: '邮箱',
     component: 'Input',
-    colProps: {
-      span: 12,
-    },
+    colProps: { span: 12 },
   },
   {
     field: 'idCard',
     label: '证件号码',
     component: 'Input',
-    colProps: {
-      span: 12,
-    },
+    colProps: { span: 12 },
   },
   {
     field: 'signature',
@@ -234,9 +219,7 @@ export const formSchema: FormSchema[] = [
       },
     },
     required: true,
-    colProps: {
-      span: 12,
-    },
+    colProps: { span: 12 },
   },
   {
     field: 'posId',
@@ -247,25 +230,19 @@ export const formSchema: FormSchema[] = [
       labelField: 'name',
       valueField: 'id',
     },
-    colProps: {
-      span: 12,
-    },
+    colProps: { span: 12 },
   },
   {
     field: 'jobNum',
     label: '工号',
     component: 'Input',
-    colProps: {
-      span: 12,
-    },
+    colProps: { span: 12 },
   },
   {
     field: 'jobStatus',
     label: '岗位状态',
     component: 'Select',
-    colProps: {
-      span: 12,
-    },
+    colProps: { span: 12 },
     componentProps: {
       options: [
         {

@@ -91,6 +91,7 @@ export const formSchema: FormSchema[] = [
     component: 'InputNumber',
     defaultValue: 0,
     required: true,
+    componentProps: { style: { width: '100%' } },
   },
   {
     field: 'status',
