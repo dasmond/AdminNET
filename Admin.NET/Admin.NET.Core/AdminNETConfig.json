@@ -15,8 +15,15 @@
   },
   "ConnectionStrings": {
     "DefaultConnection": "DataSource=C:\\Admin.NET.db", // "server=127.0.0.1;uid=sa;pwd=123456;database=db;MultipleActiveResultSets=True",
-    "DbType": "Sqlite", // MySql、SqlServer、Sqlite、Oracle、PostgreSQL、Dm、Kdbndp、Oscar、MySqlConnector、Access
-    "InitTable": true
+    "DefaultDbType": "Sqlite", // MySql、SqlServer、Sqlite、Oracle、PostgreSQL、Dm、Kdbndp、Oscar、MySqlConnector、Access
+    "InitTable": true,
+    "DbConfigs": [
+      //{
+      //  "DbConfigId": "test",
+      //  "DbType": "Sqlite",
+      //  "DbConnection": "Data Source=./Magic.db"
+      //}
+    ]
   },
   "JWTSettings": {
     "ValidateIssuerSigningKey": true, // 是否验证密钥，bool 类型，默认true

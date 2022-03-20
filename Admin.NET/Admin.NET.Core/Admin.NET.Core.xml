@@ -2162,6 +2162,56 @@
             键值前缀
             </summary>
         </member>
+        <member name="T:Admin.NET.Core.ConnectionStringsOptions">
+            <summary>
+            数据库配置
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.ConnectionStringsOptions.DefaultConfigId">
+            <summary>
+            默认数据库编号
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.ConnectionStringsOptions.DefaultDbType">
+            <summary>
+            默认数据库类型
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.ConnectionStringsOptions.DefaultConnection">
+            <summary>
+            默认数据库连接字符串
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.ConnectionStringsOptions.InitTable">
+            <summary>
+            初始化数据
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.ConnectionStringsOptions.DbConfigs">
+            <summary>
+            业务库集合
+            </summary>
+        </member>
+        <member name="T:Admin.NET.Core.DbConfig">
+            <summary>
+            数据库参数
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.DbConfig.DbConfigId">
+            <summary>
+            数据库编号
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.DbConfig.DbType">
+            <summary>
+            数据库类型
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.DbConfig.DbConnection">
+            <summary>
+            数据库连接字符串
+            </summary>
+        </member>
         <member name="T:Admin.NET.Core.OSSProviderOptions">
             <summary>
             对象存储配置选项
@@ -4691,7 +4741,7 @@
             <param name="type">排序类型</param>
             <returns>int</returns>
         </member>
-        <member name="M:Admin.NET.Core.SqlSugarSetup.SetDataEntityFilter(SqlSugar.SqlSugarClient)">
+        <member name="M:Admin.NET.Core.SqlSugarSetup.SetDataEntityFilter(SqlSugar.SqlSugarProvider)">
             <summary>
             配置业务数据表过滤器
             </summary>

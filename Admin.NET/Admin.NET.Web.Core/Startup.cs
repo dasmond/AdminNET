@@ -18,8 +18,7 @@ namespace Admin.NET.Web.Core
     {
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSqlSugarSetup(App.Configuration);
-
+            //添加配置选项
             services.AddConfigurableOptions<RefreshTokenOptions>();
             services.AddConfigurableOptions<SnowIdOptions>();
             services.AddConfigurableOptions<CacheOptions>();
@@ -28,6 +27,9 @@ namespace Admin.NET.Web.Core
             services.AddConfigurableOptions<WechatOptions>();
             services.AddConfigurableOptions<WechatPayOptions>();
             services.AddConfigurableOptions<PayCallBackOptions>();
+            services.AddConfigurableOptions<ConnectionStringsOptions>();
+
+            services.AddSqlSugarSetup(App.Configuration);
 
             services.AddJwt<JwtHandler>(enableGlobalAuthorize: true);
 
