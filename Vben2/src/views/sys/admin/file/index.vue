@@ -104,8 +104,9 @@
         registerTable,
         handleDownload,
         handleDelete,
-        handleChange: (list: string[]) => {
-          createMessage.info(`已上传文件${JSON.stringify(list)}`);
+        handleChange: (e) => {
+          debugger;
+          createMessage.info(`已上传文件${JSON.stringify(e)}`);
         },
         uploadFile,
         hasPermission,
