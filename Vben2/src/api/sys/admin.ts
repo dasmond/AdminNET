@@ -67,6 +67,16 @@ enum Api {
   ServerBase = '/server/base',
   ServerUse = '/server/use',
   ServerNetWork = '/server/network',
+
+  DictTypePageList = '/sysDictType/pageList',
+  AddDictType = '/sysDictType/add',
+  UpdateDictType = '/sysDictType/update',
+  DeleteDictType = '/sysDictType/delete',
+
+  DictDataPageList = '/sysDictData/pageList',
+  AddDictData = '/sysDictData/add',
+  UpdateDictData = '/sysDictData/update',
+  DeleteDictData = '/sysDictData/delete',
 }
 
 ////////// 账号管理接口 //////////
@@ -152,6 +162,30 @@ export const addPos = (params: any) => defHttp.post({ url: Api.AddPos, params })
 export const deletePos = (id: number) => defHttp.post({ url: Api.DeletePos, params: { id } });
 // 更新职位
 export const updatePos = (params: any) => defHttp.post({ url: Api.UpdatePos, params });
+
+////////// 字典类型管理接口 //////////
+// 获取字典类型列表
+export const getDictTypeList = (params?: any) =>
+  defHttp.get<any>({ url: Api.DictTypePageList, params });
+// 增加典类型
+export const addDictType = (params: any) => defHttp.post({ url: Api.AddDictType, params });
+// 删除字典类型
+export const deleteDictType = (id: number) =>
+  defHttp.post({ url: Api.DeleteDictType, params: { id } });
+// 更新字典类型
+export const updateDictType = (params: any) => defHttp.post({ url: Api.UpdateDictType, params });
+
+////////// 字典值管理接口 //////////
+// 获取字典类型列表
+export const getDictDataList = (params?: any) =>
+  defHttp.get<any>({ url: Api.DictDataPageList, params });
+// 增加典类型
+export const addDictData = (params: any) => defHttp.post({ url: Api.AddDictData, params });
+// 删除字典类型
+export const deleteDictData = (id: number) =>
+  defHttp.post({ url: Api.DeleteDictData, params: { id } });
+// 更新字典类型
+export const updateDictData = (params: any) => defHttp.post({ url: Api.UpdateDictData, params });
 
 ////////// 日志管理接口 //////////
 // 获取访问日志分页列表

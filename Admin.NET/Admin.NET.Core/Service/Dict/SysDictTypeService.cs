@@ -38,7 +38,7 @@ namespace Admin.NET.Core.Service
             var name = !string.IsNullOrEmpty(input.Name?.Trim());
             return await _sysDictTypeRep.AsQueryable()
                 .WhereIF(code, u => u.Code.Contains(input.Code))
-                .WhereIF(name, u => u.Code.Contains(input.Name))
+                .WhereIF(name, u => u.Name.Contains(input.Name))
                 .OrderBy(u => u.Order)
                 .ToPagedListAsync(input.Page, input.PageSize);
         }
