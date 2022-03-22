@@ -74,7 +74,7 @@ namespace Admin.NET.Core.Service
         /// <returns></returns>
         [HttpPost("/sysFile/upload")]
         [AllowAnonymous]
-        public async Task<long> UploadFile([Required] IFormFile file)
+        public async Task<SysFile> UploadFile([Required] IFormFile file)
         {
             return await HandleUploadFile(file);
         }
@@ -145,7 +145,7 @@ namespace Admin.NET.Core.Service
         /// </summary>
         /// <param name="file">文件</param>
         /// <returns></returns>
-        private async Task<long> HandleUploadFile(IFormFile file)
+        private async Task<SysFile> HandleUploadFile(IFormFile file)
         {
             string path = _uploadOptions.Path;
 
@@ -181,7 +181,7 @@ namespace Admin.NET.Core.Service
                 using var stream = File.Create(Path.Combine(filePath, finalName));
                 await file.CopyToAsync(stream);
             }
-            return newFile.Id;
+            return newFile;
         }
     }
 }

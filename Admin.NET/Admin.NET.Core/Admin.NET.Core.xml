@@ -251,6 +251,161 @@
             创建者部门Id
             </summary>
         </member>
+        <member name="T:Admin.NET.Core.SysCodeGen">
+            <summary>
+            代码生成表
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.SysCodeGen.AuthorName">
+            <summary>
+            作者姓名
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.SysCodeGen.TablePrefix">
+            <summary>
+            是否移除表前缀
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.SysCodeGen.GenerateType">
+            <summary>
+            生成方式
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.SysCodeGen.TableName">
+            <summary>
+            数据库表名
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.SysCodeGen.NameSpace">
+            <summary>
+            命名空间
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.SysCodeGen.BusName">
+            <summary>
+            业务名
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.SysCodeGen.MenuApplication">
+            <summary>
+            菜单应用分类（应用编码）
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.SysCodeGen.MenuPid">
+            <summary>
+            菜单编码
+            </summary>
+        </member>
+        <member name="T:Admin.NET.Core.SysCodeGenConfig">
+            <summary>
+            代码生成字段配置表
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.SysCodeGenConfig.CodeGenId">
+            <summary>
+            代码生成主表ID
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.SysCodeGenConfig.ColumnName">
+            <summary>
+            数据库字段名
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.SysCodeGenConfig.ColumnComment">
+            <summary>
+            字段描述
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.SysCodeGenConfig.NetType">
+            <summary>
+            .NET数据类型
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.SysCodeGenConfig.EffectType">
+            <summary>
+            作用类型（字典）
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.SysCodeGenConfig.FkEntityName">
+            <summary>
+            外键实体名称
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.SysCodeGenConfig.FkTableName">
+            <summary>
+            外键表名称
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.SysCodeGenConfig.FkColumnName">
+            <summary>
+            外键显示字段
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.SysCodeGenConfig.FkColumnNetType">
+            <summary>
+            外键显示字段.NET类型
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.SysCodeGenConfig.DictTypeCode">
+            <summary>
+            字典code
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.SysCodeGenConfig.WhetherRetract">
+            <summary>
+            列表是否缩进（字典）
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.SysCodeGenConfig.WhetherRequired">
+            <summary>
+            是否必填（字典）
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.SysCodeGenConfig.QueryWhether">
+            <summary>
+            是否是查询条件
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.SysCodeGenConfig.QueryType">
+            <summary>
+            查询方式
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.SysCodeGenConfig.WhetherTable">
+            <summary>
+            列表显示
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.SysCodeGenConfig.WhetherAddUpdate">
+            <summary>
+            增改
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.SysCodeGenConfig.ColumnKey">
+            <summary>
+            主键
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.SysCodeGenConfig.DataType">
+            <summary>
+            数据库中类型（物理类型）
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.SysCodeGenConfig.WhetherCommon">
+            <summary>
+            是否通用字段
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.SysCodeGenConfig.DisplayMember">
+            <summary>
+            显示值的字段
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.SysCodeGenConfig.SelectedValue">
+            <summary>
+            选中值字段
+            </summary>
+        </member>
         <member name="T:Admin.NET.Core.SysConfig">
             <summary>
             系统参数配置表
@@ -2719,6 +2874,498 @@
             <param name="permissions"></param>
             <returns></returns>
         </member>
+        <member name="T:Admin.NET.Core.Service.CodeGenConfigService">
+            <summary>
+            代码生成详细配置服务
+            </summary>
+        </member>
+        <member name="M:Admin.NET.Core.Service.CodeGenConfigService.List(Admin.NET.Core.Service.CodeGenConfig)">
+            <summary>
+            代码生成详细配置列表
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Core.Service.CodeGenConfigService.Add(Admin.NET.Core.Service.CodeGenConfig)">
+            <summary>
+            增加
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Core.Service.CodeGenConfigService.Delete(System.Int64)">
+            <summary>
+            删除
+            </summary>
+            <param name="codeGenId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Core.Service.CodeGenConfigService.Update(System.Collections.Generic.List{Admin.NET.Core.Service.CodeGenConfig})">
+            <summary>
+            更新
+            </summary>
+            <param name="inputList"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Core.Service.CodeGenConfigService.Detail(Admin.NET.Core.Service.CodeGenConfig)">
+            <summary>
+            详情
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Core.Service.CodeGenConfigService.AddList(System.Collections.Generic.List{Admin.NET.Core.Service.TableColumnOuput},Admin.NET.Core.SysCodeGen)">
+            <summary>
+            批量增加
+            </summary>
+            <param name="tableColumnOuputList"></param>
+            <param name="codeGenerate"></param>
+        </member>
+        <member name="T:Admin.NET.Core.Service.CodeGen.CodeGenService">
+            <summary>
+            代码生成器服务
+            </summary>
+        </member>
+        <member name="M:Admin.NET.Core.Service.CodeGen.CodeGenService.QueryCodeGenPageList(Admin.NET.Core.Service.CodeGenInput)">
+            <summary>
+            分页查询
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Core.Service.CodeGen.CodeGenService.AddCodeGen(Admin.NET.Core.Service.AddCodeGenInput)">
+            <summary>
+            增加
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Core.Service.CodeGen.CodeGenService.DeleteCodeGen(System.Collections.Generic.List{Admin.NET.Core.Service.DeleteCodeGenInput})">
+            <summary>
+            删除
+            </summary>
+            <param name="inputs"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Core.Service.CodeGen.CodeGenService.UpdateCodeGen(Admin.NET.Core.Service.UpdateCodeGenInput)">
+            <summary>
+            更新
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Core.Service.CodeGen.CodeGenService.GetCodeGen(Admin.NET.Core.Service.QueryCodeGenInput)">
+            <summary>
+            详情
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Core.Service.CodeGen.CodeGenService.GetTableList">
+            <summary>
+            获取数据库表(实体)集合
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Core.Service.CodeGen.CodeGenService.GetColumnListByTableName(System.String)">
+            <summary>
+            根据表名获取列
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Core.Service.CodeGen.CodeGenService.GetColumnList(Admin.NET.Core.Service.AddCodeGenInput)">
+            <summary>
+            获取数据表列（实体属性）集合
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Core.Service.CodeGen.CodeGenService.RunLocal(Admin.NET.Core.SysCodeGen)">
+            <summary>
+            代码生成_本地项目
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Core.Service.CodeGen.CodeGenService.GetJoinTableStr(System.Collections.Generic.List{Admin.NET.Core.Service.CodeGenConfig})">
+            <summary>
+            获取连表的实体名和别名
+            </summary>
+            <param name="configs"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Core.Service.CodeGen.CodeGenService.GetTemplatePathList">
+            <summary>
+            获取模板文件路径集合
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Core.Service.CodeGen.CodeGenService.GetTargetPathList(Admin.NET.Core.SysCodeGen)">
+            <summary>
+            设置生成文件路径
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Admin.NET.Core.Service.CodeGenConfig">
+            <summary>
+            代码生成详细配置参数
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.Service.CodeGenConfig.Id">
+            <summary>
+            主键Id
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.Service.CodeGenConfig.CodeGenId">
+            <summary>
+            代码生成主表ID
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.Service.CodeGenConfig.ColumnName">
+            <summary>
+            数据库字段名
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.Service.CodeGenConfig.LowerColumnName">
+            <summary>
+            数据库字段名(首字母小写)
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.Service.CodeGenConfig.ColumnComment">
+            <summary>
+            字段描述
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.Service.CodeGenConfig.NetType">
+            <summary>
+            .NET类型
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.Service.CodeGenConfig.EffectType">
+            <summary>
+            作用类型（字典）
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.Service.CodeGenConfig.FkEntityName">
+            <summary>
+            外键实体名称
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.Service.CodeGenConfig.FkTableName">
+            <summary>
+            外键表名称
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.Service.CodeGenConfig.LowerFkEntityName">
+            <summary>
+            外键实体名称(首字母小写)
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.Service.CodeGenConfig.FkColumnName">
+            <summary>
+            外键显示字段
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.Service.CodeGenConfig.LowerFkColumnName">
+            <summary>
+            外键显示字段(首字母小写)
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.Service.CodeGenConfig.FkColumnNetType">
+            <summary>
+            外键显示字段.NET类型
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.Service.CodeGenConfig.DictTypeCode">
+            <summary>
+            字典code
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.Service.CodeGenConfig.WhetherRetract">
+            <summary>
+            列表是否缩进（字典）
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.Service.CodeGenConfig.WhetherRequired">
+            <summary>
+            是否必填（字典）
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.Service.CodeGenConfig.QueryWhether">
+            <summary>
+            是否是查询条件
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.Service.CodeGenConfig.QueryType">
+            <summary>
+            查询方式
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.Service.CodeGenConfig.WhetherTable">
+            <summary>
+            列表显示
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.Service.CodeGenConfig.WhetherAddUpdate">
+            <summary>
+            增改
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.Service.CodeGenConfig.ColumnKey">
+            <summary>
+            主外键
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.Service.CodeGenConfig.DataType">
+            <summary>
+            数据库中类型（物理类型）
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.Service.CodeGenConfig.WhetherCommon">
+            <summary>
+            是否是通用字段
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.Service.CodeGenConfig.DisplayMember">
+            <summary>
+            显示值的字段
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.Service.CodeGenConfig.SelectedValue">
+            <summary>
+            选中值字段
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.Service.CodeGenConfig.TableNickName">
+            <summary>
+            表的别名 Table as XXX
+            </summary>
+        </member>
+        <member name="T:Admin.NET.Core.Service.CodeGenInput">
+            <summary>
+            代码生成参数类
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.Service.CodeGenInput.AuthorName">
+            <summary>
+            作者姓名
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.Service.CodeGenInput.ClassName">
+            <summary>
+            类名
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.Service.CodeGenInput.TablePrefix">
+            <summary>
+            是否移除表前缀
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.Service.CodeGenInput.GenerateType">
+            <summary>
+            生成方式
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.Service.CodeGenInput.TableName">
+            <summary>
+            数据库表名
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.Service.CodeGenInput.NameSpace">
+            <summary>
+            命名空间
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.Service.CodeGenInput.BusName">
+            <summary>
+            业务名（业务代码包名称）
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.Service.CodeGenInput.TableComment">
+            <summary>
+            功能名（数据库表名称）
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.Service.CodeGenInput.MenuApplication">
+            <summary>
+            菜单应用分类（应用编码）
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.Service.CodeGenInput.MenuPid">
+            <summary>
+            菜单父级
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.Service.AddCodeGenInput.TableName">
+            <summary>
+            数据库表名
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.Service.AddCodeGenInput.BusName">
+            <summary>
+            业务名（业务代码包名称）
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.Service.AddCodeGenInput.NameSpace">
+            <summary>
+            命名空间
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.Service.AddCodeGenInput.AuthorName">
+            <summary>
+            作者姓名
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.Service.AddCodeGenInput.GenerateType">
+            <summary>
+            生成方式
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.Service.AddCodeGenInput.MenuApplication">
+            <summary>
+            菜单应用分类（应用编码）
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.Service.AddCodeGenInput.MenuPid">
+            <summary>
+            菜单父级
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.Service.DeleteCodeGenInput.Id">
+            <summary>
+            代码生成器Id
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.Service.UpdateCodeGenInput.Id">
+            <summary>
+            代码生成器Id
+            </summary>
+        </member>
+        <member name="T:Admin.NET.Core.Service.CodeGenOutput">
+            <summary>
+            代码生成参数类
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.Service.CodeGenOutput.Id">
+            <summary>
+            代码生成器Id
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.Service.CodeGenOutput.AuthorName">
+            <summary>
+            作者姓名
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.Service.CodeGenOutput.ClassName">
+            <summary>
+            类名
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.Service.CodeGenOutput.TablePrefix">
+            <summary>
+            是否移除表前缀
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.Service.CodeGenOutput.GenerateType">
+            <summary>
+            生成方式
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.Service.CodeGenOutput.TableName">
+            <summary>
+            数据库表名
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.Service.CodeGenOutput.PackageName">
+            <summary>
+            包名
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.Service.CodeGenOutput.BusName">
+            <summary>
+            业务名（业务代码包名称）
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.Service.CodeGenOutput.TableComment">
+            <summary>
+            功能名（数据库表名称）
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.Service.CodeGenOutput.MenuApplication">
+            <summary>
+            菜单应用分类（应用编码）
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.Service.CodeGenOutput.MenuPid">
+            <summary>
+            菜单父级
+            </summary>
+        </member>
+        <member name="T:Admin.NET.Core.Service.TableColumnOuput">
+            <summary>
+            数据库表列
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.Service.TableColumnOuput.ColumnName">
+            <summary>
+            字段名
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.Service.TableColumnOuput.DataType">
+            <summary>
+            数据库中类型
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.Service.TableColumnOuput.NetType">
+            <summary>
+            .NET字段类型
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.Service.TableColumnOuput.ColumnComment">
+            <summary>
+            字段描述
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.Service.TableColumnOuput.ColumnKey">
+            <summary>
+            主外键
+            </summary>
+        </member>
+        <member name="T:Admin.NET.Core.Service.TableOutput">
+            <summary>
+            数据库表列表参数
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.Service.TableOutput.TableName">
+            <summary>
+            表名（字母形式的）
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.Service.TableOutput.EntityName">
+            <summary>
+            实体名称
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.Service.TableOutput.CreateTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.Service.TableOutput.UpdateTime">
+            <summary>
+            更新时间
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.Service.TableOutput.TableComment">
+            <summary>
+            表名称描述（注释）（功能名）
+            </summary>
+        </member>
+        <member name="M:Admin.NET.Core.Service.CommonService.GetEntityInfos">
+            <summary>
+            获取库表信息
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:Admin.NET.Core.Service.PageConfigInput">
             <summary>
             参数配置分页
@@ -2878,6 +3525,97 @@
             获取验证码开关配置
             </summary>
             <returns></returns>
+        </member>
+        <member name="T:Admin.NET.Core.Service.DataBaseManager">
+            <summary>
+            数据库管理
+            </summary>
+        </member>
+        <member name="M:Admin.NET.Core.Service.DataBaseManager.ColumnAdd(Admin.NET.Core.Service.DbColumnInfoInput)">
+            <summary>
+            添加列
+            </summary>
+            <param name="input"></param>
+        </member>
+        <member name="M:Admin.NET.Core.Service.DataBaseManager.ColumnDelete(Admin.NET.Core.Service.DbColumnInfoOutput)">
+            <summary>
+            删除列
+            </summary>
+            <param name="input"></param>
+        </member>
+        <member name="M:Admin.NET.Core.Service.DataBaseManager.ColumnEdit(Admin.NET.Core.Service.EditColumnInput)">
+            <summary>
+            编辑列
+            </summary>
+            <param name="input"></param>
+        </member>
+        <member name="M:Admin.NET.Core.Service.DataBaseManager.GetColumnInfosByTableName(System.String)">
+            <summary>
+            获取表字段
+            </summary>
+            <param name="tableName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Core.Service.DataBaseManager.GetTableInfoList">
+            <summary>
+            获取所有表
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Core.Service.DataBaseManager.TableAdd(Admin.NET.Core.Service.DbTableInfoInput)">
+            <summary>
+            新增表
+            </summary>
+            <param name="input"></param>
+        </member>
+        <member name="M:Admin.NET.Core.Service.DataBaseManager.TableDelete(SqlSugar.DbTableInfo)">
+            <summary>
+            删除表
+            </summary>
+            <param name="input"></param>
+        </member>
+        <member name="M:Admin.NET.Core.Service.DataBaseManager.TableEdit(Admin.NET.Core.Service.EditTableInput)">
+            <summary>
+            编辑表
+            </summary>
+            <param name="input"></param>
+        </member>
+        <member name="M:Admin.NET.Core.Service.DataBaseManager.GetTemplatePath">
+            <summary>
+            获取模板文件路径集合
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Core.Service.DataBaseManager.GetTargetPath(Admin.NET.Core.Service.CreateEntityInput)">
+            <summary>
+            设置生成文件路径
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Admin.NET.Core.Service.CreateEntityInput.TableName">
+            <summary>
+            
+            </summary>
+            <example>student</example>
+        </member>
+        <member name="P:Admin.NET.Core.Service.CreateEntityInput.EntityName">
+            <summary>
+            
+            </summary>
+            <example>Student</example>
+        </member>
+        <member name="P:Admin.NET.Core.Service.CreateEntityInput.BaseClassName">
+            <summary>
+            
+            </summary>
+            <example>AutoIncrementEntity</example>
+        </member>
+        <member name="P:Admin.NET.Core.Service.CreateEntityInput.Position">
+            <summary>
+            
+            </summary>
+            <example>Magic.Application</example>
         </member>
         <member name="P:Admin.NET.Core.Service.GetDataDictDataInput.DictTypeId">
             <summary>
@@ -3102,6 +3840,13 @@
             根据字典类型Id获取字典值集合
             </summary>
             <param name="dictTypeId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Core.Service.SysDictDataService.GetDictDataDropdown(System.String)">
+            <summary>
+            根据字典唯一编码获取下拉框集合
+            </summary>
+            <param name="code"></param>
             <returns></returns>
         </member>
         <member name="T:Admin.NET.Core.Service.SysDictTypeService">
@@ -4860,6 +5605,18 @@
             <summary>
             页码容量
             </summary>
+        </member>
+        <member name="T:Admin.NET.Core.Util.CodeGenUtil">
+            <summary>
+            代码生成帮助类
+            </summary>
+        </member>
+        <member name="M:Admin.NET.Core.Util.CodeGenUtil.DataTypeToEff(System.String)">
+            <summary>
+            数据类型转显示类型
+            </summary>
+            <param name="dataType"></param>
+            <returns></returns>
         </member>
         <member name="T:Admin.NET.Core.CommonUtil">
             <summary>

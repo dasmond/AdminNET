@@ -445,5 +445,11 @@ namespace Admin.NET.Core
         /// </summary>
         [ErrorCodeItemMetadata("检测数据不存在")]
         xg1002,
+
+        [ErrorCodeItemMetadata("请添加数据列")]
+        db1000,
+
+        [ErrorCodeItemMetadata("数据表不存在")]
+        db1001
     }
 }

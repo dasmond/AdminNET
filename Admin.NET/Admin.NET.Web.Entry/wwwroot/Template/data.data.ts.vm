@@ -1,0 +1,54 @@
+import { BasicColumn, FormSchema } from '/@@/components/Table';
+@foreach (var column in Model.TableField){
+if(@column.EffectType == "Upload"){
+@:import { uploadFileShop } from '/@@/api/api';
+}
+}
+export const columns: BasicColumn[] = [
+  @foreach (var column in Model.TableField){
+  if(@column.WhetherTable == "Y"){
+  @:{
+    @:title: '@column.ColumnComment',
+    @:dataIndex: '@column.LowerColumnName',
+  @:},
+    }
+
+  }
+];
+
+export const searchFormSchema: FormSchema[] = [
+  @foreach (var column in Model.QueryWhetherList){  
+  @:{
+    @:label: '@column.ColumnComment',
+    @:field: '@column.LowerColumnName',
+    @:component: 'Input',
+    @:colProps: { span: 7},
+  @:},
+    
+  }
+];
+
+export const formSchema: FormSchema[] = [
+  @foreach (var column in Model.TableField){
+  @:{
+    @:label: '@column.ColumnComment',
+    @:field: '@column.LowerColumnName',
+    @:component: '@column.EffectType',
+    if(@column.WhetherTable == "Y"){
+    @:required: true,
+    }else{
+    @:required: false,
+    }
+    if(@column.EffectType == "Upload"){
+    @:componentProps: {
+    @:maxNumber: 1,
+    @:api: uploadFileShop,
+  @:},
+    }
+    if(@column.LowerColumnName == "id"){
+      @:show: false,
+    }
+  @:},
+
+  }
+];

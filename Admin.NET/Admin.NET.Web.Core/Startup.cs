@@ -69,6 +69,8 @@ namespace Admin.NET.Web.Core
 
             // 注册CSRedis缓存
             services.AddCSRedisSetup();
+            // 注册模板引擎
+            services.AddViewEngine();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

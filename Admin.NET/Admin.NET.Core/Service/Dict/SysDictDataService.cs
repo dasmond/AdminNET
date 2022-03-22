@@ -4,6 +4,7 @@ using Furion.FriendlyException;
 using Mapster;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using SqlSugar;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -142,6 +143,23 @@ namespace Admin.NET.Core.Service
             return await _sysDictDataRep.AsQueryable()
                 .Where(u => u.DictTypeId == dictTypeId)
                 .OrderBy(u => u.Order).ToListAsync();
+        }
+        /// <summary>
+        /// 根据字典唯一编码获取下拉框集合
+        /// </summary>
+        /// <param name="code"></param>
+        /// <returns></returns>
+        [HttpGet("/sysDictData/DictDataDropdown/{code}")]
+        public async Task<dynamic> GetDictDataDropdown(string code)
+        {
+            return await _sysDictDataRep.Context.Queryable<SysDictType, SysDictData>((a, b) => new JoinQueryInfos(JoinType.Left, a.Id == b.DictTypeId))
+                  .Where(a => a.Code == code)
+                  .Select((a, b) => new
+                  {
+                      Lable = b.Value,
+                      Value = b.Code
+                  }
+                  ).ToListAsync();
         }
     }
 }

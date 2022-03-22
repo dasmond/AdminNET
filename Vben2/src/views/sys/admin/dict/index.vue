@@ -90,6 +90,7 @@
 
       async function handleDelete(record: Recordable) {
         await deleteDictType(record.id);
+        reload();
       }
       function handleSuccess() {
         reload();

@@ -55,6 +55,10 @@
           schemas: searchFormSchema,
           autoSubmitOnEnter: true,
         },
+        beforeFetch(params) {
+          params.DictTypeId = typeId.value;
+          return params;
+        },
         rowKey: 'id',
         striped: false,
         useSearchForm: true,

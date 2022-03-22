@@ -1,0 +1,33 @@
+import { defHttp } from '/@@/utils/http/axios';
+import { RestfulResult, PageResult } from '../../model/baseResultModel';
+enum Api {
+  Add@(@Model.ClassName) = '/@(@Model.ClassName)/add',
+  Delete@(@Model.ClassName) = '/@(@Model.ClassName)/delete',
+  Update@(@Model.ClassName) = '/@(@Model.ClassName)/edit',
+  Get@(@Model.ClassName)Page = '/@(@Model.ClassName)/page',
+} 
+
+/**
+ * 增加@(@Model.BusName)
+ */
+export function add@(@Model.ClassName)(params: any) {
+  return defHttp.post<RestfulResult<any>>({ url: Api.Add@(@Model.ClassName), params });
+}
+/**
+ * 删除@(@Model.BusName)
+ */
+export function delete@(@Model.ClassName)(params: any) {
+  return defHttp.post<RestfulResult<any>>({ url: Api.Delete@(@Model.ClassName), params });
+}
+/**
+ * 编辑@(@Model.BusName)
+ */
+export function update@(@Model.ClassName)(params: any) {
+  return defHttp.post<RestfulResult<any>>({ url: Api.Update@(@Model.ClassName), params });
+}
+/**
+ * 分页查询@(@Model.BusName)
+ */
+export function get@(@Model.ClassName)Page(params?: any) {
+  return defHttp.get<RestfulResult<PageResult<any>>>({ url: Api.Get@(@Model.ClassName)Page, params });
+}

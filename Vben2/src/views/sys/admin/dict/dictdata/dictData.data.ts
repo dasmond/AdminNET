@@ -55,9 +55,8 @@ export const formSchema: FormSchema[] = [
     show: false,
   },
   {
-    field: 'typeId',
-    label: 'typeId',
-    required: true,
+    field: 'DictTypeId',
+    label: 'DictTypeId',
     component: 'Input',
     show: false,
   },
