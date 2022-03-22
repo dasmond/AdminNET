@@ -4722,6 +4722,24 @@
             </summary>
             <typeparam name="T"></typeparam>
         </member>
+        <member name="F:Admin.NET.Core.SqlSugarRepository._serviceProvider">
+            <summary>
+            服务提供器
+            </summary>
+        </member>
+        <member name="M:Admin.NET.Core.SqlSugarRepository.#ctor(System.IServiceProvider)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="serviceProvider">服务提供器</param>
+        </member>
+        <member name="M:Admin.NET.Core.SqlSugarRepository.Change``1">
+            <summary>
+            切换仓储
+            </summary>
+            <typeparam name="TEntity">实体类型</typeparam>
+            <returns>仓储</returns>
+        </member>
         <member name="M:Admin.NET.Core.SqlSugarSetup.AddSqlSugarSetup(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
             <summary>
             Sqlsugar上下文初始化

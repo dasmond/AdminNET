@@ -1,7 +1,6 @@
 ﻿using Admin.NET.Core.Service;
 using Furion;
 using Furion.FriendlyException;
-using Furion.LinqBuilder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SqlSugar;
@@ -14,11 +13,10 @@ using System.Linq;
 using System.Linq.Dynamic.Core;
 using System.Linq.Expressions;
 using System.Reflection;
-using System.Text.RegularExpressions;
 
 namespace Admin.NET.Core
 {
-    public static class SqlSugarSetup
+	public static class SqlSugarSetup
     {
         /// <summary>
         /// Sqlsugar上下文初始化
@@ -63,10 +61,10 @@ namespace Admin.NET.Core
             dbOptions.DbConfigs.ForEach(config => {
                 var connection = new ConnectionConfig()
                 {
-                    DbType = (DbType)Convert.ToInt32(Enum.Parse(typeof(DbType), dbOptions.DefaultDbType)),
-                    ConnectionString = dbOptions.DefaultConnection,
+                    DbType = (DbType)Convert.ToInt32(Enum.Parse(typeof(DbType), config.DbType)),
+                    ConnectionString = config.DbConnection,
                     IsAutoCloseConnection = true,
-                    ConfigId = dbOptions.DefaultConfigId,
+                    ConfigId = config.DbConfigId,
                     ConfigureExternalServices = configureExternalServices
                 };
                 configs.Add(connection);
@@ -139,7 +137,7 @@ namespace Admin.NET.Core
 
             services.AddSingleton<ISqlSugarClient>(sqlSugar); // SqlSugarScope用AddSingleton单例
             services.AddScoped(typeof(SqlSugarRepository<>)); // 注册仓储
-
+            services.AddScoped(typeof(SqlSugarRepository));
             // 初始化数据库结构及种子数据
             if (dbOptions.InitTable)
                 InitDataBase(sqlSugar);
