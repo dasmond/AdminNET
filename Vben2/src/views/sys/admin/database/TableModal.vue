@@ -189,7 +189,7 @@
           },
         ];
         const data = getDataSource();
-        fileds.forEach((m) => {
+        fileds.forEach((m: any) => {
           data.push({
             columnDescription: m.desc,
             dataType: m.dataType,
@@ -258,12 +258,11 @@
         try {
           const values = await validate();
           setModalProps({ confirmLoading: true });
-          let tbData: any = [];
-          getDataSource().forEach((item: any) => {
-            tbData.push(item.editValueRefs);
-            //console.log(item.editValueRefs);
-          });
           if (!unref(isUpdate)) {
+            let tbData: any = [];
+            getDataSource().forEach((item: any) => {
+              tbData.push(item.editValueRefs);
+            });
             const body: any = {
               dbColumnInfoList: tbData,
               ...values,

@@ -123,14 +123,6 @@
         /// 是否是通用字段
         /// </summary>
         public string WhetherCommon { get; set; }
-        /// <summary>
-        /// 显示值的字段
-        /// </summary>
-        public string DisplayMember { get; set; }
-        /// <summary>
-        /// 选中值字段
-        /// </summary>
-        public string SelectedValue { get; set; }
 
         /// <summary>
         /// 表的别名 Table as XXX

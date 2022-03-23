@@ -1,8 +1,8 @@
-<template>
+﻿<template>
   <div>
-    <BasicTable @@register="registerTable">
+    <BasicTable @register="registerTable">
       <template #toolbar>
-        <a-button type="primary" @@click="handleCreate">新增@(@Model.BusName)</a-button>
+        <a-button type="primary" @click="handleCreate">新增站点</a-button>
       </template>
       <template #action="{ record }">
         <TableAction
@@ -23,29 +23,29 @@
             },
           ]"
         />
-      </template> 
+      </template>
     </BasicTable>
-    <@(@Model.ClassName)Modal @@register="registerModal" @@success="handleSuccess" />
+    <CmsWebsiteModal @register="registerModal" @success="handleSuccess" />
   </div>
 </template>
 <script lang="ts">
   import { defineComponent } from 'vue';
-  import { BasicTable, useTable, TableAction } from '/@@/components/Table';
-  import { useModal } from '/@@/components/Modal';
-  import @(@Model.ClassName)Modal from './dataModal.vue';
+  import { BasicTable, useTable, TableAction } from '/@/components/Table';
+  import { useModal } from '/@/components/Modal';
+  import CmsWebsiteModal from './dataModal.vue';
 
   import { columns, searchFormSchema } from './data.data';
-  import { useMessage } from '/@@/hooks/web/useMessage';
-  import { get@(@Model.ClassName)PageList, delete@(@Model.ClassName) } from '/@@/api/main/@(@Model.ClassName)';
+  import { useMessage } from '/@/hooks/web/useMessage';
+  import { getCmsWebsitePageList, deleteCmsWebsite } from '/@/api/main/CmsWebsite';
   let searchvalue = undefined;
   export default defineComponent({
-    components: { BasicTable, @(@Model.ClassName)Modal, TableAction },
+    components: { BasicTable, CmsWebsiteModal, TableAction },
     setup() {
       const { createMessage } = useMessage();
       const [registerModal, { openModal }] = useModal();
       const [registerTable, { reload }] = useTable({
-        title: '@(@Model.BusName)列表',
-        api: get@(@Model.ClassName)PageList,
+        title: '站点列表',
+        api: getCmsWebsitePageList,
         pagination: true,
         beforeFetch(params) {
           params.searchvalue = searchvalue;
@@ -88,13 +88,13 @@
       }
 
       async function handleDelete(record: Recordable) {
-        await delete@(@Model.ClassName)(record);
-        reload();
+        await deleteCmsWebsite(record);
         createMessage.success('删除成功！');
+        reload();
       }
       function handleSuccess() {
         reload();
-      } 
+      }
       return {
         registerTable,
         registerModal,
@@ -106,4 +106,3 @@
     },
   });
 </script>
-

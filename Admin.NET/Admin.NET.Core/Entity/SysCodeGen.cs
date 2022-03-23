@@ -53,12 +53,6 @@ namespace Admin.NET.Core
         [SugarColumn(ColumnDescription = "业务名")]
         public string BusName { get; set; }
 
-        /// <summary>
-        /// 菜单应用分类（应用编码）
-        /// </summary>
-        [MaxLength(50)]
-        [SugarColumn(ColumnDescription = "菜单应用分类")]
-        public string MenuApplication { get; set; }
 
         /// <summary>
         /// 菜单编码

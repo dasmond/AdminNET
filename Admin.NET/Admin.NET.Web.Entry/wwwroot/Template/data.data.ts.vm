@@ -1,7 +1,7 @@
 import { BasicColumn, FormSchema } from '/@@/components/Table';
 @foreach (var column in Model.TableField){
 if(@column.EffectType == "Upload"){
-@:import { uploadFileShop } from '/@@/api/api';
+@:import { uploadFile } from '/@@/api/sys/admin';
 }
 }
 export const columns: BasicColumn[] = [
@@ -22,7 +22,7 @@ export const searchFormSchema: FormSchema[] = [
     @:label: '@column.ColumnComment',
     @:field: '@column.LowerColumnName',
     @:component: 'Input',
-    @:colProps: { span: 7},
+    @:colProps: { span: 8 },
   @:},
     
   }
@@ -41,13 +41,13 @@ export const formSchema: FormSchema[] = [
     }
     if(@column.EffectType == "Upload"){
     @:componentProps: {
-    @:maxNumber: 1,
-    @:api: uploadFileShop,
-  @:},
+      @:maxNumber: 1,
+      @:api: uploadFile,
+    @:},
     }
-    if(@column.LowerColumnName == "id"){
-      @:show: false,
-    }
+  if(@column.LowerColumnName == "id"){
+    @:show: false,
+  }
   @:},
 
   }

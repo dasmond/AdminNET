@@ -4,5 +4,157 @@
         <name>Admin.NET.Application</name>
     </assembly>
     <members>
+        <member name="T:Admin.NET.Application.CmsWebsite">
+            <summary>
+            站点表
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.CmsWebsite.Name">
+            <summary>
+            站点名称
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.CmsWebsite.Logo">
+            <summary>
+            域名
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.CmsWebsite.Domain">
+            <summary>
+            域名
+            </summary>
+        </member>
+        <member name="T:Admin.NET.Application.CmsWebsiteService">
+            <summary>
+            站点服务
+            </summary>
+        </member>
+        <member name="M:Admin.NET.Application.CmsWebsiteService.Page(Admin.NET.Application.CmsWebsiteInput)">
+            <summary>
+            分页查询站点
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Application.CmsWebsiteService.Add(Admin.NET.Application.AddCmsWebsiteInput)">
+            <summary>
+            增加站点
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Application.CmsWebsiteService.Delete(Admin.NET.Application.DeleteCmsWebsiteInput)">
+            <summary>
+            删除站点
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Application.CmsWebsiteService.Update(Admin.NET.Application.UpdateCmsWebsiteInput)">
+            <summary>
+            更新站点
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Application.CmsWebsiteService.Get(Admin.NET.Application.QueryeCmsWebsiteInput)">
+            <summary>
+            获取站点
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Application.CmsWebsiteService.List(Admin.NET.Application.CmsWebsiteInput)">
+            <summary>
+            获取站点列表
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Admin.NET.Application.CmsWebsiteDto">
+            <summary>
+            站点输出参数
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.CmsWebsiteDto.Id">
+            <summary>
+            主键Id
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.CmsWebsiteDto.Name">
+            <summary>
+            站点名称
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.CmsWebsiteDto.Logo">
+            <summary>
+            Logo
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.CmsWebsiteDto.Domain">
+            <summary>
+            域名
+            </summary>
+        </member>
+        <member name="T:Admin.NET.Application.CmsWebsiteInput">
+            <summary>
+            站点输入参数
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.CmsWebsiteInput.Name">
+            <summary>
+            站点名称
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.CmsWebsiteInput.Logo">
+            <summary>
+            Logo
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.CmsWebsiteInput.Domain">
+            <summary>
+            域名
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.AddCmsWebsiteInput.Name">
+            <summary>
+            站点名称
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.DeleteCmsWebsiteInput.Id">
+            <summary>
+            主键Id
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.UpdateCmsWebsiteInput.Id">
+            <summary>
+            主键Id
+            </summary>
+        </member>
+        <member name="T:Admin.NET.Application.CmsWebsiteOutput">
+            <summary>
+            站点输出参数
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.CmsWebsiteOutput.Id">
+            <summary>
+            主键Id
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.CmsWebsiteOutput.Name">
+            <summary>
+            站点名称
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.CmsWebsiteOutput.Logo">
+            <summary>
+            Logo
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.CmsWebsiteOutput.Domain">
+            <summary>
+            域名
+            </summary>
+        </member>
     </members>
 </doc>

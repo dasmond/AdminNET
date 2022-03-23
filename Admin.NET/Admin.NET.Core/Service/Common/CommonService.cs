@@ -1,4 +1,5 @@
 ﻿using Furion.DependencyInjection;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Options;
 using SqlSugar;
@@ -16,9 +17,11 @@ namespace Admin.NET.Core.Service
     public class CommonService : ICommonService, IScoped
     {
         private readonly ISqlSugarClient _sqlSugarClient;
-        public CommonService(ISqlSugarClient sqlSugarClient)
+        private readonly IHttpContextAccessor _httpContextAccessor;
+        public CommonService(ISqlSugarClient sqlSugarClient, IHttpContextAccessor httpContextAccessor)
         {
             _sqlSugarClient = sqlSugarClient;
+            _httpContextAccessor = httpContextAccessor;
         }
 
         /// <summary>
@@ -35,6 +38,11 @@ namespace Admin.NET.Core.Service
             var type = typeof(SugarTable);
 
             List<Type> types = new List<Type>();
+            foreach (var assemblyName in CommonConst.ENTITY_ASSEMBLY_NAME)
+            {
+                Assembly asm = Assembly.Load(assemblyName);
+                types.AddRange(asm.GetExportedTypes().ToList());
+            }
             Func<Attribute[], bool> IsMyAttribute = o =>
             {
                 foreach (Attribute a in o)
@@ -68,6 +76,15 @@ namespace Admin.NET.Core.Service
                 });
             }
             return entityInfos;
+        }
+
+        /// <summary>
+        /// 获取Host
+        /// </summary>
+        /// <returns></returns>
+        public string GetHost()
+        {
+            return _httpContextAccessor.HttpContext.Request.Host.Value;
         }
     }
 }

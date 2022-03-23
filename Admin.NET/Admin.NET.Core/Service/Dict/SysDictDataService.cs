@@ -156,7 +156,7 @@ namespace Admin.NET.Core.Service
                   .Where(a => a.Code == code)
                   .Select((a, b) => new
                   {
-                      Lable = b.Value,
+                      Label = b.Value,
                       Value = b.Code
                   }
                   ).ToListAsync();

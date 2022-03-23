@@ -18,7 +18,7 @@ namespace Admin.NET.Core.Service
     /// 代码生成详细配置服务
     /// </summary>
     [ApiDescriptionSettings(Name = "CodeGenConfig", Order = 100)]
-    public class CodeGenConfigService : ICodeGenConfigService, IDynamicApiController, ITransient
+    public class CodeGenConfigService : IDynamicApiController, ITransient
     {
         private readonly SqlSugarRepository<SysCodeGenConfig> _sysCodeGenConfigRep; // 代码生成详细配置仓储
 

@@ -68,12 +68,13 @@ enum Api {
   ServerUse = '/server/use',
   ServerNetWork = '/server/network',
 
-  DictTypePageList = '/sysDictType/pageList',
+  GetDictTypePageList = '/sysDictType/pageList',
+  GetDictTypeList = '/sysDictType/list',
   AddDictType = '/sysDictType/add',
   UpdateDictType = '/sysDictType/update',
   DeleteDictType = '/sysDictType/delete',
 
-  DictDataPageList = '/sysDictData/pageList',
+  GetDictDataPageList = '/sysDictData/pageList',
   AddDictData = '/sysDictData/add',
   UpdateDictData = '/sysDictData/update',
   DeleteDictData = '/sysDictData/delete',
@@ -187,8 +188,10 @@ export const updatePos = (params: any) => defHttp.post({ url: Api.UpdatePos, par
 
 ////////// 字典类型管理接口 //////////
 // 获取字典类型列表
+export const getDictTypePageList = (params?: any) =>
+  defHttp.get<any>({ url: Api.GetDictTypePageList, params });
 export const getDictTypeList = (params?: any) =>
-  defHttp.get<any>({ url: Api.DictTypePageList, params });
+  defHttp.get<any>({ url: Api.GetDictTypeList, params });
 // 增加典类型
 export const addDictType = (params: any) => defHttp.post({ url: Api.AddDictType, params });
 // 删除字典类型
@@ -198,9 +201,9 @@ export const deleteDictType = (id: number) =>
 export const updateDictType = (params: any) => defHttp.post({ url: Api.UpdateDictType, params });
 
 ////////// 字典值管理接口 //////////
-// 获取字典类型列表
+// 获取字典类型分页列表
 export const getDictDataList = (params?: any) =>
-  defHttp.get<any>({ url: Api.DictDataPageList, params });
+  defHttp.get<any>({ url: Api.GetDictDataPageList, params });
 export const getDictDataDropdown = (params: any) =>
   defHttp.get<any>({ url: Api.GetDictDataDropdown + '/' + params });
 // 增加典类型

@@ -1,5 +1,12 @@
 <template>
-  <BasicModal v-bind="$attrs" @register="registerModal" showFooter title="配置" @ok="handleSubmit">
+  <BasicModal
+    v-bind="$attrs"
+    @register="registerModal"
+    showFooter
+    title="配置"
+    @ok="handleSubmit"
+    :defaultFullscreen="true"
+  >
     <a-table
       ref="table"
       size="middle"
@@ -19,30 +26,23 @@
           style="width: 120px"
           v-model:value="record.effectType"
           :disabled="judgeColumns(record)"
+          :options="effectTypeData"
+          :field-names="{ label: 'label', value: 'value' }"
           @change="effectTypeChange(record, $event)"
-        >
-          <a-select-option
-            v-for="(item, index) in effectTypeData"
-            :key="index"
-            :value="item.code"
-            >{{ item.name }}</a-select-option
-          >
-        </a-select>
+        />
       </template>
       <template #dictTypeCode="{ record }">
         <a-select
-          style="width: 120px"
+          style="width: 180px"
           v-model:value="record.dictTypeCode"
+          :options="dictDataAll"
+          :field-names="{ label: 'name', value: 'code' }"
           :disabled="
-            record.effectType !== 'radio' &&
-            record.effectType !== 'select' &&
-            record.effectType !== 'checkbox'
+            record.effectType !== 'Radio' &&
+            record.effectType !== 'Select' &&
+            record.effectType !== 'Checkbox'
           "
-        >
-          <a-select-option v-for="(item, index) in dictDataAll" :key="index" :value="item.code">{{
-            item.value
-          }}</a-select-option>
-        </a-select>
+        />
       </template>
       <template #whetherTable="{ record }">
         <a-checkbox v-model:checked="record.whetherTable" />
@@ -67,30 +67,24 @@
         <a-select
           style="width: 100px"
           v-model:value="record.queryType"
+          :options="codeGenQueryTypeData"
+          :field-names="{ label: 'label', value: 'value' }"
           :disabled="!record.queryWhether"
-        >
-          <a-select-option
-            v-for="(item, index) in codeGenQueryTypeData"
-            :key="index"
-            :value="item.code"
-            >{{ item.name }}</a-select-option
-          >
-        </a-select>
+        />
       </template>
     </a-table>
   </BasicModal>
   <FkModal @register="registerFkModal" @success="fkHandleSuccess" />
 </template>
 <script lang="ts">
-  import { defineComponent, ref } from 'vue';
+  import { defineComponent, ref, onMounted } from 'vue';
   import { columns } from './codeGenerate.data';
   import FkModal from './fkModal.vue';
   import { BasicModal, useModalInner, useModal } from '/@/components/Modal';
-  import { useMessage } from '/@/hooks/web/useMessage';
   import {
     getGenerateConfigList,
     updateGenerateConfig,
-    getDictDataList,
+    getDictTypeList,
     getDictDataDropdown,
   } from '/@/api/sys/admin';
 
@@ -98,16 +92,19 @@
     components: { BasicModal, FkModal },
     emits: ['success', 'register'],
     setup(_, { emit }) {
-      const { createMessage } = useMessage();
       const tbData = ref<any[]>([]);
       const effectTypeData = ref<any[]>();
       const dictDataAll = ref<any[]>();
       const codeGenQueryTypeData = ref<any[]>();
+      onMounted(async () => {
+        // 初始化下拉框数据源
+        await loadDictTypeDropDown();
+      });
       const [registerFkModal, { openModal: openFkModal }] = useModal();
       const [registerModal, { setModalProps, closeModal }] = useModalInner(async (data) => {
         setModalProps({ confirmLoading: false });
         getGenerateConfigList({ CodeGenId: data.id }).then((res) => {
-          var data = res.data;
+          var data = res;
           data.forEach((item) => {
             for (const key in item) {
               if (item[key] === 'Y') {
@@ -121,10 +118,6 @@
           tbData.value = data;
         });
       });
-      /**
-       * 初始化下拉框数据源
-       */
-      loadDictTypeDropDown();
       /**
        * 判断是否（用于是否能选择或输入等）
        */
@@ -150,7 +143,7 @@
       }
       async function loadDictTypeDropDown() {
         effectTypeData.value = await getDictDataDropdown('code_gen_effect_type');
-        dictDataAll.value = await (await getDictDataList()).data;
+        dictDataAll.value = await await getDictTypeList();
         codeGenQueryTypeData.value = await getDictDataDropdown('code_gen_query_type');
       }
       /**
@@ -178,17 +171,8 @@
               }
             }
           });
-          let ret = await updateGenerateConfig(lst);
-          if (ret != null) {
-            if (ret.code == 204) {
-              closeModal();
-              createMessage.success('保存成功！');
-            } else {
-              createMessage.warning(ret.message + ret.message[0].messages);
-            }
-          } else {
-            createMessage.error('未知错误');
-          }
+          await updateGenerateConfig(lst);
+          closeModal();
           emit('success');
         } finally {
           setModalProps({ confirmLoading: false });

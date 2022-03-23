@@ -123,14 +123,5 @@ namespace Admin.NET.Core
         /// </summary>
         [MaxLength(5)]
         public string WhetherCommon { get; set; }
-
-        /// <summary>
-        /// 显示值的字段
-        /// </summary>
-        public string DisplayMember { get; set; }
-        /// <summary>
-        /// 选中值字段
-        /// </summary>
-        public string SelectedValue { get; set; }
     }
 }

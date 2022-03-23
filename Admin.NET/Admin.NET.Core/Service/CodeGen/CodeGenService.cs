@@ -20,10 +20,10 @@ namespace Admin.NET.Core.Service.CodeGen
     /// 代码生成器服务
     /// </summary>
     [ApiDescriptionSettings(Name = "CodeGen", Order = 100)]
-    public class CodeGenService : ICodeGenService, IDynamicApiController, ITransient
+    public class CodeGenService : IDynamicApiController, ITransient
     {
         private readonly SqlSugarRepository<SysCodeGen> _sysCodeGenRep; // 代码生成器仓储
-        private readonly ICodeGenConfigService _codeGenConfigService;
+        private readonly CodeGenConfigService _codeGenConfigService;
         private readonly IViewEngine _viewEngine;
 
         private readonly SqlSugarRepository<SysMenu> _sysMenuRep; // 菜单表仓储
@@ -31,7 +31,7 @@ namespace Admin.NET.Core.Service.CodeGen
         private readonly ICommonService _commonService;
 
         public CodeGenService(SqlSugarRepository<SysCodeGen> sysCodeGenRep,
-                              ICodeGenConfigService codeGenConfigService,
+                              CodeGenConfigService codeGenConfigService,
                               IViewEngine viewEngine,
                               ICommonService commonService,
                               SqlSugarRepository<SysMenu> sysMenuRep)
@@ -238,7 +238,7 @@ namespace Admin.NET.Core.Service.CodeGen
                 File.WriteAllText(targetPathList[i], tResult, Encoding.UTF8);
             }
 
-            //await AddMenu(input.TableName, input.BusName, input.MenuApplication, input.MenuPid);
+            await AddMenu(input.TableName, input.BusName, input.MenuPid);
         }
         /// <summary>
         /// 获取连表的实体名和别名
@@ -264,7 +264,7 @@ namespace Admin.NET.Core.Service.CodeGen
             return (str.TrimEnd(','), lowerStr.TrimEnd(','));
         }
 
-        private async Task AddMenu(string className, string busName, string application, long pid)
+        private async Task AddMenu(string className, string busName,long pid)
         {
             // 如果 pid 为 0 说明为顶级菜单, 需要创建顶级目录
             if (pid == 0)
@@ -273,7 +273,7 @@ namespace Admin.NET.Core.Service.CodeGen
                 var menuType0 = new SysMenu
                 {
                     Pid = 0,
-                    Name = busName + "管理",
+                    Title = busName + "管理",
                     Type = MenuTypeEnum.Dir,
                     Icon = "robot",
                     Path = "/" + className.ToLower(),
@@ -289,7 +289,7 @@ namespace Admin.NET.Core.Service.CodeGen
             var menuType1 = new SysMenu
             {
                 Pid = pid,
-                Name = busName + "管理",
+                Title = busName + "管理",
                 Type = MenuTypeEnum.Menu,
                 Path = "/" + className.ToLower(),
                 Component = "main/" + className + "/index",
@@ -302,7 +302,7 @@ namespace Admin.NET.Core.Service.CodeGen
             var menuType2 = new SysMenu
             {
                 Pid = pid1,
-                Name = busName + "查询",
+                Title = busName + "查询",
                 Type = MenuTypeEnum.Btn,
                 Permission = className + ":page",
             };
@@ -311,7 +311,7 @@ namespace Admin.NET.Core.Service.CodeGen
             var menuType2_1 = new SysMenu
             {
                 Pid = pid1,
-                Name = busName + "详情",
+                Title = busName + "详情",
                 Type = MenuTypeEnum.Btn,
                 Permission = className + ":detail",
             };
@@ -320,7 +320,7 @@ namespace Admin.NET.Core.Service.CodeGen
             var menuType2_2 = new SysMenu
             {
                 Pid = pid1,
-                Name = busName + "增加",
+                Title = busName + "增加",
                 Type = MenuTypeEnum.Btn,
                 Permission = className + ":add",
             };
@@ -329,7 +329,7 @@ namespace Admin.NET.Core.Service.CodeGen
             var menuType2_3 = new SysMenu
             {
                 Pid = pid1,
-                Name = busName + "删除",
+                Title = busName + "删除",
                 Type = MenuTypeEnum.Btn,
                 Permission = className + ":delete",
             };
@@ -338,7 +338,7 @@ namespace Admin.NET.Core.Service.CodeGen
             var menuType2_4 = new SysMenu
             {
                 Pid = pid1,
-                Name = busName + "编辑",
+                Title = busName + "编辑",
                 Type = MenuTypeEnum.Btn,
                 Permission = className + ":edit",
             };
@@ -356,8 +356,7 @@ namespace Admin.NET.Core.Service.CodeGen
             var templatePath = App.WebHostEnvironment.WebRootPath + @"\Template\";
             return new List<string>()
             {
-               Path.Combine(templatePath , "Service.cs.vm"),
-                Path.Combine(templatePath , "IService.cs.vm"),
+                Path.Combine(templatePath , "Service.cs.vm"),
                 Path.Combine(templatePath , "Input.cs.vm"),
                 Path.Combine(templatePath , "Output.cs.vm"),
                 Path.Combine(templatePath , "Dto.cs.vm"),
@@ -375,22 +374,20 @@ namespace Admin.NET.Core.Service.CodeGen
         /// <returns></returns>
         private List<string> GetTargetPathList(SysCodeGen input)
         {
-            var backendPath = Path.Combine(new DirectoryInfo(App.WebHostEnvironment.ContentRootPath).Parent.FullName, "Magic.Application", "Service", input.TableName);
+            var backendPath = Path.Combine(new DirectoryInfo(App.WebHostEnvironment.ContentRootPath).Parent.FullName, "Admin.NET.Application", "Service", input.TableName);
             var servicePath = Path.Combine(backendPath, input.TableName + "Service.cs");
-            var iservicePath = Path.Combine(backendPath, "I" + input.TableName + "Service.cs");
             var inputPath = Path.Combine(backendPath, "Dto", input.TableName + "Input.cs");
             var outputPath = Path.Combine(backendPath, "Dto", input.TableName + "Output.cs");
             var viewPath = Path.Combine(backendPath, "Dto", input.TableName + "Dto.cs");
-            var frontendPath = Path.Combine(new DirectoryInfo(App.WebHostEnvironment.ContentRootPath).Parent.Parent.FullName, "frontend-vben", "src", "views", "main");
+            var frontendPath = Path.Combine(new DirectoryInfo(App.WebHostEnvironment.ContentRootPath).Parent.Parent.FullName, "Vben2", "src", "views", "main");
             var indexPath = Path.Combine(frontendPath, input.TableName, "index.vue");
             var formDataPath = Path.Combine(frontendPath, input.TableName, "data.data.ts");
             var formModalPath = Path.Combine(frontendPath, input.TableName, "dataModal.vue");
-            var apiJsPath = Path.Combine(new DirectoryInfo(App.WebHostEnvironment.ContentRootPath).Parent.Parent.FullName, "frontend-vben", "src", "api", "modular", "main", input.TableName + ".ts");
+            var apiJsPath = Path.Combine(new DirectoryInfo(App.WebHostEnvironment.ContentRootPath).Parent.Parent.FullName, "Vben2", "src", "api", "main", input.TableName + ".ts");
 
             return new List<string>()
             {
                 servicePath,
-                iservicePath,
                 inputPath,
                 outputPath,
                 viewPath,

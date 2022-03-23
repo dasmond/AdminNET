@@ -24,5 +24,11 @@
         /// 验证码开关配置
         /// </summary>
         public const string SysCaptchaFlag = "SysCaptchaFlag";
+
+        /// <summary>
+        /// 实体所在程序集
+        /// </summary>
+        public static string[] ENTITY_ASSEMBLY_NAME = new string[] { "Admin.NET.Core", "Admin.NET.Application" };
+
     }
 }

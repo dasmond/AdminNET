@@ -25,7 +25,7 @@
     setup(_, { emit }) {
       const isUpdate = ref(true);
       const { createMessage } = useMessage();
-      const [registerForm, { resetFields, setFieldsValue, updateSchema, validate }] = useForm({
+      const [registerForm, { resetFields, setFieldsValue, validate }] = useForm({
         labelWidth: 100,
         schemas: codeFormSchema,
         showActionButtonGroup: false,
@@ -50,22 +50,12 @@
         try {
           const values = await validate();
           setModalProps({ confirmLoading: true });
-          let ret: any;
           if (!unref(isUpdate)) {
-            ret = await addGenerate(values);
+            await addGenerate(values);
           } else {
-            ret = await updateGenerate(values);
+            await updateGenerate(values);
           }
-          if (ret != null) {
-            if (ret.code == 204) {
-              closeModal();
-              createMessage.success('保存成功！');
-            } else {
-              createMessage.warning(ret.message + ret.message[0].messages);
-            }
-          } else {
-            createMessage.error('未知错误');
-          }
+          closeModal();
           emit('success');
         } finally {
           setModalProps({ confirmLoading: false });

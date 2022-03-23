@@ -1,14 +1,14 @@
-<template>
-  <BasicModal v-bind="$attrs" @@register="registerModal" :title="getTitle" @@ok="handleSubmit">
-    <BasicForm @@register="registerForm" />
+﻿<template>
+  <BasicModal v-bind="$attrs" @register="registerModal" :title="getTitle" @ok="handleSubmit">
+    <BasicForm @register="registerForm" />
   </BasicModal>
 </template>
 <script lang="ts">
   import { defineComponent, ref, computed, unref } from 'vue';
-  import { BasicModal, useModalInner } from '/@@/components/Modal';
-  import { BasicForm, useForm } from '/@@/components/Form/index';
+  import { BasicModal, useModalInner } from '/@/components/Modal';
+  import { BasicForm, useForm } from '/@/components/Form/index';
   import { formSchema } from './data.data';
-  import { add@(@Model.ClassName), update@(@Model.ClassName) } from '/@@/api/main/@(@Model.ClassName)';
+  import { addCmsWebsite, updateCmsWebsite } from '/@/api/main/CmsWebsite';
 
   export default defineComponent({
     components: { BasicModal, BasicForm },
@@ -22,7 +22,7 @@
         actionColOptions: {
           span: 23,
         },
-        });
+      });
       const [registerModal, { setModalProps, closeModal }] = useModalInner(async (data) => {
         resetFields();
         setModalProps({ confirmLoading: false });
@@ -33,24 +33,33 @@
           });
         }
       });
-      const getTitle = computed(() => (!unref(isUpdate) ? '新增@(@Model.BusName)' : '编辑@(@Model.BusName)'));
+      const getTitle = computed(() => (!unref(isUpdate) ? '新增站点' : '编辑站点'));
+      function getFileId(urls) {
+        debugger;
+        let arr = urls[0].split('/');
+        let str = arr[arr.length - 1];
+        let id = str.split('.')[0];
+        return id;
+      }
       async function handleSubmit() {
-        try { 
-          const values = await validate();
+        try {
+          var values = await validate();
+          if (values.logo) {
+            values = { ...values, logo: getFileId(values.logo) };
+          }
           setModalProps({ confirmLoading: true });
           if (!unref(isUpdate)) {
-            await add@(@Model.ClassName)(values);
+            await addCmsWebsite(values);
           } else {
-            await update@(@Model.ClassName)(values);
+            await updateCmsWebsite(values);
           }
           closeModal();
           emit('success');
-          } finally {
-            setModalProps({ confirmLoading: false });
-          }
+        } finally {
+          setModalProps({ confirmLoading: false });
         }
+      }
       return { registerModal, registerForm, getTitle, handleSubmit };
-      },
+    },
   });
 </script>
-

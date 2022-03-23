@@ -186,6 +186,11 @@
             验证码开关配置
             </summary>
         </member>
+        <member name="F:Admin.NET.Core.CommonConst.ENTITY_ASSEMBLY_NAME">
+            <summary>
+            实体所在程序集
+            </summary>
+        </member>
         <member name="T:Admin.NET.Core.SqlSugarConst">
             <summary>
             SqlSugar相关常量
@@ -284,11 +289,6 @@
         <member name="P:Admin.NET.Core.SysCodeGen.BusName">
             <summary>
             业务名
-            </summary>
-        </member>
-        <member name="P:Admin.NET.Core.SysCodeGen.MenuApplication">
-            <summary>
-            菜单应用分类（应用编码）
             </summary>
         </member>
         <member name="P:Admin.NET.Core.SysCodeGen.MenuPid">
@@ -394,16 +394,6 @@
         <member name="P:Admin.NET.Core.SysCodeGenConfig.WhetherCommon">
             <summary>
             是否通用字段
-            </summary>
-        </member>
-        <member name="P:Admin.NET.Core.SysCodeGenConfig.DisplayMember">
-            <summary>
-            显示值的字段
-            </summary>
-        </member>
-        <member name="P:Admin.NET.Core.SysCodeGenConfig.SelectedValue">
-            <summary>
-            选中值字段
             </summary>
         </member>
         <member name="T:Admin.NET.Core.SysConfig">
@@ -3125,16 +3115,6 @@
             是否是通用字段
             </summary>
         </member>
-        <member name="P:Admin.NET.Core.Service.CodeGenConfig.DisplayMember">
-            <summary>
-            显示值的字段
-            </summary>
-        </member>
-        <member name="P:Admin.NET.Core.Service.CodeGenConfig.SelectedValue">
-            <summary>
-            选中值字段
-            </summary>
-        </member>
         <member name="P:Admin.NET.Core.Service.CodeGenConfig.TableNickName">
             <summary>
             表的别名 Table as XXX
@@ -3218,11 +3198,6 @@
         <member name="P:Admin.NET.Core.Service.AddCodeGenInput.GenerateType">
             <summary>
             生成方式
-            </summary>
-        </member>
-        <member name="P:Admin.NET.Core.Service.AddCodeGenInput.MenuApplication">
-            <summary>
-            菜单应用分类（应用编码）
             </summary>
         </member>
         <member name="P:Admin.NET.Core.Service.AddCodeGenInput.MenuPid">
@@ -3363,6 +3338,12 @@
         <member name="M:Admin.NET.Core.Service.CommonService.GetEntityInfos">
             <summary>
             获取库表信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Core.Service.CommonService.GetHost">
+            <summary>
+            获取Host
             </summary>
             <returns></returns>
         </member>

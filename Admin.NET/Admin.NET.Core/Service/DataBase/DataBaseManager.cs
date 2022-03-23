@@ -20,7 +20,7 @@ namespace Admin.NET.Core.Service
     /// 数据库管理
     /// </summary>
     [ApiDescriptionSettings(Name = "DataBase", Order = 200)]
-    public class DataBaseManager : IDataBaseManager, IDynamicApiController, ITransient
+    public class DataBaseManager :IDynamicApiController, ITransient
     {
         private readonly ISqlSugarClient _sqlSugarClient;
         private readonly IViewEngine _viewEngine;

@@ -109,12 +109,6 @@ namespace Admin.NET.Core.Service
         //public override string TableComment { get; set; }
 
         /// <summary>
-        /// 菜单应用分类（应用编码）
-        /// </summary>
-        [Required(ErrorMessage = "菜单应用分类不能为空")]
-        public override string MenuApplication { get; set; }
-
-        /// <summary>
         /// 菜单父级
         /// </summary>
         [Required(ErrorMessage = "菜单父级不能为空")]

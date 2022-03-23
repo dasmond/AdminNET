@@ -227,7 +227,7 @@ export const createEntityFormSchema: FormSchema[] = [
         //{ label: 'DBEntityTenant', value: 'DBEntityTenant' },
       ],
     },
-    defaultValue: 'DEntityBase',
+    defaultValue: 'EntityBase',
     required: true,
   },
   {

@@ -96,7 +96,7 @@ namespace Admin.NET.Core.Util
         {
             var columnList = new List<string>()
             {
-                "CreatedTime", "UpdatedTime", "CreatedUserId", "CreatedUserName", "UpdatedUserId", "UpdatedUserName", "IsDeleted"
+                "CreateTime", "UpdateTime", "CreateUserId", "UpdateUserId", "IsDelete"
             };
             return columnList.Contains(columnName);
         }

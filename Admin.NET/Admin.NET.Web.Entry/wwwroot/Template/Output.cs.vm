@@ -11,7 +11,12 @@ namespace @Model.NameSpace
         @:/// <summary>
         @:/// @column.ColumnComment
         @:/// </summary>
+if(column.EffectType == "Upload"){
+        @:public string @column.ColumnName { get; set; }
+}else{
         @:public @column.NetType @column.ColumnName { get; set; }
+}
+
         @:
 }
     }

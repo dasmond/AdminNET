@@ -4,7 +4,9 @@
       <template #toolbar>
         <a-button type="primary" @click="handleCreate">新增</a-button>
       </template>
-      <template #generateType="{ text }"> {{ convertCodeGenType(text) }} </template>
+      <template #generateType="{ text }">
+        {{ convertCodeGenType(text) }}
+      </template>
       <template #action="{ record }">
         <TableAction
           :actions="[
@@ -40,7 +42,7 @@
   </div>
 </template>
 <script lang="ts">
-  import { defineComponent, ref } from 'vue';
+  import { defineComponent, ref, onMounted } from 'vue';
   import { BasicTable, useTable, TableAction } from '/@/components/Table';
   import { codeShowColumns } from './codeGenerate.data';
   import { useModal } from '/@/components/Modal';
@@ -63,11 +65,12 @@
     setup() {
       const { createMessage } = useMessage();
       var codeGenType = ref<any>([]);
-      getDictDataDropdown('code_gen_create_type').then((res) => {
-        codeGenType.value = res;
+      onMounted(async () => {
+        codeGenType.value = await getDictDataDropdown('code_gen_create_type');
       });
       function convertCodeGenType(code: number) {
-        return codeGenType.value.filter((c) => c.code == code)[0].value;
+        let data = codeGenType.value.filter((c) => c.value == code)[0].label;
+        return data;
       }
       const [registerCodeGenModal, { openModal: openCodeGenModal }] = useModal();
       const [registerCodeGenConfigModal, { openModal: openCodeGenConfigModal }] = useModal();
@@ -122,6 +125,7 @@
         handleGenerate,
         handleDelete,
         handleSuccess,
+        codeGenType,
       };
     },
   });

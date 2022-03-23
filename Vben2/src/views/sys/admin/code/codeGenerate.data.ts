@@ -54,8 +54,10 @@ export const codeFormSchema: FormSchema[] = [
     component: 'ApiSelect',
     componentProps: {
       api: apiTableList,
-      labelField: 'tableName',
-      valueField: 'entityName',
+      fieldNames: {
+        label: 'tableName',
+        value: 'entityName',
+      },
     },
   },
   {
@@ -71,7 +73,7 @@ export const codeFormSchema: FormSchema[] = [
     componentProps: {
       api: getMenuList,
       fieldNames: {
-        label: 'title',
+        title: 'title',
         key: 'id',
         value: 'id',
       },
@@ -83,7 +85,7 @@ export const codeFormSchema: FormSchema[] = [
     label: '命名空间',
     component: 'Input',
     required: true,
-    defaultValue: 'Magic.Application',
+    defaultValue: 'Admin.NET.Application',
   },
   {
     field: 'authorName',
@@ -98,8 +100,10 @@ export const codeFormSchema: FormSchema[] = [
     component: 'ApiSelect',
     componentProps: {
       api: apiDictTypeDropDown,
-      labelField: 'name',
-      valueField: 'code',
+      fieldNames: {
+        label: 'label',
+        value: 'value',
+      },
     },
     defaultValue: '2',
     required: true,
@@ -143,7 +147,6 @@ export const columns = [
   {
     title: '字典',
     dataIndex: 'dictTypeCode',
-    width: 150,
     align: 'center',
     slots: {
       customRender: 'dictTypeCode',
@@ -198,8 +201,10 @@ export const fkFormSchema: FormSchema[] = [
     componentProps: ({ formModel, formActionType }) => {
       return {
         api: apiTableList,
-        labelField: 'tableName',
-        valueField: 'tableName',
+        fieldNames: {
+          label: 'tableName',
+          value: 'tableName',
+        },
         onChange: (e: any, option: any) => {
           formModel.columnName = undefined;
           formModel.entityName = option.entityName;
@@ -209,8 +214,10 @@ export const fkFormSchema: FormSchema[] = [
             componentProps: {
               api: apiColumnList,
               immediate: false,
-              labelField: 'columnName',
-              valueField: 'columnName',
+              fieldNames: {
+                label: 'columnName',
+                value: 'columnName',
+              },
               params: e,
               onChange: (e: any, option: any) => {
                 formModel.columnNetType = option.netType;
