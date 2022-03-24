@@ -36,7 +36,7 @@ namespace Admin.NET.Core.Service
                 return entityInfos;
             }
             var type = typeof(SugarTable);
-
+            var type1 = typeof(NotTableAttribute);
             List<Type> types = new List<Type>();
             foreach (var assemblyName in CommonConst.ENTITY_ASSEMBLY_NAME)
             {
@@ -45,9 +45,10 @@ namespace Admin.NET.Core.Service
             }
             Func<Attribute[], bool> IsMyAttribute = o =>
             {
+                if (o.Where(c => c.GetType() == type1).Count() > 0) return false;
                 foreach (Attribute a in o)
                 {
-                    if (a.GetType() == type)
+                    if (a.GetType() == type && a.GetType() != type1)
                         return true;
                 }
                 return false;
@@ -84,7 +85,16 @@ namespace Admin.NET.Core.Service
         /// <returns></returns>
         public string GetHost()
         {
-            return _httpContextAccessor.HttpContext.Request.Host.Value;
+            return $"{_httpContextAccessor.HttpContext.Request.Scheme}://{_httpContextAccessor.HttpContext.Request.Host.Value}";
+        }
+        /// <summary>
+        /// 获取文件URL
+        /// </summary>
+        /// <param name="sysFile"></param>
+        /// <returns></returns>
+        public string GetFileUrl(SysFile sysFile)
+        {
+            return $"{GetHost()}/{sysFile.FilePath}/{sysFile.Id + sysFile.Suffix}";
         }
     }
 }

@@ -4,6 +4,11 @@
         <name>Admin.NET.Core</name>
     </assembly>
     <members>
+        <member name="T:Admin.NET.Core.NotTableAttribute">
+            <summary>
+            非实体表，继承该特性！！！
+            </summary>
+        </member>
         <member name="T:Admin.NET.Core.SqlSugarEntityAttribute">
             <summary>
             SqlSugar实体配置特性
@@ -3347,6 +3352,13 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:Admin.NET.Core.Service.CommonService.GetFileUrl(Admin.NET.Core.SysFile)">
+            <summary>
+            获取文件URL
+            </summary>
+            <param name="sysFile"></param>
+            <returns></returns>
+        </member>
         <member name="T:Admin.NET.Core.Service.PageConfigInput">
             <summary>
             参数配置分页
@@ -3902,6 +3914,31 @@
         <member name="P:Admin.NET.Core.Service.PageFileInput.EndTime">
             <summary>
             结束时间
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.Service.FileOutput.Id">
+            <summary>
+            文件ID
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.Service.FileOutput.Name">
+            <summary>
+            文件名称
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.Service.FileOutput.Url">
+            <summary>
+            文件URL
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.Service.FileOutput.SizeKb">
+            <summary>
+            文件大小
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.Service.FileOutput.Suffix">
+            <summary>
+            文件后缀
             </summary>
         </member>
         <member name="T:Admin.NET.Core.Service.SysFileService">

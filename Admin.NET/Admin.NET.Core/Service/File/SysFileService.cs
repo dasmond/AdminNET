@@ -27,14 +27,17 @@ namespace Admin.NET.Core.Service
         private readonly OSSProviderOptions _OSSProviderOptions;
         private readonly IOSSService _OSSService;
         private readonly UploadOptions _uploadOptions;
+        private readonly ICommonService _commonService;
 
         public SysFileService(SqlSugarRepository<SysFile> sysFileRep,
             IOptions<OSSProviderOptions> oSSProviderOptions,
             IOSSServiceFactory ossServiceFactory,
+            ICommonService commonService,
             IOptions<UploadOptions> uploadOptions)
         {
             _sysFileRep = sysFileRep;
             _OSSProviderOptions = oSSProviderOptions.Value;
+            _commonService = commonService;
             if (_OSSProviderOptions.IsEnable)
                 _OSSService = ossServiceFactory.Create(_OSSProviderOptions.Provider.ToString());
             _uploadOptions = uploadOptions.Value;
@@ -74,9 +77,16 @@ namespace Admin.NET.Core.Service
         /// <returns></returns>
         [HttpPost("/sysFile/upload")]
         [AllowAnonymous]
-        public async Task<SysFile> UploadFile([Required] IFormFile file)
+        public async Task<FileOutput> UploadFile([Required] IFormFile file)
         {
-            return await HandleUploadFile(file);
+            var sysFile = await HandleUploadFile(file);
+            return new FileOutput
+            {
+                Id = sysFile.Id,
+                Url = _commonService.GetFileUrl(sysFile),
+                SizeKb = sysFile.SizeKb,
+                Suffix = sysFile.Suffix,
+            };
         }
 
         /// <summary>

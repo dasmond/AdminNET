@@ -24,6 +24,26 @@
             域名
             </summary>
         </member>
+        <member name="T:Admin.NET.Application.TestCodeGen">
+            <summary>
+            测试代码生成
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.TestCodeGen.Image">
+            <summary>
+            图像
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.TestCodeGen.User">
+            <summary>
+            用户
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.TestCodeGen.IsDelete">
+            <summary>
+            软删除
+            </summary>
+        </member>
         <member name="T:Admin.NET.Application.CmsWebsiteService">
             <summary>
             站点服务
@@ -154,6 +174,11 @@
         <member name="P:Admin.NET.Application.CmsWebsiteOutput.Domain">
             <summary>
             域名
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.CmsWebsiteMapperSysFile.Id">
+            <summary>
+            雪花Id
             </summary>
         </member>
     </members>

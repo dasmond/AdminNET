@@ -5,6 +5,7 @@ namespace Admin.NET.Core.Service
     /// <summary>
     /// 定时任务方法
     /// </summary>
+    [NotTable]
     public class TimerMethod : SysTimer
     {
         /// <summary>

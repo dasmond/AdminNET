@@ -11,13 +11,28 @@ namespace @Model.NameSpace
         @:/// <summary>
         @:/// @column.ColumnComment
         @:/// </summary>
-if(column.EffectType == "Upload"){
-        @:public string @column.ColumnName { get; set; }
+if(column.EffectType == "fk")
+{
+         @:public @column.NetType @column.ColumnName { get; set; }
+         
+         @:public @(@column.ColumnName)Fk@(@column.FkEntityName)Output Fk@(@column.ColumnName) { get; set; }
 }else{
         @:public @column.NetType @column.ColumnName { get; set; }
 }
-
         @:
 }
     }
+@foreach (var column in Model.TableField){
+if (@column.EffectType == "fk"){
+    @:public class @(@column.ColumnName)Fk@(@column.FkEntityName)Output
+}
+}
+    {
+@foreach (var column in Model.TableField){
+if (@column.EffectType == "fk"){
+        @:public @column.FkColumnNetType @column.FkColumnName { get; set; }
+}
+}
+    }
+
 }

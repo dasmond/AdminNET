@@ -2,26 +2,27 @@
 import { uploadFile } from '/@/api/sys/admin';
 export const columns: BasicColumn[] = [
   {
-    title: '站点名称',
-    dataIndex: 'name',
+    title: '图像',
+    dataIndex: 'image',
   },
   {
-    title: 'Logo',
-    dataIndex: 'logo',
-    slots: { customRender: 'logo' },
-  },
-  {
-    title: '域名',
-    dataIndex: 'domain',
+    title: '用户',
+    dataIndex: 'user',
   },
 ];
 
 export const searchFormSchema: FormSchema[] = [
   {
-    label: '站点名称',
-    field: 'name',
+    label: '图像',
+    field: 'image',
     component: 'Input',
-    colProps: { span: 7 },
+    colProps: { span: 8 },
+  },
+  {
+    label: '用户',
+    field: 'user',
+    component: 'Input',
+    colProps: { span: 8 },
   },
 ];
 
@@ -34,25 +35,19 @@ export const formSchema: FormSchema[] = [
     show: false,
   },
   {
-    label: '站点名称',
-    field: 'name',
-    component: 'Input',
-    required: true,
-  },
-  {
-    label: 'Logo',
-    field: 'logo',
+    label: '图像',
+    field: 'image',
     component: 'Upload',
-    required: false,
+    required: true,
     componentProps: {
       maxNumber: 1,
       api: uploadFile,
     },
   },
   {
-    label: '域名',
-    field: 'domain',
-    component: 'Input',
+    label: '用户',
+    field: 'user',
+    component: 'fk',
     required: true,
   },
 ];

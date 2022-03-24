@@ -20,7 +20,7 @@ namespace Admin.NET.Application
         private readonly ICommonService _commonService;
 
         public CmsWebsiteService(SqlSugarRepository<CmsWebsite> rep
-                                          ,ICommonService commonService
+                                          , ICommonService commonService
         )
         {
             _rep = rep;
@@ -35,19 +35,17 @@ namespace Admin.NET.Application
         [HttpGet("/CmsWebsite/pageList")]
         public async Task<dynamic> Page([FromQuery] CmsWebsiteInput input)
         {
-            string host = _commonService.GetHost();
-            return await _rep.Context.Queryable<CmsWebsite, SysFile>((cmsWebsite, sysFile_FK_logo) => new JoinQueryInfos(
-               JoinType.Left, cmsWebsite.Logo == sysFile_FK_logo.Id
-              ))
-             .WhereIF(!string.IsNullOrWhiteSpace(input.Name), cmsWebsite => cmsWebsite.Name.Contains(input.Name.Trim()))
-              .Select((cmsWebsite, sysFile_FK_logo) => new CmsWebsiteOutput
-              {
-                  Id = cmsWebsite.Id,
-                  Name = cmsWebsite.Name,
-                  Logo = "http://" + host + "/" + sysFile_FK_logo.FilePath + "/" + sysFile_FK_logo.Id + sysFile_FK_logo.Suffix,
-                  Domain = cmsWebsite.Domain,
-              })
-                .ToPagedListAsync(input.Page, input.PageSize);
+            return await _rep.Context.Queryable<CmsWebsite>()
+              
+                 .Select(c=> new CmsWebsiteOutput { 
+                     Id = c.Id,
+                     Name = c.Name,
+                     Logo = c.Logo,
+                     Domain = c.Domain,
+                 })
+                 .Mapper(c => c.LogoAttachment, c => c.Logo)
+                 .WhereIF(!string.IsNullOrWhiteSpace(input.Name), c => c.Name.Contains(input.Name.Trim()))
+                 .ToPagedListAsync(input.Page, input.PageSize);
         }
 
         /// <summary>

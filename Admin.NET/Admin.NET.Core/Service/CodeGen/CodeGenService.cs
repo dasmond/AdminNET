@@ -238,7 +238,7 @@ namespace Admin.NET.Core.Service.CodeGen
                 File.WriteAllText(targetPathList[i], tResult, Encoding.UTF8);
             }
 
-            await AddMenu(input.TableName, input.BusName, input.MenuPid);
+            //await AddMenu(input.TableName, input.BusName, input.MenuPid);
         }
         /// <summary>
         /// 获取连表的实体名和别名

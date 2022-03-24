@@ -8,7 +8,7 @@
   import { BasicModal, useModalInner } from '/@/components/Modal';
   import { BasicForm, useForm } from '/@/components/Form/index';
   import { formSchema } from './data.data';
-  import { addCmsWebsite, updateCmsWebsite } from '/@/api/main/CmsWebsite';
+  import { addTestCodeGen, updateTestCodeGen } from '/@/api/main/TestCodeGen';
 
   export default defineComponent({
     components: { BasicModal, BasicForm },
@@ -22,7 +22,7 @@
         actionColOptions: {
           span: 23,
         },
-      });
+        });
       const [registerModal, { setModalProps, closeModal }] = useModalInner(async (data) => {
         resetFields();
         setModalProps({ confirmLoading: false });
@@ -31,33 +31,26 @@
           setFieldsValue({
             ...data.record,
           });
-          if (data.record.logo) {
-            setFieldsValue({
-              logo: [data.record.logoAttachment],
-            });
-          }
         }
       });
-      const getTitle = computed(() => (!unref(isUpdate) ? '新增站点' : '编辑站点'));
+      const getTitle = computed(() => (!unref(isUpdate) ? '新增测试生成' : '编辑测试生成'));
       async function handleSubmit() {
-        try {
-          var values = await validate();
-          if (values.logo) {
-            values = { ...values, logo: values.logo[0].id };
-          }
+        try { 
+          const values = await validate();
           setModalProps({ confirmLoading: true });
           if (!unref(isUpdate)) {
-            await addCmsWebsite(values);
+            await addTestCodeGen(values);
           } else {
-            await updateCmsWebsite(values);
+            await updateTestCodeGen(values);
           }
           closeModal();
           emit('success');
-        } finally {
-          setModalProps({ confirmLoading: false });
+          } finally {
+            setModalProps({ confirmLoading: false });
+          }
         }
-      }
       return { registerModal, registerForm, getTitle, handleSubmit };
-    },
+      },
   });
 </script>
+
