@@ -10,7 +10,7 @@ namespace Admin.NET.Application
         /// <summary>
         /// 用户
         /// </summary>
-        public string UserOutputUserName { get; set; }
+        public string SysUserNickName { get; set; }
         
         /// <summary>
         /// 主键Id
@@ -26,6 +26,11 @@ namespace Admin.NET.Application
         /// 用户
         /// </summary>
         public long User { get; set; }
+        
+        /// <summary>
+        /// 状态
+        /// </summary>
+        public bool Status { get; set; }
         
     }
 }

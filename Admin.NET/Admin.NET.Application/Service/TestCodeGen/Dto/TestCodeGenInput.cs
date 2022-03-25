@@ -19,16 +19,15 @@ namespace Admin.NET.Application
         /// </summary>
         public virtual long User { get; set; }
         
+        /// <summary>
+        /// 状态
+        /// </summary>
+        public virtual bool Status { get; set; }
+        
     }
 
     public class AddTestCodeGenInput : TestCodeGenInput
     {
-        /// <summary>
-        /// 用户
-        /// </summary>
-        [Required(ErrorMessage = "用户不能为空")]
-        public override long User { get; set; }
-        
     }
 
     public class DeleteTestCodeGenInput

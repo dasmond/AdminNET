@@ -37,15 +37,25 @@ namespace @Model.NameSpace
                             @:@(@column.ColumnName) = u.@(@column.ColumnName),        
 }
                         @:})
+@foreach (var column in Model.TableField){
+if(@column.EffectType == "fk")
+{   
+                        @:.Mapper(u => u.Fk@(@column.ColumnName), u => u.@(@column.ColumnName))
+}else if(@column.EffectType == "Upload"){
+                        @:.Mapper(c => c.@(@column.ColumnName)Attachment, c => c.@(@column.ColumnName))
+}
+}
 }
 @foreach (var column in Model.TableField){
 if (@column.QueryWhether == "Y"){
 if (@column.NetType == "string"){
 if(@column.QueryType == "like"){
-                @:.WhereIF(!string.IsNullOrWhiteSpace(input.@column.ColumnName), u => u.@(@column.ColumnName).Contains(input.@(@column.ColumnName).Trim()))
+                        @:.WhereIF(!string.IsNullOrWhiteSpace(input.@column.ColumnName), u => u.@(@column.ColumnName).Contains(input.@(@column.ColumnName).Trim()))
 }else{
-                @:.WhereIF(!string.IsNullOrWhiteSpace(input.@column.ColumnName), u => u.@(@column.ColumnName) @column.QueryType input.@(@column.ColumnName))
+                        @:.WhereIF(!string.IsNullOrWhiteSpace(input.@column.ColumnName), u => u.@(@column.ColumnName) @column.QueryType input.@(@column.ColumnName))
 }
+}else if(@column.NetType == "int" || @column.NetType == "long"){
+                        @:.WhereIF(input.@column.ColumnName>0, u => u.@(@column.ColumnName) @column.QueryType input.@(@column.ColumnName))
 }
 }
 }          
@@ -117,6 +127,21 @@ if (@column.ColumnKey == "True"){
         {
             return await _rep.AsQueryable().ToListAsync();
         }
+@foreach (var column in Model.TableField){
+if(@column.EffectType == "fk"){
+        @:[HttpGet("/@(@Model.ClassName)/@(@column.FkEntityName)Dropdown")]
+        @:public async Task<dynamic> @(@column.FkEntityName)Dropdown()
+        @:{
+            @:return await _rep.Context.Queryable<@(@column.FkEntityName)>()
+                  @:.Select(u => new
+                  @:{
+                      @:Label = u.@(@column.FkColumnName),
+                      @:Value = u.Id
+                  @:}
+                  @:).ToListAsync();
+        @:}
+}
+}
 
     }
 }

@@ -35,8 +35,11 @@ namespace Admin.NET.Application
                             Id = u.Id,        
                             Image = u.Image,        
                             User = u.User,        
+                            Status = u.Status,        
                         })
-
+                        .Mapper(c => c.ImageAttachment, c => c.Image)
+                        .Mapper(u => u.FkUser, u => u.User)
+                        .WhereIF(input.User>0, u => u.User == input.User)
                 .ToPagedListAsync(input.Page, input.PageSize);
         }
 
@@ -96,6 +99,17 @@ namespace Admin.NET.Application
         public async Task<dynamic> List([FromQuery] TestCodeGenInput input)
         {
             return await _rep.AsQueryable().ToListAsync();
+        }
+        [HttpGet("/TestCodeGen/SysUserDropdown")]
+        public async Task<dynamic> SysUserDropdown()
+        {
+            return await _rep.Context.Queryable<SysUser>()
+                  .Select(u => new
+                  {
+                      Label = u.NickName,
+                      Value = u.Id
+                  }
+                  ).ToListAsync();
         }
 
     }

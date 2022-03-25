@@ -20,8 +20,8 @@ namespace Admin.NET.Application
           /// </summary>
           public long User { get; set; }
           /// <summary>
-          /// 软删除
+          /// 状态
           /// </summary>
-          public bool IsDelete { get; set; }
+          public bool Status { get; set; }
 }	
 }

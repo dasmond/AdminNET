@@ -1,7 +1,6 @@
 import { BasicColumn } from '/@/components/Table';
 import { FormSchema } from '/@/components/Table';
 import { getMenuList, getDictDataDropdown, getTableList, getColumnList } from '/@/api/sys/admin';
-
 const apiTableList = async (param: any) => {
   const result = await getTableList(param);
   return result;
@@ -17,6 +16,10 @@ const apiDictTypeDropDown = async () => {
   const result = await getDictDataDropdown('code_gen_create_type');
   return result;
 };
+const apiTableTypeDropDown = async () => {
+  const result = await getDictDataDropdown('view_table_type');
+  return result;
+};
 
 export const codeShowColumns: BasicColumn[] = [
   {
@@ -26,6 +29,11 @@ export const codeShowColumns: BasicColumn[] = [
   {
     title: '业务名',
     dataIndex: 'busName',
+  },
+  {
+    title: '表格类型',
+    dataIndex: 'tableType',
+    slots: { customRender: 'tableType' },
   },
   {
     title: '命名空间',
@@ -78,6 +86,18 @@ export const codeFormSchema: FormSchema[] = [
         value: 'id',
       },
       getPopupContainer: () => document.body,
+    },
+  },
+  {
+    field: 'tableType',
+    label: '表格类型',
+    component: 'ApiSelect',
+    componentProps: {
+      api: apiTableTypeDropDown,
+      fieldNames: {
+        label: 'label',
+        value: 'value',
+      },
     },
   },
   {

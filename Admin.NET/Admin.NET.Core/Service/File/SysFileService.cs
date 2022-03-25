@@ -87,7 +87,7 @@ namespace Admin.NET.Core.Service
                 SizeKb = sysFile.SizeKb,
                 Suffix = sysFile.Suffix,
             };
-        }
+        }   
 
         /// <summary>
         /// 下载文件(文件流)

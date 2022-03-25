@@ -57,7 +57,6 @@
     ActionItem,
     TableAction,
   } from '/@/components/Table';
-  import { useMessage } from '/@/hooks/web/useMessage';
   import { addTable, updateTable } from '/@/api/sys/admin';
   export default defineComponent({
     name: 'TableModal',
@@ -65,7 +64,6 @@
     emits: ['success', 'register'],
     setup(_, { emit }) {
       const isUpdate = ref(true);
-      const { createMessage } = useMessage();
       const [registerForm, { resetFields, setFieldsValue, updateSchema, validate }] = useForm({
         labelWidth: 300,
         schemas: tableFormSchema,

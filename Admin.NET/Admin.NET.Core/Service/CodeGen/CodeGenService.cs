@@ -202,13 +202,13 @@ namespace Admin.NET.Core.Service.CodeGen
                 var tContent = File.ReadAllText(templatePathList[i]);
 
                 var tableFieldList = await _codeGenConfigService.List(new CodeGenConfig() { CodeGenId = input.Id }); // 字段集合
-                if (i >= 5) // 适应前端首字母小写
-                {
-                    tableFieldList.ForEach(u =>
-                    {
-                        u.ColumnName = u.ColumnName.Substring(0, 1).ToLower() + u.ColumnName[1..];
-                    });
-                }
+                //if (i >= 4) // 适应前端首字母小写
+                //{
+                //    tableFieldList.ForEach(u =>
+                //    {
+                //        u.ColumnName = u.ColumnName.Substring(0, 1).ToLower() + u.ColumnName[1..];
+                //    });
+                //}
 
                 var queryWhetherList = tableFieldList.Where(u => u.QueryWhether == YesNoEnum.Y.ToString()).ToList(); // 前端查询集合
                 var joinTableList = tableFieldList.Where(u => u.EffectType == "Upload" || u.EffectType == "fk").ToList();//需要连表查询的字段
@@ -224,11 +224,11 @@ namespace Admin.NET.Core.Service.CodeGen
                     TableField = tableFieldList,
                     IsJoinTable = joinTableList.Count > 0,
                     IsUpload = joinTableList.Where(u => u.EffectType == "Upload").Count() > 0,
-                    UploadField = joinTableList.Where(c => c.EffectType == "Upload").Select(u => u.ColumnName).ToList(),//附件字段集合
-                    JoinTableField = joinTableList,
-                    JoinTableStr = joinTableNames,
-                    LowerJoinTableStr = lowerJoinTableNames,
-                    JoinTableList = lowerJoinTableNames.Split(','),
+                    //UploadField = joinTableList.Where(c => c.EffectType == "Upload").Select(u => u.ColumnName).ToList(),//附件字段集合
+                    //JoinTableField = joinTableList,
+                    //JoinTableStr = joinTableNames,
+                    //LowerJoinTableStr = lowerJoinTableNames,
+                    //JoinTableList = lowerJoinTableNames.Split(','),
                 };
                 var tResult = _viewEngine.RunCompileFromCached(tContent, data);
 
@@ -238,7 +238,7 @@ namespace Admin.NET.Core.Service.CodeGen
                 File.WriteAllText(targetPathList[i], tResult, Encoding.UTF8);
             }
 
-            //await AddMenu(input.TableName, input.BusName, input.MenuPid);
+            await AddMenu(input.TableName, input.BusName, input.MenuPid);
         }
         /// <summary>
         /// 获取连表的实体名和别名

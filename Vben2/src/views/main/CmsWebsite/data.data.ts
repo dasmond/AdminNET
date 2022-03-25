@@ -53,6 +53,6 @@ export const formSchema: FormSchema[] = [
     label: '域名',
     field: 'domain',
     component: 'Input',
-    required: true,
+    required: false,
   },
 ];

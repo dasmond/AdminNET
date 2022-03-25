@@ -17,14 +17,11 @@ namespace Admin.NET.Application
     public class CmsWebsiteService : IDynamicApiController, ITransient
     {
         private readonly SqlSugarRepository<CmsWebsite> _rep;
-        private readonly ICommonService _commonService;
 
         public CmsWebsiteService(SqlSugarRepository<CmsWebsite> rep
-                                          , ICommonService commonService
         )
         {
             _rep = rep;
-            _commonService = commonService;
         }
 
         /// <summary>

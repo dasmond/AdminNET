@@ -4,7 +4,8 @@ enum Api {
   DeleteTestCodeGen = '/TestCodeGen/delete',
   UpdateTestCodeGen = '/TestCodeGen/edit',
   GetTestCodeGenPage = '/TestCodeGen/page',
-} 
+  GetSysUserDropdown = '/TestCodeGen/SysUserDropdown',
+}
 
 //增加测试生成
 export function addTestCodeGen(params: any) {
@@ -21,4 +22,7 @@ export function updateTestCodeGen(params: any) {
 //分页查询测试生成
 export function getTestCodeGenPageList(params?: any) {
   return defHttp.get<any>({ url: Api.GetTestCodeGenPage, params });
+}
+export function getSysUserDropdown() {
+  return defHttp.get<any>({ url: Api.GetSysUserDropdown });
 }

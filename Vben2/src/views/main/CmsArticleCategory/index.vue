@@ -2,15 +2,15 @@
   <div>
     <BasicTable @register="registerTable">
       <template #toolbar>
-        <a-button type="primary" @click="handleCreate">新增测试生成</a-button>
+        <a-button type="primary" @click="handleCreate">新增文章分类</a-button>
       </template>
-      <template #image="{ text, record }">
+      <template #picture="{ text, record }">
         <TableImg
           v-if="text"
           :size="60"
           :simpleShow="true"
           :showBadge="false"
-          :imgList="[downUrl + '/' + record.imageAttachment.id + record.imageAttachment.suffix]"
+          :imgList="[downUrl + '/' + record.pictureAttachment.id + record.pictureAttachment.suffix]"
         />
       </template>
       <template #action="{ record }">
@@ -34,27 +34,27 @@
         />
       </template>
     </BasicTable>
-    <TestCodeGenModal @register="registerModal" @success="handleSuccess" />
+    <CmsArticleCategoryModal @register="registerModal" @success="handleSuccess" />
   </div>
 </template>
 <script lang="ts">
   import { defineComponent } from 'vue';
   import { BasicTable, useTable, TableAction, TableImg } from '/@/components/Table';
   import { useModal } from '/@/components/Modal';
-  import TestCodeGenModal from './dataModal.vue';
+  import CmsArticleCategoryModal from './dataModal.vue';
 
   import { columns, searchFormSchema } from './data.data';
   import { useMessage } from '/@/hooks/web/useMessage';
-  import { getTestCodeGenPageList, deleteTestCodeGen } from '/@/api/main/TestCodeGen';
+  import { getCmsArticleCategoryPageList, deleteCmsArticleCategory } from '/@/api/main/CmsArticleCategory';
   let searchvalue = undefined;
   export default defineComponent({
-    components: { BasicTable, TestCodeGenModal, TableAction, TableImg },
+    components: { BasicTable, CmsArticleCategoryModal, TableAction, TableImg },
     setup() {
       const { createMessage } = useMessage();
       const [registerModal, { openModal }] = useModal();
       const [registerTable, { reload }] = useTable({
-        title: '测试生成列表',
-        api: getTestCodeGenPageList,
+        title: '文章分类列表',
+        api: getCmsArticleCategoryPageList,
         pagination: true,
         beforeFetch(params) {
           params.searchvalue = searchvalue;
@@ -97,7 +97,7 @@
       }
 
       async function handleDelete(record: Recordable) {
-        await deleteTestCodeGen(record);
+        await deleteCmsArticleCategory(record);
         reload();
         createMessage.success('删除成功！');
       }

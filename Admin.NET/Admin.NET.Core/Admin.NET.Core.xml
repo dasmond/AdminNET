@@ -296,6 +296,11 @@
             业务名
             </summary>
         </member>
+        <member name="P:Admin.NET.Core.SysCodeGen.TableType">
+            <summary>
+            表格类型
+            </summary>
+        </member>
         <member name="P:Admin.NET.Core.SysCodeGen.MenuPid">
             <summary>
             菜单编码
@@ -3939,6 +3944,11 @@
         <member name="P:Admin.NET.Core.Service.FileOutput.Suffix">
             <summary>
             文件后缀
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.Service.MapperSysFileOutput.Id">
+            <summary>
+            雪花Id
             </summary>
         </member>
         <member name="T:Admin.NET.Core.Service.SysFileService">

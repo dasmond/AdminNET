@@ -7,7 +7,7 @@ namespace Admin.NET.Core
     /// <summary>
     /// 代码生成表
     /// </summary>
-    [SugarTable("sys_code_gen",TableDescription="代码生成表")]
+    [SugarTable("sys_code_gen", TableDescription = "代码生成表")]
     [Description("代码生成表")]
     public class SysCodeGen : EntityBase
     {
@@ -52,6 +52,12 @@ namespace Admin.NET.Core
         [MaxLength(100)]
         [SugarColumn(ColumnDescription = "业务名")]
         public string BusName { get; set; }
+
+        /// <summary>
+        /// 表格类型
+        /// </summary>
+        [SugarColumn(ColumnDescription = "表格类型")]
+        public int TableType { get; set; }
 
 
         /// <summary>

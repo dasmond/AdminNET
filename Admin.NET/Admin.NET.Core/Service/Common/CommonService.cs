@@ -24,6 +24,7 @@ namespace Admin.NET.Core.Service
             _httpContextAccessor = httpContextAccessor;
         }
 
+
         /// <summary>
         /// 获取库表信息
         /// </summary>
@@ -78,6 +79,7 @@ namespace Admin.NET.Core.Service
             }
             return entityInfos;
         }
+
 
         /// <summary>
         /// 获取Host

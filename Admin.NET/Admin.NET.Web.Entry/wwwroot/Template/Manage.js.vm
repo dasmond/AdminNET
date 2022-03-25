@@ -4,7 +4,12 @@ enum Api {
   Delete@(@Model.ClassName) = '/@(@Model.ClassName)/delete',
   Update@(@Model.ClassName) = '/@(@Model.ClassName)/edit',
   Get@(@Model.ClassName)Page = '/@(@Model.ClassName)/page',
-} 
+  @foreach (var column in Model.TableField){
+if(@column.EffectType == "fk"){
+  @:Get@(@column.FkEntityName)Dropdown = '/@(@Model.ClassName)/@(@column.FkEntityName)Dropdown',
+}
+}
+}
 
 //增加@(@Model.BusName)
 export function add@(@Model.ClassName)(params: any) {
@@ -21,4 +26,11 @@ export function update@(@Model.ClassName)(params: any) {
 //分页查询@(@Model.BusName)
 export function get@(@Model.ClassName)PageList(params?: any) {
   return defHttp.get<any>({ url: Api.Get@(@Model.ClassName)Page, params });
+}
+@foreach (var column in Model.TableField){
+if(@column.EffectType == "fk"){
+@:export function get@(@column.FkEntityName)Dropdown() {
+  @:return defHttp.get<any>({ url: Api.Get@(@column.FkEntityName)Dropdown });
+@:}
+}
 }

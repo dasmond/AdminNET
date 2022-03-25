@@ -8,7 +8,7 @@
   import { BasicModal, useModalInner } from '/@/components/Modal';
   import { BasicForm, useForm } from '/@/components/Form/index';
   import { formSchema } from './data.data';
-  import { addTestCodeGen, updateTestCodeGen } from '/@/api/main/TestCodeGen';
+  import { addCmsArticleCategory, updateCmsArticleCategory } from '/@/api/main/CmsArticleCategory';
 
   export default defineComponent({
     components: { BasicModal, BasicForm },
@@ -31,25 +31,25 @@
           setFieldsValue({
             ...data.record,
           });
-          if (data.record.image) {
+          if (data.record.picture) {
             setFieldsValue({
-              image: [data.record.imageAttachment],
+              picture: [data.record.pictureAttachment],
             });
           }
         }
       });
-      const getTitle = computed(() => (!unref(isUpdate) ? '新增测试生成' : '编辑测试生成'));
+      const getTitle = computed(() => (!unref(isUpdate) ? '新增文章分类' : '编辑文章分类'));
       async function handleSubmit() {
         try {
           var values = await validate();
-          if (values.image) {
-            values = { ...values, image: values.image[0].id };
+          if (values.picture) {
+            values = { ...values, picture: values.picture[0].id };
           }
           setModalProps({ confirmLoading: true });
           if (!unref(isUpdate)) {
-            await addTestCodeGen(values);
+            await addCmsArticleCategory(values);
           } else {
-            await updateTestCodeGen(values);
+            await updateCmsArticleCategory(values);
           }
           closeModal();
           emit('success');

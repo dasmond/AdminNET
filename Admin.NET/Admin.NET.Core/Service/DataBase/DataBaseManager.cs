@@ -183,7 +183,7 @@ namespace Admin.NET.Core.Service
                      && c.DbColumnName != "UpdateTime"
                      && c.DbColumnName != "CreateUserId"
                      && c.DbColumnName != "UpdateUserId"
-                     && c.DbColumnName != "IsDeleted").ToList();
+                     && c.DbColumnName != "IsDelete").ToList();
             }
             else if (input.BaseClassName.Contains("EntityBase"))
             {
@@ -192,7 +192,7 @@ namespace Admin.NET.Core.Service
                      && c.DbColumnName != "UpdateTime"
                      && c.DbColumnName != "CreateUserId"
                      && c.DbColumnName != "UpdateUserId"
-                     && c.DbColumnName != "IsDeleted").ToList();
+                     && c.DbColumnName != "IsDelete").ToList();
             }
             else if (input.BaseClassName.Contains("EntityBaseId"))
             {
