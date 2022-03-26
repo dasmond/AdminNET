@@ -14,7 +14,7 @@
     "InjectSpecificationDocument": true // 生产环境是否开启Swagger
   },
   "ConnectionStrings": {
-    "DefaultConnection": "DataSource=C:\\Admin.NET.db", // "server=127.0.0.1;uid=sa;pwd=123456;database=db;MultipleActiveResultSets=True",
+    "DefaultConnection": "DataSource=./Admin.Net.db", // "server=127.0.0.1;uid=sa;pwd=123456;database=db;MultipleActiveResultSets=True",
     "DefaultDbType": "Sqlite", // MySql、SqlServer、Sqlite、Oracle、PostgreSQL、Dm、Kdbndp、Oscar、MySqlConnector、Access
     "InitTable": true,
     "DbConfigs": [

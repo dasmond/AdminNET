@@ -8,6 +8,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.IO;
 using System.Linq;
 using System.Linq.Dynamic.Core;
 using System.Linq.Expressions;
@@ -15,7 +16,7 @@ using System.Reflection;
 
 namespace Admin.NET.Core
 {
-    public static class SqlSugarSetup
+	public static class SqlSugarSetup
     {
         /// <summary>
         /// Sqlsugar上下文初始化
@@ -25,6 +26,8 @@ namespace Admin.NET.Core
         public static void AddSqlSugarSetup(this IServiceCollection services, IConfiguration configuration)
         {
             var dbOptions = App.GetOptions<ConnectionStringsOptions>();
+            //处理Sqlite链接字符串为"./Admin.Net.db"报错的情况
+            DealConnectionStr(ref dbOptions);
             List<ConnectionConfig> configs = new List<ConnectionConfig>();
             var configureExternalServices = new ConfigureExternalServices
             {
@@ -42,6 +45,8 @@ namespace Admin.NET.Core
                     }
                 },
             };
+
+
             var defaultConnection = new ConnectionConfig()
             {
                 DbType = (DbType)Convert.ToInt32(Enum.Parse(typeof(DbType), dbOptions.DefaultDbType)),
@@ -56,10 +61,10 @@ namespace Admin.NET.Core
             dbOptions.DbConfigs.ForEach(config => {
                 var connection = new ConnectionConfig()
                 {
-                    DbType = (DbType)Convert.ToInt32(Enum.Parse(typeof(DbType), dbOptions.DefaultDbType)),
-                    ConnectionString = dbOptions.DefaultConnection,
+                    DbType = (DbType)Convert.ToInt32(Enum.Parse(typeof(DbType), config.DbType)),
+                    ConnectionString = config.DbConnection,
                     IsAutoCloseConnection = true,
-                    ConfigId = dbOptions.DefaultConfigId,
+                    ConfigId = config.DbConfigId,
                     ConfigureExternalServices = configureExternalServices
                 };
                 configs.Add(connection);
@@ -132,17 +137,35 @@ namespace Admin.NET.Core
 
             services.AddSingleton<ISqlSugarClient>(sqlSugar); // SqlSugarScope用AddSingleton单例
             services.AddScoped(typeof(SqlSugarRepository<>)); // 注册仓储
-
+            services.AddScoped(typeof(SqlSugarRepository));
             // 初始化数据库结构及种子数据
             if (dbOptions.InitTable)
                 InitDataBase(sqlSugar);
+        }
+
+        public static void DealConnectionStr(ref ConnectionStringsOptions dbOptions)
+        {
+            if (dbOptions.DefaultDbType.Trim().ToLower() == "sqlite" && dbOptions.DefaultConnection.Contains("./"))
+            {
+                var file = Path.GetFileName(dbOptions.DefaultConnection.Replace("DataSource=", ""));
+                dbOptions.DefaultConnection = $"DataSource={Environment.CurrentDirectory.Replace(@"\bin\Debug", "")}\\{file}";
+            }
+            if (dbOptions.DbConfigs == null)
+                dbOptions.DbConfigs = new List<DbConfig>();
+            dbOptions.DbConfigs.ForEach(cofing => {
+                if (cofing.DbType.Trim().ToLower() == "sqlite" && cofing.DbConnection.Contains("./"))
+                {
+                    var file = Path.GetFileName(cofing.DbConnection.Replace("DataSource=", ""));
+                    cofing.DbConnection = $"DataSource={Environment.CurrentDirectory.Replace(@"\bin\Debug", "")}\\{file}";
+                }
+            });
         }
 
         /// <summary>
         /// 初始化数据库结构
         /// </summary>
         public static void InitDataBase(SqlSugarScope db)
-        {
+        { 
             // 不存在则创建数据库
             db.DbMaintenance.CreateDatabase();
 
