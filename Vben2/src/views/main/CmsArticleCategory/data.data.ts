@@ -1,7 +1,7 @@
 ﻿import { h } from 'vue';
 import { BasicColumn, FormSchema } from '/@/components/Table';
 import { uploadFile } from '/@/api/sys/admin';
-import { getCmsWebsiteDropdown } from '/@/api/main/CmsArticleCategory';
+import { getCmsWebsiteDropdown, getCmsWebsiteTree } from '/@/api/main/CmsArticleCategory';
 export const columns: BasicColumn[] = [
   {
     title: '名称',
@@ -33,7 +33,17 @@ export const searchFormSchema: FormSchema[] = [
   {
     label: '父级',
     field: 'pid',
-    component: 'Input',
+    component: 'TreeSelect',
+    defaultValue: 0,
+    componentProps: {
+      api: getCmsWebsiteTree,
+      fieldNames: {
+        label: 'Name',
+        key: 'id',
+        value: 'id',
+      },
+      getPopupContainer: () => document.body,
+    },
     colProps: { span: 8 },
   },
   {
@@ -79,7 +89,6 @@ export const formSchema: FormSchema[] = [
     label: '图像',
     field: 'picture',
     component: 'Upload',
-    required: true,
     componentProps: {
       maxNumber: 1,
       api: uploadFile,
@@ -89,7 +98,6 @@ export const formSchema: FormSchema[] = [
     label: '描述',
     field: 'description',
     component: 'Input',
-    required: true,
   },
   {
     label: '排序',

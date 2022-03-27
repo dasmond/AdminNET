@@ -21,6 +21,9 @@ if(column.EffectType == "fk")
 }else if(column.EffectType == "Upload"){
         @:public @column.NetType @column.ColumnName { get; set; }
         @:public MapperSysFileOutput @(@column.ColumnName)Attachment { get; set; }
+}else if(column.EffectType == "TreeSelect"){
+         @:public @column.NetType @column.ColumnName { get; set; }
+         @:public List<@(@Model.ClassName)Output> Children { get; set; }
 }else{
        @:public @column.NetType @column.ColumnName { get; set; }
 }

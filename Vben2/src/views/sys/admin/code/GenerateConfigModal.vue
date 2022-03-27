@@ -75,11 +75,13 @@
     </a-table>
   </BasicModal>
   <FkModal @register="registerFkModal" @success="fkHandleSuccess" />
+  <TreeModal @register="registerTreeModal" @success="fkHandleSuccess" />
 </template>
 <script lang="ts">
   import { defineComponent, ref, onMounted } from 'vue';
   import { columns } from './codeGenerate.data';
   import FkModal from './fkModal.vue';
+  import TreeModal from './treeModal.vue';
   import { BasicModal, useModalInner, useModal } from '/@/components/Modal';
   import {
     getGenerateConfigList,
@@ -89,7 +91,7 @@
   } from '/@/api/sys/admin';
 
   export default defineComponent({
-    components: { BasicModal, FkModal },
+    components: { BasicModal, FkModal, TreeModal },
     emits: ['success', 'register'],
     setup(_, { emit }) {
       const tbData = ref<any[]>([]);
@@ -101,6 +103,7 @@
         await loadDictTypeDropDown();
       });
       const [registerFkModal, { openModal: openFkModal }] = useModal();
+      const [registerTreeModal, { openModal: openTreeModal }] = useModal();
       const [registerModal, { setModalProps, closeModal }] = useModalInner(async (data) => {
         setModalProps({ confirmLoading: false });
         getGenerateConfigList({ CodeGenId: data.id }).then((res) => {
@@ -139,6 +142,8 @@
       function effectTypeChange(data, value) {
         if (value === 'fk') {
           openFkModal(true, { data });
+        } else if (value === 'TreeSelect') {
+          openTreeModal(true, { data });
         }
       }
       async function loadDictTypeDropDown() {
@@ -189,6 +194,7 @@
         effectTypeChange,
         codeGenQueryTypeData,
         registerFkModal,
+        registerTreeModal,
         fkHandleSuccess,
       };
     },

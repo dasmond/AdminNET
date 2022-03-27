@@ -7,9 +7,6 @@
       <template #generateType="{ text }">
         {{ convertCodeGenType(text) }}
       </template>
-      <template #tableType="{ text }">
-        {{ convertTableType(text) }}
-      </template>
       <template #action="{ record }">
         <TableAction
           :actions="[
@@ -68,18 +65,12 @@
     setup() {
       const { createMessage } = useMessage();
       var codeGenType = ref<any>([]);
-      var tableType = ref<any>([]);
       onMounted(async () => {
         codeGenType.value = await getDictDataDropdown('code_gen_create_type');
-        tableType.value = await getDictDataDropdown('view_table_type');
         reload();
       });
       function convertCodeGenType(code: number) {
         let data = codeGenType.value.filter((c) => c.value == code)[0].label;
-        return data;
-      }
-      function convertTableType(code: number) {
-        let data = tableType.value.filter((c) => c.value == code)[0].label;
         return data;
       }
       const [registerCodeGenModal, { openModal: openCodeGenModal }] = useModal();
@@ -130,7 +121,6 @@
         registerCodeGenModal,
         registerCodeGenConfigModal,
         convertCodeGenType,
-        convertTableType,
         handleCreate,
         handleEdit,
         handleConfig,

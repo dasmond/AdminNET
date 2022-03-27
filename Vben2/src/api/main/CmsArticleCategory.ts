@@ -5,6 +5,7 @@ enum Api {
   UpdateCmsArticleCategory = '/CmsArticleCategory/edit',
   GetCmsArticleCategoryPage = '/CmsArticleCategory/page',
   GetCmsWebsiteDropdown = '/CmsArticleCategory/CmsWebsiteDropdown',
+  GetCmsWebsiteTree = '/CmsArticleCategory/CmsWebsiteTree',
 }
 
 //增加文章分类
@@ -25,4 +26,7 @@ export function getCmsArticleCategoryPageList(params?: any) {
 }
 export function getCmsWebsiteDropdown() {
   return defHttp.get<any>({ url: Api.GetCmsWebsiteDropdown });
+}
+export function getCmsWebsiteTree() {
+  return defHttp.get<any>({ url: Api.GetCmsWebsiteTree });
 }

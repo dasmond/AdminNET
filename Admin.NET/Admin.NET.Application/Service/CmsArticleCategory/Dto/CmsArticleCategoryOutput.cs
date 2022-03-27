@@ -1,6 +1,7 @@
 ﻿using SqlSugar;
 using Admin.NET.Core;
 using Admin.NET.Core.Service;
+using System.Collections.Generic;
 
 namespace Admin.NET.Application
 {
@@ -18,7 +19,7 @@ namespace Admin.NET.Application
        /// 父级
        /// </summary>
        public long Pid { get; set; }
-    
+
        /// <summary>
        /// 名称
        /// </summary>
@@ -45,7 +46,9 @@ namespace Admin.NET.Application
        /// </summary>
        public long WebsiteId { get; set; }
        public WebsiteIdFkCmsWebsiteOutput FkWebsiteId { get; set; }
-    
+
+       public List<CmsArticleCategoryOutput> Children { get; set; }
+
     }
     [SugarTable("cms_website")]
     [NotTable]

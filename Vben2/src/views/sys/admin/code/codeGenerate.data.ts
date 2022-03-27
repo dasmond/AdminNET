@@ -5,12 +5,17 @@ const apiTableList = async (param: any) => {
   const result = await getTableList(param);
   return result;
 };
+let currentTable = '';
+let columnList: any[] = [];
 const apiColumnList = async (param: any) => {
-  if (typeof param === 'string') {
+  if (typeof param !== 'string') return [];
+  if (columnList.length === 0 || currentTable !== param) {
     const result = await getColumnList(param);
-    return result;
+    columnList = result;
+  } else {
   }
-  return [];
+  currentTable = param;
+  return columnList;
 };
 const apiDictTypeDropDown = async () => {
   const result = await getDictDataDropdown('code_gen_create_type');
@@ -29,11 +34,6 @@ export const codeShowColumns: BasicColumn[] = [
   {
     title: '业务名',
     dataIndex: 'busName',
-  },
-  {
-    title: '表格类型',
-    dataIndex: 'tableType',
-    slots: { customRender: 'tableType' },
   },
   {
     title: '命名空间',
@@ -258,6 +258,87 @@ export const fkFormSchema: FormSchema[] = [
     label: '字段类型',
     component: 'Input',
     show: false,
+  },
+  {
+    field: 'entityName',
+    label: '实体名称',
+    component: 'Input',
+    show: false,
+  },
+];
+
+export const treeFormSchema: FormSchema[] = [
+  {
+    field: 'tableName',
+    label: '数据库表',
+    component: 'ApiSelect',
+    componentProps: ({ formModel, formActionType }) => {
+      return {
+        api: apiTableList,
+        fieldNames: {
+          label: 'tableName',
+          value: 'tableName',
+        },
+        onChange: (e: any, option: any) => {
+          formModel.columnName = undefined;
+          formModel.entityName = option.entityName;
+          const { updateSchema } = formActionType;
+          updateSchema([
+            {
+              field: 'displayColumn',
+              componentProps: {
+                api: apiColumnList,
+                immediate: false,
+                params: e,
+                fieldNames: {
+                  label: 'columnName',
+                  value: 'columnName',
+                },
+              },
+            },
+            {
+              field: 'valueColumn',
+              componentProps: {
+                api: apiColumnList,
+                immediate: false,
+                params: e,
+                fieldNames: {
+                  label: 'columnName',
+                  value: 'columnName',
+                },
+              },
+            },
+            {
+              field: 'pidColumn',
+              componentProps: {
+                api: apiColumnList,
+                immediate: false,
+                params: e,
+                fieldNames: {
+                  label: 'columnName',
+                  value: 'columnName',
+                },
+              },
+            },
+          ]);
+        },
+      };
+    },
+  },
+  {
+    field: 'displayColumn',
+    label: '显示文本字段',
+    component: 'ApiSelect',
+  },
+  {
+    field: 'valueColumn',
+    label: '选择值字段',
+    component: 'ApiSelect',
+  },
+  {
+    field: 'pidColumn',
+    label: '父级字段',
+    component: 'ApiSelect',
   },
   {
     field: 'entityName',

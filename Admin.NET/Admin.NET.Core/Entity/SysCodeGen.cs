@@ -54,13 +54,6 @@ namespace Admin.NET.Core
         public string BusName { get; set; }
 
         /// <summary>
-        /// 表格类型
-        /// </summary>
-        [SugarColumn(ColumnDescription = "表格类型")]
-        public int TableType { get; set; }
-
-
-        /// <summary>
         /// 菜单编码
         /// </summary>
         [SugarColumn(ColumnDescription = "菜单编码")]

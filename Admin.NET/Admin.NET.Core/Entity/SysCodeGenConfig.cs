@@ -123,5 +123,20 @@ namespace Admin.NET.Core
         /// </summary>
         [MaxLength(5)]
         public string WhetherCommon { get; set; }
+
+        /// <summary>
+        /// 显示文本字段
+        /// </summary>
+        public string DisplayColumn { get; set; }
+
+        /// <summary>
+        /// 选中值字段
+        /// </summary>
+        public string ValueColumn { get; set; }
+
+        /// <summary>
+        /// 父级字段
+        /// </summary>
+        public string PidColumn { get; set; }
     }
 }

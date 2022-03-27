@@ -31,20 +31,21 @@ namespace Admin.NET.Application
         public async Task<dynamic> Page([FromQuery] CmsArticleCategoryInput input)
         {
             return await _rep.Context.Queryable<CmsArticleCategory>()
-                        .Select(u=> new CmsArticleCategoryOutput{
-                            Id = u.Id,        
-                            Pid = u.Pid,        
-                            Name = u.Name,        
-                            Picture = u.Picture,        
-                            Description = u.Description,        
-                            OrderNo = u.OrderNo,        
-                            WebsiteId = u.WebsiteId,        
+                        .Select(u => new CmsArticleCategoryOutput
+                        {
+                            Id = u.Id,
+                            Pid = u.Pid,
+                            Name = u.Name,
+                            Picture = u.Picture,
+                            Description = u.Description,
+                            OrderNo = u.OrderNo,
+                            WebsiteId = u.WebsiteId,
                         })
                         .Mapper(c => c.PictureAttachment, c => c.Picture)
                         .Mapper(u => u.FkWebsiteId, u => u.WebsiteId)
-                        .WhereIF(input.Pid>0, u => u.Pid == input.Pid)
+                        .WhereIF(input.Pid > 0, u => u.Pid == input.Pid)
                         .WhereIF(!string.IsNullOrWhiteSpace(input.Name), u => u.Name.Contains(input.Name.Trim()))
-                        .WhereIF(input.WebsiteId>0, u => u.WebsiteId == input.WebsiteId)
+                        .WhereIF(input.WebsiteId > 0, u => u.WebsiteId == input.WebsiteId)
                         .ToPagedListAsync(input.Page, input.PageSize);
         }
 
@@ -115,6 +116,15 @@ namespace Admin.NET.Application
                       Value = u.Id
                   }
                   ).ToListAsync();
+        }
+        [HttpGet("/CmsArticleCategory/CmsWebsiteTree")]
+        public async Task<dynamic> Tree()
+        {
+            return await _rep.Context.Queryable<CmsWebsite>()
+             .Select(u => new CmsArticleCategoryOutput
+             {
+                 Id = u.Id.SelectAll()
+             }).ToListAsync();
         }
 
     }

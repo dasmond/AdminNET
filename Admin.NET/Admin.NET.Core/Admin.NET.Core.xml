@@ -296,11 +296,6 @@
             业务名
             </summary>
         </member>
-        <member name="P:Admin.NET.Core.SysCodeGen.TableType">
-            <summary>
-            表格类型
-            </summary>
-        </member>
         <member name="P:Admin.NET.Core.SysCodeGen.MenuPid">
             <summary>
             菜单编码
@@ -404,6 +399,21 @@
         <member name="P:Admin.NET.Core.SysCodeGenConfig.WhetherCommon">
             <summary>
             是否通用字段
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.SysCodeGenConfig.DisplayColumn">
+            <summary>
+            显示文本字段
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.SysCodeGenConfig.ValueColumn">
+            <summary>
+            选中值字段
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.SysCodeGenConfig.PidColumn">
+            <summary>
+            父级字段
             </summary>
         </member>
         <member name="T:Admin.NET.Core.SysConfig">
@@ -3128,6 +3138,21 @@
         <member name="P:Admin.NET.Core.Service.CodeGenConfig.TableNickName">
             <summary>
             表的别名 Table as XXX
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.Service.CodeGenConfig.DisplayColumn">
+            <summary>
+            显示文本字段
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.Service.CodeGenConfig.ValueColumn">
+            <summary>
+            选中值字段
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.Service.CodeGenConfig.PidColumn">
+            <summary>
+            父级字段
             </summary>
         </member>
         <member name="T:Admin.NET.Core.Service.CodeGenInput">
