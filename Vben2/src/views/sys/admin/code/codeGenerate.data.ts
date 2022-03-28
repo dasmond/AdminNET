@@ -21,11 +21,6 @@ const apiDictTypeDropDown = async () => {
   const result = await getDictDataDropdown('code_gen_create_type');
   return result;
 };
-const apiTableTypeDropDown = async () => {
-  const result = await getDictDataDropdown('view_table_type');
-  return result;
-};
-
 export const codeShowColumns: BasicColumn[] = [
   {
     title: '表名称',
@@ -89,18 +84,6 @@ export const codeFormSchema: FormSchema[] = [
     },
   },
   {
-    field: 'tableType',
-    label: '表格类型',
-    component: 'ApiSelect',
-    componentProps: {
-      api: apiTableTypeDropDown,
-      fieldNames: {
-        label: 'label',
-        value: 'value',
-      },
-    },
-  },
-  {
     field: 'nameSpace',
     label: '命名空间',
     component: 'Input',
@@ -158,7 +141,6 @@ export const columns = [
   {
     title: '作用类型',
     dataIndex: 'effectType',
-    width: 150,
     align: 'center',
     slots: {
       customRender: 'effectType',

@@ -15,16 +15,12 @@
   import { BasicForm, useForm } from '/@/components/Form/index';
   import { codeFormSchema } from './codeGenerate.data';
   import { BasicModal, useModalInner } from '/@/components/Modal';
-
   import { addGenerate, updateGenerate } from '/@/api/sys/admin';
-  import { useMessage } from '/@/hooks/web/useMessage';
-
   export default defineComponent({
     components: { BasicModal, BasicForm },
     emits: ['success', 'register'],
     setup(_, { emit }) {
       const isUpdate = ref(true);
-      const { createMessage } = useMessage();
       const [registerForm, { resetFields, setFieldsValue, validate }] = useForm({
         labelWidth: 100,
         schemas: codeFormSchema,

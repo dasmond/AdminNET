@@ -61,7 +61,17 @@
         </member>
         <member name="T:Admin.NET.Application.TestCodeGen">
             <summary>
-            测试代码生成
+            测试生成
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.TestCodeGen.Pid">
+            <summary>
+            父级
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.TestCodeGen.Name">
+            <summary>
+            名称
             </summary>
         </member>
         <member name="P:Admin.NET.Application.TestCodeGen.Image">
@@ -69,14 +79,14 @@
             图像
             </summary>
         </member>
-        <member name="P:Admin.NET.Application.TestCodeGen.User">
+        <member name="P:Admin.NET.Application.TestCodeGen.Select">
             <summary>
-            用户
+            下拉框
             </summary>
         </member>
-        <member name="P:Admin.NET.Application.TestCodeGen.Status">
+        <member name="P:Admin.NET.Application.TestCodeGen.FkSelect">
             <summary>
-            状态
+            外键
             </summary>
         </member>
         <member name="T:Admin.NET.Application.CmsArticleCategoryService">
@@ -415,7 +425,7 @@
         </member>
         <member name="P:Admin.NET.Application.TestCodeGenDto.SysUserNickName">
             <summary>
-            用户
+            外键
             </summary>
         </member>
         <member name="P:Admin.NET.Application.TestCodeGenDto.Id">
@@ -423,19 +433,29 @@
             主键Id
             </summary>
         </member>
+        <member name="P:Admin.NET.Application.TestCodeGenDto.Pid">
+            <summary>
+            父级
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.TestCodeGenDto.Name">
+            <summary>
+            名称
+            </summary>
+        </member>
         <member name="P:Admin.NET.Application.TestCodeGenDto.Image">
             <summary>
             图像
             </summary>
         </member>
-        <member name="P:Admin.NET.Application.TestCodeGenDto.User">
+        <member name="P:Admin.NET.Application.TestCodeGenDto.Select">
             <summary>
-            用户
+            下拉框
             </summary>
         </member>
-        <member name="P:Admin.NET.Application.TestCodeGenDto.Status">
+        <member name="P:Admin.NET.Application.TestCodeGenDto.FkSelect">
             <summary>
-            状态
+            外键
             </summary>
         </member>
         <member name="T:Admin.NET.Application.TestCodeGenInput">
@@ -443,19 +463,34 @@
             测试生成输入参数
             </summary>
         </member>
+        <member name="P:Admin.NET.Application.TestCodeGenInput.Pid">
+            <summary>
+            父级
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.TestCodeGenInput.Name">
+            <summary>
+            名称
+            </summary>
+        </member>
         <member name="P:Admin.NET.Application.TestCodeGenInput.Image">
             <summary>
             图像
             </summary>
         </member>
-        <member name="P:Admin.NET.Application.TestCodeGenInput.User">
+        <member name="P:Admin.NET.Application.TestCodeGenInput.Select">
             <summary>
-            用户
+            下拉框
             </summary>
         </member>
-        <member name="P:Admin.NET.Application.TestCodeGenInput.Status">
+        <member name="P:Admin.NET.Application.TestCodeGenInput.FkSelect">
             <summary>
-            状态
+            外键
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.AddTestCodeGenInput.Name">
+            <summary>
+            名称
             </summary>
         </member>
         <member name="P:Admin.NET.Application.DeleteTestCodeGenInput.Id">
@@ -478,19 +513,29 @@
             主键Id
             </summary>
         </member>
+        <member name="P:Admin.NET.Application.TestCodeGenOutput.Pid">
+            <summary>
+            父级
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.TestCodeGenOutput.Name">
+            <summary>
+            名称
+            </summary>
+        </member>
         <member name="P:Admin.NET.Application.TestCodeGenOutput.Image">
             <summary>
             图像
             </summary>
         </member>
-        <member name="P:Admin.NET.Application.TestCodeGenOutput.User">
+        <member name="P:Admin.NET.Application.TestCodeGenOutput.Select">
             <summary>
-            用户
+            下拉框
             </summary>
         </member>
-        <member name="P:Admin.NET.Application.TestCodeGenOutput.Status">
+        <member name="P:Admin.NET.Application.TestCodeGenOutput.FkSelect">
             <summary>
-            状态
+            外键
             </summary>
         </member>
         <member name="T:Admin.NET.Application.TestCodeGenService">

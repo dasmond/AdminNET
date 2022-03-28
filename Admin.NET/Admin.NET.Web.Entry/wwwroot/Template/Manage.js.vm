@@ -7,6 +7,8 @@ enum Api {
   @foreach (var column in Model.TableField){
 if(@column.EffectType == "fk"){
   @:Get@(@column.FkEntityName)Dropdown = '/@(@Model.ClassName)/@(@column.FkEntityName)Dropdown',
+}else if(@column.EffectType == "ApiTreeSelect"){
+  @:Get@(@column.FkEntityName)Tree = '/@(@Model.ClassName)/@(@column.FkEntityName)Tree',
 }
 }
 }
@@ -31,6 +33,10 @@ export function get@(@Model.ClassName)PageList(params?: any) {
 if(@column.EffectType == "fk"){
 @:export function get@(@column.FkEntityName)Dropdown() {
   @:return defHttp.get<any>({ url: Api.Get@(@column.FkEntityName)Dropdown });
+@:}
+}else if(@column.EffectType == "ApiTreeSelect"){
+@:export function get@(@column.FkEntityName)Tree() {
+  @:return defHttp.get<any>({ url: Api.Get@(@column.FkEntityName)Tree });
 @:}
 }
 }

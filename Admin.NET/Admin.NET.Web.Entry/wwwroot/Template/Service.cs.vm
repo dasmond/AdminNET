@@ -143,5 +143,16 @@ if(@column.EffectType == "fk"){
 }
 }
 
+
+@foreach (var column in Model.TableField){
+if(@column.EffectType == "ApiTreeSelect"){
+        @:[HttpGet("/@(@Model.ClassName)/@(@column.FkEntityName)Tree")]
+        @:public async Task<dynamic> @(@column.FkEntityName)Tree()
+        @:{
+            @:return await _rep.Context.Queryable<@(@column.FkEntityName)TreeOutput>().ToTreeAsync(u => u.Children, u => u.@(@column.PidColumn), 0);
+        @:}
+}
+}
+
     }
 }

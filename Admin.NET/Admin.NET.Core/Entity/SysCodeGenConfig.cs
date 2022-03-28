@@ -9,6 +9,7 @@ namespace Admin.NET.Core
     /// </summary>
     [SugarTable("sys_code_gen_config")]
     [Description("代码生成字段配置表")]
+    [SqlSugarEntity]
     public class SysCodeGenConfig : EntityBase
     {
         /// <summary>

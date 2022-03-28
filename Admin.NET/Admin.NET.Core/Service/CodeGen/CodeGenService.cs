@@ -8,9 +8,11 @@ using Mapster;
 using Microsoft.AspNetCore.Mvc;
 
 using SqlSugar;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -202,36 +204,38 @@ namespace Admin.NET.Core.Service.CodeGen
                 var tContent = File.ReadAllText(templatePathList[i]);
 
                 var tableFieldList = await _codeGenConfigService.List(new CodeGenConfig() { CodeGenId = input.Id }); // 字段集合
-                //if (i >= 4) // 适应前端首字母小写
-                //{
-                //    tableFieldList.ForEach(u =>
-                //    {
-                //        u.ColumnName = u.ColumnName.Substring(0, 1).ToLower() + u.ColumnName[1..];
-                //    });
-                //}
-
                 var queryWhetherList = tableFieldList.Where(u => u.QueryWhether == YesNoEnum.Y.ToString()).ToList(); // 前端查询集合
                 var joinTableList = tableFieldList.Where(u => u.EffectType == "Upload" || u.EffectType == "fk").ToList();//需要连表查询的字段
                 (string joinTableNames, string lowerJoinTableNames) = GetJoinTableStr(joinTableList);//获取连表的实体名和别名
-                var data = new
+
+                //反射获取实体sugarTable信息
+                List<Type> types = new List<Type>();
+                foreach (var assemblyName in CommonConst.ENTITY_ASSEMBLY_NAME)
                 {
-                    input.AuthorName,
-                    input.BusName,
-                    input.NameSpace,
+                    Assembly asm = Assembly.Load(assemblyName);
+                    types.AddRange(asm.GetExportedTypes().ToList());
+                }
+                Type t = types.Where(x => x.Name == input.TableName).FirstOrDefault();
+                var sugarTable = t.GetCustomAttribute<SugarTable>();
+
+                var data = new CustomViewEngine
+                {
+                    AuthorName = input.AuthorName,
+                    BusName = input.BusName,
+                    NameSpace = input.NameSpace,
                     ClassName = input.TableName,
-                    LowerClassName = input.TableName.Substring(0, 1).ToLower() + input.TableName[1..],//(首字母小写)
                     QueryWhetherList = queryWhetherList,
                     TableField = tableFieldList,
                     IsJoinTable = joinTableList.Count > 0,
                     IsUpload = joinTableList.Where(u => u.EffectType == "Upload").Count() > 0,
-                    //UploadField = joinTableList.Where(c => c.EffectType == "Upload").Select(u => u.ColumnName).ToList(),//附件字段集合
-                    //JoinTableField = joinTableList,
-                    //JoinTableStr = joinTableNames,
-                    //LowerJoinTableStr = lowerJoinTableNames,
-                    //JoinTableList = lowerJoinTableNames.Split(','),
+                    ColumnList = GetColumnListByTableName(sugarTable.TableName)
                 };
-                var tResult = _viewEngine.RunCompileFromCached(tContent, data);
-
+                var tResult = _viewEngine.RunCompile<CustomViewEngine>(tContent, data, builderAction:builder => {
+                    builder.AddAssemblyReferenceByName("System.Linq");
+                    builder.AddAssemblyReferenceByName("System.Collections");
+                    builder.AddUsing("System.Collections.Generic");
+                    builder.AddUsing("System.Linq");
+                });
                 var dirPath = new DirectoryInfo(targetPathList[i]).Parent.FullName;
                 if (!Directory.Exists(dirPath))
                     Directory.CreateDirectory(dirPath);
@@ -264,7 +268,7 @@ namespace Admin.NET.Core.Service.CodeGen
             return (str.TrimEnd(','), lowerStr.TrimEnd(','));
         }
 
-        private async Task AddMenu(string className, string busName,long pid)
+        private async Task AddMenu(string className, string busName, long pid)
         {
             // 如果 pid 为 0 说明为顶级菜单, 需要创建顶级目录
             if (pid == 0)

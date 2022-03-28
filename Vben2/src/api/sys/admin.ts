@@ -204,8 +204,10 @@ export const updateDictType = (params: any) => defHttp.post({ url: Api.UpdateDic
 // 获取字典类型分页列表
 export const getDictDataList = (params?: any) =>
   defHttp.get<any>({ url: Api.GetDictDataPageList, params });
-export const getDictDataDropdown = (params: any) =>
-  defHttp.get<any>({ url: Api.GetDictDataDropdown + '/' + params });
+//从字典中值，下拉框控件使用
+export function getDictDataDropdown(params: any) {
+  return defHttp.get<any>({ url: Api.GetDictDataDropdown + '/' + params });
+}
 // 增加典类型
 export const addDictData = (params: any) => defHttp.post({ url: Api.AddDictData, params });
 // 删除字典类型

@@ -23,7 +23,7 @@
       </template>
       <template #effectType="{ record }">
         <a-select
-          style="width: 120px"
+          style="width: 150px"
           v-model:value="record.effectType"
           :disabled="judgeColumns(record)"
           :options="effectTypeData"
@@ -137,12 +137,12 @@
         return false;
       }
       /**
-       * 作用类型改变
+       * 控件类型改变
        */
       function effectTypeChange(data, value) {
         if (value === 'fk') {
           openFkModal(true, { data });
-        } else if (value === 'TreeSelect') {
+        } else if (value === 'ApiTreeSelect') {
           openTreeModal(true, { data });
         }
       }

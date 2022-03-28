@@ -5,6 +5,10 @@ if(@column.EffectType == "Upload"){
 @:import { uploadFile } from '/@@/api/sys/admin';
 }else if(@column.EffectType == "fk"){
 @:import { get@(@column.FkEntityName)Dropdown } from '/@@/api/main/@(@Model.ClassName)';
+}else if(@column.EffectType == "Select"){
+@:import { getDictDataDropdown } from '/@@/api/sys/admin';
+}else if(@column.EffectType == "ApiTreeSelect"){
+@:import { get@(@column.FkEntityName)Tree } from '/@@/api/main/@(@Model.ClassName)';
 }else if(@column.EffectType == "Switch"){
 @:import { Switch } from 'ant-design-vue';
 }
@@ -35,21 +39,33 @@ if(@column.EffectType == "Upload"){
 export const searchFormSchema: FormSchema[] = [
 @foreach (var column in Model.QueryWhetherList){  
   @:{
-if(@column.EffectType == "fk"){
     @:field: '@column.LowerColumnName',
     @:label: '@column.ColumnComment',
-    @:component: 'ApiSelect',
     @:colProps: { span: 8 },
+if(@column.EffectType == "fk"){
+    @:component: 'ApiSelect',
     @:componentProps: {
       @:api: get@(@column.FkEntityName)Dropdown,
       @:labelField: 'label',
       @:valueField: 'value',
     @:},
+}else if(@column.EffectType == "Select"){
+    @:component: 'ApiSelect',
+    @:componentProps: {
+      @:api: getDictDataDropdown,
+      @:params: '@(@column.DictTypeCode)',
+      @:fieldNames: {
+        @:label: 'label',
+        @:value: 'value',
+      @:},
+    @:},
+}else if(@column.EffectType == "ApiTreeSelect"){
+    @:component: '@(@column.EffectType)',
+    @:componentProps: {
+      @:api: get@(@column.FkEntityName)Tree,
+    @:},
 }else{
-    @:label: '@column.ColumnComment',
-    @:field: '@column.LowerColumnName',
     @:component: 'Input',
-    @:colProps: { span: 8 },
 }
   @:},
 }
@@ -67,10 +83,25 @@ if(@column.EffectType == "fk"){
       @:labelField: 'label',
       @:valueField: 'value',
     @:},
+}else if(@column.EffectType == "Select"){
+    @:component: 'ApiSelect',
+    @:componentProps: {
+      @:api: getDictDataDropdown,
+      @:params: '@(@column.DictTypeCode)',
+      @:fieldNames: {
+        @:label: 'label',
+        @:value: 'value',
+      @:},
+    @:},
+}else if(@column.EffectType == "ApiTreeSelect"){
+    @:component: '@(@column.EffectType)',
+    @:componentProps: {
+      @:api: get@(@column.FkEntityName)Tree,
+    @:},
 }else{
     @:component: '@column.EffectType',
 }
-    if(@column.WhetherTable == "Y"){
+    if(@column.WhetherRequired == "Y"){
     @:required: true,
     }else{
     @:required: false,

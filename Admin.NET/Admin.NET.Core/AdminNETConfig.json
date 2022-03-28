@@ -14,9 +14,9 @@
     "InjectSpecificationDocument": true // 生产环境是否开启Swagger
   },
   "ConnectionStrings": {
-    "DefaultConnection": "server=.;uid=sa;pwd=123456;database=db;MultipleActiveResultSets=True", // "server=127.0.0.1;uid=sa;pwd=123456;database=db;MultipleActiveResultSets=True",
+    "DefaultConnection": "server=.;uid=sa;pwd=123456;database=db1;MultipleActiveResultSets=True", // "server=127.0.0.1;uid=sa;pwd=123456;database=db;MultipleActiveResultSets=True",
     "DefaultDbType": "SqlServer", // MySql、SqlServer、Sqlite、Oracle、PostgreSQL、Dm、Kdbndp、Oscar、MySqlConnector、Access
-    "InitTable": false,
+    "InitTable": true,
     "DbConfigs": [
       //{
       //  "DbConfigId": "test",
