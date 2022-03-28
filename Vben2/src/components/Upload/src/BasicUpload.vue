@@ -61,7 +61,7 @@
       //   预览modal
       const [registerPreviewModal, { openModal: openPreviewModal }] = useModal();
 
-      const fileList = ref<string[]>([]);
+      const fileList = ref<any[]>([]);
 
       const showPreview = computed(() => {
         const { emptyHidePreview } = props;
@@ -83,15 +83,15 @@
       );
 
       // 上传modal保存操作
-      function handleChange(urls: string[]) {
-        fileList.value = [...unref(fileList), ...(urls || [])];
+      function handleChange(files: any[]) {
+        fileList.value = [...unref(fileList), ...(files || [])];
         emit('update:value', fileList.value);
         emit('change', fileList.value);
       }
 
       // 预览modal保存操作
-      function handlePreviewChange(urls: string[]) {
-        fileList.value = [...(urls || [])];
+      function handlePreviewChange(files: any[]) {
+        fileList.value = [...(files || [])];
         emit('update:value', fileList.value);
         emit('change', fileList.value);
       }

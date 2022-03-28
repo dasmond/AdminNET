@@ -2,6 +2,7 @@
 
 namespace Admin.NET.Core.Service
 {
+    [NotTable]
     public class TimerOutput : SysTimer
     {
         /// <summary>

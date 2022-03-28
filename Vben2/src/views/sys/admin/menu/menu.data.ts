@@ -115,7 +115,7 @@ export const formSchema: FormSchema[] = [
   {
     field: 'pid',
     label: '上级菜单',
-    component: 'TreeSelect',
+    component: 'ApiTreeSelect',
     defaultValue: 0,
     componentProps: {
       fieldNames: {
