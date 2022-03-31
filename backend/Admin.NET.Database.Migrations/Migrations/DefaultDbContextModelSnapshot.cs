@@ -17,59 +17,10 @@ namespace Admin.NET.Database.Migrations.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.1")
+                .HasAnnotation("ProductVersion", "6.0.3")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
-
-            modelBuilder.Entity("Admin.NET.Application.Entity.Car", b =>
-                {
-                    b.Property<long>("Id")
-                        .HasColumnType("bigint")
-                        .HasComment("Id主键");
-
-                    b.Property<string>("CarName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CarNo")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTimeOffset?>("CreatedTime")
-                        .HasColumnType("datetimeoffset")
-                        .HasComment("创建时间");
-
-                    b.Property<long?>("CreatedUserId")
-                        .HasColumnType("bigint")
-                        .HasComment("创建者Id");
-
-                    b.Property<string>("CreatedUserName")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)")
-                        .HasComment("创建者名称");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit")
-                        .HasComment("软删除标记");
-
-                    b.Property<DateTimeOffset?>("UpdatedTime")
-                        .HasColumnType("datetimeoffset")
-                        .HasComment("更新时间");
-
-                    b.Property<long?>("UpdatedUserId")
-                        .HasColumnType("bigint")
-                        .HasComment("修改者Id");
-
-                    b.Property<string>("UpdatedUserName")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)")
-                        .HasComment("修改者名称");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Car");
-
-                    b.HasComment("车辆信息");
-                });
 
             modelBuilder.Entity("Furion.Extras.Admin.NET.SysApp", b =>
                 {
@@ -474,8 +425,7 @@ namespace Admin.NET.Database.Migrations.Migrations
                         .HasComment("修改者名称");
 
                     b.Property<string>("Value")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)")
+                        .HasColumnType("nvarchar(max)")
                         .HasComment("属性值");
 
                     b.HasKey("Id");
@@ -2071,44 +2021,44 @@ namespace Admin.NET.Database.Migrations.Migrations
                             Id = 142307070926946L,
                             Code = "1",
                             IsDeleted = false,
-                            Remark = "品牌",
+                            Remark = "一级",
                             Sort = 100,
                             Status = 0,
                             TypeId = 142307070926942L,
-                            Value = "品牌"
+                            Value = "一级"
                         },
                         new
                         {
                             Id = 142307070926947L,
                             Code = "2",
                             IsDeleted = false,
-                            Remark = "总店(加盟/直营)",
+                            Remark = "二级",
                             Sort = 100,
                             Status = 0,
                             TypeId = 142307070926942L,
-                            Value = "总店(加盟/直营)"
+                            Value = "二级"
                         },
                         new
                         {
                             Id = 142307070926948L,
                             Code = "3",
                             IsDeleted = false,
-                            Remark = "直营店",
+                            Remark = "三级",
                             Sort = 100,
                             Status = 0,
                             TypeId = 142307070926942L,
-                            Value = "直营店"
+                            Value = "三级"
                         },
                         new
                         {
                             Id = 142307070926949L,
                             Code = "4",
                             IsDeleted = false,
-                            Remark = "加盟店",
+                            Remark = "四级",
                             Sort = 100,
                             Status = 0,
                             TypeId = 142307070926942L,
-                            Value = "加盟店"
+                            Value = "四级"
                         });
                 });
 
@@ -6198,9 +6148,8 @@ namespace Admin.NET.Database.Migrations.Migrations
                         .HasColumnType("nvarchar(100)")
                         .HasComment("名称");
 
-                    b.Property<int>("OrgType")
-                        .HasColumnType("int")
-                        .HasComment("机构类型-品牌_1、总店(加盟/直营)_2、直营店_3、加盟店_4");
+                    b.Property<string>("OrgType")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<long>("Pid")
                         .HasColumnType("bigint")
@@ -6258,7 +6207,6 @@ namespace Admin.NET.Database.Migrations.Migrations
                             Code = "hxjt",
                             IsDeleted = false,
                             Name = "华夏集团",
-                            OrgType = 0,
                             Pid = 0L,
                             Pids = "[0],",
                             Remark = "华夏集团",
@@ -6272,7 +6220,6 @@ namespace Admin.NET.Database.Migrations.Migrations
                             Code = "hxjt_bj",
                             IsDeleted = false,
                             Name = "华夏集团北京分公司",
-                            OrgType = 0,
                             Pid = 142307070910539L,
                             Pids = "[0],[142307070910539],",
                             Remark = "华夏集团北京分公司",
@@ -6286,7 +6233,6 @@ namespace Admin.NET.Database.Migrations.Migrations
                             Code = "hxjt_cd",
                             IsDeleted = false,
                             Name = "华夏集团成都分公司",
-                            OrgType = 0,
                             Pid = 142307070910539L,
                             Pids = "[0],[142307070910539],",
                             Remark = "华夏集团成都分公司",
@@ -6300,7 +6246,6 @@ namespace Admin.NET.Database.Migrations.Migrations
                             Code = "hxjt_bj_yfb",
                             IsDeleted = false,
                             Name = "研发部",
-                            OrgType = 0,
                             Pid = 142307070910540L,
                             Pids = "[0],[142307070910539],[142307070910540],",
                             Remark = "华夏集团北京分公司研发部",
@@ -6314,7 +6259,6 @@ namespace Admin.NET.Database.Migrations.Migrations
                             Code = "hxjt_bj_qhb",
                             IsDeleted = false,
                             Name = "企划部",
-                            OrgType = 0,
                             Pid = 142307070910540L,
                             Pids = "[0],[142307070910539],[142307070910540],",
                             Remark = "华夏集团北京分公司企划部",
@@ -6328,7 +6272,6 @@ namespace Admin.NET.Database.Migrations.Migrations
                             Code = "hxjt_cd_scb",
                             IsDeleted = false,
                             Name = "市场部",
-                            OrgType = 0,
                             Pid = 142307070910541L,
                             Pids = "[0],[142307070910539],[142307070910541],",
                             Remark = "华夏集团成都分公司市场部",
@@ -6342,7 +6285,6 @@ namespace Admin.NET.Database.Migrations.Migrations
                             Code = "hxjt_cd_cwb",
                             IsDeleted = false,
                             Name = "财务部",
-                            OrgType = 0,
                             Pid = 142307070910541L,
                             Pids = "[0],[142307070910539],[142307070910541],",
                             Remark = "华夏集团成都分公司财务部",
@@ -6356,7 +6298,6 @@ namespace Admin.NET.Database.Migrations.Migrations
                             Code = "hxjt_cd_scb_2b",
                             IsDeleted = false,
                             Name = "市场部二部",
-                            OrgType = 0,
                             Pid = 142307070910544L,
                             Pids = "[0],[142307070910539],[142307070910541],[142307070910544],",
                             Remark = "华夏集团成都分公司市场部二部",
@@ -6370,7 +6311,6 @@ namespace Admin.NET.Database.Migrations.Migrations
                             Code = "gsmc",
                             IsDeleted = false,
                             Name = "租户1公司",
-                            OrgType = 0,
                             Pid = 0L,
                             Pids = "[0],",
                             Remark = "公司名称",
@@ -6384,7 +6324,6 @@ namespace Admin.NET.Database.Migrations.Migrations
                             Code = "gsmc",
                             IsDeleted = false,
                             Name = "租户2公司",
-                            OrgType = 0,
                             Pid = 0L,
                             Pids = "[0],",
                             Remark = "公司名称",

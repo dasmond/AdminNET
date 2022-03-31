@@ -10,27 +10,6 @@ namespace Admin.NET.Database.Migrations.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Car",
-                columns: table => new
-                {
-                    Id = table.Column<long>(type: "bigint", nullable: false, comment: "Id主键"),
-                    CarName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CarNo = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CreatedTime = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true, comment: "创建时间"),
-                    UpdatedTime = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true, comment: "更新时间"),
-                    CreatedUserId = table.Column<long>(type: "bigint", nullable: true, comment: "创建者Id"),
-                    CreatedUserName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true, comment: "创建者名称"),
-                    UpdatedUserId = table.Column<long>(type: "bigint", nullable: true, comment: "修改者Id"),
-                    UpdatedUserName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true, comment: "修改者名称"),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false, comment: "软删除标记")
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Car", x => x.Id);
-                },
-                comment: "车辆信息");
-
-            migrationBuilder.CreateTable(
                 name: "sys_app",
                 columns: table => new
                 {
@@ -127,7 +106,7 @@ namespace Admin.NET.Database.Migrations.Migrations
                     Id = table.Column<long>(type: "bigint", nullable: false, comment: "Id主键"),
                     Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false, comment: "名称"),
                     Code = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false, comment: "编码"),
-                    Value = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true, comment: "属性值"),
+                    Value = table.Column<string>(type: "nvarchar(max)", nullable: true, comment: "属性值"),
                     SysFlag = table.Column<string>(type: "nvarchar(5)", maxLength: 5, nullable: true, comment: "是否是系统参数"),
                     Remark = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true, comment: "备注"),
                     Status = table.Column<int>(type: "int", nullable: false, comment: "状态"),
@@ -438,7 +417,7 @@ namespace Admin.NET.Database.Migrations.Migrations
                     Sort = table.Column<int>(type: "int", nullable: false, comment: "排序"),
                     Remark = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true, comment: "备注"),
                     Status = table.Column<int>(type: "int", nullable: false, comment: "状态"),
-                    OrgType = table.Column<int>(type: "int", nullable: false, comment: "机构类型-品牌_1、总店(加盟/直营)_2、直营店_3、加盟店_4"),
+                    OrgType = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatedTime = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true, comment: "创建时间"),
                     UpdatedTime = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true, comment: "更新时间"),
                     CreatedUserId = table.Column<long>(type: "bigint", nullable: true, comment: "创建者Id"),
@@ -1066,16 +1045,16 @@ namespace Admin.NET.Database.Migrations.Migrations
                 columns: new[] { "Id", "Code", "Contacts", "CreatedTime", "CreatedUserId", "CreatedUserName", "IsDeleted", "Name", "OrgType", "Pid", "Pids", "Remark", "Sort", "Status", "Tel", "TenantId", "UpdatedTime", "UpdatedUserId", "UpdatedUserName" },
                 values: new object[,]
                 {
-                    { 142307070910539L, "hxjt", null, null, null, null, false, "华夏集团", 0, 0L, "[0],", "华夏集团", 100, 0, null, 142307070918780L, null, null, null },
-                    { 142307070910540L, "hxjt_bj", null, null, null, null, false, "华夏集团北京分公司", 0, 142307070910539L, "[0],[142307070910539],", "华夏集团北京分公司", 100, 0, null, 142307070918780L, null, null, null },
-                    { 142307070910541L, "hxjt_cd", null, null, null, null, false, "华夏集团成都分公司", 0, 142307070910539L, "[0],[142307070910539],", "华夏集团成都分公司", 100, 0, null, 142307070918780L, null, null, null },
-                    { 142307070910542L, "hxjt_bj_yfb", null, null, null, null, false, "研发部", 0, 142307070910540L, "[0],[142307070910539],[142307070910540],", "华夏集团北京分公司研发部", 100, 0, null, 142307070918780L, null, null, null },
-                    { 142307070910543L, "hxjt_bj_qhb", null, null, null, null, false, "企划部", 0, 142307070910540L, "[0],[142307070910539],[142307070910540],", "华夏集团北京分公司企划部", 100, 0, null, 142307070918780L, null, null, null },
-                    { 142307070910544L, "hxjt_cd_scb", null, null, null, null, false, "市场部", 0, 142307070910541L, "[0],[142307070910539],[142307070910541],", "华夏集团成都分公司市场部", 100, 0, null, 142307070918780L, null, null, null },
-                    { 142307070910545L, "hxjt_cd_cwb", null, null, null, null, false, "财务部", 0, 142307070910541L, "[0],[142307070910539],[142307070910541],", "华夏集团成都分公司财务部", 100, 0, null, 142307070918780L, null, null, null },
-                    { 142307070910546L, "hxjt_cd_scb_2b", null, null, null, null, false, "市场部二部", 0, 142307070910544L, "[0],[142307070910539],[142307070910541],[142307070910544],", "华夏集团成都分公司市场部二部", 100, 0, null, 142307070918780L, null, null, null },
-                    { 142307070910547L, "gsmc", null, null, null, null, false, "租户1公司", 0, 0L, "[0],", "公司名称", 100, 0, null, 142307070918781L, null, null, null },
-                    { 142307070910548L, "gsmc", null, null, null, null, false, "租户2公司", 0, 0L, "[0],", "公司名称", 100, 0, null, 142307070918782L, null, null, null }
+                    { 142307070910539L, "hxjt", null, null, null, null, false, "华夏集团", null, 0L, "[0],", "华夏集团", 100, 0, null, 142307070918780L, null, null, null },
+                    { 142307070910540L, "hxjt_bj", null, null, null, null, false, "华夏集团北京分公司", null, 142307070910539L, "[0],[142307070910539],", "华夏集团北京分公司", 100, 0, null, 142307070918780L, null, null, null },
+                    { 142307070910541L, "hxjt_cd", null, null, null, null, false, "华夏集团成都分公司", null, 142307070910539L, "[0],[142307070910539],", "华夏集团成都分公司", 100, 0, null, 142307070918780L, null, null, null },
+                    { 142307070910542L, "hxjt_bj_yfb", null, null, null, null, false, "研发部", null, 142307070910540L, "[0],[142307070910539],[142307070910540],", "华夏集团北京分公司研发部", 100, 0, null, 142307070918780L, null, null, null },
+                    { 142307070910543L, "hxjt_bj_qhb", null, null, null, null, false, "企划部", null, 142307070910540L, "[0],[142307070910539],[142307070910540],", "华夏集团北京分公司企划部", 100, 0, null, 142307070918780L, null, null, null },
+                    { 142307070910544L, "hxjt_cd_scb", null, null, null, null, false, "市场部", null, 142307070910541L, "[0],[142307070910539],[142307070910541],", "华夏集团成都分公司市场部", 100, 0, null, 142307070918780L, null, null, null },
+                    { 142307070910545L, "hxjt_cd_cwb", null, null, null, null, false, "财务部", null, 142307070910541L, "[0],[142307070910539],[142307070910541],", "华夏集团成都分公司财务部", 100, 0, null, 142307070918780L, null, null, null },
+                    { 142307070910546L, "hxjt_cd_scb_2b", null, null, null, null, false, "市场部二部", null, 142307070910544L, "[0],[142307070910539],[142307070910541],[142307070910544],", "华夏集团成都分公司市场部二部", 100, 0, null, 142307070918780L, null, null, null },
+                    { 142307070910547L, "gsmc", null, null, null, null, false, "租户1公司", null, 0L, "[0],", "公司名称", 100, 0, null, 142307070918781L, null, null, null },
+                    { 142307070910548L, "gsmc", null, null, null, null, false, "租户2公司", null, 0L, "[0],", "公司名称", 100, 0, null, 142307070918782L, null, null, null }
                 });
 
             migrationBuilder.InsertData(
@@ -1252,10 +1231,10 @@ namespace Admin.NET.Database.Migrations.Migrations
                     { 142307070926943L, "0", null, null, null, false, "集团角色", 100, 0, 142307070926941L, null, null, null, "集团角色" },
                     { 142307070926944L, "1", null, null, null, false, "加盟商角色", 100, 0, 142307070926941L, null, null, null, "加盟商角色" },
                     { 142307070926945L, "2", null, null, null, false, "门店角色", 100, 0, 142307070926941L, null, null, null, "门店角色" },
-                    { 142307070926946L, "1", null, null, null, false, "品牌", 100, 0, 142307070926942L, null, null, null, "品牌" },
-                    { 142307070926947L, "2", null, null, null, false, "总店(加盟/直营)", 100, 0, 142307070926942L, null, null, null, "总店(加盟/直营)" },
-                    { 142307070926948L, "3", null, null, null, false, "直营店", 100, 0, 142307070926942L, null, null, null, "直营店" },
-                    { 142307070926949L, "4", null, null, null, false, "加盟店", 100, 0, 142307070926942L, null, null, null, "加盟店" }
+                    { 142307070926946L, "1", null, null, null, false, "一级", 100, 0, 142307070926942L, null, null, null, "一级" },
+                    { 142307070926947L, "2", null, null, null, false, "二级", 100, 0, 142307070926942L, null, null, null, "二级" },
+                    { 142307070926948L, "3", null, null, null, false, "三级", 100, 0, 142307070926942L, null, null, null, "三级" },
+                    { 142307070926949L, "4", null, null, null, false, "四级", 100, 0, 142307070926942L, null, null, null, "四级" }
                 });
 
             migrationBuilder.InsertData(
@@ -1418,9 +1397,6 @@ namespace Admin.NET.Database.Migrations.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "Car");
-
             migrationBuilder.DropTable(
                 name: "sys_app");
 
