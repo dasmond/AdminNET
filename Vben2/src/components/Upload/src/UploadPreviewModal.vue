@@ -38,10 +38,11 @@
           fileListRef.value = value
             .filter((item) => !!item)
             .map((item) => {
+              const filePath = import.meta.env.VITE_GLOB_DOWNLOAD_URL + '/' + item.id + item.suffix;
               return {
-                url: item,
-                type: item.split('.').pop() || '',
-                name: item.split('/').pop() || '',
+                url: filePath,
+                type: item.suffix.split('.').pop() || '',
+                name: item.id + item.suffix,
               };
             });
         },

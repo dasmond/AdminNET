@@ -27,14 +27,17 @@ namespace Admin.NET.Core.Service
         private readonly OSSProviderOptions _OSSProviderOptions;
         private readonly IOSSService _OSSService;
         private readonly UploadOptions _uploadOptions;
+        private readonly ICommonService _commonService;
 
         public SysFileService(SqlSugarRepository<SysFile> sysFileRep,
             IOptions<OSSProviderOptions> oSSProviderOptions,
             IOSSServiceFactory ossServiceFactory,
+            ICommonService commonService,
             IOptions<UploadOptions> uploadOptions)
         {
             _sysFileRep = sysFileRep;
             _OSSProviderOptions = oSSProviderOptions.Value;
+            _commonService = commonService;
             if (_OSSProviderOptions.IsEnable)
                 _OSSService = ossServiceFactory.Create(_OSSProviderOptions.Provider.ToString());
             _uploadOptions = uploadOptions.Value;
@@ -74,10 +77,17 @@ namespace Admin.NET.Core.Service
         /// <returns></returns>
         [HttpPost("/sysFile/upload")]
         [AllowAnonymous]
-        public async Task<long> UploadFile([Required] IFormFile file)
+        public async Task<FileOutput> UploadFile([Required] IFormFile file)
         {
-            return await HandleUploadFile(file);
-        }
+            var sysFile = await HandleUploadFile(file);
+            return new FileOutput
+            {
+                Id = sysFile.Id,
+                Url = _commonService.GetFileUrl(sysFile),
+                SizeKb = sysFile.SizeKb,
+                Suffix = sysFile.Suffix,
+            };
+        }   
 
         /// <summary>
         /// 下载文件(文件流)
@@ -145,7 +155,7 @@ namespace Admin.NET.Core.Service
         /// </summary>
         /// <param name="file">文件</param>
         /// <returns></returns>
-        private async Task<long> HandleUploadFile(IFormFile file)
+        private async Task<SysFile> HandleUploadFile(IFormFile file)
         {
             string path = _uploadOptions.Path;
 
@@ -181,7 +191,7 @@ namespace Admin.NET.Core.Service
                 using var stream = File.Create(Path.Combine(filePath, finalName));
                 await file.CopyToAsync(stream);
             }
-            return newFile.Id;
+            return newFile;
         }
     }
 }

@@ -21,4 +21,9 @@
     <ProjectReference Include="..\Admin.NET.Core\Admin.NET.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Entity\" />
+    <Folder Include="Service\" />
+  </ItemGroup>
+
 </Project>

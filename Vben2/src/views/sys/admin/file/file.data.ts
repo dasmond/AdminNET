@@ -40,8 +40,8 @@ export const columns: BasicColumn[] = [
           record.id +
           record.suffix;
         return h(TableImg, {
-          size: '60',
-          simpleShow: 'true',
+          size: 60,
+          simpleShow: true,
           imgList: [filePath],
         });
       } else return h(Tag, { color: 'orange' }, () => '无法预览');

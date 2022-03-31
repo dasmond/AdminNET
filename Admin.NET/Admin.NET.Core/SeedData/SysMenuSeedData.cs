@@ -63,6 +63,8 @@ namespace Admin.NET.Core
                 new SysMenu{ Id=252885263003773, Pid=252885263003770, Title="职位增加", Permission="sysPos:add", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
                 new SysMenu{ Id=252885263003774, Pid=252885263003770, Title="职位删除", Permission="sysPos:delete", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
 
+
+
                 new SysMenu{ Id=252885263003780, Pid=0, Title="平台管理", Path="/platform", Name="platform", Component="LAYOUT", Redirect="", Icon="ant-design:ant-design-outlined", Type=MenuTypeEnum.Dir, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
                 new SysMenu{ Id=252885263003781, Pid=252885263003780, Title="租户管理", Path="tenant", Name="TenantManagement", Component="/sys/admin/tenant/index", Icon="ant-design:cluster-outlined", Type=MenuTypeEnum.Menu, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
                 new SysMenu{ Id=252885263013701, Pid=252885263003781, Title="租户查询", Permission="sysTenant:page", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
@@ -91,7 +93,8 @@ namespace Admin.NET.Core
                 new SysMenu{ Id=252885263013744, Pid=252885263003785, Title="任务删除", Permission="sysTimer:delete", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
                 new SysMenu{ Id=252885263013745, Pid=252885263003785, Title="设置状态", Permission="sysTimer:setStatus", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
 
-                new SysMenu{ Id=252885263003786, Pid=252885263003780, Title="代码生成", Path="code", Name="CodeManagement", Component="/sys/admin/code/index", Icon="ant-design:bug-outlined", Type=MenuTypeEnum.Menu, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
+                new SysMenu{ Id=252885263003786, Pid=252885263003780, Title="代码生成", Path="code", Name="CodeManagement", Component="/sys/admin/code/index", Icon="ant-design:bug-outlined", Type=MenuTypeEnum.Menu, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=200 },
+                new SysMenu{ Id=269323248660805, Pid=252885263003780, Title="数据库管理", Path="database", Name="DBManagement", Component="/sys/admin/database/index",Icon="ant-design:database-filled", Type=MenuTypeEnum.Menu, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=200 },
 
                 new SysMenu{ Id=252885263003787, Pid=252885263003780, Title="在线用户", Path="online", Name="OnlineManagement", Component="/sys/admin/online/index", Icon="ant-design:user-switch-outlined", Type=MenuTypeEnum.Menu, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
                 new SysMenu{ Id=252885263013761, Pid=252885263003787, Title="用户查询", Permission="online:page", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
