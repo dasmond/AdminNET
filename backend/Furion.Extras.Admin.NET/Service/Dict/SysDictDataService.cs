@@ -18,12 +18,10 @@ namespace Furion.Extras.Admin.NET.Service
     public class SysDictDataService : ISysDictDataService, IDynamicApiController, ITransient
     {
         private readonly IRepository<SysDictData> _sysDictDataRep;  // 字典类型表仓储
-        private readonly IUserManager _userManager;
 
-        public SysDictDataService(IRepository<SysDictData> sysDictDataRep, IUserManager userManager)
+        public SysDictDataService(IRepository<SysDictData> sysDictDataRep)
         {
             _sysDictDataRep = sysDictDataRep;
-            _userManager = userManager;
         }
 
         /// <summary>
@@ -34,7 +32,7 @@ namespace Furion.Extras.Admin.NET.Service
         [HttpGet("/sysDictData/page")]
         public async Task<PageResult<DictDataOutput>> QueryDictDataPageList([FromQuery] DictDataPageInput input)
         {
-            bool supperAdmin = _userManager.SuperAdmin;
+            bool supperAdmin = CurrentUserInfo.IsSuperAdmin;
             var code = !string.IsNullOrEmpty(input.Code?.Trim());
             var value = !string.IsNullOrEmpty(input.Value?.Trim());
             var dictDatas = await _sysDictDataRep.DetachedEntities

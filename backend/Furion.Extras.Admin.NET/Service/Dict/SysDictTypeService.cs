@@ -19,15 +19,12 @@ namespace Furion.Extras.Admin.NET.Service
     {
         private readonly IRepository<SysDictType> _sysDictTypeRep;  // 字典类型表仓储
         private readonly ISysDictDataService _sysDictDataService;
-        private readonly IUserManager _userManager;
 
         public SysDictTypeService(ISysDictDataService sysDictDataService,
-                                  IRepository<SysDictType> sysDictTypeRep,
-                                  IUserManager userManager)
+                                  IRepository<SysDictType> sysDictTypeRep)
         {
             _sysDictDataService = sysDictDataService;
             _sysDictTypeRep = sysDictTypeRep;
-            _userManager = userManager;
         }
 
         /// <summary>
@@ -37,7 +34,7 @@ namespace Furion.Extras.Admin.NET.Service
         [HttpGet("/sysDictType/page")]
         public async Task<PageResult<SysDictType>> QueryDictTypePageList([FromQuery] DictTypePageInput input)
         {
-            bool supperAdmin = _userManager.SuperAdmin;
+            bool supperAdmin = CurrentUserInfo.IsSuperAdmin;
             var code = !string.IsNullOrEmpty(input.Code?.Trim());
             var name = !string.IsNullOrEmpty(input.Name?.Trim());
             var dictTypes = await _sysDictTypeRep.DetachedEntities

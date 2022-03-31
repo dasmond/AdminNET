@@ -1,8 +1,10 @@
 ﻿using Furion.DependencyInjection;
 using Furion.JsonSerialization;
 using Microsoft.Extensions.Caching.Memory;
-using System.Drawing;
-using System.Drawing.Imaging;
+using SixLabors.Fonts;
+using SixLabors.ImageSharp;
+using SixLabors.ImageSharp.Drawing.Processing;
+using SixLabors.ImageSharp.Processing;
 using Yitter.IdGenerator;
 
 namespace Furion.Extras.Admin.NET
@@ -22,83 +24,82 @@ namespace Furion.Extras.Admin.NET
         /// <summary>
         /// 生成验证码图片
         /// </summary>
-        /// <param name="code"></param>
-        /// <param name="width"></param>
-        /// <param name="height"></param>
+        /// <param name="code">文字</param>
+        /// <param name="width">图片宽度</param>
+        /// <param name="height">图片高度</param>
+        /// <param name="point">验证点数量，不能超过文字的长度</param>
         /// <returns></returns>
-        public ClickWordCaptchaResult CreateCaptchaImage(string code, int width, int height)
+        public async Task<ClickWordCaptchaResult> CreateCaptchaImage(string code, int width, int height, int point = 3)
         {
             var rtnResult = new ClickWordCaptchaResult();
 
-            // 变化点: 3个字
-            int rightCodeLength = 3;
-
-            Bitmap bitmap = null;
-            Graphics g = null;
-            MemoryStream ms = null;
             Random random = new();
-
-            Color[] colorArray = { Color.Black, Color.DarkBlue, Color.Green, Color.Orange, Color.Brown, Color.DarkCyan, Color.Purple };
-
-            string bgImagesDir = Path.Combine(App.WebHostEnvironment.WebRootPath, "Captcha/Image");
-            string[] bgImagesFiles = Directory.GetFiles(bgImagesDir);
+            //背景
+            string bgImagesDir = Path.Combine(App.WebHostEnvironment.WebRootPath, "Captcha/Image");//背景图片路径
+            string[] bgImagesFiles = Directory.GetFiles(bgImagesDir);//背景图片列表
+            int imgIndex = random.Next(1, bgImagesFiles.Length);//随机一个背景图片
+            string randomImgFilePath = bgImagesFiles[imgIndex];//得到背景图片路径
 
             // 字体来自：https://www.zcool.com.cn/special/zcoolfonts/
-            string fontsDir = Path.Combine(App.WebHostEnvironment.WebRootPath, "Captcha/Font");
+            string fontsDir = Path.Combine(App.WebHostEnvironment.WebRootPath, "Captcha/Font");//字体路径
+                                                                                               //所有字体，如果有多个字体文件的话
             string[] fontFiles = new DirectoryInfo(fontsDir)?.GetFiles()
                 ?.Where(m => m.Extension.ToLower() == ".ttf")
                 ?.Select(m => m.FullName).ToArray();
 
-            int imgIndex = random.Next(bgImagesFiles.Length);
-            string randomImgFile = bgImagesFiles[imgIndex];
-            var imageStream = Image.FromFile(randomImgFile);
+            using Image image = await Image.LoadAsync(randomImgFilePath);
 
-            bitmap = new Bitmap(imageStream, width, height);
-            imageStream.Dispose();
-            g = Graphics.FromImage(bitmap);
-            Color[] penColor = { Color.Red, Color.Green, Color.Blue };
-            int code_length = code.Length;
-            var words = new List<string>();
-            for (int i = 0; i < code_length; i++)
+            if (image.Width != width || image.Height != height)
             {
-                int colorIndex = random.Next(colorArray.Length);
-                int fontIndex = random.Next(fontFiles.Length);
-                Font f = LoadFont(fontFiles[fontIndex], 18, FontStyle.Regular);
-                Brush b = new SolidBrush(colorArray[colorIndex]);
-                int _y = random.Next(height);
-                if (_y > (height - 30))
-                    _y -= 60;
-
-                int _x = width / (i + 1);
-                if ((width - _x) < 50)
-                {
-                    _x = width - 60;
-                }
-                string word = code.Substring(i, 1);
-                if (rtnResult.RepData.Point.Count < rightCodeLength)
-                {
-                    // (int, int) percentPos = ToPercentPos((width, height), (_x, _y));
-                    // 添加正确答案 位置数据
-                    if (random.Next(0, 3).Equals(1) || (code_length - i).Equals(rightCodeLength - rtnResult.RepData.Point.Count))
-                    {
-                        rtnResult.RepData.Point.Add(new PointPosModel()
-                        {
-                            X = _x, //percentPos.Item1,
-                            Y = _y  //percentPos.Item2,
-                        });
-                        words.Add(word);
-                    }
-                }
-                g.DrawString(word, f, b, _x, _y);
+                image.Mutate(x => x.Resize(width, height));
             }
+            //字体
+            var fontPath = fontFiles[random.Next(fontFiles.Length)];
+            var collection = new FontCollection();
+            var fontFamily = collection.Add(fontPath);
+            //collection.Install("path/to/emojiFont.ttf");//可以安装多个
+            //collection.InstallCollection("path/to/font.ttc");
+            //
+            List<string> words = new();
+            //循环所有文字
+            for (int i = 0; i < code.Length; i++)
+            {
+                //文字
+                var word = code[i].ToString();
+                var font = fontFamily.CreateFont(random.Next(14, 30));  //字体
+                //颜色
+                Color[] colorList = { Color.Black, Color.DarkBlue, Color.Green, Color.Orange, Color.Brown, Color.DarkCyan, Color.Purple };
+                var colorIndex = random.Next(colorList.Length);
+                var color = colorList[colorIndex];
+                //坐标
+                int _x = random.Next(30, width - 30);//随机一个宽度
+                int _y = random.Next(30, height - 30);//随机一个高度
+
+                //写入文字
+                image.Mutate(x => x.DrawText(
+                     word,   //文字内容
+                     font,                          //字体
+                     color,                         //颜色
+                     new PointF(_x, _y))   //坐标
+                );
+
+                if (rtnResult.RepData.Point.Count < point)
+                {
+                    //记录坐标
+                    rtnResult.RepData.Point.Add(new PointPosModel() { X = _x, Y = _y });
+                    //记录文字
+                    words.Add(word);
+                }
+            }
+
+            //记录文字
             rtnResult.RepData.WordList = words;
 
-            ms = new MemoryStream();
-            bitmap.Save(ms, ImageFormat.Jpeg);
-            g.Dispose();
-            bitmap.Dispose();
+            MemoryStream ms = new MemoryStream();
+            await image.SaveAsJpegAsync(ms);//位图保存成jpeg
+                                            //转成base64
+            rtnResult.RepData.OriginalImageBase64 = Convert.ToBase64String(ms.GetBuffer());
             ms.Dispose();
-            rtnResult.RepData.OriginalImageBase64 = Convert.ToBase64String(ms.GetBuffer()); //"data:image/jpg;base64," +
             rtnResult.RepData.Token = YitIdHelper.NextId().ToString();
 
             // 缓存验证码正确位置集合
@@ -109,35 +110,6 @@ namespace Furion.Extras.Admin.NET
             return rtnResult;
         }
 
-        ///// <summary>
-        ///// 转换为相对于图片的百分比单位
-        ///// </summary>
-        ///// <param name="widthAndHeight">图片宽高</param>
-        ///// <param name="xAndy">相对于图片的绝对尺寸</param>
-        ///// <returns>(int:xPercent, int:yPercent)</returns>
-        //private static (int, int) ToPercentPos((int, int) widthAndHeight, (int, int) xAndy)
-        //{
-        //    (int, int) rtnResult = (0, 0);
-        //    // 注意: int / int = int (小数部分会被截断)
-        //    rtnResult.Item1 = (int)(((double)xAndy.Item1) / ((double)widthAndHeight.Item1) * 100);
-        //    rtnResult.Item2 = (int)(((double)xAndy.Item2) / ((double)widthAndHeight.Item2) * 100);
-
-        //    return rtnResult;
-        //}
-
-        /// <summary>
-        /// 加载字体
-        /// </summary>
-        /// <param name="path">字体文件路径,包含字体文件名和后缀名</param>
-        /// <param name="size">大小</param>
-        /// <param name="fontStyle">字形(常规/粗体/斜体/粗斜体)</param>
-        private static Font LoadFont(string path, int size, FontStyle fontStyle)
-        {
-            var pfc = new System.Drawing.Text.PrivateFontCollection();
-            pfc.AddFontFile(path);// 字体文件路径
-            return new Font(pfc.Families[0], size, fontStyle);
-        }
-
         /// <summary>
         /// 随机绘制字符串
         /// </summary>
@@ -145,7 +117,7 @@ namespace Furion.Extras.Admin.NET
         /// <returns></returns>
         public string RandomCode(int number)
         {
-            char[] str_char_arrary = new char[] { '赵', '钱', '孙', '李', '周', '吴', '郑', '王', '冯', '陈', '褚', '卫', '蒋', '沈', '韩', '杨',
+            char[] str_char_arrary = { '赵', '钱', '孙', '李', '周', '吴', '郑', '王', '冯', '陈', '褚', '卫', '蒋', '沈', '韩', '杨',
                 '朱', '秦', '尤', '许', '何', '吕', '施', '张', '孔', '曹', '严', '华', '金', '魏', '陶', '姜', '戚', '谢', '邹', '喻', '柏', '水',
                 '窦', '章', '云', '苏', '潘', '葛', '奚', '范', '彭', '郎', '鲁', '韦', '昌', '马', '苗', '凤', '花', '方', '任', '袁', '柳', '鲍',
                 '史', '唐', '费', '薛', '雷', '贺', '倪', '汤', '滕', '殷', '罗', '毕', '郝', '安', '常', '傅', '卞', '齐', '元', '顾', '孟', '平',
@@ -174,6 +146,7 @@ namespace Furion.Extras.Admin.NET
                 '菲', '寒', '伊', '亚', '宜', '可', '姬', '舒', '影', '荔', '枝', '丽', '阳', '妮', '宝', '贝', '初', '程', '梵', '罡', '恒', '鸿',
                 '桦', '骅', '剑', '娇', '纪', '宽', '苛', '灵', '玛', '媚', '琪', '晴', '容', '睿', '烁', '堂', '唯', '威', '韦', '雯', '苇', '萱',
                 '阅', '彦', '宇', '雨', '洋', '忠', '宗', '曼', '紫', '逸', '贤', '蝶', '菡', '绿', '蓝', '儿', '翠', '烟' };
+
             var rand = new Random();
             var hs = new HashSet<char>();
             var randomBool = true;
@@ -192,7 +165,7 @@ namespace Furion.Extras.Admin.NET
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        public ClickWordCaptchaResult CheckCode(ClickWordCaptchaInput input)
+        public Task<ClickWordCaptchaResult> CheckCode(ClickWordCaptchaInput input)
         {
             var res = new ClickWordCaptchaResult();
 
@@ -201,7 +174,7 @@ namespace Furion.Extras.Admin.NET
             {
                 res.RepCode = "6110";
                 res.RepMsg = "验证码已失效，请重新获取";
-                return res;
+                return Task.FromResult(res);
             }
 
             var userVCodePos = JSON.Deserialize<List<PointPosModel>>(input.PointJson);
@@ -209,7 +182,7 @@ namespace Furion.Extras.Admin.NET
             {
                 res.RepCode = "6111";
                 res.RepMsg = "验证码无效";
-                return res;
+                return Task.FromResult(res);
             }
 
             int allowOffset = 25; // 允许的偏移量(点触容错)
@@ -219,19 +192,19 @@ namespace Furion.Extras.Admin.NET
                 var yOffset = userVCodePos[i].Y - rightVCodePos[i].Y;
                 xOffset = Math.Abs(xOffset); // x轴偏移量
                 yOffset = Math.Abs(yOffset); // y轴偏移量
-                // 只要有一个点的任意一个轴偏移量大于allowOffset，则验证不通过
+                                             // 只要有一个点的任意一个轴偏移量大于allowOffset，则验证不通过
                 if (xOffset > allowOffset || yOffset > allowOffset)
                 {
                     res.RepCode = "6112";
                     res.RepMsg = "验证码错误";
-                    return res;
+                    return Task.FromResult(res);
                 }
             }
 
             _memoryCache.Remove(CommonConst.CACHE_KEY_CODE + input.Token);
             res.RepCode = "0000";
             res.RepMsg = "验证成功";
-            return res;
+            return Task.FromResult(res);
         }
     }
 

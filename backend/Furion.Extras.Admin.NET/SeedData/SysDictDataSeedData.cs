@@ -124,10 +124,10 @@ namespace Furion.Extras.Admin.NET
                 new SysDictData{Id=142307070926944, TypeId=142307070926941, Value="加盟商角色", Code="1", Sort=100, Remark="加盟商角色", Status=0 },
                 new SysDictData{Id=142307070926945, TypeId=142307070926941, Value="门店角色", Code="2", Sort=100, Remark="门店角色", Status=0 },
 
-                new SysDictData{Id=142307070926946, TypeId=142307070926942, Value="品牌", Code="1", Sort=100, Remark="品牌", Status=0 },
-                new SysDictData{Id=142307070926947, TypeId=142307070926942, Value="总店(加盟/直营)", Code="2", Sort=100, Remark="总店(加盟/直营)", Status=0 },
-                new SysDictData{Id=142307070926948, TypeId=142307070926942, Value="直营店", Code="3", Sort=100, Remark="直营店", Status=0 },
-                new SysDictData{Id=142307070926949, TypeId=142307070926942, Value="加盟店", Code="4", Sort=100, Remark="加盟店", Status=0 },
+                new SysDictData{Id=142307070926946, TypeId=142307070926942, Value="一级", Code="1", Sort=100, Remark="一级", Status=0 },
+                new SysDictData{Id=142307070926947, TypeId=142307070926942, Value="二级", Code="2", Sort=100, Remark="二级", Status=0 },
+                new SysDictData{Id=142307070926948, TypeId=142307070926942, Value="三级", Code="3", Sort=100, Remark="三级", Status=0 },
+                new SysDictData{Id=142307070926949, TypeId=142307070926942, Value="四级", Code="4", Sort=100, Remark="四级", Status=0 },
             };
         }
     }

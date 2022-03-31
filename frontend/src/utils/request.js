@@ -18,7 +18,6 @@ const err = error => {
     const token = Vue.ls.get(ACCESS_TOKEN)
 
     if (error.response.status === 403) {
-      console.log('服务器403啦，要重新登录！')
       notification.error({
         message: 'Forbidden',
         description: data.message

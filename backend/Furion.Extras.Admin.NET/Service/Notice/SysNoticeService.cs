@@ -17,19 +17,17 @@ namespace Furion.Extras.Admin.NET.Service.Notice
     {
         private readonly IRepository<SysNotice> _sysNoticeRep;  // 通知公告表仓储
         private readonly IRepository<SysNoticeUser> _sysNoticeUserRep;  // 通知公告用户表仓储
-
-        private readonly IUserManager _userManager;
-
+        private readonly IRepository<SysEmp> _sysEmpRep;
         private readonly ISysNoticeUserService _sysNoticeUserService;
 
         public SysNoticeService(IRepository<SysNotice> sysNoticeRep,
                                 IRepository<SysNoticeUser> sysNoticeUserRep,
-                                IUserManager userManager,
+                                IRepository<SysEmp> sysEmpRep,
                                 ISysNoticeUserService sysNoticeUserService)
         {
             _sysNoticeRep = sysNoticeRep;
             _sysNoticeUserRep = sysNoticeUserRep;
-            _userManager = userManager;
+            _sysEmpRep = sysEmpRep;
             _sysNoticeUserService = sysNoticeUserService;
         }
 
@@ -48,7 +46,7 @@ namespace Furion.Extras.Admin.NET.Service.Notice
                                              .Where(input.Type > 0, u => u.Type == input.Type)
                                              .Where(u => u.Status != NoticeStatus.DELETED)
                                              //通知公告管理应只有发布人可以管理自己发布的，其他人只能在已收公告中看到
-                                             .Where(u => u.PublicUserId == _userManager.UserId)
+                                             .Where(u => u.PublicUserId == CurrentUserInfo.UserId)
                                              .ToADPagedListAsync(input.PageNo, input.PageSize);
             return notices;
         }
@@ -97,7 +95,7 @@ namespace Furion.Extras.Admin.NET.Service.Notice
             var notice = await _sysNoticeRep.FirstOrDefaultAsync(u => u.Id == input.Id);
             if (notice.Status != NoticeStatus.DRAFT && notice.Status != NoticeStatus.CANCEL) // 只能删除草稿和撤回的公告
                 throw Oops.Oh(ErrorCode.D7001);
-            if (notice.PublicUserId != _userManager.UserId)
+            if (notice.PublicUserId != CurrentUserInfo.UserId)
                 throw Oops.Oh(ErrorCode.D7003);
             await notice.DeleteAsync();
         }
@@ -118,7 +116,7 @@ namespace Furion.Extras.Admin.NET.Service.Notice
                 throw Oops.Oh(ErrorCode.D7002);
             // 如果发布者非本人则不能修改
             SysNotice noticeInDb = await _sysNoticeRep.DetachedEntities.Where(u => u.Id == input.Id).FirstOrDefaultAsync();
-            if (noticeInDb.PublicUserId != _userManager.UserId)
+            if (noticeInDb.PublicUserId != CurrentUserInfo.UserId)
                 throw Oops.Oh(ErrorCode.D7003);
 
             var notice = input.Adapt<SysNotice>();
@@ -160,7 +158,7 @@ namespace Furion.Extras.Admin.NET.Service.Notice
                     var noticeUserRead = new NoticeUserRead
                     {
                         UserId = u.UserId,
-                        UserName = _userManager.Name,
+                        UserName = CurrentUserInfo.Name,
                         ReadStatus = u.ReadStatus,
                         ReadTime = u.ReadTime
                     };
@@ -176,7 +174,7 @@ namespace Furion.Extras.Admin.NET.Service.Notice
             }
             // 如果该条通知公告为已发布，则将当前用户的该条通知公告设置为已读
             if (notice.Status == NoticeStatus.PUBLIC || notice.Status == NoticeStatus.CANCEL)
-                await _sysNoticeUserService.Read(notice.Id, _userManager.UserId, NoticeUserStatus.READ);
+                await _sysNoticeUserService.Read(notice.Id, CurrentUserInfo.UserId, NoticeUserStatus.READ);
             return noticeResult;
         }
 
@@ -195,7 +193,7 @@ namespace Furion.Extras.Admin.NET.Service.Notice
             var noticeuser = await _sysNoticeUserRep.DetachedEntities.Where(u => u.NoticeId == input.Id).Select(u => u.UserId).ToListAsync();
 
             var notice = await _sysNoticeRep.FirstOrDefaultAsync(u => u.Id == input.Id);
-            if (notice.PublicUserId != _userManager.UserId)
+            if (notice.PublicUserId != CurrentUserInfo.UserId)
             {
                 throw Oops.Oh(ErrorCode.D7003);
             }
@@ -228,7 +226,7 @@ namespace Furion.Extras.Admin.NET.Service.Notice
         {
             var searchValue = !string.IsNullOrEmpty(input.SearchValue?.Trim());
             var notices = await _sysNoticeRep.DetachedEntities.Join(_sysNoticeUserRep.DetachedEntities, u => u.Id, e => e.NoticeId, (u, e) => new { u, e })
-                                             .Where(u => u.e.UserId == _userManager.UserId)
+                                             .Where(u => u.e.UserId == CurrentUserInfo.UserId)
                                              .Where(searchValue, u => EF.Functions.Like(u.u.Title, $"%{input.SearchValue.Trim()}%") ||
                                                                       EF.Functions.Like(u.u.Content, $"%{input.SearchValue.Trim()}%"))
                                              .Where(input.Type > 0, u => u.u.Type == input.Type)
@@ -245,9 +243,10 @@ namespace Furion.Extras.Admin.NET.Service.Notice
         [NonAction]
         private async Task UpdatePublicInfo(SysNotice notice)
         {
-            var emp = await _userManager.GetUserEmpInfo(_userManager.UserId);
-            notice.PublicUserId = _userManager.UserId;
-            notice.PublicUserName = _userManager.Name;
+            var currUserId = CurrentUserInfo.UserId;
+            var emp = await _sysEmpRep.FirstOrDefaultAsync(u => u.Id == currUserId, false);
+            notice.PublicUserId = currUserId;
+            notice.PublicUserName = CurrentUserInfo.Name;
             notice.PublicOrgId = emp.OrgId;
             notice.PublicOrgName = emp.OrgName;
         }
@@ -263,7 +262,7 @@ namespace Furion.Extras.Admin.NET.Service.Notice
             var dic = typeof(NoticeType).EnumToList();
             var notices = await (from n in _sysNoticeRep.AsQueryable()
                                  join u in _sysNoticeUserRep.AsQueryable() on n.Id equals u.NoticeId
-                                 where u.UserId == _userManager.UserId
+                                 where u.UserId == CurrentUserInfo.UserId
                                  && u.ReadStatus == NoticeUserStatus.UNREAD
                                  orderby n.CreatedTime descending
                                  select new NoticeReceiveOutput

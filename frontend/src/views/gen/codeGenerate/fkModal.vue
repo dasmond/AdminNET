@@ -93,7 +93,6 @@
       // 初始化方法
       show(row) {
         this.row = row
-        console.log(row);
         this.visible = true
         this.codeGenerateDatabaseList()
         //this.codeGenerateInformationList()

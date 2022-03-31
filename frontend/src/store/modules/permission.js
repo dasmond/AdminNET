@@ -66,7 +66,6 @@ const permission = {
       return new Promise(resolve => {
         const { roles } = data
         const accessedRouters = filterAsyncRouter(asyncRouterMap, roles)
-        // console.log('动态获取到的菜单列表:'+JSON.stringify(accessedRouters))
         commit('SET_ROUTERS', accessedRouters)
         resolve()
       })

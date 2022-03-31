@@ -31,7 +31,6 @@ namespace Furion.Extras.Admin.NET
         /// 属性值
         /// </summary>
         [Comment("属性值")]
-        [MaxLength(50)]
         public string Value { get; set; }
 
         /// <summary>

@@ -1,4 +1,4 @@
-﻿namespace Furion.Extras.Admin.NET.Service
+namespace Furion.Extras.Admin.NET.Service
 {
     /// <summary>
     /// 请求日志参数
@@ -13,7 +13,7 @@
         /// <summary>
         /// 是否执行成功（Y-是，N-否）
         /// </summary>
-        public YesOrNot Success { get; set; }
+        public YesOrNot? Success { get; set; }
 
         /// <summary>
         /// 请求方式

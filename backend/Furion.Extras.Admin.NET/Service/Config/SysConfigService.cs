@@ -6,6 +6,7 @@ using Furion.FriendlyException;
 using Mapster;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Linq.Dynamic.Core;
 
 namespace Furion.Extras.Admin.NET.Service
 {
@@ -39,7 +40,8 @@ namespace Furion.Extras.Admin.NET.Service
                                              .Where((name, u => EF.Functions.Like(u.Name, $"%{input.Name.Trim()}%")),
                                                     (code, u => EF.Functions.Like(u.Code, $"%{input.Code.Trim()}%")),
                                                     (groupCode, u => EF.Functions.Like(u.GroupCode, $"%{input.GroupCode.Trim()}%")))
-                                             .Where(u => u.Status != CommonStatus.DELETED).OrderBy(u => u.GroupCode)
+                                             .Where(u => u.Status != CommonStatus.DELETED)
+                                             .OrderBy(PageInputOrder.OrderBuilder(input))
                                              .ToADPagedListAsync(input.PageNo, input.PageSize);
             return configs;
         }

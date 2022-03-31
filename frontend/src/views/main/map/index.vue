@@ -123,7 +123,6 @@
         this.map.on('pm:drawstart', e => {})
         this.map.on('pm:drawend', e => {})
         this.map.on('pm:create', e => {
-          console.log(e.layer._latlngs[0], '绘制坐标')
           this.GetGeoJson()
         })
       },

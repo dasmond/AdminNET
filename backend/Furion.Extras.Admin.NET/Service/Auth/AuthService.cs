@@ -23,8 +23,6 @@ namespace Furion.Extras.Admin.NET.Service
         private readonly IHttpContextAccessor _httpContextAccessor;
 
         private readonly IRepository<SysUser> _sysUserRep; // 用户表仓储
-        private readonly IUserManager _userManager; // 用户管理
-
         private readonly ISysUserService _sysUserService; // 系统用户服务
         private readonly ISysEmpService _sysEmpService; // 系统员工服务
         private readonly ISysRoleService _sysRoleService; // 系统角色服务
@@ -34,14 +32,13 @@ namespace Furion.Extras.Admin.NET.Service
         private readonly ISysConfigService _sysConfigService; // 验证码服务
         private readonly IEventPublisher _eventPublisher;
 
-        public AuthService(IRepository<SysUser> sysUserRep, IHttpContextAccessor httpContextAccessor, IUserManager userManager,
+        public AuthService(IRepository<SysUser> sysUserRep, IHttpContextAccessor httpContextAccessor,
             ISysUserService sysUserService, ISysEmpService sysEmpService, ISysRoleService sysRoleService,
             ISysMenuService sysMenuService, ISysAppService sysAppService, IClickWordCaptcha captchaHandle,
             ISysConfigService sysConfigService, IEventPublisher eventPublisher)
         {
             _sysUserRep = sysUserRep;
             _httpContextAccessor = httpContextAccessor;
-            _userManager = userManager;
             _sysUserService = sysUserService;
             _sysEmpService = sysEmpService;
             _sysRoleService = sysRoleService;
@@ -110,8 +107,8 @@ namespace Furion.Extras.Admin.NET.Service
         /// <returns></returns>
         [HttpGet("/getLoginUser")]
         public async Task<LoginOutput> GetLoginUserAsync()
-        {
-            var user = _userManager.User;
+        {            
+            var user = _sysUserRep.FirstOrDefault(u => u.Id == CurrentUserInfo.UserId, false);
             if (user == null)
                 throw Oops.Oh(ErrorCode.D1011);
             var userId = user.Id;
@@ -191,12 +188,12 @@ namespace Furion.Extras.Admin.NET.Service
             await _eventPublisher.PublishAsync(new ChannelEventSource("Create:VisLog",
                 new SysLogVis
                 {
-                    Name = _userManager.Name,
+                    Name = CurrentUserInfo.Name,
                     Success = YesOrNot.Y,
                     Message = "退出成功",
                     VisType = LoginType.LOGOUT,
                     VisTime = DateTimeOffset.Now,
-                    Account = _userManager.Account,
+                    Account = CurrentUserInfo.Account,
                     Ip = ip
                 }));
         }
@@ -219,10 +216,10 @@ namespace Furion.Extras.Admin.NET.Service
         [HttpPost("/captcha/get")]
         [AllowAnonymous]
         [NonUnify]
-        public async Task<dynamic> GetCaptcha()
+        public async Task<ClickWordCaptchaResult> GetCaptcha()
         {
             // 图片大小要与前端保持一致（坐标范围）
-            return await Task.FromResult(_captchaHandle.CreateCaptchaImage(_captchaHandle.RandomCode(4), 310, 155));
+            return await _captchaHandle.CreateCaptchaImage(_captchaHandle.RandomCode(4), 310, 155);
         }
 
         /// <summary>
@@ -233,9 +230,9 @@ namespace Furion.Extras.Admin.NET.Service
         [HttpPost("/captcha/check")]
         [AllowAnonymous]
         [NonUnify]
-        public async Task<dynamic> VerificationCode(ClickWordCaptchaInput input)
+        public async Task<ClickWordCaptchaResult> VerificationCode(ClickWordCaptchaInput input)
         {
-            return await Task.FromResult(_captchaHandle.CheckCode(input));
+            return await _captchaHandle.CheckCode(input);
         }
     }
 }

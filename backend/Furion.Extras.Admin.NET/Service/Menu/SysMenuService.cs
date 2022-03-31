@@ -17,20 +17,16 @@ namespace Furion.Extras.Admin.NET.Service
     public class SysMenuService : ISysMenuService, IDynamicApiController, ITransient
     {
         private readonly IRepository<SysMenu> _sysMenuRep;  // 菜单表仓储
-
-        private readonly IUserManager _userManager;
         private readonly ISysCacheService _sysCacheService;
         private readonly ISysUserRoleService _sysUserRoleService;
         private readonly ISysRoleMenuService _sysRoleMenuService;
 
         public SysMenuService(IRepository<SysMenu> sysMenuRep,
-                              IUserManager userManager,
                               ISysCacheService sysCacheService,
                               ISysUserRoleService sysUserRoleService,
                               ISysRoleMenuService sysRoleMenuService)
         {
             _sysMenuRep = sysMenuRep;
-            _userManager = userManager;
             _sysCacheService = sysCacheService;
             _sysUserRoleService = sysUserRoleService;
             _sysRoleMenuService = sysRoleMenuService;
@@ -47,7 +43,7 @@ namespace Furion.Extras.Admin.NET.Service
             var permissions = await _sysCacheService.GetPermission(userId); // 先从缓存里面读取
             if (permissions == null || permissions.Count < 1)
             {
-                if (!_userManager.SuperAdmin && userId != 0)
+                if (!CurrentUserInfo.IsSuperAdmin && userId != 0)
                 {
                     var roleIdList = await _sysUserRoleService.GetUserRoleIdList(userId);
                     var menuIdList = await _sysRoleMenuService.GetRoleMenuIdList(roleIdList);
@@ -92,7 +88,7 @@ namespace Furion.Extras.Admin.NET.Service
             {
                 var sysMenuList = new List<SysMenu>();
                 // 管理员则展示所有系统菜单
-                if (_userManager.SuperAdmin)
+                if (CurrentUserInfo.IsSuperAdmin)
                 {
                     sysMenuList = await _sysMenuRep.DetachedEntities
                                                    .Where(u => u.Status == CommonStatus.ENABLE)
@@ -408,9 +404,9 @@ namespace Furion.Extras.Admin.NET.Service
         public async Task<dynamic> TreeForGrant([FromQuery] TreeForGrantInput input)
         {
             var menuIdList = new List<long>();
-            if (!_userManager.SuperAdmin)
+            if (!CurrentUserInfo.IsSuperAdmin)
             {
-                var roleIdList = await _sysUserRoleService.GetUserRoleIdList(_userManager.UserId);
+                var roleIdList = await _sysUserRoleService.GetUserRoleIdList(CurrentUserInfo.UserId);
                 menuIdList = await _sysRoleMenuService.GetRoleMenuIdList(roleIdList);
             }
 
@@ -446,11 +442,10 @@ namespace Furion.Extras.Admin.NET.Service
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [AllowAnonymous]
         [HttpPost("/sysMenu/change")]
         public async Task<List<AntDesignTreeNode>> ChangeAppMenu(ChangeAppMenuInput input)
         {
-            return await GetLoginMenusAntDesign(_userManager.UserId, input.Application);
+            return await GetLoginMenusAntDesign(CurrentUserInfo.UserId, input.Application);
         }
     }
 }

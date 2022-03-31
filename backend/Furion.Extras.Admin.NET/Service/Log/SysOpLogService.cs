@@ -1,4 +1,4 @@
-﻿using Furion.DatabaseAccessor;
+using Furion.DatabaseAccessor;
 using Furion.DependencyInjection;
 using Furion.DynamicApiController;
 using Mapster;
@@ -52,8 +52,7 @@ namespace Furion.Extras.Admin.NET.Service
         [HttpPost("/sysOpLog/delete")]
         public async Task ClearOpLog()
         {
-            var opLogs = await _sysOpLogRep.Entities.ToListAsync();
-            await _sysOpLogRep.DeleteAsync(opLogs);
+            await _sysOpLogRep.Context.DeleteRangeAsync<SysLogOp>();
         }
     }
 }

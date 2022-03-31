@@ -106,11 +106,6 @@ class SocketConnection extends EventEmitter {
       this.listened.forEach(method => {
         this.socket.on(method, data => {
           if (this.options.log) {
-            console.log({
-              type: 'receive',
-              method,
-              data
-            })
           }
 
           this.emit(method, data)
@@ -121,11 +116,6 @@ class SocketConnection extends EventEmitter {
 
   send(methodName, ...args) {
     if (this.options.log) {
-      console.log({
-        type: 'send',
-        methodName,
-        args
-      })
     }
     if (this.offline) return
 
@@ -139,11 +129,6 @@ class SocketConnection extends EventEmitter {
 
   async invoke(methodName, ...args) {
     if (this.options.log) {
-      console.log({
-        type: 'invoke',
-        methodName,
-        args
-      })
     }
     if (this.offline) return false
 

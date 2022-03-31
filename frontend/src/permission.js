@@ -71,7 +71,7 @@ router.beforeEach((to, from, next) => {
                 firstApps.menu = res.menus
                 antDesignmenus = res.menus
               }
-              Vue.ls.set(ALL_APPS_MENU, applocation, 7 * 24 * 60 * 60 * 1000)
+              Vue.ls.set(ALL_APPS_MENU, applocation, 7 * 24 * 60 * 60 * 1000)//缓存7天
               // 延迟 1 秒显示欢迎信息
               setTimeout(() => {
                 notification.success({
@@ -102,7 +102,7 @@ router.beforeEach((to, from, next) => {
               next({ path: '/user/login', query: { redirect: to.fullPath } })
             })
           })
-          store.dispatch('getNoticReceiveList').then((res) => {})
+        store.dispatch('getNoticReceiveList').then((res) => { })
       } else {
         next()
       }

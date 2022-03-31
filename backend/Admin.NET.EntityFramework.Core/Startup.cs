@@ -15,12 +15,13 @@ namespace Admin.NET.EntityFramework.Core
             {
                 options.CustomizeMultiTenants(); // 自定义租户
 
-                options.AddDb<DefaultDbContext>(providerName: default, optionBuilder: opt =>
+                options.AddDbPool<DefaultDbContext>(providerName: default, optionBuilder: opt =>
                 {
-                    opt.UseBatchEF_MSSQL();
-                    //opt.UseBatchEF_Sqlite(); // EF批量组件
+                    // EF批量组件
+                    //opt.UseBatchEF_MSSQL();
+                    opt.UseBatchEF_Sqlite();
                 });
-                options.AddDb<MultiTenantDbContext, MultiTenantDbContextLocator>();
+                options.AddDbPool<MultiTenantDbContext, MultiTenantDbContextLocator>();
             }, "Admin.NET.Database.Migrations");
         }
 

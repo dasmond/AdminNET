@@ -99,6 +99,7 @@ const user = {
   actions: {
     // 登录
     Login ({ commit }, userInfo) {
+      Vue.ls.remove(ALL_APPS_MENU)//清除菜单缓存
       return new Promise((resolve, reject) => {
         login(userInfo).then(response => {
           if (!response.success) {
@@ -124,7 +125,6 @@ const user = {
         getLoginUser().then(response => {
           if (response.success) {
             const data = response.data
-            Vue.ls.remove(ALL_APPS_MENU)
             commit('SET_ADMINTYPE', data.adminType)
             commit('SET_ROLES', 1)
             commit('SET_BUTTONS', data.permissions)
@@ -144,7 +144,7 @@ const user = {
             resolve(data)
           } else {
             // eslint-disable-next-line no-undef
-            reject(new Error(data.message))
+            reject(new Error(response.message))
           }
         })
         //登录过期后前端会发生高频访问后端的问题

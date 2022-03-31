@@ -4,7 +4,7 @@ namespace Furion.Extras.Admin.NET.Service
 {
     public interface IAuthService
     {
-        Task<dynamic> GetCaptcha();
+        Task<ClickWordCaptchaResult> GetCaptcha();
 
         Task<bool> GetCaptchaOpen();
 
@@ -14,6 +14,6 @@ namespace Furion.Extras.Admin.NET.Service
 
         Task LogoutAsync();
 
-        Task<dynamic> VerificationCode(ClickWordCaptchaInput input);
+        Task<ClickWordCaptchaResult> VerificationCode(ClickWordCaptchaInput input);
     }
 }

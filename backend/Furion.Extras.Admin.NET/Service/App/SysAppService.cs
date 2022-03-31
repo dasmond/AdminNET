@@ -16,16 +16,12 @@ namespace Furion.Extras.Admin.NET.Service
     public class SysAppService : ISysAppService, IDynamicApiController, ITransient
     {
         private readonly IRepository<SysApp> _sysAppRep;    // 应用表仓储
-
-        private readonly IUserManager _userManager;
         private readonly ISysMenuService _sysMenuService;
 
         public SysAppService(IRepository<SysApp> sysAppRep,
-                             IUserManager userManager,
                              ISysMenuService sysMenuService)
         {
             _sysAppRep = sysAppRep;
-            _userManager = userManager;
             _sysMenuService = sysMenuService;
         }
 
@@ -38,7 +34,7 @@ namespace Furion.Extras.Admin.NET.Service
         public async Task<List<AppOutput>> GetLoginApps(long userId)
         {
             var apps = _sysAppRep.DetachedEntities.Where(u => u.Status == CommonStatus.ENABLE);
-            if (!_userManager.SuperAdmin)
+            if (!CurrentUserInfo.IsSuperAdmin)
             {
                 var appCodeList = await _sysMenuService.GetUserMenuAppCodeList(userId);
                 apps = apps.Where(u => appCodeList.Contains(u.Code));

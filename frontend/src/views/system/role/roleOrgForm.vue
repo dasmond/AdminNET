@@ -151,7 +151,6 @@
         this.autoExpandParent = false
       },
       onCheck (checkedKeys) {
-        console.log(JSON.stringify(checkedKeys))
         this.checkedKeys = checkedKeys
       },
       onSelect (selectedKeys, info) {

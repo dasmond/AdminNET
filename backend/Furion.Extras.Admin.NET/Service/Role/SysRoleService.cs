@@ -17,8 +17,6 @@ namespace Furion.Extras.Admin.NET.Service
     {
         private readonly IRepository<SysRole> _sysRoleRep;  // 角色表仓储
         private readonly IRepository<SysUserRole> _sysUserRoleRep;  // 用户角色表仓储
-
-        private readonly IUserManager _userManager;
         private readonly ISysRoleDataScopeService _sysRoleDataScopeService;
         private readonly ISysOrgService _sysOrgService;
         private readonly ISysRoleMenuService _sysRoleMenuService;
@@ -26,7 +24,6 @@ namespace Furion.Extras.Admin.NET.Service
 
         public SysRoleService(IRepository<SysRole> sysRoleRep,
                               IRepository<SysUserRole> sysUserRoleRep,
-                              IUserManager userManager,
                               ISysRoleDataScopeService sysRoleDataScopeService,
                               ISysOrgService sysOrgService,
                               ISysRoleMenuService sysRoleMenuService,
@@ -34,7 +31,6 @@ namespace Furion.Extras.Admin.NET.Service
         {
             _sysRoleRep = sysRoleRep;
             _sysUserRoleRep = sysUserRoleRep;
-            _userManager = userManager;
             _sysRoleDataScopeService = sysRoleDataScopeService;
             _sysOrgService = sysOrgService;
             _sysRoleMenuService = sysRoleMenuService;
@@ -108,8 +104,8 @@ namespace Furion.Extras.Admin.NET.Service
         public async Task<List<RoleOutput>> GetRoleDropDown()
         {
             // 如果不是超级管理员，则查询自己拥有的角色集合
-            var roles = _userManager.SuperAdmin
-                        ? await _sysUserRoleRep.Where(u => u.SysUserId == _userManager.UserId).Select(u => u.SysRoleId).ToListAsync()
+            var roles = CurrentUserInfo.IsSuperAdmin
+                        ? await _sysUserRoleRep.Where(u => u.SysUserId == CurrentUserInfo.UserId).Select(u => u.SysRoleId).ToListAsync()
                         : new List<long>();
 
             return await _sysRoleRep.DetachedEntities
@@ -203,7 +199,7 @@ namespace Furion.Extras.Admin.NET.Service
         public async Task GrantMenu(GrantRoleMenuInput input)
         {
             var adminRole = await _sysRoleRep.DetachedEntities.FirstOrDefaultAsync(u => u.Id == input.Id);
-            if (!_userManager.SuperAdmin && adminRole.Code == CommonConst.SYS_MANAGER_ROLE_CODE)
+            if (!CurrentUserInfo.IsSuperAdmin && adminRole.Code == CommonConst.SYS_MANAGER_ROLE_CODE)
                 throw Oops.Oh(ErrorCode.D1021);
 
             await _sysRoleMenuService.GrantMenu(input);
@@ -222,7 +218,7 @@ namespace Furion.Extras.Admin.NET.Service
 
             var role = await _sysRoleRep.FirstOrDefaultAsync(u => u.Id == input.Id);
             var dataScopeType = input.DataScopeType;
-            if (!_userManager.SuperAdmin)
+            if (!CurrentUserInfo.IsSuperAdmin)
             {
                 //如果授权的角色的数据范围类型为全部，则没权限，只有超级管理员有
                 if ((int)DataScopeType.ALL == dataScopeType)

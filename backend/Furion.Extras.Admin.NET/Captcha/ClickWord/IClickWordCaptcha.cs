@@ -2,9 +2,9 @@
 {
     public interface IClickWordCaptcha
     {
-        ClickWordCaptchaResult CheckCode(ClickWordCaptchaInput input);
+        Task<ClickWordCaptchaResult> CheckCode(ClickWordCaptchaInput input);
 
-        ClickWordCaptchaResult CreateCaptchaImage(string code, int width, int height);
+        Task<ClickWordCaptchaResult> CreateCaptchaImage(string code, int width, int height, int point = 3);
 
         string RandomCode(int number);
     }

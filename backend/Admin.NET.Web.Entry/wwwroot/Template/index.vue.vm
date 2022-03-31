@@ -128,7 +128,7 @@ if(@column.WhetherRetract == "Y" && (@column.EffectType == "select" || @column.E
 }else if(@column.WhetherRetract == "Y"){
           @:<ellipsis :length="10" tooltip>{{ text }}</ellipsis>
 }else if(@column.EffectType == "checkbox"){
-          @:<a-tag v-for="textData in JSON.parse(text)" :key="textData.code" color="green">{{ 'sex' | dictType(textData) }}</a-tag>
+          @:<a-tag v-for="textData in JSON.parse(text)" :key="textData.code" color="green">{{ '@column.DictTypeCode' | dictType(textData) }}</a-tag>
 } else {
           @:{{ '@column.DictTypeCode' | dictType(text) }}
 }
@@ -203,10 +203,10 @@ if (@column.WhetherOrderBy == "Y"){
 @:sorter: true,
 }			
 if(@column.EffectType == "switch"){
-            @:customRender: (vlaue) => (vlaue ? <a-tag color="green">True</a-tag> : <a-tag color="volcano">False</a-tag>),
+            @:customRender: (value) => (value ? <a-tag color="green">True</a-tag> : <a-tag color="volcano">False</a-tag>),
 }
 if(@column.EffectType == "fk"){
-            @:customRender: (vlaue, record) => record.@(@column.LowerFkEntityName)@(@column.FkColumnName),
+            @:customRender: (value, record) => record.@(@column.LowerFkEntityName).@(@column.FkColumnName),
 }
 if(@column.WhetherRetract == "Y" || @column.EffectType == "select" || @column.EffectType == "radio" || @column.EffectType == "checkbox"){
             @:dataIndex: '@column.ColumnName',

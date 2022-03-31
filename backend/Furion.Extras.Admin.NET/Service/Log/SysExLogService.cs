@@ -1,4 +1,4 @@
-﻿using Furion.DatabaseAccessor;
+using Furion.DatabaseAccessor;
 using Furion.DependencyInjection;
 using Furion.DynamicApiController;
 using Mapster;
@@ -53,8 +53,7 @@ namespace Furion.Extras.Admin.NET.Service
         [HttpPost("/sysExLog/delete")]
         public async Task ClearExLog()
         {
-            var exLogs = await _sysExLogRep.Entities.ToListAsync();
-            await _sysExLogRep.DeleteAsync(exLogs);
+            await _sysExLogRep.Context.DeleteRangeAsync<SysLogEx>();
         }
     }
 }
