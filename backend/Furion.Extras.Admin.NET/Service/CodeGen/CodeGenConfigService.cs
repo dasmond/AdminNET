@@ -12,6 +12,7 @@ namespace Furion.Extras.Admin.NET.Service
     /// 代码生成详细配置服务
     /// </summary>
     [ApiDescriptionSettings(Name = "CodeGenConfig", Order = 100)]
+    [Route("api")]
     public class CodeGenConfigService : ICodeGenConfigService, IDynamicApiController, ITransient
     {
         private readonly IRepository<SysCodeGen> _sysCodeGenRep; // 代码生成器仓储
@@ -28,7 +29,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpGet("/sysCodeGenerateConfig/list")]
+        [HttpGet("sysCodeGenerateConfig/list")]
         public async Task<List<CodeGenConfig>> List([FromQuery] CodeGenConfig input)
         {
             var result = await _sysCodeGenConfigRep.DetachedEntities
@@ -67,7 +68,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// </summary>
         /// <param name="inputList"></param>
         /// <returns></returns>
-        [HttpPost("/sysCodeGenerateConfig/edit")]
+        [HttpPost("sysCodeGenerateConfig/edit")]
         public async Task Update(List<CodeGenConfig> inputList)
         {
             if (inputList == null || inputList.Count < 1) return;
@@ -84,7 +85,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpGet("/sysCodeGenerateConfig/detail")]
+        [HttpGet("sysCodeGenerateConfig/detail")]
         public async Task<SysCodeGenConfig> Detail([FromQuery] CodeGenConfig input)
         {
             return await _sysCodeGenConfigRep.FirstOrDefaultAsync(u => u.Id == input.Id);

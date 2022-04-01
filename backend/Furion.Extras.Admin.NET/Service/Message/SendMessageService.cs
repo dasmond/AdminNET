@@ -9,6 +9,7 @@ namespace Furion.Extras.Admin.NET.Service
     /// 消息发送服务
     /// </summary>
     [ApiDescriptionSettings(Name = "Message", Order = 100)]
+    [Route("api")]
     public class SendMessageService : ISendMessageService, IDynamicApiController, ITransient
     {
         private readonly ISysCacheService _sysCacheService;
@@ -27,7 +28,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// <param name="message">发送内容</param>
         /// <param name="type">消息类型</param>
         /// <returns></returns>
-        [HttpGet("/sysMessage/allUser")]
+        [HttpGet("sysMessage/allUser")]
         public async Task SendMessageToAllUser(string title, string message, MessageType type)
         {
             await _chatHubContext.Clients.All.ReceiveMessage(new { title = title, message = message, messagetype = type });
@@ -41,7 +42,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// <param name="userId">发送人</param>
         /// <param name="type">消息类型</param>
         /// <returns></returns>
-        [HttpGet("/sysMessage/otherUser")]
+        [HttpGet("sysMessage/otherUser")]
         public async Task SendMessageToOtherUser(string title, string message, MessageType type, long userId)
         {
             var onlineuserlist = await _sysCacheService.GetAsync<List<OnlineUser>>(CommonConst.CACHE_KEY_ONLINE_USER);
@@ -62,7 +63,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// <param name="userId">接收人</param>
         /// <param name="type">消息类型</param>
         /// <returns></returns>
-        [HttpGet("/sysMessage/user")]
+        [HttpGet("sysMessage/user")]
         public async Task SendMessageToUser(string title, string message, MessageType type, long userId)
         {
             var onlineuserlist = await _sysCacheService.GetAsync<List<OnlineUser>>(CommonConst.CACHE_KEY_ONLINE_USER);
@@ -85,7 +86,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// <param name="userId">接收人列表</param>
         /// <param name="type">消息类型</param>
         /// <returns></returns>
-        [HttpGet("/sysMessage/users")]
+        [HttpGet("sysMessage/users")]
         public async Task SendMessageToUsers(string title, string message, MessageType type, List<long> userId)
         {
             var onlineuserlist = await _sysCacheService.GetAsync<List<OnlineUser>>(CommonConst.CACHE_KEY_ONLINE_USER);

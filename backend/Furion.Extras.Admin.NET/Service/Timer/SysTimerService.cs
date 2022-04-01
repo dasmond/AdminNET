@@ -17,6 +17,7 @@ namespace Furion.Extras.Admin.NET.Service
     /// 任务调度服务
     /// </summary>
     [ApiDescriptionSettings(Name = "Timer", Order = 100)]
+    [Route("api")]
     public class SysTimerService : ISysTimerService, IDynamicApiController, IScoped
     {
         private readonly IRepository<SysTimer> _sysTimerRep;  // 任务表仓储
@@ -33,7 +34,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpGet("/sysTimers/page")]
+        [HttpGet("sysTimers/page")]
         public async Task<PageResult<JobOutput>> GetTimerPageList([FromQuery] JobPageInput input)
         {
             var workers = SpareTime.GetWorkers().ToList();
@@ -60,7 +61,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// 获取所有本地任务
         /// </summary>
         /// <returns></returns>
-        [HttpGet("/sysTimers/localJobList")]
+        [HttpGet("sysTimers/localJobList")]
         public async Task<IEnumerable<TaskMethodInfo>> GetLocalJobList()
         {
             // 获取本地所有任务方法
@@ -72,7 +73,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpPost("/sysTimers/add")]
+        [HttpPost("sysTimers/add")]
         public async Task AddTimer(AddJobInput input)
         {
             var isExist = await _sysTimerRep.AnyAsync(u => u.JobName == input.JobName, false);
@@ -91,7 +92,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpPost("/sysTimers/delete")]
+        [HttpPost("sysTimers/delete")]
         public async Task DeleteTimer(DeleteJobInput input)
         {
             var timer = await _sysTimerRep.FirstOrDefaultAsync(u => u.Id == input.Id);
@@ -109,7 +110,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpPost("/sysTimers/edit")]
+        [HttpPost("sysTimers/edit")]
         public async Task UpdateTimber(UpdateJobInput input)
         {
             // 排除自己并且判断与其他是否相同
@@ -132,7 +133,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpGet("/sysTimers/detail")]
+        [HttpGet("sysTimers/detail")]
         public async Task<SysTimer> GetTimer([FromQuery] QueryJobInput input)
         {
             return await _sysTimerRep.DetachedEntities.FirstOrDefaultAsync(u => u.Id == input.Id);
@@ -143,7 +144,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpPost("/sysTimers/stop")]
+        [HttpPost("sysTimers/stop")]
         public void StopTimerJob(StopJobInput input)
         {
             SpareTime.Stop(input.JobName);
@@ -154,7 +155,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpPost("/sysTimers/start")]
+        [HttpPost("sysTimers/start")]
         public void StartTimerJob(AddJobInput input)
         {
             var timer = SpareTime.GetWorkers().ToList().Find(u => u.WorkerName == input.JobName);

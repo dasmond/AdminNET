@@ -18,6 +18,7 @@ namespace Furion.Extras.Admin.NET.Service
     /// 用户服务
     /// </summary>
     [ApiDescriptionSettings(Name = "User", Order = 150)]
+    [Route("api")]
     public class SysUserService : ISysUserService, IDynamicApiController, ITransient
     {
         private readonly IRepository<SysUser> _sysUserRep;  // 用户表仓储
@@ -47,7 +48,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpGet("/sysUser/page")]
+        [HttpGet("sysUser/page")]
         public async Task<PageResult<UserOutput>> QueryUserPageList([FromQuery] UserPageInput input)
         {
             var searchValue = input.SearchValue;
@@ -82,7 +83,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpPost("/sysUser/add")]
+        [HttpPost("sysUser/add")]
         public async Task AddUser(AddUserInput input)
         {
             // 数据范围检查
@@ -108,7 +109,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpPost("/sysUser/delete")]
+        [HttpPost("sysUser/delete")]
         public async Task DeleteUser(DeleteUserInput input)
         {
             // 数据范围检查
@@ -145,7 +146,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpPost("/sysUser/edit")]
+        [HttpPost("sysUser/edit")]
         public async Task UpdateUser(UpdateUserInput input)
         {
             // 数据范围检查
@@ -166,7 +167,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// 查看用户
         /// </summary>
         /// <returns></returns>
-        [HttpGet("/sysUser/detail")]
+        [HttpGet("sysUser/detail")]
         public async Task<UserOutput> GetUser(long id)
         {
             var user = await _sysUserRep.DetachedEntities.FirstOrDefaultAsync(u => u.Id == id);
@@ -183,7 +184,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpPost("/sysUser/changeStatus")]
+        [HttpPost("sysUser/changeStatus")]
         public async Task ChangeUserStatus(UpdateUserStatusInput input)
         {
             var user = await _sysUserRep.FirstOrDefaultAsync(u => u.Id == input.Id);
@@ -200,7 +201,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpPost("/sysUser/grantRole")]
+        [HttpPost("sysUser/grantRole")]
         public async Task GrantUserRole(UpdateUserRoleDataInput input)
         {
             var user = await _sysUserRep.FirstOrDefaultAsync(u => u.Id == input.Id);
@@ -220,7 +221,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpPost("/sysUser/grantData")]
+        [HttpPost("sysUser/grantData")]
         public async Task GrantUserData(UpdateUserRoleDataInput input)
         {
             // 清除缓存
@@ -236,7 +237,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpPost("/sysUser/updateInfo")]
+        [HttpPost("sysUser/updateInfo")]
         public async Task UpdateUserInfo(UpdateUserBaseInfoInput input)
         {
             var user = input.Adapt<SysUser>();
@@ -248,7 +249,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpPost("/sysUser/updatePwd")]
+        [HttpPost("sysUser/updatePwd")]
         public async Task UpdateUserPwd(ChangePasswordUserInput input)
         {
             var user = await _sysUserRep.FirstOrDefaultAsync(u => u.Id == input.Id);
@@ -262,7 +263,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpGet("/sysUser/ownRole")]
+        [HttpGet("sysUser/ownRole")]
         public async Task<List<long>> GetUserOwnRole([FromQuery] QueryUserInput input)
         {
             return await _sysUserRoleService.GetUserRoleIdList(input.Id);
@@ -273,7 +274,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpGet("/sysUser/ownData")]
+        [HttpGet("sysUser/ownData")]
         public async Task<List<long>> GetUserOwnData([FromQuery] QueryUserInput input)
         {
             return await _sysUserDataScopeService.GetUserDataScopeIdList(input.Id);
@@ -284,7 +285,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpPost("/sysUser/resetPwd")]
+        [HttpPost("sysUser/resetPwd")]
         public async Task ResetUserPwd(QueryUserInput input)
         {
             var user = await _sysUserRep.FirstOrDefaultAsync(u => u.Id == input.Id);
@@ -296,7 +297,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpPost("/sysUser/updateAvatar")]
+        [HttpPost("sysUser/updateAvatar")]
         public async Task UpdateAvatar(UploadAvatarInput input)
         {
             var user = await _sysUserRep.FirstOrDefaultAsync(u => u.Id == input.Id);
@@ -309,7 +310,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// <param name="input"></param>
         /// <returns></returns>
         [AllowAnonymous] //公告中需要使用，开放权限
-        [HttpGet("/sysUser/selector")]
+        [HttpGet("sysUser/selector")]
         public async Task<List<UserOutput>> GetUserSelector([FromQuery] UserSelectorInput input)
         {
             var name = !string.IsNullOrEmpty(input.Name?.Trim());
@@ -325,7 +326,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// 用户导出
         /// </summary>
         /// <returns></returns>
-        [HttpGet("/sysUser/export")]
+        [HttpGet("sysUser/export")]
         public async Task<IActionResult> ExportUser()
         {
             var users = _sysUserRep.DetachedEntities.AsQueryable();
@@ -344,7 +345,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// </summary>
         /// <param name="file"></param>
         /// <returns></returns>
-        [HttpPost("/sysUser/import")]
+        [HttpPost("sysUser/import")]
         public async Task ImportUser(IFormFile file)
         {
             var path = Path.Combine(Path.GetTempPath(), $"{YitIdHelper.NextId()}.xlsx");

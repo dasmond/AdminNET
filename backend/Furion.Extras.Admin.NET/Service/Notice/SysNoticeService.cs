@@ -13,6 +13,7 @@ namespace Furion.Extras.Admin.NET.Service.Notice
     /// 通知公告服务
     /// </summary>
     [ApiDescriptionSettings(Name = "Notice", Order = 100)]
+    [Route("api")]
     public class SysNoticeService : ISysNoticeService, IDynamicApiController, ITransient
     {
         private readonly IRepository<SysNotice> _sysNoticeRep;  // 通知公告表仓储
@@ -36,7 +37,7 @@ namespace Furion.Extras.Admin.NET.Service.Notice
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpGet("/sysNotice/page")]
+        [HttpGet("sysNotice/page")]
         public async Task<PageResult<SysNotice>> QueryNoticePageList([FromQuery] NoticePageInput input)
         {
             var searchValue = !string.IsNullOrEmpty(input.SearchValue?.Trim());
@@ -56,7 +57,7 @@ namespace Furion.Extras.Admin.NET.Service.Notice
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpPost("/sysNotice/add")]
+        [HttpPost("sysNotice/add")]
         public async Task AddNotice(AddNoticeInput input)
         {
             if (input.Status != NoticeStatus.DRAFT && input.Status != NoticeStatus.PUBLIC)
@@ -89,7 +90,7 @@ namespace Furion.Extras.Admin.NET.Service.Notice
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpPost("/sysNotice/delete")]
+        [HttpPost("sysNotice/delete")]
         public async Task DeleteNotice(DeleteNoticeInput input)
         {
             var notice = await _sysNoticeRep.FirstOrDefaultAsync(u => u.Id == input.Id);
@@ -105,7 +106,7 @@ namespace Furion.Extras.Admin.NET.Service.Notice
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpPost("/sysNotice/edit")]
+        [HttpPost("sysNotice/edit")]
         public async Task UpdateNotice(UpdateNoticeInput input)
         {
             if (input.Status != NoticeStatus.DRAFT && input.Status != NoticeStatus.PUBLIC)
@@ -141,7 +142,7 @@ namespace Furion.Extras.Admin.NET.Service.Notice
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpGet("/sysNotice/detail")]
+        [HttpGet("sysNotice/detail")]
         public async Task<NoticeDetailOutput> GetNotice([FromQuery] QueryNoticeInput input)
         {
             var notice = await _sysNoticeRep.FirstOrDefaultAsync(u => u.Id == input.Id);
@@ -183,7 +184,7 @@ namespace Furion.Extras.Admin.NET.Service.Notice
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpPost("/sysNotice/changeStatus")]
+        [HttpPost("sysNotice/changeStatus")]
         public async Task ChangeStatus(ChangeStatusNoticeInput input)
         {
             // 状态应为撤回或删除或发布
@@ -221,7 +222,7 @@ namespace Furion.Extras.Admin.NET.Service.Notice
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpGet("/sysNotice/received")]
+        [HttpGet("sysNotice/received")]
         public async Task<PageResult<NoticeReceiveOutput>> ReceivedNoticePageList([FromQuery] NoticePageInput input)
         {
             var searchValue = !string.IsNullOrEmpty(input.SearchValue?.Trim());
@@ -256,7 +257,7 @@ namespace Furion.Extras.Admin.NET.Service.Notice
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpGet("/sysNotice/unread")]
+        [HttpGet("sysNotice/unread")]
         public async Task<dynamic> UnReadNoticeList([FromQuery] NoticeInput input)
         {
             var dic = typeof(NoticeType).EnumToList();

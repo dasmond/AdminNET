@@ -13,6 +13,7 @@ namespace Furion.Extras.Admin.NET.Service
     /// 系统应用服务
     /// </summary>
     [ApiDescriptionSettings(Name = "App", Order = 100)]
+    [Route("api")]
     public class SysAppService : ISysAppService, IDynamicApiController, ITransient
     {
         private readonly IRepository<SysApp> _sysAppRep;    // 应用表仓储
@@ -57,7 +58,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpGet("/sysApp/page")]
+        [HttpGet("sysApp/page")]
         public async Task<PageResult<SysApp>> QueryAppPageList([FromQuery] AppPageInput input)
         {
             var name = !string.IsNullOrEmpty(input.Name?.Trim());
@@ -76,7 +77,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpPost("/sysApp/add")]
+        [HttpPost("sysApp/add")]
         public async Task AddApp(AddAppInput input)
         {
             var isExist = await _sysAppRep.DetachedEntities.AnyAsync(u => u.Name == input.Name || u.Code == input.Code);
@@ -99,7 +100,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpPost("/sysApp/delete")]
+        [HttpPost("sysApp/delete")]
         public async Task DeleteApp(BaseId input)
         {
             var app = await _sysAppRep.FirstOrDefaultAsync(u => u.Id == input.Id);
@@ -116,7 +117,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpPost("/sysApp/edit")]
+        [HttpPost("sysApp/edit")]
         public async Task UpdateApp(UpdateAppInput input)
         {
             var isExist = await _sysAppRep.DetachedEntities.AnyAsync(u => (u.Name == input.Name || u.Code == input.Code) && u.Id != input.Id);
@@ -139,7 +140,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpGet("/sysApp/detail")]
+        [HttpGet("sysApp/detail")]
         public async Task<SysApp> GetApp([FromQuery] QueryAppInput input)
         {
             return await _sysAppRep.DetachedEntities.FirstOrDefaultAsync(u => u.Id == input.Id);
@@ -149,7 +150,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// 获取系统应用列表
         /// </summary>
         /// <returns></returns>
-        [HttpGet("/sysApp/list")]
+        [HttpGet("sysApp/list")]
         public async Task<List<SysApp>> GetAppList()
         {
             return await _sysAppRep.DetachedEntities.Where(u => u.Status == CommonStatus.ENABLE).OrderBy(u => u.Sort).ToListAsync();
@@ -160,7 +161,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpPost("/sysApp/setAsDefault")]
+        [HttpPost("sysApp/setAsDefault")]
         public async Task SetAsDefault(SetDefaultAppInput input)
         {
             var apps = await _sysAppRep.Where(u => u.Status == CommonStatus.ENABLE).ToListAsync();
@@ -178,7 +179,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpPost("/sysApp/changeStatus")]
+        [HttpPost("sysApp/changeStatus")]
         public async Task ChangeUserAppStatus(ChangeUserAppStatusInput input)
         {
             if (!Enum.IsDefined(typeof(CommonStatus), input.Status))
