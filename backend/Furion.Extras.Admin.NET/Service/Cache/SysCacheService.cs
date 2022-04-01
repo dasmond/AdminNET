@@ -11,6 +11,7 @@ namespace Furion.Extras.Admin.NET.Service
     /// 系统缓存服务
     /// </summary>
     [ApiDescriptionSettings(Name = "Cache", Order = 100)]
+    [Route("api")]
     public class SysCacheService : ISysCacheService, IDynamicApiController, ISingleton
     {
         private readonly IDistributedCache _cache;

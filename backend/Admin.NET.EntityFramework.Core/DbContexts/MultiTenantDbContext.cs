@@ -9,6 +9,8 @@ using Yitter.IdGenerator;
 
 namespace Admin.NET.EntityFramework.Core
 {
+    //update-database -Context MultiTenantDbContext
+    //Add-Migration v1.0.1 -Context MultiTenantDbContext
     //[AppDbContext("MultiTenantConnection", DbProvider.Sqlite)]
     [AppDbContext("MultiTenantConnection", DbProvider.SqlServer)]
     public class MultiTenantDbContext : AppDbContext<MultiTenantDbContext, MultiTenantDbContextLocator>

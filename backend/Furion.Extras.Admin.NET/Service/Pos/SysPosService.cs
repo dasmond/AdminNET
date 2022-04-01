@@ -13,6 +13,7 @@ namespace Furion.Extras.Admin.NET.Service
     /// 职位服务
     /// </summary>
     [ApiDescriptionSettings(Name = "Pos", Order = 147)]
+    [Route("api")]
     public class SysPosService : ISysPosService, IDynamicApiController, ITransient
     {
         private readonly IRepository<SysPos> _sysPosRep;  // 职位表仓储
@@ -34,7 +35,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpGet("/sysPos/page")]
+        [HttpGet("sysPos/page")]
         public async Task<PageResult<SysPos>> QueryPosPageList([FromQuery] PosInput input)
         {
             var name = !string.IsNullOrEmpty(input.Name?.Trim());
@@ -52,7 +53,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// 获取职位列表
         /// </summary>
         /// <returns></returns>
-        [HttpGet("/sysPos/list")]
+        [HttpGet("sysPos/list")]
         public async Task<List<SysPos>> GetPosList([FromQuery] PosInput input)
         {
             var code = !string.IsNullOrEmpty(input.Code?.Trim());
@@ -66,7 +67,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpPost("/sysPos/add")]
+        [HttpPost("sysPos/add")]
         public async Task AddPos(AddPosInput input)
         {
             var isExist = await _sysPosRep.DetachedEntities.AnyAsync(u => u.Name == input.Name || u.Code == input.Code);
@@ -82,7 +83,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpPost("/sysPos/delete")]
+        [HttpPost("sysPos/delete")]
         public async Task DeletePos(DeletePosInput input)
         {
             // 该职位下是否有员工
@@ -104,7 +105,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpPost("/sysPos/edit")]
+        [HttpPost("sysPos/edit")]
         public async Task UpdatePos(UpdatePosInput input)
         {
             var isExist = await _sysPosRep.DetachedEntities.AnyAsync(u => (u.Name == input.Name || u.Code == input.Code) && u.Id != input.Id);
@@ -120,7 +121,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpGet("/sysPos/detail")]
+        [HttpGet("sysPos/detail")]
         public async Task<SysPos> GetPos([FromQuery] QueryPosInput input)
         {
             return await _sysPosRep.DetachedEntities.FirstOrDefaultAsync(u => u.Id == input.Id);

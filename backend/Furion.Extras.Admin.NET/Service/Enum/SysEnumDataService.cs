@@ -12,6 +12,7 @@ namespace Furion.Extras.Admin.NET.Service
     /// </summary>
     [ApiDescriptionSettings(Name = "EnumData", Order = 100)]
     [AllowAnonymous]
+    [Route("api")]
     public class SysEnumDataService : ISysEnumDataService, IDynamicApiController, ITransient
     {
         /// <summary>
@@ -19,7 +20,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpGet("/sysEnumData/list")]
+        [HttpGet("sysEnumData/list")]
         public async Task<dynamic> GetEnumDataList([FromQuery] EnumDataInput input)
         {
             // 查找枚举
@@ -42,7 +43,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpGet("/sysEnumData/listByFiled")]
+        [HttpGet("sysEnumData/listByFiled")]
         public async Task<dynamic> GetEnumDataListByField([FromQuery] QueryEnumDataInput input)
         {
             // 获取实体类型属性

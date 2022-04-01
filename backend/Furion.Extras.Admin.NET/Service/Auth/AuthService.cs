@@ -18,6 +18,7 @@ namespace Furion.Extras.Admin.NET.Service
     /// 登录授权相关服务
     /// </summary>
     [ApiDescriptionSettings(Name = "Auth", Order = 160)]
+    [Route("api")]
     public class AuthService : IAuthService, IDynamicApiController, ITransient
     {
         private readonly IHttpContextAccessor _httpContextAccessor;
@@ -55,7 +56,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// <param name="input"></param>
         /// <remarks>默认用户名/密码：admin/admin</remarks>
         /// <returns></returns>
-        [HttpPost("/login")]
+        [HttpPost("login")]
         [AllowAnonymous]
         public string LoginAsync([Required] LoginInput input)
         {
@@ -105,7 +106,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// 获取当前登录用户信息
         /// </summary>
         /// <returns></returns>
-        [HttpGet("/getLoginUser")]
+        [HttpGet("getLoginUser")]
         public async Task<LoginOutput> GetLoginUserAsync()
         {            
             var user = _sysUserRep.FirstOrDefault(u => u.Id == CurrentUserInfo.UserId, false);
@@ -176,7 +177,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// 退出
         /// </summary>
         /// <returns></returns>
-        [HttpGet("/logout")]
+        [HttpGet("logout")]
         [AllowAnonymous]
         public async Task LogoutAsync()
         {
@@ -202,7 +203,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// 获取验证码开关
         /// </summary>
         /// <returns></returns>
-        [HttpGet("/getCaptchaOpen")]
+        [HttpGet("getCaptchaOpen")]
         [AllowAnonymous]
         public async Task<bool> GetCaptchaOpen()
         {
@@ -213,7 +214,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// 获取验证码（默认点选模式）
         /// </summary>
         /// <returns></returns>
-        [HttpPost("/captcha/get")]
+        [HttpPost("captcha/get")]
         [AllowAnonymous]
         [NonUnify]
         public async Task<ClickWordCaptchaResult> GetCaptcha()
@@ -227,7 +228,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpPost("/captcha/check")]
+        [HttpPost("captcha/check")]
         [AllowAnonymous]
         [NonUnify]
         public async Task<ClickWordCaptchaResult> VerificationCode(ClickWordCaptchaInput input)
