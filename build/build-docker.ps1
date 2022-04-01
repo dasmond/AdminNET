@@ -1,5 +1,5 @@
 # 定义服务器地址
-$remoteIp = "81.70.44.26"
+$remoteIp = "192.168.1.16"
 
 # 定义路径
 $buildFolder = (Get-Item -Path "./" -Verbose).FullName
@@ -43,12 +43,12 @@ Copy-Item ("./vue/*.*") (Join-Path $outputFolder "vue")
 
 ### 推送到服务器
 Set-Location $outputFolder
-ssh root@81.70.44.26 "rm -rf /wwwroot/dilon; exit"
-scp -r $outputFolder root@81.70.44.26:/wwwroot
-ssh root@81.70.44.26 "cd /wwwroot; mv outputs dilon; exit"
+ssh root@192.168.1.16 "rm -rf /wwwroot/dilon; exit"
+scp -r $outputFolder root@192.168.1.16:/wwwroot
+ssh root@192.168.1.16 "cd /wwwroot; mv outputs dilon; exit"
 
-ssh root@81.70.44.26 "cd /wwwroot/dilon/core; docker-compose down -v; docker rmi dilon.core; docker-compose build; docker-compose up -d; exit"
-ssh root@81.70.44.26 "cd /wwwroot/dilon/vue; docker-compose down -v; docker rmi dilon.vue; docker-compose build; docker-compose up -d; exit"
+ssh root@192.168.1.16 "cd /wwwroot/dilon/core; docker-compose down -v; docker rmi dilon.core; docker-compose build; docker-compose up -d; exit"
+ssh root@192.168.1.16 "cd /wwwroot/dilon/vue; docker-compose down -v; docker rmi dilon.vue; docker-compose build; docker-compose up -d; exit"
 
 Write-Host 'Press Any Key!' -NoNewline
 $null = [Console]::ReadKey('?')

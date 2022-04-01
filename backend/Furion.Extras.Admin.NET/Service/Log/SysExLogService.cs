@@ -11,6 +11,7 @@ namespace Furion.Extras.Admin.NET.Service
     /// 异常日志服务
     /// </summary>
     [ApiDescriptionSettings(Name = "ExLog", Order = 100)]
+    [Route("api")]
     public class SysExLogService : ISysExLogService, IDynamicApiController, ITransient
     {
         private readonly IRepository<SysLogEx> _sysExLogRep;  // 操作日志表仓储
@@ -25,7 +26,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpGet("/sysExLog/page")]
+        [HttpGet("sysExLog/page")]
         public async Task<PageResult<ExLogOutput>> QueryExLogPageList([FromQuery] ExLogPageInput input)
         {
             var name = !string.IsNullOrEmpty(input.Name?.Trim());
@@ -50,7 +51,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// 清空异常日志
         /// </summary>
         /// <returns></returns>
-        [HttpPost("/sysExLog/delete")]
+        [HttpPost("sysExLog/delete")]
         public async Task ClearExLog()
         {
             await _sysExLogRep.Context.DeleteRangeAsync<SysLogEx>();

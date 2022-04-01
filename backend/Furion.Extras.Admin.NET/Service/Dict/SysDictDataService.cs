@@ -15,6 +15,7 @@ namespace Furion.Extras.Admin.NET.Service
     /// </summary>
     [ApiDescriptionSettings(Name = "DictData", Order = 100)]
     [AllowAnonymous]
+    [Route("api")]
     public class SysDictDataService : ISysDictDataService, IDynamicApiController, ITransient
     {
         private readonly IRepository<SysDictData> _sysDictDataRep;  // 字典类型表仓储
@@ -29,7 +30,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpGet("/sysDictData/page")]
+        [HttpGet("sysDictData/page")]
         public async Task<PageResult<DictDataOutput>> QueryDictDataPageList([FromQuery] DictDataPageInput input)
         {
             bool supperAdmin = CurrentUserInfo.IsSuperAdmin;
@@ -50,7 +51,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// 获取某个字典类型下字典值列表
         /// </summary>
         /// <returns></returns>
-        [HttpGet("/sysDictData/list")]
+        [HttpGet("sysDictData/list")]
         public async Task<List<SysDictData>> GetDictDataList([FromQuery] QueryDictDataListInput input)
         {
             return await _sysDictDataRep.DetachedEntities.Where(u => u.TypeId == input.TypeId)
@@ -64,7 +65,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpPost("/sysDictData/add")]
+        [HttpPost("sysDictData/add")]
         public async Task AddDictData(AddDictDataInput input)
         {
             var isExist = await _sysDictDataRep.AnyAsync(u => (u.Code == input.Code || u.Value == input.Value) && u.TypeId == input.TypeId, false);
@@ -79,7 +80,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpPost("/sysDictData/delete")]
+        [HttpPost("sysDictData/delete")]
         public async Task DeleteDictData(DeleteDictDataInput input)
         {
             var dictData = await _sysDictDataRep.FirstOrDefaultAsync(u => u.Id == input.Id);
@@ -100,7 +101,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpPost("/sysDictData/edit")]
+        [HttpPost("sysDictData/edit")]
         public async Task UpdateDictData(UpdateDictDataInput input)
         {
             var isExist = await _sysDictDataRep.AnyAsync(u => u.Id == input.Id, false);
@@ -119,7 +120,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpGet("/sysDictData/detail")]
+        [HttpGet("sysDictData/detail")]
         public async Task<SysDictData> GetDictData([FromQuery] QueryDictDataInput input)
         {
             return await _sysDictDataRep.FirstOrDefaultAsync(u => u.Id == input.Id, false);
@@ -130,7 +131,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpPost("/sysDictData/changeStatus")]
+        [HttpPost("sysDictData/changeStatus")]
         public async Task ChangeDictDataStatus(ChageStateDictDataInput input)
         {
             var dictData = await _sysDictDataRep.FirstOrDefaultAsync(u => u.Id == input.Id);

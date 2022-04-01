@@ -17,6 +17,7 @@ namespace Furion.Extras.Admin.NET.Service.CodeGen
     /// 代码生成器服务
     /// </summary>
     [ApiDescriptionSettings(Name = "CodeGen", Order = 100)]
+    [Route("api")]
     public class CodeGenService : ICodeGenService, IDynamicApiController, ITransient
     {
         private readonly IRepository<SysCodeGen> _sysCodeGenRep; // 代码生成器仓储
@@ -41,7 +42,7 @@ namespace Furion.Extras.Admin.NET.Service.CodeGen
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpGet("/codeGenerate/page")]
+        [HttpGet("codeGenerate/page")]
         public async Task<PageResult<SysCodeGen>> QueryCodeGenPageList([FromQuery] CodeGenPageInput input)
         {
             var tableName = !string.IsNullOrEmpty(input.TableName?.Trim());
@@ -56,7 +57,7 @@ namespace Furion.Extras.Admin.NET.Service.CodeGen
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpPost("/codeGenerate/add")]
+        [HttpPost("codeGenerate/add")]
         public async Task AddCodeGen(AddCodeGenInput input)
         {
             var isExist = await _sysCodeGenRep.DetachedEntities.AnyAsync(u => u.TableName == input.TableName);
@@ -75,7 +76,7 @@ namespace Furion.Extras.Admin.NET.Service.CodeGen
         /// </summary>
         /// <param name="inputs"></param>
         /// <returns></returns>
-        [HttpPost("/codeGenerate/delete")]
+        [HttpPost("codeGenerate/delete")]
         public async Task DeleteCodeGen(List<DeleteCodeGenInput> inputs)
         {
             if (inputs == null || inputs.Count < 1) return;
@@ -96,7 +97,7 @@ namespace Furion.Extras.Admin.NET.Service.CodeGen
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpPost("/codeGenerate/edit")]
+        [HttpPost("codeGenerate/edit")]
         public async Task UpdateCodeGen(UpdateCodeGenInput input)
         {
             var isExist = await _sysCodeGenRep.DetachedEntities.AnyAsync(u => u.TableName == input.TableName && u.Id != input.Id);
@@ -112,7 +113,7 @@ namespace Furion.Extras.Admin.NET.Service.CodeGen
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpGet("/codeGenerate/detail")]
+        [HttpGet("codeGenerate/detail")]
         public async Task<SysCodeGen> GetCodeGen([FromQuery] QueryCodeGenInput input)
         {
             return await _sysCodeGenRep.DetachedEntities.FirstOrDefaultAsync(u => u.Id == input.Id);
@@ -122,7 +123,7 @@ namespace Furion.Extras.Admin.NET.Service.CodeGen
         /// 获取数据库库集合
         /// </summary>
         /// <returns></returns>
-        [HttpGet("/codeGenerate/DatabaseList")]
+        [HttpGet("codeGenerate/DatabaseList")]
         public List<DatabaseOutput> GetDatabaseList()
         {
             var DbContextLocators = AppDomain.CurrentDomain.GetAssemblies()
@@ -136,7 +137,7 @@ namespace Furion.Extras.Admin.NET.Service.CodeGen
         /// 获取数据库表(实体)集合
         /// </summary>
         /// <returns></returns>
-        [HttpGet("/codeGenerate/InformationList")]
+        [HttpGet("codeGenerate/InformationList")]
         public List<TableOutput> GetTableList(string dbContextLocatorName)
         {
             var dbContext = Db.GetDbContext();//默认数据库
@@ -162,7 +163,7 @@ namespace Furion.Extras.Admin.NET.Service.CodeGen
         /// 根据表名获取列
         /// </summary>
         /// <returns></returns>
-        [HttpGet("/codeGenerate/ColumnList/{databaseName}/{tableName}")]
+        [HttpGet("codeGenerate/ColumnList/{databaseName}/{tableName}")]
         public List<TableColumnOuput> GetColumnListByTableName(string databaseName, string tableName)
         {
             var dbContext = Db.GetDbContext();//默认数据库
@@ -232,7 +233,7 @@ namespace Furion.Extras.Admin.NET.Service.CodeGen
         /// 代码生成_本地项目
         /// </summary>
         /// <returns></returns>
-        [HttpPost("/codeGenerate/runLocal")]
+        [HttpPost("codeGenerate/runLocal")]
         public async Task RunLocal(SysCodeGen input)
         {
             var templatePathList = GetTemplatePathList();
