@@ -15,6 +15,7 @@ namespace Furion.Extras.Admin.NET.Service
     /// </summary>
     [ApiDescriptionSettings(Name = "DictType", Order = 100)]
     [AllowAnonymous]
+    [Route("api")]
     public class SysDictTypeService : ISysDictTypeService, IDynamicApiController, ITransient
     {
         private readonly IRepository<SysDictType> _sysDictTypeRep;  // 字典类型表仓储
@@ -31,7 +32,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// 分页查询字典类型
         /// </summary>
         /// <returns></returns>
-        [HttpGet("/sysDictType/page")]
+        [HttpGet("sysDictType/page")]
         public async Task<PageResult<SysDictType>> QueryDictTypePageList([FromQuery] DictTypePageInput input)
         {
             bool supperAdmin = CurrentUserInfo.IsSuperAdmin;
@@ -49,7 +50,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// 获取字典类型列表
         /// </summary>
         /// <returns></returns>
-        [HttpGet("/sysDictType/list")]
+        [HttpGet("sysDictType/list")]
         public async Task<List<SysDictType>> GetDictTypeList()
         {
             return await _sysDictTypeRep.DetachedEntities.Where(u => u.Status != CommonStatus.DELETED).ToListAsync();
@@ -61,7 +62,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// <param name="input"></param>
         /// <returns></returns>
         [AllowAnonymous]
-        [HttpGet("/sysDictType/dropDown")]
+        [HttpGet("sysDictType/dropDown")]
         public async Task<List<SysDictData>> GetDictTypeDropDown([FromQuery] DropDownDictTypeInput input)
         {
             var dictType = await _sysDictTypeRep.FirstOrDefaultAsync(u => u.Code == input.Code, false);
@@ -74,7 +75,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpPost("/sysDictType/add")]
+        [HttpPost("sysDictType/add")]
         public async Task AddDictType(AddDictTypeInput input)
         {
             var isExist = await _sysDictTypeRep.AnyAsync(u => u.Name == input.Name || u.Code == input.Code, false);
@@ -89,7 +90,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpPost("/sysDictType/delete")]
+        [HttpPost("sysDictType/delete")]
         public async Task DeleteDictType(DeleteDictTypeInput input)
         {
             var dictType = await _sysDictTypeRep.FirstOrDefaultAsync(u => u.Id == input.Id);
@@ -111,7 +112,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpPost("/sysDictType/edit"),]
+        [HttpPost("sysDictType/edit"),]
         public async Task UpdateDictType(UpdateDictTypeInput input)
         {
             var isExist = await _sysDictTypeRep.AnyAsync(u => u.Id == input.Id, false);
@@ -130,7 +131,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpGet("/sysDictType/detail")]
+        [HttpGet("sysDictType/detail")]
         public async Task<SysDictType> GetDictType([FromQuery] QueryDictTypeInfoInput input)
         {
             return await _sysDictTypeRep.FirstOrDefaultAsync(u => u.Id == input.Id, false);
@@ -141,7 +142,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpPost("/sysDictType/changeStatus")]
+        [HttpPost("sysDictType/changeStatus")]
         public async Task ChangeDictTypeStatus(ChangeStateDictTypeInput input)
         {
             var dictType = await _sysDictTypeRep.FirstOrDefaultAsync(u => u.Id == input.Id);
@@ -159,7 +160,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// </summary>
         /// <returns></returns>
         [AllowAnonymous]
-        [HttpGet("/sysDictType/tree")]
+        [HttpGet("sysDictType/tree")]
         public async Task<List<DictTreeOutput>> GetDictTree()
         {
             return await _sysDictTypeRep.DetachedEntities.Select(u => new DictTreeOutput

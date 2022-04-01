@@ -11,6 +11,7 @@ namespace Furion.Extras.Admin.NET.Service
     /// 访问日志服务
     /// </summary>
     [ApiDescriptionSettings(Name = "VisLog", Order = 100)]
+    [Route("api")]
     public class SysVisLogService : ISysVisLogService, IDynamicApiController, ITransient
     {
         private readonly IRepository<SysLogVis> _sysVisLogRep;  // 访问日志表仓储
@@ -25,7 +26,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpGet("/sysVisLog/page")]
+        [HttpGet("sysVisLog/page")]
         public async Task<PageResult<VisLogOutput>> QueryVisLogPageList([FromQuery] VisLogPageInput input)
         {
             var name = !string.IsNullOrEmpty(input.Name?.Trim());
@@ -47,7 +48,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// 清空访问日志
         /// </summary>
         /// <returns></returns>
-        [HttpPost("/sysVisLog/delete")]
+        [HttpPost("sysVisLog/delete")]
         public async Task ClearVisLog()
         {
             await _sysVisLogRep.Context.DeleteRangeAsync<SysLogVis>();

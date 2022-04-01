@@ -13,6 +13,7 @@ namespace Furion.Extras.Admin.NET.Service
     /// 组织机构服务
     /// </summary>
     [ApiDescriptionSettings(Name = "Org", Order = 148)]
+    [Route("api")]
     public class SysOrgService : ISysOrgService, IDynamicApiController, ITransient
     {
         private readonly IRepository<SysOrg> _sysOrgRep;  // 组织机构表仓储
@@ -42,7 +43,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpGet("/sysOrg/page")]
+        [HttpGet("sysOrg/page")]
         public async Task<PageResult<OrgOutput>> QueryOrgPageList([FromQuery] OrgPageInput input)
         {
             var dataScopeList = GetDataScopeList(await GetUserDataScopeIdList());
@@ -98,7 +99,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpGet("/sysOrg/list")]
+        [HttpGet("sysOrg/list")]
         public async Task<List<OrgOutput>> GetOrgList([FromQuery] OrgListInput input)
         {
             var dataScopeList = GetDataScopeList(await GetUserDataScopeIdList());
@@ -119,7 +120,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpPost("/sysOrg/add")]
+        [HttpPost("sysOrg/add")]
         public async Task AddOrg(OrgAddInput input)
         {
             var isExist = await _sysOrgRep.DetachedEntities.AnyAsync(u => u.Name == input.Name || u.Code == input.Code);
@@ -180,7 +181,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpPost("/sysOrg/delete")]
+        [HttpPost("sysOrg/delete")]
         [UnitOfWork]
         public async Task DeleteOrg(DeleteOrgInput input)
         {
@@ -224,7 +225,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpPost("/sysOrg/edit")]
+        [HttpPost("sysOrg/edit")]
         [UnitOfWork]
         public async Task UpdateOrg(UpdateOrgInput input)
         {
@@ -273,7 +274,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpGet("/sysOrg/detail")]
+        [HttpGet("sysOrg/detail")]
         public async Task<SysOrg> GetOrg([FromQuery] QueryOrgInput input)
         {
             return await _sysOrgRep.DetachedEntities.FirstOrDefaultAsync(u => u.Id == long.Parse(input.Id));
@@ -297,7 +298,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// 获取组织机构树
         /// </summary>
         /// <returns></returns>
-        [HttpGet("/sysOrg/tree")]
+        [HttpGet("sysOrg/tree")]
         public async Task<dynamic> GetOrgTree()
         {
             var dataScopeList = new List<long>();

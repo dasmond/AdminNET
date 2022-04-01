@@ -12,6 +12,7 @@ namespace Furion.Extras.Admin.NET.Service
     /// 操作日志服务
     /// </summary>
     [ApiDescriptionSettings(Name = "OpLog", Order = 100)]
+    [Route("api")]
     public class SysOpLogService : ISysOpLogService, IDynamicApiController, ITransient
     {
         private readonly IRepository<SysLogOp> _sysOpLogRep; // 操作日志表仓储
@@ -26,7 +27,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpGet("/sysOpLog/page")]
+        [HttpGet("sysOpLog/page")]
         public async Task<PageResult<OpLogOutput>> QueryOpLogPageList([FromQuery] OpLogPageInput input)
         {
             var name = !string.IsNullOrEmpty(input.Name?.Trim());
@@ -49,7 +50,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// 清空操作日志
         /// </summary>
         /// <returns></returns>
-        [HttpPost("/sysOpLog/delete")]
+        [HttpPost("sysOpLog/delete")]
         public async Task ClearOpLog()
         {
             await _sysOpLogRep.Context.DeleteRangeAsync<SysLogOp>();

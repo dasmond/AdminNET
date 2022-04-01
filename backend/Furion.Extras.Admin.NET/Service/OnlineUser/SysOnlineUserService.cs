@@ -12,6 +12,7 @@ namespace Furion.Extras.Admin.NET.Service
     /// 在线用户服务
     /// </summary>
     [ApiDescriptionSettings(Name = "OnlineUser", Order = 100)]
+    [Route("api")]
     public class SysOnlineUserService : ISysOnlineUserService, IDynamicApiController, ITransient
     {
         private readonly ISysCacheService _sysCacheService;
@@ -34,7 +35,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpGet("/sysOnlineUser/page")]
+        [HttpGet("sysOnlineUser/page")]
         public async Task<PageResult<OnlineUserOutput>> QueryOnlineUserPageList([FromQuery] PageInputBase input)
         {
             var onlineUsers = await _sysCacheService.GetAsync<List<OnlineUser>>(CommonConst.CACHE_KEY_ONLINE_USER) ?? new List<OnlineUser>();
@@ -57,7 +58,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// 获取在线用户信息
         /// </summary>
         /// <returns></returns>
-        [HttpGet("/sysOnlineUser/list")]
+        [HttpGet("sysOnlineUser/list")]
         public async Task<List<OnlineUserOutput>> List()
         {
             var onlineUsers = await _sysCacheService.GetAsync<List<OnlineUser>>(CommonConst.CACHE_KEY_ONLINE_USER) ?? new List<OnlineUser>();
@@ -79,7 +80,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// </summary>
         /// <param name="user"></param>
         /// <returns></returns>
-        [HttpPost("/sysOnlineUser/forceExist")]
+        [HttpPost("sysOnlineUser/forceExist")]
         public async Task ForceExist([FromBody] OnlineUser user)
         {
             await _chatHubContext.Clients.Client(user.ConnectionId).ForceExist();
