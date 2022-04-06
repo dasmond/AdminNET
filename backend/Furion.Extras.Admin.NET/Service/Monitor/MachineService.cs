@@ -10,6 +10,7 @@ namespace Furion.Extras.Admin.NET.Service
     /// </summary>
     [AllowAnonymous]
     [ApiDescriptionSettings(Name = "Machine", Order = 100)]
+    [Route("api")]
     public class MachineService : IMachineService, IDynamicApiController, ITransient
     {
         public MachineService()
@@ -20,7 +21,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// 获取服务器资源信息
         /// </summary>
         /// <returns></returns>
-        [HttpGet("/sysMachine/use")]
+        [HttpGet("sysMachine/use")]
         public async Task<dynamic> GetMachineUseInfo()
         {
             var useInfo = MachineUtil.GetMachineUseInfo();
@@ -31,7 +32,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// 获取服务器基本参数
         /// </summary>
         /// <returns></returns>
-        [HttpGet("/sysMachine/base")]
+        [HttpGet("sysMachine/base")]
         public async Task<dynamic> GetMachineBaseInfo()
         {
             return await MachineUtil.GetMachineBaseInfo();
@@ -41,7 +42,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// 动态获取网络信息
         /// </summary>
         /// <returns></returns>
-        [HttpGet("/sysMachine/network")]
+        [HttpGet("sysMachine/network")]
         public async Task<dynamic> GetMachineNetWorkInfo()
         {
             var baseInfo = MachineUtil.GetMachineNetWorkInfo();

@@ -19,6 +19,7 @@ namespace Furion.Extras.Admin.NET.Service
     /// 文件服务
     /// </summary>
     [ApiDescriptionSettings(Name = "File", Order = 100)]
+    [Route("api")]
     public class SysFileService : ISysFileService, IDynamicApiController, ITransient
     {
         private readonly IRepository<SysFile> _sysFileInfoRep;  // 文件信息表仓储
@@ -43,7 +44,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpGet("/sysFileInfo/page")]
+        [HttpGet("sysFileInfo/page")]
         public async Task<PageResult<FileOutput>> QueryFileInfoPageList([FromQuery] FilePageInput input)
         {
             var fileBucket = !string.IsNullOrEmpty(input.FileBucket?.Trim());
@@ -62,7 +63,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpGet("/sysFileInfo/list")]
+        [HttpGet("sysFileInfo/list")]
         public async Task<List<SysFile>> GetFileInfoList([FromQuery] FileOutput input)
         {
             return await _sysFileInfoRep.DetachedEntities.ToListAsync();
@@ -73,7 +74,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpPost("/sysFileInfo/delete")]
+        [HttpPost("sysFileInfo/delete")]
         public async Task DeleteFileInfo(DeleteFileInfoInput input)
         {
             var file = await _sysFileInfoRep.FirstOrDefaultAsync(u => u.Id == input.Id);
@@ -109,7 +110,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpGet("/sysFileInfo/detail")]
+        [HttpGet("sysFileInfo/detail")]
         public async Task<SysFile> GetFileInfo([FromQuery] QueryFileInfoInput input)
         {
             var file = await _sysFileInfoRep.FirstOrDefaultAsync(u => u.Id == input.Id);
@@ -123,7 +124,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpGet("/sysFileInfo/preview")]
+        [HttpGet("sysFileInfo/preview")]
         public async Task<IActionResult> PreviewFileInfo([FromQuery] QueryFileInfoInput input)
         {
             return await DownloadFileInfo(input);
@@ -134,7 +135,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// </summary>
         /// <param name="file"></param>
         /// <returns></returns>
-        [HttpPost("/sysFileInfo/upload")]
+        [HttpPost("sysFileInfo/upload")]
         public async Task<long> UploadFileDefault(IFormFile file)
         {
             //对象存储的key
@@ -148,7 +149,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpGet("/sysFileInfo/download")]
+        [HttpGet("sysFileInfo/download")]
         public async Task<IActionResult> DownloadFileInfo([FromQuery] QueryFileInfoInput input)
         {
             var file = await GetFileInfo(input);
@@ -183,7 +184,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// </summary>
         /// <param name="file"></param>
         /// <returns></returns>
-        [HttpPost("/sysFileInfo/uploadAvatar")]
+        [HttpPost("sysFileInfo/uploadAvatar")]
         public async Task<long> UploadFileAvatar(IFormFile file)
         {
             const string key = "UploadFile:Avatar";
@@ -195,7 +196,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// </summary>
         /// <param name="file"></param>
         /// <returns></returns>
-        [HttpPost("/sysFileInfo/uploadDocument")]
+        [HttpPost("sysFileInfo/uploadDocument")]
         public async Task UploadFileDocument(IFormFile file)
         {
             const string key = "UploadFile:Document";
@@ -207,7 +208,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// </summary>
         /// <param name="file"></param>
         /// <returns></returns>
-        [HttpPost("/sysFileInfo/uploadShop")]
+        [HttpPost("sysFileInfo/uploadShop")]
         public async Task UploadFileShop(IFormFile file)
         {
             const string key = "UploadFile:Shop";

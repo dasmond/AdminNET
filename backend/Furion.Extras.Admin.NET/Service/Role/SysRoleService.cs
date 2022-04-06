@@ -13,6 +13,7 @@ namespace Furion.Extras.Admin.NET.Service
     /// 角色服务
     /// </summary>
     [ApiDescriptionSettings(Name = "Role", Order = 149)]
+    [Route("api")]
     public class SysRoleService : ISysRoleService, IDynamicApiController, ITransient
     {
         private readonly IRepository<SysRole> _sysRoleRep;  // 角色表仓储
@@ -60,7 +61,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpGet("/sysRole/page")]
+        [HttpGet("sysRole/page")]
         public async Task<PageResult<SysRole>> QueryRolePageList([FromQuery] RolePageInput input)
         {
             var name = !string.IsNullOrEmpty(input.Name?.Trim());
@@ -100,7 +101,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// 角色下拉（用于授权角色时选择）
         /// </summary>
         /// <returns></returns>
-        [HttpGet("/sysRole/dropDown")]
+        [HttpGet("sysRole/dropDown")]
         public async Task<List<RoleOutput>> GetRoleDropDown()
         {
             // 如果不是超级管理员，则查询自己拥有的角色集合
@@ -120,7 +121,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpPost("/sysRole/add")]
+        [HttpPost("sysRole/add")]
         public async Task AddRole(AddRoleInput input)
         {
             var isExist = await _sysRoleRep.DetachedEntities.AnyAsync(u => u.Code == input.Code || u.Name == input.Name);
@@ -137,7 +138,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpPost("/sysRole/delete")]
+        [HttpPost("sysRole/delete")]
         [UnitOfWork]
         public async Task DeleteRole(DeleteRoleInput input)
         {
@@ -164,7 +165,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpPost("/sysRole/edit")]
+        [HttpPost("sysRole/edit")]
         public async Task UpdateRole(UpdateRoleInput input)
         {
             var adminRole = await _sysRoleRep.DetachedEntities.FirstOrDefaultAsync(u => u.Id == input.Id);
@@ -184,7 +185,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpGet("/sysRole/detail")]
+        [HttpGet("sysRole/detail")]
         public async Task<SysRole> GetRoleInfo([FromQuery] QueryRoleInput input)
         {
             return await _sysRoleRep.DetachedEntities.FirstOrDefaultAsync(u => u.Id == input.Id);
@@ -195,7 +196,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpPost("/sysRole/grantMenu")]
+        [HttpPost("sysRole/grantMenu")]
         public async Task GrantMenu(GrantRoleMenuInput input)
         {
             var adminRole = await _sysRoleRep.DetachedEntities.FirstOrDefaultAsync(u => u.Id == input.Id);
@@ -210,7 +211,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpPost("/sysRole/grantData")]
+        [HttpPost("sysRole/grantData")]
         public async Task GrantData(GrantRoleDataInput input)
         {
             // 清除所有用户数据范围缓存
@@ -297,7 +298,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpGet("/sysRole/ownMenu")]
+        [HttpGet("sysRole/ownMenu")]
         public async Task<List<long>> OwnMenu([FromQuery] QueryRoleInput input)
         {
             return await _sysRoleMenuService.GetRoleMenuIdList(new List<long> { input.Id });
@@ -308,7 +309,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpGet("/sysRole/ownData")]
+        [HttpGet("sysRole/ownData")]
         public async Task<List<long>> OwnData([FromQuery] QueryRoleInput input)
         {
             return await _sysRoleDataScopeService.GetRoleDataScopeIdList(new List<long> { input.Id });

@@ -14,6 +14,7 @@ namespace Furion.Extras.Admin.NET.Service
     /// 系统菜单服务
     /// </summary>
     [ApiDescriptionSettings(Name = "Menu", Order = 146)]
+    [Route("api")]
     public class SysMenuService : ISysMenuService, IDynamicApiController, ITransient
     {
         private readonly IRepository<SysMenu> _sysMenuRep;  // 菜单表仓储
@@ -152,7 +153,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpGet("/sysMenu/list")]
+        [HttpGet("sysMenu/list")]
         public async Task<dynamic> GetMenuList([FromQuery] GetMenuListInput input)
         {
             var application = !string.IsNullOrEmpty(input.Application?.Trim());
@@ -227,7 +228,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpPost("/sysMenu/add")]
+        [HttpPost("sysMenu/add")]
         public async Task AddMenu(AddMenuInput input)
         {
             var isExist = await _sysMenuRep.DetachedEntities.AnyAsync(u => u.Code == input.Code); // u.Name == input.Name
@@ -252,7 +253,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpPost("/sysMenu/delete")]
+        [HttpPost("sysMenu/delete")]
         [UnitOfWork]
         public async Task DeleteMenu(DeleteMenuInput input)
         {
@@ -276,7 +277,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpPost("/sysMenu/edit"),]
+        [HttpPost("sysMenu/edit"),]
         public async Task UpdateMenu(UpdateMenuInput input)
         {
             // Pid和Id不能一致，一致会导致无限递归
@@ -364,7 +365,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpPost("/sysMenu/detail")]
+        [HttpPost("sysMenu/detail")]
         public async Task<dynamic> GetMenu(QueryMenuInput input)
         {
             return await _sysMenuRep.DetachedEntities.FirstOrDefaultAsync(u => u.Id == input.Id);
@@ -375,7 +376,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpGet("/sysMenu/tree")]
+        [HttpGet("sysMenu/tree")]
         public async Task<dynamic> GetMenuTree([FromQuery] GetMenuTreeInput input)
         {
             var application = !string.IsNullOrEmpty(input.Application?.Trim());
@@ -400,7 +401,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpGet("/sysMenu/treeForGrant")]
+        [HttpGet("sysMenu/treeForGrant")]
         public async Task<dynamic> TreeForGrant([FromQuery] TreeForGrantInput input)
         {
             var menuIdList = new List<long>();
@@ -442,7 +443,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpPost("/sysMenu/change")]
+        [HttpPost("sysMenu/change")]
         public async Task<List<AntDesignTreeNode>> ChangeAppMenu(ChangeAppMenuInput input)
         {
             return await GetLoginMenusAntDesign(CurrentUserInfo.UserId, input.Application);

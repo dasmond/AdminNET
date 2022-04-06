@@ -14,6 +14,7 @@ namespace Furion.Extras.Admin.NET.Service
     /// 系统参数配置服务
     /// </summary>
     [ApiDescriptionSettings(Name = "Config", Order = 100)]
+    [Route("api")]
     public class SysConfigService : ISysConfigService, IDynamicApiController, ITransient
     {
         private readonly IRepository<SysConfig> _sysConfigRep;    // 参数配置表仓储
@@ -30,7 +31,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpGet("/sysConfig/page")]
+        [HttpGet("sysConfig/page")]
         public async Task<PageResult<SysConfig>> QueryConfigPageList([FromQuery] ConfigPageInput input)
         {
             var name = !string.IsNullOrEmpty(input.Name?.Trim());
@@ -50,7 +51,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// 获取系统参数配置列表
         /// </summary>
         /// <returns></returns>
-        [HttpGet("/sysConfig/list")]
+        [HttpGet("sysConfig/list")]
         public async Task<List<SysConfig>> GetConfigList()
         {
             return await _sysConfigRep.DetachedEntities.Where(u => u.Status != CommonStatus.DELETED).ToListAsync();
@@ -61,7 +62,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpPost("/sysConfig/add")]
+        [HttpPost("sysConfig/add")]
         public async Task AddConfig(AddConfigInput input)
         {
             var isExist = await _sysConfigRep.DetachedEntities.AnyAsync(u => u.Name == input.Name || u.Code == input.Code);
@@ -77,7 +78,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpPost("/sysConfig/delete")]
+        [HttpPost("sysConfig/delete")]
         public async Task DeleteConfig(DeleteConfigInput input)
         {
             var config = await _sysConfigRep.FirstOrDefaultAsync(u => u.Id == input.Id);
@@ -93,7 +94,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpPost("/sysConfig/edit")]
+        [HttpPost("sysConfig/edit")]
         public async Task UpdateConfig(UpdateConfigInput input)
         {
             var isExist = await _sysConfigRep.DetachedEntities.AnyAsync(u => (u.Name == input.Name || u.Code == input.Code) && u.Id != input.Id);
@@ -109,7 +110,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpGet("/sysConfig/detail")]
+        [HttpGet("sysConfig/detail")]
         public async Task<SysConfig> GetConfig([FromQuery] QueryConfigInput input)
         {
             return await _sysConfigRep.DetachedEntities.FirstOrDefaultAsync(u => u.Id == input.Id);

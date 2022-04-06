@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Admin.NET.Application</name>
+    </assembly>
+    <members>
+        <member name="T:Admin.NET.Application.SpareTimeDemo">
+            <summary>
+            定时任务demo
+            </summary>
+        </member>
+        <member name="M:Admin.NET.Application.SpareTimeDemo.ExecSql(Furion.TaskScheduler.SpareTimer,System.Int64)">
+            <summary>
+            3秒后出勤统计
+            </summary>
+            <param name="timer">参数</param>
+            <param name="count">次数</param>
+        </member>
+        <member name="T:Admin.NET.Application.SystemAppService">
+            <summary>
+            系统服务接口
+            </summary>
+        </member>
+        <member name="M:Admin.NET.Application.SystemAppService.GetDescription">
+            <summary>
+            获取系统描述
+            </summary>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

@@ -14,6 +14,7 @@ namespace Furion.Extras.Admin.NET.Service
     /// 租户服务
     /// </summary>
     [ApiDescriptionSettings(Name = "Tenant", Order = 100)]
+    [Route("api")]
     public class SysTenantService : ISysTenantService, IDynamicApiController, ITransient
     {
         private readonly IRepository<SysTenant, MultiTenantDbContextLocator> _sysTenantRep;    // 租户表仓储
@@ -38,7 +39,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpGet("/sysTenant/page")]
+        [HttpGet("sysTenant/page")]
         public async Task<PageResult<TenantOutput>> QueryTenantPageList([FromQuery] TenantPageInput input)
         {
             var name = !string.IsNullOrEmpty(input.Name?.Trim());
@@ -55,7 +56,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpPost("/sysTenant/add")]
+        [HttpPost("sysTenant/add")]
         public async Task AddTenant(AddTenantInput input)
         {
             var isExist = await _sysTenantRep.DetachedEntities.AnyAsync(u => u.Name == input.Name || u.Email == input.Email);
@@ -128,7 +129,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpPost("/sysTenant/delete")]
+        [HttpPost("sysTenant/delete")]
         public async Task DeleteTenant(DeleteTenantInput input)
         {
             var tenant = await _sysTenantRep.FirstOrDefaultAsync(u => u.Id == input.Id);
@@ -192,7 +193,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpPost("/sysTenant/edit")]
+        [HttpPost("sysTenant/edit")]
         public async Task UpdateTenant(UpdateTenantInput input)
         {
             var isExist = await _sysTenantRep.DetachedEntities.AnyAsync(u => (u.Name == input.Name || u.Email == input.Email) && u.Id != input.Id);
@@ -208,7 +209,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpGet("/sysTenant/detail")]
+        [HttpGet("sysTenant/detail")]
         public async Task<SysTenant> GetTenant([FromQuery] QueryTenantInput input)
         {
             return await _sysTenantRep.DetachedEntities.FirstOrDefaultAsync(u => u.Id == input.Id);
@@ -219,7 +220,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpPost("/sysTenant/grantMenu")]
+        [HttpPost("sysTenant/grantMenu")]
         public async Task GrantMenu(GrantRoleMenuInput input)
         {
             var tenantAdminUser = await GetTenantAdminUser(input.Id);
@@ -235,7 +236,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpGet("/sysTenant/ownMenu")]
+        [HttpGet("sysTenant/ownMenu")]
         public async Task<List<long>> OwnMenu([FromQuery] QueryTenantInput input)
         {
             var tenantAdminUser = await GetTenantAdminUser(input.Id);
@@ -250,7 +251,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpPost("/sysTenant/resetPwd")]
+        [HttpPost("sysTenant/resetPwd")]
         public async Task ResetUserPwd(QueryTenantInput input)
         {
             var tenantAdminUser = await GetTenantAdminUser(input.Id);
