@@ -141,12 +141,14 @@ export const formSchema: FormSchema[] = [
     label: '任务名称',
     component: 'Input',
     required: true,
+    colProps: { span: 24 },
   },
   {
     field: 'requestUrl',
     label: '请求地址',
     component: 'Input',
     required: true,
+    colProps: { span: 24 },
   },
   {
     field: 'requestType',
@@ -168,6 +170,7 @@ export const formSchema: FormSchema[] = [
     label: '请求参数',
     field: 'requestPara',
     component: 'InputTextArea',
+    colProps: { span: 24 },
   },
   {
     field: 'timerType',
@@ -179,8 +182,10 @@ export const formSchema: FormSchema[] = [
         { label: '间隔模式', value: 0 },
         { label: 'Cron模式', value: 1 },
       ],
+      style: { width: '100%' },
     },
     required: true,
+    colProps: { span: 12 },
   },
   {
     field: 'interval',
@@ -188,6 +193,8 @@ export const formSchema: FormSchema[] = [
     component: 'InputNumber',
     defaultValue: 5,
     required: true,
+    colProps: { span: 12 },
+    componentProps: { style: { width: '100%' } },
     ifShow: ({ values }) => values.timerType == 0,
   },
   {
@@ -195,11 +202,14 @@ export const formSchema: FormSchema[] = [
     label: 'Cron表达式',
     component: 'Input',
     required: true,
+    colProps: { span: 12 },
+    componentProps: { style: { width: '100%' } },
     ifShow: ({ values }) => values.timerType == 1,
   },
   {
     label: '备注',
     field: 'remark',
     component: 'InputTextArea',
+    colProps: { span: 24 },
   },
 ];

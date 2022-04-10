@@ -17,7 +17,7 @@
       </a-col>
     </a-row>
     <a-row>
-      <a-col>
+      <a-col :span="24">
         <Description @register="register3" class="mt-2" />
       </a-col>
     </a-row>

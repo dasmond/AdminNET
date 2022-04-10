@@ -186,131 +186,6 @@ export const deletePos = (id: number) => defHttp.post({ url: Api.DeletePos, para
 // 更新职位
 export const updatePos = (params: any) => defHttp.post({ url: Api.UpdatePos, params });
 
-////////// 字典类型管理接口 //////////
-// 获取字典类型列表
-export const getDictTypePageList = (params?: any) =>
-  defHttp.get<any>({ url: Api.GetDictTypePageList, params });
-export const getDictTypeList = (params?: any) =>
-  defHttp.get<any>({ url: Api.GetDictTypeList, params });
-// 增加典类型
-export const addDictType = (params: any) => defHttp.post({ url: Api.AddDictType, params });
-// 删除字典类型
-export const deleteDictType = (id: number) =>
-  defHttp.post({ url: Api.DeleteDictType, params: { id } });
-// 更新字典类型
-export const updateDictType = (params: any) => defHttp.post({ url: Api.UpdateDictType, params });
-
-////////// 字典值管理接口 //////////
-// 获取字典类型分页列表
-export const getDictDataList = (params?: any) =>
-  defHttp.get<any>({ url: Api.GetDictDataPageList, params });
-//从字典中值，下拉框控件使用
-export function getDictDataDropdown(params: any) {
-  return defHttp.get<any>({ url: Api.GetDictDataDropdown + '/' + params });
-}
-// 增加典类型
-export const addDictData = (params: any) => defHttp.post({ url: Api.AddDictData, params });
-// 删除字典类型
-export const deleteDictData = (id: number) =>
-  defHttp.post({ url: Api.DeleteDictData, params: { id } });
-// 更新字典类型
-export const updateDictData = (params: any) => defHttp.post({ url: Api.UpdateDictData, params });
-
-//////////数据库管理接口 //////////
-// 获取表字段
-export function getColumnInfoList(params?) {
-  return defHttp.get<any>({ url: Api.GetColumnInfoList, params });
-}
-//获取所有表
-export function getTableInfoList(params?) {
-  return defHttp.get<any>({ url: Api.GetTableInfoList, params });
-}
-
-//添加表
-export function addTable(params: any) {
-  return defHttp.post<any>({ url: Api.AddTable, params });
-}
-//修改表
-export function updateTable(params: any) {
-  return defHttp.post<any>({ url: Api.UpdateTable, params });
-}
-//删除表
-export function deleteTable(params: any) {
-  return defHttp.post<any>({ url: Api.DeleTetable, params });
-}
-//添加字段
-export function addColumn(params: any) {
-  return defHttp.post<any>({ url: Api.AddColumn, params });
-}
-//修改字段
-export function updateColumn(params: any) {
-  return defHttp.post<any>({ url: Api.UpdateColumn, params });
-}
-//删除字段
-export function deleteColumn(params: any) {
-  return defHttp.post<any>({ url: Api.DeleteColumn, params });
-}
-//生成实体
-export function createEntity(params: any) {
-  return defHttp.post<any>({ url: Api.CreateEntity, params });
-}
-
-////////// 代码生成接口 //////////
-
-//分页查询代码生成
-export function getGeneratePage(params?: any) {
-  return defHttp.get<any>({ url: Api.GetGeneratePage, params });
-}
-//增加代码生成
-export function addGenerate(params: any) {
-  return defHttp.post<any>({
-    url: Api.AddGenerate,
-    params,
-  });
-}
-//修改代码生成
-export function updateGenerate(params: any) {
-  return defHttp.post<any>({
-    url: Api.UpdateGenerate,
-    params,
-  });
-}
-//删除代码生成
-export function deleGenerate(params: any) {
-  return defHttp.post<any>({
-    url: Api.DeleGenerate,
-    params,
-  });
-}
-// 获取数据库表(实体)集合
-export function getTableList(params?: any) {
-  return defHttp.get<any>({ url: Api.GetTableList, params });
-}
-//根据表名获取列
-export function getColumnList(tableName: string) {
-  return defHttp.get<any>({ url: Api.GetColumnList + '/' + tableName });
-}
-//本地生成
-export function generateRunLocal(params: any) {
-  return defHttp.post<any>({
-    url: Api.GenerateRunLocal,
-    params,
-  });
-}
-
-//代码生成详细配置列表
-export function getGenerateConfigList(params?: any) {
-  return defHttp.get<any>({ url: Api.GetGenerateConfigList, params });
-}
-
-//编辑代码生成详细配置
-export function updateGenerateConfig(params: any) {
-  return defHttp.post<any>({
-    url: Api.UpdateGenerateConfig,
-    params,
-  });
-}
-
 ////////// 日志管理接口 //////////
 // 获取访问日志分页列表
 export const getVisLogPageList = (params?: any) =>
@@ -390,3 +265,124 @@ export const serverBase = () => defHttp.get<any>({ url: Api.ServerBase });
 export const serverUse = () => defHttp.get<any>({ url: Api.ServerUse });
 // 获取服务器网络信息
 export const serverNetWork = () => defHttp.get<any>({ url: Api.ServerNetWork });
+
+////////// 字典类型管理接口 //////////
+// 获取字典类型列表
+export const getDictTypePageList = (params?: any) =>
+  defHttp.get<any>({ url: Api.GetDictTypePageList, params });
+export const getDictTypeList = (params?: any) =>
+  defHttp.get<any>({ url: Api.GetDictTypeList, params });
+// 增加典类型
+export const addDictType = (params: any) => defHttp.post({ url: Api.AddDictType, params });
+// 删除字典类型
+export const deleteDictType = (id: number) =>
+  defHttp.post({ url: Api.DeleteDictType, params: { id } });
+// 更新字典类型
+export const updateDictType = (params: any) => defHttp.post({ url: Api.UpdateDictType, params });
+
+////////// 字典值管理接口 //////////
+// 获取字典类型分页列表
+export const getDictDataList = (params?: any) =>
+  defHttp.get<any>({ url: Api.GetDictDataPageList, params });
+//从字典中值，下拉框控件使用
+export function getDictDataDropdown(params: any) {
+  return defHttp.get<any>({ url: Api.GetDictDataDropdown + '/' + params });
+}
+// 增加典类型
+export const addDictData = (params: any) => defHttp.post({ url: Api.AddDictData, params });
+// 删除字典类型
+export const deleteDictData = (id: number) =>
+  defHttp.post({ url: Api.DeleteDictData, params: { id } });
+// 更新字典类型
+export const updateDictData = (params: any) => defHttp.post({ url: Api.UpdateDictData, params });
+
+//////////数据库管理接口 //////////
+// 获取表字段
+export function getColumnInfoList(params?) {
+  return defHttp.get<any>({ url: Api.GetColumnInfoList, params });
+}
+// 获取所有表
+export function getTableInfoList(params?) {
+  return defHttp.get<any>({ url: Api.GetTableInfoList, params });
+}
+// 添加表
+export function addTable(params: any) {
+  return defHttp.post<any>({ url: Api.AddTable, params });
+}
+// 修改表
+export function updateTable(params: any) {
+  return defHttp.post<any>({ url: Api.UpdateTable, params });
+}
+// 删除表
+export function deleteTable(params: any) {
+  return defHttp.post<any>({ url: Api.DeleTetable, params });
+}
+// 添加字段
+export function addColumn(params: any) {
+  return defHttp.post<any>({ url: Api.AddColumn, params });
+}
+// 修改字段
+export function updateColumn(params: any) {
+  return defHttp.post<any>({ url: Api.UpdateColumn, params });
+}
+// 删除字段
+export function deleteColumn(params: any) {
+  return defHttp.post<any>({ url: Api.DeleteColumn, params });
+}
+// 生成实体
+export function createEntity(params: any) {
+  return defHttp.post<any>({ url: Api.CreateEntity, params });
+}
+
+////////// 代码生成接口 //////////
+// 分页查询代码生成
+export function getGeneratePage(params?: any) {
+  return defHttp.get<any>({ url: Api.GetGeneratePage, params });
+}
+// 增加代码生成
+export function addGenerate(params: any) {
+  return defHttp.post<any>({
+    url: Api.AddGenerate,
+    params,
+  });
+}
+// 修改代码生成
+export function updateGenerate(params: any) {
+  return defHttp.post<any>({
+    url: Api.UpdateGenerate,
+    params,
+  });
+}
+// 删除代码生成
+export function deleGenerate(params: any) {
+  return defHttp.post<any>({
+    url: Api.DeleGenerate,
+    params,
+  });
+}
+// 获取数据库表(实体)集合
+export function getTableList(params?: any) {
+  return defHttp.get<any>({ url: Api.GetTableList, params });
+}
+// 根据表名获取列
+export function getColumnList(tableName: string) {
+  return defHttp.get<any>({ url: Api.GetColumnList + '/' + tableName });
+}
+// 本地生成
+export function generateRunLocal(params: any) {
+  return defHttp.post<any>({
+    url: Api.GenerateRunLocal,
+    params,
+  });
+}
+// 代码生成详细配置列表
+export function getGenerateConfigList(params?: any) {
+  return defHttp.get<any>({ url: Api.GetGenerateConfigList, params });
+}
+// 编辑代码生成详细配置
+export function updateGenerateConfig(params: any) {
+  return defHttp.post<any>({
+    url: Api.UpdateGenerateConfig,
+    params,
+  });
+}
