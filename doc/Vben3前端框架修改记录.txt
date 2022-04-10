@@ -36,16 +36,8 @@ admin/.env.development
 packages/tokens/src/enums/httpEnum.ts
 5、修改Token前缀
 packages/service/request/index.ts
-6、上传接口修改
-src/api/sys/model/uploadModel.ts
-7、上传组件修改
-src/components/Upload/src/BasicUpload.vue	
-src/components/Upload/src/UploadModal.vue	
-src/components/Upload/src/UploadPreviewModal.vue	
-src/components/Upload/src/props.ts	
-8、全局组件注册修改
-src/components/registerGlobComp.ts
-9、
+6、
+
 
 /////////////////////////////////////////////////////////////////////
 

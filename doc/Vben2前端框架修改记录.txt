@@ -13,9 +13,11 @@ node -v
 npm install -g pnpm
 pnpm -v
 3、安装Vben依赖
-pnpm install   如果gifsicle报错则执行pnpm install --ignore-scripts
+yarn
 4、运行
-pnpm run -C admin dev
+pnpm serve
+5、打包
+pnpm build
 
 
 
@@ -37,7 +39,17 @@ src\settings\projectSetting.ts
 src\enums\httpEnum.ts
 5、修改Token前缀（Bearer）
 src\utils\http\axios\index.ts
-6、
+6、上传接口修改
+src/api/sys/model/uploadModel.ts
+7、上传组件修改
+src/components/Upload/src/BasicUpload.vue	
+src/components/Upload/src/UploadModal.vue	
+src/components/Upload/src/UploadPreviewModal.vue	
+src/components/Upload/src/props.ts	
+8、全局组件注册修改
+src/components/registerGlobComp.ts
+9、
+
 /////////////////////////////////////////////////////////////////////
 
 
