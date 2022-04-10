@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Admin.NET.Core.SeedData
 {
+    /// <summary>
+    /// 系统字典类型表种子数据
+    /// </summary>
     public class SysDictTypeSeedData : ISqlSugarEntitySeedData<SysDictType>
     {
         /// <summary>
@@ -16,6 +16,7 @@ namespace Admin.NET.Core.SeedData
         {
             return SqlSugarConst.ConfigId;
         }
+
         /// <summary>
         /// 种子数据
         /// </summary>

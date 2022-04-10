@@ -14,7 +14,7 @@ namespace Admin.NET.Core.Service
     /// <summary>
     /// 系统字典值服务
     /// </summary>
-    [ApiDescriptionSettings(Name = "DictData", Order = 191)]
+    [ApiDescriptionSettings(Name = "系统字典值", Order = 191)]
     [AllowAnonymous]
     public class SysDictDataService : IDynamicApiController, ITransient
     {
@@ -144,6 +144,7 @@ namespace Admin.NET.Core.Service
                 .Where(u => u.DictTypeId == dictTypeId)
                 .OrderBy(u => u.Order).ToListAsync();
         }
+
         /// <summary>
         /// 根据字典唯一编码获取下拉框集合
         /// </summary>
@@ -152,14 +153,14 @@ namespace Admin.NET.Core.Service
         [HttpGet("/sysDictData/DictDataDropdown/{code}")]
         public async Task<dynamic> GetDictDataDropdown(string code)
         {
-            return await _sysDictDataRep.Context.Queryable<SysDictType, SysDictData>((a, b) => new JoinQueryInfos(JoinType.Left, a.Id == b.DictTypeId))
-                  .Where(a => a.Code == code)
-                  .Select((a, b) => new
-                  {
-                      Label = b.Value,
-                      Value = b.Code
-                  }
-                  ).ToListAsync();
+            return await _sysDictDataRep.Context.Queryable<SysDictType, SysDictData>((a, b) =>
+                new JoinQueryInfos(JoinType.Left, a.Id == b.DictTypeId))
+                .Where(a => a.Code == code)
+                .Select((a, b) => new
+                {
+                    Label = b.Value,
+                    Value = b.Code
+                }).ToListAsync();
         }
     }
 }

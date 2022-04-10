@@ -20,7 +20,7 @@ namespace Admin.NET.Core.Service
     /// <summary>
     /// 文件服务
     /// </summary>
-    [ApiDescriptionSettings(Name = "File", Order = 194)]
+    [ApiDescriptionSettings(Name = "文件服务", Order = 194)]
     public class SysFileService : IDynamicApiController, ITransient
     {
         private readonly SqlSugarRepository<SysFile> _sysFileRep;
@@ -87,7 +87,7 @@ namespace Admin.NET.Core.Service
                 SizeKb = sysFile.SizeKb,
                 Suffix = sysFile.Suffix,
             };
-        }   
+        }
 
         /// <summary>
         /// 下载文件(文件流)

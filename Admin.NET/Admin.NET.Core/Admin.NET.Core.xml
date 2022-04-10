@@ -6,7 +6,7 @@
     <members>
         <member name="T:Admin.NET.Core.NotTableAttribute">
             <summary>
-            非实体表，继承该特性！！！
+            非实体表继承该特性
             </summary>
         </member>
         <member name="T:Admin.NET.Core.SqlSugarEntityAttribute">
@@ -191,9 +191,9 @@
             验证码开关配置
             </summary>
         </member>
-        <member name="F:Admin.NET.Core.CommonConst.ENTITY_ASSEMBLY_NAME">
+        <member name="F:Admin.NET.Core.CommonConst.EntityAssemblyName">
             <summary>
-            实体所在程序集
+            实体所在程序集-代码生成
             </summary>
         </member>
         <member name="T:Admin.NET.Core.SqlSugarConst">
@@ -1897,6 +1897,16 @@
             检测数据不存在
             </summary>
         </member>
+        <member name="F:Admin.NET.Core.ErrorCodeEnum.db1000">
+            <summary>
+            请添加数据列
+            </summary>
+        </member>
+        <member name="F:Admin.NET.Core.ErrorCodeEnum.db1001">
+            <summary>
+            数据表不存在
+            </summary>
+        </member>
         <member name="T:Admin.NET.Core.GenderEnum">
             <summary>
             性别枚举
@@ -2329,7 +2339,7 @@
         </member>
         <member name="T:Admin.NET.Core.ConnectionStringsOptions">
             <summary>
-            数据库配置
+            数据库链接配置
             </summary>
         </member>
         <member name="P:Admin.NET.Core.ConnectionStringsOptions.DefaultConfigId">
@@ -2509,6 +2519,11 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:Admin.NET.Core.SeedData.SysDictDataSeedData">
+            <summary>
+            系统字典值表种子数据
+            </summary>
+        </member>
         <member name="M:Admin.NET.Core.SeedData.SysDictDataSeedData.DbConfigId">
             <summary>
             配置数据库标识
@@ -2520,6 +2535,11 @@
             种子数据
             </summary>
             <returns></returns>
+        </member>
+        <member name="T:Admin.NET.Core.SeedData.SysDictTypeSeedData">
+            <summary>
+            系统字典类型表种子数据
+            </summary>
         </member>
         <member name="M:Admin.NET.Core.SeedData.SysDictTypeSeedData.DbConfigId">
             <summary>
@@ -3575,7 +3595,7 @@
         </member>
         <member name="T:Admin.NET.Core.Service.DataBaseManager">
             <summary>
-            数据库管理
+            数据库管理服务
             </summary>
         </member>
         <member name="M:Admin.NET.Core.Service.DataBaseManager.ColumnAdd(Admin.NET.Core.Service.DbColumnInfoInput)">
@@ -3627,6 +3647,12 @@
             </summary>
             <param name="input"></param>
         </member>
+        <member name="M:Admin.NET.Core.Service.DataBaseManager.CreateEntity(Admin.NET.Core.Service.CreateEntityInput)">
+            <summary>
+            创建实体
+            </summary>
+            <param name="input"></param>
+        </member>
         <member name="M:Admin.NET.Core.Service.DataBaseManager.GetTemplatePath">
             <summary>
             获取模板文件路径集合
@@ -3641,28 +3667,28 @@
             <returns></returns>
         </member>
         <member name="P:Admin.NET.Core.Service.CreateEntityInput.TableName">
-            <summary>
+             <summary>
             
-            </summary>
-            <example>student</example>
+             </summary>
+             <example>student</example>
         </member>
         <member name="P:Admin.NET.Core.Service.CreateEntityInput.EntityName">
-            <summary>
+             <summary>
             
-            </summary>
-            <example>Student</example>
+             </summary>
+             <example>Student</example>
         </member>
         <member name="P:Admin.NET.Core.Service.CreateEntityInput.BaseClassName">
-            <summary>
+             <summary>
             
-            </summary>
-            <example>AutoIncrementEntity</example>
+             </summary>
+             <example>AutoIncrementEntity</example>
         </member>
         <member name="P:Admin.NET.Core.Service.CreateEntityInput.Position">
-            <summary>
+             <summary>
             
-            </summary>
-            <example>Magic.Application</example>
+             </summary>
+             <example>Magic.Application</example>
         </member>
         <member name="P:Admin.NET.Core.Service.GetDataDictDataInput.DictTypeId">
             <summary>
@@ -5544,24 +5570,6 @@
             </summary>
             <typeparam name="T"></typeparam>
         </member>
-        <member name="F:Admin.NET.Core.SqlSugarRepository._serviceProvider">
-            <summary>
-            服务提供器
-            </summary>
-        </member>
-        <member name="M:Admin.NET.Core.SqlSugarRepository.#ctor(System.IServiceProvider)">
-            <summary>
-            构造函数
-            </summary>
-            <param name="serviceProvider">服务提供器</param>
-        </member>
-        <member name="M:Admin.NET.Core.SqlSugarRepository.Change``1">
-            <summary>
-            切换仓储
-            </summary>
-            <typeparam name="TEntity">实体类型</typeparam>
-            <returns>仓储</returns>
-        </member>
         <member name="M:Admin.NET.Core.SqlSugarSetup.AddSqlSugarSetup(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
             <summary>
             Sqlsugar上下文初始化
@@ -5576,7 +5584,7 @@
         </member>
         <member name="M:Admin.NET.Core.SqlSugarSetup.GetSqlSugarEntityOrder(System.Type)">
             <summary>
-            获取 SqlSugarEntity 排序
+            获取实体排序
             </summary>
             <param name="type">排序类型</param>
             <returns>int</returns>
@@ -5585,6 +5593,12 @@
             <summary>
             配置业务数据表过滤器
             </summary>
+        </member>
+        <member name="M:Admin.NET.Core.SqlSugarSetup.DealConnectionStr(Admin.NET.Core.ConnectionStringsOptions@)">
+            <summary>
+            处理本地库根目录路径
+            </summary>
+            <param name="dbOptions"></param>
         </member>
         <member name="M:Admin.NET.Core.SqlSugarSetup.IsDemoEnv">
             <summary>
