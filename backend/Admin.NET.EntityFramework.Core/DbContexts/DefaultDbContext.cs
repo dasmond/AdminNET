@@ -139,6 +139,9 @@ namespace Admin.NET.EntityFramework.Core
             // 当前操作者信息
             var userId = App.User?.FindFirst(ClaimConst.CLAINM_USERID)?.Value;
             var userName = App.User?.FindFirst(ClaimConst.CLAINM_ACCOUNT)?.Value;
+            // 当前操作者机构信息
+            var orgId = App.User?.FindFirst(ClaimConst.CLAINM_ORGID)?.Value;
+            var orgName = App.User?.FindFirst(ClaimConst.CLAINM_ORGNAME)?.Value;
 
             foreach (var entity in entities)
             {
@@ -160,6 +163,11 @@ namespace Admin.NET.EntityFramework.Core
                             {
                                 obj.CreatedUserId = long.Parse(userId);
                                 obj.CreatedUserName = userName;
+                                if (entity.Entity.GetType().GetInterface(typeof(IDataPermissions).Name) != null)
+                                {
+                                    ((IDataPermissions)obj).CreatedUserOrgId = long.Parse(orgId);
+                                    ((IDataPermissions)obj).CreatedUserOrgName = orgName;
+                                }
                             }
                             break;
 
@@ -192,6 +200,11 @@ namespace Admin.NET.EntityFramework.Core
                         {
                             obj.CreatedUserId = long.Parse(userId);
                             obj.CreatedUserName = userName;
+                            if (entity.Entity.GetType().GetInterface(typeof(IDataPermissions).Name) != null)
+                            {
+                                ((IDataPermissions)obj).CreatedUserOrgId = long.Parse(orgId);
+                                ((IDataPermissions)obj).CreatedUserOrgName = orgName;
+                            }
                         }
                     }
                     else if (entity.State == EntityState.Modified)
