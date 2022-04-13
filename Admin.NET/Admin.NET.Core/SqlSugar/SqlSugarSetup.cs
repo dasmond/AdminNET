@@ -139,21 +139,26 @@ namespace Admin.NET.Core
 
             // 初始化数据库结构及种子数据
             if (dbOptions.InitTable)
-                InitDataBase(sqlSugar);
+                InitDataBase(sqlSugar, dbOptions);
         }
 
         /// <summary>
         /// 初始化数据库结构
         /// </summary>
-        public static void InitDataBase(SqlSugarScope db)
+        public static void InitDataBase(SqlSugarScope db, ConnectionStringsOptions dbOptions)
         {
-            // 不存在则创建数据库
+            // 创建系统默认数据库
             db.DbMaintenance.CreateDatabase();
+            // 创建其他业务数据库
+            dbOptions.DbConfigs.ForEach(config =>
+            {
+                db.GetConnection(config.DbConfigId).DbMaintenance.CreateDatabase();
+            });
 
             // 获取所有实体表
             var entityTypes = App.EffectiveTypes.Where(u => !u.IsInterface && !u.IsAbstract && u.IsClass
-                && u.IsDefined(typeof(SqlSugarEntityAttribute), false))
-                .OrderByDescending(u => GetSqlSugarEntityOrder(u));
+            && u.IsDefined(typeof(SqlSugarEntityAttribute), false))
+            .OrderByDescending(u => GetSqlSugarEntityOrder(u));
             if (!entityTypes.Any()) return;
             // 初始化库表结构
             foreach (var entityType in entityTypes)
@@ -175,10 +180,11 @@ namespace Admin.NET.Core
                 var hasDataMethod = seedType.GetMethod("HasData");
                 var seedData = ((IList)hasDataMethod?.Invoke(instance, null))?.Cast<object>();
                 if (seedData == null) continue;
-                var dbConfigIdMethod = seedType.GetMethod("DbConfigId");
-                var dbConfigId = dbConfigIdMethod?.Invoke(instance, null);
 
+                var entityType = seedType.GetInterfaces().First().GetGenericArguments().First();
+                var dbConfigId = entityType.GetCustomAttribute<SqlSugarEntityAttribute>(true).DbConfigId;
                 db.ChangeDatabase(dbConfigId);
+
                 var seedDataTable = seedData.ToList().ToDataTable();
                 if (seedDataTable.Columns.Contains(SqlSugarConst.PrimaryKey))
                 {
@@ -236,23 +242,23 @@ namespace Admin.NET.Core
         /// 处理本地库根目录路径
         /// </summary>
         /// <param name="dbOptions"></param>
-        public static void DealConnectionStr(ref ConnectionStringsOptions dbOptions)
+        private static void DealConnectionStr(ref ConnectionStringsOptions dbOptions)
         {
             if (dbOptions.DefaultDbType.Trim().ToLower() == "sqlite" && dbOptions.DefaultConnection.Contains("./"))
             {
-                var file = Path.GetFileName(dbOptions.DefaultConnection.Replace("DataSource=", ""));
-                dbOptions.DefaultConnection = $"DataSource={Environment.CurrentDirectory.Replace(@"\bin\Debug", "")}\\{file}";
+                dbOptions.DefaultConnection = UpdateDbPath(dbOptions.DefaultConnection);
             }
-            if (dbOptions.DbConfigs == null)
-                dbOptions.DbConfigs = new List<DbConfig>();
             dbOptions.DbConfigs.ForEach(cofing =>
             {
                 if (cofing.DbType.Trim().ToLower() == "sqlite" && cofing.DbConnection.Contains("./"))
-                {
-                    var file = Path.GetFileName(cofing.DbConnection.Replace("DataSource=", ""));
-                    cofing.DbConnection = $"DataSource={Environment.CurrentDirectory.Replace(@"\bin\Debug", "")}\\{file}";
-                }
+                    cofing.DbConnection = UpdateDbPath(cofing.DbConnection);
             });
+        }
+
+        private static string UpdateDbPath(string dbConnection)
+        {
+            var file = Path.GetFileName(dbConnection.Replace("DataSource=", ""));
+            return $"DataSource={Environment.CurrentDirectory.Replace(@"\bin\Debug", "")}\\{file}";
         }
 
         /// <summary>

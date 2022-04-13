@@ -21,7 +21,7 @@
         </member>
         <member name="P:Admin.NET.Core.SqlSugarEntityAttribute.Order">
             <summary>
-            排序
+            实体顺序
             </summary>
         </member>
         <member name="M:Admin.NET.Core.SqlSugarEntityAttribute.#ctor">
@@ -2359,7 +2359,7 @@
         </member>
         <member name="P:Admin.NET.Core.ConnectionStringsOptions.InitTable">
             <summary>
-            初始化数据
+            初始化表和数据
             </summary>
         </member>
         <member name="P:Admin.NET.Core.ConnectionStringsOptions.DbConfigs">
@@ -2385,6 +2385,11 @@
         <member name="P:Admin.NET.Core.DbConfig.DbConnection">
             <summary>
             数据库连接字符串
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.DbConfig.InitTable">
+            <summary>
+            初始化表和数据
             </summary>
         </member>
         <member name="T:Admin.NET.Core.OSSProviderOptions">
@@ -2507,12 +2512,6 @@
             系统配置表种子数据
             </summary>
         </member>
-        <member name="M:Admin.NET.Core.SysConfigSeedData.DbConfigId">
-            <summary>
-            配置数据库标识
-            </summary>
-            <returns></returns>
-        </member>
         <member name="M:Admin.NET.Core.SysConfigSeedData.HasData">
             <summary>
             种子数据
@@ -2523,12 +2522,6 @@
             <summary>
             系统字典值表种子数据
             </summary>
-        </member>
-        <member name="M:Admin.NET.Core.SeedData.SysDictDataSeedData.DbConfigId">
-            <summary>
-            配置数据库标识
-            </summary>
-            <returns></returns>
         </member>
         <member name="M:Admin.NET.Core.SeedData.SysDictDataSeedData.HasData">
             <summary>
@@ -2541,12 +2534,6 @@
             系统字典类型表种子数据
             </summary>
         </member>
-        <member name="M:Admin.NET.Core.SeedData.SysDictTypeSeedData.DbConfigId">
-            <summary>
-            配置数据库标识
-            </summary>
-            <returns></returns>
-        </member>
         <member name="M:Admin.NET.Core.SeedData.SysDictTypeSeedData.HasData">
             <summary>
             种子数据
@@ -2557,12 +2544,6 @@
             <summary>
             系统用户附属机构职位表种子数据
             </summary>
-        </member>
-        <member name="M:Admin.NET.Core.SysEmpExtOrgPosSeedData.DbConfigId">
-            <summary>
-            配置数据库标识
-            </summary>
-            <returns></returns>
         </member>
         <member name="M:Admin.NET.Core.SysEmpExtOrgPosSeedData.HasData">
             <summary>
@@ -2575,12 +2556,6 @@
             系统菜单表种子数据
             </summary>
         </member>
-        <member name="M:Admin.NET.Core.SysMenuSeedData.DbConfigId">
-            <summary>
-            配置数据库标识
-            </summary>
-            <returns></returns>
-        </member>
         <member name="M:Admin.NET.Core.SysMenuSeedData.HasData">
             <summary>
             种子数据
@@ -2591,12 +2566,6 @@
             <summary>
             系统机构表种子数据
             </summary>
-        </member>
-        <member name="M:Admin.NET.Core.SysOrgSeedData.DbConfigId">
-            <summary>
-            配置数据库标识
-            </summary>
-            <returns></returns>
         </member>
         <member name="M:Admin.NET.Core.SysOrgSeedData.HasData">
             <summary>
@@ -2609,12 +2578,6 @@
             系统职位表种子数据
             </summary>
         </member>
-        <member name="M:Admin.NET.Core.SysPosSeedData.DbConfigId">
-            <summary>
-            配置数据库标识
-            </summary>
-            <returns></returns>
-        </member>
         <member name="M:Admin.NET.Core.SysPosSeedData.HasData">
             <summary>
             种子数据
@@ -2625,12 +2588,6 @@
             <summary>
             系统角色菜单表种子数据
             </summary>
-        </member>
-        <member name="M:Admin.NET.Core.SysRoleMenuSeedData.DbConfigId">
-            <summary>
-            配置数据库标识
-            </summary>
-            <returns></returns>
         </member>
         <member name="M:Admin.NET.Core.SysRoleMenuSeedData.HasData">
             <summary>
@@ -2643,12 +2600,6 @@
             系统角色表种子数据
             </summary>
         </member>
-        <member name="M:Admin.NET.Core.SysRoleSeedData.DbConfigId">
-            <summary>
-            配置数据库标识
-            </summary>
-            <returns></returns>
-        </member>
         <member name="M:Admin.NET.Core.SysRoleSeedData.HasData">
             <summary>
             种子数据
@@ -2659,12 +2610,6 @@
             <summary>
             系统用户机构表种子数据
             </summary>
-        </member>
-        <member name="M:Admin.NET.Core.SysUserOrgSeedData.DbConfigId">
-            <summary>
-            配置数据库标识
-            </summary>
-            <returns></returns>
         </member>
         <member name="M:Admin.NET.Core.SysUserOrgSeedData.HasData">
             <summary>
@@ -2677,12 +2622,6 @@
             系统用户角色表种子数据
             </summary>
         </member>
-        <member name="M:Admin.NET.Core.SysUserRoleSeedData.DbConfigId">
-            <summary>
-            配置数据库标识
-            </summary>
-            <returns></returns>
-        </member>
         <member name="M:Admin.NET.Core.SysUserRoleSeedData.HasData">
             <summary>
             种子数据
@@ -2693,12 +2632,6 @@
             <summary>
             系统用户表种子数据
             </summary>
-        </member>
-        <member name="M:Admin.NET.Core.SysUserSeedData.DbConfigId">
-            <summary>
-            配置数据库标识
-            </summary>
-            <returns></returns>
         </member>
         <member name="M:Admin.NET.Core.SysUserSeedData.HasData">
             <summary>
@@ -5488,39 +5421,10 @@
             <param name="userId"></param>
             <returns></returns>
         </member>
-        <member name="M:Admin.NET.Core.ISqlSugarEntitySeedData`1.DbConfigId">
-            <summary>
-            配置数据库标识
-            </summary>
-            <returns></returns>
-        </member>
         <member name="M:Admin.NET.Core.ISqlSugarEntitySeedData`1.HasData">
             <summary>
             配置种子数据
             </summary>
-            <returns></returns>
-        </member>
-        <member name="T:Admin.NET.Core.SqlSugarPagedExtensions">
-            <summary>
-            分页拓展类
-            </summary>
-        </member>
-        <member name="M:Admin.NET.Core.SqlSugarPagedExtensions.ToPagedList``1(SqlSugar.ISugarQueryable{``0},System.Int32,System.Int32)">
-            <summary>
-            分页拓展
-            </summary>
-            <param name="entity"></param>
-            <param name="pageIndex"></param>
-            <param name="pageSize"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Admin.NET.Core.SqlSugarPagedExtensions.ToPagedListAsync``1(SqlSugar.ISugarQueryable{``0},System.Int32,System.Int32)">
-            <summary>
-            分页拓展
-            </summary>
-            <param name="entity"></param>
-            <param name="pageIndex"></param>
-            <param name="pageSize"></param>
             <returns></returns>
         </member>
         <member name="T:Admin.NET.Core.SqlSugarPagedList`1">
@@ -5564,6 +5468,29 @@
             是否有下一页
             </summary>
         </member>
+        <member name="T:Admin.NET.Core.SqlSugarPagedExtensions">
+            <summary>
+            分页拓展类
+            </summary>
+        </member>
+        <member name="M:Admin.NET.Core.SqlSugarPagedExtensions.ToPagedList``1(SqlSugar.ISugarQueryable{``0},System.Int32,System.Int32)">
+            <summary>
+            分页拓展
+            </summary>
+            <param name="entity"></param>
+            <param name="pageIndex"></param>
+            <param name="pageSize"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Core.SqlSugarPagedExtensions.ToPagedListAsync``1(SqlSugar.ISugarQueryable{``0},System.Int32,System.Int32)">
+            <summary>
+            分页拓展
+            </summary>
+            <param name="entity"></param>
+            <param name="pageIndex"></param>
+            <param name="pageSize"></param>
+            <returns></returns>
+        </member>
         <member name="T:Admin.NET.Core.SqlSugarRepository`1">
             <summary>
             SqlSugar仓储类
@@ -5577,7 +5504,7 @@
             <param name="services"></param>
             <param name="configuration"></param>
         </member>
-        <member name="M:Admin.NET.Core.SqlSugarSetup.InitDataBase(SqlSugar.SqlSugarScope)">
+        <member name="M:Admin.NET.Core.SqlSugarSetup.InitDataBase(SqlSugar.SqlSugarScope,Admin.NET.Core.ConnectionStringsOptions)">
             <summary>
             初始化数据库结构
             </summary>

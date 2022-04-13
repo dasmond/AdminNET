@@ -15,7 +15,7 @@ namespace Admin.NET.Core
         public string DbConfigId { get; set; } = SqlSugarConst.ConfigId;
 
         /// <summary>
-        /// 排序
+        /// 实体顺序
         /// </summary>
         public int Order { get; set; }
 

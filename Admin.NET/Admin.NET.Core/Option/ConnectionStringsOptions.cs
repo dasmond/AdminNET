@@ -25,7 +25,7 @@ namespace Admin.NET.Core
         public string DefaultConnection { get; set; }
 
         /// <summary>
-        /// 初始化数据
+        /// 初始化表和数据
         /// </summary>
         public bool InitTable { get; set; }
 
@@ -54,5 +54,10 @@ namespace Admin.NET.Core
         /// 数据库连接字符串
         /// </summary>
         public string DbConnection { get; set; }
+
+        /// <summary>
+        /// 初始化表和数据
+        /// </summary>
+        public bool InitTable { get; set; }
     }
 }
