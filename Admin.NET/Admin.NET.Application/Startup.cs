@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Admin.NET.Application
 {
+    [AppStartup(100)]
     public class Startup : AppStartup
     {
         public void ConfigureServices(IServiceCollection services)
