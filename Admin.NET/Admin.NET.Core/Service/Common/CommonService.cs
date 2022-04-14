@@ -1,29 +1,23 @@
 ﻿using Furion.DependencyInjection;
 using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Caching.Memory;
-using Microsoft.Extensions.Options;
 using SqlSugar;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Admin.NET.Core.Service
 {
-
     public class CommonService : ICommonService, IScoped
     {
-        private readonly ISqlSugarClient _sqlSugarClient;
         private readonly IHttpContextAccessor _httpContextAccessor;
-        public CommonService(ISqlSugarClient sqlSugarClient, IHttpContextAccessor httpContextAccessor)
+
+        public CommonService(IHttpContextAccessor httpContextAccessor)
         {
-            _sqlSugarClient = sqlSugarClient;
             _httpContextAccessor = httpContextAccessor;
         }
-
 
         /// <summary>
         /// 获取库表信息
@@ -31,15 +25,12 @@ namespace Admin.NET.Core.Service
         /// <returns></returns>
         public async Task<IEnumerable<EntityInfo>> GetEntityInfos()
         {
-            List<EntityInfo> entityInfos = new List<EntityInfo>();
-            if (entityInfos != null && entityInfos.Any())
-            {
-                return entityInfos;
-            }
+            var entityInfos = new List<EntityInfo>();
+
             var type = typeof(SugarTable);
             var type1 = typeof(NotTableAttribute);
-            List<Type> types = new List<Type>();
-            foreach (var assemblyName in CommonConst.ENTITY_ASSEMBLY_NAME)
+            var types = new List<Type>();
+            foreach (var assemblyName in CommonConst.EntityAssemblyName)
             {
                 Assembly asm = Assembly.Load(assemblyName);
                 types.AddRange(asm.GetExportedTypes().ToList());
@@ -77,9 +68,8 @@ namespace Admin.NET.Core.Service
                     TableDescription = description
                 });
             }
-            return entityInfos;
+            return await Task.FromResult(entityInfos);
         }
-
 
         /// <summary>
         /// 获取Host
@@ -89,6 +79,7 @@ namespace Admin.NET.Core.Service
         {
             return $"{_httpContextAccessor.HttpContext.Request.Scheme}://{_httpContextAccessor.HttpContext.Request.Host.Value}";
         }
+
         /// <summary>
         /// 获取文件URL
         /// </summary>

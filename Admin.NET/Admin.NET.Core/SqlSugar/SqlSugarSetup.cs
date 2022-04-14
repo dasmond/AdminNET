@@ -1,7 +1,6 @@
 ﻿using Admin.NET.Core.Service;
 using Furion;
 using Furion.FriendlyException;
-using Furion.LinqBuilder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SqlSugar;
@@ -14,7 +13,6 @@ using System.Linq;
 using System.Linq.Dynamic.Core;
 using System.Linq.Expressions;
 using System.Reflection;
-using System.Text.RegularExpressions;
 
 namespace Admin.NET.Core
 {
@@ -28,9 +26,9 @@ namespace Admin.NET.Core
         public static void AddSqlSugarSetup(this IServiceCollection services, IConfiguration configuration)
         {
             var dbOptions = App.GetOptions<ConnectionStringsOptions>();
-            //处理Sqlite链接字符串为"./Admin.Net.db"报错的情况
-            DealConnectionStr(ref dbOptions);
-            List<ConnectionConfig> configs = new List<ConnectionConfig>();
+            DealConnectionStr(ref dbOptions); // 处理本地库根目录路径
+
+            var connectionConfigs = new List<ConnectionConfig>();
             var configureExternalServices = new ConfigureExternalServices
             {
                 EntityService = (type, column) => // 修改列
@@ -47,8 +45,6 @@ namespace Admin.NET.Core
                     }
                 },
             };
-
-
             var defaultConnection = new ConnectionConfig()
             {
                 DbType = (DbType)Convert.ToInt32(Enum.Parse(typeof(DbType), dbOptions.DefaultDbType)),
@@ -57,124 +53,112 @@ namespace Admin.NET.Core
                 ConfigId = dbOptions.DefaultConfigId,
                 ConfigureExternalServices = configureExternalServices
             };
-            configs.Add(defaultConnection);
-            if (dbOptions.DbConfigs == null)
-                dbOptions.DbConfigs = new List<DbConfig>();
-            dbOptions.DbConfigs.ForEach(config => {
+            connectionConfigs.Add(defaultConnection);
+
+            dbOptions.DbConfigs.ForEach(config =>
+            {
                 var connection = new ConnectionConfig()
                 {
-                    DbType = (DbType)Convert.ToInt32(Enum.Parse(typeof(DbType), dbOptions.DefaultDbType)),
-                    ConnectionString = dbOptions.DefaultConnection,
+                    DbType = (DbType)Convert.ToInt32(Enum.Parse(typeof(DbType), config.DbType)),
+                    ConnectionString = config.DbConnection,
                     IsAutoCloseConnection = true,
-                    ConfigId = dbOptions.DefaultConfigId,
+                    ConfigId = config.DbConfigId,
                     ConfigureExternalServices = configureExternalServices
                 };
-                configs.Add(connection);
+                connectionConfigs.Add(connection);
             });
 
-            SqlSugarScope sqlSugar = new(configs,
-                db =>
+            SqlSugarScope sqlSugar = new(connectionConfigs, db =>
+            {
+                connectionConfigs.ForEach(config =>
                 {
-                    configs.ForEach(config => {
-                        string configId = config.ConfigId;
-                        var thisDb = db.GetConnection(configId);
-                        // 打印SQL语句-执行前
-                        thisDb.Aop.OnLogExecuting = (sql, pars) =>
+                    var dbProvider = db.GetConnection((string)config.ConfigId);
+
+                    // 打印SQL语句
+                    dbProvider.Aop.OnLogExecuting = (sql, pars) =>
+                    {
+                        if (sql.StartsWith("SELECT"))
                         {
-                            if (sql.StartsWith("SELECT"))
-                            {
-                                Console.ForegroundColor = ConsoleColor.Green;
-                            }
-                            if (sql.StartsWith("UPDATE") || sql.StartsWith("INSERT"))
-                            {
-                                Console.ForegroundColor = ConsoleColor.White;
-                            }
-                            if (sql.StartsWith("DELETE"))
-                            {
-                                Console.ForegroundColor = ConsoleColor.Blue;
-                            }
-
-                            Console.WriteLine(sql + "\r\n" + db.Utilities.SerializeObject(pars.ToDictionary(it => it.ParameterName, it => it.Value)));
-                            App.PrintToMiniProfiler("SqlSugar", "Info", sql + "\r\n" + db.Utilities.SerializeObject(pars.ToDictionary(it => it.ParameterName, it => it.Value)));
-                        };
-
-                        //// 是否演示环境
-                        //var isDemoEnv = App.GetService<SysConfigService>().GetDemoEnvFlag().GetAwaiter().GetResult();
-                        //if (isDemoEnv)
-                        //    throw Oops.Oh(ErrorCodeEnum.D1200);
-
-                        // 数据审计
-                        thisDb.Aop.DataExecuting = (oldValue, entityInfo) =>
+                            Console.ForegroundColor = ConsoleColor.Green;
+                        }
+                        if (sql.StartsWith("UPDATE") || sql.StartsWith("INSERT"))
                         {
-                            // 新增操作
-                            if (entityInfo.OperationType == DataFilterType.InsertByObject)
+                            Console.ForegroundColor = ConsoleColor.White;
+                        }
+                        if (sql.StartsWith("DELETE"))
+                        {
+                            Console.ForegroundColor = ConsoleColor.Blue;
+                        }
+
+                        Console.WriteLine(sql + "\r\n" + db.Utilities.SerializeObject(pars.ToDictionary(it => it.ParameterName, it => it.Value)));
+                        App.PrintToMiniProfiler("SqlSugar", "Info", sql + "\r\n" + db.Utilities.SerializeObject(pars.ToDictionary(it => it.ParameterName, it => it.Value)));
+                    };
+
+                    //// 是否演示环境
+                    //var isDemoEnv = App.GetService<SysConfigService>().GetDemoEnvFlag().GetAwaiter().GetResult();
+                    //if (isDemoEnv)
+                    //    throw Oops.Oh(ErrorCodeEnum.D1200);
+
+                    // 数据审计
+                    dbProvider.Aop.DataExecuting = (oldValue, entityInfo) =>
+                    {
+                        // 新增操作
+                        if (entityInfo.OperationType == DataFilterType.InsertByObject)
+                        {
+                            // 主键(long类型)-赋值雪花Id
+                            if (entityInfo.EntityColumnInfo.IsPrimarykey && entityInfo.EntityColumnInfo.PropertyInfo.PropertyType == typeof(long))
+                                entityInfo.SetValue(Yitter.IdGenerator.YitIdHelper.NextId());
+                            if (entityInfo.PropertyName == "CreateTime")
+                                entityInfo.SetValue(DateTime.Now);
+                            if (App.User != null)
                             {
-                                // 主键、long类型-赋值雪花Id
-                                if (entityInfo.EntityColumnInfo.IsPrimarykey && entityInfo.EntityColumnInfo.PropertyInfo.PropertyType == typeof(long))
-                                    entityInfo.SetValue(Yitter.IdGenerator.YitIdHelper.NextId());
-                                if (entityInfo.PropertyName == "CreateTime")
-                                    entityInfo.SetValue(DateTime.Now);
-                                if (App.User != null)
-                                {
-                                    if (entityInfo.PropertyName == "CreateUserId")
-                                        entityInfo.SetValue(App.User.FindFirst(ClaimConst.UserId)?.Value);
-                                    if (entityInfo.PropertyName == "CreateOrgId")
-                                        entityInfo.SetValue(App.User.FindFirst(ClaimConst.OrgId)?.Value);
-                                }
-                            }
-                            // 更新操作
-                            if (entityInfo.OperationType == DataFilterType.UpdateByObject)
-                            {
-                                if (entityInfo.PropertyName == "UpdateTime")
-                                    entityInfo.SetValue(DateTime.Now);
-                                if (entityInfo.PropertyName == "UpdateUserId" && App.User != null)
+                                if (entityInfo.PropertyName == "CreateUserId")
                                     entityInfo.SetValue(App.User.FindFirst(ClaimConst.UserId)?.Value);
+                                if (entityInfo.PropertyName == "CreateOrgId")
+                                    entityInfo.SetValue(App.User.FindFirst(ClaimConst.OrgId)?.Value);
                             }
-                        };
-                        // 配置业务数据权限过滤器
-                        SetDataEntityFilter(thisDb);
-                    });
-                   
+                        }
+                        // 更新操作
+                        if (entityInfo.OperationType == DataFilterType.UpdateByObject)
+                        {
+                            if (entityInfo.PropertyName == "UpdateTime")
+                                entityInfo.SetValue(DateTime.Now);
+                            if (entityInfo.PropertyName == "UpdateUserId" && App.User != null)
+                                entityInfo.SetValue(App.User.FindFirst(ClaimConst.UserId)?.Value);
+                        }
+                    };
+
+                    // 配置业务数据权限过滤器
+                    SetDataEntityFilter(dbProvider);
                 });
+
+            });
 
             services.AddSingleton<ISqlSugarClient>(sqlSugar); // SqlSugarScope用AddSingleton单例
             services.AddScoped(typeof(SqlSugarRepository<>)); // 注册仓储
 
             // 初始化数据库结构及种子数据
             if (dbOptions.InitTable)
-                InitDataBase(sqlSugar);
-        }
-
-        public static void DealConnectionStr(ref ConnectionStringsOptions dbOptions)
-        {
-            if (dbOptions.DefaultDbType.Trim().ToLower() == "sqlite" && dbOptions.DefaultConnection.Contains("./"))
-            {
-                var file = Path.GetFileName(dbOptions.DefaultConnection.Replace("DataSource=", ""));
-                dbOptions.DefaultConnection = $"DataSource={Environment.CurrentDirectory.Replace(@"\bin\Debug", "")}\\{file}";
-            }
-            if (dbOptions.DbConfigs == null)
-                dbOptions.DbConfigs = new List<DbConfig>();
-            dbOptions.DbConfigs.ForEach(cofing => {
-                if (cofing.DbType.Trim().ToLower() == "sqlite" && cofing.DbConnection.Contains("./"))
-                {
-                    var file = Path.GetFileName(cofing.DbConnection.Replace("DataSource=", ""));
-                    cofing.DbConnection = $"DataSource={Environment.CurrentDirectory.Replace(@"\bin\Debug", "")}\\{file}";
-                }
-            });
+                InitDataBase(sqlSugar, dbOptions);
         }
 
         /// <summary>
         /// 初始化数据库结构
         /// </summary>
-        public static void InitDataBase(SqlSugarScope db)
-        { 
-            // 不存在则创建数据库
+        public static void InitDataBase(SqlSugarScope db, ConnectionStringsOptions dbOptions)
+        {
+            // 创建系统默认数据库
             db.DbMaintenance.CreateDatabase();
+            // 创建其他业务数据库
+            dbOptions.DbConfigs.ForEach(config =>
+            {
+                db.GetConnection(config.DbConfigId).DbMaintenance.CreateDatabase();
+            });
 
             // 获取所有实体表
             var entityTypes = App.EffectiveTypes.Where(u => !u.IsInterface && !u.IsAbstract && u.IsClass
-                && u.IsDefined(typeof(SqlSugarEntityAttribute), false))
-                .OrderByDescending(u => GetSqlSugarEntityOrder(u));
+            && u.IsDefined(typeof(SqlSugarEntityAttribute), false))
+            .OrderByDescending(u => GetSqlSugarEntityOrder(u));
             if (!entityTypes.Any()) return;
             // 初始化库表结构
             foreach (var entityType in entityTypes)
@@ -196,10 +180,11 @@ namespace Admin.NET.Core
                 var hasDataMethod = seedType.GetMethod("HasData");
                 var seedData = ((IList)hasDataMethod?.Invoke(instance, null))?.Cast<object>();
                 if (seedData == null) continue;
-                var dbConfigIdMethod = seedType.GetMethod("DbConfigId");
-                var dbConfigId = dbConfigIdMethod?.Invoke(instance, null);
 
+                var entityType = seedType.GetInterfaces().First().GetGenericArguments().First();
+                var dbConfigId = entityType.GetCustomAttribute<SqlSugarEntityAttribute>(true).DbConfigId;
                 db.ChangeDatabase(dbConfigId);
+
                 var seedDataTable = seedData.ToList().ToDataTable();
                 if (seedDataTable.Columns.Contains(SqlSugarConst.PrimaryKey))
                 {
@@ -216,7 +201,7 @@ namespace Admin.NET.Core
         }
 
         /// <summary>
-        /// 获取 SqlSugarEntity 排序
+        /// 获取实体排序
         /// </summary>
         /// <param name="type">排序类型</param>
         /// <returns>int</returns>
@@ -251,6 +236,29 @@ namespace Admin.NET.Core
                     db.QueryFilter.Add(new TableFilterItem<object>(dataEntityType, exp)); // 设置表过滤器 
                 }
             }
+        }
+
+        /// <summary>
+        /// 处理本地库根目录路径
+        /// </summary>
+        /// <param name="dbOptions"></param>
+        private static void DealConnectionStr(ref ConnectionStringsOptions dbOptions)
+        {
+            if (dbOptions.DefaultDbType.Trim().ToLower() == "sqlite" && dbOptions.DefaultConnection.Contains("./"))
+            {
+                dbOptions.DefaultConnection = UpdateDbPath(dbOptions.DefaultConnection);
+            }
+            dbOptions.DbConfigs.ForEach(cofing =>
+            {
+                if (cofing.DbType.Trim().ToLower() == "sqlite" && cofing.DbConnection.Contains("./"))
+                    cofing.DbConnection = UpdateDbPath(cofing.DbConnection);
+            });
+        }
+
+        private static string UpdateDbPath(string dbConnection)
+        {
+            var file = Path.GetFileName(dbConnection.Replace("DataSource=", ""));
+            return $"DataSource={Environment.CurrentDirectory.Replace(@"\bin\Debug", "")}\\{file}";
         }
 
         /// <summary>

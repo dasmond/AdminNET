@@ -1,21 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Admin.NET.Core.SeedData
 {
+    /// <summary>
+    /// 系统字典值表种子数据
+    /// </summary>
     public class SysDictDataSeedData : ISqlSugarEntitySeedData<SysDictData>
     {
-        /// <summary>
-        /// 配置数据库标识
-        /// </summary>
-        /// <returns></returns>
-        public string DbConfigId()
-        {
-            return SqlSugarConst.ConfigId;
-        }
         /// <summary>
         /// 种子数据
         /// </summary>
@@ -33,7 +25,6 @@ namespace Admin.NET.Core.SeedData
                 new SysDictData{Id= 269711041397061,DictTypeId= 269037953163589,Value= "上传",Code="Upload",Order=  100, Remark= "上传",Status= StatusEnum.Enable,CreateTime= DateTime.Parse("2022-02-10 00:00:00")},
                 new SysDictData{Id= 269711313645893,DictTypeId= 269037953163589,Value= "树选择",Code="ApiTreeSelect",Order=100, Remark= "树选择", Status= StatusEnum.Enable,CreateTime= DateTime.Parse("2022-02-10 00:00:00")},
                 new SysDictData{Id= 270434376429893,DictTypeId= 269037953163589,Value= "开关",Code="Switch",Order= 100, Remark= "开关",Status= StatusEnum.Enable,   CreateTime= DateTime.Parse("2022-02-10 00:00:00")},
-
 
                 new SysDictData{Id= 269405027090757,DictTypeId= 269404851347781,Value= "等于",Code="==",Order= 1, Remark= "等于",Status= StatusEnum.Enable,   CreateTime= DateTime.Parse("2022-02-10 00:00:00")},
                 new SysDictData{Id= 269405158699333,DictTypeId= 269404851347781,Value= "模糊",Code="like",Order= 1, Remark= "模糊",Status= StatusEnum.Enable,   CreateTime= DateTime.Parse("2022-02-10 00:00:00")},
@@ -57,8 +48,6 @@ namespace Admin.NET.Core.SeedData
 
                 new SysDictData{Id= 269419751756101,DictTypeId= 269419660861765,Value= "下载压缩包",Code="1",Order= 1, Remark= "下载压缩包",Status= StatusEnum.Enable,   CreateTime= DateTime.Parse("2022-02-10 00:00:00")},
                 new SysDictData{Id= 269419781321029,DictTypeId= 269419660861765,Value= "生成到本项目",Code="2",Order= 1, Remark= "生成到本项目",Status= StatusEnum.Enable,   CreateTime= DateTime.Parse("2022-02-10 00:00:00")},
-
-
             };
         }
     }

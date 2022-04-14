@@ -16,7 +16,7 @@ namespace Admin.NET.Core.Service
     /// <summary>
     /// 微信公众号服务
     /// </summary>
-    [ApiDescriptionSettings(Name = "Wechat", Order = 170)]
+    [ApiDescriptionSettings(Name = "微信公众号", Order = 100)]
     public class WechatService : IDynamicApiController, ITransient
     {
         private readonly SqlSugarRepository<WechatUser> _wechatUserRep;

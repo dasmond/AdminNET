@@ -10,6 +10,7 @@ namespace Admin.NET.Core.Service
         /// </summary>
         public string TimerName { get; set; }
     }
+
     [NotTable]
     public class AddTimerInput : SysTimer
     {

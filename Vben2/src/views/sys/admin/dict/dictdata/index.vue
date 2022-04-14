@@ -76,7 +76,7 @@
         },
         size: 'small',
       });
-      const [registerModal, { setModalProps, closeModal }] = useModalInner(async (data) => {
+      const [registerModal, { setModalProps }] = useModalInner(async (data) => {
         setModalProps({ confirmLoading: false });
         typeId.value = data.typeId;
         reload();

@@ -135,6 +135,5 @@ namespace Admin.NET.Core.Service
 
     public class QueryCodeGenInput : DeleteCodeGenInput
     {
-
     }
 }

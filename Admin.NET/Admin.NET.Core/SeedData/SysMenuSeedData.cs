@@ -9,15 +9,6 @@ namespace Admin.NET.Core
     public class SysMenuSeedData : ISqlSugarEntitySeedData<SysMenu>
     {
         /// <summary>
-        /// 配置数据库标识
-        /// </summary>
-        /// <returns></returns>
-        public string DbConfigId()
-        {
-            return SqlSugarConst.ConfigId;
-        }
-
-        /// <summary>
         /// 种子数据
         /// </summary>
         /// <returns></returns>
@@ -63,71 +54,70 @@ namespace Admin.NET.Core
                 new SysMenu{ Id=252885263003773, Pid=252885263003770, Title="职位增加", Permission="sysPos:add", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
                 new SysMenu{ Id=252885263003774, Pid=252885263003770, Title="职位删除", Permission="sysPos:delete", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
 
-
-
                 new SysMenu{ Id=252885263003780, Pid=0, Title="平台管理", Path="/platform", Name="platform", Component="LAYOUT", Redirect="", Icon="ant-design:ant-design-outlined", Type=MenuTypeEnum.Dir, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
-                new SysMenu{ Id=252885263003781, Pid=252885263003780, Title="租户管理", Path="tenant", Name="TenantManagement", Component="/sys/admin/tenant/index", Icon="ant-design:cluster-outlined", Type=MenuTypeEnum.Menu, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
-                new SysMenu{ Id=252885263013701, Pid=252885263003781, Title="租户查询", Permission="sysTenant:page", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
-                new SysMenu{ Id=252885263013702, Pid=252885263003781, Title="租户编辑", Permission="sysTenant:update", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
-                new SysMenu{ Id=252885263013703, Pid=252885263003781, Title="租户增加", Permission="sysTenant:add", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
-                new SysMenu{ Id=252885263013704, Pid=252885263003781, Title="租户删除", Permission="sysTenant:delete", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
+                new SysMenu{ Id=252885263003790, Pid=252885263003780, Title="租户管理", Path="tenant", Name="TenantManagement", Component="/sys/admin/tenant/index", Icon="ant-design:cluster-outlined", Type=MenuTypeEnum.Menu, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
+                new SysMenu{ Id=252885263003791, Pid=252885263003790, Title="租户查询", Permission="sysTenant:page", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
+                new SysMenu{ Id=252885263003792, Pid=252885263003790, Title="租户编辑", Permission="sysTenant:update", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
+                new SysMenu{ Id=252885263003793, Pid=252885263003790, Title="租户增加", Permission="sysTenant:add", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
+                new SysMenu{ Id=252885263003794, Pid=252885263003790, Title="租户删除", Permission="sysTenant:delete", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
 
-                new SysMenu{ Id=252885263003782, Pid=252885263003780, Title="系统配置", Path="config", Name="ConfigManagement", Component="/sys/admin/config/index", Icon="ant-design:deployment-unit-outlined", Type=MenuTypeEnum.Menu, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
-                new SysMenu{ Id=252885263013711, Pid=252885263003782, Title="配置查询", Permission="sysConfig:page", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
-                new SysMenu{ Id=252885263013712, Pid=252885263003782, Title="配置编辑", Permission="sysConfig:update", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
-                new SysMenu{ Id=252885263013713, Pid=252885263003782, Title="配置增加", Permission="sysConfig:add", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
-                new SysMenu{ Id=252885263013714, Pid=252885263003782, Title="配置删除", Permission="sysConfig:delete", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
+                new SysMenu{ Id=252885263003800, Pid=252885263003780, Title="系统配置", Path="config", Name="ConfigManagement", Component="/sys/admin/config/index", Icon="ant-design:deployment-unit-outlined", Type=MenuTypeEnum.Menu, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
+                new SysMenu{ Id=252885263003801, Pid=252885263003800, Title="配置查询", Permission="sysConfig:page", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
+                new SysMenu{ Id=252885263003802, Pid=252885263003800, Title="配置编辑", Permission="sysConfig:update", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
+                new SysMenu{ Id=252885263003803, Pid=252885263003800, Title="配置增加", Permission="sysConfig:add", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
+                new SysMenu{ Id=252885263003804, Pid=252885263003800, Title="配置删除", Permission="sysConfig:delete", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
 
-                new SysMenu{ Id=252885263003783, Pid=252885263003780, Title="字典管理", Path="dict", Name="DictManagement", Component="/sys/admin/dict/index", Icon="ant-design:book-outlined", Type=MenuTypeEnum.Menu, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
-                new SysMenu{ Id=252885263013721, Pid=252885263003783, Title="字典查询", Permission="sysDict:page", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
-                new SysMenu{ Id=252885263013722, Pid=252885263003783, Title="字典编辑", Permission="sysDict:update", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
-                new SysMenu{ Id=252885263013723, Pid=252885263003783, Title="字典增加", Permission="sysDict:add", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
-                new SysMenu{ Id=252885263013724, Pid=252885263003783, Title="字典删除", Permission="sysDict:delete", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
+                new SysMenu{ Id=252885263003810, Pid=252885263003780, Title="字典管理", Path="dict", Name="DictManagement", Component="/sys/admin/dict/index", Icon="ant-design:book-outlined", Type=MenuTypeEnum.Menu, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
+                new SysMenu{ Id=252885263003811, Pid=252885263003810, Title="字典查询", Permission="sysDict:page", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
+                new SysMenu{ Id=252885263003812, Pid=252885263003810, Title="字典编辑", Permission="sysDict:update", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
+                new SysMenu{ Id=252885263003813, Pid=252885263003810, Title="字典增加", Permission="sysDict:add", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
+                new SysMenu{ Id=252885263003814, Pid=252885263003810, Title="字典删除", Permission="sysDict:delete", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
 
-                new SysMenu{ Id=252885263003784, Pid=252885263003780, Title="短信管理", Path="sms", Name="SmsManagement", Component="/sys/admin/sms/index", Icon="ant-design:mail-outlined", Type=MenuTypeEnum.Menu, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
+                new SysMenu{ Id=252885263003820, Pid=252885263003780, Title="短信管理", Path="sms", Name="SmsManagement", Component="/sys/admin/sms/index", Icon="ant-design:mail-outlined", Type=MenuTypeEnum.Menu, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
 
-                new SysMenu{ Id=252885263003785, Pid=252885263003780, Title="任务调度", Path="timer", Name="TimerManagement", Component="/sys/admin/timer/index", Icon="ant-design:clock-circle-outlined", Type=MenuTypeEnum.Menu, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
-                new SysMenu{ Id=252885263013741, Pid=252885263003785, Title="任务查询", Permission="sysTimer:page", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
-                new SysMenu{ Id=252885263013742, Pid=252885263003785, Title="任务编辑", Permission="sysTimer:update", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
-                new SysMenu{ Id=252885263013743, Pid=252885263003785, Title="任务增加", Permission="sysTimer:add", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
-                new SysMenu{ Id=252885263013744, Pid=252885263003785, Title="任务删除", Permission="sysTimer:delete", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
-                new SysMenu{ Id=252885263013745, Pid=252885263003785, Title="设置状态", Permission="sysTimer:setStatus", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
+                new SysMenu{ Id=252885263003830, Pid=252885263003780, Title="任务调度", Path="timer", Name="TimerManagement", Component="/sys/admin/timer/index", Icon="ant-design:clock-circle-outlined", Type=MenuTypeEnum.Menu, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
+                new SysMenu{ Id=252885263003831, Pid=252885263003830, Title="任务查询", Permission="sysTimer:page", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
+                new SysMenu{ Id=252885263003832, Pid=252885263003830, Title="任务编辑", Permission="sysTimer:update", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
+                new SysMenu{ Id=252885263003833, Pid=252885263003830, Title="任务增加", Permission="sysTimer:add", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
+                new SysMenu{ Id=252885263003834, Pid=252885263003830, Title="任务删除", Permission="sysTimer:delete", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
+                new SysMenu{ Id=252885263003835, Pid=252885263003830, Title="设置状态", Permission="sysTimer:setStatus", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
 
-                new SysMenu{ Id=252885263003786, Pid=252885263003780, Title="代码生成", Path="code", Name="CodeManagement", Component="/sys/admin/code/index", Icon="ant-design:bug-outlined", Type=MenuTypeEnum.Menu, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=200 },
-                new SysMenu{ Id=269323248660805, Pid=252885263003780, Title="数据库管理", Path="database", Name="DBManagement", Component="/sys/admin/database/index",Icon="ant-design:database-filled", Type=MenuTypeEnum.Menu, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=200 },
+                new SysMenu{ Id=252885263003840, Pid=252885263003780, Title="代码生成", Path="code", Name="CodeManagement", Component="/sys/admin/code/index", Icon="ant-design:bug-outlined", Type=MenuTypeEnum.Menu, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
 
-                new SysMenu{ Id=252885263003787, Pid=252885263003780, Title="在线用户", Path="online", Name="OnlineManagement", Component="/sys/admin/online/index", Icon="ant-design:user-switch-outlined", Type=MenuTypeEnum.Menu, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
-                new SysMenu{ Id=252885263013761, Pid=252885263003787, Title="用户查询", Permission="online:page", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
-                new SysMenu{ Id=252885263013762, Pid=252885263003787, Title="用户删除", Permission="online:delete", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
+                new SysMenu{ Id=252885263003850, Pid=252885263003780, Title="数据库管理", Path="database", Name="DBManagement", Component="/sys/admin/database/index",Icon="ant-design:database-filled", Type=MenuTypeEnum.Menu, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=200 },
 
-                new SysMenu{ Id=252885263003788, Pid=252885263003780, Title="系统监控", Path="server", Name="ServerManagement", Component="/sys/admin/server/index", Icon="ant-design:alert-outlined", Type=MenuTypeEnum.Menu, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
+                new SysMenu{ Id=252885263003860, Pid=252885263003780, Title="在线用户", Path="online", Name="OnlineManagement", Component="/sys/admin/online/index", Icon="ant-design:user-switch-outlined", Type=MenuTypeEnum.Menu, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
+                new SysMenu{ Id=252885263003861, Pid=252885263003860, Title="用户查询", Permission="online:page", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
+                new SysMenu{ Id=252885263003862, Pid=252885263003860, Title="用户删除", Permission="online:delete", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
 
-                new SysMenu{ Id=252885263003789, Pid=252885263003780, Title="缓存管理", Path="cache", Name="CacheManagement", Component="/sys/admin/cache/index", Icon="ant-design:thunderbolt-outlined", Type=MenuTypeEnum.Menu, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
-                new SysMenu{ Id=252885263013771, Pid=252885263003789, Title="缓存查询", Permission="cache:page", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
-                new SysMenu{ Id=252885263013772, Pid=252885263003789, Title="缓存删除", Permission="cache:delete", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
+                new SysMenu{ Id=252885263003870, Pid=252885263003780, Title="系统监控", Path="server", Name="ServerManagement", Component="/sys/admin/server/index", Icon="ant-design:alert-outlined", Type=MenuTypeEnum.Menu, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
 
-                new SysMenu{ Id=252885263003800, Pid=0, Title="日志管理", Path="/log", Name="log", Component="LAYOUT", Redirect="", Icon="ant-design:carry-out-outlined", Type=MenuTypeEnum.Dir, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
-                new SysMenu{ Id=252885263003810, Pid=252885263003800, Title="访问日志", Path="vislog", Name="VislogManagement", Component="/sys/admin/log/vislog/index", Type=MenuTypeEnum.Menu, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
-                new SysMenu{ Id=252885263003811, Pid=252885263003810, Title="日志查询", Permission="sysVislog:page", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
-                new SysMenu{ Id=252885263003812, Pid=252885263003810, Title="日志清空", Permission="sysVislog:clear", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
-                new SysMenu{ Id=252885263003820, Pid=252885263003800, Title="操作日志", Path="oplog", Name="OplogManagement", Component="/sys/admin/log/oplog/index", Type=MenuTypeEnum.Menu, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
-                new SysMenu{ Id=252885263003821, Pid=252885263003820, Title="日志查询", Permission="sysOplog:page", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
-                new SysMenu{ Id=252885263003822, Pid=252885263003820, Title="日志清空", Permission="sysOplog:clear", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
-                new SysMenu{ Id=252885263003830, Pid=252885263003800, Title="异常日志", Path="exlog", Name="ExlogManagement", Component="/sys/admin/log/exlog/index", Type=MenuTypeEnum.Menu, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
-                new SysMenu{ Id=252885263003831, Pid=252885263003830, Title="日志查询", Permission="sysExlog:page", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
-                new SysMenu{ Id=252885263003832, Pid=252885263003830, Title="日志清空", Permission="sysExlog:clear", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
+                new SysMenu{ Id=252885263003880, Pid=252885263003780, Title="缓存管理", Path="cache", Name="CacheManagement", Component="/sys/admin/cache/index", Icon="ant-design:thunderbolt-outlined", Type=MenuTypeEnum.Menu, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
+                new SysMenu{ Id=252885263003881, Pid=252885263003880, Title="缓存查询", Permission="cache:page", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
+                new SysMenu{ Id=252885263003882, Pid=252885263003880, Title="缓存删除", Permission="cache:delete", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
 
-                new SysMenu{ Id=252885263003840, Pid=0, Title="文件管理", Path="/file", Name="file", Component="LAYOUT", Redirect="", Icon="ant-design:file-outlined", Type=MenuTypeEnum.Dir, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
-                new SysMenu{ Id=252885263003841, Pid=252885263003840, Title="文件管理", Path="file", Name="FileManagement", Component="/sys/admin/file/index", Type=MenuTypeEnum.Menu, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
-                new SysMenu{ Id=252885263003842, Pid=252885263003841, Title="文件查询", Permission="sysFile:page", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
-                new SysMenu{ Id=252885263003843, Pid=252885263003841, Title="文件上传", Permission="sysFile:upload", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
-                new SysMenu{ Id=252885263003844, Pid=252885263003841, Title="文件下载", Permission="sysFile:download", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
-                new SysMenu{ Id=252885263003845, Pid=252885263003841, Title="文件删除", Permission="sysFile:delete", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
+                new SysMenu{ Id=252885263003900, Pid=0, Title="日志管理", Path="/log", Name="log", Component="LAYOUT", Redirect="", Icon="ant-design:carry-out-outlined", Type=MenuTypeEnum.Dir, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
+                new SysMenu{ Id=252885263003910, Pid=252885263003900, Title="访问日志", Path="vislog", Name="VislogManagement", Component="/sys/admin/log/vislog/index", Type=MenuTypeEnum.Menu, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
+                new SysMenu{ Id=252885263003911, Pid=252885263003910, Title="日志查询", Permission="sysVislog:page", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
+                new SysMenu{ Id=252885263003912, Pid=252885263003910, Title="日志清空", Permission="sysVislog:clear", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
+                new SysMenu{ Id=252885263003920, Pid=252885263003900, Title="操作日志", Path="oplog", Name="OplogManagement", Component="/sys/admin/log/oplog/index", Type=MenuTypeEnum.Menu, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
+                new SysMenu{ Id=252885263003921, Pid=252885263003920, Title="日志查询", Permission="sysOplog:page", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
+                new SysMenu{ Id=252885263003922, Pid=252885263003920, Title="日志清空", Permission="sysOplog:clear", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
+                new SysMenu{ Id=252885263003930, Pid=252885263003900, Title="异常日志", Path="exlog", Name="ExlogManagement", Component="/sys/admin/log/exlog/index", Type=MenuTypeEnum.Menu, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
+                new SysMenu{ Id=252885263003931, Pid=252885263003930, Title="日志查询", Permission="sysExlog:page", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
+                new SysMenu{ Id=252885263003932, Pid=252885263003930, Title="日志清空", Permission="sysExlog:clear", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
 
-                new SysMenu{ Id=252885263003850, Pid=0, Title="帮助文档", Path="/doc", Name="doc", Component="LAYOUT", Redirect="", Icon="ant-design:read-outlined", Type=MenuTypeEnum.Dir, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
-                new SysMenu{ Id=252885263003851, Pid=252885263003850, Title="接口文档", Path="api", Name="Api", FrameSrc="https://localhost:44326/api/", Component="IFrame", Icon="ant-design:api-outlined", Type=MenuTypeEnum.Menu, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
-                new SysMenu{ Id=252885263003852, Pid=252885263003850, Title="Furion文档", Path="https://dotnetchina.gitee.io/furion/", Name="Furion", Component="IFrame", Type=MenuTypeEnum.Menu, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
-                new SysMenu{ Id=252885263003853, Pid=252885263003850, Title="Vben文档", Path="https://vvbin.cn/doc-next/", Name="Vben", Component="IFrame", Type=MenuTypeEnum.Menu, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
+                new SysMenu{ Id=252885263003940, Pid=0, Title="文件管理", Path="/file", Name="file", Component="LAYOUT", Redirect="", Icon="ant-design:file-outlined", Type=MenuTypeEnum.Dir, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
+                new SysMenu{ Id=252885263003950, Pid=252885263003940, Title="文件管理", Path="file", Name="FileManagement", Component="/sys/admin/file/index", Type=MenuTypeEnum.Menu, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
+                new SysMenu{ Id=252885263003951, Pid=252885263003950, Title="文件查询", Permission="sysFile:page", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
+                new SysMenu{ Id=252885263003952, Pid=252885263003950, Title="文件上传", Permission="sysFile:upload", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
+                new SysMenu{ Id=252885263003953, Pid=252885263003950, Title="文件下载", Permission="sysFile:download", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
+                new SysMenu{ Id=252885263003954, Pid=252885263003950, Title="文件删除", Permission="sysFile:delete", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
+
+                new SysMenu{ Id=252885263003960, Pid=0, Title="帮助文档", Path="/doc", Name="doc", Component="LAYOUT", Redirect="", Icon="ant-design:read-outlined", Type=MenuTypeEnum.Dir, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
+                new SysMenu{ Id=252885263003961, Pid=252885263003960, Title="接口文档", Path="api", Name="Api", FrameSrc="https://localhost:44326/api/", Component="IFrame", Icon="ant-design:api-outlined", Type=MenuTypeEnum.Menu, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
+                new SysMenu{ Id=252885263003962, Pid=252885263003960, Title="Furion文档", Path="https://dotnetchina.gitee.io/furion/", Name="Furion", Component="IFrame", Type=MenuTypeEnum.Menu, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
+                new SysMenu{ Id=252885263003963, Pid=252885263003960, Title="Vben文档", Path="https://vvbin.cn/doc-next/", Name="Vben", Component="IFrame", Type=MenuTypeEnum.Menu, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
             };
         }
     }

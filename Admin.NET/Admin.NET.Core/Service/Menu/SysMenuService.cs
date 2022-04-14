@@ -12,7 +12,7 @@ namespace Admin.NET.Core.Service
     /// <summary>
     /// 系统菜单服务
     /// </summary>
-    [ApiDescriptionSettings(Name = "Menu", Order = 195)]
+    [ApiDescriptionSettings(Name = "系统菜单", Order = 195)]
     public class SysMenuService : IDynamicApiController, ITransient
     {
         private readonly SqlSugarRepository<SysMenu> _sysMenuRep;

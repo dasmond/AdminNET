@@ -13,7 +13,7 @@ namespace Admin.NET.Core.Service
     /// <summary>
     /// 系统角色服务
     /// </summary>
-    [ApiDescriptionSettings(Name = "Role", Order = 198)]
+    [ApiDescriptionSettings(Name = "系统角色", Order = 198)]
     public class SysRoleService : IDynamicApiController, ITransient
     {
         private readonly SqlSugarRepository<SysRole> _sysRoleRep;

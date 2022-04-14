@@ -11,7 +11,7 @@ namespace Admin.NET.Core.Service
     /// <summary>
     /// 系统参数配置服务
     /// </summary>
-    [ApiDescriptionSettings(Name = "Config", Order = 193)]
+    [ApiDescriptionSettings(Name = "系统配置", Order = 193)]
     public class SysConfigService : IDynamicApiController, ITransient
     {
         private readonly SqlSugarRepository<SysConfig> _sysConfigRep;

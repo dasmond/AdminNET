@@ -13,18 +13,6 @@
   "AppSettings": {
     "InjectSpecificationDocument": true // 生产环境是否开启Swagger
   },
-  "ConnectionStrings": {
-    "DefaultConnection": "server=.;uid=sa;pwd=123456;database=db1;MultipleActiveResultSets=True", // "server=127.0.0.1;uid=sa;pwd=123456;database=db;MultipleActiveResultSets=True",
-    "DefaultDbType": "SqlServer", // MySql、SqlServer、Sqlite、Oracle、PostgreSQL、Dm、Kdbndp、Oscar、MySqlConnector、Access
-    "InitTable": true,
-    "DbConfigs": [
-      //{
-      //  "DbConfigId": "test",
-      //  "DbType": "Sqlite",
-      //  "DbConnection": "Data Source=./Magic.db"
-      //}
-    ]
-  },
   "JWTSettings": {
     "ValidateIssuerSigningKey": true, // 是否验证密钥，bool 类型，默认true
     "IssuerSigningKey": "3c1cbc3f546eda35168c3aa3cb91780fbe703f0996c6d123ea96dc85c70bbc0a", // 密钥，string 类型，必须是复杂密钥，长度大于16
@@ -67,26 +55,26 @@
   },
   "Wechat": {
     //公众号
-    "WechatAppId": "",
-    "WechatAppSecret": "",
+    "WechatAppId": "wxd77174ddc828b65b",
+    "WechatAppSecret": "beaa6ded7a85600e15cf6d1eb77f0382",
     "EncodingAESKey": "",
     "Token": "",
     //小程序
-    "WxOpenAppId": "",
-    "WxOpenAppSecret": "",
+    "WxOpenAppId": "wx3491891f69f1b0ad",
+    "WxOpenAppSecret": "dba4dbbefa6d06795c4b2a945e337d5f",
     "WxOpenToken": "",
     "WxOpenEncodingAESKey": ""
   },
   "WechatPay": {
-    "AppId": "", // 微信公众平台AppId、开放平台AppId、小程序AppId、企业微信CorpId
-    "MerchantId": "", // 商户平台的商户号
-    "MerchantV3Secret": "", // 商户平台的APIv3密钥
-    "MerchantCertificateSerialNumber": "", // 商户平台的证书序列号
+    "AppId": "wxd77174ddc828b65b", // 微信公众平台AppId、开放平台AppId、小程序AppId、企业微信CorpId
+    "MerchantId": "1622473532", // 商户平台的商户号
+    "MerchantV3Secret": "86FB79BF5A8A6588D3A270149889F2AA", // 商户平台的APIv3密钥
+    "MerchantCertificateSerialNumber": "68934023A67E420EECB02E7CE55B14A10E480FD0", // 商户平台的证书序列号
     "MerchantCertificatePrivateKey": "\\WxPayCert\\apiclient_key.pem" // 商户平台的API证书私钥(apiclient_key.pem文件内容)
   },
   "PayCallBack": {
-    "WechatPayUrl": ".../notify/weChatPay/unifiedorder", //微信支付回调
-    "WechatRefundUrl": ".../notify/weChatPay/refund", //微信退款回调
+    "WechatPayUrl": "https://www.dilon.vip:9005/notify/weChatPay/unifiedorder", //微信支付回调
+    "WechatRefundUrl": "https://www.dilon.vip:9005/notify/weChatPay/refund", //微信退款回调
     "AlipayUrl": "", //支付宝支付回调
     "AlipayRefundUrl": "" //支付宝退款回调
   }

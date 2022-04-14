@@ -6,7 +6,6 @@ using Furion.FriendlyException;
 using Furion.ViewEngine;
 using Mapster;
 using Microsoft.AspNetCore.Mvc;
-
 using SqlSugar;
 using System;
 using System.Collections.Generic;
@@ -21,27 +20,25 @@ namespace Admin.NET.Core.Service.CodeGen
     /// <summary>
     /// 代码生成器服务
     /// </summary>
-    [ApiDescriptionSettings(Name = "CodeGen", Order = 100)]
+    [ApiDescriptionSettings(Name = "代码生成器", Order = 150)]
     public class CodeGenService : IDynamicApiController, ITransient
     {
-        private readonly SqlSugarRepository<SysCodeGen> _sysCodeGenRep; // 代码生成器仓储
+        private readonly SqlSugarRepository<SysCodeGen> _sysCodeGenRep;
+        private readonly SqlSugarRepository<SysMenu> _sysMenuRep;
         private readonly CodeGenConfigService _codeGenConfigService;
         private readonly IViewEngine _viewEngine;
-
-        private readonly SqlSugarRepository<SysMenu> _sysMenuRep; // 菜单表仓储
-
         private readonly ICommonService _commonService;
 
         public CodeGenService(SqlSugarRepository<SysCodeGen> sysCodeGenRep,
-                              CodeGenConfigService codeGenConfigService,
-                              IViewEngine viewEngine,
-                              ICommonService commonService,
-                              SqlSugarRepository<SysMenu> sysMenuRep)
+            SqlSugarRepository<SysMenu> sysMenuRep,
+            CodeGenConfigService codeGenConfigService,
+            IViewEngine viewEngine,
+            ICommonService commonService)
         {
             _sysCodeGenRep = sysCodeGenRep;
+            _sysMenuRep = sysMenuRep;
             _codeGenConfigService = codeGenConfigService;
             _viewEngine = viewEngine;
-            _sysMenuRep = sysMenuRep;
             _commonService = commonService;
         }
 
@@ -134,7 +131,7 @@ namespace Admin.NET.Core.Service.CodeGen
         public async Task<List<TableOutput>> GetTableList()
         {
             IEnumerable<EntityInfo> entityInfos = await _commonService.GetEntityInfos();
-            List<TableOutput> result = new List<TableOutput>();
+            var result = new List<TableOutput>();
             foreach (var item in entityInfos)
             {
                 result.Add(new TableOutput()
@@ -220,7 +217,8 @@ namespace Admin.NET.Core.Service.CodeGen
                     IsJoinTable = joinTableList.Count > 0,
                     IsUpload = joinTableList.Where(u => u.EffectType == "Upload").Count() > 0,
                 };
-                var tResult = _viewEngine.RunCompile<CustomViewEngine>(tContent, data, builderAction:builder => {
+                var tResult = _viewEngine.RunCompile<CustomViewEngine>(tContent, data, builderAction: builder =>
+                {
                     builder.AddAssemblyReferenceByName("System.Linq");
                     builder.AddAssemblyReferenceByName("System.Collections");
                     builder.AddUsing("System.Collections.Generic");
@@ -234,6 +232,7 @@ namespace Admin.NET.Core.Service.CodeGen
 
             await AddMenu(input.TableName, input.BusName, input.MenuPid);
         }
+
         /// <summary>
         /// 获取连表的实体名和别名
         /// </summary>
@@ -291,8 +290,6 @@ namespace Admin.NET.Core.Service.CodeGen
             };
             var pid1 = (await _sysMenuRep.Context.Insertable(menuType1).ExecuteReturnEntityAsync()).Id;
 
-
-
             // 按钮-page
             var menuType2 = new SysMenu
             {
@@ -338,7 +335,7 @@ namespace Admin.NET.Core.Service.CodeGen
                 Permission = className + ":edit",
             };
 
-            List<SysMenu> menuList = new List<SysMenu>() { menuType2, menuType2_1, menuType2_2, menuType2_3, menuType2_4 };
+            var menuList = new List<SysMenu>() { menuType2, menuType2_1, menuType2_2, menuType2_3, menuType2_4 };
             await _sysMenuRep.Context.Insertable(menuList).ExecuteCommandAsync();
         }
 
@@ -346,7 +343,7 @@ namespace Admin.NET.Core.Service.CodeGen
         /// 获取模板文件路径集合
         /// </summary>
         /// <returns></returns>
-        private List<string> GetTemplatePathList()
+        private static List<string> GetTemplatePathList()
         {
             var templatePath = App.WebHostEnvironment.WebRootPath + @"\Template\";
             return new List<string>()
@@ -367,7 +364,7 @@ namespace Admin.NET.Core.Service.CodeGen
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        private List<string> GetTargetPathList(SysCodeGen input)
+        private static List<string> GetTargetPathList(SysCodeGen input)
         {
             var backendPath = Path.Combine(new DirectoryInfo(App.WebHostEnvironment.ContentRootPath).Parent.FullName, "Admin.NET.Application", "Service", input.TableName);
             var servicePath = Path.Combine(backendPath, input.TableName + "Service.cs");

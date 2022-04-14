@@ -200,11 +200,13 @@ export const formSchema: FormSchema[] = [
     field: 'signature',
     label: '个性签名',
     component: 'Input',
+    colProps: { span: 24 },
   },
   {
     field: 'introduction',
     label: '本人简介',
     component: 'Input',
+    colProps: { span: 24 },
   },
   {
     field: 'orgId',
@@ -267,5 +269,6 @@ export const formSchema: FormSchema[] = [
     field: 'remark',
     label: '备注',
     component: 'InputTextArea',
+    colProps: { span: 24 },
   },
 ];

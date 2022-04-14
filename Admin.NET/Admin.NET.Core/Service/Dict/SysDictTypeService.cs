@@ -13,7 +13,7 @@ namespace Admin.NET.Core.Service
     /// <summary>
     /// 系统字典类型服务
     /// </summary>
-    [ApiDescriptionSettings(Name = "DictType", Order = 192)]
+    [ApiDescriptionSettings(Name = "系统字典", Order = 192)]
     [AllowAnonymous]
     public class SysDictTypeService : IDynamicApiController, ITransient
     {

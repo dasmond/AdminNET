@@ -14,7 +14,7 @@ namespace Admin.NET.Core.Service
     /// <summary>
     /// 系统用户服务
     /// </summary>
-    [ApiDescriptionSettings(Name = "User", Order = 199)]
+    [ApiDescriptionSettings(Name = "系统用户", Order = 199)]
     public class SysUserService : IDynamicApiController, ITransient
     {
         private readonly SqlSugarRepository<SysUser> _sysUserRep;

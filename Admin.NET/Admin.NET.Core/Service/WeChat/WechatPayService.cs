@@ -19,23 +19,20 @@ namespace Admin.NET.Core.Service
     /// <summary>
     /// 微信支付服务
     /// </summary>
-    [ApiDescriptionSettings(Name = "WeChatPay", Order = 169)]
+    [ApiDescriptionSettings(Name = "微信支付", Order = 99)]
     public class WeChatPayService : IDynamicApiController, ITransient
     {
         private readonly SqlSugarRepository<WechatPay> _wechatPayUserRep;
-        private readonly IUserManager _userManager;
 
         private readonly WechatPayOptions _wechatPayOptions;
         private readonly WechatTenpayClient _wechatTenpayClient;
         private readonly PayCallBackOptions _payCallBackOptions;
 
         public WeChatPayService(SqlSugarRepository<WechatPay> wechatPayUserRep,
-            IUserManager userManager,
             IOptions<WechatPayOptions> wechatPayOptions,
             IOptions<PayCallBackOptions> payCallBackOptions)
         {
             _wechatPayUserRep = wechatPayUserRep;
-            _userManager = userManager;
             _wechatPayOptions = wechatPayOptions.Value;
             _wechatTenpayClient = CreateTenpayClient();
             _payCallBackOptions = payCallBackOptions.Value;

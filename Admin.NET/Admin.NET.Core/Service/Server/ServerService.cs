@@ -8,7 +8,7 @@ namespace Admin.NET.Core.Service
     /// <summary>
     /// 服务器监控服务
     /// </summary>
-    [ApiDescriptionSettings(Name = "Server", Order = 185)]
+    [ApiDescriptionSettings(Name = "服务器监控", Order = 185)]
     public class ServerService : IDynamicApiController, ITransient
     {
         public ServerService()
