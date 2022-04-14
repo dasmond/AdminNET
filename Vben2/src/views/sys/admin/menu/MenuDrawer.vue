@@ -37,18 +37,17 @@
         resetFields();
         setDrawerProps({ confirmLoading: false });
         isUpdate.value = !!data?.isUpdate;
-
+        const treeData = await getMenuList();
+        updateSchema({
+          field: 'pid',
+          componentProps: { treeData },
+        });
         if (unref(isUpdate)) {
           rowId = data.record.id;
           setFieldsValue({
             ...data.record,
           });
         }
-        const treeData = await getMenuList();
-        updateSchema({
-          field: 'pid',
-          componentProps: { treeData },
-        });
       });
 
       const getTitle = computed(() => (!unref(isUpdate) ? '新增菜单' : '编辑菜单'));

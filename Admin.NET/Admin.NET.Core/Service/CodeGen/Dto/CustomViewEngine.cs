@@ -1,7 +1,10 @@
-﻿using Furion.ViewEngine;
+﻿using Admin.NET.Core.Util;
+using Furion.ViewEngine;
+using SqlSugar;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -9,6 +12,15 @@ namespace Admin.NET.Core.Service
 {
     public class CustomViewEngine : ViewEngineModel
     {
+        private readonly SqlSugarRepository<SysCodeGen> _sysCodeGenRep; // 代码生成器仓储
+        public CustomViewEngine()
+        {
+
+        }
+        public CustomViewEngine(SqlSugarRepository<SysCodeGen> sysCodeGenRep)
+        {
+            _sysCodeGenRep = sysCodeGenRep;
+        }
         public string AuthorName { get; set; }
         public string BusName { get; set; }
         public string NameSpace { get; set; }
@@ -25,12 +37,29 @@ namespace Admin.NET.Core.Service
         public List<CodeGenConfig> TableField { get; set; }
         public bool IsJoinTable { get; set; }
         public bool IsUpload { get; set; }
-        public List<TableColumnOuput> ColumnList { get; set; }
+        private List<TableColumnOuput> ColumnList { get; set; }
 
-        public string GetColumnNetType(object colName)
+        public string GetColumnNetType(object tbName, object colName)
         {
+            ColumnList = GetColumnListByTableName(tbName.ToString());
             var col = ColumnList.Where(c => c.ColumnName == colName.ToString()).FirstOrDefault();
             return col.NetType;
+        }
+        public List<TableColumnOuput> GetColumnListByTableName(string tableName)
+        {
+            // 获取实体类型属性
+            var entityType = _sysCodeGenRep.Context.DbMaintenance.GetTableInfoList().FirstOrDefault(u => u.Name == tableName);
+            if (entityType == null) return null;
+
+            // 按原始类型的顺序获取所有实体类型属性（不包含导航属性，会返回null）
+            return _sysCodeGenRep.Context.DbMaintenance.GetColumnInfosByTableName(entityType.Name).Select(u => new TableColumnOuput
+            {
+                ColumnName = u.DbColumnName,
+                ColumnKey = u.IsPrimarykey.ToString(),
+                DataType = u.DataType.ToString(),
+                NetType = CodeGenUtil.ConvertDataType(u.DataType.ToString()),
+                ColumnComment = u.ColumnDescription
+            }).ToList();
         }
     }
 }
