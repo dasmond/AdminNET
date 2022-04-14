@@ -7,28 +7,28 @@ using Furion.ViewEngine;
 using Mapster;
 using Microsoft.AspNetCore.Mvc;
 using SqlSugar;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Admin.NET.Core.Service
 {
     /// <summary>
-    /// 数据库管理
+    /// 数据库管理服务
     /// </summary>
-    [ApiDescriptionSettings(Name = "DataBase", Order = 200)]
-    public class DataBaseManager :IDynamicApiController, ITransient
+    [ApiDescriptionSettings(Name = "数据库管理", Order = 145)]
+    public class DataBaseManager : IDynamicApiController, ITransient
     {
         private readonly ISqlSugarClient _sqlSugarClient;
         private readonly IViewEngine _viewEngine;
+
         public DataBaseManager(ISqlSugarClient sqlSugarClient, IViewEngine viewEngine)
         {
             _sqlSugarClient = sqlSugarClient;
             _viewEngine = viewEngine;
         }
+
         /// <summary>
         /// 添加列
         /// </summary>
@@ -36,15 +36,17 @@ namespace Admin.NET.Core.Service
         [HttpPost("/column/add")]
         public void ColumnAdd(DbColumnInfoInput input)
         {
-            DbColumnInfo column = new DbColumnInfo();
-            column.ColumnDescription = input.ColumnDescription;
-            column.DbColumnName = input.DbColumnName;
-            column.IsIdentity = input.IsIdentity == 1;
-            column.IsNullable = input.IsNullable == 1;
-            column.IsPrimarykey = input.IsPrimarykey == 1;
-            column.Length = input.Length;
-            column.DecimalDigits = input.DecimalDigits;
-            column.DataType = input.DataType;
+            var column = new DbColumnInfo
+            {
+                ColumnDescription = input.ColumnDescription,
+                DbColumnName = input.DbColumnName,
+                IsIdentity = input.IsIdentity == 1,
+                IsNullable = input.IsNullable == 1,
+                IsPrimarykey = input.IsPrimarykey == 1,
+                Length = input.Length,
+                DecimalDigits = input.DecimalDigits,
+                DataType = input.DataType
+            };
             _sqlSugarClient.DbMaintenance.AddColumn(input.TableName, column);
             _sqlSugarClient.DbMaintenance.AddColumnRemark(input.DbColumnName, input.TableName, input.ColumnDescription);
             if (column.IsPrimarykey)
@@ -78,8 +80,6 @@ namespace Admin.NET.Core.Service
             _sqlSugarClient.DbMaintenance.AddColumnRemark(input.DbColumnName, input.TableName, string.IsNullOrWhiteSpace(input.ColumnDescription) ? input.DbColumnName : input.ColumnDescription);
         }
 
-
-
         /// <summary>
         /// 获取表字段
         /// </summary>
@@ -102,6 +102,7 @@ namespace Admin.NET.Core.Service
         {
             return _sqlSugarClient.DbMaintenance.GetTableInfoList(false);
         }
+
         /// <summary>
         /// 新增表
         /// </summary>
@@ -109,7 +110,7 @@ namespace Admin.NET.Core.Service
         [HttpPost("/table/add")]
         public void TableAdd(DbTableInfoInput input)
         {
-            List<DbColumnInfo> columns = new List<DbColumnInfo>();
+            var columns = new List<DbColumnInfo>();
             if (input.DbColumnInfoList == null || !input.DbColumnInfoList.Any())
             {
                 throw Oops.Oh(ErrorCodeEnum.db1000);
@@ -139,6 +140,7 @@ namespace Admin.NET.Core.Service
                 _sqlSugarClient.DbMaintenance.AddColumnRemark(m.DbColumnName, input.Name, string.IsNullOrWhiteSpace(m.ColumnDescription) ? m.DbColumnName : m.ColumnDescription);
             });
         }
+
         /// <summary>
         /// 删除表
         /// </summary>
@@ -148,6 +150,7 @@ namespace Admin.NET.Core.Service
         {
             _sqlSugarClient.DbMaintenance.DropTable(input.Name);
         }
+
         /// <summary>
         /// 编辑表
         /// </summary>
@@ -163,6 +166,10 @@ namespace Admin.NET.Core.Service
             _sqlSugarClient.DbMaintenance.AddTableRemark(input.Name, input.Description);
         }
 
+        /// <summary>
+        /// 创建实体
+        /// </summary>
+        /// <param name="input"></param>
         [HttpPost("/table/createEntity")]
         public void CreateEntity(CreateEntityInput input)
         {
@@ -199,9 +206,9 @@ namespace Admin.NET.Core.Service
                 dbColumnInfos = dbColumnInfos.Where(c => c.DbColumnName != "Id").ToList();
             }
             dbColumnInfos.ForEach(m =>
-        {
-            m.DataType = CodeGenUtil.ConvertDataType(m.DataType);
-        });
+            {
+                m.DataType = CodeGenUtil.ConvertDataType(m.DataType);
+            });
             var tContent = File.ReadAllText(templatePath);
             var tResult = _viewEngine.RunCompileFromCached(tContent, new
             {
@@ -218,7 +225,7 @@ namespace Admin.NET.Core.Service
         /// 获取模板文件路径集合
         /// </summary>
         /// <returns></returns>
-        private string GetTemplatePath()
+        private static string GetTemplatePath()
         {
             var templatePath = App.WebHostEnvironment.WebRootPath + @"\Template\";
             return Path.Combine(templatePath, "Entity.cs.vm");
@@ -229,7 +236,7 @@ namespace Admin.NET.Core.Service
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        private string GetTargetPath(CreateEntityInput input)
+        private static string GetTargetPath(CreateEntityInput input)
         {
             var backendPath = Path.Combine(new DirectoryInfo(App.WebHostEnvironment.ContentRootPath).Parent.FullName, input.Position, "Entity");
             var entityPath = Path.Combine(backendPath, input.EntityName + ".cs");

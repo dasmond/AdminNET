@@ -17,8 +17,8 @@ namespace Admin.NET.Web.Core
     public class Startup : AppStartup
     {
         public void ConfigureServices(IServiceCollection services)
-        {
-            //添加配置选项
+        {   
+            services.AddConfigurableOptions<ConnectionStringsOptions>();
             services.AddConfigurableOptions<RefreshTokenOptions>();
             services.AddConfigurableOptions<SnowIdOptions>();
             services.AddConfigurableOptions<CacheOptions>();
@@ -27,7 +27,6 @@ namespace Admin.NET.Web.Core
             services.AddConfigurableOptions<WechatOptions>();
             services.AddConfigurableOptions<WechatPayOptions>();
             services.AddConfigurableOptions<PayCallBackOptions>();
-            services.AddConfigurableOptions<ConnectionStringsOptions>();
 
             services.AddSqlSugarSetup(App.Configuration);
 
@@ -35,6 +34,8 @@ namespace Admin.NET.Web.Core
 
             services.AddCorsAccessor();
             services.AddRemoteRequest();
+
+            services.AddTaskScheduler();
 
             services.AddControllersWithViews()
                 .AddMvcFilter<RequestActionFilter>()
@@ -69,8 +70,12 @@ namespace Admin.NET.Web.Core
 
             // 注册CSRedis缓存
             services.AddCSRedisSetup();
+
             // 注册模板引擎
             services.AddViewEngine();
+
+            // 增加Logo输出显示
+            services.AddLogoDisplay();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

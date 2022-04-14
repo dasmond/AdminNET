@@ -60,23 +60,23 @@ export const formSchema: FormSchema[] = [
     label: '类型名称',
     required: true,
     component: 'Input',
+    colProps: { span: 24 },
   },
   {
     field: 'code',
     label: '唯一编码',
     required: true,
     component: 'Input',
+    colProps: { span: 24 },
   },
   {
     field: 'order',
     label: '排序',
+    component: 'InputNumber',
+    defaultValue: 1,
     required: true,
-    component: 'Input',
-  },
-  {
-    label: '备注',
-    field: 'remark',
-    component: 'InputTextArea',
+    colProps: { span: 24 },
+    componentProps: { style: { width: '100%' } },
   },
   {
     field: 'status',
@@ -89,5 +89,12 @@ export const formSchema: FormSchema[] = [
         { label: '停用', value: 0 },
       ],
     },
+    colProps: { span: 24 },
+  },
+  {
+    label: '备注',
+    field: 'remark',
+    component: 'InputTextArea',
+    colProps: { span: 24 },
   },
 ];

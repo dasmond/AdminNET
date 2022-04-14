@@ -71,18 +71,21 @@ export const formSchema: FormSchema[] = [
     field: 'name',
     component: 'Input',
     required: true,
+    colProps: { span: 24 },
   },
   {
     label: '编码',
     field: 'code',
     component: 'Input',
     required: true,
+    colProps: { span: 24 },
   },
   {
     label: '值',
     field: 'value',
     component: 'Input',
     required: true,
+    colProps: { span: 12 },
   },
   {
     label: '平台配置',
@@ -96,11 +99,13 @@ export const formSchema: FormSchema[] = [
       ],
     },
     required: true,
+    colProps: { span: 12 },
   },
   {
     label: '所属分类',
     field: 'groupCode',
     component: 'Input',
+    colProps: { span: 12 },
   },
   {
     label: '排序',
@@ -108,6 +113,8 @@ export const formSchema: FormSchema[] = [
     component: 'InputNumber',
     defaultValue: 1,
     required: true,
+    colProps: { span: 12 },
+    componentProps: { style: { width: '100%' } },
   },
   {
     label: '备注',

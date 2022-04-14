@@ -1,15 +1,10 @@
-﻿
-
-using Admin.NET.Core.Util;
+﻿using Admin.NET.Core.Util;
 using Furion.DependencyInjection;
 using Furion.DynamicApiController;
 using Mapster;
 using Microsoft.AspNetCore.Mvc;
-
-using SqlSugar;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Admin.NET.Core.Service
@@ -17,10 +12,10 @@ namespace Admin.NET.Core.Service
     /// <summary>
     /// 代码生成详细配置服务
     /// </summary>
-    [ApiDescriptionSettings(Name = "CodeGenConfig", Order = 100)]
+    [ApiDescriptionSettings(Name = "代码生成配置", Order = 149)]
     public class CodeGenConfigService : IDynamicApiController, ITransient
     {
-        private readonly SqlSugarRepository<SysCodeGenConfig> _sysCodeGenConfigRep; // 代码生成详细配置仓储
+        private readonly SqlSugarRepository<SysCodeGenConfig> _sysCodeGenConfigRep;
 
         public CodeGenConfigService(SqlSugarRepository<SysCodeGenConfig> sysCodeGenConfigRep)
         {

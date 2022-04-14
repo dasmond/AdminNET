@@ -111,11 +111,13 @@ export const formSchema: FormSchema[] = [
     label: '角色名称',
     required: true,
     component: 'Input',
+    colProps: { span: 24 },
   },
   {
     field: 'code',
     label: '角色编码',
     component: 'Input',
+    colProps: { span: 24 },
   },
   {
     field: 'status',
@@ -133,5 +135,6 @@ export const formSchema: FormSchema[] = [
     label: '备注',
     field: 'remark',
     component: 'InputTextArea',
+    colProps: { span: 24 },
   },
 ];

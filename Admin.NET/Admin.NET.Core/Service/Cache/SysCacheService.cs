@@ -13,7 +13,7 @@ namespace Admin.NET.Core.Service
     /// <summary>
     /// 系统缓存服务
     /// </summary>
-    [ApiDescriptionSettings(Name = "Cache", Order = 190)]
+    [ApiDescriptionSettings(Name = "系统缓存", Order = 190)]
     public class SysCacheService : ISysCacheService, IDynamicApiController, ISingleton
     {
         private readonly IDistributedCache _cache;

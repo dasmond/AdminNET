@@ -22,20 +22,27 @@ namespace Admin.NET.Core.Service
             _sysCodeGenRep = sysCodeGenRep;
         }
         public string AuthorName { get; set; }
+
         public string BusName { get; set; }
+
         public string NameSpace { get; set; }
+
         public string ClassName { get; set; }
+
         public string LowerClassName
         {
             get
-            {
-                //(首字母小写)
-                return ClassName.Substring(0, 1).ToLower() + ClassName[1..];
+            {                
+                return ClassName[..1].ToLower() + ClassName[1..]; // 首字母小写
             }
         }
+
         public List<CodeGenConfig> QueryWhetherList { get; set; }
+
         public List<CodeGenConfig> TableField { get; set; }
+
         public bool IsJoinTable { get; set; }
+
         public bool IsUpload { get; set; }
         private List<TableColumnOuput> ColumnList { get; set; }
 

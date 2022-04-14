@@ -9,15 +9,6 @@ namespace Admin.NET.Core
     public class SysOrgSeedData : ISqlSugarEntitySeedData<SysOrg>
     {
         /// <summary>
-        /// 配置数据库标识
-        /// </summary>
-        /// <returns></returns>
-        public string DbConfigId()
-        {
-            return SqlSugarConst.ConfigId;
-        }
-
-        /// <summary>
         /// 种子数据
         /// </summary>
         /// <returns></returns>

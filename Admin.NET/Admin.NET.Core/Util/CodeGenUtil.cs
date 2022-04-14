@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace Admin.NET.Core.Util
 {
@@ -33,7 +29,7 @@ namespace Admin.NET.Core.Util
                     return "byte";
 
                 case "bigint":
-                case "integer"://sqlite数据库
+                case "integer": // sqlite数据库
                     return "long";
 
                 case "bit":

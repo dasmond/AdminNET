@@ -64,11 +64,13 @@ export const formSchema: FormSchema[] = [
     label: '机构名称',
     component: 'Input',
     required: true,
+    colProps: { span: 24 },
   },
   {
     field: 'code',
     label: '编码',
     component: 'Input',
+    colProps: { span: 24 },
   },
   {
     field: 'pid',
@@ -84,6 +86,7 @@ export const formSchema: FormSchema[] = [
       getPopupContainer: () => document.body,
     },
     required: true,
+    colProps: { span: 24 },
   },
   {
     field: 'order',
@@ -92,6 +95,7 @@ export const formSchema: FormSchema[] = [
     defaultValue: 0,
     required: true,
     componentProps: { style: { width: '100%' } },
+    colProps: { span: 24 },
   },
   {
     field: 'status',
@@ -105,10 +109,12 @@ export const formSchema: FormSchema[] = [
       ],
     },
     required: true,
+    colProps: { span: 24 },
   },
   {
     label: '备注',
     field: 'remark',
     component: 'InputTextArea',
+    colProps: { span: 24 },
   },
 ];

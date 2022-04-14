@@ -1,5 +1,4 @@
 ﻿using SqlSugar;
-using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace Admin.NET.Core
@@ -7,8 +6,7 @@ namespace Admin.NET.Core
     /// <summary>
     /// 代码生成表
     /// </summary>
-    [SugarTable("sys_code_gen", TableDescription = "代码生成表")]
-    [Description("代码生成表")]
+    [SugarTable("sys_code_gen", "代码生成表")]
     [SqlSugarEntity]
     public class SysCodeGen : EntityBase
     {

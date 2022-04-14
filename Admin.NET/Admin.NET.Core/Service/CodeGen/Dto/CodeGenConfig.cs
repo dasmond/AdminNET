@@ -23,9 +23,9 @@
         /// <summary>
         /// 数据库字段名(首字母小写)
         /// </summary>
-        public string LowerColumnName => string.IsNullOrWhiteSpace(ColumnName)
-                                      ? null
-                                      : ColumnName.Substring(0, 1).ToLower() + ColumnName[1..];
+        public string LowerColumnName =>
+            string.IsNullOrWhiteSpace(ColumnName)
+            ? null : ColumnName[..1].ToLower() + ColumnName[1..];
 
         /// <summary>
         /// 字段描述
@@ -46,16 +46,18 @@
         /// 外键实体名称
         /// </summary>
         public string FkEntityName { get; set; }
+
         /// <summary>
         /// 外键表名称
         /// </summary>
         public string FkTableName { get; set; }
+
         /// <summary>
         /// 外键实体名称(首字母小写)
         /// </summary>
-        public string LowerFkEntityName => string.IsNullOrWhiteSpace(FkEntityName)
-                                        ? null
-                                        : FkEntityName.Substring(0, 1).ToLower() + FkEntityName[1..];
+        public string LowerFkEntityName =>
+            string.IsNullOrWhiteSpace(FkEntityName)
+            ? null : FkEntityName[..1].ToLower() + FkEntityName[1..];
 
         /// <summary>
         /// 外键显示字段
@@ -65,9 +67,9 @@
         /// <summary>
         /// 外键显示字段(首字母小写)
         /// </summary>
-        public string LowerFkColumnName => string.IsNullOrWhiteSpace(FkColumnName)
-                                        ? null
-                                        : (FkColumnName.Substring(0, 1).ToLower() + FkColumnName[1..]);
+        public string LowerFkColumnName =>
+            string.IsNullOrWhiteSpace(FkColumnName)
+            ? null : FkColumnName[..1].ToLower() + FkColumnName[1..];
 
         /// <summary>
         /// 外键显示字段.NET类型
@@ -140,7 +142,6 @@
                 {
                     str = "sysFile_FK_" + LowerColumnName;
                 }
-
                 return str;
             }
         }
@@ -159,6 +160,5 @@
         /// 父级字段
         /// </summary>
         public string PidColumn { get; set; }
-
     }
 }

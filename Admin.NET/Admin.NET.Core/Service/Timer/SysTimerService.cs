@@ -18,7 +18,7 @@ namespace Admin.NET.Core.Service
     /// <summary>
     /// 定时任务服务
     /// </summary>
-    [ApiDescriptionSettings(Name = "Timer", Order = 188)]
+    [ApiDescriptionSettings(Name = "定时任务", Order = 188)]
     public class SysTimerService : IDynamicApiController, ITransient
     {
         private readonly SqlSugarRepository<SysTimer> _sysTimerRep;

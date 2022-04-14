@@ -26,9 +26,8 @@
         public const string SysCaptchaFlag = "SysCaptchaFlag";
 
         /// <summary>
-        /// 实体所在程序集
+        /// 实体所在程序集-代码生成
         /// </summary>
-        public static string[] ENTITY_ASSEMBLY_NAME = new string[] { "Admin.NET.Core", "Admin.NET.Application" };
-
+        public static string[] EntityAssemblyName = new string[] { "Admin.NET.Core", "Admin.NET.Application" };
     }
 }
