@@ -205,17 +205,8 @@ namespace Admin.NET.Core.Service.CodeGen
                 var joinTableList = tableFieldList.Where(u => u.EffectType == "Upload" || u.EffectType == "fk").ToList();//需要连表查询的字段
                 (string joinTableNames, string lowerJoinTableNames) = GetJoinTableStr(joinTableList);//获取连表的实体名和别名
 
-                //反射获取实体sugarTable信息
-                var types = new List<Type>();
-                foreach (var assemblyName in CommonConst.EntityAssemblyName)
-                {
-                    Assembly asm = Assembly.Load(assemblyName);
-                    types.AddRange(asm.GetExportedTypes().ToList());
-                }
-                Type t = types.Where(x => x.Name == input.TableName).FirstOrDefault();
-                var sugarTable = t.GetCustomAttribute<SugarTable>();
 
-                var data = new CustomViewEngine
+                var data = new CustomViewEngine(_sysCodeGenRep)
                 {
                     AuthorName = input.AuthorName,
                     BusName = input.BusName,
@@ -224,8 +215,7 @@ namespace Admin.NET.Core.Service.CodeGen
                     QueryWhetherList = queryWhetherList,
                     TableField = tableFieldList,
                     IsJoinTable = joinTableList.Count > 0,
-                    IsUpload = joinTableList.Where(u => u.EffectType == "Upload").Any(),
-                    ColumnList = GetColumnListByTableName(sugarTable.TableName)
+                    IsUpload = joinTableList.Where(u => u.EffectType == "Upload").Count() > 0,
                 };
                 var tResult = _viewEngine.RunCompile<CustomViewEngine>(tContent, data, builderAction: builder =>
                 {
@@ -293,6 +283,7 @@ namespace Admin.NET.Core.Service.CodeGen
             {
                 Pid = pid,
                 Title = busName + "管理",
+                Name = className + "Management",
                 Type = MenuTypeEnum.Menu,
                 Path = "/" + className.ToLower(),
                 Component = "main/" + className + "/index",

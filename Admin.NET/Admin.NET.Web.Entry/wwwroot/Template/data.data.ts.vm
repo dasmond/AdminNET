@@ -98,6 +98,12 @@ if(@column.EffectType == "fk"){
     @:componentProps: {
       @:api: get@(@column.FkEntityName)Tree,
     @:},
+}else if(@column.EffectType == "Switch"){
+    @:component: '@(@column.EffectType)',
+    @:componentProps: {
+      @:checkedChildren: '是',
+      @:unCheckedChildren: '否',
+    @:},
 }else{
     @:component: '@column.EffectType',
 }

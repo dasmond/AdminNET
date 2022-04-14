@@ -46,12 +46,12 @@ if (@column.EffectType == "ApiTreeSelect"){
     @:public class @(@column.FkEntityName)TreeOutput: EntityBaseId
     @:{
         @:[SugarColumn(ColumnName = "@(@column.DisplayColumn)")]
-        @:public @(@Model.GetColumnNetType(@column.DisplayColumn)) Label { get; set; }
+        @:public @(@Model.GetColumnNetType(@column.FkTableName,@column.DisplayColumn)) Label { get; set; }
 
         @:[SugarColumn(ColumnName = "@(@column.ValueColumn)", IsPrimaryKey = true, IsIdentity = false)]
-        @:public @(@Model.GetColumnNetType(@column.ValueColumn))  Value { get; set; }
+        @:public @(@Model.GetColumnNetType(@column.FkTableName,@column.ValueColumn))  Value { get; set; }
 
-        @:public @(@Model.GetColumnNetType(@column.PidColumn)) @column.PidColumn { get; set; }
+        @:public @(@Model.GetColumnNetType(@column.FkTableName,@column.PidColumn)) @column.PidColumn { get; set; }
         @:[SugarColumn(IsIgnore = true)]
         @:public List<@(@column.FkEntityName)TreeOutput> Children { get; set; }
     @:}

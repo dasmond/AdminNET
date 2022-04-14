@@ -108,9 +108,15 @@ export const formSchema: FormSchema[] = [
   },
   {
     field: 'title',
-    label: '菜单名称',
+    label: '菜单标题',
     component: 'Input',
     required: true,
+  },
+  {
+    field: 'name',
+    label: '名称',
+    component: 'Input',
+    colProps: { span: 8 },
   },
   {
     field: 'pid',
@@ -139,7 +145,7 @@ export const formSchema: FormSchema[] = [
     field: 'icon',
     label: '图标',
     component: 'IconPicker',
-    required: ({ values }) => isDir(values.type),
+    //required: ({ values }) => isDir(values.type),
     ifShow: ({ values }) => !isButton(values.type),
   },
   {
