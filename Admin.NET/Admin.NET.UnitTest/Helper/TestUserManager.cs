@@ -1,9 +1,5 @@
 ﻿using Admin.NET.Core;
 using Furion.FriendlyException;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Admin.NET.Test
@@ -18,14 +14,19 @@ namespace Admin.NET.Test
         /// </summary>
         public static string TestUserName { get; set; }= "admin";
 
-        SqlSugarRepository<SysUser> _sysUserRep;
-        public TestUserManager(SqlSugarRepository<SysUser> _sysUserRep)
-        {
-            this._sysUserRep = _sysUserRep;
-        }
         private SysUser user;
 
         private long userId;
+
+
+        private readonly SqlSugarRepository<SysUser> _sysUserRep;
+
+
+        public TestUserManager(SqlSugarRepository<SysUser> sysUserRep)
+        {
+            _sysUserRep = sysUserRep;
+        }
+
         /// <summary>
         /// 用户ID
         /// </summary>
@@ -35,19 +36,22 @@ namespace Admin.NET.Test
         /// 用户名
         /// </summary>
         public string UserName => user.UserName;
+
         /// <summary>
         /// 真实名
         /// </summary>
-
         public string RealName => user.RealName;
+
         /// <summary>
         /// 是否超级管理员
         /// </summary>
         public bool SuperAdmin => true;
+
         /// <summary>
         /// OPENID
         /// </summary>
         public string OpenId => userId.ToString();
+
         /// <summary>
         /// 用户详细信息
         /// </summary>
@@ -70,9 +74,6 @@ namespace Admin.NET.Test
                 }
             }
             return user ?? throw Oops.Oh(ErrorCodeEnum.D1002);
-        }
-        
+        }        
     }
-
-
 }

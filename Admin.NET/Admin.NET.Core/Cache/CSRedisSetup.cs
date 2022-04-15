@@ -1,10 +1,10 @@
 ﻿using CSRedis;
 using Furion;
 using Microsoft.Extensions.Caching.Distributed;
+using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Caching.Redis;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
-using Microsoft.Extensions.Caching.Memory;
 
 namespace Admin.NET.Core
 {
@@ -29,7 +29,7 @@ namespace Admin.NET.Core
 
                     return new CSRedisCache(redis);
                 }
-                else //默认使用内存
+                else // 默认使用内存
                 {
                     services.AddDistributedMemoryCache();
                     IOptions<MemoryDistributedCacheOptions> options = provider.GetService<IOptions<MemoryDistributedCacheOptions>>();

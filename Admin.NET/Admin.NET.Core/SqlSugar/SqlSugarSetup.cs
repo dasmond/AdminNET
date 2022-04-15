@@ -25,7 +25,6 @@ namespace Admin.NET.Core
         /// <param name="configuration"></param>
         public static void AddSqlSugarSetup(this IServiceCollection services, IConfiguration configuration)
         {
-
             // SqlSugarScope用AddSingleton单例
             services.AddSingleton<ISqlSugarClient>(provider =>
             {
@@ -141,10 +140,10 @@ namespace Admin.NET.Core
                 // 初始化数据库结构及种子数据
                 if (dbOptions.InitTable)
                     InitDataBase(sqlSugar, dbOptions);
-                return sqlSugar; 
-            }); 
-            services.AddScoped(typeof(SqlSugarRepository<>)); // 注册仓储
 
+                return sqlSugar;
+            });
+            services.AddScoped(typeof(SqlSugarRepository<>)); // 注册仓储
         }
 
         /// <summary>

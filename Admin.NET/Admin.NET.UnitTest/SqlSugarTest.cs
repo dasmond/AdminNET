@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Xunit;
-using Admin.NET.Application;
+﻿using Admin.NET.Application.Serice;
 using Admin.NET.Core;
 using Furion;
-using Admin.NET.Core.Service;
-using Admin.NET.Application.Serice;
+using Xunit;
 
 namespace Admin.NET.Test
 {
@@ -34,7 +27,5 @@ namespace Admin.NET.Test
             var user = await userManager.CheckUserAsync(0);
             Assert.NotNull(user );
         }
-
-
     }
 }
