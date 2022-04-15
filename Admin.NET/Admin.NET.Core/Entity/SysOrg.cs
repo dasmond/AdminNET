@@ -9,7 +9,7 @@ namespace Admin.NET.Core
     /// </summary>
     [SugarTable("sys_org", "系统机构表")]
     [SqlSugarEntity]
-    public class SysOrg : EntityBase
+    public class SysOrg : EntityTenant
     {
         /// <summary>
         /// 父Id

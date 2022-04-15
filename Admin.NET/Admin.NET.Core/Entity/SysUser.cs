@@ -9,7 +9,7 @@ namespace Admin.NET.Core
     /// </summary>
     [SugarTable("sys_user", "系统用户表")]
     [SqlSugarEntity]
-    public class SysUser : EntityBase
+    public class SysUser : EntityTenant
     {
         /// <summary>
         /// 账号

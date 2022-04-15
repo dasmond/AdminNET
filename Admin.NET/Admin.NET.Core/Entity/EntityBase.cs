@@ -59,6 +59,19 @@ namespace Admin.NET.Core
         /// <summary>
         /// 创建者部门Id
         /// </summary>
+        [SugarColumn(ColumnDescription = "创建者部门Id")]
         public virtual long? CreateOrgId { get; set; }
+    }
+
+    /// <summary>
+    /// 租户基类实体
+    /// </summary>
+    public abstract class EntityTenant : EntityBase
+    {
+        /// <summary>
+        /// 租户id
+        /// </summary>
+        [SugarColumn(ColumnDescription = "租户id")]
+        public virtual long? TenantId { get; set; }
     }
 }
