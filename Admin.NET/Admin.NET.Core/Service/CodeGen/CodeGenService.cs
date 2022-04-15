@@ -7,11 +7,9 @@ using Furion.ViewEngine;
 using Mapster;
 using Microsoft.AspNetCore.Mvc;
 using SqlSugar;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -215,7 +213,7 @@ namespace Admin.NET.Core.Service.CodeGen
                     QueryWhetherList = queryWhetherList,
                     TableField = tableFieldList,
                     IsJoinTable = joinTableList.Count > 0,
-                    IsUpload = joinTableList.Where(u => u.EffectType == "Upload").Count() > 0,
+                    IsUpload = joinTableList.Where(u => u.EffectType == "Upload").Any(),
                 };
                 var tResult = _viewEngine.RunCompile<CustomViewEngine>(tContent, data, builderAction: builder =>
                 {
@@ -242,8 +240,8 @@ namespace Admin.NET.Core.Service.CodeGen
         {
             var uploads = configs.Where(u => u.EffectType == "Upload").ToList();
             var fks = configs.Where(u => u.EffectType == "fk").ToList();
-            string str = "";//<Order, OrderItem, Custom>
-            string lowerStr = "";//(o, i, c)
+            string str = ""; //<Order, OrderItem, Custom>
+            string lowerStr = ""; //(o, i, c)
             foreach (var item in uploads)
             {
                 lowerStr += "sysFile_FK_" + item.LowerColumnName + ",";
