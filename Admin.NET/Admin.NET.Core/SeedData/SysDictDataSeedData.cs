@@ -20,13 +20,10 @@ namespace Admin.NET.Core.SeedData
                 new SysDictData{Id= 269709947433285,DictTypeId= 269037953163589,Value= "外键", Code="fk",Order=100, Remark= "外键",  Status= StatusEnum.Enable,CreateTime=DateTime.Parse("2022-02-10 00:00:00")},
                 new SysDictData{Id= 269710006817093,DictTypeId= 269037953163589,Value= "时间选择",Code="DatePicker", Order=100, Remark= "时间选择",Status= StatusEnum.Enable,CreateTime= DateTime.Parse("2022-02-10 00:00:00")},
                 new SysDictData{Id= 269710248583493,DictTypeId= 269037953163589,Value= "选择器",Code="Select",Order=  100, Remark="选择器",  Status= StatusEnum.Enable,CreateTime=DateTime.Parse("2022-02-10 00:00:00")},
-                new SysDictData{Id= 269710750769477,DictTypeId= 269037953163589,Value= "单选框",Code="RadioGroup",Order=  100, Remark= "单选框", Status= StatusEnum.Enable,CreateTime= DateTime.Parse("2022-02-10 00:00:00")},
-                new SysDictData{Id= 269710823379269,DictTypeId= 269037953163589,Value= "多选框",Code="Checkbox",Order=  100, Remark= "多选框", Status= StatusEnum.Enable,CreateTime= DateTime.Parse("2022-02-10 00:00:00")},
                 new SysDictData{Id= 269710898270533,DictTypeId= 269037953163589,Value= "数字输入框",Code="InputNumber",Order=  100, Remark= "数字输入框",Status= StatusEnum.Enable,CreateTime= DateTime.Parse("2022-02-10 00:00:00")},
                 new SysDictData{Id= 269710996332869,DictTypeId= 269037953163589,Value= "文本域",Code="InputTextArea",Order=  100, Remark= "文本域", Status= StatusEnum.Enable,CreateTime= DateTime.Parse("2022-02-10 00:00:00")},
                 new SysDictData{Id= 269711041397061,DictTypeId= 269037953163589,Value= "上传",Code="Upload",Order=  100, Remark= "上传",Status= StatusEnum.Enable,CreateTime= DateTime.Parse("2022-02-10 00:00:00")},
                 new SysDictData{Id= 269711313645893,DictTypeId= 269037953163589,Value= "树选择",Code="ApiTreeSelect",Order=100, Remark= "树选择", Status= StatusEnum.Enable,CreateTime= DateTime.Parse("2022-02-10 00:00:00")},
-                new SysDictData{Id= 269711498232133,DictTypeId= 269037953163589,Value= "API选择器", Code="ApiSelect",Order=100, Remark= "从api加载数据源",Status= StatusEnum.Enable,CreateTime= DateTime.Parse("2022-02-10 00:00:00")},
                 new SysDictData{Id= 270434376429893,DictTypeId= 269037953163589,Value= "开关",Code="Switch",Order= 100, Remark= "开关",Status= StatusEnum.Enable,   CreateTime= DateTime.Parse("2022-02-10 00:00:00")},
 
                 new SysDictData{Id= 269405027090757,DictTypeId= 269404851347781,Value= "等于",Code="==",Order= 1, Remark= "等于",Status= StatusEnum.Enable,   CreateTime= DateTime.Parse("2022-02-10 00:00:00")},
