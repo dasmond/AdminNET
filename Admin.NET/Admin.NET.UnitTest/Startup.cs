@@ -6,8 +6,8 @@ using Xunit.Abstractions;
 using Xunit.Sdk;
 
 // 配置启动类类型，第一个参数是 Startup 类完整限定名，第二个参数是当前项目程序集名称
-[assembly: TestFramework("Admin.NET.Test.Startup", "Admin.NET.Test")]
-namespace Admin.NET.Test
+[assembly: TestFramework("Admin.NET.UnitTest.Startup", "Admin.NET.UnitTest")]
+namespace Admin.NET.UnitTest
 {
     /// <summary>
     /// 单元测试启动类
