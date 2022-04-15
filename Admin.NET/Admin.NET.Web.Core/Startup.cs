@@ -56,9 +56,9 @@ namespace Admin.NET.Web.Core
             });
 
             // 注册OSS对象存储
-            var ossOptions = App.GetOptions<OSSProviderOptions>();
             services.AddOSSService(option =>
             {
+                var ossOptions = App.GetOptions<OSSProviderOptions>();
                 option.Provider = (OSSProvider)ossOptions.Provider;
                 option.Endpoint = ossOptions.Endpoint;
                 option.AccessKey = ossOptions.AccessKey;

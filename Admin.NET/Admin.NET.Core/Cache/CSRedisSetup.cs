@@ -3,6 +3,8 @@ using Furion;
 using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Caching.Redis;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace Admin.NET.Core
 {
@@ -14,17 +16,26 @@ namespace Admin.NET.Core
         /// <param name="services"></param>
         public static void AddCSRedisSetup(this IServiceCollection services)
         {
-            var cacheOptions = App.GetOptions<CacheOptions>();
-            if (cacheOptions.CacheType == CacheTypeEnum.RedisCache.ToString())
+            services.AddSingleton<IDistributedCache>(provider =>
             {
-                var redisStr = $"{cacheOptions.RedisConnectionString},prefix={cacheOptions.InstanceName}";
+                var cacheOptions = App.GetOptions<CacheOptions>();
+                if (cacheOptions.CacheType == CacheTypeEnum.RedisCache.ToString())
+                {
+                    var redisStr = $"{cacheOptions.RedisConnectionString},prefix={cacheOptions.InstanceName}";
 
-                var redis = new CSRedisClient(redisStr);
-                services.AddSingleton(redis);
-                RedisHelper.Initialization(redis);
+                    var redis = new CSRedisClient(redisStr);
+                    services.AddSingleton(redis);
+                    RedisHelper.Initialization(redis);
 
-                services.AddSingleton<IDistributedCache>(new CSRedisCache(redis));
-            }
+                    return new CSRedisCache(redis);
+                }
+                else //默认使用内存
+                {
+                    services.AddDistributedMemoryCache();
+                    IOptions<MemoryDistributedCacheOptions> options = provider.GetService<IOptions<MemoryDistributedCacheOptions>>();
+                    return new MemoryDistributedCache(options);
+                }
+            });
         }
     }
 }
