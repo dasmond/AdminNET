@@ -1,8 +1,6 @@
-﻿using System;
-using Admin.NET.Core;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace Admin.NET.Application
+namespace Admin.NET.Core.Service
 {
     /// <summary>
     /// 租户管理输入参数

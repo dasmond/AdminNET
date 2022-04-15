@@ -59,7 +59,6 @@ namespace Admin.NET.Core
         /// <summary>
         /// 创建者部门Id
         /// </summary>
-        [SugarColumn(ColumnDescription = "创建者部门Id")]
         public virtual long? CreateOrgId { get; set; }
     }
 
@@ -69,9 +68,9 @@ namespace Admin.NET.Core
     public abstract class EntityTenant : EntityBase
     {
         /// <summary>
-        /// 租户id
+        /// 租户Id
         /// </summary>
-        [SugarColumn(ColumnDescription = "租户id")]
+        [SugarColumn(ColumnDescription = "租户Id")]
         public virtual long? TenantId { get; set; }
     }
 }

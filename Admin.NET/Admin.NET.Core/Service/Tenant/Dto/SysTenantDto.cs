@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Admin.NET.Application
+﻿namespace Admin.NET.Core.Service
 {
     /// <summary>
     /// 租户管理输出参数
@@ -50,7 +48,6 @@ namespace Admin.NET.Application
         /// <summary>
         /// 备注
         /// </summary>
-        public string Remark { get; set; }
-        
+        public string Remark { get; set; }        
     }
 }

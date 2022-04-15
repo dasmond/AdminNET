@@ -28,9 +28,6 @@ namespace Admin.NET.Core
             var dbOptions = App.GetOptions<ConnectionStringsOptions>();
             DealConnectionStr(ref dbOptions); // 处理本地库根目录路径
 
-            //是否需要初始化数据库
-            dbOptions.InitTable = true;
-
             var connectionConfigs = new List<ConnectionConfig>();
             var configureExternalServices = new ConfigureExternalServices
             {
@@ -77,6 +74,9 @@ namespace Admin.NET.Core
                 {
                     var dbProvider = db.GetConnection((string)config.ConfigId);
 
+                    // 执行超时时间
+                    dbProvider.Ado.CommandTimeOut = 30;
+
                     // 打印SQL语句
                     dbProvider.Aop.OnLogExecuting = (sql, pars) =>
                     {
@@ -97,11 +97,6 @@ namespace Admin.NET.Core
                         App.PrintToMiniProfiler("SqlSugar", "Info", sql + "\r\n" + db.Utilities.SerializeObject(pars.ToDictionary(it => it.ParameterName, it => it.Value)));
                     };
 
-                    //// 是否演示环境
-                    //var isDemoEnv = App.GetService<SysConfigService>().GetDemoEnvFlag().GetAwaiter().GetResult();
-                    //if (isDemoEnv)
-                    //    throw Oops.Oh(ErrorCodeEnum.D1200);
-
                     // 数据审计
                     dbProvider.Aop.DataExecuting = (oldValue, entityInfo) =>
                     {
@@ -114,16 +109,9 @@ namespace Admin.NET.Core
                             if (entityInfo.PropertyName == "CreateTime")
                                 entityInfo.SetValue(DateTime.Now);
                             if (App.User != null)
-                            {                                
+                            {
                                 if (entityInfo.PropertyName == "TenantId")
-                                {
-                                    var tenantId = ((dynamic)entityInfo.EntityValue).TenantId;
-                                    if (tenantId == null || tenantId == 0)
-                                    {
-                                        entityInfo.SetValue(App.User.FindFirst(ClaimConst.TenantId)?.Value);
-                                    }
-                                }
-                                                                         
+                                    entityInfo.SetValue(App.User.FindFirst(ClaimConst.TenantId)?.Value);
                                 if (entityInfo.PropertyName == "CreateUserId")
                                     entityInfo.SetValue(App.User.FindFirst(ClaimConst.UserId)?.Value);
                                 if (entityInfo.PropertyName == "CreateOrgId")
@@ -140,14 +128,13 @@ namespace Admin.NET.Core
                         }
                     };
 
-                    // 配置业务数据权限过滤器
+                    // 配置业务数据过滤器
                     SetDataEntityFilter(dbProvider);
                     // 配置租户过滤器
                     SetTenantEntityFilter(dbProvider);
                 });
 
             });
-
             services.AddSingleton<ISqlSugarClient>(sqlSugar); // SqlSugarScope用AddSingleton单例
             services.AddScoped(typeof(SqlSugarRepository<>)); // 注册仓储
 
@@ -253,17 +240,17 @@ namespace Admin.NET.Core
         }
 
         /// <summary>
-        /// 配置多租户过滤器
+        /// 配置租户过滤器
         /// </summary>
-        public static async void SetTenantEntityFilter(SqlSugarProvider db)
+        public static void SetTenantEntityFilter(SqlSugarProvider db)
         {
-            // 获取业务数据表集合
+            // 获取租户实体数据表集合
             var dataEntityTypes = App.EffectiveTypes.Where(u => !u.IsInterface && !u.IsAbstract && u.IsClass
                 && u.BaseType == typeof(EntityTenant));
             if (!dataEntityTypes.Any()) return;
 
             var tenantId = App.User?.FindFirst(ClaimConst.TenantId)?.Value;
-            if (string.IsNullOrWhiteSpace(tenantId)) return;            
+            if (string.IsNullOrWhiteSpace(tenantId)) return;
 
             foreach (var dataEntityType in dataEntityTypes)
             {

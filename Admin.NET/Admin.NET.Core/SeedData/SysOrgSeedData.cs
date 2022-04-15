@@ -28,12 +28,12 @@ namespace Admin.NET.Core
                 new SysOrg{ Id=252885263003732, Pid=252885263003730, Name="研发部", Code="hddq_yfb", CreateTime=DateTime.Parse("2022-02-10 00:00:00"), Remark="研发部", TenantId=142307070918780 },
                 new SysOrg{ Id=252885263003733, Pid=252885263003730, Name="财务部", Code="hddq_cwb", CreateTime=DateTime.Parse("2022-02-10 00:00:00"), Remark="财务部", TenantId=142307070918780 },
 
-                new SysOrg{ Id=252885263003740, Pid=0, Name="华南地区", Code="hndq", CreateTime=DateTime.Parse("2022-02-10 00:00:00"), Remark="华南地区" , TenantId=142307070918780 },
+                new SysOrg{ Id=252885263003740, Pid=0, Name="华南地区", Code="hndq", CreateTime=DateTime.Parse("2022-02-10 00:00:00"), Remark="华南地区", TenantId=142307070918780  },
                 new SysOrg{ Id=252885263003741, Pid=252885263003740, Name="市场部", Code="hndq_scb", CreateTime=DateTime.Parse("2022-02-10 00:00:00"), Remark="市场部", TenantId=142307070918780 },
                 new SysOrg{ Id=252885263003742, Pid=252885263003740, Name="研发部", Code="hndq_yfb", CreateTime=DateTime.Parse("2022-02-10 00:00:00"), Remark="市场部", TenantId=142307070918780 },
                 new SysOrg{ Id=252885263003743, Pid=252885263003740, Name="财务部", Code="hndq_cwb", CreateTime=DateTime.Parse("2022-02-10 00:00:00"), Remark="市场部", TenantId=142307070918780 },
 
-                new SysOrg{ Id=252885263003744, Pid=0, Name="租户1公司", Code="zhgs", CreateTime=DateTime.Parse("2022-02-10 00:00:00"), Remark="租户1公司" , TenantId=142307070918781 },
+                new SysOrg{ Id=252885263003750, Pid=0, Name="租户1公司", Code="zhgs", CreateTime=DateTime.Parse("2022-02-10 00:00:00"), Remark="租户1公司" , TenantId=142307070918781 },
             };
         }
     }

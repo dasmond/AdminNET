@@ -1,18 +1,15 @@
-﻿using Furion.DependencyInjection;
+﻿using Furion.DataEncryption;
+using Furion.DependencyInjection;
 using Furion.DynamicApiController;
+using Furion.FriendlyException;
 using Mapster;
 using Microsoft.AspNetCore.Mvc;
 using SqlSugar;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Admin.NET.Core;
-using Admin.NET.Core.Service;
-using Furion.DataEncryption;
-using Furion.FriendlyException;
-using System.Collections.Generic;
 
-namespace Admin.NET.Application
+namespace Admin.NET.Core.Service
 {
     /// <summary>
     /// 租户管理服务
@@ -27,9 +24,9 @@ namespace Admin.NET.Application
         private readonly SqlSugarRepository<SysUser> _userRep;
         private readonly SqlSugarRepository<SysUserExtOrgPos> _sysUserExtOrgPosRep;
         private readonly SqlSugarRepository<SysRoleMenu> _sysRoleMenuRep;
-        private readonly SysUserRoleService _sysUserRoleService;
-        private readonly SysRoleMenuService _sysRoleMenuService;
         private readonly SqlSugarRepository<SysUserRole> _userRoleRep;
+        private readonly SysUserRoleService _sysUserRoleService;
+        private readonly SysRoleMenuService _sysRoleMenuService;        
 
         public SysTenantService(SqlSugarRepository<SysTenant> rep,
             SqlSugarRepository<SysOrg> orgRep,
@@ -38,9 +35,9 @@ namespace Admin.NET.Application
             SqlSugarRepository<SysUser> userRep,
             SqlSugarRepository<SysUserExtOrgPos> sysUserExtOrgPosRep,
             SqlSugarRepository<SysRoleMenu> sysRoleMenuRep,
+            SqlSugarRepository<SysUserRole> userRoleRep,
             SysUserRoleService sysUserRoleService,
-            SysRoleMenuService sysRoleMenuService,
-            SqlSugarRepository<SysUserRole> userRoleRep)
+            SysRoleMenuService sysRoleMenuService)
         {
             _rep = rep;
             _orgRep = orgRep;
@@ -49,13 +46,13 @@ namespace Admin.NET.Application
             _userRep = userRep;
             _sysUserExtOrgPosRep = sysUserExtOrgPosRep;
             _sysRoleMenuRep = sysRoleMenuRep;
-            _sysUserRoleService = sysUserRoleService;
-            _sysRoleMenuService = sysRoleMenuService;
             _userRoleRep = userRoleRep;
+            _sysUserRoleService = sysUserRoleService;
+            _sysRoleMenuService = sysRoleMenuService;            
         }
 
         /// <summary>
-        /// 分页查询租户管理
+        /// 获取租户分页列表
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
@@ -63,12 +60,12 @@ namespace Admin.NET.Application
         public async Task<dynamic> Page([FromQuery] SysTenantInput input)
         {
             return await _rep.Context.Queryable<SysTenant>()
-                        .WhereIF(!string.IsNullOrWhiteSpace(input.Name), u => u.Name.Contains(input.Name.Trim()))
+                .WhereIF(!string.IsNullOrWhiteSpace(input.Name), u => u.Name.Contains(input.Name.Trim()))
                 .ToPagedListAsync(input.Page, input.PageSize);
         }
 
         /// <summary>
-        /// 增加租户管理
+        /// 增加租户
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
@@ -81,10 +78,10 @@ namespace Admin.NET.Application
         }
 
         /// <summary>
-        /// 新增租户时，初始化数据
+        /// 新增租户初始化数据
         /// </summary>
         /// <param name="newTenant"></param>
-        public async Task InitNewTenant(SysTenant newTenant)
+        private async Task InitNewTenant(SysTenant newTenant)
         {
             long tenantId = newTenant.Id;
             string email = newTenant.Email;
@@ -132,7 +129,6 @@ namespace Admin.NET.Application
                 PosId = newPos.Id,
                 Birthday = System.DateTime.Parse("1988-02-03"),
                 RealName = "管理员"
-
             };
             await _userRep.InsertAsync(newUser);
 
@@ -150,11 +146,10 @@ namespace Admin.NET.Application
                 UserId = newUser.Id
             };
             await _sysUserExtOrgPosRep.InsertAsync(newUserExtOrgPos);
-
         }
 
         /// <summary>
-        /// 删除租户管理
+        /// 删除租户
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
@@ -164,7 +159,7 @@ namespace Admin.NET.Application
             var entity = await _rep.GetFirstAsync(u => u.Id == input.Id);
             await _rep.DeleteAsync(entity);
             var users = await _userRep.AsQueryable().Filter(null,true).Where(u => u.TenantId == input.Id).ToListAsync();
-            // 超级管理员所在租户认为是默认租户
+            // 超级管理员所在租户为默认租户
             if (users.Any(u => u.UserType == UserTypeEnum.SuperAdmin))
                 throw Oops.Oh(ErrorCodeEnum.D1023);
 
@@ -191,7 +186,7 @@ namespace Admin.NET.Application
         }
 
         /// <summary>
-        /// 更新租户管理
+        /// 更新租户
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
@@ -199,11 +194,11 @@ namespace Admin.NET.Application
         public async Task Update(UpdateSysTenantInput input)
         {
             var entity = input.Adapt<SysTenant>();
-            await _rep.Context.Updateable(entity).IgnoreColumns(ignoreAllNullColumns: true).ExecuteCommandAsync();
+            await _rep.Context.Updateable(entity).IgnoreColumns(true).ExecuteCommandAsync();
         }
 
         /// <summary>
-        /// 获取租户管理
+        /// 获取租户详情
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
@@ -214,7 +209,7 @@ namespace Admin.NET.Application
         }
 
         /// <summary>
-        /// 获取租户管理列表
+        /// 获取租户列表
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
@@ -234,7 +229,7 @@ namespace Admin.NET.Application
         {
             var tenantAdminUser = await GetTenantAdminUser(input.Id);
             if (tenantAdminUser == null) return;
-            // 这里传false，就不会走全局tenantId过滤。true的话查不到数据，当前功能为超级管理员使用
+            // 1、False就不走全局TenantId过滤 2、True查不到数据为超级管理员使用
             var roleIds = await _sysUserRoleService.GetUserRoleIdList(tenantAdminUser.Id);
             input.Id = roleIds[0]; // 重置租户管理员角色Id
             await _sysRoleMenuService.GrantRoleMenu(input);
@@ -277,7 +272,5 @@ namespace Admin.NET.Application
         {
             return await _userRep.AsQueryable().Filter(null, true).Where(u => u.TenantId == tenantId && u.UserType == UserTypeEnum.Admin).FirstAsync();                                   
         }
-
-
     }
 }

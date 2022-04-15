@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Furion.DependencyInjection;
+using System;
 using System.Data;
 
 namespace Admin.NET.Core
@@ -6,7 +7,7 @@ namespace Admin.NET.Core
     /// <summary>
     /// SqlSugar 工作单元配置特性
     /// </summary>
-    [AttributeUsage(AttributeTargets.Method, Inherited = true)]
+    [SuppressSniffer, AttributeUsage(AttributeTargets.Method, Inherited = true)]
     public class SqlSugarUnitOfWorkAttribute : Attribute
     {
         /// <summary>
