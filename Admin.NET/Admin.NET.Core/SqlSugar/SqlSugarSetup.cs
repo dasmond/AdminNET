@@ -111,7 +111,11 @@ namespace Admin.NET.Core
                             if (App.User != null)
                             {
                                 if (entityInfo.PropertyName == "TenantId")
-                                    entityInfo.SetValue(App.User.FindFirst(ClaimConst.TenantId)?.Value);
+                                {
+                                    var tenantId = ((dynamic)entityInfo.EntityValue).TenantId;
+                                    if (tenantId == null || tenantId == 0)
+                                        entityInfo.SetValue(App.User.FindFirst(ClaimConst.TenantId)?.Value);
+                                }
                                 if (entityInfo.PropertyName == "CreateUserId")
                                     entityInfo.SetValue(App.User.FindFirst(ClaimConst.UserId)?.Value);
                                 if (entityInfo.PropertyName == "CreateOrgId")

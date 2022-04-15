@@ -131,7 +131,6 @@
       }
 
       async function handleDelete(record: Recordable) {
-        console.log(record);
         await deleteUser(record.id);
         reload();
       }

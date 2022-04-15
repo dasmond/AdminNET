@@ -112,7 +112,6 @@
       }
 
       async function handleDelete(record: Recordable) {
-        console.log(record);
         await deleteTenant(record.id);
         reload();
         createMessage.success('删除成功！');
