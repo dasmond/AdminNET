@@ -2,7 +2,7 @@
 using Furion.FriendlyException;
 using System.Threading.Tasks;
 
-namespace Admin.NET.Test
+namespace Admin.NET.UnitTest
 {
     /// <summary>
     /// 模拟用户管理
