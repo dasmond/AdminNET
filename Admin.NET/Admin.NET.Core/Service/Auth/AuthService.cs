@@ -70,7 +70,7 @@ namespace Admin.NET.Core.Service
             var accessToken = JWTEncryption.Encrypt(new Dictionary<string, object>
             {
                 {ClaimConst.UserId, user.Id},
-                //{ClaimConst.TenantId, user.TenantId},
+                {ClaimConst.TenantId, user.TenantId},
                 {ClaimConst.UserName, user.UserName},
                 {ClaimConst.RealName, user.RealName},
                 {ClaimConst.SuperAdmin, user.UserType},

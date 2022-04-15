@@ -8,7 +8,7 @@ namespace Admin.NET.Core
     /// </summary>
     [SugarTable("sys_pos", "系统职位表")]
     [SqlSugarEntity]
-    public class SysPos : EntityBase
+    public class SysPos : EntityTenant
     {
         /// <summary>
         /// 名称

@@ -16,7 +16,8 @@ namespace Admin.NET.Core
             return new[]
             {
                 new SysUserRole{ Id=252885263003000, UserId=252885263003721, RoleId=252885263003721 },
-                new SysUserRole{ Id=252885263003001, UserId=252885263003722, RoleId=252885263003722 }
+                new SysUserRole{ Id=252885263003001, UserId=252885263003722, RoleId=252885263003722 },
+                new SysUserRole{ Id=252885263003002, UserId=252885263003723, RoleId=252885263003724 }
             };
         }
     }
