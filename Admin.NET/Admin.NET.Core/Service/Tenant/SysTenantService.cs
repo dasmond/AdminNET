@@ -131,7 +131,8 @@ namespace Admin.NET.Core.Service
                 OrgId = newOrg.Id,
                 PosId = newPos.Id,
                 Birthday = System.DateTime.Parse("1988-02-03"),
-                RealName = "管理员"
+                RealName = "管理员",
+                Remark = "管理员"
             };
             await _userRep.InsertAsync(newUser);
 
@@ -198,6 +199,11 @@ namespace Admin.NET.Core.Service
         {
             var entity = input.Adapt<SysTenant>();
             await _tenantRep.Context.Updateable(entity).IgnoreColumns(true).ExecuteCommandAsync();
+
+            var tenantAdminUser = await GetTenantAdminUser(input.Id);
+            if (tenantAdminUser == null) return;
+            tenantAdminUser.UserName = entity.AdminName;
+            await _userRep.Context.Updateable(tenantAdminUser).UpdateColumns(u => new { u.UserName }).ExecuteCommandAsync();
         }
 
         /// <summary>
@@ -232,7 +238,6 @@ namespace Admin.NET.Core.Service
         {
             var tenantAdminUser = await GetTenantAdminUser(input.Id);
             if (tenantAdminUser == null) return;
-            // 1、False就不走全局TenantId过滤 2、True查不到数据为超级管理员使用
             var roleIds = await _sysUserRoleService.GetUserRoleIdList(tenantAdminUser.Id);
             input.Id = roleIds[0]; // 重置租户管理员角色Id
             await _sysRoleMenuService.GrantRoleMenu(input);

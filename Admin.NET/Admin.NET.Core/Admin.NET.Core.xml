@@ -4868,17 +4868,7 @@
             管理员名称
             </summary>
         </member>
-        <member name="P:Admin.NET.Core.Service.AddTenantInput.Email">
-            <summary>
-            电子邮箱
-            </summary>
-        </member>
         <member name="P:Admin.NET.Core.Service.DeleteTenantInput.Id">
-            <summary>
-            Id
-            </summary>
-        </member>
-        <member name="P:Admin.NET.Core.Service.UpdateTenantInput.Id">
             <summary>
             Id
             </summary>
@@ -4888,14 +4878,14 @@
             租户管理服务
             </summary>
         </member>
-        <member name="M:Admin.NET.Core.Service.SysTenantService.Page(Admin.NET.Core.Service.TenantInput)">
+        <member name="M:Admin.NET.Core.Service.SysTenantService.GetTenantPageList(Admin.NET.Core.Service.TenantInput)">
             <summary>
             获取租户分页列表
             </summary>
             <param name="input"></param>
             <returns></returns>
         </member>
-        <member name="M:Admin.NET.Core.Service.SysTenantService.Add(Admin.NET.Core.Service.AddTenantInput)">
+        <member name="M:Admin.NET.Core.Service.SysTenantService.AddTenant(Admin.NET.Core.Service.AddTenantInput)">
             <summary>
             增加租户
             </summary>
@@ -4904,32 +4894,32 @@
         </member>
         <member name="M:Admin.NET.Core.Service.SysTenantService.InitNewTenant(Admin.NET.Core.SysTenant)">
             <summary>
-            新增租户初始化数据
+            初始化新增租户数据
             </summary>
             <param name="newTenant"></param>
         </member>
-        <member name="M:Admin.NET.Core.Service.SysTenantService.Delete(Admin.NET.Core.Service.DeleteTenantInput)">
+        <member name="M:Admin.NET.Core.Service.SysTenantService.DeleteTenant(Admin.NET.Core.Service.DeleteTenantInput)">
             <summary>
             删除租户
             </summary>
             <param name="input"></param>
             <returns></returns>
         </member>
-        <member name="M:Admin.NET.Core.Service.SysTenantService.Update(Admin.NET.Core.Service.UpdateTenantInput)">
+        <member name="M:Admin.NET.Core.Service.SysTenantService.UpdateTenant(Admin.NET.Core.Service.UpdateTenantInput)">
             <summary>
             更新租户
             </summary>
             <param name="input"></param>
             <returns></returns>
         </member>
-        <member name="M:Admin.NET.Core.Service.SysTenantService.Get(Admin.NET.Core.Service.QueryeTenantInput)">
+        <member name="M:Admin.NET.Core.Service.SysTenantService.GetTenant(Admin.NET.Core.Service.QueryeTenantInput)">
             <summary>
             获取租户详情
             </summary>
             <param name="input"></param>
             <returns></returns>
         </member>
-        <member name="M:Admin.NET.Core.Service.SysTenantService.List(Admin.NET.Core.Service.TenantInput)">
+        <member name="M:Admin.NET.Core.Service.SysTenantService.GetTenantList(Admin.NET.Core.Service.TenantInput)">
             <summary>
             获取租户列表
             </summary>
@@ -4950,7 +4940,7 @@
             <param name="input"></param>
             <returns></returns>
         </member>
-        <member name="M:Admin.NET.Core.Service.SysTenantService.ResetUserPwd(Admin.NET.Core.Service.QueryeTenantInput)">
+        <member name="M:Admin.NET.Core.Service.SysTenantService.ResetTenantPwd(Admin.NET.Core.Service.QueryeTenantInput)">
             <summary>
             重置租户管理员密码
             </summary>

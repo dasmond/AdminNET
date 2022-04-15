@@ -53,13 +53,13 @@ namespace Admin.NET.Core.Service
         /// <summary>
         /// 公司名称
         /// </summary>
-        [Required(ErrorMessage = "公司名称不能为空")]
+        [Required(ErrorMessage = "公司名称不能为空"), MinLength(2, ErrorMessage = "公司名称不能少于2个字符")]
         public override string Name { get; set; }
         
         /// <summary>
         /// 管理员名称
         /// </summary>
-        [Required(ErrorMessage = "管理员名称不能为空")]
+        [Required(ErrorMessage = "管理员名称不能为空"), MinLength(3, ErrorMessage = "管理员名称不能少于3个字符")]
         public override string AdminName { get; set; }        
     }
 
@@ -69,13 +69,28 @@ namespace Admin.NET.Core.Service
         /// Id
         /// </summary>
         [Required(ErrorMessage = "Id不能为空")]
-        public long Id { get; set; }
-        
+        public long Id { get; set; }        
     }
 
-    public class UpdateTenantInput : DeleteTenantInput
+    public class UpdateTenantInput : TenantInput
     {
-    
+        /// <summary>
+        /// Id
+        /// </summary>
+        [Required(ErrorMessage = "Id不能为空")]
+        public long Id { get; set; }
+
+        /// <summary>
+        /// 公司名称
+        /// </summary>
+        [Required(ErrorMessage = "公司名称不能为空"), MinLength(2, ErrorMessage = "公司名称不能少于2个字符")]
+        public override string Name { get; set; }
+
+        /// <summary>
+        /// 管理员名称
+        /// </summary>
+        [Required(ErrorMessage = "管理员名称不能为空"), MinLength(3, ErrorMessage = "管理员名称不能少于3个字符")]
+        public override string AdminName { get; set; }
     }
 
     public class QueryeTenantInput : DeleteTenantInput
