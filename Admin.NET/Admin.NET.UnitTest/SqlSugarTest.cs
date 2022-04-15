@@ -3,7 +3,7 @@ using Admin.NET.Core;
 using Furion;
 using Xunit;
 
-namespace Admin.NET.Test
+namespace Admin.NET.UnitTest
 {
     public class SqlSugarTest
     {
