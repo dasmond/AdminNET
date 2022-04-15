@@ -25,121 +25,126 @@ namespace Admin.NET.Core
         /// <param name="configuration"></param>
         public static void AddSqlSugarSetup(this IServiceCollection services, IConfiguration configuration)
         {
-            var dbOptions = App.GetOptions<ConnectionStringsOptions>();
-            DealConnectionStr(ref dbOptions); // 处理本地库根目录路径
 
-            var connectionConfigs = new List<ConnectionConfig>();
-            var configureExternalServices = new ConfigureExternalServices
+            // SqlSugarScope用AddSingleton单例
+            services.AddSingleton<ISqlSugarClient>(provider =>
             {
-                EntityService = (type, column) => // 修改列
-                {
-                    // 带?问号类型则可空
-                    if (type.PropertyType.IsGenericType && type.PropertyType.GetGenericTypeDefinition() == typeof(Nullable<>))
-                    {
-                        column.IsNullable = true;
-                    }
-                    // string类型没有Required则可空
-                    else if (type.PropertyType == typeof(string) && type.GetCustomAttribute<RequiredAttribute>() == null)
-                    {
-                        column.IsNullable = true;
-                    }
-                },
-            };
-            var defaultConnection = new ConnectionConfig()
-            {
-                DbType = (DbType)Convert.ToInt32(Enum.Parse(typeof(DbType), dbOptions.DefaultDbType)),
-                ConnectionString = dbOptions.DefaultConnection,
-                IsAutoCloseConnection = true,
-                ConfigId = dbOptions.DefaultConfigId,
-                ConfigureExternalServices = configureExternalServices
-            };
-            connectionConfigs.Add(defaultConnection);
+                var dbOptions = App.GetOptions<ConnectionStringsOptions>();
+                DealConnectionStr(ref dbOptions); // 处理本地库根目录路径
 
-            dbOptions.DbConfigs.ForEach(config =>
-            {
-                var connection = new ConnectionConfig()
+                var connectionConfigs = new List<ConnectionConfig>();
+                var configureExternalServices = new ConfigureExternalServices
                 {
-                    DbType = (DbType)Convert.ToInt32(Enum.Parse(typeof(DbType), config.DbType)),
-                    ConnectionString = config.DbConnection,
+                    EntityService = (type, column) => // 修改列
+                    {
+                        // 带?问号类型则可空
+                        if (type.PropertyType.IsGenericType && type.PropertyType.GetGenericTypeDefinition() == typeof(Nullable<>))
+                        {
+                            column.IsNullable = true;
+                        }
+                        // string类型没有Required则可空
+                        else if (type.PropertyType == typeof(string) && type.GetCustomAttribute<RequiredAttribute>() == null)
+                        {
+                            column.IsNullable = true;
+                        }
+                    },
+                };
+                var defaultConnection = new ConnectionConfig()
+                {
+                    DbType = (DbType)Convert.ToInt32(Enum.Parse(typeof(DbType), dbOptions.DefaultDbType)),
+                    ConnectionString = dbOptions.DefaultConnection,
                     IsAutoCloseConnection = true,
-                    ConfigId = config.DbConfigId,
+                    ConfigId = dbOptions.DefaultConfigId,
                     ConfigureExternalServices = configureExternalServices
                 };
-                connectionConfigs.Add(connection);
-            });
+                connectionConfigs.Add(defaultConnection);
 
-            SqlSugarScope sqlSugar = new(connectionConfigs, db =>
-            {
-                connectionConfigs.ForEach(config =>
+                dbOptions.DbConfigs.ForEach(config =>
                 {
-                    var dbProvider = db.GetConnection((string)config.ConfigId);
-
-                    // 打印SQL语句
-                    dbProvider.Aop.OnLogExecuting = (sql, pars) =>
+                    var connection = new ConnectionConfig()
                     {
-                        if (sql.StartsWith("SELECT"))
-                        {
-                            Console.ForegroundColor = ConsoleColor.Green;
-                        }
-                        if (sql.StartsWith("UPDATE") || sql.StartsWith("INSERT"))
-                        {
-                            Console.ForegroundColor = ConsoleColor.White;
-                        }
-                        if (sql.StartsWith("DELETE"))
-                        {
-                            Console.ForegroundColor = ConsoleColor.Blue;
-                        }
-
-                        Console.WriteLine(sql + "\r\n" + db.Utilities.SerializeObject(pars.ToDictionary(it => it.ParameterName, it => it.Value)));
-                        App.PrintToMiniProfiler("SqlSugar", "Info", sql + "\r\n" + db.Utilities.SerializeObject(pars.ToDictionary(it => it.ParameterName, it => it.Value)));
+                        DbType = (DbType)Convert.ToInt32(Enum.Parse(typeof(DbType), config.DbType)),
+                        ConnectionString = config.DbConnection,
+                        IsAutoCloseConnection = true,
+                        ConfigId = config.DbConfigId,
+                        ConfigureExternalServices = configureExternalServices
                     };
-
-                    //// 是否演示环境
-                    //var isDemoEnv = App.GetService<SysConfigService>().GetDemoEnvFlag().GetAwaiter().GetResult();
-                    //if (isDemoEnv)
-                    //    throw Oops.Oh(ErrorCodeEnum.D1200);
-
-                    // 数据审计
-                    dbProvider.Aop.DataExecuting = (oldValue, entityInfo) =>
-                    {
-                        // 新增操作
-                        if (entityInfo.OperationType == DataFilterType.InsertByObject)
-                        {
-                            // 主键(long类型)-赋值雪花Id
-                            if (entityInfo.EntityColumnInfo.IsPrimarykey && entityInfo.EntityColumnInfo.PropertyInfo.PropertyType == typeof(long))
-                                entityInfo.SetValue(Yitter.IdGenerator.YitIdHelper.NextId());
-                            if (entityInfo.PropertyName == "CreateTime")
-                                entityInfo.SetValue(DateTime.Now);
-                            if (App.User != null)
-                            {
-                                if (entityInfo.PropertyName == "CreateUserId")
-                                    entityInfo.SetValue(App.User.FindFirst(ClaimConst.UserId)?.Value);
-                                if (entityInfo.PropertyName == "CreateOrgId")
-                                    entityInfo.SetValue(App.User.FindFirst(ClaimConst.OrgId)?.Value);
-                            }
-                        }
-                        // 更新操作
-                        if (entityInfo.OperationType == DataFilterType.UpdateByObject)
-                        {
-                            if (entityInfo.PropertyName == "UpdateTime")
-                                entityInfo.SetValue(DateTime.Now);
-                            if (entityInfo.PropertyName == "UpdateUserId" && App.User != null)
-                                entityInfo.SetValue(App.User.FindFirst(ClaimConst.UserId)?.Value);
-                        }
-                    };
-
-                    // 配置业务数据权限过滤器
-                    SetDataEntityFilter(dbProvider);
+                    connectionConfigs.Add(connection);
                 });
 
-            });
+                SqlSugarScope sqlSugar = new(connectionConfigs, db =>
+                {
+                    connectionConfigs.ForEach(config =>
+                    {
+                        var dbProvider = db.GetConnection((string)config.ConfigId);
 
-            services.AddSingleton<ISqlSugarClient>(sqlSugar); // SqlSugarScope用AddSingleton单例
+                        // 打印SQL语句
+                        dbProvider.Aop.OnLogExecuting = (sql, pars) =>
+                        {
+                            if (sql.StartsWith("SELECT"))
+                            {
+                                Console.ForegroundColor = ConsoleColor.Green;
+                            }
+                            if (sql.StartsWith("UPDATE") || sql.StartsWith("INSERT"))
+                            {
+                                Console.ForegroundColor = ConsoleColor.White;
+                            }
+                            if (sql.StartsWith("DELETE"))
+                            {
+                                Console.ForegroundColor = ConsoleColor.Blue;
+                            }
+
+                            Console.WriteLine(sql + "\r\n" + db.Utilities.SerializeObject(pars.ToDictionary(it => it.ParameterName, it => it.Value)));
+                            App.PrintToMiniProfiler("SqlSugar", "Info", sql + "\r\n" + db.Utilities.SerializeObject(pars.ToDictionary(it => it.ParameterName, it => it.Value)));
+                        };
+
+                        //// 是否演示环境
+                        //var isDemoEnv = App.GetService<SysConfigService>().GetDemoEnvFlag().GetAwaiter().GetResult();
+                        //if (isDemoEnv)
+                        //    throw Oops.Oh(ErrorCodeEnum.D1200);
+
+                        // 数据审计
+                        dbProvider.Aop.DataExecuting = (oldValue, entityInfo) =>
+                        {
+                            // 新增操作
+                            if (entityInfo.OperationType == DataFilterType.InsertByObject)
+                            {
+                                // 主键(long类型)-赋值雪花Id
+                                if (entityInfo.EntityColumnInfo.IsPrimarykey && entityInfo.EntityColumnInfo.PropertyInfo.PropertyType == typeof(long))
+                                    entityInfo.SetValue(Yitter.IdGenerator.YitIdHelper.NextId());
+                                if (entityInfo.PropertyName == "CreateTime")
+                                    entityInfo.SetValue(DateTime.Now);
+                                if (App.User != null)
+                                {
+                                    if (entityInfo.PropertyName == "CreateUserId")
+                                        entityInfo.SetValue(App.User.FindFirst(ClaimConst.UserId)?.Value);
+                                    if (entityInfo.PropertyName == "CreateOrgId")
+                                        entityInfo.SetValue(App.User.FindFirst(ClaimConst.OrgId)?.Value);
+                                }
+                            }
+                            // 更新操作
+                            if (entityInfo.OperationType == DataFilterType.UpdateByObject)
+                            {
+                                if (entityInfo.PropertyName == "UpdateTime")
+                                    entityInfo.SetValue(DateTime.Now);
+                                if (entityInfo.PropertyName == "UpdateUserId" && App.User != null)
+                                    entityInfo.SetValue(App.User.FindFirst(ClaimConst.UserId)?.Value);
+                            }
+                        };
+
+                        // 配置业务数据权限过滤器
+                        SetDataEntityFilter(dbProvider);
+                    });
+
+                });
+
+                // 初始化数据库结构及种子数据
+                if (dbOptions.InitTable)
+                    InitDataBase(sqlSugar, dbOptions);
+                return sqlSugar; 
+            }); 
             services.AddScoped(typeof(SqlSugarRepository<>)); // 注册仓储
 
-            // 初始化数据库结构及种子数据
-            if (dbOptions.InitTable)
-                InitDataBase(sqlSugar, dbOptions);
         }
 
         /// <summary>
