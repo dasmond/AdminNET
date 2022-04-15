@@ -30,8 +30,7 @@
   import { BasicDrawer, useDrawerInner } from '/@/components/Drawer';
   import { BasicTree, TreeItem, TreeActionType } from '/@/components/Tree';
 
-  import { getMenuList } from '/@/api/sys/admin';
-  import { ownMenuList, grantMenu } from '/@/api/sys/tenant';
+  import { getMenuList, tenantOwnMenuList, grantTenantMenu } from '/@/api/sys/admin';
 
   export default defineComponent({
     name: 'GrantMenuDrawer',
@@ -69,7 +68,7 @@
         }
 
         rowId = data.record.id;
-        var menuTree = await ownMenuList(rowId);
+        var menuTree = await tenantOwnMenuList(rowId);
         checkKeys = [];
         halfCheckKeys = [];
         handleKeys(menuTree);
@@ -89,7 +88,7 @@
 
           values.menuIdList = checkKeys.concat(halfCheckKeys); // 将勾选和半勾选节点合并
           values.id = rowId;
-          await grantMenu(values);
+          await grantTenantMenu(values);
 
           closeDrawer();
           emit('success');

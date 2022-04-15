@@ -1,9 +1,14 @@
 ﻿import { h } from 'vue';
+import { Tag } from 'ant-design-vue';
 import { BasicColumn, FormSchema } from '/@/components/Table';
+
 export const columns: BasicColumn[] = [
   {
     title: '公司名称',
     dataIndex: 'name',
+    customRender: ({ record }) => {
+      return h(Tag, { color: 'orange' }, () => record.name);
+    },
   },
   {
     title: '管理员名称',
@@ -30,44 +35,48 @@ export const searchFormSchema: FormSchema[] = [
     colProps: { span: 8 },
     component: 'Input',
   },
+  {
+    field: 'phone',
+    label: '电话',
+    colProps: { span: 8 },
+    component: 'Input',
+  },
 ];
 
 export const formSchema: FormSchema[] = [
-  {
-    label: 'Id',
-    field: 'id',
-    component: 'Input',
-    required: false,
-    show: false,
-  },
   {
     label: '公司名称',
     field: 'name',
     component: 'Input',
     required: true,
+    colProps: { span: 24 },
   },
   {
     label: '管理员名称',
     field: 'adminName',
     component: 'Input',
     required: true,
-  },  
+    colProps: { span: 24 },
+  },
   {
     label: '电子邮箱',
     field: 'email',
     component: 'Input',
-    required: true,
+    required: false,
+    colProps: { span: 24 },
   },
   {
     label: '电话',
     field: 'phone',
     component: 'Input',
     required: false,
-  },  
+    colProps: { span: 24 },
+  },
   {
     label: '备注',
     field: 'remark',
-    component: 'Input',
+    component: 'InputTextArea',
     required: false,
+    colProps: { span: 24 },
   },
 ];

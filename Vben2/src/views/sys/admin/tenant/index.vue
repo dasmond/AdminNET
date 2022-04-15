@@ -2,7 +2,9 @@
   <div>
     <BasicTable @register="registerTable">
       <template #toolbar>
-        <a-button type="primary" @click="handleCreate" :disabled="!hasPermission('sysTenant:add')">新增租户</a-button>
+        <a-button type="primary" @click="handleCreate" :disabled="!hasPermission('sysTenant:add')"
+          >新增租户</a-button
+        >
       </template>
       <template #action="{ record }">
         <TableAction
@@ -12,7 +14,8 @@
               label: '编辑',
               disabled: !hasPermission('sysTenant:update'),
               onClick: handleEdit.bind(null, record),
-            }]"
+            },
+          ]"
           :dropDownActions="[
             {
               icon: 'ant-design:menu-outlined',
@@ -26,7 +29,7 @@
               disabled: !hasPermission('sysTenant:resetPwd'),
               popConfirm: {
                 title: '是否确认重置密码？',
-                confirm: handleResetPwd.bind(null, record),
+                confirm: handleResetTenantPwd.bind(null, record),
               },
             },
             {
@@ -43,36 +46,40 @@
         />
       </template>
     </BasicTable>
-    <SysTenantModal @register="registerModal" @success="handleSuccess" />
+    <TenantDrawer @register="registerTenantDrawer" @success="handleSuccess" />
     <GrantMenuDrawer @register="registerGrantMenuDrawer" />
   </div>
 </template>
 <script lang="ts">
-  import { defineComponent } from 'vue';
+  import { defineComponent, reactive } from 'vue';
   import { BasicTable, useTable, TableAction } from '/@/components/Table';
-  import { useModal } from '/@/components/Modal';
-  import SysTenantModal from './dataModal.vue';
+  import { useMessage } from '/@/hooks/web/useMessage';
   import { useDrawer } from '/@/components/Drawer';
   import { usePermission } from '/@/hooks/web/usePermission';
-  import { columns, searchFormSchema } from './data.data';
-  import { useMessage } from '/@/hooks/web/useMessage';
-  import { getSysTenantPageList, deleteSysTenant, resetPwd } from '/@/api/sys/tenant';
 
+  import TenantDrawer from './TenantDrawer.vue';
   import GrantMenuDrawer from './GrantMenuDrawer.vue';
-  let searchvalue = undefined;
+
+  import { columns, searchFormSchema } from './tenant.data';
+  import { getTenantPageList, deleteTenant, resetTenantPwd } from '/@/api/sys/admin';
+
   export default defineComponent({
-     components:{ BasicTable, SysTenantModal, TableAction, GrantMenuDrawer },
+    name: 'UserManagement',
+    components: {
+      BasicTable,
+      TableAction,
+      TenantDrawer,
+      GrantMenuDrawer,
+    },
     setup() {
+      const { hasPermission } = usePermission();
       const { createMessage } = useMessage();
-      const [registerModal, { openModal }] = useModal();
-      const [registerTable, { reload }] = useTable({
+      const [registerTenantDrawer, { openDrawer: openTenantDrawer }] = useDrawer();
+      const [registerGrantMenuDrawer, { openDrawer: openGrantMenuDrawer }] = useDrawer();
+      const searchInfo = reactive<Recordable>({});
+      const [registerTable, { reload, updateTableDataRecord }] = useTable({
         title: '租户列表',
-        api: getSysTenantPageList,
-        pagination: true,
-        beforeFetch(params) {
-          params.searchvalue = searchvalue;
-          return params;
-        },
+        api: getTenantPageList,
         rowKey: 'id',
         columns,
         formConfig: {
@@ -83,28 +90,22 @@
         useSearchForm: true,
         showTableSetting: true,
         bordered: true,
-        canResize: true,
         actionColumn: {
-          width: 150,
+          width: 160,
           title: '操作',
           dataIndex: 'action',
           slots: { customRender: 'action' },
         },
-        handleSearchInfoFn(info) {
-          searchvalue = info.searchvalue;
-          return info;
-        },
       });
-      const [registerGrantMenuDrawer, { openDrawer: openGrantMenuDrawer }] = useDrawer();
-      const { hasPermission } = usePermission();
+
       function handleCreate() {
-        openModal(true, {
+        openTenantDrawer(true, {
           isUpdate: false,
         });
       }
 
       function handleEdit(record: Recordable) {
-        openModal(true, {
+        openTenantDrawer(true, {
           record,
           isUpdate: true,
         });
@@ -112,31 +113,47 @@
 
       async function handleDelete(record: Recordable) {
         console.log(record);
-        await deleteSysTenant(record.id);
+        await deleteTenant(record.id);
         reload();
         createMessage.success('删除成功！');
       }
-      function handleSuccess() {
+
+      function handleSuccess({ isUpdate, values }) {
+        if (isUpdate) {
+          const result = updateTableDataRecord(values.id, values);
+          console.log(result);
+        } else {
+          reload();
+        }
+      }
+
+      function handleSelect(orgId: number) {
+        searchInfo.orgId = orgId;
         reload();
       }
+
       function handleGrantMenu(record: Recordable) {
         openGrantMenuDrawer(true, { record });
       }
-      function handleResetPwd(record: Recordable) {
-        resetPwd(record);
+
+      function handleResetTenantPwd(record: Recordable) {
+        resetTenantPwd(record.id);
         createMessage.success(`已成功重置密码`);
       }
+
       return {
         registerTable,
-        registerModal,
         handleCreate,
         handleEdit,
         handleDelete,
         handleSuccess,
+        handleSelect,
+        searchInfo,
+        registerTenantDrawer,
         registerGrantMenuDrawer,
         handleGrantMenu,
-        handleResetPwd,
-        hasPermission
+        handleResetTenantPwd,
+        hasPermission,
       };
     },
   });

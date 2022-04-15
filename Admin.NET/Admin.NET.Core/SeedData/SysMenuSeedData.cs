@@ -60,6 +60,8 @@ namespace Admin.NET.Core
                 new SysMenu{ Id=252885263003792, Pid=252885263003790, Title="租户编辑", Permission="sysTenant:update", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
                 new SysMenu{ Id=252885263003793, Pid=252885263003790, Title="租户增加", Permission="sysTenant:add", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
                 new SysMenu{ Id=252885263003794, Pid=252885263003790, Title="租户删除", Permission="sysTenant:delete", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
+                new SysMenu{ Id=252885263003795, Pid=252885263003790, Title="授权菜单", Permission="sysTenant:grantMenu", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
+                new SysMenu{ Id=252885263003796, Pid=252885263003790, Title="重置密码", Permission="sysTenant:resetPwd", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
 
                 new SysMenu{ Id=252885263003800, Pid=252885263003780, Title="系统配置", Path="config", Name="ConfigManagement", Component="/sys/admin/config/index", Icon="ant-design:deployment-unit-outlined", Type=MenuTypeEnum.Menu, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
                 new SysMenu{ Id=252885263003801, Pid=252885263003800, Title="配置查询", Permission="sysConfig:page", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },

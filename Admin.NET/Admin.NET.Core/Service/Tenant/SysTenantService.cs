@@ -17,7 +17,7 @@ namespace Admin.NET.Core.Service
     [ApiDescriptionSettings(Name = "租户管理", Order = 100)]
     public class SysTenantService : IDynamicApiController, ITransient
     {
-        private readonly SqlSugarRepository<SysTenant> _rep;
+        private readonly SqlSugarRepository<SysTenant> _tenantRep;
         private readonly SqlSugarRepository<SysOrg> _orgRep;
         private readonly SqlSugarRepository<SysRole> _roleRep;
         private readonly SqlSugarRepository<SysPos> _posRep;
@@ -28,7 +28,7 @@ namespace Admin.NET.Core.Service
         private readonly SysUserRoleService _sysUserRoleService;
         private readonly SysRoleMenuService _sysRoleMenuService;        
 
-        public SysTenantService(SqlSugarRepository<SysTenant> rep,
+        public SysTenantService(SqlSugarRepository<SysTenant> tenantRep,
             SqlSugarRepository<SysOrg> orgRep,
             SqlSugarRepository<SysRole> roleRep,
             SqlSugarRepository<SysPos> posRep,
@@ -39,7 +39,7 @@ namespace Admin.NET.Core.Service
             SysUserRoleService sysUserRoleService,
             SysRoleMenuService sysRoleMenuService)
         {
-            _rep = rep;
+            _tenantRep = tenantRep;
             _orgRep = orgRep;
             _roleRep = roleRep;
             _posRep = posRep;
@@ -57,10 +57,11 @@ namespace Admin.NET.Core.Service
         /// <param name="input"></param>
         /// <returns></returns>
         [HttpGet("/sysTenant/page")]
-        public async Task<dynamic> Page([FromQuery] SysTenantInput input)
+        public async Task<dynamic> GetTenantPageList([FromQuery] TenantInput input)
         {
-            return await _rep.Context.Queryable<SysTenant>()
+            return await _tenantRep.Context.Queryable<SysTenant>()
                 .WhereIF(!string.IsNullOrWhiteSpace(input.Name), u => u.Name.Contains(input.Name.Trim()))
+                .WhereIF(!string.IsNullOrWhiteSpace(input.Phone), u => u.Phone.Contains(input.Phone.Trim()))
                 .ToPagedListAsync(input.Page, input.PageSize);
         }
 
@@ -70,21 +71,23 @@ namespace Admin.NET.Core.Service
         /// <param name="input"></param>
         /// <returns></returns>
         [HttpPost("/sysTenant/add")]
-        public async Task Add(AddSysTenantInput input)
+        public async Task AddTenant(AddTenantInput input)
         {
+            var isExist = await _tenantRep.IsAnyAsync(u => u.Name == input.Name || u.AdminName == input.AdminName);
+            if (isExist) throw Oops.Oh(ErrorCodeEnum.D1300);
+
             var entity = input.Adapt<SysTenant>();
-            await _rep.InsertAsync(entity);
+            await _tenantRep.InsertAsync(entity);
             await InitNewTenant(entity);
         }
 
         /// <summary>
-        /// 新增租户初始化数据
+        /// 初始化新增租户数据
         /// </summary>
         /// <param name="newTenant"></param>
         private async Task InitNewTenant(SysTenant newTenant)
         {
             long tenantId = newTenant.Id;
-            string email = newTenant.Email;
             string admin = newTenant.AdminName;
             string companyName = newTenant.Name;
             // 初始化公司（组织结构）
@@ -154,10 +157,10 @@ namespace Admin.NET.Core.Service
         /// <param name="input"></param>
         /// <returns></returns>
         [HttpPost("/sysTenant/delete")]
-        public async Task Delete(DeleteSysTenantInput input)
+        public async Task DeleteTenant(DeleteTenantInput input)
         {
-            var entity = await _rep.GetFirstAsync(u => u.Id == input.Id);
-            await _rep.DeleteAsync(entity);
+            var entity = await _tenantRep.GetFirstAsync(u => u.Id == input.Id);
+            await _tenantRep.DeleteAsync(entity);
             var users = await _userRep.AsQueryable().Filter(null,true).Where(u => u.TenantId == input.Id).ToListAsync();
             // 超级管理员所在租户为默认租户
             if (users.Any(u => u.UserType == UserTypeEnum.SuperAdmin))
@@ -191,10 +194,10 @@ namespace Admin.NET.Core.Service
         /// <param name="input"></param>
         /// <returns></returns>
         [HttpPost("/sysTenant/edit")]
-        public async Task Update(UpdateSysTenantInput input)
+        public async Task UpdateTenant(UpdateTenantInput input)
         {
             var entity = input.Adapt<SysTenant>();
-            await _rep.Context.Updateable(entity).IgnoreColumns(true).ExecuteCommandAsync();
+            await _tenantRep.Context.Updateable(entity).IgnoreColumns(true).ExecuteCommandAsync();
         }
 
         /// <summary>
@@ -203,9 +206,9 @@ namespace Admin.NET.Core.Service
         /// <param name="input"></param>
         /// <returns></returns>
         [HttpGet("/sysTenant/detail")]
-        public async Task<SysTenant> Get([FromQuery] QueryeSysTenantInput input)
+        public async Task<SysTenant> GetTenant([FromQuery] QueryeTenantInput input)
         {
-            return await _rep.GetFirstAsync(u => u.Id == input.Id);
+            return await _tenantRep.GetFirstAsync(u => u.Id == input.Id);
         }
 
         /// <summary>
@@ -214,9 +217,9 @@ namespace Admin.NET.Core.Service
         /// <param name="input"></param>
         /// <returns></returns>
         [HttpGet("/sysTenant/list")]
-        public async Task<dynamic> List([FromQuery] SysTenantInput input)
+        public async Task<dynamic> GetTenantList([FromQuery] TenantInput input)
         {
-            return await _rep.AsQueryable().ToListAsync();
+            return await _tenantRep.AsQueryable().ToListAsync();
         }
 
         /// <summary>
@@ -241,7 +244,7 @@ namespace Admin.NET.Core.Service
         /// <param name="input"></param>
         /// <returns></returns>
         [HttpGet("/sysTenant/ownMenu")]
-        public async Task<List<SysMenu>> OwnMenu([FromQuery] QueryeSysTenantInput input)
+        public async Task<List<SysMenu>> OwnMenu([FromQuery] QueryeTenantInput input)
         {
             var tenantAdminUser = await GetTenantAdminUser(input.Id);
             if (tenantAdminUser == null) return new List<SysMenu>();
@@ -256,7 +259,7 @@ namespace Admin.NET.Core.Service
         /// <param name="input"></param>
         /// <returns></returns>
         [HttpPost("/sysTenant/resetPwd")]
-        public async Task ResetUserPwd(QueryeSysTenantInput input)
+        public async Task ResetTenantPwd(QueryeTenantInput input)
         {
             var tenantAdminUser = await GetTenantAdminUser(input.Id);
             tenantAdminUser.Password = MD5Encryption.Encrypt(CommonConst.SysPassword);

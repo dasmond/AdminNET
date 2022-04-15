@@ -5,7 +5,7 @@ namespace Admin.NET.Core.Service
     /// <summary>
     /// 租户管理输入参数
     /// </summary>
-    public class SysTenantInput : BasePageInput
+    public class TenantInput : BasePageInput
     {
         /// <summary>
         /// 公司名称
@@ -45,11 +45,10 @@ namespace Admin.NET.Core.Service
         /// <summary>
         /// 备注
         /// </summary>
-        public virtual string Remark { get; set; }
-        
+        public virtual string Remark { get; set; }        
     }
 
-    public class AddSysTenantInput : SysTenantInput
+    public class AddTenantInput : TenantInput
     {
         /// <summary>
         /// 公司名称
@@ -61,17 +60,10 @@ namespace Admin.NET.Core.Service
         /// 管理员名称
         /// </summary>
         [Required(ErrorMessage = "管理员名称不能为空")]
-        public override string AdminName { get; set; }
-        
-        /// <summary>
-        /// 电子邮箱
-        /// </summary>
-        [Required(ErrorMessage = "电子邮箱不能为空")]
-        public override string Email { get; set; }
-        
+        public override string AdminName { get; set; }        
     }
 
-    public class DeleteSysTenantInput
+    public class DeleteTenantInput
     {
         /// <summary>
         /// Id
@@ -81,17 +73,12 @@ namespace Admin.NET.Core.Service
         
     }
 
-    public class UpdateSysTenantInput : SysTenantInput
+    public class UpdateTenantInput : DeleteTenantInput
     {
-        /// <summary>
-        /// Id
-        /// </summary>
-        [Required(ErrorMessage = "Id不能为空")]
-        public long Id { get; set; }
-        
+    
     }
 
-    public class QueryeSysTenantInput : DeleteSysTenantInput
+    public class QueryeTenantInput : DeleteTenantInput
     {
 
     }
