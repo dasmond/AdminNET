@@ -34,6 +34,11 @@ export const columns: BasicColumn[] = [
     title: '备注',
     dataIndex: 'remark',
   },
+  {
+    title: '创建时间',
+    dataIndex: 'createTime',
+    width: 180,
+  },
 ];
 
 export const searchFormSchema: FormSchema[] = [
