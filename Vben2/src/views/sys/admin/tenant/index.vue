@@ -1,14 +1,10 @@
-<template>
-  <PageWrapper dense contentFullHeight fixedHeight contentClass="flex">
-    <OrgTree class="w-1/4 xl:w-1/5" @select="handleSelect" />
-    <BasicTable @register="registerTable" class="w-3/4 xl:w-4/5" :searchInfo="searchInfo">
+﻿<template>
+  <div>
+    <BasicTable @register="registerTable">
       <template #toolbar>
-        <a-button type="primary" @click="handleCreate" :disabled="!hasPermission('sysUser:add')"
-          >新增账号</a-button
+        <a-button type="primary" @click="handleCreate" :disabled="!hasPermission('sysTenant:add')"
+          >新增租户</a-button
         >
-      </template>
-      <template #avatar="{ record }">
-        <Avatar :size="60" :src="record.avatar" />
       </template>
       <template #action="{ record }">
         <TableAction
@@ -16,40 +12,33 @@
             {
               icon: 'clarity:note-edit-line',
               label: '编辑',
-              tooltip: '编辑账号',
-              disabled: !hasPermission('sysUser:update'),
+              disabled: !hasPermission('sysTenant:update'),
               onClick: handleEdit.bind(null, record),
             },
           ]"
           :dropDownActions="[
             {
               icon: 'ant-design:menu-outlined',
-              label: '授权角色',
-              disabled: !hasPermission('sysUser:grantRole'),
-              onClick: handleGrantRole.bind(null, record),
+              label: '授权菜单',
+              disabled: !hasPermission('sysTenant:grantMenu'),
+              onClick: handleGrantMenu.bind(null, record),
             },
             {
               icon: 'ant-design:database-outlined',
-              label: '授权数据',
-              disabled: !hasPermission('sysUser:grantData'),
-              onClick: handleGrantData.bind(null, record),
-            },
-            {
-              icon: 'ant-design:redo-outlined',
               label: '重置密码',
-              ifShow: hasPermission('sysUser:resetPwd'),
+              disabled: !hasPermission('sysTenant:resetPwd'),
               popConfirm: {
-                title: '是否确认重置密码',
-                confirm: handleResetUserPwd.bind(null, record),
+                title: '是否确认重置密码？',
+                confirm: handleResetTenantPwd.bind(null, record),
               },
             },
             {
               icon: 'ant-design:delete-outlined',
               color: 'error',
-              label: '删除账号',
-              ifShow: hasPermission('sysUser:delete'),
+              label: '删除',
+              ifShow: hasPermission('sysTenant:delete'),
               popConfirm: {
-                title: '是否确认删除',
+                title: '是否确认删除？',
                 confirm: handleDelete.bind(null, record),
               },
             },
@@ -57,48 +46,40 @@
         />
       </template>
     </BasicTable>
-    <UserDrawer @register="registerUserDrawer" @success="handleSuccess" />
-    <GrantOrgDrawer @register="registerGrantOrgDrawer" />
-    <GrantRoleDrawer @register="registerGrantRoleDrawer" />
-  </PageWrapper>
+    <TenantDrawer @register="registerTenantDrawer" @success="handleSuccess" />
+    <GrantMenuDrawer @register="registerGrantMenuDrawer" />
+  </div>
 </template>
 <script lang="ts">
   import { defineComponent, reactive } from 'vue';
   import { BasicTable, useTable, TableAction } from '/@/components/Table';
-  import { PageWrapper } from '/@/components/Page';
   import { useMessage } from '/@/hooks/web/useMessage';
   import { useDrawer } from '/@/components/Drawer';
   import { usePermission } from '/@/hooks/web/usePermission';
 
-  import OrgTree from './OrgTree.vue';
-  import UserDrawer from './UserDrawer.vue';
-  import GrantOrgDrawer from './GrantOrgDrawer.vue';
-  import GrantRoleDrawer from './GrantRoleDrawer.vue';
+  import TenantDrawer from './TenantDrawer.vue';
+  import GrantMenuDrawer from './GrantMenuDrawer.vue';
 
-  import { columns, searchFormSchema } from './user.data';
-  import { getUserPageList, deleteUser, resetUserPwd } from '/@/api/sys/admin';
+  import { columns, searchFormSchema } from './tenant.data';
+  import { getTenantPageList, deleteTenant, resetTenantPwd } from '/@/api/sys/admin';
 
   export default defineComponent({
     name: 'UserManagement',
     components: {
       BasicTable,
-      PageWrapper,
-      OrgTree,
       TableAction,
-      UserDrawer,
-      GrantOrgDrawer,
-      GrantRoleDrawer,
+      TenantDrawer,
+      GrantMenuDrawer,
     },
     setup() {
       const { hasPermission } = usePermission();
       const { createMessage } = useMessage();
-      const [registerUserDrawer, { openDrawer: openUserDrawer }] = useDrawer();
-      const [registerGrantOrgDrawer, { openDrawer: openGrantOrgDrawer }] = useDrawer();
-      const [registerGrantRoleDrawer, { openDrawer: openGrantRoleDrawer }] = useDrawer();
+      const [registerTenantDrawer, { openDrawer: openTenantDrawer }] = useDrawer();
+      const [registerGrantMenuDrawer, { openDrawer: openGrantMenuDrawer }] = useDrawer();
       const searchInfo = reactive<Recordable>({});
       const [registerTable, { reload, updateTableDataRecord }] = useTable({
-        title: '账号列表',
-        api: getUserPageList,
+        title: '租户列表',
+        api: getTenantPageList,
         rowKey: 'id',
         columns,
         formConfig: {
@@ -118,21 +99,22 @@
       });
 
       function handleCreate() {
-        openUserDrawer(true, {
+        openTenantDrawer(true, {
           isUpdate: false,
         });
       }
 
       function handleEdit(record: Recordable) {
-        openUserDrawer(true, {
+        openTenantDrawer(true, {
           record,
           isUpdate: true,
         });
       }
 
       async function handleDelete(record: Recordable) {
-        await deleteUser(record.id);
+        await deleteTenant(record.id);
         reload();
+        createMessage.success('删除成功！');
       }
 
       function handleSuccess({ isUpdate, values }) {
@@ -149,16 +131,12 @@
         reload();
       }
 
-      function handleGrantData(record: Recordable) {
-        openGrantOrgDrawer(true, { record });
+      function handleGrantMenu(record: Recordable) {
+        openGrantMenuDrawer(true, { record });
       }
 
-      function handleGrantRole(record: Recordable) {
-        openGrantRoleDrawer(true, { record });
-      }
-
-      function handleResetUserPwd(record: Recordable) {
-        resetUserPwd(record.id);
+      function handleResetTenantPwd(record: Recordable) {
+        resetTenantPwd(record.id);
         createMessage.success(`已成功重置密码`);
       }
 
@@ -170,12 +148,10 @@
         handleSuccess,
         handleSelect,
         searchInfo,
-        registerUserDrawer,
-        registerGrantOrgDrawer,
-        registerGrantRoleDrawer,
-        handleGrantData,
-        handleGrantRole,
-        handleResetUserPwd,
+        registerTenantDrawer,
+        registerGrantMenuDrawer,
+        handleGrantMenu,
+        handleResetTenantPwd,
         hasPermission,
       };
     },

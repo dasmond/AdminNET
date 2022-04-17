@@ -89,7 +89,7 @@
         bordered: true,
         showIndexColumn: false,
         actionColumn: {
-          width: 180,
+          width: 160,
           title: '操作',
           dataIndex: 'action',
           slots: { customRender: 'action' },

@@ -8,9 +8,9 @@ namespace Admin.NET.UnitTest
     public class SqlSugarTest
     {
         private TestService testService;
+
         public SqlSugarTest()
         {
-
             testService = App.GetService<TestService>();
         }
         [Fact]

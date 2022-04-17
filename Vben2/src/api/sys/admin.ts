@@ -4,6 +4,7 @@ enum Api {
   AccountList = '/system/getAccountList',
   IsAccountExist = '/system/accountExist',
 
+  // 用户接口
   UserPageList = '/sysUser/pageList',
   AddUser = '/sysUser/add',
   DeleteUser = '/sysUser/delete',
@@ -15,6 +16,7 @@ enum Api {
   UserOwnRoleList = '/sysUser/ownRole',
   UserOwnOrgList = '/sysUser/ownOrg',
 
+  // 角色接口
   RolePageList = '/sysRole/pageList',
   RoleList = '/sysRole/list',
   AddRole = '/sysRole/add',
@@ -26,21 +28,25 @@ enum Api {
   GrantRoleMenu = '/sysRole/grantMenu',
   GrantRoleData = '/sysRole/grantData',
 
+  // 菜单接口
   MenuList = '/sysMenu/list',
   AddMenu = '/sysMenu/add',
   DeleteMenu = '/sysMenu/delete',
   UpdateMenu = '/sysMenu/update',
 
+  // 机构接口
   OrgList = '/sysOrg/list',
   AddOrg = '/sysOrg/add',
   DeleteOrg = '/sysOrg/delete',
   UpdateOrg = '/sysOrg/update',
 
+  // 职位接口
   PosList = '/sysPos/list',
   AddPos = '/sysPos/add',
   DeletePos = '/sysPos/delete',
   UpdatePos = '/sysPos/update',
 
+  // 日志接口
   VislogPageList = '/sysVisLog/pageList',
   ClearVisLog = '/sysVisLog/clear',
   OplogPageList = '/sysOpLog/pageList',
@@ -48,26 +54,31 @@ enum Api {
   ExlogPageList = '/sysExLog/pageList',
   ClearExLog = '/sysExLog/clear',
 
+  // 文件接口
   FilePageList = '/sysFile/pageList',
   UploadFile = '/sysFile/upload',
   DownloadFile = '/sysFile/download',
   DeleteFile = '/sysFile/delete',
 
+  // 参数配置接口
   ConfigPageList = '/sysConfig/pageList',
   AddConfig = '/sysConfig/add',
   DeleteConfig = '/sysConfig/delete',
   UpdateConfig = '/sysConfig/update',
 
+  // 定时器接口
   TimerPageList = '/sysTimer/pageList',
   AddTimer = '/sysTimer/add',
   DeleteTimer = '/sysTimer/delete',
   UpdateTimer = '/sysTimer/update',
   SetTimerStatus = '/sysTimer/setStatus',
 
+  // 服务器监控接口
   ServerBase = '/server/base',
   ServerUse = '/server/use',
   ServerNetWork = '/server/network',
 
+  // 字典接口
   GetDictTypePageList = '/sysDictType/pageList',
   GetDictTypeList = '/sysDictType/list',
   AddDictType = '/sysDictType/add',
@@ -80,6 +91,7 @@ enum Api {
   DeleteDictData = '/sysDictData/delete',
   GetDictDataDropdown = '/sysDictData/DictDataDropdown',
 
+  // 数据库接口
   GetColumnInfoList = '/dataBase/columnInfoList',
   GetTableInfoList = '/dataBase/tableInfoList',
   AddTable = '/table/add',
@@ -90,6 +102,7 @@ enum Api {
   DeleteColumn = '/column/delete',
   CreateEntity = '/table/createEntity',
 
+  // 代码生成接口
   GetGeneratePage = '/codeGenerate/page',
   AddGenerate = '/codeGenerate/add',
   UpdateGenerate = '/codeGenerate/edit',
@@ -100,6 +113,15 @@ enum Api {
   GenerateRunDown = '/codeGenerate/runDown',
   GetGenerateConfigList = '/sysCodeGenerateConfig/list',
   UpdateGenerateConfig = '/sysCodeGenerateConfig/edit',
+
+  // 租户接口
+  GetTenantPage = '/sysTenant/page',
+  AddTenant = '/sysTenant/add',
+  DeleteTenant = '/sysTenant/delete',
+  UpdateTenant = '/sysTenant/edit',
+  GrantTenantMenu = '/sysTenant/GrantMenu',
+  TenantOwnMenuList = '/sysTenant/ownMenu',
+  ResetTenantPwd = '/sysTenant/resetPwd',
 }
 
 ////////// 账号管理接口 //////////
@@ -385,4 +407,31 @@ export function updateGenerateConfig(params: any) {
     url: Api.UpdateGenerateConfig,
     params,
   });
+}
+
+////////// 租户管理接口 //////////
+//分页查询租户
+export function getTenantPageList(params?: any) {
+  return defHttp.get<any>({ url: Api.GetTenantPage, params });
+}
+//增加租户
+export function addTenant(params: any) {
+  return defHttp.post<any>({ url: Api.AddTenant, params });
+}
+//删除租户
+export const deleteTenant = (id: number) => defHttp.post({ url: Api.DeleteTenant, params: { id } });
+//编辑租户
+export function updateTenant(params: any) {
+  return defHttp.post<any>({ url: Api.UpdateTenant, params });
+}
+//授权租户菜单
+export function grantTenantMenu(params?: any) {
+  return defHttp.post<any>({ url: Api.GrantTenantMenu, params });
+}
+// 获取租户菜单
+export const tenantOwnMenuList = (id: number) =>
+  defHttp.get<any>({ url: Api.TenantOwnMenuList, params: { id } });
+//重置租户密码
+export function resetTenantPwd(params?: any) {
+  return defHttp.post<any>({ url: Api.ResetTenantPwd, params });
 }

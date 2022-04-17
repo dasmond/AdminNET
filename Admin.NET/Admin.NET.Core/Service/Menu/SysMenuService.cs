@@ -63,14 +63,22 @@ namespace Admin.NET.Core.Service
         [HttpGet("/sysMenu/list")]
         public async Task<List<SysMenu>> GetMenuList([FromQuery] MenuInput input)
         {
+            var menuIdList = new List<long>();
+            if (!_userManager.SuperAdmin)
+                menuIdList = await GetMenuIdList();
+
             if (!string.IsNullOrWhiteSpace(input.Title) || input.Type > 0)
             {
                 return await _sysMenuRep.AsQueryable()
                     .WhereIF(!string.IsNullOrWhiteSpace(input.Title), u => u.Title.Contains(input.Title))
                     .WhereIF(input.Type > 0, u => u.Type == (MenuTypeEnum)input.Type)
+                    .WhereIF(menuIdList.Count > 1, u => menuIdList.Contains(u.Id))
                     .OrderBy(u => u.OrderNo).ToListAsync();
             }
-            return await _sysMenuRep.AsQueryable().OrderBy(u => u.OrderNo).ToTreeAsync(u => u.Children, u => u.Pid, 0);
+
+            return await _sysMenuRep.AsQueryable()
+                .WhereIF(menuIdList.Count > 1, u => menuIdList.Contains(u.Id))
+                .OrderBy(u => u.OrderNo).ToTreeAsync(u => u.Children, u => u.Pid, 0);
         }
 
         /// <summary>
