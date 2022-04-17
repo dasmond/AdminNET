@@ -284,7 +284,7 @@ namespace Admin.NET.Core.Service.CodeGen
                 Name = className + "Management",
                 Type = MenuTypeEnum.Menu,
                 Path = "/" + className.ToLower(),
-                Component = "main/" + className + "/index",
+                Component = "/main/" + className + "/index",
             };
             var pid1 = (await _sysMenuRep.Context.Insertable(menuType1).ExecuteReturnEntityAsync()).Id;
 
