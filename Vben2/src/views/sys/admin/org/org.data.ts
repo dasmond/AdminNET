@@ -13,7 +13,8 @@ export const columns: BasicColumn[] = [
   {
     title: '编码',
     dataIndex: 'code',
-    width: 100,
+    width: 200,
+    align: 'left',
   },
   {
     title: '状态',
@@ -60,19 +61,6 @@ export const searchFormSchema: FormSchema[] = [
 
 export const formSchema: FormSchema[] = [
   {
-    field: 'name',
-    label: '机构名称',
-    component: 'Input',
-    required: true,
-    colProps: { span: 24 },
-  },
-  {
-    field: 'code',
-    label: '编码',
-    component: 'Input',
-    colProps: { span: 24 },
-  },
-  {
     field: 'pid',
     label: '上级机构',
     component: 'TreeSelect',
@@ -88,6 +76,19 @@ export const formSchema: FormSchema[] = [
     required: true,
     colProps: { span: 24 },
   },
+  {
+    field: 'name',
+    label: '机构名称',
+    component: 'Input',
+    required: true,
+    colProps: { span: 24 },
+  },
+  // {
+  //   field: 'code',
+  //   label: '编码',
+  //   component: 'Input',
+  //   colProps: { span: 24 },
+  // },
   {
     field: 'order',
     label: '排序',
