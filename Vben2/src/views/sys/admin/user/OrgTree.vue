@@ -4,9 +4,9 @@
       title="机构列表"
       toolbar
       search
-      :clickRowToExpand="false"
+      :clickRowToExpand="true"
       :treeData="treeData"
-      :fieldNames="{ key: 'id', title: 'name' }"
+      :fieldNames="{ key: 'id', title: 'name'}"
       @select="handleSelect"
       ref="treeAction"
     />
@@ -27,21 +27,43 @@
       const treeData = ref<TreeItem[]>([]);
       const treeAction = ref<Nullable<TreeActionType>>(null);
 
-      async function fetch() {
-        treeData.value = (await getOrgList()) as unknown as TreeItem[];
-        nextTick(() => {
-          unref(treeAction)?.filterByLevel(1);
+      const  appendNodeByKey =(parentKey: string, values) =>{
+        unref(treeAction).insertNodeByKey({
+          parentKey: parentKey,
+          node:values,
+          // 往后插入
+          push: 'push',
+          // 往前插入
+          // push:'unshift'
         });
       }
 
-      function handleSelect(keys) {
-        emit('select', keys[0]);
+      const  updateNodeByKey=(key: string,values)=>{
+        unref(treeAction).updateNodeByKey(key,
+          values,
+        );
+      }
+
+      const deleteNodeByKey=(key: string)=> {
+        unref(treeAction).deleteNodeByKey(key);
+      }
+
+      async function fetch() {
+        treeData.value = (await getOrgList()) as unknown as TreeItem[];
+        nextTick(() => {
+          unref(treeAction)?.filterByLevel(2);
+        });
+      }
+
+      function handleSelect(keys,obj) {
+        emit('select', keys[0], obj.selectedNodes[0]);
       }
 
       onMounted(() => {
         fetch();
-      });
-      return { treeData, handleSelect, treeAction };
+       });
+      return { treeData, handleSelect, treeAction,
+        appendNodeByKey,updateNodeByKey,deleteNodeByKey,fetch};
     },
   });
 </script>

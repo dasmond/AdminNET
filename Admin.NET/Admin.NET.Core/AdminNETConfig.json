@@ -52,30 +52,5 @@
     "SecretKey": "",
     "IsEnableHttps": true,
     "IsEnableCache": true
-  },
-  "Wechat": {
-    //公众号
-    "WechatAppId": "wxd77174ddc828b65b",
-    "WechatAppSecret": "beaa6ded7a85600e15cf6d1eb77f0382",
-    "EncodingAESKey": "",
-    "Token": "",
-    //小程序
-    "WxOpenAppId": "wx3491891f69f1b0ad",
-    "WxOpenAppSecret": "dba4dbbefa6d06795c4b2a945e337d5f",
-    "WxOpenToken": "",
-    "WxOpenEncodingAESKey": ""
-  },
-  "WechatPay": {
-    "AppId": "wxd77174ddc828b65b", // 微信公众平台AppId、开放平台AppId、小程序AppId、企业微信CorpId
-    "MerchantId": "1622473532", // 商户平台的商户号
-    "MerchantV3Secret": "86FB79BF5A8A6588D3A270149889F2AA", // 商户平台的APIv3密钥
-    "MerchantCertificateSerialNumber": "68934023A67E420EECB02E7CE55B14A10E480FD0", // 商户平台的证书序列号
-    "MerchantCertificatePrivateKey": "\\WxPayCert\\apiclient_key.pem" // 商户平台的API证书私钥(apiclient_key.pem文件内容)
-  },
-  "PayCallBack": {
-    "WechatPayUrl": "https://www.dilon.vip:9005/notify/weChatPay/unifiedorder", //微信支付回调
-    "WechatRefundUrl": "https://www.dilon.vip:9005/notify/weChatPay/refund", //微信退款回调
-    "AlipayUrl": "", //支付宝支付回调
-    "AlipayRefundUrl": "" //支付宝退款回调
   }
 }
