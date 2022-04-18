@@ -27,7 +27,7 @@ export function update@(@Model.ClassName)(params: any) {
 }
 //分页查询@(@Model.BusName)
 export function get@(@Model.ClassName)PageList(params?: any) {
-  return defHttp.get<any>({ url: Api.Get@(@Model.ClassName)Page, params });
+  return defHttp.post<any>({ url: Api.Get@(@Model.ClassName)Page, params });
 }
 @foreach (var column in Model.TableField){
 if(@column.EffectType == "fk"){
