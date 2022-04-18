@@ -80,7 +80,7 @@ namespace Admin.NET.Core.Service
         [HttpPost("/sysOrg/add")]
         public async Task<long> AddOrg(AddOrgInput input)
         {
-            var isExist = await _sysOrgRep.IsAnyAsync(u => u.Code == input.Code);
+            var isExist = await _sysOrgRep.IsAnyAsync(u => u.Code == input.Code || u.Name == input.Name);
             if (isExist)
                 throw Oops.Oh(ErrorCodeEnum.D2002);
 
@@ -98,23 +98,22 @@ namespace Admin.NET.Core.Service
                     throw Oops.Oh(ErrorCodeEnum.D2006);
             }
 
-            //code自动获取，每一级2位编码
-            var sysOrg = await _sysOrgRep.AsQueryable().OrderBy(it => it.Code, OrderByType.Desc).FirstAsync(u => u.Pid == input.Pid);
+            // 生成编码Code和排序(每级2位编码)
+            var sysOrg = await _sysOrgRep.GetFirstAsync(u => u.Pid == input.Pid);
             var newCode = "";
-            if (sysOrg is not null)
+            if (sysOrg != null)
             {
-                newCode = sysOrg.Code.Substring(0, sysOrg.Code.Length - 2) + string.Format("{0:d2}", int.Parse(sysOrg.Code.Substring(sysOrg.Code.Length - 2)) + 1);
+                newCode = sysOrg.Code[0..^2] + string.Format("{0:d2}", int.Parse(sysOrg.Code[^2..]) + 1);
             }
             else
             {
-                sysOrg = await _sysOrgRep.AsQueryable().OrderBy(it => it.Code, OrderByType.Desc).FirstAsync(u => u.Id == input.Pid);
+                sysOrg = await _sysOrgRep.GetFirstAsync(u => u.Id == input.Pid);
                 newCode = sysOrg.Code + "01";
             }
-
-            sysOrg = input.Adapt<SysOrg>();
-            sysOrg.Code = newCode;
-            sysOrg.Order = int.Parse(newCode.Substring(newCode.Length - 2));
-            var newOrg = await _sysOrgRep.AsInsertable(sysOrg).ExecuteReturnEntityAsync();
+            var newOrg = input.Adapt<SysOrg>();
+            newOrg.Code = newCode;
+            newOrg.Order = int.Parse(newCode[^2..]);
+            newOrg = await _sysOrgRep.AsInsertable(newOrg).ExecuteReturnEntityAsync();
 
             // 非超级管理员时，将新机构加到用户数据范围内
             if (!_userManager.SuperAdmin)
