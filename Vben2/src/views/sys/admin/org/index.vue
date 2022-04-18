@@ -1,9 +1,13 @@
 <template>
-  <div>
-    <BasicTable @register="registerTable">
+  <PageWrapper dense contentFullHeight fixedHeight contentClass="flex">
+    <OrgTree class="w-1/4 xl:w-1/5" @select="handleSelect" ref="OrgTreeChild"/>
+    <BasicTable @register="registerTable"  class="w-3/4 xl:w-4/5"  :searchInfo="searchInfo">
       <template #toolbar>
-        <a-button type="primary" @click="handleCreate" :disabled="!hasPermission('sysOrg:add')">
-          新增机构
+        <a-button type="primary" @click="handleCreatebrother" :disabled="!hasPermission('sysOrg:add')">
+          添加同级单位
+        </a-button>
+        <a-button type="primary" @click="handleCreatechild()" :disabled="!hasPermission('sysOrg:add')">
+          添加下级单位
         </a-button>
       </template>
       <template #action="{ record }">
@@ -30,13 +34,16 @@
       </template>
     </BasicTable>
     <OrgModal @register="registerModal" @success="handleSuccess" />
-  </div>
+  </PageWrapper>
 </template>
 <script lang="ts">
-  import { defineComponent } from 'vue';
+  import {defineComponent, onMounted, reactive, ref, unref} from 'vue';
   import { BasicTable, useTable, TableAction } from '/@/components/Table';
   import { useModal } from '/@/components/Modal';
   import { usePermission } from '/@/hooks/web/usePermission';
+
+  import { PageWrapper } from '/@/components/Page';
+  import OrgTree from '/@/views/sys/admin/user/OrgTree.vue';
 
   import OrgModal from './OrgModal.vue';
 
@@ -45,10 +52,12 @@
 
   export default defineComponent({
     name: 'OrgManagement',
-    components: { BasicTable, OrgModal, TableAction },
+    components: { BasicTable, OrgModal, TableAction , PageWrapper, OrgTree},
     setup() {
       const { hasPermission } = usePermission();
+      const OrgTreeChild = ref(null);
       const [registerModal, { openModal }] = useModal();
+      const searchInfo = reactive<Recordable>({});
       const [registerTable, { reload, updateTableDataRecord }] = useTable({
         title: '机构列表',
         api: getOrgList,
@@ -74,9 +83,43 @@
         },
       });
 
+      function getTree() {
+        const tree = unref(OrgTreeChild);
+        if (!tree) {
+          throw new Error('tree is null!');
+        }
+        return tree;
+      }
+
+      function appendNodeByKey(parentKey, values) {
+        getTree().appendNodeByKey(parentKey, values);
+      }
+
+      function updateNodeByKey(key, values) {
+        getTree().updateNodeByKey(key,values);      //子组件里的方法
+      }
+
+      function deleteNodeByKey(key) {
+        getTree().deleteNodeByKey(key);
+      }
+
       function handleCreate() {
         openModal(true, {
           isUpdate: false,
+        });
+      }
+
+      function handleCreatechild() {
+        openModal(true, {
+          isUpdate: false,
+          parentId: searchInfo.Id,
+        });
+      }
+
+      function handleCreatebrother() {
+        openModal(true, {
+          isUpdate: false,
+          parentId: searchInfo.pId,
         });
       }
 
@@ -89,21 +132,40 @@
 
       async function handleDelete(record: Recordable) {
         await deleteOrg(record.id);
+        deleteNodeByKey(record.id )
+        searchInfo.Id = record.pid;
+        reload();
+      }
+
+      function handleSelect(orgId: number, obj) {
+        searchInfo.Id = orgId;
+        searchInfo.pId = obj.pid? obj.pid : 0;
         reload();
       }
 
       function handleSuccess({ isUpdate, values }) {
         if (isUpdate) {
           updateTableDataRecord(values.id, values);
+          updateNodeByKey(values.id, values);
         } else {
           reload();
+          appendNodeByKey(values.pid, values);
         }
+        // getTree().fetch();
       }
 
       return {
         registerTable,
         registerModal,
+        searchInfo,
+        OrgTreeChild,
+        handleSelect,
+        updateNodeByKey,
+        appendNodeByKey,
+        deleteNodeByKey,
         handleCreate,
+        handleCreatebrother,
+        handleCreatechild,
         handleEdit,
         handleDelete,
         handleSuccess,
