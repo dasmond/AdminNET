@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Http;
 using Admin.NET.Core;
 using Admin.NET.Core.Service;
 using System;
+using @(@Model.NameSpace).Entity;
 
 namespace @Model.NameSpace
 {
@@ -62,7 +63,7 @@ namespace @Model.NameSpace
         }
     } 
 }          
- @:;
+;
 
 @foreach (var column in Model.TableField){
     if (@column.QueryWhether == "Y"){
