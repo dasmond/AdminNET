@@ -24,6 +24,11 @@
             年龄
             </summary>
         </member>
+        <member name="P:Admin.NET.Application.Entity.Test.BirthDate">
+            <summary>
+            出生日期
+            </summary>
+        </member>
         <member name="T:Admin.NET.Application.SeedData.TestSeedData">
             <summary>
             自己业务表种子数据
@@ -35,15 +40,136 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="T:Admin.NET.Application.Serice.TestService">
+        <member name="T:Admin.NET.Application.TestDto">
             <summary>
-            自己业务服务
+            测试输出参数
             </summary>
         </member>
-        <member name="M:Admin.NET.Application.Serice.TestService.GetTestList">
+        <member name="P:Admin.NET.Application.TestDto.Id">
             <summary>
-            获取列表
+            Id
             </summary>
+        </member>
+        <member name="P:Admin.NET.Application.TestDto.Name">
+            <summary>
+            Name
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.TestDto.Age">
+            <summary>
+            Age
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.TestDto.BirthDate">
+            <summary>
+            BirthDate
+            </summary>
+        </member>
+        <member name="T:Admin.NET.Application.TestInput">
+            <summary>
+            测试输入参数
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.TestInput.Name">
+            <summary>
+            Name
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.TestInput.Age">
+            <summary>
+            Age
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.TestInput.BirthDate">
+            <summary>
+            BirthDate
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.TestInput.BirthDateRange">
+            <summary>
+            BirthDate范围
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.DeleteTestInput.Id">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.UpdateTestInput.Id">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="T:Admin.NET.Application.TestOutput">
+            <summary>
+            测试输出参数
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.TestOutput.Id">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.TestOutput.Name">
+            <summary>
+            Name
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.TestOutput.Age">
+            <summary>
+            Age
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.TestOutput.BirthDate">
+            <summary>
+            BirthDate
+            </summary>
+        </member>
+        <member name="T:Admin.NET.Application.TestService">
+            <summary>
+            测试服务
+            </summary>
+        </member>
+        <member name="M:Admin.NET.Application.TestService.Page(Admin.NET.Application.TestInput)">
+            <summary>
+            分页查询测试
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Application.TestService.Add(Admin.NET.Application.AddTestInput)">
+            <summary>
+            增加测试
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Application.TestService.Delete(Admin.NET.Application.DeleteTestInput)">
+            <summary>
+            删除测试
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Application.TestService.Update(Admin.NET.Application.UpdateTestInput)">
+            <summary>
+            更新测试
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Application.TestService.Get(Admin.NET.Application.QueryeTestInput)">
+            <summary>
+            获取测试
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Application.TestService.List(Admin.NET.Application.TestInput)">
+            <summary>
+            获取测试列表
+            </summary>
+            <param name="input"></param>
             <returns></returns>
         </member>
     </members>

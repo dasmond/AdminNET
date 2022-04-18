@@ -34,6 +34,7 @@ namespace Admin.NET.Core.SeedData
                 new SysDictData{ Id=269037953110006, DictTypeId=269037954100002, Value="大于等于", Code=">=", Order=1, Remark="大于等于", Status=StatusEnum.Enable, CreateTime=DateTime.Parse("2022-02-10 00:00:00") },
                 new SysDictData{ Id=269037953110007, DictTypeId=269037954100002, Value="小于等于", Code="<=", Order=1, Remark="小于等于", Status=StatusEnum.Enable, CreateTime=DateTime.Parse("2022-02-10 00:00:00") },
                 new SysDictData{ Id=269037953110008, DictTypeId=269037954100002, Value="不为空", Code="isNotNull", Order=1, Remark="不为空", Status=StatusEnum.Enable, CreateTime=DateTime.Parse("2022-02-10 00:00:00") },
+                new SysDictData{ Id=269037953110009, DictTypeId=269037954100002, Value="时间范围", Code="~", Order=1, Remark="时间范围", Status=StatusEnum.Enable, CreateTime=DateTime.Parse("2022-02-10 00:00:00") },
 
                 new SysDictData{ Id=269037953120001, DictTypeId=269037954100003, Value="long", Code="long", Order=1, Remark="long", Status=StatusEnum.Enable, CreateTime=DateTime.Parse("2022-02-10 00:00:00") },
                 new SysDictData{ Id=269037953120002, DictTypeId=269037954100003, Value="string", Code="string", Order=1, Remark="string", Status=StatusEnum.Enable, CreateTime=DateTime.Parse("2022-02-10 00:00:00") },
