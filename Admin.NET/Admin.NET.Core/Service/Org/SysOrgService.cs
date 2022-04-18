@@ -55,13 +55,13 @@ namespace Admin.NET.Core.Service
                 orgIdList = await GetChildIdListWithSelfById(input.Id);
             }
             else
-            { 
-                orgIdList = await GetUserOrgIdList(); 
+            {
+                orgIdList = await GetUserOrgIdList();
             }
-            
+
             var iSugarQueryable = _sysOrgRep.AsQueryable().OrderBy(u => u.Order)
                 .WhereIF(orgIdList.Count > 0, u => orgIdList.Contains(u.Id)); // 非超级管理员限制
-            
+
             if (!string.IsNullOrWhiteSpace(input.Name) || !string.IsNullOrWhiteSpace(input.Code) || input.Id > 0)
             {
                 return await iSugarQueryable
@@ -69,7 +69,7 @@ namespace Admin.NET.Core.Service
                     .WhereIF(!string.IsNullOrWhiteSpace(input.Code), u => u.Code.Contains(input.Code))
                     .ToListAsync();
             }
-            return await iSugarQueryable.ToTreeAsync(u => u.Children, u => u.Pid, input.Id > 0 ? input.Id :0);
+            return await iSugarQueryable.ToTreeAsync(u => u.Children, u => u.Pid, input.Id > 0 ? input.Id : 0);
         }
 
         /// <summary>
@@ -99,18 +99,18 @@ namespace Admin.NET.Core.Service
             }
 
             //code自动获取，每一级2位编码
-            var sysOrg = await _sysOrgRep.AsQueryable().OrderBy(it=>it.Code, OrderByType.Desc).FirstAsync(u => u.Pid == input.Pid);
+            var sysOrg = await _sysOrgRep.AsQueryable().OrderBy(it => it.Code, OrderByType.Desc).FirstAsync(u => u.Pid == input.Pid);
             var newCode = "";
             if (sysOrg is not null)
             {
-                newCode = sysOrg.Code.Substring(0, sysOrg.Code.Length-2) + string.Format("{0:d2}", int.Parse(sysOrg.Code.Substring(sysOrg.Code.Length - 2)) + 1);
+                newCode = sysOrg.Code.Substring(0, sysOrg.Code.Length - 2) + string.Format("{0:d2}", int.Parse(sysOrg.Code.Substring(sysOrg.Code.Length - 2)) + 1);
             }
             else
             {
                 sysOrg = await _sysOrgRep.AsQueryable().OrderBy(it => it.Code, OrderByType.Desc).FirstAsync(u => u.Id == input.Pid);
                 newCode = sysOrg.Code + "01";
             }
-           
+
             sysOrg = input.Adapt<SysOrg>();
             sysOrg.Code = newCode;
             sysOrg.Order = int.Parse(newCode.Substring(newCode.Length - 2));

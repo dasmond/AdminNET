@@ -68,7 +68,37 @@ namespace Admin.NET.Core
         /// 支付完成时间
         /// </summary>
         [SugarColumn(ColumnDescription = "支付完成时间")]
-        public DateTimeOffset SuccessTime { get; set; }
+        public DateTimeOffset? SuccessTime { get; set; }
+
+        /// <summary>
+        /// 商品描述
+        /// </summary>
+        [SugarColumn(ColumnDescription = "商品描述")]
+        public string Description { get; set; }
+
+        /// <summary>
+        /// 场景信息
+        /// </summary>
+        [SugarColumn(ColumnDescription = "场景信息")]
+        public string Scene { get; set; }
+
+        /// <summary>
+        /// 附加数据
+        /// </summary>
+        [SugarColumn(ColumnDescription = "附加数据")]
+        public string Attachment { get; set; }
+
+        /// <summary>
+        /// 优惠标记
+        /// </summary>
+        [SugarColumn(ColumnDescription = "优惠标记")]
+        public string GoodsTag { get; set; }
+
+        /// <summary>
+        /// 备注
+        /// </summary>
+        [SugarColumn(ColumnDescription = "备注")]
+        public string Remark { get; set; }
 
         /// <summary>
         /// 微信OpenId标识
