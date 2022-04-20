@@ -26,26 +26,20 @@ namespace Admin.NET.Core
         public static void AddSqlSugarSetup(this IServiceCollection services, IConfiguration configuration)
         {
             // SqlSugarScope用AddSingleton单例
-            services.AddSingleton<ISqlSugarClient>(provider => {
-
+            services.AddSingleton<ISqlSugarClient>(provider =>
+            {
                 var dbOptions = App.GetOptions<ConnectionStringsOptions>();
                 DealConnectionStr(ref dbOptions); // 处理本地库根目录路径
 
                 var connectionConfigs = new List<ConnectionConfig>();
                 var configureExternalServices = new ConfigureExternalServices
                 {
-                    EntityService = (type, column) => // 修改列
+                    EntityService = (type, column) => // 修改列可空
                     {
-                        // 带?问号类型则可空
-                        if (type.PropertyType.IsGenericType && type.PropertyType.GetGenericTypeDefinition() == typeof(Nullable<>))
-                        {
+                        // 1、带?问号 2、String类型若没有Required
+                        if ((type.PropertyType.IsGenericType && type.PropertyType.GetGenericTypeDefinition() == typeof(Nullable<>))
+                            || (type.PropertyType == typeof(string) && type.GetCustomAttribute<RequiredAttribute>() == null))
                             column.IsNullable = true;
-                        }
-                        // string类型没有Required则可空
-                        else if (type.PropertyType == typeof(string) && type.GetCustomAttribute<RequiredAttribute>() == null)
-                        {
-                            column.IsNullable = true;
-                        }
                     },
                 };
                 var defaultConnection = new ConnectionConfig()
@@ -77,24 +71,18 @@ namespace Admin.NET.Core
                     {
                         var dbProvider = db.GetConnection((string)config.ConfigId);
 
-                        // 执行超时时间
+                        // 设置超时时间
                         dbProvider.Ado.CommandTimeOut = 30;
 
                         // 打印SQL语句
                         dbProvider.Aop.OnLogExecuting = (sql, pars) =>
                         {
                             if (sql.StartsWith("SELECT"))
-                            {
                                 Console.ForegroundColor = ConsoleColor.Green;
-                            }
                             if (sql.StartsWith("UPDATE") || sql.StartsWith("INSERT"))
-                            {
                                 Console.ForegroundColor = ConsoleColor.White;
-                            }
                             if (sql.StartsWith("DELETE"))
-                            {
                                 Console.ForegroundColor = ConsoleColor.Blue;
-                            }
 
                             Console.WriteLine(sql + "\r\n" + db.Utilities.SerializeObject(pars.ToDictionary(it => it.ParameterName, it => it.Value)));
                             App.PrintToMiniProfiler("SqlSugar", "Info", sql + "\r\n" + db.Utilities.SerializeObject(pars.ToDictionary(it => it.ParameterName, it => it.Value)));
@@ -106,7 +94,7 @@ namespace Admin.NET.Core
                             // 新增操作
                             if (entityInfo.OperationType == DataFilterType.InsertByObject)
                             {
-                                // 主键(long类型)-赋值雪花Id
+                                // 主键(long)-赋值雪花Id
                                 if (entityInfo.EntityColumnInfo.IsPrimarykey && entityInfo.EntityColumnInfo.PropertyInfo.PropertyType == typeof(long))
                                     entityInfo.SetValue(Yitter.IdGenerator.YitIdHelper.NextId());
                                 if (entityInfo.PropertyName == "CreateTime")
@@ -140,15 +128,13 @@ namespace Admin.NET.Core
                         // 配置租户过滤器
                         SetTenantEntityFilter(dbProvider);
                     });
-
                 });
-
 
                 // 初始化数据库结构及种子数据
                 if (dbOptions.InitTable)
                     InitDataBase(sqlSugar, dbOptions);
                 return sqlSugar;
-            }); 
+            });
             services.AddScoped(typeof(SqlSugarRepository<>)); // 注册仓储
         }
 
