@@ -80,7 +80,7 @@ namespace Admin.NET.Core.Service
         [HttpPost("/sysOrg/add")]
         public async Task<long> AddOrg(AddOrgInput input)
         {
-            var isExist = await _sysOrgRep.IsAnyAsync(u => u.Code == input.Code || u.Name == input.Name);
+            var isExist = await _sysOrgRep.IsAnyAsync(u => u.Code == input.Code && u.Name == input.Name);
             if (isExist)
                 throw Oops.Oh(ErrorCodeEnum.D2002);
 
