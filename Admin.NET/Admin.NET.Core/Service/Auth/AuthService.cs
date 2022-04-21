@@ -158,8 +158,8 @@ namespace Admin.NET.Core.Service
         public async void Logout()
         {
             var user = _userManager.User;
-            if (user == null)
-                throw Oops.Oh(ErrorCodeEnum.D1011);
+            //if (user == null)
+            //    throw Oops.Oh(ErrorCodeEnum.D1011);
 
             // 退出Swagger
             _httpContextAccessor.HttpContext.SignoutToSwagger();

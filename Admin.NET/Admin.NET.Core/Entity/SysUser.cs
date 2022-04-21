@@ -7,28 +7,28 @@ namespace Admin.NET.Core
     /// <summary>
     /// 系统用户表
     /// </summary>
-    [SugarTable("sys_user", "系统用户表")]
+    [SugarTable("Sys_Users", "系统用户表")]
     [SqlSugarEntity]
     public class SysUser : EntityTenant
     {
         /// <summary>
         /// 账号
         /// </summary>
-        [SugarColumn(ColumnDescription = "账号名称", Length = 20)]
+        [SugarColumn(ColumnDescription = "账号名称", Length = 20, ColumnName = "Username")]
         [Required, MaxLength(20)]
         public virtual string UserName { get; set; }
 
         /// <summary>
         /// 密码（默认MD5加密）
         /// </summary>
-        [SugarColumn(ColumnDescription = "账号密码", Length = 50)]
+        [SugarColumn(ColumnDescription = "账号密码", Length = 50, ColumnName = "Password3")]
         [Required, MaxLength(50)]
         public string Password { get; set; }
 
         /// <summary>
         /// 昵称
         /// </summary>
-        [SugarColumn(ColumnDescription = "昵称", Length = 20)]
+        [SugarColumn(ColumnDescription = "昵称", Length = 20, ColumnName = "Nickname")]
         [MaxLength(20)]
         public string NickName { get; set; }
 

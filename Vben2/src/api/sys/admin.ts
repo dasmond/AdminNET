@@ -39,6 +39,7 @@ enum Api {
   AddOrg = '/sysOrg/add',
   DeleteOrg = '/sysOrg/delete',
   UpdateOrg = '/sysOrg/update',
+  OrgTree = '/sysOrg/tree',
 
   // 职位接口
   PosList = '/sysPos/list',
@@ -191,6 +192,8 @@ export const updateMenu = (params: any) => defHttp.post({ url: Api.UpdateMenu, p
 ////////// 机构管理接口 //////////
 // 获取机构列表
 export const getOrgList = (params?: any) => defHttp.get<any>({ url: Api.OrgList, params });
+// 获取机构列表
+export const getOrgTree = (params?: any) => defHttp.get<any>({ url: Api.OrgTree, params });
 // 增加机构
 export const addOrg = (params: any) => defHttp.post({ url: Api.AddOrg, params });
 // 删除机构

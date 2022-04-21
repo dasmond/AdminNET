@@ -1,7 +1,7 @@
 <template>
-  <PageWrapper dense contentFullHeight fixedHeight contentClass="flex">
-    <OrgTree class="w-1/4 xl:w-1/5" @select="handleSelect" ref="OrgTreeChild"/>
-    <BasicTable @register="registerTable"  class="w-3/4 xl:w-4/5"  :searchInfo="searchInfo">
+  <PageWrapper contentFullHeight contentClass="flex">
+    <OrgTree  @select="handleSelect" ref="OrgTreeChild"/>
+    <BasicTable @register="registerTable" class="w-3/4 xl:w-4/5"  :searchInfo="searchInfo">
       <template #toolbar>
         <a-button type="primary" @click="handleCreatebrother" :disabled="!hasPermission('sysOrg:add')">
           添加同级单位
@@ -67,12 +67,12 @@
           schemas: searchFormSchema,
         },
         rowKey: 'id',
-        pagination: false,
+        pagination: true,
         striped: false,
         useSearchForm: true,
         showTableSetting: true,
         bordered: true,
-        showIndexColumn: false,
+        showIndexColumn: true,
         canResize: false,
         actionColumn: {
           width: 150,
