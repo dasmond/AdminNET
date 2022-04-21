@@ -20,7 +20,7 @@ export default {
     // Number of pages that can be selected
     pageSizeOptions: ['10', '50', '80', '100'],
     // Default display quantity on one page
-    defaultPageSize: 10,
+    defaultPageSize: 20,
     // Default Size
     defaultSize: 'middle',
     // Custom general sort function
@@ -46,6 +46,6 @@ export default {
   scrollbar: {
     // Whether to use native scroll bar
     // After opening, the menu, modal, drawer will change the pop-up scroll bar to native
-    native: false,
+    native: true,
   },
 };
