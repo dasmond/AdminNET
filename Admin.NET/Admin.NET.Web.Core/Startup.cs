@@ -55,7 +55,7 @@ namespace Admin.NET.Web.Core
                 builder.AddSubscriber<LogEventSubscriber>();
             });
 
-            // 注册OSS对象存储
+            // 注册OSS对象存储            
             services.AddOSSService(option =>
             {
                 var ossOptions = App.GetOptions<OSSProviderOptions>();

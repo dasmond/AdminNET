@@ -2,6 +2,7 @@
 using Admin.NET.Core;
 using SqlSugar;
 using System.ComponentModel.DataAnnotations;
+using System;
 
 namespace Admin.NET.Application.Entity
 {
@@ -24,5 +25,12 @@ namespace Admin.NET.Application.Entity
         /// </summary>
         [SugarColumn(ColumnDescription = "年龄")]
         public int Age { get; set; }
+
+
+        /// <summary>
+        /// 出生日期
+        /// </summary>
+        [SugarColumn(ColumnDescription = "出生日期")]
+        public DateTime BirthDate { get; set; }
     }
 }
