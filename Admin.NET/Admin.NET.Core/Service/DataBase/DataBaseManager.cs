@@ -119,7 +119,7 @@ namespace Admin.NET.Core.Service
             {
                 columns.Add(new DbColumnInfo
                 {
-                    DbColumnName = m.DbColumnName,
+                    DbColumnName = m.DbColumnName.Trim(),
                     DataType = m.DataType,
                     Length = m.Length,
                     ColumnDescription = m.ColumnDescription,
