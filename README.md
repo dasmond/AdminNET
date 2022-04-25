@@ -25,7 +25,7 @@
 ````
 2.	开发:
 * 生成项目镜像：script 目录。执行 build-images-local.ps1 将发布内容并生成镜像(推荐)； build-images.ps1 根据源码生成镜像
-* 启动镜像： etc/docker 目录。执行 run-docker-compose.ps1
+* 启动镜像： script 目录。执行 run-docker-compose.ps1
 
 3. tye(k8s)
 - 启动tye: script 目录。执行 run-tye.ps1，启动所有后台服务。tye地址：http://127.0.0.1:8000
