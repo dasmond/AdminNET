@@ -1,0 +1,40 @@
+version: '3.7'
+
+services:
+  rabbitmq:
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+
+  redis:
+    ports:
+      - "6379:6379"
+      
+  postgres-db:
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: "myPassw0rd"
+
+  pgadmin:
+    ports:
+      - "${PGADMIN_PORT:-5050}:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-pgadmin4@pgadmin.org}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-admin}
+      
+  elasticsearch:
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    environment:
+      ES_JAVA_OPTS: "-Xmx512m -Xms512m"
+      discovery.type: "single-node"
+      bootstrap.memory_lock: "true"
+
+  kibana:
+    environment:
+      SERVER_NAME: kibana
+      ELASTICSEARCH_HOSTS: "http://elasticsearch:9200"
+    ports:
+      - "5601:5601"
