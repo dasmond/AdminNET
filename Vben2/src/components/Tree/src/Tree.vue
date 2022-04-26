@@ -408,6 +408,8 @@
         const { title, helpMessage, toolbar, search, checkable } = props;
         const showTitle = title || toolbar || search || slots.headerTitle;
         const scrollStyle: CSSProperties = { height: 'calc(100% - 38px)' };
+        const treeHeight = document.documentElement.clientHeight - 160;
+        const treeStyle = 'height:' + treeHeight + 'px; overflow-x:auto; overflow-y:auto';
         return (
           <div class={[bem(), 'h-full', attrs.class]}>
             {showTitle && (
@@ -428,7 +430,12 @@
             )}
             <Spin spinning={unref(props.loading)} tip="加载中...">
               <ScrollContainer style={scrollStyle} v-show={!unref(getNotFound)}>
-                <Tree {...unref(getBindValues)} showIcon={false} treeData={treeData.value} />
+                <Tree
+                  {...unref(getBindValues)}
+                  style={treeStyle}
+                  showIcon={false}
+                  treeData={treeData.value}
+                />
               </ScrollContainer>
               <Empty
                 v-show={unref(getNotFound)}
