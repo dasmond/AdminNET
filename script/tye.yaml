@@ -1,0 +1,13 @@
+# tye application configuration file
+# read all about it at https://github.com/dotnet/tye
+#
+# when you've given us a try, we'd love to know what you think:
+#    https://aka.ms/AA7q20u
+#
+name: admin.net
+services:
+- name: admin-net-web-entry
+  project: ../Admin.NET/Admin.NET.Web.Entry/Admin.NET.Web.Entry.csproj
+  bindings:
+    - protocol: https
+      port: 44326

@@ -1,0 +1,76 @@
+version: '3.7'
+
+services:
+  rabbitmq:
+    container_name: rabbitmq
+    image: rabbitmq:management-alpine
+    healthcheck:
+        test: rabbitmq-diagnostics -q ping
+        interval: 30s
+        timeout: 30s
+        retries: 3
+    networks: 
+      - admin_net-network
+      
+  redis:
+    container_name: redis
+    image: redis:alpine
+    healthcheck:
+      test: ["CMD", "redis-cli","ping"]
+    networks: 
+      - admin_net-network
+    
+  postgres-db:
+    container_name: postgres-db
+    image: postgres:14.1
+    volumes:
+      - postgres_data:/var/opt/postgres
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5  
+    networks: 
+      - admin_net-network
+  
+  pgadmin:
+    container_name: pgadmin_container
+    image: dpage/pgadmin4:6.2    
+    volumes:
+       - pgadmin_data:/var/lib/pgadmin
+    networks: 
+      - admin_net-network
+      
+  elasticsearch:
+    container_name: elasticsearch
+    image: elasticsearch:7.14.1
+    volumes:
+      - /etc/localtime:/etc/localtime
+      - es_data:/usr/share/elasticsearch/data
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    networks:
+      - admin_net-network
+
+  kibana:
+    container_name: kibana
+    image: kibana:7.14.1
+    volumes:
+      - /etc/localtime:/etc/localtime
+    networks:
+      - admin_net-network
+    depends_on:
+      - elasticsearch
+    links:
+      - elasticsearch
+      
+volumes:
+  postgres_data:
+  pgadmin_data:
+  es_data:
+
+networks:
+  admin_net-network:
+    external: true
