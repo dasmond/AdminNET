@@ -1,4 +1,4 @@
-﻿using Furion.DatabaseAccessor;
+using Furion.DatabaseAccessor;
 using Furion.DatabaseAccessor.Extensions;
 using Furion.DependencyInjection;
 using Furion.DynamicApiController;
@@ -79,21 +79,15 @@ namespace Furion.Extras.Admin.NET.Service
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [NonAction]
-        public async Task<dynamic> GetRoleList([FromQuery] RoleInput input)
+        [HttpGet("/sysRole/list")]
+        public async Task<List<SysRole>> GetRoleList([FromQuery] RoleInput input)
         {
             var name = !string.IsNullOrEmpty(input.Name?.Trim());
             var code = !string.IsNullOrEmpty(input.Code?.Trim());
             return await _sysRoleRep.DetachedEntities
                                     .Where((name, u => EF.Functions.Like(u.Name, $"%{input.Name.Trim()}%")),
                                            (code, u => EF.Functions.Like(u.Code, $"%{input.Code.Trim()}%")))
-                                    .Where(u => u.Status == CommonStatus.ENABLE)
-                                    .OrderBy(u => u.Sort)
-                                    .Select(u => new
-                                    {
-                                        u.Id,
-                                        Name = u.Name + "[" + u.Code + "]",
-                                    })
+                                    .Where(u => u.Status == CommonStatus.ENABLE).OrderBy(u => u.Sort)
                                     .ToListAsync();
         }
 
