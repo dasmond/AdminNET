@@ -1,0 +1,41 @@
+﻿{
+  "ReverseProxy": {
+    "Routes": {
+      "Admin Service": {
+        "ClusterId": "adminCluster",
+        "Match": {
+          "Path": "/api/admin/{**everything}"
+        },
+        "Transforms": [
+          { "PathPattern": "{**everything}" }
+        ]
+      },
+      "Demo Service": {
+        "ClusterId": "demoCluster",
+        "Match": {
+          "Path": "/api/demo/{**everything}"
+        },
+        "Transforms": [
+          { "PathPattern": "{**everything}" }
+        ]
+      }
+    },
+    "Clusters": {
+      "adminCluster": {
+        "Destinations": {
+          "destination1": {
+            "Address": "https://localhost:44326"
+          }
+        }
+      },
+      "demoCluster": {
+        "Destinations": {
+          "destination1": {
+            "Address": "https://localhost:44327"
+          }
+        }
+      }
+
+    }
+  }
+}

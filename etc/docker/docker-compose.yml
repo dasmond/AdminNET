@@ -1,0 +1,45 @@
+version: '3.7'
+
+services:
+  backend:
+    image: admin_net/backend:latest
+    container_name: backend
+    build:
+      context: ../../Admin.NET/
+      dockerfile: Admin.NET.Web.Entry/Dockerfile.local
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_URLS=http://+:80;
+    ports:
+      - "9000:80"
+    depends_on:
+      redis:
+        condition: service_healthy
+      postgres-db:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
+    restart: on-failure  
+    networks: 
+      - admin_net-network
+
+  fontend:
+    image: admin_net/fontend:latest
+    container_name: fontend
+    build:
+      context: ../../Vben2/
+      dockerfile: Dockerfile.local
+    ports:
+      - "9001:80"
+    depends_on:
+      redis:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
+    restart: on-failure  
+    networks: 
+      - admin_net-network
+
+networks:
+  admin_net-network:
+    external: true

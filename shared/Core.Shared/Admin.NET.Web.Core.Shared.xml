@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Admin.NET.Demo.Application</name>
+    </assembly>
+    <members>
+        <member name="F:Admin.NET.Demo.Application.Const.DemoConst.ConfigId">
+            <summary>
+            自己业务数据库标识
+            </summary>
+        </member>
+        <member name="T:Admin.NET.Demo.Application.Entity.DemoEntity">
+            <summary>
+            Demo
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Demo.Application.Entity.DemoEntity.Name">
+            <summary>
+            姓名
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Demo.Application.Entity.DemoEntity.Age">
+            <summary>
+            年龄
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Demo.Application.Entity.DemoEntity.BirthDate">
+            <summary>
+            出生日期
+            </summary>
+        </member>
+        <member name="T:Admin.NET.Demo.Application.SeedData.DemoSeedData">
+            <summary>
+            自己业务表种子数据
+            </summary>
+        </member>
+        <member name="M:Admin.NET.Demo.Application.SeedData.DemoSeedData.HasData">
+            <summary>
+            种子数据
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Admin.NET.Demo.Application.Serice.DemoService">
+            <summary>
+            自己业务服务
+            </summary>
+        </member>
+        <member name="M:Admin.NET.Demo.Application.Serice.DemoService.GetTestList">
+            <summary>
+            获取列表
+            </summary>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
