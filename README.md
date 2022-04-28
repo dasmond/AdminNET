@@ -1,7 +1,4 @@
-<<<<<<< HEAD
-# new branch
-=======
-# Admin.NET
+微服务版本
 
 #### 🎁 介绍
 基于.NET6/Furion/SqlSugar实现的通用管理平台，前端Vue3/Vben。整合最新技术，模块插件式开发，前后端分离，开箱即用。
@@ -49,4 +46,3 @@
 - 👉 IdGenerator：[https://github.com/yitter/idgenerator](https://github.com/yitter/idgenerator)
 - 👉 UAParser：[https://github.com/ua-parser/uap-csharp/](https://github.com/ua-parser/uap-csharp/)
 - 👉 OnceMi.AspNetCore.OSS：[https://github.com/oncemi/OnceMi.AspNetCore.OSS](https://github.com/oncemi/OnceMi.AspNetCore.OSS)
->>>>>>> pr_281
