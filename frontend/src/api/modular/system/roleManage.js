@@ -1,7 +1,7 @@
 import { axios } from '@/utils/request'
 
 /**
- * 获取角色列表
+ * 获取角色分页
  *
  * @author yubaoshan
  * @date 2020/5/6 11:44
@@ -9,6 +9,20 @@ import { axios } from '@/utils/request'
 export function getRolePage (parameter) {
   return axios({
     url: '/sysRole/page',
+    method: 'get',
+    params: parameter
+  })
+}
+
+/**
+ * 获取角色列表
+ *
+ * @author Leckun
+ * @date 2022/4/28 15:25
+ */
+ export function getRoleList (parameter) {
+  return axios({
+    url: '/sysRole/list',
     method: 'get',
     params: parameter
   })
