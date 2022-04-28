@@ -80,7 +80,7 @@ namespace Furion.Extras.Admin.NET.Service
         /// <param name="input"></param>
         /// <returns></returns>
         [HttpGet("/sysRole/list")]
-        public async Task<PageResult<SysRole>> GetRoleList([FromQuery] RoleInput input)
+        public async Task<List<SysRole>> GetRoleList([FromQuery] RoleInput input)
         {
             var name = !string.IsNullOrEmpty(input.Name?.Trim());
             var code = !string.IsNullOrEmpty(input.Code?.Trim());
