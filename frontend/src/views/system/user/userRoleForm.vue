@@ -28,7 +28,7 @@
 </template>
 
 <script>
-  import { getRolePage } from '@/api/modular/system/roleManage'
+  import { getRoleList } from '@/api/modular/system/roleManage'
   import { sysUserOwnRole, sysUserGrantRole } from '@/api/modular/system/userManage'
 
   const columns = [
@@ -69,7 +69,7 @@
         // 加载已有数据
         this.sysUserOwnRole()
         // 获取全部列表,无需分页
-        getRolePage().then((res) => {
+        getRoleList().then((res) => {
           this.loadData = res.data.rows
         })
       },
