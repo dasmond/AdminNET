@@ -1,15 +1,14 @@
 <# Check development certificates #>
 
-if (! (  Test-Path "..\etc\dev-cert\localhost.pfx" -PathType Leaf ) ){
+if (! (  Test-Path ".\etc\dev-cert\localhost.pfx" -PathType Leaf ) ){
    Write-Information "Creating dev certificates..."
-   cd "..\etc\dev-cert"
+   cd ".\etc\dev-cert"
    .\create-certificate.ps1
-   cd..
-   cd ..  
+   cd ../..
 }
 
 <# Check Docker containers #>
-docker network create dev
+docker network create admin_net-network
 
 $requiredServices = @(
 	'postgres-db',
@@ -29,9 +28,9 @@ foreach ($requiredService in $requiredServices) {
 	}
 	else
 	{
-	    cd "../etc/docker/"
+	    cd "./etc/docker/"
 		docker-compose -f docker-compose.infrastructure.yml -f docker-compose.infrastructure.override.yml up -d
-		cd ../../script
+		cd ../..
 		break;
 	}
 }
