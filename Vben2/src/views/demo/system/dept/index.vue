@@ -36,6 +36,7 @@
   import DeptModal from './DeptModal.vue';
 
   import { columns, searchFormSchema } from './dept.data';
+  import {getOrgList} from "/@/api/sys/admin";
 
   export default defineComponent({
     name: 'DeptManagement',
@@ -44,7 +45,7 @@
       const [registerModal, { openModal }] = useModal();
       const [registerTable, { reload }] = useTable({
         title: '部门列表',
-        api: getDeptList,
+        api: getOrgList,
         columns,
         formConfig: {
           labelWidth: 120,

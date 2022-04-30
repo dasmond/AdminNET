@@ -9,6 +9,36 @@
             自己业务数据库标识
             </summary>
         </member>
+        <member name="T:Admin.NET.Application.Entity.score">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.Entity.score.exam_id">
+            <summary>
+            Data.[score].[exam_id]
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.Entity.score.memberid">
+            <summary>
+            Data.[score].[memberid]
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.Entity.score.examinerid">
+            <summary>
+            Data.[score].[examinerid]
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.Entity.score.ques_id">
+            <summary>
+            Data.[score].[ques_id]
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.Entity.score.itemid">
+            <summary>
+            Data.[score].[itemid]
+            </summary>
+        </member>
         <member name="T:Admin.NET.Application.Entity.Test">
             <summary>
             自己业务数据表
@@ -38,6 +68,168 @@
             <summary>
             种子数据
             </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Admin.NET.Application.scoreDto">
+            <summary>
+            soreServer输出参数
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.scoreDto.exam_id">
+            <summary>
+            Data.[score].[exam_id]
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.scoreDto.memberid">
+            <summary>
+            Data.[score].[memberid]
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.scoreDto.examinerid">
+            <summary>
+            Data.[score].[examinerid]
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.scoreDto.ques_id">
+            <summary>
+            Data.[score].[ques_id]
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.scoreDto.itemid">
+            <summary>
+            Data.[score].[itemid]
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.scoreDto.score">
+            <summary>
+            Data.[score].[score]
+            </summary>
+        </member>
+        <member name="T:Admin.NET.Application.scoreInput">
+            <summary>
+            soreServer输入参数
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.scoreInput.examinerid">
+            <summary>
+            Data.[score].[examinerid]
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.scoreInput.ques_id">
+            <summary>
+            Data.[score].[ques_id]
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.scoreInput.itemid">
+            <summary>
+            Data.[score].[itemid]
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.scoreInput.score">
+            <summary>
+            Data.[score].[score]
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.DeletescoreInput.exam_id">
+            <summary>
+            Data.[score].[exam_id]
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.DeletescoreInput.memberid">
+            <summary>
+            Data.[score].[memberid]
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.UpdatescoreInput.exam_id">
+            <summary>
+            Data.[score].[exam_id]
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.UpdatescoreInput.memberid">
+            <summary>
+            Data.[score].[memberid]
+            </summary>
+        </member>
+        <member name="T:Admin.NET.Application.scoreOutput">
+            <summary>
+            soreServer输出参数
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.scoreOutput.exam_id">
+            <summary>
+            Data.[score].[exam_id]
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.scoreOutput.memberid">
+            <summary>
+            Data.[score].[memberid]
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.scoreOutput.examinerid">
+            <summary>
+            Data.[score].[examinerid]
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.scoreOutput.ques_id">
+            <summary>
+            Data.[score].[ques_id]
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.scoreOutput.itemid">
+            <summary>
+            Data.[score].[itemid]
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.scoreOutput.score">
+            <summary>
+            Data.[score].[score]
+            </summary>
+        </member>
+        <member name="T:Admin.NET.Application.scoreService">
+            <summary>
+            soreServer服务
+            </summary>
+        </member>
+        <member name="M:Admin.NET.Application.scoreService.Page(Admin.NET.Application.scoreInput)">
+            <summary>
+            分页查询soreServer
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Application.scoreService.Add(Admin.NET.Application.AddscoreInput)">
+            <summary>
+            增加soreServer
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Application.scoreService.Delete(Admin.NET.Application.DeletescoreInput)">
+            <summary>
+            删除soreServer
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Application.scoreService.Update(Admin.NET.Application.UpdatescoreInput)">
+            <summary>
+            更新soreServer
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Application.scoreService.Get(Admin.NET.Application.QueryescoreInput)">
+            <summary>
+            获取soreServer
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Application.scoreService.List(Admin.NET.Application.scoreInput)">
+            <summary>
+            获取soreServer列表
+            </summary>
+            <param name="input"></param>
             <returns></returns>
         </member>
         <member name="T:Admin.NET.Application.Serice.TestService">

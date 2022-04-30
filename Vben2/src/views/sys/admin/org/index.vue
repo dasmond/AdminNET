@@ -1,6 +1,6 @@
 <template>
-  <PageWrapper contentFullHeight contentClass="flex">
-    <OrgTree  @select="handleSelect" ref="OrgTreeChild"/>
+  <PageWrapper dense contentFullHeight  contentClass="flex">
+    <OrgTree  @select="handleSelect" class="w-1/4 xl:w-1/5"  ref="OrgTreeChild"/>
     <BasicTable @register="registerTable" class="w-3/4 xl:w-4/5"  :searchInfo="searchInfo">
       <template #toolbar>
         <a-button type="primary" @click="handleCreatebrother" :disabled="!hasPermission('sysOrg:add')">
@@ -174,3 +174,15 @@
     },
   });
 </script>
+<style lang="less">
+.vben-basic-table-header__toolbar {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    > * {
+      margin-left: 18px;
+    }
+}
+</style>

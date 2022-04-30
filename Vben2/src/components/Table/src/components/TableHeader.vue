@@ -71,10 +71,10 @@
       flex: 1;
       display: flex;
       align-items: center;
-      justify-content: flex-end;
+      justify-content: flex-start;
 
       > * {
-        margin-right: 8px;
+        margin-left: 28px;
       }
     }
   }

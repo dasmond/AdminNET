@@ -4,9 +4,12 @@ using Furion.FriendlyException;
 using Mapster;
 using Microsoft.AspNetCore.Mvc;
 using SqlSugar;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
+
 
 namespace Admin.NET.Core.Service
 {
@@ -59,7 +62,6 @@ namespace Admin.NET.Core.Service
 
             }
             else
-<<<<<<< HEAD
             { 
                 orgIdList = await GetUserOrgIdList();
                 iSugarQueryable = _sysOrgRep.AsQueryable().OrderBy(it => it.Code).Where(it => SqlFunc.Length(it.Code) <= 6)
@@ -88,32 +90,28 @@ namespace Admin.NET.Core.Service
             orgIdList = await GetUserOrgIdList();
           
             if (!string.IsNullOrWhiteSpace(input.Code) && input.Code.Length >= 6)
-=======
             {
                 orgIdList = await GetUserOrgIdList();
             }
 
-            var iSugarQueryable = _sysOrgRep.AsQueryable().OrderBy(u => u.Order)
+            iSugarQueryable = _sysOrgRep.AsQueryable().OrderBy(u => u.Order)
                 .WhereIF(orgIdList.Count > 0, u => orgIdList.Contains(u.Id)); // 非超级管理员限制
 
             if (!string.IsNullOrWhiteSpace(input.Name) || !string.IsNullOrWhiteSpace(input.Code) || input.Id > 0)
->>>>>>> remotes/origin/next
+
             {
                 iSugarQueryable = _sysOrgRep.AsQueryable().OrderBy(it => it.Code).Where(it => SqlFunc.StartsWith(it.Code, input.Code))
                .WhereIF(orgIdList.Count > 0, u => orgIdList.Contains(u.Id));
             }
-<<<<<<< HEAD
+
             else
             {
                 iSugarQueryable = _sysOrgRep.AsQueryable().OrderBy(it => it.Code).Where(it => SqlFunc.Length(it.Code) <= 6)
                .WhereIF(orgIdList.Count > 0, u => orgIdList.Contains(u.Id)); 
-            }           
+            } 
 
-            var result = await iSugarQueryable.ToTreeAsync(u => u.Children, u => u.Pid, input.Id > 0 ? input.Id : 0);
-            return result;
-=======
             return await iSugarQueryable.ToTreeAsync(u => u.Children, u => u.Pid, input.Id > 0 ? input.Id : 0);
->>>>>>> remotes/origin/next
+
         }
 
         /// <summary>
@@ -355,5 +353,38 @@ namespace Admin.NET.Core.Service
             var orgTreeList = await _sysOrgRep.AsQueryable().ToChildListAsync(u => u.Pid, pid);
             return orgTreeList.Select(u => u.Id).ToList();
         }
+
+        [HttpPost("/sysOrg/getTree")]
+        public async Task<List<SysOrg>> GetOrgTreeByCodeAsync(string rootCode, int levellenth=2)
+        {
+            ISugarQueryable<SysOrg> iSugarQueryable;
+
+            if (string.IsNullOrWhiteSpace(rootCode))
+            {
+                iSugarQueryable = _sysOrgRep.AsQueryable().OrderBy(it => it.Code);
+            }
+            else
+            {
+                iSugarQueryable = _sysOrgRep.AsQueryable().OrderBy(it => it.Code).Where(it => SqlFunc.StartsWith(it.Code, rootCode));
+            }            
+
+            List<SysOrg> list2;
+            list2= await iSugarQueryable.ToListAsync();
+
+            if (list2 != null && list2.Count > 0)
+            {
+                foreach (var item in list2)
+                {
+                    List<SysOrg> value = await iSugarQueryable.Where(it => SqlFunc.StartsWith(it.Code, item.Code))
+                        .Where(it => SqlFunc.Length(it.Code) == SqlFunc.Length(item.Code) + levellenth)
+                        .ToListAsync();
+                    item.Children= value;
+                }
+            }
+
+            return list2;
+
+        }
+
     }
 }

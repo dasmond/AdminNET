@@ -404,12 +404,25 @@
 
       expose(instance);
 
+      // function getTreeStyle() {
+      //   const treeHeight = ref(null);
+      //   const treeWidth = ref(null);
+      //   treeHeight.value = document.documentElement.clientHeight - 160;
+      //   treeWidth.value = document.documentElement.clientWidth;
+      //   const treeStyle = ref(null);
+      //   treeStyle.value = 'height:' + treeHeight.value + 'px; width:' + treeWidth.value + 'px;  overflow-x:auto; overflow-y:auto';
+      //   return treeStyle.value;
+      // }
+
       return () => {
         const { title, helpMessage, toolbar, search, checkable } = props;
         const showTitle = title || toolbar || search || slots.headerTitle;
         const scrollStyle: CSSProperties = { height: 'calc(100% - 38px)' };
+        const treeHeight = document.documentElement.clientHeight - 160;
+        const treeWidth= document.documentElement.clientWidth;
+        const treeStyle = 'height:' + treeHeight + 'px; width:' + treeWidth + 'px;  overflow-x:auto; overflow-y:auto';
         return (
-          <div class={[bem(), 'h-full', attrs.class]}>
+          <div class={[bem(), 'h-full', attrs.class]} >
             {showTitle && (
               <TreeHeader
                 checkable={checkable}
@@ -428,7 +441,12 @@
             )}
             <Spin spinning={unref(props.loading)} tip="加载中...">
               <ScrollContainer style={scrollStyle} v-show={!unref(getNotFound)}>
-                <Tree {...unref(getBindValues)} showIcon={false} treeData={treeData.value} />
+                <Tree
+                  {...unref(getBindValues)}
+                  style={treeStyle}
+                  showIcon={false}
+                  treeData={treeData.value}
+                />
               </ScrollContainer>
               <Empty
                 v-show={unref(getNotFound)}

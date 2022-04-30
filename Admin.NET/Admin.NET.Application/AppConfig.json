@@ -1,8 +1,8 @@
 ﻿{
   "ConnectionStrings": {
-    "DefaultConnection": "DataSource=C:\\db\\Admin.NET.db",
-    "DefaultDbType": "Sqlite", // MySql、SqlServer、Sqlite、Oracle、PostgreSQL、Dm、Kdbndp、Oscar、MySqlConnector、Access
-    "InitTable": true // 是否生成库表和种子数据
+    "DefaultConnection": "server=127.0.0.1;uid=sa;pwd=wzfwyj@82335198;database=technicalyjb;MultipleActiveResultSets=True",
+    "DefaultDbType": "SqlServer", // MySql、SqlServer、Sqlite、Oracle、PostgreSQL、Dm、Kdbndp、Oscar、MySqlConnector、Access
+    "InitTable": false // 是否生成库表和种子数据
     //"DbConfigs": [
     //  {
     //    "DbConfigId": "Test",

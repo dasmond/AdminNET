@@ -83,7 +83,15 @@ export const tableShowColumns: BasicColumn[] = [
     dataIndex: 'description',
   },
 ];
+export const searchTableSchema: FormSchema[] = [
+  {
+    field: 'name',
+    label: '表名',
+    component: 'Input',
+    colProps: { span: 10 },
+  },
 
+];
 export const tableFormSchema: FormSchema[] = [
   {
     field: 'dataTableInfo',
@@ -375,4 +383,6 @@ export const editColumn: BasicColumn[] = [
     edit: true,
     editRule: false,
   },
+
 ];
+

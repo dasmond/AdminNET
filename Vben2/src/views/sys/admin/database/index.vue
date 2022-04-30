@@ -1,7 +1,7 @@
 <template>
   <div>
     <PageWrapper dense contentFullHeight fixedHeight contentClass="flex">
-      <BasicTable @register="registerTable" class="w-2/6" @row-dbClick="onRowClick">
+      <BasicTable @register="registerTable" class="w-2/6" @row-dbClick="onRowClick"  :searchInfo="searchInfo">
         <template #toolbar>
           <a-button type="primary" @click="handleCreateTable">新增数据表</a-button>
         </template>
@@ -58,10 +58,10 @@
   </div>
 </template>
 <script lang="ts">
-  import { defineComponent, ref } from 'vue';
+  import {defineComponent, reactive, ref} from 'vue';
   import { BasicTable, useTable, TableAction } from '/@/components/Table';
   import { PageWrapper } from '/@/components/Page';
-  import { tableShowColumns, columnShowColumns } from './database.data';
+  import {tableShowColumns, columnShowColumns, searchTableSchema} from './database.data';
   import { useModal } from '/@/components/Modal';
   import TableModal from './TableModal.vue';
   import ColumnModal from './ColumnModal.vue';
@@ -78,6 +78,7 @@
       ColumnModal,
     },
     setup() {
+      const searchInfo = reactive<Recordable>({});
       const { createMessage } = useMessage();
       const [registerTableModal, { openModal }] = useModal();
       const [registerCreateEntityModal, { openModal: openCreateEntityModal }] = useModal();
@@ -92,6 +93,11 @@
         rowKey: 'name',
         showIndexColumn: false,
         pagination: false,
+        useSearchForm: true,
+        formConfig: {
+          labelWidth: 30,
+          schemas: searchTableSchema,
+        },
         columns: tableShowColumns,
         actionColumn: {
           width: 200,
@@ -162,6 +168,7 @@
         colReload();
       }
       return {
+        searchInfo,
         registerTable,
         registerColumnTable,
         handleCreateTable,
