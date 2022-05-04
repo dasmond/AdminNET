@@ -1,7 +1,6 @@
-﻿ 
-using Admin.NET.Core;
-using Admin.NET.Core.Shared;
+﻿
 using Admin.NET.Demo.Application.Entity;
+using ServiceCore.Shared.SqlSugar;
 using System;
 using System.Collections.Generic;
 

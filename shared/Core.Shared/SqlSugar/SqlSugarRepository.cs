@@ -3,7 +3,7 @@ using SqlSugar;
 using System.Reflection;
 
 
-namespace Admin.NET.Core.Shared
+namespace ServiceCore.Shared.SqlSugar
 {
     /// <summary>
     /// SqlSugar仓储类
@@ -13,7 +13,7 @@ namespace Admin.NET.Core.Shared
     {
         public SqlSugarRepository(ISqlSugarClient context = null) : base(context) // 默认值等于null不能少
         {
-            base.Context = App.GetService<ISqlSugarClient>(); // 用手动获取方式支持切换仓储
+            Context = App.GetService<ISqlSugarClient>(); // 用手动获取方式支持切换仓储
 
             // 数据库上下文根据实体切换,业务分库(使用环境例如微服务)
             var entityType = typeof(T);

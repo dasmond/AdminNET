@@ -5,19 +5,81 @@
 #    https://aka.ms/AA7q20u
 #
 name: micro
+extensions:
+  - name: dapr
+    components-path: "./dapr/components/"
+    config: dapr-config
+    exclude-placement-container: true
+    placement-port: 6050
+  - name: zipkin
+
+
 services:
-- name: admin-net-web-entry
+
+# 此名称将被用作 app-id. 对于.NET 项目，Tye 只需要项目文件的路径。
+- name: sys
   project: Admin.NET/Admin.NET.Web.Entry/Admin.NET.Web.Entry.csproj
   bindings:
-    - protocol: https
-      port: 44326
-- name: admin-net-demo-entry
+   - protocol: http
+     port: 44326
+  env:
+    - name: SeqServerUrl
+      value: http://seq:5380
+    - name: AppName
+      value: sys api
+
+- name: demo
   project: services/demo/Entry/Admin.NET.Demo.Entry.csproj
   bindings:
-    - protocol: https
-      port: 44327
-- name: admin-net-gateway
-  project: services/gateway/Admin.NET.Gateway.csproj
+   - protocol: http
+     port: 44327
+  env:
+    - name: SeqServerUrl
+      value: http://seq:5380
+    - name: AppName
+      value: demo api
+
+- name: gateway
+  project: services/gateway/Gateway.csproj
   bindings:
-    - protocol: https
-      port: 44320
+   - protocol: http
+     port: 44320
+  env:
+    - name: ASPNETCORE_ENVIRONMENT
+      value: Development
+    - name: SeqServerUrl
+      value: http://seq:5380
+    - name: SysHC
+      value: http://sys/hc
+    - name: demoHC
+      value: http://demo/hc
+    - name: AppName
+      value: gateway api
+
+- name: zipkin
+  external: true
+  bindings:
+    - port: 9411
+      protocol: http
+
+- name: seq
+  external: true
+  bindings:
+    - port: 5380
+      protocol: http
+
+- name: rabbitmq
+  external: true
+  bindings:
+    - port: 15672
+      protocol: http
+
+ingress:
+  - name: ingress
+    rules:
+      - service: gateway
+        path: /
+    bindings:
+      - name: ingress
+        protocol: https
+        port: 44363 #对外端口

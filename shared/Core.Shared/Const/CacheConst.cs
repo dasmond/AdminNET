@@ -1,4 +1,4 @@
-﻿namespace Admin.NET.Core.Shared
+﻿namespace ServiceCore.Shared.Const
 {
     /// <summary>
     /// 缓存相关常量

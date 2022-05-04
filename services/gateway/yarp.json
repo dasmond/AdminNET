@@ -2,9 +2,9 @@
   "ReverseProxy": {
     "Routes": {
       "Admin Service": {
-        "ClusterId": "adminCluster",
+        "ClusterId": "sysCluster",
         "Match": {
-          "Path": "/api/admin/{**everything}"
+          "Path": "/api/sys/{**everything}"
         },
         "Transforms": [
           { "PathPattern": "{**everything}" }
@@ -21,17 +21,17 @@
       }
     },
     "Clusters": {
-      "adminCluster": {
+      "sysCluster": {
         "Destinations": {
           "destination1": {
-            "Address": "https://localhost:44326"
+            "Address": "http://localhost:44326"
           }
         }
       },
       "demoCluster": {
         "Destinations": {
           "destination1": {
-            "Address": "https://localhost:44327"
+            "Address": "http://localhost:44327"
           }
         }
       }

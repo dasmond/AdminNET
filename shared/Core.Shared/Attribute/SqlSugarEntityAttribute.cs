@@ -1,8 +1,9 @@
 ﻿using Furion.DependencyInjection;
+using ServiceCore.Shared.Const;
 using System;
 
 
-namespace Admin.NET.Core.Shared
+namespace ServiceCore.Shared
 {
     /// <summary>
     /// SqlSugar实体配置特性

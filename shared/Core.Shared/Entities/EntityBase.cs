@@ -1,7 +1,7 @@
 ﻿using SqlSugar;
 using System;
 
-namespace Admin.NET.Core.Shared
+namespace ServiceCore.Shared.Entities
 {
     /// <summary>
     /// 框架实体基类Id

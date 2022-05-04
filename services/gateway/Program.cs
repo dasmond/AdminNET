@@ -1,9 +1,27 @@
 using Microsoft.OpenApi.Models;
+using Dapr.Shared; 
 
-var builder = WebApplication.CreateBuilder(args).Inject() ;
-builder.Host.AddYarpJson().UseSerilogDefault() ; 
+const string DefaultCorsPolicyName = "Default";
+var builder = WebApplication.CreateBuilder(args);
+builder.AddCustomHealthChecks();
+builder.Host.AddYarpJson() ; 
 builder.Services.AddReverseProxy()
-    .LoadFromConfig(builder.Configuration.GetSection("ReverseProxy"));
+    .LoadFromConfig(builder.Configuration.GetSection("ReverseProxy"))
+      .AddTransforms<DaprTransformProvider>();
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(DefaultCorsPolicyName, builder =>
+    {
+        builder
+            .SetIsOriginAllowedToAllowWildcardSubdomains()
+            .AllowAnyHeader()
+            .AllowAnyMethod()
+            .AllowCredentials()
+            .SetIsOriginAllowed(origin => new Uri(origin).Host == "localhost");
+    });
+});
+
 builder.Services.AddMvc();
 builder.Services.AddSwaggerGen(options =>
  {
@@ -13,8 +31,15 @@ builder.Services.AddSwaggerGen(options =>
  });
 
 var app = builder.Build();
+
+app.UseCors(DefaultCorsPolicyName);
 app.ConfigureSwaggerUIWithYarp();
 app.MapReverseProxy();
+app.MapGet("/", context => {
+    context.Response.Redirect("/swagger");
+    return Task.CompletedTask;
+});
+
 app.Run();
 
 

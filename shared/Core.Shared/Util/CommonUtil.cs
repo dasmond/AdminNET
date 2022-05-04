@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 
 
-namespace Admin.NET.Core.Shared
+namespace ServiceCore.Shared.Util
 {
     /// <summary>
     /// 通用工具类

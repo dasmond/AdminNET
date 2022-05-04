@@ -1,4 +1,4 @@
-微服务版本
+# Admin.NET
 
 #### 🎁 介绍
 基于.NET6/Furion/SqlSugar实现的通用管理平台，前端Vue3/Vben。整合最新技术，模块插件式开发，前后端分离，开箱即用。
@@ -17,20 +17,18 @@
 * 配置hosts(in Windows: `C:\Windows\System32\drivers\etc\hosts`):
 
 ````powershell
-	127.0.0.1       elasticsearch
+	127.0.0.1       req
 	127.0.0.1       rabbitmq
-	127.0.0.1       redis
 	127.0.0.1       postgres-db
-	127.0.0.1       backend
+	127.0.0.1       sys
+	127.0.0.1       demo
 ````
 2.	开发:
-* 生成项目镜像：script 目录。执行 build-images-local.ps1 将发布内容并生成镜像(推荐)； build-images.ps1 根据源码生成镜像
-* 启动镜像： script 目录。执行 run-docker-compose.ps1
 
-3. tye(k8s)
-- 启动tye: script 目录。执行 run-tye.ps1，启动所有后台服务。tye地址：http://127.0.0.1:8000
+- 启动tye: 执行 run-tye.ps1，启动所有后台服务。tye地址：http://127.0.0.1:8000 ，可以查看组件和项目入口。
 - 发布k8s. 参考https://www.cnblogs.com/newbe36524/p/14353587.html
-
+3. 其他
+* 生成项目镜像：script 目录。执行 build-images-local.ps1 本地发布并将生成镜像 ； build-images.ps1 根据源码生成镜像
 
 注意： 配置文件AppConfig.json和AdminNETConfig.json在docker环境会被删除，请将配置放在appsettings.Production.json中
 
@@ -46,3 +44,5 @@
 - 👉 IdGenerator：[https://github.com/yitter/idgenerator](https://github.com/yitter/idgenerator)
 - 👉 UAParser：[https://github.com/ua-parser/uap-csharp/](https://github.com/ua-parser/uap-csharp/)
 - 👉 OnceMi.AspNetCore.OSS：[https://github.com/oncemi/OnceMi.AspNetCore.OSS](https://github.com/oncemi/OnceMi.AspNetCore.OSS)
+- 👉 Tye：[https://github.com/dotnet/tye](https://github.com/dotnet/tye)
+- 👉 Dapr：[https://docs.microsoft.com/zh-cn/dotnet/architecture/dapr-for-net-developers/](https://docs.microsoft.com/zh-cn/dotnet/architecture/dapr-for-net-developers/)

@@ -2,7 +2,7 @@
 using System;
 
 
-namespace Admin.NET.Core.Shared
+namespace ServiceCore.Shared
 {
     /// <summary>
     /// 非实体表继承该特性

@@ -1,6 +1,6 @@
 ﻿using Furion.ConfigurableOptions;
 
-namespace Admin.NET.Core.Shared
+namespace ServiceCore.Shared.Option
 {
     /// <summary>
     /// 对象存储配置选项

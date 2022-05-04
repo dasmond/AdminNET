@@ -8,7 +8,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 
-namespace Admin.NET.Core.Shared
+namespace ServiceCore.Shared.Extension
 {
     /// <summary>
     /// 对象拓展类

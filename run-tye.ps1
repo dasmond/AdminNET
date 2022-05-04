@@ -13,7 +13,7 @@ docker network create admin_net-network
 $requiredServices = @(
 	'postgres-db',
 	'rabbitmq',
-	'redis'
+	'seq'
 )
 	
 foreach ($requiredService in $requiredServices) {	
@@ -29,7 +29,7 @@ foreach ($requiredService in $requiredServices) {
 	else
 	{
 	    cd "./etc/docker/"
-		docker-compose -f docker-compose.infrastructure.yml -f docker-compose.infrastructure.override.yml up -d
+		docker-compose -f docker-compose.infrastructure.yml up -d
 		cd ../..
 		break;
 	}

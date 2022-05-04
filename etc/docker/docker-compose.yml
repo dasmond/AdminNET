@@ -1,7 +1,7 @@
 version: '3.7'
 
 services:
-  backend:
+  sys:
     image: admin_net/backend:latest
     container_name: backend
     build:
@@ -11,10 +11,8 @@ services:
       - ASPNETCORE_ENVIRONMENT=Production
       - ASPNETCORE_URLS=http://+:80;
     ports:
-      - "9000:80"
+      - "9001:80"
     depends_on:
-      redis:
-        condition: service_healthy
       postgres-db:
         condition: service_healthy
       rabbitmq:
@@ -22,7 +20,27 @@ services:
     restart: on-failure  
     networks: 
       - admin_net-network
-
+      
+  demo:
+    image: admin_net/demo:latest
+    container_name: demo
+    build:
+      context: ../../
+      dockerfile: services/demo/Entry/Dockerfile.local
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_URLS=http://+:80;
+    ports:
+      - "9002:80"
+    depends_on:
+      postgres-db:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
+    restart: on-failure  
+    networks: 
+      - admin_net-network
+      
   fontend:
     image: admin_net/fontend:latest
     container_name: fontend
@@ -30,12 +48,7 @@ services:
       context: ../../Vben2/
       dockerfile: Dockerfile.local
     ports:
-      - "9001:80"
-    depends_on:
-      redis:
-        condition: service_healthy
-      rabbitmq:
-        condition: service_healthy
+      - "9000:80"
     restart: on-failure  
     networks: 
       - admin_net-network

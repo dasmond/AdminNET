@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 
 
-namespace Admin.NET.Core.Shared
+namespace ServiceCore.Shared.Util
 {
     /// <summary>
     /// 主键Id输入参数

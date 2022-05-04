@@ -13,11 +13,12 @@
 
   <ItemGroup>
     <Content Include="AppConfig.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\shared\Dapr.Shared\Dapr.Shared.csproj" />
     <ProjectReference Include="..\Admin.NET.Core\Admin.NET.Core.csproj" />
   </ItemGroup>
 

@@ -1,6 +1,6 @@
 ﻿using Furion.ConfigurableOptions;
 
-namespace Admin.NET.Core.Shared
+namespace ServiceCore.Shared.Option
 {
     /// <summary>
     /// 刷新Token配置选项

@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace Admin.NET.Core.Shared
+namespace ServiceCore.Shared
 {
     /// <summary>
     /// 数据操作类型枚举

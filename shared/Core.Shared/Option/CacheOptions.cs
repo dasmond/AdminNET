@@ -1,6 +1,6 @@
 ﻿using Furion.ConfigurableOptions;
 
-namespace Admin.NET.Core.Shared
+namespace ServiceCore.Shared.Option
 {
     /// <summary>
     /// 缓存配置选项

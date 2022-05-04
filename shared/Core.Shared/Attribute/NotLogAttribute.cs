@@ -2,7 +2,7 @@
 using System;
 
 
-namespace Admin.NET.Core.Shared
+namespace ServiceCore.Shared
 {
     /// <summary>
     /// 禁用日志

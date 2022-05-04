@@ -38,6 +38,7 @@ namespace Admin.NET.Web.Core
             services.AddTaskScheduler();
 
             services.AddControllersWithViews()
+                .AddDapr()
                 .AddMvcFilter<RequestActionFilter>()
                 .AddJsonOptions(options =>
                 {
@@ -108,11 +109,13 @@ namespace Admin.NET.Web.Core
 
             app.UseInject();
 
+            app.UseCloudEvents();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapSubscribeHandler();
             });
 
             // 设置雪花Id算法机器码

@@ -21,17 +21,17 @@ docker build -f "$webAppFolder/Dockerfile.local" --no-cache -t admin_net/fontend
 Write-Host "**************** BUILDING fontend 2/$total ****************" -ForegroundColor Green
 Set-Location $backend
 dotnet publish "$backend/Admin.NET.Web.Entry/Admin.NET.Web.Entry.csproj" -c Release -o "$backend/Admin.NET.Web.Entry/publish"
-docker build -f "$backend/Admin.NET.Web.Entry/Dockerfile.local" --no-cache -t admin_net/backend:$version .
+docker build -f "$backend/Admin.NET.Web.Entry/Dockerfile.local" --no-cache -t admin_net/sys:$version .
 
 ### GateWay
 Write-Host "**************** BUILDING fontend 3/$total ****************" -ForegroundColor Green
-Set-Location $backend
+Set-Location $slnFolder
 dotnet publish "$backend/services/gateway/Admin.NET.Gateway.csproj" -c Release -o "$backend/services/gateway/publish"
 docker build -f "$backend/services/gateway/Dockerfile.local" --no-cache -t admin_net/gateway:$version .
 
 ### Demo
 Write-Host "**************** BUILDING fontend 4/$total ****************" -ForegroundColor Green
-Set-Location $backend
+Set-Location $slnFolder
 dotnet publish "$backend/services/demo/Entry/Admin.NET.Demo.Entry.csproj" -c Release -o "$backend/services/demo/Entry/publish"
 docker build -f "$backend/services/demo/Entry/Dockerfile.local" --no-cache -t admin_net/demo:$version .
 
