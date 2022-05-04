@@ -1,4 +1,4 @@
-﻿namespace Admin.NET.Core.Shared
+﻿namespace ServiceCore.Shared
 {
     /// <summary>
     /// HTTP请求类型

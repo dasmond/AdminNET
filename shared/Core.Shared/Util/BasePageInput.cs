@@ -1,5 +1,4 @@
-﻿
-namespace Admin.NET.Core.Shared
+﻿namespace ServiceCore.Shared.Util
 {
     /// <summary>
     /// 全局分页查询输入参数

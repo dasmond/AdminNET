@@ -1,8 +1,11 @@
-﻿ 
-using Furion;
+﻿using Furion;
 using Furion.FriendlyException;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using ServiceCore.Shared.Const;
+using ServiceCore.Shared.Entities;
+using ServiceCore.Shared.Extension;
+using ServiceCore.Shared.Option;
 using SqlSugar;
 using System;
 using System.Collections;
@@ -15,7 +18,7 @@ using System.Linq.Expressions;
 using System.Reflection;
 
 
-namespace Admin.NET.Core.Shared
+namespace ServiceCore.Shared.SqlSugar
 {
     public static class SqlSugarSetup
     {
@@ -38,8 +41,8 @@ namespace Admin.NET.Core.Shared
                     EntityService = (type, column) => // 修改列可空
                     {
                         // 1、带?问号 2、String类型若没有Required
-                        if ((type.PropertyType.IsGenericType && type.PropertyType.GetGenericTypeDefinition() == typeof(Nullable<>))
-                            || (type.PropertyType == typeof(string) && type.GetCustomAttribute<RequiredAttribute>() == null))
+                        if (type.PropertyType.IsGenericType && type.PropertyType.GetGenericTypeDefinition() == typeof(Nullable<>)
+                            || type.PropertyType == typeof(string) && type.GetCustomAttribute<RequiredAttribute>() == null)
                             column.IsNullable = true;
                     },
                 };
@@ -48,7 +51,7 @@ namespace Admin.NET.Core.Shared
                     DbType = (DbType)Convert.ToInt32(Enum.Parse(typeof(DbType), dbOptions.DefaultDbType)),
                     ConnectionString = dbOptions.DefaultConnection,
                     IsAutoCloseConnection = true,
-                    ConfigId = dbOptions.DefaultConfigId,
+                    ConfigId = dbOptions.DefaultConfigId ?? SqlSugarConst.ConfigId,
                     ConfigureExternalServices = configureExternalServices
                 };
                 connectionConfigs.Add(defaultConnection);
@@ -146,6 +149,7 @@ namespace Admin.NET.Core.Shared
         {
             // 创建系统默认数据库
             db.DbMaintenance.CreateDatabase();
+
             // 创建其他业务数据库
             dbOptions.DbConfigs.ForEach(config =>
             {

@@ -19,16 +19,16 @@ docker build -f "$webAppFolder/Dockerfile" --no-cache -t admin_net/fontend:$vers
 ### Backend
 Write-Host "**************** BUILDING fontend 2/$total ****************" -ForegroundColor Green
 Set-Location $backend
-docker build -f "$backend/Admin.NET.Web.Entry/Dockerfile" --no-cache -t admin_net/backend:$version .
+docker build -f "$backend/Admin.NET.Web.Entry/Dockerfile" --no-cache -t admin_net/sys:$version .
 
 ### GateWay
 Write-Host "**************** BUILDING fontend 3/$total ****************" -ForegroundColor Green
-Set-Location $backend
+Set-Location $slnFolder
 docker build -f "$backend/services/gateway/Dockerfile" --no-cache -t admin_net/gateway:$version .
 
 ### Demo
 Write-Host "**************** BUILDING fontend 4/$total ****************" -ForegroundColor Green
-Set-Location $backend
+Set-Location $slnFolder
 docker build -f "$backend/services/demo/Entry/Dockerfile" --no-cache -t admin_net/demo:$version .
 
 ### ALL COMPLETED

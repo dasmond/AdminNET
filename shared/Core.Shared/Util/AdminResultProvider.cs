@@ -11,7 +11,7 @@ using System;
 using System.Threading.Tasks;
 
 
-namespace Admin.NET.Core.Shared
+namespace ServiceCore.Shared.Util
 {
     /// <summary>
     /// 全局规范化结果

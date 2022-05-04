@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace Admin.NET.Core.Shared
+namespace ServiceCore.Shared
 {
     /// <summary>
     /// 缓存类型枚举

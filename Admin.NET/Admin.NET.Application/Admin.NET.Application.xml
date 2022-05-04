@@ -9,6 +9,27 @@
             自己业务数据库标识
             </summary>
         </member>
+        <member name="T:Admin.NET.Application.DaprEventBus.DaprEventService">
+            <summary>
+            Dapr 事件服务接口
+            </summary>
+        </member>
+        <member name="M:Admin.NET.Application.DaprEventBus.DaprEventService.AddExLog(Dapr.Shared.AddExLogEvent)">
+            <summary>
+            接收错误日志。
+            由于使用eventbus转发不会带token,所以去掉验证
+            </summary>
+            <param name="eventData"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Application.DaprEventBus.DaprEventService.AddOpLog(Dapr.Shared.AddOpLogEvent)">
+            <summary>
+            接收操作日志
+            由于使用eventbus转发不会带token,所以去掉验证
+            </summary>
+            <param name="eventData"></param>
+            <returns></returns>
+        </member>
         <member name="T:Admin.NET.Application.Entity.Test">
             <summary>
             自己业务数据表

@@ -82,12 +82,14 @@ namespace Admin.NET.Core
         /// 请求参数
         /// </summary>
         [SugarColumn(ColumnDescription = "请求参数")]
+        [MaxLength(500)]
         public string Param { get; set; }
 
         /// <summary>
         /// 返回结果
         /// </summary>
         [SugarColumn(ColumnDescription = "返回结果")]
+        [MaxLength(4000)]
         public string Result { get; set; }
 
         /// <summary>

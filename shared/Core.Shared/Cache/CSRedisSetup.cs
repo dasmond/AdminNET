@@ -5,10 +5,10 @@ using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Caching.Redis;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
+using ServiceCore.Shared;
+using ServiceCore.Shared.Option;
 
-
-
-namespace Admin.NET.Core.Shared
+namespace ServiceCore.Shared.Cache
 {
     public static class CSRedisSetup
     {

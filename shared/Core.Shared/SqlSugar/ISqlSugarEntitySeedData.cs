@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 
 
-namespace Admin.NET.Core.Shared
+namespace ServiceCore.Shared.SqlSugar
 {
     public interface ISqlSugarEntitySeedData<TEntity>
         where TEntity : class, new()

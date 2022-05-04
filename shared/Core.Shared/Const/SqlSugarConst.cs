@@ -1,4 +1,4 @@
-﻿namespace Admin.NET.Core.Shared
+﻿namespace ServiceCore.Shared.Const
 {
     /// <summary>
     /// SqlSugar相关常量

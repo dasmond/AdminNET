@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-namespace Admin.NET.Core.Shared
+namespace ServiceCore.Shared.Util
 {
     /// <summary>
     /// 服务器信息
@@ -22,7 +22,7 @@ namespace Admin.NET.Core.Shared
         /// <returns></returns>
         public static dynamic GetServerBaseInfo()
         {
-            var furionAssembly = typeof(Furion.App).Assembly.GetName();
+            var furionAssembly = typeof(App).Assembly.GetName();
             var sqlSugarAssembly = typeof(ISqlSugarClient).Assembly.GetName();
             return new
             {

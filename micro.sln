@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Admin.NET.Web.Entry", "Admi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Admin.NET.UnitTest", "Admin.NET\Admin.NET.UnitTest\Admin.NET.UnitTest.csproj", "{0B2B5465-A4A7-4C1D-BD45-CF410E939D68}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "micro", "micro", "{3F488750-DB39-40B8-9240-9552AE3BF20A}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{3F488750-DB39-40B8-9240-9552AE3BF20A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "apps", "apps", "{6859C695-0FF6-4768-A4EB-61058B8DBCC4}"
 EndProject
@@ -29,9 +29,27 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Admin.NET.Demo.Application"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "basic", "basic", "{7265DE31-281D-4051-8B39-37A494EDF8A6}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Admin.NET.Gateway", "services\gateway\Admin.NET.Gateway.csproj", "{9EEB9780-625B-4AD6-B46D-2F857C487327}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServiceCore.Shared", "shared\Core.Shared\ServiceCore.Shared.csproj", "{A50C4A82-786A-49E4-BC33-8DBC17FBBB36}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Admin.NET.Core.Shared", "shared\Core.Shared\Admin.NET.Core.Shared.csproj", "{A50C4A82-786A-49E4-BC33-8DBC17FBBB36}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tye", "tye", "{B27C7812-AD62-43F1-91DE-6F5CF2E5D825}"
+	ProjectSection(SolutionItems) = preProject
+		etc\docker\docker-compose.infrastructure.yml = etc\docker\docker-compose.infrastructure.yml
+		tye.yaml = tye.yaml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "dapr", "dapr", "{CF45F22D-49BA-4C9D-B870-C90E0C9C766E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "components", "components", "{D1885890-1104-47AB-8E1D-25BFBB64A6B1}"
+	ProjectSection(SolutionItems) = preProject
+		dapr\components\dapr-config.yaml = dapr\components\dapr-config.yaml
+		dapr\components\pubsub.yaml = dapr\components\pubsub.yaml
+		dapr\components\secrets.json = dapr\components\secrets.json
+		dapr\components\statestore.yaml = dapr\components\statestore.yaml
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gateway", "services\gateway\Gateway.csproj", "{2D030C42-29F6-44F3-8E25-B887581ACDBF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dapr.Shared", "shared\Dapr.Shared\Dapr.Shared.csproj", "{900EA464-F689-4B8E-BA95-4FD4C93C53F3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -67,14 +85,18 @@ Global
 		{5504D78D-65A9-4886-A671-2D5728CDCACA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5504D78D-65A9-4886-A671-2D5728CDCACA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5504D78D-65A9-4886-A671-2D5728CDCACA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9EEB9780-625B-4AD6-B46D-2F857C487327}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9EEB9780-625B-4AD6-B46D-2F857C487327}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9EEB9780-625B-4AD6-B46D-2F857C487327}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9EEB9780-625B-4AD6-B46D-2F857C487327}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A50C4A82-786A-49E4-BC33-8DBC17FBBB36}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A50C4A82-786A-49E4-BC33-8DBC17FBBB36}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A50C4A82-786A-49E4-BC33-8DBC17FBBB36}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A50C4A82-786A-49E4-BC33-8DBC17FBBB36}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2D030C42-29F6-44F3-8E25-B887581ACDBF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D030C42-29F6-44F3-8E25-B887581ACDBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D030C42-29F6-44F3-8E25-B887581ACDBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D030C42-29F6-44F3-8E25-B887581ACDBF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{900EA464-F689-4B8E-BA95-4FD4C93C53F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{900EA464-F689-4B8E-BA95-4FD4C93C53F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{900EA464-F689-4B8E-BA95-4FD4C93C53F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{900EA464-F689-4B8E-BA95-4FD4C93C53F3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -92,8 +114,10 @@ Global
 		{DB67A5FA-EC0B-43D3-AB11-0664A43EABFB} = {B28FF8C3-27FF-4B47-BE09-0C734717B87C}
 		{5504D78D-65A9-4886-A671-2D5728CDCACA} = {B28FF8C3-27FF-4B47-BE09-0C734717B87C}
 		{7265DE31-281D-4051-8B39-37A494EDF8A6} = {6859C695-0FF6-4768-A4EB-61058B8DBCC4}
-		{9EEB9780-625B-4AD6-B46D-2F857C487327} = {7BE5C1BF-CADC-427C-B3FB-4B5ABDAC79BC}
 		{A50C4A82-786A-49E4-BC33-8DBC17FBBB36} = {A55E337C-F320-44DA-8215-40CD77E220A5}
+		{D1885890-1104-47AB-8E1D-25BFBB64A6B1} = {CF45F22D-49BA-4C9D-B870-C90E0C9C766E}
+		{2D030C42-29F6-44F3-8E25-B887581ACDBF} = {7BE5C1BF-CADC-427C-B3FB-4B5ABDAC79BC}
+		{900EA464-F689-4B8E-BA95-4FD4C93C53F3} = {A55E337C-F320-44DA-8215-40CD77E220A5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5CD801D7-984A-4F5C-8FA2-211B7A5EA9F3}

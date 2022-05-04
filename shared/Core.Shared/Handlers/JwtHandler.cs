@@ -1,12 +1,12 @@
-﻿ 
-using Furion;
+﻿using Furion;
 using Furion.Authorization;
 using Furion.DataEncryption;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using ServiceCore.Shared.Option;
 using System.Threading.Tasks;
 
-namespace Admin.NET.Core.Shared
+namespace ServiceCore.Shared.Handlers
 {
     public class JwtHandler : AppAuthorizeHandler
     {
@@ -17,7 +17,7 @@ namespace Admin.NET.Core.Shared
         /// <returns></returns>
         public override async Task HandleAsync(AuthorizationHandlerContext context)
         {
-            if (JWTEncryption.AutoRefreshToken(context, context.GetCurrentHttpContext(),App.GetOptions<JWTSettingsOptions>().ExpiredTime,App.GetOptions<RefreshTokenOptions>().ExpiredTime))
+            if (JWTEncryption.AutoRefreshToken(context, context.GetCurrentHttpContext(), App.GetOptions<JWTSettingsOptions>().ExpiredTime, App.GetOptions<RefreshTokenOptions>().ExpiredTime))
             {
                 await AuthorizeHandleAsync(context);
             }

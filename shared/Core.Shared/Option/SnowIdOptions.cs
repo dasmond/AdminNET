@@ -1,6 +1,6 @@
 ﻿using Furion.ConfigurableOptions;
 
-namespace Admin.NET.Core.Shared
+namespace ServiceCore.Shared.Option
 {
     /// <summary>
     /// 雪花Id配置选项

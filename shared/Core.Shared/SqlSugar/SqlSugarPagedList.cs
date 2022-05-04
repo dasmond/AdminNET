@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 
 
-namespace Admin.NET.Core.Shared
+namespace ServiceCore.Shared.SqlSugar
 {
     /// <summary>
     /// 分页泛型集合

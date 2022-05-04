@@ -10,20 +10,29 @@ using OnceMi.AspNetCore.OSS;
 using Serilog;
 using Yitter.IdGenerator;
 using Microsoft.Extensions.Hosting;
+using ServiceCore.Shared.Option;
+using ServiceCore.Shared.Cache;
+using ServiceCore.Shared.SqlSugar;
+using ServiceCore.Shared.Handlers;
+using ServiceCore.Shared.Filter;
+using ServiceCore.Shared.Util; 
+using Microsoft.Extensions.Configuration; 
+using Microsoft.Extensions.Diagnostics.HealthChecks;
+using Dapr.Shared; 
 
-namespace Admin.NET.Core.Shared
+namespace ServiceCore.Shared
 {
     [AppStartup(100)]
 
     public class Startup : AppStartup
     {
-        public void ConfigureServices(IServiceCollection services)
+        public void ConfigureServices( IServiceCollection services)
         {
             services.AddConfigurableOptions<ConnectionStringsOptions>();
             services.AddConfigurableOptions<RefreshTokenOptions>();
             services.AddConfigurableOptions<SnowIdOptions>();
             services.AddConfigurableOptions<CacheOptions>();
-            services.AddConfigurableOptions<OSSProviderOptions>(); 
+            services.AddConfigurableOptions<OSSProviderOptions>();
             services.AddSqlSugarSetup(App.Configuration);
 
             services.AddJwt<JwtHandler>(enableGlobalAuthorize: true);
@@ -33,7 +42,8 @@ namespace Admin.NET.Core.Shared
 
             services.AddTaskScheduler();
 
-            services.AddControllersWithViews()
+            services.AddControllersWithViews() 
+                .AddDapr()
                 .AddMvcFilter<RequestActionFilter>()
                 .AddJsonOptions(options =>
                 {
@@ -67,7 +77,16 @@ namespace Admin.NET.Core.Shared
 
 
             // 注册日志事件订阅者(支持自定义消息队列组件)
-            services.AddEventBus();
+            services.AddEventBus(); 
+
+            //注册Dapr事件
+            services.AddScoped<IEventBus, DaprEventBus>();
+
+            //添加健康检查
+            services.AddHealthChecks()
+                .AddCheck("self", () => HealthCheckResult.Healthy())
+                .AddDapr();
+
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -85,12 +104,13 @@ namespace Admin.NET.Core.Shared
             // 添加状态码拦截中间件
             app.UseUnifyResultStatusCodes();
 
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
             app.UseStaticFiles();
 
             // Serilog请求日志中间件---必须在 UseStaticFiles 和 UseRouting 之间
             app.UseSerilogRequestLogging();
 
+            app.UseCloudEvents();
             app.UseRouting();
 
             app.UseCorsAccessor();
@@ -104,13 +124,15 @@ namespace Admin.NET.Core.Shared
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
-            });
+
+                endpoints.MapSubscribeHandler();
+            }); 
 
             // 设置雪花Id算法机器码
             YitIdHelper.SetIdGenerator(new IdGeneratorOptions
             {
                 WorkerId = App.GetOptions<SnowIdOptions>().WorkerId
-            });
+            }); 
         }
     }
 }

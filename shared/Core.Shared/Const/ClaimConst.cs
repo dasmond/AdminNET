@@ -1,4 +1,4 @@
-﻿namespace Admin.NET.Core.Shared
+﻿namespace ServiceCore.Shared.Const
 {
     /// <summary>
     /// Claim相关常量

@@ -1,7 +1,7 @@
 ﻿using Furion.ConfigurableOptions;
 using System.Collections.Generic;
 
-namespace Admin.NET.Core.Shared
+namespace ServiceCore.Shared.Option
 {
     /// <summary>
     /// 数据库链接配置

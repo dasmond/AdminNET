@@ -42,12 +42,24 @@
         </member>
         <member name="T:Admin.NET.Demo.Application.Serice.DemoService">
             <summary>
-            自己业务服务
+            示例
             </summary>
         </member>
         <member name="M:Admin.NET.Demo.Application.Serice.DemoService.GetTestList">
             <summary>
             获取列表
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Demo.Application.Serice.DemoService.GetUserInfo">
+            <summary>
+            获取列表
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Demo.Application.Serice.DemoService.TestSendEvent">
+            <summary>
+            发送事件测试
             </summary>
             <returns></returns>
         </member>

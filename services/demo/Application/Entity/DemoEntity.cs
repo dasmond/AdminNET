@@ -1,10 +1,11 @@
-﻿ 
-using Admin.NET.Core;
+﻿
+ 
 using SqlSugar;
 using System.ComponentModel.DataAnnotations;
 using System;
-using Admin.NET.Demo.Application.Const;
-using Admin.NET.Core.Shared;
+using Admin.NET.Demo.Application.Const; 
+using ServiceCore.Shared.Entities;
+using ServiceCore.Shared;
 
 namespace Admin.NET.Demo.Application.Entity
 {
@@ -12,7 +13,7 @@ namespace Admin.NET.Demo.Application.Entity
     /// Demo
     /// </summary>
     [SugarTable("d_demo", "Demo")]
-    [SqlSugarEntity(DbConfigId = DemoConst.ConfigId)]
+    [SqlSugarEntity ]
     public class DemoEntity : EntityBase
     {
         /// <summary>

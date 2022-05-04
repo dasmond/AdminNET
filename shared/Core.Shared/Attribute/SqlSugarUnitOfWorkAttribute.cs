@@ -3,7 +3,7 @@ using System;
 using System.Data;
 
 
-namespace Admin.NET.Core.Shared
+namespace ServiceCore.Shared
 {
     /// <summary>
     /// SqlSugar 工作单元配置特性
