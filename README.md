@@ -10,10 +10,14 @@
 2.  前端运行步骤：1、yarn安装依赖 2、pnpm serve运行 3、pnpm build打包
 
 
-#### 📖 Docker使用说明
+#### 📖 微服务使用说明
 1.	准备:
 * 安装docker: https://www.docker.com/products/docker-desktop/
-* 安装Tye：dotnet tool install --global Microsoft.Tye --version 0.11.0-alpha.22111.1
+* 安装Tye：
+````powershell
+dotnet tool install --global Microsoft.Tye --version 0.11.0-alpha.22111.1
+````
+* 安装dapr: https://www.cnblogs.com/sanmen/p/16205703.html 
 * 配置hosts(in Windows: `C:\Windows\System32\drivers\etc\hosts`):
 
 ````powershell
