@@ -3,42 +3,63 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid 'a0fae0a87c94e19454418acb5168530a1cf7ad09'
-    oldFile: !uuid '99564657b027a842b115c2ec9e7feab9c3a0a718'
+    newFile: !uuid '7d2060990e35456e5d78ea17fed8e5cdc252b3ee'
+    oldFile: !uuid 'a0fae0a87c94e19454418acb5168530a1cf7ad09'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid 'e88d5fd7d5f792b56b59e7040688d5b3ed958c3a'
-    oldFile: !uuid '25c11d1b18400698aa404bacc45343f8721c4b7d'
+    newFile: !uuid 'fb33d879d877dba7ed677e870f85423d67f4806e'
+    oldFile: !uuid 'e88d5fd7d5f792b56b59e7040688d5b3ed958c3a'
+  /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
+    newFile: !uuid '8f69f86b6b7afc2c3f67063330eb9c7b4178a58c'
+    oldFile: !uuid '3da6e2155699167193842853a531aabb50b3d79b'
+  /Admin.NET/Admin.NET.Core/Admin.NET.Core.xml:
+    newFile: !uuid '5f035572f4aa8ac2acdd8b871a8382ae8fb3bb11'
+    oldFile: !uuid '08ba3b12ea097548ad2c96ea8983e7c4aabc5166'
   /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid 'd350635aa57a2dd1d74348d6b4a0ca8838b29b0f'
-    oldFile: !uuid '51ebbd7ef5a768a4b0861031786c685902aad281'
-  /Admin.NET/Admin.NET.Core/Service/File:
-    newFile: !uuid 'dc68ef3fd85338b7f7157d0886b22e6dd1d38206'
-    oldFile: !uuid 'b24d482cddf56d15bfbb162b82267a6645e24f01'
-  /Admin.NET/Admin.NET.Core/Service/File/SysFileService.cs:
-    newFile: !uuid 'f3aeace269e63d9c28761a795f50b9919e78c56a'
-    oldFile: !uuid '9c9719d50f2747adccd6640cae27d70ead60f91c'
+    newFile: !uuid 'c3e0eccfa66de772e993396e0839a18f9836e0da'
+    oldFile: !uuid 'd350635aa57a2dd1d74348d6b4a0ca8838b29b0f'
+  /Admin.NET/Admin.NET.Core/Service/WeChat:
+    newFile: !uuid '08d14a4c34d4f56e57eb89d0dfee339302ea79b7'
+    oldFile: !uuid '5193f60b6b01fba51e3a8a9f0705afcd44a70557'
+  /Admin.NET/Admin.NET.Core/Service/WeChat/Dto:
+    newFile: !uuid '1331734ae619cb18d9e004114b288c7542449c06'
+    oldFile: !uuid 'cc4a2bcd8aac1a8389cc47d5bca417365480f211'
+  /Admin.NET/Admin.NET.Core/Service/WeChat/Dto/WechatPayInput.cs:
+    newFile: !uuid 'cb0f6dd2916e144df116d8bd47b171e4681c28d1'
+    oldFile: !uuid '03c8b4bd0d8abf3bd8e4ec8ed0178894047801f9'
+  /Admin.NET/Admin.NET.Core/Service/WeChat/WechatPayService.cs:
+    newFile: !uuid '420cf37a06ee285e1679e9687f9bff32e0b0d8b5'
+    oldFile: !uuid '9670e8ef6a0af738de2ae5b4511436c8eb4a5b2b'
   /Admin.NET/Admin.NET.Core/Service/log:
-    newFile: !uuid '978a6c1859537c3adf11814e5e7fbd48db022b73'
-    oldFile: !uuid '3f6e32c604f44dfac43e3956b03e315a4b2d5cf7'
+    newFile: !uuid '26a645fe7a8fae3621beffb7b900cf2749912a59'
+    oldFile: !uuid '978a6c1859537c3adf11814e5e7fbd48db022b73'
   /Admin.NET/Admin.NET.Core/Service/log/Dto:
-    newFile: !uuid '23ee47c18c35e7b9de5298df0254120bce6d8ccb'
-    oldFile: !uuid 'e60dee933f09ba4a79b3e3e438946aed17b00879'
+    newFile: !uuid '2f8614fb0c5d01e44d3297e2bd9497b41ff2b2e0'
+    oldFile: !uuid '23ee47c18c35e7b9de5298df0254120bce6d8ccb'
   /Admin.NET/Admin.NET.Core/Service/log/Dto/LogInput.cs:
-    newFile: null
-    oldFile: !uuid 'ee4d34e6649e7fbf3e9384bcc99431f8cb467178'
-  /Admin.NET/Admin.NET.Core/Service/log/Dto/PageLogInput.cs:
     newFile: !uuid '84342dcee5a8fa10a25c39a3a01fed26e3e2f471'
     oldFile: null
-  /Admin.NET/Admin.NET.Core/Service/log/SysExLogService.cs:
-    newFile: !uuid 'd3c5a990e2899f91fc10d011b1da37d46e8a8eb4'
-    oldFile: !uuid 'c39e102c3befa628352973a304e075c5ea0423a1'
-  /Admin.NET/Admin.NET.Core/Service/log/SysOpLogService.cs:
-    newFile: !uuid '78e8c6790b1e11d16963f991be1031c8f792c1c1'
-    oldFile: !uuid '5e995f70b4ae11dba56fcfa5ded47616ad23949d'
-  /Admin.NET/Admin.NET.Core/Service/log/SysVisLogService.cs:
-    newFile: !uuid '0dbd62417acdd2c9810e62d98abbb958d610d654'
-    oldFile: !uuid '7474169cbf7e0826e49571a42a4d0441d418074a'
-gitCommitId: !uuid 'a0922a55381f2316900d428593c77637c6ebfdcb'
+  /Admin.NET/Admin.NET.Core/Service/log/Dto/PageLogInput.cs:
+    newFile: null
+    oldFile: !uuid '84342dcee5a8fa10a25c39a3a01fed26e3e2f471'
+  /Admin.NET/Admin.NET.UnitTest:
+    newFile: !uuid '26ab9976594ee3de5233e2f4c4bd58f59363e76a'
+    oldFile: !uuid '4474d57c28e409ba28263b409dc58dbe29e56f4c'
+  /Admin.NET/Admin.NET.UnitTest/Admin.NET.UnitTest.csproj:
+    newFile: !uuid 'ad278b0ebc28b0aadd837c256742f70e34c34a9f'
+    oldFile: !uuid '35be45caf5a848c2597f10c3fe649218db927a5b'
+  /Admin.NET/Admin.NET.Web.Entry:
+    newFile: !uuid 'bacbb91c82af63a82afa4377342aa0c38247f9e7'
+    oldFile: !uuid '951c6b092acbf57c8bb1179870006c5e705029b8'
+  /Admin.NET/Admin.NET.Web.Entry/Properties:
+    newFile: !uuid 'c454df038ebfff1341a3d0673b0c73884320a3ad'
+    oldFile: !uuid 'afac28ba2e1051c41df0e795e1d29112897b4014'
+  /Admin.NET/Admin.NET.Web.Entry/Properties/PublishProfiles:
+    newFile: !uuid '7790b956814124e3e58775d6df891de8d56baaed'
+    oldFile: !uuid '5cdf547de0955c4748a8d03cd7cd8adce25d368e'
+  /Admin.NET/Admin.NET.Web.Entry/Properties/PublishProfiles/FolderProfile.pubxml.user:
+    newFile: !uuid 'ec3c91a33862dfc391b94021cc69c13dd40c1764'
+    oldFile: !uuid 'ace045f3f5507d5d77fa58cb4100755eb55a7a6f'
+gitCommitId: !uuid '718186eafa719f5e665f2a2eb2f10eb3cde2a85a'
 renames:
-  /Admin.NET/Admin.NET.Core/Service/log/Dto/PageLogInput.cs: /Admin.NET/Admin.NET.Core/Service/log/Dto/LogInput.cs
-revisionId: 7
+  /Admin.NET/Admin.NET.Core/Service/log/Dto/LogInput.cs: /Admin.NET/Admin.NET.Core/Service/log/Dto/PageLogInput.cs
+revisionId: 8
