@@ -198,7 +198,8 @@ if(@column.EffectType == "fk" && @column.FkEntityName != "" && @column.FkColumnN
       // 初始化方法
       edit (record) {
         this.visible = true
-        this.record = record
+        //深度拷贝 移除VUE的监听，防止INDEX页面值变动
+        this.record = JSON.parse(JSON.stringify(record))
 @foreach (var column in Model.TableField){
 if (@column.DictTypeCode != ""){
 if (@column.EffectType == "select" || @column.EffectType == "radio" || @column.EffectType == "checkbox"){
