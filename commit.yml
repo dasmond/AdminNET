@@ -3,21 +3,36 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid 'b9aa856df2e5c0852824fe76b4c268363593f3a3'
-    oldFile: !uuid '57a2c6990f606f1aa325b952c1ff1ecfff973b1d'
+    newFile: !uuid '392182d38fe7ae486a7d0f2d1f3c1a34dc5a2e29'
+    oldFile: !uuid 'b9aa856df2e5c0852824fe76b4c268363593f3a3'
+  /Admin.NET/Admin.NET.Application:
+    newFile: !uuid '69190615ae11c70222974fce20c63138729fa079'
+    oldFile: !uuid '5546cb18b191a2157ceb3a5bd1210864565a0676'
+  /Admin.NET/Admin.NET.Application/Admin.NET.Application.csproj:
+    newFile: !uuid 'a541a17f3d9e780334eac1c2dda5ae6baa4c15ea'
+    oldFile: !uuid 'a7ab90d1440ad68d71fa54419970eace0aba1cc4'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '223c41f8c66b4ca5dcbaff5134bb88dd87d54d73'
-    oldFile: !uuid 'c89becd85f38ec56b37cb65ac55a010ae80f60a1'
-  /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
-    newFile: !uuid 'd7d19a78b82e10fafdadf809a82c9a729b5d4486'
-    oldFile: !uuid 'e3eba1f5fbc4c2c874b0d59c098b0825a5d72782'
+    newFile: !uuid 'eb19ec20f0d3b10373e459f39e82e05a04964aa5'
+    oldFile: !uuid '223c41f8c66b4ca5dcbaff5134bb88dd87d54d73'
   /Admin.NET/Admin.NET.Core/Filter:
-    newFile: !uuid 'e19c3dd23f15f4393b9a9e0c7aa79fb66863d747'
-    oldFile: !uuid 'f17530f2b7ed7aeaf5d3a6bc1b2c332d9bcff5da'
+    newFile: !uuid 'cdf35d4aa296e4dc279ed0562cf8c4fc9829ba70'
+    oldFile: !uuid 'e19c3dd23f15f4393b9a9e0c7aa79fb66863d747'
   /Admin.NET/Admin.NET.Core/Filter/RequestActionFilter.cs:
-    newFile: !uuid '57e16d0b905f5cab6fdfde117c959ea42d31eaab'
-    oldFile: !uuid 'f6440b0360452e258502874b867d2070b12760c7'
-gitCommitId: !uuid '66c628ab3ff48aad6b4e84ed43f94705656baf15'
+    newFile: !uuid '0da2d1ccebffe4c86271439c33b558387dff6714'
+    oldFile: !uuid '57e16d0b905f5cab6fdfde117c959ea42d31eaab'
+  /Admin.NET/Admin.NET.Web.Entry:
+    newFile: !uuid 'e816068bdd05aa5638891a8732660468d2eac3fe'
+    oldFile: !uuid 'bacbb91c82af63a82afa4377342aa0c38247f9e7'
+  /Admin.NET/Admin.NET.Web.Entry/Properties:
+    newFile: !uuid '64b13d3db87c2572210a0d454811ec5c5a5a37d7'
+    oldFile: !uuid 'c454df038ebfff1341a3d0673b0c73884320a3ad'
+  /Admin.NET/Admin.NET.Web.Entry/Properties/PublishProfiles:
+    newFile: !uuid 'dca31eb160baa86cc7ef26c3f9fd8bc5936186ad'
+    oldFile: !uuid '7790b956814124e3e58775d6df891de8d56baaed'
+  /Admin.NET/Admin.NET.Web.Entry/Properties/PublishProfiles/FolderProfile.pubxml.user:
+    newFile: !uuid 'b9af54acb203fc60426fe732a3939d84603bc87e'
+    oldFile: !uuid 'ec3c91a33862dfc391b94021cc69c13dd40c1764'
+gitCommitId: !uuid 'd36600866b2305572a7ce3b634233972c4e31510'
 renames: {
   }
-revisionId: 13
+revisionId: 14
