@@ -2,64 +2,25 @@
 branches: {
   }
 fileChange:
-  /Admin.NET:
-    newFile: !uuid '57a2c6990f606f1aa325b952c1ff1ecfff973b1d'
-    oldFile: !uuid '7d2060990e35456e5d78ea17fed8e5cdc252b3ee'
-  /Admin.NET/Admin.NET.Core:
-    newFile: !uuid 'c89becd85f38ec56b37cb65ac55a010ae80f60a1'
-    oldFile: !uuid 'fb33d879d877dba7ed677e870f85423d67f4806e'
-  /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
-    newFile: !uuid 'e3eba1f5fbc4c2c874b0d59c098b0825a5d72782'
-    oldFile: !uuid '8f69f86b6b7afc2c3f67063330eb9c7b4178a58c'
-  /Admin.NET/Admin.NET.Core/Admin.NET.Core.xml:
-    newFile: !uuid '378760b7acc6136eef633e92417b2af35683a138'
-    oldFile: !uuid '5f035572f4aa8ac2acdd8b871a8382ae8fb3bb11'
-  /Admin.NET/Admin.NET.Core/Const:
-    newFile: !uuid '6d3f88f5066b57a301da00230561b5317cc35d53'
-    oldFile: !uuid 'f11cc146d82d15e93c06d88d3e360ed1985063c9'
-  /Admin.NET/Admin.NET.Core/Const/CommonConst.cs:
-    newFile: !uuid 'f3725d91bf3bee1b768e2929a7ed1024979cc6e1'
-    oldFile: !uuid '146a4c01f7ff48ab7f6568e722cb095c5c4af39b'
-  /Admin.NET/Admin.NET.Core/Entity:
-    newFile: !uuid '0f39fd1055561a6dacc828dc3f8a42df545cee32'
-    oldFile: !uuid '8e446a9f283b33385ce70f64807645b619bc5b09'
-  /Admin.NET/Admin.NET.Core/Entity/SysLogEx.cs:
-    newFile: !uuid 'f05ac8ed0157a75f5ce213349333566eaa884e68'
-    oldFile: !uuid '6c411334328ac7138e4b7a456f3164c16a25fe1e'
-  /Admin.NET/Admin.NET.Core/Entity/SysLogOp.cs:
-    newFile: !uuid 'a1a644d6f306506c178a81a65b5740f8264a6e65'
-    oldFile: !uuid '08dafe947a52579e8a930a92e9cf114ff37114ba'
-  /Admin.NET/Admin.NET.Core/Entity/SysLogVis.cs:
-    newFile: !uuid 'd884fe3f949cbf353062d0bffacc7b1d9f07c1cf'
-    oldFile: !uuid 'e56a3f2ea499d01051f201f28aefdafda72912d0'
-  /Admin.NET/Admin.NET.Core/Filter:
-    newFile: !uuid 'f17530f2b7ed7aeaf5d3a6bc1b2c332d9bcff5da'
-    oldFile: !uuid '643da8e9251f3fe47de6105c0226f6d493877a86'
-  /Admin.NET/Admin.NET.Core/Filter/RequestActionFilter.cs:
-    newFile: !uuid 'f6440b0360452e258502874b867d2070b12760c7'
-    oldFile: !uuid '1db8e012b297758b0016a46f490704341baf0f0e'
-  /Admin.NET/Admin.NET.Core/SeedData:
-    newFile: !uuid '22d976e553d23820ec325d17dc2ffb4dbf6888ea'
-    oldFile: !uuid '210142011ea2edbc405bef404586460d8671c248'
-  /Admin.NET/Admin.NET.Core/SeedData/SysConfigSeedData.cs:
-    newFile: !uuid '168afc3afaf7fa265d0745b871750b35bc1ad36d'
-    oldFile: !uuid '441114c709aa0df8294dd8bd41642ff9823e0ebd'
-  /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid '5dd835b77d4bf53538eccf1b0f34a6dec98bcd20'
-    oldFile: !uuid 'c3e0eccfa66de772e993396e0839a18f9836e0da'
-  /Admin.NET/Admin.NET.Core/Service/Config:
-    newFile: !uuid '323ebd58da3d47831bac01192b1cdde01611afd0'
-    oldFile: !uuid '274f629b2440dc135cf831bfd66e2fb15a6abee6'
-  /Admin.NET/Admin.NET.Core/Service/Config/SysConfigService.cs:
-    newFile: !uuid 'a00efb3794b95cd7f83d40a59054d3e0640c630d'
-    oldFile: !uuid '10f5a9aa4bcbb96c6094cae89e575f77ef36d1fb'
-  /Admin.NET/Admin.NET.Core/SqlSugar:
-    newFile: !uuid 'd20b55bd6643d71009ee9d18bf33694c0e0b3c90'
-    oldFile: !uuid 'b29ddb305c0b51ccac06aa2a0a6ecb819b2602b4'
-  /Admin.NET/Admin.NET.Core/SqlSugar/SqlSugarSetup.cs:
-    newFile: !uuid 'f094c848917bc6a125b5f4d7057a950bc9818b90'
-    oldFile: !uuid 'a143c7f5be537f6343484058a57bab71426473fb'
-gitCommitId: !uuid '11a0269471445c30ec26de933574583bfe3ccc7e'
+  /Vben2:
+    newFile: !uuid '447f30768c556ed792d3cfe556eaaf27032354a9'
+    oldFile: !uuid '6080f361e3942b26ba9088fc9df9a5940a8d2dff'
+  /Vben2/src:
+    newFile: !uuid '093901d541611831714c27280c690556a7f3176f'
+    oldFile: !uuid '12df630e3f49c0a8991455ea17f35d1428de1360'
+  /Vben2/src/utils:
+    newFile: !uuid '852f05ca63e4a9c96297aa73b03aad36d1e6a6d6'
+    oldFile: !uuid 'a207a8917b1cf755b1416475ce50a7cc8b2ef5e6'
+  /Vben2/src/utils/http:
+    newFile: !uuid 'f7ed6bc92ecbd167fb5afa838736315fc64fc6ee'
+    oldFile: !uuid 'bdf157390a4260eef2b6a8a41d7fd0fb8bba2f4b'
+  /Vben2/src/utils/http/axios:
+    newFile: !uuid 'fb9cd2240f7e7e21aaf75aba1e9bbbfe7629a74a'
+    oldFile: !uuid '89e431b95bb5113394ee31176a02baa172f32fee'
+  /Vben2/src/utils/http/axios/Axios.ts:
+    newFile: !uuid '19c2ba347f00444a4470df1238dde73bd3998dd7'
+    oldFile: !uuid 'e3e912d6fe12bc4b383de67b27011a3a3022e85a'
+gitCommitId: !uuid '1813492d9fb76bb9de71d66d474efb4b9b690d24'
 renames: {
   }
-revisionId: 10
+revisionId: 11
