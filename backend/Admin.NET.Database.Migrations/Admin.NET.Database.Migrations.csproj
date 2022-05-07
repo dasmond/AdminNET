@@ -10,4 +10,8 @@
     <ProjectReference Include="..\Admin.NET.EntityFramework.Core\Admin.NET.EntityFramework.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Migrations\DefaultDb\" />
+  </ItemGroup>
+
 </Project>

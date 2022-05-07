@@ -4,6 +4,113 @@
         <name>Admin.NET.Application</name>
     </assembly>
     <members>
+        <member name="T:Admin.NET.Application.SysTestDto">
+            <summary>
+            测试模块表输出参数
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.SysTestDto.Name">
+            <summary>
+            公司名称
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.SysTestDto.Value">
+            <summary>
+            公司名称
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.SysTestDto.Id">
+            <summary>
+            Id主键
+            </summary>
+        </member>
+        <member name="T:Admin.NET.Application.SysTestInput">
+            <summary>
+            测试模块表输入参数
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.SysTestInput.Name">
+            <summary>
+            公司名称
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.SysTestInput.Value">
+            <summary>
+            公司名称
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.UpdateSysTestInput.Id">
+            <summary>
+            Id主键
+            </summary>
+        </member>
+        <member name="T:Admin.NET.Application.SysTestOutput">
+            <summary>
+            测试模块表输出参数
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.SysTestOutput.Name">
+            <summary>
+            公司名称
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.SysTestOutput.Value">
+            <summary>
+            公司名称
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.SysTestOutput.Id">
+            <summary>
+            Id主键
+            </summary>
+        </member>
+        <member name="T:Admin.NET.Application.SysTestService">
+            <summary>
+            测试模块表服务
+            </summary>
+        </member>
+        <member name="M:Admin.NET.Application.SysTestService.Page(Admin.NET.Application.SysTestInput)">
+            <summary>
+            分页查询测试模块表
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Application.SysTestService.Add(Admin.NET.Application.AddSysTestInput)">
+            <summary>
+            增加测试模块表
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Application.SysTestService.Delete(Admin.NET.Application.DeleteSysTestInput)">
+            <summary>
+            删除测试模块表
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Application.SysTestService.Update(Admin.NET.Application.UpdateSysTestInput)">
+            <summary>
+            更新测试模块表
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Application.SysTestService.Get(Admin.NET.Application.QueryeSysTestInput)">
+            <summary>
+            获取测试模块表
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Application.SysTestService.List(Admin.NET.Application.SysTestInput)">
+            <summary>
+            获取测试模块表列表
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
         <member name="T:Admin.NET.Application.SpareTimeDemo">
             <summary>
             定时任务demo
@@ -26,6 +133,21 @@
             获取系统描述
             </summary>
             <returns></returns>
+        </member>
+        <member name="T:Admin.NET.Application.Test.Entity.SysTest">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.Test.Entity.SysTest.Name">
+            <summary>
+            公司名称
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.Test.Entity.SysTest.Value">
+            <summary>
+            公司名称
+            </summary>
         </member>
     </members>
 </doc>
