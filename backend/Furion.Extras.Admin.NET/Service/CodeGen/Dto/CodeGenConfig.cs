@@ -43,6 +43,11 @@
         public string NetType { get; set; }
 
         /// <summary>
+        /// .NET类型是否是值类型
+        /// </summary>
+        public string NetTypeIsNullLable { get; set; }
+
+        /// <summary>
         /// 作用类型（字典）
         /// </summary>
         public string EffectType { get; set; }

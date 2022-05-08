@@ -4,11 +4,59 @@ using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace Admin.NET.Application
-{
+{    
+    
+    /// <summary>
+    /// 交付物管理查询参数
+    /// </summary>
+    public class DeliverablesSearch : PageInputBase
+    {
+        /// <summary>
+        /// 当前月份
+        /// </summary>
+        public virtual DateTimeOffset? Issue { get; set; }
+        
+        /// <summary>
+        /// 所属企业
+        /// </summary>
+        public virtual string Enterprise { get; set; }
+        
+        /// <summary>
+        /// 上传验收单
+        /// </summary>
+        public virtual string Acceptance { get; set; }
+        
+        /// <summary>
+        /// 任务
+        /// </summary>
+        public virtual string Job { get; set; }
+        
+        /// <summary>
+        /// 状态
+        /// </summary>
+        public virtual long? State { get; set; }
+        
+        /// <summary>
+        /// 上传交付物
+        /// </summary>
+        public virtual string Deliver { get; set; }
+        
+        /// <summary>
+        /// 创客姓名
+        /// </summary>
+        public virtual string FullName { get; set; }
+        
+        /// <summary>
+        /// 身份证号
+        /// </summary>
+        public virtual string IdCard { get; set; }
+        
+    }
+
     /// <summary>
     /// 交付物管理输入参数
     /// </summary>
-    public class DeliverablesInput : PageInputBase
+    public class DeliverablesInput
     {
         /// <summary>
         /// 当前月份

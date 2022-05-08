@@ -37,14 +37,14 @@ namespace Admin.NET.Application
         /// <param name="input"></param>
         /// <returns></returns>
         [HttpGet("Deliverables/page")]
-        public async Task<PageResult<DeliverablesOutput>> Page([FromQuery] DeliverablesInput input)
+        public async Task<PageResult<DeliverablesOutput>> Page([FromQuery] DeliverablesSearch input)
         {
             var deliverabless = await _deliverablesRep.DetachedEntities
-                                     .Where(false, u => u.Issue == input.Issue)
+                                     .Where(input.Issue != null, u => u.Issue == input.Issue)
                                      .Where(!string.IsNullOrEmpty(input.Enterprise), u => EF.Functions.Like(u.Enterprise, $"%{input.Enterprise.Trim()}%"))
-                                     .Where(false,u => u.State == input.State)
+                                     .Where(input.State != null, u => u.State == input.State)
                                      .Where(!string.IsNullOrEmpty(input.FullName), u => EF.Functions.Like(u.FullName, $"%{input.FullName.Trim()}%"))
-                                     .OrderBy(PageInputOrder.OrderBuilder<DeliverablesInput>(input))
+                                     .OrderBy(PageInputOrder.OrderBuilder<DeliverablesSearch>(input))
                                      .ProjectToType<DeliverablesOutput>()
                                      .ToADPagedListAsync(input.PageNo, input.PageSize);
 

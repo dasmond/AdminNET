@@ -54,7 +54,7 @@
             交付物管理服务
             </summary>
         </member>
-        <member name="M:Admin.NET.Application.DeliverablesService.Page(Admin.NET.Application.DeliverablesInput)">
+        <member name="M:Admin.NET.Application.DeliverablesService.Page(Admin.NET.Application.DeliverablesSearch)">
             <summary>
             分页查询交付物管理
             </summary>
@@ -144,6 +144,51 @@
         <member name="P:Admin.NET.Application.DeliverablesDto.Id">
             <summary>
             Id主键
+            </summary>
+        </member>
+        <member name="T:Admin.NET.Application.DeliverablesSearch">
+            <summary>
+            交付物管理查询参数
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.DeliverablesSearch.Issue">
+            <summary>
+            当前月份
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.DeliverablesSearch.Enterprise">
+            <summary>
+            所属企业
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.DeliverablesSearch.Acceptance">
+            <summary>
+            上传验收单
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.DeliverablesSearch.Job">
+            <summary>
+            任务
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.DeliverablesSearch.State">
+            <summary>
+            状态
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.DeliverablesSearch.Deliver">
+            <summary>
+            上传交付物
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.DeliverablesSearch.FullName">
+            <summary>
+            创客姓名
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.DeliverablesSearch.IdCard">
+            <summary>
+            身份证号
             </summary>
         </member>
         <member name="T:Admin.NET.Application.DeliverablesInput">

@@ -162,8 +162,8 @@ if(@column.EffectType == "fk" && @column.FkEntityName != "" && @column.FkColumnN
         @:@(@column.FkEntityName)Data: [],
 }
 }
-        @visible: false,
-        @confirmLoading: false,
+        visible: false,
+        confirmLoading: false,
 @if(@Model.LowCodeId == null){
         @:form: this.$form.createForm(this)
 }else{

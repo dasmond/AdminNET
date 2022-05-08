@@ -52,7 +52,7 @@ if(@column.EffectType == "fk" && @column.FkEntityName != "" && @column.FkColumnN
         /// <param name="input"></param>
         /// <returns></returns>
         [HttpGet("@Model.ClassName/page")]
-        public async Task<PageResult<@(@Model.ClassName)Output>> Page([FromQuery] @(@Model.ClassName)Input input)
+        public async Task<PageResult<@(@Model.ClassName)Output>> Page([FromQuery] @(@Model.ClassName)Search input)
         {
             var @(@Model.CamelizeClassName)s = await _@(@Model.CamelizeClassName)Rep.DetachedEntities
 @foreach (var column in Model.TableField){    
@@ -67,12 +67,12 @@ if (@column.QueryType == "like"){
 if (@column.EffectType == "fk"){                
                                      @:.Where(input.@column.ColumnName > 0, u => u.@(@column.ColumnName) @column.QueryType input.@(@column.ColumnName))
 } else {
-                                     @:.Where(u => u.@(@column.ColumnName) @column.QueryType input.@(@column.ColumnName))
+                                     @:.Where(input.@column.ColumnName != null, u => u.@(@column.ColumnName) @column.QueryType input.@(@column.ColumnName))
 }
 }
 }
 }
-                                     .OrderBy(PageInputOrder.OrderBuilder<@(@Model.ClassName)Input>(input))
+                                     .OrderBy(PageInputOrder.OrderBuilder<@(@Model.ClassName)Search>(input))
                                      .ProjectToType<@(@Model.ClassName)Output>()
                                      .ToADPagedListAsync(input.PageNo, input.PageSize);
 

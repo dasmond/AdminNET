@@ -11,7 +11,7 @@ namespace Admin.NET.Application
         Task Delete(DeleteDeliverablesInput input);
         Task<DeliverablesOutput> Get([FromQuery] QueryeDeliverablesInput input);
         Task<List<DeliverablesOutput>> List([FromQuery] DeliverablesInput input);
-        Task<PageResult<DeliverablesOutput>> Page([FromQuery] DeliverablesInput input);
+        Task<PageResult<DeliverablesOutput>> Page([FromQuery] DeliverablesSearch input);
         Task Update(UpdateDeliverablesInput input);
     }
 }

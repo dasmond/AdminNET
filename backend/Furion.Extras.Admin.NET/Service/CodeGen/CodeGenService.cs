@@ -282,6 +282,22 @@ namespace Furion.Extras.Admin.NET.Service.CodeGen
                     });
                 }
 
+                tableFieldList.ForEach(u =>
+                {
+                    switch (u.NetType.ToLower())
+                    {
+                        case "int":
+                        case "int32":
+                        case "long":
+                        case "guid":
+                        case "decimal":
+                        case "datetime":
+                        case "datetimeoffset":
+                            u.NetTypeIsNullLable = "?";
+                            break;
+                    }
+                });
+
                 var queryWhetherList = tableFieldList.Where(u => u.QueryWhether == YesOrNot.Y.ToString()).ToList(); // 前端查询集合
 
                 string FormDesign = "";

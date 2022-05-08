@@ -45,8 +45,6 @@
       handleSubmit () {
         this.$refs.kfb.getData().then(values => {
           let data = { ...values };
-          data.Acceptance = (data.Acceptance || []).join(',')
-          data.Deliver = (data.Deliver || []).join(',')
             DeliverablesAdd(data).then((res) => {
               if (res.success) {
                 this.$message.success('新增成功')

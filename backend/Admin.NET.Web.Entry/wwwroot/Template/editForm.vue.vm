@@ -7,6 +7,7 @@
     @@ok="handleSubmit"
     @@cancel="handleCancel">
     <a-spin :spinning="confirmLoading">
+@if(@Model.LowCodeId == null){
       <a-form :form="form">
 @foreach (var column in Model.TableField){
 if(@column.ColumnKey == "True"){
@@ -116,6 +117,9 @@ if (@column.WhetherRequired == "Y"){
 }
 }
       </a-form>
+}else{
+      <k-form-build ref="kfb" :value="formDesign" />
+}
     </a-spin>
   </a-modal>
 </template>
@@ -148,6 +152,9 @@ if(@column.EffectType == "fk" && @column.FkEntityName != "" && @column.FkColumnN
 }
     @(@Model.ClassName)Edit
   } from '@@/api/modular/main/@(@Model.ClassName)Manage'
+@if(@Model.LowCodeId != null){
+  @:import 'k-form-design/styles/k-form-design.less'
+}
   export default {
     data () {
       return {
@@ -179,7 +186,11 @@ if(@column.EffectType == "fk" && @column.FkEntityName != "" && @column.FkColumnN
 }
         visible: false,
         confirmLoading: false,
-        form: this.$form.createForm(this)
+@if(@Model.LowCodeId == null){
+        @:form: this.$form.createForm(this)
+}else{
+        @:formDesign: @Model.FormDesign
+}
       }
     },
     methods: {
