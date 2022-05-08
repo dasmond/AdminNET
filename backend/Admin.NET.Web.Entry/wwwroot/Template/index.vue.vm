@@ -206,7 +206,7 @@ if(@column.EffectType == "switch"){
             @:customRender: (value) => (value ? <a-tag color="green">True</a-tag> : <a-tag color="volcano">False</a-tag>),
 }
 if(@column.EffectType == "fk"){
-            @:customRender: (value, record) => record.@(@column.LowerFkEntityName).@(@column.FkColumnName),
+            @:customRender: (value, record) => record.@(@column.LowerFkEntityName).@(@column.LowerFkColumnName),
 }
 if(@column.WhetherRetract == "Y" || @column.EffectType == "select" || @column.EffectType == "radio" || @column.EffectType == "checkbox"){
             @:dataIndex: '@column.ColumnName',
