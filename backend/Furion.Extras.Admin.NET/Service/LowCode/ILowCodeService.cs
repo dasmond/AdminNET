@@ -21,5 +21,7 @@ namespace Furion.Extras.Admin.NET.Service.LowCode
         Task Update(UpdateLowCodeInput input);
 
         List<ContrastLowCode_Database> Contrast(ContrastLowCode contrast);
+
+        bool RunLocal(long id);
     }
 }

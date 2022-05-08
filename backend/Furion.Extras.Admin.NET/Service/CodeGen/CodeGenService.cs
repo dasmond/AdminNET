@@ -64,11 +64,19 @@ namespace Furion.Extras.Admin.NET.Service.CodeGen
             if (isExist)
                 throw Oops.Oh(ErrorCode.D1400);
 
-            var codeGen = input.Adapt<SysCodeGen>();
-            var newCodeGen = await codeGen.InsertNowAsync();
+            if (input.LowCodeId != null && input.LowCodeId > 0)
+            {
+                isExist = await _sysCodeGenRep.DetachedEntities.AnyAsync(u => u.LowCodeId == input.LowCodeId);
+            }
 
-            // 加入配置表中
-            _codeGenConfigService.AddList(GetColumnList(input), newCodeGen.Entity);
+            if (!isExist)
+            {
+                var codeGen = input.Adapt<SysCodeGen>();
+                var newCodeGen = await codeGen.InsertNowAsync();
+
+                // 加入配置表中
+                _codeGenConfigService.AddList(GetColumnList(input), newCodeGen.Entity);
+            }
         }
 
         /// <summary>
@@ -106,6 +114,9 @@ namespace Furion.Extras.Admin.NET.Service.CodeGen
 
             var codeGen = input.Adapt<SysCodeGen>();
             await codeGen.UpdateAsync();
+
+            // 加入配置表中
+            _codeGenConfigService.AddList(GetColumnList(input.Adapt<AddCodeGenInput>()), codeGen);
         }
 
         /// <summary>

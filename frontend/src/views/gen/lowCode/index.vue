@@ -101,7 +101,7 @@
 import { STable, Ellipsis } from '@/components'
 import {
   lowCodePage,
-  lowCodeAdd,
+  lowCodeRunLocal,
   lowCodeEdit,
   lowCodeDelete,
 } from '@/api/modular/gen/lowCodeManage'
@@ -189,17 +189,18 @@ export default {
      * 开始生成代码（生成压缩包）
      */
     runDownCodeGenerate(record) {
-      this.Loading = true
-      codeGenerateRunDown({ id: record.id })
-        .then((res) => {
-          this.Loading = false
-          this.downloadfile(res)
-          // eslint-disable-next-line handle-callback-err
-        })
-        .catch((err) => {
-          this.Loading = false
-          this.$message.error('下载错误：获取文件流错误')
-        })
+      console.log(record.id)
+      // this.Loading = true
+      // codeGenerateRunDown({ id: record.id })
+      //   .then((res) => {
+      //     this.Loading = false
+      //     this.downloadfile(res)
+      //     // eslint-disable-next-line handle-callback-err
+      //   })
+      //   .catch((err) => {
+      //     this.Loading = false
+      //     this.$message.error('下载错误：获取文件流错误')
+      //   })
     },
     downloadfile(res) {
       var blob = new Blob([res.data], { type: 'application/octet-stream;charset=UTF-8' })
@@ -222,7 +223,7 @@ export default {
      * 开始生成代码（本地项目）
      */
     runLocalCodeGenerate(record) {
-      codeGenerateRunLocal(record).then((res) => {
+      lowCodeRunLocal(record.id).then((res) => {
         if (res.success) {
           this.$message.success('生成成功')
           this.$refs.table.refresh()

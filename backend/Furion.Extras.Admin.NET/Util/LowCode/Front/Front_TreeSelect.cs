@@ -13,7 +13,6 @@ namespace Furion.Extras.Admin.NET.Util.LowCode.Front
     /// </summary>
     [FrontType("treeSelect")]
     [FrontTypeBindDatabase(DbProvider.SqlServer, typeof(string), "nvarchar(2000)")]
-    [FrontTypeBindDatabase(DbProvider.SqlServer, typeof(string), "nvarchar(2000)", Suffix = "FullName")]
     public class Front_TreeSelect : Front_Base<Front_TreeSelect_Options>, IFrontDynamic
     {
     }

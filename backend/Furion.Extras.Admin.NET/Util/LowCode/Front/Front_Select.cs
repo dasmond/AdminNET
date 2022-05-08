@@ -13,7 +13,6 @@ namespace Furion.Extras.Admin.NET.Util.LowCode.Front
     /// </summary>
     [FrontType("select")]
     [FrontTypeBindDatabase(DbProvider.SqlServer, typeof(string), "nvarchar(200)")]
-    [FrontTypeBindDatabase(DbProvider.SqlServer, typeof(string), "nvarchar(200)", Suffix = "FullName")]
     public class Front_Select : Front_Base<Front_Select_Options> , IFrontDynamic
     {
     }

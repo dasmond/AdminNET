@@ -13,8 +13,6 @@ namespace Furion.Extras.Admin.NET.Util.LowCode.Front
     /// </summary>
     [FrontType("cascader")]
     [FrontTypeBindDatabase(DbProvider.SqlServer, typeof(string), "nvarchar(2000)")]
-    [FrontTypeBindDatabase(DbProvider.SqlServer, typeof(string), "nvarchar(2000)", Suffix = "FullId")]
-    [FrontTypeBindDatabase(DbProvider.SqlServer, typeof(string), "nvarchar(2000)", Suffix = "FullName")]
     public class Front_Cascader : Front_Base<Front_Cascader_Options>, IFrontDynamic
     {
 

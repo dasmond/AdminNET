@@ -14,6 +14,8 @@ using Furion.Extras.Admin.NET.Util;
 using Furion.Extras.Admin.NET.Util.LowCode.Front.Code;
 using Furion.Extras.Admin.NET.Util.LowCode.Front.Interface;
 using System.Linq;
+using System.Text;
+using Furion.Extras.Admin.NET.Service.CodeGen;
 
 namespace Furion.Extras.Admin.NET.Service.LowCode
 {
@@ -27,13 +29,16 @@ namespace Furion.Extras.Admin.NET.Service.LowCode
         private readonly IRepository<SysLowCode> _sysLowCodeRep;
         private readonly IRepository<SysLowCodeDataBase> _sysLowCodeDataBaseRep;
         private readonly IViewEngine _viewEngine;
+        private readonly ICodeGenService _codeGenService;
 
         public LowCodeService(IRepository<SysLowCode> sysLowCodeRep,
             IRepository<SysLowCodeDataBase> sysLowCodeDataBaseRep,
+            ICodeGenService codeGenService,
                               IViewEngine viewEngine)
         {
             _sysLowCodeRep = sysLowCodeRep;
             _sysLowCodeDataBaseRep = sysLowCodeDataBaseRep;
+            _codeGenService = codeGenService;
             _viewEngine = viewEngine;
         }
 
@@ -156,6 +161,107 @@ namespace Furion.Extras.Admin.NET.Service.LowCode
             });
 
             return list;
+        }
+
+        /// <summary>
+        /// 生成ORM模型
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet("runLocal/{id}")]
+        public bool RunLocal(long id)
+        {
+            var info = Info(id);
+
+            var list = info.Databases.Select(x => new GenEntity() { 
+                NameSpace = info.NameSpace,
+                ClassName = x.ClassName,
+                TableDesc = x.TableDesc,
+                TableName = x.TableName,
+                DatabaseName = info.DatabaseName
+            }).Distinct(new GenEntityComparer()).ToList();
+
+            list.ForEach(item =>
+            {
+                item.Fields = info.Databases.Where(x => x.ClassName == item.ClassName).Select(x => new GenEntity_Field()
+                {
+                    ColumnComment = x.Control_Label,
+                    DbParam = x.DbParam,
+                    FieldName = x.FieldName,
+                    IsRequired = x.IsRequired == null ? false : x.IsRequired.Value,
+                    NetType = x.DbTypeName
+                }).ToList();
+            });
+
+            var templatePathList = GetTemplatePathList();
+            list.ForEach(item =>
+            {
+                var targetPathList = GetTargetPathList(item);
+
+                for (var i = 0; i < templatePathList.Count; i++)
+                {
+                    var tContent = File.ReadAllText(templatePathList[i]);
+
+                    var tResult = _viewEngine.RunCompileFromCached(tContent, new {
+                        TableName = item.TableName,
+                        NameSpace = item.NameSpace,
+                        Fields = item.Fields.Select(x => new { x.ColumnComment, x.DbParam, x.FieldName, x.IsRequired, x.NetType }).ToList(),
+                        ClassName = item.ClassName,
+                        TableDesc = item.TableDesc,
+                        DatabaseName = item.DatabaseName
+                    });
+
+                    var dirPath = new DirectoryInfo(targetPathList[i]).Parent.FullName;
+                    if (!Directory.Exists(dirPath))
+                        Directory.CreateDirectory(dirPath);
+                    File.WriteAllText(targetPathList[i], tResult, Encoding.UTF8);
+                }
+
+                _codeGenService.AddCodeGen(new AddCodeGenInput()
+                {
+                    LowCodeId = id,
+                    NameSpace = info.NameSpace,
+                    AuthorName = info.AuthorName,
+                    BusName = info.BusName,
+                    ClassName = item.ClassName,
+                    DatabaseName = info.DatabaseName,
+                    GenerateType = info.GenerateType,
+                    MenuApplication = info.MenuApplication,
+                    MenuPid = info.MenuPid,
+                    TableComment = item.TableDesc,
+                    TableName = item.TableName,
+                    TablePrefix = null
+                }).Wait();
+            });
+
+            
+
+            return true;
+        }
+
+        private List<string> GetTemplatePathList()
+        {
+            var templatePath = App.WebHostEnvironment.WebRootPath + @"\Template\";
+            return new List<string>()
+            {
+                templatePath + "Entity.cs.vm"
+            };
+        }
+
+        /// <summary>
+        /// 设置生成文件路径
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        private List<string> GetTargetPathList(GenEntity input)
+        {
+            var backendPath = new DirectoryInfo(App.WebHostEnvironment.ContentRootPath).Parent.FullName + @"\" + input.NameSpace + @"\Entity\";
+            var outputPath = backendPath + @"\" + input.ClassName + ".cs";
+
+            return new List<string>()
+            {
+                outputPath
+            };
         }
     }
 }

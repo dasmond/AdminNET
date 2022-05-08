@@ -88,3 +88,18 @@ export function lowCodeInfo (id) {
     method: 'get'
   })
 }
+
+/**
+ * 生成ORM模型
+ *
+ * @author lanhuxing
+ * @date 2022/05/02 17:30
+ */
+export function lowCodeRunLocal (id) {
+  return axios({
+    url: '/lowcode/runLocal/' + id,
+    method: 'get'
+  })
+}
+
+

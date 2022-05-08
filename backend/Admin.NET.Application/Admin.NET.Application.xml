@@ -4,112 +4,272 @@
         <name>Admin.NET.Application</name>
     </assembly>
     <members>
-        <member name="T:Admin.NET.Application.SysTestDto">
+        <member name="T:Admin.NET.Application.Entity.Deliverables">
             <summary>
-            测试模块表输出参数
+            交付物管理表
             </summary>
         </member>
-        <member name="P:Admin.NET.Application.SysTestDto.Name">
+        <member name="P:Admin.NET.Application.Entity.Deliverables.Issue">
             <summary>
-            公司名称
+            当前月份
             </summary>
         </member>
-        <member name="P:Admin.NET.Application.SysTestDto.Value">
+        <member name="P:Admin.NET.Application.Entity.Deliverables.Enterprise">
             <summary>
-            公司名称
+            所属企业
             </summary>
         </member>
-        <member name="P:Admin.NET.Application.SysTestDto.Id">
+        <member name="P:Admin.NET.Application.Entity.Deliverables.Acceptance">
+            <summary>
+            上传验收单
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.Entity.Deliverables.Job">
+            <summary>
+            任务
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.Entity.Deliverables.State">
+            <summary>
+            状态
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.Entity.Deliverables.Deliver">
+            <summary>
+            上传交付物
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.Entity.Deliverables.FullName">
+            <summary>
+            创客姓名
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.Entity.Deliverables.IdCard">
+            <summary>
+            身份证号
+            </summary>
+        </member>
+        <member name="T:Admin.NET.Application.DeliverablesService">
+            <summary>
+            交付物管理服务
+            </summary>
+        </member>
+        <member name="M:Admin.NET.Application.DeliverablesService.Page(Admin.NET.Application.DeliverablesInput)">
+            <summary>
+            分页查询交付物管理
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Application.DeliverablesService.Add(Admin.NET.Application.AddDeliverablesInput)">
+            <summary>
+            增加交付物管理
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Application.DeliverablesService.Delete(Admin.NET.Application.DeleteDeliverablesInput)">
+            <summary>
+            删除交付物管理
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Application.DeliverablesService.Update(Admin.NET.Application.UpdateDeliverablesInput)">
+            <summary>
+            更新交付物管理
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Application.DeliverablesService.Get(Admin.NET.Application.QueryeDeliverablesInput)">
+            <summary>
+            获取交付物管理
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Application.DeliverablesService.List(Admin.NET.Application.DeliverablesInput)">
+            <summary>
+            获取交付物管理列表
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Admin.NET.Application.DeliverablesDto">
+            <summary>
+            交付物管理输出参数
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.DeliverablesDto.Issue">
+            <summary>
+            当前月份
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.DeliverablesDto.Enterprise">
+            <summary>
+            所属企业
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.DeliverablesDto.Acceptance">
+            <summary>
+            上传验收单
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.DeliverablesDto.Job">
+            <summary>
+            任务
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.DeliverablesDto.State">
+            <summary>
+            状态
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.DeliverablesDto.Deliver">
+            <summary>
+            上传交付物
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.DeliverablesDto.FullName">
+            <summary>
+            创客姓名
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.DeliverablesDto.IdCard">
+            <summary>
+            身份证号
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.DeliverablesDto.Id">
             <summary>
             Id主键
             </summary>
         </member>
-        <member name="T:Admin.NET.Application.SysTestInput">
+        <member name="T:Admin.NET.Application.DeliverablesInput">
             <summary>
-            测试模块表输入参数
+            交付物管理输入参数
             </summary>
         </member>
-        <member name="P:Admin.NET.Application.SysTestInput.Name">
+        <member name="P:Admin.NET.Application.DeliverablesInput.Issue">
             <summary>
-            公司名称
+            当前月份
             </summary>
         </member>
-        <member name="P:Admin.NET.Application.SysTestInput.Value">
+        <member name="P:Admin.NET.Application.DeliverablesInput.Enterprise">
             <summary>
-            公司名称
+            所属企业
             </summary>
         </member>
-        <member name="P:Admin.NET.Application.UpdateSysTestInput.Id">
+        <member name="P:Admin.NET.Application.DeliverablesInput.Acceptance">
+            <summary>
+            上传验收单
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.DeliverablesInput.Job">
+            <summary>
+            任务
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.DeliverablesInput.State">
+            <summary>
+            状态
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.DeliverablesInput.Deliver">
+            <summary>
+            上传交付物
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.DeliverablesInput.FullName">
+            <summary>
+            创客姓名
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.DeliverablesInput.IdCard">
+            <summary>
+            身份证号
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.AddDeliverablesInput.Issue">
+            <summary>
+            当前月份
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.AddDeliverablesInput.Enterprise">
+            <summary>
+            所属企业
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.AddDeliverablesInput.Job">
+            <summary>
+            任务
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.AddDeliverablesInput.FullName">
+            <summary>
+            创客姓名
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.AddDeliverablesInput.IdCard">
+            <summary>
+            身份证号
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.UpdateDeliverablesInput.Id">
             <summary>
             Id主键
             </summary>
         </member>
-        <member name="T:Admin.NET.Application.SysTestOutput">
+        <member name="T:Admin.NET.Application.DeliverablesOutput">
             <summary>
-            测试模块表输出参数
+            交付物管理输出参数
             </summary>
         </member>
-        <member name="P:Admin.NET.Application.SysTestOutput.Name">
+        <member name="P:Admin.NET.Application.DeliverablesOutput.Issue">
             <summary>
-            公司名称
+            当前月份
             </summary>
         </member>
-        <member name="P:Admin.NET.Application.SysTestOutput.Value">
+        <member name="P:Admin.NET.Application.DeliverablesOutput.Enterprise">
             <summary>
-            公司名称
+            所属企业
             </summary>
         </member>
-        <member name="P:Admin.NET.Application.SysTestOutput.Id">
+        <member name="P:Admin.NET.Application.DeliverablesOutput.Acceptance">
+            <summary>
+            上传验收单
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.DeliverablesOutput.Job">
+            <summary>
+            任务
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.DeliverablesOutput.State">
+            <summary>
+            状态
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.DeliverablesOutput.Deliver">
+            <summary>
+            上传交付物
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.DeliverablesOutput.FullName">
+            <summary>
+            创客姓名
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.DeliverablesOutput.IdCard">
+            <summary>
+            身份证号
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.DeliverablesOutput.Id">
             <summary>
             Id主键
             </summary>
-        </member>
-        <member name="T:Admin.NET.Application.SysTestService">
-            <summary>
-            测试模块表服务
-            </summary>
-        </member>
-        <member name="M:Admin.NET.Application.SysTestService.Page(Admin.NET.Application.SysTestInput)">
-            <summary>
-            分页查询测试模块表
-            </summary>
-            <param name="input"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Admin.NET.Application.SysTestService.Add(Admin.NET.Application.AddSysTestInput)">
-            <summary>
-            增加测试模块表
-            </summary>
-            <param name="input"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Admin.NET.Application.SysTestService.Delete(Admin.NET.Application.DeleteSysTestInput)">
-            <summary>
-            删除测试模块表
-            </summary>
-            <param name="input"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Admin.NET.Application.SysTestService.Update(Admin.NET.Application.UpdateSysTestInput)">
-            <summary>
-            更新测试模块表
-            </summary>
-            <param name="input"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Admin.NET.Application.SysTestService.Get(Admin.NET.Application.QueryeSysTestInput)">
-            <summary>
-            获取测试模块表
-            </summary>
-            <param name="input"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Admin.NET.Application.SysTestService.List(Admin.NET.Application.SysTestInput)">
-            <summary>
-            获取测试模块表列表
-            </summary>
-            <param name="input"></param>
-            <returns></returns>
         </member>
         <member name="T:Admin.NET.Application.SpareTimeDemo">
             <summary>
@@ -133,21 +293,6 @@
             获取系统描述
             </summary>
             <returns></returns>
-        </member>
-        <member name="T:Admin.NET.Application.Test.Entity.SysTest">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:Admin.NET.Application.Test.Entity.SysTest.Name">
-            <summary>
-            公司名称
-            </summary>
-        </member>
-        <member name="P:Admin.NET.Application.Test.Entity.SysTest.Value">
-            <summary>
-            公司名称
-            </summary>
         </member>
     </members>
 </doc>
