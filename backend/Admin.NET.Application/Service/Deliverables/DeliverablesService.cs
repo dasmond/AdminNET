@@ -40,9 +40,9 @@ namespace Admin.NET.Application
         public async Task<PageResult<DeliverablesOutput>> Page([FromQuery] DeliverablesInput input)
         {
             var deliverabless = await _deliverablesRep.DetachedEntities
-                                     .Where(u => u.Issue == input.Issue)
+                                     .Where(false, u => u.Issue == input.Issue)
                                      .Where(!string.IsNullOrEmpty(input.Enterprise), u => EF.Functions.Like(u.Enterprise, $"%{input.Enterprise.Trim()}%"))
-                                     .Where(u => u.State == input.State)
+                                     .Where(false,u => u.State == input.State)
                                      .Where(!string.IsNullOrEmpty(input.FullName), u => EF.Functions.Like(u.FullName, $"%{input.FullName.Trim()}%"))
                                      .OrderBy(PageInputOrder.OrderBuilder<DeliverablesInput>(input))
                                      .ProjectToType<DeliverablesOutput>()

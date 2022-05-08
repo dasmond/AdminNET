@@ -7,7 +7,8 @@
     @@ok="handleSubmit"
     @@cancel="handleCancel">
     <a-spin :spinning="confirmLoading">
-      <a-form :form="form">
+@if(@Model.LowCodeId == null){
+		<a-form :form="form">
 @foreach (var column in Model.TableField){
 if (@column.ColumnKey != "True"){
 if (@column.WhetherAddUpdate == "Y"){
@@ -114,6 +115,9 @@ if (@column.WhetherRequired == "Y"){
 }
 }
       </a-form>
+}else{
+      <k-form-build ref="kfb" :value="formDesign" />
+}
     </a-spin>
   </a-modal>
 </template>
@@ -127,7 +131,9 @@ if(@column.EffectType == "fk" && @column.FkEntityName != "" && @column.FkColumnN
 }
     @(@Model.ClassName)Add
   } from '@@/api/modular/main/@(@Model.ClassName)Manage'
-
+@if(@Model.LowCodeId != null){
+  @:import 'k-form-design/styles/k-form-design.less'
+}
   export default {
     data () {
       return {
@@ -156,9 +162,13 @@ if(@column.EffectType == "fk" && @column.FkEntityName != "" && @column.FkColumnN
         @:@(@column.FkEntityName)Data: [],
 }
 }
-        visible: false,
-        confirmLoading: false,
-        form: this.$form.createForm(this)
+        @visible: false,
+        @confirmLoading: false,
+@if(@Model.LowCodeId == null){
+        @:form: this.$form.createForm(this)
+}else{
+        @:formDesign: @Model.FormDesign
+}
       }
     },
     methods: {
@@ -192,15 +202,16 @@ if(@column.EffectType == "fk" && @column.FkEntityName != "" && @column.FkColumnN
        * 提交表单
        */
       handleSubmit () {
-        const { form: { validateFields } } = this
-        this.confirmLoading = true
-        validateFields((errors, values) => {
-          if (!errors) {
-            for (const key in values) {
-              if (typeof (values[key]) === 'object') {
-                values[key] = JSON.stringify(values[key])
-              }
-            }
+@if(@Model.LowCodeId == null){
+        @:const { form: { validateFields } } = this
+        @:this.confirmLoading = true
+        @:validateFields((errors, values) => {
+          @:if (!errors) {
+            @:for (const key in values) {
+              @:if (typeof (values[key]) === 'object') {
+                @:values[key] = JSON.stringify(values[key])
+              @:}
+            @:}
 @foreach (var column in Model.TableField){
 if (@column.WhetherAddUpdate == "Y"){
 if (@column.EffectType == "datepicker"){
@@ -208,22 +219,39 @@ if (@column.EffectType == "datepicker"){
 }
 }
 }
-            @(@Model.ClassName)Add(values).then((res) => {
-              if (res.success) {
-                this.$message.success('新增成功')
-                this.confirmLoading = false
-                this.$emit('ok', values)
-                this.handleCancel()
-              } else {
-                this.$message.error('新增失败：' + JSON.stringify(res.message))
-              }
-            }).finally((res) => {
-              this.confirmLoading = false
-            })
-          } else {
-            this.confirmLoading = false
-          }
-        })
+            @:@(@Model.ClassName)Add(values).then((res) => {
+              @:if (res.success) {
+                @:this.$message.success('新增成功')
+                @:this.confirmLoading = false
+                @:this.$emit('ok', values)
+                @:this.handleCancel()
+              @:} else {
+                @:this.$message.error('新增失败：' + JSON.stringify(res.message))
+              @:}
+            @:}).finally((res) => {
+              @:this.confirmLoading = false
+            @:})
+          @:} else {
+            @:this.confirmLoading = false
+          @:}
+        @:})
+}else{
+        @:this.$refs.kfb.getData().then(values => {
+          @:let data = { ...values };
+            @:DeliverablesAdd(data).then((res) => {
+              @:if (res.success) {
+                @:this.$message.success('新增成功')
+                @:this.confirmLoading = false
+                @:this.$emit('ok', values)
+                @:this.handleCancel()
+              @:} else {
+                @:this.$message.error('新增失败：' + JSON.stringify(res.message))
+              @:}
+            @:}).finally((res) => {
+              @:this.confirmLoading = false
+            @:})
+        @:});
+}
       },
 @foreach (var column in Model.TableField){
 if (@column.WhetherAddUpdate == "Y"){
@@ -235,7 +263,11 @@ if (@column.EffectType == "datepicker"){
 }
 }
       handleCancel () {
-        this.form.resetFields()
+@if(@Model.LowCodeId == null){
+        @:this.form.resetFields()
+}else{
+        @:this.$refs.kfb.reset()
+}
         this.visible = false
       }
     }
