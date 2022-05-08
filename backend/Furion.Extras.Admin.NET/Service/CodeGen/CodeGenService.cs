@@ -274,13 +274,6 @@ namespace Furion.Extras.Admin.NET.Service.CodeGen
                 var tContent = File.ReadAllText(templatePathList[i]);
 
                 var tableFieldList = await _codeGenConfigService.List(new CodeGenConfig() { CodeGenId = input.Id }); // 字段集合
-                if (i >= 5) // 适应前端首字母小写
-                {
-                    tableFieldList.ForEach(u =>
-                    {
-                        u.ColumnName = u.ColumnName.Substring(0, 1).ToLower() + u.ColumnName[1..];
-                    });
-                }
 
                 tableFieldList.ForEach(u =>
                 {
@@ -296,7 +289,16 @@ namespace Furion.Extras.Admin.NET.Service.CodeGen
                             u.NetTypeIsNullLable = "?";
                             break;
                     }
+                    u.OriginalColumnName = u.ColumnName;
                 });
+
+                if (i >= 5) // 适应前端首字母小写
+                {
+                    tableFieldList.ForEach(u =>
+                    {
+                        u.ColumnName = u.ColumnName.Substring(0, 1).ToLower() + u.ColumnName[1..];
+                    });
+                }
 
                 var queryWhetherList = tableFieldList.Where(u => u.QueryWhether == YesOrNot.Y.ToString()).ToList(); // 前端查询集合
 

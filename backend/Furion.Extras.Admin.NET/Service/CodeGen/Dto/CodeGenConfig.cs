@@ -26,6 +26,11 @@
         public string ColumnName { get; set; }
 
         /// <summary>
+        /// 数据库字段名
+        /// </summary>
+        public string OriginalColumnName { get; set; }
+
+        /// <summary>
         /// 数据库字段名(首字母小写)
         /// </summary>
         public string LowerColumnName => string.IsNullOrWhiteSpace(ColumnName)

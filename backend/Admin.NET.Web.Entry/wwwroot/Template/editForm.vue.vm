@@ -218,9 +218,19 @@ if (@column.EffectType == "select" || @column.EffectType == "radio" || @column.E
 }
 }
 }
-        setTimeout(() => {
-          this.form.setFieldsValue(
+        this.$nextTick(() => {
+@if(@Model.LowCodeId != null){
+          @:let data = { ...
+}else{
+          @:this.form.setFieldsValue(
+}
             {
+@if(@Model.LowCodeId != null){
+@foreach (var column in Model.TableField){
+              @:@column.OriginalColumnName: record.@column.ColumnName,
+}
+}else{
+//属性传递开始              
 @{var editDataColumn = 0;}
 @foreach (var column in Model.TableField){
 if(@column.ColumnKey == "True"){
@@ -246,9 +256,17 @@ if(editDataColumn != editData){
 }
 }
 }
+//属性传递结束
+}
             }
-          )
-        }, 100)
+@if(@Model.LowCodeId != null){
+          @:}
+          @:this.$refs.kfb.setData(data)
+}else{
+          @:)
+}
+        })
+@if(@Model.LowCodeId == null){
 @foreach (var column in Model.TableField){
 if (@column.WhetherAddUpdate == "Y"){
 if (@column.EffectType == "datepicker"){
@@ -260,6 +278,7 @@ if (@column.EffectType == "datepicker"){
 }
 }
 }
+}
 @foreach (var column in Model.TableField){
 if(@column.EffectType == "fk" && @column.FkEntityName != "" && @column.FkColumnName != ""){
       @:this.@(@Model.ClassName)Fk@(@column.FkEntityName)List()
@@ -267,19 +286,20 @@ if(@column.EffectType == "fk" && @column.FkEntityName != "" && @column.FkColumnN
 }
       },
       handleSubmit () {
-        const { form: { validateFields } } = this
-        this.confirmLoading = true
-        validateFields((errors, values) => {
-          if (!errors) {
-            for (const key in values) {
-              if (values[key] == null) continue
-              if (typeof (values[key]) === 'object') {
-                values[key] = JSON.stringify(values[key])
-                 this.record[key] = values[key]
-              } else {
-                 this.record[key] = values[key]
-              }
-            }
+@if(@Model.LowCodeId == null){
+        @:const { form: { validateFields } } = this
+        @:this.confirmLoading = true
+        @:validateFields((errors, values) => {
+          @:if (!errors) {
+            @:for (const key in values) {
+              @:if (values[key] == null) continue
+              @:if (typeof (values[key]) === 'object') {
+                @:values[key] = JSON.stringify(values[key])
+                 @:this.record[key] = values[key]
+              @:} else {
+                 @:this.record[key] = values[key]
+              @:}
+            @:}
 @foreach (var column in Model.TableField){
 if (@column.WhetherAddUpdate == "Y"){
 if (@column.EffectType == "datepicker"){
@@ -288,22 +308,38 @@ if (@column.EffectType == "datepicker"){
 }
 }
 }
-            @(@Model.ClassName)Edit(this.record).then((res) => {
-              if (res.success) {
-                this.$message.success('编辑成功')
-                this.confirmLoading = false
-                this.$emit('ok', this.record)
-                this.handleCancel()
-              } else {
-                this.$message.error('编辑失败：' + JSON.stringify(res.message))
-              }
-            }).finally((res) => {
-              this.confirmLoading = false
-            })
-          } else {
-            this.confirmLoading = false
-          }
-        })
+            @:@(@Model.ClassName)Edit(this.record).then((res) => {
+              @:if (res.success) {
+                @:this.$message.success('编辑成功')
+                @:this.confirmLoading = false
+                @:this.$emit('ok', this.record)
+                @:this.handleCancel()
+              @:} else {
+                @:this.$message.error('编辑失败：' + JSON.stringify(res.message))
+              @:}
+            @:}).finally((res) => {
+              @:this.confirmLoading = false
+            @:})
+          @:}else{
+            @:this.confirmLoading = false
+          @:} 
+}else{
+        @:this.$refs.kfb.getData().then(values => {
+          @:let data = { ...values };
+            @:DeliverablesAdd(data).then((res) => {
+              @:if (res.success) {
+                @:this.$message.success('编辑成功')
+                @:this.confirmLoading = false
+                @:this.$emit('ok', values)
+                @:this.handleCancel()
+              @:} else {
+                @:this.$message.error('编辑失败：' + JSON.stringify(res.message))
+              @:}
+            @:}).finally((res) => {
+              @:this.confirmLoading = false
+            @:})
+}
+        });
       },
 @foreach (var column in Model.TableField){
 if (@column.WhetherAddUpdate == "Y"){
@@ -315,7 +351,11 @@ if (@column.EffectType == "datepicker"){
 }
 }
       handleCancel () {
-        this.form.resetFields()
+@if(@Model.LowCodeId == null){
+        @:this.form.resetFields()
+}else{
+        @:this.$refs.kfb.reset()
+}
         this.visible = false
       }
     }

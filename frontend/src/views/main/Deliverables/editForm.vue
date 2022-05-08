@@ -42,44 +42,31 @@
       edit (record) {
         this.visible = true
         this.record = record
-        setTimeout(() => {
-          this.form.setFieldsValue(
+        this.$nextTick(() => {
+          let data = { ...
             {
-              id: record.id,
-              enterprise: record.enterprise,
-              acceptance: record.acceptance,
-              job: record.job,
-              state: record.state,
-              deliver: record.deliver,
-              fullName: record.fullName,
-              idCard: record.idCard
+              Issue: record.issue,
+              Enterprise: record.enterprise,
+              Acceptance: record.acceptance,
+              Job: record.job,
+              State: record.state,
+              Deliver: record.deliver,
+              FullName: record.fullName,
+              IdCard: record.idCard,
+              Id: record.id,
             }
-          )
-        }, 100)
-        this.form.getFieldDecorator('issue', { initialValue: moment(record.issue, 'YYYY-MM-DD') })
-        this.issueDateString = moment(record.issue).format('YYYY-MM-DD')
+          }
+          this.$refs.kfb.setData(data)
+        })
       },
       handleSubmit () {
-        const { form: { validateFields } } = this
-        this.confirmLoading = true
-        validateFields((errors, values) => {
-          if (!errors) {
-            for (const key in values) {
-              if (values[key] == null) continue
-              if (typeof (values[key]) === 'object') {
-                values[key] = JSON.stringify(values[key])
-                 this.record[key] = values[key]
-              } else {
-                 this.record[key] = values[key]
-              }
-            }
-            values.issue = this.issueDateString
-            this.record.issue = this.issueDateString
-            DeliverablesEdit(this.record).then((res) => {
+        this.$refs.kfb.getData().then(values => {
+          let data = { ...values };
+            DeliverablesAdd(data).then((res) => {
               if (res.success) {
                 this.$message.success('编辑成功')
                 this.confirmLoading = false
-                this.$emit('ok', this.record)
+                this.$emit('ok', values)
                 this.handleCancel()
               } else {
                 this.$message.error('编辑失败：' + JSON.stringify(res.message))
@@ -87,16 +74,13 @@
             }).finally((res) => {
               this.confirmLoading = false
             })
-          } else {
-            this.confirmLoading = false
-          }
-        })
+        });
       },
       onChangeissue(date, dateString) {
         this.issueDateString = dateString
       },
       handleCancel () {
-        this.form.resetFields()
+        this.$refs.kfb.reset()
         this.visible = false
       }
     }
