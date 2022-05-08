@@ -2,6 +2,7 @@ using Furion.DatabaseAccessor;
 using Furion.DatabaseAccessor.Extensions;
 using Furion.DependencyInjection;
 using Furion.DynamicApiController;
+using Furion.Extras.Admin.NET.Entity;
 using Furion.FriendlyException;
 using Furion.ViewEngine;
 using Mapster;
@@ -21,17 +22,20 @@ namespace Furion.Extras.Admin.NET.Service.CodeGen
     public class CodeGenService : ICodeGenService, IDynamicApiController, ITransient
     {
         private readonly IRepository<SysCodeGen> _sysCodeGenRep; // 代码生成器仓储
+        private readonly IRepository<SysLowCode> _sysLowCodeRep; // 代码生成器仓储
         private readonly ICodeGenConfigService _codeGenConfigService;
         private readonly IViewEngine _viewEngine;
 
         private readonly IRepository<SysMenu> _sysMenuRep; // 菜单表仓储
 
         public CodeGenService(IRepository<SysCodeGen> sysCodeGenRep,
-                              ICodeGenConfigService codeGenConfigService,
-                              IViewEngine viewEngine,
-                              IRepository<SysMenu> sysMenuRep)
+            IRepository<SysLowCode> sysLowCodeRep,
+            ICodeGenConfigService codeGenConfigService,
+            IViewEngine viewEngine,
+            IRepository<SysMenu> sysMenuRep)
         {
             _sysCodeGenRep = sysCodeGenRep;
+            _sysLowCodeRep = sysLowCodeRep;
             _codeGenConfigService = codeGenConfigService;
             _viewEngine = viewEngine;
             _sysMenuRep = sysMenuRep;
@@ -45,6 +49,10 @@ namespace Furion.Extras.Admin.NET.Service.CodeGen
         [HttpGet("codeGenerate/page")]
         public async Task<PageResult<SysCodeGen>> QueryCodeGenPageList([FromQuery] CodeGenPageInput input)
         {
+            //if(input.)
+            //// 加入配置表中
+            //_codeGenConfigService.AddList(GetColumnList(input.Adapt<AddCodeGenInput>()), codeGen);
+
             var tableName = !string.IsNullOrEmpty(input.TableName?.Trim());
             var codeGens = await _sysCodeGenRep.DetachedEntities
                                                .Where((tableName, u => EF.Functions.Like(u.TableName, $"%{input.TableName.Trim()}%")))
@@ -64,11 +72,19 @@ namespace Furion.Extras.Admin.NET.Service.CodeGen
             if (isExist)
                 throw Oops.Oh(ErrorCode.D1400);
 
-            var codeGen = input.Adapt<SysCodeGen>();
-            var newCodeGen = await codeGen.InsertNowAsync();
+            if (input.LowCodeId != null && input.LowCodeId > 0)
+            {
+                isExist = await _sysCodeGenRep.DetachedEntities.AnyAsync(u => u.LowCodeId == input.LowCodeId);
+            }
 
-            // 加入配置表中
-            _codeGenConfigService.AddList(GetColumnList(input), newCodeGen.Entity);
+            if (!isExist)
+            {
+                var codeGen = input.Adapt<SysCodeGen>();
+                var newCodeGen = await codeGen.InsertNowAsync();
+
+                // 加入配置表中
+                _codeGenConfigService.AddList(GetColumnList(input), newCodeGen.Entity);
+            }
         }
 
         /// <summary>
@@ -106,6 +122,21 @@ namespace Furion.Extras.Admin.NET.Service.CodeGen
 
             var codeGen = input.Adapt<SysCodeGen>();
             await codeGen.UpdateAsync();
+
+            // 加入配置表中
+            _codeGenConfigService.AddList(GetColumnList(input.Adapt<AddCodeGenInput>()), codeGen);
+        }
+
+        /// <summary>
+        /// 刷新配置表
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("codeGenerate/refresh/{id}")]
+        public void Refresh(long id)
+        {
+            var item = _sysCodeGenRep.Where(x => x.Id == id).FirstOrDefault();
+            // 加入配置表中
+            _codeGenConfigService.AddList(GetColumnList(item.Adapt<AddCodeGenInput>()), item);
         }
 
         /// <summary>
@@ -243,6 +274,24 @@ namespace Furion.Extras.Admin.NET.Service.CodeGen
                 var tContent = File.ReadAllText(templatePathList[i]);
 
                 var tableFieldList = await _codeGenConfigService.List(new CodeGenConfig() { CodeGenId = input.Id }); // 字段集合
+
+                tableFieldList.ForEach(u =>
+                {
+                    switch (u.NetType.ToLower())
+                    {
+                        case "int":
+                        case "int32":
+                        case "long":
+                        case "guid":
+                        case "decimal":
+                        case "datetime":
+                        case "datetimeoffset":
+                            u.NetTypeIsNullLable = "?";
+                            break;
+                    }
+                    u.OriginalColumnName = u.ColumnName;
+                });
+
                 if (i >= 5) // 适应前端首字母小写
                 {
                     tableFieldList.ForEach(u =>
@@ -252,6 +301,14 @@ namespace Furion.Extras.Admin.NET.Service.CodeGen
                 }
 
                 var queryWhetherList = tableFieldList.Where(u => u.QueryWhether == YesOrNot.Y.ToString()).ToList(); // 前端查询集合
+
+                string FormDesign = "";
+
+                if(input.LowCodeId != null && input.LowCodeId > 0)
+                {
+                    FormDesign = _sysLowCodeRep.Where(x => x.Id == input.LowCodeId).Select(x => x.FormDesign).FirstOrDefault();
+                }
+
                 var tResult = _viewEngine.RunCompileFromCached(tContent, new
                 {
                     input.AuthorName,
@@ -262,7 +319,9 @@ namespace Furion.Extras.Admin.NET.Service.CodeGen
                     ClassName = input.TableName,
                     CamelizeClassName = input.TableName.Substring(0, 1).ToLower() + input.TableName[1..], //首字母小写
                     QueryWhetherList = queryWhetherList,
-                    TableField = tableFieldList
+                    TableField = tableFieldList,
+                    input.LowCodeId,
+                    FormDesign
                 });
 
                 var dirPath = new DirectoryInfo(targetPathList[i]).Parent.FullName;

@@ -101,8 +101,12 @@ namespace Furion.Extras.Admin.NET.Service
         {
             if (tableColumnOuputList == null) return;
 
+            var existsList = _sysCodeGenConfigRep.Where(x => x.CodeGenId == codeGenerate.Id).ToList();
+
             foreach (var tableColumn in tableColumnOuputList)
             {
+                if (existsList.Where(x => x.ColumnName == tableColumn.ColumnName).Any()) break;
+
                 var codeGenConfig = new SysCodeGenConfig();
 
                 var YesOrNo = YesOrNot.Y.ToString();

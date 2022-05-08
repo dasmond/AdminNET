@@ -1,5 +1,7 @@
 using Furion.EventBus;
 using Furion.JsonSerialization;
+using Furion.UnifyResult;
+using Furion.UnifyResult.Internal;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Controllers;
@@ -68,6 +70,25 @@ namespace Furion.Extras.Admin.NET
                     OpTime = DateTimeOffset.Now,
                     Account = httpContext.User?.FindFirstValue(ClaimConst.CLAINM_ACCOUNT)
                 }));
+        }
+
+        /// <summary>
+        /// 异常返回值
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="metadata"></param>
+        /// <returns></returns>
+        public IActionResult OnException(ExceptionContext context, ExceptionMetadata metadata)
+        {
+            return new JsonResult(new XnRestfulResult<object>
+            {
+                Code = metadata.StatusCode,
+                Success = false,
+                Data = null,
+                Message = metadata.Errors,
+                Extras = UnifyContext.Take(),
+                Timestamp = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds()
+            });
         }
     }
 }

@@ -138,9 +138,7 @@
                 appColumns: [{
                     title: '应用名称',
                     dataIndex: 'name'
-                }
-
-                ],
+                }],
                 selectedRowKeys: [],
                 selectedAppKeys: [],
                 typeDict: []

@@ -1,3 +1,4 @@
+using @(@Model.NameSpace).Entity;
 using Furion.DatabaseAccessor;
 using Furion.DatabaseAccessor.Extensions;
 using Furion.DependencyInjection;
@@ -17,6 +18,7 @@ namespace @Model.NameSpace
     /// <summary>
     /// @(@Model.BusName)服务
     /// </summary>
+    [Route("api")]
     [ApiDescriptionSettings("自己的业务", Name = "@Model.ClassName", Order = 100)]
     public class @(@Model.ClassName)Service : I@(@Model.ClassName)Service, IDynamicApiController, ITransient
     {
@@ -49,8 +51,8 @@ if(@column.EffectType == "fk" && @column.FkEntityName != "" && @column.FkColumnN
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpGet("/@Model.ClassName/page")]
-        public async Task<PageResult<@(@Model.ClassName)Output>> Page([FromQuery] @(@Model.ClassName)Input input)
+        [HttpGet("@Model.ClassName/page")]
+        public async Task<PageResult<@(@Model.ClassName)Output>> Page([FromQuery] @(@Model.ClassName)Search input)
         {
             var @(@Model.CamelizeClassName)s = await _@(@Model.CamelizeClassName)Rep.DetachedEntities
 @foreach (var column in Model.TableField){    
@@ -65,12 +67,12 @@ if (@column.QueryType == "like"){
 if (@column.EffectType == "fk"){                
                                      @:.Where(input.@column.ColumnName > 0, u => u.@(@column.ColumnName) @column.QueryType input.@(@column.ColumnName))
 } else {
-                                     @:.Where(u => u.@(@column.ColumnName) @column.QueryType input.@(@column.ColumnName))
+                                     @:.Where(input.@column.ColumnName != null, u => u.@(@column.ColumnName) @column.QueryType input.@(@column.ColumnName))
 }
 }
 }
 }
-                                     .OrderBy(PageInputOrder.OrderBuilder<@(@Model.ClassName)Input>(input))
+                                     .OrderBy(PageInputOrder.OrderBuilder<@(@Model.ClassName)Search>(input))
                                      .ProjectToType<@(@Model.ClassName)Output>()
                                      .ToADPagedListAsync(input.PageNo, input.PageSize);
 
@@ -82,7 +84,7 @@ if (@column.EffectType == "fk"){
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpPost("/@Model.ClassName/add")]
+        [HttpPost("@Model.ClassName/add")]
         public async Task Add(Add@(@Model.ClassName)Input input)
         {
             var @(@Model.CamelizeClassName) = input.Adapt<@(@Model.ClassName)>();
@@ -94,7 +96,7 @@ if (@column.EffectType == "fk"){
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpPost("/@Model.ClassName/delete")]
+        [HttpPost("@Model.ClassName/delete")]
         public async Task Delete(Delete@(@Model.ClassName)Input input)
         {
 @foreach (var column in Model.TableField){
@@ -110,7 +112,7 @@ if (@column.ColumnKey == "True"){
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpPost("/@Model.ClassName/edit")]
+        [HttpPost("@Model.ClassName/edit")]
         public async Task Update(Update@(@Model.ClassName)Input input)
         {
             var isExist = await _@(@Model.CamelizeClassName)Rep.AnyAsync(u => u.Id == input.Id, false);
@@ -125,7 +127,7 @@ if (@column.ColumnKey == "True"){
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpGet("/@Model.ClassName/detail")]
+        [HttpGet("@Model.ClassName/detail")]
         public async Task<@(@Model.ClassName)Output> Get([FromQuery] Querye@(@Model.ClassName)Input input)
         {
 @foreach (var column in Model.TableField){
@@ -140,7 +142,7 @@ if (@column.ColumnKey == "True"){
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpGet("/@Model.ClassName/list")]
+        [HttpGet("@Model.ClassName/list")]
         public async Task<List<@(@Model.ClassName)Output>> List([FromQuery] @(@Model.ClassName)Input input)
         {
             return await _@(@Model.CamelizeClassName)Rep.DetachedEntities.ProjectToType<@(@Model.ClassName)Output>().ToListAsync();
@@ -152,7 +154,7 @@ if(@column.EffectType == "fk" && @column.FkEntityName != "" && @column.FkColumnN
         @:/// 获取@(@column.FkEntityName)列表
         @:/// </summary>
         @:/// <returns></returns>
-        @:[HttpGet("/@Model.ClassName/fk@(@column.FkEntityName)")]
+        @:[HttpGet("@Model.ClassName/fk@(@column.FkEntityName)")]
         @:public async Task<dynamic> Fk@(@column.FkEntityName)List()
         @:{
             @:var list = await _@(@column.LowerFkEntityName)Rep.DetachedEntities.ToListAsync();
