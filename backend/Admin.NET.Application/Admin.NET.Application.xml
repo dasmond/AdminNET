@@ -316,6 +316,248 @@
             Id主键
             </summary>
         </member>
+        <member name="T:Admin.NET.Application.SysTenantDto">
+            <summary>
+            租户表输出参数
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.SysTenantDto.Name">
+            <summary>
+            公司名称
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.SysTenantDto.AdminName">
+            <summary>
+            管理员名称
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.SysTenantDto.Host">
+            <summary>
+            主机
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.SysTenantDto.Email">
+            <summary>
+            电子邮箱
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.SysTenantDto.Phone">
+            <summary>
+            电话
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.SysTenantDto.Connection">
+            <summary>
+            数据库连接
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.SysTenantDto.Schema">
+            <summary>
+            架构
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.SysTenantDto.Remark">
+            <summary>
+            备注
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.SysTenantDto.Id">
+            <summary>
+            Id主键
+            </summary>
+        </member>
+        <member name="T:Admin.NET.Application.SysTenantSearch">
+            <summary>
+            租户表查询参数
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.SysTenantSearch.Name">
+            <summary>
+            公司名称
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.SysTenantSearch.AdminName">
+            <summary>
+            管理员名称
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.SysTenantSearch.Host">
+            <summary>
+            主机
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.SysTenantSearch.Email">
+            <summary>
+            电子邮箱
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.SysTenantSearch.Phone">
+            <summary>
+            电话
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.SysTenantSearch.Connection">
+            <summary>
+            数据库连接
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.SysTenantSearch.Schema">
+            <summary>
+            架构
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.SysTenantSearch.Remark">
+            <summary>
+            备注
+            </summary>
+        </member>
+        <member name="T:Admin.NET.Application.SysTenantInput">
+            <summary>
+            租户表输入参数
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.SysTenantInput.Name">
+            <summary>
+            公司名称
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.SysTenantInput.AdminName">
+            <summary>
+            管理员名称
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.SysTenantInput.Host">
+            <summary>
+            主机
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.SysTenantInput.Email">
+            <summary>
+            电子邮箱
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.SysTenantInput.Phone">
+            <summary>
+            电话
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.SysTenantInput.Connection">
+            <summary>
+            数据库连接
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.SysTenantInput.Schema">
+            <summary>
+            架构
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.SysTenantInput.Remark">
+            <summary>
+            备注
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.UpdateSysTenantInput.Id">
+            <summary>
+            Id主键
+            </summary>
+        </member>
+        <member name="T:Admin.NET.Application.SysTenantOutput">
+            <summary>
+            租户表输出参数
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.SysTenantOutput.Name">
+            <summary>
+            公司名称
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.SysTenantOutput.AdminName">
+            <summary>
+            管理员名称
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.SysTenantOutput.Host">
+            <summary>
+            主机
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.SysTenantOutput.Email">
+            <summary>
+            电子邮箱
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.SysTenantOutput.Phone">
+            <summary>
+            电话
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.SysTenantOutput.Connection">
+            <summary>
+            数据库连接
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.SysTenantOutput.Schema">
+            <summary>
+            架构
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.SysTenantOutput.Remark">
+            <summary>
+            备注
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.SysTenantOutput.Id">
+            <summary>
+            Id主键
+            </summary>
+        </member>
+        <member name="T:Admin.NET.Application.SysTenantService">
+            <summary>
+            租户表服务
+            </summary>
+        </member>
+        <member name="M:Admin.NET.Application.SysTenantService.Page(Admin.NET.Application.SysTenantSearch)">
+            <summary>
+            分页查询租户表
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Application.SysTenantService.Add(Admin.NET.Application.AddSysTenantInput)">
+            <summary>
+            增加租户表
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Application.SysTenantService.Delete(Admin.NET.Application.DeleteSysTenantInput)">
+            <summary>
+            删除租户表
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Application.SysTenantService.Update(Admin.NET.Application.UpdateSysTenantInput)">
+            <summary>
+            更新租户表
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Application.SysTenantService.Get(Admin.NET.Application.QueryeSysTenantInput)">
+            <summary>
+            获取租户表
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Application.SysTenantService.List(Admin.NET.Application.SysTenantInput)">
+            <summary>
+            获取租户表列表
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
         <member name="T:Admin.NET.Application.SpareTimeDemo">
             <summary>
             定时任务demo

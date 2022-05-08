@@ -14,9 +14,6 @@ using Yitter.IdGenerator;
 
 namespace Admin.NET.EntityFramework.Core
 {
-    //update-database -Context DefaultDbContext
-    //Add-Migration v1.0.1 -Context DefaultDbContext
-    //[AppDbContext("DefaultConnection", DbProvider.Sqlite)]
     [AppDbContext("DefaultConnection", DbProvider.SqlServer)]
     public class DefaultDbContext : AppDbContext<DefaultDbContext>, IMultiTenantOnTable, IModelBuilderFilter
     {
