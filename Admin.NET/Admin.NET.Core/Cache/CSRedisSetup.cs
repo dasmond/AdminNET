@@ -21,12 +21,10 @@ namespace Admin.NET.Core
                 var cacheOptions = App.GetOptions<CacheOptions>();
                 if (cacheOptions.CacheType == CacheTypeEnum.RedisCache.ToString())
                 {
-                    string redisStr = $"{cacheOptions.RedisConnectionString},prefix={cacheOptions.InstanceName}";
+                    var redisStr = $"{cacheOptions.RedisConnectionString},prefix={cacheOptions.InstanceName}";
 
                     var redis = new CSRedisClient(redisStr);
-                    //services.AddSingleton(redis);//报错去掉
                     RedisHelper.Initialization(redis);
-
                     return new CSRedisCache(redis);
                 }
                 else // 默认使用内存
