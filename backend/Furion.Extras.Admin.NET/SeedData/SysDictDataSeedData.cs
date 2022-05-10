@@ -128,6 +128,13 @@ namespace Furion.Extras.Admin.NET
                 new SysDictData{Id=142307070926947, TypeId=142307070926942, Value="二级", Code="2", Sort=100, Remark="二级", Status=0 },
                 new SysDictData{Id=142307070926948, TypeId=142307070926942, Value="三级", Code="3", Sort=100, Remark="三级", Status=0 },
                 new SysDictData{Id=142307070926949, TypeId=142307070926942, Value="四级", Code="4", Sort=100, Remark="四级", Status=0 },
+
+                new SysDictData{Id=285605336563781, TypeId=285605149831237, Value="默认表单分类", Code="DefaultFormType", Sort=100, Remark="默认表单分类", Status=0 },
+
+                new SysDictData{Id=285641495289925, TypeId=285641358889029, Value="默认分类", Code="DefaultGroup", Sort=100, Remark="默认分类", Status=0 },
+
+
+
             };
         }
     }

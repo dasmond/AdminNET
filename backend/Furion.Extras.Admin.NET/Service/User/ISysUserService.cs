@@ -27,6 +27,12 @@ namespace Furion.Extras.Admin.NET.Service
 
         Task<List<UserOutput>> GetUserSelector([FromQuery] UserSelectorInput input);
 
+        /// <summary>
+        /// 获取用户列表
+        /// </summary>
+        /// <returns></returns>
+        Task<List<UserOutput>> GetSysUserList();
+
         Task GrantUserData(UpdateUserRoleDataInput input);
 
         Task GrantUserRole(UpdateUserRoleDataInput input);
