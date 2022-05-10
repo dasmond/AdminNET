@@ -2,61 +2,34 @@
 branches: {
   }
 fileChange:
-  /.gitignore:
-    newFile: !uuid 'd612eb14cd433ca8561e4ea9d6002d6977caecb6'
-    oldFile: !uuid '4aef17c220f92be518b8425277af19c0cda7cbc8'
   /backend:
-    newFile: !uuid '056d2eec02ef6ec805210e491f5d15d6875d5fe0'
-    oldFile: !uuid '4cc7b59a1a9abb3717e322e4d183b17262b95333'
+    newFile: !uuid '85f04365cf0266f5328ea0b3b8ef726592b09334'
+    oldFile: !uuid '056d2eec02ef6ec805210e491f5d15d6875d5fe0'
   /backend/Admin.NET.Application:
-    newFile: !uuid '381b1c918b92bcb37085c043168548949ae84a93'
-    oldFile: !uuid 'a26abba53da26117c0ca87de9ce83528d4acd947'
+    newFile: !uuid '98125619e5251dfb0cdc2c5182aa4f37980fff01'
+    oldFile: !uuid '381b1c918b92bcb37085c043168548949ae84a93'
+  /backend/Admin.NET.Application/Admin.NET.Application.xml:
+    newFile: !uuid '061f4bbb4235fa9f513ee45a336997622c8d4c2b'
+    oldFile: !uuid '6d29fd92a929fd72eedefd4993250b683f8d45d2'
   /backend/Admin.NET.Application/Service:
-    newFile: !uuid '260ebfddadb8fd99513d633ddb77634906330685'
-    oldFile: !uuid '2ddf3d070cc170396faac1170af4d5483635debe'
-  /backend/Admin.NET.Application/Service/Log:
-    newFile: !uuid '1db25c2a19ce50ad80f5841b25006c265d7fb3e2'
-    oldFile: null
-  /backend/Admin.NET.Application/Service/Log/Dto:
-    newFile: !uuid '6cf7ed88ba5d41c553e51a09894d779032c981c8'
-    oldFile: null
-  /backend/Admin.NET.Application/Service/Log/Dto/ExLogInput.cs:
-    newFile: !uuid '3ac46077415f85578c239dd9cc0f4f67f4d1634d'
-    oldFile: null
-  /backend/Admin.NET.Application/Service/Log/Dto/ExLogOutput.cs:
-    newFile: !uuid '9a82be988364ab42104d5690cccd203803800f65'
-    oldFile: null
-  /backend/Admin.NET.Application/Service/Log/Dto/OpLogInput.cs:
-    newFile: !uuid '42f8a1d8bfb9645d3352d3f0f6454ed559d288dd'
-    oldFile: null
-  /backend/Admin.NET.Application/Service/Log/Dto/OpLogOutput.cs:
-    newFile: !uuid 'c49c3310e38daec49e2a17b5f962d072320206ad'
-    oldFile: null
-  /backend/Admin.NET.Application/Service/Log/Dto/VisLogInput.cs:
-    newFile: !uuid '96ccab0cf21615494bc43d607766e844de14c633'
-    oldFile: null
-  /backend/Admin.NET.Application/Service/Log/Dto/VisLogOutput.cs:
-    newFile: !uuid '6a233a271fd84a8edbe6d6b1947e787fa959e338'
-    oldFile: null
-  /backend/Admin.NET.Application/Service/Log/ISysExLogService.cs:
-    newFile: !uuid '26c15f521e07fdc07d7c92e4eb40106a9011d147'
-    oldFile: null
-  /backend/Admin.NET.Application/Service/Log/ISysOpLogService.cs:
-    newFile: !uuid 'f72dfc5f4f0384d71afc070fcb425f65b7a16683'
-    oldFile: null
-  /backend/Admin.NET.Application/Service/Log/ISysVisLogService.cs:
-    newFile: !uuid '3d820229fe69a46ff3ca7e695577b9edec79bc8a'
-    oldFile: null
-  /backend/Admin.NET.Application/Service/Log/SysExLogService.cs:
-    newFile: !uuid 'a1c07c4bd8fcf5b26d3b24c99e51174259a6a838'
-    oldFile: null
-  /backend/Admin.NET.Application/Service/Log/SysOpLogService.cs:
-    newFile: !uuid 'e6a8fa7f15f3699ae0749800a9f8a1b79c80c1bb'
-    oldFile: null
-  /backend/Admin.NET.Application/Service/Log/SysVisLogService.cs:
-    newFile: !uuid 'd9a0f51c67a320ee8bff415edcfccc31ff32cefa'
-    oldFile: null
-gitCommitId: !uuid '5ff3b53fc0af3027abf62e82d5d7ea7d1cb18f1b'
+    newFile: !uuid 'cea1eb6a1a046d90bef540f98dcc68f53cc867c9'
+    oldFile: !uuid '260ebfddadb8fd99513d633ddb77634906330685'
+  /backend/Admin.NET.Application/Service/Captcha:
+    newFile: !uuid '120e0a17e27d39448df0855d6c0d7b86407388fa'
+    oldFile: !uuid 'a3c2fec839bed95c49bac78fe9facb1d37afbc8f'
+  /backend/Admin.NET.Application/Service/Captcha/ClickWord:
+    newFile: !uuid 'd2d65f7b355b3f5483d3c395544f9966b6808f1f'
+    oldFile: !uuid '5e770de6287b42ba2683e1c13c196d5cba8e8474'
+  /backend/Admin.NET.Application/Service/Captcha/ClickWord/ClickWordCaptcha.cs:
+    newFile: !uuid '9b0930833655dd15e3ff52a59d721314cd9c54c6'
+    oldFile: !uuid '9bd299801e1acb64157c8da586dcfaef454d54af'
+  /backend/Admin.NET.Application/Service/Captcha/General:
+    newFile: !uuid '2887bc70b9e876a81727b2cb5f2fe09aabfb697c'
+    oldFile: !uuid '9dfe0121d5fbd8d0c94f7e3cac34c3394febcf26'
+  /backend/Admin.NET.Application/Service/Captcha/General/GeneralCaptcha.cs:
+    newFile: !uuid '42059396578ecd4237822c0d0fa63b1348f7e283'
+    oldFile: !uuid 'a4740f6f62683da23a354e6c1529956714964557'
+gitCommitId: !uuid 'cd3ab5304d3d6b72c809bdd5aa5ec4cefeaf9d61'
 renames: {
   }
-revisionId: 703
+revisionId: 704
