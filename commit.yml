@@ -3,244 +3,1226 @@ branches: {
   }
 fileChange:
   /backend:
-    newFile: !uuid 'fbcc70d0e2d17320854f0d371efa659acb2c54a2'
-    oldFile: !uuid '85f04365cf0266f5328ea0b3b8ef726592b09334'
-  /backend/Admin.NET.Core:
-    newFile: !uuid '1f167ef4135473187fc10b27b65830a05b7a94e7'
-    oldFile: !uuid '581e4490c4ff0a2dfd05df2c1db62fcd1b1a8992'
-  /backend/Admin.NET.Core/Entity:
-    newFile: !uuid 'f529c4553689bd6f1031dc168dccaac0ee0cae39'
-    oldFile: !uuid '2d3c51860739d7de5eb7c5f39971782b64bd40e7'
-  /backend/Admin.NET.Core/Entity/SysApp.cs:
+    newFile: !uuid '71c0f75e2c53a0e503d63ed9b74d08f099f9e8e7'
+    oldFile: !uuid 'fbcc70d0e2d17320854f0d371efa659acb2c54a2'
+  /backend/Admin.NET.Application:
+    newFile: !uuid 'ac4bae0d7463ac48b9d4b5f78267cc2bf85f9170'
+    oldFile: !uuid '98125619e5251dfb0cdc2c5182aa4f37980fff01'
+  /backend/Admin.NET.Application/Service:
+    newFile: !uuid 'a35af36254d1db90b0c0fe9a9a3b73491fce1a50'
+    oldFile: !uuid 'cea1eb6a1a046d90bef540f98dcc68f53cc867c9'
+  /backend/Admin.NET.Application/Service/App:
     newFile: null
-    oldFile: !uuid '310f5614bff42e1ad9969d8f47d24903ca789ae4'
-  /backend/Admin.NET.Core/Entity/SysCodeGen.cs:
+    oldFile: !uuid 'da4477bc785f910a2eabdc017c28807ca6680000'
+  /backend/Admin.NET.Application/Service/App/Dto:
     newFile: null
-    oldFile: !uuid 'c5366b60d3a735c0bae7ad47075214e75a3bdbaa'
-  /backend/Admin.NET.Core/Entity/SysCodeGenConfig.cs:
+    oldFile: !uuid '255ea64783853c1d1a6fc6ce83697ca1ea9d5dc2'
+  /backend/Admin.NET.Application/Service/App/Dto/AppInput.cs:
     newFile: null
-    oldFile: !uuid '8cba036814827d918f45835eab142d713ad343de'
-  /backend/Admin.NET.Core/Entity/SysConfig.cs:
+    oldFile: !uuid 'b5e17dd69b12e1b8cb0ce70eedb3b29b1651600d'
+  /backend/Admin.NET.Application/Service/App/Dto/AppOutput.cs:
     newFile: null
-    oldFile: !uuid '93589a5cfb0d313f9001dea3a64a8c219db70e8a'
-  /backend/Admin.NET.Core/Entity/SysDictData.cs:
+    oldFile: !uuid '796fdfcfc0194a9d6979ff893f613d86b6149170'
+  /backend/Admin.NET.Application/Service/App/ISysAppService.cs:
     newFile: null
-    oldFile: !uuid 'e2c905f250feaa40d4f48c71b7dcb4d6a3a57a62'
-  /backend/Admin.NET.Core/Entity/SysDictType.cs:
+    oldFile: !uuid '3735020c3ac3ed7dc03e8f12ea2416ddc775655d'
+  /backend/Admin.NET.Application/Service/App/SysAppService.cs:
     newFile: null
-    oldFile: !uuid 'a1229d997bce174e2b8f557e554019e24ff6eff0'
-  /backend/Admin.NET.Core/Entity/SysEmp.cs:
+    oldFile: !uuid '902ac1bb3d380a6a600355db678245e782de798b'
+  /backend/Admin.NET.Application/Service/Auth:
     newFile: null
-    oldFile: !uuid '365ab36f445de07c24e4bfa87681f50dad2542a6'
-  /backend/Admin.NET.Core/Entity/SysEmpExtOrgPos.cs:
+    oldFile: !uuid '0ed68789d3240e09a7c8110f2294afc4e34402a5'
+  /backend/Admin.NET.Application/Service/Auth/AuthService.cs:
     newFile: null
-    oldFile: !uuid '4ab68d156f48cf1e0b0228167c96cf6b601e8cc5'
-  /backend/Admin.NET.Core/Entity/SysEmpPos.cs:
+    oldFile: !uuid 'cd82feacd524db4954506bcde89490eeeac12211'
+  /backend/Admin.NET.Application/Service/Auth/Dto:
     newFile: null
-    oldFile: !uuid '09d76c9b44188c4a7c17b62ce888ee9c10de571d'
-  /backend/Admin.NET.Core/Entity/SysFile.cs:
+    oldFile: !uuid '6cbaced72b55f22e01dc78cdc262d1c33379a03c'
+  /backend/Admin.NET.Application/Service/Auth/Dto/LoginInput.cs:
     newFile: null
-    oldFile: !uuid 'dcc46b8e5a1a5aca516924bb32994af4db63afb3'
-  /backend/Admin.NET.Core/Entity/SysLogAudit.cs:
+    oldFile: !uuid 'bff90cceda74962178f3849c4f0b7a4d366cd1df'
+  /backend/Admin.NET.Application/Service/Auth/Dto/LoginOutput.cs:
     newFile: null
-    oldFile: !uuid 'c95d597f5752ad05f1ac71a6a0d6c78d1ce0f640'
-  /backend/Admin.NET.Core/Entity/SysLogEx.cs:
+    oldFile: !uuid 'a5faa55e4999e844a0bc469b5003cc6d5cfcc08c'
+  /backend/Admin.NET.Application/Service/Auth/Dto/RegistInput.cs:
     newFile: null
-    oldFile: !uuid 'c035b74d24196506afb3ca0a47068a0db24ac9d3'
-  /backend/Admin.NET.Core/Entity/SysLogOp.cs:
+    oldFile: !uuid '5798f0c3c1743c15bdfa5169332b68752f2ed8a3'
+  /backend/Admin.NET.Application/Service/Auth/IAuthService.cs:
     newFile: null
-    oldFile: !uuid '4d1058f48adb4ee7ff7e5980c6f2952af2703c96'
-  /backend/Admin.NET.Core/Entity/SysLogVis.cs:
+    oldFile: !uuid 'f897862858b439da7d4da72916d131a0a96eb542'
+  /backend/Admin.NET.Application/Service/Base:
     newFile: null
-    oldFile: !uuid 'a67834e68e86e399e50deb9ce50f7437f3b91ea0'
-  /backend/Admin.NET.Core/Entity/SysMenu.cs:
+    oldFile: !uuid '8aaf50c811fa5ccb68b77ecac43bb4203986258e'
+  /backend/Admin.NET.Application/Service/Base/BaseService.cs:
     newFile: null
-    oldFile: !uuid '99af6d7f9b16cd9111d482e9911ff6cd0f57880b'
-  /backend/Admin.NET.Core/Entity/SysNotice.cs:
+    oldFile: !uuid '3717e9e8c0121cf821c376a82a8035af84b8a9cd'
+  /backend/Admin.NET.Application/Service/Base/Dto:
     newFile: null
-    oldFile: !uuid '68b46ffb5dab512c316701d2e5cf95c2ac3c6747'
-  /backend/Admin.NET.Core/Entity/SysNoticeUser.cs:
+    oldFile: !uuid 'f9e81dd371fbc0b8d2c3c7b6bf7ddf74948fa884'
+  /backend/Admin.NET.Application/Service/Base/Dto/BaseDto.cs:
     newFile: null
-    oldFile: !uuid '93db4a19a2789f507fe7d0ab33c30862497ac4f3'
-  /backend/Admin.NET.Core/Entity/SysOauthUser.cs:
+    oldFile: !uuid '6d3d9b02fe44b8acac6fdf5a863cd17c8c54eede'
+  /backend/Admin.NET.Application/Service/Cache:
     newFile: null
-    oldFile: !uuid '0b2cabb68fe397020598cda79f5a701705f34039'
-  /backend/Admin.NET.Core/Entity/SysOnlineUser.cs:
+    oldFile: !uuid '52e5c3eb2899789776fb32d8f202e77b7b76c762'
+  /backend/Admin.NET.Application/Service/Cache/ISysCacheService.cs:
     newFile: null
-    oldFile: !uuid '7623eeb6dda74976459e1297b0d01eb6e0cf3c00'
-  /backend/Admin.NET.Core/Entity/SysOrg.cs:
+    oldFile: !uuid '1ba36fdddd8e2d5b1d410aa041d1f406c9bc9741'
+  /backend/Admin.NET.Application/Service/Cache/SysCacheService.cs:
     newFile: null
-    oldFile: !uuid 'fdc1e0699652b39fcc148808d33c1185db040c6b'
-  /backend/Admin.NET.Core/Entity/SysPos.cs:
+    oldFile: !uuid 'fe081f983157448ec9da37a90736f2462f09f382'
+  /backend/Admin.NET.Application/Service/Captcha:
     newFile: null
-    oldFile: !uuid '5df59b93acfb451983832d7774f7a850b438a9a0'
-  /backend/Admin.NET.Core/Entity/SysRole.cs:
+    oldFile: !uuid '120e0a17e27d39448df0855d6c0d7b86407388fa'
+  /backend/Admin.NET.Application/Service/Captcha/ClickWord:
     newFile: null
-    oldFile: !uuid '7af7d0b85dc5b5fda74b048f7a0044fb141ba10a'
-  /backend/Admin.NET.Core/Entity/SysRoleDataScope.cs:
+    oldFile: !uuid 'd2d65f7b355b3f5483d3c395544f9966b6808f1f'
+  /backend/Admin.NET.Application/Service/Captcha/ClickWord/ClickWordCaptcha.cs:
     newFile: null
-    oldFile: !uuid '9a041279ccc5c6a6cbd0769098955edfe24739bd'
-  /backend/Admin.NET.Core/Entity/SysRoleMenu.cs:
+    oldFile: !uuid '9b0930833655dd15e3ff52a59d721314cd9c54c6'
+  /backend/Admin.NET.Application/Service/Captcha/ClickWord/ClickWordCaptchaInput.cs:
     newFile: null
-    oldFile: !uuid '8933f65a8a6c19a633b6f53207525bc6db7247aa'
-  /backend/Admin.NET.Core/Entity/SysTenant.cs:
+    oldFile: !uuid '3c0905387279e5ef8f81b1b4894cfa6a7815dfda'
+  /backend/Admin.NET.Application/Service/Captcha/ClickWord/ClickWordCaptchaResult.cs:
     newFile: null
-    oldFile: !uuid '8220b6cd9931d821384cf7e17bf908f75aabeeae'
-  /backend/Admin.NET.Core/Entity/SysTimer.cs:
+    oldFile: !uuid '1b4faafa05ec762ee8219de9dfd420d1bedfc961'
+  /backend/Admin.NET.Application/Service/Captcha/ClickWord/IClickWordCaptcha.cs:
     newFile: null
-    oldFile: !uuid '6187f1c3835def9afec11839679cace6608a37a2'
-  /backend/Admin.NET.Core/Entity/SysUser.cs:
+    oldFile: !uuid 'ef487673fe61ff0d4a3f6a8b31f5660507be4c81'
+  /backend/Admin.NET.Application/Service/Captcha/General:
     newFile: null
-    oldFile: !uuid 'ce767d6bbdfd5ae10fef7cf7f5c2eaee9a9d4ac5'
-  /backend/Admin.NET.Core/Entity/SysUserDataScope.cs:
+    oldFile: !uuid '2887bc70b9e876a81727b2cb5f2fe09aabfb697c'
+  /backend/Admin.NET.Application/Service/Captcha/General/GeneralCaptcha.cs:
     newFile: null
-    oldFile: !uuid '10ecb6e7302141e8770e74b18d8fd493b1ccfc42'
-  /backend/Admin.NET.Core/Entity/SysUserRole.cs:
+    oldFile: !uuid '42059396578ecd4237822c0d0fa63b1348f7e283'
+  /backend/Admin.NET.Application/Service/Captcha/General/GeneralCaptchaInput.cs:
     newFile: null
-    oldFile: !uuid '08aead951b8022e3263fbc49a186796d5323547e'
-  /backend/Admin.NET.Core/Entity/System:
-    newFile: !uuid 'a3ea60a37ae0735a07335c9b8de37709c6dbde8f'
+    oldFile: !uuid 'e490075df3aba189e5a8624c56162b10b4af7338'
+  /backend/Admin.NET.Application/Service/Captcha/General/IGeneralCaptcha.cs:
+    newFile: null
+    oldFile: !uuid 'bf178138c811909d2bcffb123bb13f9bf3986e8f'
+  /backend/Admin.NET.Application/Service/CodeGen:
+    newFile: null
+    oldFile: !uuid '7473bc9c81efb08ec05d2169fd3aac0df171198a'
+  /backend/Admin.NET.Application/Service/CodeGen/CodeGenConfigService.cs:
+    newFile: null
+    oldFile: !uuid 'cecfbe8407fb591d3abcadc99494db628d7f5143'
+  /backend/Admin.NET.Application/Service/CodeGen/CodeGenService.cs:
+    newFile: null
+    oldFile: !uuid '89f0a1e93126934156cbc12af3c354ccbd5e0df9'
+  /backend/Admin.NET.Application/Service/CodeGen/Dto:
+    newFile: null
+    oldFile: !uuid '986fd580ffaee6ad452872e6f3051bf93ae45f85'
+  /backend/Admin.NET.Application/Service/CodeGen/Dto/CodeGenConfig.cs:
+    newFile: null
+    oldFile: !uuid 'e2ef2765e0388e6b53b80d74f0570250747fa980'
+  /backend/Admin.NET.Application/Service/CodeGen/Dto/CodeGenInput.cs:
+    newFile: null
+    oldFile: !uuid '93639870dfddb7e60fbb2fc781cd3d6a92b37a97'
+  /backend/Admin.NET.Application/Service/CodeGen/Dto/CodeGenModel.cs:
+    newFile: null
+    oldFile: !uuid 'c47cf102d44e52424c271e02c56740f70697f0e4'
+  /backend/Admin.NET.Application/Service/CodeGen/Dto/CodeGenOutput.cs:
+    newFile: null
+    oldFile: !uuid '3dc5974fb59d15e25b898fa9939164330afdc059'
+  /backend/Admin.NET.Application/Service/CodeGen/Dto/DatabaseOutput.cs:
+    newFile: null
+    oldFile: !uuid '4bf8143667ac881a33274d3894f7dca3d4d0eb1b'
+  /backend/Admin.NET.Application/Service/CodeGen/Dto/TableColumnOuput.cs:
+    newFile: null
+    oldFile: !uuid '1c4edf4d2eaf2eace63d619d5a3822ec0277f74c'
+  /backend/Admin.NET.Application/Service/CodeGen/Dto/TableOutput.cs:
+    newFile: null
+    oldFile: !uuid 'db0d03931082eeea6895648a3a559c985e816753'
+  /backend/Admin.NET.Application/Service/CodeGen/Dto/XnCodeGenOutput.cs:
+    newFile: null
+    oldFile: !uuid '86d9048a6608d24fef78087a61101471c7fbfb3b'
+  /backend/Admin.NET.Application/Service/CodeGen/ICodeGenConfigService.cs:
+    newFile: null
+    oldFile: !uuid 'e044e0399fa211eac9d94d4098cd2d5ae6f69f6e'
+  /backend/Admin.NET.Application/Service/CodeGen/ICodeGenService.cs:
+    newFile: null
+    oldFile: !uuid 'dd9cfc52703ff00c970214105cdb5622cd4b5588'
+  /backend/Admin.NET.Application/Service/Config:
+    newFile: null
+    oldFile: !uuid '2b3e369655832891a4749f3de45b386d08d10b62'
+  /backend/Admin.NET.Application/Service/Config/Dto:
+    newFile: null
+    oldFile: !uuid '7f134539af99261f10d98c9773d786c53918c223'
+  /backend/Admin.NET.Application/Service/Config/Dto/ConfigInput.cs:
+    newFile: null
+    oldFile: !uuid 'aaae8f9fe2ec9541f717384a233f74a1e98ebaa0'
+  /backend/Admin.NET.Application/Service/Config/ISysConfigService.cs:
+    newFile: null
+    oldFile: !uuid '9cf6cac55938579cf5138ef780e58f6ec76125e6'
+  /backend/Admin.NET.Application/Service/Config/SysConfigService.cs:
+    newFile: null
+    oldFile: !uuid 'ff3121dae3307c813ee3fde6241d2448cf78ff5a'
+  /backend/Admin.NET.Application/Service/Dict:
+    newFile: null
+    oldFile: !uuid '48c0f31151e9372642034d193ca609f876cd411e'
+  /backend/Admin.NET.Application/Service/Dict/Dto:
+    newFile: null
+    oldFile: !uuid '496a07c5d0f418e9fb369e14e56ccdc1d1f77bd3'
+  /backend/Admin.NET.Application/Service/Dict/Dto/DictDataInput.cs:
+    newFile: null
+    oldFile: !uuid '9a09b81d5ae571758fd6abfa856c2801fbb1f840'
+  /backend/Admin.NET.Application/Service/Dict/Dto/DictDataOutput.cs:
+    newFile: null
+    oldFile: !uuid '1bc11c72e2b66535d273a3345db6dd8b2ede2278'
+  /backend/Admin.NET.Application/Service/Dict/Dto/DictTreeOutput.cs:
+    newFile: null
+    oldFile: !uuid '7e1852db42d26c892d7c5c4a6ce2a7dc8d3408d1'
+  /backend/Admin.NET.Application/Service/Dict/Dto/DictTypeInput.cs:
+    newFile: null
+    oldFile: !uuid 'ef84e9f244c59196e8e3806bc185f26811ae98ca'
+  /backend/Admin.NET.Application/Service/Dict/ISysDictDataService.cs:
+    newFile: null
+    oldFile: !uuid '2bc13af7f0038f089b84c3c42e4fdc8c74b98414'
+  /backend/Admin.NET.Application/Service/Dict/ISysDictTypeService.cs:
+    newFile: null
+    oldFile: !uuid '1dcad2a9d18ad02e257487307699442a687704cf'
+  /backend/Admin.NET.Application/Service/Dict/SysDictDataService.cs:
+    newFile: null
+    oldFile: !uuid '5493ade1c645308281e0c132cec06b06e9f09ecf'
+  /backend/Admin.NET.Application/Service/Dict/SysDictTypeService.cs:
+    newFile: null
+    oldFile: !uuid '7873b146c800f181a4dcdc44f57d49557107a2a6'
+  /backend/Admin.NET.Application/Service/Emp:
+    newFile: null
+    oldFile: !uuid '2f600e972356bed360c51236d15e8df3279a5370'
+  /backend/Admin.NET.Application/Service/Emp/Dto:
+    newFile: null
+    oldFile: !uuid '99c51de4402ba577109f2250008b64327402f59f'
+  /backend/Admin.NET.Application/Service/Emp/Dto/EmpExtOrgPosOutput.cs:
+    newFile: null
+    oldFile: !uuid '1eb5722d667ff0fd500bb064e8c3f45e9d42bdfe'
+  /backend/Admin.NET.Application/Service/Emp/Dto/EmpOutput.cs:
+    newFile: null
+    oldFile: !uuid '23e2aa388fcd8ab48fe36325d47fb1bb32d0f918'
+  /backend/Admin.NET.Application/Service/Emp/Dto/EmpOutput2.cs:
+    newFile: null
+    oldFile: !uuid '72340811abbbf1fc0940eea6437188fd1508fabf'
+  /backend/Admin.NET.Application/Service/Emp/Dto/EmpPosOutput.cs:
+    newFile: null
+    oldFile: !uuid 'db7dc533265a3ff2d512572a8b12972eb7d38ec2'
+  /backend/Admin.NET.Application/Service/Emp/ISysEmpExtOrgPosService.cs:
+    newFile: null
+    oldFile: !uuid '7ef485e330763e530945759a90dea973277c81cf'
+  /backend/Admin.NET.Application/Service/Emp/ISysEmpPosService.cs:
+    newFile: null
+    oldFile: !uuid '39bef5d52540193863d218cfd8bc7b9106b34a08'
+  /backend/Admin.NET.Application/Service/Emp/ISysEmpService.cs:
+    newFile: null
+    oldFile: !uuid '258e0de52268bad5c4c95cff197550640a1e9d0e'
+  /backend/Admin.NET.Application/Service/Emp/SysEmpExtOrgPosService.cs:
+    newFile: null
+    oldFile: !uuid 'bdc9c8a85f38276c9d93238119adb09342286157'
+  /backend/Admin.NET.Application/Service/Emp/SysEmpPosService.cs:
+    newFile: null
+    oldFile: !uuid '32e0dd9b1e408d5df3452448295760b4363e72e5'
+  /backend/Admin.NET.Application/Service/Emp/SysEmpService.cs:
+    newFile: null
+    oldFile: !uuid 'aaddc5ed22ff46ee193dc137166da04b8398c854'
+  /backend/Admin.NET.Application/Service/Enum:
+    newFile: null
+    oldFile: !uuid 'aa5427bda54501f8456b7499cebd0064b0b6deae'
+  /backend/Admin.NET.Application/Service/Enum/Dto:
+    newFile: null
+    oldFile: !uuid 'f3cc8cd5c1e55120f3d94166d6399c8bc3de6215'
+  /backend/Admin.NET.Application/Service/Enum/Dto/EnumDataInput.cs:
+    newFile: null
+    oldFile: !uuid 'e6108c41e2bde93360d0c36b85b454a251edf053'
+  /backend/Admin.NET.Application/Service/Enum/Dto/EnumDataOutput.cs:
+    newFile: null
+    oldFile: !uuid '0f0debac0e8aac49b288c925770e91a64b519ca3'
+  /backend/Admin.NET.Application/Service/Enum/ISysEnumDataService.cs:
+    newFile: null
+    oldFile: !uuid 'b9285bdd67ee6eb4f38bc20620d83609dd6de884'
+  /backend/Admin.NET.Application/Service/Enum/SysEnumDataService.cs:
+    newFile: null
+    oldFile: !uuid 'ac6653f65feeae7d1eb5a4bff33fa6059b99fce0'
+  /backend/Admin.NET.Application/Service/File:
+    newFile: null
+    oldFile: !uuid '07b7f3e8c2859759c40f80b4581381c2530d8584'
+  /backend/Admin.NET.Application/Service/File/Dto:
+    newFile: null
+    oldFile: !uuid '943ea676bd4b207d2678cda8383824b5a376e86b'
+  /backend/Admin.NET.Application/Service/File/Dto/FileInput.cs:
+    newFile: null
+    oldFile: !uuid '019f057c76b90e9df5c182b8ed241e4ab28b47ba'
+  /backend/Admin.NET.Application/Service/File/Dto/FileOutput.cs:
+    newFile: null
+    oldFile: !uuid '62dd5a1e5db208017a28d56530071b665e9685de'
+  /backend/Admin.NET.Application/Service/File/ISysFileService.cs:
+    newFile: null
+    oldFile: !uuid '97916eac45d8d3e08eb3843d503947234e31b84e'
+  /backend/Admin.NET.Application/Service/File/SysFileService.cs:
+    newFile: null
+    oldFile: !uuid '0049c95a9385721bad5993cdcb5f996d7e93c84d'
+  /backend/Admin.NET.Application/Service/Hubs:
+    newFile: null
+    oldFile: !uuid '5e32e02250d7f7f69a6199780ec0daadc0a6d0fc'
+  /backend/Admin.NET.Application/Service/Hubs/ChatHub.cs:
+    newFile: null
+    oldFile: !uuid '6418032ac25fe0482733bee4ef78ab2a2f8bc179'
+  /backend/Admin.NET.Application/Service/Hubs/Dto:
+    newFile: null
+    oldFile: !uuid 'eb1d95547bf1d5e6c4624697be5185bfeac152d7'
+  /backend/Admin.NET.Application/Service/Hubs/Dto/MessageinputDto.cs:
+    newFile: null
+    oldFile: !uuid '29e86e7fb2844af54fac7373616fcd9b31a6c02b'
+  /backend/Admin.NET.Application/Service/Hubs/IChatClient.cs:
+    newFile: null
+    oldFile: !uuid '73e5ae10cd4042a3a010b22008f406f3604b0d3b'
+  /backend/Admin.NET.Application/Service/Log:
+    newFile: null
+    oldFile: !uuid '1db25c2a19ce50ad80f5841b25006c265d7fb3e2'
+  /backend/Admin.NET.Application/Service/Log/Dto:
+    newFile: null
+    oldFile: !uuid '6cf7ed88ba5d41c553e51a09894d779032c981c8'
+  /backend/Admin.NET.Application/Service/Log/Dto/ExLogInput.cs:
+    newFile: null
+    oldFile: !uuid '3ac46077415f85578c239dd9cc0f4f67f4d1634d'
+  /backend/Admin.NET.Application/Service/Log/Dto/ExLogOutput.cs:
+    newFile: null
+    oldFile: !uuid '9a82be988364ab42104d5690cccd203803800f65'
+  /backend/Admin.NET.Application/Service/Log/Dto/OpLogInput.cs:
+    newFile: null
+    oldFile: !uuid '42f8a1d8bfb9645d3352d3f0f6454ed559d288dd'
+  /backend/Admin.NET.Application/Service/Log/Dto/OpLogOutput.cs:
+    newFile: null
+    oldFile: !uuid 'c49c3310e38daec49e2a17b5f962d072320206ad'
+  /backend/Admin.NET.Application/Service/Log/Dto/VisLogInput.cs:
+    newFile: null
+    oldFile: !uuid '96ccab0cf21615494bc43d607766e844de14c633'
+  /backend/Admin.NET.Application/Service/Log/Dto/VisLogOutput.cs:
+    newFile: null
+    oldFile: !uuid '6a233a271fd84a8edbe6d6b1947e787fa959e338'
+  /backend/Admin.NET.Application/Service/Log/ISysExLogService.cs:
+    newFile: null
+    oldFile: !uuid '26c15f521e07fdc07d7c92e4eb40106a9011d147'
+  /backend/Admin.NET.Application/Service/Log/ISysOpLogService.cs:
+    newFile: null
+    oldFile: !uuid 'f72dfc5f4f0384d71afc070fcb425f65b7a16683'
+  /backend/Admin.NET.Application/Service/Log/ISysVisLogService.cs:
+    newFile: null
+    oldFile: !uuid '3d820229fe69a46ff3ca7e695577b9edec79bc8a'
+  /backend/Admin.NET.Application/Service/Log/SysExLogService.cs:
+    newFile: null
+    oldFile: !uuid 'a1c07c4bd8fcf5b26d3b24c99e51174259a6a838'
+  /backend/Admin.NET.Application/Service/Log/SysOpLogService.cs:
+    newFile: null
+    oldFile: !uuid 'e6a8fa7f15f3699ae0749800a9f8a1b79c80c1bb'
+  /backend/Admin.NET.Application/Service/Log/SysVisLogService.cs:
+    newFile: null
+    oldFile: !uuid 'd9a0f51c67a320ee8bff415edcfccc31ff32cefa'
+  /backend/Admin.NET.Application/Service/Menu:
+    newFile: null
+    oldFile: !uuid 'e908d92e9d2cda18210f1853d7f5a73b275b3bb7'
+  /backend/Admin.NET.Application/Service/Menu/Dto:
+    newFile: null
+    oldFile: !uuid 'd4e1dc480e0f2c16e9e886ad3730c98692fd7082'
+  /backend/Admin.NET.Application/Service/Menu/Dto/AntDesignTreeNode.cs:
+    newFile: null
+    oldFile: !uuid '04829a4ece81c7b5f2357894169c8764ed25912e'
+  /backend/Admin.NET.Application/Service/Menu/Dto/MenuInput.cs:
+    newFile: null
+    oldFile: !uuid '49cefcb2772ad15b3bb4c57ac6985a06168b1867'
+  /backend/Admin.NET.Application/Service/Menu/Dto/MenuOutput.cs:
+    newFile: null
+    oldFile: !uuid '7cea3b7876fec62282844dcfb43ecea423bd3a58'
+  /backend/Admin.NET.Application/Service/Menu/Dto/MenuTreeOutput.cs:
+    newFile: null
+    oldFile: !uuid 'cb18220d15174653a5a87a7572b693962218ef3c'
+  /backend/Admin.NET.Application/Service/Menu/ISysMenuService.cs:
+    newFile: null
+    oldFile: !uuid 'c7b2f95dbd362f42bbd18a84accb3bb3474df3fd'
+  /backend/Admin.NET.Application/Service/Menu/SysMenuService.cs:
+    newFile: null
+    oldFile: !uuid 'fd406f9f96a7715e4dc064c51b5bce53037c4564'
+  /backend/Admin.NET.Application/Service/Message:
+    newFile: null
+    oldFile: !uuid '9df77891dd0a100e96ca76b780d68996314ac446'
+  /backend/Admin.NET.Application/Service/Message/ISendMessageService.cs:
+    newFile: null
+    oldFile: !uuid 'deb009f66c176fe180a7c68800dc547fe8e25f90'
+  /backend/Admin.NET.Application/Service/Message/SendMessageService.cs:
+    newFile: null
+    oldFile: !uuid '577701b8b2b66ec03cd9ac42736abd2b6d4defa0'
+  /backend/Admin.NET.Application/Service/Monitor:
+    newFile: null
+    oldFile: !uuid 'eb244ecc89455f3779d4a4756a6a998ceda4d84d'
+  /backend/Admin.NET.Application/Service/Monitor/IMachineService.cs:
+    newFile: null
+    oldFile: !uuid '6ffccd8c56e247e0115e7ad82f5b50d056166bb1'
+  /backend/Admin.NET.Application/Service/Monitor/MachineService.cs:
+    newFile: null
+    oldFile: !uuid '103a20207f62143790167dfbe37034f0a4e34daf'
+  /backend/Admin.NET.Application/Service/Notice:
+    newFile: null
+    oldFile: !uuid 'c3ad395bcd4116d7cee1e877fa789b3ab79c2e9e'
+  /backend/Admin.NET.Application/Service/Notice/Dto:
+    newFile: null
+    oldFile: !uuid '65399619bd07fb37a02d18a19d660fcbd0a0aa96'
+  /backend/Admin.NET.Application/Service/Notice/Dto/NoticeBase.cs:
+    newFile: null
+    oldFile: !uuid '3305d156a96bfaab0e6680d78126748c9016c8b0'
+  /backend/Admin.NET.Application/Service/Notice/Dto/NoticeDetailOutput.cs:
+    newFile: null
+    oldFile: !uuid 'cd918fdc046f217e9a314c2fec2dd225634b44aa'
+  /backend/Admin.NET.Application/Service/Notice/Dto/NoticeInput.cs:
+    newFile: null
+    oldFile: !uuid 'b1f52586052e7428be355948443eb7f9cc6796c9'
+  /backend/Admin.NET.Application/Service/Notice/Dto/NoticeReceiveOutput.cs:
+    newFile: null
+    oldFile: !uuid '3cd16eb7e25f1b21391011335bdf46968585bfb2'
+  /backend/Admin.NET.Application/Service/Notice/ISysNoticeService.cs:
+    newFile: null
+    oldFile: !uuid '3fa7fa4348c3334d4a50a31ae6e7ce8a730672ef'
+  /backend/Admin.NET.Application/Service/Notice/ISysNoticeUserService.cs:
+    newFile: null
+    oldFile: !uuid 'f28e9b5c14ea0e2bace906c702797f0440d5c731'
+  /backend/Admin.NET.Application/Service/Notice/SysNoticeService.cs:
+    newFile: null
+    oldFile: !uuid '55c74252e527f09a66b635419ef98cc178730573'
+  /backend/Admin.NET.Application/Service/Notice/SysNoticeUserService.cs:
+    newFile: null
+    oldFile: !uuid '03ccfe314944b1b4c471c5866badc56ffb8bfb1b'
+  /backend/Admin.NET.Application/Service/OnlineUser:
+    newFile: null
+    oldFile: !uuid 'fb9c608468fcaa729993f05ecd1d9bca5bcb900e'
+  /backend/Admin.NET.Application/Service/OnlineUser/Dto:
+    newFile: null
+    oldFile: !uuid 'e3a7324fd821caaa6c4ff3dc6daa4aa4df6fbf62'
+  /backend/Admin.NET.Application/Service/OnlineUser/Dto/OnlineUserOutput.cs:
+    newFile: null
+    oldFile: !uuid 'fb863ee89707775db1e351f75a26e916e052241a'
+  /backend/Admin.NET.Application/Service/OnlineUser/ISysOnlineUserService.cs:
+    newFile: null
+    oldFile: !uuid '33bc3b708a6fbffa9b84324a91497b762810c7cf'
+  /backend/Admin.NET.Application/Service/OnlineUser/SysOnlineUserService.cs:
+    newFile: null
+    oldFile: !uuid '70bbd2041e7a01b0a9686aadbb78f23d5ed904d6'
+  /backend/Admin.NET.Application/Service/Org:
+    newFile: null
+    oldFile: !uuid '3d7c4908e0ca065c694d3d38ae137336ad3461be'
+  /backend/Admin.NET.Application/Service/Org/Dto:
+    newFile: null
+    oldFile: !uuid '0aebdee16de6f1c72b837e2c2c5d457ce00a562d'
+  /backend/Admin.NET.Application/Service/Org/Dto/OrgInput.cs:
+    newFile: null
+    oldFile: !uuid '934f60810681012c441d54545b0d9a2cad3da98f'
+  /backend/Admin.NET.Application/Service/Org/Dto/OrgOutput.cs:
+    newFile: null
+    oldFile: !uuid 'b50cc2526f1b12045a30c08d81dcca35c805e01b'
+  /backend/Admin.NET.Application/Service/Org/Dto/OrgTreeNode.cs:
+    newFile: null
+    oldFile: !uuid '68d8afbc2cf422c0b044d9de4ccb8da5aa3551cc'
+  /backend/Admin.NET.Application/Service/Org/ISysOrgService.cs:
+    newFile: null
+    oldFile: !uuid '0e4f38b4375b484f73bbecc8f26612044b5c6a00'
+  /backend/Admin.NET.Application/Service/Org/SysOrgService.cs:
+    newFile: null
+    oldFile: !uuid '68b9e2c88168168ae1b90ecd0f4612e29bd15999'
+  /backend/Admin.NET.Application/Service/Pos:
+    newFile: null
+    oldFile: !uuid 'e4d84d9e3dcf87e67767758f67bdd65e888633af'
+  /backend/Admin.NET.Application/Service/Pos/Dto:
+    newFile: null
+    oldFile: !uuid '30015bc3b60127559e17d293cdee1ae59e067c63'
+  /backend/Admin.NET.Application/Service/Pos/Dto/PosInput.cs:
+    newFile: null
+    oldFile: !uuid 'de9b1fefd419051ca761cdeaf8ec4772a8cfbdb9'
+  /backend/Admin.NET.Application/Service/Pos/ISysPosService.cs:
+    newFile: null
+    oldFile: !uuid 'cdf020508d532a1afda608504ab9915a2329df0c'
+  /backend/Admin.NET.Application/Service/Pos/SysPosService.cs:
+    newFile: null
+    oldFile: !uuid 'f560453f9a862f43b08c71914f06d45162cf7fab'
+  /backend/Admin.NET.Application/Service/Role:
+    newFile: null
+    oldFile: !uuid 'c90b7352f118cf1154c606042771571ce128eb27'
+  /backend/Admin.NET.Application/Service/Role/Dto:
+    newFile: null
+    oldFile: !uuid '3b2da9ffbc51dff23ad1f4d4ea9bbe609b8976cb'
+  /backend/Admin.NET.Application/Service/Role/Dto/RoleInput.cs:
+    newFile: null
+    oldFile: !uuid '39aafbc53f5bd59ba719941cda9ae40fd0dd0023'
+  /backend/Admin.NET.Application/Service/Role/Dto/RoleOutput.cs:
+    newFile: null
+    oldFile: !uuid '0a4bdc808c773fe0255c7d8ae6a2dbe17bec4f30'
+  /backend/Admin.NET.Application/Service/Role/ISysRoleDataScopeService.cs:
+    newFile: null
+    oldFile: !uuid '6b053ef5a2984002c3c03a27e9a40e4781aa5f9f'
+  /backend/Admin.NET.Application/Service/Role/ISysRoleMenuService.cs:
+    newFile: null
+    oldFile: !uuid '2be1037ccc5ebd6a28ed9cfc97a377a23bbe85d2'
+  /backend/Admin.NET.Application/Service/Role/ISysRoleService.cs:
+    newFile: null
+    oldFile: !uuid '793aa1b10b08837d37280cac88ff3ebb249ca25b'
+  /backend/Admin.NET.Application/Service/Role/SysRoleDataScopeService.cs:
+    newFile: null
+    oldFile: !uuid '4d80482c12c023252f58de6ab7a6241954f7c4c6'
+  /backend/Admin.NET.Application/Service/Role/SysRoleMenuService.cs:
+    newFile: null
+    oldFile: !uuid '847b4a6fd930c9b78c4bd457fe5d8ef7ea4da22f'
+  /backend/Admin.NET.Application/Service/Role/SysRoleService.cs:
+    newFile: null
+    oldFile: !uuid 'e706c5dfdbcd77dcba1264d8f76412c0de581f02'
+  /backend/Admin.NET.Application/Service/System:
+    newFile: !uuid 'edc04297a5d66218bb0fd49b4a90bcf1cf93577d'
     oldFile: null
-  /backend/Admin.NET.Core/Entity/System/SysApp.cs:
-    newFile: !uuid '310f5614bff42e1ad9969d8f47d24903ca789ae4'
+  /backend/Admin.NET.Application/Service/System/App:
+    newFile: !uuid 'da4477bc785f910a2eabdc017c28807ca6680000'
     oldFile: null
-  /backend/Admin.NET.Core/Entity/System/SysCodeGen.cs:
-    newFile: !uuid 'c5366b60d3a735c0bae7ad47075214e75a3bdbaa'
+  /backend/Admin.NET.Application/Service/System/App/Dto:
+    newFile: !uuid '255ea64783853c1d1a6fc6ce83697ca1ea9d5dc2'
     oldFile: null
-  /backend/Admin.NET.Core/Entity/System/SysCodeGenConfig.cs:
-    newFile: !uuid '8cba036814827d918f45835eab142d713ad343de'
+  /backend/Admin.NET.Application/Service/System/App/Dto/AppInput.cs:
+    newFile: !uuid 'b5e17dd69b12e1b8cb0ce70eedb3b29b1651600d'
     oldFile: null
-  /backend/Admin.NET.Core/Entity/System/SysConfig.cs:
-    newFile: !uuid '93589a5cfb0d313f9001dea3a64a8c219db70e8a'
+  /backend/Admin.NET.Application/Service/System/App/Dto/AppOutput.cs:
+    newFile: !uuid '796fdfcfc0194a9d6979ff893f613d86b6149170'
     oldFile: null
-  /backend/Admin.NET.Core/Entity/System/SysDictData.cs:
-    newFile: !uuid 'e2c905f250feaa40d4f48c71b7dcb4d6a3a57a62'
+  /backend/Admin.NET.Application/Service/System/App/ISysAppService.cs:
+    newFile: !uuid '3735020c3ac3ed7dc03e8f12ea2416ddc775655d'
     oldFile: null
-  /backend/Admin.NET.Core/Entity/System/SysDictType.cs:
-    newFile: !uuid 'a1229d997bce174e2b8f557e554019e24ff6eff0'
+  /backend/Admin.NET.Application/Service/System/App/SysAppService.cs:
+    newFile: !uuid '902ac1bb3d380a6a600355db678245e782de798b'
     oldFile: null
-  /backend/Admin.NET.Core/Entity/System/SysEmp.cs:
-    newFile: !uuid '365ab36f445de07c24e4bfa87681f50dad2542a6'
+  /backend/Admin.NET.Application/Service/System/Auth:
+    newFile: !uuid '0ed68789d3240e09a7c8110f2294afc4e34402a5'
     oldFile: null
-  /backend/Admin.NET.Core/Entity/System/SysEmpExtOrgPos.cs:
-    newFile: !uuid '4ab68d156f48cf1e0b0228167c96cf6b601e8cc5'
+  /backend/Admin.NET.Application/Service/System/Auth/AuthService.cs:
+    newFile: !uuid 'cd82feacd524db4954506bcde89490eeeac12211'
     oldFile: null
-  /backend/Admin.NET.Core/Entity/System/SysEmpPos.cs:
-    newFile: !uuid '09d76c9b44188c4a7c17b62ce888ee9c10de571d'
+  /backend/Admin.NET.Application/Service/System/Auth/Dto:
+    newFile: !uuid '6cbaced72b55f22e01dc78cdc262d1c33379a03c'
     oldFile: null
-  /backend/Admin.NET.Core/Entity/System/SysFile.cs:
-    newFile: !uuid 'dcc46b8e5a1a5aca516924bb32994af4db63afb3'
+  /backend/Admin.NET.Application/Service/System/Auth/Dto/LoginInput.cs:
+    newFile: !uuid 'bff90cceda74962178f3849c4f0b7a4d366cd1df'
     oldFile: null
-  /backend/Admin.NET.Core/Entity/System/SysLogAudit.cs:
-    newFile: !uuid 'c95d597f5752ad05f1ac71a6a0d6c78d1ce0f640'
+  /backend/Admin.NET.Application/Service/System/Auth/Dto/LoginOutput.cs:
+    newFile: !uuid 'a5faa55e4999e844a0bc469b5003cc6d5cfcc08c'
     oldFile: null
-  /backend/Admin.NET.Core/Entity/System/SysLogEx.cs:
-    newFile: !uuid 'c035b74d24196506afb3ca0a47068a0db24ac9d3'
+  /backend/Admin.NET.Application/Service/System/Auth/Dto/RegistInput.cs:
+    newFile: !uuid '5798f0c3c1743c15bdfa5169332b68752f2ed8a3'
     oldFile: null
-  /backend/Admin.NET.Core/Entity/System/SysLogOp.cs:
-    newFile: !uuid '4d1058f48adb4ee7ff7e5980c6f2952af2703c96'
+  /backend/Admin.NET.Application/Service/System/Auth/IAuthService.cs:
+    newFile: !uuid 'f897862858b439da7d4da72916d131a0a96eb542'
     oldFile: null
-  /backend/Admin.NET.Core/Entity/System/SysLogVis.cs:
-    newFile: !uuid 'a67834e68e86e399e50deb9ce50f7437f3b91ea0'
+  /backend/Admin.NET.Application/Service/System/Base:
+    newFile: !uuid '8aaf50c811fa5ccb68b77ecac43bb4203986258e'
     oldFile: null
-  /backend/Admin.NET.Core/Entity/System/SysMenu.cs:
-    newFile: !uuid '99af6d7f9b16cd9111d482e9911ff6cd0f57880b'
+  /backend/Admin.NET.Application/Service/System/Base/BaseService.cs:
+    newFile: !uuid '3717e9e8c0121cf821c376a82a8035af84b8a9cd'
     oldFile: null
-  /backend/Admin.NET.Core/Entity/System/SysNotice.cs:
-    newFile: !uuid '68b46ffb5dab512c316701d2e5cf95c2ac3c6747'
+  /backend/Admin.NET.Application/Service/System/Base/Dto:
+    newFile: !uuid 'f9e81dd371fbc0b8d2c3c7b6bf7ddf74948fa884'
     oldFile: null
-  /backend/Admin.NET.Core/Entity/System/SysNoticeUser.cs:
-    newFile: !uuid '93db4a19a2789f507fe7d0ab33c30862497ac4f3'
+  /backend/Admin.NET.Application/Service/System/Base/Dto/BaseDto.cs:
+    newFile: !uuid '6d3d9b02fe44b8acac6fdf5a863cd17c8c54eede'
     oldFile: null
-  /backend/Admin.NET.Core/Entity/System/SysOauthUser.cs:
-    newFile: !uuid '0b2cabb68fe397020598cda79f5a701705f34039'
+  /backend/Admin.NET.Application/Service/System/Cache:
+    newFile: !uuid '52e5c3eb2899789776fb32d8f202e77b7b76c762'
     oldFile: null
-  /backend/Admin.NET.Core/Entity/System/SysOnlineUser.cs:
-    newFile: !uuid '7623eeb6dda74976459e1297b0d01eb6e0cf3c00'
+  /backend/Admin.NET.Application/Service/System/Cache/ISysCacheService.cs:
+    newFile: !uuid '1ba36fdddd8e2d5b1d410aa041d1f406c9bc9741'
     oldFile: null
-  /backend/Admin.NET.Core/Entity/System/SysOrg.cs:
-    newFile: !uuid 'fdc1e0699652b39fcc148808d33c1185db040c6b'
+  /backend/Admin.NET.Application/Service/System/Cache/SysCacheService.cs:
+    newFile: !uuid 'fe081f983157448ec9da37a90736f2462f09f382'
     oldFile: null
-  /backend/Admin.NET.Core/Entity/System/SysPos.cs:
-    newFile: !uuid '5df59b93acfb451983832d7774f7a850b438a9a0'
+  /backend/Admin.NET.Application/Service/System/Captcha:
+    newFile: !uuid '120e0a17e27d39448df0855d6c0d7b86407388fa'
     oldFile: null
-  /backend/Admin.NET.Core/Entity/System/SysRole.cs:
-    newFile: !uuid '7af7d0b85dc5b5fda74b048f7a0044fb141ba10a'
+  /backend/Admin.NET.Application/Service/System/Captcha/ClickWord:
+    newFile: !uuid 'd2d65f7b355b3f5483d3c395544f9966b6808f1f'
     oldFile: null
-  /backend/Admin.NET.Core/Entity/System/SysRoleDataScope.cs:
-    newFile: !uuid '9a041279ccc5c6a6cbd0769098955edfe24739bd'
+  /backend/Admin.NET.Application/Service/System/Captcha/ClickWord/ClickWordCaptcha.cs:
+    newFile: !uuid '9b0930833655dd15e3ff52a59d721314cd9c54c6'
     oldFile: null
-  /backend/Admin.NET.Core/Entity/System/SysRoleMenu.cs:
-    newFile: !uuid '8933f65a8a6c19a633b6f53207525bc6db7247aa'
+  /backend/Admin.NET.Application/Service/System/Captcha/ClickWord/ClickWordCaptchaInput.cs:
+    newFile: !uuid '3c0905387279e5ef8f81b1b4894cfa6a7815dfda'
     oldFile: null
-  /backend/Admin.NET.Core/Entity/System/SysTenant.cs:
-    newFile: !uuid '8220b6cd9931d821384cf7e17bf908f75aabeeae'
+  /backend/Admin.NET.Application/Service/System/Captcha/ClickWord/ClickWordCaptchaResult.cs:
+    newFile: !uuid '1b4faafa05ec762ee8219de9dfd420d1bedfc961'
     oldFile: null
-  /backend/Admin.NET.Core/Entity/System/SysTimer.cs:
-    newFile: !uuid '6187f1c3835def9afec11839679cace6608a37a2'
+  /backend/Admin.NET.Application/Service/System/Captcha/ClickWord/IClickWordCaptcha.cs:
+    newFile: !uuid 'ef487673fe61ff0d4a3f6a8b31f5660507be4c81'
     oldFile: null
-  /backend/Admin.NET.Core/Entity/System/SysUser.cs:
-    newFile: !uuid 'ce767d6bbdfd5ae10fef7cf7f5c2eaee9a9d4ac5'
+  /backend/Admin.NET.Application/Service/System/Captcha/General:
+    newFile: !uuid '2887bc70b9e876a81727b2cb5f2fe09aabfb697c'
     oldFile: null
-  /backend/Admin.NET.Core/Entity/System/SysUserDataScope.cs:
-    newFile: !uuid '10ecb6e7302141e8770e74b18d8fd493b1ccfc42'
+  /backend/Admin.NET.Application/Service/System/Captcha/General/GeneralCaptcha.cs:
+    newFile: !uuid '42059396578ecd4237822c0d0fa63b1348f7e283'
     oldFile: null
-  /backend/Admin.NET.Core/Entity/System/SysUserRole.cs:
-    newFile: !uuid '08aead951b8022e3263fbc49a186796d5323547e'
+  /backend/Admin.NET.Application/Service/System/Captcha/General/GeneralCaptchaInput.cs:
+    newFile: !uuid 'e490075df3aba189e5a8624c56162b10b4af7338'
     oldFile: null
-  /backend/Admin.NET.Web.Entry:
-    newFile: !uuid '58c088541a01df39272729fcd46b6cdab0593b6e'
-    oldFile: !uuid 'bfc8c4d2399d974e92104972150ee5a57ae6bb64'
-  /backend/Admin.NET.Web.Entry/wwwroot:
-    newFile: !uuid 'cef9aaa9e34394b3f3a12a06c55e70219215e40f'
-    oldFile: !uuid '48bde5ed626df1c648ee29db691c654a85de9247'
-  /backend/Admin.NET.Web.Entry/wwwroot/Template:
-    newFile: !uuid '85f9ec00bfef5a562bd4ccd6183b2c99e30f91a2'
-    oldFile: !uuid 'bd4d0dce1463bd26e7d0022165e9cdac3be0296f'
-  /backend/Admin.NET.Web.Entry/wwwroot/Template/Dto.cs.vm:
-    newFile: !uuid '1decd4f2645e3480df143634855384f00926cdb1'
-    oldFile: !uuid '8704e452c53dc1b1cce49c59c94a7d81b800a655'
-  /backend/Admin.NET.Web.Entry/wwwroot/Template/IService.cs.vm:
-    newFile: !uuid '7ef92d84ac4519f6360320b92d1afaac2c0e86fd'
-    oldFile: !uuid '431df63e50c04a82e6348c5b52c04857dda7da78'
-  /backend/Admin.NET.Web.Entry/wwwroot/Template/Input.cs.vm:
-    newFile: !uuid 'b9c1747dd845f18406a984e5b6cb3439cc5d1846'
-    oldFile: !uuid 'bb1d16415abc3aba22cbbc3553494bf63781eded'
-  /backend/Admin.NET.Web.Entry/wwwroot/Template/Service.cs.vm:
-    newFile: !uuid '4583d992687afc8939d636ce91a6dbb48d647cff'
-    oldFile: !uuid '5af83bfcc16a99eee15cb07b4b00492ec0f431ce'
-  /backend/项目结构.dgml:
-    newFile: !uuid 'ad598048485c36f0d1d0ce0cabea65b2c638e237'
+  /backend/Admin.NET.Application/Service/System/Captcha/General/IGeneralCaptcha.cs:
+    newFile: !uuid 'bf178138c811909d2bcffb123bb13f9bf3986e8f'
     oldFile: null
-gitCommitId: !uuid 'f2ffb7a96ae8df62ffcd946f5063ba801a9748e6'
+  /backend/Admin.NET.Application/Service/System/CodeGen:
+    newFile: !uuid '7473bc9c81efb08ec05d2169fd3aac0df171198a'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/CodeGen/CodeGenConfigService.cs:
+    newFile: !uuid 'cecfbe8407fb591d3abcadc99494db628d7f5143'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/CodeGen/CodeGenService.cs:
+    newFile: !uuid '89f0a1e93126934156cbc12af3c354ccbd5e0df9'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/CodeGen/Dto:
+    newFile: !uuid '986fd580ffaee6ad452872e6f3051bf93ae45f85'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/CodeGen/Dto/CodeGenConfig.cs:
+    newFile: !uuid 'e2ef2765e0388e6b53b80d74f0570250747fa980'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/CodeGen/Dto/CodeGenInput.cs:
+    newFile: !uuid '93639870dfddb7e60fbb2fc781cd3d6a92b37a97'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/CodeGen/Dto/CodeGenModel.cs:
+    newFile: !uuid 'c47cf102d44e52424c271e02c56740f70697f0e4'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/CodeGen/Dto/CodeGenOutput.cs:
+    newFile: !uuid '3dc5974fb59d15e25b898fa9939164330afdc059'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/CodeGen/Dto/DatabaseOutput.cs:
+    newFile: !uuid '4bf8143667ac881a33274d3894f7dca3d4d0eb1b'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/CodeGen/Dto/TableColumnOuput.cs:
+    newFile: !uuid '1c4edf4d2eaf2eace63d619d5a3822ec0277f74c'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/CodeGen/Dto/TableOutput.cs:
+    newFile: !uuid 'db0d03931082eeea6895648a3a559c985e816753'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/CodeGen/Dto/XnCodeGenOutput.cs:
+    newFile: !uuid '86d9048a6608d24fef78087a61101471c7fbfb3b'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/CodeGen/ICodeGenConfigService.cs:
+    newFile: !uuid 'e044e0399fa211eac9d94d4098cd2d5ae6f69f6e'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/CodeGen/ICodeGenService.cs:
+    newFile: !uuid 'dd9cfc52703ff00c970214105cdb5622cd4b5588'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/Config:
+    newFile: !uuid '2b3e369655832891a4749f3de45b386d08d10b62'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/Config/Dto:
+    newFile: !uuid '7f134539af99261f10d98c9773d786c53918c223'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/Config/Dto/ConfigInput.cs:
+    newFile: !uuid 'aaae8f9fe2ec9541f717384a233f74a1e98ebaa0'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/Config/ISysConfigService.cs:
+    newFile: !uuid '9cf6cac55938579cf5138ef780e58f6ec76125e6'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/Config/SysConfigService.cs:
+    newFile: !uuid 'ff3121dae3307c813ee3fde6241d2448cf78ff5a'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/Dict:
+    newFile: !uuid '48c0f31151e9372642034d193ca609f876cd411e'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/Dict/Dto:
+    newFile: !uuid '496a07c5d0f418e9fb369e14e56ccdc1d1f77bd3'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/Dict/Dto/DictDataInput.cs:
+    newFile: !uuid '9a09b81d5ae571758fd6abfa856c2801fbb1f840'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/Dict/Dto/DictDataOutput.cs:
+    newFile: !uuid '1bc11c72e2b66535d273a3345db6dd8b2ede2278'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/Dict/Dto/DictTreeOutput.cs:
+    newFile: !uuid '7e1852db42d26c892d7c5c4a6ce2a7dc8d3408d1'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/Dict/Dto/DictTypeInput.cs:
+    newFile: !uuid 'ef84e9f244c59196e8e3806bc185f26811ae98ca'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/Dict/ISysDictDataService.cs:
+    newFile: !uuid '2bc13af7f0038f089b84c3c42e4fdc8c74b98414'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/Dict/ISysDictTypeService.cs:
+    newFile: !uuid '1dcad2a9d18ad02e257487307699442a687704cf'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/Dict/SysDictDataService.cs:
+    newFile: !uuid '5493ade1c645308281e0c132cec06b06e9f09ecf'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/Dict/SysDictTypeService.cs:
+    newFile: !uuid '7873b146c800f181a4dcdc44f57d49557107a2a6'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/Emp:
+    newFile: !uuid '2f600e972356bed360c51236d15e8df3279a5370'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/Emp/Dto:
+    newFile: !uuid '99c51de4402ba577109f2250008b64327402f59f'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/Emp/Dto/EmpExtOrgPosOutput.cs:
+    newFile: !uuid '1eb5722d667ff0fd500bb064e8c3f45e9d42bdfe'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/Emp/Dto/EmpOutput.cs:
+    newFile: !uuid '23e2aa388fcd8ab48fe36325d47fb1bb32d0f918'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/Emp/Dto/EmpOutput2.cs:
+    newFile: !uuid '72340811abbbf1fc0940eea6437188fd1508fabf'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/Emp/Dto/EmpPosOutput.cs:
+    newFile: !uuid 'db7dc533265a3ff2d512572a8b12972eb7d38ec2'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/Emp/ISysEmpExtOrgPosService.cs:
+    newFile: !uuid '7ef485e330763e530945759a90dea973277c81cf'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/Emp/ISysEmpPosService.cs:
+    newFile: !uuid '39bef5d52540193863d218cfd8bc7b9106b34a08'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/Emp/ISysEmpService.cs:
+    newFile: !uuid '258e0de52268bad5c4c95cff197550640a1e9d0e'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/Emp/SysEmpExtOrgPosService.cs:
+    newFile: !uuid 'bdc9c8a85f38276c9d93238119adb09342286157'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/Emp/SysEmpPosService.cs:
+    newFile: !uuid '32e0dd9b1e408d5df3452448295760b4363e72e5'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/Emp/SysEmpService.cs:
+    newFile: !uuid 'aaddc5ed22ff46ee193dc137166da04b8398c854'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/Enum:
+    newFile: !uuid 'aa5427bda54501f8456b7499cebd0064b0b6deae'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/Enum/Dto:
+    newFile: !uuid 'f3cc8cd5c1e55120f3d94166d6399c8bc3de6215'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/Enum/Dto/EnumDataInput.cs:
+    newFile: !uuid 'e6108c41e2bde93360d0c36b85b454a251edf053'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/Enum/Dto/EnumDataOutput.cs:
+    newFile: !uuid '0f0debac0e8aac49b288c925770e91a64b519ca3'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/Enum/ISysEnumDataService.cs:
+    newFile: !uuid 'b9285bdd67ee6eb4f38bc20620d83609dd6de884'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/Enum/SysEnumDataService.cs:
+    newFile: !uuid 'ac6653f65feeae7d1eb5a4bff33fa6059b99fce0'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/File:
+    newFile: !uuid '07b7f3e8c2859759c40f80b4581381c2530d8584'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/File/Dto:
+    newFile: !uuid '943ea676bd4b207d2678cda8383824b5a376e86b'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/File/Dto/FileInput.cs:
+    newFile: !uuid '019f057c76b90e9df5c182b8ed241e4ab28b47ba'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/File/Dto/FileOutput.cs:
+    newFile: !uuid '62dd5a1e5db208017a28d56530071b665e9685de'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/File/ISysFileService.cs:
+    newFile: !uuid '97916eac45d8d3e08eb3843d503947234e31b84e'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/File/SysFileService.cs:
+    newFile: !uuid '0049c95a9385721bad5993cdcb5f996d7e93c84d'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/Hubs:
+    newFile: !uuid '5e32e02250d7f7f69a6199780ec0daadc0a6d0fc'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/Hubs/ChatHub.cs:
+    newFile: !uuid '6418032ac25fe0482733bee4ef78ab2a2f8bc179'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/Hubs/Dto:
+    newFile: !uuid 'eb1d95547bf1d5e6c4624697be5185bfeac152d7'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/Hubs/Dto/MessageinputDto.cs:
+    newFile: !uuid '29e86e7fb2844af54fac7373616fcd9b31a6c02b'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/Hubs/IChatClient.cs:
+    newFile: !uuid '73e5ae10cd4042a3a010b22008f406f3604b0d3b'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/Log:
+    newFile: !uuid '1db25c2a19ce50ad80f5841b25006c265d7fb3e2'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/Log/Dto:
+    newFile: !uuid '6cf7ed88ba5d41c553e51a09894d779032c981c8'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/Log/Dto/ExLogInput.cs:
+    newFile: !uuid '3ac46077415f85578c239dd9cc0f4f67f4d1634d'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/Log/Dto/ExLogOutput.cs:
+    newFile: !uuid '9a82be988364ab42104d5690cccd203803800f65'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/Log/Dto/OpLogInput.cs:
+    newFile: !uuid '42f8a1d8bfb9645d3352d3f0f6454ed559d288dd'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/Log/Dto/OpLogOutput.cs:
+    newFile: !uuid 'c49c3310e38daec49e2a17b5f962d072320206ad'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/Log/Dto/VisLogInput.cs:
+    newFile: !uuid '96ccab0cf21615494bc43d607766e844de14c633'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/Log/Dto/VisLogOutput.cs:
+    newFile: !uuid '6a233a271fd84a8edbe6d6b1947e787fa959e338'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/Log/ISysExLogService.cs:
+    newFile: !uuid '26c15f521e07fdc07d7c92e4eb40106a9011d147'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/Log/ISysOpLogService.cs:
+    newFile: !uuid 'f72dfc5f4f0384d71afc070fcb425f65b7a16683'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/Log/ISysVisLogService.cs:
+    newFile: !uuid '3d820229fe69a46ff3ca7e695577b9edec79bc8a'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/Log/SysExLogService.cs:
+    newFile: !uuid 'a1c07c4bd8fcf5b26d3b24c99e51174259a6a838'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/Log/SysOpLogService.cs:
+    newFile: !uuid 'e6a8fa7f15f3699ae0749800a9f8a1b79c80c1bb'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/Log/SysVisLogService.cs:
+    newFile: !uuid 'd9a0f51c67a320ee8bff415edcfccc31ff32cefa'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/Menu:
+    newFile: !uuid 'e908d92e9d2cda18210f1853d7f5a73b275b3bb7'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/Menu/Dto:
+    newFile: !uuid 'd4e1dc480e0f2c16e9e886ad3730c98692fd7082'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/Menu/Dto/AntDesignTreeNode.cs:
+    newFile: !uuid '04829a4ece81c7b5f2357894169c8764ed25912e'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/Menu/Dto/MenuInput.cs:
+    newFile: !uuid '49cefcb2772ad15b3bb4c57ac6985a06168b1867'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/Menu/Dto/MenuOutput.cs:
+    newFile: !uuid '7cea3b7876fec62282844dcfb43ecea423bd3a58'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/Menu/Dto/MenuTreeOutput.cs:
+    newFile: !uuid 'cb18220d15174653a5a87a7572b693962218ef3c'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/Menu/ISysMenuService.cs:
+    newFile: !uuid 'c7b2f95dbd362f42bbd18a84accb3bb3474df3fd'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/Menu/SysMenuService.cs:
+    newFile: !uuid 'fd406f9f96a7715e4dc064c51b5bce53037c4564'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/Message:
+    newFile: !uuid '9df77891dd0a100e96ca76b780d68996314ac446'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/Message/ISendMessageService.cs:
+    newFile: !uuid 'deb009f66c176fe180a7c68800dc547fe8e25f90'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/Message/SendMessageService.cs:
+    newFile: !uuid '577701b8b2b66ec03cd9ac42736abd2b6d4defa0'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/Monitor:
+    newFile: !uuid 'eb244ecc89455f3779d4a4756a6a998ceda4d84d'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/Monitor/IMachineService.cs:
+    newFile: !uuid '6ffccd8c56e247e0115e7ad82f5b50d056166bb1'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/Monitor/MachineService.cs:
+    newFile: !uuid '103a20207f62143790167dfbe37034f0a4e34daf'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/Notice:
+    newFile: !uuid 'c3ad395bcd4116d7cee1e877fa789b3ab79c2e9e'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/Notice/Dto:
+    newFile: !uuid '65399619bd07fb37a02d18a19d660fcbd0a0aa96'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/Notice/Dto/NoticeBase.cs:
+    newFile: !uuid '3305d156a96bfaab0e6680d78126748c9016c8b0'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/Notice/Dto/NoticeDetailOutput.cs:
+    newFile: !uuid 'cd918fdc046f217e9a314c2fec2dd225634b44aa'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/Notice/Dto/NoticeInput.cs:
+    newFile: !uuid 'b1f52586052e7428be355948443eb7f9cc6796c9'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/Notice/Dto/NoticeReceiveOutput.cs:
+    newFile: !uuid '3cd16eb7e25f1b21391011335bdf46968585bfb2'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/Notice/ISysNoticeService.cs:
+    newFile: !uuid '3fa7fa4348c3334d4a50a31ae6e7ce8a730672ef'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/Notice/ISysNoticeUserService.cs:
+    newFile: !uuid 'f28e9b5c14ea0e2bace906c702797f0440d5c731'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/Notice/SysNoticeService.cs:
+    newFile: !uuid '55c74252e527f09a66b635419ef98cc178730573'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/Notice/SysNoticeUserService.cs:
+    newFile: !uuid '03ccfe314944b1b4c471c5866badc56ffb8bfb1b'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/OnlineUser:
+    newFile: !uuid 'fb9c608468fcaa729993f05ecd1d9bca5bcb900e'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/OnlineUser/Dto:
+    newFile: !uuid 'e3a7324fd821caaa6c4ff3dc6daa4aa4df6fbf62'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/OnlineUser/Dto/OnlineUserOutput.cs:
+    newFile: !uuid 'fb863ee89707775db1e351f75a26e916e052241a'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/OnlineUser/ISysOnlineUserService.cs:
+    newFile: !uuid '33bc3b708a6fbffa9b84324a91497b762810c7cf'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/OnlineUser/SysOnlineUserService.cs:
+    newFile: !uuid '70bbd2041e7a01b0a9686aadbb78f23d5ed904d6'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/Org:
+    newFile: !uuid '3d7c4908e0ca065c694d3d38ae137336ad3461be'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/Org/Dto:
+    newFile: !uuid '0aebdee16de6f1c72b837e2c2c5d457ce00a562d'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/Org/Dto/OrgInput.cs:
+    newFile: !uuid '934f60810681012c441d54545b0d9a2cad3da98f'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/Org/Dto/OrgOutput.cs:
+    newFile: !uuid 'b50cc2526f1b12045a30c08d81dcca35c805e01b'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/Org/Dto/OrgTreeNode.cs:
+    newFile: !uuid '68d8afbc2cf422c0b044d9de4ccb8da5aa3551cc'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/Org/ISysOrgService.cs:
+    newFile: !uuid '0e4f38b4375b484f73bbecc8f26612044b5c6a00'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/Org/SysOrgService.cs:
+    newFile: !uuid '68b9e2c88168168ae1b90ecd0f4612e29bd15999'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/Pos:
+    newFile: !uuid 'e4d84d9e3dcf87e67767758f67bdd65e888633af'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/Pos/Dto:
+    newFile: !uuid '30015bc3b60127559e17d293cdee1ae59e067c63'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/Pos/Dto/PosInput.cs:
+    newFile: !uuid 'de9b1fefd419051ca761cdeaf8ec4772a8cfbdb9'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/Pos/ISysPosService.cs:
+    newFile: !uuid 'cdf020508d532a1afda608504ab9915a2329df0c'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/Pos/SysPosService.cs:
+    newFile: !uuid 'f560453f9a862f43b08c71914f06d45162cf7fab'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/Role:
+    newFile: !uuid 'c90b7352f118cf1154c606042771571ce128eb27'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/Role/Dto:
+    newFile: !uuid '3b2da9ffbc51dff23ad1f4d4ea9bbe609b8976cb'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/Role/Dto/RoleInput.cs:
+    newFile: !uuid '39aafbc53f5bd59ba719941cda9ae40fd0dd0023'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/Role/Dto/RoleOutput.cs:
+    newFile: !uuid '0a4bdc808c773fe0255c7d8ae6a2dbe17bec4f30'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/Role/ISysRoleDataScopeService.cs:
+    newFile: !uuid '6b053ef5a2984002c3c03a27e9a40e4781aa5f9f'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/Role/ISysRoleMenuService.cs:
+    newFile: !uuid '2be1037ccc5ebd6a28ed9cfc97a377a23bbe85d2'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/Role/ISysRoleService.cs:
+    newFile: !uuid '793aa1b10b08837d37280cac88ff3ebb249ca25b'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/Role/SysRoleDataScopeService.cs:
+    newFile: !uuid '4d80482c12c023252f58de6ab7a6241954f7c4c6'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/Role/SysRoleMenuService.cs:
+    newFile: !uuid '847b4a6fd930c9b78c4bd457fe5d8ef7ea4da22f'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/Role/SysRoleService.cs:
+    newFile: !uuid 'e706c5dfdbcd77dcba1264d8f76412c0de581f02'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/Tenant:
+    newFile: !uuid '98445167ab6a167c265f338985f38914b5a66777'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/Tenant/Dto:
+    newFile: !uuid '95d645d782f6a7d7468509316d7afc194ac591a2'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/Tenant/Dto/TenantInput.cs:
+    newFile: !uuid 'b55c84cb58b9fa7144b4f4d019b3e9aea9903f6a'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/Tenant/Dto/TenantOutput.cs:
+    newFile: !uuid 'c1b0f2c1518263e1347342d7c7adaee03a4d994f'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/Tenant/ISysTenantService.cs:
+    newFile: !uuid '894b55058d712f874ec9034ebbfa9886fef2c7e2'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/Tenant/SysTenantService.cs:
+    newFile: !uuid '5bf43fd3bf25751fde05580ef72819f3e487ed70'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/Timer:
+    newFile: !uuid '3f87fe3db1c6e935f655a350cf9d3cf36ee0d270'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/Timer/Dto:
+    newFile: !uuid '2496b0418f9cc5f86e68e6c823ac8dbb435b251c'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/Timer/Dto/JobInput.cs:
+    newFile: !uuid 'ebe1bc2b425eafe38a72495f8be5aece37f418cb'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/Timer/Dto/JobOutput.cs:
+    newFile: !uuid '43c7bb8e77dc69726e76379ad832c5c40dda2602'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/Timer/ISysTimerService.cs:
+    newFile: !uuid '1aeefa41dd26f07760308384cc7a9a39a3d930f4'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/Timer/SysTimerService.cs:
+    newFile: !uuid 'df26015c0c65aeae821af8f2eff89ab6940961ed'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/User:
+    newFile: !uuid 'ce5119b9c3ada87294ee515f50804caa512ed93e'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/User/CurrentUserInfo.cs:
+    newFile: !uuid '45c9ebfffc2e9359230451850b2e7fa065b8a576'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/User/Dto:
+    newFile: !uuid 'd4b1f6c027680be48eb79bce735a4fe549c71b5c'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/User/Dto/AuthToken.cs:
+    newFile: !uuid '0cd29ccfb76b24e1bff7ac9ced01a7aee1e04672'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/User/Dto/AuthUserInput.cs:
+    newFile: !uuid 'b5e61e619404ddabb8cdaa3663f875a31c75fb80'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/User/Dto/UserInput.cs:
+    newFile: !uuid '094900647bfc012e4de5aaf612e58c6714869215'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/User/Dto/UserOutput.cs:
+    newFile: !uuid 'f2aa2228f405b825680c4f4b4aaf58b441bae729'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/User/ISysUserDataScopeService.cs:
+    newFile: !uuid '1100db0741e773790967ba930fb6feabd1a69b6f'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/User/ISysUserRoleService.cs:
+    newFile: !uuid '6e2f426252121088d877399dd29766b3a4cf9a34'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/User/ISysUserService.cs:
+    newFile: !uuid '853fb0b7cfb67bd7ca84264b749d8398b8d7ba59'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/User/SysUserDataScopeService.cs:
+    newFile: !uuid '9f90752536dce149de2300b01620c3de544ec6cb'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/User/SysUserRoleService.cs:
+    newFile: !uuid 'aa0c12752b4e76493cad76403133f24adc869369'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/System/User/SysUserService.cs:
+    newFile: !uuid '9aa3c46d4a07164b641f708e451bdaf81f0b203b'
+    oldFile: null
+  /backend/Admin.NET.Application/Service/Tenant:
+    newFile: null
+    oldFile: !uuid '98445167ab6a167c265f338985f38914b5a66777'
+  /backend/Admin.NET.Application/Service/Tenant/Dto:
+    newFile: null
+    oldFile: !uuid '95d645d782f6a7d7468509316d7afc194ac591a2'
+  /backend/Admin.NET.Application/Service/Tenant/Dto/TenantInput.cs:
+    newFile: null
+    oldFile: !uuid 'b55c84cb58b9fa7144b4f4d019b3e9aea9903f6a'
+  /backend/Admin.NET.Application/Service/Tenant/Dto/TenantOutput.cs:
+    newFile: null
+    oldFile: !uuid 'c1b0f2c1518263e1347342d7c7adaee03a4d994f'
+  /backend/Admin.NET.Application/Service/Tenant/ISysTenantService.cs:
+    newFile: null
+    oldFile: !uuid '894b55058d712f874ec9034ebbfa9886fef2c7e2'
+  /backend/Admin.NET.Application/Service/Tenant/SysTenantService.cs:
+    newFile: null
+    oldFile: !uuid '5bf43fd3bf25751fde05580ef72819f3e487ed70'
+  /backend/Admin.NET.Application/Service/Timer:
+    newFile: null
+    oldFile: !uuid '3f87fe3db1c6e935f655a350cf9d3cf36ee0d270'
+  /backend/Admin.NET.Application/Service/Timer/Dto:
+    newFile: null
+    oldFile: !uuid '2496b0418f9cc5f86e68e6c823ac8dbb435b251c'
+  /backend/Admin.NET.Application/Service/Timer/Dto/JobInput.cs:
+    newFile: null
+    oldFile: !uuid 'ebe1bc2b425eafe38a72495f8be5aece37f418cb'
+  /backend/Admin.NET.Application/Service/Timer/Dto/JobOutput.cs:
+    newFile: null
+    oldFile: !uuid '43c7bb8e77dc69726e76379ad832c5c40dda2602'
+  /backend/Admin.NET.Application/Service/Timer/ISysTimerService.cs:
+    newFile: null
+    oldFile: !uuid '1aeefa41dd26f07760308384cc7a9a39a3d930f4'
+  /backend/Admin.NET.Application/Service/Timer/SysTimerService.cs:
+    newFile: null
+    oldFile: !uuid 'df26015c0c65aeae821af8f2eff89ab6940961ed'
+  /backend/Admin.NET.Application/Service/User:
+    newFile: null
+    oldFile: !uuid 'ce5119b9c3ada87294ee515f50804caa512ed93e'
+  /backend/Admin.NET.Application/Service/User/CurrentUserInfo.cs:
+    newFile: null
+    oldFile: !uuid '45c9ebfffc2e9359230451850b2e7fa065b8a576'
+  /backend/Admin.NET.Application/Service/User/Dto:
+    newFile: null
+    oldFile: !uuid 'd4b1f6c027680be48eb79bce735a4fe549c71b5c'
+  /backend/Admin.NET.Application/Service/User/Dto/AuthToken.cs:
+    newFile: null
+    oldFile: !uuid '0cd29ccfb76b24e1bff7ac9ced01a7aee1e04672'
+  /backend/Admin.NET.Application/Service/User/Dto/AuthUserInput.cs:
+    newFile: null
+    oldFile: !uuid 'b5e61e619404ddabb8cdaa3663f875a31c75fb80'
+  /backend/Admin.NET.Application/Service/User/Dto/UserInput.cs:
+    newFile: null
+    oldFile: !uuid '094900647bfc012e4de5aaf612e58c6714869215'
+  /backend/Admin.NET.Application/Service/User/Dto/UserOutput.cs:
+    newFile: null
+    oldFile: !uuid 'f2aa2228f405b825680c4f4b4aaf58b441bae729'
+  /backend/Admin.NET.Application/Service/User/ISysUserDataScopeService.cs:
+    newFile: null
+    oldFile: !uuid '1100db0741e773790967ba930fb6feabd1a69b6f'
+  /backend/Admin.NET.Application/Service/User/ISysUserRoleService.cs:
+    newFile: null
+    oldFile: !uuid '6e2f426252121088d877399dd29766b3a4cf9a34'
+  /backend/Admin.NET.Application/Service/User/ISysUserService.cs:
+    newFile: null
+    oldFile: !uuid '853fb0b7cfb67bd7ca84264b749d8398b8d7ba59'
+  /backend/Admin.NET.Application/Service/User/SysUserDataScopeService.cs:
+    newFile: null
+    oldFile: !uuid '9f90752536dce149de2300b01620c3de544ec6cb'
+  /backend/Admin.NET.Application/Service/User/SysUserRoleService.cs:
+    newFile: null
+    oldFile: !uuid 'aa0c12752b4e76493cad76403133f24adc869369'
+  /backend/Admin.NET.Application/Service/User/SysUserService.cs:
+    newFile: null
+    oldFile: !uuid '9aa3c46d4a07164b641f708e451bdaf81f0b203b'
+  /backend/Admin.NET.Application/System:
+    newFile: null
+    oldFile: !uuid '528b4081259e6a3766ef59d0ff53d1aef5a44cec'
+  /backend/Admin.NET.Application/System/Dtos:
+    newFile: null
+    oldFile: !uuid '41db71769eb60e402a1063cb466804ce717b995f'
+  /backend/Admin.NET.Application/System/Dtos/Mapper.cs:
+    newFile: null
+    oldFile: !uuid '5df49a63ba5b1d588f52ce3061d28c01ff1604c2'
+gitCommitId: !uuid 'edd15b4bd4cc7c48183eae186c5972380d01fa16'
 renames:
-  /backend/Admin.NET.Core/Entity/System/SysApp.cs: /backend/Admin.NET.Core/Entity/SysApp.cs
-  /backend/Admin.NET.Core/Entity/System/SysCodeGen.cs: /backend/Admin.NET.Core/Entity/SysCodeGen.cs
-  /backend/Admin.NET.Core/Entity/System/SysCodeGenConfig.cs: /backend/Admin.NET.Core/Entity/SysCodeGenConfig.cs
-  /backend/Admin.NET.Core/Entity/System/SysConfig.cs: /backend/Admin.NET.Core/Entity/SysConfig.cs
-  /backend/Admin.NET.Core/Entity/System/SysDictData.cs: /backend/Admin.NET.Core/Entity/SysDictData.cs
-  /backend/Admin.NET.Core/Entity/System/SysDictType.cs: /backend/Admin.NET.Core/Entity/SysDictType.cs
-  /backend/Admin.NET.Core/Entity/System/SysEmp.cs: /backend/Admin.NET.Core/Entity/SysEmp.cs
-  /backend/Admin.NET.Core/Entity/System/SysEmpExtOrgPos.cs: /backend/Admin.NET.Core/Entity/SysEmpExtOrgPos.cs
-  /backend/Admin.NET.Core/Entity/System/SysEmpPos.cs: /backend/Admin.NET.Core/Entity/SysEmpPos.cs
-  /backend/Admin.NET.Core/Entity/System/SysFile.cs: /backend/Admin.NET.Core/Entity/SysFile.cs
-  /backend/Admin.NET.Core/Entity/System/SysLogAudit.cs: /backend/Admin.NET.Core/Entity/SysLogAudit.cs
-  /backend/Admin.NET.Core/Entity/System/SysLogEx.cs: /backend/Admin.NET.Core/Entity/SysLogEx.cs
-  /backend/Admin.NET.Core/Entity/System/SysLogOp.cs: /backend/Admin.NET.Core/Entity/SysLogOp.cs
-  /backend/Admin.NET.Core/Entity/System/SysLogVis.cs: /backend/Admin.NET.Core/Entity/SysLogVis.cs
-  /backend/Admin.NET.Core/Entity/System/SysMenu.cs: /backend/Admin.NET.Core/Entity/SysMenu.cs
-  /backend/Admin.NET.Core/Entity/System/SysNotice.cs: /backend/Admin.NET.Core/Entity/SysNotice.cs
-  /backend/Admin.NET.Core/Entity/System/SysNoticeUser.cs: /backend/Admin.NET.Core/Entity/SysNoticeUser.cs
-  /backend/Admin.NET.Core/Entity/System/SysOauthUser.cs: /backend/Admin.NET.Core/Entity/SysOauthUser.cs
-  /backend/Admin.NET.Core/Entity/System/SysOnlineUser.cs: /backend/Admin.NET.Core/Entity/SysOnlineUser.cs
-  /backend/Admin.NET.Core/Entity/System/SysOrg.cs: /backend/Admin.NET.Core/Entity/SysOrg.cs
-  /backend/Admin.NET.Core/Entity/System/SysPos.cs: /backend/Admin.NET.Core/Entity/SysPos.cs
-  /backend/Admin.NET.Core/Entity/System/SysRole.cs: /backend/Admin.NET.Core/Entity/SysRole.cs
-  /backend/Admin.NET.Core/Entity/System/SysRoleDataScope.cs: /backend/Admin.NET.Core/Entity/SysRoleDataScope.cs
-  /backend/Admin.NET.Core/Entity/System/SysRoleMenu.cs: /backend/Admin.NET.Core/Entity/SysRoleMenu.cs
-  /backend/Admin.NET.Core/Entity/System/SysTenant.cs: /backend/Admin.NET.Core/Entity/SysTenant.cs
-  /backend/Admin.NET.Core/Entity/System/SysTimer.cs: /backend/Admin.NET.Core/Entity/SysTimer.cs
-  /backend/Admin.NET.Core/Entity/System/SysUser.cs: /backend/Admin.NET.Core/Entity/SysUser.cs
-  /backend/Admin.NET.Core/Entity/System/SysUserDataScope.cs: /backend/Admin.NET.Core/Entity/SysUserDataScope.cs
-  /backend/Admin.NET.Core/Entity/System/SysUserRole.cs: /backend/Admin.NET.Core/Entity/SysUserRole.cs
-revisionId: 705
+  /backend/Admin.NET.Application/Service/System/App/Dto/AppInput.cs: /backend/Admin.NET.Application/Service/App/Dto/AppInput.cs
+  /backend/Admin.NET.Application/Service/System/App/Dto/AppOutput.cs: /backend/Admin.NET.Application/Service/App/Dto/AppOutput.cs
+  /backend/Admin.NET.Application/Service/System/App/ISysAppService.cs: /backend/Admin.NET.Application/Service/App/ISysAppService.cs
+  /backend/Admin.NET.Application/Service/System/App/SysAppService.cs: /backend/Admin.NET.Application/Service/App/SysAppService.cs
+  /backend/Admin.NET.Application/Service/System/Auth/AuthService.cs: /backend/Admin.NET.Application/Service/Auth/AuthService.cs
+  /backend/Admin.NET.Application/Service/System/Auth/Dto/LoginInput.cs: /backend/Admin.NET.Application/Service/Auth/Dto/LoginInput.cs
+  /backend/Admin.NET.Application/Service/System/Auth/Dto/LoginOutput.cs: /backend/Admin.NET.Application/Service/Auth/Dto/LoginOutput.cs
+  /backend/Admin.NET.Application/Service/System/Auth/Dto/RegistInput.cs: /backend/Admin.NET.Application/Service/Auth/Dto/RegistInput.cs
+  /backend/Admin.NET.Application/Service/System/Auth/IAuthService.cs: /backend/Admin.NET.Application/Service/Auth/IAuthService.cs
+  /backend/Admin.NET.Application/Service/System/Base/BaseService.cs: /backend/Admin.NET.Application/Service/Base/BaseService.cs
+  /backend/Admin.NET.Application/Service/System/Base/Dto/BaseDto.cs: /backend/Admin.NET.Application/Service/Base/Dto/BaseDto.cs
+  /backend/Admin.NET.Application/Service/System/Cache/ISysCacheService.cs: /backend/Admin.NET.Application/Service/Cache/ISysCacheService.cs
+  /backend/Admin.NET.Application/Service/System/Cache/SysCacheService.cs: /backend/Admin.NET.Application/Service/Cache/SysCacheService.cs
+  /backend/Admin.NET.Application/Service/System/Captcha/ClickWord/ClickWordCaptcha.cs: /backend/Admin.NET.Application/Service/Captcha/ClickWord/ClickWordCaptcha.cs
+  /backend/Admin.NET.Application/Service/System/Captcha/ClickWord/ClickWordCaptchaInput.cs: /backend/Admin.NET.Application/Service/Captcha/ClickWord/ClickWordCaptchaInput.cs
+  /backend/Admin.NET.Application/Service/System/Captcha/ClickWord/ClickWordCaptchaResult.cs: /backend/Admin.NET.Application/Service/Captcha/ClickWord/ClickWordCaptchaResult.cs
+  /backend/Admin.NET.Application/Service/System/Captcha/ClickWord/IClickWordCaptcha.cs: /backend/Admin.NET.Application/Service/Captcha/ClickWord/IClickWordCaptcha.cs
+  /backend/Admin.NET.Application/Service/System/Captcha/General/GeneralCaptcha.cs: /backend/Admin.NET.Application/Service/Captcha/General/GeneralCaptcha.cs
+  /backend/Admin.NET.Application/Service/System/Captcha/General/GeneralCaptchaInput.cs: /backend/Admin.NET.Application/Service/Captcha/General/GeneralCaptchaInput.cs
+  /backend/Admin.NET.Application/Service/System/Captcha/General/IGeneralCaptcha.cs: /backend/Admin.NET.Application/Service/Captcha/General/IGeneralCaptcha.cs
+  /backend/Admin.NET.Application/Service/System/CodeGen/CodeGenConfigService.cs: /backend/Admin.NET.Application/Service/CodeGen/CodeGenConfigService.cs
+  /backend/Admin.NET.Application/Service/System/CodeGen/CodeGenService.cs: /backend/Admin.NET.Application/Service/CodeGen/CodeGenService.cs
+  /backend/Admin.NET.Application/Service/System/CodeGen/Dto/CodeGenConfig.cs: /backend/Admin.NET.Application/Service/CodeGen/Dto/CodeGenConfig.cs
+  /backend/Admin.NET.Application/Service/System/CodeGen/Dto/CodeGenInput.cs: /backend/Admin.NET.Application/Service/CodeGen/Dto/CodeGenInput.cs
+  /backend/Admin.NET.Application/Service/System/CodeGen/Dto/CodeGenModel.cs: /backend/Admin.NET.Application/Service/CodeGen/Dto/CodeGenModel.cs
+  /backend/Admin.NET.Application/Service/System/CodeGen/Dto/CodeGenOutput.cs: /backend/Admin.NET.Application/Service/CodeGen/Dto/CodeGenOutput.cs
+  /backend/Admin.NET.Application/Service/System/CodeGen/Dto/DatabaseOutput.cs: /backend/Admin.NET.Application/Service/CodeGen/Dto/DatabaseOutput.cs
+  /backend/Admin.NET.Application/Service/System/CodeGen/Dto/TableColumnOuput.cs: /backend/Admin.NET.Application/Service/CodeGen/Dto/TableColumnOuput.cs
+  /backend/Admin.NET.Application/Service/System/CodeGen/Dto/TableOutput.cs: /backend/Admin.NET.Application/Service/CodeGen/Dto/TableOutput.cs
+  /backend/Admin.NET.Application/Service/System/CodeGen/Dto/XnCodeGenOutput.cs: /backend/Admin.NET.Application/Service/CodeGen/Dto/XnCodeGenOutput.cs
+  /backend/Admin.NET.Application/Service/System/CodeGen/ICodeGenConfigService.cs: /backend/Admin.NET.Application/Service/CodeGen/ICodeGenConfigService.cs
+  /backend/Admin.NET.Application/Service/System/CodeGen/ICodeGenService.cs: /backend/Admin.NET.Application/Service/CodeGen/ICodeGenService.cs
+  /backend/Admin.NET.Application/Service/System/Config/Dto/ConfigInput.cs: /backend/Admin.NET.Application/Service/Config/Dto/ConfigInput.cs
+  /backend/Admin.NET.Application/Service/System/Config/ISysConfigService.cs: /backend/Admin.NET.Application/Service/Config/ISysConfigService.cs
+  /backend/Admin.NET.Application/Service/System/Config/SysConfigService.cs: /backend/Admin.NET.Application/Service/Config/SysConfigService.cs
+  /backend/Admin.NET.Application/Service/System/Dict/Dto/DictDataInput.cs: /backend/Admin.NET.Application/Service/Dict/Dto/DictDataInput.cs
+  /backend/Admin.NET.Application/Service/System/Dict/Dto/DictDataOutput.cs: /backend/Admin.NET.Application/Service/Dict/Dto/DictDataOutput.cs
+  /backend/Admin.NET.Application/Service/System/Dict/Dto/DictTreeOutput.cs: /backend/Admin.NET.Application/Service/Dict/Dto/DictTreeOutput.cs
+  /backend/Admin.NET.Application/Service/System/Dict/Dto/DictTypeInput.cs: /backend/Admin.NET.Application/Service/Dict/Dto/DictTypeInput.cs
+  /backend/Admin.NET.Application/Service/System/Dict/ISysDictDataService.cs: /backend/Admin.NET.Application/Service/Dict/ISysDictDataService.cs
+  /backend/Admin.NET.Application/Service/System/Dict/ISysDictTypeService.cs: /backend/Admin.NET.Application/Service/Dict/ISysDictTypeService.cs
+  /backend/Admin.NET.Application/Service/System/Dict/SysDictDataService.cs: /backend/Admin.NET.Application/Service/Dict/SysDictDataService.cs
+  /backend/Admin.NET.Application/Service/System/Dict/SysDictTypeService.cs: /backend/Admin.NET.Application/Service/Dict/SysDictTypeService.cs
+  /backend/Admin.NET.Application/Service/System/Emp/Dto/EmpExtOrgPosOutput.cs: /backend/Admin.NET.Application/Service/Emp/Dto/EmpExtOrgPosOutput.cs
+  /backend/Admin.NET.Application/Service/System/Emp/Dto/EmpOutput.cs: /backend/Admin.NET.Application/Service/Emp/Dto/EmpOutput.cs
+  /backend/Admin.NET.Application/Service/System/Emp/Dto/EmpOutput2.cs: /backend/Admin.NET.Application/Service/Emp/Dto/EmpOutput2.cs
+  /backend/Admin.NET.Application/Service/System/Emp/Dto/EmpPosOutput.cs: /backend/Admin.NET.Application/Service/Emp/Dto/EmpPosOutput.cs
+  /backend/Admin.NET.Application/Service/System/Emp/ISysEmpExtOrgPosService.cs: /backend/Admin.NET.Application/Service/Emp/ISysEmpExtOrgPosService.cs
+  /backend/Admin.NET.Application/Service/System/Emp/ISysEmpPosService.cs: /backend/Admin.NET.Application/Service/Emp/ISysEmpPosService.cs
+  /backend/Admin.NET.Application/Service/System/Emp/ISysEmpService.cs: /backend/Admin.NET.Application/Service/Emp/ISysEmpService.cs
+  /backend/Admin.NET.Application/Service/System/Emp/SysEmpExtOrgPosService.cs: /backend/Admin.NET.Application/Service/Emp/SysEmpExtOrgPosService.cs
+  /backend/Admin.NET.Application/Service/System/Emp/SysEmpPosService.cs: /backend/Admin.NET.Application/Service/Emp/SysEmpPosService.cs
+  /backend/Admin.NET.Application/Service/System/Emp/SysEmpService.cs: /backend/Admin.NET.Application/Service/Emp/SysEmpService.cs
+  /backend/Admin.NET.Application/Service/System/Enum/Dto/EnumDataInput.cs: /backend/Admin.NET.Application/Service/Enum/Dto/EnumDataInput.cs
+  /backend/Admin.NET.Application/Service/System/Enum/Dto/EnumDataOutput.cs: /backend/Admin.NET.Application/Service/Enum/Dto/EnumDataOutput.cs
+  /backend/Admin.NET.Application/Service/System/Enum/ISysEnumDataService.cs: /backend/Admin.NET.Application/Service/Enum/ISysEnumDataService.cs
+  /backend/Admin.NET.Application/Service/System/Enum/SysEnumDataService.cs: /backend/Admin.NET.Application/Service/Enum/SysEnumDataService.cs
+  /backend/Admin.NET.Application/Service/System/File/Dto/FileInput.cs: /backend/Admin.NET.Application/Service/File/Dto/FileInput.cs
+  /backend/Admin.NET.Application/Service/System/File/Dto/FileOutput.cs: /backend/Admin.NET.Application/Service/File/Dto/FileOutput.cs
+  /backend/Admin.NET.Application/Service/System/File/ISysFileService.cs: /backend/Admin.NET.Application/Service/File/ISysFileService.cs
+  /backend/Admin.NET.Application/Service/System/File/SysFileService.cs: /backend/Admin.NET.Application/Service/File/SysFileService.cs
+  /backend/Admin.NET.Application/Service/System/Hubs/ChatHub.cs: /backend/Admin.NET.Application/Service/Hubs/ChatHub.cs
+  /backend/Admin.NET.Application/Service/System/Hubs/Dto/MessageinputDto.cs: /backend/Admin.NET.Application/Service/Hubs/Dto/MessageinputDto.cs
+  /backend/Admin.NET.Application/Service/System/Hubs/IChatClient.cs: /backend/Admin.NET.Application/Service/Hubs/IChatClient.cs
+  /backend/Admin.NET.Application/Service/System/Log/Dto/ExLogInput.cs: /backend/Admin.NET.Application/Service/Log/Dto/ExLogInput.cs
+  /backend/Admin.NET.Application/Service/System/Log/Dto/ExLogOutput.cs: /backend/Admin.NET.Application/Service/Log/Dto/ExLogOutput.cs
+  /backend/Admin.NET.Application/Service/System/Log/Dto/OpLogInput.cs: /backend/Admin.NET.Application/Service/Log/Dto/OpLogInput.cs
+  /backend/Admin.NET.Application/Service/System/Log/Dto/OpLogOutput.cs: /backend/Admin.NET.Application/Service/Log/Dto/OpLogOutput.cs
+  /backend/Admin.NET.Application/Service/System/Log/Dto/VisLogInput.cs: /backend/Admin.NET.Application/Service/Log/Dto/VisLogInput.cs
+  /backend/Admin.NET.Application/Service/System/Log/Dto/VisLogOutput.cs: /backend/Admin.NET.Application/Service/Log/Dto/VisLogOutput.cs
+  /backend/Admin.NET.Application/Service/System/Log/ISysExLogService.cs: /backend/Admin.NET.Application/Service/Log/ISysExLogService.cs
+  /backend/Admin.NET.Application/Service/System/Log/ISysOpLogService.cs: /backend/Admin.NET.Application/Service/Log/ISysOpLogService.cs
+  /backend/Admin.NET.Application/Service/System/Log/ISysVisLogService.cs: /backend/Admin.NET.Application/Service/Log/ISysVisLogService.cs
+  /backend/Admin.NET.Application/Service/System/Log/SysExLogService.cs: /backend/Admin.NET.Application/Service/Log/SysExLogService.cs
+  /backend/Admin.NET.Application/Service/System/Log/SysOpLogService.cs: /backend/Admin.NET.Application/Service/Log/SysOpLogService.cs
+  /backend/Admin.NET.Application/Service/System/Log/SysVisLogService.cs: /backend/Admin.NET.Application/Service/Log/SysVisLogService.cs
+  /backend/Admin.NET.Application/Service/System/Menu/Dto/AntDesignTreeNode.cs: /backend/Admin.NET.Application/Service/Menu/Dto/AntDesignTreeNode.cs
+  /backend/Admin.NET.Application/Service/System/Menu/Dto/MenuInput.cs: /backend/Admin.NET.Application/Service/Menu/Dto/MenuInput.cs
+  /backend/Admin.NET.Application/Service/System/Menu/Dto/MenuOutput.cs: /backend/Admin.NET.Application/Service/Menu/Dto/MenuOutput.cs
+  /backend/Admin.NET.Application/Service/System/Menu/Dto/MenuTreeOutput.cs: /backend/Admin.NET.Application/Service/Menu/Dto/MenuTreeOutput.cs
+  /backend/Admin.NET.Application/Service/System/Menu/ISysMenuService.cs: /backend/Admin.NET.Application/Service/Menu/ISysMenuService.cs
+  /backend/Admin.NET.Application/Service/System/Menu/SysMenuService.cs: /backend/Admin.NET.Application/Service/Menu/SysMenuService.cs
+  /backend/Admin.NET.Application/Service/System/Message/ISendMessageService.cs: /backend/Admin.NET.Application/Service/Message/ISendMessageService.cs
+  /backend/Admin.NET.Application/Service/System/Message/SendMessageService.cs: /backend/Admin.NET.Application/Service/Message/SendMessageService.cs
+  /backend/Admin.NET.Application/Service/System/Monitor/IMachineService.cs: /backend/Admin.NET.Application/Service/Monitor/IMachineService.cs
+  /backend/Admin.NET.Application/Service/System/Monitor/MachineService.cs: /backend/Admin.NET.Application/Service/Monitor/MachineService.cs
+  /backend/Admin.NET.Application/Service/System/Notice/Dto/NoticeBase.cs: /backend/Admin.NET.Application/Service/Notice/Dto/NoticeBase.cs
+  /backend/Admin.NET.Application/Service/System/Notice/Dto/NoticeDetailOutput.cs: /backend/Admin.NET.Application/Service/Notice/Dto/NoticeDetailOutput.cs
+  /backend/Admin.NET.Application/Service/System/Notice/Dto/NoticeInput.cs: /backend/Admin.NET.Application/Service/Notice/Dto/NoticeInput.cs
+  /backend/Admin.NET.Application/Service/System/Notice/Dto/NoticeReceiveOutput.cs: /backend/Admin.NET.Application/Service/Notice/Dto/NoticeReceiveOutput.cs
+  /backend/Admin.NET.Application/Service/System/Notice/ISysNoticeService.cs: /backend/Admin.NET.Application/Service/Notice/ISysNoticeService.cs
+  /backend/Admin.NET.Application/Service/System/Notice/ISysNoticeUserService.cs: /backend/Admin.NET.Application/Service/Notice/ISysNoticeUserService.cs
+  /backend/Admin.NET.Application/Service/System/Notice/SysNoticeService.cs: /backend/Admin.NET.Application/Service/Notice/SysNoticeService.cs
+  /backend/Admin.NET.Application/Service/System/Notice/SysNoticeUserService.cs: /backend/Admin.NET.Application/Service/Notice/SysNoticeUserService.cs
+  /backend/Admin.NET.Application/Service/System/OnlineUser/Dto/OnlineUserOutput.cs: /backend/Admin.NET.Application/Service/OnlineUser/Dto/OnlineUserOutput.cs
+  /backend/Admin.NET.Application/Service/System/OnlineUser/ISysOnlineUserService.cs: /backend/Admin.NET.Application/Service/OnlineUser/ISysOnlineUserService.cs
+  /backend/Admin.NET.Application/Service/System/OnlineUser/SysOnlineUserService.cs: /backend/Admin.NET.Application/Service/OnlineUser/SysOnlineUserService.cs
+  /backend/Admin.NET.Application/Service/System/Org/Dto/OrgInput.cs: /backend/Admin.NET.Application/Service/Org/Dto/OrgInput.cs
+  /backend/Admin.NET.Application/Service/System/Org/Dto/OrgOutput.cs: /backend/Admin.NET.Application/Service/Org/Dto/OrgOutput.cs
+  /backend/Admin.NET.Application/Service/System/Org/Dto/OrgTreeNode.cs: /backend/Admin.NET.Application/Service/Org/Dto/OrgTreeNode.cs
+  /backend/Admin.NET.Application/Service/System/Org/ISysOrgService.cs: /backend/Admin.NET.Application/Service/Org/ISysOrgService.cs
+  /backend/Admin.NET.Application/Service/System/Org/SysOrgService.cs: /backend/Admin.NET.Application/Service/Org/SysOrgService.cs
+  /backend/Admin.NET.Application/Service/System/Pos/Dto/PosInput.cs: /backend/Admin.NET.Application/Service/Pos/Dto/PosInput.cs
+  /backend/Admin.NET.Application/Service/System/Pos/ISysPosService.cs: /backend/Admin.NET.Application/Service/Pos/ISysPosService.cs
+  /backend/Admin.NET.Application/Service/System/Pos/SysPosService.cs: /backend/Admin.NET.Application/Service/Pos/SysPosService.cs
+  /backend/Admin.NET.Application/Service/System/Role/Dto/RoleInput.cs: /backend/Admin.NET.Application/Service/Role/Dto/RoleInput.cs
+  /backend/Admin.NET.Application/Service/System/Role/Dto/RoleOutput.cs: /backend/Admin.NET.Application/Service/Role/Dto/RoleOutput.cs
+  /backend/Admin.NET.Application/Service/System/Role/ISysRoleDataScopeService.cs: /backend/Admin.NET.Application/Service/Role/ISysRoleDataScopeService.cs
+  /backend/Admin.NET.Application/Service/System/Role/ISysRoleMenuService.cs: /backend/Admin.NET.Application/Service/Role/ISysRoleMenuService.cs
+  /backend/Admin.NET.Application/Service/System/Role/ISysRoleService.cs: /backend/Admin.NET.Application/Service/Role/ISysRoleService.cs
+  /backend/Admin.NET.Application/Service/System/Role/SysRoleDataScopeService.cs: /backend/Admin.NET.Application/Service/Role/SysRoleDataScopeService.cs
+  /backend/Admin.NET.Application/Service/System/Role/SysRoleMenuService.cs: /backend/Admin.NET.Application/Service/Role/SysRoleMenuService.cs
+  /backend/Admin.NET.Application/Service/System/Role/SysRoleService.cs: /backend/Admin.NET.Application/Service/Role/SysRoleService.cs
+  /backend/Admin.NET.Application/Service/System/Tenant/Dto/TenantInput.cs: /backend/Admin.NET.Application/Service/Tenant/Dto/TenantInput.cs
+  /backend/Admin.NET.Application/Service/System/Tenant/Dto/TenantOutput.cs: /backend/Admin.NET.Application/Service/Tenant/Dto/TenantOutput.cs
+  /backend/Admin.NET.Application/Service/System/Tenant/ISysTenantService.cs: /backend/Admin.NET.Application/Service/Tenant/ISysTenantService.cs
+  /backend/Admin.NET.Application/Service/System/Tenant/SysTenantService.cs: /backend/Admin.NET.Application/Service/Tenant/SysTenantService.cs
+  /backend/Admin.NET.Application/Service/System/Timer/Dto/JobInput.cs: /backend/Admin.NET.Application/Service/Timer/Dto/JobInput.cs
+  /backend/Admin.NET.Application/Service/System/Timer/Dto/JobOutput.cs: /backend/Admin.NET.Application/Service/Timer/Dto/JobOutput.cs
+  /backend/Admin.NET.Application/Service/System/Timer/ISysTimerService.cs: /backend/Admin.NET.Application/Service/Timer/ISysTimerService.cs
+  /backend/Admin.NET.Application/Service/System/Timer/SysTimerService.cs: /backend/Admin.NET.Application/Service/Timer/SysTimerService.cs
+  /backend/Admin.NET.Application/Service/System/User/CurrentUserInfo.cs: /backend/Admin.NET.Application/Service/User/CurrentUserInfo.cs
+  /backend/Admin.NET.Application/Service/System/User/Dto/AuthToken.cs: /backend/Admin.NET.Application/Service/User/Dto/AuthToken.cs
+  /backend/Admin.NET.Application/Service/System/User/Dto/AuthUserInput.cs: /backend/Admin.NET.Application/Service/User/Dto/AuthUserInput.cs
+  /backend/Admin.NET.Application/Service/System/User/Dto/UserInput.cs: /backend/Admin.NET.Application/Service/User/Dto/UserInput.cs
+  /backend/Admin.NET.Application/Service/System/User/Dto/UserOutput.cs: /backend/Admin.NET.Application/Service/User/Dto/UserOutput.cs
+  /backend/Admin.NET.Application/Service/System/User/ISysUserDataScopeService.cs: /backend/Admin.NET.Application/Service/User/ISysUserDataScopeService.cs
+  /backend/Admin.NET.Application/Service/System/User/ISysUserRoleService.cs: /backend/Admin.NET.Application/Service/User/ISysUserRoleService.cs
+  /backend/Admin.NET.Application/Service/System/User/ISysUserService.cs: /backend/Admin.NET.Application/Service/User/ISysUserService.cs
+  /backend/Admin.NET.Application/Service/System/User/SysUserDataScopeService.cs: /backend/Admin.NET.Application/Service/User/SysUserDataScopeService.cs
+  /backend/Admin.NET.Application/Service/System/User/SysUserRoleService.cs: /backend/Admin.NET.Application/Service/User/SysUserRoleService.cs
+  /backend/Admin.NET.Application/Service/System/User/SysUserService.cs: /backend/Admin.NET.Application/Service/User/SysUserService.cs
+revisionId: 706
