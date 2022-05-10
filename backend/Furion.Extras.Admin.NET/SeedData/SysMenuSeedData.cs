@@ -174,7 +174,7 @@ namespace Furion.Extras.Admin.NET
                 new SysMenu{Id=142307070918775, Pid=142307070918766, Pids="[0],[142307070918765],[142307070918766],", Name="定时任务关闭", Code="sys_timers_mgr_stop", Type=MenuType.BTN, Permission="sysTimers:stop", Application="system", OpenType=MenuOpenType.NONE, Visible="Y", Weight=MenuWeight.SUPER_ADMIN_WEIGHT, Sort=100, Status=CommonStatus.ENABLE },
 
                 new SysMenu{Id=142307070918776, Pid=0, Pids="[0],", Name="代码生成", Code="code_gen", Type=MenuType.MENU, Icon="thunderbolt", Router="/codeGenerate/index", Component="gen/codeGenerate/index", Application="system", OpenType=MenuOpenType.NONE, Visible="Y", Weight=MenuWeight.SUPER_ADMIN_WEIGHT, Sort=100, Status=CommonStatus.ENABLE },
-                new SysMenu{Id=142307070922870, Pid=0, Pids="[0],", Name="表单设计", Code="form_design", Type=MenuType.MENU, Icon="robot", Router="/formDesign/index", Component="system/formDesign/index", Application="system", OpenType=MenuOpenType.NONE, Visible="Y", Weight=MenuWeight.SUPER_ADMIN_WEIGHT, Sort=100, Status=CommonStatus.ENABLE },
+                new SysMenu{Id=142307070922870, Pid=285599875018821, Pids="[0],[285599875018821],", Name="表单设计", Code="form_design", Type=MenuType.MENU, Icon=null, Router="/formDesign/index", Component="system/formDesign/index", Application="system", OpenType=MenuOpenType.NONE, Visible="Y", Weight=MenuWeight.SUPER_ADMIN_WEIGHT, Sort=100, Status=CommonStatus.ENABLE },
 
                 new SysMenu{Id=142307070918782, Pid=0, Pids="[0],", Name="SaaS租户", Code="sys_tenant", Type=MenuType.MENU, Icon="switcher", Router="/tenant", Component="PageView", Application="platform", OpenType=MenuOpenType.NONE, Visible="Y", Weight=MenuWeight.SUPER_ADMIN_WEIGHT, Sort=100, Status=CommonStatus.ENABLE },
                 new SysMenu{Id=142307070918783, Pid=142307070918782, Pids="[0],[142307070918782],", Name="租户管理", Code="sys_tenant_mgr", Type=MenuType.MENU, Router="/tenant", Component="system/tenant/index", Application="platform", OpenType=MenuOpenType.COMPONENT, Visible="Y", Weight=MenuWeight.SUPER_ADMIN_WEIGHT, Sort=100, Status=CommonStatus.ENABLE },
@@ -192,7 +192,54 @@ namespace Furion.Extras.Admin.NET
 
                 new SysMenu{Id=142307070922877, Pid=0, Pids="[0],", Name="大屏监控", Code="main_screen_monitor", Type=MenuType.MENU, Icon="desktop", Router="/monitor", Component="main/screenMonitor/index", Application="busiapp", OpenType=MenuOpenType.NONE, Visible="Y", Weight=MenuWeight.DEFAULT_WEIGHT, Sort=100, Status=CommonStatus.ENABLE },
 
-                new SysMenu{Id=142307070922878, Pid=0, Pids="[0],", Name="地理信息", Code="main_map", Type=MenuType.MENU, Icon="global", Router="/map", Component="main/map/index", Application="busiapp", OpenType=MenuOpenType.NONE, Visible="Y", Weight=MenuWeight.DEFAULT_WEIGHT, Sort=100, Status=CommonStatus.ENABLE }
+                new SysMenu{Id=142307070922878, Pid=0, Pids="[0],", Name="地理信息", Code="main_map", Type=MenuType.MENU, Icon="global", Router="/map", Component="main/map/index", Application="busiapp", OpenType=MenuOpenType.NONE, Visible="Y", Weight=MenuWeight.DEFAULT_WEIGHT, Sort=100, Status=CommonStatus.ENABLE },
+
+                // 工作流管理页面
+                new SysMenu{Id=285314199617605, Pid=0, Pids="[0],", Name="工作流", Code="sys_workflow", Type=MenuType.DIR, Icon="branches", Router="/workflowmanage", Component="PageView", Application="system", OpenType=MenuOpenType.COMPONENT, Visible="Y", Weight=MenuWeight.SUPER_ADMIN_WEIGHT, Sort=100, Status=CommonStatus.ENABLE },
+
+                 new SysMenu{Id=285314749218885, Pid=285314199617605, Pids="[0],[285314199617605],", Name="工作流列表", Code="sys_workflow_index", Type=MenuType.MENU, Icon=null, Router="/workflowmanage/index", Component="system/workflow/index", Application="system", OpenType=MenuOpenType.COMPONENT, Visible="Y", Weight=MenuWeight.SUPER_ADMIN_WEIGHT, Sort=100, Status=CommonStatus.ENABLE },
+
+                 new SysMenu{Id=285326285971525, Pid=285314199617605, Pids="[0],[285314199617605],", Name="新增工作流", Code="sys_workflow_create", Type=MenuType.DIR, Icon=null, Router="/workflowmanage/create", Component="system/workflow/create", Application="system", OpenType=MenuOpenType.COMPONENT, Visible="N", Weight=MenuWeight.SUPER_ADMIN_WEIGHT, Sort=100, Status=CommonStatus.ENABLE },
+
+                 new SysMenu{Id=285584465154117, Pid=285314749218885, Pids="[0],[285314199617605],[285314749218885],", Name="新建工作流", Code="btn_workflow_create", Type=MenuType.BTN, Icon=null, Router="", Component="", Permission="workflowdefinition:create", Application="system", OpenType=MenuOpenType.NONE, Visible="Y", Weight=MenuWeight.DEFAULT_WEIGHT, Sort=100, Status=CommonStatus.ENABLE },
+
+                new SysMenu{Id=285643962318917, Pid=285314199617605, Pids="[0],[285314199617605],", Name="修改流程", Code="sys_workflow_edit", Type=MenuType.MENU, Icon=null, Router="/workflowmanage/edit", Component="system/workflow/edit", Application="system", OpenType=MenuOpenType.COMPONENT, Visible="Y", Weight=MenuWeight.SUPER_ADMIN_WEIGHT, Sort=100, Status=CommonStatus.ENABLE },
+
+                 new SysMenu{Id=285584607641669, Pid=285314749218885, Pids="[0],[285314199617605],[285314749218885],", Name="修改工作流", Code="btn_workflow_edit", Type=MenuType.BTN, Icon=null, Router="", Component="", Permission="workflowdefinition:edit", Application="system", OpenType=MenuOpenType.NONE, Visible="Y", Weight=MenuWeight.DEFAULT_WEIGHT, Sort=100, Status=CommonStatus.ENABLE },
+
+                 new SysMenu{Id=285584792772677, Pid=285314749218885, Pids="[0],[285314199617605],[285314749218885],", Name="删除工作流", Code="btn_workflow_delete", Type=MenuType.BTN, Icon=null, Router="", Component="", Permission="workflowdefinition:delete", Application="system", OpenType=MenuOpenType.NONE, Visible="Y", Weight=MenuWeight.DEFAULT_WEIGHT, Sort=100, Status=CommonStatus.ENABLE },
+
+                 new SysMenu{Id=285314199617605, Pid=285314749218885, Pids="[0],[285314199617605],[285314749218885],", Name="查看工作流", Code="btn_workflow_view", Type=MenuType.BTN, Icon=null, Router="", Component="", Permission="workflowdefinition:entity", Application="system", OpenType=MenuOpenType.NONE, Visible="Y", Weight=MenuWeight.DEFAULT_WEIGHT, Sort=100, Status=CommonStatus.ENABLE },
+
+                new SysMenu{Id=286738138783813, Pid=285314749218885, Pids="[0],[285314199617605],[285314749218885],", Name="开始流程", Code="btn_workflow_start", Type=MenuType.BTN, Icon=null, Router="", Component="", Permission="workflowmanager:start", Application="system", OpenType=MenuOpenType.NONE, Visible="Y", Weight=MenuWeight.DEFAULT_WEIGHT, Sort=100, Status=CommonStatus.ENABLE },
+
+                 new SysMenu{Id=286737918222405, Pid=285314749218885, Pids="[0],[285314199617605],[285314749218885],", Name="流程输入参数", Code="worklfow_inputparameter", Type=MenuType.BTN, Icon=null, Router="", Component="", Permission="workflowmanager:inputsparameter", Application="system", OpenType=MenuOpenType.NONE, Visible="Y", Weight=MenuWeight.DEFAULT_WEIGHT, Sort=100, Status=CommonStatus.ENABLE },
+
+                 new SysMenu{Id=285314199617605, Pid=285314749218885, Pids="[0],[285314199617605],[285314749218885],", Name="工作流列表", Code="btn_workflow_page", Type=MenuType.BTN, Icon=null, Router="", Component="", Permission="workflowdefinition:page", Application="system", OpenType=MenuOpenType.NONE, Visible="Y", Weight=MenuWeight.DEFAULT_WEIGHT, Sort=100, Status=CommonStatus.ENABLE },
+
+                  表单管理
+                 new SysMenu{Id=285599875018821, Pid=0, Pids="[0],", Name="表单管理", Code="sys_formDesign", Type=MenuType.DIR, Icon="snippets", Router="/formDesign", Component="PageView", Application="system", OpenType=MenuOpenType.COMPONENT, Visible="Y", Weight=MenuWeight.SUPER_ADMIN_WEIGHT, Sort=100, Status=CommonStatus.ENABLE },
+
+                 new SysMenu{Id=285599875018821, Pid=285599875018821, Pids="[0],[285599875018821],", Name="表单列表", Code="sys_formDesign_list", Type=MenuType.MENU, Icon=null, Router="/formDesign/list", Component="system/formDesign/list", Application="system", OpenType=MenuOpenType.COMPONENT, Visible="Y", Weight=MenuWeight.SUPER_ADMIN_WEIGHT, Sort=100, Status=CommonStatus.ENABLE },
+
+                 new SysMenu{Id=285635743518789, Pid=285599875018821, Pids="[0],[285599875018821],", Name="修改表单", Code="sys_formDesign_edit", Type=MenuType.MENU, Icon=null, Router="/formDesign/edit", Component="system/formDesign/edit", Application="system", OpenType=MenuOpenType.COMPONENT, Visible="N", Weight=MenuWeight.SUPER_ADMIN_WEIGHT, Sort=100, Status=CommonStatus.ENABLE },
+
+                 new SysMenu{Id=285640475689029, Pid=285601600479301, Pids="[0],[285599875018821],[285601600479301],", Name="修改表单", Code="btn_formDesign_edit", Type=MenuType.BTN, Icon=null, Router="", Component="", Permission="formmanager:edit", Application="system", OpenType=MenuOpenType.NONE, Visible="Y", Weight=MenuWeight.SUPER_ADMIN_WEIGHT, Sort=100, Status=CommonStatus.ENABLE },
+
+                 new SysMenu{Id=285640599859269, Pid=285601600479301, Pids="[0],[285599875018821],[285601600479301],", Name="删除表单", Code="btn_formDesign_delete", Type=MenuType.BTN, Icon=null, Router="", Component="", Permission="formmanager:delete", Application="system", OpenType=MenuOpenType.NONE, Visible="Y", Weight=MenuWeight.SUPER_ADMIN_WEIGHT, Sort=100, Status=CommonStatus.ENABLE },
+
+                 new SysMenu{Id=285640740945989, Pid=285601600479301, Pids="[0],[285599875018821],[285601600479301],", Name="表单列表", Code="btn_formDesign_page", Type=MenuType.BTN, Icon=null, Router="", Component="", Permission="formmanager:page", Application="system", OpenType=MenuOpenType.NONE, Visible="Y", Weight=MenuWeight.SUPER_ADMIN_WEIGHT, Sort=100, Status=CommonStatus.ENABLE },
+
+                // 我的流程
+                new SysMenu{Id=286349479379013, Pid=0, Pids="[0],", Name="我的流程", Code="yw_myworkflow", Type=MenuType.MENU, Icon="branches", Router="/myworkflow", Component="system/myworkflow/index", Application="system", OpenType=MenuOpenType.COMPONENT, Visible="Y", Weight=MenuWeight.SUPER_ADMIN_WEIGHT, Sort=100, Status=CommonStatus.ENABLE },
+
+                new SysMenu{Id=286737175605317, Pid=286349479379013, Pids="[0],[286349479379013],", Name="审核", Code="btn_myworkflow_auditor", Type=MenuType.BTN, Icon="", Router="", Component="", Permission="auditorworkflow:auditor", Application="busiapp", OpenType=MenuOpenType.NONE, Visible="Y", Weight=MenuWeight.DEFAULT_WEIGHT, Sort=100, Status=CommonStatus.ENABLE },
+
+                new SysMenu{Id=286349479379013, Pid=286349479379013, Pids="[0],[286349479379013],", Name="我的任务", Code="myworkflow_auditor", Type=MenuType.BTN, Icon="", Router="", Component="", Permission="auditorworkflow:myworkflowlist", Application="busiapp", OpenType=MenuOpenType.NONE, Visible="Y", Weight=MenuWeight.DEFAULT_WEIGHT, Sort=100, Status=CommonStatus.ENABLE },
+
+                new SysMenu{Id=286349479379013, Pid=286349479379013, Pids="[0],[286349479379013],", Name="我发起的流程", Code="myworkflow_start", Type=MenuType.BTN, Icon="", Router="", Component="", Permission="workflowmanager:page", Application="busiapp", OpenType=MenuOpenType.NONE, Visible="Y", Weight=MenuWeight.DEFAULT_WEIGHT, Sort=100, Status=CommonStatus.ENABLE },
+
+
             };
         }
     }

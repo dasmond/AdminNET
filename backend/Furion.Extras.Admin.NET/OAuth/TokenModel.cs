@@ -50,6 +50,9 @@ namespace Furion.Extras.Admin.NET.OAuth
         public string ErrorDescription { get; set; }
     }
 
+    /// <summary>
+    /// AccessTokenModel扩展
+    /// </summary>
     public static class AccessTokenModelModelExtensions
     {
         /// <summary>

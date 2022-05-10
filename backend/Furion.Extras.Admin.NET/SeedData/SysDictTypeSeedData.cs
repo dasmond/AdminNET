@@ -42,6 +42,12 @@ namespace Furion.Extras.Admin.NET
                 new SysDictType{Id=142307070922829, Name="代码生成.NET类型", Code="code_gen_net_type", Sort=100, Remark="代码生成.NET类型", Status=0 },
                 new SysDictType{Id=142307070926941, Name="角色类型", Code="role_type", Sort=100, Remark="角色类型", Status=0 },
                 new SysDictType{Id=142307070926942, Name="机构类型", Code="org_type", Sort=100, Remark="机构类型", Status=0 },
+
+                new SysDictType{Id=285605149831237, Name="表单类型", Code="form_type", Sort=100, Remark="表单类型", Status=0 },
+
+                new SysDictType{Id=285641358889029, Name="流程分类", Code="workflow_group", Sort=100, Remark="流程分类", Status=0 },
+
+
             };
         }
     }
