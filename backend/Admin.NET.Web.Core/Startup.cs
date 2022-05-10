@@ -1,8 +1,8 @@
-﻿using Furion;
-using Furion.Extras.Admin.NET;
-using Furion.Extras.Admin.NET.Extension;
-using Furion.Extras.Admin.NET.Options;
-using Furion.Extras.Admin.NET.Service;
+﻿using Admin.NET.Application;
+using Admin.NET.Core;
+using Admin.NET.Core.Extension;
+using Admin.NET.Core.Options;
+using Furion;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpOverrides;
@@ -139,7 +139,7 @@ namespace Admin.NET.Web.Core
             YitIdHelper.SetIdGenerator(new IdGeneratorOptions { WorkerId = workerId });
 
             // 开启自启动定时任务
-            App.GetService<ISysTimerService>().StartTimerJob();
+            //App.GetService<ISysTimerService>().StartTimerJob();
         }
     }
 }

@@ -18,8 +18,7 @@ namespace Admin.NET.EntityFramework.Core
                 options.AddDbPool<DefaultDbContext>(providerName: default, optionBuilder: opt =>
                 {
                     // EF批量组件
-                    opt.UseBatchEF_MSSQL();
-                    //opt.UseBatchEF_Sqlite();
+                    opt.UseBatchEF_Sqlite();
                 });
                 options.AddDbPool<MultiTenantDbContext, MultiTenantDbContextLocator>();
             }, "Admin.NET.Database.Migrations");

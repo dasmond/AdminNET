@@ -1,8 +1,8 @@
 {
   "ConnectionStrings": {
     //Sqlite连接字符串
-    //"DefaultConnection": "Data Source=./Admin.NET.db",
-    //"MultiTenantConnection": "Data Source=./Admin.NET_SaaS.db"
+    "DefaultConnection": "Data Source=./Admin.NET.db",
+    "MultiTenantConnection": "Data Source=./Admin.NET_SaaS.db"
 
     //Npgsql连接字符串
     //"DefaultConnection": "HOST=localhost;PORT=5432;DATABASE=Admin.NET;PASSWORD=123456;USER ID=postgres;",

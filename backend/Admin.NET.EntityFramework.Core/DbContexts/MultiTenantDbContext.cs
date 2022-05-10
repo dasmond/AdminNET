@@ -1,7 +1,6 @@
+using Admin.NET.Core;
 using Furion;
 using Furion.DatabaseAccessor;
-using Furion.Extras.Admin.NET;
-using Furion.Extras.Admin.NET.Service;
 using Furion.FriendlyException;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
@@ -9,8 +8,7 @@ using Yitter.IdGenerator;
 
 namespace Admin.NET.EntityFramework.Core
 {
-    //[AppDbContext("MultiTenantConnection", DbProvider.Sqlite)]
-    [AppDbContext("MultiTenantConnection", DbProvider.SqlServer)]
+    [AppDbContext("MultiTenantConnection", DbProvider.Sqlite)]
     public class MultiTenantDbContext : AppDbContext<MultiTenantDbContext, MultiTenantDbContextLocator>
     {
         public MultiTenantDbContext(DbContextOptions<MultiTenantDbContext> options) : base(options)
@@ -25,13 +23,13 @@ namespace Admin.NET.EntityFramework.Core
                                     .ToList();
 
             // 判断是否是演示环境
-            var demoEnvFlag = App.GetService<ISysConfigService>().GetDemoEnvFlag().GetAwaiter().GetResult();
-            if (demoEnvFlag)
-            {
-                var sysUser = entities.Find(u => u.Entity.GetType() == typeof(SysUser));
-                if (sysUser == null || string.IsNullOrEmpty((sysUser.Entity as SysUser).LastLoginTime.ToString())) // 排除登录
-                    throw Oops.Oh(ErrorCode.D1200);
-            }
+            //var demoEnvFlag = App.GetService<ISysConfigService>().GetDemoEnvFlag().GetAwaiter().GetResult();
+            //if (demoEnvFlag)
+            //{
+            //    var sysUser = entities.Find(u => u.Entity.GetType() == typeof(SysUser));
+            //    if (sysUser == null || string.IsNullOrEmpty((sysUser.Entity as SysUser).LastLoginTime.ToString())) // 排除登录
+            //        throw Oops.Oh(ErrorCode.D1200);
+            //}
 
             // 当前操作用户信息
             var userId = App.User.FindFirst(ClaimConst.CLAINM_USERID)?.Value;
