@@ -4,99 +4,6 @@
         <name>Admin.NET.Application</name>
     </assembly>
     <members>
-        <member name="T:Admin.NET.Application.ChatHub">
-            <summary>
-            聊天集线器
-            </summary>
-        </member>
-        <member name="M:Admin.NET.Application.ChatHub.OnConnectedAsync">
-            <summary>
-            连接
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Admin.NET.Application.ChatHub.OnDisconnectedAsync(System.Exception)">
-            <summary>
-            断开
-            </summary>
-            <param name="exception"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Admin.NET.Application.ChatHub.ClientsSendMessage(Admin.NET.Application.MessageinputDto)">
-            <summary>
-            前端调用发送方法
-            发送信息给某个人
-            </summary>
-            <param name="_message"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Admin.NET.Application.ChatHub.ClientsSendMessagetoAll(Admin.NET.Application.MessageinputDto)">
-            <summary>
-            前端调用发送方法
-            发送信息给所有人
-            </summary>
-            <param name="_message"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Admin.NET.Application.ChatHub.ClientsSendMessagetoOther(Admin.NET.Application.MessageinputDto)">
-            <summary>
-            前端调用发送方法
-            发送消息给除了发送人的其他人
-            </summary>
-            <param name="_message"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Admin.NET.Application.ChatHub.ClientsSendMessagetoUsers(Admin.NET.Application.MessageinputDto)">
-            <summary>
-            前端调用发送方法
-            发送消息给某些人
-            </summary>
-            <param name="_message"></param>
-            <returns></returns>
-        </member>
-        <member name="P:Admin.NET.Application.MessageinputDto.userId">
-            <summary>
-            用户ID
-            </summary>
-        </member>
-        <member name="P:Admin.NET.Application.MessageinputDto.userIds">
-            <summary>
-            用户ID列表
-            </summary>
-        </member>
-        <member name="P:Admin.NET.Application.MessageinputDto.title">
-            <summary>
-            消息标题
-            </summary>
-        </member>
-        <member name="P:Admin.NET.Application.MessageinputDto.message">
-            <summary>
-            消息内容
-            </summary>
-        </member>
-        <member name="P:Admin.NET.Application.MessageinputDto.messageType">
-            <summary>
-            消息类型
-            </summary>
-        </member>
-        <member name="T:Admin.NET.Application.IChatClient">
-            <summary>
-            聊天客户端接口定义
-            </summary>
-        </member>
-        <member name="M:Admin.NET.Application.IChatClient.ForceExist">
-            <summary>
-            强制下线
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Admin.NET.Application.IChatClient.ReceiveMessage(System.Object)">
-            <summary>
-            发送信息
-            </summary>
-            <param name="context"></param>
-            <returns></returns>
-        </member>
         <member name="P:Admin.NET.Application.AppPageInput.Name">
             <summary>
             名称
@@ -303,7 +210,7 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Admin.NET.Application.AuthService.VerificationCode(Admin.NET.Core.ClickWordCaptchaInput)">
+        <member name="M:Admin.NET.Application.AuthService.VerificationCode(Admin.NET.Application.ClickWordCaptchaInput)">
             <summary>
             校验验证码
             </summary>
@@ -822,6 +729,104 @@
              </summary>
              <param name="cacheKey"></param>
              <returns></returns>
+        </member>
+        <member name="T:Admin.NET.Application.ClickWordCaptcha">
+            <summary>
+            点选验证码
+            </summary>
+        </member>
+        <member name="M:Admin.NET.Application.ClickWordCaptcha.CreateCaptchaImage(System.String,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            生成验证码图片
+            </summary>
+            <param name="code">文字</param>
+            <param name="width">图片宽度</param>
+            <param name="height">图片高度</param>
+            <param name="point">验证点数量，不能超过文字的长度</param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Application.ClickWordCaptcha.RandomCode(System.Int32)">
+            <summary>
+            随机绘制字符串
+            </summary>
+            <param name="number"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Application.ClickWordCaptcha.CheckCode(Admin.NET.Application.ClickWordCaptchaInput)">
+            <summary>
+            验证码验证
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Admin.NET.Application.PointPosModel">
+            <summary>
+            记录正确位置
+            </summary>
+        </member>
+        <member name="T:Admin.NET.Application.ClickWordCaptchaInput">
+            <summary>
+            点击验证码输入参数
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.ClickWordCaptchaInput.CaptchaType">
+            <summary>
+            验证码类型
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.ClickWordCaptchaInput.PointJson">
+            <summary>
+            坐标点集合
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.ClickWordCaptchaInput.Token">
+            <summary>
+            Token
+            </summary>
+        </member>
+        <member name="T:Admin.NET.Application.ClickWordCaptchaResult">
+            <summary>
+            验证码输出参数
+            </summary>
+        </member>
+        <member name="T:Admin.NET.Application.GeneralCaptcha">
+            <summary>
+            常规验证码
+            </summary>
+        </member>
+        <member name="M:Admin.NET.Application.GeneralCaptcha.CreateCaptchaImage(System.Int32)">
+            <summary>
+            生成验证码图片
+            </summary>
+            <param name="length"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Application.GeneralCaptcha.CheckCode(Admin.NET.Application.GeneralCaptchaInput)">
+            <summary>
+            验证码验证
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Admin.NET.Application.GeneralCaptchaInput">
+            <summary>
+            常规验证码输入
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.GeneralCaptchaInput.CaptchaType">
+            <summary>
+            验证码类型
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.GeneralCaptchaInput.CaptchaCode">
+            <summary>
+            验证码字符
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.GeneralCaptchaInput.Token">
+            <summary>
+            Token
+            </summary>
         </member>
         <member name="T:Admin.NET.Application.CodeGenConfigService">
             <summary>
@@ -2509,6 +2514,99 @@
             <param name="file">文件</param>
             <param name="key">对象存储键</param>
             <param name="fileLocation">文件存储位置</param>
+            <returns></returns>
+        </member>
+        <member name="T:Admin.NET.Application.ChatHub">
+            <summary>
+            聊天集线器
+            </summary>
+        </member>
+        <member name="M:Admin.NET.Application.ChatHub.OnConnectedAsync">
+            <summary>
+            连接
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Application.ChatHub.OnDisconnectedAsync(System.Exception)">
+            <summary>
+            断开
+            </summary>
+            <param name="exception"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Application.ChatHub.ClientsSendMessage(Admin.NET.Application.MessageinputDto)">
+            <summary>
+            前端调用发送方法
+            发送信息给某个人
+            </summary>
+            <param name="_message"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Application.ChatHub.ClientsSendMessagetoAll(Admin.NET.Application.MessageinputDto)">
+            <summary>
+            前端调用发送方法
+            发送信息给所有人
+            </summary>
+            <param name="_message"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Application.ChatHub.ClientsSendMessagetoOther(Admin.NET.Application.MessageinputDto)">
+            <summary>
+            前端调用发送方法
+            发送消息给除了发送人的其他人
+            </summary>
+            <param name="_message"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Application.ChatHub.ClientsSendMessagetoUsers(Admin.NET.Application.MessageinputDto)">
+            <summary>
+            前端调用发送方法
+            发送消息给某些人
+            </summary>
+            <param name="_message"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Admin.NET.Application.MessageinputDto.userId">
+            <summary>
+            用户ID
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.MessageinputDto.userIds">
+            <summary>
+            用户ID列表
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.MessageinputDto.title">
+            <summary>
+            消息标题
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.MessageinputDto.message">
+            <summary>
+            消息内容
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.MessageinputDto.messageType">
+            <summary>
+            消息类型
+            </summary>
+        </member>
+        <member name="T:Admin.NET.Application.IChatClient">
+            <summary>
+            聊天客户端接口定义
+            </summary>
+        </member>
+        <member name="M:Admin.NET.Application.IChatClient.ForceExist">
+            <summary>
+            强制下线
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Application.IChatClient.ReceiveMessage(System.Object)">
+            <summary>
+            发送信息
+            </summary>
+            <param name="context"></param>
             <returns></returns>
         </member>
         <member name="T:Admin.NET.Application.ExLogPageInput">

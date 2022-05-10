@@ -1,4 +1,5 @@
-﻿using Furion;
+﻿using Admin.NET.Core;
+using Furion;
 using Furion.DependencyInjection;
 using Furion.JsonSerialization;
 using Microsoft.Extensions.Caching.Memory;

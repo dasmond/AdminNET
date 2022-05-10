@@ -1,4 +1,5 @@
-﻿using Furion.DependencyInjection;
+﻿using Admin.NET.Core;
+using Furion.DependencyInjection;
 using Microsoft.Extensions.Caching.Memory;
 using System.Drawing;
 using System.Drawing.Imaging;
