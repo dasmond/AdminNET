@@ -1,6 +1,6 @@
 ﻿
 using Admin.NET.Demo.Application.Entity;
-using ServiceCore.Shared.SqlSugar;
+using ServiceCore.Shared ;
 using System;
 using System.Collections.Generic;
 

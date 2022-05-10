@@ -1,4 +1,4 @@
-﻿namespace ServiceCore.Shared.Const
+﻿namespace ServiceCore.Shared
 {
     /// <summary>
     /// Claim相关常量

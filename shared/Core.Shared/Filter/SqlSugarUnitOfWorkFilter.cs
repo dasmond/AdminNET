@@ -4,7 +4,7 @@ using SqlSugar;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ServiceCore.Shared.Filter
+namespace ServiceCore.Shared
 {
     /// <summary>
     /// SqlSugar工作单元拦截器
@@ -56,7 +56,7 @@ namespace ServiceCore.Shared.Filter
             }
             else
             {
-                var attribute = method.GetCustomAttributes(typeof(SqlSugarUnitOfWorkAttribute), true).FirstOrDefault() as SqlSugarUnitOfWorkAttribute;
+                var attribute = (method.GetCustomAttributes(typeof(SqlSugarUnitOfWorkAttribute), true).FirstOrDefault() as SqlSugarUnitOfWorkAttribute);
 
                 // 开启事务
                 _sqlSugarClient.Ado.BeginTran(attribute.IsolationLevel);

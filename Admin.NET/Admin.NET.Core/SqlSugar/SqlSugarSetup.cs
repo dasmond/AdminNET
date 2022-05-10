@@ -240,7 +240,9 @@ namespace Admin.NET.Core
             if (string.IsNullOrWhiteSpace(userId)) return;
 
             // 获取用户机构Id集合
-            var orgIds = await App.GetService<SysCacheService>().GetOrgIdList(long.Parse(userId));
+            var orgIds = App.User?.FindFirst(ClaimConst.OrgId)?.Value
+                .Split(',', StringSplitOptions.RemoveEmptyEntries)
+                .Select(m => long.Parse(m));
             if (orgIds == null) return;
 
             foreach (var dataEntityType in dataEntityTypes)
