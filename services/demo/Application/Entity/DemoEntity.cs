@@ -2,9 +2,7 @@
  
 using SqlSugar;
 using System.ComponentModel.DataAnnotations;
-using System;
-using Admin.NET.Demo.Application.Const; 
-using ServiceCore.Shared.Entities;
+using System; 
 using ServiceCore.Shared;
 
 namespace Admin.NET.Demo.Application.Entity

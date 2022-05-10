@@ -8,9 +8,7 @@ using Furion.DynamicApiController;
 using Furion.RemoteRequest.Extensions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration; 
-using ServiceCore.Shared;
-using ServiceCore.Shared.Const;
-using ServiceCore.Shared.SqlSugar;
+using ServiceCore.Shared; 
 using System;
 using System.Collections.Generic;
 using System.Security.Claims;
@@ -66,7 +64,6 @@ namespace Admin.NET.Demo.Application.Serice
             await App.GetService<IEventBus>().PublishAsync(new AddOpLogEvent( 
                 false,"localhost",String.Empty,"Chrome","win64", "/test/TestSendEvent",
                 "DemoService", "TestSendEvent", "Get",String.Empty,String.Empty,10,
-                App.User == null ? 0 : long.Parse(App.User.FindFirstValue(ClaimConst.UserId)),
                 App.User?.FindFirstValue(ClaimConst.UserName),
                  App.User?.FindFirstValue(ClaimConst.RealName)
                 )); 

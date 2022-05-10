@@ -1,8 +1,7 @@
 ﻿using Furion.DataValidation;
 using System.ComponentModel.DataAnnotations;
 
-
-namespace ServiceCore.Shared.Util
+namespace ServiceCore.Shared
 {
     /// <summary>
     /// 主键Id输入参数

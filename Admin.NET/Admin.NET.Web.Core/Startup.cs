@@ -17,7 +17,7 @@ namespace Admin.NET.Web.Core
     public class Startup : AppStartup
     {
         public void ConfigureServices(IServiceCollection services)
-        {   
+        {
             services.AddConfigurableOptions<ConnectionStringsOptions>();
             services.AddConfigurableOptions<RefreshTokenOptions>();
             services.AddConfigurableOptions<SnowIdOptions>();
@@ -38,7 +38,6 @@ namespace Admin.NET.Web.Core
             services.AddTaskScheduler();
 
             services.AddControllersWithViews()
-                .AddDapr()
                 .AddMvcFilter<RequestActionFilter>()
                 .AddJsonOptions(options =>
                 {
@@ -56,7 +55,7 @@ namespace Admin.NET.Web.Core
                 builder.AddSubscriber<LogEventSubscriber>();
             });
 
-            // 注册OSS对象存储            
+            // 注册OSS对象存储
             services.AddOSSService(option =>
             {
                 var ossOptions = App.GetOptions<OSSProviderOptions>();
@@ -109,13 +108,11 @@ namespace Admin.NET.Web.Core
 
             app.UseInject();
 
-            app.UseCloudEvents();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
-                endpoints.MapSubscribeHandler();
             });
 
             // 设置雪花Id算法机器码

@@ -33,7 +33,6 @@ public record AddExLogEvent(
     string ExceptionSource,
     string StackTrace,
     string ParamsObj,
-    long UserId,
     string UserName,
     string RealName)
     : IntegrationEvent;
@@ -67,8 +66,7 @@ public record AddOpLogEvent(
     string ReqMethod,
     string Param,
     string Result,
-    long ElapsedTime,
-    long UserId,
+    long ElapsedTime, 
     string UserName,
     string RealName)
     : IntegrationEvent;

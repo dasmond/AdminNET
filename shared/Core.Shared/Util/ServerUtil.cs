@@ -8,8 +8,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
-
-namespace ServiceCore.Shared.Util
+namespace ServiceCore.Shared
 {
     /// <summary>
     /// 服务器信息
@@ -22,7 +21,7 @@ namespace ServiceCore.Shared.Util
         /// <returns></returns>
         public static dynamic GetServerBaseInfo()
         {
-            var furionAssembly = typeof(App).Assembly.GetName();
+            var furionAssembly = typeof(Furion.App).Assembly.GetName();
             var sqlSugarAssembly = typeof(ISqlSugarClient).Assembly.GetName();
             return new
             {

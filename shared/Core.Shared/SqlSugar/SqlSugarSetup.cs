@@ -1,11 +1,7 @@
 ﻿using Furion;
 using Furion.FriendlyException;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using ServiceCore.Shared.Const;
-using ServiceCore.Shared.Entities;
-using ServiceCore.Shared.Extension;
-using ServiceCore.Shared.Option;
+using Microsoft.Extensions.DependencyInjection; 
 using SqlSugar;
 using System;
 using System.Collections;
@@ -18,7 +14,7 @@ using System.Linq.Expressions;
 using System.Reflection;
 
 
-namespace ServiceCore.Shared.SqlSugar
+namespace ServiceCore.Shared
 {
     public static class SqlSugarSetup
     {
@@ -127,9 +123,13 @@ namespace ServiceCore.Shared.SqlSugar
                             }
                         };
 
-                        //// 配置业务数据过滤器
-                        //SetDataEntityFilter(dbProvider);
-                        // 配置租户过滤器
+                        // 配置实体假删除过滤器
+                        SetDeletedEntityFilter(dbProvider);
+                        // 配置实体机构过滤器
+                        SetOrgEntityFilter(dbProvider);
+                        // 配置自定义实体过滤器
+                        SetCustomEntityFilter(dbProvider);
+                        // 配置租户实体过滤器
                         SetTenantEntityFilter(dbProvider);
                     });
                 });
@@ -149,7 +149,6 @@ namespace ServiceCore.Shared.SqlSugar
         {
             // 创建系统默认数据库
             db.DbMaintenance.CreateDatabase();
-
             // 创建其他业务数据库
             dbOptions.DbConfigs.ForEach(config =>
             {
@@ -211,36 +210,72 @@ namespace ServiceCore.Shared.SqlSugar
             return !type.IsDefined(typeof(SqlSugarEntityAttribute), true) ? 0 : type.GetCustomAttribute<SqlSugarEntityAttribute>(true).Order;
         }
 
-        ///// <summary>
-        ///// 配置业务数据表过滤器
-        ///// </summary>
-        //public static async void SetDataEntityFilter(SqlSugarProvider db)
-        //{
-        //    // 获取业务数据表集合
-        //    var dataEntityTypes = App.EffectiveTypes.Where(u => !u.IsInterface && !u.IsAbstract && u.IsClass
-        //        && u.BaseType == typeof(DataEntityBase));
-        //    if (!dataEntityTypes.Any()) return;
+        /// <summary>
+        /// 配置实体假删除过滤器
+        /// </summary>
+        public static void SetDeletedEntityFilter(SqlSugarProvider db)
+        {
+            // 获取所有继承基类数据表集合
+            var entityTypes = App.EffectiveTypes.Where(u => !u.IsInterface && !u.IsAbstract && u.IsClass
+                && u.BaseType == typeof(EntityBase));
+            if (!entityTypes.Any()) return;
 
-        //    var userId = App.User?.FindFirst(ClaimConst.UserId)?.Value;
-        //    if (string.IsNullOrWhiteSpace(userId)) return;
-
-        //    // 获取用户机构Id集合
-        //    var orgIds = await App.GetService<SysCacheService>().GetOrgIdList(long.Parse(userId));
-        //    if (orgIds == null) return;
-
-        //    foreach (var dataEntityType in dataEntityTypes)
-        //    {
-        //        foreach (var orgId in orgIds)
-        //        {
-        //            Expression<Func<DataEntityBase, bool>> dynamicExpression = u => u.CreateOrgId == orgId;
-        //            Expression exp = dynamicExpression;
-        //            db.QueryFilter.Add(new TableFilterItem<object>(dataEntityType, exp)); // 设置表过滤器 
-        //        }
-        //    }
-        //}
+            foreach (var entityType in entityTypes)
+            {
+                Expression<Func<DataEntityBase, bool>> dynamicExpression = u => u.IsDelete == false;
+                db.QueryFilter.Add(new TableFilterItem<object>(entityType, dynamicExpression));
+            }
+        }
 
         /// <summary>
-        /// 配置租户过滤器
+        /// 配置实体机构过滤器
+        /// </summary>
+        public static async void SetOrgEntityFilter(SqlSugarProvider db)
+        {
+            // 获取业务数据表集合
+            var dataEntityTypes = App.EffectiveTypes.Where(u => !u.IsInterface && !u.IsAbstract && u.IsClass
+                && u.BaseType == typeof(DataEntityBase));
+            if (!dataEntityTypes.Any()) return;
+
+            var userId = App.User?.FindFirst(ClaimConst.UserId)?.Value;
+            if (string.IsNullOrWhiteSpace(userId)) return;
+
+            // 获取用户机构Id集合
+            var orgIds = App.User?.FindFirst(ClaimConst.OrgId)?.Value
+                .Split(',', StringSplitOptions.RemoveEmptyEntries)
+                .Select(m=>long.Parse(m));
+            if (orgIds == null) return;
+
+            foreach (var dataEntityType in dataEntityTypes)
+            {
+                Expression<Func<DataEntityBase, bool>> dynamicExpression = u => orgIds.Contains((long)u.CreateOrgId);
+                db.QueryFilter.Add(new TableFilterItem<object>(dataEntityType, dynamicExpression));
+            }
+        }
+
+        /// <summary>
+        /// 配置自定义实体过滤器
+        /// </summary>
+        public static void SetCustomEntityFilter(SqlSugarProvider db)
+        {
+            // 获取继承自定义实体过滤器接口的类集合
+            var entityFilterTypes = App.EffectiveTypes.Where(u => !u.IsInterface && !u.IsAbstract && u.IsClass
+                && u.GetInterfaces().Any(i => i.HasImplementedRawGeneric(typeof(IEntityFilter))));
+            if (!entityFilterTypes.Any()) return;
+
+            foreach (var entityFilter in entityFilterTypes)
+            {
+                var instance = Activator.CreateInstance(entityFilter);
+                var entityFilterMethod = entityFilter.GetMethod("AddEntityFilter");
+                var entityFilters = ((IList)entityFilterMethod?.Invoke(instance, null))?.Cast<object>();
+                if (entityFilters == null) continue;
+                foreach (TableFilterItem<object> filter in entityFilters)
+                    db.QueryFilter.Add(filter);
+            }
+        }
+
+        /// <summary>
+        /// 配置租户实体过滤器
         /// </summary>
         public static void SetTenantEntityFilter(SqlSugarProvider db)
         {
@@ -255,8 +290,7 @@ namespace ServiceCore.Shared.SqlSugar
             foreach (var dataEntityType in dataEntityTypes)
             {
                 Expression<Func<EntityTenant, bool>> dynamicExpression = u => u.TenantId == long.Parse(tenantId);
-                Expression exp = dynamicExpression;
-                db.QueryFilter.Add(new TableFilterItem<object>(dataEntityType, exp)); // 设置表过滤器 
+                db.QueryFilter.Add(new TableFilterItem<object>(dataEntityType, dynamicExpression));
             }
         }
 
@@ -282,14 +316,5 @@ namespace ServiceCore.Shared.SqlSugar
             var file = Path.GetFileName(dbConnection.Replace("DataSource=", ""));
             return $"DataSource={Environment.CurrentDirectory.Replace(@"\bin\Debug", "")}\\{file}";
         }
-
-        ///// <summary>
-        ///// 判断是否演示环境
-        ///// </summary>
-        ///// <returns></returns>
-        //private static bool IsDemoEnv()
-        //{
-        //    return App.GetService<SysConfigService>().GetDemoEnvFlag().GetAwaiter().GetResult() ? throw Oops.Oh(ErrorCodeEnum.D1200) : false;
-        //}
     }
 }

@@ -203,7 +203,6 @@ namespace Admin.NET.Core.Service.CodeGen
                 var joinTableList = tableFieldList.Where(u => u.EffectType == "Upload" || u.EffectType == "fk").ToList();//需要连表查询的字段
                 (string joinTableNames, string lowerJoinTableNames) = GetJoinTableStr(joinTableList);//获取连表的实体名和别名
 
-
                 var data = new CustomViewEngine(_sysCodeGenRep)
                 {
                     AuthorName = input.AuthorName,
@@ -330,7 +329,7 @@ namespace Admin.NET.Core.Service.CodeGen
                 Pid = pid1,
                 Title = busName + "编辑",
                 Type = MenuTypeEnum.Btn,
-                Permission = className + ":edit",
+                Permission = className + ":update",
             };
 
             var menuList = new List<SysMenu>() { menuType2, menuType2_1, menuType2_2, menuType2_3, menuType2_4 };
