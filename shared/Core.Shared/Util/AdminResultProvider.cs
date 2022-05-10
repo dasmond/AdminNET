@@ -10,8 +10,7 @@ using Microsoft.AspNetCore.Mvc.Filters;
 using System;
 using System.Threading.Tasks;
 
-
-namespace ServiceCore.Shared.Util
+namespace ServiceCore.Shared
 {
     /// <summary>
     /// 全局规范化结果

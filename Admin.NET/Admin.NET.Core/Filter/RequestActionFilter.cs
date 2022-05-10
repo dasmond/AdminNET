@@ -1,4 +1,6 @@
-﻿using Furion.EventBus;
+﻿using Admin.NET.Core.Service;
+using Furion;
+using Furion.EventBus;
 using Furion.JsonSerialization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -25,13 +27,17 @@ namespace Admin.NET.Core
 
         public async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
         {
-            var httpContext = context.HttpContext;
-            var httpRequest = httpContext.Request;
-
             var sw = new Stopwatch();
             sw.Start();
             var actionContext = await next();
             sw.Stop();
+
+            // 是否开启操作日志
+            var value = await App.GetService<SysConfigService>().GetConfigCache(CommonConst.SysOpLogFlag);
+            if (string.IsNullOrWhiteSpace(value) || !bool.Parse(value)) return;
+
+            var httpContext = context.HttpContext;
+            var httpRequest = httpContext.Request;
 
             var isRequestSucceed = actionContext.Exception == null; // 判断是否请求成功（没有异常就是成功）
             var headers = httpRequest.Headers;
@@ -44,7 +50,7 @@ namespace Admin.NET.Core
                 {
                     Success = isRequestSucceed ? YesNoEnum.Y : YesNoEnum.N,
                     Ip = ip,
-                    Location = "", // httpRequest.GetRequestUrlAddress(),
+                    Location = httpRequest.GetRequestUrlAddress(),
                     Browser = clientInfo?.UA.Family + clientInfo?.UA.Major,
                     Os = clientInfo?.OS.Family + clientInfo?.OS.Major,
                     Url = httpRequest.Path,
@@ -53,7 +59,7 @@ namespace Admin.NET.Core
                     ReqMethod = httpRequest.Method,
                     Param = context.ActionArguments.Count < 1 ? string.Empty : JSON.Serialize(context.ActionArguments),
                     Result = actionContext.Result?.GetType() == typeof(JsonResult) ? JSON.Serialize(actionContext.Result) : string.Empty,
-                    ElapsedTime = sw.ElapsedMilliseconds,
+                    ElapsedTime = sw.ElapsedMilliseconds,                    
                     UserName = httpContext.User?.FindFirstValue(ClaimConst.UserName),
                     RealName = httpContext.User?.FindFirstValue(ClaimConst.RealName)
                 }));

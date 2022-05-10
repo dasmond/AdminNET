@@ -1,7 +1,6 @@
 ﻿using System.Diagnostics;
 
-
-namespace ServiceCore.Shared.Util
+namespace ServiceCore.Shared
 {
     /// <summary>
     /// 系统Shell命令

@@ -2,11 +2,10 @@
 using Furion.Authorization;
 using Furion.DataEncryption;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
-using ServiceCore.Shared.Option;
+using Microsoft.AspNetCore.Http; 
 using System.Threading.Tasks;
 
-namespace ServiceCore.Shared.Handlers
+namespace ServiceCore.Shared
 {
     public class JwtHandler : AppAuthorizeHandler
     {

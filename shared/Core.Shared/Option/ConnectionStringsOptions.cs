@@ -1,7 +1,7 @@
 ﻿using Furion.ConfigurableOptions;
 using System.Collections.Generic;
 
-namespace ServiceCore.Shared.Option
+namespace ServiceCore.Shared
 {
     /// <summary>
     /// 数据库链接配置
@@ -11,7 +11,7 @@ namespace ServiceCore.Shared.Option
         /// <summary>
         /// 默认数据库编号
         /// </summary>
-        public string DefaultConfigId { get; set; }
+        public string DefaultConfigId { get; set; } = SqlSugarConst.ConfigId;
 
         /// <summary>
         /// 默认数据库类型

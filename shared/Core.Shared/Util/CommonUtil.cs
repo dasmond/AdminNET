@@ -3,8 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 
-
-namespace ServiceCore.Shared.Util
+namespace ServiceCore.Shared
 {
     /// <summary>
     /// 通用工具类

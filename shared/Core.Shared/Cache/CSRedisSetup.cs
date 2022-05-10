@@ -4,11 +4,9 @@ using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Caching.Redis;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Options;
-using ServiceCore.Shared;
-using ServiceCore.Shared.Option;
+using Microsoft.Extensions.Options; 
 
-namespace ServiceCore.Shared.Cache
+namespace ServiceCore.Shared
 {
     public static class CSRedisSetup
     {
@@ -23,11 +21,10 @@ namespace ServiceCore.Shared.Cache
                 var cacheOptions = App.GetOptions<CacheOptions>();
                 if (cacheOptions.CacheType == CacheTypeEnum.RedisCache.ToString())
                 {
-                    string redisStr = $"{cacheOptions.RedisConnectionString},prefix={cacheOptions.InstanceName}";
+                    var redisStr = $"{cacheOptions.RedisConnectionString},prefix={cacheOptions.InstanceName}";
 
                     var redis = new CSRedisClient(redisStr);
                     RedisHelper.Initialization(redis);
-
                     return new CSRedisCache(redis);
                 }
                 else // 默认使用内存

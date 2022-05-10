@@ -3,8 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-
-namespace ServiceCore.Shared.SqlSugar
+namespace ServiceCore.Shared
 {
     /// <summary>
     /// 分页泛型集合

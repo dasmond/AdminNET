@@ -1,4 +1,4 @@
-﻿namespace ServiceCore.Shared.Util
+﻿namespace ServiceCore.Shared
 {
     /// <summary>
     /// 全局分页查询输入参数

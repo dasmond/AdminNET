@@ -2,11 +2,10 @@
 using System;
 using System.Data;
 
-
 namespace ServiceCore.Shared
 {
     /// <summary>
-    /// SqlSugar 工作单元配置特性
+    /// SqlSugar工作单元配置特性
     /// </summary>
     [SuppressSniffer, AttributeUsage(AttributeTargets.Method, Inherited = true)]
     public class SqlSugarUnitOfWorkAttribute : Attribute
