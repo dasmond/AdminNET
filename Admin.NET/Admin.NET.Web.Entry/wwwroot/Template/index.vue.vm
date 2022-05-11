@@ -1,9 +1,28 @@
-<template>
-  <div>
-    <BasicTable @@register="registerTable">
+<template>	
+	  @if(@Model.HasTree ){
+      @:<PageWrapper dense contentFullHeight contentClass="flex">
+	      @:<OrgTree  @@select="handleSelect" class="w-1/4 xl:w-1/5"  ref="OrgTreeChild"/>
+	      @:<BasicTable @@register="registerTable"  class="w-3/4 xl:w-4/5"  :searchInfo="searchInfo">
+	  }
+	  @if(!@Model.HasTree ){
+   @:<div>
+		@:<BasicTable @@register="registerTable" :searchInfo="searchInfo">
+	  }
+	  
       <template #toolbar>
-        <a-button type="primary" @@click="handleCreate" :disabled="!hasPermission('@(@Model.ClassName):add')">新增@(@Model.BusName)</a-button>
-      </template>
+		  @if(@Model.HasDatePicker ){
+		  @:<a-button type="primary" @@click="handleLastday" >上一天</a-button>
+		  <a-button type="primary" @@click="handleNextday" >下一天</a-button>
+		  <a-button type="primary" @@click="handleLastMonth" >上一月</a-button>
+		  <a-button type="primary" @@click="handleNextMonth" >下一月</a-button>
+		  <br />
+		  }
+		  
+		  @foreach (var column in Model.ChoosedElements){
+		  @:<a-button type="primary" @@click="handleCreate" :disabled="!hasPermission('@(@Model.ClassName):@(@column)')">@(@column)</a-button>
+		  }		  
+	  </template>
+		
 @foreach (var column in Model.TableField){
 if(@column.EffectType == "Upload"){
       @:<template #@(@column.LowerColumnName)="{ text, record }">
@@ -41,11 +60,17 @@ if(@column.EffectType == "Upload"){
       </template>
     </BasicTable>
     <@(@Model.ClassName)Modal @@register="registerModal" @@success="handleSuccess" />
-  </div>
+	@if(@Model.HasTree ){
+    @: </PageWrapper>
+	}
+    @if(!@Model.HasTree ){
+  @:</div>
+	}
 </template>
 <script lang="ts">
-  import { defineComponent } from 'vue';
+  import { defineComponent, reactive, ref, unref } from 'vue';
   import { usePermission } from '/@@/hooks/web/usePermission';
+  
   @if(Model.IsUpload){
   @:import { BasicTable, useTable, TableAction, TableImg } from '/@@/components/Table';
   }else{
@@ -53,20 +78,39 @@ if(@column.EffectType == "Upload"){
   }
   import { useModal } from '/@@/components/Modal';
   import @(@Model.ClassName)Modal from './dataModal.vue';
+  @if(Model.HasTree){
+  @:import { PageWrapper } from '/@@/components/Page';
+  @:import OrgTree from '/@@/views/sys/admin/user/OrgTree.vue';
+
+  }
+  
 
   import { columns, searchFormSchema } from './data.data';
   import { useMessage } from '/@@/hooks/web/useMessage';
   import { get@(@Model.ClassName)PageList, delete@(@Model.ClassName) } from '/@@/api/main/@(@Model.ClassName)';
   export default defineComponent({
   @if(Model.IsUpload){
-    @:components: { BasicTable, @(@Model.ClassName)Modal, TableAction, TableImg },
+    @:components: { BasicTable, @(@Model.ClassName)Modal, TableAction,TableImg 
+	  if(Model.HasTree){
+           @:,OrgTree, PageWrapper
+        }
+        @:},
   }else{
-     @:components:{ BasicTable, @(@Model.ClassName)Modal, TableAction },
+     @:components:{ BasicTable, @(@Model.ClassName)Modal, TableAction
+	  if(Model.HasTree){
+           @:,OrgTree, PageWrapper
+        }
+        @:},
   }
     setup() {
       const { hasPermission } = usePermission();
       const { createMessage } = useMessage();
       const [registerModal, { openModal }] = useModal();
+      const searchInfo = reactive<Recordable>({});
+	
+	  @if(Model.HasTree){
+      @:const OrgTreeChild = ref(null);
+	  }
       const [registerTable, { reload }] = useTable({
         title: '@(@Model.BusName)列表',
         api: get@(@Model.ClassName)PageList,
@@ -111,17 +155,42 @@ if(@column.EffectType == "Upload"){
       function handleSuccess() {
         reload();
       }
+	  @if(Model.HasDatePicker ){
+	      @:function handleLastday() {
+            @:reload();
+          @:}
+	      @:function handleNextday() {
+            @:reload();
+          @:}
+	      @:function handleLastMonth() {
+            @:reload();
+          @:}
+	      @:function handleNextMonth() {
+            @:reload();
+          @:}
+	  }
       return {
         hasPermission,
         registerTable,
+        searchInfo,
         registerModal,
         handleCreate,
         handleEdit,
         handleDelete,
         handleSuccess,
+		@if(Model.HasTree){
+        @:OrgTreeChild,
+	  }
+		@if(Model.HasDatePicker ){
+        @:handleLastday,
+        @:handleNextday,
+        @:handleLastMonth,
+        @:handleNextMonth,
+		}
 @if(@Model.IsUpload){
         @:downUrl: import.meta.env.VITE_GLOB_DOWNLOAD_URL,
 }
+
       };
     },
   });

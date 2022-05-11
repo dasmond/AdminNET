@@ -36,7 +36,7 @@
     <CodeGenerateModal @register="registerCodeGenModal" @success="handleSuccess" />
     <GenerateConfigModal
       @register="registerCodeGenConfigModal"
-      width="80%"
+      width="100%"
       @success="handleSuccess"
     />
   </div>

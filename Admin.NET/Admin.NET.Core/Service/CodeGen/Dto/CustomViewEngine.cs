@@ -42,6 +42,12 @@ namespace Admin.NET.Core.Service
         public bool IsJoinTable { get; set; }
 
         public bool IsUpload { get; set; }
+
+        public bool HasTree { get; set; }
+
+        public bool HasDatePicker { get; set; }
+
+        public List<string> ChoosedElements { get; set; }
         private List<TableColumnOuput> ColumnList { get; set; }
 
 

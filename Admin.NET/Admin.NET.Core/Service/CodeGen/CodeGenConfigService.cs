@@ -30,8 +30,9 @@ namespace Admin.NET.Core.Service
         [HttpGet("/sysCodeGenerateConfig/list")]
         public async Task<List<CodeGenConfig>> List([FromQuery] CodeGenConfig input)
         {
-            return await _sysCodeGenConfigRep.AsQueryable().Where(u => u.CodeGenId == input.CodeGenId && u.WhetherCommon != YesNoEnum.Y.ToString())
+            var res = await _sysCodeGenConfigRep.AsQueryable().Where(u => u.CodeGenId == input.CodeGenId && u.WhetherCommon != YesNoEnum.Y.ToString())
               .Select<CodeGenConfig>().ToListAsync();
+            return res;
         }
 
         /// <summary>

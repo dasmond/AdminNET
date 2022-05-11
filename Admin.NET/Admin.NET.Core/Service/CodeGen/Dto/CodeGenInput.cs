@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Admin.NET.Core.Service
 {
@@ -56,6 +57,22 @@ namespace Admin.NET.Core.Service
         /// 菜单父级
         /// </summary>
         public virtual long MenuPid { get; set; }
+
+        /// <summary>
+        /// 选择自定义组件
+        /// </summary>
+        public virtual List<string> ChoosedElements { get; set; }
+
+        /// <summary>
+        /// 选择自定义组件
+        /// </summary>
+        public virtual bool HasTree { get; set; }
+
+        /// <summary>
+        /// 选择自定义组件
+        /// </summary>
+        public virtual bool HasDatePicker { get; set; }
+
     }
 
     public class AddCodeGenInput : CodeGenInput
@@ -113,6 +130,18 @@ namespace Admin.NET.Core.Service
         /// </summary>
         [Required(ErrorMessage = "菜单父级不能为空")]
         public override long MenuPid { get; set; }
+
+        /// <summary>
+        /// 选择额外组件
+        /// </summary>
+        public override List<string> ChoosedElements { get; set; }
+
+
+        ///// <summary>
+        ///// 选择额外组件显示
+        ///// </summary>
+        //public override List<string> chooseElementList { get; set; }
+
     }
 
     public class DeleteCodeGenInput

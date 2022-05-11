@@ -316,6 +316,21 @@
             菜单编码
             </summary>
         </member>
+        <member name="P:Admin.NET.Core.SysCodeGen.ChoosedElements">
+            <summary>
+            选择其他自定义组件
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.SysCodeGen.HasTree">
+            <summary>
+            树控件
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.SysCodeGen.HasDatePicker">
+            <summary>
+            日期控件
+            </summary>
+        </member>
         <member name="T:Admin.NET.Core.SysCodeGenConfig">
             <summary>
             代码生成字段配置表
@@ -869,6 +884,11 @@
         <member name="P:Admin.NET.Core.SysMenu.OrderNo">
             <summary>
             排序
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.SysMenu.CodeGenId">
+            <summary>
+            代码自动生成ID
             </summary>
         </member>
         <member name="P:Admin.NET.Core.SysMenu.Children">
@@ -3272,6 +3292,21 @@
             菜单父级
             </summary>
         </member>
+        <member name="P:Admin.NET.Core.Service.CodeGenInput.ChoosedElements">
+            <summary>
+            选择自定义组件
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.Service.CodeGenInput.HasTree">
+            <summary>
+            选择自定义组件
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.Service.CodeGenInput.HasDatePicker">
+            <summary>
+            选择自定义组件
+            </summary>
+        </member>
         <member name="P:Admin.NET.Core.Service.AddCodeGenInput.TableName">
             <summary>
             数据库表名
@@ -3300,6 +3335,11 @@
         <member name="P:Admin.NET.Core.Service.AddCodeGenInput.MenuPid">
             <summary>
             菜单父级
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.Service.AddCodeGenInput.ChoosedElements">
+            <summary>
+            选择额外组件
             </summary>
         </member>
         <member name="P:Admin.NET.Core.Service.DeleteCodeGenInput.Id">

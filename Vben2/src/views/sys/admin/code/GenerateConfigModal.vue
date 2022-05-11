@@ -19,7 +19,7 @@
       :scroll="{ y: true }"
     >
       <template #columnComment="{ record }">
-        <a-input v-model:value="record.columnComment" />
+        <a-input style="width: 150px" v-model:value="record.columnComment" />
       </template>
       <template #effectType="{ record }">
         <a-select

@@ -36,7 +36,7 @@
       const checkedKeys = ref<Array<string | number>>([]);
       const [registerTable, { getForm }] = useTable({
         title: '开启搜索区域',
-        api: demoListApi,
+        // api: demoListApi,
         columns: getBasicColumns(),
         useSearchForm: true,
         formConfig: getFormConfig(),

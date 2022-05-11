@@ -1,4 +1,5 @@
 ﻿using SqlSugar;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Admin.NET.Core
@@ -57,5 +58,27 @@ namespace Admin.NET.Core
         /// </summary>
         [SugarColumn(ColumnDescription = "菜单编码")]
         public long MenuPid { get; set; }
+
+        /// <summary>
+        /// 选择其他自定义组件
+        /// </summary>
+        [SugarColumn(ColumnDescription = "选择其他自定义组件")]
+        public string ChoosedElements { get; set; }
+
+        /// <summary>
+        /// 树控件
+        /// </summary>
+        [SugarColumn(ColumnDescription = "树控件")]
+        public bool HasTree { get; set; }
+
+
+        /// <summary>
+        /// 日期控件
+        /// </summary>
+        [SugarColumn(ColumnDescription = "日期控件")]
+        public bool HasDatePicker { get; set; }
+
+        
+
     }
 }

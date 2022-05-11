@@ -22,10 +22,13 @@
     setup(_, { emit }) {
       const isUpdate = ref(true);
       const [registerForm, { resetFields, setFieldsValue, validate }] = useForm({
-        labelWidth: 100,
+        labelWidth: 150,
         schemas: codeFormSchema,
         showActionButtonGroup: false,
-        baseColProps: { lg: 12, md: 24 },
+        wrapperCol: {
+          span: 24,
+        },
+        // baseColProps: { lg: 12, md: 24 },
       });
 
       const [registerModal, { setModalProps, closeModal }] = useModalInner(async (data) => {
@@ -34,6 +37,10 @@
         isUpdate.value = !!data?.isUpdate;
 
         if (unref(isUpdate)) {
+          if (!Array.isArray(data.record?.choosedElements)) {
+            var elements=data.record.choosedElements.split(',');
+            data.record.choosedElements = elements
+          }
           setFieldsValue({
             ...data.record,
           });

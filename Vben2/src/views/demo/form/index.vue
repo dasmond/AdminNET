@@ -351,7 +351,7 @@
       field: 'field30',
       component: 'ApiSelect',
       label: '懒加载远程下拉',
-      required: true,
+      required: false,
       componentProps: {
         // more details see /src/components/Form/src/components/ApiSelect.vue
         api: optionsListApi,
@@ -383,7 +383,7 @@
       component: 'Input',
       label: '下拉本地搜索',
       helpMessage: ['ApiSelect组件', '远程数据源本地搜索', '只发起一次请求获取所有选项'],
-      required: true,
+      required: false,
       slot: 'localSearch',
       colProps: {
         span: 8,
@@ -395,7 +395,7 @@
       component: 'Input',
       label: '下拉远程搜索',
       helpMessage: ['ApiSelect组件', '将关键词发送到接口进行远程搜索'],
-      required: true,
+      required: false,
       slot: 'remoteSearch',
       colProps: {
         span: 8,
@@ -407,7 +407,7 @@
       component: 'ApiTreeSelect',
       label: '远程下拉树',
       helpMessage: ['ApiTreeSelect组件', '使用接口提供的数据生成选项'],
-      required: true,
+      required: false,
       componentProps: {
         api: treeOptionsListApi,
         resultField: 'list',
@@ -421,7 +421,7 @@
       component: 'ApiRadioGroup',
       label: '远程Radio',
       helpMessage: ['ApiRadioGroup组件', '使用接口提供的数据生成选项'],
-      required: true,
+      required: false,
       componentProps: {
         api: optionsListApi,
         params: {
@@ -443,7 +443,7 @@
       component: 'ApiRadioGroup',
       label: '远程Radio',
       helpMessage: ['ApiRadioGroup组件', '使用接口提供的数据生成选项'],
-      required: true,
+      required: false,
       componentProps: {
         api: optionsListApi,
         params: {
@@ -455,6 +455,27 @@
         // use id as value
         valueField: 'id',
         isBtn: true,
+      },
+      colProps: {
+        span: 8,
+      },
+    },
+    {
+      field: 'field36',
+      component: 'ApiTree',
+      label: '远程Tree',
+      helpMessage: ['ApiTree组件', '使用接口提供的数据生成选项'],
+      required: false,
+      componentProps: {
+        api: treeOptionsListApi,
+        params: {
+          count: 2,
+        },
+        afterFetch: (v) => {
+          //do something
+          return v;
+        },
+        resultField: 'list',
       },
       colProps: {
         span: 8,
@@ -573,7 +594,7 @@
       field: 'field20',
       component: 'InputNumber',
       label: '字段20',
-      required: true,
+      required: false,
       colProps: {
         span: 8,
       },
@@ -637,7 +658,9 @@
         },
         handleSubmit: (values: any) => {
           console.log('values', values);
-          createMessage.success('click search,values:' + JSON.stringify(values));
+          console.log(JSON.stringify(values))
+          values= JSON.stringify(values)
+          createMessage.success('click search,values:' + values);
         },
         check,
       };
