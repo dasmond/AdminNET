@@ -6,12 +6,12 @@
     <members>
         <member name="T:Admin.NET.Core.NotLogAttribute">
             <summary>
-            禁用日志
+            禁用日志特性
             </summary>
         </member>
         <member name="T:Admin.NET.Core.NotTableAttribute">
             <summary>
-            非实体表继承该特性
+            非实体表特性
             </summary>
         </member>
         <member name="T:Admin.NET.Core.SqlSugarEntityAttribute">
@@ -49,7 +49,7 @@
         </member>
         <member name="T:Admin.NET.Core.SqlSugarUnitOfWorkAttribute">
             <summary>
-            SqlSugar 工作单元配置特性
+            SqlSugar工作单元配置特性
             </summary>
         </member>
         <member name="M:Admin.NET.Core.SqlSugarUnitOfWorkAttribute.#ctor">
@@ -196,6 +196,11 @@
             验证码开关配置
             </summary>
         </member>
+        <member name="F:Admin.NET.Core.CommonConst.SysOpLogFlag">
+            <summary>
+            开启操作日志配置
+            </summary>
+        </member>
         <member name="F:Admin.NET.Core.CommonConst.EntityAssemblyName">
             <summary>
             实体所在程序集-代码生成
@@ -214,6 +219,16 @@
         <member name="F:Admin.NET.Core.SqlSugarConst.PrimaryKey">
             <summary>
             默认表主键
+            </summary>
+        </member>
+        <member name="T:Admin.NET.Core.SqlSugarDb">
+            <summary>
+            SqlSugar数据库链接集合(多库代码生成用)
+            </summary>
+        </member>
+        <member name="F:Admin.NET.Core.SqlSugarDb.connectionConfigs">
+            <summary>
+            SqlSugar数据库链接集合
             </summary>
         </member>
         <member name="T:Admin.NET.Core.EntityBaseId">
@@ -296,6 +311,26 @@
             生成方式
             </summary>
         </member>
+        <member name="P:Admin.NET.Core.SysCodeGen.DbConfigId">
+            <summary>
+            库定位器名
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.SysCodeGen.DbName">
+            <summary>
+            数据库名(保留字段)
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.SysCodeGen.DbType">
+            <summary>
+            数据库类型
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.SysCodeGen.ConnectionString">
+            <summary>
+            数据库链接
+            </summary>
+        </member>
         <member name="P:Admin.NET.Core.SysCodeGen.TableName">
             <summary>
             数据库表名
@@ -314,21 +349,6 @@
         <member name="P:Admin.NET.Core.SysCodeGen.MenuPid">
             <summary>
             菜单编码
-            </summary>
-        </member>
-        <member name="P:Admin.NET.Core.SysCodeGen.ChoosedElements">
-            <summary>
-            选择其他自定义组件
-            </summary>
-        </member>
-        <member name="P:Admin.NET.Core.SysCodeGen.HasTree">
-            <summary>
-            树控件
-            </summary>
-        </member>
-        <member name="P:Admin.NET.Core.SysCodeGen.HasDatePicker">
-            <summary>
-            日期控件
             </summary>
         </member>
         <member name="T:Admin.NET.Core.SysCodeGenConfig">
@@ -884,11 +904,6 @@
         <member name="P:Admin.NET.Core.SysMenu.OrderNo">
             <summary>
             排序
-            </summary>
-        </member>
-        <member name="P:Admin.NET.Core.SysMenu.CodeGenId">
-            <summary>
-            代码自动生成ID
             </summary>
         </member>
         <member name="P:Admin.NET.Core.SysMenu.Children">
@@ -2711,6 +2726,17 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:Admin.NET.Core.SysTenantSeedData">
+            <summary>
+            系统租户表种子数据
+            </summary>
+        </member>
+        <member name="M:Admin.NET.Core.SysTenantSeedData.HasData">
+            <summary>
+            种子数据
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:Admin.NET.Core.SysUserOrgSeedData">
             <summary>
             系统用户机构表种子数据
@@ -3053,13 +3079,19 @@
             <param name="input"></param>
             <returns></returns>
         </member>
-        <member name="M:Admin.NET.Core.Service.CodeGen.CodeGenService.GetTableList">
+        <member name="M:Admin.NET.Core.Service.CodeGen.CodeGenService.GetDatabaseList">
+            <summary>
+            获取数据库库集合
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Core.Service.CodeGen.CodeGenService.GetTableList(System.String)">
             <summary>
             获取数据库表(实体)集合
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Admin.NET.Core.Service.CodeGen.CodeGenService.GetColumnListByTableName(System.String)">
+        <member name="M:Admin.NET.Core.Service.CodeGen.CodeGenService.GetColumnListByTableName(System.String,System.String)">
             <summary>
             根据表名获取列
             </summary>
@@ -3257,6 +3289,26 @@
             是否移除表前缀
             </summary>
         </member>
+        <member name="P:Admin.NET.Core.Service.CodeGenInput.DbConfigId">
+            <summary>
+            库定位器名
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.Service.CodeGenInput.DbName">
+            <summary>
+            数据库名(保留字段)
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.Service.CodeGenInput.DbType">
+            <summary>
+            数据库类型
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.Service.CodeGenInput.ConnectionString">
+            <summary>
+            数据库链接
+            </summary>
+        </member>
         <member name="P:Admin.NET.Core.Service.CodeGenInput.GenerateType">
             <summary>
             生成方式
@@ -3292,21 +3344,6 @@
             菜单父级
             </summary>
         </member>
-        <member name="P:Admin.NET.Core.Service.CodeGenInput.ChoosedElements">
-            <summary>
-            选择自定义组件
-            </summary>
-        </member>
-        <member name="P:Admin.NET.Core.Service.CodeGenInput.HasTree">
-            <summary>
-            选择自定义组件
-            </summary>
-        </member>
-        <member name="P:Admin.NET.Core.Service.CodeGenInput.HasDatePicker">
-            <summary>
-            选择自定义组件
-            </summary>
-        </member>
         <member name="P:Admin.NET.Core.Service.AddCodeGenInput.TableName">
             <summary>
             数据库表名
@@ -3335,11 +3372,6 @@
         <member name="P:Admin.NET.Core.Service.AddCodeGenInput.MenuPid">
             <summary>
             菜单父级
-            </summary>
-        </member>
-        <member name="P:Admin.NET.Core.Service.AddCodeGenInput.ChoosedElements">
-            <summary>
-            选择额外组件
             </summary>
         </member>
         <member name="P:Admin.NET.Core.Service.DeleteCodeGenInput.Id">
@@ -3412,6 +3444,31 @@
             菜单父级
             </summary>
         </member>
+        <member name="P:Admin.NET.Core.Service.CustomViewEngine.DbConfigId">
+            <summary>
+            库定位器
+            </summary>
+        </member>
+        <member name="T:Admin.NET.Core.Service.DatabaseOutput">
+            <summary>
+            多库代码生成库列表输出
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.Service.DatabaseOutput.DbConfigId">
+            <summary>
+            库定位器名
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.Service.DatabaseOutput.DbType">
+            <summary>
+            数据库类型
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.Service.DatabaseOutput.ConnectionString">
+            <summary>
+            数据库连接字符串
+            </summary>
+        </member>
         <member name="T:Admin.NET.Core.Service.TableColumnOuput">
             <summary>
             数据库表列
@@ -3445,6 +3502,11 @@
         <member name="T:Admin.NET.Core.Service.TableOutput">
             <summary>
             数据库表列表参数
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.Service.TableOutput.DbConfigId">
+            <summary>
+            库定位器名
             </summary>
         </member>
         <member name="P:Admin.NET.Core.Service.TableOutput.TableName">
@@ -3637,18 +3699,6 @@
             获取参数配置缓存
             </summary>
             <param name="code"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Admin.NET.Core.Service.SysConfigService.GetDemoEnvFlag">
-            <summary>
-            获取演示环境开关配置
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Admin.NET.Core.Service.SysConfigService.GetCaptchaOpenFlag">
-            <summary>
-            获取验证码开关配置
-            </summary>
             <returns></returns>
         </member>
         <member name="T:Admin.NET.Core.Service.DataBaseManager">
@@ -4056,27 +4106,32 @@
         </member>
         <member name="P:Admin.NET.Core.Service.FileOutput.Id">
             <summary>
-            文件ID
+            Id
             </summary>
         </member>
         <member name="P:Admin.NET.Core.Service.FileOutput.Name">
             <summary>
-            文件名称
+            名称
             </summary>
         </member>
         <member name="P:Admin.NET.Core.Service.FileOutput.Url">
             <summary>
-            文件URL
+            URL
             </summary>
         </member>
         <member name="P:Admin.NET.Core.Service.FileOutput.SizeKb">
             <summary>
-            文件大小
+            大小
             </summary>
         </member>
         <member name="P:Admin.NET.Core.Service.FileOutput.Suffix">
             <summary>
-            文件后缀
+            后缀
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.Service.FileOutput.FilePath">
+            <summary>
+            路径
             </summary>
         </member>
         <member name="P:Admin.NET.Core.Service.MapperSysFileOutput.Id">
@@ -4137,12 +4192,12 @@
             <param name="file">文件</param>
             <returns></returns>
         </member>
-        <member name="P:Admin.NET.Core.Service.LogInput.StartTime">
+        <member name="P:Admin.NET.Core.Service.PageLogInput.StartTime">
             <summary>
             开始时间
             </summary>
         </member>
-        <member name="P:Admin.NET.Core.Service.LogInput.EndTime">
+        <member name="P:Admin.NET.Core.Service.PageLogInput.EndTime">
             <summary>
             结束时间
             </summary>
@@ -4152,7 +4207,7 @@
             系统异常日志服务
             </summary>
         </member>
-        <member name="M:Admin.NET.Core.Service.SysExLogService.GetExLogList(Admin.NET.Core.Service.LogInput)">
+        <member name="M:Admin.NET.Core.Service.SysExLogService.GetExLogList(Admin.NET.Core.Service.PageLogInput)">
             <summary>
             获取异常日志分页列表
             </summary>
@@ -4169,7 +4224,7 @@
             系统操作日志服务
             </summary>
         </member>
-        <member name="M:Admin.NET.Core.Service.SysOpLogService.GetOpLogList(Admin.NET.Core.Service.LogInput)">
+        <member name="M:Admin.NET.Core.Service.SysOpLogService.GetOpLogList(Admin.NET.Core.Service.PageLogInput)">
             <summary>
             获取操作日志分页列表
             </summary>
@@ -4186,7 +4241,7 @@
             系统访问日志服务
             </summary>
         </member>
-        <member name="M:Admin.NET.Core.Service.SysVisLogService.GetVisLogList(Admin.NET.Core.Service.LogInput)">
+        <member name="M:Admin.NET.Core.Service.SysVisLogService.GetVisLogList(Admin.NET.Core.Service.PageLogInput)">
             <summary>
             获取访问日志分页列表
             </summary>
@@ -4475,12 +4530,6 @@
             </summary>
         </member>
         <member name="M:Admin.NET.Core.Service.SysOrgService.GetOrgList(Admin.NET.Core.Service.OrgInput)">
-            <summary>
-            获取机构列表
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Admin.NET.Core.Service.SysOrgService.GetOrgTree(Admin.NET.Core.Service.OrgInput)">
             <summary>
             获取机构列表
             </summary>
@@ -5614,6 +5663,11 @@
             商品描述
             </summary>
         </member>
+        <member name="P:Admin.NET.Core.Service.WechatPayTransactionInput.Attachment">
+            <summary>
+            附加数据
+            </summary>
+        </member>
         <member name="P:Admin.NET.Core.Service.WechatPayParaInput.PrepayId">
             <summary>
             订单Id
@@ -5715,9 +5769,26 @@
             <param name="userId"></param>
             <returns></returns>
         </member>
+        <member name="T:Admin.NET.Core.IEntityFilter">
+            <summary>
+            自定义实体过滤器接口
+            </summary>
+        </member>
+        <member name="M:Admin.NET.Core.IEntityFilter.AddEntityFilter">
+            <summary>
+            实体过滤器
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Admin.NET.Core.ISqlSugarEntitySeedData`1">
+            <summary>
+            实体种子数据接口
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+        </member>
         <member name="M:Admin.NET.Core.ISqlSugarEntitySeedData`1.HasData">
             <summary>
-            配置种子数据
+            种子数据
             </summary>
             <returns></returns>
         </member>
@@ -5810,14 +5881,24 @@
             <param name="type">排序类型</param>
             <returns>int</returns>
         </member>
-        <member name="M:Admin.NET.Core.SqlSugarSetup.SetDataEntityFilter(SqlSugar.SqlSugarProvider)">
+        <member name="M:Admin.NET.Core.SqlSugarSetup.SetDeletedEntityFilter(SqlSugar.SqlSugarProvider)">
             <summary>
-            配置业务数据表过滤器
+            配置实体假删除过滤器
+            </summary>
+        </member>
+        <member name="M:Admin.NET.Core.SqlSugarSetup.SetOrgEntityFilter(SqlSugar.SqlSugarProvider)">
+            <summary>
+            配置实体机构过滤器
+            </summary>
+        </member>
+        <member name="M:Admin.NET.Core.SqlSugarSetup.SetCustomEntityFilter(SqlSugar.SqlSugarProvider)">
+            <summary>
+            配置自定义实体过滤器
             </summary>
         </member>
         <member name="M:Admin.NET.Core.SqlSugarSetup.SetTenantEntityFilter(SqlSugar.SqlSugarProvider)">
             <summary>
-            配置租户过滤器
+            配置租户实体过滤器
             </summary>
         </member>
         <member name="M:Admin.NET.Core.SqlSugarSetup.DealConnectionStr(Admin.NET.Core.ConnectionStringsOptions@)">
@@ -5825,12 +5906,6 @@
             处理本地库根目录路径
             </summary>
             <param name="dbOptions"></param>
-        </member>
-        <member name="M:Admin.NET.Core.SqlSugarSetup.IsDemoEnv">
-            <summary>
-            判断是否演示环境
-            </summary>
-            <returns></returns>
         </member>
         <member name="T:Admin.NET.Core.AdminResultProvider">
             <summary>

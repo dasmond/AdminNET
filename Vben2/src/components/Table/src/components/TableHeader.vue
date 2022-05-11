@@ -74,7 +74,7 @@
       justify-content: flex-end;
 
       > * {
-        margin-left: 28px;
+        margin-right: 8px;
       }
     }
   }

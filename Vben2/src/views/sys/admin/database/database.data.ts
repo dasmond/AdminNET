@@ -83,15 +83,7 @@ export const tableShowColumns: BasicColumn[] = [
     dataIndex: 'description',
   },
 ];
-export const searchTableSchema: FormSchema[] = [
-  {
-    field: 'name',
-    label: '表名',
-    component: 'Input',
-    colProps: { span: 10 },
-  },
 
-];
 export const tableFormSchema: FormSchema[] = [
   {
     field: 'dataTableInfo',
@@ -121,6 +113,7 @@ export const tableFormSchema: FormSchema[] = [
     colProps: { span: 18 },
   },
 ];
+
 export const columnFormSchema: FormSchema[] = [
   {
     field: 'tableName',
@@ -209,6 +202,7 @@ export const columnFormSchema: FormSchema[] = [
     required: false,
   },
 ];
+
 export const createEntityFormSchema: FormSchema[] = [
   {
     field: 'tableName',
@@ -300,6 +294,7 @@ export const columnShowColumns: BasicColumn[] = [
     dataIndex: 'dataType',
   },
 ];
+
 export const editColumn: BasicColumn[] = [
   {
     dataIndex: 'dbColumnName',
@@ -383,6 +378,4 @@ export const editColumn: BasicColumn[] = [
     edit: true,
     editRule: false,
   },
-
 ];
-

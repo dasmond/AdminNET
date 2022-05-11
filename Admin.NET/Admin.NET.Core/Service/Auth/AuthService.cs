@@ -59,7 +59,8 @@ namespace Admin.NET.Core.Service
             var encryptPasswod = MD5Encryption.Encrypt(input.Password); // 加密密码
 
             // 判断用户名密码
-            var user = await _sysUserRep.GetFirstAsync(u => u.UserName.Equals(input.UserName) && u.Password.Equals(encryptPasswod) && !u.IsDelete);
+            var user = await _sysUserRep.AsQueryable().Includes(u => u.SysOrg)
+                .FirstAsync(u => u.UserName.Equals(input.UserName) && u.Password.Equals(encryptPasswod));
             _ = user ?? throw Oops.Oh(ErrorCodeEnum.D1000);
 
             // 验证账号是否被冻结
@@ -75,6 +76,7 @@ namespace Admin.NET.Core.Service
                 {ClaimConst.RealName, user.RealName},
                 {ClaimConst.SuperAdmin, user.UserType},
                 {ClaimConst.OrgId, user.OrgId},
+                {ClaimConst.OrgName, user.SysOrg?.Name},
             });
 
             // 设置Swagger自动登录
@@ -158,8 +160,8 @@ namespace Admin.NET.Core.Service
         public async void Logout()
         {
             var user = _userManager.User;
-            //if (user == null)
-            //    throw Oops.Oh(ErrorCodeEnum.D1011);
+            if (user == null)
+                throw Oops.Oh(ErrorCodeEnum.D1011);
 
             // 退出Swagger
             _httpContextAccessor.HttpContext.SignoutToSwagger();

@@ -6,7 +6,6 @@ using Furion.FriendlyException;
 using Furion.ViewEngine;
 using Mapster;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
 using SqlSugar;
 using System.Collections.Generic;
 using System.IO;
@@ -68,9 +67,7 @@ namespace Admin.NET.Core.Service.CodeGen
             if (isExist)
                 throw Oops.Oh(ErrorCodeEnum.D1400);
 
-            
             var codeGen = input.Adapt<SysCodeGen>();
-            codeGen.ChoosedElements = string.Join(",", input.ChoosedElements);
             var newCodeGen = await _sysCodeGenRep.Context.Insertable(codeGen).ExecuteReturnEntityAsync();
             // 加入配置表中
             _codeGenConfigService.AddList(GetColumnList(input), newCodeGen);
@@ -110,7 +107,6 @@ namespace Admin.NET.Core.Service.CodeGen
                 throw Oops.Oh(ErrorCodeEnum.D1400);
 
             var codeGen = input.Adapt<SysCodeGen>();
-            codeGen.ChoosedElements = string.Join(",", input.ChoosedElements);
             await _sysCodeGenRep.UpdateAsync(codeGen);
         }
 
@@ -126,19 +122,49 @@ namespace Admin.NET.Core.Service.CodeGen
         }
 
         /// <summary>
+        /// 获取数据库库集合
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("codeGenerate/DatabaseList")]
+        public async Task<List<DatabaseOutput>> GetDatabaseList()
+        {
+            List<ConnectionConfig> list = SqlSugarDb.connectionConfigs;
+            var result = new List<DatabaseOutput>();
+            foreach (var item in list)
+            {
+                result.Add(new DatabaseOutput()
+                {
+                    DbConfigId = item.ConfigId,
+                    DbType = item.DbType.ToString(),
+                    ConnectionString = item.ConnectionString,
+                });
+            }
+            return await Task.FromResult(result);
+        }
+
+
+        /// <summary>
         /// 获取数据库表(实体)集合
         /// </summary>
         /// <returns></returns>
-        [HttpGet("/codeGenerate/InformationList")]
-        public async Task<List<TableOutput>> GetTableList()
+        [HttpGet("/codeGenerate/InformationList/{dbConfigId}")]
+        public async Task<List<TableOutput>> GetTableList(string dbConfigId = SqlSugarConst.ConfigId)
         {
-            IEnumerable<EntityInfo> entityInfos = await _commonService.GetEntityInfos();
+            //切库,多库代码生成用
+            if (dbConfigId != SqlSugarConst.ConfigId)
+                _sysCodeGenRep.Context.AsTenant().ChangeDatabase(dbConfigId);
 
+            List<DbTableInfo> dbTableInfos = _sysCodeGenRep.Context.DbMaintenance.GetTableInfoList(false);//这里不能走缓存,否则切库不起作用
+            List<string> dbTableNames = dbTableInfos.Select(x => x.Name).ToList();
+
+            IEnumerable<EntityInfo> entityInfos = await _commonService.GetEntityInfos();
+            entityInfos = entityInfos.Where(x => dbTableNames.Contains(x.DbTableName));
             var result = new List<TableOutput>();
             foreach (var item in entityInfos)
             {
                 result.Add(new TableOutput()
                 {
+                    DbConfigId = dbConfigId,
                     EntityName = item.EntityName,
                     TableName = item.DbTableName,
                     TableComment = item.TableDescription
@@ -151,9 +177,13 @@ namespace Admin.NET.Core.Service.CodeGen
         /// 根据表名获取列
         /// </summary>
         /// <returns></returns>
-        [HttpGet("/codeGenerate/ColumnList/{tableName}")]
-        public List<TableColumnOuput> GetColumnListByTableName(string tableName)
+        [HttpGet("/codeGenerate/ColumnList/{dbConfigId}/{tableName}")]
+        public List<TableColumnOuput> GetColumnListByTableName(string tableName, string dbConfigId = SqlSugarConst.ConfigId)
         {
+            //切库,多库代码生成用
+            if (dbConfigId != SqlSugarConst.ConfigId)
+                _sysCodeGenRep.Context.AsTenant().ChangeDatabase(dbConfigId);
+
             // 获取实体类型属性
             var entityType = _sysCodeGenRep.Context.DbMaintenance.GetTableInfoList().FirstOrDefault(u => u.Name == tableName);
             if (entityType == null) return null;
@@ -176,6 +206,10 @@ namespace Admin.NET.Core.Service.CodeGen
         [NonAction]
         public List<TableColumnOuput> GetColumnList([FromQuery] AddCodeGenInput input)
         {
+            //切库,多库代码生成用
+            if (!string.IsNullOrEmpty(input.DbConfigId) && input.DbConfigId != SqlSugarConst.ConfigId)
+                _sysCodeGenRep.Context.AsTenant().ChangeDatabase(input.DbConfigId);
+
             var entityType = _commonService.GetEntityInfos().Result.FirstOrDefault(m => m.EntityName == input.TableName);
             if (entityType == null)
                 return null;
@@ -197,7 +231,7 @@ namespace Admin.NET.Core.Service.CodeGen
         public async Task RunLocal(SysCodeGen input)
         {
             // 先删除该表已生成的菜单列表
-           await  _sysMenuRep.AsDeleteable().Where(u=>u.CodeGenId == input.Id).ExecuteCommandAsync();
+            await  _sysMenuRep.AsDeleteable().Where(u=>u.CodeGenId == input.Id).ExecuteCommandAsync();
 
             var templatePathList = GetTemplatePathList();
             var targetPathList = GetTargetPathList(input);
@@ -210,9 +244,9 @@ namespace Admin.NET.Core.Service.CodeGen
                 var joinTableList = tableFieldList.Where(u => u.EffectType == "Upload" || u.EffectType == "fk").ToList();//需要连表查询的字段
                 (string joinTableNames, string lowerJoinTableNames) = GetJoinTableStr(joinTableList);//获取连表的实体名和别名
 
-
                 var data = new CustomViewEngine(_sysCodeGenRep)
                 {
+                    DbConfigId = input.DbConfigId,
                     AuthorName = input.AuthorName,
                     BusName = input.BusName,
                     NameSpace = input.NameSpace,
@@ -221,9 +255,6 @@ namespace Admin.NET.Core.Service.CodeGen
                     TableField = tableFieldList,
                     IsJoinTable = joinTableList.Count > 0,
                     IsUpload = joinTableList.Where(u => u.EffectType == "Upload").Any(),
-                    ChoosedElements = input.ChoosedElements.Split(',').ToList(),
-                    HasTree = input.HasTree,
-                    HasDatePicker = input.HasDatePicker,
                 };
                 var tResult = _viewEngine.RunCompile<CustomViewEngine>(tContent, data, builderAction: builder =>
                 {
@@ -238,7 +269,7 @@ namespace Admin.NET.Core.Service.CodeGen
                 File.WriteAllText(targetPathList[i], tResult, Encoding.UTF8);
             }
 
-            await AddMenu(input.TableName, input.BusName, input.MenuPid, input.Id);
+            await AddMenu(input.TableName, input.BusName, input.MenuPid);
         }
 
         /// <summary>
@@ -265,7 +296,7 @@ namespace Admin.NET.Core.Service.CodeGen
             return (str.TrimEnd(','), lowerStr.TrimEnd(','));
         }
 
-        private async Task AddMenu(string className, string busName, long pid, long codegenid)
+        private async Task AddMenu(string className, string busName, long pid)
         {
             // 如果 pid 为 0 说明为顶级菜单, 需要创建顶级目录
             if (pid == 0)
@@ -279,7 +310,6 @@ namespace Admin.NET.Core.Service.CodeGen
                     Icon = "robot",
                     Path = "/" + className.ToLower(),
                     Component = "LAYOUT",
-                    CodeGenId = codegenid,
                 };
                 pid = (await _sysMenuRep.Context.Insertable(menuType0).ExecuteReturnEntityAsync()).Id;
             }
@@ -296,7 +326,6 @@ namespace Admin.NET.Core.Service.CodeGen
                 Type = MenuTypeEnum.Menu,
                 Path = "/" + className.ToLower(),
                 Component = "/main/" + className + "/index",
-                CodeGenId = codegenid,
             };
             var pid1 = (await _sysMenuRep.Context.Insertable(menuType1).ExecuteReturnEntityAsync()).Id;
 
@@ -307,7 +336,6 @@ namespace Admin.NET.Core.Service.CodeGen
                 Title = busName + "查询",
                 Type = MenuTypeEnum.Btn,
                 Permission = className + ":page",
-                CodeGenId = codegenid,
             };
 
             // 按钮-detail
@@ -317,7 +345,6 @@ namespace Admin.NET.Core.Service.CodeGen
                 Title = busName + "详情",
                 Type = MenuTypeEnum.Btn,
                 Permission = className + ":detail",
-                CodeGenId = codegenid,
             };
 
             // 按钮-add
@@ -327,7 +354,6 @@ namespace Admin.NET.Core.Service.CodeGen
                 Title = busName + "增加",
                 Type = MenuTypeEnum.Btn,
                 Permission = className + ":add",
-                CodeGenId = codegenid,
             };
 
             // 按钮-delete
@@ -337,7 +363,6 @@ namespace Admin.NET.Core.Service.CodeGen
                 Title = busName + "删除",
                 Type = MenuTypeEnum.Btn,
                 Permission = className + ":delete",
-                CodeGenId = codegenid,
             };
 
             // 按钮-edit
@@ -346,8 +371,7 @@ namespace Admin.NET.Core.Service.CodeGen
                 Pid = pid1,
                 Title = busName + "编辑",
                 Type = MenuTypeEnum.Btn,
-                Permission = className + ":edit",
-                CodeGenId = codegenid,
+                Permission = className + ":update",
             };
 
             var menuList = new List<SysMenu>() { menuType2, menuType2_1, menuType2_2, menuType2_3, menuType2_4 };

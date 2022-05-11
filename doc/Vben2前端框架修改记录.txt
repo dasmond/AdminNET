@@ -48,7 +48,12 @@ src/components/Upload/src/UploadPreviewModal.vue
 src/components/Upload/src/props.ts	
 8、全局组件注册修改
 src/components/registerGlobComp.ts
-9、
+9、隐藏顶部消息通知、中英文切换、
+src\layouts\default\header\index.vue
+10、隐藏顶部用户下面的文档菜单
+src\layouts\default\header\components\user-dropdown\index.vue
+11、Tree组件添加滚动条
+src\components\Tree\src\Tree.vue
 
 /////////////////////////////////////////////////////////////////////
 

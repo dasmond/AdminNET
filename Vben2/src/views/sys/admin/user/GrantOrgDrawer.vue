@@ -62,7 +62,7 @@
         if (unref(treeData).length === 0) {
           treeData.value = (await getOrgList()) as any as TreeItem[];
           nextTick(() => {
-            unref(treeAction)?.filterByLevel(2);
+            unref(treeAction)?.filterByLevel(1);
           });
         }
         rowId = data.record.id;

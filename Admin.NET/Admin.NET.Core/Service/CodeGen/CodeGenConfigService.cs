@@ -30,9 +30,8 @@ namespace Admin.NET.Core.Service
         [HttpGet("/sysCodeGenerateConfig/list")]
         public async Task<List<CodeGenConfig>> List([FromQuery] CodeGenConfig input)
         {
-            var res = await _sysCodeGenConfigRep.AsQueryable().Where(u => u.CodeGenId == input.CodeGenId && u.WhetherCommon != YesNoEnum.Y.ToString())
+            return await _sysCodeGenConfigRep.AsQueryable().Where(u => u.CodeGenId == input.CodeGenId && u.WhetherCommon != YesNoEnum.Y.ToString())
               .Select<CodeGenConfig>().ToListAsync();
-            return res;
         }
 
         /// <summary>
@@ -132,6 +131,8 @@ namespace Admin.NET.Core.Service
                 codeGenConfig.QueryType = "=="; // QueryTypeEnum.eq.ToString();
                 codeGenConfigs.Add(codeGenConfig);
             }
+            //多库代码生成,这里要切回主库
+            _sysCodeGenConfigRep.Context.AsTenant().ChangeDatabase(SqlSugarConst.ConfigId);
             _sysCodeGenConfigRep.Context.Insertable(codeGenConfigs).ExecuteCommand();
         }
     }

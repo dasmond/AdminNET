@@ -1,16 +1,21 @@
-﻿using Admin.NET.Core;
+﻿using Admin.NET.Application.Const;
+using Admin.NET.Core;
 using SqlSugar;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Admin.NET.Application.Entity
 {
     /// <summary>
-    /// 自己业务数据表
+    /// 多库代码生成测试学生表
     /// </summary>
-    [SugarTable("d_test", "自己业务数据表")]
-    [SqlSugarEntity] // [SqlSugarEntity(DbConfigId = TestConst.ConfigId)]
-    public class Test : EntityBase
+    [SugarTable("d_student", "多库代码生成测试学生表")]
+    [SqlSugarEntity(DbConfigId = TestConst.ConfigId)]
+    public class Student : EntityBase
     {
         /// <summary>
         /// 姓名

@@ -8,6 +8,7 @@ enum Api {
   UserPageList = '/sysUser/pageList',
   AddUser = '/sysUser/add',
   DeleteUser = '/sysUser/delete',
+  GetDatabaseList = '/codeGenerate/DatabaseList',
   UpdateUser = '/sysUser/update',
   SetUserStatus = '/sysUser/setStatus',
   GrantUserRole = '/sysUser/grantRole',
@@ -39,7 +40,6 @@ enum Api {
   AddOrg = '/sysOrg/add',
   DeleteOrg = '/sysOrg/delete',
   UpdateOrg = '/sysOrg/update',
-  OrgTree = '/sysOrg/tree',
 
   // 职位接口
   PosList = '/sysPos/list',
@@ -192,8 +192,6 @@ export const updateMenu = (params: any) => defHttp.post({ url: Api.UpdateMenu, p
 ////////// 机构管理接口 //////////
 // 获取机构列表
 export const getOrgList = (params?: any) => defHttp.get<any>({ url: Api.OrgList, params });
-// 获取机构列表
-export const getOrgTree = (params?: any) => defHttp.get<any>({ url: Api.OrgTree, params });
 // 增加机构
 export const addOrg = (params: any) => defHttp.post({ url: Api.AddOrg, params });
 // 删除机构
@@ -235,24 +233,8 @@ export const clearExLog = () => defHttp.post({ url: Api.ClearExLog });
 export const getFilePageList = (params?: any) =>
   defHttp.get<any>({ url: Api.FilePageList, params });
 // 上传文件
-import { UploadApiResult } from './model/uploadModel';
-import { UploadFileParams } from '/#/axios';
-import { useGlobSetting } from '/@/hooks/setting';
-const { uploadUrl = '' } = useGlobSetting();
-
-export function uploadFile(
-  params: UploadFileParams,
-  onUploadProgress: (progressEvent: ProgressEvent) => void,
-) {
-  return defHttp.uploadFile<UploadApiResult>(
-    {
-      url: uploadUrl + Api.UploadFile,
-      onUploadProgress,
-    },
-    params,
-  );
-}
-
+import { uploadFileApi } from '/@/api/sys/upload';
+export const uploadFile = uploadFileApi;
 // 下载文件
 export const downloadFile = (id: number) => defHttp.post({ url: Api.DownloadFile, params: { id } });
 // 删除文件
@@ -385,13 +367,17 @@ export function deleGenerate(params: any) {
     params,
   });
 }
+// 获取数据库(上下文定位器)集合
+export function getDatabaseList(params?: any) {
+  return defHttp.get<any>({ url: Api.GetDatabaseList, params });
+}
 // 获取数据库表(实体)集合
-export function getTableList(params?: any) {
-  return defHttp.get<any>({ url: Api.GetTableList, params });
+export function getTableList(dbConfigId: string) {
+  return defHttp.get<any>({ url: Api.GetTableList + '/' + dbConfigId });
 }
 // 根据表名获取列
-export function getColumnList(tableName: string) {
-  return defHttp.get<any>({ url: Api.GetColumnList + '/' + tableName });
+export function getColumnList(dbConfigId: string, tableName: string) {
+  return defHttp.get<any>({ url: Api.GetColumnList + '/' + dbConfigId + '/' + tableName });
 }
 // 本地生成
 export function generateRunLocal(params: any) {
