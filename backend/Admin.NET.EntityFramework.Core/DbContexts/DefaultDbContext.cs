@@ -31,7 +31,8 @@ namespace Admin.NET.EntityFramework.Core
         /// <returns></returns>
         public object GetTenantId()
         {
-            if (App.User == null) return null;
+            // 流程中没有用到多租户 这里默认返回一个租户
+            if (App.User == null) return 142307070918780;
             //这个Convert，嗯，有用
             return Convert.ToInt64(App.User.FindFirst(ClaimConst.TENANT_ID)?.Value);
         }
