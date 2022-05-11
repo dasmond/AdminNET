@@ -22,4 +22,13 @@
     <ProjectReference Include="..\Admin.NET.Core\Admin.NET.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Service\System\Workflow\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="WorkflowCore" Version="3.6.3" />
+    <PackageReference Include="WorkflowCore.DSL" Version="3.6.3" />
+  </ItemGroup>
+
 </Project>

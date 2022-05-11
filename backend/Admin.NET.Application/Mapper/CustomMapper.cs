@@ -12,6 +12,11 @@ namespace Admin.NET.Application
                 .Map(dest => dest.Title, src => src.Name)
                 .Map(dest => dest.Value, src => src.Id)
                 .Map(dest => dest.Weight, src => src.Sort);
+
+            // 自定义流程转换流程定义Dto
+            config.ForType<PersistedWorkflowDefinition, WorkflowDefinitionDto>()
+                .Map(dest => dest.Inputs, src => !string.IsNullOrWhiteSpace(src.Inputs) ? src.Inputs.FromJson<IEnumerable<IEnumerable<IEnumerable<WorkflowFormData>>>>() : null)
+                .Map(dest => dest.Nodes, src => src.Nodes.FromJson<IEnumerable<WorkflowNode>>());
         }
     }
 }

@@ -324,6 +324,19 @@ namespace Admin.NET.Application
         }
 
         /// <summary>
+        /// 获取用户列表
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("sysUser/userList")]
+        public async Task<List<UserOutput>> GetSysUserList()
+        {
+
+            var userOut = await _sysUserRep.DetachedEntities.ToListAsync();
+
+            return userOut.Adapt<List<UserOutput>>();
+        }
+
+        /// <summary>
         /// 用户导出
         /// </summary>
         /// <returns></returns>

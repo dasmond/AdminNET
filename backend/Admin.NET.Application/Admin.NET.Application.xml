@@ -4,6 +4,16 @@
         <name>Admin.NET.Application</name>
     </assembly>
     <members>
+        <member name="T:Admin.NET.Application.BaseId">
+            <summary>
+            主键Id映射DTO
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.BaseId.Id">
+            <summary>
+            主键Id
+            </summary>
+        </member>
         <member name="P:Admin.NET.Application.AppPageInput.Name">
             <summary>
             名称
@@ -376,16 +386,6 @@
             密码
             </summary>
             <example>123456</example>
-        </member>
-        <member name="T:Admin.NET.Application.BaseId">
-            <summary>
-            主键Id映射DTO
-            </summary>
-        </member>
-        <member name="P:Admin.NET.Application.BaseId.Id">
-            <summary>
-            主键Id
-            </summary>
         </member>
         <member name="T:Admin.NET.Application.BaseService`9">
             <summary>
@@ -2514,6 +2514,448 @@
             <param name="file">文件</param>
             <param name="key">对象存储键</param>
             <param name="fileLocation">文件存储位置</param>
+            <returns></returns>
+        </member>
+        <member name="T:Admin.NET.Application.FormAddDto">
+            <summary>
+            表单添加
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.FormAddDto.Title">
+             <summary>
+            表单标题 不可重复
+             </summary>
+        </member>
+        <member name="P:Admin.NET.Application.FormAddDto.TypeId">
+            <summary>
+            表单类型ID
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.FormAddDto.FormJson">
+            <summary>
+            form表单Json
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.FormAddDto.Publish">
+            <summary>
+            是否发布
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.FormAddDto.Version">
+            <summary>
+            版本
+            </summary>
+        </member>
+        <member name="T:Admin.NET.Application.FormDto">
+            <summary>
+            表单输出Dto
+            </summary>
+        </member>
+        <member name="M:Admin.NET.Application.FormDto.#ctor">
+            <summary>
+            无参构造函数
+            </summary>
+        </member>
+        <member name="M:Admin.NET.Application.FormDto.#ctor(Admin.NET.Application.FormDto)">
+            <summary>
+            有参构造函数
+            </summary>
+            <param name="formDto"></param>
+        </member>
+        <member name="M:Admin.NET.Application.FormDto.#ctor(System.Int64,System.String,System.String,System.Boolean,System.Int64,System.String,System.Int32,System.String,System.Nullable{System.Int64},System.Nullable{System.DateTimeOffset},Admin.NET.Application.FormList)">
+            <summary>
+            有参构造函数
+            </summary>
+            <param name="id"></param>
+            <param name="title"></param>
+            <param name="formjson"></param>
+            <param name="publish"></param>
+            <param name="typeId"></param>
+            <param name="typeName"></param>
+            <param name="version"></param>
+            <param name="createdUserName"></param>
+            <param name="createdUserId"></param>
+            <param name="createdTime"></param>
+            <param name="nodesList"></param>
+        </member>
+        <member name="P:Admin.NET.Application.FormDto.Id">
+            <summary>
+            主键
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.FormDto.Title">
+             <summary>
+            表单标题 不可重复
+             </summary>
+        </member>
+        <member name="P:Admin.NET.Application.FormDto.FormJson">
+            <summary>
+            form表单Json
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.FormDto.Publish">
+            <summary>
+            是否发布
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.FormDto.TypeId">
+            <summary>
+            表单类型ID
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.FormDto.TypeName">
+            <summary>
+            表单类型名称
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.FormDto.Version">
+            <summary>
+            版本
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.FormDto.CreatedUserName">
+            <summary>
+            创建人姓名
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.FormDto.CreatedUserId">
+            <summary>
+            创建人ID
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.FormDto.CreatedTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.FormDto.NodesList">
+            <summary>
+            节点列表
+            </summary>
+        </member>
+        <member name="T:Admin.NET.Application.FormList">
+            <summary>
+            表单列表
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.FormList.List">
+            <summary>
+            节点列表
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.FormList.Config">
+            <summary>
+            配置
+            </summary>
+        </member>
+        <member name="T:Admin.NET.Application.FormNode">
+            <summary>
+            表单节点
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.FormNode.Type">
+            <summary>
+            类型
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.FormNode.Label">
+            <summary>
+            标题
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.FormNode.Options">
+            <summary>
+            属性设置
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.FormNode.Model">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.FormNode.Key">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.FormNode.Help">
+            <summary>
+            帮助
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.FormNode.Prefix">
+            <summary>
+            前缀
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.FormNode.Suffix">
+            <summary>
+            后缀
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.FormNode.Rules">
+            <summary>
+            校验规则
+            </summary>
+        </member>
+        <member name="T:Admin.NET.Application.FormOptions">
+            <summary>
+            节点属性
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.FormOptions.Type">
+            <summary>
+            类型
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.FormOptions.Width">
+            <summary>
+            宽度
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.FormOptions.DefaultValue">
+            <summary>
+            默认值
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.FormOptions.Placeholder">
+            <summary>
+            帮助信息
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.FormOptions.Clearable">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.FormOptions.MaxLength">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.FormOptions.Hidden">
+            <summary>
+            是否隐藏
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.FormOptions.Disabled">
+            <summary>
+            是否可用
+            </summary>
+        </member>
+        <member name="T:Admin.NET.Application.FormRules">
+            <summary>
+            校验规则
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.FormRules.Required">
+            <summary>
+            是否必填
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.FormRules.Message">
+            <summary>
+            信息
+            </summary>
+        </member>
+        <member name="T:Admin.NET.Application.FormConfig">
+            <summary>
+            表单配置
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.FormConfig.Layout">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Admin.NET.Application.FormEditDto">
+            <summary>
+            表单编辑
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.FormEditDto.Title">
+             <summary>
+            表单标题 不可重复
+             </summary>
+        </member>
+        <member name="P:Admin.NET.Application.FormEditDto.FormJson">
+            <summary>
+            form表单Json
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.FormEditDto.Publish">
+            <summary>
+            是否发布
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.FormEditDto.TypeId">
+            <summary>
+            表单类型ID
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.FormEditDto.Version">
+            <summary>
+            版本
+            </summary>
+        </member>
+        <member name="T:Admin.NET.Application.FormPageSearch">
+            <summary>
+            分页查询条件
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.FormPageSearch.Title">
+            <summary>
+            标题
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.FormPageSearch.TypeId">
+            <summary>
+            表单类型
+            </summary>
+        </member>
+        <member name="T:Admin.NET.Application.FormPublishDto">
+            <summary>
+            发布状态
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.FormPublishDto.Publish">
+            <summary>
+            发布状态
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.FormPublishDto.Type">
+            <summary>
+            表单类型Id
+            </summary>
+        </member>
+        <member name="T:Admin.NET.Application.FormService">
+            <summary>
+            表单管理
+            </summary>
+        </member>
+        <member name="M:Admin.NET.Application.FormService.#ctor(Furion.DatabaseAccessor.IRepository{Admin.NET.Core.SysForm},Furion.DatabaseAccessor.IRepository{Admin.NET.Core.SysDictData})">
+            <summary>
+            构造函数
+            </summary>
+            <param name="sysformRep">表单数据表</param>
+        </member>
+        <member name="M:Admin.NET.Application.FormService.GetPageList(Admin.NET.Application.FormPageSearch)">
+            <summary>
+            获取表单列表
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Application.FormService.FormAdd(Admin.NET.Application.FormAddDto)">
+            <summary>
+            添加
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Application.FormService.UpdateEditForm(Admin.NET.Application.FormEditDto)">
+            <summary>
+            更新表单
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Application.FormService.Delete(Admin.NET.Application.BaseId)">
+            <summary>
+            删除表单
+            </summary>
+            <param name="input"></param>
+        </member>
+        <member name="M:Admin.NET.Application.FormService.Publish(Admin.NET.Application.FormPublishDto)">
+            <summary>
+            发布表单
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Application.FormService.Get(Admin.NET.Application.BaseId)">
+            <summary>
+            获取单一实体
+            </summary>
+            <param name="Input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Application.FormService.GetView(Admin.NET.Application.BaseId)">
+            <summary>
+            获取单一实体查看
+            </summary>
+            <param name="Input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Application.FormService.GetPulishList(System.Nullable{System.Int64})">
+            <summary>
+            获取已发布表单列表
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Application.FormService.CheckTitle(System.String)">
+            <summary>
+            判断标题是否重复
+            </summary>
+            <param name="Title"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Admin.NET.Application.IFormService">
+            <summary>
+            表单管理接口
+            </summary>
+        </member>
+        <member name="M:Admin.NET.Application.IFormService.GetPageList(Admin.NET.Application.FormPageSearch)">
+            <summary>
+            获取表单列表
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Application.IFormService.FormAdd(Admin.NET.Application.FormAddDto)">
+            <summary>
+            添加
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Application.IFormService.UpdateEditForm(Admin.NET.Application.FormEditDto)">
+            <summary>
+            更新表单
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Application.IFormService.Delete(Admin.NET.Application.BaseId)">
+            <summary>
+            删除表单
+            </summary>
+            <param name="input"></param>
+        </member>
+        <member name="M:Admin.NET.Application.IFormService.Publish(Admin.NET.Application.FormPublishDto)">
+            <summary>
+            发布表单
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Application.IFormService.Get(Admin.NET.Application.BaseId)">
+            <summary>
+            获取单一实体
+            </summary>
+            <param name="Input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Application.IFormService.GetView(Admin.NET.Application.BaseId)">
+            <summary>
+            获取单一实体查看
+            </summary>
+            <param name="Input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Application.IFormService.GetPulishList(System.Nullable{System.Int64})">
+            <summary>
+            获取发布表单列表
+            </summary>
             <returns></returns>
         </member>
         <member name="T:Admin.NET.Application.ChatHub">
@@ -4845,6 +5287,40 @@
             <param name="input"></param>
             <returns></returns>
         </member>
+        <member name="T:Admin.NET.Application.IStepBodyManagerService">
+            <summary>
+            步骤管理接口
+            </summary>
+        </member>
+        <member name="M:Admin.NET.Application.IStepBodyManagerService.BuildStepBodyAsync">
+            <summary>
+            设置步骤
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Application.IStepBodyManagerService.GetStepBody">
+            <summary>
+            获取所有步骤
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Admin.NET.Application.StepBodyManagerService">
+            <summary>
+            步骤管理
+            </summary>
+        </member>
+        <member name="M:Admin.NET.Application.StepBodyManagerService.BuildStepBodyAsync">
+            <summary>
+            设置所有步骤
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Application.StepBodyManagerService.GetStepBody">
+            <summary>
+            获取所有步骤
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:Admin.NET.Application.TenantPageInput">
             <summary>
             租户参数
@@ -5877,6 +6353,12 @@
             员工信息
             </summary>
         </member>
+        <member name="M:Admin.NET.Application.ISysUserService.GetSysUserList">
+            <summary>
+            获取用户列表
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:Admin.NET.Application.SysUserDataScopeService">
             <summary>
             用户数据范围服务
@@ -6061,6 +6543,12 @@
             <param name="input"></param>
             <returns></returns>
         </member>
+        <member name="M:Admin.NET.Application.SysUserService.GetSysUserList">
+            <summary>
+            获取用户列表
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:Admin.NET.Application.SysUserService.ExportUser">
             <summary>
             用户导出
@@ -6110,6 +6598,1134 @@
             <param name="orgId"></param>
             <returns></returns>
         </member>
+        <member name="T:Admin.NET.Application.PersistedWorkflowAuditorDto">
+            <summary>
+            审核Dto
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.PersistedWorkflowAuditorDto.Title">
+            <summary>
+            任务名称
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.PersistedWorkflowAuditorDto.CreateUserName">
+            <summary>
+            创建人名称
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.PersistedWorkflowAuditorDto.CreateTime">
+            <summary>
+            任务创建时间
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.PersistedWorkflowAuditorDto.UpdateTime">
+            <summary>
+            完工时间
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.PersistedWorkflowAuditorDto.LastUserName">
+            <summary>
+            最后修改人
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.PersistedWorkflowAuditorDto.Status">
+            <summary>
+            任务状态
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.PersistedWorkflowAuditorDto.UserId">
+            <summary>
+            审核人ID
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.PersistedWorkflowAuditorDto.PassFlag">
+            <summary>
+            通过状态
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.PersistedWorkflowAuditorDto.UserIdentityName">
+            <summary>
+            审核用户姓名
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.PersistedWorkflowAuditorDto.InstanceId">
+            <summary>
+            流程InstanceId
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.PersistedWorkflowAuditorDto.WorkflowId">
+            <summary>
+            流程ID
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.PersistedWorkflowAuditorDto.Id">
+            <summary>
+            主键
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.PersistedWorkflowAuditorDto.ExecutionPointerId">
+            <summary>
+            任务码
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.PersistedWorkflowAuditorDto.FormId">
+            <summary>
+            表单Id
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.PersistedWorkflowAuditorDto.StepName">
+            <summary>
+            任务名称
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.PersistedWorkflowAuditorDto.StepId">
+            <summary>
+            StepId
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.PersistedWorkflowAuditorDto.ReMark">
+            <summary>
+            备注信息
+            </summary>
+        </member>
+        <member name="T:Admin.NET.Application.AuditorWorkflowInfo">
+            <summary>
+            单据流程路径信息
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.AuditorWorkflowInfo.StepId">
+            <summary>
+            步骤Id
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.AuditorWorkflowInfo.Status">
+            <summary>
+            节点状态
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.AuditorWorkflowInfo.UserName">
+            <summary>
+            当前节点操作用户
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.AuditorWorkflowInfo.CreateTime">
+            <summary>
+            操作时间
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.AuditorWorkflowInfo.ReMark">
+            <summary>
+            备注信息
+            </summary>
+        </member>
+        <member name="T:Admin.NET.Application.PersistedWorkflowAuditorPage">
+            <summary>
+            审核分页查询
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.PersistedWorkflowAuditorPage.Title">
+            <summary>
+            任务名称
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.PersistedWorkflowAuditorPage.Status">
+            <summary>
+            任务状态
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.PersistedWorkflowAuditorPage.StartTime">
+            <summary>
+            开始日期
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.PersistedWorkflowAuditorPage.EndTime">
+            <summary>
+            结束日期
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.UpdatePersistedWorkflowAuditorDto.Id">
+            <summary>
+            任务ID
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.UpdatePersistedWorkflowAuditorDto.UserId">
+            <summary>
+            人员ID
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.UpdatePersistedWorkflowAuditorDto.UserName">
+            <summary>
+            人员姓名
+            </summary>
+        </member>
+        <member name="T:Admin.NET.Application.WorkflowAuditInput">
+            <summary>
+            审核传入参数
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.WorkflowAuditInput.ExecutionPointerId">
+            <summary>
+            任务ID
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.WorkflowAuditInput.Status">
+            <summary>
+            是否通过
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.WorkflowAuditInput.Remark">
+            <summary>
+            备注
+            </summary>
+        </member>
+        <member name="T:Admin.NET.Application.IWorkflowAuditorService">
+            <summary>
+            审核接口
+            </summary>
+        </member>
+        <member name="M:Admin.NET.Application.IWorkflowAuditorService.Add(Admin.NET.Core.PersistedWorkflowAuditor)">
+            <summary>
+            新增
+            </summary>
+            <param name="auditor"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Application.IWorkflowAuditorService.GetAuditorByFunc(System.Linq.Expressions.Expression{System.Func{Admin.NET.Core.PersistedWorkflowAuditor,System.Boolean}})">
+            <summary>
+            根据条件获取是否有PersistedWorkflowAuditor
+            </summary>
+            <param name="where"></param>
+            <returns>bool</returns>
+        </member>
+        <member name="M:Admin.NET.Application.IWorkflowAuditorService.GetMyUnAuditor(Admin.NET.Application.PersistedWorkflowAuditorPage)">
+            <summary>
+            获取我任务列表
+            通过status判断任务类型
+            0、未完成 1、已完成
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Application.IWorkflowAuditorService.Auditor(Admin.NET.Application.WorkflowAuditInput)">
+            <summary>
+            审核任务
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Application.IWorkflowAuditorService.GetWorkflowStepAuditor(System.String)">
+            <summary>
+            获取流程审核过的节点
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Admin.NET.Application.WorkflowAuditorService">
+            <summary>
+            流程审核
+            </summary>
+        </member>
+        <member name="M:Admin.NET.Application.WorkflowAuditorService.#ctor(Furion.DatabaseAccessor.IRepository{Admin.NET.Core.PersistedWorkflowAuditor},Furion.DatabaseAccessor.IRepository{Admin.NET.Core.PersistedWorkflow},Furion.DatabaseAccessor.IRepository{Admin.NET.Core.PersistedExecutionPointer},Furion.DatabaseAccessor.IRepository{Admin.NET.Core.PersistedWorkflowDefinition},Admin.NET.Application.ISysUserService,Admin.NET.Application.ISendMessageService,Admin.NET.Application.IWorkflowManagerService)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="auditorRep"></param>
+            <param name="workflowRep"></param>
+            <param name="executionpointerRep"></param>
+            <param name="sysUserService"></param>
+            <param name="sendMessageService"></param>
+            <param name="workflowManagerService"></param>
+        </member>
+        <member name="M:Admin.NET.Application.WorkflowAuditorService.Add(Admin.NET.Core.PersistedWorkflowAuditor)">
+            <summary>
+            新增
+            </summary>
+            <param name="auditor"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Application.WorkflowAuditorService.GetAuditorByFunc(System.Linq.Expressions.Expression{System.Func{Admin.NET.Core.PersistedWorkflowAuditor,System.Boolean}})">
+            <summary>
+            根据条件获取是否有PersistedWorkflowAuditor
+            </summary>
+            <param name="where"></param>
+            <returns>bool</returns>
+        </member>
+        <member name="M:Admin.NET.Application.WorkflowAuditorService.GetMyUnAuditor(Admin.NET.Application.PersistedWorkflowAuditorPage)">
+            <summary>
+            获取我任务列表
+            通过status判断任务类型
+            0、未完成 1、已完成
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Application.WorkflowAuditorService.Auditor(Admin.NET.Application.WorkflowAuditInput)">
+            <summary>
+            审核任务
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Application.WorkflowAuditorService.GetWorkflowStepAuditor(System.String)">
+            <summary>
+            获取流程审核过的节点
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Admin.NET.Application.WorkflowDefinitionAddDto">
+            <summary>
+            流程添加
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.WorkflowDefinitionAddDto.Id">
+            <summary>
+            ID
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.WorkflowDefinitionAddDto.Title">
+            <summary>
+            标题
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.WorkflowDefinitionAddDto.Version">
+            <summary>
+             版本
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.WorkflowDefinitionAddDto.Description">
+            <summary>
+            描述
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.WorkflowDefinitionAddDto.Icon">
+            <summary>
+            图标
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.WorkflowDefinitionAddDto.Color">
+            <summary>
+            颜色
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.WorkflowDefinitionAddDto.Group">
+            <summary>
+            分组
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.WorkflowDefinitionAddDto.Inputs">
+            <summary>
+            输入
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.WorkflowDefinitionAddDto.Nodes">
+            <summary>
+            流程节点 
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.WorkflowDefinitionAddDto.FormId">
+            <summary>
+            表单Id
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.WorkflowDefinitionAddDto.DrawNode">
+            <summary>
+            绘画节点
+            </summary>
+        </member>
+        <member name="T:Admin.NET.Application.WorkflowDefinitionDeleteDto">
+            <summary>
+            删除
+            </summary>
+        </member>
+        <member name="T:Admin.NET.Application.WorkflowDefinitionDto">
+            <summary>
+            流程输出Dto
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.WorkflowDefinitionDto.Id">
+            <summary>
+            ID
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.WorkflowDefinitionDto.Title">
+            <summary>
+            标题
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.WorkflowDefinitionDto.Version">
+            <summary>
+             版本
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.WorkflowDefinitionDto.Description">
+            <summary>
+            描述
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.WorkflowDefinitionDto.Icon">
+            <summary>
+            图标
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.WorkflowDefinitionDto.Color">
+            <summary>
+            颜色
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.WorkflowDefinitionDto.Group">
+            <summary>
+            分组
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.WorkflowDefinitionDto.FormId">
+            <summary>
+            表单Id
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.WorkflowDefinitionDto.Inputs">
+            <summary>
+            输入
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.WorkflowDefinitionDto.Nodes">
+            <summary>
+            流程节点
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.WorkflowDefinitionDto.DrawNode">
+            <summary>
+            绘画节点
+            </summary>
+        </member>
+        <member name="T:Admin.NET.Application.WorkflowInput">
+            <summary>
+            输入参数
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.WorkflowInput.Title">
+            <summary>
+            标题
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.WorkflowInput.Version">
+            <summary>
+            版本
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.WorkflowInput.CreateUserName">
+            <summary>
+            创建人
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.WorkflowInput.Inputs">
+            <summary>
+            初始表单
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.WorkflowInput.FormId">
+            <summary>
+            表单Id
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.WorkflowInput.DrawNode">
+            <summary>
+            绘画节点
+            </summary>
+        </member>
+        <member name="T:Admin.NET.Application.WorkflowFormData">
+            <summary>
+            流程表单数据
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.WorkflowFormData.Id">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.WorkflowFormData.Name">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.WorkflowFormData.Label">
+            <summary>
+            标签
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.WorkflowFormData.Type">
+            <summary>
+            数据类型
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.WorkflowFormData.Value">
+            <summary>
+            值
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.WorkflowFormData.Styles">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.WorkflowFormData.MaxLength">
+            <summary>
+            最大长度
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.WorkflowFormData.MinLength">
+            <summary>
+            最小长度
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.WorkflowFormData.Items">
+            <summary>
+            选项
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.WorkflowFormData.Rules">
+            <summary>
+            验证
+            </summary>
+        </member>
+        <member name="T:Admin.NET.Application.StepBodyInput">
+            <summary>
+            步骤输入
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.StepBodyInput.Name">
+            <summary>
+            步骤名称
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.StepBodyInput.Inputs">
+            <summary>
+            输入参数
+            </summary>
+        </member>
+        <member name="T:Admin.NET.Application.WorkflowParamInput">
+            <summary>
+            参数输入
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.WorkflowParamInput.Name">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.WorkflowParamInput.Value">
+            <summary>
+            值
+            </summary>
+        </member>
+        <member name="T:Admin.NET.Application.WorkflowNode">
+            <summary>
+            流程节点
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.WorkflowNode.Key">
+            <summary>
+            步骤ID
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.WorkflowNode.Title">
+            <summary>
+            步骤名称
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.WorkflowNode.Form">
+            <summary>
+            表单Id
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.WorkflowNode.Position">
+            <summary>
+            位置
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.WorkflowNode.Type">
+            <summary>
+            类型[left,top]
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.WorkflowNode.StepBody">
+            <summary>
+            步骤输入
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.WorkflowNode.ParentNodes">
+            <summary>
+            上一节点
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.WorkflowNode.NextNodes">
+            <summary>
+            下一节点
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.WorkflowNode.Icon">
+            <summary>
+            图标
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.WorkflowNode.Group">
+            <summary>
+            分组
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.WorkflowNode.NextStep">
+            <summary>
+            下一步骤
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.WorkflowNode.Direction">
+            <summary>
+            描述
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.WorkflowNode.BackAutoStep">
+            <summary>
+            是否自由回退
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.WorkflowNode.BackLastStep">
+            <summary>
+            是否回退至上一步
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.WorkflowNode.IsQuality">
+            <summary>
+            是否质检
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.WorkflowNode.IsSupplementCard">
+            <summary>
+            是否附卡节点
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.WorkflowNode.ToDo">
+            <summary>
+            ToDo节点
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.WorkflowNode.EndpointOptions">
+            <summary>
+            终止设置
+            </summary>
+        </member>
+        <member name="T:Admin.NET.Application.EndpointOption">
+            <summary>
+            终止设置
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.EndpointOption.anchor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.EndpointOption.maxConnections">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.EndpointOption.uuid">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Admin.NET.Application.WorkflowConditionNode">
+            <summary>
+            条件节点
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.WorkflowConditionNode.Label">
+            <summary>
+            标题
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.WorkflowConditionNode.NodeId">
+            <summary>
+            节点ID
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.WorkflowConditionNode.Type">
+            <summary>
+            连线类型
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.WorkflowConditionNode.Conditions">
+            <summary>
+            条件
+            </summary>
+        </member>
+        <member name="T:Admin.NET.Application.WorkflowConditionCondition">
+            <summary>
+            条件
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.WorkflowConditionCondition.Field">
+            <summary>
+            字段
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.WorkflowConditionCondition.Operator">
+            <summary>
+            操作
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.WorkflowConditionCondition.Value">
+            <summary>
+            值
+            </summary>
+        </member>
+        <member name="T:Admin.NET.Application.WorkflowPageListDto">
+            <summary>
+            流程定义分页实体
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.WorkflowPageListDto.Id">
+            <summary>
+            主键
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.WorkflowPageListDto.Title">
+            <summary>
+            标题
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.WorkflowPageListDto.Version">
+            <summary>
+            版本
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.WorkflowPageListDto.CreatedUserName">
+            <summary>
+            创建人
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.WorkflowPageListDto.Icon">
+            <summary>
+            图标
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.WorkflowPageListDto.Color">
+            <summary>
+            颜色
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.WorkflowPageListDto.CreatedTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.WorkflowPageListDto.FormId">
+            <summary>
+            表单Id
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.WorkflowPageListDto.Inputs">
+            <summary>
+            初始化表单
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.WorkflowPageListDto.DrawNode">
+            <summary>
+            绘画节点
+            </summary>
+        </member>
+        <member name="T:Admin.NET.Application.IWorkflowDefinitionService">
+            <summary>
+            流程定义接口
+            </summary>
+        </member>
+        <member name="M:Admin.NET.Application.IWorkflowDefinitionService.CheckWorkflowTitle(System.String)">
+            <summary>
+            检查是否重名
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Application.IWorkflowDefinitionService.GetWorkflow(System.Int64,System.Int32)">
+            <summary>
+            根据Id获取流程定义
+            </summary>
+            <param name="Id"></param>
+            <param name="version"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Application.IWorkflowDefinitionService.GetWorkflowPage(Admin.NET.Application.WorkflowInput)">
+            <summary>
+            分页查询
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Application.IWorkflowDefinitionService.CreateWorkflow(Admin.NET.Application.WorkflowDefinitionAddDto)">
+            <summary>
+            创建流程
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Application.IWorkflowDefinitionService.UpdateWorkflow(Admin.NET.Application.WorkflowDefinitionAddDto)">
+            <summary>
+            修改流程
+            实际上是新增同名流程的不同版本
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Application.IWorkflowDefinitionService.DeleteWorkflow(Admin.NET.Application.WorkflowDefinitionDeleteDto)">
+            <summary>
+            删除流程
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Application.IWorkflowDefinitionService.GetMyWorkflow(Admin.NET.Application.WorkflowInput)">
+            <summary>
+            获取我创建的流程
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Application.IWorkflowDefinitionService.GetStartForm(System.Int64)">
+            <summary>
+            获取是否有开始表单
+            </summary>
+            <param name="Id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Application.IWorkflowDefinitionService.GetAllWorkflow">
+            <summary>
+            获取所有流程定义
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Admin.NET.Application.WorkflowDefinitionService">
+            <summary>
+            流程定义管理
+            </summary>
+        </member>
+        <member name="M:Admin.NET.Application.WorkflowDefinitionService.#ctor(Furion.DatabaseAccessor.IRepository{Admin.NET.Core.PersistedWorkflowDefinition},Admin.NET.Application.IWorkflowManagerService,Furion.DatabaseAccessor.IRepository{Admin.NET.Core.PersistedWorkflow},Furion.DatabaseAccessor.IRepository{Admin.NET.Core.SysForm})">
+            <summary>
+            构造函数
+            </summary>
+            <param name="workflowDefinitionRep"></param>
+            <param name="workflowManagerService"></param>
+            <param name="workflowRep"></param>
+            <param name="sysformRep"></param>
+        </member>
+        <member name="M:Admin.NET.Application.WorkflowDefinitionService.CheckWorkflowTitle(System.String)">
+            <summary>
+            校验名称是否重复
+            </summary>
+            <param name="title"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Application.WorkflowDefinitionService.GetWorkflowPage(Admin.NET.Application.WorkflowInput)">
+            <summary>
+            分页查询
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Application.WorkflowDefinitionService.CreateWorkflow(Admin.NET.Application.WorkflowDefinitionAddDto)">
+            <summary>
+            创建流程
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Application.WorkflowDefinitionService.UpdateWorkflow(Admin.NET.Application.WorkflowDefinitionAddDto)">
+            <summary>
+            修改流程
+            实际上是新增同名流程的不同版本
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Application.WorkflowDefinitionService.DeleteWorkflow(Admin.NET.Application.WorkflowDefinitionDeleteDto)">
+            <summary>
+            删除流程
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Application.WorkflowDefinitionService.GetStartForm(System.Int64)">
+            <summary>
+            获取流程第一步是否含有表单
+            </summary>
+            <param name="Id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Application.WorkflowDefinitionService.GetMyWorkflow(Admin.NET.Application.WorkflowInput)">
+            <summary>
+            获取我创建的流程
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Application.WorkflowDefinitionService.GetWorkflow(System.Int64,System.Int32)">
+            <summary>
+            根据Id获取流程定义
+            </summary>
+            <param name="Id"></param>
+            <param name="version"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Application.WorkflowDefinitionService.GetAllWorkflow">
+            <summary>
+            获取所有流程定义
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Application.WorkflowDefinitionService.GetWorkflowVersion(System.String)">
+            <summary>
+            获取流程版本
+            </summary>
+            <param name="title"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Application.WorkflowDefinitionService.RegistryWorkflow(Admin.NET.Application.WorkflowDefinitionDto)">
+            <summary>
+            注册流程
+            </summary>
+            <param name="workflow"></param>
+        </member>
+        <member name="M:Admin.NET.Application.WorkflowDefinitionService.UnRegistryWorkflow(Admin.NET.Application.WorkflowDefinitionDto)">
+            <summary>
+            注销流程
+            </summary>
+            <param name="workflow"></param>
+        </member>
+        <member name="M:Admin.NET.Application.WorkflowDefinitionService.FakeDeletWorkflow(System.String,System.Int32)">
+            <summary>
+            将流程置为不可用状态
+            </summary>
+            <param name="title"></param>
+            <param name="version"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Admin.NET.Application.StartWorkflowInput">
+            <summary>
+            开始流程输入
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.StartWorkflowInput.Id">
+            <summary>
+            ID
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.StartWorkflowInput.Version">
+            <summary>
+            版本
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.StartWorkflowInput.Inputs">
+            <summary>
+            输入信息
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.WorkflowDto.WorkflowDefinitionId">
+            <summary>
+            流程定义Id
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.WorkflowDto.Version">
+            <summary>
+            流程版本
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.WorkflowDto.Description">
+            <summary>
+            描述
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.WorkflowDto.Data">
+            <summary>
+            数据
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.WorkflowDto.CreateTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.WorkflowDto.CompleteTime">
+            <summary>
+            完成时间
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.WorkflowDto.Status">
+            <summary>
+            流程状态
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.WorkflowDto.FormId">
+            <summary>
+            表单Id
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.WorkflowPageDto.Description">
+            <summary>
+            流程标题
+            </summary>
+        </member>
+        <member name="T:Admin.NET.Application.IWorkflowManagerService">
+            <summary>
+            流程管理接口
+            </summary>
+        </member>
+        <member name="M:Admin.NET.Application.IWorkflowManagerService.GetMyStartWorkflow(Admin.NET.Application.WorkflowPageDto)">
+            <summary>
+            获取我发起的流程
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Application.IWorkflowManagerService.GetWorkflowInputsParameter(System.String)">
+            <summary>
+            获取流程输入参数
+            </summary>
+            <param name="WorkflowId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Application.IWorkflowManagerService.startWorkflow(Admin.NET.Application.StartWorkflowInput)">
+            <summary>
+            开始流程
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Application.IWorkflowManagerService.stopWorkflow(System.String)">
+            <summary>
+            终止工作流
+            </summary>
+            <param name="code"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Application.IWorkflowManagerService.GetWorkflow(System.Guid)">
+            <summary>
+            根据InstanceId获取发起的流程
+            </summary>
+            <param name="Id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Application.IWorkflowManagerService.PushEvent(System.String,System.String,System.Object)">
+            <summary>
+            发布事件
+            </summary>
+            <param name="eventName"></param>
+            <param name="eventKey"></param>
+            <param name="eventData"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Application.IWorkflowManagerService.GetAllRegistryWorkflow">
+            <summary>
+            获取所有注册流程
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Application.IWorkflowManagerService.LoadDefinition(Admin.NET.Application.WorkflowDefinitionDto)">
+            <summary>
+            转换WorkflowCore格式
+            </summary>
+            <param name="workflow"></param>
+            <returns></returns>
+            <exception cref="T:System.Exception"></exception>
+        </member>
+        <member name="T:Admin.NET.Application.WorkflowManagerService">
+            <summary>
+            流程管理
+            </summary>
+        </member>
+        <member name="M:Admin.NET.Application.WorkflowManagerService.#ctor(Admin.NET.Application.IStepBodyManagerService,WorkflowCore.Interface.IWorkflowHost,WorkflowCore.Interface.IWorkflowRegistry,Furion.DatabaseAccessor.IRepository{Admin.NET.Core.PersistedWorkflow},Furion.DatabaseAccessor.IRepository{Admin.NET.Core.PersistedWorkflowDefinition})">
+            <summary>
+            构造函数
+            </summary>
+            <param name="stepBodyManageService"></param>
+            <param name="host"></param>
+            <param name="registry"></param>
+            <param name="workflowRep"></param>
+        </member>
+        <member name="M:Admin.NET.Application.WorkflowManagerService.GetMyStartWorkflow(Admin.NET.Application.WorkflowPageDto)">
+            <summary>
+            获取我发起的流程
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Application.WorkflowManagerService.GetWorkflowInputsParameter(System.String)">
+            <summary>
+            获取流程输入参数
+            </summary>
+            <param name="WorkflowId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Application.WorkflowManagerService.startWorkflow(Admin.NET.Application.StartWorkflowInput)">
+            <summary>
+            开始流程
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Application.WorkflowManagerService.stopWorkflow(System.String)">
+            <summary>
+            终止工作流
+            </summary>
+            <param name="code"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Application.WorkflowManagerService.GetWorkflow(System.Guid)">
+            <summary>
+            根据InstanceId获取发起的流程
+            </summary>
+            <param name="Id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Application.WorkflowManagerService.PushEvent(System.String,System.String,System.Object)">
+            <summary>
+            发布事件
+            </summary>
+            <param name="eventName"></param>
+            <param name="eventKey"></param>
+            <param name="eventData"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Application.WorkflowManagerService.GetAllRegistryWorkflow">
+            <summary>
+            获取所有注册流程
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Application.WorkflowManagerService.LoadDefinition(Admin.NET.Application.WorkflowDefinitionDto)">
+            <summary>
+            转换WorkflowCore格式
+            </summary>
+            <param name="workflow"></param>
+            <returns></returns>
+            <exception cref="T:System.Exception"></exception>
+        </member>
+        <member name="M:Admin.NET.Application.WorkflowManagerService.BuildWorkflow(System.Collections.Generic.IEnumerable{Admin.NET.Application.WorkflowNode},WorkflowCore.Models.DefinitionStorage.v1.DefinitionSourceV1,System.Collections.Generic.IEnumerable{Admin.NET.Application.StepBodyDefinition},Admin.NET.Application.WorkflowNode)">
+            <summary>
+            创建节点
+            </summary>
+            <param name="allNodes"></param>
+            <param name="source"></param>
+            <param name="stepBodys"></param>
+            <param name="node"></param>
+        </member>
+        <member name="M:Admin.NET.Application.WorkflowManagerService.BuildChild(System.Collections.Generic.IEnumerable{Admin.NET.Application.WorkflowNode},System.Collections.Generic.List{WorkflowCore.Models.DefinitionStorage.v1.StepSourceV1},WorkflowCore.Models.DefinitionStorage.v1.StepSourceV1,System.Collections.Generic.IEnumerable{Admin.NET.Application.StepBodyDefinition},System.Collections.Generic.IEnumerable{Admin.NET.Application.WorkflowConditionNode})">
+            <summary>
+            创建节点子属性
+            </summary>
+            <param name="allNodes"></param>
+            <param name="list"></param>
+            <param name="stepSource"></param>
+            <param name="stepBodys"></param>
+            <param name="nodes"></param>
+            <exception cref="T:System.Exception"></exception>
+        </member>
+        <member name="M:Admin.NET.Application.WorkflowManagerService.CreateStepSourceV1(System.Collections.Generic.IEnumerable{Admin.NET.Application.StepBodyDefinition},Admin.NET.Application.WorkflowNode)">
+            <summary>
+            创建StepSourceV1实体
+            </summary>
+            <param name="stepBodys"></param>
+            <param name="node"></param>
+            <returns></returns>
+        </member>
         <member name="T:Admin.NET.Application.SpareTimeDemo">
             <summary>
             定时任务demo
@@ -6121,6 +7737,47 @@
             </summary>
             <param name="timer">参数</param>
             <param name="count">次数</param>
+        </member>
+        <member name="T:Admin.NET.Application.GeneralAuditingStepBody">
+            <summary>
+            指定人员执行步骤
+            </summary>
+        </member>
+        <member name="M:Admin.NET.Application.GeneralAuditingStepBody.#ctor(Admin.NET.Application.IWorkflowManagerService,Admin.NET.Application.IWorkflowAuditorService,Admin.NET.Application.ISendMessageService,Admin.NET.Application.ISysUserService)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="workflowManagerService"></param>
+            <param name="workflowAuditorService"></param>
+            <param name="sendMessageService"></param>
+            <param name="sysUserService"></param>
+        </member>
+        <member name="P:Admin.NET.Application.GeneralAuditingStepBody.UserId">
+            <summary>
+            审核人
+            </summary>
+        </member>
+        <member name="M:Admin.NET.Application.GeneralAuditingStepBody.Run(WorkflowCore.Interface.IStepExecutionContext)">
+            <summary>
+            步骤执行
+            </summary>
+            <param name="context"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Admin.NET.Application.NullStepBody">
+            <summary>
+            空节点步骤
+            </summary>
+        </member>
+        <member name="T:Admin.NET.Application.ExtensionMethods">
+            <summary>
+            扩展
+            </summary>
+        </member>
+        <member name="T:Admin.NET.Application.FurionPersistenceProvider">
+            <summary>
+            FurionPersistenceProvider
+            </summary>
         </member>
     </members>
 </doc>
