@@ -1,3 +1,4 @@
+<script src="../../../../../../Admin.NET-aifie2/Vben2/src/api/sys/admin.ts"></script>
 <template>
   <BasicTable
     @register="registerTable"

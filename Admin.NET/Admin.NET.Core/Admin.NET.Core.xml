@@ -906,6 +906,11 @@
             排序
             </summary>
         </member>
+        <member name="P:Admin.NET.Core.SysMenu.CodeGenId">
+            <summary>
+            代码自动生成ID
+            </summary>
+        </member>
         <member name="P:Admin.NET.Core.SysMenu.Children">
             <summary>
             菜单子项
@@ -3342,11 +3347,6 @@
         <member name="P:Admin.NET.Core.Service.CodeGenInput.MenuPid">
             <summary>
             菜单父级
-            </summary>
-        </member>
-        <member name="P:Admin.NET.Core.Service.AddCodeGenInput.TableName">
-            <summary>
-            数据库表名
             </summary>
         </member>
         <member name="P:Admin.NET.Core.Service.AddCodeGenInput.BusName">
