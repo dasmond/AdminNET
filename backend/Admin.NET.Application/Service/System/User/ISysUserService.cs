@@ -32,6 +32,12 @@ namespace Admin.NET.Application
 
         Task GrantUserRole(UpdateUserRoleDataInput input);
 
+        /// <summary>
+        /// 获取用户列表
+        /// </summary>
+        /// <returns></returns>
+        Task<List<UserOutput>> GetSysUserList();
+
         Task ImportUser(IFormFile file);
 
         Task<PageResult<UserOutput>> QueryUserPageList([FromQuery] UserPageInput input);
