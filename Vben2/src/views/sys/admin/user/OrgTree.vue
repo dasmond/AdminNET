@@ -40,9 +40,7 @@
       }
 
       const  updateNodeByKey=(key: string,values)=>{
-        unref(treeAction)?.updateNodeByKey(key,
-          values,
-        );
+        unref(treeAction)?.updateNodeByKey(key, values);
       }
 
       const deleteNodeByKey=(key: string)=> {

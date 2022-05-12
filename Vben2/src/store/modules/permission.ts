@@ -192,6 +192,21 @@ export const usePermissionStore = defineStore({
 
           // Dynamically introduce components
           routeList = transformObjToRoute(routeList);
+          // if( userStore.getRoleList.includes(RoleEnum.SUPER))
+          // {
+          routes = filter(asyncRoutes, routeFilter);
+          routes = routes.filter(routeFilter);
+          // const menuList = transformRouteToMenu(routes, true);
+          routes = filter(routes, routeRemoveIgnoreFilter);
+          routes = routes.filter(routeRemoveIgnoreFilter);
+          // menuList.sort((a, b) => {
+          //   return (a.meta?.orderNo || 0) - (b.meta?.orderNo || 0);
+          // });
+          //
+          // this.setFrontMenuList(menuList);
+
+          routeList = [...routeList, ...routes];
+          // }
 
           //  Background routing to menu structure
           const backMenuList = transformRouteToMenu(routeList);
