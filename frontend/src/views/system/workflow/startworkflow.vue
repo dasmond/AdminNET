@@ -52,14 +52,18 @@ export default {
     // 提交
     handleOk() {
       this.$refs.kfb.getData().then(values => {
-        console.log('验证通过', values)
         var data = {
           id: this.workflowdefinitionId,
           version: this.version,
           inputs: values
         }
         startWorkflow(data).then(res => {
-          console.log(res)
+          if (res.success === true) {
+            this.$message.success('发起流程成功！')
+            this.handleCancel()
+          } else {
+             this.$message.error(res.message)
+          }
         })
       }).catch(() => {
         console.log('验证未通过，获取失败')
