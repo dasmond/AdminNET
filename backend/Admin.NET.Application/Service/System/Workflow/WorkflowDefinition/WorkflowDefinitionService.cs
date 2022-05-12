@@ -89,7 +89,7 @@ namespace Admin.NET.Application
                 throw Oops.Oh("存在相同名称流程，请修改名称后保存！");
             }
             PersistedWorkflowDefinition workflowDefinition = workflow.Adapt<PersistedWorkflowDefinition>();
-            var result = await _workflowDefinitionRep.InsertAsync(workflowDefinition);
+            var result = await _workflowDefinitionRep.InsertNowAsync(workflowDefinition);
             RegistryWorkflow(result.Entity.Adapt<WorkflowDefinitionDto>());
             await _workflowRep.SaveNowAsync();
             return result.Entity.Adapt<WorkflowDefinitionDto>();
