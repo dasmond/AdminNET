@@ -7,7 +7,7 @@ namespace Admin.NET.Core
     /// <summary>
     /// 系统机构表
     /// </summary>
-    [SugarTable("sys_org", "系统机构表")]
+    [SugarTable("P_组织机构表", "系统机构表")]
     [SqlSugarEntity]
     public class SysOrg : EntityTenant
     {
@@ -20,14 +20,14 @@ namespace Admin.NET.Core
         /// <summary>
         /// 名称
         /// </summary>
-        [SugarColumn(ColumnDescription = "名称", Length = 100)]
+        [SugarColumn(ColumnDescription = "名称", Length = 50, ColumnName = "组织机构名称")]
         [Required, MaxLength(100)]
         public string Name { get; set; }
 
         /// <summary>
         /// 编码
         /// </summary>
-        [SugarColumn(ColumnDescription = "编码", Length = 50)]
+        [SugarColumn(ColumnDescription = "编码", Length = 20, ColumnName = "组织机构码")]
         [MaxLength(50)]
         public string Code { get; set; }
 

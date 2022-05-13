@@ -240,16 +240,27 @@ export const getAdvanceSchema = (itemNumber = 6): FormSchema[] => {
 export function getFormConfig(): Partial<FormProps> {
   return {
     labelWidth: 100,
+    showAdvancedButton: false,
     schemas: [
       ...getAdvanceSchema(5),
       {
         field: `field11`,
         label: `Slot示例`,
-        component: 'Select',
+        component: 'RadioButtonGroup',
         slot: 'custom',
         colProps: {
-          xl: 12,
-          xxl: 8,
+          xl: 24,
+          xxl: 12,
+        },
+      },
+      {
+        field: `field12`,
+        label: `Slot上月`,
+        component: 'CheckboxGroup',
+        slot: 'custom',
+        colProps: {
+          xl: 24,
+          xxl: 12,
         },
       },
     ],

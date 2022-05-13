@@ -1,12 +1,7 @@
 import { BasicColumn } from '/@/components/Table';
 import { FormSchema } from '/@/components/Table';
-import {
-  getMenuList,
-  getDictDataDropdown,
-  getDatabaseList,
-  getTableList,
-  getColumnList,
-} from '/@/api/sys/admin';
+import { getMenuList, getDictDataDropdown, getTableList, getColumnList
+          ,getDatabaseList,} from '/@/api/sys/admin';
 
 const apiDatabaseList = async (param: any) => {
   const result = await getDatabaseList(param);
@@ -15,8 +10,8 @@ const apiDatabaseList = async (param: any) => {
 let currentCongidId = '';
 let tableList: any[] = [];
 const apiTableList = async (param: any) => {
-  //const result = await getTableList(param);
-  //return result;
+  // const result = await getTableList(param);
+  // return result;
   if (tableList.length === 0 || currentCongidId !== param) {
     //console.log(param);
     const result = await getTableList(param);
@@ -29,9 +24,8 @@ const apiTableList = async (param: any) => {
 let currentTable = '';
 let columnList: any[] = [];
 const apiColumnList = async (param: any) => {
-  //if (typeof param !== 'string') return [];
-  if (columnList.length === 0 || currentTable !== param.e) {
-    //console.log('param:' + param);
+  // if (typeof param !== 'string') return [];
+  if (columnList.length === 0 || currentTable !== param) {
     const result = await getColumnList(param.dbConfigId, param.e);
     columnList = result;
   } else {
@@ -39,12 +33,10 @@ const apiColumnList = async (param: any) => {
   currentTable = param.e;
   return columnList;
 };
-
 const apiDictTypeDropDown = async () => {
   const result = await getDictDataDropdown('code_gen_create_type');
   return result;
 };
-
 export const codeShowColumns: BasicColumn[] = [
   {
     title: '库定位器',
@@ -72,7 +64,6 @@ export const codeShowColumns: BasicColumn[] = [
     slots: { customRender: 'generateType' },
   },
 ];
-
 export const codeFormSchema: FormSchema[] = [
   {
     field: 'id',
@@ -84,6 +75,7 @@ export const codeFormSchema: FormSchema[] = [
     field: 'dbConfigId',
     label: '库定位器',
     component: 'ApiSelect',
+    colProps: { span: 12 },
     componentProps: ({ formModel, formActionType }) => {
       return {
         api: apiDatabaseList,
@@ -142,6 +134,7 @@ export const codeFormSchema: FormSchema[] = [
     field: 'dbType',
     label: '数据库类型',
     component: 'Input',
+    colProps: { span: 12 },
     dynamicDisabled: true,
   },
   {
@@ -149,11 +142,15 @@ export const codeFormSchema: FormSchema[] = [
     label: '链接串',
     component: 'InputTextArea',
     dynamicDisabled: true,
+    colProps: { span: 24 },
   },
   {
     field: 'tableName',
     label: '生成表',
     component: 'ApiSelect',
+    colProps: {
+      span: 24,
+    },
     // componentProps: {
     //   api: apiTableList,
     //   fieldNames: {
@@ -166,12 +163,16 @@ export const codeFormSchema: FormSchema[] = [
     field: 'busName',
     label: '业务名',
     component: 'Input',
+    colProps: { span: 12 },
     required: true,
   },
   {
     field: 'menuPid',
     label: '父级菜单',
     component: 'ApiTreeSelect',
+    colProps: {
+      span: 12,
+    },
     componentProps: {
       api: getMenuList,
       fieldNames: {
@@ -186,6 +187,7 @@ export const codeFormSchema: FormSchema[] = [
     field: 'nameSpace',
     label: '命名空间',
     component: 'Input',
+    colProps: { span: 12 },
     required: true,
     defaultValue: 'Admin.NET.Application',
   },
@@ -194,12 +196,14 @@ export const codeFormSchema: FormSchema[] = [
     label: '作者姓名',
     component: 'Input',
     required: true,
+    colProps: { span: 12 },
     defaultValue: 'one',
   },
   {
     field: 'generateType',
     label: '生成方式',
     component: 'ApiSelect',
+    colProps: { span: 12 },
     componentProps: {
       api: apiDictTypeDropDown,
       fieldNames: {
@@ -210,8 +214,59 @@ export const codeFormSchema: FormSchema[] = [
     defaultValue: '2',
     required: true,
   },
-];
+  {
+    field: 'hasTree',
+    label: '是否树控件',
+    component: 'Select',
+    defaultValue: false,
+    componentProps: {
+      options: [
+        { label: '是', value: true },
+        { label: '否', value: false },
+      ],
+    },
+    colProps: { span: 12 },
+  },
+  {
+    field: 'hasDatePicker',
+    label: '是否日期控件',
+    component: 'Select',
+    defaultValue: false,
+    componentProps: {
+      options: [
+        { label: '是', value: true },
+        { label: '否', value: false },
+      ],
+    },
+    colProps: { span: 12 },
+  },
+  {
+    field: 'choosedElements',
+    component: 'CheckboxGroup',
+    label: '选择自定义组件',
+    colProps: {
+      span: 24,
+    },
+    defaultValue: 'Add',
+    componentProps: {
+      options: [
+        {
+          label: '新增',
+          value: 'Add',
+        },
+        {
+          label: '导出',
+          value: 'Export',
+        },
+        {
+          label: '导入',
+          value: 'Import',
+        },
+      ],
+    },
+  },
 
+];
 // 表头
 export const columns = [
   {
@@ -295,8 +350,6 @@ export const columns = [
     },
   },
 ];
-
-//外键
 export const fkFormSchema: FormSchema[] = [
   {
     field: 'dbConfigId',
@@ -363,6 +416,10 @@ export const fkFormSchema: FormSchema[] = [
   // {
   //   field: 'tableName',
   //   label: '数据库表',
+  //   labelWidth: 68,
+  //   colProps: {
+  //     span: 24,
+  //   },
   //   component: 'ApiSelect',
   //   componentProps: ({ formModel, formActionType }) => {
   //     return {
@@ -402,23 +459,32 @@ export const fkFormSchema: FormSchema[] = [
   {
     field: 'columnName',
     label: '显示字段',
+    labelWidth: 68,
     component: 'ApiSelect',
+    colProps: {
+      span: 24,
+    },
   },
   {
     field: 'columnNetType',
     label: '字段类型',
     component: 'Input',
     show: false,
+    colProps: {
+      span: 24,
+    },
   },
   {
     field: 'entityName',
     label: '实体名称',
     component: 'Input',
     show: false,
+    colProps: {
+      span: 24,
+    },
   },
 ];
 
-//树形
 export const treeFormSchema: FormSchema[] = [
   {
     field: 'dbConfigId',
@@ -506,6 +572,9 @@ export const treeFormSchema: FormSchema[] = [
   //   field: 'tableName',
   //   label: '数据库表',
   //   component: 'ApiSelect',
+  //   colProps: {
+  //     span: 24,
+  //   },
   //   componentProps: ({ formModel, formActionType }) => {
   //     return {
   //       api: apiTableList,
@@ -568,16 +637,25 @@ export const treeFormSchema: FormSchema[] = [
     field: 'displayColumn',
     label: '显示文本字段',
     component: 'ApiSelect',
+    colProps: {
+      span: 24,
+    },
   },
   {
     field: 'valueColumn',
     label: '选择值字段',
     component: 'ApiSelect',
+    colProps: {
+      span: 24,
+    },
   },
   {
     field: 'pidColumn',
     label: '父级字段',
     component: 'ApiSelect',
+    colProps: {
+      span: 24,
+    },
   },
   {
     field: 'entityName',

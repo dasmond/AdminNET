@@ -60,15 +60,7 @@ namespace @Model.NameSpace
         }else if(@column.NetType == "int" || @column.NetType == "long"){
                         @:.WhereIF(input.@column.ColumnName>0, u => u.@(@column.ColumnName) @column.QueryType input.@(@column.ColumnName))
         }else if(@column.NetType == "DateTime" && @column.QueryType == "~"){
-        }
-    } 
-}          
-;
-
-@foreach (var column in Model.TableField){
-    if (@column.QueryWhether == "Y"){
-        if(@column.NetType == "DateTime" && @column.QueryType == "~"){
-            @:if(input.@(@column.ColumnName)Range != null && input.@(@column.ColumnName)Range.Count == 2)
+                          @:if(input.@(@column.ColumnName)Range != null && input.@(@column.ColumnName)Range.Count == 2)
             @:{
                     @:DateTime? start= input.@(@column.ColumnName)Range[0]; 
                     @:query = query.WhereIF(start.HasValue, u => u.@column.ColumnName > start);
@@ -79,8 +71,11 @@ namespace @Model.NameSpace
                     @:}
             @:} 
         }
-    }
-}         
+    } 
+}          
+;
+
+        
                 return await query.ToPagedListAsync(input.Page, input.PageSize);
         }
 

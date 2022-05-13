@@ -31,6 +31,12 @@ namespace Admin.NET.Core.Service
 
         public string ClassName { get; set; }
 
+        public bool HasTree { get; set; }
+
+        public bool HasDatePicker { get; set; }
+
+        public List<string> ChoosedElements { get; set; }
+
         public string LowerClassName
         {
             get

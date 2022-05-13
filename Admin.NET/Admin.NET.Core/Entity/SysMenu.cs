@@ -105,6 +105,12 @@ namespace Admin.NET.Core
         public int OrderNo { get; set; }
 
         /// <summary>
+        /// 代码自动生成ID
+        /// </summary>
+        [SugarColumn(ColumnDescription = "代码自动生成ID")]
+        public long CodeGenId { get; set; }
+
+        /// <summary>
         /// 菜单子项
         /// </summary>
         [SugarColumn(IsIgnore = true)]

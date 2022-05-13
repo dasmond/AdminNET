@@ -36,7 +36,7 @@
     <CodeGenerateModal @register="registerCodeGenModal" @success="handleSuccess" />
     <GenerateConfigModal
       @register="registerCodeGenConfigModal"
-      width="80%"
+      width="100%"
       @success="handleSuccess"
     />
   </div>
@@ -55,7 +55,6 @@
   import CodeGenerateModal from './CodeGenerateModal.vue';
   import GenerateConfigModal from './GenerateConfigModal.vue';
   import { useMessage } from '/@/hooks/web/useMessage';
-
   export default defineComponent({
     components: {
       BasicTable,
@@ -90,40 +89,33 @@
           slots: { customRender: 'action' },
         },
       });
-
       function handleCreate() {
         openCodeGenModal(true, {
           isUpdate: false,
         });
       }
-
       function handleEdit(record: Recordable) {
         openCodeGenModal(true, {
           record,
           isUpdate: true,
         });
       }
-
       function handleConfig(record: Recordable) {
         openCodeGenConfigModal(true, { id: record.id });
       }
-
       async function handleGenerate(record: Recordable) {
         await generateRunLocal(record);
         createMessage.success('生成成功！');
         reload();
       }
-
       async function handleDelete(record: Recordable) {
         await deleGenerate([{ id: record.id }]);
         createMessage.success('删除成功');
         reload();
       }
-
       function handleSuccess() {
         reload();
       }
-
       return {
         registerTable,
         registerCodeGenModal,

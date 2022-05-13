@@ -13,7 +13,6 @@
       <a-button @click="handleGetCheckData" class="mr-2"> 获取勾选数据 </a-button>
       <a-button @click="handleSetSelectData" class="mr-2"> 设置选中数据 </a-button>
       <a-button @click="handleGetSelectData" class="mr-2"> 获取选中数据 </a-button>
-      <a-button @click="handleGetSelectNode" class="mr-2"> 获取选中节点 </a-button>
 
       <a-button @click="handleSetExpandData" class="mr-2"> 设置展开数据 </a-button>
       <a-button @click="handleGetExpandData" class="mr-2"> 获取展开数据 </a-button>
@@ -70,12 +69,6 @@
         createMessage.success(JSON.stringify(keys));
       }
 
-      function handleGetSelectNode() {
-        const keys = getTree().getSelectedKeys();
-        const node = getTree().getSelectedNode(keys[0]);
-        createMessage.success(node !== null ? JSON.stringify(node) : null);
-      }
-
       function handleSetExpandData() {
         getTree().setExpandedKeys(['0-0']);
       }
@@ -127,7 +120,6 @@
         handleGetSelectData,
         handleSetExpandData,
         handleGetExpandData,
-        handleGetSelectNode,
         appendNodeByKey,
         deleteNodeByKey,
         updateNodeByKey,
