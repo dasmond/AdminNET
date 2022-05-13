@@ -2,55 +2,10 @@
 branches: {
   }
 fileChange:
-  /backend:
-    newFile: !uuid 'ac6427a8f61886c4f81adbd8b6ad178dfbe9f150'
-    oldFile: !uuid 'e257e0c70ee6ed2d3b7b3cd631beef200c81fe78'
-  /backend/Admin.NET.Application:
-    newFile: !uuid '26cd666ec87f41f2e5066992d434df1028242634'
-    oldFile: !uuid '3ae1c3d1f0a47ebfd30a89b529c6d0045d7042af'
-  /backend/Admin.NET.Application/Service:
-    newFile: !uuid '9f775f01b77b69624640b409a2741cc28811820e'
-    oldFile: !uuid 'e9b106a24a0d796c92fdfaa19dbe10e9c1a04af0'
-  /backend/Admin.NET.Application/Service/System:
-    newFile: !uuid '753e9352c370ab293b27710a5290365c77926e86'
-    oldFile: !uuid 'ebe1ed2d00a7a0f42230ecb9dede9b2f9e0f530d'
-  /backend/Admin.NET.Application/Service/System/Workflow:
-    newFile: !uuid '291bfda5127e75fd1d8da4664a017257c68fc42d'
-    oldFile: !uuid '27e0d26a4946b5567611e36c466346933e483fae'
-  /backend/Admin.NET.Application/Service/System/Workflow/WorkflowDefinition:
-    newFile: !uuid 'c002f5f724e1f106487c2cb097366ec6d0ad3003'
-    oldFile: !uuid '15487e363665512711c00cb7b2d84598c4618b08'
-  /backend/Admin.NET.Application/Service/System/Workflow/WorkflowDefinition/WorkflowDefinitionService.cs:
-    newFile: !uuid 'b874d5707a0dafd30b9737dd7e903df21bdb9ec4'
-    oldFile: !uuid '9633f7925671ce82873002247f28a88217fd3d10'
-  /backend/Admin.NET.Core:
-    newFile: !uuid '549188a19c631c13e69aa457ef561496e74e92af'
-    oldFile: !uuid 'cdd5738a10a3c0edb36f0d79e0d52d9931627cd5'
-  /backend/Admin.NET.Core/SeedData:
-    newFile: !uuid '7a80ccce09018a5275ca7caf8256b66b73c1ba32'
-    oldFile: !uuid '7d43d4a8e9b284cda4e91cf0d5bc0ac36180fa0c'
-  /backend/Admin.NET.Core/SeedData/SysMenuSeedData.cs:
-    newFile: !uuid '2b8e5924316c5c568ee326b095cf4bb3953d6c18'
-    oldFile: !uuid '6e7e3bcb8965a2d27a56df3b1710f1b4c141fc60'
-  /frontend:
-    newFile: !uuid '466585d2ed339e20a7372b2f796effec18b27b48'
-    oldFile: !uuid '5ea1e5bd317a4430bd3a69fc56ac33267d44a3ec'
-  /frontend/src:
-    newFile: !uuid '62753b57cfb6720f8b543a45aaed068e0b5deb36'
-    oldFile: !uuid '89c330a25453c6894c895aa5ff073640ac0f1eec'
-  /frontend/src/views:
-    newFile: !uuid '3fc1af057ec6629da49699534c1263302b1eebf0'
-    oldFile: !uuid '7d725a2645a643f4bb372b830b62bccd19d9311d'
-  /frontend/src/views/system:
-    newFile: !uuid '1a518a9dde23adc3ece8e9435154222978df3e8c'
-    oldFile: !uuid 'b7a3a78c401ace8571b5050722f4a76c04aac1fe'
-  /frontend/src/views/system/workflow:
-    newFile: !uuid '083bc2302dc8dd62df7c6644b8a79e7197feb67b'
-    oldFile: !uuid 'bef0f8716f37e175c8283263c314cf8c70f65e38'
-  /frontend/src/views/system/workflow/startworkflow.vue:
-    newFile: !uuid '5ac1f40dc8ca96603c6a3c6b5946a8873badfc6a'
-    oldFile: !uuid '577e3e08a3e45c84c2dbe0d3eafe333e61571b1f'
-gitCommitId: !uuid 'a6b8f75de5038d3b4c7e2da99f198181f2736588'
+  /README.md:
+    newFile: !uuid '0a91cdc0abaf55d554254a449018a74d4d56b595'
+    oldFile: !uuid '0bea9b1485317557e03b1bbf4936d6a1993dfafa'
+gitCommitId: !uuid 'ac20d2eb4a9f5100c69a943e33b0bc5eb4d33076'
 renames: {
   }
-revisionId: 708
+revisionId: 709
