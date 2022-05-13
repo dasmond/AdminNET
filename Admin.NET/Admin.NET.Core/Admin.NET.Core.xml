@@ -346,6 +346,21 @@
             菜单编码
             </summary>
         </member>
+        <member name="P:Admin.NET.Core.SysCodeGen.ChoosedElements">
+            <summary>
+            选择其他自定义组件
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.SysCodeGen.HasTree">
+            <summary>
+            树控件
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.SysCodeGen.HasDatePicker">
+            <summary>
+            日期控件
+            </summary>
+        </member>
         <member name="T:Admin.NET.Core.SysCodeGenConfig">
             <summary>
             代码生成字段配置表
@@ -3371,6 +3386,21 @@
             菜单父级
             </summary>
         </member>
+        <member name="P:Admin.NET.Core.Service.CodeGenInput.ChoosedElements">
+            <summary>
+            选择自定义组件
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.Service.CodeGenInput.HasTree">
+            <summary>
+            选择是否有树
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.Service.CodeGenInput.HasDatePicker">
+            <summary>
+            选择是否有日期控制
+            </summary>
+        </member>
         <member name="P:Admin.NET.Core.Service.AddCodeGenInput.BusName">
             <summary>
             业务名（业务代码包名称）
@@ -3394,6 +3424,21 @@
         <member name="P:Admin.NET.Core.Service.AddCodeGenInput.MenuPid">
             <summary>
             菜单父级
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.Service.AddCodeGenInput.ChoosedElements">
+            <summary>
+            选择额外组件
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.Service.AddCodeGenInput.HasTree">
+            <summary>
+            选择是否有树
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.Service.AddCodeGenInput.HasDatePicker">
+            <summary>
+            选择是否有日期控制
             </summary>
         </member>
         <member name="P:Admin.NET.Core.Service.DeleteCodeGenInput.Id">
@@ -4552,6 +4597,12 @@
             </summary>
         </member>
         <member name="M:Admin.NET.Core.Service.SysOrgService.GetOrgList(Admin.NET.Core.Service.OrgInput)">
+            <summary>
+            获取机构列表
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Core.Service.SysOrgService.GetOrgTree(Admin.NET.Core.Service.OrgInput)">
             <summary>
             获取机构列表
             </summary>

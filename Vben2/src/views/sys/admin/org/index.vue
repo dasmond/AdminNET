@@ -1,6 +1,6 @@
 <template>
-  <PageWrapper dense contentFullHeight  contentClass="flex">
-    <OrgTree  @select="handleSelect" class="w-1/4 xl:w-1/5"  ref="OrgTreeChild"/>
+  <PageWrapper dense contentFullHeight fixedHeight contentClass="flex">
+    <OrgTree  @select="handleSelect" class="w-1/4 xl:w-1/5"  style="overflow: auto"  ref="OrgTreeChild"/>
     <BasicTable @register="registerTable" class="w-3/4 xl:w-4/5"  :searchInfo="searchInfo">
       <template #toolbar>
         <a-button type="primary" @click="handleCreatebrother" :disabled="!hasPermission('sysOrg:add')">
@@ -67,13 +67,13 @@
           schemas: searchFormSchema,
         },
         rowKey: 'id',
-        pagination: true,
-        striped: false,
+        // pagination: true,
+        // striped: false,
         useSearchForm: true,
         showTableSetting: true,
         bordered: true,
-        showIndexColumn: true,
-        canResize: false,
+        // showIndexColumn: true,
+        canResize: true,
         actionColumn: {
           width: 150,
           title: '操作',
@@ -174,15 +174,15 @@
     },
   });
 </script>
-<style lang="less">
-.vben-basic-table-header__toolbar {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
+<!--<style lang="less">-->
+<!--.vben-basic-table-header__toolbar {-->
+<!--    flex: 1;-->
+<!--    display: flex;-->
+<!--    align-items: center;-->
+<!--    justify-content: flex-start;-->
 
-    > * {
-      margin-left: 18px;
-    }
-}
-</style>
+<!--    > * {-->
+<!--      margin-left: 18px;-->
+<!--    }-->
+<!--}-->
+<!--</style>-->

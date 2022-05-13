@@ -68,6 +68,7 @@ namespace Admin.NET.Core.Service.CodeGen
                 throw Oops.Oh(ErrorCodeEnum.D1400);
 
             var codeGen = input.Adapt<SysCodeGen>();
+            codeGen.ChoosedElements = string.Join(",", input.ChoosedElements);
             var newCodeGen = await _sysCodeGenRep.Context.Insertable(codeGen).ExecuteReturnEntityAsync();
             // 加入配置表中
             _codeGenConfigService.AddList(GetColumnList(input), newCodeGen);
@@ -107,6 +108,7 @@ namespace Admin.NET.Core.Service.CodeGen
                 throw Oops.Oh(ErrorCodeEnum.D1400);
 
             var codeGen = input.Adapt<SysCodeGen>();
+            codeGen.ChoosedElements = string.Join(",", input.ChoosedElements);
             await _sysCodeGenRep.UpdateAsync(codeGen);
         }
 
@@ -253,6 +255,9 @@ namespace Admin.NET.Core.Service.CodeGen
                     TableField = tableFieldList,
                     IsJoinTable = joinTableList.Count > 0,
                     IsUpload = joinTableList.Where(u => u.EffectType == "Upload").Any(),
+                    ChoosedElements = input.ChoosedElements.Split(',').ToList(),
+                    HasTree = input.HasTree,
+                    HasDatePicker = input.HasDatePicker,
                 };
                 var tResult = _viewEngine.RunCompile<CustomViewEngine>(tContent, data, builderAction: builder =>
                 {
@@ -267,7 +272,7 @@ namespace Admin.NET.Core.Service.CodeGen
                 File.WriteAllText(targetPathList[i], tResult, Encoding.UTF8);
             }
 
-            await AddMenu(input.TableName, input.BusName, input.MenuPid);
+            await AddMenu(input.TableName, input.BusName, input.MenuPid, input.Id);
         }
 
         /// <summary>
@@ -294,7 +299,7 @@ namespace Admin.NET.Core.Service.CodeGen
             return (str.TrimEnd(','), lowerStr.TrimEnd(','));
         }
 
-        private async Task AddMenu(string className, string busName, long pid)
+        private async Task AddMenu(string className, string busName, long pid, long codegenid)
         {
             // 如果 pid 为 0 说明为顶级菜单, 需要创建顶级目录
             if (pid == 0)
@@ -308,6 +313,7 @@ namespace Admin.NET.Core.Service.CodeGen
                     Icon = "robot",
                     Path = "/" + className.ToLower(),
                     Component = "LAYOUT",
+                    CodeGenId = codegenid,
                 };
                 pid = (await _sysMenuRep.Context.Insertable(menuType0).ExecuteReturnEntityAsync()).Id;
             }
@@ -324,6 +330,7 @@ namespace Admin.NET.Core.Service.CodeGen
                 Type = MenuTypeEnum.Menu,
                 Path = "/" + className.ToLower(),
                 Component = "/main/" + className + "/index",
+                CodeGenId = codegenid,
             };
             var pid1 = (await _sysMenuRep.Context.Insertable(menuType1).ExecuteReturnEntityAsync()).Id;
 
@@ -334,6 +341,7 @@ namespace Admin.NET.Core.Service.CodeGen
                 Title = busName + "查询",
                 Type = MenuTypeEnum.Btn,
                 Permission = className + ":page",
+                CodeGenId = codegenid,
             };
 
             // 按钮-detail
@@ -343,6 +351,7 @@ namespace Admin.NET.Core.Service.CodeGen
                 Title = busName + "详情",
                 Type = MenuTypeEnum.Btn,
                 Permission = className + ":detail",
+                CodeGenId = codegenid,
             };
 
             // 按钮-add
@@ -352,6 +361,7 @@ namespace Admin.NET.Core.Service.CodeGen
                 Title = busName + "增加",
                 Type = MenuTypeEnum.Btn,
                 Permission = className + ":add",
+                CodeGenId = codegenid,
             };
 
             // 按钮-delete
@@ -361,6 +371,7 @@ namespace Admin.NET.Core.Service.CodeGen
                 Title = busName + "删除",
                 Type = MenuTypeEnum.Btn,
                 Permission = className + ":delete",
+                CodeGenId = codegenid,
             };
 
             // 按钮-edit
@@ -370,6 +381,7 @@ namespace Admin.NET.Core.Service.CodeGen
                 Title = busName + "编辑",
                 Type = MenuTypeEnum.Btn,
                 Permission = className + ":update",
+                CodeGenId = codegenid,
             };
 
             var menuList = new List<SysMenu>() { menuType2, menuType2_1, menuType2_2, menuType2_3, menuType2_4 };
