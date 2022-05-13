@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.AspNetCore.Mvc.Filters;
 using System.Diagnostics;
+using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using UAParser;
@@ -27,14 +28,25 @@ namespace Admin.NET.Core
 
         public async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
         {
+            // 是否有禁用操作日志属性
+            if (context.ActionDescriptor.EndpointMetadata.Any(m => m.GetType() == typeof(NotLogAttribute)))
+            {
+                await next();
+                return;
+            }
+
+            // 是否开启操作日志
+            var value = await App.GetService<SysConfigService>().GetConfigCache(CommonConst.SysOpLogFlag);
+            if (string.IsNullOrWhiteSpace(value) || !bool.Parse(value))
+            {
+                await next();
+                return;
+            }
+
             var sw = new Stopwatch();
             sw.Start();
             var actionContext = await next();
             sw.Stop();
-
-            // 是否开启操作日志
-            var value = await App.GetService<SysConfigService>().GetConfigCache(CommonConst.SysOpLogFlag);
-            if (string.IsNullOrWhiteSpace(value) || !bool.Parse(value)) return;
 
             var httpContext = context.HttpContext;
             var httpRequest = httpContext.Request;
@@ -59,7 +71,7 @@ namespace Admin.NET.Core
                     ReqMethod = httpRequest.Method,
                     Param = context.ActionArguments.Count < 1 ? string.Empty : JSON.Serialize(context.ActionArguments),
                     Result = actionContext.Result?.GetType() == typeof(JsonResult) ? JSON.Serialize(actionContext.Result) : string.Empty,
-                    ElapsedTime = sw.ElapsedMilliseconds,                    
+                    ElapsedTime = sw.ElapsedMilliseconds,
                     UserName = httpContext.User?.FindFirstValue(ClaimConst.UserName),
                     RealName = httpContext.User?.FindFirstValue(ClaimConst.RealName)
                 }));

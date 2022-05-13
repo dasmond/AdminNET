@@ -1,7 +1,6 @@
 ﻿using Furion.DependencyInjection;
 using Furion.DynamicApiController;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Admin.NET.Core.Service
@@ -24,6 +23,7 @@ namespace Admin.NET.Core.Service
         /// </summary>
         /// <returns></returns>
         [HttpGet("/sysExLog/pageList")]
+        [NotLog]
         public async Task<SqlSugarPagedList<SysLogEx>> GetExLogList([FromQuery] PageLogInput input)
         {
             return await _sysExLogRep.AsQueryable()

@@ -221,14 +221,9 @@
             默认表主键
             </summary>
         </member>
-        <member name="T:Admin.NET.Core.SqlSugarDb">
+        <member name="F:Admin.NET.Core.SqlSugarConst.ConnectionConfigs">
             <summary>
             SqlSugar数据库链接集合(多库代码生成用)
-            </summary>
-        </member>
-        <member name="F:Admin.NET.Core.SqlSugarDb.connectionConfigs">
-            <summary>
-            SqlSugar数据库链接集合
             </summary>
         </member>
         <member name="T:Admin.NET.Core.EntityBaseId">
@@ -1552,6 +1547,26 @@
             Redis缓存
             </summary>
         </member>
+        <member name="T:Admin.NET.Core.CardTypeEnum">
+            <summary>
+            证件类型枚举
+            </summary>
+        </member>
+        <member name="F:Admin.NET.Core.CardTypeEnum.IDCard">
+            <summary>
+            身份证
+            </summary>
+        </member>
+        <member name="F:Admin.NET.Core.CardTypeEnum.GATCard">
+            <summary>
+            港澳台通行证
+            </summary>
+        </member>
+        <member name="F:Admin.NET.Core.CardTypeEnum.ForeignCard">
+            <summary>
+            外国人居留证
+            </summary>
+        </member>
         <member name="T:Admin.NET.Core.DataOpTypeEnum">
             <summary>
             数据操作类型枚举
@@ -2359,6 +2374,13 @@
             <summary>
             对象拓展类
             </summary>
+        </member>
+        <member name="M:Admin.NET.Core.ObjectExtension.GetSqlSugarEntityOrder(System.Type)">
+            <summary>
+            获取实体排序
+            </summary>
+            <param name="type">排序类型</param>
+            <returns>int</returns>
         </member>
         <member name="M:Admin.NET.Core.ObjectExtension.HasImplementedRawGeneric(System.Type,System.Type)">
             <summary>
@@ -5668,6 +5690,11 @@
             附加数据
             </summary>
         </member>
+        <member name="P:Admin.NET.Core.Service.WechatPayTransactionInput.GoodsTag">
+            <summary>
+            优惠标记
+            </summary>
+        </member>
         <member name="P:Admin.NET.Core.Service.WechatPayParaInput.PrepayId">
             <summary>
             订单Id
@@ -5873,13 +5900,6 @@
             <summary>
             初始化数据库结构
             </summary>
-        </member>
-        <member name="M:Admin.NET.Core.SqlSugarSetup.GetSqlSugarEntityOrder(System.Type)">
-            <summary>
-            获取实体排序
-            </summary>
-            <param name="type">排序类型</param>
-            <returns>int</returns>
         </member>
         <member name="M:Admin.NET.Core.SqlSugarSetup.SetDeletedEntityFilter(SqlSugar.SqlSugarProvider)">
             <summary>
