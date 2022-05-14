@@ -2,10 +2,25 @@
 branches: {
   }
 fileChange:
-  /README.md:
-    newFile: !uuid '0a91cdc0abaf55d554254a449018a74d4d56b595'
-    oldFile: !uuid '0bea9b1485317557e03b1bbf4936d6a1993dfafa'
-gitCommitId: !uuid 'ac20d2eb4a9f5100c69a943e33b0bc5eb4d33076'
+  /frontend:
+    newFile: !uuid '3094152ac723fc3a6445771acd367a193889776c'
+    oldFile: !uuid '466585d2ed339e20a7372b2f796effec18b27b48'
+  /frontend/src:
+    newFile: !uuid '5f400fb0985d06b8dd86ac60ea151d3c036ec333'
+    oldFile: !uuid '62753b57cfb6720f8b543a45aaed068e0b5deb36'
+  /frontend/src/views:
+    newFile: !uuid 'a08edfb590d53c92a8429f079436856e43a8cb9d'
+    oldFile: !uuid '3fc1af057ec6629da49699534c1263302b1eebf0'
+  /frontend/src/views/system:
+    newFile: !uuid '147d5010c69b5091c394ee20cc088cc64d09d8e5'
+    oldFile: !uuid '1a518a9dde23adc3ece8e9435154222978df3e8c'
+  /frontend/src/views/system/user:
+    newFile: !uuid '9759a396555f4ba9877056c2163cbf1aa02df6ac'
+    oldFile: !uuid '89a7b62eb4a08c355a36d301830f5ffa4a2e1244'
+  /frontend/src/views/system/user/userRoleForm.vue:
+    newFile: !uuid '1d39462bffc7a6059681290e7e7cef5ca40148ef'
+    oldFile: !uuid '6f294c1cd9c5cf82e90c583a2d3f4ed340f71aea'
+gitCommitId: !uuid '13913763b51e69159993e5259e142ceed9c37721'
 renames: {
   }
-revisionId: 709
+revisionId: 710
