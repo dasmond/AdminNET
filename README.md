@@ -154,7 +154,11 @@
 * 公众号中点外卖获取的收益用于反馈给提交PR的朋友
 * 第一次反馈：2022年1月15日，给前5名PR的朋友送出新年小礼品（不足部分[@JerryFox](https://gitee.com/JerryFox)提供资金支持）
 * <img src="https://gitee.com/zuohuaijun/Admin.NET/raw/master/doc/img/shoumoshou_qrcode.png" width="300px" />
-👉后台文档：
+  👉起步：
+
+  [Admin.NET起步](doc/Admin.NET起步.md)
+
+  👉后台文档：
 
 * Furion后台框架文档 [https://dotnetchina.gitee.io/furion/docs/source](https://dotnetchina.gitee.io/furion/docs/source)
 
