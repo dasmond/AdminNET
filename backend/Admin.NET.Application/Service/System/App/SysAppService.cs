@@ -41,16 +41,8 @@ namespace Admin.NET.Application
                 var appCodeList = await _sysMenuService.GetUserMenuAppCodeList(userId);
                 apps = apps.Where(u => appCodeList.Contains(u.Code));
             }
-            var appList = await apps.OrderBy(u => u.Sort).Select(u => new AppOutput
-            {
-                Code = u.Code,
-                Name = u.Name,
-                Active = u.Active
-            }).ToListAsync(); // .OrderByDescending(u => u.Active) // 将激活的放到第一个
+            var appList = await apps.OrderBy(u => u.Sort).ProjectToType<AppOutput>().ToListAsync();
 
-            //// 默认激活第一个应用
-            //if (appList != null && appList.Count > 0 && appList[0].Active != YesOrNot.Y.ToString())
-            //    appList[0].Active = YesOrNot.Y.ToString();
             return appList;
         }
 
