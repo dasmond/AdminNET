@@ -18,9 +18,9 @@ namespace Admin.NET.Application.CodeGen
     /// <summary>
     /// 代码生成器服务
     /// </summary>
-    [ApiDescriptionSettings(Name = "CodeGen", Order = 100)]
-    [Route("api")]
-    public class CodeGenService : ICodeGenService, IDynamicApiController, ITransient
+    [Route("api/[Controller]")]
+    [ApiDescriptionSettings(Name = "CodeGenerate", Order = 100)]
+    public class CodeGenerateService : ICodeGenService, IDynamicApiController, ITransient
     {
         private readonly IRepository<SysCodeGen> _sysCodeGenRep; // 代码生成器仓储
         private readonly ICodeGenConfigService _codeGenConfigService;
@@ -28,7 +28,7 @@ namespace Admin.NET.Application.CodeGen
 
         private readonly IRepository<SysMenu> _sysMenuRep; // 菜单表仓储
 
-        public CodeGenService(IRepository<SysCodeGen> sysCodeGenRep,
+        public CodeGenerateService(IRepository<SysCodeGen> sysCodeGenRep,
                               ICodeGenConfigService codeGenConfigService,
                               IViewEngine viewEngine,
                               IRepository<SysMenu> sysMenuRep)
@@ -44,7 +44,7 @@ namespace Admin.NET.Application.CodeGen
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpGet("codeGenerate/page")]
+        [HttpGet("page")]
         public async Task<PageResult<SysCodeGen>> QueryCodeGenPageList([FromQuery] CodeGenPageInput input)
         {
             var tableName = !string.IsNullOrEmpty(input.TableName?.Trim());
@@ -59,7 +59,7 @@ namespace Admin.NET.Application.CodeGen
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpPost("codeGenerate/add")]
+        [HttpPost("add")]
         public async Task AddCodeGen(AddCodeGenInput input)
         {
             var isExist = await _sysCodeGenRep.DetachedEntities.AnyAsync(u => u.TableName == input.TableName);
@@ -70,7 +70,7 @@ namespace Admin.NET.Application.CodeGen
             var newCodeGen = await codeGen.InsertNowAsync();
 
             // 加入配置表中
-            _codeGenConfigService.AddList(GetColumnList(input), newCodeGen.Entity);
+            await _codeGenConfigService.AddList(GetColumnList(input), newCodeGen.Entity);
         }
 
         /// <summary>
@@ -78,20 +78,19 @@ namespace Admin.NET.Application.CodeGen
         /// </summary>
         /// <param name="inputs"></param>
         /// <returns></returns>
-        [HttpPost("codeGenerate/delete")]
+        [HttpPost("delete")]
         public async Task DeleteCodeGen(List<DeleteCodeGenInput> inputs)
         {
             if (inputs == null || inputs.Count < 1) return;
 
-            var codeGenConfigTaskList = new List<Task>();
+            var taskList = new List<Task>();
             inputs.ForEach(u =>
             {
-                _sysCodeGenRep.Delete(u.Id);
-
+                taskList.Add(_sysCodeGenRep.DeleteAsync(u.Id));
                 // 删除配置表中
-                codeGenConfigTaskList.Add(_codeGenConfigService.Delete(u.Id));
+                taskList.Add(_codeGenConfigService.Delete(u.Id));
             });
-            await Task.WhenAll(codeGenConfigTaskList);
+            await Task.WhenAll(taskList);//等待所有任务完成
         }
 
         /// <summary>
@@ -99,7 +98,7 @@ namespace Admin.NET.Application.CodeGen
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpPost("codeGenerate/edit")]
+        [HttpPost("edit")]
         public async Task UpdateCodeGen(UpdateCodeGenInput input)
         {
             var isExist = await _sysCodeGenRep.DetachedEntities.AnyAsync(u => u.TableName == input.TableName && u.Id != input.Id);
@@ -115,7 +114,7 @@ namespace Admin.NET.Application.CodeGen
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpGet("codeGenerate/detail")]
+        [HttpGet("detail")]
         public async Task<SysCodeGen> GetCodeGen([FromQuery] QueryCodeGenInput input)
         {
             return await _sysCodeGenRep.DetachedEntities.FirstOrDefaultAsync(u => u.Id == input.Id);
@@ -125,12 +124,15 @@ namespace Admin.NET.Application.CodeGen
         /// 获取数据库库集合
         /// </summary>
         /// <returns></returns>
-        [HttpGet("codeGenerate/DatabaseList")]
+        [HttpGet("DatabaseList")]
         public List<DatabaseOutput> GetDatabaseList()
         {
             var DbContextLocators = AppDomain.CurrentDomain.GetAssemblies()
-                        .SelectMany(a => a.GetTypes().Where(t => t.GetInterfaces().Contains(typeof(IDbContextLocator))))
-                        .Select(x => new DatabaseOutput { DatabaseName = x.Name, DatabaseComment = x.FullName }).ToList();
+                        .SelectMany(
+                            a => a.GetTypes().Where(t => t.GetInterfaces().Contains(typeof(IDbContextLocator)))
+                        )
+                        .Select(x => new DatabaseOutput { DatabaseName = x.Name, DatabaseComment = x.FullName })
+                        .ToList();
 
             return DbContextLocators;
         }
@@ -139,7 +141,7 @@ namespace Admin.NET.Application.CodeGen
         /// 获取数据库表(实体)集合
         /// </summary>
         /// <returns></returns>
-        [HttpGet("codeGenerate/InformationList")]
+        [HttpGet("InformationList")]
         public List<TableOutput> GetTableList(string dbContextLocatorName)
         {
             var dbContext = Db.GetDbContext();//默认数据库
@@ -165,7 +167,7 @@ namespace Admin.NET.Application.CodeGen
         /// 根据表名获取列
         /// </summary>
         /// <returns></returns>
-        [HttpGet("codeGenerate/ColumnList/{databaseName}/{tableName}")]
+        [HttpGet("ColumnList/{databaseName}/{tableName}")]
         public List<TableColumnOuput> GetColumnListByTableName(string databaseName, string tableName)
         {
             var dbContext = Db.GetDbContext();//默认数据库
@@ -235,7 +237,7 @@ namespace Admin.NET.Application.CodeGen
         /// 代码生成_本地项目
         /// </summary>
         /// <returns></returns>
-        [HttpPost("codeGenerate/runLocal")]
+        [HttpPost("runLocal")]
         public async Task RunLocal(SysCodeGen input)
         {
             var templatePathList = GetTemplatePathList();

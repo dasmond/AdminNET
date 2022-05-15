@@ -14,12 +14,12 @@ namespace Admin.NET.Application
     /// </summary>
     [ApiDescriptionSettings(Name = "CodeGenConfig", Order = 100)]
     [Route("api")]
-    public class CodeGenConfigService : ICodeGenConfigService, IDynamicApiController, ITransient
+    public class SysCodeGenerateConfigService : ICodeGenConfigService, IDynamicApiController, ITransient
     {
         private readonly IRepository<SysCodeGen> _sysCodeGenRep; // 代码生成器仓储
         private readonly IRepository<SysCodeGenConfig> _sysCodeGenConfigRep; // 代码生成详细配置仓储
 
-        public CodeGenConfigService(IRepository<SysCodeGenConfig> sysCodeGenConfigRep, IRepository<SysCodeGen> sysCodeGenRep)
+        public SysCodeGenerateConfigService(IRepository<SysCodeGenConfig> sysCodeGenConfigRep, IRepository<SysCodeGen> sysCodeGenRep)
         {
             _sysCodeGenConfigRep = sysCodeGenConfigRep;
             _sysCodeGenRep = sysCodeGenRep;
@@ -36,32 +36,11 @@ namespace Admin.NET.Application
             var result = await _sysCodeGenConfigRep.DetachedEntities
                                              .Where(u => u.CodeGenId == input.CodeGenId && u.WhetherCommon != YesOrNot.Y.ToString())
                                              .ProjectToType<CodeGenConfig>().ToListAsync();
-            await DtoMapper(result);
+
+            var codeGen = await _sysCodeGenRep.FirstOrDefaultAsync(x => x.Id == input.CodeGenId);
+            var codeGenOutput = codeGen.Adapt<CodeGenOutput>();
+            result.ForEach(x => x.CodeGen = codeGenOutput);
             return result;
-        }
-
-        /// <summary>
-        /// 增加
-        /// </summary>
-        /// <param name="input"></param>
-        /// <returns></returns>
-        [NonAction]
-        public async Task Add(CodeGenConfig input)
-        {
-            var codeGenConfig = input.Adapt<SysCodeGenConfig>();
-            await codeGenConfig.InsertAsync();
-        }
-
-        /// <summary>
-        /// 删除
-        /// </summary>
-        /// <param name="codeGenId"></param>
-        /// <returns></returns>
-        [NonAction]
-        public async Task Delete(long codeGenId)
-        {
-            var codeGenConfigList = await _sysCodeGenConfigRep.Where(u => u.CodeGenId == codeGenId).ToListAsync();
-            await _sysCodeGenConfigRep.DeleteAsync(codeGenConfigList);
         }
 
         /// <summary>
@@ -73,11 +52,8 @@ namespace Admin.NET.Application
         public async Task Update(List<CodeGenConfig> inputList)
         {
             if (inputList == null || inputList.Count < 1) return;
-            inputList.ForEach(u =>
-            {
-                var codeGenConfig = u.Adapt<SysCodeGenConfig>();
-                codeGenConfig.Update(true);
-            });
+            var list = inputList.Adapt<List<SysCodeGenConfig>>();
+            await _sysCodeGenConfigRep.UpdateAsync(list);
             await Task.CompletedTask;
         }
 
@@ -98,10 +74,10 @@ namespace Admin.NET.Application
         /// <param name="tableColumnOuputList"></param>
         /// <param name="codeGenerate"></param>
         [NonAction]
-        public void AddList(List<TableColumnOuput> tableColumnOuputList, SysCodeGen codeGenerate)
+        public async Task AddList(List<TableColumnOuput> tableColumnOuputList, SysCodeGen codeGenerate)
         {
             if (tableColumnOuputList == null) return;
-
+            var list = new List<SysCodeGenConfig>();
             foreach (var tableColumn in tableColumnOuputList)
             {
                 var codeGenConfig = new SysCodeGenConfig();
@@ -140,23 +116,33 @@ namespace Admin.NET.Application
                 codeGenConfig.EffectType = CodeGenUtil.DataTypeToEff(codeGenConfig.NetType);
                 codeGenConfig.QueryType = "=="; // QueryTypeEnum.eq.ToString();
 
-                codeGenConfig.InsertAsync();
+                list.Add(codeGenConfig);
             }
+            await _sysCodeGenConfigRep.InsertAsync(list);
         }
 
         /// <summary>
-        /// 映射主表
+        /// 增加
         /// </summary>
-        /// <param name="rows"></param>
+        /// <param name="input"></param>
         /// <returns></returns>
-        private async Task DtoMapper(ICollection<CodeGenConfig> rows)
+        [NonAction]
+        public async Task Add(CodeGenConfig input)
         {
-            var codeGen = await _sysCodeGenRep.FirstOrDefaultAsync(x => x.Id == rows.First().CodeGenId);
-            foreach (var item in rows)
-            {
-                item.CodeGen = codeGen.Adapt<CodeGenOutput>();
-                //item.CodeGenTestName = (await _codeGenTestRep.FirstOrDefaultAsync(e => e.Id == item.CodeGenId))?.Name;
-            }
+            var codeGenConfig = input.Adapt<SysCodeGenConfig>();
+            await codeGenConfig.InsertAsync();
+        }
+
+        /// <summary>
+        /// 删除
+        /// </summary>
+        /// <param name="codeGenId"></param>
+        /// <returns></returns>
+        [NonAction]
+        public async Task Delete(long codeGenId)
+        {
+            var codeGenConfigList = await _sysCodeGenConfigRep.Where(u => u.CodeGenId == codeGenId).ToListAsync();
+            await _sysCodeGenConfigRep.DeleteAsync(codeGenConfigList);
         }
     }
 }
