@@ -150,7 +150,7 @@
 
 ### 📖 帮助文档
 
-* 关注公众号，进入公众号回复【手摸手】获取文档，100%成功进入调试
+* 关注公众号【996省钱小能手】，进入公众号回复【手摸手】获取文档，100%成功进入调试
 * 公众号中点外卖获取的收益用于反馈给提交PR的朋友
 * 第一次反馈：2022年1月15日，给前5名PR的朋友送出新年小礼品（不足部分[@JerryFox](https://gitee.com/JerryFox)提供资金支持）
 * <img src="https://gitee.com/zuohuaijun/Admin.NET/raw/master/doc/img/shoumoshou_qrcode.png" width="300px" />
