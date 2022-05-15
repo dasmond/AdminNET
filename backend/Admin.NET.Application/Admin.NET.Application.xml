@@ -828,137 +828,136 @@
             Token
             </summary>
         </member>
-        <member name="T:Admin.NET.Application.CodeGenConfigService">
+        <member name="T:Admin.NET.Application.SysCodeGenerateConfigService">
             <summary>
             代码生成详细配置服务
             </summary>
         </member>
-        <member name="M:Admin.NET.Application.CodeGenConfigService.List(Admin.NET.Application.CodeGenConfig)">
+        <member name="M:Admin.NET.Application.SysCodeGenerateConfigService.List(Admin.NET.Application.CodeGenConfig)">
             <summary>
             代码生成详细配置列表
             </summary>
             <param name="input"></param>
             <returns></returns>
         </member>
-        <member name="M:Admin.NET.Application.CodeGenConfigService.Add(Admin.NET.Application.CodeGenConfig)">
-            <summary>
-            增加
-            </summary>
-            <param name="input"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Admin.NET.Application.CodeGenConfigService.Delete(System.Int64)">
-            <summary>
-            删除
-            </summary>
-            <param name="codeGenId"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Admin.NET.Application.CodeGenConfigService.Update(System.Collections.Generic.List{Admin.NET.Application.CodeGenConfig})">
+        <member name="M:Admin.NET.Application.SysCodeGenerateConfigService.Update(System.Collections.Generic.List{Admin.NET.Application.CodeGenConfig})">
             <summary>
             更新
             </summary>
             <param name="inputList"></param>
             <returns></returns>
         </member>
-        <member name="M:Admin.NET.Application.CodeGenConfigService.Detail(Admin.NET.Application.CodeGenConfig)">
+        <member name="M:Admin.NET.Application.SysCodeGenerateConfigService.Detail(Admin.NET.Application.CodeGenConfig)">
             <summary>
             详情
             </summary>
             <param name="input"></param>
             <returns></returns>
         </member>
-        <member name="M:Admin.NET.Application.CodeGenConfigService.AddList(System.Collections.Generic.List{Admin.NET.Application.TableColumnOuput},Admin.NET.Core.SysCodeGen)">
+        <member name="M:Admin.NET.Application.SysCodeGenerateConfigService.AddList(System.Collections.Generic.List{Admin.NET.Application.TableColumnOuput},Admin.NET.Core.SysCodeGen)">
             <summary>
             批量增加
             </summary>
             <param name="tableColumnOuputList"></param>
             <param name="codeGenerate"></param>
         </member>
-        <member name="M:Admin.NET.Application.CodeGenConfigService.DtoMapper(System.Collections.Generic.ICollection{Admin.NET.Application.CodeGenConfig})">
-            <summary>
-            映射主表
-            </summary>
-            <param name="rows"></param>
-            <returns></returns>
-        </member>
-        <member name="T:Admin.NET.Application.CodeGen.CodeGenService">
-            <summary>
-            代码生成器服务
-            </summary>
-        </member>
-        <member name="M:Admin.NET.Application.CodeGen.CodeGenService.QueryCodeGenPageList(Admin.NET.Application.CodeGenPageInput)">
-            <summary>
-            分页查询
-            </summary>
-            <param name="input"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Admin.NET.Application.CodeGen.CodeGenService.AddCodeGen(Admin.NET.Application.AddCodeGenInput)">
+        <member name="M:Admin.NET.Application.SysCodeGenerateConfigService.Add(Admin.NET.Application.CodeGenConfig)">
             <summary>
             增加
             </summary>
             <param name="input"></param>
             <returns></returns>
         </member>
-        <member name="M:Admin.NET.Application.CodeGen.CodeGenService.DeleteCodeGen(System.Collections.Generic.List{Admin.NET.Application.DeleteCodeGenInput})">
+        <member name="M:Admin.NET.Application.SysCodeGenerateConfigService.Delete(System.Int64)">
+            <summary>
+            删除
+            </summary>
+            <param name="codeGenId"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Admin.NET.Application.CodeGen.CodeGenerateService">
+            <summary>
+            代码生成器服务
+            </summary>
+        </member>
+        <member name="M:Admin.NET.Application.CodeGen.CodeGenerateService.QueryCodeGenPageList(Admin.NET.Application.CodeGenPageInput)">
+            <summary>
+            分页查询
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Application.CodeGen.CodeGenerateService.AddCodeGen(Admin.NET.Application.AddCodeGenInput)">
+            <summary>
+            增加
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Application.CodeGen.CodeGenerateService.DeleteCodeGen(System.Collections.Generic.List{Admin.NET.Application.DeleteCodeGenInput})">
             <summary>
             删除
             </summary>
             <param name="inputs"></param>
             <returns></returns>
         </member>
-        <member name="M:Admin.NET.Application.CodeGen.CodeGenService.UpdateCodeGen(Admin.NET.Application.UpdateCodeGenInput)">
+        <member name="M:Admin.NET.Application.CodeGen.CodeGenerateService.UpdateCodeGen(Admin.NET.Application.UpdateCodeGenInput)">
             <summary>
             更新
             </summary>
             <param name="input"></param>
             <returns></returns>
         </member>
-        <member name="M:Admin.NET.Application.CodeGen.CodeGenService.GetCodeGen(Admin.NET.Application.QueryCodeGenInput)">
+        <member name="M:Admin.NET.Application.CodeGen.CodeGenerateService.Refresh(System.Int64)">
+            <summary>
+            刷新配置表
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Application.CodeGen.CodeGenerateService.GetCodeGen(Admin.NET.Application.QueryCodeGenInput)">
             <summary>
             详情
             </summary>
             <param name="input"></param>
             <returns></returns>
         </member>
-        <member name="M:Admin.NET.Application.CodeGen.CodeGenService.GetDatabaseList">
+        <member name="M:Admin.NET.Application.CodeGen.CodeGenerateService.GetDatabaseList">
             <summary>
             获取数据库库集合
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Admin.NET.Application.CodeGen.CodeGenService.GetTableList(System.String)">
+        <member name="M:Admin.NET.Application.CodeGen.CodeGenerateService.GetTableList(System.String)">
             <summary>
             获取数据库表(实体)集合
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Admin.NET.Application.CodeGen.CodeGenService.GetColumnListByTableName(System.String,System.String)">
+        <member name="M:Admin.NET.Application.CodeGen.CodeGenerateService.GetColumnListByTableName(System.String,System.String)">
             <summary>
             根据表名获取列
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Admin.NET.Application.CodeGen.CodeGenService.GetColumnList(Admin.NET.Application.AddCodeGenInput)">
+        <member name="M:Admin.NET.Application.CodeGen.CodeGenerateService.GetColumnList(Admin.NET.Application.AddCodeGenInput)">
             <summary>
             获取数据表列（实体属性）集合
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Admin.NET.Application.CodeGen.CodeGenService.RunLocal(Admin.NET.Core.SysCodeGen)">
+        <member name="M:Admin.NET.Application.CodeGen.CodeGenerateService.RunLocal(Admin.NET.Core.SysCodeGen)">
             <summary>
             代码生成_本地项目
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Admin.NET.Application.CodeGen.CodeGenService.GetTemplatePathList">
+        <member name="M:Admin.NET.Application.CodeGen.CodeGenerateService.GetTemplatePathList">
             <summary>
             获取模板文件路径集合
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Admin.NET.Application.CodeGen.CodeGenService.GetTargetPathList(Admin.NET.Core.SysCodeGen)">
+        <member name="M:Admin.NET.Application.CodeGen.CodeGenerateService.GetTargetPathList(Admin.NET.Core.SysCodeGen)">
             <summary>
             设置生成文件路径
             </summary>
@@ -990,6 +989,11 @@
             数据库字段名
             </summary>
         </member>
+        <member name="P:Admin.NET.Application.CodeGenConfig.OriginalColumnName">
+            <summary>
+            数据库字段名
+            </summary>
+        </member>
         <member name="P:Admin.NET.Application.CodeGenConfig.LowerColumnName">
             <summary>
             数据库字段名(首字母小写)
@@ -1003,6 +1007,11 @@
         <member name="P:Admin.NET.Application.CodeGenConfig.NetType">
             <summary>
             .NET类型
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.CodeGenConfig.NetTypeIsNullLable">
+            <summary>
+            .NET类型是否是值类型
             </summary>
         </member>
         <member name="P:Admin.NET.Application.CodeGenConfig.EffectType">
@@ -1103,6 +1112,11 @@
         <member name="P:Admin.NET.Application.CodeGenPageInput.TableName">
             <summary>
             数据库表名
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.AddCodeGenInput.LowCodeId">
+            <summary>
+            低代码模块来源
             </summary>
         </member>
         <member name="P:Admin.NET.Application.AddCodeGenInput.DatabaseName">

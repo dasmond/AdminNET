@@ -77,11 +77,9 @@ namespace Admin.NET.Application
         public async Task AddList(List<TableColumnOuput> tableColumnOuputList, SysCodeGen codeGenerate)
         {
             if (tableColumnOuputList == null) return;
-
+            var list = new List<SysCodeGenConfig>();
             foreach (var tableColumn in tableColumnOuputList)
             {
-                if (existsList.Where(x => x.ColumnName == tableColumn.ColumnName).Any()) break;
-
                 var codeGenConfig = new SysCodeGenConfig();
 
                 var YesOrNo = YesOrNot.Y.ToString();

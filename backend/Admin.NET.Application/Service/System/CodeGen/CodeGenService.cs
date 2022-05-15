@@ -31,6 +31,7 @@ namespace Admin.NET.Application.CodeGen
         private readonly IRepository<SysMenu> _sysMenuRep; // 菜单表仓储
 
         public CodeGenerateService(IRepository<SysCodeGen> sysCodeGenRep,
+                              IRepository<SysLowCode> sysLowCodeRep,
                               ICodeGenConfigService codeGenConfigService,
                               IViewEngine viewEngine,
                               IRepository<SysMenu> sysMenuRep)
@@ -83,8 +84,9 @@ namespace Admin.NET.Application.CodeGen
                 var codeGen = input.Adapt<SysCodeGen>();
                 var newCodeGen = await codeGen.InsertNowAsync();
 
-            // 加入配置表中
-            _codeGenConfigService.AddList(GetColumnList(input), newCodeGen.Entity);
+                // 加入配置表中
+                await _codeGenConfigService.AddList(GetColumnList(input), newCodeGen.Entity);
+            }
         }
 
         /// <summary>
@@ -93,18 +95,18 @@ namespace Admin.NET.Application.CodeGen
         /// <param name="inputs"></param>
         /// <returns></returns>
         [HttpPost("delete")]
-        public async Task DeleteCodeGen(List<DeleteCodeGenInput> inputs)
+        public Task DeleteCodeGen(List<DeleteCodeGenInput> inputs)
         {
-            if (inputs == null || inputs.Count < 1) return;
+            if (inputs == null || inputs.Count < 1) return Task.Run(() => { });
 
             var taskList = new List<Task>();
             inputs.ForEach(u =>
             {
                 taskList.Add(_sysCodeGenRep.DeleteAsync(u.Id));
-                // 删除配置表中
-                taskList.Add(_codeGenConfigService.Delete(u.Id));
+                    // 删除配置表中
+                    taskList.Add(_codeGenConfigService.Delete(u.Id));
             });
-            await Task.WhenAll(taskList);//等待所有任务完成
+            return Task.WhenAll(taskList);//等待所有任务完成
         }
 
         /// <summary>
@@ -306,7 +308,7 @@ namespace Admin.NET.Application.CodeGen
 
                 string FormDesign = "";
 
-                if(input.LowCodeId != null && input.LowCodeId > 0)
+                if (input.LowCodeId != null && input.LowCodeId > 0)
                 {
                     FormDesign = _sysLowCodeRep.Where(x => x.Id == input.LowCodeId).Select(x => x.FormDesign).FirstOrDefault();
                 }
@@ -496,4 +498,5 @@ namespace Admin.NET.Application.CodeGen
             };
         }
     }
+
 }
