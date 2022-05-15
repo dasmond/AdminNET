@@ -185,6 +185,20 @@ export function sysUserSelector(parameter) {
 }
 
 /**
+ * 获取用户列表
+ *
+ * @author 飞蛾救火
+ * @date 2022/05/07
+ */
+ export function getUserList(parameter) {
+  return axios({
+    url: '/sysUser/userList',
+    method: 'get',
+    params: parameter
+  })
+}
+
+/**
  * 修改头像
  *
  * @author yubaoshan

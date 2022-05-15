@@ -1,9 +1,8 @@
-using @(@Model.NameSpace).Entity;
+using Admin.NET.Core;
 using Furion.DatabaseAccessor;
 using Furion.DatabaseAccessor.Extensions;
 using Furion.DependencyInjection;
 using Furion.DynamicApiController;
-using Furion.Extras.Admin.NET;
 using Furion.FriendlyException;
 using Mapster;
 using Microsoft.AspNetCore.Mvc;
@@ -20,6 +19,7 @@ namespace @Model.NameSpace
     /// </summary>
     [Route("api")]
     [ApiDescriptionSettings("自己的业务", Name = "@Model.ClassName", Order = 100)]
+    [Route("api/[Controller]")]
     public class @(@Model.ClassName)Service : I@(@Model.ClassName)Service, IDynamicApiController, ITransient
     {
         private readonly IRepository<@(@Model.ClassName),@(@Model.DatabaseName)> _@(@Model.CamelizeClassName)Rep;
@@ -51,8 +51,8 @@ if(@column.EffectType == "fk" && @column.FkEntityName != "" && @column.FkColumnN
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpGet("@Model.ClassName/page")]
-        public async Task<PageResult<@(@Model.ClassName)Output>> Page([FromQuery] @(@Model.ClassName)Search input)
+        [HttpGet("page")]
+        public async Task<PageResult<@(@Model.ClassName)Output>> Page([FromQuery] @(@Model.ClassName)Input input)
         {
             var @(@Model.CamelizeClassName)s = await _@(@Model.CamelizeClassName)Rep.DetachedEntities
 @foreach (var column in Model.TableField){    
@@ -84,7 +84,7 @@ if (@column.EffectType == "fk"){
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpPost("@Model.ClassName/add")]
+        [HttpPost("add")]
         public async Task Add(Add@(@Model.ClassName)Input input)
         {
             var @(@Model.CamelizeClassName) = input.Adapt<@(@Model.ClassName)>();
@@ -96,7 +96,7 @@ if (@column.EffectType == "fk"){
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpPost("@Model.ClassName/delete")]
+        [HttpPost("delete")]
         public async Task Delete(Delete@(@Model.ClassName)Input input)
         {
 @foreach (var column in Model.TableField){
@@ -112,7 +112,7 @@ if (@column.ColumnKey == "True"){
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpPost("@Model.ClassName/edit")]
+        [HttpPost("edit")]
         public async Task Update(Update@(@Model.ClassName)Input input)
         {
             var isExist = await _@(@Model.CamelizeClassName)Rep.AnyAsync(u => u.Id == input.Id, false);
@@ -127,7 +127,7 @@ if (@column.ColumnKey == "True"){
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpGet("@Model.ClassName/detail")]
+        [HttpGet("detail")]
         public async Task<@(@Model.ClassName)Output> Get([FromQuery] Querye@(@Model.ClassName)Input input)
         {
 @foreach (var column in Model.TableField){
@@ -142,7 +142,7 @@ if (@column.ColumnKey == "True"){
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpGet("@Model.ClassName/list")]
+        [HttpGet("list")]
         public async Task<List<@(@Model.ClassName)Output>> List([FromQuery] @(@Model.ClassName)Input input)
         {
             return await _@(@Model.CamelizeClassName)Rep.DetachedEntities.ProjectToType<@(@Model.ClassName)Output>().ToListAsync();
@@ -154,7 +154,7 @@ if(@column.EffectType == "fk" && @column.FkEntityName != "" && @column.FkColumnN
         @:/// 获取@(@column.FkEntityName)列表
         @:/// </summary>
         @:/// <returns></returns>
-        @:[HttpGet("@Model.ClassName/fk@(@column.FkEntityName)")]
+        @:[HttpGet("fk@(@column.FkEntityName)")]
         @:public async Task<dynamic> Fk@(@column.FkEntityName)List()
         @:{
             @:var list = await _@(@column.LowerFkEntityName)Rep.DetachedEntities.ToListAsync();

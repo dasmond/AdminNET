@@ -1,9 +1,9 @@
-﻿using Furion;
+﻿using Admin.NET.Application;
+using Admin.NET.Core;
+using Admin.NET.Core.Options;
+using Furion;
 using Furion.Authorization;
 using Furion.DataEncryption;
-using Furion.Extras.Admin.NET;
-using Furion.Extras.Admin.NET.Options;
-using Furion.Extras.Admin.NET.Service;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using System;

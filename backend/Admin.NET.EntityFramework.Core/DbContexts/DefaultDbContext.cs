@@ -1,8 +1,7 @@
+using Admin.NET.Core;
+using Admin.NET.Core.Entity;
 using Furion;
 using Furion.DatabaseAccessor;
-using Furion.Extras.Admin.NET;
-using Furion.Extras.Admin.NET.Entity;
-using Furion.Extras.Admin.NET.Service;
 using Furion.FriendlyException;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
@@ -14,17 +13,11 @@ using Yitter.IdGenerator;
 
 namespace Admin.NET.EntityFramework.Core
 {
-    [AppDbContext("DefaultConnection", DbProvider.SqlServer)]
+    [AppDbContext("DefaultConnection", DbProvider.Sqlite)]
     public class DefaultDbContext : AppDbContext<DefaultDbContext>, IMultiTenantOnTable, IModelBuilderFilter
     {
-        //缓存服务
-        private readonly ISysCacheService _sysCacheService;
-
-        public DefaultDbContext(ISysCacheService sysCacheService, DbContextOptions<DefaultDbContext> options) : base(options)
+        public DefaultDbContext(DbContextOptions<DefaultDbContext> options) : base(options)
         {
-            //缓存服务
-            _sysCacheService = sysCacheService;
-
             // 启用实体数据更改监听
             EnabledEntityChangedListener = true;
 
@@ -38,7 +31,8 @@ namespace Admin.NET.EntityFramework.Core
         /// <returns></returns>
         public object GetTenantId()
         {
-            if (App.User == null) return null;
+            // 流程中没有用到多租户 这里默认返回一个租户
+            if (App.User == null) return 142307070918780;
             //这个Convert，嗯，有用
             return Convert.ToInt64(App.User.FindFirst(ClaimConst.TENANT_ID)?.Value);
         }
@@ -126,14 +120,14 @@ namespace Admin.NET.EntityFramework.Core
                         (u.State == EntityState.Modified || u.State == EntityState.Deleted || u.State == EntityState.Added)).ToList();
             if (entities == null || entities.Count < 1) return;
 
-            // 判断是否是演示环境
-            var demoEnvFlag = App.GetService<ISysConfigService>().GetDemoEnvFlag().GetAwaiter().GetResult();
-            if (demoEnvFlag)
-            {
-                var sysUser = entities.Find(u => u.Entity.GetType() == typeof(SysUser));
-                if (sysUser == null || string.IsNullOrEmpty((sysUser.Entity as SysUser).LastLoginTime.ToString())) // 排除登录
-                    throw Oops.Oh(ErrorCode.D1200);
-            }
+            //// 判断是否是演示环境
+            //var demoEnvFlag = App.GetService<ISysConfigService>().GetDemoEnvFlag().GetAwaiter().GetResult();
+            //if (demoEnvFlag)
+            //{
+            //    var sysUser = entities.Find(u => u.Entity.GetType() == typeof(SysUser));
+            //    if (sysUser == null || string.IsNullOrEmpty((sysUser.Entity as SysUser).LastLoginTime.ToString())) // 排除登录
+            //        throw Oops.Oh(ErrorCode.D1200);
+            //}
 
             // 当前操作者信息
             var userId = App.User?.FindFirst(ClaimConst.CLAINM_USERID)?.Value;
@@ -285,27 +279,6 @@ namespace Admin.NET.EntityFramework.Core
         {
             if (App.User == null) return null;
             return App.User.FindFirst(ClaimConst.CLAINM_USERID)?.Value;
-        }
-
-        /// <summary>
-        /// 获取数据范围
-        /// </summary>
-        /// <returns></returns>
-        public List<object> GetDataScopes()
-        {
-            var userId = this.GetUserId();
-            if (userId == null)
-            {
-                return new List<object>();
-            }
-
-            var dataScopes = _sysCacheService.GetDataScope(Convert.ToInt64(userId)).Result; // 先从缓存里面读取
-            if (dataScopes != null)
-            {
-                var dataScopesList = dataScopes.ConvertAll(i => (object)i);
-                return dataScopesList;
-            }
-            return new List<object>();
         }
 
         /// <summary>

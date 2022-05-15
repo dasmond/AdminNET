@@ -19,11 +19,17 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Admin.NET.Core\Admin.NET.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Service\System\Workflow\" />
     <Folder Include="System\Services\" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Admin.NET.Core\Admin.NET.Core.csproj" />
+    <PackageReference Include="WorkflowCore" Version="3.6.3" />
+    <PackageReference Include="WorkflowCore.DSL" Version="3.6.3" />
   </ItemGroup>
 
 </Project>

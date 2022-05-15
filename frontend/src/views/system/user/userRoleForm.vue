@@ -69,7 +69,7 @@
         // 加载已有数据
         this.sysUserOwnRole()
         // 获取全部列表,无需分页
-        getRolePage().then((res) => {
+        getRolePage({pageSize:9999}).then((res) => {
           this.loadData = res.data.rows
         })
       },

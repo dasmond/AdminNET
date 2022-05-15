@@ -7,18 +7,18 @@ namespace Admin.NET.Web.Entry.Controllers
     [AllowAnonymous]
     public class HomeController : Controller
     {
-        private readonly ISystemService _systemService;
+        //private readonly ISystemService _systemService;
 
-        public HomeController(ISystemService systemService)
-        {
-            _systemService = systemService;
-        }
+        //public HomeController(ISystemService systemService)
+        //{
+        //    _systemService = systemService;
+        //}
 
-        public IActionResult Index()
-        {
-            ViewBag.Description = _systemService.GetDescription();
+        //public IActionResult Index()
+        //{
+        //    ViewBag.Description = _systemService.GetDescription();
 
-            return View();
-        }
+        //    return View();
+        //}
     }
 }
