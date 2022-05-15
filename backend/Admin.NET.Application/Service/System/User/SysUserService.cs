@@ -5,12 +5,12 @@ using Furion.DataEncryption;
 using Furion.DependencyInjection;
 using Furion.DynamicApiController;
 using Furion.FriendlyException;
+using Magicodes.ExporterAndImporter.Excel;
 using Mapster;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using MiniExcelLibs;
 using Yitter.IdGenerator;
 
 namespace Admin.NET.Application
@@ -315,7 +315,7 @@ namespace Admin.NET.Application
         public async Task<List<UserOutput>> GetUserSelector([FromQuery] UserSelectorInput input)
         {
             var name = !string.IsNullOrEmpty(input.Name?.Trim());
-            var result= await _sysUserRep.DetachedEntities
+            var result = await _sysUserRep.DetachedEntities
                                     .Where(name, u => EF.Functions.Like(u.Name, $"%{input.Name.Trim()}%"))
                                     .Where(u => u.Status != CommonStatus.DELETED)
                                     .Where(u => u.AdminType != AdminType.SuperAdmin)
@@ -330,9 +330,7 @@ namespace Admin.NET.Application
         [HttpGet("sysUser/userList")]
         public async Task<List<UserOutput>> GetSysUserList()
         {
-
             var userOut = await _sysUserRep.DetachedEntities.ToListAsync();
-
             return userOut.Adapt<List<UserOutput>>();
         }
 
@@ -343,14 +341,15 @@ namespace Admin.NET.Application
         [HttpGet("sysUser/export")]
         public async Task<IActionResult> ExportUser()
         {
-            var users = _sysUserRep.DetachedEntities.AsQueryable();
-
-            var memoryStream = new MemoryStream();
-            memoryStream.SaveAs(users);
-            memoryStream.Seek(0, SeekOrigin.Begin);
+            var users = await _sysUserRep.DetachedEntities.AsQueryable()
+                                            .ProjectToType<UserOutput>()
+                                            .ToListAsync();
+            var exporter = new ExcelExporter();
+            var result = await exporter.ExportAsByteArray(users);
+            var memoryStream = new MemoryStream(result);
             return await Task.FromResult(new FileStreamResult(memoryStream, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
             {
-                FileDownloadName = "user.xlsx"
+                FileDownloadName = $"{DateTimeOffset.Now:yyyyMMdd_HHmmss}_user.xlsx"
             });
         }
 
