@@ -3,30 +3,24 @@ branches: {
   }
 fileChange:
   /backend:
-    newFile: !uuid 'b789a72cb47e269b9f48080c1953d018432df1f3'
-    oldFile: !uuid 'fedcf46ddec773384ad15cce515638bba8e90ca4'
+    newFile: !uuid '949fcff3a6fb20f6eb661c4ac30bfd52f6636fbb'
+    oldFile: !uuid 'b789a72cb47e269b9f48080c1953d018432df1f3'
   /backend/Admin.NET.Application:
-    newFile: !uuid 'c238ca2f76bd4a8eb5f6a48351a1974413dde6b5'
-    oldFile: !uuid 'c06b240781ea4e649934232420ee02c9222e203a'
+    newFile: !uuid '348668db527b98e14dc73b7e1aaef2fcb5107532'
+    oldFile: !uuid 'c238ca2f76bd4a8eb5f6a48351a1974413dde6b5'
   /backend/Admin.NET.Application/Service:
-    newFile: !uuid 'ab739d79f75150989b1a4264a07f3dbef6859e83'
-    oldFile: !uuid 'b364d0ac2a215f161e7ffe6c9ada5a646325a70a'
+    newFile: !uuid '827f10aad6ab43414b4b153b4d5fb5e189b7e289'
+    oldFile: !uuid 'ab739d79f75150989b1a4264a07f3dbef6859e83'
   /backend/Admin.NET.Application/Service/System:
-    newFile: !uuid '59e9d578958ddd02c73aed7d874159e9739bdb93'
-    oldFile: !uuid '76bef84d50ffe043c8262318dc1de8d8e19da0bf'
-  /backend/Admin.NET.Application/Service/System/User:
-    newFile: !uuid '1d8b8a208d9777c02bb9806c3ef582b99c55d0d9'
-    oldFile: !uuid '28ccafa301041327a5e93066267e83878c263dd3'
-  /backend/Admin.NET.Application/Service/System/User/SysUserService.cs:
-    newFile: !uuid '80b7d045d31da3b8e1b178065722b676356af65f'
-    oldFile: !uuid '6383ec40bc0342ebe6c4405ccbf574528cda5f36'
-  /backend/Admin.NET.Core:
-    newFile: !uuid 'f9b625fb864b7951037d6bd4ccb38315fdb4b033'
-    oldFile: !uuid '2f3a08397b02d4dd36481b0543b1c96637fae4fa'
-  /backend/Admin.NET.Core/Admin.NET.Core.csproj:
-    newFile: !uuid 'dc612900ce2bd759752b503dd3d7bb26db951f68'
-    oldFile: !uuid 'cbf6df59b24e8d60ae909c5b914e6c95bc542201'
-gitCommitId: !uuid '5674b72d82a3d5101f327b8b4ad674e303aa58bd'
+    newFile: !uuid '997b41c0dadc09e8cf95c88adaf52a2b30087dfd'
+    oldFile: !uuid '59e9d578958ddd02c73aed7d874159e9739bdb93'
+  /backend/Admin.NET.Application/Service/System/Config:
+    newFile: !uuid 'e72297a338a7adffdd7641dfa7572ad0c78c39e3'
+    oldFile: !uuid '2b3e369655832891a4749f3de45b386d08d10b62'
+  /backend/Admin.NET.Application/Service/System/Config/SysConfigService.cs:
+    newFile: !uuid 'e784af58d48a0395b4d0cccc8677856498c13892'
+    oldFile: !uuid 'ff3121dae3307c813ee3fde6241d2448cf78ff5a'
+gitCommitId: !uuid 'd094e38f1137a59b4ab0b46964c82ad946197e25'
 renames: {
   }
-revisionId: 715
+revisionId: 716
