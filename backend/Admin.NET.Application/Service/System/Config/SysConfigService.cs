@@ -87,7 +87,9 @@ namespace Admin.NET.Application
             if (config.SysFlag == YesOrNot.Y.ToString())
                 throw Oops.Oh(ErrorCode.D9001);
 
-            await config.DeleteAsync();
+            var deleteEntity = await config.DeleteNowAsync();
+            //删除缓存
+            await _sysCacheService.DelCacheKey(deleteEntity.Entity.Code);
         }
 
         /// <summary>
@@ -104,6 +106,9 @@ namespace Admin.NET.Application
 
             var config = input.Adapt<SysConfig>();
             await config.UpdateAsync(ignoreNullValues: true);
+            //更新缓存
+            var value = config != null ? config.Value : "";
+            await _sysCacheService.SetStringAsync(input.Code, value);
         }
 
         /// <summary>
