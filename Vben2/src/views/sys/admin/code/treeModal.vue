@@ -14,13 +14,12 @@
     emits: ['success'],
     setup(_, { emit }) {
       var row: any = {};
-      const [registerForm, { resetFields, validate }] = useForm({
+      const [registerForm, { resetFields, validate, updateSchema }] = useForm({
         labelWidth: 100,
-        baseColProps: { span: 12 },
         schemas: treeFormSchema,
         showActionButtonGroup: false,
         actionColOptions: {
-          span: 24,
+          span: 23,
         },
       });
       const [registerModal, { setModalProps, closeModal }] = useModalInner(async (data) => {
@@ -28,7 +27,6 @@
         row = data.data;
         setModalProps({ confirmLoading: false });
       });
-
       async function handleSubmit() {
         const values = await validate();
         row.fkTableName = values.tableName;
@@ -40,7 +38,6 @@
         setModalProps({ confirmLoading: false });
         closeModal();
       }
-
       return { registerModal, registerForm, handleSubmit };
     },
   });

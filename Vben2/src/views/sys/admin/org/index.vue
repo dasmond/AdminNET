@@ -1,25 +1,12 @@
 <template>
   <PageWrapper dense contentFullHeight fixedHeight contentClass="flex">
-    <OrgTree
-      class="w-1/4 xl:w-1/5"
-      style="overflow: auto"
-      @select="handleSelect"
-      ref="OrgTreeChild"
-    />
-    <BasicTable @register="registerTable" class="w-3/4 xl:w-4/5" :searchInfo="searchInfo">
+    <OrgTree  @select="handleSelect" class="w-1/4 xl:w-1/5"  style="overflow: auto"  ref="OrgTreeChild"/>
+    <BasicTable @register="registerTable" class="w-3/4 xl:w-4/5"  :searchInfo="searchInfo">
       <template #toolbar>
-        <a-button
-          type="primary"
-          @click="handleCreatebrother"
-          :disabled="!hasPermission('sysOrg:add')"
-        >
+        <a-button type="primary" @click="handleCreatebrother" :disabled="!hasPermission('sysOrg:add')">
           添加同级单位
         </a-button>
-        <a-button
-          type="primary"
-          @click="handleCreatechild()"
-          :disabled="!hasPermission('sysOrg:add')"
-        >
+        <a-button type="primary" @click="handleCreatechild()" :disabled="!hasPermission('sysOrg:add')">
           添加下级单位
         </a-button>
       </template>
@@ -50,7 +37,7 @@
   </PageWrapper>
 </template>
 <script lang="ts">
-  import { defineComponent, reactive, ref, unref } from 'vue';
+  import {defineComponent, onMounted, reactive, ref, unref} from 'vue';
   import { BasicTable, useTable, TableAction } from '/@/components/Table';
   import { useModal } from '/@/components/Modal';
   import { usePermission } from '/@/hooks/web/usePermission';
@@ -65,7 +52,7 @@
 
   export default defineComponent({
     name: 'OrgManagement',
-    components: { BasicTable, OrgModal, TableAction, PageWrapper, OrgTree },
+    components: { BasicTable, OrgModal, TableAction , PageWrapper, OrgTree},
     setup() {
       const { hasPermission } = usePermission();
       const OrgTreeChild = ref(null);
@@ -80,12 +67,12 @@
           schemas: searchFormSchema,
         },
         rowKey: 'id',
-        pagination: false,
-        striped: false,
+        // pagination: true,
+        // striped: false,
         useSearchForm: true,
         showTableSetting: true,
         bordered: true,
-        showIndexColumn: false,
+        // showIndexColumn: true,
         canResize: true,
         actionColumn: {
           width: 150,
@@ -99,7 +86,7 @@
       function getTree() {
         const tree = unref(OrgTreeChild);
         if (!tree) {
-          throw new Error('Tree is null!');
+          throw new Error('tree is null!');
         }
         return tree;
       }
@@ -109,7 +96,7 @@
       }
 
       function updateNodeByKey(key, values) {
-        getTree().updateNodeByKey(key, values); // 子组件里的方法
+        getTree().updateNodeByKey(key,values);      //子组件里的方法
       }
 
       function deleteNodeByKey(key) {
@@ -145,14 +132,14 @@
 
       async function handleDelete(record: Recordable) {
         await deleteOrg(record.id);
-        deleteNodeByKey(record.id);
+        deleteNodeByKey(record.id )
         searchInfo.Id = record.pid;
         reload();
       }
 
       function handleSelect(orgId: number, obj) {
         searchInfo.Id = orgId;
-        searchInfo.pId = obj.pid ? obj.pid : 0;
+        searchInfo.pId = obj.pid? obj.pid : 0;
         reload();
       }
 
@@ -187,3 +174,15 @@
     },
   });
 </script>
+<!--<style lang="less">-->
+<!--.vben-basic-table-header__toolbar {-->
+<!--    flex: 1;-->
+<!--    display: flex;-->
+<!--    align-items: center;-->
+<!--    justify-content: flex-start;-->
+
+<!--    > * {-->
+<!--      margin-left: 18px;-->
+<!--    }-->
+<!--}-->
+<!--</style>-->

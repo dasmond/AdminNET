@@ -19,7 +19,7 @@
       :scroll="{ y: true }"
     >
       <template #columnComment="{ record }">
-        <a-input v-model:value="record.columnComment" />
+        <a-input style="width: 150px" v-model:value="record.columnComment" />
       </template>
       <template #effectType="{ record }">
         <a-select
@@ -121,8 +121,9 @@
           tbData.value = data;
         });
       });
-
-      // 判断是否（用于是否能选择或输入等）
+      /**
+       * 判断是否（用于是否能选择或输入等）
+       */
       function judgeColumns(data) {
         if (
           data.columnName.indexOf('createdUserName') > -1 ||
@@ -135,8 +136,9 @@
         }
         return false;
       }
-
-      // 控件类型改变
+      /**
+       * 控件类型改变
+       */
       function effectTypeChange(data, value) {
         if (value === 'fk') {
           openFkModal(true, { data });
@@ -149,14 +151,16 @@
         dictDataAll.value = await await getDictTypeList();
         codeGenQueryTypeData.value = await getDictDataDropdown('code_gen_query_type');
       }
-
-      // 外键弹窗回调
+      /**
+       * 外键弹窗回调
+       */
       function fkHandleSuccess(data) {
         let index = tbData.value.findIndex((c) => c.columnName == data.columnName);
         tbData[index] = data;
       }
-
-      // 提交
+      /**
+       * 提交
+       */
       async function handleSubmit() {
         try {
           setModalProps({ confirmLoading: true });
@@ -179,7 +183,6 @@
           setModalProps({ confirmLoading: false });
         }
       }
-
       return {
         registerModal,
         tbData,

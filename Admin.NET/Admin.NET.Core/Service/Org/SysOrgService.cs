@@ -3,6 +3,7 @@ using Furion.DynamicApiController;
 using Furion.FriendlyException;
 using Mapster;
 using Microsoft.AspNetCore.Mvc;
+using SqlSugar;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -48,27 +49,65 @@ namespace Admin.NET.Core.Service
         public async Task<List<SysOrg>> GetOrgList([FromQuery] OrgInput input)
         {
             var orgIdList = new List<long>();
+            ISugarQueryable<SysOrg> iSugarQueryable;
 
             if (input.Id > 0)
             {
-                orgIdList = await GetChildIdListWithSelfById(input.Id);
+                //orgIdList = await GetChildIdListWithSelfById(input.Id);
+                iSugarQueryable = _sysOrgRep.AsQueryable().OrderBy(it => it.Code).Where(it => it.Pid == input.Id || it.Id == input.Id)
+            .WhereIF(orgIdList.Count > 0, u => orgIdList.Contains(u.Id)); // 非超级管理员限制   
+
             }
             else
             {
                 orgIdList = await GetUserOrgIdList();
+                iSugarQueryable = _sysOrgRep.AsQueryable().OrderBy(it => it.Code).Where(it => SqlFunc.Length(it.Code) <= 6)
+                .WhereIF(orgIdList.Count > 0, u => orgIdList.Contains(u.Id)); // 非超级管理员限制   
             }
 
-            var iSugarQueryable = _sysOrgRep.AsQueryable().OrderBy(u => u.Order)
+
+
+            return await iSugarQueryable
+                .WhereIF(!string.IsNullOrWhiteSpace(input.Name), u => u.Name.Contains(input.Name))
+                .WhereIF(!string.IsNullOrWhiteSpace(input.Code), u => u.Code.Contains(input.Code))
+                .ToListAsync();
+        }
+
+        /// <summary>
+        /// 获取机构列表
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("/sysOrg/tree")]
+        public async Task<List<SysOrg>> GetOrgTree([FromQuery] OrgInput input)
+        {
+            var orgIdList = new List<long>();
+            ISugarQueryable<SysOrg> iSugarQueryable;
+
+            orgIdList = await GetUserOrgIdList();
+
+            if (!string.IsNullOrWhiteSpace(input.Code) && input.Code.Length >= 6)
+            {
+                orgIdList = await GetUserOrgIdList();
+            }
+
+            iSugarQueryable = _sysOrgRep.AsQueryable().OrderBy(u => u.Order)
                 .WhereIF(orgIdList.Count > 0, u => orgIdList.Contains(u.Id)); // 非超级管理员限制
 
             if (!string.IsNullOrWhiteSpace(input.Name) || !string.IsNullOrWhiteSpace(input.Code) || input.Id > 0)
+
             {
-                return await iSugarQueryable
-                    .WhereIF(!string.IsNullOrWhiteSpace(input.Name), u => u.Name.Contains(input.Name))
-                    .WhereIF(!string.IsNullOrWhiteSpace(input.Code), u => u.Code.Contains(input.Code))
-                    .ToListAsync();
+                iSugarQueryable = _sysOrgRep.AsQueryable().OrderBy(it => it.Code).Where(it => SqlFunc.StartsWith(it.Code, input.Code))
+               .WhereIF(orgIdList.Count > 0, u => orgIdList.Contains(u.Id));
             }
+
+            else
+            {
+                iSugarQueryable = _sysOrgRep.AsQueryable().OrderBy(it => it.Code).Where(it => SqlFunc.Length(it.Code) <= 6)
+               .WhereIF(orgIdList.Count > 0, u => orgIdList.Contains(u.Id));
+            }
+
             return await iSugarQueryable.ToTreeAsync(u => u.Children, u => u.Pid, input.Id > 0 ? input.Id : 0);
+
         }
 
         /// <summary>

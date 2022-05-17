@@ -32,6 +32,47 @@ export const treeData: TreeItem[] = [
       { title: 'leaf', key: '2-2-1' },
     ],
   },
+  {
+    title: 'parent 4',
+    key: '4-2',
+    children: [
+      { title: 'leaf', key: '4-2-0' },
+      { title: 'leaf', key: '4-2-1' },
+    ],
+  },
+  {
+    title: 'parent 5',
+    key: '2-2',
+    children: [
+      { title: 'leaf', key: '5-2-0' },
+      { title: 'leaf', key: '5-2-1' },
+    ],
+  },
+  {
+    title: 'parent 6',
+    key: '6-2',
+    children: [
+      { title: 'leaf', key: '6-2-0' },
+      { title: 'leaf', key: '6-2-1' },
+    ],
+  },
+  {
+    title: 'parent 7',
+    key: '7-2',
+    children: [
+      { title: 'leaf', key: '7-2-0' },
+      { title: 'leaf', key: '7-2-1' },
+    ],
+  },
+  {
+    title: 'parent 88888888888888888888888888888888888888888888888888888888888888888888888888888888888888',
+    key: '8-2',
+    children: [
+      { title: 'leaf8888888888888888888888888888888888888888888888888888888888888888888888888888888888', key: '8-2-0' },
+      { title: 'leaf888888888888888888888888888888888888888888888888888888888888888888888888888888888888', key: '8-2-1' },
+    ],
+  },
+
 ];
 
 export const treeData2: any[] = [
