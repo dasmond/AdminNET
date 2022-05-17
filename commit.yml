@@ -2,28 +2,70 @@
 branches: {
   }
 fileChange:
+  /.gitignore:
+    newFile: !uuid '99265256c585433630885aeb2f0db1cc048e1061'
+    oldFile: !uuid '65ca574c4430af87698aded1cd6f17d46103bb1b'
   /Admin.NET:
-    newFile: !uuid '54d76c5c27d90ca52ceb0c7b1d0f2e8ba8aebce8'
-    oldFile: !uuid '1c2e39e811aec53ca753f8be0c907e62bc0c1372'
+    newFile: !uuid 'a5f187fb199acd678b0da5345138193b0b40f4d8'
+    oldFile: !uuid '54d76c5c27d90ca52ceb0c7b1d0f2e8ba8aebce8'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '0c5a1d43cb7518a5bc272b3b75e1052a50cf7a94'
-    oldFile: !uuid '5a11e1762ebe053ec783a543884d62d0484a6b24'
+    newFile: !uuid 'ae1db36dfe01d3aa8a65186d841dc7641044da4a'
+    oldFile: !uuid '0c5a1d43cb7518a5bc272b3b75e1052a50cf7a94'
+  /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
+    newFile: !uuid '8e2bfdf7297c12f2ba28818ae0f944b4608cc4ea'
+    oldFile: !uuid '05db85dd025743930ee4065ee79458888d963c89'
+  /Admin.NET/Admin.NET.Core/Admin.NET.Core.xml:
+    newFile: !uuid '35c634d5d51af02f75a4f8b381eaa690f79b8d0e'
+    oldFile: !uuid '4d9a5636c2fdfa968a8bb84370cfb5f4e14324a1'
+  /Admin.NET/Admin.NET.Core/Entity:
+    newFile: !uuid '386cf9941f2a69526454845129b4c1593c7d67d7'
+    oldFile: !uuid '1e6e42f3ba1abc71427cfdf3b3ba40398a73efae'
+  /Admin.NET/Admin.NET.Core/Entity/WechatPay.cs:
+    newFile: !uuid 'a46331d02879a054869efad2ebbbeadacfce24fd'
+    oldFile: !uuid '05731cc23663ccc42d666b95a7b7ca6e57d0d276'
   /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid '2c62bda4994b9c6fbb45f46b4ab2c756ce23e45b'
-    oldFile: !uuid '27b7b47ddf30cecb84f8f764ef1b9a418c3f928b'
+    newFile: !uuid 'e12890ff4de98c3190dc53080924916e0cba17b4'
+    oldFile: !uuid '2c62bda4994b9c6fbb45f46b4ab2c756ce23e45b'
   /Admin.NET/Admin.NET.Core/Service/Menu:
-    newFile: !uuid 'fd6a3b7c189a0aacbf7d0a44446749569dd7a56a'
-    oldFile: !uuid '2837ac0ae9f8e4cb61ae026849e32b53d2ef3ec5'
+    newFile: !uuid '038516f2514b86140e4d0998afa5e74af1254ab7'
+    oldFile: !uuid 'fd6a3b7c189a0aacbf7d0a44446749569dd7a56a'
   /Admin.NET/Admin.NET.Core/Service/Menu/SysMenuService.cs:
-    newFile: !uuid '423f2dcb4ca59b646669904e95e05df566ecc045'
-    oldFile: !uuid 'b5e493b1bd784472f7d928abd03d1538e16d4744'
+    newFile: !uuid '0d7e377376907c6f1281d67cc4b5ec81a929f5f0'
+    oldFile: !uuid '423f2dcb4ca59b646669904e95e05df566ecc045'
   /Admin.NET/Admin.NET.Core/Service/Role:
-    newFile: !uuid '3793fe29617758fef25f51fac46dfac1e5600959'
-    oldFile: !uuid '7aa1a1f1467e0525b19ccc095f9375c61375a0f4'
+    newFile: !uuid '0c7cd08e9bca5a12123f526a053cbe0114c45e93'
+    oldFile: !uuid '3793fe29617758fef25f51fac46dfac1e5600959'
   /Admin.NET/Admin.NET.Core/Service/Role/SysRoleMenuService.cs:
-    newFile: !uuid 'b98cc37611dd1fe7d41abf4af8f226f07263ac3b'
-    oldFile: !uuid '90819c050386b11c9049701e0136601114d4f4dc'
-gitCommitId: !uuid '033c8c14293ec5b8f96ecd72b8f698702dbcf986'
+    newFile: !uuid 'ba91dc7e1310e60ea9b38a22c19f232fb6b77f15'
+    oldFile: !uuid 'b98cc37611dd1fe7d41abf4af8f226f07263ac3b'
+  /Admin.NET/Admin.NET.Core/Service/WeChat:
+    newFile: !uuid '4c28c2bd9cd55c9b646f62ed36d0692a03924057'
+    oldFile: !uuid '323d4f20ca7ea732ef5078cce7a741abbda612ac'
+  /Admin.NET/Admin.NET.Core/Service/WeChat/WechatPayService.cs:
+    newFile: !uuid '5cee67be3ed75768a83a51a3d31c839c9a027f0e'
+    oldFile: !uuid '5b90ed5f58ff1b1e1653977b7a5dcc37c0037694'
+  /Admin.NET/Admin.NET.Web.Core:
+    newFile: !uuid 'd411cac580cf7352372fb035e8d5c6bc62501080'
+    oldFile: !uuid 'c410bf4a8611ac851c97abc46fdae72d43ba04f5'
+  /Admin.NET/Admin.NET.Web.Core/Handlers:
+    newFile: !uuid '4c124ad74906057b199f45c0373dfb19c59411bb'
+    oldFile: !uuid '457c775ec32dc11e4f7de513044cf2d1feb2dc28'
+  /Admin.NET/Admin.NET.Web.Core/Handlers/JwtHandler.cs:
+    newFile: !uuid 'ec46e72c475c5df502df88eea3e3f8c046e11a43'
+    oldFile: !uuid 'db912864217339ffedb093947bfccb076aa2ce3a'
+  /Admin.NET/Admin.NET.Web.Entry:
+    newFile: !uuid '276ad2502990f101018e52523ce89006e82e2a4f'
+    oldFile: !uuid 'f73d5b43627a3c1f9ed6cfc1bc48d1fb869ee8de'
+  /Admin.NET/Admin.NET.Web.Entry/Properties:
+    newFile: !uuid '8c3b1c64300036c59f199317324752dd4cd82e07'
+    oldFile: !uuid 'b26d9d51bd13b99a0ebc0d799696cb8f29a444b2'
+  /Admin.NET/Admin.NET.Web.Entry/Properties/PublishProfiles:
+    newFile: !uuid '734eff0ba8831d37df7bfdbb53fc960c3871207f'
+    oldFile: !uuid '1688f7520622dcf15f0907c9dc04d72609debad2'
+  /Admin.NET/Admin.NET.Web.Entry/Properties/PublishProfiles/FolderProfile.pubxml.user:
+    newFile: null
+    oldFile: !uuid 'ec8250868610f98b4ecb396da4288e5ba6190a4b'
+gitCommitId: !uuid '58137579c1958c1453691a73661c9b382312aa19'
 renames: {
   }
-revisionId: 22
+revisionId: 23
