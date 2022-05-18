@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Admin.NET.Core.Util.LowCode.Front.Model;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -25,5 +26,10 @@ namespace Furion.Extras.Admin.NET.Util.LowCode.Front.Interface
         /// 数据属性
         /// </summary>
         string Model { get; set; }
+
+        /// <summary>
+        /// 获取动态数据
+        /// </summary>
+        public ViewDynamic Dynamic { get; }
     }
 }

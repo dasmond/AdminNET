@@ -1,4 +1,5 @@
-﻿using Furion.DatabaseAccessor;
+﻿using Admin.NET.Core.Util.LowCode.Front.Model;
+using Furion.DatabaseAccessor;
 using Furion.Extras.Admin.NET.Util.LowCode.Front.Att;
 using Furion.Extras.Admin.NET.Util.LowCode.Front.Interface;
 using Furion.Extras.Admin.NET.Util.LowCode.Front.Model;
@@ -15,7 +16,7 @@ namespace Furion.Extras.Admin.NET.Util.LowCode.Front
     [FrontTypeBindDatabase(DbProvider.SqlServer, typeof(string), "nvarchar(2000)")]
     public class Front_Cascader : Front_Base<Front_Cascader_Options>, IFrontDynamic
     {
-
+        public override ViewDynamic Dynamic { get { return new ViewDynamic() { Dynamic = this.Options.Dynamic, DynamicKey = this.Options.DynamicKey }; } }
     }
 
     public class Front_Cascader_Options : IFrontDynamicOptions

@@ -1,4 +1,5 @@
-﻿using Furion.Extras.Admin.NET.Util.LowCode.Front.Att;
+﻿using Admin.NET.Core.Util.LowCode.Front.Model;
+using Furion.Extras.Admin.NET.Util.LowCode.Front.Att;
 using Furion.Extras.Admin.NET.Util.LowCode.Front.Code;
 using Furion.Extras.Admin.NET.Util.LowCode.Front.Interface;
 using Newtonsoft.Json;
@@ -27,6 +28,8 @@ namespace Furion.Extras.Admin.NET.Util.LowCode.Front
         /// 选项
         /// </summary>
         public List<Front_SelectInputList_Column> Columns { get; set; }
+
+        public ViewDynamic Dynamic { get { return null; } }
 
         public IFront ConvertFront(JObject JData)
         {

@@ -116,7 +116,7 @@ if (@column.WhetherRequired == "Y"){
 }
       </a-form>
 }else{
-      <k-form-build ref="kfb" :value="formDesign" />
+      <k-form-build ref="kfb" :value="formDesign" :dynamicData="dynamicData" />
 }
     </a-spin>
   </a-modal>
@@ -133,6 +133,7 @@ if(@column.EffectType == "fk" && @column.FkEntityName != "" && @column.FkColumnN
   } from '@@/api/modular/main/@(@Model.ClassName)Manage'
 @if(@Model.LowCodeId != null){
   @:import 'k-form-design/styles/k-form-design.less'
+  @:import { sysDictDataListbycode } from '@@/api/modular/system/dictDataManage'
 }
   export default {
     data () {
@@ -167,6 +168,7 @@ if(@column.EffectType == "fk" && @column.FkEntityName != "" && @column.FkColumnN
 @if(@Model.LowCodeId == null){
         @:form: this.$form.createForm(this)
 }else{
+        @:dynamicData: @Model.DynamicData,
         @:formDesign: @Model.FormDesign
 }
       }
@@ -184,6 +186,12 @@ if(@column.EffectType == "fk" && @column.FkEntityName != "" && @column.FkColumnN
       // 初始化方法
       add (record) {
         this.visible = true
+        this.$nextTick(() => {
+@foreach (var dynamic in Model.DynamicLoad_Dict){
+          @:sysDictDataListbycode({code:"@(dynamic.Dynamic)"}).then((data) => { this.dynamicData.@(dynamic.DynamicKey) = data.data });
+}
+
+        });
 @foreach (var column in Model.TableField){
 if (@column.DictTypeCode != ""){
 if (@column.EffectType == "select" || @column.EffectType == "radio" || @column.EffectType == "checkbox"){

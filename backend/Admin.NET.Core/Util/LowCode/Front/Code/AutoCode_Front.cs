@@ -44,7 +44,12 @@ namespace Furion.Extras.Admin.NET.Util.LowCode.Front.Code
         {
             var item = List.Where(x => x.Type == front.Type).FirstOrDefault();
 
-            if (item == null) return new List<FrontTypeBindDatabaseAttribute>();
+            if (item == null || item.BindDatabase == null || !item.BindDatabase.Any()) return new List<FrontTypeBindDatabaseAttribute>();
+
+            if(item.BindDatabase.Where(x => x.ProviderName == providerName).Any())
+                return item.BindDatabase.Where(x => x.ProviderName == providerName).ToList();
+
+            providerName = item.BindDatabase.Select(x => x.ProviderName).FirstOrDefault();
 
             return item.BindDatabase.Where(x => x.ProviderName == providerName).ToList();
         }

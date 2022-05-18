@@ -35,7 +35,9 @@ namespace Admin.NET.Application
         {
             var result = await _sysCodeGenConfigRep.DetachedEntities
                                              .Where(u => u.CodeGenId == input.CodeGenId && u.WhetherCommon != YesOrNot.Y.ToString())
-                                             .ProjectToType<CodeGenConfig>().ToListAsync();
+                                             .ProjectToType<CodeGenConfig>()
+                                             .Distinct()
+                                             .ToListAsync();
 
             var codeGen = await _sysCodeGenRep.FirstOrDefaultAsync(x => x.Id == input.CodeGenId);
             var codeGenOutput = codeGen.Adapt<CodeGenOutput>();
@@ -54,7 +56,6 @@ namespace Admin.NET.Application
             if (inputList == null || inputList.Count < 1) return;
             var list = inputList.Adapt<List<SysCodeGenConfig>>();
             await _sysCodeGenConfigRep.UpdateAsync(list);
-            await Task.CompletedTask;
         }
 
         /// <summary>
@@ -62,7 +63,7 @@ namespace Admin.NET.Application
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpGet("sysCodeGenerateConfig/detail")]
+        [HttpGet("·/detail")]
         public async Task<SysCodeGenConfig> Detail([FromQuery] CodeGenConfig input)
         {
             return await _sysCodeGenConfigRep.FirstOrDefaultAsync(u => u.Id == input.Id);
@@ -74,7 +75,7 @@ namespace Admin.NET.Application
         /// <param name="tableColumnOuputList"></param>
         /// <param name="codeGenerate"></param>
         [NonAction]
-        public async Task AddList(List<TableColumnOuput> tableColumnOuputList, SysCodeGen codeGenerate)
+        public async Task DelAndAddList(List<TableColumnOuput> tableColumnOuputList, SysCodeGen codeGenerate)
         {
             if (tableColumnOuputList == null) return;
             var list = new List<SysCodeGenConfig>();
@@ -118,6 +119,9 @@ namespace Admin.NET.Application
 
                 list.Add(codeGenConfig);
             }
+
+            _sysCodeGenConfigRep.Context.DeleteRange<SysCodeGenConfig>(x => x.CodeGenId == codeGenerate.Id);
+
             await _sysCodeGenConfigRep.InsertAsync(list);
         }
 

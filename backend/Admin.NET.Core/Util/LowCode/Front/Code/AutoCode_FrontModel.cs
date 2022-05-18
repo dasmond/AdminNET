@@ -1,4 +1,5 @@
-﻿using Furion.Extras.Admin.NET.Util.LowCode.Front.Interface;
+﻿using Admin.NET.Core.Util.LowCode.Front.Model;
+using Furion.Extras.Admin.NET.Util.LowCode.Front.Interface;
 using Furion.Extras.Admin.NET.Util.LowCode.Front.Model;
 using System;
 using System.Collections.Generic;
@@ -24,6 +25,21 @@ namespace Furion.Extras.Admin.NET.Util.LowCode.Front.Code
             });
 
             return list;
+        }
+
+        public static List<ViewDynamic> AllDynamic(this List<IFront> list)
+        {
+            List<ViewDynamic> data = new List<ViewDynamic>();
+
+            list.ForEach(item =>
+            {
+                if(item.Dynamic != null)
+                {
+                    data.Add(item.Dynamic);
+                }
+            });
+
+            return data;
         }
 
     }

@@ -1,4 +1,5 @@
-﻿using Furion.DatabaseAccessor;
+﻿using Admin.NET.Core.Util.LowCode.Front.Model;
+using Furion.DatabaseAccessor;
 using Furion.Extras.Admin.NET.Util.LowCode.Front.Att;
 using Furion.Extras.Admin.NET.Util.LowCode.Front.Interface;
 using System;
@@ -19,6 +20,8 @@ namespace Furion.Extras.Admin.NET.Util.LowCode.Front
         public string Model { get; set; }
 
         public Front_Alert_Options Options { get; set; }
+
+        public ViewDynamic Dynamic { get { return null; } }
     }
 
     public class Front_Alert_Options

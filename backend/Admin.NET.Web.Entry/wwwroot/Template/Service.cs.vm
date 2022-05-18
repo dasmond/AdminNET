@@ -1,3 +1,4 @@
+using Admin.NET.Application.Entity;
 using Admin.NET.Core;
 using Furion.DatabaseAccessor;
 using Furion.DatabaseAccessor.Extensions;
@@ -52,7 +53,7 @@ if(@column.EffectType == "fk" && @column.FkEntityName != "" && @column.FkColumnN
         /// <param name="input"></param>
         /// <returns></returns>
         [HttpGet("page")]
-        public async Task<PageResult<@(@Model.ClassName)Output>> Page([FromQuery] @(@Model.ClassName)Input input)
+        public async Task<PageResult<@(@Model.ClassName)Output>> Page([FromQuery] @(@Model.ClassName)Search input)
         {
             var @(@Model.CamelizeClassName)s = await _@(@Model.CamelizeClassName)Rep.DetachedEntities
 @foreach (var column in Model.TableField){    

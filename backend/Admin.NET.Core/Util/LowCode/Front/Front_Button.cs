@@ -1,4 +1,5 @@
-﻿using Furion.Extras.Admin.NET.Util.LowCode.Front.Att;
+﻿using Admin.NET.Core.Util.LowCode.Front.Model;
+using Furion.Extras.Admin.NET.Util.LowCode.Front.Att;
 using Furion.Extras.Admin.NET.Util.LowCode.Front.Interface;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,8 @@ namespace Furion.Extras.Admin.NET.Util.LowCode.Front
         public string Model { get; set; }
 
         public Front_Button_Options Options { get; set; }
+
+        public ViewDynamic Dynamic { get { return null; } }
     }
 
     public class Front_Button_Options

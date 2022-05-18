@@ -1,4 +1,5 @@
-﻿using Furion.Extras.Admin.NET.Util.LowCode.Front.Att;
+﻿using Admin.NET.Core.Util.LowCode.Front.Model;
+using Furion.Extras.Admin.NET.Util.LowCode.Front.Att;
 using Furion.Extras.Admin.NET.Util.LowCode.Front.Code;
 using Furion.Extras.Admin.NET.Util.LowCode.Front.Interface;
 using Newtonsoft.Json.Linq;
@@ -25,6 +26,8 @@ namespace Furion.Extras.Admin.NET.Util.LowCode.Front
         /// 栅格配置
         /// </summary>
         public Front_Grid_Options Options { get; set; }
+
+        public ViewDynamic Dynamic { get { return null; } }
 
         /// <summary>
         /// 布局子组件解析

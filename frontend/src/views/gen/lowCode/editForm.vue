@@ -105,7 +105,10 @@
             @save="kFormHandleSave"
             :value="kFormDesignData"  />
         </a-tab-pane>
-        <a-tab-pane key="3" tab="数据表配置">
+        <a-tab-pane key="3" tab="动态数据" force-render>
+          <dictIndex></dictIndex>
+        </a-tab-pane>
+        <a-tab-pane key="4" tab="数据表配置">
           <a-button type="primary" @click="addTableModal">添加表</a-button>
 
           <span v-for="(table, index) in Tables" :key="index">
@@ -181,11 +184,12 @@
   import { CheckOutlined, EditOutlined } from '@ant-design/icons-vue';
   import 'k-form-design/styles/k-form-design.less'
   import { STable, Ellipsis } from '@/components'
+  import dictIndex from '../../system/dict/index.vue'
 import { map } from 'leaflet'
 
   export default{
     components: {
-      STable, Ellipsis
+      STable, Ellipsis,dictIndex
     },
     data() {
       return {
@@ -339,6 +343,8 @@ import { map } from 'leaflet'
       loadData(record){
         lowCodeInfo(record.id).then((res) => {
           if (res.success) {
+            this.databases = [];
+            this.Tables = [];
             (res.data.databases || []).forEach(element => {
               this.databases.push(element);
             });

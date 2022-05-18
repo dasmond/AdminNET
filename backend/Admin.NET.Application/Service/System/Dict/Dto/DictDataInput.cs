@@ -34,6 +34,15 @@ namespace Admin.NET.Application
         public long TypeId { get; set; }
     }
 
+    public class QueryDictDataListByCodeInput
+    {
+        /// <summary>
+        /// 字典类型Code
+        /// </summary>
+        [Required(ErrorMessage = "字典类型Code不能为空")]
+        public string Code { get; set; }
+    }
+
     public class AddDictDataInput
     {
         /// <summary>

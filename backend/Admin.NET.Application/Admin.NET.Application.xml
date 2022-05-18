@@ -4,6 +4,16 @@
         <name>Admin.NET.Application</name>
     </assembly>
     <members>
+        <member name="T:Admin.NET.Application.Entity.Delivery">
+            <summary>
+             交付管理
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.Entity.Delivery.Sex">
+            <summary>
+            下拉选择器
+            </summary>
+        </member>
         <member name="T:Admin.NET.Application.BaseId">
             <summary>
             主键Id映射DTO
@@ -12,6 +22,108 @@
         <member name="P:Admin.NET.Application.BaseId.Id">
             <summary>
             主键Id
+            </summary>
+        </member>
+        <member name="T:Admin.NET.Application.DeliveryService">
+            <summary>
+            交付物管理服务
+            </summary>
+        </member>
+        <member name="M:Admin.NET.Application.DeliveryService.Page(Admin.NET.Application.DeliverySearch)">
+            <summary>
+            分页查询交付物管理
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Application.DeliveryService.Add(Admin.NET.Application.AddDeliveryInput)">
+            <summary>
+            增加交付物管理
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Application.DeliveryService.Delete(Admin.NET.Application.DeleteDeliveryInput)">
+            <summary>
+            删除交付物管理
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Application.DeliveryService.Update(Admin.NET.Application.UpdateDeliveryInput)">
+            <summary>
+            更新交付物管理
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Application.DeliveryService.Get(Admin.NET.Application.QueryeDeliveryInput)">
+            <summary>
+            获取交付物管理
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Application.DeliveryService.List(Admin.NET.Application.DeliveryInput)">
+            <summary>
+            获取交付物管理列表
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Admin.NET.Application.DeliveryDto">
+            <summary>
+            交付物管理输出参数
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.DeliveryDto.Sex">
+            <summary>
+            下拉选择器
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.DeliveryDto.Id">
+            <summary>
+            Id主键
+            </summary>
+        </member>
+        <member name="T:Admin.NET.Application.DeliverySearch">
+            <summary>
+            交付物管理查询参数
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.DeliverySearch.Sex">
+            <summary>
+            下拉选择器
+            </summary>
+        </member>
+        <member name="T:Admin.NET.Application.DeliveryInput">
+            <summary>
+            交付物管理输入参数
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.DeliveryInput.Sex">
+            <summary>
+            下拉选择器
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.UpdateDeliveryInput.Id">
+            <summary>
+            Id主键
+            </summary>
+        </member>
+        <member name="T:Admin.NET.Application.DeliveryOutput">
+            <summary>
+            交付物管理输出参数
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.DeliveryOutput.Sex">
+            <summary>
+            下拉选择器
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.DeliveryOutput.Id">
+            <summary>
+            Id主键
             </summary>
         </member>
         <member name="P:Admin.NET.Application.AppPageInput.Name">
@@ -854,7 +966,7 @@
             <param name="input"></param>
             <returns></returns>
         </member>
-        <member name="M:Admin.NET.Application.SysCodeGenerateConfigService.AddList(System.Collections.Generic.List{Admin.NET.Application.TableColumnOuput},Admin.NET.Core.SysCodeGen)">
+        <member name="M:Admin.NET.Application.SysCodeGenerateConfigService.DelAndAddList(System.Collections.Generic.List{Admin.NET.Application.TableColumnOuput},Admin.NET.Core.SysCodeGen)">
             <summary>
             批量增加
             </summary>
@@ -1712,6 +1824,11 @@
             字典类型Id
             </summary>
         </member>
+        <member name="P:Admin.NET.Application.QueryDictDataListByCodeInput.Code">
+            <summary>
+            字典类型Code
+            </summary>
+        </member>
         <member name="P:Admin.NET.Application.AddDictDataInput.TypeId">
             <summary>
             字典类型Id
@@ -1950,6 +2067,12 @@
             <returns></returns>
         </member>
         <member name="M:Admin.NET.Application.SysDictDataService.GetDictDataList(Admin.NET.Application.QueryDictDataListInput)">
+            <summary>
+            获取某个字典类型下字典值列表
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Application.SysDictDataService.GetDictDataListByCode(Admin.NET.Application.QueryDictDataListByCodeInput)">
             <summary>
             获取某个字典类型下字典值列表
             </summary>
@@ -3363,6 +3486,46 @@
             清空访问日志
             </summary>
             <returns></returns>
+        </member>
+        <member name="P:Admin.NET.Application.Service.System.LowCode.Dto.ContrastLowCode_Database.TableName">
+            <summary>
+            表名
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.Service.System.LowCode.Dto.ContrastLowCode_Database.ClassName">
+            <summary>
+            类名
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.Service.System.LowCode.Dto.ContrastLowCode_Database.TableDesc">
+            <summary>
+            表描述
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.Service.System.LowCode.Dto.ContrastLowCode_Database.FieldName">
+            <summary>
+            字段名称
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.Service.System.LowCode.Dto.ContrastLowCode_Database.DbType">
+            <summary>
+            数据类型
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.Service.System.LowCode.Dto.ContrastLowCode_Database.DbTypeName">
+            <summary>
+            数据类型
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.Service.System.LowCode.Dto.ContrastLowCode_Database.DbParam">
+            <summary>
+            数据类型补充参数
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.Service.System.LowCode.Dto.ContrastLowCode_Database.IsRequired">
+            <summary>
+            是否必填
+            </summary>
         </member>
         <member name="T:Admin.NET.Application.AntDesignTreeNode">
             <summary>
@@ -7792,6 +7955,222 @@
             <summary>
             FurionPersistenceProvider
             </summary>
+        </member>
+        <member name="P:Furion.Extras.Admin.NET.Service.LowCode.Dto.GenEntity.NameSpace">
+            <summary>
+            命名空间
+            </summary>
+        </member>
+        <member name="P:Furion.Extras.Admin.NET.Service.LowCode.Dto.GenEntity.TableName">
+            <summary>
+            表名
+            </summary>
+        </member>
+        <member name="P:Furion.Extras.Admin.NET.Service.LowCode.Dto.GenEntity.ClassName">
+            <summary>
+            类名
+            </summary>
+        </member>
+        <member name="P:Furion.Extras.Admin.NET.Service.LowCode.Dto.GenEntity.TableDesc">
+            <summary>
+            表描述
+            </summary>
+        </member>
+        <member name="P:Furion.Extras.Admin.NET.Service.LowCode.Dto.GenEntity.DatabaseName">
+            <summary>
+            数据库名称
+            </summary>
+        </member>
+        <member name="P:Furion.Extras.Admin.NET.Service.LowCode.Dto.GenEntity_Field.ColumnComment">
+            <summary>
+            字段备注
+            </summary>
+        </member>
+        <member name="P:Furion.Extras.Admin.NET.Service.LowCode.Dto.GenEntity_Field.FieldName">
+            <summary>
+            字段名称
+            </summary>
+        </member>
+        <member name="P:Furion.Extras.Admin.NET.Service.LowCode.Dto.GenEntity_Field.NetType">
+            <summary>
+            数据类型
+            </summary>
+        </member>
+        <member name="P:Furion.Extras.Admin.NET.Service.LowCode.Dto.GenEntity_Field.DbParam">
+            <summary>
+            数据类型补充参数
+            </summary>
+        </member>
+        <member name="P:Furion.Extras.Admin.NET.Service.LowCode.Dto.GenEntity_Field.IsRequired">
+            <summary>
+            是否必填
+            </summary>
+        </member>
+        <member name="T:Furion.Extras.Admin.NET.Service.LowCode.Dto.LowCodePageInput">
+            <summary>
+            代码生成参数类
+            </summary>
+        </member>
+        <member name="P:Furion.Extras.Admin.NET.Service.LowCode.Dto.LowCodePageInput.BusName">
+            <summary>
+            业务名称
+            </summary>
+        </member>
+        <member name="P:Furion.Extras.Admin.NET.Service.LowCode.Dto.AddLowCodeInput.AuthorName">
+            <summary>
+            作者姓名
+            </summary>
+        </member>
+        <member name="P:Furion.Extras.Admin.NET.Service.LowCode.Dto.AddLowCodeInput.GenerateType">
+            <summary>
+            生成方式
+            </summary>
+        </member>
+        <member name="P:Furion.Extras.Admin.NET.Service.LowCode.Dto.AddLowCodeInput.DatabaseName">
+            <summary>
+            数据库名
+            </summary>
+        </member>
+        <member name="P:Furion.Extras.Admin.NET.Service.LowCode.Dto.AddLowCodeInput.NameSpace">
+            <summary>
+            命名空间
+            </summary>
+        </member>
+        <member name="P:Furion.Extras.Admin.NET.Service.LowCode.Dto.AddLowCodeInput.BusName">
+            <summary>
+            业务名
+            </summary>
+        </member>
+        <member name="P:Furion.Extras.Admin.NET.Service.LowCode.Dto.AddLowCodeInput.MenuApplication">
+            <summary>
+            菜单应用分类（应用编码）
+            </summary>
+        </member>
+        <member name="P:Furion.Extras.Admin.NET.Service.LowCode.Dto.AddLowCodeInput.MenuPid">
+            <summary>
+            菜单编码
+            </summary>
+        </member>
+        <member name="P:Furion.Extras.Admin.NET.Service.LowCode.Dto.UpdateLowCodeInput.Id">
+            <summary>
+            代码生成器Id
+            </summary>
+        </member>
+        <member name="P:Furion.Extras.Admin.NET.Service.LowCode.Dto.UpdateLowCodeInput.AuthorName">
+            <summary>
+            作者姓名
+            </summary>
+        </member>
+        <member name="P:Furion.Extras.Admin.NET.Service.LowCode.Dto.UpdateLowCodeInput.GenerateType">
+            <summary>
+            生成方式
+            </summary>
+        </member>
+        <member name="P:Furion.Extras.Admin.NET.Service.LowCode.Dto.UpdateLowCodeInput.DatabaseName">
+            <summary>
+            数据库名
+            </summary>
+        </member>
+        <member name="P:Furion.Extras.Admin.NET.Service.LowCode.Dto.UpdateLowCodeInput.NameSpace">
+            <summary>
+            命名空间
+            </summary>
+        </member>
+        <member name="P:Furion.Extras.Admin.NET.Service.LowCode.Dto.UpdateLowCodeInput.BusName">
+            <summary>
+            业务名
+            </summary>
+        </member>
+        <member name="P:Furion.Extras.Admin.NET.Service.LowCode.Dto.UpdateLowCodeInput.MenuApplication">
+            <summary>
+            菜单应用分类（应用编码）
+            </summary>
+        </member>
+        <member name="P:Furion.Extras.Admin.NET.Service.LowCode.Dto.UpdateLowCodeInput.MenuPid">
+            <summary>
+            菜单编码
+            </summary>
+        </member>
+        <member name="P:Furion.Extras.Admin.NET.Service.LowCode.Dto.UpdateLowCodeInput.FormDesignType">
+            <summary>
+            动态表单类型
+            </summary>
+        </member>
+        <member name="P:Furion.Extras.Admin.NET.Service.LowCode.Dto.UpdateLowCodeInput.FormDesign">
+            <summary>
+            动态表单
+            </summary>
+        </member>
+        <member name="P:Furion.Extras.Admin.NET.Service.LowCode.Dto.UpdateLowCodeInput.Databases">
+            <summary>
+            表单转数据结构
+            </summary>
+        </member>
+        <member name="T:Furion.Extras.Admin.NET.Service.LowCode.LowCodeService">
+            <summary>
+            低代码模块服务
+            </summary>
+        </member>
+        <member name="M:Furion.Extras.Admin.NET.Service.LowCode.LowCodeService.QueryPageList(Furion.Extras.Admin.NET.Service.LowCode.Dto.LowCodePageInput)">
+            <summary>
+            分页查询
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+        <member name="M:Furion.Extras.Admin.NET.Service.LowCode.LowCodeService.Info(System.Int64)">
+            <summary>
+            获取模块详情
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Furion.Extras.Admin.NET.Service.LowCode.LowCodeService.Add(Furion.Extras.Admin.NET.Service.LowCode.Dto.AddLowCodeInput)">
+            <summary>
+            添加
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+        <member name="M:Furion.Extras.Admin.NET.Service.LowCode.LowCodeService.Delete(System.Collections.Generic.List{Furion.Extras.Admin.NET.Service.LowCode.Dto.DeleteLowCodeInput})">
+            <summary>
+            删除
+            </summary>
+            <param name="inputs"></param>
+            <returns></returns>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+        <member name="M:Furion.Extras.Admin.NET.Service.LowCode.LowCodeService.Update(Furion.Extras.Admin.NET.Service.LowCode.Dto.UpdateLowCodeInput)">
+            <summary>
+            更新
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+        <member name="M:Furion.Extras.Admin.NET.Service.LowCode.LowCodeService.Contrast(Admin.NET.Application.Service.System.LowCode.Dto.ContrastLowCode)">
+            <summary>
+            对比组件
+            </summary>
+            <param name="contrast"></param>
+            <returns></returns>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+        <member name="M:Furion.Extras.Admin.NET.Service.LowCode.LowCodeService.RunLocal(System.Int64)">
+            <summary>
+            生成ORM模型
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Furion.Extras.Admin.NET.Service.LowCode.LowCodeService.GetTargetPathList(Furion.Extras.Admin.NET.Service.LowCode.Dto.GenEntity)">
+            <summary>
+            设置生成文件路径
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
         </member>
     </members>
 </doc>
