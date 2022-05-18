@@ -2,25 +2,13 @@
 branches: {
   }
 fileChange:
-  /backend:
-    newFile: !uuid '949fcff3a6fb20f6eb661c4ac30bfd52f6636fbb'
-    oldFile: !uuid 'b789a72cb47e269b9f48080c1953d018432df1f3'
-  /backend/Admin.NET.Application:
-    newFile: !uuid '348668db527b98e14dc73b7e1aaef2fcb5107532'
-    oldFile: !uuid 'c238ca2f76bd4a8eb5f6a48351a1974413dde6b5'
-  /backend/Admin.NET.Application/Service:
-    newFile: !uuid '827f10aad6ab43414b4b153b4d5fb5e189b7e289'
-    oldFile: !uuid 'ab739d79f75150989b1a4264a07f3dbef6859e83'
-  /backend/Admin.NET.Application/Service/System:
-    newFile: !uuid '997b41c0dadc09e8cf95c88adaf52a2b30087dfd'
-    oldFile: !uuid '59e9d578958ddd02c73aed7d874159e9739bdb93'
-  /backend/Admin.NET.Application/Service/System/Config:
-    newFile: !uuid 'e72297a338a7adffdd7641dfa7572ad0c78c39e3'
-    oldFile: !uuid '2b3e369655832891a4749f3de45b386d08d10b62'
-  /backend/Admin.NET.Application/Service/System/Config/SysConfigService.cs:
-    newFile: !uuid 'e784af58d48a0395b4d0cccc8677856498c13892'
-    oldFile: !uuid 'ff3121dae3307c813ee3fde6241d2448cf78ff5a'
-gitCommitId: !uuid 'd094e38f1137a59b4ab0b46964c82ad946197e25'
+  /frontend:
+    newFile: !uuid 'fa76afde183d7529c41c40ccf15267a20b1a4708'
+    oldFile: !uuid '3094152ac723fc3a6445771acd367a193889776c'
+  /frontend/vue.config.js:
+    newFile: !uuid '1f17fd0d53b82054100ef1d8535cc387036a2e97'
+    oldFile: !uuid '649900f0706328cf7b35dfbb14dfe1522c77a5d5'
+gitCommitId: !uuid '5032770ffc681251cdac034259ff5b2b22a94ee9'
 renames: {
   }
-revisionId: 716
+revisionId: 717
