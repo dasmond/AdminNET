@@ -265,10 +265,7 @@ GNU 风格的版本号管理策略
 
 `Admin.NET` 遵循 `Apache-2.0` 开源协议，欢迎大家提交 `PR` 或 `Issue`。
 
-感谢每一位贡献代码的朋友。**感谢 [TLog 作者](https://gitee.com/bryan31) 提供的贡献者实时头像。**
-
-[![Giteye chart](https://chart.giteye.net/gitee/zuohuaijun/Admin.NET/JRFF5WLM.png)](https://giteye.net/chart/JRFF5WLM)
-
+感谢每一位贡献代码的朋友。
 
 ### 💐 特别鸣谢
 - 👉 Furion：  [https://dotnetchina.gitee.io/furion](https://dotnetchina.gitee.io/furion)
