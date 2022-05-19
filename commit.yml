@@ -2,19 +2,25 @@
 branches: {
   }
 fileChange:
-  /Admin.NET:
-    newFile: !uuid '3262bb6d1ec9095dc9f53e747cc8e222e33ca31a'
-    oldFile: !uuid 'a5f187fb199acd678b0da5345138193b0b40f4d8'
-  /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '07debd887f5443af45435cf82a2f8bfaf300ecf9'
-    oldFile: !uuid 'ae1db36dfe01d3aa8a65186d841dc7641044da4a'
-  /Admin.NET/Admin.NET.Core/SqlSugar:
-    newFile: !uuid 'b6e5a27735b955d3fc0ea26e015318153393201a'
-    oldFile: !uuid 'f0c9eb4667d5d58182dbad1deea97c2f4eb323dd'
-  /Admin.NET/Admin.NET.Core/SqlSugar/SqlSugarSetup.cs:
-    newFile: !uuid '7d892f427adc6fb4bd3ade90a930d4e3285a83db'
-    oldFile: !uuid 'cc13f4e601329986736ca58021f91f9fed73705c'
-gitCommitId: !uuid '58e7ce5437cd3a20ca881f922cfc5abbc8ccbc26'
+  /Vben2:
+    newFile: !uuid '59bf39a4e5b15f52a353e7333f48db0f4d27b9e4'
+    oldFile: !uuid '3bb47a8b572ddc2262794e0c5aa4ae6ce5ed3a0e'
+  /Vben2/src:
+    newFile: !uuid 'ff964b6aaba95b0d8fc5eb544b09c23266cbfd72'
+    oldFile: !uuid '0bf934125ab8d6e0a8898e50a430e597c0dca1f2'
+  /Vben2/src/utils:
+    newFile: !uuid '77510151fee97ec47d838e9440e9f2cb73ccf1b5'
+    oldFile: !uuid 'cc3e622cb44c95626cc88e0a48453acd751a4068'
+  /Vben2/src/utils/http:
+    newFile: !uuid 'bfa891794f2f6a5cf5b5bcdee8b4fae01d93cf9d'
+    oldFile: !uuid '11e56a3129917ccb455ce21994e1ff0a70b5a55f'
+  /Vben2/src/utils/http/axios:
+    newFile: !uuid '9b41a0de365cc33c0807ba4030bfa47614fda1a9'
+    oldFile: !uuid '5a3c702b8d975e224728b89f759416bc654c233e'
+  /Vben2/src/utils/http/axios/index.ts:
+    newFile: !uuid '00322c1bb32731f0da8266a65f55489ff94c6017'
+    oldFile: !uuid '6e5639f1f88b775fd7877473ae59b8d3093fe129'
+gitCommitId: !uuid '9be750ff2d699f50629611402641e8f5fa92ccaf'
 renames: {
   }
-revisionId: 24
+revisionId: 25
