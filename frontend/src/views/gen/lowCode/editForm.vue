@@ -183,8 +183,11 @@
   import { lowCodeEdit,lowCodeContrast, lowCodeInfo } from '@/api/modular/gen/lowCodeManage'
   import { CheckOutlined, EditOutlined } from '@ant-design/icons-vue';
   import 'k-form-design/styles/k-form-design.less'
+import { setFormDesignConfig } from 'k-form-design'
   import { STable, Ellipsis } from '@/components'
   import dictIndex from '../../system/dict/index.vue'
+  import Vue from 'vue'
+  import { ACCESS_TOKEN } from '@/store/mutation-types'
 import { map } from 'leaflet'
 
   export default{
@@ -316,6 +319,30 @@ import { map } from 'leaflet'
         // 获取系统应用列表
         this.getSysApplist()
         this.changeApplication(record.menuApplication)
+
+        let uploadHeaders = {};
+
+        const token = Vue.ls.get(ACCESS_TOKEN)
+        const refreshToken = Vue.ls.get('X-Access-Token')
+        if (token) {
+          uploadHeaders['Authorization'] = 'Bearer ' + token
+        }
+        if (refreshToken) {
+          uploadHeaders['X-Authorization'] = 'Bearer ' + refreshToken
+        }
+
+        let kformConfig = {
+          uploadFile: "/api/sysFileInfo/kformormupload", // 上传文件地址
+          uploadImage: "/api/sysFileInfo/kformormupload", // 上传图片地址
+          uploadFileName: "file", // 上传文件name
+          uploadImageName: "file", // 上传图片name
+          uploadFileData: { key: "UploadFile:Default" }, // 上传文件额外参数
+          uploadImageData: { key: "UploadFile:Default" }, // 上传图片额外参数
+          uploadFileHeaders: uploadHeaders, // 上传文件请求头部
+          uploadImageHeaders: uploadHeaders // 上传图片请求头部
+        };
+
+        setFormDesignConfig(kformConfig);
 
         this.$nextTick(() => {
           this.form.setFieldsValue({
@@ -477,7 +504,7 @@ import { map } from 'leaflet'
         this.form.formDesign = values
       },
       tabsChange(values){
-        if(values == "3"){
+        if(values == "4"){
           var Fields = this.$refs.kfd.getValue();
 
           lowCodeContrast({Controls: JSON.stringify(Fields) , Databases: this.databases}).then((res) => {

@@ -2459,6 +2459,21 @@
             存储路径
             </summary>
         </member>
+        <member name="T:Admin.NET.Application.KFormFileOutput">
+            <summary>
+            k-form-design所需参数要求
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.KFormFileIrem.FileId">
+            <summary>
+            文件ID
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.KFormFileIrem.Url">
+            <summary>
+            文件下载地址
+            </summary>
+        </member>
         <member name="T:Admin.NET.Application.SysFileService">
             <summary>
             文件服务
@@ -2504,6 +2519,14 @@
             上传文件
             </summary>
             <param name="file"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Application.SysFileService.KFormUploadFileDefault(Microsoft.AspNetCore.Http.IFormFile,System.String)">
+            <summary>
+            上传文件(k-form-design)
+            </summary>
+            <param name="file"></param>
+            <param name="key"></param>
             <returns></returns>
         </member>
         <member name="M:Admin.NET.Application.SysFileService.DownloadFileInfo(Admin.NET.Application.QueryFileInfoInput)">

@@ -50,4 +50,26 @@
         /// </summary>
         public string FilePath { get; set; }
     }
+
+    /// <summary>
+    /// k-form-design所需参数要求
+    /// </summary>
+    public class KFormFileOutput
+    {
+        public int code { get; set; }
+        public KFormFileIrem Data { get; set; }
+    }
+
+    public class KFormFileIrem
+    {
+        /// <summary>
+        /// 文件ID
+        /// </summary>
+        public long FileId { get; set; }
+
+        /// <summary>
+        /// 文件下载地址
+        /// </summary>
+        public string Url { get; set; }
+    }
 }

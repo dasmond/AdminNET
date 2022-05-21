@@ -7,6 +7,7 @@ using Furion.DynamicApiController;
 using Furion.FriendlyException;
 using Furion.RemoteRequest.Extensions;
 using Mapster;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -147,11 +148,48 @@ namespace Admin.NET.Application
         }
 
         /// <summary>
+        /// 上传文件(k-form-design)
+        /// </summary>
+        /// <param name="file"></param>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        [HttpPost("sysFileInfo/kformormupload")]
+        [AllowAnonymous]//暂没找到k-form-design组件上传文件如何增加head
+        [NonUnify]//交给k-form-design组件处理数据不需要规范化返回数据
+        public async Task<KFormFileOutput> KFormUploadFileDefault(IFormFile file, string key)
+        {
+            long FileId = 0;
+
+            try
+            {
+                //对象存储的key
+                if (string.IsNullOrEmpty(key))
+                    key = "UploadFile:Default";
+                // 可以读取系统配置来决定将文件存储到什么地方
+                FileId = await UploadFile(file, key, FileLocation.LOCAL);
+            }
+            catch
+            {
+                return new KFormFileOutput() { code = 1 };
+            }
+
+            return new KFormFileOutput()
+            {
+                code = 0,
+                Data = new KFormFileIrem() {
+                    FileId = FileId,
+                    Url = $"/api/sysFileInfo/download?id={FileId}"
+                }
+            };
+        }
+
+        /// <summary>
         /// 下载文件
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
         [HttpGet("sysFileInfo/download")]
+        [AllowAnonymous]
         public async Task<IActionResult> DownloadFileInfo([FromQuery] QueryFileInfoInput input)
         {
             var file = await GetFileInfo(input);
