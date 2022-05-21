@@ -282,6 +282,26 @@ namespace Admin.NET.EntityFramework.Core
         }
 
         /// <summary>
+        /// 获取数据范围
+        /// </summary>
+        /// <returns></returns>
+        public List<object> GetDataScopes()
+        {
+            var userId = this.GetUserId();
+            if (userId == null)
+            {
+                return new List<object>();
+            }
+
+            //var dataScopes = _sysCacheService.GetDataScope(Convert.ToInt64(userId)).Result; // 先从缓存里面读取
+            //if (dataScopes != null)
+            //{
+            //    var dataScopesList = dataScopes.ConvertAll(i => (object)i);
+            //    return dataScopesList;
+            //}
+            return new List<object>();
+        }
+        /// <summary>
         /// 构建数据范围过滤器
         /// </summary>
         /// <param name="entityBuilder"></param>
@@ -290,7 +310,7 @@ namespace Admin.NET.EntityFramework.Core
         /// <param name="onTableCreatedUserOrgId"></param>
         /// <param name="filterValue"></param>
         /// <returns></returns>
-        protected LambdaExpression DataScopesFilterExpression(EntityTypeBuilder entityBuilder, DbContext dbContext, string onTableCreatedUserId = null, string onTableCreatedUserOrgId = null, object filterValue = null)
+        protected LambdaExpression DataScopesFilterExpression(EntityTypeBuilder entityBuilder, DbContext dbContext, string onTableCreatedUserId = null, string onTableCreatedUserOrgId = null)
         {
             onTableCreatedUserId ??= nameof(IDataPermissions.CreatedUserId);//用户id字段
             onTableCreatedUserOrgId ??= nameof(IDataPermissions.CreatedUserOrgId);//用户部门字段
