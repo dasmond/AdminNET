@@ -159,6 +159,7 @@ if(@column.EffectType == "fk" && @column.FkEntityName != "" && @column.FkColumnN
   export default {
     data () {
       return {
+	    Id: 0,
         labelCol: {
           xs: { span: 24 },
           sm: { span: 5 }
@@ -210,7 +211,8 @@ if(@column.EffectType == "fk" && @column.FkEntityName != "" && @column.FkColumnN
 }
       // 初始化方法
       edit (record) {
-        this.visible = true
+        this.visible = true;
+		this.Id = record.id;
         this.$nextTick(() => {
 @foreach (var dynamic in Model.DynamicLoad_Dict){
           @:sysDictDataListbycode({code:"@(dynamic.Dynamic)"}).then((data) => { this.dynamicData.@(dynamic.DynamicKey) = data.data });
@@ -335,7 +337,7 @@ if (@column.EffectType == "datepicker"){
         @:this.$refs.kfb.getData().then(values => {
 		  @:values.Id = this.Id
           @:let data = { ...values };
-            @:@(@Model.ClassName)Edit(values).then((res) => {
+            @:@(@Model.ClassName)Edit(data).then((res) => {
               @:if (res.success) {
                 @:this.$message.success('编辑成功')
                 @:this.confirmLoading = false
