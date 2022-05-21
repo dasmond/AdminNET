@@ -47,6 +47,10 @@ namespace Admin.NET.Application.Service.System.LowCode.Dto
         /// </summary>
         public string DbTypeName { get; set; }
         /// <summary>
+        /// 数据类型
+        /// </summary>
+        public string DtoTypeName { get; set; }
+        /// <summary>
         /// 数据类型补充参数
         /// </summary>
         public string DbParam { get; set; }

@@ -1,0 +1,36 @@
+﻿using Mapster;
+using Admin.NET.Application.Entity;
+using Admin.NET.Core.Util.LowCode.Front.Code;
+using Admin.NET.Core.Util.LowCode.Dto;
+
+namespace @Model.NameSpace
+{
+    public class @(@Model.ClassName)Mapper : IRegister
+    {
+        public void Register(TypeAdapterConfig config)
+        {
+            config.ForType<Add@(@Model.ClassName)Input, @Model.ClassName>()
+@foreach (var column in Model.TableField){
+if(@column.DtoNetType == "Front_FileDto[]"){
+                @:.Map(dest => dest.@(@column.ColumnName), src => string.Join(',', src.@(@column.ColumnName).Select(x => x.Url.GetFileId()).ToList()))
+}
+}
+            ;
+            config.ForType<Update@(@Model.ClassName)Input, @Model.ClassName>()
+@foreach (var column in Model.TableField){
+if(@column.DtoNetType == "Front_FileDto[]"){
+                @:.Map(dest => dest.@(@column.ColumnName), src => string.Join(',', src.@(@column.ColumnName).Select(x => x.Url.GetFileId()).ToList()))
+}
+}
+            ;
+            config.ForType<@(@Model.ClassName), @(@Model.ClassName)Output>()
+@foreach (var column in Model.TableField){
+if(@column.DtoNetType == "Front_FileDto[]"){
+                @:.Map(dest => dest.@(@column.ColumnName)_Str, src => src.@(@column.ColumnName))
+                @:.Map(dest => dest.@(@column.ColumnName), src => new Front_FileDto())
+}
+}
+            ;
+        }
+    }
+}

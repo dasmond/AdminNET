@@ -158,6 +158,7 @@ namespace Furion.Extras.Admin.NET.Service.LowCode
                     DbParam = x.DbParam,
                     DbType = x.DbType,
                     DbTypeName = x.DbType.Name,
+                    DtoTypeName = x.DtoType == null ? x.DbType.Name : x.DtoType.Name,
                     FieldName = $"{item.Model}{x.Suffix}",
                     IsRequired = true,
                     Id = Guid.NewGuid(),
@@ -197,7 +198,8 @@ namespace Furion.Extras.Admin.NET.Service.LowCode
                     DbParam = x.DbParam,
                     FieldName = x.FieldName,
                     IsRequired = x.IsRequired == null ? false : x.IsRequired.Value,
-                    NetType = x.DbTypeName
+                    NetType = x.DbTypeName,
+                    DtoNetType = x.DtoTypeName == null ? x.DbTypeName : x.DtoTypeName
                 }).ToList();
             });
 

@@ -14,6 +14,86 @@
             下拉选择器
             </summary>
         </member>
+        <member name="T:Admin.NET.Application.Entity.JiaoFuWu">
+            <summary>
+            交付物管理
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.Entity.JiaoFuWu.RenWu">
+            <summary>
+            任务
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.Entity.JiaoFuWu.YueFen">
+            <summary>
+            当月月份
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.Entity.JiaoFuWu.SuoShuQiYe">
+            <summary>
+            所属企业
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.Entity.JiaoFuWu.JiaoFu">
+            <summary>
+            交付物
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.Entity.JiaoFuWu.XingMIng">
+            <summary>
+            姓名
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.Entity.JiaoFuWu.ShenFenZheng">
+            <summary>
+            身份证
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.Entity.JiaoFuWu.YanShou">
+            <summary>
+            验收单
+            </summary>
+        </member>
+        <member name="T:Admin.NET.Application.Entity.YanShouDan">
+            <summary>
+            验收单管理
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.Entity.YanShouDan.JiaoFu">
+            <summary>
+            交付物
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.Entity.YanShouDan.YanShou">
+            <summary>
+            验收单
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.Entity.YanShouDan.RenWu">
+            <summary>
+            任务
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.Entity.YanShouDan.YueFen">
+            <summary>
+            当月月份
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.Entity.YanShouDan.SuoShuQiYe">
+            <summary>
+            所属企业
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.Entity.YanShouDan.XingMIng">
+            <summary>
+            姓名
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.Entity.YanShouDan.ShenFenZheng">
+            <summary>
+            身份证
+            </summary>
+        </member>
         <member name="T:Admin.NET.Application.BaseId">
             <summary>
             主键Id映射DTO
@@ -23,6 +103,238 @@
             <summary>
             主键Id
             </summary>
+        </member>
+        <member name="T:Admin.NET.Application.JiaoFuWuDto">
+            <summary>
+            交付物管理输出参数
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.JiaoFuWuDto.RenWu">
+            <summary>
+            任务
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.JiaoFuWuDto.YueFen">
+            <summary>
+            当月月份
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.JiaoFuWuDto.SuoShuQiYe">
+            <summary>
+            所属企业
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.JiaoFuWuDto.JiaoFu">
+            <summary>
+            交付物
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.JiaoFuWuDto.XingMIng">
+            <summary>
+            姓名
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.JiaoFuWuDto.ShenFenZheng">
+            <summary>
+            身份证
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.JiaoFuWuDto.YanShou">
+            <summary>
+            验收单
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.JiaoFuWuDto.Id">
+            <summary>
+            Id主键
+            </summary>
+        </member>
+        <member name="T:Admin.NET.Application.JiaoFuWuSearch">
+            <summary>
+            交付物管理查询参数
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.JiaoFuWuSearch.RenWu">
+            <summary>
+            任务
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.JiaoFuWuSearch.YueFen">
+            <summary>
+            当月月份
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.JiaoFuWuSearch.SuoShuQiYe">
+            <summary>
+            所属企业
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.JiaoFuWuSearch.JiaoFu">
+            <summary>
+            交付物
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.JiaoFuWuSearch.XingMIng">
+            <summary>
+            姓名
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.JiaoFuWuSearch.ShenFenZheng">
+            <summary>
+            身份证
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.JiaoFuWuSearch.YanShou">
+            <summary>
+            验收单
+            </summary>
+        </member>
+        <member name="T:Admin.NET.Application.JiaoFuWuInput">
+            <summary>
+            交付物管理输入参数
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.JiaoFuWuInput.RenWu">
+            <summary>
+            任务
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.JiaoFuWuInput.YueFen">
+            <summary>
+            当月月份
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.JiaoFuWuInput.SuoShuQiYe">
+            <summary>
+            所属企业
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.JiaoFuWuInput.JiaoFu">
+            <summary>
+            交付物
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.JiaoFuWuInput.XingMIng">
+            <summary>
+            姓名
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.JiaoFuWuInput.ShenFenZheng">
+            <summary>
+            身份证
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.JiaoFuWuInput.YanShou">
+            <summary>
+            验收单
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.UpdateJiaoFuWuInput.Id">
+            <summary>
+            Id主键
+            </summary>
+        </member>
+        <member name="T:Admin.NET.Application.JiaoFuWuOutput">
+            <summary>
+            交付物管理输出参数
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.JiaoFuWuOutput.RenWu">
+            <summary>
+            任务
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.JiaoFuWuOutput.YueFen">
+            <summary>
+            当月月份
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.JiaoFuWuOutput.SuoShuQiYe">
+            <summary>
+            所属企业
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.JiaoFuWuOutput.JiaoFu">
+            <summary>
+            交付物
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.JiaoFuWuOutput.JiaoFu_Str">
+            <summary>
+            交付物
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.JiaoFuWuOutput.XingMIng">
+            <summary>
+            姓名
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.JiaoFuWuOutput.ShenFenZheng">
+            <summary>
+            身份证
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.JiaoFuWuOutput.YanShou">
+            <summary>
+            验收单
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.JiaoFuWuOutput.YanShou_Str">
+            <summary>
+            验收单
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.JiaoFuWuOutput.Id">
+            <summary>
+            Id主键
+            </summary>
+        </member>
+        <member name="T:Admin.NET.Application.JiaoFuWuService">
+            <summary>
+            交付物管理服务
+            </summary>
+        </member>
+        <member name="M:Admin.NET.Application.JiaoFuWuService.Page(Admin.NET.Application.JiaoFuWuSearch)">
+            <summary>
+            分页查询交付物管理
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Application.JiaoFuWuService.Add(Admin.NET.Application.AddJiaoFuWuInput)">
+            <summary>
+            增加交付物管理
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Application.JiaoFuWuService.Delete(Admin.NET.Application.DeleteJiaoFuWuInput)">
+            <summary>
+            删除交付物管理
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Application.JiaoFuWuService.Update(Admin.NET.Application.UpdateJiaoFuWuInput)">
+            <summary>
+            更新交付物管理
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Application.JiaoFuWuService.Get(Admin.NET.Application.QueryeJiaoFuWuInput)">
+            <summary>
+            获取交付物管理
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Application.JiaoFuWuService.List(Admin.NET.Application.JiaoFuWuInput)">
+            <summary>
+            获取交付物管理列表
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
         </member>
         <member name="P:Admin.NET.Application.AppPageInput.Name">
             <summary>
@@ -1015,6 +1327,11 @@
             </summary>
         </member>
         <member name="P:Admin.NET.Application.CodeGenConfig.NetType">
+            <summary>
+            .NET类型
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.CodeGenConfig.DtoNetType">
             <summary>
             .NET类型
             </summary>
@@ -2574,6 +2891,51 @@
             <param name="fileLocation">文件存储位置</param>
             <returns></returns>
         </member>
+        <member name="P:Admin.NET.Application.Service.System.LowCode.Dto.ContrastLowCode_Database.TableName">
+            <summary>
+            表名
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.Service.System.LowCode.Dto.ContrastLowCode_Database.ClassName">
+            <summary>
+            类名
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.Service.System.LowCode.Dto.ContrastLowCode_Database.TableDesc">
+            <summary>
+            表描述
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.Service.System.LowCode.Dto.ContrastLowCode_Database.FieldName">
+            <summary>
+            字段名称
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.Service.System.LowCode.Dto.ContrastLowCode_Database.DbType">
+            <summary>
+            数据类型
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.Service.System.LowCode.Dto.ContrastLowCode_Database.DbTypeName">
+            <summary>
+            数据类型
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.Service.System.LowCode.Dto.ContrastLowCode_Database.DtoTypeName">
+            <summary>
+            数据类型
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.Service.System.LowCode.Dto.ContrastLowCode_Database.DbParam">
+            <summary>
+            数据类型补充参数
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.Service.System.LowCode.Dto.ContrastLowCode_Database.IsRequired">
+            <summary>
+            是否必填
+            </summary>
+        </member>
         <member name="T:Admin.NET.Application.FormAddDto">
             <summary>
             表单添加
@@ -3407,46 +3769,6 @@
             清空访问日志
             </summary>
             <returns></returns>
-        </member>
-        <member name="P:Admin.NET.Application.Service.System.LowCode.Dto.ContrastLowCode_Database.TableName">
-            <summary>
-            表名
-            </summary>
-        </member>
-        <member name="P:Admin.NET.Application.Service.System.LowCode.Dto.ContrastLowCode_Database.ClassName">
-            <summary>
-            类名
-            </summary>
-        </member>
-        <member name="P:Admin.NET.Application.Service.System.LowCode.Dto.ContrastLowCode_Database.TableDesc">
-            <summary>
-            表描述
-            </summary>
-        </member>
-        <member name="P:Admin.NET.Application.Service.System.LowCode.Dto.ContrastLowCode_Database.FieldName">
-            <summary>
-            字段名称
-            </summary>
-        </member>
-        <member name="P:Admin.NET.Application.Service.System.LowCode.Dto.ContrastLowCode_Database.DbType">
-            <summary>
-            数据类型
-            </summary>
-        </member>
-        <member name="P:Admin.NET.Application.Service.System.LowCode.Dto.ContrastLowCode_Database.DbTypeName">
-            <summary>
-            数据类型
-            </summary>
-        </member>
-        <member name="P:Admin.NET.Application.Service.System.LowCode.Dto.ContrastLowCode_Database.DbParam">
-            <summary>
-            数据类型补充参数
-            </summary>
-        </member>
-        <member name="P:Admin.NET.Application.Service.System.LowCode.Dto.ContrastLowCode_Database.IsRequired">
-            <summary>
-            是否必填
-            </summary>
         </member>
         <member name="T:Admin.NET.Application.AntDesignTreeNode">
             <summary>
@@ -7824,6 +8146,228 @@
             <param name="node"></param>
             <returns></returns>
         </member>
+        <member name="T:Admin.NET.Application.YanShouDanDto">
+            <summary>
+            交付物管理输出参数
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.YanShouDanDto.JiaoFu">
+            <summary>
+            交付物
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.YanShouDanDto.YanShou">
+            <summary>
+            验收单
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.YanShouDanDto.RenWu">
+            <summary>
+            任务
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.YanShouDanDto.YueFen">
+            <summary>
+            当月月份
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.YanShouDanDto.SuoShuQiYe">
+            <summary>
+            所属企业
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.YanShouDanDto.XingMIng">
+            <summary>
+            姓名
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.YanShouDanDto.ShenFenZheng">
+            <summary>
+            身份证
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.YanShouDanDto.Id">
+            <summary>
+            Id主键
+            </summary>
+        </member>
+        <member name="T:Admin.NET.Application.YanShouDanSearch">
+            <summary>
+            交付物管理查询参数
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.YanShouDanSearch.JiaoFu">
+            <summary>
+            交付物
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.YanShouDanSearch.YanShou">
+            <summary>
+            验收单
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.YanShouDanSearch.RenWu">
+            <summary>
+            任务
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.YanShouDanSearch.YueFen">
+            <summary>
+            当月月份
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.YanShouDanSearch.SuoShuQiYe">
+            <summary>
+            所属企业
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.YanShouDanSearch.XingMIng">
+            <summary>
+            姓名
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.YanShouDanSearch.ShenFenZheng">
+            <summary>
+            身份证
+            </summary>
+        </member>
+        <member name="T:Admin.NET.Application.YanShouDanInput">
+            <summary>
+            交付物管理输入参数
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.YanShouDanInput.JiaoFu">
+            <summary>
+            交付物
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.YanShouDanInput.YanShou">
+            <summary>
+            验收单
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.YanShouDanInput.RenWu">
+            <summary>
+            任务
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.YanShouDanInput.YueFen">
+            <summary>
+            当月月份
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.YanShouDanInput.SuoShuQiYe">
+            <summary>
+            所属企业
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.YanShouDanInput.XingMIng">
+            <summary>
+            姓名
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.YanShouDanInput.ShenFenZheng">
+            <summary>
+            身份证
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.UpdateYanShouDanInput.Id">
+            <summary>
+            Id主键
+            </summary>
+        </member>
+        <member name="T:Admin.NET.Application.YanShouDanOutput">
+            <summary>
+            交付物管理输出参数
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.YanShouDanOutput.JiaoFu">
+            <summary>
+            交付物
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.YanShouDanOutput.YanShou">
+            <summary>
+            验收单
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.YanShouDanOutput.RenWu">
+            <summary>
+            任务
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.YanShouDanOutput.YueFen">
+            <summary>
+            当月月份
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.YanShouDanOutput.SuoShuQiYe">
+            <summary>
+            所属企业
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.YanShouDanOutput.XingMIng">
+            <summary>
+            姓名
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.YanShouDanOutput.ShenFenZheng">
+            <summary>
+            身份证
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.YanShouDanOutput.Id">
+            <summary>
+            Id主键
+            </summary>
+        </member>
+        <member name="T:Admin.NET.Application.YanShouDanService">
+            <summary>
+            交付物管理服务
+            </summary>
+        </member>
+        <member name="M:Admin.NET.Application.YanShouDanService.Page(Admin.NET.Application.YanShouDanSearch)">
+            <summary>
+            分页查询交付物管理
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Application.YanShouDanService.Add(Admin.NET.Application.AddYanShouDanInput)">
+            <summary>
+            增加交付物管理
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Application.YanShouDanService.Delete(Admin.NET.Application.DeleteYanShouDanInput)">
+            <summary>
+            删除交付物管理
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Application.YanShouDanService.Update(Admin.NET.Application.UpdateYanShouDanInput)">
+            <summary>
+            更新交付物管理
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Application.YanShouDanService.Get(Admin.NET.Application.QueryeYanShouDanInput)">
+            <summary>
+            获取交付物管理
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Application.YanShouDanService.List(Admin.NET.Application.YanShouDanInput)">
+            <summary>
+            获取交付物管理列表
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
         <member name="T:Admin.NET.Application.SpareTimeDemo">
             <summary>
             定时任务demo
@@ -7915,6 +8459,11 @@
         <member name="P:Furion.Extras.Admin.NET.Service.LowCode.Dto.GenEntity_Field.NetType">
             <summary>
             数据类型
+            </summary>
+        </member>
+        <member name="P:Furion.Extras.Admin.NET.Service.LowCode.Dto.GenEntity_Field.DtoNetType">
+            <summary>
+            传入数据类型
             </summary>
         </member>
         <member name="P:Furion.Extras.Admin.NET.Service.LowCode.Dto.GenEntity_Field.DbParam">

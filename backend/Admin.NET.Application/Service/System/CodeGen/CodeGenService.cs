@@ -300,7 +300,7 @@ namespace Admin.NET.Application.CodeGen
                     u.OriginalColumnName = u.ColumnName;
                 });
 
-                if (i >= 5) // 适应前端首字母小写
+                if (i >= 6) // 适应前端首字母小写
                 {
                     tableFieldList.ForEach(u =>
                     {
@@ -319,12 +319,12 @@ namespace Admin.NET.Application.CodeGen
 
                 var AllDynamic = FormDesign.ConvertToFront().AllFront().AllDynamic();
 
-                Dictionary<string, object> dynamicData = new Dictionary<string, object>();
+                Dictionary<string, List<string>> dynamicData = new Dictionary<string, List<string>>();
                 List<Front_Dynamic> dynamicLoad_dict = new List<Front_Dynamic>();
 
                 AllDynamic.Where(x => x.Dynamic).Select(x => x.DynamicKey).ToList().ForEach(item =>
                 {
-                    dynamicData.Add(item, new object());
+                    dynamicData.Add(item, new List<string>());
                     var d = item.GetDynamic();
                     if(d != null)
                     {
@@ -335,27 +335,36 @@ namespace Admin.NET.Application.CodeGen
                     }
                 });
 
-                var tResult = _viewEngine.RunCompileFromCached(tContent, new
+                try
                 {
-                    input.AuthorName,
-                    input.BusName,
-                    input.NameSpace,
-                    input.ProName,
-                    input.DatabaseName,
-                    ClassName = input.TableName,
-                    CamelizeClassName = input.TableName.Substring(0, 1).ToLower() + input.TableName[1..], //首字母小写
-                    QueryWhetherList = queryWhetherList,
-                    TableField = tableFieldList,
-                    input.LowCodeId,
-                    FormDesign,
-                    DynamicData = JsonConvert.SerializeObject(dynamicData),
-                    DynamicLoad_Dict = dynamicLoad_dict
-                });
+                    var tResult = _viewEngine.RunCompileFromCached(tContent, new
+                    {
+                        input.AuthorName,
+                        input.BusName,
+                        input.NameSpace,
+                        input.ProName,
+                        input.DatabaseName,
+                        ClassName = input.TableName,
+                        CamelizeClassName = input.TableName.Substring(0, 1).ToLower() + input.TableName[1..], //首字母小写
+                        QueryWhetherList = queryWhetherList,
+                        TableField = tableFieldList,
+                        input.LowCodeId,
+                        FormDesign,
+                        DynamicData = JsonConvert.SerializeObject(dynamicData),
+                        DynamicLoad_Dict = dynamicLoad_dict,
+                        IsFile = tableFieldList.Where(x => x.DtoNetType.Contains("Front_FileDto")).Any(),
+                        FileTableField = tableFieldList.Where(x => x.DtoNetType.Contains("Front_FileDto")).ToList()
+                    });
 
-                var dirPath = new DirectoryInfo(targetPathList[i]).Parent.FullName;
-                if (!Directory.Exists(dirPath))
-                    Directory.CreateDirectory(dirPath);
-                File.WriteAllText(targetPathList[i], tResult, Encoding.UTF8);
+                    var dirPath = new DirectoryInfo(targetPathList[i]).Parent.FullName;
+                    if (!Directory.Exists(dirPath))
+                        Directory.CreateDirectory(dirPath);
+                    File.WriteAllText(targetPathList[i], tResult, Encoding.UTF8);
+                }
+                catch(Exception ex)
+                {
+                    throw Oops.Oh($"错误模板：{templatePathList[i]}。错误信息：{ex.Message}。");
+                }
             }
 
             await AddMenu(input.DatabaseName.Substring(0, 5), input.TableName, input.BusName, input.MenuApplication, input.MenuPid);
@@ -482,10 +491,11 @@ namespace Admin.NET.Application.CodeGen
                 templatePath + "Input.cs.vm",
                 templatePath + "Output.cs.vm",
                 templatePath + "Dto.cs.vm",
+                templatePath + "Mapper.cs.vm",
                 templatePath + "index.vue.vm",
                 templatePath + "addForm.vue.vm",
                 templatePath + "editForm.vue.vm",
-                templatePath + "manage.js.vm",
+                templatePath + "Manage.js.vm",
             };
         }
 
@@ -502,12 +512,13 @@ namespace Admin.NET.Application.CodeGen
             var inputPath = backendPath + @"Dto\" + input.TableName + "Input.cs";
             var outputPath = backendPath + @"Dto\" + input.TableName + "Output.cs";
             var viewPath = backendPath + @"Dto\" + input.TableName + "Dto.cs";
+            var mapperPath = backendPath + @"Map\" + input.TableName + "Mapper.cs";
             var frontendPath = new DirectoryInfo(App.WebHostEnvironment.ContentRootPath).Parent.Parent.FullName + @"\frontend\src\views\main\";
             var indexPath = frontendPath + input.TableName + @"\index.vue";
             var addFormPath = frontendPath + input.TableName + @"\addForm.vue";
             var editFormPath = frontendPath + input.TableName + @"\editForm.vue";
             var apiJsPath = new DirectoryInfo(App.WebHostEnvironment.ContentRootPath).Parent.Parent.FullName + @"\frontend\src\api\modular\main\" + input.TableName + "Manage.js";
-
+            
             return new List<string>()
             {
                 servicePath,
@@ -515,6 +526,7 @@ namespace Admin.NET.Application.CodeGen
                 inputPath,
                 outputPath,
                 viewPath,
+                mapperPath,
                 indexPath,
                 addFormPath,
                 editFormPath,
