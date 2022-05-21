@@ -7,7 +7,7 @@ namespace Admin.NET.Application
     {
         Task Add(CodeGenConfig input);
 
-        Task AddList(List<TableColumnOuput> tableColumnOuputList, SysCodeGen codeGenerate);
+        Task DelAndAddList(List<TableColumnOuput> tableColumnOuputList, SysCodeGen codeGenerate);
 
         Task Delete(long codeGenId);
 

@@ -3,6 +3,7 @@ using Furion.DatabaseAccessor;
 using Furion.DatabaseAccessor.Extensions;
 using Furion.DependencyInjection;
 using Furion.DynamicApiController;
+using Furion.Extras.Admin.NET.Entity;
 using Mapster;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -16,11 +17,15 @@ namespace Admin.NET.Application
     [Route("api")]
     public class SysCodeGenerateConfigService : ICodeGenConfigService, IDynamicApiController, ITransient
     {
+        private readonly IRepository<SysLowCodeDataBase> _sysLowCodeRep; // 代码生成器仓储
         private readonly IRepository<SysCodeGen> _sysCodeGenRep; // 代码生成器仓储
         private readonly IRepository<SysCodeGenConfig> _sysCodeGenConfigRep; // 代码生成详细配置仓储
 
-        public SysCodeGenerateConfigService(IRepository<SysCodeGenConfig> sysCodeGenConfigRep, IRepository<SysCodeGen> sysCodeGenRep)
+        public SysCodeGenerateConfigService(IRepository<SysCodeGenConfig> sysCodeGenConfigRep, IRepository<SysCodeGen> sysCodeGenRep
+            , IRepository<SysLowCodeDataBase> sysLowCodeRep
+            )
         {
+            _sysLowCodeRep = sysLowCodeRep;
             _sysCodeGenConfigRep = sysCodeGenConfigRep;
             _sysCodeGenRep = sysCodeGenRep;
         }
@@ -35,7 +40,9 @@ namespace Admin.NET.Application
         {
             var result = await _sysCodeGenConfigRep.DetachedEntities
                                              .Where(u => u.CodeGenId == input.CodeGenId && u.WhetherCommon != YesOrNot.Y.ToString())
-                                             .ProjectToType<CodeGenConfig>().ToListAsync();
+                                             .ProjectToType<CodeGenConfig>()
+                                             .Distinct()
+                                             .ToListAsync();
 
             var codeGen = await _sysCodeGenRep.FirstOrDefaultAsync(x => x.Id == input.CodeGenId);
             var codeGenOutput = codeGen.Adapt<CodeGenOutput>();
@@ -54,7 +61,6 @@ namespace Admin.NET.Application
             if (inputList == null || inputList.Count < 1) return;
             var list = inputList.Adapt<List<SysCodeGenConfig>>();
             await _sysCodeGenConfigRep.UpdateAsync(list);
-            await Task.CompletedTask;
         }
 
         /// <summary>
@@ -62,7 +68,7 @@ namespace Admin.NET.Application
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpGet("sysCodeGenerateConfig/detail")]
+        [HttpGet("·/detail")]
         public async Task<SysCodeGenConfig> Detail([FromQuery] CodeGenConfig input)
         {
             return await _sysCodeGenConfigRep.FirstOrDefaultAsync(u => u.Id == input.Id);
@@ -74,10 +80,18 @@ namespace Admin.NET.Application
         /// <param name="tableColumnOuputList"></param>
         /// <param name="codeGenerate"></param>
         [NonAction]
-        public async Task AddList(List<TableColumnOuput> tableColumnOuputList, SysCodeGen codeGenerate)
+        public async Task DelAndAddList(List<TableColumnOuput> tableColumnOuputList, SysCodeGen codeGenerate)
         {
             if (tableColumnOuputList == null) return;
             var list = new List<SysCodeGenConfig>();
+
+            List<SysLowCodeDataBase> list_LowCode = new List<SysLowCodeDataBase>();
+
+            if(codeGenerate != null && codeGenerate.LowCodeId > 0 && _sysLowCodeRep.Where(x => x.SysLowCodeId == codeGenerate.LowCodeId).Any())
+            {
+                list_LowCode = _sysLowCodeRep.Where(x => x.SysLowCodeId == codeGenerate.LowCodeId).ToList();
+            }
+
             foreach (var tableColumn in tableColumnOuputList)
             {
                 var codeGenConfig = new SysCodeGenConfig();
@@ -102,6 +116,8 @@ namespace Admin.NET.Application
                 codeGenConfig.ColumnName = tableColumn.ColumnName;
                 codeGenConfig.ColumnComment = tableColumn.ColumnComment;
                 codeGenConfig.NetType = CodeGenUtil.ConvertDataType(tableColumn.DataType);
+                codeGenConfig.DtoNetType = list_LowCode.Where(x => x.FieldName == tableColumn.ColumnName).Select(x => x.DtoTypeName).FirstOrDefault();
+                if (string.IsNullOrEmpty(codeGenConfig.DtoNetType)) codeGenConfig.DtoNetType = codeGenConfig.NetType;
                 codeGenConfig.WhetherRetract = YesOrNot.N.ToString();
 
                 codeGenConfig.WhetherRequired = YesOrNot.N.ToString();
@@ -118,6 +134,9 @@ namespace Admin.NET.Application
 
                 list.Add(codeGenConfig);
             }
+
+            _sysCodeGenConfigRep.Context.DeleteRange<SysCodeGenConfig>(x => x.CodeGenId == codeGenerate.Id);
+
             await _sysCodeGenConfigRep.InsertAsync(list);
         }
 

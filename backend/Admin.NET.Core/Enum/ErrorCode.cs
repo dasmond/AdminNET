@@ -429,6 +429,12 @@ namespace Admin.NET.Core
         D1505,
 
         /// <summary>
+        /// 已存在同名业务名称
+        /// </summary>
+        [ErrorCodeItemMetadata("已存在同名业务名称")]
+        D1600,
+
+        /// <summary>
         /// 已存在同名或同编码项目
         /// </summary>
         [ErrorCodeItemMetadata("已存在同名或同编码项目")]

@@ -3,6 +3,7 @@ using Furion.DatabaseAccessor;
 using Furion.DatabaseAccessor.Extensions;
 using Furion.DependencyInjection;
 using Furion.DynamicApiController;
+using Furion.Extras.Admin.NET.Util.LowCode.Front.Model;
 using Furion.FriendlyException;
 using Mapster;
 using Microsoft.AspNetCore.Authorization;
@@ -20,10 +21,12 @@ namespace Admin.NET.Application
     public class SysDictDataService : ISysDictDataService, IDynamicApiController, ITransient
     {
         private readonly IRepository<SysDictData> _sysDictDataRep;  // 字典类型表仓储
+        private readonly IRepository<SysDictType> _sysDictTypeRep;  // 字典类型表仓储
 
-        public SysDictDataService(IRepository<SysDictData> sysDictDataRep)
+        public SysDictDataService(IRepository<SysDictData> sysDictDataRep, IRepository<SysDictType> sysDictTypeRep)
         {
             _sysDictDataRep = sysDictDataRep;
+            _sysDictTypeRep = sysDictTypeRep;
         }
 
         /// <summary>
@@ -58,6 +61,22 @@ namespace Admin.NET.Application
             return await _sysDictDataRep.DetachedEntities.Where(u => u.TypeId == input.TypeId)
                 .Where(u => u.Status != CommonStatus.DELETED)
                 .OrderBy(u => u.Sort)
+                .ToListAsync();
+        }
+
+        /// <summary>
+        /// 获取某个字典类型下字典值列表
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("sysDictData/listbycode")]
+        public async Task<List<Front_Option>> GetDictDataListByCode([FromQuery] QueryDictDataListByCodeInput input)
+        {
+            var typeid = await _sysDictTypeRep.Where(x => x.Code == input.Code).Select(x => x.Id).FirstOrDefaultAsync();
+
+            return await _sysDictDataRep.DetachedEntities.Where(u => u.TypeId == typeid)
+                .Where(u => u.Status != CommonStatus.DELETED)
+                .OrderBy(u => u.Sort)
+                .Select(u => new Front_Option() { Label = u.Value, Value = u.Code })
                 .ToListAsync();
         }
 

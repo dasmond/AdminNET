@@ -42,7 +42,7 @@ namespace Admin.NET.Core
         /// 最后连接时间
         /// </summary>
         [Comment("最近时间")]
-        public DateTime LastTime { get; set; }
+        public DateTimeOffset LastTime { get; set; }
 
         /// <summary>
         /// 最后登录IP

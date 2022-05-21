@@ -1,0 +1,26 @@
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using Furion.DatabaseAccessor;
+using Admin.NET.Core;
+using Microsoft.EntityFrameworkCore;
+
+namespace @(@Model.NameSpace).Entity
+{
+    /// <summary>
+    /// @(@Model.TableDesc)
+    /// </summary>
+    [Table("@(@Model.TableName)")]
+    [Comment("@(@Model.TableDesc)")]
+    public class @(@Model.ClassName) : DEntityBase<long, @(@Model.DatabaseName)>
+    {
+
+@foreach (var column in Model.Fields){
+        @:/// <summary>
+        @:/// @(@column.ColumnComment)
+        @:/// </summary>
+        @:[Comment("@(@column.ColumnComment)")]@(@column.IsRequired == true ? "[Required]" : "")@(!string.IsNullOrEmpty(@column.DbParam) ? "[Column(TypeName = \"" + @column.DbParam + "\")]" : "")
+        @:public @(@column.NetType) @(@column.FieldName) { get; set; }
+        @:
+}
+    }
+}
