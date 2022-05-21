@@ -1019,6 +1019,11 @@
             .NET类型
             </summary>
         </member>
+        <member name="P:Admin.NET.Application.CodeGenConfig.DtoNetType">
+            <summary>
+            .NET类型
+            </summary>
+        </member>
         <member name="P:Admin.NET.Application.CodeGenConfig.NetTypeIsNullLable">
             <summary>
             .NET类型是否是值类型
@@ -2459,6 +2464,21 @@
             存储路径
             </summary>
         </member>
+        <member name="T:Admin.NET.Application.KFormFileOutput">
+            <summary>
+            k-form-design所需参数要求
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.KFormFileIrem.FileId">
+            <summary>
+            文件ID
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.KFormFileIrem.Url">
+            <summary>
+            文件下载地址
+            </summary>
+        </member>
         <member name="T:Admin.NET.Application.SysFileService">
             <summary>
             文件服务
@@ -2506,6 +2526,14 @@
             <param name="file"></param>
             <returns></returns>
         </member>
+        <member name="M:Admin.NET.Application.SysFileService.KFormUploadFileDefault(Microsoft.AspNetCore.Http.IFormFile,System.String)">
+            <summary>
+            上传文件(k-form-design)
+            </summary>
+            <param name="file"></param>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
         <member name="M:Admin.NET.Application.SysFileService.DownloadFileInfo(Admin.NET.Application.QueryFileInfoInput)">
             <summary>
             下载文件
@@ -2550,6 +2578,51 @@
             <param name="key">对象存储键</param>
             <param name="fileLocation">文件存储位置</param>
             <returns></returns>
+        </member>
+        <member name="P:Admin.NET.Application.Service.System.LowCode.Dto.ContrastLowCode_Database.TableName">
+            <summary>
+            表名
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.Service.System.LowCode.Dto.ContrastLowCode_Database.ClassName">
+            <summary>
+            类名
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.Service.System.LowCode.Dto.ContrastLowCode_Database.TableDesc">
+            <summary>
+            表描述
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.Service.System.LowCode.Dto.ContrastLowCode_Database.FieldName">
+            <summary>
+            字段名称
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.Service.System.LowCode.Dto.ContrastLowCode_Database.DbType">
+            <summary>
+            数据类型
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.Service.System.LowCode.Dto.ContrastLowCode_Database.DbTypeName">
+            <summary>
+            数据类型
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.Service.System.LowCode.Dto.ContrastLowCode_Database.DtoTypeName">
+            <summary>
+            数据类型
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.Service.System.LowCode.Dto.ContrastLowCode_Database.DbParam">
+            <summary>
+            数据类型补充参数
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.Service.System.LowCode.Dto.ContrastLowCode_Database.IsRequired">
+            <summary>
+            是否必填
+            </summary>
         </member>
         <member name="T:Admin.NET.Application.FormAddDto">
             <summary>
@@ -3384,46 +3457,6 @@
             清空访问日志
             </summary>
             <returns></returns>
-        </member>
-        <member name="P:Admin.NET.Application.Service.System.LowCode.Dto.ContrastLowCode_Database.TableName">
-            <summary>
-            表名
-            </summary>
-        </member>
-        <member name="P:Admin.NET.Application.Service.System.LowCode.Dto.ContrastLowCode_Database.ClassName">
-            <summary>
-            类名
-            </summary>
-        </member>
-        <member name="P:Admin.NET.Application.Service.System.LowCode.Dto.ContrastLowCode_Database.TableDesc">
-            <summary>
-            表描述
-            </summary>
-        </member>
-        <member name="P:Admin.NET.Application.Service.System.LowCode.Dto.ContrastLowCode_Database.FieldName">
-            <summary>
-            字段名称
-            </summary>
-        </member>
-        <member name="P:Admin.NET.Application.Service.System.LowCode.Dto.ContrastLowCode_Database.DbType">
-            <summary>
-            数据类型
-            </summary>
-        </member>
-        <member name="P:Admin.NET.Application.Service.System.LowCode.Dto.ContrastLowCode_Database.DbTypeName">
-            <summary>
-            数据类型
-            </summary>
-        </member>
-        <member name="P:Admin.NET.Application.Service.System.LowCode.Dto.ContrastLowCode_Database.DbParam">
-            <summary>
-            数据类型补充参数
-            </summary>
-        </member>
-        <member name="P:Admin.NET.Application.Service.System.LowCode.Dto.ContrastLowCode_Database.IsRequired">
-            <summary>
-            是否必填
-            </summary>
         </member>
         <member name="T:Admin.NET.Application.AntDesignTreeNode">
             <summary>
@@ -7892,6 +7925,11 @@
         <member name="P:Furion.Extras.Admin.NET.Service.LowCode.Dto.GenEntity_Field.NetType">
             <summary>
             数据类型
+            </summary>
+        </member>
+        <member name="P:Furion.Extras.Admin.NET.Service.LowCode.Dto.GenEntity_Field.DtoNetType">
+            <summary>
+            传入数据类型
             </summary>
         </member>
         <member name="P:Furion.Extras.Admin.NET.Service.LowCode.Dto.GenEntity_Field.DbParam">

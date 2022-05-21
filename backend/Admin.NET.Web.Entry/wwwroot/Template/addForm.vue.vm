@@ -246,7 +246,7 @@ if (@column.EffectType == "datepicker"){
 }else{
         @:this.$refs.kfb.getData().then(values => {
           @:let data = { ...values };
-            @:DeliverablesAdd(data).then((res) => {
+            @:@(@Model.ClassName)Add(data).then((res) => {
               @:if (res.success) {
                 @:this.$message.success('新增成功')
                 @:this.confirmLoading = false

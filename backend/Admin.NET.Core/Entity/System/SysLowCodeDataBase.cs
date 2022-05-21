@@ -85,6 +85,13 @@ namespace Furion.Extras.Admin.NET.Entity
         public string DbTypeName { get; set; }
 
         /// <summary>
+        /// 传入数据类型
+        /// </summary>
+        [Comment("传入数据类型")]
+        [MaxLength(200)]
+        public string DtoTypeName { get; set; }
+
+        /// <summary>
         /// 数据类型补充参数
         /// </summary>
         [Comment("数据类型补充参数")]

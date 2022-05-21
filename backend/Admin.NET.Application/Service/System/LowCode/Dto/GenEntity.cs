@@ -54,6 +54,11 @@ namespace Furion.Extras.Admin.NET.Service.LowCode.Dto
         public string NetType { get; set; }
 
         /// <summary>
+        /// 传入数据类型
+        /// </summary>
+        public string DtoNetType { get; set; }
+
+        /// <summary>
         /// 数据类型补充参数
         /// </summary>
         public string DbParam { get; set; }

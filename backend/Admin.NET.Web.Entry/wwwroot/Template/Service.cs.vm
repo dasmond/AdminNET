@@ -1,4 +1,5 @@
 using Admin.NET.Application.Entity;
+using Admin.NET.Application.Service.System.File;
 using Admin.NET.Core;
 using Furion.DatabaseAccessor;
 using Furion.DatabaseAccessor.Extensions;
@@ -30,6 +31,11 @@ if(@column.EffectType == "fk" && @column.FkEntityName != "" && @column.FkColumnN
 }
 }
 
+@if(@Model.IsFile)
+{
+        @:private readonly IRepository<SysFile> _sysFileInfoRep;
+}
+
         public @(@Model.ClassName)Service(
 @foreach (var column in Model.TableField){
 if(@column.EffectType == "fk" && @column.FkEntityName != "" && @column.FkColumnName != ""){
@@ -37,6 +43,10 @@ if(@column.EffectType == "fk" && @column.FkEntityName != "" && @column.FkColumnN
 }
 }
             IRepository<@(@Model.ClassName),@(@Model.DatabaseName)> @(@Model.CamelizeClassName)Rep
+@if(@Model.IsFile)
+{
+            @:,IRepository<SysFile> sysFileInfoRep
+}
         )
         {
 @foreach (var column in Model.TableField){
@@ -45,6 +55,10 @@ if(@column.EffectType == "fk" && @column.FkEntityName != "" && @column.FkColumnN
 }
 }
             _@(@Model.CamelizeClassName)Rep = @(@Model.CamelizeClassName)Rep;
+@if(@Model.IsFile)
+{
+        @:_sysFileInfoRep = sysFileInfoRep;
+}
         }
 
         /// <summary>
@@ -76,7 +90,15 @@ if (@column.EffectType == "fk"){
                                      .OrderBy(PageInputOrder.OrderBuilder<@(@Model.ClassName)Search>(input))
                                      .ProjectToType<@(@Model.ClassName)Output>()
                                      .ToADPagedListAsync(input.PageNo, input.PageSize);
-
+@if(@Model.IsFile)
+{
+            @:@(@Model.CamelizeClassName)s.Rows.ToList().ForEach(item =>
+            @:{
+foreach (var column in Model.FileTableField){  
+                @:item.@(@column.ColumnName) = item.@(@column.ColumnName)_Str.GetFiles(_sysFileInfoRep);
+}
+            @:});
+}
             return @(@Model.CamelizeClassName)s;
         }
 

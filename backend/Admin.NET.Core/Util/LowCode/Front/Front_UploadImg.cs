@@ -1,4 +1,5 @@
-﻿using Furion.DatabaseAccessor;
+﻿using Admin.NET.Core.Util.LowCode.Dto;
+using Furion.DatabaseAccessor;
 using Furion.Extras.Admin.NET.Util.LowCode.Front.Att;
 using Furion.Extras.Admin.NET.Util.LowCode.Front.Interface;
 using Furion.Extras.Admin.NET.Util.LowCode.Front.Model;
@@ -12,7 +13,7 @@ namespace Furion.Extras.Admin.NET.Util.LowCode.Front
     /// 上传图片
     /// </summary>
     [FrontType("uploadImg")]
-    [FrontTypeBindDatabase(DbProvider.SqlServer, typeof(string), "nvarchar(2000)")]
+    [FrontTypeBindDatabase(DbProvider.SqlServer, typeof(string), "nvarchar(2000)", dtoType: typeof(Front_FileDto[]))]
     public class Front_UploadImg : Front_Base<Front_UploadImg_Options>
     {
 

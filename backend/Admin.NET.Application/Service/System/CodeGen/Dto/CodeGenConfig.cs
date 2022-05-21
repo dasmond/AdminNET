@@ -48,6 +48,11 @@
         public string NetType { get; set; }
 
         /// <summary>
+        /// .NET类型
+        /// </summary>
+        public string DtoNetType { get; set; }
+
+        /// <summary>
         /// .NET类型是否是值类型
         /// </summary>
         public string NetTypeIsNullLable { get; set; }
