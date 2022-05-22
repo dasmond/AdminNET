@@ -293,12 +293,11 @@ namespace Admin.NET.EntityFramework.Core
                 return new List<object>();
             }
 
-            //var dataScopes = _sysCacheService.GetDataScope(Convert.ToInt64(userId)).Result; // 先从缓存里面读取
-            //if (dataScopes != null)
-            //{
-            //    var dataScopesList = dataScopes.ConvertAll(i => (object)i);
-            //    return dataScopesList;
-            //}
+            var dataScopes = JsonUtil.FromJson<List<object>>(App.User.FindFirst(ClaimConst.DATA_SCOPES)?.Value);
+            if (dataScopes != null)
+            {                
+                return dataScopes;
+            }
             return new List<object>();
         }
         /// <summary>
