@@ -1,9 +1,13 @@
 using Admin.NET.Core;
+using Admin.NET.Core.Util.LowCode.Front.Code;
+using Admin.NET.Core.Util.LowCode.Front.Model;
 using Furion;
 using Furion.DatabaseAccessor;
 using Furion.DatabaseAccessor.Extensions;
 using Furion.DependencyInjection;
 using Furion.DynamicApiController;
+using Furion.Extras.Admin.NET.Entity;
+using Furion.Extras.Admin.NET.Util.LowCode.Front.Code;
 using Furion.FriendlyException;
 using Furion.ViewEngine;
 using Mapster;
@@ -11,6 +15,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Newtonsoft.Json;
 using System.Text;
 
 namespace Admin.NET.Application.CodeGen
@@ -23,17 +28,20 @@ namespace Admin.NET.Application.CodeGen
     public class CodeGenerateService : ICodeGenService, IDynamicApiController, ITransient
     {
         private readonly IRepository<SysCodeGen> _sysCodeGenRep; // 代码生成器仓储
+        private readonly IRepository<SysLowCode> _sysLowCodeRep; // 代码生成器仓储
         private readonly ICodeGenConfigService _codeGenConfigService;
         private readonly IViewEngine _viewEngine;
 
         private readonly IRepository<SysMenu> _sysMenuRep; // 菜单表仓储
 
         public CodeGenerateService(IRepository<SysCodeGen> sysCodeGenRep,
+                              IRepository<SysLowCode> sysLowCodeRep,
                               ICodeGenConfigService codeGenConfigService,
                               IViewEngine viewEngine,
                               IRepository<SysMenu> sysMenuRep)
         {
             _sysCodeGenRep = sysCodeGenRep;
+            _sysLowCodeRep = sysLowCodeRep;
             _codeGenConfigService = codeGenConfigService;
             _viewEngine = viewEngine;
             _sysMenuRep = sysMenuRep;
@@ -47,6 +55,10 @@ namespace Admin.NET.Application.CodeGen
         [HttpGet("page")]
         public async Task<PageResult<SysCodeGen>> QueryCodeGenPageList([FromQuery] CodeGenPageInput input)
         {
+            //if(input.)
+            //// 加入配置表中
+            //_codeGenConfigService.AddList(GetColumnList(input.Adapt<AddCodeGenInput>()), codeGen);
+
             var tableName = !string.IsNullOrEmpty(input.TableName?.Trim());
             var codeGens = await _sysCodeGenRep.DetachedEntities
                                                .Where((tableName, u => EF.Functions.Like(u.TableName, $"%{input.TableName.Trim()}%")))
@@ -66,11 +78,19 @@ namespace Admin.NET.Application.CodeGen
             if (isExist)
                 throw Oops.Oh(ErrorCode.D1400);
 
-            var codeGen = input.Adapt<SysCodeGen>();
-            var newCodeGen = await codeGen.InsertNowAsync();
+            if (input.LowCodeId != null && input.LowCodeId > 0)
+            {
+                isExist = await _sysCodeGenRep.DetachedEntities.AnyAsync(u => u.LowCodeId == input.LowCodeId);
+            }
 
-            // 加入配置表中
-            await _codeGenConfigService.AddList(GetColumnList(input), newCodeGen.Entity);
+            if (!isExist)
+            {
+                var codeGen = input.Adapt<SysCodeGen>();
+                var newCodeGen = await codeGen.InsertNowAsync();
+
+                // 加入配置表中
+                await _codeGenConfigService.DelAndAddList(GetColumnList(input), newCodeGen.Entity);
+            }
         }
 
         /// <summary>
@@ -79,18 +99,18 @@ namespace Admin.NET.Application.CodeGen
         /// <param name="inputs"></param>
         /// <returns></returns>
         [HttpPost("delete")]
-        public async Task DeleteCodeGen(List<DeleteCodeGenInput> inputs)
+        public Task DeleteCodeGen(List<DeleteCodeGenInput> inputs)
         {
-            if (inputs == null || inputs.Count < 1) return;
+            if (inputs == null || inputs.Count < 1) return Task.Run(() => { });
 
             var taskList = new List<Task>();
             inputs.ForEach(u =>
             {
                 taskList.Add(_sysCodeGenRep.DeleteAsync(u.Id));
-                // 删除配置表中
-                taskList.Add(_codeGenConfigService.Delete(u.Id));
+                    // 删除配置表中
+                    taskList.Add(_codeGenConfigService.Delete(u.Id));
             });
-            await Task.WhenAll(taskList);//等待所有任务完成
+            return Task.WhenAll(taskList);//等待所有任务完成
         }
 
         /// <summary>
@@ -106,7 +126,21 @@ namespace Admin.NET.Application.CodeGen
                 throw Oops.Oh(ErrorCode.D1400);
 
             var codeGen = input.Adapt<SysCodeGen>();
-            await codeGen.UpdateAsync();
+
+            // 加入配置表中
+            _codeGenConfigService.DelAndAddList(GetColumnList(input.Adapt<AddCodeGenInput>()), codeGen);
+        }
+
+        /// <summary>
+        /// 刷新配置表
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("refresh/{id}")]
+        public void Refresh(long id)
+        {
+            var item = _sysCodeGenRep.Where(x => x.Id == id).FirstOrDefault();
+            // 加入配置表中
+            _codeGenConfigService.DelAndAddList(GetColumnList(item.Adapt<AddCodeGenInput>()), item);
         }
 
         /// <summary>
@@ -224,7 +258,8 @@ namespace Admin.NET.Application.CodeGen
 
             // 按原始类型的顺序获取所有实体类型属性（不包含导航属性，会返回null）
             return type.GetProperties().Select(propertyInfo => entityType.FindProperty(propertyInfo.Name))
-                       .Where(p => p != null).Select(p => new TableColumnOuput
+                       .Where(p => p != null)
+                       .Select(p => new TableColumnOuput
                        {
                            ColumnName = p.Name,
                            ColumnKey = p.IsKey().ToString(),
@@ -246,8 +281,26 @@ namespace Admin.NET.Application.CodeGen
             {
                 var tContent = File.ReadAllText(templatePathList[i]);
 
-                var tableFieldList = await _codeGenConfigService.List(new CodeGenConfig() { CodeGenId = input.Id }); // 字段集合
-                if (i >= 5) // 适应前端首字母小写
+               var tableFieldList = await _codeGenConfigService.List(new CodeGenConfig() { CodeGenId = input.Id }); // 字段集合
+
+                tableFieldList.ForEach(u =>
+                {
+                    switch (u.NetType.ToLower())
+                    {
+                        case "int":
+                        case "int32":
+                        case "long":
+                        case "guid":
+                        case "decimal":
+                        case "datetime":
+                        case "datetimeoffset":
+                            u.NetTypeIsNullLable = "?";
+                            break;
+                    }
+                    u.OriginalColumnName = u.ColumnName;
+                });
+
+                if (i >= 6) // 适应前端首字母小写
                 {
                     tableFieldList.ForEach(u =>
                     {
@@ -256,23 +309,62 @@ namespace Admin.NET.Application.CodeGen
                 }
 
                 var queryWhetherList = tableFieldList.Where(u => u.QueryWhether == YesOrNot.Y.ToString()).ToList(); // 前端查询集合
-                var tResult = _viewEngine.RunCompileFromCached(tContent, new
+
+                string FormDesign = "";
+
+                if (input.LowCodeId != null && input.LowCodeId > 0)
                 {
-                    input.AuthorName,
-                    input.BusName,
-                    input.NameSpace,
-                    input.ProName,
-                    input.DatabaseName,
-                    ClassName = input.TableName,
-                    CamelizeClassName = input.TableName.Substring(0, 1).ToLower() + input.TableName[1..], //首字母小写
-                    QueryWhetherList = queryWhetherList,
-                    TableField = tableFieldList
+                    FormDesign = _sysLowCodeRep.Where(x => x.Id == input.LowCodeId).Select(x => x.FormDesign).FirstOrDefault();
+                }
+
+                var AllDynamic = FormDesign.ConvertToFront().AllFront().AllDynamic();
+
+                Dictionary<string, List<string>> dynamicData = new Dictionary<string, List<string>>();
+                List<Front_Dynamic> dynamicLoad_dict = new List<Front_Dynamic>();
+
+                AllDynamic.Where(x => x.Dynamic).Select(x => x.DynamicKey).ToList().ForEach(item =>
+                {
+                    dynamicData.Add(item, new List<string>());
+                    var d = item.GetDynamic();
+                    if(d != null)
+                    {
+                        if(d.Head == "dict")
+                        {
+                            dynamicLoad_dict.Add(d);
+                        }
+                    }
                 });
 
-                var dirPath = new DirectoryInfo(targetPathList[i]).Parent.FullName;
-                if (!Directory.Exists(dirPath))
-                    Directory.CreateDirectory(dirPath);
-                File.WriteAllText(targetPathList[i], tResult, Encoding.UTF8);
+                try
+                {
+                    var tResult = _viewEngine.RunCompileFromCached(tContent, new
+                    {
+                        input.AuthorName,
+                        input.BusName,
+                        input.NameSpace,
+                        input.ProName,
+                        input.DatabaseName,
+                        ClassName = input.TableName,
+                        CamelizeClassName = input.TableName.Substring(0, 1).ToLower() + input.TableName[1..], //首字母小写
+                        QueryWhetherList = queryWhetherList,
+                        TableField = tableFieldList,
+                        input.LowCodeId,
+                        FormDesign,
+                        DynamicData = JsonConvert.SerializeObject(dynamicData),
+                        DynamicLoad_Dict = dynamicLoad_dict,
+                        IsFile = tableFieldList.Where(x => x.DtoNetType.Contains("Front_FileDto")).Any(),
+                        FileTableField = tableFieldList.Where(x => x.DtoNetType.Contains("Front_FileDto")).ToList()
+                    });
+
+                    var dirPath = new DirectoryInfo(targetPathList[i]).Parent.FullName;
+                    if (!Directory.Exists(dirPath))
+                        Directory.CreateDirectory(dirPath);
+                    File.WriteAllText(targetPathList[i], tResult, Encoding.UTF8);
+                }
+                catch(Exception ex)
+                {
+                    throw Oops.Oh($"错误模板：{templatePathList[i]}。错误信息：{ex.Message}。");
+                }
             }
 
             await AddMenu(input.DatabaseName.Substring(0, 5), input.TableName, input.BusName, input.MenuApplication, input.MenuPid);
@@ -399,10 +491,11 @@ namespace Admin.NET.Application.CodeGen
                 templatePath + "Input.cs.vm",
                 templatePath + "Output.cs.vm",
                 templatePath + "Dto.cs.vm",
+                templatePath + "Mapper.cs.vm",
                 templatePath + "index.vue.vm",
                 templatePath + "addForm.vue.vm",
                 templatePath + "editForm.vue.vm",
-                templatePath + "manage.js.vm",
+                templatePath + "Manage.js.vm",
             };
         }
 
@@ -419,12 +512,13 @@ namespace Admin.NET.Application.CodeGen
             var inputPath = backendPath + @"Dto\" + input.TableName + "Input.cs";
             var outputPath = backendPath + @"Dto\" + input.TableName + "Output.cs";
             var viewPath = backendPath + @"Dto\" + input.TableName + "Dto.cs";
+            var mapperPath = backendPath + @"Map\" + input.TableName + "Mapper.cs";
             var frontendPath = new DirectoryInfo(App.WebHostEnvironment.ContentRootPath).Parent.Parent.FullName + @"\frontend\src\views\main\";
             var indexPath = frontendPath + input.TableName + @"\index.vue";
             var addFormPath = frontendPath + input.TableName + @"\addForm.vue";
             var editFormPath = frontendPath + input.TableName + @"\editForm.vue";
             var apiJsPath = new DirectoryInfo(App.WebHostEnvironment.ContentRootPath).Parent.Parent.FullName + @"\frontend\src\api\modular\main\" + input.TableName + "Manage.js";
-
+            
             return new List<string>()
             {
                 servicePath,
@@ -432,6 +526,7 @@ namespace Admin.NET.Application.CodeGen
                 inputPath,
                 outputPath,
                 viewPath,
+                mapperPath,
                 indexPath,
                 addFormPath,
                 editFormPath,
@@ -439,4 +534,5 @@ namespace Admin.NET.Application.CodeGen
             };
         }
     }
+
 }

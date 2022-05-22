@@ -81,5 +81,10 @@ namespace Admin.NET.Core
         /// </summary>
         [Comment("菜单编码")]
         public long MenuPid { get; set; }
+
+        /// <summary>
+        /// 低代码模块来源
+        /// </summary>
+        public long? LowCodeId { get; set; }
     }
 }

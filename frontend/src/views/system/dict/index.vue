@@ -38,6 +38,9 @@
           <a-button @click="$refs.addForm.add()" icon="plus" type="primary" v-if="hasPerm('sysDictType:add')">新增类型
           </a-button>
         </template>
+        <span slot="DynamicKey" slot-scope="text,record">
+          dict${{record.code}}
+        </span>
         <span slot="status" slot-scope="text,record">
           <a-popconfirm
             placement="top"
@@ -105,6 +108,12 @@
         columns: [{
             title: '类型名称',
             dataIndex: 'name'
+          },
+          {
+            title: '动态数据',
+            scopedSlots: {
+              customRender: 'DynamicKey'
+            }
           },
           {
             title: '唯一编码',

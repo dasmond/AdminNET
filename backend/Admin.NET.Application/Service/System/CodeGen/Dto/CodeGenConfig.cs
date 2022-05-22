@@ -26,6 +26,11 @@
         public string ColumnName { get; set; }
 
         /// <summary>
+        /// 数据库字段名
+        /// </summary>
+        public string OriginalColumnName { get; set; }
+
+        /// <summary>
         /// 数据库字段名(首字母小写)
         /// </summary>
         public string LowerColumnName => string.IsNullOrWhiteSpace(ColumnName)
@@ -41,6 +46,16 @@
         /// .NET类型
         /// </summary>
         public string NetType { get; set; }
+
+        /// <summary>
+        /// .NET类型
+        /// </summary>
+        public string DtoNetType { get; set; }
+
+        /// <summary>
+        /// .NET类型是否是值类型
+        /// </summary>
+        public string NetTypeIsNullLable { get; set; }
 
         /// <summary>
         /// 作用类型（字典）

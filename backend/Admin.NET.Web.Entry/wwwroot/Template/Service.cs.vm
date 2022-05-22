@@ -1,3 +1,5 @@
+using Admin.NET.Application.Entity;
+using Admin.NET.Application.Service.System.File;
 using Admin.NET.Core;
 using Furion.DatabaseAccessor;
 using Furion.DatabaseAccessor.Extensions;
@@ -17,6 +19,7 @@ namespace @Model.NameSpace
     /// <summary>
     /// @(@Model.BusName)服务
     /// </summary>
+    [Route("api")]
     [ApiDescriptionSettings("自己的业务", Name = "@Model.ClassName", Order = 100)]
     [Route("api/[Controller]")]
     public class @(@Model.ClassName)Service : I@(@Model.ClassName)Service, IDynamicApiController, ITransient
@@ -28,6 +31,11 @@ if(@column.EffectType == "fk" && @column.FkEntityName != "" && @column.FkColumnN
 }
 }
 
+@if(@Model.IsFile)
+{
+        @:private readonly IRepository<SysFile> _sysFileInfoRep;
+}
+
         public @(@Model.ClassName)Service(
 @foreach (var column in Model.TableField){
 if(@column.EffectType == "fk" && @column.FkEntityName != "" && @column.FkColumnName != ""){
@@ -35,6 +43,10 @@ if(@column.EffectType == "fk" && @column.FkEntityName != "" && @column.FkColumnN
 }
 }
             IRepository<@(@Model.ClassName),@(@Model.DatabaseName)> @(@Model.CamelizeClassName)Rep
+@if(@Model.IsFile)
+{
+            @:,IRepository<SysFile> sysFileInfoRep
+}
         )
         {
 @foreach (var column in Model.TableField){
@@ -43,6 +55,10 @@ if(@column.EffectType == "fk" && @column.FkEntityName != "" && @column.FkColumnN
 }
 }
             _@(@Model.CamelizeClassName)Rep = @(@Model.CamelizeClassName)Rep;
+@if(@Model.IsFile)
+{
+        @:_sysFileInfoRep = sysFileInfoRep;
+}
         }
 
         /// <summary>
@@ -51,7 +67,7 @@ if(@column.EffectType == "fk" && @column.FkEntityName != "" && @column.FkColumnN
         /// <param name="input"></param>
         /// <returns></returns>
         [HttpGet("page")]
-        public async Task<PageResult<@(@Model.ClassName)Output>> Page([FromQuery] @(@Model.ClassName)Input input)
+        public async Task<PageResult<@(@Model.ClassName)Output>> Page([FromQuery] @(@Model.ClassName)Search input)
         {
             var @(@Model.CamelizeClassName)s = await _@(@Model.CamelizeClassName)Rep.DetachedEntities
 @foreach (var column in Model.TableField){    
@@ -66,15 +82,23 @@ if (@column.QueryType == "like"){
 if (@column.EffectType == "fk"){                
                                      @:.Where(input.@column.ColumnName > 0, u => u.@(@column.ColumnName) @column.QueryType input.@(@column.ColumnName))
 } else {
-                                     @:.Where(u => u.@(@column.ColumnName) @column.QueryType input.@(@column.ColumnName))
+                                     @:.Where(input.@column.ColumnName != null, u => u.@(@column.ColumnName) @column.QueryType input.@(@column.ColumnName))
 }
 }
 }
 }
-                                     .OrderBy(PageInputOrder.OrderBuilder<@(@Model.ClassName)Input>(input))
+                                     .OrderBy(PageInputOrder.OrderBuilder<@(@Model.ClassName)Search>(input))
                                      .ProjectToType<@(@Model.ClassName)Output>()
                                      .ToADPagedListAsync(input.PageNo, input.PageSize);
-
+@if(@Model.IsFile)
+{
+            @:@(@Model.CamelizeClassName)s.Rows.ToList().ForEach(item =>
+            @:{
+foreach (var column in Model.FileTableField){  
+                @:item.@(@column.ColumnName) = item.@(@column.ColumnName)_Str.GetFiles(_sysFileInfoRep);
+}
+            @:});
+}
             return @(@Model.CamelizeClassName)s;
         }
 

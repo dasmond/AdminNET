@@ -39,6 +39,13 @@ namespace Admin.NET.Core
         public string NetType { get; set; }
 
         /// <summary>
+        /// .NET数据类型(接口传入)
+        /// </summary>
+        [Comment(".NET数据类型(接口传入)")]
+        [MaxLength(50)]
+        public string DtoNetType { get; set; }
+
+        /// <summary>
         /// 作用类型（字典）
         /// </summary>
         [Comment("作用类型")]

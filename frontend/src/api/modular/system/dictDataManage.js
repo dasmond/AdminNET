@@ -71,3 +71,17 @@ export function sysDictDataChangeStatus(parameter) {
     data: parameter
   })
 }
+
+/**
+ * 根据Code获取字典数据
+ *
+ * @author lanhuxing
+ * @date 2021-04-30 11:00:16
+ */
+export function sysDictDataListbycode(parameter) {
+  return axios({
+    url: '/sysDictData/listbycode?code=' + parameter.code,
+    method: 'get',
+    data: parameter
+  })
+}

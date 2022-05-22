@@ -133,3 +133,16 @@ export function codeGenerateRunDown (parameter) {
     responseType: 'blob'
   })
 }
+
+/**
+ * 刷新配置表
+ *
+ * @author lanhuxing
+ * @date 2022/05/08 15:00
+ */
+export function codeGenerateRefresh (id) {
+  return axios({
+    url: '/codeGenerate/refresh/' + id,
+    method: 'get'
+  })
+}

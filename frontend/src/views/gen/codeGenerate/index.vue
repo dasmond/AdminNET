@@ -111,6 +111,7 @@ import {
   codeGenerateDelete,
   codeGenerateRunDown,
   codeGenerateRunLocal,
+  codeGenerateRefresh
 } from '@/api/modular/gen/codeGenerateManage'
 import addForm from './addForm'
 import editForm from './editForm'
@@ -271,7 +272,9 @@ export default {
      */
     indexConfigOpen(record) {
       this.indexOpenShow = false
-      this.$refs.indexConfig.open(record)
+      codeGenerateRefresh(record.id).then((res) => {
+        this.$refs.indexConfig.open(record)
+      })
     },
     /**
      * 详细配置界面返回

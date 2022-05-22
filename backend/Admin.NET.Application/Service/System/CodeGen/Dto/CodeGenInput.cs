@@ -22,6 +22,11 @@ namespace Admin.NET.Application
     public class AddCodeGenInput
     {
         /// <summary>
+        /// 低代码模块来源
+        /// </summary>
+        public long? LowCodeId { get; set; }
+
+        /// <summary>
         /// 数据库名
         /// </summary>
         [Required(ErrorMessage = "数据库名不能为空")]
