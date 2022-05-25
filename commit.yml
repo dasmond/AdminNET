@@ -3,147 +3,54 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '92a367ee91dafaaef36dfec65eb13d6068c3c9b1'
-    oldFile: !uuid '3262bb6d1ec9095dc9f53e747cc8e222e33ca31a'
-  /Admin.NET/Admin.NET.Application:
-    newFile: !uuid '3fb60a1241579eb7f92b04af0f449aff4f54216e'
-    oldFile: !uuid '7b0216d858d1a54963930d9942fd5f4c7b3a0a88'
-  /Admin.NET/Admin.NET.Application/AppConfig.json:
-    newFile: !uuid '7094009fabd7e6e8e6162818348ae685b4952991'
-    oldFile: !uuid '90960e07b5a01e6573064f818702226a10ae9427'
+    newFile: !uuid '54af3f67a13c45f6fdb0d1dc31f78dcbf3f591ac'
+    oldFile: !uuid '92a367ee91dafaaef36dfec65eb13d6068c3c9b1'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid 'dd2495331ca0863f97a0dfcd1efc3a3ce2bb8499'
-    oldFile: !uuid '07debd887f5443af45435cf82a2f8bfaf300ecf9'
-  /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
-    newFile: !uuid 'c4ae69255025332b66d2a97d55e6293ea6d68c29'
-    oldFile: !uuid '8e2bfdf7297c12f2ba28818ae0f944b4608cc4ea'
+    newFile: !uuid '0c3a4af41e2f04965b03e2a0fffa7609529dc124'
+    oldFile: !uuid 'dd2495331ca0863f97a0dfcd1efc3a3ce2bb8499'
   /Admin.NET/Admin.NET.Core/Admin.NET.Core.xml:
-    newFile: !uuid 'b281978efb964ab14b758f5f3978a6c9f932756c'
-    oldFile: !uuid '35c634d5d51af02f75a4f8b381eaa690f79b8d0e'
-  /Admin.NET/Admin.NET.Core/Entity:
-    newFile: !uuid 'b0df79cd7c312c383536b904ece1bd0e92f300a2'
-    oldFile: !uuid '386cf9941f2a69526454845129b4c1593c7d67d7'
-  /Admin.NET/Admin.NET.Core/Entity/WechatPay.cs:
-    newFile: !uuid '13dcf8e835697bec7c3c98e9d6452b7bef85d562'
-    oldFile: !uuid 'a46331d02879a054869efad2ebbbeadacfce24fd'
-  /Admin.NET/Admin.NET.Core/SeedData:
-    newFile: !uuid 'a5558d6912132ccbc160b896fb355e8e5ecaad3a'
-    oldFile: !uuid '22d976e553d23820ec325d17dc2ffb4dbf6888ea'
-  /Admin.NET/Admin.NET.Core/SeedData/SysMenuSeedData.cs:
-    newFile: !uuid 'aa3ee1f81cbc710fec210b752a6900e90f987098'
-    oldFile: !uuid '4a8df493227ae25192083349be7c3d928c72c9e8'
+    newFile: !uuid '001667e7d8d8cbb4ea0df335ce385a3f5bcfff14'
+    oldFile: !uuid 'b281978efb964ab14b758f5f3978a6c9f932756c'
+  /Admin.NET/Admin.NET.Core/Const:
+    newFile: !uuid '70b82636723adaeb0059fc0b79563b5b2ff6ab82'
+    oldFile: !uuid '48b55529fc51b742aa80ab616b4c827713d5c443'
+  /Admin.NET/Admin.NET.Core/Const/ClaimConst.cs:
+    newFile: !uuid 'fc702d3b638e4a119b7c891c4348f1a9d132398a'
+    oldFile: !uuid '2023ec53fc1b3451ca79366c4513641b05c083f1'
+  /Admin.NET/Admin.NET.Core/Enum:
+    newFile: !uuid '11d72084a678be345bd060faba43750cda9be20f'
+    oldFile: !uuid '789c5c6535f09cf95fd866dd3b3d6d95f5e0965b'
+  /Admin.NET/Admin.NET.Core/Enum/RunModeEnum.cs:
+    newFile: !uuid '6619ef7490d5f34f36534c5dd518130ee044ccc9'
+    oldFile: null
   /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid '604a7c6fbb136e48f2387fc5111cbe73da09586b'
-    oldFile: !uuid 'e12890ff4de98c3190dc53080924916e0cba17b4'
-  /Admin.NET/Admin.NET.Core/Service/User:
-    newFile: !uuid 'd01ca0655d8dbfe70dd3a89040c9afc208a66b41'
-    oldFile: !uuid '6278d835415e334789e108f4b6d7f5948c754197'
-  /Admin.NET/Admin.NET.Core/Service/User/Dto:
-    newFile: !uuid '2134d14bc5dfa047fdc06881c4e439398780482b'
-    oldFile: !uuid '957bc445d002a915d4e028ca90f6517e19562de3'
-  /Admin.NET/Admin.NET.Core/Service/User/Dto/UserInput.cs:
-    newFile: !uuid 'fcdc4c4abdef7bb048d9d1ca12852044a579dc18'
-    oldFile: !uuid '232ab0069eda4f319752e5d66b1f6188b8e21e43'
-  /Admin.NET/Admin.NET.Core/Service/User/SysUserService.cs:
-    newFile: !uuid '5dd91c796a829969080851e94f2eaded01503a63'
-    oldFile: !uuid 'c490d784697ea86e2b730afeb343a1155737a7e9'
+    newFile: !uuid 'd8bc36a20abdcb0371394fbfb233b744e30a35d2'
+    oldFile: !uuid '604a7c6fbb136e48f2387fc5111cbe73da09586b'
   /Admin.NET/Admin.NET.Core/Service/WeChat:
-    newFile: !uuid 'fe21597f19e5419b3354ab509b41e28a98e2b0dc'
-    oldFile: !uuid '4c28c2bd9cd55c9b646f62ed36d0692a03924057'
+    newFile: !uuid '60b3efd3d9ed011c48533e0e3d0b4dbbfe3659ce'
+    oldFile: !uuid 'fe21597f19e5419b3354ab509b41e28a98e2b0dc'
+  /Admin.NET/Admin.NET.Core/Service/WeChat/Dto:
+    newFile: !uuid '720fc186b465200e765bf12e91aa8a034239eea3'
+    oldFile: !uuid '7d70b0f6973d9e5fbd1f3a155336d3916ebd495e'
+  /Admin.NET/Admin.NET.Core/Service/WeChat/Dto/WechatPayOutput.cs:
+    newFile: !uuid '3a2cd6c242258deeacaa2531693eb0d620ccabe3'
+    oldFile: null
   /Admin.NET/Admin.NET.Core/Service/WeChat/WechatPayService.cs:
-    newFile: !uuid 'fbebc1beb1cf2c59a82b3caacf6fc212a8ff5b2c'
-    oldFile: !uuid '5cee67be3ed75768a83a51a3d31c839c9a027f0e'
+    newFile: !uuid '30da7558723ffc39ded36e548d34142aa442e3b3'
+    oldFile: !uuid 'fbebc1beb1cf2c59a82b3caacf6fc212a8ff5b2c'
   /Admin.NET/Admin.NET.Core/Service/WeChat/WechatService.cs:
-    newFile: !uuid 'cf034b199fd83457166e12a165016e7c3d1182fc'
-    oldFile: !uuid 'ad0e16271226a7e1941698681623758363c9fdff'
-  /Admin.NET/Admin.NET.Core/SqlSugar:
-    newFile: !uuid 'dc2777ee3e046c5180aac0327f8b5a5538a42517'
-    oldFile: !uuid 'b6e5a27735b955d3fc0ea26e015318153393201a'
-  /Admin.NET/Admin.NET.Core/SqlSugar/SqlSugarSetup.cs:
-    newFile: !uuid 'c3153a71b3fb215df4fa8d8ec532af6528f1b793'
-    oldFile: !uuid '7d892f427adc6fb4bd3ade90a930d4e3285a83db'
-  /Admin.NET/Admin.NET.Core/Util:
-    newFile: !uuid 'b303ef6dd00ef42b6e7544dbfb580e3e83732152'
-    oldFile: !uuid '4222495bb0fde7f4e403daf2471e5f3387379274'
-  /Admin.NET/Admin.NET.Core/Util/AdminResultProvider.cs:
-    newFile: !uuid 'd5669ad724dd518b7dc3ff1e3bc172adcfe0f40c'
-    oldFile: !uuid '4c1b640fa2386c7e122bfd155751229cdedff273'
-  /Admin.NET/Admin.NET.UnitTest:
-    newFile: !uuid 'f95b23d5320ea387ee86394c273ea932ba1b6577'
-    oldFile: !uuid 'b9497f8e81de804ec68756e1aa04f892dbac06f4'
-  /Admin.NET/Admin.NET.UnitTest/SqlSugarTest.cs:
-    newFile: !uuid 'b207c8933a176fd9bf8ddb0ee21608648a4adf29'
-    oldFile: !uuid '65ef7afc6773514b42c4156eddee9e12ce2d915c'
+    newFile: !uuid '2e988ba78bb022a1cd48cac0badef646d3c7a40e'
+    oldFile: !uuid 'cf034b199fd83457166e12a165016e7c3d1182fc'
   /Admin.NET/Admin.NET.Web.Core:
-    newFile: !uuid 'accfa911817c690c61e57c27fca6f983d80c2d2c'
-    oldFile: !uuid 'd411cac580cf7352372fb035e8d5c6bc62501080'
+    newFile: !uuid 'b267a6c8d402aacdccef1a379e0b72c1b076d52d'
+    oldFile: !uuid 'accfa911817c690c61e57c27fca6f983d80c2d2c'
   /Admin.NET/Admin.NET.Web.Core/Handlers:
-    newFile: !uuid 'e02962728ec8c1ac61d5a2e166bc1a7699faaffc'
-    oldFile: !uuid '4c124ad74906057b199f45c0373dfb19c59411bb'
+    newFile: !uuid '970d85b05672113818e668f9a34fcc245ddaf1e2'
+    oldFile: !uuid 'e02962728ec8c1ac61d5a2e166bc1a7699faaffc'
   /Admin.NET/Admin.NET.Web.Core/Handlers/JwtHandler.cs:
-    newFile: !uuid 'eb75488dd61612d46634e11952b9655f3dc33b9b'
-    oldFile: !uuid 'ec46e72c475c5df502df88eea3e3f8c046e11a43'
-  /Vben2:
-    newFile: !uuid 'f08007b50ebaa42fd2e1e4db5daf63af2e4d0ee3'
-    oldFile: !uuid 'dbbc08407fbdfd382f6deb34159a521cae5e8c5a'
-  /Vben2/src:
-    newFile: !uuid 'c7654f66c7e13c85ae692aacbadf593d2728b036'
-    oldFile: !uuid 'ea67987c92f9f3379f429eaa8b38bbb53dcc4f85'
-  /Vben2/src/api:
-    newFile: !uuid '044a0d6ff2c7b9702cd268ce79d74fa1e561a09c'
-    oldFile: !uuid '86fcb1b7329900935b2723f880fcdbb846917da8'
-  /Vben2/src/api/sys:
-    newFile: !uuid 'd1ad1c6fe0f21f48f404281169c44884f2a059e5'
-    oldFile: !uuid '55ec80498278bbf06e4c38018718ce7a9529849f'
-  /Vben2/src/api/sys/admin.ts:
-    newFile: !uuid 'fcff7ac27042b2e1b5106c414e9ec812eb4ca150'
-    oldFile: !uuid '35bd0aa12851c685b3c6de5087157ef3fcdb5a9f'
-  /Vben2/src/layouts:
-    newFile: !uuid '4a1ab77e03028282bcdddb75e8f839819e5b900a'
-    oldFile: !uuid '5ddc56b09f3f4c33d4dfde4700fa00ad44d4e5ee'
-  /Vben2/src/layouts/default:
-    newFile: !uuid 'd46c9ea3486fee71a5f5f3afc50b3a0f61f72864'
-    oldFile: !uuid '1039ae96eed567f4f538af825f914ed81fc599c1'
-  /Vben2/src/layouts/default/header:
-    newFile: !uuid '77107f11b8bc78e69a442cee8ac0cb806f15797b'
-    oldFile: !uuid '7e8c146f463a257bfcbb5c95a098f78686d59c34'
-  /Vben2/src/layouts/default/header/components:
-    newFile: !uuid '5510a35eb5f3e9740cda5d4b5a1d9d8a5a3c86a2'
-    oldFile: !uuid 'd2cc86a65ba18140ff2793342869df4c72d4d5cc'
-  /Vben2/src/layouts/default/header/components/user-dropdown:
-    newFile: !uuid '6bec3ac430ffce7f761ea05a9cc170fe124ce6c2'
-    oldFile: !uuid '395998028c3c69a192d9ba07e0e42a4203993077'
-  /Vben2/src/layouts/default/header/components/user-dropdown/index.vue:
-    newFile: !uuid '16775fdb6a6df1ab1944bfcdc1f7aeb857a41845'
-    oldFile: !uuid 'b15066c5aa24ebbd90b5f1213ee3ac2626b8aac3'
-  /Vben2/src/utils:
-    newFile: !uuid '301a4ee784ba361fba4a236e642333d4706d2507'
-    oldFile: !uuid 'e849772bedb75374177ca7ee12e5961564d68206'
-  /Vben2/src/utils/http:
-    newFile: !uuid 'c652a0be72af55e914d68b1c3f5c9e37ebb86a69'
-    oldFile: !uuid 'bfa891794f2f6a5cf5b5bcdee8b4fae01d93cf9d'
-  /Vben2/src/utils/http/axios:
-    newFile: !uuid 'e01b45a09fcf30382c216a78c1b4b04a78cb3b19'
-    oldFile: !uuid '9b41a0de365cc33c0807ba4030bfa47614fda1a9'
-  /Vben2/src/utils/http/axios/index.ts:
-    newFile: !uuid '81b79e3e06005e14e630ca17bc65e83b278226d1'
-    oldFile: !uuid '00322c1bb32731f0da8266a65f55489ff94c6017'
-  /Vben2/src/views:
-    newFile: !uuid '4911136ddea2670c5a2f1c764378a953027b8ccf'
-    oldFile: !uuid 'd030d7fd1293365926e17ef0def2b00df3f2cdc4'
-  /Vben2/src/views/sys:
-    newFile: !uuid '737c1bf4b2c2415d4293407c9a94f00ee9cea5ee'
-    oldFile: !uuid 'a324c38dc4862f3a6cd9045c46f8c15062639ecf'
-  /Vben2/src/views/sys/admin:
-    newFile: !uuid '95fdfc28cd1e2d74059f5771ae130b19f345cd7b'
-    oldFile: !uuid '4562b50e0f7d9d5b41789f76e95af250bdebb5e7'
-  /Vben2/src/views/sys/admin/password:
-    newFile: !uuid '4fedd69f44e654e8d9b514bc37eec9d2e4633256'
-    oldFile: !uuid '31094e65b3e0c84f01a8b5c3de918048a5d7d135'
-  /Vben2/src/views/sys/admin/password/index.vue:
-    newFile: !uuid '51c3d2d36f395ac2d2e0d050444ceac3aa939f83'
-    oldFile: !uuid 'f5685aec8fdba05557402a68e93a5435186142c3'
-gitCommitId: !uuid '2462eb5cb3d78561db9704752a753b2fb4b34dac'
+    newFile: !uuid 'fc9a9ff2849d7516c2c2d91ede974985a7521123'
+    oldFile: !uuid 'eb75488dd61612d46634e11952b9655f3dc33b9b'
+gitCommitId: !uuid 'ebfa657bf631b09154bafe52047b0ffe56337c33'
 renames: {
   }
-revisionId: 27
+revisionId: 28
