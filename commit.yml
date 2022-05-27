@@ -3,54 +3,18 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '54af3f67a13c45f6fdb0d1dc31f78dcbf3f591ac'
-    oldFile: !uuid '92a367ee91dafaaef36dfec65eb13d6068c3c9b1'
+    newFile: !uuid '34083f2823e27429b13351cde96e208673463246'
+    oldFile: !uuid '54af3f67a13c45f6fdb0d1dc31f78dcbf3f591ac'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '0c3a4af41e2f04965b03e2a0fffa7609529dc124'
-    oldFile: !uuid 'dd2495331ca0863f97a0dfcd1efc3a3ce2bb8499'
-  /Admin.NET/Admin.NET.Core/Admin.NET.Core.xml:
-    newFile: !uuid '001667e7d8d8cbb4ea0df335ce385a3f5bcfff14'
-    oldFile: !uuid 'b281978efb964ab14b758f5f3978a6c9f932756c'
-  /Admin.NET/Admin.NET.Core/Const:
-    newFile: !uuid '70b82636723adaeb0059fc0b79563b5b2ff6ab82'
-    oldFile: !uuid '48b55529fc51b742aa80ab616b4c827713d5c443'
-  /Admin.NET/Admin.NET.Core/Const/ClaimConst.cs:
-    newFile: !uuid 'fc702d3b638e4a119b7c891c4348f1a9d132398a'
-    oldFile: !uuid '2023ec53fc1b3451ca79366c4513641b05c083f1'
-  /Admin.NET/Admin.NET.Core/Enum:
-    newFile: !uuid '11d72084a678be345bd060faba43750cda9be20f'
-    oldFile: !uuid '789c5c6535f09cf95fd866dd3b3d6d95f5e0965b'
-  /Admin.NET/Admin.NET.Core/Enum/RunModeEnum.cs:
-    newFile: !uuid '6619ef7490d5f34f36534c5dd518130ee044ccc9'
+    newFile: !uuid 'adf9c85fe7824b098b9dfb48d8d2e56c719509f9'
+    oldFile: !uuid '0c3a4af41e2f04965b03e2a0fffa7609529dc124'
+  /Admin.NET/Admin.NET.Core/Extension:
+    newFile: !uuid 'd0671dcecc0b6672c1c649fb12e19483e7c7a783'
+    oldFile: !uuid '9a83634370da67cd9640836096d3027d419d657d'
+  /Admin.NET/Admin.NET.Core/Extension/RepositoryExtension.cs:
+    newFile: !uuid '955890697f9dfe1eddf00e95cd0a4d90a9efd418'
     oldFile: null
-  /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid 'd8bc36a20abdcb0371394fbfb233b744e30a35d2'
-    oldFile: !uuid '604a7c6fbb136e48f2387fc5111cbe73da09586b'
-  /Admin.NET/Admin.NET.Core/Service/WeChat:
-    newFile: !uuid '60b3efd3d9ed011c48533e0e3d0b4dbbfe3659ce'
-    oldFile: !uuid 'fe21597f19e5419b3354ab509b41e28a98e2b0dc'
-  /Admin.NET/Admin.NET.Core/Service/WeChat/Dto:
-    newFile: !uuid '720fc186b465200e765bf12e91aa8a034239eea3'
-    oldFile: !uuid '7d70b0f6973d9e5fbd1f3a155336d3916ebd495e'
-  /Admin.NET/Admin.NET.Core/Service/WeChat/Dto/WechatPayOutput.cs:
-    newFile: !uuid '3a2cd6c242258deeacaa2531693eb0d620ccabe3'
-    oldFile: null
-  /Admin.NET/Admin.NET.Core/Service/WeChat/WechatPayService.cs:
-    newFile: !uuid '30da7558723ffc39ded36e548d34142aa442e3b3'
-    oldFile: !uuid 'fbebc1beb1cf2c59a82b3caacf6fc212a8ff5b2c'
-  /Admin.NET/Admin.NET.Core/Service/WeChat/WechatService.cs:
-    newFile: !uuid '2e988ba78bb022a1cd48cac0badef646d3c7a40e'
-    oldFile: !uuid 'cf034b199fd83457166e12a165016e7c3d1182fc'
-  /Admin.NET/Admin.NET.Web.Core:
-    newFile: !uuid 'b267a6c8d402aacdccef1a379e0b72c1b076d52d'
-    oldFile: !uuid 'accfa911817c690c61e57c27fca6f983d80c2d2c'
-  /Admin.NET/Admin.NET.Web.Core/Handlers:
-    newFile: !uuid '970d85b05672113818e668f9a34fcc245ddaf1e2'
-    oldFile: !uuid 'e02962728ec8c1ac61d5a2e166bc1a7699faaffc'
-  /Admin.NET/Admin.NET.Web.Core/Handlers/JwtHandler.cs:
-    newFile: !uuid 'fc9a9ff2849d7516c2c2d91ede974985a7521123'
-    oldFile: !uuid 'eb75488dd61612d46634e11952b9655f3dc33b9b'
-gitCommitId: !uuid 'ebfa657bf631b09154bafe52047b0ffe56337c33'
+gitCommitId: !uuid '632c8ce7d46310e936fd2f4c8b0c6069cc4a0d57'
 renames: {
   }
-revisionId: 28
+revisionId: 29
