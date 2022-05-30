@@ -2,37 +2,28 @@
 branches: {
   }
 fileChange:
-  /Admin.NET:
-    newFile: !uuid '5e7f7d8f41d657fba5af1bd223a84b8ff8312192'
-    oldFile: !uuid 'd5ff83578a0ce79f6d0f27347f5a7c09170500e9'
-  /Admin.NET/Admin.NET.Core:
-    newFile: !uuid 'de9db69a0cd715767b3dda2cbca1ff1a599c5acc'
-    oldFile: !uuid 'aed03159a864535c96d2ff5095440ea8f189e55a'
-  /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
-    newFile: !uuid 'b0cf56361165268cd39606447f4239128d1dcdd9'
-    oldFile: !uuid 'c4ae69255025332b66d2a97d55e6293ea6d68c29'
-  /Admin.NET/Admin.NET.Core/Admin.NET.Core.xml:
-    newFile: !uuid '77fc139c9255a18cd48f656b4de554c23cd5a1a6'
-    oldFile: !uuid '001667e7d8d8cbb4ea0df335ce385a3f5bcfff14'
-  /Admin.NET/Admin.NET.Core/Extension:
-    newFile: !uuid '300bfd99bad9e50b531897ab4a7cb768a6f38b86'
-    oldFile: !uuid 'd0671dcecc0b6672c1c649fb12e19483e7c7a783'
-  /Admin.NET/Admin.NET.Core/Extension/RepositoryExtension.cs:
-    newFile: !uuid 'eba365228ecf2ebe598dbc8544af9c697dc2d91b'
-    oldFile: !uuid '955890697f9dfe1eddf00e95cd0a4d90a9efd418'
-  /Admin.NET/Admin.NET.Core/SqlSugar:
-    newFile: !uuid '4e7034926db317685e1cbecee951936f387a5ecc'
-    oldFile: !uuid 'e199444dd17254bbf37b876482daa1f8c36bafc1'
-  /Admin.NET/Admin.NET.Core/SqlSugar/SqlSugarRepository.cs:
-    newFile: !uuid 'fe4ce23427d7ab7c1bbf047692eba89976cb3bb7'
-    oldFile: !uuid '0e8ae698072b2051054b5bebd7a7edb7a3b97f05'
-  /doc:
-    newFile: !uuid '86288c0c8987308cf3479af3a9481425bb7bdc1b'
-    oldFile: !uuid 'cd72a04722d7114dd9eb516cb2571f08bfe1a323'
-  /doc/Vben2前端框架修改记录.txt:
-    newFile: !uuid 'e2e8344cd84f533d6231ee06f8137ccebc20b1d1'
-    oldFile: !uuid '7a74a0ef9a42244d390d2c9b53cef7c41b3e6941'
-gitCommitId: !uuid '5ce8006b8c88ff92a91be70aead0a3f65a5618fe'
+  /Vben2:
+    newFile: !uuid '2fef6d52999cd95202735af5f1dbd755f2aa322b'
+    oldFile: !uuid 'f665513af620ea634ef489890202b7bc794480ad'
+  /Vben2/src:
+    newFile: !uuid 'f4ff8664cb828267c8f8d6a72df24db06c23a36f'
+    oldFile: !uuid '57592dcd4c6bc5183f96c4d268c58795425df7a7'
+  /Vben2/src/main.ts:
+    newFile: !uuid 'ccd709f117b4ba1ab7187b3b3228ff1a6439cc35'
+    oldFile: !uuid '6b39f542b542be2639ac726f1e45068cf94ff8ce'
+  /Vben2/src/router:
+    newFile: !uuid 'a8d98020e1a99f521fb0a50974e65eee57ba5626'
+    oldFile: !uuid 'baaf6f43c0597f0760a83a97f913e0518cdf6a5e'
+  /Vben2/src/router/index.ts:
+    newFile: !uuid '3107c46876d6a94834e03825ea7db714374589bf'
+    oldFile: !uuid 'c349151543c4545b611220a191aac6a169c87e1e'
+  /Vben2/src/router/routes:
+    newFile: !uuid 'fc4bf97bbb7652b61d0e5d28ad3424f4c5a5dab6'
+    oldFile: !uuid '862f451d7bb0436050319a55efcd1307042e33a3'
+  /Vben2/src/router/routes/index.ts:
+    newFile: !uuid '8cf4831ef7b09caf8ba756ddee0dd256e5d4f6ae'
+    oldFile: !uuid '149ec42a0d9ba49eef207ac4fe43b01b98c26bd7'
+gitCommitId: !uuid '0723b18324fb151e861e906c1cfc226cac4bf386'
 renames: {
   }
-revisionId: 32
+revisionId: 33
