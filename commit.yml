@@ -2,31 +2,37 @@
 branches: {
   }
 fileChange:
-  /Vben2:
-    newFile: !uuid 'f665513af620ea634ef489890202b7bc794480ad'
-    oldFile: !uuid 'f08007b50ebaa42fd2e1e4db5daf63af2e4d0ee3'
-  /Vben2/src:
-    newFile: !uuid '57592dcd4c6bc5183f96c4d268c58795425df7a7'
-    oldFile: !uuid 'c7654f66c7e13c85ae692aacbadf593d2728b036'
-  /Vben2/src/components:
-    newFile: !uuid '877821f09de540a1a5fe4ecd220f73f20fc8791a'
-    oldFile: !uuid 'ee51af44bd27d03d3a9bb6de929e6db91ec11356'
-  /Vben2/src/components/Table:
-    newFile: !uuid '198f8ef02afda495863ece58ec2f6088fff72e01'
-    oldFile: !uuid 'c8ad28dfc36dad46f60a48c192f05c5f4ddee137'
-  /Vben2/src/components/Table/src:
-    newFile: !uuid '0ecdfb2214a5e9ecbaeb7a8503c1eee99e5c51dc'
-    oldFile: !uuid '7aaeb7a53c4e0b47d0585f77e2ba7ffd88f27697'
-  /Vben2/src/components/Table/src/components:
-    newFile: !uuid '20e53988f4f20f40ad80c185b047c4af055c4772'
-    oldFile: !uuid '14d17d9fbf3389dc1afd9e303857712e23f7a861'
-  /Vben2/src/components/Table/src/components/settings:
-    newFile: !uuid 'c201372003fe3a9d3e178cea06c200c2eb3f753f'
-    oldFile: !uuid '73dafbec016398dce30f6c66b282406eaed49de3'
-  /Vben2/src/components/Table/src/components/settings/ColumnSetting.vue:
-    newFile: !uuid '57f8eb1f46fe723c72e539128db63661bc80bd8a'
-    oldFile: !uuid '369010ad468b888e309473018edca3e57cf40fad'
-gitCommitId: !uuid '982dc788346d61c7d9ef937ea58c0b308ef43ac8'
+  /Admin.NET:
+    newFile: !uuid '5e7f7d8f41d657fba5af1bd223a84b8ff8312192'
+    oldFile: !uuid 'd5ff83578a0ce79f6d0f27347f5a7c09170500e9'
+  /Admin.NET/Admin.NET.Core:
+    newFile: !uuid 'de9db69a0cd715767b3dda2cbca1ff1a599c5acc'
+    oldFile: !uuid 'aed03159a864535c96d2ff5095440ea8f189e55a'
+  /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
+    newFile: !uuid 'b0cf56361165268cd39606447f4239128d1dcdd9'
+    oldFile: !uuid 'c4ae69255025332b66d2a97d55e6293ea6d68c29'
+  /Admin.NET/Admin.NET.Core/Admin.NET.Core.xml:
+    newFile: !uuid '77fc139c9255a18cd48f656b4de554c23cd5a1a6'
+    oldFile: !uuid '001667e7d8d8cbb4ea0df335ce385a3f5bcfff14'
+  /Admin.NET/Admin.NET.Core/Extension:
+    newFile: !uuid '300bfd99bad9e50b531897ab4a7cb768a6f38b86'
+    oldFile: !uuid 'd0671dcecc0b6672c1c649fb12e19483e7c7a783'
+  /Admin.NET/Admin.NET.Core/Extension/RepositoryExtension.cs:
+    newFile: !uuid 'eba365228ecf2ebe598dbc8544af9c697dc2d91b'
+    oldFile: !uuid '955890697f9dfe1eddf00e95cd0a4d90a9efd418'
+  /Admin.NET/Admin.NET.Core/SqlSugar:
+    newFile: !uuid '4e7034926db317685e1cbecee951936f387a5ecc'
+    oldFile: !uuid 'e199444dd17254bbf37b876482daa1f8c36bafc1'
+  /Admin.NET/Admin.NET.Core/SqlSugar/SqlSugarRepository.cs:
+    newFile: !uuid 'fe4ce23427d7ab7c1bbf047692eba89976cb3bb7'
+    oldFile: !uuid '0e8ae698072b2051054b5bebd7a7edb7a3b97f05'
+  /doc:
+    newFile: !uuid '86288c0c8987308cf3479af3a9481425bb7bdc1b'
+    oldFile: !uuid 'cd72a04722d7114dd9eb516cb2571f08bfe1a323'
+  /doc/Vben2前端框架修改记录.txt:
+    newFile: !uuid 'e2e8344cd84f533d6231ee06f8137ccebc20b1d1'
+    oldFile: !uuid '7a74a0ef9a42244d390d2c9b53cef7c41b3e6941'
+gitCommitId: !uuid '5ce8006b8c88ff92a91be70aead0a3f65a5618fe'
 renames: {
   }
-revisionId: 31
+revisionId: 32
