@@ -9,14 +9,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Admin.NET.Core.Service
-{
+namespace Admin.NET.Core.Service {
     /// <summary>
     /// 系统用户服务
     /// </summary>
     [ApiDescriptionSettings(Name = "系统用户", Order = 199)]
-    public class SysUserService : IDynamicApiController, ITransient
-    {
+    public class SysUserService : IDynamicApiController, ITransient {
         private readonly SqlSugarRepository<SysUser> _sysUserRep;
         private readonly IUserManager _userManager;
         private readonly ISysCacheService _sysCacheService;
@@ -31,8 +29,7 @@ namespace Admin.NET.Core.Service
             SysOrgService sysOrgService,
             SysUserOrgService sysUserOrgService,
             SysUserRoleService sysUserRoleService,
-            SysUserExtOrgPosService sysUserExtOrgPosService)
-        {
+            SysUserExtOrgPosService sysUserExtOrgPosService) {
             _sysUserRep = sysUserRep;
             _userManager = userManager;
             _sysOrgService = sysOrgService;
@@ -48,16 +45,22 @@ namespace Admin.NET.Core.Service
         /// <param name="input"></param>
         /// <returns></returns>
         [HttpGet("/sysUser/pageList")]
-        public async Task<SqlSugarPagedList<SysUser>> GetUserPageList([FromQuery] PageUserInput input)
-        {
+        public async Task<SqlSugarPagedList<SysUser>> GetUserPageList([FromQuery] PageUserInput input) {
             var orgList = input.OrgId > 0 ? await _sysOrgService.GetChildIdListWithSelfById(input.OrgId) : null;
+           
 
-            return await _sysUserRep.AsQueryable()
+            var rt = await _sysUserRep.AsQueryable()
                 .WhereIF(!string.IsNullOrWhiteSpace(input.UserName), u => u.UserName.Contains(input.UserName))
                 .WhereIF(!string.IsNullOrWhiteSpace(input.Phone), u => u.Phone.Contains(input.Phone))
                 .WhereIF(input.OrgId > 0, u => orgList.Contains(u.OrgId))
                 .WhereIF(!_userManager.SuperAdmin, u => u.UserType != UserTypeEnum.SuperAdmin)
                 .ToPagedListAsync(input.Page, input.PageSize);
+
+            foreach (var item in rt.Items){
+                item.Password = string.Empty;
+            }
+
+            return rt;
         }
 
         /// <summary>
@@ -66,8 +69,7 @@ namespace Admin.NET.Core.Service
         /// <param name="input"></param>
         /// <returns></returns>
         [HttpPost("/sysUser/add")]
-        public async Task AddUser(AddUserInput input)
-        {
+        public async Task AddUser(AddUserInput input) {
             CheckDataScope(input.OrgId); // 数据范围检查
 
             var isExist = await _sysUserRep.IsAnyAsync(u => u.UserName == input.UserName);
@@ -84,8 +86,7 @@ namespace Admin.NET.Core.Service
         /// <param name="input"></param>
         /// <returns></returns>
         [HttpPost("/sysUser/update")]
-        public async Task UpdateUser(UpdateUserInput input)
-        {
+        public async Task UpdateUser(UpdateUserInput input) {
             CheckDataScope(input.OrgId); // 数据范围检查
 
             var isExist = await _sysUserRep.IsAnyAsync(u => u.UserName == input.UserName && u.Id != input.Id);
@@ -102,8 +103,7 @@ namespace Admin.NET.Core.Service
         /// <param name="input"></param>
         /// <returns></returns>
         [HttpPost("/sysUser/delete")]
-        public async Task DeleteUser(DeleteUserInput input)
-        {
+        public async Task DeleteUser(DeleteUserInput input) {
             CheckDataScope(input.OrgId); // 数据范围检查
 
             var user = await _sysUserRep.GetFirstAsync(u => u.Id == input.Id);
@@ -133,8 +133,7 @@ namespace Admin.NET.Core.Service
         /// </summary>
         /// <returns></returns>
         [HttpGet("/sysUser/detail")]
-        public async Task<SysUser> GetUser(long id)
-        {
+        public async Task<SysUser> GetUser(long id) {
             return await _sysUserRep.GetFirstAsync(u => u.Id == id);
         }
 
@@ -144,8 +143,7 @@ namespace Admin.NET.Core.Service
         /// <param name="input"></param>
         /// <returns></returns>
         [HttpPost("/sysUser/setStatus")]
-        public async Task<int> SetUserStatus(UserInput input)
-        {
+        public async Task<int> SetUserStatus(UserInput input) {
             var user = await _sysUserRep.GetFirstAsync(u => u.Id == input.Id);
             if (user.UserType == UserTypeEnum.SuperAdmin)
                 throw Oops.Oh(ErrorCodeEnum.D1015);
@@ -164,8 +162,7 @@ namespace Admin.NET.Core.Service
         /// <param name="input"></param>
         /// <returns></returns>
         [HttpPost("/sysUser/grantRole")]
-        public async Task GrantUserRole(UserRoleInput input)
-        {
+        public async Task GrantUserRole(UserRoleInput input) {
             var user = await _sysUserRep.GetFirstAsync(u => u.Id == input.Id);
             if (user.UserType == UserTypeEnum.SuperAdmin)
                 throw Oops.Oh(ErrorCodeEnum.D1022);
@@ -183,8 +180,7 @@ namespace Admin.NET.Core.Service
         /// <param name="input"></param>
         /// <returns></returns>
         [HttpPost("/sysUser/grantOrg")]
-        public async Task GrantUserOrg(UserOrgInput input)
-        {
+        public async Task GrantUserOrg(UserOrgInput input) {
             await _sysCacheService.RemoveAsync(CacheConst.KeyOrgIdList + $"{input.Id}"); // 清除缓存
 
             CheckDataScope(input.OrgId); // 数据范围检查
@@ -197,8 +193,7 @@ namespace Admin.NET.Core.Service
         /// <param name="input"></param>
         /// <returns></returns>
         [HttpPost("/sysUser/changeUserPwd")]
-        public async Task<int> ChangeUserPwd(ChangePwdInput input)
-        {
+        public async Task<int> ChangeUserPwd(ChangePwdInput input) {
             var user = await _sysUserRep.GetFirstAsync(u => u.Id == _userManager.UserId);
             if (MD5Encryption.Encrypt(input.PasswordOld) != user.Password)
                 throw Oops.Oh(ErrorCodeEnum.D1004);
@@ -212,8 +207,7 @@ namespace Admin.NET.Core.Service
         /// <param name="input"></param>
         /// <returns></returns>
         [HttpPost("/sysUser/resetPwd")]
-        public async Task<int> ResetUserPwd(ResetPwdUserInput input)
-        {
+        public async Task<int> ResetUserPwd(ResetPwdUserInput input) {
             var user = await _sysUserRep.GetFirstAsync(u => u.Id == input.Id);
             user.Password = MD5Encryption.Encrypt(CommonConst.SysPassword);
             return await _sysUserRep.AsUpdateable(user).UpdateColumns(u => u.Password).ExecuteCommandAsync();
@@ -225,8 +219,7 @@ namespace Admin.NET.Core.Service
         /// <param name="input"></param>
         /// <returns></returns>
         [HttpGet("/sysUser/ownRole")]
-        public async Task<List<long>> GetUserOwnRole([FromQuery] UserInput input)
-        {
+        public async Task<List<long>> GetUserOwnRole([FromQuery] UserInput input) {
             return await _sysUserRoleService.GetUserRoleIdList(input.Id);
         }
 
@@ -236,8 +229,7 @@ namespace Admin.NET.Core.Service
         /// <param name="input"></param>
         /// <returns></returns>
         [HttpGet("/sysUser/ownOrg")]
-        public async Task<List<long>> GetUserOwnOrg([FromQuery] UserInput input)
-        {
+        public async Task<List<long>> GetUserOwnOrg([FromQuery] UserInput input) {
             return await _sysUserOrgService.GetUserOrgIdList(input.Id);
         }
 
@@ -246,8 +238,7 @@ namespace Admin.NET.Core.Service
         /// </summary>
         /// <returns></returns>
         [NonAction]
-        public async Task<List<long>> GetUserOrgIdList()
-        {
+        public async Task<List<long>> GetUserOrgIdList() {
             return await _sysOrgService.GetUserOrgIdList();
         }
 
@@ -257,10 +248,8 @@ namespace Admin.NET.Core.Service
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>
-        private async void CheckDataScope(long orgId)
-        {
-            if (!_userManager.SuperAdmin)
-            {
+        private async void CheckDataScope(long orgId) {
+            if (!_userManager.SuperAdmin) {
                 var dataScopes = await GetUserOrgIdList();
                 if (!dataScopes.Any(u => u == orgId))
                     throw Oops.Oh(ErrorCodeEnum.D1013);
