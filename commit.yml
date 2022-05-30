@@ -3,84 +3,90 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '77774dc5848d6bb29f9fb536a0597eca685eea8a'
-    oldFile: !uuid '5e7f7d8f41d657fba5af1bd223a84b8ff8312192'
+    newFile: !uuid '5157911dfb28a4d8c0b4865c6b4a1a008ba568aa'
+    oldFile: !uuid '77774dc5848d6bb29f9fb536a0597eca685eea8a'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '5197ae0093dfc4132aaa03aaabf63710af92d0a7'
-    oldFile: !uuid 'de9db69a0cd715767b3dda2cbca1ff1a599c5acc'
+    newFile: !uuid '63105bb7e94a96c8524c94a48b259a2579e29d8a'
+    oldFile: !uuid '5197ae0093dfc4132aaa03aaabf63710af92d0a7'
+  /Admin.NET/Admin.NET.Core/Admin.NET.Core.xml:
+    newFile: !uuid '65ca1e9154c49e2217e44ca88e34cb8d4d5cbf9a'
+    oldFile: !uuid '77fc139c9255a18cd48f656b4de554c23cd5a1a6'
+  /Admin.NET/Admin.NET.Core/Entity:
+    newFile: !uuid '71c63054a426145f870f044cd994d01ca3d110cc'
+    oldFile: !uuid 'b0df79cd7c312c383536b904ece1bd0e92f300a2'
+  /Admin.NET/Admin.NET.Core/Entity/SysDataResource.cs:
+    newFile: !uuid '81f33d6f7cb145a1507070842240f80cb709a9dd'
+    oldFile: null
+  /Admin.NET/Admin.NET.Core/Enum:
+    newFile: !uuid '01b12c6f44d242ef1080bb90bfb15b5d5c801512'
+    oldFile: !uuid '11d72084a678be345bd060faba43750cda9be20f'
+  /Admin.NET/Admin.NET.Core/Enum/ErrorCodeEnum.cs:
+    newFile: !uuid '2be2bda1298100465418273dcb969c38ddfc254c'
+    oldFile: !uuid '5383081e94632728a84ac039937cefd8b09af0b2'
+  /Admin.NET/Admin.NET.Core/SeedData:
+    newFile: !uuid 'f0a16a990de0bf3cdd12bb43cb732de242039dcb'
+    oldFile: !uuid 'a5558d6912132ccbc160b896fb355e8e5ecaad3a'
+  /Admin.NET/Admin.NET.Core/SeedData/SysDataResourceSeedData.cs:
+    newFile: !uuid '00fb10aec5d5daa2fb1e01d70c06a3e35f2224cd'
+    oldFile: null
+  /Admin.NET/Admin.NET.Core/SeedData/SysMenuSeedData.cs:
+    newFile: !uuid 'af20076d716c5432675d390ae7fb688e56bea250'
+    oldFile: !uuid 'aa3ee1f81cbc710fec210b752a6900e90f987098'
   /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid '1734cdea960ad28e201a11e0c54424e7200f69ac'
-    oldFile: !uuid 'd8bc36a20abdcb0371394fbfb233b744e30a35d2'
-  /Admin.NET/Admin.NET.Core/Service/Org:
-    newFile: !uuid '97cab5561cb03bae240807ecd32ce9c9306a17ca'
-    oldFile: !uuid 'd52ce0ef7416500713d1085c8000765e4cbd6708'
-  /Admin.NET/Admin.NET.Core/Service/Org/SysOrgService.cs:
-    newFile: !uuid '7a2ee1696d184b735de388d4e7f4ddd56f553bf7'
-    oldFile: !uuid '2414cf3cb89928687216acfb4759520ac5e14b6c'
+    newFile: !uuid 'ab201aa90c6f07f295657e5e4f9230012a519ae7'
+    oldFile: !uuid '1734cdea960ad28e201a11e0c54424e7200f69ac'
+  /Admin.NET/Admin.NET.Core/Service/DataResources:
+    newFile: !uuid '2a0912affc0c07df0351cf16be3c46555d9d89ae'
+    oldFile: null
+  /Admin.NET/Admin.NET.Core/Service/DataResources/Dto:
+    newFile: !uuid 'c117dba9a8968d090df414541868280c52df0792'
+    oldFile: null
+  /Admin.NET/Admin.NET.Core/Service/DataResources/Dto/DataResourceInput.cs:
+    newFile: !uuid '7ed1bad8e1b1df784909d92b5cb002e5a63dbb8e'
+    oldFile: null
+  /Admin.NET/Admin.NET.Core/Service/DataResources/SysDataResourceService.cs:
+    newFile: !uuid '38918f246c274405d1d0d1592b38bb2a3cde93e6'
+    oldFile: null
   /Vben2:
-    newFile: !uuid '3ae1b38189a95fd03483bb068e302055d981e8d0'
-    oldFile: !uuid '2fef6d52999cd95202735af5f1dbd755f2aa322b'
+    newFile: !uuid 'd4c493c5e1683a4454a5f5868e4d4d699fd08032'
+    oldFile: !uuid '3ae1b38189a95fd03483bb068e302055d981e8d0'
   /Vben2/src:
-    newFile: !uuid '4ab5f57cfcc2d5f2574c7dc91c67b79f09f89e17'
-    oldFile: !uuid 'f4ff8664cb828267c8f8d6a72df24db06c23a36f'
+    newFile: !uuid '22f52893c4e5590d0462b930ab4cdc003d0f546d'
+    oldFile: !uuid '4ab5f57cfcc2d5f2574c7dc91c67b79f09f89e17'
+  /Vben2/src/api:
+    newFile: !uuid '67cb77ad78245df7d039e31f6a4b9ce1fb28ad18'
+    oldFile: !uuid '044a0d6ff2c7b9702cd268ce79d74fa1e561a09c'
+  /Vben2/src/api/sys:
+    newFile: !uuid '2cd41122678984c6b2c4862234258630736e51f3'
+    oldFile: !uuid 'd1ad1c6fe0f21f48f404281169c44884f2a059e5'
+  /Vben2/src/api/sys/admin.ts:
+    newFile: !uuid '7f978b74d21dde978973b8652c8dfc2bbf6badaf'
+    oldFile: !uuid 'fcff7ac27042b2e1b5106c414e9ec812eb4ca150'
   /Vben2/src/views:
-    newFile: !uuid '34e7f4d89e21c0cacf1d3b062b44a6fdabc6e72b'
-    oldFile: !uuid '4911136ddea2670c5a2f1c764378a953027b8ccf'
+    newFile: !uuid '7db9a87a72241b57ccc1ee092b8fe730bd9541bf'
+    oldFile: !uuid '34e7f4d89e21c0cacf1d3b062b44a6fdabc6e72b'
   /Vben2/src/views/sys:
-    newFile: !uuid 'e3e169fcaf0721a7394ddd6c389fc25d66954d2e'
-    oldFile: !uuid '737c1bf4b2c2415d4293407c9a94f00ee9cea5ee'
+    newFile: !uuid 'd776d79e3ec5fc8fb738567d17bdb86336d0fde8'
+    oldFile: !uuid 'e3e169fcaf0721a7394ddd6c389fc25d66954d2e'
   /Vben2/src/views/sys/admin:
-    newFile: !uuid '51262465fe7f1af256bb4eae37454ea5663abd20'
-    oldFile: !uuid '95fdfc28cd1e2d74059f5771ae130b19f345cd7b'
-  /Vben2/src/views/sys/admin/config:
-    newFile: !uuid 'df5b08978f4a5437eacc6bc2983e30ed45c70600'
-    oldFile: !uuid '8c639ac20f4db03a6e873f9d8485e3f104a10e7c'
-  /Vben2/src/views/sys/admin/config/index.vue:
-    newFile: !uuid '60dfc2b3f102186a37c90c9a847f349a1086806a'
-    oldFile: !uuid 'f0a6255d0083a7631f0bec5cc67c1f0205f87607'
-  /Vben2/src/views/sys/admin/database:
-    newFile: !uuid 'af69c9f7b84a183f953af9497fae6a8ab2554598'
-    oldFile: !uuid '96961350d4459361d7793c911444fcb5090f7a06'
-  /Vben2/src/views/sys/admin/database/index.vue:
-    newFile: !uuid 'bd82c00c497eefa1b7a4139e80b51bb6c9b74b86'
-    oldFile: !uuid '8889f5dde9fe55689d3d0010c9f4e9691cc7c34e'
-  /Vben2/src/views/sys/admin/dict:
-    newFile: !uuid 'c304dad7f2c21ff0e4a24826c25cc18a6a9c4c85'
-    oldFile: !uuid '81f0bc5d3bd53321e3eba2bb59be1dadd443e1b3'
-  /Vben2/src/views/sys/admin/dict/index.vue:
-    newFile: !uuid '07420baee2ea5dd198d1a8bfbb7db1e1d1de818c'
-    oldFile: !uuid '86812e0172979184d55563753ed9ecbd2f523f5f'
-  /Vben2/src/views/sys/admin/menu:
-    newFile: !uuid '3e5ecca121a25d259e2c555f6951b93c3266230f'
-    oldFile: !uuid '9ba1964daadd2f8d7e201750bd0eb9f50a86fe7c'
-  /Vben2/src/views/sys/admin/menu/index.vue:
-    newFile: !uuid 'b43fd70e24510ec5b24e41e78a5fd28bb9bf99d5'
-    oldFile: !uuid '419f591b75f0c35e5331f9512feb4d93a47f6d41'
-  /Vben2/src/views/sys/admin/org:
-    newFile: !uuid '4eee7208d3e175baabf306d83920afe8fde96c94'
-    oldFile: !uuid '5fd3d2b5fe6d9b9864361688c14d3f8e4e3412d2'
-  /Vben2/src/views/sys/admin/org/OrgModal.vue:
-    newFile: !uuid '058c934199235882e3f60694120ea2493239c22e'
-    oldFile: !uuid '9eca5195bebd09a641bb1eeb227e17a951ea3e09'
-  /Vben2/src/views/sys/admin/org/index.vue:
-    newFile: !uuid 'aa47c6f3894e9da8e886a8c0f8410811defc57f4'
-    oldFile: !uuid '181f90f7cfe86cbc1c86aafd7e4d6ec63bcc450a'
-  /Vben2/src/views/sys/admin/org/org.data.ts:
-    newFile: !uuid 'e70ebd3cc971e87543ef20d6103f8b0478943393'
-    oldFile: !uuid '8dc7b2c81684d8833acd92890b86c615823c4415'
-  /Vben2/src/views/sys/admin/pos:
-    newFile: !uuid '4937f1efc084dc9329f43982f6acba18b572732c'
-    oldFile: !uuid '6ffc5a4531266bdabe40564b36118b0ee5b6576b'
-  /Vben2/src/views/sys/admin/pos/index.vue:
-    newFile: !uuid 'ef85de6bd441f1e0753dcb6e8c46ed219f6a73e4'
-    oldFile: !uuid 'c6843381ac91dd5696c163dea24f463b7af7aafb'
-  /Vben2/src/views/sys/admin/user:
-    newFile: !uuid '9f5e492d2813b36896d4c19b8497f9348667f58d'
-    oldFile: !uuid '502dbbef0b6951de5011457a1b76448e1a6cfba3'
-  /Vben2/src/views/sys/admin/user/OrgTree.vue:
-    newFile: !uuid '9684f39d065ee9078c2a0fdef2acd7c6f109cec9'
-    oldFile: !uuid '8bb57dcb91dc0bc05940857bd654bd2cbf3a0af5'
-gitCommitId: !uuid 'c1fed0194ab3c8eee0ab5a8b8b264382b0def377'
+    newFile: !uuid '2b57487701d98796aa8332ca3144cd41eeb39837'
+    oldFile: !uuid '51262465fe7f1af256bb4eae37454ea5663abd20'
+  /Vben2/src/views/sys/admin/dataResource:
+    newFile: !uuid '0bb26d6ae884a5e996fc628738792f9227fc5b45'
+    oldFile: null
+  /Vben2/src/views/sys/admin/dataResource/DataResourceModal.vue:
+    newFile: !uuid '1efe4bb9887e5285d90d1b30cf133d77eee42d70'
+    oldFile: null
+  /Vben2/src/views/sys/admin/dataResource/DataResourceTree.vue:
+    newFile: !uuid '4e815fa48cc9f2100dbc8390d18644feb81ca11b'
+    oldFile: null
+  /Vben2/src/views/sys/admin/dataResource/dataResource.data.ts:
+    newFile: !uuid '605cb8348d1c70e1f51fc9f5f3bea02971b2343e'
+    oldFile: null
+  /Vben2/src/views/sys/admin/dataResource/index.vue:
+    newFile: !uuid '6c355c93d22bf17cde3afc8a2438a7403ec3ae0a'
+    oldFile: null
+gitCommitId: !uuid 'dbef785469e84c821782bdf203e8d502ddec52dd'
 renames: {
   }
-revisionId: 34
+revisionId: 35
