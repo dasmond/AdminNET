@@ -78,6 +78,9 @@ namespace Admin.NET.Application
             // 员工信息
             var empInfo = _sysEmpService.GetEmpInfo(user.Id).Result;
 
+            // 获取数据权限
+            var dataScopes = JsonUtil.ToJson(_sysUserService.GetUserDataScopeIdList(user.Id).Result);
+
             // 生成Token令牌
             //var accessToken = await _jwtBearerManager.CreateTokenAdmin(user);
             var accessToken = JWTEncryption.Encrypt(new Dictionary<string, object>
@@ -89,6 +92,7 @@ namespace Admin.NET.Application
                 {ClaimConst.CLAINM_SUPERADMIN, user.AdminType},
                 {ClaimConst.CLAINM_ORGID, empInfo.OrgId},
                 {ClaimConst.CLAINM_ORGNAME, empInfo.OrgName},
+                {ClaimConst.DATA_SCOPES, dataScopes}
             });
 
             // 设置Swagger自动登录

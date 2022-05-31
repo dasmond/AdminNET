@@ -36,5 +36,10 @@
         /// 用户组织机构名称
         /// </summary>
         public const string CLAINM_ORGNAME = "OrgName";
+
+        /// <summary>
+        /// 数据权限
+        /// </summary>
+        public const string DATA_SCOPES = "DataScopes";
     }
 }
