@@ -3,96 +3,21 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid 'ef31454d8e6a13d837afca6715692665e2570dfe'
-    oldFile: !uuid '33f21b901383fc7b9a0e4946660d641b9c4f1ef4'
+    newFile: !uuid '898636b14e22067bc99b899fb2e456b03d695562'
+    oldFile: !uuid 'ef31454d8e6a13d837afca6715692665e2570dfe'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid 'aefd684f6f2f5086f36aba6fd73ff89a58f63eac'
-    oldFile: !uuid '3ce2f8522ff1b645bb9fb7e1de5b430c8de14d94'
-  /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
-    newFile: !uuid '4a28a1d4dadc7df17a86b9cf21320afcab184e9b'
-    oldFile: !uuid '1fa7070f3b13699a5f115e15878ce2b19bfc57b8'
-  /Admin.NET/Admin.NET.Core/Admin.NET.Core.xml:
-    newFile: !uuid '5db4bdf480dfc8433520346e5b9ee523eaa578f1'
-    oldFile: !uuid '8d4416f6dc68a08e3a143d78ab039f797a259cc5'
-  /Admin.NET/Admin.NET.Core/Entity:
-    newFile: !uuid '5326b3b5d99b64570525d3a6c3a638630878b27c'
-    oldFile: !uuid 'f01d46a17c14f84bc4187bb5d6d4cb4027852461'
-  /Admin.NET/Admin.NET.Core/Entity/SysDataResource.cs:
-    newFile: !uuid '8cd551e2de5d5fa2afb2223f2821fa37cc1a686a'
-    oldFile: !uuid '81f33d6f7cb145a1507070842240f80cb709a9dd'
-  /Admin.NET/Admin.NET.Core/Entity/SysDistrict.cs:
-    newFile: null
-    oldFile: !uuid 'cb29df48da4b2fb1623f3a2ea2207f763524faa8'
-  /Admin.NET/Admin.NET.Core/SeedData:
-    newFile: !uuid '798191ff2e1b37893943b17aef9c65119f356032'
-    oldFile: !uuid '8d2ba87e06012505dc6573754470784727faa370'
-  /Admin.NET/Admin.NET.Core/SeedData/SysDistrictSeedData.cs:
-    newFile: null
-    oldFile: !uuid '645751a2f9b0871b97fdd3eabe57f8c41b42093a'
-  /Admin.NET/Admin.NET.Core/SeedData/SysMenuSeedData.cs:
-    newFile: !uuid 'c4f490880780886313d4691b52e4f5ba671d200e'
-    oldFile: !uuid '65eeedf1db560fe2f971fce1ea889d3fb5004203'
+    newFile: !uuid 'a8d279ecbf67818676f747185f5f529710a8ed03'
+    oldFile: !uuid 'aefd684f6f2f5086f36aba6fd73ff89a58f63eac'
   /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid '7b428d2f644332b2472c482b6a3672d31d00ce69'
-    oldFile: !uuid 'c8fbfff6c951be31cf45986e151cf499d7bb5392'
-  /Admin.NET/Admin.NET.Core/Service/DataResources:
-    newFile: !uuid 'ed44af550249bfce3e24bb2e257fa2a25cd8a059'
-    oldFile: !uuid '2a0912affc0c07df0351cf16be3c46555d9d89ae'
-  /Admin.NET/Admin.NET.Core/Service/DataResources/SysDataResourceService.cs:
-    newFile: !uuid '3d3d2539167fb10c466373343e1e0a09a424c5bd'
-    oldFile: !uuid '38918f246c274405d1d0d1592b38bb2a3cde93e6'
-  /Admin.NET/Admin.NET.Core/Service/District:
-    newFile: null
-    oldFile: !uuid '20c64ec5fa65c281302b2e6f5bf29a3eb5b23533'
-  /Admin.NET/Admin.NET.Core/Service/District/Dto:
-    newFile: null
-    oldFile: !uuid '70d228955bf5c62154ccbe4371aed9f70d319d9f'
-  /Admin.NET/Admin.NET.Core/Service/District/Dto/DistrictInput.cs:
-    newFile: null
-    oldFile: !uuid '19464ed8430ccc03de7d36d57c5befca2ce9e8d6'
-  /Admin.NET/Admin.NET.Core/Service/District/SysDistrictService.cs:
-    newFile: null
-    oldFile: !uuid '6fb04b1fd635083c8a3c4ceea960db822decb44e'
-  /Vben2:
-    newFile: !uuid '85d7f43e9e6903447cc42c669ad3d6d17115d28c'
-    oldFile: !uuid '644b9d55b662853b7ef21310fb3c65eca18d0fdc'
-  /Vben2/src:
-    newFile: !uuid '315029e39d0b439556a2be248f1b9056d3e38775'
-    oldFile: !uuid 'ac749bf10072bbc536d3c13c59af7d315e85dadb'
-  /Vben2/src/api:
-    newFile: !uuid 'af41b7f6d6c3bbd11ee7e8afc9874416a90d3427'
-    oldFile: !uuid '34863fd63514020f407c97893d3d97b2c70a8b19'
-  /Vben2/src/api/sys:
-    newFile: !uuid '0669317e85270a7adeb8ea76a9fe02661c11a397'
-    oldFile: !uuid 'f4ab9567545268ba5c0b27e932b3bc786c40666e'
-  /Vben2/src/api/sys/admin.ts:
-    newFile: !uuid '0def4e7caf40664a210e5ec56d2f506b7d6c618a'
-    oldFile: !uuid 'e21559e8db91f58fedc3fedc1bcfa83a3639df5c'
-  /Vben2/src/views:
-    newFile: !uuid '47664a94138da415fbfc6e4eae23ac1d445703e0'
-    oldFile: !uuid '6da88dd829efef6ab3ceffeb89087374b12e65ce'
-  /Vben2/src/views/sys:
-    newFile: !uuid '93e6dcca582ae757f1db78073987b939b1e006b4'
-    oldFile: !uuid '3f5cea4faeea721979fb8e3dbd4eb1b57b441c1b'
-  /Vben2/src/views/sys/admin:
-    newFile: !uuid 'c7e616a22b315f02b309ca95b2c0a45a6c414ce6'
-    oldFile: !uuid '1c3e4773dc9d8c3559a3a76db695eb9f6f38fef9'
-  /Vben2/src/views/sys/admin/district:
-    newFile: null
-    oldFile: !uuid '603750c8161ffa34d234df5a09cbc771902f980c'
-  /Vben2/src/views/sys/admin/district/DistrictModal.vue:
-    newFile: null
-    oldFile: !uuid '5122e457504ef724fb0eb0ea764272cfc47ca9f0'
-  /Vben2/src/views/sys/admin/district/DistrictTree.vue:
-    newFile: null
-    oldFile: !uuid 'd15421da2b2b66a0dcf4ae983e8c89747a636bb4'
-  /Vben2/src/views/sys/admin/district/district.data.ts:
-    newFile: null
-    oldFile: !uuid '116a0938789a15085b7b2d40b02b7ee7bf1acf81'
-  /Vben2/src/views/sys/admin/district/index.vue:
-    newFile: null
-    oldFile: !uuid '477688e6504f325bab35432291f3ce3dd00666bf'
-gitCommitId: !uuid 'ead9922b5422c6b1f11b6a99249ec5ea78ad4e45'
+    newFile: !uuid '6f9eb5f5e77ba7f66d8dcd82dc4f11fca675ca44'
+    oldFile: !uuid '7b428d2f644332b2472c482b6a3672d31d00ce69'
+  /Admin.NET/Admin.NET.Core/Service/Tenant:
+    newFile: !uuid 'd4e07c0bd72ba7a2ef93308b9db5cbaf37effbfb'
+    oldFile: !uuid 'bec43a57793b7d729d7e4abf6fff462cda973450'
+  /Admin.NET/Admin.NET.Core/Service/Tenant/SysTenantService.cs:
+    newFile: !uuid 'b6aa3764021fa63f8b68bcc5435214480199ae17'
+    oldFile: !uuid '95a6384307519834d1cb13627f29630261e28404'
+gitCommitId: !uuid '4dbcaf8db548ab4c3b8c0dd513e7c78b9f9ad477'
 renames: {
   }
-revisionId: 39
+revisionId: 40
