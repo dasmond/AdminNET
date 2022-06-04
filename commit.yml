@@ -2,43 +2,76 @@
 branches: {
   }
 fileChange:
-  /backend:
-    newFile: !uuid '82a2983c7a918814356f21fb774dc85a3729fcc2'
-    oldFile: !uuid '6b5a6b5df5ec05cb0ae5639185de61436913d6a2'
-  /backend/Admin.NET.Application:
-    newFile: !uuid 'ff249261dd0e5886737b118f3d073ec9730c6f20'
-    oldFile: !uuid 'f7602d901c5a6109620b5a372dee4417f83c0946'
-  /backend/Admin.NET.Application/Service:
-    newFile: !uuid '64fc8c8fc26bf504357339345c8601ec6965d0f4'
-    oldFile: !uuid 'aa3d5b0af7875ca914f3972c092ad11a64c96b0c'
-  /backend/Admin.NET.Application/Service/System:
-    newFile: !uuid 'e6778cf7739ed4eb0fc76379405ed458ebb8ede5'
-    oldFile: !uuid 'b805e2bc5ae756f1f82c6995e4d3070117b56790'
-  /backend/Admin.NET.Application/Service/System/Auth:
-    newFile: !uuid '84f549f43a9ec7a16ac589eaeff878fff303bb33'
-    oldFile: !uuid '0ed68789d3240e09a7c8110f2294afc4e34402a5'
-  /backend/Admin.NET.Application/Service/System/Auth/AuthService.cs:
-    newFile: !uuid '1255efe83811557113d93fe49be9d6a7ca25c8a4'
-    oldFile: !uuid 'cd82feacd524db4954506bcde89490eeeac12211'
-  /backend/Admin.NET.Core:
-    newFile: !uuid '50608ff814485691d44fe47b9ff18f16ab2afc48'
-    oldFile: !uuid 'fc3ce12d8ca79398d5fa3f4619b7ee74e91779c8'
-  /backend/Admin.NET.Core/Const:
-    newFile: !uuid '290c017dc3fab63b6a2d2110ea6f276d21362e72'
-    oldFile: !uuid '7e68a3279a8f3bbc58235e148bef59e1ba5c6b1a'
-  /backend/Admin.NET.Core/Const/ClaimConst.cs:
-    newFile: !uuid '2a6549bae0eb52ac1df339e023276f588f6df283'
-    oldFile: !uuid '3dfef0e205e5f9585e790740452454d1e487bced'
-  /backend/Admin.NET.EntityFramework.Core:
-    newFile: !uuid 'cafc7e94e5275b8c122ab9fa6c2600b3b9d0d4c0'
-    oldFile: !uuid '1fb89b346cacaad6cf45731d641be6489c48f516'
-  /backend/Admin.NET.EntityFramework.Core/DbContexts:
-    newFile: !uuid '5e7e695e15d169d27010dabd5218d74f65793de3'
-    oldFile: !uuid '036e7c32a21f6fbf8865dfb79a5b711eb8eed173'
-  /backend/Admin.NET.EntityFramework.Core/DbContexts/DefaultDbContext.cs:
-    newFile: !uuid 'ac720362cb5707504c88d87c234ce9d041ff4a6e'
-    oldFile: !uuid 'ddb3058e36182907fb103b89bc97d99e63cf6cb0'
-gitCommitId: !uuid 'd7949cfa05f20ebf06e7a121755f9e2607a5cc73'
+  /README.md:
+    newFile: !uuid 'f8207b455f4f48de6d4807cd685a50ed6b91e6e2'
+    oldFile: !uuid 'ead55dc427134e02de98c1b5bca8050193ea058c'
+  /doc:
+    newFile: !uuid '5024f62abdadcb54b44fe9d6ab91f85913cd962a'
+    oldFile: !uuid 'c8908369c76c0b4741ada31b73cb6fc2ac53b97b'
+  /doc/Admin.NET起步.md:
+    newFile: !uuid '87ce1e051ea485bfaf0dab51af3aa92e0e351fa5'
+    oldFile: null
+  /doc/img:
+    newFile: !uuid '0d0caab351c7b0b47cff1297da2d7c0f50a46898'
+    oldFile: !uuid '84995c707cd92f071d0b993ebe0c44180a324074'
+  /doc/img/20220512222713.png:
+    newFile: !uuid '68ee6f2ff9e0bb15985d1e274ff18c1193b6ea08'
+    oldFile: null
+  /doc/img/20220512223028.png:
+    newFile: !uuid '0cc94a55bdcc69b93cb0c93c7b101560ce1900d0'
+    oldFile: null
+  /doc/img/20220512223242.png:
+    newFile: !uuid 'fa9453554840c723f735401c9c69a897549ab86d'
+    oldFile: null
+  /doc/img/20220512223714.png:
+    newFile: !uuid '2fb9960bb5424f1e5262a8b6501f33fd8bfdc38f'
+    oldFile: null
+  /doc/img/20220512224536.png:
+    newFile: !uuid '3b56b183a5405e05fbd4c61397b3cb5f052180cd'
+    oldFile: null
+  /doc/img/20220512231039.png:
+    newFile: !uuid '209d5cac3619ee9bc5688cafc6c206b0eaf02f49'
+    oldFile: null
+  /doc/img/20220512231319.png:
+    newFile: !uuid '12dad93067503cbf26107d41ad3c002d87061986'
+    oldFile: null
+  /doc/img/20220512231856.png:
+    newFile: !uuid '24cb22cc548050b04a89711c7ecd39d4015a9a78'
+    oldFile: null
+  /doc/img/20220512234454.png:
+    newFile: !uuid '19221a493256ee45ed661b0ed4960221982209ab'
+    oldFile: null
+  /doc/img/20220512235221.png:
+    newFile: !uuid '37a05ec85c4bb77584d2f2b9d5ec324e4ebb0f21'
+    oldFile: null
+  /doc/img/20220514080846.png:
+    newFile: !uuid '547eb1fe1a9fe40edd4a923d86d838d7e97a28b7'
+    oldFile: null
+  /doc/img/20220514081956.png:
+    newFile: !uuid '9e8a2a387a385521b32e676cf17d10acc8113709'
+    oldFile: null
+  /doc/img/20220514094701.png:
+    newFile: !uuid 'bc08d5f9045c31d44f6217b62312bcd41e3f13af'
+    oldFile: null
+  /doc/img/20220514095024.png:
+    newFile: !uuid 'ac91e1e19ac45003a655399112dad0a0b5272cae'
+    oldFile: null
+  /doc/img/20220514095358.png:
+    newFile: !uuid '431722954d370f2078f9fb5ef0cc49b7d5821c2d'
+    oldFile: null
+  /doc/img/20220514095922.png:
+    newFile: !uuid '071fc29bac1aadc4e010be2ca1e1aa6f0d31c596'
+    oldFile: null
+  /doc/img/20220514101806.png:
+    newFile: !uuid 'e9e2f50af434ec959df78f32fc4ed3638944c06a'
+    oldFile: null
+  /doc/img/20220514114134.png:
+    newFile: !uuid '69df9bb7593e1d1784638760d6fa1b9a65b6be26'
+    oldFile: null
+  /doc/img/20220514114748.png:
+    newFile: !uuid '4c930c8fd1086a4a4168371fee108b8fcf15c1db'
+    oldFile: null
+gitCommitId: !uuid '01952625fd653c673b573bfd1f3929a0220decf8'
 renames: {
   }
-revisionId: 723
+revisionId: 724
