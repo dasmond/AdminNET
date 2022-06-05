@@ -150,7 +150,7 @@
        */
       selectedByDefault() {
         this.form.getFieldDecorator('nameSpace', {
-          initialValue: 'Admin.NET.Core'
+          initialValue: 'Admin.NET.Application'
         })
         // this.form.getFieldDecorator('tablePrefix', { valuePropName: 'checked', initialValue: 'N' })
         this.form.getFieldDecorator('generateType', {
