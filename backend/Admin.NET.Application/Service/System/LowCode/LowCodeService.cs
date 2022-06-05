@@ -352,6 +352,15 @@ namespace Furion.Extras.Admin.NET.Service.LowCode
                     var SourceFile = StringTemplate.Format(_configuration.GetValue<string>($"LowCodeConfig:{config_index}:Source:File"), config_data);
                     var TargetFile = StringTemplate.Format(_configuration.GetValue<string>($"LowCodeConfig:{config_index}:Target:File"), config_data);
                     var TargetDir = StringTemplate.Format(_configuration.GetValue<string>($"LowCodeConfig:{config_index}:Target:Dir"), config_data);
+                    var IsFrontend = _configuration.GetValue<bool?>($"LowCodeConfig:{config_index}:IsFrontend");
+
+                    if (IsFrontend.HasValue && IsFrontend.Value == true) // 适应前端首字母小写
+                    {
+                        tableFieldList.ForEach(u =>
+                        {
+                            u.ColumnName = u.ColumnName.Substring(0, 1).ToLower() + u.ColumnName[1..];
+                        });
+                    }
 
                     #region 执行代码生成
                     var tContent = File.ReadAllText(SourceFile);
