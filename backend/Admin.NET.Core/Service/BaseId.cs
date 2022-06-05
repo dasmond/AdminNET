@@ -1,7 +1,12 @@
 ﻿using Furion.DataValidation;
+using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace Admin.NET.Application
+namespace Admin.NET.Core.Service
 {
     /// <summary>
     /// 主键Id映射DTO

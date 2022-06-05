@@ -1,7 +1,6 @@
 @model Admin.NET.Application.Service.System.LowCode.Dto.Front_CodeGenerate
-using Admin.NET.Core;
+using Admin.NET.Core.Service;
 using Admin.NET.Core.Util.LowCode.Dto;
-using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace @Model.NameSpace
@@ -47,7 +46,7 @@ if (@column.WhetherRequired == "Y"){
         @:/// @column.ColumnComment
         @:/// </summary>
         @:[Required(ErrorMessage = "@(@column.ColumnComment)不能为空")]
-        @:public override @column.NetType @column.ColumnName { get; set; }
+        @:public override @(@column.DtoNetType) @column.ColumnName { get; set; }
         @:
 }
 }

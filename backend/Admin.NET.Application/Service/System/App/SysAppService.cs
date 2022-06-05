@@ -1,4 +1,5 @@
 ﻿using Admin.NET.Core;
+using Admin.NET.Core.Service;
 using Furion.DatabaseAccessor;
 using Furion.DatabaseAccessor.Extensions;
 using Furion.DependencyInjection;

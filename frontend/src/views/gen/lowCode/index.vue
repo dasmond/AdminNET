@@ -237,7 +237,7 @@ export default {
      */
     codeGenerateDelete(record) {
       this.Loading = true
-      codeGenerateDelete([{ id: record.id }])
+      lowCodeDelete([{ id: record.id }])
         .then((res) => {
           if (res.success) {
             this.$message.success('删除成功')

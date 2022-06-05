@@ -1,19 +1,14 @@
 @model Admin.NET.Application.Service.System.LowCode.Dto.Front_CodeGenerate
-using Admin.NET.Application.Entity;
-using Admin.NET.Application.Service.System.File;
-using Admin.NET.Core;
+using @(Model.NameSpace).Entity;
+using Admin.NET.Core.Util.LowCode;
 using Furion.DatabaseAccessor;
-using Furion.DatabaseAccessor.Extensions;
 using Furion.DependencyInjection;
 using Furion.DynamicApiController;
 using Furion.FriendlyException;
 using Mapster;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Dynamic.Core;
-using System.Threading.Tasks;
 
 namespace @Model.NameSpace
 {
@@ -73,7 +68,7 @@ if(@column.EffectType == "fk" && @column.FkEntityName != "" && @column.FkColumnN
             var @(@Model.CamelizeClassName)s = await _@(@Model.CamelizeClassName)Rep.DetachedEntities
 @foreach (var column in Model.TableField){    
 if (@column.QueryWhether == "Y"){
-if (@column.NetType == "string"){
+if (@column.NetType.ToLower() == "string"){
 if (@column.QueryType == "like"){
                                      @:.Where(!string.IsNullOrEmpty(input.@column.ColumnName), u => EF.Functions.Like(u.@(@column.ColumnName), $"%{input.@(@column.ColumnName).Trim()}%"))
 } else {

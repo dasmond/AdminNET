@@ -2,7 +2,9 @@ using Admin.NET.Application;
 using Admin.NET.Web.Core;
 
 var builder = WebApplication.CreateBuilder(args).Inject();
-builder.Host.UseSerilogDefault();
+builder.Host.UseSerilogDefault().ConfigureAppConfiguration((hostingContext, config) => {
+    config.AddJsonFile("applicationsettings.json", optional: true, reloadOnChange: true);
+});
 
 // ¹¤×÷Á÷×¢²á
 builder.Services.AddWorkflow(options =>

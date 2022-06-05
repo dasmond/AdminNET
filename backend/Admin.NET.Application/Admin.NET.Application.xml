@@ -4,14 +4,29 @@
         <name>Admin.NET.Application</name>
     </assembly>
     <members>
-        <member name="T:Admin.NET.Application.BaseId">
+        <member name="T:Admin.NET.Application.Entity.YouKe">
             <summary>
-            主键Id映射DTO
+            游客表
             </summary>
         </member>
-        <member name="P:Admin.NET.Application.BaseId.Id">
+        <member name="P:Admin.NET.Application.Entity.YouKe.Descript">
             <summary>
-            主键Id
+            描述
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.Entity.YouKe.HeadImage">
+            <summary>
+            头像
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.Entity.YouKe.Address">
+            <summary>
+            地区
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.Entity.YouKe.FullName">
+            <summary>
+            用户名
             </summary>
         </member>
         <member name="P:Admin.NET.Application.AppPageInput.Name">
@@ -142,7 +157,7 @@
             <param name="input"></param>
             <returns></returns>
         </member>
-        <member name="M:Admin.NET.Application.SysAppService.DeleteApp(Admin.NET.Application.BaseId)">
+        <member name="M:Admin.NET.Application.SysAppService.DeleteApp(Admin.NET.Core.Service.BaseId)">
             <summary>
             删除系统应用
             </summary>
@@ -2569,51 +2584,6 @@
             <param name="fileLocation">文件存储位置</param>
             <returns></returns>
         </member>
-        <member name="P:Admin.NET.Application.Service.System.LowCode.Dto.ContrastLowCode_Database.TableName">
-            <summary>
-            表名
-            </summary>
-        </member>
-        <member name="P:Admin.NET.Application.Service.System.LowCode.Dto.ContrastLowCode_Database.ClassName">
-            <summary>
-            类名
-            </summary>
-        </member>
-        <member name="P:Admin.NET.Application.Service.System.LowCode.Dto.ContrastLowCode_Database.TableDesc">
-            <summary>
-            表描述
-            </summary>
-        </member>
-        <member name="P:Admin.NET.Application.Service.System.LowCode.Dto.ContrastLowCode_Database.FieldName">
-            <summary>
-            字段名称
-            </summary>
-        </member>
-        <member name="P:Admin.NET.Application.Service.System.LowCode.Dto.ContrastLowCode_Database.DbType">
-            <summary>
-            数据类型
-            </summary>
-        </member>
-        <member name="P:Admin.NET.Application.Service.System.LowCode.Dto.ContrastLowCode_Database.DbTypeName">
-            <summary>
-            数据类型
-            </summary>
-        </member>
-        <member name="P:Admin.NET.Application.Service.System.LowCode.Dto.ContrastLowCode_Database.DtoTypeName">
-            <summary>
-            数据类型
-            </summary>
-        </member>
-        <member name="P:Admin.NET.Application.Service.System.LowCode.Dto.ContrastLowCode_Database.DbParam">
-            <summary>
-            数据类型补充参数
-            </summary>
-        </member>
-        <member name="P:Admin.NET.Application.Service.System.LowCode.Dto.ContrastLowCode_Database.IsRequired">
-            <summary>
-            是否必填
-            </summary>
-        </member>
         <member name="T:Admin.NET.Application.FormAddDto">
             <summary>
             表单添加
@@ -2957,7 +2927,7 @@
             <param name="input"></param>
             <returns></returns>
         </member>
-        <member name="M:Admin.NET.Application.FormService.Delete(Admin.NET.Application.BaseId)">
+        <member name="M:Admin.NET.Application.FormService.Delete(Admin.NET.Core.Service.BaseId)">
             <summary>
             删除表单
             </summary>
@@ -2970,14 +2940,14 @@
             <param name="input"></param>
             <returns></returns>
         </member>
-        <member name="M:Admin.NET.Application.FormService.Get(Admin.NET.Application.BaseId)">
+        <member name="M:Admin.NET.Application.FormService.Get(Admin.NET.Core.Service.BaseId)">
             <summary>
             获取单一实体
             </summary>
             <param name="Input"></param>
             <returns></returns>
         </member>
-        <member name="M:Admin.NET.Application.FormService.GetView(Admin.NET.Application.BaseId)">
+        <member name="M:Admin.NET.Application.FormService.GetView(Admin.NET.Core.Service.BaseId)">
             <summary>
             获取单一实体查看
             </summary>
@@ -3023,7 +2993,7 @@
             <param name="input"></param>
             <returns></returns>
         </member>
-        <member name="M:Admin.NET.Application.IFormService.Delete(Admin.NET.Application.BaseId)">
+        <member name="M:Admin.NET.Application.IFormService.Delete(Admin.NET.Core.Service.BaseId)">
             <summary>
             删除表单
             </summary>
@@ -3036,14 +3006,14 @@
             <param name="input"></param>
             <returns></returns>
         </member>
-        <member name="M:Admin.NET.Application.IFormService.Get(Admin.NET.Application.BaseId)">
+        <member name="M:Admin.NET.Application.IFormService.Get(Admin.NET.Core.Service.BaseId)">
             <summary>
             获取单一实体
             </summary>
             <param name="Input"></param>
             <returns></returns>
         </member>
-        <member name="M:Admin.NET.Application.IFormService.GetView(Admin.NET.Application.BaseId)">
+        <member name="M:Admin.NET.Application.IFormService.GetView(Admin.NET.Core.Service.BaseId)">
             <summary>
             获取单一实体查看
             </summary>
@@ -3447,6 +3417,76 @@
             清空访问日志
             </summary>
             <returns></returns>
+        </member>
+        <member name="P:Admin.NET.Application.Service.System.LowCode.Dto.ContrastLowCode_Database.TableName">
+            <summary>
+            表名
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.Service.System.LowCode.Dto.ContrastLowCode_Database.ClassName">
+            <summary>
+            类名
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.Service.System.LowCode.Dto.ContrastLowCode_Database.TableDesc">
+            <summary>
+            表描述
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.Service.System.LowCode.Dto.ContrastLowCode_Database.FieldName">
+            <summary>
+            字段名称
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.Service.System.LowCode.Dto.ContrastLowCode_Database.DbType">
+            <summary>
+            数据类型
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.Service.System.LowCode.Dto.ContrastLowCode_Database.DbTypeName">
+            <summary>
+            数据类型
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.Service.System.LowCode.Dto.ContrastLowCode_Database.DtoTypeName">
+            <summary>
+            数据类型
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.Service.System.LowCode.Dto.ContrastLowCode_Database.DbParam">
+            <summary>
+            数据类型补充参数
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.Service.System.LowCode.Dto.ContrastLowCode_Database.IsRequired">
+            <summary>
+            是否必填
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.Service.System.LowCode.Dto.ContrastLowCode_Database.WhetherTable">
+            <summary>
+            列表显示
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.Service.System.LowCode.Dto.ContrastLowCode_Database.WhetherOrderBy">
+            <summary>
+            排序
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.Service.System.LowCode.Dto.ContrastLowCode_Database.whetherAddUpdate">
+            <summary>
+            增改
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.Service.System.LowCode.Dto.ContrastLowCode_Database.QueryWhether">
+            <summary>
+            是否是查询
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.Service.System.LowCode.Dto.ContrastLowCode_Database.QueryType">
+            <summary>
+            查询方式
+            </summary>
         </member>
         <member name="T:Admin.NET.Application.AntDesignTreeNode">
             <summary>
@@ -7824,6 +7864,193 @@
             <param name="node"></param>
             <returns></returns>
         </member>
+        <member name="T:Admin.NET.Application.YouKeDto">
+            <summary>
+            商品管理输出参数
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.YouKeDto.Descript">
+            <summary>
+            描述
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.YouKeDto.HeadImage">
+            <summary>
+            头像
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.YouKeDto.Address">
+            <summary>
+            地区
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.YouKeDto.FullName">
+            <summary>
+            用户名
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.YouKeDto.Id">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="T:Admin.NET.Application.YouKeSearch">
+            <summary>
+            商品管理查询参数
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.YouKeSearch.Descript">
+            <summary>
+            描述
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.YouKeSearch.HeadImage">
+            <summary>
+            头像
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.YouKeSearch.Address">
+            <summary>
+            地区
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.YouKeSearch.FullName">
+            <summary>
+            用户名
+            </summary>
+        </member>
+        <member name="T:Admin.NET.Application.YouKeInput">
+            <summary>
+            商品管理输入参数
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.YouKeInput.Descript">
+            <summary>
+            描述
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.YouKeInput.HeadImage">
+            <summary>
+            头像
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.YouKeInput.Address">
+            <summary>
+            地区
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.YouKeInput.FullName">
+            <summary>
+            用户名
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.AddYouKeInput.Descript">
+            <summary>
+            描述
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.AddYouKeInput.HeadImage">
+            <summary>
+            头像
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.AddYouKeInput.Address">
+            <summary>
+            地区
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.AddYouKeInput.FullName">
+            <summary>
+            用户名
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.UpdateYouKeInput.Id">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="T:Admin.NET.Application.YouKeOutput">
+            <summary>
+            商品管理输出参数
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.YouKeOutput.Descript">
+            <summary>
+            描述
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.YouKeOutput.HeadImage">
+            <summary>
+            头像
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.YouKeOutput.HeadImage_Str">
+            <summary>
+            头像
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.YouKeOutput.Address">
+            <summary>
+            地区
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.YouKeOutput.FullName">
+            <summary>
+            用户名
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Application.YouKeOutput.Id">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="T:Admin.NET.Application.YouKeService">
+            <summary>
+            商品管理服务
+            </summary>
+        </member>
+        <member name="M:Admin.NET.Application.YouKeService.Page(Admin.NET.Application.YouKeSearch)">
+            <summary>
+            分页查询商品管理
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Application.YouKeService.Add(Admin.NET.Application.AddYouKeInput)">
+            <summary>
+            增加商品管理
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Application.YouKeService.Delete(Admin.NET.Application.DeleteYouKeInput)">
+            <summary>
+            删除商品管理
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Application.YouKeService.Update(Admin.NET.Application.UpdateYouKeInput)">
+            <summary>
+            更新商品管理
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Application.YouKeService.Get(Admin.NET.Application.QueryeYouKeInput)">
+            <summary>
+            获取商品管理
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.NET.Application.YouKeService.List(Admin.NET.Application.YouKeInput)">
+            <summary>
+            获取商品管理列表
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
         <member name="T:Admin.NET.Application.SpareTimeDemo">
             <summary>
             定时任务demo
@@ -7900,6 +8127,26 @@
         <member name="P:Furion.Extras.Admin.NET.Service.LowCode.Dto.GenEntity.DatabaseName">
             <summary>
             数据库名称
+            </summary>
+        </member>
+        <member name="P:Furion.Extras.Admin.NET.Service.LowCode.Dto.GenEntity.AuthorName">
+            <summary>
+            作者名
+            </summary>
+        </member>
+        <member name="P:Furion.Extras.Admin.NET.Service.LowCode.Dto.GenEntity.BusName">
+            <summary>
+            业务名
+            </summary>
+        </member>
+        <member name="P:Furion.Extras.Admin.NET.Service.LowCode.Dto.GenEntity.ProName">
+            <summary>
+            程序集
+            </summary>
+        </member>
+        <member name="P:Furion.Extras.Admin.NET.Service.LowCode.Dto.GenEntity.FormDesign">
+            <summary>
+            动态表单
             </summary>
         </member>
         <member name="P:Furion.Extras.Admin.NET.Service.LowCode.Dto.GenEntity_Field.ColumnComment">
@@ -8086,7 +8333,7 @@
         </member>
         <member name="M:Furion.Extras.Admin.NET.Service.LowCode.LowCodeService.RunLocal(System.Int64)">
             <summary>
-            生成ORM模型
+            生成代码
             </summary>
             <param name="id"></param>
             <returns></returns>

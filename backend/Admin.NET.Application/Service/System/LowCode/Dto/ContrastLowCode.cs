@@ -59,5 +59,30 @@ namespace Admin.NET.Application.Service.System.LowCode.Dto
         /// 是否必填
         /// </summary>
         public bool? IsRequired { get; set; }
+
+        /// <summary>
+        /// 列表显示
+        /// </summary>
+        public bool? WhetherTable { get; set; }
+
+        /// <summary>
+        /// 排序
+        /// </summary>
+        public bool? WhetherOrderBy { get; set; }
+
+        /// <summary>
+        /// 增改
+        /// </summary>
+        public bool? whetherAddUpdate { get; set; }
+
+        /// <summary>
+        /// 是否是查询
+        /// </summary>
+        public bool? QueryWhether { get; set; }
+
+        /// <summary>
+        /// 查询方式
+        /// </summary>
+        public string QueryType { get; set; }
     }
 }
