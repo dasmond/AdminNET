@@ -3,42 +3,18 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '7a6f2488adab62729c7d2c6c1d3210ad5725ae83'
-    oldFile: !uuid 'c0cd85fe00a0f9816a37863a927d7159e6e080a8'
+    newFile: !uuid '7a1c2a369f651a8634828eb43bd57009cfdfe3fe'
+    oldFile: !uuid '7a6f2488adab62729c7d2c6c1d3210ad5725ae83'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '6b966c40b71e855e73e57cbac6eb4bc79c75a372'
-    oldFile: !uuid '2a5a0179161c840b4ab6e79455231879ed00a06c'
-  /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid '88f0b263474cd68af3758d72ae618adce8f19e24'
-    oldFile: !uuid '41df7f9ad77bee4ad43e4064d12fbf65ad03cee1'
-  /Admin.NET/Admin.NET.Core/Service/CodeGen:
-    newFile: !uuid '2a614559c4ce0feef98ee4a209dc9760b6bec569'
-    oldFile: !uuid '51d06a22851caf3ffabf416c690e04b80f02cc88'
-  /Admin.NET/Admin.NET.Core/Service/CodeGen/CodeGenConfigService.cs:
-    newFile: !uuid 'a3f897a79202019d3a2dcc4e0b57583bc6da772a'
-    oldFile: !uuid 'c4f513622e533d47be160a668a9e0238367bc221'
-  /Admin.NET/Admin.NET.Core/Service/CodeGen/CodeGenService.cs:
-    newFile: !uuid '0055e183675fccaff5d018c6345b24815531323f'
-    oldFile: !uuid '2c3fffc1e3f3be03420df859c1757c4942f61e4f'
-  /Admin.NET/Admin.NET.Core/Service/CodeGen/Dto:
-    newFile: !uuid '75303da338acebd13d852e9243f7f5c79b68fbba'
-    oldFile: !uuid 'bb93f7728513cee39da5474fc8cc4353bc8ba9ec'
-  /Admin.NET/Admin.NET.Core/Service/CodeGen/Dto/CustomViewEngine.cs:
-    newFile: !uuid '403fe2b6ab2bf9c50b653575ed1a38fe820c8198'
-    oldFile: !uuid 'c4f04f2cc95b4fc0103a24a30a8630571fddccca'
-  /Admin.NET/Admin.NET.Core/Service/DataBase:
-    newFile: !uuid '6d04c988c108a5e878961f6a3bbc4c8006df78fd'
-    oldFile: !uuid '8caeecb170b7912b043fa559f6eb395dd3f80c57'
-  /Admin.NET/Admin.NET.Core/Service/DataBase/DataBaseManager.cs:
-    newFile: !uuid 'e63108081cd014a9b3fab27ac920b270370c1989'
-    oldFile: !uuid '331c3eb9ca21a925cee9ceada82a2a3660f81e27'
-  /Admin.NET/Admin.NET.Core/Util:
-    newFile: !uuid '90056f8863033e8cb6caaa4c24f81ed04d924f66'
-    oldFile: !uuid '2e131185a3de043dbcb7861de63f4ff68179dc21'
-  /Admin.NET/Admin.NET.Core/Util/CodeGenUtil.cs:
-    newFile: !uuid 'f086a4cbab7d8b31f916ca779d7fef82d0185dcc'
-    oldFile: !uuid 'febad37719f18476a49f531b55595d1ba43f2590'
-gitCommitId: !uuid '7ab4bfc628c5c0fc96f458d480de4dc581bea719'
+    newFile: !uuid '5bca85a4316ae3d4caa354b4517c069d189104d7'
+    oldFile: !uuid '6b966c40b71e855e73e57cbac6eb4bc79c75a372'
+  /Admin.NET/Admin.NET.Core/Extension:
+    newFile: !uuid '5e6f737e7ae83414bc2f1b2aed89b9aad48e6076'
+    oldFile: !uuid 'd8201ce8d32242d8a11bfe551808de384c2c38bd'
+  /Admin.NET/Admin.NET.Core/Extension/RepositoryExtension.cs:
+    newFile: !uuid 'b6e21bff818628eb18a6c8fe73d79ebab2949d95'
+    oldFile: !uuid '17f6ed2b6e8b4b2b10b4b2ba261f22f86b821b3e'
+gitCommitId: !uuid 'd140b380ce95c45b7f834f2c56619ad0472d975c'
 renames: {
   }
-revisionId: 63
+revisionId: 64
