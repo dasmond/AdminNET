@@ -1,4 +1,4 @@
-﻿using Admin.NET.Core;
+using Admin.NET.Core;
 using Furion;
 using Furion.DatabaseAccessor;
 using Furion.DatabaseAccessor.Extensions;
@@ -289,7 +289,7 @@ namespace Admin.NET.Application
                 .Where(m => m.IsDefined(typeof(SpareTimeAttribute), false) &&
                        m.GetParameters().Length == 2 &&
                        m.GetParameters()[0].ParameterType == typeof(SpareTimer) &&
-                       m.GetParameters()[1].ParameterType == typeof(long) && m.ReturnType == typeof(void))
+                       m.GetParameters()[1].ParameterType == typeof(long) && (m.ReturnType == typeof(void)|| m.ReturnType == typeof(Task))
                 .Select(m =>
                 {
                     // 默认获取第一条任务特性
