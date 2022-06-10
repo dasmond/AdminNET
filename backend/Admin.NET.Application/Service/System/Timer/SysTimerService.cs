@@ -1,4 +1,4 @@
-﻿using Admin.NET.Core;
+using Admin.NET.Core;
 using Furion;
 using Furion.DatabaseAccessor;
 using Furion.DatabaseAccessor.Extensions;
@@ -175,7 +175,7 @@ namespace Admin.NET.Application
         [NonAction]
         public void AddTimerJob(AddJobInput input)
         {
-            Action<SpareTimer, long> action = null;
+            Func<SpareTimer, long, Task> action = null;
 
             switch (input.RequestType)
             {
@@ -190,7 +190,7 @@ namespace Admin.NET.Application
                         var typeInstance = Activator.CreateInstance(taskMethod.DeclaringType);
 
                         // 创建委托
-                        action = (Action<SpareTimer, long>)Delegate.CreateDelegate(typeof(Action<SpareTimer, long>), typeInstance, taskMethod.MethodName);
+                        action = (Func<SpareTimer, long, Task>)Delegate.CreateDelegate(typeof(Func<SpareTimer, long, Task>), typeInstance, taskMethod.MethodName);
                         break;
                     }
                 // 创建网络任务委托
@@ -289,7 +289,7 @@ namespace Admin.NET.Application
                 .Where(m => m.IsDefined(typeof(SpareTimeAttribute), false) &&
                        m.GetParameters().Length == 2 &&
                        m.GetParameters()[0].ParameterType == typeof(SpareTimer) &&
-                       m.GetParameters()[1].ParameterType == typeof(long) && m.ReturnType == typeof(void))
+                       m.GetParameters()[1].ParameterType == typeof(long)  (m.ReturnType == typeof(void) || m.ReturnType == typeof(Task)))
                 .Select(m =>
                 {
                     // 默认获取第一条任务特性
