@@ -2,25 +2,43 @@
 branches: {
   }
 fileChange:
-  /Vben2:
-    newFile: !uuid 'bf503425f183c0446d8fbff65783e72dcee33d78'
-    oldFile: !uuid '4066464ca9244549c0615b92d46ab8b9b047040e'
-  /Vben2/src:
-    newFile: !uuid '31335357057e7d663395a04828d7c991103df4a6'
-    oldFile: !uuid '6224bf8849866e86ec8d81f74f4f96d7763dd963'
-  /Vben2/src/views:
-    newFile: !uuid 'a6ce495527b3060d66a40dfa55005f66f523d194'
-    oldFile: !uuid 'ee885427d395dbea93cc2edc542ef1a9a2036751'
-  /Vben2/src/views/sys:
-    newFile: !uuid '1ba1103d627c460feffce65b59ccfc78d070967a'
-    oldFile: !uuid '5ec469f72998838cffc23c427137115b30859d2c'
-  /Vben2/src/views/sys/login:
-    newFile: !uuid '5f17fddcc002ffa60aab63aff712acaa7d02d779'
-    oldFile: !uuid '852ae0d040734b86ee8a44b9d702a8e6822cdb54'
-  /Vben2/src/views/sys/login/LoginForm.vue:
-    newFile: !uuid 'fbde4d19638a4f04f412f29d7bba942d16fa2d71'
-    oldFile: !uuid '981a7b6b14d7b33c35fd55241a2a9df5509f76af'
-gitCommitId: !uuid 'a156e813ebae6bda6e57ffd281e3238dd9d4294e'
+  /Admin.NET:
+    newFile: !uuid '3d60dc5d61b3c5f2ff3576590238bea1da73c023'
+    oldFile: !uuid 'ffc65f269f606223a51de23c37605ce076667be8'
+  /Admin.NET/Admin.NET.Core:
+    newFile: !uuid '514ff663d2b19e76fc6e8fa128453a9705c78709'
+    oldFile: !uuid '76146f3674abf285c4510825e1bc23beedf6280d'
+  /Admin.NET/Admin.NET.Core/Admin.NET.Core.xml:
+    newFile: !uuid 'ec2992a2f561aa59212eb4fa7d08afffa4bbb97e'
+    oldFile: !uuid 'e6e3305446f2cf7c0e938b01e04789e4e1e35bd0'
+  /Admin.NET/Admin.NET.Core/Entity:
+    newFile: !uuid '8811a3ee2f531a66ab24f20604e50d292bb8b9b8'
+    oldFile: !uuid '0c1ab8cc358ebb03ea615c36e65696725640ab3c'
+  /Admin.NET/Admin.NET.Core/Entity/SysOnlineUser.cs:
+    newFile: !uuid '47b2341b82bc126f3662e143dad9ec9d8a57f19a'
+    oldFile: null
+  /Admin.NET/Admin.NET.Core/Hub:
+    newFile: !uuid '5645a2fd9fcc2aa84e39b40b352ed42ec2079fda'
+    oldFile: !uuid '5cb90e8f9227d4349c9d98a1db0f3c6e7802cf1e'
+  /Admin.NET/Admin.NET.Core/Hub/ChatHub.cs:
+    newFile: !uuid '2d3f7c0afb18a571c44bd255827787385c2ca607'
+    oldFile: !uuid 'f018bdde32e6fdb4457db27b40fb178292e5440b'
+  /Admin.NET/Admin.NET.Core/Service:
+    newFile: !uuid '13dc2e54c950f455d8badf58670f086d1fd5ca4c'
+    oldFile: !uuid '5fbbb30154b4f486ca4956fc77dbf02ffa8503cf'
+  /Admin.NET/Admin.NET.Core/Service/Message:
+    newFile: !uuid 'b568273ea05435be021a26cba39f649ce4562a42'
+    oldFile: !uuid '26e41ba0fd091449a387cccc4150fa622e69ae8b'
+  /Admin.NET/Admin.NET.Core/Service/Message/SendMessageService.cs:
+    newFile: !uuid '83aa9d04f772c30bf5c87c299b4913e17aeccf9e'
+    oldFile: !uuid '6e499b4001eda303275c1058bdbce8508f436a63'
+  /doc:
+    newFile: !uuid 'be68c13d5cb5f0dcff9e5a5842355724591786f6'
+    oldFile: !uuid 'cb6c9220c264ea40249f6eadd56197cbc1e78499'
+  /doc/Vben2前端框架修改记录.txt:
+    newFile: !uuid '6fe14e3610821a0b7bfc619f9a174f269d680e21'
+    oldFile: !uuid 'c311904f31c58a761b921ca0d6b9a7c951113823'
+gitCommitId: !uuid '5a3c628c09302e14f10915ca25fdc7df292f44a9'
 renames: {
   }
-revisionId: 98
+revisionId: 99
