@@ -256,7 +256,7 @@ GNU 风格的版本号管理策略
 
 【Admin.NET】隆重推出SqlSugar版本
 
-- 👉 SqlSugar版本：[https://gitee.com/zhengguojing/admin-net-sqlsugar](https://gitee.com/zhengguojing/admin-net-sqlsugar)
+- 👉 SqlSugar版本：[https://gitee.com/zhengguojing/magic-net](https://gitee.com/zhengguojing/magic-net)
 
 `如果集成其他ORM，请参照各自操作使用说明。系统默认EFCore不会处理其他ORM实体等，请自行处理。`
 
