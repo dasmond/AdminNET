@@ -2,49 +2,37 @@
 branches: {
   }
 fileChange:
-  /Vben2:
-    newFile: !uuid '9ccdb4947f00517056886adc1e01e4ab57d059c7'
-    oldFile: !uuid '6c9c36a728c43ec71e998d8a4939ad0f2cd3ac13'
-  /Vben2/.vscode:
-    newFile: !uuid 'a44d2c5f69562140a2dd1f06a9feeaafb1592468'
-    oldFile: !uuid '009109ecd64e60f2355a158e4724a604c28bec32'
-  /Vben2/.vscode/settings.json:
-    newFile: !uuid '8775c2ec827d5fa33e1ab54be59b1489eb601517'
-    oldFile: !uuid '7245989f08505af07e6851ec9f5018af2026774d'
-  /Vben2/src:
-    newFile: !uuid '4db1006c7ec04214d434f444e8fd7c3651f4cd09'
-    oldFile: !uuid '2c6daa6ae055e1962369017678ffda7504fd3276'
-  /Vben2/src/components:
-    newFile: !uuid '38ad17c952bf737d87fb502a8e17345d1dbf0b70'
-    oldFile: !uuid '3560b0739d63c37bf5adcec6ce7982ddfe66717b'
-  /Vben2/src/components/Table:
-    newFile: !uuid 'c06fe024e7ae18c05bf6d1da5ffa03919dd28001'
-    oldFile: !uuid '2aadff943e36fa64248b97bae69c1e9adae7168b'
-  /Vben2/src/components/Table/src:
-    newFile: !uuid '9167d688b06e6b44588c22f7cd15104cdc7fe9f2'
-    oldFile: !uuid '4d7d2935638f0467d29efea6a01f04d68d6f69ad'
-  /Vben2/src/components/Table/src/BasicTable.vue:
-    newFile: !uuid '9ec755a5340c006ebb0cd05653022714d6e60b06'
-    oldFile: !uuid '6c9197ca3780151a8336313efd886d5856beb0d8'
-  /Vben2/src/components/Table/src/components:
-    newFile: !uuid 'e6e6a89d13e89fb085a926817a1664d235a4f39c'
-    oldFile: !uuid 'b0240ae9f084112c1f38da04ee965e11b1768a51'
-  /Vben2/src/components/Table/src/components/settings:
-    newFile: !uuid '678a3b0e7f59b2b0d94a4a9d3c352b3ba83315b6'
-    oldFile: !uuid 'c412562976dcbaf0e283d47ec160b6c971049849'
-  /Vben2/src/components/Table/src/components/settings/ColumnSetting.vue:
-    newFile: !uuid 'dc72a353341f75c11b3304057965ca232c21975a'
-    oldFile: !uuid 'edac1313f4e99385bf0464289821158adb564cad'
-  /Vben2/src/hooks:
-    newFile: !uuid 'd9f92889028f3042753daac7840eb42ce81b8a13'
-    oldFile: !uuid 'beae8b4f17f13b606b8a1a1281e806f5237d8d03'
-  /Vben2/src/hooks/web:
-    newFile: !uuid '503bb8c72ede34753535e592bb8faa04d0bcfb1a'
-    oldFile: !uuid '8756de91c275183f1fdb06d1f7b7bd6b4a992655'
-  /Vben2/src/hooks/web/usePage.ts:
-    newFile: !uuid '67e2c289278af085bb5b248c3303fe1a250c0aac'
-    oldFile: !uuid '738f3e3d5255bd8d473ab32e022864e4249e34ac'
-gitCommitId: !uuid '098349c216569313872a632b5a16c5a282ba87aa'
+  /Admin.NET:
+    newFile: !uuid 'a9f40f14e3bc055cf52a24f7f0c1924e55a36d73'
+    oldFile: !uuid '2cccb808926bcb16ac36c6848677cb9c4d5861c2'
+  /Admin.NET/Admin.NET.Core:
+    newFile: !uuid '870f5788cf572df2463acb62702d63450e68da2d'
+    oldFile: !uuid '0cb32f16922c1ad82eb894d53859d1eb782331f0'
+  /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
+    newFile: !uuid 'bbd961e40602b97d8edc58f02cab17020ef8f067'
+    oldFile: !uuid 'bcc31d3baecdd8ccb711fcc8650d39fef68a684c'
+  /Admin.NET/Admin.NET.Core/Admin.NET.Core.xml:
+    newFile: !uuid '470ae135f34908f13ee813228eb12c6325df3a93'
+    oldFile: !uuid 'fee6bfc51fcde5e477255ebc20bb3644dc23fdbf'
+  /Admin.NET/Admin.NET.Core/AdminNETConfig.json:
+    newFile: !uuid '52b5c6ba769cdfb7c9c9bfd888511c31bdccfa6f'
+    oldFile: !uuid 'c99af408bf6f61d5a19f4ae6056bfa7c181140a9'
+  /Admin.NET/Admin.NET.Core/Const:
+    newFile: !uuid '03f52027701455a4986478b59fd5dacfa1745765'
+    oldFile: !uuid 'e751ad807954313687db3cb5589e6746bc587a70'
+  /Admin.NET/Admin.NET.Core/Const/CacheConst.cs:
+    newFile: !uuid '4c8ff83e0728956a151e902b2745d95b1ec11636'
+    oldFile: !uuid '15322b6170e6d514f53b15b3518461c524de8ded'
+  /Admin.NET/Admin.NET.Core/Service:
+    newFile: !uuid 'd910b633d05cb1594da98df17d91eea204e86e9f'
+    oldFile: !uuid '13dc2e54c950f455d8badf58670f086d1fd5ca4c'
+  /Admin.NET/Admin.NET.Core/Service/Auth:
+    newFile: !uuid 'ebe87b5283757d585548f6bb5ac1e12148a8a36c'
+    oldFile: !uuid '68c0fbc8926581ce4b74e62dbdac1818fe5f1611'
+  /Admin.NET/Admin.NET.Core/Service/Auth/AuthService.cs:
+    newFile: !uuid 'cabaa5fc5aa33789f66a5af646523e98fafeac86'
+    oldFile: !uuid '7a2af8db324a179771d887b9442dd75f54083ba0'
+gitCommitId: !uuid '0fea3bf8e9d9a165b97307aef0d9e52db77f5f88'
 renames: {
   }
-revisionId: 110
+revisionId: 111
