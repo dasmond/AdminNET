@@ -1,0 +1,35 @@
+﻿@model Admin.NET.Application.Service.System.LowCode.Dto.Front_CodeGenerate
+using Admin.NET.Core.Util.LowCode.Dto;
+using System;
+
+namespace @Model.NameSpace
+{
+    /// <summary>
+    /// @(@Model.BusName)输出参数
+    /// </summary>
+    public class @(@Model.ClassName)Output
+    {
+@foreach (var column in Model.TableField){
+if(@column.DtoNetType == "Front_FileDto[]"){
+        @:/// <summary>
+        @:/// @column.ColumnComment
+        @:/// </summary>
+        @:public ICollection<Front_FileDto> @column.ColumnName { get; set; }
+        @:
+        
+        @:/// <summary>
+        @:/// @column.ColumnComment
+        @:/// </summary>
+        @:public String @(@column.ColumnName)_Str { get; set; }
+        @:
+}else{
+        @:/// <summary>
+        @:/// @column.ColumnComment
+        @:/// </summary>
+        @:public @column.NetType @column.ColumnName { get; set; }
+        @:
+}
+
+}
+    }
+}

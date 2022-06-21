@@ -144,6 +144,25 @@
               {{record.control_Key}} <br />
               {{record.control_Label}} ({{record.control_Model}})
             </span>
+            <template slot="whetherTable" slot-scope="text, record">
+              <a-checkbox v-model="record.whetherTable" />
+            </template>
+            <template slot="whetherOrderBy" slot-scope="text, record">
+              <a-checkbox v-model="record.whetherOrderBy" />
+            </template>
+            <template slot="whetherAddUpdate" slot-scope="text, record">
+              <a-checkbox v-model="record.whetherAddUpdate" />
+            </template>
+            <template slot="queryWhether" slot-scope="text, record">
+              <a-checkbox v-model="record.queryWhether" />
+            </template>
+            <template slot="queryType" slot-scope="text, record">
+              <a-select style="width: 100px" v-model="record.queryType" :disabled="!record.queryWhether">
+                <a-select-option v-for="(item, index) in codeGenQueryTypeData" :key="index" :value="item.code">{{
+                  item.name
+                }}</a-select-option>
+              </a-select>
+            </template>
           </a-table>
         </a-tab-pane>
       </a-tabs>
@@ -257,7 +276,6 @@ import { map } from 'leaflet'
             dataIndex: 'fieldName',
             key: 'fieldName',
             width: '150px',
-            scopedSlots: { customRender: 'fieldName' }
           },{
             title: '数据类型',
             dataIndex: 'dbTypeName',
@@ -268,19 +286,62 @@ import { map } from 'leaflet'
             key: 'dbParam',
             width: '150px',
             scopedSlots: { customRender: 'dbParam' }
+          },
+          {
+            title: '列表显示',
+            align: 'center',
+            dataIndex: 'whetherTable',
+            scopedSlots: {
+              customRender: 'whetherTable'
+            }
+          },
+          {
+            title: '排序',
+            align: 'center',
+            dataIndex: 'whetherOrderBy',
+            scopedSlots: {
+              customRender: 'whetherOrderBy'
+            }
+          },
+          {
+            title: '增改',
+            align: 'center',
+            dataIndex: 'whetherAddUpdate',
+            scopedSlots: {
+              customRender: 'whetherAddUpdate'
+            }
+          },
+          {
+            title: '是否是查询',
+            align: 'center',
+            dataIndex: 'queryWhether',
+            scopedSlots: {
+              customRender: 'queryWhether'
+            }
+          },
+          {
+            title: '查询方式',
+            dataIndex: 'queryType',
+            scopedSlots: {
+              customRender: 'queryType'
+            }
           }],
+        codeGenQueryTypeData: [],
         form: this.$form.createForm(this)
       }
     },
     methods: {
       // 初始化方法
       edit(record) {
+        const dictOption = this.$options
         this.visible = true
         this.codeGenerateDatabaseList()
         this.dataTypeItem()
         this.loadData(record)
         this.databaseNameValue = record.databaseName
         this.tableNameValue = record.tableName
+        this.databases = [];
+        this.codeGenQueryTypeData = dictOption.filters['dictData']('code_gen_query_type')
 
         let formDesign = record.formDesign || '';
 
@@ -509,8 +570,15 @@ import { map } from 'leaflet'
 
           lowCodeContrast({Controls: JSON.stringify(Fields) , Databases: this.databases}).then((res) => {
             if (res.success) {
-              for(var i = 0;i < (res.data || []).length;i++){
-                this.databases.push(res.data[i]);
+              for(var i = 0;i < (res.data.del || []).length;i++){
+                this.databases.forEach((item,index) => {
+                  if(item.control_Key === res.data.del[i].control_Key){
+                    this.databases.splice(index,1)
+                  }
+                })
+              }
+              for(var i = 0;i < (res.data.add || []).length;i++){
+                this.databases.push(res.data.add[i]);
               }
             } else {
               this.$message.error('加载失败' + res.message)
@@ -522,7 +590,13 @@ import { map } from 'leaflet'
         }
       },
       addTable_handleOk(){
-        this.Tables.push({...this.addTable});
+        var dataTable = {...this.addTable};
+        this.Tables.push(dataTable);
+        this.databases.forEach((item,index) => {
+          this.$set(item,'className',dataTable.className);
+          this.$set(item,'tableName',dataTable.tableName);
+          this.$set(item,'tableDesc',dataTable.tableDesc);
+        });
         this.addTableShow = false;
       },
       addTable_handleCancel(){

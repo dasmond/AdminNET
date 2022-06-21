@@ -1,4 +1,5 @@
-﻿using Furion.Extras.Admin.NET.Util.LowCode.Front.Att;
+﻿using Furion.DatabaseAccessor;
+using Furion.Extras.Admin.NET.Util.LowCode.Front.Att;
 using Furion.Extras.Admin.NET.Util.LowCode.Front.Interface;
 using Furion.Extras.Admin.NET.Util.LowCode.Front.Model;
 using System.Collections.Generic;
@@ -6,6 +7,7 @@ using System.Collections.Generic;
 namespace Furion.Extras.Admin.NET.Util.LowCode.Front
 {
     [FrontType("textarea")]
+    [FrontTypeBindDatabase(DbProvider.SqlServer, typeof(string), "nvarchar(2000)")]
     public class Front_Textarea : Front_Base<Front_Textarea_Options>
     {
 

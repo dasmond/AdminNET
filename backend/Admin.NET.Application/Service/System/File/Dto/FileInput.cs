@@ -1,4 +1,5 @@
 using Admin.NET.Core;
+using Admin.NET.Core.Service;
 
 namespace Admin.NET.Application
 {
