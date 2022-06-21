@@ -103,5 +103,35 @@ namespace Furion.Extras.Admin.NET.Entity
         /// </summary>
         [Comment("是否必填")]
         public bool? IsRequired { get; set; }
+
+        /// <summary>
+        /// 列表显示
+        /// </summary>
+        [Comment("列表显示")]
+        public bool? WhetherTable { get; set; }
+
+        /// <summary>
+        /// 排序
+        /// </summary>
+        [Comment("排序")]
+        public bool? WhetherOrderBy { get; set; }
+
+        /// <summary>
+        /// 增改
+        /// </summary>
+        [Comment("增改")]
+        public bool? WhetherAddUpdate { get; set; }
+
+        /// <summary>
+        /// 是否是查询
+        /// </summary>
+        [Comment("是否是查询")]
+        public bool? QueryWhether { get; set; }
+
+        /// <summary>
+        /// 查询方式
+        /// </summary>
+        [Comment("查询方式")]
+        public string QueryType { get; set; }
     }
 }

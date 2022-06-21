@@ -1,0 +1,29 @@
+@model Admin.NET.Application.Service.System.LowCode.Dto.Front_CodeGenerate
+using Admin.NET.Core.Util.LowCode.Dto;
+using System;
+
+namespace @Model.NameSpace
+{
+    /// <summary>
+    /// @(@Model.BusName)输出参数
+    /// </summary>
+    public class @(@Model.ClassName)Dto
+    {
+@foreach (var column in Model.TableField){
+if(@column.EffectType == "fk" && @column.FkEntityName != "" && @column.FkColumnName != ""){
+        @:/// <summary>
+        @:/// @column.ColumnComment
+        @:/// </summary>
+        @:public @(@column.FkColumnNetType) @(@column.FkEntityName)@(@column.FkColumnName) { get; set; }
+        @:
+}
+}
+@foreach (var column in Model.TableField){
+        @:/// <summary>
+        @:/// @column.ColumnComment
+        @:/// </summary>
+        @:public @column.DtoNetType @column.ColumnName { get; set; }
+        @:
+}
+    }
+}

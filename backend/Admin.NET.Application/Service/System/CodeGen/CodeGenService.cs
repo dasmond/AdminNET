@@ -317,23 +317,30 @@ namespace Admin.NET.Application.CodeGen
                     FormDesign = _sysLowCodeRep.Where(x => x.Id == input.LowCodeId).Select(x => x.FormDesign).FirstOrDefault();
                 }
 
-                var AllDynamic = FormDesign.ConvertToFront().AllFront().AllDynamic();
-
-                Dictionary<string, List<string>> dynamicData = new Dictionary<string, List<string>>();
                 List<Front_Dynamic> dynamicLoad_dict = new List<Front_Dynamic>();
+                Dictionary<string, List<string>> dynamicData = new Dictionary<string, List<string>>();
 
-                AllDynamic.Where(x => x.Dynamic).Select(x => x.DynamicKey).ToList().ForEach(item =>
+                if (!string.IsNullOrEmpty(FormDesign))
                 {
-                    dynamicData.Add(item, new List<string>());
-                    var d = item.GetDynamic();
-                    if(d != null)
+                    try
                     {
-                        if(d.Head == "dict")
+                        var AllDynamic = FormDesign.ConvertToFront().AllFront().AllDynamic();
+
+                        AllDynamic.Where(x => x.Dynamic).Select(x => x.DynamicKey).ToList().ForEach(item =>
                         {
-                            dynamicLoad_dict.Add(d);
-                        }
+                            dynamicData.Add(item, new List<string>());
+                            var d = item.GetDynamic();
+                            if (d != null)
+                            {
+                                if (d.Head == "dict")
+                                {
+                                    dynamicLoad_dict.Add(d);
+                                }
+                            }
+                        });
                     }
-                });
+                    catch { }
+                }
 
                 try
                 {

@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Admin.NET.Core.Service;
+using System.ComponentModel.DataAnnotations;
 
 namespace Admin.NET.Application
 {
