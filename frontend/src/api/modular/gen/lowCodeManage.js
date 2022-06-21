@@ -56,7 +56,7 @@ export function lowCodeEdit (parameter) {
  */
 export function lowCodeDelete (parameter) {
   return axios({
-    url: '/lowcode/delete',
+    url: '/lowcode/del',
     method: 'post',
     data: parameter
   })

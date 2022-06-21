@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Furion.Extras.Admin.NET.Entity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -33,11 +34,35 @@ namespace Furion.Extras.Admin.NET.Service.LowCode.Dto
         /// </summary>
         public string DatabaseName { get; set; }
 
+        /// <summary>
+        /// 作者名
+        /// </summary>
+        public string AuthorName { get; set; }
+
+        /// <summary>
+        /// 业务名
+        /// </summary>
+        public string BusName { get; set; }
+
+        /// <summary>
+        /// 程序集
+        /// </summary>
+        public string ProName { get; set; }
+
+        /// <summary>
+        /// 动态表单
+        /// </summary>
+        public string FormDesign { get; set; }
+
         public List<GenEntity_Field> Fields { get; set; }
+
+        public List<SysLowCodeDataBase> DataBase { get; set; }
     }
 
     public class GenEntity_Field
     {
+        public long Id { get; set; }
+
         /// <summary>
         /// 字段备注
         /// </summary>

@@ -1,4 +1,6 @@
-﻿namespace Admin.NET.Application
+﻿using Admin.NET.Core.Service;
+
+namespace Admin.NET.Application
 {
     /// <summary>
     /// 发布状态
