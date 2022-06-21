@@ -3,24 +3,18 @@ branches: {
   }
 fileChange:
   /backend:
-    newFile: !uuid '14b96a46bf4c34bcb5331ef2cb2907885d4c80dc'
-    oldFile: !uuid 'cdefbd17b8fe85e703c9c8d119b2947895d08d0d'
-  /backend/Admin.NET.Application:
-    newFile: !uuid 'd8d21c0b6137dbe5a85b58e22b321fd8a7dc9c74'
-    oldFile: !uuid '383900e8de9eb1ea471107b6442518e26b67e443'
-  /backend/Admin.NET.Application/Service:
-    newFile: !uuid '9145375659e3d78531b23a99d53dd86e54e7a784'
-    oldFile: !uuid '892a2f686f93254d40cf841751c19f84145e0ed4'
-  /backend/Admin.NET.Application/Service/System:
-    newFile: !uuid '1364fa770f12b3cff073cbe9617b7241543b2014'
-    oldFile: !uuid '73b6cf4599254dc519d6522bee251c446e2e94a6'
-  /backend/Admin.NET.Application/Service/System/Timer:
-    newFile: !uuid 'b90d89ee7f6de13da80962503c057468e5b51443'
-    oldFile: !uuid 'a9956d0812a182bea3d4bb13f3e94fce7c016e65'
-  /backend/Admin.NET.Application/Service/System/Timer/SysTimerService.cs:
-    newFile: !uuid 'be140baa23a9939234689b063f24f9da7b7bd9ae'
-    oldFile: !uuid 'f05fd5c8013ea6afb1edec0092b453314ad2f8a3'
-gitCommitId: !uuid '9d06e850743b920ccd242ba1b671e44483fd7fce'
+    newFile: !uuid '391feb6c3316a1159a003627cdcb885f3211c04b'
+    oldFile: !uuid '14b96a46bf4c34bcb5331ef2cb2907885d4c80dc'
+  /backend/Admin.NET.Core:
+    newFile: !uuid 'd660922cbe5cc1e99f9048fea81726375a4fbb63'
+    oldFile: !uuid '5ec4a3a5928c8cd06b4b6ee3cdab15e5696c3a73'
+  /backend/Admin.NET.Core/Entity:
+    newFile: !uuid '805b8fb6b295dae7922c2efa789f41392a23ac95'
+    oldFile: !uuid '4a25771e20ac3c8db5d261adf450153cf729fc21'
+  /backend/Admin.NET.Core/Entity/ShangPin.cs:
+    newFile: null
+    oldFile: !uuid '63920cdbb4654316dcd416d32df45e1189e8ed0b'
+gitCommitId: !uuid '34ed4f3f38b38269c636131ffdc349807cb292c6'
 renames: {
   }
-revisionId: 728
+revisionId: 729
