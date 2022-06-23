@@ -3,18 +3,42 @@ branches: {
   }
 fileChange:
   /backend:
-    newFile: !uuid '391feb6c3316a1159a003627cdcb885f3211c04b'
-    oldFile: !uuid '14b96a46bf4c34bcb5331ef2cb2907885d4c80dc'
+    newFile: !uuid '0bf1e6d9fd11e179eb99c9e30c29bbe64a23e1e8'
+    oldFile: !uuid '391feb6c3316a1159a003627cdcb885f3211c04b'
   /backend/Admin.NET.Core:
-    newFile: !uuid 'd660922cbe5cc1e99f9048fea81726375a4fbb63'
-    oldFile: !uuid '5ec4a3a5928c8cd06b4b6ee3cdab15e5696c3a73'
-  /backend/Admin.NET.Core/Entity:
-    newFile: !uuid '805b8fb6b295dae7922c2efa789f41392a23ac95'
-    oldFile: !uuid '4a25771e20ac3c8db5d261adf450153cf729fc21'
-  /backend/Admin.NET.Core/Entity/ShangPin.cs:
-    newFile: null
-    oldFile: !uuid '63920cdbb4654316dcd416d32df45e1189e8ed0b'
-gitCommitId: !uuid '34ed4f3f38b38269c636131ffdc349807cb292c6'
+    newFile: !uuid '138c75c48800046f58fc94dba9f20d857dd8e5f0'
+    oldFile: !uuid 'd660922cbe5cc1e99f9048fea81726375a4fbb63'
+  /backend/Admin.NET.Core/SeedData:
+    newFile: !uuid '7709803e3c2589100a2090077d3cf94de760ad62'
+    oldFile: !uuid '632aaa91048256ff75cb73acd8882df8ca07deb3'
+  /backend/Admin.NET.Core/SeedData/SysAppSeedData.cs:
+    newFile: !uuid '881d1b853c4ec6bfa36dc0b2c92091fc58d73d36'
+    oldFile: !uuid '6a9d4fb6e5140e85667c8881d15db37362f51790'
+  /frontend:
+    newFile: !uuid 'ecce26960fd87614fb7221828a5f64f69d582eb7'
+    oldFile: !uuid '1c5d782dc0a080aa214efffe950bb7048b92c760'
+  /frontend/src:
+    newFile: !uuid '2f28a9a4d4e9fad5e81cdeb7d1658e2ebc879c01'
+    oldFile: !uuid '9c4686fd33e6ac99a1be0e3ab54491a0a2239f88'
+  /frontend/src/views:
+    newFile: !uuid '992f71baef24f4ade348e070149752b9c9f2a61b'
+    oldFile: !uuid 'e38afe397ad8be2668829e07ad6e8f709c7b5428'
+  /frontend/src/views/system:
+    newFile: !uuid 'e1081690bc82e0f338692785ec262ec32b84b6eb'
+    oldFile: !uuid '3f3a06704e56c6ebc46a79c70cc501564d1e377f'
+  /frontend/src/views/system/role:
+    newFile: !uuid 'a8e94c1f06b5e7744c7b3da61e1a8d12cf62f413'
+    oldFile: !uuid '1ced66ee92f528ae6f8ec95342a794d831c54961'
+  /frontend/src/views/system/role/roleMenuForm.vue:
+    newFile: !uuid 'c1e06d8764dfbd1c258528effce5326a0ade3924'
+    oldFile: !uuid '75f1657de58b534ea3f065c9533a256a2bc444ea'
+  /frontend/src/views/system/tenant:
+    newFile: !uuid '3027ef122e3b96e70ff8c5e13959f820bca6d22c'
+    oldFile: !uuid '6569f28a590e1ba17d63ebb93de4227b75401e13'
+  /frontend/src/views/system/tenant/tenantMenuForm.vue:
+    newFile: !uuid '879246b2c6546e232a8ea5fa9af3eac2be766987'
+    oldFile: !uuid '8cd498d3d513d2b16f62b346d695375dbf1eefad'
+gitCommitId: !uuid '4faada3b26bede74a6fdfac84059ef7ff8fd2a92'
 renames: {
   }
-revisionId: 729
+revisionId: 730
