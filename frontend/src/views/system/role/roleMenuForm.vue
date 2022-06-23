@@ -20,7 +20,7 @@
             :replaceFields="replaceFields"
             @expand="onExpand"
             @select="onSelect"
-            @check="treeCheck" />
+            @check="treeCheck">
           </a-tree>
         </a-form-item>
       </a-form>
