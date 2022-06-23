@@ -53,14 +53,9 @@ namespace Admin.NET.Core
         /// <returns></returns>
         public List<T> Build(List<T> nodes)
         {
-            nodes.ForEach(u => BuildChildNodes(nodes, u, new List<T>()));
+            var result = nodes.Where(i => i.GetPid() == _rootParentId).ToList();
+            result.ForEach(u => BuildChildNodes(nodes, u));
 
-            var result = new List<T>();
-            nodes.ForEach(u =>
-            {
-                if (_rootParentId == u.GetPid())
-                    result.Add(u);
-            });
             return result;
         }
 
@@ -70,17 +65,11 @@ namespace Admin.NET.Core
         /// <param name="totalNodes"></param>
         /// <param name="node"></param>
         /// <param name="childNodeList"></param>
-        private void BuildChildNodes(List<T> totalNodes, T node, List<T> childNodeList)
+        private void BuildChildNodes(List<T> totalNodes, T node)
         {
-            var nodeSubList = new List<T>();
-            totalNodes.ForEach(u =>
-            {
-                if (u.GetPid().Equals(node.GetId()))
-                    nodeSubList.Add(u);
-            });
-            nodeSubList.ForEach(u => BuildChildNodes(totalNodes, u, new List<T>()));
-            childNodeList.AddRange(nodeSubList);
-            node.SetChildren(childNodeList);
+            var nodeSubList = totalNodes.Where(i => i.GetPid() == node.GetId()).ToList();
+            nodeSubList.ForEach(u => BuildChildNodes(totalNodes, u));
+            node.SetChildren(nodeSubList);
         }
     }
 }
