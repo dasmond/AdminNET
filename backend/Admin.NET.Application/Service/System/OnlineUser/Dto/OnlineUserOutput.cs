@@ -1,4 +1,4 @@
-﻿namespace Admin.NET.Application
+namespace Admin.NET.Application
 {
     public class OnlineUserOutput
     {
@@ -25,7 +25,7 @@
         /// <summary>
         /// 最后连接时间
         /// </summary>
-        public DateTime LastTime { get; set; }
+        public DateTimeOffset LastTime { get; set; }
 
         /// <summary>
         /// 最后登录IP
