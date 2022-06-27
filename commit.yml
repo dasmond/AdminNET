@@ -3,18 +3,27 @@ branches: {
   }
 fileChange:
   /backend:
-    newFile: !uuid '4dfd4c210d7cfe6a7061f0af64b6cf730f69dc85'
-    oldFile: !uuid '0bf1e6d9fd11e179eb99c9e30c29bbe64a23e1e8'
-  /backend/Admin.NET.Core:
-    newFile: !uuid 'ead20b6470a8df9e968bb52502a00df6ab01c81a'
-    oldFile: !uuid '138c75c48800046f58fc94dba9f20d857dd8e5f0'
-  /backend/Admin.NET.Core/Util:
-    newFile: !uuid '66b13005903cd30b3ec18f21e418b15f5a488be2'
-    oldFile: !uuid '250e49b356fb692837b5dabd863f74bf83c4040a'
-  /backend/Admin.NET.Core/Util/TreeBuildUtil.cs:
-    newFile: !uuid '594c6a31f1d92f9619e571d2cd07270f60554f18'
-    oldFile: !uuid '4f39bbb567d07fe58ee3857d523c15cba49dc78c'
-gitCommitId: !uuid '7620569003a81d81e3eacb76c563ab6bf810f5da'
+    newFile: !uuid 'c4988edf136aa0eb2e8e6394bdd664903b4f685c'
+    oldFile: !uuid '4dfd4c210d7cfe6a7061f0af64b6cf730f69dc85'
+  /backend/Admin.NET.Application:
+    newFile: !uuid 'fc0ba904f305a68ef5723c9b005f4bad2237089e'
+    oldFile: !uuid 'd8d21c0b6137dbe5a85b58e22b321fd8a7dc9c74'
+  /backend/Admin.NET.Application/Service:
+    newFile: !uuid '6ba873e0327667a71efd3eb45b0c00d10a6b37ae'
+    oldFile: !uuid '9145375659e3d78531b23a99d53dd86e54e7a784'
+  /backend/Admin.NET.Application/Service/System:
+    newFile: !uuid '45666f2aabd488f954a070ef20758684cfe1d5fc'
+    oldFile: !uuid '1364fa770f12b3cff073cbe9617b7241543b2014'
+  /backend/Admin.NET.Application/Service/System/OnlineUser:
+    newFile: !uuid 'c82496537a41e49251e23dd1154e97a5276e6dd8'
+    oldFile: !uuid 'fb9c608468fcaa729993f05ecd1d9bca5bcb900e'
+  /backend/Admin.NET.Application/Service/System/OnlineUser/Dto:
+    newFile: !uuid '01b6b54db0f152dc1b20949ce17c58ff1f45a343'
+    oldFile: !uuid 'e3a7324fd821caaa6c4ff3dc6daa4aa4df6fbf62'
+  /backend/Admin.NET.Application/Service/System/OnlineUser/Dto/OnlineUserOutput.cs:
+    newFile: !uuid 'ca558ecdb4ac86a6d20eac0b5ad646e7a74ccddb'
+    oldFile: !uuid 'fb863ee89707775db1e351f75a26e916e052241a'
+gitCommitId: !uuid '0afa988107c5e4308cad048bdce65dd5ebe10ffb'
 renames: {
   }
-revisionId: 731
+revisionId: 732
