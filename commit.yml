@@ -3,18 +3,72 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '308871b77d2c4a9085f712e83d4c138d2ef76804'
-    oldFile: !uuid 'eaca1325ea2ad7b7a5508f134aec712e52beb898'
+    newFile: !uuid '4d448dca82a34bf0cd109fb5ea8c6195e4dae5ef'
+    oldFile: !uuid '308871b77d2c4a9085f712e83d4c138d2ef76804'
+  /Admin.NET/Admin.NET.Application:
+    newFile: !uuid '78d8c02695605b76ed70d2a185dacb66d5a7d7f9'
+    oldFile: !uuid '46e0818642d19e846a4b1bdd8665145a62b292e9'
+  /Admin.NET/Admin.NET.Application/AppConfig.json:
+    newFile: !uuid '8cc0a98219e6a7a368f9856a659c4907d31d83c3'
+    oldFile: !uuid '048d1feab2feba6c25d6312bbf813f2e7eea37ab'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '7eb41de128468bc408932b6b955c9c480cd66c46'
-    oldFile: !uuid '3cad4f4c772c5593ac923b1b3caed8a9ab428308'
+    newFile: !uuid 'c9b6f1f56ae8834445a180b394f7aaa4936057cc'
+    oldFile: !uuid '7eb41de128468bc408932b6b955c9c480cd66c46'
+  /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
+    newFile: !uuid '9a3b097d2143ec168857fb0553ae4335aebe5cdf'
+    oldFile: !uuid '07268d9cbf2f40fc0e3a1d2e05918b3ef117e4c4'
+  /Admin.NET/Admin.NET.Core/Admin.NET.Core.xml:
+    newFile: !uuid 'c015830e07c09e0b03b4f3b3c4428b355c5d3120'
+    oldFile: !uuid '67e42af37e3430fdb55e89e8679551c175b240c0'
+  /Admin.NET/Admin.NET.Core/AdminNETConfig.json:
+    newFile: !uuid '81279a5de443a3e656d5c7c0403335a26da005a3'
+    oldFile: !uuid 'af208815fa871cb0a56b9b80c37134a880b76347'
+  /Admin.NET/Admin.NET.Core/Option:
+    newFile: !uuid 'b9bbf8d9a85d369bfbfcb6ca6639f96f05a510fb'
+    oldFile: !uuid 'be385fad0cff975d62fde76a2fa7550fb3552096'
+  /Admin.NET/Admin.NET.Core/Option/ConnectionStringsOptions.cs:
+    newFile: null
+    oldFile: !uuid '7e7ea5ad6466925644d1d933ec8c0e93c31fa294'
+  /Admin.NET/Admin.NET.Core/Option/DbConnectionOptions.cs:
+    newFile: !uuid '76362ee39fde86db20a8e4df74cead30ee13e543'
+    oldFile: null
+  /Admin.NET/Admin.NET.Core/Service:
+    newFile: !uuid '3d35da8ec174010c42dc6f6041b778701bf83881'
+    oldFile: !uuid 'fd3053e9617fffa650dc375213c64cfcd68c54f6'
+  /Admin.NET/Admin.NET.Core/Service/CodeGen:
+    newFile: !uuid '76b66b75cdd765f718214ce64ce9a9467b54e11b'
+    oldFile: !uuid '76196ba00a91449e195710bbf45a8531c663b417'
+  /Admin.NET/Admin.NET.Core/Service/CodeGen/CodeGenService.cs:
+    newFile: !uuid '9cf3d4dfbedbb8d2c3f33d2c408f135cb0ac95d2'
+    oldFile: !uuid '872fd5461e2b9269f4d18ab3c6d62098ac5c7187'
   /Admin.NET/Admin.NET.Core/SqlSugar:
-    newFile: !uuid '12f2ebf5e388436790682386119768d1ebdcee7d'
-    oldFile: !uuid '290597edbdeef1f70c8549c1f5b7792125d5b6b0'
+    newFile: !uuid 'b05eb720d1f55d97aa94f288249afb264f2934d8'
+    oldFile: !uuid '12f2ebf5e388436790682386119768d1ebdcee7d'
   /Admin.NET/Admin.NET.Core/SqlSugar/SqlSugarSetup.cs:
-    newFile: !uuid 'ab328bd3587312a4a70a0fcee97d5c489c37c3e5'
-    oldFile: !uuid '155f93af9a6d772655f8b05dabb7a9bd87067471'
-gitCommitId: !uuid '010139a08e760a19076f2df4b5aad788d18e532e'
-renames: {
-  }
-revisionId: 126
+    newFile: !uuid '6419aec4e766fcc33c4ad56c28a538ae967c6b65'
+    oldFile: !uuid 'ab328bd3587312a4a70a0fcee97d5c489c37c3e5'
+  /Admin.NET/Admin.NET.Core/Util:
+    newFile: !uuid 'ab2b8079c39b7fdcc1064cce6849df7f3570439d'
+    oldFile: !uuid '72a84a6481069067c80029e206fc107f573c7df7'
+  /Admin.NET/Admin.NET.Core/Util/CodeGenUtil.cs:
+    newFile: !uuid '00575d065f316c93551788ada972730c4903a5e4'
+    oldFile: !uuid 'a3a0061488e16363761deb2d07fcbbbb3ae34992'
+  /Admin.NET/Admin.NET.Web.Core:
+    newFile: !uuid 'cc011cafafc83e513a34f1fff6850b588c47656d'
+    oldFile: !uuid 'e5d10bd2a02094df2453d467a849cbbe34784998'
+  /Admin.NET/Admin.NET.Web.Core/ProjectOptions.cs:
+    newFile: !uuid '7ccab0181285edb04e86d612877b923aec5f3e9a'
+    oldFile: !uuid 'be1382145d67a8b9868dd22ab691ddf99d32911e'
+  /Admin.NET/Admin.NET.Web.Entry:
+    newFile: !uuid '9373c21bf8757cfadcfbd63fbfae714623119834'
+    oldFile: !uuid '1dc257e05ac1b83e055f099442772b21cc7ce549'
+  /Admin.NET/Admin.NET.Web.Entry/appsettings.Development.json:
+    newFile: !uuid 'c4c943331fd43e8e719039685b65aaae6d34118c'
+    oldFile: !uuid '45fe774a9f86f1e84f718cc516e30f7390408b1e'
+  /Admin.NET/Admin.NET.Web.Entry/appsettings.json:
+    newFile: !uuid '693c14bec96e9de6fad9af27e3e0cfbe86ff1438'
+    oldFile: !uuid '9491da84144493f4b592f986d7d63a8b8c6b79ef'
+gitCommitId: !uuid 'cb3b920c87a6e727e1496b3e71556f185640bf48'
+renames:
+  /Admin.NET/Admin.NET.Core/Option/DbConnectionOptions.cs: /Admin.NET/Admin.NET.Core/Option/ConnectionStringsOptions.cs
+revisionId: 127
