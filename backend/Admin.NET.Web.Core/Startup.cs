@@ -12,7 +12,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using OnceMi.AspNetCore.OSS;
 using Serilog;
-using Yitter.IdGenerator;
+using System;
 
 namespace Admin.NET.Web.Core
 {
@@ -41,7 +41,7 @@ namespace Admin.NET.Web.Core
                 .AddMvcFilter<RequestActionFilter>();
             services.AddViewEngine();
             services.AddSignalR();
-
+            services.AddSnowflakeId();//雪花Id
             // 注册EventBus服务
             services.AddEventBus(builder =>
             {
@@ -136,10 +136,6 @@ namespace Admin.NET.Web.Core
 
                 endpoints.MapControllerRoute(name: "default", pattern: "{controller=Home}/{action=Index}/{id?}");
             });
-
-            // 设置雪花Id的workerId，确保每个实例workerId都应不同
-            var workerId = ushort.Parse(App.Configuration["SnowId:WorkerId"] ?? "1");
-            YitIdHelper.SetIdGenerator(new IdGeneratorOptions { WorkerId = workerId });
 
             // 开启自启动定时任务
             //App.GetService<ISysTimerService>().StartTimerJob();
