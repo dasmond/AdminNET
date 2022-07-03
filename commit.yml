@@ -2,103 +2,13 @@
 branches: {
   }
 fileChange:
-  /Admin.NET:
-    newFile: !uuid 'bcb08b5dd0dc4a87ccdb32d234838b6e8332dd66'
-    oldFile: !uuid '4d448dca82a34bf0cd109fb5ea8c6195e4dae5ef'
-  /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '9689cdbeee89f05381cd4e7dc722589b21e5ddc2'
-    oldFile: !uuid 'c9b6f1f56ae8834445a180b394f7aaa4936057cc'
-  /Admin.NET/Admin.NET.Core/Entity:
-    newFile: !uuid '5bdd099d27257c3f38daecce9d7b7c828f3e6482'
-    oldFile: !uuid 'e2061ffb9b97a840854a6bc917378ad01f8f5cb6'
-  /Admin.NET/Admin.NET.Core/Entity/SysLogOp.cs:
-    newFile: !uuid 'a89c81ff5772dd63957db9d81d31aab68668f350'
-    oldFile: !uuid 'f63838269945655250ba368ca5934175b5296fbc'
-  /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid 'f373ac916857a333db54905d0ed6805428dfb865'
-    oldFile: !uuid '3d35da8ec174010c42dc6f6041b778701bf83881'
-  /Admin.NET/Admin.NET.Core/Service/Auth:
-    newFile: !uuid '3a89ccc16a29a44083fdc41d8dfd6cc6608f62f5'
-    oldFile: !uuid '3cd6efa35bb4ddb3caff0144fa94f622dfb23f06'
-  /Admin.NET/Admin.NET.Core/Service/Auth/AuthService.cs:
-    newFile: !uuid '493381db755b392dc062537deddf3762b692d983'
-    oldFile: !uuid '5a9994ffe23296f004a8a833fa7c75307173d1f3'
-  /Admin.NET/Admin.NET.Core/Service/Auth/Dto:
-    newFile: !uuid 'cebc3b22ec54bac175b56dd1823e87ec30c4d489'
-    oldFile: !uuid 'b36ee98f6f9199dab84e344080a32c4b01da81f2'
-  /Admin.NET/Admin.NET.Core/Service/Auth/Dto/LoginUserInfoOutput.cs:
-    newFile: !uuid 'e04264236ccadd59c568fad3a3aeba8ab5a3b4f7'
-    oldFile: !uuid '839be91288318879b0ee6865e10dec2984df8673'
-  /Admin.NET/Admin.NET.Core/Service/Dict:
-    newFile: !uuid '4e0996c3758cd3fbabcec713b9b09b98d10c0204'
-    oldFile: !uuid '378c2a917e9884763bc4bc7cf44ec9d6ac4c0678'
-  /Admin.NET/Admin.NET.Core/Service/Dict/Dto:
-    newFile: !uuid '8b6fd6a0d3b73682b3b83f05bc10711c1a02ba97'
-    oldFile: !uuid 'bcb99fc1e1c8cbe1c6c73897453a09dd5d4ad167'
-  /Admin.NET/Admin.NET.Core/Service/Dict/Dto/DictDataInput.cs:
-    newFile: !uuid 'd73f49c544a9d42388dec8f3aeacee1b298494d1'
-    oldFile: !uuid '8995657cc6c396dcaf6b428bd1d65cf0f81879c1'
-  /Admin.NET/Admin.NET.Core/Service/Dict/SysDictDataService.cs:
-    newFile: !uuid '825cff05fa07b5f96a02b5ebe28697a5d8f0ad14'
-    oldFile: !uuid 'f28010e2a2f39fdf35bbd5d88319c8c3c267d1e8'
-  /Admin.NET/Admin.NET.Core/Service/Org:
-    newFile: !uuid 'df5b85477ba2d3ec4e31176267c5a4f92936a6c8'
-    oldFile: !uuid '11f1a25f76b4d841a9794476f6890376352028b0'
-  /Admin.NET/Admin.NET.Core/Service/Org/SysOrgService.cs:
-    newFile: !uuid 'a3ff8b866d882f7bb6dac7dd1a2c873403fd342c'
-    oldFile: !uuid 'a57528dc5e9ead3229788d9cd2f0fd8e62c03f52'
-  /Admin.NET/Admin.NET.Core/Service/User:
-    newFile: !uuid 'a23698bed48c62e4eb3781455a6bb14691d1c615'
-    oldFile: !uuid '36b1fd5644e54271fcce44dc01f4fc423165edf3'
-  /Admin.NET/Admin.NET.Core/Service/User/UserManager.cs:
-    newFile: !uuid 'f6acd8e5dcb125882bb72d5ec5aaea520c97cda7'
-    oldFile: !uuid '81c53e224be4ae8a5e705230625544c63ab9f9c1'
-  /Vben2:
-    newFile: !uuid '91f74eaa47ff7e245ac0acbda093c44e5b747a11'
-    oldFile: !uuid 'ce31c33d5c200bd8de779e8f7003227e06843a7f'
-  /Vben2/src:
-    newFile: !uuid 'b924aed20c80094fe0fbdb49b9a303a2237a5a41'
-    oldFile: !uuid '917177739ee6546ae33074ff1b458660663f9438'
-  /Vben2/src/api:
-    newFile: !uuid 'aa2c5a0dabaecefe14469b0b08cab07f0d8fff3b'
-    oldFile: !uuid 'f40710e003d2c11004e58ed9d5093f8dcdef1645'
-  /Vben2/src/api/sys:
-    newFile: !uuid 'da22ffb0c7ae41ecd408852acd957005fefb9697'
-    oldFile: !uuid 'ec8ea4716d3982fbb7060c6068feec69d29e9797'
-  /Vben2/src/api/sys/admin.ts:
-    newFile: !uuid '2e35ce746c39b8b15e6b3d6fff713cc808bff7ff'
-    oldFile: !uuid 'cfaa7f13c3a68a1d4bd3a911e9ae07eb472e05fd'
-  /Vben2/src/api/sys/model:
-    newFile: !uuid '910efbe625f7395cbe1200920e30c4b8ebb29657'
-    oldFile: !uuid 'dcb409378f5cddfed7814e6d03d52eba56820d99'
-  /Vben2/src/api/sys/model/userModel.ts:
-    newFile: !uuid 'd73d344f8eab507e7c7bcf11627446952228a3ce'
-    oldFile: !uuid '2415c9111b2492d4e39789a2044577fc7db55d70'
-  /Vben2/src/router:
-    newFile: !uuid '34556067abf8f7baadf3b1211b84715539a5fa3d'
-    oldFile: !uuid '06e81e8827ff8da7ec677954ce1857ec0423433a'
-  /Vben2/src/router/guard:
-    newFile: !uuid 'fbbd105842dc2a9ca60b42274efb3acfe876f4b0'
-    oldFile: !uuid 'fdf2f6b0c9d6b6ba1c5816bb877d0814d1c83fd8'
-  /Vben2/src/router/guard/permissionGuard.ts:
-    newFile: !uuid '63f0ad15de17d339736ae42b26181d02f1340a16'
-    oldFile: !uuid '4e2bb9693bed685c67ca97c60f7336fc60b3352c'
-  /Vben2/src/store:
-    newFile: !uuid '947a5a93d670138d3b93e2717b5e6ad18e985eb2'
-    oldFile: !uuid 'aef89a0873e8243ab40c894ddf2c27f164cd678d'
-  /Vben2/src/store/modules:
-    newFile: !uuid 'b6ead7b5f1081b837dec11d2f66e221dae5384fe'
-    oldFile: !uuid '0b5626bad249dbcd806bc7d1937107266d7fc61f'
-  /Vben2/src/store/modules/user.ts:
-    newFile: !uuid '4defec19ded74baec4e30f5503a82058b141ff94'
-    oldFile: !uuid '9394a3dc361460ca8b85e6e3549a1c9e8dcb0976'
-  /Vben2/types:
-    newFile: !uuid '0587c5c9c5f7c49df08dd121444f69094992e51e'
-    oldFile: !uuid '8fd3416bc87fc5c9e90d9c809dac439bd07a3819'
-  /Vben2/types/store.d.ts:
-    newFile: !uuid '72925b3bb0724ea76ce29cd39f20ca37c87cbba9'
-    oldFile: !uuid '36a6025fc58cd4999ec4fc0d1a2ead3a35da942a'
-gitCommitId: !uuid '2a57a972f8baaecd3a01565ac95eeae6d9392fca'
+  /doc:
+    newFile: !uuid 'c9a02dbb4ba429005651cfc432fac03ba7d492ce'
+    oldFile: !uuid 'efcc5149f0b224b7dd112f3392f35eb0ed32b968'
+  /doc/Vben2前端框架修改记录.txt:
+    newFile: !uuid '819b61c61043706c079ea49f3a684408acb73429'
+    oldFile: !uuid '888c787a3c3e3fed53635309341d74ba2f4317eb'
+gitCommitId: !uuid 'c47bae0c66d0b87fb8b1f8cc19514e56a70992d1'
 renames: {
   }
-revisionId: 128
+revisionId: 129
