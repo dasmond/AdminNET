@@ -3,18 +3,30 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid 'ae74401e524042f363dc756450055b0992643bba'
-    oldFile: !uuid 'bcb08b5dd0dc4a87ccdb32d234838b6e8332dd66'
+    newFile: !uuid '32ccdc1fd0cde050dfb4611470b0b4ab25a1fcb7'
+    oldFile: !uuid 'ae74401e524042f363dc756450055b0992643bba'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '0b6c6bdfc3f6a370b4b82c479648041f96f26592'
-    oldFile: !uuid '9689cdbeee89f05381cd4e7dc722589b21e5ddc2'
-  /Admin.NET/Admin.NET.Core/SqlSugar:
-    newFile: !uuid '4b204c7b81961ec19f535d64f2743ee2c620b1a7'
-    oldFile: !uuid 'b05eb720d1f55d97aa94f288249afb264f2934d8'
-  /Admin.NET/Admin.NET.Core/SqlSugar/SqlSugarSetup.cs:
-    newFile: !uuid 'aa517f93dcbf31a5a4fc0c8a27bbd3205413c734'
-    oldFile: !uuid '6419aec4e766fcc33c4ad56c28a538ae967c6b65'
-gitCommitId: !uuid 'e6cdbe81889eb010c7171c6a25d39f5274805fee'
+    newFile: !uuid 'bb5c1aec16a986ebbea8dc8b8a115f4827636198'
+    oldFile: !uuid '0b6c6bdfc3f6a370b4b82c479648041f96f26592'
+  /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
+    newFile: !uuid 'e2a40915b28b9679efa98281be8fe6d4e6d59379'
+    oldFile: !uuid '9a3b097d2143ec168857fb0553ae4335aebe5cdf'
+  /Admin.NET/Admin.NET.Core/Admin.NET.Core.xml:
+    newFile: !uuid '2269cc8a7614ade592061b04736d4ea0ccbddc28'
+    oldFile: !uuid 'c015830e07c09e0b03b4f3b3c4428b355c5d3120'
+  /Admin.NET/Admin.NET.Core/Extension:
+    newFile: !uuid 'ba7d3018f87c4892896bff19af89dceea53d04ca'
+    oldFile: !uuid 'd59cc5fdeb15c72f0bd24b873bf1d22a5d161e82'
+  /Admin.NET/Admin.NET.Core/Extension/ObjectExtension.cs:
+    newFile: !uuid '2602a29695842b9e77e02c4e81210209b4f93390'
+    oldFile: !uuid '56933a385905df29bbd11ae1de91dcde32c759f8'
+  /Admin.NET/Admin.NET.Web.Entry:
+    newFile: !uuid '57c07517f01833d2b1fbc5f15577fdc57c3238bf'
+    oldFile: !uuid '9373c21bf8757cfadcfbd63fbfae714623119834'
+  /Admin.NET/Admin.NET.Web.Entry/appsettings.json:
+    newFile: !uuid '21b2c7b60dc6de12e8088a655c05ba1139c5e927'
+    oldFile: !uuid '693c14bec96e9de6fad9af27e3e0cfbe86ff1438'
+gitCommitId: !uuid '9d77384a907ac299e8ee79f45fa5130d9376e73f'
 renames: {
   }
-revisionId: 131
+revisionId: 132
