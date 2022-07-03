@@ -2,28 +2,19 @@
 branches: {
   }
 fileChange:
-  /Vben2:
-    newFile: !uuid '182f57485f66f55b69247977f1efe33691ec21c5'
-    oldFile: !uuid '91f74eaa47ff7e245ac0acbda093c44e5b747a11'
-  /Vben2/src:
-    newFile: !uuid '6b49fc89f7856a08ca6c93a008cc918b1c5f7ed9'
-    oldFile: !uuid 'b924aed20c80094fe0fbdb49b9a303a2237a5a41'
-  /Vben2/src/views:
-    newFile: !uuid '538212bf08a157126a549ca4539307f7a60618ae'
-    oldFile: !uuid '091ce8a9e7a06cb20ec52e4bf207c30dfe0208bd'
-  /Vben2/src/views/sys:
-    newFile: !uuid 'ee260618f2bfb55d40359a09ea72067658989db5'
-    oldFile: !uuid 'c383e6cd048e3de55277bb8296b252ca62b3f0fa'
-  /Vben2/src/views/sys/admin:
-    newFile: !uuid 'af4429a472a7cd59a38553040afd72b809d3dde8'
-    oldFile: !uuid 'b14c9c57e8d13b4707923d7e17398c598124f564'
-  /Vben2/src/views/sys/admin/org:
-    newFile: !uuid 'd97b71012b6508d45d56dd3b576b6bfc9b74f040'
-    oldFile: !uuid 'ce03137782c972c4497a41cc5a82ba35b7056b1c'
-  /Vben2/src/views/sys/admin/org/OrgModal.vue:
-    newFile: !uuid 'fc17a16c66ed12a0ab4b85c13907d457e6c4bb64'
-    oldFile: !uuid '90cf7d1bb0650de7f74e900ef8ca470878500871'
-gitCommitId: !uuid 'd62adc9ba4fa1490ac94830a7116c1ea3ff44193'
+  /Admin.NET:
+    newFile: !uuid 'ae74401e524042f363dc756450055b0992643bba'
+    oldFile: !uuid 'bcb08b5dd0dc4a87ccdb32d234838b6e8332dd66'
+  /Admin.NET/Admin.NET.Core:
+    newFile: !uuid '0b6c6bdfc3f6a370b4b82c479648041f96f26592'
+    oldFile: !uuid '9689cdbeee89f05381cd4e7dc722589b21e5ddc2'
+  /Admin.NET/Admin.NET.Core/SqlSugar:
+    newFile: !uuid '4b204c7b81961ec19f535d64f2743ee2c620b1a7'
+    oldFile: !uuid 'b05eb720d1f55d97aa94f288249afb264f2934d8'
+  /Admin.NET/Admin.NET.Core/SqlSugar/SqlSugarSetup.cs:
+    newFile: !uuid 'aa517f93dcbf31a5a4fc0c8a27bbd3205413c734'
+    oldFile: !uuid '6419aec4e766fcc33c4ad56c28a538ae967c6b65'
+gitCommitId: !uuid 'e6cdbe81889eb010c7171c6a25d39f5274805fee'
 renames: {
   }
-revisionId: 130
+revisionId: 131
