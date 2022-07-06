@@ -3,33 +3,27 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid 'e422631dec88c3541d134ed57e5dc8c26b235954'
-    oldFile: !uuid '9fcd2b7363c57e9aa175f9a638f940cb8b7c498b'
-  /Admin.NET/Admin.NET.Application:
-    newFile: !uuid '9b87cb99e660d9936f61596fa892b4dc899afe6c'
-    oldFile: !uuid '56adb01b73f697e0c6743543316b16aa8677fe40'
-  /Admin.NET/Admin.NET.Application/Service:
-    newFile: !uuid 'f0a8bb7564afd2b129b56b7c3dc31f881323a899'
-    oldFile: !uuid 'ed50822c2a97a00baad8c9efa68f9aa2ddc7863b'
-  /Admin.NET/Admin.NET.Application/Service/TestService.cs:
-    newFile: !uuid 'f5aed4bb8bdbeb1d4689d681ea491b3b67fe7e21'
-    oldFile: !uuid '2e64cb5aecf3fa9015e6c1bde998670f40a1bf4f'
+    newFile: !uuid '95777df2ceeab479d0b6cefaf2276d494640da9a'
+    oldFile: !uuid 'e422631dec88c3541d134ed57e5dc8c26b235954'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '6ad77fa73721c89920839afa223fd31334bdbeb6'
-    oldFile: !uuid 'fc7a207354240f292cb09978583a2297b28b543a'
-  /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
-    newFile: !uuid '85a3d91df98437f86bc010e3f29154e19bb50145'
-    oldFile: !uuid '22ff86e0c81b5cc32222741a01df23476160fa5e'
-  /Admin.NET/Admin.NET.Core/Admin.NET.Core.xml:
-    newFile: !uuid '94a22e041693459e36fbd36ae51ac2b5f5c432d5'
-    oldFile: !uuid 'f62a6dfa66890c8a13fc1d90dc442a7044d7b622'
-  /Admin.NET/Admin.NET.Core/SqlSugar:
-    newFile: !uuid 'eeabe61f2c70d08bcfb5aeac369d0e5f510b7136'
-    oldFile: !uuid '3741411e20eae9618c848d51efaf154c90833da9'
-  /Admin.NET/Admin.NET.Core/SqlSugar/SqlSugarUnitOfWork.cs:
-    newFile: !uuid 'f627c5612f4c0dcf62ea6f2f8061f09aef3bbd6e'
-    oldFile: !uuid '1514fc293932b4bdd4504e146476835767a2e457'
-gitCommitId: !uuid '85e93a350a53ec940adac0bc1eef19bbd139a8ef'
+    newFile: !uuid 'd748ca822e4149bde80ff8f7ee6b69dd718060bc'
+    oldFile: !uuid '6ad77fa73721c89920839afa223fd31334bdbeb6'
+  /Admin.NET/Admin.NET.Core/Service:
+    newFile: !uuid '40cf03d99cb0afb8bd39c6dfeddd04fdd12fa2eb'
+    oldFile: !uuid '54da62662b202dddfa21d9e9a4aff7e4fb3853f3'
+  /Admin.NET/Admin.NET.Core/Service/DataResources:
+    newFile: !uuid '929062c99cb5d125bcc2ba7f958a0f3376a1ff72'
+    oldFile: !uuid '26b2d9e479fdda85b89a6b8aab0e0f59f9498d3f'
+  /Admin.NET/Admin.NET.Core/Service/DataResources/Dto:
+    newFile: !uuid '03a5e01733c5f4a0063e7fbc90fe2a099ec5aa44'
+    oldFile: !uuid 'c565f937bcddd3a95c2dcb6b58b808afae200308'
+  /Admin.NET/Admin.NET.Core/Service/DataResources/Dto/DataResourceInput.cs:
+    newFile: !uuid 'f347f276e8fe03c47aab1624d65830344a5f48e8'
+    oldFile: !uuid '56eeca25b27ff4e9a1bc8f1a686d91aaa7ecf898'
+  /Admin.NET/Admin.NET.Core/Service/DataResources/SysDataResourceService.cs:
+    newFile: !uuid 'fe7c1338c119cca2d5d366ded8bcfb2298d11ff8'
+    oldFile: !uuid '27fa70d832f2d5ef5935e448202ee25e11d2c23f'
+gitCommitId: !uuid '7e72f11b44c4f65b33a0a28b050645fda5e49f6f'
 renames: {
   }
-revisionId: 135
+revisionId: 136
