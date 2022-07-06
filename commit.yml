@@ -2,22 +2,31 @@
 branches: {
   }
 fileChange:
-  /Vben2:
-    newFile: !uuid '7b37855fa4c5def46d2327bb451039127f5f365e'
-    oldFile: !uuid '182f57485f66f55b69247977f1efe33691ec21c5'
-  /Vben2/src:
-    newFile: !uuid '411d7114724cc83342c488c1f8738067c4429f70'
-    oldFile: !uuid '6b49fc89f7856a08ca6c93a008cc918b1c5f7ed9'
-  /Vben2/src/api:
-    newFile: !uuid '513ac96076c558a6953cd43b39a1b1b19eda218e'
-    oldFile: !uuid 'aa2c5a0dabaecefe14469b0b08cab07f0d8fff3b'
-  /Vben2/src/api/sys:
-    newFile: !uuid '3a0b4931001d9ef3b4cc65a05da5ad46b71f2b2e'
-    oldFile: !uuid 'da22ffb0c7ae41ecd408852acd957005fefb9697'
-  /Vben2/src/api/sys/admin.ts:
-    newFile: !uuid '2abcdf3883ef50110b31401c762c556a0a435f6c'
-    oldFile: !uuid '2e35ce746c39b8b15e6b3d6fff713cc808bff7ff'
-gitCommitId: !uuid '89746cc98a0e308a30f60a1c4a11b008f51d3b63'
+  /Admin.NET:
+    newFile: !uuid '8bf2c1a85fc18ff26c2c55e193683e19ff033bbf'
+    oldFile: !uuid '95777df2ceeab479d0b6cefaf2276d494640da9a'
+  /Admin.NET/Admin.NET.Core:
+    newFile: !uuid 'd9a4339927f37f519e117052fc175c939e917019'
+    oldFile: !uuid 'd748ca822e4149bde80ff8f7ee6b69dd718060bc'
+  /Admin.NET/Admin.NET.Core/Admin.NET.Core.xml:
+    newFile: !uuid '20df7b4436717e7a33da2b611d635ae927400a0e'
+    oldFile: !uuid '94a22e041693459e36fbd36ae51ac2b5f5c432d5'
+  /Admin.NET/Admin.NET.Core/Service:
+    newFile: !uuid '8c2202b8ec7803629c12d7ab3cc1fb5ace79a896'
+    oldFile: !uuid '40cf03d99cb0afb8bd39c6dfeddd04fdd12fa2eb'
+  /Admin.NET/Admin.NET.Core/Service/DataResources:
+    newFile: !uuid '860c47e7afa78d49686a9c63d74dcd576094ed64'
+    oldFile: !uuid '929062c99cb5d125bcc2ba7f958a0f3376a1ff72'
+  /Admin.NET/Admin.NET.Core/Service/DataResources/Dto:
+    newFile: !uuid 'bf1605fb6c23992475ab4a21a46ab560e8d0c5ba'
+    oldFile: !uuid '03a5e01733c5f4a0063e7fbc90fe2a099ec5aa44'
+  /Admin.NET/Admin.NET.Core/Service/DataResources/Dto/DataResourceInput.cs:
+    newFile: !uuid 'e46ab4fdb10f8a41ca16b91e7c0fa5b44576f5cd'
+    oldFile: !uuid 'f347f276e8fe03c47aab1624d65830344a5f48e8'
+  /Admin.NET/Admin.NET.Core/Service/DataResources/SysDataResourceService.cs:
+    newFile: !uuid '0caa187f1d0854bf131e3cda969b03afc1b13b31'
+    oldFile: !uuid 'fe7c1338c119cca2d5d366ded8bcfb2298d11ff8'
+gitCommitId: !uuid 'b7e658e1d9509061ea0ab0a935431b4aa233461b'
 renames: {
   }
-revisionId: 137
+revisionId: 138
