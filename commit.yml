@@ -3,42 +3,21 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '242385318b236b7cf84f689b724974a31ea36058'
-    oldFile: !uuid '93ef2a25776de85c25ee0d6275e40819cb73e9c0'
+    newFile: !uuid '44a1adbf5829008fcac4c1741260bbe41d82e992'
+    oldFile: !uuid '242385318b236b7cf84f689b724974a31ea36058'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '9ab354834dc5ff81919b52ceb15aba732e0e55da'
-    oldFile: !uuid '30cfff7775790573841b99ba868250d424ea7290'
-  /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
-    newFile: !uuid '605a0f13fed388bf478a90ac50cdb61569123bd3'
-    oldFile: !uuid '5ac7829829e59fbceaabc4e898f88660312f63b0'
-  /Admin.NET/Admin.NET.Core/Admin.NET.Core.xml:
-    newFile: !uuid 'b8ccb106eebdea5847a7057bf3b68cb0f3727a84'
-    oldFile: !uuid '20df7b4436717e7a33da2b611d635ae927400a0e'
-  /Admin.NET/Admin.NET.Core/Entity:
-    newFile: !uuid '56a4e6c37f0b3942af6f1b530a158aa952212b32'
-    oldFile: !uuid '88a00738da0f4d37636ce2759d782bd1cd3575f9'
-  /Admin.NET/Admin.NET.Core/Entity/SysOrg.cs:
-    newFile: !uuid 'e91d4d991973ff5c517ec70e1edc050a68d1ab11'
-    oldFile: !uuid '021e747d2113ecb9c50cf60a6eb9e15ed9924444'
-  /Admin.NET/Admin.NET.Core/SeedData:
-    newFile: !uuid '4b96578a3830a4ff66ac90444cc294cd0cb2d8a9'
-    oldFile: !uuid '78d2e1e2ec251c68c88f288a2ebe007ad9b7458f'
-  /Admin.NET/Admin.NET.Core/SeedData/SysDictDataSeedData.cs:
-    newFile: !uuid '0ec01fa55f15096ec46d45c683a16b949575929f'
-    oldFile: !uuid '59dc577c0fdcd23cc9a91bc971e672983ccf5b4a'
+    newFile: !uuid 'e9e9ef41a3620e589330a892b0c30ea13e8e165d'
+    oldFile: !uuid '9ab354834dc5ff81919b52ceb15aba732e0e55da'
   /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid '63c9e66fc2df1a197ae9e74412b1fa8aafc5832d'
-    oldFile: !uuid '5b71b7130dba8fb902aa20d5c75ad1a747aaf533'
-  /Admin.NET/Admin.NET.Core/Service/Org:
-    newFile: !uuid '9858663301327dcf8a64b17a6e7f687976c4bdc4'
-    oldFile: !uuid '9872d2efacff0f4f8a71be0097b2b9018e380036'
-  /Admin.NET/Admin.NET.Core/Service/Org/Dto:
-    newFile: !uuid 'a8263953ed70c2bb4f3d61690edd34bded4401ea'
-    oldFile: !uuid '60e6e9b79fa0df6e78de696c26b337b08cfbdabf'
-  /Admin.NET/Admin.NET.Core/Service/Org/Dto/OrgInput.cs:
-    newFile: !uuid 'e09bf8183715eb03d1e9da31418db753a4114c51'
-    oldFile: !uuid '1a695a4860908ea449d316fb8f6e93549d446303'
-gitCommitId: !uuid 'b7087341f45f9799054b3441344e6b307d25f21c'
+    newFile: !uuid 'f594eff0b4ff69dacd03d156025fc8e3f3ba7de3'
+    oldFile: !uuid '63c9e66fc2df1a197ae9e74412b1fa8aafc5832d'
+  /Admin.NET/Admin.NET.Core/Service/Timer:
+    newFile: !uuid '1cc165d8deea6c43bf9811bf8a25e163866d97a2'
+    oldFile: !uuid '0d359df46ae012ebb9dca9e3956a10980b3e37af'
+  /Admin.NET/Admin.NET.Core/Service/Timer/SysTimerService.cs:
+    newFile: !uuid 'a53ca3d823493d3f7498b721f5606c101991f649'
+    oldFile: !uuid '656194b543816535c15df05d8bd2fae6da29a0cf'
+gitCommitId: !uuid '0c2c7f143f7976912c83cb76531d45044bf933a8'
 renames: {
   }
-revisionId: 148
+revisionId: 149
