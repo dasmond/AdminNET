@@ -3,39 +3,33 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid 'd22ae3a1f9b8f1c35f9f7568c7e0bbce3c537afb'
-    oldFile: !uuid '1b97840493fd1722ee3556ac808595dd441c0af9'
+    newFile: !uuid 'f57150bd93abe8ecb3c4399e78931ea68356db18'
+    oldFile: !uuid 'd22ae3a1f9b8f1c35f9f7568c7e0bbce3c537afb'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '0a66677156991f5c3e1edf5c0946241aae10aba4'
-    oldFile: !uuid '6d8300a804df4a2b38e361f6a9a3d7cefc4ab103'
-  /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
-    newFile: !uuid 'bbecdb0059b1c0cde96ab8f260b57125c7e84421'
-    oldFile: !uuid '53b2a46874885660c14d1749f5c9e8eb605196ef'
-  /Admin.NET/Admin.NET.Core/Admin.NET.Core.xml:
-    newFile: !uuid '62df1aeec4695992e66228af30b0c94f04f45991'
-    oldFile: !uuid 'b8ccb106eebdea5847a7057bf3b68cb0f3727a84'
-  /Admin.NET/Admin.NET.Core/Entity:
-    newFile: !uuid '37b5ddcf4127389620c53f61ec010667db553374'
-    oldFile: !uuid '56a4e6c37f0b3942af6f1b530a158aa952212b32'
-  /Admin.NET/Admin.NET.Core/Entity/WechatPay.cs:
-    newFile: !uuid 'a1e087d7d1707dc653dfec1a8db081601707d622'
-    oldFile: !uuid '263fea19959b6f31628e05a7e7ffb3f7cca6f37c'
-  /Admin.NET/Admin.NET.Core/GlobalUsings.cs:
-    newFile: !uuid 'cf1afd012b52132db8d7712186dc7cef5048610e'
-    oldFile: !uuid 'a78feff65e31bfe3a9bb76251039072922d2e957'
-  /Admin.NET/Admin.NET.Core/SqlSugar:
-    newFile: !uuid '8d554b9a9783a2f4824bfe1fef2387fcfdfd01fa'
-    oldFile: !uuid '86266b1890dc21890cd1f8a97946d06d9cb78b89'
-  /Admin.NET/Admin.NET.Core/SqlSugar/SqlSugarSetup.cs:
-    newFile: !uuid 'b58dc8c6f6428bfd98e548ce436b46f462225258'
-    oldFile: !uuid '68e3095ae1fd2891dd15f1ff3d62fc7329b1e6bc'
-  /Admin.NET/Admin.NET.Core/Util:
-    newFile: !uuid 'bdd224f763dca54fad5193cf157b8c47e73cfcdd'
-    oldFile: !uuid 'ab2b8079c39b7fdcc1064cce6849df7f3570439d'
-  /Admin.NET/Admin.NET.Core/Util/JsonSerializerProvider.cs:
-    newFile: !uuid 'b47932a895c472dcbcc6a1c3d9b26636faea7a4d'
-    oldFile: !uuid 'fccc6d435039f9dc752001d37905265809520372'
-gitCommitId: !uuid 'efebb25f61f090ee837ae80ebc3ea6014a0abf7b'
+    newFile: !uuid 'ae06564620afe17d9c5952aa0c66a51b3dbe0e54'
+    oldFile: !uuid '0a66677156991f5c3e1edf5c0946241aae10aba4'
+  /Admin.NET/Admin.NET.Core/Const:
+    newFile: !uuid '3a4692f196b5339ffe2983d7176be05128a4b0ec'
+    oldFile: !uuid '03f52027701455a4986478b59fd5dacfa1745765'
+  /Admin.NET/Admin.NET.Core/Const/ClaimConst.cs:
+    newFile: !uuid 'e659f1bf0610085bcd96ac6918dbd8a2091d2d11'
+    oldFile: !uuid 'dd5394b2e441b0c797595195af3af8706a763abc'
+  /Admin.NET/Admin.NET.Core/Service:
+    newFile: !uuid '42153bbb047e64476f03cbedeac9e8aef06adccd'
+    oldFile: !uuid '63c9e66fc2df1a197ae9e74412b1fa8aafc5832d'
+  /Admin.NET/Admin.NET.Core/Service/Auth:
+    newFile: !uuid '8011f5b4441c8ffcf2874467807bc5d94a222b67'
+    oldFile: !uuid '3a89ccc16a29a44083fdc41d8dfd6cc6608f62f5'
+  /Admin.NET/Admin.NET.Core/Service/Auth/AuthService.cs:
+    newFile: !uuid 'f570c021d447d0da7301617b06af970c482aee7d'
+    oldFile: !uuid '493381db755b392dc062537deddf3762b692d983'
+  /Admin.NET/Admin.NET.Core/Service/Auth/Dto:
+    newFile: !uuid '39f650ed641e6c55df489568dfe2a278aa6c31a3'
+    oldFile: !uuid 'cebc3b22ec54bac175b56dd1823e87ec30c4d489'
+  /Admin.NET/Admin.NET.Core/Service/Auth/Dto/LoginUserInfoOutput.cs:
+    newFile: !uuid '6bbff9f4e818733fc487be3bd3c775499228886d'
+    oldFile: !uuid 'e04264236ccadd59c568fad3a3aeba8ab5a3b4f7'
+gitCommitId: !uuid 'a0f853ae4ea4950dcfe18f0ccb6ac773d6259fad'
 renames: {
   }
-revisionId: 154
+revisionId: 155
