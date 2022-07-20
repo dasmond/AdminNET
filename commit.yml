@@ -3,21 +3,18 @@ branches: {
   }
 fileChange:
   /backend:
-    newFile: !uuid 'a1a4fd6a636935d30bf316dab406496c6d5e2147'
-    oldFile: !uuid 'c4988edf136aa0eb2e8e6394bdd664903b4f685c'
-  /backend/Admin.NET.Web.Core:
-    newFile: !uuid '9c6dc4cb20c113a99654b37910d37387e3fcbd8e'
-    oldFile: !uuid '899778ed4b6fbf887841a8ad553b419224efc5d2'
-  /backend/Admin.NET.Web.Core/ServiceExtension:
-    newFile: !uuid '3ffaa434e591f9e9438f9ff6906e2c1609c748ac'
-    oldFile: !uuid '5fb025732f6b47eb16e1851d7c4db8aea5082ada'
-  /backend/Admin.NET.Web.Core/ServiceExtension/SnowflakeIdServiceExtension.cs:
-    newFile: !uuid 'd63b0b0941c7bfa65f9d5c0cbb78854207506003'
-    oldFile: null
-  /backend/Admin.NET.Web.Core/Startup.cs:
-    newFile: !uuid '9c764e6d2e7b2d2841a803f379065fb273eb76b7'
-    oldFile: !uuid '98839b9fb43ca750656791ae0ac36a5aa8b94eec'
-gitCommitId: !uuid '03f737dd143c46c8370e0afd63f89b6455418712'
+    newFile: !uuid '47115e48f1e6ad735e3b0adbe7fcd02e5db3653e'
+    oldFile: !uuid 'a1a4fd6a636935d30bf316dab406496c6d5e2147'
+  /backend/Admin.NET.EntityFramework.Core:
+    newFile: !uuid 'd24b78a4869bd3fc73d8bae6104df069d67afc41'
+    oldFile: !uuid 'cafc7e94e5275b8c122ab9fa6c2600b3b9d0d4c0'
+  /backend/Admin.NET.EntityFramework.Core/DbContexts:
+    newFile: !uuid '9df67f319581e443ab2da8a05f9fb4b2ad12792c'
+    oldFile: !uuid '5e7e695e15d169d27010dabd5218d74f65793de3'
+  /backend/Admin.NET.EntityFramework.Core/DbContexts/DefaultDbContext.cs:
+    newFile: !uuid '4f7cc84f591dca338bbb40ba627ecc1908a312fa'
+    oldFile: !uuid 'ac720362cb5707504c88d87c234ce9d041ff4a6e'
+gitCommitId: !uuid 'fc91cb0375ed0ec81d870d048f46e40626099d98'
 renames: {
   }
-revisionId: 733
+revisionId: 734
