@@ -236,6 +236,11 @@ namespace Admin.NET.EntityFramework.Core
             {
                 return null;
             }
+            //解决实体继承报错问题，基类表才有IsDeleted、TenantId字段
+            if (metadata.BaseType != null)
+            {
+                return null;
+            }
 
             Expression finialExpression = Expression.Constant(true);
             ParameterExpression parameterExpression = Expression.Parameter(metadata.ClrType, "u");
