@@ -1,5 +1,4 @@
-﻿using Admin.NET.Application;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Admin.NET.Web.Entry.Controllers

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Furion.Extras.Admin.NET.Util.LowCode.Front.Att
+﻿namespace Furion.Extras.Admin.NET.Util.LowCode.Front.Att
 {
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = true)]
     public class FrontTypeBindDatabaseAttribute : Attribute

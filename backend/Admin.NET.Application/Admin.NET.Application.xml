@@ -640,6 +640,13 @@
             <param name="userId"></param>
             <returns></returns>
         </member>
+        <member name="M:Admin.NET.Application.SysCacheService.RemovePermission(System.Int64)">
+            <summary>
+            删除权限缓存
+            </summary>
+            <param name="userId"></param>
+            <returns></returns>
+        </member>
         <member name="M:Admin.NET.Application.SysCacheService.SetPermission(System.Int64,System.Collections.Generic.List{System.String})">
             <summary>
             缓存权限
@@ -2712,14 +2719,14 @@
             </summary>
         </member>
         <member name="P:Admin.NET.Application.FormNode.Model">
-            <summary>
+             <summary>
             
-            </summary>
+             </summary>
         </member>
         <member name="P:Admin.NET.Application.FormNode.Key">
-            <summary>
+             <summary>
             
-            </summary>
+             </summary>
         </member>
         <member name="P:Admin.NET.Application.FormNode.Help">
             <summary>
@@ -2767,14 +2774,14 @@
             </summary>
         </member>
         <member name="P:Admin.NET.Application.FormOptions.Clearable">
-            <summary>
+             <summary>
             
-            </summary>
+             </summary>
         </member>
         <member name="P:Admin.NET.Application.FormOptions.MaxLength">
-            <summary>
+             <summary>
             
-            </summary>
+             </summary>
         </member>
         <member name="P:Admin.NET.Application.FormOptions.Hidden">
             <summary>
@@ -2807,9 +2814,9 @@
             </summary>
         </member>
         <member name="P:Admin.NET.Application.FormConfig.Layout">
-            <summary>
+             <summary>
             
-            </summary>
+             </summary>
         </member>
         <member name="T:Admin.NET.Application.FormEditDto">
             <summary>
@@ -7031,7 +7038,7 @@
         </member>
         <member name="P:Admin.NET.Application.WorkflowDefinitionAddDto.Nodes">
             <summary>
-            流程节点 
+            流程节点
             </summary>
         </member>
         <member name="P:Admin.NET.Application.WorkflowDefinitionAddDto.FormId">
@@ -7175,9 +7182,9 @@
             </summary>
         </member>
         <member name="P:Admin.NET.Application.WorkflowFormData.Styles">
-            <summary>
+             <summary>
             
-            </summary>
+             </summary>
         </member>
         <member name="P:Admin.NET.Application.WorkflowFormData.MaxLength">
             <summary>
@@ -7330,19 +7337,19 @@
             </summary>
         </member>
         <member name="P:Admin.NET.Application.EndpointOption.anchor">
-            <summary>
+             <summary>
             
-            </summary>
+             </summary>
         </member>
         <member name="P:Admin.NET.Application.EndpointOption.maxConnections">
-            <summary>
+             <summary>
             
-            </summary>
+             </summary>
         </member>
         <member name="P:Admin.NET.Application.EndpointOption.uuid">
-            <summary>
+             <summary>
             
-            </summary>
+             </summary>
         </member>
         <member name="T:Admin.NET.Application.WorkflowConditionNode">
             <summary>

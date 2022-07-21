@@ -8,7 +8,6 @@ namespace Admin.NET.Application
     /// </summary>
     public interface IWorkflowManagerService
     {
-
         /// <summary>
         /// 获取我发起的流程
         /// </summary>
@@ -29,14 +28,12 @@ namespace Admin.NET.Application
         /// <returns></returns>
         Task<string> startWorkflow(StartWorkflowInput input);
 
-
         /// <summary>
         /// 终止工作流
         /// </summary>
         /// <param name="code"></param>
         /// <returns></returns>
         bool stopWorkflow(string code);
-
 
         /// <summary>
         /// 根据InstanceId获取发起的流程
@@ -53,7 +50,6 @@ namespace Admin.NET.Application
         /// <param name="eventData"></param>
         /// <returns></returns>
         Task PushEvent(string eventName, string eventKey, object eventData);
-
 
         /// <summary>
         /// 获取所有注册流程

@@ -1,6 +1,5 @@
 ﻿using Furion.Extras.Admin.NET.Util.LowCode.Enum;
 using Furion.Extras.Admin.NET.Util.LowCode.Factor.Interface;
-using System;
 using System.Reflection;
 
 namespace Furion.Extras.Admin.NET.Util.LowCode.Factor
@@ -10,7 +9,8 @@ namespace Furion.Extras.Admin.NET.Util.LowCode.Factor
         /// <summary>
         /// 对象类型
         /// </summary>
-        public FieldType FieldType { get { return FieldType.String; } }
+        public FieldType FieldType
+        { get { return FieldType.String; } }
 
         /// <summary>
         /// 字段描述
@@ -30,7 +30,8 @@ namespace Furion.Extras.Admin.NET.Util.LowCode.Factor
         /// <summary>
         /// 数据库类型
         /// </summary>
-        public string DbType { get { return $"NVARCHAR({MaxLength})"; } }
+        public string DbType
+        { get { return $"NVARCHAR({MaxLength})"; } }
 
         /// <summary>
         /// 字段最大长度

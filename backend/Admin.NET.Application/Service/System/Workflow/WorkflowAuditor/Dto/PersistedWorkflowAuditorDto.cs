@@ -47,7 +47,6 @@ namespace Admin.NET.Application
         /// </summary>
         public int PassFlag { get; set; }
 
-        
         /// <summary>
         /// 审核用户姓名
         /// </summary>
@@ -78,7 +77,6 @@ namespace Admin.NET.Application
         /// </summary>
         public long? FormId { get; set; }
 
-
         /// <summary>
         /// 任务名称
         /// </summary>
@@ -88,7 +86,6 @@ namespace Admin.NET.Application
         /// StepId
         /// </summary>
         public string StepId { get; set; }
-
 
         /// <summary>
         /// 备注信息
@@ -125,6 +122,5 @@ namespace Admin.NET.Application
         /// 备注信息
         /// </summary>
         public string ReMark { get; set; }
-
     }
 }

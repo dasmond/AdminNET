@@ -4,11 +4,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Admin.NET.Core
 {
     [Table("sys_persised_event")]
-    public class PersistedEvent:DEntityBase
+    public class PersistedEvent : DEntityBase
     {
         public long PersistenceId { get; set; }
 
-        public Guid EventId { get; set; }                
+        public Guid EventId { get; set; }
 
         [MaxLength(200)]
         public string EventName { get; set; }

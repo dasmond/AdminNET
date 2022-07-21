@@ -1,9 +1,6 @@
 ﻿using Admin.NET.Core.Util.LowCode.Front.Model;
 using Furion.Extras.Admin.NET.Util.LowCode.Front.Interface;
 using Furion.Extras.Admin.NET.Util.LowCode.Front.Model;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Furion.Extras.Admin.NET.Util.LowCode.Front.Code
 {
@@ -13,7 +10,8 @@ namespace Furion.Extras.Admin.NET.Util.LowCode.Front.Code
         {
             List<IFront> list = new List<IFront>();
 
-            model.List.ForEach(item => {
+            model.List.ForEach(item =>
+            {
                 if (item is IFrontLayout)
                 {
                     (item as IFrontLayout).ReadFront(front => { list.Add(front); });
@@ -33,7 +31,7 @@ namespace Furion.Extras.Admin.NET.Util.LowCode.Front.Code
 
             list.ForEach(item =>
             {
-                if(item.Dynamic != null)
+                if (item.Dynamic != null)
                 {
                     data.Add(item.Dynamic);
                 }
@@ -41,6 +39,5 @@ namespace Furion.Extras.Admin.NET.Util.LowCode.Front.Code
 
             return data;
         }
-
     }
 }

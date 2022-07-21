@@ -10,7 +10,6 @@
         /// </summary>
         public FormDto()
         {
-
         }
 
         /// <summary>
@@ -22,12 +21,12 @@
             this.Id = formDto.Id;
             this.Title = formDto.Title;
             this.FormJson = formDto.FormJson;
-            this.Publish =formDto.Publish;
+            this.Publish = formDto.Publish;
             this.TypeId = formDto.TypeId;
             this.TypeName = formDto.TypeName;
             this.Version = formDto.Version;
             this.CreatedUserName = formDto.CreatedUserName;
-            this.CreatedUserId  = formDto.CreatedUserId;
+            this.CreatedUserId = formDto.CreatedUserId;
             this.CreatedTime = formDto.CreatedTime;
             this.NodesList = formDto.NodesList;
         }
@@ -46,7 +45,7 @@
         /// <param name="createdUserId"></param>
         /// <param name="createdTime"></param>
         /// <param name="nodesList"></param>
-        public FormDto(long id,string title,string formjson,bool publish,long typeId,string typeName,int version, string createdUserName,long? createdUserId, DateTimeOffset? createdTime, FormList nodesList)
+        public FormDto(long id, string title, string formjson, bool publish, long typeId, string typeName, int version, string createdUserName, long? createdUserId, DateTimeOffset? createdTime, FormList nodesList)
         {
             this.Id = id;
             this.Title = title;
@@ -111,7 +110,6 @@
         /// </summary>
         public DateTimeOffset? CreatedTime { get; set; }
 
-
         /// <summary>
         /// 节点列表
         /// </summary>
@@ -143,34 +141,42 @@
         /// 类型
         /// </summary>
         public string Type { get; set; }
+
         /// <summary>
         /// 标题
         /// </summary>
         public string Label { get; set; }
+
         /// <summary>
         /// 属性设置
         /// </summary>
 	    public FormOptions Options { get; set; }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
 		public string Model { get; set; }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public string Key { get; set; }
+
         /// <summary>
         /// 帮助
         /// </summary>
         public string Help { get; set; }
+
         /// <summary>
         /// 前缀
         /// </summary>
         public string Prefix { get; set; }
+
         /// <summary>
         /// 后缀
         /// </summary>
         public string Suffix { get; set; }
+
         /// <summary>
         /// 校验规则
         /// </summary>
@@ -186,25 +192,29 @@
         /// 类型
         /// </summary>
         public string Type { get; set; }
+
         /// <summary>
         /// 宽度
         /// </summary>
 		public string Width { get; set; }
+
         /// <summary>
         /// 默认值
         /// </summary>
         public string DefaultValue { get; set; }
+
         /// <summary>
         /// 帮助信息
         /// </summary>
         public string Placeholder { get; set; }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public bool Clearable { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public string MaxLength { get; set; }
 
@@ -228,6 +238,7 @@
         /// 是否必填
         /// </summary>
         public bool Required { get; set; }
+
         /// <summary>
         /// 信息
         /// </summary>
@@ -240,33 +251,29 @@
     public class FormConfig
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public string Layout { get; set; }
 
-
-        public FormLabelCol LabelCol {get;set;}
-
+        public FormLabelCol LabelCol { get; set; }
 
         public FormWrapperCol WrapperCol { get; set; }
 
-
-		public bool HideRequiredMark { get; set; }
-
-
+        public bool HideRequiredMark { get; set; }
 
         public string CustomStyle { get; set; }
-
     }
+
     public class FormLabelCol
-     {
+    {
         public int XS { get; set; }
-	    public int SM { get; set; }
+        public int SM { get; set; }
         public int MD { get; set; }
         public int LG { get; set; }
         public int XL { get; set; }
         public int XXL { get; set; }
     }
+
     public class FormWrapperCol
     {
         public int XS { get; set; }

@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Admin.NET.Core
 {
     [Table("sys_persised_execution_error")]
-    public class PersistedExecutionError:DEntityBase
+    public class PersistedExecutionError : DEntityBase
     {
         public long PersistenceId { get; set; }
 
@@ -13,10 +13,9 @@ namespace Admin.NET.Core
 
         [MaxLength(100)]
         public string ExecutionPointerId { get; set; }
-        
+
         public DateTime ErrorTime { get; set; }
 
         public string Message { get; set; }
-
     }
 }

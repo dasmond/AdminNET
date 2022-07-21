@@ -3,9 +3,6 @@ using Furion.Extras.Admin.NET.Util.LowCode.Front.Att;
 using Furion.Extras.Admin.NET.Util.LowCode.Front.Code;
 using Furion.Extras.Admin.NET.Util.LowCode.Front.Interface;
 using Newtonsoft.Json.Linq;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Furion.Extras.Admin.NET.Util.LowCode.Front
 {
@@ -27,7 +24,8 @@ namespace Furion.Extras.Admin.NET.Util.LowCode.Front
         /// </summary>
         public Front_Grid_Options Options { get; set; }
 
-        public ViewDynamic Dynamic { get { return null; } }
+        public ViewDynamic Dynamic
+        { get { return null; } }
 
         /// <summary>
         /// 布局子组件解析
@@ -67,8 +65,9 @@ namespace Furion.Extras.Admin.NET.Util.LowCode.Front
 
         public void ReadFront(Action<IFront> action)
         {
-            this.Columns.SelectMany(x => x.List).ToList().ForEach(item => { 
-                if(item is IFrontLayout)
+            this.Columns.SelectMany(x => x.List).ToList().ForEach(item =>
+            {
+                if (item is IFrontLayout)
                 {
                     (item as IFrontLayout).ReadFront(action);
                 }

@@ -13,7 +13,7 @@ namespace Admin.NET.Core
 
         [MaxLength(500)]
         public string Data { get; set; }
-        
+
         public long ExecuteTime { get; set; }
     }
 }

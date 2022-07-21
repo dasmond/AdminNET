@@ -33,14 +33,12 @@ namespace Admin.NET.Application
         /// <returns></returns>
         Task<PageResult<PersistedWorkflowAuditorDto>> GetMyUnAuditor([FromQuery] PersistedWorkflowAuditorPage input);
 
-
         /// <summary>
         /// 审核任务
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
         Task<string> Auditor(WorkflowAuditInput input);
-
 
         /// <summary>
         /// 获取流程审核过的节点

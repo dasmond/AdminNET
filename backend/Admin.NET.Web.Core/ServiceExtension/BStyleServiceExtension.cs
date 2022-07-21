@@ -1,9 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Admin.NET.Web.Core
 {
@@ -18,6 +14,7 @@ namespace Admin.NET.Web.Core
             configure(builder);
         }
     }
+
     internal class BStyleServiceBuilder
     {
         private IServiceCollection serviceCollection;
@@ -30,11 +27,11 @@ namespace Admin.NET.Web.Core
         public void UseDefault()
         {
             Console.ForegroundColor = ConsoleColor.Blue;
-            Console.WriteLine(@"  ___      _           _         _   _  _____ _____ 
+            Console.WriteLine(@"  ___      _           _         _   _  _____ _____
  / _ \    | |         (_)       | \ | ||  ___|_   _|
-/ /_\ \ __| |_ __ ___  _ _ __   |  \| || |__   | |  
-|  _  |/ _` | '_ ` _ \| | '_ \  | . ` ||  __|  | |  
-| | | | (_| | | | | | | | | | |_| |\  || |___  | |  
+/ /_\ \ __| |_ __ ___  _ _ __   |  \| || |__   | |
+|  _  |/ _` | '_ ` _ \| | '_ \  | . ` ||  __|  | |
+| | | | (_| | | | | | | | | | |_| |\  || |___  | |
 \_| |_/\__,_|_| |_| |_|_|_| |_(_)_| \_/\____/  \_/  ");
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine(@"

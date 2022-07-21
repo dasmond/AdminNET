@@ -185,18 +185,22 @@ namespace Furion.Extras.Admin.NET.Util
             NoContain_2 = new List<T1>();
             NoContain_1 = new List<T2>();
         }
+
         /// <summary>
         /// 2号数据源中存在
         /// </summary>
         public List<T1> Contain_2 { get; set; }
+
         /// <summary>
         /// 1号数据源中存在
         /// </summary>
         public List<T2> Contain_1 { get; set; }
+
         /// <summary>
         /// 2号数据源中不存在
         /// </summary>
         public List<T1> NoContain_2 { get; set; }
+
         /// <summary>
         /// 1号数据源中不存在
         /// </summary>

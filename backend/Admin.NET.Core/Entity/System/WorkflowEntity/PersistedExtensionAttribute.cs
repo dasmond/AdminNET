@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Admin.NET.Core
 {
     [Table("sys_persised_extension_attribute")]
-    public class PersistedExtensionAttribute:DEntityBase
+    public class PersistedExtensionAttribute : DEntityBase
     {
         public long PersistenceId { get; set; }
 
@@ -17,6 +17,5 @@ namespace Admin.NET.Core
         public string AttributeKey { get; set; }
 
         public string AttributeValue { get; set; }
-
     }
 }

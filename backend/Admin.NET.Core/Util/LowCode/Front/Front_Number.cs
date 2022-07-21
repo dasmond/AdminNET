@@ -1,8 +1,6 @@
 ﻿using Furion.DatabaseAccessor;
 using Furion.Extras.Admin.NET.Util.LowCode.Front.Att;
-using Furion.Extras.Admin.NET.Util.LowCode.Front.Interface;
 using Furion.Extras.Admin.NET.Util.LowCode.Front.Model;
-using System.Collections.Generic;
 
 namespace Furion.Extras.Admin.NET.Util.LowCode.Front
 {
@@ -13,7 +11,6 @@ namespace Furion.Extras.Admin.NET.Util.LowCode.Front
     [FrontTypeBindDatabase(DbProvider.SqlServer, typeof(decimal), "decimal(25,11)")]
     public class Front_Number : Front_Base<Front_Number_Options>
     {
-
     }
 
     public class Front_Number_Options

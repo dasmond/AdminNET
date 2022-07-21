@@ -3,9 +3,6 @@ using Furion.DatabaseAccessor;
 using Furion.Extras.Admin.NET.Util.LowCode.Front.Att;
 using Furion.Extras.Admin.NET.Util.LowCode.Front.Interface;
 using Furion.Extras.Admin.NET.Util.LowCode.Front.Model;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Furion.Extras.Admin.NET.Util.LowCode.Front
 {
@@ -16,7 +13,8 @@ namespace Furion.Extras.Admin.NET.Util.LowCode.Front
     [FrontTypeBindDatabase(DbProvider.SqlServer, typeof(string), "nvarchar(200)")]
     public class Front_Checkbox : Front_Base<Front_Checkbox_Options>, IFrontDynamic
     {
-        public override ViewDynamic Dynamic { get { return new ViewDynamic() { Dynamic = this.Options.Dynamic, DynamicKey = this.Options.DynamicKey }; } }
+        public override ViewDynamic Dynamic
+        { get { return new ViewDynamic() { Dynamic = this.Options.Dynamic, DynamicKey = this.Options.DynamicKey }; } }
     }
 
     public class Front_Checkbox_Options : IFrontDynamicOptions
@@ -50,6 +48,5 @@ namespace Furion.Extras.Admin.NET.Util.LowCode.Front
         /// 隐藏
         /// </summary>
         public bool Hidden { get; set; }
-
     }
 }

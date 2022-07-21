@@ -36,7 +36,6 @@ namespace Admin.NET.Application
         /// <returns></returns>
         Task<WorkflowDefinitionDto> CreateWorkflow(WorkflowDefinitionAddDto workflow);
 
-
         /// <summary>
         /// 修改流程
         /// 实际上是新增同名流程的不同版本
@@ -64,7 +63,6 @@ namespace Admin.NET.Application
         /// <param name="Id"></param>
         /// <returns></returns>
         Task<FormDto> GetStartForm(long Id);
-
 
         /// <summary>
         /// 获取所有流程定义

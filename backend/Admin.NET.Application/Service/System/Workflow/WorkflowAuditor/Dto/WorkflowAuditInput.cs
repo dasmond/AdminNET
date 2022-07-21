@@ -17,11 +17,9 @@ namespace Admin.NET.Application
         /// </summary>
         public EnumAuditStatus Status { get; set; }
 
-
         /// <summary>
         /// 备注
         /// </summary>
         public string Remark { get; set; }
-
     }
 }

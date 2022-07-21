@@ -1,15 +1,15 @@
-﻿using Furion.DependencyInjection;
+﻿using Admin.NET.Core;
+using Furion;
 using Furion.DatabaseAccessor;
+using Furion.DependencyInjection;
 using Furion.DynamicApiController;
+using Furion.FriendlyException;
+using Mapster;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Mapster;
-using Furion.FriendlyException;
-using WorkflowCore.Models;
-using WorkflowCore.Interface;
 using Microsoft.Extensions.DependencyInjection;
-using Admin.NET.Core;
-using Furion;
+using WorkflowCore.Interface;
+using WorkflowCore.Models;
 using WorkflowCore.Services.DefinitionStorage;
 
 namespace Admin.NET.Application
@@ -19,7 +19,7 @@ namespace Admin.NET.Application
     /// </summary>
     [Route("api/workflowdefinition")]
     [ApiDescriptionSettings("流程管理", Name = "WorkflowDefinitionManage", Order = 100)]
-    public class WorkflowDefinitionService:IWorkflowDefinitionService,ITransient,IDynamicApiController
+    public class WorkflowDefinitionService : IWorkflowDefinitionService, ITransient, IDynamicApiController
     {
         private readonly IRepository<PersistedWorkflowDefinition> _workflowDefinitionRep;
         private readonly IWorkflowManagerService _workflowManagerService;
@@ -33,9 +33,9 @@ namespace Admin.NET.Application
         /// <param name="workflowManagerService"></param>
         /// <param name="workflowRep"></param>
         /// <param name="sysformRep"></param>
-        public WorkflowDefinitionService(IRepository<PersistedWorkflowDefinition> workflowDefinitionRep, 
-                    IWorkflowManagerService workflowManagerService, 
-                    IRepository<PersistedWorkflow> workflowRep, 
+        public WorkflowDefinitionService(IRepository<PersistedWorkflowDefinition> workflowDefinitionRep,
+                    IWorkflowManagerService workflowManagerService,
+                    IRepository<PersistedWorkflow> workflowRep,
                     IRepository<SysForm> sysformRep)
         {
             _workflowDefinitionRep = workflowDefinitionRep;
@@ -43,7 +43,6 @@ namespace Admin.NET.Application
             _workflowRep = workflowRep;
             _sysformRep = sysformRep;
         }
-
 
         #region 公共方法、API
 
@@ -155,7 +154,6 @@ namespace Admin.NET.Application
             return form.Adapt<FormDto>();
         }
 
-
         /// <summary>
         /// 获取我创建的流程
         /// </summary>
@@ -199,9 +197,7 @@ namespace Admin.NET.Application
             return workflows.Adapt<List<WorkflowDefinitionDto>>();
         }
 
-        #endregion
-
-
+        #endregion 公共方法、API
 
         #region 私有方法
 
@@ -265,8 +261,7 @@ namespace Admin.NET.Application
             workflow.IsDeleted = true;
             await _workflowDefinitionRep.UpdateIncludeNowAsync(workflow, new[] { nameof(PersistedWorkflowDefinition.IsDeleted) });
         }
-        #endregion
 
-
+        #endregion 私有方法
     }
 }

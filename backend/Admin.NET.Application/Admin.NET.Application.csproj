@@ -8,8 +8,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Entity\**" />
     <Compile Remove="System\**" />
+    <EmbeddedResource Remove="Entity\**" />
     <EmbeddedResource Remove="System\**" />
+    <None Remove="Entity\**" />
     <None Remove="System\**" />
   </ItemGroup>
 
@@ -30,13 +33,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Entity\" />
     <Folder Include="Service\System\Workflow\" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="WorkflowCore" Version="3.6.3" />
-    <PackageReference Include="WorkflowCore.DSL" Version="3.6.3" />
+    <PackageReference Include="WorkflowCore" Version="3.6.4" />
+    <PackageReference Include="WorkflowCore.DSL" Version="3.6.4" />
   </ItemGroup>
 
 </Project>

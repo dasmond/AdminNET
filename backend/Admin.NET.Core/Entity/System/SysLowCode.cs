@@ -97,7 +97,6 @@ namespace Furion.Extras.Admin.NET.Entity
         [Column(TypeName = "text")]
         public string FormDesign { get; set; }
 
-
         public ICollection<SysLowCodeDataBase> Databases { get; set; }
 
         /// <summary>

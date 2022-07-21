@@ -1,11 +1,7 @@
 ﻿using Admin.NET.Core.Util.LowCode.Dto;
 using Furion.DatabaseAccessor;
 using Furion.Extras.Admin.NET.Util.LowCode.Front.Att;
-using Furion.Extras.Admin.NET.Util.LowCode.Front.Interface;
 using Furion.Extras.Admin.NET.Util.LowCode.Front.Model;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Furion.Extras.Admin.NET.Util.LowCode.Front
 {
@@ -16,7 +12,6 @@ namespace Furion.Extras.Admin.NET.Util.LowCode.Front
     [FrontTypeBindDatabase(DbProvider.SqlServer, typeof(string), "nvarchar(2000)", dtoType: typeof(Front_FileDto[]))]
     public class Front_UploadImg : Front_Base<Front_UploadImg_Options>
     {
-
     }
 
     public class Front_UploadImg_Options
@@ -70,13 +65,9 @@ namespace Furion.Extras.Admin.NET.Util.LowCode.Front
         /// 占位内容
         /// </summary>
         public string Placeholder { get; set; }
+
         public object Headers { get; set; }
 
-
         public string ListType { get; set; }
-
     }
-
-
-
 }

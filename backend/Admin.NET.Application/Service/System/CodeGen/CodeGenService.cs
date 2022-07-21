@@ -107,8 +107,8 @@ namespace Admin.NET.Application.CodeGen
             inputs.ForEach(u =>
             {
                 taskList.Add(_sysCodeGenRep.DeleteAsync(u.Id));
-                    // 删除配置表中
-                    taskList.Add(_codeGenConfigService.Delete(u.Id));
+                // 删除配置表中
+                taskList.Add(_codeGenConfigService.Delete(u.Id));
             });
             return Task.WhenAll(taskList);//等待所有任务完成
         }
@@ -281,7 +281,7 @@ namespace Admin.NET.Application.CodeGen
             {
                 var tContent = File.ReadAllText(templatePathList[i]);
 
-               var tableFieldList = await _codeGenConfigService.List(new CodeGenConfig() { CodeGenId = input.Id }); // 字段集合
+                var tableFieldList = await _codeGenConfigService.List(new CodeGenConfig() { CodeGenId = input.Id }); // 字段集合
 
                 tableFieldList.ForEach(u =>
                 {
@@ -368,7 +368,7 @@ namespace Admin.NET.Application.CodeGen
                         Directory.CreateDirectory(dirPath);
                     File.WriteAllText(targetPathList[i], tResult, Encoding.UTF8);
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     throw Oops.Oh($"错误模板：{templatePathList[i]}。错误信息：{ex.Message}。");
                 }
@@ -525,7 +525,7 @@ namespace Admin.NET.Application.CodeGen
             var addFormPath = frontendPath + input.TableName + @"\addForm.vue";
             var editFormPath = frontendPath + input.TableName + @"\editForm.vue";
             var apiJsPath = new DirectoryInfo(App.WebHostEnvironment.ContentRootPath).Parent.Parent.FullName + @"\frontend\src\api\modular\main\" + input.TableName + "Manage.js";
-            
+
             return new List<string>()
             {
                 servicePath,
@@ -541,5 +541,4 @@ namespace Admin.NET.Application.CodeGen
             };
         }
     }
-
 }

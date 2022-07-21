@@ -1,8 +1,6 @@
 ﻿using Furion.DatabaseAccessor;
 using Furion.Extras.Admin.NET.Util.LowCode.Front.Att;
-using Furion.Extras.Admin.NET.Util.LowCode.Front.Interface;
 using Furion.Extras.Admin.NET.Util.LowCode.Front.Model;
-using System.Collections.Generic;
 
 namespace Furion.Extras.Admin.NET.Util.LowCode.Front
 {
@@ -10,12 +8,10 @@ namespace Furion.Extras.Admin.NET.Util.LowCode.Front
     [FrontTypeBindDatabase(DbProvider.SqlServer, typeof(string), "nvarchar(2000)")]
     public class Front_Textarea : Front_Base<Front_Textarea_Options>
     {
-
     }
 
     public class Front_Textarea_Options
     {
-
         /// <summary>
         /// 宽度
         /// </summary>
@@ -61,5 +57,4 @@ namespace Furion.Extras.Admin.NET.Util.LowCode.Front
         /// </summary>
         public string Placeholder { get; set; }
     }
-
 }

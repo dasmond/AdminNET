@@ -1,5 +1,4 @@
-﻿using Admin.NET.Core;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace Admin.NET.Application
 {

@@ -9,11 +9,13 @@ namespace Admin.NET.Core
         /// </summary>
         [Description("未审核")]
         UnAudited = 0,
+
         /// <summary>
         /// 审核通过
         /// </summary>
         [Description("审核通过")]
         Pass = 1,
+
         /// <summary>
         /// 回退
         /// </summary>

@@ -1,6 +1,4 @@
-﻿using Furion;
-using Furion.DatabaseAccessor;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -59,6 +57,5 @@ namespace Admin.NET.Core
         [Comment("常量所属分类的编码")]
         [MaxLength(50)]
         public string GroupCode { get; set; }
-
     }
 }

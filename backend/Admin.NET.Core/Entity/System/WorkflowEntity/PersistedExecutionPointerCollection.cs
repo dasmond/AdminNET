@@ -5,7 +5,7 @@ namespace Admin.NET.Core
     public class PersistedExecutionPointerCollection : ICollection<PersistedExecutionPointer>
     {
         private readonly Dictionary<string, PersistedExecutionPointer> _dictionary;
-        
+
         public PersistedExecutionPointerCollection()
         {
             _dictionary = new Dictionary<string, PersistedExecutionPointer>();
@@ -58,7 +58,7 @@ namespace Admin.NET.Core
         {
             return _dictionary.Remove(item.Id);
         }
-        
+
         public int Count => _dictionary.Count;
         public bool IsReadOnly => false;
     }

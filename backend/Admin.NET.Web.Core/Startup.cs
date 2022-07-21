@@ -12,7 +12,6 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using OnceMi.AspNetCore.OSS;
 using Serilog;
-using System;
 
 namespace Admin.NET.Web.Core
 {
@@ -41,7 +40,7 @@ namespace Admin.NET.Web.Core
                 .AddMvcFilter<RequestActionFilter>();
             services.AddViewEngine();
             services.AddSignalR();
-            services.AddSnowflakeId();//雪花Id
+            services.AddSnowflakeId(); // 雪花Id
             // 注册EventBus服务
             services.AddEventBus(builder =>
             {
@@ -60,7 +59,6 @@ namespace Admin.NET.Web.Core
 
                 services.UseCsRedis();
             }
-
 
             //// default minio
             //// 添加默认对象储存配置信息

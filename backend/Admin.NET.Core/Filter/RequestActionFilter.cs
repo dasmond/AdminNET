@@ -1,7 +1,7 @@
 using Furion.EventBus;
+using Furion.FriendlyException;
 using Furion.JsonSerialization;
 using Furion.UnifyResult;
-using Furion.UnifyResult.Internal;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Controllers;

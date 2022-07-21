@@ -1,10 +1,10 @@
-﻿using Furion.DatabaseAccessor;
-using Microsoft.EntityFrameworkCore;
+﻿using Admin.NET.Core;
+using Furion;
+using Furion.DatabaseAccessor;
 using Furion.DependencyInjection;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.EntityFrameworkCore;
 using WorkflowCore.Models;
-using Furion;
-using Admin.NET.Core;
 
 namespace Admin.NET.Application
 {
@@ -12,7 +12,7 @@ namespace Admin.NET.Application
     /// FurionPersistenceProvider
     /// </summary>
     [AllowAnonymous]
-    public class FurionPersistenceProvider : IFurionPersistenceProvider,ISingleton
+    public class FurionPersistenceProvider : IFurionPersistenceProvider, ISingleton
     {
         private readonly IRepository<PersistedEvent> _eventRepository = App.GetService<IRepository<PersistedEvent>>();
         private readonly IRepository<PersistedSubscription> _eventSubscriptionRepository = App.GetService<IRepository<PersistedSubscription>>();
@@ -28,7 +28,6 @@ namespace Admin.NET.Application
 
         public bool SupportsScheduledCommands => false;
 
-        
         public async Task<string> CreateEventSubscription(EventSubscription subscription, CancellationToken cancellationToken = default)
         {
             //using (var db = Db.GetDbContext())
@@ -61,7 +60,6 @@ namespace Admin.NET.Application
             var persistable = workflow.ToPersistable();
             await _workflowRepository.InsertNowAsync(persistable);
             return workflow.Id;
-
         }
 
         public async Task<IEnumerable<string>> GetRunnableInstances(DateTime asAt, CancellationToken cancellationToken = default)
@@ -76,7 +74,6 @@ namespace Admin.NET.Application
 
                 return raw.Select(s => s.ToString()).ToList();
             }
-
         }
 
         public async Task<IEnumerable<WorkflowInstance>> GetWorkflowInstances(WorkflowStatus? status, string type, DateTime? createdFrom, DateTime? createdTo, int skip, int take)
@@ -147,7 +144,6 @@ namespace Admin.NET.Application
 
                 return (await raw.ToListAsync(cancellationToken)).Select(i => i.ToWorkflowInstance());
             }
-
         }
 
         public async Task PersistWorkflow(WorkflowInstance workflow, CancellationToken cancellationToken = default)
@@ -166,7 +162,6 @@ namespace Admin.NET.Application
                 var persistable = workflow.ToPersistable(existingEntity);
                 await db.SaveChangesAsync(cancellationToken);
             }
-
         }
 
         public async Task TerminateSubscription(string eventSubscriptionId, CancellationToken cancellationToken = default)
@@ -182,7 +177,6 @@ namespace Admin.NET.Application
 
         public virtual void EnsureStoreExists()
         {
-
         }
 
         public async Task<IEnumerable<EventSubscription>> GetSubscriptions(string eventName, string eventKey, DateTime asOf, CancellationToken cancellationToken = default)
@@ -195,7 +189,6 @@ namespace Admin.NET.Application
 
                 return raw.Select(item => item.ToEventSubscription()).ToList();
             }
-
         }
 
         public async Task<string> CreateEvent(Event newEvent, CancellationToken cancellationToken = default)
@@ -213,7 +206,6 @@ namespace Admin.NET.Application
             var persistable = newEvent.ToPersistable();
             await _eventRepository.InsertNowAsync(persistable);
             return newEvent.Id;
-
         }
 
         public async Task<Event> GetEvent(string id, CancellationToken cancellationToken = default)
@@ -259,8 +251,6 @@ namespace Admin.NET.Application
                 existingEntity.IsProcessed = true;
                 await db.SaveChangesAsync(cancellationToken);
             }
-
-
         }
 
         public async Task<IEnumerable<string>> GetEvents(string eventName, string eventKey, DateTime asOf, CancellationToken cancellationToken)
@@ -280,7 +270,6 @@ namespace Admin.NET.Application
 
                 return result;
             }
-
         }
 
         public async Task MarkEventUnprocessed(string id, CancellationToken cancellationToken = default)
@@ -296,8 +285,6 @@ namespace Admin.NET.Application
                 existingEntity.IsProcessed = false;
                 await db.SaveChangesAsync(cancellationToken);
             }
-
-
         }
 
         public async Task PersistErrors(IEnumerable<ExecutionError> errors, CancellationToken cancellationToken = default)
@@ -312,12 +299,9 @@ namespace Admin.NET.Application
                         db.Set<PersistedExecutionError>().Add(error.ToPersistable());
                     }
                     await db.SaveChangesAsync(cancellationToken);
-
                 }
             }
         }
-
-        
 
         public async Task<EventSubscription> GetSubscription(string eventSubscriptionId, CancellationToken cancellationToken = default)
         {
@@ -328,8 +312,6 @@ namespace Admin.NET.Application
 
                 return raw?.ToEventSubscription();
             }
-
-
         }
 
         public async Task<EventSubscription> GetFirstOpenSubscription(string eventName, string eventKey, DateTime asOf, CancellationToken cancellationToken = default)
@@ -340,7 +322,6 @@ namespace Admin.NET.Application
 
                 return raw?.ToEventSubscription();
             }
-
         }
 
         public async Task<bool> SetSubscriptionToken(string eventSubscriptionId, string token, string workerId, DateTime expiry, CancellationToken cancellationToken = default)
@@ -360,8 +341,6 @@ namespace Admin.NET.Application
 
                 return true;
             }
-
-
         }
 
         public async Task ClearSubscriptionToken(string eventSubscriptionId, string token, CancellationToken cancellationToken = default)
@@ -382,8 +361,6 @@ namespace Admin.NET.Application
                 existingEntity.ExternalTokenExpiry = null;
                 await db.SaveChangesAsync(cancellationToken);
             }
-
-
         }
 
         public async Task ScheduleCommand(ScheduledCommand command)
@@ -396,7 +373,6 @@ namespace Admin.NET.Application
                     var result = db.Set<PersistedScheduledCommand>().Add(persistable);
                     await db.SaveChangesAsync();
                 }
-
             }
             catch (DbUpdateException)
             {

@@ -1,9 +1,6 @@
 ﻿using Furion.Extras.Admin.NET.Util.LowCode.Enum;
 using Furion.Extras.Admin.NET.Util.LowCode.Factor.Interface;
-using System;
-using System.Collections.Generic;
 using System.Reflection;
-using System.Text;
 
 namespace Furion.Extras.Admin.NET.Util.LowCode.Factor
 {
@@ -12,7 +9,8 @@ namespace Furion.Extras.Admin.NET.Util.LowCode.Factor
         /// <summary>
         /// 对象类型
         /// </summary>
-        public FieldType FieldType { get { return FieldType.Decimal; } }
+        public FieldType FieldType
+        { get { return FieldType.Decimal; } }
 
         /// <summary>
         /// 对象映射
@@ -32,7 +30,8 @@ namespace Furion.Extras.Admin.NET.Util.LowCode.Factor
         /// <summary>
         /// 数据库类型
         /// </summary>
-        public string DbType { get { return $"DECIMAL({MaxLength},{DecimalLength})"; } }
+        public string DbType
+        { get { return $"DECIMAL({MaxLength},{DecimalLength})"; } }
 
         /// <summary>
         /// 数字长度

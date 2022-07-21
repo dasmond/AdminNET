@@ -114,7 +114,7 @@ namespace Admin.NET.Application
         /// <returns></returns>
         [HttpGet("getLoginUser")]
         public async Task<LoginOutput> GetLoginUserAsync()
-        {            
+        {
             var user = _sysUserRep.FirstOrDefault(u => u.Id == CurrentUserInfo.UserId, false);
             if (user == null)
                 throw Oops.Oh(ErrorCode.D1011);

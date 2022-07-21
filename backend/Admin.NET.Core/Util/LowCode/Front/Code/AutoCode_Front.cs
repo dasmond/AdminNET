@@ -3,11 +3,7 @@ using Furion.Extras.Admin.NET.Util.LowCode.Front.Interface;
 using Furion.Extras.Admin.NET.Util.LowCode.Front.Model;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Text;
 
 namespace Furion.Extras.Admin.NET.Util.LowCode.Front.Code
 {
@@ -22,7 +18,8 @@ namespace Furion.Extras.Admin.NET.Util.LowCode.Front.Code
 
             var JData = JsonConvert.DeserializeObject<JObject>(json);
 
-            return new Front_Model() { 
+            return new Front_Model()
+            {
                 List = ReadFront(JData["list"].Values<JObject>().ToList()),
                 Config = JsonConvert.DeserializeObject<Front_Config>(JData["config"].ToString())
             };
@@ -46,7 +43,7 @@ namespace Furion.Extras.Admin.NET.Util.LowCode.Front.Code
 
             if (item == null || item.BindDatabase == null || !item.BindDatabase.Any()) return new List<FrontTypeBindDatabaseAttribute>();
 
-            if(item.BindDatabase.Where(x => x.ProviderName == providerName).Any())
+            if (item.BindDatabase.Where(x => x.ProviderName == providerName).Any())
                 return item.BindDatabase.Where(x => x.ProviderName == providerName).ToList();
 
             providerName = item.BindDatabase.Select(x => x.ProviderName).FirstOrDefault();
@@ -78,7 +75,7 @@ namespace Furion.Extras.Admin.NET.Util.LowCode.Front.Code
 
         private static List<Front_Convert> FrontTypes()
         {
-            if(List == null)
+            if (List == null)
             {
                 List = new List<Front_Convert>();
 
@@ -88,10 +85,14 @@ namespace Furion.Extras.Admin.NET.Util.LowCode.Front.Code
 
                     if (FrontTypeAttribute != null)
                     {
-                        List.Add(new Front_Convert() { 
+                        List.Add(new Front_Convert()
+                        {
                             T = type
-                            , Type = FrontTypeAttribute.Type
-                            , BindDatabase = type.GetCustomAttributes<FrontTypeBindDatabaseAttribute>().ToList() });
+                            ,
+                            Type = FrontTypeAttribute.Type
+                            ,
+                            BindDatabase = type.GetCustomAttributes<FrontTypeBindDatabaseAttribute>().ToList()
+                        });
                     }
                 });
             }

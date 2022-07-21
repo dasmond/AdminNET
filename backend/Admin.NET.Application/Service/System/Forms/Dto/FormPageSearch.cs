@@ -5,7 +5,7 @@ namespace Admin.NET.Application
     /// <summary>
     /// 分页查询条件
     /// </summary>
-    public class FormPageSearch: PageInputBase
+    public class FormPageSearch : PageInputBase
     {
         /// <summary>
         /// 标题

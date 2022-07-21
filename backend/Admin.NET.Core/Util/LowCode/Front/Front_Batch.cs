@@ -1,10 +1,6 @@
 ﻿using Admin.NET.Core.Util.LowCode.Front.Model;
 using Furion.Extras.Admin.NET.Util.LowCode.Front.Att;
 using Furion.Extras.Admin.NET.Util.LowCode.Front.Interface;
-using Furion.Extras.Admin.NET.Util.LowCode.Front.Model;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Furion.Extras.Admin.NET.Util.LowCode.Front
 {
@@ -30,9 +26,9 @@ namespace Furion.Extras.Admin.NET.Util.LowCode.Front
         /// </summary>
         public string Help { get; set; }
 
-        public ViewDynamic Dynamic { get { return null; } }
+        public ViewDynamic Dynamic
+        { get { return null; } }
     }
-
 
     public class Front_Batch_Options
     {
@@ -63,5 +59,4 @@ namespace Furion.Extras.Admin.NET.Util.LowCode.Front
         /// </summary>
         public string Width { get; set; }
     }
-
 }

@@ -1,10 +1,6 @@
 ﻿using Furion.DatabaseAccessor;
 using Furion.Extras.Admin.NET.Util.LowCode.Front.Att;
-using Furion.Extras.Admin.NET.Util.LowCode.Front.Interface;
 using Furion.Extras.Admin.NET.Util.LowCode.Front.Model;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Furion.Extras.Admin.NET.Util.LowCode.Front
 {
@@ -15,7 +11,6 @@ namespace Furion.Extras.Admin.NET.Util.LowCode.Front
     [FrontTypeBindDatabase(DbProvider.SqlServer, typeof(string), "nvarchar(10)")]
     public class Front_Time : Front_Base<Front_Time_Options>
     {
-
     }
 
     public class Front_Time_Options

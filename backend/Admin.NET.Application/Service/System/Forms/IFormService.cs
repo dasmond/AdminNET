@@ -62,6 +62,5 @@ namespace Admin.NET.Application
         /// </summary>
         /// <returns></returns>
         Task<dynamic> GetPulishList(long? typeId);
-
     }
 }

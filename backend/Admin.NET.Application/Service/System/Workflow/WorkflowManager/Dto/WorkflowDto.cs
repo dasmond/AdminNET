@@ -3,7 +3,7 @@ using WorkflowCore.Models;
 
 namespace Admin.NET.Application
 {
-    public class WorkflowDto:BaseDto
+    public class WorkflowDto : BaseDto
     {
         public long PersistenceId { get; set; }
 
@@ -14,7 +14,6 @@ namespace Admin.NET.Application
         /// </summary>
         public string WorkflowDefinitionId { get; set; }
 
-
         /// <summary>
         /// 流程版本
         /// </summary>
@@ -24,7 +23,6 @@ namespace Admin.NET.Application
         /// 描述
         /// </summary>
         public string Description { get; set; }
-
 
         public string Reference { get; set; }
 

@@ -10,7 +10,7 @@ namespace Admin.NET.Core
     /// </summary>
     [Table("sys_persisted_workflow_definition")]
     [Comment("流程定义表")]
-    public class PersistedWorkflowDefinition:DEntityBase,IEntityTypeBuilder<PersistedWorkflowDefinition>
+    public class PersistedWorkflowDefinition : DEntityBase, IEntityTypeBuilder<PersistedWorkflowDefinition>
     {
         /// <summary>
         /// 标题
@@ -60,16 +60,14 @@ namespace Admin.NET.Core
         [Comment("流程节点")]
         public string Nodes { get; set; }
 
-
         /// <summary>
         /// 表单Id
         /// </summary>
         [Comment("表单Id")]
         public long? FormId { get; set; }
 
-
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="entityBuilder"></param>
         /// <param name="dbContext"></param>

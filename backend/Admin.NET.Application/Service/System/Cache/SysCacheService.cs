@@ -105,7 +105,6 @@ namespace Admin.NET.Application
             await _cache.RemoveAsync(cacheKey);
         }
 
-
         /// <summary>
         /// 缓存权限
         /// </summary>

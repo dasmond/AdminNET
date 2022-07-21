@@ -1,14 +1,14 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Furion.DatabaseAccessor;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using WorkflowCore.Models;
-using Furion.DatabaseAccessor;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Microsoft.EntityFrameworkCore;
 
 namespace Admin.NET.Core
 {
     [Table("sys_persised_execution_pointer")]
-    public class PersistedExecutionPointer:DEntityBase ,IEntityTypeBuilder<PersistedExecutionPointer>
+    public class PersistedExecutionPointer : DEntityBase, IEntityTypeBuilder<PersistedExecutionPointer>
     {
         [Key]
         public long PersistenceId { get; set; }
@@ -45,7 +45,7 @@ namespace Admin.NET.Core
 
         [MaxLength(100)]
         public string StepName { get; set; }
-                
+
         public List<PersistedExtensionAttribute> ExtensionAttributes { get; set; } = new List<PersistedExtensionAttribute>();
 
         public int RetryCount { get; set; }
@@ -65,7 +65,7 @@ namespace Admin.NET.Core
 
         public void Configure(EntityTypeBuilder<PersistedExecutionPointer> entityBuilder, DbContext dbContext, Type dbContextLocator)
         {
-            entityBuilder.HasKey(x=>x.PersistenceId);
+            entityBuilder.HasKey(x => x.PersistenceId);
         }
     }
 }

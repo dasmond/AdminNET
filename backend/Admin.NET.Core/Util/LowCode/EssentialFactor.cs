@@ -1,5 +1,4 @@
 ﻿using Furion.Extras.Admin.NET.Util.LowCode.Factor.Interface;
-using System.Collections.Generic;
 
 namespace Furion.Extras.Admin.NET.Util.LowCode
 {
@@ -11,7 +10,7 @@ namespace Furion.Extras.Admin.NET.Util.LowCode
         /// <summary>
         /// 要素名称
         /// </summary>
-        public string Name { get;set; }
+        public string Name { get; set; }
 
         /// <summary>
         /// 字段集

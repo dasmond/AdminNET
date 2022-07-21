@@ -1,6 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Microsoft.EntityFrameworkCore;
 using WorkflowCore.Models;
 
 namespace Admin.NET.Core
@@ -12,7 +12,6 @@ namespace Admin.NET.Core
     [Comment("流程实例表")]
     public class PersistedWorkflow : DEntityBase
     {
-        
         public long PersistenceId { get; set; }
 
         [MaxLength(200)]
@@ -24,7 +23,6 @@ namespace Admin.NET.Core
         [MaxLength(200)]
         public string WorkflowDefinitionId { get; set; }
 
-
         /// <summary>
         /// 流程版本
         /// </summary>
@@ -35,7 +33,6 @@ namespace Admin.NET.Core
         /// </summary>
         [MaxLength(500)]
         public string Description { get; set; }
-
 
         [MaxLength(200)]
         public string Reference { get; set; }
@@ -63,6 +60,5 @@ namespace Admin.NET.Core
         /// 流程状态
         /// </summary>
         public WorkflowStatus Status { get; set; }
-        
     }
 }

@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Admin.NET.Core
 {
     [Table("sys_persised_subscription")]
-    public class PersistedSubscription:DEntityBase
+    public class PersistedSubscription : DEntityBase
     {
         public long PersistenceId { get; set; }
 
@@ -28,13 +28,13 @@ namespace Admin.NET.Core
         public DateTime SubscribeAsOf { get; set; }
 
         public string SubscriptionData { get; set; }
-        
+
         [MaxLength(200)]
         public string ExternalToken { get; set; }
-        
+
         [MaxLength(200)]
         public string ExternalWorkerId { get; set; }
-        
+
         public DateTime? ExternalTokenExpiry { get; set; }
     }
 }

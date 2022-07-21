@@ -5,10 +5,6 @@ using Furion.Extras.Admin.NET.Util.LowCode.Front.Code;
 using Furion.Extras.Admin.NET.Util.LowCode.Front.Interface;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Furion.Extras.Admin.NET.Util.LowCode.Front
 {
@@ -30,7 +26,8 @@ namespace Furion.Extras.Admin.NET.Util.LowCode.Front
         /// </summary>
         public List<Front_SelectInputList_Column> Columns { get; set; }
 
-        public ViewDynamic Dynamic { get { return null; } }
+        public ViewDynamic Dynamic
+        { get { return null; } }
 
         public IFront ConvertFront(JObject JData)
         {
@@ -63,7 +60,8 @@ namespace Furion.Extras.Admin.NET.Util.LowCode.Front
 
         public void ReadFront(Action<IFront> action)
         {
-            this.Columns.SelectMany(x => x.List).ToList().ForEach(item => {
+            this.Columns.SelectMany(x => x.List).ToList().ForEach(item =>
+            {
                 if (item is IFrontLayout)
                 {
                     (item as IFrontLayout).ReadFront(action);
@@ -95,5 +93,4 @@ namespace Furion.Extras.Admin.NET.Util.LowCode.Front
         /// </summary>
         public List<IFront> List { get; set; }
     }
-
 }

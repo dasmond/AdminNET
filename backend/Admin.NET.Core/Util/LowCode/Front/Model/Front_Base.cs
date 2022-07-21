@@ -1,9 +1,5 @@
 ﻿using Admin.NET.Core.Util.LowCode.Front.Model;
 using Furion.Extras.Admin.NET.Util.LowCode.Front.Interface;
-using Furion.Extras.Admin.NET.Util.LowCode.Front.Model;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Furion.Extras.Admin.NET.Util.LowCode.Front.Model
 {
@@ -33,6 +29,7 @@ namespace Furion.Extras.Admin.NET.Util.LowCode.Front.Model
         /// </summary>
         public Front_Rule[] Rules { get; set; }
 
-        public virtual ViewDynamic Dynamic { get { return null; } }
+        public virtual ViewDynamic Dynamic
+        { get { return null; } }
     }
 }

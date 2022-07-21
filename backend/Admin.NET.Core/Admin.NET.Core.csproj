@@ -17,27 +17,27 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Caching.CSRedis" Version="3.6.90" />
-		<PackageReference Include="CSRedisCore" Version="3.6.9" />
-		<PackageReference Include="Furion" Version="3.2.2" />
-		<PackageReference Include="Furion.Extras.Authentication.JwtBearer" Version="3.2.2" />
-		<PackageReference Include="Furion.Extras.Logging.Serilog" Version="3.2.2" />
-		<PackageReference Include="Furion.Extras.ObjectMapper.Mapster" Version="3.2.2" />
+		<PackageReference Include="Caching.CSRedis" Version="3.8.3" />
+		<PackageReference Include="CSRedisCore" Version="3.8.3" />
+		<PackageReference Include="Furion" Version="3.8.7" />
+		<PackageReference Include="Furion.Extras.Authentication.JwtBearer" Version="3.8.7" />
+		<PackageReference Include="Furion.Extras.Logging.Serilog" Version="3.8.7" />
+		<PackageReference Include="Furion.Extras.ObjectMapper.Mapster" Version="3.8.7" />
 		<PackageReference Include="Magicodes.IE.Excel" Version="2.6.4" />
-		<PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="6.0.5" />
-		<PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="6.0.5" />
+		<PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="6.0.7" />
+		<PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="6.0.7" />
 		<PackageReference Include="NString" Version="2.1.1" />
-		<PackageReference Include="OnceMi.AspNetCore.OSS" Version="1.1.5" />
+		<PackageReference Include="OnceMi.AspNetCore.OSS" Version="1.1.6" />
 		<PackageReference Include="SixLabors.ImageSharp.Drawing" Version="1.0.0-beta14" />
-		<PackageReference Include="System.Linq.Dynamic.Core" Version="1.2.18" />
+		<PackageReference Include="System.Linq.Dynamic.Core" Version="1.2.19" />
 		<PackageReference Include="System.Text.Encoding.CodePages" Version="6.0.0" />
 		<PackageReference Include="UAParser" Version="3.1.47" />
-		<PackageReference Include="WorkflowCore" Version="3.6.3" />
-		<PackageReference Include="WorkflowCore.DSL" Version="3.6.3" />
-		<PackageReference Include="WorkflowCore.Persistence.EntityFramework" Version="3.6.3" />
-		<PackageReference Include="WorkflowCore.Persistence.SqlServer" Version="3.6.3" />
-		<PackageReference Include="Yitter.IdGenerator" Version="1.0.12" />
-		<PackageReference Include="Zack.EFCore.Batch.Sqlite_NET6" Version="6.0.15" />
+		<PackageReference Include="WorkflowCore" Version="3.6.4" />
+		<PackageReference Include="WorkflowCore.DSL" Version="3.6.4" />
+		<PackageReference Include="WorkflowCore.Persistence.EntityFramework" Version="3.6.4" />
+		<PackageReference Include="WorkflowCore.Persistence.SqlServer" Version="3.6.4" />
+		<PackageReference Include="Yitter.IdGenerator" Version="1.0.14" />
+		<PackageReference Include="Zack.EFCore.Batch.Sqlite_NET6" Version="6.1.1" />
 	</ItemGroup>
 
 </Project>

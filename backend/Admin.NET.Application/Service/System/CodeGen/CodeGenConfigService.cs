@@ -87,7 +87,7 @@ namespace Admin.NET.Application
 
             List<SysLowCodeDataBase> list_LowCode = new List<SysLowCodeDataBase>();
 
-            if(codeGenerate != null && codeGenerate.LowCodeId > 0 && _sysLowCodeRep.Where(x => x.SysLowCodeId == codeGenerate.LowCodeId).Any())
+            if (codeGenerate != null && codeGenerate.LowCodeId > 0 && _sysLowCodeRep.Where(x => x.SysLowCodeId == codeGenerate.LowCodeId).Any())
             {
                 list_LowCode = _sysLowCodeRep.Where(x => x.SysLowCodeId == codeGenerate.LowCodeId).ToList();
             }

@@ -1,12 +1,12 @@
-﻿using Furion.DependencyInjection;
-using Furion.DynamicApiController;
-using Furion.DatabaseAccessor;
-using Microsoft.AspNetCore.Mvc;
-using System.Linq.Expressions;
-using Microsoft.EntityFrameworkCore;
-using Furion.FriendlyException;
-using Admin.NET.Core;
+﻿using Admin.NET.Core;
 using Furion;
+using Furion.DatabaseAccessor;
+using Furion.DependencyInjection;
+using Furion.DynamicApiController;
+using Furion.FriendlyException;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
 
 namespace Admin.NET.Application
 {
@@ -24,7 +24,6 @@ namespace Admin.NET.Application
         private readonly ISysUserService _sysUserService;
         private readonly ISendMessageService _sendMessageService;
         private readonly IWorkflowManagerService _workflowManagerService;
-
 
         /// <summary>
         /// 构造函数
@@ -52,7 +51,6 @@ namespace Admin.NET.Application
             _sendMessageService = sendMessageService;
             _workflowManagerService = workflowManagerService;
         }
-
 
         /// <summary>
         /// 新增
@@ -93,7 +91,7 @@ namespace Admin.NET.Application
 
                 var result = await _auditorRep.DetachedEntities
                     .Join(_workflowRep.DetachedEntities, a => a.WorkflowId, w => w.Id, (a, w) => new { a, w })
-                    .Join(_workflowdefinitionRep.DetachedEntities,aw=>aw.w.WorkflowDefinitionId, f=>f.Id.ToString(), (aw, f) => new {aw,f })
+                    .Join(_workflowdefinitionRep.DetachedEntities, aw => aw.w.WorkflowDefinitionId, f => f.Id.ToString(), (aw, f) => new { aw, f })
                     .Where(input.Status != null, x => x.aw.a.Status == input.Status)
                     .Where(input.Status == null, x => x.aw.a.Status == EnumAuditStatus.Pass)
                     .Where(x => x.aw.a.UserId == UserId)
@@ -116,13 +114,12 @@ namespace Admin.NET.Application
                         StepId = x.aw.a.StepId,
                         ExecutionPointerId = x.aw.a.ExecutionPointerId,
                     })
-                    .ToADPagedListAsync(input.PageNo,input.PageSize);
+                    .ToADPagedListAsync(input.PageNo, input.PageSize);
 
                 return result;
             }
             throw Oops.Oh("系统异常请联系管理员！");
         }
-
 
         /// <summary>
         /// 审核任务
@@ -147,7 +144,6 @@ namespace Admin.NET.Application
             entity.UserIdentityName = UserName;
             await _auditorRep.UpdateNowAsync(entity, ignoreNullValues: true);
 
-
             var list = await _auditorRep.DetachedEntities.Where(u => u.StepId == entity.StepId && u.Status == EnumAuditStatus.UnAudited && u.WorkflowId == entity.WorkflowId).ToListAsync();
 
             // 判断当前任务是否完成
@@ -157,10 +153,8 @@ namespace Admin.NET.Application
 
                 var auditor = await _auditorRep.DetachedEntities.FirstOrDefaultAsync(x => x.ExecutionPointerId.ToString() == input.ExecutionPointerId);
 
-
                 // 发布事件
                 await _workflowManagerService.PushEvent(pointer.EventName, pointer.EventKey, null);
-                
 
                 return "审核任务成功！";
             }
@@ -168,7 +162,6 @@ namespace Admin.NET.Application
             {
                 return "审核任务成功！";
             }
-
         }
 
         /// <summary>
@@ -182,8 +175,9 @@ namespace Admin.NET.Application
                 .GroupJoin(_auditorRep.DetachedEntities, p => p.Id, a => a.ExecutionPointerId.ToString(), (p, a) => new { p, a })
                 .SelectMany(x => x.a.DefaultIfEmpty(), (x, y) => new { x.p, y })
                 .Where(x => x.p.WorkflowId.ToString() == workflowId)
-                .OrderBy(x=>x.p.StepId)
-                .Select(x=>new StepAuditorOutput {
+                .OrderBy(x => x.p.StepId)
+                .Select(x => new StepAuditorOutput
+                {
                     AuditorName = !string.IsNullOrWhiteSpace(x.y.UserIdentityName) ? x.y.UserIdentityName : "",
                     AuditorTime = x.y.AuditTime != null ? x.y.AuditTime : DateTimeOffSetToDateTime.ConvertFromDateTimeOffset((DateTimeOffset)x.p.CreatedTime),
                     ReMark = !string.IsNullOrWhiteSpace(x.y.Remark) ? x.y.Remark : "",
@@ -194,7 +188,5 @@ namespace Admin.NET.Application
 
             return executionpointer;
         }
-
-
     }
 }

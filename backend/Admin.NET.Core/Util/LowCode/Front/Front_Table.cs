@@ -4,10 +4,6 @@ using Furion.Extras.Admin.NET.Util.LowCode.Front.Code;
 using Furion.Extras.Admin.NET.Util.LowCode.Front.Interface;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Furion.Extras.Admin.NET.Util.LowCode.Front
 {
@@ -29,7 +25,8 @@ namespace Furion.Extras.Admin.NET.Util.LowCode.Front
         /// </summary>
         public List<Front_Table_Trs> Trs { get; set; }
 
-        public ViewDynamic Dynamic { get { return null; } }
+        public ViewDynamic Dynamic
+        { get { return null; } }
 
         public IFront ConvertFront(JObject JData)
         {
@@ -43,11 +40,11 @@ namespace Furion.Extras.Admin.NET.Util.LowCode.Front
                 {
                     var tds_obj = tr_item["tds"].Values<JObject>();
 
-                    if(tds_obj != null)
+                    if (tds_obj != null)
                     {
                         List<Front_Table_Tds> tds = new List<Front_Table_Tds>();
 
-                        foreach(var td_item in tds_obj)
+                        foreach (var td_item in tds_obj)
                         {
                             tds.Add(new Front_Table_Tds()
                             {
@@ -77,7 +74,8 @@ namespace Furion.Extras.Admin.NET.Util.LowCode.Front
 
         public void ReadFront(Action<IFront> action)
         {
-            this.Trs.SelectMany(x => x.Tds.SelectMany(x_1 => x_1.List)).ToList().ForEach(item => {
+            this.Trs.SelectMany(x => x.Tds.SelectMany(x_1 => x_1.List)).ToList().ForEach(item =>
+            {
                 if (item is IFrontLayout)
                 {
                     (item as IFrontLayout).ReadFront(action);
@@ -127,5 +125,4 @@ namespace Furion.Extras.Admin.NET.Util.LowCode.Front
         public bool Small { get; set; }
         public string CustomStyle { get; set; }
     }
-
 }

@@ -1,10 +1,10 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using Admin.NET.Application;
+using Furion;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using WorkflowCore.Interface;
-using Furion;
 using WorkflowCore.Services.DefinitionStorage;
-using Admin.NET.Application;
 
 namespace Admin.NET.Web.Core
 {
@@ -18,7 +18,7 @@ namespace Admin.NET.Web.Core
             // 获取定义的流程
             var worlflowDefinition = App.GetService<WorkflowDefinitionService>().GetAllWorkflow().Result;
 
-            // 循环注册 
+            // 循环注册
             foreach (var item in worlflowDefinition)
             {
                 var json = App.GetService<WorkflowManagerService>().LoadDefinition(item);

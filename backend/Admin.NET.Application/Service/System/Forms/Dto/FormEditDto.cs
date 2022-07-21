@@ -3,7 +3,7 @@
     /// <summary>
     /// 表单编辑
     /// </summary>
-    public class FormEditDto: BaseDto
+    public class FormEditDto : BaseDto
     {
         /// <summary>
         ///表单标题 不可重复
@@ -19,7 +19,6 @@
         /// 是否发布
         /// </summary>
         public bool Publish { get; set; }
-
 
         /// <summary>
         /// 表单类型ID

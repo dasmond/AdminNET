@@ -1,9 +1,6 @@
 ﻿using Furion.Extras.Admin.NET.Util.LowCode.Enum;
 using Furion.Extras.Admin.NET.Util.LowCode.Factor.Interface;
-using System;
-using System.Collections.Generic;
 using System.Reflection;
-using System.Text;
 
 namespace Furion.Extras.Admin.NET.Util.LowCode.Factor
 {
@@ -13,11 +10,13 @@ namespace Furion.Extras.Admin.NET.Util.LowCode.Factor
         public string Describe { get; set; }
         public string FieldName { get; set; }
 
-        public FieldType FieldType { get { return FieldType.Date; } }
+        public FieldType FieldType
+        { get { return FieldType.Date; } }
 
         public string DbType
         {
-            get {
+            get
+            {
                 if (IsDateTime) return "DATETIME";
                 return "DATE";
             }

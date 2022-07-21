@@ -1,7 +1,8 @@
 ﻿using Furion;
 using Furion.DataValidation;
+using Furion.FriendlyException;
+using Furion.JsonSerialization;
 using Furion.UnifyResult;
-using Furion.UnifyResult.Internal;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
@@ -22,15 +23,7 @@ namespace Admin.NET.Core
         /// <returns></returns>
         public IActionResult OnException(ExceptionContext context, ExceptionMetadata metadata)
         {
-            return new JsonResult(new XnRestfulResult<object>
-            {
-                Code = metadata.StatusCode,
-                Success = false,
-                Data = null,
-                Message = metadata.Errors,
-                Extras = UnifyContext.Take(),
-                Timestamp = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds()
-            });
+            return new JsonResult(RESTfulResult(metadata.StatusCode, errors: metadata.Errors));
         }
 
         /// <summary>
@@ -41,15 +34,7 @@ namespace Admin.NET.Core
         /// <returns></returns>
         public IActionResult OnSucceeded(ActionExecutedContext context, object data)
         {
-            return new JsonResult(new XnRestfulResult<object>
-            {
-                Code = context.Result is EmptyResult ? StatusCodes.Status204NoContent : StatusCodes.Status200OK,  // 处理没有返回值情况 204
-                Success = true,
-                Data = data,
-                Message = "请求成功",
-                Extras = UnifyContext.Take(),
-                Timestamp = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds()
-            });
+            return new JsonResult(RESTfulResult(StatusCodes.Status200OK, true, data));
         }
 
         /// <summary>
@@ -60,15 +45,7 @@ namespace Admin.NET.Core
         /// <returns></returns>
         public IActionResult OnValidateFailed(ActionExecutingContext context, ValidationMetadata metadata)
         {
-            return new JsonResult(new XnRestfulResult<object>
-            {
-                Code = StatusCodes.Status400BadRequest,
-                Success = false,
-                Data = null,
-                Message = metadata.ValidationResult,
-                Extras = UnifyContext.Take(),
-                Timestamp = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds()
-            });
+            return new JsonResult(RESTfulResult(StatusCodes.Status400BadRequest, errors: metadata.ValidationResult));
         }
 
         /// <summary>
@@ -87,32 +64,38 @@ namespace Admin.NET.Core
             {
                 // 处理 401 状态码
                 case StatusCodes.Status401Unauthorized:
-                    await context.Response.WriteAsJsonAsync(new XnRestfulResult<object>
-                    {
-                        Code = StatusCodes.Status401Unauthorized,
-                        Success = false,
-                        Data = null,
-                        Message = "401 登录已过期，请重新登录",
-                        Extras = UnifyContext.Take(),
-                        Timestamp = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds()
-                    }, App.GetOptions<JsonOptions>()?.JsonSerializerOptions);
+                    await context.Response.WriteAsJsonAsync(RESTfulResult(statusCode, errors: "401 登录已过期，请重新登录"),
+                        App.GetOptions<JsonOptions>()?.JsonSerializerOptions);
                     break;
                 // 处理 403 状态码
                 case StatusCodes.Status403Forbidden:
-                    await context.Response.WriteAsJsonAsync(new XnRestfulResult<object>
-                    {
-                        Code = StatusCodes.Status403Forbidden,
-                        Success = false,
-                        Data = null,
-                        Message = "403 禁止访问，没有权限",
-                        Extras = UnifyContext.Take(),
-                        Timestamp = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds()
-                    }, App.GetOptions<JsonOptions>()?.JsonSerializerOptions);
+                    await context.Response.WriteAsJsonAsync(RESTfulResult(statusCode, errors: "403 禁止访问，没有权限"),
+                        App.GetOptions<JsonOptions>()?.JsonSerializerOptions);
                     break;
 
-                default:
-                    break;
+                default: break;
             }
+        }
+
+        /// <summary>
+        /// 返回 RESTful 风格结果集
+        /// </summary>
+        /// <param name="statusCode"></param>
+        /// <param name="succeeded"></param>
+        /// <param name="data"></param>
+        /// <param name="errors"></param>
+        /// <returns></returns>
+        private static XnRestfulResult<object> RESTfulResult(int statusCode, bool succeeded = default, object data = default, object errors = default)
+        {
+            return new XnRestfulResult<object>
+            {
+                Success = succeeded,
+                Code = statusCode,
+                Message = JSON.Serialize(errors),
+                Data = data,
+                Extras = UnifyContext.Take(),
+                Timestamp = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds()
+            };
         }
     }
 

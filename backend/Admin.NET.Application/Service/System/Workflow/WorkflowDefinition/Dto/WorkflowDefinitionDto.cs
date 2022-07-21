@@ -35,7 +35,6 @@
         /// </summary>
         public string Color { get; set; }
 
-
         /// <summary>
         /// 分组
         /// </summary>
@@ -50,6 +49,7 @@
         /// 输入
         /// </summary>
         public IEnumerable<IEnumerable<IEnumerable<WorkflowFormData>>> Inputs { get; set; }
+
         /// <summary>
         /// 流程节点
         /// </summary>

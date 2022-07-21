@@ -35,7 +35,6 @@
         /// </summary>
         public string Color { get; set; }
 
-
         /// <summary>
         /// 分组
         /// </summary>
@@ -45,8 +44,9 @@
         /// 输入
         /// </summary>
         public string Inputs { get; set; }
+
         /// <summary>
-        /// 流程节点 
+        /// 流程节点
         /// </summary>
         public string Nodes { get; set; }
 

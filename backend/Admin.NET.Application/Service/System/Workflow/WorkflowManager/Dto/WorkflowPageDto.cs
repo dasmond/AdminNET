@@ -2,7 +2,7 @@
 
 namespace Admin.NET.Application
 {
-    public class WorkflowPageDto:PageInputBase
+    public class WorkflowPageDto : PageInputBase
     {
         /// <summary>
         /// 流程标题

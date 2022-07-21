@@ -15,7 +15,7 @@ namespace Admin.NET.Application
     /// </summary>
     [Route("api/formmanager")]
     [ApiDescriptionSettings("表单管理", Name = "FormManager", Order = 100)]
-    public class FormService:IFormService,ITransient,IDynamicApiController
+    public class FormService : IFormService, ITransient, IDynamicApiController
     {
         private readonly IRepository<SysForm> _sysformRep;
         private readonly IRepository<SysDictData> _sysDictDataRep;
@@ -39,10 +39,11 @@ namespace Admin.NET.Application
         public async Task<PageResult<FormDto>> GetPageList([FromQuery] FormPageSearch input)
         {
             var formList = await _sysformRep.DetachedEntities
-                    .Join(_sysDictDataRep.DetachedEntities,f=>f.TypeId,d=>d.Id, (f, d) => new {f,d })
-                    .Where(!string.IsNullOrWhiteSpace(input.Title),x=>x.f.Title.Contains(input.Title))
-                    .Where(input.TypeId != null,x=>x.f.TypeId == input.TypeId)
-                    .Select(x=> new FormDto(){
+                    .Join(_sysDictDataRep.DetachedEntities, f => f.TypeId, d => d.Id, (f, d) => new { f, d })
+                    .Where(!string.IsNullOrWhiteSpace(input.Title), x => x.f.Title.Contains(input.Title))
+                    .Where(input.TypeId != null, x => x.f.TypeId == input.TypeId)
+                    .Select(x => new FormDto()
+                    {
                         Id = x.f.Id,
                         Title = x.f.Title,
                         FormJson = x.f.FormJson,
@@ -53,9 +54,9 @@ namespace Admin.NET.Application
                         CreatedUserName = x.f.CreatedUserName,
                         CreatedUserId = x.f.CreatedUserId,
                         CreatedTime = x.f.CreatedTime
-                     })
-                    .ToADPagedListAsync(input.PageNo,input.PageSize);
-            return   formList;
+                    })
+                    .ToADPagedListAsync(input.PageNo, input.PageSize);
+            return formList;
         }
 
         /// <summary>
@@ -75,7 +76,6 @@ namespace Admin.NET.Application
                 throw Oops.Oh("存在相同标题表单，请修改表单标题");
         }
 
-
         /// <summary>
         /// 更新表单
         /// </summary>
@@ -85,11 +85,11 @@ namespace Admin.NET.Application
         [HttpPost("edit")]
         public async Task UpdateEditForm(FormEditDto input)
         {
-            var form = await _sysformRep.DetachedEntities.FirstOrDefaultAsync(x=>x.Id == input.Id);
+            var form = await _sysformRep.DetachedEntities.FirstOrDefaultAsync(x => x.Id == input.Id);
             if (form == null)
                 throw Oops.Oh("未找到对应表单！");
             form.FormJson = input.FormJson;
-            await _sysformRep.UpdateIncludeNowAsync(form, new[] { "FormJson" }, ignoreNullValues:true);
+            await _sysformRep.UpdateIncludeNowAsync(form, new[] { "FormJson" }, ignoreNullValues: true);
         }
 
         /// <summary>
@@ -114,11 +114,11 @@ namespace Admin.NET.Application
         [HttpPost("publish")]
         public async Task Publish(FormPublishDto input)
         {
-            var form = await _sysformRep.DetachedEntities.FirstOrDefaultAsync(x=>x.Id == input.Id);
-            if(form == null)
+            var form = await _sysformRep.DetachedEntities.FirstOrDefaultAsync(x => x.Id == input.Id);
+            if (form == null)
                 throw Oops.Oh("未找到对应表单！");
             form.Publish = input.Publish;
-            await _sysformRep.UpdateIncludeNowAsync(form,new []{ nameof(form.Publish) });
+            await _sysformRep.UpdateIncludeNowAsync(form, new[] { nameof(form.Publish) });
         }
 
         /// <summary>
@@ -155,7 +155,6 @@ namespace Admin.NET.Application
             return formDto;
         }
 
-
         /// <summary>
         /// 获取已发布表单列表
         /// </summary>
@@ -165,12 +164,11 @@ namespace Admin.NET.Application
         {
             var form = await _sysformRep.DetachedEntities.Where(x => x.Publish == true)
                                 .Where(typeId != null, x => x.TypeId == typeId)
-                                .OrderByDescending(x=>x.CreatedTime)
-                                .Select(x=>new { x.Title,x.Id,x.TypeId, NodeList=x.FormJson.FromJson<FormList>() })
+                                .OrderByDescending(x => x.CreatedTime)
+                                .Select(x => new { x.Title, x.Id, x.TypeId, NodeList = x.FormJson.FromJson<FormList>() })
                                 .ToListAsync();
             return form;
         }
-
 
         /// <summary>
         /// 判断标题是否重复
@@ -184,6 +182,5 @@ namespace Admin.NET.Application
                 return true;
             return false;
         }
-
     }
 }

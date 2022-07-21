@@ -1,7 +1,7 @@
-﻿using System.Runtime.Serialization.Json;
-using System.Text;
-using Furion.FriendlyException;
+﻿using Furion.FriendlyException;
 using Newtonsoft.Json;
+using System.Runtime.Serialization.Json;
+using System.Text;
 
 namespace Admin.NET.Core
 {
@@ -53,7 +53,6 @@ namespace Admin.NET.Core
         {
             if (typeof(T) == typeof(IEnumerable<>))
             {
-
             }
             T obj = Activator.CreateInstance<T>();
             using (MemoryStream ms = new MemoryStream(Encoding.UTF8.GetBytes(szJson)))
@@ -78,7 +77,6 @@ namespace Admin.NET.Core
             Dictionary<TKey, TValue> jsonDict = JsonConvert.DeserializeObject<Dictionary<TKey, TValue>>(jsonStr);
 
             return jsonDict;
-
         }
     }
 }

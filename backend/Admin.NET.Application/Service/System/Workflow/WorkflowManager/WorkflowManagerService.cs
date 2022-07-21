@@ -17,7 +17,7 @@ namespace Admin.NET.Application
     /// </summary>
     [Route("api/workflowmanager")]
     [ApiDescriptionSettings("流程管理", Name = "WorkflowManage", Order = 100)]
-    public class WorkflowManagerService:IWorkflowManagerService,ITransient,IDynamicApiController
+    public class WorkflowManagerService : IWorkflowManagerService, ITransient, IDynamicApiController
     {
         private readonly IStepBodyManagerService _stepBodyManageService;
         private readonly IWorkflowHost _host;
@@ -56,9 +56,9 @@ namespace Admin.NET.Application
         {
             var UserId = Convert.ToInt64(App.User.FindFirst(ClaimConst.CLAINM_USERID)?.Value);
             var result = await _workflowRep.DetachedEntities
-                    .Where(!string.IsNullOrWhiteSpace(input.Description),x=>x.Description.Contains(input.Description))
-                    .Where(x=>x.CreatedUserId == UserId)
-                    .OrderByDescending(x=>x.CreatedTime)
+                    .Where(!string.IsNullOrWhiteSpace(input.Description), x => x.Description.Contains(input.Description))
+                    .Where(x => x.CreatedUserId == UserId)
+                    .OrderByDescending(x => x.CreatedTime)
                     .Select(x => x.Adapt<WorkflowDto>())
                     .ToADPagedListAsync(input.PageNo, input.PageSize);
             foreach (var item in result.Rows)
@@ -76,16 +76,14 @@ namespace Admin.NET.Application
         /// <param name="WorkflowId"></param>
         /// <returns></returns>
         [HttpGet("inputsparameter")]
-        public async Task<Dictionary<string,object>> GetWorkflowInputsParameter(string WorkflowId)
+        public async Task<Dictionary<string, object>> GetWorkflowInputsParameter(string WorkflowId)
         {
             var result = await _workflowRep.DetachedEntities.FirstOrDefaultAsync(x => x.Id == long.Parse(WorkflowId));
-            Dictionary<string, object> a = result.Data.FromJson<Dictionary<string,object>>();
+            Dictionary<string, object> a = result.Data.FromJson<Dictionary<string, object>>();
             return a;
         }
 
-
-        #endregion
-
+        #endregion 我发起的流程
 
         #region 流程管理
 
@@ -100,12 +98,11 @@ namespace Admin.NET.Application
         {
             var UserId = Convert.ToInt64(App.User.FindFirst(ClaimConst.CLAINM_USERID)?.Value);
             var UserName = Convert.ToString(App.User.FindFirst(ClaimConst.CLAINM_NAME)?.Value);
-            
+
             var bl = await _host.StartWorkflow(input.Id, input.Version, input.Inputs);
 
             return bl;
         }
-
 
         /// <summary>
         /// 终止工作流
@@ -119,7 +116,6 @@ namespace Admin.NET.Application
             return bl;
         }
 
-
         /// <summary>
         /// 根据InstanceId获取发起的流程
         /// </summary>
@@ -129,7 +125,6 @@ namespace Admin.NET.Application
         {
             return await _workflowRep.DetachedEntities.FirstOrDefaultAsync(x => x.InstanceId == Id);
         }
-
 
         /// <summary>
         /// 发布事件
@@ -143,9 +138,7 @@ namespace Admin.NET.Application
             await _host.PublishEvent(eventName, eventKey, eventData);
         }
 
-
-        #endregion
-
+        #endregion 流程管理
 
         #region 流程注册、Json格式转换
 
@@ -185,10 +178,8 @@ namespace Admin.NET.Application
             BuildWorkflow(workflow.Nodes, source, _stepBodys, workflow.Nodes.First(u => u.Key.ToLower().StartsWith("start")));
             var json = source.ToJson();
 
-
             return json;
         }
-
 
         /// <summary>
         /// 创建节点
@@ -287,7 +278,6 @@ namespace Admin.NET.Application
             }
         }
 
-
         /// <summary>
         /// 创建StepSourceV1实体
         /// </summary>
@@ -324,9 +314,6 @@ namespace Admin.NET.Application
             return stepSource;
         }
 
-        #endregion
-
-
-
+        #endregion 流程注册、Json格式转换
     }
 }

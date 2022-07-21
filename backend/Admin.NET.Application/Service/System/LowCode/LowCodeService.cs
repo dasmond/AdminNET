@@ -1,5 +1,4 @@
 ﻿using Admin.NET.Application;
-using Admin.NET.Application.CodeGen;
 using Admin.NET.Application.Service.System.LowCode.Dto;
 using Admin.NET.Core;
 using Admin.NET.Core.Util.LowCode.Front.Code;
@@ -20,13 +19,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using NString;
 using System.Linq.Dynamic.Core;
 using System.Text;
-using System.Threading.Tasks;
-using NString;
 
 namespace Furion.Extras.Admin.NET.Service.LowCode
 {
@@ -162,13 +157,13 @@ namespace Furion.Extras.Admin.NET.Service.LowCode
                 .Distinct()
                 .ToList();
 
-
-            if(tables.Count != 1)
+            if (tables.Count != 1)
             {
                 tables.Clear();
             }
 
-            compare.NoContain_2.ForEach(item => {
+            compare.NoContain_2.ForEach(item =>
+            {
                 list.AddRange(item.ReadFront_BindDatabase(_sysLowCodeRep.ProviderName).Select(x => new ContrastLowCode_Database()
                 {
                     Control_Key = item.Key,
@@ -193,7 +188,8 @@ namespace Furion.Extras.Admin.NET.Service.LowCode
                 }));
             });
 
-            return new ContrasOutput() { 
+            return new ContrasOutput()
+            {
                 Add = list,
                 Del = compare.NoContain_1
             };
@@ -258,7 +254,6 @@ namespace Furion.Extras.Admin.NET.Service.LowCode
                         }
                     }
                 });
-
 
                 List<CodeGenConfig> tableFieldList = item.DataBase.Select(x => new CodeGenConfig()
                 {
@@ -341,7 +336,8 @@ namespace Furion.Extras.Admin.NET.Service.LowCode
                 string ResultHead = "@model Admin.NET.Application.Service.System.LowCode.Dto.Front_CodeGenerate\r\n";
                 while (!string.IsNullOrEmpty(_configuration.GetValue<string>($"LowCodeConfig:{config_index}:Name")))
                 {
-                    var config_data = new {
+                    var config_data = new
+                    {
                         HostPath = App.WebHostEnvironment.WebRootPath,
                         CodePath = new DirectoryInfo(App.WebHostEnvironment.ContentRootPath).Parent.FullName,
                         FrontendPath = new DirectoryInfo(App.WebHostEnvironment.ContentRootPath).Parent.Parent.FullName + @"\frontend\src\views\main\",
@@ -363,6 +359,7 @@ namespace Furion.Extras.Admin.NET.Service.LowCode
                     }
 
                     #region 执行代码生成
+
                     var tContent = File.ReadAllText(SourceFile);
 
                     if (tContent.IndexOf(ResultHead) == 0) tContent = tContent.Substring(ResultHead.Length);
@@ -392,11 +389,11 @@ namespace Furion.Extras.Admin.NET.Service.LowCode
                     var tResult = _viewEngine.RunCompileFromCached(tContent, data);
                     if (!Directory.Exists(TargetDir)) Directory.CreateDirectory(TargetDir);
                     File.WriteAllText($"{TargetDir}{TargetFile}", tResult, Encoding.UTF8);
-                    #endregion
+
+                    #endregion 执行代码生成
 
                     config_index++;
                 }
-
             });
 
             if (!string.IsNullOrEmpty(TableName))

@@ -1,13 +1,7 @@
-﻿using Admin.NET.Application;
-using Admin.NET.Application.Service.System.LowCode.Dto;
+﻿using Admin.NET.Application.Service.System.LowCode.Dto;
 using Admin.NET.Core;
 using Admin.NET.Core.Service;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Furion.Extras.Admin.NET.Service.LowCode.Dto
 {
@@ -65,7 +59,6 @@ namespace Furion.Extras.Admin.NET.Service.LowCode.Dto
         /// </summary>
         [Required(ErrorMessage = "菜单编码不能为空")]
         public long MenuPid { get; set; }
-
     }
 
     public class DeleteLowCodeInput : BaseId

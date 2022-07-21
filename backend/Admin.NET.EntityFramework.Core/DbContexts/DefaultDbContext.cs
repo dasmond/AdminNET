@@ -2,7 +2,6 @@ using Admin.NET.Core;
 using Admin.NET.Core.Entity;
 using Furion;
 using Furion.DatabaseAccessor;
-using Furion.FriendlyException;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.EntityFrameworkCore.Metadata;
@@ -33,7 +32,6 @@ namespace Admin.NET.EntityFramework.Core
         {
             // 流程中没有用到多租户 这里默认返回一个租户
             if (App.User == null) return 142307070918780;
-            //这个Convert，嗯，有用
             return Convert.ToInt64(App.User.FindFirst(ClaimConst.TENANT_ID)?.Value);
         }
 
@@ -60,7 +58,7 @@ namespace Admin.NET.EntityFramework.Core
                     }
                 }
             }
-            //处理mysql时区问题 https://gitee.com/dotnetchina/Furion/issues/I3RSCO#note_5685893_link
+            // 处理mysql时区问题 https://gitee.com/dotnetchina/Furion/issues/I3RSCO#note_5685893_link
             else if (Database.ProviderName == DbProvider.MySql || Database.ProviderName == DbProvider.MySqlOfficial)
             {
                 var converter = new ValueConverter<DateTimeOffset, DateTime>(v => v.LocalDateTime, v => v);
@@ -300,11 +298,12 @@ namespace Admin.NET.EntityFramework.Core
 
             var dataScopes = JsonUtil.FromJson<List<object>>(App.User.FindFirst(ClaimConst.DATA_SCOPES)?.Value);
             if (dataScopes != null)
-            {                
+            {
                 return dataScopes;
             }
             return new List<object>();
         }
+
         /// <summary>
         /// 构建数据范围过滤器
         /// </summary>

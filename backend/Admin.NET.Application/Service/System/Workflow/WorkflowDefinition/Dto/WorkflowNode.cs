@@ -31,7 +31,7 @@
         public object Value { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public IEnumerable<object> Styles { get; set; }
 
@@ -112,6 +112,7 @@
         /// 位置
         /// </summary>
         public decimal[] Position { get; set; }
+
         /// <summary>
         /// 类型[left,top]
         /// </summary>
@@ -181,7 +182,6 @@
         /// 终止设置
         /// </summary>
         public IEnumerable<EndpointOption> EndpointOptions { get; set; }
-
     }
 
     /// <summary>
@@ -190,17 +190,17 @@
     public class EndpointOption
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public string anchor { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
 		public string maxConnections { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public string uuid { get; set; }
     }
@@ -251,5 +251,4 @@
         /// </summary>
         public object Value { get; set; }
     }
-
 }

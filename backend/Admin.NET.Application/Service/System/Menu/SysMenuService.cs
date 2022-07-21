@@ -5,7 +5,6 @@ using Furion.DependencyInjection;
 using Furion.DynamicApiController;
 using Furion.FriendlyException;
 using Mapster;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 

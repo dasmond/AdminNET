@@ -1,5 +1,4 @@
-﻿
-namespace Admin.NET.Application
+﻿namespace Admin.NET.Application
 {
     public class WorkflowParam
     {

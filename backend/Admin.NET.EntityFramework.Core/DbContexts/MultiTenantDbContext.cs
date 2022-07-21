@@ -1,7 +1,6 @@
 using Admin.NET.Core;
 using Furion;
 using Furion.DatabaseAccessor;
-using Furion.FriendlyException;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Yitter.IdGenerator;

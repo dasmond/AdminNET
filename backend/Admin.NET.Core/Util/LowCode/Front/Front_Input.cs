@@ -1,8 +1,6 @@
 ﻿using Furion.DatabaseAccessor;
 using Furion.Extras.Admin.NET.Util.LowCode.Front.Att;
-using Furion.Extras.Admin.NET.Util.LowCode.Front.Interface;
 using Furion.Extras.Admin.NET.Util.LowCode.Front.Model;
-using System.Collections.Generic;
 
 namespace Furion.Extras.Admin.NET.Util.LowCode.Front
 {
@@ -13,13 +11,12 @@ namespace Furion.Extras.Admin.NET.Util.LowCode.Front
     [FrontTypeBindDatabase(DbProvider.SqlServer, typeof(string), "nvarchar(200)")]
     public class Front_Input : Front_Base<Front_Input_Options>
     {
-
     }
 
     public class Front_Input_Options
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public string Type { get; set; }
 
@@ -68,6 +65,4 @@ namespace Furion.Extras.Admin.NET.Util.LowCode.Front
         /// </summary>
         public string AddonAfter { get; set; }
     }
-
-
 }

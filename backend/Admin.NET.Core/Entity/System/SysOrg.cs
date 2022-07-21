@@ -1,5 +1,3 @@
-using Furion;
-using Furion.DatabaseAccessor;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -96,6 +94,5 @@ namespace Admin.NET.Core
         /// 多对多中间表（角色数据范围）
         /// </summary>
         public List<SysRoleDataScope> SysRoleDataScopes { get; set; }
-
     }
 }

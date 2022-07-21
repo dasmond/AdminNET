@@ -2,8 +2,7 @@
 
 namespace Admin.NET.Application
 {
-    public interface IFurionPersistenceProvider: IPersistenceProvider
+    public interface IFurionPersistenceProvider : IPersistenceProvider
     {
-
     }
 }

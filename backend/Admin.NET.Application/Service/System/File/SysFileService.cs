@@ -176,7 +176,8 @@ namespace Admin.NET.Application
             return new KFormFileOutput()
             {
                 code = 0,
-                Data = new KFormFileIrem() {
+                Data = new KFormFileIrem()
+                {
                     FileId = FileId,
                     Url = $"/api/sysFileInfo/download?id={FileId}"
                 }

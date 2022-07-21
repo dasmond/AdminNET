@@ -5,7 +5,7 @@ namespace Admin.NET.Application
     /// <summary>
     /// 输入参数
     /// </summary>
-    public class WorkflowInput: PageInputBase
+    public class WorkflowInput : PageInputBase
     {
         /// <summary>
         /// 标题
@@ -15,7 +15,7 @@ namespace Admin.NET.Application
         /// <summary>
         /// 版本
         /// </summary>
-        public int?  Version { get; set; }
+        public int? Version { get; set; }
 
         /// <summary>
         /// 创建人
@@ -36,6 +36,5 @@ namespace Admin.NET.Application
         /// 绘画节点
         /// </summary>
         public string DrawNode { get; set; }
-
     }
 }

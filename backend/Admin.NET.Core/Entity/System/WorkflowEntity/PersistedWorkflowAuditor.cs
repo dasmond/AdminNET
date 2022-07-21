@@ -10,7 +10,7 @@ namespace Admin.NET.Core
     /// </summary>
     [Table("sys_persisted_Workflow_auditor")]
     [Comment("流程审核表")]
-    public class PersistedWorkflowAuditor: DEntityBase, IEntityTypeBuilder<PersistedWorkflowAuditor>
+    public class PersistedWorkflowAuditor : DEntityBase, IEntityTypeBuilder<PersistedWorkflowAuditor>
     {
         /// <summary>
         /// 流程ID
@@ -18,7 +18,7 @@ namespace Admin.NET.Core
         public long WorkflowId { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public PersistedWorkflow Workflow { get; set; }
 
@@ -28,7 +28,7 @@ namespace Admin.NET.Core
         public Guid ExecutionPointerId { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public PersistedExecutionPointer ExecutionPointer { get; set; }
 
@@ -75,7 +75,7 @@ namespace Admin.NET.Core
         public string StepName { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="entityBuilder"></param>
         /// <param name="dbContext"></param>

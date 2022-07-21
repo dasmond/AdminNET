@@ -2,7 +2,6 @@
 {
     public class WorkflowParamDictionary : Dictionary<string, WorkflowParam>
     {
-
         public void Add(WorkflowParam param)
         {
             if (this.ContainsKey(param.Name))

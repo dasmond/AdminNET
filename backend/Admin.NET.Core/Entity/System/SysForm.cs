@@ -9,7 +9,7 @@ namespace Admin.NET.Core
     /// </summary>
     [Table("sys_forms")]
     [Comment("表单表")]
-    public class SysForm:DEntityBase
+    public class SysForm : DEntityBase
     {
         /// <summary>
         ///表单标题 不可重复

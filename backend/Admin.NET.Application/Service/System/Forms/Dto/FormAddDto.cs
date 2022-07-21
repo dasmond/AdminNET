@@ -10,7 +10,7 @@ namespace Admin.NET.Application
         /// <summary>
         ///表单标题 不可重复
         /// </summary>
-        [Required(ErrorMessage ="标题不能为空")]
+        [Required(ErrorMessage = "标题不能为空")]
         public string Title { get; set; }
 
         /// <summary>

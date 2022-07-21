@@ -2,9 +2,6 @@
 using Furion.DatabaseAccessor;
 using Furion.Extras.Admin.NET.Util.LowCode.Front.Att;
 using Furion.Extras.Admin.NET.Util.LowCode.Front.Interface;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Furion.Extras.Admin.NET.Util.LowCode.Front
 {
@@ -22,7 +19,8 @@ namespace Furion.Extras.Admin.NET.Util.LowCode.Front
 
         public Front_Text_Options Options { get; set; }
 
-        public ViewDynamic Dynamic { get { return null; } }
+        public ViewDynamic Dynamic
+        { get { return null; } }
     }
 
     public class Front_Text_Options

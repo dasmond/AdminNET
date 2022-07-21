@@ -38,7 +38,7 @@ namespace Admin.NET.Application
                     persistedEP.Id = ep.Id ?? Guid.NewGuid().ToString();
                     persistable.ExecutionPointers.Add(persistedEP);
                 }
-                
+
                 persistedEP.StepId = ep.StepId;
                 persistedEP.Active = ep.Active;
                 persistedEP.SleepUntil = ep.SleepUntil;

@@ -5,7 +5,7 @@ namespace Admin.NET.Application
     /// <summary>
     /// 审核分页查询
     /// </summary>
-    public class PersistedWorkflowAuditorPage: PageInputBase
+    public class PersistedWorkflowAuditorPage : PageInputBase
     {
         /// <summary>
         /// 任务名称
@@ -17,7 +17,6 @@ namespace Admin.NET.Application
         /// </summary>
         public EnumAuditStatus? Status { get; set; }
 
-        
         /// <summary>
         /// 开始日期
         /// </summary>
