@@ -215,6 +215,9 @@ namespace Admin.NET.Application
             // 数据范围检查
             CheckDataScope(input.SysEmpParam.OrgId);
             await _sysUserRoleService.GrantRole(input);
+
+            //删除权限,重新加载
+            await _sysCacheService.RemovePermission(input.Id);
         }
 
         /// <summary>

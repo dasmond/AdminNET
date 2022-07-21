@@ -20,6 +20,9 @@
 
         Task<List<string>> GetPermission(long userId);
 
+        Task RemovePermission(long userId);
+
+
         Task<string> GetStringAsync(string cacheKey);
 
         Task RemoveAsync(string key);
