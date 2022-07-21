@@ -94,6 +94,19 @@ namespace Admin.NET.Application
         }
 
         /// <summary>
+        /// 删除权限缓存
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
+        [NonAction]
+        public async Task RemovePermission(long userId)
+        {
+            var cacheKey = CommonConst.CACHE_KEY_PERMISSION + userId;
+            await _cache.RemoveAsync(cacheKey);
+        }
+
+
+        /// <summary>
         /// 缓存权限
         /// </summary>
         /// <param name="userId"></param>
