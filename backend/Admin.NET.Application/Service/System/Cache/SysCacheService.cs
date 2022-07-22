@@ -102,7 +102,7 @@ namespace Admin.NET.Application
         public async Task RemovePermission(long userId)
         {
             var cacheKey = CommonConst.CACHE_KEY_PERMISSION + userId;
-            await _cache.RemoveAsync(cacheKey);
+            await RemoveAsync(cacheKey);
         }
 
         /// <summary>
