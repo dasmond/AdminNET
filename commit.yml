@@ -3,21 +3,63 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '23e63fe986bcf7f668764cf3a865793a37d95b78'
-    oldFile: !uuid '97790be84d4c9768883e650c302fbc9e5bc75eaa'
+    newFile: !uuid '2f75a6b6dde06ccbe41d24a876fc74fa8f1a31bb'
+    oldFile: !uuid '23e63fe986bcf7f668764cf3a865793a37d95b78'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '9593b668cc5c6ae9290b1ba5f92e02fe1ad5a382'
-    oldFile: !uuid '8fb6c5b6b438492351bf7bd6fe26ff785e482872'
+    newFile: !uuid '4e2abd4fd0f96f9ca19627fbc5bab550ed32d571'
+    oldFile: !uuid '9593b668cc5c6ae9290b1ba5f92e02fe1ad5a382'
   /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
-    newFile: !uuid 'a4c0a615518370a29e4e4718a4bac7a4e7bbc4f9'
-    oldFile: !uuid '1f9444a96c9c06ba70608320383acf4755c4d6a4'
-  /Admin.NET/Admin.NET.Core/Util:
-    newFile: !uuid '4904b87c9cf65afac698b2bfd51b801c7b8bc7b8'
-    oldFile: !uuid 'bdd224f763dca54fad5193cf157b8c47e73cfcdd'
-  /Admin.NET/Admin.NET.Core/Util/AdminResultProvider.cs:
-    newFile: !uuid '01fdde93d1b1f9eb677896bb3deac70eb37dad8d'
-    oldFile: !uuid '53a4c1431b2179699f14c249fdc038e87141cad4'
-gitCommitId: !uuid '1febc59ff1d9921387d145d82ad1e08a51a9bd02'
-renames: {
-  }
-revisionId: 158
+    newFile: !uuid '39b9163646087558c65e6a47f19aa929d30971a1'
+    oldFile: !uuid 'a4c0a615518370a29e4e4718a4bac7a4e7bbc4f9'
+  /Admin.NET/Admin.NET.Core/Admin.NET.Core.xml:
+    newFile: !uuid 'a60a0fea9ae29795d03a5015919d178be72d75c0'
+    oldFile: !uuid '7ece8af9cd5c287976bc3abdee470b09d8103583'
+  /Admin.NET/Admin.NET.Core/Const:
+    newFile: !uuid '6d8f3c80068acfa7411b7ea2817105d090af9a65'
+    oldFile: !uuid '3a4692f196b5339ffe2983d7176be05128a4b0ec'
+  /Admin.NET/Admin.NET.Core/Const/CommonConst.cs:
+    newFile: !uuid '59023c6fe3d4578220fa84a89bc46c2e13a3983e'
+    oldFile: !uuid '895708dc0ce8ded78c3fe8ec55aabbbc85ea5c6e'
+  /Admin.NET/Admin.NET.Core/Filter:
+    newFile: !uuid 'f03b894a51450f6f4f67010d2ecb78f83daf910e'
+    oldFile: !uuid '0e5467ab403a6bd794cd7710c31f4027990f6673'
+  /Admin.NET/Admin.NET.Core/Filter/ActionFilter.cs:
+    newFile: !uuid 'd2329a74785ca7e0c4c1512685d1c75cc4736132'
+    oldFile: null
+  /Admin.NET/Admin.NET.Core/Filter/LogExceptionHandler.cs:
+    newFile: !uuid 'a0e34f4bbb3495e599f4f63d48fdbd8b965df796'
+    oldFile: !uuid '8da2e7924b97eb79a3db57afe45a6835526a5bab'
+  /Admin.NET/Admin.NET.Core/Filter/RequestActionFilter.cs:
+    newFile: null
+    oldFile: !uuid 'e39c1dc8b849f0b0551977d0648819c19a4a44e5'
+  /Admin.NET/Admin.NET.Core/Filter/ResultFilter.cs:
+    newFile: !uuid '916525d0a3a8762cd5f96e29574d98c5cfcc9dc0'
+    oldFile: null
+  /Admin.NET/Admin.NET.Core/GlobalUsings.cs:
+    newFile: !uuid 'c21a43c5e06b0779f907a900a22d64bd6b634565'
+    oldFile: !uuid 'cf1afd012b52132db8d7712186dc7cef5048610e'
+  /Admin.NET/Admin.NET.Core/SeedData:
+    newFile: !uuid 'c2d801d2a53eeb82907cc86c84c15fbe577fa667'
+    oldFile: !uuid '4b96578a3830a4ff66ac90444cc294cd0cb2d8a9'
+  /Admin.NET/Admin.NET.Core/SeedData/SysConfigSeedData.cs:
+    newFile: !uuid '1e16b46ef0a52176063fd956f0a7ed082f04946f'
+    oldFile: !uuid '2d1dd579f439dbfa108fdf713b9b9954f54ba031'
+  /Admin.NET/Admin.NET.Web.Core:
+    newFile: !uuid 'f69fa46435651a9b349fec0bd6843590ee589ca2'
+    oldFile: !uuid 'cc011cafafc83e513a34f1fff6850b588c47656d'
+  /Admin.NET/Admin.NET.Web.Core/Startup.cs:
+    newFile: !uuid '523e5d3d6d5edd0d67e2b3c456aeb581f49f90a9'
+    oldFile: !uuid 'a78716312bfef68cd71ab2aec3e270b6a8d68d1e'
+  /Admin.NET/Admin.NET.Web.Entry:
+    newFile: !uuid '4ba24b3692a7a283d3c2f9a017c3b9db47c4678f'
+    oldFile: !uuid '1ddf5b45dd3d2994126f22c50a74056cd4a6f4dc'
+  /Admin.NET/Admin.NET.Web.Entry/Admin.NET.Web.Entry.csproj:
+    newFile: !uuid 'd846d3749d5cca9342898e9f16aa1924364c2d29'
+    oldFile: !uuid 'c9c7a345f0cb692853c0add45be71a3bf6839db2'
+  /Admin.NET/Admin.NET.Web.Entry/sensitive-words.txt:
+    newFile: !uuid '6ac28c2038893639387675be9b2abbe9f718874b'
+    oldFile: null
+gitCommitId: !uuid 'e286080acefc7038f858b30ef1094ab0f8e50218'
+renames:
+  /Admin.NET/Admin.NET.Core/Filter/ActionFilter.cs: /Admin.NET/Admin.NET.Core/Filter/RequestActionFilter.cs
+revisionId: 159
