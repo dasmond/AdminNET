@@ -3,48 +3,39 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid 'bd93916a875e92871390f68ea6a89c884468cb19'
-    oldFile: !uuid '2f75a6b6dde06ccbe41d24a876fc74fa8f1a31bb'
+    newFile: !uuid '8a3013929669fe86bb0df5dfb8a50b22f5fd316c'
+    oldFile: !uuid 'bd93916a875e92871390f68ea6a89c884468cb19'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid 'cc482063587fd198929d3f2f8ea9412dca097a12'
-    oldFile: !uuid '4e2abd4fd0f96f9ca19627fbc5bab550ed32d571'
-  /Admin.NET/Admin.NET.Core/Admin.NET.Core.xml:
-    newFile: !uuid '376d197ef48e9d05bd1dbc3e70dea369bfd8d5ba'
-    oldFile: !uuid 'a60a0fea9ae29795d03a5015919d178be72d75c0'
-  /Admin.NET/Admin.NET.Core/Util:
-    newFile: !uuid '42619e2e774fd0263489e0b0a9fe68e1af33cf31'
-    oldFile: !uuid '4904b87c9cf65afac698b2bfd51b801c7b8bc7b8'
-  /Admin.NET/Admin.NET.Core/Util/SMEncrypt:
-    newFile: !uuid 'd80b79555dd0a698ba09d73b61080729ce1549fa'
-    oldFile: null
-  /Admin.NET/Admin.NET.Core/Util/SMEncrypt/ByteUtil.cs:
-    newFile: !uuid '6fb6f0df4d26bad9f875ff8d944858cf206f7866'
-    oldFile: null
-  /Admin.NET/Admin.NET.Core/Util/SMEncrypt/Cipher.cs:
-    newFile: !uuid '30142181e47ff325cc401c184b3973570d7a6afd'
-    oldFile: null
-  /Admin.NET/Admin.NET.Core/Util/SMEncrypt/SM2.cs:
-    newFile: !uuid '98a6c3320a8d85d7ee9d4389be60e0f3e4861f60'
-    oldFile: null
-  /Admin.NET/Admin.NET.Core/Util/SMEncrypt/SM2Util.cs:
-    newFile: !uuid 'bbf42e1df627641b9f0376d11f94935a89a5d1fb'
-    oldFile: null
-  /Admin.NET/Admin.NET.Core/Util/SMEncrypt/SM3.cs:
-    newFile: !uuid '86b31f71ef6d13a2e761d990f9c19ac9cf4a89d7'
-    oldFile: null
-  /Admin.NET/Admin.NET.Core/Util/SMEncrypt/SM3Util.cs:
-    newFile: !uuid 'c3a118828d6a97a9ed469ac87a0c383dc2c96507'
-    oldFile: null
-  /Admin.NET/Admin.NET.Core/Util/SMEncrypt/SM4.cs:
-    newFile: !uuid 'cf108a26e10ca5dc4025c74b62e65db7cc699db2'
-    oldFile: null
-  /Admin.NET/Admin.NET.Core/Util/SMEncrypt/SM4Util.cs:
-    newFile: !uuid '63ea4249d859edd08e5e8d459266124ec11f5522'
-    oldFile: null
-  /Admin.NET/Admin.NET.Core/Util/SMEncrypt/SMUtil.cs:
-    newFile: !uuid 'b8c89795f67aab0ad15be6110174c23b56cd85fb'
-    oldFile: null
-gitCommitId: !uuid '49e3e234ff5f5f3e64670fcab040d1fed569de2b'
+    newFile: !uuid 'd14aaeca785a29b471ef486c1eb130a5bd9e2113'
+    oldFile: !uuid 'cc482063587fd198929d3f2f8ea9412dca097a12'
+  /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
+    newFile: !uuid 'd82cd30868ed2377de8a322d7c6288fd58c8057b'
+    oldFile: !uuid '39b9163646087558c65e6a47f19aa929d30971a1'
+  /Admin.NET/Admin.NET.Core/Filter:
+    newFile: !uuid '5a08f697c1c64bae401370fe0acb319d7d12ed2b'
+    oldFile: !uuid 'f03b894a51450f6f4f67010d2ecb78f83daf910e'
+  /Admin.NET/Admin.NET.Core/Filter/LogExceptionHandler.cs:
+    newFile: !uuid 'fe15af87bea97a2c69501516a4aae3e0cf0bda66'
+    oldFile: !uuid 'a0e34f4bbb3495e599f4f63d48fdbd8b965df796'
+  /Admin.NET/Admin.NET.Web.Core:
+    newFile: !uuid 'd30cfb279b7518c396d97e178f04a74c56e8bd89'
+    oldFile: !uuid 'f69fa46435651a9b349fec0bd6843590ee589ca2'
+  /Admin.NET/Admin.NET.Web.Core/Startup.cs:
+    newFile: !uuid '3ef040fe6192c9eae2ac63e0bcaf608aebec11e9'
+    oldFile: !uuid '523e5d3d6d5edd0d67e2b3c456aeb581f49f90a9'
+  /Admin.NET/Admin.NET.Web.Entry:
+    newFile: !uuid '877951428c8e36faf288a9dc21325d2a52d15a28'
+    oldFile: !uuid '4ba24b3692a7a283d3c2f9a017c3b9db47c4678f'
+  /Admin.NET/Admin.NET.Web.Entry/Program.cs:
+    newFile: !uuid '3fe06287291b9b4aac838f3f662fb665fc0c8d4a'
+    oldFile: !uuid 'e5b982466d96f87f81f8729a468b0f23f4cc15da'
+  /Admin.NET/Admin.NET.Web.Entry/appsettings.Development.json:
+    newFile: !uuid '868916dd754ad68f163c1332638b0e3c950bd227'
+    oldFile: !uuid 'c4c943331fd43e8e719039685b65aaae6d34118c'
+  /Admin.NET/Admin.NET.Web.Entry/appsettings.json:
+    newFile: !uuid '65b69c071cc18a10f816014b9525e4f13a115111'
+    oldFile: !uuid '21b2c7b60dc6de12e8088a655c05ba1139c5e927'
+gitCommitId: !uuid '8c9cd6fc9c2c7a5def26d21d474e82fd7a3474b3'
 renames: {
   }
-revisionId: 160
+revisionId: 161
