@@ -3,39 +3,91 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '8a3013929669fe86bb0df5dfb8a50b22f5fd316c'
-    oldFile: !uuid 'bd93916a875e92871390f68ea6a89c884468cb19'
+    newFile: !uuid '57ee4063ea24dd666191b09e5211635b3f078f54'
+    oldFile: !uuid '8a3013929669fe86bb0df5dfb8a50b22f5fd316c'
+  /Admin.NET/Admin.NET.Application:
+    newFile: !uuid '3a4517f662aaaf7ef2c9b9cd6f57827971111e62'
+    oldFile: !uuid '9b87cb99e660d9936f61596fa892b4dc899afe6c'
+  /Admin.NET/Admin.NET.Application/Service:
+    newFile: !uuid 'fd8d75c207e0b5f2c4d579fe24f6eb53528a0fed'
+    oldFile: !uuid 'f0a8bb7564afd2b129b56b7c3dc31f881323a899'
+  /Admin.NET/Admin.NET.Application/Service/TestService.cs:
+    newFile: !uuid '78702ce26e4a4059517a21ef6b32948e94f8a88e'
+    oldFile: !uuid 'f5aed4bb8bdbeb1d4689d681ea491b3b67fe7e21'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid 'd14aaeca785a29b471ef486c1eb130a5bd9e2113'
-    oldFile: !uuid 'cc482063587fd198929d3f2f8ea9412dca097a12'
+    newFile: !uuid '7a0f025462fbacdb61896b836e99881a66e195d5'
+    oldFile: !uuid 'd14aaeca785a29b471ef486c1eb130a5bd9e2113'
   /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
-    newFile: !uuid 'd82cd30868ed2377de8a322d7c6288fd58c8057b'
-    oldFile: !uuid '39b9163646087558c65e6a47f19aa929d30971a1'
+    newFile: !uuid 'f0325ffa01f432c29d9538727a1bceb168030714'
+    oldFile: !uuid 'd82cd30868ed2377de8a322d7c6288fd58c8057b'
+  /Admin.NET/Admin.NET.Core/Admin.NET.Core.xml:
+    newFile: !uuid 'e346c1fe31c979bbce431cfd60e8c927726f3c52'
+    oldFile: !uuid '376d197ef48e9d05bd1dbc3e70dea369bfd8d5ba'
+  /Admin.NET/Admin.NET.Core/AdminNETConfig.json:
+    newFile: !uuid '53c4994efb4451fe2ecdda7f03a55e1108d2e8b0'
+    oldFile: !uuid '0bc0e7b55bce1215fe4db12245cd7d82fd5905a4'
+  /Admin.NET/Admin.NET.Core/EventBus:
+    newFile: !uuid '8abe67980cf0a7feed3830be96506374e73dd654'
+    oldFile: !uuid '308bd00658b1a7a3f4564ddae9ec18089a403a52'
+  /Admin.NET/Admin.NET.Core/EventBus/LogEventSubscriber.cs:
+    newFile: !uuid 'ce8534c67100760c312015b831c5a57ff5838338'
+    oldFile: !uuid 'c2231c9114f1100c029e6b0fabaecdf98f942242'
   /Admin.NET/Admin.NET.Core/Filter:
-    newFile: !uuid '5a08f697c1c64bae401370fe0acb319d7d12ed2b'
-    oldFile: !uuid 'f03b894a51450f6f4f67010d2ecb78f83daf910e'
+    newFile: !uuid '89c245e2d7fb9807193f4a11ec11929638c70d23'
+    oldFile: !uuid '5a08f697c1c64bae401370fe0acb319d7d12ed2b'
   /Admin.NET/Admin.NET.Core/Filter/LogExceptionHandler.cs:
-    newFile: !uuid 'fe15af87bea97a2c69501516a4aae3e0cf0bda66'
-    oldFile: !uuid 'a0e34f4bbb3495e599f4f63d48fdbd8b965df796'
+    newFile: !uuid 'd9015725872c5e59c0f4e875caac52a945fe4e08'
+    oldFile: !uuid 'fe15af87bea97a2c69501516a4aae3e0cf0bda66'
+  /Admin.NET/Admin.NET.Core/Hub:
+    newFile: !uuid '245a0a4723c5c0224b16ef95fd8c9ec6f761c7b5'
+    oldFile: !uuid 'f43510ba4585ac779c5e373d1d56e4881be375ce'
+  /Admin.NET/Admin.NET.Core/Hub/ChatHub.cs:
+    newFile: !uuid '2501cee715e53072b3d3dfafec67bf9e0f462a96'
+    oldFile: !uuid 'baa4e11a5e8f22cd1b0fea97d80cf11e465ec6a2'
+  /Admin.NET/Admin.NET.Core/Option:
+    newFile: !uuid '483d65d4636ec67c006f3183f81e46b4573355e8'
+    oldFile: !uuid 'b9bbf8d9a85d369bfbfcb6ca6639f96f05a510fb'
+  /Admin.NET/Admin.NET.Core/Option/CodeGenOptions.cs:
+    newFile: !uuid 'd7ecc21fccff0f6d7d80dface0ede1a64901dbd3'
+    oldFile: !uuid '5baf18111a8d2da7763c00683b909fbe077b6d10'
+  /Admin.NET/Admin.NET.Core/Option/DbConnectionOptions.cs:
+    newFile: !uuid '9439c14bebf5ff3489068239f514af2932c04bf7'
+    oldFile: !uuid '76362ee39fde86db20a8e4df74cead30ee13e543'
+  /Admin.NET/Admin.NET.Core/Option/EmailOptions.cs:
+    newFile: !uuid 'ba491c7022dfb2e5051ef88ca9178e8f0cc9723d'
+    oldFile: null
+  /Admin.NET/Admin.NET.Core/Option/OSSProviderOptions.cs:
+    newFile: !uuid 'e352c5cec51c83c8fcd619912cb02d48d19087bb'
+    oldFile: !uuid '3524de72a1714fda115401b0c8daef79d99d8f41'
+  /Admin.NET/Admin.NET.Core/Service:
+    newFile: !uuid 'd95e6f8f06edfafcd15daaa77632ed8308421f12'
+    oldFile: !uuid '42153bbb047e64476f03cbedeac9e8aef06adccd'
+  /Admin.NET/Admin.NET.Core/Service/Message:
+    newFile: !uuid 'f2171f875f640d83d3dde37de939e8cc74bd87f5'
+    oldFile: !uuid 'b568273ea05435be021a26cba39f649ce4562a42'
+  /Admin.NET/Admin.NET.Core/Service/Message/IMessageService.cs:
+    newFile: !uuid '95c6ed168554e43f9a6d06412e7d20ab2c57f956'
+    oldFile: null
+  /Admin.NET/Admin.NET.Core/Service/Message/ISendMessageService.cs:
+    newFile: null
+    oldFile: !uuid 'dcd150b10178c691020eae56e00d63236b703669'
+  /Admin.NET/Admin.NET.Core/Service/Message/MessageService.cs:
+    newFile: !uuid 'af183b6c2e4bddfc446ec22042c03d1dc2fb163d'
+    oldFile: null
+  /Admin.NET/Admin.NET.Core/Service/Message/SendMessageService.cs:
+    newFile: null
+    oldFile: !uuid '83aa9d04f772c30bf5c87c299b4913e17aeccf9e'
   /Admin.NET/Admin.NET.Web.Core:
-    newFile: !uuid 'd30cfb279b7518c396d97e178f04a74c56e8bd89'
-    oldFile: !uuid 'f69fa46435651a9b349fec0bd6843590ee589ca2'
+    newFile: !uuid '80f294a1e296b49533429fa0d04ef74b2032d20a'
+    oldFile: !uuid 'd30cfb279b7518c396d97e178f04a74c56e8bd89'
+  /Admin.NET/Admin.NET.Web.Core/ProjectOptions.cs:
+    newFile: !uuid '93a57ecb0ca0649d135e87fe6e2ccc2b33b31bae'
+    oldFile: !uuid '7ccab0181285edb04e86d612877b923aec5f3e9a'
   /Admin.NET/Admin.NET.Web.Core/Startup.cs:
-    newFile: !uuid '3ef040fe6192c9eae2ac63e0bcaf608aebec11e9'
-    oldFile: !uuid '523e5d3d6d5edd0d67e2b3c456aeb581f49f90a9'
-  /Admin.NET/Admin.NET.Web.Entry:
-    newFile: !uuid '877951428c8e36faf288a9dc21325d2a52d15a28'
-    oldFile: !uuid '4ba24b3692a7a283d3c2f9a017c3b9db47c4678f'
-  /Admin.NET/Admin.NET.Web.Entry/Program.cs:
-    newFile: !uuid '3fe06287291b9b4aac838f3f662fb665fc0c8d4a'
-    oldFile: !uuid 'e5b982466d96f87f81f8729a468b0f23f4cc15da'
-  /Admin.NET/Admin.NET.Web.Entry/appsettings.Development.json:
-    newFile: !uuid '868916dd754ad68f163c1332638b0e3c950bd227'
-    oldFile: !uuid 'c4c943331fd43e8e719039685b65aaae6d34118c'
-  /Admin.NET/Admin.NET.Web.Entry/appsettings.json:
-    newFile: !uuid '65b69c071cc18a10f816014b9525e4f13a115111'
-    oldFile: !uuid '21b2c7b60dc6de12e8088a655c05ba1139c5e927'
-gitCommitId: !uuid '8c9cd6fc9c2c7a5def26d21d474e82fd7a3474b3'
-renames: {
-  }
-revisionId: 161
+    newFile: !uuid 'f92cadb33ec58be025f180d539def5cd7130aa47'
+    oldFile: !uuid '3ef040fe6192c9eae2ac63e0bcaf608aebec11e9'
+gitCommitId: !uuid '3386df98a957a5a885012fd8c0bf974fd7d53b4d'
+renames:
+  /Admin.NET/Admin.NET.Core/Service/Message/IMessageService.cs: /Admin.NET/Admin.NET.Core/Service/Message/ISendMessageService.cs
+  /Admin.NET/Admin.NET.Core/Service/Message/MessageService.cs: /Admin.NET/Admin.NET.Core/Service/Message/SendMessageService.cs
+revisionId: 162
