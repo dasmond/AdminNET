@@ -3,24 +3,15 @@ branches: {
   }
 fileChange:
   /backend:
-    newFile: !uuid 'adf1c516b1f21e67d1445c94ff34f0962c24442b'
-    oldFile: !uuid '48f93d19efc3373f2df5fcb46d22ac9c61750127'
-  /backend/Admin.NET.Application:
-    newFile: !uuid 'bcdda3f58b87541dc09f269ffba6c50da61d72b7'
-    oldFile: !uuid '82c76cc6cb746cf63f794ffc2fc60aae99b743eb'
-  /backend/Admin.NET.Application/Service:
-    newFile: !uuid '68ea276b60517c6184a84da972e3d92b4b84fbd2'
-    oldFile: !uuid '2a1d82014e4d1c069a57e55bbb260b4bfbc6ab9c'
-  /backend/Admin.NET.Application/Service/System:
-    newFile: !uuid '50fc2e063dca5553bfe5fcab74aca964da89eff4'
-    oldFile: !uuid '07d62348ec793984b91ae776e7183abd7f9fd533'
-  /backend/Admin.NET.Application/Service/System/Cache:
-    newFile: !uuid '43d5be5223b858377579912aeab1fcbb97bb6d3e'
-    oldFile: !uuid '9c82aae7250e712d7adf8abf008ade7a57ffcc12'
-  /backend/Admin.NET.Application/Service/System/Cache/SysCacheService.cs:
-    newFile: !uuid '57b0b0bf3dc4da1ca431779bb0ca670fcaa25dca'
-    oldFile: !uuid '978a95923526b1fb139517dacadc69946d3e58d5'
-gitCommitId: !uuid '5f9c93a1a3490be6e073f5c77b15921d861b2700'
+    newFile: !uuid '0a287be6adeb2b945e933e9fba57f1b3cd915565'
+    oldFile: !uuid 'adf1c516b1f21e67d1445c94ff34f0962c24442b'
+  /backend/Admin.NET.Core:
+    newFile: !uuid 'b3edf6184d7d4c20253393afba38624935a2a5e4'
+    oldFile: !uuid 'e4c3def6f50dfb9a445db3e5031050a381d4eb6a'
+  /backend/Admin.NET.Core/Admin.NET.Core.csproj:
+    newFile: !uuid '8550dccd6d398dc3b0094ab19c0349cb83b8c0f0'
+    oldFile: !uuid '4968bd4b5295e47e99bc7aaeccb2e428de29f44f'
+gitCommitId: !uuid '150916ed3e9933a43d3053f22fd008c2f11cb587'
 renames: {
   }
-revisionId: 738
+revisionId: 739
