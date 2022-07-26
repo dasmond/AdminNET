@@ -3,18 +3,54 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '7cdae9e5f1f785c69c77f76a66510d5dadeac7d7'
-    oldFile: !uuid '1899c8f285a5710db4e8fb5c8d2196a6863d9ea4'
+    newFile: !uuid '66188e15badde4f833a8291381b8c79ac5c749f1'
+    oldFile: !uuid '7cdae9e5f1f785c69c77f76a66510d5dadeac7d7'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid 'cacd59498906cd061d952d93c88bc1aa56c62312'
-    oldFile: !uuid '7b969b26552f5528f8d6123b527eaf2e2397b5d5'
-  /Admin.NET/Admin.NET.Core/Logging:
-    newFile: !uuid '6c7acf9f0c00d55e31b19ba1cae6eee8bfb5c2cc'
-    oldFile: !uuid '4a42eca6dc0f3f8d2e418299c49eeae4c82d7de7'
-  /Admin.NET/Admin.NET.Core/Logging/DbLoggingWriter.cs:
-    newFile: !uuid 'af4f42d0b819b649ac6026fb0b45b591119d1232'
-    oldFile: !uuid '9a6e90de7bf087aacf696ceeb542dc8b48f49a74'
-gitCommitId: !uuid 'b7b09a0226738a3961b5fa14d4095f24cca1787e'
+    newFile: !uuid 'f1aad761769b6e4f084f40fab818e4aaec00fae8'
+    oldFile: !uuid 'cacd59498906cd061d952d93c88bc1aa56c62312'
+  /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
+    newFile: !uuid '6fe5f95e809d2481b640c546e6cd34ad86fccf02'
+    oldFile: !uuid '0e2dd639ed269d69739c4b01c30b8f4d91a65375'
+  /Admin.NET/Admin.NET.Core/Admin.NET.Core.xml:
+    newFile: !uuid '97b662629e8b61332af5727f7a24deb54f325d34'
+    oldFile: !uuid 'e51d60049a839b3cc97244c9a9a5803202f6fe7b'
+  /Admin.NET/Admin.NET.Core/Option:
+    newFile: !uuid '1c6e94207b1c1cdc34774d36b269c34d1b146f83'
+    oldFile: !uuid '483d65d4636ec67c006f3183f81e46b4573355e8'
+  /Admin.NET/Admin.NET.Core/Option/RateLimitOptions.cs:
+    newFile: !uuid '6e827e8f2c49e5c502cdc5893201934e566b12cc'
+    oldFile: null
+  /Admin.NET/Admin.NET.Core/RateLimitConfig.json:
+    newFile: !uuid '1d9c5982362b305ee25dea10189d30060ce834a0'
+    oldFile: null
+  /Admin.NET/Admin.NET.Core/SqlSugar:
+    newFile: !uuid '4be840fdb9638f29e1eb337917c09b8a2debf462'
+    oldFile: !uuid '8d554b9a9783a2f4824bfe1fef2387fcfdfd01fa'
+  /Admin.NET/Admin.NET.Core/SqlSugar/SqlSugarSetup.cs:
+    newFile: !uuid '776c0ccc60f4493312e5e93a55e2a5ddc1712774'
+    oldFile: !uuid 'b58dc8c6f6428bfd98e548ce436b46f462225258'
+  /Admin.NET/Admin.NET.Core/Util:
+    newFile: !uuid '7aa8ce45256c285bf7309ed145ea954c939a3ec6'
+    oldFile: !uuid '42619e2e774fd0263489e0b0a9fe68e1af33cf31'
+  /Admin.NET/Admin.NET.Core/Util/BasePageInput.cs:
+    newFile: !uuid '40fa7945961bbabac6fc5cea97fd248bb0c59405'
+    oldFile: !uuid '8dd575d8904993c9a2f5222636fa4ca14e420776'
+  /Admin.NET/Admin.NET.Web.Core:
+    newFile: !uuid 'a83d7d2dab4f2924da753a97e76f0d4081bdba22'
+    oldFile: !uuid '811d8cd054c12fe8a4acdf11f2c6db66b03c4872'
+  /Admin.NET/Admin.NET.Web.Core/ProjectOptions.cs:
+    newFile: !uuid '69c1264d16a3319458c3743a4d62a17a984916a4'
+    oldFile: !uuid '93a57ecb0ca0649d135e87fe6e2ccc2b33b31bae'
+  /Admin.NET/Admin.NET.Web.Core/Startup.cs:
+    newFile: !uuid '91c2c2c398fd214ab9943015ed9da595fa2c5459'
+    oldFile: !uuid 'c8ade201919f72d749f3f42a4c81f5a166a0912b'
+  /Admin.NET/Admin.NET.Web.Entry:
+    newFile: !uuid '61fe3e35bae72eb145db1b2ca831a5b4704d7850'
+    oldFile: !uuid 'a4291d4549a8752970772d81438379de89954b31'
+  /Admin.NET/Admin.NET.Web.Entry/appsettings.json:
+    newFile: !uuid '9a085f414a31ea9fc4297ef68c50ff226becbb73'
+    oldFile: !uuid '6155e1f5d8fa9133124b4f5eefd5fe47cbbb77a1'
+gitCommitId: !uuid '8b528414a71b9b6ba67c1588e7039f6b727026e8'
 renames: {
   }
-revisionId: 171
+revisionId: 172
