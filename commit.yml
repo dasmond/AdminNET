@@ -2,31 +2,19 @@
 branches: {
   }
 fileChange:
-  /Admin.NET:
-    newFile: !uuid '5ba10b3d75e0ac046ef9fcf76c813a27ad549a36'
-    oldFile: !uuid 'bb5e9cc85f0722345311aed42d9700785d213636'
-  /Admin.NET/Admin.NET.Application:
-    newFile: !uuid '99879d7a1609e88c4d6c2b9ddd56ebd7cecef33d'
-    oldFile: !uuid 'b6e4f4ca8d07a61aeeb870f88107a5b3d0d6deb6'
-  /Admin.NET/Admin.NET.Application/Service:
-    newFile: !uuid '78e655332263596ed5a912c21b78402e1be637f2'
-    oldFile: !uuid '9b6a0d0164215cc8bbe3880d658e3eb4707ff86c'
-  /Admin.NET/Admin.NET.Application/Service/TestService.cs:
-    newFile: !uuid '169c890fe6dcec9e5029cfc4e4a7b900c5b1f7c2'
-    oldFile: !uuid 'b78715b1fad69aed724f8e2c77865e1f74e8bea6'
-  /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '925545eb2a7a39ce44a2b5cec42372af06af1247'
-    oldFile: !uuid '995c46021fe5979beb7fabaf0ffca2472332d843'
-  /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
-    newFile: !uuid '9b4ad112358598e1d1bb9b2e1801361520567b07'
-    oldFile: !uuid '9cb1609385c501bf60d2cce4e4ffa33d3cce48f9'
-  /Admin.NET/Admin.NET.Web.Core:
-    newFile: !uuid '07fcd6a868fce67f5a3f31313b194d41151d62d2'
-    oldFile: !uuid 'a83d7d2dab4f2924da753a97e76f0d4081bdba22'
-  /Admin.NET/Admin.NET.Web.Core/Startup.cs:
-    newFile: !uuid '52079132fbafdd79cb35380f4b3950d25cb7feb1'
-    oldFile: !uuid '91c2c2c398fd214ab9943015ed9da595fa2c5459'
-gitCommitId: !uuid 'da34b481c6bac8bf9d9229df719455799af2d791'
+  /Vben2:
+    newFile: !uuid '18c8ae48eacfd2961cd2af456a52d87969164c40'
+    oldFile: !uuid '5d9df98f4b9a58c8dce5e681b4f3b8f8aa1d9280'
+  /Vben2/.env:
+    newFile: !uuid '1ea6d0a4247a26a88b209f9bf93b137ffc773185'
+    oldFile: !uuid '2958ec0353c0c6a58fe13b900a1eb7a1d7aefaa6'
+  /Vben2/.env.development:
+    newFile: !uuid 'e89bbe679ada2fad32986cdc74ddbfc0d0b51803'
+    oldFile: !uuid '24fd29d41828d69756b7bf4b20baa250bbbfc35a'
+  /Vben2/.env.production:
+    newFile: !uuid '8f3785a361c66fc74e108dfd3acfe0d2d58dc737'
+    oldFile: !uuid '1fbf09fc491d50f9576975606c1379d9227e3664'
+gitCommitId: !uuid 'b0d1b7fe878b865ccf6bb2b798c136ba0536c8ab'
 renames: {
   }
-revisionId: 183
+revisionId: 184
