@@ -3,54 +3,30 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid 'bb5e9cc85f0722345311aed42d9700785d213636'
-    oldFile: !uuid '6f0912269b36c9ebaa21dd7d74731eaf1dd31004'
+    newFile: !uuid '5ba10b3d75e0ac046ef9fcf76c813a27ad549a36'
+    oldFile: !uuid 'bb5e9cc85f0722345311aed42d9700785d213636'
+  /Admin.NET/Admin.NET.Application:
+    newFile: !uuid '99879d7a1609e88c4d6c2b9ddd56ebd7cecef33d'
+    oldFile: !uuid 'b6e4f4ca8d07a61aeeb870f88107a5b3d0d6deb6'
+  /Admin.NET/Admin.NET.Application/Service:
+    newFile: !uuid '78e655332263596ed5a912c21b78402e1be637f2'
+    oldFile: !uuid '9b6a0d0164215cc8bbe3880d658e3eb4707ff86c'
+  /Admin.NET/Admin.NET.Application/Service/TestService.cs:
+    newFile: !uuid '169c890fe6dcec9e5029cfc4e4a7b900c5b1f7c2'
+    oldFile: !uuid 'b78715b1fad69aed724f8e2c77865e1f74e8bea6'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '995c46021fe5979beb7fabaf0ffca2472332d843'
-    oldFile: !uuid 'a46b5c818abf3f0b2235b3be877e7b7c5dafa69f'
-  /Admin.NET/Admin.NET.Core/SqlSugar:
-    newFile: !uuid 'deda826b9b072b9971d352f69dccf27a3c3e18cb'
-    oldFile: !uuid '20c8f22c894d5067678a4af1957596a45c6a517f'
-  /Admin.NET/Admin.NET.Core/SqlSugar/SqlSugarSetup.cs:
-    newFile: !uuid '4f97ab3040ba9046379714ae8a8463b3bdd5d062'
-    oldFile: !uuid '97d2e90674ed5dd1051dfc13e9de2bbaf77eb3bd'
-  /Vben2:
-    newFile: !uuid '5d9df98f4b9a58c8dce5e681b4f3b8f8aa1d9280'
-    oldFile: !uuid 'a9019d447bcdc98c16442b6cd9cabc30ea9aaf75'
-  /Vben2/src:
-    newFile: !uuid 'efb310b9631336eeca83182f8130262b229d3a96'
-    oldFile: !uuid '4cc99e3a3ae39c1d3d9283c326ba7fc151abe0e3'
-  /Vben2/src/views:
-    newFile: !uuid 'a33f5ec06e7af4ed29b9440a5d580ac3b8c2ee82'
-    oldFile: !uuid '6264d1fa3544aaf8416eab8fbf3ebfc291665236'
-  /Vben2/src/views/sys:
-    newFile: !uuid '0b374f19e27f7449dfc19c25ea7d57c3e77b200c'
-    oldFile: !uuid 'b82a3e188468861bed71a2795e51c0aafa83f5c6'
-  /Vben2/src/views/sys/admin:
-    newFile: !uuid 'c4452309e617c46ecc2773d18c5e56b76d1bb63b'
-    oldFile: !uuid '50f86964c33da204a79fc340ddac668a4be106dc'
-  /Vben2/src/views/sys/admin/log:
-    newFile: !uuid '5b9ac2890c28af86ed387e64c6112a061bc26124'
-    oldFile: !uuid 'b26efb2034b78497e5f58e9875be6e23eb545c2e'
-  /Vben2/src/views/sys/admin/log/exlog:
-    newFile: !uuid 'de00ede161fc1b9df1df62c9985af7816982f0bd'
-    oldFile: !uuid 'd84a1d2dc9a228e68766feabb8ed623b3fd2b31f'
-  /Vben2/src/views/sys/admin/log/exlog/ExlogDrawer.vue:
-    newFile: !uuid '8f2cd2251f761a89b3338538ff8fde6051f7431e'
-    oldFile: null
-  /Vben2/src/views/sys/admin/log/exlog/exlog.data.ts:
-    newFile: !uuid '1153a7afc9cc20d244bdf94847297598ee21779e'
-    oldFile: !uuid '726ae2af9a2bcb4c4c4f57b0d20fce794a0bf55b'
-  /Vben2/src/views/sys/admin/log/exlog/index.vue:
-    newFile: !uuid '75d54c879ceacb3efc13fc37bbc4c4b7c43b784c'
-    oldFile: !uuid 'c91eeb40ffcf0322b1481d79f69b3497d82b13ff'
-  /Vben2/src/views/sys/admin/log/oplog:
-    newFile: !uuid '841edd155cf347fcf3b9a80cb310bcc0dcbf59eb'
-    oldFile: !uuid 'bb28dde20f0bcd0eae589909fd964f3b158debb2'
-  /Vben2/src/views/sys/admin/log/oplog/oplog.data.ts:
-    newFile: !uuid 'ec9ae3c7abb9b385e5dc0fb93c9ca057f6902b84'
-    oldFile: !uuid '7593dd2919178700d568ee19990d2d4b17a3f53c'
-gitCommitId: !uuid '6a4e5a9b5c05cdab38f3d5e2f07a90d04d050a3e'
+    newFile: !uuid '925545eb2a7a39ce44a2b5cec42372af06af1247'
+    oldFile: !uuid '995c46021fe5979beb7fabaf0ffca2472332d843'
+  /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
+    newFile: !uuid '9b4ad112358598e1d1bb9b2e1801361520567b07'
+    oldFile: !uuid '9cb1609385c501bf60d2cce4e4ffa33d3cce48f9'
+  /Admin.NET/Admin.NET.Web.Core:
+    newFile: !uuid '07fcd6a868fce67f5a3f31313b194d41151d62d2'
+    oldFile: !uuid 'a83d7d2dab4f2924da753a97e76f0d4081bdba22'
+  /Admin.NET/Admin.NET.Web.Core/Startup.cs:
+    newFile: !uuid '52079132fbafdd79cb35380f4b3950d25cb7feb1'
+    oldFile: !uuid '91c2c2c398fd214ab9943015ed9da595fa2c5459'
+gitCommitId: !uuid 'da34b481c6bac8bf9d9229df719455799af2d791'
 renames: {
   }
-revisionId: 182
+revisionId: 183
