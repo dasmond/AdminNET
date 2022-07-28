@@ -3,21 +3,54 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '6f0912269b36c9ebaa21dd7d74731eaf1dd31004'
-    oldFile: !uuid 'fe4066ab1f8ebf631afb9eb7746522d4007bc6c2'
-  /Admin.NET/Admin.NET.Web.Entry:
-    newFile: !uuid 'bb585382b5483744c0af18ce0bc2bdca1c124e46'
-    oldFile: !uuid '61fe3e35bae72eb145db1b2ca831a5b4704d7850'
-  /Admin.NET/Admin.NET.Web.Entry/wwwroot:
-    newFile: !uuid '9819896ea7fc51d1f30161d6c737a2ca14d4c011'
-    oldFile: !uuid '61c643af5fa96ff15d5e1a16648ad550d3e97359'
-  /Admin.NET/Admin.NET.Web.Entry/wwwroot/Template:
-    newFile: !uuid '8abf0156227618ea657af414f9098bd704ce7123'
-    oldFile: !uuid 'ce2070b3663b95f1970c3b769f6cfefb06e65165'
-  /Admin.NET/Admin.NET.Web.Entry/wwwroot/Template/index.vue.vm:
-    newFile: !uuid '6a7e4c59127f678d2fcfcc1269c99547ab6970d3'
-    oldFile: !uuid '58c3923e47c74bb1702f169fb57696c6f20b68ff'
-gitCommitId: !uuid '0a6155f930e8cdc740a113f1e068d57da32c5ca6'
+    newFile: !uuid 'bb5e9cc85f0722345311aed42d9700785d213636'
+    oldFile: !uuid '6f0912269b36c9ebaa21dd7d74731eaf1dd31004'
+  /Admin.NET/Admin.NET.Core:
+    newFile: !uuid '995c46021fe5979beb7fabaf0ffca2472332d843'
+    oldFile: !uuid 'a46b5c818abf3f0b2235b3be877e7b7c5dafa69f'
+  /Admin.NET/Admin.NET.Core/SqlSugar:
+    newFile: !uuid 'deda826b9b072b9971d352f69dccf27a3c3e18cb'
+    oldFile: !uuid '20c8f22c894d5067678a4af1957596a45c6a517f'
+  /Admin.NET/Admin.NET.Core/SqlSugar/SqlSugarSetup.cs:
+    newFile: !uuid '4f97ab3040ba9046379714ae8a8463b3bdd5d062'
+    oldFile: !uuid '97d2e90674ed5dd1051dfc13e9de2bbaf77eb3bd'
+  /Vben2:
+    newFile: !uuid '5d9df98f4b9a58c8dce5e681b4f3b8f8aa1d9280'
+    oldFile: !uuid 'a9019d447bcdc98c16442b6cd9cabc30ea9aaf75'
+  /Vben2/src:
+    newFile: !uuid 'efb310b9631336eeca83182f8130262b229d3a96'
+    oldFile: !uuid '4cc99e3a3ae39c1d3d9283c326ba7fc151abe0e3'
+  /Vben2/src/views:
+    newFile: !uuid 'a33f5ec06e7af4ed29b9440a5d580ac3b8c2ee82'
+    oldFile: !uuid '6264d1fa3544aaf8416eab8fbf3ebfc291665236'
+  /Vben2/src/views/sys:
+    newFile: !uuid '0b374f19e27f7449dfc19c25ea7d57c3e77b200c'
+    oldFile: !uuid 'b82a3e188468861bed71a2795e51c0aafa83f5c6'
+  /Vben2/src/views/sys/admin:
+    newFile: !uuid 'c4452309e617c46ecc2773d18c5e56b76d1bb63b'
+    oldFile: !uuid '50f86964c33da204a79fc340ddac668a4be106dc'
+  /Vben2/src/views/sys/admin/log:
+    newFile: !uuid '5b9ac2890c28af86ed387e64c6112a061bc26124'
+    oldFile: !uuid 'b26efb2034b78497e5f58e9875be6e23eb545c2e'
+  /Vben2/src/views/sys/admin/log/exlog:
+    newFile: !uuid 'de00ede161fc1b9df1df62c9985af7816982f0bd'
+    oldFile: !uuid 'd84a1d2dc9a228e68766feabb8ed623b3fd2b31f'
+  /Vben2/src/views/sys/admin/log/exlog/ExlogDrawer.vue:
+    newFile: !uuid '8f2cd2251f761a89b3338538ff8fde6051f7431e'
+    oldFile: null
+  /Vben2/src/views/sys/admin/log/exlog/exlog.data.ts:
+    newFile: !uuid '1153a7afc9cc20d244bdf94847297598ee21779e'
+    oldFile: !uuid '726ae2af9a2bcb4c4c4f57b0d20fce794a0bf55b'
+  /Vben2/src/views/sys/admin/log/exlog/index.vue:
+    newFile: !uuid '75d54c879ceacb3efc13fc37bbc4c4b7c43b784c'
+    oldFile: !uuid 'c91eeb40ffcf0322b1481d79f69b3497d82b13ff'
+  /Vben2/src/views/sys/admin/log/oplog:
+    newFile: !uuid '841edd155cf347fcf3b9a80cb310bcc0dcbf59eb'
+    oldFile: !uuid 'bb28dde20f0bcd0eae589909fd964f3b158debb2'
+  /Vben2/src/views/sys/admin/log/oplog/oplog.data.ts:
+    newFile: !uuid 'ec9ae3c7abb9b385e5dc0fb93c9ca057f6902b84'
+    oldFile: !uuid '7593dd2919178700d568ee19990d2d4b17a3f53c'
+gitCommitId: !uuid '6a4e5a9b5c05cdab38f3d5e2f07a90d04d050a3e'
 renames: {
   }
-revisionId: 181
+revisionId: 182
