@@ -2,19 +2,16 @@
 branches: {
   }
 fileChange:
-  /Vben2:
-    newFile: !uuid '18c8ae48eacfd2961cd2af456a52d87969164c40'
-    oldFile: !uuid '5d9df98f4b9a58c8dce5e681b4f3b8f8aa1d9280'
-  /Vben2/.env:
-    newFile: !uuid '1ea6d0a4247a26a88b209f9bf93b137ffc773185'
-    oldFile: !uuid '2958ec0353c0c6a58fe13b900a1eb7a1d7aefaa6'
-  /Vben2/.env.development:
-    newFile: !uuid 'e89bbe679ada2fad32986cdc74ddbfc0d0b51803'
-    oldFile: !uuid '24fd29d41828d69756b7bf4b20baa250bbbfc35a'
-  /Vben2/.env.production:
-    newFile: !uuid '8f3785a361c66fc74e108dfd3acfe0d2d58dc737'
-    oldFile: !uuid '1fbf09fc491d50f9576975606c1379d9227e3664'
-gitCommitId: !uuid 'b0d1b7fe878b865ccf6bb2b798c136ba0536c8ab'
+  /Admin.NET:
+    newFile: !uuid 'bbbb8a8bb3bc39cb671c245026da829416b4d0d8'
+    oldFile: !uuid '5ba10b3d75e0ac046ef9fcf76c813a27ad549a36'
+  /Admin.NET/Admin.NET.Core:
+    newFile: !uuid '0bb679365fe2cce4305a6353d1a6b15a3f0aaee0'
+    oldFile: !uuid '925545eb2a7a39ce44a2b5cec42372af06af1247'
+  /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
+    newFile: !uuid '4cbf5a449e10b3655d14d1308081101998980a9f'
+    oldFile: !uuid '9b4ad112358598e1d1bb9b2e1801361520567b07'
+gitCommitId: !uuid '60524d2de9fe5a37a2675acdcd3ab895bf614589'
 renames: {
   }
-revisionId: 184
+revisionId: 185
