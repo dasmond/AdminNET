@@ -2,16 +2,31 @@
 branches: {
   }
 fileChange:
-  /Vben2:
-    newFile: !uuid 'dac9f4409746a0d078970a779feede3e4eef1cea'
-    oldFile: !uuid '348c243dcf8ba6a73bff54db10f1e2eaefc5683b'
-  /Vben2/types:
-    newFile: !uuid 'c5dd43be469ea6154d1f32960bede81d6d50eab7'
-    oldFile: !uuid '0587c5c9c5f7c49df08dd121444f69094992e51e'
-  /Vben2/types/store.d.ts:
-    newFile: !uuid '28b6dfd26ba60aaab6fb06b615214d170c4ce7f9'
-    oldFile: !uuid '72925b3bb0724ea76ce29cd39f20ca37c87cbba9'
-gitCommitId: !uuid '93035e7dd63bed5162a7341a4c9c8c54e19e852f'
+  /Admin.NET:
+    newFile: !uuid '6f2fc7f1d87d0e3992b35d0f19b18ec0e86beabc'
+    oldFile: !uuid '0f6fb9c91e20f71a4306f1e03ab3a0dd19eb23ba'
+  /Admin.NET/Admin.NET.Core:
+    newFile: !uuid 'e11c1a86c7c8c9fa6a08a06b3dc9be8f4ca4af06'
+    oldFile: !uuid '23ef61ddd63a1eb9d3c7cf735e0ce75a7b12b71a'
+  /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
+    newFile: !uuid 'cf8d5f4117650b96c5616f1332157e6c65b88140'
+    oldFile: !uuid '63e51a42666a95f166c11ca15510a1566bab72fe'
+  /Admin.NET/Admin.NET.Core/Admin.NET.Core.xml:
+    newFile: !uuid '96899f140035c7749e33eb1f73532bb360012e4f'
+    oldFile: !uuid '4cd085f8c18a775db2837798a76df6b1b2bd8f35'
+  /Admin.NET/Admin.NET.Core/Job:
+    newFile: !uuid '2894510989a021e0f4b36543e1bbbcb70207b76f'
+    oldFile: !uuid '05a6152fe07c0470c69b2a9628a9c2db0ee9a9f5'
+  /Admin.NET/Admin.NET.Core/Job/JobTimer.cs:
+    newFile: !uuid '0233c6b76a8019ab64db43f966f38de9cd5b5ff8'
+    oldFile: !uuid '75019f0cf62e3d4132efeac1d584bc6395548d08'
+  /Admin.NET/Admin.NET.Web.Core:
+    newFile: !uuid 'dfb38dda9c87e93ba8fb65a0bedbb814fbd67fab'
+    oldFile: !uuid 'efda39cb7ad0fd8d441742554b443b4eeef91de8'
+  /Admin.NET/Admin.NET.Web.Core/Admin.NET.Web.Core.csproj:
+    newFile: !uuid '0f32f8bd7eb7e080eb31d339390ee04c357be934'
+    oldFile: !uuid '7ad709b65b7cdfb7f9cda1876c2a7c0f2ea3188b'
+gitCommitId: !uuid '14b450e27a457c9dace2d7b5004c019a67ff917a'
 renames: {
   }
-revisionId: 192
+revisionId: 193
