@@ -3,18 +3,105 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid 'b44385a76750eb9b7cf7805bbc5c2a0ee7349e69'
-    oldFile: !uuid '089fa41768dd7dac83b4b9a97abc66de77b0ca40'
-  /Admin.NET/Admin.NET.Web.Entry:
-    newFile: !uuid '9177f3a575d9cc3427313019a8b07c3297cb10f1'
-    oldFile: !uuid '2662354fb588bfb8629bb85f20bc226914720929'
-  /Admin.NET/Admin.NET.Web.Entry/Admin.NET.db:
-    newFile: null
-    oldFile: !uuid 'c73a422efe97962b627291061140237f64fee906'
-  /Admin.NET/Admin.NET.Web.Entry/Test.db:
-    newFile: null
-    oldFile: !uuid '2e607d2f7e0f3d8ce9b1b91dea724b639b592343'
-gitCommitId: !uuid 'e2f5bee6f4d1f60d982709ccf30e683dbe43e102'
+    newFile: !uuid 'c419d9ab8db592f189668dbfb48db5128ea2ee86'
+    oldFile: !uuid 'b44385a76750eb9b7cf7805bbc5c2a0ee7349e69'
+  /Admin.NET/Admin.NET.Core:
+    newFile: !uuid 'e64c376bdbdab47801821f86692ceda1f5e5802e'
+    oldFile: !uuid 'a8d3bf22602be3e55f70c8aada789ac18ca96591'
+  /Admin.NET/Admin.NET.Core/Admin.NET.Core.xml:
+    newFile: !uuid 'd977a0811a09129db9d38e15656dcc4ab5b3f93e'
+    oldFile: !uuid '96899f140035c7749e33eb1f73532bb360012e4f'
+  /Admin.NET/Admin.NET.Core/AdminNETConfig.json:
+    newFile: !uuid '97e381f9cbe3bf3007a7e6ab99cd17454cfd3f73'
+    oldFile: !uuid '349af23acb252bc6bd4245834b11343119b022cc'
+  /Admin.NET/Admin.NET.Core/Entity:
+    newFile: !uuid '304130da634e493b43b70a7a87a9c9f1e51ffe3f'
+    oldFile: !uuid 'd291d92984c6dc04375d8b8f1688e13f51458879'
+  /Admin.NET/Admin.NET.Core/Entity/SysNotice.cs:
+    newFile: !uuid 'd9eb578de4835d92acea6ba2eb363d323433fdbb'
+    oldFile: null
+  /Admin.NET/Admin.NET.Core/Entity/SysNoticeUser.cs:
+    newFile: !uuid '75e591c66f27374afe773d8f097e448fcfd7ad75'
+    oldFile: null
+  /Admin.NET/Admin.NET.Core/Enum:
+    newFile: !uuid 'b1ff6fb932a4856a5f7bc8a8e2740b716a59d8ef'
+    oldFile: !uuid '1c4cb8175bed7d114bf8df46f5590c3df234b725'
+  /Admin.NET/Admin.NET.Core/Enum/NoticeStatusEnum.cs:
+    newFile: !uuid '8e510629cf875344302a1a80187bf77ccc046482'
+    oldFile: null
+  /Admin.NET/Admin.NET.Core/Enum/NoticeTypeEnum.cs:
+    newFile: !uuid '76accc6818eb3e7e12d11401061e4616f6346b01'
+    oldFile: null
+  /Admin.NET/Admin.NET.Core/Enum/NoticeUserStatusEnum.cs:
+    newFile: !uuid '8b2adf0386519afa415d84b685f18c08abc71141'
+    oldFile: null
+  /Admin.NET/Admin.NET.Core/Extension:
+    newFile: !uuid 'ef058050d06331352a7baadc5db6e76e46f69e42'
+    oldFile: !uuid 'ba7d3018f87c4892896bff19af89dceea53d04ca'
+  /Admin.NET/Admin.NET.Core/Extension/EnumExtension.cs:
+    newFile: !uuid 'b6f17dff892de0925b4c9f9df62a715c739666bf'
+    oldFile: null
+  /Admin.NET/Admin.NET.Core/Extension/ObjectExtension.cs:
+    newFile: !uuid 'f657f60e9964b6c234bd1b5e39f1c493833a98f8'
+    oldFile: !uuid '2602a29695842b9e77e02c4e81210209b4f93390'
+  /Admin.NET/Admin.NET.Core/Extension/RepositoryExtension.cs:
+    newFile: !uuid 'bf8e5fee05db64cec242edcad4cbac062a67e73e'
+    oldFile: !uuid '18241d096e290e0f2b3b7ed0da1a6470b3bde96c'
+  /Admin.NET/Admin.NET.Core/Hub:
+    newFile: !uuid '7ca3366ead9cdb871f66ba4335204d277558b4dd'
+    oldFile: !uuid '245a0a4723c5c0224b16ef95fd8c9ec6f761c7b5'
+  /Admin.NET/Admin.NET.Core/Hub/IChatClient.cs:
+    newFile: !uuid '348f2ddbfffffadcf39845745dccfde048c78ff4'
+    oldFile: !uuid 'dd6a28c0242fbcbeed651a37ee284aef64081f53'
+  /Admin.NET/Admin.NET.Core/Service:
+    newFile: !uuid '8f6e45c694c4551f25b3cfe0663a28c3e90bd17c'
+    oldFile: !uuid '0f6f911674eff0851a8e3486c59c17bee48fa022'
+  /Admin.NET/Admin.NET.Core/Service/Notice:
+    newFile: !uuid '40067e79eb21f30399744e6effccbb098b704e7d'
+    oldFile: null
+  /Admin.NET/Admin.NET.Core/Service/Notice/Dto:
+    newFile: !uuid '01021cd1847d4fe8e09c7ee6fdf0ccda2d0bff83'
+    oldFile: null
+  /Admin.NET/Admin.NET.Core/Service/Notice/Dto/NoticeBase.cs:
+    newFile: !uuid 'b43d41677db848eb725f47bdd40a1ee71f7670fa'
+    oldFile: null
+  /Admin.NET/Admin.NET.Core/Service/Notice/Dto/NoticeDetailOutput.cs:
+    newFile: !uuid '08c9ba86d6f8b4f82a269a39c4fb8689f16b12a8'
+    oldFile: null
+  /Admin.NET/Admin.NET.Core/Service/Notice/Dto/NoticeInput.cs:
+    newFile: !uuid '160730040b1b8aed366259408145419c74e1591c'
+    oldFile: null
+  /Admin.NET/Admin.NET.Core/Service/Notice/Dto/NoticeReceiveOutput.cs:
+    newFile: !uuid 'ec438fd64ee394688694870e22d9d50f67dd04bf'
+    oldFile: null
+  /Admin.NET/Admin.NET.Core/Service/Notice/ISysNoticeService.cs:
+    newFile: !uuid '8f6475876bdaf6d4055a5b7410a81dd0773e2576'
+    oldFile: null
+  /Admin.NET/Admin.NET.Core/Service/Notice/ISysNoticeUserService.cs:
+    newFile: !uuid '23efc7099847615687e2d01fed8a2067cde38631'
+    oldFile: null
+  /Admin.NET/Admin.NET.Core/Service/Notice/SysNoticeService.cs:
+    newFile: !uuid 'f24394d3aea2944678ec4d5d3e809964d2e58164'
+    oldFile: null
+  /Admin.NET/Admin.NET.Core/Service/Notice/SysNoticeUserService.cs:
+    newFile: !uuid '645b4708ffa0fcfca5aec259c9f0e7b0076c316c'
+    oldFile: null
+  /Admin.NET/Admin.NET.Core/Service/OnlineUser:
+    newFile: !uuid 'ad1f40368e5390635c4477a2f6ed04786c643bf6'
+    oldFile: null
+  /Admin.NET/Admin.NET.Core/Service/OnlineUser/ISysOnlineUserService.cs:
+    newFile: !uuid '109ece45f0afc41e9f50a4ada742fa1fa3ec2dea'
+    oldFile: null
+  /Admin.NET/Admin.NET.Core/Service/OnlineUser/SysOnlineUserService.cs:
+    newFile: !uuid 'a2309cef4ab4456f641d056d401a80de7ee280d6'
+    oldFile: null
+  /Admin.NET/Admin.NET.Core/Util:
+    newFile: !uuid '8f627287e5cc530673c0823c4f348c58749d9e08'
+    oldFile: !uuid 'ff53b6c64b7c916317a12a9b647571ef10ffa13b'
+  /Admin.NET/Admin.NET.Core/Util/ReflectionUtil.cs:
+    newFile: !uuid 'f3def5d0fad01a46c91a4a0a2e2931c06d682358'
+    oldFile: null
+gitCommitId: !uuid 'c86a95d44045087d816aabb6144d5ebe4a4f4dbc'
 renames: {
   }
-revisionId: 197
+revisionId: 198
