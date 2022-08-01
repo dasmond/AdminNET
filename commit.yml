@@ -3,21 +3,33 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid 'f2da67c36590ef7ad53932b9b74bcc426d87e980'
-    oldFile: !uuid '6f2fc7f1d87d0e3992b35d0f19b18ec0e86beabc'
+    newFile: !uuid 'ec4f731b7ecf6bf059da245a019ce0d17bd6d64e'
+    oldFile: !uuid 'f2da67c36590ef7ad53932b9b74bcc426d87e980'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '38566125e1eb08d6118ca6a673e119030a7653a0'
-    oldFile: !uuid 'e11c1a86c7c8c9fa6a08a06b3dc9be8f4ca4af06'
+    newFile: !uuid 'a8d3bf22602be3e55f70c8aada789ac18ca96591'
+    oldFile: !uuid '38566125e1eb08d6118ca6a673e119030a7653a0'
   /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
-    newFile: !uuid '7a664c329e8269cd8f21721a352d354a014e80a0'
-    oldFile: !uuid 'cf8d5f4117650b96c5616f1332157e6c65b88140'
+    newFile: !uuid '2fd389131d977a0a9d6df1854aab2056f21ad2e0'
+    oldFile: !uuid '7a664c329e8269cd8f21721a352d354a014e80a0'
+  /Admin.NET/Admin.NET.Core/AdminNETConfig.json:
+    newFile: !uuid '349af23acb252bc6bd4245834b11343119b022cc'
+    oldFile: !uuid 'ae0fd84c923b662fdebce21c11ddb8e8d7305e7e'
   /Admin.NET/Admin.NET.UnitTest:
-    newFile: !uuid '06072f2143a13c8264092ab3cd92693ccc91670a'
-    oldFile: !uuid '536044b9b79f0947b1f38a39ece95150bc621600'
+    newFile: !uuid '0fea5a63db52727965bdb11cdafe1160930b4359'
+    oldFile: !uuid '06072f2143a13c8264092ab3cd92693ccc91670a'
   /Admin.NET/Admin.NET.UnitTest/Admin.NET.UnitTest.csproj:
-    newFile: !uuid '3d3955c2e833da6a38834459d32eadf74bbe6c2a'
-    oldFile: !uuid 'b1c8a9fbdffe7bb66792836cb1c9d42cd9bf6958'
-gitCommitId: !uuid '1fb24a4fcbcedaa7dad61e3b4d42820579b8a7b7'
+    newFile: !uuid '5b675c21358846128f9e11d2ff0c8057c770245f'
+    oldFile: !uuid '3d3955c2e833da6a38834459d32eadf74bbe6c2a'
+  /Admin.NET/Admin.NET.Web.Entry:
+    newFile: !uuid '485e97b7710f82dc72a3b36961b6dde7bcbe97b3'
+    oldFile: !uuid '9177f3a575d9cc3427313019a8b07c3297cb10f1'
+  /Admin.NET/Admin.NET.Web.Entry/Admin.NET.db:
+    newFile: !uuid '1b0fb3134cdd07303439a5b063736699cddca23b'
+    oldFile: null
+  /Admin.NET/Admin.NET.Web.Entry/Test.db:
+    newFile: !uuid '2e607d2f7e0f3d8ce9b1b91dea724b639b592343'
+    oldFile: null
+gitCommitId: !uuid '0d51ec33500545b2e39515de27e7eb374ad02723'
 renames: {
   }
-revisionId: 194
+revisionId: 195
