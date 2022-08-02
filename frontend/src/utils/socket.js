@@ -33,6 +33,9 @@ class SocketConnection extends EventEmitter {
   }
 
   async _initialize() {
+    if(this.socket == undefined){
+        return;
+    }
     try {
       await this.socket.start()
       this.emit('onstart')
@@ -68,6 +71,8 @@ class SocketConnection extends EventEmitter {
       this.socket.on('ForceExist', () => {
         // 关闭连接
         this.socket.stop()
+        // 必须
+        this.socket = undefined
         store
           .dispatch('Logout')
           .then(() => {
