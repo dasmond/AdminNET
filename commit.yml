@@ -2,19 +2,16 @@
 branches: {
   }
 fileChange:
-  /frontend:
-    newFile: !uuid 'bc95c3af5ac4dc60e23c878a5e2366a3053d5952'
-    oldFile: !uuid 'ecce26960fd87614fb7221828a5f64f69d582eb7'
-  /frontend/src:
-    newFile: !uuid '6c9811bdfd049eca0e6987ec262488ae908484ff'
-    oldFile: !uuid '2f28a9a4d4e9fad5e81cdeb7d1658e2ebc879c01'
-  /frontend/src/utils:
-    newFile: !uuid '35d5ed21e926e738400f385be5a7b29330a8f326'
-    oldFile: !uuid '322e3ac66a768ab43e0ff594651719f6df07fc96'
-  /frontend/src/utils/socket.js:
-    newFile: !uuid 'b580729a3bc2a4a0d0463a8aee43144a780cb193'
-    oldFile: !uuid 'e1f7c9ebf9cfa1aca6ea700beda988a52428f8cd'
-gitCommitId: !uuid '048567e0dac07bb6ac11ffb5085f1efd3821c1af'
+  /backend:
+    newFile: !uuid 'bf476be11193d5491f424a639714e07d90ed31ee'
+    oldFile: !uuid 'e82d7197ce0af5d48c5250553f03ff3c579ff7db'
+  /backend/Admin.NET.Core:
+    newFile: !uuid '5e81844867bc87b52d0e41759b20e6a202bf9bc5'
+    oldFile: !uuid 'c7e39b9916880ce234ccc107d91b1a7aa1203b86'
+  /backend/Admin.NET.Core/Admin.NET.Core.csproj:
+    newFile: !uuid '27e2af26034fd505550e2c7d05d8afb47230bdc4'
+    oldFile: !uuid '72130d34d38bc0d82270c53dca88ccac768a95c5'
+gitCommitId: !uuid '0b6d8bb2ad01490b461ed212d083ee8ddafe0641'
 renames: {
   }
-revisionId: 742
+revisionId: 743
