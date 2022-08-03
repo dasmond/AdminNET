@@ -2,28 +2,22 @@
 branches: {
   }
 fileChange:
-  /Vben2:
-    newFile: !uuid 'bf3760f42f1a7dd7e42ba10546d4502a874173dc'
-    oldFile: !uuid 'dac9f4409746a0d078970a779feede3e4eef1cea'
-  /Vben2/src:
-    newFile: !uuid 'a65b5a57e65d9dae33a5d183efb7556e03431f12'
-    oldFile: !uuid 'f66ee78bb8f4329a8716c2c52d1dc524c08af553'
-  /Vben2/src/views:
-    newFile: !uuid '2338e13429d541cfdf027d4a6086e3e2e7feae5a'
-    oldFile: !uuid 'a33f5ec06e7af4ed29b9440a5d580ac3b8c2ee82'
-  /Vben2/src/views/sys:
-    newFile: !uuid '0f2b12d9677b4633ed57384a75b1406893dad661'
-    oldFile: !uuid '0b374f19e27f7449dfc19c25ea7d57c3e77b200c'
-  /Vben2/src/views/sys/admin:
-    newFile: !uuid '09baaadee5fda399c9cdeef632b02f96715c6b1f'
-    oldFile: !uuid 'c4452309e617c46ecc2773d18c5e56b76d1bb63b'
-  /Vben2/src/views/sys/admin/file:
-    newFile: !uuid '574fe65239834c638abba9dcecec258e54b10755'
-    oldFile: !uuid '27bcb44d38b2b76a41b1eac3ad8c5f90580dca51'
-  /Vben2/src/views/sys/admin/file/index.vue:
-    newFile: !uuid '57b6b7cf290cd8f26804286260176dfea6aa227e'
-    oldFile: !uuid 'e8bdd569dda041b6231697c92470cf97e1828456'
-gitCommitId: !uuid '4bf59ce13a2140a3e39ba16f8d333c10cbebe059'
+  /Admin.NET:
+    newFile: !uuid '748218631ba08063e5e11a7520064e4d30399983'
+    oldFile: !uuid '4f4fea34bde0049ce6fa7b1c1999a7d47ea1ff12'
+  /Admin.NET/Admin.NET.Core:
+    newFile: !uuid 'a0b8c9b09d6b349af063a62861edaaae01f60072'
+    oldFile: !uuid 'b48989599b010478b6ee172d28108f0656f27110'
+  /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
+    newFile: !uuid '004199631bbaa451ddf302c5e67ee62c9b3ef09f'
+    oldFile: !uuid '298dd75bf578cab8670fa621308fa9ad3859c8e5'
+  /Admin.NET/Admin.NET.UnitTest:
+    newFile: !uuid '393c3da246cd4612653aed1c1b5183d88cb13fed'
+    oldFile: !uuid 'c58fe7f4954482dd3f4fb29b8ae4d17281046c5f'
+  /Admin.NET/Admin.NET.UnitTest/Admin.NET.UnitTest.csproj:
+    newFile: !uuid '5c6d702b390eca4267ac42544048b71bfaecb776'
+    oldFile: !uuid 'ce0e10b76eaa73c509cdc2ca3bb101fec15929d5'
+gitCommitId: !uuid 'f083ab8aa13a8b58a1451d61e18f5aca910c40df'
 renames: {
   }
-revisionId: 201
+revisionId: 202
