@@ -2,28 +2,25 @@
 branches: {
   }
 fileChange:
-  /Admin.NET:
-    newFile: !uuid '1127ebbaadb5a3c20322e98cdde0dbf18e6fc9c3'
-    oldFile: !uuid 'fe2b29f2928d1ae1fcfa44c7626984239a182341'
-  /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '377fd1b65dc166a7edc7aa6a642472a15da81804'
-    oldFile: !uuid '0fc254b0fda9895efca67e83978e0097ecd7e860'
-  /Admin.NET/Admin.NET.Core/Entity:
-    newFile: !uuid 'b2ed16c3891f3b8dc3700edffe83d43d5bf1f967'
-    oldFile: !uuid '9f29ab13f892860c6dc5c281728602f158f327b7'
-  /Admin.NET/Admin.NET.Core/Entity/SysUser.cs:
-    newFile: !uuid '33d33cb059f8d9535d9a6e87f78bc2784f9ec2c0'
-    oldFile: !uuid '81f4064e17ce1c201370a90e87b1a6071e22d6a4'
-  /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid '52a31669f8846f25fbd42111cb39df0d92b4be04'
-    oldFile: !uuid '19162db6760f4315ea7375ae4fad9879732a7c62'
-  /Admin.NET/Admin.NET.Core/Service/User:
-    newFile: !uuid '968800ab027ce7f2965763a72a44aef6723e8ac5'
-    oldFile: !uuid '55d5e27ffea4c174e1d23b7721a8a2ea59a18c06'
-  /Admin.NET/Admin.NET.Core/Service/User/SysUserService.cs:
-    newFile: !uuid '5f767f9b51338e0533dd95f7f874fca04914155f'
-    oldFile: !uuid '1b476cd1af7218220d45dc0c9280ba47b053aea4'
-gitCommitId: !uuid 'b90105ee9dc1d88df794a909fc30ce8bbd864408'
+  /Vben2:
+    newFile: !uuid 'c46ef0fc900cd328c4f72c98de6a1ae267481919'
+    oldFile: !uuid '958307615374be11d6cccfc69e33dcd1029c5d4f'
+  /Vben2/src:
+    newFile: !uuid '3247d9b62abcd85bb94e986fe7ff06fb70a50b67'
+    oldFile: !uuid '88b072055cb17e84fc0dd1200174ef00f988f631'
+  /Vben2/src/components:
+    newFile: !uuid 'ae4d11fbf0963aebebd72e0ca340bb9aebcf3e6d'
+    oldFile: !uuid '5cfe9b70ee80ed57b35a465b54c5c405a1f90338'
+  /Vben2/src/components/ContextMenu:
+    newFile: !uuid '220f5a12345203a54faa55287bd9113c33981c9e'
+    oldFile: !uuid 'b407389c5243960bb3681ccf1b716bf71bd7b461'
+  /Vben2/src/components/ContextMenu/src:
+    newFile: !uuid '6bde6d53020fc69e5b8a06ef2bbfe04a90c0dc5f'
+    oldFile: !uuid '865e158b90951e8ecc6cf91cab60a88066b9476c'
+  /Vben2/src/components/ContextMenu/src/ContextMenu.vue:
+    newFile: !uuid 'f2c9fc56b11070a653a77373416e78654e59cb1b'
+    oldFile: !uuid 'e08c25f36b4697394f5af38d1ac35b1a16180fad'
+gitCommitId: !uuid 'dcb47fe4e5a4db54f635411d6d3d35bf954f86fe'
 renames: {
   }
-revisionId: 211
+revisionId: 212
