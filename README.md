@@ -266,6 +266,12 @@ GNU 风格的版本号管理策略
 * 持续集百家所长，完善与丰富本框架基础设施，为.NET生态增加一种选择！
 * 后期会推出基于此框架的相关应用场景案例，提供给大家使用！
 
+###  :construction:  常见问题
+* 使用Sql Server数据库，登录时候提示Microsoft.Data.SqlClient.SqlException:“LIMIT”附近有语法错误。
+    * [参见Furion文档关于批量操作](https://dotnetchina.gitee.io/furion/docs/dbcontext-batch/) ，将SQlite 数据库包换成Sql Server即可。
+    * 另：如果使用的Sql server版本是2008或以下，还需要[参见](https://dotnetchina.gitee.io/furion/docs/dbcontext-multi-database/#9182-%E5%A4%9A%E6%95%B0%E6%8D%AE%E5%BA%93%E6%9C%8D%E5%8A%A1%E6%B3%A8%E5%86%8C)修改兼容写法。
+
+
 ### 🍻 贡献代码
 
 `Admin.NET` 遵循 `Apache-2.0` 开源协议，欢迎大家提交 `PR` 或 `Issue`。
