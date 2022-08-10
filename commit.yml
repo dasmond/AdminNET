@@ -3,21 +3,30 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid 'd199a925aadb988f88849b9656038e2554a5c218'
-    oldFile: !uuid '88ded7a850a9feb60107ee16adef9af3444a4cf0'
+    newFile: !uuid '31d356ced89d19de30fc6b06d1a998fa0ae78162'
+    oldFile: !uuid 'd199a925aadb988f88849b9656038e2554a5c218'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '582494e87f59c10a95210d0aff7ac7a9c70a9b92'
-    oldFile: !uuid 'ea4449f49dfdb4dcfca592267826375cf5c5cae0'
+    newFile: !uuid '8e842314139f5a3321328d0a17a0956e502f93d2'
+    oldFile: !uuid '582494e87f59c10a95210d0aff7ac7a9c70a9b92'
+  /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
+    newFile: !uuid 'a15bbfae96170cc3b0d9d77cce14058bb607d743'
+    oldFile: !uuid '9341cf611de6104deb8d08e229147aa9a3683185'
   /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid '64e97ae750744cfbdeca28cc59ba46aee2393e89'
-    oldFile: !uuid '1f3c534711e41d0496b5102452d5296d200ac991'
-  /Admin.NET/Admin.NET.Core/Service/User:
-    newFile: !uuid '2fda550b324e59a6f1da95ce8a4ef6c24d4c259a'
-    oldFile: !uuid '9a4f167bb4309636f68a7ab18fbfbd81f3d2f7b5'
-  /Admin.NET/Admin.NET.Core/Service/User/SysUserService.cs:
-    newFile: !uuid '94f5be2717279194ed64e34dcdce1a4caa00847e'
-    oldFile: !uuid '55832239c158d370a4145ec1d8d15c33d1b3dc75'
-gitCommitId: !uuid '72982daab5381d1d21cffeca7aa3384c91e16bb9'
+    newFile: !uuid '9f54167d423c489c5a5b2c75c6926214e799f039'
+    oldFile: !uuid '64e97ae750744cfbdeca28cc59ba46aee2393e89'
+  /Admin.NET/Admin.NET.Core/Service/Auth:
+    newFile: !uuid 'f370be85fe6447965c1e1673de84647a6db251c1'
+    oldFile: !uuid '32386f9725a2e2258821ce30ffafeccb1f2204af'
+  /Admin.NET/Admin.NET.Core/Service/Auth/AuthService.cs:
+    newFile: !uuid '9fd5e556eec87a7dc41c7f3afef8139d8600268f'
+    oldFile: !uuid '1ac6a38305afec7647d33fb87a18c1c09941bc68'
+  /Admin.NET/Admin.NET.UnitTest:
+    newFile: !uuid '8164c162856050edce340399be23938676a232e5'
+    oldFile: !uuid 'c2897ba5a0be14752f6a60fbf8e26758ac83ecf8'
+  /Admin.NET/Admin.NET.UnitTest/Admin.NET.UnitTest.csproj:
+    newFile: !uuid '1b665ac99e774dfab57493b305eab105b673c08c'
+    oldFile: !uuid '7a87d2eaf0c151a1786f5ef7fcc5e6a7de55a3ef'
+gitCommitId: !uuid 'ce80669aca5911809be4f10eed441d8af2ec985a'
 renames: {
   }
-revisionId: 215
+revisionId: 216
