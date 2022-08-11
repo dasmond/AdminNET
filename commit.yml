@@ -3,30 +3,27 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '583b36785ba7b7da747038e647649813c7c09a36'
-    oldFile: !uuid '7d4c9b23e3409131fd0b5e9fa5f1b4f4b87492d8'
+    newFile: !uuid '156341cec2e376340ad983764ce0c3d9e18123a0'
+    oldFile: !uuid '583b36785ba7b7da747038e647649813c7c09a36'
   /Admin.NET/Admin.NET.Application:
-    newFile: !uuid '8edffae77154f4066d9932ecd6074b52dfc95c18'
-    oldFile: !uuid '75bcf17759fb57d7bbc0ef49a391a90dd1638747'
+    newFile: !uuid '03200024068027cb73260d6bb50e0814a64a1518'
+    oldFile: !uuid '8edffae77154f4066d9932ecd6074b52dfc95c18'
   /Admin.NET/Admin.NET.Application/Service:
-    newFile: !uuid '7ebcd3e4fd5c44dca5a08d407e9e7ed9f5592bdf'
-    oldFile: !uuid 'e629fcb3937f69c1292105a1a1f3a335d7bae2d9'
+    newFile: !uuid 'fc9f9d874b97ed21da417f32cf6531959a2d1094'
+    oldFile: !uuid '7ebcd3e4fd5c44dca5a08d407e9e7ed9f5592bdf'
+  /Admin.NET/Admin.NET.Application/Service/JobTimer.cs:
+    newFile: !uuid '17d4df34d060f109f35fec957753b870da0913d4'
+    oldFile: !uuid '384496bf87d7e4eebe45bbbb534948b0aceee91e'
   /Admin.NET/Admin.NET.Application/Service/TestService.cs:
-    newFile: !uuid 'deb564af1132e3c5f03c5081c418b2bf0e9d0f4f'
-    oldFile: !uuid '598bb4a392cadc7d4fc2ea3948011157d7460dd2'
-  /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '5c5b365acdcd058be47d0007fa3b117aa28fc945'
-    oldFile: !uuid 'e69f2ef7ecfe3c29719e7fdf2a3c50bc1371b697'
-  /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
-    newFile: !uuid '76b9c371520f320e1afe891b8d15cae0f74874b0'
-    oldFile: !uuid '13b67ee908faa21fe6fced25c7f8107ebb6ca966'
+    newFile: !uuid 'a71ec516ff976d4d0eb83a621bc51f21d6f60c7e'
+    oldFile: !uuid 'deb564af1132e3c5f03c5081c418b2bf0e9d0f4f'
   /Admin.NET/Admin.NET.UnitTest:
-    newFile: !uuid '92c84b575694de32cee2b937a847ade85ab9919a'
-    oldFile: !uuid '367c3159cece927a3e8bc855916d865d540602ec'
-  /Admin.NET/Admin.NET.UnitTest/Admin.NET.UnitTest.csproj:
-    newFile: !uuid '5ef0f6723c204889e76ac8d2eb59595c87ca9dea'
-    oldFile: !uuid 'f544e4ec797b421fa592a8e9a3c41e377eded965'
-gitCommitId: !uuid '22c491d6ce99a5eafaee2dca2aaad0d4b407e02d'
+    newFile: !uuid '24a21c02be51f7d23801f25d94d170ae546ab9ec'
+    oldFile: !uuid '92c84b575694de32cee2b937a847ade85ab9919a'
+  /Admin.NET/Admin.NET.UnitTest/UnitTest2.cs:
+    newFile: !uuid '0c09554cd1053e2b058e7d087edaebcdb6778859'
+    oldFile: !uuid 'af62a17acaced263ab384818ae19f5cbce584584'
+gitCommitId: !uuid '35131c5626de0fb3d7e5e6d4dba3e7f008c2395a'
 renames: {
   }
-revisionId: 220
+revisionId: 221
