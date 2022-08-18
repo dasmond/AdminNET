@@ -2,31 +2,37 @@
 branches: {
   }
 fileChange:
-  /Admin.NET:
-    newFile: !uuid '815c02056edbbe2c148bd2052316a9d37ac99df6'
-    oldFile: !uuid 'd5e9d33dc9eb3c97258ccb6be31f889cd17e07b5'
-  /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '60d64ec8ad5fd1d6ae07265ff77b4ca3fafe3ddd'
-    oldFile: !uuid '5f50ac377e52c39c3d5c8abdd76201b33274636b'
-  /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
-    newFile: !uuid '347fcfd60fa8c424d2d062b0072767a96a2d649f'
-    oldFile: !uuid '448d71793a432be2200d9c5b3aba8b757130e893'
-  /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid 'c8c293f0a0ff75165459aeb9baa8a201e7a80cfa'
-    oldFile: !uuid 'fad7de55d51236d87031745763b778e3f749ddbc'
-  /Admin.NET/Admin.NET.Core/Service/Dict:
-    newFile: !uuid 'ef789e67686c6262527af28492da197e5cac9f12'
-    oldFile: !uuid 'ad703374f77363e67f2487981f139cb475b35314'
-  /Admin.NET/Admin.NET.Core/Service/Dict/SysDictTypeService.cs:
-    newFile: !uuid 'f80fd3e482abc8c790087427c6cc721d6a7ebac3'
-    oldFile: !uuid '7d18ddd436aace229b443e2e295bb22ec202d2e3'
-  /Admin.NET/Admin.NET.Core/Service/File:
-    newFile: !uuid 'a26ea63966cf14df64e70f9423a7538e58a1f20b'
-    oldFile: !uuid '0f52f31af7af5cac3c555ed34b22a6567a93cf73'
-  /Admin.NET/Admin.NET.Core/Service/File/SysFileService.cs:
-    newFile: !uuid '6e2a1175507f16481b8405bfdec9a22bb2e65b82'
-    oldFile: !uuid 'f765dded101d31a61f3fcd3990137701eba1d5e6'
-gitCommitId: !uuid 'e71774f44140a371ba7bd1012c93578fb099f0dc'
+  /Vben2:
+    newFile: !uuid '7c968dd19e56e1918db906ffbce66d897a2f90ac'
+    oldFile: !uuid '9da09d86febff25e95a5c7c3c68b8352975fd0f1'
+  /Vben2/src:
+    newFile: !uuid '662fa9ef8f5e7a5897d2eeb0ead7b5a3d673b5f4'
+    oldFile: !uuid '0d6404676d6b35fe2c64bba3342b67b0b4722d8a'
+  /Vben2/src/views:
+    newFile: !uuid '4fb8896b4ccf00883192cb866e38e385d87488ff'
+    oldFile: !uuid '3a302c84df217dca7741cc8bbe17ffccfb2cf079'
+  /Vben2/src/views/sys:
+    newFile: !uuid 'c57d8451879d670d52dd38f64eac2f8fc0e6a631'
+    oldFile: !uuid 'c5ec2849561c6b8ed48dacfcfa6272af96799b10'
+  /Vben2/src/views/sys/admin:
+    newFile: !uuid 'd1037c617f799308ea562e5d08b7233eb3a16189'
+    oldFile: !uuid 'd4c95c23af0541c26e1214a86d784b5306e2f165'
+  /Vben2/src/views/sys/admin/dict:
+    newFile: !uuid 'f40a08a529ff42d52edfed4f10cee96a48c3324b'
+    oldFile: !uuid 'cec756c2684556ebf7db959dee18d9ed54e9a757'
+  /Vben2/src/views/sys/admin/dict/dictdata:
+    newFile: !uuid '23d9b8ae95de62562b195b2c3e80d03719730bf6'
+    oldFile: !uuid '875fde3595bb3745ffa16fbdef8cce554e739559'
+  /Vben2/src/views/sys/admin/dict/dictdata/dictData.data.ts:
+    newFile: !uuid '88031458990c2bdff249a1eb5b0ffa7e10194ed6'
+    oldFile: !uuid '8d7adcf013632d53600d6a2e292908750c182774'
+  /Vben2/src/views/sys/admin/dict/dictdata/index.vue:
+    newFile: !uuid '9bf760aa423a991cf295d3da5ba626e5419881ba'
+    oldFile: !uuid 'e4b01e5a955f331a890e9f5233cd7cdcb4d00006'
+  /Vben2/src/views/sys/admin/dict/index.vue:
+    newFile: !uuid 'b264d922c64df8266a8761dc6bb90c34890488bb'
+    oldFile: !uuid '07420baee2ea5dd198d1a8bfbb7db1e1d1de818c'
+gitCommitId: !uuid '690706fd2797774a43c7a052d67b695d00faf56f'
 renames: {
   }
-revisionId: 229
+revisionId: 230
