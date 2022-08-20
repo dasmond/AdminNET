@@ -3,15 +3,21 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '6ecb40e41f854e9a0e111d81781160020f7c5418'
-    oldFile: !uuid 'fbbc7dcc5396c35f42f8401fb6b84b628a672e03'
+    newFile: !uuid '6280020e2f61187327db60744654596240f9e968'
+    oldFile: !uuid '6ecb40e41f854e9a0e111d81781160020f7c5418'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '3c39b2430b5df9368f0c76f502ff6639015d7d6a'
-    oldFile: !uuid 'f5b907c046b8ca25535db43dc212c1a1cd6a26ed'
+    newFile: !uuid '87a2ab019b3b5f0efa648ac42676c9cd32df684d'
+    oldFile: !uuid '3c39b2430b5df9368f0c76f502ff6639015d7d6a'
   /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
-    newFile: !uuid '23eef862fd5b472d7c64d4954b199712edc45aed'
-    oldFile: !uuid '9745c3c4f447cee2fbed8064ebbba9643c310392'
-gitCommitId: !uuid 'ead3add17842838729be82875030659e0339983e'
+    newFile: !uuid '048075bbac3d2812b51c9210f3695ff5236e35b4'
+    oldFile: !uuid '23eef862fd5b472d7c64d4954b199712edc45aed'
+  /Admin.NET/Admin.NET.UnitTest:
+    newFile: !uuid '1b9cb4efdd776771dd65299957f5ea37e8d5e169'
+    oldFile: !uuid 'd41e9294d221c37e5029b3d5d5c55b307d82a66f'
+  /Admin.NET/Admin.NET.UnitTest/Admin.NET.UnitTest.csproj:
+    newFile: !uuid 'db17d44946b6c1f9c1b7ce2b73e26ca122225171'
+    oldFile: !uuid '9340a40962502d0e040a3f5ed9ee62638e14c919'
+gitCommitId: !uuid 'd42329d0ec7485e74f7c056f4aafbb03e549b7d8'
 renames: {
   }
-revisionId: 232
+revisionId: 233
