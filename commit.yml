@@ -2,16 +2,25 @@
 branches: {
   }
 fileChange:
-  /Admin.NET:
-    newFile: !uuid '68eff29ba55da5733c36953a6a5389e6583f5357'
-    oldFile: !uuid 'cb3cafb2126409bf4122ab250b1de46c32bac4f5'
-  /Admin.NET/Admin.NET.Web.Core:
-    newFile: !uuid '05793fe2ff989145cac3a3b270129f09e3195ba7'
-    oldFile: !uuid '2cc0d700c6643137557d34d11f0acccabb46ed59'
-  /Admin.NET/Admin.NET.Web.Core/Startup.cs:
-    newFile: !uuid '3ccb83dd4a203f0767a6bd5cbd6580e3d2d32762'
-    oldFile: !uuid 'aaef5af1a25cd06da7efa189a84cfc843a64f5bf'
-gitCommitId: !uuid '42a588bad3130a222e3077b7d29f91557d2bf449'
+  /Vben2:
+    newFile: !uuid '300d0793df20df32813b6330226c451b3f605df8'
+    oldFile: !uuid '9419ea9c88fb87733e6cb211f970bdb7cbf0d4c9'
+  /Vben2/src:
+    newFile: !uuid '9184fa5998213b1daabc9a13de97124639f89b65'
+    oldFile: !uuid 'dac65ed6b939183a8218d2e70b2e147535e0a284'
+  /Vben2/src/extension:
+    newFile: !uuid '35caab089cfe0053671a98aa980029d824cae5e7'
+    oldFile: !uuid 'c2e7ee587e60ca2b260994467de42a800d7cb5cb'
+  /Vben2/src/extension/components:
+    newFile: !uuid 'fb2dcf37458b22af886a8a1d7afd995996b35c8a'
+    oldFile: !uuid '1aca8e2c1c26ac6736dddf65b3f96bae966d17f8'
+  /Vben2/src/extension/components/OnlineUser:
+    newFile: !uuid 'aec8a8a31cb2c8845e397528a097a147404560fe'
+    oldFile: !uuid '88d065a87c3c77b5605e981669617b804e3a63ea'
+  /Vben2/src/extension/components/OnlineUser/OnlineUser.vue:
+    newFile: !uuid 'e2c01014d30fe4d711b4c33c0a8bf707ff3732be'
+    oldFile: !uuid 'd11a4bc448e18bc253cb36db98c62cbe0a1eefb3'
+gitCommitId: !uuid '2eb2c105ca5f9c0daae16777f84eb43c43aff5cc'
 renames: {
   }
-revisionId: 245
+revisionId: 246
