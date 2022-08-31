@@ -1,4 +1,4 @@
-﻿using Admin.NET.Core;
+using Admin.NET.Core;
 using Furion.ClayObject.Extensions;
 using Furion.DatabaseAccessor;
 using Furion.DatabaseAccessor.Extensions;
@@ -236,7 +236,7 @@ namespace Admin.NET.Application
             var byteArray = await importer.GenerateTemplateBytes<TImportDto>();
 
             // 文件名称
-            var fileName = typeof(TEntity).GetDescriptionValue<CommentAttribute>() + "导入模版.xlsx";
+            var fileName = typeof(TEntity).GetDescriptionValue<CommentAttribute>().Comment + "导入模版.xlsx";
 
             return await Task.FromResult(
                 new FileContentResult(byteArray, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
