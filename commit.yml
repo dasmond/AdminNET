@@ -2,10 +2,25 @@
 branches: {
   }
 fileChange:
-  /README.md:
-    newFile: !uuid '005b415a4149ec01413ebdeb4c35bf7f78bfb7bf'
-    oldFile: !uuid '036fc88da2f19c23662f56ec8007caa4c76da9d9'
-gitCommitId: !uuid '6b4a137c1331ecef82db62c9dbe019e5a407c037'
+  /backend:
+    newFile: !uuid 'e240680b2b51b06038849736546940e6874d243c'
+    oldFile: !uuid 'bf476be11193d5491f424a639714e07d90ed31ee'
+  /backend/Admin.NET.Application:
+    newFile: !uuid '19babf02d254d33f0b87163ec974b3b0585aef12'
+    oldFile: !uuid 'bcdda3f58b87541dc09f269ffba6c50da61d72b7'
+  /backend/Admin.NET.Application/Service:
+    newFile: !uuid 'c1bdb85c716b5a98182bf62446c31e608ce6883e'
+    oldFile: !uuid '68ea276b60517c6184a84da972e3d92b4b84fbd2'
+  /backend/Admin.NET.Application/Service/System:
+    newFile: !uuid '997bf9ff809a4b23a2eac5af1adb52948d4a5aea'
+    oldFile: !uuid '50fc2e063dca5553bfe5fcab74aca964da89eff4'
+  /backend/Admin.NET.Application/Service/System/Base:
+    newFile: !uuid '73b7fd66269e5ad36e52e26ba2cbe7a93372d957'
+    oldFile: !uuid '8aaf50c811fa5ccb68b77ecac43bb4203986258e'
+  /backend/Admin.NET.Application/Service/System/Base/BaseService.cs:
+    newFile: !uuid '3abcc949225f028dd24413bef4961ccb3fb25401'
+    oldFile: !uuid '3717e9e8c0121cf821c376a82a8035af84b8a9cd'
+gitCommitId: !uuid '612a9da473faa440cfb06205acf8cb308a0dfd08'
 renames: {
   }
-revisionId: 744
+revisionId: 745
