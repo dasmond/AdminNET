@@ -3,33 +3,81 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '1daf4b0780ce72928dd01a194be88e5d25279a20'
-    oldFile: !uuid 'd47b0b8c57caae9c87525fd18f629de584ef548c'
+    newFile: !uuid '47296cee53f83f0cc14a53e5a6c8758109aa45e0'
+    oldFile: !uuid '1daf4b0780ce72928dd01a194be88e5d25279a20'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '100040a2da08eef9bf00835a60fe0679d8a88662'
-    oldFile: !uuid '7ba1a75bc122dcbd40b8d8eb6ff1785400a30192'
+    newFile: !uuid 'eeadd441287d374efe5e45076fd396978d949d81'
+    oldFile: !uuid '100040a2da08eef9bf00835a60fe0679d8a88662'
   /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
-    newFile: !uuid '00b02dce3ee2e28476742d339424ce130eb079f6'
-    oldFile: !uuid 'b436540b6c7f4589fff4c7a536cf6f316d7e3232'
+    newFile: !uuid 'ba858426c817b2a8ec81c7494d35e57c61038123'
+    oldFile: !uuid '00b02dce3ee2e28476742d339424ce130eb079f6'
+  /Admin.NET/Admin.NET.Core/Admin.NET.Core.xml:
+    newFile: !uuid 'c14208d93d27d6856fadeab36ac771a1df919ba5'
+    oldFile: !uuid 'b0969468d99a4b70c4595dc7f0de95834186057a'
   /Admin.NET/Admin.NET.Core/Job:
-    newFile: !uuid 'c6e6497d8f7df11b8efa1feb558812f17ded8ac5'
-    oldFile: !uuid '3ddee919330f065f1a065437864855a83e943fe6'
-  /Admin.NET/Admin.NET.Core/Job/JobTimer.cs:
-    newFile: null
-    oldFile: !uuid '0233c6b76a8019ab64db43f966f38de9cd5b5ff8'
+    newFile: !uuid '964cb5d1566201595f35d4a12b6425c312fe3205'
+    oldFile: !uuid 'c6e6497d8f7df11b8efa1feb558812f17ded8ac5'
   /Admin.NET/Admin.NET.Core/Job/LogJob.cs:
-    newFile: !uuid '075e54182b18412453bc49715e73ae12f3dd147d'
-    oldFile: null
+    newFile: !uuid '2e773d5e53c8418a46fb6ed17cfdbdb356276b58'
+    oldFile: !uuid '075e54182b18412453bc49715e73ae12f3dd147d'
   /Admin.NET/Admin.NET.Core/Job/OnlineUserJob.cs:
-    newFile: !uuid '58752c1cff5738daff700eb51849957d588f4331'
-    oldFile: !uuid '1ed3c33b8e1ac02c0f94311222b1855718525149'
+    newFile: !uuid 'daf393379ccc37e7f43b9fc0e63ae893326ceb84'
+    oldFile: !uuid '58752c1cff5738daff700eb51849957d588f4331'
+  /Admin.NET/Admin.NET.Core/Service:
+    newFile: !uuid 'f4f35ce32517f14edf7d420b0b9e170ea8034b86'
+    oldFile: !uuid '2331c9ba4c591b7369c7e75ba685f16508949ce1'
+  /Admin.NET/Admin.NET.Core/Service/CodeGen:
+    newFile: !uuid '77f7748513431080e13c8b233161b96622c18985'
+    oldFile: !uuid '769adc9a48637622a50a3ae7ee573c56da966970'
+  /Admin.NET/Admin.NET.Core/Service/CodeGen/CustomViewEngine.cs:
+    newFile: !uuid 'ab41ed7754de205b35c62db80a7103f1e81e7fb2'
+    oldFile: null
+  /Admin.NET/Admin.NET.Core/Service/CodeGen/Dto:
+    newFile: !uuid '9ddf0280326d75f7fec14f4372335f406aa4224f'
+    oldFile: !uuid '0da903856116e9be50195a1065645152524ca7a8'
+  /Admin.NET/Admin.NET.Core/Service/CodeGen/Dto/CustomViewEngine.cs:
+    newFile: null
+    oldFile: !uuid '6e944477ee38bf2adca206b100d32f5056de041f'
+  /Admin.NET/Admin.NET.Core/Service/CodeGen/Dto/DatabaseOutput.cs:
+    newFile: !uuid '286f55db8aeac287d1e3e21752f54e0f678d376d'
+    oldFile: !uuid '609e159bd2481a4a647c343c003cd9dde6714545'
+  /Admin.NET/Admin.NET.Core/Service/CodeGen/SysCodeGenConfigService.cs:
+    newFile: !uuid '7b32b4494fb58f6402d47003f0257289778fba1d'
+    oldFile: !uuid '9e893287b066205359325e7bf3f7887ebba3e0ec'
+  /Admin.NET/Admin.NET.Core/Service/CodeGen/SysCodeGenService.cs:
+    newFile: !uuid '3f07c1e4c36705582ccaa14593fc50b4bf4c1ec8'
+    oldFile: !uuid 'b2d894d0ca6512367cd7c9702bf6d59d86a3842f'
+  /Admin.NET/Admin.NET.Core/Service/Timer:
+    newFile: !uuid '72a78d9eac92c8f289943cc33d6c75c0f264e210'
+    oldFile: !uuid '2ca50edecfca377f2eab6fe93a346362e6b5b59c'
+  /Admin.NET/Admin.NET.Core/Service/Timer/Dto:
+    newFile: !uuid '3cbbf85282011227d963d09ec98ba4a60b586856'
+    oldFile: !uuid 'bbc7ab7f076c38e0bee8847eab01d06c460a7439'
+  /Admin.NET/Admin.NET.Core/Service/Timer/Dto/TimerInput.cs:
+    newFile: !uuid '203f9654fd5b51edf276e981a88fd4b0d388848f'
+    oldFile: !uuid '4c1ff414f40018f55d65a8dfb82a165c6b84c022'
+  /Admin.NET/Admin.NET.Core/Service/Timer/Dto/TimerMethod.cs:
+    newFile: !uuid '4087d68619d457c964f2e4fb29b1ffa5acc52726'
+    oldFile: !uuid '590a347c637c4444c54e3d56c8d180c36417253c'
+  /Admin.NET/Admin.NET.Core/Service/Timer/Dto/TimerOutput.cs:
+    newFile: !uuid 'ad273490188dd0a994af8c0a98263f71607b8de9'
+    oldFile: !uuid 'e9afa52203124366c2ae4a39f51364108bf9bc22'
+  /Admin.NET/Admin.NET.Core/Service/Timer/SysTimerService.cs:
+    newFile: !uuid '4d34825426b4354cae77cdb6fe8bcb0332092b08'
+    oldFile: !uuid '0b696ee4d7498608ae903f2559aa2767af5ef418'
+  /Admin.NET/Admin.NET.Core/SqlSugar:
+    newFile: !uuid '16645a779aaf153639a08cc7b7786b2b4edba17d'
+    oldFile: !uuid 'b03fc82cb2d57a675937a47d4b4a17597b5645f6'
+  /Admin.NET/Admin.NET.Core/SqlSugar/SqlSugarSetup.cs:
+    newFile: !uuid 'dd155ff30558889747bdef841d9cb2a3e796d062'
+    oldFile: !uuid '4f97ab3040ba9046379714ae8a8463b3bdd5d062'
   /Admin.NET/Admin.NET.UnitTest:
-    newFile: !uuid '93175156ae7993f110e4c3e16e06ed1e6f25d246'
-    oldFile: !uuid '5f7e3bb6a47d8f2d85bd7af6e771101dfcfb458d'
+    newFile: !uuid '2e14cabc70772b10a2acfcec00da67354ffe7e73'
+    oldFile: !uuid '93175156ae7993f110e4c3e16e06ed1e6f25d246'
   /Admin.NET/Admin.NET.UnitTest/Admin.NET.UnitTest.csproj:
-    newFile: !uuid 'b8087657763ec22898d827283d0a5702d76d7ed4'
-    oldFile: !uuid 'afa7cf9ece91db17ed4a07c19e0ba160c383eb04'
-gitCommitId: !uuid 'b44a9328ec31dc365565df986e99a95663dcf1df'
+    newFile: !uuid '3a348a6426bbca13edf8f29771d2f5aafb115ed9'
+    oldFile: !uuid 'b8087657763ec22898d827283d0a5702d76d7ed4'
+gitCommitId: !uuid '8bbaa3cd9f5f2d647a2c072902f025ec0f5886ad'
 renames:
-  /Admin.NET/Admin.NET.Core/Job/LogJob.cs: /Admin.NET/Admin.NET.Core/Job/JobTimer.cs
-revisionId: 252
+  /Admin.NET/Admin.NET.Core/Service/CodeGen/CustomViewEngine.cs: /Admin.NET/Admin.NET.Core/Service/CodeGen/Dto/CustomViewEngine.cs
+revisionId: 253
