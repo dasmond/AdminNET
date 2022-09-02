@@ -3,24 +3,33 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid 'd47b0b8c57caae9c87525fd18f629de584ef548c'
-    oldFile: !uuid '86901e0d876957fe69fb686d0245336cc9f742ff'
+    newFile: !uuid '1daf4b0780ce72928dd01a194be88e5d25279a20'
+    oldFile: !uuid 'd47b0b8c57caae9c87525fd18f629de584ef548c'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '7ba1a75bc122dcbd40b8d8eb6ff1785400a30192'
-    oldFile: !uuid 'a045f6a0e43eae74f333275cce2722052dffef5d'
+    newFile: !uuid '100040a2da08eef9bf00835a60fe0679d8a88662'
+    oldFile: !uuid '7ba1a75bc122dcbd40b8d8eb6ff1785400a30192'
   /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
-    newFile: !uuid 'b436540b6c7f4589fff4c7a536cf6f316d7e3232'
-    oldFile: !uuid 'c44bd59b0fb16c94db12492b49d8670e948f7073'
-  /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid '2331c9ba4c591b7369c7e75ba685f16508949ce1'
-    oldFile: !uuid '3480dcb1dc52b3704af99a1136d7bcd31dc33158'
-  /Admin.NET/Admin.NET.Core/Service/File:
-    newFile: !uuid '1f66a4372301710e0e98a03a4c7de5842167f60a'
-    oldFile: !uuid '3f2580b0756a18d342e78f9e065bbded2fb47e60'
-  /Admin.NET/Admin.NET.Core/Service/File/SysFileService.cs:
-    newFile: !uuid 'a516d8ac197b8fa22b85fdf5b4f298b1b8bf053d'
-    oldFile: !uuid '81b2e421694d12cd0575a3f8331fc4253a252821'
-gitCommitId: !uuid 'bdff7054ecd5e9e90043b61ddcfc4ec95bdd07d0'
-renames: {
-  }
-revisionId: 251
+    newFile: !uuid '00b02dce3ee2e28476742d339424ce130eb079f6'
+    oldFile: !uuid 'b436540b6c7f4589fff4c7a536cf6f316d7e3232'
+  /Admin.NET/Admin.NET.Core/Job:
+    newFile: !uuid 'c6e6497d8f7df11b8efa1feb558812f17ded8ac5'
+    oldFile: !uuid '3ddee919330f065f1a065437864855a83e943fe6'
+  /Admin.NET/Admin.NET.Core/Job/JobTimer.cs:
+    newFile: null
+    oldFile: !uuid '0233c6b76a8019ab64db43f966f38de9cd5b5ff8'
+  /Admin.NET/Admin.NET.Core/Job/LogJob.cs:
+    newFile: !uuid '075e54182b18412453bc49715e73ae12f3dd147d'
+    oldFile: null
+  /Admin.NET/Admin.NET.Core/Job/OnlineUserJob.cs:
+    newFile: !uuid '58752c1cff5738daff700eb51849957d588f4331'
+    oldFile: !uuid '1ed3c33b8e1ac02c0f94311222b1855718525149'
+  /Admin.NET/Admin.NET.UnitTest:
+    newFile: !uuid '93175156ae7993f110e4c3e16e06ed1e6f25d246'
+    oldFile: !uuid '5f7e3bb6a47d8f2d85bd7af6e771101dfcfb458d'
+  /Admin.NET/Admin.NET.UnitTest/Admin.NET.UnitTest.csproj:
+    newFile: !uuid 'b8087657763ec22898d827283d0a5702d76d7ed4'
+    oldFile: !uuid 'afa7cf9ece91db17ed4a07c19e0ba160c383eb04'
+gitCommitId: !uuid 'b44a9328ec31dc365565df986e99a95663dcf1df'
+renames:
+  /Admin.NET/Admin.NET.Core/Job/LogJob.cs: /Admin.NET/Admin.NET.Core/Job/JobTimer.cs
+revisionId: 252
