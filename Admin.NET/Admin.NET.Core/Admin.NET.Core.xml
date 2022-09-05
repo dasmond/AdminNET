@@ -3083,6 +3083,51 @@
             数据库日志写入器
             </summary>
         </member>
+        <member name="T:Admin.NET.Core.AliPayOptions">
+            <summary>
+            支付宝支付配置选项
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.AliPayOptions.AppId">
+            <summary>
+            AppId
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.AliPayOptions.MerchantPrivateKey">
+            <summary>
+            应用私钥
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.AliPayOptions.MerchantCertPath">
+            <summary>
+            应用公钥证书文件路径，例如：/foo/appCertPublicKey_2019051064521003.crt
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.AliPayOptions.AlipayCertPath">
+            <summary>
+            支付宝公钥证书文件路径，例如：/foo/alipayCertPublicKey_RSA2.crt
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.AliPayOptions.AlipayRootCertPath">
+            <summary>
+            支付宝根证书文件路径，例如：/foo/alipayRootCert.crt 
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.AliPayOptions.AlipayPublicKey">
+            <summary>
+            支付宝公钥，例如：MIIBIjANBg...   如果采用非证书模式，则无需赋值上面的三个证书路径，改为赋值如下的支付宝公钥字符串即可
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.AliPayOptions.NotifyUrl">
+            <summary>
+            异步通知接收服务地址（可选）
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.AliPayOptions.EncryptKey">
+            <summary>
+            AES密钥，调用AES加解密相关接口时需要（可选）
+            </summary>
+        </member>
         <member name="T:Admin.NET.Core.CacheOptions">
             <summary>
             缓存配置选项
@@ -3442,6 +3487,58 @@
             种子数据
             </summary>
             <returns></returns>
+        </member>
+        <member name="T:Admin.NET.Core.Service.AliPay.AliPayClient">
+            <summary>
+            支付宝API客户端
+            </summary>
+        </member>
+        <member name="M:Admin.NET.Core.Service.AliPay.AliPayClient.CreateAliPayClient">
+            <summary>
+            创建客户端
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Admin.NET.Core.Service.AliPay.AliPayService">
+            <summary>
+            支付宝支付服务
+            </summary>
+        </member>
+        <member name="M:Admin.NET.Core.Service.AliPay.AliPayService.Precreate(Admin.NET.Core.Service.AliPay.Dto.PrecreateRequest)">
+            <summary>
+            统一收单线下交易预创建  收银员通过收银台或商户后台调用支付宝接口，生成二维码后，展示给用户，由用户扫描二维码完成订单支付。预下单请求生成的二维码有效时间为2小时
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Admin.NET.Core.Service.AliPay.Dto.PrecreateRequest.Subject">
+            <summary>
+            订单标题。    注意：不可使用特殊字符，如 /，=， 等。
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.Service.AliPay.Dto.PrecreateRequest.OutTradeNo">
+            <summary>
+            商户订单号。由商家自定义，64个字符以内，仅支持字母、数字、下划线且需保证在商户端不重复。
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.Service.AliPay.Dto.PrecreateRequest.TotalAmount">
+            <summary>
+            订单总金额。单位为元，精确到小数点后两位，取值范围：[0.01,100000000] 。
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.Service.AliPay.Dto.PrecreateResult.QrCode">
+            <summary>
+            当前预下单请求生成的二维码码串，有效时间2小时，可以用二维码生成工具根据该码串值生成对应的二维码
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.Service.AliPay.Dto.PrecreateResult.OutTradeNo">
+            <summary>
+            商户订单号。由商家自定义，64个字符以内，仅支持字母、数字、下划线且需保证在商户端不重复。
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.Service.AliPay.Dto.PrecreateResult.ShareCode">
+            <summary>
+            当前预下单请求生成的吱口令码串，有效时间2小时，可以在支付宝app端访问对应内容
+            </summary>
         </member>
         <member name="T:Admin.NET.Core.Service.LoginInput">
             <summary>

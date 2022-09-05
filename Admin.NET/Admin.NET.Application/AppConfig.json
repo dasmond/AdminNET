@@ -1,51 +1,67 @@
 ﻿{
-    "$schema": "https://gitee.com/dotnetchina/Furion/raw/net6/schemas/v3/furion-schema.json",
+  "$schema": "https://gitee.com/dotnetchina/Furion/raw/net6/schemas/v3/furion-schema.json",
 
-    "DbConnection": {
-        "EnableInitTable": false, // 启用初始化库表
-        "EnableDiffLog": false, // 启用库表差异日志
-        "ConnectionConfigs": [ // 默认第一个为主库
-            {
-                "ConfigId": "Dilon",
-                "DbType": "Sqlite", // MySql、SqlServer、Sqlite、Oracle、PostgreSQL、Dm、Kdbndp、Oscar、MySqlConnector、Access
-                "ConnectionString": "DataSource=./Admin.NET.db", // DataSource=C:\\db\\Admin.NET.db
-                "IsAutoCloseConnection": true
-            },
-            {
-                "ConfigId": "Test",
-                "DbType": "Sqlite",
-                "ConnectionString": "DataSource=./Test.db",
-                "IsAutoCloseConnection": true
-            }
-        ]
-    },
-    // 代码生成配置项-程序集名称集合
-    "CodeGen": {
-        "EntityAssemblyNames": [ "Admin.NET.Core", "Admin.NET.Application" ]
-    },
-    "Wechat": {
-        // 公众号
-        "WechatAppId": "",
-        "WechatAppSecret": "",
-        "EncodingAESKey": "",
-        "Token": "",
-        // 小程序
-        "WxOpenAppId": "",
-        "WxOpenAppSecret": "",
-        "WxOpenToken": "",
-        "WxOpenEncodingAESKey": ""
-    },
-    "WechatPay": {
-        "AppId": "", // 微信公众平台AppId、开放平台AppId、小程序AppId、企业微信CorpId
-        "MerchantId": "", // 商户平台的商户号
-        "MerchantV3Secret": "", // 商户平台的APIv3密钥
-        "MerchantCertificateSerialNumber": "", // 商户平台的证书序列号
-        "MerchantCertificatePrivateKey": "\\WxPayCert\\apiclient_key.pem" // 商户平台的API证书私钥(apiclient_key.pem文件内容)
-    },
-    "PayCallBack": {
-        "WechatPayUrl": "/notify/weChatPay/unifiedorder", // 微信支付回调
-        "WechatRefundUrl": "/notify/weChatPay/refund", // 微信退款回调
-        "AlipayUrl": "", // 支付宝支付回调
-        "AlipayRefundUrl": "" // 支付宝退款回调
-    }
+  "DbConnection": {
+    "EnableInitTable": false, // 启用初始化库表
+    "EnableDiffLog": false, // 启用库表差异日志
+    "ConnectionConfigs": [ // 默认第一个为主库
+      {
+        "ConfigId": "Dilon",
+        "DbType": "Sqlite", // MySql、SqlServer、Sqlite、Oracle、PostgreSQL、Dm、Kdbndp、Oscar、MySqlConnector、Access
+        "ConnectionString": "DataSource=./Admin.NET.db", // DataSource=C:\\db\\Admin.NET.db
+        "IsAutoCloseConnection": true
+      },
+      {
+        "ConfigId": "Test",
+        "DbType": "Sqlite",
+        "ConnectionString": "DataSource=./Test.db",
+        "IsAutoCloseConnection": true
+      }
+    ]
+  },
+  // 代码生成配置项-程序集名称集合
+  "CodeGen": {
+    "EntityAssemblyNames": [ "Admin.NET.Core", "Admin.NET.Application" ]
+  },
+  "Wechat": {
+    // 公众号
+    "WechatAppId": "",
+    "WechatAppSecret": "",
+    "EncodingAESKey": "",
+    "Token": "",
+    // 小程序
+    "WxOpenAppId": "",
+    "WxOpenAppSecret": "",
+    "WxOpenToken": "",
+    "WxOpenEncodingAESKey": ""
+  },
+  "WechatPay": {
+    "AppId": "", // 微信公众平台AppId、开放平台AppId、小程序AppId、企业微信CorpId
+    "MerchantId": "", // 商户平台的商户号
+    "MerchantV3Secret": "", // 商户平台的APIv3密钥
+    "MerchantCertificateSerialNumber": "", // 商户平台的证书序列号
+    "MerchantCertificatePrivateKey": "\\WxPayCert\\apiclient_key.pem" // 商户平台的API证书私钥(apiclient_key.pem文件内容)
+  },
+  "PayCallBack": {
+    "WechatPayUrl": "/notify/weChatPay/unifiedorder", // 微信支付回调
+    "WechatRefundUrl": "/notify/weChatPay/refund", // 微信退款回调
+    "AlipayUrl": "", // 支付宝支付回调
+    "AlipayRefundUrl": "" // 支付宝退款回调
+  },
+  "AliPay": {
+    "AppId": "", //请填写您的AppId，例如：2019091767145019
+    //请填写您的应用私钥，例如：MIIEvQIBADANB ... ...
+    "MerchantPrivateKey": "",
+    "MerchantCertPath": "", //请填写您的应用公钥证书文件路径，例如：/foo/appCertPublicKey_2021000121657908.crt
+    "AlipayCertPath": "", //请填写您的支付宝公钥证书文件路径，例如：/foo/alipayCertPublicKey_RSA2.crt 
+    "AlipayRootCertPath": "", //请填写您的支付宝根证书文件路径，例如：/foo/alipayRootCert.crt
+    //如果采用非证书模式，则无需赋值上面的三个证书路径，改为赋值如下的支付宝公钥字符串即可
+    //请填写您的支付宝公钥，例如：MIIBIjANBg...
+    "AlipayPublicKey": "",
+    //可设置异步通知接收服务地址（可选）
+    "NotifyUrl": "", //请填写您的支付类接口异步通知接收服务地址，例如：https://www.test.com/callback 
+    //可设置AES密钥，调用AES加解密相关接口时需要（可选）
+    "EncryptKey": "" //请填写您的AES密钥，例如：aa4BtZ4tspm2wnXLb1ThQA==
+
+  }
 }
