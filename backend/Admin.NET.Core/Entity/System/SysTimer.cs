@@ -50,7 +50,7 @@ namespace Admin.NET.Core
         /// </summary>
         /// <example></example>
         [Comment("Cron表达式")]
-        [MaxLength(20)]
+        [MaxLength(200)]
         public string Cron { get; set; }
 
         /// <summary>
