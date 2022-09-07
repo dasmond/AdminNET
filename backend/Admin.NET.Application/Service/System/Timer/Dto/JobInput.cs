@@ -183,7 +183,7 @@ namespace Admin.NET.Application
         /// Cron表达式
         /// </summary>
         /// <example></example>
-        [MaxLength(20)]
+        [MaxLength(200)]
         public string Cron { get; set; }
 
         /// <summary>
