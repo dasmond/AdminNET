@@ -86,5 +86,14 @@ namespace Admin.NET.Application
         {
             await _chatHubContext.Clients.Client(user.ConnectionId).ForceExist();
         }
+        /// <summary>
+        /// 单用户登录强制下线
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
+        public async Task SingleLoginForceExist([FromBody] OnlineUser user)
+        {
+            await _chatHubContext.Clients.Client(user.ConnectionId).SingleLoginForceExist();
+        }
     }
 }

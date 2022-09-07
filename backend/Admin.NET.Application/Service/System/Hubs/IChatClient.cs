@@ -10,7 +10,11 @@
         /// </summary>
         /// <returns></returns>
         Task ForceExist();
-
+        /// <summary>
+        /// 单用户登录，强制下线
+        /// </summary>
+        /// <returns></returns>
+        Task SingleLoginForceExist();
         /// <summary>
         /// 发送信息
         /// </summary>

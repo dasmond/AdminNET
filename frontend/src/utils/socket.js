@@ -93,6 +93,29 @@ class SocketConnection extends EventEmitter {
           })
       })
 
+      this.socket.on('SingleLoginExist', () => {
+        // 关闭连接
+        this.socket.stop()
+        store
+          .dispatch('Logout')
+          .then(() => {
+            Modal.success({
+              title: '消息',
+              content: '您的账号已在其他地方登录，被强制下线',
+              keyboard: false,
+              onOk: () => {
+                window.location.reload()
+              }
+            })
+          })
+          .catch(err => {
+            message.error({
+              title: '错误',
+              description: err.message
+            })
+          })
+      })
+      
       await this._initialize()
     }
   }
