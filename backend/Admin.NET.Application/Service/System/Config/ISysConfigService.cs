@@ -22,5 +22,6 @@ namespace Admin.NET.Application
         Task<bool> GetCaptchaOpenFlag();
 
         Task UpdateConfigCache(string code, string value);
+        Task<bool> GetEnableSingleLoginFlag();
     }
 }

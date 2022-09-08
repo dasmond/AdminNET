@@ -171,5 +171,16 @@ namespace Admin.NET.Application
             var value = await GetConfigCache("DILON_CAPTCHA_OPEN");
             return bool.Parse(value);
         }
+
+        /// <summary>
+        /// 获取单用户登录开关标识
+        /// </summary>
+        /// <returns></returns>
+        [NonAction]
+        public async Task<bool> GetEnableSingleLoginFlag()
+        {
+            var value = await GetConfigCache("DILON_ENABLE_SINGLE_LOGIN");
+            return bool.Parse(value);
+        }
     }
 }
