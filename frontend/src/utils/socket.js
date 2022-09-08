@@ -93,7 +93,7 @@ class SocketConnection extends EventEmitter {
           })
       })
 
-      this.socket.on('SingleLoginExist', () => {
+      this.socket.on('SingleLoginForceExist', () => {
         // 关闭连接
         this.socket.stop()
         store
@@ -115,7 +115,7 @@ class SocketConnection extends EventEmitter {
             })
           })
       })
-      
+
       await this._initialize()
     }
   }
