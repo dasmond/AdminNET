@@ -34,11 +34,12 @@ namespace Admin.NET.Application
         private readonly IClickWordCaptcha _captchaHandle; // 验证码服务
         private readonly ISysConfigService _sysConfigService; // 验证码服务
         private readonly IEventPublisher _eventPublisher;
+        private readonly ISysCacheService _cache;
 
         public AuthService(IRepository<SysUser> sysUserRep, IHttpContextAccessor httpContextAccessor,
             ISysUserService sysUserService, ISysEmpService sysEmpService, ISysRoleService sysRoleService,
             ISysMenuService sysMenuService, ISysAppService sysAppService, IClickWordCaptcha captchaHandle,
-            ISysConfigService sysConfigService, IEventPublisher eventPublisher)
+            ISysConfigService sysConfigService, IEventPublisher eventPublisher, ISysCacheService cache)
         {
             _sysUserRep = sysUserRep;
             _httpContextAccessor = httpContextAccessor;
@@ -50,6 +51,7 @@ namespace Admin.NET.Application
             _captchaHandle = captchaHandle;
             _sysConfigService = sysConfigService;
             _eventPublisher = eventPublisher;
+            _cache = cache;
         }
 
         /// <summary>
@@ -74,6 +76,20 @@ namespace Admin.NET.Application
             // 验证账号是否被冻结
             if (user.Status == CommonStatus.DISABLE)
                 throw Oops.Oh(ErrorCode.D1017);
+
+            //验证是否单用户登录，如果是剔除已经登录的用户
+            if (_sysConfigService.GetEnableSingleLoginFlag().Result)
+            {
+                var onlineUsers = _cache.GetAsync<List<OnlineUser>>(CommonConst.CACHE_KEY_ONLINE_USER).Result;
+                if (onlineUsers != null)
+                {
+                    var loginuser = onlineUsers.FirstOrDefault(u => u.UserId == user.Id);
+                    if (loginuser != null)
+                    {
+                        App.GetService<ISysOnlineUserService>().SingleLoginForceExist(loginuser);
+                    }
+                }
+            }
 
             // 员工信息
             var empInfo = _sysEmpService.GetEmpInfo(user.Id).Result;

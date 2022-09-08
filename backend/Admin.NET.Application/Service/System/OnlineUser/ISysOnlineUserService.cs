@@ -23,5 +23,12 @@ namespace Admin.NET.Application
         /// <param name="onlineUser">在线用户信息</param>
         /// <returns></returns>
         Task ForceExist(OnlineUser onlineUser);
+
+        /// <summary>
+        /// 单用户登录强制下线
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
+        Task SingleLoginForceExist(OnlineUser user);
     }
 }
