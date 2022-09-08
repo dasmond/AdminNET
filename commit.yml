@@ -3,18 +3,39 @@ branches: {
   }
 fileChange:
   /backend:
-    newFile: !uuid '99d7fdee2563c773268fe9375e906a1c819004a7'
-    oldFile: !uuid 'e240680b2b51b06038849736546940e6874d243c'
+    newFile: !uuid 'e5e1c7e544687ce6ab6e8f2f31d669793a07dd25'
+    oldFile: !uuid '99d7fdee2563c773268fe9375e906a1c819004a7'
+  /backend/Admin.NET.Application:
+    newFile: !uuid 'd9ed0f6a97295dc6eec3ada060ff8735b00f4d06'
+    oldFile: !uuid '19babf02d254d33f0b87163ec974b3b0585aef12'
+  /backend/Admin.NET.Application/Service:
+    newFile: !uuid '5ac1cd014049ce116e1ac423377f1dca366cdc44'
+    oldFile: !uuid 'c1bdb85c716b5a98182bf62446c31e608ce6883e'
+  /backend/Admin.NET.Application/Service/System:
+    newFile: !uuid '145986bc2d44505d2668ce8c83636357d882f0df'
+    oldFile: !uuid '997bf9ff809a4b23a2eac5af1adb52948d4a5aea'
+  /backend/Admin.NET.Application/Service/System/Timer:
+    newFile: !uuid '20225e9241437ba8d64773ae11e8ee883777e461'
+    oldFile: !uuid 'b90d89ee7f6de13da80962503c057468e5b51443'
+  /backend/Admin.NET.Application/Service/System/Timer/Dto:
+    newFile: !uuid 'f2539b83564f0165d99d497e357c56ff74083220'
+    oldFile: !uuid '8ef5f5f64da1c88bbf0f4c339dc402dd0d565241'
+  /backend/Admin.NET.Application/Service/System/Timer/Dto/JobInput.cs:
+    newFile: !uuid '9cee7febfcab59e8b2f22986127cebbf89ae638c'
+    oldFile: !uuid '6af9e1a5b37a9a2366d459b601007f17358485d1'
   /backend/Admin.NET.Core:
-    newFile: !uuid 'bf7bdc3e6b9f772f806df20168e03f1319d41858'
-    oldFile: !uuid '5e81844867bc87b52d0e41759b20e6a202bf9bc5'
-  /backend/Admin.NET.Core/Util:
-    newFile: !uuid 'baef0bf2413358d953ff00099f825832d4d55820'
-    oldFile: !uuid '456e4e9faef3225210abc46f07cb00df7f5d2ba0'
-  /backend/Admin.NET.Core/Util/XnRestfulResultProvider.cs:
-    newFile: !uuid '057d9ff1cee9748b4439e80b1ab990824535b4c8'
-    oldFile: !uuid 'e7c8cff6ee9b4edae6e534d3bd58357558428a73'
-gitCommitId: !uuid '45161f35eb778b27479c7f4dc3e1c7e80d0e2490'
+    newFile: !uuid '2db23fc21101f77bf4234374dd11cef455fcf613'
+    oldFile: !uuid 'bf7bdc3e6b9f772f806df20168e03f1319d41858'
+  /backend/Admin.NET.Core/Entity:
+    newFile: !uuid '28b5f6401f266f22007f4233e8060fe986fe8fd1'
+    oldFile: !uuid '05b39e618168e43828ec3fae0421b686222196ca'
+  /backend/Admin.NET.Core/Entity/System:
+    newFile: !uuid 'cd4b1be169c6231a0c5fab2836561dd07e38d226'
+    oldFile: !uuid 'f4f63b24251c0a3f96995119c7d689832470e64a'
+  /backend/Admin.NET.Core/Entity/System/SysTimer.cs:
+    newFile: !uuid '69f53cec7a5f35b1c99b040409ec027d72c4bbce'
+    oldFile: !uuid '6187f1c3835def9afec11839679cace6608a37a2'
+gitCommitId: !uuid 'f2670f854fdfa76f2633de284b37564b654b2765'
 renames: {
   }
-revisionId: 746
+revisionId: 747
