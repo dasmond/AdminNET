@@ -25,11 +25,19 @@ public static class SqlSugarSetup
             config.ConfigureExternalServices = configureExternalServices;
         });
 
+        // 是否首次 初始化SqlSugarScope配置
+        var hasInitConfig = false;
+
         SqlSugarScope sqlSugar = new(dbOptions.ConnectionConfigs, db =>
         {
+            //Stopwatch stopWatch = new Stopwatch();
+            //stopWatch.Start();
+
+            var localConfig = hasInitConfig;
             dbOptions.ConnectionConfigs.ForEach(config =>
             {
-                var dbProvider = db.GetConnectionScope((string)config.ConfigId);
+                var configId = (string)config.ConfigId;
+                var dbProvider = db.GetConnectionScope(configId);
 
                 // 设置超时时间
                 dbProvider.Ado.CommandTimeOut = 30;
@@ -116,15 +124,32 @@ public static class SqlSugarSetup
                     Console.WriteLine(DateTime.Now + $"\r\n**********差异日志开始**********\r\n{Environment.NewLine}{JsonConvert.SerializeObject(LogDiff)}{Environment.NewLine}**********差异日志结束**********\r\n");
                 };
 
-                // 配置实体假删除过滤器
-                SetDeletedEntityFilter(dbProvider);
-                // 配置实体机构过滤器
-                SetOrgEntityFilter(dbProvider);
-                // 配置自定义实体过滤器
-                SetCustomEntityFilter(dbProvider);
-                // 配置租户实体过滤器
-                SetTenantEntityFilter(dbProvider);
+                if (!localConfig)
+                {
+                    // 配置实体假删除过滤器
+                    SetDeletedEntityFilter(dbProvider);
+                    // 配置实体机构过滤器
+                    SetOrgEntityFilter(dbProvider);
+                    // 配置自定义实体过滤器
+                    SetCustomEntityFilter(dbProvider);
+                    // 配置租户实体过滤器
+                    SetTenantEntityFilter(dbProvider);
+
+                    SqlSugarQueryFilterCache.Instance.QueryEntityFilters.TryAdd(configId,
+                        dbProvider.QueryFilter);
+                }
+                else
+                {
+                    if (SqlSugarQueryFilterCache.Instance.QueryEntityFilters.TryGetValue(configId,
+                           out QueryFilterProvider filter))
+                        dbProvider.QueryFilter = filter;
+                }
             });
+
+            //stopWatch.Stop();
+            //long ts = stopWatch.ElapsedMilliseconds;
+
+            hasInitConfig = true;
         });
 
         // 初始化数据库结构及种子数据
