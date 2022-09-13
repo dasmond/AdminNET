@@ -1,4 +1,4 @@
-﻿namespace Admin.NET.Core.Service;
+namespace Admin.NET.Core.Service;
 
 /// <summary>
 /// 系统数据资源服务
@@ -124,7 +124,8 @@ public class SysDataResourceService : IDynamicApiController, ITransient
         var newDataResource = input.Adapt<SysDataResource>();
         newDataResource.Code = newCode;
         newDataResource.Order = int.Parse(newCode[^3..]);
-        newDataResource = await _sysDataResourceRep.AsInsertable(newDataResource).ExecuteReturnEntityAsync();
+        newDataResource.Id = Yitter.IdGenerator.YitIdHelper.NextId();
+        await _sysDataResourceRep.AsInsertable(newDataResource).ExecuteCommandAsync();
 
         return newDataResource.Id;
     }
