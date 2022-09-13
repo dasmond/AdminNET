@@ -1,4 +1,4 @@
-using Admin.NET.Core;
+﻿using Admin.NET.Core;
 using Furion.DependencyInjection;
 using Furion.DynamicApiController;
 using Furion.JsonSerialization;
@@ -226,7 +226,9 @@ namespace Admin.NET.Application
         [NonAction]
         public bool Exists(string cacheKey)
         {
-            return _cache.Equals(cacheKey);
+            var res = _cache.GetStringAsync(CommonConst.CACHE_KEY_ALL).GetAwaiter().GetResult();
+            var allkeys = string.IsNullOrWhiteSpace(res) ? new HashSet<string>() : JSON.Deserialize<HashSet<string>>(res);
+            return allkeys.Any(_ => _ == cacheKey);
         }
 
         /// <summary>
