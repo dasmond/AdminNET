@@ -60,7 +60,7 @@
       <rules>
         <rule name="api" enabled="true" patternSyntax="Wildcard" stopProcessing="true">
           <match url="*api/*" />
-          <action type="Rewrite" url="http://localhost:5566/{R:2}" />
+          <action type="Rewrite" url="http://localhost:5566/api/{R:2}" />
         </rule>
         <rule name="hubs" enabled="true" patternSyntax="Wildcard" stopProcessing="true">
           <match url="*hubs/*" />
