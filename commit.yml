@@ -2,25 +2,13 @@
 branches: {
   }
 fileChange:
-  /backend:
-    newFile: !uuid 'b700e63d5e4206d1ccfba2d2cab75b3e7e1c7dd1'
-    oldFile: !uuid 'e188b8c8fdafc567f6c2c55b9eb5df5dd6c97500'
-  /backend/Admin.NET.Application:
-    newFile: !uuid '23bff67d1fd4028c64a7bd0edf4aa1ab515247a9'
-    oldFile: !uuid 'a98bdbf3ebe44e1ed64b99862a94005f42422553'
-  /backend/Admin.NET.Application/Service:
-    newFile: !uuid 'd6f9c22557b6a138ad857b92ec89f8c0fa4b0fd1'
-    oldFile: !uuid 'ff5ac32d0590f8c420fa1f37c20bdea01658b6fa'
-  /backend/Admin.NET.Application/Service/System:
-    newFile: !uuid 'bd48fa696fd9ac117381f2db5696e46f9eb3b7e1'
-    oldFile: !uuid 'bade8703fb2e84cdddcc5801f9034ed2c0f122e1'
-  /backend/Admin.NET.Application/Service/System/Cache:
-    newFile: !uuid '9cb085fd26e2f4618752a949fc9f587a0f087747'
-    oldFile: !uuid '43d5be5223b858377579912aeab1fcbb97bb6d3e'
-  /backend/Admin.NET.Application/Service/System/Cache/SysCacheService.cs:
-    newFile: !uuid '3ea26c04ad694fec02d7f813068afe2521e3ca01'
-    oldFile: !uuid '57b0b0bf3dc4da1ca431779bb0ca670fcaa25dca'
-gitCommitId: !uuid '63c9be923948797c15c8b59c18c7f4512d249af7'
+  /doc:
+    newFile: !uuid '0d50897ce94522fdf9af9f608932b9ce3ff0e610'
+    oldFile: !uuid '5024f62abdadcb54b44fe9d6ab91f85913cd962a'
+  /doc/快捷部署到IIS方案.md:
+    newFile: !uuid '23e0fa2a16e7eaafdf803c0ab4e5d0851f4b9f3f'
+    oldFile: !uuid 'e2c998f0d791c08b55b661f35e6e6da9f69e8d75'
+gitCommitId: !uuid '56333f70c4809c99d44d5e8349f9fe81aa51dcad'
 renames: {
   }
-revisionId: 749
+revisionId: 750
