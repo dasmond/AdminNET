@@ -2,13 +2,19 @@
 branches: {
   }
 fileChange:
-  /Vben2:
-    newFile: !uuid '74c3af8fa3012f98d0ee05a49a994d4d51320b21'
-    oldFile: !uuid '2522ca5f825f5c907fd038feeb2751c1a827c9b4'
-  /Vben2/.env.production:
-    newFile: !uuid '550ee6155bf409f607b2dc6bb8bdd1e7a6aa7568'
-    oldFile: !uuid '1d4b17ae50beb1164f4ce110fba91f977cfe9c88'
-gitCommitId: !uuid 'f6f8ea55fc673bd97eb8e0822907fccd288abc57'
+  /Admin.NET:
+    newFile: !uuid 'e229e9d3e1c480203a3a008136e84a1ceb6fb03b'
+    oldFile: !uuid '1c06e3489216a50d084fec85af4a6d1a107ed5f0'
+  /Admin.NET/Admin.NET.Core:
+    newFile: !uuid '6b15bb9e22a9101dbcfa4676fbbc155472f5b60a'
+    oldFile: !uuid 'f4cbe5bed77803eb91d23b6406ae4b2916c6121b'
+  /Admin.NET/Admin.NET.Core/SqlSugar:
+    newFile: !uuid '5e64b3c266b5f796746353c11ec9d3e3abf64b58'
+    oldFile: !uuid 'cd27ca4c35b2c2d129c6e92cee15be12efa1adc8'
+  /Admin.NET/Admin.NET.Core/SqlSugar/SqlSugarSetup.cs:
+    newFile: !uuid 'afc8327e73a4188b5aed6339f13314d59384be28'
+    oldFile: !uuid 'd0338bcb73b209a50058eac9ccaed4b9dff7c487'
+gitCommitId: !uuid '69149c6b6b7b86fb09abd205fe3ffef34ade2a55'
 renames: {
   }
-revisionId: 276
+revisionId: 277
