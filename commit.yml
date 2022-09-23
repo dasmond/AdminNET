@@ -3,21 +3,21 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '23f3e8900b7becf4aea7259174a38e13975abd8b'
-    oldFile: !uuid '9a578ac484b4b5b4e221bb603e650917079ca547'
+    newFile: !uuid '91f4f9cf646b1268c4e8ef8c3cecd737435b9058'
+    oldFile: !uuid '23f3e8900b7becf4aea7259174a38e13975abd8b'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '8199ce99f4ae87986b7b112f381f471943632473'
-    oldFile: !uuid '80357d0be3c4681acf5d638bd80ec173280e6c45'
+    newFile: !uuid 'f72c35392054abc8f171a033ac02a8e913b57b22'
+    oldFile: !uuid '8199ce99f4ae87986b7b112f381f471943632473'
   /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid 'e4d3b80b7dacf2e59e88aacc81865715f234150f'
-    oldFile: !uuid '4b9a5f96a809bd7120f2ce7c16fec02482867166'
-  /Admin.NET/Admin.NET.Core/Service/Timer:
-    newFile: !uuid '9a6dc95c301dd4fb31e8ecc65b161c5611f5ad60'
-    oldFile: !uuid 'a6f1162d37be7b2fcd3c4b0b555116a0e418565e'
-  /Admin.NET/Admin.NET.Core/Service/Timer/SysTimerService.cs:
-    newFile: !uuid '66616666f041610a32edc64f240e7b3cdda79f36'
-    oldFile: !uuid '355865995e8c754ac09b7b9e083295c4bbf39850'
-gitCommitId: !uuid '68a22491f8458fdf4c91b507de5c3b1be71224e8'
+    newFile: !uuid '7375e15c863715472fd0f890e33394ca42c246df'
+    oldFile: !uuid 'e4d3b80b7dacf2e59e88aacc81865715f234150f'
+  /Admin.NET/Admin.NET.Core/Service/Cache:
+    newFile: !uuid '4ffbeff20cbf4a46d63f0d5aa7f9cac86bbff5ff'
+    oldFile: !uuid 'a87d6c91406d487d06329b60bf860c109b6fc867'
+  /Admin.NET/Admin.NET.Core/Service/Cache/SysCacheService.cs:
+    newFile: !uuid '3a598b69b3a7bf35e60db38cc9a63468646345eb'
+    oldFile: !uuid '022c092da5bedf6c2dc1dacccad2925e03927f57'
+gitCommitId: !uuid '95d1581fa9427f06d49bf866edad352f17837665'
 renames: {
   }
-revisionId: 290
+revisionId: 291
