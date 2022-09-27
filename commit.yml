@@ -3,24 +3,27 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '04f025278829ec8a357621b6f75983af3be2beaa'
-    oldFile: !uuid '1a30b7757d3a4461fa3c2f9522b8d5d062cd5da0'
+    newFile: !uuid '66c774c30ff9a2094a2cb41fc6b6f615fad17826'
+    oldFile: !uuid '04f025278829ec8a357621b6f75983af3be2beaa'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '67a2bbc12105fe96aee7c2c5c8c3df5b6f1ad8e4'
-    oldFile: !uuid '0550d1fff1b2a22862f8bf4eef683ea341fee386'
-  /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
-    newFile: !uuid '4d32ddf07a077ba29397c1ba0e9ca5da01424d3c'
-    oldFile: !uuid '744ba378f0d34db3719900a4797a66170f007747'
-  /Admin.NET/Admin.NET.Core/AdminNETConfig.json:
-    newFile: !uuid 'd36c98a23c585fe6f411d42a5630614db797ab87'
-    oldFile: !uuid '5557c22de35fd4407bfe834f681722a2cce527e3'
-  /Admin.NET/Admin.NET.Web.Core:
-    newFile: !uuid '7293b1b3af6431b04f34543a5a32bc7427404825'
-    oldFile: !uuid 'dbd19a216d66b3946c67674a1556ff1ad95e3817'
-  /Admin.NET/Admin.NET.Web.Core/Startup.cs:
-    newFile: !uuid '39376da29e1844148eaacf5493ed97d5de6a3d2f'
-    oldFile: !uuid '5d822be40ad9d4171bdbb371263dac498c9f0974'
-gitCommitId: !uuid 'b91cc8be6c4720c373f16d53a9c1653fc59c63f5'
+    newFile: !uuid '2bdbb6f0a97e7eec6c3fb0ddf1151990e76e0309'
+    oldFile: !uuid '67a2bbc12105fe96aee7c2c5c8c3df5b6f1ad8e4'
+  /Admin.NET/Admin.NET.Core/Service:
+    newFile: !uuid 'd5615bbdfcc7b961b0eaa2e095fc878bfaa27d6d'
+    oldFile: !uuid 'df0d0c074d143c350a17380f09d1a44ec0d939e9'
+  /Admin.NET/Admin.NET.Core/Service/Cache:
+    newFile: !uuid 'a87d6c91406d487d06329b60bf860c109b6fc867'
+    oldFile: !uuid '4ffbeff20cbf4a46d63f0d5aa7f9cac86bbff5ff'
+  /Admin.NET/Admin.NET.Core/Service/Cache/SysCacheService.cs:
+    newFile: !uuid '022c092da5bedf6c2dc1dacccad2925e03927f57'
+    oldFile: !uuid '3a598b69b3a7bf35e60db38cc9a63468646345eb'
+  /Admin.NET/Admin.NET.Core/Util:
+    newFile: !uuid 'd96d8b79309d4e3e9f904e2aecd0004fd4776db6'
+    oldFile: !uuid '61e1a11aa984c1f319f59f52a59381934e670eea'
+  /Admin.NET/Admin.NET.Core/Util/ServerUtil.cs:
+    newFile: !uuid '1d46be08a36a5a6780f5e6c51ecc4c2b8105a516'
+    oldFile: !uuid 'c318db0eb2dc493adc18921b12afbb581af84e32'
+gitCommitId: !uuid 'f799e8e9da8e980cef1f55e1bceb6082db3350a6'
 renames: {
   }
-revisionId: 299
+revisionId: 300
