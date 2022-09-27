@@ -2,19 +2,22 @@
 branches: {
   }
 fileChange:
-  /Admin.NET:
-    newFile: !uuid '1a30b7757d3a4461fa3c2f9522b8d5d062cd5da0'
-    oldFile: !uuid '699ca1a7ad75c03c31555febabfec604bcf4f45a'
-  /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '0550d1fff1b2a22862f8bf4eef683ea341fee386'
-    oldFile: !uuid 'e5ddaeab3f3e935553e474b7782782db1135c3ef'
-  /Admin.NET/Admin.NET.Core/Util:
-    newFile: !uuid '61e1a11aa984c1f319f59f52a59381934e670eea'
-    oldFile: !uuid '3840e2caae5d03cfe18ce4eec4aff8c8c4393afe'
-  /Admin.NET/Admin.NET.Core/Util/ServerUtil.cs:
-    newFile: !uuid 'c318db0eb2dc493adc18921b12afbb581af84e32'
-    oldFile: !uuid '5bd9e5dcdda1fd58342eeaec4d0623ae6f827d50'
-gitCommitId: !uuid '56b5597660ce40f107af1dd94514d2bd8c5bb434'
+  /Vben2:
+    newFile: !uuid '68b15cf1a44a5345e9e1225a38c35aabc23c6733'
+    oldFile: !uuid '7f9c085ec288d8f06c12752ab980ec38781ee461'
+  /Vben2/src:
+    newFile: !uuid '2789f832562fc83fb79bd094ac31bb3d9247d94f'
+    oldFile: !uuid '498e75e854c1c64b413f679175f8701eb6981ae1'
+  /Vben2/src/hooks:
+    newFile: !uuid '63dda853ecb2fe4048e7963091c98ac60780062b'
+    oldFile: !uuid '6d01b58181f3d46733a0be1e871d2593d68fbe78'
+  /Vben2/src/hooks/component:
+    newFile: !uuid '49dda64a6c4fe13b405e18f20d255a552fff58be'
+    oldFile: !uuid 'baf114a378e6432cf92f9d15ce94aff76354d9c0'
+  /Vben2/src/hooks/component/useFormItem.ts:
+    newFile: !uuid '2b663410c74eab0969a0f3073c6b96861a38d621'
+    oldFile: !uuid 'cee415e887378b1f35d8ef529fe98b84f9cbe575'
+gitCommitId: !uuid '02c2528be18cc06102fc3a2c923e7727214d0c7c'
 renames: {
   }
-revisionId: 297
+revisionId: 298
