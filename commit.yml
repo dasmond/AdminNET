@@ -3,39 +3,15 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid 'b3fd4ec9ef54c01fa801b4592e7eadb71a7bfe5f'
-    oldFile: !uuid 'bb1293176384122416335a7452cb375ad0df8ad4'
+    newFile: !uuid '74ef0c18000ef8d6f3e18a220434940fdb438d8a'
+    oldFile: !uuid 'b3fd4ec9ef54c01fa801b4592e7eadb71a7bfe5f'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid 'fc65067975879aaf32b36983f14996666517bb03'
-    oldFile: !uuid 'e28570bba541b3c10fd11e14e09e69bc983bd3a2'
+    newFile: !uuid 'fd362fbe80b7e14d561671281cc685bbabf0a625'
+    oldFile: !uuid 'fc65067975879aaf32b36983f14996666517bb03'
   /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
-    newFile: !uuid '2a3da3069a35b1462d1cd8a9d95dd6f5fb521c3f'
-    oldFile: !uuid '4d32ddf07a077ba29397c1ba0e9ca5da01424d3c'
-  /Admin.NET/Admin.NET.Core/Admin.NET.Core.xml:
-    newFile: !uuid '6ed5c3348e6c9c294d8353c13f9c5ab2c8f34423'
-    oldFile: !uuid 'd9dd3f208668b51d68e8001798fcb126908aa308'
-  /Admin.NET/Admin.NET.Core/Logging:
-    newFile: !uuid '4126344217ad1822140691229314081aecfb3c98'
-    oldFile: !uuid '1b82e99796876249058304d31f5fd92b49b935c6'
-  /Admin.NET/Admin.NET.Core/Logging/ElasticSearchLoggingWriter.cs:
-    newFile: !uuid 'fd05ca604aad95324a7ec16b8d3fd7ac2a83d7b9'
-    oldFile: !uuid '29eb092fb13bb3a98eb7b8a4beb721586b20ad6d'
-  /Admin.NET/Admin.NET.Web.Core:
-    newFile: !uuid '59ad27fd5967d7da1d2b622d3061c48697ce2dad'
-    oldFile: !uuid 'f411856a8b243c5e310a3010b10b4c0a19033f03'
-  /Admin.NET/Admin.NET.Web.Core/Startup.cs:
-    newFile: !uuid '92e3e65dd89d13edfaa2ce2e31460c38a980b2ac'
-    oldFile: !uuid '3fd8d80734abb7740ee7d2a4ec8cbe4a6882e853'
-  /Admin.NET/Admin.NET.Web.Entry:
-    newFile: !uuid '3727946d77d96223bf59d3bc24eaa36db306dcd9'
-    oldFile: !uuid 'acd8283be039e823dd44059bc010c1bd30315aba'
-  /Admin.NET/Admin.NET.Web.Entry/appsettings.Development.json:
-    newFile: !uuid 'c927cfe550e73157af0c548042544153687bc433'
-    oldFile: !uuid 'ed7f8ed5c475cd468c35428fe3c0dc76f5abac3a'
-  /Admin.NET/Admin.NET.Web.Entry/appsettings.json:
-    newFile: !uuid 'c927cfe550e73157af0c548042544153687bc433'
-    oldFile: !uuid 'ed7f8ed5c475cd468c35428fe3c0dc76f5abac3a'
-gitCommitId: !uuid '6adba9eeba167c914ebd9aeef0b69b772e98b43e'
+    newFile: !uuid 'c16b5715ff079ec7236e802c7250bca877a21309'
+    oldFile: !uuid '2a3da3069a35b1462d1cd8a9d95dd6f5fb521c3f'
+gitCommitId: !uuid 'e72961b9caa319bdaea5bdb59fa74bf44fdc8e92'
 renames: {
   }
-revisionId: 305
+revisionId: 306
