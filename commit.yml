@@ -3,42 +3,27 @@ branches: {
   }
 fileChange:
   /vue-next-admin:
-    newFile: !uuid '761c85b9a903bb615556739b3176d9ead4d47300'
-    oldFile: !uuid '5eb192b30bb8467b159841f310e52ff1d27f967f'
-  /vue-next-admin/index.html:
-    newFile: !uuid 'c2ec1aa24c37e098e00e776116d8a11a2df90f9a'
-    oldFile: !uuid 'dc8466cc0684542494c4b22c74c070243501f3ce'
-  /vue-next-admin/public:
-    newFile: !uuid 'b74637eaed1fc9cd0d5001f032d803d09d2fbaba'
-    oldFile: !uuid 'a8bfc99efad662e7333204eab8cee1ca756cad0e'
-  /vue-next-admin/public/favicon.ico:
-    newFile: !uuid '487b95aed81d9144a348aa27733fc2f1e704c2a0'
-    oldFile: !uuid '9da231b8cb0c3bc39446ecbf047c38156dbea883'
+    newFile: !uuid 'bbae9b08497852ad6d4cc462c69e1cc486820a8b'
+    oldFile: !uuid '761c85b9a903bb615556739b3176d9ead4d47300'
   /vue-next-admin/src:
-    newFile: !uuid '8e7e1c497557665edc11ba680bb5287e5eb6537f'
-    oldFile: !uuid 'f4b0a7f445c6d9eba600ac69febd77b19b5dead4'
-  /vue-next-admin/src/assets:
-    newFile: !uuid 'eb4841f116858a5ee775ff5a7917d8150a0f20c9'
-    oldFile: !uuid '4b6b6b9b60fffdb0fc19023aab8b22ec952f284f'
-  /vue-next-admin/src/assets/logo-mini.svg:
-    newFile: !uuid 'cdb23a59d358f4d612379a746c151114f6364ee0'
-    oldFile: !uuid '53df94c25927f6a75875a0172735af193f999b0a'
+    newFile: !uuid 'be738d7a5eaf0d0fe630684530814a684b929936'
+    oldFile: !uuid '8e7e1c497557665edc11ba680bb5287e5eb6537f'
   /vue-next-admin/src/layout:
-    newFile: !uuid '4f9193f2de265e3e1bd566cfdc34ea29600d03fa'
-    oldFile: !uuid '87a5f7afdb21cdb3d40f0583d0bd3d2b155e5799'
-  /vue-next-admin/src/layout/component:
-    newFile: !uuid '5ff9790f70fd8e3063e48d6d384128814e2b3c0e'
-    oldFile: !uuid 'cc480b6b1af6468e1efb8c1b5d99cd53207d5953'
-  /vue-next-admin/src/layout/component/columnsAside.vue:
-    newFile: !uuid 'd54a2b6b03b2bfd0f07368844cb5395aeda403e9'
-    oldFile: !uuid '8c54f16a9c0f8501808dea08bd7e0348572ed67c'
-  /vue-next-admin/src/theme:
-    newFile: !uuid 'd500c289731dd3038e41ce6097031d34d634064b'
-    oldFile: !uuid 'a6da9ed80067d58d9e75bc5ab5dbcf47d1c86906'
-  /vue-next-admin/src/theme/element.scss:
-    newFile: !uuid 'd95981fdb2dd2025d510787d875cbd9a9ab13a0e'
-    oldFile: !uuid '6a295d5b2b4ba2fae8b073f2fa53fd46f1c9580b'
-gitCommitId: !uuid '86cc9bd3814ffb4332530eaeab5f7e4f7d129570'
+    newFile: !uuid '9aa8b0fb9095a9b8b14f104631d49b892214311b'
+    oldFile: !uuid '4f9193f2de265e3e1bd566cfdc34ea29600d03fa'
+  /vue-next-admin/src/layout/logo:
+    newFile: !uuid 'd75475a783d9b3c055397ca3916413d72427287e'
+    oldFile: !uuid 'ed7456271ac5e5d0f74d3169bcf39dde99bef52e'
+  /vue-next-admin/src/layout/logo/index.vue:
+    newFile: !uuid '037a582b38106b90fc11a137766388160438b322'
+    oldFile: !uuid 'd8517218cf01f5dc89ffa4d6144b567fddcff6d0'
+  /vue-next-admin/src/stores:
+    newFile: !uuid 'f4bdd67efeccade31c8abd4da4a23a9b4c8cdcbf'
+    oldFile: !uuid '30a7a211ee5dbb38c50d791d5354db8ca5086211'
+  /vue-next-admin/src/stores/themeConfig.ts:
+    newFile: !uuid '81a8fd2be148eb2100418feef4c9859d4c82164a'
+    oldFile: !uuid '76bc2d4f490500476fceee84ff0943b35d779091'
+gitCommitId: !uuid 'f035a30244973cea2e6824cc36905ce740cea818'
 renames: {
   }
-revisionId: 313
+revisionId: 314
