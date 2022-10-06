@@ -2,46 +2,22 @@
 branches: {
   }
 fileChange:
-  /Admin.NET:
-    newFile: !uuid 'b490f6ffcae81d03d94cd8c22e3dd7af1ee5a5ee'
-    oldFile: !uuid '938570d237040081b54410d8a7a4e5b0f5facc3a'
-  /Admin.NET/Admin.NET.Core:
-    newFile: !uuid 'b10762eaa265eaf8471a62800cd4a3a6bee9f52f'
-    oldFile: !uuid 'f69b2b92093d2c337d9d93fefd641cfd4a024d44'
-  /Admin.NET/Admin.NET.Core/SeedData:
-    newFile: !uuid '25fdbc0a70e6721a2338a55e58a30e7378f63892'
-    oldFile: !uuid 'cb89c1b191741e9af00698025aae572bf9494341'
-  /Admin.NET/Admin.NET.Core/SeedData/SysMenuSeedData.cs:
-    newFile: !uuid 'd6610b65bec3a0349f69c892548acd88c077c8c3'
-    oldFile: !uuid '15c2db149f0aee1e00dfd4141b9d1774a9477d99'
   /vue-next-admin:
-    newFile: !uuid 'f0e20a55dfb2dd26799572a2174571f8a41b4bc4'
-    oldFile: !uuid '07f370ecaeca34cbd05d193fcad5e5c84d89bd1b'
+    newFile: !uuid 'f562a27ed8322250bec53e80f3a5f775cf2d9c6c'
+    oldFile: !uuid 'f0e20a55dfb2dd26799572a2174571f8a41b4bc4'
   /vue-next-admin/src:
-    newFile: !uuid '25499c9361f4102d9a85811f9971b8b95cf1b40a'
-    oldFile: !uuid '9353fe6cf192491effb37b6f330805fa07754221'
+    newFile: !uuid '5460c23b376d8c2fddeed1acf891754ef69fd102'
+    oldFile: !uuid '25499c9361f4102d9a85811f9971b8b95cf1b40a'
   /vue-next-admin/src/layout:
-    newFile: !uuid 'eb3d9ee3656653c8484fc581e95b4634c9ccaab5'
-    oldFile: !uuid '16850ac892f73c1c91a4388a16e878c66f5a82f1'
-  /vue-next-admin/src/layout/navBars:
-    newFile: !uuid 'e0b838f1028a0a1164f90efc4ec09bbd7c5f8773'
-    oldFile: !uuid '6f2e598de094ed4ac0b20aa9575827980c345d50'
-  /vue-next-admin/src/layout/navBars/tagsView:
-    newFile: !uuid '1ae062967d3928e9fc4b8c5981b3562ce369fea2'
-    oldFile: !uuid '47850e1848fbe40c01f132fe3468c032c2d79a0c'
-  /vue-next-admin/src/layout/navBars/tagsView/tagsView.vue:
-    newFile: !uuid '1a8a00ad8f6f25080649e41ff9efd167391b1446'
-    oldFile: !uuid '83f272d171d2790c03310d79eb475c8b96e24418'
-  /vue-next-admin/src/router:
-    newFile: !uuid '28755e795073935d0b2177ccfed9dea1fab95c70'
-    oldFile: !uuid 'f5f16f9b57895bf942955f12ea64b9371b2da907'
-  /vue-next-admin/src/router/index.ts:
-    newFile: !uuid 'a98d2f89a0e2d6c52aaa1fdcf135d787f684870e'
-    oldFile: !uuid 'da607b1d4926fe6c26839e3573807f5841b3cc3b'
-  /vue-next-admin/src/router/route.ts:
-    newFile: !uuid 'a02620548c7d7173fd32c8043593eccc10c71946'
-    oldFile: !uuid '63d211d18d51872bde5d663b7853addc4cfeb449'
-gitCommitId: !uuid '3846b8a0d587f75152c0f98328077d3ea49224c5'
+    newFile: !uuid 'cb58b8da38eeb549d5a8919cec373d0eab077d1e'
+    oldFile: !uuid 'eb3d9ee3656653c8484fc581e95b4634c9ccaab5'
+  /vue-next-admin/src/layout/component:
+    newFile: !uuid 'b39a76b93a9e01323515f96da1dd8c3a8d129007'
+    oldFile: !uuid '6e91699c65b0f59b594914116e23e46319cf73dc'
+  /vue-next-admin/src/layout/component/columnsAside.vue:
+    newFile: !uuid '8c0c4a8c573002c6a5588d1f18b0b9f19d7b3050'
+    oldFile: !uuid '2ff2629d0bcf462526e685cbca931bf9cb154edf'
+gitCommitId: !uuid '687bc78336d43b06719df755718b8eb7e5fd3059'
 renames: {
   }
-revisionId: 310
+revisionId: 311
