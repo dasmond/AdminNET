@@ -3,99 +3,21 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '2996172d10460d652ae417b4021aa63d9aa5d9c8'
-    oldFile: !uuid 'b490f6ffcae81d03d94cd8c22e3dd7af1ee5a5ee'
+    newFile: !uuid '66994b1e4fb8065d8d634248aadd594e78d0c064'
+    oldFile: !uuid '2996172d10460d652ae417b4021aa63d9aa5d9c8'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid 'ef22a081cd641d75509376a8b4262e0d57f49936'
-    oldFile: !uuid 'b10762eaa265eaf8471a62800cd4a3a6bee9f52f'
-  /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
-    newFile: !uuid '7b1b5691902a3893116eef212dc27bd2376cb7d7'
-    oldFile: !uuid '92e8d3145cf6dd856cced57926274640ddd5ae5b'
-  /Admin.NET/Admin.NET.Core/Admin.NET.Core.xml:
-    newFile: !uuid '397080ad0318975275e49c64b0417c47d03389ce'
-    oldFile: !uuid 'b2088f8c4e85d97784d5979f6dce749a48ff6362'
+    newFile: !uuid 'a739654bdaa4fc6d45d3959b41529ad36c6083dc'
+    oldFile: !uuid 'ef22a081cd641d75509376a8b4262e0d57f49936'
   /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid '2432bcfb5794d289b5d7cbed976d6466be8bdfb3'
-    oldFile: !uuid '7af40bf4df4025652f9b0e4a8e6db6e9d15432ea'
-  /Admin.NET/Admin.NET.Core/Service/Auth:
-    newFile: !uuid 'dc40dc6f7fe8e3a395872cec17dc231dec259d47'
-    oldFile: !uuid '8237e11df1b91707333543db1cec601a18565f68'
-  /Admin.NET/Admin.NET.Core/Service/Auth/SysAuthService.cs:
-    newFile: !uuid '839ccb1bf0e4f7e7ead265249d0aae2bc39eb3a4'
-    oldFile: !uuid '465c54bed53f4b23cfe567ab01d9f0ae332393d4'
+    newFile: !uuid '81110cd948cc8808aa2480c224bc0866aeefa66b'
+    oldFile: !uuid '2432bcfb5794d289b5d7cbed976d6466be8bdfb3'
   /Admin.NET/Admin.NET.Core/Service/Menu:
-    newFile: !uuid 'e41a3b4d1dcf8c32f717cad946cd3975b7af3c18'
-    oldFile: !uuid '6d75beb13c6d7f64dd5970d72c209acec0b81a77'
-  /Admin.NET/Admin.NET.Core/Service/Menu/Dto:
-    newFile: !uuid 'dcc06b36712383a10eb20368dc776fb33a194419'
-    oldFile: !uuid '2149b8800e4b674066bcb2b578f51cea50033c37'
-  /Admin.NET/Admin.NET.Core/Service/Menu/Dto/MenuInput.cs:
-    newFile: !uuid 'c8dadde2c98a1767df880e33782c7496b15173a6'
-    oldFile: !uuid 'a1d87619daab24e0bc0d86fe53ee82575fec2361'
+    newFile: !uuid '506eafd1de240abe655d811229f8ffac64eee13b'
+    oldFile: !uuid 'e41a3b4d1dcf8c32f717cad946cd3975b7af3c18'
   /Admin.NET/Admin.NET.Core/Service/Menu/SysMenuService.cs:
-    newFile: !uuid 'c1bc92207e1b3fc6b7ee7988954d597fd89358cf'
-    oldFile: !uuid 'f9f5575659c300c1f2ec99cf8ac1f5011f81386d'
-  /vue-next-admin:
-    newFile: !uuid '5548de7629051e17d72fa8a6dee96a7ee59f6708'
-    oldFile: !uuid 'bbae9b08497852ad6d4cc462c69e1cc486820a8b'
-  /vue-next-admin/src:
-    newFile: !uuid '31862b520373a8c6b0a318f7a91f99a5d465e492'
-    oldFile: !uuid 'be738d7a5eaf0d0fe630684530814a684b929936'
-  /vue-next-admin/src/api-services:
-    newFile: !uuid 'acd591c12f37fac5241ae1cf834e1a8485684518'
-    oldFile: !uuid '6032460d2e75b8e8b41215d9cbaf75d8a11569f5'
-  /vue-next-admin/src/api-services/apis:
-    newFile: !uuid '60516c2d1d0900bbfc329920edb207bc6e5445d0'
-    oldFile: !uuid '813580b640809711df76789c0ef1ad27cfe1f965'
-  /vue-next-admin/src/api-services/apis/sys-cache-api.ts:
-    newFile: !uuid '39423ae32dafe7b5c58e1664f42926c7182df61c'
-    oldFile: !uuid '9aff0272a44d4469dc831f385daea9aa2ebb2728'
-  /vue-next-admin/src/api-services/apis/sys-menu-api.ts:
-    newFile: !uuid '833b1db03a5d2138610479061f6961e2cb18e3b9'
-    oldFile: !uuid 'b249f4879570d72cbd5837b85ae57c96306508e0'
-  /vue-next-admin/src/api-services/models:
-    newFile: !uuid 'a66923fae92f374958fbff3ad69d93131aa04def'
-    oldFile: !uuid 'a3818d6be0890995fa3816fa660e321139e75bde'
-  /vue-next-admin/src/api-services/models/add-menu-input.ts:
-    newFile: !uuid '67adcc20b9198ea29462c3c56c66f259bd47950b'
-    oldFile: !uuid '9fe7ab4439743d60d37a616a657355b0ea86d21f'
-  /vue-next-admin/src/api-services/models/file-output.ts:
-    newFile: !uuid '3da88459498aecac56210ccb1bee6ec7034a55bc'
-    oldFile: !uuid 'b16d0557523968f37599d27fcbc1ab5a408b68ee'
-  /vue-next-admin/src/api-services/models/menu-output.ts:
-    newFile: !uuid 'bae780d484b1d3cba21e1decbdb500797472b60f'
-    oldFile: !uuid '696d5bde6dc181887b79e73f7311c6a3e72c9756'
-  /vue-next-admin/src/api-services/models/sys-file.ts:
-    newFile: !uuid '213513830679eabdaff657711e7616fe71ced0a6'
-    oldFile: !uuid 'b4c2fd60de23228755cb808b2eae16dc8858a495'
-  /vue-next-admin/src/api-services/models/sys-menu-meta.ts:
-    newFile: !uuid '702e0e7ab15edda3d685aadac75af818850978a5'
-    oldFile: !uuid '1a3fa0e2608e2ab76fc0b813387d70e31508a232'
-  /vue-next-admin/src/api-services/models/sys-menu.ts:
-    newFile: !uuid '12b932f92afa66feb8631efd9090cc1aa9815333'
-    oldFile: !uuid 'dd764a51a886c062519d66446abc088b6343b9fe'
-  /vue-next-admin/src/api-services/models/update-menu-input.ts:
-    newFile: !uuid '03c0589b2275f7db65ef113b27e20b236bf471da'
-    oldFile: !uuid '1508a8beb3bf91eb6439f01de2178a11552eefc9'
-  /vue-next-admin/src/utils:
-    newFile: !uuid 'e7959001e3c74adce9171963382ec9e49ec6fecd'
-    oldFile: !uuid '445858b9b6134581d20858936f2e8e1af5516e6e'
-  /vue-next-admin/src/utils/axios-utils.ts:
-    newFile: !uuid '55286ae56f2756d7877bc5e75cd6caf9dc9ff8f4'
-    oldFile: !uuid '302c6219f544c05e1febd6648d8a9fdc057273dd'
-  /vue-next-admin/src/views:
-    newFile: !uuid '9679e47c0e76c10ba33d658185a1294f1cae3d84'
-    oldFile: !uuid '965f2e94d9f875b2eaecd67e941feaff48748e53'
-  /vue-next-admin/src/views/system:
-    newFile: !uuid '0e18cfc7761d32e144b98c423aa609417a360948'
-    oldFile: !uuid '32bed31dc871bf80ca388adffe4c94d60a8fc9d4'
-  /vue-next-admin/src/views/system/menu:
-    newFile: !uuid '2e28b7ad931c705a8d254fbd3b592978779b04f7'
-    oldFile: !uuid '78049d01d25ece357e284e96841ced82aab89a67'
-  /vue-next-admin/src/views/system/menu/index.vue:
-    newFile: !uuid '6eda5e2e08b389054505e203247abe9b5e118419'
-    oldFile: !uuid '9d3ed65dc9342055070e3d1c51bbd68eb22ef0d9'
-gitCommitId: !uuid 'ed7395cf601c99cdef6801975fe70b5b517c42ca'
+    newFile: !uuid 'e8ed45ee1078b3b4a3304d63e9e205a59d6e31b6'
+    oldFile: !uuid 'c1bc92207e1b3fc6b7ee7988954d597fd89358cf'
+gitCommitId: !uuid '14c58269f2e300c10e17086149d47fc064ed22db'
 renames: {
   }
-revisionId: 315
+revisionId: 316
