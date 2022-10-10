@@ -289,6 +289,11 @@ public class SysOrgService : IDynamicApiController, ITransient
     public async Task<List<long>> GetChildIdListWithSelfById(long pid)
     {
         var orgTreeList = await _sysOrgRep.AsQueryable().ToChildListAsync(u => u.Pid, pid);
+        var orgSelf = await _sysOrgRep.GetFirstAsync(o => o.Id == pid);
+        if (orgTreeList is not null && orgSelf is not null)
+        {
+            orgTreeList.Add(orgSelf);
+        }
         return orgTreeList.Select(u => u.Id).ToList();
     }
 }
