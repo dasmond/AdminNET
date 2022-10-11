@@ -1,4 +1,4 @@
-﻿namespace Admin.NET.Core;
+namespace Admin.NET.Core;
 
 /// <summary>
 /// 系统菜单表
@@ -92,6 +92,12 @@ public class SysMenu : EntityBase
     [SugarColumn(ColumnDescription = "是否缓存")]
     public bool IsKeepAlive { get; set; } = true;
 
+    /// <summary>
+    /// 是否超级管理菜单
+    /// </summary>
+    [SugarColumn(ColumnDescription = "是否超级管理菜单")]
+    public bool IsSuperAdminMenu { get; set; }// = IsSuperAdminMenuEnum.Disable;
+    
     /// <summary>
     /// 是否固定
     /// </summary>
