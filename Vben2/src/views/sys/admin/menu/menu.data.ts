@@ -206,4 +206,18 @@ export const formSchema: FormSchema[] = [
     },
     ifShow: ({ values }) => isMenu(values.type),
   },
+  ,
+  {
+    field: 'IsSuperAdminMenu',
+    label: '是否管理',
+    component: 'RadioButtonGroup',
+    defaultValue: false,
+    componentProps: {
+      options: [
+        { label: '是', value: true },
+        { label: '否', value: false },
+      ],
+    },
+    ifShow: ({ values }) => isMenu(values.type),
+  },
 ];
