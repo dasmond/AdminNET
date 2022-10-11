@@ -44,6 +44,7 @@ public class SysMenuService : IDynamicApiController, ITransient
             var menuIdList = await GetMenuIdList();
             var menuList = await _sysMenuRep.AsQueryable()
                 .Where(u => u.Type != MenuTypeEnum.Btn)
+                .Where(u => u.IsSuperAdminMenu != true)
                 .Where(u => menuIdList.Contains(u.Id))
                 .OrderBy(u => u.Order).ToTreeAsync(u => u.Children, u => u.Pid, 0);
             return menuList.Adapt<List<MenuOutput>>();
