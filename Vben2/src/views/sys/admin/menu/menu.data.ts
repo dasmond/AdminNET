@@ -44,10 +44,10 @@ export const columns: BasicColumn[] = [
   },
   {
     title: '是否隐藏',
-    dataIndex: 'hideMenu',
+    dataIndex: 'isHide',
     width: 80,
     customRender: ({ record }) => {
-      const hideMenu: boolean = record.hideMenu;
+      const hideMenu: boolean = record.isHide;
       const color = hideMenu ? 'red' : 'green';
       const text = hideMenu ? '隐藏' : '显示';
       return h(Tag, { color: color }, () => text);
@@ -194,7 +194,7 @@ export const formSchema: FormSchema[] = [
     ifShow: ({ values }) => isMenu(values.type),
   },
   {
-    field: 'hideMenu',
+    field: 'isHide',
     label: '是否隐藏',
     component: 'RadioButtonGroup',
     defaultValue: false,
