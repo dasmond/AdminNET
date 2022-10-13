@@ -3,18 +3,18 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '34c02b40be93e030945788aec1acedb32872966b'
-    oldFile: !uuid '70eb3664ccab211afaf8aa1bf50c3ccf0e36bafb'
+    newFile: !uuid '68f19cf4a3668a0b72c6111ee7d56075dcd9a639'
+    oldFile: !uuid '34c02b40be93e030945788aec1acedb32872966b'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '7c9cd7add6e1c6ebd7661a57dbd42c855668cb0e'
-    oldFile: !uuid '75230032398eb9fa18cac61fc5a43258c28ed64b'
+    newFile: !uuid 'c7194b0ce833076939fdc8ccd25639ef96a7ca5e'
+    oldFile: !uuid '7c9cd7add6e1c6ebd7661a57dbd42c855668cb0e'
   /Admin.NET/Admin.NET.Core/SeedData:
-    newFile: !uuid '2df8e0865c134f11ed6828d8f8e3e21da493ddbb'
-    oldFile: !uuid 'efc1172459c1d5ed3c2d6be2917307dfefc78f26'
-  /Admin.NET/Admin.NET.Core/SeedData/SysUserRoleSeedData.cs:
-    newFile: !uuid 'd2551d22fdc41b3f1f3d58aebfccd9e257e3af5d'
-    oldFile: !uuid '71016a34cac9c5276803b28e3f3014da11fcd23b'
-gitCommitId: !uuid 'abda85f008b077b704857de314a7179382c74aa4'
+    newFile: !uuid 'c9926d9f6897c2dc893e88f755ff867adf10ea1a'
+    oldFile: !uuid '2df8e0865c134f11ed6828d8f8e3e21da493ddbb'
+  /Admin.NET/Admin.NET.Core/SeedData/SysMenuSeedData.cs:
+    newFile: !uuid '9ad27bc0c580757a0a4d7927b7b86f366bacd865'
+    oldFile: !uuid '6a7a94746f0963d8e5dab873c848601032a18d0f'
+gitCommitId: !uuid 'd7be63fb8cf3e81e89b6278990b7c62e44270c40'
 renames: {
   }
-revisionId: 337
+revisionId: 338
