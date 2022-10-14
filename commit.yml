@@ -2,40 +2,16 @@
 branches: {
   }
 fileChange:
-  /Admin.NET:
-    newFile: !uuid 'ec10bb22e061aa93f3858a9a820aa8de80bdbe7c'
-    oldFile: !uuid 'e523298fbfa460a0c58416b51354a878bf44d606'
-  /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '0dad5f3251b9d61531fd2ab6fce84f0201aef415'
-    oldFile: !uuid '6a0197edf130f72e92084cbd3339843e37558fb0'
-  /Admin.NET/Admin.NET.Core/Logging:
-    newFile: !uuid '4686f1f8a7116639f5781ccc3fa96bb9bb86c6db'
-    oldFile: !uuid '4126344217ad1822140691229314081aecfb3c98'
-  /Admin.NET/Admin.NET.Core/Logging/DatabaseLoggingWriter.cs:
-    newFile: !uuid 'c83990c46e3838559586b271afcc51eaf69302fb'
-    oldFile: !uuid 'd9ab731b2f523c2ff976347d880093e5ded0b48b'
-  /Admin.NET/Admin.NET.Core/SeedData:
-    newFile: !uuid 'c30f2be70a15fc95bf026c5b751334829bfb1d65'
-    oldFile: !uuid '816d572e77aefb9c99392f9d73c71c32696932e5'
-  /Admin.NET/Admin.NET.Core/SeedData/SysMenuSeedData.cs:
-    newFile: !uuid '6d1aa32168fa9c5910f6874330796ecb0a9179b9'
-    oldFile: !uuid '89c589f017b4a53fab82481663cac4277b550eaa'
-  /Admin.NET/Admin.NET.Web.Core:
-    newFile: !uuid '77837c9b7b3dc4cf820b55bd15ff14b1785f518e'
-    oldFile: !uuid '2a334f55cda8acf946f1b3c4d2d6649ed16b8a15'
-  /Admin.NET/Admin.NET.Web.Core/Startup.cs:
-    newFile: !uuid 'fece2ae2a9decf2ef2ab7720ac2693e725286fc7'
-    oldFile: !uuid '92e3e65dd89d13edfaa2ce2e31460c38a980b2ac'
-  /Admin.NET/Admin.NET.Web.Entry:
-    newFile: !uuid '0fcd7c16a8f157548db6f953bc808472f02a4bd9'
-    oldFile: !uuid 'b9fc66210fa31f086960f1d31aad5aaea42f9425'
-  /Admin.NET/Admin.NET.Web.Entry/appsettings.Development.json:
-    newFile: !uuid '6c35ca9757b8c7038e3aaa5e73d53ce38d8a3bae'
-    oldFile: !uuid '5b99ac6862b2b3626bb898c87edf984a35a485c5'
-  /Admin.NET/Admin.NET.Web.Entry/appsettings.json:
-    newFile: !uuid '6c35ca9757b8c7038e3aaa5e73d53ce38d8a3bae'
-    oldFile: !uuid '5b99ac6862b2b3626bb898c87edf984a35a485c5'
-gitCommitId: !uuid '4c58bf8b1f459657a0876a1709c7655e44763e4e'
+  /vue-next-admin:
+    newFile: !uuid '7eef4c8961d99764a36b981ceffb9863dcfb859e'
+    oldFile: !uuid 'f1d8b9ccddf8a178180f9ad59070420952b95a81'
+  /vue-next-admin/index.html:
+    newFile: !uuid '460200b555803daddc2b23e20551b31636f78108'
+    oldFile: !uuid 'c2ec1aa24c37e098e00e776116d8a11a2df90f9a'
+  /vue-next-admin/vite.config.ts:
+    newFile: !uuid '639526792155b92c554a06f41a07c308d97717a5'
+    oldFile: !uuid 'c8a6fc0f5afa9bb086cbcd8cd09842c4c58a5e35'
+gitCommitId: !uuid '3eb6efd8d82edd4a67257df0ff3c3fa2d6d4c0e0'
 renames: {
   }
-revisionId: 343
+revisionId: 344
