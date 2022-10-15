@@ -3,15 +3,27 @@ branches: {
   }
 fileChange:
   /vue-next-admin:
-    newFile: !uuid '7eef4c8961d99764a36b981ceffb9863dcfb859e'
-    oldFile: !uuid 'f1d8b9ccddf8a178180f9ad59070420952b95a81'
-  /vue-next-admin/index.html:
-    newFile: !uuid '460200b555803daddc2b23e20551b31636f78108'
-    oldFile: !uuid 'c2ec1aa24c37e098e00e776116d8a11a2df90f9a'
-  /vue-next-admin/vite.config.ts:
-    newFile: !uuid '639526792155b92c554a06f41a07c308d97717a5'
-    oldFile: !uuid 'c8a6fc0f5afa9bb086cbcd8cd09842c4c58a5e35'
-gitCommitId: !uuid '3eb6efd8d82edd4a67257df0ff3c3fa2d6d4c0e0'
+    newFile: !uuid '7c8a07cc94c922762297a3b7434594a6f410a80c'
+    oldFile: !uuid '7eef4c8961d99764a36b981ceffb9863dcfb859e'
+  /vue-next-admin/src:
+    newFile: !uuid 'ee697d2a4bd591067ac111a250e898035bc273d1'
+    oldFile: !uuid '748e5eea1e0d2c10aacde1c5bc3f8366ea839805'
+  /vue-next-admin/src/views:
+    newFile: !uuid 'feb9a07befba4aed504dd48aa728796d30f48d8b'
+    oldFile: !uuid '9a54165321499f29ba367b28012415e8005da2d1'
+  /vue-next-admin/src/views/system:
+    newFile: !uuid 'fe72301dea24ff3389f09acf9289ece403de5302'
+    oldFile: !uuid '105f38d74ab4a50b0047597861024000a92028ff'
+  /vue-next-admin/src/views/system/log:
+    newFile: !uuid 'beb2ee2b867a4a3fb02bbe6d462ad3a35f108d85'
+    oldFile: !uuid '2d177cdfbdec756576cc7d5e7d3ce14485da86b9'
+  /vue-next-admin/src/views/system/log/oplog:
+    newFile: !uuid 'cc805c7b5757eb5f9c9ac4b2d84f1c65a00b7512'
+    oldFile: !uuid 'ba4bdc5dfced27619610336711eeeff2f224b1d2'
+  /vue-next-admin/src/views/system/log/oplog/index.vue:
+    newFile: !uuid 'a0a85803ed8432f1338ba60e47b7052188ab3bc9'
+    oldFile: !uuid '089b0b2c0dd011a395471c50f3b2fcf69f3ccae1'
+gitCommitId: !uuid 'd984bbaefb1272101f6d0354e6f17adeb32c1c19'
 renames: {
   }
-revisionId: 344
+revisionId: 345
