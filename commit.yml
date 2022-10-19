@@ -3,63 +3,212 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '73a35d28299bd23f21217b999e83b6705c8c2ae9'
-    oldFile: !uuid '1d52d130a44d671ed2226cb9960d4cc095e76367'
+    newFile: !uuid 'edf224d19d187e6afce223ec621d04e5cda24887'
+    oldFile: !uuid '73a35d28299bd23f21217b999e83b6705c8c2ae9'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid 'c6279ca386fd77ced16cf30b10fea69c0279813d'
-    oldFile: !uuid '39047370d0d05f4f803a7da7b04c8b3090fe0bf1'
+    newFile: !uuid '4e116305a748213a0abfdb9351ff779ef332f1af'
+    oldFile: !uuid 'c6279ca386fd77ced16cf30b10fea69c0279813d'
+  /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
+    newFile: !uuid '0c12f9ca54b77e8a59a2b52ab866d4cdc41c1cae'
+    oldFile: !uuid 'debb59ae09a6779e1927225ee367da3f57ee914e'
   /Admin.NET/Admin.NET.Core/Admin.NET.Core.xml:
-    newFile: !uuid '0b9f2506f74d36a6dbd181dd9b7a7c0652d3be44'
-    oldFile: !uuid '6026962b0043646bc9d624d0d9afa21c97e875a9'
+    newFile: !uuid '2f1d67c471f4ac1e9ea55ef988041d92a30a439a'
+    oldFile: !uuid '0b9f2506f74d36a6dbd181dd9b7a7c0652d3be44'
   /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid '879fa8d5324e19b52d76ffbe5b36566d3cc78a47'
-    oldFile: !uuid 'eaca9039a369f35f5f12ea83a06d409363f0383f'
-  /Admin.NET/Admin.NET.Core/Service/Config:
-    newFile: !uuid 'fb6af580914331eb7c55b3d0d1d43faf3e3674f6'
-    oldFile: !uuid '7bd6243b3b2d1bebcccb4e159f08953a4d35b2b4'
-  /Admin.NET/Admin.NET.Core/Service/Config/Dto:
-    newFile: !uuid 'ef6f0a0fb7eec020b568003f3171a372edf5d1c5'
-    oldFile: !uuid 'b2119876e3c27ce9b5a22799e18e92a3cac63d23'
-  /Admin.NET/Admin.NET.Core/Service/Config/Dto/ConfigInput.cs:
-    newFile: !uuid '608900b36294234f9bec689bcbf1e45db3f8daaf'
-    oldFile: !uuid 'efba84faebd44cd5f1d4a2cdd94090f3841124bd'
+    newFile: !uuid 'a8c4b17bff4beb939fc3fae702b519157fe3a264'
+    oldFile: !uuid '879fa8d5324e19b52d76ffbe5b36566d3cc78a47'
+  /Admin.NET/Admin.NET.Core/Service/Dict:
+    newFile: !uuid '43f15a53f468612e763a7cdcb2359ef12b52e569'
+    oldFile: !uuid '9d9d0b8425f2bd364a6b6bdad731066c2f225e2e'
+  /Admin.NET/Admin.NET.Core/Service/Dict/Dto:
+    newFile: !uuid '5badc766846c69e086fd11a2fc9df06c3d8605fc'
+    oldFile: !uuid '8b6fd6a0d3b73682b3b83f05bc10711c1a02ba97'
+  /Admin.NET/Admin.NET.Core/Service/Dict/Dto/DictDataInput.cs:
+    newFile: !uuid '58aaf09f672fabd78d7ec400f6f478389e756cff'
+    oldFile: !uuid 'd73f49c544a9d42388dec8f3aeacee1b298494d1'
+  /Admin.NET/Admin.NET.Core/Service/Dict/Dto/DictTypeInput.cs:
+    newFile: !uuid '05ca74fd6d2e6873594544a4b21e06b602fd8e75'
+    oldFile: !uuid 'a3ded63b991e8191839874fd105ac88418abac85'
+  /Admin.NET/Admin.NET.Core/Service/Dict/SysDictDataService.cs:
+    newFile: !uuid '566db5e5597ca5ff97091b3185a7cec2e3f8f109'
+    oldFile: !uuid '1e37932de466d56114dae744a385b58ea66b4188'
+  /Admin.NET/Admin.NET.Core/Service/Dict/SysDictTypeService.cs:
+    newFile: !uuid 'fbba425fa1f84b2e1eb3a61e1053955b95ec9cc7'
+    oldFile: !uuid '59bb2736995cf1ec2d9dc4b3f808c42214491032'
+  /Admin.NET/Admin.NET.Core/Service/File:
+    newFile: !uuid '9eb32d095e49e2452e7f7fe0e491ccd9b2371ed1'
+    oldFile: !uuid '52c8d54363f2b0bb02341262b26cea5916d7e18c'
+  /Admin.NET/Admin.NET.Core/Service/File/Dto:
+    newFile: !uuid '8ac99c3ea1dd8445dd95083d71f4cd4004230c3d'
+    oldFile: !uuid '6201f9dba6f2a0ad220bb54cbcef164f2d254964'
+  /Admin.NET/Admin.NET.Core/Service/File/Dto/FileInput.cs:
+    newFile: !uuid 'bd1c156450b1336f6b5efbd81035a59cfebdeb41'
+    oldFile: !uuid '37a9d4323347b29ede054e65da1aca0849ccf556'
+  /Admin.NET/Admin.NET.Core/Service/Tenant:
+    newFile: !uuid 'e2c7a58b8e07574da8d30e23742934f425cea2b0'
+    oldFile: !uuid 'f90bd23a59acb65858c1d0251dc838a6b8eeadf0'
+  /Admin.NET/Admin.NET.Core/Service/Tenant/Dto:
+    newFile: !uuid '2667b1fb1effafa101581c9f05b75ff57498b40f'
+    oldFile: !uuid '1c5996205cab973821b26a74b1944e5bc638fa61'
+  /Admin.NET/Admin.NET.Core/Service/Tenant/Dto/TenantInput.cs:
+    newFile: !uuid '29c97e81d4714d9d6d53596d53e1a947cf7fce1d'
+    oldFile: !uuid '4272cfb9bb01bcff4e45fa920e7967eb7385d41e'
+  /Admin.NET/Admin.NET.Core/Service/Tenant/SysTenantService.cs:
+    newFile: !uuid '2aa509425118d50061cddc6f3ff6611cac3c24ea'
+    oldFile: !uuid 'a9b13b76b6bec293ec42719d2ab9957533076d5b'
+  /Admin.NET/Admin.NET.Core/Service/User:
+    newFile: !uuid 'c759920b812aa3ff3b8d2aaba3ac99b6d4d3d042'
+    oldFile: !uuid '84b731ebfc7b7dfab81d3e33908377f521208ef8'
+  /Admin.NET/Admin.NET.Core/Service/User/Dto:
+    newFile: !uuid 'd4a388369712ae97c3f9a7e5393e76f9990cd86f'
+    oldFile: !uuid 'd82df12e693296bd3e2180e75b953abf5b66cf1e'
+  /Admin.NET/Admin.NET.Core/Service/User/Dto/UserInput.cs:
+    newFile: !uuid 'bf5eb26a4498cff3772a6a966e0099e033ea437c'
+    oldFile: !uuid '723a176b1b6af08ea4d0ae96113496bce9711fe3'
   /vue-next-admin:
-    newFile: !uuid '3fa15296555cc2e50f61d69357646fd4e7956e8f'
-    oldFile: !uuid '098405d5f0599be2672a2393242c860c9650f0f2'
+    newFile: !uuid '5897425e5e0fae465b6b24a6f52bfd0532b48933'
+    oldFile: !uuid '3fa15296555cc2e50f61d69357646fd4e7956e8f'
   /vue-next-admin/src:
-    newFile: !uuid 'c26f8379b3ab0eb9faa5d35ef957863a4d61930f'
-    oldFile: !uuid 'f2a9f890c3760adb61c68bc25c7f91f208e65276'
+    newFile: !uuid '0a89232c1db0095faa3d34425c4b54fea6ea5737'
+    oldFile: !uuid 'c26f8379b3ab0eb9faa5d35ef957863a4d61930f'
   /vue-next-admin/src/api-services:
-    newFile: !uuid 'da18be1f2d70f4ef82607b97c4d4409f1872d471'
-    oldFile: !uuid '00ce95fddabef96745c62fdad5c7124f5904a838'
+    newFile: !uuid 'b4a51db96662d8c4582cf153b2548c0d3c19dc0d'
+    oldFile: !uuid 'da18be1f2d70f4ef82607b97c4d4409f1872d471'
+  /vue-next-admin/src/api-services/apis:
+    newFile: !uuid '521efa106f4fbe74e1e0143bfefffbc6eb0d22d3'
+    oldFile: !uuid 'fa6ea609e36a23c1650f5892b54fa2c8c4323160'
+  /vue-next-admin/src/api-services/apis/sys-dict-data-api.ts:
+    newFile: !uuid '6cbf8b83a900822eeffac4d992e951208d499f5c'
+    oldFile: !uuid '5f9916df4f4014c7565293cb626cb1e80f4852d2'
+  /vue-next-admin/src/api-services/apis/sys-dict-type-api.ts:
+    newFile: !uuid 'bcbed2010ea20e12284302278fd208c870f81a6a'
+    oldFile: !uuid '8695bf352dee5fb1775753f4febf745930c891fe'
+  /vue-next-admin/src/api-services/apis/sys-file-api.ts:
+    newFile: !uuid 'accd02dbfee583da52af6668566a9edffbcccc92'
+    oldFile: !uuid '7e07c817cd7d353dae01623fa423c30fa9cad659'
+  /vue-next-admin/src/api-services/apis/sys-tenant-api.ts:
+    newFile: !uuid '7dd5bec496bf40f6b61464559e27095d044ff2fe'
+    oldFile: !uuid '0f24f3bc5235d6ecf7aaf80cbac9991eed89cab9'
   /vue-next-admin/src/api-services/models:
-    newFile: !uuid '760a65899ef45c04cc10b1e929b392a5c8cbbdad'
-    oldFile: !uuid '9fb958819f3bbac21cefb1e32cea2a89399364d1'
-  /vue-next-admin/src/api-services/models/add-config-input.ts:
-    newFile: !uuid 'ebd1d28234661317d641c935d7154f98a230f633'
-    oldFile: !uuid '8d00535266ef3eb132366344144b3ada79f1e61c'
-  /vue-next-admin/src/api-services/models/update-config-input.ts:
-    newFile: !uuid '231b3f542bf032c269cfb8c8c196482666f6fac4'
-    oldFile: !uuid 'e76b7c1e3a63992d5a869ba38bc491d11e5def9d'
+    newFile: !uuid 'ecb8553b32e4077268d520e882ff3eaecbfff101'
+    oldFile: !uuid '760a65899ef45c04cc10b1e929b392a5c8cbbdad'
+  /vue-next-admin/src/api-services/models/add-dict-data-input.ts:
+    newFile: !uuid '3e2971f6e36576deff2dd9a96565f8840f8cd115'
+    oldFile: !uuid 'e48b020ebbb327f35615f9f537f87004d96b9d71'
+  /vue-next-admin/src/api-services/models/add-dict-type-input.ts:
+    newFile: !uuid '0f43b13b9d102f9cd52285a47aacd8abc9cd8b61'
+    oldFile: !uuid 'fb9f7ea69de61de3a6d1dbf1d5096c60ab9b87e1'
+  /vue-next-admin/src/api-services/models/chage-status-dict-data-input.ts:
+    newFile: null
+    oldFile: !uuid 'ce057df2356abebb45b243d38a8e4afef8959263'
+  /vue-next-admin/src/api-services/models/change-status-dict-type-input.ts:
+    newFile: null
+    oldFile: !uuid '3e8caf85c41bae45ffac056875cdc7a26b4f5320'
+  /vue-next-admin/src/api-services/models/dict-data-input.ts:
+    newFile: !uuid 'f3fcb07a7c6c07e3bb26972152966872e53d5199'
+    oldFile: null
+  /vue-next-admin/src/api-services/models/dict-type-input.ts:
+    newFile: !uuid 'df653c4ef1bcd9219e324109bff052484e860261'
+    oldFile: null
+  /vue-next-admin/src/api-services/models/index.ts:
+    newFile: !uuid '613d1da84e04e58bd2b92c1a9c76e1b511594c88'
+    oldFile: !uuid '1a8d1c16e684b41c67484cab4a714c8dd8946e9f'
+  /vue-next-admin/src/api-services/models/querye-tenant-input.ts:
+    newFile: null
+    oldFile: !uuid 'e86ffba573a3211d30d40c38a74f3d7a9c8f3d83'
+  /vue-next-admin/src/api-services/models/tenant-input.ts:
+    newFile: !uuid 'c4c3e5f52f9803462d1f7bfa6bd79a069e90cd4e'
+    oldFile: null
+  /vue-next-admin/src/api-services/models/update-dict-data-input.ts:
+    newFile: !uuid '01d43e12f5a0e700ff7a81dac1db16743bdc8bd3'
+    oldFile: !uuid '67b80333368c4d2faaa71eb9d0b4f66792bcc22b'
+  /vue-next-admin/src/api-services/models/update-dict-type-input.ts:
+    newFile: !uuid '1381d40065a03568cbc42f835f36313de5c7d0f9'
+    oldFile: !uuid '58f28d9fd22a6650385ff09b33b6caab03c87a49'
   /vue-next-admin/src/views:
-    newFile: !uuid 'b46cb151aeb46f16fc125f0f27214cdfccc5fefe'
-    oldFile: !uuid '54ebcfd76529061c0903935deb105288e5d5e259'
+    newFile: !uuid '71ddc2fa7d92f884ce4021c9d60abc94fb2d20d1'
+    oldFile: !uuid 'b46cb151aeb46f16fc125f0f27214cdfccc5fefe'
   /vue-next-admin/src/views/system:
-    newFile: !uuid '68c1ef0d491d8b5e935e6903db8b02a2efe8773c'
-    oldFile: !uuid '0da160a76a91065aab924eb2e5f52ba57dc879a0'
+    newFile: !uuid '064530953146484261174ebcd79ec692ee5e2199'
+    oldFile: !uuid '68c1ef0d491d8b5e935e6903db8b02a2efe8773c'
   /vue-next-admin/src/views/system/config:
-    newFile: !uuid 'bc042d77715ad3008d888391df4638330831f6f4'
-    oldFile: null
-  /vue-next-admin/src/views/system/config/component:
-    newFile: !uuid '62edc1e7a3376a693091efa8cef7d2c3a07c6a4d'
-    oldFile: null
-  /vue-next-admin/src/views/system/config/component/editConfig.vue:
-    newFile: !uuid '1dd2d1d41af1660027654295abd34ad20f2c1e6c'
-    oldFile: null
+    newFile: !uuid '002ef15847acd06a9d655006562eee7db647aa1b'
+    oldFile: !uuid 'bc042d77715ad3008d888391df4638330831f6f4'
   /vue-next-admin/src/views/system/config/index.vue:
-    newFile: !uuid '77049f4496440c32d136ded686c9e129322faed0'
+    newFile: !uuid '49e3e1a8e15bbe3f90fc11728d5a150cea1c3c63'
+    oldFile: !uuid '77049f4496440c32d136ded686c9e129322faed0'
+  /vue-next-admin/src/views/system/dic:
+    newFile: null
+    oldFile: !uuid 'da82649a1204d5f0db0e177fecd6c45e082bab24'
+  /vue-next-admin/src/views/system/dic/component:
+    newFile: null
+    oldFile: !uuid '5ca739e877c36d4a840775ad00a3203ff43fd116'
+  /vue-next-admin/src/views/system/dic/component/addDic.vue:
+    newFile: null
+    oldFile: !uuid 'c964dd9d60f4561822ce9756530d553d454cbdbe'
+  /vue-next-admin/src/views/system/dic/component/editDic.vue:
+    newFile: null
+    oldFile: !uuid '66b0365291ea6134577ecd9cae5a3bffc9c46ce6'
+  /vue-next-admin/src/views/system/dic/index.vue:
+    newFile: null
+    oldFile: !uuid '034140c5c938d9ea674ca4c114a18a9268953ac3'
+  /vue-next-admin/src/views/system/dict:
+    newFile: !uuid '228607e9fe9aa7c25ccf3967580552abef65e692'
     oldFile: null
-gitCommitId: !uuid 'de7dc0ef351d5a70a955deb5f3ce805c25087829'
-renames: {
-  }
-revisionId: 356
+  /vue-next-admin/src/views/system/dict/component:
+    newFile: !uuid 'f94917be706fc314e9431dc507a0bf1e75b993ac'
+    oldFile: null
+  /vue-next-admin/src/views/system/dict/component/dictDataDialog.vue:
+    newFile: !uuid '5c91f1aefeecaefbc1777249aac3ed7c49e18b6f'
+    oldFile: null
+  /vue-next-admin/src/views/system/dict/component/editDictData.vue:
+    newFile: !uuid '370afcced63e666b7cea5cc96776cb364e3fc164'
+    oldFile: null
+  /vue-next-admin/src/views/system/dict/component/editDictType.vue:
+    newFile: !uuid '26a68eb9c191bab1e5c3ea218f5567765540657d'
+    oldFile: null
+  /vue-next-admin/src/views/system/dict/index.vue:
+    newFile: !uuid 'e36186f179553cc858a3fc4c211cfa44eab7d296'
+    oldFile: null
+  /vue-next-admin/src/views/system/file:
+    newFile: !uuid '8131ca1b86516784a55984b23b8ca9cb8a786e56'
+    oldFile: !uuid '274d193b161eb52c2e032a2abf628cee6b32b439'
+  /vue-next-admin/src/views/system/file/index.vue:
+    newFile: !uuid '171b4b52d73c15f85f6abac1a89ac1be0a301192'
+    oldFile: !uuid 'ee9ca7d6eb456a162e86779341602d97d7831155'
+  /vue-next-admin/src/views/system/menu:
+    newFile: !uuid 'de55874be585b3e830bbc4d3fd19339aa8c29dd7'
+    oldFile: !uuid 'f5c9396bdd8371c7ef9d50b78b2b4bcac482ac79'
+  /vue-next-admin/src/views/system/menu/index.vue:
+    newFile: !uuid 'eea75b80f4693c9bd5191ea44f7d4b557da2707c'
+    oldFile: !uuid 'c147968240fd3497bfb88ad759ae7f5c85776074'
+  /vue-next-admin/src/views/system/org:
+    newFile: !uuid 'd92264fb9c0c719b2db4b6805d41f1ff1a1def1d'
+    oldFile: !uuid '9a98c5d781ff059b3416fb44b85373815794dbc2'
+  /vue-next-admin/src/views/system/org/index.vue:
+    newFile: !uuid '92145adf57474ad03f15d8959643e9c9012de324'
+    oldFile: !uuid '4d428733bdc5dc1cce6229ef3b57035894811b8c'
+  /vue-next-admin/src/views/system/pos:
+    newFile: !uuid '585e9eb1cafe36af0685f568dac8577d3d0020a4'
+    oldFile: !uuid 'b8dc703915602cbe2442d60a60189892317b6c14'
+  /vue-next-admin/src/views/system/pos/index.vue:
+    newFile: !uuid 'df72f850b00ebbc6b4d5b7a7169a4111f558a894'
+    oldFile: !uuid 'f3476b935fb1bd4844bfc5fb8209d22c6b2051b5'
+  /vue-next-admin/src/views/system/role:
+    newFile: !uuid '0aeeb87a07ccb3a150237fabca0fc337a409c6e5'
+    oldFile: !uuid 'f2f5d119b7c76e2e4e024419160b25c0fc48600f'
+  /vue-next-admin/src/views/system/role/index.vue:
+    newFile: !uuid 'de43894b17c361a609ace42041b0d10cbbb6a2b0'
+    oldFile: !uuid '9a9400b4be7a00bda3b22c44f15e20035132f722'
+  /vue-next-admin/src/views/system/tenant:
+    newFile: !uuid '3f76d29239b8a519a93358a88fec4e0f679c12f7'
+    oldFile: !uuid 'bbe8619e59df32ca1f36b488ae1875b8335a3607'
+  /vue-next-admin/src/views/system/tenant/index.vue:
+    newFile: !uuid 'ccc3d83c1716a3b9ba5c26e426227b0867986863'
+    oldFile: !uuid 'd8719cb70a62a176d9e605bc4f5d70ddf4ecc936'
+gitCommitId: !uuid '8ed67ffcd54a1e9eb13969babff36eda180ad37e'
+renames:
+  /vue-next-admin/src/api-services/models/dict-data-input.ts: /vue-next-admin/src/api-services/models/chage-status-dict-data-input.ts
+  /vue-next-admin/src/api-services/models/dict-type-input.ts: /vue-next-admin/src/api-services/models/chage-status-dict-data-input.ts
+  /vue-next-admin/src/api-services/models/tenant-input.ts: /vue-next-admin/src/api-services/models/querye-tenant-input.ts
+revisionId: 357
