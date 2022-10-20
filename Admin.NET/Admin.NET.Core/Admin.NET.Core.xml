@@ -937,14 +937,19 @@
             组件路径
             </summary>
         </member>
+        <member name="P:Admin.NET.Core.SysMenu.Permission">
+            <summary>
+            权限标识
+            </summary>
+        </member>
         <member name="P:Admin.NET.Core.SysMenu.Redirect">
             <summary>
             重定向
             </summary>
         </member>
-        <member name="P:Admin.NET.Core.SysMenu.Permission">
+        <member name="P:Admin.NET.Core.SysMenu.FrameSrc">
             <summary>
-            权限标识
+            内嵌地址
             </summary>
         </member>
         <member name="P:Admin.NET.Core.SysMenu.Title">
@@ -957,44 +962,24 @@
             图标
             </summary>
         </member>
-        <member name="P:Admin.NET.Core.SysMenu.IsIframe">
+        <member name="P:Admin.NET.Core.SysMenu.HideMenu">
             <summary>
-            是否内嵌
+            隐藏菜单
             </summary>
         </member>
-        <member name="P:Admin.NET.Core.SysMenu.OutLink">
+        <member name="P:Admin.NET.Core.SysMenu.IgnoreKeepAlive">
             <summary>
-            外链链接
+            忽略缓存
             </summary>
         </member>
-        <member name="P:Admin.NET.Core.SysMenu.IsHide">
+        <member name="P:Admin.NET.Core.SysMenu.CurrentActiveMenu">
             <summary>
-            是否隐藏
-            </summary>
-        </member>
-        <member name="P:Admin.NET.Core.SysMenu.IsKeepAlive">
-            <summary>
-            是否缓存
-            </summary>
-        </member>
-        <member name="P:Admin.NET.Core.SysMenu.IsAffix">
-            <summary>
-            是否固定
+            当前激活的菜单-用于配置详情页时左侧激活的菜单路径
             </summary>
         </member>
         <member name="P:Admin.NET.Core.SysMenu.Order">
             <summary>
             排序
-            </summary>
-        </member>
-        <member name="P:Admin.NET.Core.SysMenu.Status">
-            <summary>
-            状态
-            </summary>
-        </member>
-        <member name="P:Admin.NET.Core.SysMenu.Remark">
-            <summary>
-            备注
             </summary>
         </member>
         <member name="P:Admin.NET.Core.SysMenu.Children">
@@ -5288,44 +5273,29 @@
             图标
             </summary>
         </member>
-        <member name="P:Admin.NET.Core.Service.SysMenuMeta.IsIframe">
+        <member name="P:Admin.NET.Core.Service.SysMenuMeta.FrameSrc">
             <summary>
-            是否内嵌
+            内嵌地址
             </summary>
         </member>
-        <member name="P:Admin.NET.Core.Service.SysMenuMeta.IsLink">
-            <summary>
-            外链链接
-            </summary>
-        </member>
-        <member name="P:Admin.NET.Core.Service.SysMenuMeta.IsHide">
-            <summary>
-            是否隐藏
-            </summary>
-        </member>
-        <member name="P:Admin.NET.Core.Service.SysMenuMeta.IsKeepAlive">
-            <summary>
-            是否缓存
-            </summary>
-        </member>
-        <member name="P:Admin.NET.Core.Service.SysMenuMeta.IsAffix">
-            <summary>
-            是否固定
-            </summary>
-        </member>
-        <member name="P:Admin.NET.Core.Service.SysMenuMeta.Order">
+        <member name="P:Admin.NET.Core.Service.SysMenuMeta.OrderNo">
             <summary>
             排序
             </summary>
         </member>
-        <member name="P:Admin.NET.Core.Service.SysMenuMeta.Status">
+        <member name="P:Admin.NET.Core.Service.SysMenuMeta.HideMenu">
             <summary>
-            状态
+            是否显示
             </summary>
         </member>
-        <member name="P:Admin.NET.Core.Service.SysMenuMeta.Remark">
+        <member name="P:Admin.NET.Core.Service.SysMenuMeta.IgnoreKeepAlive">
             <summary>
-            备注
+            是否忽略KeepAlive缓存
+            </summary>
+        </member>
+        <member name="P:Admin.NET.Core.Service.SysMenuMeta.CurrentActiveMenu">
+            <summary>
+            当前激活的菜单-用于配置详情页时左侧激活的菜单路径
             </summary>
         </member>
         <member name="T:Admin.NET.Core.Service.SysMenuMapper">
