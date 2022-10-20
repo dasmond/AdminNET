@@ -4,7 +4,7 @@
 /// 系统角色菜单表
 /// </summary>
 [SugarTable("sys_role_menu", "系统角色菜单表")]
-public class SysRoleMenu : EntityBaseId
+public class SysRoleMenu : EntityTenant
 {
     /// <summary>
     /// 角色Id

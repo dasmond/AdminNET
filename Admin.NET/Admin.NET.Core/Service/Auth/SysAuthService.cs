@@ -58,9 +58,9 @@ public class SysAuthService : IDynamicApiController, ITransient
     [SuppressMonitor]
     public async Task<LoginOutput> Login([Required] LoginInput input)
     {
-        // 判断验证码
-        if (!_captcha.Validate(input.CodeId.ToString(), input.Code))
-            throw Oops.Oh(ErrorCodeEnum.D0009);
+        //// 判断验证码
+        //if (!_captcha.Validate(input.CodeId.ToString(), input.Code))
+        //    throw Oops.Oh(ErrorCodeEnum.D0009);
 
         var encryptPasswod = MD5Encryption.Encrypt(input.Password); // 加密密码
 

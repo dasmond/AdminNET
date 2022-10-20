@@ -4,7 +4,7 @@
 /// 系统通知公告用户表
 /// </summary>
 [SugarTable("sys_notice_user", "通知公告用户表")]
-public class SysNoticeUser
+public class SysNoticeUser: EntityTenant
 {
     /// <summary>
     /// 通知公告Id

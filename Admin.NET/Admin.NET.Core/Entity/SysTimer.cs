@@ -4,7 +4,7 @@
 /// 定时任务
 /// </summary>
 [SugarTable("sys_timer", "定时任务表")]
-public class SysTimer : EntityBase
+public class SysTimer : EntityTenant
 {
     /// <summary>
     /// 任务名称

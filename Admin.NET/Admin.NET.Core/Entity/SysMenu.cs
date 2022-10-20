@@ -40,6 +40,13 @@ public class SysMenu : EntityBase
     public string Component { get; set; }
 
     /// <summary>
+    /// 权限标识
+    /// </summary>
+    [SugarColumn(ColumnDescription = "权限标识", Length = 128)]
+    [MaxLength(128)]
+    public string Permission { get; set; }
+
+    /// <summary>
     /// 重定向
     /// </summary>
     [SugarColumn(ColumnDescription = "重定向", Length = 128)]
@@ -47,11 +54,11 @@ public class SysMenu : EntityBase
     public string Redirect { get; set; }
 
     /// <summary>
-    /// 权限标识
+    /// 内嵌地址
     /// </summary>
-    [SugarColumn(ColumnDescription = "权限标识", Length = 128)]
+    [SugarColumn(ColumnDescription = "内嵌地址", Length = 128)]
     [MaxLength(128)]
-    public string Permission { get; set; }
+    public string FrameSrc { get; set; }
 
     /// <summary>
     /// 标题
@@ -68,54 +75,29 @@ public class SysMenu : EntityBase
     public string Icon { get; set; }
 
     /// <summary>
-    /// 是否内嵌
+    /// 隐藏菜单
     /// </summary>
-    [SugarColumn(ColumnDescription = "是否内嵌")]
-    public bool IsIframe { get; set; }
+    [SugarColumn(ColumnDescription = "隐藏菜单")]
+    public bool HideMenu { get; set; } = false;
 
     /// <summary>
-    /// 外链链接
+    /// 忽略缓存
     /// </summary>
-    [SugarColumn(ColumnDescription = "外链链接", Length = 256)]
-    [MaxLength(256)]
-    public string OutLink { get; set; }
+    [SugarColumn(ColumnDescription = "忽略缓存")]
+    public bool IgnoreKeepAlive { get; set; } = false;
 
     /// <summary>
-    /// 是否隐藏
+    /// 当前激活的菜单-用于配置详情页时左侧激活的菜单路径
     /// </summary>
-    [SugarColumn(ColumnDescription = "是否隐藏")]
-    public bool IsHide { get; set; }
-
-    /// <summary>
-    /// 是否缓存
-    /// </summary>
-    [SugarColumn(ColumnDescription = "是否缓存")]
-    public bool IsKeepAlive { get; set; } = true;
-
-    /// <summary>
-    /// 是否固定
-    /// </summary>
-    [SugarColumn(ColumnDescription = "是否固定")]
-    public bool IsAffix { get; set; }
+    [SugarColumn(ColumnDescription = "当前激活菜单", Length = 128)]
+    [MaxLength(128)]
+    public string CurrentActiveMenu { get; set; }
 
     /// <summary>
     /// 排序
     /// </summary>
     [SugarColumn(ColumnDescription = "排序")]
-    public int Order { get; set; } = 100;
-
-    /// <summary>
-    /// 状态
-    /// </summary>
-    [SugarColumn(ColumnDescription = "状态")]
-    public StatusEnum Status { get; set; } = StatusEnum.Enable;
-
-    /// <summary>
-    /// 备注
-    /// </summary>
-    [SugarColumn(ColumnDescription = "备注", Length = 256)]
-    [MaxLength(256)]
-    public string Remark { get; set; }
+    public int Order { get; set; }
 
     /// <summary>
     /// 菜单子项

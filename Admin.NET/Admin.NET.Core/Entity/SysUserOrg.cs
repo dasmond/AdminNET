@@ -4,7 +4,7 @@
 /// 系统用户机构表
 /// </summary>
 [SugarTable("sys_user_org", "系统用户机构表")]
-public class SysUserOrg : EntityBaseId
+public class SysUserOrg : EntityTenant
 {
     /// <summary>
     /// 用户Id

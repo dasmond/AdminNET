@@ -72,44 +72,29 @@ public class SysMenuMeta
     public string Icon { get; set; }
 
     /// <summary>
-    /// 是否内嵌
+    /// 内嵌地址
     /// </summary>
-    public bool IsIframe { get; set; }
-
-    /// <summary>
-    /// 外链链接
-    /// </summary>
-    public string IsLink { get; set; }
-
-    /// <summary>
-    /// 是否隐藏
-    /// </summary>
-    public bool IsHide { get; set; }
-
-    /// <summary>
-    /// 是否缓存
-    /// </summary>
-    public bool IsKeepAlive { get; set; }
-
-    /// <summary>
-    /// 是否固定
-    /// </summary>
-    public bool IsAffix { get; set; }
+    public string FrameSrc { get; set; }
 
     /// <summary>
     /// 排序
     /// </summary>
-    public int Order { get; set; }
+    public int OrderNo { get; set; }
 
     /// <summary>
-    /// 状态
+    /// 是否显示
     /// </summary>
-    public StatusEnum Status { get; set; }
+    public bool HideMenu { get; set; }
 
     /// <summary>
-    /// 备注
+    /// 是否忽略KeepAlive缓存
     /// </summary>
-    public string Remark { get; set; }
+    public bool IgnoreKeepAlive { get; set; }
+
+    /// <summary>
+    /// 当前激活的菜单-用于配置详情页时左侧激活的菜单路径
+    /// </summary>
+    public string CurrentActiveMenu { get; set; }
 }
 
 /// <summary>
@@ -122,13 +107,10 @@ public class SysMenuMapper : IRegister
         config.ForType<SysMenu, MenuOutput>()
             .Map(t => t.Meta.Title, o => o.Title)
             .Map(t => t.Meta.Icon, o => o.Icon)
-            .Map(t => t.Meta.IsIframe, o => o.IsIframe)
-            .Map(t => t.Meta.IsLink, o => o.OutLink)
-            .Map(t => t.Meta.IsHide, o => o.IsHide)
-            .Map(t => t.Meta.IsKeepAlive, o => o.IsKeepAlive)
-            .Map(t => t.Meta.IsAffix, o => o.IsAffix)
-            .Map(t => t.Meta.Order, o => o.Order)
-            .Map(t => t.Meta.Status, o => o.Status)
-            .Map(t => t.Meta.Remark, o => o.Remark);
+            .Map(t => t.Meta.FrameSrc, o => o.FrameSrc)
+            .Map(t => t.Meta.OrderNo, o => o.Order)
+            .Map(t => t.Meta.HideMenu, o => o.HideMenu)
+            .Map(t => t.Meta.IgnoreKeepAlive, o => o.IgnoreKeepAlive)
+            .Map(t => t.Meta.CurrentActiveMenu, o => o.CurrentActiveMenu);
     }
 }

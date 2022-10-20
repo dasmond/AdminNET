@@ -4,7 +4,7 @@
 /// 系统角色机构表
 /// </summary>
 [SugarTable("sys_role_org", "系统角色机构表")]
-public class SysRoleOrg : EntityBaseId
+public class SysRoleOrg : EntityTenant
 {
     /// <summary>
     /// 角色Id
