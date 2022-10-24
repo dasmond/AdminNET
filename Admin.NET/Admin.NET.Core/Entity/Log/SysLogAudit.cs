@@ -4,7 +4,7 @@
 /// 系统审计日志表
 /// </summary>
 [SugarTable("sys_log_audit", "系统审计日志表")]
-public class SysLogAudit : EntityBase
+public class SysLogAudit : EntityTenant
 {
     /// <summary>
     /// 表名

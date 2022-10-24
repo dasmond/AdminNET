@@ -4,7 +4,7 @@
 /// 系统差异日志表
 /// </summary>
 [SugarTable("sys_log_diff", "系统差异日志表")]
-public class SysLogDiff : EntityBase
+public class SysLogDiff : EntityTenant
 {
     /// <summary>
     /// 操作前记录
