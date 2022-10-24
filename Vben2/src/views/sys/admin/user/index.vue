@@ -99,13 +99,13 @@
       const [registerTable, { reload, updateTableDataRecord }] = useTable({
         title: '账号列表',
         api: getUserPageList,
-        rowKey: 'id',
         columns,
         formConfig: {
           labelWidth: 120,
           schemas: searchFormSchema,
           autoSubmitOnEnter: true,
         },
+        rowKey: 'id',
         useSearchForm: true,
         showTableSetting: true,
         bordered: true,
