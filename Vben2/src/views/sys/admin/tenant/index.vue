@@ -80,16 +80,18 @@
       const [registerTable, { reload, updateTableDataRecord }] = useTable({
         title: '租户列表',
         api: getTenantPageList,
-        rowKey: 'id',
         columns,
         formConfig: {
           labelWidth: 120,
           schemas: searchFormSchema,
           autoSubmitOnEnter: true,
         },
+        rowKey: 'id',
         useSearchForm: true,
         showTableSetting: true,
         bordered: true,
+        showIndexColumn: false,
+        canResize: true,
         actionColumn: {
           width: 140,
           title: '操作',
