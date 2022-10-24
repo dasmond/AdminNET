@@ -41,7 +41,7 @@
         showTableSetting: true,
         bordered: true,
         showIndexColumn: false,
-        canResize: false,
+        canResize: true,
         actionColumn: {
           width: 170,
           title: '操作',

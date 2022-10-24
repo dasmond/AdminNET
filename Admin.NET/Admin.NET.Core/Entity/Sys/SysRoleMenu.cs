@@ -1,10 +1,10 @@
 ﻿namespace Admin.NET.Core;
 
 /// <summary>
-/// 系统角色机构表
+/// 系统角色菜单表
 /// </summary>
-[SugarTable("sys_role_org", "系统角色机构表")]
-public class SysRoleOrg : EntityBaseId
+[SugarTable("sys_role_menu", "系统角色菜单表")]
+public class SysRoleMenu : EntityTenant
 {
     /// <summary>
     /// 角色Id
@@ -13,14 +13,14 @@ public class SysRoleOrg : EntityBaseId
     public long RoleId { get; set; }
 
     /// <summary>
-    /// 机构Id
+    /// 菜单Id
     /// </summary>
-    [SugarColumn(ColumnDescription = "机构Id")]
-    public long OrgId { get; set; }
+    [SugarColumn(ColumnDescription = "菜单Id")]
+    public long MenuId { get; set; }
 
     /// <summary>
-    /// 机构
+    /// 菜单
     /// </summary>
     [SugarColumn(IsIgnore = true)]
-    public SysOrg SysOrg { get; set; }
+    public SysMenu SysMenu { get; set; }
 }

@@ -4,7 +4,7 @@ namespace Admin.NET.Core;
 /// 系统文件表
 /// </summary>
 [SugarTable("sys_file", "系统文件表")]
-public class SysFile : EntityBase
+public class SysFile : EntityTenant
 {
     /// <summary>
     /// 提供者

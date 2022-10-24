@@ -13,9 +13,9 @@ public class SysUserOrgSeedData : ISqlSugarEntitySeedData<SysUserOrg>
     {
         return new[]
         {
-            new SysUserOrg{ Id=252885263003000, UserId=252885263003721, OrgId=252885263003722 },
-            new SysUserOrg{ Id=252885263003001, UserId=252885263003722, OrgId=252885263003724 },
-            new SysUserOrg{ Id=252885263003002, UserId=252885263003723, OrgId=252885263003744 }
+            new SysUserOrg{ Id=252885263003000, UserId=252885263003721, OrgId=252885263003722, TenantId=142307070918780  },
+            new SysUserOrg{ Id=252885263003001, UserId=252885263003722, OrgId=252885263003724, TenantId=142307070918780  },
+            new SysUserOrg{ Id=252885263003002, UserId=252885263003723, OrgId=252885263003744, TenantId=142307070918780  }
         };
     }
 }

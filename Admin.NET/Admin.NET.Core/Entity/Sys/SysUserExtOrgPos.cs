@@ -4,7 +4,7 @@
 /// 系统用户附属机构职位表
 /// </summary>
 [SugarTable("sys_user_ext_org_pos", "系统用户附属机构职位表")]
-public class SysUserExtOrgPos : EntityBaseId
+public class SysUserExtOrgPos : EntityTenant
 {
     /// <summary>
     /// 用户Id

@@ -51,7 +51,7 @@
         showTableSetting: true,
         bordered: true,
         showIndexColumn: false,
-        canResize: false,
+        canResize: true,
         pagination: {
           pageSize: 10,
         },
