@@ -39,6 +39,9 @@
 
 #### 2. IIS配置
 
+- 注意 IIS 需要开始WebScoket协议 
+- 位置: 控制面板->程序->程序和功能->启用或关闭Windows功能->Internet Information Services->万维网服务->应用程序开发功能->WebScoket协议
+
 - 新建站点，配置端口和路径，路径为前台项目打包后的dist文件夹
 
 ![image](https://images.gitee.com/uploads/images/2021/0512/211127_a3b22049_1572418.png "IIS4.png")
