@@ -1,4 +1,4 @@
-﻿using Admin.NET.Core;
+using Admin.NET.Core;
 using Furion.TaskScheduler;
 
 namespace Admin.NET.Application
@@ -78,6 +78,16 @@ namespace Admin.NET.Application
         /// 备注
         /// </summary>
         public string Remark { get; set; }
+
+        /// <summary>
+        /// 请求头
+        /// </summary>
+        public string Headers { get; set; }
+        /// <summary>
+        /// 请求参数
+        /// </summary>
+
+        public string RequestParameters { get; set; }
     }
 
     /// <summary>
