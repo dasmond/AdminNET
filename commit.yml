@@ -2,13 +2,28 @@
 branches: {
   }
 fileChange:
-  /doc:
-    newFile: !uuid 'e6ede4aabd55c256f3d5aef822f8bd637c75cc80'
-    oldFile: !uuid '0d50897ce94522fdf9af9f608932b9ce3ff0e610'
-  /doc/快捷部署到IIS方案.md:
-    newFile: !uuid 'ce9b3e23d168a3012dc62b5f722b5a5cf7805e6c'
-    oldFile: !uuid '23e0fa2a16e7eaafdf803c0ab4e5d0851f4b9f3f'
-gitCommitId: !uuid '70accf71c680cf4d83713e133c681807e605ebd4'
+  /backend:
+    newFile: !uuid 'e5c532c2bfb94f386fc23e75a3a4a6fc402fe936'
+    oldFile: !uuid 'b700e63d5e4206d1ccfba2d2cab75b3e7e1c7dd1'
+  /backend/Admin.NET.Application:
+    newFile: !uuid 'c3af978ca2a302d1366af0685afbc76be19d0903'
+    oldFile: !uuid '23bff67d1fd4028c64a7bd0edf4aa1ab515247a9'
+  /backend/Admin.NET.Application/Service:
+    newFile: !uuid '35e836904cddf36b6fe29fd387c51f260365d56c'
+    oldFile: !uuid 'd6f9c22557b6a138ad857b92ec89f8c0fa4b0fd1'
+  /backend/Admin.NET.Application/Service/System:
+    newFile: !uuid 'fc86411766426c7cf85fedb199cbcc42ae8b73f5'
+    oldFile: !uuid 'bd48fa696fd9ac117381f2db5696e46f9eb3b7e1'
+  /backend/Admin.NET.Application/Service/System/Timer:
+    newFile: !uuid 'b0cabbb2cf8832e4b798d61c843d957d2dfd3a71'
+    oldFile: !uuid '20225e9241437ba8d64773ae11e8ee883777e461'
+  /backend/Admin.NET.Application/Service/System/Timer/Dto:
+    newFile: !uuid '5f3a4057d74669614ba39293c97269c2f9360687'
+    oldFile: !uuid 'f2539b83564f0165d99d497e357c56ff74083220'
+  /backend/Admin.NET.Application/Service/System/Timer/Dto/JobOutput.cs:
+    newFile: !uuid '68c91964b458d350bce1105bdf445f492354e31c'
+    oldFile: !uuid '43c7bb8e77dc69726e76379ad832c5c40dda2602'
+gitCommitId: !uuid '52f5e510bc42a73dc74f1e247cca7440521c1c04'
 renames: {
   }
-revisionId: 751
+revisionId: 752
