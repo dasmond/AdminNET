@@ -3,21 +3,27 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid 'bbb11098efc74c323fa30a0936ebc1bd2eb266d2'
-    oldFile: !uuid '3ee6f11bba54134ec09a4f91971adf6ab1de34c3'
+    newFile: !uuid '3190c98bafe88413742e3e77a79e6c19d471f6a6'
+    oldFile: !uuid 'bbb11098efc74c323fa30a0936ebc1bd2eb266d2'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid 'd2888841fad928716578b4940c07fa2e8a00b2c1'
-    oldFile: !uuid '2723a281975f97da0adf3a653d62cefc8ce2bc51'
+    newFile: !uuid '503836ad396f3935abae9dea47e28132a65cdd7a'
+    oldFile: !uuid 'd2888841fad928716578b4940c07fa2e8a00b2c1'
   /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid '2527b90161a2a4972cbc9885f051b7755c1c2765'
-    oldFile: !uuid '63182f30945920723959a40ace470149ce0160d0'
+    newFile: !uuid 'f27cceebf71b65feb9fc6389953de26171dfa205'
+    oldFile: !uuid '2527b90161a2a4972cbc9885f051b7755c1c2765'
+  /Admin.NET/Admin.NET.Core/Service/File:
+    newFile: !uuid '2b446d16b1cca17da17c4c9a1bb4bd29fb74ede3'
+    oldFile: !uuid 'd4156f22b5e2b4e2f814e2507f849fbf779f0df1'
+  /Admin.NET/Admin.NET.Core/Service/File/SysFileService.cs:
+    newFile: !uuid '5bcf7184acfdd2868974e2d2d6ab0904075aa97e'
+    oldFile: !uuid '1a40c6b6d2659a222386401763d2cc076110966a'
   /Admin.NET/Admin.NET.Core/Service/Tenant:
-    newFile: !uuid '5ef3952cd5ab469e3091fdcf6e3b700fc090fa2f'
-    oldFile: !uuid '1a709de266bc482b5ff9d8241ef046c7e3167a4a'
+    newFile: !uuid '5a3274d6f44745f6f3810482bc811b2bcf27a1f1'
+    oldFile: !uuid '5ef3952cd5ab469e3091fdcf6e3b700fc090fa2f'
   /Admin.NET/Admin.NET.Core/Service/Tenant/SysTenantService.cs:
-    newFile: !uuid 'b6e0588e2740ce5ed2a1ae4d55ee34948bab6482'
-    oldFile: !uuid '01ccb7642b33a7777b76fd0976ca58283c5ac4da'
-gitCommitId: !uuid '391b8937ea819d7bc3c0489f9a1a27c51a6790bd'
+    newFile: !uuid '63f6c340982ccb304944420c6a18c8ea337a6ac0'
+    oldFile: !uuid 'b6e0588e2740ce5ed2a1ae4d55ee34948bab6482'
+gitCommitId: !uuid 'a15352e93ca06524694baf8d25b704699789cbc1'
 renames: {
   }
-revisionId: 389
+revisionId: 390
