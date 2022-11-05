@@ -1,4 +1,4 @@
-﻿using Furion.SpecificationDocument;
+using Furion.SpecificationDocument;
 using Lazy.Captcha.Core;
 using Microsoft.Extensions.Caching.Memory;
 
@@ -58,8 +58,6 @@ public class SysAuthService : IDynamicApiController, ITransient
     [SuppressMonitor]
     public async Task<LoginOutput> Login([Required] LoginInput input)
     {
-        // 判断租户
-
         // 判断验证码
         var captchaEnabled = await GetCaptchaFlag();
         if (captchaEnabled && !_captcha.Validate(input.CodeId.ToString(), input.Code))
@@ -67,8 +65,8 @@ public class SysAuthService : IDynamicApiController, ITransient
 
         var encryptPasswod = MD5Encryption.Encrypt(input.Password);
 
-        // 判断用户名密码
-        var user = await _sysUserRep.GetFirstAsync(u => u.Account.Equals(input.Account) && u.Password.Equals(encryptPasswod));
+        // 判断用户名密码租户
+        var user = await _sysUserRep.GetFirstAsync(u => u.Account.Equals(input.Account) && u.Password.Equals(encryptPasswod) && u.TenantId.Equals(input.TenantId));
         _ = user ?? throw Oops.Oh(ErrorCodeEnum.D1000);
 
         // 账号是否被冻结
