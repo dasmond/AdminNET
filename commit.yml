@@ -3,84 +3,18 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '0b92ed8f1c5e8ca58a07cde1a0943412f46cbcf5'
-    oldFile: !uuid '1196becb0b7c3d6b0af22362dbed5a366599bf9a'
-  /Admin.NET/Admin.NET.Application:
-    newFile: !uuid '288e5fbd1466e414902dc1156d754c99dd745435'
-    oldFile: !uuid 'e05a5d57fd8d2b60a85c28237bc693325656a8f4'
-  /Admin.NET/Admin.NET.Application/Admin.NET.Application.csproj:
-    newFile: !uuid 'aa6851eb130d02a6254b99865cf0f490633f9c97'
-    oldFile: !uuid 'f7952228b2e2b0e7c2be51fed252ba3f24940c88'
-  /Admin.NET/Admin.NET.Application/AppConfig.json:
-    newFile: null
-    oldFile: !uuid 'f730819f82ea67aca9dc69e3c144c41aeb705a09'
-  /Admin.NET/Admin.NET.Application/Configuration:
-    newFile: !uuid '7da7605bf789683ba8714a450618cafc59fbb097'
-    oldFile: null
-  /Admin.NET/Admin.NET.Application/Configuration/App.json:
-    newFile: !uuid 'fe549a22796b11c68272cf4581d8510e80df9de5'
-    oldFile: null
-  /Admin.NET/Admin.NET.Application/Configuration/Cache.json:
-    newFile: !uuid 'bafa0ac5747bf9f67ac50a61b17994ac30d12756'
-    oldFile: null
-  /Admin.NET/Admin.NET.Application/Configuration/CodeGen.json:
-    newFile: !uuid '64bd30eda5e34653dec37199c9f8835a464f098d'
-    oldFile: null
-  /Admin.NET/Admin.NET.Application/Configuration/DbConnection.json:
-    newFile: !uuid '99ba7de7fbb74877efabea373fa62794e31f6823'
-    oldFile: null
-  /Admin.NET/Admin.NET.Application/Configuration/Email.json:
-    newFile: !uuid '8c82d923af9cd88d87b09eb997ba231a1fab28a0'
-    oldFile: null
-  /Admin.NET/Admin.NET.Application/Configuration/JWT.json:
-    newFile: !uuid 'be623009cf940723be31d54b50f39f711b50c076'
-    oldFile: null
-  /Admin.NET/Admin.NET.Application/Configuration/Limit.json:
-    newFile: !uuid 'a39c9a79ac031898fb7fc39a882b1f9b8a641de7'
-    oldFile: null
-  /Admin.NET/Admin.NET.Application/Configuration/Logging.json:
-    newFile: !uuid '7c6f9548b90a7fbcfd8333c142a80f333a40ca79'
-    oldFile: null
-  /Admin.NET/Admin.NET.Application/Configuration/OAuth.json:
-    newFile: !uuid 'de47140db52ff0fd78b5a68010730d872377992e'
-    oldFile: null
-  /Admin.NET/Admin.NET.Application/Configuration/OSS.json:
-    newFile: !uuid '0927c287632105052d76d06393355422d228492e'
-    oldFile: null
-  /Admin.NET/Admin.NET.Application/Configuration/SnowId.json:
-    newFile: !uuid 'cfaf62e883c8376048271f79393c73459cf4ae1e'
-    oldFile: null
-  /Admin.NET/Admin.NET.Application/Configuration/Swagger.json:
-    newFile: !uuid 'c87bb4e697688130a2b4639047393a19638f2826'
-    oldFile: null
-  /Admin.NET/Admin.NET.Application/Configuration/Wechat.json:
-    newFile: !uuid '8ff14f5e6447422e486b262c45c193cf510d5d28'
-    oldFile: null
-  /Admin.NET/Admin.NET.Application/Configuration/appsettings.json:
-    newFile: !uuid '9f6deab2dbe13d0b50d793b0661a65335fe2c2f6'
-    oldFile: null
+    newFile: !uuid 'd8237e9e3009abeae69729c470e0ea1a8cf02940'
+    oldFile: !uuid '0b92ed8f1c5e8ca58a07cde1a0943412f46cbcf5'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid 'dfc2ac8b7c573fc4bdd4ee63608ae1d5615ff1b1'
-    oldFile: !uuid '871f93664c0f2e05e00560a233c18ebbd6b47dde'
-  /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
-    newFile: !uuid '6c98db8140a58cb636abbbc0d4226e231d68b474'
-    oldFile: !uuid '3467b8d88ce5b482c8a6b73d9e45a8d73c45cb06'
-  /Admin.NET/Admin.NET.Core/AdminNETConfig.json:
-    newFile: null
-    oldFile: !uuid 'bad3d62c7273673a66b5512d04695d73f5cb102f'
-  /Admin.NET/Admin.NET.Core/RateLimitConfig.json:
-    newFile: null
-    oldFile: !uuid 'a39c9a79ac031898fb7fc39a882b1f9b8a641de7'
-  /Admin.NET/Admin.NET.Web.Entry:
-    newFile: !uuid 'f6b3b3368bc5dd8f278ff9b60261095a8ea4ce76'
-    oldFile: !uuid '9b8041ce4095ab73b40502759fffdcf52afc0990'
-  /Admin.NET/Admin.NET.Web.Entry/appsettings.Development.json:
-    newFile: !uuid '63ac55e87b3749c019b9204d3160002a4d6dfa44'
-    oldFile: !uuid '9f6deab2dbe13d0b50d793b0661a65335fe2c2f6'
-  /Admin.NET/Admin.NET.Web.Entry/appsettings.json:
-    newFile: !uuid '63ac55e87b3749c019b9204d3160002a4d6dfa44'
-    oldFile: !uuid '9f6deab2dbe13d0b50d793b0661a65335fe2c2f6'
-gitCommitId: !uuid 'bc60d094359f77e0dae1e0f19daa9b62a7ead2e6'
-renames:
-  /Admin.NET/Admin.NET.Application/Configuration/Limit.json: /Admin.NET/Admin.NET.Core/RateLimitConfig.json
-revisionId: 411
+    newFile: !uuid '271a00199c4178c7de329f178cd17ab20850b19e'
+    oldFile: !uuid 'dfc2ac8b7c573fc4bdd4ee63608ae1d5615ff1b1'
+  /Admin.NET/Admin.NET.Core/Attribute:
+    newFile: !uuid 'd44d7559adfdf095f92aab8b49f4a6ad243697c5'
+    oldFile: !uuid '3a3aa017a9c0e5c2b7f1c451cdf563f46c0f5c33'
+  /Admin.NET/Admin.NET.Core/Attribute/IgnoreUpdateAttribute.cs:
+    newFile: !uuid 'cf7a23f57bb8b6092b982556fa39eaadbd101f8e'
+    oldFile: null
+gitCommitId: !uuid 'a7327841b508806b382cb314ab576c5ff577baef'
+renames: {
+  }
+revisionId: 412
