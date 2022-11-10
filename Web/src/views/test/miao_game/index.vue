@@ -1,13 +1,5 @@
 <template>
 	<div class="game-container">
-		<el-card shadow="hover" :body-style="{ paddingBottom: '0' }">
-			<el-form ref="queryForm" :inline="true">
-				<el-form-item>
-					<el-button type="primary" icon="ele-Search" @click="handleQuery"> 查询 </el-button>
-
-				</el-form-item>
-			</el-form>
-		</el-card>
 		<el-card shadow="hover" style="margin-top: 8px;">
 			<div class="column">
 				<el-link :underline="false" class="game_title">喵了个喵</el-link>
