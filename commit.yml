@@ -2,25 +2,25 @@
 branches: {
   }
 fileChange:
-  /Admin.NET:
-    newFile: !uuid '602ae351931c34ec5c35509f5d08d99afe3215e5'
-    oldFile: !uuid 'ef46f231a5d1b6c43e2e002d09e0839999f773ca'
-  /Admin.NET/Admin.NET.Core:
-    newFile: !uuid 'e5d56c74d14bc5aead7ecb5d1a9f9c9dbdb226b7'
-    oldFile: !uuid '27e819f34b8fb8cc355cd7533b21ae439cd91d26'
-  /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
-    newFile: !uuid 'a5b9ca9487c656121834efb30184c1ba483403d7'
-    oldFile: !uuid '6c98db8140a58cb636abbbc0d4226e231d68b474'
-  /Admin.NET/Admin.NET.Core/Admin.NET.Core.xml:
-    newFile: !uuid '0baaee9ca94bb2d992c315e251b67b5fb94db4b2'
-    oldFile: !uuid '6d9b7f3747fe0673c721aa201abeda9b72b5c4b5'
-  /Admin.NET/Admin.NET.Web.Core:
-    newFile: !uuid 'faa16a5c48d068f8fa34b0a2c03175e8edeab050'
-    oldFile: !uuid 'e7c66ee1784dc1fc30ba39ac0dbf2bdc97147c41'
-  /Admin.NET/Admin.NET.Web.Core/Admin.NET.Web.Core.csproj:
-    newFile: !uuid '61b83e2649bf8cc10ffc2eb6e4b689c83910c87e'
-    oldFile: !uuid '2243e0421645400b0779b5b26e44cb9fb10e91c9'
-gitCommitId: !uuid '964909d9b9cedb953b25bc6e26d2b40bee952c86'
+  /Web:
+    newFile: !uuid '8947eebcc90aab369d969c2758ec42d80a85645b'
+    oldFile: !uuid '3e1d92a60865aa801cea37aa3c4344ae4c14b35e'
+  /Web/src:
+    newFile: !uuid '3199cd15de6add9296771ce5acee913433c4ac56'
+    oldFile: !uuid 'f6854c603e25a7d9af8d9bbed21be53213098f74'
+  /Web/src/views:
+    newFile: !uuid 'c339cd32ce15dee5e9fe6e3b4929a49dc0360e7e'
+    oldFile: !uuid '44cc71645c185bed711156244a884486ba3ff921'
+  /Web/src/views/login:
+    newFile: !uuid 'cc8b865f30f15e05bc07cd868faa9b8ce98a9783'
+    oldFile: !uuid 'c0dc1df06bb9649b3d023dd77a626ccaeae288fe'
+  /Web/src/views/login/component:
+    newFile: !uuid '692905458fb4d38fc650a5689fb4b37c6e16b75a'
+    oldFile: !uuid '9a689191d4ff97f2952442b699782aceaf3e2699'
+  /Web/src/views/login/component/account.vue:
+    newFile: !uuid 'c2d48ec24b02721d76714e2bd41bd4082fb49c61'
+    oldFile: !uuid '5d1f26e46aac4bb783db5d241b625af4de4fe9af'
+gitCommitId: !uuid 'fc9c5f0152cfd807fab26c81e937d3fd2d01a736'
 renames: {
   }
-revisionId: 419
+revisionId: 420
