@@ -143,10 +143,10 @@ namespace Admin.NET.EntityFramework.Core
                     {
                         // 自动设置租户Id
                         case EntityState.Added:
-                            var tenantId = entity.Property(nameof(Entity.TenantId)).CurrentValue;
+                            var tenantId = entity.Property(nameof(DEntityTenant.TenantId)).CurrentValue;
                             var currTenantId = GetTenantId();
                             if ((tenantId == null || (long)tenantId == 0) && currTenantId != null)
-                                entity.Property(nameof(Entity.TenantId)).CurrentValue = Convert.ToInt64(currTenantId);
+                                entity.Property(nameof(DEntityTenant.TenantId)).CurrentValue = Convert.ToInt64(currTenantId);
 
                             obj.Id = obj.Id == 0 ? YitIdHelper.NextId() : obj.Id;
                             obj.CreatedTime = DateTimeOffset.Now;
