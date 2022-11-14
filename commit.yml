@@ -3,27 +3,18 @@ branches: {
   }
 fileChange:
   /backend:
-    newFile: !uuid 'e5c532c2bfb94f386fc23e75a3a4a6fc402fe936'
-    oldFile: !uuid 'b700e63d5e4206d1ccfba2d2cab75b3e7e1c7dd1'
-  /backend/Admin.NET.Application:
-    newFile: !uuid 'c3af978ca2a302d1366af0685afbc76be19d0903'
-    oldFile: !uuid '23bff67d1fd4028c64a7bd0edf4aa1ab515247a9'
-  /backend/Admin.NET.Application/Service:
-    newFile: !uuid '35e836904cddf36b6fe29fd387c51f260365d56c'
-    oldFile: !uuid 'd6f9c22557b6a138ad857b92ec89f8c0fa4b0fd1'
-  /backend/Admin.NET.Application/Service/System:
-    newFile: !uuid 'fc86411766426c7cf85fedb199cbcc42ae8b73f5'
-    oldFile: !uuid 'bd48fa696fd9ac117381f2db5696e46f9eb3b7e1'
-  /backend/Admin.NET.Application/Service/System/Timer:
-    newFile: !uuid 'b0cabbb2cf8832e4b798d61c843d957d2dfd3a71'
-    oldFile: !uuid '20225e9241437ba8d64773ae11e8ee883777e461'
-  /backend/Admin.NET.Application/Service/System/Timer/Dto:
-    newFile: !uuid '5f3a4057d74669614ba39293c97269c2f9360687'
-    oldFile: !uuid 'f2539b83564f0165d99d497e357c56ff74083220'
-  /backend/Admin.NET.Application/Service/System/Timer/Dto/JobOutput.cs:
-    newFile: !uuid '68c91964b458d350bce1105bdf445f492354e31c'
-    oldFile: !uuid '43c7bb8e77dc69726e76379ad832c5c40dda2602'
-gitCommitId: !uuid '52f5e510bc42a73dc74f1e247cca7440521c1c04'
+    newFile: !uuid '90b5b6d88e414cde5ad9bb162c736458e20366fd'
+    oldFile: !uuid 'e5c532c2bfb94f386fc23e75a3a4a6fc402fe936'
+  /backend/Admin.NET.EntityFramework.Core:
+    newFile: !uuid '2620bdfda62d24f22f06d6a9d3cde06710884d6f'
+    oldFile: !uuid '04b108846869ebca67ec8e9fffd783b284d9725a'
+  /backend/Admin.NET.EntityFramework.Core/DbContexts:
+    newFile: !uuid '0b3e0b31faf54a3d618b0d57808d4c306c39c424'
+    oldFile: !uuid '6c712a74991a4318cba50b66181f749bd34b957e'
+  /backend/Admin.NET.EntityFramework.Core/DbContexts/DefaultDbContext.cs:
+    newFile: !uuid '0d28912d56b57ac21d820dcea39843ada23bc93f'
+    oldFile: !uuid 'b63dbf3be65d5a01b686b01a107a16170cb44475'
+gitCommitId: !uuid '94b4ef8d1023367f8cbfe81b6c6dd66318c38d38'
 renames: {
   }
-revisionId: 752
+revisionId: 753
