@@ -89,7 +89,8 @@ namespace Admin.NET.Application
 
             var deleteEntity = await config.DeleteNowAsync();
             //删除缓存
-            await _sysCacheService.DelCacheKey(deleteEntity.Entity.Code);
+            await _sysCacheService.RemoveAsync(deleteEntity.Entity.Code);
+
         }
 
         /// <summary>
