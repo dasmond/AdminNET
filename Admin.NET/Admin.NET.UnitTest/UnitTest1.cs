@@ -4,11 +4,11 @@ using Xunit.Abstractions;
 namespace Admin.NET.UnitTest;
 
 /// <summary>
-/// µ¥Ôª²âÊÔ
+/// å•å…ƒæµ‹è¯•
 /// </summary>
 public class UnitTest1
 {
-    private readonly ITestOutputHelper _output; // ÈÕÖ¾¼ÇÂ¼
+    private readonly ITestOutputHelper _output; // æ—¥å¿—è®°å½•
 
     public UnitTest1(ITestOutputHelper output)
     {
@@ -22,14 +22,14 @@ public class UnitTest1
     }
 
     [Fact]
-    public void ²âÊÔÈÕÖ¾()
+    public void æµ‹è¯•æ—¥å¿—()
     {
-        _output.WriteLine("¹ş¹ş¹ş¹ş£¬ÎÒÊÇ Furion");
+        _output.WriteLine("å“ˆå“ˆå“ˆå“ˆï¼Œæˆ‘æ˜¯ Furion");
         Assert.NotEqual("Furion", "Fur");
     }
 
     /// <summary>
-    /// ´ø²ÎÊı£¨ÆæÊıÅĞ¶Ï£©
+    /// å¸¦å‚æ•°ï¼ˆå¥‡æ•°åˆ¤æ–­ï¼‰
     /// </summary>
     /// <param name="i"></param>
     /// <param name="j"></param>
@@ -37,13 +37,13 @@ public class UnitTest1
     [InlineData(1, 2)]
     [InlineData(3, 4)]
     [InlineData(5, 7)]
-    public void ´ø²ÎÊı²âÊÔ(int i, int j)
+    public void å¸¦å‚æ•°æµ‹è¯•(int i, int j)
     {
         Assert.NotEqual(0, (i + j) % 2);
     }
 
     //[Fact]
-    //public async Task ²âÊÔÇëÇó°Ù¶È()
+    //public async Task æµ‹è¯•è¯·æ±‚ç™¾åº¦()
     //{
     //    var rep = await "https://www.baidu.com".GetAsync();
     //    Assert.True(rep.IsSuccessStatusCode);
