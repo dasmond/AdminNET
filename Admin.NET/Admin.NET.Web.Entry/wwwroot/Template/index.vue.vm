@@ -4,59 +4,43 @@
 		          
 @if(Model.QueryWhetherList.Count > 0){
      @:<el-form :model="queryParams" ref="queryForm" :inline="true">
-		 @:<el-row>
 foreach (var column in Model.QueryWhetherList){
     if(@column.EffectType == "Input" || @column.EffectType == "InputTextArea"){
-       @:<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20" >
        @:<el-form-item label="@column.ColumnComment">
        @:<el-input v-model="queryParams.@(@column.ColumnName)" clearable placeholder="请输入@(@column.ColumnComment)"/>
        @:</el-form-item>
-       @:</el-col>
     }else if(@column.EffectType == "InputTextArea"){
-		@:<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20" >
         @:<el-form-item label="@column.ColumnComment">
         @:<el-input-number v-model="queryParams.@(@column.ColumnName)"  clearable placeholder="请输入@(@column.ColumnComment)"/>
         @:</el-form-item>
-        @:</el-col>
     }else if(@column.EffectType == "InputNumber"){
-		@:<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20" >
         @:<el-form-item label="@column.ColumnComment">
         @:<el-input-number v-model="queryParams.@(@column.ColumnName)"  clearable placeholder="请输入@(@column.ColumnComment)"/>
         @:</el-form-item>
-        @:</el-col>
     }else if(@column.EffectType == "fk"){
-        @:<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20" >
         @:<el-form-item label="@column.ColumnComment">
         @:<el-select clearable v-model="queryParams.@(@column.ColumnName)" placeholder="请选择@(@column.ColumnComment)">
         @:<el-select-option v-for="(item,index) in get@(@column.FkEntityName)DropdownList" :key="index" :value="item.vaue">{{ item.label }}</el-select-option>
         @:</el-select>
         @:</el-form-item>
-        @:</el-col>
     }else if(@column.EffectType == "Select"){
-         @:<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20" >
          @:<el-form-item label="@column.ColumnComment">
          @:<el-select clearable v-model="queryParams.@(@column.ColumnName)" placeholder="请选择@(@column.ColumnComment)">
          @:<el-select-option v-for="(item,index) in getDictDataDropdownList('@(@column.DictTypeCode)')" :key="index" :value="item.code">{{ item.name }}</el-select-option>
          @:</el-select>
          @:</el-form-item>
-         @:</el-col>
     }else if(@column.EffectType == "DatePicker"){
-        @:<el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" >
         @:<el-form-item label="@column.ColumnComment">
         @:<el-date-picker placeholder="请选择@(@column.ColumnComment)" v-model="queryParams.@(@column.ColumnName)Date" />
         @:</el-form-item>
-        @:</el-col>
 			 }
 
 			 }
-			 @:<el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" >
-				 @: <span class="table-page-search-submitButtons">
+				 @: <el-form-item>
 					 @: <el-button icon="ele-Refresh" @@click="() => queryParams = {}"> 重置 </el-button>
 					 @: <el-button type="primary" icon="ele-Search" @@click="handleQuery" v-auth="'@(@Model.ClassName):page'"> 查询 </el-button>
 					 @:  <el-button icon="ele-Plus" @@click="openAdd@(@Model.ClassName)" v-auth="'@(@Model.ClassName):add'"> 新增 </el-button>
-					 @:</span>
-				 @:</el-col>
-			 @:</el-row>
+				 @:</el-form-item>
 		 @:</el-form>
 }
       
@@ -73,7 +57,7 @@ foreach (var column in Model.QueryWhetherList){
 		@foreach (var column in Model.TableField){		   
 		     if(@column.WhetherTable == "Y"){
 			     if(@column.EffectType == "Upload"||@column.EffectType == "fk"||@column.EffectType == "Switch"||@column.EffectType == "ConstSelector"){
-				 @: <el-table-column prop="@column.ColumnName" label="@column.ColumnComment" fixed show-overflow-tooltip>
+				 @: <el-table-column prop="@column.LowerColumnName" label="@column.ColumnComment" fixed show-overflow-tooltip>
 					    @:<template #default="scope">
 			                if(@column.EffectType == "Upload"){
 								@:<el-image
@@ -87,7 +71,7 @@ foreach (var column in Model.QueryWhetherList){
 							        @:preview-teleported
 						         @:/>
                             }else if(@column.EffectType == "fk"){
-                                @:<span>{{scope.row.fk@(@column.ColumnName).@(@column.LowerFkColumnName)}}</span>
+                                @:<span>{{scope.row.fk@(@column.LowerColumnName).@(@column.LowerFkColumnName)}}</span>
                             }else if(@column.EffectType == "Switch"){
 								@:<el-tag v-if="scope.row.@(@column.LowerColumnName)"> 是 </el-tag>
 								@:<el-tag type="danger" v-else> 否 </el-tag>
@@ -98,7 +82,7 @@ foreach (var column in Model.QueryWhetherList){
 					@:</el-table-column>
 			     }
                  else {
-				    @: <el-table-column prop="@column.ColumnName" label="@column.ColumnComment" fixed show-overflow-tooltip />
+				    @: <el-table-column prop="@column.LowerColumnName" label="@column.ColumnComment" fixed show-overflow-tooltip />
 				 }
 		    }
 			}

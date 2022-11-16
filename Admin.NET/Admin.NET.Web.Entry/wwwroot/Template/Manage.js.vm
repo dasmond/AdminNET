@@ -41,7 +41,7 @@ export const update@(@Model.ClassName) = (params?: any) =>
 export const get@(@Model.ClassName)PageList = (params?: any) => 
 	request({
 			url: Api.Get@(@Model.ClassName)Page,
-			method: 'get',
+			method: 'post',
 			data: params,
 		});
 
