@@ -92,6 +92,7 @@
 	import { auth } from '/@@/utils/authFunction';
 	import { formatDate } from '/@@/utils/formatTime';
 	import type { FormInstance, FormRules } from 'element-plus'
+	import { update@(@Model.ClassName), add@(@Model.ClassName) } from '/@@/api/main/@(@Model.ClassName)';
 
 	@foreach (var column in Model.TableField){
 	if(@column.EffectType == "fk"){
@@ -204,6 +205,4 @@
 	};
 	}
 	})
-
-	}
 </script>
