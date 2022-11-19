@@ -185,7 +185,7 @@ public static class SqlSugarSetup
         dbProvider.DbMaintenance.CreateDatabase();
 
         // 获取所有实体表-初始化表结构
-        var entityTypes = App.EffectiveTypes.Where(u => !u.IsInterface && !u.IsAbstract && u.IsClass
+        var entityTypes = App.EffectiveTypes.Where(u => !u.IsInterface && !u.IsAbstract && u.IsClass && !u.IsDefined(typeof(NotInitTable))
             && u.IsDefined(typeof(SugarTable), false) && !u.IsDefined(typeof(NotTableAttribute), false));
         if (!entityTypes.Any()) return;
         foreach (var entityType in entityTypes)
@@ -249,7 +249,7 @@ public static class SqlSugarSetup
         db.DbMaintenance.CreateDatabase();
 
         // 获取所有实体表-初始化租户业务表
-        var entityTypes = App.EffectiveTypes.Where(u => !u.IsInterface && !u.IsAbstract && u.IsClass
+        var entityTypes = App.EffectiveTypes.Where(u => !u.IsInterface && !u.IsAbstract && u.IsClass && !u.IsDefined(typeof(NotInitTable))
             && u.IsDefined(typeof(SugarTable), false) && !u.IsDefined(typeof(NotTableAttribute), false)
             && u.IsDefined(typeof(TenantBusinessAttribute), false));
         if (!entityTypes.Any()) return;
