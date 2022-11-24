@@ -3,39 +3,155 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '08405fd5c2e5f197162752d38cc901f9e99dda0d'
-    oldFile: !uuid '0974e038f0631a3f4cab5cdf302824089d78feee'
+    newFile: !uuid 'a64887a365237e3a427c38ebae4729411731bb7c'
+    oldFile: !uuid '08405fd5c2e5f197162752d38cc901f9e99dda0d'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '07232bbf6910475c88a05d094f8ef7d90e686910'
-    oldFile: !uuid '796822def080078db09059417c06c3fee220329f'
+    newFile: !uuid 'f241fecb57bf31c9413fd03bad828eee331cc6cd'
+    oldFile: !uuid '07232bbf6910475c88a05d094f8ef7d90e686910'
+  /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
+    newFile: !uuid '211f0993ee241a51d9f4c253230ab1418427d256'
+    oldFile: !uuid 'a1888f09a780283d17961cd12b4fc8cf765cdcec'
+  /Admin.NET/Admin.NET.Core/Admin.NET.Core.xml:
+    newFile: !uuid '5aa966f162fb99123c4e24066b74a610022ad305'
+    oldFile: !uuid 'b1a014fbb669a32c05f9d890eba288e4595bb4cf'
   /Admin.NET/Admin.NET.Core/SeedData:
-    newFile: !uuid '599772f432ae261da4eb2e02534b11d11cc75530'
-    oldFile: !uuid '538acb10edf80dfc9192b61d364aa577009b430d'
-  /Admin.NET/Admin.NET.Core/SeedData/SysTenantSeedData.cs:
-    newFile: !uuid '805566400223f9a9f1b8ca6677b84ce29deb23ef'
-    oldFile: !uuid '9ef1d7b79462b15c3969b81df9044dbc11ca7e40'
+    newFile: !uuid '095c76564c4ce7d598acb5f56df79492169f2d17'
+    oldFile: !uuid '599772f432ae261da4eb2e02534b11d11cc75530'
+  /Admin.NET/Admin.NET.Core/SeedData/SysRoleMenuSeedData.cs:
+    newFile: !uuid 'c223c7002dbdbeac364cdac172128d10664d6d86'
+    oldFile: !uuid 'ada8a0e337bd926e2bed3f5c175325c01cfa3491'
+  /Admin.NET/Admin.NET.Core/Service:
+    newFile: !uuid 'f8d243cf5ab55d881f2b29a6cda0f6951320b036'
+    oldFile: !uuid '1d12096c36a6f164e4f98e7a6a47841e908ebf86'
+  /Admin.NET/Admin.NET.Core/Service/Tenant:
+    newFile: !uuid '6ef1c63cbfb93e352ee4dbb89718ee1ad1e18575'
+    oldFile: !uuid 'cbf1711d50a9b8fc6b8bab9ed26685c8e73d7d44'
+  /Admin.NET/Admin.NET.Core/Service/Tenant/Dto:
+    newFile: !uuid 'f15a28a06f3f8c1c2bb02968592e8412570e970e'
+    oldFile: !uuid 'fedcf81fca2d87af44ebfd5b6f8511e16c340eff'
+  /Admin.NET/Admin.NET.Core/Service/Tenant/Dto/TenantInput.cs:
+    newFile: !uuid '91dd50ac89bf8fcad9f33ffb9f4c7beb1acf220c'
+    oldFile: !uuid '041ecd7bc2930289d147c85bdfd7813034209d28'
+  /Admin.NET/Admin.NET.Core/Service/Tenant/SysTenantService.cs:
+    newFile: !uuid '6307c1d09ef04b352bfe55809d5b97cddcd9779d'
+    oldFile: !uuid '719e76b53435fdbed989c542b8f6fc0558c0e2e0'
   /Web:
-    newFile: !uuid '01e47497dfed132bae17cab04c55f72b9127fd95'
-    oldFile: !uuid '6144543d198fc2f70deec0615011776400ca9f95'
+    newFile: !uuid '43441b271db3c0184baaadf48344393cd515d1c6'
+    oldFile: !uuid '01e47497dfed132bae17cab04c55f72b9127fd95'
   /Web/src:
-    newFile: !uuid 'ee48b56cbd1242984f9e633327c1a56c833bdc11'
-    oldFile: !uuid '285856bd4e205c6c647d002311c16c8bcdf67a98'
+    newFile: !uuid '32d779dc8f1c80e7c1244bc4a4c616934a34f418'
+    oldFile: !uuid 'ee48b56cbd1242984f9e633327c1a56c833bdc11'
+  /Web/src/api-services:
+    newFile: !uuid '0fa3ab5dab7a2e06809b02bf0a074165daa11292'
+    oldFile: !uuid 'f29062e9951af51aa597787fb1625d2b9e95fe31'
+  /Web/src/api-services/api.ts:
+    newFile: !uuid 'bb97406f9d5acb438112c16e53836045e4083464'
+    oldFile: !uuid '2c043de5b668d05922effd4be7f4a3459c78beb7'
+  /Web/src/api-services/apis:
+    newFile: !uuid '841447fc0ef8942cd5ac3258b1fd8e3a38da50b8'
+    oldFile: !uuid 'c1650945f2be92b1e12385e859d2c8ea28240839'
+  /Web/src/api-services/apis/sys-job-api.ts:
+    newFile: !uuid '50ffc1527fdc51552ecbca88eae3db6be81929df'
+    oldFile: null
+  /Web/src/api-services/apis/sys-tenant-api.ts:
+    newFile: !uuid 'c64d8ed73a75b38004f10524ec2e000b43bcedee'
+    oldFile: !uuid 'c78d24b466e9c49caf2ec62178f8e859bd931c0f'
+  /Web/src/api-services/apis/sys-timer-api.ts:
+    newFile: null
+    oldFile: !uuid '45732de493eaea6dbcdc9d2e666301e4e26a5dbc'
+  /Web/src/api-services/models:
+    newFile: !uuid 'c9763e2331d1c2507ce72da8d0770027e865ba27'
+    oldFile: !uuid '18e46b8f31391c1d959948545eba657d4649ff0e'
+  /Web/src/api-services/models/add-timer-input.ts:
+    newFile: null
+    oldFile: !uuid '218dd16e9c0dcd1cd018caef8ce268a45d599881'
+  /Web/src/api-services/models/admin-result-list-scheduler-model.ts:
+    newFile: !uuid '2d2036e8c9ad6f3b98322040067d77b9e09ab0e9'
+    oldFile: null
+  /Web/src/api-services/models/admin-result-schedule-result.ts:
+    newFile: !uuid 'a7b9e879371fd8dc6aceee0dd4aaec160f2b8d35'
+    oldFile: null
+  /Web/src/api-services/models/admin-result-sql-sugar-paged-list-timer-output.ts:
+    newFile: null
+    oldFile: !uuid '0f702c1a2c846ceff514a618e0df4387dcca0317'
+  /Web/src/api-services/models/delete-timer-input.ts:
+    newFile: null
+    oldFile: !uuid 'bd21212e88091e7e7ad32a11f2883af5fd17764c'
+  /Web/src/api-services/models/index.ts:
+    newFile: !uuid 'a262f1baf335694d705cd7e97d998689b4b6ce60'
+    oldFile: !uuid '0a776c2dec1669590bfc291823c214767fc68b8d'
+  /Web/src/api-services/models/job-detail.ts:
+    newFile: !uuid 'a0b0fdcc150c1e7068bac9763e4819203841fe9c'
+    oldFile: null
+  /Web/src/api-services/models/job-input.ts:
+    newFile: !uuid 'd941afbead17069f544d9617f106c9cae5235f4f'
+    oldFile: null
+  /Web/src/api-services/models/request-type-enum.ts:
+    newFile: null
+    oldFile: !uuid 'ce22975d4bb4ec18c110d6bb9f611f0af473b794'
+  /Web/src/api-services/models/schedule-result.ts:
+    newFile: !uuid 'b92559cad69e422a697aa7550a5379ceab8a7204'
+    oldFile: null
+  /Web/src/api-services/models/scheduler-model.ts:
+    newFile: !uuid '8b96c344e8402efd1433d07f1da9f628d23c0984'
+    oldFile: null
+  /Web/src/api-services/models/set-timer-status-input.ts:
+    newFile: null
+    oldFile: !uuid '3227d03447335c420e7bee05d506d3e44478f25f'
+  /Web/src/api-services/models/spare-time-execute-types.ts:
+    newFile: null
+    oldFile: !uuid '18b74de9cece6a9524a9f30bf403149dc2098bfb'
+  /Web/src/api-services/models/spare-time-status.ts:
+    newFile: null
+    oldFile: !uuid 'b08f3fa5f86af8ab893bea9e7420836f7dc46cbf'
+  /Web/src/api-services/models/spare-time-types.ts:
+    newFile: null
+    oldFile: !uuid '3781d023f00e64a3ee9338b36e3731ad01bfcac2'
+  /Web/src/api-services/models/sql-sugar-paged-list-timer-output.ts:
+    newFile: null
+    oldFile: !uuid 'ed83e4cb398a29c9e445f2044b3f0d244fcd9edd'
+  /Web/src/api-services/models/table-output.ts:
+    newFile: !uuid 'fff15504af7d196d3ca845d80bfeae70b91e3044'
+    oldFile: !uuid '05c323da52a7787b89cabc49d1b32fb8b637a57e'
+  /Web/src/api-services/models/tenant-input.ts:
+    newFile: !uuid '6a50aa58cf90f550d0472766a935fd4e6d20fc43'
+    oldFile: !uuid '428b6f6fe792b1ba6eba5f922884b456e45e37c4'
+  /Web/src/api-services/models/tenant-user-input.ts:
+    newFile: !uuid 'bf7ff1ae2c9b1b3c442d4b98eace605a404e787a'
+    oldFile: null
+  /Web/src/api-services/models/timer-output.ts:
+    newFile: null
+    oldFile: !uuid 'ddb9b77a304c6460f4e9e9bb6e8ea8243385672d'
+  /Web/src/api-services/models/trigger-status.ts:
+    newFile: !uuid '52eb39ee26662120672192b48fa10041761da417'
+    oldFile: null
+  /Web/src/api-services/models/trigger.ts:
+    newFile: !uuid '970925e29b7373bb6de8683e214ceb7be98b1266'
+    oldFile: null
+  /Web/src/api-services/models/update-timer-input.ts:
+    newFile: null
+    oldFile: !uuid 'ea0af3f03dfa882fd48dd87d8f7fcac0fc7b3165'
   /Web/src/views:
-    newFile: !uuid 'ab0378d4471c03cae1baedd069917274e5223b43'
-    oldFile: !uuid 'ab379057199e58d0cb7b2ced9cec60037e068a9a'
+    newFile: !uuid 'ab379057199e58d0cb7b2ced9cec60037e068a9a'
+    oldFile: !uuid 'ab0378d4471c03cae1baedd069917274e5223b43'
   /Web/src/views/system:
-    newFile: !uuid '197e54f2bb2c6819c6b41d3334758af59d0944be'
-    oldFile: !uuid 'f5e5801a1f899d8231c33290272493757da83a52'
+    newFile: !uuid 'f5e5801a1f899d8231c33290272493757da83a52'
+    oldFile: !uuid '197e54f2bb2c6819c6b41d3334758af59d0944be'
   /Web/src/views/system/tenant:
-    newFile: !uuid 'c67988087582b983b128ef9dca75d8167a1a6757'
-    oldFile: !uuid '7d440d72cccbb2b7e624db6f33160f3f1c60073c'
+    newFile: !uuid '7d440d72cccbb2b7e624db6f33160f3f1c60073c'
+    oldFile: !uuid 'c67988087582b983b128ef9dca75d8167a1a6757'
   /Web/src/views/system/tenant/component:
-    newFile: !uuid 'e06bf97db2add6820a464225b4345fedadd0faf1'
-    oldFile: !uuid 'd47a841b3e1cddf56c8faf2c364838be44e41703'
+    newFile: !uuid 'd47a841b3e1cddf56c8faf2c364838be44e41703'
+    oldFile: !uuid 'e06bf97db2add6820a464225b4345fedadd0faf1'
   /Web/src/views/system/tenant/component/grantMenu.vue:
-    newFile: !uuid '0e0c5e51a4c476c285b5092b1fdfba674821641c'
-    oldFile: !uuid 'a39ffc0391f1693c07c6087c07289fdadec2d8bd'
-gitCommitId: !uuid 'd9ca3f9059f8cb7c3f0fb9b07d84cac9a92688bf'
-renames: {
-  }
-revisionId: 452
+    newFile: !uuid 'a39ffc0391f1693c07c6087c07289fdadec2d8bd'
+    oldFile: !uuid '0e0c5e51a4c476c285b5092b1fdfba674821641c'
+gitCommitId: !uuid '09973a1a8a612ff84c28087b2700fc674d59d09c'
+renames:
+  /Web/src/api-services/models/admin-result-list-scheduler-model.ts: /Web/src/api-services/models/admin-result-sql-sugar-paged-list-timer-output.ts
+  /Web/src/api-services/models/admin-result-schedule-result.ts: /Web/src/api-services/models/admin-result-sql-sugar-paged-list-timer-output.ts
+  /Web/src/api-services/models/job-input.ts: /Web/src/api-services/models/delete-timer-input.ts
+  /Web/src/api-services/models/schedule-result.ts: /Web/src/api-services/models/request-type-enum.ts
+  /Web/src/api-services/models/scheduler-model.ts: /Web/src/api-services/models/set-timer-status-input.ts
+  /Web/src/api-services/models/tenant-user-input.ts: /Web/src/api-services/models/delete-timer-input.ts
+revisionId: 453
