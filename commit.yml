@@ -3,121 +3,84 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid 'c0c2d2c03a04b1970c1c3bed4e59730e11d33522'
-    oldFile: !uuid '9adb63016c796137ff8b8a21af0095dd670fb9a9'
+    newFile: !uuid 'bd2785beb74b94192945ac608ea992c77a120af2'
+    oldFile: !uuid 'c0c2d2c03a04b1970c1c3bed4e59730e11d33522'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '6c57d74823d61d3486731fb912f63f204719f5bb'
-    oldFile: !uuid '5f3f1058a83a8074f84838e1b97f28cf2f17485b'
+    newFile: !uuid '25bca464953594d1a90a0d15f6fd0d459ab81003'
+    oldFile: !uuid '6c57d74823d61d3486731fb912f63f204719f5bb'
   /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
-    newFile: !uuid 'e89409ba88d03d3dc2da72dd31fd82f55f9d4746'
-    oldFile: !uuid 'e37d5725262e9d459a78b7c66f1388db893b930d'
+    newFile: !uuid '1db1765bd52bfbe9f470a3c667ad7f309c783f5f'
+    oldFile: !uuid 'e89409ba88d03d3dc2da72dd31fd82f55f9d4746'
   /Admin.NET/Admin.NET.Core/Admin.NET.Core.xml:
-    newFile: !uuid '2c44c2d52c3b3ca47c8c5a3a3e2f148650f24a49'
-    oldFile: !uuid 'bbcb42fbb38520c0dc15c055a0a8aaf1de922cec'
+    newFile: !uuid '807ea986798ca258130b8f0e1f9558694044d8ac'
+    oldFile: !uuid '2c44c2d52c3b3ca47c8c5a3a3e2f148650f24a49'
   /Admin.NET/Admin.NET.Core/Entity:
-    newFile: !uuid 'fa373ef7c91b5dbccf5c0822d9f4aaaea3ec4bc8'
-    oldFile: !uuid 'eb94dc9d5ee8d729bcae75910b79bf84b5efa092'
-  /Admin.NET/Admin.NET.Core/Entity/SysJobTrigger.cs:
-    newFile: !uuid 'b422a439c96963155fd2b6b4a0051feda96bf082'
-    oldFile: !uuid 'd832d78f03e513d4059106c2bae542493a923da2'
-  /Admin.NET/Admin.NET.Core/SeedData:
-    newFile: !uuid '8110ac1424b093b88b040efd76bc39fb257fcff3'
-    oldFile: !uuid '9db145bb2b7c4ee560d8a2231b8b16dc2e10398c'
-  /Admin.NET/Admin.NET.Core/SeedData/SysMenuSeedData.cs:
-    newFile: !uuid '5dae19134d634d3df6d40308ed466c01fc4d0701'
-    oldFile: !uuid 'd4fdaf40ef7989b62b18fa4f50d021d17b06f595'
+    newFile: !uuid '6b1337ef163724a924dc60ceec6a10b5145eff91'
+    oldFile: !uuid 'fa373ef7c91b5dbccf5c0822d9f4aaaea3ec4bc8'
+  /Admin.NET/Admin.NET.Core/Entity/SysJobDetail.cs:
+    newFile: !uuid 'a5db551ac730b62d8669b343d716508a604762bf'
+    oldFile: !uuid 'b17e7854eef0f006f3b0445d35af288bc96c6e17'
   /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid '3ac321ef4fbc9718164e28ba7a2418be47e6211a'
-    oldFile: !uuid '7b9cff103ef57be5898d6525a6f6378d86299713'
+    newFile: !uuid '7f3778d4bc5f2af66529355eb186106531852bf1'
+    oldFile: !uuid '3ac321ef4fbc9718164e28ba7a2418be47e6211a'
   /Admin.NET/Admin.NET.Core/Service/Job:
-    newFile: !uuid 'c146d1db6610c7f4ac8f460eae4f304e40d76a77'
-    oldFile: !uuid '5a7fead0619ebc8f83b8a92914030f5b1ff1df95'
-  /Admin.NET/Admin.NET.Core/Service/Job/DbJobPersistence.cs:
-    newFile: !uuid 'f4bc8ae9d5ad619173c582a29e9042061b85d622'
-    oldFile: !uuid 'a0f160a835b31dbe83c3220f1cd2567ed6db82cc'
-  /Admin.NET/Admin.NET.Core/Service/Job/Dto:
-    newFile: !uuid 'b06932104ca86fd79a2457843e0c18cff5277444'
-    oldFile: !uuid '82a98e4c28d8f5f83c3c78f100af595e19107df9'
-  /Admin.NET/Admin.NET.Core/Service/Job/Dto/JobTriggerInput.cs:
-    newFile: !uuid '7267478e5879343af5c3705362685dba0c5ba775'
-    oldFile: !uuid '2b155d6e7ae27743e1076aba26b5fd40e0b0fa9b'
+    newFile: !uuid '19fdc676ed7ffa046777440c230a4f960b75f451'
+    oldFile: !uuid 'c146d1db6610c7f4ac8f460eae4f304e40d76a77'
   /Admin.NET/Admin.NET.Core/Service/Job/SysJobService.cs:
-    newFile: !uuid '2562efa4f4d55f77da39de0908911b35d9947521'
-    oldFile: !uuid '63707106a72469795f3ae2b0eaa251acffa63702'
+    newFile: !uuid 'be54a1848ee7f658f93fae2caef7741d14b5b2d2'
+    oldFile: !uuid '2562efa4f4d55f77da39de0908911b35d9947521'
   /Web:
-    newFile: !uuid '68683e57629fc017e83d27e14f844fa1079773b6'
-    oldFile: !uuid '35e22fdd9b5d2c222763767aac4b7dc66cf990bc'
+    newFile: !uuid '5f8d24cdd54cfa93321db3079f6608fc7f604c03'
+    oldFile: !uuid '68683e57629fc017e83d27e14f844fa1079773b6'
+  /Web/package-lock.json:
+    newFile: !uuid '97538522882f7aae4eadde0aaf0a8d674b157660'
+    oldFile: !uuid '26b0171ff2f429078ff1872a5fc345493c087af6'
+  /Web/package.json:
+    newFile: !uuid '3644289c58d4bab142ed7bb21b679561b3f76d75'
+    oldFile: !uuid 'a1319a90d2daf12faddec398fc0ccca812efce40'
   /Web/src:
-    newFile: !uuid 'ac3a314d486674cdc28d5b4534e043ac54085699'
-    oldFile: !uuid '14707d1834eab719ff7c9899034d02317fbb8d55'
+    newFile: !uuid '9d06a3e45707ea9686d40921c1cfe0372a5ed1b6'
+    oldFile: !uuid 'ac3a314d486674cdc28d5b4534e043ac54085699'
   /Web/src/api-services:
-    newFile: !uuid '1c37edbe0cdfc41f467e3c9578e2c99e597b8371'
-    oldFile: !uuid '7ad97b973a4d92d056673b9c4a1d15c1161add72'
-  /Web/src/api-services/apis:
-    newFile: !uuid 'c9f90d1c746af5de30b18efc99487f3d5ce20605'
-    oldFile: !uuid 'b0310f616b1b546b074a45327e24f686e6054b7e'
-  /Web/src/api-services/apis/sys-job-api.ts:
-    newFile: !uuid 'f4bcf15dafc2c804c22f78e62c4007854acd8b79'
-    oldFile: !uuid '8ff3a93a71dfa395bd76dadc612ff4a1b9fbbd60'
+    newFile: !uuid '57c8130a8f06a2793d5bfe60ca68cbc6abe639fc'
+    oldFile: !uuid '1c37edbe0cdfc41f467e3c9578e2c99e597b8371'
   /Web/src/api-services/models:
-    newFile: !uuid '16cdf2a2d4967a990de39331bd426e95986d9cad'
-    oldFile: !uuid 'f2870812f4394df380e6daffed02f51e0b4f31fc'
-  /Web/src/api-services/models/add-job-trigger-input.ts:
-    newFile: !uuid 'd5973f8e768b3b5df98fb6baa2a03bf2ba2fe465'
-    oldFile: !uuid '9f537a6a355bdcf51bd46aa78b09f8f11fd6984e'
-  /Web/src/api-services/models/admin-result-schedule-result.ts:
-    newFile: null
-    oldFile: !uuid 'a7b9e879371fd8dc6aceee0dd4aaec160f2b8d35'
-  /Web/src/api-services/models/index.ts:
-    newFile: !uuid '7048b15110a6edff4ca140950c744b62308579f6'
-    oldFile: !uuid '4366d36dd62381369fb3cfa806f1a20878067e03'
-  /Web/src/api-services/models/job-detail-input.ts:
-    newFile: !uuid '98e9908e8f7f52ff0f4d535140e00c1c85eb32a8'
-    oldFile: null
-  /Web/src/api-services/models/job-trigger-input.ts:
-    newFile: !uuid 'ba4df374786315ca49c0e241a9e7e01c0b1c25d6'
-    oldFile: null
-  /Web/src/api-services/models/schedule-result.ts:
-    newFile: null
-    oldFile: !uuid 'b92559cad69e422a697aa7550a5379ceab8a7204'
-  /Web/src/api-services/models/sys-job-trigger.ts:
-    newFile: !uuid '34c8108f34026dbd66c49bd3432d24bfbb8acd79'
-    oldFile: !uuid 'dc61747236b6f101ab7e01077c5347029a5034fe'
-  /Web/src/api-services/models/update-job-trigger-input.ts:
-    newFile: !uuid '3bd5aec6094602af8622e041bb11d050153f5e1d'
-    oldFile: !uuid '7b24fb8967f524baeb185f05c9e5b28507f9dff6'
-  /Web/src/utils:
-    newFile: !uuid '3f731780af0c0ee62a46c5fdbae86e82ddd6507d'
-    oldFile: !uuid '40a745b7f3961290cdeef78d51765543e0db05c2'
-  /Web/src/utils/axios-utils.ts:
-    newFile: !uuid '435c2ac76f7bc381122f8430d7aeff760bd0fd5e'
-    oldFile: !uuid 'f1dc79b486917225450ed904920a116b0f0f7f00'
+    newFile: !uuid '57464fc05e6fd6e24f9fa949adc24b5568db12b7'
+    oldFile: !uuid '16cdf2a2d4967a990de39331bd426e95986d9cad'
+  /Web/src/api-services/models/add-job-detail-input.ts:
+    newFile: !uuid '9620911667b620f339432a9665c7ccde0ef444c2'
+    oldFile: !uuid '84a0acac3970bbd752bdacc4be664fef6d96ef33'
+  /Web/src/api-services/models/sys-job-detail.ts:
+    newFile: !uuid '9603662bbe4c220cc8fc7075f385878b30550158'
+    oldFile: !uuid '328d458aac77e251d1ecc18030d03c38327c2c1b'
+  /Web/src/api-services/models/update-job-detail-input.ts:
+    newFile: !uuid 'bb8785fd35a9d593a459b1896887b6ba135d8b72'
+    oldFile: !uuid '12659b22bec26ee524579f84d4e2179d5302985e'
   /Web/src/views:
-    newFile: !uuid 'fa4b02a6d1db1741872b93126e6ed5ae9dca378a'
-    oldFile: !uuid 'e2de636f9bd7a4ba09afe1c629066d484b62892a'
+    newFile: !uuid 'a5ceb6b37c38f55d152137a80cbb0414317f9e0d'
+    oldFile: !uuid 'fa4b02a6d1db1741872b93126e6ed5ae9dca378a'
   /Web/src/views/system:
-    newFile: !uuid 'fc96e4e81c25b282cf5e3f7a0e49a550f0f48989'
-    oldFile: !uuid 'dc9373d812847a760ca453f7a6a05103a75ae80d'
+    newFile: !uuid 'e8190b99785c99ad3b0e2b6c06dd675704d0d36c'
+    oldFile: !uuid 'fc96e4e81c25b282cf5e3f7a0e49a550f0f48989'
   /Web/src/views/system/job:
-    newFile: !uuid 'a47a7e7b16d2a2538545378d786f6bc8c1a45cd0'
-    oldFile: !uuid '9c6ab1f328297e5fc67a00d608af8184a12377a8'
+    newFile: !uuid 'db45bd169de69e3d6b49f014f52dd1ec223ae30e'
+    oldFile: !uuid 'a47a7e7b16d2a2538545378d786f6bc8c1a45cd0'
   /Web/src/views/system/job/component:
-    newFile: !uuid '23506e0e897c2d9a59151f74247141e0ac3a11a3'
-    oldFile: !uuid '6ad6e2a358649df83b38a0d4c9521e5403c39cb9'
+    newFile: !uuid '841ae7146265edf506b579b08d2f4a202e37a495'
+    oldFile: !uuid '23506e0e897c2d9a59151f74247141e0ac3a11a3'
+  /Web/src/views/system/job/component/JobScriptCode.ts:
+    newFile: !uuid '5fd87bfb809c739fadb8a1c8232ac95eb99ad3e0'
+    oldFile: null
   /Web/src/views/system/job/component/editJobDetail.vue:
-    newFile: !uuid 'ea4e260c9de266f6ac82e2104aad25d4543ea801'
-    oldFile: !uuid '67ed646aae5b57ee308c054031fc052b9ee42d04'
+    newFile: !uuid 'd34c958c40f6e79e51440a19da06c37eedec3355'
+    oldFile: !uuid 'ea4e260c9de266f6ac82e2104aad25d4543ea801'
   /Web/src/views/system/job/component/editJobTrigger.vue:
-    newFile: !uuid '8f1f00ff3f0ab697a1c2eae4eb7e40875055a674'
-    oldFile: null
-  /Web/src/views/system/job/component/jobCluster.vue:
-    newFile: !uuid '6561d0a4658659ccf502065bddd42a98e127e7f9'
-    oldFile: null
+    newFile: !uuid 'ebb4abe522a4e3d4cd3276b6dcf859fc25d73bef'
+    oldFile: !uuid '8f1f00ff3f0ab697a1c2eae4eb7e40875055a674'
   /Web/src/views/system/job/index.vue:
-    newFile: !uuid '66483ce982e6273319c5552b9feab373478ada9b'
-    oldFile: !uuid '9eb97b36ab1fe0610cb972a303728de9c44ad83d'
-gitCommitId: !uuid 'f772abcd3a598326aba988efc8dea04ff594ee4b'
-renames:
-  /Web/src/api-services/models/job-detail-input.ts: /Web/src/api-services/models/schedule-result.ts
-  /Web/src/api-services/models/job-trigger-input.ts: /Web/src/api-services/models/schedule-result.ts
-revisionId: 456
+    newFile: !uuid '8d5d020a7f2e4ae836f1288f44495d4c69065acc'
+    oldFile: !uuid '66483ce982e6273319c5552b9feab373478ada9b'
+gitCommitId: !uuid '6300fbf5af18e67dbb499a7b5a404f897826ea0c'
+renames: {
+  }
+revisionId: 457
