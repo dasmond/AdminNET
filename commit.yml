@@ -3,124 +3,120 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid 'd6ef9eac972fc6e7f0bbfd90c55516d1833eba8c'
-    oldFile: !uuid 'bd2785beb74b94192945ac608ea992c77a120af2'
+    newFile: !uuid '2da6551112946e2cd43b11c5322565d0afb6d08a'
+    oldFile: !uuid 'd6ef9eac972fc6e7f0bbfd90c55516d1833eba8c'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '25c79b41a29a108ad4b76f0da453966d2e8dc4a2'
-    oldFile: !uuid '25bca464953594d1a90a0d15f6fd0d459ab81003'
-  /Admin.NET/Admin.NET.Core/Admin.NET.Core.xml:
-    newFile: !uuid '77b79b4a9b6fc199f6ca4cf96960cf4f52945bbb'
-    oldFile: !uuid '807ea986798ca258130b8f0e1f9558694044d8ac'
-  /Admin.NET/Admin.NET.Core/Entity:
-    newFile: !uuid '03b973849312824b45fbdcd401f0761407232442'
-    oldFile: !uuid '6b1337ef163724a924dc60ceec6a10b5145eff91'
-  /Admin.NET/Admin.NET.Core/Entity/WeChatUser.cs:
-    newFile: !uuid 'dac86385db45fcb758bd7ae54a850b675a6a7928'
-    oldFile: !uuid 'e760b129361c363f962cb0ff20fa6a6e6baf257a'
-  /Admin.NET/Admin.NET.Core/Enum:
-    newFile: !uuid 'c683fedf2bba9d78655a4e42941f7ef522cc2a9a'
-    oldFile: !uuid 'a529035c8d5b13215d33bb5339777a87747508fe'
-  /Admin.NET/Admin.NET.Core/Enum/PlatformTypeEnum.cs:
-    newFile: !uuid 'ef35eeabb79e315f552f16d24c53e0f7202bdbc5'
-    oldFile: null
-  /Admin.NET/Admin.NET.Core/Enum/WeChatUserTypeEnum.cs:
-    newFile: null
-    oldFile: !uuid 'f3d0e1c9ff65fe63e8497f44f2cfa5a1dc73d661'
-  /Admin.NET/Admin.NET.Core/SeedData:
-    newFile: !uuid 'afcfad723eaa7647dc4cf19585e6ee1d7ae4319c'
-    oldFile: !uuid '8110ac1424b093b88b040efd76bc39fb257fcff3'
-  /Admin.NET/Admin.NET.Core/SeedData/SysMenuSeedData.cs:
-    newFile: !uuid 'ebe16155c9e6b40f7fb5aa7ec12b8803ddb564a5'
-    oldFile: !uuid '5dae19134d634d3df6d40308ed466c01fc4d0701'
-  /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid '05b1e7316ffe3f75893b27eab81b7528201b4a5c'
-    oldFile: !uuid '7f3778d4bc5f2af66529355eb186106531852bf1'
-  /Admin.NET/Admin.NET.Core/Service/WeChat:
-    newFile: !uuid '67a6fa293bbeb46690807808dad7ef5733982915'
-    oldFile: !uuid 'de2361d12bea0527e94bce3553e1c32e0acf3d0b'
-  /Admin.NET/Admin.NET.Core/Service/WeChat/Dto:
-    newFile: !uuid '96e1e62510585ef7943eeee0af5fb93f52ac8eb1'
-    oldFile: !uuid '0e1560c6e807d06e1cfa8dfd9b0e3af1bf6ce2b4'
-  /Admin.NET/Admin.NET.Core/Service/WeChat/Dto/WeChatUserInput.cs:
-    newFile: !uuid 'ca39e053f5cbd95d49514916eb6f577b65d4ff3b'
-    oldFile: null
-  /Admin.NET/Admin.NET.Core/Service/WeChat/WeChatService.cs:
-    newFile: !uuid 'bc3e9f536376e5f2bf16e21ea13e0e972e292729'
-    oldFile: !uuid '4e8dd1b4f31a73bda99b2377b7698b9f62420aaf'
-  /Admin.NET/Admin.NET.Core/Service/WeChat/WeChatUserService.cs:
-    newFile: !uuid '920089c0bcb77f354e0c75161533c96cc0d17827'
-    oldFile: null
+    newFile: !uuid '8aceb7e01c0fe5312f671b0a553da3df4c59b9f3'
+    oldFile: !uuid '25c79b41a29a108ad4b76f0da453966d2e8dc4a2'
+  /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
+    newFile: !uuid 'f916d1056aaf6099844d752bde48d0e222b52b05'
+    oldFile: !uuid '1db1765bd52bfbe9f470a3c667ad7f309c783f5f'
   /Web:
-    newFile: !uuid '0447578f9b38961ca6e8007ac90774e3930718c9'
-    oldFile: !uuid '5f8d24cdd54cfa93321db3079f6608fc7f604c03'
+    newFile: !uuid 'a01994a2fdac970c3f859575aa0aaa332c3eeed9'
+    oldFile: !uuid '0447578f9b38961ca6e8007ac90774e3930718c9'
   /Web/src:
-    newFile: !uuid '9ebaaffbf18527012a445d3fecf5c0b804f915d1'
-    oldFile: !uuid '9d06a3e45707ea9686d40921c1cfe0372a5ed1b6'
-  /Web/src/api-services:
-    newFile: !uuid '50b2aac75f73f923a958509b19a0c069ee97bedf'
-    oldFile: !uuid '57c8130a8f06a2793d5bfe60ca68cbc6abe639fc'
-  /Web/src/api-services/api.ts:
-    newFile: !uuid '429ab9479a79293edd5eb6005509df0caf6c3191'
-    oldFile: !uuid 'bb97406f9d5acb438112c16e53836045e4083464'
-  /Web/src/api-services/apis:
-    newFile: !uuid '6746e3a11ee5d1f67e22b235ddf6fcc75a64f5df'
-    oldFile: !uuid 'c9f90d1c746af5de30b18efc99487f3d5ce20605'
-  /Web/src/api-services/apis/we-chat-user-api.ts:
-    newFile: !uuid '3186c21d886a32526b271b2c64385d5eff909fb6'
-    oldFile: null
-  /Web/src/api-services/models:
-    newFile: !uuid '3443eee9124861e981fee341ca19579c69e7718c'
-    oldFile: !uuid '57464fc05e6fd6e24f9fa949adc24b5568db12b7'
-  /Web/src/api-services/models/admin-result-sql-sugar-paged-list-we-chat-user.ts:
-    newFile: !uuid 'fe336bec11852d517a98a802530a9008e5e74faa'
-    oldFile: null
-  /Web/src/api-services/models/delete-we-chat-user-input.ts:
-    newFile: !uuid 'c764df90eaa33dd7362d16ed4804f1cbb68326c3'
-    oldFile: null
-  /Web/src/api-services/models/index.ts:
-    newFile: !uuid '305cb46cbaf80a6d73f9e617f44762ca1622e0e3'
-    oldFile: !uuid '7048b15110a6edff4ca140950c744b62308579f6'
-  /Web/src/api-services/models/platform-type-enum.ts:
-    newFile: !uuid '07cf4488e725077f617f9639917456bb751c67cd'
-    oldFile: null
-  /Web/src/api-services/models/sql-sugar-paged-list-we-chat-user.ts:
-    newFile: !uuid '8bd0983cdc48dad11604d182cbf50367223c3017'
-    oldFile: null
-  /Web/src/api-services/models/we-chat-user-type-enum.ts:
-    newFile: null
-    oldFile: !uuid '1cd8053764c22b1bb1453c795b1cec74f3bd249f'
-  /Web/src/api-services/models/we-chat-user.ts:
-    newFile: !uuid 'a3b775faae7d556d0aa4770c2a93c199d953e14c'
-    oldFile: !uuid 'dd56932544677959b87ccf72cacbd3c3f44fea48'
+    newFile: !uuid '5b33dddce8fa31bc1b3ecafbd911c20a4c7b783b'
+    oldFile: !uuid '9ebaaffbf18527012a445d3fecf5c0b804f915d1'
   /Web/src/views:
-    newFile: !uuid '9f35717acd7f1ac88536c8ba0d98da26afbc73c4'
-    oldFile: !uuid 'a5ceb6b37c38f55d152137a80cbb0414317f9e0d'
+    newFile: !uuid 'a5e1f3b65bf8b615f15ae2ad2ced0e53781500c2'
+    oldFile: !uuid '9f35717acd7f1ac88536c8ba0d98da26afbc73c4'
   /Web/src/views/system:
-    newFile: !uuid '6df54bce7aa40f529e19d5b52d2029c520e34a49'
-    oldFile: !uuid 'e8190b99785c99ad3b0e2b6c06dd675704d0d36c'
-  /Web/src/views/system/job:
-    newFile: !uuid 'ad3c9c538123b7daff65a6285f36a2046547a5aa'
-    oldFile: !uuid 'db45bd169de69e3d6b49f014f52dd1ec223ae30e'
-  /Web/src/views/system/job/component:
-    newFile: !uuid 'b4102d240a8abdd4813acbdbd7b29d8e8ca048ef'
-    oldFile: !uuid '841ae7146265edf506b579b08d2f4a202e37a495'
-  /Web/src/views/system/job/component/editJobDetail.vue:
-    newFile: !uuid 'dc7670662e7b625c407405b5e5372704a99d7b4f'
-    oldFile: !uuid 'd34c958c40f6e79e51440a19da06c37eedec3355'
-  /Web/src/views/system/weChatUser:
-    newFile: !uuid 'f8e3a287ea0a2ddd72c3afb3fc3aaf715d619821'
-    oldFile: null
-  /Web/src/views/system/weChatUser/component:
-    newFile: !uuid '0b980c38a9a70cd340f8487645f452ede10440f0'
-    oldFile: null
-  /Web/src/views/system/weChatUser/component/editWeChatUser.vue:
-    newFile: !uuid 'dfeca3ee1cd46878592ff58ee372451ea0900273'
-    oldFile: null
-  /Web/src/views/system/weChatUser/index.vue:
-    newFile: !uuid '9018d1ea2f83c1d60abafd15ddac9d8139afb659'
-    oldFile: null
-gitCommitId: !uuid 'b41d4ddc39dd7f8292eddc8e8dfd437a590f5cb9'
-renames:
-  /Admin.NET/Admin.NET.Core/Enum/PlatformTypeEnum.cs: /Admin.NET/Admin.NET.Core/Enum/WeChatUserTypeEnum.cs
-  /Web/src/api-services/models/platform-type-enum.ts: /Web/src/api-services/models/we-chat-user-type-enum.ts
-revisionId: 458
+    newFile: !uuid '930b7f49bf0baea93bd2b2e1f60ba389bd587c69'
+    oldFile: !uuid '6df54bce7aa40f529e19d5b52d2029c520e34a49'
+  /Web/src/views/system/codeGen:
+    newFile: !uuid '7e62d6fea5dec7794734d125cdb7580df7835f30'
+    oldFile: !uuid '2dacb2bbc3628c1279adfbdc45225999494c1fcf'
+  /Web/src/views/system/codeGen/component:
+    newFile: !uuid '9304a85352c743eb37b7eebbb22d9eab05c886d6'
+    oldFile: !uuid 'b65852cbe68ddeb921dea5412c5ad0a99789fe41'
+  /Web/src/views/system/codeGen/component/editCodeGenDialog.vue:
+    newFile: !uuid 'f5f04e3f52cc34db9efb0f515fd9b06dfd0ba2ba'
+    oldFile: !uuid '374595005dafe8111db0f6191f8f88f5500be2d2'
+  /Web/src/views/system/config:
+    newFile: !uuid '8396fdeb5e17364b9d6bf204b81a204c7bf5a411'
+    oldFile: !uuid '1b03dc44ffd0fa3439ce7507c18c2f25b99b09e4'
+  /Web/src/views/system/config/index.vue:
+    newFile: !uuid '07582ebdf029b9793625383ffadb1118ba27fbda'
+    oldFile: !uuid '297482afabe35eafa7f22ada7344ba3e9441b746'
+  /Web/src/views/system/dict:
+    newFile: !uuid '184f487baecccdeb799599b357678796d3ab8db7'
+    oldFile: !uuid '9c45ef841505dbcc90d63c9c1f1bf2e5cfda3769'
+  /Web/src/views/system/dict/component:
+    newFile: !uuid '60402d23d9c8fb295564d25f5a8b3272dc819817'
+    oldFile: !uuid '20e3e2d9da9e1d252c71b629b5754e422e3d8781'
+  /Web/src/views/system/dict/component/dictDataDialog.vue:
+    newFile: !uuid '1a8c0be6761732034d6e5d9c41bf3eabb6bc396f'
+    oldFile: !uuid '1891e4c1a145a0ffdda0c9f7988a885aec7f1030'
+  /Web/src/views/system/dict/index.vue:
+    newFile: !uuid '452d7cb9e6a5511b2f6097cdf589c4775bb14bd7'
+    oldFile: !uuid '93a99417a7e6efddc3997bb9deb61c3f50e44b0d'
+  /Web/src/views/system/file:
+    newFile: !uuid '18c65f35049777ed5785994f93672d23a40e92b3'
+    oldFile: !uuid 'c772438cd7e3ef9920f570cec355e6c9f4e37be7'
+  /Web/src/views/system/file/index.vue:
+    newFile: !uuid 'd6a670853e57ff9236479500344f2437a47c54eb'
+    oldFile: !uuid '7e2df15d37ca6ed3ee5b56398697445b0cc4989a'
+  /Web/src/views/system/menu:
+    newFile: !uuid '17c760b39ff10b2e901c55f3dc762b4a8b7d095e'
+    oldFile: !uuid '860f948f64fc9af5eed2c07b1d58dbeac722bb49'
+  /Web/src/views/system/menu/index.vue:
+    newFile: !uuid 'bd358417407baf237b445c1fae992332bc2334f3'
+    oldFile: !uuid 'e44252490b16bb16991b3e166fd854832cfb327c'
+  /Web/src/views/system/notice:
+    newFile: !uuid '86e331931de1885574f9bf06b1fd794fc230136d'
+    oldFile: !uuid 'feac0957474914d6a60124783d37db871f2e9b35'
+  /Web/src/views/system/notice/index.vue:
+    newFile: !uuid '2c14b200f33cbd0a1ac2b5810dc4f203b3f2ad41'
+    oldFile: !uuid '82cb6126a613bdf841561481ac86e861216e5a8e'
+  /Web/src/views/system/org:
+    newFile: !uuid 'b34b125194fb7288629bb023d5ed7970297bffdb'
+    oldFile: !uuid '2377a845e156fa4c9d385a27837e3c9ad13f3023'
+  /Web/src/views/system/org/index.vue:
+    newFile: !uuid '211b95ae5d207f2f42d4e087acdd2fae51e6895b'
+    oldFile: !uuid 'f8b98fe23e825b9fde8fbac5a13207623de522b0'
+  /Web/src/views/system/pos:
+    newFile: !uuid 'd8dcfc1f27f669a7fec622403e9ae5ea73144a6b'
+    oldFile: !uuid 'ff03dd5c2529cedaa01d8b0b8a7ff363daa913de'
+  /Web/src/views/system/pos/index.vue:
+    newFile: !uuid '36542ea67d3d57a4a4ae34d7aafb5ff81022d152'
+    oldFile: !uuid '3300206493e7f7fd6513ce739d57597c63dcde50'
+  /Web/src/views/system/region:
+    newFile: !uuid '58a0ae5027660e8135aaed120628d4128e67c794'
+    oldFile: !uuid '1b048a2ada96a7b57d3c485a61f4fbcf4397e406'
+  /Web/src/views/system/region/index.vue:
+    newFile: !uuid 'd9aaceace828a8cfc6a97f8f5d8c6daf8272314c'
+    oldFile: !uuid 'a44980bda7cf1cc118509bfc33050ed1c072e130'
+  /Web/src/views/system/role:
+    newFile: !uuid '547706ffa161a669c9e00cd12eeeda32567f2c10'
+    oldFile: !uuid '8ddbc3540b31d92faf534676f1d44dc863ef9d52'
+  /Web/src/views/system/role/index.vue:
+    newFile: !uuid 'e860075e59b2f9a065cf901cec9dae763d80821c'
+    oldFile: !uuid '872cdac778dc0656db8ce50e280f187dbccf50e5'
+  /Web/src/views/system/tenant:
+    newFile: !uuid '8d0804bdee941188f0bd60e5b41984d13dba6b56'
+    oldFile: !uuid '7d440d72cccbb2b7e624db6f33160f3f1c60073c'
+  /Web/src/views/system/tenant/index.vue:
+    newFile: !uuid 'a570b1fbd4e61cf42b4e3dfae650af6c50538ca7'
+    oldFile: !uuid '6bef6234ecb1838065215226c443a2a17fa2b6fe'
+  /Web/src/views/system/timer:
+    newFile: null
+    oldFile: !uuid 'e162feff2707b570ba6e7047a8c029180cf34e1a'
+  /Web/src/views/system/timer/component:
+    newFile: null
+    oldFile: !uuid 'fd58aeb53fa00588a8f9ee45ce0f4e6115c7217b'
+  /Web/src/views/system/timer/component/editTimer.vue:
+    newFile: null
+    oldFile: !uuid 'de8d1c8bfa9b76050b410523d1809c9902e6b794'
+  /Web/src/views/system/timer/index.vue:
+    newFile: null
+    oldFile: !uuid '16b98affee1c967aaaf9a6c131f7b92c33e6db96'
+  /Web/src/views/system/user:
+    newFile: !uuid '76de4c3dbaac3bf20835e2d9812ae45fe8e93e50'
+    oldFile: !uuid 'b047b237e5a56c94fc0ca983437992820f36cd9f'
+  /Web/src/views/system/user/index.vue:
+    newFile: !uuid '869477414d859b0eb0d7b83720a4ad140e74ae4a'
+    oldFile: !uuid '89b2ac9fea0765ed4b1b70a35974d483f4511133'
+gitCommitId: !uuid '0fb0f78d267cfbd3f9726646692b1f63abd3f2e5'
+renames: {
+  }
+revisionId: 459
