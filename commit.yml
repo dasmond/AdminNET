@@ -3,33 +3,15 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid 'b838ec592577483d4387ad43f954b7a8c5563da8'
-    oldFile: !uuid '2da6551112946e2cd43b11c5322565d0afb6d08a'
+    newFile: !uuid '77b7ba0dce0c87237ac7ccab54f35dc09b0abd8f'
+    oldFile: !uuid 'b838ec592577483d4387ad43f954b7a8c5563da8'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '5555b4a709ad1d2a7749d4caf9779a9a124faddc'
-    oldFile: !uuid '8aceb7e01c0fe5312f671b0a553da3df4c59b9f3'
-  /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid '54ec48e7500fe112a3f445344b1aef18ba780709'
-    oldFile: !uuid '05b1e7316ffe3f75893b27eab81b7528201b4a5c'
-  /Admin.NET/Admin.NET.Core/Service/DataBase:
-    newFile: !uuid '2e9911f0ba31f8bbf5a487d3a1af5c4e1cb7abe3'
-    oldFile: !uuid '6821955f864da8cda7dd83748a2cbee127667445'
-  /Admin.NET/Admin.NET.Core/Service/DataBase/SysDatabaseService.cs:
-    newFile: !uuid '5b7e3e7c0ceb1ea642942385e04a641fd522b04e'
-    oldFile: !uuid '5612732fd16207b8d41ebd1750b4a86b503effe0'
-  /Web:
-    newFile: !uuid 'b88550989bad68cee72332b0a65886a41241b5b1'
-    oldFile: !uuid 'a01994a2fdac970c3f859575aa0aaa332c3eeed9'
-  /Web/src:
-    newFile: !uuid 'c8a38453559347ae5c09fd85a9a6cac2e214ddc4'
-    oldFile: !uuid '5b33dddce8fa31bc1b3ecafbd911c20a4c7b783b'
-  /Web/src/router:
-    newFile: !uuid '23c4809c0a45840472d635de536a0f09383ac568'
-    oldFile: !uuid 'de16205751818d58dba5dbb6cf68ae8e49f4d550'
-  /Web/src/router/index.ts:
-    newFile: !uuid 'db973a8102204f8357b75e9ff53d6e78621d2430'
-    oldFile: !uuid 'bd93f76cb3bdd89b4b880edd36c09a439b9af8ba'
-gitCommitId: !uuid '3991881624721ebb0319b47fc10cf8c8f267c932'
+    newFile: !uuid '3d62d52f82bf95a9c7dc83da76f15a0f0b0f5dcd'
+    oldFile: !uuid '5555b4a709ad1d2a7749d4caf9779a9a124faddc'
+  /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
+    newFile: !uuid 'd5308bd3486076ff31ff4f7413ade50842acf3ad'
+    oldFile: !uuid 'f916d1056aaf6099844d752bde48d0e222b52b05'
+gitCommitId: !uuid '5f3ad25d4eb4b748ac5f20e1410ad7c09006d4ff'
 renames: {
   }
-revisionId: 460
+revisionId: 461
