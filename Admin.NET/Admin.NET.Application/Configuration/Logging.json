@@ -15,7 +15,7 @@
             "MaxRollingFiles": 30 // 只保留30个文件
         },
         "Database": {
-            "Enabled": true, // 启用数据库日志
+            "Enabled": false, // 启用数据库日志
             "MinimumLevel": "Information"
         },
         "ElasticSearch": {
