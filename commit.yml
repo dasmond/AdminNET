@@ -3,24 +3,33 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid 'ed641fbbd24223764901675d299c5e67ff604f5f'
-    oldFile: !uuid '312645d709c1b8ed2030a28c44fcba2b36cb157d'
+    newFile: !uuid 'c997b512aca156987c2d5e3b4a396ed769d1ed6e'
+    oldFile: !uuid 'ed641fbbd24223764901675d299c5e67ff604f5f'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '35afb8a7bdb4a274b19abdc03719032979baaa5e'
-    oldFile: !uuid '0654f6d4b578b4563f5c23756cb21baaf71b1113'
-  /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
-    newFile: !uuid '6543409e8452c92cf8c1a15c254aa4a69354a079'
-    oldFile: !uuid 'd5308bd3486076ff31ff4f7413ade50842acf3ad'
+    newFile: !uuid 'b534bab877efdebc8e720695dd252c77a313915c'
+    oldFile: !uuid '35afb8a7bdb4a274b19abdc03719032979baaa5e'
   /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid '5f36d85a153e0aec79c9519e83ad976733033ecb'
-    oldFile: !uuid '82226abea390af82cff95bf4d37d522b4d8ef3c5'
-  /Admin.NET/Admin.NET.Core/Service/Job:
-    newFile: !uuid 'cee9ab421eb78f0ec96f5a7edffed511dfbbebc3'
-    oldFile: !uuid '19fdc676ed7ffa046777440c230a4f960b75f451'
-  /Admin.NET/Admin.NET.Core/Service/Job/DbJobPersistence.cs:
-    newFile: !uuid '4db30a6d61abfa411876cde916e8ac592d58f554'
-    oldFile: !uuid 'f4bc8ae9d5ad619173c582a29e9042061b85d622'
-gitCommitId: !uuid 'e46b870a059dbf6802c7343c81b642f4b7e1dd54'
+    newFile: !uuid 'b720ee92cdaa8df486e5abdd22e9643cc7ac6e48'
+    oldFile: !uuid '5f36d85a153e0aec79c9519e83ad976733033ecb'
+  /Admin.NET/Admin.NET.Core/Service/DataBase:
+    newFile: !uuid '11f4e0849145093e4a12fa7b2d7cc483193aff4a'
+    oldFile: !uuid '0da5c77e6d632b8c33a2b573ae64d39f4c6b7621'
+  /Admin.NET/Admin.NET.Core/Service/DataBase/SysDatabaseService.cs:
+    newFile: !uuid '52b1408a40ba50e4ffc9b375e07b4c405c9a3747'
+    oldFile: !uuid 'eb75d34cd6fadfbed0b48bc8ae679d878e6a85e8'
+  /Admin.NET/Admin.NET.Web.Entry:
+    newFile: !uuid '388062022a3b979d5fb54d755be741b0340a7272'
+    oldFile: !uuid '9ddac099656e786460d9de5c0d9b49024907e4ea'
+  /Admin.NET/Admin.NET.Web.Entry/wwwroot:
+    newFile: !uuid 'f09686b420973969277b3f556207f77e569ec5e1'
+    oldFile: !uuid '906a7d09abe907bb484bc05fe88f711da35e32ac'
+  /Admin.NET/Admin.NET.Web.Entry/wwwroot/Template:
+    newFile: !uuid 'e657cda7fbd8bd7fbd3ea3e546e940b5ab0ad29c'
+    oldFile: !uuid '3fdb1bccd59dfb30a080ac3ed56039ae31317a0f'
+  /Admin.NET/Admin.NET.Web.Entry/wwwroot/Template/Entity.cs.vm:
+    newFile: !uuid 'afb23d2400cd9e14e0489e3093e9c001513ff432'
+    oldFile: !uuid '972f8fc132435addd2cb72edb4891c7d4dd72020'
+gitCommitId: !uuid '4bb1f5e4bff09b3cf991d77f80e8714373c659ab'
 renames: {
   }
-revisionId: 466
+revisionId: 467
