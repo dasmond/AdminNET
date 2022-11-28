@@ -3,57 +3,21 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '308ed5218b360d0682fbd12c88e97c9113b410aa'
-    oldFile: !uuid 'e7874353a9066c782b061290cae3bd50c7add187'
+    newFile: !uuid '312645d709c1b8ed2030a28c44fcba2b36cb157d'
+    oldFile: !uuid '308ed5218b360d0682fbd12c88e97c9113b410aa'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '1b35e4920293a4e106c80950a655bdf0bbbef93d'
-    oldFile: !uuid 'fa6c9e1222d9fd8f6a077bbd421114f2cacebefb'
-  /Admin.NET/Admin.NET.Core/Admin.NET.Core.xml:
-    newFile: !uuid '4dae18d4e1a747b168a86fdabc6a116918495d1f'
-    oldFile: !uuid '2c2154821bb59a2bd3a3aad5dba55b26206df5c0'
+    newFile: !uuid '0654f6d4b578b4563f5c23756cb21baaf71b1113'
+    oldFile: !uuid '1b35e4920293a4e106c80950a655bdf0bbbef93d'
   /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid '70c4da5fb5c3f9c78f3e8135a784ecb849b253f2'
-    oldFile: !uuid '2d867607c3d2ab784a20fbba6dc92f45c5391d20'
-  /Admin.NET/Admin.NET.Core/Service/Logging:
-    newFile: !uuid '746df448bdb7b55d4595f93c92950f4043372cc3'
-    oldFile: !uuid 'f575b79c74c5ddc2ebfeb5c92f8acf4369eb8879'
-  /Admin.NET/Admin.NET.Core/Service/Logging/Dto:
-    newFile: !uuid '8d8f2d9b43e276ff4bfc8bc6c7f4bce1da5ff08a'
-    oldFile: !uuid 'a7de5c280a88ba0da18f9d2f185861ae8e957ba8'
-  /Admin.NET/Admin.NET.Core/Service/Logging/Dto/ExportLogDto.cs:
-    newFile: !uuid '0631f26ccbe5c803bffc79444d314d6e3c6e7a7c'
-    oldFile: null
-  /Admin.NET/Admin.NET.Core/Service/Logging/Dto/ExportLogOpDto.cs:
-    newFile: null
-    oldFile: !uuid '4951f1548c728edda19a3853599b822ff49e9015'
-  /Admin.NET/Admin.NET.Core/Service/Logging/SysLogExService.cs:
-    newFile: !uuid '0b1df51b34e0124ef4c7c28351071f5317e565b7'
-    oldFile: !uuid '3debb616c57f942b5f64f2e09369a0866cfd46e7'
-  /Admin.NET/Admin.NET.Core/Service/Logging/SysLogOpService.cs:
-    newFile: !uuid 'eb615e62e64b3d6c41bf66b5196548cf23715eac'
-    oldFile: !uuid '6c8e721f0e3ecbbc60704745fd41a03bcb9edd13'
-  /Web:
-    newFile: !uuid 'd8d77b883468dfda4902a690eb85659e74d5fb90'
-    oldFile: !uuid 'f56bf518d604dc8cce04245efd2ddd1066494ee0'
-  /Web/src:
-    newFile: !uuid '41e0ff06d05f8b2cc4d3b892a197d30d4eb9dc6c'
-    oldFile: !uuid '32e35dafb6bfdf5c6dcc870eb0f439547d7fc957'
-  /Web/src/views:
-    newFile: !uuid 'e584dd3bde4147127a33991cbda8927c9bdaf0b9'
-    oldFile: !uuid '8174fb62e03d37efd4051a3c52217ce5328b6e87'
-  /Web/src/views/system:
-    newFile: !uuid '2ebc0c308fe7a6bbb35716c816c4dab34da649b2'
-    oldFile: !uuid '4d57580420933c70561109610c6c50260ab2a0c2'
-  /Web/src/views/system/log:
-    newFile: !uuid '57590351abe9dd6dff46dbfb14fc6b6f09c94f7c'
-    oldFile: !uuid 'c0887cf75d43b90ecb6d2ad4350339f3ace15e2b'
-  /Web/src/views/system/log/exlog:
-    newFile: !uuid 'd938dd048ec0457cc6f602675a6e5f3508b741bf'
-    oldFile: !uuid 'ad951df898b59e8178f0010dde07ebf1eaf6395f'
-  /Web/src/views/system/log/exlog/index.vue:
-    newFile: !uuid 'ad37b9384964ebc172ae0a9a8af742012c9468f1'
-    oldFile: !uuid '35cbc24819d32235fdd3872ee4f81f08134a5534'
-gitCommitId: !uuid '7ff4084da3afb41655309f22cbcb321b3aa19db7'
-renames:
-  /Admin.NET/Admin.NET.Core/Service/Logging/Dto/ExportLogDto.cs: /Admin.NET/Admin.NET.Core/Service/Logging/Dto/ExportLogOpDto.cs
-revisionId: 464
+    newFile: !uuid '82226abea390af82cff95bf4d37d522b4d8ef3c5'
+    oldFile: !uuid '70c4da5fb5c3f9c78f3e8135a784ecb849b253f2'
+  /Admin.NET/Admin.NET.Core/Service/DataBase:
+    newFile: !uuid '0da5c77e6d632b8c33a2b573ae64d39f4c6b7621'
+    oldFile: !uuid '2e9911f0ba31f8bbf5a487d3a1af5c4e1cb7abe3'
+  /Admin.NET/Admin.NET.Core/Service/DataBase/SysDatabaseService.cs:
+    newFile: !uuid 'eb75d34cd6fadfbed0b48bc8ae679d878e6a85e8'
+    oldFile: !uuid '5b7e3e7c0ceb1ea642942385e04a641fd522b04e'
+gitCommitId: !uuid 'afa234b786a439e9b36fc0d9b11e746449bb3168'
+renames: {
+  }
+revisionId: 465
