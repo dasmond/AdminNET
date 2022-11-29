@@ -40,7 +40,8 @@ namespace Admin.NET.Core
             var parameterExp = Expression.Parameter(type, "x");
             var propertyInfo = type.GetProperty(property);
             var propertyExp = Expression.Property(parameterExp, propertyInfo);
-            var lambdaExp = Expression.Lambda<Func<T, dynamic>>(propertyExp, parameterExp);
+            Expression conversion = Expression.Convert(propertyExp, typeof(object));
+            var lambdaExp = Expression.Lambda<Func<T, dynamic>>(conversion, parameterExp);
 
             return sortMethod == "descend" ? source.OrderByDescending(lambdaExp) : source.OrderBy(lambdaExp);
         }
