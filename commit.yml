@@ -3,66 +3,18 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '6089206e73b2fd8dd24184a3686a538aec1eab4c'
-    oldFile: !uuid 'b0c9b490888cb34ea9d660663b2a79458437d45b'
+    newFile: !uuid '42c9753a0f0b0f7df8a8f4a6d8fb4a70667e77f2'
+    oldFile: !uuid '6089206e73b2fd8dd24184a3686a538aec1eab4c'
   /Admin.NET/Admin.NET.Application:
-    newFile: !uuid '2c84c43743377c345a032ca50a55305ec8d6f332'
-    oldFile: !uuid '6afb68c10693fc688ea58aa20e81f7832f634111'
+    newFile: !uuid '8012462c697b0c0b8b2f3f7065a053657e574932'
+    oldFile: !uuid '2c84c43743377c345a032ca50a55305ec8d6f332'
   /Admin.NET/Admin.NET.Application/Configuration:
-    newFile: !uuid '9094462c8f92f38fda27b3bf6dcbb4cd38b8fcb4'
-    oldFile: !uuid 'e0894035c43ec74f1147006c082dc648447b9672'
+    newFile: !uuid '7c5f4dd6e9fa17d695acfbe5e4e52bcd19996194'
+    oldFile: !uuid '9094462c8f92f38fda27b3bf6dcbb4cd38b8fcb4'
   /Admin.NET/Admin.NET.Application/Configuration/App.json:
-    newFile: !uuid '59ff7dcf7ca9a140acd56fa0b0f8277d61233ba7'
-    oldFile: !uuid '2bcac011d3bce8b674db85af1296180e845eb873'
-  /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '9d8ca7f161ee139d3985e3beed693b5c7ba592c9'
-    oldFile: !uuid 'a07f72065ff11505651c8bca12c1bbfb14f3d698'
-  /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid '2c6b6d1721e9e6b3f11423280e14a6b7b6b132b3'
-    oldFile: !uuid '37dde8a2ab88d50759f9bc7603d4d8548bf54794'
-  /Admin.NET/Admin.NET.Core/Service/CodeGen:
-    newFile: !uuid '0cd97686b324395f093214e22bf40e4cf2a033a4'
-    oldFile: !uuid 'ae2d7c34a9bbdfba52aae05206730c79d443ee18'
-  /Admin.NET/Admin.NET.Core/Service/CodeGen/SysCodeGenService.cs:
-    newFile: !uuid '8761d921c01a03a7c04cacf71926429f640c2bb3'
-    oldFile: !uuid 'b1120748ae94a03fc2b9b71fc69db6885595d454'
-  /Admin.NET/Admin.NET.Web.Entry:
-    newFile: !uuid '17d13a539a9fe78270d38185be7841e5f2ca026d'
-    oldFile: !uuid '388062022a3b979d5fb54d755be741b0340a7272'
-  /Admin.NET/Admin.NET.Web.Entry/wwwroot:
-    newFile: !uuid '40074da326aaa6ee76409876a119b0f13184cb1b'
-    oldFile: !uuid 'f09686b420973969277b3f556207f77e569ec5e1'
-  /Admin.NET/Admin.NET.Web.Entry/wwwroot/Template:
-    newFile: !uuid '0789b1411196bc5531f4774ea462dcb2e54db8d4'
-    oldFile: !uuid 'e657cda7fbd8bd7fbd3ea3e546e940b5ab0ad29c'
-  /Admin.NET/Admin.NET.Web.Entry/wwwroot/Template/Entity.cs.vm:
-    newFile: !uuid 'b603604a81500eea0eb2f6803c2c3a5b249a109f'
-    oldFile: !uuid 'afb23d2400cd9e14e0489e3093e9c001513ff432'
-  /Admin.NET/Admin.NET.Web.Entry/wwwroot/Template/Manage.js.vm:
-    newFile: !uuid '9199defb0ce4833e31d3c90d2cc6e1b9d4c40ec1'
-    oldFile: !uuid '7d650c35808c727ef1d95ce3660ab48c1737a914'
-  /Admin.NET/Admin.NET.Web.Entry/wwwroot/Template/Service.cs.vm:
-    newFile: !uuid '9674d58d10059d645f5af4d056be5943332a3c2b'
-    oldFile: !uuid '23c01fe8d96666638c9e9c02e301d1776576f04c'
-  /Admin.NET/Admin.NET.Web.Entry/wwwroot/Template/editDialog.vue.vm:
-    newFile: !uuid 'c8d37909c26830972b9b24ebfa565968fa12d8a5'
-    oldFile: !uuid 'a478217a8e1afde1ca12818eaf95c446494b78f4'
-  /Admin.NET/Admin.NET.Web.Entry/wwwroot/Template/index.vue.vm:
-    newFile: !uuid '101d7cfeae087644eac8b4f14aedfd6d8c71749c'
-    oldFile: !uuid 'd857bac47dfdfbb2185a237398ea1bd2a31cab94'
-  /Web:
-    newFile: !uuid '6086e55fd23c782dbac2646aefc0fbc156c0b0b6'
-    oldFile: !uuid '1d11b681d6222d6bcee842cb6b80aca0593e9692'
-  /Web/src:
-    newFile: !uuid 'c5673ffb7367949f11e3add2b6beb9229d40c7a4'
-    oldFile: !uuid '7c0a0b1710a30a349269b5fec79813d4fd8e88a4'
-  /Web/src/utils:
-    newFile: !uuid 'e94e6ca648c5926465156c3b14bee21c612be9ca'
-    oldFile: !uuid '935c16e34b38295c21b7bddfc02a0e7be2c794b0'
-  /Web/src/utils/request.ts:
-    newFile: !uuid 'c3e4f46c2b668c74ce9f910fddb8d288ecf2a7b5'
-    oldFile: !uuid 'e428ae02fc5de2859873cd80d4e965ab981599c2'
-gitCommitId: !uuid '8e688e12c2b54472f12f971822ac24ca83987c03'
+    newFile: !uuid 'c8235ee0366fb3f719f9a2c4234f1b8c311e2401'
+    oldFile: !uuid '59ff7dcf7ca9a140acd56fa0b0f8277d61233ba7'
+gitCommitId: !uuid '9d4689da1edc2599b97b6a40a37564db7d9e34d0'
 renames: {
   }
-revisionId: 471
+revisionId: 472
