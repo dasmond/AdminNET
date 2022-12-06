@@ -2,31 +2,22 @@
 branches: {
   }
 fileChange:
-  /Web:
-    newFile: !uuid 'e889b4c8717e89146c22ed683174704f454032d9'
-    oldFile: !uuid 'fdeebdfb5243986cbc7b45d50664e5145aebadad'
-  /Web/src:
-    newFile: !uuid '7a6a7764ec79bf41216e1b23f4b8f2a21f47a7de'
-    oldFile: !uuid '02212928e97ccc198b9a079e59919b797d2da28a'
-  /Web/src/directive:
-    newFile: !uuid 'd88553addb708eea29b654ffc2066bbddb219ca0'
-    oldFile: !uuid 'c5ca32c12f9ab82c95671f6212c94a22a3c3c18f'
-  /Web/src/directive/customDirective.ts:
-    newFile: !uuid '3a18a8f29815f7ba7642fc13d5dfa0c70f928ad1'
-    oldFile: !uuid 'c67350f555ecb3609b0ceb452df80e8a2db44dfc'
-  /Web/src/directive/index.ts:
-    newFile: !uuid '781400f4d9a82ca2dd8067864d06bda34d115362'
-    oldFile: !uuid 'e2e1c57ce53e379537acb489f6eda682e34fc65d'
-  /Web/src/utils:
-    newFile: !uuid '594ede54647069989c61d8ff96e2b6ca537cc981'
-    oldFile: !uuid 'e94e6ca648c5926465156c3b14bee21c612be9ca'
-  /Web/src/utils/customDirective.ts:
-    newFile: null
-    oldFile: !uuid 'c67350f555ecb3609b0ceb452df80e8a2db44dfc'
-  /Web/src/utils/directive.ts:
-    newFile: null
-    oldFile: !uuid 'a75b187e01ea15ac902c401282cb48531d28feff'
-gitCommitId: !uuid '221afb24f57a902482a3e9b8e2298ad31cc00a50'
+  /Admin.NET:
+    newFile: !uuid '8bbc14048225a08e61944e703310cd54b98262e1'
+    oldFile: !uuid 'eddc3a40584494285d0ee1464f3883c1f3cdee96'
+  /Admin.NET/Admin.NET.Core:
+    newFile: !uuid '16ce62d45181d2c6e9549a22e879d8ed67701dec'
+    oldFile: !uuid '6d9410b415c93b871c7bc7b737d028c7cfbe87ae'
+  /Admin.NET/Admin.NET.Core/Service:
+    newFile: !uuid 'fcd28032bc14468acb35f5f69f349ec8eb6874ee'
+    oldFile: !uuid '2c1392d1c61c6e4bf8c345d64fb6f3361482750a'
+  /Admin.NET/Admin.NET.Core/Service/User:
+    newFile: !uuid '2302f2ba9449d9c7226e05b3c757b82f36e89e13'
+    oldFile: !uuid '0c34e8ddaca4fa2fe24d616dd7d8d7edc4e4b6a4'
+  /Admin.NET/Admin.NET.Core/Service/User/SysUserService.cs:
+    newFile: !uuid '2eba8d73d568bc220391fc08e8a80ac47eeec2d5'
+    oldFile: !uuid '0f2ad53ade0b85e8c188eab38cca55b47555457a'
+gitCommitId: !uuid 'a03fb8ccb5b1b3ebf639ac9b1d47927514dba2ec'
 renames: {
   }
-revisionId: 481
+revisionId: 482
