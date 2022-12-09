@@ -3,18 +3,36 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '92dc43c8f686264156af9cde223fff2495e0c180'
-    oldFile: !uuid '68e21d9c15b87cd60fc458263493a2185b45d2df'
+    newFile: !uuid '15f430fcc5051db0bc89cf5566236fcead576a06'
+    oldFile: !uuid '92dc43c8f686264156af9cde223fff2495e0c180'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '6222947539d56c5ac8a2bf66a048a9aae37ca982'
-    oldFile: !uuid 'fd4140d75a34ab5bb03b551b6771d9e935ad62d3'
+    newFile: !uuid 'a2643dc325e9d6ecda7226e732c6f0d53ddb620d'
+    oldFile: !uuid '6222947539d56c5ac8a2bf66a048a9aae37ca982'
+  /Admin.NET/Admin.NET.Core/Admin.NET.Core.xml:
+    newFile: !uuid '8bd27a6947666a713066ee4ce97497a9d211d111'
+    oldFile: !uuid '9811cc6c6aada602b57e12aad7d9e82ff526acda'
+  /Admin.NET/Admin.NET.Core/Entity:
+    newFile: !uuid 'f0a9bb22ef7e495c17a77973d545d61204fa2f27'
+    oldFile: !uuid '60086e45ce44adcdb47a8dd020cdda90d160f9df'
+  /Admin.NET/Admin.NET.Core/Entity/EntityBase.cs:
+    newFile: !uuid 'd3db0dac07de1989e98b68d3bea02925d6ff534a'
+    oldFile: !uuid 'b4584881e67fd982bff8a8debeac162c4e3e31fd'
+  /Admin.NET/Admin.NET.Core/Entity/SysJobCluster.cs:
+    newFile: !uuid '571a2d60b8ad2da5bd98537e22a9545fb3531867'
+    oldFile: !uuid 'a197ef95c791d61880ec35e4672887eff85f867f'
+  /Admin.NET/Admin.NET.Core/Entity/SysJobDetail.cs:
+    newFile: !uuid '63a729d7b4eb6908734d73c021e4a33521cb57c2'
+    oldFile: !uuid 'c02bddb96001bbff9fc1ec106e174c954fab2087'
+  /Admin.NET/Admin.NET.Core/Entity/SysJobTrigger.cs:
+    newFile: !uuid '65f9113cd941d704c21d1e28d2b8024a181b61ce'
+    oldFile: !uuid '539e66f5706e27fdaba04fb9e16f0c6658aa798d'
   /Admin.NET/Admin.NET.Core/SqlSugar:
-    newFile: !uuid '4603ab69d113eef0df0a61d0f730c9b67cfa6e99'
-    oldFile: !uuid '067f65f3c44788eaf29509d7fd00683ba3676e9e'
+    newFile: !uuid '00ce28434b5c213824f1d4a8f3bca3dbf46c15a8'
+    oldFile: !uuid '4603ab69d113eef0df0a61d0f730c9b67cfa6e99'
   /Admin.NET/Admin.NET.Core/SqlSugar/SqlSugarSetup.cs:
-    newFile: !uuid '9dced21272b5ec441347b901340efb0b1d1d9b08'
-    oldFile: !uuid 'd7fde6e83be259a17b016629ca8b40f35cd921d4'
-gitCommitId: !uuid '247bc7855ece03d0989babc97414f409cf79ab39'
+    newFile: !uuid '03d9cdf9edb0d0a34579f70774114d7ed8225a5d'
+    oldFile: !uuid '9dced21272b5ec441347b901340efb0b1d1d9b08'
+gitCommitId: !uuid '032e23a9f09ebb1cf6ce3b2f1b289902b6ef3d43'
 renames: {
   }
-revisionId: 485
+revisionId: 486
