@@ -3,21 +3,238 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid 'e8e56cd012c118f28cb40d7800583c1e0506477e'
-    oldFile: !uuid 'cfb11d32ac12849e4adbaf0696e087d7c661513b'
+    newFile: !uuid 'f3be7bf7cb80c547495a2972cc5397ec239ac0fc'
+    oldFile: !uuid 'e8e56cd012c118f28cb40d7800583c1e0506477e'
+  /Admin.NET/Admin.NET.Application:
+    newFile: !uuid '1dba91eb8f06e61b6b80fd48cc5f71c1dc391724'
+    oldFile: !uuid 'c8272e8e9864d6144e15f773411d305892ab31fb'
+  /Admin.NET/Admin.NET.Application/Configuration:
+    newFile: !uuid 'a0ef1da3656edec3837e1b38b3de582ba2551427'
+    oldFile: !uuid '7c5f4dd6e9fa17d695acfbe5e4e52bcd19996194'
+  /Admin.NET/Admin.NET.Application/Configuration/Database.json:
+    newFile: !uuid '6919111580cddd7f053f76b0ea37f634e08a9584'
+    oldFile: !uuid 'a36697b6dac331dab1fa047ce91f3cdb42186326'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '32b1635a15adbac147d7d314b6a816bd2a1fe175'
-    oldFile: !uuid 'e7329652bf36dc54d4b355c47478638e7c2c7f62'
+    newFile: !uuid '2b38f0dffb87e5ca689971ea77f45493d047167d'
+    oldFile: !uuid '32b1635a15adbac147d7d314b6a816bd2a1fe175'
+  /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
+    newFile: !uuid '6cedc99a0002d5f6451aa739b681fc3e0caa430c'
+    oldFile: !uuid 'fcfbf1bb17197979f8de98213244ee09226f5a1c'
+  /Admin.NET/Admin.NET.Core/Admin.NET.Core.xml:
+    newFile: !uuid 'cf184a41850f07d42a7e2b297274e98d55c2c3c9'
+    oldFile: !uuid '8bd27a6947666a713066ee4ce97497a9d211d111'
+  /Admin.NET/Admin.NET.Core/Entity:
+    newFile: !uuid '367f9f6c81a859812eb6939cd8dc0ee3db26ec23'
+    oldFile: !uuid 'f0a9bb22ef7e495c17a77973d545d61204fa2f27'
+  /Admin.NET/Admin.NET.Core/Entity/SysCodeGen.cs:
+    newFile: !uuid 'c973146d6b94d2a567248aa515ee00c1ba017b7c'
+    oldFile: !uuid '513ac5c29331a2d0ab847cd778828f7a83f651ed'
+  /Admin.NET/Admin.NET.Core/Entity/SysCodeGenConfig.cs:
+    newFile: !uuid 'e2070f7addb78763c8b8e88b2b8acfaf6dff883b'
+    oldFile: !uuid '7401476acdf799eae50c205c1fb8c0280f3bbc28'
+  /Admin.NET/Admin.NET.Core/Entity/SysConfig.cs:
+    newFile: !uuid '7d86ba573c427a08f2bb01a6559d46bf9daef815'
+    oldFile: !uuid '312504c7379a01323b661483916472108753d01a'
+  /Admin.NET/Admin.NET.Core/Entity/SysDictData.cs:
+    newFile: !uuid '948dffa4269255dd7634029b5d189cc5f09ed699'
+    oldFile: !uuid 'd80985b7257b70a9602dc995b0add9c212c10e21'
+  /Admin.NET/Admin.NET.Core/Entity/SysDictType.cs:
+    newFile: !uuid '083f1b90081b1827abbc4b0d204a1c9c8c8664e2'
+    oldFile: !uuid '555481d43888174c997fe82d20d1ae3a7b1bc1c6'
+  /Admin.NET/Admin.NET.Core/Entity/SysFile.cs:
+    newFile: !uuid '9af0057bf8903a595685d6c40d7feefe1d52878f'
+    oldFile: !uuid '87f7ed2f739f7665876c62ec2bb7955fe54a0aa8'
+  /Admin.NET/Admin.NET.Core/Entity/SysJobCluster.cs:
+    newFile: !uuid '6c18030dd7d25458c6761f3d263c1536f8cd1b38'
+    oldFile: !uuid '571a2d60b8ad2da5bd98537e22a9545fb3531867'
+  /Admin.NET/Admin.NET.Core/Entity/SysJobDetail.cs:
+    newFile: !uuid '4d2d3233028b6b0f9a1887114d31dbe5d2ec4ead'
+    oldFile: !uuid '63a729d7b4eb6908734d73c021e4a33521cb57c2'
+  /Admin.NET/Admin.NET.Core/Entity/SysJobTrigger.cs:
+    newFile: !uuid 'de94a618b0e3a2de28f8edf87d3e5be3d1907c89'
+    oldFile: !uuid '65f9113cd941d704c21d1e28d2b8024a181b61ce'
+  /Admin.NET/Admin.NET.Core/Entity/SysLogAudit.cs:
+    newFile: !uuid '60c64f67ac186d87f9dbea5275ca03d8fde33720'
+    oldFile: !uuid 'c3ee04ee6b7073a6716085d6e4afd9db00cfbe14'
+  /Admin.NET/Admin.NET.Core/Entity/SysLogDiff.cs:
+    newFile: !uuid 'bef9507c996992a30999b06ff46e3e1e4dffd48f'
+    oldFile: !uuid '1c51b54975b552629e35c4df7c0e424969a26760'
+  /Admin.NET/Admin.NET.Core/Entity/SysLogEx.cs:
+    newFile: !uuid 'f8b36857292fe5f7b3bb75a71410b9eb475c0240'
+    oldFile: !uuid 'e0e6ceacdfa5c28ecbe321d0b6c968e133e23ae4'
+  /Admin.NET/Admin.NET.Core/Entity/SysLogOp.cs:
+    newFile: !uuid '100379b2d02097b8a6221807e631960901e225f6'
+    oldFile: !uuid '837c87fc8d928488e24022d7f99c6d88644f76c1'
+  /Admin.NET/Admin.NET.Core/Entity/SysLogVis.cs:
+    newFile: !uuid '34744fe8e5e552a843a3a77be7e63305ad2a3213'
+    oldFile: !uuid '6e3ce444734c0215d26e663e534f4093a650e076'
+  /Admin.NET/Admin.NET.Core/Entity/SysMenu.cs:
+    newFile: !uuid 'c1c710a2467348c01add310d1b65913439ccd102'
+    oldFile: !uuid 'b5ec76ce36770a5455bd61efb2f0888c96f81087'
+  /Admin.NET/Admin.NET.Core/Entity/SysNotice.cs:
+    newFile: !uuid '15281cff65f17fef047eb6e8f7c128929fc746e1'
+    oldFile: !uuid '6d017180a926ff96e21a0f96a8319222630f16a3'
+  /Admin.NET/Admin.NET.Core/Entity/SysNoticeUser.cs:
+    newFile: !uuid 'bb56579d87ece295a5953359a61417d691a5b3d9'
+    oldFile: !uuid '142d152f6b0ae6a9db421a40df4ffa319a594f01'
+  /Admin.NET/Admin.NET.Core/Entity/SysOnlineUser.cs:
+    newFile: !uuid '4be7cd839e67aa47c265cb33abf1ea45326217dd'
+    oldFile: !uuid 'ea825669a37f231ba5d1c0331d4507d00315330b'
+  /Admin.NET/Admin.NET.Core/Entity/SysOrg.cs:
+    newFile: !uuid 'd02c8bce5f66ed31dfdad2f2f5a8d70ee1e2b7af'
+    oldFile: !uuid '66d8ead167f262ae00772be3b6ac3b618ec53018'
+  /Admin.NET/Admin.NET.Core/Entity/SysPos.cs:
+    newFile: !uuid 'e0e02cdabc8a8900a78e3410c261e5a8493c6e68'
+    oldFile: !uuid 'fbac640c80f1c71e05638072fce6711b0e625169'
+  /Admin.NET/Admin.NET.Core/Entity/SysRegion.cs:
+    newFile: !uuid '32e231207dab48b2a5c284900efe96a6307823ff'
+    oldFile: !uuid 'fdf2514adb33180b2e05db883802616fbb151067'
+  /Admin.NET/Admin.NET.Core/Entity/SysRole.cs:
+    newFile: !uuid '91b3ca7db37296e62415579cdfa1a3c0ddd54f44'
+    oldFile: !uuid '4d3c0c369fdf04ce68c1a0e289c2e104300d42f5'
+  /Admin.NET/Admin.NET.Core/Entity/SysRoleMenu.cs:
+    newFile: !uuid 'd486dd080c6a52a75ad09a0b1a71e88cf35cb36e'
+    oldFile: !uuid '8344a9ae40c4693b241faa4acdf56ec4eaaf773f'
+  /Admin.NET/Admin.NET.Core/Entity/SysRoleOrg.cs:
+    newFile: !uuid '1caed51068197f687fcb5b771b890243fc15e4ff'
+    oldFile: !uuid '5953e8f49d83a75237ac0e076cc4a5d66a229380'
+  /Admin.NET/Admin.NET.Core/Entity/SysTenant.cs:
+    newFile: !uuid '244da9c04b6f4b4647ae37276ed61d91937d22a3'
+    oldFile: !uuid 'd64f00038c1b3546483bb789ec21d0ec8d7fd2eb'
+  /Admin.NET/Admin.NET.Core/Entity/SysUser.cs:
+    newFile: !uuid '96adf17e38256afa394c2a51fec28a1d307f2c4f'
+    oldFile: !uuid 'a6fa4a9c5b3ee76e18e729ee1b9b46464e717ae5'
+  /Admin.NET/Admin.NET.Core/Entity/SysUserExtOrg.cs:
+    newFile: !uuid '5fee6a03b2716c025eb99b73a16e3fc3216ef556'
+    oldFile: !uuid 'dfb9cecef038a48ef481918d5f218c5cd1a4f0d0'
+  /Admin.NET/Admin.NET.Core/Entity/SysUserRole.cs:
+    newFile: !uuid 'ab8f8d5c0ceee05e4443de942ea9db65a2c00721'
+    oldFile: !uuid 'c5fefdb61f2b6101c31b5f160f18e6cebf1e1605'
+  /Admin.NET/Admin.NET.Core/Entity/SysWechatPay.cs:
+    newFile: !uuid '57c49ba13c06db68a393bf54f1873322170a689b'
+    oldFile: null
+  /Admin.NET/Admin.NET.Core/Entity/SysWechatUser.cs:
+    newFile: !uuid 'ba5564ac04a0ab5e21adebecd5521d8f98ae069a'
+    oldFile: null
+  /Admin.NET/Admin.NET.Core/Entity/WeChatPay.cs:
+    newFile: null
+    oldFile: !uuid '74f3531684521c03ae7ba61ce0cf685f08053c38'
+  /Admin.NET/Admin.NET.Core/Entity/WeChatUser.cs:
+    newFile: null
+    oldFile: !uuid 'e9f7fd06e67e2f93377dfe173806e0fbf9261c70'
+  /Admin.NET/Admin.NET.Core/Enum:
+    newFile: !uuid 'eb58bc9a93ae5f188d9523ac64eb6757b29a7f99'
+    oldFile: !uuid 'ff388a13faecb4028ad6af885dbc61fbf27f4944'
+  /Admin.NET/Admin.NET.Core/Enum/WeChatReturnCodeEnum.cs:
+    newFile: !uuid '4fbf20513939aea1f2611b231eee252fb3a6f6fe'
+    oldFile: !uuid 'aae0c6bbe93d6442e52c237b7a3851daf094bc03'
+  /Admin.NET/Admin.NET.Core/Option:
+    newFile: !uuid '0a2655f39f7805776ae99a1545cc3cdf436ff6db'
+    oldFile: !uuid '4704b22f2e72162c7ed1b02ae66960f02eac31d1'
+  /Admin.NET/Admin.NET.Core/Option/DbConnectionOptions.cs:
+    newFile: !uuid '01bcf0a8f9c74f331cc20296bcc4029a0ca47333'
+    oldFile: !uuid '60b6b73604289fb48917abaa8061f59bb61ed8d8'
+  /Admin.NET/Admin.NET.Core/Option/PayCallBackOptions.cs:
+    newFile: !uuid '30608743017ec24bfb8896abbbda7d354fbdf1fa'
+    oldFile: !uuid 'a050331756770f0d59d734a4dc339b212d55170e'
+  /Admin.NET/Admin.NET.Core/Option/WeChatOptions.cs:
+    newFile: null
+    oldFile: !uuid 'c39ea9cb4180189c198c53674ab862cd59ae31f8'
+  /Admin.NET/Admin.NET.Core/Option/WeChatPayOptions.cs:
+    newFile: null
+    oldFile: !uuid '94ed1d0fa4829737005ba0296efe3c464fa5f076'
+  /Admin.NET/Admin.NET.Core/Option/WechatOptions.cs:
+    newFile: !uuid '3e593d2a8f67203c843f0f1561e43d9fe9d499ba'
+    oldFile: null
+  /Admin.NET/Admin.NET.Core/Option/WechatPayOptions.cs:
+    newFile: !uuid '9446e3bdf77d1bc3d69283a552f4060776583971'
+    oldFile: null
   /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid '6938ad956df85fe9d781214a5067512327c0141b'
-    oldFile: !uuid 'd97e398a2f04e6a7b90544f194af0a2d16840617'
+    newFile: !uuid '7ef0ace8a8a445556340a07f2659c0fca36affbd'
+    oldFile: !uuid '6938ad956df85fe9d781214a5067512327c0141b'
   /Admin.NET/Admin.NET.Core/Service/Job:
-    newFile: !uuid 'd1cafcc5d133a5bbef0187d38dad39c4a895ce76'
-    oldFile: !uuid '0db42d5446a93d6d8d3912e1276552119c25af69'
+    newFile: !uuid '8d23714de945ed3c5fb38cb25e9fe9ed05cf4e7d'
+    oldFile: !uuid 'd1cafcc5d133a5bbef0187d38dad39c4a895ce76'
   /Admin.NET/Admin.NET.Core/Service/Job/DbJobPersistence.cs:
-    newFile: !uuid 'd1d55192cc076fa2f964f7a9dfe758d95c56db89'
-    oldFile: !uuid 'f869045f550332dc020143bcfc12efcaf60ccaaf'
-gitCommitId: !uuid '849b9e9bd7108e86812b61721df131674b1560ff'
-renames: {
-  }
-revisionId: 488
+    newFile: !uuid '0e794989528c871df62f23a241a7616438ec8427'
+    oldFile: !uuid 'd1d55192cc076fa2f964f7a9dfe758d95c56db89'
+  /Admin.NET/Admin.NET.Core/Service/WeChat:
+    newFile: !uuid 'd67429aea62ac808d5fab6367a9b773362bba83b'
+    oldFile: !uuid '67a6fa293bbeb46690807808dad7ef5733982915'
+  /Admin.NET/Admin.NET.Core/Service/WeChat/Dto:
+    newFile: !uuid '01f6d65871046b18bf5965d7ad66d693d936db59'
+    oldFile: !uuid '96e1e62510585ef7943eeee0af5fb93f52ac8eb1'
+  /Admin.NET/Admin.NET.Core/Service/WeChat/Dto/WeChatInput.cs:
+    newFile: null
+    oldFile: !uuid '78bfc107515cfd3c5b847b5377f4cefa31334ee8'
+  /Admin.NET/Admin.NET.Core/Service/WeChat/Dto/WeChatPayInput.cs:
+    newFile: null
+    oldFile: !uuid '257e40a00cc865d59ac823e7e84ef634cdfcc3af'
+  /Admin.NET/Admin.NET.Core/Service/WeChat/Dto/WeChatPayOutput.cs:
+    newFile: null
+    oldFile: !uuid 'bbcc46ea932bc140deeac2aed0f36cdff6162fa1'
+  /Admin.NET/Admin.NET.Core/Service/WeChat/Dto/WeChatUserInput.cs:
+    newFile: null
+    oldFile: !uuid 'ca39e053f5cbd95d49514916eb6f577b65d4ff3b'
+  /Admin.NET/Admin.NET.Core/Service/WeChat/Dto/WechatInput.cs:
+    newFile: !uuid 'be421c2bbe53b75771f8924c73a2b5894af4fab1'
+    oldFile: null
+  /Admin.NET/Admin.NET.Core/Service/WeChat/Dto/WechatPayInput.cs:
+    newFile: !uuid '44574a90247d660db71df8d320ed776981b5e6fa'
+    oldFile: null
+  /Admin.NET/Admin.NET.Core/Service/WeChat/Dto/WechatPayOutput.cs:
+    newFile: !uuid '84ed56f322fdc1d7d55b787f77044492135e1a6b'
+    oldFile: null
+  /Admin.NET/Admin.NET.Core/Service/WeChat/Dto/WechatUserInput.cs:
+    newFile: !uuid 'a0b5d9393c6c882ed09f6d019bbef6eeed85b0d4'
+    oldFile: null
+  /Admin.NET/Admin.NET.Core/Service/WeChat/SysWechatPayService.cs:
+    newFile: !uuid '0cbb6d74a31c641d965c600599e289c0cecfdb63'
+    oldFile: null
+  /Admin.NET/Admin.NET.Core/Service/WeChat/SysWechatService.cs:
+    newFile: !uuid '1865255ffa74ec411e3aaa2eb515d5f3d6c8d78d'
+    oldFile: null
+  /Admin.NET/Admin.NET.Core/Service/WeChat/SysWechatUserService.cs:
+    newFile: !uuid 'e26c4cda45623c6c04bdcb3b8b0c14c98c9346ab'
+    oldFile: null
+  /Admin.NET/Admin.NET.Core/Service/WeChat/WeChatApiHttpClient.cs:
+    newFile: null
+    oldFile: !uuid '9dad9a035869f7f323267b49e678dbb0e1baaf00'
+  /Admin.NET/Admin.NET.Core/Service/WeChat/WeChatPayService.cs:
+    newFile: null
+    oldFile: !uuid 'e7df59de7fd80a009ab5ad05eab6262a674d5947'
+  /Admin.NET/Admin.NET.Core/Service/WeChat/WeChatService.cs:
+    newFile: null
+    oldFile: !uuid 'bc3e9f536376e5f2bf16e21ea13e0e972e292729'
+  /Admin.NET/Admin.NET.Core/Service/WeChat/WeChatUserService.cs:
+    newFile: null
+    oldFile: !uuid '920089c0bcb77f354e0c75161533c96cc0d17827'
+  /Admin.NET/Admin.NET.Core/Service/WeChat/WechatApiHttpClient.cs:
+    newFile: !uuid '5fabc6a806652346fd4beaa2c6b6e89887ce2c96'
+    oldFile: null
+  /Admin.NET/Admin.NET.Core/SqlSugar:
+    newFile: !uuid '98ae3fbda51b832265732dc80bfeab3a4dd13ca1'
+    oldFile: !uuid 'f84816d5eea8695041e47081f5c21f2dfae800e9'
+  /Admin.NET/Admin.NET.Core/SqlSugar/SqlSugarSetup.cs:
+    newFile: !uuid '8cd1ada5a25ff291a6ec3811f5a4a8da4a5172ad'
+    oldFile: !uuid '2d210603cae1caddf00685c6605376b3147de935'
+  /Admin.NET/Admin.NET.Web.Core:
+    newFile: !uuid 'b6dff06ca9d017785a989a58ea0f0e8265b94118'
+    oldFile: !uuid 'c7fbf25e37437edb3c893e12a64203fa1ca5474b'
+  /Admin.NET/Admin.NET.Web.Core/ProjectOptions.cs:
+    newFile: !uuid '3242b7f0e49cd07c2ddcfbd45700ae3d7a654f53'
+    oldFile: !uuid 'd6cf831310de26405b59bcf6e8f5c96ed1ca2fc5'
+gitCommitId: !uuid '8fedb9f128821b62a2baa62d755eb06af10d5e6a'
+renames:
+  /Admin.NET/Admin.NET.Core/Entity/SysWechatPay.cs: /Admin.NET/Admin.NET.Core/Entity/WeChatPay.cs
+  /Admin.NET/Admin.NET.Core/Entity/SysWechatUser.cs: /Admin.NET/Admin.NET.Core/Entity/WeChatUser.cs
+  /Admin.NET/Admin.NET.Core/Option/WechatOptions.cs: /Admin.NET/Admin.NET.Core/Option/WeChatOptions.cs
+  /Admin.NET/Admin.NET.Core/Option/WechatPayOptions.cs: /Admin.NET/Admin.NET.Core/Option/WeChatPayOptions.cs
+  /Admin.NET/Admin.NET.Core/Service/WeChat/Dto/WechatInput.cs: /Admin.NET/Admin.NET.Core/Service/WeChat/Dto/WeChatInput.cs
+  /Admin.NET/Admin.NET.Core/Service/WeChat/Dto/WechatPayInput.cs: /Admin.NET/Admin.NET.Core/Service/WeChat/Dto/WeChatPayInput.cs
+  /Admin.NET/Admin.NET.Core/Service/WeChat/Dto/WechatPayOutput.cs: /Admin.NET/Admin.NET.Core/Service/WeChat/Dto/WeChatPayOutput.cs
+  /Admin.NET/Admin.NET.Core/Service/WeChat/Dto/WechatUserInput.cs: /Admin.NET/Admin.NET.Core/Service/WeChat/Dto/WeChatUserInput.cs
+  /Admin.NET/Admin.NET.Core/Service/WeChat/SysWechatPayService.cs: /Admin.NET/Admin.NET.Core/Service/WeChat/WeChatPayService.cs
+  /Admin.NET/Admin.NET.Core/Service/WeChat/SysWechatService.cs: /Admin.NET/Admin.NET.Core/Service/WeChat/WeChatService.cs
+  /Admin.NET/Admin.NET.Core/Service/WeChat/WechatApiHttpClient.cs: /Admin.NET/Admin.NET.Core/Service/WeChat/WeChatApiHttpClient.cs
+revisionId: 489
