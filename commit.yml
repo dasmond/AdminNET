@@ -3,18 +3,21 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid 'cfb11d32ac12849e4adbaf0696e087d7c661513b'
-    oldFile: !uuid '15f430fcc5051db0bc89cf5566236fcead576a06'
+    newFile: !uuid 'e8e56cd012c118f28cb40d7800583c1e0506477e'
+    oldFile: !uuid 'cfb11d32ac12849e4adbaf0696e087d7c661513b'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid 'e7329652bf36dc54d4b355c47478638e7c2c7f62'
-    oldFile: !uuid 'a2643dc325e9d6ecda7226e732c6f0d53ddb620d'
-  /Admin.NET/Admin.NET.Core/SqlSugar:
-    newFile: !uuid 'f84816d5eea8695041e47081f5c21f2dfae800e9'
-    oldFile: !uuid '00ce28434b5c213824f1d4a8f3bca3dbf46c15a8'
-  /Admin.NET/Admin.NET.Core/SqlSugar/SqlSugarSetup.cs:
-    newFile: !uuid '2d210603cae1caddf00685c6605376b3147de935'
-    oldFile: !uuid '03d9cdf9edb0d0a34579f70774114d7ed8225a5d'
-gitCommitId: !uuid '0d779109d80e5d0fc9d9d59a3dbb0d7f4e2d2309'
+    newFile: !uuid '32b1635a15adbac147d7d314b6a816bd2a1fe175'
+    oldFile: !uuid 'e7329652bf36dc54d4b355c47478638e7c2c7f62'
+  /Admin.NET/Admin.NET.Core/Service:
+    newFile: !uuid '6938ad956df85fe9d781214a5067512327c0141b'
+    oldFile: !uuid 'd97e398a2f04e6a7b90544f194af0a2d16840617'
+  /Admin.NET/Admin.NET.Core/Service/Job:
+    newFile: !uuid 'd1cafcc5d133a5bbef0187d38dad39c4a895ce76'
+    oldFile: !uuid '0db42d5446a93d6d8d3912e1276552119c25af69'
+  /Admin.NET/Admin.NET.Core/Service/Job/DbJobPersistence.cs:
+    newFile: !uuid 'd1d55192cc076fa2f964f7a9dfe758d95c56db89'
+    oldFile: !uuid 'f869045f550332dc020143bcfc12efcaf60ccaaf'
+gitCommitId: !uuid '849b9e9bd7108e86812b61721df131674b1560ff'
 renames: {
   }
-revisionId: 487
+revisionId: 488
