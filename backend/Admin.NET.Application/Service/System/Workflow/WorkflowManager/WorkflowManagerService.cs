@@ -1,4 +1,4 @@
-﻿using Admin.NET.Core;
+using Admin.NET.Core;
 using Furion;
 using Furion.DatabaseAccessor;
 using Furion.DependencyInjection;
@@ -304,7 +304,7 @@ namespace Admin.NET.Application
 
             foreach (var input in stepbody.Inputs)
             {
-                var value = node.StepBody.Inputs[input.Key].Value;
+                var value = node.StepBody.Inputs[input.Key.ToLower()].Value;
                 if (!(value is IDictionary<string, object> || value is IDictionary<object, object>))
                 {
                     value = $"\"{value}\"";
