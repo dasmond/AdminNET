@@ -3,84 +3,30 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '1f95bbda94e7681148fdb5614d93863f542075c8'
-    oldFile: !uuid '004dcd290b98e79338eb580a1e1d329a97906540'
+    newFile: !uuid 'bb8185487911085efe6d4627adc479e96db3367b'
+    oldFile: !uuid '1f95bbda94e7681148fdb5614d93863f542075c8'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '86b326d7e78f51a116028369414ace628c21da04'
-    oldFile: !uuid '24546a92fb8d629b64868cb4beb0eeef82b2b1a5'
-  /Admin.NET/Admin.NET.Core/Entity:
-    newFile: !uuid '1e82b8fb94d6e4c7c42997c659b926b0fc801078'
-    oldFile: !uuid '367f9f6c81a859812eb6939cd8dc0ee3db26ec23'
-  /Admin.NET/Admin.NET.Core/Entity/SysJobTrigger.cs:
-    newFile: !uuid '832db6e14abd49e287534600dab844749b56b4fd'
-    oldFile: !uuid 'de94a618b0e3a2de28f8edf87d3e5be3d1907c89'
+    newFile: !uuid '6cedb1433ea6af4e4a181da362424d2a475ed159'
+    oldFile: !uuid '86b326d7e78f51a116028369414ace628c21da04'
+  /Admin.NET/Admin.NET.Core/Admin.NET.Core.xml:
+    newFile: !uuid '4745629c20a324075a2d88fc73b457442558ee01'
+    oldFile: !uuid 'cf184a41850f07d42a7e2b297274e98d55c2c3c9'
   /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid 'e90eb23aa75a7731e5f8a8e40b243ef981ce281f'
-    oldFile: !uuid '9ce406a8ec2fd7deb9e4a79baa06f7850c71d135'
-  /Admin.NET/Admin.NET.Core/Service/Job:
-    newFile: !uuid '3fd63c25beddfd182968b75f9d89d39a511907ba'
-    oldFile: !uuid 'dc5e50f4ee3031001765dc6ce0db1d5f051e6f49'
-  /Admin.NET/Admin.NET.Core/Service/Job/DbJobPersistence.cs:
-    newFile: !uuid 'dde279b5619d787dc8848104937b775aa054532b'
-    oldFile: !uuid '314f7f0838854483089abe7de5280955f7b7fac9'
-  /Admin.NET/Admin.NET.Core/Service/Job/SysJobService.cs:
-    newFile: !uuid '20777da6b5dddb45ed7ea73d143d6f839aef0f80'
-    oldFile: !uuid '4ca3a36af23e2a6f952588ed3ef1e9c04de3742b'
-  /Web:
-    newFile: !uuid '31a8c33aa6eb31f4f608bc6b1dbed3e8d96f1a49'
-    oldFile: !uuid 'f3517911c7a7579abec301513b7202fa2ac05c23'
-  /Web/src:
-    newFile: !uuid 'c3194b9438315e37f6776a9514fb3f4562abfe1a'
-    oldFile: !uuid '3ee478bf6076c5eaf2422d68912273389cbd26e7'
-  /Web/src/views:
-    newFile: !uuid 'd12a86306f98d145e199742585a7e9b43901dd44'
-    oldFile: !uuid 'eea24403ddba3e11bdf477cf3c99f80b15ce9e09'
-  /Web/src/views/system:
-    newFile: !uuid 'd9210c3fe6890f73ed77e2d1f133ee5b76fbaecc'
-    oldFile: !uuid '13bed7fdd57fcd7ebb4bbc6a65993f7c4a5bac8f'
-  /Web/src/views/system/job:
-    newFile: !uuid 'c952b506c63b246bd90346b7aa3cf00d844bd7ea'
-    oldFile: !uuid 'af3ec7ae1d35cac5d8e3d011d53c80b012f5454d'
-  /Web/src/views/system/job/component:
-    newFile: !uuid '81b3451b67d485eb07304ad4f499d6b15efa2e60'
-    oldFile: !uuid 'b4102d240a8abdd4813acbdbd7b29d8e8ca048ef'
-  /Web/src/views/system/job/component/cronTab:
-    newFile: !uuid '6546a0668d54e3494d67ca94d7507bba9b0e7602'
-    oldFile: null
-  /Web/src/views/system/job/component/cronTab/day.vue:
-    newFile: !uuid '5061e71c2bf924693fa4aefc497e21597e8de97c'
-    oldFile: null
-  /Web/src/views/system/job/component/cronTab/hour.vue:
-    newFile: !uuid '585ade574f03099f241543f0a5135a82d7c194c6'
-    oldFile: null
-  /Web/src/views/system/job/component/cronTab/index.vue:
-    newFile: !uuid 'e2f0f384931b5c7adda5ba84263097634e943ece'
-    oldFile: null
-  /Web/src/views/system/job/component/cronTab/min.vue:
-    newFile: !uuid '70589a0a8c7be7039b8bfff06d51cdc9fe22495b'
-    oldFile: null
-  /Web/src/views/system/job/component/cronTab/month.vue:
-    newFile: !uuid '03b60143cb66bbca2e0d7c2d5b4161f0335bd6dd'
-    oldFile: null
-  /Web/src/views/system/job/component/cronTab/result.vue:
-    newFile: !uuid 'e3eb757e528555e67bfd7fd21900c390624bdb1f'
-    oldFile: null
-  /Web/src/views/system/job/component/cronTab/second.vue:
-    newFile: !uuid '7a58c11a28feab3c10501e1bf2a757533db7c50a'
-    oldFile: null
-  /Web/src/views/system/job/component/cronTab/week.vue:
-    newFile: !uuid 'c7178b82809842459abc52367a28eaa66212f31a'
-    oldFile: null
-  /Web/src/views/system/job/component/cronTab/year.vue:
-    newFile: !uuid '50133b99784eaff2ea2484f336eb9e271fab7358'
-    oldFile: null
-  /Web/src/views/system/job/component/editJobTrigger.vue:
-    newFile: !uuid '8473c26bbc1ce54ca414e39cf8a8c3acc73a6869'
-    oldFile: !uuid 'ebb4abe522a4e3d4cd3276b6dcf859fc25d73bef'
-  /Web/src/views/system/job/index.vue:
-    newFile: !uuid '8cad8fb03f9940e638c0599231b36a231a20c039'
-    oldFile: !uuid '0ff36edbc53e2e9cfd6de71c1f5d77d6402f3be9'
-gitCommitId: !uuid 'a200487a0b4558cac7d554499d23020948c560bc'
+    newFile: !uuid '809ceaf69d3e74c2d2a04093d64eb65f42b87d4b'
+    oldFile: !uuid 'e90eb23aa75a7731e5f8a8e40b243ef981ce281f'
+  /Admin.NET/Admin.NET.Core/Service/Server:
+    newFile: !uuid '0f829d2a9ceabcfca20c9de7e6c44053983fdf21'
+    oldFile: !uuid 'ea1579de4a3c71d53fde879aeb8c9b6250d9e052'
+  /Admin.NET/Admin.NET.Core/Service/Server/SysServerService.cs:
+    newFile: !uuid '3a63889486e2c6948b0d2a763b682b2ba879e513'
+    oldFile: !uuid '35f2877cad90f4f748eac47c9c64848a50a69cff'
+  /Admin.NET/Admin.NET.Core/Util:
+    newFile: !uuid 'f6a982b4e278d284887a99a56ac5ad05b06289cd'
+    oldFile: !uuid 'de811d6061b21e351ac05ffb8999350c54474b7f'
+  /Admin.NET/Admin.NET.Core/Util/ComputerUtil.cs:
+    newFile: !uuid '5958775d24dde658494f1739626baa7b4f34a8b1'
+    oldFile: !uuid '63bda18cd268a3d16f8b81662ee1b91e175601c9'
+gitCommitId: !uuid 'fd4be96bdf0007a97dbf669e1404d2f4af36b9b1'
 renames: {
   }
-revisionId: 499
+revisionId: 500
