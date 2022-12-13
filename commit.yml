@@ -3,215 +3,63 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '7ba13d4a48793526c8b669927a2b8f356f6d85bf'
-    oldFile: !uuid 'bb8185487911085efe6d4627adc479e96db3367b'
-  /Admin.NET/Admin.NET.Application:
-    newFile: !uuid '486614d671e7baf32e7d9d17b8de81956909064a'
-    oldFile: !uuid '2c3cd6be591778ca32ea516400bf66c4a9c0e496'
-  /Admin.NET/Admin.NET.Application/Configuration:
-    newFile: !uuid 'a020d904e7ab22c94586c637d06e33dc89df068f'
-    oldFile: !uuid '0bddc8ff5449bf2e860b6b4c09114f1d429d9ad9'
-  /Admin.NET/Admin.NET.Application/Configuration/Database.json:
-    newFile: !uuid '1f481aad604210a533ee7fcb7d365d8a86bf1229'
-    oldFile: !uuid 'c6c22207c1a21935f17f00d954f86f6abaf711cd'
+    newFile: !uuid '7dbe10398d93d17721ed26a87409a5dbc4e69882'
+    oldFile: !uuid '7ba13d4a48793526c8b669927a2b8f356f6d85bf'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid 'cbab2b72605d3415a2e8c2db90c40dfb6128845e'
-    oldFile: !uuid '6cedb1433ea6af4e4a181da362424d2a475ed159'
-  /Admin.NET/Admin.NET.Core/Extension:
-    newFile: !uuid '20f88c3852c03641a32ed74a63df63e7e8346200'
-    oldFile: !uuid '87d204e12c02d5997123545adb5f4eaff1ec0100'
-  /Admin.NET/Admin.NET.Core/Extension/ObjectExtension.cs:
-    newFile: !uuid 'efbad3a875cfea59c68e2bccdfb73111fa046558'
-    oldFile: !uuid '341b3b347404e1b0680548d3a2a59cd97f379468'
+    newFile: !uuid 'd527cbea1f0ad140a6397727fde4e67c6787a1c8'
+    oldFile: !uuid 'cbab2b72605d3415a2e8c2db90c40dfb6128845e'
+  /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
+    newFile: !uuid 'aabeae57cdb2df49c056e993984cb6ac6af29548'
+    oldFile: !uuid '71e8dadabb33b94d32f2fcfe12ae6523b76135fa'
+  /Admin.NET/Admin.NET.Core/Option:
+    newFile: !uuid '9c49edd003a7a30516fca5d8aa03de99ee95cbcd'
+    oldFile: !uuid '0a2655f39f7805776ae99a1545cc3cdf436ff6db'
+  /Admin.NET/Admin.NET.Core/Option/DbConnectionOptions.cs:
+    newFile: !uuid 'b50f982d381d782db2d99ad3386f5b41b43393d2'
+    oldFile: !uuid '01bcf0a8f9c74f331cc20296bcc4029a0ca47333'
   /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid '8ae8751706b0754f7194a826e23e50441129672e'
-    oldFile: !uuid '809ceaf69d3e74c2d2a04093d64eb65f42b87d4b'
-  /Admin.NET/Admin.NET.Core/Service/Tenant:
-    newFile: !uuid '925b48ab22178a7ad55d7b36fa449695a3035d09'
-    oldFile: !uuid '23326849cba176b05c0841954199e5318965694f'
-  /Admin.NET/Admin.NET.Core/Service/Tenant/SysTenantService.cs:
-    newFile: !uuid 'f40c8bf5fd3c727dcf7a3622145c162d14999156'
-    oldFile: !uuid 'f08eaf531087a996f656b15d43a9af9cc59595c2'
+    newFile: !uuid '4dcd67815956a659df489bdefdcb7da6bfbb1eb4'
+    oldFile: !uuid '8ae8751706b0754f7194a826e23e50441129672e'
+  /Admin.NET/Admin.NET.Core/Service/CodeGen:
+    newFile: !uuid '48971f9339a42b6d1cb92b0721df4aa63fc3295a'
+    oldFile: !uuid '0cd97686b324395f093214e22bf40e4cf2a033a4'
+  /Admin.NET/Admin.NET.Core/Service/CodeGen/SysCodeGenService.cs:
+    newFile: !uuid '59390b622e6006ac3361ea14b15d8039b72bbc56'
+    oldFile: !uuid '8761d921c01a03a7c04cacf71926429f640c2bb3'
+  /Admin.NET/Admin.NET.Core/Service/DataBase:
+    newFile: !uuid 'fc5adb543939e84a7ba87119bb724a28a0398e72'
+    oldFile: !uuid '673e46149c390d3aa688c05507e759ca5f77da90'
+  /Admin.NET/Admin.NET.Core/Service/DataBase/SysDatabaseService.cs:
+    newFile: !uuid '1bf14a861383576425b41db6538ce09eed9fd2f5'
+    oldFile: !uuid 'f048bfb5a95eb7fb00e3b3c478d4287fefcf6658'
+  /Admin.NET/Admin.NET.Core/SqlSugar:
+    newFile: !uuid 'a16a5fe5102470ba13465e24f43a72979b85d325'
+    oldFile: !uuid '00593d3d6d63cd23d69ee148678998de2f012839'
+  /Admin.NET/Admin.NET.Core/SqlSugar/SqlSugarSetup.cs:
+    newFile: !uuid 'df029ba525959d8dddbc5e3b219715a56ed3066b'
+    oldFile: !uuid '49f4c3527bb07f7b7efc780646a7b3ff1dc286dd'
   /Web:
-    newFile: !uuid '13504008dff8854a821fe079975554d48e7a6d62'
-    oldFile: !uuid '31a8c33aa6eb31f4f608bc6b1dbed3e8d96f1a49'
+    newFile: !uuid '36d568a0051d5aefd1abe72be606800975d783aa'
+    oldFile: !uuid '13504008dff8854a821fe079975554d48e7a6d62'
   /Web/src:
-    newFile: !uuid '0360be63486f2ee5533931e0d3e8f297521dca67'
-    oldFile: !uuid 'c3194b9438315e37f6776a9514fb3f4562abfe1a'
-  /Web/src/api-services:
-    newFile: !uuid '182a74fd2dd5328ee6863866cc5678f132608ca5'
-    oldFile: !uuid '87b96ef475dad640ce2f661acd830de531cd9e00'
-  /Web/src/api-services/api.ts:
-    newFile: !uuid '9721f15ad433d112a0a94608a166cf96ecf7cad4'
-    oldFile: !uuid '429ab9479a79293edd5eb6005509df0caf6c3191'
-  /Web/src/api-services/apis:
-    newFile: !uuid '6482e6fd959339c445b716b53fbcccedc180832a'
-    oldFile: !uuid 'a4389c8e167bb858b94262b2e0525fad77312589'
-  /Web/src/api-services/apis/sys-wechat-api.ts:
-    newFile: !uuid 'bad989fe076517b953632f0ff286a2956915c926'
-    oldFile: null
-  /Web/src/api-services/apis/sys-wechat-pay-api.ts:
-    newFile: !uuid '09a5b6b6fe6202f9e1a7b6602a5bf62370301cad'
-    oldFile: null
-  /Web/src/api-services/apis/sys-wechat-user-api.ts:
-    newFile: !uuid 'eb2898ccb2f4b224dbbab8066d8bf7e63716bc4d'
-    oldFile: null
-  /Web/src/api-services/apis/we-chat-api.ts:
-    newFile: null
-    oldFile: !uuid '43006168b4a61932893c5a1c15115b904d7a9dab'
-  /Web/src/api-services/apis/we-chat-pay-api.ts:
-    newFile: null
-    oldFile: !uuid '35e7745bd6acb23735e3b33205bff2b47303f12d'
-  /Web/src/api-services/apis/we-chat-user-api.ts:
-    newFile: null
-    oldFile: !uuid '3186c21d886a32526b271b2c64385d5eff909fb6'
-  /Web/src/api-services/models:
-    newFile: !uuid '1dece0e4c2aee1a50a54d0c09051a9eb1331257a'
-    oldFile: !uuid '58a67210b51aa9c89483350696ca12c1853e9f9e'
-  /Web/src/api-services/models/add-job-detail-input.ts:
-    newFile: !uuid 'ea59ca5be20a6754826a85f3286bb79490ac63e8'
-    oldFile: !uuid '9620911667b620f339432a9665c7ccde0ef444c2'
-  /Web/src/api-services/models/add-job-trigger-input.ts:
-    newFile: !uuid 'd7384467cdcba16d94099e727bebdffc7dde4c25'
-    oldFile: !uuid 'd5973f8e768b3b5df98fb6baa2a03bf2ba2fe465'
-  /Web/src/api-services/models/add-notice-input.ts:
-    newFile: !uuid '2398b7eddfa6f2c54bb6fef8184ed744af0b6e03'
-    oldFile: !uuid '1f8b1b0444761221efd198a073c6630136933917'
-  /Web/src/api-services/models/admin-result-sql-sugar-paged-list-sys-wechat-user.ts:
-    newFile: !uuid 'a1b18433a855b214acb86e2a8267a61bf7e2fcc3'
-    oldFile: null
-  /Web/src/api-services/models/admin-result-sql-sugar-paged-list-we-chat-user.ts:
-    newFile: null
-    oldFile: !uuid 'fe336bec11852d517a98a802530a9008e5e74faa'
-  /Web/src/api-services/models/admin-result-sys-wechat-pay.ts:
-    newFile: !uuid 'f283af61611431face8572f682398f9a6c112eed'
-    oldFile: null
-  /Web/src/api-services/models/admin-result-we-chat-pay-output.ts:
-    newFile: null
-    oldFile: !uuid 'f2859c4e88966fc9284ead295e7eccc8d76349e4'
-  /Web/src/api-services/models/admin-result-we-chat-pay.ts:
-    newFile: null
-    oldFile: !uuid 'b7928b278ed1babd931e003c34094c8576188485'
-  /Web/src/api-services/models/admin-result-wechat-pay-output.ts:
-    newFile: !uuid 'e311170222d918364c6110ff280a1873a306db52'
-    oldFile: null
-  /Web/src/api-services/models/delete-we-chat-user-input.ts:
-    newFile: null
-    oldFile: !uuid 'c764df90eaa33dd7362d16ed4804f1cbb68326c3'
-  /Web/src/api-services/models/delete-wechat-user-input.ts:
-    newFile: !uuid '24abb62685fcc35498fb72d59bf6a6db091f698a'
-    oldFile: null
-  /Web/src/api-services/models/index.ts:
-    newFile: !uuid '174011ef1acaa8632b8dedaeb2ac81bd424318f7'
-    oldFile: !uuid 'fec102ac93b378117f2d03d2bf7e580ff76aa2ec'
-  /Web/src/api-services/models/sql-sugar-paged-list-sys-wechat-user.ts:
-    newFile: !uuid 'c78b36a873a1c320931e147717b4abaaf5ab6673'
-    oldFile: null
-  /Web/src/api-services/models/sql-sugar-paged-list-we-chat-user.ts:
-    newFile: null
-    oldFile: !uuid '8bd0983cdc48dad11604d182cbf50367223c3017'
-  /Web/src/api-services/models/sys-job-cluster.ts:
-    newFile: !uuid '4414106a6d1f4f2639a91f3d751fc5165fdfaff8'
-    oldFile: !uuid '6b76c79ff96f6457d57123a806592401df5ca096'
-  /Web/src/api-services/models/sys-job-detail.ts:
-    newFile: !uuid '45c7c1d5cb72ceb78727d2818eb781a12973b107'
-    oldFile: !uuid '9603662bbe4c220cc8fc7075f385878b30550158'
-  /Web/src/api-services/models/sys-job-trigger.ts:
-    newFile: !uuid '33632f94b6d883f2cec0482dd7694af6d5103119'
-    oldFile: !uuid '34c8108f34026dbd66c49bd3432d24bfbb8acd79'
-  /Web/src/api-services/models/sys-notice-user.ts:
-    newFile: !uuid '9a64efa1a9eb4e1842b4a2ed4626efa22dbf0db9'
-    oldFile: !uuid '8d5836e8cf8e5e1ff2693e2ed227011e01ca790c'
-  /Web/src/api-services/models/sys-notice.ts:
-    newFile: !uuid '1522160bb534056793d82dbd0224aa8a4a940b67'
-    oldFile: !uuid 'ea2bb0efdf97ef7f9b210b9524eaaaf1ee0a76fe'
-  /Web/src/api-services/models/sys-online-user.ts:
-    newFile: !uuid '188103a434a077cb59933421b1320703c5b6423b'
-    oldFile: !uuid 'bdd1620e0d2201574717044478c157f802944288'
-  /Web/src/api-services/models/sys-wechat-pay.ts:
-    newFile: !uuid '53738fcb02ee16b951bbf8374778b96fae0762be'
-    oldFile: null
-  /Web/src/api-services/models/sys-wechat-user.ts:
-    newFile: !uuid 'cf9f9b967137763deb83d6852612389d759f7b1a'
-    oldFile: null
-  /Web/src/api-services/models/update-job-detail-input.ts:
-    newFile: !uuid 'b37afa8cad50228f104694d9436200ba3600b452'
-    oldFile: !uuid 'bb8785fd35a9d593a459b1896887b6ba135d8b72'
-  /Web/src/api-services/models/update-job-trigger-input.ts:
-    newFile: !uuid '1f3695c81eb32efc11b728cb9de52ddcd497647d'
-    oldFile: !uuid '3bd5aec6094602af8622e041bb11d050153f5e1d'
-  /Web/src/api-services/models/update-notice-input.ts:
-    newFile: !uuid '47d649f3410fc9a96b49b2708103917f70182085'
-    oldFile: !uuid '673519358d65a80255aa580e8254e362b70377fd'
-  /Web/src/api-services/models/we-chat-oauth2-input.ts:
-    newFile: null
-    oldFile: !uuid '47d665639d7efb6e10ca90c953ef7138b5fcbfe1'
-  /Web/src/api-services/models/we-chat-pay-output.ts:
-    newFile: null
-    oldFile: !uuid '7e1fcc4cfb64a9d4fa7a9e69078e1fe33a5f6127'
-  /Web/src/api-services/models/we-chat-pay-para-input.ts:
-    newFile: null
-    oldFile: !uuid 'a94e42cc4de25efea765bd8bb156127c75720000'
-  /Web/src/api-services/models/we-chat-pay-transaction-input.ts:
-    newFile: null
-    oldFile: !uuid 'd62ae0c2eaf7953e3319e30554cec58b8e1d1ae5'
-  /Web/src/api-services/models/we-chat-pay.ts:
-    newFile: null
-    oldFile: !uuid '1064c1aeab58ea00a629e837a322903b1369cf48'
-  /Web/src/api-services/models/we-chat-user-login.ts:
-    newFile: null
-    oldFile: !uuid '52b8b3f5b3324088f2c9c4753d769d586530bccc'
-  /Web/src/api-services/models/we-chat-user.ts:
-    newFile: null
-    oldFile: !uuid 'a3b775faae7d556d0aa4770c2a93c199d953e14c'
-  /Web/src/api-services/models/wechat-oauth2-input.ts:
-    newFile: !uuid '26dc0cb9f634189db456df58e3a2e4cb7286f189'
-    oldFile: null
-  /Web/src/api-services/models/wechat-pay-output.ts:
-    newFile: !uuid '619d9360ad1e020e428f96aabfa5215cc3be8530'
-    oldFile: null
-  /Web/src/api-services/models/wechat-pay-para-input.ts:
-    newFile: !uuid '3913e0ca6e59625fb2d29a7ca76b4391bb02828a'
-    oldFile: null
-  /Web/src/api-services/models/wechat-pay-transaction-input.ts:
-    newFile: !uuid 'ef8756f95275e0783559316a185b013df61b30e7'
-    oldFile: null
-  /Web/src/api-services/models/wechat-user-login.ts:
-    newFile: !uuid 'c7ebee72ec354f4b56af37eb973c35177df3b504'
-    oldFile: null
+    newFile: !uuid '175a9a4b625fed5250f63bff3c11d044ef398d0a'
+    oldFile: !uuid '0360be63486f2ee5533931e0d3e8f297521dca67'
   /Web/src/views:
-    newFile: !uuid 'd5e60c209bf0e0b34a47c527cc39de592679b744'
-    oldFile: !uuid 'd12a86306f98d145e199742585a7e9b43901dd44'
+    newFile: !uuid '9985e3603f8eab010862bbaefa9ab053c13ee0de'
+    oldFile: !uuid 'd5e60c209bf0e0b34a47c527cc39de592679b744'
   /Web/src/views/system:
-    newFile: !uuid '59e6eeb231da6c909e754b0a34a2bce041351834'
-    oldFile: !uuid 'd9210c3fe6890f73ed77e2d1f133ee5b76fbaecc'
-  /Web/src/views/system/weChatUser:
-    newFile: !uuid '18bf4d6bfcad56cc9dd766587c1361bb87bc5575'
-    oldFile: !uuid 'e7acb2405ae27624e852628e72aa0cc0c9785131'
-  /Web/src/views/system/weChatUser/component:
-    newFile: !uuid '8e31ad79891fdee87e7e18f5e0f790a8aec46b6b'
-    oldFile: !uuid '0b980c38a9a70cd340f8487645f452ede10440f0'
-  /Web/src/views/system/weChatUser/component/editWeChatUser.vue:
-    newFile: !uuid 'dd40f68ab837a5d3364e2187683f616c2287d10c'
-    oldFile: !uuid 'dfeca3ee1cd46878592ff58ee372451ea0900273'
-  /Web/src/views/system/weChatUser/index.vue:
-    newFile: !uuid '68c754d4f3e36e19982d2b5025fd9264ba78e223'
-    oldFile: !uuid 'e551d393f0b7aa2eb5949a0c7059789a63accf27'
-gitCommitId: !uuid '427de1df6ced3ad6d2dea0da08106935db39e46f'
-renames:
-  /Web/src/api-services/apis/sys-wechat-api.ts: /Web/src/api-services/apis/we-chat-api.ts
-  /Web/src/api-services/apis/sys-wechat-pay-api.ts: /Web/src/api-services/apis/we-chat-pay-api.ts
-  /Web/src/api-services/apis/sys-wechat-user-api.ts: /Web/src/api-services/apis/we-chat-user-api.ts
-  /Web/src/api-services/models/admin-result-sql-sugar-paged-list-sys-wechat-user.ts: /Web/src/api-services/models/admin-result-we-chat-pay-output.ts
-  /Web/src/api-services/models/admin-result-sys-wechat-pay.ts: /Web/src/api-services/models/admin-result-we-chat-pay.ts
-  /Web/src/api-services/models/admin-result-wechat-pay-output.ts: /Web/src/api-services/models/admin-result-we-chat-pay-output.ts
-  /Web/src/api-services/models/delete-wechat-user-input.ts: /Web/src/api-services/models/delete-we-chat-user-input.ts
-  /Web/src/api-services/models/sql-sugar-paged-list-sys-wechat-user.ts: /Web/src/api-services/models/sql-sugar-paged-list-we-chat-user.ts
-  /Web/src/api-services/models/sys-wechat-pay.ts: /Web/src/api-services/models/we-chat-pay.ts
-  /Web/src/api-services/models/sys-wechat-user.ts: /Web/src/api-services/models/we-chat-user.ts
-  /Web/src/api-services/models/wechat-oauth2-input.ts: /Web/src/api-services/models/we-chat-oauth2-input.ts
-  /Web/src/api-services/models/wechat-pay-output.ts: /Web/src/api-services/models/we-chat-pay-output.ts
-  /Web/src/api-services/models/wechat-pay-para-input.ts: /Web/src/api-services/models/we-chat-pay-para-input.ts
-  /Web/src/api-services/models/wechat-pay-transaction-input.ts: /Web/src/api-services/models/we-chat-pay-transaction-input.ts
-  /Web/src/api-services/models/wechat-user-login.ts: /Web/src/api-services/models/we-chat-user-login.ts
-revisionId: 501
+    newFile: !uuid 'ed8de71bde8daea1e78134f353dbc7d57cbfa7be'
+    oldFile: !uuid '59e6eeb231da6c909e754b0a34a2bce041351834'
+  /Web/src/views/system/codeGen:
+    newFile: !uuid '7b328a4126136dc57acf2bfa3ecc316a7a379a87'
+    oldFile: !uuid '7e62d6fea5dec7794734d125cdb7580df7835f30'
+  /Web/src/views/system/codeGen/component:
+    newFile: !uuid 'd90891dd07b451288aadde3250ef45bd9c20cb55'
+    oldFile: !uuid '9304a85352c743eb37b7eebbb22d9eab05c886d6'
+  /Web/src/views/system/codeGen/component/editCodeGenDialog.vue:
+    newFile: !uuid 'abfea50408eefb2c31b571b48e05a6dd96c6db3b'
+    oldFile: !uuid 'f5f04e3f52cc34db9efb0f515fd9b06dfd0ba2ba'
+gitCommitId: !uuid 'e2f18ce1c84be2f8bc37db38dc9d343849e108a2'
+renames: {
+  }
+revisionId: 502
