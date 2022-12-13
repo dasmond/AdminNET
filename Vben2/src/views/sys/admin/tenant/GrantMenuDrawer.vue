@@ -5,6 +5,7 @@
     showFooter
     title="授权租户菜单"
     width="500px"
+    destroyOnClose
     @ok="handleSubmit"
   >
     <BasicForm @register="registerForm">
