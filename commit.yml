@@ -3,63 +3,21 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '7dbe10398d93d17721ed26a87409a5dbc4e69882'
-    oldFile: !uuid '7ba13d4a48793526c8b669927a2b8f356f6d85bf'
-  /Admin.NET/Admin.NET.Core:
-    newFile: !uuid 'd527cbea1f0ad140a6397727fde4e67c6787a1c8'
-    oldFile: !uuid 'cbab2b72605d3415a2e8c2db90c40dfb6128845e'
-  /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
-    newFile: !uuid 'aabeae57cdb2df49c056e993984cb6ac6af29548'
-    oldFile: !uuid '71e8dadabb33b94d32f2fcfe12ae6523b76135fa'
-  /Admin.NET/Admin.NET.Core/Option:
-    newFile: !uuid '9c49edd003a7a30516fca5d8aa03de99ee95cbcd'
-    oldFile: !uuid '0a2655f39f7805776ae99a1545cc3cdf436ff6db'
-  /Admin.NET/Admin.NET.Core/Option/DbConnectionOptions.cs:
-    newFile: !uuid 'b50f982d381d782db2d99ad3386f5b41b43393d2'
-    oldFile: !uuid '01bcf0a8f9c74f331cc20296bcc4029a0ca47333'
-  /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid '4dcd67815956a659df489bdefdcb7da6bfbb1eb4'
-    oldFile: !uuid '8ae8751706b0754f7194a826e23e50441129672e'
-  /Admin.NET/Admin.NET.Core/Service/CodeGen:
-    newFile: !uuid '48971f9339a42b6d1cb92b0721df4aa63fc3295a'
-    oldFile: !uuid '0cd97686b324395f093214e22bf40e4cf2a033a4'
-  /Admin.NET/Admin.NET.Core/Service/CodeGen/SysCodeGenService.cs:
-    newFile: !uuid '59390b622e6006ac3361ea14b15d8039b72bbc56'
-    oldFile: !uuid '8761d921c01a03a7c04cacf71926429f640c2bb3'
-  /Admin.NET/Admin.NET.Core/Service/DataBase:
-    newFile: !uuid 'fc5adb543939e84a7ba87119bb724a28a0398e72'
-    oldFile: !uuid '673e46149c390d3aa688c05507e759ca5f77da90'
-  /Admin.NET/Admin.NET.Core/Service/DataBase/SysDatabaseService.cs:
-    newFile: !uuid '1bf14a861383576425b41db6538ce09eed9fd2f5'
-    oldFile: !uuid 'f048bfb5a95eb7fb00e3b3c478d4287fefcf6658'
-  /Admin.NET/Admin.NET.Core/SqlSugar:
-    newFile: !uuid 'a16a5fe5102470ba13465e24f43a72979b85d325'
-    oldFile: !uuid '00593d3d6d63cd23d69ee148678998de2f012839'
-  /Admin.NET/Admin.NET.Core/SqlSugar/SqlSugarSetup.cs:
-    newFile: !uuid 'df029ba525959d8dddbc5e3b219715a56ed3066b'
-    oldFile: !uuid '49f4c3527bb07f7b7efc780646a7b3ff1dc286dd'
-  /Web:
-    newFile: !uuid '36d568a0051d5aefd1abe72be606800975d783aa'
-    oldFile: !uuid '13504008dff8854a821fe079975554d48e7a6d62'
-  /Web/src:
-    newFile: !uuid '175a9a4b625fed5250f63bff3c11d044ef398d0a'
-    oldFile: !uuid '0360be63486f2ee5533931e0d3e8f297521dca67'
-  /Web/src/views:
-    newFile: !uuid '9985e3603f8eab010862bbaefa9ab053c13ee0de'
-    oldFile: !uuid 'd5e60c209bf0e0b34a47c527cc39de592679b744'
-  /Web/src/views/system:
-    newFile: !uuid 'ed8de71bde8daea1e78134f353dbc7d57cbfa7be'
-    oldFile: !uuid '59e6eeb231da6c909e754b0a34a2bce041351834'
-  /Web/src/views/system/codeGen:
-    newFile: !uuid '7b328a4126136dc57acf2bfa3ecc316a7a379a87'
-    oldFile: !uuid '7e62d6fea5dec7794734d125cdb7580df7835f30'
-  /Web/src/views/system/codeGen/component:
-    newFile: !uuid 'd90891dd07b451288aadde3250ef45bd9c20cb55'
-    oldFile: !uuid '9304a85352c743eb37b7eebbb22d9eab05c886d6'
-  /Web/src/views/system/codeGen/component/editCodeGenDialog.vue:
-    newFile: !uuid 'abfea50408eefb2c31b571b48e05a6dd96c6db3b'
-    oldFile: !uuid 'f5f04e3f52cc34db9efb0f515fd9b06dfd0ba2ba'
-gitCommitId: !uuid 'e2f18ce1c84be2f8bc37db38dc9d343849e108a2'
+    newFile: !uuid 'a6180d9c5a10487bf3610a61b72290a286776f61'
+    oldFile: !uuid '7dbe10398d93d17721ed26a87409a5dbc4e69882'
+  /Admin.NET/Admin.NET.Web.Entry:
+    newFile: !uuid '2d04c916ab418636a431af7fbecf1009b995ce72'
+    oldFile: !uuid '9628a20a6274dfc10d52c7f447dd92c64e401366'
+  /Admin.NET/Admin.NET.Web.Entry/wwwroot:
+    newFile: !uuid 'accfbc8fe70e6261d8418c1c2f6f199cb8c5f3a0'
+    oldFile: !uuid '40074da326aaa6ee76409876a119b0f13184cb1b'
+  /Admin.NET/Admin.NET.Web.Entry/wwwroot/Template:
+    newFile: !uuid 'bd374b8eef59d3471d43098f1b5a40763c91bc2d'
+    oldFile: !uuid '0789b1411196bc5531f4774ea462dcb2e54db8d4'
+  /Admin.NET/Admin.NET.Web.Entry/wwwroot/Template/index.vue.vm:
+    newFile: !uuid '3d0176ae1bfba48fd609c120f2485672d01a742f'
+    oldFile: !uuid '101d7cfeae087644eac8b4f14aedfd6d8c71749c'
+gitCommitId: !uuid '4684882ec316b5b6d8f5e3313bdfc0cc454c053d'
 renames: {
   }
-revisionId: 502
+revisionId: 503
