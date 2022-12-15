@@ -3,72 +3,18 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid 'd0edcb2b387d8ee4e24b322e2904b919dfb3475c'
-    oldFile: !uuid 'a6180d9c5a10487bf3610a61b72290a286776f61'
+    newFile: !uuid '9f7d8f4830fd71e7bc56b893c82d838c04f80043'
+    oldFile: !uuid 'd0edcb2b387d8ee4e24b322e2904b919dfb3475c'
   /Admin.NET/Admin.NET.Application:
-    newFile: !uuid '50d2c901a7e4da328bba349860e0ea033782f77a'
-    oldFile: !uuid '486614d671e7baf32e7d9d17b8de81956909064a'
+    newFile: !uuid '486614d671e7baf32e7d9d17b8de81956909064a'
+    oldFile: !uuid '50d2c901a7e4da328bba349860e0ea033782f77a'
   /Admin.NET/Admin.NET.Application/Configuration:
-    newFile: !uuid 'c3ecff99f80eb8c0aa82ff6cc1206c42953282dc'
-    oldFile: !uuid 'a020d904e7ab22c94586c637d06e33dc89df068f'
+    newFile: !uuid 'a020d904e7ab22c94586c637d06e33dc89df068f'
+    oldFile: !uuid 'c3ecff99f80eb8c0aa82ff6cc1206c42953282dc'
   /Admin.NET/Admin.NET.Application/Configuration/Database.json:
-    newFile: !uuid '97e1ab3520f2214e75c1cc289e450d3d19785c04'
-    oldFile: !uuid '1f481aad604210a533ee7fcb7d365d8a86bf1229'
-  /Admin.NET/Admin.NET.Core:
-    newFile: !uuid 'cf5b99c60e1bc8e369e15cde18968b5322291cd7'
-    oldFile: !uuid 'd527cbea1f0ad140a6397727fde4e67c6787a1c8'
-  /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
-    newFile: !uuid '21c2d8f6bcb8acaf82527aa96422f1428b762583'
-    oldFile: !uuid 'aabeae57cdb2df49c056e993984cb6ac6af29548'
-  /Admin.NET/Admin.NET.Core/Admin.NET.Core.xml:
-    newFile: !uuid 'a0be03c6ea22737b71daf400a5f63165798be923'
-    oldFile: !uuid '4745629c20a324075a2d88fc73b457442558ee01'
-  /Admin.NET/Admin.NET.Core/Extension:
-    newFile: !uuid 'ebf0cc6b66a7b44cf40bbf22a08dc0aea79d8473'
-    oldFile: !uuid '20f88c3852c03641a32ed74a63df63e7e8346200'
-  /Admin.NET/Admin.NET.Core/Extension/ObjectExtension.cs:
-    newFile: !uuid '822173209b8ffa48ff6a569507515b593538b7fd'
-    oldFile: !uuid 'efbad3a875cfea59c68e2bccdfb73111fa046558'
-  /Admin.NET/Admin.NET.Core/SqlSugar:
-    newFile: !uuid '53b4b8b34b13ca51f108b010160dcca58c6bd437'
-    oldFile: !uuid 'a16a5fe5102470ba13465e24f43a72979b85d325'
-  /Admin.NET/Admin.NET.Core/SqlSugar/SqlSugarSetup.cs:
-    newFile: !uuid 'f51966659baa04d092f801fd21fc9b761c7d4ea6'
-    oldFile: !uuid 'df029ba525959d8dddbc5e3b219715a56ed3066b'
-  /Admin.NET/Admin.NET.Core/Util:
-    newFile: !uuid 'fb0d9db3bb01dc34c3849a1de5bfed02b0dd3b3d'
-    oldFile: !uuid 'f6a982b4e278d284887a99a56ac5ad05b06289cd'
-  /Admin.NET/Admin.NET.Core/Util/SMEncrypt:
-    newFile: null
-    oldFile: !uuid 'd80b79555dd0a698ba09d73b61080729ce1549fa'
-  /Admin.NET/Admin.NET.Core/Util/SMEncrypt/ByteUtil.cs:
-    newFile: null
-    oldFile: !uuid '6fb6f0df4d26bad9f875ff8d944858cf206f7866'
-  /Admin.NET/Admin.NET.Core/Util/SMEncrypt/Cipher.cs:
-    newFile: null
-    oldFile: !uuid '30142181e47ff325cc401c184b3973570d7a6afd'
-  /Admin.NET/Admin.NET.Core/Util/SMEncrypt/SM2.cs:
-    newFile: null
-    oldFile: !uuid '98a6c3320a8d85d7ee9d4389be60e0f3e4861f60'
-  /Admin.NET/Admin.NET.Core/Util/SMEncrypt/SM2Util.cs:
-    newFile: null
-    oldFile: !uuid 'bbf42e1df627641b9f0376d11f94935a89a5d1fb'
-  /Admin.NET/Admin.NET.Core/Util/SMEncrypt/SM3.cs:
-    newFile: null
-    oldFile: !uuid '86b31f71ef6d13a2e761d990f9c19ac9cf4a89d7'
-  /Admin.NET/Admin.NET.Core/Util/SMEncrypt/SM3Util.cs:
-    newFile: null
-    oldFile: !uuid 'c3a118828d6a97a9ed469ac87a0c383dc2c96507'
-  /Admin.NET/Admin.NET.Core/Util/SMEncrypt/SM4.cs:
-    newFile: null
-    oldFile: !uuid 'cf108a26e10ca5dc4025c74b62e65db7cc699db2'
-  /Admin.NET/Admin.NET.Core/Util/SMEncrypt/SM4Util.cs:
-    newFile: null
-    oldFile: !uuid '63ea4249d859edd08e5e8d459266124ec11f5522'
-  /Admin.NET/Admin.NET.Core/Util/SMEncrypt/SMUtil.cs:
-    newFile: null
-    oldFile: !uuid 'b8c89795f67aab0ad15be6110174c23b56cd85fb'
-gitCommitId: !uuid '80ca476f8bb84298d76f782dcc86c683ddb41c87'
+    newFile: !uuid '1f481aad604210a533ee7fcb7d365d8a86bf1229'
+    oldFile: !uuid '97e1ab3520f2214e75c1cc289e450d3d19785c04'
+gitCommitId: !uuid '42385a8f45bdfcdbfb085cef0e62bea202ba2fbb'
 renames: {
   }
-revisionId: 506
+revisionId: 507
