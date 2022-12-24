@@ -2,25 +2,16 @@
 branches: {
   }
 fileChange:
-  /Web:
-    newFile: !uuid 'db253fb8fd513a5ce75fb1df148c80f25a552e61'
-    oldFile: !uuid 'e91b119ce01112f6f27e96681d949a914ea43f61'
-  /Web/src:
-    newFile: !uuid '81ecfe42bad7be04bc4b8ac20536980c1e205f68'
-    oldFile: !uuid 'e5993ac871630f74b5c30ecede45c421b9dadc44'
-  /Web/src/api-services:
-    newFile: !uuid 'd78c62b7fa9b0fe8779d1ae4e00dde353cf63c6b'
-    oldFile: !uuid '182a74fd2dd5328ee6863866cc5678f132608ca5'
-  /Web/src/api-services/models:
-    newFile: !uuid '0888ac7b754396e6cd975fbdb8e6717dddaca925'
-    oldFile: !uuid '1dece0e4c2aee1a50a54d0c09051a9eb1331257a'
-  /Web/src/api-services/models/sys-log-ex.ts:
-    newFile: !uuid '83f0ca85bd52fc454d67d14f4e2a280be368d6ef'
-    oldFile: !uuid '0b900b294f9510bf19746d2e5b62b63df319abd4'
-  /Web/src/api-services/models/sys-log-op.ts:
-    newFile: !uuid '2c58dd2aab36c80d6489550366d5c92ee07861de'
-    oldFile: !uuid 'd1178cfbbd52c4923c810aad4c57525a9c71d5dc'
-gitCommitId: !uuid '59068bed76ff08fd19356a582303215749e49396'
+  /Admin.NET:
+    newFile: !uuid '4f52221f0c7ae546c1351af0573b20a96e1474e7'
+    oldFile: !uuid '555ea22a1e3136e4de8c40f25d7fda2403480d4f'
+  /Admin.NET/Admin.NET.Core:
+    newFile: !uuid '389a0ab34f6fdbd6a38389c632a7f1800074b91c'
+    oldFile: !uuid '333976e19de57f28ae461572a881c78345cc0bd2'
+  /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
+    newFile: !uuid 'a44876e3ee16a73e71cce0ce9f3d39cda9e676f9'
+    oldFile: !uuid '8650f1a8d57854a84baef94e93700a2c49ef68b9'
+gitCommitId: !uuid '1322d3b8af9b877aac8f4e6480e5a8ad7325a95d'
 renames: {
   }
-revisionId: 517
+revisionId: 518
