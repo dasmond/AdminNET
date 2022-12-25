@@ -2,19 +2,37 @@
 branches: {
   }
 fileChange:
-  /Admin.NET:
-    newFile: !uuid '1aa4eacdaef7c18983ccf18e9cb58af0fec820df'
-    oldFile: !uuid '4f52221f0c7ae546c1351af0573b20a96e1474e7'
-  /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '6785af03aa855dfd384ca00dcfb76d1b2165dad8'
-    oldFile: !uuid '389a0ab34f6fdbd6a38389c632a7f1800074b91c'
-  /Admin.NET/Admin.NET.Core/SqlSugar:
-    newFile: !uuid '88aae2bf932e2f26c8a96b916ec07ea3a21e160b'
-    oldFile: !uuid '564e29e15603da4392f323d9235c3af19f1cee27'
-  /Admin.NET/Admin.NET.Core/SqlSugar/SqlSugarRepository.cs:
-    newFile: !uuid '4f1830e5d9ddf4b6ea6fcb366487e43192f463f5'
-    oldFile: !uuid '2319e7566b23743e902fb593ee6fb597522d3248'
-gitCommitId: !uuid 'c7bffa6c7d665d8e80aba3e2a3228866b83b3487'
+  /Web:
+    newFile: !uuid '42bcbed55255bfe04256c3d657995774ca26dfbf'
+    oldFile: !uuid 'db253fb8fd513a5ce75fb1df148c80f25a552e61'
+  /Web/src:
+    newFile: !uuid '2bd082cee6ddb19c2b336bd1e2658c8c5414f006'
+    oldFile: !uuid '81ecfe42bad7be04bc4b8ac20536980c1e205f68'
+  /Web/src/views:
+    newFile: !uuid '3dcd4c84a0b61b0b6fafb0ce1a3475c57c297016'
+    oldFile: !uuid 'c8538b88adc5d3396d26ad64c57a32f146df73ca'
+  /Web/src/views/system:
+    newFile: !uuid 'fa029f556f804d4271dc5eae28108bcfa6053e99'
+    oldFile: !uuid '774f08ffa8d66c1baa652eb3ec3cf5912f93e3c8'
+  /Web/src/views/system/role:
+    newFile: !uuid '1098d3aee13e72c5306aaeaa94ef5f84dbd25bd9'
+    oldFile: !uuid '77433cbadfad2109149a800815843fc2f79a3fcd'
+  /Web/src/views/system/role/component:
+    newFile: !uuid 'a8dfdc178955f3e277a1d973ffa524d90212ebf4'
+    oldFile: !uuid '64de9e589003362f68e6926da43b4661c7c64c96'
+  /Web/src/views/system/role/component/editRole.vue:
+    newFile: !uuid '56eac41b90896b1446577d88f087af752c66ca57'
+    oldFile: !uuid '9838ec510b4890d308f106282b3a2c2482546331'
+  /Web/src/views/system/tenant:
+    newFile: !uuid 'a9b1b2163b95692d509d428ed6e3a153565a337b'
+    oldFile: !uuid 'c720cba2f205733651a046528c83b3184bc0134e'
+  /Web/src/views/system/tenant/component:
+    newFile: !uuid 'b2df12a76457aa22219e9dcd8577411346a67ff7'
+    oldFile: !uuid '2a8e4427305f3cf79842be2aff14cfaf74154cd9'
+  /Web/src/views/system/tenant/component/grantMenu.vue:
+    newFile: !uuid '2debaa3e12c98fb47f381f8e33d07a84cb68d033'
+    oldFile: !uuid '6a53269902379e7d2a79c2331ec0eaa6b0ab426f'
+gitCommitId: !uuid '13ac0035ae6f898c34f7c70e496669208ce120cd'
 renames: {
   }
-revisionId: 521
+revisionId: 522
