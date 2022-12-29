@@ -3,21 +3,21 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '14d7cf15d5307f6f0166aa1fee5ff4ca9cfeca77'
-    oldFile: !uuid '8156b6b80f68ba52198138344d4e440de3db3eae'
+    newFile: !uuid '31508b641b1279312bae4286ad9d8cd419fdc65a'
+    oldFile: !uuid '14d7cf15d5307f6f0166aa1fee5ff4ca9cfeca77'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '4a26ba1105fffbf4b154a49411ee866b66369a7a'
-    oldFile: !uuid 'e0da1c7b76dfe748f72c40e346cfc16f206c3789'
+    newFile: !uuid 'fec99809d0cf2a9d22ef1fc1dd92382682c94ebf'
+    oldFile: !uuid '4a26ba1105fffbf4b154a49411ee866b66369a7a'
   /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid 'dd5758c1ceb0520d3116345ad5e445ecb1da7ce0'
-    oldFile: !uuid '1859a77c1863d348890ba29287457fac430d0f24'
-  /Admin.NET/Admin.NET.Core/Service/Dict:
-    newFile: !uuid '3746e932e5fbfcebb1cf93301f476b1d48bc33e9'
-    oldFile: !uuid 'cc2947ddcb26a8f1d1459d610084b1de7e23e507'
-  /Admin.NET/Admin.NET.Core/Service/Dict/SysDictDataService.cs:
-    newFile: !uuid 'cc53638a6b670ad5a194f1bac332f69caf279837'
-    oldFile: !uuid '761649b7a6f9b915037158d3bc117c2d00c40caa'
-gitCommitId: !uuid '1d6446098d66b4a788a80523a6033a33e584a84b'
+    newFile: !uuid 'aa831431ecbcc53c3ff0f9d43c1a0b932a2fa7dc'
+    oldFile: !uuid 'dd5758c1ceb0520d3116345ad5e445ecb1da7ce0'
+  /Admin.NET/Admin.NET.Core/Service/DataBase:
+    newFile: !uuid '79476d166aa8b82e3384d7133b36d0791faf4d4a'
+    oldFile: !uuid 'f0932a591230a5fd10546ac5916dda440a1feee9'
+  /Admin.NET/Admin.NET.Core/Service/DataBase/SysDatabaseService.cs:
+    newFile: !uuid 'b68504f8d395fc27cc5e3fdcaf513faa612d96a2'
+    oldFile: !uuid 'c26a812cdf174833fe56335bba5ea873338985e8'
+gitCommitId: !uuid 'c897155e29ce2580495cb6172915a51af146bf28'
 renames: {
   }
-revisionId: 528
+revisionId: 529
