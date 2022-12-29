@@ -3,57 +3,21 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid 'f187584817d22c846ded6cc945077a548da727bb'
-    oldFile: !uuid '465396da7b91d0657f43cde31436bfea76f14dc9'
-  /Admin.NET/.dockerignore:
-    newFile: !uuid '3729ff0cd1acce411e814ec416b82ac0f239a4e0'
-    oldFile: null
-  /Admin.NET/Admin.NET.Application:
-    newFile: !uuid '93479952645fc79b94134b6dbb1e763217511697'
-    oldFile: !uuid '2fc21ff90526ed071a19d1a9806d02b445ed13e5'
-  /Admin.NET/Admin.NET.Application/Configuration:
-    newFile: !uuid 'e12e4ee76484e9c556eeec919a643c7eb10c63cc'
-    oldFile: !uuid 'cb59643ca65cbcb182f51e9b9ce151a83731a1a3'
-  /Admin.NET/Admin.NET.Application/Configuration/App.json:
-    newFile: !uuid '4bd0ba56501d914bd46f1e0f70ded167ae7a22b3'
-    oldFile: !uuid 'c8235ee0366fb3f719f9a2c4234f1b8c311e2401'
+    newFile: !uuid '8156b6b80f68ba52198138344d4e440de3db3eae'
+    oldFile: !uuid 'f187584817d22c846ded6cc945077a548da727bb'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid 'deb72a787e2546d9f65e975f0fa3e6f3dfba8b7d'
-    oldFile: !uuid 'a26d77a14cd219bf8407fe772e7da5df23a4905a'
-  /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
-    newFile: !uuid '8695053b19a46322a380ee6843cfdc0241835c94'
-    oldFile: !uuid '8a711c787d6fb54c14183aee5b5b717380b1024c'
-  /Admin.NET/Admin.NET.Core/Captcha:
-    newFile: !uuid 'c6b998355d2433ef0c2b6c357089ef085727f40c'
-    oldFile: !uuid 'c526de6f43021222efef8badcbc3dd6ca6828724'
-  /Admin.NET/Admin.NET.Core/Captcha/LazyCaptchaSetup.cs:
-    newFile: !uuid 'a40ee12838a133b8eeb22ce9f3b10a9d2afd1253'
-    oldFile: !uuid '562faf856f540b1c900c05ab587cfdaabe556767'
+    newFile: !uuid 'e0da1c7b76dfe748f72c40e346cfc16f206c3789'
+    oldFile: !uuid 'deb72a787e2546d9f65e975f0fa3e6f3dfba8b7d'
   /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid '1d745ef49da3aece5e7e99a1cad224e52ea8b900'
-    oldFile: !uuid 'afa942b2757a6849f2ffe08f4e8814ecb1ae17c2'
-  /Admin.NET/Admin.NET.Core/Service/CodeGen:
-    newFile: !uuid 'ed5c3b16eb6b1dbc7d26598b2bc6090ef6c3a023'
-    oldFile: !uuid 'cf4d975223faa0aff145dcb1066c10107ea53335'
-  /Admin.NET/Admin.NET.Core/Service/CodeGen/SysCodeGenService.cs:
-    newFile: !uuid 'a84b44c124328f95073975d301022edfe179393e'
-    oldFile: !uuid '7609dd81d6d958c1df4839c03b6eff13f80e6d67'
-  /Admin.NET/Admin.NET.Web.Entry:
-    newFile: !uuid '0bef408b1cb007f5e6f9c767072e72e2d7af2b76'
-    oldFile: !uuid '214e6b731489f1dd14a697a4b551286fad29cfed'
-  /Admin.NET/Admin.NET.Web.Entry/Admin.NET.Web.Entry.csproj:
-    newFile: !uuid 'e91842fc528b225bf438d1378ced0bf7e3b383e4'
-    oldFile: !uuid '9f0ce321ce933b7f4bc0a487825fe1d1628666d1'
-  /Admin.NET/Admin.NET.Web.Entry/Dockerfile:
-    newFile: !uuid '1d66b95a6c3040028ef2a1dd1758348402d14053'
-    oldFile: null
-  /Admin.NET/Admin.NET.Web.Entry/Properties:
-    newFile: !uuid '94dc87b7b6c1ac0a34c52000c45fad5f21f341f2'
-    oldFile: !uuid '3adefbe9878738435d63b5220fef4a84d498ef0f'
-  /Admin.NET/Admin.NET.Web.Entry/Properties/launchSettings.json:
-    newFile: !uuid '11d64adbb82921458cab36eb9e379918ebe5038f'
-    oldFile: !uuid '09b41541d0ac0438852e8922c7359ed940685d94'
-gitCommitId: !uuid 'a5040848b80f64f1c33b32a94ab2a86530f1b84d'
+    newFile: !uuid '1859a77c1863d348890ba29287457fac430d0f24'
+    oldFile: !uuid '1d745ef49da3aece5e7e99a1cad224e52ea8b900'
+  /Admin.NET/Admin.NET.Core/Service/Menu:
+    newFile: !uuid 'bd82333cb340ee3a3cb98ec47ef88e8395a2933b'
+    oldFile: !uuid '18144eacf2e7acada0a9726ffe50cbf0ba7546dd'
+  /Admin.NET/Admin.NET.Core/Service/Menu/SysMenuService.cs:
+    newFile: !uuid '50c130a1157f0fe55756af156634fdde626b7997'
+    oldFile: !uuid 'd9a7c1e0cbf7782abf6c4adfafe950b9fbc17fb4'
+gitCommitId: !uuid 'be2903e5cec66d80e1fbf38166c012c19e881880'
 renames: {
   }
-revisionId: 526
+revisionId: 527
