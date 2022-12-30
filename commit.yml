@@ -2,22 +2,67 @@
 branches: {
   }
 fileChange:
+  /.gitignore:
+    newFile: !uuid '8b1ac09efe38f2bce53cf80a353df7632a27fd3e'
+    oldFile: !uuid '2f5fbd2d53c7dba89e65e5f2a8f903cf16d6afeb'
   /Admin.NET:
-    newFile: !uuid 'c9f3e96925f8aa7a75fece50c7792d86b1cfa174'
-    oldFile: !uuid '31508b641b1279312bae4286ad9d8cd419fdc65a'
+    newFile: !uuid '95605c4555a2eb17ddd8903173b820a5a99d7832'
+    oldFile: !uuid 'c9f3e96925f8aa7a75fece50c7792d86b1cfa174'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid 'b90ce0ba09d2fa9032f1736a4bc6ba32797bc4e2'
-    oldFile: !uuid 'fec99809d0cf2a9d22ef1fc1dd92382682c94ebf'
+    newFile: !uuid '9f076bf38b22621019551ee45b0095bb199b386a'
+    oldFile: !uuid 'b90ce0ba09d2fa9032f1736a4bc6ba32797bc4e2'
+  /Admin.NET/Admin.NET.Core/Admin.NET.Core.xml:
+    newFile: !uuid '28214389d51328db14ff52d87667f798b45221af'
+    oldFile: !uuid 'c0513e014fe9faffa2af8b2bfa0774d8e5afd1b1'
+  /Admin.NET/Admin.NET.Core/Const:
+    newFile: !uuid '36ef96aef18ece42d5e7a476d975f9b4eadd22ac'
+    oldFile: !uuid 'd8e3c3681ae252cd67ad407125e53dcb0789809f'
+  /Admin.NET/Admin.NET.Core/Const/CommonConst.cs:
+    newFile: !uuid '2f17c6bd913e758387571698d80e64f10f8dbaf4'
+    oldFile: !uuid '2495f35bce32aa6d1102e622a8fce55188b41742'
+  /Admin.NET/Admin.NET.Core/SeedData:
+    newFile: !uuid '3dd2b30659365970766aff9dc7d2b47a7009f4f3'
+    oldFile: !uuid '1bcf30c255c647d9edb05270df70566d46f76009'
+  /Admin.NET/Admin.NET.Core/SeedData/SysConfigSeedData.cs:
+    newFile: !uuid '0d2b86eda6ea3601c6f3e8ee6ecc0a483a165edd'
+    oldFile: !uuid '36b8d11889733d9d31d63d27c56cee308ce67b14'
   /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid '7395987006c6918ed07d04759b710ecf6d0689b5'
-    oldFile: !uuid 'aa831431ecbcc53c3ff0f9d43c1a0b932a2fa7dc'
-  /Admin.NET/Admin.NET.Core/Service/DataBase:
-    newFile: !uuid 'cd42c6300011c34e53f770883b692bdcb0ada90b'
-    oldFile: !uuid '79476d166aa8b82e3384d7133b36d0791faf4d4a'
-  /Admin.NET/Admin.NET.Core/Service/DataBase/SysDatabaseService.cs:
-    newFile: !uuid '4668d7b25dc5649b8a6655519cda2e93467aa0bf'
-    oldFile: !uuid 'b68504f8d395fc27cc5e3fdcaf513faa612d96a2'
-gitCommitId: !uuid 'eadd75510b2d95f8d761eb9f228ca2d54d64a5c7'
+    newFile: !uuid '25bb02eb503f7730eb8ab3b6ce3fce0442ed05a9'
+    oldFile: !uuid '7395987006c6918ed07d04759b710ecf6d0689b5'
+  /Admin.NET/Admin.NET.Core/Service/Auth:
+    newFile: !uuid '93f270eeb5b0e4b62c66326d25873159682a075c'
+    oldFile: !uuid '7d8fbce437c30742e0f3744864dcf00345f4dd47'
+  /Admin.NET/Admin.NET.Core/Service/Auth/SysAuthService.cs:
+    newFile: !uuid '1929bf5b599b1c5916e0d36f0438f9cf4134b77d'
+    oldFile: !uuid 'eb18d59c9e8de94192371b0657dc8a237032d7ef'
+  /Web:
+    newFile: !uuid '96b533892438045ae753039dea3ebc810c69dd92'
+    oldFile: !uuid '42bcbed55255bfe04256c3d657995774ca26dfbf'
+  /Web/src:
+    newFile: !uuid '46df06a1fb99bb5775cb3d618cfc66b8508a6ab2'
+    oldFile: !uuid '2bd082cee6ddb19c2b336bd1e2658c8c5414f006'
+  /Web/src/api-services:
+    newFile: !uuid 'a3ed21f024bf2ab5c968045dfb57915bb0e062d5'
+    oldFile: !uuid 'd78c62b7fa9b0fe8779d1ae4e00dde353cf63c6b'
+  /Web/src/api-services/apis:
+    newFile: !uuid '21fd91172d47c055d32402f9eca94f94ed4eaea3'
+    oldFile: !uuid '6482e6fd959339c445b716b53fbcccedc180832a'
+  /Web/src/api-services/apis/sys-auth-api.ts:
+    newFile: !uuid 'ce8d14de1a04e05e3078ffe847bb1efb1046b7de'
+    oldFile: !uuid '1e47de0317dbaedc40c28718550bbe42b4c18bc2'
+  /Web/src/views:
+    newFile: !uuid 'c3142265dea4ef635a4febaf8c5bc7e752f98491'
+    oldFile: !uuid '3dcd4c84a0b61b0b6fafb0ce1a3475c57c297016'
+  /Web/src/views/login:
+    newFile: !uuid 'dac2b1ca0a665332a13322cf82eb47a963660c40'
+    oldFile: !uuid '0306ee0736135319fb77e9017b99378c3ea29101'
+  /Web/src/views/login/component:
+    newFile: !uuid 'b01cd3a60691d1ff85b80cf6dce8f80bfcc51965'
+    oldFile: !uuid '80cc906a9093f5951ee7a665e7fc8bd7becc5efe'
+  /Web/src/views/login/component/account.vue:
+    newFile: !uuid 'b47689b5fa2a3b4012fdd5e68d3452f661fd370d'
+    oldFile: !uuid '5d048514dbd35da0dbd33a06f1ca5dfc46ac6c2a'
+gitCommitId: !uuid '77cc029444f4b2708581a81365712af81fcf1106'
 renames: {
   }
-revisionId: 530
+revisionId: 531
