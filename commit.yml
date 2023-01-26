@@ -3,12 +3,12 @@ branches: {
   }
 fileChange:
   /docker:
-    newFile: !uuid 'fe43158791544f58a7263ee995cdd4a750725bda'
-    oldFile: !uuid 'be6bf3cf7a4b4eedd0ddc1c801e4c748a7651f10'
-  /docker/build.sh:
-    newFile: !uuid '4c7162f892c1dbed9e55ee146cac266119ab0429'
+    newFile: !uuid '4bd5965ea3d2e0732d2c28c1480e9b36c6a99a39'
+    oldFile: !uuid 'fe43158791544f58a7263ee995cdd4a750725bda'
+  /docker/README.md:
+    newFile: !uuid '7c6ab361d94cd8d153cf6a19dc82245d09de5cc1'
     oldFile: null
-gitCommitId: !uuid '95e535bc40e9356958d7c169103225221cf33a8a'
+gitCommitId: !uuid '41f510f1ed5aeffe9b8dcb25800debfa17878dfc'
 renames: {
   }
-revisionId: 563
+revisionId: 564
