@@ -3,12 +3,15 @@ branches: {
   }
 fileChange:
   /docker:
-    newFile: !uuid 'a3d20bd5fc930d04eac8f9f0c1fc39bd265541af'
-    oldFile: !uuid '0d0f867de4f167a84e0bf6b17c250a0a8c64a858'
-  /docker/.env.production:
-    newFile: !uuid 'ceb2de9b584cc9d144b36f55c5a171814ecc05f1'
+    newFile: !uuid '49d3e5e4a2705ca0a3e65bc08475e9414ef4c70a'
+    oldFile: !uuid 'a3d20bd5fc930d04eac8f9f0c1fc39bd265541af'
+  /docker/app:
+    newFile: !uuid '5f4afb0a58aa28c3042667970310c16057245134'
+    oldFile: !uuid 'b3b85841e110e946cabdf580b0b0fd666fe81989'
+  /docker/app/wait-for-it.sh:
+    newFile: !uuid 'd990e0d364f576ee83cd699707076ca49ad36a4d'
     oldFile: null
-gitCommitId: !uuid 'd6321083423cf4a2747a1fcb77acd989d740e3e6'
+gitCommitId: !uuid '204ba21f712f57aef4ff3025be1454f651ae6cb6'
 renames: {
   }
-revisionId: 557
+revisionId: 558
