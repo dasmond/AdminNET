@@ -3,36 +3,12 @@ branches: {
   }
 fileChange:
   /docker:
-    newFile: !uuid '0d0f867de4f167a84e0bf6b17c250a0a8c64a858'
+    newFile: !uuid 'a3d20bd5fc930d04eac8f9f0c1fc39bd265541af'
+    oldFile: !uuid '0d0f867de4f167a84e0bf6b17c250a0a8c64a858'
+  /docker/.env.production:
+    newFile: !uuid 'ceb2de9b584cc9d144b36f55c5a171814ecc05f1'
     oldFile: null
-  /docker/app:
-    newFile: !uuid 'b3b85841e110e946cabdf580b0b0fd666fe81989'
-    oldFile: null
-  /docker/app/Configuration:
-    newFile: !uuid '186841ef0f90e50376e8e8e1f7570eaceae98d6d'
-    oldFile: null
-  /docker/app/Configuration/Database.json:
-    newFile: !uuid 'f46ea198db10ecd0d6e53ebf42542e0cb7f1d168'
-    oldFile: null
-  /docker/docker-compose.yml:
-    newFile: !uuid 'f29031b6ae9b59a229433c5e4e86e5c3eea5b33f'
-    oldFile: null
-  /docker/mysql:
-    newFile: !uuid '5a391c199b36ba1bd2404c10e85c049097199508'
-    oldFile: null
-  /docker/mysql/mysql.cnf:
-    newFile: !uuid 'cc172bcd6b925f5ad40d54a4fff3eed721881e19'
-    oldFile: null
-  /docker/nginx:
-    newFile: !uuid 'cdeeb104df89971772ca99c5178ddea8b911bef3'
-    oldFile: null
-  /docker/nginx/conf:
-    newFile: !uuid 'dfd21afcd4f28aff74e6ef57faed68424b4d2749'
-    oldFile: null
-  /docker/nginx/conf/nginx.conf:
-    newFile: !uuid '40e70e28c83f5186c4f07aea88b361c1e305ee05'
-    oldFile: null
-gitCommitId: !uuid '6c7ce20535bb301a6ee25172a79c4d12c004b23f'
+gitCommitId: !uuid 'd6321083423cf4a2747a1fcb77acd989d740e3e6'
 renames: {
   }
-revisionId: 556
+revisionId: 557
