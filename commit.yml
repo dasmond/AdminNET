@@ -3,18 +3,12 @@ branches: {
   }
 fileChange:
   /docker:
-    newFile: !uuid 'be6bf3cf7a4b4eedd0ddc1c801e4c748a7651f10'
-    oldFile: !uuid 'b2ac3108a80c2a2d438cf70e514452f0b8036852'
-  /docker/nginx:
-    newFile: !uuid '236a297c91407940491ece57e06cf1840e590c8b'
-    oldFile: !uuid 'cdeeb104df89971772ca99c5178ddea8b911bef3'
-  /docker/nginx/dist:
-    newFile: !uuid 'b00ff663e81db257c7352cb571cc885f84210f31'
+    newFile: !uuid 'fe43158791544f58a7263ee995cdd4a750725bda'
+    oldFile: !uuid 'be6bf3cf7a4b4eedd0ddc1c801e4c748a7651f10'
+  /docker/build.sh:
+    newFile: !uuid '4c7162f892c1dbed9e55ee146cac266119ab0429'
     oldFile: null
-  /docker/nginx/dist/index.html:
-    newFile: !uuid 'a7a10edd8b68aac7866d3319b780c174125cf8ef'
-    oldFile: null
-gitCommitId: !uuid 'fdde037a6858b476d8dee6ae74a215265898b938'
+gitCommitId: !uuid '95e535bc40e9356958d7c169103225221cf33a8a'
 renames: {
   }
-revisionId: 561
+revisionId: 562
