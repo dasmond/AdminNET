@@ -32,10 +32,10 @@
 		<div class="layout-navbars-breadcrumb-user-icon" @click="onLayoutSetingClick">
 			<i class="icon-skin iconfont" :title="$t('message.user.title3')"></i>
 		</div>
-		<div class="layout-navbars-breadcrumb-user-icon">
+		<div class="layout-navbars-breadcrumb-user-icon"> 
 			<el-popover placement="bottom" trigger="hover" transition="el-zoom-in-top" :width="300" :persistent="false">
 				<template #reference>
-					<el-badge :is-dot="true">
+					<el-badge :hidden="state.noticeList.filter((x:any)=>x.readStatus!=1).length==0" :value="state.noticeList.filter((x:any)=>x.readStatus!=1).length" :max="99" >
 						<el-icon :title="$t('message.user.title4')">
 							<ele-Bell />
 						</el-icon>
