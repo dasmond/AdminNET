@@ -3,15 +3,42 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid 'a1f68a0e91072362f49849f57ab2d4df89600ef3'
-    oldFile: !uuid '1799d32c14c679d5682ee22769310e52af8847d0'
+    newFile: !uuid 'f9f4c218fbf8718d4101601951059a8adceb51d6'
+    oldFile: !uuid 'a1f68a0e91072362f49849f57ab2d4df89600ef3'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '847da160e44254c176c5863f53680b7f1611b502'
-    oldFile: !uuid '4e98b4c4ebd21bbf5afdc2bfe77456cf8f7a0cae'
-  /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
-    newFile: !uuid 'a2cf5918f49ca693636172906f2cd749d26dee40'
-    oldFile: !uuid '81c761aa986b61d9d62e1539bd033c3f4a8b6026'
-gitCommitId: !uuid '984011ab493a2b66ff6936cf3732d41b66b17531'
+    newFile: !uuid '0948caf5beb9089e6abbfc854fcebc7d569aab6d'
+    oldFile: !uuid '847da160e44254c176c5863f53680b7f1611b502'
+  /Admin.NET/Admin.NET.Core/Entity:
+    newFile: !uuid '6552b6e3f7075935c728c4a899e027eca39cca6e'
+    oldFile: !uuid '34f41684dd6a66fbb25f3a7441112e685588db54'
+  /Admin.NET/Admin.NET.Core/Entity/SysCodeGenConfig.cs:
+    newFile: !uuid 'ffc5896ee65783a192fd43a7f985295ddfc1d9ec'
+    oldFile: !uuid 'edb474335e2d31c5c687b9d87112dcb9a08baa50'
+  /Admin.NET/Admin.NET.Core/Entity/SysJobDetail.cs:
+    newFile: !uuid '4108e1ad9ffb085fc839c907909a4ac247e0a815'
+    oldFile: !uuid '17b0b72bc583736ff4a77e2afbf2b73b59315d33'
+  /Admin.NET/Admin.NET.Core/Entity/SysLogAudit.cs:
+    newFile: !uuid 'a3200e07d35e86638ab8933c4d82e664ea5b5152'
+    oldFile: !uuid 'b419f77907ff3158338824e27e4932faf7137c25'
+  /Admin.NET/Admin.NET.Core/Entity/SysLogDiff.cs:
+    newFile: !uuid 'eeac25e773b949e9e57ba586ac218060030f50af'
+    oldFile: !uuid 'c3661656d6ab6d17d20274af165f3b51508bec96'
+  /Admin.NET/Admin.NET.Core/Entity/SysLogEx.cs:
+    newFile: !uuid '0cbb8aebb63fe77fe54bf8945f5e6faf9dc060a3'
+    oldFile: !uuid '452947ffcb8201ef9527fac39d201e0f26882b35'
+  /Admin.NET/Admin.NET.Core/Entity/SysLogOp.cs:
+    newFile: !uuid '77ad799a95fe22feb24d5e30a6b8f549eb406351'
+    oldFile: !uuid '1066fdbd5f8af829f61afefe4433cf0f48295615'
+  /Admin.NET/Admin.NET.Core/Entity/SysLogVis.cs:
+    newFile: !uuid 'f3794733d106855aae02a31d44759757be6fe893'
+    oldFile: !uuid 'd22ba7829802f46aafc5904a0d3b054fa7b273cf'
+  /Admin.NET/Admin.NET.Core/Entity/SysNotice.cs:
+    newFile: !uuid 'b4405206a842fc9b389a5869112d564292e3f4a9'
+    oldFile: !uuid '242062288a280b3d9b8a0a7391981e2c78e96577'
+  /Admin.NET/Admin.NET.Core/Entity/SysWechatUser.cs:
+    newFile: !uuid 'a39ee22111d394770ceb4c4ba8abf0c3b94d4843'
+    oldFile: !uuid 'f9afb504519a41ada04bc16cb6c7dfa7fd7b0c63'
+gitCommitId: !uuid 'ddf04aca22dbf8e33417b6bf7a8c94a2f2af6d2a'
 renames: {
   }
-revisionId: 569
+revisionId: 570
