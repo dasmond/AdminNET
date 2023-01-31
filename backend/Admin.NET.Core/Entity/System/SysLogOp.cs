@@ -35,7 +35,7 @@ namespace Admin.NET.Core
         /// IP
         /// </summary>
         [Comment("IP")]
-        [MaxLength(20)]
+        [MaxLength(21)]
         public string Ip { get; set; }
 
         /// <summary>
