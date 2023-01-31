@@ -3,33 +3,66 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '8d3321d47e58a8871033b41001fa9c81d849041e'
-    oldFile: !uuid 'f9f4c218fbf8718d4101601951059a8adceb51d6'
-  /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '650d035e39677a31b1df40fa76d6e9b65a6bb133'
-    oldFile: !uuid '0948caf5beb9089e6abbfc854fcebc7d569aab6d'
-  /Admin.NET/Admin.NET.Core/Admin.NET.Core.xml:
-    newFile: !uuid '6c22181bd9d1d2c771da7ed9167d7224b8e792f6'
-    oldFile: !uuid '71b10988a2c3271a1a26bc3eb35a9127640f0883'
-  /Admin.NET/Admin.NET.Core/Entity:
-    newFile: !uuid 'a5a42614e0d73ef6748d50a136a8e1692d01b137'
-    oldFile: !uuid '6552b6e3f7075935c728c4a899e027eca39cca6e'
-  /Admin.NET/Admin.NET.Core/Entity/EntityBase.cs:
-    newFile: !uuid 'e6553cb9d17886db3a46c249e750ff5d70dcde6c'
-    oldFile: !uuid 'd3db0dac07de1989e98b68d3bea02925d6ff534a'
-  /Admin.NET/Admin.NET.Core/Entity/IEntityFilter.cs:
-    newFile: !uuid '98da27905164d9ddc88f1386987eee9378d5b13e'
-    oldFile: null
-  /Admin.NET/Admin.NET.Core/SqlSugar:
-    newFile: !uuid '9fe70dc0a2cb6a8c4186c0555665fa1fd4f79def'
-    oldFile: !uuid '7ad97632ceed3505503d9b56edbb73c4162f93af'
-  /Admin.NET/Admin.NET.Core/SqlSugar/SqlSugarFilter.cs:
-    newFile: !uuid 'cdc778018204b2191fc03c149452145d9f2c5fc9'
-    oldFile: !uuid 'e985011450c3d580c7cddd07fa96173eb4468db5'
-  /Admin.NET/Admin.NET.Core/SqlSugar/SqlSugarSetup.cs:
-    newFile: !uuid '2c42189b87827e6392bb621f3cfb72e36f3108e1'
-    oldFile: !uuid 'a5cd0d1d75aa91f98e3ac6c1155f15fd8cb686bc'
-gitCommitId: !uuid '9d7ccdfae5bab90bbda6276c414c4b3167ea9450'
+    newFile: !uuid '1dc92250e9d3e4cb1db2de29208ce81220df72be'
+    oldFile: !uuid '8d3321d47e58a8871033b41001fa9c81d849041e'
+  /Admin.NET/Admin.NET.Application:
+    newFile: !uuid '00d1379838ac632b5ef9ff38ac1491efc9a67cc9'
+    oldFile: !uuid '5e83bed2054ba467f031e9acb72534af8bc9adca'
+  /Admin.NET/Admin.NET.Application/Admin.NET.Application.csproj:
+    newFile: !uuid '9ec0688f528a10413275f296da6688e8e96eb463'
+    oldFile: !uuid '77c81b7c74959dcf4ce67db176b17a83c410469f'
+  /Admin.NET/Admin.NET.Application/Const:
+    newFile: !uuid '994d6693192c9c31bc29f6e7af134abb07b33eb6'
+    oldFile: !uuid '528f8a85132cae50960ec395cb4e36d097220a5b'
+  /Admin.NET/Admin.NET.Application/Const/ApplicationConst.cs:
+    newFile: !uuid 'fc6933369c38aab2503bd220c64f2b44a040d574'
+    oldFile: !uuid '75102df44ff020340dd96c4f5e64ba0d159eab60'
+  /Admin.NET/Admin.NET.Application/Entity:
+    newFile: !uuid '48da37fea10b6665d775909e3d61d269b23ba135'
+    oldFile: !uuid '3faec0b45c480e64900d079ad92ed9a2e2c80f3e'
+  /Admin.NET/Admin.NET.Application/Entity/Business.cs:
+    newFile: null
+    oldFile: !uuid 'f360fdc631d61d5578be8198e4eee1b0ac207401'
+  /Admin.NET/Admin.NET.Application/Entity/Student.cs:
+    newFile: null
+    oldFile: !uuid '1c679408dadfb7462a973b7116dad1556445cd87'
+  /Admin.NET/Admin.NET.Application/Entity/Test.cs:
+    newFile: !uuid '43b98020e4272cd08138edfbedb3465ab5c9b524'
+    oldFile: !uuid 'c3a262fea0aa91018036da45e0598945d3bb9744'
+  /Admin.NET/Admin.NET.Application/Entity/TreeTest.cs:
+    newFile: null
+    oldFile: !uuid 'c2a73a1264c774113dfc43205097021e9396f1db'
+  /Admin.NET/Admin.NET.Application/GlobalUsings.cs:
+    newFile: !uuid '9983c5c9aff09d2fc4b05bd92588ad56075336cf'
+    oldFile: !uuid '6b1cc8b159a69d1e36531e91132bd4e8d3038ff5'
+  /Admin.NET/Admin.NET.Application/SeedData:
+    newFile: !uuid '92554fb6c7e17cae38706ed8822450c2eba73fa3'
+    oldFile: !uuid '577a39d1d82ae730b498317daa4354bf939670bf'
+  /Admin.NET/Admin.NET.Application/SeedData/SysMenuSeedData.cs:
+    newFile: !uuid 'bd3cd3d6e2e5cdd4dbb610e96f7954e2d8465664'
+    oldFile: !uuid 'b7b678da14f8a551a6957daf6d2738a5f5fbb912'
+  /Admin.NET/Admin.NET.Application/SeedData/TestSeedData.cs:
+    newFile: !uuid '8652c147b2f462d3d6f6c4b821f8048e1645e67f'
+    oldFile: !uuid 'cd001c784ace1b4da74f16fdf6ebb34f861f9eb3'
+  /Admin.NET/Admin.NET.Application/Service:
+    newFile: !uuid 'fe625588ec1f48ab7e3fa65a83f9a91f704ce1b1'
+    oldFile: !uuid 'd2b3a6816e7185ddde601ca6bb4d26888c9aacb7'
+  /Admin.NET/Admin.NET.Application/Service/TenantBusinessService.cs:
+    newFile: null
+    oldFile: !uuid '6085e989dd3a1eebc395406a92e0e0905dc454d8'
+  /Admin.NET/Admin.NET.Application/Service/Test2Service.cs:
+    newFile: null
+    oldFile: !uuid 'eb8e70b51c82b53f171aa5954e39a94ca0b64ff8'
+  /Admin.NET/Admin.NET.Application/Service/TestService.cs:
+    newFile: !uuid '348469efef887465a47547858cb42bf839095f42'
+    oldFile: !uuid '03468aae135c225df16f8ec522e250752b1626e8'
+  /Admin.NET/Admin.NET.Application/Temp:
+    newFile: null
+    oldFile: !uuid '8b3795a69fade31ab52801fe8c5dcea40d109ef4'
+  /Admin.NET/Admin.NET.Application/Temp/CovidReport.html:
+    newFile: null
+    oldFile: !uuid 'd99c9ba5602b471b09b5aade97e969af60a27af2'
+gitCommitId: !uuid 'ebaea874503cb3c98dea200a3b7ed047c54c8be1'
 renames: {
   }
-revisionId: 571
+revisionId: 572
