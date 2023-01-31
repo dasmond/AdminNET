@@ -1,4 +1,4 @@
-﻿using Furion.DatabaseAccessor;
+using Furion.DatabaseAccessor;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System.ComponentModel.DataAnnotations;
@@ -84,7 +84,7 @@ namespace Admin.NET.Core
         /// 最后登录IP
         /// </summary>
         [Comment("最后登录IP")]
-        [MaxLength(20)]
+        [MaxLength(21)]
         public string LastLoginIp { get; set; }
 
         /// <summary>
