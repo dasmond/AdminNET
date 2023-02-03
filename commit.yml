@@ -2,42 +2,10 @@
 branches: {
   }
 fileChange:
-  /doc:
-    newFile: !uuid '4229d9d8aeb6664de85f21dc5325aafa0b737307'
-    oldFile: !uuid '6a5c270fda5b0084f676eb99236b676605fc5cb3'
-  /doc/shop:
-    newFile: !uuid '1b60d4818d518e19ccfe50df1e5a60fdf24a82a6'
-    oldFile: !uuid '6e9b1744e8a126381271199bdac6bf240245339b'
-  /doc/shop/1.png:
-    newFile: null
-    oldFile: !uuid 'ffae80209df249263c9514527533622da1e2b73f'
-  /doc/shop/2.png:
-    newFile: null
-    oldFile: !uuid 'e9ae0b5b1ead0435022b869472a26ed123729b23'
-  /doc/shop/3.png:
-    newFile: null
-    oldFile: !uuid 'ed0e18b2ffb22be5c763bab159ce68fb56c09150'
-  /doc/shop/4.png:
-    newFile: null
-    oldFile: !uuid '2a46602c67feee8bb552598eb0c2be41d9e7e74e'
-  /doc/shop/iMES:
-    newFile: !uuid 'f16c7c3484c86856d38ea9417fda4ba5a9d7d3a7'
-    oldFile: null
-  /doc/shop/iMES/1.png:
-    newFile: !uuid 'c76bb110d893e7193d777017ff8575b4ee0a9eba'
-    oldFile: null
-  /doc/shop/iMES/2.png:
-    newFile: !uuid 'e9ae0b5b1ead0435022b869472a26ed123729b23'
-    oldFile: null
-  /doc/shop/iMES/3.png:
-    newFile: !uuid 'ed0e18b2ffb22be5c763bab159ce68fb56c09150'
-    oldFile: null
-  /doc/shop/iMES/4.png:
-    newFile: !uuid '2a46602c67feee8bb552598eb0c2be41d9e7e74e'
-    oldFile: null
-gitCommitId: !uuid '3bcbb4ea4be181f190f6eaabcb46452aed5b97aa'
-renames:
-  /doc/shop/iMES/2.png: /doc/shop/2.png
-  /doc/shop/iMES/3.png: /doc/shop/3.png
-  /doc/shop/iMES/4.png: /doc/shop/4.png
-revisionId: 581
+  /README.md:
+    newFile: !uuid 'bbd1ba4b0c8deb29debe8306de9960008722149b'
+    oldFile: !uuid '65d36e7772d0228db1e6d3bbc7c4814b4afb4b8a'
+gitCommitId: !uuid '0ce27cf2106f52fc86b84f3e967c7cab19ef603a'
+renames: {
+  }
+revisionId: 582
