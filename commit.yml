@@ -2,22 +2,42 @@
 branches: {
   }
 fileChange:
-  /Admin.NET:
-    newFile: !uuid '5499466f1d87e48b3dfa90df14e6f28515875f74'
-    oldFile: !uuid '1ac24fe566bc259cf1bf84aa31d356e2cd666f3f'
-  /Admin.NET/Admin.NET.Web.Entry:
-    newFile: !uuid '6bf78232e741dade20beed0e3639b5939ebc3181'
-    oldFile: !uuid '20dd7a846014094629988b1fe6da08d2c507b632'
-  /Admin.NET/Admin.NET.Web.Entry/wwwroot:
-    newFile: !uuid '086c10e1f404c713947c8da36e0c219428275937'
-    oldFile: !uuid '69569714c4ec7ae098e80e1dbff37dc7ee929bfd'
-  /Admin.NET/Admin.NET.Web.Entry/wwwroot/Template:
-    newFile: !uuid '5451c4c3041ca890f280389f817c769b54076fc6'
-    oldFile: !uuid 'fca75382c6e56e2878fddb41a007cc1bcf669a2b'
-  /Admin.NET/Admin.NET.Web.Entry/wwwroot/Template/Entity.cs.vm:
-    newFile: !uuid '45fad23f9c69856e5bc722802de45849f89e5456'
-    oldFile: !uuid '661c913c69ee7b3bb95aaf5460d294a7f42b4b88'
-gitCommitId: !uuid '39e59781342e4e63e37fc25e75773e53be1c745b'
-renames: {
-  }
-revisionId: 581
+  /doc:
+    newFile: !uuid '4229d9d8aeb6664de85f21dc5325aafa0b737307'
+    oldFile: !uuid '6a5c270fda5b0084f676eb99236b676605fc5cb3'
+  /doc/shop:
+    newFile: !uuid '1b60d4818d518e19ccfe50df1e5a60fdf24a82a6'
+    oldFile: !uuid '6e9b1744e8a126381271199bdac6bf240245339b'
+  /doc/shop/1.png:
+    newFile: null
+    oldFile: !uuid 'ffae80209df249263c9514527533622da1e2b73f'
+  /doc/shop/2.png:
+    newFile: null
+    oldFile: !uuid 'e9ae0b5b1ead0435022b869472a26ed123729b23'
+  /doc/shop/3.png:
+    newFile: null
+    oldFile: !uuid 'ed0e18b2ffb22be5c763bab159ce68fb56c09150'
+  /doc/shop/4.png:
+    newFile: null
+    oldFile: !uuid '2a46602c67feee8bb552598eb0c2be41d9e7e74e'
+  /doc/shop/iMES:
+    newFile: !uuid 'f16c7c3484c86856d38ea9417fda4ba5a9d7d3a7'
+    oldFile: null
+  /doc/shop/iMES/1.png:
+    newFile: !uuid 'c76bb110d893e7193d777017ff8575b4ee0a9eba'
+    oldFile: null
+  /doc/shop/iMES/2.png:
+    newFile: !uuid 'e9ae0b5b1ead0435022b869472a26ed123729b23'
+    oldFile: null
+  /doc/shop/iMES/3.png:
+    newFile: !uuid 'ed0e18b2ffb22be5c763bab159ce68fb56c09150'
+    oldFile: null
+  /doc/shop/iMES/4.png:
+    newFile: !uuid '2a46602c67feee8bb552598eb0c2be41d9e7e74e'
+    oldFile: null
+gitCommitId: !uuid '3bcbb4ea4be181f190f6eaabcb46452aed5b97aa'
+renames:
+  /doc/shop/iMES/2.png: /doc/shop/2.png
+  /doc/shop/iMES/3.png: /doc/shop/3.png
+  /doc/shop/iMES/4.png: /doc/shop/4.png
+revisionId: 582
