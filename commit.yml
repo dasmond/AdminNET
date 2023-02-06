@@ -3,27 +3,24 @@ branches: {
   }
 fileChange:
   /Web:
-    newFile: !uuid 'a5f42ce1269c81e97fa13c355682914803d1d4ca'
-    oldFile: !uuid '6189a30b5b3f09b2f1e24f19164b79fa28fd658c'
+    newFile: !uuid 'b648d75567a0e80c1098a62b1ea6d97ffbace539'
+    oldFile: !uuid 'a5f42ce1269c81e97fa13c355682914803d1d4ca'
   /Web/src:
-    newFile: !uuid '208d6451d4c4ca6e3857b9fac33e8bd16670b330'
-    oldFile: !uuid '1f2e67f1310027a2a18775a65c717cec85c2bafb'
+    newFile: !uuid '3427dccaccbf69c12ec10a2e49e3f8525620facb'
+    oldFile: !uuid '208d6451d4c4ca6e3857b9fac33e8bd16670b330'
   /Web/src/views:
-    newFile: !uuid '07da580efd9590b74922ca2053cac919c5b841ad'
-    oldFile: !uuid '3e42aa6bc2bff62e225c5061013b49b3e6c7019d'
+    newFile: !uuid 'f0e227273f9bd2da92672c73d61298bb865e55f4'
+    oldFile: !uuid '07da580efd9590b74922ca2053cac919c5b841ad'
   /Web/src/views/system:
-    newFile: !uuid 'f7757fc631753aecefe5add16e771bdd6d7e751a'
-    oldFile: !uuid '47d8c92225722284b76fff99903830ee3ad71b13'
-  /Web/src/views/system/dict:
-    newFile: !uuid '40c6b5ebcd7f69b78bbaa7b95f174a4dba936b0f'
-    oldFile: !uuid 'a14a2268d7bb3c659959031fc984b4e6c31b0757'
-  /Web/src/views/system/dict/component:
-    newFile: !uuid '2f9a3e65daa8a8bbd49501ad321181c94184ce17'
-    oldFile: !uuid '415ddcf3158b0ac08188cbe430bac3bb6f00660f'
-  /Web/src/views/system/dict/component/dictDataDialog.vue:
-    newFile: !uuid 'ffb1ce2c560d1739d1c73e34612dadd81d07e493'
-    oldFile: !uuid '7b87385d496b5b1b40cce750658bcc025e498db4'
-gitCommitId: !uuid '2199dc1568a5341d9646abb751442fc4c81ef5ce'
+    newFile: !uuid '66d2e7daa150017f39bb028003485f758c1eeff1'
+    oldFile: !uuid 'f7757fc631753aecefe5add16e771bdd6d7e751a'
+  /Web/src/views/system/config:
+    newFile: !uuid 'c283160c0835c602187b19e5482979e06e8f474d'
+    oldFile: !uuid 'e0891feaa7c1094f0c79de69b6cea1e9a03100be'
+  /Web/src/views/system/config/index.vue:
+    newFile: !uuid '2da62b20620b4797e997cd84bd1056d9dd97e057'
+    oldFile: !uuid 'f9382c6bba5d9097c1a248130fc2319b0c5b121a'
+gitCommitId: !uuid 'c7f82d0d3ef3404714a8b4b3d12933dad3820b89'
 renames: {
   }
-revisionId: 596
+revisionId: 597
