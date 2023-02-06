@@ -2,61 +2,28 @@
 branches: {
   }
 fileChange:
-  /Admin.NET:
-    newFile: !uuid '95f852ae491f4a57d819e61e017397ebaaf57848'
-    oldFile: !uuid '6d7dbcbee4791b530f97d8a2f4b70ba32ecebadf'
-  /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '450dad2f8256dba15d5a208649d2d2a5d3d3db4a'
-    oldFile: !uuid '71a7c428f3f9fa5fc3868ab54a50e1f49604fad5'
-  /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid '180fe1ac3757222280e06a551ffc4023b0869cb5'
-    oldFile: !uuid '0a1b837e88c3140fa9858e424637e06fb59bad2d'
-  /Admin.NET/Admin.NET.Core/Service/File:
-    newFile: !uuid 'f2aa428109d574ee7244513521948ad4382ae141'
-    oldFile: !uuid '142b997411a2fa1c962d03d501bd01bc428b641d'
-  /Admin.NET/Admin.NET.Core/Service/File/SysFileService.cs:
-    newFile: !uuid '3077bb755057be7d8b6712d308967ce1f010bf53'
-    oldFile: !uuid 'e48569dea82af32af8427ebb827697f39a407399'
   /Web:
-    newFile: !uuid '6189a30b5b3f09b2f1e24f19164b79fa28fd658c'
-    oldFile: !uuid '9ee18173a88ccd8920c5ab41f93227db7157d427'
+    newFile: !uuid 'a5f42ce1269c81e97fa13c355682914803d1d4ca'
+    oldFile: !uuid '6189a30b5b3f09b2f1e24f19164b79fa28fd658c'
   /Web/src:
-    newFile: !uuid '1f2e67f1310027a2a18775a65c717cec85c2bafb'
-    oldFile: !uuid 'ad9ffb206a32b4eacde26c5afb8aa295d70f2d28'
-  /Web/src/api-services:
-    newFile: !uuid 'fb6f22c356fa0353232fae92602ef4f834e552f5'
-    oldFile: !uuid 'fd5ef808b934da86973ec3759cc8d49444586571'
-  /Web/src/api-services/apis:
-    newFile: !uuid 'e80efd95342110ed67dc480732679c507f448ace'
-    oldFile: !uuid '29948b7b947bb5192d8ca5472b5fe775ad7ec3ca'
-  /Web/src/api-services/apis/sys-file-api.ts:
-    newFile: !uuid '3819e08a454b4860707ef9b4ec984fd1014df8d9'
-    oldFile: !uuid 'b3a79df84063d308a91583d63ffec7fc82d7255c'
-  /Web/src/api-services/models:
-    newFile: !uuid '0fe8be2aeece42bbc93b9bc7da10a03d43a6a062'
-    oldFile: !uuid '3327b8421dd2f438425c8a7f9436ff0ea61d90c2'
-  /Web/src/api-services/models/index.ts:
-    newFile: !uuid '7408e75f9dab704c8baa962d66143d7223afc86d'
-    oldFile: !uuid 'd0abd78c9abc867cb9524e6b4f3e7334939cce2d'
-  /Web/src/api-services/models/sys-file-upload-file-body.ts:
-    newFile: !uuid 'b26edc358e2f4ea98e953ad667ef36c0144a2401'
-    oldFile: null
-  /Web/src/api-services/models/upload-file-path-body.ts:
-    newFile: null
-    oldFile: !uuid 'e73aa2b8bc8243a6205cba1f66129f382f1a1602'
+    newFile: !uuid '208d6451d4c4ca6e3857b9fac33e8bd16670b330'
+    oldFile: !uuid '1f2e67f1310027a2a18775a65c717cec85c2bafb'
   /Web/src/views:
-    newFile: !uuid '3e42aa6bc2bff62e225c5061013b49b3e6c7019d'
-    oldFile: !uuid '1f5498d2c7318ee21b85a18952381fbb3b2e200f'
+    newFile: !uuid '07da580efd9590b74922ca2053cac919c5b841ad'
+    oldFile: !uuid '3e42aa6bc2bff62e225c5061013b49b3e6c7019d'
   /Web/src/views/system:
-    newFile: !uuid '47d8c92225722284b76fff99903830ee3ad71b13'
-    oldFile: !uuid '81568d84e86b7185ad006fad7528f9b5c327e623'
-  /Web/src/views/system/file:
-    newFile: !uuid '1b8a9393a6289fde3ceb41d8ff8b2b20ce7fd3e9'
-    oldFile: !uuid 'e0c5bb1a8f5616b9bb4e47c8f75727fff5ccfba0'
-  /Web/src/views/system/file/index.vue:
-    newFile: !uuid '7db712292aa1f25ac5cf42cc156a631df151c497'
-    oldFile: !uuid 'b75ea8a46d94dec3e35476eb85857bdcbb5d698c'
-gitCommitId: !uuid 'b9f0d960ab51307a9836f057e2cf3577defc5554'
-renames:
-  /Web/src/api-services/models/sys-file-upload-file-body.ts: /Web/src/api-services/models/upload-file-path-body.ts
-revisionId: 595
+    newFile: !uuid 'f7757fc631753aecefe5add16e771bdd6d7e751a'
+    oldFile: !uuid '47d8c92225722284b76fff99903830ee3ad71b13'
+  /Web/src/views/system/dict:
+    newFile: !uuid '40c6b5ebcd7f69b78bbaa7b95f174a4dba936b0f'
+    oldFile: !uuid 'a14a2268d7bb3c659959031fc984b4e6c31b0757'
+  /Web/src/views/system/dict/component:
+    newFile: !uuid '2f9a3e65daa8a8bbd49501ad321181c94184ce17'
+    oldFile: !uuid '415ddcf3158b0ac08188cbe430bac3bb6f00660f'
+  /Web/src/views/system/dict/component/dictDataDialog.vue:
+    newFile: !uuid 'ffb1ce2c560d1739d1c73e34612dadd81d07e493'
+    oldFile: !uuid '7b87385d496b5b1b40cce750658bcc025e498db4'
+gitCommitId: !uuid '2199dc1568a5341d9646abb751442fc4c81ef5ce'
+renames: {
+  }
+revisionId: 596
