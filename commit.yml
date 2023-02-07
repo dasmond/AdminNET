@@ -2,25 +2,28 @@
 branches: {
   }
 fileChange:
-  /Web:
-    newFile: !uuid 'b648d75567a0e80c1098a62b1ea6d97ffbace539'
-    oldFile: !uuid 'a5f42ce1269c81e97fa13c355682914803d1d4ca'
-  /Web/src:
-    newFile: !uuid '3427dccaccbf69c12ec10a2e49e3f8525620facb'
-    oldFile: !uuid '208d6451d4c4ca6e3857b9fac33e8bd16670b330'
-  /Web/src/views:
-    newFile: !uuid 'f0e227273f9bd2da92672c73d61298bb865e55f4'
-    oldFile: !uuid '07da580efd9590b74922ca2053cac919c5b841ad'
-  /Web/src/views/system:
-    newFile: !uuid '66d2e7daa150017f39bb028003485f758c1eeff1'
-    oldFile: !uuid 'f7757fc631753aecefe5add16e771bdd6d7e751a'
-  /Web/src/views/system/config:
-    newFile: !uuid 'c283160c0835c602187b19e5482979e06e8f474d'
-    oldFile: !uuid 'e0891feaa7c1094f0c79de69b6cea1e9a03100be'
-  /Web/src/views/system/config/index.vue:
-    newFile: !uuid '2da62b20620b4797e997cd84bd1056d9dd97e057'
-    oldFile: !uuid 'f9382c6bba5d9097c1a248130fc2319b0c5b121a'
-gitCommitId: !uuid 'c7f82d0d3ef3404714a8b4b3d12933dad3820b89'
+  /Admin.NET:
+    newFile: !uuid 'fd2049dfcd038193f714e8ef28a0509df074240b'
+    oldFile: !uuid '95f852ae491f4a57d819e61e017397ebaaf57848'
+  /Admin.NET/Admin.NET.Application:
+    newFile: !uuid '943460951f527c916b49afa48ba4a7d628683ddf'
+    oldFile: !uuid '88ecb7bf0f001df67309d0ab00b0088b42733bbb'
+  /Admin.NET/Admin.NET.Application/Configuration:
+    newFile: !uuid '318ff3efa8f5ddf7a19cb6ac9576c54ce6376717'
+    oldFile: !uuid 'd2606f283e91be5b9843150fc576b507c686c559'
+  /Admin.NET/Admin.NET.Application/Configuration/App.json:
+    newFile: !uuid '4c73c987863b43bfdaa095f61049f6977101be2c'
+    oldFile: !uuid '6de3569ba339dc1ab3916c4b678b8cebb0ea624f'
+  /Admin.NET/Admin.NET.Web.Entry:
+    newFile: !uuid 'a422244d2057166ba352ace3527065a3150b72a1'
+    oldFile: !uuid '96abc5ea271a0da14631ccc212be353796a70bd0'
+  /Admin.NET/Admin.NET.Web.Entry/Properties:
+    newFile: !uuid '619688ff42f323bcfaf44c61c6fff3e78287cf53'
+    oldFile: !uuid 'd16ace885c7d890ce38d7c050621b08dae9f5ead'
+  /Admin.NET/Admin.NET.Web.Entry/Properties/launchSettings.json:
+    newFile: !uuid 'b0b11e106aa966fe3b13f9e91a7dc16c28a66e64'
+    oldFile: !uuid 'ff42c8aa36afcd9e08fffac4ea0ff0826bead697'
+gitCommitId: !uuid '6a568d7cbaffbe705e17f338f61f37333c093c1d'
 renames: {
   }
-revisionId: 597
+revisionId: 598
