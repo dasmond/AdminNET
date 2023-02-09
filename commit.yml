@@ -3,102 +3,24 @@ branches: {
   }
 fileChange:
   /Web:
-    newFile: !uuid '1423629e4d7b5cbf0b4dd1ea335f1d5e417232f6'
-    oldFile: !uuid '9838ac7920dc50a575ab74b7b36ec5dd44fe7732'
+    newFile: !uuid '03264c259bff5cb2729c9e23443bf91337f79c17'
+    oldFile: !uuid '1423629e4d7b5cbf0b4dd1ea335f1d5e417232f6'
   /Web/src:
-    newFile: !uuid '52f23b7d522e6e44090a1889b70fe20d1f605abf'
-    oldFile: !uuid '99294905f1f0422155c61f3663db774c6e44f21a'
+    newFile: !uuid '11f5c8a6ee98a9653b1a0c92025059245f99d55a'
+    oldFile: !uuid '52f23b7d522e6e44090a1889b70fe20d1f605abf'
   /Web/src/views:
-    newFile: !uuid 'f54bf3e9ffaadd08ffe66abbb9c8b38b0510f664'
-    oldFile: !uuid 'd58d5b9de3212bbfaaec65d352605ff79b8ba82f'
+    newFile: !uuid '5bed108c5a2225f396614d359bce236f4ca4a91f'
+    oldFile: !uuid 'f54bf3e9ffaadd08ffe66abbb9c8b38b0510f664'
   /Web/src/views/system:
-    newFile: !uuid '6e1f044047bad071114117345c91e5eb4cad3fd9'
-    oldFile: !uuid '4965007198a77fae3bd5b1aa285334a633e87c8f'
-  /Web/src/views/system/codeGen:
-    newFile: !uuid 'c7303f9ccecaf2384bc182a6a1bf8fafd5853b99'
-    oldFile: !uuid '17b57cea1c57bc3d8a815964ad844d0277edfab1'
-  /Web/src/views/system/codeGen/index.vue:
-    newFile: !uuid '2bccdde2404a0560c88a3e6d474ec1dd073c410b'
-    oldFile: !uuid 'f8d3bb91551df7e45a5e7cfc9f9d2e02eea3f368'
-  /Web/src/views/system/config:
-    newFile: !uuid '4f6aef11f2634568e8631e86be086a6a8175b4b6'
-    oldFile: !uuid 'eaf2512791ad52ca7b02283e8fca03b92d93cfe3'
-  /Web/src/views/system/config/index.vue:
-    newFile: !uuid 'c62e327e50c539964b1e6e1c0203245b8cccc7d0'
-    oldFile: !uuid 'eb924e77b362b5fdb8849a2456a87783fe940c2a'
-  /Web/src/views/system/database:
-    newFile: !uuid '70869ca7b385bf13a6081b5326be9af5326682e1'
-    oldFile: !uuid 'c1d08e09e7623cb9b1d4bcac02a9683f95f4c9b3'
-  /Web/src/views/system/database/index.vue:
-    newFile: !uuid 'a7e6aa9e911e5588df2bfc3a890d221eab700265'
-    oldFile: !uuid '924ae8513f507b75bca49ac515fa8c391170b54e'
-  /Web/src/views/system/dict:
-    newFile: !uuid 'de3060f79e9baf01155cb03ec24bbcd3d55c0806'
-    oldFile: !uuid '40c6b5ebcd7f69b78bbaa7b95f174a4dba936b0f'
-  /Web/src/views/system/dict/index.vue:
-    newFile: !uuid '777ad9200132c0c1f5050a80c9bbb7b4dccc5ff5'
-    oldFile: !uuid 'e547f5fdade673b20dbd09f8fa0d002174c3e228'
+    newFile: !uuid '02109d7f7f121aa4b082a0e6f23ee0e8c0ba11e6'
+    oldFile: !uuid '6e1f044047bad071114117345c91e5eb4cad3fd9'
   /Web/src/views/system/job:
-    newFile: !uuid '3a40311c262a716779b55ece8181c63302fbef97'
-    oldFile: !uuid '0932d03007dc3bf91c81e5240d71374881bbf5b1'
+    newFile: !uuid 'e0c359bd91c13b65aa537d9a5161cc9d8ba2ec1f'
+    oldFile: !uuid '3a40311c262a716779b55ece8181c63302fbef97'
   /Web/src/views/system/job/index.vue:
-    newFile: !uuid '651906c7e5b5a9a9ca48a27e10360ca42c8d6854'
-    oldFile: !uuid 'b3b0ee64f4530c9d7c5e18d02abf0011d8031343'
-  /Web/src/views/system/menu:
-    newFile: !uuid '0dbce5baf5abe46e890d1d9a9595e2b45086c3e7'
-    oldFile: !uuid '0a4dd266298ea94d058d116af9f2048775fa501d'
-  /Web/src/views/system/menu/index.vue:
-    newFile: !uuid 'fee2ada6bf6078a29930d7825e211700eed23c11'
-    oldFile: !uuid '0bf16fb43498e73ff65cbd454558738d8d0302d0'
-  /Web/src/views/system/notice:
-    newFile: !uuid '6f88801d928c488c094dc7ab235de37778957d06'
-    oldFile: !uuid 'be6312b5fd9cfb54437159e4d1105aa495aa3fca'
-  /Web/src/views/system/notice/index.vue:
-    newFile: !uuid '1a4197a1e1a53f39bd59d1cc791282872fcddb96'
-    oldFile: !uuid '54f80a8c3667c38f825d2383faba363178551594'
-  /Web/src/views/system/org:
-    newFile: !uuid 'bacbb97619c24f8312a401605284697f1347ff55'
-    oldFile: !uuid '9e8a790148ff56355fddd16854a92aa4fe25bc21'
-  /Web/src/views/system/org/index.vue:
-    newFile: !uuid 'a2bd54e36a97fd447b9d6eacbaaaa9e179ba417d'
-    oldFile: !uuid '8bfc8d7e3c5a05dc2d35685280b5bf5cc9404a9d'
-  /Web/src/views/system/pos:
-    newFile: !uuid '898fe77589e3f9ba31f5d8dc88a22eeade34c2d1'
-    oldFile: !uuid '9708337812c9f6818589d6033a98daf343fd92b8'
-  /Web/src/views/system/pos/index.vue:
-    newFile: !uuid '676c1f992e7f1e2300f33c8bcafe2f951090fb70'
-    oldFile: !uuid 'aae511b133f64dd9680a28b2518e801af27c2b44'
-  /Web/src/views/system/region:
-    newFile: !uuid '86a92de51b7f1b1dcfaa0b4c74af51e4d0183059'
-    oldFile: !uuid 'bda89d118ff91421ead78bdf00a56e1a901d50a7'
-  /Web/src/views/system/region/index.vue:
-    newFile: !uuid 'd1acc476d83fc4ebf2bcb6cabab9aad957414528'
-    oldFile: !uuid '227080db70a96c80a007e7d2051673f7819e7bec'
-  /Web/src/views/system/role:
-    newFile: !uuid '0fbabc481dfb89fadaa5f17c16f7773f0cb51e3d'
-    oldFile: !uuid 'bc340997a46856628475b806c428efd3fc18ec1a'
-  /Web/src/views/system/role/index.vue:
-    newFile: !uuid '96996b4dc872c2301d09e7d1a983252d1253fc48'
-    oldFile: !uuid 'a94f7a9e79733871f32a8b68d28452082cf34911'
-  /Web/src/views/system/tenant:
-    newFile: !uuid '85d5f9cee31ffd9b0f5ba2aabf7025bb73b17954'
-    oldFile: !uuid '0855f466ad39525bfdb51fe2591de021eabdaa2c'
-  /Web/src/views/system/tenant/index.vue:
-    newFile: !uuid 'a35b8763630a13f988efd1d378050f71c5e42118'
-    oldFile: !uuid '22bd981dea7d9cdd10ad93f02055ffadb4a9488a'
-  /Web/src/views/system/user:
-    newFile: !uuid '4e197fae0f386119d38edb5deba3ce2dd90bcaca'
-    oldFile: !uuid '8669fa9e10ce86fbe02edd0e92e67e56ecf321cc'
-  /Web/src/views/system/user/index.vue:
-    newFile: !uuid 'edf00a15da8f112c6f78d58709aecd71402d5501'
-    oldFile: !uuid 'db4670cba25d5fedf956b3bfe1ab05d5b4c84eb0'
-  /Web/src/views/system/weChatUser:
-    newFile: !uuid 'e89fc8a6891fa5e4bce9f6e088929ed6ab4d4830'
-    oldFile: !uuid '6610d9b7ff6c368377442ee082f564fbbf445feb'
-  /Web/src/views/system/weChatUser/index.vue:
-    newFile: !uuid '448932919710e7d776be9906e8cc96e54c92b63c'
-    oldFile: !uuid '1f5b8fb6e958b54ffa3b1019fa8e0cbfa66ee12c'
-gitCommitId: !uuid 'e245ccd1ca8f3ced14360d5eefd5ae380a1cd21f'
+    newFile: !uuid 'b9d777efac7917259ef532d8bac5d38963710fa1'
+    oldFile: !uuid '651906c7e5b5a9a9ca48a27e10360ca42c8d6854'
+gitCommitId: !uuid '089b1cb86a7ef9f623546986bd597a7820187e04'
 renames: {
   }
-revisionId: 608
+revisionId: 609
