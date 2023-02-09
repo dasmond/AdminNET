@@ -68,7 +68,7 @@ import { getAPI } from '/@/utils/axios-utils';
 import { SysConfigApi } from '/@/api-services/api';
 import { SysConfig } from '/@/api-services/models';
 
-const editConfigRef = ref();
+const editConfigRef = ref<InstanceType<typeof EditConfig>>();
 const state = reactive({
 	loading: false,
 	configData: [] as Array<SysConfig>,
@@ -110,19 +110,20 @@ const handleQuery = async () => {
 const resetQuery = () => {
 	state.queryParams.name = undefined;
 	state.queryParams.code = undefined;
+	state.queryParams.groupCode = undefined;
 	handleQuery();
 };
 
 // 打开新增页面
 const openAddConfig = () => {
 	state.editConfigTitle = '添加配置';
-	editConfigRef.value.openDialog({});
+	editConfigRef.value?.openDialog({});
 };
 
 // 打开编辑页面
 const openEditConfig = (row: any) => {
 	state.editConfigTitle = '编辑配置';
-	editConfigRef.value.openDialog(row);
+	editConfigRef.value?.openDialog(row);
 };
 
 // 删除

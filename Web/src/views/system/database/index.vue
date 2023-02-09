@@ -8,7 +8,7 @@
 					</el-select>
 				</el-form-item>
 				<el-form-item label="表名" prop="tableName">
-					<el-select v-model="state.tableName" placeholder="表名" filterable clearable @change="handleQueryColunm">
+					<el-select v-model="state.tableName" placeholder="表名" filterable clearable @change="handleQueryColumn">
 						<el-option v-for="item in state.tableData" :key="item.name" :label="item.name + '[' + item.description + ']'" :value="item.name" />
 					</el-select>
 				</el-form-item>
@@ -80,11 +80,11 @@ import { getAPI } from '/@/utils/axios-utils';
 import { SysDatabaseApi } from '/@/api-services/api';
 import { DbColumnOutput, DbTableInfo, DbColumnInput, DeleteDbTableInput, DeleteDbColumnInput } from '/@/api-services/models';
 
-const editTableRef = ref();
-const editColumnRef = ref();
-const addTableRef = ref();
-const addColumnRef = ref();
-const genEntityRef = ref();
+const editTableRef = ref<InstanceType<typeof EditTable>>();
+const editColumnRef = ref<InstanceType<typeof EditColumn>>();
+const addTableRef = ref<InstanceType<typeof AddTable>>();
+const addColumnRef = ref<InstanceType<typeof AddColumn>>();
+const genEntityRef = ref<InstanceType<typeof GenEntity>>();
 const state = reactive({
 	loading: false,
 	loading1: false,
@@ -110,12 +110,12 @@ onMounted(async () => {
 		handleQueryTable();
 	});
 	mittBus.on('submitRefreshColumn', () => {
-		handleQueryColunm();
+		handleQueryColumn();
 	});
 	mittBus.on('addTableSubmitted', (res: any) => {
 		handleQueryTable();
 		state.tableName = res;
-		handleQueryColunm();
+		handleQueryColumn();
 	});
 });
 
@@ -137,7 +137,10 @@ const handleQueryTable = async () => {
 };
 
 // 列查询操作
-const handleQueryColunm = async () => {
+const handleQueryColumn = async () => {
+	state.columnData = [];
+	if (state.tableName == '') return;
+
 	state.loading1 = true;
 	var res = await getAPI(SysDatabaseApi).apiSysDatabaseColumnListTableNameConfigIdGet(state.tableName, state.configId);
 	state.columnData = res.data.result ?? [];
@@ -155,7 +158,7 @@ const openEditTable = () => {
 		oldTableName: state.tableName,
 		description: res[0].description,
 	};
-	editTableRef.value.openDialog(table);
+	editTableRef.value?.openDialog(table);
 };
 
 // 打开实体生成页面
@@ -167,7 +170,7 @@ const openGenDialog = () => {
 		configId: state.configId,
 		tableName: state.tableName,
 	};
-	genEntityRef.value.openDialog(table);
+	genEntityRef.value?.openDialog(table);
 };
 
 // 打开表增加页面
@@ -186,7 +189,7 @@ const openAddTable = () => {
 		oldTableName: '',
 		description: '',
 	};
-	addTableRef.value.openDialog(table);
+	addTableRef.value?.openDialog(table);
 };
 
 // 打开列编辑页面
@@ -198,7 +201,7 @@ const openEditColumn = (row: any) => {
 		oldColumnName: row.dbColumnName,
 		description: row.columnDescription,
 	};
-	editColumnRef.value.openDialog(column);
+	editColumnRef.value?.openDialog(column);
 };
 
 // 打开列增加页面
@@ -225,7 +228,7 @@ const openAddColumn = () => {
 		// editable: true,
 		// isNew: true,
 	};
-	addColumnRef.value.openDialog(addRow);
+	addColumnRef.value?.openDialog(addRow);
 };
 
 // 删除表
