@@ -2,22 +2,55 @@
 branches: {
   }
 fileChange:
-  /Admin.NET:
-    newFile: !uuid 'fb2b4f2ebdfdb293e6c71e4666e6e62d82f7131b'
-    oldFile: !uuid '27147e1e49fb98737053e1a272850389b4bf29cb'
-  /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '388f7f75b16b2b7312b804fc9671ddb6b65ff48e'
-    oldFile: !uuid '58b39935871ee75697f0381cb447b83102b868ad'
-  /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid '123a2d1d38c0920717a4eb05e4423353ce26e48f'
-    oldFile: !uuid '3acbcb6aeb16cba9c05ed03ef3da3a69331926dc'
-  /Admin.NET/Admin.NET.Core/Service/CodeGen:
-    newFile: !uuid '096edc8909bf12da8b9efb2728b05c119ab831d5'
-    oldFile: !uuid '35e10a75a1deace8ce3342ff42867c0eec4f4330'
-  /Admin.NET/Admin.NET.Core/Service/CodeGen/SysCodeGenService.cs:
-    newFile: !uuid 'ec1afe5845eee91a4b7a892f28297a4b9fbd4fec'
-    oldFile: !uuid '78e057d6927a4363e5e8831ed2c3c7ede2326205'
-gitCommitId: !uuid '4d3eb9d48afa02b911c564c410415adcf6cb4951'
+  /docker:
+    newFile: !uuid 'f70b01fc999cd3dbeb80f82563bbc7765c1c43da'
+    oldFile: !uuid '60c81423004689f05cdcec592301904f92e5d675'
+  /docker/README.md:
+    newFile: !uuid '10a18eba67abb72d54faeb34c2b0f6ef3de607dd'
+    oldFile: !uuid '230e96ce451d976641f4cab80974625b6d9d457d'
+  /docker/app:
+    newFile: !uuid 'e6e11054b128397ce978696d37a3025dae16cc0f'
+    oldFile: !uuid 'e510078a3615cf720959419d6ecaee108fb201c0'
+  /docker/app/Configuration:
+    newFile: !uuid '646fb3699bc2f489be73e1cc5429844b71057f60'
+    oldFile: !uuid '186841ef0f90e50376e8e8e1f7570eaceae98d6d'
+  /docker/app/Configuration/App.json:
+    newFile: !uuid '559cc256c80e908b4c6652accaacde1544df9367'
+    oldFile: null
+  /docker/docker-compose.yml:
+    newFile: !uuid 'bc8f4d72da23c089cc9f721b1e72d29d6a425cf8'
+    oldFile: !uuid 'f29031b6ae9b59a229433c5e4e86e5c3eea5b33f'
+  /docker/nginx:
+    newFile: !uuid 'e4d56020b1ded8509f5c1fc2867d6778a0128dfe'
+    oldFile: !uuid '47971892ab28c8868c4595c9c2bd496bed373bec'
+  /docker/nginx/conf:
+    newFile: !uuid 'e32f30ffcb4a4334e98798b3b56a3ff148d37a8c'
+    oldFile: !uuid '8089456b474a955b530443e13c51ca5e86150307'
+  /docker/nginx/conf/nginx.conf:
+    newFile: !uuid 'a89ad38f2cb3e3df7035e65e35927ca709570d3a'
+    oldFile: !uuid '0a320e5528162c6244f2969851f144d1679612a9'
+  /docker/nginx/key:
+    newFile: !uuid '67852a7186af854c0fd68130fa82122912b3b225'
+    oldFile: null
+  /docker/nginx/key/rootCA.key:
+    newFile: !uuid 'ec7b8ac1b0611eabb3afaa471a6ecd6db91bce01'
+    oldFile: null
+  /docker/nginx/key/rootCA.pem:
+    newFile: !uuid '1ebdb2fb1cd37f4d493c32b3fc231e4e596dd065'
+    oldFile: null
+  /docker/nginx/key/server.csr:
+    newFile: !uuid '4f8655cb8a0ff36bfb960559ec23cc30f659af4f'
+    oldFile: null
+  /docker/nginx/key/server.key:
+    newFile: !uuid '7844da4df416319516a67424bfe8c31df9be7ede'
+    oldFile: null
+  /docker/nginx/key/server.pem:
+    newFile: !uuid '42c1262e99dea59b79f14c5b23be49fa1ba25cf2'
+    oldFile: null
+  /docker/nginx/key/ssl.sh:
+    newFile: !uuid '24a6eb4dab98e89876eba82887cea2e13c7dca97'
+    oldFile: null
+gitCommitId: !uuid '2498b84a757af96cdc73aacef6aa7f83fef4193d'
 renames: {
   }
-revisionId: 614
+revisionId: 615
