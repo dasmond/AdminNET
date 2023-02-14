@@ -2,55 +2,94 @@
 branches: {
   }
 fileChange:
-  /docker:
-    newFile: !uuid 'f70b01fc999cd3dbeb80f82563bbc7765c1c43da'
-    oldFile: !uuid '60c81423004689f05cdcec592301904f92e5d675'
-  /docker/README.md:
-    newFile: !uuid '10a18eba67abb72d54faeb34c2b0f6ef3de607dd'
-    oldFile: !uuid '230e96ce451d976641f4cab80974625b6d9d457d'
-  /docker/app:
-    newFile: !uuid 'e6e11054b128397ce978696d37a3025dae16cc0f'
-    oldFile: !uuid 'e510078a3615cf720959419d6ecaee108fb201c0'
-  /docker/app/Configuration:
-    newFile: !uuid '646fb3699bc2f489be73e1cc5429844b71057f60'
-    oldFile: !uuid '186841ef0f90e50376e8e8e1f7570eaceae98d6d'
-  /docker/app/Configuration/App.json:
-    newFile: !uuid '559cc256c80e908b4c6652accaacde1544df9367'
-    oldFile: null
-  /docker/docker-compose.yml:
-    newFile: !uuid 'bc8f4d72da23c089cc9f721b1e72d29d6a425cf8'
-    oldFile: !uuid 'f29031b6ae9b59a229433c5e4e86e5c3eea5b33f'
-  /docker/nginx:
-    newFile: !uuid 'e4d56020b1ded8509f5c1fc2867d6778a0128dfe'
-    oldFile: !uuid '47971892ab28c8868c4595c9c2bd496bed373bec'
-  /docker/nginx/conf:
-    newFile: !uuid 'e32f30ffcb4a4334e98798b3b56a3ff148d37a8c'
-    oldFile: !uuid '8089456b474a955b530443e13c51ca5e86150307'
-  /docker/nginx/conf/nginx.conf:
-    newFile: !uuid 'a89ad38f2cb3e3df7035e65e35927ca709570d3a'
-    oldFile: !uuid '0a320e5528162c6244f2969851f144d1679612a9'
-  /docker/nginx/key:
-    newFile: !uuid '67852a7186af854c0fd68130fa82122912b3b225'
-    oldFile: null
-  /docker/nginx/key/rootCA.key:
-    newFile: !uuid 'ec7b8ac1b0611eabb3afaa471a6ecd6db91bce01'
-    oldFile: null
-  /docker/nginx/key/rootCA.pem:
-    newFile: !uuid '1ebdb2fb1cd37f4d493c32b3fc231e4e596dd065'
-    oldFile: null
-  /docker/nginx/key/server.csr:
-    newFile: !uuid '4f8655cb8a0ff36bfb960559ec23cc30f659af4f'
-    oldFile: null
-  /docker/nginx/key/server.key:
-    newFile: !uuid '7844da4df416319516a67424bfe8c31df9be7ede'
-    oldFile: null
-  /docker/nginx/key/server.pem:
-    newFile: !uuid '42c1262e99dea59b79f14c5b23be49fa1ba25cf2'
-    oldFile: null
-  /docker/nginx/key/ssl.sh:
-    newFile: !uuid '24a6eb4dab98e89876eba82887cea2e13c7dca97'
-    oldFile: null
-gitCommitId: !uuid '1f42d7d22242e4ebda4f8bb9ec8941f870796f18'
+  /Admin.NET:
+    newFile: !uuid '54ccbace4c3aea1ca89148851c5a4928ce605e0c'
+    oldFile: !uuid '0bfb73b3cccbdf52742b8a914f6c9d38115cd672'
+  /Admin.NET/Admin.NET.Application:
+    newFile: !uuid '11ef0b366fb82fc593812e7ad08ca4e1b54a1f35'
+    oldFile: !uuid 'b1c2bda8e42baa7ad8a0e93ef55db7cfcefe138a'
+  /Admin.NET/Admin.NET.Application/Admin.NET.Application.csproj:
+    newFile: !uuid '0ed379418a79954c26594b0a1ab64c7d7e914dd5'
+    oldFile: !uuid '132889c759da24965d488970daa194dcf611897d'
+  /Admin.NET/Admin.NET.Application/Configuration:
+    newFile: !uuid 'e136aa630f1bfe5384592b49b9a6c924706081a0'
+    oldFile: !uuid '58a5c9a2617d1f705d201334559c49e515c517e6'
+  /Admin.NET/Admin.NET.Application/Configuration/ApiJson.json:
+    newFile: !uuid '450908c14a109c174fcbb62746141aee998d5b98'
+    oldFile: !uuid '740dc1c532c7e0c821d8ebfbf8e0fd78e2cc42fb'
+  /Admin.NET/Admin.NET.Core:
+    newFile: !uuid '88df947b0a201674763ebf0fc66c70a1c2c9f6fc'
+    oldFile: !uuid '05bd320576ccea4de0d5459d41354d0e4e3efcfa'
+  /Admin.NET/Admin.NET.Core/Admin.NET.Core.xml:
+    newFile: !uuid '213a34a99f22c4c0303d4e2dde18705f02f59a55'
+    oldFile: !uuid '145422dcb4c85146188b68fbbc5b22b3b5e97d5f'
+  /Admin.NET/Admin.NET.Core/Extension:
+    newFile: !uuid 'e9fa3c90ebde341f205a26227285900e7621e86e'
+    oldFile: !uuid 'bfcc90fb5a88acaf8bc96dfc518810f46e7da069'
+  /Admin.NET/Admin.NET.Core/Extension/ObjectExtension.cs:
+    newFile: !uuid '5fba3c16893235c21751f8bc0aac7784853281f2'
+    oldFile: !uuid 'a1cd17db8ca618f9329caf722260de9ff13c5aae'
+  /Admin.NET/Admin.NET.Core/Option:
+    newFile: !uuid '27d8fdff99c1e2298a49e1eca168230421a6aa4c'
+    oldFile: !uuid '08a17ec5cda7e6c7b0f071e850a9040f1f79ed44'
+  /Admin.NET/Admin.NET.Core/Option/ApiJsonOptions.cs:
+    newFile: !uuid '2d1311fb791f26f00929026cff632049d0ad4ef6'
+    oldFile: !uuid '440ff022e1da3a22aef15cb0fea4c0d99558a297'
+  /Admin.NET/Admin.NET.Core/Service:
+    newFile: !uuid 'd1773b83b12d9ef220d4266c213198cdea8f176f'
+    oldFile: !uuid '739a8fe6bacca09ffb857fb397d5b36deb805129'
+  /Admin.NET/Admin.NET.Core/Service/ApiJson:
+    newFile: !uuid '6ce5f977fe30573212931b6ddc201c4be1ed05a5'
+    oldFile: !uuid 'e2311698dfa919e7413495bd75755cbb1f671958'
+  /Admin.NET/Admin.NET.Core/Service/ApiJson/ApiJsonService.cs:
+    newFile: !uuid 'f85943c72c52fda6c315500e7f7d5b280e57b8ec'
+    oldFile: !uuid '2aa90a5a2cdda3f446032a68e3b84d0b2400874a'
+  /Admin.NET/Admin.NET.Core/Service/ApiJson/FuncList.cs:
+    newFile: !uuid '3b5b0a7d9d6cfb553416fe93d97809f30a1025b3'
+    oldFile: !uuid '2325a7e3130dfba8ef14ad3f76174e016ce90eff'
+  /Admin.NET/Admin.NET.Core/Service/ApiJson/IIdentityService.cs:
+    newFile: null
+    oldFile: !uuid '17945b80e9b28fefa12c085fb47fe1d1d9009b8c'
+  /Admin.NET/Admin.NET.Core/Service/ApiJson/ITableMapper.cs:
+    newFile: null
+    oldFile: !uuid '30818f5a8969dad325b8e6177faeb7f5f95b989f'
+  /Admin.NET/Admin.NET.Core/Service/ApiJson/IdentityService.cs:
+    newFile: !uuid 'f0e82f66811d45aab714e3ffe1a61d6f108722bd'
+    oldFile: !uuid 'b090eb2bc003708c90d8b8323956e585287cca62'
+  /Admin.NET/Admin.NET.Core/Service/ApiJson/Infrastructure:
+    newFile: null
+    oldFile: !uuid 'db1311c0c2a598951ffc9813b93ad0f0e206fb24'
+  /Admin.NET/Admin.NET.Core/Service/ApiJson/Infrastructure/StringExtensions.cs:
+    newFile: null
+    oldFile: !uuid 'cf511a8f01875effdc9a1ebda12130e4f073e008'
+  /Admin.NET/Admin.NET.Core/Service/ApiJson/Models:
+    newFile: null
+    oldFile: !uuid '52ef41f50f5c25a614d2aa66eee938e0805b2b48'
+  /Admin.NET/Admin.NET.Core/Service/ApiJson/Models/RoleItem.cs:
+    newFile: null
+    oldFile: !uuid '410cd1995899984b0dd003f501f590aff49cfeef'
+  /Admin.NET/Admin.NET.Core/Service/ApiJson/SelectTable.cs:
+    newFile: !uuid '6d1304f1545ee174e27abb809431fd49edbf5af1'
+    oldFile: !uuid 'f1e72cfcbe2cb36d4ef174734657d218f30aeae3'
+  /Admin.NET/Admin.NET.Core/Service/ApiJson/TableMapper.cs:
+    newFile: !uuid 'b4e47b75d96470270d5e394e9ca383e7663c2dbd'
+    oldFile: !uuid 'd236cd5cbc332140d045926eb97bb55bb9e7506f'
+  /Admin.NET/Admin.NET.Web.Core:
+    newFile: !uuid '1edda2c1bc3f5e1d964095bbaebc854e4bf483b2'
+    oldFile: !uuid '4172f2e24e450254e313ccac5dea0275d71dc83a'
+  /Admin.NET/Admin.NET.Web.Core/ProjectOptions.cs:
+    newFile: !uuid 'a0e4f20035386d8bbf70520a33a56f601e6de463'
+    oldFile: !uuid '92836978d81aca2ef4b748eb450779479c6b7c81'
+  /Admin.NET/Admin.NET.Web.Core/Startup.cs:
+    newFile: !uuid 'a893ae203df79968da60315bc675a09bb5787d53'
+    oldFile: !uuid '40f891de6da09e4f1d1dfd523fd435fcdf7a15ea'
+  /Admin.NET/Admin.NET.Web.Entry:
+    newFile: !uuid '2f6e6ff385391866afec92bcd622c990c9d83ba1'
+    oldFile: !uuid '8bbca59659e2788e6d33a5fa514cc777a0b379de'
+  /Admin.NET/Admin.NET.Web.Entry/appsettings.json:
+    newFile: !uuid '84f18cde13cd9f3e6c72e5f0cb3046409e1d298c'
+    oldFile: !uuid 'd7e0f408289cd6619329c6e8f805789ba4ce472a'
+gitCommitId: !uuid '3d1dc9c94d9144c42bd98e2559aec18ff84f9e55'
 renames: {
   }
-revisionId: 616
+revisionId: 617
