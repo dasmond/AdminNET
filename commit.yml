@@ -3,93 +3,18 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid 'd816251953fd2861f1cd1574bbfa34030e2d555b'
-    oldFile: !uuid 'fb2b4f2ebdfdb293e6c71e4666e6e62d82f7131b'
-  /Admin.NET/Admin.NET.Application:
-    newFile: !uuid 'b1c2bda8e42baa7ad8a0e93ef55db7cfcefe138a'
-    oldFile: !uuid 'a7d70b82543713d505926937011699ec328becab'
-  /Admin.NET/Admin.NET.Application/Admin.NET.Application.csproj:
-    newFile: !uuid '132889c759da24965d488970daa194dcf611897d'
-    oldFile: !uuid '850056924098aa9de45b5d15843b74e6f0bb7375'
-  /Admin.NET/Admin.NET.Application/Configuration:
-    newFile: !uuid '58a5c9a2617d1f705d201334559c49e515c517e6'
-    oldFile: !uuid 'd5818a05af3080ef9ece8d92f3ef5d7c38b26c5a'
-  /Admin.NET/Admin.NET.Application/Configuration/ApiJson.json:
-    newFile: !uuid '740dc1c532c7e0c821d8ebfbf8e0fd78e2cc42fb'
-    oldFile: null
+    newFile: !uuid '0bfb73b3cccbdf52742b8a914f6c9d38115cd672'
+    oldFile: !uuid 'd816251953fd2861f1cd1574bbfa34030e2d555b'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid 'e0217cb7ec98eeeb62fb24e03657534e44dc0d94'
-    oldFile: !uuid '388f7f75b16b2b7312b804fc9671ddb6b65ff48e'
-  /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
-    newFile: !uuid '5eb8d7828030df16752c85c490df84a602edb19a'
-    oldFile: !uuid '5b458c1780740744b0c7a33fdccf859ec55259cd'
-  /Admin.NET/Admin.NET.Core/Admin.NET.Core.xml:
-    newFile: !uuid '145422dcb4c85146188b68fbbc5b22b3b5e97d5f'
-    oldFile: !uuid '12d60606f4e24e57aa31b056707bfd2102a3c48c'
-  /Admin.NET/Admin.NET.Core/Option:
-    newFile: !uuid '08a17ec5cda7e6c7b0f071e850a9040f1f79ed44'
-    oldFile: !uuid 'c9cf724396ba06bf1abcb5d3ffee122a688bdbbb'
-  /Admin.NET/Admin.NET.Core/Option/ApiJsonOptions.cs:
-    newFile: !uuid '440ff022e1da3a22aef15cb0fea4c0d99558a297'
-    oldFile: null
-  /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid '739a8fe6bacca09ffb857fb397d5b36deb805129'
-    oldFile: !uuid '123a2d1d38c0920717a4eb05e4423353ce26e48f'
-  /Admin.NET/Admin.NET.Core/Service/ApiJson:
-    newFile: !uuid 'e2311698dfa919e7413495bd75755cbb1f671958'
-    oldFile: null
-  /Admin.NET/Admin.NET.Core/Service/ApiJson/ApiJsonService.cs:
-    newFile: !uuid '2aa90a5a2cdda3f446032a68e3b84d0b2400874a'
-    oldFile: null
-  /Admin.NET/Admin.NET.Core/Service/ApiJson/FuncList.cs:
-    newFile: !uuid '2325a7e3130dfba8ef14ad3f76174e016ce90eff'
-    oldFile: null
-  /Admin.NET/Admin.NET.Core/Service/ApiJson/IIdentityService.cs:
-    newFile: !uuid '17945b80e9b28fefa12c085fb47fe1d1d9009b8c'
-    oldFile: null
-  /Admin.NET/Admin.NET.Core/Service/ApiJson/ITableMapper.cs:
-    newFile: !uuid '30818f5a8969dad325b8e6177faeb7f5f95b989f'
-    oldFile: null
-  /Admin.NET/Admin.NET.Core/Service/ApiJson/IdentityService.cs:
-    newFile: !uuid 'b090eb2bc003708c90d8b8323956e585287cca62'
-    oldFile: null
-  /Admin.NET/Admin.NET.Core/Service/ApiJson/Infrastructure:
-    newFile: !uuid 'db1311c0c2a598951ffc9813b93ad0f0e206fb24'
-    oldFile: null
-  /Admin.NET/Admin.NET.Core/Service/ApiJson/Infrastructure/StringExtensions.cs:
-    newFile: !uuid 'cf511a8f01875effdc9a1ebda12130e4f073e008'
-    oldFile: null
-  /Admin.NET/Admin.NET.Core/Service/ApiJson/Models:
-    newFile: !uuid '52ef41f50f5c25a614d2aa66eee938e0805b2b48'
-    oldFile: null
-  /Admin.NET/Admin.NET.Core/Service/ApiJson/Models/RoleItem.cs:
-    newFile: !uuid '410cd1995899984b0dd003f501f590aff49cfeef'
-    oldFile: null
-  /Admin.NET/Admin.NET.Core/Service/ApiJson/SelectTable.cs:
-    newFile: !uuid 'f1e72cfcbe2cb36d4ef174734657d218f30aeae3'
-    oldFile: null
-  /Admin.NET/Admin.NET.Core/Service/ApiJson/TableMapper.cs:
-    newFile: !uuid 'd236cd5cbc332140d045926eb97bb55bb9e7506f'
-    oldFile: null
-  /Admin.NET/Admin.NET.Web.Core:
-    newFile: !uuid '4172f2e24e450254e313ccac5dea0275d71dc83a'
-    oldFile: !uuid 'f3ad2d9e2795e2d18acf2ad04e9191461cf2d653'
-  /Admin.NET/Admin.NET.Web.Core/Admin.NET.Web.Core.csproj:
-    newFile: !uuid '8869537582a01b82402db80e6692eea77ab54991'
-    oldFile: !uuid '61b83e2649bf8cc10ffc2eb6e4b689c83910c87e'
-  /Admin.NET/Admin.NET.Web.Core/ProjectOptions.cs:
-    newFile: !uuid '92836978d81aca2ef4b748eb450779479c6b7c81'
-    oldFile: !uuid '186b08134f1f3fb31d95e43cfc429b4e0f4fe622'
-  /Admin.NET/Admin.NET.Web.Core/Startup.cs:
-    newFile: !uuid '40f891de6da09e4f1d1dfd523fd435fcdf7a15ea'
-    oldFile: !uuid 'a893ae203df79968da60315bc675a09bb5787d53'
-  /Admin.NET/Admin.NET.Web.Entry:
-    newFile: !uuid '8bbca59659e2788e6d33a5fa514cc777a0b379de'
-    oldFile: !uuid 'a422244d2057166ba352ace3527065a3150b72a1'
-  /Admin.NET/Admin.NET.Web.Entry/appsettings.json:
-    newFile: !uuid 'd7e0f408289cd6619329c6e8f805789ba4ce472a'
-    oldFile: !uuid '63ac55e87b3749c019b9204d3160002a4d6dfa44'
-gitCommitId: !uuid '094f549fca2d55aedb1f48b353fe8dc7d0fe0018'
+    newFile: !uuid '05bd320576ccea4de0d5459d41354d0e4e3efcfa'
+    oldFile: !uuid 'e0217cb7ec98eeeb62fb24e03657534e44dc0d94'
+  /Admin.NET/Admin.NET.Core/SeedData:
+    newFile: !uuid 'a37e65a49c46b9dbb23378e4da5b28ef69178493'
+    oldFile: !uuid '009f4ee9f440a7b5be711860dc1bb99deeca4d91'
+  /Admin.NET/Admin.NET.Core/SeedData/SysMenuSeedData.cs:
+    newFile: !uuid 'a420965358c61ba9fbe3ffc7399a36e15bbe1827'
+    oldFile: !uuid 'cabaee535b4b59de0aa1f5909e7f15131ed2e1fa'
+gitCommitId: !uuid 'da44c673a638dc165e37f55d17a0e44e536abc8d'
 renames: {
   }
-revisionId: 614
+revisionId: 615
