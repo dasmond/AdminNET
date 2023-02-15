@@ -2,51 +2,13 @@
 branches: {
   }
 fileChange:
-  /Admin.NET:
-    newFile: !uuid 'e9c5a5aaf3c7c339df570c0b197856d6c5ace26e'
-    oldFile: !uuid '5dc8d7b6db133bc04c8d1108b29e0e6ada7a5ef3'
-  /Admin.NET/Admin.NET.Application:
-    newFile: !uuid '86f636c70aa59459485187f1e58ddc89e60072ce'
-    oldFile: !uuid '02f6d8270f086cb1a3780775f67a2f8d97e5f777'
-  /Admin.NET/Admin.NET.Application/Configuration:
-    newFile: !uuid '4688bd4b664d4dad4bda5607f634eb12220f843b'
-    oldFile: !uuid 'c66a8891d22f92e215b73da492524876c94713bc'
-  /Admin.NET/Admin.NET.Application/Configuration/APIJSON.json:
-    newFile: !uuid '450908c14a109c174fcbb62746141aee998d5b98'
-    oldFile: null
-  /Admin.NET/Admin.NET.Application/Configuration/ApiJson.json:
-    newFile: null
-    oldFile: !uuid '450908c14a109c174fcbb62746141aee998d5b98'
-  /Admin.NET/Admin.NET.Application/Configuration/Database.json:
-    newFile: !uuid 'd8244aca180b95bc58b7d0ac0c6af44d5937fc2b'
-    oldFile: !uuid 'fa3cc0226cbd86da44b69045ff127272e8a231e6'
-  /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '8ea14cd707b3a81058790749981a12a2044ddac9'
-    oldFile: !uuid '88df947b0a201674763ebf0fc66c70a1c2c9f6fc'
-  /Admin.NET/Admin.NET.Core/Option:
-    newFile: !uuid '19819a553152fcecce077d6ed66bbf0a0f4c80ea'
-    oldFile: !uuid '27d8fdff99c1e2298a49e1eca168230421a6aa4c'
-  /Admin.NET/Admin.NET.Core/Option/APIJSONOptions.cs:
-    newFile: !uuid '2d1311fb791f26f00929026cff632049d0ad4ef6'
-    oldFile: null
-  /Admin.NET/Admin.NET.Core/Option/ApiJsonOptions.cs:
-    newFile: null
-    oldFile: !uuid '2d1311fb791f26f00929026cff632049d0ad4ef6'
-  /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid '31adf3a0d5aa543fb5fd3db78d02a081cce43c8b'
-    oldFile: !uuid 'd1773b83b12d9ef220d4266c213198cdea8f176f'
-  /Admin.NET/Admin.NET.Core/Service/ApiJson:
-    newFile: !uuid '8063a3fbf3f508c85e07c0330883675873484364'
-    oldFile: !uuid '6ce5f977fe30573212931b6ddc201c4be1ed05a5'
-  /Admin.NET/Admin.NET.Core/Service/ApiJson/APIJSONService.cs:
-    newFile: !uuid 'f85943c72c52fda6c315500e7f7d5b280e57b8ec'
-    oldFile: null
-  /Admin.NET/Admin.NET.Core/Service/ApiJson/ApiJsonService.cs:
-    newFile: null
-    oldFile: !uuid 'f85943c72c52fda6c315500e7f7d5b280e57b8ec'
-gitCommitId: !uuid 'ff2f5026d121c46b4ab4991a7a1cbe47f452653b'
-renames:
-  /Admin.NET/Admin.NET.Application/Configuration/APIJSON.json: /Admin.NET/Admin.NET.Application/Configuration/ApiJson.json
-  /Admin.NET/Admin.NET.Core/Option/APIJSONOptions.cs: /Admin.NET/Admin.NET.Core/Option/ApiJsonOptions.cs
-  /Admin.NET/Admin.NET.Core/Service/ApiJson/APIJSONService.cs: /Admin.NET/Admin.NET.Core/Service/ApiJson/ApiJsonService.cs
-revisionId: 621
+  /docker:
+    newFile: !uuid '71b690790657438d5667b59ba2512043df162efd'
+    oldFile: !uuid 'f70b01fc999cd3dbeb80f82563bbc7765c1c43da'
+  /docker/docker-compose.yml:
+    newFile: !uuid '86dbd37dd0b3c8beb7d025449aee7024e5a24776'
+    oldFile: !uuid 'bc8f4d72da23c089cc9f721b1e72d29d6a425cf8'
+gitCommitId: !uuid 'bc15cec14b1f2efdd804a6487c508c9799527190'
+renames: {
+  }
+revisionId: 622
