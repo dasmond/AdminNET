@@ -2,13 +2,61 @@
 branches: {
   }
 fileChange:
-  /docker:
-    newFile: !uuid '71b690790657438d5667b59ba2512043df162efd'
-    oldFile: !uuid 'f70b01fc999cd3dbeb80f82563bbc7765c1c43da'
-  /docker/docker-compose.yml:
-    newFile: !uuid '86dbd37dd0b3c8beb7d025449aee7024e5a24776'
-    oldFile: !uuid 'bc8f4d72da23c089cc9f721b1e72d29d6a425cf8'
-gitCommitId: !uuid 'bc15cec14b1f2efdd804a6487c508c9799527190'
+  /Admin.NET:
+    newFile: !uuid '9113af3fdf3b623037dd8561cac6425fd8a78ea5'
+    oldFile: !uuid 'e9c5a5aaf3c7c339df570c0b197856d6c5ace26e'
+  /Admin.NET/Admin.NET.Application:
+    newFile: !uuid '38d813757ecf27fa6925b1673abdd1674376f050'
+    oldFile: !uuid '86f636c70aa59459485187f1e58ddc89e60072ce'
+  /Admin.NET/Admin.NET.Application/Admin.NET.Application.xml:
+    newFile: !uuid '3b527eec072e128a94d1f719d48c1c1958e44737'
+    oldFile: !uuid '068586168faf7d3e18ceeca655e9863353bad686'
+  /Admin.NET/Admin.NET.Application/Const:
+    newFile: !uuid '6ca2b31f92882ad56458b8e9deb14cfc587e561b'
+    oldFile: null
+  /Admin.NET/Admin.NET.Application/Const/ApplicationConst.cs:
+    newFile: !uuid '8d96bffddf6619e3f4cd63c05c8139f30d980d5c'
+    oldFile: null
+  /Admin.NET/Admin.NET.Application/GlobalUsings.cs:
+    newFile: !uuid 'f01ddc6f4ba7cb7170672cd9096f14356e6870db'
+    oldFile: !uuid 'bc8ef043c7ceaea64e0b983018d6a72dc3ad5a74'
+  /Admin.NET/Admin.NET.Core:
+    newFile: !uuid '89def1b08c8fb4d81ded9312903d4c009585a66d'
+    oldFile: !uuid '8ea14cd707b3a81058790749981a12a2044ddac9'
+  /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
+    newFile: !uuid 'f927aa0fbe53ad6be1f90981ae070f5d28a0c87f'
+    oldFile: !uuid '5eb8d7828030df16752c85c490df84a602edb19a'
+  /Admin.NET/Admin.NET.Web.Entry:
+    newFile: !uuid '7d9bebb4f99e5bf844114980748cb5b35f85b1ad'
+    oldFile: !uuid '0a79fb210ab5e3eef459ef1f478768e4700611fe'
+  /Admin.NET/Admin.NET.Web.Entry/Properties:
+    newFile: !uuid '15aff5dc44b9a9dc0e56d05ac51703294fe88144'
+    oldFile: !uuid '6b0cab16d0580a6bc0386ffed72d789796709307'
+  /Admin.NET/Admin.NET.Web.Entry/Properties/launchSettings.json:
+    newFile: !uuid 'd5c7854cfa187dae4af06e6f02a7373ee563ade4'
+    oldFile: !uuid 'b6495934c1dae998f3d0133947af73baecd22e47'
+  /Admin.NET/Admin.NET.Web.Entry/wwwroot:
+    newFile: !uuid 'e52b7e817bb173e7665751572a02eda08b26d88c'
+    oldFile: !uuid '3b9369255d7aef7cc8aa5768349ec50009775cc1'
+  /Admin.NET/Admin.NET.Web.Entry/wwwroot/Template:
+    newFile: !uuid 'e0cb4403c33064ad3694bc60a8dbe1e6fd9de68d'
+    oldFile: !uuid 'eb456b03f35c069330b17ef4e7b6e82152ff1a39'
+  /Admin.NET/Admin.NET.Web.Entry/wwwroot/Template/Dto.cs.vm:
+    newFile: !uuid 'f0347ae35d154cb2478f44a296b7f167e34a624d'
+    oldFile: !uuid '60f4b352e7864988dfd4a899c365fea461d3f205'
+  /Admin.NET/Admin.NET.Web.Entry/wwwroot/Template/Input.cs.vm:
+    newFile: !uuid '78c05935fdcdc89465b60c3151acbb5572145689'
+    oldFile: !uuid '1d777657a937cb8c619bdd9a9ae333d7ebd5a63e'
+  /Admin.NET/Admin.NET.Web.Entry/wwwroot/Template/Manage.js.vm:
+    newFile: !uuid '32239ba856c325f202a2b4ee122c5f198abc3b38'
+    oldFile: !uuid '9199defb0ce4833e31d3c90d2cc6e1b9d4c40ec1'
+  /Admin.NET/Admin.NET.Web.Entry/wwwroot/Template/Output.cs.vm:
+    newFile: !uuid '5bb804d96b90b1d0758dc331585a63e05267c13e'
+    oldFile: !uuid '8584615f549fd94d7937a72742e72fcc440de886'
+  /Admin.NET/Admin.NET.Web.Entry/wwwroot/Template/Service.cs.vm:
+    newFile: !uuid 'ad47bfae0148e3d21b2d028d203eb67e00272cad'
+    oldFile: !uuid '9674d58d10059d645f5af4d056be5943332a3c2b'
+gitCommitId: !uuid '17ab25b1a767925f89e2f03012ee5e88a31b45ef'
 renames: {
   }
-revisionId: 622
+revisionId: 623
