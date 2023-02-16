@@ -2,10 +2,25 @@
 branches: {
   }
 fileChange:
-  /README.md:
-    newFile: !uuid 'd2fa23c2ec6e41cbb0438689c31fd24aba657520'
-    oldFile: !uuid 'f0a6d8c5efe3621f7fb4959032e11e5a52c7a4ec'
-gitCommitId: !uuid 'e84295bfff77707132197055f2711375ff5fd6fb'
+  /Admin.NET:
+    newFile: !uuid '34a182f32f10502ad5c76f9d67dd72d7df0ac179'
+    oldFile: !uuid 'e53bc152e9ea5701c671837ec48cc83d2fb9b4c8'
+  /Admin.NET/Admin.NET.Core:
+    newFile: !uuid '86a7afa1b830d82ed3a95185b1b618a52e307cb8'
+    oldFile: !uuid '5661611ce6fc540d82f0b7d137e4b55d851395a8'
+  /Admin.NET/Admin.NET.Core/Entity:
+    newFile: !uuid '011b1da66cbeb22fbb70a6bb74e0df162dab938c'
+    oldFile: !uuid '4633e32619b91659a2a09d701fcebfe8f8b6d420'
+  /Admin.NET/Admin.NET.Core/Entity/SysLogVis.cs:
+    newFile: !uuid '9d5bdf432e8238bcc616f272da2e18938adb5c18'
+    oldFile: !uuid 'f3794733d106855aae02a31d44759757be6fe893'
+  /Admin.NET/Admin.NET.Core/Entity/SysOnlineUser.cs:
+    newFile: !uuid 'b829bffff1b2d8c26996fe8eb0e72fe8537f23c3'
+    oldFile: !uuid '617b07924bb9b3c2a4b4a31ecd4fceff55985b81'
+  /Admin.NET/Admin.NET.Core/Entity/SysUser.cs:
+    newFile: !uuid '6ffc613631b00c8ef3dc318c19ffbfb4086c4423'
+    oldFile: !uuid '374fd1a5b2431af72d8eed23091b425e51a633df'
+gitCommitId: !uuid 'd9e91419c80fef497d8695a0acf92872af105f36'
 renames: {
   }
-revisionId: 623
+revisionId: 624
