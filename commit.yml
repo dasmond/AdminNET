@@ -2,13 +2,19 @@
 branches: {
   }
 fileChange:
-  /docker:
-    newFile: !uuid '71b690790657438d5667b59ba2512043df162efd'
-    oldFile: !uuid 'f70b01fc999cd3dbeb80f82563bbc7765c1c43da'
-  /docker/docker-compose.yml:
-    newFile: !uuid '86dbd37dd0b3c8beb7d025449aee7024e5a24776'
-    oldFile: !uuid 'bc8f4d72da23c089cc9f721b1e72d29d6a425cf8'
-gitCommitId: !uuid '9a10df37de6487ab4ebc20f63ee56478ad7fb12b'
+  /Admin.NET:
+    newFile: !uuid 'e53bc152e9ea5701c671837ec48cc83d2fb9b4c8'
+    oldFile: !uuid '9113af3fdf3b623037dd8561cac6425fd8a78ea5'
+  /Admin.NET/.editorconfig:
+    newFile: !uuid 'c13c5e4bf8fe8585190975b92b0e405b2d92a131'
+    oldFile: !uuid 'd6322490a282d11c69a98a2d5f6d0e6d603acb27'
+  /Admin.NET/Admin.NET.Core:
+    newFile: !uuid '5661611ce6fc540d82f0b7d137e4b55d851395a8'
+    oldFile: !uuid '89def1b08c8fb4d81ded9312903d4c009585a66d'
+  /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
+    newFile: !uuid '9f14a0bc8e454bfdfb8ca3d2b90316ec687541a7'
+    oldFile: !uuid 'f927aa0fbe53ad6be1f90981ae070f5d28a0c87f'
+gitCommitId: !uuid '92473aee68635ae6698d0a0304785dc00614a77f'
 renames: {
   }
-revisionId: 624
+revisionId: 625
