@@ -3,60 +3,24 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '274dd3ed2e9331aa6e79bf646bd34857e8824fa0'
-    oldFile: !uuid 'ef8fca0acd6b42cd50783d98adf5824c6398a2c0'
-  /Admin.NET/Admin.NET.Application:
-    newFile: !uuid '7456ea32b351492739656fba46f2067e09d78d79'
-    oldFile: !uuid '36e9c152a8f41d121a68d66bb917b4bb92430e66'
-  /Admin.NET/Admin.NET.Application/Configuration:
-    newFile: !uuid '8c3d8cc1c7014d89d7ff05a93c46314d10d26031'
-    oldFile: !uuid '4692263526522820b31c16ec7c3b54a2cb667b0e'
-  /Admin.NET/Admin.NET.Application/Configuration/Database.json:
-    newFile: !uuid 'bb2c9bbea5e0a852cab6acd77d93db2fc65c0c23'
-    oldFile: !uuid 'd8244aca180b95bc58b7d0ac0c6af44d5937fc2b'
-  /Admin.NET/Admin.NET.Application/Configuration/Swagger.json:
-    newFile: !uuid '8d3d05513c60f2f19d1a7eabf7f6c5c7822c66aa'
-    oldFile: !uuid '5a58ca2c07f882911b8096ab6f0696dd19619f6f'
+    newFile: !uuid '4408ed60ce304083b08f985d470901e9ed0402c9'
+    oldFile: !uuid '274dd3ed2e9331aa6e79bf646bd34857e8824fa0'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid 'efd0f61411b33211c9fa856de39021b189b107c5'
-    oldFile: !uuid '7c49633239c6fb8f1f965c645cd14757eba727a6'
-  /Admin.NET/Admin.NET.Core/Admin.NET.Core.xml:
-    newFile: !uuid 'b67fdf995dbfb466ea617e71f1556645efb46c25'
-    oldFile: !uuid 'cee50bb3dd4e2276d4ef92c739f1746217ff8b2a'
+    newFile: !uuid '52f09f61acbfaaeea17f8b8ded2f6d22678cc3b9'
+    oldFile: !uuid 'efd0f61411b33211c9fa856de39021b189b107c5'
   /Admin.NET/Admin.NET.Core/Entity:
-    newFile: !uuid 'c6c2937f3e4412477d5b09aa516caef127a7fd8f'
-    oldFile: !uuid 'ebc944b5acef07fd2a28974106c557a09d6b84d0'
+    newFile: !uuid '30f128c89a6eb9e659418dd8ff49814092c5b385'
+    oldFile: !uuid 'c6c2937f3e4412477d5b09aa516caef127a7fd8f'
+  /Admin.NET/Admin.NET.Core/Entity/SysLogDiff.cs:
+    newFile: !uuid 'bfe0a36d8adb159eaaccbcd0f13985b2790d4788'
+    oldFile: !uuid 'e4fed365a81ca0efec43148df79988b626a4169a'
+  /Admin.NET/Admin.NET.Core/Entity/SysLogOp.cs:
+    newFile: !uuid 'f6b454ef906f8938a38afec011b457669aaaaa8d'
+    oldFile: !uuid '11911db6a9b1ef1d2e661a66c42558e7041eb801'
   /Admin.NET/Admin.NET.Core/Entity/SysLogVis.cs:
-    newFile: !uuid 'd3b937428b733dbae7d4b36175b5920359d8d0f1'
-    oldFile: !uuid '6431dadbe1095b54c6561c65ff34408f18b0a5f2'
-  /Admin.NET/Admin.NET.Core/Option:
-    newFile: !uuid 'ef8f460cb619a086e4178738b7144709347ced9b'
-    oldFile: !uuid '19819a553152fcecce077d6ed66bbf0a0f4c80ea'
-  /Admin.NET/Admin.NET.Core/Option/DbConnectionOptions.cs:
-    newFile: !uuid '6cd5db9c781457ca5dba5c1d09173470c41386b6'
-    oldFile: !uuid 'b50f982d381d782db2d99ad3386f5b41b43393d2'
-  /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid '8ed35adba3837bee5aff7f49183b777b04c2987c'
-    oldFile: !uuid '183d4a7afebbb051c83865d872840a7e3c802b8a'
-  /Admin.NET/Admin.NET.Core/Service/ApiJson:
-    newFile: !uuid '7119d4df556c422802e433550288dd2ba31e8d69'
-    oldFile: !uuid '58adccaafc83515567c4aab6be7f39a9004f7271'
-  /Admin.NET/Admin.NET.Core/Service/ApiJson/SelectTable.cs:
-    newFile: !uuid 'd62a25fc05b9bbcabadaaa8091b870187d59985c'
-    oldFile: !uuid 'ea854cfe3c39cd4967b1fe0d21d925cee0f3ee67'
-  /Admin.NET/Admin.NET.Core/Service/Auth:
-    newFile: !uuid 'dd33a9675d106375214305a3de198d83be207f4d'
-    oldFile: !uuid '96003a9ae9b0aecf6e8e86d888b842fd252b7717'
-  /Admin.NET/Admin.NET.Core/Service/Auth/SysAuthService.cs:
-    newFile: !uuid 'e3ae320d8deb842406a55256e8ad21d72c0a0fd8'
-    oldFile: !uuid '36015a651084dfa996c35c278b9ae8417ad172d9'
-  /Admin.NET/Admin.NET.Core/SqlSugar:
-    newFile: !uuid '8a47c74f742c2cafbe0418ead1d3dea0eed85c58'
-    oldFile: !uuid '785f8b46a444bb905ef687b6a57922460d24ebf8'
-  /Admin.NET/Admin.NET.Core/SqlSugar/SqlSugarSetup.cs:
-    newFile: !uuid 'f51abbc81f2eab876406079d684a843dd8a9abc5'
-    oldFile: !uuid 'e0de3f62a08a849cbbbcc7ddc14ce50780157138'
-gitCommitId: !uuid '345d1f6690d424aebd732f374640f9570ff48592'
+    newFile: !uuid 'b904dcef3546a47dcadb6a2729ef423770ff5cad'
+    oldFile: !uuid 'd3b937428b733dbae7d4b36175b5920359d8d0f1'
+gitCommitId: !uuid '42e4cba2511b46ee8ff97193de68da2220f4fff2'
 renames: {
   }
-revisionId: 633
+revisionId: 634
