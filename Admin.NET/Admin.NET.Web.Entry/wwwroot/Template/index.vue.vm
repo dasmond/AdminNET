@@ -126,9 +126,9 @@
 				layout="total, sizes, prev, pager, next, jumper"
 	/>
 			<editDialog
-			  ref="editDialogRef"
-			  :title="edit@(@Model.ClassName)Title"
-			  @@reloadTable="handleQuery"
+				ref="editDialogRef"
+				:title="editBusGroupTitle"
+				@reloadTable="handleQuery"
       />
 		</el-card>
 	</div>
