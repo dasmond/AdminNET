@@ -3,36 +3,21 @@ branches: {
   }
 fileChange:
   /Web:
-    newFile: !uuid '1a9a192f1ffca19d732def38086772cfc3b69836'
-    oldFile: !uuid '3009b68b66f98c9f36357a38c6e1051b81f422f4'
+    newFile: !uuid 'bf526bd60abe86c3c68944a93c17489bee1cef53'
+    oldFile: !uuid '1a9a192f1ffca19d732def38086772cfc3b69836'
   /Web/src:
-    newFile: !uuid '95586788e80057bab7b103c5e0e6ef39b38a935b'
-    oldFile: !uuid '8afad30f7a401ce83745c2f4dc94093704910d8e'
-  /Web/src/views:
-    newFile: !uuid '7682f5ce4cc042817ed670a47b8cc32019b47bad'
-    oldFile: !uuid 'dd4c6226fe539519d1ad1f8317e311241e8664dd'
-  /Web/src/views/system:
-    newFile: !uuid 'b583d95fe4c090f3fcab3463e231d6232689d77a'
-    oldFile: !uuid '24f0c31253a62df205892aaf0d09634cd0269e53'
-  /Web/src/views/system/job:
-    newFile: !uuid '1b3fc1877900cbd0e73679cd5c541ba5d5221304'
-    oldFile: !uuid '1a2f897b9c7d80f6b561a5a2581eef2fe66755b2'
-  /Web/src/views/system/job/component:
-    newFile: !uuid 'a1ef34691c5e5e986657070c383f1a5e4da0cd72'
-    oldFile: !uuid '98baadacb5357054bb773e7daf11a4604bdcb897'
-  /Web/src/views/system/job/component/cronTab:
-    newFile: !uuid '5874d3f31b527de392e593aca5c86375661d6fa4'
-    oldFile: !uuid '51784c22d9c8858c844a8dcf48b56a7b9a3901a8'
-  /Web/src/views/system/job/component/cronTab/index.vue:
-    newFile: !uuid '756914e92ed1e7df9f0fe4e3b4b31c07e7524a6a'
-    oldFile: !uuid '5bb8134a557ac1264d6a6df9130ecd94e5222792'
-  /Web/src/views/system/job/component/editJobTrigger.vue:
-    newFile: !uuid '1343fb749352f51089be722618f8b8af7313c09a'
-    oldFile: !uuid 'b0b31c78b4130b4f89316b315269f0d95f01b9af'
-  /Web/src/views/system/job/index.vue:
-    newFile: !uuid '48228407c1b80fe6291371f0b1cc371fdd11d5c1'
-    oldFile: !uuid '59cc4d37753452b6c2d46fa8f143a013eff9d79c'
-gitCommitId: !uuid '717cc72f854495238880392a7b152b14aff3e408'
+    newFile: !uuid 'f87e5a44e7ca03ca9806ae46edc846d5ea6b7d64'
+    oldFile: !uuid '95586788e80057bab7b103c5e0e6ef39b38a935b'
+  /Web/src/api:
+    newFile: !uuid 'af09d8f6e8940b7260591be0858534cb12034c54'
+    oldFile: !uuid '806d0e79e6ae791814f19912d9a6d091712e10c7'
+  /Web/src/api/system:
+    newFile: !uuid 'db76bfbcca92beb8974f0d215adc6677cf45cd4d'
+    oldFile: !uuid 'c9a5935a9397ccc184c792df95584920bc25d355'
+  /Web/src/api/system/admin.ts:
+    newFile: !uuid '035a50e7231d8814363cb6999b1426e5e9be9558'
+    oldFile: !uuid '951d12cf1f0ae3a468f8106f197f38f11e6709ac'
+gitCommitId: !uuid 'af3052ccb7ef9c1e0b67e6a7cb921d7fea907c71'
 renames: {
   }
-revisionId: 644
+revisionId: 645
