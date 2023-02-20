@@ -3,15 +3,30 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid 'f9f737bd70a9628414e29e0cc147465e9bb97aaa'
-    oldFile: !uuid '36088d64dfd3093ceea0a56f0584c7bb492a9cf4'
-  /Admin.NET/Admin.NET.Application:
-    newFile: !uuid '4911102a7504b8c0e391fcfb2658bb05f7c925eb'
-    oldFile: !uuid 'aa7ef09bd2a062608e36e9a0294941ded9131962'
-  /Admin.NET/Admin.NET.Application/Admin.NET.Application.csproj:
-    newFile: !uuid 'dff1c6cd5cad68752ddf23d776c2a438667440ee'
-    oldFile: !uuid '7ae017c53e6b153693e683f31b1ab4ac4297f66d'
-gitCommitId: !uuid '4fcab3cd3431ebeaefad4a4b046d23d14b6926ca'
+    newFile: !uuid 'cb8f5534cdb8fd5c4c8a381b78e8af7d868f3890'
+    oldFile: !uuid 'f9f737bd70a9628414e29e0cc147465e9bb97aaa'
+  /Admin.NET/Admin.NET.Core:
+    newFile: !uuid '0a6d280acf60aeddf78ba9391c98297058297ac9'
+    oldFile: !uuid 'b0999e7c4afa0fd29133a711f40553a1d5db1f69'
+  /Admin.NET/Admin.NET.Core/Service:
+    newFile: !uuid '82ff93f096a0919e7f0ee773f79f50de7228cfce'
+    oldFile: !uuid 'ff785fdbad86739933b4b4f052f30ea824456089'
+  /Admin.NET/Admin.NET.Core/Service/DataBase:
+    newFile: !uuid 'beb1eff4e9b4f726109236eb016c0ca9ba75511d'
+    oldFile: !uuid '48b76ed496ee3f53942728205521115a729d93fe'
+  /Admin.NET/Admin.NET.Core/Service/DataBase/SysDatabaseService.cs:
+    newFile: !uuid 'd7e46ac2efe44cf6b3f1a9025a431c0e0e841365'
+    oldFile: !uuid '8f81f487e50b1b70baab38ffff95b2f30c117e87'
+  /Web:
+    newFile: !uuid '9d2d429c91fe588512cc619d1e17825ffbbe4017'
+    oldFile: !uuid 'bf526bd60abe86c3c68944a93c17489bee1cef53'
+  /Web/package.json:
+    newFile: !uuid '731a2fe797c1494e2aae88ea29b1dd429fd1c191'
+    oldFile: !uuid 'c31b88268560556e7ed005a7d3dbb5771e4677ad'
+  /Web/pnpm-lock.yaml:
+    newFile: !uuid '957dc2fd13058ea18361c161790c3c4fbeb05f47'
+    oldFile: !uuid '8fb3a8550f443ef62a6b7783f6f6c3662e768141'
+gitCommitId: !uuid '596c0f48b44df8b73da9d4bfb5502b589d64065f'
 renames: {
   }
-revisionId: 648
+revisionId: 649
