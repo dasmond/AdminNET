@@ -2,25 +2,34 @@
 branches: {
   }
 fileChange:
+  /.gitignore:
+    newFile: !uuid '207e89fa8baddc8212315a2016f83aafacd89932'
+    oldFile: !uuid '96aa452fac5b4b315ed5cbd9f719ed49124230ed'
   /Web:
-    newFile: !uuid 'f7b0e3483e85721a8b9696320449d72719472d9a'
-    oldFile: !uuid '9d2d429c91fe588512cc619d1e17825ffbbe4017'
+    newFile: !uuid '8b76a1c20bfc3a848b8be39f3a75bac522f911c4'
+    oldFile: !uuid 'f7b0e3483e85721a8b9696320449d72719472d9a'
   /Web/src:
-    newFile: !uuid '2c5c1ca6dfc1e70268a0798ceb989ee5c00690ab'
-    oldFile: !uuid 'f87e5a44e7ca03ca9806ae46edc846d5ea6b7d64'
-  /Web/src/views:
-    newFile: !uuid '4fa93b69865b2523d67526d59238b4f980a0d7af'
-    oldFile: !uuid '7682f5ce4cc042817ed670a47b8cc32019b47bad'
-  /Web/src/views/system:
-    newFile: !uuid '719eaeb0b56b4106a2e115e0c67dd1f307b71259'
-    oldFile: !uuid 'b583d95fe4c090f3fcab3463e231d6232689d77a'
-  /Web/src/views/system/role:
-    newFile: !uuid 'd4bac822244a9a4b389d28a9d16a4c2afeeaac25'
-    oldFile: !uuid '0fbabc481dfb89fadaa5f17c16f7773f0cb51e3d'
-  /Web/src/views/system/role/index.vue:
-    newFile: !uuid 'cf861329b5bd055c5a92ee4146846d2ea8e95230'
-    oldFile: !uuid '96996b4dc872c2301d09e7d1a983252d1253fc48'
-gitCommitId: !uuid 'a7a1a7d371fddeeba6fbf6ae2b31c48e7a1cd5ce'
+    newFile: !uuid 'f3ea9ca0d3b0e4496eceff4ed6cd362e95366031'
+    oldFile: !uuid '2c5c1ca6dfc1e70268a0798ceb989ee5c00690ab'
+  /Web/src/App.vue:
+    newFile: !uuid '976e38d17a51c45ed136d9264652f141659b0c15'
+    oldFile: !uuid 'f83735f5b5a9ed727ccad77bb8ca75f33037a1f3'
+  /Web/src/layout:
+    newFile: !uuid 'dffa0d9c575128ff789ab8c6ce98a002be72d448'
+    oldFile: !uuid '52a5c4cfd46c7e13102960c55d9fc53897cf0007'
+  /Web/src/layout/upgrade:
+    newFile: !uuid '7389b8a5953735816f1b68a0fc4823bdee4b224d'
+    oldFile: !uuid 'abb4a6015ca015f400ab0512b96768713c7568c0'
+  /Web/src/layout/upgrade/index.vue:
+    newFile: !uuid '9cadd0312449f5ce2f5c3e0c6491ed2c0ca2ef4b'
+    oldFile: !uuid 'e69c899055f64e8b26417197f7b1aa723c1fb99b'
+  /Web/src/utils:
+    newFile: !uuid 'cf0d98d519eae48db28d4ea3970c3c3a7691a306'
+    oldFile: !uuid '0b2f7aa12bfced5ade33053a444773fe4eaa91ca'
+  /Web/src/utils/auto-update.ts:
+    newFile: !uuid '97431bae7bc472eaba61086f62c096b732db4504'
+    oldFile: null
+gitCommitId: !uuid '46da54c3debe0bf99173a2ba018bb34aa42433e6'
 renames: {
   }
-revisionId: 646
+revisionId: 647
