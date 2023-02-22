@@ -3,12 +3,36 @@ branches: {
   }
 fileChange:
   /Web:
-    newFile: !uuid '327dec2882af05cb6a658dfc1f731d5e088c9155'
-    oldFile: !uuid '8b76a1c20bfc3a848b8be39f3a75bac522f911c4'
-  /Web/.env.production:
-    newFile: !uuid '9cceac3ce886de8c9c441ce3a45ed556ed59844b'
-    oldFile: !uuid '773b56cb0689007b45801599b806c42fb7b27c57'
-gitCommitId: !uuid '8617536516a1946ceb45cd4ee1b77fa0ebca4680'
+    newFile: !uuid '0e53b4a88c79f0e7f84aacb8096be05d06b54b58'
+    oldFile: !uuid '327dec2882af05cb6a658dfc1f731d5e088c9155'
+  /Web/index.html:
+    newFile: !uuid '0d1b434238ba3a0ac71a17883180300d17c43e3d'
+    oldFile: !uuid '460200b555803daddc2b23e20551b31636f78108'
+  /Web/src:
+    newFile: !uuid '66e63da3ff558fa2642e0a10c00063de47cba133'
+    oldFile: !uuid 'f3ea9ca0d3b0e4496eceff4ed6cd362e95366031'
+  /Web/src/views:
+    newFile: !uuid '36bc8c5312ff4708352069216c99e5caf0122574'
+    oldFile: !uuid '4fa93b69865b2523d67526d59238b4f980a0d7af'
+  /Web/src/views/system:
+    newFile: !uuid '676012b0082f58d7bbe31f7fd63a20253530d341'
+    oldFile: !uuid '719eaeb0b56b4106a2e115e0c67dd1f307b71259'
+  /Web/src/views/system/file:
+    newFile: !uuid '59a85d81408eebe72fd35e80d92dc5ca272ae095'
+    oldFile: !uuid '1b8a9393a6289fde3ceb41d8ff8b2b20ce7fd3e9'
+  /Web/src/views/system/file/index.vue:
+    newFile: !uuid 'e30d5b8924fc1f069ea07a4fd0ff1093e0b8a791'
+    oldFile: !uuid '7db712292aa1f25ac5cf42cc156a631df151c497'
+  /Web/src/views/system/job:
+    newFile: !uuid 'ea87993e616a04d498fe38bf62d55b9c1d3febfc'
+    oldFile: !uuid '1b3fc1877900cbd0e73679cd5c541ba5d5221304'
+  /Web/src/views/system/job/component:
+    newFile: !uuid '7c2791aa18571d8a75f8ae3f8a67c9c56dfa4fe9'
+    oldFile: !uuid 'a1ef34691c5e5e986657070c383f1a5e4da0cd72'
+  /Web/src/views/system/job/component/editJobTrigger.vue:
+    newFile: !uuid 'd0b7c2d8e271041717065b14ea474921dafca394'
+    oldFile: !uuid '1343fb749352f51089be722618f8b8af7313c09a'
+gitCommitId: !uuid '5c19924c73160ac3a0bba96ce30372037c7b151e'
 renames: {
   }
-revisionId: 650
+revisionId: 651
