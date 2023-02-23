@@ -53,13 +53,13 @@ export const columns: BasicColumn[] = [
     width: 100,
     customRender: ({ record }) => {
       switch (record.visType) {
-        case 0:
-          return '登录';
         case 1:
-          return '退出';
+          return '登录';
         case 2:
-          return '注册';
+          return '退出';
         case 3:
+          return '注册';
+        case 4:
           return '改密';
       }
     },
