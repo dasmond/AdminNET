@@ -3,105 +3,21 @@ branches: {
   }
 fileChange:
   /Web:
-    newFile: !uuid 'cfe6f7930a619012bcd8039f22c02904b68d4232'
-    oldFile: !uuid '1d473a8472ba9699e2713d27b684a8c4d4f86229'
-  /Web/package.json:
-    newFile: !uuid '52b32a3450fcce956f3f2075d7d51f050ae4faae'
-    oldFile: !uuid '731a2fe797c1494e2aae88ea29b1dd429fd1c191'
-  /Web/pnpm-lock.yaml:
-    newFile: !uuid '21a0334009de6911b91d4e6aa95ec92f29365f62'
-    oldFile: !uuid '957dc2fd13058ea18361c161790c3c4fbeb05f47'
+    newFile: !uuid '5b12f0d93d7001e2b1baea74eba665c5c50e7fd7'
+    oldFile: !uuid 'cfe6f7930a619012bcd8039f22c02904b68d4232'
   /Web/src:
-    newFile: !uuid 'cdeb16fea424e61298bcaeaf8cce7a33a572f254'
-    oldFile: !uuid 'e29e0b5f1d9b3c2d7d1d2cd78e08a6fc6e509041'
-  /Web/src/components:
-    newFile: !uuid 'edaf37459c6e444114fbafd6cc0cf2625b46d76d'
-    oldFile: !uuid 'e6d92eed1b8b044810c179abdb94d037094956b9'
-  /Web/src/components/cropper:
-    newFile: !uuid '9d17e0fd3bcbc24cfadd22b6f2b12d8c94a794fc'
-    oldFile: !uuid '13a435cd28a2757b06b5d73e88634dc820c98dee'
-  /Web/src/components/cropper/index.vue:
-    newFile: !uuid '51e65f62dfc655f3cf60622a2c5f55894d36411e'
-    oldFile: !uuid '59115ba253782a8345d4e30d1981ae2500bb0c5d'
-  /Web/src/theme:
-    newFile: !uuid '2e42370ae08e9393f87efbaf94e3e4bacddfd0e9'
-    oldFile: !uuid '10956f00476af8bcdb689b74f4d7a71eb803719a'
-  /Web/src/theme/font-awesome:
-    newFile: !uuid '2d525b695e5e7e5a0b3333c267958b850499c7c8'
-    oldFile: null
-  /Web/src/theme/font-awesome/font-awesome.scss:
-    newFile: !uuid '216e6034f1f18a73a82d648c840ccac56d6ffec9'
-    oldFile: null
-  /Web/src/theme/font-awesome/font-awesome.ts:
-    newFile: !uuid '1545c612553cbf2bc86fe3981ee974d2cf1d39b2'
-    oldFile: null
-  /Web/src/theme/font-awesome/fontawesome-webfont.eot:
-    newFile: !uuid 'e9f60ca953f93e35eab4108bd414bc02ddcf3928'
-    oldFile: null
-  /Web/src/theme/font-awesome/fontawesome-webfont.svg:
-    newFile: !uuid '855c845e538b65548118279537a04eab2ec6ef0d'
-    oldFile: null
-  /Web/src/theme/font-awesome/fontawesome-webfont.ttf:
-    newFile: !uuid '35acda2fa1196aad98c2adf4378a7611dd713aa3'
-    oldFile: null
-  /Web/src/theme/font-awesome/fontawesome-webfont.woff:
-    newFile: !uuid '400014a4b06eee3d0c0d54402a47ab2601b2862b'
-    oldFile: null
-  /Web/src/theme/font-awesome/fontawesome-webfont.woff2:
-    newFile: !uuid '4d13fc60404b91e398a37200c4a77b645cfd9586'
-    oldFile: null
-  /Web/src/theme/iconfont:
-    newFile: !uuid 'c3c1e1d438da8d90b6f82f3ba90ddd40e597f00f'
-    oldFile: null
-  /Web/src/theme/iconfont/font_2298093_rnp72ifj3ba.scss:
-    newFile: !uuid '996f4e8efaa066e2db242b96560399cd329b5435'
-    oldFile: null
-  /Web/src/theme/iconfont/font_2298093_rnp72ifj3ba.ts:
-    newFile: !uuid '15bcac8c57edeea71a7b7829183a68f7973d5c83'
-    oldFile: null
-  /Web/src/theme/iconfont/font_2298093_rnp72ifj3ba.ttf:
-    newFile: !uuid '9df435d15c0271ad53ad3c22fbe582702ac9ed6c'
-    oldFile: null
-  /Web/src/theme/iconfont/font_2298093_rnp72ifj3ba.woff:
-    newFile: !uuid '4a0251ffa0278e6f4d42e962c47536a5aa0e481c'
-    oldFile: null
-  /Web/src/theme/iconfont/font_2298093_rnp72ifj3ba.woff2:
-    newFile: !uuid 'c3d4611e1bff6fddb4e95cf00d4e30a5c5dc4b67'
-    oldFile: null
-  /Web/src/theme/index.scss:
-    newFile: !uuid 'b5927f2148473119a57c545a3c42b70c12e611fd'
-    oldFile: !uuid '4ac9b060abd98f006f4e97c58a865ffcde7ecf9a'
+    newFile: !uuid '4f27e477e6fe80b0859ab7e8d6d344f953f63d46'
+    oldFile: !uuid 'cdeb16fea424e61298bcaeaf8cce7a33a572f254'
   /Web/src/utils:
-    newFile: !uuid '8eec26c8eb07bb66e290abd83feccb37f06ab02a'
-    oldFile: !uuid 'cf0d98d519eae48db28d4ea3970c3c3a7691a306'
+    newFile: !uuid '8c753862f21fb44508bf1ea53522ebd8b81d5e4e'
+    oldFile: !uuid '8eec26c8eb07bb66e290abd83feccb37f06ab02a'
   /Web/src/utils/getStyleSheets.ts:
-    newFile: !uuid '0567bbb679b7a9908cf53900d0012cad2eb9e137'
-    oldFile: !uuid '90252c3700575d9b7829218583ed72130f2efd47'
+    newFile: !uuid 'de9bd2b6ac726b7ddc70553e53608b6bac99e617'
+    oldFile: !uuid '0567bbb679b7a9908cf53900d0012cad2eb9e137'
   /Web/src/utils/other.ts:
-    newFile: !uuid '4a73e8fb9b297fdef0e1798e52e1e0f00b064bba'
-    oldFile: !uuid '08dd4771c5980b7174ee83827f4c6fcfc8dd433e'
-  /Web/src/utils/setIconfont.ts:
-    newFile: !uuid 'f4118c5034ca4c7f544f7c1f26877fd76046742b'
-    oldFile: !uuid '6f4270eef279c00ca1339a06a2ab19c99f5d8aee'
-  /Web/src/views:
-    newFile: !uuid '4592af1d583b32b913a1a42e83f07b7b65cb8fbc'
-    oldFile: !uuid '63765b10a9fac60ee8829a990ae6e4341b20b5b7'
-  /Web/src/views/system:
-    newFile: !uuid '773357637d5b568e5f3c241d1d36e5f5af7620bc'
-    oldFile: !uuid '2a0381eaf0ccfdd10adc34805aafc98f34a35cd3'
-  /Web/src/views/system/user:
-    newFile: !uuid '0748ca656cde4edace1c76b234ac9ad10b57cd2b'
-    oldFile: !uuid 'a20bba11505b1a4604da21d068e87db9dae8136e'
-  /Web/src/views/system/user/component:
-    newFile: !uuid 'aa366897a3aeecb97f51bc7f8f3ba606f12b67b4'
-    oldFile: !uuid 'd1c8c1d0175f0e78c4bbdf5db19ab0bd880f964e'
-  /Web/src/views/system/user/component/userCenter.vue:
-    newFile: !uuid 'b49ac72c9d0b91a9cfd6f702370725ef72b141b7'
-    oldFile: !uuid 'f4b224c33e4678736e451481f35cb496c119045f'
-  /Web/vite.config.ts:
-    newFile: !uuid 'd769b12fcf912302fc6e6cb8f26c084473f27ab8'
-    oldFile: !uuid '73de3f847668e2fbb2b9db53e50566fa5698120b'
-gitCommitId: !uuid '031e20dfabaea420340b2bd70ae057c4e0eb4e87'
+    newFile: !uuid 'c65fe802c4f405871ff08ed0833b8126e9a80568'
+    oldFile: !uuid '4a73e8fb9b297fdef0e1798e52e1e0f00b064bba'
+gitCommitId: !uuid '676c56601a687e18ceeba0d35f68331569514e04'
 renames: {
   }
-revisionId: 660
+revisionId: 661
