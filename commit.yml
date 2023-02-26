@@ -3,21 +3,24 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid 'adcfc8ead94bfbdcf07e4f8f6dde309bede5bd73'
-    oldFile: !uuid '668a13aea2d5c96250d70588c40dafd1f660644a'
-  /Admin.NET/Admin.NET.Web.Entry:
-    newFile: !uuid 'fa0299be24770e10c1e6699940235031be408d5b'
-    oldFile: !uuid '561c215831b42df8d90b134e3775a8144e5d1831'
-  /Admin.NET/Admin.NET.Web.Entry/wwwroot:
-    newFile: !uuid '8e2eacc7739043439f736a025d45e0cff172965f'
-    oldFile: !uuid '49d95d99e74ef89070a119b523ffbf9e53a1c09e'
-  /Admin.NET/Admin.NET.Web.Entry/wwwroot/Template:
-    newFile: !uuid '36ca6786d96dd59d8c95916cff5fa2e95b3bf473'
-    oldFile: !uuid '38dd819af0f53f1c14bccbb6f47009cd22c6418b'
-  /Admin.NET/Admin.NET.Web.Entry/wwwroot/Template/editDialog.vue.vm:
-    newFile: !uuid '7e61412bead466ff2845a6f12614c4cc9b25906a'
-    oldFile: !uuid 'd7490f2f1390cbffabeb225b35ed746f1bccfbbf'
-gitCommitId: !uuid '8e745dfdb40e45286d3a87f41c19d3de10f7bcf5'
+    newFile: !uuid '44979b88d4ef468898157c07fc3fa5a71355b018'
+    oldFile: !uuid 'adcfc8ead94bfbdcf07e4f8f6dde309bede5bd73'
+  /Admin.NET/Admin.NET.Core:
+    newFile: !uuid 'dfb499a11bd38a602e4a4d70f3795b58d71e3b89'
+    oldFile: !uuid '1320b03573c89d771f08597e326c0bdf0e2da145'
+  /Admin.NET/Admin.NET.Core/Service:
+    newFile: !uuid 'd0b77fe725de69632f7cd540f558ec09954cb20e'
+    oldFile: !uuid '320f358f031821665a9f8952e97791d0c46f5fab'
+  /Admin.NET/Admin.NET.Core/Service/Job:
+    newFile: !uuid '1bc3f2279feef726c81c4c7eedce43596c55c665'
+    oldFile: !uuid '6f71cbf0cfacc62f12a7bfef84b7e9535ade24ad'
+  /Admin.NET/Admin.NET.Core/Service/Job/DbJobPersistence.cs:
+    newFile: !uuid '6c2b35ca0982dd4d59ab4642c6bdf84e2a5ca298'
+    oldFile: !uuid '3249d79dcfb20a2a4177cc50538232467cc321d7'
+  /Admin.NET/Admin.NET.Core/Service/Job/SysJobService.cs:
+    newFile: !uuid '31454353f1c5bf3a173e2e6c17cff03ad9dcaf45'
+    oldFile: !uuid 'f4a827beba34a7942760648b33ba2c24e6fa0790'
+gitCommitId: !uuid '520b37f2b6a9c27ad4b342c1ec8c0bdb6ed833d4'
 renames: {
   }
-revisionId: 687
+revisionId: 688
