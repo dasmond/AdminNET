@@ -3,30 +3,21 @@ branches: {
   }
 fileChange:
   /Web:
-    newFile: !uuid '0d81a515c025fefa2bb7365c6c7fa77d23f04209'
-    oldFile: !uuid 'f4084d7c5f5d1016240eea112c7474834bd4f3e7'
+    newFile: !uuid 'd79b66ac07c8e3ad81d0c460201408ef1f0a2edc'
+    oldFile: !uuid '0d81a515c025fefa2bb7365c6c7fa77d23f04209'
   /Web/src:
-    newFile: !uuid '577ab29fe66494a839e0230ceacb42a31d371b0a'
-    oldFile: !uuid '0ee0fc8601871f4ab35e86a3e9de4479c70cdeab'
-  /Web/src/theme:
-    newFile: !uuid '989abbb54754b0f18878341752c3a93de73c5dbb'
-    oldFile: !uuid '2e42370ae08e9393f87efbaf94e3e4bacddfd0e9'
-  /Web/src/theme/media:
-    newFile: !uuid 'db76b4acb0b4036b814a10f0bf67b14307ddda39'
-    oldFile: !uuid '4732d6f94b442202c37bbeec9b644a166d4b5342'
-  /Web/src/theme/media/login.scss:
-    newFile: !uuid '8b656fb0e806ae11c3e946dcd93867150b3c135b'
-    oldFile: !uuid '29cdbb01917bae22c9a019608e4e2f7432e2bb35'
-  /Web/src/views:
-    newFile: !uuid 'b42bb12c7f53c8ce7d15736747242aee8d42e0dc'
-    oldFile: !uuid 'f78f1e83ccfba2105dca2b471160745e4eec6216'
-  /Web/src/views/login:
-    newFile: !uuid '9b563deb1f2a56bbba425daf3a5eb4532c03c495'
-    oldFile: !uuid '973584d9c2e47ef102869ec6316d4aca87b9c044'
-  /Web/src/views/login/index.vue:
-    newFile: !uuid '847975df185b1e2f8f1a9602d68fc93b1d18d17f'
-    oldFile: !uuid 'a12b0a5fb6f399695382facd7f74322b7ea52acb'
-gitCommitId: !uuid 'ea16dd4b4f6f47ce4a4327518ac64dbc299690da'
+    newFile: !uuid '15c2cea0bccb92428af780398d7c517cf044ce67'
+    oldFile: !uuid '577ab29fe66494a839e0230ceacb42a31d371b0a'
+  /Web/src/assets:
+    newFile: !uuid '4144ae117572e330ef20eea79cfd9e49d5531c28'
+    oldFile: !uuid '43e94158eca930fc29af31204a46ae80e76d22f4'
+  /Web/src/assets/styles:
+    newFile: !uuid '9e799410ea07b911398069207b98ab2df7d03bbf'
+    oldFile: !uuid '2de622c96654ac622e9f9b79fd94d70ae8351cd8'
+  /Web/src/assets/styles/main.scss:
+    newFile: !uuid 'db87890f2e5d8fb9b66317d013f2777aed47d12a'
+    oldFile: !uuid '1c647e74a90548af3ce9b10d62fc2fca4abc68f4'
+gitCommitId: !uuid '0571e685f07d6dead96112f7a4472483e1cb2c9a'
 renames: {
   }
-revisionId: 702
+revisionId: 703
