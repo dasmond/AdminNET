@@ -3,24 +3,21 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '208977cd1274901008fd030f28a453311e3e4b62'
-    oldFile: !uuid '6e4b4ce140788c3c5dbaa228ff2148d4412cbb63'
-  /Admin.NET/Admin.NET.Web.Entry:
-    newFile: !uuid '68c915df242c279679876a7010542d365ff3a4db'
-    oldFile: !uuid '5987969b0e3cffc24ef8695ac4b5b05fef8722f6'
-  /Admin.NET/Admin.NET.Web.Entry/wwwroot:
-    newFile: !uuid '4720c8b0c2803168e1897e936caea12abb46ae69'
-    oldFile: !uuid '82e7a7d193ff0a1be36fccc678ddb18d09366c67'
-  /Admin.NET/Admin.NET.Web.Entry/wwwroot/Template:
-    newFile: !uuid '463cf8cf22eafad3014d26b641872fb283a537c4'
-    oldFile: !uuid '02128ed214b938ea2ec7a6dcd9a504995ab4ebed'
-  /Admin.NET/Admin.NET.Web.Entry/wwwroot/Template/editDialog.vue.vm:
-    newFile: !uuid '71d3c59240483a4ca24e721e660ff114099eb291'
-    oldFile: !uuid '44b012dcb1ded6a1aa36305f438ee5c1c5433eda'
-  /Admin.NET/Admin.NET.Web.Entry/wwwroot/Template/index.vue.vm:
-    newFile: !uuid '531bb7d803c3e025bd8a0865177429bdb19786db'
-    oldFile: !uuid '3407c165f4811ddef82fc741c86adbbe1b408656'
-gitCommitId: !uuid 'e1952b5d3473767a1c9ab88cffcc85244f567827'
+    newFile: !uuid '5a1c93b4dce4f178c4256ebd43764141f6d5b6ae'
+    oldFile: !uuid '208977cd1274901008fd030f28a453311e3e4b62'
+  /Admin.NET/Admin.NET.Core:
+    newFile: !uuid '10a8288fa1aae68ca74d6931c2d464604a45b3b7'
+    oldFile: !uuid '52604e98646b51b0b8fa85eb8c6a509100053316'
+  /Admin.NET/Admin.NET.Core/Service:
+    newFile: !uuid '84d04bf702098c95cf7269d7a13cf7c1abdf8685'
+    oldFile: !uuid 'bc0595d9077efac52fca53703937076da5cd5efc'
+  /Admin.NET/Admin.NET.Core/Service/Menu:
+    newFile: !uuid 'eb5f6a6b84337fdf21c6f1c5c13ac650a1c62271'
+    oldFile: !uuid 'bba6f8f8aac99f27ce5ac5170890743aecfabcd4'
+  /Admin.NET/Admin.NET.Core/Service/Menu/SysMenuService.cs:
+    newFile: !uuid '9863d89e1130a653d6622867302efef3246a0a88'
+    oldFile: !uuid '3d1c61bfd0a737b8c46dc90663093bcea489f874'
+gitCommitId: !uuid 'af339b06464995204e1f01f782781b10e2d7fd00'
 renames: {
   }
-revisionId: 708
+revisionId: 709
