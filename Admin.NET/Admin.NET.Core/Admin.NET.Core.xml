@@ -4066,16 +4066,17 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="T:Admin.NET.Core.Service.APIJSONService">
+        <member name="T:Admin.NET.Core.Service.ApiJsonService">
             <summary>
             APIJSON服务
             </summary>
         </member>
-        <member name="M:Admin.NET.Core.Service.APIJSONService.Post(Newtonsoft.Json.Linq.JObject)">
+        <member name="M:Admin.NET.Core.Service.ApiJsonService.Post(Newtonsoft.Json.Linq.JObject)">
             <summary>
             统一入口
             </summary>
             <param name="jobject"></param>
+            <remarks>测试入参：{"[]":{"SYS_LOG_OP":{}}}</remarks>
             <returns></returns>
         </member>
         <member name="T:Admin.NET.Core.Service.FuncList">
