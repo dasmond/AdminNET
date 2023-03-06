@@ -6,13 +6,13 @@ namespace Admin.NET.Core.Service;
 /// APIJSON服务
 /// </summary>
 [ApiDescriptionSettings(Order = 100)]
-public class APIJSONService : IDynamicApiController, ITransient
+public class ApiJsonService : IDynamicApiController, ITransient
 {
     private readonly ISqlSugarClient _db;
     private readonly IdentityService _identityService;
     private readonly TableMapper _tableMapper;
 
-    public APIJSONService(ISqlSugarClient db,
+    public ApiJsonService(ISqlSugarClient db,
         IdentityService identityService,
         TableMapper tableMapper)
     {
@@ -25,6 +25,7 @@ public class APIJSONService : IDynamicApiController, ITransient
     /// 统一入口
     /// </summary>
     /// <param name="jobject"></param>
+    /// <remarks>测试入参：{"[]":{"SYS_LOG_OP":{}}}</remarks>
     /// <returns></returns>
     public JObject Post([FromBody] JObject jobject)
     {
