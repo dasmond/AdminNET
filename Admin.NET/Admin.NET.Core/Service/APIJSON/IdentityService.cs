@@ -5,9 +5,9 @@ namespace Admin.NET.Core.Service;
 public class IdentityService : ITransient
 {
     private readonly IHttpContextAccessor _context;
-    private readonly List<APIJSON_Role> _roles;
+    private readonly List<ApiJson_Role> _roles;
 
-    public IdentityService(IHttpContextAccessor context, IOptions<APIJSONOptions> roles)
+    public IdentityService(IHttpContextAccessor context, IOptions<ApiJsonOptions> roles)
     {
         _context = context ?? throw new ArgumentNullException(nameof(context));
         _roles = roles.Value.Roles;
@@ -35,9 +35,9 @@ public class IdentityService : ITransient
     /// 获取当前用户权限
     /// </summary>
     /// <returns></returns>
-    public APIJSON_Role GetRole()
+    public ApiJson_Role GetRole()
     {
-        var role = new APIJSON_Role();
+        var role = new ApiJson_Role();
         if (string.IsNullOrEmpty(GetUserRoleName())) // 若没登录默认取第一个
         {
             role = _roles.FirstOrDefault();
