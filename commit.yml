@@ -3,21 +3,33 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid 'f3867df820d569b21b8d7305253f83803b1645bf'
-    oldFile: !uuid '854debeff55da8426e6bd275efd2e22f34bcf83a'
+    newFile: !uuid '493ffc6bdf1d7f3e7908ae41fc47d19ea524a67a'
+    oldFile: !uuid '2f4ef10858fb3c64cb3b15e07c302aa8ba4fbebb'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid 'e282acd2b7ff73807a474614770f28419d2c8650'
+    newFile: !uuid '3819ebcc4b4b45b6cb8f2023f7e663671f454f79'
     oldFile: !uuid '55abf1e535063151284109b44acfeb23be881a02'
+  /Admin.NET/Admin.NET.Core/Entity:
+    newFile: !uuid 'fc14de686e6f357784f625e50463095840f2dc8d'
+    oldFile: !uuid '0f6f11f2f95ae435e50f76edc7f6c10cc1b71134'
+  /Admin.NET/Admin.NET.Core/Entity/SysLogVis.cs:
+    newFile: !uuid '45b4ace3b18a818d1d8ed47b397ba47a7d9746ea'
+    oldFile: !uuid 'b904dcef3546a47dcadb6a2729ef423770ff5cad'
+  /Admin.NET/Admin.NET.Core/Hub:
+    newFile: !uuid '630c9637f2d7e01869c2402481bc59b69f06619c'
+    oldFile: !uuid '246155de2ed843092838852dbe19f241d0161131'
+  /Admin.NET/Admin.NET.Core/Hub/OnlineUserHub.cs:
+    newFile: !uuid 'ca26d99d0ee53ceb3c47225270c01462de47cc28'
+    oldFile: !uuid '1c0c3a0ee77eb5a556d30ae7c162db25c0c867cd'
   /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid '08368080070ef04a7cc596030adb6fe519f2868d'
+    newFile: !uuid '567ae3bcfa974f7fccd53a1c0a70528f58354f17'
     oldFile: !uuid '243ffb9c9ab4879a8cff4d3c712683aa9a311575'
   /Admin.NET/Admin.NET.Core/Service/Auth:
-    newFile: !uuid 'b2b5201e7866697787e1093c205123ccb59693aa'
+    newFile: !uuid '7ede2ffa7050acc9995f94b2055f43bbb7595571'
     oldFile: !uuid '482754cffc4efcfdad714e011a8dca1ebd204248'
   /Admin.NET/Admin.NET.Core/Service/Auth/SysAuthService.cs:
-    newFile: !uuid '6e563f64a900082a3917af8960d1de7a3896c70b'
+    newFile: !uuid '9e9dfaa0d14cecd21e015304944d1fafe12a0ca8'
     oldFile: !uuid 'eae44743a65d3947a79b4fc6e939fc19bd202d2c'
-gitCommitId: !uuid '2b958640d193dfc2975a35cfcba60fb9ac2c9001'
+gitCommitId: !uuid 'd5e0ef9aa0cbc514be0c69a834738f76c86b10fb'
 renames: {
   }
-revisionId: 727
+revisionId: 728
