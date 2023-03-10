@@ -3,24 +3,21 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '854debeff55da8426e6bd275efd2e22f34bcf83a'
-    oldFile: !uuid '2f4ef10858fb3c64cb3b15e07c302aa8ba4fbebb'
-  /Admin.NET/Admin.NET.Web.Entry:
-    newFile: !uuid '809c0f751a1592c2f1b68f86c1ad71a3fc4a6a21'
-    oldFile: !uuid 'a85df076cf3ee15ecda90d85e8765ac26c564dcc'
-  /Admin.NET/Admin.NET.Web.Entry/wwwroot:
-    newFile: !uuid 'fa3c80cac982ba35026db0503ab0e8b2c146894e'
-    oldFile: !uuid 'c2243ecb9d78a777b7effdd4625d1892efb542eb'
-  /Admin.NET/Admin.NET.Web.Entry/wwwroot/Template:
-    newFile: !uuid '75b991e63680f5f2cb0ab347f6d2c14b672c3e95'
-    oldFile: !uuid '2ff6552d214ad747a95a7aef76ab3a534b470d48'
-  /Admin.NET/Admin.NET.Web.Entry/wwwroot/Template/Input.cs.vm:
-    newFile: !uuid '3d37f98bdcef274c9353c4cb702fc72e80485796'
-    oldFile: !uuid '78c05935fdcdc89465b60c3151acbb5572145689'
-  /Admin.NET/Admin.NET.Web.Entry/wwwroot/Template/Service.cs.vm:
-    newFile: !uuid '947a67604f28703d8e7ca7dad83dae62249e5146'
-    oldFile: !uuid '7fb12eb4210a7343c7f146a3048b3ea52010febc'
-gitCommitId: !uuid '51dabfd6cbd86d6d7b4c8ef6a48d6c6c6a65532e'
+    newFile: !uuid 'f3867df820d569b21b8d7305253f83803b1645bf'
+    oldFile: !uuid '854debeff55da8426e6bd275efd2e22f34bcf83a'
+  /Admin.NET/Admin.NET.Core:
+    newFile: !uuid 'e282acd2b7ff73807a474614770f28419d2c8650'
+    oldFile: !uuid '55abf1e535063151284109b44acfeb23be881a02'
+  /Admin.NET/Admin.NET.Core/Service:
+    newFile: !uuid '08368080070ef04a7cc596030adb6fe519f2868d'
+    oldFile: !uuid '243ffb9c9ab4879a8cff4d3c712683aa9a311575'
+  /Admin.NET/Admin.NET.Core/Service/Auth:
+    newFile: !uuid 'b2b5201e7866697787e1093c205123ccb59693aa'
+    oldFile: !uuid '482754cffc4efcfdad714e011a8dca1ebd204248'
+  /Admin.NET/Admin.NET.Core/Service/Auth/SysAuthService.cs:
+    newFile: !uuid '6e563f64a900082a3917af8960d1de7a3896c70b'
+    oldFile: !uuid 'eae44743a65d3947a79b4fc6e939fc19bd202d2c'
+gitCommitId: !uuid '2b958640d193dfc2975a35cfcba60fb9ac2c9001'
 renames: {
   }
-revisionId: 726
+revisionId: 727
