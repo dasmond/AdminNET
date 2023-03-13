@@ -81,7 +81,7 @@ const tb = reactive<TableDemoState>({
 	},
 });
 const getData = async (param: any) => {
-	var res = await getAPI(SysConfigApi).apiSysConfigPagePost(param);
+	var res = await getAPI(SysConfigApi).apiSysConfigListGet(param);
 	return res.data;
 };
 const exportChangeData = (data: Array<EmptyObjectType>) => {
