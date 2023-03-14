@@ -70,7 +70,7 @@ const tb = reactive<TableDemoState>({
 		search: [
 			{ label: '配置名称', prop: 'name', placeholder: '配置名称', required: false, type: 'input' },
 			{ label: '配置编码', prop: 'code', placeholder: '配置编码', required: false, type: 'input' },
-			// { label: '分组编码', prop: 'groupCode', placeholder: '分组编码', required: false, type: 'input' },
+			// { label: '分组编码', prop: 'groupCode', placeholder: '分组编码', required: false, type: 'select' },
 			// { label: '创建时间', prop: 'time', placeholder: '请选择', required: false, type: 'date' },
 		],
 		param: {},

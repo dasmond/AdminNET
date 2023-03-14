@@ -1,5 +1,4 @@
 namespace Admin.NET.Core.Service;
-
 /// <summary>
 /// 系统参数配置服务
 /// </summary>
@@ -22,12 +21,17 @@ public class SysConfigService : IDynamicApiController, ITransient
     /// <param name="input"></param>
     /// <returns></returns>
     [DisplayName("获取参数配置分页列表")]
-    public async Task<SqlSugarPagedList<SysConfig>> GetPage([FromQuery] PageConfigInput input)
+    [ApiDescriptionSettings(Name = "Page"), HttpPost]
+
+    public async Task<SqlSugarPagedList<SysConfig>> GetPage([FromBody] PageConfigInput input)
     {
+        var name = input.Name?.Trim();
+        var code = input.Code?.Trim();
+        var groupCode = input.GroupCode?.Trim();
         return await _sysConfigRep.AsQueryable()
-            .WhereIF(!string.IsNullOrWhiteSpace(input.Name?.Trim()), u => u.Name.Contains(input.Name))
-            .WhereIF(!string.IsNullOrWhiteSpace(input.Code?.Trim()), u => u.Code.Contains(input.Code))
-            .WhereIF(!string.IsNullOrWhiteSpace(input.GroupCode?.Trim()), u => u.GroupCode.Equals(input.GroupCode))
+            .WhereIF(!string.IsNullOrWhiteSpace(name), u => u.Name.Contains(name))
+            .WhereIF(!string.IsNullOrWhiteSpace(code), u => u.Code.Contains(code))
+            .WhereIF(!string.IsNullOrWhiteSpace(groupCode), u => u.GroupCode.Equals(groupCode))
             .OrderBy(u => u.OrderNo).ToPagedListAsync(input.Page, input.PageSize);
     }
 
@@ -36,11 +40,11 @@ public class SysConfigService : IDynamicApiController, ITransient
     /// </summary>
     /// <returns></returns>
     [DisplayName("获取参数配置列表")]
-    public async Task<List<SysConfig>> GetList()
+    [ApiDescriptionSettings(Name = "GroupList"), HttpGet]
+    public async Task<List<string>> GetList()
     {
-        return await _sysConfigRep.GetListAsync();
+        return await _sysConfigRep.AsQueryable().Select(u => u.GroupCode).Distinct().ToListAsync();
     }
-
     /// <summary>
     /// 增加参数配置
     /// </summary>
