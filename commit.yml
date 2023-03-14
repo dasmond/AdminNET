@@ -2,28 +2,22 @@
 branches: {
   }
 fileChange:
-  /Web:
-    newFile: !uuid '90fa4c7b58bcfdce28d82e090262f2035b2bd2a3'
-    oldFile: !uuid '7a10d1ecab2ca91412881a156f6d650c7625ea3f'
-  /Web/src:
-    newFile: !uuid '91b4eeca4baa5a0aafc8c7d83967b7102556912a'
-    oldFile: !uuid '89427e6e40f1476b53aa2f5537baa45b2dd166dd'
-  /Web/src/views:
-    newFile: !uuid 'b97258721de699f411e60d3b00847c83cc675373'
-    oldFile: !uuid '0e57a7376c79bcc616e25855fe48ce8ff71cf85b'
-  /Web/src/views/system:
-    newFile: !uuid '671d0cac22bec82819d593721e3751f7d61b7ae7'
-    oldFile: !uuid '049e34cf6ecf083dce095bd18c24cc0ca76f8cc4'
-  /Web/src/views/system/codeGen:
-    newFile: !uuid 'efd2029187ff484e34ff9d721351236c144ef10a'
-    oldFile: !uuid '0a6e49a19081aaab271b0d6df19b172797150012'
-  /Web/src/views/system/codeGen/component:
-    newFile: !uuid 'dc4d1825a23dc94de11c9cac5ab6ab3b29bb9ba7'
-    oldFile: !uuid '90a0d128cbae4c92e3d9a4b15029022e7f93e86c'
-  /Web/src/views/system/codeGen/component/genConfigDialog.vue:
-    newFile: !uuid 'b12f336c0c2dfba3659fb15e287b0c85e74f8102'
-    oldFile: !uuid 'cf741a0ea99618b028d475010d75a8d0b6cd3f20'
-gitCommitId: !uuid '65459ca610611fad90bee151598f80428edc6046'
+  /Admin.NET:
+    newFile: !uuid 'cd421c7c4925adc16dca26bdc5e2dda5caa3e30d'
+    oldFile: !uuid '80e59286575f4d49ebd553779c0e884cf5c07209'
+  /Admin.NET/Admin.NET.Core:
+    newFile: !uuid '70364cf343fd1e6dea134d59f22790e995eabe92'
+    oldFile: !uuid '2819616cd4ad3aa89d460caf7db732c1eb08ff4d'
+  /Admin.NET/Admin.NET.Core/Service:
+    newFile: !uuid '1991967dcf8c0d2b5320c52a471dbe8f480eb090'
+    oldFile: !uuid 'f4a7267c4a0fe9539a5c8e8935cf20f38941deec'
+  /Admin.NET/Admin.NET.Core/Service/User:
+    newFile: !uuid '97e5cf8ad1af074cb6275056276646c2fb55e39c'
+    oldFile: !uuid 'c7d7594f6516b2db12c5928620b6f7ee14aa6c1f'
+  /Admin.NET/Admin.NET.Core/Service/User/UserManager.cs:
+    newFile: !uuid '2395aea23c6d2a8a85860c43fc14b193bf08bd99'
+    oldFile: !uuid '847c2572fef2abbcbd5cc18fbf5bbe97b2c23e89'
+gitCommitId: !uuid 'b1f0eb90e39684ddb826938158c5c7018ae6c62d'
 renames: {
   }
-revisionId: 739
+revisionId: 740
