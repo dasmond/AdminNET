@@ -233,8 +233,7 @@ public class SysDatabaseService : IDynamicApiController, ITransient
     /// <returns></returns>
     private static string GetEntityTemplatePath()
     {
-        var templatePath = App.WebHostEnvironment.WebRootPath + @"\Template\";
-        return Path.Combine(templatePath, "Entity.cs.vm");
+        return Path.Combine(App.WebHostEnvironment.WebRootPath, "Template", "Entity.cs.vm");
     }
 
     /// <summary>
