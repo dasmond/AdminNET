@@ -3,21 +3,33 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid 'cec32266e4cebe58e1d828a49352b0d2c3fba0d4'
-    oldFile: !uuid '312605f5e3953132e75f7274df3508b86f2b812d'
+    newFile: !uuid '6f378ec0d93e77ba55fc9c5e2aa69037018d7308'
+    oldFile: !uuid 'cec32266e4cebe58e1d828a49352b0d2c3fba0d4'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid 'f0d12462f5b39c6f40dc9c72f9ac648f71c0c02a'
-    oldFile: !uuid '84c32e37e43b0d9466868d8a572bec1c80c7de73'
+    newFile: !uuid '738edffa5c1ad8be22b3c04e8fca28febc64eaa5'
+    oldFile: !uuid 'f0d12462f5b39c6f40dc9c72f9ac648f71c0c02a'
   /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid '546c1ba8d8542c2979a8b94e1a668da6bf7ba553'
-    oldFile: !uuid '44a1a5c59ef29468fd697d42f2c47285ee96a4e0'
+    newFile: !uuid '75a7eda69510dbf6a978b64b23c4e95b80c374db'
+    oldFile: !uuid '546c1ba8d8542c2979a8b94e1a668da6bf7ba553'
+  /Admin.NET/Admin.NET.Core/Service/Config:
+    newFile: !uuid '4c28d83a47384bc76a23f8fda89cf8d73c265542'
+    oldFile: !uuid '2a89454d8fc1d78b8e28cded44cc190d094ca07b'
+  /Admin.NET/Admin.NET.Core/Service/Config/SysConfigService.cs:
+    newFile: !uuid 'e82fd64eb890ba8dd879d8d54c60777f08b77f9f'
+    oldFile: !uuid '7e1e590a816756f6a02370599ad30b83ff4f365c'
   /Admin.NET/Admin.NET.Core/Service/Job:
-    newFile: !uuid '91a2b284dc574a69a16d91689ecd336ede3f8b1f'
-    oldFile: !uuid '92f2b887f449cec5f7a764d52bcbdf3786da5987'
+    newFile: !uuid '897660e9a7967e99cce62d6420b97c9f7acfe6f2'
+    oldFile: !uuid '91a2b284dc574a69a16d91689ecd336ede3f8b1f'
   /Admin.NET/Admin.NET.Core/Service/Job/DbJobPersistence.cs:
-    newFile: !uuid 'daf2b21f262a46cef29807fbc82e6d75babdb6a9'
-    oldFile: !uuid '6c2b35ca0982dd4d59ab4642c6bdf84e2a5ca298'
-gitCommitId: !uuid '24824ae6b2bab3ac36fdeb805d4f2ae02cfb3a8c'
+    newFile: !uuid 'e48bbbbd40c13f77f48ee2b6caf0f6d62c44eb75'
+    oldFile: !uuid 'daf2b21f262a46cef29807fbc82e6d75babdb6a9'
+  /Admin.NET/Admin.NET.Core/Service/Org:
+    newFile: !uuid '5b70fe01da3dd7907a00bcfa57778a150fec8a3f'
+    oldFile: !uuid '34e0e9095f81ff07bffc3a1e22caa20ceedc94ef'
+  /Admin.NET/Admin.NET.Core/Service/Org/SysOrgService.cs:
+    newFile: !uuid 'aef8f952228f7f19a6fe984b449927087f70bcaf'
+    oldFile: !uuid '942c0b655bd977e053fdf06acbe732ecf4c1a609'
+gitCommitId: !uuid '8dbcb8db49e36194cbccfe1e410df597f18ca89b'
 renames: {
   }
-revisionId: 751
+revisionId: 752
