@@ -1,4 +1,4 @@
-﻿using SqlSugar;
+using SqlSugar;
 using Admin.NET.Core;
 using Admin.NET.Core.Service;
 using System.Collections.Generic;
@@ -43,7 +43,7 @@ if (@column.EffectType == "fk"){
 if (@column.EffectType == "ApiTreeSelect"){
     @:[SugarTable("@(@column.FkTableName)")]
     @:[NotTable]
-    @:public class @(@column.FkEntityName)TreeOutput: EntityBaseId
+    @:public class @(@Model.ClassName)_@(@column.FkEntityName)TreeOutput: EntityBaseId
     @:{
         @:[SugarColumn(ColumnName = "@(@column.DisplayColumn)")]
         @:public @(@Model.GetColumnNetType(@column.FkTableName,@column.DisplayColumn)) Label { get; set; }
@@ -53,7 +53,7 @@ if (@column.EffectType == "ApiTreeSelect"){
 
         @:public @(@Model.GetColumnNetType(@column.FkTableName,@column.PidColumn)) @column.PidColumn { get; set; }
         @:[SugarColumn(IsIgnore = true)]
-        @:public List<@(@column.FkEntityName)TreeOutput> Children { get; set; }
+        @:public List<@(@Model.ClassName)_@(@column.FkEntityName)TreeOutput> Children { get; set; }
     @:}
 }
 }
