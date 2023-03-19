@@ -3,27 +3,36 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid 'a7355c4104c29f0b4a08e6b3ce29db4c164b06cc'
-    oldFile: !uuid '2348835041e6bae86f1459956561677d8b124f4f'
+    newFile: !uuid '089a23fb08b19e9b93927425a2e238c928667352'
+    oldFile: !uuid 'a7355c4104c29f0b4a08e6b3ce29db4c164b06cc'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '35ae868492b96919d49e2c654303c2ea60abd041'
-    oldFile: !uuid '534706b91c47e03c6417ad179f30033b808d9fc9'
+    newFile: !uuid 'f7688b0200f7ea49ef95eb33696a607090b91b18'
+    oldFile: !uuid '35ae868492b96919d49e2c654303c2ea60abd041'
+  /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
+    newFile: !uuid '0434b463e55d2174cc65cf1cae68a67a2eb52197'
+    oldFile: !uuid '1983a6fb88cba9768f46f1db57b6f93621234697'
   /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid 'a9f9272ae79844426815e717bf9369a4e9bfd528'
-    oldFile: !uuid '7faaaa605f76a5b6a504db9e2a17b1b73f7dddc0'
-  /Admin.NET/Admin.NET.Core/Service/CodeGen:
-    newFile: !uuid 'e4339c5f96ebc150af6796dc414020fefb751a97'
-    oldFile: !uuid 'bd37ec8c537a80f890c1ac17bde851cee3e03b82'
-  /Admin.NET/Admin.NET.Core/Service/CodeGen/SysCodeGenService.cs:
-    newFile: !uuid 'fd560d430d4a0dfd5ba3d03a1cfe852f11095cb8'
-    oldFile: !uuid '5b31aedf8c487413b3e062a354152535f4029d28'
-  /Admin.NET/Admin.NET.Core/Service/Job:
-    newFile: !uuid '64b4fbcf5ba42d03566f484b019687a160788f8d'
-    oldFile: !uuid '75111026f9c0143de0eb9faa77c0ac5b34c9a4db'
-  /Admin.NET/Admin.NET.Core/Service/Job/DbJobPersistence.cs:
-    newFile: !uuid '1484a17e6ac7947a739d8d4c55537425e8982d02'
-    oldFile: !uuid '2208b7a4f3ca675e79d5ceb83266a082c5b39ecf'
-gitCommitId: !uuid 'c9b0e6b595145e16b4bc37edb86af26a45a5cf4c'
+    newFile: !uuid '4a13ec51ab6c8a7d3355cd20c8f5e18cef4dacba'
+    oldFile: !uuid 'a9f9272ae79844426815e717bf9369a4e9bfd528'
+  /Admin.NET/Admin.NET.Core/Service/Wechat:
+    newFile: !uuid 'b4d774ea25b954101e0fc47d9bdae53b5eb584ce'
+    oldFile: !uuid 'fa9adc0a77ca89552b2c415d82ab1f0ab11dabd4'
+  /Admin.NET/Admin.NET.Core/Service/Wechat/Dto:
+    newFile: !uuid '255f133095812aac067b484d86ec81803b4c76c7'
+    oldFile: !uuid '86a978618c51c4fb72e2461a4f69c01ceee1d399'
+  /Admin.NET/Admin.NET.Core/Service/Wechat/Dto/WxOpenInput.cs:
+    newFile: !uuid 'c86ba74835540222c3711c735a4472563e2eda82'
+    oldFile: !uuid '7c06246a3e648c80647979291a313a86b0d5b6d7'
+  /Admin.NET/Admin.NET.Core/Service/Wechat/SysWxOpenService.cs:
+    newFile: !uuid '2313809b95f5b90554bfc5b09215fb208fed328b'
+    oldFile: !uuid '00dfbf810e53d5171229ea617c7d375b4f3d660b'
+  /Admin.NET/Admin.NET.Web.Core:
+    newFile: !uuid '2ff98ead6787cbe0168a06876d00661c0415f3d2'
+    oldFile: !uuid 'a2769121145a3dd8090ca0063e3fd243e040a9b8'
+  /Admin.NET/Admin.NET.Web.Core/Startup.cs:
+    newFile: !uuid '34ed34b54fb04c6586891b4c9d5fec80b2c9627d'
+    oldFile: !uuid '5d088cb1962a797471b13cbce895b9f66233f612'
+gitCommitId: !uuid '197277db5df27e751ee07ecbaf97aa90fd0e69c6'
 renames: {
   }
-revisionId: 748
+revisionId: 749
