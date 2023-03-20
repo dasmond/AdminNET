@@ -2,61 +2,31 @@
 branches: {
   }
 fileChange:
-  /Admin.NET:
-    newFile: !uuid '1bfee5ca644de766aec220ab0b1f4ca26941054b'
-    oldFile: !uuid 'f4fadf36d11f06736eb216dcc9679a7d6f4f8f45'
-  /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '5609f610dd1ede6eff8fe802f01466145f4d92c9'
-    oldFile: !uuid '6dedcb1d8713d705e5925de1bc6e9c2d6ee70891'
-  /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
-    newFile: !uuid '63305549aa38ce410b3220bced7bb634847645d4'
-    oldFile: !uuid '0434b463e55d2174cc65cf1cae68a67a2eb52197'
-  /Admin.NET/Admin.NET.Core/Util:
-    newFile: !uuid '4b36c9cb19fb76decf83307b12faf51adbb950d5'
-    oldFile: !uuid 'ed20659d3bd446a6d9333266d00e7b60f2b5d673'
-  /Admin.NET/Admin.NET.Core/Util/CodeGenUtil.cs:
-    newFile: !uuid '6fadda870da5598ccfc8a581adbde2e903bfa550'
-    oldFile: !uuid 'f604cdc34f5ca8a0c6809b9d9e88db6ac529205b'
   /Web:
-    newFile: !uuid '45ff78118c7a6939ab11ace9b9d3b38d74fd610d'
-    oldFile: !uuid 'b86cb36b4d6175ea60f851908df26e6d26809be3'
+    newFile: !uuid '2f9c270fde7b1545128eab2ffa3b79bffb84d5e6'
+    oldFile: !uuid '45ff78118c7a6939ab11ace9b9d3b38d74fd610d'
+  /Web/package.json:
+    newFile: !uuid 'f2fa5e89542354740286861313aafc5e727645fa'
+    oldFile: !uuid '97ea058167d5026d99bcd3e22b891ff48783be27'
+  /Web/pnpm-lock.yaml:
+    newFile: !uuid '696c6eae366ebffea26abf965f735c5001c97945'
+    oldFile: !uuid '01abe129c2f3a76b7d7c10ddb032c194d677ddbc'
   /Web/src:
-    newFile: !uuid 'bfbe9e1f03501ba38341bf570f2404518f48788f'
-    oldFile: !uuid '47f88bc9ed0ed535f01affd8239ac774ab945660'
-  /Web/src/components:
-    newFile: !uuid '750405339d3050933a3832c5c00c3434766d9a91'
-    oldFile: !uuid '8b12480b26976470d495928d5e3458264e95b1b5'
-  /Web/src/components/table:
-    newFile: !uuid '7f5cf12ccee4d6ef10691a163f2337d6a65d7dfb'
-    oldFile: !uuid '71747f76bfb70a6adce1a20a5194f8267c3f5b3d'
-  /Web/src/components/table/index.vue:
-    newFile: !uuid 'dcfdba650aa19861b63d9c07ccc155eb2e19d039'
-    oldFile: !uuid 'd9bc39f0804c28e907643bd97c8c7b8ea3759da9'
-  /Web/src/types:
-    newFile: !uuid '75b605aec839c84ede3b32434d1447aa8d0788d0'
-    oldFile: !uuid '612b047043a089959b327774992860fb93483c3f'
-  /Web/src/types/views.d.ts:
-    newFile: !uuid 'f2942ae14d9f1700fa2f07bfb592fd7750195269'
-    oldFile: !uuid 'e95daa15fe593f2605e887640a3d8d8a3e6c8fd2'
+    newFile: !uuid 'ddf1c62eaf966a68f9499f267385fe20406056f1'
+    oldFile: !uuid 'bfbe9e1f03501ba38341bf570f2404518f48788f'
   /Web/src/views:
-    newFile: !uuid 'acac6915df444459ce7c95b5540c2274fcd02f23'
-    oldFile: !uuid '8c60b3e96c897bf47ca2878e52d43c217a7008dc'
+    newFile: !uuid '8ab689f2b5d798375274b8ad281815e20357fa3c'
+    oldFile: !uuid 'acac6915df444459ce7c95b5540c2274fcd02f23'
   /Web/src/views/system:
-    newFile: !uuid 'fbf43ff59fe765977c6f473cb29eb390a0ff3e6e'
-    oldFile: !uuid 'b95c4d4a0583e82f1594f49f8327b06d47af3a6e'
-  /Web/src/views/system/config:
-    newFile: !uuid '637560484a5354a31c787614b1d18abddde2f6f2'
-    oldFile: !uuid 'cdd26817d15334b434ec076b3985148141945098'
-  /Web/src/views/system/config/index.vue:
-    newFile: !uuid '7ed8e03176036c343f29da09d191331c518485dc'
-    oldFile: !uuid 'e56578769a196ef219f5bf39e93d1b6b1712693b'
+    newFile: !uuid 'bf9f14913c3b3f830ebb4d2c058e1f1fc0978dc2'
+    oldFile: !uuid 'fbf43ff59fe765977c6f473cb29eb390a0ff3e6e'
   /Web/src/views/system/onlineUser:
-    newFile: !uuid 'e2acab9316cc0d5d8a3bf7586c2b3fbf1965343a'
-    oldFile: !uuid 'b1c83a14c97188a55546d14e093cad742f41afbb'
+    newFile: !uuid 'd1970f452f2fb6437a7cd03156cd40abb6112d93'
+    oldFile: !uuid 'e2acab9316cc0d5d8a3bf7586c2b3fbf1965343a'
   /Web/src/views/system/onlineUser/index.vue:
-    newFile: !uuid '2fb69a78e3196d095e4c3974a3cc503972f3bc31'
-    oldFile: !uuid 'a8d4c015b50c611c9cd2b7cc3421537de5a0577c'
-gitCommitId: !uuid '089bb8e1e5f47f582e402407345630d710d825e5'
+    newFile: !uuid '1f30499ee9943926d0c882ea4660890c1b0df633'
+    oldFile: !uuid '2fb69a78e3196d095e4c3974a3cc503972f3bc31'
+gitCommitId: !uuid '7874c9233b4a3ca5ad34f1c1b20a1149a8bb3454'
 renames: {
   }
-revisionId: 760
+revisionId: 761
