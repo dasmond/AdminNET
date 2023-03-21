@@ -34,9 +34,11 @@
 @foreach (var column in Model.TableField){
 if(@column.EffectType == "Upload"){
           @:if (data.record.@(@column.LowerColumnName)) {
-            @:setFieldsValue({
-              @:@(@column.LowerColumnName): [data.record.@(@column.LowerColumnName)Attachment],
-            @:});
+            @:if (String(data.record.@(@column.LowerColumnName)) != '0') {
+                @:setFieldsValue({
+                @:@(@column.LowerColumnName): [data.record.@(@column.LowerColumnName)Attachment],
+                @:});
+            @:}
           @:}
 }
 }
