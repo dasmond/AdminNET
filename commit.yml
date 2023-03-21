@@ -2,28 +2,22 @@
 branches: {
   }
 fileChange:
-  /Web:
-    newFile: !uuid '198fb53a43648d907898d4b0754c731e06c6210a'
-    oldFile: !uuid '28999b5ef4500ec91a3148f4e8c32102e77f3710'
-  /Web/src:
-    newFile: !uuid '1c07fd2fc0157d459e5f412fb3237c6b44817af1'
-    oldFile: !uuid '234bacd6fcd2b7bba0b38404608e721b47d15dbf'
-  /Web/src/views:
-    newFile: !uuid 'd7f071fc8c72f3998f9fdc467fd3b554962040aa'
-    oldFile: !uuid '2e071fb8361fa951d1b1bd1cdd045053d8f77f2d'
-  /Web/src/views/system:
-    newFile: !uuid '210b22c7e719b467285a9cf2a7e81f6403d3ae2e'
-    oldFile: !uuid '507969ca309522086d113c22864b33c7130ce45b'
-  /Web/src/views/system/codeGen:
-    newFile: !uuid '9172fbc4fb8cca966f2faf2580f8582af288021c'
-    oldFile: !uuid '7b2c878deba454c09083ad16ed336936942335aa'
-  /Web/src/views/system/codeGen/component:
-    newFile: !uuid '1192ad97016388434ebb86993f4c19e71416eb79'
-    oldFile: !uuid 'c8780b6eaa106573661fddf74ecf67cc698bd8ec'
-  /Web/src/views/system/codeGen/component/genConfigDialog.vue:
-    newFile: !uuid '45a26b12a8ed8da314ffaef73934e30886f55176'
-    oldFile: !uuid 'ca167771b99601303222359eb5e32ecf47906c28'
-gitCommitId: !uuid 'c0b98b0c0aeff671bf9fbdb7af57e453930d5039'
+  /Admin.NET:
+    newFile: !uuid '51bfd1d914f6714814071d053a6b5713cfccca7e'
+    oldFile: !uuid '9edbfe8da034c469016eb18f92cb134405a790bb'
+  /Admin.NET/Admin.NET.Web.Entry:
+    newFile: !uuid '3678a1c05469809eafe6b98fa714fb9d1f538aa7'
+    oldFile: !uuid 'dbbd24ef90035f5dad6ff693d4bea08d77744d2b'
+  /Admin.NET/Admin.NET.Web.Entry/wwwroot:
+    newFile: !uuid 'fe66836153122a6f9f1c96221259006b6c52b22e'
+    oldFile: !uuid 'd73dd6300cbb054f9b29751662184daaf818caf1'
+  /Admin.NET/Admin.NET.Web.Entry/wwwroot/Template:
+    newFile: !uuid '0f58d5e820de00c2057c9799d002bffc596b2209'
+    oldFile: !uuid '832f1502b5d74c9088884b4e515086be944ebab6'
+  /Admin.NET/Admin.NET.Web.Entry/wwwroot/Template/editDialog.vue.vm:
+    newFile: !uuid 'de0e1bfcb1fc73aa5f09ad3eb96a2a2039211ff6'
+    oldFile: !uuid '71d3c59240483a4ca24e721e660ff114099eb291'
+gitCommitId: !uuid 'a98048eed68270d93adad9d2370f2a6897351f04'
 renames: {
   }
-revisionId: 786
+revisionId: 787
