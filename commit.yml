@@ -3,21 +3,21 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '7bd884c90e3e96528323aad51a900c6e63509153'
-    oldFile: !uuid 'bdae2d4fdd1b7fd406e172b841b0d65b574954de'
+    newFile: !uuid 'cb4c4e9cc3d5b70dfc1f8a5991f34df149e9ee57'
+    oldFile: !uuid '7bd884c90e3e96528323aad51a900c6e63509153'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '23cbb7d3bf5d622386ca895b5ae391ba941fc741'
-    oldFile: !uuid 'e9f88748608515530eb1ba50cc5c59e6f71cd8b1'
+    newFile: !uuid '4ef581ecdc07139da8b6c7e53c88d00ff6df5ff3'
+    oldFile: !uuid '23cbb7d3bf5d622386ca895b5ae391ba941fc741'
   /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid 'c1eefc7108f51a92789238f41a3a5614f0c7cbc1'
-    oldFile: !uuid '7089b8eecebdd070896d4a2f6367199aa5bb1fd5'
-  /Admin.NET/Admin.NET.Core/Service/CodeGen:
-    newFile: !uuid '235cff48d14df4e9be30046b4306123d269563a1'
-    oldFile: !uuid 'b5c469875ca22d15e77e5e66a8e56d8659bc6179'
-  /Admin.NET/Admin.NET.Core/Service/CodeGen/SysCodeGenService.cs:
-    newFile: !uuid 'af97a33167dc5d8ee344586d7978acee3219b739'
-    oldFile: !uuid '06cdd027fffbf4d791aec38538dcce7ab0954a73'
-gitCommitId: !uuid 'f3acedf2d7d79578ef2058d38eeb080f7d17987f'
+    newFile: !uuid '52cf8e434c28eb4cb25bc9d92bc9e246e0436a78'
+    oldFile: !uuid 'c1eefc7108f51a92789238f41a3a5614f0c7cbc1'
+  /Admin.NET/Admin.NET.Core/Service/DataBase:
+    newFile: !uuid '0a714ecf562fb723aa736184c3c22d999ec20380'
+    oldFile: !uuid '5005df8dd05b9af7f861261350f5bc5b15b47271'
+  /Admin.NET/Admin.NET.Core/Service/DataBase/SysDatabaseService.cs:
+    newFile: !uuid 'd4afa44f51ada815da2291114340aaae05a81eb1'
+    oldFile: !uuid '70ffaa0e15f4b2c318074c1873cfdf9665df88ae'
+gitCommitId: !uuid '893fca0578ea0e426c55f9fb6c0b2d94c860deee'
 renames: {
   }
-revisionId: 794
+revisionId: 795
