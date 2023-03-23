@@ -3,45 +3,21 @@ branches: {
   }
 fileChange:
   /Web:
-    newFile: !uuid 'b8e2e66be7af353ed34dc7a55ae772b0fe45dd54'
-    oldFile: !uuid '6172f31dd8c6c6d014c3147d25f7a2fc73da695b'
-  /Web/src:
-    newFile: !uuid 'edcd47b4bb04259946222f95a7607a566f768c77'
-    oldFile: !uuid 'b2750deca5126268eeb6b2fa4e9f33b63b8e89f8'
-  /Web/src/api-services:
-    newFile: !uuid '94aecef06fb95c805f2d9ec2eba5dc8b54469993'
-    oldFile: !uuid '090049963fe6c1d188b496f0730d6641c97999b9'
-  /Web/src/api-services/_business:
-    newFile: null
-    oldFile: !uuid 'd51015dee1ed3ef5fcf4e1da79175067bc5ef0d1'
-  /Web/src/api-services/_business/api.ts:
-    newFile: null
-    oldFile: !uuid '722bc58af2c38b1c7d0c3c7853458ec322514886'
-  /Web/src/api-services/_business/apis:
-    newFile: null
-    oldFile: !uuid 'e2daf78b26b00e198a5f31bf4b7fded437cc9746'
-  /Web/src/api-services/_business/apis/tenant-business-api.ts:
-    newFile: null
-    oldFile: !uuid '27091f7c9c67671306000c045943c3fb32c720d2'
-  /Web/src/api-services/_business/index.ts:
-    newFile: null
-    oldFile: !uuid '34805386762fe1d5d8ebe96662dbdbd02249c936'
-  /Web/src/api-services/_business/models:
-    newFile: null
-    oldFile: !uuid 'af5f54c78f1fb173e7f24af38b0bea0207264721'
-  /Web/src/api-services/_business/models/admin-result-boolean.ts:
-    newFile: null
-    oldFile: !uuid '46607891603af82c3699bdc469c6d792679a4d19'
-  /Web/src/api-services/_business/models/admin-result-list-tenant-business.ts:
-    newFile: null
-    oldFile: !uuid 'ba20bff779cba729f0225894085d1f2b86f01121'
-  /Web/src/api-services/_business/models/index.ts:
-    newFile: null
-    oldFile: !uuid '0f2548298a32f5451f2cf534950d8812b583c986'
-  /Web/src/api-services/_business/models/tenant-business.ts:
-    newFile: null
-    oldFile: !uuid 'd472f9ee58c0865b035bfb2be51bcb5e599c7d43'
-gitCommitId: !uuid '11f5c426ad84e4c9c3e90d7f3b43ed06d85f835c'
+    newFile: !uuid '3ef403352c1c4608b9a7f26d9113e10e8105e1e1'
+    oldFile: !uuid 'b8e2e66be7af353ed34dc7a55ae772b0fe45dd54'
+  /Web/api_build:
+    newFile: !uuid '244cead82acbcb588c669bf62ca1dc4e984028ba'
+    oldFile: null
+  /Web/api_build/.gitignore:
+    newFile: !uuid 'f23b9489f981bcf122f7326087a1ec8dd869e36d'
+    oldFile: null
+  /Web/api_build/build.bat:
+    newFile: !uuid '4f682611a5f598f29aa8a329d132fe1e10f18023'
+    oldFile: null
+  /Web/api_build/readme.md:
+    newFile: !uuid 'f2fa85815afdb55bd5ac35bc4256ca68e0512149'
+    oldFile: null
+gitCommitId: !uuid '7948a72eec0023b46e1f19a61723735afcd30b01'
 renames: {
   }
-revisionId: 775
+revisionId: 776
