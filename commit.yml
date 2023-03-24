@@ -3,15 +3,18 @@ branches: {
   }
 fileChange:
   /Web:
-    newFile: !uuid '4c8e18228e79d4b9375d8ae0f9034d73c2ac11d7'
-    oldFile: !uuid '11e19d68c55e6537cafbd3202992b6f371ec328e'
+    newFile: !uuid '77b47f48c7a992b16fe96e705ce14e1df251854a'
+    oldFile: !uuid '4c8e18228e79d4b9375d8ae0f9034d73c2ac11d7'
   /Web/api_build:
-    newFile: !uuid '3caa0fef5f7125f60007e46aac5d27b9c29a2904'
-    oldFile: !uuid '91bd7e1e61f2102a86a84026f68a748107495ff6'
+    newFile: !uuid 'f56e0ffe1fec7dd4f612e404411b7be7d2cfb87a'
+    oldFile: !uuid '3caa0fef5f7125f60007e46aac5d27b9c29a2904'
+  /Web/api_build/build.bat:
+    newFile: !uuid 'ca72b6d4599f80bd81a3f5b6115d6503317779a9'
+    oldFile: !uuid '4f682611a5f598f29aa8a329d132fe1e10f18023'
   /Web/api_build/readme.md:
-    newFile: !uuid '31aa63574e10847d2aa16f25a09523b5f50c57f2'
-    oldFile: !uuid 'fd0a5d1dc3871781b90624504a4f422acd3b9201'
-gitCommitId: !uuid 'bfe0665c7f34676dd68823f2c62547a00cc49a70'
+    newFile: !uuid 'b9a815e444c9f1deb52f7f71bf31782c84e2ce4e'
+    oldFile: !uuid '31aa63574e10847d2aa16f25a09523b5f50c57f2'
+gitCommitId: !uuid 'ff87c694a8e761c25fabf2968fc89b1f6e507493'
 renames: {
   }
-revisionId: 808
+revisionId: 809
