@@ -2,13 +2,37 @@
 branches: {
   }
 fileChange:
+  /Admin.NET:
+    newFile: !uuid 'bb901635542ee7da77aa79067666f5bb80a89674'
+    oldFile: !uuid '59d2d9a9b265073ca762e392af28343c36a4ba5d'
+  /Admin.NET/Admin.NET.Core:
+    newFile: !uuid 'f26ce30504e755f8f03573502eb05f0b6c87d78e'
+    oldFile: !uuid '7ad472d3a3253c3a56c0540d64f864bdbd63ecf4'
+  /Admin.NET/Admin.NET.Core/SeedData:
+    newFile: !uuid '649c57ed88149be7ce0a773d647a0090cc9464a8'
+    oldFile: !uuid 'd6a19d1fb2d6ef7964ca761d723f8d5d24620e4e'
+  /Admin.NET/Admin.NET.Core/SeedData/SysConfigSeedData.cs:
+    newFile: !uuid 'dba601f5ecc543a6d1a9687c79eb8e6340bc6457'
+    oldFile: !uuid 'cc2975ca63e22015256eb916bd6b05fbb722b7f1'
   /Web:
-    newFile: !uuid '414a44d1f4c0f395eeb0299ea3b648cd486b204f'
-    oldFile: !uuid '3aea53d2dc05c7079cc13365861f0eaad30a8d66'
-  /Web/vite.config.ts:
-    newFile: !uuid 'cbc18c5869dd1b5b3cc90f918884d62a85b2b8c2'
-    oldFile: !uuid 'ae216a851d243393c8592c4acb59ef9b6b976be9'
-gitCommitId: !uuid 'f038f967e099cb75ca21e7e40ee6169296156a79'
+    newFile: !uuid 'c567af123f1052c7b42ed37b7f5afabf1964f1f2'
+    oldFile: !uuid '414a44d1f4c0f395eeb0299ea3b648cd486b204f'
+  /Web/src:
+    newFile: !uuid '4706804bd023e0dadf9f4458744ed2e6cd9c5867'
+    oldFile: !uuid '524330cfe85f89315ef023ee505160d63dde8e43'
+  /Web/src/layout:
+    newFile: !uuid '7c49e19d263fe089e6113c73ca334828a6e77def'
+    oldFile: !uuid '62751ecad391cc88f547064a9ec002d16de1c055'
+  /Web/src/layout/navBars:
+    newFile: !uuid '5fbed8d3ac0daf68f68f7cc0302fc7e781972a7d'
+    oldFile: !uuid '78f341cc5ebd2a1d373acae291230008daa3ec07'
+  /Web/src/layout/navBars/breadcrumb:
+    newFile: !uuid '10dac6aa33236e59179f949cf31a16de0326e752'
+    oldFile: !uuid '6d0bf6290af4be3796a0e3ae4c003d59718bd435'
+  /Web/src/layout/navBars/breadcrumb/setings.vue:
+    newFile: !uuid 'c299007340eb9a9002dfdd265bbadb97fb532183'
+    oldFile: !uuid '2a5063c85ac1c8080da36724aff5b4561259add9'
+gitCommitId: !uuid '4f2277e24b352af060822ced3d02284fdd1da5a1'
 renames: {
   }
-revisionId: 813
+revisionId: 814
