@@ -2,73 +2,25 @@
 branches: {
   }
 fileChange:
-  /docker:
-    newFile: !uuid 'bb60206097e810fb64aef76ca303cfc6919ffae3'
-    oldFile: !uuid '71b690790657438d5667b59ba2512043df162efd'
-  /docker/app:
-    newFile: !uuid 'ab36fa08f87d3c58a311053c9cb1fd453321b429'
-    oldFile: !uuid 'e6e11054b128397ce978696d37a3025dae16cc0f'
-  /docker/app/Configuration:
-    newFile: !uuid 'c30de17ea13f859d7c14bd8e0721536f3ae3ae70'
-    oldFile: !uuid '646fb3699bc2f489be73e1cc5429844b71057f60'
-  /docker/app/Configuration/App.json:
-    newFile: !uuid '04975e76d68717f515a600025b433de35ffa1e77'
-    oldFile: !uuid '559cc256c80e908b4c6652accaacde1544df9367'
-  /docker/app/Configuration/Database.json:
-    newFile: !uuid '32be2f13a6b37ef63bca533a1326530ec439e019'
-    oldFile: !uuid 'f46ea198db10ecd0d6e53ebf42542e0cb7f1d168'
-  /docker/nginx:
-    newFile: !uuid '1d641bbbea1b2cd0cf0c15920aaf84338a1603e6'
-    oldFile: !uuid 'e4d56020b1ded8509f5c1fc2867d6778a0128dfe'
-  /docker/nginx/conf:
-    newFile: !uuid '53a0734cd722a9e955dd30da7b8012fb130da594'
-    oldFile: !uuid 'e32f30ffcb4a4334e98798b3b56a3ff148d37a8c'
-  /docker/nginx/conf/nginx.conf:
-    newFile: !uuid '22cfca9a11276b1d77d83ffccf264ddbd09906ad'
-    oldFile: !uuid 'a89ad38f2cb3e3df7035e65e35927ca709570d3a'
-  /docker/nginx/key:
-    newFile: !uuid 'ec60cb0b22f8e72fe259b6c31bdd3ec1e04e6371'
-    oldFile: !uuid '67852a7186af854c0fd68130fa82122912b3b225'
-  /docker/nginx/key/abc.admin.com.crt:
-    newFile: !uuid '2bc7a06da6708564e2dc205b126e7fdca80dd9f1'
-    oldFile: null
-  /docker/nginx/key/abc.admin.com.csr:
-    newFile: !uuid 'c52f3661fececab56688700204c907f49ee97cd2'
-    oldFile: null
-  /docker/nginx/key/abc.admin.com.key:
-    newFile: !uuid 'b01a3f9f55c9d1c95de91aa193fa3aaae89aaef5'
-    oldFile: null
-  /docker/nginx/key/abc.admin.com.pem:
-    newFile: !uuid '1fbbd089e06a4b1ce71fb2681f19ae0b04c3889c'
-    oldFile: null
-  /docker/nginx/key/admin.com.crt:
-    newFile: !uuid 'dce294f1c036b57436424da2cded54568009e9c7'
-    oldFile: null
-  /docker/nginx/key/admin.com.key:
-    newFile: !uuid 'ea67849dcdc107bc2c877d20fe471899cfd2a526'
-    oldFile: null
-  /docker/nginx/key/admin.com.pem:
-    newFile: !uuid '4435394e3c0a3fbd46f4026427b2a4ad03c7fc57'
-    oldFile: null
-  /docker/nginx/key/rootCA.key:
-    newFile: null
-    oldFile: !uuid 'ec7b8ac1b0611eabb3afaa471a6ecd6db91bce01'
-  /docker/nginx/key/rootCA.pem:
-    newFile: null
-    oldFile: !uuid '1ebdb2fb1cd37f4d493c32b3fc231e4e596dd065'
-  /docker/nginx/key/server.csr:
-    newFile: null
-    oldFile: !uuid '4f8655cb8a0ff36bfb960559ec23cc30f659af4f'
-  /docker/nginx/key/server.key:
-    newFile: null
-    oldFile: !uuid '7844da4df416319516a67424bfe8c31df9be7ede'
-  /docker/nginx/key/server.pem:
-    newFile: null
-    oldFile: !uuid '42c1262e99dea59b79f14c5b23be49fa1ba25cf2'
-  /docker/nginx/key/ssl.sh:
-    newFile: !uuid 'cbf2a1c9dfc4d06451eeca098ce1d0488b90cbe4'
-    oldFile: !uuid '24a6eb4dab98e89876eba82887cea2e13c7dca97'
-gitCommitId: !uuid 'a43c909edc3659caadc02911d55659be8edb9bd4'
+  /Web:
+    newFile: !uuid 'ec09c6a8c72d83dcc7f71550a5e5ea945ea474da'
+    oldFile: !uuid '10d67e5649ecd8dedf8a8e7331a5229c2a02eac6'
+  /Web/src:
+    newFile: !uuid 'ea406e4e220e505485f4fec51fbee0863f7bc6f0'
+    oldFile: !uuid '75d6f65d004a709f2f217be19cfaf606aa5d27fa'
+  /Web/src/views:
+    newFile: !uuid '2afd458989b6ded8f0b0d40b784539ec49c23411'
+    oldFile: !uuid '3c5fceba4b18c8789ad8704eae8c73c609b18586'
+  /Web/src/views/system:
+    newFile: !uuid 'a84251c9a97607823eadf8cd8d28bb8e6be46685'
+    oldFile: !uuid 'ae8f901f52188e3c065b73dfbb88f11148dff0f8'
+  /Web/src/views/system/region:
+    newFile: !uuid '492ea54398130145b963e6089e9f48a03340dc2b'
+    oldFile: !uuid '5b7ec3f85102a1aaf33830c15a2e85de6148b6c2'
+  /Web/src/views/system/region/index.vue:
+    newFile: !uuid '818d2adb1fa9d8327249061cda2958a17be05f9b'
+    oldFile: !uuid 'e2fbb20fedd3011a738e71b353e810178db7d368'
+gitCommitId: !uuid '4d0e3bfe1d10f89c8e5b099e4525cc0c835c9f54'
 renames: {
   }
-revisionId: 822
+revisionId: 823
