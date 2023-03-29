@@ -2,28 +2,73 @@
 branches: {
   }
 fileChange:
-  /Admin.NET:
-    newFile: !uuid '8a1648fcd550ca2357dfdf0dee592ba474e21d87'
-    oldFile: !uuid '2028d017d2c49d2e76a8b56828aa950507b882c8'
-  /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '330b49f9a7c65458d47796d102dbff20c8b17819'
-    oldFile: !uuid 'b42dabee32cd4bbc25cb93c8bde66a00c51ef538'
-  /Admin.NET/Admin.NET.Core/Enum:
-    newFile: !uuid '83b044b9f6db1833f47f1743cd1e99623b04cda9'
-    oldFile: !uuid '8b02ddde19f260b9cfd4efbd09b7756d0d4cb347'
-  /Admin.NET/Admin.NET.Core/Enum/ErrorCodeEnum.cs:
-    newFile: !uuid '04a978a3eb0db55c0d6c955ea56d0e955b722f8d'
-    oldFile: !uuid 'f3aa2e76ea153bc06acd353abe73f177466f6a83'
-  /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid '8e671d0899875af1a76044034e04aba3e21b1e56'
-    oldFile: !uuid '5508eafa52522f2291829e5a6627e33441179b03'
-  /Admin.NET/Admin.NET.Core/Service/Org:
-    newFile: !uuid '5483c131879b7cabae0d9617b18a84a4a4bc7a8e'
-    oldFile: !uuid '5b70fe01da3dd7907a00bcfa57778a150fec8a3f'
-  /Admin.NET/Admin.NET.Core/Service/Org/SysOrgService.cs:
-    newFile: !uuid 'e8a0eeb5fb49f21815aafe350ea015e6eb07fea6'
-    oldFile: !uuid 'aef8f952228f7f19a6fe984b449927087f70bcaf'
-gitCommitId: !uuid 'f0ac414c8588efac181044bb0f6b8a85bb91ff19'
+  /docker:
+    newFile: !uuid 'bb60206097e810fb64aef76ca303cfc6919ffae3'
+    oldFile: !uuid '71b690790657438d5667b59ba2512043df162efd'
+  /docker/app:
+    newFile: !uuid 'ab36fa08f87d3c58a311053c9cb1fd453321b429'
+    oldFile: !uuid 'e6e11054b128397ce978696d37a3025dae16cc0f'
+  /docker/app/Configuration:
+    newFile: !uuid 'c30de17ea13f859d7c14bd8e0721536f3ae3ae70'
+    oldFile: !uuid '646fb3699bc2f489be73e1cc5429844b71057f60'
+  /docker/app/Configuration/App.json:
+    newFile: !uuid '04975e76d68717f515a600025b433de35ffa1e77'
+    oldFile: !uuid '559cc256c80e908b4c6652accaacde1544df9367'
+  /docker/app/Configuration/Database.json:
+    newFile: !uuid '32be2f13a6b37ef63bca533a1326530ec439e019'
+    oldFile: !uuid 'f46ea198db10ecd0d6e53ebf42542e0cb7f1d168'
+  /docker/nginx:
+    newFile: !uuid '1d641bbbea1b2cd0cf0c15920aaf84338a1603e6'
+    oldFile: !uuid 'e4d56020b1ded8509f5c1fc2867d6778a0128dfe'
+  /docker/nginx/conf:
+    newFile: !uuid '53a0734cd722a9e955dd30da7b8012fb130da594'
+    oldFile: !uuid 'e32f30ffcb4a4334e98798b3b56a3ff148d37a8c'
+  /docker/nginx/conf/nginx.conf:
+    newFile: !uuid '22cfca9a11276b1d77d83ffccf264ddbd09906ad'
+    oldFile: !uuid 'a89ad38f2cb3e3df7035e65e35927ca709570d3a'
+  /docker/nginx/key:
+    newFile: !uuid 'ec60cb0b22f8e72fe259b6c31bdd3ec1e04e6371'
+    oldFile: !uuid '67852a7186af854c0fd68130fa82122912b3b225'
+  /docker/nginx/key/abc.admin.com.crt:
+    newFile: !uuid '2bc7a06da6708564e2dc205b126e7fdca80dd9f1'
+    oldFile: null
+  /docker/nginx/key/abc.admin.com.csr:
+    newFile: !uuid 'c52f3661fececab56688700204c907f49ee97cd2'
+    oldFile: null
+  /docker/nginx/key/abc.admin.com.key:
+    newFile: !uuid 'b01a3f9f55c9d1c95de91aa193fa3aaae89aaef5'
+    oldFile: null
+  /docker/nginx/key/abc.admin.com.pem:
+    newFile: !uuid '1fbbd089e06a4b1ce71fb2681f19ae0b04c3889c'
+    oldFile: null
+  /docker/nginx/key/admin.com.crt:
+    newFile: !uuid 'dce294f1c036b57436424da2cded54568009e9c7'
+    oldFile: null
+  /docker/nginx/key/admin.com.key:
+    newFile: !uuid 'ea67849dcdc107bc2c877d20fe471899cfd2a526'
+    oldFile: null
+  /docker/nginx/key/admin.com.pem:
+    newFile: !uuid '4435394e3c0a3fbd46f4026427b2a4ad03c7fc57'
+    oldFile: null
+  /docker/nginx/key/rootCA.key:
+    newFile: null
+    oldFile: !uuid 'ec7b8ac1b0611eabb3afaa471a6ecd6db91bce01'
+  /docker/nginx/key/rootCA.pem:
+    newFile: null
+    oldFile: !uuid '1ebdb2fb1cd37f4d493c32b3fc231e4e596dd065'
+  /docker/nginx/key/server.csr:
+    newFile: null
+    oldFile: !uuid '4f8655cb8a0ff36bfb960559ec23cc30f659af4f'
+  /docker/nginx/key/server.key:
+    newFile: null
+    oldFile: !uuid '7844da4df416319516a67424bfe8c31df9be7ede'
+  /docker/nginx/key/server.pem:
+    newFile: null
+    oldFile: !uuid '42c1262e99dea59b79f14c5b23be49fa1ba25cf2'
+  /docker/nginx/key/ssl.sh:
+    newFile: !uuid 'cbf2a1c9dfc4d06451eeca098ce1d0488b90cbe4'
+    oldFile: !uuid '24a6eb4dab98e89876eba82887cea2e13c7dca97'
+gitCommitId: !uuid 'a43c909edc3659caadc02911d55659be8edb9bd4'
 renames: {
   }
-revisionId: 821
+revisionId: 822
