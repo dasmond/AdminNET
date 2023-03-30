@@ -3,186 +3,21 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '2c5dbb5397145822d94e300570b8a3e04fd5eeba'
-    oldFile: !uuid '11e625943474fb0ca2131abe3441885dfcf9d8c2'
-  /Admin.NET/Admin.NET.Core:
-    newFile: !uuid 'cc854a2445a7ed8abeaed9ecc6b07cd0e6f8e82c'
-    oldFile: !uuid 'b87aa516c1f265d414fa54ad1318df25a59a72ad'
-  /Admin.NET/Admin.NET.Core/Entity:
-    newFile: !uuid '262090422f2b82c41f3d6643d4ce30797e00f2fa'
-    oldFile: !uuid '6f4fe5c7a83295eb42c5b4d3a8e3623bad66f717'
-  /Admin.NET/Admin.NET.Core/Entity/SysJobDetail.cs:
-    newFile: !uuid '7191630add625a31d3277cfbf6e0d416fb8b18c1'
-    oldFile: !uuid 'c8e06a48b648340894078700fee8a7ad3a91b259'
-  /Admin.NET/Admin.NET.Core/Enum:
-    newFile: !uuid '6a5bf3b0e3a5ff2c10c29533a237d8d3834b0a23'
-    oldFile: !uuid '83b044b9f6db1833f47f1743cd1e99623b04cda9'
-  /Admin.NET/Admin.NET.Core/Enum/ErrorCodeEnum.cs:
-    newFile: !uuid '1632efb4a1ee93122acb316899aca4deb9879a19'
-    oldFile: !uuid '04a978a3eb0db55c0d6c955ea56d0e955b722f8d'
-  /Admin.NET/Admin.NET.Core/Enum/JobCreateTypeEnum.cs:
-    newFile: !uuid 'be4f7700483ddea19198ec6a62e8661432961c78'
-    oldFile: null
-  /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid 'debb277b2b415318703a28047c56c63c445575b7'
-    oldFile: !uuid 'dd12489d1104f220d9a24e56ef87d31d9766270b'
-  /Admin.NET/Admin.NET.Core/Service/Job:
-    newFile: !uuid 'afd6609a43a85c45605a181189400fa04c97da94'
-    oldFile: !uuid 'e7835de0ddc935b3bd47a8d64d805a19123bf4f9'
-  /Admin.NET/Admin.NET.Core/Service/Job/DbJobPersistence.cs:
-    newFile: !uuid '0b0da41f32a23976dd2e274d3944dcd3414e5bc8'
-    oldFile: !uuid '99aac2a13395590b2c5a8bf8dd14c7ddb48a2af0'
-  /Admin.NET/Admin.NET.Core/Service/Job/SysJobService.cs:
-    newFile: !uuid '484d37227c3ee25a0b3fa8e0f1cd10eb901913f4'
-    oldFile: !uuid '7b823bd8b2f51a6699a486d4863f98ca9bf6bec1'
-  /Admin.NET/Admin.NET.Core/Service/Message:
-    newFile: !uuid '429cd6f6c921926cf14cad69290026e571769140'
-    oldFile: !uuid '4746363998ee6a387873a079589bc40b14b5adc1'
-  /Admin.NET/Admin.NET.Core/Service/Message/SysMessageService.cs:
-    newFile: !uuid 'a41d143e9da3d824e6f6ccebd7b8869c32f3a8db'
-    oldFile: !uuid '8e3b5b2cd27ecf9879ae1d2f48e0a7575e29eb52'
-  /Admin.NET/Admin.NET.Web.Core:
-    newFile: !uuid '0ac515a1948e96982b8b52bdbef20156eea83e87'
-    oldFile: !uuid '9dcfadb4ea255ded24a834df09c821b7965d220f'
-  /Admin.NET/Admin.NET.Web.Core/Startup.cs:
-    newFile: !uuid '134301e52b0530846d0b85eda3f9f4ef87bddf10'
-    oldFile: !uuid '34ed34b54fb04c6586891b4c9d5fec80b2c9627d'
-  /Web:
-    newFile: !uuid 'b20fbf9f286d7e6321bc77e34720a39dbdd53d47'
-    oldFile: !uuid '10d67e5649ecd8dedf8a8e7331a5229c2a02eac6'
-  /Web/src:
-    newFile: !uuid '0829e831ae20020ec31caad80982697f0f02c380'
-    oldFile: !uuid '75d6f65d004a709f2f217be19cfaf606aa5d27fa'
-  /Web/src/api-services:
-    newFile: !uuid '699c1037da226cd3bce617d8ff5b5cc0bf7afc35'
-    oldFile: !uuid '629413ce4a2e5565103a252a45e4824ee17656be'
-  /Web/src/api-services/models:
-    newFile: !uuid '73c817102a7a2f41779fb15e567fcb7e309e811e'
-    oldFile: !uuid 'c83afb34ffa45577e15896b690b9fcea22a7c34c'
-  /Web/src/api-services/models/add-job-detail-input.ts:
-    newFile: !uuid 'ced6dcf88e5518b2911e72256a6e9ae58b77bedf'
-    oldFile: !uuid 'f15f3439d24daa69d3f600ef2a60e20730b44bda'
-  /Web/src/api-services/models/index.ts:
-    newFile: !uuid '908fbe5b44fdce628cccd85b7e5c1ead22a7e61a'
-    oldFile: !uuid 'cd6b2e7ebfa1a75682fd5712c064233711fac3d7'
-  /Web/src/api-services/models/job-create-type-enum.ts:
-    newFile: !uuid 'ce61bdcab5640257c2b0f9e5f7abc8e56de849a8'
-    oldFile: null
-  /Web/src/api-services/models/sys-job-detail.ts:
-    newFile: !uuid 'c3c27671cddaf1d92516f5ac5df45eb4d8ecbe90'
-    oldFile: !uuid 'b1eaaea6db0e7c69007f73a4a5011e2b61d22954'
-  /Web/src/api-services/models/update-job-detail-input.ts:
-    newFile: !uuid 'bb3e987ae6797d3d9fbc21a9edad7d80cf3c2f4e'
-    oldFile: !uuid '4843ff11e3fadd9ec1d82072f6caad94a952afb4'
-  /Web/src/layout:
-    newFile: !uuid '4bea0538222ec11839fe494879410f7943628ef2'
-    oldFile: !uuid '7c49e19d263fe089e6113c73ca334828a6e77def'
-  /Web/src/layout/navBars:
-    newFile: !uuid '06c5c0bcb3de6c46ad372f9aad8aa49677f1bb86'
-    oldFile: !uuid '5fbed8d3ac0daf68f68f7cc0302fc7e781972a7d'
-  /Web/src/layout/navBars/breadcrumb:
-    newFile: !uuid '3717258d9a5f999f57fc3283c2dedeec2a89b93e'
-    oldFile: !uuid '10dac6aa33236e59179f949cf31a16de0326e752'
-  /Web/src/layout/navBars/breadcrumb/breadcrumb.vue:
-    newFile: !uuid 'a2e40ceada28422013ad323a5182759a610f7d06'
-    oldFile: !uuid '7dfaca67f9dbf621eaa998a7c870f544e15fdb97'
-  /Web/src/types:
-    newFile: !uuid 'f18e651ac335b4c167f5826c3239659bcfb7ea1c'
-    oldFile: !uuid '75b605aec839c84ede3b32434d1447aa8d0788d0'
-  /Web/src/types/views.d.ts:
-    newFile: !uuid '9498eab86e064b6bc460701e7ea350f8272bc4fd'
-    oldFile: !uuid 'f2942ae14d9f1700fa2f07bfb592fd7750195269'
-  /Web/src/views:
-    newFile: !uuid 'ebeeac4888176c3fc0bb7711f25f1f9c745c491e'
-    oldFile: !uuid '3c5fceba4b18c8789ad8704eae8c73c609b18586'
-  /Web/src/views/system:
-    newFile: !uuid '71262bf2148b4074cd74d8169934e0a1d78573cb'
-    oldFile: !uuid 'ae8f901f52188e3c065b73dfbb88f11148dff0f8'
-  /Web/src/views/system/job:
-    newFile: !uuid '1171fc00542a95efe5416c448be9b2fd025416ed'
-    oldFile: !uuid 'f8a2a8028291c3c13ec9657efcb0a2b462548709'
-  /Web/src/views/system/job/component:
-    newFile: !uuid '8d102f92ad54a5d1512e3e5850e19bbcdce276ff'
-    oldFile: !uuid 'af1aff5b4435bc1fe5e44861bf8a03cf36fa3464'
-  /Web/src/views/system/job/component/editJobDetail.vue:
-    newFile: !uuid '776ae79e9fc4c23b48b55078ee7129bfdc1a0873'
-    oldFile: !uuid '84436fcb4687a6d354ffcece0914f18f27ee083f'
-  /Web/src/views/system/job/index.vue:
-    newFile: !uuid 'ad7554f77c0729010edcaa46a526c3d811ed994b'
-    oldFile: !uuid 'e0c3038c4d492cda7a60633738d40059bd2d59e8'
-  /Web/src/views/system/region:
-    newFile: !uuid '492ea54398130145b963e6089e9f48a03340dc2b'
-    oldFile: !uuid '5b7ec3f85102a1aaf33830c15a2e85de6148b6c2'
-  /Web/src/views/system/region/index.vue:
-    newFile: !uuid '818d2adb1fa9d8327249061cda2958a17be05f9b'
-    oldFile: !uuid 'e2fbb20fedd3011a738e71b353e810178db7d368'
-  /docker:
-    newFile: !uuid 'bb60206097e810fb64aef76ca303cfc6919ffae3'
-    oldFile: !uuid '71b690790657438d5667b59ba2512043df162efd'
-  /docker/app:
-    newFile: !uuid 'ab36fa08f87d3c58a311053c9cb1fd453321b429'
-    oldFile: !uuid 'e6e11054b128397ce978696d37a3025dae16cc0f'
-  /docker/app/Configuration:
-    newFile: !uuid 'c30de17ea13f859d7c14bd8e0721536f3ae3ae70'
-    oldFile: !uuid '646fb3699bc2f489be73e1cc5429844b71057f60'
-  /docker/app/Configuration/App.json:
-    newFile: !uuid '04975e76d68717f515a600025b433de35ffa1e77'
-    oldFile: !uuid '559cc256c80e908b4c6652accaacde1544df9367'
-  /docker/app/Configuration/Database.json:
-    newFile: !uuid '32be2f13a6b37ef63bca533a1326530ec439e019'
-    oldFile: !uuid 'f46ea198db10ecd0d6e53ebf42542e0cb7f1d168'
-  /docker/nginx:
-    newFile: !uuid '1d641bbbea1b2cd0cf0c15920aaf84338a1603e6'
-    oldFile: !uuid 'e4d56020b1ded8509f5c1fc2867d6778a0128dfe'
-  /docker/nginx/conf:
-    newFile: !uuid '53a0734cd722a9e955dd30da7b8012fb130da594'
-    oldFile: !uuid 'e32f30ffcb4a4334e98798b3b56a3ff148d37a8c'
-  /docker/nginx/conf/nginx.conf:
-    newFile: !uuid '22cfca9a11276b1d77d83ffccf264ddbd09906ad'
-    oldFile: !uuid 'a89ad38f2cb3e3df7035e65e35927ca709570d3a'
-  /docker/nginx/key:
-    newFile: !uuid 'ec60cb0b22f8e72fe259b6c31bdd3ec1e04e6371'
-    oldFile: !uuid '67852a7186af854c0fd68130fa82122912b3b225'
-  /docker/nginx/key/abc.admin.com.crt:
-    newFile: !uuid '2bc7a06da6708564e2dc205b126e7fdca80dd9f1'
-    oldFile: null
-  /docker/nginx/key/abc.admin.com.csr:
-    newFile: !uuid 'c52f3661fececab56688700204c907f49ee97cd2'
-    oldFile: null
-  /docker/nginx/key/abc.admin.com.key:
-    newFile: !uuid 'b01a3f9f55c9d1c95de91aa193fa3aaae89aaef5'
-    oldFile: null
-  /docker/nginx/key/abc.admin.com.pem:
-    newFile: !uuid '1fbbd089e06a4b1ce71fb2681f19ae0b04c3889c'
-    oldFile: null
-  /docker/nginx/key/admin.com.crt:
-    newFile: !uuid 'dce294f1c036b57436424da2cded54568009e9c7'
-    oldFile: null
-  /docker/nginx/key/admin.com.key:
-    newFile: !uuid 'ea67849dcdc107bc2c877d20fe471899cfd2a526'
-    oldFile: null
-  /docker/nginx/key/admin.com.pem:
-    newFile: !uuid '4435394e3c0a3fbd46f4026427b2a4ad03c7fc57'
-    oldFile: null
-  /docker/nginx/key/rootCA.key:
-    newFile: null
-    oldFile: !uuid 'ec7b8ac1b0611eabb3afaa471a6ecd6db91bce01'
-  /docker/nginx/key/rootCA.pem:
-    newFile: null
-    oldFile: !uuid '1ebdb2fb1cd37f4d493c32b3fc231e4e596dd065'
-  /docker/nginx/key/server.csr:
-    newFile: null
-    oldFile: !uuid '4f8655cb8a0ff36bfb960559ec23cc30f659af4f'
-  /docker/nginx/key/server.key:
-    newFile: null
-    oldFile: !uuid '7844da4df416319516a67424bfe8c31df9be7ede'
-  /docker/nginx/key/server.pem:
-    newFile: null
-    oldFile: !uuid '42c1262e99dea59b79f14c5b23be49fa1ba25cf2'
-  /docker/nginx/key/ssl.sh:
-    newFile: !uuid 'cbf2a1c9dfc4d06451eeca098ce1d0488b90cbe4'
-    oldFile: !uuid '24a6eb4dab98e89876eba82887cea2e13c7dca97'
-gitCommitId: !uuid '3e77ecf51f760ece6f6b94dd214f53dc927b987f'
+    newFile: !uuid '02b6c053b1583371df8a2c07a5f95849e95dc53c'
+    oldFile: !uuid '2c5dbb5397145822d94e300570b8a3e04fd5eeba'
+  /Admin.NET/Admin.NET.Web.Entry:
+    newFile: !uuid '8cc9e6a9441182d932c895d6f77cc20cee2ee124'
+    oldFile: !uuid '8ff5ac9be489188cfe0b23b83c2a69dff1e769f6'
+  /Admin.NET/Admin.NET.Web.Entry/wwwroot:
+    newFile: !uuid '3425b2646c3c92600051c717bf7a0c11279e3ae7'
+    oldFile: !uuid 'fb5c57e8fc4497206d94bbca0e3213bb40d9441d'
+  /Admin.NET/Admin.NET.Web.Entry/wwwroot/Template:
+    newFile: !uuid 'd8be0ad6318b94930921e166fcfc9c42570b8233'
+    oldFile: !uuid '0904816df9acd28d95f3db12ce606c8af81d39df'
+  /Admin.NET/Admin.NET.Web.Entry/wwwroot/Template/index.vue.vm:
+    newFile: !uuid 'fe5b9db9c80911cddde6ef0978b4e422abf0a094'
+    oldFile: !uuid '92d7a0b047645eee2b95811db967b2add0c713db'
+gitCommitId: !uuid '89e62e50cffa939ad6dff5a3bf5ab03e5b5343ce'
 renames: {
   }
-revisionId: 825
+revisionId: 826
