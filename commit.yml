@@ -2,31 +2,19 @@
 branches: {
   }
 fileChange:
-  /Web:
-    newFile: !uuid '2a4a880c6fdf8995b29e784096999f86d0c91af5'
-    oldFile: !uuid '35d1689e9631a3abb5792056e6240ca840ea0805'
-  /Web/src:
-    newFile: !uuid '5fd9b2cf081d89b7394930f4a8b37c80b531b6ab'
-    oldFile: !uuid '6393ce8ea2c7322ca1e6616d6b9ede5492220610'
-  /Web/src/components:
-    newFile: !uuid '5bc242a1a16c238815b6fc42e7bce7246da0d12e'
-    oldFile: !uuid '45227ef13425cf1ed953f48139c201f008ca0de1'
-  /Web/src/components/dragVerify:
-    newFile: !uuid 'a36377fa7c159e8946dea7727b2c34bada30b1ef'
-    oldFile: !uuid 'ae0fea49cbd8715557a470cee97b60fd6c7488b2'
-  /Web/src/components/dragVerify/dragVerify.vue:
-    newFile: !uuid 'edcb29c972313af44180032cd053ee81f8834e1b'
-    oldFile: !uuid '6d59fb5a2b2b1ddd7564266ac2a464a0c96a02b0'
-  /Web/src/components/dragVerify/dragVerifyImg.vue:
-    newFile: !uuid '5d47afe18f86828a00c26f1e25a098beaf3cfff3'
-    oldFile: !uuid '24c49b106f1c2c31a0703f292c6d42595cc07b1b'
-  /Web/src/components/dragVerify/dragVerifyImgChip.vue:
-    newFile: !uuid '842051d0a95a0eace97f8b771ef1f16548bd30a6'
-    oldFile: !uuid '83a8f0b68d4336c8cefc3ba24f572c7c724e5932'
-  /Web/src/components/dragVerify/dragVerifyImgRotate.vue:
-    newFile: !uuid 'b9d4ae1aed3a760f3bfcf9703695ec7f80b9fc64'
-    oldFile: !uuid 'f591210153f345da08fed66c4cac0e6d78febf13'
-gitCommitId: !uuid 'c0ce7e5b9e967be882df1d7caa8e17e0de19c0d0'
+  /Admin.NET:
+    newFile: !uuid '77ac471afef64d6b20ffd40a5064666b233d5a02'
+    oldFile: !uuid '9d109c7b684ecdab3e77bd9d26ac16c614432e3b'
+  /Admin.NET/Admin.NET.Core:
+    newFile: !uuid '9012a547d85311b562606a93389830ff6262e4d2'
+    oldFile: !uuid 'b45161856d905b6f00c23221b53ab7f2d0a4df0c'
+  /Admin.NET/Admin.NET.Core/SqlSugar:
+    newFile: !uuid 'd72bd6ff0c4b0ba4c905f79d525af7f5c45e31e8'
+    oldFile: !uuid '17d24602f962755b1fc356bd5becad6e0a40c75d'
+  /Admin.NET/Admin.NET.Core/SqlSugar/SqlSugarPagedList.cs:
+    newFile: !uuid 'eae5b44d6dfa796a3e2274a929ea6fd2ddc8a849'
+    oldFile: !uuid '3f9339dad068cd493cf75eb51055903042cd444c'
+gitCommitId: !uuid '2a30d718bfb030d7e380efdb1b5c6a8998b6a7ef'
 renames: {
   }
-revisionId: 803
+revisionId: 804
