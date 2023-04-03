@@ -2,22 +2,28 @@
 branches: {
   }
 fileChange:
-  /Admin.NET:
-    newFile: !uuid 'b053e8cf69cf5e5510135bb348fd672aa044b7bc'
-    oldFile: !uuid 'e6031cb5b94b3bc4580e09f2028dfe6e509c6b13'
-  /Admin.NET/Admin.NET.Web.Entry:
-    newFile: !uuid 'af894429f6d03ecd9c783ab8637724d116811807'
-    oldFile: !uuid '8cc9e6a9441182d932c895d6f77cc20cee2ee124'
-  /Admin.NET/Admin.NET.Web.Entry/wwwroot:
-    newFile: !uuid '1fe900b642d09989c10873511c2301564ec1d280'
-    oldFile: !uuid '3425b2646c3c92600051c717bf7a0c11279e3ae7'
-  /Admin.NET/Admin.NET.Web.Entry/wwwroot/Template:
-    newFile: !uuid '303d5c6c3e3ae6ffeb34931e7b9abe0c438b4c7b'
-    oldFile: !uuid 'd8be0ad6318b94930921e166fcfc9c42570b8233'
-  /Admin.NET/Admin.NET.Web.Entry/wwwroot/Template/index.vue.vm:
-    newFile: !uuid 'f6e695f4fa815a3c078885ec59240e47d2c84017'
-    oldFile: !uuid 'fe5b9db9c80911cddde6ef0978b4e422abf0a094'
-gitCommitId: !uuid '9241c5a37f30a8696d3f78e7c928cda45b6f1a6b'
+  /Web:
+    newFile: !uuid '9b3dd7d3805f0780e562c59bf48436846df57d76'
+    oldFile: !uuid '2a4a880c6fdf8995b29e784096999f86d0c91af5'
+  /Web/src:
+    newFile: !uuid '5cbf3375adf4034d524248058d7989fe6772afda'
+    oldFile: !uuid '5fd9b2cf081d89b7394930f4a8b37c80b531b6ab'
+  /Web/src/views:
+    newFile: !uuid '47d37635a2f67ce167a1bb03296a935e57ff1110'
+    oldFile: !uuid 'ebeeac4888176c3fc0bb7711f25f1f9c745c491e'
+  /Web/src/views/system:
+    newFile: !uuid 'd870837abdb44ecb2106dcec6943e9a147b5dc65'
+    oldFile: !uuid '71262bf2148b4074cd74d8169934e0a1d78573cb'
+  /Web/src/views/system/database:
+    newFile: !uuid '7092858ac704dff53518e5be2db722a398ed50d2'
+    oldFile: !uuid 'b9852eb7bac1c8177ce95379872b57d164386b72'
+  /Web/src/views/system/database/component:
+    newFile: !uuid '925b037a23662cfc5b4f9ee1802900395b82c778'
+    oldFile: !uuid '841d5dc5514ea7d99bbace62763c2659b476bb26'
+  /Web/src/views/system/database/component/genEntity.vue:
+    newFile: !uuid '8ec473b06f8e33986762e649df29bb18eaa4cced'
+    oldFile: !uuid '0c20ee579f77c3cba317f874931c949cc41e4c21'
+gitCommitId: !uuid '60be1883465ea252d8ca035f523cb956b3058315'
 renames: {
   }
-revisionId: 834
+revisionId: 835
