@@ -3,33 +3,21 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid 'e6031cb5b94b3bc4580e09f2028dfe6e509c6b13'
-    oldFile: !uuid '77ac471afef64d6b20ffd40a5064666b233d5a02'
-  /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '8540fdd0755106b767d541b6cca3c974891313ec'
-    oldFile: !uuid '9012a547d85311b562606a93389830ff6262e4d2'
-  /Admin.NET/Admin.NET.Core/Extension:
-    newFile: !uuid '8b4125b140e5f0d73f32f1661bb3f8c0f03723b2'
-    oldFile: !uuid 'f2ea1c3121adee748a702c529aee311e63908da2'
-  /Admin.NET/Admin.NET.Core/Extension/ListExtensions.cs:
-    newFile: !uuid 'dfc465b2daf7df79d228958a5ed8d4a8309dfc87'
-    oldFile: null
-  /Admin.NET/Admin.NET.Core/Util:
-    newFile: !uuid '017668db11228cca8166830a517b202884a7b4f6'
-    oldFile: !uuid '59ab30ad2a53ddc75657ff7125438d5f45f6a2af'
-  /Admin.NET/Admin.NET.Core/Util/RegularValidate.cs:
-    newFile: !uuid '0f79fa7bd376255a8e26ae4a3f48f2ca1af37800'
-    oldFile: null
-  /Admin.NET/Admin.NET.Web.Core:
-    newFile: !uuid 'f109b9b3022f7686ec1956f30577a7046056c011'
-    oldFile: !uuid '0ac515a1948e96982b8b52bdbef20156eea83e87'
-  /Admin.NET/Admin.NET.Web.Core/Handlers:
-    newFile: !uuid '604d7b26bccd8d38ed42f68bf4dbe7ef7fb6c259'
-    oldFile: !uuid 'c94221f5ffcfd04ee86d3d90ec76a11349094fc9'
-  /Admin.NET/Admin.NET.Web.Core/Handlers/JwtHandler.cs:
-    newFile: !uuid 'e59e49a26849a21d81243a67fd37222218e20de5'
-    oldFile: !uuid '7ef44a375da5b0328ca93e654753835f84fccc05'
-gitCommitId: !uuid 'fc67fae17dbed79c3b41ba91df47f1c364686550'
+    newFile: !uuid 'b053e8cf69cf5e5510135bb348fd672aa044b7bc'
+    oldFile: !uuid 'e6031cb5b94b3bc4580e09f2028dfe6e509c6b13'
+  /Admin.NET/Admin.NET.Web.Entry:
+    newFile: !uuid 'af894429f6d03ecd9c783ab8637724d116811807'
+    oldFile: !uuid '8cc9e6a9441182d932c895d6f77cc20cee2ee124'
+  /Admin.NET/Admin.NET.Web.Entry/wwwroot:
+    newFile: !uuid '1fe900b642d09989c10873511c2301564ec1d280'
+    oldFile: !uuid '3425b2646c3c92600051c717bf7a0c11279e3ae7'
+  /Admin.NET/Admin.NET.Web.Entry/wwwroot/Template:
+    newFile: !uuid '303d5c6c3e3ae6ffeb34931e7b9abe0c438b4c7b'
+    oldFile: !uuid 'd8be0ad6318b94930921e166fcfc9c42570b8233'
+  /Admin.NET/Admin.NET.Web.Entry/wwwroot/Template/index.vue.vm:
+    newFile: !uuid 'f6e695f4fa815a3c078885ec59240e47d2c84017'
+    oldFile: !uuid 'fe5b9db9c80911cddde6ef0978b4e422abf0a094'
+gitCommitId: !uuid '9241c5a37f30a8696d3f78e7c928cda45b6f1a6b'
 renames: {
   }
-revisionId: 805
+revisionId: 806
