@@ -2,28 +2,31 @@
 branches: {
   }
 fileChange:
-  /Web:
-    newFile: !uuid '9b3dd7d3805f0780e562c59bf48436846df57d76'
-    oldFile: !uuid '2a4a880c6fdf8995b29e784096999f86d0c91af5'
-  /Web/src:
-    newFile: !uuid '5cbf3375adf4034d524248058d7989fe6772afda'
-    oldFile: !uuid '5fd9b2cf081d89b7394930f4a8b37c80b531b6ab'
-  /Web/src/views:
-    newFile: !uuid '47d37635a2f67ce167a1bb03296a935e57ff1110'
-    oldFile: !uuid 'ebeeac4888176c3fc0bb7711f25f1f9c745c491e'
-  /Web/src/views/system:
-    newFile: !uuid 'd870837abdb44ecb2106dcec6943e9a147b5dc65'
-    oldFile: !uuid '71262bf2148b4074cd74d8169934e0a1d78573cb'
-  /Web/src/views/system/database:
-    newFile: !uuid '7092858ac704dff53518e5be2db722a398ed50d2'
-    oldFile: !uuid 'b9852eb7bac1c8177ce95379872b57d164386b72'
-  /Web/src/views/system/database/component:
-    newFile: !uuid '925b037a23662cfc5b4f9ee1802900395b82c778'
-    oldFile: !uuid '841d5dc5514ea7d99bbace62763c2659b476bb26'
-  /Web/src/views/system/database/component/genEntity.vue:
-    newFile: !uuid '8ec473b06f8e33986762e649df29bb18eaa4cced'
-    oldFile: !uuid '0c20ee579f77c3cba317f874931c949cc41e4c21'
-gitCommitId: !uuid '60be1883465ea252d8ca035f523cb956b3058315'
+  /Admin.NET:
+    newFile: !uuid 'ab57cab012cc951a0f72d94b70ca2179db4338ad'
+    oldFile: !uuid 'b053e8cf69cf5e5510135bb348fd672aa044b7bc'
+  /Admin.NET/Admin.NET.Core:
+    newFile: !uuid 'd0c9122e1fb246d86ac1f9d9de08bf3392e6644f'
+    oldFile: !uuid '8540fdd0755106b767d541b6cca3c974891313ec'
+  /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
+    newFile: !uuid '97dc8a2f2f244e9d057b1357f0b101bae05509e0'
+    oldFile: !uuid '65b18acdb1347728eee1c76d2c2ade7e6ee50fc1'
+  /Admin.NET/Admin.NET.Core/SqlSugar:
+    newFile: !uuid '2513c1d48c2ab9d2c36aaa17db1eb09bc7976ade'
+    oldFile: !uuid 'd72bd6ff0c4b0ba4c905f79d525af7f5c45e31e8'
+  /Admin.NET/Admin.NET.Core/SqlSugar/SqlSugarPagedList.cs:
+    newFile: !uuid '284dd61c87f2f5f4dbd773d9a6a97be87518866e'
+    oldFile: !uuid 'eae5b44d6dfa796a3e2274a929ea6fd2ddc8a849'
+  /Admin.NET/Admin.NET.Web.Core:
+    newFile: !uuid '047f036a1a2050270fd51647d4aecf29dea7dd3d'
+    oldFile: !uuid 'f109b9b3022f7686ec1956f30577a7046056c011'
+  /Admin.NET/Admin.NET.Web.Core/Handlers:
+    newFile: !uuid 'b5feb1601a190fef23e8d5ae8d94c4d8c8e9d739'
+    oldFile: !uuid '604d7b26bccd8d38ed42f68bf4dbe7ef7fb6c259'
+  /Admin.NET/Admin.NET.Web.Core/Handlers/JwtHandler.cs:
+    newFile: !uuid '14bf6632f9fc27308625783ad856a31547287c78'
+    oldFile: !uuid 'e59e49a26849a21d81243a67fd37222218e20de5'
+gitCommitId: !uuid '929556fce2c78589f2b91a65b8b5b5bdfeaefecb'
 renames: {
   }
-revisionId: 807
+revisionId: 808
