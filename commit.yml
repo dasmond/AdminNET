@@ -3,39 +3,30 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid 'a1f43f99e935c344b7454d05dd942152b6399101'
-    oldFile: !uuid '628bee8a16c54dbfd53fdc0471989db1de1a8934'
+    newFile: !uuid '7f4577578411bf2ac91af457de5ad89f9dd85f99'
+    oldFile: !uuid 'a1f43f99e935c344b7454d05dd942152b6399101'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid 'ffb6274a69377e4064e6f6db346f7ac86f02906b'
-    oldFile: !uuid 'f280a3b5f80712a859a969d9ae3b9005624a194d'
+    newFile: !uuid '99b8315422105d7a09579565f2ca34edee4a6725'
+    oldFile: !uuid 'ffb6274a69377e4064e6f6db346f7ac86f02906b'
+  /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
+    newFile: !uuid '40f89748c1872d46528ff59256687a8794135a64'
+    oldFile: !uuid 'bab55811e6870dbae707e418b7eabdd59e27a5fe'
   /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid 'c7f435c772bf28e1e5a897057014eca2967acb29'
-    oldFile: !uuid 'dbe385d85d8d0a33641b537772b6a47060d94c29'
+    newFile: !uuid '185b10bab0e2fbd4d09c7de4ce044b2084fe3d2a'
+    oldFile: !uuid 'c7f435c772bf28e1e5a897057014eca2967acb29'
   /Admin.NET/Admin.NET.Core/Service/Wechat:
-    newFile: !uuid 'a18635ebf8950af4981907d0b62425ca480076fa'
-    oldFile: !uuid '424a1f60a5b5ea583b7c709fea48d0e82b4e6191'
+    newFile: !uuid 'e16fca8bf7277ecb9fae0ada86d97c835b4f092c'
+    oldFile: !uuid 'a18635ebf8950af4981907d0b62425ca480076fa'
   /Admin.NET/Admin.NET.Core/Service/Wechat/Dto:
-    newFile: !uuid '10b3be26ac718a2272eaa7174095d942d7ddbd22'
-    oldFile: !uuid '255f133095812aac067b484d86ec81803b4c76c7'
+    newFile: !uuid '4abc2b8998a610a3cff6c9b38052ee7a8bc1bd2d'
+    oldFile: !uuid '10b3be26ac718a2272eaa7174095d942d7ddbd22'
   /Admin.NET/Admin.NET.Core/Service/Wechat/Dto/WxOpenInput.cs:
-    newFile: !uuid '93d6588bc10a6fc18f23f23883f8b144166199e8'
-    oldFile: !uuid 'c86ba74835540222c3711c735a4472563e2eda82'
+    newFile: !uuid '4ee85ef9b1ff269447e99f3b5e2f8a9d22046ea7'
+    oldFile: !uuid '93d6588bc10a6fc18f23f23883f8b144166199e8'
   /Admin.NET/Admin.NET.Core/Service/Wechat/SysWxOpenService.cs:
-    newFile: !uuid 'cd6ee6fdc808d6955d11b4e75362bab59114eaa8'
-    oldFile: !uuid '2313809b95f5b90554bfc5b09215fb208fed328b'
-  /Web:
-    newFile: !uuid 'e0f13a340abf397d1829bae05ae7f5926e621aed'
-    oldFile: !uuid '3f452d543babe2253fe37b069cffed67548625e3'
-  /Web/src:
-    newFile: !uuid 'd41d98d6ebbd52cb5578e3757b664a97fe02a09f'
-    oldFile: !uuid '6952eb26f0c2cce02c5f9a47444cdef490301b64'
-  /Web/src/utils:
-    newFile: !uuid '0ec2969f509ce52ac6948aa2eb73613ac78880ab'
-    oldFile: !uuid 'd2b02cfeed041f26c07a1095e46014509170a2ee'
-  /Web/src/utils/axios-utils.ts:
-    newFile: !uuid '2312f4218422a350a6a798aac1ac36967b36cebe'
-    oldFile: !uuid '4b45432e33dc062a9cc30e2298ca5c786fabdbea'
-gitCommitId: !uuid '939943416a4d96dad33f083138f83d419cc4dad7'
+    newFile: !uuid '706a1f2485a65a1e7a6612acbb0c78f0d250801f'
+    oldFile: !uuid 'cd6ee6fdc808d6955d11b4e75362bab59114eaa8'
+gitCommitId: !uuid '6a3030ca8f6e784e43ee4279d0a28fdb55aa5209'
 renames: {
   }
-revisionId: 824
+revisionId: 825
