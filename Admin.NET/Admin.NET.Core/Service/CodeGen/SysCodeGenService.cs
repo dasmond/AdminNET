@@ -186,33 +186,6 @@ public class SysCodeGenService : IDynamicApiController, ITransient
     }
 
     /// <summary>
-    /// 获取数据表列（实体属性）集合
-    /// </summary>
-    /// <returns></returns>
-    private List<ColumnOuput> GetColumnList([FromQuery] AddCodeGenInput input)
-    {
-        var entityType = _commonService.GetEntityInfos().Result.FirstOrDefault(m => m.EntityName == input.TableName);
-        if (entityType == null)
-            return null;
-
-        // 切库---多库代码生成用
-        var provider = _db.AsTenant().GetConnectionScope(!string.IsNullOrEmpty(input.ConfigId) ? input.ConfigId : SqlSugarConst.ConfigId);
-
-        var config = App.GetOptions<DbConnectionOptions>().ConnectionConfigs.FirstOrDefault(u => u.ConfigId == input.ConfigId);
-        var dbTableName = config.EnableUnderLine ? UtilMethods.ToUnderLine(entityType.DbTableName) : entityType.DbTableName;
-        var entityBasePropertyNames = _codeGenOptions.EntityBaseColumn[nameof(EntityTenant)];
-        return provider.DbMaintenance.GetColumnInfosByTableName(dbTableName, false).Select(u => new ColumnOuput
-        {
-            //转下划线后的列名 需要转回来
-            ColumnName = config.EnableUnderLine ? CodeGenUtil.CamelColumnName(u.DbColumnName, entityBasePropertyNames) : u.DbColumnName,
-            ColumnKey = u.IsPrimarykey.ToString(),
-            NetType = CodeGenUtil.ConvertDataType(u),
-            DataType = CodeGenUtil.ConvertDataType(u),
-            ColumnComment = string.IsNullOrWhiteSpace(u.ColumnDescription) ? u.DbColumnName : u.ColumnDescription
-        }).ToList();
-    }
-
-    /// <summary>
     /// 代码生成到本地
     /// </summary>
     /// <returns></returns>
@@ -284,6 +257,87 @@ public class SysCodeGenService : IDynamicApiController, ITransient
             ZipFile.CreateFromDirectory(zipPath, downloadPath);
             return new { url = $"{App.HttpContext.Request.Scheme}://{App.HttpContext.Request.Host}/CodeGen/{input.TableName}.zip" };
         }
+    }
+
+    /// <summary>
+    /// 获取模板文件路径集合
+    /// </summary>
+    /// <returns></returns>
+    private static List<string> GetTemplatePathList(SysCodeGen input)
+    {
+        var templatePath = Path.Combine(App.WebHostEnvironment.WebRootPath, "Template");
+        if (input.GenerateType.Substring(1, 1).Contains('1'))
+            return new List<string>()
+        {
+            Path.Combine(templatePath , "index.vue.vm"),
+            Path.Combine(templatePath , "editDialog.vue.vm"),
+            Path.Combine(templatePath , "manage.js.vm"),
+        };
+        else if (input.GenerateType.Substring(1, 1).Contains("2"))
+            return new List<string>()
+            {
+            Path.Combine(templatePath , "Service.cs.vm"),
+            Path.Combine(templatePath , "Input.cs.vm"),
+            Path.Combine(templatePath , "Output.cs.vm"),
+            Path.Combine(templatePath , "Dto.cs.vm"),
+        };
+        else
+            return new List<string>()
+        {
+            Path.Combine(templatePath , "Service.cs.vm"),
+            Path.Combine(templatePath , "Input.cs.vm"),
+            Path.Combine(templatePath , "Output.cs.vm"),
+            Path.Combine(templatePath , "Dto.cs.vm"),
+            Path.Combine(templatePath , "index.vue.vm"),
+            Path.Combine(templatePath , "editDialog.vue.vm"),
+            Path.Combine(templatePath , "manage.js.vm"),
+        };
+    }
+
+    /// <summary>
+    /// 获取模板文件路径集合
+    /// </summary>
+    /// <returns></returns>
+    private static List<string> GetTemplatePathList()
+    {
+        var templatePath = Path.Combine(App.WebHostEnvironment.WebRootPath, "Template");
+        return new List<string>()
+        {
+            Path.Combine(templatePath , "Service.cs.vm"),
+            Path.Combine(templatePath , "Input.cs.vm"),
+            Path.Combine(templatePath , "Output.cs.vm"),
+            Path.Combine(templatePath , "Dto.cs.vm"),
+            Path.Combine(templatePath , "index.vue.vm"),
+            Path.Combine(templatePath , "editDialog.vue.vm"),
+            Path.Combine(templatePath , "manage.js.vm"),
+        };
+    }
+
+    /// <summary>
+    /// 获取数据表列（实体属性）集合
+    /// </summary>
+    /// <returns></returns>
+    private List<ColumnOuput> GetColumnList([FromQuery] AddCodeGenInput input)
+    {
+        var entityType = _commonService.GetEntityInfos().Result.FirstOrDefault(m => m.EntityName == input.TableName);
+        if (entityType == null)
+            return null;
+
+        // 切库---多库代码生成用
+        var provider = _db.AsTenant().GetConnectionScope(!string.IsNullOrEmpty(input.ConfigId) ? input.ConfigId : SqlSugarConst.ConfigId);
+
+        var config = App.GetOptions<DbConnectionOptions>().ConnectionConfigs.FirstOrDefault(u => u.ConfigId == input.ConfigId);
+        var dbTableName = config.EnableUnderLine ? UtilMethods.ToUnderLine(entityType.DbTableName) : entityType.DbTableName;
+        var entityBasePropertyNames = _codeGenOptions.EntityBaseColumn[nameof(EntityTenant)];
+        return provider.DbMaintenance.GetColumnInfosByTableName(dbTableName, false).Select(u => new ColumnOuput
+        {
+            //转下划线后的列名 需要转回来
+            ColumnName = config.EnableUnderLine ? CodeGenUtil.CamelColumnName(u.DbColumnName, entityBasePropertyNames) : u.DbColumnName,
+            ColumnKey = u.IsPrimarykey.ToString(),
+            NetType = CodeGenUtil.ConvertDataType(u),
+            DataType = CodeGenUtil.ConvertDataType(u),
+            ColumnComment = string.IsNullOrWhiteSpace(u.ColumnDescription) ? u.DbColumnName : u.ColumnDescription
+        }).ToList();
     }
 
     /// <summary>
@@ -441,60 +495,6 @@ public class SysCodeGenService : IDynamicApiController, ITransient
     }
 
     /// <summary>
-    /// 获取模板文件路径集合
-    /// </summary>
-    /// <returns></returns>
-    private static List<string> GetTemplatePathList(SysCodeGen input)
-    {
-        var templatePath = Path.Combine(App.WebHostEnvironment.WebRootPath, "Template");
-        if (input.GenerateType.Substring(1, 1).Contains('1'))
-            return new List<string>()
-        {
-            Path.Combine(templatePath , "index.vue.vm"),
-            Path.Combine(templatePath , "editDialog.vue.vm"),
-            Path.Combine(templatePath , "manage.js.vm"),
-        };
-        else if (input.GenerateType.Substring(1, 1).Contains("2"))
-            return new List<string>()
-            {
-            Path.Combine(templatePath , "Service.cs.vm"),
-            Path.Combine(templatePath , "Input.cs.vm"),
-            Path.Combine(templatePath , "Output.cs.vm"),
-            Path.Combine(templatePath , "Dto.cs.vm"),
-        };
-        else
-            return new List<string>()
-        {
-            Path.Combine(templatePath , "Service.cs.vm"),
-            Path.Combine(templatePath , "Input.cs.vm"),
-            Path.Combine(templatePath , "Output.cs.vm"),
-            Path.Combine(templatePath , "Dto.cs.vm"),
-            Path.Combine(templatePath , "index.vue.vm"),
-            Path.Combine(templatePath , "editDialog.vue.vm"),
-            Path.Combine(templatePath , "manage.js.vm"),
-        };
-    }
-
-    /// <summary>
-    /// 获取模板文件路径集合
-    /// </summary>
-    /// <returns></returns>
-    private static List<string> GetTemplatePathList()
-    {
-        var templatePath = Path.Combine(App.WebHostEnvironment.WebRootPath, "Template");
-        return new List<string>()
-        {
-            Path.Combine(templatePath , "Service.cs.vm"),
-            Path.Combine(templatePath , "Input.cs.vm"),
-            Path.Combine(templatePath , "Output.cs.vm"),
-            Path.Combine(templatePath , "Dto.cs.vm"),
-            Path.Combine(templatePath , "index.vue.vm"),
-            Path.Combine(templatePath , "editDialog.vue.vm"),
-            Path.Combine(templatePath , "manage.js.vm"),
-        };
-    }
-
-    /// <summary>
     /// 设置生成文件路径
     /// </summary>
     /// <param name="input"></param>
@@ -511,7 +511,23 @@ public class SysCodeGenService : IDynamicApiController, ITransient
         var formModalPath = Path.Combine(frontendPath, input.TableName[..1].ToLower() + input.TableName[1..], "component", "editDialog.vue");
         var apiJsPath = Path.Combine(new DirectoryInfo(App.WebHostEnvironment.ContentRootPath).Parent.Parent.FullName, _codeGenOptions.FrontRootPath, "src", "api", "main", input.TableName[..1].ToLower() + input.TableName[1..] + ".ts");
 
-        return new List<string>()
+        if (input.GenerateType.Substring(1, 1).Contains('1'))
+            return new List<string>()
+            {
+                indexPath,
+                formModalPath,
+                apiJsPath
+            };
+        else if (input.GenerateType.Substring(1, 1).Contains("2"))
+            return new List<string>()
+            {
+                servicePath,
+                inputPath,
+                outputPath,
+                viewPath,
+            };
+        else
+            return new List<string>()
         {
             servicePath,
             inputPath,

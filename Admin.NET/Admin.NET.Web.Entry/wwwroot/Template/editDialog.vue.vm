@@ -56,6 +56,17 @@
 						</el-form-item>
 						@:
 					</el-col>
+					}else if(@column.EffectType == "EnumSelector"){
+					@:<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
+						@:<el-form-item label="@column.ColumnComment" prop="@(@column.LowerColumnName)">
+							@:<el-select clearable v-model="ruleForm.@(@column.LowerColumnName)" placeholder="请选择@(@column.ColumnComment)">
+								@:<el-option v-for="(item,index) in  getEdit@(@column.LowerColumnName)Data"  :key="index" :value="item.value" :label="item.describe"></el-option>
+								@:
+							</el-select>
+							@:
+						</el-form-item>
+						@:
+					</el-col>
 					}else if(@column.EffectType == "ConstSelector"){
 					@:<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
 						@:<el-form-item label="@column.ColumnComment" prop="@(@column.LowerColumnName)">
@@ -139,10 +150,16 @@
 	@:import { getDictDataList } from '/@@/api/system/admin';
 
 	}
+	@if(@Model.TableField.Any(x=>x.EffectType == "EnumSelector")){
+	@:import { getAPI } from '/@@/utils/axios-utils';
+	@:import { SysEnumApi } from '/@@/api-services/api';
+
+	}
 	@foreach (var column in Model.TableField){
-	if(@column.EffectType == "Select"){
+	if(@column.EffectType == "Select"||@column.EffectType == "EnumSelector"){
 	@:const getEdit@(@column.LowerColumnName)Data = ref<any>([]);
 	}
+
 	}
 	//父级传递来的参数
 	var props = defineProps({
@@ -162,7 +179,7 @@
 		if(@column.WhetherRequired == "Y"){
 			if(@column.EffectType == "Input" || @column.EffectType == "InputNumber" ||@column.EffectType == "InputTextArea"){
 		@:@column.LowerColumnName: [{required: true, message: '请输入@(@column.ColumnComment)！', trigger: 'blur',},],
-			}else if(@column.EffectType == "DatePicker" || @column.EffectType == "Select" ||@column.EffectType == "ApiTreeSelect"){
+			}else if(@column.EffectType == "DatePicker" || @column.EffectType == "Select" || @column.EffectType == "EnumSelector" ||@column.EffectType == "ApiTreeSelect"){
 		@:@column.LowerColumnName: [{required: true, message: '请选择@(@column.ColumnComment)！', trigger: 'change',},],
 			}
     }
@@ -214,6 +231,13 @@ const submit = async () => {
     @:};
     break;
   }
+  if(@column.EffectType == "EnumSelector"){
+    @:const enumDataList = async (val: any) => {
+      @:let list = await getAPI(SysEnumApi).apiSysEnumEnumDataListGet(val);
+      @:return list.data.result ?? [];
+    @:};
+    break;
+  }
 }
 
 @foreach (var column in Model.QueryWhetherList){
@@ -244,6 +268,9 @@ onMounted(async () => {
 	@foreach (var column in Model.TableField){
 	if(@column.EffectType == "Select"){
 	     @:getEdit@(@column.LowerColumnName)Data.value= await dictTypeDataList('@(@column.DictTypeCode)');
+	 }
+	 if(@column.EffectType == "EnumSelector"){
+	     @:getEdit@(@column.LowerColumnName)Data.value= await enumDataList('@(@column.DictTypeCode)');
 	 }
 	}
 });
