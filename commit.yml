@@ -3,30 +3,18 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '7f4577578411bf2ac91af457de5ad89f9dd85f99'
-    oldFile: !uuid 'a1f43f99e935c344b7454d05dd942152b6399101'
+    newFile: !uuid '3a6dedac336508bdfbb3777dc81e91672d52d3db'
+    oldFile: !uuid '7f4577578411bf2ac91af457de5ad89f9dd85f99'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '99b8315422105d7a09579565f2ca34edee4a6725'
-    oldFile: !uuid 'ffb6274a69377e4064e6f6db346f7ac86f02906b'
-  /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
-    newFile: !uuid '40f89748c1872d46528ff59256687a8794135a64'
-    oldFile: !uuid 'bab55811e6870dbae707e418b7eabdd59e27a5fe'
-  /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid '185b10bab0e2fbd4d09c7de4ce044b2084fe3d2a'
-    oldFile: !uuid 'c7f435c772bf28e1e5a897057014eca2967acb29'
-  /Admin.NET/Admin.NET.Core/Service/Wechat:
-    newFile: !uuid 'e16fca8bf7277ecb9fae0ada86d97c835b4f092c'
-    oldFile: !uuid 'a18635ebf8950af4981907d0b62425ca480076fa'
-  /Admin.NET/Admin.NET.Core/Service/Wechat/Dto:
-    newFile: !uuid '4abc2b8998a610a3cff6c9b38052ee7a8bc1bd2d'
-    oldFile: !uuid '10b3be26ac718a2272eaa7174095d942d7ddbd22'
-  /Admin.NET/Admin.NET.Core/Service/Wechat/Dto/WxOpenInput.cs:
-    newFile: !uuid '4ee85ef9b1ff269447e99f3b5e2f8a9d22046ea7'
-    oldFile: !uuid '93d6588bc10a6fc18f23f23883f8b144166199e8'
-  /Admin.NET/Admin.NET.Core/Service/Wechat/SysWxOpenService.cs:
-    newFile: !uuid '706a1f2485a65a1e7a6612acbb0c78f0d250801f'
-    oldFile: !uuid 'cd6ee6fdc808d6955d11b4e75362bab59114eaa8'
-gitCommitId: !uuid '6a3030ca8f6e784e43ee4279d0a28fdb55aa5209'
+    newFile: !uuid '5243e502eb472413a7d1c1838f8f4b3fca5d4e3c'
+    oldFile: !uuid '99b8315422105d7a09579565f2ca34edee4a6725'
+  /Admin.NET/Admin.NET.Core/SqlSugar:
+    newFile: !uuid '51e8f28391f1396303f12aa5f7ea68c7bb9c623b'
+    oldFile: !uuid 'a8655386772442af6bc84ec2332704a45445a5e9'
+  /Admin.NET/Admin.NET.Core/SqlSugar/SqlSugarPagedList.cs:
+    newFile: !uuid '3d60dc82319e7ecb36442f2afc9b685166d73886'
+    oldFile: !uuid '0acf821461cc0cb98c0ee06ac652b0c5069da0d4'
+gitCommitId: !uuid 'c4b1afe7c7afd40ea44f72215af626c354964ccd'
 renames: {
   }
-revisionId: 825
+revisionId: 826
