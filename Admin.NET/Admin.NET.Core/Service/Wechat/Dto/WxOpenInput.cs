@@ -65,6 +65,11 @@ public class SendSubscribeMessageInput
     /// 语言类型
     /// </summary>
     public string Language { get; set; }
+
+    /// <summary>
+    /// 点击模板卡片后的跳转页面（仅限本小程序内的页面），支持带参数（示例pages/app/index?foo=bar）
+    /// </summary>
+    public string MiniProgramPagePath { get; set; }
 }
 
 public class AddSubscribeMessageTemplateInput

@@ -138,7 +138,8 @@ public class SysWxOpenService : IDynamicApiController, ITransient
             ToUserOpenId = input.ToUserOpenId,
             Data = input.Data,
             MiniProgramState = input.MiniprogramState,
-            Language = input.Language
+            Language = input.Language,
+            MiniProgramPagePath = input.MiniProgramPagePath
         };
         var resMessage = await _wechatApiClient.ExecuteCgibinMessageSubscribeSendAsync(reqMessage);
         return resMessage;
