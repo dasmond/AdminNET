@@ -3,48 +3,36 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid 'b4aa37c9fe5de21241713098dddb91228234f058'
-    oldFile: !uuid '678dd15bcedb509bb83f9404fdcfdb166bc3af82'
-  /Admin.NET/Admin.NET.Application:
-    newFile: !uuid '3d66bb460f7e84d0c5fce0a9398600ca97fa8846'
-    oldFile: !uuid 'a1f50dfa7ee8481f556668c7540377de0bacef3b'
-  /Admin.NET/Admin.NET.Application/Configuration:
-    newFile: !uuid 'd5a0f4054c2ecd4c85366593287e968c131b1291'
-    oldFile: !uuid 'c845284a4e08ec525ef1640475ccad134233cb79'
-  /Admin.NET/Admin.NET.Application/Configuration/App.json:
-    newFile: !uuid '10cfe270788b5f426b37ec2be7154ca7a1438cb3'
-    oldFile: !uuid 'bfbd55b65685e6aba13d7ddc593fdc27896c6b45'
+    newFile: !uuid 'cb614bd5dedc8585dd1414e817e3c7ba6eecc080'
+    oldFile: !uuid 'b4aa37c9fe5de21241713098dddb91228234f058'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '1a23f406915417c47486dcc38ba01551b63712b5'
-    oldFile: !uuid 'd6cacc966364744fdbb80919e241293c89f8bff5'
+    newFile: !uuid '9fd0db8510c331eb26e19be2e807f6df2a6b69d3'
+    oldFile: !uuid '1a23f406915417c47486dcc38ba01551b63712b5'
   /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
-    newFile: !uuid '32f008e3ee4cbdfa5f626820559477fb0d790c6a'
-    oldFile: !uuid 'a5eb99988feeb3ccdd2339f0aa90428098b37f76'
-  /Admin.NET/Admin.NET.Core/Enum:
-    newFile: !uuid '5d49a548d3ed417e85badbb8870713bcec697afe'
-    oldFile: !uuid '6a5bf3b0e3a5ff2c10c29533a237d8d3834b0a23'
-  /Admin.NET/Admin.NET.Core/Enum/CryptogramEnum.cs:
-    newFile: !uuid 'bbbf11faf41d11e90e72d7e7e4fdf4a27dc11620'
-    oldFile: !uuid '4f617feed263eab1a5b0725dc5e0a5cd97169775'
-  /Admin.NET/Admin.NET.Core/Util:
-    newFile: !uuid 'ba5397a022241ae18a7361b8fe3a92339ba4135b'
-    oldFile: !uuid '2925798c47b5f96f83945a8cb70d06a16604c192'
-  /Admin.NET/Admin.NET.Core/Util/CryptogramUtil.cs:
-    newFile: !uuid 'f0c9441220cc2b2b9e39e884de6f4c6b828e86ae'
-    oldFile: !uuid '2e9abb1315c5231523bcccc5d3e9af75615220a9'
-  /Admin.NET/Admin.NET.Core/Util/SM:
-    newFile: !uuid '56067e148ab7233ee6471a8d4ed50c51f6d828ef'
-    oldFile: !uuid '20417a03d5ae1d6ec0d2c1fffd802f24de5db95c'
-  /Admin.NET/Admin.NET.Core/Util/SM/ByteUtil.cs:
-    newFile: null
-    oldFile: !uuid '6fb6f0df4d26bad9f875ff8d944858cf206f7866'
-  /Admin.NET/Admin.NET.Core/Util/SM/SM4.cs:
-    newFile: !uuid '5731c704fc33c08bcbf4e2ce04dfde0307158244'
-    oldFile: !uuid 'a4ca8d577208f8c701b954bf5ed370ab1b65f871'
-  /Admin.NET/Admin.NET.Core/Util/SM/SM4Util.cs:
-    newFile: !uuid 'a9066d08c0cdcba73fcff242cd69b8b4448790e4'
-    oldFile: !uuid '5eeb17e7fc14ba0215e44d2fcbd15e95f4cc2a16'
-gitCommitId: !uuid 'd887ebc8ecf08729dec5ee6a6bc2730144ba5ed8'
+    newFile: !uuid 'e8b518916c8ae6740e8d8ae0a7881919fee8180c'
+    oldFile: !uuid '32f008e3ee4cbdfa5f626820559477fb0d790c6a'
+  /Admin.NET/Admin.NET.Core/Const:
+    newFile: !uuid '5e6cb8b6eb390b149ae706c5817ccf9b1bfe3122'
+    oldFile: !uuid '7428c7771fe5b3a7d8fa5da62bfd984fb7b942f3'
+  /Admin.NET/Admin.NET.Core/Const/CacheConst.cs:
+    newFile: !uuid '96ea0c943cdd94f2aa8661a3ceee7494f16b18c9'
+    oldFile: !uuid '9aab5b87d9bff87a6d629946a73f0f7875d4950c'
+  /Admin.NET/Admin.NET.Core/Service:
+    newFile: !uuid '7681456adf10075352374c7aa318f6d278848e43'
+    oldFile: !uuid 'ec1a9579272ad4f9e60b31125313e5ea10e7a32f'
+  /Admin.NET/Admin.NET.Core/Service/Org:
+    newFile: !uuid '891213993b858e7386e52609286cb7e2ef02c55b'
+    oldFile: !uuid '1a2a4eafb8bc9393d9bc567df43e1fbe80f46547'
+  /Admin.NET/Admin.NET.Core/Service/Org/SysOrgService.cs:
+    newFile: !uuid 'b6a013d55b69961ebae37eb30f31bbcaa0526b47'
+    oldFile: !uuid 'e050e2cc346f6f041315b4e44a3ae56da118a873'
+  /Admin.NET/Admin.NET.Core/SqlSugar:
+    newFile: !uuid '6ca1b792a3d34f88ad211a237f4d8b364dc2aa08'
+    oldFile: !uuid 'b1149a34b90bab087e6868ac48d62a12228aa470'
+  /Admin.NET/Admin.NET.Core/SqlSugar/SqlSugarFilter.cs:
+    newFile: !uuid 'f5062f28b96702ad5c509ba1c801459345f96b3e'
+    oldFile: !uuid '2f0533cdbcec8d00632dbb8a692218aa8154cab1'
+gitCommitId: !uuid 'ad6a4ff2dd4e38c43d9f73866b73cad466878bca'
 renames: {
   }
-revisionId: 867
+revisionId: 868
