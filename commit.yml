@@ -2,22 +2,28 @@
 branches: {
   }
 fileChange:
-  /Admin.NET:
-    newFile: !uuid 'e6109dcc0f34d962c1a6b979343e1275dd4b1fc0'
-    oldFile: !uuid '1a0b7083b0063e94dfe5966ddb5bb1acdc1f6963'
-  /Admin.NET/Admin.NET.Web.Entry:
-    newFile: !uuid 'a0a79cb280b3b7761ce1bd2f7d30b7955559d5d0'
-    oldFile: !uuid '9214ee9ea2270fe6f580f86936ed703469a018a1'
-  /Admin.NET/Admin.NET.Web.Entry/wwwroot:
-    newFile: !uuid '6ba20271a648368d154e4e9b5307e6c0fc4fbacf'
-    oldFile: !uuid 'd62fdfe134d74b543ba959284a01396c53b7819d'
-  /Admin.NET/Admin.NET.Web.Entry/wwwroot/Template:
-    newFile: !uuid '9db9dfb189fb4365e6acab874b0d653f84273bae'
-    oldFile: !uuid '8d14fc017a33d2c88207910ed24baa35f3844ea9'
-  /Admin.NET/Admin.NET.Web.Entry/wwwroot/Template/Entity.cs.vm:
-    newFile: !uuid 'e7be279e4258d3b5b7c2fd44d959c1fabaa3fc0c'
-    oldFile: !uuid '0404a4e2f9073bbc879638017404209b317e3f75'
-gitCommitId: !uuid '614db6d08c7fb3fd7dcc7c355a42316e0f6decb0'
+  /Web:
+    newFile: !uuid 'e6a107e8b2612f7eeab41c81d686b8959ed78fd0'
+    oldFile: !uuid '0b2e71bbf1a60d1442337d9e91f3858cec7b5d55'
+  /Web/src:
+    newFile: !uuid 'd04c7314a9b6e7a8eb7fb5e768b61d184662bcde'
+    oldFile: !uuid '2cbc4a97b6f24e2ad4fc99d105f899bb08ac07a8'
+  /Web/src/views:
+    newFile: !uuid '4b27289cc828a7977fe3556124b587fa5d2705d6'
+    oldFile: !uuid '85ca5021af18396511968d43a28c8fb9b40ae7fb'
+  /Web/src/views/system:
+    newFile: !uuid 'cb42afa27699fffcdccb622d6a728e2a889e81cf'
+    oldFile: !uuid '9534135577d5bde9ffab5a21f8dc8ceb4a2a9f9b'
+  /Web/src/views/system/file:
+    newFile: !uuid '396d7dfd4ece00ef6400f53b8e1f9a6e26e76556'
+    oldFile: !uuid '558ecc2ee84bb598eba29a9def38c473bc8f7c48'
+  /Web/src/views/system/file/index.vue:
+    newFile: !uuid 'c4254d42e2a762cb6284bd59b7c443d2cac554bd'
+    oldFile: !uuid '182bb9fcb4ba5ddcb6d03d8f1c412e54f56a37bd'
+  /Web/vite.config.ts:
+    newFile: !uuid '832832edbe43274977cf161b1af0c89df2702b24'
+    oldFile: !uuid '6c2b27422c25a6392ea00704fd7e50638fc67d67'
+gitCommitId: !uuid '83306ba63aa91fb98b45dc26ff2822ff6b80df30'
 renames: {
   }
-revisionId: 871
+revisionId: 872
