@@ -6,3 +6,6 @@ global using Mapster;
 global using Microsoft.AspNetCore.Mvc;
 global using Microsoft.Extensions.DependencyInjection;
 global using System.Threading.Tasks;
+global using SqlSugar;
+global using Admin.NET.Application.Enum;
+global using System.ComponentModel;
