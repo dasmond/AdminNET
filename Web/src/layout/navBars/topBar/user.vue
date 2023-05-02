@@ -245,6 +245,9 @@ const receiveNotice = (msg: any) => {
 </script>
 
 <style scoped lang="scss">
+.icon-fullscreen:before {
+    content: "\e623" !important;
+}
 .layout-navbars-breadcrumb-user {
 	display: flex;
 	align-items: center;
