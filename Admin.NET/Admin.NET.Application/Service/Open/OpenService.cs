@@ -78,7 +78,7 @@ public class OpenService : IDynamicApiController, ITransient
             var signBytes = md5.ComputeHash(Encoding.UTF8.GetBytes(signContent));
             var sign = Convert.ToBase64String(signBytes);
 
-            return sign;
+            return HttpUtility.UrlEncode(sign);
         }
         catch (Exception)
         {
