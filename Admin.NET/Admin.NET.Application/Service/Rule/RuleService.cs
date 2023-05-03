@@ -22,20 +22,21 @@ public class RuleService : IDynamicApiController, ITransient
     [ApiDescriptionSettings(Name = "Page")]
     public async Task<SqlSugarPagedList<RuleOutput>> Page(RuleInput input)
     {
-        var query= _rep.AsQueryable()
+        var query = _rep.AsQueryable()
             .WhereIF(input.Type.HasValue, u => u.Type == input.Type)
             .WhereIF(!string.IsNullOrWhiteSpace(input.Name), u => u.Name.Contains(input.Name.Trim()))
             .WhereIF(!string.IsNullOrWhiteSpace(input.Content), u => u.Content.Contains(input.Content.Trim()))
-            .Select(u=> new RuleOutput{
-                Id = u.Id, 
-                Type = u.Type, 
-                Name = u.Name, 
-                Url = u.Url, 
-                Content = u.Content, 
-                Start = u.Start, 
-                Range = u.Range, 
-                SortIndex = u.SortIndex, 
-                Remark = u.Remark, 
+            .Select(u => new RuleOutput
+            {
+                Id = u.Id,
+                Type = u.Type,
+                Name = u.Name,
+                Url = u.Url,
+                Content = u.Content,
+                Start = u.Start,
+                Range = u.Range,
+                SortIndex = u.SortIndex,
+                Remark = u.Remark,
             })
             .Mapper(c => c.UrlAttachment, c => c.Url);
         query = query.OrderBuilder(input);
@@ -113,7 +114,7 @@ public class RuleService : IDynamicApiController, ITransient
     [ApiDescriptionSettings(Name = "Upload"), HttpPost]
     public async Task<FileOutput> Upload([Required] IFormFile file)
     {
-            var service = App.GetService<SysFileService>();
-            return await service.UploadFile(file, "upload/materials"); 
-    } 
+        var service = App.GetService<SysFileService>();
+        return await service.UploadFile(file, "upload/materials");
+    }
 }
