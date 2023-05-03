@@ -14,7 +14,7 @@ public class SysOrgSeedData : ISqlSugarEntitySeedData<SysOrg>
     {
         return new[]
         {
-            new SysOrg{ Id=1300000000101, Pid=0, Name="Vcms", Code="1001", OrgType = "101", CreateTime=DateTime.Parse("2022-02-10 00:00:00"), Remark="Vcms", TenantId=1300000000001 },
+            new SysOrg{ Id=1300000000101, Pid=0, Name="旅秀通", Code="1001", OrgType = "101", CreateTime=DateTime.Parse("2022-02-10 00:00:00"), Remark="旅秀通", TenantId=1300000000001 },
         };
     }
 }
