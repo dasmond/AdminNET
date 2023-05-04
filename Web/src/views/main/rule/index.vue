@@ -36,6 +36,8 @@
             <span>{{ getTypeTitle(scope.row.type) }}</span>
           </template>
         </el-table-column>
+        <el-table-column prop="start" label="起始(秒)" fixed="" show-overflow-tooltip="" />
+        <el-table-column prop="range" label="持续(秒)" fixed="" show-overflow-tooltip="" />
         <el-table-column prop="content" label="内容" fixed="" show-overflow-tooltip="" />
         <el-table-column prop="sortIndex" label="排序" fixed="" show-overflow-tooltip="" />
         <el-table-column prop="remark" label="备注" fixed="" show-overflow-tooltip="" />

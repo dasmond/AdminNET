@@ -23,13 +23,13 @@
 					</el-col>
 					<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
 						<el-form-item label="起始(秒)" prop="start">
-							<el-input-number v-model="ruleForm.start" :min="1" controls-position="right" style="width:100%;"
+							<el-input-number v-model="ruleForm.start" :min="0" controls-position="right" style="width:100%;"
 								placeholder="请输入起始(秒)" clearable />
 						</el-form-item>
 					</el-col>
 					<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
 						<el-form-item label="持续(秒)" prop="range">
-							<el-input-number v-model="ruleForm.range" :min="1" controls-position="right" style="width:100%;"
+							<el-input-number v-model="ruleForm.range" :min="0" controls-position="right" style="width:100%;"
 								placeholder="请输入持续(秒)" clearable />
 						</el-form-item>
 					</el-col>
