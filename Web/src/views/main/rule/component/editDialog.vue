@@ -8,12 +8,10 @@
 					</el-form-item>
 					<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
 						<el-form-item label="名称" prop="name">
-							<el-input v-model="ruleForm.name" placeholder="请输入名称" clearable />
-						</el-form-item>
-					</el-col>
-					<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
-						<el-form-item>
-							<el-checkbox v-model="ruleForm.isDisable" label="禁用" />
+							<el-space>
+								<el-input v-model="ruleForm.name" placeholder="请输入名称" clearable />
+								<el-checkbox v-model="ruleForm.isDisable" label="禁用" />
+							</el-space>
 						</el-form-item>
 					</el-col>
 					<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
