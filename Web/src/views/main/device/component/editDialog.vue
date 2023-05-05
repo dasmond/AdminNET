@@ -44,43 +44,37 @@
 			<template #footer>
 				<span class="dialog-footer">
 					<el-button @click="cancel" size="default">取 消</el-button>
-					<el-button type="primary" @click="submit" size="default">确 定</el-button>
+					<el-button type="primary" @click="submitForm(ruleFormRef)" size="default">确 定</el-button>
 				</span>
 			</template>
 		</el-dialog>
 	</div>
 </template>
 <script lang="ts" setup>
-import { ref, onMounted } from "vue";
-import { ElMessage } from "element-plus";
-import type { FormRules } from "element-plus";
-import { addDevice, updateDevice } from "/@/api/main/device";
-//父级传递来的参数
-var props = defineProps({
-	title: {
-		type: String,
-		default: "",
-	},
-});
-//父级传递来的函数，用于回调
-const emit = defineEmits(["reloadTable"]);
-const ruleFormRef = ref();
+import { ref } from 'vue';
+import type { FormInstance, FormRules } from 'element-plus';
+import { addDevice, updateDevice } from '/@/api/main/device';
+
 const isShowDialog = ref(false);
 const ruleForm = ref<any>({});
-//自行添加其他规则
+const ruleFormRef = ref<FormInstance>();
+
+// 规则
 const rules = ref<FormRules>({
-	name: [{ required: true, message: '请输入名称！', trigger: 'blur', },],
+	name: [{ required: true, message: '请输入名称！' }],
+	type: [{ required: true, message: '请选择类型！' }],
 });
 
-// 打开弹窗
+// 打开
 const openDialog = (row: any) => {
+	resetForm(ruleFormRef.value);
 	ruleForm.value = JSON.parse(JSON.stringify(row));
 	isShowDialog.value = true;
 };
 
-// 关闭弹窗
+// 关闭
 const closeDialog = () => {
-	emit("reloadTable");
+	emit('reloadTable');
 	isShowDialog.value = false;
 };
 
@@ -89,30 +83,36 @@ const cancel = () => {
 	isShowDialog.value = false;
 };
 
+// 重置
+const resetForm = (formEl: FormInstance | undefined) => {
+	if (!formEl) return;
+	formEl.resetFields();
+};
+
 // 提交
-const submit = async () => {
-	ruleFormRef.value.validate(async (isValid: boolean, fields?: any) => {
-		if (isValid) {
-			let values = ruleForm.value;
-			if (ruleForm.value.id != undefined && ruleForm.value.id > 0) {
-				await updateDevice(values);
-			} else {
-				await addDevice(values);
-			}
-			closeDialog();
+const submitForm = async (formEl: FormInstance | undefined) => {
+	if (!formEl) return;
+	await formEl.validate(async (isValid: boolean) => {
+		if (!isValid) return;
+		let values = ruleForm.value;
+		if (ruleForm.value.id && ruleForm.value.id > 0) {
+			await updateDevice(values);
 		} else {
-			ElMessage({
-				message: `表单有${Object.keys(fields).length}处验证失败，请修改后再提交`,
-				type: "error",
-			});
+			await addDevice(values);
 		}
+		closeDialog();
 	});
 };
 
-// 页面加载时
-onMounted(async () => {
+// 自定义属性，事件，方法
+const props = defineProps({
+	title: {
+		type: String,
+		default: '',
+	},
 });
 
-//将属性或者函数暴露给父组件
+const emit = defineEmits(['reloadTable']);
+
 defineExpose({ openDialog });
 </script>
