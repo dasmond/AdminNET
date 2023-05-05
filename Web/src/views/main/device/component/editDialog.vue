@@ -14,8 +14,8 @@
 					<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
 						<el-form-item label="类型" prop="type">
 							<el-select v-model="ruleForm.type" placeholder="请选择" clearable>
-								<el-option label="相机" :value="0" />
-								<el-option label="算法" :value="1" />
+								<el-option label="算法" :value="0" />
+								<el-option label="相机" :value="1" />
 							</el-select>
 						</el-form-item>
 					</el-col>

@@ -11,14 +11,14 @@ public class DeviceDto
     public long Id { get; set; }
 
     /// <summary>
-    /// 类型
-    /// </summary>
-    public DeviceType Type { get; set; }
-
-    /// <summary>
     /// 名称
     /// </summary>
     public string Name { get; set; }
+
+    /// <summary>
+    /// 类型
+    /// </summary>
+    public DeviceType Type { get; set; }
 
     /// <summary>
     /// IP&端口

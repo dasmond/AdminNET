@@ -6,14 +6,14 @@
 public class DeviceBaseInput
 {
     /// <summary>
-    /// 类型
-    /// </summary>
-    public virtual DeviceType Type { get; set; }
-
-    /// <summary>
     /// 名称
     /// </summary>
     public virtual string Name { get; set; }
+
+    /// <summary>
+    /// 类型
+    /// </summary>
+    public virtual DeviceType Type { get; set; }
 
     /// <summary>
     /// IP&端口
@@ -40,17 +40,17 @@ public class DeviceBaseInput
 /// <summary>
 /// 设备分页查询输入参数
 /// </summary>
-public class DeviceInput : BasePageInput
+public class DevicePageInput : BasePageInput
 {
-    /// <summary>
-    /// 类型
-    /// </summary>
-    public DeviceType? Type { get; set; }
-
     /// <summary>
     /// 名称
     /// </summary>
     public string Name { get; set; }
+
+    /// <summary>
+    /// 类型
+    /// </summary>
+    public DeviceType? Type { get; set; }
 
     /// <summary>
     /// IP&端口
@@ -65,48 +65,46 @@ public class DeviceInput : BasePageInput
 }
 
 /// <summary>
+/// 设备主键查询输入参数
+/// </summary>
+public class DeviceGetInput : BaseIdInput
+{
+
+}
+
+/// <summary>
 /// 设备增加输入参数
 /// </summary>
-public class AddDeviceInput : DeviceBaseInput
+public class DeviceAddInput : DeviceBaseInput
 {
-    /// <summary>
-    /// 类型
-    /// </summary>
-    [Required(ErrorMessage = "类型不能为空")]
-    public override DeviceType Type { get; set; }
-
     /// <summary>
     /// 名称
     /// </summary>
     [Required(ErrorMessage = "名称不能为空")]
     public override string Name { get; set; }
 
-}
-
-/// <summary>
-/// 设备删除输入参数
-/// </summary>
-public class DeleteDeviceInput : BaseIdInput
-{
+    /// <summary>
+    /// 类型
+    /// </summary>
+    [Required(ErrorMessage = "类型不能为空")]
+    public override DeviceType Type { get; set; }
 }
 
 /// <summary>
 /// 设备更新输入参数
 /// </summary>
-public class UpdateDeviceInput : DeviceBaseInput
+public class DeviceUpdInput : DeviceBaseInput
 {
     /// <summary>
     /// Id
     /// </summary>
     [Required(ErrorMessage = "Id不能为空")]
     public long Id { get; set; }
-
 }
 
 /// <summary>
-/// 设备主键查询输入参数
+/// 设备删除输入参数
 /// </summary>
-public class QueryByIdDeviceInput : DeleteDeviceInput
+public class DeviceDelInput : BaseIdInput
 {
-
 }

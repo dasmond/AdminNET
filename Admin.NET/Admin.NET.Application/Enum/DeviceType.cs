@@ -3,8 +3,8 @@
 [Description("设备类型")]
 public enum DeviceType
 {
-    [Description("相机")]
-    Camera = 0,
     [Description("算法")]
-    Brain = 1
+    NVR = 0,
+    [Description("相机")]
+    Camera = 1
 }

@@ -30,7 +30,11 @@
     <el-card class="full-table" shadow="hover" style="margin-top: 8px">
       <el-table :data="tableData" style="width: 100%" v-loading="loading" tooltip-effect="light" row-key="id" border="">
         <el-table-column type="index" label="序号" width="55" align="center" fixed="" />
-        <el-table-column prop="name" label="名称" fixed="" show-overflow-tooltip="" />
+        <el-table-column prop="name" label="名称" fixed="" show-overflow-tooltip="">
+          <template #default="scope">
+            {{ scope.row.name }} <el-tag v-if="scope.row.isDisable" style="margin-left:8px;">禁用</el-tag>
+          </template>
+        </el-table-column>
         <el-table-column prop="type" label="类型" fixed="" show-overflow-tooltip="">
           <template #default="scope">
             <span>{{ getTypeTitle(scope.row.type) }}</span>

@@ -34,7 +34,7 @@
         <el-table-column prop="name" label="名称" fixed="" show-overflow-tooltip="" />
         <el-table-column prop="type" label="类型" fixed="" show-overflow-tooltip="">
           <template #default="scope">
-            <span>{{ scope.row.type == 0 ? '相机' : '算法' }}</span>
+            <span>{{ scope.row.type == 0 ? '算法' : '相机' }}</span>
           </template>
         </el-table-column>
         <el-table-column prop="ipPort" label="IP&端口" fixed="" show-overflow-tooltip="" />

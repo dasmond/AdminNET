@@ -9,6 +9,9 @@ public class Rule : EntityBase
     [SugarColumn(ColumnDescription = "类型")]
     public MaterialType Type { get; set; }
 
+    [SugarColumn(ColumnDescription = "禁用")]
+    public bool IsDisable { get; set; }
+
     [SugarColumn(ColumnDescription = "起始(秒)")]
     public int Start { get; set; }
 

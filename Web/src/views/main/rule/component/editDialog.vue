@@ -12,6 +12,11 @@
 						</el-form-item>
 					</el-col>
 					<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
+						<el-form-item>
+							<el-checkbox v-model="ruleForm.isDisable" label="禁用" />
+						</el-form-item>
+					</el-col>
+					<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
 						<el-form-item label="类型" prop="type">
 							<el-select v-model="ruleForm.type" placeholder="请选择" clearable>
 								<el-option label="文字" :value="0" />

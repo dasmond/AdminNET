@@ -14,13 +14,13 @@ public class DeviceService : IDynamicApiController, ITransient
     }
 
     /// <summary>
-    /// 分页查询设备
+    /// 查询设备
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
     [HttpPost]
     [ApiDescriptionSettings(Name = "Page")]
-    public async Task<SqlSugarPagedList<DeviceOutput>> Page(DeviceInput input)
+    public async Task<SqlSugarPagedList<DeviceOutput>> Page(DevicePageInput input)
     {
         var query = _rep.AsQueryable()
             .WhereIF(input.Type.HasValue, u => u.Type == input.Type)
@@ -39,7 +39,7 @@ public class DeviceService : IDynamicApiController, ITransient
     /// <returns></returns>
     [HttpPost]
     [ApiDescriptionSettings(Name = "Add")]
-    public async Task Add(AddDeviceInput input)
+    public async Task Add(DeviceAddInput input)
     {
         var entity = input.Adapt<Device>();
         await _rep.InsertAsync(entity);
@@ -52,7 +52,7 @@ public class DeviceService : IDynamicApiController, ITransient
     /// <returns></returns>
     [HttpPost]
     [ApiDescriptionSettings(Name = "Delete")]
-    public async Task Delete(DeleteDeviceInput input)
+    public async Task Delete(DeviceDelInput input)
     {
         var entity = await _rep.GetFirstAsync(u => u.Id == input.Id) ?? throw Oops.Oh(ErrorCodeEnum.D1002);
         await _rep.FakeDeleteAsync(entity);   //假删除
@@ -65,7 +65,7 @@ public class DeviceService : IDynamicApiController, ITransient
     /// <returns></returns>
     [HttpPost]
     [ApiDescriptionSettings(Name = "Update")]
-    public async Task Update(UpdateDeviceInput input)
+    public async Task Update(DeviceUpdInput input)
     {
         var entity = input.Adapt<Device>();
         await _rep.AsUpdateable(entity).IgnoreColumns(ignoreAllNullColumns: true).ExecuteCommandAsync();
@@ -78,20 +78,8 @@ public class DeviceService : IDynamicApiController, ITransient
     /// <returns></returns>
     [HttpGet]
     [ApiDescriptionSettings(Name = "Detail")]
-    public async Task<Device> Get([FromQuery] QueryByIdDeviceInput input)
+    public async Task<Device> Detail([FromQuery] DeviceGetInput input)
     {
         return await _rep.GetFirstAsync(u => u.Id == input.Id);
-    }
-
-    /// <summary>
-    /// 获取设备列表
-    /// </summary>
-    /// <param name="input"></param>
-    /// <returns></returns>
-    [HttpGet]
-    [ApiDescriptionSettings(Name = "List")]
-    public async Task<List<DeviceOutput>> List([FromQuery] DeviceInput input)
-    {
-        return await _rep.AsQueryable().Select<DeviceOutput>().ToListAsync();
     }
 }

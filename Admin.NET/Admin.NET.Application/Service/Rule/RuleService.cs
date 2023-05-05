@@ -14,30 +14,19 @@ public class RuleService : IDynamicApiController, ITransient
     }
 
     /// <summary>
-    /// 分页查询规则
+    /// 查询规则
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
     [HttpPost]
     [ApiDescriptionSettings(Name = "Page")]
-    public async Task<SqlSugarPagedList<RuleOutput>> Page(RuleInput input)
+    public async Task<SqlSugarPagedList<RuleOutput>> Page(RulePageInput input)
     {
         var query = _rep.AsQueryable()
             .WhereIF(input.Type.HasValue, u => u.Type == input.Type)
             .WhereIF(!string.IsNullOrWhiteSpace(input.Name), u => u.Name.Contains(input.Name.Trim()))
             .WhereIF(!string.IsNullOrWhiteSpace(input.Content), u => u.Content.Contains(input.Content.Trim()))
-            .Select(u => new RuleOutput
-            {
-                Id = u.Id,
-                Type = u.Type,
-                Name = u.Name,
-                Url = u.Url,
-                Content = u.Content,
-                Start = u.Start,
-                Range = u.Range,
-                SortIndex = u.SortIndex,
-                Remark = u.Remark,
-            })
+            .Select<RuleOutput>()
             .Mapper(c => c.UrlAttachment, c => c.Url);
         query = query.OrderBuilder(input);
         return await query.ToPagedListAsync(input.Page, input.PageSize);
@@ -50,7 +39,7 @@ public class RuleService : IDynamicApiController, ITransient
     /// <returns></returns>
     [HttpPost]
     [ApiDescriptionSettings(Name = "Add")]
-    public async Task Add(AddMaterialInput input)
+    public async Task Add(RuleAddInput input)
     {
         var entity = input.Adapt<Rule>();
         await _rep.InsertAsync(entity);
@@ -63,7 +52,7 @@ public class RuleService : IDynamicApiController, ITransient
     /// <returns></returns>
     [HttpPost]
     [ApiDescriptionSettings(Name = "Delete")]
-    public async Task Delete(DeleteMaterialInput input)
+    public async Task Delete(RuleDelInput input)
     {
         var entity = await _rep.GetFirstAsync(u => u.Id == input.Id) ?? throw Oops.Oh(ErrorCodeEnum.D1002);
         await _rep.FakeDeleteAsync(entity);   //假删除
@@ -76,7 +65,7 @@ public class RuleService : IDynamicApiController, ITransient
     /// <returns></returns>
     [HttpPost]
     [ApiDescriptionSettings(Name = "Update")]
-    public async Task Update(UpdateMaterialInput input)
+    public async Task Update(RuleUpdInput input)
     {
         var entity = input.Adapt<Rule>();
         await _rep.AsUpdateable(entity).IgnoreColumns(ignoreAllNullColumns: true).ExecuteCommandAsync();
@@ -89,21 +78,9 @@ public class RuleService : IDynamicApiController, ITransient
     /// <returns></returns>
     [HttpGet]
     [ApiDescriptionSettings(Name = "Detail")]
-    public async Task<Rule> Get([FromQuery] QueryByIdMaterialInput input)
+    public async Task<Rule> Detail([FromQuery] RuleGetInput input)
     {
         return await _rep.GetFirstAsync(u => u.Id == input.Id);
-    }
-
-    /// <summary>
-    /// 获取规则列表
-    /// </summary>
-    /// <param name="input"></param>
-    /// <returns></returns>
-    [HttpGet]
-    [ApiDescriptionSettings(Name = "List")]
-    public async Task<List<RuleOutput>> List([FromQuery] RuleInput input)
-    {
-        return await _rep.AsQueryable().Select<RuleOutput>().ToListAsync();
     }
 
     /// <summary>

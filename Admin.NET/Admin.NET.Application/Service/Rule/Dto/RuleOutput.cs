@@ -11,25 +11,19 @@ public class RuleOutput
     public long Id { get; set; }
 
     /// <summary>
-    /// 类型
-    /// </summary>
-    public MaterialType Type { get; set; }
-
-    /// <summary>
     /// 名称
     /// </summary>
     public string Name { get; set; }
 
     /// <summary>
-    /// 上传
+    /// 禁用
     /// </summary>
-    public string? Url { get; set; }
-    public SysFile UrlAttachment { get; set; }
+    public bool IsDisable { get; set; }
 
     /// <summary>
-    /// 内容
+    /// 类型
     /// </summary>
-    public string? Content { get; set; }
+    public MaterialType Type { get; set; }
 
     /// <summary>
     /// 起始(秒)
@@ -40,6 +34,17 @@ public class RuleOutput
     /// 持续(秒)
     /// </summary>
     public long Range { get; set; }
+
+    /// <summary>
+    /// 内容
+    /// </summary>
+    public string? Content { get; set; }
+
+    /// <summary>
+    /// 素材
+    /// </summary>
+    public string? Url { get; set; }
+    public SysFile UrlAttachment { get; set; }
 
     /// <summary>
     /// 排序
