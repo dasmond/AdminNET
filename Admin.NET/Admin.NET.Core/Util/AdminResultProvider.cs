@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore.Mvc.Controllers;
+
 namespace Admin.NET.Core;
 
 /// <summary>
@@ -25,6 +27,23 @@ public class AdminResultProvider : IUnifyResultProvider
     /// <returns></returns>
     public IActionResult OnSucceeded(ActionExecutedContext context, object data)
     {
+        //获取方法描述
+        var ActionDescriptor = context.ActionDescriptor as ControllerActionDescriptor;
+
+        //将控制器特性和方法特性进行统一处理
+        var CustomAttributeDataList=new List<CustomAttributeData>();
+        CustomAttributeDataList.AddRange(ActionDescriptor.ControllerTypeInfo.CustomAttributes);
+        CustomAttributeDataList.AddRange(ActionDescriptor.MethodInfo.CustomAttributes);
+
+        //检测是否有NotRESTfulApiAttribute标记
+        foreach (var Attribute in CustomAttributeDataList)
+        {
+            if (Attribute.AttributeType == typeof(NotRESTfulApiAttribute))
+            {
+                return new JsonResult(data);
+            }
+        }
+
         return new JsonResult(RESTfulResult(StatusCodes.Status200OK, true, data));
     }
 
