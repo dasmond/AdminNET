@@ -44,6 +44,8 @@ public class CustomViewEngine : ViewEngineModel
 
     public bool IsUpload { get; set; }
 
+    public List<string> GenerateOptions { get; set; }
+
     private List<ColumnOuput> ColumnList { get; set; }
 
     public string GetColumnNetType(object tbName, object colName)

@@ -89,6 +89,13 @@
 							</el-select>
 						</el-form-item>
 					</el-col>
+					<el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="mb20">
+						<el-form-item label="生成选项" prop="generateOptions">
+							<el-checkbox-group v-model="state.ruleForm.generateOptions">
+								<el-checkbox v-for="item in generateOptionsData" :key="item.value" :label="item.value">{{item.label}}</el-checkbox>
+							</el-checkbox-group>
+						</el-form-item>
+					</el-col>
 				</el-row>
 			</el-form>
 			<template #footer>
@@ -122,6 +129,12 @@ const state = reactive({
 	menuData: [] as Array<SysMenu>,
 	codeGenTypeList: [] as any,
 });
+
+const generateOptionsData = [
+	{value:'AddMenu',label:'添加菜单'},
+	{value:'Import',label:'导入数据'},
+	{value:'Export',label:'导出数据'}
+];
 
 onMounted(async () => {
 	var resDb = await getAPI(SysCodeGenApi).apiSysCodeGenDatabaseListGet();

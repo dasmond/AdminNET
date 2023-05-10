@@ -303,6 +303,7 @@ public class SysCodeGenService : IDynamicApiController, ITransient
             TableField = tableFieldList,
             IsJoinTable = joinTableList.Count > 0,
             IsUpload = joinTableList.Where(u => u.EffectType == "Upload").Any(),
+            GenerateOptions = input.GenerateOptions
         };
 
         for (var i = 0; i < templatePathList.Count; i++)
@@ -321,7 +322,10 @@ public class SysCodeGenService : IDynamicApiController, ITransient
             File.WriteAllText(targetPathList[i], tResult, Encoding.UTF8);
         }
 
-        await AddMenu(input.TableName, input.BusName, input.MenuPid);
+        //按需添加菜单
+        if (input.GenerateOptions.Contains("AddMenu"))
+            await AddMenu(input.TableName, input.BusName, input.MenuPid);
+
         // 非ZIP压缩返回空
         if (!input.GenerateType.StartsWith('1'))
             return null;
