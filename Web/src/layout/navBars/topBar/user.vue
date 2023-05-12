@@ -52,7 +52,7 @@
 				<ele-User />
 			</el-icon>
 		</div>
-		<el-dropdown :show-timeout="70" :hide-timeout="50" @command="onHandleCommandClick">
+		<el-dropdown :show-timeout="70" :hide-timeout="50" @command="onHandleCommandClick" style="cursor: pointer;">
 			<span class="layout-navbars-breadcrumb-user-link">
 				<img :src="userInfos.avatar" class="layout-navbars-breadcrumb-user-link-photo mr5" />
 				{{ userInfos.account === '' ? 'common' : userInfos.account }}
@@ -245,6 +245,9 @@ const receiveNotice = (msg: any) => {
 </script>
 
 <style scoped lang="scss">
+.icon-fullscreen:before {
+    content: "\e623" !important;
+}
 .layout-navbars-breadcrumb-user {
 	display: flex;
 	align-items: center;
