@@ -3,39 +3,18 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '28f140a0193ae584ed094cf53df8e31aa5fb28ce'
-    oldFile: !uuid 'aa9fadebbad383fffcbc7474c7cca8dfb8b02505'
-  /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '4f5f841456b3b3c00886d6ba0f818c5086f10bba'
-    oldFile: !uuid 'cfc0aa974e4a2c439f6a7ca706990fce4eb19438'
-  /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid 'ba22d40fb989d6b999e2f1a294d3591c40b44d47'
-    oldFile: !uuid '9e8d193d3c43d1b898f8bad0214a1a6aeb5ae066'
-  /Admin.NET/Admin.NET.Core/Service/Wechat:
-    newFile: !uuid '883b55daaddebfcb8cb52e2e12d3e57cf2f4c5a4'
-    oldFile: !uuid 'e16fca8bf7277ecb9fae0ada86d97c835b4f092c'
-  /Admin.NET/Admin.NET.Core/Service/Wechat/SysWechatPayService.cs:
-    newFile: !uuid 'f954e9daea6a07da238ec0d0c5369d9b054c3711'
-    oldFile: !uuid '0e1b5202a02d949dc5fe4f6b8ee28084d6760074'
-  /Web:
-    newFile: !uuid 'd30ae0061d12fe8c3c94774cb6ad39d750878d64'
-    oldFile: !uuid 'dbb8f23ca90e4c1a71579f47fcd4dd6b2f4aaf27'
-  /Web/src:
-    newFile: !uuid '884b8251722eb11479d0f93256bdeb8229122bd8'
-    oldFile: !uuid '812207472785d049e9fa28abe1e47bbf4ea23828'
-  /Web/src/views:
-    newFile: !uuid '8229aa641e75d8ddde1b1790bcb61e7aa08e6d1e'
-    oldFile: !uuid '7b7e55a819ab676314ac7c19fac786cd7d6b1926'
-  /Web/src/views/login:
-    newFile: !uuid 'cd1961c33daf87ab2a42bc31b44c29d50a5bdd58'
-    oldFile: !uuid '8173cb178f067b70cbda93acbee8e5101f5441e0'
-  /Web/src/views/login/component:
-    newFile: !uuid '74b2e99faf892fdac368cfe98e532fe4807f0e2c'
-    oldFile: !uuid '66b85e8a7e5a5d3514a9f4e26be17a1c2916ddb0'
-  /Web/src/views/login/component/account.vue:
-    newFile: !uuid '657861371c37f19b43b93991b350d035c06e8d87'
-    oldFile: !uuid '866f1c9d7aa66035046d1da20e8eb2f38a9000c2'
-gitCommitId: !uuid 'd940c8164feb0f0e215242649f115b3c43c13164'
+    newFile: !uuid '0420b688e330b8797fad1cd53340c64a9dc1905c'
+    oldFile: !uuid '28f140a0193ae584ed094cf53df8e31aa5fb28ce'
+  /Admin.NET/Admin.NET.Web.Core:
+    newFile: !uuid 'adef8e59a61716651a4f735acb29837a75e9c98c'
+    oldFile: !uuid '26e662b851a6b2cbe0b29fa833c8cc4ee0cca416'
+  /Admin.NET/Admin.NET.Web.Core/Handlers:
+    newFile: !uuid '3a95193e06460eb674b991fba5393bcc1be76c8c'
+    oldFile: !uuid 'b5feb1601a190fef23e8d5ae8d94c4d8c8e9d739'
+  /Admin.NET/Admin.NET.Web.Core/Handlers/JwtHandler.cs:
+    newFile: !uuid 'eaf988bbdec288350e0b81d459c59d17b4c5a666'
+    oldFile: !uuid '14bf6632f9fc27308625783ad856a31547287c78'
+gitCommitId: !uuid '5930ba49a21ccb55f85408a1f0e4df4dbf297751'
 renames: {
   }
-revisionId: 885
+revisionId: 886
