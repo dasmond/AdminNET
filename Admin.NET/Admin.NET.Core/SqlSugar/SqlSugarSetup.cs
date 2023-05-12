@@ -68,8 +68,8 @@ public static class SqlSugarSetup
         config.MoreSettings = new ConnMoreSettings
         {
             IsAutoRemoveDataCache = true,
-            IsAutoDeleteQueryFilter = true,//启用删除查询过滤器
-            IsAutoUpdateQueryFilter = true,//启用更新查询过滤器（表达式更新，如果是实体方式更新建议先查询在更新）
+            IsAutoDeleteQueryFilter = true, // 启用删除查询过滤器
+            IsAutoUpdateQueryFilter = true, // 启用更新查询过滤器
             SqlServerCodeFirstNvarchar = true // 采用Nvarchar
         };
     }
@@ -175,6 +175,7 @@ public static class SqlSugarSetup
 
         // 配置实体假删除过滤器
         db.QueryFilter.AddTableFilter<IDeletedFilter>(u => u.IsDelete == false);
+
         // 配置租户过滤器
         var tenantId = App.User?.FindFirst(ClaimConst.TenantId)?.Value;
         if (!string.IsNullOrWhiteSpace(tenantId))
@@ -182,6 +183,7 @@ public static class SqlSugarSetup
 
         // 配置用户机构（数据范围）过滤器
         SqlSugarFilter.SetOrgEntityFilter(db);
+
         // 配置自定义过滤器
         SqlSugarFilter.SetCustomEntityFilter(db);
     }

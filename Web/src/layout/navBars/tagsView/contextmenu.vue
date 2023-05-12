@@ -47,14 +47,14 @@ const state = reactive({
 	dropdownList: [
 		{ contextMenuClickId: 0, txt: 'message.tagsView.refresh', affix: false, icon: 'ele-RefreshRight' },
 		{ contextMenuClickId: 1, txt: 'message.tagsView.close', affix: false, icon: 'ele-Close' },
-		{ contextMenuClickId: 2, txt: 'message.tagsView.closeOther', affix: false, icon: 'ele-CircleClose' },
-		{ contextMenuClickId: 3, txt: 'message.tagsView.closeAll', affix: false, icon: 'ele-FolderDelete' },
 		{
 			contextMenuClickId: 4,
 			txt: 'message.tagsView.fullscreen',
 			affix: false,
 			icon: 'iconfont icon-fullscreen',
 		},
+		{ contextMenuClickId: 2, txt: 'message.tagsView.closeOther', affix: false, icon: 'ele-CircleClose' },
+		{ contextMenuClickId: 3, txt: 'message.tagsView.closeAll', affix: false, icon: 'ele-FolderDelete' },
 	],
 	item: {},
 	arrowLeft: 10,
@@ -116,6 +116,9 @@ defineExpose({
 </script>
 
 <style scoped lang="scss">
+.icon-fullscreen:before {
+    content: "\e623" !important;
+}
 .custom-contextmenu {
 	transform-origin: center top;
 	z-index: 2190;
