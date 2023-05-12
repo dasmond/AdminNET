@@ -4,8 +4,8 @@
 			<el-form :model="queryParams" ref="queryForm" :inline="true">
 				<el-form-item label="类型" prop="type">
 					<el-select v-model="queryParams.type" placeholder="请选择" clearable>
-						<el-option label="相机" :value="0" />
-						<el-option label="超脑" :value="1" />
+						<el-option label="算法" :value="0" />
+						<el-option label="相机" :value="1" />
 					</el-select>
 				</el-form-item>
 				<el-form-item label="名称">
@@ -19,8 +19,9 @@
 				</el-form-item>
 				<el-form-item>
 					<el-button-group>
-						<el-button type="primary" icon="ele-Search" @click="handleQuery" v-auth="'device:page'"> 查询 </el-button>
-						<el-button icon="ele-Refresh" @click="() => (queryParams = {})"> 重置 </el-button>
+						<el-button icon="ele-Refresh" @click="handleReset"> 重置 </el-button>
+						<el-button type="primary" icon="ele-Search" @click="handleQuery" v-auth="'device:page'"> 查询
+						</el-button>
 					</el-button-group>
 				</el-form-item>
 				<el-form-item>
@@ -29,7 +30,8 @@
 			</el-form>
 		</el-card>
 		<el-card class="full-table" shadow="hover" style="margin-top: 8px">
-			<el-table :data="tableData" style="width: 100%" v-loading="loading" tooltip-effect="light" row-key="id" border="">
+			<el-table :data="tableData" style="width: 100%" v-loading="loading" tooltip-effect="light" row-key="id"
+				border="">
 				<el-table-column type="index" label="序号" width="55" align="center" fixed="" />
 				<el-table-column prop="name" label="名称" fixed="" show-overflow-tooltip="" />
 				<el-table-column prop="type" label="类型" fixed="" show-overflow-tooltip="">
@@ -40,24 +42,20 @@
 				<el-table-column prop="ipPort" label="IP&端口" fixed="" show-overflow-tooltip="" />
 				<el-table-column prop="account" label="账号" fixed="" show-overflow-tooltip="" />
 				<el-table-column prop="remark" label="备注" fixed="" show-overflow-tooltip="" />
-				<el-table-column label="操作" width="140" align="center" fixed="right" show-overflow-tooltip="" v-if="auth('device:edit') || auth('device:delete')">
+				<el-table-column label="操作" width="140" align="center" fixed="right" show-overflow-tooltip=""
+					v-if="auth('device:edit') || auth('device:delete')">
 					<template #default="scope">
-						<el-button icon="ele-Edit" size="small" text="" type="primary" @click="openEditDevice(scope.row)" v-auth="'device:edit'"> 编辑 </el-button>
-						<el-button icon="ele-Delete" size="small" text="" type="primary" @click="delDevice(scope.row)" v-auth="'device:delete'"> 删除 </el-button>
+						<el-button icon="ele-Edit" size="small" text="" type="primary" @click="openEditDevice(scope.row)"
+							v-auth="'device:edit'"> 编辑 </el-button>
+						<el-button icon="ele-Delete" size="small" text="" type="primary" @click="delDevice(scope.row)"
+							v-auth="'device:delete'"> 删除 </el-button>
 					</template>
 				</el-table-column>
 			</el-table>
-			<el-pagination
-				v-model:currentPage="tableParams.page"
-				v-model:page-size="tableParams.pageSize"
-				:total="tableParams.total"
-				:page-sizes="[10, 20, 50, 100]"
-				small=""
-				background=""
-				@size-change="handleSizeChange"
-				@current-change="handleCurrentChange"
-				layout="total, sizes, prev, pager, next, jumper"
-			/>
+			<el-pagination v-model:currentPage="tableParams.page" v-model:page-size="tableParams.pageSize"
+				:total="tableParams.total" :page-sizes="[10, 20, 50, 100]" small="" background=""
+				@size-change="handleSizeChange" @current-change="handleCurrentChange"
+				layout="total, sizes, prev, pager, next, jumper" />
 			<editDialog ref="editDialogRef" :title="editDialogTitle" @reloadTable="handleQuery" />
 		</el-card>
 	</div>
@@ -88,6 +86,10 @@ const handleQuery = async () => {
 	tableData.value = res.data.result?.items ?? [];
 	tableParams.value.total = res.data.result?.total;
 	loading.value = false;
+};
+const handleReset = () => {
+	queryParams.value = {};
+	handleQuery();
 };
 
 // 每页大小
@@ -126,7 +128,7 @@ const delDevice = (row: any) => {
 			handleQuery();
 			ElMessage.success('删除成功');
 		})
-		.catch(() => {});
+		.catch(() => { });
 };
 
 handleQuery();
