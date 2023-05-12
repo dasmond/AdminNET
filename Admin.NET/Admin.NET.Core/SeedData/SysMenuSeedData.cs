@@ -27,7 +27,7 @@ public class SysMenuSeedData : ISqlSugarEntitySeedData<SysMenu>
             new SysMenu{ Id=1300000000214, Pid=1300000000211, Title="新增", Permission="device:add", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
             new SysMenu{ Id=1300000000215, Pid=1300000000211, Title="删除", Permission="device:delete", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
 
-            new SysMenu{ Id=1300000000221, Pid=1300000000201, Title="规则管理", Path="/vcms/rule", Name="rule", Component="/main/rule/index", Icon="ele-Document", Type=MenuTypeEnum.Menu, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
+            new SysMenu{ Id=1300000000221, Pid=1300000000201, Title="规则管理", Path="/vcms/rule", Name="rule", Component="/main/rule/index", Icon="ele-Operation", Type=MenuTypeEnum.Menu, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
             new SysMenu{ Id=1300000000222, Pid=1300000000221, Title="查询", Permission="rule:page", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
             new SysMenu{ Id=1300000000223, Pid=1300000000221, Title="编辑", Permission="rule:edit", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
             new SysMenu{ Id=1300000000224, Pid=1300000000221, Title="新增", Permission="rule:add", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
