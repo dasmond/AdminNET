@@ -52,6 +52,8 @@ public class SysFileService : IDynamicApiController, ITransient
     /// <param name="path"></param>
     /// <returns></returns>
     [DisplayName("上传文件")]
+    [RequestSizeLimit(int.MaxValue)]
+    [RequestFormLimits(MultipartBodyLengthLimit = int.MaxValue)]
     public async Task<FileOutput> UploadFile([Required] IFormFile file, [FromQuery] string? path)
     {
         var sysFile = await HandleUploadFile(file, path);
@@ -72,6 +74,8 @@ public class SysFileService : IDynamicApiController, ITransient
     /// <param name="files"></param>
     /// <returns></returns>
     [DisplayName("上传多文件")]
+    [RequestSizeLimit(int.MaxValue)]
+    [RequestFormLimits(MultipartBodyLengthLimit = int.MaxValue)]
     public async Task<List<FileOutput>> UploadFiles([Required] List<IFormFile> files)
     {
         var filelist = new List<FileOutput>();

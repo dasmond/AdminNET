@@ -37,10 +37,10 @@
 					<template #default="scope">
 						<el-image
 							style="width: 60px; height: 60px"
-							:src="`/${scope.row.filePath}/${scope.row.id}${scope.row.suffix}`"
+							:src="`${baseUrl}/${scope.row.filePath}/${scope.row.id}${scope.row.suffix}`"
 							:lazy="true"
 							:hide-on-click-modal="true"
-							:preview-src-list="[`/${scope.row.filePath}/${scope.row.id}${scope.row.suffix}`]"
+							:preview-src-list="[`${baseUrl}/${scope.row.filePath}/${scope.row.id}${scope.row.suffix}`]"
 							:initial-index="0"
 							fit="scale-down"
 							preview-teleported
@@ -79,7 +79,7 @@
 				</div>
 			</template>
 			<div>
-				<el-upload ref="uploadRef" drag :auto-upload="false" :limit="1" :file-list="state.fileList" action="" :on-change="handleChange" accept=".jpg,.png,.bmp,.gif,.txt,.pdf,.xlsx,.docx">
+				<el-upload ref="uploadRef" drag :auto-upload="false" :limit="1" :file-list="state.fileList" action="" :on-change="handleChange" accept=".mp4,.wmv,.jpg,.png,.bmp,.gif,.txt,.pdf,.xlsx,.docx">
 					<el-icon class="el-icon--upload">
 						<ele-UploadFilled />
 					</el-icon>
@@ -108,7 +108,7 @@ import { getAPI } from '/@/utils/axios-utils';
 import { SysFileApi } from '/@/api-services/api';
 import { SysFile } from '/@/api-services/models';
 
-// const baseUrl = import.meta.env.VITE_API_URL;
+const baseUrl = import.meta.env.VITE_API_URL;
 const uploadRef = ref<UploadInstance>();
 const state = reactive({
 	loading: false,

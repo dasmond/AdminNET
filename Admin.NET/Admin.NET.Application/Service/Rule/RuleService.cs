@@ -89,6 +89,8 @@ public class RuleService : IDynamicApiController, ITransient
     /// <param name="file"></param>
     /// <returns></returns>
     [ApiDescriptionSettings(Name = "Upload"), HttpPost]
+    [RequestSizeLimit(int.MaxValue)]
+    [RequestFormLimits(MultipartBodyLengthLimit = int.MaxValue)]
     public async Task<FileOutput> Upload([Required] IFormFile file)
     {
         var service = App.GetService<SysFileService>();
