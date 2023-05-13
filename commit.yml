@@ -2,19 +2,37 @@
 branches: {
   }
 fileChange:
-  /Admin.NET:
-    newFile: !uuid '0420b688e330b8797fad1cd53340c64a9dc1905c'
-    oldFile: !uuid '28f140a0193ae584ed094cf53df8e31aa5fb28ce'
-  /Admin.NET/Admin.NET.Web.Core:
-    newFile: !uuid 'adef8e59a61716651a4f735acb29837a75e9c98c'
-    oldFile: !uuid '26e662b851a6b2cbe0b29fa833c8cc4ee0cca416'
-  /Admin.NET/Admin.NET.Web.Core/Handlers:
-    newFile: !uuid '3a95193e06460eb674b991fba5393bcc1be76c8c'
-    oldFile: !uuid 'b5feb1601a190fef23e8d5ae8d94c4d8c8e9d739'
-  /Admin.NET/Admin.NET.Web.Core/Handlers/JwtHandler.cs:
-    newFile: !uuid 'eaf988bbdec288350e0b81d459c59d17b4c5a666'
-    oldFile: !uuid '14bf6632f9fc27308625783ad856a31547287c78'
-gitCommitId: !uuid '5930ba49a21ccb55f85408a1f0e4df4dbf297751'
+  /Web:
+    newFile: !uuid '1cdeabfe61ab14bc3c0b788af742b9ce0b2eac33'
+    oldFile: !uuid 'd30ae0061d12fe8c3c94774cb6ad39d750878d64'
+  /Web/src:
+    newFile: !uuid '1b7d745173143cf1f2226cab275dff1dc8229cb3'
+    oldFile: !uuid '884b8251722eb11479d0f93256bdeb8229122bd8'
+  /Web/src/globalComponents.d.ts:
+    newFile: !uuid 'afd2f3aa32633793f0489eec3f160bdaaa938980'
+    oldFile: null
+  /Web/src/globalElementPlus.d.ts:
+    newFile: !uuid '6c1afdaeb0e1feacb3670f0aa43d50ddfd5016bb'
+    oldFile: null
+  /Web/src/main.ts:
+    newFile: !uuid '081069d51cdfcb7e8806bffbd81aa117fa837010'
+    oldFile: !uuid 'f597eedaf4b134c2fb3753dc1d0a78b0557cacdc'
+  /Web/src/views:
+    newFile: !uuid '1374068e4375dad7b3b9851062a3334200e8e152'
+    oldFile: !uuid '8229aa641e75d8ddde1b1790bcb61e7aa08e6d1e'
+  /Web/src/views/system:
+    newFile: !uuid 'd994c8b04d6c450b7e8197ca15aacf4925a456fa'
+    oldFile: !uuid '1af0cc000d1345d3092d2ff89784a48c8c1ced0e'
+  /Web/src/views/system/user:
+    newFile: !uuid '9b7fe77be1ee121575c6d0ea4662c0383dbb33d2'
+    oldFile: !uuid '533680e267b7fe6e42ac2c91b45e4c222f2373b1'
+  /Web/src/views/system/user/component:
+    newFile: !uuid 'a38dc6ee5d9bf300d371a07c7984dc663dc57d1e'
+    oldFile: !uuid '24476be303f264c04fa2de79ce8bbf5b05c8ba51'
+  /Web/src/views/system/user/component/userCenter.vue:
+    newFile: !uuid 'efb038b647f7bfc6f8f48a3363f1730d760b4381'
+    oldFile: !uuid '200d03eef7503ea70848140735e3729ab3dffab4'
+gitCommitId: !uuid 'd00c936aca640b407ac02a6fd5aa8925d47301dd'
 renames: {
   }
-revisionId: 886
+revisionId: 887
