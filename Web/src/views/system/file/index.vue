@@ -37,10 +37,10 @@
 					<template #default="scope">
 						<el-image
 							style="width: 60px; height: 60px"
-							:src="`${baseUrl}/${scope.row.filePath}/${scope.row.id}${scope.row.suffix}`"
+							:src="scope.row.thumbUrl"
 							:lazy="true"
 							:hide-on-click-modal="true"
-							:preview-src-list="[`${baseUrl}/${scope.row.filePath}/${scope.row.id}${scope.row.suffix}`]"
+							:preview-src-list="[scope.row.thumbUrl]"
 							:initial-index="0"
 							fit="scale-down"
 							preview-teleported
@@ -101,6 +101,7 @@
 
 <script lang="ts" setup name="sysFile">
 import { onMounted, reactive, ref } from 'vue';
+import type { UploadProps } from 'element-plus';
 import { ElMessageBox, ElMessage, UploadInstance } from 'element-plus';
 
 import { downloadByUrl } from '/@/utils/download';
@@ -108,7 +109,6 @@ import { getAPI } from '/@/utils/axios-utils';
 import { SysFileApi } from '/@/api-services/api';
 import { SysFile } from '/@/api-services/models';
 
-const baseUrl = import.meta.env.VITE_API_URL;
 const uploadRef = ref<UploadInstance>();
 const state = reactive({
 	loading: false,
@@ -159,7 +159,7 @@ const openUploadDialog = () => {
 };
 
 // 通过onChanne方法获得文件列表
-const handleChange = (file: any, fileList: []) => {
+const handleChange:UploadProps['onChange'] = (file, fileList) => {
 	state.fileList = fileList;
 };
 
@@ -174,7 +174,6 @@ const uploadFile = async () => {
 
 // 下载
 const downloadFile = async (row: any) => {
-	// var res = await getAPI(SysFileApi).sysFileDownloadPost({ id: row.id });
 	downloadByUrl({ url: row.url });
 };
 

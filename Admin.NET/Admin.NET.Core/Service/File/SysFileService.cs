@@ -1,5 +1,6 @@
 using Furion.VirtualFileServer;
 using OnceMi.AspNetCore.OSS;
+using Xabe.FFmpeg;
 
 namespace Admin.NET.Core.Service;
 
@@ -60,7 +61,8 @@ public class SysFileService : IDynamicApiController, ITransient
         return new FileOutput
         {
             Id = sysFile.Id,
-            Url = sysFile.Url,  // string.IsNullOrWhiteSpace(sysFile.Url) ? _commonService.GetFileUrl(sysFile) : sysFile.Url,
+            Url = sysFile.Url,
+            ThumbUrl = sysFile.ThumbUrl,
             SizeKb = sysFile.SizeKb,
             Suffix = sysFile.Suffix,
             FilePath = sysFile.FilePath,
@@ -127,12 +129,18 @@ public class SysFileService : IDynamicApiController, ITransient
             if (_OSSProviderOptions.IsEnable)
             {
                 await _OSSService.RemoveObjectAsync(file.BucketName.ToString(), string.Concat(file.FilePath, "/", $"{input.Id}{file.Suffix}"));
+
+                //缩略图
+                await _OSSService.RemoveObjectAsync(file.BucketName.ToString(), string.Concat(file.FilePath, "/", $"{input.Id}.png"));
             }
             else
             {
                 var filePath = Path.Combine(App.WebHostEnvironment.WebRootPath, file.FilePath, input.Id.ToString() + file.Suffix);
-                if (File.Exists(filePath))
-                    File.Delete(filePath);
+                if (File.Exists(filePath)) File.Delete(filePath);
+
+                //缩略图
+                filePath = Path.Combine(App.WebHostEnvironment.WebRootPath, file.FilePath, input.Id.ToString() + ".png");
+                if (File.Exists(filePath)) File.Delete(filePath);
             }
         }
     }
@@ -246,8 +254,19 @@ public class SysFileService : IDynamicApiController, ITransient
 
             // 生成外链
             newFile.Url = $"{CommonUtil.GetLocalhost()}/{newFile.FilePath}/{newFile.Id + newFile.Suffix}";
+
+            newFile.ThumbUrl = newFile.Url;//缩略图外链
+            if (file.ContentType.StartsWith("video/"))
+            {
+                //缩略图
+                var thumbPath = Path.ChangeExtension(realFile, "png");
+                await FFmpeg.Conversions.New().Start($"-i {realFile} -vf \"select=eq(n\\,0)\" -vframes 1 {thumbPath}");
+                newFile.ThumbUrl = $"{CommonUtil.GetLocalhost()}/{newFile.FilePath}/{newFile.Id + ".png"}";//缩略图外链
+            }
         }
+
         await _sysFileRep.AsInsertable(newFile).ExecuteCommandAsync();
+
         return newFile;
     }
 

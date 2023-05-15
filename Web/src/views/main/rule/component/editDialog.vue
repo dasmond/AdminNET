@@ -1,6 +1,6 @@
 ﻿<template>
 	<div class="rule-container">
-		<el-dialog v-model="isShowDialog" :title="props.title" :width="700" draggable="">
+		<el-dialog v-model="isShowDialog" :title="props.title" :width="700" draggable>
 			<el-form :model="ruleForm" ref="ruleFormRef" size="default" label-width="100px" :rules="rules">
 				<el-row :gutter="35">
 					<el-form-item v-show="false">
@@ -41,8 +41,8 @@
 					</el-col>
 					<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
 						<el-form-item label="素材" prop="url">
-							<el-upload list-type="picture-card" :limit="1" :show-file-list="false" :http-request="handleUpload">
-								<img v-if="ruleForm.url" :src="ruleForm.url" style="width: 100%; height: 100%; object-fit: contain" />
+							<el-upload ref="uploadRef" list-type="picture-card" :limit="1" :show-file-list="false" :http-request="handleUpload">
+								<img v-if="ruleForm.file" :src="ruleForm.file.thumbUrl" style="width: 100%; height: 100%; object-fit: contain" />
 								<el-icon v-else>
 									<Plus />
 								</el-icon>
@@ -75,7 +75,7 @@ import { ref } from 'vue';
 
 import { Plus } from '@element-plus/icons-vue';
 import { UploadRequestOptions } from 'element-plus';
-import type { FormInstance, FormRules } from 'element-plus';
+import type { FormInstance, FormRules,UploadInstance } from 'element-plus';
 
 import { addRule, updateRule, uploadMaterial } from '/@/api/main/rule';
 
@@ -129,9 +129,12 @@ const submitForm = async (formEl: FormInstance | undefined) => {
 };
 
 // 上传
+const uploadRef = ref<UploadInstance>();
 const handleUpload = async (options: UploadRequestOptions) => {
 	const res = await uploadMaterial(options);
+	ruleForm.value.file = res.data.result;
 	ruleForm.value.url = res.data.result?.url;
+	uploadRef.value!.clearFiles();//清空已选列表
 };
 
 // 自定义属性，事件，方法

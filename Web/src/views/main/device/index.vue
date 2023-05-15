@@ -9,13 +9,13 @@
 					</el-select>
 				</el-form-item>
 				<el-form-item label="名称">
-					<el-input v-model="queryParams.name" clearable="" placeholder="请输入名称" />
+					<el-input v-model="queryParams.name" clearable placeholder="请输入名称" />
 				</el-form-item>
 				<el-form-item label="IP&端口">
-					<el-input v-model="queryParams.ipPort" clearable="" placeholder="请输入IP&端口" />
+					<el-input v-model="queryParams.ipPort" clearable placeholder="请输入IP&端口" />
 				</el-form-item>
 				<el-form-item label="账号">
-					<el-input v-model="queryParams.account" clearable="" placeholder="请输入账号" />
+					<el-input v-model="queryParams.account" clearable placeholder="请输入账号" />
 				</el-form-item>
 				<el-form-item>
 					<el-button-group>
@@ -30,38 +30,36 @@
 			</el-form>
 		</el-card>
 		<el-card class="full-table" shadow="hover" style="margin-top: 8px">
-			<el-table :data="tableData" style="width: 100%" v-loading="loading" tooltip-effect="light" row-key="id"
-				border="">
+			<el-table :data="tableData" style="width: 100%" v-loading="loading" tooltip-effect="light" row-key="id" border>
 				<el-table-column type="index" label="序号" width="55" align="center" fixed="" />
-				<el-table-column prop="name" label="名称" fixed="" show-overflow-tooltip="" />
-				<el-table-column prop="type" label="类型" fixed="" show-overflow-tooltip="">
+				<el-table-column prop="name" label="名称" fixed="" show-overflow-tooltip />
+				<el-table-column prop="type" label="类型" fixed="" show-overflow-tooltip>
 					<template #default="scope">
 						<span>{{ scope.row.type == 0 ? '算法' : '相机' }}</span>
 					</template>
 				</el-table-column>
-				<el-table-column prop="ipPort" label="IP&端口" fixed="" show-overflow-tooltip="" />
-				<el-table-column prop="account" label="账号" fixed="" show-overflow-tooltip="" />
-				<el-table-column prop="remark" label="备注" fixed="" show-overflow-tooltip="" />
-				<el-table-column label="操作" width="140" align="center" fixed="right" show-overflow-tooltip=""
+				<el-table-column prop="ipPort" label="IP&端口" fixed="" show-overflow-tooltip />
+				<el-table-column prop="account" label="账号" fixed="" show-overflow-tooltip />
+				<el-table-column prop="remark" label="备注" fixed="" show-overflow-tooltip />
+				<el-table-column label="操作" width="140" align="center" fixed="right" show-overflow-tooltip
 					v-if="auth('device:edit') || auth('device:delete')">
 					<template #default="scope">
-						<el-button icon="ele-Edit" size="small" text="" type="primary" @click="openEditDevice(scope.row)"
+						<el-button icon="ele-Edit" size="small" text type="primary" @click="openEditDevice(scope.row)"
 							v-auth="'device:edit'"> 编辑 </el-button>
-						<el-button icon="ele-Delete" size="small" text="" type="primary" @click="delDevice(scope.row)"
+						<el-button icon="ele-Delete" size="small" text type="primary" @click="delDevice(scope.row)"
 							v-auth="'device:delete'"> 删除 </el-button>
 					</template>
 				</el-table-column>
 			</el-table>
 			<el-pagination v-model:currentPage="tableParams.page" v-model:page-size="tableParams.pageSize"
-				:total="tableParams.total" :page-sizes="[10, 20, 50, 100]" small="" background=""
-				@size-change="handleSizeChange" @current-change="handleCurrentChange"
-				layout="total, sizes, prev, pager, next, jumper" />
+				:total="tableParams.total" :page-sizes="[10, 20, 50, 100]" small background @size-change="handleSizeChange"
+				@current-change="handleCurrentChange" layout="total, sizes, prev, pager, next, jumper" />
 			<editDialog ref="editDialogRef" :title="editDialogTitle" @reloadTable="handleQuery" />
 		</el-card>
 	</div>
 </template>
 <script lang="ts" setup="" name="device">
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import { ElMessageBox, ElMessage } from 'element-plus';
 import { auth } from '/@/utils/authFunction';
 import { pageDevice, deleteDevice } from '/@/api/main/device';
@@ -78,6 +76,10 @@ const tableParams = ref({
 
 const editDialogRef = ref();
 const editDialogTitle = ref('');
+
+onMounted(() => {
+	handleQuery();
+});
 
 // 查询数据
 const handleQuery = async () => {
@@ -130,6 +132,4 @@ const delDevice = (row: any) => {
 		})
 		.catch(() => { });
 };
-
-handleQuery();
 </script>

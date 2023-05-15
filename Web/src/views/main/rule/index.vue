@@ -11,10 +11,10 @@
 					</el-select>
 				</el-form-item>
 				<el-form-item label="名称">
-					<el-input v-model="queryParams.name" clearable="" placeholder="请输入名称" />
+					<el-input v-model="queryParams.name" clearable placeholder="请输入名称" />
 				</el-form-item>
 				<el-form-item label="内容">
-					<el-input v-model="queryParams.content" clearable="" placeholder="请输入内容" />
+					<el-input v-model="queryParams.content" clearable placeholder="请输入内容" />
 				</el-form-item>
 				<el-form-item>
 					<el-button-group>
@@ -29,35 +29,34 @@
 			</el-form>
 		</el-card>
 		<el-card class="full-table" shadow="hover" style="margin-top: 8px">
-			<el-table :data="tableData" style="width: 100%" v-loading="loading" tooltip-effect="light" row-key="id"
-				border="">
+			<el-table :data="tableData" style="width: 100%" v-loading="loading" tooltip-effect="light" row-key="id" border>
 				<el-table-column type="index" label="序号" width="55" align="center" fixed="" />
-				<el-table-column prop="name" label="名称" fixed="" show-overflow-tooltip="">
+				<el-table-column prop="name" label="名称" fixed="" show-overflow-tooltip>
 					<template #default="scope"> {{ scope.row.name }} <el-tag v-if="scope.row.isDisable"
 							style="margin-left: 8px">禁用</el-tag> </template>
 				</el-table-column>
-				<el-table-column prop="type" label="类型" fixed="" show-overflow-tooltip="">
+				<el-table-column prop="type" label="类型" fixed="" show-overflow-tooltip>
 					<template #default="scope">
 						<span>{{ getTypeTitle(scope.row.type) }}</span>
 					</template>
 				</el-table-column>
-				<el-table-column prop="start" label="起始(秒)" fixed="" show-overflow-tooltip="" />
-				<el-table-column prop="range" label="持续(秒)" fixed="" show-overflow-tooltip="" />
-				<el-table-column prop="content" label="内容" fixed="" show-overflow-tooltip="" />
-				<el-table-column prop="sortIndex" label="排序" fixed="" show-overflow-tooltip="" />
-				<el-table-column prop="remark" label="备注" fixed="" show-overflow-tooltip="" />
-				<el-table-column label="操作" width="140" align="center" fixed="right" show-overflow-tooltip=""
+				<el-table-column prop="start" label="起始(秒)" fixed="" show-overflow-tooltip />
+				<el-table-column prop="range" label="持续(秒)" fixed="" show-overflow-tooltip />
+				<el-table-column prop="content" label="内容" fixed="" show-overflow-tooltip />
+				<el-table-column prop="sortIndex" label="排序" fixed="" show-overflow-tooltip />
+				<el-table-column prop="remark" label="备注" fixed="" show-overflow-tooltip />
+				<el-table-column label="操作" width="140" align="center" fixed="right" show-overflow-tooltip
 					v-if="auth('rule:edit') || auth('rule:delete')">
 					<template #default="scope">
-						<el-button icon="ele-Edit" size="small" text="" type="primary" @click="openEditRule(scope.row)"
+						<el-button icon="ele-Edit" size="small" text type="primary" @click="openEditRule(scope.row)"
 							v-auth="'rule:edit'"> 编辑 </el-button>
-						<el-button icon="ele-Delete" size="small" text="" type="primary" @click="delRule(scope.row)"
+						<el-button icon="ele-Delete" size="small" text type="primary" @click="delRule(scope.row)"
 							v-auth="'rule:delete'"> 删除 </el-button>
 					</template>
 				</el-table-column>
 			</el-table>
 			<el-pagination v-model:currentPage="tableParams.page" v-model:page-size="tableParams.pageSize"
-				:total="tableParams.total" :page-sizes="[10, 20, 50, 100]" small="" background=""
+				:total="tableParams.total" :page-sizes="[10, 20, 50, 100]" small background
 				@size-change="handleSizeChange" @current-change="handlePageChange"
 				layout="total, sizes, prev, pager, next, jumper" />
 			<editDialog ref="editDialogRef" :title="editDialogTitle" @reloadTable="handleQuery" />
@@ -65,7 +64,7 @@
 	</div>
 </template>
 <script lang="ts" setup="" name="rule">
-import { ref } from 'vue';
+import { ref,onMounted } from 'vue';
 import { ElMessageBox, ElMessage } from 'element-plus';
 import { auth } from '/@/utils/authFunction';
 import { pageRule, deleteRule } from '/@/api/main/rule';
@@ -101,6 +100,10 @@ const getTypeTitle = (value: number) => {
 	}
 	return result;
 };
+
+onMounted(()=>{
+	handleQuery();
+});
 
 // 查询数据
 const handleQuery = async () => {
@@ -153,6 +156,4 @@ const delRule = (row: any) => {
 		})
 		.catch(() => { });
 };
-
-handleQuery();
 </script>

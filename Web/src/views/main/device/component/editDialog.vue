@@ -1,6 +1,6 @@
 ﻿<template>
 	<div class="device-container">
-		<el-dialog v-model="isShowDialog" :title="props.title" :width="700" draggable="">
+		<el-dialog v-model="isShowDialog" :title="props.title" :width="700" draggable>
 			<el-form :model="ruleForm" ref="ruleFormRef" size="default" label-width="100px" :rules="rules">
 				<el-row :gutter="35">
 					<el-form-item v-show="false">

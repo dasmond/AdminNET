@@ -27,7 +27,7 @@ public class RuleService : IDynamicApiController, ITransient
             .WhereIF(!string.IsNullOrWhiteSpace(input.Name), u => u.Name.Contains(input.Name.Trim()))
             .WhereIF(!string.IsNullOrWhiteSpace(input.Content), u => u.Content.Contains(input.Content.Trim()))
             .Select<RuleOutput>()
-            .Mapper(c => c.UrlAttachment, c => c.Url);
+            .Mapper(c => c.File, c => c.Url);
         query = query.OrderBuilder(input);
         return await query.ToPagedListAsync(input.Page, input.PageSize);
     }
@@ -78,9 +78,9 @@ public class RuleService : IDynamicApiController, ITransient
     /// <returns></returns>
     [HttpGet]
     [ApiDescriptionSettings(Name = "Detail")]
-    public async Task<Rule> Detail([FromQuery] RuleGetInput input)
+    public async Task<RuleOutput> Detail([FromQuery] RuleGetInput input)
     {
-        return await _rep.GetFirstAsync(u => u.Id == input.Id);
+        return await _rep.AsQueryable().Where(u => u.Id == input.Id).Select<RuleOutput>().Mapper(c => c.File, c => c.Url).FirstAsync();
     }
 
     /// <summary>

@@ -44,7 +44,7 @@ public class RuleOutput
     /// 素材
     /// </summary>
     public string? Url { get; set; }
-    public SysFile UrlAttachment { get; set; }
+    public SysFile File { get; set; }
 
     /// <summary>
     /// 排序
