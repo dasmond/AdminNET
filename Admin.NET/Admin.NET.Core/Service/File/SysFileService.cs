@@ -258,7 +258,6 @@ public class SysFileService : IDynamicApiController, ITransient
             newFile.ThumbUrl = newFile.Url;//缩略图外链
             if (file.ContentType.StartsWith("video/"))
             {
-                //缩略图
                 var thumbPath = Path.ChangeExtension(realFile, "png");
                 await FFmpeg.Conversions.New().Start($"-i {realFile} -vf \"select=eq(n\\,0)\" -vframes 1 {thumbPath}");
                 newFile.ThumbUrl = $"{CommonUtil.GetLocalhost()}/{newFile.FilePath}/{newFile.Id + ".png"}";//缩略图外链
