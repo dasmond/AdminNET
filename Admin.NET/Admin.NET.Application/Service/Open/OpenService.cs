@@ -1,6 +1,8 @@
-﻿using System.Security.Cryptography;
+﻿using System.Net.Http;
+using System.Security.Cryptography;
 using System.Text;
 using System.Web;
+using Microsoft.AspNetCore.Authorization;
 using NewLife;
 
 namespace Admin.NET.Application;
@@ -11,9 +13,19 @@ namespace Admin.NET.Application;
 [ApiDescriptionSettings(ApplicationConst.GroupName, Order = 100)]
 public class OpenService : IDynamicApiController, ITransient
 {
-    public OpenService()
-    {
+    private IHttpClientFactory HttpClientFactory { get; }
 
+    public OpenService(IHttpClientFactory httpClientFactory)
+    {
+        HttpClientFactory = httpClientFactory;
+    }
+
+    [AllowAnonymous]
+    public async Task<string> Get(string api)
+    {
+        var httpClient = HttpClientFactory.CreateClient("Hikvision");
+        var httpResponse = await httpClient.GetAsync(HttpUtility.UrlDecode(api));
+        return await httpResponse.Content.ReadAsStringAsync();
     }
 
     /// <summary>
@@ -22,12 +34,17 @@ public class OpenService : IDynamicApiController, ITransient
     /// <param name="token"></param>
     /// <param name="file"></param>
     /// <returns></returns>
+    [AllowAnonymous]
     [DisplayName("下载视频(文件流)")]
     public async Task<IActionResult> Download([FromQuery] string token, [Required] IFormFile file)
     {
         if (!Verify(token)) throw Oops.Oh("无效的token");
-        //TODO:通过图片获取人脸ID
+
         var service = App.GetService<SysFileService>();
+        var fileOutput = await service.UploadFile(file, "upload/materials");
+
+        //TODO:通过图片获取人脸ID
+
         return await service.DownloadFile(new FileInput { });
     }
 
