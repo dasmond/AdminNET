@@ -3,30 +3,21 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '1bc3bcd9e9f7f4b9b31e7c2237b666a37bad3104'
-    oldFile: !uuid 'cc9fb42ba9115231d771df57f88b05b7e51f0d56'
+    newFile: !uuid 'a75ac6f928f7f3b42594c1f3c8df59c01f3bc465'
+    oldFile: !uuid '1bc3bcd9e9f7f4b9b31e7c2237b666a37bad3104'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid 'c5dfa9f85cea9dad616c5902b032997094b12e78'
-    oldFile: !uuid '46165c393c334f9dbf41db9f6f2605d8872cfe2d'
-  /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
-    newFile: !uuid 'e18c035a44e5303050fdc6101c2fcdcb219d1328'
-    oldFile: !uuid '7536a739fac903a7a99c3f506c169f5587be4e6c'
-  /Admin.NET/Admin.NET.Core/Job:
-    newFile: !uuid 'c7d9114ce79ed0c32c98394f15a3538ee344c1a4'
-    oldFile: !uuid 'e87a5017cac7c0a67b41ad8224e0ac71f06fc5dd'
-  /Admin.NET/Admin.NET.Core/Job/DynamicJobCompiler.cs:
-    newFile: !uuid '7628104293e2f7d7dca64f8a65591351dbb65657'
-    oldFile: !uuid '383629daff7941d1555eda3e48f2fa51724c35d7'
+    newFile: !uuid '85e1b7b16cc003cdf9927ee9e07ea20336f9aa39'
+    oldFile: !uuid 'c5dfa9f85cea9dad616c5902b032997094b12e78'
   /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid '0fb865dd3da44f4999fa32c474ba3b0527d57828'
-    oldFile: !uuid '83dd47b75d9c06a0cb0816816d80c3db9c69c63a'
-  /Admin.NET/Admin.NET.Core/Service/Job:
-    newFile: !uuid '00fe4befc11a7d0c6d5dcd9fd3e1b04a78b05cd1'
-    oldFile: !uuid '1237d649e9740322c84f7bcb1135e232bd76d8aa'
-  /Admin.NET/Admin.NET.Core/Service/Job/DbJobPersistence.cs:
-    newFile: !uuid '77433e4f5c57b5f4e8681fab9a16061eeac13bc8'
-    oldFile: !uuid 'd6c20c03f64599d4161f19775fb6732d85c1e98a'
-gitCommitId: !uuid 'c2b765a0bae2b71840f3adec0323b66e2756e664'
+    newFile: !uuid 'a50182e3b240cd2d5a5b340ec58fce816aae3175'
+    oldFile: !uuid '0fb865dd3da44f4999fa32c474ba3b0527d57828'
+  /Admin.NET/Admin.NET.Core/Service/File:
+    newFile: !uuid '431d495075dde5714762f54d429f8dd615c9cae1'
+    oldFile: !uuid 'd4a9cc78530887b3a5afba9667719d1039b44320'
+  /Admin.NET/Admin.NET.Core/Service/File/SysFileService.cs:
+    newFile: !uuid '89ddfb9e8211d9c0893b5f8346d99f7c59fe2b48'
+    oldFile: !uuid '8ad5a8c8d00ee472ba8970080aca22f639fc77fc'
+gitCommitId: !uuid '4cbd63405150ee8a9bb8221c6ddb5db968beea6f'
 renames: {
   }
-revisionId: 898
+revisionId: 899
