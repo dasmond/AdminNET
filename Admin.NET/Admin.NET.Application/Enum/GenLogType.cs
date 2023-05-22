@@ -1,7 +1,7 @@
 ﻿namespace Admin.NET.Application.Enum;
 
 [Description("日志类型")]
-public enum LogType
+public enum GenLogType
 {
     [Description("合成")]
     Compose = 0,

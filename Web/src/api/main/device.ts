@@ -7,7 +7,7 @@ enum Api {
 	PageDevice = '/api/device/page',
 }
 
-// 增加设备
+// 增加
 export const addDevice = (params?: any) =>
 	request({
 		url: Api.AddDevice,
@@ -15,7 +15,7 @@ export const addDevice = (params?: any) =>
 		data: params,
 	});
 
-// 删除设备
+// 删除
 export const deleteDevice = (params?: any) =>
 	request({
 		url: Api.DeleteDevice,
@@ -23,7 +23,7 @@ export const deleteDevice = (params?: any) =>
 		data: params,
 	});
 
-// 编辑设备
+// 编辑
 export const updateDevice = (params?: any) =>
 	request({
 		url: Api.UpdateDevice,
@@ -31,7 +31,7 @@ export const updateDevice = (params?: any) =>
 		data: params,
 	});
 
-// 分页查询设备
+// 分页
 export const pageDevice = (params?: any) =>
 	request({
 		url: Api.PageDevice,

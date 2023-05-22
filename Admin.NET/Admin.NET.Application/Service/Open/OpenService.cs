@@ -31,12 +31,13 @@ public class OpenService : IDynamicApiController, ITransient
     /// <summary>
     /// 下载视频(文件流)
     /// </summary>
+    /// <param name="solutionId"></param>
     /// <param name="token"></param>
     /// <param name="file"></param>
     /// <returns></returns>
     [AllowAnonymous]
     [DisplayName("下载视频(文件流)")]
-    public async Task<IActionResult> Download([FromQuery] string token, [Required] IFormFile file)
+    public async Task<IActionResult> Download([FromQuery] long solutionId, [FromQuery] string token, [Required] IFormFile file)
     {
         if (!Verify(token)) throw Oops.Oh("无效的token");
 

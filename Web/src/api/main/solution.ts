@@ -1,47 +1,47 @@
 ﻿import request from '/@/utils/request';
 
 enum Api {
-	AddRule = '/api/rule/add',
-	DeleteRule = '/api/rule/delete',
-	UpdateRule = '/api/rule/update',
-	PageRule = '/api/rule/page',
-	Upload = '/api/rule/upload',
+	AddSolution = '/api/solution/add',
+	DeleteSolution = '/api/solution/delete',
+	UpdateSolution = '/api/solution/update',
+	PageSolution = '/api/solution/page',
+	uploadMaterial = '/api/solution/upload',
 }
 
-// 增加规则
-export const addRule = (params?: any) =>
+// 增加
+export const addSolution = (params?: any) =>
 	request({
-		url: Api.AddRule,
+		url: Api.AddSolution,
 		method: 'post',
 		data: params,
 	});
 
-// 删除规则
-export const deleteRule = (params?: any) =>
+// 删除
+export const deleteSolution = (params?: any) =>
 	request({
-		url: Api.DeleteRule,
+		url: Api.DeleteSolution,
 		method: 'post',
 		data: params,
 	});
 
-// 编辑规则
-export const updateRule = (params?: any) =>
+// 编辑
+export const updateSolution = (params?: any) =>
 	request({
-		url: Api.UpdateRule,
+		url: Api.UpdateSolution,
 		method: 'post',
 		data: params,
 	});
 
-// 分页查询
-export const pageRule = (params?: any) =>
+// 分页
+export const pageSolution = (params?: any) =>
 	request({
-		url: Api.PageRule,
+		url: Api.PageSolution,
 		method: 'post',
 		data: params,
 	});
 
-// 上传素材
-export const uploadMaterial = (params: any) => uploadFileHandle(params, Api.Upload);
+// 上传
+export const uploadMaterial = (params: any) => uploadFileHandle(params, Api.uploadMaterial);
 
 export const uploadFileHandle = (params: any, url: string) => {
 	const formData = new window.FormData();

@@ -1,13 +1,14 @@
 ﻿<template>
-	<div class="rule-container">
+	<div class="solution-container">
 		<el-card shadow="hover" :body-style="{ paddingBottom: '0' }">
 			<el-form :model="queryParams" ref="queryForm" :inline="true">
 				<el-form-item label="类型" prop="type">
 					<el-select v-model="queryParams.type" placeholder="请选择" clearable>
-						<el-option label="文字" :value="0" />
+						<el-option label="字幕" :value="0" />
 						<el-option label="图片" :value="1" />
 						<el-option label="音频" :value="2" />
 						<el-option label="视频" :value="3" />
+						<el-option label="景点" :value="4" />
 					</el-select>
 				</el-form-item>
 				<el-form-item label="名称">
@@ -19,12 +20,12 @@
 				<el-form-item>
 					<el-button-group>
 						<el-button icon="ele-Refresh" @click="handleReset"> 重置 </el-button>
-						<el-button type="primary" icon="ele-Search" @click="handleQuery" v-auth="'rule:page'"> 查询
+						<el-button type="primary" icon="ele-Search" @click="handleQuery" v-auth="'solution:page'"> 查询
 						</el-button>
 					</el-button-group>
 				</el-form-item>
 				<el-form-item>
-					<el-button type="primary" icon="ele-Plus" @click="openAddRule" v-auth="'rule:add'"> 新增 </el-button>
+					<el-button type="primary" icon="ele-Plus" @click="openAddSolution" v-auth="'solution:add'"> 新增 </el-button>
 				</el-form-item>
 			</el-form>
 		</el-card>
@@ -46,12 +47,12 @@
 				<el-table-column prop="sortIndex" label="排序" fixed="" show-overflow-tooltip />
 				<el-table-column prop="remark" label="备注" fixed="" show-overflow-tooltip />
 				<el-table-column label="操作" width="140" align="center" fixed="right" show-overflow-tooltip
-					v-if="auth('rule:edit') || auth('rule:delete')">
+					v-if="auth('solution:edit') || auth('solution:delete')">
 					<template #default="scope">
-						<el-button icon="ele-Edit" size="small" text type="primary" @click="openEditRule(scope.row)"
-							v-auth="'rule:edit'"> 编辑 </el-button>
-						<el-button icon="ele-Delete" size="small" text type="primary" @click="delRule(scope.row)"
-							v-auth="'rule:delete'"> 删除 </el-button>
+						<el-button icon="ele-Edit" size="small" text type="primary" @click="openEditSolution(scope.row)"
+							v-auth="'solution:edit'"> 编辑 </el-button>
+						<el-button icon="ele-Delete" size="small" text type="primary" @click="deleteSolution(scope.row)"
+							v-auth="'solution:delete'"> 删除 </el-button>
 					</template>
 				</el-table-column>
 			</el-table>
@@ -63,12 +64,12 @@
 		</el-card>
 	</div>
 </template>
-<script lang="ts" setup="" name="rule">
+<script lang="ts" setup="" name="solution">
 import { ref,onMounted } from 'vue';
 import { ElMessageBox, ElMessage } from 'element-plus';
 import { auth } from '/@/utils/authFunction';
-import { pageRule, deleteRule } from '/@/api/main/rule';
-import editDialog from '/@/views/main/rule/component/editDialog.vue';
+import { pageSolution, deleteSolution } from '/@/api/main/solution';
+import editDialog from '/@/views/main/solution/component/editDialog.vue';
 
 const loading = ref(false);
 const tableData = ref<any>([]);
@@ -86,7 +87,7 @@ const getTypeTitle = (value: number) => {
 	let result = '';
 	switch (value) {
 		case 0:
-			result = '文字';
+			result = '字幕';
 			break;
 		case 1:
 			result = '图片';
@@ -96,6 +97,9 @@ const getTypeTitle = (value: number) => {
 			break;
 		case 3:
 			result = '视频';
+			break;
+		case 4:
+			result = '景点';
 			break;
 	}
 	return result;
@@ -108,7 +112,7 @@ onMounted(()=>{
 // 查询数据
 const handleQuery = async () => {
 	loading.value = true;
-	var res = await pageRule(Object.assign(queryParams.value, tableParams.value));
+	var res = await pageSolution(Object.assign(queryParams.value, tableParams.value));
 	tableData.value = res.data.result?.items ?? [];
 	tableParams.value.total = res.data.result?.total;
 	loading.value = false;
@@ -131,26 +135,26 @@ const handlePageChange = (val: number) => {
 };
 
 // 新增页面
-const openAddRule = () => {
+const openAddSolution = () => {
 	editDialogTitle.value = '添加规则';
 	editDialogRef.value.openDialog({});
 };
 
 // 编辑页面
-const openEditRule = (row: any) => {
+const openEditSolution = (row: any) => {
 	editDialogTitle.value = '编辑规则';
 	editDialogRef.value.openDialog(row);
 };
 
 // 删除数据
-const delRule = (row: any) => {
+const deleteSolution = (row: any) => {
 	ElMessageBox.confirm(`确定要删除吗?`, '提示', {
 		confirmButtonText: '确定',
 		cancelButtonText: '取消',
 		type: 'warning',
 	})
 		.then(async () => {
-			await deleteRule(row);
+			await deleteSolution(row);
 			handleQuery();
 			ElMessage.success('删除成功');
 		})

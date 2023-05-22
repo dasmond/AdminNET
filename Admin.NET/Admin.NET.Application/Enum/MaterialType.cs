@@ -3,12 +3,14 @@
 [Description("素材类型")]
 public enum MaterialType
 {
-    [Description("文字")]
+    [Description("字幕")]
     Word = 0,
     [Description("图片")]
     Image = 1,
     [Description("音频")]
     Audio = 2,
     [Description("视频")]
-    Video = 3
+    Video = 3,
+    [Description("设备")]
+    Device = 4
 }

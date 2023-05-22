@@ -21,17 +21,17 @@ public class SysMenuSeedData : ISqlSugarEntitySeedData<SysMenu>
             // 建议此处Id范围之间放置具体业务应用菜单
             new SysMenu{ Id=1300000000201, Pid=0, Title="视频合成", Path="/vcms", Name="Vcms", Component="Layout", Icon="ele-VideoCameraFilled", Type=MenuTypeEnum.Dir, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
 
-            new SysMenu{ Id=1300000000211, Pid=1300000000201, Title="设备管理", Path="/vcms/device", Name="device", Component="/main/device/index", Icon="fa fa-server", Type=MenuTypeEnum.Menu, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
+            new SysMenu{ Id=1300000000211, Pid=1300000000201, Title="景点管理", Path="/vcms/device", Name="device", Component="/main/device/index", Icon="fa fa-server", Type=MenuTypeEnum.Menu, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
             new SysMenu{ Id=1300000000212, Pid=1300000000211, Title="查询", Permission="device:page", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
             new SysMenu{ Id=1300000000213, Pid=1300000000211, Title="编辑", Permission="device:edit", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
             new SysMenu{ Id=1300000000214, Pid=1300000000211, Title="新增", Permission="device:add", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
             new SysMenu{ Id=1300000000215, Pid=1300000000211, Title="删除", Permission="device:delete", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
 
-            new SysMenu{ Id=1300000000221, Pid=1300000000201, Title="规则管理", Path="/vcms/rule", Name="rule", Component="/main/rule/index", Icon="ele-Operation", Type=MenuTypeEnum.Menu, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
-            new SysMenu{ Id=1300000000222, Pid=1300000000221, Title="查询", Permission="rule:page", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
-            new SysMenu{ Id=1300000000223, Pid=1300000000221, Title="编辑", Permission="rule:edit", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
-            new SysMenu{ Id=1300000000224, Pid=1300000000221, Title="新增", Permission="rule:add", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
-            new SysMenu{ Id=1300000000225, Pid=1300000000221, Title="删除", Permission="rule:delete", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
+            new SysMenu{ Id=1300000000221, Pid=1300000000201, Title="方案管理", Path="/vcms/solution", Name="solution", Component="/main/solution/index", Icon="ele-Operation", Type=MenuTypeEnum.Menu, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
+            new SysMenu{ Id=1300000000222, Pid=1300000000221, Title="查询", Permission="solution:page", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
+            new SysMenu{ Id=1300000000223, Pid=1300000000221, Title="编辑", Permission="solution:edit", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
+            new SysMenu{ Id=1300000000224, Pid=1300000000221, Title="新增", Permission="solution:add", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
+            new SysMenu{ Id=1300000000225, Pid=1300000000221, Title="删除", Permission="solution:delete", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
             // 建议此处Id范围之间放置具体业务应用菜单
 
             new SysMenu{ Id=1310000000101, Pid=0, Title="系统管理", Path="/system", Name="system", Component="Layout", Icon="ele-Setting", Type=MenuTypeEnum.Dir, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=1000 },
