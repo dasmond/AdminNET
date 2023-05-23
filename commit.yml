@@ -2,67 +2,28 @@
 branches: {
   }
 fileChange:
-  /Admin.NET:
-    newFile: !uuid 'ad6d4cac84b5ca3d4eba472a6f761e734e0918c7'
-    oldFile: !uuid '82f51f2a0aa7d1e0480559a50e5ccc49f3988f8e'
-  /Admin.NET/Admin.NET.Application:
-    newFile: !uuid '9aeb12771889afd9a81cf07af4194cd5b04a5d48'
-    oldFile: !uuid '18b45118e6fd6775c0a43ec83cafa74229872f08'
-  /Admin.NET/Admin.NET.Application/Configuration:
-    newFile: !uuid '505f1b9ea221cc91399ca7e18aad1379ad3dee0a'
-    oldFile: !uuid 'ae212cc860cb9dc10ae81ee34d4c0c5caeeb2837'
-  /Admin.NET/Admin.NET.Application/Configuration/SignalRRedisDock.json:
-    newFile: null
-    oldFile: !uuid 'b5fc9d84f46b4d3e859ec47a1eca4d61409b8a00'
-  /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '2c57f93bbae787a09a1ef7ec36f842f58a761ed5'
-    oldFile: !uuid 'f5f117ebfa02ff7502e20ba8fee082865fd02c66'
-  /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
-    newFile: !uuid '22368de4a5eb70823e4ac1cefdc0a0310351df65'
-    oldFile: !uuid 'fdf2fcc66a0d87d6f6c3a723bd9a15bac84df72b'
-  /Admin.NET/Admin.NET.Core/Hub:
-    newFile: !uuid 'a48d4883470cffe605824e9619e3d0d1ff5c8809'
-    oldFile: !uuid 'bc540cd11de86f2a7d3d406518dd6ccbf9a1cd42'
-  /Admin.NET/Admin.NET.Core/Hub/SignalRDockExtensions.cs:
-    newFile: null
-    oldFile: !uuid '1197206501adc7b0cc39dbe2e1e22c04d023cd0b'
-  /Admin.NET/Admin.NET.Core/Job:
-    newFile: !uuid 'cd1eaaba2711de84ce4cf8912d7d663b1c3c9f1e'
-    oldFile: !uuid 'c7d9114ce79ed0c32c98394f15a3538ee344c1a4'
-  /Admin.NET/Admin.NET.Core/Job/DynamicJobCompiler.cs:
-    newFile: !uuid 'dfb180d24cf035c2a1afa85a10e100749d926fd3'
-    oldFile: !uuid '7628104293e2f7d7dca64f8a65591351dbb65657'
-  /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid '346f5207ce599f0302062d961ed18b308f448f62'
-    oldFile: !uuid '605bd14f1301d7525449ff9f7bc8b02f07746a34'
-  /Admin.NET/Admin.NET.Core/Service/Config:
-    newFile: !uuid 'e31e44d90665669411b0554fa84ebdc991c15d32'
-    oldFile: !uuid '0da67840e01e762aadfe4202a613cad277d9fa42'
-  /Admin.NET/Admin.NET.Core/Service/Config/SysConfigService.cs:
-    newFile: !uuid 'a83ac1bc8e7b4a8a14d959ff8ca4c0b81551ac06'
-    oldFile: !uuid 'c99b5e0c72c3a134a206b8d0e37aaa550c5019a6'
-  /Admin.NET/Admin.NET.Core/Service/File:
-    newFile: !uuid '456012938e727113bc0a5c2ea77d975aa8b0bbb6'
-    oldFile: !uuid '431d495075dde5714762f54d429f8dd615c9cae1'
-  /Admin.NET/Admin.NET.Core/Service/File/SysFileService.cs:
-    newFile: !uuid '870b20dbe4a711fb4b4fe2ce21cb881e8dac979a'
-    oldFile: !uuid '89ddfb9e8211d9c0893b5f8346d99f7c59fe2b48'
-  /Admin.NET/Admin.NET.Core/Service/Job:
-    newFile: !uuid 'e7fc24a297a763123eba3b33dea3a1f3a33a1944'
-    oldFile: !uuid 'c619042aa8a2d81b44b9ad23e4d9fe224a04a246'
-  /Admin.NET/Admin.NET.Core/Service/Job/DbJobPersistence.cs:
-    newFile: !uuid 'ac73173ea836da45a38ddc0bd6168527cbb8c570'
-    oldFile: !uuid '77433e4f5c57b5f4e8681fab9a16061eeac13bc8'
-  /Admin.NET/Admin.NET.Core/Service/Job/JobClusterServer.cs:
-    newFile: !uuid 'daaaeb3d51e3d4e2cd16a7a58235b5da524b44dd'
-    oldFile: !uuid 'd58839fccd810c8dee505982fff6a42b4102093a'
-  /Admin.NET/Admin.NET.Web.Core:
-    newFile: !uuid '032ff5a133383e43d10796d1f8799f0622531b10'
-    oldFile: !uuid 'ab78a5b94e291e94904b955a6b5d694120c82ff7'
-  /Admin.NET/Admin.NET.Web.Core/Startup.cs:
-    newFile: !uuid 'ab08bfd767f9118a59ea1626e881030ac2b1fdaf'
-    oldFile: !uuid '0b3ff28ae9b5fac4580161a23855eaabd2a8dbac'
-gitCommitId: !uuid 'cc36740707565af4b07e63e696e18465e9d71a5b'
+  /Web:
+    newFile: !uuid 'a4cf7d6933a67d7f36b573ab5fa1262f047b7c44'
+    oldFile: !uuid 'cafc520c97b685a58fd4c540f69b12d59f1e34e9'
+  /Web/src:
+    newFile: !uuid '1162eed67e1e2652430a0d34f5ec21e318780c38'
+    oldFile: !uuid '91a16baafd51da4446f0f5143b996cb1ccc7f10a'
+  /Web/src/views:
+    newFile: !uuid '280bb8f2b4ee480c04b217b364dcf983c950f5ec'
+    oldFile: !uuid '43a331a9184b27f36c0e7f947a92f6b120e5f7fc'
+  /Web/src/views/system:
+    newFile: !uuid '532a4ab36f48c9f5a56e2feb8c633f190a7162d0'
+    oldFile: !uuid 'c4eb78256cb1ffc56d1c495035107261c2f94579'
+  /Web/src/views/system/job:
+    newFile: !uuid '257f2c087208b061e454d83a3ea5499ed6f8b85d'
+    oldFile: !uuid '5c8dc13a0f1222d45d319eec590c6d60c912048f'
+  /Web/src/views/system/job/component:
+    newFile: !uuid '5a8bd042ad8f337650e0479d1dc53f6c18973d6e'
+    oldFile: !uuid '0cc5f42b0d1fcfb472c2b6ae2ed4a82a04a9449d'
+  /Web/src/views/system/job/component/editJobDetail.vue:
+    newFile: !uuid 'ec667567ca60d533b8a07296a449182181bcf35a'
+    oldFile: !uuid 'ed153a61712d81dd82f4269f7d75932232cb2622'
+gitCommitId: !uuid '8688d2c51241085a9b48d3365f78862c1cf5c7fc'
 renames: {
   }
-revisionId: 872
+revisionId: 873
