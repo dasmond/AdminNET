@@ -1,6 +1,4 @@
-﻿using Nest;
-
-namespace Admin.NET.Application;
+﻿namespace Admin.NET.Application;
 
 /// <summary>
 /// 方案服务
@@ -8,11 +6,12 @@ namespace Admin.NET.Application;
 [ApiDescriptionSettings(ApplicationConst.GroupName, Order = 100)]
 public class SolutionService : IDynamicApiController, ITransient
 {
-    private readonly SqlSugarRepository<Solution> _rep;
+    private readonly SqlSugarRepository<Solution> _solutionRepository;
 
-    public SolutionService(SqlSugarRepository<Solution> rep)
+    public SolutionService(
+        SqlSugarRepository<Solution> solutionRepository)
     {
-        _rep = rep;
+        _solutionRepository = solutionRepository;
     }
 
     /// <summary>
@@ -24,7 +23,7 @@ public class SolutionService : IDynamicApiController, ITransient
     [ApiDescriptionSettings(Name = "Detail")]
     public async Task<Solution> Detail(long id)
     {
-        return await _rep.AsQueryable()
+        return await _solutionRepository.AsQueryable()
             .Includes(e => e.Items, i => i.File)
             .Where(u => u.Id == id)
             .Select<Solution>()
@@ -40,7 +39,7 @@ public class SolutionService : IDynamicApiController, ITransient
     [ApiDescriptionSettings(Name = "Page")]
     public async Task<SqlSugarPagedList<Solution>> Page(SolutionPageInput input)
     {
-        var query = _rep.AsQueryable()
+        var query = _solutionRepository.AsQueryable()
             .Includes(e => e.Items, i => i.File)
             .WhereIF(!string.IsNullOrWhiteSpace(input.Name), u => u.Name.Contains(input.Name.Trim()))
             .WhereIF(input.IsDisable.HasValue, e => e.IsDisable == input.IsDisable)
@@ -59,7 +58,7 @@ public class SolutionService : IDynamicApiController, ITransient
     public async Task Add(Solution input)
     {
         var entity = input.Adapt<Solution>();
-        await _rep.InsertAsync(entity);
+        await _solutionRepository.InsertAsync(entity);
     }
 
     /// <summary>
@@ -72,9 +71,9 @@ public class SolutionService : IDynamicApiController, ITransient
     [ApiDescriptionSettings(Name = "Update")]
     public async Task Update(long id, [FromBody] Solution input)
     {
-        var entity = await _rep.GetFirstAsync(e => e.Id == id);
+        var entity = await _solutionRepository.GetFirstAsync(e => e.Id == id);
         input.Adapt(entity);//自动映射
-        await _rep.AsUpdateable(entity).IgnoreColumns(ignoreAllNullColumns: true).ExecuteCommandAsync();
+        await _solutionRepository.AsUpdateable(entity).IgnoreColumns(ignoreAllNullColumns: true).ExecuteCommandAsync();
     }
 
     /// <summary>
@@ -86,8 +85,8 @@ public class SolutionService : IDynamicApiController, ITransient
     [ApiDescriptionSettings(Name = "Delete")]
     public async Task Delete(long id)
     {
-        var entity = await _rep.GetFirstAsync(u => u.Id == id) ?? throw Oops.Oh(ErrorCodeEnum.D1002);
-        await _rep.FakeDeleteAsync(entity);   //假删除
+        var entity = await _solutionRepository.GetFirstAsync(u => u.Id == id) ?? throw Oops.Oh(ErrorCodeEnum.D1002);
+        await _solutionRepository.FakeDeleteAsync(entity);   //假删除
     }
 
     /// <summary>

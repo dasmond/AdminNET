@@ -1,6 +1,4 @@
-﻿using Mapster;
-
-namespace Admin.NET.Application;
+﻿namespace Admin.NET.Application;
 
 /// <summary>
 /// 设备服务
@@ -8,11 +6,12 @@ namespace Admin.NET.Application;
 [ApiDescriptionSettings(ApplicationConst.GroupName, Order = 100)]
 public class DeviceService : IDynamicApiController, ITransient
 {
-    private readonly SqlSugarRepository<Device> _rep;
+    private readonly SqlSugarRepository<Device> _deviceRepository;
 
-    public DeviceService(SqlSugarRepository<Device> rep)
+    public DeviceService(
+        SqlSugarRepository<Device> deviceRepository)
     {
-        _rep = rep;
+        _deviceRepository = deviceRepository;
     }
 
     /// <summary>
@@ -24,7 +23,7 @@ public class DeviceService : IDynamicApiController, ITransient
     [ApiDescriptionSettings(Name = "Detail")]
     public async Task<Device> Detail(long id)
     {
-        return await _rep.GetFirstAsync(u => u.Id == id);
+        return await _deviceRepository.GetFirstAsync(u => u.Id == id);
     }
 
     /// <summary>
@@ -35,7 +34,7 @@ public class DeviceService : IDynamicApiController, ITransient
     [ApiDescriptionSettings(Name = "Tree")]
     public async Task<List<Device>> Tree([FromQuery] DeviceTreeInput input)
     {
-        return await _rep.AsQueryable().ToTreeAsync(c => c.Children, p => p.ParentId, input.ParentId ?? 0);
+        return await _deviceRepository.AsQueryable().ToTreeAsync(c => c.Children, p => p.ParentId, input.ParentId ?? 0);
     }
 
     /// <summary>
@@ -47,7 +46,7 @@ public class DeviceService : IDynamicApiController, ITransient
     [ApiDescriptionSettings(Name = "Page")]
     public async Task<SqlSugarPagedList<Device>> Page(DevicePageInput input)
     {
-        var query = _rep.AsQueryable()
+        var query = _deviceRepository.AsQueryable()
             .WhereIF(input.Type.HasValue, u => u.Type == input.Type)
             .WhereIF(!string.IsNullOrWhiteSpace(input.Name), u => u.Name.Contains(input.Name.Trim()))
             .WhereIF(!string.IsNullOrWhiteSpace(input.IpPort), u => u.IpPort.Contains(input.IpPort.Trim()))
@@ -65,7 +64,7 @@ public class DeviceService : IDynamicApiController, ITransient
     [ApiDescriptionSettings(Name = "Add")]
     public async Task Add(Device input)
     {
-        await _rep.InsertAsync(input);
+        await _deviceRepository.InsertAsync(input);
     }
 
     /// <summary>
@@ -76,11 +75,11 @@ public class DeviceService : IDynamicApiController, ITransient
     /// <returns></returns>
     [HttpPut]
     [ApiDescriptionSettings(Name = "Update")]
-    public async Task Update(long id,[FromBody] Device input)
+    public async Task Update(long id, [FromBody] Device input)
     {
-        var entity = await _rep.GetFirstAsync(e => e.Id == id);
+        var entity = await _deviceRepository.GetFirstAsync(e => e.Id == id);
         input.Adapt(entity);//自动映射
-        await _rep.AsUpdateable(entity).IgnoreColumns(ignoreAllNullColumns: true).ExecuteCommandAsync();
+        await _deviceRepository.AsUpdateable(entity).IgnoreColumns(ignoreAllNullColumns: true).ExecuteCommandAsync();
     }
 
     /// <summary>
@@ -92,7 +91,7 @@ public class DeviceService : IDynamicApiController, ITransient
     [ApiDescriptionSettings(Name = "Delete")]
     public async Task Delete(long id)
     {
-        var entity = await _rep.GetFirstAsync(u => u.Id == id) ?? throw Oops.Oh(ErrorCodeEnum.D1002);
-        await _rep.FakeDeleteAsync(entity);   //假删除
+        var entity = await _deviceRepository.GetFirstAsync(u => u.Id == id) ?? throw Oops.Oh(ErrorCodeEnum.D1002);
+        await _deviceRepository.FakeDeleteAsync(entity);   //假删除
     }
 }
