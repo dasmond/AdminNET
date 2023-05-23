@@ -113,7 +113,7 @@ export default {
 		close: '關閉',
 		closeOther: '關閉其它',
 		closeAll: '全部關閉',
-		fullscreen: '當前頁全屏',
+		fullscreen: '全屏瀏覽',
 		closeFullscreen: '關閉全屏',
 	},
 	notFound: {
