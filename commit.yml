@@ -3,21 +3,36 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '0ef598616c214e69fcef4d71012b429041b39a23'
-    oldFile: !uuid '62f934d3ffeadc95841d629f144f1de207593ee5'
+    newFile: !uuid '82f51f2a0aa7d1e0480559a50e5ccc49f3988f8e'
+    oldFile: !uuid '0ef598616c214e69fcef4d71012b429041b39a23'
+  /Admin.NET/Admin.NET.Application:
+    newFile: !uuid '18b45118e6fd6775c0a43ec83cafa74229872f08'
+    oldFile: !uuid '9aeb12771889afd9a81cf07af4194cd5b04a5d48'
+  /Admin.NET/Admin.NET.Application/Configuration:
+    newFile: !uuid 'ae212cc860cb9dc10ae81ee34d4c0c5caeeb2837'
+    oldFile: !uuid '505f1b9ea221cc91399ca7e18aad1379ad3dee0a'
+  /Admin.NET/Admin.NET.Application/Configuration/SignalRRedisDock.json:
+    newFile: !uuid 'b5fc9d84f46b4d3e859ec47a1eca4d61409b8a00'
+    oldFile: null
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '7072c22b750e67004614b95c44fbb50358e62cb4'
-    oldFile: !uuid 'b538695b89c66df643362da3c7fdbee538d37e9a'
-  /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid '605bd14f1301d7525449ff9f7bc8b02f07746a34'
-    oldFile: !uuid 'ccb5899ed0abe72f87e7c0f047f57714e4771b0a'
-  /Admin.NET/Admin.NET.Core/Service/Job:
-    newFile: !uuid 'c619042aa8a2d81b44b9ad23e4d9fe224a04a246'
-    oldFile: !uuid '102dada2daf556326cc6a0f0bf9c740a8ac9745b'
-  /Admin.NET/Admin.NET.Core/Service/Job/JobClusterServer.cs:
-    newFile: !uuid 'd58839fccd810c8dee505982fff6a42b4102093a'
-    oldFile: !uuid '1b08d01e2a55e7b1ed74784ac3cc844100a8ad7c'
-gitCommitId: !uuid 'c109ce1c169ba4a0fe02daa416c489617190519e'
+    newFile: !uuid 'f5f117ebfa02ff7502e20ba8fee082865fd02c66'
+    oldFile: !uuid '7072c22b750e67004614b95c44fbb50358e62cb4'
+  /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
+    newFile: !uuid 'fdf2fcc66a0d87d6f6c3a723bd9a15bac84df72b'
+    oldFile: !uuid 'e18c035a44e5303050fdc6101c2fcdcb219d1328'
+  /Admin.NET/Admin.NET.Core/Hub:
+    newFile: !uuid 'bc540cd11de86f2a7d3d406518dd6ccbf9a1cd42'
+    oldFile: !uuid 'a48d4883470cffe605824e9619e3d0d1ff5c8809'
+  /Admin.NET/Admin.NET.Core/Hub/SignalRDockExtensions.cs:
+    newFile: !uuid '1197206501adc7b0cc39dbe2e1e22c04d023cd0b'
+    oldFile: null
+  /Admin.NET/Admin.NET.Web.Core:
+    newFile: !uuid 'ab78a5b94e291e94904b955a6b5d694120c82ff7'
+    oldFile: !uuid '7c4fb3710cf42f83d7de8e86f37ff2e3c453226c'
+  /Admin.NET/Admin.NET.Web.Core/Startup.cs:
+    newFile: !uuid '0b3ff28ae9b5fac4580161a23855eaabd2a8dbac'
+    oldFile: !uuid '5837c7e6a6b775918e6d61db65d89533e07159c7'
+gitCommitId: !uuid '26dd3500e3a6de07f33bc6052d98124d25a498bd'
 renames: {
   }
-revisionId: 870
+revisionId: 871
