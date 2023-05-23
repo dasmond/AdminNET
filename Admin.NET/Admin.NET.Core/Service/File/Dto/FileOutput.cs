@@ -23,6 +23,11 @@ public class FileOutput
     public string Url { get; set; }
 
     /// <summary>
+    /// 缩略图
+    /// </summary>
+    public string? ThumbUrl { get; set; }
+
+    /// <summary>
     /// 大小
     /// </summary>
     public string SizeKb { get; set; }

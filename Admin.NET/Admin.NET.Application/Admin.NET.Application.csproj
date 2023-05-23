@@ -10,17 +10,17 @@
 
   <ItemGroup>
     <None Remove="Admin.NET.Application.xml" />
-    <None Remove="Configuration\Limit.json" />
-    <None Remove="Configuration\Logging.json" />
+    <None Remove="Config\Limit.json" />
+    <None Remove="Config\Logging.json" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Configuration\Logging.json">
+    <Content Include="Config\Logging.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
-    <Content Include="Configuration\Limit.json">
+    <Content Include="Config\Limit.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
@@ -30,40 +30,40 @@
   </ItemGroup>
 
   <ItemGroup>
-	  <None Update="Configuration\APIJSON.json">
+	  <None Update="Config\APIJSON.json">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  </None>
-	  <None Update="Configuration\App.json">
+	  <None Update="Config\App.json">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  </None>
-    <None Update="Configuration\Cache.json">
+    <None Update="Config\Cache.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Configuration\Enum.json">
+    <None Update="Config\Enum.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Configuration\CodeGen.json">
+    <None Update="Config\CodeGen.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Configuration\Database.json">
+    <None Update="Config\Database.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Configuration\Email.json">
+    <None Update="Config\Email.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Configuration\JWT.json">
+    <None Update="Config\JWT.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Configuration\OAuth.json">
+    <None Update="Config\OAuth.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Configuration\OSS.json">
+    <None Update="Config\OSS.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Configuration\Swagger.json">
+    <None Update="Config\Swagger.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Configuration\Wechat.json">
+    <None Update="Config\Wechat.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

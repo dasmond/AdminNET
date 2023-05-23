@@ -57,9 +57,16 @@ public class SysFile : EntityBase
     public string? SizeInfo { get; set; }
 
     /// <summary>
-    /// 外链地址-OSS上传后生成外链地址方便前端预览
+    /// 外链地址-文件上传后生成外链地址方便前端调用
     /// </summary>
     [SugarColumn(ColumnDescription = "外链地址", Length = 128)]
     [MaxLength(128)]
     public string? Url { get; set; }
+
+    /// <summary>
+    /// 缩略图-视频或图片上传后生成外链地址方便前端预览
+    /// </summary>
+    [SugarColumn(ColumnDescription = "缩略图", Length = 128)]
+    [MaxLength(128)]
+    public string? ThumbUrl { get; set; }
 }
