@@ -103,7 +103,6 @@
 
 <script lang="ts" setup name="sysEditJobDetail">
 import { reactive, ref, computed } from 'vue';
-import mittBus from '/@/utils/mitt';
 import * as monaco from 'monaco-editor';
 import { JobScriptCode } from './JobScriptCode';
 
@@ -123,14 +122,13 @@ const httpMethodDef = {
 const props = defineProps({
 	title: String,
 });
-
+const emits = defineEmits(['handleQuery']);
 const ruleFormRef = ref();
 const monacoEditorRef = ref();
 const state = reactive({
 	isShowDialog: false,
 	selectedTabName: '0', // 选中的 tab 页
 	ruleForm: {} as UpdateJobDetailInput,
-	monacoEditor: null as any,
 	httpJobMessage: { requestUri: '', httpMethod: httpMethodDef.get, body: '' } as HttpJobMessage,
 });
 
@@ -185,7 +183,7 @@ const openDialog = (row: any) => {
 	state.isShowDialog = true;
 
 	// Http请求
-	if (state.ruleForm.createType === JobCreateTypeEnum.NUMBER_2) {
+	if (row.id && state.ruleForm.createType === JobCreateTypeEnum.NUMBER_2) {
 		state.httpJobMessage = getHttpJobMessage(state.ruleForm.properties);
 	}
 
@@ -198,7 +196,7 @@ const openDialog = (row: any) => {
 
 // 关闭弹窗
 const closeDialog = () => {
-	mittBus.emit('submitRefresh');
+	emits('handleQuery');
 	state.isShowDialog = false;
 };
 

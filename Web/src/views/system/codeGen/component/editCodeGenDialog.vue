@@ -110,7 +110,6 @@
 
 <script lang="ts" setup name="sysEditCodeGen">
 import { onMounted, reactive, ref } from 'vue';
-import mittBus from '/@/utils/mitt';
 
 import { getAPI } from '/@/utils/axios-utils';
 import { SysCodeGenApi, SysDictDataApi, SysMenuApi } from '/@/api-services/api';
@@ -119,7 +118,7 @@ import { UpdateCodeGenInput, AddCodeGenInput, SysMenu } from '/@/api-services/mo
 const props = defineProps({
 	title: String,
 });
-
+const emits = defineEmits(['handleQuery']);
 const ruleFormRef = ref();
 const state = reactive({
 	isShowDialog: false,
@@ -166,7 +165,7 @@ const openDialog = (row: any) => {
 
 // 关闭弹窗
 const closeDialog = () => {
-	mittBus.emit('submitRefresh');
+	emits('handleQuery');
 	state.isShowDialog = false;
 };
 

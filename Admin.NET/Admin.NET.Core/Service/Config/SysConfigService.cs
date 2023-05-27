@@ -28,7 +28,8 @@ public class SysConfigService : IDynamicApiController, ITransient
             .WhereIF(!string.IsNullOrWhiteSpace(input.Name?.Trim()), u => u.Name.Contains(input.Name))
             .WhereIF(!string.IsNullOrWhiteSpace(input.Code?.Trim()), u => u.Code.Contains(input.Code))
             .WhereIF(!string.IsNullOrWhiteSpace(input.GroupCode?.Trim()), u => u.GroupCode.Equals(input.GroupCode))
-            .OrderBy(u => u.OrderNo).ToPagedListAsync(input.Page, input.PageSize);
+            .OrderBuilder(input)
+            .ToPagedListAsync(input.Page, input.PageSize);
     }
 
     /// <summary>
@@ -92,6 +93,27 @@ public class SysConfigService : IDynamicApiController, ITransient
         await _sysConfigRep.DeleteAsync(config);
 
         _sysCacheService.Remove(config.Code);
+    }
+
+    /// <summary>
+    /// 批量删除参数配置
+    /// </summary>
+    /// <param name="ids"></param>
+    /// <returns></returns>
+    [ApiDescriptionSettings(Name = "BatchDelete"), HttpPost]
+    [DisplayName("批量删除参数配置")]
+    public async Task BatchDeleteConfig(List<long> ids)
+    {
+        foreach (var id in ids)
+        {
+            var config = await _sysConfigRep.GetFirstAsync(u => u.Id == id);
+            if (config.SysFlag == YesNoEnum.Y) // 禁止删除系统参数
+                continue;
+
+            await _sysConfigRep.DeleteAsync(config);
+
+            _sysCacheService.Remove(config.Code);
+        }
     }
 
     /// <summary>

@@ -12,17 +12,8 @@ public class DynamicJobCompiler : ISingleton
     /// <returns></returns>
     public Type BuildJob(string script)
     {
-        // 初始化
-        NatashaInitializer.Preheating();
-
-        // 动态创建作业
-        var builder = new AssemblyCSharpBuilder("Admin.NET.Core")
-        {
-            Domain = DomainManagement.Random()
-        };
-
-        builder.Add(script);
-
-        return builder.GetAssembly().GetTypes().FirstOrDefault(u => typeof(IJob).IsAssignableFrom(u));
+        var jobAssembly = Schedular.CompileCSharpClassCode(script);
+        var jobType = jobAssembly.GetTypes().FirstOrDefault(u => typeof(IJob).IsAssignableFrom(u));
+        return jobType;
     }
 }

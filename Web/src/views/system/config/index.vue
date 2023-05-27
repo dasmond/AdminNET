@@ -4,7 +4,7 @@
 			<TableSearch :search="tb.tableData.search" @search="onSearch" />
 		</el-card>
 		<el-card class="full-table" shadow="hover" style="margin-top: 8px">
-			<Table ref="tableRef" v-bind="tb.tableData" :getData="getData" :exportChangeData="exportChangeData" @sortHeader="onSortHeader" @selectionChange="tableSelection">
+			<Table ref="tableRef" v-bind="tb.tableData" :getData="getData" :exportChangeData="exportChangeData" @sortHeader="onSortHeader" @selectionChange="tableSelection" border>
 				<template #command>
 					<el-button type="primary" icon="ele-Plus" @click="openAddConfig" v-auth="'sysConfig:add'"> 新增 </el-button>
 
@@ -20,7 +20,8 @@
 				</template>
 			</Table>
 		</el-card>
-		<EditConfig ref="editConfigRef" :title="state.editConfigTitle" :groupList="state.groupList" />
+
+		<EditConfig ref="editConfigRef" :title="state.editConfigTitle" :groupList="state.groupList" @updateData="updateData" />
 	</div>
 </template>
 
@@ -50,14 +51,14 @@ const tb = reactive<TableDemoState>({
 	tableData: {
 		// 表头内容（必传，注意格式）
 		columns: [
-			{ prop: 'name', width: 160, label: '配置名称', align: 'center', sortable: 'custom', isCheck: true, hideCheck: true },
-			{ prop: 'code', width: 120, label: '配置编码', align: 'center', toolTip: true, sortable: 'custom', isCheck: true },
-			{ prop: 'value', width: 120, label: '属性值', align: 'center', sortable: 'custom', isCheck: true },
-			{ prop: 'sysFlag', width: 120, label: '内置参数', align: 'center', sortable: 'custom', isCheck: true },
-			{ prop: 'groupCode', width: 120, label: '分组编码', align: 'center', sortable: 'custom', isCheck: true },
+			{ prop: 'name', width: 200, label: '配置名称', align: 'left', sortable: 'custom', isCheck: true, hideCheck: true },
+			{ prop: 'code', width: 200, label: '配置编码', align: 'left', toolTip: true, sortable: 'custom', isCheck: true },
+			{ prop: 'value', width: 200, label: '属性值', align: 'left', isCheck: true },
+			{ prop: 'sysFlag', width: 100, label: '内置参数', align: 'center', isCheck: true },
+			{ prop: 'groupCode', width: 110, label: '分组编码', align: 'center', sortable: 'custom', isCheck: true },
 			{ prop: 'orderNo', width: 80, label: '排序', align: 'center', sortable: 'custom', isCheck: true },
-			{ prop: 'remark', label: '备注', align: '', headerAlign: 'center', sortable: 'custom', showOverflowTooltip: true, isCheck: true },
-			{ prop: 'action', width: 150, label: '操作', type: 'action', align: 'center', isCheck: true, fixed: 'right', hideCheck: true },
+			{ prop: 'remark', label: '备注', align: '', headerAlign: 'center', showOverflowTooltip: true, isCheck: true },
+			{ prop: 'action', width: 130, label: '操作', type: 'action', align: 'center', isCheck: true, fixed: 'right', hideCheck: true },
 		],
 		// 配置项（必传）
 		config: {
@@ -131,6 +132,7 @@ const getGroupList = async () => {
 		group[0] = groupSearch;
 	}
 };
+
 //表格多选事件
 const tableSelection = (data: EmptyObjectType[]) => {
 	// console.log('表格多选事件', data)
@@ -139,15 +141,13 @@ const tableSelection = (data: EmptyObjectType[]) => {
 
 onMounted(async () => {
 	getGroupList();
-	mittBus.on('submitRefresh', () => {
-		tableRef.value.handleList();
-		getGroupList();
-	});
 });
 
-onUnmounted(() => {
-	mittBus.off('submitRefresh');
-});
+// 更新数据
+const updateData = () => {
+	tableRef.value.handleList();
+	getGroupList();
+};
 
 // 打开新增页面
 const openAddConfig = () => {
@@ -175,6 +175,7 @@ const delConfig = (row: any) => {
 		})
 		.catch(() => {});
 };
+
 //批量删除
 const bacthDelete = () => {
 	if (state.selectlist.length == 0) return false;
@@ -187,9 +188,9 @@ const bacthDelete = () => {
 			const ids = state.selectlist.map((item) => {
 				return item.id;
 			});
-			var res = await getAPI(SysConfigApi).apiSysConfigBatchDeletePost({ ids: ids });
+			var res = await getAPI(SysConfigApi).apiSysConfigBatchDeletePost(ids);
 			tableRef.value.pageReset();
-			ElMessage.success(res.data.result?.toString());
+			ElMessage.success('删除成功');
 		})
 		.catch(() => {});
 };

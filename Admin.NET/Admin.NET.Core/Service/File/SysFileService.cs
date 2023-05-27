@@ -179,6 +179,9 @@ public class SysFileService : IDynamicApiController, ITransient
         {
             var contentTypeProvider = FS.GetFileExtensionContentTypeProvider();
             suffix = contentTypeProvider.Mappings.FirstOrDefault(u => u.Value == file.ContentType).Key;
+            // 修改 image/jpeg 类型返回的 .jpe 后缀
+            if (suffix == ".jpe")
+                suffix = ".jpg";
         }
         if (string.IsNullOrWhiteSpace(suffix))
             throw Oops.Oh(ErrorCodeEnum.D8003);

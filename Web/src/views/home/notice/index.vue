@@ -13,7 +13,7 @@
 				</el-form-item>
 				<el-form-item>
 					<el-button icon="ele-Refresh" @click="resetQuery"> 重置 </el-button>
-					<el-button type="primary" icon="ele-Search" @click="handleQuery" v-auth="'sysNotice:page'"> 查询 </el-button>
+					<el-button type="primary" icon="ele-Search" @click="handleQuery"> 查询 </el-button>
 				</el-form-item>
 			</el-form>
 		</el-card>
@@ -129,8 +129,7 @@ const viewDetail = async (row: any) => {
 	state.dialogVisible = true;
 
 	row.readStatus = 1;
-
-	mittBus.emit('noticeRead', row.sysNotice.id);
+	// mittBus.emit('noticeRead', row.sysNotice.id);
 	await getAPI(SysNoticeApi).apiSysNoticeSetReadPost({ id: row.sysNotice.id });
 };
 

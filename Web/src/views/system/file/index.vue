@@ -6,10 +6,10 @@
 					<el-input placeholder="文件名称" clearable @keyup.enter="handleQuery" v-model="state.queryParams.fileName" />
 				</el-form-item>
 				<el-form-item label="开始时间" prop="name">
-					<el-date-picker v-model="state.queryParams.startTime" type="datetime" placeholder="开始时间" />
+					<el-date-picker v-model="state.queryParams.startTime" type="datetime" placeholder="开始时间" value-format="YYYY-MM-DD HH:mm:ss" />
 				</el-form-item>
 				<el-form-item label="结束时间" prop="code">
-					<el-date-picker v-model="state.queryParams.endTime" type="datetime" placeholder="结束时间" />
+					<el-date-picker v-model="state.queryParams.endTime" type="datetime" placeholder="结束时间" value-format="YYYY-MM-DD HH:mm:ss" />
 				</el-form-item>
 				<el-form-item>
 					<el-button-group>
@@ -100,16 +100,15 @@
 </template>
 
 <script lang="ts" setup name="sysFile">
-import { onMounted, onUnmounted, reactive, ref } from 'vue';
+import { onMounted, reactive, ref } from 'vue';
 import { ElMessageBox, ElMessage, UploadInstance } from 'element-plus';
-import mittBus from '/@/utils/mitt';
 
 import { downloadByUrl } from '/@/utils/download';
 import { getAPI } from '/@/utils/axios-utils';
 import { SysFileApi } from '/@/api-services/api';
 import { SysFile } from '/@/api-services/models';
 
-const baseUrl = import.meta.env.VITE_API_URL;
+// const baseUrl = import.meta.env.VITE_API_URL;
 const uploadRef = ref<UploadInstance>();
 const state = reactive({
 	loading: false,
@@ -130,14 +129,6 @@ const state = reactive({
 
 onMounted(async () => {
 	handleQuery();
-
-	mittBus.on('submitRefresh', () => {
-		handleQuery();
-	});
-});
-
-onUnmounted(() => {
-	mittBus.off('submitRefresh');
 });
 
 // 查询操作
