@@ -82,4 +82,10 @@ public class SysCodeGen : EntityBase
     /// </summary>
     [SugarColumn(ColumnDescription = "菜单编码")]
     public long MenuPid { get; set; }
+
+    /// <summary>
+    /// 生成选项
+    /// </summary>
+    [SugarColumn(ColumnDescription = "生成选项", Length = 128, IsJson = true, IsNullable = true)]
+    public List<string> GenerateOptions { get; set; }
 }

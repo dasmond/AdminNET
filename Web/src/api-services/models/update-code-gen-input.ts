@@ -137,4 +137,10 @@ export interface UpdateCodeGenInput {
      * @memberof UpdateCodeGenInput
      */
     id: number;
+    /**
+     * 生成选项
+     * @type {Array<string>}
+     * @memberof UpdateCodeGenInput
+     */
+     generateOptions?: Array<string> | null;
 }

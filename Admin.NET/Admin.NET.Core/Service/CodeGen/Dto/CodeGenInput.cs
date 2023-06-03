@@ -74,6 +74,11 @@ public class CodeGenInput : BasePageInput
     /// 菜单父级
     /// </summary>
     public virtual long MenuPid { get; set; }
+
+    /// <summary>
+    /// 生成选项
+    /// </summary>
+    public virtual List<string> GenerateOptions { get; set; }
 }
 
 public class AddCodeGenInput : CodeGenInput

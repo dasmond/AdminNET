@@ -60,8 +60,10 @@ namespace Admin.NET.Web.Core
             if (App.User.FindFirst(ClaimConst.AccountType)?.Value == ((int)AccountTypeEnum.SuperAdmin).ToString())
                 return true;
 
-            // 路由/按钮名称
+            // 路由名称
             var routeName = httpContext.Request.Path.Value[1..].Replace("/", ":");
+            if (httpContext.Request.Path.StartsWithSegments("/api"))
+                routeName = httpContext.Request.Path.Value[5..].Replace("/", ":");
 
             // 获取用户拥有按钮权限集合
             var ownBtnPermList = await App.GetService<SysMenuService>().GetOwnBtnPermList();

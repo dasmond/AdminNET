@@ -139,12 +139,13 @@ const handleCurrentChange = (val: number) => {
 // 打开表增加页面
 const openAddDialog = () => {
 	state.editMenuTitle = '增加';
-	EditCodeGenRef.value?.openDialog({ nameSpace: 'Admin.NET.Application', authorName: 'Admin.NET', generateType: '200' });
+	EditCodeGenRef.value?.openDialog({ nameSpace: 'Admin.NET.Application', authorName: 'Admin.NET', generateType: '200', generateOptions:['AddMenu'] });
 };
 
 // 打开表编辑页面
 const openEditDialog = (row: any) => {
 	state.editMenuTitle = '编辑';
+	row.generateOptions = row.generateOptions || [];
 	EditCodeGenRef.value?.openDialog(row);
 };
 
