@@ -2,19 +2,16 @@
 branches: {
   }
 fileChange:
-  /Admin.NET:
-    newFile: !uuid '25a12e1d5886f71a032695a50b866879bd7f7599'
-    oldFile: !uuid '343ad171f5787e61fdade5418eb795280deae087'
-  /Admin.NET/Admin.NET.Web.Core:
-    newFile: !uuid '0f5aa3895613f465748c3adb40766699b0200e06'
-    oldFile: !uuid '032ff5a133383e43d10796d1f8799f0622531b10'
-  /Admin.NET/Admin.NET.Web.Core/Handlers:
-    newFile: !uuid 'fb5c458a3a60c11dbb7af9b9e1f14a9cf9b0b09d'
-    oldFile: !uuid '3a95193e06460eb674b991fba5393bcc1be76c8c'
-  /Admin.NET/Admin.NET.Web.Core/Handlers/JwtHandler.cs:
-    newFile: !uuid '1bc582e1cc7c2a49bf5b234e2e144ccaa51414cf'
-    oldFile: !uuid 'eaf988bbdec288350e0b81d459c59d17b4c5a666'
-gitCommitId: !uuid 'b554300710c01ecae2919ba43d25902cd0da580d'
+  /Web:
+    newFile: !uuid '48bcf209cf92fce647fa7d64fd5485c4c323116a'
+    oldFile: !uuid '97ace85f7e8c9a29e1fc52ebc59210882b70319d'
+  /Web/package.json:
+    newFile: !uuid 'c804ab44a512c309a253c8a8f885c8b5b6b46c64'
+    oldFile: !uuid '2d8b3a5ec0c2a01a0cf9377a18d80fa1a45c9538'
+  /Web/vite.config.ts:
+    newFile: !uuid '50b1a495926684e4b1a07bf89704264d1e97ff6a'
+    oldFile: !uuid '832832edbe43274977cf161b1af0c89df2702b24'
+gitCommitId: !uuid 'ce1cfe828815ddb383c2800d08bcca9d1c6e83fa'
 renames: {
   }
-revisionId: 882
+revisionId: 883
