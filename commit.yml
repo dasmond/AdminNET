@@ -2,28 +2,16 @@
 branches: {
   }
 fileChange:
-  /Web:
-    newFile: !uuid '7e0913af4bcca81e0e1209a40774d09280f20c20'
-    oldFile: !uuid 'd5d8fc799f85aa906c3d680315c937ca901bd97c'
-  /Web/src:
-    newFile: !uuid '2a69a0594f6dcdf793a7f55ec0d7bea6c11b2d98'
-    oldFile: !uuid '574aa6b2051d9b28a3148bd4f081263bcb63accb'
-  /Web/src/views:
-    newFile: !uuid '61e23956632d4de0db17b9b154b39c4e17c251a4'
-    oldFile: !uuid '3b05d0a42d9cb25eeb245ba8263218c673a9af00'
-  /Web/src/views/system:
-    newFile: !uuid '9efa5ce7f412c18fc4b85cd28c82abe8d62e3d94'
-    oldFile: !uuid '20b6c09cd54469f2b2d28a4794617a3e022db9ea'
-  /Web/src/views/system/file:
-    newFile: !uuid 'db61090a1e5d60e4967f4d734a3a555510eadf0d'
-    oldFile: !uuid 'a1b2b5946ff1271c7ea6e1d447aa043346ed8070'
-  /Web/src/views/system/file/index.vue:
-    newFile: !uuid 'c8c6b04dff6fa2f0e8b464ec4a6fddb8e625394b'
-    oldFile: !uuid 'a88620a2d04fc7fa139a0ebd5ba06e229ea2f993'
-  /Web/vite.config.ts:
-    newFile: !uuid 'a7aec3d3680f4ea6384859861d3d24e965b9c874'
-    oldFile: !uuid '50b1a495926684e4b1a07bf89704264d1e97ff6a'
-gitCommitId: !uuid '9919ef7f790d6925501aafb1e23eb3cc7efb5b47'
+  /Admin.NET:
+    newFile: !uuid '525fe0ff30cad57f31c1ecf94f59ab70798fb0f8'
+    oldFile: !uuid '710f209d838d657f51d72b5b0aebe74e72d8cb58'
+  /Admin.NET/Admin.NET.Web.Entry:
+    newFile: !uuid '7f2b700836d1755d5cc60e71705e0155e6c4095c'
+    oldFile: !uuid '33c419a7091ee50bafb66f38bededf073b99360c'
+  /Admin.NET/Admin.NET.Web.Entry/Admin.NET.Web.Entry.csproj:
+    newFile: !uuid 'f2283b864d26fc44d24c99d57ec044f916128149'
+    oldFile: !uuid '2582bf12554c1799d8466e12066bee47d0c9749e'
+gitCommitId: !uuid '5b9dda7a1dd051b38c9a94b94ebbceef66e9ab01'
 renames: {
   }
-revisionId: 926
+revisionId: 927
