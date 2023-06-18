@@ -2,34 +2,28 @@
 branches: {
   }
 fileChange:
-  /Admin.NET:
-    newFile: !uuid '710f209d838d657f51d72b5b0aebe74e72d8cb58'
-    oldFile: !uuid 'ec6bbc43ea342bc27855b22549ee706a32205001'
-  /Admin.NET/Admin.NET.Core:
-    newFile: !uuid 'c927bda260d540587e63221635f86e9f8de173ff'
-    oldFile: !uuid '39e118edf8c9728b1cb84ac38fe844d7fc639819'
-  /Admin.NET/Admin.NET.Core/Cache:
-    newFile: !uuid '4114f839d1b9e55b766d85a530834b2f46b0d6a6'
-    oldFile: !uuid 'a94d4db9f131aa68623ad630ea7bfc034a4c1451'
-  /Admin.NET/Admin.NET.Core/Cache/CacheSetup.cs:
-    newFile: !uuid '8caa1f80f3457d51feb4fc11027ff085f34d1de8'
-    oldFile: !uuid '1ce09e10ffec85cf93bfff50f49b109aa45bd4de'
-  /Admin.NET/Admin.NET.Core/EventBus:
-    newFile: !uuid 'abcb6c8b0567827eeb1108b6b42db0cbfb2ae96f'
-    oldFile: !uuid '1125d3343055bcd8166eb3523725ed1a6775d8d8'
-  /Admin.NET/Admin.NET.Core/EventBus/EventConsumer.cs:
-    newFile: !uuid 'fcd71a028172583b4f73df16ef620365eed86c50'
-    oldFile: null
-  /Admin.NET/Admin.NET.Core/EventBus/RedisEventSourceStorer.cs:
-    newFile: !uuid '01072db3af9cac52611703b96c15469b8c868b0b'
-    oldFile: !uuid '645a2bca72d148b658703c6920b4c581eeba9d07'
-  /Admin.NET/Admin.NET.Web.Core:
-    newFile: !uuid 'f6b5cf831d1e9dd2f4517e9c5d7022d55158366c'
-    oldFile: !uuid '9e331730e2543db00255170f23c58045b9b96341'
-  /Admin.NET/Admin.NET.Web.Core/Startup.cs:
-    newFile: !uuid 'c42719f765f9fbe837def84cca1b897ce3ecebbf'
-    oldFile: !uuid '6b789a7e1baf91240da6b9fe9da3ab1a63ef00f9'
-gitCommitId: !uuid 'cb4a856003a5711b124dd3f4b11041a2cc573f3c'
+  /Web:
+    newFile: !uuid '7e0913af4bcca81e0e1209a40774d09280f20c20'
+    oldFile: !uuid 'd5d8fc799f85aa906c3d680315c937ca901bd97c'
+  /Web/src:
+    newFile: !uuid '2a69a0594f6dcdf793a7f55ec0d7bea6c11b2d98'
+    oldFile: !uuid '574aa6b2051d9b28a3148bd4f081263bcb63accb'
+  /Web/src/views:
+    newFile: !uuid '61e23956632d4de0db17b9b154b39c4e17c251a4'
+    oldFile: !uuid '3b05d0a42d9cb25eeb245ba8263218c673a9af00'
+  /Web/src/views/system:
+    newFile: !uuid '9efa5ce7f412c18fc4b85cd28c82abe8d62e3d94'
+    oldFile: !uuid '20b6c09cd54469f2b2d28a4794617a3e022db9ea'
+  /Web/src/views/system/file:
+    newFile: !uuid 'db61090a1e5d60e4967f4d734a3a555510eadf0d'
+    oldFile: !uuid 'a1b2b5946ff1271c7ea6e1d447aa043346ed8070'
+  /Web/src/views/system/file/index.vue:
+    newFile: !uuid 'c8c6b04dff6fa2f0e8b464ec4a6fddb8e625394b'
+    oldFile: !uuid 'a88620a2d04fc7fa139a0ebd5ba06e229ea2f993'
+  /Web/vite.config.ts:
+    newFile: !uuid 'a7aec3d3680f4ea6384859861d3d24e965b9c874'
+    oldFile: !uuid '50b1a495926684e4b1a07bf89704264d1e97ff6a'
+gitCommitId: !uuid '9919ef7f790d6925501aafb1e23eb3cc7efb5b47'
 renames: {
   }
-revisionId: 892
+revisionId: 893
