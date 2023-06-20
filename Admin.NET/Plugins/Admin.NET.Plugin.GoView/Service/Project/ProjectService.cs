@@ -5,6 +5,7 @@
 /// </summary>
 [UnifyProvider("GoView")]
 [ApiDescriptionSettings(GoViewConst.GroupName, Order = 100)]
+[Route("api/goview/[controller]")]
 public class ProjectService : IDynamicApiController
 {
     private readonly SqlSugarRepository<GoViewProject> _goViewProjectRep;

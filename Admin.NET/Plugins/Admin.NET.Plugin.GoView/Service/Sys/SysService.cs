@@ -8,12 +8,13 @@ namespace Admin.NET.Plugin.GoView.Service;
 /// </summary>
 [UnifyProvider("GoView")]
 [ApiDescriptionSettings(GoViewConst.GroupName, Order = 500)]
-public class SystemService : IDynamicApiController
+[Route("api/goview/[controller]")]
+public class SysService : IDynamicApiController
 {
     private readonly SysAuthService _sysAuthService;
     private readonly SqlSugarRepository<SysUser> _userRep;
 
-    public SystemService(SysAuthService sysAuthService, SqlSugarRepository<SysUser> userRep)
+    public SysService(SysAuthService sysAuthService, SqlSugarRepository<SysUser> userRep)
     {
         _sysAuthService = sysAuthService;
         _userRep = userRep;
