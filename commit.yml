@@ -3,15 +3,27 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid 'ddfad639f8b867bf4a175cf2c79f8913f42c4a63'
-    oldFile: !uuid '2ce2f41a5cd25d54594ac6110a815e6b3125827b'
+    newFile: !uuid 'cb746a3602592b1553cc33cff7c1b35d048d35dc'
+    oldFile: !uuid 'ddfad639f8b867bf4a175cf2c79f8913f42c4a63'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '885d43b052ecf022a8783188cb116fd414a7e1e8'
-    oldFile: !uuid '8a69f6c023537620e7e65c6c7b215f434117d29e'
-  /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
-    newFile: !uuid '97e8b3c25713589b72ca0340345655adf3a93350'
-    oldFile: !uuid 'b6cb960d12409c686be74b117cda8aba2dad27e4'
-gitCommitId: !uuid '4d979657ac4e256c98d15f5f167896cbdc5006e3'
+    newFile: !uuid '0313a92095366f0079e2c317a9603f9423ace30c'
+    oldFile: !uuid '885d43b052ecf022a8783188cb116fd414a7e1e8'
+  /Admin.NET/Admin.NET.Core/Service:
+    newFile: !uuid '1e198b0337010a7234c97f9198f927d69184d397'
+    oldFile: !uuid 'e5a4191c19a179251b8723878f4120938fe36244'
+  /Admin.NET/Admin.NET.Core/Service/Tenant:
+    newFile: !uuid 'b9728dae13489448c042322984e7ec69a9115580'
+    oldFile: !uuid 'ab88c825a5c1c13e00e9278bf7b5ab6dbcce19ba'
+  /Admin.NET/Admin.NET.Core/Service/Tenant/SysTenantService.cs:
+    newFile: !uuid '0a7e3490c5b957040ce592337c93d2b04c06cd0d'
+    oldFile: !uuid 'cbf1ce01fdc027dfdd0b0c8305d04b40feafc883'
+  /Admin.NET/Admin.NET.Core/SqlSugar:
+    newFile: !uuid 'eb55a870b2b9396a4a451d32a96f8f1273563355'
+    oldFile: !uuid '75ab240929cef602e0a734b3e4055afd105b2e2a'
+  /Admin.NET/Admin.NET.Core/SqlSugar/SqlSugarRepository.cs:
+    newFile: !uuid '93461efb0a2aa624967c5676358722e75c1a3756'
+    oldFile: !uuid '28ccec1cb5cbb091a6f822b76887bc0c938bd97c'
+gitCommitId: !uuid '38497f3b6c2dfc4b9e06139c6eb88833ff0a7f04'
 renames: {
   }
-revisionId: 905
+revisionId: 906
