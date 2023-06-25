@@ -2,28 +2,31 @@
 branches: {
   }
 fileChange:
-  /Admin.NET:
-    newFile: !uuid 'cb746a3602592b1553cc33cff7c1b35d048d35dc'
-    oldFile: !uuid 'ddfad639f8b867bf4a175cf2c79f8913f42c4a63'
-  /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '0313a92095366f0079e2c317a9603f9423ace30c'
-    oldFile: !uuid '885d43b052ecf022a8783188cb116fd414a7e1e8'
-  /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid '1e198b0337010a7234c97f9198f927d69184d397'
-    oldFile: !uuid 'e5a4191c19a179251b8723878f4120938fe36244'
-  /Admin.NET/Admin.NET.Core/Service/Tenant:
-    newFile: !uuid 'b9728dae13489448c042322984e7ec69a9115580'
-    oldFile: !uuid 'ab88c825a5c1c13e00e9278bf7b5ab6dbcce19ba'
-  /Admin.NET/Admin.NET.Core/Service/Tenant/SysTenantService.cs:
-    newFile: !uuid '0a7e3490c5b957040ce592337c93d2b04c06cd0d'
-    oldFile: !uuid 'cbf1ce01fdc027dfdd0b0c8305d04b40feafc883'
-  /Admin.NET/Admin.NET.Core/SqlSugar:
-    newFile: !uuid 'eb55a870b2b9396a4a451d32a96f8f1273563355'
-    oldFile: !uuid '75ab240929cef602e0a734b3e4055afd105b2e2a'
-  /Admin.NET/Admin.NET.Core/SqlSugar/SqlSugarRepository.cs:
-    newFile: !uuid '93461efb0a2aa624967c5676358722e75c1a3756'
-    oldFile: !uuid '28ccec1cb5cbb091a6f822b76887bc0c938bd97c'
-gitCommitId: !uuid '38497f3b6c2dfc4b9e06139c6eb88833ff0a7f04'
+  /Web:
+    newFile: !uuid 'b9298a2719caac2fdbacf0fdf24368aac6e9f104'
+    oldFile: !uuid 'e6c8a2137fd1bd2b0388dff90cf8132fe9f34b56'
+  /Web/src:
+    newFile: !uuid 'a02aca02503e2530d4f11bbe44304647667c644b'
+    oldFile: !uuid '44e1a3854c40c0d6ff62698b612a8b9742c0e865'
+  /Web/src/views:
+    newFile: !uuid '7fced9efad2a2ac165b7e0a28abf802d7d989a26'
+    oldFile: !uuid 'f5781755cc9f701d3a6c3a9a8d71046f37d93042'
+  /Web/src/views/system:
+    newFile: !uuid 'd8a38df7541f73cbbb5c8f8e211804c1396e8144'
+    oldFile: !uuid 'b65f2983688e6849d5507256eb4586de54f77d02'
+  /Web/src/views/system/role:
+    newFile: !uuid '4c58ee91fef86e76ab802b07af310bbad004f8ed'
+    oldFile: !uuid '696748669f5269b7780141e57ff99f4a66d86435'
+  /Web/src/views/system/role/component:
+    newFile: !uuid '84b57187d9a27de99883577b960a0aaa25f7eb34'
+    oldFile: !uuid '4fecee5eed6bca84d1f6fbf5eb9bf917b89a3cd2'
+  /Web/src/views/system/role/component/grantData.vue:
+    newFile: !uuid '72a097b99c62e568d5707fc3992ab609fbd94228'
+    oldFile: !uuid '3a42e8fad7be8a7dddbde5ab041bb531197c11c8'
+  /Web/src/views/system/role/index.vue:
+    newFile: !uuid '746f1109a881d604168c4629e2c6342af78aa82b'
+    oldFile: !uuid 'c82b2d9beb579ba458f7c6524cedf8eae113cbf2'
+gitCommitId: !uuid '50a416abf069239e79621ea5757ab6f300b1daf1'
 renames: {
   }
-revisionId: 939
+revisionId: 940
