@@ -57,10 +57,9 @@
 </template>
 
 <script lang="ts" setup name="sysEditPrint">
-import { onMounted, reactive, ref } from 'vue';
+import { reactive, ref } from 'vue';
 import 'sv-print/dist/style.css';
 import { Designer } from '@sv-print/vue3';
-// import { disAutoConnect } from '@sv-print/hiprint';
 
 import { getAPI } from '/@/utils/axios-utils';
 import { SysPrintApi } from '/@/api-services/api';
@@ -76,10 +75,6 @@ const state = reactive({
 	isShowDialog: false,
 	ruleForm: {} as UpdatePrintInput,
 	showDialog2: false,
-});
-
-onMounted(async () => {
-	// disAutoConnect();
 });
 
 // 打开弹窗
