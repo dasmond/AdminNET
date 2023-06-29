@@ -2,49 +2,19 @@
 branches: {
   }
 fileChange:
-  /Web:
-    newFile: !uuid '1edc7cb8842af6a96afea97cf534723f22eb6e0e'
-    oldFile: !uuid '85d6f7c123281c0bd195606447d0e8efccc7f3f1'
-  /Web/package.json:
-    newFile: !uuid '1c283a508881a0061b43ddfe059eacf540169352'
-    oldFile: !uuid 'c804ab44a512c309a253c8a8f885c8b5b6b46c64'
-  /Web/pnpm-lock.yaml:
-    newFile: !uuid '4367b0d0fe09a28ce488b460f054be596f1cf741'
-    oldFile: !uuid '513aaffeec10845326ecb97b3527f457e63d2431'
-  /Web/public:
-    newFile: !uuid 'cd0247bf0b37ff9f33b90b4f4520f465191ad84e'
-    oldFile: !uuid 'b29d33d9fa78657f2e702b643b468613e12e5d86'
-  /Web/public/print-lock.css:
-    newFile: !uuid '06ac5164046005d6cd8124ba2583fc4913a6fd73'
-    oldFile: !uuid '3994345aec85378e5f5215bc77214edb9bfd2be4'
-  /Web/src:
-    newFile: !uuid '771d7ced973f77810f0de09f03226fb10ea112bf'
-    oldFile: !uuid '2a439c8ece249fc71be020e720f3c4ae4c26dc54'
-  /Web/src/layout:
-    newFile: !uuid '8936f5179694b7071f51e770606f3eaddf3060f9'
-    oldFile: !uuid '2acc29e4a18ab6b6a794080a0b375156cfb3fa53'
-  /Web/src/layout/main:
-    newFile: !uuid '02a17b6f89f8c507791d627a87f492c36afb4295'
-    oldFile: !uuid '3618cd16795371faf34b777f2e58c20ca8d7c967'
-  /Web/src/layout/main/columns.vue:
-    newFile: !uuid '7d22632f14d609400f4ad3f9b9f18f7db17182e1'
-    oldFile: !uuid 'f0e001bbb5f3cf897c0c1910f5639e1979aeac5b'
-  /Web/src/views:
-    newFile: !uuid '7c90fc5504f05c350d6db8c287520f15d739232f'
-    oldFile: !uuid '4d277a52b271735f41d2ed1d1c7e95b00b424c0f'
-  /Web/src/views/system:
-    newFile: !uuid '565c188218bdcc1562a1cd42b94db99104fb44e7'
-    oldFile: !uuid '0d64034606b1c4e849214e020afbaa79fa8b3c90'
-  /Web/src/views/system/print:
-    newFile: !uuid 'be49edf5a5ed6ebc7d93c00a7a8b3ade66e86ea8'
-    oldFile: !uuid '3223c9f2e86f2d4fc4e920ba00eed263ea1f9509'
-  /Web/src/views/system/print/component:
-    newFile: !uuid 'a95241ca83b8e37086754ac1c536f1301ff03a28'
-    oldFile: !uuid '8ce526da2046ee43b7ba94da34b186669664d5af'
-  /Web/src/views/system/print/component/editPrint.vue:
-    newFile: !uuid '2e4ee18b2ac6b66b10ecf3303e8cfbe8f65d8a85'
-    oldFile: !uuid 'f1f5140854915e2fa6163878eab4db4ec4e992b4'
-gitCommitId: !uuid '5a4fc29656eb66e66c1cfa4e544b511e1798548d'
+  /Admin.NET:
+    newFile: !uuid '0647594110a544dff0ba7f9b87f820b1da5b18b8'
+    oldFile: !uuid '524b7857e255b93d131a20cada55971dd9df0e7f'
+  /Admin.NET/Admin.NET.Core:
+    newFile: !uuid '69bff614a42e8856b360dd904ae55305329a0528'
+    oldFile: !uuid '20c8e8910f628faa05592e5fc05ea46e7c695189'
+  /Admin.NET/Admin.NET.Core/SqlSugar:
+    newFile: !uuid '3cb07b1f261de322eee70bdfc5d90ba790511a42'
+    oldFile: !uuid '19585fb910ea3554b1c7893daf954d9bdf05f147'
+  /Admin.NET/Admin.NET.Core/SqlSugar/SqlSugarSetup.cs:
+    newFile: !uuid '490ecca9edc97a3ab32384bb1c3256d2f020d659'
+    oldFile: !uuid 'c22ed16f60170fef88004cbe7ce2672bd1c6294c'
+gitCommitId: !uuid '1866cc5b83ac56187b0a4ed703625f47a9dcd8eb'
 renames: {
   }
-revisionId: 942
+revisionId: 943
