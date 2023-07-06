@@ -1,4 +1,4 @@
-﻿namespace Admin.NET.Core.Service;
+namespace Admin.NET.Core.Service;
 
 /// <summary>
 /// 系统用户服务
@@ -177,6 +177,8 @@ public class SysUserService : IDynamicApiController, ITransient
     [HttpPost("/sysUser/grantRole")]
     public async Task GrantUserRole(UserRoleInput input)
     {
+        _sysCacheService.Remove(CacheConst.KeyPermission + $"{input.Id}"); // 清除缓存
+        
         var user = await _sysUserRep.GetFirstAsync(u => u.Id == input.Id);
         if (user.UserType == UserTypeEnum.SuperAdmin)
             throw Oops.Oh(ErrorCodeEnum.D1022);
