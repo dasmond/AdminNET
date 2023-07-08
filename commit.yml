@@ -2,76 +2,67 @@
 branches: {
   }
 fileChange:
-  /Admin.NET:
-    newFile: !uuid '4012a817f5c95467fc31b877ef4fd271acbc17c2'
-    oldFile: !uuid 'd83323519fe0b358add18f850beb22064e232f82'
-  /Admin.NET/Admin.NET.Web.Core:
-    newFile: !uuid 'd39d1a1818850d497f3b0e8faff9e3855a164b96'
-    oldFile: !uuid '2252805082aa774f18965098cc81e5b7cc41898c'
-  /Admin.NET/Admin.NET.Web.Core/Startup.cs:
-    newFile: !uuid 'ac73c3e78d698e51860cdd669f6de88d970900b6'
-    oldFile: !uuid '53fd6d686c8176fb74f6aae1d50c124df27ff2d3'
   /Web:
-    newFile: !uuid 'f5b798b73620a009a3cbaf2a9e8e2d0fc78adec9'
-    oldFile: !uuid 'bdbbe5d394d57702c7f3e4623248614ce0affc4b'
+    newFile: !uuid 'bdbbe5d394d57702c7f3e4623248614ce0affc4b'
+    oldFile: !uuid 'f5b798b73620a009a3cbaf2a9e8e2d0fc78adec9'
   /Web/src:
-    newFile: !uuid '1e879e8bd14f4e4e452d7c2e7b741c316f313073'
-    oldFile: !uuid '742259fb4eefea0887cb8fc570b91622054b729b'
+    newFile: !uuid '742259fb4eefea0887cb8fc570b91622054b729b'
+    oldFile: !uuid '1e879e8bd14f4e4e452d7c2e7b741c316f313073'
   /Web/src/api-services:
-    newFile: !uuid 'e9a94d3df4fc44498ad9c052b44e2d4c35ab6968'
-    oldFile: !uuid '206c14c46bd08fe283a1cb37355e81641a658dc0'
+    newFile: !uuid '206c14c46bd08fe283a1cb37355e81641a658dc0'
+    oldFile: !uuid 'e9a94d3df4fc44498ad9c052b44e2d4c35ab6968'
   /Web/src/api-services/models:
-    newFile: !uuid '299f91f7db50421d79deea1072c2a7ef8fcd0ba0'
-    oldFile: !uuid '14faef61a9c6a4c57774ce7dfe82bd3192e62a6c'
+    newFile: !uuid '14faef61a9c6a4c57774ce7dfe82bd3192e62a6c'
+    oldFile: !uuid '299f91f7db50421d79deea1072c2a7ef8fcd0ba0'
   /Web/src/api-services/models/account-type-enum.ts:
-    newFile: !uuid 'da493cc142b66f02e720eec9390bfbb1b1cb4d25'
-    oldFile: !uuid 'ef4e05949ea93169cbe8c6a083b6b0e79bf0795c'
+    newFile: !uuid 'ef4e05949ea93169cbe8c6a083b6b0e79bf0795c'
+    oldFile: !uuid 'da493cc142b66f02e720eec9390bfbb1b1cb4d25'
   /Web/src/api-services/models/card-type-enum.ts:
-    newFile: !uuid '63a16fefa78fa4da92cba40684568fa708148fba'
-    oldFile: !uuid '12883000555b80d45eb67da9904270f31bf8f490'
+    newFile: !uuid '12883000555b80d45eb67da9904270f31bf8f490'
+    oldFile: !uuid '63a16fefa78fa4da92cba40684568fa708148fba'
   /Web/src/api-services/models/cluster-status.ts:
-    newFile: !uuid 'bfb36d7372a74f8132915852c2424bd416a5562e'
-    oldFile: !uuid 'c3ad72f672414255fd48a863beee3fc98005aad8'
+    newFile: !uuid 'c3ad72f672414255fd48a863beee3fc98005aad8'
+    oldFile: !uuid 'bfb36d7372a74f8132915852c2424bd416a5562e'
   /Web/src/api-services/models/culture-level-enum.ts:
-    newFile: !uuid '3b990c91802c97ef04d379d102f4adb17500626d'
-    oldFile: !uuid '9d9bfd190d022cf94a0acca02aac01d82c8a7cd7'
+    newFile: !uuid '9d9bfd190d022cf94a0acca02aac01d82c8a7cd7'
+    oldFile: !uuid '3b990c91802c97ef04d379d102f4adb17500626d'
   /Web/src/api-services/models/data-scope-enum.ts:
-    newFile: !uuid '00af39a4d7997269a94c6db6fcfcc1cc929ad009'
-    oldFile: !uuid '8290cf60ffac58579b6764fdcc946b12a4ef00b5'
+    newFile: !uuid '8290cf60ffac58579b6764fdcc946b12a4ef00b5'
+    oldFile: !uuid '00af39a4d7997269a94c6db6fcfcc1cc929ad009'
   /Web/src/api-services/models/gender-enum.ts:
-    newFile: !uuid '7192cd9595767ce1641dc93490a903879a3fadfa'
-    oldFile: !uuid 'b9746c411b4fe5c83a77aecebdec21a9db9a20af'
+    newFile: !uuid 'b9746c411b4fe5c83a77aecebdec21a9db9a20af'
+    oldFile: !uuid '7192cd9595767ce1641dc93490a903879a3fadfa'
   /Web/src/api-services/models/job-create-type-enum.ts:
-    newFile: !uuid '7b505307fd1818ff0e35a3eda62670b63471734b'
-    oldFile: !uuid 'f459737d2c91941a07803b4e90aea4f88c58cb29'
+    newFile: !uuid 'f459737d2c91941a07803b4e90aea4f88c58cb29'
+    oldFile: !uuid '7b505307fd1818ff0e35a3eda62670b63471734b'
   /Web/src/api-services/models/menu-type-enum.ts:
-    newFile: !uuid '2fc1b3f53a43f7e946de37ef268492128e1b39f7'
-    oldFile: !uuid 'efb4d1b723ddd08b04f5ea93d62694311f183093'
+    newFile: !uuid 'efb4d1b723ddd08b04f5ea93d62694311f183093'
+    oldFile: !uuid '2fc1b3f53a43f7e946de37ef268492128e1b39f7'
   /Web/src/api-services/models/message-type-enum.ts:
-    newFile: !uuid '0b8476834e831cf245f1aa0f7abbf4d2d61fac9e'
-    oldFile: !uuid 'c40e4c6d347d896df6d4c84d41863a6f5c964632'
+    newFile: !uuid 'c40e4c6d347d896df6d4c84d41863a6f5c964632'
+    oldFile: !uuid '0b8476834e831cf245f1aa0f7abbf4d2d61fac9e'
   /Web/src/api-services/models/notice-status-enum.ts:
-    newFile: !uuid '9ec66fc6be8df9e06d25fbd21c1a9f17e545d0f5'
-    oldFile: !uuid '3539e30c10fbd873fabd554099e793482d904947'
+    newFile: !uuid '3539e30c10fbd873fabd554099e793482d904947'
+    oldFile: !uuid '9ec66fc6be8df9e06d25fbd21c1a9f17e545d0f5'
   /Web/src/api-services/models/notice-type-enum.ts:
-    newFile: !uuid 'b8d26a3f34a021daac3660956d60c2f083244a5a'
-    oldFile: !uuid '85ba687e12e93ad99dd79eb88d53058afb72bc90'
+    newFile: !uuid '85ba687e12e93ad99dd79eb88d53058afb72bc90'
+    oldFile: !uuid 'b8d26a3f34a021daac3660956d60c2f083244a5a'
   /Web/src/api-services/models/notice-user-status-enum.ts:
-    newFile: !uuid '5e420b925714f2dae8f8c7eae6f14addc80182f2'
-    oldFile: !uuid 'b8e1853cb3c9f32a4da85807c085c0eaae69fc90'
+    newFile: !uuid 'b8e1853cb3c9f32a4da85807c085c0eaae69fc90'
+    oldFile: !uuid '5e420b925714f2dae8f8c7eae6f14addc80182f2'
   /Web/src/api-services/models/status-enum.ts:
-    newFile: !uuid '21be440ab4a4ff7ba94fc0081b6470bc55ebdb23'
-    oldFile: !uuid '120970cfd1ecd99866a649b89640e69feb4da57c'
+    newFile: !uuid '120970cfd1ecd99866a649b89640e69feb4da57c'
+    oldFile: !uuid '21be440ab4a4ff7ba94fc0081b6470bc55ebdb23'
   /Web/src/api-services/models/tenant-type-enum.ts:
-    newFile: !uuid 'ae51f24050dc7df88ed5a51f08c98e27444164af'
-    oldFile: !uuid '83cdb1935ee6e4d0db96e8de4c93393828121de0'
+    newFile: !uuid '83cdb1935ee6e4d0db96e8de4c93393828121de0'
+    oldFile: !uuid 'ae51f24050dc7df88ed5a51f08c98e27444164af'
   /Web/src/api-services/models/trigger-status.ts:
-    newFile: !uuid '59becc0d2148326074bd58a0aad6baffc64440f3'
-    oldFile: !uuid '52eb39ee26662120672192b48fa10041761da417'
+    newFile: !uuid '52eb39ee26662120672192b48fa10041761da417'
+    oldFile: !uuid '59becc0d2148326074bd58a0aad6baffc64440f3'
   /Web/src/api-services/models/yes-no-enum.ts:
-    newFile: !uuid '6994f5db429be1b2b865315c3d239ea19b3f297e'
-    oldFile: !uuid 'a252706d4c66f4dd9a01396af8d6f50f9c6b3369'
-gitCommitId: !uuid 'f95685998c0c4bcb409a38412849bfbebef40bf4'
+    newFile: !uuid 'a252706d4c66f4dd9a01396af8d6f50f9c6b3369'
+    oldFile: !uuid '6994f5db429be1b2b865315c3d239ea19b3f297e'
+gitCommitId: !uuid 'c8b3b0b39eef20a539925545bb8cbc3bff36889b'
 renames: {
   }
-revisionId: 924
+revisionId: 925
