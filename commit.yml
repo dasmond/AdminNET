@@ -2,67 +2,49 @@
 branches: {
   }
 fileChange:
-  /Web:
-    newFile: !uuid 'bdbbe5d394d57702c7f3e4623248614ce0affc4b'
-    oldFile: !uuid 'f5b798b73620a009a3cbaf2a9e8e2d0fc78adec9'
-  /Web/src:
-    newFile: !uuid '742259fb4eefea0887cb8fc570b91622054b729b'
-    oldFile: !uuid '1e879e8bd14f4e4e452d7c2e7b741c316f313073'
-  /Web/src/api-services:
-    newFile: !uuid '206c14c46bd08fe283a1cb37355e81641a658dc0'
-    oldFile: !uuid 'e9a94d3df4fc44498ad9c052b44e2d4c35ab6968'
-  /Web/src/api-services/models:
-    newFile: !uuid '14faef61a9c6a4c57774ce7dfe82bd3192e62a6c'
-    oldFile: !uuid '299f91f7db50421d79deea1072c2a7ef8fcd0ba0'
-  /Web/src/api-services/models/account-type-enum.ts:
-    newFile: !uuid 'ef4e05949ea93169cbe8c6a083b6b0e79bf0795c'
-    oldFile: !uuid 'da493cc142b66f02e720eec9390bfbb1b1cb4d25'
-  /Web/src/api-services/models/card-type-enum.ts:
-    newFile: !uuid '12883000555b80d45eb67da9904270f31bf8f490'
-    oldFile: !uuid '63a16fefa78fa4da92cba40684568fa708148fba'
-  /Web/src/api-services/models/cluster-status.ts:
-    newFile: !uuid 'c3ad72f672414255fd48a863beee3fc98005aad8'
-    oldFile: !uuid 'bfb36d7372a74f8132915852c2424bd416a5562e'
-  /Web/src/api-services/models/culture-level-enum.ts:
-    newFile: !uuid '9d9bfd190d022cf94a0acca02aac01d82c8a7cd7'
-    oldFile: !uuid '3b990c91802c97ef04d379d102f4adb17500626d'
-  /Web/src/api-services/models/data-scope-enum.ts:
-    newFile: !uuid '8290cf60ffac58579b6764fdcc946b12a4ef00b5'
-    oldFile: !uuid '00af39a4d7997269a94c6db6fcfcc1cc929ad009'
-  /Web/src/api-services/models/gender-enum.ts:
-    newFile: !uuid 'b9746c411b4fe5c83a77aecebdec21a9db9a20af'
-    oldFile: !uuid '7192cd9595767ce1641dc93490a903879a3fadfa'
-  /Web/src/api-services/models/job-create-type-enum.ts:
-    newFile: !uuid 'f459737d2c91941a07803b4e90aea4f88c58cb29'
-    oldFile: !uuid '7b505307fd1818ff0e35a3eda62670b63471734b'
-  /Web/src/api-services/models/menu-type-enum.ts:
-    newFile: !uuid 'efb4d1b723ddd08b04f5ea93d62694311f183093'
-    oldFile: !uuid '2fc1b3f53a43f7e946de37ef268492128e1b39f7'
-  /Web/src/api-services/models/message-type-enum.ts:
-    newFile: !uuid 'c40e4c6d347d896df6d4c84d41863a6f5c964632'
-    oldFile: !uuid '0b8476834e831cf245f1aa0f7abbf4d2d61fac9e'
-  /Web/src/api-services/models/notice-status-enum.ts:
-    newFile: !uuid '3539e30c10fbd873fabd554099e793482d904947'
-    oldFile: !uuid '9ec66fc6be8df9e06d25fbd21c1a9f17e545d0f5'
-  /Web/src/api-services/models/notice-type-enum.ts:
-    newFile: !uuid '85ba687e12e93ad99dd79eb88d53058afb72bc90'
-    oldFile: !uuid 'b8d26a3f34a021daac3660956d60c2f083244a5a'
-  /Web/src/api-services/models/notice-user-status-enum.ts:
-    newFile: !uuid 'b8e1853cb3c9f32a4da85807c085c0eaae69fc90'
-    oldFile: !uuid '5e420b925714f2dae8f8c7eae6f14addc80182f2'
-  /Web/src/api-services/models/status-enum.ts:
-    newFile: !uuid '120970cfd1ecd99866a649b89640e69feb4da57c'
-    oldFile: !uuid '21be440ab4a4ff7ba94fc0081b6470bc55ebdb23'
-  /Web/src/api-services/models/tenant-type-enum.ts:
-    newFile: !uuid '83cdb1935ee6e4d0db96e8de4c93393828121de0'
-    oldFile: !uuid 'ae51f24050dc7df88ed5a51f08c98e27444164af'
-  /Web/src/api-services/models/trigger-status.ts:
-    newFile: !uuid '52eb39ee26662120672192b48fa10041761da417'
-    oldFile: !uuid '59becc0d2148326074bd58a0aad6baffc64440f3'
-  /Web/src/api-services/models/yes-no-enum.ts:
-    newFile: !uuid 'a252706d4c66f4dd9a01396af8d6f50f9c6b3369'
-    oldFile: !uuid '6994f5db429be1b2b865315c3d239ea19b3f297e'
-gitCommitId: !uuid 'c8b3b0b39eef20a539925545bb8cbc3bff36889b'
+  /Admin.NET:
+    newFile: !uuid 'a28ea0eb19f6029f4e3f468a3cc98322e759b95f'
+    oldFile: !uuid '4012a817f5c95467fc31b877ef4fd271acbc17c2'
+  /Admin.NET/Admin.NET.Application:
+    newFile: !uuid 'a0f463cc27b69d5a7242781e603bc8925b2980f7'
+    oldFile: !uuid 'c522ed74d3602c35bb11dec917bd8d4d50619b69'
+  /Admin.NET/Admin.NET.Application/Admin.NET.Application.csproj:
+    newFile: !uuid '1a0b0cd1e5e2995129b999e967f3d069095dde51'
+    oldFile: !uuid 'b3568b6d0ae82244e5b3b2d62a45182617e2a4af'
+  /Admin.NET/Admin.NET.Application/Configuration:
+    newFile: !uuid 'df8587bd668eae42b2f781c5d3daae416093f8ae'
+    oldFile: !uuid '7b649a75e7753ce959eb360be3d352c8e87812cc'
+  /Admin.NET/Admin.NET.Application/Configuration/Swagger.json:
+    newFile: !uuid '12147408f76f9a9adb20678fcf2b87db00652091'
+    oldFile: !uuid '863f6ed36921675ea8105d7bad2517ac3d7a77bf'
+  /Admin.NET/Admin.NET.sln:
+    newFile: !uuid '5534ed96bcf7c667d4f41fec46221c37b3d1590a'
+    oldFile: !uuid 'a72f3c65d22e6d9ebdc5c9ad7e3b7fc4ef1df413'
+  /Admin.NET/Plugins:
+    newFile: !uuid '3d8856f8f2157b3f1b839e27bc74b564999dcd0b'
+    oldFile: !uuid '3a1db1280c216d274af0c813e9f43b0d56e6bfbc'
+  /Admin.NET/Plugins/Admin.NET.Plugin.Elsa:
+    newFile: !uuid '5a4c68f5084885917f415355fa4a803826eec2bd'
+    oldFile: null
+  /Admin.NET/Plugins/Admin.NET.Plugin.Elsa/Admin.NET.Plugin.Elsa.csproj:
+    newFile: !uuid '52772efb957fd4405a0a51f164108ee8660f4bd6'
+    oldFile: null
+  /Admin.NET/Plugins/Admin.NET.Plugin.Elsa/Elsa.json:
+    newFile: !uuid 'd1fd0988975cd09754744ef726846e0ed5890716'
+    oldFile: null
+  /Admin.NET/Plugins/Admin.NET.Plugin.Elsa/GlobalUsings.cs:
+    newFile: !uuid '620d9aaf8f255087974011df6d5bb9c9c73edff5'
+    oldFile: null
+  /Admin.NET/Plugins/Admin.NET.Plugin.Elsa/Option:
+    newFile: !uuid '9424d9c6605c6e7b50a3794cd146e4a4c8b887c2'
+    oldFile: null
+  /Admin.NET/Plugins/Admin.NET.Plugin.Elsa/Option/ElsaOptions.cs:
+    newFile: !uuid '09a6bc25f3aecef5fb52a04bf487ed34ec43951c'
+    oldFile: null
+  /Admin.NET/Plugins/Admin.NET.Plugin.Elsa/Startup.cs:
+    newFile: !uuid 'ffb3f35b613897aa83cb2938988ca01d86cfe380'
+    oldFile: null
+gitCommitId: !uuid '425a457275bad21166c550da0fa3130c7fb8210d'
 renames: {
   }
-revisionId: 925
+revisionId: 926
