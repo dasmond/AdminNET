@@ -3,18 +3,42 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '1b8c366825234a63c25e36a1277d56082e7118ac'
-    oldFile: !uuid '899b29b5ef1f3c11ae048a79a71d426ff5ef359b'
+    newFile: !uuid '127970961a573e82736481db8a725dfd0c6163ed'
+    oldFile: !uuid '1b8c366825234a63c25e36a1277d56082e7118ac'
   /Admin.NET/Admin.NET.Application:
-    newFile: !uuid '000da9f24395a143f97282378357768c0516351e'
-    oldFile: !uuid '21d5aed00a903f7214f2a5b2a845538594383eb8'
+    newFile: !uuid 'fdc3f63dfa2cf5ab5342c87e1a732e72a1333049'
+    oldFile: !uuid '000da9f24395a143f97282378357768c0516351e'
   /Admin.NET/Admin.NET.Application/Configuration:
-    newFile: !uuid '1d4bf98ba05de1caeb94b6eddd729ce37aaa02fb'
-    oldFile: !uuid '684d785fa44aa76e79910c3ef813475c8abe12f9'
+    newFile: !uuid '139243b0324b3a8c205b8b5716b47984fe6b5ce9'
+    oldFile: !uuid '1d4bf98ba05de1caeb94b6eddd729ce37aaa02fb'
   /Admin.NET/Admin.NET.Application/Configuration/App.json:
-    newFile: !uuid 'cf9b7eef223fa5edce7da859bff6676aaaac4633'
-    oldFile: !uuid 'a87ccfea2d5ed89996167895b79a447543eea6bf'
-gitCommitId: !uuid '5ab9f754e3aaa97aeece15168353fece9c913243'
-renames: {
-  }
-revisionId: 962
+    newFile: !uuid 'f39e6cf86b4413e5b230e88d5a22a4b21f92c2ed'
+    oldFile: !uuid 'cf9b7eef223fa5edce7da859bff6676aaaac4633'
+  /Admin.NET/Admin.NET.Web.Entry:
+    newFile: !uuid '41394a67288f28c8ad7e0018cbde913bf00ee61e'
+    oldFile: !uuid '882ec8b00797764ef6de3d09174fa152680d8359'
+  /Admin.NET/Admin.NET.Web.Entry/Resources:
+    newFile: !uuid '75ba98dc71c17f40bb76087c0ecd75e9fd1c2ef1'
+    oldFile: !uuid '4108717591b7038b4d6b1259b0d7ce59683629a4'
+  /Admin.NET/Admin.NET.Web.Entry/Resources/Lang.en-US.resx:
+    newFile: null
+    oldFile: !uuid '861321511743be0fbc7320a822563010369f8786'
+  /Admin.NET/Admin.NET.Web.Entry/Resources/Lang.en.resx:
+    newFile: !uuid '861321511743be0fbc7320a822563010369f8786'
+    oldFile: null
+  /Web:
+    newFile: !uuid '87a8c924fb7394fc10bf3740d47335fcbcc2a4ed'
+    oldFile: !uuid 'bdbbe5d394d57702c7f3e4623248614ce0affc4b'
+  /Web/src:
+    newFile: !uuid '5191029fb7a79d3cbecd7a8ed42632de610837de'
+    oldFile: !uuid '742259fb4eefea0887cb8fc570b91622054b729b'
+  /Web/src/utils:
+    newFile: !uuid '5ec949817c39741d1c3f96663ca86009bf15c7a2'
+    oldFile: !uuid '0ec2969f509ce52ac6948aa2eb73613ac78880ab'
+  /Web/src/utils/axios-utils.ts:
+    newFile: !uuid 'a3b84dc227692109b6cb6d4f8d908164bf357e0b'
+    oldFile: !uuid '2312f4218422a350a6a798aac1ac36967b36cebe'
+gitCommitId: !uuid '3d2bb1655adb4b0683f6dd55fa07426cb6f3e6c0'
+renames:
+  /Admin.NET/Admin.NET.Web.Entry/Resources/Lang.en.resx: /Admin.NET/Admin.NET.Web.Entry/Resources/Lang.en-US.resx
+revisionId: 963
