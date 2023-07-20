@@ -3,42 +3,93 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '127970961a573e82736481db8a725dfd0c6163ed'
-    oldFile: !uuid '1b8c366825234a63c25e36a1277d56082e7118ac'
-  /Admin.NET/Admin.NET.Application:
-    newFile: !uuid 'fdc3f63dfa2cf5ab5342c87e1a732e72a1333049'
-    oldFile: !uuid '000da9f24395a143f97282378357768c0516351e'
-  /Admin.NET/Admin.NET.Application/Configuration:
-    newFile: !uuid '139243b0324b3a8c205b8b5716b47984fe6b5ce9'
-    oldFile: !uuid '1d4bf98ba05de1caeb94b6eddd729ce37aaa02fb'
-  /Admin.NET/Admin.NET.Application/Configuration/App.json:
-    newFile: !uuid 'f39e6cf86b4413e5b230e88d5a22a4b21f92c2ed'
-    oldFile: !uuid 'cf9b7eef223fa5edce7da859bff6676aaaac4633'
-  /Admin.NET/Admin.NET.Web.Entry:
-    newFile: !uuid '41394a67288f28c8ad7e0018cbde913bf00ee61e'
-    oldFile: !uuid '882ec8b00797764ef6de3d09174fa152680d8359'
-  /Admin.NET/Admin.NET.Web.Entry/Resources:
-    newFile: !uuid '75ba98dc71c17f40bb76087c0ecd75e9fd1c2ef1'
-    oldFile: !uuid '4108717591b7038b4d6b1259b0d7ce59683629a4'
-  /Admin.NET/Admin.NET.Web.Entry/Resources/Lang.en-US.resx:
-    newFile: null
-    oldFile: !uuid '861321511743be0fbc7320a822563010369f8786'
-  /Admin.NET/Admin.NET.Web.Entry/Resources/Lang.en.resx:
-    newFile: !uuid '861321511743be0fbc7320a822563010369f8786'
-    oldFile: null
+    newFile: !uuid '788123fdf5b0f3182abd184d2e48774bbb002d2c'
+    oldFile: !uuid '127970961a573e82736481db8a725dfd0c6163ed'
+  /Admin.NET/Admin.NET.Core:
+    newFile: !uuid '3fde7dfacf1d4518134fa3efc0c55d841fe2cac4'
+    oldFile: !uuid '5e46e02f9cedfceb71c93236f042bd8d8e0f3e6d'
+  /Admin.NET/Admin.NET.Core/SqlSugar:
+    newFile: !uuid '52c988b1872138a02742e8111a79aa2db07aa2e1'
+    oldFile: !uuid 'e81802cc6164861ddb2d3b0829eb8af029ae2810'
+  /Admin.NET/Admin.NET.Core/SqlSugar/SqlSugarSetup.cs:
+    newFile: !uuid 'dadff0e478e8eec16e0d52c496adfb4ec058f5cd'
+    oldFile: !uuid '94f26532151a6e572ab17d01c0f254e674f9a728'
+  /Admin.NET/Admin.NET.Web.Core:
+    newFile: !uuid 'c2cefc74da9c99575d102510ae103be456fb3d71'
+    oldFile: !uuid '3592d91c32358994cfe1ed2abf8f00ca73f06bbc'
+  /Admin.NET/Admin.NET.Web.Core/Admin.NET.Web.Core.csproj:
+    newFile: !uuid '454db3a6910e6d6f52b528add4c21858ec0f90a6'
+    oldFile: !uuid '1152115005aab048899dd5de5080c61e353c66d0'
   /Web:
-    newFile: !uuid '87a8c924fb7394fc10bf3740d47335fcbcc2a4ed'
-    oldFile: !uuid 'bdbbe5d394d57702c7f3e4623248614ce0affc4b'
+    newFile: !uuid '0da83a343bc29669cca47a837975266b7fa931e6'
+    oldFile: !uuid '87a8c924fb7394fc10bf3740d47335fcbcc2a4ed'
+  /Web/index.html:
+    newFile: !uuid 'ad85c71ed66b16a951f240f7b499a98b315c7b49'
+    oldFile: !uuid '0d1b434238ba3a0ac71a17883180300d17c43e3d'
+  /Web/package.json:
+    newFile: !uuid 'dc7ee58747da09851ccc57d536788e7a1c6949a9'
+    oldFile: !uuid '1c283a508881a0061b43ddfe059eacf540169352'
+  /Web/pnpm-lock.yaml:
+    newFile: !uuid 'd09b80f3b102470ecd9259d64733918a565dca7a'
+    oldFile: !uuid '4367b0d0fe09a28ce488b460f054be596f1cf741'
+  /Web/public:
+    newFile: !uuid '532c4b04a1ac6e5533686290c4389efab12d5f0a'
+    oldFile: !uuid 'cd0247bf0b37ff9f33b90b4f4520f465191ad84e'
+  /Web/public/print-lock.css:
+    newFile: !uuid '93e654a08971cc4a7102588d9be2864d11312c6f'
+    oldFile: !uuid '06ac5164046005d6cd8124ba2583fc4913a6fd73'
   /Web/src:
-    newFile: !uuid '5191029fb7a79d3cbecd7a8ed42632de610837de'
-    oldFile: !uuid '742259fb4eefea0887cb8fc570b91622054b729b'
-  /Web/src/utils:
-    newFile: !uuid '5ec949817c39741d1c3f96663ca86009bf15c7a2'
-    oldFile: !uuid '0ec2969f509ce52ac6948aa2eb73613ac78880ab'
-  /Web/src/utils/axios-utils.ts:
-    newFile: !uuid 'a3b84dc227692109b6cb6d4f8d908164bf357e0b'
-    oldFile: !uuid '2312f4218422a350a6a798aac1ac36967b36cebe'
-gitCommitId: !uuid '3d2bb1655adb4b0683f6dd55fa07426cb6f3e6c0'
-renames:
-  /Admin.NET/Admin.NET.Web.Entry/Resources/Lang.en.resx: /Admin.NET/Admin.NET.Web.Entry/Resources/Lang.en-US.resx
-revisionId: 930
+    newFile: !uuid 'e0bc8b4048d2ecb89b0ef8e90ee9fc4b093e683e'
+    oldFile: !uuid '5191029fb7a79d3cbecd7a8ed42632de610837de'
+  /Web/src/assets:
+    newFile: !uuid '4154438c6f113b513ef8837a83bb11b2f8640a43'
+    oldFile: !uuid '557b72500fefeae0e822b9663f3600bd53cc3f76'
+  /Web/src/assets/logo.png:
+    newFile: !uuid '5de6838f98ff076058d38ba125b4d1cbd6040804'
+    oldFile: null
+  /Web/src/i18n:
+    newFile: !uuid '5e6d116b6d1f77fbca430de0d8d52cf1ef5e410d'
+    oldFile: !uuid '5580c8fb5e88a9888371e69c6f3242101a015f62'
+  /Web/src/i18n/index.ts:
+    newFile: !uuid 'cd0f98758707c9cab8975569ae325685c9df0474'
+    oldFile: !uuid '2b9072a8e5e1c3a568190b5cefa7a4c844cf9204'
+  /Web/src/types:
+    newFile: !uuid '05ada95a89a12680c758afeaec5b14da1ba5add8'
+    oldFile: !uuid '2dfeb9c60346347c4999e66c7f3c0ae63131ff0c'
+  /Web/src/types/global.d.ts:
+    newFile: !uuid 'cce75eee93edcd713e00f8100037396166b8b80e'
+    oldFile: !uuid '7f7e8cf05f19be9cbd99780aa18839234ad886df'
+  /Web/src/views:
+    newFile: !uuid '46e5940bd2edfdb54109c7fe1441283cf99f08b9'
+    oldFile: !uuid 'b3494450e828ea147b99229479166e7cedca6e91'
+  /Web/src/views/system:
+    newFile: !uuid '3fdd6fb99ebe9688497e86348f49bf8f9531d822'
+    oldFile: !uuid 'c52dd3e2cbe8d3ec3c4f1b374f79d83546b2b32c'
+  /Web/src/views/system/print:
+    newFile: !uuid '5eccc08e80f1d36637dc641ba410c7a2d47b19c9'
+    oldFile: !uuid '61e0bc32560a827289768c0f4b0b30d70cb57562'
+  /Web/src/views/system/print/component:
+    newFile: !uuid 'e816239dfe332d618b492f334c7015de2d4e4140'
+    oldFile: !uuid '6743874f81bb18febdac822d36b6fa62b7b23c52'
+  /Web/src/views/system/print/component/editPrint.vue:
+    newFile: !uuid 'b00a9a290a291a3783557b91389a97b94bc4c226'
+    oldFile: !uuid '98b965110c727d45609988a65c44fbb0ecad6d25'
+  /Web/src/views/system/print/component/hiprint:
+    newFile: !uuid '0e79ce838c3290bd3e65c2578513ecab3358cc04'
+    oldFile: null
+  /Web/src/views/system/print/component/hiprint/index.vue:
+    newFile: !uuid 'eb1699b1063f910cb371f14abcffee282517750b'
+    oldFile: null
+  /Web/src/views/system/print/component/hiprint/preview.vue:
+    newFile: !uuid 'fce0f02b54c780109f2174a399b11a7b303f0dcf'
+    oldFile: null
+  /Web/src/views/system/print/component/hiprint/print-data.ts:
+    newFile: !uuid '46900dd1e06f30bd4696ae7dec5e06292b5e80c3'
+    oldFile: null
+  /Web/src/views/system/print/component/hiprint/providers.ts:
+    newFile: !uuid '16262a5cf662f177b2c25353d5cbcf81f973b50c'
+    oldFile: null
+gitCommitId: !uuid '587b3191832230ca82d4402103b9eb6d2fc99ad3'
+renames: {
+  }
+revisionId: 931
