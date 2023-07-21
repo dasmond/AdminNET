@@ -2,58 +2,31 @@
 branches: {
   }
 fileChange:
-  /Admin.NET:
-    newFile: !uuid '4cac23418a3848eb7131ff979547bdc8ea1484dd'
-    oldFile: !uuid '788123fdf5b0f3182abd184d2e48774bbb002d2c'
-  /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '264cb1db64c8104602120a4e272ce2511fdf1091'
-    oldFile: !uuid '3fde7dfacf1d4518134fa3efc0c55d841fe2cac4'
-  /Admin.NET/Admin.NET.Core/Entity:
-    newFile: !uuid '346b0126671d805d74a5191c7af86441be229d9a'
-    oldFile: !uuid 'fe3ab2752139e82bebef1f6b9bf7dfdccaef354f'
-  /Admin.NET/Admin.NET.Core/Entity/SysOrg.cs:
-    newFile: !uuid '560570643eca1e86b11e313f9cafb6115b3cf04e'
-    oldFile: !uuid 'd96009080634f7ffa20be481e8a5e81fe8855f64'
   /Web:
-    newFile: !uuid 'ef94f3ad15141290f1e83449c1268480fabfe565'
-    oldFile: !uuid '0da83a343bc29669cca47a837975266b7fa931e6'
+    newFile: !uuid 'e2573dadfdf1b9ffcc39d9776cd1b70dcd631a3c'
+    oldFile: !uuid 'ef94f3ad15141290f1e83449c1268480fabfe565'
   /Web/src:
-    newFile: !uuid '8e6482d3fb6dc3dcddcd319dbf4930133a9bc0dc'
-    oldFile: !uuid 'e0bc8b4048d2ecb89b0ef8e90ee9fc4b093e683e'
-  /Web/src/api-services:
-    newFile: !uuid 'a808e36f22c9fd926eeacc88fb613498265f1157'
-    oldFile: !uuid '206c14c46bd08fe283a1cb37355e81641a658dc0'
-  /Web/src/api-services/models:
-    newFile: !uuid '497bcaf31ca2d2c28d47d5e973a3fd89c70be8f3'
-    oldFile: !uuid '14faef61a9c6a4c57774ce7dfe82bd3192e62a6c'
-  /Web/src/api-services/models/add-org-input.ts:
-    newFile: !uuid 'e9c4696733158fb42204512deda8d1e9608384b0'
-    oldFile: !uuid '7de2441952585a8ea0484232bbf761ffb8b24e13'
-  /Web/src/api-services/models/sys-org.ts:
-    newFile: !uuid '0769ec145e3b7a54a3196e7d8d09adef830e137b'
-    oldFile: !uuid '21d89c898c1ae5bee2150e89fdd487b8460992d7'
-  /Web/src/api-services/models/update-org-input.ts:
-    newFile: !uuid '5038be9f22bd65b99cda82dea570b54dc5de3dd8'
-    oldFile: !uuid '3b505c2383659784e2b2a12382aa7773a08fd100'
-  /Web/src/views:
-    newFile: !uuid 'd3d08d933d3ac8caa2c4fe3c9ab460dc86cf247b'
-    oldFile: !uuid '46e5940bd2edfdb54109c7fe1441283cf99f08b9'
-  /Web/src/views/system:
-    newFile: !uuid '173eacbf31620ca86a1c29b831864ced9bad851e'
-    oldFile: !uuid '3fdd6fb99ebe9688497e86348f49bf8f9531d822'
-  /Web/src/views/system/org:
-    newFile: !uuid '8975b913aef60229b055f3d204ca3a6648de80a2'
-    oldFile: !uuid 'd5cd14535fa761b3afacda9fd04aaebacb3ba626'
-  /Web/src/views/system/org/component:
-    newFile: !uuid '67c74405031c586a3ff83b5986cbc8e1a7a0ec2d'
-    oldFile: !uuid '6fd2d571b3f87ebd5829f9db209d6c8b2b4f8da9'
-  /Web/src/views/system/org/component/editOrg.vue:
-    newFile: !uuid '7db085e59b1f7936912d88fa7650b36aac85f8e1'
-    oldFile: !uuid '48e9f9a48f7c2707d3466ccc10db25b4176cc6e8'
-  /Web/src/views/system/org/index.vue:
-    newFile: !uuid '8118f3b31ceba98de9745f3598f95b593076f011'
-    oldFile: !uuid 'fa2187363643d7379558c18be2a9b9f68718f599'
-gitCommitId: !uuid '2148a36df083aee79c95fdcd3a315cbde7415707'
+    newFile: !uuid 'c9715528c10622eada83171f47b8c101efd849ba'
+    oldFile: !uuid '8e6482d3fb6dc3dcddcd319dbf4930133a9bc0dc'
+  /Web/src/layout:
+    newFile: !uuid '044d68c813f057da3130ef66a3a6996c98fb0375'
+    oldFile: !uuid '9f912456acc4e90a9fab54a350546e9f1a370d8b'
+  /Web/src/layout/navBars:
+    newFile: !uuid '3248d9ef68e5392648f002d29704bc51a3a652e0'
+    oldFile: !uuid 'f1f48af948183cf569229e34ce3682d9b71ef509'
+  /Web/src/layout/navBars/topBar:
+    newFile: !uuid '0085aee90ccf6ac5a7ce7fe0406157a13649533e'
+    oldFile: !uuid 'c2dbde95d02d686c0a83bdc080e75bc536b26e8d'
+  /Web/src/layout/navBars/topBar/setings.vue:
+    newFile: !uuid 'ba702af1b9bdbaad155ef1630e7c7e0f08f2884c'
+    oldFile: !uuid 'c299007340eb9a9002dfdd265bbadb97fb532183'
+  /Web/src/theme:
+    newFile: !uuid 'f9b8d3841ab58d6e54884b3917320277de15777d'
+    oldFile: !uuid '738537030913809d1bff8fc90add2b45639c340b'
+  /Web/src/theme/element.scss:
+    newFile: !uuid '8cd10526db260e27248408a8c2578dec53958572'
+    oldFile: !uuid 'bb43f62ce658ca65d612818292c4a1d3f77d5df0'
+gitCommitId: !uuid '997fb89e78750f0801651ffd88e0a25b47a3ed5e'
 renames: {
   }
-revisionId: 965
+revisionId: 966
