@@ -2,31 +2,19 @@
 branches: {
   }
 fileChange:
-  /Web:
-    newFile: !uuid 'e2573dadfdf1b9ffcc39d9776cd1b70dcd631a3c'
-    oldFile: !uuid 'ef94f3ad15141290f1e83449c1268480fabfe565'
-  /Web/src:
-    newFile: !uuid 'c9715528c10622eada83171f47b8c101efd849ba'
-    oldFile: !uuid '8e6482d3fb6dc3dcddcd319dbf4930133a9bc0dc'
-  /Web/src/layout:
-    newFile: !uuid '044d68c813f057da3130ef66a3a6996c98fb0375'
-    oldFile: !uuid '9f912456acc4e90a9fab54a350546e9f1a370d8b'
-  /Web/src/layout/navBars:
-    newFile: !uuid '3248d9ef68e5392648f002d29704bc51a3a652e0'
-    oldFile: !uuid 'f1f48af948183cf569229e34ce3682d9b71ef509'
-  /Web/src/layout/navBars/topBar:
-    newFile: !uuid '0085aee90ccf6ac5a7ce7fe0406157a13649533e'
-    oldFile: !uuid 'c2dbde95d02d686c0a83bdc080e75bc536b26e8d'
-  /Web/src/layout/navBars/topBar/setings.vue:
-    newFile: !uuid 'ba702af1b9bdbaad155ef1630e7c7e0f08f2884c'
-    oldFile: !uuid 'c299007340eb9a9002dfdd265bbadb97fb532183'
-  /Web/src/theme:
-    newFile: !uuid 'f9b8d3841ab58d6e54884b3917320277de15777d'
-    oldFile: !uuid '738537030913809d1bff8fc90add2b45639c340b'
-  /Web/src/theme/element.scss:
-    newFile: !uuid '8cd10526db260e27248408a8c2578dec53958572'
-    oldFile: !uuid 'bb43f62ce658ca65d612818292c4a1d3f77d5df0'
-gitCommitId: !uuid '997fb89e78750f0801651ffd88e0a25b47a3ed5e'
+  /Admin.NET:
+    newFile: !uuid 'e63059d45c4e1b2aa6790e7ead748303a8a3218f'
+    oldFile: !uuid '4cac23418a3848eb7131ff979547bdc8ea1484dd'
+  /Admin.NET/Admin.NET.Core:
+    newFile: !uuid '1c0649f50a97fca64841a4aace9e8e3f0444788f'
+    oldFile: !uuid '264cb1db64c8104602120a4e272ce2511fdf1091'
+  /Admin.NET/Admin.NET.Core/SeedData:
+    newFile: !uuid '300638851cddc431c0a4e3f0d28edbcc92160201'
+    oldFile: !uuid '8d65738f87d9ed6b1702f8190d0871b61245963a'
+  /Admin.NET/Admin.NET.Core/SeedData/SysOrgSeedData.cs:
+    newFile: !uuid 'bd96701c00ce83d88cab43d17fafc4665d8f1349'
+    oldFile: !uuid '1e8021dc1953005ad489f8c2c45f99afc80192c1'
+gitCommitId: !uuid '7749738bb786641bfa8da12019d8fe433f9f8cfa'
 renames: {
   }
-revisionId: 933
+revisionId: 934
