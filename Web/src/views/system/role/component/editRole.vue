@@ -37,20 +37,6 @@
 							<el-input v-model="state.ruleForm.remark" placeholder="请输入备注内容" clearable type="textarea" />
 						</el-form-item>
 					</el-col>
-					<el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="mb20">
-						<el-form-item label="菜单权限" v-loading="state.loading">
-							<el-tree
-								ref="treeRef"
-								:data="state.menuData"
-								node-key="id"
-								show-checkbox
-								:props="{ children: 'children', label: 'title', class: treeNodeClass }"
-								icon="ele-Menu"
-								highlight-current
-								default-expand-all
-							/>
-						</el-form-item>
-					</el-col>
 				</el-row>
 			</el-form>
 			<template #footer>
@@ -68,8 +54,8 @@ import { onMounted, reactive, ref } from 'vue';
 import type { ElTree } from 'element-plus';
 
 import { getAPI } from '/@/utils/axios-utils';
-import { SysMenuApi, SysRoleApi } from '/@/api-services/api';
-import { SysMenu, UpdateRoleInput } from '/@/api-services/models';
+import { SysRoleApi } from '/@/api-services/api';
+import { AddRoleInput, UpdateRoleInput } from '/@/api-services/models';
 
 const props = defineProps({
 	title: String,
@@ -78,17 +64,12 @@ const emits = defineEmits(['handleQuery']);
 const ruleFormRef = ref();
 const treeRef = ref<InstanceType<typeof ElTree>>();
 const state = reactive({
-	loading: false,
 	isShowDialog: false,
-	ruleForm: {} as UpdateRoleInput,
-	menuData: [] as Array<SysMenu>, // 菜单数据
+	ruleForm: {} as UpdateRoleInput
 });
 
 onMounted(async () => {
-	state.loading = true;
-	var res = await getAPI(SysMenuApi).apiSysMenuListGet();
-	state.menuData = res.data.result ?? [];
-	state.loading = false;
+	
 });
 
 // 打开弹窗
@@ -119,7 +100,6 @@ const cancel = () => {
 const submit = () => {
 	ruleFormRef.value.validate(async (valid: boolean) => {
 		if (!valid) return;
-		state.ruleForm.menuIdList = treeRef.value?.getCheckedKeys() as Array<number>; //.concat(treeRef.value?.getHalfCheckedKeys());
 		if (state.ruleForm.id != undefined && state.ruleForm.id > 0) {
 			await getAPI(SysRoleApi).apiSysRoleUpdatePost(state.ruleForm);
 		} else {
@@ -129,49 +109,6 @@ const submit = () => {
 	});
 };
 
-// 叶子节点同行显示样式
-const treeNodeClass = (node: SysMenu) => {
-	let addClass = true; // 添加叶子节点同行显示样式
-	for (var key in node.children) {
-		// 如果存在子节点非叶子节点，不添加样式
-		if (node.children[key].children?.length ?? 0 > 0) {
-			addClass = false;
-			break;
-		}
-	}
-	return addClass ? 'penultimate-node' : '';
-};
-
 // 导出对象
 defineExpose({ openDialog });
 </script>
-
-<style lang="scss" scoped>
-.menu-data-tree {
-	width: 100%;
-	border: 1px solid var(--el-border-color);
-	border-radius: var(--el-input-border-radius, var(--el-border-radius-base));
-	padding: 5px;
-}
-
-:deep(.penultimate-node) {
-	.el-tree-node__children {
-		padding-left: 40px;
-		white-space: pre-wrap;
-		line-height: 100%;
-
-		.el-tree-node {
-			display: inline-block;
-		}
-
-		.el-tree-node__content {
-			padding-left: 5px !important;
-			padding-right: 5px;
-
-			// .el-tree-node__expand-icon {
-			// 	display: none;
-			// }
-		}
-	}
-}
-</style>

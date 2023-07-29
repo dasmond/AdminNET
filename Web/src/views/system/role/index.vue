@@ -10,7 +10,8 @@
 				</el-form-item>
 				<el-form-item>
 					<el-button-group>
-						<el-button type="primary" icon="ele-Search" @click="handleQuery" v-auth="'sysRole:page'"> 查询 </el-button>
+						<el-button type="primary" icon="ele-Search" @click="handleQuery" v-auth="'sysRole:page'"> 查询
+						</el-button>
 						<el-button icon="ele-Refresh" @click="resetQuery"> 重置 </el-button>
 					</el-button-group>
 				</el-form-item>
@@ -45,34 +46,33 @@
 				<el-table-column prop="remark" label="备注" header-align="center" show-overflow-tooltip />
 				<el-table-column label="操作" width="110" fixed="right" align="center" show-overflow-tooltip>
 					<template #default="scope">
-						<el-button icon="ele-Edit" size="small" text type="primary" @click="openEditRole(scope.row)" v-auth="'sysRole:update'"> 编辑 </el-button>
+						<el-button icon="ele-Edit" size="small" text type="primary" @click="openEditRole(scope.row)"
+							v-auth="'sysRole:update'"> 编辑 </el-button>
 						<el-dropdown>
 							<el-button icon="ele-MoreFilled" size="small" text type="primary" style="padding-left: 12px" />
 							<template #dropdown>
 								<el-dropdown-menu>
-									<el-dropdown-item icon="ele-OfficeBuilding" @click="openGrantData(scope.row)" :disabled="!auth('sysRole:grantDataScope')"> 数据范围 </el-dropdown-item>
-									<el-dropdown-item icon="ele-Delete" @click="delRole(scope.row)" divided :disabled="!auth('sysRole:delete')"> 删除角色 </el-dropdown-item>
+									<el-dropdown-item icon="ele-OfficeBuilding" @click="openGrantData(scope.row)"
+										:disabled="!auth('sysRole:grantDataScope')"> 数据范围 </el-dropdown-item>
+									<el-dropdown-item icon="ele-Menu" @click="openGrantMenu(scope.row)"
+										:disabled="!auth('sysRole:grantMenu')"> 菜单授权 </el-dropdown-item>
+									<el-dropdown-item icon="ele-Delete" @click="delRole(scope.row)" divided
+										:disabled="!auth('sysRole:delete')"> 删除角色 </el-dropdown-item>
 								</el-dropdown-menu>
 							</template>
 						</el-dropdown>
 					</template>
 				</el-table-column>
 			</el-table>
-			<el-pagination
-				v-model:currentPage="state.tableParams.page"
-				v-model:page-size="state.tableParams.pageSize"
-				:total="state.tableParams.total"
-				:page-sizes="[10, 20, 50, 100]"
-				small
-				background
-				@size-change="handleSizeChange"
-				@current-change="handleCurrentChange"
-				layout="total, sizes, prev, pager, next, jumper"
-			/>
+			<el-pagination v-model:currentPage="state.tableParams.page" v-model:page-size="state.tableParams.pageSize"
+				:total="state.tableParams.total" :page-sizes="[10, 20, 50, 100]" small background
+				@size-change="handleSizeChange" @current-change="handleCurrentChange"
+				layout="total, sizes, prev, pager, next, jumper" />
 		</el-card>
 
 		<EditRole ref="editRoleRef" :title="state.editRoleTitle" @handleQuery="handleQuery" />
 		<GrantData ref="grantDataRef" @handleQuery="handleQuery" />
+		<GrantMenu ref="grantMenuRef" />
 	</div>
 </template>
 
@@ -82,6 +82,7 @@ import { ElMessageBox, ElMessage } from 'element-plus';
 import { auth } from '/@/utils/authFunction';
 import EditRole from '/@/views/system/role/component/editRole.vue';
 import GrantData from '/@/views/system/role/component/grantData.vue';
+import GrantMenu from './component/grantMenu.vue'
 
 import { getAPI } from '/@/utils/axios-utils';
 import { SysRoleApi } from '/@/api-services/api';
@@ -89,6 +90,7 @@ import { SysRole } from '/@/api-services/models';
 
 const editRoleRef = ref<InstanceType<typeof EditRole>>();
 const grantDataRef = ref<InstanceType<typeof GrantData>>();
+const grantMenuRef = ref<InstanceType<typeof GrantMenu>>();
 const state = reactive({
 	loading: false,
 	roleData: [] as Array<SysRole>,
@@ -141,7 +143,10 @@ const openEditRole = async (row: any) => {
 const openGrantData = (row: any) => {
 	grantDataRef.value?.openDialog(row);
 };
-
+// 打开菜单授权页面
+const openGrantMenu = (row: any) => {
+	grantMenuRef.value?.openDialog(row);
+};
 // 删除
 const delRole = (row: any) => {
 	ElMessageBox.confirm(`确定删角色：【${row.name}】?`, '提示', {
@@ -154,7 +159,7 @@ const delRole = (row: any) => {
 			handleQuery();
 			ElMessage.success('删除成功');
 		})
-		.catch(() => {});
+		.catch(() => { });
 };
 
 // 改变页面容量
