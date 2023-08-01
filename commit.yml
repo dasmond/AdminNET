@@ -3,15 +3,39 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '5bf1ac953e1155f4163587730c061e858f6a2ccf'
-    oldFile: !uuid 'c01aa52e648b56e64bce8593e347a1ca48cb4dcd'
+    newFile: !uuid '49d46ed9c790d1210a503d15139f6270e25c0399'
+    oldFile: !uuid '5bf1ac953e1155f4163587730c061e858f6a2ccf'
+  /Admin.NET/Admin.NET.Core:
+    newFile: !uuid '4e121e01a62e77203b5288510feb605213ae8921'
+    oldFile: !uuid '431c8591458046f6baca26f11e760a18b96ce8b5'
+  /Admin.NET/Admin.NET.Core/Service:
+    newFile: !uuid 'a5ab1fe69325a6d63dc67a150ffb2831106bd391'
+    oldFile: !uuid '11fb7a48e109faed49f516c418215478292c8fc4'
+  /Admin.NET/Admin.NET.Core/Service/Wechat:
+    newFile: !uuid '107b98554d60a6371a32778ade65f98e5e73169f'
+    oldFile: !uuid '6b499ce987776db7c10fd50b04ca0581c912432f'
+  /Admin.NET/Admin.NET.Core/Service/Wechat/Dto:
+    newFile: !uuid 'b33b873aedf484cce334decd10791c653ea03a0d'
+    oldFile: !uuid '9a882282de7ff17af881a4266ad91054550a0b38'
+  /Admin.NET/Admin.NET.Core/Service/Wechat/Dto/WechatInput.cs:
+    newFile: !uuid 'b0aee61694f63d1e96e7f165d1238949cca27406'
+    oldFile: !uuid '3a4acfbea5c0c10e53e3d7ccd849e36bd5184731'
+  /Admin.NET/Admin.NET.Core/Service/Wechat/Dto/WxOpenInput.cs:
+    newFile: !uuid '1b59c604f842b498ba4cd220b466b7ece6a6edff'
+    oldFile: !uuid 'a843465bc4806251237aacf090821c183c287196'
+  /Admin.NET/Admin.NET.Core/Service/Wechat/SysWechatService.cs:
+    newFile: !uuid '755c38b0b6a84bbb45c9652bee65659a5b24a9fe'
+    oldFile: !uuid '5522696bcb61dfb5b4d3d8cee0117122536cd28d'
+  /Admin.NET/Admin.NET.Core/Service/Wechat/SysWxOpenService.cs:
+    newFile: !uuid '90d199fde52c89d311463d52f9a886aeb25314bf'
+    oldFile: !uuid '108ca3c134a3a43a59084ade5423d49c65755432'
   /Admin.NET/Admin.NET.Web.Core:
-    newFile: !uuid '649032be3ac73e80c6ab39c19f3546a2f8224267'
-    oldFile: !uuid '926d753dac7293b53b4e0b2d45db6e98422e609c'
+    newFile: !uuid '38aac8e28d192633e236aff72e2045a0e93a3d0b'
+    oldFile: !uuid '649032be3ac73e80c6ab39c19f3546a2f8224267'
   /Admin.NET/Admin.NET.Web.Core/Startup.cs:
-    newFile: !uuid '939e74700ebe53493efc205fd5d270a976ba56ad'
-    oldFile: !uuid '6ce8ca4253b58c47fc9a908a1fc5af2713db1865'
-gitCommitId: !uuid 'a7cc9cca096c34ca3bdad364c3a917ea7662b150'
+    newFile: !uuid '2ee640de76c77a916b3877095f706d22ad96a4b9'
+    oldFile: !uuid '939e74700ebe53493efc205fd5d270a976ba56ad'
+gitCommitId: !uuid '0e790790c7c6624efac50471f585211404d04053'
 renames: {
   }
-revisionId: 949
+revisionId: 950
