@@ -37,11 +37,6 @@ public class AddRoleInput : SysRole
     /// </summary>
     [Required(ErrorMessage = "角色名称不能为空")]
     public override string Name { get; set; }
-
-    /// <summary>
-    /// 菜单Id集合
-    /// </summary>
-    public List<long> MenuIdList { get; set; }
 }
 
 public class UpdateRoleInput : AddRoleInput

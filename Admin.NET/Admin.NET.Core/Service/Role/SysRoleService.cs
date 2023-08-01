@@ -79,25 +79,7 @@ public class SysRoleService : IDynamicApiController, ITransient
         if (isExist)
             throw Oops.Oh(ErrorCodeEnum.D1006);
 
-        var newRole = await _sysRoleRep.AsInsertable(input.Adapt<SysRole>()).ExecuteReturnEntityAsync();
-        input.Id = newRole.Id;
-        await UpdateRoleMenu(input);
-    }
-
-    /// <summary>
-    /// 更新角色菜单权限
-    /// </summary>
-    /// <param name="input"></param>
-    /// <returns></returns>
-    private async Task UpdateRoleMenu(AddRoleInput input)
-    {
-        if (input.MenuIdList == null || input.MenuIdList.Count < 1)
-            return;
-        await GrantMenu(new RoleMenuInput()
-        {
-            Id = input.Id,
-            MenuIdList = input.MenuIdList
-        });
+        await _sysRoleRep.InsertAsync(input.Adapt<SysRole>());
     }
 
     /// <summary>
@@ -112,11 +94,8 @@ public class SysRoleService : IDynamicApiController, ITransient
         var isExist = await _sysRoleRep.IsAnyAsync(u => u.Name == input.Name && u.Code == input.Code && u.Id != input.Id);
         if (isExist)
             throw Oops.Oh(ErrorCodeEnum.D1006);
-
         await _sysRoleRep.AsUpdateable(input.Adapt<SysRole>()).IgnoreColumns(true)
             .IgnoreColumns(u => new { u.DataScope }).ExecuteCommandAsync();
-
-        await UpdateRoleMenu(input);
     }
 
     /// <summary>
