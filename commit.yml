@@ -3,39 +3,48 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '49d46ed9c790d1210a503d15139f6270e25c0399'
-    oldFile: !uuid '5bf1ac953e1155f4163587730c061e858f6a2ccf'
+    newFile: !uuid '93102fe9dbabd43a15d5b63ecea64d590e659af1'
+    oldFile: !uuid '49d46ed9c790d1210a503d15139f6270e25c0399'
+  /Admin.NET/Admin.NET.Application:
+    newFile: !uuid '173dc1d36c1ec1c14d2742f56bdf352dbd181096'
+    oldFile: !uuid '8648c3d9af042a25ba02fb9b01f97cf094104163'
+  /Admin.NET/Admin.NET.Application/Configuration:
+    newFile: !uuid '96d57641e2815f8c110e173c33909465fb9c0410'
+    oldFile: !uuid '80036c5d2fdf358a8a77274eb73b422a4f7370fb'
+  /Admin.NET/Admin.NET.Application/Configuration/Swagger.json:
+    newFile: !uuid '31e57d12ee3df7bf4f61c3547d76b6d82115d2b4'
+    oldFile: !uuid 'e80ce7b6107f3fca80f4e9b63854a2c4292014ee'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '4e121e01a62e77203b5288510feb605213ae8921'
-    oldFile: !uuid '431c8591458046f6baca26f11e760a18b96ce8b5'
+    newFile: !uuid 'f5d3ac5e1af1c489919b2064e3f23ca30399ba74'
+    oldFile: !uuid '4e121e01a62e77203b5288510feb605213ae8921'
   /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid 'a5ab1fe69325a6d63dc67a150ffb2831106bd391'
-    oldFile: !uuid '11fb7a48e109faed49f516c418215478292c8fc4'
+    newFile: !uuid '228bdd9510eaf4f55c657a1afb2396c8c3aa1d47'
+    oldFile: !uuid 'a5ab1fe69325a6d63dc67a150ffb2831106bd391'
+  /Admin.NET/Admin.NET.Core/Service/Auth:
+    newFile: !uuid 'f5d7f0c1b3084127f903fa4add0bf60f666a52e4'
+    oldFile: !uuid '6e15ff3fa780a6f8b7ff4ed84c31cbb4eca92b31'
+  /Admin.NET/Admin.NET.Core/Service/Auth/SysAuthService.cs:
+    newFile: !uuid 'fe9b3b600196a49f5e6ed9637bc868b767aa75ae'
+    oldFile: !uuid '9df8be69eaf4c79e0a9f7e90938ec0e2f74d780f'
   /Admin.NET/Admin.NET.Core/Service/Wechat:
-    newFile: !uuid '107b98554d60a6371a32778ade65f98e5e73169f'
-    oldFile: !uuid '6b499ce987776db7c10fd50b04ca0581c912432f'
+    newFile: !uuid '67ae9fc726ffe1ed10ba2ad7e353e7566d7a0d5b'
+    oldFile: !uuid '107b98554d60a6371a32778ade65f98e5e73169f'
   /Admin.NET/Admin.NET.Core/Service/Wechat/Dto:
-    newFile: !uuid 'b33b873aedf484cce334decd10791c653ea03a0d'
-    oldFile: !uuid '9a882282de7ff17af881a4266ad91054550a0b38'
+    newFile: !uuid '44fb5b607557d5e10134f2de0d5728fa2dc2db23'
+    oldFile: !uuid 'b33b873aedf484cce334decd10791c653ea03a0d'
   /Admin.NET/Admin.NET.Core/Service/Wechat/Dto/WechatInput.cs:
-    newFile: !uuid 'b0aee61694f63d1e96e7f165d1238949cca27406'
-    oldFile: !uuid '3a4acfbea5c0c10e53e3d7ccd849e36bd5184731'
+    newFile: !uuid '834f2f7825ad7309b018666dc65587a46e47b21a'
+    oldFile: !uuid 'b0aee61694f63d1e96e7f165d1238949cca27406'
   /Admin.NET/Admin.NET.Core/Service/Wechat/Dto/WxOpenInput.cs:
-    newFile: !uuid '1b59c604f842b498ba4cd220b466b7ece6a6edff'
-    oldFile: !uuid 'a843465bc4806251237aacf090821c183c287196'
-  /Admin.NET/Admin.NET.Core/Service/Wechat/SysWechatService.cs:
-    newFile: !uuid '755c38b0b6a84bbb45c9652bee65659a5b24a9fe'
-    oldFile: !uuid '5522696bcb61dfb5b4d3d8cee0117122536cd28d'
-  /Admin.NET/Admin.NET.Core/Service/Wechat/SysWxOpenService.cs:
-    newFile: !uuid '90d199fde52c89d311463d52f9a886aeb25314bf'
-    oldFile: !uuid '108ca3c134a3a43a59084ade5423d49c65755432'
+    newFile: !uuid '17f4fa82eda81de78f17cdaa23318c02d2791354'
+    oldFile: !uuid '1b59c604f842b498ba4cd220b466b7ece6a6edff'
   /Admin.NET/Admin.NET.Web.Core:
-    newFile: !uuid '38aac8e28d192633e236aff72e2045a0e93a3d0b'
-    oldFile: !uuid '649032be3ac73e80c6ab39c19f3546a2f8224267'
+    newFile: !uuid '870c4775350a84a9f06033fe712037a8774f4639'
+    oldFile: !uuid '38aac8e28d192633e236aff72e2045a0e93a3d0b'
   /Admin.NET/Admin.NET.Web.Core/Startup.cs:
-    newFile: !uuid '2ee640de76c77a916b3877095f706d22ad96a4b9'
-    oldFile: !uuid '939e74700ebe53493efc205fd5d270a976ba56ad'
-gitCommitId: !uuid '0e790790c7c6624efac50471f585211404d04053'
+    newFile: !uuid 'f6e17ca2d0dbf8f8f5e9c4ca979c1e2a6deb3a25'
+    oldFile: !uuid '2ee640de76c77a916b3877095f706d22ad96a4b9'
+gitCommitId: !uuid 'dbf0b517d096b4d1c45b259d07bc542e4ede835a'
 renames: {
   }
-revisionId: 950
+revisionId: 951
