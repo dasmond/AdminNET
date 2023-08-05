@@ -97,44 +97,52 @@
 				</el-card>
 			</el-col>
 		</el-row>
-		<el-card shadow="hover" header="程序集信息" style="margin-top: 8px; --el-card-padding: 10px">
-			<div style="overflow-y: auto; padding-bottom: 10px">
-				<div v-for="d in state.assemblyInfo" :key="d.name" style="display: inline-flex; margin: 4px">
-					<el-tag round>
-						<div style="display: inline-flex">
-							<div style="">{{ d.name }}</div>
-							<div style="font-size: 9px; margin-left: 3px">{{ d.version }}</div>
+		<el-row>
+			<el-col :md="24" :sm="24">
+				<el-card shadow="hover" header="程序集信息" style="margin-top: 8px; --el-card-padding: 10px">
+					<div style="overflow-y: auto; padding-bottom: 10px">
+						<div v-for="d in state.assemblyInfo" :key="d.name" style="display: inline-flex; margin: 4px">
+							<el-tag round>
+								<div style="display: inline-flex">
+									<div style="">{{ d.name }}</div>
+									<div style="font-size: 9px; margin-left: 3px">{{ d.version }}</div>
+								</div>
+							</el-tag>
 						</div>
-					</el-tag>
-				</div>
-			</div>
-		</el-card>
-		<el-card shadow="hover" header="磁盘信息" style="margin-top: 8px">
-			<el-row>
-				<el-col
-					:span="4"
-					:xs="24"
-					:sm="24 / state.machineDiskInfo.length"
-					:md="24 / state.machineDiskInfo.length"
-					:lg="24 / state.machineDiskInfo.length"
-					:xl="24 / state.machineDiskInfo.length"
-					v-for="d in state.machineDiskInfo"
-					:key="d.diskName"
-					style="text-align: center"
-				>
-					<el-progress type="circle" :percentage="d.availablePercent" :color="'var(--el-color-primary)'">
-						<template #default>
-							<span>{{ d.availablePercent }}%<br /></span>
-							<span style="font-size: 10px">
-								已用:{{ d.used }}GB<br />
-								剩余:{{ d.availableFreeSpace }}GB<br />
-								{{ d.diskName }}
-							</span>
-						</template>
-					</el-progress>
-				</el-col>
-			</el-row>
-		</el-card>
+					</div>
+				</el-card>
+			</el-col>
+		</el-row>
+		<el-row>
+			<el-col :md="24" :sm="24">
+				<el-card shadow="hover" header="磁盘信息" style="margin-top: 8px">
+					<el-row>
+						<el-col
+							:span="4"
+							:xs="24"
+							:sm="24 / state.machineDiskInfo.length"
+							:md="24 / state.machineDiskInfo.length"
+							:lg="24 / state.machineDiskInfo.length"
+							:xl="24 / state.machineDiskInfo.length"
+							v-for="d in state.machineDiskInfo"
+							:key="d.diskName"
+							style="text-align: center"
+						>
+							<el-progress type="circle" :percentage="d.availablePercent" :color="'var(--el-color-primary)'">
+								<template #default>
+									<span>{{ d.availablePercent }}%<br /></span>
+									<span style="font-size: 10px">
+										已用:{{ d.used }}GB<br />
+										剩余:{{ d.availableFreeSpace }}GB<br />
+										{{ d.diskName }}
+									</span>
+								</template>
+							</el-progress>
+						</el-col>
+					</el-row>
+				</el-card>
+			</el-col>
+		</el-row>
 	</div>
 </template>
 
