@@ -2,19 +2,58 @@
 branches: {
   }
 fileChange:
-  /Web:
-    newFile: !uuid '1a57f622ce60387a5daac7d480fdbe92ea82118b'
-    oldFile: !uuid 'ba398b94b44af3a407c02f3396e6ab292598c8e2'
-  /Web/src:
-    newFile: !uuid 'f442c292e36a7a0630abe42c089b97d2edff3f77'
-    oldFile: !uuid 'ff0358969897853856b1b9e2911814e45c38a16d'
-  /Web/src/utils:
-    newFile: !uuid '66ce6dc39439b7e1dad8c80b21db387026d54975'
-    oldFile: !uuid '5ec949817c39741d1c3f96663ca86009bf15c7a2'
-  /Web/src/utils/axios-utils.ts:
-    newFile: !uuid 'abde3773f958d1d93b5f605c253d51bb90b79ec9'
-    oldFile: !uuid 'a3b84dc227692109b6cb6d4f8d908164bf357e0b'
-gitCommitId: !uuid '41fc715b23a4f9cfcaccc869b14c23f67c3df7f6'
-renames: {
-  }
-revisionId: 986
+  /Admin.NET:
+    newFile: !uuid '2db97c31b37735924a0e7f2a0e1fe9f7976646ed'
+    oldFile: !uuid 'df7ee7d3a9657c3778d3018f3b891e2edf21801b'
+  /Admin.NET/Admin.NET.Application:
+    newFile: !uuid '7bd83f6a233a9c26dbcf93f88435dda4d74476c0'
+    oldFile: !uuid 'ccf5b2f1f9f89bd8aceddb5e0c367b17f3984388'
+  /Admin.NET/Admin.NET.Application/Admin.NET.Application.csproj:
+    newFile: !uuid '3b8302eaf88d2d93985ff590a3600741d5540fd9'
+    oldFile: !uuid 'a83237a277fe66ab332046d7c3142bccdeabcdd0'
+  /Admin.NET/Admin.NET.Application/Configuration:
+    newFile: !uuid '081a39b7f82a586b83df833c0e3d40aba9ad2759'
+    oldFile: !uuid '1b77436de9d9c215a06322075bd46e1e8e6a4a68'
+  /Admin.NET/Admin.NET.Application/Configuration/Captcha.json:
+    newFile: !uuid '7ec150f5df0fca921b4448574ea2a5c80ae6ba60'
+    oldFile: null
+  /Admin.NET/Admin.NET.Core:
+    newFile: !uuid 'a4495e3bf8a0f10d95e273af5803d49376c377f0'
+    oldFile: !uuid 'fa29eb21c981f96f549c2d1c366c2a2c2512b4cf'
+  /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
+    newFile: !uuid 'b8f1d87792f982f94bede145433eee45bed5ce36'
+    oldFile: !uuid 'c3d86a573aef515781f4464024e82d0ceebbfdcd'
+  /Admin.NET/Admin.NET.Core/Captcha:
+    newFile: null
+    oldFile: !uuid 'c25ce395ea494c6c3c5cc94d2b19f3e4a421e19b'
+  /Admin.NET/Admin.NET.Core/Captcha/LazyCaptchaSetup.cs:
+    newFile: null
+    oldFile: !uuid '7e5ccec12f0c50d1164eb335a2a702c26faef764'
+  /Admin.NET/Admin.NET.Core/Extension:
+    newFile: !uuid '82def97e3d972e32efa7c0f6103c2dcc0479c64f'
+    oldFile: !uuid '65421e99da17ea1f073eca83e5df9b79c5fe58f6'
+  /Admin.NET/Admin.NET.Core/Extension/ConsoleLogoSetup.cs:
+    newFile: !uuid 'c488bfa283a6a403ca7a0977ad3cc23f2f6a24b1'
+    oldFile: null
+  /Admin.NET/Admin.NET.Core/Extension/LogoExtension.cs:
+    newFile: null
+    oldFile: !uuid '78f9846151c30739bf431bbae97224d9b7d51098'
+  /Admin.NET/Admin.NET.Core/Logging:
+    newFile: !uuid '5c99d98c79afffcc19fcd6fb0c70f2e5452fda71'
+    oldFile: !uuid '622faae45dac30a9a843e3a44fc415b64b1ec1da'
+  /Admin.NET/Admin.NET.Core/Logging/LoggingSetup.cs:
+    newFile: !uuid 'e7f71db6fff8ac739fa43222455ca989c760a28a'
+    oldFile: null
+  /Admin.NET/Admin.NET.Web.Core:
+    newFile: !uuid '00a51b3914f8b9dc6cbc64401f88e75e9c157660'
+    oldFile: !uuid '856c72e3237ad766eca02b3c77bea55d8d16550e'
+  /Admin.NET/Admin.NET.Web.Core/ProjectOptions.cs:
+    newFile: !uuid '238dde656d8acf67f10a1756ecb0443b74ac0369'
+    oldFile: !uuid 'b62b4004d43bb649a0338992c80b053af3d8f138'
+  /Admin.NET/Admin.NET.Web.Core/Startup.cs:
+    newFile: !uuid '34ab4add907bb2b110399864f567c2b5687741bd'
+    oldFile: !uuid '2ee640de76c77a916b3877095f706d22ad96a4b9'
+gitCommitId: !uuid '0619f347811d426c6253584c4f7994156026c097'
+renames:
+  /Admin.NET/Admin.NET.Core/Extension/ConsoleLogoSetup.cs: /Admin.NET/Admin.NET.Core/Extension/LogoExtension.cs
+revisionId: 987
