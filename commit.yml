@@ -3,18 +3,15 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '6fb1ac385d742145eef10e41af9e2c110ed5005f'
-    oldFile: !uuid '923e4bae5aa40ef86414c84200d94bb55ddba3f2'
-  /Admin.NET/Admin.NET.Application:
-    newFile: !uuid '706ee62b4c3068b1e4966fe91bbd2d7f4b3fb29d'
-    oldFile: !uuid '762e6207bfafb97bb0a9766e05385be7ba979342'
-  /Admin.NET/Admin.NET.Application/Configuration:
-    newFile: !uuid '13698f0c3d95331e2e4ce6409a98aedcdd78a36f'
-    oldFile: !uuid '4a1935e2e43e69697fd2633e8f8624df18096c00'
-  /Admin.NET/Admin.NET.Application/Configuration/Captcha.json:
-    newFile: !uuid '044cff66692cb798f529a71d2ccf162e21ef0d68'
-    oldFile: !uuid 'd089499b4508b7150bc68da2d1876cd041541ee8'
-gitCommitId: !uuid '2c531fc0177c3eab5bff62cad6cf6074efe395ea'
+    newFile: !uuid '1536322360bdfe75846313f6849bb81eee2cb8ac'
+    oldFile: !uuid '6fb1ac385d742145eef10e41af9e2c110ed5005f'
+  /Admin.NET/Admin.NET.Web.Entry:
+    newFile: !uuid 'b9165f79b48ab1b046d760268ce54de342d6426f'
+    oldFile: !uuid '7378612af91564fbe9f55a3395fce59020f0c5fe'
+  /Admin.NET/Admin.NET.Web.Entry/Dockerfile:
+    newFile: !uuid '8fc03565420cc7b393326e89c5c80946648c6d4e'
+    oldFile: !uuid 'e232aa2b2b27941318c21477edda45e8618ac27d'
+gitCommitId: !uuid 'd6c5062ed3e3f5a5fe75abb0509f340014d6a565'
 renames: {
   }
-revisionId: 989
+revisionId: 990
