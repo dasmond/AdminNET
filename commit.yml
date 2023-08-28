@@ -3,15 +3,66 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '1536322360bdfe75846313f6849bb81eee2cb8ac'
-    oldFile: !uuid '6fb1ac385d742145eef10e41af9e2c110ed5005f'
+    newFile: !uuid '14977db34f7ef4d5a32e51edc82272a4f03009f1'
+    oldFile: !uuid '1536322360bdfe75846313f6849bb81eee2cb8ac'
+  /Admin.NET/Admin.NET.Application:
+    newFile: !uuid '1c01ae4ff4d1011c0bbf1fec0bd4c6d5089c69a6'
+    oldFile: !uuid '706ee62b4c3068b1e4966fe91bbd2d7f4b3fb29d'
+  /Admin.NET/Admin.NET.Application/Configuration:
+    newFile: !uuid '1b328abf8e4da634d64941553389462910745121'
+    oldFile: !uuid '13698f0c3d95331e2e4ce6409a98aedcdd78a36f'
+  /Admin.NET/Admin.NET.Application/Configuration/OAuth.json:
+    newFile: !uuid 'e38148fbbe809e7c64e8ec4bd5bf5f808524770f'
+    oldFile: !uuid 'f88017986af72abd394649fb91a83275da78d482'
+  /Admin.NET/Admin.NET.Core:
+    newFile: !uuid '8cda6ee6a2de0b4b28dc069d35f97c9231e8cb53'
+    oldFile: !uuid 'a4495e3bf8a0f10d95e273af5803d49376c377f0'
+  /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
+    newFile: !uuid 'dc426b4eaf0622e08dfb8acbba79c61fac4a5fa3'
+    oldFile: !uuid 'b8f1d87792f982f94bede145433eee45bed5ce36'
+  /Admin.NET/Admin.NET.Core/Option:
+    newFile: !uuid 'f4ae526a169fa3a49b25377ad115e5c6b2b4fc3a'
+    oldFile: !uuid 'c57a0b79d5685d9e405cee3fd0b8a64a16501b3b'
+  /Admin.NET/Admin.NET.Core/Option/OAuthOptions.cs:
+    newFile: !uuid 'a39c82a182b53447422664367af6e082ddd099dd'
+    oldFile: !uuid 'fc60ff95da7a59e16de8222e44f72f193586e79c'
+  /Admin.NET/Admin.NET.Core/Service:
+    newFile: !uuid '740b653fc2695e3f88648bc822092c1e4f5454ed'
+    oldFile: !uuid '0123b00afda214665106a322c45d4d4b8bb8ae3f'
+  /Admin.NET/Admin.NET.Core/Service/OAuth:
+    newFile: !uuid 'e9d9f9b594db6eccce494095e0c75ebe9d6c8e34'
+    oldFile: null
+  /Admin.NET/Admin.NET.Core/Service/OAuth/HttpContextExtension.cs:
+    newFile: !uuid '092cbcc44fe45c53dc13bc1680ccf18d1b5c071e'
+    oldFile: null
+  /Admin.NET/Admin.NET.Core/Service/OAuth/OAuthClaim.cs:
+    newFile: !uuid 'f0d6b361cb683ad88460be9f83951bd5df99bd73'
+    oldFile: null
+  /Admin.NET/Admin.NET.Core/Service/OAuth/SysOAuthService.cs:
+    newFile: !uuid 'b6b488263ee7b03323acd5d960bf0358a70bbc1b'
+    oldFile: null
+  /Admin.NET/Admin.NET.Core/Service/User:
+    newFile: !uuid '8e9529bbcde66f586c965038448c1a80e66de038'
+    oldFile: !uuid '2414bb8908f9a9e1e5e71b7d6b23b78def400757'
+  /Admin.NET/Admin.NET.Core/Service/User/SysUserService.cs:
+    newFile: !uuid '8192f2fa6035becfb0ff6798a9c513ad10aeaad2'
+    oldFile: !uuid '6a7864c42c3acfa9a9e86959f3ca0113c0879603'
+  /Admin.NET/Admin.NET.Web.Core:
+    newFile: !uuid '6cb6065709a792a0bff3c94ba6ba9a3a8ab0fc99'
+    oldFile: !uuid '4227558410e1d5277ff1739bb1ba512a315b67f3'
+  /Admin.NET/Admin.NET.Web.Core/Startup.cs:
+    newFile: !uuid 'c7397d7574c9b9e0b0e6f2ecb64e7c8549faa63b'
+    oldFile: !uuid '237492454d8ee42e483395746f9c04fa2f0331d2'
   /Admin.NET/Admin.NET.Web.Entry:
-    newFile: !uuid 'b9165f79b48ab1b046d760268ce54de342d6426f'
-    oldFile: !uuid '7378612af91564fbe9f55a3395fce59020f0c5fe'
-  /Admin.NET/Admin.NET.Web.Entry/Dockerfile:
-    newFile: !uuid '8fc03565420cc7b393326e89c5c80946648c6d4e'
-    oldFile: !uuid 'e232aa2b2b27941318c21477edda45e8618ac27d'
-gitCommitId: !uuid 'd6c5062ed3e3f5a5fe75abb0509f340014d6a565'
+    newFile: !uuid '0dc4e424533873c753ef1f0437364d61e336d4c6'
+    oldFile: !uuid 'b9165f79b48ab1b046d760268ce54de342d6426f'
+  /Admin.NET/Admin.NET.Web.Entry/Properties:
+    newFile: !uuid '7197c47d1db254b24363d34d1f88a8e077785aa5'
+    oldFile: !uuid '15aff5dc44b9a9dc0e56d05ac51703294fe88144'
+  /Admin.NET/Admin.NET.Web.Entry/Properties/launchSettings.json:
+    newFile: !uuid '8d4f779c43c69eda08b21eb3e5fe90b717d0bae3'
+    oldFile: !uuid 'd5c7854cfa187dae4af06e6f02a7373ee563ade4'
+gitCommitId: !uuid '65e67f39abf84e148878fa1c102b515491cb4663'
 renames: {
   }
-revisionId: 990
+revisionId: 991
