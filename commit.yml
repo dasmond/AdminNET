@@ -3,21 +3,186 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid 'ea025687a15d3dd123f61ab2fec8e47a87419441'
-    oldFile: !uuid '8543e34c8cfba8ba49514d2098a3193559d32e88'
+    newFile: !uuid 'a6aa971e8ec2ffc4f972f0ddf29a308bd1f968d9'
+    oldFile: !uuid 'ea025687a15d3dd123f61ab2fec8e47a87419441'
+  /Admin.NET/Admin.NET.Application:
+    newFile: !uuid 'bcfe2fa212956caa592b89eb74a452a81cdd1ff0'
+    oldFile: !uuid '1c01ae4ff4d1011c0bbf1fec0bd4c6d5089c69a6'
+  /Admin.NET/Admin.NET.Application/Admin.NET.Application.csproj:
+    newFile: !uuid '409602ea80caf28528ca47c42237ce69ec62a42d'
+    oldFile: !uuid '3b8302eaf88d2d93985ff590a3600741d5540fd9'
+  /Admin.NET/Admin.NET.Application/Configuration:
+    newFile: !uuid '1860ac400af5df14256adf307b596e1a1ffe7dd4'
+    oldFile: !uuid '1b328abf8e4da634d64941553389462910745121'
+  /Admin.NET/Admin.NET.Application/Configuration/SMS.json:
+    newFile: !uuid 'fcb323226f56fe0060470872faddefd2480b981a'
+    oldFile: null
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '3d0b056410e969913fe9fbc0902d7b24a40f22d0'
-    oldFile: !uuid '214644c9e2040a7a09f86d31efe0c8d48e8ec2d1'
+    newFile: !uuid '5e34a5b2f2bf0a6b42b1adc70cec866fa3e20dcf'
+    oldFile: !uuid '3d0b056410e969913fe9fbc0902d7b24a40f22d0'
+  /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
+    newFile: !uuid '8d04970740f1ae37527e0bb7cb555652312059cf'
+    oldFile: !uuid 'dc426b4eaf0622e08dfb8acbba79c61fac4a5fa3'
+  /Admin.NET/Admin.NET.Core/Const:
+    newFile: !uuid '63f7726908d73be02be73abbe7765d8600e8e304'
+    oldFile: !uuid 'fb21b47219aea98324de17eb098e896a9428d968'
+  /Admin.NET/Admin.NET.Core/Const/CacheConst.cs:
+    newFile: !uuid '10276ed82a298b06761dcd6e8e4cd224425b0844'
+    oldFile: !uuid '7301b737e3746fc9b216da7f8723dea1ab0a70fd'
+  /Admin.NET/Admin.NET.Core/GlobalUsings.cs:
+    newFile: !uuid '2bfc979816fea826e4e1d9bfdfbba84b5bc042d5'
+    oldFile: !uuid '052f33e5ee5c7e2ba6826652827f779d83d1f2c5'
+  /Admin.NET/Admin.NET.Core/Option:
+    newFile: !uuid '9fb9c454267a32bfeca065da1efd90976cb72b74'
+    oldFile: !uuid 'f4ae526a169fa3a49b25377ad115e5c6b2b4fc3a'
+  /Admin.NET/Admin.NET.Core/Option/SMSOptions.cs:
+    newFile: !uuid '257aa018501deaf14722a0a81452a6a89ec93c44'
+    oldFile: null
   /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid '4b7d51ce4c4303ceed41a6dddf0f7042f48ea236'
-    oldFile: !uuid 'e581489554efaecf6ffdc1ddd0cd054ee1f50bf4'
-  /Admin.NET/Admin.NET.Core/Service/CodeGen:
-    newFile: !uuid 'ad3d47a7e7585247b299db4b3efd629cacf95552'
-    oldFile: !uuid '57ae8451b9888bf60ff09fa1461b5dbff16b92a8'
-  /Admin.NET/Admin.NET.Core/Service/CodeGen/SysCodeGenService.cs:
-    newFile: !uuid '64b155152002c4334adbffd3a410e01c1a1cf2d3'
-    oldFile: !uuid 'e7e0b97ff07cb9a39d469179130ca5093120de89'
-gitCommitId: !uuid 'ad18b9880a2e5a579b0b790eaaa9452c1c118832'
+    newFile: !uuid '3ae956bb4761947b6b1a63a58bbad3a0d67548bf'
+    oldFile: !uuid '4b7d51ce4c4303ceed41a6dddf0f7042f48ea236'
+  /Admin.NET/Admin.NET.Core/Service/Auth:
+    newFile: !uuid '5ab94b0b9d756a45d79fb78715b2ae894dbf4178'
+    oldFile: !uuid '8a204434ba78f6cb419c9976889cf686db752101'
+  /Admin.NET/Admin.NET.Core/Service/Auth/Dto:
+    newFile: !uuid 'ca2ab6fd0da94453dfa3091a8aed5393e67225bb'
+    oldFile: !uuid '78815a3a39a8d78edbb0a080e769a62b3f654c83'
+  /Admin.NET/Admin.NET.Core/Service/Auth/Dto/LoginInput.cs:
+    newFile: !uuid '8ecb958a699035b731653d0dd0b566465c88f188'
+    oldFile: !uuid 'fa4b633cbd470dd6c160c5b4bd26c97054d2a52c'
+  /Admin.NET/Admin.NET.Core/Service/Auth/SysAuthService.cs:
+    newFile: !uuid '1e3adc6c566a1c767f8c5be7fb3e85b7c4da3908'
+    oldFile: !uuid '011f19d4d62705b220313676b23fd31b264f7204'
+  /Admin.NET/Admin.NET.Core/Service/OAuth:
+    newFile: !uuid '55b36ce6409052d3fa54f2c87cdfbed2b6f1d233'
+    oldFile: !uuid '177cd9afb91242b836fa3f2c8b0a4cadcc5e3ff7'
+  /Admin.NET/Admin.NET.Core/Service/OAuth/SysOAuthService.cs:
+    newFile: !uuid '2e11459aaef57f80696d28b9d0fcd61c9000e425'
+    oldFile: !uuid 'ce7588b8b24d66b361cfd9cf1401df37cecd888c'
+  /Admin.NET/Admin.NET.Core/Service/Sms:
+    newFile: !uuid '2e5de259dd04a1eaacaf36e9e86ee063613ade14'
+    oldFile: null
+  /Admin.NET/Admin.NET.Core/Service/Sms/SysSmsService.cs:
+    newFile: !uuid '4c9033b0a3e496c41f2a9562742c091cc9d2f644'
+    oldFile: null
+  /Admin.NET/Admin.NET.Core/Service/Wechat:
+    newFile: !uuid '5c11766a74f60464afac2ec1e60e16a09e03b3d2'
+    oldFile: !uuid '0eb7df5dcc461254b24b9236732542e318a16f17'
+  /Admin.NET/Admin.NET.Core/Service/Wechat/WechatApiHttpClient.cs:
+    newFile: !uuid '8662e00993e5e9506fb7f78e402d7ba75a6f8387'
+    oldFile: !uuid 'af908f57a3e0371f0b9a4f4ce47ef521551e06e7'
+  /Admin.NET/Admin.NET.Web.Core:
+    newFile: !uuid 'b5271f501318bd0125099d10c05abcccdbc98693'
+    oldFile: !uuid '759fce4ac40813e0ff407b2c12354cb0b87c3eb1'
+  /Admin.NET/Admin.NET.Web.Core/ProjectOptions.cs:
+    newFile: !uuid '027ea70bdb24d5235bf2cc2530ef4c92b296458f'
+    oldFile: !uuid '238dde656d8acf67f10a1756ecb0443b74ac0369'
+  /Web:
+    newFile: !uuid 'c7dfd6a1f494c400062eb200149bc3d993562ee8'
+    oldFile: !uuid '5748b7b55ac0f93a90b5079674d58bc532d5f7f6'
+  /Web/src:
+    newFile: !uuid '58f0ec90fb89f976ffa5e39a2ad03b6cfa32fd9c'
+    oldFile: !uuid '85c8c5ac264b50341f51f60dc3efb62a7cd82a12'
+  /Web/src/api-services:
+    newFile: !uuid '71268d85d9379ea16aad1176db5d649a5fbd1300'
+    oldFile: !uuid 'ff7d22dea7879925994d9ab432be1eaf09953b20'
+  /Web/src/api-services/api.ts:
+    newFile: !uuid 'c737f913ec2aa935a9f5243ec95a783c9bb6d612'
+    oldFile: !uuid '01b14748aa176d51b932d311833eef05887d23ea'
+  /Web/src/api-services/apis:
+    newFile: !uuid 'ddf31322d9c52aa82bfdca0477000e6da966bef8'
+    oldFile: !uuid '092d0ce55c1b1d22d478579c7c04969946328246'
+  /Web/src/api-services/apis/sys-auth-api.ts:
+    newFile: !uuid 'f39a466fe9efdcbd2e45150dce699b4b86ed946c'
+    oldFile: !uuid '93e158dc2427297201824e35477a59f4158aa4f7'
+  /Web/src/api-services/apis/sys-cache-api.ts:
+    newFile: !uuid '6bd1368cab76180435db4e7c247981519c8c2132'
+    oldFile: !uuid 'acdfba56ab5b9531c60886530b0c0b45c0b83358'
+  /Web/src/api-services/apis/sys-code-gen-config-api.ts:
+    newFile: !uuid '8cdaca7d4f8885f99a1c13fd50c2c86dca4f6bad'
+    oldFile: !uuid '94f8c7c9eb1cccd2680270c5ca24f44a36c7d8cf'
+  /Web/src/api-services/apis/sys-oauth-api.ts:
+    newFile: !uuid '38b3f5681de3cc2ae9ebef1fa8a6c7614de758bd'
+    oldFile: null
+  /Web/src/api-services/apis/sys-sms-api.ts:
+    newFile: !uuid 'd8f958f743e806804f29f6ebfe6c2cc57d1f2e11'
+    oldFile: null
+  /Web/src/api-services/apis/sys-user-api.ts:
+    newFile: !uuid '5edb0fc1a8f3fb3c5669b6f24ab6e0df419f4043'
+    oldFile: !uuid 'f03502541cf56882088b7794bb3ef37c9ea1656b'
+  /Web/src/api-services/apis/sys-wechat-api.ts:
+    newFile: !uuid 'a24725f305d7d3a5c9b9bf7f09d60be8d425ebfd'
+    oldFile: !uuid '618e3f50b4002bd243db0438ba47c62aea5c973e'
+  /Web/src/api-services/apis/sys-wx-open-api.ts:
+    newFile: !uuid 'd8c5b54f6286ec7bd3965d53bad08e58dfc3b5e7'
+    oldFile: !uuid '8c0400ed475f6c5f3d90785d67207a812f67782e'
+  /Web/src/api-services/models:
+    newFile: !uuid '2e894607c83b6e93b695beabe8b419fd809c526e'
+    oldFile: !uuid '9d68b88dab6d85e5e60a4f4898de7139ef646dfa'
+  /Web/src/api-services/models/add-subscribe-message-template-input.ts:
+    newFile: !uuid 'bcffd0335075c642e4add5bc629fe7cc59bd8bee'
+    oldFile: !uuid 'd1a3a4516cd835bd0c6694cbf603a2daa0b7b70c'
+  /Web/src/api-services/models/code-gen-config.ts:
+    newFile: !uuid 'cf6ef67c0903b5b3c99513c7dadcb2780ca325a5'
+    oldFile: !uuid '4fd2fa059523eccb076e411b1a59495ac3bcf000'
+  /Web/src/api-services/models/db-type.ts:
+    newFile: !uuid '58ff38ec08f10b0f11f7919bc237f2542a73c136'
+    oldFile: !uuid 'c6e91d38bc2d0e366fed6427ae325192dd8d7618'
+  /Web/src/api-services/models/delete-message-template-input.ts:
+    newFile: !uuid '82f7c844fb4c57f28e2994240298b1ab5605cb2b'
+    oldFile: null
+  /Web/src/api-services/models/gen-auth-url-input.ts:
+    newFile: !uuid '697e6de851a50d2fa4dd5f68dbfd6eee3c446798'
+    oldFile: !uuid '9a336a9d303ade143bca6081ca86fcc31390986a'
+  /Web/src/api-services/models/index.ts:
+    newFile: !uuid '5ca2afe1fdf1f879876b8b66ddb1faab01b06d56'
+    oldFile: !uuid '03a5f5b3873439c13677c92a9f91e5ff89480d54'
+  /Web/src/api-services/models/login-phone-input.ts:
+    newFile: !uuid '6e92adb43db1c9b785445b34b08ed31f86eda469'
+    oldFile: null
+  /Web/src/api-services/models/message-template-send-input.ts:
+    newFile: !uuid '95a0bcdb56421cb73e9dfe062ac6ae38401773ed'
+    oldFile: null
+  /Web/src/api-services/models/platform-type-enum.ts:
+    newFile: !uuid 'f6ed175ea81fae67a5c4d480af5f6ac6a137d4d6'
+    oldFile: !uuid '07cf4488e725077f617f9639917456bb751c67cd'
+  /Web/src/api-services/models/send-subscribe-message-input.ts:
+    newFile: !uuid '5d5df18705f06be81bcc4011bc1cd2320510ceca'
+    oldFile: !uuid '641875ad272594bfb3296397dcd676898840c25d'
+  /Web/src/api-services/models/signature-input.ts:
+    newFile: !uuid 'dd8a49b0b36d6894ef127f10ade89275bf5a8036'
+    oldFile: !uuid '79ec25caffbd28074e4e88e697466b4bce8ee6ef'
+  /Web/src/api-services/models/sys-code-gen-config.ts:
+    newFile: !uuid 'aa1ff01fa0555a9817de7c8601bc493865a9a072'
+    oldFile: !uuid '4e9ba7ed451057b17c0f2ee859923a7a43d04c9c'
+  /Web/src/api-services/models/sys-file.ts:
+    newFile: !uuid 'bcaa3be9c2ae5a842bfc752c21711bf9a7f4b60f'
+    oldFile: !uuid '213513830679eabdaff657711e7616fe71ced0a6'
+  /Web/src/api-services/models/sys-region.ts:
+    newFile: !uuid 'b3604791c55902bf32bc50f79c3681affaf764b7'
+    oldFile: !uuid 'aa51b177dfbf50ffdd4e54b3855f3b9344d2f949'
+  /Web/src/api-services/models/wechat-user-login.ts:
+    newFile: !uuid '19411e540d3c48baa31578d0022836432a952111'
+    oldFile: !uuid 'c7ebee72ec354f4b56af37eb973c35177df3b504'
+  /Web/src/api-services/models/wx-open-id-login-input.ts:
+    newFile: !uuid 'bb537460aebfb07bfe947e06a6f6c148f8951fb1'
+    oldFile: !uuid '89d642f683b5a20be4636907c2f63cfdb2f0aceb'
+  /Web/src/views:
+    newFile: !uuid 'a21cecdc96f24f04088ecb3c9116438be6c3af99'
+    oldFile: !uuid 'a6512f56dcb0796e086555e652635d947f2def71'
+  /Web/src/views/login:
+    newFile: !uuid 'e2fb51802aa0341106aa33fdab66ec3c3b5186d2'
+    oldFile: !uuid '4b15d14b9440ce6c0070122d90037332d877a724'
+  /Web/src/views/login/component:
+    newFile: !uuid 'c61370f57419869f106b8f3e230103ff2bd0e212'
+    oldFile: !uuid '0739dfe2dd608dc643e86ef4accb2e4c5714a69b'
+  /Web/src/views/login/component/account.vue:
+    newFile: !uuid 'ee1245d11af5e41e2ff12582dbf58644aebc3a0e'
+    oldFile: !uuid '274460252a483a9317d46fc276dc0fa2c28276a8'
+  /Web/src/views/login/component/mobile.vue:
+    newFile: !uuid 'a98a69083f36885b1b4c8862b22c607ee7125e50'
+    oldFile: !uuid '6f47b55e3562bf6e4493b88692fb13043457add0'
+gitCommitId: !uuid 'b6adc8a92ae19384b3989542586a18d9e86b8d27'
 renames: {
   }
-revisionId: 1027
+revisionId: 1028
