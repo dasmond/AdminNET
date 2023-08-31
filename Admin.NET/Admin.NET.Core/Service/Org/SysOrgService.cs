@@ -50,26 +50,57 @@ public class SysOrgService : IDynamicApiController, ITransient
 
         var iSugarQueryable = _sysOrgRep.AsQueryable().OrderBy(u => u.OrderNo);
 
-        // 条件筛选可能造成无法构造树（列表数据）
-        if (!string.IsNullOrWhiteSpace(input.Name) || !string.IsNullOrWhiteSpace(input.Code) || !string.IsNullOrWhiteSpace(input.OrgType))
+        List<SysOrg> result = _userManager.SuperAdmin ?
+                await iSugarQueryable.ToTreeAsync(u => u.Children, u => u.Pid, 0) :
+                await iSugarQueryable.ToTreeAsync(u => u.Children, u => u.Pid, input.Id, orgIdList.Select(d => (object)d).ToArray());
+
+        return FilterOrgTree(result, input,orgIdList);
+    }
+
+
+    /// <summary>
+    /// 过滤组织架构
+    /// </summary>
+    /// <param name="orgs">组织架构</param>
+    /// <param name="input">过滤条件</param>
+    /// <param name="hasOrgIds">拥有的组织架构权限</param>
+    /// <returns></returns>
+    private List<SysOrg> FilterOrgTree(List<SysOrg> orgs, OrgInput input,List<long> hasOrgIds)
+    {
+        if (orgs == null || orgs.Count == 0)
         {
-            return await iSugarQueryable.WhereIF(orgIdList.Count > 0, u => orgIdList.Contains(u.Id))
-                .WhereIF(!string.IsNullOrWhiteSpace(input.Name), u => u.Name.Contains(input.Name))
-                .WhereIF(!string.IsNullOrWhiteSpace(input.Code), u => u.Code.Contains(input.Code))
-                .WhereIF(!string.IsNullOrWhiteSpace(input.OrgType), u => u.OrgType.Contains(input.OrgType))
-                .ToListAsync();
+            return new List<SysOrg>();
         }
 
-        if (input.Id > 0)
+        List<SysOrg> sysOrgs = new List<SysOrg>();
+        foreach (var org in orgs)
         {
-            return await iSugarQueryable.WhereIF(orgIdList.Count > 0, u => orgIdList.Contains(u.Id)).ToChildListAsync(u => u.Pid, input.Id, true);
+            SysOrg newOrg = org;
+            bool tag = true;
+            if (!string.IsNullOrWhiteSpace(input.Code) && org.Code != input.Code)
+            {
+                tag = false;
+            }
+            if (!string.IsNullOrWhiteSpace(input.Name) && !org.Name.Contains(input.Name))
+            {
+                tag = false;
+            }
+            if (!string.IsNullOrWhiteSpace(input.OrgType) && org.OrgType != input.OrgType)
+            {
+                tag = false;
+            }
+            //如果不是超级管理员，并且当前用户没有管理这些组织架构的权限时，让其不能选择此组织
+            if (!_userManager.SuperAdmin && !hasOrgIds.Contains(org.Id)) {
+                org.Disabled = true;
+            }
+            newOrg.Children = FilterOrgTree(org.Children, input,hasOrgIds);
+            if (tag || newOrg.Children.Count > 0)
+            {
+                sysOrgs.Add(newOrg);
+            }
         }
-        else
-        {
-            return _userManager.SuperAdmin ?
-                await iSugarQueryable.ToTreeAsync(u => u.Children, u => u.Pid, 0) :
-                await iSugarQueryable.ToTreeAsync(u => u.Children, u => u.Pid, 0, orgIdList.Select(d => (object)d).ToArray());
-        }
+
+        return sysOrgs;
     }
 
     /// <summary>
@@ -253,6 +284,7 @@ public class SysOrgService : IDynamicApiController, ITransient
                 orgIdList.Add(_userManager.OrgId);
             _sysCacheService.Set($"{CacheConst.KeyUserOrg}{userId}", orgIdList); // 存缓存
         }
+
         return orgIdList;
     }
 

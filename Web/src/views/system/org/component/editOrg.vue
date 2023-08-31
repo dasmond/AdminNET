@@ -97,6 +97,8 @@ const state = reactive({
 	orgTypeList: [] as any,
 });
 
+
+
 onMounted(async () => {
 	let resDicData = await getAPI(SysDictDataApi).apiSysDictDataDataListCodeGet('org_type');
 	state.orgTypeList = resDicData.data.result;
