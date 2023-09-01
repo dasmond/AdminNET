@@ -3,24 +3,21 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid 'b4d55ec6fa77e5ee14fde68c58ce246c258cadf4'
-    oldFile: !uuid 'af92b695c14f3a59fe562ab54aaf347ccb53b2c0'
+    newFile: !uuid '7da3a7d404f22d3cb734bbce44e0e72f1f1442c3'
+    oldFile: !uuid 'b4d55ec6fa77e5ee14fde68c58ce246c258cadf4'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '881ad79b47ec32036ac3a1c71d068ed1f76925ac'
-    oldFile: !uuid 'f196adf38a58a935936d83f745c850145157d9b9'
-  /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
-    newFile: !uuid '25c258a5e1b3f42281a1f734fa9c96fdcd265541'
-    oldFile: !uuid '9c5edd604e14926b3663a76722da1dd81a3700df'
+    newFile: !uuid '60ba26e31657bcd663754153c064a0724a5f549b'
+    oldFile: !uuid '881ad79b47ec32036ac3a1c71d068ed1f76925ac'
   /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid '84c53d02dc0f2f7c978b5bccc7bb6a4ca0142026'
-    oldFile: !uuid '7760ee467b1c2cbcb9e707527e6dd3c34c066a80'
-  /Admin.NET/Admin.NET.Core/Service/Cache:
-    newFile: !uuid '1bb98af45e08fa523b3d1024613659c95e4235f4'
-    oldFile: !uuid '6b2ee823df735683b834e8ce606a0a9045359b3a'
-  /Admin.NET/Admin.NET.Core/Service/Cache/SysCacheService.cs:
-    newFile: !uuid 'c1cfdb81c172b41f6d5181250a6be9c46fddc636'
-    oldFile: !uuid '65e2d8e1307e41ae2e4feaaba7dfea3f2858128d'
-gitCommitId: !uuid '5df74db60de38f4b527fa74e248c89234086f1c7'
+    newFile: !uuid '76f45ebd9ff435a8287c354790fcdd2be591b2cf'
+    oldFile: !uuid '84c53d02dc0f2f7c978b5bccc7bb6a4ca0142026'
+  /Admin.NET/Admin.NET.Core/Service/Role:
+    newFile: !uuid 'b6a57575a3705ceb6c6d34b69910e30508e1407c'
+    oldFile: !uuid '99aae86d71c48e1ecf07babd54504b6b4280aceb'
+  /Admin.NET/Admin.NET.Core/Service/Role/SysRoleService.cs:
+    newFile: !uuid 'a58016cd7498be2ec7bd066c8257de5325760a37'
+    oldFile: !uuid 'dda636dbe88ad790cfb3c21b551745ade7c0a559'
+gitCommitId: !uuid '0d17b697b1e455c54e876509c2d6b7e8a7564b16'
 renames: {
   }
-revisionId: 1036
+revisionId: 1037
