@@ -2,16 +2,73 @@
 branches: {
   }
 fileChange:
-  /Admin.NET:
-    newFile: !uuid '9ec0d2f48401530e87b78d10aff873d7d7a2a29d'
-    oldFile: !uuid '5b55359f71c3fc686cb8e4177d9db70d3d079856'
-  /Admin.NET/Admin.NET.Web.Core:
-    newFile: !uuid 'bb05587cde29866941cd0577f0cbf08b92aaa62e'
-    oldFile: !uuid 'b5271f501318bd0125099d10c05abcccdbc98693'
-  /Admin.NET/Admin.NET.Web.Core/Startup.cs:
-    newFile: !uuid '69646e7f03888b2473b5bfa2000fbceb57f76ebc'
-    oldFile: !uuid '9b98182c09c49813a2c5675d4266c999d7c7e162'
-gitCommitId: !uuid 'b0f55b9bd61393dc725ee3ee6dc8a064a1fea54b'
+  /Web:
+    newFile: !uuid 'a15346e7a09bbab51836fe25b3469feaa8b24401'
+    oldFile: !uuid 'b42d6d0736b288f71123bc9e81bf3279784a0cde'
+  /Web/package.json:
+    newFile: !uuid '0c925a17159374b6c3ca2b5fb8487cf593a1f41d'
+    oldFile: !uuid '7d7dad62d6927ca4426597b4eae661761e369642'
+  /Web/pnpm-lock.yaml:
+    newFile: !uuid 'cc516e5d8e14002b301fd295f296e1f6fae9aa57'
+    oldFile: !uuid 'eeb0aea4eba36512a9c9a930716efaf2adca5b7f'
+  /Web/src:
+    newFile: !uuid '4881e14f1a72a7fa13673fe4cea7013170b6559e'
+    oldFile: !uuid '86c889cd2f7fbb6719c3b548f2e94ece1887c496'
+  /Web/src/types:
+    newFile: !uuid '0ac4757b0af193416c2726f7efe873791a819489'
+    oldFile: !uuid '05ada95a89a12680c758afeaec5b14da1ba5add8'
+  /Web/src/types/global.d.ts:
+    newFile: !uuid '5d5313a3ae3f49b65894417d9b0ae857b2c35d42'
+    oldFile: !uuid 'cce75eee93edcd713e00f8100037396166b8b80e'
+  /Web/src/views:
+    newFile: !uuid '48a8cb5d7904be3fc605e08cdfbb7b37826fbffb'
+    oldFile: !uuid 'a21cecdc96f24f04088ecb3c9116438be6c3af99'
+  /Web/src/views/system:
+    newFile: !uuid '25bfb8b4242b9f65f178e6030f95bf7c5972da4a'
+    oldFile: !uuid '16658118574fdc25c5ccc2bc70ca36ee27993f97'
+  /Web/src/views/system/job:
+    newFile: !uuid '939f951f90b3ce8236cf276efdc1476c3f5a4702'
+    oldFile: !uuid '57e1a06cda73428876a3692fcade8527b169b905'
+  /Web/src/views/system/job/component:
+    newFile: !uuid '416b4ad19e57a9674d2bdb1169057bbf8bf050a5'
+    oldFile: !uuid 'b59a88c9eba1d582e82305f2acf66274066ccdbc'
+  /Web/src/views/system/job/component/cronTab:
+    newFile: null
+    oldFile: !uuid '5874d3f31b527de392e593aca5c86375661d6fa4'
+  /Web/src/views/system/job/component/cronTab/day.vue:
+    newFile: null
+    oldFile: !uuid 'b9258fa0c44e5a2310bba62cc379db3d2b9495ba'
+  /Web/src/views/system/job/component/cronTab/hour.vue:
+    newFile: null
+    oldFile: !uuid '0f861778bb2ae0d33b4f7877588aacc9fa610f4c'
+  /Web/src/views/system/job/component/cronTab/index.vue:
+    newFile: null
+    oldFile: !uuid '756914e92ed1e7df9f0fe4e3b4b31c07e7524a6a'
+  /Web/src/views/system/job/component/cronTab/min.vue:
+    newFile: null
+    oldFile: !uuid '3907467eb43b10b02773849cd598c38d19cc1b33'
+  /Web/src/views/system/job/component/cronTab/month.vue:
+    newFile: null
+    oldFile: !uuid 'a25d9c20a648e70f4d9e13de993244e98b0e5291'
+  /Web/src/views/system/job/component/cronTab/result.vue:
+    newFile: null
+    oldFile: !uuid '12fee9e7d9d3f5e60bb6600e49084a32ea9eeaf5'
+  /Web/src/views/system/job/component/cronTab/second.vue:
+    newFile: null
+    oldFile: !uuid '1b66e847963746d7d405e1e4d679c3f732f768dc'
+  /Web/src/views/system/job/component/cronTab/week.vue:
+    newFile: null
+    oldFile: !uuid 'cd358a477b057aba9f130eaf1bb6445153b67ea6'
+  /Web/src/views/system/job/component/cronTab/year.vue:
+    newFile: null
+    oldFile: !uuid '5fa340f6cba878f3a7b2f3285506689bc466db1b'
+  /Web/src/views/system/job/component/editJobTrigger.vue:
+    newFile: !uuid 'b7262cb5a9f709854ca23ce7db7d419244d478ba'
+    oldFile: !uuid '787db88bd033040ece923d46692cedeef35409a3'
+  /Web/src/views/system/job/index.vue:
+    newFile: !uuid '2073adbdd29a05c20a6d3029e036b9e29380a2f2'
+    oldFile: !uuid '577e4630ff48a8121cb4023e86753347367d4ebb'
+gitCommitId: !uuid 'efc441b2e8c0f3e033105bca2ee3cd497919a7c9'
 renames: {
   }
-revisionId: 1039
+revisionId: 1040
