@@ -3,45 +3,39 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '61075faefbb36e6f38553f809a759579e0fcce7e'
-    oldFile: !uuid '9ec0d2f48401530e87b78d10aff873d7d7a2a29d'
+    newFile: !uuid 'a9901a814e6c532d7186204d95e8229a812adba0'
+    oldFile: !uuid '61075faefbb36e6f38553f809a759579e0fcce7e'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '95d1adbb95c6a2ff11f2ad7aea566bc9bd72cf21'
-    oldFile: !uuid '1b81537be58626a7cbf60204fb1929ae82811b0f'
-  /Admin.NET/Admin.NET.Core/Entity:
-    newFile: !uuid '62ff8def64e59243f2c32b9c8844cf7eb6d2adbc'
-    oldFile: !uuid '99cff156483646531105c8b3691ae9d2cd670d0b'
-  /Admin.NET/Admin.NET.Core/Entity/SysOrg.cs:
-    newFile: !uuid '86617c6c97f638a9fd96dbdd4657ac0c39080524'
-    oldFile: !uuid '934dbc69f649cc9174ea5edb7e27bbc50d938513'
+    newFile: !uuid 'f4ae8b1d44c3f45f6ebcf149241430f02b940328'
+    oldFile: !uuid '95d1adbb95c6a2ff11f2ad7aea566bc9bd72cf21'
   /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid 'd12f7ac189155e280d1a96cf7f507983ba84b934'
-    oldFile: !uuid '76f45ebd9ff435a8287c354790fcdd2be591b2cf'
-  /Admin.NET/Admin.NET.Core/Service/Org:
-    newFile: !uuid 'dffc25ab992638a39a37ed41e607c7c48258ec47'
-    oldFile: !uuid '1884fb15815fe6253d030c183a147aa87daae0e8'
-  /Admin.NET/Admin.NET.Core/Service/Org/SysOrgService.cs:
-    newFile: !uuid 'c196566b4be3583943aa039e6633152276fc03a1'
-    oldFile: !uuid '0111e75dba618c825f674909d66e74555e1c8eae'
-  /Web:
-    newFile: !uuid '8e4089d924a0ad7d968fd04971213024ed80d5ed'
-    oldFile: !uuid 'a15346e7a09bbab51836fe25b3469feaa8b24401'
-  /Web/src:
-    newFile: !uuid '0f8d92e324d212e5afe37a82d321bfd27936e21f'
-    oldFile: !uuid '4881e14f1a72a7fa13673fe4cea7013170b6559e'
-  /Web/src/views:
-    newFile: !uuid 'd401d947091f9ac70c04ecc84a0c8578c1b5cc80'
-    oldFile: !uuid '48a8cb5d7904be3fc605e08cdfbb7b37826fbffb'
-  /Web/src/views/system:
-    newFile: !uuid 'ac64044bb4c7440dfd3b25398239d75ae8dbbd72'
-    oldFile: !uuid '25bfb8b4242b9f65f178e6030f95bf7c5972da4a'
-  /Web/src/views/system/org:
-    newFile: !uuid '4246f9e5d51422e4758df7db8d7eb0a181bec7cf'
-    oldFile: !uuid '8975b913aef60229b055f3d204ca3a6648de80a2'
-  /Web/src/views/system/org/index.vue:
-    newFile: !uuid 'fc52f113201786868f2b0e57d45d07bfe99d981f'
-    oldFile: !uuid '8118f3b31ceba98de9745f3598f95b593076f011'
-gitCommitId: !uuid '0d1b56438c639e2c9af9bcb6680edaa45235cbb8'
+    newFile: !uuid 'a58f193a1bfc4f7c8c9653a25693b1cebe462859'
+    oldFile: !uuid 'd12f7ac189155e280d1a96cf7f507983ba84b934'
+  /Admin.NET/Admin.NET.Core/Service/Wechat:
+    newFile: !uuid '031f0ccd7cd72659666455ba41a3f82ac264f4b3'
+    oldFile: !uuid '5c11766a74f60464afac2ec1e60e16a09e03b3d2'
+  /Admin.NET/Admin.NET.Core/Service/Wechat/SysWechatService.cs:
+    newFile: !uuid '72f1bc40706fe0e2a07844810a04c71502ffb01c'
+    oldFile: !uuid '1b343b7cd1a9b525b8b366aec2bf04386faac20c'
+  /Admin.NET/Admin.NET.Core/Service/Wechat/SysWxOpenService.cs:
+    newFile: !uuid 'd54dba229081b2b8ad014fb6904b96b4dd571db2'
+    oldFile: !uuid '90d199fde52c89d311463d52f9a886aeb25314bf'
+  /Admin.NET/Plugins:
+    newFile: !uuid '09a6498281432bfe1608303cb75c7d8421b2bafa'
+    oldFile: !uuid '9369a458dfc3fb0f2ff72843db6830de10dc22b7'
+  /Admin.NET/Plugins/Admin.NET.Plugin.GoView:
+    newFile: !uuid 'b471347f8bac06088202c551c464f3a6209e1312'
+    oldFile: !uuid '3f320fe1aec3d5079726cee06e2b50690047a8c2'
+  /Admin.NET/Plugins/Admin.NET.Plugin.GoView/Service:
+    newFile: !uuid '6f19d3b0b90d8af5ec9b55bbdbc6319c1305459a'
+    oldFile: !uuid '74082f89545dc8fb71bd589f5b6a1e5c698bf8e3'
+  /Admin.NET/Plugins/Admin.NET.Plugin.GoView/Service/GoViewSys:
+    newFile: !uuid 'beeeb24220ad86bac9b3196b8a6ccbaa4f6c9d32'
+    oldFile: !uuid '097bcdbc3e6aa14fb128b88ce43d5b3a2fc52934'
+  /Admin.NET/Plugins/Admin.NET.Plugin.GoView/Service/GoViewSys/GoViewSysService.cs:
+    newFile: !uuid '77644741f8466309a3cdf79f95dff1d0fbe989f8'
+    oldFile: !uuid '9eba43c0a1c9765bac5c90cac630592d8dbee3f7'
+gitCommitId: !uuid '8e9199d4c1ebd2f4380721d2cf5066afc73438f6'
 renames: {
   }
-revisionId: 1008
+revisionId: 1009
