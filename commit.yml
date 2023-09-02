@@ -2,40 +2,16 @@
 branches: {
   }
 fileChange:
-  /Admin.NET:
-    newFile: !uuid 'a9901a814e6c532d7186204d95e8229a812adba0'
-    oldFile: !uuid '61075faefbb36e6f38553f809a759579e0fcce7e'
-  /Admin.NET/Admin.NET.Core:
-    newFile: !uuid 'f4ae8b1d44c3f45f6ebcf149241430f02b940328'
-    oldFile: !uuid '95d1adbb95c6a2ff11f2ad7aea566bc9bd72cf21'
-  /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid 'a58f193a1bfc4f7c8c9653a25693b1cebe462859'
-    oldFile: !uuid 'd12f7ac189155e280d1a96cf7f507983ba84b934'
-  /Admin.NET/Admin.NET.Core/Service/Wechat:
-    newFile: !uuid '031f0ccd7cd72659666455ba41a3f82ac264f4b3'
-    oldFile: !uuid '5c11766a74f60464afac2ec1e60e16a09e03b3d2'
-  /Admin.NET/Admin.NET.Core/Service/Wechat/SysWechatService.cs:
-    newFile: !uuid '72f1bc40706fe0e2a07844810a04c71502ffb01c'
-    oldFile: !uuid '1b343b7cd1a9b525b8b366aec2bf04386faac20c'
-  /Admin.NET/Admin.NET.Core/Service/Wechat/SysWxOpenService.cs:
-    newFile: !uuid 'd54dba229081b2b8ad014fb6904b96b4dd571db2'
-    oldFile: !uuid '90d199fde52c89d311463d52f9a886aeb25314bf'
-  /Admin.NET/Plugins:
-    newFile: !uuid '09a6498281432bfe1608303cb75c7d8421b2bafa'
-    oldFile: !uuid '9369a458dfc3fb0f2ff72843db6830de10dc22b7'
-  /Admin.NET/Plugins/Admin.NET.Plugin.GoView:
-    newFile: !uuid 'b471347f8bac06088202c551c464f3a6209e1312'
-    oldFile: !uuid '3f320fe1aec3d5079726cee06e2b50690047a8c2'
-  /Admin.NET/Plugins/Admin.NET.Plugin.GoView/Service:
-    newFile: !uuid '6f19d3b0b90d8af5ec9b55bbdbc6319c1305459a'
-    oldFile: !uuid '74082f89545dc8fb71bd589f5b6a1e5c698bf8e3'
-  /Admin.NET/Plugins/Admin.NET.Plugin.GoView/Service/GoViewSys:
-    newFile: !uuid 'beeeb24220ad86bac9b3196b8a6ccbaa4f6c9d32'
-    oldFile: !uuid '097bcdbc3e6aa14fb128b88ce43d5b3a2fc52934'
-  /Admin.NET/Plugins/Admin.NET.Plugin.GoView/Service/GoViewSys/GoViewSysService.cs:
-    newFile: !uuid '77644741f8466309a3cdf79f95dff1d0fbe989f8'
-    oldFile: !uuid '9eba43c0a1c9765bac5c90cac630592d8dbee3f7'
-gitCommitId: !uuid '8e9199d4c1ebd2f4380721d2cf5066afc73438f6'
+  /Web:
+    newFile: !uuid '417c8b9ff005e7f33fd38f3b1413a871833b6c1e'
+    oldFile: !uuid '8e4089d924a0ad7d968fd04971213024ed80d5ed'
+  /Web/package.json:
+    newFile: !uuid '7b2acff3db313a3a41eac77d6abcaf3558a81e16'
+    oldFile: !uuid '0c925a17159374b6c3ca2b5fb8487cf593a1f41d'
+  /Web/pnpm-lock.yaml:
+    newFile: !uuid 'ffd8cb769087210d0a0e8a83db26d3849409e8a1'
+    oldFile: !uuid 'cc516e5d8e14002b301fd295f296e1f6fae9aa57'
+gitCommitId: !uuid '4a24cf65eef7f4e804e7b26427105a43d88e0123'
 renames: {
   }
-revisionId: 1009
+revisionId: 1010
