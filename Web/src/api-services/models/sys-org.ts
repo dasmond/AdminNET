@@ -115,4 +115,10 @@ export interface SysOrg {
      * @memberof SysOrg
      */
     children?: Array<SysOrg> | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof SysOrg
+     */
+    disabled?: boolean;
 }
