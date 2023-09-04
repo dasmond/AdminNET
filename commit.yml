@@ -2,28 +2,22 @@
 branches: {
   }
 fileChange:
-  /Web:
-    newFile: !uuid '211e8c1cfc21a2c85897535ae015ed4d2d498d43'
-    oldFile: !uuid '417c8b9ff005e7f33fd38f3b1413a871833b6c1e'
-  /Web/src:
-    newFile: !uuid 'e5763ca52ffbea0ec38350a117a16ffe5ce93f5e'
-    oldFile: !uuid '0f8d92e324d212e5afe37a82d321bfd27936e21f'
-  /Web/src/views:
-    newFile: !uuid 'a17bea3c1e4e4e7f144fbde2e846227aa1c31a34'
-    oldFile: !uuid 'd401d947091f9ac70c04ecc84a0c8578c1b5cc80'
-  /Web/src/views/system:
-    newFile: !uuid '0d80ad0eb4b84e393e90e47a544a03bfc7054d4b'
-    oldFile: !uuid 'ac64044bb4c7440dfd3b25398239d75ae8dbbd72'
-  /Web/src/views/system/job:
-    newFile: !uuid 'f6eb0a9147a8d95aa9f1606b70284f9d679d83f0'
-    oldFile: !uuid '939f951f90b3ce8236cf276efdc1476c3f5a4702'
-  /Web/src/views/system/job/component:
-    newFile: !uuid '8f5df06372744833be9557031d3ef74c39412821'
-    oldFile: !uuid '416b4ad19e57a9674d2bdb1169057bbf8bf050a5'
-  /Web/src/views/system/job/component/editJobTrigger.vue:
-    newFile: !uuid '1a9295df773a7898d02afef259c0492ede78b3d9'
-    oldFile: !uuid 'b7262cb5a9f709854ca23ce7db7d419244d478ba'
-gitCommitId: !uuid '9cef9207e4ee10e793d4787b8d302971ef974990'
+  /Admin.NET:
+    newFile: !uuid '969617d8a496333b6a4a5210a1b72631bd99611a'
+    oldFile: !uuid '8ddc0309f5f05cdbc342c75f13d6574b5dd09394'
+  /Admin.NET/Admin.NET.Core:
+    newFile: !uuid 'b4ecbd6f390a6c4306aba1ff3d608d27491d7f56'
+    oldFile: !uuid '6d5412be4fa9c849d904c1474989ed74aa586b15'
+  /Admin.NET/Admin.NET.Core/Service:
+    newFile: !uuid '808b88ab587493154837737e32692787002f85dc'
+    oldFile: !uuid 'a9db049be969ccbf51a6b83d389ab03b5791608a'
+  /Admin.NET/Admin.NET.Core/Service/Org:
+    newFile: !uuid '4e2da83585df0d60ea3047662e42b7dc4bf0342c'
+    oldFile: !uuid 'a38fdb3e5ef5a931c00a002c2204875a4782549e'
+  /Admin.NET/Admin.NET.Core/Service/Org/SysOrgService.cs:
+    newFile: !uuid '1f5ae2cb97fcd282e1190f220ec5594a736e0444'
+    oldFile: !uuid '54ca45a6c5e75e620ba3fde504cd6ef5f016aec3'
+gitCommitId: !uuid 'a9dc93b4d9c31a3f52bcd8701422f14121b6c150'
 renames: {
   }
-revisionId: 1012
+revisionId: 1013
