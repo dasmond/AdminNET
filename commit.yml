@@ -3,21 +3,36 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '0b4c99c1fe3f5c0fe3207b039d668218ffcc9716'
-    oldFile: !uuid 'bb02bbff431feb360214c72c1d48e36cd2bd1052'
+    newFile: !uuid '9562f27292c5856a3f1bfeeafa2ecf9e9e6a2a4b'
+    oldFile: !uuid '0b4c99c1fe3f5c0fe3207b039d668218ffcc9716'
+  /Admin.NET/Admin.NET.Application:
+    newFile: !uuid 'd77dbc21ecaec3bf138d31037725fcb291d7ea42'
+    oldFile: !uuid 'bcfe2fa212956caa592b89eb74a452a81cdd1ff0'
+  /Admin.NET/Admin.NET.Application/Configuration:
+    newFile: !uuid '97fcd651ad8e55c1f486d208451664e39948ec99'
+    oldFile: !uuid '1860ac400af5df14256adf307b596e1a1ffe7dd4'
+  /Admin.NET/Admin.NET.Application/Configuration/Cache.json:
+    newFile: !uuid '673b42def407c2e4ff8dd4530dc777d3f38baf23'
+    oldFile: !uuid '326c8d224498fc59ddc0a121a9db292cb338567c'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '4a1b5a3befaeee07fb9b2598cb702c46ec41f2ab'
-    oldFile: !uuid '1d84af3a2b4c26461bc96a5fa116f21b7168e253'
-  /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid 'cfea7277a43a3cf481957659bb6bcbb657a4e90c'
-    oldFile: !uuid '87fb4112b09bd1e3a83786134c6462a1b8daf7e7'
-  /Admin.NET/Admin.NET.Core/Service/File:
-    newFile: !uuid '2eab0795b1b14cdb3f23506a60ca63cfcce0c6ad'
-    oldFile: !uuid 'c06d06d227d7a75d7c7ded21d836737906b06f7f'
-  /Admin.NET/Admin.NET.Core/Service/File/SysFileService.cs:
-    newFile: !uuid 'c6e9efe70f2966b21a3f5b3118f515282c935d7f'
-    oldFile: !uuid '5c2eaabe6b9641882b21ce3ab03d0bb2b535f4bf'
-gitCommitId: !uuid 'ceccf808ceb13a4f2f5a22ff1ec46cbba829aac7'
+    newFile: !uuid 'b1225aa1e3cc80c904824d7c552cae0e201f6a2b'
+    oldFile: !uuid '4a1b5a3befaeee07fb9b2598cb702c46ec41f2ab'
+  /Admin.NET/Admin.NET.Core/Cache:
+    newFile: !uuid '6ae0933e962d7c5aec8d740a42868ac2c7dc0283'
+    oldFile: !uuid '00c11086464947d23b52902e7ae51c309532946a'
+  /Admin.NET/Admin.NET.Core/Cache/CacheSetup.cs:
+    newFile: !uuid '24da54edab973fcdc2cee469552a9e79ad57397d'
+    oldFile: !uuid '6442c9aa3c61a7a82f426a6b3c4e6717f3eee37c'
+  /Admin.NET/Admin.NET.Core/Cache/RedisCache.cs:
+    newFile: !uuid 'cd660be1501b1416f7da83dbfc8214327912f5ee'
+    oldFile: null
+  /Admin.NET/Admin.NET.Core/Option:
+    newFile: !uuid '859c027fce4c1a4d9ee5a15a245f6ccf59dd481e'
+    oldFile: !uuid '9fb9c454267a32bfeca065da1efd90976cb72b74'
+  /Admin.NET/Admin.NET.Core/Option/CacheOptions.cs:
+    newFile: !uuid '7ebd59c8888012c0e34ef05766b967ad1143423b'
+    oldFile: !uuid '6b1f315c5de5d3d8399e0e299c0c6c35efdcb3ea'
+gitCommitId: !uuid 'b255ef5dd19a85aa1b1ecf7cb1780660b1751bda'
 renames: {
   }
-revisionId: 1015
+revisionId: 1016
