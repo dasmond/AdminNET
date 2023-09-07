@@ -3,45 +3,54 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid 'aca5d4a864bbf8603c7381038c4a6b67faf2e227'
-    oldFile: !uuid 'c1603258c9fae7256831a8d2572e4c5a6872e9d8'
+    newFile: !uuid '16642c9b6d00d6b667dbcf49a42c0cbbd2ec9061'
+    oldFile: !uuid 'aca5d4a864bbf8603c7381038c4a6b67faf2e227'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '8b490b6796050d1e894664f1775f60ba1b8dbae3'
-    oldFile: !uuid 'e7bf46aa433cbb47f98620dd133f512c87868ec0'
-  /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
-    newFile: !uuid 'b645ca7f27397814444c518cc1ecd413102008f4'
-    oldFile: !uuid '25c258a5e1b3f42281a1f734fa9c96fdcd265541'
-  /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid 'e1f234d0401f874b1b16490bf92c1e8b230a733b'
-    oldFile: !uuid '0949a2f6ac0b534cf14e25a2a0510d0cbe6bdbde'
-  /Admin.NET/Admin.NET.Core/Service/CodeGen:
-    newFile: !uuid '58b51dabd73cac0846083f147ff74df69afa8de3'
-    oldFile: !uuid '08462ae4960feeb7018d7f8257f3740b47306903'
-  /Admin.NET/Admin.NET.Core/Service/CodeGen/SysCodeGenConfigService.cs:
-    newFile: !uuid '6eec6a48c2b56d28fb842ae73ac18048b69685d2'
-    oldFile: !uuid 'bf0263baee33d620f25290bff325fbaa2722697a'
-  /Admin.NET/Admin.NET.Core/Service/CodeGen/SysCodeGenService.cs:
-    newFile: !uuid 'f38e4a1a27375fbaf060083e13346acb02030d43'
-    oldFile: !uuid 'c72dcdfa3cca078d4bc27052dade45c987852e98'
-  /Admin.NET/Admin.NET.Core/SqlSugar:
-    newFile: !uuid '3d70533c450bd15eeca903d7b713f073dc0930f7'
-    oldFile: !uuid 'c7dada2b2c7d004648f542276da862f5c003e847'
-  /Admin.NET/Admin.NET.Core/SqlSugar/SqlSugarSetup.cs:
-    newFile: !uuid '2751def30c8b1ac9420dc46e341b94ec88b75eb6'
-    oldFile: !uuid '600e22377d1d9964a734cd6ffdc74a1f0da84912'
-  /Admin.NET/Admin.NET.Web.Entry:
-    newFile: !uuid 'f5748c5e33230fe627d58a61cd2e2a853425bfd7'
-    oldFile: !uuid '4ec760c0873f837a62fe178b8b24a02ac649c0d2'
-  /Admin.NET/Admin.NET.Web.Entry/wwwroot:
-    newFile: !uuid '713ee7c1611fa4e51a2bac0e26d83e33e950b7f1'
-    oldFile: !uuid 'd7a1ad9bf8efa31adf7f7d1bd4bc5d0b251e04c8'
-  /Admin.NET/Admin.NET.Web.Entry/wwwroot/Template:
-    newFile: !uuid '33851f2187c1650855e7079902b7e130ca8d9bcc'
-    oldFile: !uuid 'f3e6f971dd4244f2aab56fbd94fac6abd43511f0'
-  /Admin.NET/Admin.NET.Web.Entry/wwwroot/Template/editDialog.vue.vm:
-    newFile: !uuid '1a7e06c81d12e4f1324cc0b1a21648cf26202925'
-    oldFile: !uuid '8f9da8c7cff02cbc2f699751cb1b33fe885bb09d'
-gitCommitId: !uuid 'd39c9daf8ed4645b730a30073b5d6a8549fcf8df'
+    newFile: !uuid 'f5a97afd61fdb04d95ab5f550c7a077d78589630'
+    oldFile: !uuid '8b490b6796050d1e894664f1775f60ba1b8dbae3'
+  /Admin.NET/Admin.NET.Core/Entity:
+    newFile: !uuid '63819424e9cff4e71f36d8fdac0aeb0623516fd8'
+    oldFile: !uuid '62ff8def64e59243f2c32b9c8844cf7eb6d2adbc'
+  /Admin.NET/Admin.NET.Core/Entity/SysDictData.cs:
+    newFile: !uuid 'b69a16e140db1d0e896d51db68457090671a5de5'
+    oldFile: !uuid '621f024ca40fdaa55a2285ecd2c262b31f26e61b'
+  /Admin.NET/Admin.NET.Core/Entity/SysNoticeUser.cs:
+    newFile: !uuid '07eb0bd9caf098f1b1ae62fa3a1ad6bc895e6a91'
+    oldFile: !uuid 'b7a36d3fbde3b2803a37a3ef4bdc7b17650596d3'
+  /Admin.NET/Admin.NET.Core/Entity/SysRoleMenu.cs:
+    newFile: !uuid '996a62c977a89d013991a9feb34263a8cbcd5cb3'
+    oldFile: !uuid '299bba2fda707ad49b36de34f5e1eb1ebc03f9d9'
+  /Admin.NET/Admin.NET.Core/Entity/SysRoleOrg.cs:
+    newFile: !uuid '57ea05b0bfaceeb5d4b59a63c55f4cb21de048e2'
+    oldFile: !uuid 'e4c6352dded8463dc2aeb779e4743ca7f6062d6b'
+  /Admin.NET/Admin.NET.Core/Entity/SysUser.cs:
+    newFile: !uuid '0bc4f47c53ddbdf085dc275170266a79255f680d'
+    oldFile: !uuid 'fff24d2c8f7fb675b3c065e34a1166b801c7cecc'
+  /Admin.NET/Admin.NET.Core/Entity/SysUserExtOrg.cs:
+    newFile: !uuid '5ef49f78f8b130ef0419a13697d1f91080aacb6a'
+    oldFile: !uuid 'a2f9228ecd3e920788a9eb023ef84b3fac82595b'
+  /Admin.NET/Admin.NET.Core/Entity/SysUserRole.cs:
+    newFile: !uuid '62d9800c930a2bbd981b1a8541466a80fc8f4a31'
+    oldFile: !uuid '408d0d52e4e0a8d7b91b8ba8186ce0b11b2775ab'
+  /Admin.NET/Admin.NET.Core/Entity/SysWechatPay.cs:
+    newFile: !uuid 'cf0d5fe6255c454617e6fec8b32c163c3422bf37'
+    oldFile: !uuid 'e24449452732f330dd6cb227ed04d4fc81f7e68a'
+  /Admin.NET/Admin.NET.Core/Entity/SysWechatUser.cs:
+    newFile: !uuid 'ed907ffe2bdaa6188bf0a43e49f80227f0fa137a'
+    oldFile: !uuid 'c43b33e1d19d17420f627da526237d0c4db7f51b'
+  /Admin.NET/Plugins:
+    newFile: !uuid 'a3e59978bccefed0efbc6efc718b21e7e46989e5'
+    oldFile: !uuid '09a6498281432bfe1608303cb75c7d8421b2bafa'
+  /Admin.NET/Plugins/Admin.NET.Plugin.GoView:
+    newFile: !uuid '957890641c5735e7edcb5d47da7e8a75c9022f39'
+    oldFile: !uuid 'b471347f8bac06088202c551c464f3a6209e1312'
+  /Admin.NET/Plugins/Admin.NET.Plugin.GoView/Entity:
+    newFile: !uuid '5b0b345d6a4aa81dbf502f0741440fcff4fc2c68'
+    oldFile: !uuid 'd0889f0e40d8167115d40eb7106c15256d98b530'
+  /Admin.NET/Plugins/Admin.NET.Plugin.GoView/Entity/GoViewPro.cs:
+    newFile: !uuid 'c3992e1aa8f8bb5ef190c9289b86058fa8d75333'
+    oldFile: !uuid '1ce14e20ec465acdaf55bdc6215accecb36249e7'
+gitCommitId: !uuid 'da5033fc6c0dd1a77b51ed6d6fcddae3df262ca4'
 renames: {
   }
-revisionId: 1023
+revisionId: 1024
