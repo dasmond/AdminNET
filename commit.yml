@@ -2,40 +2,28 @@
 branches: {
   }
 fileChange:
-  /Admin.NET:
-    newFile: !uuid '2080a7a039b3ae657246b5a7f735b06c7c974b45'
-    oldFile: !uuid '9e5fad1a1ab1eea7508a873f76c4efade193c172'
-  /Admin.NET/Admin.NET.Core:
-    newFile: !uuid 'ce0973bf47ff39383357c17693178a1aee6ffb62'
-    oldFile: !uuid '99fab8a98a778f63f7ed58e5dcb6b508f7664708'
-  /Admin.NET/Admin.NET.Core/Entity:
-    newFile: !uuid '7c003eccd24aa360750ee8ba91b23bb0a307d50d'
-    oldFile: !uuid '63819424e9cff4e71f36d8fdac0aeb0623516fd8'
-  /Admin.NET/Admin.NET.Core/Entity/SysUser.cs:
-    newFile: !uuid 'e6b150fe93b873bc475fd9c49c67f044205ec9d5'
-    oldFile: !uuid '0bc4f47c53ddbdf085dc275170266a79255f680d'
-  /Admin.NET/Admin.NET.Core/Enum:
-    newFile: !uuid 'e617af2e1f5f2e5b97ac7e8775f6f79f58c7a840'
-    oldFile: !uuid '17375042cfbfe597e3be0eb39c9225f65f33afa7'
-  /Admin.NET/Admin.NET.Core/Enum/AccountTypeEnum.cs:
-    newFile: !uuid '1221b8e812e4ec33adfefc11ec7b97001a50f268'
-    oldFile: !uuid 'b27294e50ae67a482eb748cc5e41e54d6db258eb'
-  /Admin.NET/Admin.NET.Core/SeedData:
-    newFile: !uuid '7243fa5dba980ce941ca38bed0ed839fad8f92d9'
-    oldFile: !uuid 'a899ef57b7244700a9765696aaa60e8e5aa4c00f'
-  /Admin.NET/Admin.NET.Core/SeedData/SysUserSeedData.cs:
-    newFile: !uuid 'a82b85d5581108d52d669d786b2ed0979ea068cb'
-    oldFile: !uuid '10cba94fecf67ab7b9a5b046a2bd99715ba8d20f'
-  /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid 'beb6437ac4ceaf679568e0c535b2d074e9d5533c'
-    oldFile: !uuid 'd3a9010589b1488456d3497823fc48e1a0ec8237'
-  /Admin.NET/Admin.NET.Core/Service/Tenant:
-    newFile: !uuid '21dbab06ac160ea4a3ff3a678637aa3746687701'
-    oldFile: !uuid 'c5b2674774d9ead9cbfd88bc2e0dcd12550cb114'
-  /Admin.NET/Admin.NET.Core/Service/Tenant/SysTenantService.cs:
-    newFile: !uuid '2786aea584ddf28b95ab68de586aed3ce4a7e042'
-    oldFile: !uuid '21ef08b4776ca96c99382ec771ba47e0652ae119'
-gitCommitId: !uuid '5306d177feef6db1f9d2749c3590541f9f416d6c'
+  /Web:
+    newFile: !uuid '6bb3264792bf00c940aacbcdb6d4409edd86fb7c'
+    oldFile: !uuid 'b8cf1abd5004f3c59effd7d297300b5ff348f1f3'
+  /Web/src:
+    newFile: !uuid 'b63bce5f8602eace0ca97868392b8c5be166b85b'
+    oldFile: !uuid 'ae158287093829b48a627ff1737809defcbab974'
+  /Web/src/views:
+    newFile: !uuid '1fb7bbde220e846a918a35f85071c473eab260be'
+    oldFile: !uuid '089d399561403381496c83aa678535b172f9c9ab'
+  /Web/src/views/system:
+    newFile: !uuid '4aae503e4c8653dc7c14a0f1c49afd6a249a15a4'
+    oldFile: !uuid '30a6cfa5483b09479b9ba2df0c92ac0206d33855'
+  /Web/src/views/system/codeGen:
+    newFile: !uuid 'd7227b29b5035b466aad748f4b9e392b074ee7e2'
+    oldFile: !uuid '4b0f3124b806ee6d13edb45e60d5bb66538a49af'
+  /Web/src/views/system/codeGen/component:
+    newFile: !uuid '7109fbc722e7121d2a78fb8936bd3b0b97093245'
+    oldFile: !uuid 'e1f45c6faf2057f0b4f976af63806ba7c2d37cb9'
+  /Web/src/views/system/codeGen/component/treeDialog.vue:
+    newFile: !uuid 'cfd9cd7c3603defc0ba2d300fe54c2db1660f524'
+    oldFile: !uuid '623ed0daa9f53a9939c12e08646696408058824d'
+gitCommitId: !uuid 'cc17c631373ea2715412a3b735a3262bd22e1790'
 renames: {
   }
-revisionId: 1026
+revisionId: 1027
