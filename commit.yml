@@ -2,28 +2,19 @@
 branches: {
   }
 fileChange:
-  /Web:
-    newFile: !uuid '6bb3264792bf00c940aacbcdb6d4409edd86fb7c'
-    oldFile: !uuid 'b8cf1abd5004f3c59effd7d297300b5ff348f1f3'
-  /Web/src:
-    newFile: !uuid 'b63bce5f8602eace0ca97868392b8c5be166b85b'
-    oldFile: !uuid 'ae158287093829b48a627ff1737809defcbab974'
-  /Web/src/views:
-    newFile: !uuid '1fb7bbde220e846a918a35f85071c473eab260be'
-    oldFile: !uuid '089d399561403381496c83aa678535b172f9c9ab'
-  /Web/src/views/system:
-    newFile: !uuid '4aae503e4c8653dc7c14a0f1c49afd6a249a15a4'
-    oldFile: !uuid '30a6cfa5483b09479b9ba2df0c92ac0206d33855'
-  /Web/src/views/system/codeGen:
-    newFile: !uuid 'd7227b29b5035b466aad748f4b9e392b074ee7e2'
-    oldFile: !uuid '4b0f3124b806ee6d13edb45e60d5bb66538a49af'
-  /Web/src/views/system/codeGen/component:
-    newFile: !uuid '7109fbc722e7121d2a78fb8936bd3b0b97093245'
-    oldFile: !uuid 'e1f45c6faf2057f0b4f976af63806ba7c2d37cb9'
-  /Web/src/views/system/codeGen/component/treeDialog.vue:
-    newFile: !uuid 'cfd9cd7c3603defc0ba2d300fe54c2db1660f524'
-    oldFile: !uuid '623ed0daa9f53a9939c12e08646696408058824d'
-gitCommitId: !uuid 'cc17c631373ea2715412a3b735a3262bd22e1790'
+  /Admin.NET:
+    newFile: !uuid '6492f392d6d17dfafdb63ac2340a47d96e1811d9'
+    oldFile: !uuid '2080a7a039b3ae657246b5a7f735b06c7c974b45'
+  /Admin.NET/Admin.NET.Core:
+    newFile: !uuid '9b728c49f263d28a5d5c834ba19cd695962cef30'
+    oldFile: !uuid 'ce0973bf47ff39383357c17693178a1aee6ffb62'
+  /Admin.NET/Admin.NET.Core/Util:
+    newFile: !uuid '64f64098f7189b6a03ce55328458306012b8ef3a'
+    oldFile: !uuid 'c55ffc006a8cb11fae2ab7596bd2a2ee831df7c7'
+  /Admin.NET/Admin.NET.Core/Util/TripleDES.cs:
+    newFile: !uuid 'edb8ba3c6c61b01b5f11830a30cdf8b29612e0c6'
+    oldFile: null
+gitCommitId: !uuid '055983de64f24b8189ddfb1cc9e4b7c0da2b8d39'
 renames: {
   }
-revisionId: 1027
+revisionId: 1028
