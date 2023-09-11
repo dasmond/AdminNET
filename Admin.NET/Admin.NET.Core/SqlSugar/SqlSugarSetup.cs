@@ -279,12 +279,15 @@ public static class SqlSugarSetup
                 .WhereIF(config.TableSettings.EnableIncreTable, u => u.IsDefined(typeof(IncreTableAttribute), false)).ToList();
             if (entityTypes.Any())
             {
+                if (config.ConfigId == SqlSugarConst.ConfigId)
+                    entityTypes = entityTypes.Where(u => u.GetCustomAttributes<SystemTableAttribute>().Any()).ToList();
+                else if (config.ConfigId == SqlSugarConst.LogConfigId)
+                    entityTypes = entityTypes.Where(u => u.GetCustomAttributes<LogTableAttribute>().Any()).ToList();
+                else if(config.ConfigId == SqlSugarConst.BizConfigId)
+                    entityTypes = entityTypes.Where(u => u.GetCustomAttributes<BizTableAttribute>().Any()).ToList();
+                
                 foreach (var entityType in entityTypes)
                 {
-                    var tAtt = entityType.GetCustomAttribute<TenantAttribute>();
-                    if (tAtt != null && tAtt.configId.ToString() != config.ConfigId) continue;
-                    if (tAtt == null && config.ConfigId != SqlSugarConst.ConfigId) continue;
-
                     if (entityType.GetCustomAttribute<SplitTableAttribute>() == null)
                         dbProvider.CodeFirst.InitTables(entityType);
                     else
@@ -347,7 +350,7 @@ public static class SqlSugarSetup
 
         // 获取所有实体表-初始化租户业务表
         var entityTypes = App.EffectiveTypes.Where(u => !u.IsInterface && !u.IsAbstract && u.IsClass
-            && u.IsDefined(typeof(SugarTable), false) && !u.IsDefined(typeof(SystemTableAttribute), false)).ToList();
+            && u.IsDefined(typeof(SugarTable), false) && u.IsDefined(typeof(BizTableAttribute), false)).ToList();
         if (!entityTypes.Any()) return;
         foreach (var entityType in entityTypes)
         {
