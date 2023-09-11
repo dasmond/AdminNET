@@ -20,6 +20,16 @@ public class SqlSugarConst
     public const string ConfigId = "1300000000001";
 
     /// <summary>
+    /// 日志数据库标识
+    /// </summary>
+    public const string LogConfigId = "LogDb";
+
+    /// <summary>
+    /// 业务数据库标识
+    /// </summary>
+    public const string BizConfigId = "BizDb";
+
+    /// <summary>
     /// 默认表主键
     /// </summary>
     public const string PrimaryKey = "Id";

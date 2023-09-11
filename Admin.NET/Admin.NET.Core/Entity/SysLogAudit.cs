@@ -13,7 +13,7 @@ namespace Admin.NET.Core;
 /// 系统审计日志表
 /// </summary>
 [SugarTable(null, "系统审计日志表")]
-[SystemTable]
+[LogTable]
 public class SysLogAudit : EntityBase
 {
     /// <summary>

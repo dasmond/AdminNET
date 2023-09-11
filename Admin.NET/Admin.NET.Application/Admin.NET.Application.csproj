@@ -12,6 +12,10 @@
     <None Remove="Admin.NET.Application.xml" />
     <None Remove="Configuration\Limit.json" />
     <None Remove="Configuration\Logging.json" />
+    <None Remove="Entity\" />
+    <None Remove="Service\" />
+    <None Remove="Service\TestOrderInfo\" />
+    <None Remove="Service\TestOrderInfo\DTO\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -74,4 +78,10 @@
     </None>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Entity\" />
+    <Folder Include="Service\" />
+    <Folder Include="Service\TestOrderInfo\" />
+    <Folder Include="Service\TestOrderInfo\DTO\" />
+  </ItemGroup>
 </Project>
