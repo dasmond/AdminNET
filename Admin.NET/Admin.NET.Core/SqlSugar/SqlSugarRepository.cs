@@ -21,13 +21,6 @@ public class SqlSugarRepository<T> : SimpleClient<T> where T : class, new()
     {
         iTenant = App.GetRequiredService<ISqlSugarClient>().AsTenant();
 
-        // 若实体贴有多库特性，则返回指定的连接
-        if (typeof(T).IsDefined(typeof(TenantAttribute), false))
-        {
-            base.Context = iTenant.GetConnectionScopeWithAttr<T>();
-            return;
-        }
-
         // 若实体贴有系统表特性，则返回默认的连接
         if (typeof(T).IsDefined(typeof(SystemTableAttribute), false))
         {
@@ -35,9 +28,20 @@ public class SqlSugarRepository<T> : SimpleClient<T> where T : class, new()
             return;
         }
 
+        // 若实体贴有日志表特性，则返回日志库的连接
+        if (typeof(T).IsDefined(typeof(LogTableAttribute), false))
+        {
+            base.Context = iTenant.GetConnectionScope(SqlSugarConst.LogConfigId);
+            return;
+        }
+
         // 若当前未登录或是默认租户Id，则返回默认的连接
         var tenantId = App.GetRequiredService<UserManager>().TenantId;
-        if (tenantId < 1 || tenantId.ToString() == SqlSugarConst.ConfigId) return;
+        if (tenantId < 1 || tenantId.ToString() == SqlSugarConst.ConfigId)
+        {
+            base.Context = iTenant.GetConnectionScopeWithAttr<T>();
+            return;
+        };
 
         var tenant = App.GetRequiredService<SysCacheService>().Get<List<SysTenant>>(CacheConst.KeyTenant).FirstOrDefault(u => u.Id == tenantId);
         if (tenant is null || tenant is { TenantType: TenantTypeEnum.Id }) return;
