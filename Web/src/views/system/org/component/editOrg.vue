@@ -3,7 +3,8 @@
 		<el-dialog v-model="state.isShowDialog" draggable :close-on-click-modal="false" width="700px">
 			<template #header>
 				<div style="color: #fff">
-					<el-icon size="16" style="margin-right: 3px; display: inline; vertical-align: middle"> <ele-Edit /> </el-icon>
+					<el-icon size="16" style="margin-right: 3px; display: inline; vertical-align: middle"> <ele-Edit />
+					</el-icon>
 					<span> {{ props.title }} </span>
 				</div>
 			</template>
@@ -11,14 +12,9 @@
 				<el-row :gutter="35">
 					<el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="mb20">
 						<el-form-item label="上级机构">
-							<el-cascader
-								:options="props.orgData"
+							<el-cascader :options="props.orgData"
 								:props="{ checkStrictly: true, emitPath: false, value: 'id', label: 'name' }"
-								placeholder="请选择上级机构"
-								clearable
-								class="w100"
-								v-model="state.ruleForm.pid"
-							>
+								placeholder="请选择上级机构" clearable class="w100" v-model="state.ruleForm.pid">
 								<template #default="{ node, data }">
 									<span>{{ data.name }}</span>
 									<span v-if="!node.isLeaf"> ({{ data.children.length }}) </span>
@@ -27,12 +23,14 @@
 						</el-form-item>
 					</el-col>
 					<el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="mb20">
-						<el-form-item label="机构名称" prop="name" :rules="[{ required: true, message: '机构名称不能为空', trigger: 'blur' }]">
+						<el-form-item label="机构名称" prop="name"
+							:rules="[{ required: true, message: '机构名称不能为空', trigger: 'blur' }]">
 							<el-input v-model="state.ruleForm.name" placeholder="机构名称" clearable />
 						</el-form-item>
 					</el-col>
 					<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
-						<el-form-item label="机构编码" prop="code" :rules="[{ required: true, message: '机构编码不能为空', trigger: 'blur' }]">
+						<el-form-item label="机构编码" prop="code"
+							:rules="[{ required: true, message: '机构编码不能为空', trigger: 'blur' }]">
 							<el-input v-model="state.ruleForm.code" placeholder="机构编码" clearable />
 						</el-form-item>
 					</el-col>
@@ -44,7 +42,8 @@
 					<el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="mb20">
 						<el-form-item label="机构类型">
 							<el-select v-model="state.ruleForm.orgType" filterable clearable class="w100">
-								<el-option v-for="item in state.orgTypeList" :key="item.value" :label="item.value" :value="item.code" />
+								<el-option v-for="item in state.orgTypeList" :key="item.value" :label="item.value"
+									:value="item.code" />
 							</el-select>
 						</el-form-item>
 					</el-col>
@@ -106,6 +105,7 @@ onMounted(async () => {
 const openDialog = (row: any) => {
 	state.ruleForm = JSON.parse(JSON.stringify(row));
 	state.isShowDialog = true;
+	ruleFormRef.value?.resetFields();
 };
 
 // 关闭弹窗

@@ -3,7 +3,8 @@
 		<el-dialog v-model="state.isShowDialog" draggable :close-on-click-modal="false" width="900px">
 			<template #header>
 				<div style="color: #fff">
-					<el-icon size="16" style="margin-right: 3px; display: inline; vertical-align: middle"> <ele-Edit /> </el-icon>
+					<el-icon size="16" style="margin-right: 3px; display: inline; vertical-align: middle"> <ele-Edit />
+					</el-icon>
 					<span> {{ props.title }} </span>
 				</div>
 			</template>
@@ -12,7 +13,8 @@
 					<el-form :model="state.ruleForm" ref="ruleFormRef" label-width="auto" style="height: 500px">
 						<el-row :gutter="35">
 							<el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="mb20">
-								<el-form-item label="功能名称" prop="name" :rules="[{ required: true, message: '功能名称不能为空', trigger: 'blur' }]">
+								<el-form-item label="功能名称" prop="name"
+									:rules="[{ required: true, message: '功能名称不能为空', trigger: 'blur' }]">
 									<el-input v-model="state.ruleForm.name" placeholder="功能名称" clearable />
 								</el-form-item>
 							</el-col>
@@ -36,7 +38,8 @@
 							</el-col>
 							<el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="mb20">
 								<el-form-item label="备注">
-									<el-input v-model="state.ruleForm.remark" placeholder="请输入备注内容" clearable type="textarea" />
+									<el-input v-model="state.ruleForm.remark" placeholder="请输入备注内容" clearable
+										type="textarea" />
 								</el-form-item>
 							</el-col>
 						</el-row>
@@ -110,7 +113,7 @@ const initMonacoEditor = () => {
 const openDialog = (row: any) => {
 	state.ruleForm = JSON.parse(JSON.stringify(row));
 	state.isShowDialog = true;
-
+	ruleFormRef.value?.resetFields();
 	// 延迟拿值防止取不到
 	setTimeout(() => {
 		if (monacoEditor == null) initMonacoEditor();

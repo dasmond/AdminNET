@@ -3,7 +3,8 @@
 		<el-dialog v-model="state.isShowDialog" draggable :close-on-click-modal="false" width="700px">
 			<template #header>
 				<div style="color: #fff">
-					<el-icon size="16" style="margin-right: 3px; display: inline; vertical-align: middle"> <ele-Edit /> </el-icon>
+					<el-icon size="16" style="margin-right: 3px; display: inline; vertical-align: middle"> <ele-Edit />
+					</el-icon>
 					<span>{{ props.title }}</span>
 				</div>
 			</template>
@@ -12,12 +13,14 @@
 					<el-form :model="state.ruleForm" ref="ruleFormRef" label-width="auto">
 						<el-row :gutter="35">
 							<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
-								<el-form-item label="账号名称" prop="account" :rules="[{ required: true, message: '账号名称不能为空', trigger: 'blur' }]">
+								<el-form-item label="账号名称" prop="account"
+									:rules="[{ required: true, message: '账号名称不能为空', trigger: 'blur' }]">
 									<el-input v-model="state.ruleForm.account" placeholder="账号名称" clearable />
 								</el-form-item>
 							</el-col>
 							<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
-								<el-form-item label="真实姓名" prop="realName" :rules="[{ required: true, message: '真实姓名不能为空', trigger: 'blur' }]">
+								<el-form-item label="真实姓名" prop="realName"
+									:rules="[{ required: true, message: '真实姓名不能为空', trigger: 'blur' }]">
 									<el-input v-model="state.ruleForm.realName" placeholder="真实姓名" clearable />
 								</el-form-item>
 							</el-col>
@@ -27,13 +30,16 @@
 								</el-form-item>
 							</el-col>
 							<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
-								<el-form-item label="手机号码" prop="phone" :rules="[{ required: true, message: '手机号码不能为空', trigger: 'blur' }]">
+								<el-form-item label="手机号码" prop="phone"
+									:rules="[{ required: true, message: '手机号码不能为空', trigger: 'blur' }]">
 									<el-input v-model="state.ruleForm.phone" placeholder="手机号码" clearable />
 								</el-form-item>
 							</el-col>
 							<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
-								<el-form-item label="出生日期" prop="birthday" :rules="[{ required: true, message: '出生日期不能为空', trigger: 'blur' }]">
-									<el-date-picker v-model="state.ruleForm.birthday" type="date" placeholder="出生日期" format="YYYY-MM-DD" value-format="YYYY-MM-DD" class="w100" />
+								<el-form-item label="出生日期" prop="birthday"
+									:rules="[{ required: true, message: '出生日期不能为空', trigger: 'blur' }]">
+									<el-date-picker v-model="state.ruleForm.birthday" type="date" placeholder="出生日期"
+										format="YYYY-MM-DD" value-format="YYYY-MM-DD" class="w100" />
 								</el-form-item>
 							</el-col>
 							<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
@@ -45,9 +51,12 @@
 								</el-form-item>
 							</el-col>
 							<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
-								<el-form-item label="角色" prop="roleIdList" :rules="[{ required: true, message: '角色集合不能为空', trigger: 'blur' }]">
-									<el-select v-model="state.ruleForm.roleIdList" multiple value-key="id" clearable placeholder="角色集合" collapse-tags collapse-tags-tooltip class="w100" filterable>
-										<el-option v-for="item in state.roleData" :key="item.id" :label="item.name" :value="item.id" />
+								<el-form-item label="角色" prop="roleIdList"
+									:rules="[{ required: true, message: '角色集合不能为空', trigger: 'blur' }]">
+									<el-select v-model="state.ruleForm.roleIdList" multiple value-key="id" clearable
+										placeholder="角色集合" collapse-tags collapse-tags-tooltip class="w100" filterable>
+										<el-option v-for="item in state.roleData" :key="item.id" :label="item.name"
+											:value="item.id" />
 									</el-select>
 								</el-form-item>
 							</el-col>
@@ -60,15 +69,11 @@
 								<div style="color: #b1b3b8">机构组织</div>
 							</el-divider>
 							<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
-								<el-form-item label="所属机构" prop="orgId" :rules="[{ required: true, message: '所属机构不能为空', trigger: 'blur' }]">
-									<el-cascader
-										:options="props.orgData"
+								<el-form-item label="所属机构" prop="orgId"
+									:rules="[{ required: true, message: '所属机构不能为空', trigger: 'blur' }]">
+									<el-cascader :options="props.orgData"
 										:props="{ checkStrictly: true, emitPath: false, value: 'id', label: 'name', expandTrigger: 'hover' }"
-										placeholder="所属机构"
-										clearable
-										class="w100"
-										v-model="state.ruleForm.orgId"
-									>
+										placeholder="所属机构" clearable class="w100" v-model="state.ruleForm.orgId">
 										<template #default="{ node, data }">
 											<span>{{ data.name }}</span>
 											<span v-if="!node.isLeaf"> ({{ data.children.length }}) </span>
@@ -77,7 +82,8 @@
 								</el-form-item>
 							</el-col>
 							<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
-								<el-form-item label="职位" prop="posId" :rules="[{ required: true, message: '职位名称不能为空', trigger: 'blur' }]">
+								<el-form-item label="职位" prop="posId"
+									:rules="[{ required: true, message: '职位名称不能为空', trigger: 'blur' }]">
 									<el-select v-model="state.ruleForm.posId" placeholder="职位" class="w100">
 										<el-option v-for="d in state.posData" :key="d.id" :label="d.name" :value="d.id" />
 									</el-select>
@@ -90,7 +96,8 @@
 							</el-col>
 							<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
 								<el-form-item label="入职日期">
-									<el-date-picker v-model="state.ruleForm.joinDate" type="date" placeholder="入职日期" format="YYYY-MM-DD" value-format="YYYY-MM-DD" class="w100" />
+									<el-date-picker v-model="state.ruleForm.joinDate" type="date" placeholder="入职日期"
+										format="YYYY-MM-DD" value-format="YYYY-MM-DD" class="w100" />
 								</el-form-item>
 							</el-col>
 							<el-divider border-style="dashed" content-position="center">
@@ -101,22 +108,21 @@
 								<span style="font-size: 12px; color: gray; padding-left: 5px"> 具有相应组织机构的数据权限 </span>
 							</el-col>
 							<el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="mb20">
-								<template v-if="state.ruleForm.extOrgIdList != undefined && state.ruleForm.extOrgIdList.length > 0">
+								<template
+									v-if="state.ruleForm.extOrgIdList != undefined && state.ruleForm.extOrgIdList.length > 0">
 									<el-row :gutter="35" v-for="(v, k) in state.ruleForm.extOrgIdList" :key="k">
 										<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
-											<el-form-item label="机构" :prop="`extOrgIdList[${k}].orgId`" :rules="[{ required: true, message: `机构不能为空`, trigger: 'blur' }]">
+											<el-form-item label="机构" :prop="`extOrgIdList[${k}].orgId`"
+												:rules="[{ required: true, message: `机构不能为空`, trigger: 'blur' }]">
 												<template #label>
-													<el-button icon="ele-Delete" type="danger" circle plain size="small" @click="deleteExtOrgRow(k)" />
+													<el-button icon="ele-Delete" type="danger" circle plain size="small"
+														@click="deleteExtOrgRow(k)" />
 													<span class="ml5">机构</span>
 												</template>
-												<el-cascader
-													:options="props.orgData"
+												<el-cascader :options="props.orgData"
 													:props="{ checkStrictly: true, emitPath: false, value: 'id', label: 'name', expandTrigger: 'hover' }"
-													placeholder="机构组织"
-													clearable
-													class="w100"
-													v-model="state.ruleForm.extOrgIdList[k].orgId"
-												>
+													placeholder="机构组织" clearable class="w100"
+													v-model="state.ruleForm.extOrgIdList[k].orgId">
 													<template #default="{ node, data }">
 														<span>{{ data.name }}</span>
 														<span v-if="!node.isLeaf"> ({{ data.children.length }}) </span>
@@ -125,9 +131,12 @@
 											</el-form-item>
 										</el-col>
 										<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
-											<el-form-item label="职位" :prop="`extOrgIdList[${k}].posId`" :rules="[{ required: true, message: `职位不能为空`, trigger: 'blur' }]">
-												<el-select v-model="state.ruleForm.extOrgIdList[k].posId" placeholder="职位名称" class="w100">
-													<el-option v-for="d in state.posData" :key="d.id" :label="d.name" :value="d.id" />
+											<el-form-item label="职位" :prop="`extOrgIdList[${k}].posId`"
+												:rules="[{ required: true, message: `职位不能为空`, trigger: 'blur' }]">
+												<el-select v-model="state.ruleForm.extOrgIdList[k].posId" placeholder="职位名称"
+													class="w100">
+													<el-option v-for="d in state.posData" :key="d.id" :label="d.name"
+														:value="d.id" />
 												</el-select>
 											</el-form-item>
 										</el-col>
@@ -213,7 +222,8 @@
 							</el-col>
 							<el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="mb20">
 								<el-form-item label="联系人地址">
-									<el-input v-model="state.ruleForm.emergencyAddress" placeholder="紧急联系人" clearable type="textarea" />
+									<el-input v-model="state.ruleForm.emergencyAddress" placeholder="紧急联系人" clearable
+										type="textarea" />
 								</el-form-item>
 							</el-col>
 							<el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="mb20">
@@ -277,6 +287,7 @@ const openDialog = async (row: any) => {
 		state.ruleForm.extOrgIdList = resExtOrg.data.result;
 		state.isShowDialog = true;
 	} else state.isShowDialog = true;
+	ruleFormRef.value?.resetFields();
 };
 
 // 关闭弹窗

@@ -3,14 +3,16 @@
 		<el-dialog v-model="state.isShowDialog" draggable :close-on-click-modal="false" width="700px">
 			<template #header>
 				<div style="color: #fff">
-					<el-icon size="16" style="margin-right: 3px; display: inline; vertical-align: middle"> <ele-Edit /> </el-icon>
+					<el-icon size="16" style="margin-right: 3px; display: inline; vertical-align: middle"> <ele-Edit />
+					</el-icon>
 					<span> {{ props.title }} </span>
 				</div>
 			</template>
 			<el-form :model="state.ruleForm" ref="ruleFormRef" label-width="auto">
 				<el-row :gutter="35">
 					<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
-						<el-form-item label="触发器编号" prop="triggerId" :rules="[{ required: true, message: '触发器编号不能为空', trigger: 'blur' }]">
+						<el-form-item label="触发器编号" prop="triggerId"
+							:rules="[{ required: true, message: '触发器编号不能为空', trigger: 'blur' }]">
 							<el-input v-model="state.ruleForm.triggerId" placeholder="触发器编号" clearable />
 						</el-form-item>
 					</el-col>
@@ -22,7 +24,8 @@
 							</el-select>
 						</el-form-item>
 					</el-col>
-					<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20" v-if="state.ruleForm.triggerType == 'Furion.Schedule.PeriodTrigger'">
+					<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20"
+						v-if="state.ruleForm.triggerType == 'Furion.Schedule.PeriodTrigger'">
 						<el-form-item label="间隔时间(ms)">
 							<el-input-number v-model="periodValue" placeholder="间隔" :min="1000" :step="1000" class="w100" />
 						</el-form-item>
@@ -36,7 +39,8 @@
 											<el-button style="margin: 0px 0px 0px -20px; color: inherit"> Macro </el-button>
 											<template #dropdown>
 												<el-dropdown-menu>
-													<el-dropdown-item v-for="(item, index) in macroData" :key="index" :command="item">
+													<el-dropdown-item v-for="(item, index) in macroData" :key="index"
+														:command="item">
 														<el-row style="width: 240px">
 															<el-col :span="9">{{ item.key }}</el-col>
 															<el-col :span="15">{{ item.description }}</el-col>
@@ -45,7 +49,8 @@
 												</el-dropdown-menu>
 											</template>
 										</el-dropdown>
-										<el-button style="margin: 0px -20px 0px -10px; font-size: 14px" @click="state.showCronDialog = true">Cron表达式</el-button>
+										<el-button style="margin: 0px -20px 0px -10px; font-size: 14px"
+											@click="state.showCronDialog = true">Cron表达式</el-button>
 									</el-space>
 								</template>
 							</el-input>
@@ -53,12 +58,14 @@
 					</el-col>
 					<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
 						<el-form-item label="起始时间">
-							<el-date-picker v-model="state.ruleForm.startTime" type="datetime" placeholder="起始时间" style="width: 100%" format="YYYY-MM-DD HH:mm:ss" value-format="YYYY-MM-DD HH:mm:ss" />
+							<el-date-picker v-model="state.ruleForm.startTime" type="datetime" placeholder="起始时间"
+								style="width: 100%" format="YYYY-MM-DD HH:mm:ss" value-format="YYYY-MM-DD HH:mm:ss" />
 						</el-form-item>
 					</el-col>
 					<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
 						<el-form-item label="结束时间">
-							<el-date-picker v-model="state.ruleForm.endTime" type="datetime" placeholder="结束时间" style="width: 100%" format="YYYY-MM-DD HH:mm:ss" value-format="YYYY-MM-DD HH:mm:ss" />
+							<el-date-picker v-model="state.ruleForm.endTime" type="datetime" placeholder="结束时间"
+								style="width: 100%" format="YYYY-MM-DD HH:mm:ss" value-format="YYYY-MM-DD HH:mm:ss" />
 						</el-form-item>
 					</el-col>
 					<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
@@ -102,7 +109,8 @@
 							<template v-slot:label>
 								<div>
 									重置触发次数
-									<el-tooltip raw-content content="是否在启动时重置最大触发次数等于一次的作业<br/>解决因持久化数据已完成一次触发但启动时不再执行的问题" placement="top">
+									<el-tooltip raw-content content="是否在启动时重置最大触发次数等于一次的作业<br/>解决因持久化数据已完成一次触发但启动时不再执行的问题"
+										placement="top">
 										<SvgIcon name="fa fa-question-circle-o" :size="16" style="vertical-align: middle" />
 									</el-tooltip>
 								</div>
@@ -131,7 +139,8 @@
 		<el-dialog v-model="state.showCronDialog" draggable :close-on-click-modal="false" class="scrollbar">
 			<template #header>
 				<div style="color: #fff">
-					<el-icon size="16" style="margin-right: 3px; display: inline; vertical-align: middle"> <ele-Edit /> </el-icon>
+					<el-icon size="16" style="margin-right: 3px; display: inline; vertical-align: middle"> <ele-Edit />
+					</el-icon>
 					<span> Cron表达式生成器 </span>
 				</div>
 			</template>
@@ -236,6 +245,7 @@ const cronValue: WritableComputedRef<string> = computed({
 const openDialog = (row: any) => {
 	state.ruleForm = JSON.parse(JSON.stringify(row));
 	state.isShowDialog = true;
+	ruleFormRef.value?.resetFields();
 };
 
 // 关闭弹窗

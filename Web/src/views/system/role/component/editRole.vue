@@ -3,20 +3,24 @@
 		<el-dialog v-model="state.isShowDialog" draggable :close-on-click-modal="false" width="700px">
 			<template #header>
 				<div style="color: #fff">
-					<el-icon size="16" style="margin-right: 3px; display: inline; vertical-align: middle"> <ele-Edit /> </el-icon>
+					<el-icon size="16" style="margin-right: 3px; display: inline; vertical-align: middle"> <ele-Edit />
+					</el-icon>
 					<span>{{ props.title }}</span>
 				</div>
 			</template>
 			<el-form :model="state.ruleForm" ref="ruleFormRef" label-width="auto">
 				<el-row :gutter="35">
 					<el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="mb20">
-						<el-form-item label="角色名称" prop="name" :rules="[{ required: true, message: '角色名称不能为空', trigger: 'blur' }]">
+						<el-form-item label="角色名称" prop="name"
+							:rules="[{ required: true, message: '角色名称不能为空', trigger: 'blur' }]">
 							<el-input v-model="state.ruleForm.name" placeholder="角色名称" clearable />
 						</el-form-item>
 					</el-col>
 					<el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="mb20">
-						<el-form-item label="角色编码" prop="code" :rules="[{ required: true, message: '角色编码不能为空', trigger: 'blur' }]">
-							<el-input v-model="state.ruleForm.code" placeholder="角色编码" clearable :disabled="state.ruleForm.code == 'sys_admin' && state.ruleForm.id != undefined" />
+						<el-form-item label="角色编码" prop="code"
+							:rules="[{ required: true, message: '角色编码不能为空', trigger: 'blur' }]">
+							<el-input v-model="state.ruleForm.code" placeholder="角色编码" clearable
+								:disabled="state.ruleForm.code == 'sys_admin' && state.ruleForm.id != undefined" />
 						</el-form-item>
 					</el-col>
 					<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
@@ -39,16 +43,9 @@
 					</el-col>
 					<el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="mb20">
 						<el-form-item label="菜单权限" v-loading="state.loading">
-							<el-tree
-								ref="treeRef"
-								:data="state.menuData"
-								node-key="id"
-								show-checkbox
-								:props="{ children: 'children', label: 'title', class: treeNodeClass }"
-								icon="ele-Menu"
-								highlight-current
-								default-expand-all
-							/>
+							<el-tree ref="treeRef" :data="state.menuData" node-key="id" show-checkbox
+								:props="{ children: 'children', label: 'title', class: treeNodeClass }" icon="ele-Menu"
+								highlight-current default-expand-all />
 						</el-form-item>
 					</el-col>
 				</el-row>
@@ -102,6 +99,7 @@ const openDialog = async (row: any) => {
 		}, 100);
 	}
 	state.isShowDialog = true;
+	ruleFormRef.value?.resetFields();
 };
 
 // 关闭弹窗

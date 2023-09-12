@@ -3,7 +3,8 @@
 		<el-dialog v-model="state.isShowDialog" draggable :close-on-click-modal="false" width="900px">
 			<template #header>
 				<div style="color: #fff">
-					<el-icon size="16" style="margin-right: 3px; display: inline; vertical-align: middle"> <ele-Edit /> </el-icon>
+					<el-icon size="16" style="margin-right: 3px; display: inline; vertical-align: middle"> <ele-Edit />
+					</el-icon>
 					<span> {{ props.title }} </span>
 				</div>
 			</template>
@@ -12,12 +13,15 @@
 					<el-form :model="state.ruleForm" ref="ruleFormRef" label-width="auto" style="height: 500px">
 						<el-row :gutter="35">
 							<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
-								<el-form-item label="作业编号" prop="jobId" :rules="[{ required: true, message: '作业编号不能为空', trigger: 'blur' }]">
-									<el-input v-model="state.ruleForm.jobId" placeholder="作业编号" :disabled="isEdit" clearable />
+								<el-form-item label="作业编号" prop="jobId"
+									:rules="[{ required: true, message: '作业编号不能为空', trigger: 'blur' }]">
+									<el-input v-model="state.ruleForm.jobId" placeholder="作业编号" :disabled="isEdit"
+										clearable />
 								</el-form-item>
 							</el-col>
 							<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
-								<el-form-item label="组名称" prop="groupName" :rules="[{ required: true, message: '组名称不能为空', trigger: 'blur' }]">
+								<el-form-item label="组名称" prop="groupName"
+									:rules="[{ required: true, message: '组名称不能为空', trigger: 'blur' }]">
 									<el-input v-model="state.ruleForm.groupName" placeholder="组名称" clearable />
 								</el-form-item>
 							</el-col>
@@ -38,13 +42,15 @@
 									</el-radio-group>
 								</el-form-item>
 							</el-col>
-							<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20" v-show="!isEdit && !isHttpCreateType">
+							<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20"
+								v-show="!isEdit && !isHttpCreateType">
 								<el-form-item prop="includeAnnotations">
 									<template v-slot:label>
 										<div>
 											扫描触发器
 											<el-tooltip raw-content content="此参数只在新增作业时生效<br/>扫描定义在作业上的触发器" placement="top">
-												<SvgIcon name="fa fa-question-circle-o" :size="16" style="vertical-align: middle" />
+												<SvgIcon name="fa fa-question-circle-o" :size="16"
+													style="vertical-align: middle" />
 											</el-tooltip>
 										</div>
 									</template>
@@ -56,12 +62,14 @@
 							</el-col>
 							<el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="mb20">
 								<el-form-item label="描述信息">
-									<el-input v-model="state.ruleForm.description" placeholder="描述信息" clearable type="textarea" :autosize="{ minRows: 1, maxRows: 3 }" />
+									<el-input v-model="state.ruleForm.description" placeholder="描述信息" clearable
+										type="textarea" :autosize="{ minRows: 1, maxRows: 3 }" />
 								</el-form-item>
 							</el-col>
 							<el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="mb20" v-if="!isHttpCreateType">
 								<el-form-item label="额外数据">
-									<el-input v-model="state.ruleForm.properties" placeholder="额外数据" clearable type="textarea" :autosize="{ minRows: 3, maxRows: 6 }" />
+									<el-input v-model="state.ruleForm.properties" placeholder="额外数据" clearable
+										type="textarea" :autosize="{ minRows: 3, maxRows: 6 }" />
 								</el-form-item>
 							</el-col>
 							<el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="mb20" v-if="isHttpCreateType">
@@ -81,7 +89,8 @@
 							</el-col>
 							<el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="mb20" v-if="isHttpCreateType">
 								<el-form-item label="请求报文体">
-									<el-input v-model="state.httpJobMessage.body" placeholder="请求报文体" clearable type="textarea" :autosize="{ minRows: 3, maxRows: 6 }" />
+									<el-input v-model="state.httpJobMessage.body" placeholder="请求报文体" clearable
+										type="textarea" :autosize="{ minRows: 3, maxRows: 6 }" />
 								</el-form-item>
 							</el-col>
 						</el-row>
@@ -181,7 +190,7 @@ const openDialog = (row: any) => {
 	state.selectedTabName = '0'; // 重置为第一个 tab 页
 	state.ruleForm = JSON.parse(JSON.stringify(row));
 	state.isShowDialog = true;
-
+	ruleFormRef.value?.resetFields();
 	// Http请求
 	if (row.id && state.ruleForm.createType === JobCreateTypeEnum.NUMBER_2) {
 		state.httpJobMessage = getHttpJobMessage(state.ruleForm.properties);
@@ -191,6 +200,7 @@ const openDialog = (row: any) => {
 	setTimeout(() => {
 		if (monacoEditor == null) initMonacoEditor();
 		monacoEditor.setValue(row.id == undefined ? JobScriptCode : state.ruleForm.scriptCode);
+
 	}, 1);
 };
 

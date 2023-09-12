@@ -3,7 +3,8 @@
 		<el-dialog v-model="state.isShowDialog" draggable :close-on-click-modal="false" width="769px">
 			<template #header>
 				<div style="color: #fff">
-					<el-icon size="16" style="margin-right: 3px; display: inline; vertical-align: middle"> <ele-Edit /> </el-icon>
+					<el-icon size="16" style="margin-right: 3px; display: inline; vertical-align: middle"> <ele-Edit />
+					</el-icon>
 					<span> 授权租户菜单 </span>
 				</div>
 			</template>
@@ -11,16 +12,9 @@
 				<el-row :gutter="35">
 					<el-col :xs="24" :sm="24" :md="24" :lg="24" :xl1="24">
 						<el-form-item prop="orgIdList" label="">
-							<el-tree
-								ref="treeRef"
-								:data="state.menuData"
-								node-key="id"
-								show-checkbox
-								:props="{ children: 'children', label: 'title', class: treeNodeClass }"
-								icon="ele-Menu"
-								highlight-current
-								default-expand-all
-							/>
+							<el-tree ref="treeRef" :data="state.menuData" node-key="id" show-checkbox
+								:props="{ children: 'children', label: 'title', class: treeNodeClass }" icon="ele-Menu"
+								highlight-current default-expand-all />
 						</el-form-item>
 					</el-col>
 				</el-row>
@@ -71,6 +65,7 @@ const openDialog = async (row: any) => {
 		treeRef.value?.setCheckedKeys(res.data.result);
 	}, 100);
 	state.isShowDialog = true;
+
 };
 
 // 取消
