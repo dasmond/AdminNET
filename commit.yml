@@ -3,33 +3,39 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '0528e379d6be15913c70f2b743cdce04c139f468'
-    oldFile: !uuid '5b73689f9c65a58391a00d0564215341c42b5196'
+    newFile: !uuid '43abef86eac0bb321f872e2e619bfc720161aec1'
+    oldFile: !uuid '0528e379d6be15913c70f2b743cdce04c139f468'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '9c6e25bbcaa4f801fb64e16e921d90f8c38e19d3'
-    oldFile: !uuid '6429cd57d78f1da424abfaa8aa95cdcab1759ad4'
+    newFile: !uuid 'dce1d6a2ddd46208a9e8c772ce9abd9ac4b3396b'
+    oldFile: !uuid '9c6e25bbcaa4f801fb64e16e921d90f8c38e19d3'
   /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid 'd10d7c853b50bdfb390cf3da2e24dd6a3e3709fa'
-    oldFile: !uuid '0a588e6e922906adf50761e354c4cc46c0629b3e'
-  /Admin.NET/Admin.NET.Core/Service/CodeGen:
-    newFile: !uuid '2d429b69ed0b4f94abc6ce038f1c1358439327c3'
-    oldFile: !uuid 'ddcfd26914bdff1fbdf0140a6369ed94e6ee0a1c'
-  /Admin.NET/Admin.NET.Core/Service/CodeGen/CustomViewEngine.cs:
-    newFile: !uuid '09c9cb33fb16b7847dfa3222d16e6e74652c32d4'
-    oldFile: !uuid '053e6a39a42e1ec3b45beeb8b91eb6f99d515c6d'
-  /Admin.NET/Admin.NET.Core/Service/CodeGen/Dto:
-    newFile: !uuid 'dd9f8be0ddc47fca7c0f5b9e96c36484b7731332'
-    oldFile: !uuid '101c3481f5189392392cbb32c52ab40e4709c4a2'
-  /Admin.NET/Admin.NET.Core/Service/CodeGen/Dto/ColumnOuput.cs:
-    newFile: !uuid '9f42aa485bfae3821ea21b7950a69f18270d52c3'
-    oldFile: !uuid '8531a4eddd277e98f1280064d539ff5cfe013761'
-  /Admin.NET/Admin.NET.Core/Service/CodeGen/SysCodeGenConfigService.cs:
-    newFile: !uuid 'd331d11afe68fbf9e6193bd2f0d75bb521e08970'
-    oldFile: !uuid 'fb16401fbd988a1c005a94bb5ba4e2fb3c8d3bad'
-  /Admin.NET/Admin.NET.Core/Service/CodeGen/SysCodeGenService.cs:
-    newFile: !uuid 'e56e6650c1ac73c327c504f7821c8f477330eba7'
-    oldFile: !uuid '93e06a5cf96cd829a7df02351b74935d127da573'
-gitCommitId: !uuid '1ecbb5628118d0073bf826dd863749694cebe43a'
+    newFile: !uuid 'b9f0b73108e6d3a7f34d0077e1afe5fb91390765'
+    oldFile: !uuid 'd10d7c853b50bdfb390cf3da2e24dd6a3e3709fa'
+  /Admin.NET/Admin.NET.Core/Service/File:
+    newFile: !uuid '09fb01b2e8ce1effdafc443b29d55040641bbcf4'
+    oldFile: !uuid '177e226b884024936623e3591a7b83e5d06ad88b'
+  /Admin.NET/Admin.NET.Core/Service/File/SysFileService.cs:
+    newFile: !uuid 'f5390afb4fa2189b8ec224496de74d017375121a'
+    oldFile: !uuid 'fb34a8e72e2dee3a7475b6a5c2b032f62b3e5897'
+  /Admin.NET/Admin.NET.Core/Service/Job:
+    newFile: !uuid '6e3d094c19b25ea4c0d6f5ffbd8b3aa40bb8ecda'
+    oldFile: !uuid '729a3e9a97f94b5809410da2db786e1f27b0f2ca'
+  /Admin.NET/Admin.NET.Core/Service/Job/JobClusterServer.cs:
+    newFile: !uuid '0144206af54ce86dc985056faaa52b4519e5e687'
+    oldFile: !uuid '17cad846606f8b46ff2f4c66a4a9c841cf01b8a9'
+  /Admin.NET/Admin.NET.Core/Service/Notice:
+    newFile: !uuid 'd9c0b22b79970347d1fdc11de812cd2a698d7335'
+    oldFile: !uuid 'a5d7eea067ab0d453b5eb589db5a309a7135b630'
+  /Admin.NET/Admin.NET.Core/Service/Notice/SysNoticeService.cs:
+    newFile: !uuid '2e2a2bb694bd9ef9cc486a8eab559cf8c24a3790'
+    oldFile: !uuid 'f0fec6852ee18624027ebeec0b7bf083e26f8dbf'
+  /Admin.NET/Admin.NET.Core/Service/Tenant:
+    newFile: !uuid '41469c067ca755ea5fd812e15603776940870983'
+    oldFile: !uuid '6d2ba63f2f015fc4adfffd19ece9866ceaab0fd7'
+  /Admin.NET/Admin.NET.Core/Service/Tenant/SysTenantService.cs:
+    newFile: !uuid '6e18c73a7e305d1328a73c722aed6060d44b8121'
+    oldFile: !uuid 'be323a4e523b5df56c87a94a008c80f37adbf3d6'
+gitCommitId: !uuid '9a3c64b26549573c00420ce5a471d21ab423f474'
 renames: {
   }
-revisionId: 1079
+revisionId: 1080
