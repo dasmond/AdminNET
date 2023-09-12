@@ -3,7 +3,8 @@
 		<el-dialog v-model="state.isShowDialog" draggable :close-on-click-modal="false" width="1400px">
 			<template #header>
 				<div style="color: #fff">
-					<el-icon size="16" style="margin-right: 3px; display: inline; vertical-align: middle"> <ele-Edit /> </el-icon>
+					<el-icon size="16" style="margin-right: 3px; display: inline; vertical-align: middle"> <ele-Edit />
+					</el-icon>
 					<span> 增加表 </span>
 				</div>
 			</template>
@@ -11,12 +12,14 @@
 			<el-form :model="state.ruleForm" ref="ruleFormRef" label-width="auto">
 				<el-row :gutter="35">
 					<el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="mb20">
-						<el-form-item label="表名称" prop="tableName" :rules="[{ required: true, message: '名称不能为空', trigger: 'blur' }]">
+						<el-form-item label="表名称" prop="tableName"
+							:rules="[{ required: true, message: '名称不能为空', trigger: 'blur' }]">
 							<el-input v-model="state.ruleForm.tableName" placeholder="表名称" clearable />
 						</el-form-item>
 					</el-col>
 					<el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="mb20">
-						<el-form-item label="描述" prop="description" :rules="[{ required: true, message: '描述不能为空', trigger: 'blur' }]">
+						<el-form-item label="描述" prop="description"
+							:rules="[{ required: true, message: '描述不能为空', trigger: 'blur' }]">
 							<el-input v-model="state.ruleForm.description" placeholder="描述" clearable type="textarea" />
 						</el-form-item>
 					</el-col>
@@ -37,28 +40,32 @@
 				<el-table-column prop="isPrimarykey" label="主键" width="100">
 					<template #default="scope">
 						<el-select v-model="scope.row.isPrimarykey" class="m-2" placeholder="Select">
-							<el-option v-for="item in yesNoSelect" :key="item.value" :label="item.label" :value="item.value" />
+							<el-option v-for="item in yesNoSelect" :key="item.value" :label="item.label"
+								:value="item.value" />
 						</el-select>
 					</template>
 				</el-table-column>
 				<el-table-column prop="isIdentity" label="自增" width="100">
 					<template #default="scope">
 						<el-select v-model="scope.row.isIdentity" class="m-2" placeholder="Select">
-							<el-option v-for="item in yesNoSelect" :key="item.value" :label="item.label" :value="item.value" />
+							<el-option v-for="item in yesNoSelect" :key="item.value" :label="item.label"
+								:value="item.value" />
 						</el-select>
 					</template>
 				</el-table-column>
 				<el-table-column prop="dataType" label="类型" width="150">
 					<template #default="scope">
 						<el-select v-model="scope.row.dataType" class="m-2" placeholder="Select">
-							<el-option v-for="item in dataTypeList" :key="item.value" :label="item.value" :value="item.value" />
+							<el-option v-for="item in dataTypeList" :key="item.value" :label="item.value"
+								:value="item.value" />
 						</el-select>
 					</template>
 				</el-table-column>
 				<el-table-column prop="isNullable" label="可空" width="100">
 					<template #default="scope">
 						<el-select v-model="scope.row.isNullable" class="m-2" placeholder="Select">
-							<el-option v-for="item in yesNoSelect" :key="item.value" :label="item.label" :value="item.value" />
+							<el-option v-for="item in yesNoSelect" :key="item.value" :label="item.label"
+								:value="item.value" />
 						</el-select>
 					</template>
 				</el-table-column>
@@ -74,9 +81,12 @@
 				</el-table-column>
 				<el-table-column label="操作" minWidth="200" align="center" fixed="right">
 					<template #default="scope">
-						<el-button link type="primary" icon="el-icon-delete" @click.prevent="handleColDelete(scope.$index)">删除</el-button>
-						<el-button v-if="state.tableData.length > 1" link type="primary" icon="ele-Top" @click.prevent="handleColUp(scope.row, scope.$index)">上移</el-button>
-						<el-button v-if="state.tableData.length > 1" link type="primary" icon="ele-Bottom" @click.prevent="handleColDown(scope.row, scope.$index)">下移</el-button>
+						<el-button link type="primary" icon="el-icon-delete"
+							@click.prevent="handleColDelete(scope.$index)">删除</el-button>
+						<el-button v-if="state.tableData.length > 1" link type="primary" icon="ele-Top"
+							@click.prevent="handleColUp(scope.row, scope.$index)">上移</el-button>
+						<el-button v-if="state.tableData.length > 1" link type="primary" icon="ele-Bottom"
+							@click.prevent="handleColDown(scope.row, scope.$index)">下移</el-button>
 					</template>
 				</el-table-column>
 			</el-table>
@@ -119,6 +129,7 @@ const state = reactive({
 const openDialog = (row: any) => {
 	state.ruleForm = row;
 	state.isShowDialog = true;
+	ruleFormRef.value?.resetFields();
 };
 
 // 关闭弹窗

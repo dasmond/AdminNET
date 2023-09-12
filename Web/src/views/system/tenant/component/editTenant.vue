@@ -3,7 +3,8 @@
 		<el-dialog v-model="state.isShowDialog" draggable :close-on-click-modal="false" width="700px">
 			<template #header>
 				<div style="color: #fff">
-					<el-icon size="16" style="margin-right: 3px; display: inline; vertical-align: middle"> <ele-Edit /> </el-icon>
+					<el-icon size="16" style="margin-right: 3px; display: inline; vertical-align: middle"> <ele-Edit />
+					</el-icon>
 					<span> {{ props.title }} </span>
 				</div>
 			</template>
@@ -18,17 +19,20 @@
 						</el-form-item>
 					</el-col>
 					<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
-						<el-form-item label="租户名称" prop="name" :rules="[{ required: true, message: '租户名称不能为空', trigger: 'blur' }]">
+						<el-form-item label="租户名称" prop="name"
+							:rules="[{ required: true, message: '租户名称不能为空', trigger: 'blur' }]">
 							<el-input v-model="state.ruleForm.name" placeholder="租户名称" clearable />
 						</el-form-item>
 					</el-col>
 					<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
-						<el-form-item label="租管账号" prop="adminAccount" :rules="[{ required: true, message: '租管账号不能为空', trigger: 'blur' }]">
+						<el-form-item label="租管账号" prop="adminAccount"
+							:rules="[{ required: true, message: '租管账号不能为空', trigger: 'blur' }]">
 							<el-input v-model="state.ruleForm.adminAccount" placeholder="租管账号" clearable />
 						</el-form-item>
 					</el-col>
 					<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
-						<el-form-item label="电话" prop="phone" :rules="[{ required: true, message: '电话号码不能为空', trigger: 'blur' }]">
+						<el-form-item label="电话" prop="phone"
+							:rules="[{ required: true, message: '电话号码不能为空', trigger: 'blur' }]">
 							<el-input v-model="state.ruleForm.phone" placeholder="电话" clearable />
 						</el-form-item>
 					</el-col>
@@ -49,7 +53,8 @@
 					</el-col> -->
 					<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
 						<el-form-item label="数据库类型">
-							<el-select v-model="state.ruleForm.dbType" placeholder="数据库类型" clearable class="w100" :disabled="state.ruleForm.tenantType == 0 && state.ruleForm.tenantType != undefined">
+							<el-select v-model="state.ruleForm.dbType" placeholder="数据库类型" clearable class="w100"
+								:disabled="state.ruleForm.tenantType == 0 && state.ruleForm.tenantType != undefined">
 								<el-option label="MySql" :value="0" />
 								<el-option label="SqlServer" :value="1" />
 								<el-option label="Sqlite" :value="2" />
@@ -76,7 +81,8 @@
 					</el-col> -->
 					<el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="mb20">
 						<el-form-item label="连接字符串">
-							<el-input v-model="state.ruleForm.connection" placeholder="连接字符串" clearable type="textarea" :disabled="state.ruleForm.tenantType == 0 && state.ruleForm.tenantType != undefined" />
+							<el-input v-model="state.ruleForm.connection" placeholder="连接字符串" clearable type="textarea"
+								:disabled="state.ruleForm.tenantType == 0 && state.ruleForm.tenantType != undefined" />
 						</el-form-item>
 					</el-col>
 					<el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="mb20">
@@ -117,6 +123,7 @@ const state = reactive({
 const openDialog = (row: any) => {
 	state.ruleForm = JSON.parse(JSON.stringify(row));
 	state.isShowDialog = true;
+	ruleFormRef.value?.resetFields();
 };
 
 // 关闭弹窗

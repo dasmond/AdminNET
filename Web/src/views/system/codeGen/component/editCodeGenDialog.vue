@@ -3,7 +3,8 @@
 		<el-dialog v-model="state.isShowDialog" draggable :close-on-click-modal="false" width="700px">
 			<template #header>
 				<div style="color: #fff">
-					<el-icon size="16" style="margin-right: 3px; display: inline; vertical-align: middle"> <ele-Edit /> </el-icon>
+					<el-icon size="16" style="margin-right: 3px; display: inline; vertical-align: middle"> <ele-Edit />
+					</el-icon>
 					<span> {{ props.title }} </span>
 				</div>
 			</template>
@@ -11,13 +12,16 @@
 				<el-row :gutter="35">
 					<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
 						<el-form-item label="库定位器" prop="configId">
-							<el-select v-model="state.ruleForm.configId" placeholder="库名" filterable @change="dbChanged()" class="w100">
-								<el-option v-for="item in state.dbData" :key="item.configId" :label="item.configId" :value="item.configId" />
+							<el-select v-model="state.ruleForm.configId" placeholder="库名" filterable @change="dbChanged()"
+								class="w100">
+								<el-option v-for="item in state.dbData" :key="item.configId" :label="item.configId"
+									:value="item.configId" />
 							</el-select>
 						</el-form-item>
 					</el-col>
 					<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
-						<el-form-item label="库类型" prop="dbType" :rules="[{ required: true, message: '描述不能为空', trigger: 'blur' }]">
+						<el-form-item label="库类型" prop="dbType"
+							:rules="[{ required: true, message: '描述不能为空', trigger: 'blur' }]">
 							<el-select v-model="state.ruleForm.dbType" placeholder="数据库类型" clearable disabled class="w100">
 								<el-option label="MySql" :value="'0'" />
 								<el-option label="SqlServer" :value="'1'" />
@@ -44,9 +48,11 @@
 						</el-form-item>
 					</el-col>
 					<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
-						<el-form-item label="生成表" prop="tableName" :rules="[{ required: true, message: '生成表不能为空', trigger: 'blur' }]">
+						<el-form-item label="生成表" prop="tableName"
+							:rules="[{ required: true, message: '生成表不能为空', trigger: 'blur' }]">
 							<el-select v-model="state.ruleForm.tableName" filterable clearable class="w100">
-								<el-option v-for="item in state.tableData" :key="item.entityName" :label="item.tableName" :value="item.entityName" />
+								<el-option v-for="item in state.tableData" :key="item.entityName" :label="item.tableName"
+									:value="item.entityName" />
 							</el-select>
 						</el-form-item>
 					</el-col>
@@ -57,14 +63,9 @@
 					</el-col>
 					<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
 						<el-form-item label="父级菜单" prop="menuPid">
-							<el-cascader
-								:options="state.menuData"
+							<el-cascader :options="state.menuData"
 								:props="{ checkStrictly: true, emitPath: false, value: 'id', label: 'title' }"
-								placeholder="请选择上级菜单"
-								clearable
-								class="w100"
-								v-model="state.ruleForm.menuPid"
-							>
+								placeholder="请选择上级菜单" clearable class="w100" v-model="state.ruleForm.menuPid">
 								<template #default="{ node, data }">
 									<span>{{ data.title }}</span>
 									<span v-if="!node.isLeaf"> ({{ data.children.length }}) </span>
@@ -85,7 +86,8 @@
 					<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
 						<el-form-item label="生成方式" prop="generateType">
 							<el-select v-model="state.ruleForm.generateType" filterable class="w100">
-								<el-option v-for="item in state.codeGenTypeList" :key="item.value" :label="item.value" :value="item.code" />
+								<el-option v-for="item in state.codeGenTypeList" :key="item.value" :label="item.value"
+									:value="item.code" />
 							</el-select>
 						</el-form-item>
 					</el-col>
@@ -148,6 +150,7 @@ const dbChanged = async () => {
 const openDialog = (row: any) => {
 	state.ruleForm = JSON.parse(JSON.stringify(row));
 	state.isShowDialog = true;
+	ruleFormRef.value?.resetFields();
 };
 
 // 关闭弹窗

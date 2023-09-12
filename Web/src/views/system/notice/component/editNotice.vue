@@ -3,27 +3,32 @@
 		<el-dialog v-model="state.isShowDialog" draggable :close-on-click-modal="false" width="900px">
 			<template #header>
 				<div style="color: #fff">
-					<el-icon size="16" style="margin-right: 3px; display: inline; vertical-align: middle"> <ele-Edit /> </el-icon>
+					<el-icon size="16" style="margin-right: 3px; display: inline; vertical-align: middle"> <ele-Edit />
+					</el-icon>
 					<span> {{ props.title }} </span>
 				</div>
 			</template>
 			<el-form :model="state.ruleForm" ref="ruleFormRef" label-width="auto">
 				<el-row :gutter="35">
 					<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
-						<el-form-item label="标题" prop="title" :rules="[{ required: true, message: '标题不能为空', trigger: 'blur' }]">
+						<el-form-item label="标题" prop="title"
+							:rules="[{ required: true, message: '标题不能为空', trigger: 'blur' }]">
 							<el-input v-model="state.ruleForm.title" placeholder="标题" clearable />
 						</el-form-item>
 					</el-col>
 					<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
-						<el-form-item label="类型" prop="type" :rules="[{ required: true, message: '类型不能为空', trigger: 'blur' }]">
-							<el-select v-model="state.ruleForm.type" placeholder="类型" filterable allow-create default-first-option style="width: 100%">
+						<el-form-item label="类型" prop="type"
+							:rules="[{ required: true, message: '类型不能为空', trigger: 'blur' }]">
+							<el-select v-model="state.ruleForm.type" placeholder="类型" filterable allow-create
+								default-first-option style="width: 100%">
 								<el-option label="通知" :value="1" />
 								<el-option label="公告" :value="2" />
 							</el-select>
 						</el-form-item>
 					</el-col>
 					<el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="mb20">
-						<el-form-item label="内容" prop="content" :rules="[{ required: true, message: '内容不能为空', trigger: 'blur' }]">
+						<el-form-item label="内容" prop="content"
+							:rules="[{ required: true, message: '内容不能为空', trigger: 'blur' }]">
 							<Editor v-model:get-html="state.ruleForm.content" />
 						</el-form-item>
 					</el-col>
@@ -61,6 +66,7 @@ const state = reactive({
 const openDialog = (row: any) => {
 	state.ruleForm = JSON.parse(JSON.stringify(row));
 	state.isShowDialog = true;
+	ruleFormRef.value?.resetFields();
 };
 
 // 关闭弹窗

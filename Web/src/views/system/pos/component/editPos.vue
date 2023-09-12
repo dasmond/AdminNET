@@ -3,19 +3,22 @@
 		<el-dialog v-model="state.isShowDialog" draggable :close-on-click-modal="false" width="700px">
 			<template #header>
 				<div style="color: #fff">
-					<el-icon size="16" style="margin-right: 3px; display: inline; vertical-align: middle"> <ele-Edit /> </el-icon>
+					<el-icon size="16" style="margin-right: 3px; display: inline; vertical-align: middle"> <ele-Edit />
+					</el-icon>
 					<span> {{ props.title }} </span>
 				</div>
 			</template>
 			<el-form :model="state.ruleForm" ref="ruleFormRef" label-width="auto">
 				<el-row :gutter="35">
 					<el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="mb20">
-						<el-form-item label="职位名称" prop="name" :rules="[{ required: true, message: '职位名称不能为空', trigger: 'blur' }]">
+						<el-form-item label="职位名称" prop="name"
+							:rules="[{ required: true, message: '职位名称不能为空', trigger: 'blur' }]">
 							<el-input v-model="state.ruleForm.name" placeholder="职位名称" clearable />
 						</el-form-item>
 					</el-col>
 					<el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="mb20">
-						<el-form-item label="职位编码" prop="code" :rules="[{ required: true, message: '职位编码不能为空', trigger: 'blur' }]">
+						<el-form-item label="职位编码" prop="code"
+							:rules="[{ required: true, message: '职位编码不能为空', trigger: 'blur' }]">
 							<el-input v-model="state.ruleForm.code" placeholder="职位编码" clearable />
 						</el-form-item>
 					</el-col>
@@ -70,6 +73,7 @@ const state = reactive({
 const openDialog = (row: any) => {
 	state.ruleForm = JSON.parse(JSON.stringify(row));
 	state.isShowDialog = true;
+	ruleFormRef.value?.resetFields();
 };
 
 // 关闭弹窗

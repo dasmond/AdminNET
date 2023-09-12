@@ -3,7 +3,8 @@
 		<el-dialog v-model="state.isShowDialog" draggable :close-on-click-modal="false" width="950px">
 			<template #header>
 				<div style="color: #fff">
-					<el-icon size="16" style="margin-right: 3px; display: inline; vertical-align: middle"> <ele-Edit /> </el-icon>
+					<el-icon size="16" style="margin-right: 3px; display: inline; vertical-align: middle"> <ele-Edit />
+					</el-icon>
 					<span> 字典值列表 </span>
 				</div>
 			</template>
@@ -43,26 +44,22 @@
 					<el-table-column prop="remark" label="备注" header-align="center" show-overflow-tooltip />
 					<el-table-column label="操作" width="140" fixed="right" align="center" show-overflow-tooltip>
 						<template #default="scope">
-							<el-button icon="ele-Edit" size="small" text type="primary" @click="openEditDictData(scope.row)"> 编辑 </el-button>
-							<el-button icon="ele-Delete" size="small" text type="danger" @click="delDictData(scope.row)"> 删除 </el-button>
+							<el-button icon="ele-Edit" size="small" text type="primary"
+								@click="openEditDictData(scope.row)"> 编辑 </el-button>
+							<el-button icon="ele-Delete" size="small" text type="danger" @click="delDictData(scope.row)"> 删除
+							</el-button>
 						</template>
 					</el-table-column>
 				</el-table>
-				<el-pagination
-					v-model:currentPage="state.tableParams.page"
-					v-model:page-size="state.tableParams.pageSize"
-					:total="state.tableParams.total"
-					:page-sizes="[10, 20, 50, 100]"
-					small
-					background
-					@size-change="handleSizeChange"
-					@current-change="handleCurrentChange"
-					layout="total, sizes, prev, pager, next, jumper"
-				/>
+				<el-pagination v-model:currentPage="state.tableParams.page" v-model:page-size="state.tableParams.pageSize"
+					:total="state.tableParams.total" :page-sizes="[10, 20, 50, 100]" small background
+					@size-change="handleSizeChange" @current-change="handleCurrentChange"
+					layout="total, sizes, prev, pager, next, jumper" />
 			</el-card>
 		</el-dialog>
 
-		<EditDictData ref="editDictDataRef" :title="state.editDictDataTitle" :dictTypeId="state.queryParams.dictTypeId" @handleQuery="handleQuery" />
+		<EditDictData ref="editDictDataRef" :title="state.editDictDataTitle" :dictTypeId="state.queryParams.dictTypeId"
+			@handleQuery="handleQuery" />
 	</div>
 </template>
 
@@ -102,6 +99,7 @@ const openDialog = async (row: any) => {
 	state.queryParams.dictTypeId = row.id;
 	handleQuery();
 	state.isShowDialog = true;
+
 };
 
 // 查询操作
@@ -145,7 +143,7 @@ const delDictData = (row: any) => {
 			handleQuery();
 			ElMessage.success('删除成功');
 		})
-		.catch(() => {});
+		.catch(() => { });
 };
 
 // 改变页面容量
