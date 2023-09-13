@@ -2,28 +2,19 @@
 branches: {
   }
 fileChange:
-  /Web:
-    newFile: !uuid '4216a07c9acdc9644337dbad30ed75fe5c937167'
-    oldFile: !uuid '56ad404c8d1d1d164f39dd7ea7512d8eabd2389a'
-  /Web/src:
-    newFile: !uuid '01519efe3cd1ac86af31453af7992100d8005715'
-    oldFile: !uuid 'ef06a66fe488712b383aac79dcc65be10ab07246'
-  /Web/src/views:
-    newFile: !uuid '91a81827fe758ed2230e9a8c015c39f2ff514aee'
-    oldFile: !uuid 'daff7319e07d5c8a835c07308bbc232b54a5ec7d'
-  /Web/src/views/system:
-    newFile: !uuid '742cba0d80c5f971bd11a8a9ee3dbb64276eec57'
-    oldFile: !uuid 'f9bc5d4b3f907676fcea7f26443ec8bb75915b4d'
-  /Web/src/views/system/weChatUser:
-    newFile: !uuid '274900870d17965ebdf1d21920b7e08f1e3cf461'
-    oldFile: !uuid '446a49ca0177057355a7d09287bddfb254dacb1d'
-  /Web/src/views/system/weChatUser/component:
-    newFile: !uuid 'dda1d5a1fdaa1d367402aae0b1038b65a7dd3a54'
-    oldFile: !uuid 'c447b78e8190b0488290f6dde35420f7bc4da7eb'
-  /Web/src/views/system/weChatUser/component/editWeChatUser.vue:
-    newFile: !uuid 'b005838c9b840433a66e88eeedd7ec3e99c6d658'
-    oldFile: !uuid 'a1f7cf853e20002d083b6cabaf8edf5e2a2e398b'
-gitCommitId: !uuid '4bf0e84589aa5c2483195cdbeefe2dc4c008f0dc'
+  /Admin.NET:
+    newFile: !uuid '7a950354f71384219cce53fa4e4817b2eaaeb676'
+    oldFile: !uuid 'd990cc59992212a0e0bf9e54d9e636238abad88f'
+  /Admin.NET/Admin.NET.Core:
+    newFile: !uuid 'f1269e22ffcfb52a88e2646f39a4ef627cdccdae'
+    oldFile: !uuid 'b8735b060c03752a56e2485d218d59803830f213'
+  /Admin.NET/Admin.NET.Core/Entity:
+    newFile: !uuid '1c3069f4d72d2af4b97c2ff52c2c35ec7a3d6840'
+    oldFile: !uuid 'e58df7cfae9b08cec9e835a44be2d09164a89410'
+  /Admin.NET/Admin.NET.Core/Entity/SysUser.cs:
+    newFile: !uuid '7d4acbfcfdb669885be3d6a159b9b07c13fcd267'
+    oldFile: !uuid 'd67fb5506aba9c58b02574bda1f1803233621987'
+gitCommitId: !uuid '95f3dd35cfc4230c425fa68ccabb45087deafca7'
 renames: {
   }
-revisionId: 1084
+revisionId: 1085
