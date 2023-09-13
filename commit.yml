@@ -3,27 +3,27 @@ branches: {
   }
 fileChange:
   /Web:
-    newFile: !uuid '56ad404c8d1d1d164f39dd7ea7512d8eabd2389a'
-    oldFile: !uuid 'e44eae8cab1379747262759c590b3a7782d4123f'
+    newFile: !uuid '4216a07c9acdc9644337dbad30ed75fe5c937167'
+    oldFile: !uuid '56ad404c8d1d1d164f39dd7ea7512d8eabd2389a'
   /Web/src:
-    newFile: !uuid 'ef06a66fe488712b383aac79dcc65be10ab07246'
-    oldFile: !uuid 'd265bcf9d4973fc7ae95ac1c3408bddcc4a87e03'
+    newFile: !uuid '01519efe3cd1ac86af31453af7992100d8005715'
+    oldFile: !uuid 'ef06a66fe488712b383aac79dcc65be10ab07246'
   /Web/src/views:
-    newFile: !uuid 'daff7319e07d5c8a835c07308bbc232b54a5ec7d'
-    oldFile: !uuid 'eccf6088c1ab9e24cc949f55edc2193720e7e177'
+    newFile: !uuid '91a81827fe758ed2230e9a8c015c39f2ff514aee'
+    oldFile: !uuid 'daff7319e07d5c8a835c07308bbc232b54a5ec7d'
   /Web/src/views/system:
-    newFile: !uuid 'f9bc5d4b3f907676fcea7f26443ec8bb75915b4d'
-    oldFile: !uuid 'c83a9de45b84667f68fde22ca2523aa50c6c3e74'
-  /Web/src/views/system/user:
-    newFile: !uuid 'd1a07af07e352f08dbc6103a154d82b64eab241a'
-    oldFile: !uuid '213d43074e879b87100ecd819fe80aa533675cbf'
-  /Web/src/views/system/user/component:
-    newFile: !uuid '6a9e82e54baa541f889dc0afb7bb998d0582dccd'
-    oldFile: !uuid '9f042deb7d7e595a9bb8b2a51be7677df45cceb8'
-  /Web/src/views/system/user/component/editUser.vue:
-    newFile: !uuid '86811768fe5eae20980fb995b4184df34b2a8055'
-    oldFile: !uuid '386961591de834006222628afb1508e5562c9490'
-gitCommitId: !uuid '9621556826045671040020157cb3967f18c7327e'
+    newFile: !uuid '742cba0d80c5f971bd11a8a9ee3dbb64276eec57'
+    oldFile: !uuid 'f9bc5d4b3f907676fcea7f26443ec8bb75915b4d'
+  /Web/src/views/system/weChatUser:
+    newFile: !uuid '274900870d17965ebdf1d21920b7e08f1e3cf461'
+    oldFile: !uuid '446a49ca0177057355a7d09287bddfb254dacb1d'
+  /Web/src/views/system/weChatUser/component:
+    newFile: !uuid 'dda1d5a1fdaa1d367402aae0b1038b65a7dd3a54'
+    oldFile: !uuid 'c447b78e8190b0488290f6dde35420f7bc4da7eb'
+  /Web/src/views/system/weChatUser/component/editWeChatUser.vue:
+    newFile: !uuid 'b005838c9b840433a66e88eeedd7ec3e99c6d658'
+    oldFile: !uuid 'a1f7cf853e20002d083b6cabaf8edf5e2a2e398b'
+gitCommitId: !uuid '4bf0e84589aa5c2483195cdbeefe2dc4c008f0dc'
 renames: {
   }
-revisionId: 1050
+revisionId: 1051
