@@ -3,45 +3,36 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '05a9f780d5e9ec5aed028e3bcb425b14e37b879c'
-    oldFile: !uuid 'bb1ccf01679fc557e6b0172c7280902a65fc47ad'
-  /Admin.NET/Admin.NET.Application:
-    newFile: !uuid 'f354a79a4cc71c70a465e8f7adb4d82043d13c8b'
-    oldFile: !uuid '486e07eea23a17a8d3a36208790aa9b6e125cc82'
-  /Admin.NET/Admin.NET.Application/Configuration:
-    newFile: !uuid '104ea8fb76c5d44cd270cac735534041e97f37aa'
-    oldFile: !uuid '5e75e9b3892308d52042ba17bb32b0d3742bdee0'
-  /Admin.NET/Admin.NET.Application/Configuration/Database.json:
-    newFile: !uuid '4107346328c95a826f64cca3eddc40b781f089b1'
-    oldFile: !uuid '6b00b3ef9420db41f102f69aafe64976a3a22a7a'
+    newFile: !uuid '7023b967b8e0866fa8d5d3587554ad599f25f48f'
+    oldFile: !uuid '05a9f780d5e9ec5aed028e3bcb425b14e37b879c'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid 'dca7790e4a822fa57fc22390e47532d9a8b31c6c'
-    oldFile: !uuid '6c4e7ba3e830ed3d0929b43969338dbabef402e5'
-  /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
-    newFile: !uuid '33f6b183aea1d2491484a94d8fb88ee8e8910b34'
-    oldFile: !uuid 'b645ca7f27397814444c518cc1ecd413102008f4'
+    newFile: !uuid 'f5d2f71ccfe6f425cd6f70033ea04178ec2f0685'
+    oldFile: !uuid 'dca7790e4a822fa57fc22390e47532d9a8b31c6c'
   /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid 'b3374c001b1b7a4c544061e544b18bf39e8f94bc'
-    oldFile: !uuid 'f7ab31f962564789a7bfb91000a6db756aaaa760'
-  /Admin.NET/Admin.NET.Core/Service/CodeGen:
-    newFile: !uuid '0bd555f62738647e0472a38bd23ca88965b381a6'
-    oldFile: !uuid '163af3fa525f2ef5716d5bb9e52b2afad9885a0a'
-  /Admin.NET/Admin.NET.Core/Service/CodeGen/SysCodeGenConfigService.cs:
-    newFile: !uuid 'a08e5ba58571f658db2edd17d2b9a13294503104'
-    oldFile: !uuid 'da9a3084bbdd78ebdf1ec13ef751147800899308'
-  /Admin.NET/Admin.NET.Core/Service/CodeGen/SysCodeGenService.cs:
-    newFile: !uuid '4f625ce9bdfafce2801068e5aefb8bafa36d1e62'
-    oldFile: !uuid '650a714450812765a3506b3bcb9f5ba56d75640b'
-  /Admin.NET/Admin.NET.Core/SqlSugar:
-    newFile: !uuid 'da70786a62c91f6a07f4164ff0be317fac2bb370'
-    oldFile: !uuid '29d8d60b52bb4f1319bac5ecf6549c8e2bfc0f33'
-  /Admin.NET/Admin.NET.Core/SqlSugar/SqlSugarRepository.cs:
-    newFile: !uuid '794eb6aa80816173e3287bda42bda03ebab6a8a9'
-    oldFile: !uuid 'c6b3c81621d8e0ff95394f5cd4457735de55de0d'
-  /Admin.NET/Admin.NET.Core/SqlSugar/SqlSugarSetup.cs:
-    newFile: !uuid 'd95372d24ad630fbdff242e999449e1c2c5fcd6c'
-    oldFile: !uuid '75a74010da78a84e606809cd569ada7c6554e188'
-gitCommitId: !uuid '1148d4d31639391085363c850442c110675b6cb7'
+    newFile: !uuid '0f10ea43920ad19d0c03b96237190130d5199435'
+    oldFile: !uuid 'b3374c001b1b7a4c544061e544b18bf39e8f94bc'
+  /Admin.NET/Admin.NET.Core/Service/Dict:
+    newFile: !uuid '65d881b7df4eda0172feff998d77fd51e305fe29'
+    oldFile: !uuid 'c279c1f7f1ddb6a0af365e946645cc72fe7f61c6'
+  /Admin.NET/Admin.NET.Core/Service/Dict/SysDictDataService.cs:
+    newFile: !uuid '87550d500a893242019617fc67e49790ec7ac1aa'
+    oldFile: !uuid 'edeba95e3930bb6f334536fcf3dbeebb7717f8bb'
+  /Admin.NET/Admin.NET.Core/Service/Dict/SysDictTypeService.cs:
+    newFile: !uuid '972c056b835f3014001c05defab81eed776d2fdc'
+    oldFile: !uuid '73f77dee14f92f3d635ce9f154856c32fe1a415f'
+  /Admin.NET/Admin.NET.Web.Entry:
+    newFile: !uuid 'd0920ea7b84f4c532d03f7392073e590f2c44dcc'
+    oldFile: !uuid '4666f3304ee790d7ae3e2bec8810f29b060992f9'
+  /Admin.NET/Admin.NET.Web.Entry/wwwroot:
+    newFile: !uuid '38a2d10c463365471e04f48c3afc702c721819fa'
+    oldFile: !uuid 'b3a36a03a90001d1506863d1fe33cefa553ff801'
+  /Admin.NET/Admin.NET.Web.Entry/wwwroot/Template:
+    newFile: !uuid '751fc487b4aabd7696aebef25ce62524489827c1'
+    oldFile: !uuid '3f3640aa8893aea0765f16fea4a6c3b33eeb499c'
+  /Admin.NET/Admin.NET.Web.Entry/wwwroot/Template/editDialog.vue.vm:
+    newFile: !uuid '551c1ad1c12902458a3718b603a7838f9b735aa8'
+    oldFile: !uuid '48b17083953cf4dee5122b6533ab8ecc254c847d'
+gitCommitId: !uuid '47b28db79d718e0af1f9b2d71ada51244d08d32d'
 renames: {
   }
-revisionId: 1057
+revisionId: 1058
