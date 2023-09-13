@@ -10,27 +10,10 @@
 namespace Admin.NET.Core;
 
 /// <summary>
-/// SqlSugar相关常量
+/// 业务表特性
 /// </summary>
-public class SqlSugarConst
+[SuppressSniffer]
+[AttributeUsage(AttributeTargets.Class, AllowMultiple = true, Inherited = true)]
+public class BizTableAttribute : Attribute
 {
-    /// <summary>
-    /// 默认数据库标识（默认租户）
-    /// </summary>
-    public const string ConfigId = "1300000000001";
-
-    /// <summary>
-    /// 日志数据库标识
-    /// </summary>
-    public const string LogConfigId = "LogDb";
-
-    /// <summary>
-    /// 业务数据库标识
-    /// </summary>
-    public const string BizConfigId = "BizDb";
-
-    /// <summary>
-    /// 默认表主键
-    /// </summary>
-    public const string PrimaryKey = "Id";
 }
