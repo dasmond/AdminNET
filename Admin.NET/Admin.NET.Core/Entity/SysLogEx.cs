@@ -13,7 +13,7 @@ namespace Admin.NET.Core;
 /// 系统异常日志表
 /// </summary>
 [SugarTable(null, "系统异常日志表")]
-[SystemTable]
+[LogTable]
 public class SysLogEx : SysLogVis
 {
     /// <summary>
