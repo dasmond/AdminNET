@@ -81,6 +81,13 @@ public class SysOrg : EntityTenant
     public string? Remark { get; set; }
 
     /// <summary>
+    /// 备注2
+    /// </summary>
+    [SugarColumn(ColumnDescription = "备注2", Length = 64)]
+    [MaxLength(64)]
+    public string? Remark2 { get; set; }
+
+    /// <summary>
     /// 机构子项
     /// </summary>
     [SugarColumn(IsIgnore = true)]

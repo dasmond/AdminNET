@@ -66,4 +66,8 @@ public class CacheConst
     /// 所有缓存关键字集合
     /// </summary>
     public const string KeyAll = "sys_keys";
+    /// <summary>
+    /// 用户分部缓存
+    /// </summary>
+    public const string KeyUserOrganization = "sys_userorganization:";
 }
