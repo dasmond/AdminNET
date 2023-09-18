@@ -3,15 +3,27 @@ branches: {
   }
 fileChange:
   /Web:
-    newFile: !uuid 'f20dc56a6c2cb89b86ff738a10479da1ac48c5f3'
-    oldFile: !uuid 'd80dc21826033d52f1401c6f9080d3177d03b6e2'
-  /Web/public:
-    newFile: !uuid 'e2f0e8c484b37e121677ef1eb0a4fd3ed2730688'
-    oldFile: !uuid '57f0e590a386cd268e7c0f4abe38cec0e2a63c11'
-  /Web/public/pdf.worker.min.js:
-    newFile: !uuid 'da3ca9c3926f3490504e9f3b8e12776d3f0aadf8'
-    oldFile: !uuid 'fa8c9b7f7f2493eb37721569068ecd2be8813f19'
-gitCommitId: !uuid '3024bdcba4d8952eb712e800572e7600119071c6'
+    newFile: !uuid 'a2061dee9e490598eb1b38237700ef13c8da2428'
+    oldFile: !uuid 'f20dc56a6c2cb89b86ff738a10479da1ac48c5f3'
+  /Web/src:
+    newFile: !uuid '19bf499bd6845d6e840414f0f96047a81c5853d4'
+    oldFile: !uuid '8af4b267f9c64c516b625da9f006a7b0559b2f3a'
+  /Web/src/views:
+    newFile: !uuid 'cc65bde0e0464f7f84b59312b6269df589999f86'
+    oldFile: !uuid '00bb9c5be00931a63f67b3f256782c12002f5626'
+  /Web/src/views/system:
+    newFile: !uuid '00865a45facc14da931e7d84c006916d0cf9b229'
+    oldFile: !uuid '5d5dbcc43d9066e99452f2800a834c78bfa0f69d'
+  /Web/src/views/system/file:
+    newFile: !uuid '4d85d560e78dab99c8d8d5a2b049ebdf38c283fd'
+    oldFile: !uuid '4762b347f2b41bb85ffc8ad6736f977555f90e4a'
+  /Web/src/views/system/file/component:
+    newFile: !uuid '9bfb1a86c195cdf5c256d468418c6479f7057687'
+    oldFile: !uuid 'b9bdb6d1778b7f7ab4d7dbee6aeafd78a8ae5dbe'
+  /Web/src/views/system/file/component/PDFViewer.vue:
+    newFile: !uuid '1a1af83923cbdfcdde4b6c2a353e8ed4ea50576c'
+    oldFile: !uuid '2571e14f5ec3e53a86b3ff16785533d33f29f56b'
+gitCommitId: !uuid '2c7f978e156f2313107755b5eb74ec98d273f7f8'
 renames: {
   }
-revisionId: 1072
+revisionId: 1073
