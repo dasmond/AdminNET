@@ -2,40 +2,16 @@
 branches: {
   }
 fileChange:
-  /Admin.NET:
-    newFile: !uuid '3da0938046cc29246ee6e8249df4ac7cb22e8e4c'
-    oldFile: !uuid 'b86b0c58c458674940fa2f3ff4a9e08a839f2632'
-  /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '1544939fc3c76743c9948093c38d038d9ba6f5eb'
-    oldFile: !uuid 'fcc7fe23700f6c5d788a70ca3adfb666a146bab7'
-  /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid 'ed90e461c3920056546536196bb9fee1493bf0b9'
-    oldFile: !uuid 'b487f3f30050c9c70cebe9d27c3cbb70ac965737'
-  /Admin.NET/Admin.NET.Core/Service/Cache:
-    newFile: !uuid '911de8f56be7e677ca6ebf768d7eb3a57b9fcdef'
-    oldFile: !uuid '47d903a7e069ad31d0095127a7be17fc47b4b909'
-  /Admin.NET/Admin.NET.Core/Service/Cache/SysCacheService.cs:
-    newFile: !uuid 'feeb6734d463b64d94e393ff67e0589ac2d7d0bf'
-    oldFile: !uuid '6684e13aab8e9a57c0fe64ef2e4654149eb2ad4c'
   /Web:
-    newFile: !uuid 'd80dc21826033d52f1401c6f9080d3177d03b6e2'
-    oldFile: !uuid '14863f8788a637eadcc4111f82c5115de2cc2a35'
-  /Web/src:
-    newFile: !uuid '8af4b267f9c64c516b625da9f006a7b0559b2f3a'
-    oldFile: !uuid '5cfe32efc0f726c89956c20713c31e4b221ed9a5'
-  /Web/src/views:
-    newFile: !uuid '00bb9c5be00931a63f67b3f256782c12002f5626'
-    oldFile: !uuid '7da711009faa12ad253c29c139f17a6d771ff914'
-  /Web/src/views/system:
-    newFile: !uuid '5d5dbcc43d9066e99452f2800a834c78bfa0f69d'
-    oldFile: !uuid 'b762d3356612ed82ec557a9244060222607a2bd1'
-  /Web/src/views/system/cache:
-    newFile: !uuid 'af6e6a836b78529b3478ef774133ab457fefb77a'
-    oldFile: !uuid 'bbedcac69e9689b350a3008a0a31d3f28c778b17'
-  /Web/src/views/system/cache/index.vue:
-    newFile: !uuid '437c68e1616691cc9da4977f85c2afd3714d5094'
-    oldFile: !uuid '00083b28c324b2e10f2b4daebbc839a5ce4aaf8e'
-gitCommitId: !uuid '5f3ab823dd7dde8f61c43caf9b1074487a8990cf'
+    newFile: !uuid 'f20dc56a6c2cb89b86ff738a10479da1ac48c5f3'
+    oldFile: !uuid 'd80dc21826033d52f1401c6f9080d3177d03b6e2'
+  /Web/public:
+    newFile: !uuid 'e2f0e8c484b37e121677ef1eb0a4fd3ed2730688'
+    oldFile: !uuid '57f0e590a386cd268e7c0f4abe38cec0e2a63c11'
+  /Web/public/pdf.worker.min.js:
+    newFile: !uuid 'da3ca9c3926f3490504e9f3b8e12776d3f0aadf8'
+    oldFile: !uuid 'fa8c9b7f7f2493eb37721569068ecd2be8813f19'
+gitCommitId: !uuid '3024bdcba4d8952eb712e800572e7600119071c6'
 renames: {
   }
-revisionId: 1071
+revisionId: 1072
