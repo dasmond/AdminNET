@@ -3,21 +3,18 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '5fbf5feaedd41e37dc0d4220c0ac737b3faf301f'
-    oldFile: !uuid '0dff907509a088e340ff4d71246a9d2407b96f63'
+    newFile: !uuid 'bd20ba0e52226d290b4866311b8a9f57e264467e'
+    oldFile: !uuid '5fbf5feaedd41e37dc0d4220c0ac737b3faf301f'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid 'fbb53b025c59b2a20868c7081c47c96f987d4dd1'
-    oldFile: !uuid '923d6a6dc857b8de6ccfe145c3a4f40ed8d08a71'
-  /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid '2ba3ad9c2daa7a99fb3ee34b3ae17f2facc045bb'
-    oldFile: !uuid '040b53dd7f8431309f670b3708c232cf5ce2842b'
-  /Admin.NET/Admin.NET.Core/Service/Message:
-    newFile: !uuid '5cd85a6df7518aa26726319f5495cb5367c45eae'
-    oldFile: !uuid '31ce412faf07e9fef60a6f69b5bd6b71defac440'
-  /Admin.NET/Admin.NET.Core/Service/Message/SysMessageService.cs:
-    newFile: !uuid 'd32ab1b8df85afcfcf48a7bb9b2ccbcbb82dd6d6'
-    oldFile: !uuid '9acff0d813676ca8ec9f5d1b8cd52aeffa80e5f2'
-gitCommitId: !uuid '4a2338fce8334c5cac45181b62b68de06fc871d7'
+    newFile: !uuid '4db95ae5047a11b18318ea0aa24ff5d45704f752'
+    oldFile: !uuid 'fbb53b025c59b2a20868c7081c47c96f987d4dd1'
+  /Admin.NET/Admin.NET.Core/SeedData:
+    newFile: !uuid 'b8e99f103aa7c08eeca001c504b62eaa2c3d9d7e'
+    oldFile: !uuid '2c3bc029de83ed2fe4ebbb89b38a214c8cf4d62c'
+  /Admin.NET/Admin.NET.Core/SeedData/SysConfigSeedData.cs:
+    newFile: !uuid 'f544f4b78bbeef789256308f253501ecf9eac89b'
+    oldFile: !uuid '0ae486eeb679225a87253552fbdbf9c5694450fa'
+gitCommitId: !uuid '893456ef7b3845934ae66a0728e13f5f50f2d2ac'
 renames: {
   }
-revisionId: 1116
+revisionId: 1117
