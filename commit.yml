@@ -2,34 +2,19 @@
 branches: {
   }
 fileChange:
-  /Web:
-    newFile: !uuid '24487ee066170ea54715af442c9c0dd94984c7ec'
-    oldFile: !uuid 'd82989d043ec5e4432c9d515bcf76c3e5a91ba36'
-  /Web/src:
-    newFile: !uuid '4e9432381639d6c2b475d897ecf45f0eb01aa599'
-    oldFile: !uuid '19bf499bd6845d6e840414f0f96047a81c5853d4'
-  /Web/src/views:
-    newFile: !uuid 'dcbab46ef0eec4864ca86157cab97e33fff06038'
-    oldFile: !uuid 'cc65bde0e0464f7f84b59312b6269df589999f86'
-  /Web/src/views/system:
-    newFile: !uuid '7bb8d9c2b3638e4b51d189e3ffe05964e8096ca4'
-    oldFile: !uuid '00865a45facc14da931e7d84c006916d0cf9b229'
-  /Web/src/views/system/print:
-    newFile: !uuid '6e5a1b1a4f9fc54d600fe2521a79a9963f774028'
-    oldFile: !uuid 'd308bd8dea2986d67a4449564e09a4715aca106a'
-  /Web/src/views/system/print/component:
-    newFile: !uuid 'f2a21983608e5ab94a37d6ce58de5f9bf8f49350'
-    oldFile: !uuid '1dae4c57af52d94c8dea5790b3189caa1ed85391'
-  /Web/src/views/system/print/component/editPrint.vue:
-    newFile: !uuid 'ac8cc50de77d2328e4ce5452ed1b43f060fd1963'
-    oldFile: !uuid '12289a6cf5e511503bad5858c2002779d80ef6fa'
-  /Web/src/views/system/print/component/hiprint:
-    newFile: !uuid '28321ba54c8a6ef65e3b2db35ecdbd6f8abca429'
-    oldFile: !uuid '0e79ce838c3290bd3e65c2578513ecab3358cc04'
-  /Web/src/views/system/print/component/hiprint/preview.vue:
-    newFile: !uuid 'e4de982139091cff204051e39b5e1c4ef8490383'
-    oldFile: !uuid 'fce0f02b54c780109f2174a399b11a7b303f0dcf'
-gitCommitId: !uuid '548a475c33b402b42144d4e1f0e38f9f7afa1a13'
+  /Admin.NET:
+    newFile: !uuid 'a7c8dd46f85fb9c0172e568a0620ce164e5699fc'
+    oldFile: !uuid 'bee43a613afb88c484830fdda8b679effcacba78'
+  /Admin.NET/Admin.NET.Core:
+    newFile: !uuid '8402ae432a5714c3e91b3cfe3d10b3e22c291007'
+    oldFile: !uuid '1130253341113cd21415723df8d7b53b91133a17'
+  /Admin.NET/Admin.NET.Core/Extension:
+    newFile: !uuid '54e6639d0850c8779560957e5dfdb562528bb1fc'
+    oldFile: !uuid '03b31edef850c0cef956ef94ccc40b06b86f1e63'
+  /Admin.NET/Admin.NET.Core/Extension/RepositoryExtension.cs:
+    newFile: !uuid 'a900c4c76c83afc16b1a1f3e0104ba0e562435a4'
+    oldFile: !uuid '15c840954fabb5fd6fcfb7d948e530f73cbf267c'
+gitCommitId: !uuid 'b3b4411d2159cd4932ddb021f3a7df2776cfd977'
 renames: {
   }
-revisionId: 1122
+revisionId: 1123
