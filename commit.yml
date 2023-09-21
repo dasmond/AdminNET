@@ -3,21 +3,48 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid 'faeeaa286a8f9fc19a38492e3f8fd5b53df4d053'
-    oldFile: !uuid '783ee634b0bd03761815fbb41476def823003321'
+    newFile: !uuid '25a77ed167af6d291054e348e90b28d4552160f5'
+    oldFile: !uuid 'faeeaa286a8f9fc19a38492e3f8fd5b53df4d053'
+  /Admin.NET/Admin.NET.Application:
+    newFile: !uuid '63527d711db2a421f2f8ff6f38c96381e2933085'
+    oldFile: !uuid '303b15f33a3cd5f14a251d8ba4e4cb883af3fcee'
+  /Admin.NET/Admin.NET.Application/Configuration:
+    newFile: !uuid '6ccb181baa32af3956eddf4a525b2539f15772de'
+    oldFile: !uuid '2aa804ac1cd2ca028cc0ec2a2a156e10c17449ee'
+  /Admin.NET/Admin.NET.Application/Configuration/App.json:
+    newFile: !uuid 'ed8546217418da1c845d8933196adfae21998908'
+    oldFile: !uuid '72d1dc1f42a92ad4c05ab0408716fa24ae5655a1'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '9c3f778e73b5eea080ba7d4a932c2dbed57a8dc6'
-    oldFile: !uuid '9c77d0ee47afd8d95b123dbf9ffab9f36da6c713'
-  /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid 'ca6ae60152718aec16012f5058ada14746833126'
-    oldFile: !uuid '65157e9184468c0b000d624cbe07b38e4235c3ce'
-  /Admin.NET/Admin.NET.Core/Service/Cache:
-    newFile: !uuid '4d628fe482896feef9276151024246f2b4df7dfe'
-    oldFile: !uuid '13451ac67cb5569082db18dd565c82000d38b675'
-  /Admin.NET/Admin.NET.Core/Service/Cache/SysCacheService.cs:
-    newFile: !uuid '493d21d6db3c558c70154bed24daf0b0e558fc58'
-    oldFile: !uuid '56d91dccc61e2022c5f93f239d7c1dbe4860e3dc'
-gitCommitId: !uuid '2bd6e33b20dd2b6572fc16f1da5b50af7dd46644'
+    newFile: !uuid 'd74617760f8a6803eacc4935fea9b5e223ee1eb1'
+    oldFile: !uuid '9c3f778e73b5eea080ba7d4a932c2dbed57a8dc6'
+  /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
+    newFile: !uuid '3b7dcbbe67e4bedcf0877fbbc17690d301a11fce'
+    oldFile: !uuid 'af0fdcaced4df954a96aa5d44490a6af473c4efb'
+  /Admin.NET/Admin.NET.Core/SeedData:
+    newFile: !uuid '790f0b0b47a92cbeb81a5b43f7e2b16497bd3b77'
+    oldFile: !uuid 'b222ae390290ed6000e512b3a96e94df37a3b4a9'
+  /Admin.NET/Admin.NET.Core/SeedData/SysMenuSeedData.cs:
+    newFile: !uuid 'a1701777bcdcbb1e0874ef493aa38a9e451ed1ba'
+    oldFile: !uuid 'b2c3b0b885d401ec9a54956969012d47c8555ae7'
+  /Admin.NET/Admin.NET.Web.Core:
+    newFile: !uuid '242d64b19037d7440acf387ee3c1f88756a53a2f'
+    oldFile: !uuid 'db138e23b171cf919a2c367f53a46e763ffbe098'
+  /Admin.NET/Admin.NET.Web.Core/Admin.NET.Web.Core.csproj:
+    newFile: !uuid '11bda150b12a34822aa52cf33f73a7e1e9eef723'
+    oldFile: !uuid 'ca5d82ac49ffcca1997aadc4e827bf74b11e8828'
+  /Admin.NET/Admin.NET.Web.Core/Properties:
+    newFile: null
+    oldFile: !uuid 'af84e3a3f81b8208b6714c6825e6a801eb7baf71'
+  /Admin.NET/Admin.NET.Web.Core/Properties/PublishProfiles:
+    newFile: null
+    oldFile: !uuid '3064fc1903033c0883a9bde0d02c0eae65ec19e7'
+  /Admin.NET/Admin.NET.Web.Core/Properties/PublishProfiles/FolderProfile.pubxml:
+    newFile: null
+    oldFile: !uuid '4e916800d4aabb7ad102418fc166856f45779f30'
+  /Admin.NET/Admin.NET.Web.Core/Properties/PublishProfiles/FolderProfile.pubxml.user:
+    newFile: null
+    oldFile: !uuid '1643beb30f6e886e47f8edd221818fd43d958543'
+gitCommitId: !uuid '66aae34c246c7ca28c50927ad9c4ef32131eea0f'
 renames: {
   }
-revisionId: 1126
+revisionId: 1127
