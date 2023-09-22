@@ -18,7 +18,6 @@ namespace Admin.NET.Entity
     /// 组织表
     /// </summary>
     [SugarTable("T_Organization", "组织表")]
-    [SystemTable]
     public class Organization:EntityBase
     {
 

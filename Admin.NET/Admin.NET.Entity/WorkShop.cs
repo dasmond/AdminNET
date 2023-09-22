@@ -18,7 +18,6 @@ namespace Admin.NET.Entity
     /// 车间表
     /// </summary>
     [SugarTable("T_WorkShop", "车间表")]
-    [SystemTable]
     public class WorkShop: EntityBase
     {
 
