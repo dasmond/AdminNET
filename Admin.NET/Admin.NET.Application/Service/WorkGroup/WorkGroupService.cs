@@ -1,5 +1,6 @@
 ﻿using Admin.NET.Application.Const;
 using Admin.NET.Application.Entity;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Admin.NET.Application;
@@ -57,7 +58,7 @@ public class WorkGroupService : IDynamicApiController, ITransient
     [ApiDescriptionSettings(Name = "Delete")]
     public async Task Delete(DeleteWorkGroupInput input)
     {
-        await _rep.FakeDeleteAsync(entity);   //假删除
+        //await _rep.FakeDeleteAsync(entity);   //假删除
     }
 
     /// <summary>
@@ -82,6 +83,7 @@ public class WorkGroupService : IDynamicApiController, ITransient
     [ApiDescriptionSettings(Name = "Detail")]
     public async Task<WorkGroup> Get([FromQuery] QueryByIdWorkGroupInput input)
     {
+        return null;
     }
 
     /// <summary>
