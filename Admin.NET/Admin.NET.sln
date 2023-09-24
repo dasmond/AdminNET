@@ -22,10 +22,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Admin.NET.Plugin.GoView", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Admin.NET.Plugin.Elsa", "Plugins\Admin.NET.Plugin.Elsa\Admin.NET.Plugin.Elsa.csproj", "{48EFC3A6-BDC0-4D05-819A-B1FB927FA4C8}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Admin.NET.Entity", "Admin.NET.Entity\Admin.NET.Entity.csproj", "{00DF545C-E7B8-446A-A382-F3CA196B9A9C}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Admin.NET.WinFormApp", "Admin.NET.WinFormApp\Admin.NET.WinFormApp.csproj", "{1BB88F41-1E65-42AB-A5B4-CBD02B085302}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -56,14 +52,6 @@ Global
 		{48EFC3A6-BDC0-4D05-819A-B1FB927FA4C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{48EFC3A6-BDC0-4D05-819A-B1FB927FA4C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{48EFC3A6-BDC0-4D05-819A-B1FB927FA4C8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{00DF545C-E7B8-446A-A382-F3CA196B9A9C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{00DF545C-E7B8-446A-A382-F3CA196B9A9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{00DF545C-E7B8-446A-A382-F3CA196B9A9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{00DF545C-E7B8-446A-A382-F3CA196B9A9C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1BB88F41-1E65-42AB-A5B4-CBD02B085302}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1BB88F41-1E65-42AB-A5B4-CBD02B085302}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1BB88F41-1E65-42AB-A5B4-CBD02B085302}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1BB88F41-1E65-42AB-A5B4-CBD02B085302}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
