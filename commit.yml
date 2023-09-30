@@ -3,69 +3,36 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '1a6110bcf6f3bf92da2b469a3ba928b7c4ee009d'
-    oldFile: !uuid '39c1d32c5508a8c8bc0e10ec74e7b4751a337333'
+    newFile: !uuid '621a8a150d9afbf4771e955a113719dadfd52563'
+    oldFile: !uuid '1a6110bcf6f3bf92da2b469a3ba928b7c4ee009d'
   /Admin.NET/Admin.NET.Application:
-    newFile: !uuid '5a3dc101114d079753e1bc92b39b9e87db6575da'
-    oldFile: !uuid '25d5f6b311c4915e016469b0ad9acdf7280b7b13'
+    newFile: !uuid '22a0cc42cd21e468b4f1b31b860d19f71f253f96'
+    oldFile: !uuid '5a3dc101114d079753e1bc92b39b9e87db6575da'
   /Admin.NET/Admin.NET.Application/Configuration:
-    newFile: !uuid '8982538d989fc952f7d6e98afb76a612e3074496'
-    oldFile: !uuid 'd79acf20f1f97bb46257cc85c078752cdb97cbb7'
-  /Admin.NET/Admin.NET.Application/Configuration/CodeGen.json:
-    newFile: !uuid 'd89fd2309a5cc0b595d64644d238f7abb2ad957e'
-    oldFile: !uuid 'a0d5659297a14843d0f84ff8ee3c4f5e7391736a'
-  /Admin.NET/Admin.NET.Application/GlobalUsings.cs:
-    newFile: !uuid '6c4bb2ffdaff4940a98c072ae28bf078e1630c7a'
-    oldFile: !uuid 'fcb912026dcc35576af3b0de9595f2bdb85f0af5'
+    newFile: !uuid '1c8c5f31c82f9f699f4fb36ee7328ad670a0e7af'
+    oldFile: !uuid '8982538d989fc952f7d6e98afb76a612e3074496'
+  /Admin.NET/Admin.NET.Application/Configuration/Captcha.json:
+    newFile: !uuid '0d8646fd50d48d0c460a9a49b139c54586bc2fad'
+    oldFile: !uuid '044cff66692cb798f529a71d2ccf162e21ef0d68'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '240438b8af0b721ea8763a2812df86e5dbb98e45'
-    oldFile: !uuid '09a94997b359ddd3f42d40af4f845327f6af5aee'
-  /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
-    newFile: !uuid '34a2a7a1ceca1b00a44268b78813ad5d1913ba89'
-    oldFile: !uuid 'fafdfe3aa697e660206b176e796d754eb2815dc8'
+    newFile: !uuid '96e9ab1bd8b25ca1525a9138afd5ade0e27047e0'
+    oldFile: !uuid '240438b8af0b721ea8763a2812df86e5dbb98e45'
+  /Admin.NET/Admin.NET.Core/Enum:
+    newFile: !uuid 'beba001ff1c2fad967ef01b84367d2ef33ff9e93'
+    oldFile: !uuid '9891d084f33763a749378ca9845918dcf27fd4f6'
+  /Admin.NET/Admin.NET.Core/Enum/MaritalStatusEnum.cs:
+    newFile: !uuid 'df8dceda56a90f53abfd7dc2eafebaf495fea619'
+    oldFile: !uuid '12a7c6f55c13bf8f218617a8a4c32f2a42816979'
   /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid '51a60322a340e6998540f3e830bbf62d98c3499f'
-    oldFile: !uuid '3d17a4683dd103b8d3f6c5ef54b6f194a42a57e7'
-  /Admin.NET/Admin.NET.Core/Service/CodeGen:
-    newFile: !uuid 'bb9524ce0f9fb254c1ddb4491563ed638dcae65f'
-    oldFile: !uuid 'eb7fa7692f9accb687dfbf9cf9c217d284eabfb2'
-  /Admin.NET/Admin.NET.Core/Service/CodeGen/SysCodeGenService.cs:
-    newFile: !uuid '8f396dfa09383f1425e0c2cceb38681e5ba4cf18'
-    oldFile: !uuid '84ebdf7eef24ad9da0548ccc19054197dce98566'
-  /Admin.NET/Admin.NET.Web.Entry:
-    newFile: !uuid 'b8431109b889b10933d4d35e31b9ebf3a6fe3dcb'
-    oldFile: !uuid '9ddf5755a3bf3c1a7a09f440242733cb7f93929f'
-  /Admin.NET/Admin.NET.Web.Entry/wwwroot:
-    newFile: !uuid '96f0dc0319f3cf83695549638635145018dc4c23'
-    oldFile: !uuid 'b19da7d7917f139b9d0587d301d5fd26be79cdeb'
-  /Admin.NET/Admin.NET.Web.Entry/wwwroot/Template:
-    newFile: !uuid 'd9be480f1ca9ad285131f705ecac138aeb5713fe'
-    oldFile: !uuid '259c7fa25c4a0988f964aace7300df0cc8717048'
-  /Admin.NET/Admin.NET.Web.Entry/wwwroot/Template/Input.cs.vm:
-    newFile: !uuid '4775554fc6e1c354669f9b8678d173068159d7b2'
-    oldFile: !uuid 'eac1d38f5d03c83c8aac0b407ba9787c38bf5954'
-  /Web:
-    newFile: !uuid '280efe38f0ef74d3b8b6c921a67cc493adff38c2'
-    oldFile: !uuid 'aa0943ad9a0809ca4ad6076c47ef92e379815789'
-  /Web/src:
-    newFile: !uuid 'a936ff1a85cee3f6a29f8ad4cf797a048a5b43c3'
-    oldFile: !uuid '50be9a99f2ae0df8469a8212bd359627eb3aaa82'
-  /Web/src/api-services:
-    newFile: !uuid '9caec38758fdde7b233145972b31bb9e1b00eac3'
-    oldFile: !uuid 'e8453ddf12267b144768ec92fb872c84d299231c'
-  /Web/src/api-services/models:
-    newFile: !uuid 'bad41f4a679e43d34f366cb68545eb18ce43fd90'
-    oldFile: !uuid 'f10ca587772b188e6b67fc64afd18541729d3d4c'
-  /Web/src/api-services/models/culture-level-enum.ts:
-    newFile: !uuid '12a8bdf81a0b056fbb9ebe24d633d82f18e44724'
-    oldFile: !uuid '9d9bfd190d022cf94a0acca02aac01d82c8a7cd7'
-  /Web/src/utils:
-    newFile: !uuid '8282cfa9533f43fab687d5bdfa030dda4af208c0'
-    oldFile: !uuid '17129c5efd6159210ab8342a67fed1a492b2c1dc'
-  /Web/src/utils/commonFunction.ts:
-    newFile: !uuid '303a7c58cd86bd18c520fc0fc35a541853c5bd22'
-    oldFile: !uuid '6af729cae02a570d93eaf903f81a47168efa562a'
-gitCommitId: !uuid 'd05089e70d8feeccd5434f5dbf6f7d604ca4c99a'
+    newFile: !uuid '7d9df599857a5183f9ba3dab6be05322f75759f3'
+    oldFile: !uuid '51a60322a340e6998540f3e830bbf62d98c3499f'
+  /Admin.NET/Admin.NET.Core/Service/Org:
+    newFile: !uuid 'dd736087d41c36e7910993e4244963618cdd2438'
+    oldFile: !uuid 'ffeaec6bd217fdee4c73f4f456dee83598817f8b'
+  /Admin.NET/Admin.NET.Core/Service/Org/SysOrgService.cs:
+    newFile: !uuid 'fe1572daef9c3fb20f93e5990fd9df4b9ca622f3'
+    oldFile: !uuid '2962e12da7d66e46b13f581508c89b57bc3ac278'
+gitCommitId: !uuid '477dc45776ec00f5d18e0701efb24af026ce94fa'
 renames: {
   }
-revisionId: 1149
+revisionId: 1150
