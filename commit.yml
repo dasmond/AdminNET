@@ -2,37 +2,31 @@
 branches: {
   }
 fileChange:
-  /Web:
-    newFile: !uuid '1caa797646b3f05909c4db9f8216b2debaecd037'
-    oldFile: !uuid 'd4739314f95eecc627aa59ca7efb3dfe68aed03c'
-  /Web/src:
-    newFile: !uuid '13780d191d74a1de9a7ebe16c9e47c81a4969921'
-    oldFile: !uuid '6b9f0024418d2608990eceb2a6c2558cc3eb279d'
-  /Web/src/components:
-    newFile: !uuid 'a741343f44a350be43f2a51a2ccf68781eab461f'
-    oldFile: !uuid 'a9d4a529bfdf06a05335bb890bc2c3073cd91a30'
-  /Web/src/components/auth:
-    newFile: !uuid 'e0b13b81c87cb71342eb56ff0ea7212e55eee5e6'
-    oldFile: !uuid '337d8966a5e8ef67a8ce29952fbf288080420cae'
-  /Web/src/components/auth/authAll.vue:
-    newFile: !uuid '911a797590a79fb6cbeca789fab955ea40a14227'
-    oldFile: !uuid '54c8d5859283e36572db17d7c3689616b6e60f60'
-  /Web/src/directive:
-    newFile: !uuid 'ac86ee7e043a9c1b9020580a520b926817ff1b30'
-    oldFile: !uuid 'd88553addb708eea29b654ffc2066bbddb219ca0'
-  /Web/src/directive/authDirective.ts:
-    newFile: !uuid '844965007666e31ecb592bf5499e550041805ed7'
-    oldFile: !uuid '5971e64fa6d8475154cc881d9f55596c64b8512f'
-  /Web/src/utils:
-    newFile: !uuid '1197b685e4d11c02030cbb43077bad2e6d3d7cab'
-    oldFile: !uuid '7fc18f4e380c68e64a8ba8080dbdf23f71013ee4'
-  /Web/src/utils/arrayOperation.ts:
-    newFile: !uuid 'ee8358ec6a8c476d788fe25b0ec16d7ed510f095'
-    oldFile: !uuid '08c8c31a886350a9fed0862907cda9bf0fb0bd93'
-  /Web/src/utils/authFunction.ts:
-    newFile: !uuid '6e3bbe0db2aebdb2a0afac1807c2d3908d162603'
-    oldFile: !uuid '84c0ab468572b85c6889b3bdf37e0853096c6f20'
-gitCommitId: !uuid '9ba61be73f6ffc95c134089234692e2d6fa78c1e'
+  /Admin.NET:
+    newFile: !uuid 'd60b889ebdc736fcfb9d72c0624eb88d237a52d5'
+    oldFile: !uuid 'a4b293069a9f58968bb88473fbebe3f6e73d176c'
+  /Admin.NET/Admin.NET.Core:
+    newFile: !uuid 'bb10f155624d8662339e24ba4af97266937074eb'
+    oldFile: !uuid '50bd60ac9e6fe6281e210a3c69bdc525c8f671e9'
+  /Admin.NET/Admin.NET.Core/Enum:
+    newFile: !uuid '9891d084f33763a749378ca9845918dcf27fd4f6'
+    oldFile: !uuid 'a2c197963d697ed43d9c9e06a4949f383f6afdb0'
+  /Admin.NET/Admin.NET.Core/Enum/CultureLevelEnum.cs:
+    newFile: !uuid '0c084ac7c00b8bc79936f262f973e44289263fdb'
+    oldFile: !uuid '7787b7c2860a2037688c736cb3fc138e6d30d928'
+  /Admin.NET/Admin.NET.Core/Enum/MaritalStatusEnum.cs:
+    newFile: !uuid '12a7c6f55c13bf8f218617a8a4c32f2a42816979'
+    oldFile: null
+  /Admin.NET/Admin.NET.Core/Service:
+    newFile: !uuid '7aac24cf3427d1742a801deed4fc36ae6b6f2595'
+    oldFile: !uuid 'd7153ce07c74baaecae071f294672e1e761c4c10'
+  /Admin.NET/Admin.NET.Core/Service/Org:
+    newFile: !uuid 'ffeaec6bd217fdee4c73f4f456dee83598817f8b'
+    oldFile: !uuid '6b93530658319cc0dd5e90fe141e46c02bd0e5e2'
+  /Admin.NET/Admin.NET.Core/Service/Org/SysOrgService.cs:
+    newFile: !uuid '2962e12da7d66e46b13f581508c89b57bc3ac278'
+    oldFile: !uuid '7dc23b4b46902947bc1241b5a72dbbab564629cc'
+gitCommitId: !uuid '8300f880c7dbc83e58bc1ea34779a26d5d3b5546'
 renames: {
   }
-revisionId: 1104
+revisionId: 1105
