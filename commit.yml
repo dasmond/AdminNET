@@ -3,24 +3,21 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid 'cf457cb3a3fb5878e1ab95292fcd4aaca5a5549b'
-    oldFile: !uuid 'efff08a18a1c9d02d262d357e03523b5beead68b'
-  /Admin.NET/Admin.NET.Web.Entry:
-    newFile: !uuid 'ddf55baac29179e8cc425e2ab95ea6cd379bae32'
-    oldFile: !uuid 'b8431109b889b10933d4d35e31b9ebf3a6fe3dcb'
-  /Admin.NET/Admin.NET.Web.Entry/wwwroot:
-    newFile: !uuid '7992c9fe21ebbd601a367a64b77eda69fc4fc7d6'
-    oldFile: !uuid '96f0dc0319f3cf83695549638635145018dc4c23'
-  /Admin.NET/Admin.NET.Web.Entry/wwwroot/Template:
-    newFile: !uuid 'eb22c970164f8f1c4bba32db5c3f69caefdc7860'
-    oldFile: !uuid 'd9be480f1ca9ad285131f705ecac138aeb5713fe'
-  /Admin.NET/Admin.NET.Web.Entry/wwwroot/Template/editDialog.vue.vm:
-    newFile: !uuid 'abf713ae1c05d22f3974f445ec865df28e711240'
-    oldFile: !uuid 'd2646672a7140575dd152716582d684330cc61f0'
-  /Admin.NET/Admin.NET.Web.Entry/wwwroot/Template/index.vue.vm:
-    newFile: !uuid '1e3280a1c027058fe95925c52c0ec0de589c9d11'
-    oldFile: !uuid 'b419dcabde9431124f8b28e4068b3b78dfb5da1f'
-gitCommitId: !uuid 'f08abcaedde6fb1add717a2fe3f903d0ac33327e'
+    newFile: !uuid '98019059e207a25843f35255a2c2f99d04198041'
+    oldFile: !uuid 'cf457cb3a3fb5878e1ab95292fcd4aaca5a5549b'
+  /Admin.NET/Admin.NET.Core:
+    newFile: !uuid '8786328a66c4a62051394b9355af51ccac4efd69'
+    oldFile: !uuid '422625c426f9b9d0a42428292ae7bd0a1de4599c'
+  /Admin.NET/Admin.NET.Core/Service:
+    newFile: !uuid '6f305ac9b5533ec1418f8dbc2f259e8e251ad034'
+    oldFile: !uuid '7d9df599857a5183f9ba3dab6be05322f75759f3'
+  /Admin.NET/Admin.NET.Core/Service/Region:
+    newFile: !uuid '3164e1f4549bc5243be0eba01b60594cd0eb8bf1'
+    oldFile: !uuid 'abd7f08f6c2cac4ec01ba8013dc048b04139a052'
+  /Admin.NET/Admin.NET.Core/Service/Region/SysRegionService.cs:
+    newFile: !uuid '363909cbeefb13bff0c645132ccad33cc58e7703'
+    oldFile: !uuid '80710d2f563feefe3756f046248e1188288b9a49'
+gitCommitId: !uuid 'a6a5487fa6429305756a7f07ee619be239e7dc6c'
 renames: {
   }
-revisionId: 1156
+revisionId: 1157
