@@ -66,6 +66,11 @@ public class CommonConst
     public const string SysAdminRole = "sys_admin";
 
     /// <summary>
+    /// 日志保留天数
+    /// </summary>
+    public const string SysLogsRetentionDays = "sys_logs_retention_days";
+
+    /// <summary>
     /// 开启全局脱敏处理（默认不开启）
     /// </summary>
     public static bool SysSensitiveDetection = false;

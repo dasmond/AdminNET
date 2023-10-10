@@ -14,6 +14,7 @@ namespace Admin.NET.Core;
 /// </summary>
 [JobDetail("job_log", Description = "清理操作日志", GroupName = "default", Concurrent = false)]
 [Daily(TriggerId = "trigger_log", Description = "清理操作日志")]
+
 public class LogJob : IJob
 {
     private readonly IServiceScopeFactory _scopeFactory;
@@ -30,8 +31,15 @@ public class LogJob : IJob
         var logVisRep = serviceScope.ServiceProvider.GetService<SqlSugarRepository<SysLogVis>>();
         var logOpRep = serviceScope.ServiceProvider.GetService<SqlSugarRepository<SysLogOp>>();
         var logDiffRep = serviceScope.ServiceProvider.GetService<SqlSugarRepository<SysLogDiff>>();
+        var sysConfigRep = serviceScope.ServiceProvider.GetService<SqlSugarRepository<SysConfig>>();
 
-        var daysAgo = 30; // 删除30天以前
+        var daysAgo = 30; // 默认删除30天前的日志
+        var config = await sysConfigRep.AsQueryable().SingleAsync(u => u.Code == CommonConst.SysLogsRetentionDays);
+        if (config != null && Int32.TryParse(config.Value, out int days))
+        {
+            // 查询到配置参数，且转换成功，则使用配置参数
+            daysAgo = days;
+        }
         await logVisRep.AsDeleteable().Where(u => (DateTime)u.CreateTime < DateTime.Now.AddDays(-daysAgo)).ExecuteCommandAsync(stoppingToken); // 删除访问日志
         await logOpRep.AsDeleteable().Where(u => (DateTime)u.CreateTime < DateTime.Now.AddDays(-daysAgo)).ExecuteCommandAsync(stoppingToken); // 删除操作日志
         await logDiffRep.AsDeleteable().Where(u => (DateTime)u.CreateTime < DateTime.Now.AddDays(-daysAgo)).ExecuteCommandAsync(stoppingToken); // 删除差异日志
