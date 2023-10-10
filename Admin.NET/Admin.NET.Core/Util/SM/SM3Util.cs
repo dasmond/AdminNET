@@ -7,6 +7,9 @@
 // 软件按“原样”提供，不提供任何形式的明示或暗示的保证，包括但不限于对适销性、适用性和非侵权的保证。
 // 在任何情况下，作者或版权持有人均不对任何索赔、损害或其他责任负责，无论是因合同、侵权或其他方式引起的，与软件或其使用或其他交易有关。
 
+using Org.BouncyCastle.Crypto.Digests;
+using Org.BouncyCastle.Crypto.Macs;
+using Org.BouncyCastle.Crypto.Parameters;
 using Org.BouncyCastle.Utilities.Encoders;
 
 namespace Admin.NET.Core;
@@ -16,22 +19,38 @@ namespace Admin.NET.Core;
 /// </summary>
 public class SM3Util
 {
-    public string secretKey = "";
-
-    public string 加密(string data)
+    public static string Sm3Encrypt(string data, string key)
     {
-        byte[] msg1 = Encoding.Default.GetBytes(data);
-        //byte[] key1 = Encoding.Default.GetBytes(secretKey);
+        var result = ToSM3byte(data, key);
+        return Encoding.UTF8.GetString(Hex.Encode(result));
+    }
 
-        //var keyParameter = new KeyParameter(key1);
+    public static byte[] ToSM3byte(string data, string key)
+    {
+        byte[] msg1 = Encoding.UTF8.GetBytes(data);
+        KeyParameter keyParameter = new KeyParameter(Hex.Decode(key));
+        HMac hMac = new HMac(new SM3Digest());
+        hMac.Init(keyParameter);
+        hMac.BlockUpdate(msg1, 0, msg1.Length);
+        byte[] result = new byte[hMac.GetMacSize()];
+        hMac.DoFinal(result, 0);
+        return result;
+    }
+
+
+    public static string Sm3Encrypt(string data)
+    {
+        var result = ToSM3byte(data);
+        return Encoding.UTF8.GetString(Hex.Encode(result));
+    }
+
+    public static byte[] ToSM3byte(string data)
+    {
+        byte[] msg1 = Encoding.UTF8.GetBytes(data);
         var sm3 = new SM3Digest();
-
-        //HMac mac = new HMac(sm3); // 带密钥的杂凑算法
-        //mac.Init(keyParameter);
         sm3.BlockUpdate(msg1, 0, msg1.Length);
-        // byte[] result = new byte[sm3.GetMacSize()];
         byte[] result = new byte[sm3.GetDigestSize()];
         sm3.DoFinal(result, 0);
-        return Encoding.ASCII.GetString(Hex.Encode(result));
+        return result;
     }
 }
