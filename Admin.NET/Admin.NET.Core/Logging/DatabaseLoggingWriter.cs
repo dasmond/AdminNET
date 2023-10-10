@@ -17,10 +17,11 @@ namespace Admin.NET.Core;
 public class DatabaseLoggingWriter : IDatabaseLoggingWriter, IDisposable
 {
     private readonly IServiceScope _serviceScope;
-    private readonly SqlSugarRepository<SysLogVis> _sysLogVisRep; // 访问日志
-    private readonly SqlSugarRepository<SysLogOp> _sysLogOpRep;   // 操作日志
-    private readonly SqlSugarRepository<SysLogEx> _sysLogExRep;   // 异常日志
-    private readonly SysConfigService _sysConfigService; // 参数配置服务
+    private readonly SqlSugarRepository<SysLogVis> _sysLogVisRep;           // 访问日志
+    private readonly SqlSugarRepository<SysLogOp> _sysLogOpRep;             // 操作日志
+    private readonly SqlSugarRepository<SysLogEx> _sysLogExRep;             // 异常日志
+    private readonly SqlSugarRepository<SysLogMessage> _sysLogMessageRep;   // 开启运行日志（LogMessage日志）
+    private readonly SysConfigService _sysConfigService;                    // 参数配置服务
 
     public DatabaseLoggingWriter(IServiceScopeFactory scopeFactory)
     {
@@ -28,10 +29,59 @@ public class DatabaseLoggingWriter : IDatabaseLoggingWriter, IDisposable
         _sysLogVisRep = _serviceScope.ServiceProvider.GetRequiredService<SqlSugarRepository<SysLogVis>>();
         _sysLogOpRep = _serviceScope.ServiceProvider.GetRequiredService<SqlSugarRepository<SysLogOp>>();
         _sysLogExRep = _serviceScope.ServiceProvider.GetRequiredService<SqlSugarRepository<SysLogEx>>();
+        _sysLogMessageRep = _serviceScope.ServiceProvider.GetRequiredService<SqlSugarRepository<SysLogMessage>>();
         _sysConfigService = _serviceScope.ServiceProvider.GetRequiredService<SysConfigService>();
     }
 
     public async void Write(LogMessage logMsg, bool flush)
+    {
+        // 此处添加异常处理，防止写日志时发生错误时导致程序重新启动
+        // Furion框架中描述写日志时可以不做异常处理，但此处如果发生异常会导致程序重新启动（Why？）
+        try
+        {
+            if (logMsg.LogName == "System.Logging.LoggingMonitor")
+            {
+                await LoggingMonitor(logMsg, flush);
+            }
+            else if (logMsg.LogName == "System.Logging.StringLogging")
+            {
+                await StringLogging(logMsg, flush);
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"!!!---写日志时发生错误！！！\r\n错误信息：{ex}");
+        }
+    }
+
+    private async Task StringLogging(LogMessage logMsg, bool flush)
+    {
+
+        // 记录运行日志
+        var enabledSysLogMessage = await _sysConfigService.GetConfigValue<bool>(CommonConst.SysLogMessage);
+        if (!enabledSysLogMessage) return;
+
+        // 获取原始字符串
+        var state = (IEnumerable<KeyValuePair<string, object>>)(logMsg.State);
+        var stateValue = state.FirstOrDefault().Value?.ToString();
+
+        await _sysLogMessageRep.InsertAsync(new SysLogMessage
+        {
+            LogName = logMsg.LogName,
+            LogLevel = logMsg.LogLevel,
+            EventId = logMsg.EventId.Id,
+            Message = logMsg.Message == null ? null : logMsg.Message,
+            Exception = logMsg.Exception == null ? null : JSON.Serialize(logMsg.Exception),
+            Context = logMsg.Context == null ? null : JSON.Serialize(logMsg.Context),
+            State = stateValue,
+            LogDateTime = logMsg.LogDateTime,
+            ThreadId = logMsg.ThreadId,
+            UseUtcTimestamp = logMsg.UseUtcTimestamp,
+            TraceId = logMsg.TraceId,
+        });
+    }
+
+    private async Task LoggingMonitor(LogMessage logMsg, bool flush)
     {
         var jsonStr = logMsg.Context.Get("loggingMonitor").ToString();
         var loggingMonitor = JSON.Deserialize<dynamic>(jsonStr);

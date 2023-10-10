@@ -46,6 +46,11 @@ public class CommonConst
     public const string SysOpLog = "sys_oplog";
 
     /// <summary>
+    /// 开启运行日志（LogMessage日志）
+    /// </summary>
+    public const string SysLogMessage = "sys_log_message";
+
+    /// <summary>
     /// Token过期时间
     /// </summary>
     public const string SysTokenExpire = "sys_token_expire";
