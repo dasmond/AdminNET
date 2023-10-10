@@ -46,6 +46,11 @@ public class CommonConst
     public const string SysOpLog = "sys_oplog";
 
     /// <summary>
+    /// 开启运行日志（LogMessage日志）
+    /// </summary>
+    public const string SysLogMessage = "sys_log_message";
+
+    /// <summary>
     /// Token过期时间
     /// </summary>
     public const string SysTokenExpire = "sys_token_expire";
@@ -64,6 +69,11 @@ public class CommonConst
     /// 系统管理员角色编码
     /// </summary>
     public const string SysAdminRole = "sys_admin";
+
+    /// <summary>
+    /// 日志保留天数
+    /// </summary>
+    public const string SysLogsRetentionDays = "sys_logs_retention_days";
 
     /// <summary>
     /// 开启全局脱敏处理（默认不开启）
