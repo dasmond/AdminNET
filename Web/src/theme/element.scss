@@ -472,6 +472,13 @@ $--el-table-text-color: #fb6d49;
 		overflow: auto !important;
 	}
 
+	.layout-center {
+		height: 100%;
+		overflow: hidden;
+		display: flex;
+		flex-direction: column;
+	}
+
 	// Table页自动撑满页面
 	>div:first-child {
 		display: flex;
