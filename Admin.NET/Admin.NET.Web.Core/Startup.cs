@@ -14,9 +14,6 @@ using Furion;
 using Furion.SpecificationDocument;
 using Furion.VirtualFileServer;
 using IGeekFan.AspNetCore.Knife4jUI;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpOverrides;
@@ -79,30 +76,8 @@ public class Startup : AppStartup
             //.AddXmlDataContractSerializerFormatters()
             .AddInjectWithUnifyResult<AdminResultProvider>();
 
-        // 第三方授权登录
-        var authOpt = App.GetOptions<OAuthOptions>();
-        services.AddAuthentication(options =>
-            {
-                options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-            })
-            .AddCookie(options =>
-            {
-                options.Cookie.SameSite = Microsoft.AspNetCore.Http.SameSiteMode.None;
-                options.Cookie.SecurePolicy = Microsoft.AspNetCore.Http.CookieSecurePolicy.Always;
-            })
-            .AddWeixin(options =>
-            {
-                options.ClientId = authOpt.Weixin?.ClientId;
-                options.ClientSecret = authOpt.Weixin?.ClientSecret;
-            })
-            .AddGitee(options =>
-            {
-                options.ClientId = authOpt.Gitee?.ClientId;
-                options.ClientSecret = authOpt.Gitee?.ClientSecret;
-
-                options.ClaimActions.MapJsonKey(OAuthClaim.GiteeAvatarUrl, "avatar_url");
-            });
+        // 三方授权登录OAuth
+        services.AddOAuth();
 
         // ElasticSearch
         services.AddElasticSearch();
@@ -156,20 +131,7 @@ public class Startup : AppStartup
         services.AddViewEngine();
 
         // 即时通讯
-        var signalRBuilder = services.AddSignalR(options =>
-            {
-                options.KeepAliveInterval = TimeSpan.FromSeconds(5);
-            })
-            .AddNewtonsoftJsonProtocol(options => SetNewtonsoftJsonSetting(options.PayloadSerializerSettings));
-        // 若已开启集群配置，则把SignalR配置为支持集群模式
-        var clusterOpt = App.GetOptions<ClusterOptions>();
-        if (clusterOpt.Enabled)
-        {
-            signalRBuilder.AddStackExchangeRedis(clusterOpt.SignalR.RedisConfiguration, options =>
-                {
-                    options.Configuration.ChannelPrefix = clusterOpt.SignalR.ChannelPrefix;
-                });
-        }
+        services.AddSignalR(SetNewtonsoftJsonSetting);
 
         // 系统日志
         services.AddLoggingSetup();
