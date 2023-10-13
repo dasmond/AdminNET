@@ -2,19 +2,43 @@
 branches: {
   }
 fileChange:
-  /Web:
-    newFile: !uuid 'a10e73e9194c989651a3cbbf33a2d5e8adfd3414'
-    oldFile: !uuid '2501160a0163e2d0ee57d677069c84937d6f8b4e'
-  /Web/src:
-    newFile: !uuid 'e250bfbbe7fe1ee9de4a08efdfb16da7dc8fff22'
-    oldFile: !uuid '9e5ebc65a8a19259377907befb6c9fde28ba70d1'
-  /Web/src/stores:
-    newFile: !uuid '85ac800dd24e6221dd7194c766cd3eac510991ba'
-    oldFile: !uuid '1bc0d2371b7229b87002116022bb847e853d2d02'
-  /Web/src/stores/userInfo.ts:
-    newFile: !uuid 'a7f9131b698d6bb509d60f61ace81a2b09cf8c57'
-    oldFile: !uuid '366400cf072f53e83f3a9fb6ab3ae4bd326c50d9'
-gitCommitId: !uuid 'ea012500dd4dfa1283e81105232611f68fd68613'
+  /Admin.NET:
+    newFile: !uuid '79c503ce6667b2f957fd51c2fafbc635fcfa5960'
+    oldFile: !uuid '46f74369a21f39c63cbd7ac366ccf59554451296'
+  /Admin.NET/Admin.NET.Application:
+    newFile: !uuid '8effff47db4c57405104246576291884417eed05'
+    oldFile: !uuid '9aeae49cd22334540ab1b06906e435a8ba1266b0'
+  /Admin.NET/Admin.NET.Application/Configuration:
+    newFile: !uuid '74dccc27284f7c1acb1034d7e47fdf8af102d976'
+    oldFile: !uuid 'e0e313032d94680369e72ff12e4274ed56e404e3'
+  /Admin.NET/Admin.NET.Application/Configuration/Cache.json:
+    newFile: !uuid 'e607f5a5c875d2d59abe4d8a1a10524b8fd6408d'
+    oldFile: !uuid '27e451ac526f41e52d9cc837b8920cf6544ff56e'
+  /Admin.NET/Admin.NET.Core:
+    newFile: !uuid 'c6f2cb0e0e015606167185ac030eba8a459e7801'
+    oldFile: !uuid '723724cd9b764d091c0b14b5533884a6a46c33e9'
+  /Admin.NET/Admin.NET.Core/Option:
+    newFile: !uuid 'dcdda7ebbe67c57dad06cc3523b22c643de2b43d'
+    oldFile: !uuid 'abf56a053f060b1b7ae7a7582a2efb10de8ee6f0'
+  /Admin.NET/Admin.NET.Core/Option/CacheOptions.cs:
+    newFile: !uuid 'f3a3d12a63b6abbaf0a72f057af6b63886055392'
+    oldFile: !uuid '85f7a1147ed6ec1e693b6665c3e314dc6f6971ac'
+  /Admin.NET/Admin.NET.Core/Option/StackExchangeRedisOptions.cs:
+    newFile: null
+    oldFile: !uuid '242f6ec0e7f79abcede9e393d39d5df6c2b0ba71'
+  /Admin.NET/Admin.NET.Core/SignalR:
+    newFile: !uuid '4921f38a971c749905896f64ae7b7483c1555e74'
+    oldFile: !uuid 'a6ecad150e067fe03be40760b1d3c46fca83a2a1'
+  /Admin.NET/Admin.NET.Core/SignalR/SignalRSetup.cs:
+    newFile: !uuid '37dab04d6fdde1a3faa7eb59224aace557b4074a'
+    oldFile: !uuid 'c9fd52a953176b1861d473a093d6b67828755644'
+  /Admin.NET/Admin.NET.Web.Core:
+    newFile: !uuid '496319e17757a09efb787b1844f48aa8291cc641'
+    oldFile: !uuid '346c76e6f954bf6726bf8233a41d7ab9061ab705'
+  /Admin.NET/Admin.NET.Web.Core/ProjectOptions.cs:
+    newFile: !uuid 'a888a6714669da45c21cc99880dd3155c7fa70d6'
+    oldFile: !uuid '149d94943b2e360a107b24e0f7652e470424b677'
+gitCommitId: !uuid '63e9690a22a4abe84455e565719a205b9ed7d356'
 renames: {
   }
-revisionId: 1136
+revisionId: 1137
