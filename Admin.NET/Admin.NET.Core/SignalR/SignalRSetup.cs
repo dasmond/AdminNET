@@ -36,12 +36,13 @@ public static class SignalRSetup
 
         // 若已开启集群配置，则把SignalR配置为支持集群模式
         var clusterOpt = App.GetOptions<ClusterOptions>();
-        if (clusterOpt.Enabled)
+        if (!clusterOpt.Enabled)        
+            return;
+        
+        var redisOptions = clusterOpt.SentinelConfig;
+        ConnectionMultiplexer connection1;
+        if (clusterOpt.IsSentinel) // 哨兵模式
         {
-            // StackExchangeRedis 缓存
-            var redisOptions = App.GetOptions<StackExchangeRedisOptions>();
-
-            // 密钥存储（数据保护）
             var redisConfig = new ConfigurationOptions
             {
                 AbortOnConnectFail = false,
@@ -50,18 +51,27 @@ public static class SignalRSetup
                 DefaultDatabase = redisOptions.DefaultDb,
                 Password = redisOptions.Password
             };
-            redisOptions.EndPoints.ForEach(o => redisConfig.EndPoints.Add(o));
-            var connection1 = ConnectionMultiplexer.Connect(redisConfig);
-            services.AddDataProtection().PersistKeysToStackExchangeRedis(connection1, "AdminNet:DataProtection-Keys");
+            redisOptions.EndPoints.ForEach(u => redisConfig.EndPoints.Add(u));
+            connection1 = ConnectionMultiplexer.Connect(redisConfig);
+        }
+        else
+        {
+            connection1 = ConnectionMultiplexer.Connect(clusterOpt.SignalR.RedisConfiguration);
+        }
+        // 密钥存储（数据保护）
+        services.AddDataProtection().PersistKeysToStackExchangeRedis(connection1, clusterOpt.DataProtecteKey);
 
-            signalRBuilder.AddStackExchangeRedis(clusterOpt.SignalR.RedisConfiguration, options =>
+        signalRBuilder.AddStackExchangeRedis(options =>
+        {
+            // 此处设置的ChannelPrefix并不会生效，如果两个不同的项目，且[程序集名+类名]一样，使用同一个redis服务，请注意修改 Hub/OnlineUserHub 的类名。
+            // 原因请参考下边链接：
+            // https://github.com/dotnet/aspnetcore/blob/f9121bc3e976ec40a959818451d126d5126ce868/src/SignalR/server/StackExchangeRedis/src/RedisHubLifetimeManager.cs#L74
+            // https://github.com/dotnet/aspnetcore/blob/f9121bc3e976ec40a959818451d126d5126ce868/src/SignalR/server/StackExchangeRedis/src/Internal/RedisChannels.cs#L33
+            options.Configuration.ChannelPrefix = clusterOpt.SignalR.ChannelPrefix;
+            options.ConnectionFactory = async writer =>
             {
-                // 此处设置的ChannelPrefix并不会生效，如果两个不同的项目，且[程序集名+类名]一样，使用同一个redis服务，请注意修改 Hub/OnlineUserHub 的类名。
-                // 原因请参考下边链接：
-                // https://github.com/dotnet/aspnetcore/blob/f9121bc3e976ec40a959818451d126d5126ce868/src/SignalR/server/StackExchangeRedis/src/RedisHubLifetimeManager.cs#L74
-                // https://github.com/dotnet/aspnetcore/blob/f9121bc3e976ec40a959818451d126d5126ce868/src/SignalR/server/StackExchangeRedis/src/Internal/RedisChannels.cs#L33
-                options.Configuration.ChannelPrefix = clusterOpt.SignalR.ChannelPrefix;
-                options.ConnectionFactory = async writer =>
+                ConnectionMultiplexer connection;
+                if (clusterOpt.IsSentinel)
                 {
                     var config = new ConfigurationOptions
                     {
@@ -71,20 +81,25 @@ public static class SignalRSetup
                         DefaultDatabase = redisOptions.DefaultDb,
                         Password = redisOptions.Password
                     };
-                    redisOptions.EndPoints.ForEach(o => config.EndPoints.Add(o));
-                    var connection = await ConnectionMultiplexer.ConnectAsync(config, writer);
-                    connection.ConnectionFailed += (_, e) =>
-                    {
-                        "连接 Redis 失败".LogError();
-                    };
+                    redisOptions.EndPoints.ForEach(u => config.EndPoints.Add(u));
+                    connection = await ConnectionMultiplexer.ConnectAsync(config, writer);
+                }
+                else
+                {
+                    connection = await ConnectionMultiplexer.ConnectAsync(clusterOpt.SignalR.RedisConfiguration);
+                }
 
-                    if (!connection.IsConnected)
-                    {
-                        "无法连接 Redis".LogError();
-                    }
-                    return connection;
+                connection.ConnectionFailed += (_, e) =>
+                {
+                    "连接 Redis 失败".LogError();
                 };
-            });
-        }
+
+                if (!connection.IsConnected)
+                {
+                    "无法连接 Redis".LogError();
+                }
+                return connection;
+            };
+        });
     }
 }
