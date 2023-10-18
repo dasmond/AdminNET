@@ -2,16 +2,22 @@
 branches: {
   }
 fileChange:
-  /Web:
-    newFile: !uuid 'f86aca90aff3decfcdf5f3d1a7cda6951eb5d002'
-    oldFile: !uuid 'ee8bb830bb200e6e94b60c4193de7b7a654ae908'
-  /Web/package.json:
-    newFile: !uuid '4341650db621c1a21fbf9cb8cafa5e8636951e3a'
-    oldFile: !uuid '98ae46068594e09c92bb6a9f5649b1365d828693'
-  /Web/pnpm-lock.yaml:
-    newFile: !uuid '9c58b4194878c461d0511aa0c57eb2189665605f'
-    oldFile: !uuid '925cc3ef63271e9254786a2b04de848a4e33e467'
-gitCommitId: !uuid '140c06496573ddbee9b6c621fa693cfe714cfeb4'
+  /Admin.NET:
+    newFile: !uuid 'fcff1f572320a0362d1af33039819cf78154b300'
+    oldFile: !uuid 'f18cf5a812e1de47b1903bdb9c1c0fc6123af632'
+  /Admin.NET/Admin.NET.Core:
+    newFile: !uuid '1335d8f47f83db7a3f12645feb7b540c810327ba'
+    oldFile: !uuid '8fcfc3a4723f3a9be68feaf3d4a9366e0899c42c'
+  /Admin.NET/Admin.NET.Core/Service:
+    newFile: !uuid '7817a783e4a125853a15eb7857f0dda9b70de378'
+    oldFile: !uuid 'b350d6b70776b1d9073b72146dff40c7cfb2ceef'
+  /Admin.NET/Admin.NET.Core/Service/Dict:
+    newFile: !uuid 'aa8531200ea8fac42bebeb4f0fa344520ea43677'
+    oldFile: !uuid '65d881b7df4eda0172feff998d77fd51e305fe29'
+  /Admin.NET/Admin.NET.Core/Service/Dict/SysDictDataService.cs:
+    newFile: !uuid 'bfd02832888e6fd4e422297c1839a88d7a3d751b'
+    oldFile: !uuid '87550d500a893242019617fc67e49790ec7ac1aa'
+gitCommitId: !uuid '6a3669c026c0d418488079e8052d5ef099804b11'
 renames: {
   }
-revisionId: 1142
+revisionId: 1143
