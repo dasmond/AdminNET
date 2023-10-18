@@ -3,18 +3,18 @@ branches: {
   }
 fileChange:
   /Web:
-    newFile: !uuid 'e59d716bf015e8f0715e72efa89c7683ae6e686e'
-    oldFile: !uuid 'b91cbb2c53f1ec55436c79530ff38989f181f2a4'
+    newFile: !uuid 'de4c6dbda5df3fbaa8939e8614734b6d2df2ddd0'
+    oldFile: !uuid 'e59d716bf015e8f0715e72efa89c7683ae6e686e'
   /Web/src:
-    newFile: !uuid '80b5440cca335df095b37f850253e88e584e46d7'
-    oldFile: !uuid 'd18e741d9d307ebef48f6e96d4d1cde9aec0d5fb'
-  /Web/src/router:
-    newFile: !uuid '0b41ca925244d71ff5b8225581ca6067b2bfa81d'
-    oldFile: !uuid 'de7af7b72c8fcf9a1d09cd87474b9636845a2e27'
-  /Web/src/router/backEnd.ts:
-    newFile: !uuid 'ae329f133dfe06e23ba292c3da697835e6421db7'
-    oldFile: !uuid '855a378129cc575ffae6b7bdf6e43006fea421e8'
-gitCommitId: !uuid '5b25fcd961b1b7309ce20fc48bfd4bf327b8ba22'
+    newFile: !uuid '7718e89b58042b2bce05e5c0fe9c8718c3956ee0'
+    oldFile: !uuid '80b5440cca335df095b37f850253e88e584e46d7'
+  /Web/src/stores:
+    newFile: !uuid '32daf212411ef4f17122b0bd8d497166dad95c03'
+    oldFile: !uuid '83e87231d1b3eea3d0b3453b36d7444712a39376'
+  /Web/src/stores/userInfo.ts:
+    newFile: !uuid '43bd5db16d2572e0a87843c288fb6ac9ec7a33dd'
+    oldFile: !uuid '448fba32c5261b11546fc44445808e8f4bbed2a9'
+gitCommitId: !uuid 'a64f33b7ebd1d875f39d15f35981c87e1889f151'
 renames: {
   }
-revisionId: 1150
+revisionId: 1151
