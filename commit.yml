@@ -3,18 +3,30 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid 'cb94650a3e19ac7db357680951f9d386f882c8d4'
-    oldFile: !uuid '555bb8ad9121ef3c9fe11b1ee005732476750ff0'
+    newFile: !uuid 'a957bbfb96fbddf2d4970f38ffaf0434ff0d0dac'
+    oldFile: !uuid 'cb94650a3e19ac7db357680951f9d386f882c8d4'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid 'c6b02b4f297a45a69421d3ba861687f07a743849'
-    oldFile: !uuid 'af8acef4908710b572506ab84807e2f7247a16cc'
-  /Admin.NET/Admin.NET.Core/SignalR:
-    newFile: !uuid '357fd4bc01ae8d80f5b0b5778097716614c98a6f'
-    oldFile: !uuid 'b3483210991112bfd44c84b8c473c3aaecc0188a'
-  /Admin.NET/Admin.NET.Core/SignalR/SignalRSetup.cs:
-    newFile: !uuid '94fef9f047c96d7490f2a5f3a47eb24ccf99b485'
-    oldFile: !uuid 'fa900eaa106770c7932e51c8aecb9d415395c9e4'
-gitCommitId: !uuid 'dbfb1ca5f842ede5381c98576bc5af71bcc41035'
+    newFile: !uuid '4b44458027d6d38c533c2c0f79314b08191cb711'
+    oldFile: !uuid 'c6b02b4f297a45a69421d3ba861687f07a743849'
+  /Admin.NET/Admin.NET.Core/Service:
+    newFile: !uuid '1143fb44f075aeff320b680cec00965742e288ea'
+    oldFile: !uuid '880399afcb89f75c15248fada59cdc62b0b51753'
+  /Admin.NET/Admin.NET.Core/Service/Wechat:
+    newFile: !uuid '4390123c5ce044d23a967ea56827604e2bbd2685'
+    oldFile: !uuid '8d704338e5fd8b97c16c6ba5f6c34f2910f83ff0'
+  /Admin.NET/Admin.NET.Core/Service/Wechat/SysWechatPayService.cs:
+    newFile: !uuid '26ee96607e64d013f983963b23ecbc68fa17c060'
+    oldFile: !uuid '39b0c4aeece71ccf3440e677a2c9c11a8eef50d2'
+  /Admin.NET/Admin.NET.Core/Service/Wechat/SysWechatService.cs:
+    newFile: !uuid '7b97c87e5e41061bbc6ad8d86e4d25d468339087'
+    oldFile: !uuid '088118fac134054bf99c1774395cf98a14934324'
+  /Admin.NET/Admin.NET.Core/Service/Wechat/SysWxOpenService.cs:
+    newFile: !uuid '4d770c17f602ff908476899b16423a9e0accc2b0'
+    oldFile: !uuid '82b3b986b381a8c06c88d0e078eb0e0dbad8b18e'
+  /Admin.NET/Admin.NET.Core/Service/Wechat/WechatApiHttpClient.cs:
+    newFile: !uuid '95609f5cd934023a8282b42b7f495adb2e8653b4'
+    oldFile: !uuid '8662e00993e5e9506fb7f78e402d7ba75a6f8387'
+gitCommitId: !uuid '2afc7b4fe2cf9439af668e3dee7a3d5ae94f8dcd'
 renames: {
   }
-revisionId: 1157
+revisionId: 1158
