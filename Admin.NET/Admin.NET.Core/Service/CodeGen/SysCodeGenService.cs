@@ -403,7 +403,7 @@ public class SysCodeGenService : IDynamicApiController, ITransient
             var menuType0 = new SysMenu
             {
                 Pid = 0,
-                Title = busName + "管理",
+                Title = busName,    // + "管理"
                 Type = MenuTypeEnum.Dir,
                 Icon = "robot",
                 Path = "/" + className.ToLower(),

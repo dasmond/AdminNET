@@ -52,7 +52,7 @@ global using System.ComponentModel.DataAnnotations;
 global using System.Data;
 global using System.Diagnostics;
 global using System.Linq.Dynamic.Core;
-global using Admin.NET.Entity;
+//global using Admin.NET.Entity;
 global using System.Linq.Expressions;
 global using System.Reflection;
 global using System.Runtime.InteropServices;

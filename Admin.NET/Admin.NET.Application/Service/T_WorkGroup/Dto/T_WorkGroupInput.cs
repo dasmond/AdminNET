@@ -3,36 +3,36 @@
 namespace Admin.NET.Application;
 
     /// <summary>
-    /// 工作中心基础输入参数
+    /// 生产中心基础输入参数
     /// </summary>
-    public class WorkGroupBaseInput
+    public class T_WorkGroupBaseInput
     {
         /// <summary>
-        /// 工作组编号
+        /// 生产中心编号
         /// </summary>
         public virtual string WorkGroupCode { get; set; }
         
         /// <summary>
-        /// 工作组名称
+        /// 生产中心名称
         /// </summary>
         public virtual string WorkGroupName { get; set; }
         
         /// <summary>
-        /// 工作组简称
+        /// 生产中心简称
         /// </summary>
         public virtual string WorkGroupSimpleName { get; set; }
         
         /// <summary>
-        /// 车间Id
+        /// 所属车间
         /// </summary>
-        public virtual long WorkShopId { get; set; }
+        public virtual long WorkShopID { get; set; }
         
     }
 
     /// <summary>
-    /// 工作中心分页查询输入参数
+    /// 生产中心分页查询输入参数
     /// </summary>
-    public class WorkGroupInput : BasePageInput
+    public class T_WorkGroupInput : BasePageInput
     {
         /// <summary>
         /// 关键字查询
@@ -40,69 +40,63 @@ namespace Admin.NET.Application;
         public string SearchKey { get; set; }
 
         /// <summary>
-        /// 工作组编号
+        /// 生产中心编号
         /// </summary>
         public string WorkGroupCode { get; set; }
         
         /// <summary>
-        /// 工作组名称
+        /// 生产中心名称
         /// </summary>
         public string WorkGroupName { get; set; }
         
         /// <summary>
-        /// 工作组简称
+        /// 生产中心简称
         /// </summary>
         public string WorkGroupSimpleName { get; set; }
         
         /// <summary>
-        /// 车间Id
+        /// 所属车间
         /// </summary>
-        public long WorkShopId { get; set; }
+        public long WorkShopID { get; set; }
         
     }
 
     /// <summary>
-    /// 工作中心增加输入参数
+    /// 生产中心增加输入参数
     /// </summary>
-    public class AddWorkGroupInput : WorkGroupBaseInput
+    public class AddT_WorkGroupInput : T_WorkGroupBaseInput
     {
         /// <summary>
-        /// 工作组编号
+        /// 生产中心编号
         /// </summary>
-        [Required(ErrorMessage = "工作组编号不能为空")]
+        [Required(ErrorMessage = "生产中心编号不能为空")]
         public override string WorkGroupCode { get; set; }
         
         /// <summary>
-        /// 工作组名称
+        /// 生产中心名称
         /// </summary>
-        [Required(ErrorMessage = "工作组名称不能为空")]
+        [Required(ErrorMessage = "生产中心名称不能为空")]
         public override string WorkGroupName { get; set; }
         
         /// <summary>
-        /// 工作组简称
+        /// 所属车间
         /// </summary>
-        [Required(ErrorMessage = "工作组简称不能为空")]
-        public override string WorkGroupSimpleName { get; set; }
-        
-        /// <summary>
-        /// 车间Id
-        /// </summary>
-        [Required(ErrorMessage = "车间Id不能为空")]
-        public override long WorkShopId { get; set; }
+        [Required(ErrorMessage = "所属车间不能为空")]
+        public override long WorkShopID { get; set; }
         
     }
 
     /// <summary>
-    /// 工作中心删除输入参数
+    /// 生产中心删除输入参数
     /// </summary>
-    public class DeleteWorkGroupInput : BaseIdInput
+    public class DeleteT_WorkGroupInput : BaseIdInput
     {
     }
 
     /// <summary>
-    /// 工作中心更新输入参数
+    /// 生产中心更新输入参数
     /// </summary>
-    public class UpdateWorkGroupInput : WorkGroupBaseInput
+    public class UpdateT_WorkGroupInput : T_WorkGroupBaseInput
     {
         /// <summary>
         /// Id
@@ -113,9 +107,9 @@ namespace Admin.NET.Application;
     }
 
     /// <summary>
-    /// 工作中心主键查询输入参数
+    /// 生产中心主键查询输入参数
     /// </summary>
-    public class QueryByIdWorkGroupInput : DeleteWorkGroupInput
+    public class QueryByIdT_WorkGroupInput : DeleteT_WorkGroupInput
     {
 
     }

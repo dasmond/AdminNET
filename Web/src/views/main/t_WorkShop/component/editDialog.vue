@@ -1,21 +1,31 @@
 ﻿<template>
-	<div class="organization-container">
+	<div class="t_WorkShop-container">
 		<el-dialog v-model="isShowDialog" :title="props.title" :width="800" draggable="">
 			<el-form :model="ruleForm" ref="ruleFormRef" label-width="auto" :rules="rules">
 				<el-row :gutter="35">
-					<el-form-item v-show="false">
-						<el-input v-model="ruleForm.id" />
-					</el-form-item>
 					<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
-						<el-form-item label="组织代号" prop="organCode">
-							<el-input v-model="ruleForm.organCode" placeholder="请输入组织代号" maxlength="64" show-word-limit clearable />
+						<el-form-item label="车间编号" prop="workShopCode">
+							<el-input v-model="ruleForm.workShopCode" placeholder="请输入车间编号" maxlength="32" show-word-limit clearable />
 							
 						</el-form-item>
 						
 					</el-col>
 					<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
-						<el-form-item label="组织名称" prop="organName">
-							<el-input v-model="ruleForm.organName" placeholder="请输入组织名称" maxlength="128" show-word-limit clearable />
+						<el-form-item label="车间名称" prop="workShopName">
+							<el-input v-model="ruleForm.workShopName" placeholder="请输入车间名称" maxlength="32" show-word-limit clearable />
+							
+						</el-form-item>
+						
+					</el-col>
+					<el-form-item v-show="false">
+						<el-input v-model="ruleForm.id" />
+					</el-form-item>
+					<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
+						<el-form-item label="所属机构Id" prop="orgId">
+							<el-select clearable filterable v-model="ruleForm.orgId" placeholder="请选择所属机构Id">
+								<el-option v-for="(item,index) in sysOrgOrgIdDropdownList" :key="index" :value="item.value" :label="item.label" />
+								
+							</el-select>
 							
 						</el-form-item>
 						
@@ -41,7 +51,8 @@
 	import { ref,onMounted } from "vue";
 	import { ElMessage } from "element-plus";
 	import type { FormRules } from "element-plus";
-	import { addOrganization, updateOrganization } from "/@/api/main/organization";
+	import { addT_WorkShop, updateT_WorkShop } from "/@/api/main/t_WorkShop";
+	import { getSysOrgOrgIdDropdown } from '/@/api/main/t_WorkShop';
 	//父级传递来的参数
 	var props = defineProps({
 		title: {
@@ -56,8 +67,8 @@
 	const ruleForm = ref<any>({});
 	//自行添加其他规则
 	const rules = ref<FormRules>({
-		organCode: [{required: true, message: '请输入组织代号！', trigger: 'blur',},],
-		organName: [{required: true, message: '请输入组织名称！', trigger: 'blur',},],
+		workShopCode: [{required: true, message: '请输入车间编号！', trigger: 'blur',},],
+		workShopName: [{required: true, message: '请输入车间名称！', trigger: 'blur',},],
 	});
 
 	// 打开弹窗
@@ -83,9 +94,9 @@
 			if (isValid) {
 				let values = ruleForm.value;
 				if (ruleForm.value.id == undefined || ruleForm.value.id == null || ruleForm.value.id == "" || ruleForm.value.id == 0) {
-					await addOrganization(values);
+					await addT_WorkShop(values);
 				} else {
-					await updateOrganization(values);
+					await updateT_WorkShop(values);
 				}
 				closeDialog();
 			} else {
@@ -98,6 +109,13 @@
 	};
 
 
+	const sysOrgOrgIdDropdownList = ref<any>([]); 
+	const getSysOrgOrgIdDropdownList = async () => {
+		let list = await getSysOrgOrgIdDropdown();
+		sysOrgOrgIdDropdownList.value = list.data.result ?? [];
+	};
+	getSysOrgOrgIdDropdownList();
+	
 
 
 

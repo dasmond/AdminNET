@@ -1,33 +1,38 @@
 ﻿namespace Admin.NET.Application;
 
     /// <summary>
-    /// 工作中心输出参数
+    /// 生产中心输出参数
     /// </summary>
-    public class WorkGroupDto
+    public class T_WorkGroupDto
     {
+        /// <summary>
+        /// 所属车间
+        /// </summary>
+        public string WorkShopIDWorkShopName { get; set; }
+        
         /// <summary>
         /// Id
         /// </summary>
         public long Id { get; set; }
         
         /// <summary>
-        /// 工作组编号
+        /// 生产中心编号
         /// </summary>
         public string WorkGroupCode { get; set; }
         
         /// <summary>
-        /// 工作组名称
+        /// 生产中心名称
         /// </summary>
         public string WorkGroupName { get; set; }
         
         /// <summary>
-        /// 工作组简称
+        /// 生产中心简称
         /// </summary>
         public string WorkGroupSimpleName { get; set; }
         
         /// <summary>
-        /// 车间Id
+        /// 所属车间
         /// </summary>
-        public long WorkShopId { get; set; }
+        public long WorkShopID { get; set; }
         
     }
