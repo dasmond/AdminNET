@@ -223,7 +223,8 @@ public class Startup : AppStartup
         // 配置Swagger-Knife4UI（路由前缀一致代表独立，不同则代表共存）
         app.UseKnife4UI(options =>
         {
-            options.RoutePrefix = "kapi";
+            //options.RoutePrefix = "kapi";
+            options.RoutePrefix = String.Empty;
             foreach (var groupInfo in SpecificationDocumentBuilder.GetOpenApiGroups())
             {
                 options.SwaggerEndpoint("/" + groupInfo.RouteTemplate, groupInfo.Title);
