@@ -3,24 +3,39 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '709279d082cfa0eacaf7318b5f927bc5a2359c42'
-    oldFile: !uuid '0816d09f285387804e9f45276df5c268829f80cc'
+    newFile: !uuid '24e996113514c09be8aec8eba1dd3e1de4a50d13'
+    oldFile: !uuid '709279d082cfa0eacaf7318b5f927bc5a2359c42'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '3f8c74624400e8da9945b6485f5cb2a1daaef309'
-    oldFile: !uuid '0a769110a19f212313ec07f15f62001657ada396'
-  /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid '1e1f5383dc04725ab0a79ce6a0812389ee6a88bf'
-    oldFile: !uuid '2a62fc88aa6600141698840e1758df2467abd4a6'
-  /Admin.NET/Admin.NET.Core/Service/Wechat:
-    newFile: !uuid '91eb06a347bcbdc2f5bb1a419fa1dd7d57dea74d'
-    oldFile: !uuid 'af7a7f7fe9fa4087bf1303bf21250755e2a08eca'
-  /Admin.NET/Admin.NET.Core/Service/Wechat/SysWechatService.cs:
-    newFile: !uuid '37ea996f6e371e025f1b833d05a2ebb54e6e6aff'
-    oldFile: !uuid 'ef51c33c66b5411c99ff543e1fe4173fa536d7d7'
-  /Admin.NET/Admin.NET.Core/Service/Wechat/WechatApiHttpClient.cs:
-    newFile: !uuid '3195d90d401c5f51d211b2af230b32bd86abcd82'
-    oldFile: !uuid 'b98c413119445ad77e9b917bc23af3bb56cbc493'
-gitCommitId: !uuid '1317e117f6302fce9e102dc675ffd2bdb8b53c16'
+    newFile: !uuid 'b894c2200f25b5215fa694e09dd54e2cfab87f61'
+    oldFile: !uuid '3f8c74624400e8da9945b6485f5cb2a1daaef309'
+  /Admin.NET/Admin.NET.Core/SignatureAuth:
+    newFile: !uuid '0f0ea4ff5f6eb0445321ae634daf3f136aa7e670'
+    oldFile: !uuid '59cc6c8f146c3b3f370b980b8d6157eeabe43f58'
+  /Admin.NET/Admin.NET.Core/SignatureAuth/SignatureAuthenticationDefaults.cs:
+    newFile: !uuid '4833a0d85ee0bdd665adf2d6afe75a5eced3e47e'
+    oldFile: !uuid '2ec180054e0d2b189f2446eea3fbd2b602f65a88'
+  /Web:
+    newFile: !uuid 'b6f86c17854ffa31dd1d9f04265fc0c107d0a93c'
+    oldFile: !uuid '0241b93278eb2d48ab15477f86798f3b82ab6288'
+  /Web/src:
+    newFile: !uuid '7fafdba6483840847f4ef587564b47fc2d75252f'
+    oldFile: !uuid 'edad5b31a0418db97ea60279a7bb5f37e0342214'
+  /Web/src/views:
+    newFile: !uuid 'f7f9eb12f668f04ba4a2e355b772e770422dcf2a'
+    oldFile: !uuid 'd670a617a49b82d19a818e7d4e6f73b06ca7437c'
+  /Web/src/views/system:
+    newFile: !uuid 'e4a994bca6070972e16fc9271df01864f7f3034c'
+    oldFile: !uuid '96788cfe6cf2ef96ccb0981014aa673e9017985f'
+  /Web/src/views/system/openAccess:
+    newFile: !uuid '84211112cc31593eef06bf701d132d2fd5bb8b6d'
+    oldFile: !uuid 'c48c8c0487000aefebbd406680446d0cea841a8e'
+  /Web/src/views/system/openAccess/component:
+    newFile: !uuid '2e440a85dee2e01b0fb4e7e0cd3a05a58df6b4b4'
+    oldFile: !uuid 'e6a05bad2e4b776670b4714407986411bf396b63'
+  /Web/src/views/system/openAccess/component/helpView.vue:
+    newFile: !uuid '2fe899d0841b46864b1ef2422c983397e1a91837'
+    oldFile: !uuid 'e45fa37788b0cf0eaa19e3166b2f1097562ca188'
+gitCommitId: !uuid 'bfd66002bd5c13dc8143729cc21577dde8efa014'
 renames: {
   }
-revisionId: 1208
+revisionId: 1209
