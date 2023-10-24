@@ -227,6 +227,12 @@ function addBaseColumn() {
 			desc: '创建者Id',
 		},
 		{
+			dataType: 'varchar',
+			name: 'CreateUser',
+			desc: '创建者',
+			length: 32
+		},
+		{
 			dataType: 'bigint',
 			name: 'UpdateUserId',
 			desc: '修改者Id',
