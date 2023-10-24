@@ -28,6 +28,12 @@ public class SysDictTypeSeedData : ISqlSugarEntitySeedData<SysDictType>
             new SysDictType{ Id=1300000000104, Name="代码生成方式", Code="code_gen_create_type", OrderNo=103, Remark="代码生成方式", Status=StatusEnum.Enable, CreateTime=DateTime.Parse("2022-02-10 00:00:00") },
             new SysDictType{ Id=1300000000105, Name="代码生成基类", Code="code_gen_base_class", OrderNo=104, Remark="代码生成基类", Status=StatusEnum.Enable, CreateTime=DateTime.Parse("2022-02-10 00:00:00") },
             new SysDictType{ Id=1300000000106, Name="机构类型", Code="org_type", OrderNo=105, Remark="机构类型", Status=StatusEnum.Enable, CreateTime=DateTime.Parse("2023-02-10 00:00:00") },
+            new SysDictType{ Id=1300000000107, Name="是否允许", Code="IfAllowed", OrderNo=106, Remark="", Status=StatusEnum.Enable, CreateTime=DateTime.Parse("2023-10-10 00:00:00") },
+            new SysDictType{ Id=1300000000108, Name="物料来源", Code="materialorigin", OrderNo=107, Remark="", Status=StatusEnum.Enable, CreateTime=DateTime.Parse("2023-10-10 00:00:00") },
+            new SysDictType{ Id=1300000000109, Name="物料属性", Code="materialprop", OrderNo=108, Remark="", Status=StatusEnum.Enable, CreateTime=DateTime.Parse("2023-10-10 00:00:00") },
+            new SysDictType{ Id=1300000000110, Name="选配类型", Code="configtype", OrderNo=109, Remark="", Status=StatusEnum.Enable, CreateTime=DateTime.Parse("2023-10-10 00:00:00") },
+            new SysDictType{ Id=1300000000111, Name="套件属性", Code="suite", OrderNo=110, Remark="", Status=StatusEnum.Enable, CreateTime=DateTime.Parse("2023-10-10 00:00:00") },
+            new SysDictType{ Id=1300000000112, Name="进出类型", Code="outtype", OrderNo=111, Remark="", Status=StatusEnum.Enable, CreateTime=DateTime.Parse("2023-10-10 00:00:00") },
         };
     }
 }

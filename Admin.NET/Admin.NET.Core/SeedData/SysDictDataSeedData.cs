@@ -74,6 +74,37 @@ public class SysDictDataSeedData : ISqlSugarEntitySeedData<SysDictData>
             new SysDictData{ Id=1300000000603, DictTypeId=1300000000106, Value="部门", Code="301", OrderNo=102, Remark="部门", Status=StatusEnum.Enable, CreateTime=DateTime.Parse("2023-02-10 00:00:00") },
             new SysDictData{ Id=1300000000604, DictTypeId=1300000000106, Value="区域", Code="401", OrderNo=103, Remark="区域", Status=StatusEnum.Enable, CreateTime=DateTime.Parse("2023-02-10 00:00:00") },
             new SysDictData{ Id=1300000000605, DictTypeId=1300000000106, Value="组", Code="501", OrderNo=104, Remark="组", Status=StatusEnum.Enable, CreateTime=DateTime.Parse("2023-02-10 00:00:00") },
+
+            new SysDictData{ Id=1300000000606, DictTypeId=1300000000106, Value="生产部门", Code="302", OrderNo=103, Remark="关联车间", Status=StatusEnum.Enable, CreateTime=DateTime.Parse("2023-10-10 00:00:00") },
+
+            new SysDictData{ Id=1300000000607, DictTypeId=1300000000107, Value="是", Code="T", OrderNo=103, Remark="", Status=StatusEnum.Enable, CreateTime=DateTime.Parse("2023-10-10 00:00:00") },
+            new SysDictData{ Id=1300000000608, DictTypeId=1300000000107, Value="否", Code="F", OrderNo=104, Remark="", Status=StatusEnum.Enable, CreateTime=DateTime.Parse("2023-10-10 00:00:00") },
+
+            new SysDictData{ Id=1300000000609, DictTypeId=1300000000108, Value="自制", Code="0", OrderNo=101, Remark="物料来源", Status=StatusEnum.Enable, CreateTime=DateTime.Parse("2023-10-10 00:00:00") },
+            new SysDictData{ Id=1300000000610, DictTypeId=1300000000108, Value="采购", Code="2", OrderNo=102, Remark="物料来源", Status=StatusEnum.Enable, CreateTime=DateTime.Parse("2023-10-10 00:00:00") },
+            new SysDictData{ Id=1300000000611, DictTypeId=1300000000108, Value="委外", Code="3", OrderNo=103, Remark="物料来源", Status=StatusEnum.Enable, CreateTime=DateTime.Parse("2023-10-10 00:00:00") },
+            new SysDictData{ Id=1300000000612, DictTypeId=1300000000108, Value="客供", Code="4", OrderNo=104, Remark="物料来源", Status=StatusEnum.Enable, CreateTime=DateTime.Parse("2023-10-10 00:00:00") },
+
+            new SysDictData{ Id=1300000000123, DictTypeId=1300000000109, Value="成品", Code="0", OrderNo=101, Remark="物料属性", Status=StatusEnum.Enable, CreateTime=DateTime.Parse("2023-10-10 00:00:00") },
+            new SysDictData{ Id=1300000000124, DictTypeId=1300000000109, Value="半成品", Code="1", OrderNo=102, Remark="物料属性", Status=StatusEnum.Enable, CreateTime=DateTime.Parse("2023-10-10 00:00:00") },
+            new SysDictData{ Id=1300000000125, DictTypeId=1300000000109, Value="原材料", Code="2", OrderNo=103, Remark="物料属性", Status=StatusEnum.Enable, CreateTime=DateTime.Parse("2023-10-10 00:00:00") },
+
+            new SysDictData{ Id=1300000000113, DictTypeId=1300000000110, Value="不使用", Code="0", OrderNo=101, Remark="选配类型", Status=StatusEnum.Enable, CreateTime=DateTime.Parse("2023-10-10 00:00:00") },
+            new SysDictData{ Id=1300000000114, DictTypeId=1300000000110, Value="自由选填", Code="1", OrderNo=101, Remark="选配类型", Status=StatusEnum.Enable, CreateTime=DateTime.Parse("2023-10-10 00:00:00") },
+            new SysDictData{ Id=1300000000115, DictTypeId=1300000000110, Value="产品选配", Code="2", OrderNo=101, Remark="选配类型", Status=StatusEnum.Enable, CreateTime=DateTime.Parse("2023-10-10 00:00:00") },
+            new SysDictData{ Id=1300000000116, DictTypeId=1300000000110, Value="组合配置", Code="3", OrderNo=101, Remark="选配类型", Status=StatusEnum.Enable, CreateTime=DateTime.Parse("2023-10-10 00:00:00") },
+
+            new SysDictData{ Id=1300000000117, DictTypeId=1300000000111, Value="非套件",   Code="0", OrderNo=101, Remark="套件属性", Status=StatusEnum.Enable, CreateTime=DateTime.Parse("2023-10-10 00:00:00") },
+            new SysDictData{ Id=1300000000118, DictTypeId=1300000000111, Value="通用母件", Code="1", OrderNo=101, Remark="套件属性", Status=StatusEnum.Enable, CreateTime=DateTime.Parse("2023-10-10 00:00:00") },
+            new SysDictData{ Id=1300000000119, DictTypeId=1300000000111, Value="通用子件", Code="2", OrderNo=101, Remark="套件属性", Status=StatusEnum.Enable, CreateTime=DateTime.Parse("2023-10-10 00:00:00") },
+            new SysDictData{ Id=1300000000120, DictTypeId=1300000000111, Value="个性母件", Code="3", OrderNo=101, Remark="套件属性", Status=StatusEnum.Enable, CreateTime=DateTime.Parse("2023-10-10 00:00:00") },
+            new SysDictData{ Id=1300000000121, DictTypeId=1300000000111, Value="个性子件", Code="4", OrderNo=101, Remark="套件属性", Status=StatusEnum.Enable, CreateTime=DateTime.Parse("2023-10-10 00:00:00") },
+            new SysDictData{ Id=1300000000122, DictTypeId=1300000000111, Value="组合套件", Code="5", OrderNo=101, Remark="套件属性", Status=StatusEnum.Enable, CreateTime=DateTime.Parse("2023-10-10 00:00:00") },
+
+            new SysDictData{ Id=1300000000126, DictTypeId=1300000000112, Value="不使用", Code="0", OrderNo=101,  Remark="进出类型", Status=StatusEnum.Enable, CreateTime=DateTime.Parse("2023-10-10 00:00:00") },
+            new SysDictData{ Id=1300000000127, DictTypeId=1300000000112, Value="按包件进出", Code="1", OrderNo=101, Remark="进出类型", Status=StatusEnum.Enable, CreateTime=DateTime.Parse("2023-10-10 00:00:00") },
+            new SysDictData{ Id=1300000000128, DictTypeId=1300000000112, Value="按条码进出", Code="2", OrderNo=101, Remark="进出类型", Status=StatusEnum.Enable, CreateTime=DateTime.Parse("2023-10-10 00:00:00") },
+
         };
     }
 }
