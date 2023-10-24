@@ -1,6 +1,4 @@
 ﻿using Admin.NET.Application.Const;
-using Elasticsearch.Net;
-
 namespace Admin.NET.Application;
 /// <summary>
 /// 车间服务
@@ -31,8 +29,8 @@ public class T_WorkShopService : IDynamicApiController, ITransient
             .WhereIF(!string.IsNullOrWhiteSpace(input.WorkShopCode), u => u.WorkShopCode.Contains(input.WorkShopCode.Trim()))
             .WhereIF(!string.IsNullOrWhiteSpace(input.WorkShopName), u => u.WorkShopName.Contains(input.WorkShopName.Trim()))
             .WhereIF(input.OrgId>0, u => u.OrgId == input.OrgId)
-        //处理外键和TreeSelector相关字段的连接
-            .LeftJoin<SysOrg>((u, orgid) => u.OrgId == orgid.Id) 
+            //处理外键和TreeSelector相关字段的连接
+            .LeftJoin<SysOrg>((u, orgid) => u.OrgId == orgid.Id )
             .Select((u, orgid)=> new T_WorkShopOutput{
                 WorkShopCode = u.WorkShopCode, 
                 WorkShopName = u.WorkShopName, 
@@ -40,9 +38,8 @@ public class T_WorkShopService : IDynamicApiController, ITransient
                 OrgId = u.OrgId, 
                 OrgIdName = orgid.Name,
             })
-           
 ;
-        query = query.OrderBuilder(input, "", "u.CreateTime");
+        query = query.OrderBuilder(input, "", "CreateTime");
         return await query.ToPagedListAsync(input.Page, input.PageSize);
     }
 
@@ -56,12 +53,6 @@ public class T_WorkShopService : IDynamicApiController, ITransient
     public async Task Add(AddT_WorkShopInput input)
     {
         var entity = input.Adapt<T_WorkShop>();
-        //判断是否能增加此车间
-        var orgIdCount = _rep.Context.Queryable<SysOrg>().Where(u =>u.Id ==entity.OrgId).Count();
-
-        if (orgIdCount >0 )
-        throw Oops.Oh( "所属机构已存在车间，请检查！");
-
         await _rep.InsertAsync(entity);
     }
 
@@ -125,7 +116,6 @@ public class T_WorkShopService : IDynamicApiController, ITransient
     public async Task<dynamic> SysOrgOrgIdDropdown()
     {
         return await _rep.Context.Queryable<SysOrg>()
-                .Where(u => u.Type == "302")
                 .Select(u => new
                 {
                     Label = u.Name,
@@ -134,7 +124,7 @@ public class T_WorkShopService : IDynamicApiController, ITransient
                 ).ToListAsync();
     }
 
-   
+
 
 
 }

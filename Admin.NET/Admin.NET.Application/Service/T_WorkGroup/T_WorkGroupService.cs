@@ -42,7 +42,7 @@ public class T_WorkGroupService : IDynamicApiController, ITransient
                 WorkShopIDWorkShopName = workshopid.WorkShopName,
             })
 ;
-        query = query.OrderBuilder(input, "", "u.CreateTime");
+        query = query.OrderBuilder(input, "", "CreateTime");
         return await query.ToPagedListAsync(input.Page, input.PageSize);
     }
 
