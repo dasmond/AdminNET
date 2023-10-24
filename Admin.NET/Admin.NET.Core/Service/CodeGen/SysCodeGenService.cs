@@ -8,6 +8,7 @@
 // 在任何情况下，作者或版权持有人均不对任何索赔、损害或其他责任负责，无论是因合同、侵权或其他方式引起的，与软件或其使用或其他交易有关。
 
 using System.IO.Compression;
+using static SKIT.FlurlHttpClient.Wechat.Api.Models.CgibinGetCurrentSelfMenuInfoResponse.Types;
 
 namespace Admin.NET.Core.Service;
 
@@ -559,8 +560,57 @@ public class SysCodeGenService : IDynamicApiController, ITransient
             menuOrder += 3;
             menuList.Add(menuType);
         }
+
+        autoWriteSeedData(menuType1, menuList);
+
         await _db.Insertable(menuList).ExecuteCommandAsync();
     }
+
+
+    /// <summary>
+    /// 自动写入SeedData代码
+    /// </summary>
+    private static void autoWriteSeedData(SysMenu menuType, List<SysMenu> menuList)
+    {
+        string rootPath = new DirectoryInfo(App.WebHostEnvironment.ContentRootPath).Parent.FullName;
+        string filePath = rootPath + "/Admin.NET.Core/SeedData/SysMenuSeedData.cs"; // 文件路径
+
+
+        try
+        {
+            // 读取文件内容
+            string content = File.ReadAllText(filePath);
+
+            string menuStr = "";
+
+            List<SysMenu> allMenuList = new List<SysMenu>();
+            allMenuList.Add(menuType);
+            allMenuList.AddRange(menuList);
+
+
+            for (int i = 0; i < allMenuList.Count; i++)
+            {
+                SysMenu menu = allMenuList[i];
+                menuStr += String.Format("new SysMenu{{ Id={0}, Pid={1}, Title=\"{2}\", Path=\"{3}\", Name=\"{4}\", Component=\"{5}\", Icon=\"ele-Document\", Type={8}, CreateTime=DateTime.Parse(\"{6}\"), OrderNo={7}}},",
+                menuType.Id + i, menu.Pid, menu.Title, menu.Path, menu.Name, menu.Component, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), menu.OrderNo, i == 0 ? "MenuTypeEnum.Menu" : "MenuTypeEnum.Btn") + "\n\t\t\t";
+            }
+
+            menuStr += "\n\n\t\t\t" + "//hyproyun_auto_code";
+
+            // 进行文本替换
+            content = content.Replace("//hyproyun_auto_code", menuStr);
+
+            // 将修改后的内容写回文件
+            File.WriteAllText(filePath, content);
+
+            Console.WriteLine("替换成功！");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"发生错误：{ex.Message}");
+        }
+    }
+
 
     /// <summary>
     /// 获取模板文件路径集合

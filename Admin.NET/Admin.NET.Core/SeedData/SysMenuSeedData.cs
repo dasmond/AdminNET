@@ -179,6 +179,18 @@ public class SysMenuSeedData : ISqlSugarEntitySeedData<SysMenu>
             new SysMenu{ Id=1310000000711, Pid=1310000000701, Title="后台教程", Path="/doc/furion", Name="sysFurion", Component="layout/routerView/link", IsIframe=false, IsKeepAlive=false, OutLink="https://furion.baiqian.ltd/", Icon="ele-Promotion", Type=MenuTypeEnum.Menu, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
             new SysMenu{ Id=1310000000712, Pid=1310000000701, Title="前端教程", Path="/doc/element", Name="sysElement", Component="layout/routerView/link", IsIframe=false, IsKeepAlive=false, OutLink="https://element-plus.gitee.io/zh-CN/", Icon="ele-Position", Type=MenuTypeEnum.Menu, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=110 },
             new SysMenu{ Id=1310000000713, Pid=1310000000701, Title="SqlSugar", Path="/doc/SqlSugar", Name="sysSqlSugar", Component="layout/routerView/link", IsIframe=false, IsKeepAlive=false, OutLink="https://www.donet5.com/Home/Doc", Icon="ele-Coin", Type=MenuTypeEnum.Menu, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=120 },
+
+
+			new SysMenu{ Id=14847352006725, Pid=1310000000101, Title="工作中心", Path="/system/t_workgroup", Name="t_WorkGroup", Component="/main/t_WorkGroup/index", Icon="ele-Document", Type=MenuTypeEnum.Menu, CreateTime=DateTime.Parse("2023-10-24 23:08:59"), OrderNo=100},
+			new SysMenu{ Id=14847352006726, Pid=14847352006725, Title="查询", Path="", Name="", Component="", Icon="ele-Document", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2023-10-24 23:08:59"), OrderNo=101},
+			new SysMenu{ Id=14847352006727, Pid=14847352006725, Title="详情", Path="", Name="", Component="", Icon="ele-Document", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2023-10-24 23:08:59"), OrderNo=104},
+			new SysMenu{ Id=14847352006728, Pid=14847352006725, Title="增加", Path="", Name="", Component="", Icon="ele-Document", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2023-10-24 23:08:59"), OrderNo=107},
+			new SysMenu{ Id=14847352006729, Pid=14847352006725, Title="删除", Path="", Name="", Component="", Icon="ele-Document", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2023-10-24 23:08:59"), OrderNo=110},
+			new SysMenu{ Id=14847352006730, Pid=14847352006725, Title="编辑", Path="", Name="", Component="", Icon="ele-Document", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2023-10-24 23:08:59"), OrderNo=113},
+			
+
+			//hyproyun_auto_code
+
         };
     }
 }
