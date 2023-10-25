@@ -39,7 +39,7 @@ public class T_WorkShopService : IDynamicApiController, ITransient
                 OrgIdName = orgid.Name,
             })
 ;
-        query = query.OrderBuilder(input, "", "CreateTime");
+        query = query.OrderBuilder(input, "", "u.CreateTime");
         return await query.ToPagedListAsync(input.Page, input.PageSize);
     }
 

@@ -46,7 +46,7 @@ public class T_WorkLineService : IDynamicApiController, ITransient
                 Id = u.Id, 
             })
 ;
-        query = query.OrderBuilder(input, "", "CreateTime");
+        query = query.OrderBuilder(input, "", "u.CreateTime");
         return await query.ToPagedListAsync(input.Page, input.PageSize);
     }
 
