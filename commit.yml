@@ -3,39 +3,33 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '24e996113514c09be8aec8eba1dd3e1de4a50d13'
-    oldFile: !uuid '709279d082cfa0eacaf7318b5f927bc5a2359c42'
+    newFile: !uuid '25680594ceba84bd6475c7681b035829fb987099'
+    oldFile: !uuid '24e996113514c09be8aec8eba1dd3e1de4a50d13'
+  /Admin.NET/Admin.NET.Application:
+    newFile: !uuid '06f7c12f1abc6f4aa92a32dcd084b87830145cba'
+    oldFile: !uuid 'e3c918c333afd94aaefff839f618bbde664c2654'
+  /Admin.NET/Admin.NET.Application/Configuration:
+    newFile: !uuid 'c346df5c8ace62a95bce86ea283962e7bb985f5e'
+    oldFile: !uuid '1fd9b4d41c9ed03b6db7982b5720c97b406436dc'
+  /Admin.NET/Admin.NET.Application/Configuration/Cache.json:
+    newFile: !uuid 'bcd5268d07e751d7388376a3ac51ce5015b81ec4'
+    oldFile: !uuid '4484477a1e2e35545f78933314257c99d0799108'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid 'b894c2200f25b5215fa694e09dd54e2cfab87f61'
-    oldFile: !uuid '3f8c74624400e8da9945b6485f5cb2a1daaef309'
-  /Admin.NET/Admin.NET.Core/SignatureAuth:
-    newFile: !uuid '0f0ea4ff5f6eb0445321ae634daf3f136aa7e670'
-    oldFile: !uuid '59cc6c8f146c3b3f370b980b8d6157eeabe43f58'
-  /Admin.NET/Admin.NET.Core/SignatureAuth/SignatureAuthenticationDefaults.cs:
-    newFile: !uuid '4833a0d85ee0bdd665adf2d6afe75a5eced3e47e'
-    oldFile: !uuid '2ec180054e0d2b189f2446eea3fbd2b602f65a88'
-  /Web:
-    newFile: !uuid 'b6f86c17854ffa31dd1d9f04265fc0c107d0a93c'
-    oldFile: !uuid '0241b93278eb2d48ab15477f86798f3b82ab6288'
-  /Web/src:
-    newFile: !uuid '7fafdba6483840847f4ef587564b47fc2d75252f'
-    oldFile: !uuid 'edad5b31a0418db97ea60279a7bb5f37e0342214'
-  /Web/src/views:
-    newFile: !uuid 'f7f9eb12f668f04ba4a2e355b772e770422dcf2a'
-    oldFile: !uuid 'd670a617a49b82d19a818e7d4e6f73b06ca7437c'
-  /Web/src/views/system:
-    newFile: !uuid 'e4a994bca6070972e16fc9271df01864f7f3034c'
-    oldFile: !uuid '96788cfe6cf2ef96ccb0981014aa673e9017985f'
-  /Web/src/views/system/openAccess:
-    newFile: !uuid '84211112cc31593eef06bf701d132d2fd5bb8b6d'
-    oldFile: !uuid 'c48c8c0487000aefebbd406680446d0cea841a8e'
-  /Web/src/views/system/openAccess/component:
-    newFile: !uuid '2e440a85dee2e01b0fb4e7e0cd3a05a58df6b4b4'
-    oldFile: !uuid 'e6a05bad2e4b776670b4714407986411bf396b63'
-  /Web/src/views/system/openAccess/component/helpView.vue:
-    newFile: !uuid '2fe899d0841b46864b1ef2422c983397e1a91837'
-    oldFile: !uuid 'e45fa37788b0cf0eaa19e3166b2f1097562ca188'
-gitCommitId: !uuid 'bfd66002bd5c13dc8143729cc21577dde8efa014'
+    newFile: !uuid 'eed4e6201ea8f32a407bbb9a87e7a2c8cc632a33'
+    oldFile: !uuid 'b894c2200f25b5215fa694e09dd54e2cfab87f61'
+  /Admin.NET/Admin.NET.Core/Cache:
+    newFile: !uuid '637c5e52936eb5431738a45d90f5f4b93727eb01'
+    oldFile: !uuid '1c96c0e87c7fc34a064aebe49850a05cacf8354b'
+  /Admin.NET/Admin.NET.Core/Cache/CacheSetup.cs:
+    newFile: !uuid '0f31dee2c25f51974d269e09cee1c8a58710444f'
+    oldFile: !uuid '3729a240a776b814fa88b80e743f3515f38c0ebc'
+  /Admin.NET/Admin.NET.Core/Option:
+    newFile: !uuid 'd4b0fb310fff8cb354e7b46ac126ef30ce9b7125'
+    oldFile: !uuid 'dcdda7ebbe67c57dad06cc3523b22c643de2b43d'
+  /Admin.NET/Admin.NET.Core/Option/CacheOptions.cs:
+    newFile: !uuid '2fa1fdc3d434ef9779cf531fce269ef326c4f842'
+    oldFile: !uuid 'f3a3d12a63b6abbaf0a72f057af6b63886055392'
+gitCommitId: !uuid '6e76d9e01b4e7615a7bbde462358f51618dd8800'
 renames: {
   }
-revisionId: 1209
+revisionId: 1210
