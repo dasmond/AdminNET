@@ -3,21 +3,60 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '3fd41a82757d36398e71379c0cb842513e3861ed'
-    oldFile: !uuid '961fdd6eea06489e39bc74d854e362488184d526'
+    newFile: !uuid 'b04c4e8a5969620a96fed8a3cc1af66726583d1f'
+    oldFile: !uuid '3fd41a82757d36398e71379c0cb842513e3861ed'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid 'c509c4f3ab0e380aee09019801765f93e8c23ae1'
-    oldFile: !uuid 'bd1fca5478539c5bbd65a204bf3e35097b8fc7aa'
-  /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
-    newFile: !uuid '1d1c69825ddcf347ebddf85183bb8e6b0b00be79'
-    oldFile: !uuid '4e5a4c651d715ee608a9f35e4b4f3a24e83f94e4'
-  /Admin.NET/Admin.NET.Core/Entity:
-    newFile: !uuid 'a0b7ec3b6d89b19c3915f6b94fff82bbf76c4d19'
-    oldFile: !uuid 'b248692d3881e93bca4e10f2726d42989c99a8fd'
-  /Admin.NET/Admin.NET.Core/Entity/SysDictData.cs:
-    newFile: !uuid '43275835486e3b3671a33d6038e4cf036fe0997c'
-    oldFile: !uuid 'f4092e58a5dcde6245be37b0c965909fd61c0cb8'
-gitCommitId: !uuid '0a97c578c628f8a77d6e47784f6e54f2436f2bbc'
+    newFile: !uuid '3dda6290a2dc932e22e671dfec1542a3090d8e50'
+    oldFile: !uuid 'c509c4f3ab0e380aee09019801765f93e8c23ae1'
+  /Admin.NET/Admin.NET.Core/Service:
+    newFile: !uuid 'a22d3589eb339a89ec12ceb1bf848b9bbdc6179e'
+    oldFile: !uuid '23c6ce05639a2db79c8bf15df9a421e270736dc3'
+  /Admin.NET/Admin.NET.Core/Service/File:
+    newFile: !uuid '397080779fa93f3e7fae1bac7971dfb7c72c57a0'
+    oldFile: !uuid '5b811d53e16a14e728bc823eeb992bb850dd03ba'
+  /Admin.NET/Admin.NET.Core/Service/File/Dto:
+    newFile: !uuid '9d25c5de58f060d789877a6910ffcadf13fa5587'
+    oldFile: !uuid '041191f4732e83cb307896b146adfd49a9bb621e'
+  /Admin.NET/Admin.NET.Core/Service/File/Dto/FileInput.cs:
+    newFile: !uuid '61031eeba7710385210133492418c22b381d66d1'
+    oldFile: !uuid '74455574a9be583f558315d8acd967500dcf999b'
+  /Admin.NET/Admin.NET.Core/Service/File/SysFileService.cs:
+    newFile: !uuid '280ff5b172dca678a892ab56425d470d8da20036'
+    oldFile: !uuid '7de7cf5aad787af9133540aa8e0a9406064ffa55'
+  /Web:
+    newFile: !uuid 'f472f7a02dded152223038dd9a1bda5b47ba7c8b'
+    oldFile: !uuid 'c3844332a5efc836686d4291004e638f2b501708'
+  /Web/src:
+    newFile: !uuid '00384bee7e9acd41dc21ad66c88dcb8fe4b5ffbf'
+    oldFile: !uuid '7b9a90dbf3b48ea6201c568d510f30cd836f0ca2'
+  /Web/src/api-services:
+    newFile: !uuid '6b3017cc7f5be1714a16304da9e4b5689d1cde46'
+    oldFile: !uuid '2c16b9de5e4335088a15f5dbbb462a553ef4d525'
+  /Web/src/api-services/apis:
+    newFile: !uuid '6d73e88f327475393013aeb99acd010142bec6e9'
+    oldFile: !uuid 'b9b6dce298d1e650275e4e23ff926ab063c3dec0'
+  /Web/src/api-services/apis/sys-file-api.ts:
+    newFile: !uuid '717b1b66a10fd766e6c8dbf800237f74e57b08d7'
+    oldFile: !uuid '436f6f8173aadce8ff1fff1b4ed12a8cd0ebf633'
+  /Web/src/api-services/models:
+    newFile: !uuid '102b4110802b9b294bcba2cc6de473e39e94d79e'
+    oldFile: !uuid '7cbd78b7820415e29359445f932262bca80ca1a6'
+  /Web/src/api-services/models/add-dict-data-input.ts:
+    newFile: !uuid '521de4dde08df0df362996273273b4b30b71f33a'
+    oldFile: !uuid 'be4b82c0413fd899731fb9b1bfdfb13faf072eb3'
+  /Web/src/api-services/models/index.ts:
+    newFile: !uuid '60b1a88750072bbe82ef300b57640957b8bf421e'
+    oldFile: !uuid '10e7e1ba46a3e2296e57fe9050cdb895a5db9ac4'
+  /Web/src/api-services/models/sys-dict-data.ts:
+    newFile: !uuid '1cb49a892c31ac7eea2d38af21ecdf06291e12c1'
+    oldFile: !uuid '4a9a34555d72fb2e3c255f1dcc7d078bceef6967'
+  /Web/src/api-services/models/update-dict-data-input.ts:
+    newFile: !uuid 'ed1baa927b51ec546346dae749a0afc37cbcc3b4'
+    oldFile: !uuid '62df0a8339dc1f7cbf5961ed7f3eeb901cf29e0d'
+  /Web/src/api-services/models/upload-file-from-base64-input.ts:
+    newFile: !uuid 'cfe0ac5fe7559cbe1c624285bc47cdc64e8a3a9e'
+    oldFile: null
+gitCommitId: !uuid 'ea53ed2de4874b4227db0ffc1bb18f896aaafef4'
 renames: {
   }
-revisionId: 1177
+revisionId: 1178
