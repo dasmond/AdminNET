@@ -591,8 +591,16 @@ public class SysCodeGenService : IDynamicApiController, ITransient
             for (int i = 0; i < allMenuList.Count; i++)
             {
                 SysMenu menu = allMenuList[i];
-                menuStr += String.Format("new SysMenu{{ Id={0}, Pid={1}, Title=\"{2}\", Path=\"{3}\", Name=\"{4}\", Component=\"{5}\", Icon=\"ele-Document\", Type={8}, CreateTime=DateTime.Parse(\"{6}\"), OrderNo={7}}},",
-                menuType.Id + i, menu.Pid, menu.Title, menu.Path, menu.Name, menu.Component, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), menu.OrderNo, i == 0 ? "MenuTypeEnum.Menu" : "MenuTypeEnum.Btn") + "\n\t\t\t";
+                if (i == 0)
+                {
+                    menuStr += String.Format("new SysMenu{{ Id={0}, Pid={1}, Title=\"{2}\", Path=\"{3}\", Name=\"{4}\", Component=\"{5}\", Icon=\"ele-Document\", Type=MenuTypeEnum.Menu, CreateTime=DateTime.Parse(\"{6}\"), OrderNo={7}}},",
+                     menuType.Id + i, menu.Pid, menu.Title, menu.Path, menu.Name, menu.Component, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), menu.OrderNo) + "\n\t\t\t";
+                }
+                else
+                {
+                    menuStr += String.Format("new SysMenu{{ Id={0}, Pid={1}, Title=\"{2}\", Permission=\"{3}\", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse(\"{4}\"), OrderNo={5} }},",
+                    menuType.Id + i, menu.Pid, menu.Title, menu.Permission, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), menu.OrderNo) + "\n\t\t\t";
+                }
             }
 
             menuStr += "\n\n\t\t\t" + "//hyproyun_auto_code";

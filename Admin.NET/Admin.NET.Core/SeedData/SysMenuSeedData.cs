@@ -183,7 +183,7 @@ public class SysMenuSeedData : ISqlSugarEntitySeedData<SysMenu>
             new SysMenu{ Id=1310000000713, Pid=1310000000701, Title="SqlSugar", Path="/doc/SqlSugar", Name="sysSqlSugar", Component="layout/routerView/link", IsIframe=false, IsKeepAlive=false, OutLink="https://www.donet5.com/Home/Doc", Icon="ele-Coin", Type=MenuTypeEnum.Menu, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=120 },
 
             new SysMenu{Id=1310000000714,  Pid = 0	            ,Title="生产制造", Path="/manufacturing",          Name="manufacturing"   , Component="Layout", Icon="ele-WalletFilled"    ,Type=MenuTypeEnum.Dir, CreateTime=DateTime.Parse("2023-10-25 00:00:00"), OrderNo=85  }, 
-            new SysMenu{Id=1310000000715,  Pid = 1310000000714  ,Title="基础资料", Path="/info",                   Name="info"            , Component="Layout", Icon="ele-Document"        ,Type=MenuTypeEnum.Dir, CreateTime=DateTime.Parse("2023-10-25 00:00:00"), OrderNo=100 }, 
+            new SysMenu{Id=1310000000715,  Pid = 1310000000714  ,Title="基础资料", Path="/manufacturing/info",                   Name="info"            , Component="Layout", Icon="ele-Document"        ,Type=MenuTypeEnum.Dir, CreateTime=DateTime.Parse("2023-10-25 00:00:00"), OrderNo=100 }, 
             new SysMenu{Id=1310000000716,  Pid = 0	            ,Title="销售管理", Path="/sale",                   Name="sale"            , Component="Layout", Icon="ele-Connection"      ,Type=MenuTypeEnum.Dir, CreateTime=DateTime.Parse("2023-10-25 00:00:00"), OrderNo=80  }, 
             new SysMenu{Id=1310000000717,  Pid = 1310000000716  ,Title="销售报价", Path="/sale/quote",             Name="quote"           , Component="Layout", Icon="ele-Sell"            ,Type=MenuTypeEnum.Dir, CreateTime=DateTime.Parse("2023-10-25 00:00:00"), OrderNo=10  }, 
             new SysMenu{Id=1310000000718,  Pid = 0	            ,Title="计划管理", Path="/plan" ,                  Name="plan"            , Component="Layout", Icon="ele-TrendCharts"     ,Type=MenuTypeEnum.Dir, CreateTime=DateTime.Parse("2023-10-25 00:00:00"), OrderNo=81  }, 
@@ -201,32 +201,40 @@ public class SysMenuSeedData : ISqlSugarEntitySeedData<SysMenu>
             new SysMenu{Id=1310000000729,  Pid = 1310000000716  ,Title="报表分析", Path="/sale/reportanalysis",Name="reportanalysis"  , Component="Layout", Icon="ele-DocumentCopy"    ,Type=MenuTypeEnum.Dir, CreateTime=DateTime.Parse("2023-10-25 00:00:00"), OrderNo=12 },
 
 
-
-            new SysMenu{ Id=14847503117509, Pid=1310000000715, Title="车间", Path="/manufacturing/info/t_workshop", Name="t_WorkShop", Component="/main/t_WorkShop/index", Icon="ele-Document", Type=MenuTypeEnum.Menu, CreateTime=DateTime.Parse("2023-10-24 23:28:40"), OrderNo=100},
-			new SysMenu{ Id=14847503117510, Pid=14847503117509, Title="查询", Path="", Name="", Component="", Icon="ele-Document", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2023-10-24 23:28:40"), OrderNo=101},
-			new SysMenu{ Id=14847503117511, Pid=14847503117509, Title="详情", Path="", Name="", Component="", Icon="ele-Document", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2023-10-24 23:28:40"), OrderNo=104},
-			new SysMenu{ Id=14847503117512, Pid=14847503117509, Title="增加", Path="", Name="", Component="", Icon="ele-Document", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2023-10-24 23:28:40"), OrderNo=107},
-			new SysMenu{ Id=14847503117513, Pid=14847503117509, Title="删除", Path="", Name="", Component="", Icon="ele-Document", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2023-10-24 23:28:40"), OrderNo=110},
-			new SysMenu{ Id=14847503117514, Pid=14847503117509, Title="编辑", Path="", Name="", Component="", Icon="ele-Document", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2023-10-24 23:28:40"), OrderNo=113},
-			new SysMenu{ Id=14847503117515, Pid=14847503117509, Title="组织", Path="", Name="", Component="", Icon="ele-Document", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2023-10-24 23:28:40"), OrderNo=116},
+			new SysMenu{ Id=14877295933509, Pid=1310000000715, Title="车间", Path="/manufacturing/info/t_workshop", Name="t_WorkShop", Component="/main/t_WorkShop/index", Icon="ele-Document", Type=MenuTypeEnum.Menu, CreateTime=DateTime.Parse("2023-10-27 16:07:56"), OrderNo=100},
+			new SysMenu{ Id=14877295933510, Pid=14877295933509, Title="查询", Permission="t_WorkShop:page", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2023-10-27 16:07:56"), OrderNo=101 },
+			new SysMenu{ Id=14877295933511, Pid=14877295933509, Title="详情", Permission="t_WorkShop:detail", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2023-10-27 16:07:56"), OrderNo=104 },
+			new SysMenu{ Id=14877295933512, Pid=14877295933509, Title="增加", Permission="t_WorkShop:add", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2023-10-27 16:07:56"), OrderNo=107 },
+			new SysMenu{ Id=14877295933513, Pid=14877295933509, Title="删除", Permission="t_WorkShop:delete", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2023-10-27 16:07:56"), OrderNo=110 },
+			new SysMenu{ Id=14877295933514, Pid=14877295933509, Title="编辑", Permission="t_WorkShop:edit", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2023-10-27 16:07:56"), OrderNo=113 },
+			new SysMenu{ Id=14877295933515, Pid=14877295933509, Title="组织", Permission="t_WorkShop:SysOrgOrgIdDropdown", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2023-10-27 16:07:56"), OrderNo=116 },
 			
 
-			new SysMenu{ Id=14847503576133, Pid=1310000000715, Title="生产中心", Path="/manufacturing/info/t_workgroup", Name="t_WorkGroup", Component="/main/t_WorkGroup/index", Icon="ele-Document", Type=MenuTypeEnum.Menu, CreateTime=DateTime.Parse("2023-10-24 23:28:43"), OrderNo=100},
-			new SysMenu{ Id=14847503576134, Pid=14847503576133, Title="查询", Path="", Name="", Component="", Icon="ele-Document", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2023-10-24 23:28:43"), OrderNo=101},
-			new SysMenu{ Id=14847503576135, Pid=14847503576133, Title="详情", Path="", Name="", Component="", Icon="ele-Document", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2023-10-24 23:28:43"), OrderNo=104},
-			new SysMenu{ Id=14847503576136, Pid=14847503576133, Title="增加", Path="", Name="", Component="", Icon="ele-Document", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2023-10-24 23:28:43"), OrderNo=107},
-			new SysMenu{ Id=14847503576137, Pid=14847503576133, Title="删除", Path="", Name="", Component="", Icon="ele-Document", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2023-10-24 23:28:43"), OrderNo=110},
-			new SysMenu{ Id=14847503576138, Pid=14847503576133, Title="编辑", Path="", Name="", Component="", Icon="ele-Document", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2023-10-24 23:28:43"), OrderNo=113},
-			new SysMenu{ Id=14847503576139, Pid=14847503576133, Title="车间", Path="", Name="", Component="", Icon="ele-Document", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2023-10-24 23:28:43"), OrderNo=116},
+			new SysMenu{ Id=14877310938949, Pid=1310000000715, Title="生产中心", Path="/manufacturing/info/t_workgroup", Name="t_WorkGroup", Component="/main/t_WorkGroup/index", Icon="ele-Document", Type=MenuTypeEnum.Menu, CreateTime=DateTime.Parse("2023-10-27 16:09:53"), OrderNo=100},
+			new SysMenu{ Id=14877310938950, Pid=14877310938949, Title="查询", Permission="t_WorkGroup:page", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2023-10-27 16:09:53"), OrderNo=101 },
+			new SysMenu{ Id=14877310938951, Pid=14877310938949, Title="详情", Permission="t_WorkGroup:detail", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2023-10-27 16:09:53"), OrderNo=104 },
+			new SysMenu{ Id=14877310938952, Pid=14877310938949, Title="增加", Permission="t_WorkGroup:add", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2023-10-27 16:09:53"), OrderNo=107 },
+			new SysMenu{ Id=14877310938953, Pid=14877310938949, Title="删除", Permission="t_WorkGroup:delete", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2023-10-27 16:09:53"), OrderNo=110 },
+			new SysMenu{ Id=14877310938954, Pid=14877310938949, Title="编辑", Permission="t_WorkGroup:edit", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2023-10-27 16:09:53"), OrderNo=113 },
+			new SysMenu{ Id=14877310938955, Pid=14877310938949, Title="车间", Permission="t_WorkGroup:T_WorkShopWorkShopIDDropdown", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2023-10-27 16:09:53"), OrderNo=116 },
 			
 
-			new SysMenu{ Id=14847503900101, Pid=1310000000715, Title="生产线", Path="/manufacturing/info/t_workline", Name="t_WorkLine", Component="/main/t_WorkLine/index", Icon="ele-Document", Type=MenuTypeEnum.Menu, CreateTime=DateTime.Parse("2023-10-24 23:28:46"), OrderNo=100},
-			new SysMenu{ Id=14847503900102, Pid=14847503900101, Title="查询", Path="", Name="", Component="", Icon="ele-Document", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2023-10-24 23:28:46"), OrderNo=101},
-			new SysMenu{ Id=14847503900103, Pid=14847503900101, Title="详情", Path="", Name="", Component="", Icon="ele-Document", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2023-10-24 23:28:46"), OrderNo=104},
-			new SysMenu{ Id=14847503900104, Pid=14847503900101, Title="增加", Path="", Name="", Component="", Icon="ele-Document", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2023-10-24 23:28:46"), OrderNo=107},
-			new SysMenu{ Id=14847503900105, Pid=14847503900101, Title="删除", Path="", Name="", Component="", Icon="ele-Document", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2023-10-24 23:28:46"), OrderNo=110},
-			new SysMenu{ Id=14847503900106, Pid=14847503900101, Title="编辑", Path="", Name="", Component="", Icon="ele-Document", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2023-10-24 23:28:46"), OrderNo=113},
-			new SysMenu{ Id=14847503900107, Pid=14847503900101, Title="生产中心", Path="", Name="", Component="", Icon="ele-Document", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2023-10-24 23:28:46"), OrderNo=116},
+			new SysMenu{ Id=14877313700037, Pid=1310000000715, Title="生产线", Path="/manufacturing/info/t_workline", Name="t_WorkLine", Component="/main/t_WorkLine/index", Icon="ele-Document", Type=MenuTypeEnum.Menu, CreateTime=DateTime.Parse("2023-10-27 16:10:15"), OrderNo=100},
+			new SysMenu{ Id=14877313700038, Pid=14877313700037, Title="查询", Permission="t_WorkLine:page", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2023-10-27 16:10:15"), OrderNo=101 },
+			new SysMenu{ Id=14877313700039, Pid=14877313700037, Title="详情", Permission="t_WorkLine:detail", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2023-10-27 16:10:15"), OrderNo=104 },
+			new SysMenu{ Id=14877313700040, Pid=14877313700037, Title="增加", Permission="t_WorkLine:add", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2023-10-27 16:10:15"), OrderNo=107 },
+			new SysMenu{ Id=14877313700041, Pid=14877313700037, Title="删除", Permission="t_WorkLine:delete", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2023-10-27 16:10:15"), OrderNo=110 },
+			new SysMenu{ Id=14877313700042, Pid=14877313700037, Title="编辑", Permission="t_WorkLine:edit", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2023-10-27 16:10:15"), OrderNo=113 },
+			new SysMenu{ Id=14877313700043, Pid=14877313700037, Title="生成中心", Permission="t_WorkLine:T_WorkGroupWorkGroupIDDropdown", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2023-10-27 16:10:15"), OrderNo=116 },
+			
+
+			new SysMenu{ Id=14877372480197, Pid=1310000000727, Title="物料管理", Path="/material/technologyInfo/t_material", Name="t_Material", Component="/main/t_Material/index", Icon="ele-Document", Type=MenuTypeEnum.Menu, CreateTime=DateTime.Parse("2023-10-27 16:17:54"), OrderNo=100},
+			new SysMenu{ Id=14877372480198, Pid=14877372480197, Title="查询", Permission="t_Material:page", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2023-10-27 16:17:54"), OrderNo=101 },
+			new SysMenu{ Id=14877372480199, Pid=14877372480197, Title="详情", Permission="t_Material:detail", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2023-10-27 16:17:54"), OrderNo=104 },
+			new SysMenu{ Id=14877372480200, Pid=14877372480197, Title="增加", Permission="t_Material:add", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2023-10-27 16:17:54"), OrderNo=107 },
+			new SysMenu{ Id=14877372480201, Pid=14877372480197, Title="删除", Permission="t_Material:delete", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2023-10-27 16:17:54"), OrderNo=110 },
+			new SysMenu{ Id=14877372480202, Pid=14877372480197, Title="编辑", Permission="t_Material:edit", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2023-10-27 16:17:54"), OrderNo=113 },
+			new SysMenu{ Id=14877372480203, Pid=14877372480197, Title="组织", Permission="t_Material:SysOrgOrgIDDropdown", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2023-10-27 16:17:54"), OrderNo=116 },
 			
 
 			//hyproyun_auto_code
