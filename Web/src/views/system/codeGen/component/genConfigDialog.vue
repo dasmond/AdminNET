@@ -30,6 +30,11 @@
 						</el-select>
 					</template>
 				</el-table-column>
+        <el-table-column prop="tableNickName" label="外键" minWidth="90" show-overflow-tooltip >
+          <template #default="scope">
+            <div v-if="scope.row.effectType === 'fk'">{{scope.row.fkTableName + '.' + scope.row.fkColumnName}}</div>
+          </template>
+        </el-table-column>
 
 				<el-table-column prop="whetherTable" label="列表显示" width="85" align="center" show-overflow-tooltip>
 					<template #default="scope">
