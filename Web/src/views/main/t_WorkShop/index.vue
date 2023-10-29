@@ -49,10 +49,10 @@
         <el-table-column prop="workShopName" label="车间名称" width="140" show-overflow-tooltip="" />
         <el-table-column prop="orgId" label="所属机构Id" width="90" show-overflow-tooltip="">
           <template #default="scope">
-            <span>{{scope.row.orgIdName}}</span>
-            
+            <span>{{scope.row.orgIdId}}</span>
+
           </template>
-          
+
         </el-table-column>
         <el-table-column label="操作" width="140" align="center" fixed="right" show-overflow-tooltip="" v-if="auth('t_WorkShop:edit') || auth('t_WorkShop:delete')">
           <template #default="scope">
@@ -90,6 +90,7 @@
   import editDialog from '/@/views/main/t_WorkShop/component/editDialog.vue'
   import { pageT_WorkShop, deleteT_WorkShop } from '/@/api/main/t_WorkShop';
   import { getSysOrgOrgIdDropdown } from '/@/api/main/t_WorkShop';
+  import router from "/@/router";
 
 
   const editDialogRef = ref();
@@ -115,14 +116,16 @@
 
   // 打开新增页面
   const openAddT_WorkShop = () => {
-    editT_WorkShopTitle.value = '添加车间';
-    editDialogRef.value.openDialog({});
+    // editT_WorkShopTitle.value = '添加车间';
+    // editDialogRef.value.openDialog({});
+    router.push('/manufacturing/info/t_workshop/add')
   };
 
   // 打开编辑页面
   const openEditT_WorkShop = (row: any) => {
-    editT_WorkShopTitle.value = '编辑车间';
-    editDialogRef.value.openDialog(row);
+    // editT_WorkShopTitle.value = '编辑车间';
+    // editDialogRef.value.openDialog(row);
+    router.push({path: '/manufacturing/info/t_workshop/add', query: row})
   };
 
   // 删除
