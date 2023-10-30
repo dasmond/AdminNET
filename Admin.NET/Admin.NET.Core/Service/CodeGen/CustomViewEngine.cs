@@ -47,6 +47,14 @@ public class CustomViewEngine : ViewEngineModel
         }
     }
 
+    public string LowerAllClassName
+    {
+        get
+        {
+            return ClassName.ToLower();
+        }
+    }
+
     public List<CodeGenConfig> QueryWhetherList { get; set; }
 
     public List<CodeGenConfig> TableField { get; set; }

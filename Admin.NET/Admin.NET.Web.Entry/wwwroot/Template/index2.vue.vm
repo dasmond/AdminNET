@@ -202,12 +202,12 @@
 
   // 打开新增页面
   const openAdd@(@Model.ClassName) = () => {
-    router.push('@(@Model.MenuPathName)/@(@Model.LowerClassName)/add')
+    router.push('@(@Model.MenuPathName)/@(@Model.LowerAllClassName)/add')
   };
 
   // 打开编辑页面
   const openEdit@(@Model.ClassName) = (row: any) => {
-    router.push({path: '@(@Model.MenuPathName)/@(@Model.LowerClassName)/add', query: {params: JSON.stringify(row)}})
+    router.push({path: '@(@Model.MenuPathName)/@(@Model.LowerAllClassName)/add', query: {params: JSON.stringify(row)}})
   };
 
   // 删除

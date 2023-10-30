@@ -395,9 +395,10 @@ public class SysCodeGenService : IDynamicApiController, ITransient
     /// <param name="className"></param>
     /// <param name="busName"></param>
     /// <param name="pid"></param>
+    /// <param name="addPageMode"></param>
     /// <param name="tableFieldList"></param>
     /// <returns></returns>
-    private async Task AddMenu(string className, string busName, long pid, string AddPageMode, List<CodeGenConfig> tableFieldList)
+    private async Task AddMenu(string className, string busName, long pid, string addPageMode, List<CodeGenConfig> tableFieldList)
     {
         var pPath = string.Empty;
         // 若 pid=0 为顶级则创建菜单目录
@@ -468,7 +469,7 @@ public class SysCodeGenService : IDynamicApiController, ITransient
 
         SysMenu menuTypeAdd = null;
 
-        if ("2".Equals(AddPageMode))
+        if ("2".Equals(addPageMode))
         {
             // 菜单
             menuTypeAdd = new SysMenu

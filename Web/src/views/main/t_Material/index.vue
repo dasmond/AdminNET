@@ -160,14 +160,7 @@
         <el-table-column prop="storageID" label="默认仓库ID" width="90" show-overflow-tooltip="" />
         <el-table-column prop="spaceID" label="默认仓位ID" width="90" show-overflow-tooltip="" />
         <el-table-column prop="storageLock" label="使用库存分配" width="90" show-overflow-tooltip="" />
-        <el-table-column prop="batchcode" label="使用批号" width="120" show-overflow-tooltip="">
-          <template #default="scope">
-            <el-tag v-if="scope.row.batchcode"> 是 </el-tag>
-            <el-tag type="danger" v-else> 否 </el-tag>
-            
-          </template>
-          
-        </el-table-column>
+        <el-table-column prop="batchcode" label="使用批号" width="140" show-overflow-tooltip="" />
         <el-table-column prop="batchrule" label="批号规则" width="140" show-overflow-tooltip="" />
         <el-table-column label="操作" width="140" align="center" fixed="right" show-overflow-tooltip="" v-if="auth('t_Material:edit') || auth('t_Material:delete')">
           <template #default="scope">
@@ -187,11 +180,6 @@
 				@current-change="handleCurrentChange"
 				layout="total, sizes, prev, pager, next, jumper"
 	/>
-      <editDialog
-        ref="editDialogRef"
-        :title="editT_MaterialTitle"
-        @reloadTable="handleQuery"
-      />
     </el-card>
   </div>
 </template>
@@ -202,17 +190,17 @@
   import { auth } from '/@/utils/authFunction';
   //import { formatDate } from '/@/utils/formatTime';
 
-  import editDialog from '/@/views/main/t_Material/component/editDialog.vue'
   import { pageT_Material, deleteT_Material } from '/@/api/main/t_Material';
   import { getSysOrgOrgIDDropdown } from '/@/api/main/t_Material';
   import { getDictDataList } from '/@/api/system/admin';
+  import router from "/@/router";
 
   const getstatusData = ref<any>([]);
   const getflagData = ref<any>([]);
   const getmaterialOriginData = ref<any>([]);
   const getmaterialPropData = ref<any>([]);
 
-  const editDialogRef = ref();
+
   const loading = ref(false);
   const tableData = ref<any>([]);
   const queryParams = ref<any>({});
@@ -221,7 +209,6 @@
   pageSize: 10,
   total: 0,
   });
-  const editT_MaterialTitle = ref("");
 
 
   // 查询操作
@@ -234,19 +221,17 @@
     getstatusData.value = await dictTypeDataList('IfAllowed');
     getflagData.value = await dictTypeDataList('IfAllowed');
     getmaterialOriginData.value = await dictTypeDataList('materialorigin');
-    getmaterialPropData.value = await dictTypeDataList('materialorigin');
+    getmaterialPropData.value = await dictTypeDataList('suite');
   };
 
   // 打开新增页面
   const openAddT_Material = () => {
-    editT_MaterialTitle.value = '添加物料管理';
-    editDialogRef.value.openDialog({});
+    router.push('/material/technologyInfo/t_material/add')
   };
 
   // 打开编辑页面
   const openEditT_Material = (row: any) => {
-    editT_MaterialTitle.value = '编辑物料管理';
-    editDialogRef.value.openDialog(row);
+    router.push({path: '/material/technologyInfo/t_material/add', query: {params: JSON.stringify(row)}})
   };
 
   // 删除
