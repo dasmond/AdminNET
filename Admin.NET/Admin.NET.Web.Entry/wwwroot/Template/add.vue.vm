@@ -14,7 +14,7 @@
 					}else{
 					if (@column.WhetherAddUpdate == "Y"){
 					if(@column.EffectType == "fk"){
-					@:<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
+					@:<el-col :xs="24" :sm="8" :md="8" :lg="8" :xl="8" class="mb20">
 						@:<el-form-item label="@column.ColumnComment" prop="@(@column.LowerPropertyName)">
 							@:<el-select clearable filterable v-model="ruleForm.@(@column.LowerPropertyName)" placeholder="请选择@(@column.ColumnComment)">
 								@:<el-option v-for="(item,index) in @LowerFirstLetter(@column.FkEntityName)@(@column.PropertyName)DropdownList" :key="index" :value="item.value" :label="item.label" />
@@ -25,7 +25,7 @@
 						@:
 					</el-col>
 					}else if(@column.EffectType == "ApiTreeSelect"){
-					@:<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
+					@:<el-col :xs="24" :sm="8" :md="8" :lg="8" :xl="8" class="mb20">
 						@:<el-form-item label="@column.ColumnComment" prop="@(@column.LowerPropertyName)">
 							<el-cascader
 								@:options="@LowerFirstLetter(@column.FkEntityName)TreeData"
@@ -45,7 +45,7 @@
 						@:
 					</el-col>
 					}else if(@column.EffectType == "Input"){
-					@:<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
+					@:<el-col :xs="24" :sm="8" :md="8" :lg="8" :xl="8" class="mb20">
 						@:<el-form-item label="@column.ColumnComment" prop="@(@column.LowerPropertyName)">
 							@:<el-input v-model="ruleForm.@(@column.LowerPropertyName)" placeholder="请输入@(@column.ColumnComment)" maxlength="@(@column.ColumnLength)" show-word-limit clearable />
 							@:
@@ -53,7 +53,7 @@
 						@:
 					</el-col>
 					}else if(@column.EffectType == "InputNumber"){
-					@:<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
+					@:<el-col :xs="24" :sm="8" :md="8" :lg="8" :xl="8" class="mb20">
 						@:<el-form-item label="@column.ColumnComment" prop="@(@column.LowerPropertyName)">
 							@:<el-input-number v-model="ruleForm.@(@column.LowerPropertyName)" placeholder="请输入@(@column.ColumnComment)" clearable />
 							@:
@@ -61,7 +61,7 @@
 						@:
 					</el-col>
 					}else if(@column.EffectType == "InputTextArea"){
-					@:<el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="mb20">
+					@:<el-col :xs="24" :sm="8" :md="8" :lg="8" :xl="8" class="mb20">
 						@:<el-form-item label="@column.ColumnComment" prop="@(@column.LowerPropertyName)">
 							@:<el-input v-model="ruleForm.@(@column.LowerPropertyName)" placeholder="请输入@(@column.ColumnComment)" type="textarea" maxlength="@(@column.ColumnLength)" show-word-limit clearable />
 							@:
@@ -69,7 +69,7 @@
 						@:
 					</el-col>
 					}else if(@column.EffectType == "Select"){
-					@:<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
+					@:<el-col :xs="24" :sm="8" :md="8" :lg="8" :xl="8" class="mb20">
 						@:<el-form-item label="@column.ColumnComment" prop="@(@column.LowerPropertyName)">
 							@:<el-select clearable v-model="ruleForm.@(@column.LowerPropertyName)" placeholder="请选择@(@column.ColumnComment)">
 								@:<el-option v-for="(item,index) in  getEdit@(@column.LowerPropertyName)Data"  :key="index" :value="item.code" :label="item.value"></el-option>
@@ -80,7 +80,7 @@
 						@:
 					</el-col>
 					}else if(@column.EffectType == "ConstSelector"){
-					@:<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
+					@:<el-col :xs="24" :sm="8" :md="8" :lg="8" :xl="8" class="mb20">
 						@:<el-form-item label="@column.ColumnComment" prop="@(@column.LowerPropertyName)">
 							@:<el-select clearable v-model="ruleForm.@(@column.LowerPropertyName)" placeholder="请选择@(@column.ColumnComment)">
 								@:<el-option v-for="(item,index) in getConstType('@column.DictTypeCode')" :key="index" :label="item.name" :value="item.code">{{ item.name }}</el-option>
@@ -91,7 +91,7 @@
 						@:
 					</el-col>
 					}else if(@column.EffectType == "Switch"){
-					@:<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
+					@:<el-col :xs="24" :sm="8" :md="8" :lg="8" :xl="8" class="mb20">
 						@:<el-form-item label="@column.ColumnComment" prop="@(@column.LowerPropertyName)">
 							@:<el-switch v-model="ruleForm.@(@column.LowerPropertyName)" active-text="是" inactive-text="否" />
 							@:
@@ -99,7 +99,7 @@
 						@:
 					</el-col>
 					}else if(@column.EffectType == "DatePicker"){
-					@:<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
+					@:<el-col :xs="24" :sm="8" :md="8" :lg="8" :xl="8" class="mb20">
 						@:<el-form-item label="@column.ColumnComment" prop="@(@column.LowerPropertyName)">
 							@:<el-date-picker v-model="ruleForm.@(@column.LowerPropertyName)" type="date" placeholder="@(@column.ColumnComment)" />
 							@:
@@ -107,7 +107,7 @@
 						@:
 					</el-col>
 					}else if(@column.EffectType == "Upload"){
-					@:<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
+					@:<el-col :xs="24" :sm="8" :md="8" :lg="8" :xl="8" class="mb20">
 						@:<el-form-item label="@column.ColumnComment" prop="@(@column.LowerPropertyName)">
 							@:<el-upload
 							@:list-type="picture-card"
