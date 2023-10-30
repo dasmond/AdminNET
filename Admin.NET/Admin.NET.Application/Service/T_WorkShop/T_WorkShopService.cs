@@ -32,11 +32,11 @@ public class T_WorkShopService : IDynamicApiController, ITransient
             //处理外键和TreeSelector相关字段的连接
             .LeftJoin<SysOrg>((u, orgid) => u.OrgId == orgid.Id )
             .Select((u, orgid)=> new T_WorkShopOutput{
+                Id = u.Id, 
                 WorkShopCode = u.WorkShopCode, 
                 WorkShopName = u.WorkShopName, 
-                Id = u.Id, 
                 OrgId = u.OrgId, 
-                OrgIdName = orgid.Name,
+                OrgIdId = orgid.Id,
             })
 ;
         query = query.OrderBuilder(input, "", "u.CreateTime");
@@ -118,7 +118,7 @@ public class T_WorkShopService : IDynamicApiController, ITransient
         return await _rep.Context.Queryable<SysOrg>()
                 .Select(u => new
                 {
-                    Label = u.Name,
+                    Label = u.Id,
                     Value = u.Id
                 }
                 ).ToListAsync();

@@ -4,36 +4,36 @@
       <el-form :model="queryParams" ref="queryForm" :inline="true">
         <el-form-item label="关键字">
           <el-input v-model="queryParams.searchKey" clearable="" placeholder="请输入模糊查询关键字"/>
-
+          
         </el-form-item>
         <el-form-item label="车间编号">
           <el-input v-model="queryParams.workShopCode" clearable="" placeholder="请输入车间编号"/>
-
+          
         </el-form-item>
         <el-form-item label="车间名称">
           <el-input v-model="queryParams.workShopName" clearable="" placeholder="请输入车间名称"/>
-
+          
         </el-form-item>
         <el-form-item label="所属机构Id">
           <el-select clearable="" filterable="" v-model="queryParams.orgId" placeholder="请选择所属机构Id">
             <el-option v-for="(item,index) in  sysOrgOrgIdDropdownList" :key="index" :value="item.value" :label="item.label" />
-
+            
           </el-select>
-
+          
         </el-form-item>
         <el-form-item>
           <el-button-group>
             <el-button type="primary"  icon="ele-Search" @click="handleQuery" v-auth="'t_WorkShop:page'"> 查询 </el-button>
             <el-button icon="ele-Refresh" @click="() => queryParams = {}"> 重置 </el-button>
-
+            
           </el-button-group>
-
+          
         </el-form-item>
         <el-form-item>
           <el-button type="primary" icon="ele-Plus" @click="openAddT_WorkShop" v-auth="'t_WorkShop:add'"> 新增 </el-button>
-
+          
         </el-form-item>
-
+        
       </el-form>
     </el-card>
     <el-card class="full-table" shadow="hover" style="margin-top: 8px">
@@ -50,9 +50,9 @@
         <el-table-column prop="orgId" label="所属机构Id" width="90" show-overflow-tooltip="">
           <template #default="scope">
             <span>{{scope.row.orgIdId}}</span>
-
+            
           </template>
-
+          
         </el-table-column>
         <el-table-column label="操作" width="140" align="center" fixed="right" show-overflow-tooltip="" v-if="auth('t_WorkShop:edit') || auth('t_WorkShop:delete')">
           <template #default="scope">
@@ -72,7 +72,11 @@
 				@current-change="handleCurrentChange"
 				layout="total, sizes, prev, pager, next, jumper"
 	/>
-
+      <editDialog
+        ref="editDialogRef"
+        :title="editT_WorkShopTitle"
+        @reloadTable="handleQuery"
+      />
     </el-card>
   </div>
 </template>
@@ -83,12 +87,12 @@
   import { auth } from '/@/utils/authFunction';
   //import { formatDate } from '/@/utils/formatTime';
 
+  import editDialog from '/@/views/main/t_WorkShop/component/editDialog.vue'
   import { pageT_WorkShop, deleteT_WorkShop } from '/@/api/main/t_WorkShop';
   import { getSysOrgOrgIdDropdown } from '/@/api/main/t_WorkShop';
-  import router from "/@/router";
 
 
-
+  const editDialogRef = ref();
   const loading = ref(false);
   const tableData = ref<any>([]);
   const queryParams = ref<any>({});
@@ -97,6 +101,7 @@
   pageSize: 10,
   total: 0,
   });
+  const editT_WorkShopTitle = ref("");
 
 
   // 查询操作
@@ -110,16 +115,14 @@
 
   // 打开新增页面
   const openAddT_WorkShop = () => {
-    // editT_WorkShopTitle.value = '添加车间';
-    // editDialogRef.value.openDialog({});
-    router.push('/manufacturing/info/t_workshop/add')
+    editT_WorkShopTitle.value = '添加车间';
+    editDialogRef.value.openDialog({});
   };
 
   // 打开编辑页面
   const openEditT_WorkShop = (row: any) => {
-    // editT_WorkShopTitle.value = '编辑车间';
-    // editDialogRef.value.openDialog(row);
-    router.push({path: '/manufacturing/info/t_workshop/add', query: {params: JSON.stringify(row)}})
+    editT_WorkShopTitle.value = '编辑车间';
+    editDialogRef.value.openDialog(row);
   };
 
   // 删除
@@ -149,7 +152,7 @@
     handleQuery();
   };
 
-  const sysOrgOrgIdDropdownList = ref<any>([]);
+  const sysOrgOrgIdDropdownList = ref<any>([]); 
   const getSysOrgOrgIdDropdownList = async () => {
     let list = await getSysOrgOrgIdDropdown();
     sysOrgOrgIdDropdownList.value = list.data.result ?? [];

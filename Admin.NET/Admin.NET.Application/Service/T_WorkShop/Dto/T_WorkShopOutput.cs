@@ -6,6 +6,11 @@
 public class T_WorkShopOutput
 {
     /// <summary>
+    /// Id
+    /// </summary>
+    public long Id { get; set; }
+    
+    /// <summary>
     /// 车间编号
     /// </summary>
     public string WorkShopCode { get; set; }
@@ -16,11 +21,6 @@ public class T_WorkShopOutput
     public string WorkShopName { get; set; }
     
     /// <summary>
-    /// Id
-    /// </summary>
-    public long Id { get; set; }
-    
-    /// <summary>
     /// 所属机构Id
     /// </summary>
     public long OrgId { get; set; } 
@@ -28,7 +28,7 @@ public class T_WorkShopOutput
     /// <summary>
     /// 所属机构Id 描述
     /// </summary>
-    public string OrgIdName { get; set; } 
+    public long OrgIdId { get; set; } 
     
     }
  
