@@ -1,14 +1,14 @@
 ﻿namespace Admin.NET.Application;
 
     /// <summary>
-    /// 测试输出参数
+    /// 生产中心输出参数
     /// </summary>
     public class T_WorkGroupDto
     {
         /// <summary>
         /// 所属车间
         /// </summary>
-        public long WorkShopIDId { get; set; }
+        public string WorkShopIDWorkShopName { get; set; }
         
         /// <summary>
         /// Id

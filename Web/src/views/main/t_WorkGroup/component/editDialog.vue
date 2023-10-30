@@ -1,7 +1,7 @@
 ﻿<template>
-	<div class="tn-base-page">
-		<div class="tn-base-page-content">
-			<el-form v-loading="loading" :model="ruleForm" ref="ruleFormRef" label-width="auto" :rules="rules">
+	<div class="t_WorkGroup-container">
+		<el-dialog v-model="isShowDialog" :title="props.title" :width="800" draggable="">
+			<el-form :model="ruleForm" ref="ruleFormRef" label-width="auto" :rules="rules">
 				<el-row :gutter="35">
 					<el-form-item v-show="false">
 						<el-input v-model="ruleForm.id" />
@@ -39,11 +39,13 @@
 					</el-col>
 				</el-row>
 			</el-form>
-		</div>
-		<div class="tn-base-page-bottom">
-			<el-button @click="cancel">取 消</el-button>
-			<el-button type="primary" @click="submit">确 定</el-button>
-		</div>
+			<template #footer>
+				<span class="dialog-footer">
+					<el-button @click="cancel">取 消</el-button>
+					<el-button type="primary" @click="submit">确 定</el-button>
+				</span>
+			</template>
+		</el-dialog>
 	</div>
 </template>
 <style scoped>
@@ -54,68 +56,56 @@
 </style>
 <script lang="ts" setup>
 	import { ref,onMounted } from "vue";
-	import { ElMessage, ElMessageBox } from "element-plus";
+	import { ElMessage } from "element-plus";
 	import type { FormRules } from "element-plus";
 	import { addT_WorkGroup, updateT_WorkGroup } from "/@/api/main/t_WorkGroup";
 	import { getT_WorkShopWorkShopIDDropdown } from '/@/api/main/t_WorkGroup';
-
-	import { useRoute } from "vue-router";
-	import mittBus from "/@/utils/mitt";
-	const loading = ref(false)
-
+	//父级传递来的参数
+	var props = defineProps({
+		title: {
+		type: String,
+		default: "",
+	},
+	});
+	//父级传递来的函数，用于回调
+	const emit = defineEmits(["reloadTable"]);
 	const ruleFormRef = ref();
+	const isShowDialog = ref(false);
 	const ruleForm = ref<any>({});
 	//自行添加其他规则
 	const rules = ref<FormRules>({
 		workGroupCode: [{required: true, message: '请输入生产中心编号！', trigger: 'blur',},],
 		workGroupName: [{required: true, message: '请输入生产中心名称！', trigger: 'blur',},],
-		workGroupSimpleName: [{required: true, message: '请输入生产中心简称！', trigger: 'blur',},],
 	});
 
-	// 定义变量内容
-	const route = useRoute();
+	// 打开弹窗
+	const openDialog = (row: any) => {
+		ruleForm.value = JSON.parse(JSON.stringify(row));
+		isShowDialog.value = true;
+	};
 
-	// 1、关闭当前 tagsView
-	const refreshCurrentTagsView = () => {
-		mittBus.emit(
-			"onCurrentContextmenuClick",
-			Object.assign({}, { contextMenuClickId: 1, ...route })
-		);
+	// 关闭弹窗
+	const closeDialog = () => {
+		emit("reloadTable");
+		isShowDialog.value = false;
 	};
 
 	// 取消
 	const cancel = () => {
-		ElMessageBox.confirm(`确定要退出编辑吗?`, "提示", {
-			confirmButtonText: "确定",
-			cancelButtonText: "取消",
-			type: "warning",
-		})
-		.then(async () => {
-			refreshCurrentTagsView()
-		})
-		.catch(() => {
-		});
+		isShowDialog.value = false;
 	};
 
 	// 提交
 	const submit = async () => {
 		ruleFormRef.value.validate(async (isValid: boolean, fields?: any) => {
 			if (isValid) {
-				loading.value = true;
 				let values = ruleForm.value;
-				let res
 				if (ruleForm.value.id == undefined || ruleForm.value.id == null || ruleForm.value.id == "" || ruleForm.value.id == 0) {
-					res = await addT_WorkGroup(values);
+					await addT_WorkGroup(values);
 				} else {
-					res = await updateT_WorkGroup(values);
+					await updateT_WorkGroup(values);
 				}
-				if (res.data.code == 200) {
-					loading.value = false;
-					ElMessage.success("保存成功");
-					setTimeout(() => {
-						refreshCurrentTagsView();
-					}, 1500)
-				}
+				closeDialog();
 			} else {
 				ElMessage({
 					message: `表单有${Object.keys(fields).length}处验证失败，请修改后再提交`,
@@ -141,12 +131,10 @@
 
 	// 页面加载时
 	onMounted(async () => {
-		if (route.query.params) {
-			ruleForm.value = JSON.parse(<string>route.query.params)
-		}
 	});
 
-	
+	//将属性或者函数暴露给父组件
+	defineExpose({ openDialog });
 </script>
 
 
