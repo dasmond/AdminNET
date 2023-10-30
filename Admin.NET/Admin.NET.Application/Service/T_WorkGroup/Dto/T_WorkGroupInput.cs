@@ -3,7 +3,7 @@
 namespace Admin.NET.Application;
 
     /// <summary>
-    /// 生产中心基础输入参数
+    /// 测试基础输入参数
     /// </summary>
     public class T_WorkGroupBaseInput
     {
@@ -30,7 +30,7 @@ namespace Admin.NET.Application;
     }
 
     /// <summary>
-    /// 生产中心分页查询输入参数
+    /// 测试分页查询输入参数
     /// </summary>
     public class T_WorkGroupInput : BasePageInput
     {
@@ -62,7 +62,7 @@ namespace Admin.NET.Application;
     }
 
     /// <summary>
-    /// 生产中心增加输入参数
+    /// 测试增加输入参数
     /// </summary>
     public class AddT_WorkGroupInput : T_WorkGroupBaseInput
     {
@@ -79,6 +79,12 @@ namespace Admin.NET.Application;
         public override string WorkGroupName { get; set; }
         
         /// <summary>
+        /// 生产中心简称
+        /// </summary>
+        [Required(ErrorMessage = "生产中心简称不能为空")]
+        public override string WorkGroupSimpleName { get; set; }
+        
+        /// <summary>
         /// 所属车间
         /// </summary>
         [Required(ErrorMessage = "所属车间不能为空")]
@@ -87,14 +93,14 @@ namespace Admin.NET.Application;
     }
 
     /// <summary>
-    /// 生产中心删除输入参数
+    /// 测试删除输入参数
     /// </summary>
     public class DeleteT_WorkGroupInput : BaseIdInput
     {
     }
 
     /// <summary>
-    /// 生产中心更新输入参数
+    /// 测试更新输入参数
     /// </summary>
     public class UpdateT_WorkGroupInput : T_WorkGroupBaseInput
     {
@@ -107,7 +113,7 @@ namespace Admin.NET.Application;
     }
 
     /// <summary>
-    /// 生产中心主键查询输入参数
+    /// 测试主键查询输入参数
     /// </summary>
     public class QueryByIdT_WorkGroupInput : DeleteT_WorkGroupInput
     {

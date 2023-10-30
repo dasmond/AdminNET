@@ -1,7 +1,7 @@
 ﻿namespace Admin.NET.Application;
 
 /// <summary>
-/// 生产中心输出参数
+/// 测试输出参数
 /// </summary>
 public class T_WorkGroupOutput
 {
@@ -33,7 +33,7 @@ public class T_WorkGroupOutput
     /// <summary>
     /// 所属车间 描述
     /// </summary>
-    public string WorkShopIDWorkShopName { get; set; } 
+    public long WorkShopIDId { get; set; } 
     
     }
  

@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 /**
- * 
+ *
  * @export
  * @interface UpdateCodeGenInput
  */
@@ -95,6 +95,12 @@ export interface UpdateCodeGenInput {
      * @memberof UpdateCodeGenInput
      */
     generateType?: string | null;
+    /**
+     * 新增编辑方式
+     * @type {string}
+     * @memberof UpdateCodeGenInput
+     */
+    addPageMode?: string | null;
     /**
      * 数据库表名
      * @type {string}

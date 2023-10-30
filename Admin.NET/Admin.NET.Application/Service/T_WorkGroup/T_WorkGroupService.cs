@@ -1,7 +1,7 @@
 ﻿using Admin.NET.Application.Const;
 namespace Admin.NET.Application;
 /// <summary>
-/// 生产中心服务
+/// 测试服务
 /// </summary>
 [ApiDescriptionSettings(ApplicationConst.GroupName, Order = 100)]
 public class T_WorkGroupService : IDynamicApiController, ITransient
@@ -13,7 +13,7 @@ public class T_WorkGroupService : IDynamicApiController, ITransient
     }
 
     /// <summary>
-    /// 分页查询生产中心
+    /// 分页查询测试
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
@@ -39,15 +39,15 @@ public class T_WorkGroupService : IDynamicApiController, ITransient
                 WorkGroupName = u.WorkGroupName, 
                 WorkGroupSimpleName = u.WorkGroupSimpleName, 
                 WorkShopID = u.WorkShopID, 
-                WorkShopIDWorkShopName = workshopid.WorkShopName,
+                WorkShopIDId = workshopid.Id,
             })
 ;
-        query = query.OrderBuilder(input, "", "u.CreateTime");
+        query = query.OrderBuilder(input, "", "CreateTime");
         return await query.ToPagedListAsync(input.Page, input.PageSize);
     }
 
     /// <summary>
-    /// 增加生产中心
+    /// 增加测试
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
@@ -60,7 +60,7 @@ public class T_WorkGroupService : IDynamicApiController, ITransient
     }
 
     /// <summary>
-    /// 删除生产中心
+    /// 删除测试
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
@@ -74,7 +74,7 @@ public class T_WorkGroupService : IDynamicApiController, ITransient
     }
 
     /// <summary>
-    /// 更新生产中心
+    /// 更新测试
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
@@ -87,7 +87,7 @@ public class T_WorkGroupService : IDynamicApiController, ITransient
     }
 
     /// <summary>
-    /// 获取生产中心
+    /// 获取测试
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
@@ -99,7 +99,7 @@ public class T_WorkGroupService : IDynamicApiController, ITransient
     }
 
     /// <summary>
-    /// 获取生产中心列表
+    /// 获取测试列表
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
@@ -121,7 +121,7 @@ public class T_WorkGroupService : IDynamicApiController, ITransient
         return await _rep.Context.Queryable<T_WorkShop>()
                 .Select(u => new
                 {
-                    Label = u.WorkShopName,
+                    Label = u.Id,
                     Value = u.Id
                 }
                 ).ToListAsync();

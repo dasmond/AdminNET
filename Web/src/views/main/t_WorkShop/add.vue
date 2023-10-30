@@ -24,7 +24,6 @@
             <el-form-item label="所属机构Id" prop="orgId">
               <el-select clearable filterable v-model="ruleForm.orgId" placeholder="请选择所属机构Id">
                 <el-option v-for="(item,index) in sysOrgOrgIdDropdownList" :key="index" :value="item.value" :label="item.label" />
-
               </el-select>
 
             </el-form-item>
@@ -46,7 +45,7 @@
 }
 </style>
 <script lang="ts" setup>
-import {ref, onMounted, nextTick} from "vue";
+import {ref, onMounted} from "vue";
 import {ElMessage, ElMessageBox} from "element-plus";
 import type { FormRules } from "element-plus";
 import { addT_WorkShop, updateT_WorkShop } from "/@/api/main/t_WorkShop";
@@ -129,8 +128,9 @@ getSysOrgOrgIdDropdownList();
 
 // 页面加载时
 onMounted(async () => {
-  console.log(route.query)
-  ruleForm.value = route.query
+  if (route.query.params) {
+    ruleForm.value = JSON.parse(<string>route.query.params)
+  }
 });
 
 

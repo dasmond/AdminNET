@@ -55,6 +55,11 @@ public class CodeGenInput : BasePageInput
     public virtual string GenerateType { get; set; }
 
     /// <summary>
+    /// 新增编辑页面模式
+    /// </summary>
+    public virtual string AddPageMode { get; set; }
+
+    /// <summary>
     /// 数据库表名
     /// </summary>
     public virtual string TableName { get; set; }
@@ -128,6 +133,12 @@ public class AddCodeGenInput : CodeGenInput
     /// </summary>
     [Required(ErrorMessage = "生成方式不能为空")]
     public override string GenerateType { get; set; }
+
+    /// <summary>
+    /// 新增编辑页面模式
+    /// </summary>
+    [Required(ErrorMessage = "新增编辑页面模式")]
+    public override string AddPageMode { get; set; }
 
     ///// <summary>
     ///// 功能名（数据库表名称）

@@ -105,6 +105,9 @@ public class SysDictDataSeedData : ISqlSugarEntitySeedData<SysDictData>
             new SysDictData{ Id=1300000000127, DictTypeId=1300000000112, Value="按包件进出", Code="1", OrderNo=101, Remark="进出类型", Status=StatusEnum.Enable, CreateTime=DateTime.Parse("2023-10-10 00:00:00") },
             new SysDictData{ Id=1300000000128, DictTypeId=1300000000112, Value="按条码进出", Code="2", OrderNo=101, Remark="进出类型", Status=StatusEnum.Enable, CreateTime=DateTime.Parse("2023-10-10 00:00:00") },
 
+            new SysDictData{ Id=1300000000129, DictTypeId=1300000000113, Value="dialog方式", Code="1", OrderNo=101, Remark="dialog方式", Status=StatusEnum.Enable, CreateTime=DateTime.Parse("2023-10-10 00:00:00") },
+            new SysDictData{ Id=1300000000130, DictTypeId=1300000000113, Value="跳转页面方式", Code="2", OrderNo=101, Remark="跳转页面方式", Status=StatusEnum.Enable, CreateTime=DateTime.Parse("2023-10-10 00:00:00") },
+
         };
     }
 }

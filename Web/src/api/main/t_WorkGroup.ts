@@ -7,7 +7,7 @@ enum Api {
   GetT_WorkShopWorkShopIDDropdown = '/api/t_WorkGroup/T_WorkShopWorkShopIDDropdown',
 }
 
-// 增加生产中心
+// 增加测试
 export const addT_WorkGroup = (params?: any) =>
 	request({
 		url: Api.AddT_WorkGroup,
@@ -15,7 +15,7 @@ export const addT_WorkGroup = (params?: any) =>
 		data: params,
 	});
 
-// 删除生产中心
+// 删除测试
 export const deleteT_WorkGroup = (params?: any) => 
 	request({
 			url: Api.DeleteT_WorkGroup,
@@ -23,7 +23,7 @@ export const deleteT_WorkGroup = (params?: any) =>
 			data: params,
 		});
 
-// 编辑生产中心
+// 编辑测试
 export const updateT_WorkGroup = (params?: any) => 
 	request({
 			url: Api.UpdateT_WorkGroup,
@@ -31,7 +31,7 @@ export const updateT_WorkGroup = (params?: any) =>
 			data: params,
 		});
 
-// 分页查询生产中心
+// 分页查询测试
 export const pageT_WorkGroup = (params?: any) => 
 	request({
 			url: Api.PageT_WorkGroup,

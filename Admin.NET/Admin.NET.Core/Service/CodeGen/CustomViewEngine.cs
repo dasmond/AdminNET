@@ -35,6 +35,8 @@ public class CustomViewEngine : ViewEngineModel
 
     public string ClassName { get; set; }
 
+    public string MenuPathName { get; set; }
+
     public string ProjectLastName { get; set; }
 
     public string LowerClassName

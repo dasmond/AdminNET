@@ -89,6 +89,13 @@
 							</el-select>
 						</el-form-item>
 					</el-col>
+					<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
+						<el-form-item label="新增编辑方式" prop="generateType">
+							<el-select v-model="state.ruleForm.addPageMode" filterable class="w100">
+								<el-option v-for="item in state.codeGenAddPageModeList" :key="item.value" :label="item.value" :value="item.code" />
+							</el-select>
+						</el-form-item>
+					</el-col>
 				</el-row>
 			</el-form>
 			<template #footer>
@@ -120,6 +127,7 @@ const state = reactive({
 	dbData: [] as any,
 	menuData: [] as Array<SysMenu>,
 	codeGenTypeList: [] as any,
+	codeGenAddPageModeList: [] as any,
 });
 
 onMounted(async () => {
@@ -131,6 +139,9 @@ onMounted(async () => {
 
 	let resDicData = await getAPI(SysDictDataApi).apiSysDictDataDataListCodeGet('code_gen_create_type');
 	state.codeGenTypeList = resDicData.data.result;
+
+	let resAddPageModeDicData = await getAPI(SysDictDataApi).apiSysDictDataDataListCodeGet('code_gen_add_page_mode');
+	state.codeGenAddPageModeList = resAddPageModeDicData.data.result;
 });
 
 // db改变

@@ -38,6 +38,13 @@ public class SysCodeGen : EntityBase
     public string? GenerateType { get; set; }
 
     /// <summary>
+    /// 新增编辑页面模式
+    /// </summary>
+    [SugarColumn(ColumnDescription = "新增编辑页面模式", Length = 32)]
+    [MaxLength(32)]
+    public string? AddPageMode { get; set; }
+
+    /// <summary>
     /// 库定位器名
     /// </summary>
     [SugarColumn(ColumnDescription = "库定位器名", Length = 64)]

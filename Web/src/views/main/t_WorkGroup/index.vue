@@ -54,7 +54,7 @@
         <el-table-column prop="workGroupSimpleName" label="生产中心简称" width="90" show-overflow-tooltip="" />
         <el-table-column prop="workShopID" label="所属车间" width="120" show-overflow-tooltip="">
           <template #default="scope">
-            <span>{{scope.row.workShopIDWorkShopName}}</span>
+            <span>{{scope.row.workShopIDId}}</span>
             
           </template>
           
@@ -77,11 +77,6 @@
 				@current-change="handleCurrentChange"
 				layout="total, sizes, prev, pager, next, jumper"
 	/>
-      <editDialog
-        ref="editDialogRef"
-        :title="editT_WorkGroupTitle"
-        @reloadTable="handleQuery"
-      />
     </el-card>
   </div>
 </template>
@@ -92,12 +87,12 @@
   import { auth } from '/@/utils/authFunction';
   //import { formatDate } from '/@/utils/formatTime';
 
-  import editDialog from '/@/views/main/t_WorkGroup/component/editDialog.vue'
   import { pageT_WorkGroup, deleteT_WorkGroup } from '/@/api/main/t_WorkGroup';
   import { getT_WorkShopWorkShopIDDropdown } from '/@/api/main/t_WorkGroup';
+  import router from "/@/router";
 
 
-  const editDialogRef = ref();
+
   const loading = ref(false);
   const tableData = ref<any>([]);
   const queryParams = ref<any>({});
@@ -106,7 +101,6 @@
   pageSize: 10,
   total: 0,
   });
-  const editT_WorkGroupTitle = ref("");
 
 
   // 查询操作
@@ -120,14 +114,12 @@
 
   // 打开新增页面
   const openAddT_WorkGroup = () => {
-    editT_WorkGroupTitle.value = '添加生产中心';
-    editDialogRef.value.openDialog({});
+    router.push('/manufacturing/info/t_WorkGroup/add')
   };
 
   // 打开编辑页面
   const openEditT_WorkGroup = (row: any) => {
-    editT_WorkGroupTitle.value = '编辑生产中心';
-    editDialogRef.value.openDialog(row);
+    router.push({path: '/manufacturing/info/t_WorkGroup/add', query: {params: JSON.stringify(row)}})
   };
 
   // 删除

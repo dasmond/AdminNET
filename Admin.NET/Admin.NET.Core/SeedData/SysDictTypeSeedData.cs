@@ -34,6 +34,7 @@ public class SysDictTypeSeedData : ISqlSugarEntitySeedData<SysDictType>
             new SysDictType{ Id=1300000000110, Name="选配类型", Code="configtype", OrderNo=109, Remark="", Status=StatusEnum.Enable, CreateTime=DateTime.Parse("2023-10-10 00:00:00") },
             new SysDictType{ Id=1300000000111, Name="套件属性", Code="suite", OrderNo=110, Remark="", Status=StatusEnum.Enable, CreateTime=DateTime.Parse("2023-10-10 00:00:00") },
             new SysDictType{ Id=1300000000112, Name="进出类型", Code="outtype", OrderNo=111, Remark="", Status=StatusEnum.Enable, CreateTime=DateTime.Parse("2023-10-10 00:00:00") },
+            new SysDictType{ Id=1300000000113, Name="代码生成新增编辑模式", Code="code_gen_add_page_mode", OrderNo=112, Remark="代码生成新增编辑模式", Status=StatusEnum.Enable, CreateTime=DateTime.Parse("2022-02-10 00:00:00") },
         };
     }
 }
