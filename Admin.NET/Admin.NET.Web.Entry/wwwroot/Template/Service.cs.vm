@@ -186,7 +186,6 @@ if(@column.EffectType == "fk" && (@column.WhetherAddUpdate == "Y" || column.Quer
     @:/// <summary>
     @:/// 获取@(@column.ColumnComment)列表
     @:/// </summary>
-    @:/// <param name="input"></param>
     @:/// <returns></returns>
     @:[ApiDescriptionSettings(Name = "@(@column.FkEntityName)@(@column.PropertyName)Dropdown"), HttpGet]
     @:public async Task<dynamic> @(@column.FkEntityName)@(@column.PropertyName)Dropdown()

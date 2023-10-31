@@ -110,7 +110,6 @@ public class T_WorkShopService : IDynamicApiController, ITransient
     /// <summary>
     /// 获取所属机构Id列表
     /// </summary>
-    /// <param name="input"></param>
     /// <returns></returns>
     [ApiDescriptionSettings(Name = "SysOrgOrgIdDropdown"), HttpGet]
     public async Task<dynamic> SysOrgOrgIdDropdown()

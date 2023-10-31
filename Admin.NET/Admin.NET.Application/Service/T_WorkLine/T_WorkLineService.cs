@@ -117,7 +117,6 @@ public class T_WorkLineService : IDynamicApiController, ITransient
     /// <summary>
     /// 获取所属生产中心列表
     /// </summary>
-    /// <param name="input"></param>
     /// <returns></returns>
     [ApiDescriptionSettings(Name = "T_WorkGroupWorkGroupIDDropdown"), HttpGet]
     public async Task<dynamic> T_WorkGroupWorkGroupIDDropdown()
