@@ -312,6 +312,11 @@
 		if (route.query.params) {
 			ruleForm.value = JSON.parse(<string>route.query.params)
 		}
+		@foreach (var column in Model.TableField){
+		if(@column.EffectType == "Select"){
+		@:getEdit@(@column.LowerPropertyName)Data.value= await dictTypeDataList('@(@column.DictTypeCode)');
+		}
+		}
 	});
 
 	
