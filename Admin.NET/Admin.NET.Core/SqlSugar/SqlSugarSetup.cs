@@ -295,6 +295,25 @@ public static class SqlSugarSetup
                     dbProvider.CodeFirst.InitTables(entityType);
                 else
                     dbProvider.CodeFirst.SplitTables().InitTables(entityType);
+
+
+                PropertyInfo[] properties = entityType.GetProperties();
+
+                foreach (PropertyInfo property in properties)
+                {
+                    ConstraintAttribute[] attributes = (ConstraintAttribute[])Attribute.GetCustomAttributes(property, typeof(ConstraintAttribute));
+
+                    foreach (ConstraintAttribute attribute in attributes)
+                    {
+                        string sql = String.Format("IF NOT EXISTS (SELECT  name  FROM  sys.default_constraints  WHERE parent_object_id = OBJECT_ID('{0}')  AND parent_column_id = (SELECT  column_id FROM  sys.columns WHERE object_id = OBJECT_ID('{0}') AND name = '{1}'  )) BEGIN  ALTER TABLE {0} ADD CONSTRAINT DF_{1} DEFAULT {2} FOR {1} END",
+                            entityType.Name, property.Name, attribute.defaultValue);
+                        var affectedRows = db.Ado.ExecuteCommand(sql);
+                        if (affectedRows > 0)
+                        {
+                            Log.Information("添加约束【DF_" + property.Name + "】成功！");
+                        }
+                    }
+                }
             }
         }
 
