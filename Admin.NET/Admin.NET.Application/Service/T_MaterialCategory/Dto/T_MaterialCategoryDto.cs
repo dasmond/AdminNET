@@ -1,24 +1,44 @@
 ﻿namespace Admin.NET.Application;
 
     /// <summary>
-    /// 物料管理输出参数
+    /// 物料类别输出参数
     /// </summary>
-    public class T_MaterialDto
+    public class T_MaterialCategoryDto
     {
         /// <summary>
-        /// 车间
+        /// 车间ID
         /// </summary>
-        public string OrgIDName { get; set; }
+        public string OrgIDWorkShopName { get; set; }
         
         /// <summary>
-        /// 车间
+        /// 上级ID
+        /// </summary>
+        public string PIDCategoryName { get; set; }
+        
+        /// <summary>
+        /// 车间ID
         /// </summary>
         public long OrgID { get; set; }
         
         /// <summary>
-        /// 物料编码
+        /// 物料类别编码
         /// </summary>
-        public string MaterialCode { get; set; }
+        public string CategoryCode { get; set; }
+        
+        /// <summary>
+        /// 物料类别名称
+        /// </summary>
+        public string CategoryName { get; set; }
+        
+        /// <summary>
+        /// 连接符号
+        /// </summary>
+        public string ConnectorStr { get; set; }
+        
+        /// <summary>
+        /// 流水长度
+        /// </summary>
+        public int CodeLength { get; set; }
         
         /// <summary>
         /// 物料名称
@@ -41,34 +61,14 @@
         public string Unit { get; set; }
         
         /// <summary>
-        /// 状态
-        /// </summary>
-        public string Status { get; set; }
-        
-        /// <summary>
-        /// 审核标记
-        /// </summary>
-        public string Flag { get; set; }
-        
-        /// <summary>
-        /// 审核人
-        /// </summary>
-        public DateTime? AuditTime { get; set; }
-        
-        /// <summary>
-        /// 审核者Id
-        /// </summary>
-        public long? AuditUserId { get; set; }
-        
-        /// <summary>
         /// 净重
         /// </summary>
-        public decimal Netweight { get; set; }
+        public decimal NetWeight { get; set; }
         
         /// <summary>
         /// 毛重
         /// </summary>
-        public decimal Grossweight { get; set; }
+        public decimal GrossWeight { get; set; }
         
         /// <summary>
         /// 体积
@@ -218,16 +218,21 @@
         /// <summary>
         /// 使用批号
         /// </summary>
-        public string Batchcode { get; set; }
+        public string BatchCode { get; set; }
         
         /// <summary>
         /// 批号规则
         /// </summary>
-        public string? Batchrule { get; set; }
+        public string? BatchRule { get; set; }
         
         /// <summary>
         /// Id
         /// </summary>
         public long Id { get; set; }
+        
+        /// <summary>
+        /// 上级ID
+        /// </summary>
+        public long PID { get; set; }
         
     }

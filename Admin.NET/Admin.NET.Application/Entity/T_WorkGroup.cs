@@ -11,6 +11,7 @@ public class T_WorkGroup  : EntityTenant
     /// 生产中心编号
     /// </summary>
     [Required]
+    [Constraint("''")]
     [SugarColumn(ColumnName = "WorkGroupCode", ColumnDescription = "生产中心编号", Length = 128)]
     public string WorkGroupCode { get; set; }
     
@@ -18,6 +19,7 @@ public class T_WorkGroup  : EntityTenant
     /// 生产中心名称
     /// </summary>
     [Required]
+    [Constraint("''")]
     [SugarColumn(ColumnName = "WorkGroupName", ColumnDescription = "生产中心名称", Length = 128)]
     public string WorkGroupName { get; set; }
     
@@ -25,6 +27,7 @@ public class T_WorkGroup  : EntityTenant
     /// 生产中心简称
     /// </summary>
     [Required]
+    [Constraint("''")]
     [SugarColumn(ColumnName = "WorkGroupSimpleName", ColumnDescription = "生产中心简称", Length = 128)]
     public string WorkGroupSimpleName { get; set; }
     
@@ -32,6 +35,7 @@ public class T_WorkGroup  : EntityTenant
     /// 所属车间
     /// </summary>
     [Required]
+    [Constraint("0")]
     [SugarColumn(ColumnName = "WorkShopID", ColumnDescription = "所属车间")]
     public long WorkShopID { get; set; }
     

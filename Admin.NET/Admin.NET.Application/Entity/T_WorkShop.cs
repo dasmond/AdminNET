@@ -11,6 +11,7 @@ public class T_WorkShop  : EntityTenant
     /// 车间编号
     /// </summary>
     [Required]
+    [Constraint("''")]
     [SugarColumn(ColumnName = "WorkShopCode", ColumnDescription = "车间编号", Length = 32)]
     public string WorkShopCode { get; set; }
     
@@ -18,12 +19,14 @@ public class T_WorkShop  : EntityTenant
     /// 车间名称
     /// </summary>
     [Required]
+    [Constraint("''")]
     [SugarColumn(ColumnName = "WorkShopName", ColumnDescription = "车间名称", Length = 32)]
     public string WorkShopName { get; set; }
 
     /// <summary>
     /// 所属机构Id
     /// </summary>
+    [Constraint("0")]
     [SugarColumn(ColumnDescription = "所属机构Id")]
     public long OrgId { get; set; }
 

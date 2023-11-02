@@ -238,6 +238,17 @@ public class SysMenuSeedData : ISqlSugarEntitySeedData<SysMenu>
 			new SysMenu{ Id=14912698978124, Pid=14912698978117, Title="组织", Permission="t_Material:SysOrgOrgIDDropdown", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2023-10-30 20:57:42"), OrderNo=116 },
 			
 
+
+			new SysMenu{ Id=14943114233413, Pid=1310000000727, Title="物料类别", Path="/material/technologyInfo/t_materialcategory", Name="t_MaterialCategory", Component="/main/t_MaterialCategory/index", Icon="ele-Document", Type=MenuTypeEnum.Menu, CreateTime=DateTime.Parse("2023-11-02 14:58:01"), OrderNo=99, IsHide=false},
+			new SysMenu{ Id=14943114233414, Pid=14943114233413, Title="查询", Permission="t_MaterialCategory:page", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2023-11-02 14:58:01"), OrderNo=101 },
+			new SysMenu{ Id=14943114233415, Pid=14943114233413, Title="详情", Permission="t_MaterialCategory:detail", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2023-11-02 14:58:01"), OrderNo=104 },
+			new SysMenu{ Id=14943114233416, Pid=14943114233413, Title="增加", Permission="t_MaterialCategory:add", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2023-11-02 14:58:01"), OrderNo=107 },
+			new SysMenu{ Id=14943114233417, Pid=14943114233413, Title="删除", Permission="t_MaterialCategory:delete", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2023-11-02 14:58:01"), OrderNo=110 },
+			new SysMenu{ Id=14943114233418, Pid=14943114233413, Title="编辑", Permission="t_MaterialCategory:edit", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2023-11-02 14:58:01"), OrderNo=113 },
+			new SysMenu{ Id=14943114233419, Pid=14943114233413, Title="外键OrgID", Permission="t_MaterialCategory:T_WorkShopOrgIDDropdown", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2023-11-02 14:58:01"), OrderNo=116 },
+			new SysMenu{ Id=14943114233420, Pid=14943114233413, Title="外键PID", Permission="t_MaterialCategory:T_MaterialCategoryPIDDropdown", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2023-11-02 14:58:01"), OrderNo=119 },
+			
+
 			//hyproyun_auto_code
 
         };

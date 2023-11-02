@@ -8,7 +8,7 @@ namespace Admin.NET.Application;
     public class T_MaterialBaseInput
     {
         /// <summary>
-        /// 车间ID
+        /// 车间
         /// </summary>
         public virtual long OrgID { get; set; }
         
@@ -235,7 +235,7 @@ namespace Admin.NET.Application;
         public string SearchKey { get; set; }
 
         /// <summary>
-        /// 车间ID
+        /// 车间
         /// </summary>
         public long OrgID { get; set; }
         
@@ -319,9 +319,139 @@ namespace Admin.NET.Application;
         public string MaterialProp { get; set; }
         
         /// <summary>
+        /// 产品系列
+        /// </summary>
+        public string ProductSeries { get; set; }
+        
+        /// <summary>
+        /// 材质
+        /// </summary>
+        public string Grain { get; set; }
+        
+        /// <summary>
+        /// 颜色
+        /// </summary>
+        public string Color { get; set; }
+        
+        /// <summary>
+        /// 图纸号
+        /// </summary>
+        public string PicCode { get; set; }
+        
+        /// <summary>
+        /// 条型码
+        /// </summary>
+        public string BarCode { get; set; }
+        
+        /// <summary>
+        /// 选配1类型
+        /// </summary>
+        public string ConfigFID { get; set; }
+        
+        /// <summary>
+        /// 选配1项目ID
+        /// </summary>
+        public long ConfigTypeFID { get; set; }
+        
+        /// <summary>
+        /// 选配1必填
+        /// </summary>
+        public string ConfigFRequired { get; set; }
+        
+        /// <summary>
+        /// 默认选配1内容ID
+        /// </summary>
+        public long DftConfigFID { get; set; }
+        
+        /// <summary>
+        /// 选配2类型
+        /// </summary>
+        public string ConfigSID { get; set; }
+        
+        /// <summary>
+        /// 选配2项目ID
+        /// </summary>
+        public long ConfigTypeSID { get; set; }
+        
+        /// <summary>
+        /// 选配2必填
+        /// </summary>
+        public string ConfigSRequired { get; set; }
+        
+        /// <summary>
+        /// 默认选配2内容ID
+        /// </summary>
+        public long DftConfigSID { get; set; }
+        
+        /// <summary>
+        /// 选配3类型
+        /// </summary>
+        public string ConfigTID { get; set; }
+        
+        /// <summary>
+        /// 选配3项目ID
+        /// </summary>
+        public long ConfigTypeTID { get; set; }
+        
+        /// <summary>
+        /// 选配3必填
+        /// </summary>
+        public string ConfigTRequired { get; set; }
+        
+        /// <summary>
+        /// 默认选配3内容ID
+        /// </summary>
+        public long DftConfigTID { get; set; }
+        
+        /// <summary>
+        /// 套件类型
+        /// </summary>
+        public string Suite { get; set; }
+        
+        /// <summary>
+        /// 进出类型
+        /// </summary>
+        public string OutType { get; set; }
+        
+        /// <summary>
+        /// 辅助单位
+        /// </summary>
+        public string AuxUnit { get; set; }
+        
+        /// <summary>
+        /// 转换率
+        /// </summary>
+        public decimal Rate { get; set; }
+        
+        /// <summary>
         /// 已使用
         /// </summary>
         public string Inuse { get; set; }
+        
+        /// <summary>
+        /// 默认仓库ID
+        /// </summary>
+        public long StorageID { get; set; }
+        
+        /// <summary>
+        /// 默认仓位ID
+        /// </summary>
+        public long SpaceID { get; set; }
+        
+        /// <summary>
+        /// 使用库存分配
+        /// </summary>
+        public string StorageLock { get; set; }
+        
+        /// <summary>
+        /// 使用批号
+        /// </summary>
+        public string Batchcode { get; set; }
+        
+        /// <summary>
+        /// 批号规则
+        /// </summary>
+        public string? Batchrule { get; set; }
         
     }
 
@@ -331,9 +461,9 @@ namespace Admin.NET.Application;
     public class AddT_MaterialInput : T_MaterialBaseInput
     {
         /// <summary>
-        /// 车间ID
+        /// 车间
         /// </summary>
-        [Required(ErrorMessage = "车间ID不能为空")]
+        [Required(ErrorMessage = "车间不能为空")]
         public override long OrgID { get; set; }
         
         /// <summary>
@@ -365,18 +495,6 @@ namespace Admin.NET.Application;
         /// </summary>
         [Required(ErrorMessage = "单位不能为空")]
         public override string Unit { get; set; }
-        
-        /// <summary>
-        /// 状态
-        /// </summary>
-        [Required(ErrorMessage = "状态不能为空")]
-        public override string Status { get; set; }
-        
-        /// <summary>
-        /// 审核标记
-        /// </summary>
-        [Required(ErrorMessage = "审核标记不能为空")]
-        public override string Flag { get; set; }
         
         /// <summary>
         /// 净重
@@ -437,138 +555,6 @@ namespace Admin.NET.Application;
         /// </summary>
         [Required(ErrorMessage = "图纸号不能为空")]
         public override string PicCode { get; set; }
-        
-        /// <summary>
-        /// 条型码
-        /// </summary>
-        [Required(ErrorMessage = "条型码不能为空")]
-        public override string BarCode { get; set; }
-        
-        /// <summary>
-        /// 选配1类型
-        /// </summary>
-        [Required(ErrorMessage = "选配1类型不能为空")]
-        public override string ConfigFID { get; set; }
-        
-        /// <summary>
-        /// 选配1项目ID
-        /// </summary>
-        [Required(ErrorMessage = "选配1项目ID不能为空")]
-        public override long ConfigTypeFID { get; set; }
-        
-        /// <summary>
-        /// 选配1必填
-        /// </summary>
-        [Required(ErrorMessage = "选配1必填不能为空")]
-        public override string ConfigFRequired { get; set; }
-        
-        /// <summary>
-        /// 默认选配1内容ID
-        /// </summary>
-        [Required(ErrorMessage = "默认选配1内容ID不能为空")]
-        public override long DftConfigFID { get; set; }
-        
-        /// <summary>
-        /// 选配2类型
-        /// </summary>
-        [Required(ErrorMessage = "选配2类型不能为空")]
-        public override string ConfigSID { get; set; }
-        
-        /// <summary>
-        /// 选配2项目ID
-        /// </summary>
-        [Required(ErrorMessage = "选配2项目ID不能为空")]
-        public override long ConfigTypeSID { get; set; }
-        
-        /// <summary>
-        /// 选配2必填
-        /// </summary>
-        [Required(ErrorMessage = "选配2必填不能为空")]
-        public override string ConfigSRequired { get; set; }
-        
-        /// <summary>
-        /// 默认选配2内容ID
-        /// </summary>
-        [Required(ErrorMessage = "默认选配2内容ID不能为空")]
-        public override long DftConfigSID { get; set; }
-        
-        /// <summary>
-        /// 选配3类型
-        /// </summary>
-        [Required(ErrorMessage = "选配3类型不能为空")]
-        public override string ConfigTID { get; set; }
-        
-        /// <summary>
-        /// 选配3项目ID
-        /// </summary>
-        [Required(ErrorMessage = "选配3项目ID不能为空")]
-        public override long ConfigTypeTID { get; set; }
-        
-        /// <summary>
-        /// 选配3必填
-        /// </summary>
-        [Required(ErrorMessage = "选配3必填不能为空")]
-        public override string ConfigTRequired { get; set; }
-        
-        /// <summary>
-        /// 默认选配3内容ID
-        /// </summary>
-        [Required(ErrorMessage = "默认选配3内容ID不能为空")]
-        public override long DftConfigTID { get; set; }
-        
-        /// <summary>
-        /// 套件类型
-        /// </summary>
-        [Required(ErrorMessage = "套件类型不能为空")]
-        public override string Suite { get; set; }
-        
-        /// <summary>
-        /// 进出类型
-        /// </summary>
-        [Required(ErrorMessage = "进出类型不能为空")]
-        public override string OutType { get; set; }
-        
-        /// <summary>
-        /// 辅助单位
-        /// </summary>
-        [Required(ErrorMessage = "辅助单位不能为空")]
-        public override string AuxUnit { get; set; }
-        
-        /// <summary>
-        /// 转换率
-        /// </summary>
-        [Required(ErrorMessage = "转换率不能为空")]
-        public override decimal Rate { get; set; }
-        
-        /// <summary>
-        /// 已使用
-        /// </summary>
-        [Required(ErrorMessage = "已使用不能为空")]
-        public override string Inuse { get; set; }
-        
-        /// <summary>
-        /// 默认仓库ID
-        /// </summary>
-        [Required(ErrorMessage = "默认仓库ID不能为空")]
-        public override long StorageID { get; set; }
-        
-        /// <summary>
-        /// 默认仓位ID
-        /// </summary>
-        [Required(ErrorMessage = "默认仓位ID不能为空")]
-        public override long SpaceID { get; set; }
-        
-        /// <summary>
-        /// 使用库存分配
-        /// </summary>
-        [Required(ErrorMessage = "使用库存分配不能为空")]
-        public override string StorageLock { get; set; }
-        
-        /// <summary>
-        /// 使用批号
-        /// </summary>
-        [Required(ErrorMessage = "使用批号不能为空")]
-        public override string Batchcode { get; set; }
         
     }
 

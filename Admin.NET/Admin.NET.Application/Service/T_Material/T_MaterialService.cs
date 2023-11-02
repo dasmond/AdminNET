@@ -1,13 +1,4 @@
-﻿// 麻省理工学院许可证
-//
-// 版权所有 (c) 2021-2023 zuohuaijun，大名科技（天津）有限公司  联系电话/微信：18020030720  QQ：515096995
-//
-// 特此免费授予获得本软件的任何人以处理本软件的权利，但须遵守以下条件：在所有副本或重要部分的软件中必须包括上述版权声明和本许可声明。
-//
-// 软件按“原样”提供，不提供任何形式的明示或暗示的保证，包括但不限于对适销性、适用性和非侵权的保证。
-// 在任何情况下，作者或版权持有人均不对任何索赔、损害或其他责任负责，无论是因合同、侵权或其他方式引起的，与软件或其使用或其他交易有关。
-
-using Admin.NET.Application.Const;
+﻿using Admin.NET.Application.Const;
 namespace Admin.NET.Application;
 /// <summary>
 /// 物料管理服务
@@ -30,7 +21,7 @@ public class T_MaterialService : IDynamicApiController, ITransient
     [ApiDescriptionSettings(Name = "Page")]
     public async Task<SqlSugarPagedList<T_MaterialOutput>> Page(T_MaterialInput input)
     {
-        var query = _rep.AsQueryable()
+        var query= _rep.AsQueryable()
             .WhereIF(!string.IsNullOrWhiteSpace(input.SearchKey), u =>
                 u.MaterialCode.Contains(input.SearchKey.Trim())
                 || u.MaterialName.Contains(input.SearchKey.Trim())
@@ -41,9 +32,26 @@ public class T_MaterialService : IDynamicApiController, ITransient
                 || u.Flag.Contains(input.SearchKey.Trim())
                 || u.MaterialOrigin.Contains(input.SearchKey.Trim())
                 || u.MaterialProp.Contains(input.SearchKey.Trim())
+                || u.ProductSeries.Contains(input.SearchKey.Trim())
+                || u.Grain.Contains(input.SearchKey.Trim())
+                || u.Color.Contains(input.SearchKey.Trim())
+                || u.PicCode.Contains(input.SearchKey.Trim())
+                || u.BarCode.Contains(input.SearchKey.Trim())
+                || u.ConfigFID.Contains(input.SearchKey.Trim())
+                || u.ConfigFRequired.Contains(input.SearchKey.Trim())
+                || u.ConfigSID.Contains(input.SearchKey.Trim())
+                || u.ConfigSRequired.Contains(input.SearchKey.Trim())
+                || u.ConfigTID.Contains(input.SearchKey.Trim())
+                || u.ConfigTRequired.Contains(input.SearchKey.Trim())
+                || u.Suite.Contains(input.SearchKey.Trim())
+                || u.OutType.Contains(input.SearchKey.Trim())
+                || u.AuxUnit.Contains(input.SearchKey.Trim())
                 || u.Inuse.Contains(input.SearchKey.Trim())
+                || u.StorageLock.Contains(input.SearchKey.Trim())
+                || u.BatchCode.Contains(input.SearchKey.Trim())
+                || u.BatchRule.Contains(input.SearchKey.Trim())
             )
-            .WhereIF(input.OrgID > 0, u => u.OrgID == input.OrgID)
+            .WhereIF(input.OrgID>0, u => u.OrgID == input.OrgID)
             .WhereIF(!string.IsNullOrWhiteSpace(input.MaterialCode), u => u.MaterialCode.Contains(input.MaterialCode.Trim()))
             .WhereIF(!string.IsNullOrWhiteSpace(input.MaterialName), u => u.MaterialName.Contains(input.MaterialName.Trim()))
             .WhereIF(!string.IsNullOrWhiteSpace(input.MaterialEngname), u => u.MaterialEngname.Contains(input.MaterialEngname.Trim()))
@@ -51,71 +59,95 @@ public class T_MaterialService : IDynamicApiController, ITransient
             .WhereIF(!string.IsNullOrWhiteSpace(input.Unit), u => u.Unit.Contains(input.Unit.Trim()))
             .WhereIF(!string.IsNullOrWhiteSpace(input.Status), u => u.Status.Contains(input.Status.Trim()))
             .WhereIF(!string.IsNullOrWhiteSpace(input.Flag), u => u.Flag.Contains(input.Flag.Trim()))
-            .WhereIF(input.AuditUserId > 0, u => u.AuditUserId == input.AuditUserId)
+            .WhereIF(input.AuditUserId>0, u => u.AuditUserId == input.AuditUserId)
             .WhereIF(!string.IsNullOrWhiteSpace(input.MaterialOrigin), u => u.MaterialOrigin.Contains(input.MaterialOrigin.Trim()))
             .WhereIF(!string.IsNullOrWhiteSpace(input.MaterialProp), u => u.MaterialProp.Contains(input.MaterialProp.Trim()))
+            .WhereIF(!string.IsNullOrWhiteSpace(input.ProductSeries), u => u.ProductSeries.Contains(input.ProductSeries.Trim()))
+            .WhereIF(!string.IsNullOrWhiteSpace(input.Grain), u => u.Grain.Contains(input.Grain.Trim()))
+            .WhereIF(!string.IsNullOrWhiteSpace(input.Color), u => u.Color.Contains(input.Color.Trim()))
+            .WhereIF(!string.IsNullOrWhiteSpace(input.PicCode), u => u.PicCode.Contains(input.PicCode.Trim()))
+            .WhereIF(!string.IsNullOrWhiteSpace(input.BarCode), u => u.BarCode.Contains(input.BarCode.Trim()))
+            .WhereIF(!string.IsNullOrWhiteSpace(input.ConfigFID), u => u.ConfigFID.Contains(input.ConfigFID.Trim()))
+            .WhereIF(input.ConfigTypeFID>0, u => u.ConfigTypeFID == input.ConfigTypeFID)
+            .WhereIF(!string.IsNullOrWhiteSpace(input.ConfigFRequired), u => u.ConfigFRequired.Contains(input.ConfigFRequired.Trim()))
+            .WhereIF(input.DftConfigFID>0, u => u.DftConfigFID == input.DftConfigFID)
+            .WhereIF(!string.IsNullOrWhiteSpace(input.ConfigSID), u => u.ConfigSID.Contains(input.ConfigSID.Trim()))
+            .WhereIF(input.ConfigTypeSID>0, u => u.ConfigTypeSID == input.ConfigTypeSID)
+            .WhereIF(!string.IsNullOrWhiteSpace(input.ConfigSRequired), u => u.ConfigSRequired.Contains(input.ConfigSRequired.Trim()))
+            .WhereIF(input.DftConfigSID>0, u => u.DftConfigSID == input.DftConfigSID)
+            .WhereIF(!string.IsNullOrWhiteSpace(input.ConfigTID), u => u.ConfigTID.Contains(input.ConfigTID.Trim()))
+            .WhereIF(input.ConfigTypeTID>0, u => u.ConfigTypeTID == input.ConfigTypeTID)
+            .WhereIF(!string.IsNullOrWhiteSpace(input.ConfigTRequired), u => u.ConfigTRequired.Contains(input.ConfigTRequired.Trim()))
+            .WhereIF(input.DftConfigTID>0, u => u.DftConfigTID == input.DftConfigTID)
+            .WhereIF(!string.IsNullOrWhiteSpace(input.Suite), u => u.Suite.Contains(input.Suite.Trim()))
+            .WhereIF(!string.IsNullOrWhiteSpace(input.OutType), u => u.OutType.Contains(input.OutType.Trim()))
+            .WhereIF(!string.IsNullOrWhiteSpace(input.AuxUnit), u => u.AuxUnit.Contains(input.AuxUnit.Trim()))
             .WhereIF(!string.IsNullOrWhiteSpace(input.Inuse), u => u.Inuse.Contains(input.Inuse.Trim()))
+            .WhereIF(input.StorageID>0, u => u.StorageID == input.StorageID)
+            .WhereIF(input.SpaceID>0, u => u.SpaceID == input.SpaceID)
+            .WhereIF(!string.IsNullOrWhiteSpace(input.StorageLock), u => u.StorageLock.Contains(input.StorageLock.Trim()))
+            .WhereIF(!string.IsNullOrWhiteSpace(input.Batchcode), u => u.BatchCode.Contains(input.Batchcode.Trim()))
+            .WhereIF(!string.IsNullOrWhiteSpace(input.Batchrule), u => u.BatchRule.Contains(input.Batchrule.Trim()))
             //处理外键和TreeSelector相关字段的连接
-            .LeftJoin<SysOrg>((u, orgid) => u.OrgID == orgid.Id)
-            .Select((u, orgid) => new T_MaterialOutput
-            {
-                Id = u.Id,
-                OrgID = u.OrgID,
-                OrgIDId = orgid.Id,
-                MaterialCode = u.MaterialCode,
-                MaterialName = u.MaterialName,
-                MaterialEngname = u.MaterialEngname,
-                Specification = u.Specification,
-                Unit = u.Unit,
-                Status = u.Status,
-                Flag = u.Flag,
-                AuditTime = u.AuditTime,
-                AuditUserId = u.AuditUserId,
-                Netweight = u.Netweight,
-                Grossweight = u.Grossweight,
-                Cubage = u.Cubage,
-                Packqty = u.Packqty,
-                MaterialOrigin = u.MaterialOrigin,
-                MaterialProp = u.MaterialProp,
-                ProductSeries = u.ProductSeries,
-                Grain = u.Grain,
-                Color = u.Color,
-                PicCode = u.PicCode,
-                BarCode = u.BarCode,
-                ConfigFID = u.ConfigFID,
-                ConfigTypeFID = u.ConfigTypeFID,
-                ConfigFRequired = u.ConfigFRequired,
-                DftConfigFID = u.DftConfigFID,
-                ConfigSID = u.ConfigSID,
-                ConfigTypeSID = u.ConfigTypeSID,
-                ConfigSRequired = u.ConfigSRequired,
-                DftConfigSID = u.DftConfigSID,
-                ConfigTID = u.ConfigTID,
-                ConfigTypeTID = u.ConfigTypeTID,
-                ConfigTRequired = u.ConfigTRequired,
-                DftConfigTID = u.DftConfigTID,
-                Suite = u.Suite,
-                OutType = u.OutType,
-                AuxUnit = u.AuxUnit,
-                Rate = u.Rate,
-                Inuse = u.Inuse,
-                StorageID = u.StorageID,
-                SpaceID = u.SpaceID,
-                StorageLock = u.StorageLock,
-                Batchcode = u.Batchcode,
-                Batchrule = u.Batchrule,
+            .LeftJoin<SysOrg>((u, orgid) => u.OrgID == orgid.Id )
+            .Select((u, orgid)=> new T_MaterialOutput{
+                OrgID = u.OrgID, 
+                OrgIDName = orgid.Name,
+                MaterialCode = u.MaterialCode, 
+                MaterialName = u.MaterialName, 
+                MaterialEngname = u.MaterialEngname, 
+                Specification = u.Specification, 
+                Unit = u.Unit, 
+                Status = u.Status, 
+                Flag = u.Flag, 
+                AuditTime = u.AuditTime, 
+                AuditUserId = u.AuditUserId, 
+                Netweight = u.NetWeight, 
+                Grossweight = u.GrossWeight, 
+                Cubage = u.Cubage, 
+                Packqty = u.Packqty, 
+                MaterialOrigin = u.MaterialOrigin, 
+                MaterialProp = u.MaterialProp, 
+                ProductSeries = u.ProductSeries, 
+                Grain = u.Grain, 
+                Color = u.Color, 
+                PicCode = u.PicCode, 
+                BarCode = u.BarCode, 
+                ConfigFID = u.ConfigFID, 
+                ConfigTypeFID = u.ConfigTypeFID, 
+                ConfigFRequired = u.ConfigFRequired, 
+                DftConfigFID = u.DftConfigFID, 
+                ConfigSID = u.ConfigSID, 
+                ConfigTypeSID = u.ConfigTypeSID, 
+                ConfigSRequired = u.ConfigSRequired, 
+                DftConfigSID = u.DftConfigSID, 
+                ConfigTID = u.ConfigTID, 
+                ConfigTypeTID = u.ConfigTypeTID, 
+                ConfigTRequired = u.ConfigTRequired, 
+                DftConfigTID = u.DftConfigTID, 
+                Suite = u.Suite, 
+                OutType = u.OutType, 
+                AuxUnit = u.AuxUnit, 
+                Rate = u.Rate, 
+                Inuse = u.Inuse, 
+                StorageID = u.StorageID, 
+                SpaceID = u.SpaceID, 
+                StorageLock = u.StorageLock, 
+                Batchcode = u.BatchCode, 
+                Batchrule = u.BatchRule, 
+                Id = u.Id, 
             })
 ;
-        if (input.AuditTimeRange != null && input.AuditTimeRange.Count > 0)
+        if(input.AuditTimeRange != null && input.AuditTimeRange.Count >0)
         {
-            DateTime? start = input.AuditTimeRange[0];
+            DateTime? start= input.AuditTimeRange[0]; 
             query = query.WhereIF(start.HasValue, u => u.AuditTime > start);
-            if (input.AuditTimeRange.Count > 1 && input.AuditTimeRange[1].HasValue)
+            if (input.AuditTimeRange.Count >1 && input.AuditTimeRange[1].HasValue)
             {
                 var end = input.AuditTimeRange[1].Value.AddDays(1);
                 query = query.Where(u => u.AuditTime < end);
             }
-        }
+        } 
         query = query.OrderBuilder(input, "", "u.CreateTime");
         return await query.ToPagedListAsync(input.Page, input.PageSize);
     }
@@ -185,7 +217,7 @@ public class T_MaterialService : IDynamicApiController, ITransient
     }
 
     /// <summary>
-    /// 获取车间ID列表
+    /// 获取车间列表
     /// </summary>
     /// <returns></returns>
     [ApiDescriptionSettings(Name = "SysOrgOrgIDDropdown"), HttpGet]
@@ -194,7 +226,7 @@ public class T_MaterialService : IDynamicApiController, ITransient
         return await _rep.Context.Queryable<SysOrg>()
                 .Select(u => new
                 {
-                    Label = u.Id,
+                    Label = u.Name,
                     Value = u.Id
                 }
                 ).ToListAsync();

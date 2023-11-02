@@ -6,8 +6,8 @@
           <el-input v-model="queryParams.searchKey" clearable="" placeholder="请输入模糊查询关键字"/>
           
         </el-form-item>
-        <el-form-item label="车间ID">
-          <el-select clearable="" filterable="" v-model="queryParams.orgID" placeholder="请选择车间ID">
+        <el-form-item label="车间">
+          <el-select clearable="" filterable="" v-model="queryParams.orgID" placeholder="请选择车间">
             <el-option v-for="(item,index) in  sysOrgOrgIDDropdownList" :key="index" :value="item.value" :label="item.label" />
             
           </el-select>
@@ -34,17 +34,11 @@
           
         </el-form-item>
         <el-form-item label="状态">
-          <el-select clearable="" v-model="queryParams.status" placeholder="请选择状态">
-            <el-option v-for="(item,index) in getstatusData" :key="index" :value="item.value" :label="item.label" />
-            
-          </el-select>
+          <el-input v-model="queryParams.status" clearable="" placeholder="请输入状态"/>
           
         </el-form-item>
         <el-form-item label="审核标记">
-          <el-select clearable="" v-model="queryParams.flag" placeholder="请选择审核标记">
-            <el-option v-for="(item,index) in getflagData" :key="index" :value="item.value" :label="item.label" />
-            
-          </el-select>
+          <el-input v-model="queryParams.flag" clearable="" placeholder="请输入审核标记"/>
           
         </el-form-item>
         <el-form-item label="审核人">
@@ -85,8 +79,119 @@
           </el-select>
           
         </el-form-item>
+        <el-form-item label="产品系列">
+          <el-input v-model="queryParams.productSeries" clearable="" placeholder="请输入产品系列"/>
+          
+        </el-form-item>
+        <el-form-item label="材质">
+          <el-input v-model="queryParams.grain" clearable="" placeholder="请输入材质"/>
+          
+        </el-form-item>
+        <el-form-item label="颜色">
+          <el-input v-model="queryParams.color" clearable="" placeholder="请输入颜色"/>
+          
+        </el-form-item>
+        <el-form-item label="图纸号">
+          <el-input v-model="queryParams.picCode" clearable="" placeholder="请输入图纸号"/>
+          
+        </el-form-item>
+        <el-form-item label="条型码">
+          <el-input v-model="queryParams.barCode" clearable="" placeholder="请输入条型码"/>
+          
+        </el-form-item>
+        <el-form-item label="选配1类型">
+          <el-select clearable="" v-model="queryParams.configFID" placeholder="请选择选配1类型">
+            <el-option v-for="(item,index) in getconfigFIDData" :key="index" :value="item.value" :label="item.label" />
+            
+          </el-select>
+          
+        </el-form-item>
+        <el-form-item label="选配1项目ID">
+          <el-input v-model="queryParams.configTypeFID" clearable="" placeholder="请输入选配1项目ID"/>
+          
+        </el-form-item>
+        <el-form-item label="选配1必填">
+          <el-input v-model="queryParams.configFRequired" clearable="" placeholder="请输入选配1必填"/>
+          
+        </el-form-item>
+        <el-form-item label="默认选配1内容ID">
+          <el-input v-model="queryParams.dftConfigFID" clearable="" placeholder="请输入默认选配1内容ID"/>
+          
+        </el-form-item>
+        <el-form-item label="选配2类型">
+          <el-select clearable="" v-model="queryParams.configSID" placeholder="请选择选配2类型">
+            <el-option v-for="(item,index) in getconfigSIDData" :key="index" :value="item.value" :label="item.label" />
+            
+          </el-select>
+          
+        </el-form-item>
+        <el-form-item label="选配2项目ID">
+          <el-input v-model="queryParams.configTypeSID" clearable="" placeholder="请输入选配2项目ID"/>
+          
+        </el-form-item>
+        <el-form-item label="选配2必填">
+          <el-input v-model="queryParams.configSRequired" clearable="" placeholder="请输入选配2必填"/>
+          
+        </el-form-item>
+        <el-form-item label="默认选配2内容ID">
+          <el-input v-model="queryParams.dftConfigSID" clearable="" placeholder="请输入默认选配2内容ID"/>
+          
+        </el-form-item>
+        <el-form-item label="选配3类型">
+          <el-select clearable="" v-model="queryParams.configTID" placeholder="请选择选配3类型">
+            <el-option v-for="(item,index) in getconfigTIDData" :key="index" :value="item.value" :label="item.label" />
+            
+          </el-select>
+          
+        </el-form-item>
+        <el-form-item label="选配3项目ID">
+          <el-input v-model="queryParams.configTypeTID" clearable="" placeholder="请输入选配3项目ID"/>
+          
+        </el-form-item>
+        <el-form-item label="选配3必填">
+          <el-input v-model="queryParams.configTRequired" clearable="" placeholder="请输入选配3必填"/>
+          
+        </el-form-item>
+        <el-form-item label="默认选配3内容ID">
+          <el-input v-model="queryParams.dftConfigTID" clearable="" placeholder="请输入默认选配3内容ID"/>
+          
+        </el-form-item>
+        <el-form-item label="套件类型">
+          <el-select clearable="" v-model="queryParams.suite" placeholder="请选择套件类型">
+            <el-option v-for="(item,index) in getsuiteData" :key="index" :value="item.value" :label="item.label" />
+            
+          </el-select>
+          
+        </el-form-item>
+        <el-form-item label="进出类型">
+          <el-select clearable="" v-model="queryParams.outType" placeholder="请选择进出类型">
+            <el-option v-for="(item,index) in getoutTypeData" :key="index" :value="item.value" :label="item.label" />
+            
+          </el-select>
+          
+        </el-form-item>
+        <el-form-item label="辅助单位">
+          <el-input v-model="queryParams.auxUnit" clearable="" placeholder="请输入辅助单位"/>
+          
+        </el-form-item>
+        <el-form-item label="转换率">
+          <el-input v-model="queryParams.rate" clearable="" placeholder="请输入转换率"/>
+          
+        </el-form-item>
         <el-form-item label="已使用">
           <el-input v-model="queryParams.inuse" clearable="" placeholder="请输入已使用"/>
+          
+        </el-form-item>
+        <el-form-item label="默认仓库ID">
+          <el-input v-model="queryParams.storageID" clearable="" placeholder="请输入默认仓库ID"/>
+          
+        </el-form-item>
+        <el-form-item label="默认仓位ID">
+          <el-input v-model="queryParams.spaceID" clearable="" placeholder="请输入默认仓位ID"/>
+          
+        </el-form-item>
+        <el-form-item label="批号规则">
+          <el-input v-model="queryParams.batchrule" clearable="" placeholder="请输入批号规则"/>
           
         </el-form-item>
         <el-form-item>
@@ -113,9 +218,9 @@
 				row-key="id"
 				border="">
         <el-table-column type="index" label="序号" width="55" align="center"/>
-        <el-table-column prop="orgID" label="车间ID" width="120" show-overflow-tooltip="">
+        <el-table-column prop="orgID" label="车间" width="120" show-overflow-tooltip="">
           <template #default="scope">
-            <span>{{scope.row.orgIDId}}</span>
+            <span>{{scope.row.orgIDName}}</span>
             
           </template>
           
@@ -159,8 +264,22 @@
         <el-table-column prop="inuse" label="已使用" width="140" show-overflow-tooltip="" />
         <el-table-column prop="storageID" label="默认仓库ID" width="90" show-overflow-tooltip="" />
         <el-table-column prop="spaceID" label="默认仓位ID" width="90" show-overflow-tooltip="" />
-        <el-table-column prop="storageLock" label="使用库存分配" width="90" show-overflow-tooltip="" />
-        <el-table-column prop="batchcode" label="使用批号" width="140" show-overflow-tooltip="" />
+        <el-table-column prop="storageLock" label="使用库存分配" width="90" show-overflow-tooltip="">
+          <template #default="scope">
+            <el-tag v-if="scope.row.storageLock"> 是 </el-tag>
+            <el-tag type="danger" v-else> 否 </el-tag>
+            
+          </template>
+          
+        </el-table-column>
+        <el-table-column prop="batchcode" label="使用批号" width="120" show-overflow-tooltip="">
+          <template #default="scope">
+            <el-tag v-if="scope.row.batchcode"> 是 </el-tag>
+            <el-tag type="danger" v-else> 否 </el-tag>
+            
+          </template>
+          
+        </el-table-column>
         <el-table-column prop="batchrule" label="批号规则" width="140" show-overflow-tooltip="" />
         <el-table-column label="操作" width="140" align="center" fixed="right" show-overflow-tooltip="" v-if="auth('t_Material:edit') || auth('t_Material:delete')">
           <template #default="scope">
@@ -195,10 +314,13 @@
   import { getDictDataList } from '/@/api/system/admin';
   import router from "/@/router";
 
-  const getstatusData = ref<any>([]);
-  const getflagData = ref<any>([]);
   const getmaterialOriginData = ref<any>([]);
   const getmaterialPropData = ref<any>([]);
+  const getconfigFIDData = ref<any>([]);
+  const getconfigSIDData = ref<any>([]);
+  const getconfigTIDData = ref<any>([]);
+  const getsuiteData = ref<any>([]);
+  const getoutTypeData = ref<any>([]);
 
 
   const loading = ref(false);
@@ -218,10 +340,13 @@
     tableData.value = res.data.result?.items ?? [];
     tableParams.value.total = res.data.result?.total;
     loading.value = false;
-    getstatusData.value = await dictTypeDataList('IfAllowed');
-    getflagData.value = await dictTypeDataList('IfAllowed');
     getmaterialOriginData.value = await dictTypeDataList('materialorigin');
-    getmaterialPropData.value = await dictTypeDataList('suite');
+    getmaterialPropData.value = await dictTypeDataList('materialprop');
+    getconfigFIDData.value = await dictTypeDataList('configtype');
+    getconfigSIDData.value = await dictTypeDataList('configtype');
+    getconfigTIDData.value = await dictTypeDataList('configtype');
+    getsuiteData.value = await dictTypeDataList('suite');
+    getoutTypeData.value = await dictTypeDataList('outtype');
   };
 
   // 打开新增页面
