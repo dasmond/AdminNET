@@ -3,27 +3,24 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '084b9f6a2dfc6934ae9abc42851b64d867cb38d8'
-    oldFile: !uuid '529ba71bd0bc75abf3b10cba352187d0e65fa02e'
+    newFile: !uuid '09813fb33122832915b94e4b8e30e6641d639688'
+    oldFile: !uuid '084b9f6a2dfc6934ae9abc42851b64d867cb38d8'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '2f6672635a66049975bf8e6ded19a9608e5f7c80'
-    oldFile: !uuid 'c5e8467111fe315c2a73d56bcdd3350f7534b65d'
+    newFile: !uuid '73ca4fc683d7975b398c94023221eee01b1f2588'
+    oldFile: !uuid '2f6672635a66049975bf8e6ded19a9608e5f7c80'
   /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
-    newFile: !uuid '86af5623811aef8754758d34b0f4e9088e63bf07'
-    oldFile: !uuid 'b0ef951fde7ed451d5f82bb0b939ebf1e5d55a9a'
-  /Admin.NET/Admin.NET.Core/EventBus:
-    newFile: !uuid '4d5ddc13bcf7e1a917fd2b4c3b24b2cbe4cd0edf'
-    oldFile: !uuid 'c01be36f569b93dc324903d4b548f927ae4620e5'
-  /Admin.NET/Admin.NET.Core/EventBus/AppEventSubscriber.cs:
-    newFile: !uuid '3e9fac1d80a124a8324eab6587a54e7e7d63f887'
-    oldFile: !uuid 'd6bc7d877ae66da9db7100c0f26531fa6cea1199'
-  /Admin.NET/Admin.NET.Core/Hub:
-    newFile: !uuid '3667e23f20d52a7c1c80eda76c1b69864e9bab18'
-    oldFile: !uuid 'dc5acd6f50cdefd82f1c0cdb693f7ba99fa08e59'
-  /Admin.NET/Admin.NET.Core/Hub/OnlineUserHub.cs:
-    newFile: !uuid 'd11278f9130c9208e3b8dc49d48001f7e04269cd'
-    oldFile: !uuid '3757ead9d9c54533b4df1eeb70e056984c5a937e'
-gitCommitId: !uuid '54585d7b28eaeaefd2c7c393738730e7c826ffcd'
+    newFile: !uuid 'af841d559013d6dc5ffff1ad738431e8a0730f0f'
+    oldFile: !uuid '86af5623811aef8754758d34b0f4e9088e63bf07'
+  /Admin.NET/Admin.NET.Core/Logging:
+    newFile: !uuid 'e9fe75468a36249dbbc45fe31a4f123f990ec1f9'
+    oldFile: !uuid '6404eeb2dd74e0ad62fe4cbb8b409b09adcf38e8'
+  /Admin.NET/Admin.NET.Core/Logging/DatabaseLoggingWriter.cs:
+    newFile: !uuid 'd1d5d60fec0a9e62d3854379db12adf9df8db665'
+    oldFile: !uuid '9cd4db49fc4c5856741d7b103ee90920cd6c5144'
+  /Admin.NET/Admin.NET.Core/Logging/LogExceptionHandler.cs:
+    newFile: !uuid '74c3d2df9ceb63d646fabf29ef0053afc1e765fd'
+    oldFile: !uuid '097b7d88fda5e6eb5ec3b5d8247ebdd317c81c01'
+gitCommitId: !uuid '54a91d38eb1bc6743eb65a61f8b4a234896cd814'
 renames: {
   }
-revisionId: 1199
+revisionId: 1200
