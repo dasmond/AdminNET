@@ -2,25 +2,22 @@
 branches: {
   }
 fileChange:
-  /Admin.NET:
-    newFile: !uuid '09813fb33122832915b94e4b8e30e6641d639688'
-    oldFile: !uuid '084b9f6a2dfc6934ae9abc42851b64d867cb38d8'
-  /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '73ca4fc683d7975b398c94023221eee01b1f2588'
-    oldFile: !uuid '2f6672635a66049975bf8e6ded19a9608e5f7c80'
-  /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
-    newFile: !uuid 'af841d559013d6dc5ffff1ad738431e8a0730f0f'
-    oldFile: !uuid '86af5623811aef8754758d34b0f4e9088e63bf07'
-  /Admin.NET/Admin.NET.Core/Logging:
-    newFile: !uuid 'e9fe75468a36249dbbc45fe31a4f123f990ec1f9'
-    oldFile: !uuid '6404eeb2dd74e0ad62fe4cbb8b409b09adcf38e8'
-  /Admin.NET/Admin.NET.Core/Logging/DatabaseLoggingWriter.cs:
-    newFile: !uuid 'd1d5d60fec0a9e62d3854379db12adf9df8db665'
-    oldFile: !uuid '9cd4db49fc4c5856741d7b103ee90920cd6c5144'
-  /Admin.NET/Admin.NET.Core/Logging/LogExceptionHandler.cs:
-    newFile: !uuid '74c3d2df9ceb63d646fabf29ef0053afc1e765fd'
-    oldFile: !uuid '097b7d88fda5e6eb5ec3b5d8247ebdd317c81c01'
-gitCommitId: !uuid '54a91d38eb1bc6743eb65a61f8b4a234896cd814'
+  /Web:
+    newFile: !uuid '2142f206e95f60d2e0fe648ba70a6076d4e25930'
+    oldFile: !uuid '5f5e2edd68283b61c4325fc7b1a461b406999c3a'
+  /Web/src:
+    newFile: !uuid '55f30bbd6db14ab1c051a7cc7f53bd697d2dc237'
+    oldFile: !uuid '160bfaacd0046fe6dbfbede44b5e285fb0d9602d'
+  /Web/src/components:
+    newFile: !uuid '800e94c8ee59c1fb39fdbdf68a660f4b8d19eae5'
+    oldFile: !uuid '96439a8bfcded3e97188d06b31d1ddbad0d0a4e8'
+  /Web/src/components/table:
+    newFile: !uuid '500c3741e3ae462a4d12fa1d9ad722b897755272'
+    oldFile: !uuid '30834a46aeefaf997ed31ec1205397039f572663'
+  /Web/src/components/table/search.vue:
+    newFile: !uuid '889b64650a6897459bfe3d38f73379a99033a34d'
+    oldFile: !uuid '21a9047c489ad4ca1545a81bba77a857c71aa510'
+gitCommitId: !uuid '4588aaebf24959ed3d3a7a4af1c2a89299023495'
 renames: {
   }
-revisionId: 1200
+revisionId: 1201
