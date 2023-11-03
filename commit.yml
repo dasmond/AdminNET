@@ -3,18 +3,15 @@ branches: {
   }
 fileChange:
   /Web:
-    newFile: !uuid 'f7bea418ef1edeac841f38f1160b8967f0e272aa'
-    oldFile: !uuid '2142f206e95f60d2e0fe648ba70a6076d4e25930'
-  /Web/src:
-    newFile: !uuid 'cfe93be189f3aa8cac9134f03a8cab1ce3e39ab1'
-    oldFile: !uuid '55f30bbd6db14ab1c051a7cc7f53bd697d2dc237'
-  /Web/src/types:
-    newFile: !uuid '4e4532c77b8e04bcb983bb6af3b69f2ab0547aeb'
-    oldFile: !uuid '045eeabf1d595ddae6264644e6ab2619daedeb2f'
-  /Web/src/types/views.d.ts:
-    newFile: !uuid '02d85aeddc1b27a09e737951fc79540212cb8385'
-    oldFile: !uuid '65bbb64965210b176bc708ed45b04a1b59980cf8'
-gitCommitId: !uuid 'c8fa9d002dc127ec0204f8456bba6a1965ad1111'
+    newFile: !uuid '76e08ab9b4fec303a68a46533adda4ac818bc737'
+    oldFile: !uuid 'f7bea418ef1edeac841f38f1160b8967f0e272aa'
+  /Web/package.json:
+    newFile: !uuid 'a14da92d317cc27cb61c3f0418a4d49b5a368c76'
+    oldFile: !uuid '4341650db621c1a21fbf9cb8cafa5e8636951e3a'
+  /Web/vite.config.ts:
+    newFile: !uuid 'ced79cfb5baa348f79c402297b0a964c05684780'
+    oldFile: !uuid 'ec22a48d93fa42c00885477dd8b5689fa785112c'
+gitCommitId: !uuid '16dc7fd1a3824ae92181528c95649bfb27309948'
 renames: {
   }
-revisionId: 1244
+revisionId: 1245
