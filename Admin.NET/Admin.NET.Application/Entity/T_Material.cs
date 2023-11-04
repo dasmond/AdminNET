@@ -322,8 +322,8 @@ public class T_Material  : EntityTenant
     /// </summary>
     [Required]
     [Constraint("0")]
-    [SugarColumn(ColumnName = "StorageID", ColumnDescription = "默认仓库ID")]
-    public long StorageID { get; set; }
+    [SugarColumn(ColumnName = "WareHouseId", ColumnDescription = "默认仓库ID")]
+    public long WareHouseId { get; set; }
     
     /// <summary>
     /// 默认仓位ID
@@ -338,8 +338,8 @@ public class T_Material  : EntityTenant
     /// </summary>
     [Required]
     [Constraint("0")]
-    [SugarColumn(ColumnName = "StorageLock", ColumnDescription = "使用库存分配", Length = 1)]
-    public string StorageLock { get; set; }
+    [SugarColumn(ColumnName = "WareLock", ColumnDescription = "使用库存分配", Length = 1)]
+    public string WareLock { get; set; }
     
     /// <summary>
     /// 使用批号
