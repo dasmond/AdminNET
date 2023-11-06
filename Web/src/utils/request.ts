@@ -1,10 +1,16 @@
+// noinspection TypeScriptValidateTypes
+
 import axios, { AxiosInstance } from 'axios';
 import { ElMessage } from 'element-plus';
 import { Local, Session } from '/@/utils/storage';
 
+export const getApiUrl = () => {
+	return process.env.NODE_ENV !== 'development' ? "http://" + window.location.hostname + ":5005" : import.meta.env.VITE_API_URL
+}
+
 // 配置新建一个 axios 实例
 export const service = axios.create({
-	baseURL: import.meta.env.VITE_API_URL as any,
+	baseURL: getApiUrl(),
 	timeout: 50000,
 	headers: { 'Content-Type': 'application/json' },
 });

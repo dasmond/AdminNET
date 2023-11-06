@@ -76,6 +76,7 @@ const getThemeConfig = computed(() => {
 });
 // 页面加载时
 onMounted(() => {
+  console.log(window.location)
 	NextLoading.done();
 });
 </script>

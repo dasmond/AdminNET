@@ -1,11 +1,12 @@
 import * as SignalR from '@microsoft/signalr';
 import { ElNotification } from 'element-plus';
 import { getToken } from '/@/utils/axios-utils';
+import {getApiUrl} from "/@/utils/request";
 
 // 初始化SignalR对象
 const connection = new SignalR.HubConnectionBuilder()
 	.configureLogging(SignalR.LogLevel.Information)
-	.withUrl(`${import.meta.env.VITE_API_URL}/hubs/onlineUser?access_token=${getToken()}`)
+	.withUrl(`${getApiUrl()}/hubs/onlineUser?access_token=${getToken()}`)
 	.withAutomaticReconnect({
 		nextRetryDelayInMilliseconds: () => {
 			return 5000; // 每5秒重连一次

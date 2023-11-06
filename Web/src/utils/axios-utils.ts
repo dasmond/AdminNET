@@ -11,10 +11,11 @@ import { BaseAPI, BASE_PATH } from '../api-services/base';
 
 import { ElMessage } from 'element-plus';
 import { Local, Session } from '../utils/storage';
+import {getApiUrl} from "/@/utils/request";
 
 // 接口服务器配置
 export const serveConfig = new Configuration({
-	basePath: import.meta.env.VITE_API_URL,
+	basePath: getApiUrl(),
 });
 
 // token 键定义
