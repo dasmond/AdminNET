@@ -14,7 +14,7 @@ import { Local, Session } from '../utils/storage';
 
 // 接口服务器配置
 export const serveConfig = new Configuration({
-	basePath: import.meta.env.VITE_API_URL,
+	basePath: window.__env__.VITE_API_URL,
 });
 
 // token 键定义
@@ -74,10 +74,10 @@ axiosInstance.interceptors.request.use(
 		// 这里编写请求拦截代码 =========================================
 
 		// 获取前端设置的语言
-		const globalI18n = Local.get('themeConfig');
-		if (globalI18n && globalI18n['globalI18n']) {
+		const globalI18n = Local.get('themeConfig')?.globalI18n;
+		if (globalI18n) {
 			// 添加到请求报文头中
-			conf.headers!['Accept-Language'] = globalI18n['globalI18n'];
+			conf.headers!['Accept-Language'] = globalI18n;
 		}
 		return conf;
 	},

@@ -33,11 +33,9 @@ public class SysDictTypeService : IDynamicApiController, ITransient
     [DisplayName("获取字典类型分页列表")]
     public async Task<SqlSugarPagedList<SysDictType>> Page(PageDictTypeInput input)
     {
-        var code = !string.IsNullOrEmpty(input.Code?.Trim());
-        var name = !string.IsNullOrEmpty(input.Name?.Trim());
         return await _sysDictTypeRep.AsQueryable()
-            .WhereIF(code, u => u.Code.Contains(input.Code))
-            .WhereIF(name, u => u.Name.Contains(input.Name))
+            .WhereIF(!string.IsNullOrEmpty(input.Code?.Trim()), u => u.Code.Contains(input.Code))
+            .WhereIF(!string.IsNullOrEmpty(input.Name?.Trim()), u => u.Name.Contains(input.Name))
             .OrderBy(u => new { u.OrderNo, u.Code })
             .ToPagedListAsync(input.Page, input.PageSize);
     }
@@ -64,6 +62,7 @@ public class SysDictTypeService : IDynamicApiController, ITransient
         var dictType = await _sysDictTypeRep.GetFirstAsync(u => u.Code == input.Code);
         if (dictType == null)
             throw Oops.Oh(ErrorCodeEnum.D3000);
+
         return await _sysDictDataService.GetDictDataListByDictTypeId(dictType.Id);
     }
 
@@ -116,7 +115,7 @@ public class SysDictTypeService : IDynamicApiController, ITransient
         if (dictType == null)
             throw Oops.Oh(ErrorCodeEnum.D3000);
 
-        //删除字典值
+        // 删除字典值
         await _sysDictTypeRep.DeleteAsync(dictType);
         await _sysDictDataService.DeleteDictData(input.Id);
     }
@@ -147,7 +146,24 @@ public class SysDictTypeService : IDynamicApiController, ITransient
         if (!Enum.IsDefined(typeof(StatusEnum), input.Status))
             throw Oops.Oh(ErrorCodeEnum.D3005);
 
-        dictType.Status = (StatusEnum)input.Status;
+        dictType.Status = input.Status;
         await _sysDictTypeRep.UpdateAsync(dictType);
+    }
+
+    /// <summary>
+    /// 获取所有字典集合
+    /// </summary>
+    /// <returns></returns>
+    [AllowAnonymous]
+    [DisplayName("获取所有字典集合")]
+    public async Task<List<SysDictType>> GetAllDictList()
+    {
+        var dictList = await _sysDictTypeRep.AsQueryable()
+            .Includes(u => u.Children)
+            .OrderBy(u => new { u.OrderNo, u.Code })
+            .ToListAsync();
+        // 字典数据项排序
+        dictList.ForEach(u => u.Children = u.Children.OrderBy(c => c.OrderNo).ThenBy(c => c.Code).ToList());
+        return dictList;
     }
 }

@@ -4,8 +4,7 @@ import Watermark from '/@/utils/watermark';
 import { useThemeConfig } from '/@/stores/themeConfig';
 
 import { getAPI } from '/@/utils/axios-utils';
-import { SysAuthApi, SysConstApi } from '/@/api-services/api';
-const baseUrl = import.meta.env.VITE_API_URL;
+import { SysAuthApi, SysConstApi, SysDictTypeApi } from '/@/api-services/api';
 
 /**
  * 用户信息
@@ -15,6 +14,7 @@ export const useUserInfo = defineStore('userInfo', {
 	state: (): UserInfosState => ({
 		userInfos: {} as any,
 		constList: [] as any,
+		dictList: [] as any,
 	}),
 	getters: {
 		// // 获取系统常量列表
@@ -35,13 +35,23 @@ export const useUserInfo = defineStore('userInfo', {
 			}
 		},
 		async setConstList() {
-			// 存储用户信息到浏览器缓存
+			// 存储常量信息到浏览器缓存
 			if (Session.get('constList')) {
 				this.constList = Session.get('constList');
 			} else {
 				const constList = <any[]>await this.getSysConstList();
 				Session.set('constList', constList);
 				this.constList = constList;
+			}
+		},
+		async setDictList() {
+			// 存储字典信息到浏览器缓存
+			if (Session.get('dictList')) {
+				this.dictList = Session.get('dictList');
+			} else {
+				const dictList = <any[]>await this.getAllDictList();
+				Session.set('dictList', dictList);
+				this.dictList = dictList;
 			}
 		},
 		// 获取当前用户信息
@@ -56,6 +66,7 @@ export const useUserInfo = defineStore('userInfo', {
 							id: d.id,
 							account: d.account,
 							realName: d.realName,
+							accountType: d.accountType,
 							avatar: d.avatar ? '/' + d.avatar : '/favicon.ico',
 							address: d.address,
 							signature: d.signature,
@@ -87,10 +98,21 @@ export const useUserInfo = defineStore('userInfo', {
 					});
 			});
 		},
+		// 获取常量集合
 		getSysConstList() {
 			return new Promise((resolve) => {
 				getAPI(SysConstApi)
 					.apiSysConstListGet()
+					.then(async (res: any) => {
+						resolve(res.data.result ?? []);
+					});
+			});
+		},
+		// 获取字典集合
+		getAllDictList() {
+			return new Promise((resolve) => {
+				getAPI(SysDictTypeApi)
+					.apiSysDictTypeAllDictListGet()
 					.then(async (res: any) => {
 						resolve(res.data.result ?? []);
 					});

@@ -31,12 +31,10 @@ public class SysDictDataService : IDynamicApiController, ITransient
     [DisplayName("获取字典值分页列表")]
     public async Task<SqlSugarPagedList<SysDictData>> Page(PageDictDataInput input)
     {
-        var code = !string.IsNullOrEmpty(input.Code?.Trim());
-        var value = !string.IsNullOrEmpty(input.Value?.Trim());
         return await _sysDictDataRep.AsQueryable()
             .Where(u => u.DictTypeId == input.DictTypeId)
-            .WhereIF(code, u => u.Code.Contains(input.Code))
-            .WhereIF(value, u => u.Value.Contains(input.Value))
+            .WhereIF(!string.IsNullOrEmpty(input.Code?.Trim()), u => u.Code.Contains(input.Code))
+            .WhereIF(!string.IsNullOrEmpty(input.Value?.Trim()), u => u.Value.Contains(input.Value))
             .OrderBy(u => new { u.OrderNo, u.Code })
             .ToPagedListAsync(input.Page, input.PageSize);
     }
@@ -127,7 +125,7 @@ public class SysDictDataService : IDynamicApiController, ITransient
         if (!Enum.IsDefined(typeof(StatusEnum), input.Status))
             throw Oops.Oh(ErrorCodeEnum.D3005);
 
-        dictData.Status = (StatusEnum)input.Status;
+        dictData.Status = input.Status;
         await _sysDictDataRep.UpdateAsync(dictData);
     }
 
@@ -141,7 +139,8 @@ public class SysDictDataService : IDynamicApiController, ITransient
     {
         return await _sysDictDataRep.AsQueryable()
             .Where(u => u.DictTypeId == dictTypeId)
-            .OrderBy(u => new { u.OrderNo, u.Code }).ToListAsync();
+            .OrderBy(u => new { u.OrderNo, u.Code })
+            .ToListAsync();
     }
 
     /// <summary>
@@ -153,9 +152,10 @@ public class SysDictDataService : IDynamicApiController, ITransient
     public async Task<List<SysDictData>> GetDataList(string code)
     {
         return await _sysDictDataRep.Context.Queryable<SysDictType>()
-            .LeftJoin<SysDictData>((a, b) => a.Id == b.DictTypeId)
-            .Where((a, b) => a.Code == code && a.Status == StatusEnum.Enable && b.Status == StatusEnum.Enable)
-            .Select((a, b) => b).ToListAsync();
+            .LeftJoin<SysDictData>((u, a) => u.Id == a.DictTypeId)
+            .Where((u, a) => u.Code == code && u.Status == StatusEnum.Enable && a.Status == StatusEnum.Enable)
+            .OrderBy((u, a) => new { a.OrderNo, a.Code })
+            .Select((u, a) => a).ToListAsync();
     }
 
     /// <summary>
@@ -167,10 +167,11 @@ public class SysDictDataService : IDynamicApiController, ITransient
     public async Task<List<SysDictData>> GetDataList([FromQuery] QueryDictDataInput input)
     {
         return await _sysDictDataRep.Context.Queryable<SysDictType>()
-            .LeftJoin<SysDictData>((a, b) => a.Id == b.DictTypeId)
-            .Where((a, b) => a.Code == input.Code)
-            .WhereIF(input.Status.HasValue, (a, b) => b.Status == (StatusEnum)input.Status.Value)
-            .Select((a, b) => b).ToListAsync();
+            .LeftJoin<SysDictData>((u, a) => u.Id == a.DictTypeId)
+            .Where((u, a) => u.Code == input.Code)
+            .WhereIF(input.Status.HasValue, (u, a) => a.Status == (StatusEnum)input.Status.Value)
+            .OrderBy((u, a) => new { a.OrderNo, a.Code })
+            .Select((u, a) => a).ToListAsync();
     }
 
     /// <summary>

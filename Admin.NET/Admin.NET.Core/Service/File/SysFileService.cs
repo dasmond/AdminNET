@@ -1,4 +1,4 @@
-﻿// 麻省理工学院许可证
+// 麻省理工学院许可证
 //
 // 版权所有 (c) 2021-2023 zuohuaijun，大名科技（天津）有限公司  联系电话/微信：18020030720  QQ：515096995
 //
@@ -77,6 +77,44 @@ public class SysFileService : IDynamicApiController, ITransient
     }
 
     /// <summary>
+    /// 上传文件Base64
+    /// </summary>
+    /// <param name="strBase64"></param>
+    /// <param name="fileName"></param>
+    /// <param name="contentType"></param>
+    /// <param name="path"></param>
+    /// <returns></returns>
+    private async Task<FileOutput> UploadFileFromBase64(string strBase64, string fileName, string contentType, string? path)
+    {
+        byte[] fileData = Convert.FromBase64String(strBase64);
+        var ms = new MemoryStream();
+        ms.Write(fileData);
+        ms.Seek(0, SeekOrigin.Begin);
+        if (string.IsNullOrEmpty(fileName))
+            fileName = $"{YitIdHelper.NextId()}.jpg";
+        if (string.IsNullOrEmpty(contentType))
+            contentType = "image/jpg";
+        IFormFile formFile = new FormFile(ms, 0, fileData.Length, "file", fileName)
+        {
+            Headers = new HeaderDictionary(),
+            ContentType = contentType
+        };
+        return await UploadFile(formFile, path);
+    }
+
+    /// <summary>
+    /// 上传文件Base64
+    /// </summary>
+    /// <param name="input"></param>
+    /// <returns></returns>
+    [DisplayName("上传文件Base64")]
+    [HttpPost]
+    public async Task<FileOutput> UploadFileFromBase64(UploadFileFromBase64Input input)
+    {
+        return await UploadFileFromBase64(input.FileDataBase64, input.FileName, input.ContentType, input.Path);
+    }
+
+    /// <summary>
     /// 上传多文件
     /// </summary>
     /// <param name="files"></param>
@@ -93,24 +131,24 @@ public class SysFileService : IDynamicApiController, ITransient
     }
 
     /// <summary>
-    /// 下载文件(文件流)
+    /// 根据文件Id或Url下载
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
-    [DisplayName("下载文件(文件流)")]
+    [DisplayName("根据文件Id或Url下载")]
     public async Task<IActionResult> DownloadFile(FileInput input)
     {
-        var file = await GetFile(input);
+        var file = input.Id > 0 ? await GetFile(input) : await _sysFileRep.GetFirstAsync(u => u.Url == input.Url);
         var fileName = HttpUtility.UrlEncode(file.FileName, Encoding.GetEncoding("UTF-8"));
         if (_OSSProviderOptions.IsEnable)
         {
-            var filePath = string.Concat(file.FilePath, "/", input.Id.ToString() + file.Suffix);
+            var filePath = string.Concat(file.FilePath, "/", file.Id.ToString() + file.Suffix);
             var stream = await (await _OSSService.PresignedGetObjectAsync(file.BucketName.ToString(), filePath, 5)).GetAsStreamAsync();
             return new FileStreamResult(stream.Stream, "application/octet-stream") { FileDownloadName = fileName + file.Suffix };
         }
         else
         {
-            var filePath = Path.Combine(file.FilePath, input.Id.ToString() + file.Suffix);
+            var filePath = Path.Combine(file.FilePath, file.Id.ToString() + file.Suffix);
             var path = Path.Combine(App.WebHostEnvironment.WebRootPath, filePath);
             return new FileStreamResult(new FileStream(path, FileMode.Open), "application/octet-stream") { FileDownloadName = fileName + file.Suffix };
         }
@@ -144,6 +182,21 @@ public class SysFileService : IDynamicApiController, ITransient
     }
 
     /// <summary>
+    /// 更新文件
+    /// </summary>
+    /// <param name="input"></param>
+    /// <returns></returns>
+    [ApiDescriptionSettings(Name = "Update"), HttpPost]
+    [DisplayName("更新文件")]
+    public async Task UpdateFile(FileInput input)
+    {
+        var isExist = await _sysFileRep.IsAnyAsync(u => u.Id == input.Id);
+        if (!isExist) throw Oops.Oh(ErrorCodeEnum.D8000);
+
+        await _sysFileRep.UpdateAsync(u => new SysFile() { FileName = input.FileName }, u => u.Id == input.Id);
+    }
+
+    /// <summary>
     /// 获取文件
     /// </summary>
     /// <param name="input"></param>
@@ -171,7 +224,7 @@ public class SysFileService : IDynamicApiController, ITransient
         {
             using var fileStream = file.OpenReadStream();
             fileMd5 = OssUtils.ComputeContentMd5(fileStream, fileStream.Length);
-            var sysFile = await _sysFileRep.GetFirstAsync(q => q.FileMd5 == fileMd5 && (q.SizeKb == null || q.SizeKb == sizeKb.ToString()));
+            var sysFile = await _sysFileRep.GetFirstAsync(u => u.FileMd5 == fileMd5 && (u.SizeKb == null || u.SizeKb == sizeKb.ToString()));
             if (sysFile != null) return sysFile;
         }
 
@@ -236,8 +289,8 @@ public class SysFileService : IDynamicApiController, ITransient
 
                 case OSSProvider.Minio:
                     // 获取Minio文件的下载或者预览地址
-                    //newFile.Url = await GetMinioPreviewFileUrl(newFile.BucketName, filePath);// 这种方法生成的Url是有7天有效期的，不能这样使用
-                    // 需要在MinIO中的Buckets开通对Anonymous 的readonly权限
+                    // newFile.Url = await GetMinioPreviewFileUrl(newFile.BucketName, filePath);// 这种方法生成的Url是有7天有效期的，不能这样使用
+                    // 需要在MinIO中的Buckets开通对 Anonymous 的readonly权限
                     newFile.Url = $"{(_OSSProviderOptions.IsEnableHttps ? "https" : "http")}://{_OSSProviderOptions.Endpoint}/{newFile.BucketName}/{filePath}";
                     break;
             }

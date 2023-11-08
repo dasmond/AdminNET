@@ -181,18 +181,29 @@ public static class SqlSugarSetup
                         if (tenantId == null || tenantId == 0)
                             entityInfo.SetValue(App.User.FindFirst(ClaimConst.TenantId)?.Value);
                     }
-                    if (entityInfo.PropertyName == "CreateUserId")
+                    else if (entityInfo.PropertyName == "CreateUserId")
                     {
                         var createUserId = ((dynamic)entityInfo.EntityValue).CreateUserId;
                         if (createUserId == 0 || createUserId == null)
                             entityInfo.SetValue(App.User.FindFirst(ClaimConst.UserId)?.Value);
                     }
-
-                    if (entityInfo.PropertyName == "CreateOrgId")
+                    else if (entityInfo.PropertyName == "CreateUserName")
+                    {
+                        var createUserName = ((dynamic)entityInfo.EntityValue).CreateUserName;
+                        if (string.IsNullOrEmpty(createUserName))
+                            entityInfo.SetValue(App.User.FindFirst(ClaimConst.RealName)?.Value);
+                    }
+                    else if (entityInfo.PropertyName == "CreateOrgId")
                     {
                         var createOrgId = ((dynamic)entityInfo.EntityValue).CreateOrgId;
                         if (createOrgId == 0 || createOrgId == null)
                             entityInfo.SetValue(App.User.FindFirst(ClaimConst.OrgId)?.Value);
+                    }
+                    else if (entityInfo.PropertyName == "CreateOrgName")
+                    {
+                        var createOrgName = ((dynamic)entityInfo.EntityValue).CreateOrgName;
+                        if (string.IsNullOrEmpty(createOrgName))
+                            entityInfo.SetValue(App.User.FindFirst(ClaimConst.OrgName)?.Value);
                     }
                 }
             }
@@ -200,8 +211,10 @@ public static class SqlSugarSetup
             {
                 if (entityInfo.PropertyName == "UpdateTime")
                     entityInfo.SetValue(DateTime.Now);
-                if (entityInfo.PropertyName == "UpdateUserId")
+                else if (entityInfo.PropertyName == "UpdateUserId")
                     entityInfo.SetValue(App.User?.FindFirst(ClaimConst.UserId)?.Value);
+                else if (entityInfo.PropertyName == "UpdateUserName")
+                    entityInfo.SetValue(App.User?.FindFirst(ClaimConst.RealName)?.Value);
             }
         };
 
@@ -354,10 +367,11 @@ public static class SqlSugarSetup
         var db = iTenant.GetConnectionScope(config.ConfigId);
         db.DbMaintenance.CreateDatabase();
 
-        // 获取所有系统表-初始化租户库表结构
-        var entityTypes = App.EffectiveTypes.Where(u => !u.IsInterface && !u.IsAbstract && u.IsClass &&
-            u.IsDefined(typeof(SugarTable), false) && !u.IsDefined(typeof(SysTableAttribute), false) && !u.IsDefined(typeof(TenantAttribute), false)).ToList();
+        // 获取所有业务表-初始化租户库表结构（排除系统表、日志表、特定库表）
+        var entityTypes = App.EffectiveTypes.Where(u => !u.IsInterface && !u.IsAbstract && u.IsClass && u.IsDefined(typeof(SugarTable), false) &&
+            !u.IsDefined(typeof(SysTableAttribute), false) && !u.IsDefined(typeof(LogTableAttribute), false) && !u.IsDefined(typeof(TenantAttribute), false)).ToList();
         if (!entityTypes.Any()) return;
+
         foreach (var entityType in entityTypes)
         {
             var splitTable = entityType.GetCustomAttribute<SplitTableAttribute>();

@@ -13,7 +13,8 @@ declare interface UserInfos<T = any> {
 }
 declare interface UserInfosState {
 	userInfos: UserInfos;
-	constList: T[],
+	constList: T[];
+	dictList: T[];
 }
 
 // 路由缓存列表

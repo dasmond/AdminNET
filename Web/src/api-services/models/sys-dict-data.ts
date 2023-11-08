@@ -13,6 +13,7 @@
  */
 import { StatusEnum } from './status-enum';
 import { SysDictType } from './sys-dict-type';
+import { SysUser } from './sys-user';
 /**
  * 系统字典值表
  * @export
@@ -44,11 +45,35 @@ export interface SysDictData {
      */
     createUserId?: number | null;
     /**
+     * 
+     * @type {SysUser}
+     * @memberof SysDictData
+     */
+    createUser?: SysUser;
+    /**
+     * 创建者姓名
+     * @type {string}
+     * @memberof SysDictData
+     */
+    createUserName?: string | null;
+    /**
      * 修改者Id
      * @type {number}
      * @memberof SysDictData
      */
     updateUserId?: number | null;
+    /**
+     * 
+     * @type {SysUser}
+     * @memberof SysDictData
+     */
+    updateUser?: SysUser;
+    /**
+     * 修改者姓名
+     * @type {string}
+     * @memberof SysDictData
+     */
+    updateUserName?: string | null;
     /**
      * 软删除
      * @type {boolean}
@@ -80,6 +105,24 @@ export interface SysDictData {
      */
     code: string;
     /**
+     * 显示样式-标签颜色
+     * @type {string}
+     * @memberof SysDictData
+     */
+    tagType?: string | null;
+    /**
+     * 显示样式-Style(控制显示样式)
+     * @type {string}
+     * @memberof SysDictData
+     */
+    styleSetting?: string | null;
+    /**
+     * 显示样式-Class(控制显示样式)
+     * @type {string}
+     * @memberof SysDictData
+     */
+    classSetting?: string | null;
+    /**
      * 排序
      * @type {number}
      * @memberof SysDictData
@@ -91,6 +134,12 @@ export interface SysDictData {
      * @memberof SysDictData
      */
     remark?: string | null;
+    /**
+     * 拓展数据(保存业务功能的配置项)
+     * @type {string}
+     * @memberof SysDictData
+     */
+    extData?: string | null;
     /**
      * 
      * @type {StatusEnum}

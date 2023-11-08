@@ -45,7 +45,13 @@ public static class CommonUtil
     /// <returns></returns>
     public static string GetLocalhost()
     {
-        return $"{App.HttpContext.Request.Scheme}://{App.HttpContext.Request.Host.Value}";
+        string result = $"{App.HttpContext.Request.Scheme}://{App.HttpContext.Request.Host.Value}";
+        // 代理模式：获取真正的本机地址
+        // X-Original-Host=原始请求
+        // X-Forwarded-Server=从哪里转发过来
+        if (App.HttpContext.Request.Headers.ContainsKey("X-Original-Host"))
+            result = $"{App.HttpContext.Request.Scheme}://{App.HttpContext.Request.Headers["X-Original-Host"]}";
+        return result;
     }
 
     /// <summary>

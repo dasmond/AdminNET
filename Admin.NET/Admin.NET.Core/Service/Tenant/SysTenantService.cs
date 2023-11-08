@@ -64,27 +64,27 @@ public class SysTenantService : IDynamicApiController, ITransient
     public async Task<SqlSugarPagedList<TenantOutput>> Page(PageTenantInput input)
     {
         return await _sysTenantRep.AsQueryable()
-            .LeftJoin<SysUser>((t, u) => t.UserId == u.Id)
-            .LeftJoin<SysOrg>((t, u, o) => t.OrgId == o.Id)
-            .WhereIF(!string.IsNullOrWhiteSpace(input.Phone), (t, u) => u.Phone.Contains(input.Phone.Trim()))
-            .WhereIF(!string.IsNullOrWhiteSpace(input.Name), (t, u, o) => o.Name.Contains(input.Name.Trim()))
-            .OrderBy(t => t.OrderNo)
-            .Select((t, u, o) => new TenantOutput
+            .LeftJoin<SysUser>((u, a) => u.UserId == a.Id)
+            .LeftJoin<SysOrg>((u, a, b) => u.OrgId == b.Id)
+            .WhereIF(!string.IsNullOrWhiteSpace(input.Phone), (u, a) => a.Phone.Contains(input.Phone.Trim()))
+            .WhereIF(!string.IsNullOrWhiteSpace(input.Name), (u, a, b) => b.Name.Contains(input.Name.Trim()))
+            .OrderBy(u => u.OrderNo)
+            .Select((u, a, b) => new TenantOutput
             {
-                Id = t.Id,
-                OrgId = o.Id,
-                Name = o.Name,
-                UserId = u.Id,
-                AdminAccount = u.Account,
-                Phone = u.Phone,
-                Email = u.Email,
-                TenantType = t.TenantType,
-                DbType = t.DbType,
-                Connection = t.Connection,
-                ConfigId = t.ConfigId,
-                OrderNo = t.OrderNo,
-                Remark = t.Remark,
-                Status = t.Status,
+                Id = u.Id,
+                OrgId = b.Id,
+                Name = b.Name,
+                UserId = a.Id,
+                AdminAccount = a.Account,
+                Phone = a.Phone,
+                Email = a.Email,
+                TenantType = u.TenantType,
+                DbType = u.DbType,
+                Connection = u.Connection,
+                ConfigId = u.ConfigId,
+                OrderNo = u.OrderNo,
+                Remark = u.Remark,
+                Status = u.Status,
             })
             .ToPagedListAsync(input.Page, input.PageSize);
     }
@@ -126,7 +126,7 @@ public class SysTenantService : IDynamicApiController, ITransient
         await _sysTenantRep.InsertAsync(tenant);
         await InitNewTenant(tenant);
 
-        await UpdateTenantCache();
+        await CacheTenant();
     }
 
     /// <summary>
@@ -246,7 +246,7 @@ public class SysTenantService : IDynamicApiController, ITransient
 
         await _sysTenantRep.DeleteAsync(u => u.Id == input.Id);
 
-        await UpdateTenantCache();
+        await CacheTenant(input.Id);
 
         // 删除与租户相关的表数据
         var users = await _sysUserRep.AsQueryable().Filter(null, true).Where(u => u.TenantId == input.Id).ToListAsync();
@@ -292,7 +292,7 @@ public class SysTenantService : IDynamicApiController, ITransient
         // 更新系统用户
         await _sysUserRep.UpdateAsync(u => new SysUser() { Account = input.AdminAccount, Phone = input.Phone, Email = input.Email }, u => u.Id == input.UserId);
 
-        await UpdateTenantCache();
+        await CacheTenant(input.Id);
     }
 
     /// <summary>
@@ -340,32 +340,16 @@ public class SysTenantService : IDynamicApiController, ITransient
     /// <summary>
     /// 缓存所有租户
     /// </summary>
+    /// <param name="tenantId"></param>
     /// <returns></returns>
     [NonAction]
-    public async Task UpdateTenantCache()
+    public async Task CacheTenant(long tenantId = 0)
     {
-        _sysCacheService.Remove(CacheConst.KeyTenant);
+        // 移除 ISqlSugarClient 中的库连接
+        if (tenantId > 0)
+            _sysTenantRep.AsTenant().RemoveConnection(tenantId);
 
-        var iTenant = _sysTenantRep.AsTenant();
-        var tenantList = await _sysTenantRep.GetListAsync();
-        var defaultTenant = tenantList.FirstOrDefault(u => u.Id.ToString() == SqlSugarConst.MainConfigId);
-        foreach (var tenant in tenantList)
-        {
-            var tenantId = tenant.Id.ToString();
-            if (tenantId == SqlSugarConst.MainConfigId) continue;
-
-            // Id模式隔离的租户数据库与宿主一致
-            if (tenant.TenantType == TenantTypeEnum.Id)
-            {
-                tenant.ConfigId = tenantId;
-                tenant.DbType = defaultTenant.DbType;
-                tenant.Connection = defaultTenant.Connection;
-            }
-
-            // 移除 ISqlSugarClient 中的连接
-            iTenant.RemoveConnection(tenantId);
-        }
-
+        var tenantList = await _sysTenantRep.CopyNew().GetListAsync();
         _sysCacheService.Set(CacheConst.KeyTenant, tenantList);
     }
 
@@ -378,7 +362,7 @@ public class SysTenantService : IDynamicApiController, ITransient
     [DisplayName("创建租户数据库")]
     public async Task CreateDb(TenantInput input)
     {
-        var tenant = await _sysTenantRep.GetFirstAsync(u => u.Id == input.Id);
+        var tenant = await _sysTenantRep.GetSingleAsync(u => u.Id == input.Id);
         if (tenant == null) return;
 
         if (tenant.DbType == SqlSugar.DbType.Oracle)
@@ -400,5 +384,58 @@ public class SysTenantService : IDynamicApiController, ITransient
             }
         };
         SqlSugarSetup.InitTenantDatabase(App.GetRequiredService<ISqlSugarClient>().AsTenant(), config);
+    }
+
+    /// <summary>
+    /// 获取租户下的用户列表
+    /// </summary>
+    /// <param name="input"></param>
+    /// <returns></returns>
+    [DisplayName("获取租户下的用户列表")]
+    public async Task<List<SysUser>> UserList(TenantIdInput input)
+    {
+        return await _sysUserRep.AsQueryable().Filter(null, true).Where(u => u.TenantId == input.TenantId).ToListAsync();
+    }
+
+    /// <summary>
+    /// 获取租户数据库连接
+    /// </summary>
+    /// <returns></returns>
+    [NonAction]
+    public SqlSugarScopeProvider GetTenantDbConnectionScope(long tenantId)
+    {
+        var iTenant = _sysTenantRep.AsTenant();
+
+        // 若已存在租户库连接，则直接返回
+        if (iTenant.IsAnyConnection(tenantId))
+            return iTenant.GetConnectionScope(tenantId);
+
+        // 从缓存里面获取租户信息
+        var tenant = _sysCacheService.Get<List<SysTenant>>(CacheConst.KeyTenant).FirstOrDefault(u => u.Id == tenantId);
+        if (tenant == null) return null;
+
+        // 获取默认库连接配置
+        var dbOptions = App.GetOptions<DbConnectionOptions>();
+        var mainConnConfig = dbOptions.ConnectionConfigs.First(u => u.ConfigId == SqlSugarConst.MainConfigId);
+
+        // 设置租户库连接配置
+        var tenantConnConfig = new DbConnectionConfig
+        {
+            ConfigId = tenant.Id,
+            DbType = tenant.DbType,
+            IsAutoCloseConnection = true,
+            ConnectionString = tenant.Connection,
+            DbSettings = new DbSettings()
+            {
+                EnableUnderLine = mainConnConfig.DbSettings.EnableUnderLine,
+            }
+        };
+        iTenant.AddConnection(tenantConnConfig);
+
+        var sqlSugarScopeProvider = iTenant.GetConnectionScope(tenantId);
+        SqlSugarSetup.SetDbConfig(tenantConnConfig);
+        SqlSugarSetup.SetDbAop(sqlSugarScopeProvider, dbOptions.EnableConsoleSql);
+
+        return sqlSugarScopeProvider;
     }
 }

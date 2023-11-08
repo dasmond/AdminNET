@@ -23,9 +23,13 @@ public static class SqlSugarFilter
     /// <param name="dbConfigId"></param>
     public static void DeleteUserOrgCache(long userId, string dbConfigId)
     {
+        var sysCacheService = App.GetService<SysCacheService>();
+
         // 删除用户机构集合缓存
-        App.GetService<SysCacheService>().Remove($"{CacheConst.KeyUserOrg}{userId}");
-        // 删除用户机构（数据范围）过滤器缓存
+        sysCacheService.Remove($"{CacheConst.KeyUserOrg}{userId}");
+        // 删除最大数据权限缓存
+        sysCacheService.Remove($"{CacheConst.KeyRoleMaxDataScope}{userId}");
+        // 删除用户机构（数据范围）缓存——过滤器
         _cache.Remove($"db:{dbConfigId}:orgList:{userId}");
     }
 

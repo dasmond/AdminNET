@@ -16,18 +16,18 @@ namespace Admin.NET.Core.Service;
 public class SysWechatService : IDynamicApiController, ITransient
 {
     private readonly SqlSugarRepository<SysWechatUser> _sysWechatUserRep;
-    private readonly WechatApiClient _wechatApiClient;
-    private readonly WechatApiHttpClient _wechatApiHttpClient;
     private readonly SysConfigService _sysConfigService;
+    private readonly WechatApiHttpClientFactory _wechatApiHttpClientFactory;
+    private readonly WechatApiClient _wechatApiClient;
 
     public SysWechatService(SqlSugarRepository<SysWechatUser> sysWechatUserRep,
-        WechatApiHttpClient wechatApiHttpClient,
-        SysConfigService sysConfigService)
+        SysConfigService sysConfigService,
+        WechatApiHttpClientFactory wechatApiHttpClientFactory)
     {
         _sysWechatUserRep = sysWechatUserRep;
-        _wechatApiClient = wechatApiHttpClient.CreateWechatClient();
-        _wechatApiHttpClient = wechatApiHttpClient;
         _sysConfigService = sysConfigService;
+        _wechatApiHttpClientFactory = wechatApiHttpClientFactory;
+        _wechatApiClient = wechatApiHttpClientFactory.CreateWechatClient();
     }
 
     /// <summary>
@@ -152,6 +152,13 @@ public class SysWechatService : IDynamicApiController, ITransient
     [DisplayName("发送模板消息")]
     public async Task<dynamic> SendTemplateMessage(MessageTemplateSendInput input)
     {
+        var dataInfo = input.Data.ToDictionary(k => k.Key, k => k.Value);
+        var messageData = new Dictionary<string, CgibinMessageTemplateSendRequest.Types.DataItem>();
+        foreach (var item in dataInfo)
+        {
+            messageData.Add(item.Key, new CgibinMessageTemplateSendRequest.Types.DataItem() { Value = "" + item.Value.Value.ToString() + "" });
+        }
+
         var accessToken = await GetCgibinToken();
         var reqMessage = new CgibinMessageTemplateSendRequest()
         {
@@ -161,10 +168,10 @@ public class SysWechatService : IDynamicApiController, ITransient
             Url = input.Url,
             MiniProgram = new CgibinMessageTemplateSendRequest.Types.MiniProgram
             {
-                AppId = _wechatApiHttpClient._wechatOptions.WechatAppId,
+                AppId = _wechatApiHttpClientFactory._wechatOptions.WechatAppId,
                 PagePath = input.MiniProgramPagePath,
             },
-            // Data = input.Data.ToDictionary(k => k.Key, k => (CgibinMessageTemplateSendRequest.Types.DataItem)k.Value)
+            Data = messageData
         };
         var resMessage = await _wechatApiClient.ExecuteCgibinMessageTemplateSendAsync(reqMessage);
         return resMessage;

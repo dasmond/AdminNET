@@ -98,6 +98,9 @@ public class SysOrgService : IDynamicApiController, ITransient
     [DisplayName("增加机构")]
     public async Task<long> AddOrg(AddOrgInput input)
     {
+        if (!_userManager.SuperAdmin && input.Pid == 0)
+            throw Oops.Oh(ErrorCodeEnum.D2009);
+
         if (await _sysOrgRep.IsAnyAsync(u => u.Name == input.Name && u.Code == input.Code))
             throw Oops.Oh(ErrorCodeEnum.D2002);
 
@@ -129,6 +132,9 @@ public class SysOrgService : IDynamicApiController, ITransient
     [DisplayName("更新机构")]
     public async Task UpdateOrg(UpdateOrgInput input)
     {
+        if (!_userManager.SuperAdmin && input.Pid == 0)
+            throw Oops.Oh(ErrorCodeEnum.D2009);
+
         if (input.Pid != 0)
         {
             //var pOrg = await _sysOrgRep.GetFirstAsync(u => u.Id == input.Pid);
@@ -260,12 +266,14 @@ public class SysOrgService : IDynamicApiController, ITransient
         var orgIdList = _sysCacheService.Get<List<long>>($"{CacheConst.KeyUserOrg}{userId}"); // 取缓存
         if (orgIdList == null || orgIdList.Count < 1)
         {
+            // 本人新建机构集合
+            var orgList0 = await _sysOrgRep.AsQueryable().Where(u => u.CreateUserId == userId).Select(u => u.Id).ToListAsync();
             // 扩展机构集合
             var orgList1 = await _sysUserExtOrgService.GetUserExtOrgList(userId);
             // 角色机构集合
             var orgList2 = await GetUserRoleOrgIdList(userId);
             // 机构并集
-            orgIdList = orgList1.Select(u => u.OrgId).Union(orgList2).ToList();
+            orgIdList = orgList1.Select(u => u.OrgId).Union(orgList2).Union(orgList0).ToList();
             // 当前所属机构
             if (!orgIdList.Contains(_userManager.OrgId))
                 orgIdList.Add(_userManager.OrgId);

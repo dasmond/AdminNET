@@ -43,6 +43,27 @@ public class SysDictData : EntityBase
     public virtual string Code { get; set; }
 
     /// <summary>
+    /// 显示样式-标签颜色
+    /// </summary>
+    [SugarColumn(ColumnDescription = "显示样式-标签颜色", Length = 16)]
+    [MaxLength(16)]
+    public string? TagType { get; set; }
+
+    /// <summary>
+    /// 显示样式-Style(控制显示样式)
+    /// </summary>
+    [SugarColumn(ColumnDescription = "显示样式-Style", Length = 512)]
+    [MaxLength(512)]
+    public string? StyleSetting { get; set; }
+
+    /// <summary>
+    /// 显示样式-Class(控制显示样式)
+    /// </summary>
+    [SugarColumn(ColumnDescription = "显示样式-Class", Length = 512)]
+    [MaxLength(512)]
+    public string? ClassSetting { get; set; }
+
+    /// <summary>
     /// 排序
     /// </summary>
     [SugarColumn(ColumnDescription = "排序")]
@@ -51,9 +72,15 @@ public class SysDictData : EntityBase
     /// <summary>
     /// 备注
     /// </summary>
-    [SugarColumn(ColumnDescription = "备注", Length = 128)]
-    [MaxLength(128)]
+    [SugarColumn(ColumnDescription = "备注", Length = 2048)]
+    [MaxLength(2048)]
     public string? Remark { get; set; }
+
+    /// <summary>
+    /// 拓展数据(保存业务功能的配置项)
+    /// </summary>
+    [SugarColumn(ColumnDescription = "拓展数据(保存业务功能的配置项)", ColumnDataType = StaticConfig.CodeFirst_BigString)]
+    public string? ExtData { get; set; }
 
     /// <summary>
     /// 状态

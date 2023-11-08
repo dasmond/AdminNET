@@ -136,6 +136,7 @@ public class SysMenuSeedData : ISqlSugarEntitySeedData<SysMenu>
             new SysMenu{ Id=1310000000393, Pid=1310000000391, Title="上传", Permission="sysFile:uploadFile", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
             new SysMenu{ Id=1310000000394, Pid=1310000000391, Title="下载", Permission="sysFile:downloadFile", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
             new SysMenu{ Id=1310000000395, Pid=1310000000391, Title="删除", Permission="sysFile:delete", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
+            new SysMenu{ Id=1310000000396, Pid=1310000000391, Title="编辑", Permission="sysFile:update", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2023-10-27 00:00:00"), OrderNo=100 },
 
             new SysMenu{ Id=1310000000401, Pid=1310000000301, Title="打印模板", Path="/platform/print", Name="sysPrint", Component="/system/print/index", Icon="ele-Printer", Type=MenuTypeEnum.Menu, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=190 },
             new SysMenu{ Id=1310000000402, Pid=1310000000401, Title="查询", Permission="sysPrint:page", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
@@ -148,6 +149,12 @@ public class SysMenuSeedData : ISqlSugarEntitySeedData<SysMenu>
             new SysMenu{ Id=1310000000413, Pid=1310000000411, Title="编辑", Permission="sysPlugin:update", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
             new SysMenu{ Id=1310000000414, Pid=1310000000411, Title="增加", Permission="sysPlugin:add", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
             new SysMenu{ Id=1310000000415, Pid=1310000000411, Title="删除", Permission="sysPlugin:delete", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
+
+            new SysMenu{ Id=1310000000421, Pid=1310000000301, Title="开放接口身份", Path="/platform/openAccess", Name="sysOpenAccess", Component="/system/openAccess/index", Icon="ele-Link", Type=MenuTypeEnum.Menu, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=210 },
+            new SysMenu{ Id=1310000000422, Pid=1310000000421, Title="查询", Permission="sysOpenAccess:page", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
+            new SysMenu{ Id=1310000000423, Pid=1310000000421, Title="编辑", Permission="sysOpenAccess:update", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
+            new SysMenu{ Id=1310000000424, Pid=1310000000421, Title="增加", Permission="sysOpenAccess:add", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
+            new SysMenu{ Id=1310000000425, Pid=1310000000421, Title="删除", Permission="sysOpenAccess:delete", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
 
             new SysMenu{ Id=1310000000501, Pid=0, Title="日志管理", Path="/log", Name="log", Component="Layout", Icon="ele-DocumentCopy", Type=MenuTypeEnum.Dir, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=12000 },
             new SysMenu{ Id=1310000000511, Pid=1310000000501, Title="访问日志", Path="/log/vislog", Name="sysVislog", Component="/system/log/vislog/index", Icon="ele-Document", Type=MenuTypeEnum.Menu, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },

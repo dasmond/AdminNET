@@ -13,6 +13,7 @@
  */
 import { StatusEnum } from './status-enum';
 import { SysDictType } from './sys-dict-type';
+import { SysUser } from './sys-user';
 /**
  * 
  * @export
@@ -44,11 +45,35 @@ export interface AddDictDataInput {
      */
     createUserId?: number | null;
     /**
+     * 
+     * @type {SysUser}
+     * @memberof AddDictDataInput
+     */
+    createUser?: SysUser;
+    /**
+     * 创建者姓名
+     * @type {string}
+     * @memberof AddDictDataInput
+     */
+    createUserName?: string | null;
+    /**
      * 修改者Id
      * @type {number}
      * @memberof AddDictDataInput
      */
     updateUserId?: number | null;
+    /**
+     * 
+     * @type {SysUser}
+     * @memberof AddDictDataInput
+     */
+    updateUser?: SysUser;
+    /**
+     * 修改者姓名
+     * @type {string}
+     * @memberof AddDictDataInput
+     */
+    updateUserName?: string | null;
     /**
      * 软删除
      * @type {boolean}
@@ -80,6 +105,24 @@ export interface AddDictDataInput {
      */
     code: string;
     /**
+     * 显示样式-标签颜色
+     * @type {string}
+     * @memberof AddDictDataInput
+     */
+    tagType?: string | null;
+    /**
+     * 显示样式-Style(控制显示样式)
+     * @type {string}
+     * @memberof AddDictDataInput
+     */
+    styleSetting?: string | null;
+    /**
+     * 显示样式-Class(控制显示样式)
+     * @type {string}
+     * @memberof AddDictDataInput
+     */
+    classSetting?: string | null;
+    /**
      * 排序
      * @type {number}
      * @memberof AddDictDataInput
@@ -91,6 +134,12 @@ export interface AddDictDataInput {
      * @memberof AddDictDataInput
      */
     remark?: string | null;
+    /**
+     * 拓展数据(保存业务功能的配置项)
+     * @type {string}
+     * @memberof AddDictDataInput
+     */
+    extData?: string | null;
     /**
      * 
      * @type {StatusEnum}

@@ -233,6 +233,12 @@ public enum ErrorCodeEnum
     D2008,
 
     /// <summary>
+    /// 禁止增加根节点机构
+    /// </summary>
+    [ErrorCodeItemMetadata("禁止增加根节点机构")]
+    D2009,
+
+    /// <summary>
     /// 字典类型不存在
     /// </summary>
     [ErrorCodeItemMetadata("字典类型不存在")]
@@ -633,4 +639,10 @@ public enum ErrorCodeEnum
     /// </summary>
     [ErrorCodeItemMetadata("租户已禁用")]
     Z1003,
+
+    /// <summary>
+    /// 身份标识已存在
+    /// </summary>
+    [ErrorCodeItemMetadata("身份标识已存在")]
+    O1000,
 }

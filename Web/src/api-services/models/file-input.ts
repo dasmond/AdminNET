@@ -23,4 +23,16 @@ export interface FileInput {
      * @memberof FileInput
      */
     id: number;
+    /**
+     * 文件名称
+     * @type {string}
+     * @memberof FileInput
+     */
+    fileName?: string | null;
+    /**
+     * 文件Url
+     * @type {string}
+     * @memberof FileInput
+     */
+    url?: string | null;
 }

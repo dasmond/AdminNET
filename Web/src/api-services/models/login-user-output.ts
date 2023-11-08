@@ -11,12 +11,19 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+import { AccountTypeEnum } from './account-type-enum';
 /**
  * 用户登录信息
  * @export
  * @interface LoginUserOutput
  */
 export interface LoginUserOutput {
+    /**
+     * 用户id
+     * @type {number}
+     * @memberof LoginUserOutput
+     */
+    id?: number;
     /**
      * 账号名称
      * @type {string}
@@ -29,6 +36,12 @@ export interface LoginUserOutput {
      * @memberof LoginUserOutput
      */
     realName?: string | null;
+    /**
+     * 
+     * @type {AccountTypeEnum}
+     * @memberof LoginUserOutput
+     */
+    accountType?: AccountTypeEnum;
     /**
      * 头像
      * @type {string}

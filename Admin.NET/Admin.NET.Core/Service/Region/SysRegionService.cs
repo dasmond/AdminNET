@@ -142,6 +142,8 @@ public class SysRegionService : IDynamicApiController, ITransient
             });
 
             // 市级
+            if (string.IsNullOrEmpty(item.Href))
+                continue;
             var dom1 = await context.OpenAsync(item.Href);
             var itemList1 = dom1.QuerySelectorAll("table.citytable tr.citytr td a");
             for (var i1 = 0; i1 < itemList1.Length; i1 += 2)
@@ -157,6 +159,8 @@ public class SysRegionService : IDynamicApiController, ITransient
                 });
 
                 // 区县级
+                if (string.IsNullOrEmpty(item1.Href))
+                    continue;
                 var dom2 = await context.OpenAsync(item1.Href);
                 var itemList2 = dom2.QuerySelectorAll("table.countytable tr.countytr td a");
                 for (var i2 = 0; i2 < itemList2.Length; i2 += 2)
@@ -172,6 +176,8 @@ public class SysRegionService : IDynamicApiController, ITransient
                     });
 
                     // 街道级
+                    if (string.IsNullOrEmpty(item2.Href))
+                        continue;
                     var dom3 = await context.OpenAsync(item2.Href);
                     var itemList3 = dom3.QuerySelectorAll("table.towntable tr.towntr td a");
                     for (var i3 = 0; i3 < itemList3.Length; i3 += 2)
@@ -187,6 +193,8 @@ public class SysRegionService : IDynamicApiController, ITransient
                         });
 
                         // 村级
+                        if (string.IsNullOrEmpty(item3.Href))
+                            continue;
                         var dom4 = await context.OpenAsync(item3.Href);
                         var itemList4 = dom4.QuerySelectorAll("table.villagetable tr.villagetr td");
                         for (var i4 = 0; i4 < itemList4.Length; i4 += 3)
