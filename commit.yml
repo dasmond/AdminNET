@@ -3,27 +3,18 @@ branches: {
   }
 fileChange:
   /Web:
-    newFile: !uuid '97059aa2e2edc5e057cd5bdd1521b8602d87f794'
-    oldFile: !uuid '44248b10ec16bb5a0f09858d99da164a0f71d4fb'
+    newFile: !uuid '8a019e21d74e604ecb39a379b60f676e111c62d0'
+    oldFile: !uuid '97059aa2e2edc5e057cd5bdd1521b8602d87f794'
   /Web/src:
-    newFile: !uuid 'e9726bd000411fddf4a8c105d794b83c2ab1f763'
-    oldFile: !uuid 'e2e7a7a4a9edaec8a32512aad8d701b46d8297e1'
-  /Web/src/views:
-    newFile: !uuid '04ee1797b1e9dc2481b311cc26d16b9109487460'
-    oldFile: !uuid '9bca18483a308d54858f0a0d1ffb92e1801b5bc5'
-  /Web/src/views/system:
-    newFile: !uuid '855c2984d2e07e96dd950d45101055ae105f4834'
-    oldFile: !uuid '2c8658cb87bc4d7431d66dc07fa53851ee9aac11'
-  /Web/src/views/system/codeGen:
-    newFile: !uuid 'd0f6d9466578834418a63ebef2f361c1241cbb8c'
-    oldFile: !uuid 'd594dd538e7e1d2aad379fa60ce377bcf71a62fc'
-  /Web/src/views/system/codeGen/component:
-    newFile: !uuid 'aca8127e1c664ea72b89277bc0ca20f7d9b52669'
-    oldFile: !uuid '902178a45fb06a2dc76fee60237003fb9ee54d5f'
-  /Web/src/views/system/codeGen/component/genConfigDialog.vue:
-    newFile: !uuid '43c715e472f955d214e470748f592144a69148ba'
-    oldFile: !uuid '84f08d1d46608d5f4bf16d2e0ee529e5659e4e3e'
-gitCommitId: !uuid 'b4d816e0c2bb7bca80fca76d4911056c18e758cb'
+    newFile: !uuid 'c9c5b3e2a6b7af2a7837d12af517ccbcc9ed2aa8'
+    oldFile: !uuid 'e9726bd000411fddf4a8c105d794b83c2ab1f763'
+  /Web/src/theme:
+    newFile: !uuid '51265faaed479402330226f5e0fb78566aa198dc'
+    oldFile: !uuid 'c14b41c70a5d6c83d9835aa1dbf09902559228d1'
+  /Web/src/theme/element.scss:
+    newFile: !uuid 'ea604666dafe54c61a6008c1f7a8af728bb8c184'
+    oldFile: !uuid '8b292d1b0b2b46e47e9b371131a83ef06c80ab8a'
+gitCommitId: !uuid '7d2795b90f1a88459ca19e331d3d2fe8af5948da'
 renames: {
   }
-revisionId: 1216
+revisionId: 1217
