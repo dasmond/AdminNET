@@ -54,7 +54,7 @@ public static class CodeGenUtil
     public static string ConvertDataType(DbColumnInfo dbColumnInfo, DbType dbType = DbType.Custom)
     {
         if (dbType == DbType.Custom)
-            dbType = App.GetOptions<DbConnectionOptions>().ConnectionConfigs[0].DbType;
+            dbType = App.GetOptions<DbConnectionOptions>().ConnectionConfigs.Where(u => u.Enable == true).FirstOrDefault().DbType;
 
         var dataType = dbType switch
         {

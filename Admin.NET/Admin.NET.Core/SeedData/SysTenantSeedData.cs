@@ -20,7 +20,7 @@ public class SysTenantSeedData : ISqlSugarEntitySeedData<SysTenant>
     /// <returns></returns>
     public IEnumerable<SysTenant> HasData()
     {
-        var defaultDbConfig = App.GetOptions<DbConnectionOptions>().ConnectionConfigs[0];
+        var defaultDbConfig = App.GetOptions<DbConnectionOptions>().ConnectionConfigs.Where(u => u.Enable == true).FirstOrDefault();
 
         return new[]
         {

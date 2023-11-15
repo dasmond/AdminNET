@@ -28,11 +28,11 @@ public static class SqlSugarSetup
         };
 
         var dbOptions = App.GetOptions<DbConnectionOptions>();
-        dbOptions.ConnectionConfigs.ForEach(SetDbConfig);
+        dbOptions.ConnectionConfigs.Where(u => u.Enable == true).ToList().ForEach(SetDbConfig);
 
-        SqlSugarScope sqlSugar = new(dbOptions.ConnectionConfigs.Adapt<List<ConnectionConfig>>(), db =>
+        SqlSugarScope sqlSugar = new(dbOptions.ConnectionConfigs.Where(u => u.Enable == true).Adapt<List<ConnectionConfig>>(), db =>
         {
-            dbOptions.ConnectionConfigs.ForEach(config =>
+            dbOptions.ConnectionConfigs.Where(u => u.Enable == true).ToList().ForEach(config =>
             {
                 var dbProvider = db.GetConnectionScope(config.ConfigId);
                 SetDbAop(dbProvider, dbOptions.EnableConsoleSql);
@@ -45,7 +45,7 @@ public static class SqlSugarSetup
         services.AddUnitOfWork<SqlSugarUnitOfWork>(); // 事务与工作单元注册
 
         // 初始化数据库表结构及种子数据
-        dbOptions.ConnectionConfigs.ForEach(config =>
+        dbOptions.ConnectionConfigs.Where(u => u.Enable == true).ToList().ForEach(config =>
         {
             InitDatabase(sqlSugar, config);
         });
