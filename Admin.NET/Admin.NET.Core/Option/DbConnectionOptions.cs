@@ -26,7 +26,7 @@ public sealed class DbConnectionOptions : IConfigurableOptions<DbConnectionOptio
 
     public void PostConfigure(DbConnectionOptions options, IConfiguration configuration)
     {
-        foreach (var dbConfig in options.ConnectionConfigs)
+        foreach (var dbConfig in options.ConnectionConfigs.Where(u => u.Enable == true))
         {
             if (string.IsNullOrWhiteSpace(dbConfig.ConfigId))
                 dbConfig.ConfigId = SqlSugarConst.MainConfigId;
@@ -39,6 +39,10 @@ public sealed class DbConnectionOptions : IConfigurableOptions<DbConnectionOptio
 /// </summary>
 public sealed class DbConnectionConfig : ConnectionConfig
 {
+    /// <summary>
+    /// 是否启用
+    /// </summary>
+    public bool Enable { get; set; } = true;
     /// <summary>
     /// 数据库设置
     /// </summary>

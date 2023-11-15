@@ -369,7 +369,7 @@ public class SysTenantService : IDynamicApiController, ITransient
             throw Oops.Oh(ErrorCodeEnum.Z1002);
 
         // 默认数据库配置
-        var defaultConfig = App.GetOptions<DbConnectionOptions>().ConnectionConfigs.FirstOrDefault();
+        var defaultConfig = App.GetOptions<DbConnectionOptions>().ConnectionConfigs.Where(u => u.Enable == true).FirstOrDefault();
 
         var config = new DbConnectionConfig
         {
@@ -416,7 +416,7 @@ public class SysTenantService : IDynamicApiController, ITransient
 
         // 获取默认库连接配置
         var dbOptions = App.GetOptions<DbConnectionOptions>();
-        var mainConnConfig = dbOptions.ConnectionConfigs.First(u => u.ConfigId == SqlSugarConst.MainConfigId);
+        var mainConnConfig = dbOptions.ConnectionConfigs.Where(u => u.Enable == true).First(u => u.ConfigId == SqlSugarConst.MainConfigId);
 
         // 设置租户库连接配置
         var tenantConnConfig = new DbConnectionConfig

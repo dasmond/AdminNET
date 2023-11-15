@@ -123,7 +123,7 @@ public class SysCodeGenService : IDynamicApiController, ITransient
     [DisplayName("获取数据库库集合")]
     public async Task<List<DatabaseOutput>> GetDatabaseList()
     {
-        var dbConfigs = App.GetOptions<DbConnectionOptions>().ConnectionConfigs;
+        var dbConfigs = App.GetOptions<DbConnectionOptions>().ConnectionConfigs.Where(u => u.Enable == true);
         return await Task.FromResult(dbConfigs.Adapt<List<DatabaseOutput>>());
     }
 
