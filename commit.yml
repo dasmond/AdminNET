@@ -3,18 +3,39 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid 'c458f3957708195364d2b8bebe7712b279e7cb82'
-    oldFile: !uuid '7c6364a4016baaf7eb061c2f21414655c7ccdca1'
+    newFile: !uuid 'b828386778257792bc96a12757da77b1bc82b0f2'
+    oldFile: !uuid 'c458f3957708195364d2b8bebe7712b279e7cb82'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid 'f42c72be271c8ccdf8f95c0482542a8b5dc16273'
-    oldFile: !uuid 'bd5e4a5a737624b10865e4bb279578fda1711e7b'
-  /Admin.NET/Admin.NET.Core/Entity:
-    newFile: !uuid '32f1f05a8c927936e40e6c15bbb0217a95ef9009'
-    oldFile: !uuid 'a0b7ec3b6d89b19c3915f6b94fff82bbf76c4d19'
-  /Admin.NET/Admin.NET.Core/Entity/SysRegion.cs:
-    newFile: !uuid 'b92de8e95433f21c78f218d32bc3dc6ad73cc1df'
-    oldFile: !uuid '66bd1f06f8724481ad482690155259be0e5aa06d'
-gitCommitId: !uuid 'dffe75fa61751324b0916e9183ab973bc5e49d3c'
+    newFile: !uuid '03c1fd7e41dbef650e342b568ebf8cf47491b381'
+    oldFile: !uuid 'f42c72be271c8ccdf8f95c0482542a8b5dc16273'
+  /Admin.NET/Admin.NET.Core/Service:
+    newFile: !uuid '217b7b4e1bc2cbb5bd03645717e16049fb96bf85'
+    oldFile: !uuid 'f5488ffe35c8a7209b48711a32014d4ecbbeff07'
+  /Admin.NET/Admin.NET.Core/Service/Enum:
+    newFile: !uuid 'cd3defa7fb1b77622d46ff42137e28a463161bd7'
+    oldFile: !uuid 'e3a3b176d94f32498c4440b64dc2c42f7d805942'
+  /Admin.NET/Admin.NET.Core/Service/Enum/SysEnumService.cs:
+    newFile: !uuid '2dd9fcab6efb7528e24604c56f2c8f6fcfcb30c2'
+    oldFile: !uuid 'ad9be167f0e4d6a5a340440d3b0205df4dca980c'
+  /Admin.NET/Admin.NET.Web.Entry:
+    newFile: !uuid '02aa9631629aa1414e3153414fe0a3b225697209'
+    oldFile: !uuid '56161f2ea672799e621b015b0eefcf334a0e4e30'
+  /Admin.NET/Admin.NET.Web.Entry/wwwroot:
+    newFile: !uuid 'ed3dde22816d26e169407d033c5ff173aabc370d'
+    oldFile: !uuid '9b8ab611b5bfa7cd7259197225b47ad27e2c5500'
+  /Admin.NET/Admin.NET.Web.Entry/wwwroot/Template:
+    newFile: !uuid 'aaac90d26d7018419b8ba5da8d0b6cc324cd5ed6'
+    oldFile: !uuid '5f2c0b9037e70cd3e12b3bdfb8dac9d556e0a582'
+  /Admin.NET/Admin.NET.Web.Entry/wwwroot/Template/Input.cs.vm:
+    newFile: !uuid '48a1aa652585c0ee3d1c0183c2d16891e8e837fa'
+    oldFile: !uuid '4775554fc6e1c354669f9b8678d173068159d7b2'
+  /Admin.NET/Admin.NET.Web.Entry/wwwroot/Template/Service.cs.vm:
+    newFile: !uuid 'e123105fc322f033fb7e8f3c77df0a3c87a26743'
+    oldFile: !uuid '29d5b366a8c4722543ecd0ca82e1bd3ebd0c69f7'
+  /Admin.NET/Admin.NET.Web.Entry/wwwroot/Template/editDialog.vue.vm:
+    newFile: !uuid '753f60af7c3e6c81e1772e8310440b570fe8b8e3'
+    oldFile: !uuid 'ccb41fc9102a790164ab1a9d7b6508a241592428'
+gitCommitId: !uuid 'ceadbe0573f437ecc2973240a2e9665b844488e7'
 renames: {
   }
-revisionId: 1269
+revisionId: 1270
