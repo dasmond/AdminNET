@@ -3,21 +3,39 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid 'b828386778257792bc96a12757da77b1bc82b0f2'
-    oldFile: !uuid '6e14404e226d7cd52813cc006fa90b687477bd1a'
+    newFile: !uuid 'ee584ccf1c575c0a33c1b7beee963156d6f23f2f'
+    oldFile: !uuid 'b828386778257792bc96a12757da77b1bc82b0f2'
+  /Admin.NET/Admin.NET.Application:
+    newFile: !uuid '112ba68a328a26dacbc76bbea3ddcb68964f214e'
+    oldFile: !uuid '3680ef08d1c7388ef1b2827367304dd9e72bee66'
+  /Admin.NET/Admin.NET.Application/Configuration:
+    newFile: !uuid '61d689b2878497bb2b20431bf24b5f3f4deb359b'
+    oldFile: !uuid '00a2c70b75659c0a40a6eb11a198e29740af6163'
+  /Admin.NET/Admin.NET.Application/Configuration/App.json:
+    newFile: !uuid '538ab1dc9344dc1009776b873bb42acba38f2f2e'
+    oldFile: !uuid 'ed8546217418da1c845d8933196adfae21998908'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '03c1fd7e41dbef650e342b568ebf8cf47491b381'
-    oldFile: !uuid 'b086c9c5e071ebaa8e1744bb18a8ae6d7f7336db'
-  /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid '217b7b4e1bc2cbb5bd03645717e16049fb96bf85'
-    oldFile: !uuid '6ed565e1db78d8bfe916486e598d3f72ca824d53'
-  /Admin.NET/Admin.NET.Core/Service/Const:
-    newFile: !uuid '99b9a8c85f56b7463846850e2a72dbd879ab8f15'
-    oldFile: !uuid '32b61f3354685abbeee4ee3248c1083bf16fe40c'
-  /Admin.NET/Admin.NET.Core/Service/Const/SysConstService.cs:
-    newFile: !uuid 'c7f65add46a8719a6696283b0385f7e7ba0f29d4'
-    oldFile: !uuid 'b28781ed77b80ee1aebfa4bd3b692fb22ad1ed22'
-gitCommitId: !uuid 'd27e3a93619d16be72ab5a4dcac8b9890ae9488f'
+    newFile: !uuid '52003eb88674ecd41f8610b24b4e36280cc749d1'
+    oldFile: !uuid '03c1fd7e41dbef650e342b568ebf8cf47491b381'
+  /Admin.NET/Admin.NET.Core/Extension:
+    newFile: !uuid '7d905c49a2a473ae8024ae3df9a25bba2c52cdd7'
+    oldFile: !uuid '68e8a6fbdc9b7e9793ac4c71ed5d3cbb41fc87ca'
+  /Admin.NET/Admin.NET.Core/Extension/YitIdHelperExtension.cs:
+    newFile: !uuid 'ee5fb67d7d0e5e3d027a3cf4bf1908e9642db267'
+    oldFile: null
+  /Admin.NET/Admin.NET.Core/Option:
+    newFile: !uuid 'c6c4424c588bd1746fd2d15402e7f0cf7cb16425'
+    oldFile: !uuid 'd4b0fb310fff8cb354e7b46ac126ef30ce9b7125'
+  /Admin.NET/Admin.NET.Core/Option/SnowIdOptions.cs:
+    newFile: !uuid '917ca8edea1bb0e3a7849006efd52854aae6958f'
+    oldFile: !uuid '6f973c15579da0d3f41c93d0d7ea3b88f2de7091'
+  /Admin.NET/Admin.NET.Web.Core:
+    newFile: !uuid 'b3e9ba4c568191d36df8a33b10d8130506285131'
+    oldFile: !uuid 'a183368f2380bef8687aaf6ecfdfece497c41401'
+  /Admin.NET/Admin.NET.Web.Core/Startup.cs:
+    newFile: !uuid '2a7a602a276fe495de90d44e3eb07c436493357f'
+    oldFile: !uuid 'a2edd49e8e47e92eeee98e57f03c92bb1126d7d4'
+gitCommitId: !uuid 'eceba452548f2d2bcd6b1e3276febf033bd99666'
 renames: {
   }
-revisionId: 1237
+revisionId: 1238
