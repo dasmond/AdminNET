@@ -30,74 +30,72 @@
             </el-form>
           </el-card>
 
-				<el-card class="full-table" shadow="hover" style="margin-top: 8px">
-					<el-table :data="state.userData" style="width: 100%" v-loading="state.loading" border>
-						<el-table-column type="index" label="序号" width="55" align="center" fixed />
-						<el-table-column prop="account" label="账号" width="120" align="center" fixed show-overflow-tooltip />
-						<!-- <el-table-column prop="nickName" label="昵称" width="120" align="center" show-overflow-tooltip /> -->
-						<el-table-column prop="realName" label="姓名" width="120" align="center" show-overflow-tooltip />
-						<el-table-column label="头像" width="80" align="center" show-overflow-tooltip>
-							<template #default="scope">
-								<el-avatar :src="scope.row.avatar" size="small">{{ scope.row.nickName?.slice(0, 1) ?? scope.row.realName?.slice(0, 1) }} </el-avatar>
-							</template>
-						</el-table-column>
-						<el-table-column prop="phone" label="手机号码" width="120" align="center" show-overflow-tooltip />
-						<el-table-column label="出生日期" width="100" align="center" show-overflow-tooltip>
-							<template #default="scope">
-								{{ formatDate(new Date(scope.row.birthday), 'YYYY-mm-dd') }}
-							</template>
-						</el-table-column>
-						<el-table-column label="性别" width="70" align="center" show-overflow-tooltip>
-							<template #default="scope">
-								<el-tag type="success" v-if="scope.row.sex === 1"> 男 </el-tag>
-								<el-tag type="danger" v-else> 女 </el-tag>
-							</template>
-						</el-table-column>
-						<el-table-column label="账号类型" width="100" align="center" show-overflow-tooltip>
-							<template #default="scope">
-								<el-tag v-if="scope.row.accountType === 888"> 系统管理员 </el-tag>
-								<el-tag v-else-if="scope.row.accountType === 777"> 普通账号 </el-tag>
-								<el-tag v-else-if="scope.row.accountType === 666"> 会员 </el-tag>
-								<el-tag v-else> 其他 </el-tag>
-							</template>
-						</el-table-column>
-						<el-table-column label="状态" width="70" align="center" show-overflow-tooltip>
-							<template #default="scope">
-								<el-switch v-model="scope.row.status" :active-value="1" :inactive-value="2" size="small" @change="changeStatus(scope.row)" v-auth="'sysUser:setStatus'" />
-							</template>
-						</el-table-column>
-						<el-table-column prop="orderNo" label="排序" width="70" align="center" show-overflow-tooltip />
-						<el-table-column prop="createTime" label="修改时间" width="160" align="center" show-overflow-tooltip />
-						<el-table-column prop="remark" label="备注" header-align="center" show-overflow-tooltip />
-						<el-table-column label="操作" width="110" align="center" fixed="right" show-overflow-tooltip>
-							<template #default="scope">
-								<el-button icon="ele-Edit" size="small" text type="primary" @click="openEditUser(scope.row)" v-auth="'sysUser:update'"> 编辑 </el-button>
-								<el-dropdown>
-									<el-button icon="ele-MoreFilled" size="small" text type="primary" style="padding-left: 12px" />
-									<template #dropdown>
-										<el-dropdown-menu>
-											<el-dropdown-item icon="ele-RefreshLeft" @click="resetUserPwd(scope.row)" :disabled="!auth('sysUser:resetPwd')"> 重置密码 </el-dropdown-item>
-											<el-dropdown-item icon="ele-Delete" @click="delUser(scope.row)" divided :disabled="!auth('sysUser:delete')"> 删除账号 </el-dropdown-item>
-										</el-dropdown-menu>
-									</template>
-								</el-dropdown>
-							</template>
-						</el-table-column>
-					</el-table>
-					<el-pagination
-						v-model:currentPage="state.tableParams.page"
-						v-model:page-size="state.tableParams.pageSize"
-						:total="state.tableParams.total"
-						:page-sizes="[10, 20, 50, 100]"
-						small
-						background
-						@size-change="handleSizeChange"
-						@current-change="handleCurrentChange"
-						layout="total, sizes, prev, pager, next, jumper"
-					/>
-				</el-card>
-			</el-col>
-		</el-row>
+          <el-card class="full-table" shadow="hover" style="margin-top: 8px">
+            <el-table :data="state.userData" style="width: 100%" v-loading="state.loading" border>
+              <el-table-column type="index" label="序号" width="55" align="center" fixed />
+              <el-table-column prop="account" label="账号" width="120" align="center" fixed show-overflow-tooltip />
+              <!-- <el-table-column prop="nickName" label="昵称" width="120" align="center" show-overflow-tooltip /> -->
+              <el-table-column prop="realName" label="姓名" width="120" align="center" show-overflow-tooltip />
+              <el-table-column label="头像" width="80" align="center" show-overflow-tooltip>
+                <template #default="scope">
+                  <el-avatar :src="scope.row.avatar"
+                    size="small">{{ scope.row.nickName?.slice(0, 1) ?? scope.row.realName?.slice(0, 1) }} </el-avatar>
+                </template>
+              </el-table-column>
+              <el-table-column prop="phone" label="手机号码" width="120" align="center" show-overflow-tooltip />
+              <el-table-column label="出生日期" width="100" align="center" show-overflow-tooltip>
+                <template #default="scope">
+                  {{ formatDate(new Date(scope.row.birthday), 'YYYY-mm-dd') }}
+                </template>
+              </el-table-column>
+              <el-table-column label="性别" width="70" align="center" show-overflow-tooltip>
+                <template #default="scope">
+                  <el-tag type="success" v-if="scope.row.sex === 1"> 男 </el-tag>
+                  <el-tag type="danger" v-else> 女 </el-tag>
+                </template>
+              </el-table-column>
+              <el-table-column label="账号类型" width="100" align="center" show-overflow-tooltip>
+                <template #default="scope">
+                  <el-tag v-if="scope.row.accountType === 888"> 系统管理员 </el-tag>
+                  <el-tag v-else-if="scope.row.accountType === 777"> 普通账号 </el-tag>
+                  <el-tag v-else-if="scope.row.accountType === 666"> 会员 </el-tag>
+                  <el-tag v-else> 其他 </el-tag>
+                </template>
+              </el-table-column>
+              <el-table-column label="状态" width="70" align="center" show-overflow-tooltip>
+                <template #default="scope">
+                  <el-switch v-model="scope.row.status" :active-value="1" :inactive-value="2" size="small"
+                    @change="changeStatus(scope.row)" v-auth="'sysUser:setStatus'" />
+                </template>
+              </el-table-column>
+              <el-table-column prop="orderNo" label="排序" width="70" align="center" show-overflow-tooltip />
+              <el-table-column prop="createTime" label="修改时间" width="160" align="center" show-overflow-tooltip />
+              <el-table-column prop="remark" label="备注" header-align="center" show-overflow-tooltip />
+              <el-table-column label="操作" width="110" align="center" fixed="right" show-overflow-tooltip>
+                <template #default="scope">
+                  <el-button icon="ele-Edit" size="small" text type="primary" @click="openEditUser(scope.row)"
+                    v-auth="'sysUser:update'"> 编辑 </el-button>
+                  <el-dropdown>
+                    <el-button icon="ele-MoreFilled" size="small" text type="primary" style="padding-left: 12px" />
+                    <template #dropdown>
+                      <el-dropdown-menu>
+                        <el-dropdown-item icon="ele-RefreshLeft" @click="resetUserPwd(scope.row)"
+                          :disabled="!auth('sysUser:resetPwd')"> 重置密码 </el-dropdown-item>
+                        <el-dropdown-item icon="ele-Delete" @click="delUser(scope.row)" divided
+                          :disabled="!auth('sysUser:delete')"> 删除账号 </el-dropdown-item>
+                      </el-dropdown-menu>
+                    </template>
+                  </el-dropdown>
+                </template>
+              </el-table-column>
+            </el-table>
+            <el-pagination v-model:currentPage="state.tableParams.page" v-model:page-size="state.tableParams.pageSize"
+              :total="state.tableParams.total" :page-sizes="[10, 20, 50, 100]" small background @size-change="handleSizeChange"
+              @current-change="handleCurrentChange" layout="total, sizes, prev, pager, next, jumper" />
+          </el-card>
+        </div>
+      </el-col>
+    </el-row>
 
     <EditUser ref="editUserRef" :title="state.editUserTitle" :orgData="state.orgTreeData" @handleQuery="handleQuery" />
   </div>
