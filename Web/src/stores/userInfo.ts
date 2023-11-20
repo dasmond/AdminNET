@@ -14,7 +14,7 @@ export const useUserInfo = defineStore('userInfo', {
 	state: (): UserInfosState => ({
 		userInfos: {} as any,
 		constList: [] as any,
-		dictList: [] as any,
+		dictList: {} as any,
 	}),
 	getters: {
 		// // 获取系统常量列表
@@ -49,10 +49,12 @@ export const useUserInfo = defineStore('userInfo', {
 			if (Session.get('dictList')) {
 				this.dictList = Session.get('dictList');
 			} else {
-				const dictList = <any[]>await this.getAllDictList();
-				Session.set('dictList', dictList);
-				this.dictList = dictList;
+				const dictList =  await getAPI(SysDictTypeApi)
+					.apiSysDictTypeAllDictListGet();
+				Session.set('dictList', dictList.data.result);
+				this.dictList = dictList.data.result;
 			}
+			console.log('this.dictList',this.dictList)
 		},
 		// 获取当前用户信息
 		getApiUserInfo() {
@@ -112,12 +114,37 @@ export const useUserInfo = defineStore('userInfo', {
 		// 获取字典集合
 		getAllDictList() {
 			return new Promise((resolve) => {
-				getAPI(SysDictTypeApi)
-					.apiSysDictTypeAllDictListGet()
-					.then(async (res: any) => {
-						resolve(res.data.result ?? []);
-					});
+				if (this.dictList) {
+					resolve(this.dictList);
+				} else {
+					getAPI(SysDictTypeApi)
+						.apiSysDictTypeAllDictListGet()
+						.then((res: any) => {
+							resolve(res.data.result ?? []);
+						});
+				}
 			});
+		},
+		getDicNameByVal(val: string, typePCode: string) {
+			const ds = this.getDicDatasByCode(typePCode);
+			for (let index = 0; index < ds.length; index++) {
+				const element = ds[index];
+				if (element.value == val) {
+					return element.label;
+				}
+			}
+		},
+		getDicValueByText(label: string, typePCode: string) {
+			const ds = this.getDicDatasByCode(typePCode);
+			for (let index = 0; index < ds.length; index++) {
+				const element = ds[index];
+				if (element.label == label) {
+					return element.value;
+				}
+			}
+		},
+		getDicDatasByCode(dictTypeCode: string) {
+			return this.dictList[dictTypeCode] || [];
 		},
 	},
 });
