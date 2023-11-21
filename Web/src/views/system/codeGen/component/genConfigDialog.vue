@@ -87,7 +87,7 @@ import { getAPI } from '/@/utils/axios-utils';
 import { SysCodeGenConfigApi, SysConstApi, SysDictTypeApi, SysEnumApi } from '/@/api-services/api';
 import { CodeGenConfig } from '/@/api-services/models/code-gen-config';
 import { useUserInfo } from '/@/stores/userInfo';
-const { getDicDatasByCode } = useUserInfo();
+const { getDictDatasByCode } = useUserInfo();
 
 const emits = defineEmits(['handleQuery']);
 const fkDialogRef = ref();
@@ -117,8 +117,8 @@ onMounted(async () => {
 		state.allEnumSelector = resEnum.data.result?.map((item) => ({ ...item, name: item.typeDescribe, code: item.typeName }));
 	});
 
-	state.queryTypeList = getDicDatasByCode('code_gen_query_type');
-	state.effectTypeList = getDicDatasByCode('code_gen_effect_type');
+	state.queryTypeList = getDictDatasByCode('code_gen_query_type');
+	state.effectTypeList = getDictDatasByCode('code_gen_effect_type');
 	mittBus.on('submitRefreshFk', (data: any) => {
 		state.tableData[data.index] = data;
 	});

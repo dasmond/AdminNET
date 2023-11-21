@@ -125,8 +125,9 @@ export const useUserInfo = defineStore('userInfo', {
 				}
 			});
 		},
-		getDicNameByVal(val: string, typePCode: string) {
-			const ds = this.getDicDatasByCode(typePCode);
+		//根据字典类型和值取描述
+		getDictLabelByVal(val: string, typePCode: string) {
+			const ds = this.getDictDatasByCode(typePCode);
 			for (let index = 0; index < ds.length; index++) {
 				const element = ds[index];
 				if (element.value == val) {
@@ -134,8 +135,9 @@ export const useUserInfo = defineStore('userInfo', {
 				}
 			}
 		},
-		getDicValueByText(label: string, typePCode: string) {
-			const ds = this.getDicDatasByCode(typePCode);
+		//根据字典类型和描述取值
+		getDictValByLabel(label: string, typePCode: string) {
+			const ds = this.getDictDatasByCode(typePCode);
 			for (let index = 0; index < ds.length; index++) {
 				const element = ds[index];
 				if (element.label == label) {
@@ -143,7 +145,7 @@ export const useUserInfo = defineStore('userInfo', {
 				}
 			}
 		},
-		getDicDatasByCode(dictTypeCode: string) {
+		getDictDatasByCode(dictTypeCode: string) {
 			return this.dictList[dictTypeCode] || [];
 		},
 	},
