@@ -145,6 +145,7 @@ export const useUserInfo = defineStore('userInfo', {
 				}
 			}
 		},
+		//根据字典类型字典数据
 		getDictDatasByCode(dictTypeCode: string) {
 			return this.dictList[dictTypeCode] || [];
 		},
