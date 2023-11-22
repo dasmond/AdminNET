@@ -1,4 +1,4 @@
-﻿// 麻省理工学院许可证
+// 麻省理工学院许可证
 //
 // 版权所有 (c) 2021-2023 zuohuaijun，大名科技（天津）有限公司  联系电话/微信：18020030720  QQ：515096995
 //
@@ -24,9 +24,8 @@ public sealed class SignatureAuthenticationHandler : AuthenticationHandler<Signa
     public SignatureAuthenticationHandler(IOptionsMonitor<SignatureAuthenticationOptions> options,
         ILoggerFactory logger,
         UrlEncoder encoder,
-        ISystemClock clock,
         SysCacheService cacheService)
-        : base(options, logger, encoder, clock)
+        : base(options, logger, encoder)
     {
         _cacheService = cacheService;
     }
@@ -64,7 +63,7 @@ public sealed class SignatureAuthenticationHandler : AuthenticationHandler<Signa
             return await AuthenticateResultFailAsync("timestamp 值不合法");
 
         var requestDate = DateTimeUtil.ToLocalTimeDateBySeconds(timestamp);
-        if (requestDate > Clock.UtcNow.Add(Options.AllowedDateDrift).LocalDateTime || requestDate < Clock.UtcNow.Subtract(Options.AllowedDateDrift).LocalDateTime)
+        if (requestDate > TimeProvider.GetUtcNow().Add(Options.AllowedDateDrift).LocalDateTime || requestDate < TimeProvider.GetUtcNow().Subtract(Options.AllowedDateDrift).LocalDateTime)
             return await AuthenticateResultFailAsync("timestamp 值已超过允许的偏差范围");
 
         // 获取 accessSecret
