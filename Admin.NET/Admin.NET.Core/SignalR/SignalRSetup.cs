@@ -1,4 +1,4 @@
-﻿// 麻省理工学院许可证
+// 麻省理工学院许可证
 //
 // 版权所有 (c) 2021-2023 zuohuaijun，大名科技（天津）有限公司  联系电话/微信：18020030720  QQ：515096995
 //
@@ -68,7 +68,7 @@ public static class SignalRSetup
             // 原因请参考下边链接：
             // https://github.com/dotnet/aspnetcore/blob/f9121bc3e976ec40a959818451d126d5126ce868/src/SignalR/server/StackExchangeRedis/src/RedisHubLifetimeManager.cs#L74
             // https://github.com/dotnet/aspnetcore/blob/f9121bc3e976ec40a959818451d126d5126ce868/src/SignalR/server/StackExchangeRedis/src/Internal/RedisChannels.cs#L33
-            options.Configuration.ChannelPrefix = clusterOpt.SignalR.ChannelPrefix;
+            options.Configuration.ChannelPrefix = new RedisChannel(clusterOpt.SignalR.ChannelPrefix, RedisChannel.PatternMode.Auto);
             options.ConnectionFactory = async writer =>
             {
                 ConnectionMultiplexer connection;
