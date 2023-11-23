@@ -3,30 +3,33 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '5924f6d482a765dbb9a175cbc72664179207b694'
-    oldFile: !uuid '21c81f90b8ab74dc7960f76cc91093a1ff0ac4c0'
+    newFile: !uuid 'a9b8e3c22987bc94c37150d6191813847ddefb6f'
+    oldFile: !uuid '5924f6d482a765dbb9a175cbc72664179207b694'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid 'f78e519cf556451b217341070715befce2ac57eb'
-    oldFile: !uuid 'cf55cca126a637e692985d076eb0dc64abd9c2bc'
-  /Admin.NET/Admin.NET.Core/Option:
-    newFile: !uuid '8ebc90ee249b4815c0951e4580c3471d970f404f'
-    oldFile: !uuid 'c10925f28bc831eb44cb4157628c32b1ca62ed76'
-  /Admin.NET/Admin.NET.Core/Option/DbConnectionOptions.cs:
-    newFile: !uuid '08ce9855330b2368afb0c610a01b29a37790df02'
-    oldFile: !uuid 'dd828e849b4a8a633d6a52d05c798a2011ae7bb4'
-  /Admin.NET/Admin.NET.Core/SqlSugar:
-    newFile: !uuid '505af0fdc1575b2483f61448a64e09ee55aef212'
-    oldFile: !uuid 'e471ac93b41cc4f3a0a685990bfe665270bf7223'
-  /Admin.NET/Admin.NET.Core/SqlSugar/SqlSugarSetup.cs:
-    newFile: !uuid '9b71d64ab2afa5d78abf6d09e39e57621bc2e15e'
-    oldFile: !uuid '277c46f34afdeecc7bc971345e3c72c660665e5e'
-  /Admin.NET/Admin.NET.Web.Core:
-    newFile: !uuid '143587d20a9560673a5f84408b24d75f3ed4c782'
-    oldFile: !uuid 'c5085e73c6b3787d4ca1f09b98485d1f83869536'
-  /Admin.NET/Admin.NET.Web.Core/Startup.cs:
-    newFile: !uuid '6bb24aead4bf2fd919c7b4cc39b76bb81bfe142f'
-    oldFile: !uuid 'ea93755f90d209a0e4e288047766d93eca9cdf54'
-gitCommitId: !uuid 'bd00a3a533536d2f3084b95a015eae20c134fe13'
+    newFile: !uuid '924105635b13141bc58197294860b16192ff49ad'
+    oldFile: !uuid 'f78e519cf556451b217341070715befce2ac57eb'
+  /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
+    newFile: !uuid 'a3bd25a6e751f93f03598186eb76431658a7d20f'
+    oldFile: !uuid 'ca2ff5bfe033485278e04ce5d0b72788218280e2'
+  /Admin.NET/Admin.NET.Core/Job:
+    newFile: !uuid 'c19a4a79eb9a859c0037a8fd01e6bed30c48d419'
+    oldFile: !uuid '7d7dde6c52bfc57ac5f562c3faa8df42a78941ab'
+  /Admin.NET/Admin.NET.Core/Job/LogJob.cs:
+    newFile: !uuid 'ec6d60430e8173e95943ca52af6bf1a108fb0b11'
+    oldFile: !uuid 'ea9e307cec13f727f01b0f4e402d20424e594a64'
+  /Admin.NET/Admin.NET.Core/Job/OnlineUserJob.cs:
+    newFile: !uuid 'be0c3417f89a4988feb89d61a103e36c2de7bb14'
+    oldFile: !uuid '6c8da101aafe040cf55188893bc718c6872fb5c4'
+  /Admin.NET/Admin.NET.Core/Service:
+    newFile: !uuid '573390a1c03d8968a433f849d656c6d3e5f5d3bc'
+    oldFile: !uuid '6d36859ed64f0aba87bf4485280f163b031041e5'
+  /Admin.NET/Admin.NET.Core/Service/Tenant:
+    newFile: !uuid 'd0d011f2c735a30a9da0b1327679c8f5c0c8b862'
+    oldFile: !uuid '5baaa9fb6945ddf5f6f1e5c1c83beafabb137158'
+  /Admin.NET/Admin.NET.Core/Service/Tenant/SysTenantService.cs:
+    newFile: !uuid 'ee0faca70795d84f011cbc124d6501cbeb33290e'
+    oldFile: !uuid 'f6b4270a50189353c53df0f7d671d60787d3b879'
+gitCommitId: !uuid '2d7b18fcb896d71e3e12dec46e5744065c2b399f'
 renames: {
   }
-revisionId: 1246
+revisionId: 1247
