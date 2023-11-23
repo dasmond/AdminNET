@@ -31,12 +31,12 @@ public static class SignalRSetup
         }).AddNewtonsoftJsonProtocol(options => SetNewtonsoftJsonSetting(options.PayloadSerializerSettings));
 
         // 若未启用Redis缓存，直接返回
-        var cacheOptions = App.GetOptions<CacheOptions>();
+        var cacheOptions = App.GetConfig<CacheOptions>("Cache", true);
         if (cacheOptions.CacheType != CacheTypeEnum.Redis.ToString())
             return;
 
         // 若已开启集群配置，则把SignalR配置为支持集群模式
-        var clusterOpt = App.GetOptions<ClusterOptions>();
+        var clusterOpt = App.GetConfig<ClusterOptions>("Cluster", true);
         if (!clusterOpt.Enabled)
             return;
 
