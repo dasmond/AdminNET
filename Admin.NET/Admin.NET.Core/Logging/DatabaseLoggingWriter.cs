@@ -16,11 +16,16 @@ namespace Admin.NET.Core;
 /// </summary>
 public class DatabaseLoggingWriter : IDatabaseLoggingWriter, IDisposable
 {
+    private static List<LogMessage> LOGBUFFER = new List<LogMessage>();//缓冲区
+    private static object LOCKOBJ = new object();//同步锁对象
+    private const int MAXPERBATCH = 20;//每批最多日志。太多日志一起提交也不行。
+
     private readonly IServiceScope _serviceScope;
     private readonly SqlSugarRepository<SysLogVis> _sysLogVisRep; // 访问日志
     private readonly SqlSugarRepository<SysLogOp> _sysLogOpRep;   // 操作日志
     private readonly SqlSugarRepository<SysLogEx> _sysLogExRep;   // 异常日志
     private readonly SysConfigService _sysConfigService; // 参数配置服务
+
 
     public DatabaseLoggingWriter(IServiceScopeFactory scopeFactory)
     {
@@ -31,14 +36,98 @@ public class DatabaseLoggingWriter : IDatabaseLoggingWriter, IDisposable
         _sysConfigService = _serviceScope.ServiceProvider.GetRequiredService<SysConfigService>();
     }
 
-    public async void Write(LogMessage logMsg, bool flush)
+
+    public void Write(LogMessage logMsg, bool flush)
     {
-        var jsonStr = logMsg.Context.Get("loggingMonitor").ToString();
-        var loggingMonitor = JSON.Deserialize<dynamic>(jsonStr);
+        //避免多线程操作lock内代码，会避免很多问题。
+        lock (LOCKOBJ)
+        {
+            LOGBUFFER.Add(logMsg);
+            if (flush == true || LOGBUFFER.Count > MAXPERBATCH)
+            {
+                try
+                {
+                    BatchInsertLog(LOGBUFFER);
+                }
+                finally
+                {
+                    LOGBUFFER.Clear();
+                }
+            }
+        }
+    }
 
-        // 不记录数据校验日志
-        if (loggingMonitor.validation != null) return;
+    /// <summary>
+    /// 日志批量插入数据库
+    /// </summary>
+    /// <param name="logMessageList"></param>
+    private void BatchInsertLog(List<LogMessage> logMessageList)
+    {
+        List<SysLogEx> logExList = new List<SysLogEx>();
+        List<SysLogVis> logVisList = new List<SysLogVis>();
+        List<SysLogOp> logOpList = new List<SysLogOp>();
+        foreach (var logMsg in logMessageList)
+        {
+            var jsonStr = logMsg.Context.Get("loggingMonitor").ToString();
+            var loggingMonitor = JSON.Deserialize<dynamic>(jsonStr);
 
+            // 不记录数据校验日志
+            if (loggingMonitor.validation != null)
+                continue;
+
+            var log = ConvertLog(logMsg, loggingMonitor);
+            if (log == null)
+                continue;
+
+            if (log.GetType() == typeof(SysLogEx))
+            {
+                logExList.Add((SysLogEx)log);
+            }
+            else if (log.GetType() == typeof(SysLogOp))
+            {
+                logOpList.Add((SysLogOp)log);
+            }
+            else if (log.GetType() == typeof(SysLogVis))
+            {
+                logVisList.Add((SysLogVis)log);
+            }
+        }
+
+        //批量处理
+        try
+        {
+            _sysLogExRep.AsInsertable(logExList).UseParameter().ExecuteCommand();
+            // 将异常日志发送到邮件
+            foreach (var item in logExList)
+            {
+                App.GetRequiredService<IEventPublisher>().PublishAsync("Send:ErrorMail", JSON.Deserialize<Exception>(item.Exception));
+            }
+        }
+        catch { }
+
+        //批量处理
+        try
+        {
+            _sysLogOpRep.AsInsertable(logOpList).UseParameter().ExecuteCommand();
+        }
+        catch { }
+
+        //批量处理
+        try
+        {
+            _sysLogVisRep.AsInsertable(logVisList).UseParameter().ExecuteCommand();
+        }
+        catch { }
+    }
+
+    /// <summary>
+    /// 返回不同类型SysXXLog
+    /// </summary>
+    /// <param name="logMsg"></param>
+    /// <param name="loggingMonitor"></param>
+    /// <returns></returns>
+    private object ConvertLog(LogMessage logMsg, dynamic loggingMonitor)
+    {
         // 获取当前操作者
         string account = "", realName = "", userId = "", tenantId = "";
         if (loggingMonitor.authorizationClaims != null)
@@ -63,10 +152,11 @@ public class DatabaseLoggingWriter : IDatabaseLoggingWriter, IDisposable
         var browser = $"{client.UA.Family} {client.UA.Major}.{client.UA.Minor} / {client.Device.Family}";
         var os = $"{client.OS.Family} {client.OS.Major} {client.OS.Minor}";
 
-        // 记录异常日志并发送邮件
+
         if (logMsg.Exception != null || loggingMonitor.exception != null)
         {
-            await _sysLogExRep.InsertAsync(new SysLogEx
+            // 返回异常日志
+            return new SysLogEx
             {
                 ControllerName = loggingMonitor.controllerName,
                 ActionName = loggingMonitor.actionTypeName,
@@ -94,22 +184,12 @@ public class DatabaseLoggingWriter : IDatabaseLoggingWriter, IDisposable
                 CreateUserId = string.IsNullOrWhiteSpace(userId) ? 0 : long.Parse(userId),
                 TenantId = string.IsNullOrWhiteSpace(tenantId) ? 0 : long.Parse(tenantId),
                 LogLevel = logMsg.LogLevel
-            });
-
-            // 将异常日志发送到邮件
-            try
-            {
-                await App.GetRequiredService<IEventPublisher>().PublishAsync("Send:ErrorMail", loggingMonitor.exception);
-            }
-            catch { }
-
-            return;
+            };
         }
-
-        // 记录访问日志-登录登出
-        if (loggingMonitor.actionName == "userInfo" || loggingMonitor.actionName == "logout")
+        else if (loggingMonitor.actionName == "userInfo" || loggingMonitor.actionName == "logout")
         {
-            await _sysLogVisRep.InsertAsync(new SysLogVis
+            // 返回访问日志-登录登出
+            return new SysLogVis
             {
                 ControllerName = loggingMonitor.controllerName,
                 ActionName = loggingMonitor.actionTypeName,
@@ -128,15 +208,14 @@ public class DatabaseLoggingWriter : IDatabaseLoggingWriter, IDisposable
                 CreateUserId = string.IsNullOrWhiteSpace(userId) ? 0 : long.Parse(userId),
                 TenantId = string.IsNullOrWhiteSpace(tenantId) ? 0 : long.Parse(tenantId),
                 LogLevel = logMsg.LogLevel
-            });
-
-            return;
+            };
         }
 
-        // 记录操作日志
-        var enabledSysOpLog = await _sysConfigService.GetConfigValue<bool>(CommonConst.SysOpLog);
-        if (!enabledSysOpLog) return;
-        await _sysLogOpRep.InsertAsync(new SysLogOp
+        // 返回操作日志 
+        var enabledSysOpLog = _sysConfigService.GetConfigValue<bool>(CommonConst.SysOpLog).Result;
+        if (!enabledSysOpLog)
+            return null;
+        return new SysLogOp
         {
             ControllerName = loggingMonitor.controllerName,
             ActionName = loggingMonitor.actionTypeName,
@@ -164,7 +243,7 @@ public class DatabaseLoggingWriter : IDatabaseLoggingWriter, IDisposable
             CreateUserId = string.IsNullOrWhiteSpace(userId) ? 0 : long.Parse(userId),
             TenantId = string.IsNullOrWhiteSpace(tenantId) ? 0 : long.Parse(tenantId),
             LogLevel = logMsg.LogLevel
-        });
+        };
     }
 
     /// <summary>
@@ -172,7 +251,7 @@ public class DatabaseLoggingWriter : IDatabaseLoggingWriter, IDisposable
     /// </summary>
     /// <param name="ip"></param>
     /// <returns></returns>
-    private static (string ipLocation, double? longitude, double? latitude) GetIpAddress(string ip)
+    private (string ipLocation, double? longitude, double? latitude) GetIpAddress(string ip)
     {
         try
         {
