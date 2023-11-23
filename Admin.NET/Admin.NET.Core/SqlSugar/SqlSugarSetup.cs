@@ -18,16 +18,16 @@ public static class SqlSugarSetup
     public static void AddSqlSugar(this IServiceCollection services)
     {
         // 注册雪花Id
-        YitIdHelper.SetIdGenerator(App.GetOptions<SnowIdOptions>());
+        YitIdHelper.SetIdGenerator(App.GetConfig<SnowIdOptions>("SnowId", true));
 
         // 自定义 SqlSugar 雪花ID算法
-        SnowFlakeSingle.WorkId = App.GetOptions<SnowIdOptions>().WorkerId;
+        SnowFlakeSingle.WorkId = App.GetConfig<SnowIdOptions>("SnowId", true).WorkerId;
         StaticConfig.CustomSnowFlakeFunc = () =>
         {
             return YitIdHelper.NextId();
         };
 
-        var dbOptions = App.GetOptions<DbConnectionOptions>();
+        var dbOptions = App.GetConfig<DbConnectionOptions>("DbConnection");
         dbOptions.ConnectionConfigs.ForEach(SetDbConfig);
 
         SqlSugarScope sqlSugar = new(dbOptions.ConnectionConfigs.Adapt<List<ConnectionConfig>>(), db =>
