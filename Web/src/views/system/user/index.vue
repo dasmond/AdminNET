@@ -19,7 +19,7 @@
 						</el-form-item>
 						<el-form-item>
 							<el-button-group>
-								<el-button type="primary" icon="ele-Search" @click="handleQuery" v-auth="'sysUser:page'"> 查询 </el-button>
+								<el-button type="primary" icon="ele-Search" @click="handleQuery" v-auth="'sysUser:page'"> 查询1 </el-button>
 								<el-button icon="ele-Refresh" @click="resetQuery"> 重置 </el-button>
 							</el-button-group>
 						</el-form-item>
@@ -114,6 +114,10 @@ import { getAPI } from '/@/utils/axios-utils';
 import { SysUserApi, SysOrgApi } from '/@/api-services/api';
 import { SysUser, SysOrg } from '/@/api-services/models';
 
+import { SysOnlineUserApi } from '/@/api-services/api';
+import { SysOnlineUser } from '/@/api-services/models';
+import { signalR } from '/@/views/system/onlineUser/signalR';
+
 const orgTreeRef = ref<InstanceType<typeof OrgTree>>();
 const editUserRef = ref<InstanceType<typeof EditUser>>();
 const state = reactive({
@@ -133,7 +137,24 @@ const state = reactive({
 	},
 	editUserTitle: '',
 });
-
+const onlineuserstate = reactive({
+	loading: false,
+	isVisible: false,
+	queryParams: {
+		userName: undefined,
+		realName: undefined,
+	},
+	tableParams: {
+		page: 1,
+		pageSize: 10,
+		total: 1 as any,
+	},
+	onlineUserList: [] as Array<SysOnlineUser>, // 在线用户列表
+	lastUserState: {
+		online: false,
+		realName: '',
+	}, // 最后接收的用户变更状态信息
+});
 onMounted(async () => {
 	loadOrgData();
 	handleQuery();
@@ -188,6 +209,7 @@ const delUser = (row: any) => {
 		.then(async () => {
 			await getAPI(SysUserApi).apiSysUserDeletePost({ id: row.id });
 			handleQuery();
+			forceOffline(row.id);
 			ElMessage.success('删除成功');
 		})
 		.catch(() => {});
@@ -215,6 +237,24 @@ const changeStatus = (row: any) => {
 		.catch(() => {
 			row.status = row.status == 1 ? 2 : 1;
 		});
+	if (row.status == 2) {
+		forceOffline(row.id);
+	}
+};
+
+// 强制下线
+const forceOffline = async (id: number) => {
+	let params = Object.assign(onlineuserstate.queryParams, onlineuserstate.tableParams);
+	var res = await getAPI(SysOnlineUserApi).apiSysOnlineUserPagePost(params);
+	var onlineuser = res.data.result?.items ?? [];
+	for (let i = 0; i < onlineuser.length; i++) {
+		// console.log(res);
+		if (onlineuser[i].userId == id) {
+			await signalR.send('ForceOffline', { connectionId: onlineuser[i].connectionId }).catch(function (err: any) {
+				console.log(err);
+			});
+		}
+	}
 };
 
 // 重置密码
