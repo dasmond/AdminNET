@@ -14,9 +14,14 @@ namespace Admin.NET.Core.Service;
 /// </summary>
 [ApiDescriptionSettings(Order = 275)]
 [AllowAnonymous]
-public class SysEnumService(IOptions<EnumOptions> enumOptions) : IDynamicApiController, ITransient
+public class SysEnumService : IDynamicApiController, ITransient
 {
-    private readonly EnumOptions _enumOptions = enumOptions.Value;
+    private readonly EnumOptions _enumOptions;
+
+    public SysEnumService(IOptions<EnumOptions> enumOptions)
+    {
+        _enumOptions = enumOptions.Value;
+    }
 
     /// <summary>
     /// 获取所有枚举类型

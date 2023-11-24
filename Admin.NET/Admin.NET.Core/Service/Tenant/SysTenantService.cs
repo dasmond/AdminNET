@@ -349,7 +349,7 @@ public class SysTenantService : IDynamicApiController, ITransient
         if (tenantId > 0)
             _sysTenantRep.AsTenant().RemoveConnection(tenantId);
 
-        var tenantList = await _sysTenantRep.CopyNew().GetListAsync();
+        var tenantList = await _sysTenantRep.GetListAsync();
         _sysCacheService.Set(CacheConst.KeyTenant, tenantList);
     }
 
@@ -421,7 +421,7 @@ public class SysTenantService : IDynamicApiController, ITransient
         // 设置租户库连接配置
         var tenantConnConfig = new DbConnectionConfig
         {
-            ConfigId = tenant.Id,
+            ConfigId = tenant.Id.ToString(),
             DbType = tenant.DbType,
             IsAutoCloseConnection = true,
             ConnectionString = tenant.Connection,
