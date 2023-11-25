@@ -2,46 +2,22 @@
 branches: {
   }
 fileChange:
-  /Admin.NET:
-    newFile: !uuid '71fdcff4e382e509012e8f7a2e5c9afe4cff665c'
-    oldFile: !uuid 'fc12211a1a7bf38099102a5ffb280016f831821a'
-  /Admin.NET/Admin.NET.Web.Entry:
-    newFile: !uuid '688409de401409401137c46f89f006c71a6b3650'
-    oldFile: !uuid '4272700715dcf66b4f2bb944dcc2c3e406923ddb'
-  /Admin.NET/Admin.NET.Web.Entry/wwwroot:
-    newFile: !uuid '75acabbf957f658d1617a69c45b1b6b1c0570073'
-    oldFile: !uuid '69b17f3a66853243c1711704869aa743194cb407'
-  /Admin.NET/Admin.NET.Web.Entry/wwwroot/Template:
-    newFile: !uuid '07b94e6ad2f00bb19d707f3b46382d5d9312b852'
-    oldFile: !uuid '12370c5713ee250dc94087c58ea8874c3cdd5855'
-  /Admin.NET/Admin.NET.Web.Entry/wwwroot/Template/index.vue.vm:
-    newFile: !uuid '7902dac5d03ca0b2df8b72a2a9fb7276df6c052a'
-    oldFile: !uuid 'c0530ec349397962a121e717b8ed3b422d41fb75'
   /Web:
-    newFile: !uuid 'a1cea4521b71b3245a13ae509992c5c12548e50e'
-    oldFile: !uuid 'f9902df86d57bf83c8c3a2e9b7accaf628742139'
-  /Web/src:
-    newFile: !uuid '26ee4546848d38b054692c1ea7da761ddfa46c4e'
-    oldFile: !uuid 'bdc09970323522f0440514117a910eed95d54ebf'
-  /Web/src/directive:
-    newFile: !uuid '30af2e5c50c3abc128d0a8344914943c32e4a97d'
-    oldFile: !uuid 'ac86ee7e043a9c1b9020580a520b926817ff1b30'
-  /Web/src/directive/index.ts:
-    newFile: !uuid '3270b37f60543e2c1182905edbde471bced56776'
-    oldFile: !uuid '781400f4d9a82ca2dd8067864d06bda34d115362'
-  /Web/src/views:
-    newFile: !uuid '5733eba5ed1891941b0e1cb549b5cac3a11be47b'
-    oldFile: !uuid '26d8533d62cbb4373b0e95cfe8ef5117f48a0a3e'
-  /Web/src/views/system:
-    newFile: !uuid '29e2e6a95d5951e8c8d785cbc8e095c26d2ed3bb'
-    oldFile: !uuid '9d4d22a3ee04ea536f747a73bd183a681dcc1fca'
-  /Web/src/views/system/onlineUser:
-    newFile: !uuid 'c7e18d61f1d4c4b65c93716fcb002c5f61b37afe'
-    oldFile: !uuid '33fa9e90fc18657f6994d7b133e7e18a30bbb46b'
-  /Web/src/views/system/onlineUser/index.vue:
-    newFile: !uuid '6f10f8793ecd28cab38f3484321a4f61c1d6f67a'
-    oldFile: !uuid '81f4385cada967c6a13e8c827cc2d9b57d151087'
-gitCommitId: !uuid 'ff5ce7de301218563e5e9be7d17ff0a795e21ecb'
+    newFile: !uuid '3736fa4c7fdc1f6b701cd58da532d1cd8a3c055a'
+    oldFile: !uuid 'a1cea4521b71b3245a13ae509992c5c12548e50e'
+  /Web/package.json:
+    newFile: !uuid '5d5d9aeda1fc0e03d84c6b51be77b5a5b47e4dee'
+    oldFile: !uuid 'a14da92d317cc27cb61c3f0418a4d49b5a368c76'
+  /Web/pnpm-lock.yaml:
+    newFile: !uuid '5ecd8198224e599bb6a7653953d44c8bc2566d31'
+    oldFile: !uuid '3e1aa4fc7e898843acc7b90b99f32909c1fda56f'
+  /Web/public:
+    newFile: !uuid 'e10ce1c8ceee2acb6cb783131ef487b035625ce9'
+    oldFile: !uuid '532c4b04a1ac6e5533686290c4389efab12d5f0a'
+  /Web/public/print-lock.css:
+    newFile: !uuid 'aede01863ed044180ec68328d98ee1a60f551b72'
+    oldFile: !uuid '93e654a08971cc4a7102588d9be2864d11312c6f'
+gitCommitId: !uuid 'ba8afc02c259de3f835e0c7471ac6f067cfbf3bb'
 renames: {
   }
-revisionId: 1286
+revisionId: 1287
