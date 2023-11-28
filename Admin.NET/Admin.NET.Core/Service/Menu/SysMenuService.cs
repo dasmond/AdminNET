@@ -113,9 +113,14 @@ public class SysMenuService : IDynamicApiController, ITransient
         var isExist = input.Type != MenuTypeEnum.Btn
             ? await _sysMenuRep.IsAnyAsync(u => u.Title == input.Title)
             : await _sysMenuRep.IsAnyAsync(u => u.Permission == input.Permission);
-
         if (isExist)
             throw Oops.Oh(ErrorCodeEnum.D4000);
+
+        if (!string.IsNullOrWhiteSpace(input.Name))
+        {
+            if (await _sysMenuRep.IsAnyAsync(u => u.Name == input.Name))
+                throw Oops.Oh(ErrorCodeEnum.D4009);
+        }
 
         // 校验菜单参数
         var sysMenu = input.Adapt<SysMenu>();
@@ -252,7 +257,7 @@ public class SysMenuService : IDynamicApiController, ITransient
     /// </summary>
     private void DeleteMenuCache()
     {
-        _sysCacheService.RemoveByPrefixKey(CacheConst.KeyUserMenu);
+        // _sysCacheService.RemoveByPrefixKey(CacheConst.KeyUserMenu);
         _sysCacheService.RemoveByPrefixKey(CacheConst.KeyUserButton);
     }
 
