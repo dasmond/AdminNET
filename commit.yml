@@ -3,72 +3,63 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid 'e91033deb9b91cbec5ba7167c6c78e352783f6be'
-    oldFile: !uuid '3db1c13362041cb3dc610402dc51cc944b6c0e37'
+    newFile: !uuid '00912b6bf052538712ed75aa9f4cb754ce2dcab8'
+    oldFile: !uuid 'e91033deb9b91cbec5ba7167c6c78e352783f6be'
   /Admin.NET/Admin.NET.Application:
-    newFile: !uuid 'c488c57876d5490edebb6aaec187ee3c076a2641'
-    oldFile: !uuid '16dfd3e693a82268060b9f961af2d49b0f0058c6'
+    newFile: !uuid '2963db6e8123a1f25a44c8625f40d8c960fddc5e'
+    oldFile: !uuid 'c488c57876d5490edebb6aaec187ee3c076a2641'
   /Admin.NET/Admin.NET.Application/Configuration:
-    newFile: !uuid 'd10231d99f73f04ca55a98cee29ba349d599d199'
-    oldFile: !uuid '6108d1191d787f394232cb582d6fc31aa2be1688'
-  /Admin.NET/Admin.NET.Application/Configuration/App.json:
-    newFile: !uuid '1f7c5a37c86b46fc177c90d588147ba8f849cbe2'
-    oldFile: !uuid 'aa04afecf1df9d19f627985eb28714115fb5005c'
+    newFile: !uuid '423c50186cf4a728df3b89fc99b4d496d39a60f1'
+    oldFile: !uuid 'd10231d99f73f04ca55a98cee29ba349d599d199'
   /Admin.NET/Admin.NET.Application/Configuration/Email.json:
-    newFile: !uuid 'a36b908ea9ea7308d797c3d4d12cb67e51a1a69e'
-    oldFile: !uuid '0878de9e839eef8a6e62eb8102ba8e8d642b1119'
-  /Admin.NET/Admin.NET.Application/Configuration/Swagger.json:
-    newFile: !uuid '65003edc1c3cafbe2c4996b280aaaf31468ac6aa'
-    oldFile: !uuid '6de4763b80e8ef66964b3224766d20bf60e33367'
+    newFile: !uuid '5004636fce504b5f273e0d88211be141dfe8124c'
+    oldFile: !uuid 'a36b908ea9ea7308d797c3d4d12cb67e51a1a69e'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '5c28f32799ba40dad2f414e161779af70126c7c8'
-    oldFile: !uuid '1be4d3300ce48187d3e507f1132bc0d885a43413'
-  /Admin.NET/Admin.NET.Core/Entity:
-    newFile: !uuid '9785c30f4867536d6fc2b7abed277e2900f80584'
-    oldFile: !uuid '200be71de4fe43614d50a7f49c15f75bb8275c5f'
-  /Admin.NET/Admin.NET.Core/Entity/SysLogAudit.cs:
-    newFile: !uuid '066af6d61e81275bd97d570065c7627bf210b8c2'
-    oldFile: !uuid 'bcace020b875139908ce5665803fedfb749163d9'
+    newFile: !uuid '55983f658c43408f7b6b564821f5db5d035b57d7'
+    oldFile: !uuid '5c28f32799ba40dad2f414e161779af70126c7c8'
+  /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
+    newFile: !uuid 'bc0c85a19476d39891b16840bd653be1ee59a8ac'
+    oldFile: !uuid 'abff6e60cb4c6dc9cc4ec59c68b7965b0dea5eed'
+  /Admin.NET/Admin.NET.Core/EventBus:
+    newFile: !uuid '53012d0a0c3089b2faf6cfac0ef4286be552036f'
+    oldFile: !uuid '4d5ddc13bcf7e1a917fd2b4c3b24b2cbe4cd0edf'
+  /Admin.NET/Admin.NET.Core/EventBus/AppEventSubscriber.cs:
+    newFile: !uuid '6dbdff3aa91f9765d69b9576eacc879402d8e631'
+    oldFile: !uuid '3e9fac1d80a124a8324eab6587a54e7e7d63f887'
   /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid '70d320436ab8ef28b3bea8bba064fb5156bd2fb3'
-    oldFile: !uuid '0ffbfc58a503e0ec60ed09389e96e8c345bd47da'
-  /Admin.NET/Admin.NET.Core/Service/Auth:
-    newFile: !uuid 'c16090c0ee86fc3a23258a7aed07e43457d90dc7'
-    oldFile: !uuid '1b2f81105b62041d1ccc7bb57f750499bb4b29a1'
-  /Admin.NET/Admin.NET.Core/Service/Auth/SysAuthService.cs:
-    newFile: !uuid 'ae5d8079215b99364bf388261ef2817bfd87d194'
-    oldFile: !uuid '601ed7160ded0cab2575efc29026d03ca40e3db7'
-  /Admin.NET/Admin.NET.Core/Service/Org:
-    newFile: !uuid '00a012c6ddba4c4bc87b6157abb8599707d38232'
-    oldFile: !uuid '9e336d235eda662874962c78fc75f61ffd578397'
-  /Admin.NET/Admin.NET.Core/Service/Org/SysOrgService.cs:
-    newFile: !uuid 'a8bf9f8f295df5653cdd0fcd9cbc03b172c6e327'
-    oldFile: !uuid 'a11acb11ab3e1eb0bab14233ce5392b0eea9ef58'
+    newFile: !uuid 'c2a2ae4899298f488cdd7c3ba16a7fec5147d65b'
+    oldFile: !uuid '70d320436ab8ef28b3bea8bba064fb5156bd2fb3'
+  /Admin.NET/Admin.NET.Core/Service/Message:
+    newFile: !uuid '84d1ea211e28d6c793e2e7cf7a3b3f504cb1abd0'
+    oldFile: !uuid '5cd85a6df7518aa26726319f5495cb5367c45eae'
+  /Admin.NET/Admin.NET.Core/Service/Message/SysEmailService.cs:
+    newFile: !uuid '78fadf0b83130bd5d496503b03ec35525360c417'
+    oldFile: null
+  /Admin.NET/Admin.NET.Core/Service/Message/SysMessageService.cs:
+    newFile: !uuid '4eeb73d219a187f2f3b8e0488472dd51f75ac3d3'
+    oldFile: !uuid 'd32ab1b8df85afcfcf48a7bb9b2ccbcbb82dd6d6'
+  /Admin.NET/Admin.NET.Core/Service/Message/SysSmsService.cs:
+    newFile: !uuid '4c9033b0a3e496c41f2a9562742c091cc9d2f644'
+    oldFile: null
+  /Admin.NET/Admin.NET.Core/Service/Server:
+    newFile: !uuid '482bac236f9df275b2b4c3ba1d23c21b04e70d87'
+    oldFile: !uuid '85111dc5c9c9cf6ffb83dbf788ef1fe29f6d5935'
+  /Admin.NET/Admin.NET.Core/Service/Server/SysServerService.cs:
+    newFile: !uuid 'cf981c4bdbfdedb76e1cebb51a5ac01eeaf918ef'
+    oldFile: !uuid 'ffb874262a5b8972fac4aee61866f96e5336dc70'
   /Admin.NET/Admin.NET.Core/Service/Sms:
-    newFile: !uuid 'e6acaeaf387c337f9a02f97416f17f74b7ab5500'
-    oldFile: !uuid '22b8ebbce657be2b4ea6f51fa691b0e339701f99'
+    newFile: null
+    oldFile: !uuid 'e6acaeaf387c337f9a02f97416f17f74b7ab5500'
   /Admin.NET/Admin.NET.Core/Service/Sms/SysSmsService.cs:
-    newFile: !uuid '08119137dd037c088bced935ef6a9f3a1b7d5658'
-    oldFile: !uuid '859848b5f6026c5a7276cb4fad9e39e05682f662'
-  /Admin.NET/Admin.NET.Core/Service/User:
-    newFile: !uuid '285be22ae35f1bef7fc234456a0ee9b3e8fa805c'
-    oldFile: !uuid '5c8d83504089e901564595593659e51bad18ed62'
-  /Admin.NET/Admin.NET.Core/Service/User/SysUserService.cs:
-    newFile: !uuid '5aee10dc01d84cef8c7b9857c0fbdd167274aaee'
-    oldFile: !uuid '9ef7450826613983baeae7b7d460cae25d2fdd5c'
-  /Admin.NET/Admin.NET.Core/SqlSugar:
-    newFile: !uuid 'daa56015f3ce9ef23fa2be9aa277a4ef33874acd'
-    oldFile: !uuid 'fe807a9b3e7e8f11ed29fb21a8803b717b0306e4'
-  /Admin.NET/Admin.NET.Core/SqlSugar/SqlSugarSetup.cs:
-    newFile: !uuid 'f31c5e2be719953a3b19c732ca043f3f08e560c3'
-    oldFile: !uuid '76e47cf6d0a520902362701734e351fed557190e'
-  /Admin.NET/Admin.NET.Core/Util:
-    newFile: !uuid 'a915ea53ea72b008f29635a0c4d417554ec61e7c'
-    oldFile: !uuid '755f591f1e07d00031bce432a88a53465e99d949'
-  /Admin.NET/Admin.NET.Core/Util/CodeGenUtil.cs:
-    newFile: !uuid 'c573968529cc49bafe4177fd2f8ae735c127007b'
-    oldFile: !uuid 'c7c04ace8b2d94053d33c4dc240de95c14435f28'
-gitCommitId: !uuid '86c93904ba63f3af8534326bfdd0c101dcc2d7e5'
-renames: {
-  }
-revisionId: 1261
+    newFile: null
+    oldFile: !uuid '08119137dd037c088bced935ef6a9f3a1b7d5658'
+  /Admin.NET/Admin.NET.Web.Core:
+    newFile: !uuid 'ad7eaa40cefae24f970239f96a27619b789e6137'
+    oldFile: !uuid '143587d20a9560673a5f84408b24d75f3ed4c782'
+  /Admin.NET/Admin.NET.Web.Core/Startup.cs:
+    newFile: !uuid 'e296eac65d36f249d3ab8cd92e078541f34bebc8'
+    oldFile: !uuid '6bb24aead4bf2fd919c7b4cc39b76bb81bfe142f'
+gitCommitId: !uuid 'c038d45cab62d1ba6001d831a07d826f30ba183c'
+renames:
+  /Admin.NET/Admin.NET.Core/Service/Message/SysSmsService.cs: /Admin.NET/Admin.NET.Core/Service/Sms/SysSmsService.cs
+revisionId: 1262
