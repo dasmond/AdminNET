@@ -2,22 +2,43 @@
 branches: {
   }
 fileChange:
-  /Web:
-    newFile: !uuid '6025ebb0c2abb241ae21f800cf1d0a94d912e523'
-    oldFile: !uuid '707f45234b413fe88076b0632f02137734f30719'
-  /Web/src:
-    newFile: !uuid '75486263ce23512670e1ed2e976ce0b1f43cc8c7'
-    oldFile: !uuid '28b6d2c38317c94e02cd11f21e0aabc698b4f222'
-  /Web/src/components:
-    newFile: !uuid 'f4001a093750c14fb488bc0cd6a849ef1aa86131'
-    oldFile: !uuid 'dac504cb6727efe9d8cb839cb16924dafd344ae3'
-  /Web/src/components/table:
-    newFile: !uuid '5e188e7c2740ce619215dacb2fee81740d836ca0'
-    oldFile: !uuid '50b23fa7065b421c2a121df20445f043dbc06c1b'
-  /Web/src/components/table/index.vue:
-    newFile: !uuid '98e9069d90ffcf14288160a6ffa37a00d569c33a'
-    oldFile: !uuid '1922b6261718d63f6bf339df6202c9876711eb54'
-gitCommitId: !uuid '7e505fdfc7b31ba5f0bfcefcf548adbb8d4fdaad'
+  /Admin.NET:
+    newFile: !uuid '3db1c13362041cb3dc610402dc51cc944b6c0e37'
+    oldFile: !uuid '9154fd12b9d320c0e63d8e9452d9204b65713a18'
+  /Admin.NET/Admin.NET.Application:
+    newFile: !uuid '16dfd3e693a82268060b9f961af2d49b0f0058c6'
+    oldFile: !uuid 'a9987c73684fd1e9322a25b41c89e294d4f1c02f'
+  /Admin.NET/Admin.NET.Application/Configuration:
+    newFile: !uuid '6108d1191d787f394232cb582d6fc31aa2be1688'
+    oldFile: !uuid '6f109bd6ef18f639827e1bc66812e9ced1b6a931'
+  /Admin.NET/Admin.NET.Application/Configuration/App.json:
+    newFile: !uuid 'aa04afecf1df9d19f627985eb28714115fb5005c'
+    oldFile: !uuid '52f54e9ea8fe6a79daac4e22986c89087219e36a'
+  /Admin.NET/Admin.NET.Core:
+    newFile: !uuid '1be4d3300ce48187d3e507f1132bc0d885a43413'
+    oldFile: !uuid 'c93d8229c4d79e124f1e56d996cd4c1ccfebc0d5'
+  /Admin.NET/Admin.NET.Core/Option:
+    newFile: !uuid '00f540d239cd520af5e56d2039c535fde1c71b16'
+    oldFile: !uuid '8d5858ec27b9dde95c2cd79786e3c5dacad69f81'
+  /Admin.NET/Admin.NET.Core/Option/CryptogramOptions.cs:
+    newFile: !uuid '8476f728698c0321d33e99a534134aaefebf5f5a'
+    oldFile: !uuid 'd79c3a2bc12c1b12b65146261c90aae2e217d826'
+  /Admin.NET/Admin.NET.Core/Service:
+    newFile: !uuid '0ffbfc58a503e0ec60ed09389e96e8c345bd47da'
+    oldFile: !uuid 'd6b5e7c0f8b386f7c66ed2c759c32f56b7ac31ce'
+  /Admin.NET/Admin.NET.Core/Service/User:
+    newFile: !uuid '5c8d83504089e901564595593659e51bad18ed62'
+    oldFile: !uuid '89c3515c6ac0a72d3f4ffd2f541b8db7f5806ec1'
+  /Admin.NET/Admin.NET.Core/Service/User/SysUserService.cs:
+    newFile: !uuid '9ef7450826613983baeae7b7d460cae25d2fdd5c'
+    oldFile: !uuid '99de14665b78e42265232a2555a8be5017a69bce'
+  /Admin.NET/Admin.NET.Core/Util:
+    newFile: !uuid '755f591f1e07d00031bce432a88a53465e99d949'
+    oldFile: !uuid 'b6ef4ef6432f75157da224c5609e9c9584defe16'
+  /Admin.NET/Admin.NET.Core/Util/CryptogramUtil.cs:
+    newFile: !uuid 'f2b1d0628de14eddc75c6a97b39e6cf85eee5476'
+    oldFile: !uuid '6cc5bb50eca49d4bacfb7b51534025943150116f'
+gitCommitId: !uuid 'ac228b6b071c133c4974a7cb8d9e9f6fcb130584'
 renames: {
   }
-revisionId: 1294
+revisionId: 1295
