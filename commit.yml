@@ -3,63 +3,21 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '00912b6bf052538712ed75aa9f4cb754ce2dcab8'
-    oldFile: !uuid 'e91033deb9b91cbec5ba7167c6c78e352783f6be'
-  /Admin.NET/Admin.NET.Application:
-    newFile: !uuid '2963db6e8123a1f25a44c8625f40d8c960fddc5e'
-    oldFile: !uuid 'c488c57876d5490edebb6aaec187ee3c076a2641'
-  /Admin.NET/Admin.NET.Application/Configuration:
-    newFile: !uuid '423c50186cf4a728df3b89fc99b4d496d39a60f1'
-    oldFile: !uuid 'd10231d99f73f04ca55a98cee29ba349d599d199'
-  /Admin.NET/Admin.NET.Application/Configuration/Email.json:
-    newFile: !uuid '5004636fce504b5f273e0d88211be141dfe8124c'
-    oldFile: !uuid 'a36b908ea9ea7308d797c3d4d12cb67e51a1a69e'
+    newFile: !uuid 'c0879031b20d7395fe3511f92cd73a8768f33b69'
+    oldFile: !uuid '00912b6bf052538712ed75aa9f4cb754ce2dcab8'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '55983f658c43408f7b6b564821f5db5d035b57d7'
-    oldFile: !uuid '5c28f32799ba40dad2f414e161779af70126c7c8'
+    newFile: !uuid '39c727136c313e14c81f9285706a0bc593420eab'
+    oldFile: !uuid '55983f658c43408f7b6b564821f5db5d035b57d7'
   /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
-    newFile: !uuid 'bc0c85a19476d39891b16840bd653be1ee59a8ac'
-    oldFile: !uuid 'abff6e60cb4c6dc9cc4ec59c68b7965b0dea5eed'
-  /Admin.NET/Admin.NET.Core/EventBus:
-    newFile: !uuid '53012d0a0c3089b2faf6cfac0ef4286be552036f'
-    oldFile: !uuid '4d5ddc13bcf7e1a917fd2b4c3b24b2cbe4cd0edf'
-  /Admin.NET/Admin.NET.Core/EventBus/AppEventSubscriber.cs:
-    newFile: !uuid '6dbdff3aa91f9765d69b9576eacc879402d8e631'
-    oldFile: !uuid '3e9fac1d80a124a8324eab6587a54e7e7d63f887'
-  /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid 'c2a2ae4899298f488cdd7c3ba16a7fec5147d65b'
-    oldFile: !uuid '70d320436ab8ef28b3bea8bba064fb5156bd2fb3'
-  /Admin.NET/Admin.NET.Core/Service/Message:
-    newFile: !uuid '84d1ea211e28d6c793e2e7cf7a3b3f504cb1abd0'
-    oldFile: !uuid '5cd85a6df7518aa26726319f5495cb5367c45eae'
-  /Admin.NET/Admin.NET.Core/Service/Message/SysEmailService.cs:
-    newFile: !uuid '78fadf0b83130bd5d496503b03ec35525360c417'
-    oldFile: null
-  /Admin.NET/Admin.NET.Core/Service/Message/SysMessageService.cs:
-    newFile: !uuid '4eeb73d219a187f2f3b8e0488472dd51f75ac3d3'
-    oldFile: !uuid 'd32ab1b8df85afcfcf48a7bb9b2ccbcbb82dd6d6'
-  /Admin.NET/Admin.NET.Core/Service/Message/SysSmsService.cs:
-    newFile: !uuid '4c9033b0a3e496c41f2a9562742c091cc9d2f644'
-    oldFile: null
-  /Admin.NET/Admin.NET.Core/Service/Server:
-    newFile: !uuid '482bac236f9df275b2b4c3ba1d23c21b04e70d87'
-    oldFile: !uuid '85111dc5c9c9cf6ffb83dbf788ef1fe29f6d5935'
-  /Admin.NET/Admin.NET.Core/Service/Server/SysServerService.cs:
-    newFile: !uuid 'cf981c4bdbfdedb76e1cebb51a5ac01eeaf918ef'
-    oldFile: !uuid 'ffb874262a5b8972fac4aee61866f96e5336dc70'
-  /Admin.NET/Admin.NET.Core/Service/Sms:
-    newFile: null
-    oldFile: !uuid 'e6acaeaf387c337f9a02f97416f17f74b7ab5500'
-  /Admin.NET/Admin.NET.Core/Service/Sms/SysSmsService.cs:
-    newFile: null
-    oldFile: !uuid '08119137dd037c088bced935ef6a9f3a1b7d5658'
-  /Admin.NET/Admin.NET.Web.Core:
-    newFile: !uuid 'ad7eaa40cefae24f970239f96a27619b789e6137'
-    oldFile: !uuid '143587d20a9560673a5f84408b24d75f3ed4c782'
-  /Admin.NET/Admin.NET.Web.Core/Startup.cs:
-    newFile: !uuid 'e296eac65d36f249d3ab8cd92e078541f34bebc8'
-    oldFile: !uuid '6bb24aead4bf2fd919c7b4cc39b76bb81bfe142f'
-gitCommitId: !uuid 'c038d45cab62d1ba6001d831a07d826f30ba183c'
-renames:
-  /Admin.NET/Admin.NET.Core/Service/Message/SysSmsService.cs: /Admin.NET/Admin.NET.Core/Service/Sms/SysSmsService.cs
-revisionId: 1297
+    newFile: !uuid '8b9a2a68d5e539843f353ecfa4100d9383400aef'
+    oldFile: !uuid 'bc0c85a19476d39891b16840bd653be1ee59a8ac'
+  /Admin.NET/Admin.NET.Core/Option:
+    newFile: !uuid 'ee38b8870472167dd25c65f153618eb93deec3ba'
+    oldFile: !uuid '00f540d239cd520af5e56d2039c535fde1c71b16'
+  /Admin.NET/Admin.NET.Core/Option/EmailOptions.cs:
+    newFile: !uuid '917484d3f3885a5ee853c27b8144399da97b9c82'
+    oldFile: !uuid '711165ba4aa191ddb9ab2068732b537daa12b25b'
+gitCommitId: !uuid 'd92fe117427ee772716eff308f8c7e74be5bdcb7'
+renames: {
+  }
+revisionId: 1298
