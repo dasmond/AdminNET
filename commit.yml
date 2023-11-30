@@ -3,42 +3,72 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '3db1c13362041cb3dc610402dc51cc944b6c0e37'
-    oldFile: !uuid '9154fd12b9d320c0e63d8e9452d9204b65713a18'
+    newFile: !uuid 'e91033deb9b91cbec5ba7167c6c78e352783f6be'
+    oldFile: !uuid '3db1c13362041cb3dc610402dc51cc944b6c0e37'
   /Admin.NET/Admin.NET.Application:
-    newFile: !uuid '16dfd3e693a82268060b9f961af2d49b0f0058c6'
-    oldFile: !uuid 'a9987c73684fd1e9322a25b41c89e294d4f1c02f'
+    newFile: !uuid 'c488c57876d5490edebb6aaec187ee3c076a2641'
+    oldFile: !uuid '16dfd3e693a82268060b9f961af2d49b0f0058c6'
   /Admin.NET/Admin.NET.Application/Configuration:
-    newFile: !uuid '6108d1191d787f394232cb582d6fc31aa2be1688'
-    oldFile: !uuid '6f109bd6ef18f639827e1bc66812e9ced1b6a931'
+    newFile: !uuid 'd10231d99f73f04ca55a98cee29ba349d599d199'
+    oldFile: !uuid '6108d1191d787f394232cb582d6fc31aa2be1688'
   /Admin.NET/Admin.NET.Application/Configuration/App.json:
-    newFile: !uuid 'aa04afecf1df9d19f627985eb28714115fb5005c'
-    oldFile: !uuid '52f54e9ea8fe6a79daac4e22986c89087219e36a'
+    newFile: !uuid '1f7c5a37c86b46fc177c90d588147ba8f849cbe2'
+    oldFile: !uuid 'aa04afecf1df9d19f627985eb28714115fb5005c'
+  /Admin.NET/Admin.NET.Application/Configuration/Email.json:
+    newFile: !uuid 'a36b908ea9ea7308d797c3d4d12cb67e51a1a69e'
+    oldFile: !uuid '0878de9e839eef8a6e62eb8102ba8e8d642b1119'
+  /Admin.NET/Admin.NET.Application/Configuration/Swagger.json:
+    newFile: !uuid '65003edc1c3cafbe2c4996b280aaaf31468ac6aa'
+    oldFile: !uuid '6de4763b80e8ef66964b3224766d20bf60e33367'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '1be4d3300ce48187d3e507f1132bc0d885a43413'
-    oldFile: !uuid 'c93d8229c4d79e124f1e56d996cd4c1ccfebc0d5'
-  /Admin.NET/Admin.NET.Core/Option:
-    newFile: !uuid '00f540d239cd520af5e56d2039c535fde1c71b16'
-    oldFile: !uuid '8d5858ec27b9dde95c2cd79786e3c5dacad69f81'
-  /Admin.NET/Admin.NET.Core/Option/CryptogramOptions.cs:
-    newFile: !uuid '8476f728698c0321d33e99a534134aaefebf5f5a'
-    oldFile: !uuid 'd79c3a2bc12c1b12b65146261c90aae2e217d826'
+    newFile: !uuid '5c28f32799ba40dad2f414e161779af70126c7c8'
+    oldFile: !uuid '1be4d3300ce48187d3e507f1132bc0d885a43413'
+  /Admin.NET/Admin.NET.Core/Entity:
+    newFile: !uuid '9785c30f4867536d6fc2b7abed277e2900f80584'
+    oldFile: !uuid '200be71de4fe43614d50a7f49c15f75bb8275c5f'
+  /Admin.NET/Admin.NET.Core/Entity/SysLogAudit.cs:
+    newFile: !uuid '066af6d61e81275bd97d570065c7627bf210b8c2'
+    oldFile: !uuid 'bcace020b875139908ce5665803fedfb749163d9'
   /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid '0ffbfc58a503e0ec60ed09389e96e8c345bd47da'
-    oldFile: !uuid 'd6b5e7c0f8b386f7c66ed2c759c32f56b7ac31ce'
+    newFile: !uuid '70d320436ab8ef28b3bea8bba064fb5156bd2fb3'
+    oldFile: !uuid '0ffbfc58a503e0ec60ed09389e96e8c345bd47da'
+  /Admin.NET/Admin.NET.Core/Service/Auth:
+    newFile: !uuid 'c16090c0ee86fc3a23258a7aed07e43457d90dc7'
+    oldFile: !uuid '1b2f81105b62041d1ccc7bb57f750499bb4b29a1'
+  /Admin.NET/Admin.NET.Core/Service/Auth/SysAuthService.cs:
+    newFile: !uuid 'ae5d8079215b99364bf388261ef2817bfd87d194'
+    oldFile: !uuid '601ed7160ded0cab2575efc29026d03ca40e3db7'
+  /Admin.NET/Admin.NET.Core/Service/Org:
+    newFile: !uuid '00a012c6ddba4c4bc87b6157abb8599707d38232'
+    oldFile: !uuid '9e336d235eda662874962c78fc75f61ffd578397'
+  /Admin.NET/Admin.NET.Core/Service/Org/SysOrgService.cs:
+    newFile: !uuid 'a8bf9f8f295df5653cdd0fcd9cbc03b172c6e327'
+    oldFile: !uuid 'a11acb11ab3e1eb0bab14233ce5392b0eea9ef58'
+  /Admin.NET/Admin.NET.Core/Service/Sms:
+    newFile: !uuid 'e6acaeaf387c337f9a02f97416f17f74b7ab5500'
+    oldFile: !uuid '22b8ebbce657be2b4ea6f51fa691b0e339701f99'
+  /Admin.NET/Admin.NET.Core/Service/Sms/SysSmsService.cs:
+    newFile: !uuid '08119137dd037c088bced935ef6a9f3a1b7d5658'
+    oldFile: !uuid '859848b5f6026c5a7276cb4fad9e39e05682f662'
   /Admin.NET/Admin.NET.Core/Service/User:
-    newFile: !uuid '5c8d83504089e901564595593659e51bad18ed62'
-    oldFile: !uuid '89c3515c6ac0a72d3f4ffd2f541b8db7f5806ec1'
+    newFile: !uuid '285be22ae35f1bef7fc234456a0ee9b3e8fa805c'
+    oldFile: !uuid '5c8d83504089e901564595593659e51bad18ed62'
   /Admin.NET/Admin.NET.Core/Service/User/SysUserService.cs:
-    newFile: !uuid '9ef7450826613983baeae7b7d460cae25d2fdd5c'
-    oldFile: !uuid '99de14665b78e42265232a2555a8be5017a69bce'
+    newFile: !uuid '5aee10dc01d84cef8c7b9857c0fbdd167274aaee'
+    oldFile: !uuid '9ef7450826613983baeae7b7d460cae25d2fdd5c'
+  /Admin.NET/Admin.NET.Core/SqlSugar:
+    newFile: !uuid 'daa56015f3ce9ef23fa2be9aa277a4ef33874acd'
+    oldFile: !uuid 'fe807a9b3e7e8f11ed29fb21a8803b717b0306e4'
+  /Admin.NET/Admin.NET.Core/SqlSugar/SqlSugarSetup.cs:
+    newFile: !uuid 'f31c5e2be719953a3b19c732ca043f3f08e560c3'
+    oldFile: !uuid '76e47cf6d0a520902362701734e351fed557190e'
   /Admin.NET/Admin.NET.Core/Util:
-    newFile: !uuid '755f591f1e07d00031bce432a88a53465e99d949'
-    oldFile: !uuid 'b6ef4ef6432f75157da224c5609e9c9584defe16'
-  /Admin.NET/Admin.NET.Core/Util/CryptogramUtil.cs:
-    newFile: !uuid 'f2b1d0628de14eddc75c6a97b39e6cf85eee5476'
-    oldFile: !uuid '6cc5bb50eca49d4bacfb7b51534025943150116f'
-gitCommitId: !uuid 'ac228b6b071c133c4974a7cb8d9e9f6fcb130584'
+    newFile: !uuid 'a915ea53ea72b008f29635a0c4d417554ec61e7c'
+    oldFile: !uuid '755f591f1e07d00031bce432a88a53465e99d949'
+  /Admin.NET/Admin.NET.Core/Util/CodeGenUtil.cs:
+    newFile: !uuid 'c573968529cc49bafe4177fd2f8ae735c127007b'
+    oldFile: !uuid 'c7c04ace8b2d94053d33c4dc240de95c14435f28'
+gitCommitId: !uuid '86c93904ba63f3af8534326bfdd0c101dcc2d7e5'
 renames: {
   }
-revisionId: 1260
+revisionId: 1261
