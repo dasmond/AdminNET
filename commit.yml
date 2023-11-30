@@ -3,21 +3,18 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid 'c0879031b20d7395fe3511f92cd73a8768f33b69'
-    oldFile: !uuid '00912b6bf052538712ed75aa9f4cb754ce2dcab8'
+    newFile: !uuid '84c5be49f8d6978269ba43cf43b7d4dd739473d4'
+    oldFile: !uuid 'c0879031b20d7395fe3511f92cd73a8768f33b69'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '39c727136c313e14c81f9285706a0bc593420eab'
-    oldFile: !uuid '55983f658c43408f7b6b564821f5db5d035b57d7'
-  /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
-    newFile: !uuid '8b9a2a68d5e539843f353ecfa4100d9383400aef'
-    oldFile: !uuid 'bc0c85a19476d39891b16840bd653be1ee59a8ac'
-  /Admin.NET/Admin.NET.Core/Option:
-    newFile: !uuid 'ee38b8870472167dd25c65f153618eb93deec3ba'
-    oldFile: !uuid '00f540d239cd520af5e56d2039c535fde1c71b16'
-  /Admin.NET/Admin.NET.Core/Option/EmailOptions.cs:
-    newFile: !uuid '917484d3f3885a5ee853c27b8144399da97b9c82'
-    oldFile: !uuid '711165ba4aa191ddb9ab2068732b537daa12b25b'
-gitCommitId: !uuid 'd92fe117427ee772716eff308f8c7e74be5bdcb7'
+    newFile: !uuid 'fc566d94f3e9247231f16bc835e1aaf624f47bc8'
+    oldFile: !uuid '39c727136c313e14c81f9285706a0bc593420eab'
+  /Admin.NET/Admin.NET.Core/Entity:
+    newFile: !uuid '6b2a3e624aa6c890f0ac23df8d940040c3031bf1'
+    oldFile: !uuid '9785c30f4867536d6fc2b7abed277e2900f80584'
+  /Admin.NET/Admin.NET.Core/Entity/SysLogAudit.cs:
+    newFile: null
+    oldFile: !uuid '066af6d61e81275bd97d570065c7627bf210b8c2'
+gitCommitId: !uuid '28787175c023ef784b865fb4dc991925801fe16e'
 renames: {
   }
-revisionId: 1298
+revisionId: 1299
