@@ -3,45 +3,18 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '4b7a5df3e40cabe3ece80d8ccfeb5c7f43a5b1f6'
-    oldFile: !uuid 'f1e92fd04e2140d3c99251e420094272e1b922be'
+    newFile: !uuid 'c98afb79ee4764015d7f28b5b789bc84c3e8d5dd'
+    oldFile: !uuid '4b7a5df3e40cabe3ece80d8ccfeb5c7f43a5b1f6'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '4c16798f2fc19530ba2b8db4514707a3ab5de566'
-    oldFile: !uuid '4733d3fa1eb100ef8ee4fad9ab5a4ed1a8811951'
-  /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid 'fa595fa9b028f9796aefd64bea73977b163fa685'
-    oldFile: !uuid '7cd7c92e8ba2a7d6df1e985e1dc1205a1f063571'
-  /Admin.NET/Admin.NET.Core/Service/Print:
-    newFile: !uuid '60c0fc512fc6f6dd2525dca84993a99a9081323c'
-    oldFile: !uuid '01978f2249c1f8e4311d7b0a962e8cdbaf57c025'
-  /Admin.NET/Admin.NET.Core/Service/Print/SysPrintService.cs:
-    newFile: !uuid '8d1c2625bf8667530577eeb10f8f477cbbe087fd'
-    oldFile: !uuid '7d782cd6a1e2391f68f7a99c0b646feae74068d6'
-  /Web:
-    newFile: !uuid 'cba1fa1831eb95a8d770b44d0df2f6a807d5c03b'
-    oldFile: !uuid 'ba7cdffc3c4268c783f71cb83da73ef493428ab9'
-  /Web/src:
-    newFile: !uuid '7c3184a0aa28a90386f4fc1ad35d429457b4838b'
-    oldFile: !uuid 'de735423c4fe6e68058d2b74f8440b64fb340689'
-  /Web/src/api-services:
-    newFile: !uuid 'e442dec9cab0b3cc85c32a1b1e0575c1a8a8905c'
-    oldFile: !uuid 'd5d85526902e06ba9d2d162ed89a397f17f01f4d'
-  /Web/src/api-services/apis:
-    newFile: !uuid '873afd3d33db3bf22419907f7bbdc7611d8971bc'
-    oldFile: !uuid 'ac0f5bc9184f54f4e836150dc4ae090973edecbc'
-  /Web/src/api-services/apis/sys-print-api.ts:
-    newFile: !uuid '09e5395be410759e9ee3ec1f231b79aa7970ecff'
-    oldFile: !uuid '9012080e8d0e55be62d36fa32fee4765903dc76f'
-  /Web/src/api-services/models:
-    newFile: !uuid '522154efd7359527e5d298be5b025df56368aad7'
-    oldFile: !uuid '6bf2c6da4bf954981fe8d713f17bd41972781374'
-  /Web/src/api-services/models/admin-result-sys-print.ts:
-    newFile: !uuid '25ea51a2755a169a1168cb9cfb020c5b16638dc8'
-    oldFile: null
-  /Web/src/api-services/models/index.ts:
-    newFile: !uuid '0bbfbf3f51e6790b39e771aa6eba621d3c2d9445'
-    oldFile: !uuid '3fc2abbe233523c7bbc387987d05532eb3fd4715'
-gitCommitId: !uuid '3d359aaa8e9cde371cde1f122ecc7c0acbd11f9f'
+    newFile: !uuid '9227b35fe9397a22577a210a46b2dd1dd4df64e1'
+    oldFile: !uuid '4c16798f2fc19530ba2b8db4514707a3ab5de566'
+  /Admin.NET/Admin.NET.Core/Logging:
+    newFile: !uuid 'b772117893472acd4cf61e28ab4cb78b030d8983'
+    oldFile: !uuid 'b054ffd8f7536c200304f5d01d06e90e659104f5'
+  /Admin.NET/Admin.NET.Core/Logging/LoggingSetup.cs:
+    newFile: !uuid '3e5561c868ea4c773acafaefe3e3dd588e7d28c7'
+    oldFile: !uuid '5ecdbae884e2dc3a5879dd021ebdf8bdd3ed5a94'
+gitCommitId: !uuid '3a8a55d5a7c9cd5785628ff9d9929fda14bf921a'
 renames: {
   }
-revisionId: 1309
+revisionId: 1310
