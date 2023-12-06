@@ -3,21 +3,90 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid 'e26a80b8f57004439579b368dda4b1cfafc0dcfd'
-    oldFile: !uuid '6d59507aca8e6200f04ecda52313cd20a6bc2d90'
+    newFile: !uuid 'bf1d11e1b266456895a5935ac74db110ac4319cd'
+    oldFile: !uuid 'e26a80b8f57004439579b368dda4b1cfafc0dcfd'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '30939b3c50202cea5df4fe84610bbbf621595d89'
-    oldFile: !uuid '22ee2c5eb7751bf9e998249044e6b217a26d8393'
-  /Admin.NET/Admin.NET.Core/Util:
-    newFile: !uuid 'fc1b15a80fb8d387e7e7d431f7dc465f65924366'
-    oldFile: !uuid '607094f359b244c8537d2b8d2cf1814d67e6dcae'
-  /Admin.NET/Admin.NET.Core/Util/GM:
-    newFile: !uuid '57ac7a3112ff954df5ea1da844831fa23717e540'
-    oldFile: !uuid '2eaa976fc2afb382bff15b033087062ab10a3375'
-  /Admin.NET/Admin.NET.Core/Util/GM/GMUtil.cs:
-    newFile: !uuid '9926abc12ee0007143fd38af3ccb4aff6cb3a010'
-    oldFile: !uuid '52b4bf248b92abe87b030d4f7340b21887bd82bb'
-gitCommitId: !uuid 'ec76f7276a325603ce96276895b09116637b7333'
+    newFile: !uuid '6d54db89a6c54eceffc6215a9065e7a003131d0a'
+    oldFile: !uuid '30939b3c50202cea5df4fe84610bbbf621595d89'
+  /Admin.NET/Admin.NET.Core/Entity:
+    newFile: !uuid '663c145cf37c19f1bde3081586b372b53d2ec5f7'
+    oldFile: !uuid '6b2a3e624aa6c890f0ac23df8d940040c3031bf1'
+  /Admin.NET/Admin.NET.Core/Entity/SysCodeGen.cs:
+    newFile: !uuid '13c99987f58d3b1f560b7d981ed12853a2a4a002'
+    oldFile: !uuid 'c2a9340f737f1b273dee43eaadbfc6960783cdbe'
+  /Admin.NET/Admin.NET.Core/SeedData:
+    newFile: !uuid '93b2a91fd25214698d396ebdeea66fa9d09d52ff'
+    oldFile: !uuid '2a5ea5f6079a44f8482438e1629bd1c9dd3a6e8b'
+  /Admin.NET/Admin.NET.Core/SeedData/SysDictDataSeedData.cs:
+    newFile: !uuid '0aa72bb0b0ac4209cbf11a7f92b1e72e11f37336'
+    oldFile: !uuid '653aa6142483d6a6c96b012350ecb2220ca4d14e'
+  /Admin.NET/Admin.NET.Core/SeedData/SysDictTypeSeedData.cs:
+    newFile: !uuid '6c27ac938b5ab29342402cfdbad36c2214b25b56'
+    oldFile: !uuid '695b234fe8b381170b861ba397f40b76fd237f91'
+  /Admin.NET/Admin.NET.Core/Service:
+    newFile: !uuid 'f75fcf3b689c9c51319e66b7d5b78cd126721b60'
+    oldFile: !uuid '23dd2a417c54fc098ebf897e5d1b50e255168ea3'
+  /Admin.NET/Admin.NET.Core/Service/CodeGen:
+    newFile: !uuid '8b057e84d89795379d6c91264e7c0c0c39c3b470'
+    oldFile: !uuid 'a540e3841a0ecb03be578899f0bd94cec2c8c349'
+  /Admin.NET/Admin.NET.Core/Service/CodeGen/CustomViewEngine.cs:
+    newFile: !uuid 'd0dba185d6477ea89f4070bc4d13c7eb6b8774e8'
+    oldFile: !uuid 'ebf22e3cd29bb5505a3145b966d5d1f94f16cb81'
+  /Admin.NET/Admin.NET.Core/Service/CodeGen/Dto:
+    newFile: !uuid '877e6e03c964d90ebc33a6936824c6304cd3bd31'
+    oldFile: !uuid 'a923ed5368210d000bb439ce736fc8fc70d091ba'
+  /Admin.NET/Admin.NET.Core/Service/CodeGen/Dto/CodeGenInput.cs:
+    newFile: !uuid '94d55b15c91b3dc2a5b16bfa057c9f6247db0f6b'
+    oldFile: !uuid 'e05211da0ce9c514d0b4ce29dffbdd70e0649d46'
+  /Admin.NET/Admin.NET.Core/Service/CodeGen/Dto/CodeGenOutput.cs:
+    newFile: !uuid 'dd61f0e83707c54eefc01b9b6c2ab13f3c9d86bb'
+    oldFile: !uuid '87b5c08f59f3c45667888f66b35a524c870f8fc5'
+  /Admin.NET/Admin.NET.Core/Service/CodeGen/SysCodeGenService.cs:
+    newFile: !uuid '36b094c22605aa77d4a17193f3f08345301fb179'
+    oldFile: !uuid 'febd77ddeb1b458afbee51e74c2abac196b212d5'
+  /Admin.NET/Admin.NET.Web.Entry:
+    newFile: !uuid 'ad07b0264c7bd955bbd7ee83d2f397bb5da5a3d2'
+    oldFile: !uuid '72aa3665fa9a0346985884801ce872230828b704'
+  /Admin.NET/Admin.NET.Web.Entry/wwwroot:
+    newFile: !uuid '4814371691aed6a07790a202d3af1a8c4a084c59'
+    oldFile: !uuid 'faea3a302a5c6285dd83c1177bae169b34386f80'
+  /Admin.NET/Admin.NET.Web.Entry/wwwroot/Template:
+    newFile: !uuid '04868b2d7fa22270d002aa51ba53450efac0001d'
+    oldFile: !uuid 'fe200da21cf9b7569a8aeb5b2f4cd8cddad26e19'
+  /Admin.NET/Admin.NET.Web.Entry/wwwroot/Template/index.vue.vm:
+    newFile: !uuid '7bd850c09d4ac7572baa97ed2dde79e1b5ffe4bc'
+    oldFile: !uuid '7902dac5d03ca0b2df8b72a2a9fb7276df6c052a'
+  /Web:
+    newFile: !uuid 'a7db52361a8d79624f61f6cb014e476820653807'
+    oldFile: !uuid '4c76347e5b69e44edd5379a23e1bfd2a43f37bda'
+  /Web/src:
+    newFile: !uuid '176270443e25a41c4b6c6d721ca94d5241259ae2'
+    oldFile: !uuid 'e927dc8cc550c14e01127bf5888e47f86f7454f0'
+  /Web/src/api-services:
+    newFile: !uuid 'e475e2bdd9b89465ac23cfe0d421eecfe11b3537'
+    oldFile: !uuid 'e442dec9cab0b3cc85c32a1b1e0575c1a8a8905c'
+  /Web/src/api-services/models:
+    newFile: !uuid 'ce5dc809a14edbbbac5d216e0f4db10a475b2313'
+    oldFile: !uuid '522154efd7359527e5d298be5b025df56368aad7'
+  /Web/src/api-services/models/update-code-gen-input.ts:
+    newFile: !uuid '8175a5cc8f483b65a26597da5dde17474c595d08'
+    oldFile: !uuid '9c0151d7414a3647dc35db29b7a3e75f2822602f'
+  /Web/src/views:
+    newFile: !uuid '0d3f6af296e6ca1bfeed0887f9a73474c7ce1d00'
+    oldFile: !uuid '987a6531af47d7c9c43ac31d9382ed3b17604c8e'
+  /Web/src/views/system:
+    newFile: !uuid '38eb6f66132ee599787903454886d666cb58a146'
+    oldFile: !uuid 'cb9496e6621f9ba8ec5ec3806ae111ef774709c9'
+  /Web/src/views/system/codeGen:
+    newFile: !uuid '6849b38cc552e57b98ed2e4b1c7d45e3e30b2e6a'
+    oldFile: !uuid 'd0f6d9466578834418a63ebef2f361c1241cbb8c'
+  /Web/src/views/system/codeGen/component:
+    newFile: !uuid '9e799581487e28891b0b4b29ca68523d989ceb0f'
+    oldFile: !uuid 'aca8127e1c664ea72b89277bc0ca20f7d9b52669'
+  /Web/src/views/system/codeGen/component/editCodeGenDialog.vue:
+    newFile: !uuid '28a0f54e1c27480f39a8657d0f1f0d3392a05d4a'
+    oldFile: !uuid '2b014502e656e1cdcaf47b9f9c6f0beb4e6a3903'
+gitCommitId: !uuid '4ece5a77c07570850893a0c9bb9f497a99e4b63f'
 renames: {
   }
-revisionId: 1277
+revisionId: 1278
