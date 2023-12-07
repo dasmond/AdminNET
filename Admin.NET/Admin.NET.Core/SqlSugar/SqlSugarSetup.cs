@@ -17,17 +17,22 @@ public static class SqlSugarSetup
     /// <param name="services"></param>
     public static void AddSqlSugar(this IServiceCollection services)
     {
-        // 注册雪花Id
-        YitIdHelper.SetIdGenerator(App.GetOptions<SnowIdOptions>());
+        //// 注册雪花Id
+        //var snowIdOpt = App.GetConfig<SnowIdOptions>("SnowId", true);
+        //YitIdHelper.SetIdGenerator(snowIdOpt);
+
+        // 注册雪花Id-支持分布式
+        var snowIdOpt = App.GetConfig<SnowIdOptions>("SnowId", true);
+        services.AddYitIdHelper(snowIdOpt);
 
         // 自定义 SqlSugar 雪花ID算法
-        SnowFlakeSingle.WorkId = App.GetOptions<SnowIdOptions>().WorkerId;
+        SnowFlakeSingle.WorkId = snowIdOpt.WorkerId;
         StaticConfig.CustomSnowFlakeFunc = () =>
         {
             return YitIdHelper.NextId();
         };
 
-        var dbOptions = App.GetOptions<DbConnectionOptions>();
+        var dbOptions = App.GetConfig<DbConnectionOptions>("DbConnection", true);
         dbOptions.ConnectionConfigs.ForEach(SetDbConfig);
 
         SqlSugarScope sqlSugar = new(dbOptions.ConnectionConfigs.Adapt<List<ConnectionConfig>>(), db =>
@@ -171,35 +176,35 @@ public static class SqlSugarSetup
                     if (id == null || (long)id == 0)
                         entityInfo.SetValue(YitIdHelper.NextId());
                 }
-                if (entityInfo.PropertyName == nameof(EntityBase.CreateTime))
+                if (entityInfo.PropertyName == "CreateTime")
                     entityInfo.SetValue(DateTime.Now);
                 if (App.User != null)
                 {
-                    if (entityInfo.PropertyName == nameof(EntityTenantId.TenantId))
+                    if (entityInfo.PropertyName == "TenantId")
                     {
                         var tenantId = ((dynamic)entityInfo.EntityValue).TenantId;
                         if (tenantId == null || tenantId == 0)
                             entityInfo.SetValue(App.User.FindFirst(ClaimConst.TenantId)?.Value);
                     }
-                    else if (entityInfo.PropertyName == nameof(EntityBase.CreateUserId))
+                    else if (entityInfo.PropertyName == "CreateUserId")
                     {
                         var createUserId = ((dynamic)entityInfo.EntityValue).CreateUserId;
                         if (createUserId == 0 || createUserId == null)
                             entityInfo.SetValue(App.User.FindFirst(ClaimConst.UserId)?.Value);
                     }
-                    else if (entityInfo.PropertyName == nameof(EntityBase.CreateUserName))
+                    else if (entityInfo.PropertyName == "CreateUserName")
                     {
                         var createUserName = ((dynamic)entityInfo.EntityValue).CreateUserName;
                         if (string.IsNullOrEmpty(createUserName))
                             entityInfo.SetValue(App.User.FindFirst(ClaimConst.RealName)?.Value);
                     }
-                    else if (entityInfo.PropertyName == nameof(EntityBaseData.CreateOrgId))
+                    else if (entityInfo.PropertyName == "CreateOrgId")
                     {
                         var createOrgId = ((dynamic)entityInfo.EntityValue).CreateOrgId;
                         if (createOrgId == 0 || createOrgId == null)
                             entityInfo.SetValue(App.User.FindFirst(ClaimConst.OrgId)?.Value);
                     }
-                    else if (entityInfo.PropertyName == nameof(EntityBaseData.CreateOrgName))
+                    else if (entityInfo.PropertyName == "CreateOrgName")
                     {
                         var createOrgName = ((dynamic)entityInfo.EntityValue).CreateOrgName;
                         if (string.IsNullOrEmpty(createOrgName))
@@ -209,11 +214,11 @@ public static class SqlSugarSetup
             }
             if (entityInfo.OperationType == DataFilterType.UpdateByObject)
             {
-                if (entityInfo.PropertyName == nameof(EntityBase.UpdateTime))
+                if (entityInfo.PropertyName == "UpdateTime")
                     entityInfo.SetValue(DateTime.Now);
-                else if (entityInfo.PropertyName == nameof(EntityBase.UpdateUserId))
+                else if (entityInfo.PropertyName == "UpdateUserId")
                     entityInfo.SetValue(App.User?.FindFirst(ClaimConst.UserId)?.Value);
-                else if (entityInfo.PropertyName == nameof(EntityBase.UpdateUserName))
+                else if (entityInfo.PropertyName == "UpdateUserName")
                     entityInfo.SetValue(App.User?.FindFirst(ClaimConst.RealName)?.Value);
             }
         };
@@ -290,12 +295,12 @@ public static class SqlSugarSetup
             var entityTypes = App.EffectiveTypes.Where(u => !u.IsInterface && !u.IsAbstract && u.IsClass && u.IsDefined(typeof(SugarTable), false))
                 .WhereIF(config.TableSettings.EnableIncreTable, u => u.IsDefined(typeof(IncreTableAttribute), false)).ToList();
 
-            if (config.ConfigId == SqlSugarConst.MainConfigId) // 默认库（有系统表特性、没有日志表和租户表特性）
+            if (config.ConfigId.ToString() == SqlSugarConst.MainConfigId) // 默认库（有系统表特性、没有日志表和租户表特性）
                 entityTypes = entityTypes.Where(u => u.GetCustomAttributes<SysTableAttribute>().Any() || (!u.GetCustomAttributes<LogTableAttribute>().Any() && !u.GetCustomAttributes<TenantAttribute>().Any())).ToList();
-            else if (config.ConfigId == SqlSugarConst.LogConfigId) // 日志库
+            else if (config.ConfigId.ToString() == SqlSugarConst.LogConfigId) // 日志库
                 entityTypes = entityTypes.Where(u => u.GetCustomAttributes<LogTableAttribute>().Any()).ToList();
             else
-                entityTypes = entityTypes.Where(u => u.GetCustomAttribute<TenantAttribute>()?.configId.ToString() == config.ConfigId).ToList(); // 自定义的库
+                entityTypes = entityTypes.Where(u => u.GetCustomAttribute<TenantAttribute>()?.configId.ToString() == config.ConfigId.ToString()).ToList(); // 自定义的库
 
             foreach (var entityType in entityTypes)
             {
@@ -315,12 +320,12 @@ public static class SqlSugarSetup
             foreach (var seedType in seedDataTypes)
             {
                 var entityType = seedType.GetInterfaces().First().GetGenericArguments().First();
-                if (config.ConfigId == SqlSugarConst.MainConfigId) // 默认库（有系统表特性、没有日志表和租户表特性）
+                if (config.ConfigId.ToString() == SqlSugarConst.MainConfigId) // 默认库（有系统表特性、没有日志表和租户表特性）
                 {
                     if (entityType.GetCustomAttribute<SysTableAttribute>() == null && (entityType.GetCustomAttribute<LogTableAttribute>() != null || entityType.GetCustomAttribute<TenantAttribute>() != null))
                         continue;
                 }
-                else if (config.ConfigId == SqlSugarConst.LogConfigId) // 日志库
+                else if (config.ConfigId.ToString() == SqlSugarConst.LogConfigId) // 日志库
                 {
                     if (entityType.GetCustomAttribute<LogTableAttribute>() == null)
                         continue;
@@ -328,7 +333,7 @@ public static class SqlSugarSetup
                 else
                 {
                     var att = entityType.GetCustomAttribute<TenantAttribute>(); // 自定义的库
-                    if (att == null || att.configId.ToString() != config.ConfigId) continue;
+                    if (att == null || att.configId.ToString() != config.ConfigId.ToString()) continue;
                 }
 
                 var instance = Activator.CreateInstance(seedType);
@@ -363,8 +368,9 @@ public static class SqlSugarSetup
     {
         SetDbConfig(config);
 
-        iTenant.AddConnection(config);
-        var db = iTenant.GetConnectionScope(config.ConfigId);
+        if (!iTenant.IsAnyConnection(config.ConfigId.ToString()))
+            iTenant.AddConnection(config);
+        var db = iTenant.GetConnectionScope(config.ConfigId.ToString());
         db.DbMaintenance.CreateDatabase();
 
         // 获取所有业务表-初始化租户库表结构（排除系统表、日志表、特定库表）
