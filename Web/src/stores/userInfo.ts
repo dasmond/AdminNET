@@ -5,6 +5,7 @@ import { useThemeConfig } from '/@/stores/themeConfig';
 
 import { getAPI } from '/@/utils/axios-utils';
 import { SysAuthApi, SysConstApi, SysDictTypeApi } from '/@/api-services/api';
+import { toNumber } from 'lodash-es';
 
 /**
  * 用户信息
@@ -14,7 +15,8 @@ export const useUserInfo = defineStore('userInfo', {
 	state: (): UserInfosState => ({
 		userInfos: {} as any,
 		constList: [] as any,
-		dictList: [] as any,
+		dictList: {} as any,
+		dictListInt: {} as any,
 	}),
 	getters: {
 		// // 获取系统常量列表
@@ -49,9 +51,10 @@ export const useUserInfo = defineStore('userInfo', {
 			if (Session.get('dictList')) {
 				this.dictList = Session.get('dictList');
 			} else {
-				const dictList = <any[]>await this.getAllDictList();
-				Session.set('dictList', dictList);
-				this.dictList = dictList;
+				const dictList =  await getAPI(SysDictTypeApi)
+					.apiSysDictTypeAllDictListGet();
+				Session.set('dictList', dictList.data.result);
+				this.dictList = dictList.data.result;
 			}
 		},
 		// 获取当前用户信息
@@ -112,12 +115,57 @@ export const useUserInfo = defineStore('userInfo', {
 		// 获取字典集合
 		getAllDictList() {
 			return new Promise((resolve) => {
-				getAPI(SysDictTypeApi)
-					.apiSysDictTypeAllDictListGet()
-					.then(async (res: any) => {
-						resolve(res.data.result ?? []);
-					});
+				if (this.dictList) {
+					resolve(this.dictList);
+				} else {
+					getAPI(SysDictTypeApi)
+						.apiSysDictTypeAllDictListGet()
+						.then((res: any) => {
+							resolve(res.data.result ?? []);
+						});
+				}
 			});
+		},
+		//根据字典类型和值取描述
+		getDictLabelByVal( typePCode: string,val: string) {
+			const _val= val;
+			const ds = this.getDictDatasByCode(typePCode);
+			for (let index = 0; index < ds.length; index++) {
+				const element = ds[index];
+				if (element.code == _val) {
+					return element.value;
+				}
+			}
+		},
+		//根据字典类型和描述取值
+		getDictValByLabel(typePCode: string,label: string) {
+			const ds = this.getDictDatasByCode(typePCode);
+			for (let index = 0; index < ds.length; index++) {
+				const element = ds[index];
+				if (element.value == label) {
+					return element.code;
+				}
+			}
+		},
+		//根据字典类型字典数据
+		getDictDatasByCode(dictTypeCode: string) {
+			return this.dictList[dictTypeCode] || [];
+		},
+		
+		//根据字典类型字典数据,值转为数字类型
+		getDictIntDatasByCode(dictTypeCode: string) {
+			var ds=this.dictListInt[dictTypeCode];
+			if(ds){
+				return ds;
+			}else{
+				ds=this.dictList[dictTypeCode]
+				.map((element: { code: any; value:string;remark:string; }) => {
+					element.code=toNumber(element.code);
+					return element;
+				});
+				this.dictListInt[dictTypeCode]=ds;
+				return ds ;
+			}
 		},
 	},
 });

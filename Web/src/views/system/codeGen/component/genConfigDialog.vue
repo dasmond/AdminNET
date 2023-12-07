@@ -84,8 +84,10 @@ import fkDialog from '/@/views/system/codeGen/component/fkDialog.vue';
 import treeDialog from '/@/views/system/codeGen/component/treeDialog.vue';
 
 import { getAPI } from '/@/utils/axios-utils';
-import { SysCodeGenConfigApi, SysConstApi, SysDictDataApi, SysDictTypeApi, SysEnumApi } from '/@/api-services/api';
+import { SysCodeGenConfigApi, SysConstApi, SysDictTypeApi, SysEnumApi } from '/@/api-services/api';
 import { CodeGenConfig } from '/@/api-services/models/code-gen-config';
+import { useUserInfo } from '/@/stores/userInfo';
+const { getDictDatasByCode } = useUserInfo();
 
 const emits = defineEmits(['handleQuery']);
 const fkDialogRef = ref();
@@ -104,22 +106,19 @@ const state = reactive({
 });
 
 onMounted(async () => {
-	var res = await getAPI(SysDictDataApi).apiSysDictDataDataListCodeGet('code_gen_effect_type');
-	state.effectTypeList = res.data.result;
+	getAPI(SysDictTypeApi).apiSysDictTypeListGet().then((res1)=>{
+		state.dictTypeCodeList = res1.data.result;
+		state.dictDataAll = res1.data.result;
+	});
+	getAPI(SysConstApi).apiSysConstListGet().then((res3)=>{
+		state.allConstSelector = res3.data.result;
+	});
+	getAPI(SysEnumApi).apiSysEnumEnumTypeListGet().then((resEnum)=>{
+		state.allEnumSelector = resEnum.data.result?.map((item) => ({ ...item, name: item.typeDescribe, code: item.typeName }));
+	});
 
-	var res1 = await getAPI(SysDictTypeApi).apiSysDictTypeListGet();
-	state.dictTypeCodeList = res1.data.result;
-	state.dictDataAll = res1.data.result;
-
-	var res2 = await getAPI(SysDictDataApi).apiSysDictDataDataListCodeGet('code_gen_query_type');
-	state.queryTypeList = res2.data.result;
-
-	var res3 = await getAPI(SysConstApi).apiSysConstListGet();
-	state.allConstSelector = res3.data.result;
-
-	let resEnum = await getAPI(SysEnumApi).apiSysEnumEnumTypeListGet();
-	state.allEnumSelector = resEnum.data.result?.map((item) => ({ ...item, name: item.typeDescribe, code: item.typeName }));
-
+	state.queryTypeList = getDictDatasByCode('code_gen_query_type');
+	state.effectTypeList = getDictDatasByCode('code_gen_effect_type');
 	mittBus.on('submitRefreshFk', (data: any) => {
 		state.tableData[data.index] = data;
 	});
@@ -156,20 +155,23 @@ const effectTypeChange = (data: any, index: number) => {
 // 查询操作
 const handleQuery = async (row: any) => {
 	state.loading = true;
-	var res = await getAPI(SysCodeGenConfigApi).apiSysCodeGenConfigListGet(undefined, row.id);
-	var data = res.data.result ?? [];
-	data.forEach((item: any) => {
-		for (const key in item) {
-			if (item[key] === 'Y') {
-				item[key] = true;
+	getAPI(SysCodeGenConfigApi).apiSysCodeGenConfigListGet(undefined, row.id)
+	.then((res)=>{
+		var data = res.data.result ?? [];
+		data.forEach((item: any) => {
+			for (const key in item) {
+				if (item[key] === 'Y') {
+					item[key] = true;
+				}
+				if (item[key] === 'N') {
+					item[key] = false;
+				}
 			}
-			if (item[key] === 'N') {
-				item[key] = false;
-			}
-		}
+		});
+		state.tableData = data;
+		state.loading = false;
 	});
-	state.tableData = data;
-	state.loading = false;
+	
 };
 
 // 判断是否（用于是否能选择或输入等）
