@@ -3,18 +3,21 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid 'd72d9a2c662142a46640eb3e713fd7313cc35e6c'
-    oldFile: !uuid '9fc1701222c702b8cf3da669a0879fb8ed542504'
+    newFile: !uuid '0abd47bf3c2a4c4b46e00cd3ff538bbbdc2c42ce'
+    oldFile: !uuid 'd72d9a2c662142a46640eb3e713fd7313cc35e6c'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '52ca4c400b9402a68215583bae802a2841b100f1'
-    oldFile: !uuid '28b27baaeac330553a0e871c24df4c1af6d36760'
+    newFile: !uuid '0c439af0a3a539a21287e7358b658e16238de15d'
+    oldFile: !uuid '52ca4c400b9402a68215583bae802a2841b100f1'
+  /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
+    newFile: !uuid 'fabcb26d5472e248cda2bfaf16adc340e74d33b9'
+    oldFile: !uuid '18e8c4d2af844a1c678a34bbb0894268471be3b2'
   /Admin.NET/Admin.NET.Core/Attribute:
-    newFile: !uuid 'ff685f43687c9c785e2f012a91988279c5bc1d03'
-    oldFile: !uuid 'cadd7beea5b571b99879569ac3cc0e42ec84eefa'
+    newFile: !uuid '01df48b0ec27366192baf80840048aac4c6ad656'
+    oldFile: !uuid 'ff685f43687c9c785e2f012a91988279c5bc1d03'
   /Admin.NET/Admin.NET.Core/Attribute/IdempotentAttribute.cs:
-    newFile: !uuid '096bb1597620cf05a6ba8970f0daf71af4979f56'
-    oldFile: !uuid '38efd92d47bdee05cae6f58bc2b35d0cbdd86d7f'
-gitCommitId: !uuid '656347420485e6ea360c8cb9ccbc27bae62c25ef'
+    newFile: !uuid '28e1d4bc6eec9213f0ef92e9f65926ad5201197d'
+    oldFile: !uuid '096bb1597620cf05a6ba8970f0daf71af4979f56'
+gitCommitId: !uuid '28832df5ec5a40eb117f60044b37b00e8f853071'
 renames: {
   }
-revisionId: 1290
+revisionId: 1291
