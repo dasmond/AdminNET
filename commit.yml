@@ -2,37 +2,22 @@
 branches: {
   }
 fileChange:
-  /Admin.NET:
-    newFile: !uuid 'cf39e043ecedadc88eb5cab2ee5f097972629d3f'
-    oldFile: !uuid '3b26b1c099e5aa82db801b2bca2a4c9d1af48d77'
-  /Admin.NET/Admin.NET.Web.Entry:
-    newFile: !uuid '3ff236250fb9446fd7f339605e52e1fbe67ef303'
-    oldFile: !uuid '78b157d0d26f17093d95a1e8d46895a7cf90ac26'
-  /Admin.NET/Admin.NET.Web.Entry/wwwroot:
-    newFile: !uuid 'c6f898d711e056dfa5f64497829a4570712c810a'
-    oldFile: !uuid 'ef969bd20a5e5fb26a1703a65f26b785016652da'
-  /Admin.NET/Admin.NET.Web.Entry/wwwroot/Template:
-    newFile: !uuid '4a90aca5cd356d0a0abbd55891ed41acbfea6853'
-    oldFile: !uuid '88a12a20cb72a0016f5948bad024d7d07f0187ec'
-  /Admin.NET/Admin.NET.Web.Entry/wwwroot/Template/Service.cs.vm:
-    newFile: !uuid '9b6492f4fb85ad292b5147e445fc1da5f05bddc4'
-    oldFile: !uuid '45206fd80a6146ffa7e1f0918b900f761232c0b7'
-  /Admin.NET/Admin.NET.Web.Entry/wwwroot/Template/editDialog.vue.vm:
-    newFile: !uuid '7d73c6300a500d1cdad4622ea8f8c348215de47b'
-    oldFile: !uuid '753f60af7c3e6c81e1772e8310440b570fe8b8e3'
   /docker:
-    newFile: !uuid 'ee5f26e595b60ff7d506e83e8b07470c4d40da62'
-    oldFile: !uuid 'bb60206097e810fb64aef76ca303cfc6919ffae3'
+    newFile: !uuid '0e265ff0a5e7aebbd70d4b9d9221d08ec1096242'
+    oldFile: !uuid 'ee5f26e595b60ff7d506e83e8b07470c4d40da62'
   /docker/app:
-    newFile: !uuid 'c503591090522d51f57ce9958fb1ff8a61b9dcd0'
-    oldFile: !uuid 'ab36fa08f87d3c58a311053c9cb1fd453321b429'
+    newFile: !uuid '6a9ecf71052eec76735154776fed2014206417df'
+    oldFile: !uuid 'c503591090522d51f57ce9958fb1ff8a61b9dcd0'
   /docker/app/Configuration:
-    newFile: !uuid 'c1c0b34184106f46af004f25d42f4e8d39ff0827'
-    oldFile: !uuid 'c30de17ea13f859d7c14bd8e0721536f3ae3ae70'
+    newFile: !uuid '224193464a926d5eb5e119ee406ccf7af1491801'
+    oldFile: !uuid 'c1c0b34184106f46af004f25d42f4e8d39ff0827'
+  /docker/app/Configuration/App.json:
+    newFile: !uuid '65fd042ed1a8d1395d908dda6baa150f43a2bff1'
+    oldFile: !uuid '04975e76d68717f515a600025b433de35ffa1e77'
   /docker/app/Configuration/Database.json:
-    newFile: !uuid '75a0f8c6699b24ca0d82c66d5db07290c0457955'
-    oldFile: !uuid '32be2f13a6b37ef63bca533a1326530ec439e019'
-gitCommitId: !uuid 'd60e69d06728ffb28f1e0831e7c3c4638f18d7b8'
+    newFile: !uuid 'd20489f313b863565166139fe104b9012438584f'
+    oldFile: !uuid '75a0f8c6699b24ca0d82c66d5db07290c0457955'
+gitCommitId: !uuid '990d479ff290e90c9e9d75c38a0dd2df764dc27a'
 renames: {
   }
-revisionId: 1332
+revisionId: 1333
