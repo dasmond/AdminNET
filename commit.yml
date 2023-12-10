@@ -3,24 +3,45 @@ branches: {
   }
 fileChange:
   /Web:
-    newFile: !uuid '632e75ba26b2798b6c8b2a03a7e84710ee0b8662'
-    oldFile: !uuid '8c1ed8dcc9d930fcac5c8be33320f6990015decd'
+    newFile: !uuid 'c2dde0ce4e1e657b52dcc1abda5c7bdeb7776949'
+    oldFile: !uuid '632e75ba26b2798b6c8b2a03a7e84710ee0b8662'
   /Web/src:
-    newFile: !uuid '96550c542cf023926883ddb4dda16f73f5bd1ff2'
-    oldFile: !uuid '6795454f23cc255a2742cce96b28a38edc0c4698'
+    newFile: !uuid 'b68a1bbdf3e0d496dceb2ab8589bbf69a9f0574d'
+    oldFile: !uuid '96550c542cf023926883ddb4dda16f73f5bd1ff2'
   /Web/src/views:
-    newFile: !uuid '3785fb104e4e405e288820973c5b86fc33a3cf72'
-    oldFile: !uuid '92d883840ea9f44d343ea846c7f2b392b9231bd6'
+    newFile: !uuid 'a3a4a83ea950e48d368adba2c61d1bc830013f45'
+    oldFile: !uuid '3785fb104e4e405e288820973c5b86fc33a3cf72'
   /Web/src/views/system:
-    newFile: !uuid 'ba73da43005a8a52f70c1cba19280a6c49b3f665'
-    oldFile: !uuid '8a82e954c3c40f7e9c7fa3e0ff3d73e86d3994c5'
+    newFile: !uuid 'bee40b1b5529d7e1cfdc42869a24ceefa113a662'
+    oldFile: !uuid 'ba73da43005a8a52f70c1cba19280a6c49b3f665'
   /Web/src/views/system/dict:
-    newFile: !uuid 'ab2e5f9aba99af29066b09dc41be32716c66daa4'
-    oldFile: !uuid '394ced74d2d454429f13088281eec4841cc2c2f5'
+    newFile: !uuid 'e69b9d4b15342e5c5e5ea6f77a2851cd476867d7'
+    oldFile: !uuid 'ab2e5f9aba99af29066b09dc41be32716c66daa4'
+  /Web/src/views/system/dict/component:
+    newFile: !uuid 'c76e5f56f24da6479685cb5f1adab44ebf47bbb5'
+    oldFile: !uuid '2d8fe0964235f7be25e30239e133b08fec175e4a'
+  /Web/src/views/system/dict/component/dictDataDialog.vue:
+    newFile: null
+    oldFile: !uuid 'c438870944a8fc5c012718ac593183f28cf13380'
+  /Web/src/views/system/dict/component/editDictData.vue:
+    newFile: !uuid '1f5224409f95368f0d65fa5f11565313974c9b2d'
+    oldFile: !uuid '5e83c2340b23548083c3bc39dcfa75939a045211'
   /Web/src/views/system/dict/index.vue:
-    newFile: !uuid '271f365adcafa6fec928afef33efc2a4543cca34'
-    oldFile: !uuid 'df7853fd54d20188356cf3ef00015e9eb98c2519'
-gitCommitId: !uuid 'eb978ba0c3086addab06ef94649e135b5308afb1'
+    newFile: !uuid '3292124894a305e89ace102e9884632e1de0eaad'
+    oldFile: !uuid '271f365adcafa6fec928afef33efc2a4543cca34'
+  /docker:
+    newFile: !uuid '851c5ee0d0321955c4e998f8b0c42687fd1c5da8'
+    oldFile: !uuid '0e265ff0a5e7aebbd70d4b9d9221d08ec1096242'
+  /docker/app:
+    newFile: !uuid 'af1b667bbe83333e136c65ba398851cecbaeb5eb'
+    oldFile: !uuid '6a9ecf71052eec76735154776fed2014206417df'
+  /docker/app/Configuration:
+    newFile: !uuid '209cff1f12a627649e9622b2fa5cd11c69bb3c47'
+    oldFile: !uuid '224193464a926d5eb5e119ee406ccf7af1491801'
+  /docker/app/Configuration/App.json:
+    newFile: !uuid 'c62e2c8d50047d203134f3aed42cdfebca0d6b30'
+    oldFile: !uuid '65fd042ed1a8d1395d908dda6baa150f43a2bff1'
+gitCommitId: !uuid 'bd183114ca08110cf456d5acc9e5c63334dce908'
 renames: {
   }
-revisionId: 1337
+revisionId: 1338
