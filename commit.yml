@@ -2,46 +2,22 @@
 branches: {
   }
 fileChange:
-  /Web:
-    newFile: !uuid 'c2dde0ce4e1e657b52dcc1abda5c7bdeb7776949'
-    oldFile: !uuid '632e75ba26b2798b6c8b2a03a7e84710ee0b8662'
-  /Web/src:
-    newFile: !uuid 'b68a1bbdf3e0d496dceb2ab8589bbf69a9f0574d'
-    oldFile: !uuid '96550c542cf023926883ddb4dda16f73f5bd1ff2'
-  /Web/src/views:
-    newFile: !uuid 'a3a4a83ea950e48d368adba2c61d1bc830013f45'
-    oldFile: !uuid '3785fb104e4e405e288820973c5b86fc33a3cf72'
-  /Web/src/views/system:
-    newFile: !uuid 'bee40b1b5529d7e1cfdc42869a24ceefa113a662'
-    oldFile: !uuid 'ba73da43005a8a52f70c1cba19280a6c49b3f665'
-  /Web/src/views/system/dict:
-    newFile: !uuid 'e69b9d4b15342e5c5e5ea6f77a2851cd476867d7'
-    oldFile: !uuid 'ab2e5f9aba99af29066b09dc41be32716c66daa4'
-  /Web/src/views/system/dict/component:
-    newFile: !uuid 'c76e5f56f24da6479685cb5f1adab44ebf47bbb5'
-    oldFile: !uuid '2d8fe0964235f7be25e30239e133b08fec175e4a'
-  /Web/src/views/system/dict/component/dictDataDialog.vue:
-    newFile: null
-    oldFile: !uuid 'c438870944a8fc5c012718ac593183f28cf13380'
-  /Web/src/views/system/dict/component/editDictData.vue:
-    newFile: !uuid '1f5224409f95368f0d65fa5f11565313974c9b2d'
-    oldFile: !uuid '5e83c2340b23548083c3bc39dcfa75939a045211'
-  /Web/src/views/system/dict/index.vue:
-    newFile: !uuid '3292124894a305e89ace102e9884632e1de0eaad'
-    oldFile: !uuid '271f365adcafa6fec928afef33efc2a4543cca34'
-  /docker:
-    newFile: !uuid '851c5ee0d0321955c4e998f8b0c42687fd1c5da8'
-    oldFile: !uuid '0e265ff0a5e7aebbd70d4b9d9221d08ec1096242'
-  /docker/app:
-    newFile: !uuid 'af1b667bbe83333e136c65ba398851cecbaeb5eb'
-    oldFile: !uuid '6a9ecf71052eec76735154776fed2014206417df'
-  /docker/app/Configuration:
-    newFile: !uuid '209cff1f12a627649e9622b2fa5cd11c69bb3c47'
-    oldFile: !uuid '224193464a926d5eb5e119ee406ccf7af1491801'
-  /docker/app/Configuration/App.json:
-    newFile: !uuid 'c62e2c8d50047d203134f3aed42cdfebca0d6b30'
-    oldFile: !uuid '65fd042ed1a8d1395d908dda6baa150f43a2bff1'
-gitCommitId: !uuid 'bd183114ca08110cf456d5acc9e5c63334dce908'
+  /Admin.NET:
+    newFile: !uuid '8507f91c561a7e3430e4920e7f840d8a2ea929d4'
+    oldFile: !uuid 'ffd4cc6a769ac4aa29829a15e166b27d6b972921'
+  /Admin.NET/Admin.NET.Core:
+    newFile: !uuid '5687fe72eaae9dc04c3f4b8417f514a15fa782e9'
+    oldFile: !uuid '4e069e5d9645cdd0d31f85ab072a2822b9ce17ac'
+  /Admin.NET/Admin.NET.Core/Service:
+    newFile: !uuid '1d88612c483da90fb77d699fcb1b911c75aacc0f'
+    oldFile: !uuid '44ff1ad93e519b09631d9ba6d2fc92a418ddc1ea'
+  /Admin.NET/Admin.NET.Core/Service/Auth:
+    newFile: !uuid 'de520562cea13bc9ff179fadc01423f95771cb89'
+    oldFile: !uuid '29630f2e297f9c8a333dc5f016d63c1916552e20'
+  /Admin.NET/Admin.NET.Core/Service/Auth/SysAuthService.cs:
+    newFile: !uuid '5f4dbe668082a2eb891cc5c3937458525e86fe95'
+    oldFile: !uuid '505b18f15729464062b486551f4077c566304092'
+gitCommitId: !uuid '1e71dfad40b86003fbc22caa2fde8b034622cbbe'
 renames: {
   }
-revisionId: 1302
+revisionId: 1303
