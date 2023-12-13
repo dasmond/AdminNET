@@ -228,8 +228,10 @@ public class SysFileService : IDynamicApiController, ITransient
             if (!string.Equals(realExt, suffix.Replace(".", ""), StringComparison.OrdinalIgnoreCase))
             {
                 var delFilePath = Path.Combine(App.WebHostEnvironment.WebRootPath, realFile);
-                if (File.Exists(delFilePath))
+                if (File.Exists(delFilePath)) {
+                    stream.Dispose();
                     File.Delete(delFilePath);
+                }
                 throw Oops.Oh(ErrorCodeEnum.D8001);
             }
 
