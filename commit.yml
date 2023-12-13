@@ -3,36 +3,45 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid 'afbcbf0f466ed65ce6d845015d10c26a0c906a35'
-    oldFile: !uuid '8b4b53688ff8f7cba8e832ddfd59330dbbcb6182'
-  /Admin.NET/Admin.NET.Application:
-    newFile: !uuid '2497f5768b0c5fd679734685cc3f7867244ef0a7'
-    oldFile: !uuid '7a1d82c7199afb89b14197b0c0d02bb2f73c323e'
-  /Admin.NET/Admin.NET.Application/Configuration:
-    newFile: !uuid '74a4401d1f2391c0c3f08c47517142aa5eb7214a'
-    oldFile: !uuid 'd49344798c3ae7cd98ac2c07e64e922cc3711100'
-  /Admin.NET/Admin.NET.Application/Configuration/Upload.json:
-    newFile: !uuid '108d75fde32b2ff217af350ed8303a530f475508'
-    oldFile: !uuid 'd5dc755312c3a44765f05b3675d89c29ffb69545'
-  /Web:
-    newFile: !uuid '4bdf7a350bdd577f1da8388495e55cfac7fea4f1'
-    oldFile: !uuid '70dff22a4aec26f681cabcdb7b1b5513dbecd583'
-  /Web/src:
-    newFile: !uuid '43eca3563f5811215f23d83981d6947dea73cdbb'
-    oldFile: !uuid 'fa91ac1c88c79c22b4f5ccd0468ea1353c9a5f66'
-  /Web/src/views:
-    newFile: !uuid '628ec97b4c9af97d804c2fdb59089cb5d07e2a0e'
-    oldFile: !uuid '5ff31ff136dfdd467a0c4615a8b1de18350f9355'
-  /Web/src/views/system:
-    newFile: !uuid 'a9e3f534a51ad87f276d5f899a7f47cae8d9bdb9'
-    oldFile: !uuid '3c86a4f399b221bc82e4530e6dd56d6688082066'
-  /Web/src/views/system/file:
-    newFile: !uuid 'fd12a836cac32afb2fe569370f51c254fff70624'
-    oldFile: !uuid 'deff5198bf230af4c0301d2efdf5bc1662c5cf9f'
-  /Web/src/views/system/file/index.vue:
-    newFile: !uuid '6e1eb83c678f7403b0b3ea59021fd4e162b9c13f'
-    oldFile: !uuid 'd1025bd46839ba05faba8a02f67818faee620063'
-gitCommitId: !uuid '48dac091655c5de5f492e8497e079fcf92066aa2'
+    newFile: !uuid '2909169517a9c13adb36eeb68183994ca0d8f502'
+    oldFile: !uuid 'afbcbf0f466ed65ce6d845015d10c26a0c906a35'
+  /Admin.NET/Admin.NET.Core:
+    newFile: !uuid '2065acff4791be2b125018ae60f95c6c637fcaad'
+    oldFile: !uuid '5e3f1c9308f699f101c52b8f057ba0030aacdb46'
+  /Admin.NET/Admin.NET.Core/Enum:
+    newFile: !uuid 'd5537dd3987caa44eb73706dd8e75422879a6297'
+    oldFile: !uuid '2a314553c1fc938a4d0199249e46852fd5c4db94'
+  /Admin.NET/Admin.NET.Core/Enum/MaritalStatusEnum.cs:
+    newFile: !uuid '7e25b566e30388f323a7dd993ba695ff7d529aef'
+    oldFile: !uuid 'd282f7037ce0d93d3ccbdee79f5bff8617b6728e'
+  /Admin.NET/Admin.NET.Core/Extension:
+    newFile: !uuid '2188ee0f86fb0080eb2e7af1cc8e64b2c3dd2420'
+    oldFile: !uuid '192cf0eb1c1376dad3a923ccf72634a60417b207'
+  /Admin.NET/Admin.NET.Core/Extension/RepositoryExtension.cs:
+    newFile: !uuid '19dac5d2dba2888f79ca1b1e9e06de6d80f44352'
+    oldFile: !uuid '758d55077a76db5eb9df6d7cc7069b80c5904392'
+  /Admin.NET/Admin.NET.Core/Extension/YitIdHelperExtension.cs:
+    newFile: !uuid 'e672ca0ec2af1a9e03f51ff7310a42a7d7b111d7'
+    oldFile: !uuid '4f6e09264180f8984f0a51b140e76e19fa32974c'
+  /Admin.NET/Admin.NET.Core/Logging:
+    newFile: !uuid '26731fe0008250baa2fc36c6fdc92248fafab060'
+    oldFile: !uuid 'b772117893472acd4cf61e28ab4cb78b030d8983'
+  /Admin.NET/Admin.NET.Core/Logging/LogExceptionHandler.cs:
+    newFile: !uuid '5398ed93669582c397f16e95ed098bf4300b42a2'
+    oldFile: !uuid '74c3d2df9ceb63d646fabf29ef0053afc1e765fd'
+  /Admin.NET/Admin.NET.Web.Core:
+    newFile: !uuid 'aa42b97bf341df3bd2408e78fd8495c9436675df'
+    oldFile: !uuid '31fd0c9237b45ea228b6e4217440a8f7bedc850e'
+  /Admin.NET/Admin.NET.Web.Core/Handlers:
+    newFile: !uuid '896fd9f8e99f2be337ea9bb8710da4be3c4359bc'
+    oldFile: !uuid '8b02a9aa73cad1d5bf35a3241aeb229034500faf'
+  /Admin.NET/Admin.NET.Web.Core/Handlers/JwtHandler.cs:
+    newFile: !uuid 'b60d1b50c43a2ba725d4417e61122497e6e3e647'
+    oldFile: !uuid 'ab17d8f41c245b84b04e3582df7a26be00f3d887'
+  /Admin.NET/Admin.NET.Web.Core/Startup.cs:
+    newFile: !uuid '1caac8d2357d048d8758573e8dcd80b4b5316551'
+    oldFile: !uuid 'e296eac65d36f249d3ab8cd92e078541f34bebc8'
+gitCommitId: !uuid '655125dc39010604d602e42b73634b45f5ef6188'
 renames: {
   }
-revisionId: 1351
+revisionId: 1352
