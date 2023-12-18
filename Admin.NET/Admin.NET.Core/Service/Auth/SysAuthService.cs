@@ -81,7 +81,7 @@ public class SysAuthService : IDynamicApiController, ITransient
             throw Oops.Oh(ErrorCodeEnum.Z1003);
 
         // 国密SM2解密（前端密码传输SM2加密后的）
-        input.Password = CryptogramUtil.SM2Decrypt(input.Password);
+        input.Password = CryptogramUtil.Decrypt(input.Password);
 
         // 密码是否正确
         if (CryptogramUtil.CryptoType == CryptogramEnum.MD5.ToString())
