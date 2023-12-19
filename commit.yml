@@ -3,24 +3,21 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '0daf8adf77e052b589fd2fac66d4df699994ef94'
-    oldFile: !uuid 'c642afb3415ea9cf366c75492b098b09098e33c1'
-  /Admin.NET/Admin.NET.Web.Entry:
-    newFile: !uuid '7a92d7af05d0362d158ace5515b437ec5c75d29d'
-    oldFile: !uuid 'e66b4f83bff57a4c9dae7a27affab909945c2e92'
-  /Admin.NET/Admin.NET.Web.Entry/wwwroot:
-    newFile: !uuid '5ad3333113d308e16d1c18e983633bc88b48c330'
-    oldFile: !uuid '1cc84898562a08ca812df7ceb1f437b5cca4dc63'
-  /Admin.NET/Admin.NET.Web.Entry/wwwroot/Template:
-    newFile: !uuid '039d2fcb1921acd7577c684d382f27ceb1487e12'
-    oldFile: !uuid '4d33c3d4c4b1e2a68d9df77dede6017101f76ffe'
-  /Admin.NET/Admin.NET.Web.Entry/wwwroot/Template/Service.cs.vm:
-    newFile: !uuid 'a6e6f1423369c5059425855098cd8fee3a52b4fe'
-    oldFile: !uuid '192476700dd6d01b6a44bc51106d8deeb4a4cf38'
-  /Admin.NET/Admin.NET.Web.Entry/wwwroot/Template/editDialog.vue.vm:
-    newFile: !uuid 'b9221ca5cdce94a2be735a23e0a636a4bca62d34'
-    oldFile: !uuid '5fc83ec959697ef24dde4e2ee89d0d937d1b7618'
-gitCommitId: !uuid '61b1f8fc573f4e38b2fdbe3cb13687ee438bef75'
+    newFile: !uuid 'cfdf0ddc563987a1bc15e4e675f11447cc50f00f'
+    oldFile: !uuid '0daf8adf77e052b589fd2fac66d4df699994ef94'
+  /Admin.NET/Admin.NET.Core:
+    newFile: !uuid '7f6c3a255b79f19961d221388703ae83a11288e8'
+    oldFile: !uuid 'e0c85400ef8d2e3515676dd9c916f968c53c2180'
+  /Admin.NET/Admin.NET.Core/Service:
+    newFile: !uuid '50e66de752e8fca6e6fe6bd32cce3e85992b755e'
+    oldFile: !uuid 'bd1165a990b60f1596a12892369ba6868ad2151f'
+  /Admin.NET/Admin.NET.Core/Service/DataBase:
+    newFile: !uuid 'd936fd2cdd81310696e98fd2422319139df2f2c2'
+    oldFile: !uuid '761945d0c2b1ebbdc232003486dd1540779b13bc'
+  /Admin.NET/Admin.NET.Core/Service/DataBase/SysDatabaseService.cs:
+    newFile: !uuid '85793a773e9a61f2cecfa619813a547a8df9c25f'
+    oldFile: !uuid 'ebd8c47d1c06bbb3c1a6e388c299120ac9f7b776'
+gitCommitId: !uuid '47a0f803801a0f8fa41a3c154058ab18bf65bc8c'
 renames: {
   }
-revisionId: 1364
+revisionId: 1365
