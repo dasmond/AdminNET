@@ -2,34 +2,13 @@
 branches: {
   }
 fileChange:
-  /Admin.NET:
-    newFile: !uuid '0308bdbb8bc430484aa040e0335ec464e2175afe'
-    oldFile: !uuid 'cfdf0ddc563987a1bc15e4e675f11447cc50f00f'
-  /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '4de5f30c4cefeabab5bcc4840da58005a5766e1c'
-    oldFile: !uuid '7f6c3a255b79f19961d221388703ae83a11288e8'
-  /Admin.NET/Admin.NET.Core/Logging:
-    newFile: !uuid 'c9b0a8318c4aa9e92b6db5d3ac047ab3c83f9ab1'
-    oldFile: !uuid 'b4e1ff39a0616af5f74a8e471cc4db65290b2dc1'
-  /Admin.NET/Admin.NET.Core/Logging/DatabaseLoggingWriter.cs:
-    newFile: !uuid '80ed1e1d3c9899c2df331396f6b719aa3565c530'
-    oldFile: !uuid '51c605c4eef87a42cdad8f97198806ebafaf05d8'
-  /Admin.NET/Admin.NET.Core/Logging/ElasticSearchLoggingWriter.cs:
-    newFile: !uuid '3262ba4bad4c360c4afebf56efecbdad26aa57fd'
-    oldFile: !uuid 'ebadc31f27b4b98af70f878bd7a8194b63f326e7'
-  /Admin.NET/Admin.NET.Core/Logging/ElasticSearchSetup.cs:
-    newFile: !uuid '4c427a1d7712525afcabfce6dda31e4436db5df0'
-    oldFile: !uuid 'fa1d56e3fd2ea6ff41c9fb2a1d8e6df1fdd6c2a7'
-  /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid 'ea709f4472c117fc706f863c43a71eede444aef3'
-    oldFile: !uuid '50e66de752e8fca6e6fe6bd32cce3e85992b755e'
-  /Admin.NET/Admin.NET.Core/Service/DataBase:
-    newFile: !uuid '3951ed2d94d2523b72237d52664e9151d6eca2bd'
-    oldFile: !uuid 'd936fd2cdd81310696e98fd2422319139df2f2c2'
-  /Admin.NET/Admin.NET.Core/Service/DataBase/SysDatabaseService.cs:
-    newFile: !uuid 'a51dc54af5a843c916fdee2c3d5bc6239cfcda80'
-    oldFile: !uuid '85793a773e9a61f2cecfa619813a547a8df9c25f'
-gitCommitId: !uuid 'be7c0067361bfc060071189ef288f78592903696'
+  /Web:
+    newFile: !uuid '199cc560b8d38100fcb51f817669ed75302ac70a'
+    oldFile: !uuid 'f9ee1c147d942f3125da19edaf04975480acb329'
+  /Web/package.json:
+    newFile: !uuid 'e9be6c2d23f17b465e32f05ef3b31036a012dac7'
+    oldFile: !uuid '1f54cb77b48b42ff1bac85f00c86c525db8355cc'
+gitCommitId: !uuid '30079ec1c1c7a5c2f8d56786b0749a847598784c'
 renames: {
   }
-revisionId: 1330
+revisionId: 1331
