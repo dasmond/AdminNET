@@ -1,7 +1,7 @@
 /* tslint:disable */
 /* eslint-disable */
 /**
- * Admin.NET
+ * Admin.NET 通用权限开发平台
  * 让 .NET 开发更简单、更通用、更流行。前后端分离架构(.NET6/Vue3)，开箱即用紧随前沿技术。<br/><a href='https://gitee.com/zuohuaijun/Admin.NET/'>https://gitee.com/zuohuaijun/Admin.NET</a>
  *
  * OpenAPI spec version: 1.0.0
@@ -11,47 +11,63 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-import { SqlSugarPagedListSysUser } from './sql-sugar-paged-list-sys-user';
+
+import { SqlSugarPagedListUserOutput } from './sql-sugar-paged-list-user-output';
+import {
+    SqlSugarPagedListUserOutput,
+} from ".";
+
 /**
  * 全局返回结果
+ *
  * @export
- * @interface AdminResultSqlSugarPagedListSysUser
+ * @interface AdminResultSqlSugarPagedListUserOutput
  */
-export interface AdminResultSqlSugarPagedListSysUser {
+export interface AdminResultSqlSugarPagedListUserOutput {
+
     /**
      * 状态码
+     *
      * @type {number}
-     * @memberof AdminResultSqlSugarPagedListSysUser
+     * @memberof AdminResultSqlSugarPagedListUserOutput
      */
     code?: number;
+
     /**
      * 类型success、warning、error
+     *
      * @type {string}
-     * @memberof AdminResultSqlSugarPagedListSysUser
+     * @memberof AdminResultSqlSugarPagedListUserOutput
      */
     type?: string | null;
+
     /**
      * 错误信息
+     *
      * @type {string}
-     * @memberof AdminResultSqlSugarPagedListSysUser
+     * @memberof AdminResultSqlSugarPagedListUserOutput
      */
     message?: string | null;
+
     /**
-     * 
-     * @type {SqlSugarPagedListSysUser}
-     * @memberof AdminResultSqlSugarPagedListSysUser
+     * @type {SqlSugarPagedListUserOutput}
+     * @memberof AdminResultSqlSugarPagedListUserOutput
      */
-    result?: SqlSugarPagedListSysUser;
+    result?: SqlSugarPagedListUserOutput;
+
     /**
      * 附加数据
+     *
      * @type {any}
-     * @memberof AdminResultSqlSugarPagedListSysUser
+     * @memberof AdminResultSqlSugarPagedListUserOutput
      */
     extras?: any | null;
+
     /**
      * 时间
+     *
      * @type {Date}
-     * @memberof AdminResultSqlSugarPagedListSysUser
+     * @memberof AdminResultSqlSugarPagedListUserOutput
      */
     time?: Date;
 }

@@ -43,7 +43,7 @@ public class SysUserService : IDynamicApiController, ITransient
     /// <param name="input"></param>
     /// <returns></returns>
     [DisplayName("获取用户分页列表")]
-    public async Task<SqlSugarPagedList<SysUser>> Page(PageUserInput input)
+    public async Task<SqlSugarPagedList<UserOutput>> Page(PageUserInput input)
     {
         // 获取用户拥有的机构集合
         var userOrgIdList = await _sysOrgService.GetUserOrgIdList();
@@ -59,12 +59,20 @@ public class SysUserService : IDynamicApiController, ITransient
         }
 
         return await _sysUserRep.AsQueryable()
+            .LeftJoin<SysOrg>((u, a) => u.OrgId == a.Id)
+            .LeftJoin<SysPos>((u, a, b) => u.PosId == b.Id)
             .Where(u => u.AccountType != AccountTypeEnum.SuperAdmin)
             .WhereIF(orgList != null, u => orgList.Contains(u.OrgId))
             .WhereIF(!string.IsNullOrWhiteSpace(input.Account), u => u.Account.Contains(input.Account))
             .WhereIF(!string.IsNullOrWhiteSpace(input.RealName), u => u.RealName.Contains(input.RealName))
             .WhereIF(!string.IsNullOrWhiteSpace(input.Phone), u => u.Phone.Contains(input.Phone))
             .OrderBy(u => u.OrderNo)
+            .Select((u, a, b) => new UserOutput
+            {
+                OrgName = a.Name,
+                PosName = b.Name,
+                RoleName = SqlFunc.Subqueryable<SysUserRole>().LeftJoin<SysRole>((m, n) => m.RoleId == n.Id).Where(m => m.UserId == u.Id).SelectStringJoin((m, n) => n.Name, ",")
+            }, true)
             .ToPagedListAsync(input.Page, input.PageSize);
     }
 
@@ -188,6 +196,13 @@ public class SysUserService : IDynamicApiController, ITransient
         if (!Enum.IsDefined(typeof(StatusEnum), input.Status))
             throw Oops.Oh(ErrorCodeEnum.D3005);
 
+        // 账号禁用则增加黑名单，账号启用则移除黑名单
+        var sysCacheService = App.GetService<SysCacheService>();
+        if (input.Status == StatusEnum.Disable)
+            sysCacheService.Set($"{CacheConst.KeyBlacklist}{user.Id}", $"{user.RealName}-{user.Phone}");
+        else
+            sysCacheService.Remove($"{CacheConst.KeyBlacklist}{user.Id}");
+
         user.Status = input.Status;
         return await _sysUserRep.AsUpdateable(user).UpdateColumns(u => new { u.Status }).ExecuteCommandAsync();
     }
@@ -227,7 +242,17 @@ public class SysUserService : IDynamicApiController, ITransient
                 throw Oops.Oh(ErrorCodeEnum.D1004);
         }
 
-        user.Password = CryptogramUtil.Encrypt(input.PasswordNew);
+        // 验证密码强度
+        if (CryptogramUtil.StrongPassword)
+        {
+            user.Password = input.PasswordNew.TryValidate(CryptogramUtil.PasswordStrengthValidation)
+                ? CryptogramUtil.Encrypt(input.PasswordNew)
+                : throw Oops.Oh(CryptogramUtil.PasswordStrengthValidationMsg);
+        }
+        else
+        {
+            user.Password = CryptogramUtil.Encrypt(input.PasswordNew);
+        }
         return await _sysUserRep.AsUpdateable(user).UpdateColumns(u => u.Password).ExecuteCommandAsync();
     }
 

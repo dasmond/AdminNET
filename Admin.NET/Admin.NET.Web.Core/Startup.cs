@@ -22,8 +22,6 @@ using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json;
 using OnceMi.AspNetCore.OSS;
 using System;
-using System.Net;
-using System.Net.Mail;
 
 namespace Admin.NET.Web.Core;
 
@@ -121,16 +119,6 @@ public class Startup : AppStartup
         // OSS对象存储
         var ossOpt = App.GetConfig<OSSProviderOptions>("OSSProvider", true);
         services.AddOSSService(Enum.GetName(ossOpt.Provider), "OSSProvider");
-
-        // 电子邮件
-        var emailOpt = App.GetConfig<EmailOptions>("Email", true);
-        services.AddFluentEmail(emailOpt.DefaultFromEmail, emailOpt.DefaultFromName)
-            .AddSmtpSender(new SmtpClient(emailOpt.Host, emailOpt.Port)
-            {
-                EnableSsl = emailOpt.EnableSsl,
-                UseDefaultCredentials = emailOpt.UseDefaultCredentials,
-                Credentials = new NetworkCredential(emailOpt.UserName, emailOpt.Password)
-            });
 
         // 模板引擎
         services.AddViewEngine();

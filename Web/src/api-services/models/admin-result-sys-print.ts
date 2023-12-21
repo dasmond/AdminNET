@@ -1,7 +1,7 @@
 /* tslint:disable */
 /* eslint-disable */
 /**
- * Admin.NET
+ * Admin.NET 通用权限开发平台
  * 让 .NET 开发更简单、更通用、更流行。前后端分离架构(.NET6/Vue3)，开箱即用紧随前沿技术。<br/><a href='https://gitee.com/zuohuaijun/Admin.NET/'>https://gitee.com/zuohuaijun/Admin.NET</a>
  *
  * OpenAPI spec version: 1.0.0
@@ -11,46 +11,63 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+
+import { SysPrint } from './sys-print';
+import {
+    SysPrint,
+} from ".";
+
 /**
  * 全局返回结果
+ *
  * @export
- * @interface AdminResultListObject
+ * @interface AdminResultSysPrint
  */
-export interface AdminResultListObject {
+export interface AdminResultSysPrint {
+
     /**
      * 状态码
+     *
      * @type {number}
-     * @memberof AdminResultListObject
+     * @memberof AdminResultSysPrint
      */
     code?: number;
+
     /**
      * 类型success、warning、error
+     *
      * @type {string}
-     * @memberof AdminResultListObject
+     * @memberof AdminResultSysPrint
      */
     type?: string | null;
+
     /**
      * 错误信息
+     *
      * @type {string}
-     * @memberof AdminResultListObject
+     * @memberof AdminResultSysPrint
      */
     message?: string | null;
+
     /**
-     * 数据
-     * @type {Array<any>}
-     * @memberof AdminResultListObject
+     * @type {SysPrint}
+     * @memberof AdminResultSysPrint
      */
-    result?: Array<any> | null;
+    result?: SysPrint;
+
     /**
      * 附加数据
+     *
      * @type {any}
-     * @memberof AdminResultListObject
+     * @memberof AdminResultSysPrint
      */
     extras?: any | null;
+
     /**
      * 时间
+     *
      * @type {Date}
-     * @memberof AdminResultListObject
+     * @memberof AdminResultSysPrint
      */
     time?: Date;
 }

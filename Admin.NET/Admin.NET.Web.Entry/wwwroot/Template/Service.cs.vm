@@ -1,4 +1,7 @@
-﻿using @(@Model.NameSpace).Const;
+using Admin.NET.Core.Service;
+using @(@Model.NameSpace).Const;
+using @(@Model.NameSpace).Entity;
+using Microsoft.AspNetCore.Http;
 @{
     string joinTableName = "u";
     Dictionary<string, int> definedObjects = new Dictionary<string, int>();
@@ -31,7 +34,7 @@ public class @(@Model.ClassName)Service : IDynamicApiController, ITransient
     [ApiDescriptionSettings(Name = "Page")]
     public async Task<SqlSugarPagedList<@(@Model.ClassName)Output>> Page(@(@Model.ClassName)Input input)
     {
-        var query= _rep.AsQueryable()
+        var query = _rep.AsQueryable()
 @{string conditionFlag = "";}
 @if (haveLikeCdt) {
             @:.WhereIF(!string.IsNullOrWhiteSpace(input.SearchKey), u =>
@@ -70,16 +73,23 @@ if (@column.QueryWhether == "Y"){
             @:.LeftJoin<@(@column.FkEntityName)>((@(@joinTableName)) => u.@(@column.PropertyName) == @(@column.PropertyName.ToLower()).@(@column.ValueColumn) )
         }
     }
-            @:.Select((@(@joinTableName))=> new @(@Model.ClassName)Output{
+            @:.OrderBy(u => u.CreateTime)
+            @:.Select((@(@joinTableName)) => new @(@Model.ClassName)Output
+            @:{
 @foreach (var column in Model.TableField){
-                @:@(@column.PropertyName) = u.@(@column.PropertyName), 
                 if(@column.EffectType == "fk"){   
+                @:@(@column.PropertyName) = u.@(@column.PropertyName), 
                 @:@(@column.PropertyName)@(@column.FkColumnName) = @(@column.PropertyName.ToLower()).@(@column.FkColumnName),
-                } else if(@column.EffectType == "ApiTreeSelect"){   
+                } else if(@column.EffectType == "ApiTreeSelect"){  
+                @:@(@column.PropertyName) = u.@(@column.PropertyName),  
                 @:@(@column.PropertyName)@(@column.DisplayColumn) = @(@column.PropertyName.ToLower()).@(@column.DisplayColumn),
+                } else if(@column.NetType?.TrimEnd('?').EndsWith("Enum") == true){
+                @:@(@column.PropertyName) = (@(@column.NetType))u.@(@column.PropertyName),
+                } else {
+                @:@(@column.PropertyName) = u.@(@column.PropertyName),
                 }
 }
-            @:})
+            @:});
 @foreach (var column in Model.TableField){
     if(@column.EffectType == "fk"){   
  
@@ -88,9 +98,8 @@ if (@column.QueryWhether == "Y"){
     }
 }
 } else {
-            @:.Select<@(@Model.ClassName)Output>()
+            @:.Select<@(@Model.ClassName)Output>();
 }
-;
 @foreach (var column in Model.TableField){
 if (@column.QueryWhether == "Y"){
     if(@column.NetType?.TrimEnd('?') == "DateTime" && @column.QueryType == "~"){
@@ -107,7 +116,6 @@ if (@column.QueryWhether == "Y"){
     }
 }
 }
-        query = query.OrderBuilder(input, "", "CreateTime");
         return await query.ToPagedListAsync(input.Page, input.PageSize);
     }
 
@@ -118,10 +126,11 @@ if (@column.QueryWhether == "Y"){
     /// <returns></returns>
     [HttpPost]
     [ApiDescriptionSettings(Name = "Add")]
-    public async Task Add(Add@(@Model.ClassName)Input input)
+    public async Task<long> Add(Add@(@Model.ClassName)Input input)
     {
         var entity = input.Adapt<@(@Model.ClassName)>();
         await _rep.InsertAsync(entity);
+        return entity.Id;
     }
 
     /// <summary>
@@ -162,7 +171,7 @@ if (@column.ColumnKey == "True"){
     /// <returns></returns>
     [HttpGet]
     [ApiDescriptionSettings(Name = "Detail")]
-    public async Task<@(@Model.ClassName)> Get([FromQuery] QueryById@(@Model.ClassName)Input input)
+    public async Task<@(@Model.ClassName)> Detail([FromQuery] QueryById@(@Model.ClassName)Input input)
     {
 @foreach (var column in Model.TableField){
 if (@column.ColumnKey == "True"){

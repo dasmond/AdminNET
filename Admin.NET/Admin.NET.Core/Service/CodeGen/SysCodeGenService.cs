@@ -1,4 +1,4 @@
-﻿// 麻省理工学院许可证
+// 麻省理工学院许可证
 //
 // 版权所有 (c) 2021-2023 zuohuaijun，大名科技（天津）有限公司  联系电话/微信：18020030720  QQ：515096995
 //
@@ -190,15 +190,16 @@ public class SysCodeGenService : IDynamicApiController, ITransient
     /// <returns></returns>
     private List<ColumnOuput> GetColumnList([FromQuery] AddCodeGenInput input)
     {
-        var entityType = GetEntityInfos().GetAwaiter().GetResult().FirstOrDefault(u => u.EntityName == input.TableName);
+        var config = App.GetOptions<DbConnectionOptions>().ConnectionConfigs.FirstOrDefault(u => u.ConfigId.ToString() == input.ConfigId);
+        var dbTableName = config.DbSettings.EnableUnderLine ? UtilMethods.ToUnderLine(input.TableName) : input.TableName;
+
+        var entityType = GetEntityInfos().GetAwaiter().GetResult().FirstOrDefault(u => u.DbTableName == dbTableName);
         if (entityType == null)
             return null;
 
         // 切库---多库代码生成用
         var provider = _db.AsTenant().GetConnectionScope(!string.IsNullOrEmpty(input.ConfigId) ? input.ConfigId : SqlSugarConst.MainConfigId);
 
-        var config = App.GetOptions<DbConnectionOptions>().ConnectionConfigs.FirstOrDefault(u => u.ConfigId.ToString() == input.ConfigId);
-        var dbTableName = config.DbSettings.EnableUnderLine ? UtilMethods.ToUnderLine(entityType.DbTableName) : entityType.DbTableName;
         var entityBasePropertyNames = _codeGenOptions.EntityBaseColumn[nameof(EntityTenant)];
         var columnInfos = provider.DbMaintenance.GetColumnInfosByTableName(dbTableName, false);
         var result = columnInfos.Select(u => new ColumnOuput
@@ -281,7 +282,7 @@ public class SysCodeGenService : IDynamicApiController, ITransient
             {
                 EntityName = c.Name,
                 DbTableName = sugarAttribute == null ? c.Name : ((SugarTable)sugarAttribute).TableName,
-                TableDescription = description,
+                TableDescription = sugarAttribute == null ? description : ((SugarTable)sugarAttribute).TableDescription,
                 Type = c
             });
         }
@@ -338,6 +339,8 @@ public class SysCodeGenService : IDynamicApiController, ITransient
             TableField = tableFieldList,
             IsJoinTable = joinTableList.Count > 0,
             IsUpload = joinTableList.Where(u => u.EffectType == "Upload").Any(),
+            PrintType = input.PrintType,
+            PrintName = input.PrintName,
         };
 
         for (var i = 0; i < templatePathList.Count; i++)

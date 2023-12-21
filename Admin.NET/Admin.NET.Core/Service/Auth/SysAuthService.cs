@@ -80,15 +80,18 @@ public class SysAuthService : IDynamicApiController, ITransient
         if (tenant != null && tenant.Status == StatusEnum.Disable)
             throw Oops.Oh(ErrorCodeEnum.Z1003);
 
+        // 国密SM2解密（前端密码传输SM2加密后的）
+        input.Password = CryptogramUtil.SM2Decrypt(input.Password);
+
         // 密码是否正确
         if (CryptogramUtil.CryptoType == CryptogramEnum.MD5.ToString())
         {
-            if (user.Password != MD5Encryption.Encrypt(input.Password))
+            if (!user.Password.Equals(MD5Encryption.Encrypt(input.Password)))
                 throw Oops.Oh(ErrorCodeEnum.D1000);
         }
         else
         {
-            if (CryptogramUtil.Decrypt(user.Password) != input.Password)
+            if (!CryptogramUtil.Decrypt(user.Password).Equals(input.Password))
                 throw Oops.Oh(ErrorCodeEnum.D1000);
         }
 
@@ -284,7 +287,7 @@ public class SysAuthService : IDynamicApiController, ITransient
             await Login(new LoginInput
             {
                 Account = auth.UserName,
-                Password = auth.Password
+                Password = CryptogramUtil.SM2Encrypt(auth.Password),
             });
 
             _sysCacheService.Remove(CommonConst.SysCaptcha);

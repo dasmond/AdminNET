@@ -1,7 +1,7 @@
 /* tslint:disable */
 /* eslint-disable */
 /**
- * Admin.NET
+ * Admin.NET 通用权限开发平台
  * 让 .NET 开发更简单、更通用、更流行。前后端分离架构(.NET6/Vue3)，开箱即用紧随前沿技术。<br/><a href='https://gitee.com/zuohuaijun/Admin.NET/'>https://gitee.com/zuohuaijun/Admin.NET</a>
  *
  * OpenAPI spec version: 1.0.0
@@ -11,53 +11,73 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-import { SysUser } from './sys-user';
+
+import { UserOutput } from './user-output';
+import {
+    UserOutput,
+} from ".";
+
 /**
  * 分页泛型集合
+ *
  * @export
- * @interface SqlSugarPagedListSysUser
+ * @interface SqlSugarPagedListUserOutput
  */
-export interface SqlSugarPagedListSysUser {
+export interface SqlSugarPagedListUserOutput {
+
     /**
      * 页码
+     *
      * @type {number}
-     * @memberof SqlSugarPagedListSysUser
+     * @memberof SqlSugarPagedListUserOutput
      */
     page?: number;
+
     /**
      * 页容量
+     *
      * @type {number}
-     * @memberof SqlSugarPagedListSysUser
+     * @memberof SqlSugarPagedListUserOutput
      */
     pageSize?: number;
+
     /**
      * 总条数
+     *
      * @type {number}
-     * @memberof SqlSugarPagedListSysUser
+     * @memberof SqlSugarPagedListUserOutput
      */
     total?: number;
+
     /**
      * 总页数
+     *
      * @type {number}
-     * @memberof SqlSugarPagedListSysUser
+     * @memberof SqlSugarPagedListUserOutput
      */
     totalPages?: number;
+
     /**
      * 当前页集合
-     * @type {Array<SysUser>}
-     * @memberof SqlSugarPagedListSysUser
+     *
+     * @type {Array<UserOutput>}
+     * @memberof SqlSugarPagedListUserOutput
      */
-    items?: Array<SysUser> | null;
+    items?: Array<UserOutput> | null;
+
     /**
      * 是否有上一页
+     *
      * @type {boolean}
-     * @memberof SqlSugarPagedListSysUser
+     * @memberof SqlSugarPagedListUserOutput
      */
     hasPrevPage?: boolean;
+
     /**
      * 是否有下一页
+     *
      * @type {boolean}
-     * @memberof SqlSugarPagedListSysUser
+     * @memberof SqlSugarPagedListUserOutput
      */
     hasNextPage?: boolean;
 }

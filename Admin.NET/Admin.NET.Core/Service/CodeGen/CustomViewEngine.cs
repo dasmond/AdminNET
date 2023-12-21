@@ -45,13 +45,17 @@ public class CustomViewEngine : ViewEngineModel
         }
     }
 
-    public List<CodeGenConfig> QueryWhetherList { get; set; }
-
-    public List<CodeGenConfig> TableField { get; set; }
-
     public bool IsJoinTable { get; set; }
 
     public bool IsUpload { get; set; }
+
+    public string PrintType { get; set; }
+
+    public string PrintName { get; set; }
+
+    public List<CodeGenConfig> QueryWhetherList { get; set; }
+
+    public List<CodeGenConfig> TableField { get; set; }
 
     private List<ColumnOuput> ColumnList { get; set; }
 
