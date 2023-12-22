@@ -2,64 +2,13 @@
 branches: {
   }
 fileChange:
-  /Admin.NET:
-    newFile: !uuid '88df26ba3bd05cec27c2830e5005502c9d755f09'
-    oldFile: !uuid '52422f8c9a8ae7df5065de2c93f8c2bf1133022d'
-  /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '42f6a852680eb15a56b0b618abe61bcbacae8eb4'
-    oldFile: !uuid 'bf443da73baff4690f5a4ed47db2f7ec775040c4'
-  /Admin.NET/Admin.NET.Core/Attribute:
-    newFile: !uuid '6f0385de4331c772d0adf4394f067f57c23a5002'
-    oldFile: !uuid '01df48b0ec27366192baf80840048aac4c6ad656'
-  /Admin.NET/Admin.NET.Core/Attribute/MaskNewtonsoftJsonConverter.cs:
-    newFile: !uuid '3bf062b79bf1d2b3b35a008dffff0a445a6c1d51'
-    oldFile: null
-  /Admin.NET/Admin.NET.Core/Attribute/MaskSystemTextJsonConverter.cs:
-    newFile: !uuid 'd6132c11fbe94714753dd86b73b8da2f5276628d'
-    oldFile: null
-  /Admin.NET/Admin.NET.Core/Entity:
-    newFile: !uuid 'd34078b78d5a78ec53b75789f0209bd793bbf902'
-    oldFile: !uuid '08abd40cc3e14132853dfe522df19171a4b22fc4'
-  /Admin.NET/Admin.NET.Core/Entity/SysUser.cs:
-    newFile: !uuid '34f77ff52fcea0e83c4bc98f6539a06480203349'
-    oldFile: !uuid 'c15685ed471e229503a56b12ece54adbc65830e3'
-  /Admin.NET/Admin.NET.Core/Extension:
-    newFile: !uuid '273e1024574fc66f99c0c9e929bd14d973042f0f'
-    oldFile: !uuid '2188ee0f86fb0080eb2e7af1cc8e64b2c3dd2420'
-  /Admin.NET/Admin.NET.Core/Extension/ObjectExtension.cs:
-    newFile: !uuid 'de3cba1bc7d20113b1bf275f16e10411d755ac23'
-    oldFile: !uuid '241622d858149bd00d060f4542cb07d09ad730f2'
-  /Admin.NET/Admin.NET.Core/GlobalUsings.cs:
-    newFile: !uuid '1f6f3df39e46148225b112d0b50a366e73c58e40'
-    oldFile: !uuid 'f2ed3d9e1a99ff5074cae83b0ac1ba86bb9e2506'
-  /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid 'c4f9a51327c5933d9baf66c3f605b8a2ae6687f4'
-    oldFile: !uuid '67d2523d642f5c5dcf34751e8fd9dde17d61c16b'
-  /Admin.NET/Admin.NET.Core/Service/DataBase:
-    newFile: !uuid '84a4b167caeab198d30dee29c9db2c62415eabda'
-    oldFile: !uuid 'e1a1f900a34d69699ccf59fae7fa55435d070c62'
-  /Admin.NET/Admin.NET.Core/Service/DataBase/SysDatabaseService.cs:
-    newFile: !uuid '9901b604f2748a1e54670b57bc85a30ee03d424a'
-    oldFile: !uuid 'a85b14ad672677e8f75fba2c14d4278bde400e8f'
-  /Admin.NET/Admin.NET.Core/SignalR:
-    newFile: !uuid 'fa5ed4fbd9269dffc578c47d13c5070fbccbfa51'
-    oldFile: !uuid 'ff3ec4b1e039c66164d694d1c88ae5e4408e633f'
-  /Admin.NET/Admin.NET.Core/SignalR/SignalRSetup.cs:
-    newFile: !uuid 'd3ebb6d61458919e2209d7f9d4f8453f7607bb8e'
-    oldFile: !uuid '1658ead90630ba8cd6e75c6edf00c9c2e59213b0'
-  /Admin.NET/Admin.NET.Core/Util:
-    newFile: !uuid '8d4a8b186817c5327c28b0dd0ce928cc29630926'
-    oldFile: !uuid 'cababee1bbc4bb6fc8875110e0967df9d56c3a94'
-  /Admin.NET/Admin.NET.Core/Util/ComputerUtil.cs:
-    newFile: !uuid '1f4a9150300ca8e6bee92c14bba2bcc1d2704786'
-    oldFile: !uuid '19bf31653dcc14b728feac54b66011488758871d'
-  /Admin.NET/Admin.NET.Core/Util/JsonSerializerProvider.cs:
-    newFile: null
-    oldFile: !uuid '29242f8d864b92c7cda4bfca1499285eabbd9d4d'
-  /Admin.NET/Admin.NET.Core/Util/NewtonsoftJsonSerializerProvider.cs:
-    newFile: !uuid 'c05d732fe064c6288feb9aafca71bb15a193923d'
-    oldFile: null
-gitCommitId: !uuid 'e40420840139135acdb6e72d9eeeda0a8eca3cd1'
-renames:
-  /Admin.NET/Admin.NET.Core/Util/NewtonsoftJsonSerializerProvider.cs: /Admin.NET/Admin.NET.Core/Util/JsonSerializerProvider.cs
-revisionId: 1338
+  /Web:
+    newFile: !uuid '7550cd798c907879b717fb04cd5f0b3da6f61977'
+    oldFile: !uuid '6bf02b448d51b75bf572f280b08136e8fe13fd2a'
+  /Web/vite.config.ts:
+    newFile: !uuid '8b65e0656980edd8095882015b6e83c509564f99'
+    oldFile: !uuid '03aaf8d64ac83802c73cd5f1973967c18e8c9d80'
+gitCommitId: !uuid '75949bb337b524f0c1646cd2cba81422bbebc7dc'
+renames: {
+  }
+revisionId: 1339
