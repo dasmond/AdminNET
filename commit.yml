@@ -3,27 +3,21 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid 'be4efc22782e8f29a011d0a2bed840336cfbf93e'
-    oldFile: !uuid 'ea25cfe1460f5c017b9de4229c5c13e1350628df'
+    newFile: !uuid '313ce98ae29e7975c14a7eab182d47d105485983'
+    oldFile: !uuid 'be4efc22782e8f29a011d0a2bed840336cfbf93e'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid 'a79881ead0d52673db222e1a4f708d5a281edcaf'
-    oldFile: !uuid 'c584d6253a2263712c6485ff08fa2b1777650d4e'
+    newFile: !uuid '6d355a6b5c316d9f2a0dbbb2f7b144ccbadc3ff4'
+    oldFile: !uuid 'a79881ead0d52673db222e1a4f708d5a281edcaf'
   /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid '2689594cf1a282108d611998c733b9d49e0211f3'
-    oldFile: !uuid 'bed7d9560b23e44f096d5a812dbb17826d42ac5e'
-  /Admin.NET/Admin.NET.Core/Service/OnlineUser:
-    newFile: !uuid '122aad1a34e3baca2d6903010472bcb7f9ebe428'
-    oldFile: !uuid '6d015f5ab38121217c023883fbe3b59d2c6fd2bb'
-  /Admin.NET/Admin.NET.Core/Service/OnlineUser/SysOnlineUserService.cs:
-    newFile: !uuid 'bc3f6027ae9152af6d54c9c85838366554bfb0c6'
-    oldFile: !uuid 'a7aa86edd502c924591818d668305ccca3e614db'
-  /Admin.NET/Admin.NET.Core/Service/User:
-    newFile: !uuid 'dc192f0dddca39bcdb9d2c663077d99994909a9b'
-    oldFile: !uuid '37086324589018d724608a5a2f32f9738575a294'
-  /Admin.NET/Admin.NET.Core/Service/User/SysUserService.cs:
-    newFile: !uuid 'f93958049b472327e13a9c550acef9f809d55534'
-    oldFile: !uuid '7081d99af28ea7a584d23420d211122b022db5b2'
-gitCommitId: !uuid '3d3f9d1a12585db99e3b599f38acfdfb84314f14'
+    newFile: !uuid '0dcd46bbd1fa394e258c3be2c47cc63fe39a7545'
+    oldFile: !uuid '2689594cf1a282108d611998c733b9d49e0211f3'
+  /Admin.NET/Admin.NET.Core/Service/Cache:
+    newFile: !uuid '443804896ee41eb153ca40ec1e19c45fea686843'
+    oldFile: !uuid '13a0b62d40e9b4978c70f7eaa456402ac0c62e6f'
+  /Admin.NET/Admin.NET.Core/Service/Cache/SysCacheService.cs:
+    newFile: !uuid 'd8a8813780aed8a343b3b6dca26d26806c40d3a2'
+    oldFile: !uuid 'c0e0b071a9d80a69f9cafc1c68866ee853843f67'
+gitCommitId: !uuid '15dde04b9d12155086d2430946ffcd0d19dbce62'
 renames: {
   }
-revisionId: 1349
+revisionId: 1350
