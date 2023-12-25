@@ -3,27 +3,21 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '5ce23d2f76e182f2cb28c22222ddfc438908c1ce'
-    oldFile: !uuid '8fa30403f9eeb6b0786ee779d65b813af0bbcf1a'
+    newFile: !uuid 'd28d470183e8e80796c826670bc494b9a6b7760a'
+    oldFile: !uuid '5ce23d2f76e182f2cb28c22222ddfc438908c1ce'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid 'd12688cddc60c4c3c88b504c92dcc42ac6289507'
-    oldFile: !uuid 'd9b5baf07ebfb6e940dd7b4b76e92f1e7ec17261'
+    newFile: !uuid '3ca8215031702de5de4cc2c20d942d40908708f2'
+    oldFile: !uuid 'd12688cddc60c4c3c88b504c92dcc42ac6289507'
   /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid 'da7ebddcffb80e09b53e56195c30668b187b9926'
-    oldFile: !uuid 'ee4da11313ff5a6b0ab31a15973d1b9399a18dcd'
-  /Admin.NET/Admin.NET.Core/Service/Cache:
-    newFile: !uuid 'c45bf72992ade19e4cd6f7e38d0df46e8240724c'
-    oldFile: !uuid '443804896ee41eb153ca40ec1e19c45fea686843'
-  /Admin.NET/Admin.NET.Core/Service/Cache/SysCacheService.cs:
-    newFile: !uuid '83d7328cca30fb0d6e29ca80f8b9f8fc404c0977'
-    oldFile: !uuid 'd8a8813780aed8a343b3b6dca26d26806c40d3a2'
-  /Admin.NET/Admin.NET.Core/Service/User:
-    newFile: !uuid 'c99b64c6da3b1814ccadb3eda23d90a6e948d61a'
-    oldFile: !uuid 'dc192f0dddca39bcdb9d2c663077d99994909a9b'
-  /Admin.NET/Admin.NET.Core/Service/User/SysUserService.cs:
-    newFile: !uuid 'dd82930086f8a00686187fe69ca8781c44b98118'
-    oldFile: !uuid 'f93958049b472327e13a9c550acef9f809d55534'
-gitCommitId: !uuid '25e5092326994168486f52c51085744e69fbbe61'
+    newFile: !uuid '0bdd8aac32e2daa30b636a76ff983e0afee2e748'
+    oldFile: !uuid 'da7ebddcffb80e09b53e56195c30668b187b9926'
+  /Admin.NET/Admin.NET.Core/Service/Menu:
+    newFile: !uuid '43f9ee63f98b712f417ef4d5ed28f37482432354'
+    oldFile: !uuid '82637fe66f9c1c7b8920f94181456deef15670a0'
+  /Admin.NET/Admin.NET.Core/Service/Menu/SysMenuService.cs:
+    newFile: !uuid '10a0ea97996683c9bbd0e4cef9b28cdb47df8939'
+    oldFile: !uuid 'f5cccb12a747ea0bd96f216ad5f9ba2d843d825a'
+gitCommitId: !uuid '5a4ea2061721c877bafc11a95b47e168a0971d42'
 renames: {
   }
-revisionId: 1352
+revisionId: 1353
