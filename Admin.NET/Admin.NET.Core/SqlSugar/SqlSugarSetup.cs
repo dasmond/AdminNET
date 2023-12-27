@@ -93,7 +93,9 @@ public static class SqlSugarSetup
             IsAutoRemoveDataCache = true,
             IsAutoDeleteQueryFilter = true, // 启用删除查询过滤器
             IsAutoUpdateQueryFilter = true, // 启用更新查询过滤器
-            SqlServerCodeFirstNvarchar = true // 采用Nvarchar
+            SqlServerCodeFirstNvarchar = true, // 采用Nvarchar
+            PgSqlIsAutoToLower = false,//增删查改支持驼峰表
+            PgSqlIsAutoToLowerCodeFirst = false, // 建表建驼峰表
         };
     }
 
