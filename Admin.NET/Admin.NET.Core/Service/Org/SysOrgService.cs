@@ -321,12 +321,15 @@ public class SysOrgService : IDynamicApiController, ITransient
     {
         // 按最大范围策略设定(若同时拥有ALL和SELF权限，则结果ALL)
         int strongerDataScopeType = (int)DataScopeEnum.Self;
+     
+        //多角色数据范围
+        var muList = new List<long>();
 
         // 角色集合拥有的数据范围
         var customDataScopeRoleIdList = new List<long>();
         if (roleList != null && roleList.Count > 0)
         {
-            roleList.ForEach(u =>
+            roleList.ForEach(async u => 
             {
                 if (u.DataScope == DataScopeEnum.Define)
                 {
@@ -334,7 +337,11 @@ public class SysOrgService : IDynamicApiController, ITransient
                     strongerDataScopeType = (int)u.DataScope; // 自定义数据权限时也要更新最大范围
                 }
                 else if ((int)u.DataScope <= strongerDataScopeType)
+                {
                     strongerDataScopeType = (int)u.DataScope;
+                    var list = await GetOrgIdListByDataScope(strongerDataScopeType);
+                    muList = muList.Union(list).ToList();
+                }
             });
         }
 
