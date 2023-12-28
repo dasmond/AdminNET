@@ -3,18 +3,42 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '5e1b5f5ae482077f10d69103c58d186294170b18'
-    oldFile: !uuid 'bbfdb9d1c5d68e795293626f7431a8bf4f64fe14'
+    newFile: !uuid '945931d4987f885844d93eb0992e41958a860355'
+    oldFile: !uuid '5e1b5f5ae482077f10d69103c58d186294170b18'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid 'b9a0fffed6195e35918ae12c5ec42fef895d66f7'
-    oldFile: !uuid '802e3b6b3e6cb92f750f8638136f73168d0f980c'
+    newFile: !uuid 'b8e58a2b8f524de8361890043a7e37702f1d063d'
+    oldFile: !uuid 'b9a0fffed6195e35918ae12c5ec42fef895d66f7'
+  /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
+    newFile: !uuid '6825e4101b5356c46ce0d741e564766f8361b383'
+    oldFile: !uuid '573b064770870e08bd1bbfde5a0e3b105d226494'
+  /Admin.NET/Admin.NET.Core/Entity:
+    newFile: !uuid 'ec1650795837198d3f576a1938c31c9db4dad9b5'
+    oldFile: !uuid 'dd650aefd73ce27ef74212e8fc4cc7b3faafc776'
+  /Admin.NET/Admin.NET.Core/Entity/SysNoticeUser.cs:
+    newFile: !uuid '5c9d3fb9fcf9dd22d8ce015d33bc7a4e452f40eb'
+    oldFile: !uuid '658a1c08170656415703d2aa8467851ff82b6c64'
   /Admin.NET/Admin.NET.Core/EventBus:
-    newFile: !uuid '695446f6b25afe087405910a37f8a29bc2da5db2'
-    oldFile: !uuid '70737e73d712d28b794a1b2af92e51ddd31332cb'
+    newFile: !uuid '33856eff07e574caf8f02ddf6b50f966487295e5'
+    oldFile: !uuid '695446f6b25afe087405910a37f8a29bc2da5db2'
   /Admin.NET/Admin.NET.Core/EventBus/RedisQueue.cs:
-    newFile: !uuid 'd5cd4e028fe267b8017f3ddb6b52a5dfc32ccd09'
-    oldFile: !uuid '3e86000d0d280f13fbc279fe9cdefbcf155ed880'
-gitCommitId: !uuid '3f988000fed93903c4ceb8a9cf2ce0dda7880c0f'
+    newFile: !uuid '84f3a629b3d9d62ee6dfd8b0192f44a4ccbe8a2b'
+    oldFile: !uuid 'd5cd4e028fe267b8017f3ddb6b52a5dfc32ccd09'
+  /Admin.NET/Admin.NET.Core/Service:
+    newFile: !uuid '878d3c95ccead814aeb0f7d24db00a1c35407c50'
+    oldFile: !uuid '724bd688da5cd504c5fc5a892b229a8085fd6304'
+  /Admin.NET/Admin.NET.Core/Service/Notice:
+    newFile: !uuid 'd9919f28d7663abaf2d45240bdcc790d37d0ee51'
+    oldFile: !uuid 'd9c0b22b79970347d1fdc11de812cd2a698d7335'
+  /Admin.NET/Admin.NET.Core/Service/Notice/SysNoticeService.cs:
+    newFile: !uuid '3649bc677749b7a5ffc0697cc3d0a365d49b8517'
+    oldFile: !uuid '2e2a2bb694bd9ef9cc486a8eab559cf8c24a3790'
+  /Admin.NET/Admin.NET.Core/Service/Org:
+    newFile: !uuid '45eccb071931398503b7353a8793412af0cd5a7c'
+    oldFile: !uuid 'a9101dcc66a6203444f064f50ba1e97dcf712c42'
+  /Admin.NET/Admin.NET.Core/Service/Org/SysOrgService.cs:
+    newFile: !uuid 'c650545377df52b32ab887af4888e4b12d11ee84'
+    oldFile: !uuid 'b54522ac50a3b7a211d5e5f96a7366abcd76f177'
+gitCommitId: !uuid '684a7834b61a613099cb759c1e5629e75526d48a'
 renames: {
   }
-revisionId: 1367
+revisionId: 1368
