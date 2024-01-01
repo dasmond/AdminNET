@@ -3,130 +3,21 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '2f44220b4ed5471c2780ae64cd503bf9aaf09bd2'
-    oldFile: !uuid '4d8eea0e4735b30aed63b0b34fdc10ff6be86a7b'
+    newFile: !uuid 'a85ae94ee593c67ac0beda7f5de92cfea0176108'
+    oldFile: !uuid '2f44220b4ed5471c2780ae64cd503bf9aaf09bd2'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '62475e4707267a1f8f0618747403a4fa2c0cd898'
-    oldFile: !uuid 'badcc2a975f044da0f5bd17cc5669bd97af6644a'
-  /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid '70ae8e5a9c0d29af0998c2dcd5ab878707b963dc'
-    oldFile: !uuid 'ae5e0987729a844e1bc28fdedfa6e22d75dcea59'
-  /Admin.NET/Admin.NET.Core/Service/Job:
-    newFile: !uuid 'ec6d9734bad40fedbf432dab438ec6f18e7a6a17'
-    oldFile: !uuid '14756e59cbb08432b4fee1b0fd013100c5262d53'
-  /Admin.NET/Admin.NET.Core/Service/Job/Dto:
-    newFile: !uuid 'd910e88c2b0db70158a9de37b65cb76254e6233a'
-    oldFile: !uuid '0c130ef4d5c1156642c061c9e91a4f02f4952576'
-  /Admin.NET/Admin.NET.Core/Service/Job/Dto/JobDetailInput.cs:
-    newFile: !uuid 'f831d5b8d8f0bdf23d75a70baa1e0adbcae88cfc'
-    oldFile: !uuid 'c0076ecf8c40c95109cb84b617dd305a2763a04a'
-  /Admin.NET/Admin.NET.Core/Service/Job/Dto/JobDetailOutput.cs:
-    newFile: !uuid 'd3a644aa0b4348971f70e4ae09e0d1752dff70fd'
+    newFile: !uuid 'ca297b2ef9f97b7b82ee8f248b77e1b36def8b4f'
+    oldFile: !uuid '62475e4707267a1f8f0618747403a4fa2c0cd898'
+  /Admin.NET/Admin.NET.Core/Attribute:
+    newFile: !uuid '30f854401e00db4e8802b6f26dc755a05619db88'
+    oldFile: !uuid '6f0385de4331c772d0adf4394f067f57c23a5002'
+  /Admin.NET/Admin.NET.Core/Attribute/MaxValueAttribute.cs:
+    newFile: !uuid 'ee16be1055d662f00dbadd93642e40fe04ee6304'
     oldFile: null
-  /Admin.NET/Admin.NET.Core/Service/Job/Dto/JobOutput.cs:
-    newFile: null
-    oldFile: !uuid 'ca0f6f037414973e622e09437baf556794a67ddf'
-  /Admin.NET/Admin.NET.Core/Service/Job/Dto/JobTriggerRecordInput.cs:
-    newFile: !uuid '75e1e2081f7b7b0dee7cef02141401941d026ad7'
+  /Admin.NET/Admin.NET.Core/Attribute/MinValueAttribute.cs:
+    newFile: !uuid '2446e6b560adf62f9f25b2c2421ff6c132411d8d'
     oldFile: null
-  /Admin.NET/Admin.NET.Core/Service/Job/SysJobService.cs:
-    newFile: !uuid '41bdc4ea453f414ae5d2df7424194c4b73711dcf'
-    oldFile: !uuid '0ed879ce85c3b6f9182244c3aaa3cc72a3a08bf0'
-  /Web:
-    newFile: !uuid '9cb46717ae93653caf3d243eaed1eae45dde671a'
-    oldFile: !uuid '7b33f153ac86bd4a09ac615f737eaa45e5ed0a12'
-  /Web/src:
-    newFile: !uuid '09232331b803af25e54b4800fa2e209ed7687aa3'
-    oldFile: !uuid 'f5629af6732ebac7f9bcc32792acace4c24828fc'
-  /Web/src/api-services:
-    newFile: !uuid 'dceb16bc001d3beb033368f84665446025921991'
-    oldFile: !uuid '4e788923f0de63c361055f4fd7d0621992926e97'
-  /Web/src/api-services/apis:
-    newFile: !uuid 'ac553fbd53e1206cbd3c6b868713bd0a7874e84f'
-    oldFile: !uuid '873afd3d33db3bf22419907f7bbdc7611d8971bc'
-  /Web/src/api-services/apis/sys-code-gen-config-api.ts:
-    newFile: !uuid '9d24f5b4518a49f3ef60e18c07a7f58456160c18'
-    oldFile: !uuid '0785011e6fcecfae5bacba309905dfaaa4be903f'
-  /Web/src/api-services/apis/sys-job-api.ts:
-    newFile: !uuid 'ce93ce0199d726b36b9e31c807e2257adaf2ded5'
-    oldFile: !uuid 'd74fc5caa0148402448c50075214e115b6610747'
-  /Web/src/api-services/models:
-    newFile: !uuid 'cd420c797e5a046d146e66aa1b2e0b8ef69f4762'
-    oldFile: !uuid '36f9f997ba0a126b4422ab9359f0cff0206758fa'
-  /Web/src/api-services/models/admin-result-sql-sugar-paged-list-job-detail-output.ts:
-    newFile: !uuid 'e35400d5a634d92eddd33b4a7eba8a9052b002c3'
-    oldFile: null
-  /Web/src/api-services/models/admin-result-sql-sugar-paged-list-job-output.ts:
-    newFile: null
-    oldFile: !uuid '3fb4a61dc85188e787a8d33217bf8db24d81d260'
-  /Web/src/api-services/models/admin-result-sql-sugar-paged-list-sys-job-trigger-record.ts:
-    newFile: !uuid '0d5a2e5104fc04669b3158b039c5786b36c96ed2'
-    oldFile: null
-  /Web/src/api-services/models/code-gen-config.ts:
-    newFile: !uuid '0ce2bdc0f5369d567ad8f6a14ef99e0cbc89a59c'
-    oldFile: !uuid 'a73391d07f3ef0ba9b0ff5b83b0942aa06a44786'
-  /Web/src/api-services/models/index.ts:
-    newFile: !uuid 'a791d9e91d3c3fd6c7cfc8c766e71e93663d4494'
-    oldFile: !uuid '0bbfbf3f51e6790b39e771aa6eba621d3c2d9445'
-  /Web/src/api-services/models/job-detail-output.ts:
-    newFile: !uuid '403a51c035d9aa639d5842675e13eb7ef768f500'
-    oldFile: null
-  /Web/src/api-services/models/job-output.ts:
-    newFile: null
-    oldFile: !uuid '1337c73a4d4998e87f03e5905ca474a20292a409'
-  /Web/src/api-services/models/page-job-detail-input.ts:
-    newFile: !uuid 'f52cfdba03b99a95b238af5b786daa0447eaa98d'
-    oldFile: null
-  /Web/src/api-services/models/page-job-input.ts:
-    newFile: null
-    oldFile: !uuid '0d184fae6183a6b43f06537927769fc57b7a032f'
-  /Web/src/api-services/models/page-job-trigger-record-input.ts:
-    newFile: !uuid '36032a32ba1d6a2567f476be125786bce2ae1fb0'
-    oldFile: null
-  /Web/src/api-services/models/sql-sugar-paged-list-job-detail-output.ts:
-    newFile: !uuid '92c8ac08a5387caf578d17a8550ea071bf95b2b8'
-    oldFile: null
-  /Web/src/api-services/models/sql-sugar-paged-list-job-output.ts:
-    newFile: null
-    oldFile: !uuid '7b6ad1e6f0378908fa6d9ce56b6246eec61b9e4b'
-  /Web/src/api-services/models/sql-sugar-paged-list-sys-job-trigger-record.ts:
-    newFile: !uuid '64b58d5c6359ce1ab2852129e45a01f4018b540f'
-    oldFile: null
-  /Web/src/api-services/models/sys-code-gen-config.ts:
-    newFile: !uuid 'ab287bed338f3f1237c39c06607ed518007b10b3'
-    oldFile: !uuid 'e253ac209948724c0592f3ed4de8cd04fc556d35'
-  /Web/src/api-services/models/sys-job-trigger-record.ts:
-    newFile: !uuid 'b8dfa1006dc2407959b5faf84f1c03abd167d53b'
-    oldFile: null
-  /Web/src/api-services/models/sys-notice-user.ts:
-    newFile: !uuid '4207d46344615e416ce72d24d08ae90605cf6ea8'
-    oldFile: !uuid '51d34e9b600a4dd2e28fddc841892a147d5b8af0'
-  /Web/src/views:
-    newFile: !uuid 'da3b237acfe95a57c793ce7392d541e63fe9b3c9'
-    oldFile: !uuid '9817caa4d962b2e8af9cede79452589015fe0afc'
-  /Web/src/views/system:
-    newFile: !uuid '56737d42e5ac277835ec7dda8f5e7ece7cb53b8a'
-    oldFile: !uuid '438d561114b775a78fe58835116c7a0c05d93a2c'
-  /Web/src/views/system/job:
-    newFile: !uuid '23d24b679722be0342fa531c69ad2e1b22946e7f'
-    oldFile: !uuid '35994e48bafbb2fea9928b83cfb769339b48bd4a'
-  /Web/src/views/system/job/component:
-    newFile: !uuid 'b8ad2806ab1b8a00d6bfcec807c1bce3f1f2ab27'
-    oldFile: !uuid 'b73d057e4b4e7b0b3c3d3e42def4d3c767f946b6'
-  /Web/src/views/system/job/component/editJobDetail.vue:
-    newFile: !uuid 'af8d8efb4c849c00fecbc99f2f6ad62171558d5c'
-    oldFile: !uuid '780bbf1153adcd504ef76e9297fb93b627c5975d'
-  /Web/src/views/system/job/index.vue:
-    newFile: !uuid '01b29d1c1c1731247d02cb635b4d566fd94885da'
-    oldFile: !uuid '424a1dd243b13f2883405c769e799f41f684c8c1'
-gitCommitId: !uuid 'af98fecdf8e447f62043f2cef1ca5a39e14a1656'
-renames:
-  /Admin.NET/Admin.NET.Core/Service/Job/Dto/JobDetailOutput.cs: /Admin.NET/Admin.NET.Core/Service/Job/Dto/JobOutput.cs
-  /Admin.NET/Admin.NET.Core/Service/Job/Dto/JobTriggerRecordInput.cs: /Admin.NET/Admin.NET.Core/Service/Job/Dto/JobOutput.cs
-  /Web/src/api-services/models/admin-result-sql-sugar-paged-list-job-detail-output.ts: /Web/src/api-services/models/admin-result-sql-sugar-paged-list-job-output.ts
-  /Web/src/api-services/models/job-detail-output.ts: /Web/src/api-services/models/job-output.ts
-  /Web/src/api-services/models/page-job-detail-input.ts: /Web/src/api-services/models/page-job-input.ts
-  /Web/src/api-services/models/page-job-trigger-record-input.ts: /Web/src/api-services/models/page-job-input.ts
-  /Web/src/api-services/models/sql-sugar-paged-list-job-detail-output.ts: /Web/src/api-services/models/sql-sugar-paged-list-job-output.ts
-  /Web/src/api-services/models/sql-sugar-paged-list-sys-job-trigger-record.ts: /Web/src/api-services/models/sql-sugar-paged-list-job-output.ts
-revisionId: 1413
+gitCommitId: !uuid '90e6c33e8f45c27d9171f68005ad5ceeb6d31506'
+renames: {
+  }
+revisionId: 1414
