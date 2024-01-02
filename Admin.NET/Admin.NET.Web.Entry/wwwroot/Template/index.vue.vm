@@ -1,4 +1,4 @@
-﻿@{
+@{
   var pkField = Model.TableField.Where(c => c.ColumnKey == "True").FirstOrDefault();
   string pkFieldName = LowerFirstLetter(pkField.PropertyName);
   Dictionary<string, int> definedObjects = new Dictionary<string, int>();
@@ -210,7 +210,8 @@
 
   @if(@Model.PrintType == "custom"){
   @:// 推荐设置操作 width 为 200
-  @:import { hiprint } from 'vue-plugin-hiprint';
+  @:import { hiprint, disAutoConnect } from 'vue-plugin-hiprint';
+  @:disAutoConnect();
   @:import { SysPrintApi } from '/@@/api-services/api';
   @:import { SysPrint } from '/@@/api-services/models';
   }
