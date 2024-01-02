@@ -2,16 +2,28 @@
 branches: {
   }
 fileChange:
-  /Web:
-    newFile: !uuid '4d3c7e143ebba82f8c7702b499f1cbdb2392e7e4'
-    oldFile: !uuid '9cb46717ae93653caf3d243eaed1eae45dde671a'
-  /Web/src:
-    newFile: !uuid '5739cbddb144a1430eab37dd2a74c6593e798410'
-    oldFile: !uuid '09232331b803af25e54b4800fa2e209ed7687aa3'
-  /Web/src/main.ts:
-    newFile: !uuid '9f928ae4633424780a6f5901981a089f7a39b2d9'
-    oldFile: !uuid 'f597eedaf4b134c2fb3753dc1d0a78b0557cacdc'
-gitCommitId: !uuid '8a0d4a6f561c992383896e54457d1aa2a94ae513'
+  /Admin.NET:
+    newFile: !uuid 'ea86a5a5a76b4d1f5f7679300e24fa6e956ff88d'
+    oldFile: !uuid '2700511dabd7540fe5b45d15719a88d555b8271d'
+  /Admin.NET/Admin.NET.Application:
+    newFile: !uuid '868df0e1852a5dc9ba4872229ed3b6b47bf06efc'
+    oldFile: !uuid '248a4213307842fe394baf41104c68a85c89bb92'
+  /Admin.NET/Admin.NET.Application/Configuration:
+    newFile: !uuid 'e5a10dce7a3b931f44224c0cdafaae6a87f9deb5'
+    oldFile: !uuid '046a57ef4967fc66b5907e32788fbdead4be4311'
+  /Admin.NET/Admin.NET.Application/Configuration/Swagger.json:
+    newFile: !uuid 'aa64cbff8907e6a9009dfb1414486ac9020680be'
+    oldFile: !uuid '65003edc1c3cafbe2c4996b280aaaf31468ac6aa'
+  /Admin.NET/Admin.NET.Application/Const:
+    newFile: !uuid '4fa48b0b00734e009960392918ee39b4a1995729'
+    oldFile: !uuid '19f5c7f9e7ca12ae815e3a7b0f1196799d280041'
+  /Admin.NET/Admin.NET.Application/Const/ApplicationConst.cs:
+    newFile: !uuid '8b61968feea17000b309c3c660b39f2840880e46'
+    oldFile: !uuid '37ea5d9966ba26a18ac9e3d94724f0e42c3ddcd0'
+  /Admin.NET/Admin.NET.Application/GlobalUsings.cs:
+    newFile: !uuid '0a7c13d1ffab9f901e1614308cafdb3022445532'
+    oldFile: !uuid 'c087a522a1618b68cd88a389dba749eaedb0af2c'
+gitCommitId: !uuid '5a88326f35ff4d187926d709359dc46d05823e5e'
 renames: {
   }
-revisionId: 1381
+revisionId: 1382
