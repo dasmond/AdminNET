@@ -2,10 +2,28 @@
 branches: {
   }
 fileChange:
-  /README.md:
-    newFile: !uuid '4830f953f811d5ffba178f4314106c6cc4a8321e'
-    oldFile: !uuid 'dbe6afb79cd482ec22a40fe381255a7bd2f9b325'
-gitCommitId: !uuid 'c588cba12bee2b53bdd2428e180986d5e6dbfd94'
+  /Web:
+    newFile: !uuid 'c092c586ea34b79597b710ce8f05055529759b16'
+    oldFile: !uuid 'e64085e821254711edc80b82e134e45d848aa944'
+  /Web/src:
+    newFile: !uuid '50822d97e0f30e70135f05f9e66807f81ec77f91'
+    oldFile: !uuid '5739cbddb144a1430eab37dd2a74c6593e798410'
+  /Web/src/views:
+    newFile: !uuid '8b7637ba3fc492128421aa42e6225d3d6098b902'
+    oldFile: !uuid 'da3b237acfe95a57c793ce7392d541e63fe9b3c9'
+  /Web/src/views/system:
+    newFile: !uuid 'd3f88105e6741d5aefdba003ce37a159cd2cb497'
+    oldFile: !uuid '56737d42e5ac277835ec7dda8f5e7ece7cb53b8a'
+  /Web/src/views/system/openAccess:
+    newFile: !uuid 'c071d09b12e83f5562cf9bc5a794aa7835f30039'
+    oldFile: !uuid 'be381483f082c531a1c58f63e9af03c2064f1d66'
+  /Web/src/views/system/openAccess/component:
+    newFile: !uuid 'ff51062d11fd1f35a47da4a1e139c5ff7c3a5797'
+    oldFile: !uuid '2e440a85dee2e01b0fb4e7e0cd3a05a58df6b4b4'
+  /Web/src/views/system/openAccess/component/editOpenAccess.vue:
+    newFile: !uuid '4d78aa28aefabb3f3be017946cb9faa19582bf32'
+    oldFile: !uuid '2a57d38867194f719bdf6cc4d3e3a9dc530d8271'
+gitCommitId: !uuid '68bd092d160b2b8f6a22c1e7288c1d7359c47e60'
 renames: {
   }
-revisionId: 1421
+revisionId: 1422
