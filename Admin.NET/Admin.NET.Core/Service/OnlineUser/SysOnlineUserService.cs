@@ -1,4 +1,4 @@
-﻿// 麻省理工学院许可证
+// 麻省理工学院许可证
 //
 // 版权所有 (c) 2021-2023 zuohuaijun，大名科技（天津）有限公司  联系电话/微信：18020030720  QQ：515096995
 //
@@ -83,9 +83,25 @@ public class SysOnlineUserService : IDynamicApiController, ITransient
     {
         if (await _sysConfigService.GetConfigValue<bool>(CommonConst.SysSingleLogin))
         {
-            var user = await _sysOnlineUerRep.GetFirstAsync(u => u.UserId == userId);
-            if (user == null) return;
+            var users = await _sysOnlineUerRep.GetListAsync(u => u.UserId == userId);
+            foreach (var user in users)
+            {
+                await ForceOffline(user);
+            }
+        }
+    }
 
+    /// <summary>
+    /// 通过用户ID踢掉在线用户
+    /// </summary>
+    /// <param name="userId"></param>
+    /// <returns></returns>
+    [NonAction]
+    public async Task ForceOffline(long userId)
+    {
+        var users = await _sysOnlineUerRep.GetListAsync(u => u.UserId == userId);
+        foreach (var user in users)
+        {
             await ForceOffline(user);
         }
     }

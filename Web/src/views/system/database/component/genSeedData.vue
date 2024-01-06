@@ -56,7 +56,7 @@ const state = reactive({
 	isShowDialog: false,
 	ruleForm: {} as any,
 	codeGenBaseClassName: [] as any,
-	rules: { position: [{ required: true, message: '请选择存放位置',trigger: 'blur' }] },
+	rules: { position: [{ required: true, message: '请选择存放位置', trigger: 'blur' }] },
 });
 
 onMounted(async () => {
@@ -68,6 +68,7 @@ onMounted(async () => {
 const openDialog = (row: any) => {
 	state.ruleForm.configId = row.configId;
 	state.ruleForm.tableName = row.tableName;
+	state.ruleForm.position = row.position;
 	state.isShowDialog = true;
 };
 

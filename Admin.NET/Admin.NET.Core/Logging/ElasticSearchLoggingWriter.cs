@@ -17,7 +17,7 @@ namespace Admin.NET.Core;
 public class ElasticSearchLoggingWriter : IDatabaseLoggingWriter
 {
     private readonly ElasticClient _esClient;
-    private readonly SysConfigService _sysConfigService; // 参数配置服务
+    private readonly SysConfigService _sysConfigService;
 
     public ElasticSearchLoggingWriter(ElasticClient esClient, SysConfigService sysConfigService)
     {
@@ -38,6 +38,63 @@ public class ElasticSearchLoggingWriter : IDatabaseLoggingWriter
         if (loggingMonitor.actionName == "userInfo" || loggingMonitor.actionName == "logout")
             return;
 
-        await _esClient.IndexDocumentAsync(jsonStr);
+        #region 处理操作日志
+
+        // 获取当前操作者
+        string account = "", realName = "", userId = "", tenantId = "";
+        if (loggingMonitor.authorizationClaims != null)
+        {
+            foreach (var item in loggingMonitor.authorizationClaims)
+            {
+                if (item.type == ClaimConst.Account)
+                    account = item.value;
+                if (item.type == ClaimConst.RealName)
+                    realName = item.value;
+                if (item.type == ClaimConst.TenantId)
+                    tenantId = item.value;
+                if (item.type == ClaimConst.UserId)
+                    userId = item.value;
+            }
+        }
+
+        string remoteIPv4 = loggingMonitor.remoteIPv4;
+        (string ipLocation, double? longitude, double? latitude) = DatabaseLoggingWriter.GetIpAddress(remoteIPv4);
+        //var client = Parser.GetDefault().Parse(loggingMonitor.userAgent.ToString());
+        //var browser = $"{client.UA.Family} {client.UA.Major}.{client.UA.Minor} / {client.Device.Family}";
+        //var os = $"{client.OS.Family} {client.OS.Major} {client.OS.Minor}";
+
+        var sysLogOp = new SysLogOp
+        {
+            Id = DateTime.Now.Ticks,
+            ControllerName = loggingMonitor.controllerName,
+            ActionName = loggingMonitor.actionTypeName,
+            DisplayTitle = loggingMonitor.displayTitle,
+            Status = loggingMonitor.returnInformation.httpStatusCode,
+            RemoteIp = remoteIPv4,
+            Location = ipLocation,
+            Longitude = longitude,
+            Latitude = latitude,
+            Browser = loggingMonitor.userAgent,
+            Os = loggingMonitor.osDescription + " " + loggingMonitor.osArchitecture,
+            Elapsed = loggingMonitor.timeOperationElapsedMilliseconds,
+            LogDateTime = logMsg.LogDateTime,
+            Account = account,
+            RealName = realName,
+            HttpMethod = loggingMonitor.httpMethod,
+            RequestUrl = loggingMonitor.requestUrl,
+            RequestParam = (loggingMonitor.parameters == null || loggingMonitor.parameters.Count == 0) ? null : JSON.Serialize(loggingMonitor.parameters[0].value),
+            ReturnResult = JSON.Serialize(loggingMonitor.returnInformation),
+            EventId = logMsg.EventId.Id,
+            ThreadId = logMsg.ThreadId,
+            TraceId = logMsg.TraceId,
+            Exception = (loggingMonitor.exception == null) ? null : JSON.Serialize(loggingMonitor.exception),
+            Message = logMsg.Message,
+            CreateUserId = string.IsNullOrWhiteSpace(userId) ? 0 : long.Parse(userId),
+            TenantId = string.IsNullOrWhiteSpace(tenantId) ? 0 : long.Parse(tenantId)
+        };
+
+        #endregion 处理操作日志
+
+        await _esClient.IndexDocumentAsync(sysLogOp);
     }
 }

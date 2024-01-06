@@ -175,11 +175,10 @@
 	}
 @if(@Model.TableField.Any(x=>x.EffectType == "Upload")){
     @:import { Plus } from "@@element-plus/icons-vue";
-	@:import { getDictDataList as dl } from '/@@/utils/dict-utils';
     @:import { UploadRequestOptions } from "element-plus";
     @:import {@string.Join(",",Model.TableField.Where(x=>x.EffectType == "Upload").Select(x=>"upload"+x.PropertyName).ToList())} from '/@@/api/main/@(@Model.LowerClassName)';
 }
-	import { add@(@Model.ClassName), update@(@Model.ClassName) } from "/@@/api/main/@(@Model.LowerClassName)";
+	import { add@(@Model.ClassName), update@(@Model.ClassName), detail@(@Model.ClassName) } from "/@@/api/main/@(@Model.LowerClassName)";
 	@foreach (var column in Model.TableField){
 	if(@column.EffectType == "ApiTreeSelect" && !definedObjects.ContainsKey("import__@(@column.FkEntityName)Tree")){
 	@{definedObjects.Add("import__@(@column.FkEntityName)Tree", 1);}
@@ -225,8 +224,14 @@
 	});
 
 	// 打开弹窗
-	const openDialog = (row: any) => {
-		ruleForm.value = JSON.parse(JSON.stringify(row));
+	const openDialog = async (row: any) => {
+		// ruleForm.value = JSON.parse(JSON.stringify(row));
+		// 改用detail获取最新数据来编辑
+		let rowData = JSON.parse(JSON.stringify(row));
+		if (rowData.id)
+			ruleForm.value = (await detail@(@Model.ClassName)(rowData.id)).data.result;
+		else
+			ruleForm.value = rowData;
 		isShowDialog.value = true;
 	};
 

@@ -21,13 +21,15 @@ public class SysUserService : IDynamicApiController, ITransient
     private readonly SysUserExtOrgService _sysUserExtOrgService;
     private readonly SysUserRoleService _sysUserRoleService;
     private readonly SysConfigService _sysConfigService;
+    private readonly SysOnlineUserService _sysOnlineUserService;
 
     public SysUserService(UserManager userManager,
         SqlSugarRepository<SysUser> sysUserRep,
         SysOrgService sysOrgService,
         SysUserExtOrgService sysUserExtOrgService,
         SysUserRoleService sysUserRoleService,
-        SysConfigService sysConfigService)
+        SysConfigService sysConfigService,
+        SysOnlineUserService sysOnlineUserService)
     {
         _userManager = userManager;
         _sysUserRep = sysUserRep;
@@ -35,6 +37,7 @@ public class SysUserService : IDynamicApiController, ITransient
         _sysUserExtOrgService = sysUserExtOrgService;
         _sysUserRoleService = sysUserRoleService;
         _sysConfigService = sysConfigService;
+        _sysOnlineUserService = sysOnlineUserService;
     }
 
     /// <summary>
@@ -61,22 +64,18 @@ public class SysUserService : IDynamicApiController, ITransient
         return await _sysUserRep.AsQueryable()
             .LeftJoin<SysOrg>((u, a) => u.OrgId == a.Id)
             .LeftJoin<SysPos>((u, a, b) => u.PosId == b.Id)
-            .LeftJoin<SysUserRole>((u, a, b, c) => u.Id == c.UserId)
-            .LeftJoin<SysRole>((u, a, b, c, d) => c.RoleId == d.Id)
             .Where(u => u.AccountType != AccountTypeEnum.SuperAdmin)
             .WhereIF(orgList != null, u => orgList.Contains(u.OrgId))
             .WhereIF(!string.IsNullOrWhiteSpace(input.Account), u => u.Account.Contains(input.Account))
             .WhereIF(!string.IsNullOrWhiteSpace(input.RealName), u => u.RealName.Contains(input.RealName))
             .WhereIF(!string.IsNullOrWhiteSpace(input.Phone), u => u.Phone.Contains(input.Phone))
             .OrderBy(u => u.OrderNo)
-            .Select((u, a, b, c, d) => new UserOutput
+            .Select((u, a, b) => new UserOutput
             {
-                Index = SqlFunc.RowNumber(u.Id, u.Id),
                 OrgName = a.Name,
                 PosName = b.Name,
-                RoleName = d.Name
+                RoleName = SqlFunc.Subqueryable<SysUserRole>().LeftJoin<SysRole>((m, n) => m.RoleId == n.Id).Where(m => m.UserId == u.Id).SelectStringJoin((m, n) => n.Name, ",")
             }, true)
-            .MergeTable().Where(u => u.Index == 1)
             .ToPagedListAsync(input.Page, input.PageSize);
     }
 
@@ -154,6 +153,9 @@ public class SysUserService : IDynamicApiController, ITransient
         if (user.Id == _userManager.UserId)
             throw Oops.Oh(ErrorCodeEnum.D1001);
 
+        // 强制下线
+        await _sysOnlineUserService.ForceOffline(user.Id);
+
         await _sysUserRep.DeleteAsync(user);
 
         // 删除用户角色
@@ -199,6 +201,20 @@ public class SysUserService : IDynamicApiController, ITransient
 
         if (!Enum.IsDefined(typeof(StatusEnum), input.Status))
             throw Oops.Oh(ErrorCodeEnum.D3005);
+
+        // 账号禁用则增加黑名单，账号启用则移除黑名单
+        var sysCacheService = App.GetService<SysCacheService>();
+        if (input.Status == StatusEnum.Disable)
+        {
+            sysCacheService.Set($"{CacheConst.KeyBlacklist}{user.Id}", $"{user.RealName}-{user.Phone}");
+
+            // 强制下线
+            await _sysOnlineUserService.ForceOffline(user.Id);
+        }
+        else
+        {
+            sysCacheService.Remove($"{CacheConst.KeyBlacklist}{user.Id}");
+        }
 
         user.Status = input.Status;
         return await _sysUserRep.AsUpdateable(user).UpdateColumns(u => new { u.Status }).ExecuteCommandAsync();

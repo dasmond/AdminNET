@@ -1,4 +1,4 @@
-﻿// 麻省理工学院许可证
+// 麻省理工学院许可证
 //
 // 版权所有 (c) 2021-2023 zuohuaijun，大名科技（天津）有限公司  联系电话/微信：18020030720  QQ：515096995
 //
@@ -193,12 +193,12 @@ public class SysCodeGenService : IDynamicApiController, ITransient
         var entityType = GetEntityInfos().GetAwaiter().GetResult().FirstOrDefault(u => u.EntityName == input.TableName);
         if (entityType == null)
             return null;
+        var config = App.GetOptions<DbConnectionOptions>().ConnectionConfigs.FirstOrDefault(u => u.ConfigId.ToString() == input.ConfigId);
+        var dbTableName = config.DbSettings.EnableUnderLine ? UtilMethods.ToUnderLine(entityType.DbTableName) : entityType.DbTableName;
 
         // 切库---多库代码生成用
         var provider = _db.AsTenant().GetConnectionScope(!string.IsNullOrEmpty(input.ConfigId) ? input.ConfigId : SqlSugarConst.MainConfigId);
 
-        var config = App.GetOptions<DbConnectionOptions>().ConnectionConfigs.FirstOrDefault(u => u.ConfigId.ToString() == input.ConfigId);
-        var dbTableName = config.DbSettings.EnableUnderLine ? UtilMethods.ToUnderLine(entityType.DbTableName) : entityType.DbTableName;
         var entityBasePropertyNames = _codeGenOptions.EntityBaseColumn[nameof(EntityTenant)];
         var columnInfos = provider.DbMaintenance.GetColumnInfosByTableName(dbTableName, false);
         var result = columnInfos.Select(u => new ColumnOuput
@@ -281,7 +281,7 @@ public class SysCodeGenService : IDynamicApiController, ITransient
             {
                 EntityName = c.Name,
                 DbTableName = sugarAttribute == null ? c.Name : ((SugarTable)sugarAttribute).TableName,
-                TableDescription = description,
+                TableDescription = sugarAttribute == null ? description : ((SugarTable)sugarAttribute).TableDescription,
                 Type = c
             });
         }
@@ -344,6 +344,7 @@ public class SysCodeGenService : IDynamicApiController, ITransient
 
         for (var i = 0; i < templatePathList.Count; i++)
         {
+            if (!File.Exists(templatePathList[i])) continue;
             var tContent = File.ReadAllText(templatePathList[i]);
             var tResult = await _viewEngine.RunCompileFromCachedAsync(tContent, data, builderAction: builder =>
             {
@@ -419,7 +420,7 @@ public class SysCodeGenService : IDynamicApiController, ITransient
                 Type = MenuTypeEnum.Dir,
                 Icon = "robot",
                 Path = "/" + className.ToLower(),
-                Component = "LAYOUT",
+                Component = "Layout",
             };
             // 若先前存在则删除本级和下级
             var menuList0 = await _db.Queryable<SysMenu>().Where(u => u.Title == menuType0.Title && u.Type == menuType0.Type).ToListAsync();

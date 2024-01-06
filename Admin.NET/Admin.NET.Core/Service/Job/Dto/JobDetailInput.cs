@@ -17,7 +17,7 @@ public class JobDetailInput
     public string JobId { get; set; }
 }
 
-public class PageJobInput : BasePageInput
+public class PageJobDetailInput : BasePageInput
 {
     /// <summary>
     /// 作业Id

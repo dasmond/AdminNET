@@ -31,6 +31,17 @@
 								@change="val.change"
 								class="w100"
 							/>
+							<el-date-picker
+								v-model="state.form[val.prop]"
+								v-bind="val.comProps"
+								type="daterange"
+								value-format="YYYY/MM/DD"
+								:placeholder="val.placeholder"
+								:clearable="!val.required"
+								v-else-if="val.type === 'daterange'"
+								@change="val.change"
+								class="w100"
+							/>
 							<el-select
 								v-model="state.form[val.prop]"
 								v-bind="val.comProps"
@@ -72,7 +83,7 @@
 							<!-- 使用el-button-group会导致具有type属性的按钮的右边框无法显示 -->
 							<!-- <el-button-group> -->
 							<el-button plain type="primary" icon="ele-Search" @click="onSearch(tableSearchRef)"> 查询 </el-button>
-							<el-button icon="ele-Refresh" @click="onReset(tableSearchRef)" style="margin-left: 12px;"> 重置 </el-button>
+							<el-button icon="ele-Refresh" @click="onReset(tableSearchRef)" style="margin-left: 12px"> 重置 </el-button>
 							<!-- </el-button-group> -->
 						</div>
 					</el-form-item>

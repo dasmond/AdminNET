@@ -21,9 +21,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json;
 using OnceMi.AspNetCore.OSS;
+using SixLabors.ImageSharp.Web.DependencyInjection;
 using System;
-using System.Net;
-using System.Net.Mail;
 
 namespace Admin.NET.Web.Core;
 
@@ -118,6 +117,9 @@ public class Startup : AppStartup
             //});
         });
 
+        // 图像处理
+        services.AddImageSharp();
+
         // OSS对象存储
         var ossOpt = App.GetConfig<OSSProviderOptions>("OSSProvider", true);
         services.AddOSSService(Enum.GetName(ossOpt.Provider), "OSSProvider");
@@ -127,6 +129,7 @@ public class Startup : AppStartup
 
         // 即时通讯
         services.AddSignalR(SetNewtonsoftJsonSetting);
+        //services.AddSingleton<IUserIdProvider, UserIdProvider>();
 
         // 系统日志
         services.AddLoggingSetup();
@@ -157,6 +160,9 @@ public class Startup : AppStartup
 
         // 配置多语言
         app.UseAppLocalization();
+
+        // 图像处理
+        app.UseImageSharp();
 
         //// 启用HTTPS
         //app.UseHttpsRedirection();

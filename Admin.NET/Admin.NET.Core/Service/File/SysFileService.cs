@@ -222,8 +222,10 @@ public class SysFileService : IDynamicApiController, ITransient
         var fileMd5 = string.Empty;
         if (_uploadOptions.EnableMd5)
         {
-            using var fileStream = file.OpenReadStream();
-            fileMd5 = OssUtils.ComputeContentMd5(fileStream, fileStream.Length);
+            using (var fileStream = file.OpenReadStream())
+            {
+                fileMd5 = OssUtils.ComputeContentMd5(fileStream, fileStream.Length);
+            }
             var sysFile = await _sysFileRep.GetFirstAsync(u => u.FileMd5 == fileMd5 && (u.SizeKb == null || u.SizeKb == sizeKb.ToString()));
             if (sysFile != null) return sysFile;
         }
@@ -355,7 +357,8 @@ public class SysFileService : IDynamicApiController, ITransient
         }
 
         var res = await UploadFile(file, "Upload/Avatar");
-        await sysUserRep.UpdateAsync(u => new SysUser() { Avatar = $"{res.FilePath}/{res.Name}" }, u => u.Id == user.Id);
+        var url = _OSSProviderOptions.IsEnable ? res.Url : $"{res.FilePath}/{res.Name}";
+        await sysUserRep.UpdateAsync(u => new SysUser() { Avatar = url }, u => u.Id == user.Id);
         return res;
     }
 
@@ -377,7 +380,8 @@ public class SysFileService : IDynamicApiController, ITransient
         }
 
         var res = await UploadFile(file, "Upload/Signature");
-        await sysUserRep.UpdateAsync(u => new SysUser() { Signature = $"{res.FilePath}/{res.Name}" }, u => u.Id == user.Id);
+        var url = _OSSProviderOptions.IsEnable ? res.Url : $"{res.FilePath}/{res.Name}";
+        await sysUserRep.UpdateAsync(u => new SysUser() { Signature = url }, u => u.Id == user.Id);
         return res;
     }
 }

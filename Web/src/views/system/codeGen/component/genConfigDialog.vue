@@ -15,7 +15,7 @@
 						<el-input v-model="scope.row.columnComment" autocomplete="off" />
 					</template>
 				</el-table-column>
-				<el-table-column prop="netType" label="数据类型" minWidth="90" show-overflow-tooltip />
+				<el-table-column prop="netType" label="数据类型" min-width="90" show-overflow-tooltip />
 				<el-table-column prop="effectType" label="作用类型" width="120" show-overflow-tooltip>
 					<template #default="scope">
 						<el-select v-model="scope.row.effectType" class="m-2" placeholder="Select" :disabled="judgeColumns(scope.row)" @change="effectTypeChange(scope.row, scope.$index)">
@@ -46,12 +46,17 @@
 						<el-checkbox v-model="scope.row.whetherRequired" :disabled="judgeColumns(scope.row)" />
 					</template>
 				</el-table-column>
-				<el-table-column prop="queryWhether" label="是否是查询" minWidth="80" align="center" show-overflow-tooltip>
+				<el-table-column prop="whetherSortable" label="可排序" width="80" align="center" show-overflow-tooltip>
+					<template #default="scope">
+						<el-checkbox v-model="scope.row.whetherSortable" />
+					</template>
+				</el-table-column>
+				<el-table-column prop="queryWhether" label="是否是查询" min-width="80" align="center" show-overflow-tooltip>
 					<template #default="scope">
 						<el-switch v-model="scope.row.queryWhether" :active-value="true" :inactive-value="false" />
 					</template>
 				</el-table-column>
-				<el-table-column prop="queryType" label="查询方式" minWidth="120" align="center" show-overflow-tooltip>
+				<el-table-column prop="queryType" label="查询方式" min-width="120" align="center" show-overflow-tooltip>
 					<template #default="scope">
 						<el-select v-model="scope.row.queryType" class="m-2" placeholder="Select" :disabled="!scope.row.queryWhether">
 							<el-option v-for="item in state.queryTypeList" :key="item.code" :label="item.value" :value="item.code" />
@@ -118,7 +123,7 @@ onMounted(async () => {
 	state.allConstSelector = res3.data.result;
 
 	let resEnum = await getAPI(SysEnumApi).apiSysEnumEnumTypeListGet();
-	state.allEnumSelector = resEnum.data.result?.map((item) => ({ ...item, name: item.typeDescribe, code: item.typeName }));
+	state.allEnumSelector = resEnum.data.result?.map((item) => ({ ...item, name: `${item.typeDescribe} [${item.typeName?.replace('Enum', '')}]`, code: item.typeName }));
 
 	mittBus.on('submitRefreshFk', (data: any) => {
 		state.tableData[data.index] = data;
@@ -174,8 +179,7 @@ const handleQuery = async (row: any) => {
 
 // 判断是否（用于是否能选择或输入等）
 function judgeColumns(data: any) {
-	var lst = ['createdUserName', 'createdTime', 'updatedUserName', 'updatedTime'];
-	return lst.indexOf(data.columnName) > -1 || data.columnKey === 'True';
+	return data.whetherCommon == true || data.columnKey === 'True';
 }
 
 function effectTypeEnable(data: any) {
