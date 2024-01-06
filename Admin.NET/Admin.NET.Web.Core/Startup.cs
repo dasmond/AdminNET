@@ -119,18 +119,8 @@ public class Startup : AppStartup
         });
 
         // OSS对象存储
-        var ossOpt = App.GetOptions<OSSProviderOptions>();
+        var ossOpt = App.GetConfig<OSSProviderOptions>("OSSProvider", true);
         services.AddOSSService(Enum.GetName(ossOpt.Provider), "OSSProvider");
-
-        // 电子邮件
-        var emailOpt = App.GetOptions<EmailOptions>();
-        services.AddFluentEmail(emailOpt.DefaultFromEmail, emailOpt.DefaultFromName)
-            .AddSmtpSender(new SmtpClient(emailOpt.Host, emailOpt.Port)
-            {
-                EnableSsl = emailOpt.EnableSsl,
-                UseDefaultCredentials = emailOpt.UseDefaultCredentials,
-                Credentials = new NetworkCredential(emailOpt.UserName, emailOpt.Password)
-            });
 
         // 模板引擎
         services.AddViewEngine();

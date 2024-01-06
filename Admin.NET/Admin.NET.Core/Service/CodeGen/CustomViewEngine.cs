@@ -45,19 +45,23 @@ public class CustomViewEngine : ViewEngineModel
         }
     }
 
-    public List<CodeGenConfig> QueryWhetherList { get; set; }
-
-    public List<CodeGenConfig> TableField { get; set; }
-
     public bool IsJoinTable { get; set; }
 
     public bool IsUpload { get; set; }
+
+    public string PrintType { get; set; }
+
+    public string PrintName { get; set; }
+
+    public List<CodeGenConfig> QueryWhetherList { get; set; }
+
+    public List<CodeGenConfig> TableField { get; set; }
 
     private List<ColumnOuput> ColumnList { get; set; }
 
     public string GetColumnNetType(object tbName, object colName)
     {
-        var config = App.GetOptions<DbConnectionOptions>().ConnectionConfigs.FirstOrDefault(u => u.ConfigId == ConfigId);
+        var config = App.GetOptions<DbConnectionOptions>().ConnectionConfigs.FirstOrDefault(u => u.ConfigId.ToString() == ConfigId);
         ColumnList = GetColumnListByTableName(tbName.ToString());
         var col = ColumnList.Where(c => (config.DbSettings.EnableUnderLine
             ? CodeGenUtil.CamelColumnName(c.ColumnName, Array.Empty<string>())

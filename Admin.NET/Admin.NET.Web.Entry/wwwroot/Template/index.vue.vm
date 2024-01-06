@@ -13,78 +13,91 @@
   <div class="@(@Model.LowerClassName)-container">
     <el-card shadow="hover" :body-style="{ paddingBottom: '0' }">
       @if(Model.QueryWhetherList.Count > 0){
-      @:<el-form :model="queryParams" ref="queryForm" :inline="true">
-        @if(haveLikeCdt){
-        @:<el-form-item label="关键字">
-          @:<el-input v-model="queryParams.searchKey" clearable="" placeholder="请输入模糊查询关键字"/>
-          @:
-        </el-form-item>
-        }
-        foreach (var column in Model.QueryWhetherList){
-        if(@column.EffectType == "Input" || @column.EffectType == "InputTextArea"){
-        @:<el-form-item label="@column.ColumnComment">
-          @:<el-input v-model="queryParams.@(@column.LowerPropertyName)" clearable="" placeholder="请输入@(@column.ColumnComment)"/>
-          @:
-        </el-form-item>
-        }else if(@column.EffectType == "InputTextArea"){
-        @:<el-form-item label="@column.ColumnComment">
-          @:<el-input-number v-model="queryParams.@(@column.LowerPropertyName)"  clearable="" placeholder="请输入@(@column.ColumnComment)"/>
-          @:
-        </el-form-item>
-        }else if(@column.EffectType == "InputNumber"){
-        @:<el-form-item label="@column.ColumnComment">
-          @:<el-input-number v-model="queryParams.@(@column.LowerPropertyName)"  clearable="" placeholder="请输入@(@column.ColumnComment)"/>
-          @:
-        </el-form-item>
-        }else if(@column.EffectType == "fk"){
-        @:<el-form-item label="@column.ColumnComment">
-          @:<el-select clearable="" filterable="" v-model="queryParams.@(@column.LowerPropertyName)" placeholder="请选择@(@column.ColumnComment)">
-            @:<el-option v-for="(item,index) in  @LowerFirstLetter(@column.FkEntityName)@(@column.PropertyName)DropdownList" :key="index" :value="item.value" :label="item.label" />
-            @:
-          </el-select>
-          @:
-        </el-form-item>
-        }else if(@column.EffectType == "Select"){
-        @:<el-form-item label="@column.ColumnComment">
-          @:<el-select clearable="" v-model="queryParams.@(@column.LowerPropertyName)" placeholder="请选择@(@column.ColumnComment)">
-            @:<el-option v-for="(item,index) in dl('@(@column.DictTypeCode)')" :key="index" :value="item.code" :label="`[${item.code}] ${item.value}`" />
-            @:
-          </el-select>
-          @:
-        </el-form-item>
-        }else if(@column.EffectType == "EnumSelector"){
-        @:<el-form-item label="@column.ColumnComment">
-          @:<el-select clearable="" v-model="queryParams.@(@column.LowerPropertyName)" placeholder="请选择@(@column.ColumnComment)">
-            @:<el-option v-for="(item,index) in getEnum@(@column.LowerPropertyName)Data" :key="index" :value="item.value" :label="item.describe" />
-            @:
-          </el-select>
-          @:
-        </el-form-item>
-        }else if(@column.EffectType == "DatePicker"){
-        @:<el-form-item label="@column.ColumnComment">
-          if(@column.QueryType == "~"){
-          @:<el-date-picker placeholder="请选择@(@column.ColumnComment)" value-format="YYYY/MM/DD" type="daterange" v-model="queryParams.@(@column.LowerPropertyName)Range" />
-          }else
-          {
-          @:<el-date-picker placeholder="请选择@(@column.ColumnComment)" value-format="YYYY/MM/DD"  v-model="queryParams.@(@column.LowerPropertyName)" />
+      @:<el-form :model="queryParams" ref="queryForm" labelWidth="90">
+        @:<el-row>
+          @if(haveLikeCdt){
+          @:<el-col :xs="24" :sm="12" :md="12" :lg="8" :xl="4" class="mb10">
+            @:<el-form-item label="关键字">
+              @:<el-input v-model="queryParams.searchKey" clearable="" placeholder="请输入模糊查询关键字"/>
+              @:
+            </el-form-item>
+          </el-col>
           }
-          @:
-        </el-form-item>
-        }
-        }
-        @:<el-form-item>
-          @:<el-button-group>
-            @:<el-button type="primary"  icon="ele-Search" @@click="handleQuery" v-auth="'@(@Model.LowerClassName):page'"> 查询 </el-button>
-            @:<el-button icon="ele-Refresh" @@click="() => queryParams = {}"> 重置 </el-button>
+          foreach (var column in Model.QueryWhetherList){
+          @:<el-col :xs="24" :sm="12" :md="12" :lg="8" :xl="4" class="mb10" v-if="showAdvanceQueryUI">
+            if(@column.EffectType == "Input" || @column.EffectType == "InputTextArea"){
+            @:<el-form-item label="@column.ColumnComment">
+              @:<el-input v-model="queryParams.@(@column.LowerPropertyName)" clearable="" placeholder="请输入@(@column.ColumnComment)"/>
+              @:
+            </el-form-item>
+            }else if(@column.EffectType == "InputTextArea"){
+            @:<el-form-item label="@column.ColumnComment">
+              @:<el-input-number v-model="queryParams.@(@column.LowerPropertyName)"  clearable="" placeholder="请输入@(@column.ColumnComment)"/>
+              @:
+            </el-form-item>
+            }else if(@column.EffectType == "InputNumber"){
+            @:<el-form-item label="@column.ColumnComment">
+              @:<el-input-number v-model="queryParams.@(@column.LowerPropertyName)"  clearable="" placeholder="请输入@(@column.ColumnComment)"/>
+              @:
+            </el-form-item>
+            }else if(@column.EffectType == "fk"){
+            @:<el-form-item label="@column.ColumnComment">
+              @:<el-select clearable="" filterable="" v-model="queryParams.@(@column.LowerPropertyName)" placeholder="请选择@(@column.ColumnComment)">
+                @:<el-option v-for="(item,index) in  @LowerFirstLetter(@column.FkEntityName)@(@column.PropertyName)DropdownList" :key="index" :value="item.value" :label="item.label" />
+                @:
+              </el-select>
+              @:
+            </el-form-item>
+            }else if(@column.EffectType == "Select"){
+            @:<el-form-item label="@column.ColumnComment">
+              @:<el-select clearable="" v-model="queryParams.@(@column.LowerPropertyName)" placeholder="请选择@(@column.ColumnComment)">
+                @:<el-option v-for="(item,index) in dl('@(@column.DictTypeCode)')" :key="index" :value="item.code" :label="`[${item.code}] ${item.value}`" />
+                @:
+              </el-select>
+              @:
+            </el-form-item>
+            }else if(@column.EffectType == "EnumSelector"){
+            @:<el-form-item label="@column.ColumnComment">
+              @:<el-select clearable="" v-model="queryParams.@(@column.LowerPropertyName)" placeholder="请选择@(@column.ColumnComment)">
+                @:<el-option v-for="(item,index) in getEnum@(@column.PropertyName)Data_Index" :key="index" :value="item.value" :label="`[${item.value}] ${item.describe}`" />
+                @:
+              </el-select>
+              @:
+            </el-form-item>
+            }else if(@column.EffectType == "DatePicker"){
+            @:<el-form-item label="@column.ColumnComment">
+              if(@column.QueryType == "~"){
+              @:<el-date-picker placeholder="请选择@(@column.ColumnComment)" value-format="YYYY/MM/DD" type="daterange" v-model="queryParams.@(@column.LowerPropertyName)Range" />
+              }else
+              {
+              @:<el-date-picker placeholder="请选择@(@column.ColumnComment)" value-format="YYYY/MM/DD"  v-model="queryParams.@(@column.LowerPropertyName)" />
+              }
+              @:
+            </el-form-item>
+            }
+          @:</el-col>
+            }
+          @:<el-col :xs="24" :sm="12" :md="12" :lg="6" :xl="6" class="mb10">
+            @:<el-form-item>
+              @:<el-button-group>
+                @:<el-button type="primary"  icon="ele-Search" @@click="handleQuery" v-auth="'@(@Model.LowerClassName):page'"> 查询 </el-button>
+                @:<el-button icon="ele-Refresh" @@click="() => queryParams = {}"> 重置 </el-button>
+                @if(haveLikeCdt){
+                @:<el-button icon="ele-ZoomIn" @@click="changeAdvanceQueryUI" v-if="!showAdvanceQueryUI"> 高级 </el-button>
+                @:<el-button icon="ele-ZoomOut" @@click="changeAdvanceQueryUI" v-if="showAdvanceQueryUI"> 隐藏 </el-button>
+                }
+                @:
+              </el-button-group>
+              @:
+              @:<el-button-group style="margin-left:20px">
+                @:<el-button type="primary" icon="ele-Plus" @@click="openAdd@(@Model.ClassName)" v-auth="'@(@Model.LowerClassName):add'"> 新增 </el-button>
+                @:
+              </el-button-group>
+              @:
+            </el-form-item>
             @:
-          </el-button-group>
-          @:
-        </el-form-item>
-        @:<el-form-item>
-          @:<el-button type="primary" icon="ele-Plus" @@click="openAdd@(@Model.ClassName)" v-auth="'@(@Model.LowerClassName):add'"> 新增 </el-button>
-          @:
-        </el-form-item>
-        @:
+          @:</el-col>
+        </el-row>
       </el-form>
       }
     </el-card>
@@ -138,7 +151,7 @@
         else if(@column.EffectType == "EnumSelector"){
           @:<el-table-column prop="@column.LowerPropertyName" label="@column.ColumnComment" width="@(column.ColumnComment!=null && column.ColumnComment.Length > 5 ? column.ColumnComment.Length * 15 : 140)" show-overflow-tooltip="" >
             @:<template #default="scope">
-              @:<el-tag>{{ getEnumDesc(scope.row.@column.LowerPropertyName, getEnum@(@column.PropertyName)Data)}}</el-tag>
+              @:<el-tag>{{ getEnumDesc(scope.row.@column.LowerPropertyName, getEnum@(@column.PropertyName)Data_Index)}}</el-tag>
             @:</template>
           @:</el-table-column>
         }
@@ -147,8 +160,14 @@
         }
         }
         }
-        <el-table-column label="操作" width="140" align="center" fixed="right" show-overflow-tooltip="" v-if="auth('@(@Model.LowerClassName):edit') || auth('@(@Model.LowerClassName):delete')">
-          <template #default="scope">
+        @if(@Model.PrintType == "custom"){
+        @:<el-table-column label="操作" width="200" align="center" fixed="right" show-overflow-tooltip="" v-if="auth('@(@Model.LowerClassName):edit') || auth('@(@Model.LowerClassName):delete')">
+          @:<template #default="scope">
+            @:<el-button icon="ele-Printer" size="small" text="" type="primary" @@click="openPrint@(@Model.ClassName)(scope.row)" v-auth="'@(@Model.LowerClassName):print'"> 打印 </el-button>
+        }else{
+        @:<el-table-column label="操作" width="140" align="center" fixed="right" show-overflow-tooltip="" v-if="auth('@(@Model.LowerClassName):edit') || auth('@(@Model.LowerClassName):delete')">
+          @:<template #default="scope">
+        }
             <el-button icon="ele-Edit" size="small" text="" type="primary" @@click="openEdit@(@Model.ClassName)(scope.row)" v-auth="'@(@Model.LowerClassName):edit'"> 编辑 </el-button>
             <el-button icon="ele-Delete" size="small" text="" type="primary" @@click="del@(@Model.ClassName)(scope.row)" v-auth="'@(@Model.LowerClassName):delete'"> 删除 </el-button>
           </template>
@@ -158,13 +177,17 @@
 				v-model:currentPage="tableParams.page"
 				v-model:page-size="tableParams.pageSize"
 				:total="tableParams.total"
-				:page-sizes="[10, 20, 50, 100, 200]"
+				:page-sizes="[10, 20, 50, 100, 200, 500]"
 				small=""
 				background=""
 				@@size-change="handleSizeChange"
 				@@current-change="handleCurrentChange"
 				layout="total, sizes, prev, pager, next, jumper"
 	/>
+      <printDialog
+        ref="printDialogRef"
+        :title="print@(@Model.ClassName)Title"
+        @@reloadTable="handleQuery" />
       <editDialog
         ref="editDialogRef"
         :title="edit@(@Model.ClassName)Title"
@@ -182,8 +205,16 @@
   @:import { codeToName, getConstType } from "/@@/utils/constHelper";
   } 
   import { getDictDataItem as di, getDictDataList as dl } from '/@@/utils/dict-utils';
-  //import { formatDate } from '/@@/utils/formatTime';
+  import { formatDate } from '/@@/utils/formatTime';
 
+  @if(@Model.PrintType == "custom"){
+  @:// 推荐设置操作 width 为 200
+  @:import { hiprint } from 'vue-plugin-hiprint';
+  @:import { SysPrintApi } from '/@@/api-services/api';
+  @:import { SysPrint } from '/@@/api-services/models';
+  }
+
+  import printDialog from '/@@/views/system/print/component/hiprint/preview.vue'
   import editDialog from '/@@/views/main/@(@Model.LowerClassName)/component/editDialog.vue'
   import { page@(@Model.ClassName), delete@(@Model.ClassName) } from '/@@/api/main/@(@Model.LowerClassName)';
   @foreach (var column in Model.QueryWhetherList){
@@ -199,25 +230,37 @@
 
   @foreach (var column in Model.QueryWhetherList){
   if(@column.EffectType == "EnumSelector"){
-  @:const getEnum@(@column.PropertyName)Data = ref<any>([]);
+  @:const getEnum@(@column.PropertyName)Data_Index = ref<any>([]);
   }
   }
 
   @if(@Model.QueryWhetherList.Any(x=>x.EffectType == "EnumSelector")){
 	@:const { getEnumDesc } = commonFunction();
 	}
-
+  @if(haveLikeCdt){
+  @:const showAdvanceQueryUI = ref(false);
+  }else {
+  @:const showAdvanceQueryUI = ref(true);
+  }
+  const printDialogRef = ref();
   const editDialogRef = ref();
   const loading = ref(false);
   const tableData = ref<any>([]);
   const queryParams = ref<any>({});
   const tableParams = ref({
-  page: 1,
-  pageSize: 10,
-  total: 0,
+    page: 1,
+    pageSize: 10,
+    total: 0,
   });
+
+  const print@(@Model.ClassName)Title = ref("");
   const edit@(@Model.ClassName)Title = ref("");
 
+  // 改变高级查询的控件显示状态
+  const changeAdvanceQueryUI = () => {
+    showAdvanceQueryUI.value = !showAdvanceQueryUI.value;
+  }
+  
 
   // 查询操作
   const handleQuery = async () => {
@@ -228,7 +271,7 @@
     loading.value = false;
   @foreach (var column in Model.QueryWhetherList){
   if(@column.EffectType == "EnumSelector"){
-    @:getEnum@(@column.PropertyName)Data.value = (await getAPI(SysEnumApi).apiSysEnumEnumDataListGet('@(@column.DictTypeCode)')).data.result ?? [];
+    @:getEnum@(@column.PropertyName)Data_Index.value = (await getAPI(SysEnumApi).apiSysEnumEnumDataListGet('@(@column.DictTypeCode)')).data.result ?? [];
   }
   }
   };
@@ -239,6 +282,18 @@
     editDialogRef.value.openDialog({});
   };
 
+  // 打开打印页面
+  const openPrint@(@Model.ClassName) = async (row: any) => {
+    print@(@Model.ClassName)Title.value = '打印@(@Model.BusName)';
+    @if(@Model.PrintType == "custom"){
+    @:var res = await getAPI(SysPrintApi).apiSysPrintPrintNameGet('@Model.PrintName');
+	  @:var printTemplate = res.data.result as SysPrint;
+    @:var template = JSON.parse(printTemplate.template);
+    @:row['printDate'] = formatDate(new Date(), 'YYYY-mm-dd HH:MM:SS')
+    @:printDialogRef.value.showDialog(new hiprint.PrintTemplate({template: template}), row, template.panels[0].width);
+    }
+  }
+  
   // 打开编辑页面
   const openEdit@(@Model.ClassName) = (row: any) => {
     edit@(@Model.ClassName)Title.value = '编辑@(@Model.BusName)';
@@ -280,12 +335,18 @@
     @:@LowerFirstLetter(@column.FkEntityName)@(@column.PropertyName)DropdownList.value = list.data.result ?? [];
   @:};
   @:get@(@column.FkEntityName)@(@column.PropertyName)DropdownList();
-@:
+  @:
   }
 }
   handleQuery();
 </script>
-
+<style scoped>
+:deep(.el-ipnut),
+:deep(.el-select),
+:deep(.el-input-number) {
+	width: 100%;
+}
+</style>
 
 @{
 string LowerFirstLetter(string text)

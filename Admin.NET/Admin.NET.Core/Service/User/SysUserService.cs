@@ -43,7 +43,7 @@ public class SysUserService : IDynamicApiController, ITransient
     /// <param name="input"></param>
     /// <returns></returns>
     [DisplayName("获取用户分页列表")]
-    public async Task<SqlSugarPagedList<SysUser>> Page(PageUserInput input)
+    public async Task<SqlSugarPagedList<UserOutput>> Page(PageUserInput input)
     {
         // 获取用户拥有的机构集合
         var userOrgIdList = await _sysOrgService.GetUserOrgIdList();
@@ -59,12 +59,24 @@ public class SysUserService : IDynamicApiController, ITransient
         }
 
         return await _sysUserRep.AsQueryable()
+            .LeftJoin<SysOrg>((u, a) => u.OrgId == a.Id)
+            .LeftJoin<SysPos>((u, a, b) => u.PosId == b.Id)
+            .LeftJoin<SysUserRole>((u, a, b, c) => u.Id == c.UserId)
+            .LeftJoin<SysRole>((u, a, b, c, d) => c.RoleId == d.Id)
             .Where(u => u.AccountType != AccountTypeEnum.SuperAdmin)
             .WhereIF(orgList != null, u => orgList.Contains(u.OrgId))
             .WhereIF(!string.IsNullOrWhiteSpace(input.Account), u => u.Account.Contains(input.Account))
             .WhereIF(!string.IsNullOrWhiteSpace(input.RealName), u => u.RealName.Contains(input.RealName))
             .WhereIF(!string.IsNullOrWhiteSpace(input.Phone), u => u.Phone.Contains(input.Phone))
             .OrderBy(u => u.OrderNo)
+            .Select((u, a, b, c, d) => new UserOutput
+            {
+                Index = SqlFunc.RowNumber(u.Id, u.Id),
+                OrgName = a.Name,
+                PosName = b.Name,
+                RoleName = d.Name
+            }, true)
+            .MergeTable().Where(u => u.Index == 1)
             .ToPagedListAsync(input.Page, input.PageSize);
     }
 
@@ -200,9 +212,9 @@ public class SysUserService : IDynamicApiController, ITransient
     [DisplayName("授权用户角色")]
     public async Task GrantRole(UserRoleInput input)
     {
-        var user = await _sysUserRep.GetFirstAsync(u => u.Id == input.UserId) ?? throw Oops.Oh(ErrorCodeEnum.D0009);
-        if (user.AccountType == AccountTypeEnum.SuperAdmin)
-            throw Oops.Oh(ErrorCodeEnum.D1022);
+        //var user = await _sysUserRep.GetFirstAsync(u => u.Id == input.UserId) ?? throw Oops.Oh(ErrorCodeEnum.D0009);
+        //if (user.AccountType == AccountTypeEnum.SuperAdmin)
+        //    throw Oops.Oh(ErrorCodeEnum.D1022);
 
         await _sysUserRoleService.GrantUserRole(input);
     }
@@ -227,7 +239,17 @@ public class SysUserService : IDynamicApiController, ITransient
                 throw Oops.Oh(ErrorCodeEnum.D1004);
         }
 
-        user.Password = CryptogramUtil.Encrypt(input.PasswordNew);
+        // 验证密码强度
+        if (CryptogramUtil.StrongPassword)
+        {
+            user.Password = input.PasswordNew.TryValidate(CryptogramUtil.PasswordStrengthValidation)
+                ? CryptogramUtil.Encrypt(input.PasswordNew)
+                : throw Oops.Oh(CryptogramUtil.PasswordStrengthValidationMsg);
+        }
+        else
+        {
+            user.Password = CryptogramUtil.Encrypt(input.PasswordNew);
+        }
         return await _sysUserRep.AsUpdateable(user).UpdateColumns(u => u.Password).ExecuteCommandAsync();
     }
 

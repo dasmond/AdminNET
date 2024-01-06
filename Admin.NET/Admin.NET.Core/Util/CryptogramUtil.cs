@@ -7,12 +7,13 @@
 // 软件按“原样”提供，不提供任何形式的明示或暗示的保证，包括但不限于对适销性、适用性和非侵权的保证。
 // 在任何情况下，作者或版权持有人均不对任何索赔、损害或其他责任负责，无论是因合同、侵权或其他方式引起的，与软件或其使用或其他交易有关。
 
-using Org.BouncyCastle.Utilities.Encoders;
-
 namespace Admin.NET.Core;
 
 public class CryptogramUtil
 {
+    public static readonly bool StrongPassword = App.GetConfig<bool>("Cryptogram:StrongPassword"); // 是否开启密码强度验证
+    public static readonly string PasswordStrengthValidation = App.GetConfig<string>("Cryptogram:PasswordStrengthValidation"); // 密码强度验证正则表达式
+    public static readonly string PasswordStrengthValidationMsg = App.GetConfig<string>("Cryptogram:PasswordStrengthValidationMsg"); // 密码强度验证提示
     public static readonly string CryptoType = App.GetConfig<string>("Cryptogram:CryptoType"); // 加密类型
     public static readonly string PublicKey = App.GetConfig<string>("Cryptogram:PublicKey"); // 公钥
     public static readonly string PrivateKey = App.GetConfig<string>("Cryptogram:PrivateKey"); // 私钥
@@ -64,8 +65,7 @@ public class CryptogramUtil
     /// <returns></returns>
     public static string SM2Encrypt(string plainText)
     {
-        byte[] sourceData = Encoding.Default.GetBytes(plainText);
-        return SM2Util.Encrypt(Hex.Decode(PublicKey), sourceData);
+        return GMUtil.SM2Encrypt(PublicKey, plainText);
     }
 
     /// <summary>
@@ -75,7 +75,7 @@ public class CryptogramUtil
     /// <returns></returns>
     public static string SM2Decrypt(string cipherText)
     {
-        return Encoding.Default.GetString(SM2Util.Decrypt(Hex.Decode(PrivateKey), Hex.Decode(cipherText)));
+        return GMUtil.SM2Decrypt(PrivateKey, cipherText);
     }
 
     /// <summary>
@@ -85,8 +85,7 @@ public class CryptogramUtil
     /// <returns></returns>
     public static string SM4EncryptECB(string plainText)
     {
-        var sm4 = new SM4Util();
-        return sm4.Encrypt_ECB(plainText);
+        return GMUtil.SM4EncryptECB(plainText);
     }
 
     /// <summary>
@@ -96,8 +95,7 @@ public class CryptogramUtil
     /// <returns></returns>
     public static string SM4DecryptECB(string cipherText)
     {
-        var sm4 = new SM4Util();
-        return sm4.Decrypt_ECB(cipherText);
+        return GMUtil.SM4DecryptECB(cipherText);
     }
 
     /// <summary>
@@ -107,8 +105,7 @@ public class CryptogramUtil
     /// <returns></returns>
     public static string SM4EncryptCBC(string plainText)
     {
-        var sm4 = new SM4Util();
-        return sm4.Encrypt_CBC(plainText);
+        return GMUtil.SM4EncryptCBC(plainText);
     }
 
     /// <summary>
@@ -118,7 +115,6 @@ public class CryptogramUtil
     /// <returns></returns>
     public static string SM4DecryptCBC(string cipherText)
     {
-        var sm4 = new SM4Util();
-        return sm4.Decrypt_CBC(cipherText);
+        return GMUtil.SM4DecryptCBC(cipherText);
     }
 }

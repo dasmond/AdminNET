@@ -32,6 +32,7 @@
 						</el-form>
 					</el-card>
 
+<<<<<<< HEAD
 					<el-card class="full-table" shadow="hover" style="margin-top: 8px">
 						<el-table :data="state.orgData" style="width: 100%" v-loading="state.loading" row-key="id" default-expand-all :tree-props="{ children: 'children', hasChildren: 'hasChildren' }" border>
 							<el-table-column prop="name" label="机构名称" header-align="center" show-overflow-tooltip />
@@ -56,6 +57,31 @@
 						</el-table>
 					</el-card>
 				</div>
+=======
+				<el-card class="full-table" shadow="hover" style="margin-top: 8px">
+					<el-table :data="state.orgData" style="width: 100%" v-loading="state.loading" row-key="id" default-expand-all :tree-props="{ children: 'children', hasChildren: 'hasChildren' }" border>
+						<el-table-column prop="name" label="机构名称" minWidth="160" header-align="center" show-overflow-tooltip />
+						<el-table-column prop="code" label="机构编码" align="center" show-overflow-tooltip />
+						<el-table-column prop="level" label="级别" width="70" align="center" show-overflow-tooltip />
+						<el-table-column prop="type" label="机构类型" align="center" :formatter="dictFormatter" show-overflow-tooltip />
+						<el-table-column prop="orderNo" label="排序" width="70" align="center" show-overflow-tooltip />
+						<el-table-column label="状态" width="70" align="center" show-overflow-tooltip>
+							<template #default="scope">
+								<el-tag type="success" v-if="scope.row.status === 1">启用</el-tag>
+								<el-tag type="danger" v-else>禁用</el-tag>
+							</template>
+						</el-table-column>
+						<el-table-column prop="createTime" label="修改时间" minWidth="120" align="center" show-overflow-tooltip />
+						<el-table-column prop="remark" label="备注" header-align="center" show-overflow-tooltip />
+						<el-table-column label="操作" width="140" fixed="right" align="center" show-overflow-tooltip>
+							<template #default="scope">
+								<el-button icon="ele-Edit" size="small" text type="primary" @click="openEditOrg(scope.row)" v-auth="'sysOrg:update'"> 编辑 </el-button>
+								<el-button icon="ele-Delete" size="small" text type="danger" @click="delOrg(scope.row)" v-auth="'sysOrg:delete'"> 删除 </el-button>
+							</template>
+						</el-table-column>
+					</el-table>
+				</el-card>
+>>>>>>> 7e51091a99ab793fb77978b4ee810d1026069577
 			</el-col>
 		</el-row>
 
