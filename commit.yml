@@ -3,15 +3,21 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '7149f115240e8115a6f582b43aae59837c1b8f74'
-    oldFile: !uuid '7f452a468255cf3241d05d5915b15543b837b977'
+    newFile: !uuid '31030175c4ea3060aaa20641cd7c1f06bedaa311'
+    oldFile: !uuid '7149f115240e8115a6f582b43aae59837c1b8f74'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '721386ce18b4cbfc2410f881ca66931169176692'
-    oldFile: !uuid '1b8ecd9d0a6deef5e45cb37dc862b70431dabff2'
-  /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
-    newFile: !uuid '1eb49c22a9875c3d1da64fa1de2f7be67e2f9006'
-    oldFile: !uuid '958786f015ed0bab348ae2dee1bdc4fd94d8d0ef'
-gitCommitId: !uuid '43715cb217698f6880d2a41f79c5e2387970a5de'
+    newFile: !uuid '5c336c023b471e6e94ccc73ba4cd637571a00a87'
+    oldFile: !uuid '721386ce18b4cbfc2410f881ca66931169176692'
+  /Admin.NET/Admin.NET.Core/Service:
+    newFile: !uuid '58af8e7c7f2e45a43e868df19a5e32916c4199ec'
+    oldFile: !uuid 'd6f2781d8b9c0230a0eb75e97fc26833a18b877d'
+  /Admin.NET/Admin.NET.Core/Service/OpenAccess:
+    newFile: !uuid '51bf803cb614f832e5a5a56421f516cacf283f68'
+    oldFile: !uuid 'd9acc7f2920466abe51418d8555dfc0bdd874697'
+  /Admin.NET/Admin.NET.Core/Service/OpenAccess/SysOpenAccessService.cs:
+    newFile: !uuid '2a2a637ea96aad8ab3efd2862543d950a2773eb8'
+    oldFile: !uuid '1b7203663de43f59060f6268fd6873ec597ea56f'
+gitCommitId: !uuid '418939563de808222ba234b22c8f06265bc58b7e'
 renames: {
   }
-revisionId: 1388
+revisionId: 1389
