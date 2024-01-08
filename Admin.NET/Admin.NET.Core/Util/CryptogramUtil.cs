@@ -18,6 +18,9 @@ public class CryptogramUtil
     public static readonly string PublicKey = App.GetConfig<string>("Cryptogram:PublicKey"); // 公钥
     public static readonly string PrivateKey = App.GetConfig<string>("Cryptogram:PrivateKey"); // 私钥
 
+    public static readonly string SM4_key = "0123456789abcdeffedcba9876543210";
+    public static readonly string SM4_iv = "595298c7c6fd271f0402f804c33d3f66";
+
     /// <summary>
     /// 加密
     /// </summary>
@@ -85,7 +88,7 @@ public class CryptogramUtil
     /// <returns></returns>
     public static string SM4EncryptECB(string plainText)
     {
-        return GMUtil.SM4EncryptECB(plainText);
+        return GMUtil.SM4EncryptECB(SM4_key, plainText);
     }
 
     /// <summary>
@@ -95,7 +98,7 @@ public class CryptogramUtil
     /// <returns></returns>
     public static string SM4DecryptECB(string cipherText)
     {
-        return GMUtil.SM4DecryptECB(cipherText);
+        return GMUtil.SM4DecryptECB(SM4_key, cipherText);
     }
 
     /// <summary>
@@ -105,7 +108,7 @@ public class CryptogramUtil
     /// <returns></returns>
     public static string SM4EncryptCBC(string plainText)
     {
-        return GMUtil.SM4EncryptCBC(plainText);
+        return GMUtil.SM4EncryptCBC(SM4_key, SM4_iv, plainText);
     }
 
     /// <summary>
@@ -115,6 +118,6 @@ public class CryptogramUtil
     /// <returns></returns>
     public static string SM4DecryptCBC(string cipherText)
     {
-        return GMUtil.SM4DecryptCBC(cipherText);
+        return GMUtil.SM4DecryptCBC(SM4_key, SM4_iv, cipherText);
     }
 }
