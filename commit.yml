@@ -2,55 +2,31 @@
 branches: {
   }
 fileChange:
-  /Admin.NET:
-    newFile: !uuid '6d218e798856069dcc593f38a28ad746665afb25'
-    oldFile: !uuid '29c629a7720fbbb4bd31ba39c8d2ce26d6033ec3'
-  /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '184479c12389131db7794d21cef183988e51d82d'
-    oldFile: !uuid '1d772b7d545d4fdd3d26e6ecb7fae9f32ac7a39b'
-  /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid '8875442cc7e9949adecc714c9911320ce003d01b'
-    oldFile: !uuid '58af8e7c7f2e45a43e868df19a5e32916c4199ec'
-  /Admin.NET/Admin.NET.Core/Service/Auth:
-    newFile: !uuid '53a39d79e2890f6b5f6249855d2efa60a4378b75'
-    oldFile: !uuid 'de520562cea13bc9ff179fadc01423f95771cb89'
-  /Admin.NET/Admin.NET.Core/Service/Auth/SysAuthService.cs:
-    newFile: !uuid 'df5fee9009653df79379db870b55c666503c4094'
-    oldFile: !uuid '5f4dbe668082a2eb891cc5c3937458525e86fe95'
-  /Admin.NET/Admin.NET.Core/Service/OAuth:
-    newFile: !uuid '893716b6fd2ddea1b9a6cb4d509195b49da083d7'
-    oldFile: !uuid '55b36ce6409052d3fa54f2c87cdfbed2b6f1d233'
-  /Admin.NET/Admin.NET.Core/Service/OAuth/SysOAuthService.cs:
-    newFile: !uuid '25ceb991222bc9ecadf7a250cbad85130d7e9e88'
-    oldFile: !uuid '2e11459aaef57f80696d28b9d0fcd61c9000e425'
-  /Admin.NET/Admin.NET.Core/Service/Tenant:
-    newFile: !uuid 'd63227b76db9410aba37ce9654866686cd870e6b'
-    oldFile: !uuid 'b6085b22b1302b023a5ad4dd1b1b872a8044115a'
-  /Admin.NET/Admin.NET.Core/Service/Tenant/SysTenantService.cs:
-    newFile: !uuid 'e367429a78ea970e8476e7911b7bf69e25583280'
-    oldFile: !uuid '3ffc777ff7ba898a918d4c6270761d0ce3819380'
-  /Admin.NET/Admin.NET.Core/Service/User:
-    newFile: !uuid '8a251a718542012cac26aac5ab80432ab3e72343'
-    oldFile: !uuid 'c99b64c6da3b1814ccadb3eda23d90a6e948d61a'
-  /Admin.NET/Admin.NET.Core/Service/User/SysUserService.cs:
-    newFile: !uuid '423dce192531b1a48efaf8b0eabc7268fce4691d'
-    oldFile: !uuid 'dd82930086f8a00686187fe69ca8781c44b98118'
-  /Admin.NET/Plugins:
-    newFile: !uuid '31a23b820dc013f2b29c60e86b4a45cbe0310257'
-    oldFile: !uuid '5ea4be98e29b74c47dd3251deb7ed273c5e3af7b'
-  /Admin.NET/Plugins/Admin.NET.Plugin.GoView:
-    newFile: !uuid '0bb2c3e02cc7477f748818d0a8cc9e56755b9822'
-    oldFile: !uuid '8deee208110048fc14f4ff0654ade35daaadef3c'
-  /Admin.NET/Plugins/Admin.NET.Plugin.GoView/Service:
-    newFile: !uuid 'eb2f63702cd2f91f8f89c393143f03af5ad25727'
-    oldFile: !uuid '6f19d3b0b90d8af5ec9b55bbdbc6319c1305459a'
-  /Admin.NET/Plugins/Admin.NET.Plugin.GoView/Service/GoViewSys:
-    newFile: !uuid 'c45b08f51bea03d96e8c13be10a91a89bc8b0949'
-    oldFile: !uuid 'beeeb24220ad86bac9b3196b8a6ccbaa4f6c9d32'
-  /Admin.NET/Plugins/Admin.NET.Plugin.GoView/Service/GoViewSys/GoViewSysService.cs:
-    newFile: !uuid 'd265ce7af6327322781511430c1922e58148db8c'
-    oldFile: !uuid '77644741f8466309a3cdf79f95dff1d0fbe989f8'
-gitCommitId: !uuid '4b137df746bee46ed7cb3de830045672ab2c7650'
+  /Web:
+    newFile: !uuid '05dcb507f9b62ec4cc9a6a915eeda67f26347098'
+    oldFile: !uuid '25af2221ea02233741f9b681d27415bf271470e5'
+  /Web/src:
+    newFile: !uuid '433e03500fb5602f89618f29fda16cb984096ab1'
+    oldFile: !uuid 'eb0a8fe11e27b74e6128a2806c7c344a520e6296'
+  /Web/src/views:
+    newFile: !uuid 'ad9005b8124324ab7157f08d134db9b9998c4f9f'
+    oldFile: !uuid '8b7637ba3fc492128421aa42e6225d3d6098b902'
+  /Web/src/views/system:
+    newFile: !uuid 'dcb630177ef65894ff2b786ce0324df328c477b7'
+    oldFile: !uuid 'd3f88105e6741d5aefdba003ce37a159cd2cb497'
+  /Web/src/views/system/openAccess:
+    newFile: !uuid '3723eadb20d1ffa0397794cf531209a93a1572c8'
+    oldFile: !uuid 'c071d09b12e83f5562cf9bc5a794aa7835f30039'
+  /Web/src/views/system/openAccess/component:
+    newFile: !uuid '8b77cb4691770fece2a8a07959db0c2dc0ec653e'
+    oldFile: !uuid 'ff51062d11fd1f35a47da4a1e139c5ff7c3a5797'
+  /Web/src/views/system/openAccess/component/editOpenAccess.vue:
+    newFile: !uuid '08275509ab934257b0ff79afb9f9d3413a3d0382'
+    oldFile: !uuid '4d78aa28aefabb3f3be017946cb9faa19582bf32'
+  /Web/src/views/system/openAccess/component/helpView.vue:
+    newFile: !uuid 'd63a96014220ce9b4cbfa65297d81bbc5ac993c7'
+    oldFile: !uuid '2fe899d0841b46864b1ef2422c983397e1a91837'
+gitCommitId: !uuid '4c32f895e4759e9331b3750d2e801128b5f807e8'
 renames: {
   }
-revisionId: 1393
+revisionId: 1394
