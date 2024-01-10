@@ -3,15 +3,48 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '8c6181ff6c7a9959c1a1b98f94dc371037280ad2'
-    oldFile: !uuid 'e0874c6a735b398d88c89b55f53d9d4f31e49d11'
+    newFile: !uuid 'fa6c4b3fd1d3d57e6e0b25073515016db7b9febe'
+    oldFile: !uuid '8c6181ff6c7a9959c1a1b98f94dc371037280ad2'
   /Admin.NET/Admin.NET.Web.Entry:
-    newFile: !uuid '5412975ed06be9289f668f530d7c12e9fe4aefee'
-    oldFile: !uuid '6ad8bd9fa95824f3876e5196fe185c4288ffb24a'
-  /Admin.NET/Admin.NET.Web.Entry/web.config:
-    newFile: !uuid 'dd996fba620c004486290aafb6cc8041caa8ab64'
-    oldFile: !uuid '5bb50582d1f8a98deb598929ea74740f4b39fe29'
-gitCommitId: !uuid 'a50b12b16a902c83b160436c4e013ff87a7920b6'
+    newFile: !uuid 'd7a5bdf06587967177493ce14b601a09e019feb7'
+    oldFile: !uuid '5412975ed06be9289f668f530d7c12e9fe4aefee'
+  /Admin.NET/Admin.NET.Web.Entry/wwwroot:
+    newFile: !uuid 'e1adf09740665776ed23dd7d1a3b3e8149b99c10'
+    oldFile: !uuid '31324517bf790ed31687be59922d1ae998cf399a'
+  /Admin.NET/Admin.NET.Web.Entry/wwwroot/Template:
+    newFile: !uuid '4ef874700bb2b0b389a68048d592a8e3582a6735'
+    oldFile: !uuid '43b578e8d481bc2983748b2bac59105ca0ec3ebb'
+  /Admin.NET/Admin.NET.Web.Entry/wwwroot/Template/Service.cs.vm:
+    newFile: !uuid '91502a765bab77cbe71e512dd024078c634668a0'
+    oldFile: !uuid '1ae3e32d70b9ac51eb991ba07819bc82ad2684ed'
+  /Web:
+    newFile: !uuid 'ec4e5ca1d157b768b16634f30a63272045634b25'
+    oldFile: !uuid '05dcb507f9b62ec4cc9a6a915eeda67f26347098'
+  /Web/src:
+    newFile: !uuid '2291b560786041bcf8edfe7722660bde1bc63a0e'
+    oldFile: !uuid '433e03500fb5602f89618f29fda16cb984096ab1'
+  /Web/src/views:
+    newFile: !uuid '49c1e58369ba487a60b6ef8efcda50f1a3302289'
+    oldFile: !uuid 'ad9005b8124324ab7157f08d134db9b9998c4f9f'
+  /Web/src/views/system:
+    newFile: !uuid 'db1842c1d59a7f38c6d58533ede110991892467c'
+    oldFile: !uuid 'dcb630177ef65894ff2b786ce0324df328c477b7'
+  /Web/src/views/system/dict:
+    newFile: !uuid 'ea59c4f63dcc8c0494d1824bcd845488e84589e8'
+    oldFile: !uuid '9b07eba2ff045824013822d28d2e226619be4777'
+  /Web/src/views/system/dict/component:
+    newFile: !uuid '66dd4c66da6a4e19acb8c11af4c21d3f242c2d2a'
+    oldFile: !uuid 'c76e5f56f24da6479685cb5f1adab44ebf47bbb5'
+  /Web/src/views/system/dict/component/editDictData.vue:
+    newFile: !uuid '53219a3ab5332c878d5639b69b21cad07647edfd'
+    oldFile: !uuid '1f5224409f95368f0d65fa5f11565313974c9b2d'
+  /Web/src/views/system/dict/component/editDictType.vue:
+    newFile: !uuid '2f5843bad8f72ea8e4ba8483ce03594c5fce44fe'
+    oldFile: !uuid '7807fb240bb3f5d2afab7256f3caed88918aee49'
+  /Web/src/views/system/dict/index.vue:
+    newFile: !uuid 'ca54f2ec0441b33c8b202c21f0653da9bdbdbcd3'
+    oldFile: !uuid '6af9e41231e9f324145e106020d5c883f89a6d3d'
+gitCommitId: !uuid 'f8558894ac3a8b285602f3a561cdfefbb2680f33'
 renames: {
   }
-revisionId: 1434
+revisionId: 1435
