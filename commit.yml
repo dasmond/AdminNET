@@ -3,36 +3,21 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '66abf902472838c48f412dce511e763829ea7d30'
-    oldFile: !uuid 'fa6c4b3fd1d3d57e6e0b25073515016db7b9febe'
-  /Admin.NET/Admin.NET.Application:
-    newFile: !uuid 'b3630b117884b9c24b306f711374795116b111d9'
-    oldFile: !uuid 'a625acc0ba05b25e3dfede8a93c9decd337bea0d'
-  /Admin.NET/Admin.NET.Application/Configuration:
-    newFile: !uuid 'b08a6928ddcc9601d8571f5ab54d1b5d0d301b7c'
-    oldFile: !uuid '046a57ef4967fc66b5907e32788fbdead4be4311'
-  /Admin.NET/Admin.NET.Application/Configuration/Database.json:
-    newFile: !uuid '5e5401a5a91dd94adf91c974651436cba146662c'
-    oldFile: !uuid 'd20489f313b863565166139fe104b9012438584f'
+    newFile: !uuid 'e388c29b634937be502b7dd1437b9fd733544bf3'
+    oldFile: !uuid '66abf902472838c48f412dce511e763829ea7d30'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid 'f95ec7f591930a6d0dcfa33a1e9e97fdb869b7d0'
-    oldFile: !uuid '5abddf519a0d9bbf3e235f335334ddde9c6e4dff'
+    newFile: !uuid 'a391a19e215eec094a1bceb873e298e4c0649d7b'
+    oldFile: !uuid 'f95ec7f591930a6d0dcfa33a1e9e97fdb869b7d0'
   /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
-    newFile: !uuid '3c18ed5f441ff5a525176b869012bf93c4d1a693'
-    oldFile: !uuid '4626b558b53e692b25eb0779595f8cc7f1c5bc9b'
-  /Admin.NET/Admin.NET.Core/Option:
-    newFile: !uuid 'b1871ff87754f6c70909c0dbbc649df0cdbf434e'
-    oldFile: !uuid 'ee38b8870472167dd25c65f153618eb93deec3ba'
-  /Admin.NET/Admin.NET.Core/Option/DbConnectionOptions.cs:
-    newFile: !uuid '35055a9646ce24b83ae7c76d39f824c85aa17dc7'
-    oldFile: !uuid '1fbd3c67bc782ac8e7203790d046f5af0b4dfb4d'
-  /Admin.NET/Admin.NET.Web.Entry:
-    newFile: !uuid '3d905cf3c55effa3efd1fed393a307cf58e84b1b'
-    oldFile: !uuid 'd7a5bdf06587967177493ce14b601a09e019feb7'
-  /Admin.NET/Admin.NET.Web.Entry/web.config:
-    newFile: !uuid '002dc98490feff6561f54cb88b45188123a40aaf'
-    oldFile: !uuid 'dd996fba620c004486290aafb6cc8041caa8ab64'
-gitCommitId: !uuid '9ecb94366391257fca67e5f4285b7d68346a3ec7'
+    newFile: !uuid 'e5159a3c9f291b50034845a19cb8bb854fa6675e'
+    oldFile: !uuid '3c18ed5f441ff5a525176b869012bf93c4d1a693'
+  /Admin.NET/Admin.NET.Core/Extension:
+    newFile: !uuid '66d97254fb9b325d68e7ed2345f267fdea29e9a8'
+    oldFile: !uuid '273e1024574fc66f99c0c9e929bd14d973042f0f'
+  /Admin.NET/Admin.NET.Core/Extension/YitIdHelperExtension.cs:
+    newFile: !uuid '4bbf26fdc48fe7c328695af0e6b2e4d4b4baf679'
+    oldFile: !uuid 'e672ca0ec2af1a9e03f51ff7310a42a7d7b111d7'
+gitCommitId: !uuid 'd0d449b2d9b3ac4ff5e54fa7bb779e8b7d68475d'
 renames: {
   }
-revisionId: 1400
+revisionId: 1401
