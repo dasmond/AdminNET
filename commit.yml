@@ -3,15 +3,75 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid 'f104f84e5c228229394407fd490a8b03b6f52165'
-    oldFile: !uuid 'e388c29b634937be502b7dd1437b9fd733544bf3'
+    newFile: !uuid 'c83602f94a9263cf9a4dca7c2a442a38ce961a99'
+    oldFile: !uuid 'f104f84e5c228229394407fd490a8b03b6f52165'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid 'ea030f814145d6aef17e8a363ff9d8f2612b6d6f'
-    oldFile: !uuid 'a391a19e215eec094a1bceb873e298e4c0649d7b'
-  /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
-    newFile: !uuid '42386f545d051037a40e31a7e1b8455e23012b0a'
-    oldFile: !uuid 'e5159a3c9f291b50034845a19cb8bb854fa6675e'
-gitCommitId: !uuid 'cbb9c5f02cc0270823486c293a6719c8e71b7c27'
+    newFile: !uuid '29c6ea6973934f9666f28a9f27e00c739ad1017d'
+    oldFile: !uuid 'ea030f814145d6aef17e8a363ff9d8f2612b6d6f'
+  /Admin.NET/Admin.NET.Core/Entity:
+    newFile: !uuid 'c31ae61ee605d2d4af40ded4a085a8f8b54fdd48'
+    oldFile: !uuid '117b7d528fc533009fe16626802a16342eff055f'
+  /Admin.NET/Admin.NET.Core/Entity/SysTenant.cs:
+    newFile: !uuid '184ae9e3752deebf37ec5c27dc8967dbcd71a777'
+    oldFile: !uuid 'eca0c7691ca9e6a2b0187975b11780e408a572e3'
+  /Admin.NET/Admin.NET.Core/Enum:
+    newFile: !uuid '56b8a4ca49f0261a4f083d266f4857ee89434b24'
+    oldFile: !uuid 'bd69599e037e28f2f86cc933fbf215ab5b5036d5'
+  /Admin.NET/Admin.NET.Core/Enum/ErrorCodeEnum.cs:
+    newFile: !uuid '7d5b7578d4c197940706ed5fbd14fadbcb76c774'
+    oldFile: !uuid 'eb0c9f204ba6214d352a5930d27ad89dac52fc92'
+  /Admin.NET/Admin.NET.Core/Service:
+    newFile: !uuid 'ae3589cd52278eb099be7af578eb501b2e37c6dc'
+    oldFile: !uuid '8875442cc7e9949adecc714c9911320ce003d01b'
+  /Admin.NET/Admin.NET.Core/Service/Tenant:
+    newFile: !uuid '5ca0dcc19a75a91078489e8cea72a29cccbe5531'
+    oldFile: !uuid 'd63227b76db9410aba37ce9654866686cd870e6b'
+  /Admin.NET/Admin.NET.Core/Service/Tenant/SysTenantService.cs:
+    newFile: !uuid 'f63e5a83225580a8fbad21c06a020326c60f8162'
+    oldFile: !uuid 'e367429a78ea970e8476e7911b7bf69e25583280'
+  /Web:
+    newFile: !uuid '6a3538fcca7bfcdd83504d2d11e20b9860a244ca'
+    oldFile: !uuid '79d520ca6969ff1dd58fe7058ad65c11c8598dd9'
+  /Web/src:
+    newFile: !uuid 'da30145844e0c4b098ed062272adc0929df2c0ff'
+    oldFile: !uuid '5057f4bccc97e7385c7f67f6ddbbb176cb4a4f14'
+  /Web/src/api-services:
+    newFile: !uuid '3a3987f56842dfa71960daf8fa92e5e8387afda6'
+    oldFile: !uuid 'dceb16bc001d3beb033368f84665446025921991'
+  /Web/src/api-services/models:
+    newFile: !uuid 'c79c24b60f81756a91466d81c98c669a734ea7b2'
+    oldFile: !uuid 'cd420c797e5a046d146e66aa1b2e0b8ef69f4762'
+  /Web/src/api-services/models/add-tenant-input.ts:
+    newFile: !uuid '43df04256e57efd2692059cd5d2619b803c5efa8'
+    oldFile: !uuid 'a36b849fce46a057cfd2a5c764d207bbc4d90362'
+  /Web/src/api-services/models/sys-tenant.ts:
+    newFile: !uuid 'fc70f2b1093795a4894c9549538ae64a269d5632'
+    oldFile: !uuid '02f6a68e817d000793b7c919d311bf323dc5d9cb'
+  /Web/src/api-services/models/tenant-output.ts:
+    newFile: !uuid '95d47b3149780e6e1bbba8e87a45e621662d6d2c'
+    oldFile: !uuid 'a2f36a9dbea4d5bda8b4cc4a7182ce246a098dee'
+  /Web/src/api-services/models/update-tenant-input.ts:
+    newFile: !uuid 'bf556ba65eee8a6eed3c599e3fd946f4f37ef900'
+    oldFile: !uuid 'ab0768dbdc6ff65c519540b7161fef05a0256092'
+  /Web/src/views:
+    newFile: !uuid '948b8507ec060380def3b0b58da778403918f516'
+    oldFile: !uuid '720da87a784873c039ffe2c538dad753d73ecfb6'
+  /Web/src/views/system:
+    newFile: !uuid 'd9c0a99ff4713ed13401773864660446bd7314a9'
+    oldFile: !uuid '719d5941b911ebb65edf513cf64ab1b41ea98ae2'
+  /Web/src/views/system/tenant:
+    newFile: !uuid 'de9085cfb7cc30c2fe3baedc7c181404c9fdf06b'
+    oldFile: !uuid '12863604e76ac2bcd51d0f410ece029731211b3a'
+  /Web/src/views/system/tenant/component:
+    newFile: !uuid 'c30c9265be8a5187c762094c2085226aeaf204c9'
+    oldFile: !uuid 'e86098305e350744298796688898db925468e2fd'
+  /Web/src/views/system/tenant/component/editTenant.vue:
+    newFile: !uuid '2f19cbbd364d4ab6bc7da16d5b6381ee67d899e8'
+    oldFile: !uuid 'f8a0dbf90ef285e8475d8c9c3df829de4f504957'
+  /Web/src/views/system/tenant/index.vue:
+    newFile: !uuid '2b6792095ce350f99128a57ccdd81bee1b7d121c'
+    oldFile: !uuid '5601eb945e5d4620d2887e50466953de2334c85b'
+gitCommitId: !uuid 'b111f0f14f2fa6e243856730f62a0aae32077ccc'
 renames: {
   }
-revisionId: 1439
+revisionId: 1440
