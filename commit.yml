@@ -2,22 +2,28 @@
 branches: {
   }
 fileChange:
-  /Web:
-    newFile: !uuid 'ac04105b44223cd406672d8cb6026eeb05a209d4'
-    oldFile: !uuid '749044b620d76ea6304751e981f8591e243a5511'
-  /Web/src:
-    newFile: !uuid '100eb6241bf28e9ce63bf6d20da4f14a739f4b09'
-    oldFile: !uuid 'c41df54faa201eda0b158e44ac6bfb194a748440'
-  /Web/src/layout:
-    newFile: !uuid '97928aed3c144cbfd04d36f1729af5d2fd986e30'
-    oldFile: !uuid '0c4118794d52f207b6ad3069b883d71bd5322a3e'
-  /Web/src/layout/component:
-    newFile: !uuid '8256cf7758793f735232e82a17ecb3f38c4c368c'
-    oldFile: !uuid '380f1c5806ab5e809ad9477fb92e062088575ab3'
-  /Web/src/layout/component/columnsAside.vue:
-    newFile: !uuid 'c1d913ea492049f0f78830a809915f2fd0865802'
-    oldFile: !uuid '4a74a4746cf9dea06e8b281d854ab3afe203ce22'
-gitCommitId: !uuid '9257e56b9fc3071a2e2e27df290980d98341c266'
+  /Admin.NET:
+    newFile: !uuid '05db1049426d6465d2d4ebf51cc843abc5337ee6'
+    oldFile: !uuid 'a7d281c92dcc054648eb71d957fef406d6f90887'
+  /Admin.NET/Admin.NET.Core:
+    newFile: !uuid 'ca1d0486b0327a1f60da409c0251806244ffcfbd'
+    oldFile: !uuid 'ba10fb1bec6fb240b45bcf86302c42423734adba'
+  /Admin.NET/Admin.NET.Core/Enum:
+    newFile: !uuid '8985b384f9a0b9b023fa558d04e1e7f918366b01'
+    oldFile: !uuid '56b8a4ca49f0261a4f083d266f4857ee89434b24'
+  /Admin.NET/Admin.NET.Core/Enum/ErrorCodeEnum.cs:
+    newFile: !uuid '3130cec003afef7052bad95bd7ab32a797ccbd38'
+    oldFile: !uuid '7d5b7578d4c197940706ed5fbd14fadbcb76c774'
+  /Admin.NET/Admin.NET.Core/Service:
+    newFile: !uuid 'd14a08d58cc8fd0754c5f303f39a95a62a42e308'
+    oldFile: !uuid 'f550c307effcba307436958087fdc78c8edc32c5'
+  /Admin.NET/Admin.NET.Core/Service/User:
+    newFile: !uuid 'c9a9da93f4bc5b4fd0afc25cdad5353c3613db20'
+    oldFile: !uuid '8a251a718542012cac26aac5ab80432ab3e72343'
+  /Admin.NET/Admin.NET.Core/Service/User/SysUserService.cs:
+    newFile: !uuid '414589aa11bdd27a8be318c4f3825bf86dff9c28'
+    oldFile: !uuid '423dce192531b1a48efaf8b0eabc7268fce4691d'
+gitCommitId: !uuid '741ee39003df20c9d247ad90fffabdeedd821fb9'
 renames: {
   }
-revisionId: 1446
+revisionId: 1447
