@@ -3,30 +3,24 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid 'dad8a6441728067aae908c24ebecacb9b7289f9d'
-    oldFile: !uuid '2843cfcf07a7b514a88fb9d69c9e3367be756f34'
+    newFile: !uuid 'c8c7f18cf0847a1162b442199bb8839395c6929f'
+    oldFile: !uuid 'dad8a6441728067aae908c24ebecacb9b7289f9d'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid 'f7bbecda3c656ee3c2363bfcb04b175a3a0a21ba'
-    oldFile: !uuid 'f8d97dbbf67a7d7b8b571f167ca2a451e77016f5'
+    newFile: !uuid '5468281de808d040b2c9711f22f26bd64365de6e'
+    oldFile: !uuid 'f7bbecda3c656ee3c2363bfcb04b175a3a0a21ba'
   /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid 'bc60b0bed930b73c1566fee1824cc32b29677b45'
-    oldFile: !uuid 'c223994c6930bc9aec3314d6728a8558aaed3df6'
+    newFile: !uuid '7c8ffbca559a0807f43969278e3554f3c380784e'
+    oldFile: !uuid 'bc60b0bed930b73c1566fee1824cc32b29677b45'
   /Admin.NET/Admin.NET.Core/Service/Common:
-    newFile: !uuid '3e5888279daf23ec9a963a25f4a7d7d3d453536d'
-    oldFile: !uuid 'e8d5fbd4888f6aaae56a7ad1db27c2a2f51c17d1'
-  /Admin.NET/Admin.NET.Core/Service/Common/SysCommonService.cs:
-    newFile: !uuid '53eb2a125b68fe6b52b25b8d5e979925bc37faf5'
-    oldFile: !uuid '279b6857efbe2b642b1c1f4fa920f59907bb9fee'
-  /Admin.NET/Admin.NET.Core/Util:
-    newFile: !uuid 'cf27667dca828e26635e0c853880956b7cad35ae'
-    oldFile: !uuid 'e79bddd60a8ddb95b33eb4392cf2d5970a643780'
-  /Admin.NET/Admin.NET.Core/Util/GM:
-    newFile: !uuid '8c1901fec01e4121e7260146ad6ddcf6b68c9b03'
-    oldFile: !uuid '9adccd05da262dcb53b34d828637c0002366323a'
-  /Admin.NET/Admin.NET.Core/Util/GM/GM.cs:
-    newFile: !uuid '76fa48be4ae9ceb70b082a89f1bf82e678bd7ddb'
-    oldFile: !uuid '222958f0505f1073e6b08dafde838163296ed3bd'
-gitCommitId: !uuid 'b0cc3b8a8d3e332cc8d83da391c29d2515497c8b'
+    newFile: !uuid 'ec24960c6c9072ba3c23f716303468d18ee15959'
+    oldFile: !uuid '3e5888279daf23ec9a963a25f4a7d7d3d453536d'
+  /Admin.NET/Admin.NET.Core/Service/Common/Dto:
+    newFile: !uuid 'e7295cf9cf9a646a4ba703c18bc6975bb5e807d2'
+    oldFile: !uuid 'ec0c19b27d63c6795b4187d318001dbed8bce7bd'
+  /Admin.NET/Admin.NET.Core/Service/Common/Dto/SmKeyPairOutput.cs:
+    newFile: !uuid '6815fd00d156c27ce106a23c29c729cfe33f6089'
+    oldFile: null
+gitCommitId: !uuid '21051b0f951a90c66f15c47f54e8248e1cd427c4'
 renames: {
   }
-revisionId: 1433
+revisionId: 1434
