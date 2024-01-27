@@ -3,24 +3,18 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid 'c8c7f18cf0847a1162b442199bb8839395c6929f'
-    oldFile: !uuid 'dad8a6441728067aae908c24ebecacb9b7289f9d'
+    newFile: !uuid 'ab9cd3cd31d612b9aa5475ff70334cde88b42323'
+    oldFile: !uuid 'c8c7f18cf0847a1162b442199bb8839395c6929f'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '5468281de808d040b2c9711f22f26bd64365de6e'
-    oldFile: !uuid 'f7bbecda3c656ee3c2363bfcb04b175a3a0a21ba'
-  /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid '7c8ffbca559a0807f43969278e3554f3c380784e'
-    oldFile: !uuid 'bc60b0bed930b73c1566fee1824cc32b29677b45'
-  /Admin.NET/Admin.NET.Core/Service/Common:
-    newFile: !uuid 'ec24960c6c9072ba3c23f716303468d18ee15959'
-    oldFile: !uuid '3e5888279daf23ec9a963a25f4a7d7d3d453536d'
-  /Admin.NET/Admin.NET.Core/Service/Common/Dto:
-    newFile: !uuid 'e7295cf9cf9a646a4ba703c18bc6975bb5e807d2'
-    oldFile: !uuid 'ec0c19b27d63c6795b4187d318001dbed8bce7bd'
-  /Admin.NET/Admin.NET.Core/Service/Common/Dto/SmKeyPairOutput.cs:
-    newFile: !uuid '6815fd00d156c27ce106a23c29c729cfe33f6089'
-    oldFile: null
-gitCommitId: !uuid '21051b0f951a90c66f15c47f54e8248e1cd427c4'
+    newFile: !uuid '96e0ea2098d87339cc8d6f3247376542978535fb'
+    oldFile: !uuid '5468281de808d040b2c9711f22f26bd64365de6e'
+  /Admin.NET/Admin.NET.Core/SqlSugar:
+    newFile: !uuid '8d62e68084de750802d9d98a036cd34ad131ef2f'
+    oldFile: !uuid 'b1b911032fe5a2b925563d48a41f0cbd8861c26e'
+  /Admin.NET/Admin.NET.Core/SqlSugar/SqlSugarSetup.cs:
+    newFile: !uuid 'f3a3bdd86f85e9ee2acaec2fe2dfc3ceb5fbee2e'
+    oldFile: !uuid '5f7672a335f86d70045ac5e398794fe59fee0a8b'
+gitCommitId: !uuid 'ec8a81a436c7e9860830dfa46ff7916d94f8ae8f'
 renames: {
   }
-revisionId: 1434
+revisionId: 1435
