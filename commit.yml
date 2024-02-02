@@ -3,24 +3,57 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid 'dc430819312712260f5e3c3390e23b3ea635f6a2'
-    oldFile: !uuid '7c7c9736ccc8677dd9ca0c9640ffcd6df7e59065'
+    newFile: !uuid '9d82ec50174a16fd4850cf4f1b704a2efa7ef69a'
+    oldFile: !uuid 'dc430819312712260f5e3c3390e23b3ea635f6a2'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '2374a7077d926ddf229b2fb0d14a7d0ae73f4f28'
-    oldFile: !uuid 'fc3e599422f66e43f85cf2745a4b1e31623166bf'
-  /Admin.NET/Admin.NET.Core/Entity:
-    newFile: !uuid '5603d089ae68970f8104e4a6fb9f03e438d0ccd2'
-    oldFile: !uuid 'c2cb682c0a7a2e08c1849275fe98deef25bd0622'
-  /Admin.NET/Admin.NET.Core/Entity/SysDictType.cs:
-    newFile: !uuid '89c2f5a6c8ca4822cffe7d37f42c2fa96a977136'
-    oldFile: !uuid 'd2fe24095fd78c034aa5190c11464d2d5db9ce5f'
+    newFile: !uuid '917518916df149f3338b787b1400cadf12227525'
+    oldFile: !uuid '2374a7077d926ddf229b2fb0d14a7d0ae73f4f28'
+  /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
+    newFile: !uuid '25091e8142289632cb03fae6b563524f58927a38'
+    oldFile: !uuid '25e3e6050e5dfcf1ba6372d7a50600f6b509554c'
+  /Admin.NET/Plugins:
+    newFile: !uuid '3813d5a0974c96432ab30dcb62696f659f751cad'
+    oldFile: !uuid '8419f5c1aa96582ce8a4b2ea26c2e920f009e523'
+  /Admin.NET/Plugins/Admin.NET.Plugin.Elsa:
+    newFile: !uuid '36c9e4ffc6f6325570d1063513890239e8b73708'
+    oldFile: !uuid 'e000817e2b7efc97e9e979ef0810fbdd4c21cfc0'
+  /Admin.NET/Plugins/Admin.NET.Plugin.Elsa/Admin.NET.Plugin.Elsa.csproj:
+    newFile: !uuid '51f09fae2fcf1b642b6e98323325645621fa9ffb'
+    oldFile: !uuid '986251b91d5efa2f4658171fc972695d1db93c8e'
   /Web:
-    newFile: !uuid '4b34ba3b25419e69a20c9b16bdda3a59b48fde3c'
-    oldFile: !uuid '5a5d60bd67fec86d6142f5bc2747d0e16e8db0b2'
+    newFile: !uuid '74ec64e9295b9273aaabb00a31f13e94941cc026'
+    oldFile: !uuid '4b34ba3b25419e69a20c9b16bdda3a59b48fde3c'
+  /Web/package.json:
+    newFile: !uuid 'd43716943e3b28287c1507395c355baf2e015fc5'
+    oldFile: !uuid '51ad7aa0a186d4bb9214465feab43214adc5cd0d'
+  /Web/src:
+    newFile: !uuid '7598ec3297da4d0d4559f6e26d47c5fb0d136787'
+    oldFile: !uuid 'b3faa42aa1593eba2b768cb959c205e609b67cff'
+  /Web/src/api-services:
+    newFile: !uuid 'dc103991c39e30709e21fdfb5b2cb868c7585295'
+    oldFile: !uuid 'b28e822234d43a22af4f3c6d83cfd3300b374c92'
+  /Web/src/api-services/apis:
+    newFile: !uuid '49bb4f22fd2cf8f05f2ab1a17f614c7f2b508ff9'
+    oldFile: !uuid '82a1170ea051413fd7f3ac374ecfdcc9e9801693'
+  /Web/src/api-services/apis/sys-file-api.ts:
+    newFile: !uuid 'da50ed4dc30d529c001535167d3d4eb8914f07a1'
+    oldFile: !uuid '8eb566874274434aec796de4f360e793be136a3b'
+  /Web/src/api-services/models:
+    newFile: !uuid '5833f174a14a7efacf2e5bd5b6acff05f2ebd672'
+    oldFile: !uuid '7010f8e25642cb5f697d0612ed72b83ddeb0cef3'
+  /Web/src/api-services/models/add-dict-type-input.ts:
+    newFile: !uuid '5779df794f9cad2f2270b2448c1f48f105f78595'
+    oldFile: !uuid '5a7995e58f26d7f6346c7e9fa3488219c5eb653a'
+  /Web/src/api-services/models/sys-dict-type.ts:
+    newFile: !uuid '390184d4f01014a89feff6fb5d89a4f33769fbda'
+    oldFile: !uuid '4ed78810d5b3330f4fdc8095d0a75b7407d0476c'
+  /Web/src/api-services/models/update-dict-type-input.ts:
+    newFile: !uuid 'edf58d09a8f0eea0764a7a79a14a867bff20a022'
+    oldFile: !uuid '7976a295aef475950f7da1f33ee0750d0ad5a348'
   /Web/vite.config.ts:
-    newFile: !uuid 'c145d9c388c9dc6f575dcf897cef735418ad3862'
-    oldFile: !uuid '8b65e0656980edd8095882015b6e83c509564f99'
-gitCommitId: !uuid '5262cd9d5a9d3073a97e489a0564cadbdae95edc'
+    newFile: !uuid 'a886f12faabad7bd3e8ca9f9dc08bf40c5fccf52'
+    oldFile: !uuid 'c145d9c388c9dc6f575dcf897cef735418ad3862'
+gitCommitId: !uuid '5045645b132906026f0629436005bb0608351ed2'
 renames: {
   }
-revisionId: 1450
+revisionId: 1451
