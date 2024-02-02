@@ -1,4 +1,4 @@
-// 麻省理工学院许可证
+﻿// 麻省理工学院许可证
 //
 // 版权所有 (c) 2021-2023 zuohuaijun，大名科技（天津）有限公司  联系电话/微信：18020030720  QQ：515096995
 //
@@ -52,8 +52,7 @@ public class SysDictType : EntityBase
     /// <summary>
     /// 字典值集合
     /// </summary>
-    [Newtonsoft.Json.JsonIgnore]
-    [System.Text.Json.Serialization.JsonIgnore]
+    /// Web前端缓存了字典的内容用于业务（dict-utils.ts、userInfo.ts），所以这里不能用JsonIgnore忽略的
     [Navigate(NavigateType.OneToMany, nameof(SysDictData.DictTypeId))]
     public List<SysDictData> Children { get; set; }
 }
