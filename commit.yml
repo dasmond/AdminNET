@@ -2,13 +2,16 @@
 branches: {
   }
 fileChange:
-  /Web:
-    newFile: !uuid '54ab8573d5f36f842ce493866bb224009d520944'
-    oldFile: !uuid 'b4b63d7538cc184adc5b9d5cfd27bb47888d70b3'
-  /Web/package.json:
-    newFile: !uuid '41d228249392cf1335706dfe1428bede949c2b46'
-    oldFile: !uuid 'd43716943e3b28287c1507395c355baf2e015fc5'
-gitCommitId: !uuid '7a6b7502e059f79773e13060f26eb0fcf2aa4cb6'
+  /Admin.NET:
+    newFile: !uuid '7ec9eeefbe7ad5c2ed74413884f487e8bb6b6772'
+    oldFile: !uuid '1204382da527c10f9a91f3243d643607220b87f4'
+  /Admin.NET/Admin.NET.Web.Core:
+    newFile: !uuid '7fa86ab1bf1949c5bfc13b8f5372028cba7740f5'
+    oldFile: !uuid '8aae504c0047ae20c5d24ec349f35febf9a2a410'
+  /Admin.NET/Admin.NET.Web.Core/Admin.NET.Web.Core.csproj:
+    newFile: !uuid 'fd0c5b281f9ea87a71999acfe52c60287751aaf7'
+    oldFile: !uuid '9506ab9796b09a55ab7b6ca5413ef51760e1f607'
+gitCommitId: !uuid 'c08d91aabb4bab2ecdf191f1fe9bafbad3a2ea73'
 renames: {
   }
-revisionId: 1456
+revisionId: 1457
