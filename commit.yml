@@ -3,36 +3,18 @@ branches: {
   }
 fileChange:
   /Web:
-    newFile: !uuid '2a189f3fada94ccefb6ef1ca4bb1934c291ea0d3'
-    oldFile: !uuid 'ebff0e4d2c9114e4853977e79c39dab2f810c256'
+    newFile: !uuid '5a4413edf1fef360a8c63135e038631dbd81c4b3'
+    oldFile: !uuid '2a189f3fada94ccefb6ef1ca4bb1934c291ea0d3'
   /Web/src:
-    newFile: !uuid '00f144f4891b4077698170b2a3b87302c5d7e4e4'
-    oldFile: !uuid 'c6d6ddbb34077172f49c95b6d3727a9e32913a10'
-  /Web/src/views:
-    newFile: !uuid '94e4a034afbff28255b263e4f3c5b76e508c286b'
-    oldFile: !uuid 'fca8d7a7cff808e1eef0def3deba214a439789d4'
-  /Web/src/views/system:
-    newFile: !uuid '0d87935979fcf7644b079c4dea14cf6ecef9faf5'
-    oldFile: !uuid '8d4d38bd6f58d085e3c0982290109dd990a4f1fc'
-  /Web/src/views/system/org:
-    newFile: !uuid '4547ba5c2beb513f3d2df15e5d3dc8e434200b38'
-    oldFile: !uuid '591379482d9f85686a8cee7d86328fa001930ff5'
-  /Web/src/views/system/org/index.vue:
-    newFile: !uuid '62b587aedc8da1bd58777a931805e0b882590ecb'
-    oldFile: !uuid '166cdee53916cd32ce66c234a64915d352222b96'
-  /Web/src/views/system/region:
-    newFile: !uuid '460372ca9de22fe6332d65550172dadc82915fa5'
-    oldFile: !uuid '60287ca6f9f947dbaf51d0c091dc389440201ec1'
-  /Web/src/views/system/region/index.vue:
-    newFile: !uuid '168ff4567c00a37a85e83f3ee20804e68765b17d'
-    oldFile: !uuid 'bc2a43488fb697ec774903b3f4b5b5c16d7ecc2d'
-  /Web/src/views/system/user:
-    newFile: !uuid 'd8923c8d2c62b5c4e0bd8a1806903c80348318db'
-    oldFile: !uuid '568ac5afd90bc6d337d940c06da94c60afe6dffb'
-  /Web/src/views/system/user/index.vue:
-    newFile: !uuid '981545d6d2f8a306f56b9821c1462391438e53b8'
-    oldFile: !uuid '230bc3f821d53462c75f6ae38c45aa19dd90eb9e'
-gitCommitId: !uuid '68dd5b0f6fa5bbb2ee5bbbe0dd1318aa3b37ac1c'
+    newFile: !uuid 'd97dff55a3b5b9fc7a88232ddb92b0bbd9ac5a51'
+    oldFile: !uuid '00f144f4891b4077698170b2a3b87302c5d7e4e4'
+  /Web/src/router:
+    newFile: !uuid '78468a0b8b04eed0057c4f2260b3537aa9f5e251'
+    oldFile: !uuid '3f9616637db559b89aacbed34f4add1115aaad18'
+  /Web/src/router/backEnd.ts:
+    newFile: !uuid 'f8347c54090f85121c2e60eb3637dc6d5c52b73d'
+    oldFile: !uuid 'ae329f133dfe06e23ba292c3da697835e6421db7'
+gitCommitId: !uuid 'e0e483ba963b4b361350b744838c4980800080a0'
 renames: {
   }
-revisionId: 1502
+revisionId: 1503
