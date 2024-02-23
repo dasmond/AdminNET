@@ -2,19 +2,19 @@
 branches: {
   }
 fileChange:
-  /Web:
-    newFile: !uuid 'ed274490454b740ccb257cae34e4635b1caf1fb3'
-    oldFile: !uuid '4079bf38f12a7e83fff7b72a1b880eca28f4e2ac'
-  /Web/src:
-    newFile: !uuid '1d727ec56055aeb5d3957481f47d555e2faa0bee'
-    oldFile: !uuid '313061b52a22e8ab1bd04f39b87809ab4780a11f'
-  /Web/src/utils:
-    newFile: !uuid 'd3ecf9e8ace6e9f90ac69e54b3e85a7a0e640884'
-    oldFile: !uuid '871b75f8e8ed446f94bc4d14dc061a77ae888e8f'
-  /Web/src/utils/exportExcel.ts:
-    newFile: !uuid '223e845507fc28efb979ed4eccbcf5e63aa81622'
-    oldFile: !uuid '919bc7dd64f0dbfd0a612b24896d1cdcaecd5d87'
-gitCommitId: !uuid '6dbd8afa79aef53c46c4f0de9c10cb41b751a451'
+  /Admin.NET:
+    newFile: !uuid '71c9ae2443adcdb18decec712165334997c5d033'
+    oldFile: !uuid 'a84ddacda2e53a9ba2c0186d7e19bb07fb9595ad'
+  /Admin.NET/Admin.NET.Core:
+    newFile: !uuid 'dcceb1faff93b0004e6784da6b46ba7d8d9e910e'
+    oldFile: !uuid 'e86205c7536845797cdad40a909dbf764e0ab730'
+  /Admin.NET/Admin.NET.Core/Extension:
+    newFile: !uuid '76db0d5983aaf0491b8fa52de5618960c1554840'
+    oldFile: !uuid '66d97254fb9b325d68e7ed2345f267fdea29e9a8'
+  /Admin.NET/Admin.NET.Core/Extension/RepositoryExtension.cs:
+    newFile: !uuid '6c683f42e2261b00854e1a7ba518773454cba973'
+    oldFile: !uuid '19dac5d2dba2888f79ca1b1e9e06de6d80f44352'
+gitCommitId: !uuid '0f88147fd335998ef01e9bd886ea162eaa5c3261'
 renames: {
   }
-revisionId: 1474
+revisionId: 1475
