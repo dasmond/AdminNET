@@ -20,4 +20,8 @@ public class UpdateContainerTempInput
     /// 子工单id
     /// </summary>
     public long? sub_work_sheet_id { get; set; }
+    /// <summary>
+    /// 包装ID
+    /// </summary>
+    public long? pack_id { get; set; }
 }

@@ -106,7 +106,7 @@ namespace Admin.NET.Application.Entity.Mes.Rmes
            public DateTime? actual_end_date {get;set;}
 
            /// <summary>
-           /// Desc:工单状态(0:正常态;1:暂停态;2:终止态,3:完成)
+           /// Desc:工单状态(0:正常态;1:暂停态;2:终止态,3:投产/完成)
            /// Default:0
            /// Nullable:False
            /// </summary>           

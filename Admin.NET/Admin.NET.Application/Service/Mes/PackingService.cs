@@ -113,31 +113,41 @@ public class PackingService : IDynamicApiController, ITransient
                     if (temp拆分缓存 != null)
                     {
                         //拆分缓存数量小于请求缓存,
-                        if (temp拆分缓存.split_remainder_count < input.split_count)
-                        {
-                            //更新旧缓存
-                            temp拆分缓存.split_sum_count = temp拆分缓存.split_sum_count - temp拆分缓存.split_remainder_count;
-                            temp拆分缓存.split_remainder_count = 0;
-                            
-                            await 拆分容器缓存数据.UpdateAsync(temp拆分缓存);
-                        }
-                        else
-                        {
-                            output.sub_id = temp拆分缓存.Id;
-                            output.split_sum_count = temp拆分缓存.split_sum_count;
-                            output.split_remainder_count = temp拆分缓存.split_remainder_count;
-                            output.order_id = temp拆分缓存.order_id;
-                            output.container_temp_id = temp拆分缓存.container_temp_id;
-                            return output;
-                        }
+                        //if (temp拆分缓存.split_remainder_count < input.split_count)
+                        //{
+                        //    //如果容器缓存剩余数大于拆分请求缓存,更新拆分缓存
+                        //    if(temp缓存.remainder_count> temp拆分缓存.split_sum_count)
+                        //    {
+                        //        //更新旧缓存
+                        //        temp拆分缓存.split_sum_count = temp拆分缓存.split_sum_count - temp拆分缓存.split_remainder_count;
+                        //        temp拆分缓存.split_remainder_count = 0;
+
+                        //        await 拆分容器缓存数据.UpdateAsync(temp拆分缓存);
+                        //    }
+                        //}
+                        //else
+                        //{
+                        //    output.sub_id = temp拆分缓存.Id;
+                        //    output.split_sum_count = temp拆分缓存.split_sum_count;
+                        //    output.split_remainder_count = temp拆分缓存.split_remainder_count;
+                        //    output.order_id = temp拆分缓存.order_id;
+                        //    output.container_temp_id = temp拆分缓存.container_temp_id;
+                        //    return output;
+                        //}
+                        output.sub_id = temp拆分缓存.Id;
+                        output.split_sum_count = temp拆分缓存.split_sum_count;
+                        output.split_remainder_count = temp拆分缓存.split_remainder_count;
+                        output.order_id = temp拆分缓存.order_id;
+                        output.container_temp_id = temp拆分缓存.container_temp_id;
+                        return output;
                     }
                     temp缓存.split_num++;
                     //生成拆分缓存
                     temp拆分缓存 = new split_container_temp
                     {
                         container_temp_id = temp缓存.Id,
-                        split_sum_count = input.split_count.Value,
-                        split_remainder_count = input.split_count.Value,
+                        split_sum_count = input.split_count.Value > temp缓存.remainder_count? temp缓存.remainder_count: input.split_count.Value,
+                        split_remainder_count = input.split_count.Value> temp缓存.remainder_count? temp缓存.remainder_count: input.split_count.Value,
                         order_id = temp缓存.split_num
                     };
                     if (await 拆分容器缓存数据.InsertAsync(temp拆分缓存))
@@ -427,37 +437,59 @@ public class PackingService : IDynamicApiController, ITransient
         }
         throw Oops.Oh("查询错误").WithData("没有查询到信息");
     }
-
+    /// <summary>
+    /// 编辑打包数据
+    /// </summary>
+    /// <param name="input"></param>
+    /// <returns></returns>
     [HttpPost]
-    public async Task<bool> editPackingData(List<TestDataInput> input)
+    public async Task<bool> editPackingData(EditPackingDataInput input)
     {
+        //打包SN列表
         List<TestData> ListTemp = new List<TestData>();
-        foreach (var Item in input)
+        //缓存包装列表
+        List<UpdateContainerTempInput> pack_id_list= new List<UpdateContainerTempInput>();
+        foreach (var Item in input.data)
         {
             var Temp = await 测试数据.GetByIdAsync(Item.id);
             Temp.sn = Item.sn;
             Temp.container_code = Item.container_code;
             Temp.pack_id = Item.pack_id.Value;
             ListTemp.Add(Temp);
+            //如果缓存
+            if (pack_id_list.Count(t=>t.code == Temp.container_code) ==0)
+            {
+                pack_id_list.Add(new UpdateContainerTempInput {
+                    pack_id = Item.pack_id,
+                    sub_work_sheet_id=Item.sub_work_sheet_id,
+                    code=Item.container_code,
+                    result_count= input.data.Count(t=>t.container_code== Item.container_code)
+                });
+            }
         }
         try
         {
             if (测试数据.UpdateRange(ListTemp))
             {
-                var 包装Temp = 包装数据.GetById(input[0].pack_id);
-                包装Temp.count = input.Count;
-                包装Temp.pack = true;
-                包装Temp.small_box = true;
-                if(包装数据.Update(包装Temp))
+                foreach (var Item in pack_id_list)
                 {
-                    //更新缓存
-                    return await 更新容器缓存数据(new UpdateContainerTempInput
+                    var 包装Temp = 包装数据.GetById(Item.pack_id);
+                    包装Temp.count = input.data.Count;
+                    包装Temp.pack = true;
+                    包装Temp.small_box = true;
+                    if (包装数据.Update(包装Temp))
                     {
-                        sub_work_sheet_id = input[0].sub_work_sheet_id,
-                        code = input[0].container_code,
-                        result_count = ListTemp.Count
-                    });
+                        if (input.packingType == "容器")
+                        {
+                            //更新缓存
+                            if(! await 更新容器缓存数据(Item))
+                            {
+                                throw Oops.Oh("更新数据失败").WithData("请联系管理员");
+                            }
+                        }
+                    }
                 }
+                return true;
             }
             throw Oops.Oh("更新数据失败").WithData("请联系管理员");
         }

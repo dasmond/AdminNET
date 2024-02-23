@@ -12,13 +12,6 @@ public class SnWorkStatusOutput
     public string sn { get; set; }
 
     /// <summary>
-    /// Desc:返修次数
-    /// Default:0
-    /// Nullable:True
-    /// </summary>           
-    public int? rework_time { get; set; }
-
-    /// <summary>
     /// Desc:生产状态: 0-待投产;1-投产中;2-待返修;3-返修中;4-合格;5-报废
     /// Default:0
     /// Nullable:True
@@ -38,9 +31,9 @@ public class SnWorkStatusOutput
     /// </summary>           
     public long? work_sheet_id { get; set; }
     /// <summary>
-    /// Desc:流程框图id
+    /// Desc:产品谱系id(最小层级)
     /// Default:
-    /// Nullable:True
+    /// Nullable:False
     /// </summary>           
-    public long? work_flow_id { get; set; }
+    public long pedigree_id { get; set; }
 }

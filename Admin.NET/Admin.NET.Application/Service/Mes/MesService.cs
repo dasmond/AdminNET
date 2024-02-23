@@ -15,6 +15,7 @@ using Admin.NET.Application.Entity.SapToMes;
 using Admin.NET.Application.Service.Mes.Dot.Mes;
 using Admin.NET.Application.Service.Mes.Dot.Packing;
 using Admin.NET.Application.Service.Mes.Dot.SapToMes;
+using Mapster;
 using RmSqlSugarHelp.Entity;
 
 namespace Admin.NET.Application.Service.Mes;
@@ -80,26 +81,38 @@ public class MesService : IDynamicApiController, ITransient
     /// <param name="input"></param>
     /// <returns></returns>
     [HttpPost]
-    public async Task<SnWorkStatusOutput> getSnWorkStatus(getSnWorkStatusInput input)
+    public async Task<SnWorkStatusOutput?> getSnWorkStatus(getSnWorkStatusInput input)
     {
-        SnWorkStatusOutput temp = await SN状态数据.AsQueryable()
-            .InnerJoin((procedure_sn_work_status ws, procedure_sub_work_sheet sws) => ws.sub_work_sheet_id == sws.id)
-            .Where((procedure_sn_work_status ws, procedure_sub_work_sheet sws) => ws.sn ==input.sn && ws.deleted == 0)
-            .WhereIF(input.sub_work_sheet_id != null, (procedure_sn_work_status ws, procedure_sub_work_sheet sws) => ws.sub_work_sheet_id == input.sub_work_sheet_id)
-            .WhereIF(input.status!=null, (procedure_sn_work_status ws, procedure_sub_work_sheet sws) => ws.status==input.status)
-            .WhereIF(input.work_sheet_id != null, (procedure_sn_work_status ws, procedure_sub_work_sheet sws) => sws.work_sheet_id == input.work_sheet_id)
-            .Select((procedure_sn_work_status ws, procedure_sub_work_sheet sws) =>
+        try
+        {
+            var temp = await SN状态数据.AsSugarClient().Queryable
+                <procedure_sn_work_status,
+                procedure_sub_work_sheet,
+                procedure_work_sheet>(
+                (sws, psws, pws) => new JoinQueryInfos(
+                    JoinType.Inner, sws.sub_work_sheet_id == psws.id,
+                    JoinType.Inner, psws.work_sheet_id == pws.id
+                ))
+                .Where(sws => sws.sn == input.sn && sws.deleted == 0)
+                .WhereIF(input.sub_work_sheet_id != null, sws => sws.sub_work_sheet_id == input.sub_work_sheet_id)
+                .Select((sws, psws, pws) =>
             new SnWorkStatusOutput
             {
-                id = ws.id,
-                sn = ws.sn,
-                rework_time=ws.rework_time,
-                status=ws.status,
-                sub_work_sheet_id=ws.sub_work_sheet_id,
-                work_flow_id = ws.work_flow_id,
-                work_sheet_id=sws.work_sheet_id
-            }).FirstAsync();
-        return temp;
+                id = sws.id,
+                sn = sws.sn,
+                status = sws.status,
+                sub_work_sheet_id = sws.sub_work_sheet_id,
+                work_sheet_id=psws.work_sheet_id,
+                pedigree_id = pws.pedigree_id
+            }).FirstAsync(); 
+            return temp;
+        }
+        catch (Exception ex)
+        {
+
+            throw;
+        }
+        
     }
     /// <summary>
     /// 获取半成品谱系Id
@@ -301,7 +314,7 @@ public class MesService : IDynamicApiController, ITransient
                 JoinType.Inner, p.pedigree_id == pe.id))
             .WhereIF(input.id != null, (s, p, pe) => s.id == input.id)
             .WhereIF(input.serial_number != null, (s, p, pe) => s.serial_number == input.serial_number)
-            .Where((s, p, pe) => (s.status == 1 || s.status == 0) && s.deleted == 0)
+            .Where((s, p, pe) => (s.status == 0 || s.status == 1) && s.deleted == 0)
             .Select((s,p,pe) => new SubWorkSheetOutput
                 { 
                 id= s.id,
@@ -320,8 +333,7 @@ public class MesService : IDynamicApiController, ITransient
                 pedigree_code= pe.code,
                 material_id=pe.material_id
 
-            })
-                .FirstAsync();
+            }).FirstAsync();
         return temp;
     }
 }

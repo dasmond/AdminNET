@@ -1,9 +1,12 @@
 ﻿
+using Admin.NET.Application.Const;
+
 namespace RmSqlSugarHelp.Entity
 {
-    ///<summary>
-    ///
-    ///</summary>
+    /// <summary>
+    /// SN状态
+    /// </summary>
+    [Tenant(MesConst.ConfigId)]
     [SugarTable("procedure_sn_work_status")]
     public partial class procedure_sn_work_status
     {
