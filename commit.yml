@@ -3,27 +3,15 @@ branches: {
   }
 fileChange:
   /Web:
-    newFile: !uuid '9fd94d83b5274ef7c14f58da28e5f607f996c774'
-    oldFile: !uuid 'ed274490454b740ccb257cae34e4635b1caf1fb3'
+    newFile: !uuid '3826515956b4b82bc2eda84057db3572c0833782'
+    oldFile: !uuid '9fd94d83b5274ef7c14f58da28e5f607f996c774'
   /Web/src:
-    newFile: !uuid '7c8cf27da5eba9ba882010ff6cdd8ac376747cc2'
-    oldFile: !uuid '1d727ec56055aeb5d3957481f47d555e2faa0bee'
-  /Web/src/views:
-    newFile: !uuid 'dd58f04390c96993046274101ed25924fccdcf33'
-    oldFile: !uuid '94e4a034afbff28255b263e4f3c5b76e508c286b'
-  /Web/src/views/system:
-    newFile: !uuid '11ba5a91666596b2fe3dbb12b0b082ddd4e91a25'
-    oldFile: !uuid '0d87935979fcf7644b079c4dea14cf6ecef9faf5'
-  /Web/src/views/system/config:
-    newFile: !uuid 'dfe50261282b0b401722bc88d8cbf9e24af38051'
-    oldFile: !uuid '8395a2caf6279711e23373e91f11261da739b251'
-  /Web/src/views/system/config/component:
-    newFile: !uuid 'b6ea27b54b7cc08fb16eecf7ccfc9117262110da'
-    oldFile: !uuid '7a7c49777a11a3c958817951daea627d01121bfa'
-  /Web/src/views/system/config/component/editConfig.vue:
-    newFile: !uuid 'c2fb82d77b1d7c8e31893b7a83a093bee3a26fc8'
-    oldFile: !uuid '7a0a132d15b875e7b1b9776391c8f6b5cc94da20'
-gitCommitId: !uuid 'ed8436a3b5f990d0f281d27a53fffed812f23d0c'
+    newFile: !uuid '6904af75ca0ceaa8d982bc707d5e7bbed1438c65'
+    oldFile: !uuid '7c8cf27da5eba9ba882010ff6cdd8ac376747cc2'
+  /Web/src/App.vue:
+    newFile: !uuid '57c1170f7dc92a0e72d067af18c9629ed16bcf59'
+    oldFile: !uuid 'fb956026fab11100f7a32e333c552dba850197dc'
+gitCommitId: !uuid '5977cc000783310c6dc52f0a5abed30521c0be0d'
 renames: {
   }
-revisionId: 1477
+revisionId: 1478
