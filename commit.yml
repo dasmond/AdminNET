@@ -3,24 +3,15 @@ branches: {
   }
 fileChange:
   /Web:
-    newFile: !uuid '42a829dadd598e4c003aedc34d10c8044d2309b1'
-    oldFile: !uuid '3826515956b4b82bc2eda84057db3572c0833782'
-  /Web/src:
-    newFile: !uuid '6f6efa127c87b08b77aa5095e80b264aacbbb5b5'
-    oldFile: !uuid '6904af75ca0ceaa8d982bc707d5e7bbed1438c65'
-  /Web/src/layout:
-    newFile: !uuid '7f62a24a76cf2fecd927e522a420e7578efddd5e'
-    oldFile: !uuid '2cd8ae170e7c4708587aafe462c5b1c38550760c'
-  /Web/src/layout/navBars:
-    newFile: !uuid '0f1ea675ec2f8ca4777ce5048e81ce42723346be'
-    oldFile: !uuid 'b109d9d581b816012d2c48df1aabb1cdfd1afd43'
-  /Web/src/layout/navBars/topBar:
-    newFile: !uuid '2790273ce018315cb3e63bda99281d66b88f3930'
-    oldFile: !uuid '2d8aa48ed30383f1d6019ff36cef22c0661a1011'
-  /Web/src/layout/navBars/topBar/breadcrumb.vue:
-    newFile: !uuid '1baccefac2f77942278c33c62e69783e60c88773'
-    oldFile: !uuid 'a2e40ceada28422013ad323a5182759a610f7d06'
-gitCommitId: !uuid '857e6440136ef32c5286bd9fae042fed7e747eba'
+    newFile: !uuid '84e477f8f9f115899b3e70cecc24f1c073faae92'
+    oldFile: !uuid '42a829dadd598e4c003aedc34d10c8044d2309b1'
+  /Web/.vscode:
+    newFile: !uuid '549be7d53e4796cf9006183efd3634a74147498a'
+    oldFile: null
+  /Web/.vscode/extensions.json:
+    newFile: !uuid '14e024564d354189838b90946b95ea8229f50130'
+    oldFile: null
+gitCommitId: !uuid '8d2967dea018df93db56ccbeb881ca903a18aeb2'
 renames: {
   }
-revisionId: 1479
+revisionId: 1480
