@@ -2,16 +2,16 @@
 branches: {
   }
 fileChange:
-  /Web:
-    newFile: !uuid '84e477f8f9f115899b3e70cecc24f1c073faae92'
-    oldFile: !uuid '42a829dadd598e4c003aedc34d10c8044d2309b1'
-  /Web/.vscode:
-    newFile: !uuid '549be7d53e4796cf9006183efd3634a74147498a'
-    oldFile: null
-  /Web/.vscode/extensions.json:
-    newFile: !uuid '14e024564d354189838b90946b95ea8229f50130'
-    oldFile: null
-gitCommitId: !uuid '8d2967dea018df93db56ccbeb881ca903a18aeb2'
+  /Admin.NET:
+    newFile: !uuid '80cd3c929376a6370fd1bee573d3d1497ea2c7c0'
+    oldFile: !uuid '0352c28571bf11ce2d757765a5d07cc4b92d0fea'
+  /Admin.NET/Admin.NET.Core:
+    newFile: !uuid 'cc85ce5b2e4b7ec6bca29c5bb8938efec389d6b8'
+    oldFile: !uuid 'c02beef71af3c7e17c16092ac3a13751ee8ad83e'
+  /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
+    newFile: !uuid '7ac351b03cf1902d5bcb9ac86acb67013297eff0'
+    oldFile: !uuid '9d6ab8f839cdbd853f945c4062b39bd9d3bb0043'
+gitCommitId: !uuid 'fb832383f598ab1dd7bab12d4ef524dae93dcae7'
 renames: {
   }
-revisionId: 1480
+revisionId: 1481
