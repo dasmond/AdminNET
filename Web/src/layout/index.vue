@@ -23,6 +23,9 @@ const { themeConfig } = storeToRefs(storesThemeConfig);
 
 // 窗口大小改变时(适配移动端)
 const onLayoutResize = () => {
+    if(!themeConfig.value.isResize){
+		return;
+	}
 	if (!Local.get('oldLayout')) Local.set('oldLayout', themeConfig.value.layout);
 	const clientWidth = document.body.clientWidth;
 	if (clientWidth < 1000) {
