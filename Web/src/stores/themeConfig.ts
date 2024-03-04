@@ -146,6 +146,8 @@ export const useThemeConfig = defineStore('themeConfig', {
 			globalI18n: 'zh-cn',
 			// 默认全局组件大小，可选值"<large|'default'|small>"，默认 'large'
 			globalComponentSize: 'small',
+            //是否开启页面大小改变刷新重新加载页面
+			isResize:false,
 		},
 	}),
 	actions: {
