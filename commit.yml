@@ -3,30 +3,12 @@ branches: {
   }
 fileChange:
   /Web:
-    newFile: !uuid 'b08f23225ed4e1ad77d6b864f68325d5b7387f0f'
-    oldFile: !uuid '84e477f8f9f115899b3e70cecc24f1c073faae92'
-  /Web/src:
-    newFile: !uuid '402de52ce0f2ef86636133dfa022e6c3e90153ef'
-    oldFile: !uuid '6f6efa127c87b08b77aa5095e80b264aacbbb5b5'
-  /Web/src/layout:
-    newFile: !uuid '4734757e78926a43b2ea937caeb2a1608c1e9f9c'
-    oldFile: !uuid '7f62a24a76cf2fecd927e522a420e7578efddd5e'
-  /Web/src/layout/navBars:
-    newFile: !uuid 'dd9d640839f99da3d6acfc9813810c20b9282fd4'
-    oldFile: !uuid '0f1ea675ec2f8ca4777ce5048e81ce42723346be'
-  /Web/src/layout/navBars/topBar:
-    newFile: !uuid '81d5195fdf570329cd401f810de5c2970148b356'
-    oldFile: !uuid '2790273ce018315cb3e63bda99281d66b88f3930'
-  /Web/src/layout/navBars/topBar/breadcrumb.vue:
-    newFile: !uuid '12d071b7d0cc9feee2a5c68c38f9b985a3397c0a'
-    oldFile: !uuid '1baccefac2f77942278c33c62e69783e60c88773'
-  /Web/src/utils:
-    newFile: !uuid '8e3c5ad3185c98d3830584a92e7ad32cbfc0ae64'
-    oldFile: !uuid 'd3ecf9e8ace6e9f90ac69e54b3e85a7a0e640884'
-  /Web/src/utils/exportExcel.ts:
-    newFile: !uuid '63fdffe1123a4c2f97930c9e2d3f23ab81e90e73'
-    oldFile: !uuid '223e845507fc28efb979ed4eccbcf5e63aa81622'
-gitCommitId: !uuid 'deceb2b8c4427795631e31bdc6831c555d2cae5c'
+    newFile: !uuid 'd67c95ded84d98fc9f2130ef03754cc246c6bf30'
+    oldFile: !uuid 'b08f23225ed4e1ad77d6b864f68325d5b7387f0f'
+  /Web/package.json:
+    newFile: !uuid 'ec0a5f942a30893c1f89db9a4d759d123a2ab5d9'
+    oldFile: !uuid 'a61092fe519a9ba0dc63d8d76483792ac3cc0044'
+gitCommitId: !uuid '37f28dc92bcafd9d2138bfef11dec266ab156747'
 renames: {
   }
-revisionId: 1482
+revisionId: 1483
