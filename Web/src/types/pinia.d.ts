@@ -90,5 +90,6 @@ declare interface ThemeConfigState {
 		globalViceTitleMsg: string;
 		globalI18n: string;
 		globalComponentSize: string;
+        isResize:boolean;
 	};
 }
