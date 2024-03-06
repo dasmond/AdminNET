@@ -14,6 +14,7 @@ using Admin.NET.Application.Entity.Mes.Rmes;
 using Admin.NET.Application.Entity.SapToMes;
 using Admin.NET.Application.Service.Mes.Dot.Mes;
 using Admin.NET.Application.Service.Mes.Dot.Packing;
+using Admin.NET.Application.Service.Mes.Dot.Report;
 using Admin.NET.Application.Service.Mes.Dot.SapToMes;
 using Mapster;
 using RmSqlSugarHelp.Entity;
@@ -31,8 +32,9 @@ public class MesService : IDynamicApiController, ITransient
     private readonly SqlSugarRepository<base_step> 工序信息;
     private readonly SqlSugarRepository<base_pedigree> 谱系数据;
     private readonly SqlSugarRepository<work_sheet> 工单中间库数据;
-    private readonly SqlSugarRepository<base_pedigree_step_material_rule> 上料规则数据;    
+    private readonly SqlSugarRepository<base_pedigree_step_material_rule> 上料规则数据;
     private readonly SqlSugarRepository<procedure_sn_work_status> SN状态数据;
+    private readonly SqlSugarRepository<base_work_line> 产线数据;
     public MesService(
         SqlSugarRepository<procedure_container_detail> 容器数据Rep,
         SqlSugarRepository<procedure_batch_work_detail> 动态数据Rep,
@@ -43,7 +45,8 @@ public class MesService : IDynamicApiController, ITransient
         SqlSugarRepository<base_pedigree> 谱系数据Rep,
         SqlSugarRepository<work_sheet> 工单中间库数据Rep,
         SqlSugarRepository<base_pedigree_step_material_rule> 上料规则数据Rep,
-        SqlSugarRepository<procedure_sn_work_status> SN状态数据Rep
+        SqlSugarRepository<procedure_sn_work_status> SN状态数据Rep,
+        SqlSugarRepository<base_work_line> 产线数据Rep
         )
     {
         容器数据 = 容器数据Rep;
@@ -56,6 +59,7 @@ public class MesService : IDynamicApiController, ITransient
         工单中间库数据 = 工单中间库数据Rep;
         上料规则数据 = 上料规则数据Rep;
         SN状态数据 = SN状态数据Rep;
+        产线数据 = 产线数据Rep;
     }
     /// <summary>
     /// 查询工单工序数据
@@ -75,6 +79,18 @@ public class MesService : IDynamicApiController, ITransient
             throw Oops.Oh("查询错误").WithData("没有查询到信息");
         }
     }
+    /// <summary>
+    /// 生成日报
+    /// </summary>
+    /// <param name="input"></param>
+    /// <returns></returns>
+    [HttpPost]
+    public async Task<DailyReportOutput> createDailyReport(createDailyReportInput input)
+    {
+        var temp = await 产线数据.GetFirstAsync(t=>t.code==input.code);
+        throw Oops.Oh("查询错误").WithData("没有查询到信息");
+    }
+
     /// <summary>
     /// 查询SN状态
     /// </summary>
@@ -102,9 +118,9 @@ public class MesService : IDynamicApiController, ITransient
                 sn = sws.sn,
                 status = sws.status,
                 sub_work_sheet_id = sws.sub_work_sheet_id,
-                work_sheet_id=psws.work_sheet_id,
+                work_sheet_id = psws.work_sheet_id,
                 pedigree_id = pws.pedigree_id
-            }).FirstAsync(); 
+            }).FirstAsync();
             return temp;
         }
         catch (Exception ex)
@@ -112,7 +128,7 @@ public class MesService : IDynamicApiController, ITransient
 
             throw;
         }
-        
+
     }
     /// <summary>
     /// 获取半成品谱系Id
@@ -122,7 +138,7 @@ public class MesService : IDynamicApiController, ITransient
     [HttpPost]
     public async Task<long> getMaterialPedigree(GetPedigreeInput input)
     {
-        var temp = await 谱系数据.GetFirstAsync(t=>t.material_id== input.material_id && t.deleted==0);
+        var temp = await 谱系数据.GetFirstAsync(t => t.material_id == input.material_id && t.deleted == 0);
         return temp.id;
     }
     /// <summary>
@@ -133,23 +149,23 @@ public class MesService : IDynamicApiController, ITransient
     [HttpPost]
     public async Task<PedigreeStepMaterialOutput> getPedigreeStepMaterial(GetPedigreeStepMaterialInput input)
     {
-        var temp =await 上料规则数据.AsQueryable()
+        var temp = await 上料规则数据.AsQueryable()
             .InnerJoin((base_pedigree_step_material_rule psm, base_pedigree bp) => psm.material_id == bp.material_id)
-            .Where((base_pedigree_step_material_rule psm, base_pedigree bp)=>
+            .Where((base_pedigree_step_material_rule psm, base_pedigree bp) =>
             psm.work_flow_id == input.work_flow_id
             && psm.pedigree_id == input.pedigree_id
-            && psm.step_id == input.step_id 
+            && psm.step_id == input.step_id
             && psm.deleted == 0
-            && bp.deleted==0)
-            .Select((base_pedigree_step_material_rule psm, base_pedigree bp)=>
-            new PedigreeStepMaterialOutput 
+            && bp.deleted == 0)
+            .Select((base_pedigree_step_material_rule psm, base_pedigree bp) =>
+            new PedigreeStepMaterialOutput
             {
-                id=psm.id,
-                pedigree_id=psm.pedigree_id,
-                step_id=psm.step_id,
-                material_id=psm.material_id,
-                work_flow_id=psm.work_flow_id,
-                material_pedigree_id=bp.id
+                id = psm.id,
+                pedigree_id = psm.pedigree_id,
+                step_id = psm.step_id,
+                material_id = psm.material_id,
+                work_flow_id = psm.work_flow_id,
+                material_pedigree_id = bp.id
             }).FirstAsync();
         return temp;
     }
@@ -211,7 +227,7 @@ public class MesService : IDynamicApiController, ITransient
                 procedure_sub_work_sheet,
                 procedure_work_sheet,
                 base_pedigree>(
-                (pcd, pbwd, psws, pws,bp) => new JoinQueryInfos(
+                (pcd, pbwd, psws, pws, bp) => new JoinQueryInfos(
                     JoinType.Inner, pbwd.id == pcd.batch_work_detail_id,
                     JoinType.Inner, pbwd.sub_work_sheet_id == psws.id,
                     JoinType.Inner, psws.work_sheet_id == pws.id,
@@ -223,7 +239,7 @@ public class MesService : IDynamicApiController, ITransient
                 && pcd.deleted == 0
                 && pws.deleted == 0
                     )
-                    .Select((procedure_container_detail pcd, procedure_batch_work_detail pbwd, procedure_sub_work_sheet psws, procedure_work_sheet pws,base_pedigree bp) => new ContainerProductOutput()
+                    .Select((procedure_container_detail pcd, procedure_batch_work_detail pbwd, procedure_sub_work_sheet psws, procedure_work_sheet pws, base_pedigree bp) => new ContainerProductOutput()
                     {
                         id = pcd.id,
                         container_id = pcd.container_id,
@@ -236,11 +252,11 @@ public class MesService : IDynamicApiController, ITransient
                         step_id = pbwd.step_id,
                         work_sheet_id = psws.work_sheet_id,
                         sub_work_sheet_id = psws.id,
-                        sub_work_sheet_sn=psws.serial_number,
-                        contract_num =pws.custom2,
+                        sub_work_sheet_sn = psws.serial_number,
+                        contract_num = pws.custom2,
                         pedigree_id = pws.pedigree_id,
-                        material_id=bp.material_id,
-                        pedigree_code =bp.code
+                        material_id = bp.material_id,
+                        pedigree_code = bp.code
                     })
                     .FirstAsync();
                 return Temp;
@@ -308,30 +324,30 @@ public class MesService : IDynamicApiController, ITransient
     public async Task<SubWorkSheetOutput> GetSubWorkSheet(GetSubWorkSheetInput input)
     {
         var temp = await 子工单数据.AsSugarClient().Queryable<procedure_sub_work_sheet, procedure_work_sheet, base_pedigree>
-            ((s, p,  pe)=> 
+            ((s, p, pe) =>
             new JoinQueryInfos(
                 JoinType.Inner, s.work_sheet_id == p.id,
                 JoinType.Inner, p.pedigree_id == pe.id))
             .WhereIF(input.id != null, (s, p, pe) => s.id == input.id)
             .WhereIF(input.serial_number != null, (s, p, pe) => s.serial_number == input.serial_number)
             .Where((s, p, pe) => (s.status == 0 || s.status == 1) && s.deleted == 0)
-            .Select((s,p,pe) => new SubWorkSheetOutput
-                { 
-                id= s.id,
-                serial_number= s.serial_number,
-                work_sheet_id= s.work_sheet_id,
-                work_sheet_sn= p.serial_number,
-                number= s.number,
-                qualified_number= s.qualified_number,
-                unqualified_number= s.unqualified_number,
-                rework_qualified_number= s.rework_qualified_number,
-                status= s.status,
-                contract_num=p.custom2,
+            .Select((s, p, pe) => new SubWorkSheetOutput
+            {
+                id = s.id,
+                serial_number = s.serial_number,
+                work_sheet_id = s.work_sheet_id,
+                work_sheet_sn = p.serial_number,
+                number = s.number,
+                qualified_number = s.qualified_number,
+                unqualified_number = s.unqualified_number,
+                rework_qualified_number = s.rework_qualified_number,
+                status = s.status,
+                contract_num = p.custom2,
                 customer_code = p.custom3,
-                work_flow_id =p.work_line_id,
-                pedigree_id= pe.id,
-                pedigree_code= pe.code,
-                material_id=pe.material_id
+                work_flow_id = p.work_line_id,
+                pedigree_id = pe.id,
+                pedigree_code = pe.code,
+                material_id = pe.material_id
 
             }).FirstAsync();
         return temp;
