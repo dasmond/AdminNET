@@ -2,10 +2,19 @@
 branches: {
   }
 fileChange:
-  /LICENSE:
-    newFile: !uuid 'd9c01ac1f681391f28df498861e8dee4cce23940'
-    oldFile: !uuid 'c982e75d77d0dcd236877619025cd376b92e69f1'
-gitCommitId: !uuid '4047a46572f60d42937bf545e96ffdf2e570b11d'
+  /Admin.NET:
+    newFile: !uuid 'ca24dbe7b35f450b6e06d052e994c90cd86b7519'
+    oldFile: !uuid '46b73280392787c019705dc29f051c10b4c7f297'
+  /Admin.NET/Admin.NET.Core:
+    newFile: !uuid '4e0f98568b231a6a3f7e7c851cc4002b0b4608fe'
+    oldFile: !uuid 'a4e7ea364a47e14dec659c5d0363d5a961229a00'
+  /Admin.NET/Admin.NET.Core/SqlSugar:
+    newFile: !uuid '57798ad28eac10f51e3e06aa501c017d45148437'
+    oldFile: !uuid 'fc570e130cdc4bb4417d457e8d96e1bfb046b3fa'
+  /Admin.NET/Admin.NET.Core/SqlSugar/SqlSugarSetup.cs:
+    newFile: !uuid 'cec2da4a751cd9971365f0b98d1c0a4fcff2d036'
+    oldFile: !uuid '752c885b1a750402b444916406036af0bdc79240'
+gitCommitId: !uuid '5829d3e2842afb3a8c1194bdac343e5b2f1fa280'
 renames: {
   }
-revisionId: 1510
+revisionId: 1511
