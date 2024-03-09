@@ -2,19 +2,1000 @@
 branches: {
   }
 fileChange:
-  /Admin.NET:
-    newFile: !uuid 'ca24dbe7b35f450b6e06d052e994c90cd86b7519'
-    oldFile: !uuid '46b73280392787c019705dc29f051c10b4c7f297'
-  /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '4e0f98568b231a6a3f7e7c851cc4002b0b4608fe'
-    oldFile: !uuid 'a4e7ea364a47e14dec659c5d0363d5a961229a00'
-  /Admin.NET/Admin.NET.Core/SqlSugar:
-    newFile: !uuid '57798ad28eac10f51e3e06aa501c017d45148437'
-    oldFile: !uuid 'fc570e130cdc4bb4417d457e8d96e1bfb046b3fa'
-  /Admin.NET/Admin.NET.Core/SqlSugar/SqlSugarSetup.cs:
-    newFile: !uuid 'cec2da4a751cd9971365f0b98d1c0a4fcff2d036'
-    oldFile: !uuid '752c885b1a750402b444916406036af0bdc79240'
-gitCommitId: !uuid '5829d3e2842afb3a8c1194bdac343e5b2f1fa280'
+  /Web:
+    newFile: !uuid 'a4458d397bb22afa0be52d672bf06cbbec078883'
+    oldFile: !uuid 'a5ee3117b11b386a31fb14b516df98410f0a3162'
+  /Web/src:
+    newFile: !uuid '7c1c0528d1da41015265555f6e1a5c89b15b8bff'
+    oldFile: !uuid '22bf4677ee7cfac8ed81b95a44e494dd199757c9'
+  /Web/src/api-services:
+    newFile: !uuid 'af021ab21012ba8f45291133375d068d4078e942'
+    oldFile: !uuid '4c08038b3069366bae1e1e43ed9c0ea69e5a0263'
+  /Web/src/api-services/api.ts:
+    newFile: !uuid 'f9f0bfc1e3a050cf6177b020e0d4679409a2f449'
+    oldFile: !uuid '6bce6db0e261b57f4825e63ae3783dcb0ca2b062'
+  /Web/src/api-services/apis:
+    newFile: !uuid 'c5ea5ebc9c5d543c0b42a3c840d6d4df2aeb70ff'
+    oldFile: !uuid 'bdef107a7aba2eabc36285ee6a05051ed3b256c0'
+  /Web/src/api-services/apis/apijsonapi.ts:
+    newFile: !uuid 'b11c4c29f38d3c0fdb77c495b5d272f35dbac580'
+    oldFile: !uuid '0a3d28ad1f9bb3d93f0958571854e67e4e7884f5'
+  /Web/src/api-services/apis/sys-auth-api.ts:
+    newFile: !uuid '61246143dacaa629be84a0c508037194f1d97c32'
+    oldFile: !uuid 'ff8d497cc7976973ac12ffaf0449f8bc67ad84c0'
+  /Web/src/api-services/apis/sys-cache-api.ts:
+    newFile: !uuid 'd580740737b43577b98eeaf97091b2b08f40ff23'
+    oldFile: !uuid 'a5fdc272bdf05f4ba0f12480897813dbca31700e'
+  /Web/src/api-services/apis/sys-code-gen-api.ts:
+    newFile: !uuid '452cb612c7378b4c94a066006a19248dfc35ff02'
+    oldFile: !uuid '754f78ca4239f88c2023007c9295e0cf05ddb345'
+  /Web/src/api-services/apis/sys-code-gen-config-api.ts:
+    newFile: !uuid 'ae06e8d6b0ca9eff81c15a90c5898ec4db56738a'
+    oldFile: !uuid '9d24f5b4518a49f3ef60e18c07a7f58456160c18'
+  /Web/src/api-services/apis/sys-common-api.ts:
+    newFile: !uuid '4c9638160c49d539e62fcf8eb1d7cea79f8694fe'
+    oldFile: !uuid '1ae5c85e0f645a60887d3c71749bc03166950d36'
+  /Web/src/api-services/apis/sys-config-api.ts:
+    newFile: !uuid 'd3611726629e311bd541bfa4011787fa6502baff'
+    oldFile: !uuid '765d7b395ab5ecd051d0e25d6363e8c022aa67ef'
+  /Web/src/api-services/apis/sys-const-api.ts:
+    newFile: !uuid '6afc6e79bfd3aeb3c12361ff6ae06e33d4c3247e'
+    oldFile: !uuid 'de0c64b3bce955001b5c8aafb44a65f602f5f55c'
+  /Web/src/api-services/apis/sys-database-api.ts:
+    newFile: !uuid 'f9684b738ee7de4992a775fc59f0e3ce7dc2a9c5'
+    oldFile: !uuid '15af70d45fa91109fd2a1a994097216b785d1154'
+  /Web/src/api-services/apis/sys-dict-data-api.ts:
+    newFile: !uuid '97554317251c766b8bb9630af78a710fc5cd881b'
+    oldFile: !uuid '36c4b8f4fe48948bd83097de02fdf00819b0344b'
+  /Web/src/api-services/apis/sys-dict-type-api.ts:
+    newFile: !uuid '68041bdd002becbddccb0b9d3d87d70afd328017'
+    oldFile: !uuid '67e620d6dc09996610237df795e0795a9467baa9'
+  /Web/src/api-services/apis/sys-email-api.ts:
+    newFile: !uuid '25074034b3258d169f8db7629c8a1eb0c117e850'
+    oldFile: !uuid 'f4eb403d0b492446b90db4586e87e1ca4b373fba'
+  /Web/src/api-services/apis/sys-enum-api.ts:
+    newFile: !uuid '943683bb37cd61af8c3e35bebf80880d3d199d8b'
+    oldFile: !uuid '46778e347e268a8f20697ef7593d4256caf1287d'
+  /Web/src/api-services/apis/sys-file-api.ts:
+    newFile: !uuid '44c8a401ac9283f8627d134b101c6e6e254e8186'
+    oldFile: !uuid 'da50ed4dc30d529c001535167d3d4eb8914f07a1'
+  /Web/src/api-services/apis/sys-job-api.ts:
+    newFile: !uuid '9fe567c66b99813585ee446c4607e8f9b0ee9026'
+    oldFile: !uuid 'ce93ce0199d726b36b9e31c807e2257adaf2ded5'
+  /Web/src/api-services/apis/sys-log-diff-api.ts:
+    newFile: !uuid '424ddfedce743ee32b3a8c68f70b2d4583b225ba'
+    oldFile: !uuid '0727787dd44776d717d7cd9eb7eb6917b9388c99'
+  /Web/src/api-services/apis/sys-log-ex-api.ts:
+    newFile: !uuid 'fb5e267a1f4a1f18e95c018e00c58de64c71214a'
+    oldFile: !uuid '89e213f49b3de1bb959d2fa282003134e78af623'
+  /Web/src/api-services/apis/sys-log-op-api.ts:
+    newFile: !uuid 'b3c80d50c2ccf95d10af8e34990bb0bdd2aaea1b'
+    oldFile: !uuid 'ea93c04f5b68b5d10c3c44efd37c4d00d13aacc8'
+  /Web/src/api-services/apis/sys-log-vis-api.ts:
+    newFile: !uuid 'ff2dfebb6cab43c091d9412b6c0042921c269624'
+    oldFile: !uuid 'cbc83a74f87542968667aaea70707687fa170750'
+  /Web/src/api-services/apis/sys-menu-api.ts:
+    newFile: !uuid 'db10824de8e814971023c45a02cbd97b418de212'
+    oldFile: !uuid '9e31f00a4258a8308c90d5717afcd246d6e29171'
+  /Web/src/api-services/apis/sys-message-api.ts:
+    newFile: !uuid 'f7435ebad1e99c4f5910c753221ba90efffe4f20'
+    oldFile: !uuid 'ad84ca40357f3a18678265e272a86a8ebf11f49e'
+  /Web/src/api-services/apis/sys-notice-api.ts:
+    newFile: !uuid '900fec5c00d57302a649d582acd4dcfb4a998cef'
+    oldFile: !uuid '68e2714f964a77ceb139aea991503e07955f6727'
+  /Web/src/api-services/apis/sys-oauth-api.ts:
+    newFile: !uuid '93490b79fe9cb04aa34aa3cd9e4dd02b7e0bc336'
+    oldFile: !uuid '796ec4ba3affc6ebfc206972f2240f87e71db5b8'
+  /Web/src/api-services/apis/sys-online-user-api.ts:
+    newFile: !uuid 'baff93abd1d86496dd9299ff9892dfc8ed08f242'
+    oldFile: !uuid 'e8d3c01ba754772895ca6e0e7093600a522266aa'
+  /Web/src/api-services/apis/sys-open-access-api.ts:
+    newFile: !uuid 'c0816b29ec77f30881184ca6763563ef03db1419'
+    oldFile: !uuid '81fc48767c172c1ce84902da2fade89e8bee94d1'
+  /Web/src/api-services/apis/sys-org-api.ts:
+    newFile: !uuid '5fc584c70960de6808052c9d4712aec4afbab9f2'
+    oldFile: !uuid '16e2b9d13192e21867734bef719aa17ce1cb5c83'
+  /Web/src/api-services/apis/sys-plugin-api.ts:
+    newFile: !uuid '912d6f2f0083e107985f5edc25025c82f512568d'
+    oldFile: !uuid 'd106f213ea612ef2663865f1636f265119e1e774'
+  /Web/src/api-services/apis/sys-pos-api.ts:
+    newFile: !uuid '5fcfdc86ea3400b4d79c61c1d863676f6f8012d4'
+    oldFile: !uuid '6ac926299fa7d17840e17fa9f6f002bb2fe1f337'
+  /Web/src/api-services/apis/sys-print-api.ts:
+    newFile: !uuid '2423b1382fd928e9772341bc43cb5b6d575146c2'
+    oldFile: !uuid '09e5395be410759e9ee3ec1f231b79aa7970ecff'
+  /Web/src/api-services/apis/sys-region-api.ts:
+    newFile: !uuid 'e19e5751f53e138d04db3c658e2e156b3d5b395d'
+    oldFile: !uuid '43f068e31bc2d95b1a2efffaa85c67528405fa20'
+  /Web/src/api-services/apis/sys-role-api.ts:
+    newFile: !uuid '76deb7664992fe7346a3fcfc9094d8b396b66a9e'
+    oldFile: !uuid '086cdc243625e5432181bb342b777701e49eff4d'
+  /Web/src/api-services/apis/sys-server-api.ts:
+    newFile: !uuid '28cc7d6c77b47830b6f000551099371fa2a7eedb'
+    oldFile: !uuid '60e1b2675bad5967a5e7be3a626e6cf0ec35bd4f'
+  /Web/src/api-services/apis/sys-sms-api.ts:
+    newFile: !uuid 'c1031c2ec3b13cab2909d46da30163e6f835457b'
+    oldFile: !uuid 'b82d92dae56eb08b61ee3fe8e0681375a81e479f'
+  /Web/src/api-services/apis/sys-tenant-api.ts:
+    newFile: !uuid '23703e7cb140e5637327052489647cfa9c3d6227'
+    oldFile: !uuid '4e2cce892f3794dbcd78429e15af309e664a92de'
+  /Web/src/api-services/apis/sys-user-api.ts:
+    newFile: !uuid '301ce3303fbaa6a94df02a0e2b0bcf49b48c4ff5'
+    oldFile: !uuid '77a2555239441a4ac891f08e347d46f6c19c8eda'
+  /Web/src/api-services/apis/sys-wechat-api.ts:
+    newFile: !uuid 'acbefb520ffbe198ef43c1f74783c2d07daee6c1'
+    oldFile: !uuid 'ae5031dfde370970dff891ed0d2e9d9470f77276'
+  /Web/src/api-services/apis/sys-wechat-pay-api.ts:
+    newFile: !uuid 'd856bed197d1cf87977730d8e7513fbd1796e6aa'
+    oldFile: !uuid '5c08d8279b09e4967bff6845d6386afa8c38d168'
+  /Web/src/api-services/apis/sys-wechat-user-api.ts:
+    newFile: !uuid '348b03112e9fb87a418858d409cf237a2fff200e'
+    oldFile: !uuid '63fb55c3e8ad995d55c1bf992339109e949363ec'
+  /Web/src/api-services/apis/sys-wx-open-api.ts:
+    newFile: !uuid 'ec70d524df6c67b781862d7aa6b5d89874d4f9c9'
+    oldFile: !uuid '0d582931195ede20e587f20e6519b7cd18eb66d0'
+  /Web/src/api-services/base.ts:
+    newFile: !uuid 'b8e9303ed91fad19881fc32cfdb96fc34991f5c5'
+    oldFile: !uuid '470c0367ab00fdb87f4499476333598e9a27a978'
+  /Web/src/api-services/configuration.ts:
+    newFile: !uuid 'df485297b1f09e829acfcef29e63b0c695f4237a'
+    oldFile: !uuid '607c95f9096ace18a310d9f55983c2d86e15da9e'
+  /Web/src/api-services/index.ts:
+    newFile: !uuid '049898437b939358ad8ca7fa472d36afbe7229f7'
+    oldFile: !uuid 'ed558b109404d9408508479b85d813e93697c0ed'
+  /Web/src/api-services/models:
+    newFile: !uuid 'a0bdc1cb8f031e15a56b72b2c033505e4e9ca8fe'
+    oldFile: !uuid '5be1acfd22a7f44b887d7e37bb85a291d745ad8c'
+  /Web/src/api-services/models/account-type-enum.ts:
+    newFile: !uuid '808eed63c8a82a9b48a004ae10cf32dc98e34b69'
+    oldFile: !uuid 'b4d512de1b2c857885a97762895775bb2c604108'
+  /Web/src/api-services/models/add-code-gen-input.ts:
+    newFile: !uuid '20710920e786c644e68f7aa808ab4dbdfd7ab9e3'
+    oldFile: !uuid '11a82e73c54827b4d7755ad4057f03086c0601cd'
+  /Web/src/api-services/models/add-config-input.ts:
+    newFile: !uuid 'ac1b84e0acdff60084bee9aa6ccc057dd35e83bb'
+    oldFile: !uuid 'e23bde903067396aad70bade45fbf4e0c469e875'
+  /Web/src/api-services/models/add-dict-data-input.ts:
+    newFile: !uuid 'a9b1fc3109fe3475f22a9e0342c30c0d2f887e3e'
+    oldFile: !uuid 'b485c5177198bdb34f91a763f660538e97e1cb5c'
+  /Web/src/api-services/models/add-dict-type-input.ts:
+    newFile: !uuid '1b95223fab843568c09befc6f844304d9e0b8dd0'
+    oldFile: !uuid '5779df794f9cad2f2270b2448c1f48f105f78595'
+  /Web/src/api-services/models/add-job-detail-input.ts:
+    newFile: !uuid '297e1fe3d7f69343c65407e0915fcf58471be6ef'
+    oldFile: !uuid 'ca72214b069a8b142585ed7531cd95a4661a3d35'
+  /Web/src/api-services/models/add-job-trigger-input.ts:
+    newFile: !uuid 'bd8c856fadbeb3807e30831433545e0d6f9a3a65'
+    oldFile: !uuid '7a354aadf200a0b05df4a23718f8cc2035a01715'
+  /Web/src/api-services/models/add-menu-input.ts:
+    newFile: !uuid 'ac7cf9bb706259779bebe0a3ff48400ace3db7f2'
+    oldFile: !uuid '710cf348d9e57becff68b97da68debe6fbe4c964'
+  /Web/src/api-services/models/add-notice-input.ts:
+    newFile: !uuid '05d081b338b8b8f967d95e16c913acaf93598709'
+    oldFile: !uuid 'befc06ab2abbb4055bbfc66fded771cd1990276a'
+  /Web/src/api-services/models/add-open-access-input.ts:
+    newFile: !uuid 'aba9439431cae0383b796db0063a0711ac676eed'
+    oldFile: !uuid 'd24af61cef10ae792cf8bbc36f8391a0ea7c694e'
+  /Web/src/api-services/models/add-org-input.ts:
+    newFile: !uuid 'a1934118f85171d12d37d6c3c8d01e23ad1b1597'
+    oldFile: !uuid 'ed94f6fb4da4a80b7d4c4d5964cc5d8073fa089a'
+  /Web/src/api-services/models/add-plugin-input.ts:
+    newFile: !uuid 'a8162fec67272c85e1a09a7037d1620114b4108a'
+    oldFile: !uuid 'c639e8424cc3effb0c02ce3de9f81658ef866922'
+  /Web/src/api-services/models/add-pos-input.ts:
+    newFile: !uuid 'a43f8d696f85274e869b51f927023b4ec5634617'
+    oldFile: !uuid '70da609289f32b45471c8c5cf598f2c5824cb99c'
+  /Web/src/api-services/models/add-print-input.ts:
+    newFile: !uuid '2a0d06d427573fba809dbad9abec2ef8cc66212b'
+    oldFile: !uuid '02346011a37f5cb68eaff77e90eaad0794963f81'
+  /Web/src/api-services/models/add-region-input.ts:
+    newFile: !uuid '4615d96010e58dda1fc3788e43cdb8f3004fb222'
+    oldFile: !uuid '48ac488b990ef825d9d2c81c35c418cfc53c30c0'
+  /Web/src/api-services/models/add-role-input.ts:
+    newFile: !uuid '1a00e2d91c757ddb4d49e4aac6103a21c387a510'
+    oldFile: !uuid '6072a2a42ffe1963fa1a98ef659d8cc0a53d53f9'
+  /Web/src/api-services/models/add-subscribe-message-template-input.ts:
+    newFile: !uuid '6a18ae149d688b0613630e6acb4559c470536b61'
+    oldFile: !uuid 'cd1b857b16f4b00fdefbeed2b9aae007276a592e'
+  /Web/src/api-services/models/add-tenant-input.ts:
+    newFile: !uuid '4e5135c1c4da6fd6e7f4c3f29e090e52adab2626'
+    oldFile: !uuid '43df04256e57efd2692059cd5d2619b803c5efa8'
+  /Web/src/api-services/models/add-user-input.ts:
+    newFile: !uuid '1b355c4f7ae9b7027f388ffc745be73b4ea88f1a'
+    oldFile: !uuid 'd0d58d70d5a497ac8dc0ac9049af46eabbf1384d'
+  /Web/src/api-services/models/admin-result-boolean.ts:
+    newFile: !uuid '63cd1277a52ae41fae87f260ffa4b2942483d1d8'
+    oldFile: !uuid '2298c70d028816cca9ea15e27da097a33527f4cc'
+  /Web/src/api-services/models/admin-result-iaction-result.ts:
+    newFile: !uuid '28f34678cec625a8b48ccfb3e5ffc50fe9eb5df9'
+    oldFile: !uuid '8eeec1ecb0477b2fb3cfec2cd53fb2dbf13d57e8'
+  /Web/src/api-services/models/admin-result-int32.ts:
+    newFile: !uuid '2f22b7070d23ba66e53172a1c1c5fe89509f5a88'
+    oldFile: !uuid 'f42826837e189f8d6a3b52a7144785976cfba7fb'
+  /Web/src/api-services/models/admin-result-int64.ts:
+    newFile: !uuid 'b046e1945e454a7ab0f89edf6cb7661b66c476dc'
+    oldFile: !uuid '4e8bd17efed38f9749d7bdd3a5d66aec783ec209'
+  /Web/src/api-services/models/admin-result-jobject.ts:
+    newFile: !uuid '79b49153ab1c4b517c0f262c46031ffe9f2adac2'
+    oldFile: !uuid '1d06597656be9647d15652e26c8e5ee7b871d1e4'
+  /Web/src/api-services/models/admin-result-list-api-output.ts:
+    newFile: !uuid '4827c4eb999707b6ee3b0b52ca39f703d8e525cd'
+    oldFile: !uuid '63c004f53c76006b2b6304ee9b592d954d3678e3'
+  /Web/src/api-services/models/admin-result-list-code-gen-config.ts:
+    newFile: !uuid 'dacaf3ab17b07f261b4a65522833f0609e6ff1ba'
+    oldFile: !uuid 'b48bcac2e9371eb79354cffcea7ed3ee0a287744'
+  /Web/src/api-services/models/admin-result-list-column-ouput.ts:
+    newFile: !uuid '5b055e3354ecaca82927d0531be8c9411441b6d2'
+    oldFile: !uuid '0e5775fafb67dc7f754e259fd6f2661f9c656598'
+  /Web/src/api-services/models/admin-result-list-const-output.ts:
+    newFile: !uuid '405c74ff220460fc3d9be2c7236530d2d108a936'
+    oldFile: !uuid '83079c3f8166f445d4c17122935545988b4f9c74'
+  /Web/src/api-services/models/admin-result-list-database-output.ts:
+    newFile: !uuid '918451737d057370065fb438dca070403a3f9af8'
+    oldFile: !uuid 'd198fd859ff092581b70a776df6cf5cbcf698a06'
+  /Web/src/api-services/models/admin-result-list-db-column-output.ts:
+    newFile: !uuid '2e4092a23d1db47e7c6e119bc4723bc592b70a7f'
+    oldFile: !uuid 'e7d6ec23504942d30a5534b5d930474c57eb4c5b'
+  /Web/src/api-services/models/admin-result-list-db-table-info.ts:
+    newFile: !uuid 'b5e022039dce6897b79663f62547ed34e2f989fb'
+    oldFile: !uuid 'e86ee312d5c681b6afed5cee2c7b3f6855d2266c'
+  /Web/src/api-services/models/admin-result-list-enum-entity.ts:
+    newFile: !uuid 'b7c89e9442c35de959f7413997ae5c84107f3c9e'
+    oldFile: !uuid '2b8b96c976464e0ec7ed4f008b8a5491e17995e2'
+  /Web/src/api-services/models/admin-result-list-enum-type-output.ts:
+    newFile: !uuid '4d0a40ea066eb1b829a128afdf39569dffbb39a0'
+    oldFile: !uuid '28d2f11f8432e6ba6f558e1799256b3056004d7c'
+  /Web/src/api-services/models/admin-result-list-int64.ts:
+    newFile: !uuid 'ef569108a3dc30406d461eb3d4320e3058a939eb'
+    oldFile: !uuid 'd8919940533143fe8bb1d356f63a33eb98a023c4'
+  /Web/src/api-services/models/admin-result-list-menu-output.ts:
+    newFile: !uuid '8fe213b46d2306a9330c1c4a5c2446b5038f387b'
+    oldFile: !uuid 'e63de489952b0204ad599fdebe8cd00cafff5fe6'
+  /Web/src/api-services/models/admin-result-list-role-output.ts:
+    newFile: !uuid 'a63d0ac1403a85cbfd939734b63332d8cc07b523'
+    oldFile: !uuid 'e22e3ed045f6f9b5c4edf255da3d7d510dbd1889'
+  /Web/src/api-services/models/admin-result-list-string.ts:
+    newFile: !uuid '981ccbe7d981c5ff4ac01cf42422f19c05355b83'
+    oldFile: !uuid 'fb5c659d123706b56b7e885c90a95dd79d451d1e'
+  /Web/src/api-services/models/admin-result-list-sys-config.ts:
+    newFile: !uuid '0e293cbb4f3e2eecf919243661a3c23cb2f092f7'
+    oldFile: !uuid '615ed39a899a11cbe4890b9f1d56e956dc30377c'
+  /Web/src/api-services/models/admin-result-list-sys-dict-data.ts:
+    newFile: !uuid 'df1805d4dc1b8214059ac9ea75039b24d8a3d102'
+    oldFile: !uuid '5d4a0b98f96af42641e17e90f751cf094e5b83ac'
+  /Web/src/api-services/models/admin-result-list-sys-dict-type.ts:
+    newFile: !uuid 'ba4253c6b09e8306a6fd6af13331dd2f634f7e7b'
+    oldFile: !uuid '4cd525ff0a52ec288bc5ecd86d33d191fde4599d'
+  /Web/src/api-services/models/admin-result-list-sys-file.ts:
+    newFile: !uuid '71843fd344f5e0932a471ccd3f248cae483da87a'
+    oldFile: !uuid '426918324ba9996565d51535d11dd210d8d39209'
+  /Web/src/api-services/models/admin-result-list-sys-job-cluster.ts:
+    newFile: !uuid '3ac455c44b2a0314ef39342b3338de4888507708'
+    oldFile: !uuid '17719cf7d2e905d80578c48eaec3bfe959570864'
+  /Web/src/api-services/models/admin-result-list-sys-job-trigger.ts:
+    newFile: !uuid 'db8c7a92f10c601f0897dd915e797e4145033553'
+    oldFile: !uuid 'cf445306132f59bedef989b895ec5646d4eb0fcc'
+  /Web/src/api-services/models/admin-result-list-sys-menu.ts:
+    newFile: !uuid '0cff8ab4a33b97e4e3033074aa602ea5af688ba5'
+    oldFile: !uuid '8ae2f91b7701481bceff82f391bba99acfde5ca9'
+  /Web/src/api-services/models/admin-result-list-sys-notice.ts:
+    newFile: !uuid '411005e10054eb1172022c719da0a2fca7296c92'
+    oldFile: !uuid '36834f49ade7ceae238aaaee62c5785ad6b62065'
+  /Web/src/api-services/models/admin-result-list-sys-org.ts:
+    newFile: !uuid '59d5ec6d7cb381a0d2a0b8d4695c6104f6395eb5'
+    oldFile: !uuid '763c50845921564247b099aebaa78f09f8d7eb98'
+  /Web/src/api-services/models/admin-result-list-sys-pos.ts:
+    newFile: !uuid 'c2b384ba99508e5195844ab183c3e0725a7b1485'
+    oldFile: !uuid '03d125b8823fe0ebe4610687be62dc7f9925385a'
+  /Web/src/api-services/models/admin-result-list-sys-region.ts:
+    newFile: !uuid '2c82b2a833841e329701702f53f2989dfd23b966'
+    oldFile: !uuid 'e01fff6251ee25fc359fdff7ba62b9a31bd381fc'
+  /Web/src/api-services/models/admin-result-list-sys-user-ext-org.ts:
+    newFile: !uuid '871f8c6e557c69e8a11bc68e66a1ca8c2f2a0b46'
+    oldFile: !uuid '8d518f05b76ac9ca6b8ddad6d908a5876800a851'
+  /Web/src/api-services/models/admin-result-list-sys-user.ts:
+    newFile: !uuid '232482b2cb2413798fae736772a3047d64c499d4'
+    oldFile: !uuid '0b4eea1b7ec74363d951d26efd431708750ed9f5'
+  /Web/src/api-services/models/admin-result-list-table-output.ts:
+    newFile: !uuid '7bb48a927d3fac02a427b8b4460be6d17809b734'
+    oldFile: !uuid '374fc73c3d45c3f3cb65d4de70c79491554e1d72'
+  /Web/src/api-services/models/admin-result-login-output.ts:
+    newFile: !uuid '50c64b66bad64556e545b3234b625545911d4b6e'
+    oldFile: !uuid '1da06190ce41fb9de8748b6c94dc18be53a6463a'
+  /Web/src/api-services/models/admin-result-login-user-output.ts:
+    newFile: !uuid 'ae5e70889a223ce5b7ee61d4a3c46f21354479a8'
+    oldFile: !uuid 'd35c797ecd433ef66e543aff135fd87da6d7d471'
+  /Web/src/api-services/models/admin-result-object.ts:
+    newFile: !uuid 'bcae308d50c0e8441296c2828de074e5ca6c16de'
+    oldFile: !uuid '6970b616826ddab295c8057c96e64d89e7ecf08e'
+  /Web/src/api-services/models/admin-result-sm-key-pair-output.ts:
+    newFile: !uuid '749b9c91e12c11c00295102472922f6c29694703'
+    oldFile: !uuid '490cafecd4bd4c1c28b03fcb187d305d4fd20080'
+  /Web/src/api-services/models/admin-result-sql-sugar-paged-list-job-detail-output.ts:
+    newFile: !uuid 'aa683145576e8f55afa534cea3389fca8d1f7c7b'
+    oldFile: !uuid 'e35400d5a634d92eddd33b4a7eba8a9052b002c3'
+  /Web/src/api-services/models/admin-result-sql-sugar-paged-list-open-access-output.ts:
+    newFile: !uuid '977721291245b4cc4d666c0411922d1fef20445b'
+    oldFile: !uuid 'a54ea8387478d95fbc9a7922f9816a25b745f643'
+  /Web/src/api-services/models/admin-result-sql-sugar-paged-list-sys-code-gen.ts:
+    newFile: !uuid '2ab879237a88b095fc76483360325d31a8111e6f'
+    oldFile: !uuid 'f2a04c9f03347c34469c10ecc92fdd3bf8c388ff'
+  /Web/src/api-services/models/admin-result-sql-sugar-paged-list-sys-config.ts:
+    newFile: !uuid '343129f28341558d7a0d63af9056037ac3bbd3be'
+    oldFile: !uuid '52f4d2973fdda132a8ed1a376727c6e981c643be'
+  /Web/src/api-services/models/admin-result-sql-sugar-paged-list-sys-dict-data.ts:
+    newFile: !uuid '652248d74bb7de3c690e670b818977728268a4cf'
+    oldFile: !uuid '0d6952eec18f487be5d81f9d42f471c3e17437e4'
+  /Web/src/api-services/models/admin-result-sql-sugar-paged-list-sys-dict-type.ts:
+    newFile: !uuid '23eca59edd94f01c364533418fc42fbb9e44f11e'
+    oldFile: !uuid '81adfdd32252c9248b82cbe9ef8e6d6ea13c2c38'
+  /Web/src/api-services/models/admin-result-sql-sugar-paged-list-sys-file.ts:
+    newFile: !uuid '5fc234fdd9e9acc286d679ef23f3ed316bd0b329'
+    oldFile: !uuid '07bc2427be5e527364b115ff120e9469459cb96b'
+  /Web/src/api-services/models/admin-result-sql-sugar-paged-list-sys-job-trigger-record.ts:
+    newFile: !uuid '2ca5f48d4bc8f9f59e28459c3a4ace6854d0685f'
+    oldFile: !uuid '0d5a2e5104fc04669b3158b039c5786b36c96ed2'
+  /Web/src/api-services/models/admin-result-sql-sugar-paged-list-sys-log-diff.ts:
+    newFile: !uuid '0a72d22a76ba93abd777286a348cd49c3aec8584'
+    oldFile: !uuid '916070d565fe4477938344c571b6584786620fd5'
+  /Web/src/api-services/models/admin-result-sql-sugar-paged-list-sys-log-ex.ts:
+    newFile: !uuid 'd9a746624c483dc08dbac3f303ff37fd33a36c3e'
+    oldFile: !uuid '2576855adcace36f7dcaf8c61c1b3db54d880159'
+  /Web/src/api-services/models/admin-result-sql-sugar-paged-list-sys-log-op.ts:
+    newFile: !uuid 'd46b64429d9f0436b89b41f9d21b4dd1addaf55c'
+    oldFile: !uuid 'd71a70633200a5544c0a25689b87689f5d5fa4bf'
+  /Web/src/api-services/models/admin-result-sql-sugar-paged-list-sys-log-vis.ts:
+    newFile: !uuid '60ce3d0f12c125c43f81804dbe5e27c90badc40e'
+    oldFile: !uuid '9c03334032a6acefdcb574e64f9db3aaff52a04a'
+  /Web/src/api-services/models/admin-result-sql-sugar-paged-list-sys-notice-user.ts:
+    newFile: !uuid 'b42049c949a0d983c6e5a8ba94ea0f1572dc7960'
+    oldFile: !uuid '414697f64f9314aad7014f59faeb0093942d5aa0'
+  /Web/src/api-services/models/admin-result-sql-sugar-paged-list-sys-notice.ts:
+    newFile: !uuid '810c9f846d3d3e9f4af4bd7f2836e5a2060db401'
+    oldFile: !uuid 'abcc28f8837e27ee42e4bac0418e8223ea4b24af'
+  /Web/src/api-services/models/admin-result-sql-sugar-paged-list-sys-online-user.ts:
+    newFile: !uuid '3b48f136997db18ed346858f590beffc35614682'
+    oldFile: !uuid '63e9a68a11d9ae2bf4d4e66fe064ffbeb7e43cfe'
+  /Web/src/api-services/models/admin-result-sql-sugar-paged-list-sys-plugin.ts:
+    newFile: !uuid 'f5144cb7f4b1d56c48544e4642cfa3aae99dd6cd'
+    oldFile: !uuid '88e906ade84760dd9dc8adeef49a87fd31689642'
+  /Web/src/api-services/models/admin-result-sql-sugar-paged-list-sys-print.ts:
+    newFile: !uuid 'f35712fa352b87bac5d4f758d933fba54398a68d'
+    oldFile: !uuid 'f69fcf25e338f6d61c461636608e94592c3f3c06'
+  /Web/src/api-services/models/admin-result-sql-sugar-paged-list-sys-region.ts:
+    newFile: !uuid 'b25fe7ed8f24d0fed065ea20e3621443f5dce329'
+    oldFile: !uuid 'b8f276d25d9ecf351dd1222dfe7c3f5deabb7a00'
+  /Web/src/api-services/models/admin-result-sql-sugar-paged-list-sys-role.ts:
+    newFile: !uuid 'dcd5bf3b1f5b46bff2d0a1fddf7bb6bb73fb5547'
+    oldFile: !uuid 'a17297d55d8f52113c77d1bbd63d2d493a1cfd1f'
+  /Web/src/api-services/models/admin-result-sql-sugar-paged-list-sys-wechat-user.ts:
+    newFile: !uuid 'eaa10ba04bee2217e143abf9b89d80eb38ed3bcc'
+    oldFile: !uuid '7e0b1b1b79cbb8839028c034e56c4fddb5ad589d'
+  /Web/src/api-services/models/admin-result-sql-sugar-paged-list-tenant-output.ts:
+    newFile: !uuid 'c2d2f3c76292c7fa1d055b3c4da3e80a8d770911'
+    oldFile: !uuid 'c394b519833b33c30bfca6ef51f905a876d379e0'
+  /Web/src/api-services/models/admin-result-sql-sugar-paged-list-user-output.ts:
+    newFile: !uuid 'e7dba1373f5a8fc5333fbcbb360d4ebd225f0cb7'
+    oldFile: !uuid '859b096af10c5e467ecebec7f9fe77dea0191225'
+  /Web/src/api-services/models/admin-result-string.ts:
+    newFile: !uuid 'e9fb31061629e4b07bc8f6705a4cc69a4e67c466'
+    oldFile: !uuid 'e7ce7dfd4b4d0b8970044d70ece348e1a8d2a249'
+  /Web/src/api-services/models/admin-result-sys-code-gen-config.ts:
+    newFile: !uuid '39ddf4ee87ad2c00f02bb5847df9d7f915163e19'
+    oldFile: !uuid '4e380f759c75373eaea6d7d8c2e2090ef5906fe1'
+  /Web/src/api-services/models/admin-result-sys-code-gen.ts:
+    newFile: !uuid '297834b2d6a703328dec4c6943f6250b6b57999e'
+    oldFile: !uuid '559e18911afcd8bb92b2424775cb36f807c432a3'
+  /Web/src/api-services/models/admin-result-sys-config.ts:
+    newFile: !uuid 'e8f152ee9292bafabe794e699aa7b56a68be844e'
+    oldFile: !uuid '3c1cd8a916fa9ec12a974f47da183f8818ee31b6'
+  /Web/src/api-services/models/admin-result-sys-dict-data.ts:
+    newFile: !uuid 'd239d4636c8cbfd4ab3f5bc6d9fa418cfe5f9d12'
+    oldFile: !uuid 'e38520d87994dda4aa555b106b217b66e6212561'
+  /Web/src/api-services/models/admin-result-sys-dict-type.ts:
+    newFile: !uuid '0cdc62d7d6a261a3441ada50d51721edbef950ec'
+    oldFile: !uuid '85260f9bfa92a95d813f3811e7986e73d4ea6fa1'
+  /Web/src/api-services/models/admin-result-sys-file.ts:
+    newFile: !uuid 'b36c2492880c2b63c2ce1cef8689290df71ff301'
+    oldFile: !uuid '0cf6c4ff713498a80b8b834388c28b3ab4504a21'
+  /Web/src/api-services/models/admin-result-sys-print.ts:
+    newFile: !uuid 'ade0221c940daf32deb429d91b6e2b6eb0d87486'
+    oldFile: !uuid '25ea51a2755a169a1168cb9cfb020c5b16638dc8'
+  /Web/src/api-services/models/admin-result-sys-user.ts:
+    newFile: !uuid '7ee80b5beead8f19b058c6f8f1726598efa01ede'
+    oldFile: !uuid '257e1d2343c48aa6c3c19d598600ba91810e6586'
+  /Web/src/api-services/models/admin-result-sys-wechat-pay.ts:
+    newFile: !uuid 'a9f90b5b9a6bb858ea7420989cc2eb1280480cdf'
+    oldFile: !uuid '538a0358bbaff98b12683c57442ecac4279ecad2'
+  /Web/src/api-services/models/admin-result-wechat-pay-output.ts:
+    newFile: !uuid 'b7fc224c1db26b0868ce04141bb89060ef5d7745'
+    oldFile: !uuid '0236c09666a1743cc1869675773c236d69da8879'
+  /Web/src/api-services/models/admin-result-wx-open-id-output.ts:
+    newFile: !uuid '3cebaf9114fe916cb9c8e9800cc1290f0909e0b0'
+    oldFile: !uuid '895d5289b82e7cdfd85931f001c61e8633c3c9de'
+  /Web/src/api-services/models/admin-result-wx-phone-output.ts:
+    newFile: !uuid '25907990182c04e3eed5e0889206fbf12a66e3a2'
+    oldFile: !uuid 'fda5eb9868586216ef020f0fd3d0170610e0198c'
+  /Web/src/api-services/models/api-output.ts:
+    newFile: !uuid 'fddb327c260705a138e92e147534362911a2fba9'
+    oldFile: !uuid '7955e1e52e6575ad43cde404e0dfaf5f7abe3767'
+  /Web/src/api-services/models/card-type-enum.ts:
+    newFile: !uuid '030f62a34c7c4342d187a6a0bfc2a7a4ea49baa9'
+    oldFile: !uuid '70e90ee7bdf64fdfde134c28aa25026591c4e5ed'
+  /Web/src/api-services/models/change-pwd-input.ts:
+    newFile: !uuid 'be723dc7bc23ebcb95c77f70078706eb471f1eb5'
+    oldFile: !uuid '0595686551d99408390f7c65d4e4780b6854ec06'
+  /Web/src/api-services/models/cluster-status.ts:
+    newFile: !uuid 'd9f5f2329fac60ebdbb714132c137d63dc4f2165'
+    oldFile: !uuid '141a5554b627e529174dccd2ed22807b232481e5'
+  /Web/src/api-services/models/code-gen-config.ts:
+    newFile: !uuid 'e297416bf0f930bedea0b8479f1f80db94d83dee'
+    oldFile: !uuid '0ce2bdc0f5369d567ad8f6a14ef99e0cbc89a59c'
+  /Web/src/api-services/models/code-gen-input.ts:
+    newFile: !uuid '59c4ade9a463b93f43fc14ab646c71b939a3440f'
+    oldFile: !uuid '04da15b01cb97a4f8c7da939c8d32fc4f9e294ee'
+  /Web/src/api-services/models/column-ouput.ts:
+    newFile: !uuid 'bdd611b1a3190af34410925b7ab5487c9bb1234b'
+    oldFile: !uuid 'fc54f87fd8f618b71b34f6f0b7c1b7267457e0b5'
+  /Web/src/api-services/models/const-output.ts:
+    newFile: !uuid 'bc02a503d5229bd1020d3a8b04e5624784c6edd8'
+    oldFile: !uuid '8e5b0272cfd18f75c87498e3da85bda55fe32cab'
+  /Web/src/api-services/models/create-entity-input.ts:
+    newFile: !uuid '3ffacf3a84ffb62e9e6456fbddbce69e8803675d'
+    oldFile: !uuid 'c6b6cf4fd780f0090cf449ceb7f08eb076ddfeb6'
+  /Web/src/api-services/models/create-seed-data-input.ts:
+    newFile: !uuid 'c292d63ed6435b09cdf105df5831a6ba7ea28c08'
+    oldFile: !uuid 'eb813af51f720dfc93f02d3646547581607716aa'
+  /Web/src/api-services/models/culture-level-enum.ts:
+    newFile: !uuid '54747465fe8d689fe291550906ef2d2feb7a337e'
+    oldFile: !uuid '43ab9da0041b95f70d0cc51be75d99ddc1546a2c'
+  /Web/src/api-services/models/data-item.ts:
+    newFile: !uuid 'a6fd99e437005abd547d2460b07d632a040ae329'
+    oldFile: !uuid '7aaef2720cd1c3f9241b6718cb7dabc91424585a'
+  /Web/src/api-services/models/data-scope-enum.ts:
+    newFile: !uuid '66a9506bf6b8103956bf357dedd1f5b4c1611243'
+    oldFile: !uuid 'b4a6e2ed839d68bcd97cfd8c9e7da6d3a6b5bee7'
+  /Web/src/api-services/models/database-output.ts:
+    newFile: !uuid '0427a046265d3786228e50cfee9316ce4b881f83'
+    oldFile: !uuid '61b05880da3142b2bff1232d8160ca76502507e9'
+  /Web/src/api-services/models/db-column-input.ts:
+    newFile: !uuid '3e6ba38e0dae453b97538edbcc437b4cc5aacb94'
+    oldFile: !uuid '4bcb2dd512fdcfdfdf5f79c2c63b36a9287c7a94'
+  /Web/src/api-services/models/db-column-output.ts:
+    newFile: !uuid '62009bc62146629bd6fab498bba14f4b591e3e21'
+    oldFile: !uuid '7161dce69f353d4a30068c0493221b1d7fcc6494'
+  /Web/src/api-services/models/db-object-type.ts:
+    newFile: !uuid '557b7327107e9e66c3d02e6b7d4a379c5bfb500a'
+    oldFile: !uuid '09818aaef1d5e548577bdf4af6d764cd6e944214'
+  /Web/src/api-services/models/db-table-info.ts:
+    newFile: !uuid 'b76b8af061a8fc23eb5cabcb2a7f61759189ac8c'
+    oldFile: !uuid 'd9bf612941038d4df8deee84aaad20c8709082b3'
+  /Web/src/api-services/models/db-table-input.ts:
+    newFile: !uuid '6d43a368aabcedf689151d004472bf842109b3bc'
+    oldFile: !uuid 'f9e9bb88971de6180f88dedacb4158410fd434d9'
+  /Web/src/api-services/models/db-type.ts:
+    newFile: !uuid '1720dd6676df2e42b84f2c0bfffe71185e068a07'
+    oldFile: !uuid 'c0c95af51866238f001990675e5d1fff7484933e'
+  /Web/src/api-services/models/delete-code-gen-input.ts:
+    newFile: !uuid '915c73f4d85454aa3d3481f6f814587fcc08efb1'
+    oldFile: !uuid '27f003d7c2c4f82c0bb51b771ecce7113b7161e8'
+  /Web/src/api-services/models/delete-config-input.ts:
+    newFile: !uuid '2d5e43e3a021f116ef59dc1b92f08d6eac0c8bd3'
+    oldFile: !uuid '50484684147a983c34304c54c5e7c7d45fccc8b2'
+  /Web/src/api-services/models/delete-db-column-input.ts:
+    newFile: !uuid '7f0fb5c8dff2ae545b9a588ea04cae525e1b4f23'
+    oldFile: !uuid 'f42bdd98dda85cd7eeacfb1b01fe0b646307fa71'
+  /Web/src/api-services/models/delete-db-table-input.ts:
+    newFile: !uuid '9850ee9b606b4dcb70c5c36ee07d7afb6897dc23'
+    oldFile: !uuid '2df960fd42e26b0bb4b18b98c7cf33587fbd2aa2'
+  /Web/src/api-services/models/delete-dict-data-input.ts:
+    newFile: !uuid 'd0aa936a77cc520fb5fdfb3839dddf321494f88e'
+    oldFile: !uuid '46cd67e9eb99f459f3042c7be690c3d85d51d22b'
+  /Web/src/api-services/models/delete-dict-type-input.ts:
+    newFile: !uuid '3e5fc85be3cd9e780b55f46630999452c78002ff'
+    oldFile: !uuid '4f2eafb5774a888effec317ac4d5af47475860c0'
+  /Web/src/api-services/models/delete-file-input.ts:
+    newFile: !uuid 'cc3b7a3c0256861a5a0586637ab82a375d7d3089'
+    oldFile: !uuid 'b1719a11ba1bb5265ea9a90ff7003897f96803d2'
+  /Web/src/api-services/models/delete-job-detail-input.ts:
+    newFile: !uuid '5b6e5eb46ce3df1b4818cb060db8aa2a1b5a02f3'
+    oldFile: !uuid 'ebe5ead36899999db379e43a689c5f745ec4c7d3'
+  /Web/src/api-services/models/delete-job-trigger-input.ts:
+    newFile: !uuid '5da512a81eefb3483bcb7a4aac32b2a04be755ee'
+    oldFile: !uuid '6f88fce70768887a5cb99f3a0fc866ff778f5ff7'
+  /Web/src/api-services/models/delete-menu-input.ts:
+    newFile: !uuid '9fd27798f565a758ea500eb53853f575433f42bc'
+    oldFile: !uuid '06b9bea7840dcee2b7433b78f5bf7f9a204d8e3b'
+  /Web/src/api-services/models/delete-message-template-input.ts:
+    newFile: !uuid 'f217e817c4bfb00353f403e141b6679782631962'
+    oldFile: !uuid '7c3796d32aba5a0684311cdcccdb5d5ebac605a6'
+  /Web/src/api-services/models/delete-notice-input.ts:
+    newFile: !uuid '5c8b5bcd3a920ad85b4d184c188e852d2529307a'
+    oldFile: !uuid '05144f8559766cca35dc2c7223030ae14a58e8fb'
+  /Web/src/api-services/models/delete-open-access-input.ts:
+    newFile: !uuid 'a6f9ab1f91380192ed175a9dab0b13d4722d5bad'
+    oldFile: !uuid 'ea672553234293a5170ec2458c67a22f38d10aab'
+  /Web/src/api-services/models/delete-org-input.ts:
+    newFile: !uuid 'e394eefc1557b05d9e66b9529003368179d8e52b'
+    oldFile: !uuid 'fc4d817ed769c42b331945cf266cbe29763904e3'
+  /Web/src/api-services/models/delete-plugin-input.ts:
+    newFile: !uuid '22ac4db4cc4cb35a2463a7c2dcdf2c6cd572f892'
+    oldFile: !uuid 'bc467880d22e11b9330ae956107d364e1d6bf8e5'
+  /Web/src/api-services/models/delete-pos-input.ts:
+    newFile: !uuid '4119a38504da46afc684ab9413700998e7ef168b'
+    oldFile: !uuid '77263e989857e3437c14b9ef3e5cef6821a13333'
+  /Web/src/api-services/models/delete-print-input.ts:
+    newFile: !uuid '2528a6c99e9150a1cba7fe65b67093c12e4ffc09'
+    oldFile: !uuid '654068697b66356564e5584435b029c7bb358a03'
+  /Web/src/api-services/models/delete-region-input.ts:
+    newFile: !uuid '1649569d568c53c2ed0acfaba3cd04647661a1d6'
+    oldFile: !uuid '67f4ae73690b3b5ebaf08bebb1e72fb097624d4c'
+  /Web/src/api-services/models/delete-role-input.ts:
+    newFile: !uuid '09d67650208ca6c661fa7f753220c15e8dba43e2'
+    oldFile: !uuid '5b088dd8acd4f01c62211b4531db744cfc0d9304'
+  /Web/src/api-services/models/delete-tenant-input.ts:
+    newFile: !uuid '6f3e8d8bd2b83c21b59e3950250deb45ca8449f7'
+    oldFile: !uuid '6f7a3304fb3773add14876a49ad7d86bf6b9e95e'
+  /Web/src/api-services/models/delete-user-input.ts:
+    newFile: !uuid 'cab26efbfc65153dca5b794bba136290b8a75a61'
+    oldFile: !uuid 'fe49c0fe0113fefa7f514407406ee19b299faff2'
+  /Web/src/api-services/models/delete-wechat-user-input.ts:
+    newFile: !uuid '8133470080ebe60193ac0c1ee9fd4630a51e5961'
+    oldFile: !uuid '904b258d184a68f5a4a3fdb204a912a6f1a56dec'
+  /Web/src/api-services/models/dict-data-input.ts:
+    newFile: !uuid 'd74a1223b3abb7cecdb4bde879eabbe0f4e47ed4'
+    oldFile: !uuid '52d0f43a9614fd7b018285b88e50c87b9293dea8'
+  /Web/src/api-services/models/dict-type-input.ts:
+    newFile: !uuid 'e11c6c6081c13b5d4649674508736abc48dbfcbb'
+    oldFile: !uuid '328d93ed653e5c1c475ded4cf93bf9648bce4286'
+  /Web/src/api-services/models/enum-entity.ts:
+    newFile: !uuid 'd1f36bbc3630568c8dad0b20943111f181fdcdd0'
+    oldFile: !uuid 'cc67fc6b91e716ee939866c3dfca2e83334e1bc8'
+  /Web/src/api-services/models/enum-type-output.ts:
+    newFile: !uuid '2ed0b9ad4eb997f94b2f6bb2b1f1044e4e154e31'
+    oldFile: !uuid 'c405203bf40a63dcf87f586443eadfc7aa6d5210'
+  /Web/src/api-services/models/file-input.ts:
+    newFile: !uuid '429796dc950e4e5ae38da002c252f8219a5100cb'
+    oldFile: !uuid 'e1697eb00aa9e0395d296967fd5b03fffc0f99dc'
+  /Web/src/api-services/models/gen-auth-url-input.ts:
+    newFile: !uuid '6c8c7eb9d9d44f1611acf3e2767e42b370f39c52'
+    oldFile: !uuid '89d4e66b18bf09833c757c7aa0d03bad9e576264'
+  /Web/src/api-services/models/gender-enum.ts:
+    newFile: !uuid '912373984e3c51b273725dd76c377d5bb0f1978c'
+    oldFile: !uuid 'f71f30f78b0eff58467db6c6a95e9423cd2c80fd'
+  /Web/src/api-services/models/iaction-result.ts:
+    newFile: !uuid '328c1ec5d5450c017468883e9b3ece5b8d613994'
+    oldFile: !uuid 'e8fe62de89af11c955e7ff5ecc8d83a413233b94'
+  /Web/src/api-services/models/job-create-type-enum.ts:
+    newFile: !uuid '1dffa03dc0da7ccc0376f4cd7a39e32dcd8b26e7'
+    oldFile: !uuid '74aad7afeb93a00ee2182300715609c2f1dfa91f'
+  /Web/src/api-services/models/job-detail-input.ts:
+    newFile: !uuid 'e2fd825d2706c6d366b55df12f14bed2d54de970'
+    oldFile: !uuid 'db0f9303d761d2421b59cabbd026a00955471a7d'
+  /Web/src/api-services/models/job-detail-output.ts:
+    newFile: !uuid '0ac7677d07a96064ad6a587db4ea9ec09fa9b041'
+    oldFile: !uuid '403a51c035d9aa639d5842675e13eb7ef768f500'
+  /Web/src/api-services/models/job-trigger-input.ts:
+    newFile: !uuid 'f96e20cb9d8156da62f74750bca4e1d1b9249664'
+    oldFile: !uuid '472b63051615c57aa86b24e2ef5190a00fb7c539'
+  /Web/src/api-services/models/jtoken.ts:
+    newFile: !uuid '38717eed6c9f588622b293c95612cc696e0a9ca8'
+    oldFile: !uuid '40aa207583218b49a717a0f8646b4cdc780d5dd6'
+  /Web/src/api-services/models/log-input.ts:
+    newFile: !uuid '9bf340d7d1a8700aba9a2f1329e334d722f5f0be'
+    oldFile: !uuid 'ee062fd4f23b4d2bfb4efebba94c147ca62392da'
+  /Web/src/api-services/models/log-level.ts:
+    newFile: !uuid '5f4508f0aea72364d2434c3844b1cd3049a954b1'
+    oldFile: !uuid 'a6452535cbf2b7b6cbeee5de4404e328b97d6077'
+  /Web/src/api-services/models/login-input.ts:
+    newFile: !uuid '23e3a85662c8ec1fb3368ba8fbb91cb2be558d6b'
+    oldFile: !uuid 'df5cc6189254b27e450a43aef9d99bd20df23ae1'
+  /Web/src/api-services/models/login-output.ts:
+    newFile: !uuid '798c4c81caa5d129e933cfafc6f915c6c17c313b'
+    oldFile: !uuid 'bc02b63bd23c8356824e4542597dc93ff2144879'
+  /Web/src/api-services/models/login-phone-input.ts:
+    newFile: !uuid '36f33d5a0f08be55822e3dfbe614e061263eccef'
+    oldFile: !uuid '35bd7d0ece5ef40b48905f4313b2577c90df63ae'
+  /Web/src/api-services/models/login-user-output.ts:
+    newFile: !uuid '6b1984247a9225bc1d8d93f8a078d7f24986938e'
+    oldFile: !uuid '391a9036a500efc756296d8e60ec40c3d3680d4e'
+  /Web/src/api-services/models/menu-output.ts:
+    newFile: !uuid 'd4ef6fae51d8af262f2eed70d64e529c4ae0c8dd'
+    oldFile: !uuid '020bd034b33c07f46fdd5de326b0a2bf491d169a'
+  /Web/src/api-services/models/menu-type-enum.ts:
+    newFile: !uuid '5aa113a0910e398eea02b009fd0bd3e642f904ea'
+    oldFile: !uuid '281ec11f7453b4323d25d61b693de4f14a26293b'
+  /Web/src/api-services/models/message-input.ts:
+    newFile: !uuid '59a569cb17f3267fb068ff93ad8654e89491f33b'
+    oldFile: !uuid '2d1915877832314d7c7f73b70f8406af12bcc6c3'
+  /Web/src/api-services/models/message-template-send-input.ts:
+    newFile: !uuid '88d43e28cc147cd4879d51f0ae2e8463af804cc5'
+    oldFile: !uuid 'e0f385556a0173b9253a21b510aaeee4c2b7ae63'
+  /Web/src/api-services/models/message-type-enum.ts:
+    newFile: !uuid '43cfa6bed9de213d1e4948bc9a7a47714ec1b39c'
+    oldFile: !uuid '0194eabe03fe88113f8dbebe5b3dc7ff496d6a2e'
+  /Web/src/api-services/models/notice-input.ts:
+    newFile: !uuid '3cebf0483041a74fbd25ba13fda480556982ebf9'
+    oldFile: !uuid '08b25c1bb26683cd8d6aef460bf4c1be626ee261'
+  /Web/src/api-services/models/notice-status-enum.ts:
+    newFile: !uuid '6bc95662f3cc070c3f4ff77ce4785f7bf436c67d'
+    oldFile: !uuid 'e94680ab1bc0c54864b4950bfa25115f4af426d2'
+  /Web/src/api-services/models/notice-type-enum.ts:
+    newFile: !uuid 'f82db26ef731c764c5b0586458af605bb996859d'
+    oldFile: !uuid 'ab9fd7b6cca234a0d18de02cb76b36793a265bae'
+  /Web/src/api-services/models/notice-user-status-enum.ts:
+    newFile: !uuid 'caf96975215d1ba72bcb2e3c6e49fd483d9ea50f'
+    oldFile: !uuid 'b64c261737354b43439de609391d1ea05c458986'
+  /Web/src/api-services/models/open-access-input.ts:
+    newFile: !uuid '468b76c0e707df8c7e80e4b4fe66a391e8edeb62'
+    oldFile: !uuid 'f457bf409bb96853ecc8b446f72b7bd89afc6597'
+  /Web/src/api-services/models/open-access-output.ts:
+    newFile: !uuid '353a74a981813ef5267294caf3fa0ba8692000d4'
+    oldFile: !uuid '883ec97dc035999a1b62e798656bc16f09df35fc'
+  /Web/src/api-services/models/page-config-input.ts:
+    newFile: !uuid 'f30f502b60298e6905ed49aa52e387108bde13ba'
+    oldFile: !uuid '9c5303fd007792f7efc40262063fb2f95597235c'
+  /Web/src/api-services/models/page-dict-data-input.ts:
+    newFile: !uuid '88c5f491e736755d3bfab6a9a6fbc213d47ebf97'
+    oldFile: !uuid 'c30153f60cad2de33676071eebbd97fe8b411af9'
+  /Web/src/api-services/models/page-dict-type-input.ts:
+    newFile: !uuid '5ab8d79f53622c8ee85388c6adea52767aea6e65'
+    oldFile: !uuid '264fc1dd09f0b5df5beaba6e20490965b3ee0e1d'
+  /Web/src/api-services/models/page-file-input.ts:
+    newFile: !uuid 'e47b12cc905bf553d616e08fe912fb8072c1e725'
+    oldFile: !uuid 'ba00299f1b6dd31064ceaa584aaf15de33904389'
+  /Web/src/api-services/models/page-job-detail-input.ts:
+    newFile: !uuid 'c65503066f4689708c78cdd8b01736a6e227c3e0'
+    oldFile: !uuid 'f52cfdba03b99a95b238af5b786daa0447eaa98d'
+  /Web/src/api-services/models/page-job-trigger-record-input.ts:
+    newFile: !uuid 'ee18d77f7bdbc4a8d37d61ba6e811d9bc0275139'
+    oldFile: !uuid '36032a32ba1d6a2567f476be125786bce2ae1fb0'
+  /Web/src/api-services/models/page-log-input.ts:
+    newFile: !uuid '3925c24202dbcfd05bb501ce19901394cf76ebfd'
+    oldFile: !uuid '68a8e67f2556b24ae6ea48f56f98bb10cfccb831'
+  /Web/src/api-services/models/page-notice-input.ts:
+    newFile: !uuid 'a366a51b1a4926b006c27c972231908ef0c87c0a'
+    oldFile: !uuid '3b52e8d0c0f94b6bb1b9755911a25a1516fc417e'
+  /Web/src/api-services/models/page-online-user-input.ts:
+    newFile: !uuid 'ccc7510b1ea9224e59287d931aaafcf661da646f'
+    oldFile: !uuid '2058d8c2e30945b6f2af382b4d4e987f59fc50c6'
+  /Web/src/api-services/models/page-plugin-input.ts:
+    newFile: !uuid 'db8f1187e7f2e9f10ce08183b6da4c397e96c837'
+    oldFile: !uuid 'cf834143d96f2ae77951ab6a9f0e9fff5b682e72'
+  /Web/src/api-services/models/page-print-input.ts:
+    newFile: !uuid 'fe2fb8ce9236c3884a4c6e671de07e0331e408e7'
+    oldFile: !uuid '41629351e464307907a884409fb464231db32d36'
+  /Web/src/api-services/models/page-region-input.ts:
+    newFile: !uuid '97a0145608c7808cb74bef1008c3ae0d8f5d6a56'
+    oldFile: !uuid '636ddaba15e419b576403bd10f2c4c9fa29b6eee'
+  /Web/src/api-services/models/page-role-input.ts:
+    newFile: !uuid '098e125f3790a9d0430ed486784818521efdc41a'
+    oldFile: !uuid 'e558c5f5cf8225058f025f6989980d29daf0c978'
+  /Web/src/api-services/models/page-tenant-input.ts:
+    newFile: !uuid 'a3a5f1fde6c7f837e9be2980e08abae397059cca'
+    oldFile: !uuid 'c5d4bf5748d8092dddef813206745bcf2057f784'
+  /Web/src/api-services/models/page-user-input.ts:
+    newFile: !uuid 'fdba75f1dc3a669cf377cd47bf3c8ca17cc5494f'
+    oldFile: !uuid '5b2a937b596e445968c1aceef96102073b384e1c'
+  /Web/src/api-services/models/platform-type-enum.ts:
+    newFile: !uuid '9ce0c5f73e9476da695fa60f5a58c983878ef889'
+    oldFile: !uuid 'dd5ab2577e56492856c99ec680bb56a993d221f8'
+  /Web/src/api-services/models/reset-pwd-user-input.ts:
+    newFile: !uuid 'adb63d9924122b233cf62ecd1c6cde8e9f2aacf5'
+    oldFile: !uuid 'e2eb469d57eac3d1ec7a2df40d8dcef4837d48e7'
+  /Web/src/api-services/models/role-input.ts:
+    newFile: !uuid '1200b3d6a9c08b2b967599012756d61413dd970c'
+    oldFile: !uuid '35fc78ecccb9299d870f35fedc14e57db999989f'
+  /Web/src/api-services/models/role-menu-input.ts:
+    newFile: !uuid '892c26f3e9f4965e8892abd219299d81383cfdc0'
+    oldFile: !uuid 'c7111a5a7b0331c2aeb56145b424deea2609437b'
+  /Web/src/api-services/models/role-org-input.ts:
+    newFile: !uuid 'e9a9bbf26d88517c11cfdb3347ddae28d64497b9'
+    oldFile: !uuid '0fc2a16902cad2fa27f2ed0e55b086e247b0fe8e'
+  /Web/src/api-services/models/role-output.ts:
+    newFile: !uuid 'a0d614a08670c825d6a9e162125abd06d9288889'
+    oldFile: !uuid 'ed181f168496f9f0fdeb03eedfbcdece98ab5c32'
+  /Web/src/api-services/models/send-subscribe-message-input.ts:
+    newFile: !uuid '76aa711787bc7529434e2df69c6dcb872da82890'
+    oldFile: !uuid 'e2e80f61077d60e685dafba3fe87f9af017038a4'
+  /Web/src/api-services/models/signature-input.ts:
+    newFile: !uuid '284110f0eb2451212de2da4f00a8f21459e65bcb'
+    oldFile: !uuid '6f49e1be939380ff8c13a8be2a1776a9e766390e'
+  /Web/src/api-services/models/sm-key-pair-output.ts:
+    newFile: !uuid '9e6002d0d6519494f5ccf1c3af5975fb02269e26'
+    oldFile: !uuid 'c66d134bd6796dcb6a96d2c467dce1f277fc2e3d'
+  /Web/src/api-services/models/sql-sugar-paged-list-job-detail-output.ts:
+    newFile: !uuid '4804e6bdea345780fbf30daabc1972b2acdab85d'
+    oldFile: !uuid '92c8ac08a5387caf578d17a8550ea071bf95b2b8'
+  /Web/src/api-services/models/sql-sugar-paged-list-open-access-output.ts:
+    newFile: !uuid '941724bf9c543a3ffb2fdaaec3a7db9474e07638'
+    oldFile: !uuid 'c51e9bebbf1057068b1f33e8a66cee0deeb77a3b'
+  /Web/src/api-services/models/sql-sugar-paged-list-sys-code-gen.ts:
+    newFile: !uuid '5df980ea70713d66539dc9cc51d8481f717c9679'
+    oldFile: !uuid '6bade9ad37ef6bc91c70f853333222d3d3d5533a'
+  /Web/src/api-services/models/sql-sugar-paged-list-sys-config.ts:
+    newFile: !uuid '2e7ab4f2ec491c5b7125a97929aedc35f6c93d49'
+    oldFile: !uuid '0c4f1b259c3d78d2eabd19b3b710907103c07e27'
+  /Web/src/api-services/models/sql-sugar-paged-list-sys-dict-data.ts:
+    newFile: !uuid '4f78ea3c4eab6f405d2caf34aae39f5d7e467f6b'
+    oldFile: !uuid '7401b2c77f88b041919429f68aba8020a2365cff'
+  /Web/src/api-services/models/sql-sugar-paged-list-sys-dict-type.ts:
+    newFile: !uuid '947c8a3842b5623862d236f8a7a5c5abe2c6db1e'
+    oldFile: !uuid '91de906b177f76232f2602c374a2c2ba5fff11f7'
+  /Web/src/api-services/models/sql-sugar-paged-list-sys-file.ts:
+    newFile: !uuid '1caea75c6b0bca65681515243000516b7d0d81b6'
+    oldFile: !uuid '90ff0a3c0a8aed35211bc548fda382de4ad71bcd'
+  /Web/src/api-services/models/sql-sugar-paged-list-sys-job-trigger-record.ts:
+    newFile: !uuid 'bb3d0feaf728cf757e4e71e5cd619286ec746a8c'
+    oldFile: !uuid '64b58d5c6359ce1ab2852129e45a01f4018b540f'
+  /Web/src/api-services/models/sql-sugar-paged-list-sys-log-diff.ts:
+    newFile: !uuid 'fa2d47594e8201bf49acc37726ecb66c014a6435'
+    oldFile: !uuid '4f1587599635474ebeb2d431069e9e88dcbb7c09'
+  /Web/src/api-services/models/sql-sugar-paged-list-sys-log-ex.ts:
+    newFile: !uuid 'd932e647ad7b65a62d69048c022a8a94ca195796'
+    oldFile: !uuid 'a85b45828a9520d479657a7c6c62f2a627f64ce3'
+  /Web/src/api-services/models/sql-sugar-paged-list-sys-log-op.ts:
+    newFile: !uuid '31e9ea759334675752864225dbf187537e7fe0e6'
+    oldFile: !uuid '1b0c151bb09414770f13f349fc9d0f0f84ae4039'
+  /Web/src/api-services/models/sql-sugar-paged-list-sys-log-vis.ts:
+    newFile: !uuid '03daded86a4b306167973734cad072d4351b41fe'
+    oldFile: !uuid 'dc4ea49eb12487abbde2cc6c6d7b49b4f8d73049'
+  /Web/src/api-services/models/sql-sugar-paged-list-sys-notice-user.ts:
+    newFile: !uuid 'a6f52fd56fac9e84d418f02600ba07772555a128'
+    oldFile: !uuid 'fd7bc8aa86f243e37e1eb7c7479d75208be2d648'
+  /Web/src/api-services/models/sql-sugar-paged-list-sys-notice.ts:
+    newFile: !uuid 'c40f0e221d294675f707f812c6f90cfa95614368'
+    oldFile: !uuid 'feb0e5f68dea931c82f85f8d6e1084be68593d6b'
+  /Web/src/api-services/models/sql-sugar-paged-list-sys-online-user.ts:
+    newFile: !uuid 'a54da412686df192833a66c19c7beda7d992eb35'
+    oldFile: !uuid '3219c3bc0a90267d7c819a0ba55e3b75b1a36657'
+  /Web/src/api-services/models/sql-sugar-paged-list-sys-plugin.ts:
+    newFile: !uuid '951adf7b992429d1e1a425bed1812d1a1229b985'
+    oldFile: !uuid '36ce09528d8afbe16c885bb5c564ecf94bda05a7'
+  /Web/src/api-services/models/sql-sugar-paged-list-sys-print.ts:
+    newFile: !uuid '84e075256df1a2002bb78e7902b4f59031593158'
+    oldFile: !uuid '16cc278ebc81159a7520ccb5e463cce754d69ab3'
+  /Web/src/api-services/models/sql-sugar-paged-list-sys-region.ts:
+    newFile: !uuid '532ae4ecaa8f47655459f1c54d5584ede5745a5d'
+    oldFile: !uuid '8eed65d0f399aa134c6045e08fe4a37448da0767'
+  /Web/src/api-services/models/sql-sugar-paged-list-sys-role.ts:
+    newFile: !uuid 'fef0a41bf390309b6c2801efa12d37b7dca76dde'
+    oldFile: !uuid '1928c97006a7085501a6a0a9a428926f6ec53b00'
+  /Web/src/api-services/models/sql-sugar-paged-list-sys-wechat-user.ts:
+    newFile: !uuid 'c73bd66e379013e21f6e1153e3beef734957f49d'
+    oldFile: !uuid '8000a0e59ff7100e5681674562f08b1777187777'
+  /Web/src/api-services/models/sql-sugar-paged-list-tenant-output.ts:
+    newFile: !uuid '2984f412c85c2492b6d06d0031c342173fb42336'
+    oldFile: !uuid 'c5de8cf3d6bbcf1b15bbf35aabb8bfc82822da93'
+  /Web/src/api-services/models/sql-sugar-paged-list-user-output.ts:
+    newFile: !uuid 'a02e6efeeaee148d266bd191a6ec2131edf4bae2'
+    oldFile: !uuid '70176a82f8191b6a08b00a0e3888064a6a0c4133'
+  /Web/src/api-services/models/status-enum.ts:
+    newFile: !uuid '20f198690766cecb46671f7901cdcbd1c7b1e3ac'
+    oldFile: !uuid 'cfcae3170d782f2052c786378ac670aef4e506b6'
+  /Web/src/api-services/models/swagger-submit-url-body.ts:
+    newFile: !uuid '972b34cdee182ba0468abfa469ffbf7c0d4887e9'
+    oldFile: !uuid 'ca402f92e1b6492a75306227b315a15525400cd6'
+  /Web/src/api-services/models/sys-code-gen-config.ts:
+    newFile: !uuid 'aa9d740e2a68cc915aa07fc3cf77922a57932560'
+    oldFile: !uuid 'ab287bed338f3f1237c39c06607ed518007b10b3'
+  /Web/src/api-services/models/sys-code-gen.ts:
+    newFile: !uuid '4e3a0c76771f9349f4074f6668b1406dade28fbc'
+    oldFile: !uuid '6e31b2ed9023e9c86ee73019a8507a235fba38fd'
+  /Web/src/api-services/models/sys-config.ts:
+    newFile: !uuid 'b477dba8948a66bcd9559a434f72b69b47d2b157'
+    oldFile: !uuid 'b813db7a062ace968648e8f76db30ca4853be637'
+  /Web/src/api-services/models/sys-dict-data.ts:
+    newFile: !uuid 'ee4cc94a8d4ef8e7a90298bb8de207fb36dbfea5'
+    oldFile: !uuid '3b6f304a39fe7a9781bde6cfe79185293a1ac9cf'
+  /Web/src/api-services/models/sys-dict-type.ts:
+    newFile: !uuid '20f34c6ae7b9574d7f778ecea5bf9561f9ea376c'
+    oldFile: !uuid '390184d4f01014a89feff6fb5d89a4f33769fbda'
+  /Web/src/api-services/models/sys-file-upload-avatar-body.ts:
+    newFile: !uuid '2a715e3ff687ec2db60a967c607d1f2dbec2242e'
+    oldFile: !uuid '578cc913f175c031be94609bd1a3ae357d9560da'
+  /Web/src/api-services/models/sys-file-upload-file-body.ts:
+    newFile: !uuid '2725e7a5b24993b7390b3bde309fdb48727a34a2'
+    oldFile: !uuid '89e3ac55c393f355482fd80f26ca7dda98927cff'
+  /Web/src/api-services/models/sys-file-upload-files-body.ts:
+    newFile: !uuid '7ef3bc75179ad8a9387191973854361e4e3084cc'
+    oldFile: !uuid '9e55ea1d9c9a23e75934637a54f00bd02a7553b7'
+  /Web/src/api-services/models/sys-file-upload-signature-body.ts:
+    newFile: !uuid '858857cdf97d2b88584d95c72a51e8854e2461c6'
+    oldFile: !uuid '01972dc066a881bed60ab4a69a5ea2c0f8f86de4'
+  /Web/src/api-services/models/sys-file.ts:
+    newFile: !uuid '2b02b40c8e99ded45d3b11a07c95cb7489e4871c'
+    oldFile: !uuid '2d87d27e76b0cdbbcf30f406c76ec37bba16a00d'
+  /Web/src/api-services/models/sys-job-cluster.ts:
+    newFile: !uuid 'bf318a381760aa6002138314d1db38b6c4bd4e10'
+    oldFile: !uuid 'e16da861552e6870bcfacd7ba6e1cfe802d2806b'
+  /Web/src/api-services/models/sys-job-detail.ts:
+    newFile: !uuid 'd1c7d97c62048cd7736a92fe31325c92934ba0cd'
+    oldFile: !uuid '428ab3f9345baf1c3059f39450e5fbc55e9130b4'
+  /Web/src/api-services/models/sys-job-trigger-record.ts:
+    newFile: !uuid 'c6c25e29ebd1633dd05a3c2c5f0c4d14cff0f677'
+    oldFile: !uuid 'b8dfa1006dc2407959b5faf84f1c03abd167d53b'
+  /Web/src/api-services/models/sys-job-trigger.ts:
+    newFile: !uuid 'c1003a43d79719df8cdfb07af63ed2a6971d10d7'
+    oldFile: !uuid '6ae97478baa914223180d28444e1fe39a8e727d0'
+  /Web/src/api-services/models/sys-log-diff.ts:
+    newFile: !uuid 'f22345ba9da2378700c6b08ff82a800b9981b2fb'
+    oldFile: !uuid 'f5fbe1bb594a3481a1e9d5da56460f86bfec5f78'
+  /Web/src/api-services/models/sys-log-ex.ts:
+    newFile: !uuid '7a5a7d8d2b3f715d240452aac5a402a127639a1b'
+    oldFile: !uuid '0491e9288f454f6946629d640e3bfc71071c012e'
+  /Web/src/api-services/models/sys-log-op.ts:
+    newFile: !uuid 'f3cad11f6a0b81275c663438fb5aa138b23f8376'
+    oldFile: !uuid 'dcffade59cd7fb379903846fd5e52ce63f97d7cb'
+  /Web/src/api-services/models/sys-log-vis.ts:
+    newFile: !uuid '6c3ea7932d355c8050cbfd7e10b2a54e53075cf4'
+    oldFile: !uuid 'e3d9aad8ee7fcb14711929e58e225c5c3a0f3d0b'
+  /Web/src/api-services/models/sys-menu-meta.ts:
+    newFile: !uuid 'f81509558afe932d01b1b52c5997e94e3acd3987'
+    oldFile: !uuid '8bd5f892d822868764671fb49707891cb29bdd1f'
+  /Web/src/api-services/models/sys-menu.ts:
+    newFile: !uuid 'db9d6b8e0980dd1edac9b7e8ea2e71b778edb059'
+    oldFile: !uuid '3e1adb9677dc4adf8572071c298adc22d453526b'
+  /Web/src/api-services/models/sys-notice-user.ts:
+    newFile: !uuid 'df291bdd9af05658d25b62b88db492e1935b1570'
+    oldFile: !uuid '4207d46344615e416ce72d24d08ae90605cf6ea8'
+  /Web/src/api-services/models/sys-notice.ts:
+    newFile: !uuid '41a81c5e524b9eb2bf25984652cdb81dca653137'
+    oldFile: !uuid '1616373de9f6f3676eec9da94c77c15fc0961990'
+  /Web/src/api-services/models/sys-online-user.ts:
+    newFile: !uuid 'a76d97b5189088795da2a891d1c318b293cba17b'
+    oldFile: !uuid '8cc63dbc55380ce16861adb98aea805ae99bce05'
+  /Web/src/api-services/models/sys-org.ts:
+    newFile: !uuid '4092649767c3a22567ecf46cbc60fa78b486b67d'
+    oldFile: !uuid '40cc002cce14a162bf5fde4a3aa3ef823e30fc74'
+  /Web/src/api-services/models/sys-plugin.ts:
+    newFile: !uuid 'eb2b1510156da6faa7b3a67f50f489a454004e3e'
+    oldFile: !uuid '509e8a597057dd591784fbf04247cf9b8e3fc7df'
+  /Web/src/api-services/models/sys-pos.ts:
+    newFile: !uuid '4a4b23c4f9c29142319a438812380c13eb02f517'
+    oldFile: !uuid '812fafc6c9b9d742b1345d3e6520e6be3b25b621'
+  /Web/src/api-services/models/sys-print.ts:
+    newFile: !uuid '6ae37d1e1bc3a9656b6ffebb327d0142e91ad4f2'
+    oldFile: !uuid 'fec792a5bc00a9800614ef46922ca9e906ba2828'
+  /Web/src/api-services/models/sys-region.ts:
+    newFile: !uuid '7e60b3b2f3fb5d0dbc3610d6ac2d46624a055bf6'
+    oldFile: !uuid '19ee24e2e625e5ccb05e903f2110dbfbe6ca67df'
+  /Web/src/api-services/models/sys-role.ts:
+    newFile: !uuid '82492d733be0e7036fbaf9da3a9021d56c1534e1'
+    oldFile: !uuid 'ac32523ba42f1d90c549678fe84e57582f48dc13'
+  /Web/src/api-services/models/sys-user-ext-org.ts:
+    newFile: !uuid '704bc6254eed6086d3ad6d26cfd632e5871d5175'
+    oldFile: !uuid 'f4f27b6130ee5b062581f8bf02cac5e8146d6536'
+  /Web/src/api-services/models/sys-user.ts:
+    newFile: !uuid 'a90c28c862c32759e5a6a3653e02481980c56f5b'
+    oldFile: !uuid 'd77cb756d6df82f90593f70f412523f290f1c871'
+  /Web/src/api-services/models/sys-wechat-pay.ts:
+    newFile: !uuid '843811b6b61bd70de0e927a68ed437f69a377f27'
+    oldFile: !uuid 'ea7ba2de16d15a4b9946923eba6c469b4bb88f6b'
+  /Web/src/api-services/models/sys-wechat-user.ts:
+    newFile: !uuid '97e495f94b305026056c1cebe0b77868ea07ea75'
+    oldFile: !uuid '58080c1db5b9c59c923d3ae697e16dff5427cbd4'
+  /Web/src/api-services/models/table-output.ts:
+    newFile: !uuid '7c53652d61c904ac6fa494db6d2c2c952cf15539'
+    oldFile: !uuid '872f4cbb218d4d70cd97f870f9f543a0e156f4cc'
+  /Web/src/api-services/models/tenant-id-input.ts:
+    newFile: !uuid 'eaac90b2b5ef11b802e3ec619135734e6fd64f56'
+    oldFile: !uuid '1a4b91dd4fa6f08bb96135abc7792b1db0acb954'
+  /Web/src/api-services/models/tenant-input.ts:
+    newFile: !uuid '6e56cf40ab7b6b9f33a59ad81480508eb431214f'
+    oldFile: !uuid '1d2ff5ba386741708186638520439a2e644193b5'
+  /Web/src/api-services/models/tenant-output.ts:
+    newFile: !uuid '6f4b9ed75430af9eb288b8e1589ab55a149cbf2a'
+    oldFile: !uuid '95d47b3149780e6e1bbba8e87a45e621662d6d2c'
+  /Web/src/api-services/models/tenant-type-enum.ts:
+    newFile: !uuid '6dc4d0d4f8f113909b90a55fcc180e8464b749a0'
+    oldFile: !uuid '804dfaf2c08d3c8b616f4731ce3815a61f2aa4ea'
+  /Web/src/api-services/models/tenant-user-input.ts:
+    newFile: !uuid '559993a182fe05e3e67789cd88fed125594d3e1a'
+    oldFile: !uuid '23d3eea897cd3a1e870779d6bc71543c000cbb3a'
+  /Web/src/api-services/models/trigger-status.ts:
+    newFile: !uuid '70c49051d147e0c0bb9e5718d885938b8c52804e'
+    oldFile: !uuid 'd0fc2243876abcd93ae2275a2272693c004ef075'
+  /Web/src/api-services/models/unlock-login-input.ts:
+    newFile: !uuid 'baaf3076073ae69c7b83f87faaaca0e6e3a560a9'
+    oldFile: !uuid '03bea5eed1772a86c1e060a02017a42e313768da'
+  /Web/src/api-services/models/update-code-gen-input.ts:
+    newFile: !uuid '392b2297c42c4e2d4f06ba65c324d4f6b728569c'
+    oldFile: !uuid '911ec0b1c19047fcfc0727edab4f8860b0e7702e'
+  /Web/src/api-services/models/update-config-input.ts:
+    newFile: !uuid 'c6f6285e30f1e749b6e051784d241fdd2083916c'
+    oldFile: !uuid 'f07deb9cfbf97d6251fbf34e89c7d7dbdda8f0b4'
+  /Web/src/api-services/models/update-db-column-input.ts:
+    newFile: !uuid '721d3dcce52e29b230742a595724a1bf3b45a243'
+    oldFile: !uuid 'dd9c2198658ca8568e92d82f75cecc79b4b6935e'
+  /Web/src/api-services/models/update-db-table-input.ts:
+    newFile: !uuid '6872eb416243807101d729d2a6f3af2e1fe2fdef'
+    oldFile: !uuid 'c63fb571b28184ac47f9a40acd2386e5b2ad74d5'
+  /Web/src/api-services/models/update-dict-data-input.ts:
+    newFile: !uuid '30b5852132b7a4107291b323233d26117a041446'
+    oldFile: !uuid 'd3daaed87efb18b7abc83eaf2a408b484d812477'
+  /Web/src/api-services/models/update-dict-type-input.ts:
+    newFile: !uuid '3679be04ae4782d437264f6d71b672d38caa770f'
+    oldFile: !uuid 'edf58d09a8f0eea0764a7a79a14a867bff20a022'
+  /Web/src/api-services/models/update-job-detail-input.ts:
+    newFile: !uuid '802d8fda67c23893f469314ea107d44f51709208'
+    oldFile: !uuid '17f7c9d1676bb395ea017798383b4487f8b20918'
+  /Web/src/api-services/models/update-job-trigger-input.ts:
+    newFile: !uuid '545aff9c63e66b75fae8f8f995236f88c3be9d7d'
+    oldFile: !uuid '566ceaafdaf9776465b99ae4725e28bed075d5a6'
+  /Web/src/api-services/models/update-menu-input.ts:
+    newFile: !uuid 'a150e289787693f8e6ae24a0d1c6911c5182ce06'
+    oldFile: !uuid 'c363aefd4c80641b875d6b7dcf7fd75bac9b8545'
+  /Web/src/api-services/models/update-notice-input.ts:
+    newFile: !uuid 'a3775ffcdcadc7644492af95475fc95e9a425ccb'
+    oldFile: !uuid 'ac4e3e76889418cc6a51605c55be2528542116b8'
+  /Web/src/api-services/models/update-open-access-input.ts:
+    newFile: !uuid '318c552666e256f096c83eebc75b6fa398bbcf62'
+    oldFile: !uuid '627898022636bef1a9ee43662a870115a2378661'
+  /Web/src/api-services/models/update-org-input.ts:
+    newFile: !uuid '9f1c3b08879cbb5f332131aa402e557606f65833'
+    oldFile: !uuid 'b30cb4016b9d468de040658b3d4a47c5c7c4e191'
+  /Web/src/api-services/models/update-plugin-input.ts:
+    newFile: !uuid 'a864df939a63a7fd181aa42b674afd81078a163b'
+    oldFile: !uuid 'da72a6d7fe7adfb9af582b2158f9c09fba0bebc9'
+  /Web/src/api-services/models/update-pos-input.ts:
+    newFile: !uuid '225d78b46fb45d64804f1e687ed4635249158320'
+    oldFile: !uuid '77fc0db0ec28f4d2f0b0903a7d7f399c9c3d6e6d'
+  /Web/src/api-services/models/update-print-input.ts:
+    newFile: !uuid 'deb43d2410afb44d4f431ab95970162bcbeddebf'
+    oldFile: !uuid '1367b08bdbc53411a76eac11f7733b8eb4f88f14'
+  /Web/src/api-services/models/update-region-input.ts:
+    newFile: !uuid '74b0ce2d6ae09a4278e19f8256b4d486ab0e35ee'
+    oldFile: !uuid '19ba9e00b68e0822aeaaea22460cacab50e384e1'
+  /Web/src/api-services/models/update-role-input.ts:
+    newFile: !uuid 'bf0c7ba19c7ea0b7aa8d1c8724eced6a29c036ec'
+    oldFile: !uuid '8250c1907f3c2c9d5d391db1c4f31a913fdb5ffe'
+  /Web/src/api-services/models/update-tenant-input.ts:
+    newFile: !uuid 'e145adac6eba65d289b5f7d73aa2965867bb2364'
+    oldFile: !uuid 'bf556ba65eee8a6eed3c599e3fd946f4f37ef900'
+  /Web/src/api-services/models/update-user-input.ts:
+    newFile: !uuid 'd21eac23d038930356a717a29163de614b6fdcd8'
+    oldFile: !uuid 'a7d356ad1d63299423cc133ecdfc385e911bcdbd'
+  /Web/src/api-services/models/upload-file-from-base64-input.ts:
+    newFile: !uuid '736484d440995b272108606e705831da7876ed67'
+    oldFile: !uuid '203552dd7e3cc664a20c3957afe865a1fcda5e85'
+  /Web/src/api-services/models/user-input.ts:
+    newFile: !uuid 'fb5b769d8771524c6759a3aa30768687e8194d9e'
+    oldFile: !uuid '1f715b11a76ba2aa29bd2d5f71c3bcfebf864ae1'
+  /Web/src/api-services/models/user-output.ts:
+    newFile: !uuid 'b1e674e7484ddf0a63f31556a8fb8a5cd1caef42'
+    oldFile: !uuid '2793fa3ee8d3e0036bfe1a79cd593d350f2bb4e4'
+  /Web/src/api-services/models/user-role-input.ts:
+    newFile: !uuid 'b169f812ebb5cd6760bfe7255fd64dd3a218732d'
+    oldFile: !uuid '667ac7dbf4206a57dd0b33868bc9912bdd78c214'
+  /Web/src/api-services/models/wechat-pay-output.ts:
+    newFile: !uuid '09ddd581d61c9bda05c6f1083427a02c123a3991'
+    oldFile: !uuid 'b1953b8815229d00bd2800fdc5baf6c625ef8543'
+  /Web/src/api-services/models/wechat-pay-para-input.ts:
+    newFile: !uuid '55ba835985c591bf98621eeb28159d5e36aecf65'
+    oldFile: !uuid '9149d8ceec938d169a02fd6cadaca69567798247'
+  /Web/src/api-services/models/wechat-pay-transaction-input.ts:
+    newFile: !uuid '8adade5fddbd2149c0ddb14d32bb2e5dc56dd189'
+    oldFile: !uuid '2bf5fe2556d92b3427c2b647d5004cb81f1cf793'
+  /Web/src/api-services/models/wechat-user-input.ts:
+    newFile: !uuid '1ca089103237bcb1f0ab35752ad0a3a51163e71f'
+    oldFile: !uuid 'e1f323f8bba9405d0ee36473bdc204b91f57c2f5'
+  /Web/src/api-services/models/wechat-user-login.ts:
+    newFile: !uuid 'e53f38b433ef42849fca7ff55f938e37b3d9814a'
+    oldFile: !uuid '3558f0cd720851acf3aa3a62f6941bd03ec6d3e9'
+  /Web/src/api-services/models/wx-open-id-login-input.ts:
+    newFile: !uuid '6380aff6d81493d76a78070b96d14636a7a3d75c'
+    oldFile: !uuid '6d2afae1a62278c4b5ff8e06afda1c8e9b2f5ebb'
+  /Web/src/api-services/models/wx-open-id-output.ts:
+    newFile: !uuid '013ed35e38300cd78356459f50e56bcf1d9764b2'
+    oldFile: !uuid 'cbd412be8441b86f3e9b57c92a135baffaa1116d'
+  /Web/src/api-services/models/wx-phone-output.ts:
+    newFile: !uuid '972226d86c02c4cdaee34f8c8c834a4690d6c85d'
+    oldFile: !uuid 'e643099abe7848b62ff1486da58ca452aa75ee81'
+  /Web/src/api-services/models/yes-no-enum.ts:
+    newFile: !uuid '625ef31f5fee596cfd6792fdc28fab6c4d229f37'
+    oldFile: !uuid '7764671c8121c7a66173d07afb27a43b5a6a853a'
+gitCommitId: !uuid '218988f10c3f20120021f7a6d5fa7b7979611dd9'
 renames: {
   }
-revisionId: 1511
+revisionId: 1512
