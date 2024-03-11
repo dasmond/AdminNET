@@ -3,42 +3,21 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '2fae1bc8dd1e04705035155535ebdb90491a4749'
-    oldFile: !uuid '486f0ffd367bef0986b14c90e58c814f702e0f8b'
-  /Admin.NET/Admin.NET.Application:
-    newFile: !uuid '25121afed27353b4027a9cffac949099a810f718'
-    oldFile: !uuid '879dd852d18e3680b38620c84fb7505ef55fe381'
-  /Admin.NET/Admin.NET.Application/Configuration:
-    newFile: !uuid '431c17fdebfccca3e66dad66c7ce98227a4fbb4f'
-    oldFile: !uuid '9f8ea0ea9fd5169eae93d271a3503897cc32b79a'
-  /Admin.NET/Admin.NET.Application/Configuration/Logging.json:
-    newFile: !uuid '3bfb3fa030043e276a4944cc23f88f6503768482'
-    oldFile: !uuid '398bf0547b9d42a32a88c446ab995224d96be24d'
+    newFile: !uuid 'dc766fc6e70c8892b50327b4cab5dbe591418978'
+    oldFile: !uuid '2fae1bc8dd1e04705035155535ebdb90491a4749'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid 'fde786b0b0c919c1cc93c68603de4faf714dbfcc'
-    oldFile: !uuid '2b30dfd1e8b09f9839e785680dc4f59794f85b8f'
-  /Admin.NET/Admin.NET.Core/Enum:
-    newFile: !uuid '41927018a46f8f3449991754ba776a379e81b0da'
-    oldFile: !uuid '43e6a2d1f191ba28c2a471bdbdc8b70b0be6cfc1'
-  /Admin.NET/Admin.NET.Core/Enum/ElasticSearchAuthTypeEnum.cs:
-    newFile: !uuid '61672ab762839e36975b943a799275c175d1cfce'
-    oldFile: null
-  /Admin.NET/Admin.NET.Core/Enum/EsAuthTypeEnum.cs:
-    newFile: null
-    oldFile: !uuid '33b64f35d2a5c7e9d4be04535964578968f44240'
-  /Admin.NET/Admin.NET.Core/Logging:
-    newFile: !uuid 'fd91499140be3b506c5722e85b9a8b22ea4524d9'
-    oldFile: !uuid 'db06b9dc9cfc65a8334186d66be116019f16b5c9'
-  /Admin.NET/Admin.NET.Core/Logging/ElasticSearchSetup.cs:
-    newFile: !uuid '79fd081e65b21c79705e43e12435d3069172777b'
-    oldFile: !uuid 'fe19520ed28c8be71d7fd86c770cf985d7083773'
-  /Admin.NET/Admin.NET.Core/Option:
-    newFile: !uuid '154a33a00aec7de2f54eb8eae41cdd6de78e305f'
-    oldFile: !uuid '33a3c0e55efd8175e7b848ec2991ab7de731748d'
-  /Admin.NET/Admin.NET.Core/Option/ElasticSearchOptions.cs:
-    newFile: !uuid '0fe4ed371948bee79f4076342c660c9d13258ae3'
-    oldFile: !uuid '812de100fd43ce93402dc66f2e55adfad39d42c6'
-gitCommitId: !uuid 'eb08ff41570b0553d4be3d6197f7b6c419b43aac'
+    newFile: !uuid '911539c02f76b54cd272052dd88efde5ef9136bb'
+    oldFile: !uuid 'fde786b0b0c919c1cc93c68603de4faf714dbfcc'
+  /Admin.NET/Admin.NET.Core/SqlSugar:
+    newFile: !uuid '7c682d192f88534ead51981f1480c456a0ae5ae3'
+    oldFile: !uuid '0817d011cc7a401ec72f3198b635f8b2c0ee66a5'
+  /Admin.NET/Admin.NET.Core/SqlSugar/SqlSugarRepository.cs:
+    newFile: !uuid '63892c34aad6dd33a86293fc8f693d80928ead21'
+    oldFile: !uuid 'f8f54f4b8776daab3bb3f881517ae93f9c125f27'
+  /Admin.NET/Admin.NET.Core/SqlSugar/SqlSugarSetup.cs:
+    newFile: !uuid 'a132f2c5a24056080d2bb43db20ae7e79abd57cb'
+    oldFile: !uuid 'a613b0887d2b966b68984a2a02c8b8c5f2457db8'
+gitCommitId: !uuid 'c5485d25f6822971df567ae59cf87846eae1595c'
 renames: {
   }
-revisionId: 1562
+revisionId: 1563
