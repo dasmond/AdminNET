@@ -3,15 +3,39 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid 'ee6b3fa08d3829284293d02c08fbf878c09959f1'
-    oldFile: !uuid '848bb5d06a0f6bf3a0cc7f2d6c8f90c1f9249ba2'
+    newFile: !uuid 'b80c0419dbc019b54ef0d20f1e3460e1eb47463a'
+    oldFile: !uuid 'ee6b3fa08d3829284293d02c08fbf878c09959f1'
+  /Admin.NET/Admin.NET.Application:
+    newFile: !uuid 'cd6efe50e3832bf45529a56eaade1a6575753c75'
+    oldFile: !uuid 'e672c6e4fc6adf9c789a0a0118acfccaf9420b98'
+  /Admin.NET/Admin.NET.Application/Configuration:
+    newFile: !uuid '5b17817a395cbee614d3285b451e7274b0d2d538'
+    oldFile: !uuid '42c4686c6ac2eaf909175179a00431f5e5f174bc'
+  /Admin.NET/Admin.NET.Application/Configuration/Logging.json:
+    newFile: !uuid '398bf0547b9d42a32a88c446ab995224d96be24d'
+    oldFile: !uuid '3bcc84a3a5ed272fc53c092010e14be94eddd2b7'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid 'c387a4f5cfd70f75272cec6c4bea0759d781639b'
-    oldFile: !uuid '193ca4ea9c16af302f717309be722f4b8ea76847'
-  /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
-    newFile: !uuid '41b8bf5f75ba331b8b90b3179a2b7cac747602f4'
-    oldFile: !uuid 'b1fae5b08af1b660f63f9890bbad3b4fb7d39fed'
-gitCommitId: !uuid '6a4f92c9b1b7a3dc3f94d22bdc5b99e59daa21df'
+    newFile: !uuid '9f1d86ae5b94b1430c055f28ca2c77d3daa82a11'
+    oldFile: !uuid 'c387a4f5cfd70f75272cec6c4bea0759d781639b'
+  /Admin.NET/Admin.NET.Core/Enum:
+    newFile: !uuid '43e6a2d1f191ba28c2a471bdbdc8b70b0be6cfc1'
+    oldFile: !uuid '49f618eeaae202d3fe3f5e3826904daa0ae44c3a'
+  /Admin.NET/Admin.NET.Core/Enum/EsAuthTypeEnum.cs:
+    newFile: !uuid '33b64f35d2a5c7e9d4be04535964578968f44240'
+    oldFile: null
+  /Admin.NET/Admin.NET.Core/Logging:
+    newFile: !uuid 'db06b9dc9cfc65a8334186d66be116019f16b5c9'
+    oldFile: !uuid '82b8d619f194632773017deffe74e22d99b03e62'
+  /Admin.NET/Admin.NET.Core/Logging/ElasticSearchSetup.cs:
+    newFile: !uuid 'fe19520ed28c8be71d7fd86c770cf985d7083773'
+    oldFile: !uuid '2e0ef04fc9818493fea192be493d49dea8b27937'
+  /Admin.NET/Admin.NET.Core/Option:
+    newFile: !uuid '818774c2a5947d876ff9de135492e02c673e0f76'
+    oldFile: !uuid '95d12b16fca7773afe99e29beb7951cdd7b961f0'
+  /Admin.NET/Admin.NET.Core/Option/ElasticSearchOptions.cs:
+    newFile: !uuid '812de100fd43ce93402dc66f2e55adfad39d42c6'
+    oldFile: null
+gitCommitId: !uuid '60d041211f029902184eb9a4401772538673b646'
 renames: {
   }
-revisionId: 1558
+revisionId: 1559
