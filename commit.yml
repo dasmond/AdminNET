@@ -3,27 +3,51 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid 'c9f10003fb3880de12f304b075bd3bef8e609e74'
-    oldFile: !uuid '51ff3157e0204785b68389669bdcdc4be608e13f'
+    newFile: !uuid 'dc2aeeca0fae7ad83cc5fb839dd5c5c79f6f7903'
+    oldFile: !uuid 'c9f10003fb3880de12f304b075bd3bef8e609e74'
+  /Admin.NET/Admin.NET.Application:
+    newFile: !uuid 'b0544105f13bb7c8e5d234039efcd0d86806ba1e'
+    oldFile: !uuid 'cf32eebc9ce0f3b2cc0fec226c8b1b8231c17984'
+  /Admin.NET/Admin.NET.Application/Configuration:
+    newFile: !uuid '1ae7f309dabf54cb5225bee2f2c73d7c7b865e55'
+    oldFile: !uuid '29109eec9156e4191026a140b0fcfcf09e20dd4c'
+  /Admin.NET/Admin.NET.Application/Configuration/APIJSON.json:
+    newFile: !uuid '5baf2316526dd938fe68ca5fadcdf217999b521f'
+    oldFile: !uuid '6948d98671a9d630b2196f1f2f1f356233d3c931'
+  /Admin.NET/Admin.NET.Application/Configuration/Logging.json:
+    newFile: null
+    oldFile: !uuid '3bfb3fa030043e276a4944cc23f88f6503768482'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '6bb22bf1a090b917b94315437e4d42862da0c71f'
-    oldFile: !uuid 'efa8488392f76365e8f631c9df3f610ae1d15159'
-  /Admin.NET/Admin.NET.Core/Const:
-    newFile: !uuid 'c183c2ebf9a276beae12fe5a321ec479d7192777'
-    oldFile: !uuid '9feb8966894a71d11d3cacbcf32ed58f8f94456c'
-  /Admin.NET/Admin.NET.Core/Const/SqlSugarConst.cs:
-    newFile: !uuid '63bc9ede62f37774573fa1be08b15576d22e00d1'
-    oldFile: !uuid '1235cc6da4f98afc896e73e6d75e8304dc01308b'
-  /Admin.NET/Admin.NET.Core/SqlSugar:
-    newFile: !uuid '366d7015e4425167c98cc6492a0736ab5610c546'
-    oldFile: !uuid '2d3bba01bfe8d5ab1206dee61a07f7e961fb45a6'
-  /Admin.NET/Admin.NET.Core/SqlSugar/SqlSugarRepository.cs:
-    newFile: !uuid '93ab93719b05502f98ffa9ae0d418063c156c343'
-    oldFile: !uuid 'f58bfee7e7cdbf6763ad6ce8878112814b0cb4df'
-  /Admin.NET/Admin.NET.Core/SqlSugar/SqlSugarSetup.cs:
-    newFile: !uuid '022ccf5c1c5c387ac7f07dd5dc361a001d9602e8'
-    oldFile: !uuid 'a613b0887d2b966b68984a2a02c8b8c5f2457db8'
-gitCommitId: !uuid 'c3d27ed21370d58234a47a86ae56c15e86dc0e5f'
+    newFile: !uuid '89d756c8011dafdc81514ac84f9a042d39b0e6e2'
+    oldFile: !uuid '6bb22bf1a090b917b94315437e4d42862da0c71f'
+  /Admin.NET/Admin.NET.Core/Extension:
+    newFile: !uuid '90ea7fc32e2d864a3b820cd6f68da2b865ca8270'
+    oldFile: !uuid '84e5ad6e6417c7402e6ba09b3e65f7c3d7635e39'
+  /Admin.NET/Admin.NET.Core/Extension/ObjectExtension.cs:
+    newFile: !uuid '56480f730a1ac11d06946166f24bc30f346b85ec'
+    oldFile: !uuid 'c80943475471cadfb5d6a3118fc54aaafaa77884'
+  /Admin.NET/Admin.NET.Core/Service:
+    newFile: !uuid '5ef8f83deac8dd28000bb539fc5327d08a76a525'
+    oldFile: !uuid '1227068a563045c22a90db6dfb7aca1507bcce81'
+  /Admin.NET/Admin.NET.Core/Service/APIJSON:
+    newFile: !uuid 'ae059e88bea5fd3421469eeaa221180dd26916a7'
+    oldFile: !uuid '7b4076a41e852f2203860b0bb735aab3ed22629d'
+  /Admin.NET/Admin.NET.Core/Service/APIJSON/APIJSONService.cs:
+    newFile: !uuid '23276f71daa20304fdf308bd8b034b7a084c5ca1'
+    oldFile: !uuid '22f751ca3828f3e09e124854bcd7307a383c6a4e'
+  /Admin.NET/Admin.NET.Core/Service/APIJSON/APIJSON接口用例.apifox.json:
+    newFile: !uuid 'b000e180c09b35b8fa35009ce4db9384c8247239'
+    oldFile: null
+  /Admin.NET/Admin.NET.Core/Service/APIJSON/FuncList.cs:
+    newFile: !uuid 'c709107c9e01c8e23323141e0513506f9b743f61'
+    oldFile: !uuid '02e4a9e20e5f3a2d414841aa5e942d3d76d6f566'
+  /Admin.NET/Admin.NET.Core/Service/APIJSON/IdentityService.cs:
+    newFile: !uuid 'ed7f0dec963a5cd6a31888c4e9b880d450cefd05'
+    oldFile: !uuid '6252d82c6a1fce296e4423e2937b93901edeaac0'
+  /Admin.NET/Admin.NET.Core/Service/APIJSON/SelectTable.cs:
+    newFile: !uuid '4eac125c1bba260b4eaf195b760378b568de6622'
+    oldFile: !uuid 'c62a93d0197748139681c4236990c5ca345133c9'
+gitCommitId: !uuid '00638ab6a9ae0c4725bb8c19d798b145e81e56fb'
 renames: {
   }
-revisionId: 1531
+revisionId: 1532
