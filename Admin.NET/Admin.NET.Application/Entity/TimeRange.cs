@@ -7,28 +7,29 @@
 // 软件按“原样”提供，不提供任何形式的明示或暗示的保证，包括但不限于对适销性、适用性和非侵权的保证。
 // 在任何情况下，作者或版权持有人均不对任何索赔、损害或其他责任负责，无论是因合同、侵权或其他方式引起的，与软件或其使用或其他交易有关。
 
-using Nest;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace Admin.NET.Application.Entity;
 public class TimeRange
 {
     public DateTime Start { get; set; }
     public DateTime End { get; set; }
-    public TimeRange()
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="timeRange">时间跨度</param>
+    public TimeRange(int timeRange)
     {
-        DateTime now = DateTime.Now; // 获取当前日期和时间
-        this.Start = new DateTime(now.Year, now.Month, now.Day, now.Hour, 0, 0); // 将分钟和秒数设置为0
-        this.End = new DateTime(now.Year, now.Month, now.Day, now.Hour, 59, 59); // 将分钟和秒数设置为0;
+        DateTime now = DateTime.Now; 
+        this.Start = new DateTime(now.Year, now.Month, now.Day, now.Hour, 0, 0).AddHours(-timeRange);
+        this.End = new DateTime(now.Year, now.Month, now.Day, now.Hour, 59, 59);
     }
-    //有参构造函数
-    public TimeRange(DateTime time)
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="time">时间</param>
+    /// <param name="timeRange">时间跨度</param>
+    public TimeRange(DateTime time,int timeRange)
     {
-        this.Start = new DateTime(time.Year, time.Month, time.Day, time.Hour, 0, 0); // 将分钟和秒数设置为0
-        this.End = new DateTime(time.Year, time.Month, time.Day, time.Hour, 59, 59); // 将分钟和秒数设置为0;
+        this.Start = new DateTime(time.Year, time.Month, time.Day, time.Hour, 0, 0).AddHours(-timeRange); 
+        this.End = new DateTime(time.Year, time.Month, time.Day, time.Hour, 59, 59);
     }
 }

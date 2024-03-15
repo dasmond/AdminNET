@@ -7,33 +7,18 @@
 // 软件按“原样”提供，不提供任何形式的明示或暗示的保证，包括但不限于对适销性、适用性和非侵权的保证。
 // 在任何情况下，作者或版权持有人均不对任何索赔、损害或其他责任负责，无论是因合同、侵权或其他方式引起的，与软件或其使用或其他交易有关。
 
-using Admin.NET.Application.Const;
 
-namespace Admin.NET.Application.Entity.Mes.Bom;
-///<summary>
-///物料信息
-///</summary>
-[Tenant(BomConst.ConfigId)]
-[SugarTable("material")]
-public class material
+namespace Admin.NET.Application.Service.Mes.Dot.Report;
+public class DayReportUnqualified
 {
-    public material()
-    {
-
-
-    }
-    [SugarColumn(IsPrimaryKey = true, IsIdentity = true)]
-    public long id { get; set; }
-
     /// <summary>
-    /// Desc:物料编号
+    /// 不良项目名
+    /// </summary>
+    public string unqualified_item_name { get; set; }
+    /// <summary>
+    /// Desc:不良数
     /// Default:
     /// Nullable:True
     /// </summary>           
-    public string code { get; set; }
-    /// <summary>
-    /// 物料名
-    /// </summary>
-    public string name { get; set; }
-    public long deleted { get; set; }
+    public int unqualified_item_number { get; set; }
 }

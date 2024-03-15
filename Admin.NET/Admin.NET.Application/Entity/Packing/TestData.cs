@@ -89,5 +89,5 @@ public class TestData : EntityBase
     /// 测试数据
     /// </summary>
     [SugarColumn(ColumnDescription = "测试数据", IsJson = true)]
-    public Dictionary<string, object> json_data { get; set; }
+    public Dictionary<string, object>? json_data { get; set; }
 }

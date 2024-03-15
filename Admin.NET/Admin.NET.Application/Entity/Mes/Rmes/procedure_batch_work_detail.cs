@@ -100,13 +100,6 @@ namespace Admin.NET.Application.Entity.Mes.Rmes
         public long step_id { get; set; }
 
         /// <summary>
-        /// Desc:工单id
-        /// Default:
-        /// Nullable:True
-        /// </summary>           
-        public long? work_sheet_id { get; set; }
-
-        /// <summary>
         /// Desc:子工单id
         /// Default:
         /// Nullable:True
@@ -121,12 +114,11 @@ namespace Admin.NET.Application.Entity.Mes.Rmes
         /// </summary>           
         public long deleted { get; set; }
         /// <summary>
-        /// Desc:动态数据信息
-        /// Default:
+        /// Desc:最新修改时间
+        /// Default:CURRENT_TIMESTAMP
         /// Nullable:True
-        /// </summary>
-        [SugarColumn(IsJson = true)]
-        public object dynamic_data { get; set; }
+        /// </summary>           
+        public DateTime? last_modified_date { get; set; }
 
     }
 }

@@ -10,6 +10,7 @@
 
 using Admin.NET.Application.Const;
 using Admin.NET.Application.Entity.Packing;
+using Admin.NET.Application.Service.Mes.Dot.MesBom;
 using Admin.NET.Application.Service.Mes.Dot.Packing;
 using System.Linq;
 namespace Admin.NET.Application.Service.Mes;
@@ -446,16 +447,29 @@ public class PackingService : IDynamicApiController, ITransient
     public async Task<bool> editPackingData(EditPackingDataInput input)
     {
         //打包SN列表
-        List<TestData> ListTemp = new List<TestData>();
+        List<TestData> updateListTemp = new List<TestData>();
+        List<TestData> insterListTemp = new List<TestData>();
         //缓存包装列表
         List<UpdateContainerTempInput> pack_id_list= new List<UpdateContainerTempInput>();
         foreach (var Item in input.data)
         {
-            var Temp = await 测试数据.GetByIdAsync(Item.id);
-            Temp.sn = Item.sn;
-            Temp.container_code = Item.container_code;
-            Temp.pack_id = Item.pack_id.Value;
-            ListTemp.Add(Temp);
+            TestData Temp = null;
+            //如果没有id则为mes查询查询数据,没有事先导入
+            if (Item.id==null)
+            {
+                Temp= Item.Adapt<TestData>();
+                insterListTemp.Add(Temp);
+            }
+            else
+            {
+                Temp = await 测试数据.GetByIdAsync(Item.id);
+                Temp.sn = Item.sn;
+                Temp.container_code = Item.container_code;
+                Temp.pack_id = Item.pack_id.Value;
+                updateListTemp.Add(Temp);
+            }
+
+            
             //如果缓存
             if (pack_id_list.Count(t=>t.code == Temp.container_code) ==0)
             {
@@ -469,29 +483,39 @@ public class PackingService : IDynamicApiController, ITransient
         }
         try
         {
-            if (测试数据.UpdateRange(ListTemp))
+            if(updateListTemp.Count>0)
             {
-                foreach (var Item in pack_id_list)
+                if (!测试数据.UpdateRange(updateListTemp))
                 {
-                    var 包装Temp = 包装数据.GetById(Item.pack_id);
-                    包装Temp.count = input.data.Count;
-                    包装Temp.pack = true;
-                    包装Temp.small_box = true;
-                    if (包装数据.Update(包装Temp))
+                    throw Oops.Oh("更新数据失败").WithData("请联系管理员");
+                }
+            }
+            if (insterListTemp.Count > 0)
+            {
+                if (!测试数据.InsertRange(insterListTemp))
+                {
+                    throw Oops.Oh("更新数据失败").WithData("请联系管理员");
+                }
+            }
+            foreach (var Item in pack_id_list)
+            {
+                var 包装Temp = 包装数据.GetById(Item.pack_id);
+                包装Temp.count = input.data.Count;
+                包装Temp.pack = true;
+                包装Temp.small_box = true;
+                if (包装数据.Update(包装Temp))
+                {
+                    if (input.packingType == "容器")
                     {
-                        if (input.packingType == "容器")
+                        //更新缓存
+                        if (!await 更新容器缓存数据(Item))
                         {
-                            //更新缓存
-                            if(! await 更新容器缓存数据(Item))
-                            {
-                                throw Oops.Oh("更新数据失败").WithData("请联系管理员");
-                            }
+                            throw Oops.Oh("更新数据失败").WithData("请联系管理员");
                         }
                     }
                 }
-                return true;
             }
-            throw Oops.Oh("更新数据失败").WithData("请联系管理员");
+            return true;
         }
         catch (Exception ex)
         {

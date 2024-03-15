@@ -56,7 +56,7 @@ public class Startup : AppStartup
         services.AddSchedule(options =>
         {
             options.AddPersistence<DbJobPersistence>(); // 添加作业持久化器
-            options.AddJob<ReportJob>(Triggers.Hourly());            
+            //options.AddJob<ReportJob>(Triggers.Hourly());            
         });
         // 脱敏检测
         services.AddSensitiveDetection();

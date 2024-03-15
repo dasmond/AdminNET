@@ -61,4 +61,26 @@ public class MesBomService : IDynamicApiController, ITransient
             }).ToListAsync();
         return temp;
     }
+    /// <summary>
+    /// 查询物料
+    /// </summary>
+    /// <param name="input"></param>
+    /// <returns></returns>
+    [HttpPost]
+    public async Task<materialOutput> getMaterial(getMaterialInput input)
+    {
+        if (input.code != null)
+        {
+            if (input.code.Length < 10)
+            {
+                return null;
+            }
+        }
+        var temp = await 物料数据.AsQueryable()
+            .WhereIF(input.code != null, t => t.code == input.code)
+            .WhereIF(input.name != null, t => t.name.Contains(input.name))
+            .Where(t=>t.deleted==0)
+            .FirstAsync();        
+        return temp.Adapt<materialOutput>();
+    }
 }

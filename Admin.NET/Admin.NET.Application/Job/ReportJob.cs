@@ -10,11 +10,9 @@
 using Admin.NET.Application.Entity;
 using Admin.NET.Application.Entity.Mes.Rmes;
 using Admin.NET.Application.Entity.Report;
-using Admin.NET.Application.Service.Mes.Dot.Mes;
 using Furion.Schedule;
 using RmSqlSugarHelp.Entity;
 using System.Threading;
-using static SKIT.FlurlHttpClient.Wechat.Api.Models.WxaBusinessPerformanceBootResponse.Types.Data.Types.Body.Types.Table.Types;
 
 namespace Admin.NET.Application.Job;
 public class ReportJob : IJob
@@ -28,7 +26,7 @@ public class ReportJob : IJob
     public async Task ExecuteAsync(JobExecutingContext context, CancellationToken stoppingToken)
     {
         using var serviceScope = _scopeFactory.CreateScope();
-        TimeRange tr=new TimeRange();
+        TimeRange tr=new TimeRange(0);
         var dataRep = serviceScope.ServiceProvider.GetService<SqlSugarRepository<procedure_batch_work_detail>>();
         var temp =await dataRep.AsSugarClient().Queryable
                 <procedure_batch_work_detail,
@@ -44,24 +42,19 @@ public class ReportJob : IJob
                 ))
                 .Where(pbwd => pbwd.end_date > tr.Start && pbwd.end_date < tr.End && pbwd.deleted == 0)
                 .Select((pbwd, bs, psws, pws, bwl) =>
-            new produceTimeReport
+            new timeReport
             {
-                line_id = bwl.id,
                 line_code = bwl.code,
                 line_name = bwl.name,
                 work_sheet_id = pws.id,
                 work_sheet_sn = pws.serial_number,
                 sub_work_sheet_id = psws.id,
-                sub_work_sheet_sn = psws.serial_number,
-                step_id = bs.id,
                 step_code = bs.code,
                 step_name = bs.name,
                 step_qualified_number = pbwd.qualified_number.Value,
                 step_unqualified_number = pbwd.unqualified_number.Value,
-                qualified_number = pws.qualified_number,
-                unqualified_number = pws.unqualified_number
             }).ToListAsync();
-        var reportRep = serviceScope.ServiceProvider.GetService<SqlSugarRepository<produceTimeReport>>();
+        var reportRep = serviceScope.ServiceProvider.GetService<SqlSugarRepository<timeReport>>();
         if(temp.Count>0)
         {
             reportRep.InsertRangeAsync(temp);

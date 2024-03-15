@@ -9,31 +9,33 @@
 
 using Admin.NET.Application.Const;
 
-namespace Admin.NET.Application.Entity.Mes.Bom;
-///<summary>
-///物料信息
-///</summary>
-[Tenant(BomConst.ConfigId)]
-[SugarTable("material")]
-public class material
+namespace Admin.NET.Application.Entity.Report;
+[SugarTable("time_report_unqualified", "生产时段报表")]
+[Tenant(MesExpandConst.ConfigId)]
+public class timeReportUnqualified : EntityBase
 {
-    public material()
-    {
-
-
-    }
-    [SugarColumn(IsPrimaryKey = true, IsIdentity = true)]
-    public long id { get; set; }
-
     /// <summary>
-    /// Desc:物料编号
+    /// 时段
+    /// </summary>
+    [SugarColumn(ColumnDescription = "时段")]
+    public DateTime time_span { get; set; }
+    /// <summary>
+    /// 子工单ID
+    /// </summary>
+    [SugarColumn(ColumnDescription = "子工单ID")]
+    public long sub_work_sheet_id { get; set; }
+    /// <summary>
+    /// Desc:不良项目名
     /// Default:
     /// Nullable:True
     /// </summary>           
-    public string code { get; set; }
+    [SugarColumn(ColumnDescription = "不良项目名")]
+    public string unqualified_item_name { get; set; }
     /// <summary>
-    /// 物料名
-    /// </summary>
-    public string name { get; set; }
-    public long deleted { get; set; }
+    /// Desc:不良数
+    /// Default:
+    /// Nullable:True
+    /// </summary>           
+    [SugarColumn(ColumnDescription = "不良数")]
+    public int unqualified_item_number { get; set; }
 }
