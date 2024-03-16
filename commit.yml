@@ -3,21 +3,36 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '17c6b319fafe9b2b5a945215a4c0ff3dff6af28b'
-    oldFile: !uuid 'd7b083abdfdd6a616ff29628dc3c8ad095210af5'
+    newFile: !uuid '2cea154c0301b847f5155a3d6760125f9d99fb38'
+    oldFile: !uuid '17c6b319fafe9b2b5a945215a4c0ff3dff6af28b'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid 'ea2fdf3cf6727fedf4d059190b488110683a311d'
-    oldFile: !uuid '0d4b9fc006034393fb7c8cebc0c41aa9208730cb'
+    newFile: !uuid 'ec35168e863bb6ff3a8f159831e385762ea7ad1e'
+    oldFile: !uuid 'ea2fdf3cf6727fedf4d059190b488110683a311d'
   /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
-    newFile: !uuid '1dceabccb40d921924e23ade76eaff047ef51ce1'
-    oldFile: !uuid '721eb02369da0a8a2f0dee290e790be950b6c0aa'
-  /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid 'dd4853c2abf5fe0b4857dac8c0abdcbf8ccd6efc'
-    oldFile: !uuid '35cdff209d86aa12f3126b6a8a9b185e53a31dd4'
-  /Admin.NET/Admin.NET.Core/Service/BaseService.cs:
-    newFile: !uuid '60db7024247bf793f466bf3c2967e557b241c87e'
-    oldFile: !uuid '7fe7573ffa89c100c3b982caa8dbabe4a941345c'
-gitCommitId: !uuid 'a8c021984b59b22dad32e5828e415babd6581bcb'
+    newFile: !uuid 'a56447679309f6cfd339c2ed1d6df1deb27367fb'
+    oldFile: !uuid '1dceabccb40d921924e23ade76eaff047ef51ce1'
+  /Web:
+    newFile: !uuid '1001c39038f9552c8c2381faca61e175ac691450'
+    oldFile: !uuid 'a6feb27f6928305c4889c90eacc0a79e7a57ec81'
+  /Web/package.json:
+    newFile: !uuid 'f83f764210a349e4a26874a382d65d593bb07592'
+    oldFile: !uuid '2b24f70fb998291008583a3d3a0a518dabd2b1f5'
+  /Web/src:
+    newFile: !uuid '50dfb96f253d1bb3ae3c08cc1c6fcb7ca3922536'
+    oldFile: !uuid '630420830567efb64c475d921538bdd6915a8f73'
+  /Web/src/api-services:
+    newFile: !uuid 'fe95138b9731ce241f5a15caf06c560893af79ff'
+    oldFile: !uuid 'af021ab21012ba8f45291133375d068d4078e942'
+  /Web/src/api-services/apis:
+    newFile: !uuid 'e79232875bf18ce447630cf8a3c1d1376960a8bd'
+    oldFile: !uuid 'c5ea5ebc9c5d543c0b42a3c840d6d4df2aeb70ff'
+  /Web/src/api-services/apis/apijsonapi.ts:
+    newFile: !uuid 'b484ae6af327d9870029ee0ef7fa91e5f9028123'
+    oldFile: !uuid 'b11c4c29f38d3c0fdb77c495b5d272f35dbac580'
+  /Web/src/api-services/apis/sys-database-api.ts:
+    newFile: !uuid '633bb402c867019acf5fafe6ba7522cde73c1f3c'
+    oldFile: !uuid 'f9684b738ee7de4992a775fc59f0e3ce7dc2a9c5'
+gitCommitId: !uuid '14b1a6865ee4937aaf7163b169451eaa4527baa5'
 renames: {
   }
-revisionId: 1588
+revisionId: 1589
