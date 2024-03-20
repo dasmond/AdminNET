@@ -33,3 +33,7 @@ public class TimeRange
         this.End = new DateTime(time.Year, time.Month, time.Day, time.Hour, 59, 59);
     }
 }
+public class TimeList
+{
+    public DateTime times { get; set; }
+}

@@ -105,32 +105,30 @@ public class MesService : IDynamicApiController, ITransient
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
-    [HttpGet]
-    public async Task<List<TimeReportOutput>> createTimeReport()
+    [HttpPost]
+    public async Task<List<TimeReportOutput>> createTimeReport(TimeList time_ls)
     {
-        TimeRange timeSpan = new TimeRange(DateTime.Now.AddHours(-8),0);
+        TimeRange time_span = new TimeRange(time_ls.times.ToUniversalTime(), 0);
         //查询API动态数据
-        List<timeReport> 工单动态数据 = 生产时段数据.GetList(t => t.last_modified_date >= timeSpan.Start && t.last_modified_date < timeSpan.End && t.IsDelete == false).ToList();
-        List<TimeReportOutput> 时段数据 = new List<TimeReportOutput>();
+        List<timeReport> 工单动态数据 = 生产时段数据.GetList(t => t.last_modified_date >= time_span.Start && t.last_modified_date < time_span.End && t.IsDelete == false).ToList();
         if (工单动态数据.Count <= 0)
         {
             //查询动态数据 MES 工单动态数据     
-            工单动态数据 = 获取工单动态数据(timeSpan).Adapt<List<timeReport>>();
+            工单动态数据 = 获取工单动态数据(time_span).Adapt<List<timeReport>>();
             //MES没有工单动态数据
             if (工单动态数据.Count == 0)
             {
                 return null;
             }
-            时段数据 = 获取时段数据(工单动态数据);
             //写入数据到API数据库
             if (await 生产时段数据.InsertRangeAsync(工单动态数据))
             {
                 //查询工单不良项
                 List<timeReportUnqualified> 工单不良项Temp = new List<timeReportUnqualified>();
-                var temp = 工单动态数据.GroupBy(g => g.sub_work_sheet_id).ToList();
-                foreach (var 子工单item in temp)
+                var temp = 工单动态数据.GroupBy(g => g.work_sheet_id).ToList();
+                foreach (var 工单item in temp)
                 {
-                    List<timeReportUnqualified> 子工单不良数据Temp = 获取子工单不良数据(子工单item.Key, timeSpan.Start);
+                    List<timeReportUnqualified> 子工单不良数据Temp = 获取工单不良数据(工单item.Key.Value, time_span.Start);
                     工单不良项Temp.AddRange(子工单不良数据Temp);
                 }
                 //写入不良项数据到API数据库
@@ -141,18 +139,21 @@ public class MesService : IDynamicApiController, ITransient
             }
             //计算本时段数据
         }
+        List<TimeReportOutput> 时段数据 = 获取时段数据(工单动态数据, time_span.Start);
         return 时段数据;
     }
     /// <summary>
     /// 获取日报数据
     /// </summary>
+    /// <param name="time_list">0开始时间,1结束时间</param>
     /// <returns></returns>
-    [HttpGet]
-    public async Task<List<DayReportOutput>> getDayReport()
+    [HttpPost]
+    public async Task<List<DayReportOutput>> getDayReport(List<TimeList> time_list)
     {
-        TimeRange timeSpan = new TimeRange(DateTime.Now.AddHours(-8),23);
+        DateTime start = time_list[0].times.ToUniversalTime();
+        DateTime end = time_list[1].times.ToUniversalTime();
         //查询当天记录
-        List<timeReport> 工单动态数据 = await 生产时段数据.GetListAsync(t => t.last_modified_date >= timeSpan.Start && t.last_modified_date < timeSpan.End && t.IsDelete == false);
+        List<timeReport> 工单动态数据 = await 生产时段数据.GetListAsync(t => t.last_modified_date >= start && t.last_modified_date < end && t.IsDelete == false);
         List<DayReportOutput> 工单list_temp =
             工单动态数据.GroupBy(s => s.work_sheet_id)
             .Select(g => new DayReportOutput
@@ -163,12 +164,12 @@ public class MesService : IDynamicApiController, ITransient
         List<DayReportOutput> ls = new List<DayReportOutput>();
         foreach (var 工单 in 工单list_temp)
         {
-            //查询本工单当天记录
-            timeReport 最新记录 = 工单动态数据.Where(t => t.work_sheet_sn == 工单.work_sheet_sn).OrderByDescending(s => s.last_modified_date).First();
+            //查询本工单当天最新记录
+            timeReport 最新记录 = 工单动态数据.Where(t => t.work_sheet_sn == 工单.work_sheet_sn&&t.last_modified_date<end).OrderByDescending(s => s.last_modified_date).First();
             DateTime 最新记录time_span = new DateTime(最新记录.last_modified_date.Year, 最新记录.last_modified_date.Month, 最新记录.last_modified_date.Day, 最新记录.last_modified_date.Hour, 0, 0);
             //查询范围外的最后一条记录
             timeReport 范围外记录 = await 生产时段数据.AsQueryable()
-            .Where(t => t.last_modified_date <= timeSpan.End.AddDays(-1) && t.IsDelete == false)
+            .Where(t => t.work_sheet_sn == 工单.work_sheet_sn && t.last_modified_date < start && t.IsDelete == false)
                 .OrderByDescending(s => s.last_modified_date).FirstAsync();
             //如果范围外有记录,用当天最后一条记录减去范围外最后一条记录
             if (范围外记录 != null)
@@ -177,19 +178,19 @@ public class MesService : IDynamicApiController, ITransient
                 var b = new DayReportOutput
                 {
                     work_sheet_sn = 最新记录.work_sheet_sn,
-                    custom2= 最新记录.custom2,
-                    line_code= 最新记录.line_code,
-                    line_name= 最新记录.line_name,
+                    custom2 = 最新记录.custom2,
+                    line_code = 最新记录.line_code,
+                    line_name = 最新记录.line_name,
                     work_sheet_number = 最新记录.work_sheet_number,
                     work_sheet_qualified_number = 最新记录.work_sheet_qualified_number - 范围外记录.work_sheet_qualified_number,
-                    work_sheet_unqualified_number = 最新记录.work_sheet_unqualified_number - 范围外记录.work_sheet_qualified_number,
+                    work_sheet_unqualified_number = 最新记录.work_sheet_unqualified_number - 范围外记录.work_sheet_unqualified_number,
                     plan_end_date = 最新记录.plan_end_date,
                     plan_start_date = 最新记录.plan_start_date,
                     actual_end_date = 最新记录.actual_end_date,
                     actual_start_date = 最新记录.actual_start_date,
                     pedigree_code = 最新记录.pedigree_code,
                     pedigree_name = 最新记录.pedigree_name,
-                    unqualified_info = 获取子工单不良数据(最新记录.sub_work_sheet_id, 最新记录time_span, 范围外记录.sub_work_sheet_id, 范围外记录time_span)
+                    unqualified_info = 获取工单不良数据(最新记录.work_sheet_id.Value, 最新记录time_span, 范围外记录time_span)
                 };
                 ls.Add(b);
             }
@@ -211,7 +212,7 @@ public class MesService : IDynamicApiController, ITransient
                     actual_start_date = 最新记录.actual_start_date,
                     pedigree_code = 最新记录.pedigree_code,
                     pedigree_name = 最新记录.pedigree_name,
-                    unqualified_info = 生产时段不良数据.GetList(t => t.sub_work_sheet_id == 最新记录.sub_work_sheet_id && t.time_span== 最新记录time_span)
+                    unqualified_info = 获取工单不良数据(最新记录.work_sheet_id.Value, 最新记录time_span, null)
                 };
                 ls.Add(e);
             }
@@ -538,7 +539,7 @@ public class MesService : IDynamicApiController, ITransient
                 line_name = bwl.name,
                 work_sheet_id = pws.id,
                 work_sheet_sn = pws.serial_number,
-                custom2=pws.custom2,
+                custom2 = pws.custom2,
                 pedigree_code = bp.code,
                 pedigree_name = bp.name,
                 plan_end_date = pws.plan_end_date,
@@ -559,56 +560,74 @@ public class MesService : IDynamicApiController, ITransient
     }
 
     [NonAction]
-    private List<timeReportUnqualified> 获取子工单不良数据(long sub_work_sheet_id, DateTime timeSpan)
+    private List<timeReportUnqualified> 获取工单不良数据(long work_sheet_id, DateTime timeSpan)
     {
-        var temp = 工单不良数据.AsSugarClient()
-            .Queryable<procedure_ws_step_unqualified_item, base_unqualified_item>
-             ((pusui, bui) => new JoinQueryInfos(
+        try
+        {
+            var temp = 工单不良数据.AsSugarClient()
+            .Queryable<
+                procedure_ws_step_unqualified_item,
+                procedure_sub_work_sheet,
+                procedure_work_sheet,
+                base_unqualified_item>
+             ((pusui, psws, pws, bui) => new JoinQueryInfos(
+                JoinType.Inner, pusui.sub_work_sheet_id == psws.id,
+                JoinType.Inner, psws.work_sheet_id == pws.id,
                 JoinType.Inner, pusui.unqualified_item_id == bui.id
+                
             ))
-            .Where(pusui => pusui.sub_work_sheet_id == sub_work_sheet_id && pusui.deleted == 0)
-            .Select((pusui, bui) => new timeReportUnqualified
+             .Where((pusui, psws) => psws.work_sheet_id == work_sheet_id && pusui.deleted == 0)
+            .Select((pusui, psws, pws, bui) => new timeReportUnqualified
             {
                 time_span = timeSpan,
-                sub_work_sheet_id = sub_work_sheet_id,
+                sub_work_sheet_id = psws.id,
+                work_sheet_id = work_sheet_id,
                 unqualified_item_name = bui.name,
                 unqualified_item_number = pusui.number.Value
             }).ToList();
-        return temp;
+            return temp;
+        }
+        catch (Exception ex)
+        {
+
+            throw;
+        }
+        
     }
     /// <summary>
     /// 计算时段生产数据
     /// </summary>
     /// <param name="工单动态数据">本时段数据</param>
-    /// <param name="time_span">上一时段</param>
+    /// <param name="reportTime">报表结束时段</param>
     /// <returns></returns>
     [NonAction]
-    private List<TimeReportOutput>? 获取时段数据(List<timeReport> 工单动态数据)
+    private List<TimeReportOutput>? 获取时段数据(List<timeReport> 工单动态数据, DateTime reportTime)
     {
         List<timeReport> 时段数据temp = new List<timeReport>();
-
+        List<timeReport> temp111 = new List<timeReport>();
         foreach (var 工单Temp in 工单动态数据)
         {
-            //查询上一时段
-            timeReport 上一时段temp = 生产时段数据.AsQueryable().Where(t => t.sub_work_sheet_id == 工单Temp.sub_work_sheet_id && t.step_code == 工单Temp.step_code).OrderByDescending(t => t.CreateTime).First();
-            if (上一时段temp != null)
+            //查询工单工序的上次记录
+            timeReport 上次记录temp = 生产时段数据.AsQueryable().Where(t => t.sub_work_sheet_id == 工单Temp.sub_work_sheet_id && t.step_code == 工单Temp.step_code && t.last_modified_date < reportTime).OrderByDescending(t => t.CreateTime).First();
+            temp111.Add(上次记录temp);
+            if (上次记录temp != null)
             {
                 timeReport temp = new timeReport
                 {
                     work_sheet_id = 工单Temp.work_sheet_id,
                     sub_work_sheet_id = 工单Temp.sub_work_sheet_id,
                     work_sheet_sn = 工单Temp.work_sheet_sn,
-                    custom2= 工单Temp.custom2,
+                    custom2 = 工单Temp.custom2,
                     work_sheet_number = 工单Temp.work_sheet_number,
                     line_code = 工单Temp.line_code,
                     line_name = 工单Temp.line_name,
                     step_code = 工单Temp.step_code,
                     step_name = 工单Temp.step_name,
-                    step_number = 工单Temp.step_number,
-                    work_sheet_qualified_number = 工单Temp.work_sheet_qualified_number - 上一时段temp.work_sheet_qualified_number,
-                    work_sheet_unqualified_number = 工单Temp.work_sheet_unqualified_number - 上一时段temp.work_sheet_unqualified_number,
-                    step_qualified_number = 工单Temp.work_sheet_unqualified_number - 上一时段temp.work_sheet_unqualified_number,
-                    step_unqualified_number = 工单Temp.step_unqualified_number - 上一时段temp.step_unqualified_number
+                    step_number = 工单Temp.step_number - 上次记录temp.step_number,
+                    work_sheet_qualified_number = 工单Temp.work_sheet_qualified_number - 上次记录temp.work_sheet_qualified_number,
+                    work_sheet_unqualified_number = 工单Temp.work_sheet_unqualified_number - 上次记录temp.work_sheet_unqualified_number,
+                    step_qualified_number = 工单Temp.step_qualified_number - 上次记录temp.step_qualified_number,
+                    step_unqualified_number = 工单Temp.step_unqualified_number - 上次记录temp.step_unqualified_number
                 };
                 时段数据temp.Add(temp);
             }
@@ -631,33 +650,66 @@ public class MesService : IDynamicApiController, ITransient
                     work_sheet_number = g_ws.First().work_sheet_number,
                     work_sheet_qualified_number = g_ws.First().work_sheet_qualified_number,
                     work_sheet_unqualified_number = g_ws.First().work_sheet_unqualified_number,
-                    step_info_list = g.GroupBy(s => s.step_code)
-                    .Select(g_step => new ReportStepInfo
-                    {
-                        step_code = g_step.Key,
-                        step_name = g_step.First().step_name,
-                        step_qualified_number = g_step.First().step_qualified_number,
-                        step_unqualified_number = g_step.First().step_unqualified_number
-                    }).ToList()
+                    step_info_list = 时段数据temp
+                    .Where(t=>t.work_sheet_sn==g_ws.Key)
+                    .Select(x=>new ReportStepInfo {
+                        step_code=x.step_code,
+                        step_name=x.step_name,
+                        step_number=x.step_number,
+                        step_qualified_number=x.step_qualified_number,  
+                        step_unqualified_number=x.step_unqualified_number
+                    })
+                    .ToList()
                 }).ToList()
             }).ToList();
+
         return reports;
     }
-
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="work_sheet_id">工单ID</param>
+    /// <param name="time_span1">最新时段</param>
+    /// <param name="time_span2">时段外最后时段</param>
+    /// <returns></returns>
     [NonAction]
-    private List<timeReportUnqualified> 获取子工单不良数据(long id1, DateTime time_span1, long id2, DateTime time_span2)
+    private List<ReportUnqualifiedInfoDto> 获取工单不良数据(long work_sheet_id, DateTime time_span1, DateTime? time_span2)
     {
-        List<timeReportUnqualified> a = 生产时段不良数据.GetList(t => t.sub_work_sheet_id == id1 && t.time_span == time_span1);
-        List<timeReportUnqualified> b = 生产时段不良数据.GetList(t => t.sub_work_sheet_id == id2 && t.time_span == time_span2);
-        foreach (var item in a)
+
+        List<ReportUnqualifiedInfoDto> a = 生产时段不良数据
+        .GetList(t => t.work_sheet_id == work_sheet_id && t.time_span == time_span1)
+        .GroupBy(g => g.unqualified_item_name)
+        .Select(s => new ReportUnqualifiedInfoDto
         {
-            var d = b.FirstOrDefault(t => t.unqualified_item_name == item.unqualified_item_name);
-            if (d != null)
+            unqualified_item_name = s.Key,
+            unqualified_item_number = s.Sum(t => t.unqualified_item_number)
+        }).ToList();
+        if (time_span2 != null)
+        {
+            List<ReportUnqualifiedInfoDto> b = 生产时段不良数据
+                .GetList(t => t.work_sheet_id == work_sheet_id && t.time_span == time_span2)
+                .GroupBy(g => g.unqualified_item_name)
+                .Select(s => new ReportUnqualifiedInfoDto
+                {
+                    unqualified_item_name = s.Key,
+                    unqualified_item_number = s.Sum(t => t.unqualified_item_number)
+                }).ToList();
+            foreach (var item in a)
             {
-                item.unqualified_item_number = item.unqualified_item_number - d.unqualified_item_number;
+                var d = b.FirstOrDefault(t => t.unqualified_item_name == item.unqualified_item_name);
+                if (d != null)
+                {
+                    item.unqualified_item_number = item.unqualified_item_number - d.unqualified_item_number;
+                }
+
             }
+            
+            return a.Where(t=>t.unqualified_item_number>0).OrderByDescending(t => t.unqualified_item_number).ToList();
         }
-        return a;
+        else
+        {
+            return a.Where(t => t.unqualified_item_number > 0).OrderByDescending(t => t.unqualified_item_number).ToList();
+        }
     }
     //[NonAction]
     //private List<TimeReportOutput> 获取单支报表(createTimeReportInput input)

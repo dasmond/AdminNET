@@ -87,5 +87,5 @@ public class DayReportOutput
     /// <summary>
     /// 工单不良信息
     /// </summary>
-    public List<timeReportUnqualified> unqualified_info { get; set; }
+    public List<ReportUnqualifiedInfoDto> unqualified_info { get; set; }
 }

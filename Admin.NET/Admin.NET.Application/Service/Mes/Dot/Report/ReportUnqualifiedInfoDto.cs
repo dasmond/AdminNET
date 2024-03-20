@@ -7,41 +7,20 @@
 // 软件按“原样”提供，不提供任何形式的明示或暗示的保证，包括但不限于对适销性、适用性和非侵权的保证。
 // 在任何情况下，作者或版权持有人均不对任何索赔、损害或其他责任负责，无论是因合同、侵权或其他方式引起的，与软件或其使用或其他交易有关。
 
-using Admin.NET.Application.Const;
 
-namespace Admin.NET.Application.Entity.Report;
-[SugarTable("time_report_unqualified", "生产时段不良表")]
-[Tenant(MesExpandConst.ConfigId)]
-public class timeReportUnqualified : EntityBase
+namespace Admin.NET.Application.Service.Mes.Dot.Report;
+public class ReportUnqualifiedInfoDto
 {
-    /// <summary>
-    /// 时段
-    /// </summary>
-    [SugarColumn(ColumnDescription = "时段")]
-    public DateTime time_span { get; set; }
-    /// <summary>
-    /// 工单id
-    /// </summary>
-    [SugarColumn(ColumnDescription = "工单ID")]
-    public long? work_sheet_id { get; set; }
-    /// <summary>
-    /// 子工单ID
-    /// </summary>
-    [SugarColumn(ColumnDescription = "子工单ID")]
-    public long sub_work_sheet_id { get; set; }
-    
     /// <summary>
     /// Desc:不良项目名
     /// Default:
     /// Nullable:True
     /// </summary>           
-    [SugarColumn(ColumnDescription = "不良项目名")]
     public string unqualified_item_name { get; set; }
     /// <summary>
     /// Desc:不良数
     /// Default:
     /// Nullable:True
     /// </summary>           
-    [SugarColumn(ColumnDescription = "不良数")]
     public int unqualified_item_number { get; set; }
 }
