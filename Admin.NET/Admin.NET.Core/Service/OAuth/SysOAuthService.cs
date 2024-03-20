@@ -92,8 +92,10 @@ public class SysOAuthService : IDynamicApiController, ITransient
                 Avatar = avatarUrl,
                 Phone = mobilePhone,
                 OrgId = 1300000000101, // 根组织架构
-                RoleIdList = new List<long> { 1300000000104 } // 仅本人数据角色
             });
+
+            // 仅本人数据角色
+            await App.GetRequiredService<SysUserService>().GrantRole(new UserRoleInput { UserId = userId, RoleIdList = new List<long> { 1300000000104 } });
 
             await _sysWechatUserRep.InsertAsync(new SysWechatUser()
             {

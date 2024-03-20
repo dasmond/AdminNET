@@ -316,7 +316,7 @@ public class SysTenantService : IDynamicApiController, ITransient
         if (tenantAdminUser == null) return;
 
         var roleIds = await _sysUserRoleService.GetUserRoleIdList(tenantAdminUser.Id);
-        input.Id = roleIds[0]; // 重置租户管理员角色Id
+        input.Id = roleIds[0].Id; // 重置租户管理员角色Id
         await _sysRoleMenuService.GrantRoleMenu(input);
     }
 
@@ -329,7 +329,7 @@ public class SysTenantService : IDynamicApiController, ITransient
     public async Task<List<long>> GetOwnMenuList([FromQuery] TenantUserInput input)
     {
         var roleIds = await _sysUserRoleService.GetUserRoleIdList(input.UserId);
-        return await _sysRoleMenuService.GetRoleMenuIdList(new List<long> { roleIds[0] });
+        return await _sysRoleMenuService.GetRoleMenuIdList(new List<long> { roleIds[0].Id });
     }
 
     /// <summary>

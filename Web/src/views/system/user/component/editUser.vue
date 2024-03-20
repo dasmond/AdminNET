@@ -32,13 +32,6 @@
 								</el-form-item>
 							</el-col>
 							<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
-								<el-form-item label="角色集合" prop="roleIdList" :rules="[{ required: true, message: '角色集合不能为空', trigger: 'blur' }]">
-									<el-select v-model="state.ruleForm.roleIdList" multiple value-key="id" clearable placeholder="角色集合" collapse-tags collapse-tags-tooltip class="w100" filterable>
-										<el-option v-for="item in state.roleData" :key="item.id" :label="item.name" :value="item.id" />
-									</el-select>
-								</el-form-item>
-							</el-col>
-							<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
 								<el-form-item label="账号类型" prop="accountType" :rules="[{ required: true, message: '账号类型不能为空', trigger: 'blur' }]">
 									<el-select v-model="state.ruleForm.accountType" placeholder="账号类型" collapse-tags collapse-tags-tooltip class="w100">
 										<el-option label="系统管理员" :value="888" :disabled="userInfos.accountType != 888 && userInfos.accountType != 999" />
@@ -261,7 +254,7 @@ import { useUserInfo } from '/@/stores/userInfo';
 
 import { getAPI } from '/@/utils/axios-utils';
 import { SysPosApi, SysRoleApi, SysUserApi } from '/@/api-services/api';
-import { RoleOutput, SysOrg, SysPos, UpdateUserInput } from '/@/api-services/models';
+import { SysOrg, SysPos, UpdateUserInput } from '/@/api-services/models';
 
 const props = defineProps({
 	title: String,
@@ -277,7 +270,6 @@ const state = reactive({
 	selectedTabName: '0', // 选中的 tab 页
 	ruleForm: {} as UpdateUserInput,
 	posData: [] as Array<SysPos>, // 职位数据
-	roleData: [] as Array<RoleOutput>, // 角色数据
 });
 
 onMounted(async () => {
@@ -296,8 +288,6 @@ const openDialog = async (row: any) => {
 	state.selectedTabName = '0'; // 重置为第一个 tab 页
 	state.ruleForm = JSON.parse(JSON.stringify(row));
 	if (row.id != undefined) {
-		var resRole = await getAPI(SysUserApi).apiSysUserOwnRoleListUserIdGet(row.id);
-		state.ruleForm.roleIdList = resRole.data.result;
 		var resExtOrg = await getAPI(SysUserApi).apiSysUserOwnExtOrgListUserIdGet(row.id);
 		state.ruleForm.extOrgIdList = resExtOrg.data.result;
 	} else state.ruleForm.accountType = 777; // 默认普通账号类型

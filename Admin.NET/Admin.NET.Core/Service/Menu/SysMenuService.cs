@@ -285,6 +285,6 @@ public class SysMenuService : IDynamicApiController, ITransient
     private async Task<List<long>> GetMenuIdList()
     {
         var roleIdList = await _sysUserRoleService.GetUserRoleIdList(_userManager.UserId);
-        return await _sysRoleMenuService.GetRoleMenuIdList(roleIdList);
+        return await _sysRoleMenuService.GetRoleMenuIdList(roleIdList.Select(u => u.Id).ToList());
     }
 }

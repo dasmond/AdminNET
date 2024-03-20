@@ -24,3 +24,29 @@ public class RoleOutput
     /// </summary>
     public string Code { get; set; }
 }
+
+/// <summary>
+/// 角色选项输出参数
+/// </summary>
+public class RoleOptionOutput : RoleOutput
+{
+    /// <summary>
+    /// 是否禁用
+    /// </summary>
+    public bool Disabled { get; set; } = true;
+}
+
+/// <summary>
+/// 角色已分配可分配输出参数
+/// </summary>
+public class GrantRoleOutput
+{
+    /// <summary>
+    /// 以分配
+    /// </summary>
+    public IEnumerable<RoleOptionOutput> Granted { get; set; }
+    /// <summary>
+    /// 可分配
+    /// </summary>
+    public IEnumerable<RoleOptionOutput> Available { get; set; }
+}

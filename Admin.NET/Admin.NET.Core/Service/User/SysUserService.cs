@@ -96,7 +96,7 @@ public class SysUserService : IDynamicApiController, ITransient
         user.Password = CryptogramUtil.Encrypt(password);
         var newUser = await _sysUserRep.AsInsertable(user).ExecuteReturnEntityAsync();
         input.Id = newUser.Id;
-        await UpdateRoleAndExtOrg(input);
+        await UpdateExtOrg(input);
 
         return newUser.Id;
     }
@@ -117,27 +117,25 @@ public class SysUserService : IDynamicApiController, ITransient
         await _sysUserRep.AsUpdateable(input.Adapt<SysUser>()).IgnoreColumns(true)
             .IgnoreColumns(u => new { u.Password, u.Status }).ExecuteCommandAsync();
 
-        await UpdateRoleAndExtOrg(input);
+        await UpdateExtOrg(input);
 
         // 删除用户机构缓存
         SqlSugarFilter.DeleteUserOrgCache(input.Id, _sysUserRep.Context.CurrentConnectionConfig.ConfigId.ToString());
 
-        // 若账号的角色和组织架构发生变化,则强制下线账号进行权限更新
+        // 若账号的组织架构发生变化,则强制下线账号进行权限更新
         var user = await _sysUserRep.AsQueryable().ClearFilter().FirstAsync(u => u.Id == input.Id);
         var roleIds = await GetOwnRoleList(input.Id);
-        if (input.OrgId != user.OrgId || !input.RoleIdList.OrderBy(u => u).SequenceEqual(roleIds.OrderBy(u => u)))
+        if (input.OrgId != user.OrgId)
             await _sysOnlineUserService.ForceOffline(input.Id);
     }
 
     /// <summary>
-    /// 更新角色和扩展机构
+    /// 更新扩展机构
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
-    private async Task UpdateRoleAndExtOrg(AddUserInput input)
+    private async Task UpdateExtOrg(AddUserInput input)
     {
-        await GrantRole(new UserRoleInput { UserId = input.Id, RoleIdList = input.RoleIdList });
-
         await _sysUserExtOrgService.UpdateUserExtOrg(input.Id, input.ExtOrgIdList);
     }
 
@@ -236,11 +234,18 @@ public class SysUserService : IDynamicApiController, ITransient
     [DisplayName("授权用户角色")]
     public async Task GrantRole(UserRoleInput input)
     {
-        //var user = await _sysUserRep.GetFirstAsync(u => u.Id == input.UserId) ?? throw Oops.Oh(ErrorCodeEnum.D0009);
-        //if (user.AccountType == AccountTypeEnum.SuperAdmin)
-        //    throw Oops.Oh(ErrorCodeEnum.D1022);
+        var user = await _sysUserRep.AsQueryable().ClearFilter().FirstAsync(u => u.Id == input.UserId) ?? throw Oops.Oh(ErrorCodeEnum.D0009);
+        if (user.AccountType == AccountTypeEnum.SuperAdmin) throw Oops.Oh(ErrorCodeEnum.D1022);
 
         await _sysUserRoleService.GrantUserRole(input);
+
+        // 删除用户机构缓存
+        SqlSugarFilter.DeleteUserOrgCache(input.UserId, _sysUserRep.Context.CurrentConnectionConfig.ConfigId.ToString());
+
+        // 若账号的角色发生变化,则强制下线账号进行权限更新
+        var roleIds = await GetOwnRoleList(input.UserId);
+        if (!input.RoleIdList.OrderBy(u => u).SequenceEqual(roleIds.OrderBy(u => u)))
+            await _sysOnlineUserService.ForceOffline(input.UserId);
     }
 
     /// <summary>
@@ -319,7 +324,28 @@ public class SysUserService : IDynamicApiController, ITransient
     [DisplayName("获取用户拥有角色集合")]
     public async Task<List<long>> GetOwnRoleList(long userId)
     {
-        return await _sysUserRoleService.GetUserRoleIdList(userId);
+        var roleList = await _sysUserRoleService.GetUserRoleIdList(userId);
+        return roleList.Select(u => u.Id).ToList();
+    }
+
+    /// <summary>
+    /// 获取可分配的角色集合
+    /// </summary>
+    /// <param name="userId"></param>
+    /// <returns></returns>
+    [DisplayName("获取可分配的角色集合")]
+    public async Task<GrantRoleOutput> GetAvailableRoleList(long userId)
+    {
+        //获取当前分配用户的角色
+        var granted = (await _sysUserRoleService.GetUserRoleIdList(userId)).Adapt<List<RoleOptionOutput>>();
+        //获取当前用户的角色
+        var available = (await _sysUserRoleService.GetUserRoleIdList(_userManager.UserId)).Adapt<List<RoleOptionOutput>>();
+        //改变分配用户的角色可分配状态
+        granted.ForEach(u => u.Disabled = !available.Any(e => e.Id == u.Id));
+        // 排除已分配的角色
+        available = available.ExceptBy(granted.Select(e => e.Id), e => e.Id).ToList();
+        available.ForEach(e => e.Disabled = false);
+        return new GrantRoleOutput { Granted = granted, Available = available };
     }
 
     /// <summary>
