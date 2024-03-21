@@ -2,34 +2,22 @@
 branches: {
   }
 fileChange:
-  /Admin.NET:
-    newFile: !uuid '8ca17f66f5be03cfc21cbb8c48784e034b451435'
-    oldFile: !uuid '16b30e250bd9c5583fb065c240cc63863a48232e'
-  /Admin.NET/Admin.NET.Core:
-    newFile: !uuid 'caad00b5bd85c047dd7022981905991ae210668a'
-    oldFile: !uuid '46466a24e8a6c2154b16c5b677bc26e5cfbea40d'
-  /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
-    newFile: !uuid '1ad138ded13d81a86910b83c3906fd9e438700a8'
-    oldFile: !uuid '21f28027647742e2a7e2b256fa565855e1861677'
-  /Admin.NET/Admin.NET.Web.Core:
-    newFile: !uuid '28f29e7a9aef4f56d71346d875366ca44884c75c'
-    oldFile: !uuid 'f37ceacc1fcbd7d23f066165efea569ef2d692d1'
-  /Admin.NET/Admin.NET.Web.Core/Startup.cs:
-    newFile: !uuid '47908c07396408f4ef9875bc538cb83dcd2d388f'
-    oldFile: !uuid '846fcfcfb7f722ddef79882dec36c52f897bcc32'
   /Web:
-    newFile: !uuid '92d1ffa52ab65743afef4baf15a587e41a328ec1'
-    oldFile: !uuid 'bd6deb9a7c4fa396029b7b3c506ea05dcec8da81'
-  /Web/index.html:
-    newFile: !uuid '86d3698f9c158a8b9e271aaf4b9799e72d5492d7'
-    oldFile: !uuid 'bf05fd4a1ee7f96556b30b0fe533902cae3b7fa8'
-  /Web/package.json:
-    newFile: !uuid 'cdcb5d0f01096164d802701096f4aee268112a45'
-    oldFile: !uuid '62a71fadea4425d5b3befda56a21ca9a8d6d159d'
-  /Web/vite.config.ts:
-    newFile: !uuid '9fb3858b9f084db0652840d6d627f0a1dd48f101'
-    oldFile: !uuid 'a886f12faabad7bd3e8ca9f9dc08bf40c5fccf52'
-gitCommitId: !uuid '6f3026112e72b1e9ffe6f1701ce3e6870260e51e'
+    newFile: !uuid '72dbe2b10e9851e40ca8eea69435a42e3917231c'
+    oldFile: !uuid '92d1ffa52ab65743afef4baf15a587e41a328ec1'
+  /Web/src:
+    newFile: !uuid 'a0e87a5f25cb06a5553047fec8522f9c3552bd40'
+    oldFile: !uuid 'c02cd758cd5c8f68e58e0a3d594bc3684555ab5d'
+  /Web/src/layout:
+    newFile: !uuid '4fd1169dd8b6e2334184bb976c2cbdaae679906c'
+    oldFile: !uuid '6d30ef2c42eeb4da9da7c87011a79626271b23a4'
+  /Web/src/layout/footer:
+    newFile: !uuid 'a0377a736c12d741e5b58b85afabcf406a67a76f'
+    oldFile: !uuid 'c41034cc2fa5da9774ad483a13cbc79232d7bf0c'
+  /Web/src/layout/footer/index.vue:
+    newFile: !uuid '5993ba3dba32d3517d8111814afc80bfd886c964'
+    oldFile: !uuid 'd14e2493f0110d94cbda55022bab9999cd2db24d'
+gitCommitId: !uuid 'ebf15311137ea39db03cd274627448bd3c04ddb2'
 renames: {
   }
-revisionId: 1556
+revisionId: 1557
