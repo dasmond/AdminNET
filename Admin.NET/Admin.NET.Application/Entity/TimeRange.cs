@@ -35,5 +35,5 @@ public class TimeRange
 }
 public class TimeList
 {
-    public DateTime times { get; set; }
+    public List<DateTime> times { get; set; }
 }

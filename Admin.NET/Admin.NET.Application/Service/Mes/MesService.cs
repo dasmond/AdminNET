@@ -18,9 +18,7 @@ using Admin.NET.Application.Service.Mes.Dot.Mes;
 using Admin.NET.Application.Service.Mes.Dot.Packing;
 using Admin.NET.Application.Service.Mes.Dot.Report;
 using Admin.NET.Application.Service.Mes.Dot.SapToMes;
-using OfficeOpenXml.FormulaParsing.Excel.Functions.DateTime;
 using RmSqlSugarHelp.Entity;
-using System;
 
 namespace Admin.NET.Application.Service.Mes;
 [ApiDescriptionSettings(MesExpandConst.GroupName, Order = 200)]
@@ -100,6 +98,15 @@ public class MesService : IDynamicApiController, ITransient
             throw Oops.Oh("查询错误").WithData("没有查询到信息");
         }
     }
+    [HttpPost]
+    public async Task<WorkSheetStepDataOutput> getWorkSheetTimeOutData(TimeList input)
+    {
+        DateTime start = input.times[0].ToUniversalTime();
+        DateTime end = input.times[1].ToUniversalTime();
+        //查询所有工单
+        var list = 工单数据.GetList(t =>t.plan_start_date>t.actual_end_date==null&& t.deleted == 0);
+        throw Oops.Oh("查询错误").WithData("没有查询到信息");
+    }
     /// <summary>
     /// 生成时段产能报表
     /// </summary>
@@ -108,7 +115,7 @@ public class MesService : IDynamicApiController, ITransient
     [HttpPost]
     public async Task<List<TimeReportOutput>> createTimeReport(TimeList time_ls)
     {
-        TimeRange time_span = new TimeRange(time_ls.times.ToUniversalTime(), 0);
+        TimeRange time_span = new TimeRange(time_ls.times[0].ToUniversalTime(), 0);
         //查询API动态数据
         List<timeReport> 工单动态数据 = 生产时段数据.GetList(t => t.last_modified_date >= time_span.Start && t.last_modified_date < time_span.End && t.IsDelete == false).ToList();
         if (工单动态数据.Count <= 0)
@@ -148,10 +155,10 @@ public class MesService : IDynamicApiController, ITransient
     /// <param name="time_list">0开始时间,1结束时间</param>
     /// <returns></returns>
     [HttpPost]
-    public async Task<List<DayReportOutput>> getDayReport(List<TimeList> time_list)
+    public async Task<List<DayReportOutput>> getDayReport(TimeList input)
     {
-        DateTime start = time_list[0].times.ToUniversalTime();
-        DateTime end = time_list[1].times.ToUniversalTime();
+        DateTime start = input.times[0].ToUniversalTime();
+        DateTime end = input.times[1].ToUniversalTime();
         //查询当天记录
         List<timeReport> 工单动态数据 = await 生产时段数据.GetListAsync(t => t.last_modified_date >= start && t.last_modified_date < end && t.IsDelete == false);
         List<DayReportOutput> 工单list_temp =
@@ -220,10 +227,6 @@ public class MesService : IDynamicApiController, ITransient
 
         return ls;
     }
-
-
-
-
 
     /// <summary>
     /// 查询SN状态

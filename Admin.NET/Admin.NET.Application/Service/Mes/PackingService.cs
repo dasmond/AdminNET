@@ -10,9 +10,7 @@
 
 using Admin.NET.Application.Const;
 using Admin.NET.Application.Entity.Packing;
-using Admin.NET.Application.Service.Mes.Dot.MesBom;
 using Admin.NET.Application.Service.Mes.Dot.Packing;
-using System.Linq;
 namespace Admin.NET.Application.Service.Mes;
 [ApiDescriptionSettings(MesExpandConst.GroupName, Order = 200)]
 [AllowAnonymous]
