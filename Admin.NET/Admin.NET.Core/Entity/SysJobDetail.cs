@@ -10,7 +10,7 @@ namespace Admin.NET.Core;
 [SugarTable(null, "系统作业信息表")]
 [SysTable]
 [SugarIndex("index_{table}_J", nameof(JobId), OrderByType.Asc)]
-public class SysJobDetail : EntityBaseId
+public partial class SysJobDetail : EntityBaseId
 {
     /// <summary>
     /// 作业Id
@@ -57,7 +57,7 @@ public class SysJobDetail : EntityBaseId
     /// 是否扫描特性触发器
     /// </summary>
     [SugarColumn(ColumnDescription = "是否扫描特性触发器", ColumnName = "annotation")]
-    public bool IncludeAnnotations { get; set; } = false;
+    public bool IncludeAnnotation { get; set; } = false;
 
     /// <summary>
     /// 额外数据

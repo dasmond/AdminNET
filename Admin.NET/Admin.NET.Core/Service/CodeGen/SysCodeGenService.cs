@@ -7,7 +7,7 @@ using System.IO.Compression;
 namespace Admin.NET.Core.Service;
 
 /// <summary>
-/// 系统代码生成器服务
+/// 系统代码生成器服务 💥
 /// </summary>
 [ApiDescriptionSettings(Order = 270)]
 public class SysCodeGenService : IDynamicApiController, ITransient
@@ -30,7 +30,7 @@ public class SysCodeGenService : IDynamicApiController, ITransient
     }
 
     /// <summary>
-    /// 获取代码生成分页列表
+    /// 获取代码生成分页列表 🔖
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
@@ -44,7 +44,7 @@ public class SysCodeGenService : IDynamicApiController, ITransient
     }
 
     /// <summary>
-    /// 增加代码生成
+    /// 增加代码生成 🔖
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
@@ -63,7 +63,7 @@ public class SysCodeGenService : IDynamicApiController, ITransient
     }
 
     /// <summary>
-    /// 更新代码生成
+    /// 更新代码生成 🔖
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
@@ -79,7 +79,7 @@ public class SysCodeGenService : IDynamicApiController, ITransient
     }
 
     /// <summary>
-    /// 删除代码生成
+    /// 删除代码生成 🔖
     /// </summary>
     /// <param name="inputs"></param>
     /// <returns></returns>
@@ -101,7 +101,7 @@ public class SysCodeGenService : IDynamicApiController, ITransient
     }
 
     /// <summary>
-    /// 获取代码生成详情
+    /// 获取代码生成详情 🔖
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
@@ -112,7 +112,7 @@ public class SysCodeGenService : IDynamicApiController, ITransient
     }
 
     /// <summary>
-    /// 获取数据库库集合
+    /// 获取数据库库集合 🔖
     /// </summary>
     /// <returns></returns>
     [DisplayName("获取数据库库集合")]
@@ -123,7 +123,7 @@ public class SysCodeGenService : IDynamicApiController, ITransient
     }
 
     /// <summary>
-    /// 获取数据库表(实体)集合
+    /// 获取数据库表(实体)集合 🔖
     /// </summary>
     /// <returns></returns>
     [DisplayName("获取数据库表(实体)集合")]
@@ -154,7 +154,7 @@ public class SysCodeGenService : IDynamicApiController, ITransient
     }
 
     /// <summary>
-    /// 根据表名获取列集合
+    /// 根据表名获取列集合 🔖
     /// </summary>
     /// <returns></returns>
     [DisplayName("根据表名获取列集合")]
@@ -220,9 +220,12 @@ public class SysCodeGenService : IDynamicApiController, ITransient
             var propertyInfo = entityProperties.FirstOrDefault(p => (p.GetCustomAttribute<SugarColumn>()?.ColumnName ?? "").ToLower() == columnOutput.ColumnName.ToLower());
             // 如果找不到就再找自动生成字段名的(并且过滤掉没有SugarColumn的属性)
             if (propertyInfo == null)
-                propertyInfo = entityProperties.FirstOrDefault(p => p.GetCustomAttribute<SugarColumn>() != null && p.Name.ToLower() == (config.DbSettings.EnableUnderLine ? CodeGenUtil.CamelColumnName(columnOutput.ColumnName, entityBasePropertyNames) : columnOutput.ColumnName));
+                propertyInfo = entityProperties.FirstOrDefault(p => p.GetCustomAttribute<SugarColumn>() != null && p.Name.ToLower() == (config.DbSettings.EnableUnderLine ? CodeGenUtil.CamelColumnName(columnOutput.ColumnName, entityBasePropertyNames) : columnOutput.ColumnName.ToLower()));
             if (propertyInfo != null)
+            {
                 columnOutput.PropertyName = propertyInfo.Name;
+                columnOutput.ColumnComment = propertyInfo.GetCustomAttribute<SugarColumn>().ColumnDescription;
+            }
             else
                 result.RemoveAt(i); //移除没有定义此属性的字段
         }
@@ -284,7 +287,7 @@ public class SysCodeGenService : IDynamicApiController, ITransient
     }
 
     /// <summary>
-    /// 获取程序保存位置
+    /// 获取程序保存位置 🔖
     /// </summary>
     /// <returns></returns>
     [DisplayName("获取程序保存位置")]
@@ -294,7 +297,7 @@ public class SysCodeGenService : IDynamicApiController, ITransient
     }
 
     /// <summary>
-    /// 代码生成到本地
+    /// 代码生成到本地 🔖
     /// </summary>
     /// <returns></returns>
     [DisplayName("代码生成到本地")]

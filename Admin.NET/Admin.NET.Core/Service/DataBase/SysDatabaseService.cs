@@ -4,11 +4,12 @@
 
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Npgsql;
 
 namespace Admin.NET.Core.Service;
 
 /// <summary>
-/// 系统数据库管理服务
+/// 系统数据库管理服务 💥
 /// </summary>
 [ApiDescriptionSettings(Order = 250)]
 public class SysDatabaseService : IDynamicApiController, ITransient
@@ -27,7 +28,7 @@ public class SysDatabaseService : IDynamicApiController, ITransient
     }
 
     /// <summary>
-    /// 获取库列表
+    /// 获取库列表 🔖
     /// </summary>
     /// <returns></returns>
     [DisplayName("获取库列表")]
@@ -37,7 +38,7 @@ public class SysDatabaseService : IDynamicApiController, ITransient
     }
 
     /// <summary>
-    /// 获取字段列表
+    /// 获取字段列表 🔖
     /// </summary>
     /// <param name="tableName">表名</param>
     /// <param name="configId">ConfigId</param>
@@ -54,7 +55,7 @@ public class SysDatabaseService : IDynamicApiController, ITransient
     }
 
     /// <summary>
-    /// 获取数据库数据类型列表
+    /// 获取数据库数据类型列表 🔖
     /// </summary>
     /// <param name="configId"></param>
     /// <returns></returns>
@@ -66,7 +67,7 @@ public class SysDatabaseService : IDynamicApiController, ITransient
     }
 
     /// <summary>
-    /// 增加列
+    /// 增加列 🔖
     /// </summary>
     /// <param name="input"></param>
     [ApiDescriptionSettings(Name = "AddColumn"), HttpPost]
@@ -92,7 +93,7 @@ public class SysDatabaseService : IDynamicApiController, ITransient
     }
 
     /// <summary>
-    /// 删除列
+    /// 删除列 🔖
     /// </summary>
     /// <param name="input"></param>
     [ApiDescriptionSettings(Name = "DeleteColumn"), HttpPost]
@@ -104,7 +105,7 @@ public class SysDatabaseService : IDynamicApiController, ITransient
     }
 
     /// <summary>
-    /// 编辑列
+    /// 编辑列 🔖
     /// </summary>
     /// <param name="input"></param>
     [ApiDescriptionSettings(Name = "UpdateColumn"), HttpPost]
@@ -119,7 +120,7 @@ public class SysDatabaseService : IDynamicApiController, ITransient
     }
 
     /// <summary>
-    /// 获取表列表
+    /// 获取表列表 🔖
     /// </summary>
     /// <param name="configId">ConfigId</param>
     /// <returns></returns>
@@ -131,7 +132,7 @@ public class SysDatabaseService : IDynamicApiController, ITransient
     }
 
     /// <summary>
-    /// 增加表
+    /// 增加表 🔖
     /// </summary>
     /// <param name="input"></param>
     [ApiDescriptionSettings(Name = "AddTable"), HttpPost]
@@ -166,7 +167,7 @@ public class SysDatabaseService : IDynamicApiController, ITransient
     }
 
     /// <summary>
-    /// 删除表
+    /// 删除表 🔖
     /// </summary>
     /// <param name="input"></param>
     [ApiDescriptionSettings(Name = "DeleteTable"), HttpPost]
@@ -178,7 +179,7 @@ public class SysDatabaseService : IDynamicApiController, ITransient
     }
 
     /// <summary>
-    /// 编辑表
+    /// 编辑表 🔖
     /// </summary>
     /// <param name="input"></param>
     [ApiDescriptionSettings(Name = "UpdateTable"), HttpPost]
@@ -194,14 +195,14 @@ public class SysDatabaseService : IDynamicApiController, ITransient
             else
                 db.DbMaintenance.AddTableRemark(input.TableName, input.Description);
         }
-        catch (NotSupportedException)
+        catch (NotSupportedException ex)
         {
-            //Ignore 不支持该方法则不处理
+            throw Oops.Oh(ex.ToString());
         }
     }
 
     /// <summary>
-    /// 创建实体
+    /// 创建实体 🔖
     /// </summary>
     /// <param name="input"></param>
     [ApiDescriptionSettings(Name = "CreateEntity"), HttpPost]
@@ -247,7 +248,7 @@ public class SysDatabaseService : IDynamicApiController, ITransient
     }
 
     /// <summary>
-    /// 创建种子数据
+    /// 创建种子数据 🔖
     /// </summary>
     /// <param name="input"></param>
     [ApiDescriptionSettings(Name = "CreateSeedData"), HttpPost]
@@ -441,5 +442,78 @@ public class SysDatabaseService : IDynamicApiController, ITransient
         if (!Directory.Exists(backendPath))
             Directory.CreateDirectory(backendPath);
         return Path.Combine(backendPath, input.SeedDataName + ".cs");
+    }
+
+    /// <summary>
+    /// 备份数据库（PostgreSQL）🔖
+    /// </summary>
+    /// <returns></returns>
+    [HttpPost, NonUnify]
+    [DisplayName("备份数据库（PostgreSQL）")]
+    public async Task<IActionResult> BackupDatabase()
+    {
+        if (_db.CurrentConnectionConfig.DbType != SqlSugar.DbType.PostgreSQL)
+            throw Oops.Oh("只支持 PostgreSQL 数据库 😁");
+
+        var npgsqlConn = new NpgsqlConnectionStringBuilder(_db.CurrentConnectionConfig.ConnectionString);
+        if (npgsqlConn == null || string.IsNullOrWhiteSpace(npgsqlConn.Host) || string.IsNullOrWhiteSpace(npgsqlConn.Username) || string.IsNullOrWhiteSpace(npgsqlConn.Password) || string.IsNullOrWhiteSpace(npgsqlConn.Database))
+            throw Oops.Oh("PostgreSQL 数据库配置错误");
+
+        // 确保备份目录存在
+        var backupDirectory = Path.Combine(Directory.GetCurrentDirectory(), "backups");
+        Directory.CreateDirectory(backupDirectory);
+
+        // 构建备份文件名
+        string backupFileName = $"backup_{DateTime.Now:yyyyMMddHHmmss}.sql";
+        string backupFilePath = Path.Combine(backupDirectory, backupFileName);
+
+        // 启动pg_dump进程进行备份
+        // 设置密码：export PGPASSWORD='xxxxxx'
+        var bash = $"-U {npgsqlConn.Username} -h {npgsqlConn.Host} -p {npgsqlConn.Port} -E UTF8 -F c -b -v -f {backupFilePath} {npgsqlConn.Database}";
+        var startInfo = new ProcessStartInfo
+        {
+            FileName = "pg_dump",
+            Arguments = bash,
+            UseShellExecute = false,
+            RedirectStandardOutput = true,
+            RedirectStandardError = true,
+            CreateNoWindow = true,
+            EnvironmentVariables =
+            {
+                ["PGPASSWORD"] = npgsqlConn.Password
+            }
+        };
+
+        //_logger.LogInformation("备份数据库：pg_dump " + bash);
+
+        //try
+        //{
+        using (var backupProcess = Process.Start(startInfo))
+        {
+            await backupProcess.WaitForExitAsync();
+
+            //var output = await backupProcess.StandardOutput.ReadToEndAsync();
+            //var error = await backupProcess.StandardError.ReadToEndAsync();
+
+            // 检查备份是否成功
+            if (backupProcess.ExitCode != 0)
+            {
+                throw Oops.Oh($"备份失败：ExitCode({backupProcess.ExitCode})");
+            }
+        }
+
+        //    _logger.LogInformation($"备份成功：{backupFilePath}");
+        //}
+        //catch (Exception ex)
+        //{
+        //    _logger.LogError(ex, $"备份失败：");
+        //    throw;
+        //}
+
+        // 若备份成功则提供下载链接
+        return new FileStreamResult(new FileStream(backupFilePath, FileMode.Open), "application/octet-stream")
+        {
+            FileDownloadName = backupFileName
+        };
     }
 }

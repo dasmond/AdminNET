@@ -166,14 +166,23 @@ public class Startup : AppStartup
         if (env.IsDevelopment())
         {
             app.UseDeveloperExceptionPage();
-            app.UseForwardedHeaders();
         }
         else
         {
             app.UseExceptionHandler("/Home/Error");
-            app.UseForwardedHeaders();
             app.UseHsts();
         }
+
+        app.UseForwardedHeaders(new ForwardedHeadersOptions
+        {
+            ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
+        });
+
+        app.Use(async (context, next) =>
+        {
+            context.Response.Headers.Add("Admin.NET", "Admin.NET");
+            await next();
+        });
 
         // 图像处理
         app.UseImageSharp();

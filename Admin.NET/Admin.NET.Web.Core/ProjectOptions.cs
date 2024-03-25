@@ -35,10 +35,6 @@ public static class ProjectOptions
         services.AddConfigurableOptions<CryptogramOptions>();
         services.AddConfigurableOptions<SMSOptions>();
         services.AddConfigurableOptions<EventBusOptions>();
-        //services.AddConfigurableOptions<IpRateLimitingOptions>();
-        //services.AddConfigurableOptions<IpRateLimitPoliciesOptions>();
-        //services.AddConfigurableOptions<ClientRateLimitingOptions>();
-        //services.AddConfigurableOptions<ClientRateLimitPoliciesOptions>();
         services.Configure<IpRateLimitOptions>(App.Configuration.GetSection("IpRateLimiting"));
         services.Configure<IpRateLimitPolicies>(App.Configuration.GetSection("IpRateLimitPolicies"));
         services.Configure<ClientRateLimitOptions>(App.Configuration.GetSection("ClientRateLimiting"));

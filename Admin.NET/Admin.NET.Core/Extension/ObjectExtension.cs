@@ -252,7 +252,7 @@ public static partial class ObjectExtension
     }
 
     /// <summary>
-    /// 判断是否有值
+    /// 是否有值
     /// </summary>
     /// <param name="obj"></param>
     /// <returns></returns>

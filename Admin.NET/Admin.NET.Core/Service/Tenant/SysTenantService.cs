@@ -5,7 +5,7 @@
 namespace Admin.NET.Core.Service;
 
 /// <summary>
-/// 系统租户管理服务
+/// 系统租户管理服务 💥
 /// </summary>
 [ApiDescriptionSettings(Order = 390)]
 public class SysTenantService : IDynamicApiController, ITransient
@@ -51,7 +51,7 @@ public class SysTenantService : IDynamicApiController, ITransient
     }
 
     /// <summary>
-    /// 获取租户分页列表
+    /// 获取租户分页列表 🔖
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
@@ -80,6 +80,10 @@ public class SysTenantService : IDynamicApiController, ITransient
                 OrderNo = u.OrderNo,
                 Remark = u.Remark,
                 Status = u.Status,
+                CreateTime = u.CreateTime,
+                CreateUserName = u.CreateUserName,
+                UpdateTime = u.UpdateTime,
+                UpdateUserName = u.UpdateUserName,
             })
             .ToPagedListAsync(input.Page, input.PageSize);
     }
@@ -95,7 +99,7 @@ public class SysTenantService : IDynamicApiController, ITransient
     }
 
     /// <summary>
-    /// 增加租户
+    /// 增加租户 🔖
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
@@ -130,7 +134,7 @@ public class SysTenantService : IDynamicApiController, ITransient
     }
 
     /// <summary>
-    /// 设置租户状态
+    /// 设置租户状态 🔖
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
@@ -232,7 +236,7 @@ public class SysTenantService : IDynamicApiController, ITransient
     }
 
     /// <summary>
-    /// 删除租户
+    /// 删除租户 🔖
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
@@ -269,7 +273,7 @@ public class SysTenantService : IDynamicApiController, ITransient
     }
 
     /// <summary>
-    /// 更新租户
+    /// 更新租户 🔖
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
@@ -300,7 +304,7 @@ public class SysTenantService : IDynamicApiController, ITransient
     }
 
     /// <summary>
-    /// 授权租户管理员角色菜单
+    /// 授权租户管理员角色菜单 🔖
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
@@ -317,7 +321,7 @@ public class SysTenantService : IDynamicApiController, ITransient
     }
 
     /// <summary>
-    /// 获取租户管理员角色拥有菜单Id集合
+    /// 获取租户管理员角色拥有菜单Id集合 🔖
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
@@ -329,7 +333,7 @@ public class SysTenantService : IDynamicApiController, ITransient
     }
 
     /// <summary>
-    /// 重置租户管理员密码
+    /// 重置租户管理员密码 🔖
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
@@ -364,7 +368,7 @@ public class SysTenantService : IDynamicApiController, ITransient
     }
 
     /// <summary>
-    /// 创建租户数据库
+    /// 创建租户数据库 🔖
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
@@ -400,7 +404,7 @@ public class SysTenantService : IDynamicApiController, ITransient
     }
 
     /// <summary>
-    /// 获取租户下的用户列表
+    /// 获取租户下的用户列表 🔖
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>

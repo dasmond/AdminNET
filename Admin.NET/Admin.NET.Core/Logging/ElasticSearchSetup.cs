@@ -14,20 +14,39 @@ public static class ElasticSearchSetup
 {
     public static void AddElasticSearch(this IServiceCollection services)
     {
-        var enabled = App.GetConfig<bool>("Logging:ElasticSearch:Enabled", true);
-        if (!enabled) return;
+        var option = App.GetConfig<ElasticSearchOptions>("Logging:ElasticSearch");
+        if (!option.Enabled) return;
 
-        var serverUris = App.GetConfig<List<string>>("Logging:ElasticSearch:ServerUris", true);
-        var defaultIndex = App.GetConfig<string>("Logging:ElasticSearch:DefaultIndex", true);
-
-        var uris = serverUris.Select(u => new Uri(u));
+        var uris = option.ServerUris.Select(u => new Uri(u));
         // 集群
         var connectionPool = new SniffingConnectionPool(uris);
-        var connectionSettings = new ConnectionSettings(connectionPool).DefaultIndex(defaultIndex);
+        var connectionSettings = new ConnectionSettings(connectionPool).DefaultIndex(option.DefaultIndex);
         // 单连接
-        //var connectionSettings = new ConnectionSettings(new SingleNodeConnectionPool(uris.FirstOrDefault())).DefaultIndex(defaultIndex);
+        //var connectionSettings = new ConnectionSettings(new SingleNodeConnectionPool(uris.FirstOrDefault())).DefaultIndex(option.DefaultIndex);
+
+        // 认证类型
+        if (option.AuthType == ElasticSearchAuthTypeEnum.Basic)// Basic 认证
+        {
+            connectionSettings.BasicAuthentication(option.User, option.Password);
+        }
+        else if (option.AuthType == ElasticSearchAuthTypeEnum.ApiKey) //ApiKey 认证
+        {
+            connectionSettings.ApiKeyAuthentication(option.ApiId, option.ApiKey);
+        }
+        else if (option.AuthType == ElasticSearchAuthTypeEnum.Base64ApiKey)// Base64ApiKey 认证
+        {
+            connectionSettings.ApiKeyAuthentication(new ApiKeyAuthenticationCredentials(option.Base64ApiKey));
+        }
+        else return;
+
+        // ES使用Https时的证书指纹
+        if (!string.IsNullOrEmpty(option.Fingerprint))
+        {
+            connectionSettings.CertificateFingerprint(option.Fingerprint);
+        }
+
         var client = new ElasticClient(connectionSettings);
-        client.Indices.Create(defaultIndex, u => u.Map<SysLogOp>(m => m.AutoMap()));
+        client.Indices.Create(option.DefaultIndex, u => u.Map<SysLogOp>(m => m.AutoMap()));
 
         services.AddSingleton(client); // 单例注册
     }
