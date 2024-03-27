@@ -2,34 +2,13 @@
 branches: {
   }
 fileChange:
-  /Admin.NET:
-    newFile: !uuid '9f8b2d03c3b4dd44db5ec4f61f1ca9cb356b56bb'
-    oldFile: !uuid 'c38a13c3ed3ec0ac3ed35c72045eb1463f9137fc'
-  /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '6aabd0b22528200a514f7e69a3135a2ce3ef82e8'
-    oldFile: !uuid 'b2b992e5039a7ca40365d9386391a55536c0d42c'
-  /Admin.NET/Admin.NET.Core/Attribute:
-    newFile: !uuid '02ca93e11bd0e39253d3af6f99dbce09ed114752'
-    oldFile: !uuid 'cf6a146dc762823d4a8d57c904dc456e74017bc9'
-  /Admin.NET/Admin.NET.Core/Attribute/MaskNewtonsoftJsonConverter.cs:
-    newFile: !uuid '0ec384c227e0baae4ddbfd750a559f0bf400a57a'
-    oldFile: !uuid '83ae8ed2b3b9821d97fd0b6e3098435b9906dbe7'
-  /Admin.NET/Admin.NET.Core/Attribute/MaskSystemTextJsonConverter.cs:
-    newFile: !uuid '36ddd8952036721461368dbf22b02d4f9e5f947b'
-    oldFile: !uuid '175230bd60f2523eaa63170cf02ad9105d0f3041'
-  /Admin.NET/Admin.NET.Core/Extension:
-    newFile: !uuid 'd58ddfc9309764c73653843278c0c58aebffdedc'
-    oldFile: !uuid '45ec25ca4110ceb3afb68b8a8875638e2a05dfcf'
-  /Admin.NET/Admin.NET.Core/Extension/ObjectExtension.cs:
-    newFile: !uuid 'e1948b41d418136e608f12a6a341ed9f9d4c8b8b'
-    oldFile: !uuid '3d1770bc4cedf5460abd5d3e4d80db7d36f13c1f'
   /Web:
-    newFile: !uuid '24ff4d989dc3c671a9500dd0b866928f971f9fd9'
-    oldFile: !uuid 'cebdc06fb4538559e6a37f2a8b875ec25356416c'
+    newFile: !uuid 'f59e62734e5358eb7a49e71ff746c05c4216e5f7'
+    oldFile: !uuid '24ff4d989dc3c671a9500dd0b866928f971f9fd9'
   /Web/vite.config.ts:
-    newFile: !uuid '1e522be62e98b65790a835a3e5a0a5779cf36870'
-    oldFile: !uuid '6477231b1317338df3526043534c67bb9a618551'
-gitCommitId: !uuid 'cb49160d686a0546633f13136efaa24ab97bd355'
+    newFile: !uuid 'afdc6cfa1d389228c5ac5bfd267d49fc4d5a5266'
+    oldFile: !uuid '1e522be62e98b65790a835a3e5a0a5779cf36870'
+gitCommitId: !uuid '22254efca304162c0fd7e9396efb863a2e438f2d'
 renames: {
   }
-revisionId: 1571
+revisionId: 1572
