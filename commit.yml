@@ -3,24 +3,33 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '8f49d9e2c73d4b0791dbb989824b84d3e970c17a'
-    oldFile: !uuid 'b76651d6081e5c0e92edc327f567e683ae5526e9'
+    newFile: !uuid 'ea1ffa931b2183bc676b0bfdb7a3d76a1a480930'
+    oldFile: !uuid '8f49d9e2c73d4b0791dbb989824b84d3e970c17a'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid 'c64dd406f481573fcd44bc05e27a3b453498dc61'
-    oldFile: !uuid 'a8d497c7fef6e12a2356b5f3349158445005a3d5'
+    newFile: !uuid '47a849684d6d3d2348a74aa7b01e3fd29404b9c5'
+    oldFile: !uuid 'c64dd406f481573fcd44bc05e27a3b453498dc61'
   /Admin.NET/Admin.NET.Core/Logging:
-    newFile: !uuid 'af8ce20cef55927c8af701ccda10cff5a202b434'
-    oldFile: !uuid 'f476c5d8a10d484c9e850e53517d83abb2b18df4'
+    newFile: !uuid 'f12cbee869249be5af057eba2b188ea86b53c10f'
+    oldFile: !uuid 'af8ce20cef55927c8af701ccda10cff5a202b434'
   /Admin.NET/Admin.NET.Core/Logging/DatabaseLoggingWriter.cs:
-    newFile: !uuid '58e8d2a62963765bec657a6095208e1fc84dc02f'
-    oldFile: !uuid 'e82ffe8e6e78788dde8a66c28731139ff3ef7ef3'
-  /Admin.NET/Admin.NET.Core/SqlSugar:
-    newFile: !uuid '053c390e1652ef756076ac9d6f35a2ba4ea2f710'
-    oldFile: !uuid '1e2991275581523274fe6c65e31f5f7f4e2fc73b'
-  /Admin.NET/Admin.NET.Core/SqlSugar/SqlSugarRepository.cs:
-    newFile: !uuid 'f7819204d6edca972b368584993d260024149641'
-    oldFile: !uuid 'fece840a50e59523d199bea2ff0eddf773449be4'
-gitCommitId: !uuid '49ce792071ab75af6b49fa7f33caa03148ac9ccc'
+    newFile: !uuid '6a61b18cf390c45ff8c9eff15c22b2574ad7f51e'
+    oldFile: !uuid '58e8d2a62963765bec657a6095208e1fc84dc02f'
+  /Admin.NET/Admin.NET.Core/Service:
+    newFile: !uuid '02098be8b20c5562d4a50e4f2ff2bc38a1c3a749'
+    oldFile: !uuid 'ee94acbeede0d64e157b486c536d24800c093c50'
+  /Admin.NET/Admin.NET.Core/Service/Common:
+    newFile: !uuid '7703ee18d963a64368056b8a54e7ab78e972edd1'
+    oldFile: !uuid '62b8ef01713cd3c95d0db1a85dd50769078940e2'
+  /Admin.NET/Admin.NET.Core/Service/Common/Dto:
+    newFile: !uuid '5047c4b6f1b4ed166fea83696782215b3b24f952'
+    oldFile: !uuid 'cf2c6e5d67c89a24cbc8c8c0796b4e82e2b8fba8'
+  /Admin.NET/Admin.NET.Core/Service/Common/Dto/ProcDto.cs:
+    newFile: !uuid 'cfbd4429f979e100b56170994ccee430d25656f3'
+    oldFile: null
+  /Admin.NET/Admin.NET.Core/Service/Common/SysProcService.cs:
+    newFile: !uuid 'bddafeeed00300f05f52cc2a2cc9338611ce7216'
+    oldFile: null
+gitCommitId: !uuid '1b4ba59e5890616b6818d23cd05537f772051311'
 renames: {
   }
-revisionId: 1617
+revisionId: 1618
