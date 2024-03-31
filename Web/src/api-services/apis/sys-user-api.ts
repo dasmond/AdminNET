@@ -1,7 +1,7 @@
 /* tslint:disable */
 /* eslint-disable */
 /**
- * Admin.NET 通用权限开发平台
+ * 所有接口
  * 让 .NET 开发更简单、更通用、更流行。前后端分离架构(.NET6/Vue3)，开箱即用紧随前沿技术。<br/><a href='https://gitee.com/zuohuaijun/Admin.NET/'>https://gitee.com/zuohuaijun/Admin.NET</a>
  *
  * OpenAPI spec version: 1.0.0
@@ -11,13 +11,13 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-
 import globalAxios, { AxiosResponse, AxiosInstance, AxiosRequestConfig } from 'axios';
 import { Configuration } from '../configuration';
 // Some imports not used depending on template conditions
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base';
 import { AddUserInput } from '../models';
+import { AdminResultGrantRoleOutput } from '../models';
 import { AdminResultInt32 } from '../models';
 import { AdminResultInt64 } from '../models';
 import { AdminResultListInt64 } from '../models';
@@ -42,7 +42,7 @@ export const SysUserApiAxiosParamCreator = function (configuration?: Configurati
     return {
         /**
          * 
-         * @summary 增加用户
+         * @summary 增加用户 🔖
          * @param {AddUserInput} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -60,13 +60,6 @@ export const SysUserApiAxiosParamCreator = function (configuration?: Configurati
             const localVarQueryParameter = {} as any;
 
             // authentication Bearer required
-            // http bearer authentication required
-            if (configuration && configuration.accessToken) {
-                const accessToken = typeof configuration.accessToken === 'function'
-                    ? await configuration.accessToken()
-                    : await configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
-            }
 
             localVarHeaderParameter['Content-Type'] = 'application/json-patch+json';
 
@@ -90,12 +83,18 @@ export const SysUserApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
-         * @summary 查看用户基本信息
+         * @summary 获取可分配的角色集合
+         * @param {number} userId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiSysUserBaseInfoGet: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/api/sysUser/baseInfo`;
+        apiSysUserAvailableRoleListUserIdGet: async (userId: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'userId' is not null or undefined
+            if (userId === null || userId === undefined) {
+                throw new RequiredError('userId','Required parameter userId was null or undefined when calling apiSysUserAvailableRoleListUserIdGet.');
+            }
+            const localVarPath = `/api/sysUser/availableRoleList/{userId}`
+                .replace(`{${"userId"}}`, encodeURIComponent(String(userId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
             let baseOptions;
@@ -107,13 +106,6 @@ export const SysUserApiAxiosParamCreator = function (configuration?: Configurati
             const localVarQueryParameter = {} as any;
 
             // authentication Bearer required
-            // http bearer authentication required
-            if (configuration && configuration.accessToken) {
-                const accessToken = typeof configuration.accessToken === 'function'
-                    ? await configuration.accessToken()
-                    : await configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
-            }
 
             const query = new URLSearchParams(localVarUrlObj.search);
             for (const key in localVarQueryParameter) {
@@ -133,7 +125,43 @@ export const SysUserApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
-         * @summary 更新用户基本信息
+         * @summary 查看用户基本信息 🔖
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiSysUserBaseInfoGet: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/sysUser/baseInfo`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions :AxiosRequestConfig = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication Bearer required
+
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.params) {
+                query.set(key, options.params[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary 更新用户基本信息 🔖
          * @param {SysUser} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -151,13 +179,6 @@ export const SysUserApiAxiosParamCreator = function (configuration?: Configurati
             const localVarQueryParameter = {} as any;
 
             // authentication Bearer required
-            // http bearer authentication required
-            if (configuration && configuration.accessToken) {
-                const accessToken = typeof configuration.accessToken === 'function'
-                    ? await configuration.accessToken()
-                    : await configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
-            }
 
             localVarHeaderParameter['Content-Type'] = 'application/json-patch+json';
 
@@ -181,7 +202,7 @@ export const SysUserApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
-         * @summary 修改用户密码
+         * @summary 修改用户密码 🔖
          * @param {ChangePwdInput} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -199,13 +220,6 @@ export const SysUserApiAxiosParamCreator = function (configuration?: Configurati
             const localVarQueryParameter = {} as any;
 
             // authentication Bearer required
-            // http bearer authentication required
-            if (configuration && configuration.accessToken) {
-                const accessToken = typeof configuration.accessToken === 'function'
-                    ? await configuration.accessToken()
-                    : await configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
-            }
 
             localVarHeaderParameter['Content-Type'] = 'application/json-patch+json';
 
@@ -229,7 +243,7 @@ export const SysUserApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
-         * @summary 删除用户
+         * @summary 删除用户 🔖
          * @param {DeleteUserInput} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -247,13 +261,6 @@ export const SysUserApiAxiosParamCreator = function (configuration?: Configurati
             const localVarQueryParameter = {} as any;
 
             // authentication Bearer required
-            // http bearer authentication required
-            if (configuration && configuration.accessToken) {
-                const accessToken = typeof configuration.accessToken === 'function'
-                    ? await configuration.accessToken()
-                    : await configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
-            }
 
             localVarHeaderParameter['Content-Type'] = 'application/json-patch+json';
 
@@ -277,7 +284,7 @@ export const SysUserApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
-         * @summary 授权用户角色
+         * @summary 授权用户角色 🔖
          * @param {UserRoleInput} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -295,13 +302,6 @@ export const SysUserApiAxiosParamCreator = function (configuration?: Configurati
             const localVarQueryParameter = {} as any;
 
             // authentication Bearer required
-            // http bearer authentication required
-            if (configuration && configuration.accessToken) {
-                const accessToken = typeof configuration.accessToken === 'function'
-                    ? await configuration.accessToken()
-                    : await configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
-            }
 
             localVarHeaderParameter['Content-Type'] = 'application/json-patch+json';
 
@@ -325,7 +325,7 @@ export const SysUserApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
-         * @summary 获取用户扩展机构集合
+         * @summary 获取用户扩展机构集合 🔖
          * @param {number} userId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -348,13 +348,6 @@ export const SysUserApiAxiosParamCreator = function (configuration?: Configurati
             const localVarQueryParameter = {} as any;
 
             // authentication Bearer required
-            // http bearer authentication required
-            if (configuration && configuration.accessToken) {
-                const accessToken = typeof configuration.accessToken === 'function'
-                    ? await configuration.accessToken()
-                    : await configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
-            }
 
             const query = new URLSearchParams(localVarUrlObj.search);
             for (const key in localVarQueryParameter) {
@@ -374,7 +367,7 @@ export const SysUserApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
-         * @summary 获取用户拥有角色集合
+         * @summary 获取用户拥有角色集合 🔖
          * @param {number} userId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -397,13 +390,6 @@ export const SysUserApiAxiosParamCreator = function (configuration?: Configurati
             const localVarQueryParameter = {} as any;
 
             // authentication Bearer required
-            // http bearer authentication required
-            if (configuration && configuration.accessToken) {
-                const accessToken = typeof configuration.accessToken === 'function'
-                    ? await configuration.accessToken()
-                    : await configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
-            }
 
             const query = new URLSearchParams(localVarUrlObj.search);
             for (const key in localVarQueryParameter) {
@@ -423,7 +409,7 @@ export const SysUserApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
-         * @summary 获取用户分页列表
+         * @summary 获取用户分页列表 🔖
          * @param {PageUserInput} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -441,13 +427,6 @@ export const SysUserApiAxiosParamCreator = function (configuration?: Configurati
             const localVarQueryParameter = {} as any;
 
             // authentication Bearer required
-            // http bearer authentication required
-            if (configuration && configuration.accessToken) {
-                const accessToken = typeof configuration.accessToken === 'function'
-                    ? await configuration.accessToken()
-                    : await configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
-            }
 
             localVarHeaderParameter['Content-Type'] = 'application/json-patch+json';
 
@@ -471,7 +450,7 @@ export const SysUserApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
-         * @summary 重置用户密码
+         * @summary 重置用户密码 🔖
          * @param {ResetPwdUserInput} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -489,13 +468,6 @@ export const SysUserApiAxiosParamCreator = function (configuration?: Configurati
             const localVarQueryParameter = {} as any;
 
             // authentication Bearer required
-            // http bearer authentication required
-            if (configuration && configuration.accessToken) {
-                const accessToken = typeof configuration.accessToken === 'function'
-                    ? await configuration.accessToken()
-                    : await configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
-            }
 
             localVarHeaderParameter['Content-Type'] = 'application/json-patch+json';
 
@@ -519,7 +491,7 @@ export const SysUserApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
-         * @summary 设置用户状态
+         * @summary 设置用户状态 🔖
          * @param {UserInput} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -537,13 +509,6 @@ export const SysUserApiAxiosParamCreator = function (configuration?: Configurati
             const localVarQueryParameter = {} as any;
 
             // authentication Bearer required
-            // http bearer authentication required
-            if (configuration && configuration.accessToken) {
-                const accessToken = typeof configuration.accessToken === 'function'
-                    ? await configuration.accessToken()
-                    : await configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
-            }
 
             localVarHeaderParameter['Content-Type'] = 'application/json-patch+json';
 
@@ -567,7 +532,7 @@ export const SysUserApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
-         * @summary 解除登录锁定
+         * @summary 解除登录锁定 🔖
          * @param {UnlockLoginInput} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -585,13 +550,6 @@ export const SysUserApiAxiosParamCreator = function (configuration?: Configurati
             const localVarQueryParameter = {} as any;
 
             // authentication Bearer required
-            // http bearer authentication required
-            if (configuration && configuration.accessToken) {
-                const accessToken = typeof configuration.accessToken === 'function'
-                    ? await configuration.accessToken()
-                    : await configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
-            }
 
             localVarHeaderParameter['Content-Type'] = 'application/json-patch+json';
 
@@ -615,7 +573,7 @@ export const SysUserApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
-         * @summary 更新用户
+         * @summary 更新用户 🔖
          * @param {UpdateUserInput} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -633,13 +591,6 @@ export const SysUserApiAxiosParamCreator = function (configuration?: Configurati
             const localVarQueryParameter = {} as any;
 
             // authentication Bearer required
-            // http bearer authentication required
-            if (configuration && configuration.accessToken) {
-                const accessToken = typeof configuration.accessToken === 'function'
-                    ? await configuration.accessToken()
-                    : await configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
-            }
 
             localVarHeaderParameter['Content-Type'] = 'application/json-patch+json';
 
@@ -672,7 +623,7 @@ export const SysUserApiFp = function(configuration?: Configuration) {
     return {
         /**
          * 
-         * @summary 增加用户
+         * @summary 增加用户 🔖
          * @param {AddUserInput} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -686,7 +637,21 @@ export const SysUserApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @summary 查看用户基本信息
+         * @summary 获取可分配的角色集合
+         * @param {number} userId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiSysUserAvailableRoleListUserIdGet(userId: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<AdminResultGrantRoleOutput>>> {
+            const localVarAxiosArgs = await SysUserApiAxiosParamCreator(configuration).apiSysUserAvailableRoleListUserIdGet(userId, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
+         * 
+         * @summary 查看用户基本信息 🔖
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -699,7 +664,7 @@ export const SysUserApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @summary 更新用户基本信息
+         * @summary 更新用户基本信息 🔖
          * @param {SysUser} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -713,7 +678,7 @@ export const SysUserApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @summary 修改用户密码
+         * @summary 修改用户密码 🔖
          * @param {ChangePwdInput} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -727,7 +692,7 @@ export const SysUserApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @summary 删除用户
+         * @summary 删除用户 🔖
          * @param {DeleteUserInput} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -741,7 +706,7 @@ export const SysUserApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @summary 授权用户角色
+         * @summary 授权用户角色 🔖
          * @param {UserRoleInput} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -755,7 +720,7 @@ export const SysUserApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @summary 获取用户扩展机构集合
+         * @summary 获取用户扩展机构集合 🔖
          * @param {number} userId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -769,7 +734,7 @@ export const SysUserApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @summary 获取用户拥有角色集合
+         * @summary 获取用户拥有角色集合 🔖
          * @param {number} userId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -783,7 +748,7 @@ export const SysUserApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @summary 获取用户分页列表
+         * @summary 获取用户分页列表 🔖
          * @param {PageUserInput} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -797,7 +762,7 @@ export const SysUserApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @summary 重置用户密码
+         * @summary 重置用户密码 🔖
          * @param {ResetPwdUserInput} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -811,7 +776,7 @@ export const SysUserApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @summary 设置用户状态
+         * @summary 设置用户状态 🔖
          * @param {UserInput} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -825,7 +790,7 @@ export const SysUserApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @summary 解除登录锁定
+         * @summary 解除登录锁定 🔖
          * @param {UnlockLoginInput} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -839,7 +804,7 @@ export const SysUserApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @summary 更新用户
+         * @summary 更新用户 🔖
          * @param {UpdateUserInput} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -862,7 +827,7 @@ export const SysUserApiFactory = function (configuration?: Configuration, basePa
     return {
         /**
          * 
-         * @summary 增加用户
+         * @summary 增加用户 🔖
          * @param {AddUserInput} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -872,7 +837,17 @@ export const SysUserApiFactory = function (configuration?: Configuration, basePa
         },
         /**
          * 
-         * @summary 查看用户基本信息
+         * @summary 获取可分配的角色集合
+         * @param {number} userId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiSysUserAvailableRoleListUserIdGet(userId: number, options?: AxiosRequestConfig): Promise<AxiosResponse<AdminResultGrantRoleOutput>> {
+            return SysUserApiFp(configuration).apiSysUserAvailableRoleListUserIdGet(userId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary 查看用户基本信息 🔖
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -881,7 +856,7 @@ export const SysUserApiFactory = function (configuration?: Configuration, basePa
         },
         /**
          * 
-         * @summary 更新用户基本信息
+         * @summary 更新用户基本信息 🔖
          * @param {SysUser} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -891,7 +866,7 @@ export const SysUserApiFactory = function (configuration?: Configuration, basePa
         },
         /**
          * 
-         * @summary 修改用户密码
+         * @summary 修改用户密码 🔖
          * @param {ChangePwdInput} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -901,7 +876,7 @@ export const SysUserApiFactory = function (configuration?: Configuration, basePa
         },
         /**
          * 
-         * @summary 删除用户
+         * @summary 删除用户 🔖
          * @param {DeleteUserInput} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -911,7 +886,7 @@ export const SysUserApiFactory = function (configuration?: Configuration, basePa
         },
         /**
          * 
-         * @summary 授权用户角色
+         * @summary 授权用户角色 🔖
          * @param {UserRoleInput} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -921,7 +896,7 @@ export const SysUserApiFactory = function (configuration?: Configuration, basePa
         },
         /**
          * 
-         * @summary 获取用户扩展机构集合
+         * @summary 获取用户扩展机构集合 🔖
          * @param {number} userId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -931,7 +906,7 @@ export const SysUserApiFactory = function (configuration?: Configuration, basePa
         },
         /**
          * 
-         * @summary 获取用户拥有角色集合
+         * @summary 获取用户拥有角色集合 🔖
          * @param {number} userId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -941,7 +916,7 @@ export const SysUserApiFactory = function (configuration?: Configuration, basePa
         },
         /**
          * 
-         * @summary 获取用户分页列表
+         * @summary 获取用户分页列表 🔖
          * @param {PageUserInput} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -951,7 +926,7 @@ export const SysUserApiFactory = function (configuration?: Configuration, basePa
         },
         /**
          * 
-         * @summary 重置用户密码
+         * @summary 重置用户密码 🔖
          * @param {ResetPwdUserInput} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -961,7 +936,7 @@ export const SysUserApiFactory = function (configuration?: Configuration, basePa
         },
         /**
          * 
-         * @summary 设置用户状态
+         * @summary 设置用户状态 🔖
          * @param {UserInput} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -971,7 +946,7 @@ export const SysUserApiFactory = function (configuration?: Configuration, basePa
         },
         /**
          * 
-         * @summary 解除登录锁定
+         * @summary 解除登录锁定 🔖
          * @param {UnlockLoginInput} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -981,7 +956,7 @@ export const SysUserApiFactory = function (configuration?: Configuration, basePa
         },
         /**
          * 
-         * @summary 更新用户
+         * @summary 更新用户 🔖
          * @param {UpdateUserInput} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -1001,7 +976,7 @@ export const SysUserApiFactory = function (configuration?: Configuration, basePa
 export class SysUserApi extends BaseAPI {
     /**
      * 
-     * @summary 增加用户
+     * @summary 增加用户 🔖
      * @param {AddUserInput} [body] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -1012,7 +987,18 @@ export class SysUserApi extends BaseAPI {
     }
     /**
      * 
-     * @summary 查看用户基本信息
+     * @summary 获取可分配的角色集合
+     * @param {number} userId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SysUserApi
+     */
+    public async apiSysUserAvailableRoleListUserIdGet(userId: number, options?: AxiosRequestConfig) : Promise<AxiosResponse<AdminResultGrantRoleOutput>> {
+        return SysUserApiFp(this.configuration).apiSysUserAvailableRoleListUserIdGet(userId, options).then((request) => request(this.axios, this.basePath));
+    }
+    /**
+     * 
+     * @summary 查看用户基本信息 🔖
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof SysUserApi
@@ -1022,7 +1008,7 @@ export class SysUserApi extends BaseAPI {
     }
     /**
      * 
-     * @summary 更新用户基本信息
+     * @summary 更新用户基本信息 🔖
      * @param {SysUser} [body] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -1033,7 +1019,7 @@ export class SysUserApi extends BaseAPI {
     }
     /**
      * 
-     * @summary 修改用户密码
+     * @summary 修改用户密码 🔖
      * @param {ChangePwdInput} [body] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -1044,7 +1030,7 @@ export class SysUserApi extends BaseAPI {
     }
     /**
      * 
-     * @summary 删除用户
+     * @summary 删除用户 🔖
      * @param {DeleteUserInput} [body] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -1055,7 +1041,7 @@ export class SysUserApi extends BaseAPI {
     }
     /**
      * 
-     * @summary 授权用户角色
+     * @summary 授权用户角色 🔖
      * @param {UserRoleInput} [body] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -1066,7 +1052,7 @@ export class SysUserApi extends BaseAPI {
     }
     /**
      * 
-     * @summary 获取用户扩展机构集合
+     * @summary 获取用户扩展机构集合 🔖
      * @param {number} userId 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -1077,7 +1063,7 @@ export class SysUserApi extends BaseAPI {
     }
     /**
      * 
-     * @summary 获取用户拥有角色集合
+     * @summary 获取用户拥有角色集合 🔖
      * @param {number} userId 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -1088,7 +1074,7 @@ export class SysUserApi extends BaseAPI {
     }
     /**
      * 
-     * @summary 获取用户分页列表
+     * @summary 获取用户分页列表 🔖
      * @param {PageUserInput} [body] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -1099,7 +1085,7 @@ export class SysUserApi extends BaseAPI {
     }
     /**
      * 
-     * @summary 重置用户密码
+     * @summary 重置用户密码 🔖
      * @param {ResetPwdUserInput} [body] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -1110,7 +1096,7 @@ export class SysUserApi extends BaseAPI {
     }
     /**
      * 
-     * @summary 设置用户状态
+     * @summary 设置用户状态 🔖
      * @param {UserInput} [body] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -1121,7 +1107,7 @@ export class SysUserApi extends BaseAPI {
     }
     /**
      * 
-     * @summary 解除登录锁定
+     * @summary 解除登录锁定 🔖
      * @param {UnlockLoginInput} [body] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -1132,7 +1118,7 @@ export class SysUserApi extends BaseAPI {
     }
     /**
      * 
-     * @summary 更新用户
+     * @summary 更新用户 🔖
      * @param {UpdateUserInput} [body] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}

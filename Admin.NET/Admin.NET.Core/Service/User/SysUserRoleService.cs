@@ -85,10 +85,11 @@ public class SysUserRoleService : ITransient
     /// </summary>
     /// <param name="userId"></param>
     /// <returns></returns>
-    public async Task<List<long>> GetUserRoleIdList(long userId)
+    public async Task<List<RoleOutput>> GetUserRoleIdList(long userId)
     {
-        return await _sysUserRoleRep.AsQueryable()
-            .Where(u => u.UserId == userId).Select(u => u.RoleId).ToListAsync();
+        return await _sysUserRoleRep.AsQueryable().Includes(u => u.SysRole)
+            .Where(u => u.UserId == userId).Select(u => new RoleOutput { Id = u.RoleId, Code = u.SysRole.Code, Name = u.SysRole.Name })
+            .ToListAsync();
     }
 
     /// <summary>

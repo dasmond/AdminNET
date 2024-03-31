@@ -82,6 +82,7 @@
 									<el-button icon="ele-MoreFilled" size="small" text type="primary" style="padding-left: 12px" />
 									<template #dropdown>
 										<el-dropdown-menu>
+											<el-dropdown-item icon="ele-CircleCheck" @click="grantRole(scope.row)" :disabled="!auth('sysUser:grantRole')"> 授权角色 </el-dropdown-item>
 											<el-dropdown-item icon="ele-RefreshLeft" @click="resetUserPwd(scope.row)" :disabled="!auth('sysUser:resetPwd')"> 重置密码 </el-dropdown-item>
 											<el-dropdown-item icon="ele-Unlock" @click="unlockLogin(scope.row)" :disabled="!auth('sysUser:unlockLogin')"> 解除登录锁定 </el-dropdown-item>
 											<el-dropdown-item icon="ele-Delete" @click="delUser(scope.row)" divided :disabled="!auth('sysUser:delete')"> 删除账号 </el-dropdown-item>
@@ -107,6 +108,7 @@
 		</el-row>
 
 		<EditUser ref="editUserRef" :title="state.editUserTitle" :orgData="state.orgTreeData" @handleQuery="handleQuery" />
+		<GrantRole ref="grantRoleRef" title="授权角色" @handleQuery="handleQuery" />
 	</div>
 </template>
 
@@ -118,6 +120,7 @@ import { auth } from '/@/utils/authFunction';
 import OrgTree from '/@/views/system/org/component/orgTree.vue';
 import EditUser from '/@/views/system/user/component/editUser.vue';
 import ModifyRecord from '/@/components/table/modifyRecord.vue';
+import GrantRole from '/@/views/system/user/component/grantRole.vue';
 
 import { getAPI } from '/@/utils/axios-utils';
 import { SysUserApi, SysOrgApi } from '/@/api-services/api';
@@ -125,6 +128,7 @@ import { SysUser, SysOrg } from '/@/api-services/models';
 
 const orgTreeRef = ref<InstanceType<typeof OrgTree>>();
 const editUserRef = ref<InstanceType<typeof EditUser>>();
+const grantRoleRef = ref<InstanceType<typeof GrantRole>>();
 const state = reactive({
 	loading: false,
 	userData: [] as Array<SysUser>,
@@ -224,6 +228,10 @@ const changeStatus = (row: any) => {
 		.catch(() => {
 			row.status = row.status == 1 ? 2 : 1;
 		});
+};
+//授权角色
+const grantRole = async (row: any) => {
+	grantRoleRef.value?.openDialog(row);
 };
 
 // 重置密码

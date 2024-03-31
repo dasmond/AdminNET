@@ -59,11 +59,6 @@ public class AddUserInput : SysUser
     public override string RealName { get; set; }
 
     /// <summary>
-    /// 角色集合
-    /// </summary>
-    public List<long> RoleIdList { get; set; }
-
-    /// <summary>
     /// 扩展机构集合
     /// </summary>
     public List<SysUserExtOrg> ExtOrgIdList { get; set; }

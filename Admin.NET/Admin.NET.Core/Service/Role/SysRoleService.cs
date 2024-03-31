@@ -59,7 +59,7 @@ public class SysRoleService : IDynamicApiController, ITransient
         var roleIdList = _userManager.SuperAdmin ? null : await _sysUserRoleService.GetUserRoleIdList(_userManager.UserId);
 
         return await _sysRoleRep.AsQueryable()
-            .WhereIF(roleIdList != null, u => u.CreateUserId == _userManager.UserId || roleIdList.Contains(u.Id)) // 若非超管，则只显示自己创建和已拥有的角色
+            .WhereIF(roleIdList != null, u => u.CreateUserId == _userManager.UserId || roleIdList.Select(e => e.Id).Contains(u.Id)) // 若非超管，则只显示自己创建和已拥有的角色
             .OrderBy(u => u.OrderNo).Select<RoleOutput>().ToListAsync();
     }
 
