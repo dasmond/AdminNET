@@ -2,19 +2,157 @@
 branches: {
   }
 fileChange:
-  /Admin.NET:
-    newFile: !uuid '2d0bb652a30c6dbde499e6dc989abb92a2015f36'
-    oldFile: !uuid '0e0b8cede3129824f1a9b318ba53e7a1d7279807'
-  /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '4b8167a9198d980f1bcac4799308a2e897c2f3de'
-    oldFile: !uuid '4242028cc39182c7315bad1e4c6c23600008199c'
-  /Admin.NET/Admin.NET.Core/Entity:
-    newFile: !uuid '25cfc6f1af082f61c19886a4220a0e31edef4bef'
-    oldFile: !uuid '3ee2a663aacdbf4921cfc9f4c875dbf3c139b571'
-  /Admin.NET/Admin.NET.Core/Entity/SysDictData.cs:
-    newFile: !uuid '2d7e7ff2fa802557999899424cea2259d1abba75'
-    oldFile: !uuid '97f256bdb9ba685b5aa60a540dfa338f563dd370'
-gitCommitId: !uuid '0318dcd2354d9fa45d61b02972b0b8768fa409a6'
+  /Web:
+    newFile: !uuid '0119957720bf2c359392e25cc72a190399c04079'
+    oldFile: !uuid '84d6d915ba114c9033dc33a41a45ba80405b229e'
+  /Web/package.json:
+    newFile: !uuid '6f4bae18fa9889c2d405fb4488f842df29b75ade'
+    oldFile: !uuid '2cec85a3d21be54031281a7a7f3865d884437c85'
+  /Web/src:
+    newFile: !uuid 'c5e4d2d3ebbd11fe5780408593a2001c5f8a23dd'
+    oldFile: !uuid '7ac9628a91e70965594ddf0d57e73b2ac7d94cea'
+  /Web/src/api-services:
+    newFile: !uuid 'c2cc5d731a162d7c636e657aa266528d2b0c527b'
+    oldFile: !uuid '5ed90013970222a2bfddeeb8bbab907e1d190416'
+  /Web/src/api-services/apis:
+    newFile: !uuid '2ffd2a0aa17335ac3f0655785c41ae2ae8284522'
+    oldFile: !uuid 'e6deb2dc27e07bcb3c5571984cb530f4178dfa61'
+  /Web/src/api-services/apis/apijsonapi.ts:
+    newFile: !uuid '0f0f26736b239844d4cf6a8ac7b0d7bd0c659109'
+    oldFile: !uuid '37fea84beb0d3bb5df711fac662716df1702b362'
+  /Web/src/api-services/apis/sys-auth-api.ts:
+    newFile: !uuid '407d73d6fef6b1e99f808cb42efd0ea097e5d117'
+    oldFile: !uuid '7b4a5f23fd975f0862a04aca39a3f9b5892d895a'
+  /Web/src/api-services/apis/sys-cache-api.ts:
+    newFile: !uuid '79cdc4ea03802448a4fd1eb222842c11394bbc01'
+    oldFile: !uuid 'f48d36f9342e5c689e2a757dd8c70cfefbe06f1a'
+  /Web/src/api-services/apis/sys-code-gen-api.ts:
+    newFile: !uuid 'ed452971816b1106e93e93bd51f3c99a2085a3d1'
+    oldFile: !uuid '2c447555c70827ef278f1fa834ec1c0ca1af6e2e'
+  /Web/src/api-services/apis/sys-code-gen-config-api.ts:
+    newFile: !uuid '9585736fe94486021b3944a7a11fd41c9537a01e'
+    oldFile: !uuid 'cc4225bf3371b24a132d55553cf5fee8db6d0244'
+  /Web/src/api-services/apis/sys-common-api.ts:
+    newFile: !uuid '29988af23ccd7dcdbf5dc3e3d5bb4df279af8181'
+    oldFile: !uuid 'dc18a64d219a09b8174a87da790fd6b6f0da342f'
+  /Web/src/api-services/apis/sys-config-api.ts:
+    newFile: !uuid '6f25908fc04c00babb21ac91bbe7d422164b6239'
+    oldFile: !uuid '8ff0e09f60f30015c3eb4b793686c481d94c4ef7'
+  /Web/src/api-services/apis/sys-const-api.ts:
+    newFile: !uuid 'ae42dd3880c4a6ae8ce0712a46ac9d411538c506'
+    oldFile: !uuid 'ed27a423c8aaa45674f0d8861d1674026d39ba33'
+  /Web/src/api-services/apis/sys-database-api.ts:
+    newFile: !uuid '254cf35d3f1aca910fabe58af3e15cc390962b93'
+    oldFile: !uuid '43e176dc19a5358d0dc8b69da9d8e13b8aba9fab'
+  /Web/src/api-services/apis/sys-dict-data-api.ts:
+    newFile: !uuid 'cf2c4d0098334ada616f6b2162ac3dc7632ff507'
+    oldFile: !uuid 'e543d0bebcbd7d9abfcc6d9857b80669c15a6e45'
+  /Web/src/api-services/apis/sys-dict-type-api.ts:
+    newFile: !uuid '9eee729c0afe2304d4b2174ade74ca03d32ab514'
+    oldFile: !uuid '6535dbb1664667808986ff14b860456f806be769'
+  /Web/src/api-services/apis/sys-email-api.ts:
+    newFile: !uuid 'fd883ed117a235ac9415a01ce2ad9c1e8c372ec5'
+    oldFile: !uuid 'bfb42a1bd4796544e549038ee4a6fd89e1684ef7'
+  /Web/src/api-services/apis/sys-enum-api.ts:
+    newFile: !uuid 'b9dc1d67cb130cea7b6a49123126bbe39ab46fc3'
+    oldFile: !uuid '756c7c137b69997927d4b94e20680a732c855bfa'
+  /Web/src/api-services/apis/sys-file-api.ts:
+    newFile: !uuid '0e31f89b8f44e824fc43f053712c72501d085529'
+    oldFile: !uuid '1500202f9a6195723df540c282223a28fb65587f'
+  /Web/src/api-services/apis/sys-job-api.ts:
+    newFile: !uuid '7e61136c13ec1d98b8dd758d1a8948f1f44d96ad'
+    oldFile: !uuid 'c04c48d17996d118de398eef92764f4a22775649'
+  /Web/src/api-services/apis/sys-log-diff-api.ts:
+    newFile: !uuid '71281e2f0d4a81a8916e0ecaaed91cc3bfad947b'
+    oldFile: !uuid 'f246a5e28343cf54af9aea29d4225a5d30fd9a01'
+  /Web/src/api-services/apis/sys-log-ex-api.ts:
+    newFile: !uuid '7bb4e6556c4cb3eed45f9230627ffc12c0688b2d'
+    oldFile: !uuid '8ec53e87913d0e015d208d318715df5955b7bbee'
+  /Web/src/api-services/apis/sys-log-op-api.ts:
+    newFile: !uuid '8d49a4378e30f98ce4033000e7500f45ae021723'
+    oldFile: !uuid 'd87e10d99798207902ba79318ad24e3c77137fa6'
+  /Web/src/api-services/apis/sys-log-vis-api.ts:
+    newFile: !uuid '5a4b4016854eda38c56892e084866cf4b0e11e06'
+    oldFile: !uuid 'cec36423fff6aeeedb1bc7168dc5f469572ec9bd'
+  /Web/src/api-services/apis/sys-menu-api.ts:
+    newFile: !uuid 'b510c59eb5d67fccebe9739ea0e58d46fa7da768'
+    oldFile: !uuid '5d8137645ca92abe476c8b1a44936d8efa846f0e'
+  /Web/src/api-services/apis/sys-message-api.ts:
+    newFile: !uuid '36dc6b4f7d340f086f01040e9cdf75a8cb30d8d4'
+    oldFile: !uuid '82dfe7bea826a585fd9ed8d713d8ecb880d9a042'
+  /Web/src/api-services/apis/sys-notice-api.ts:
+    newFile: !uuid '706d6c1eacbd0087a421761f5207753c0e8536b9'
+    oldFile: !uuid 'f4af7b8e1dc07945fc75c229e694e30e70757224'
+  /Web/src/api-services/apis/sys-oauth-api.ts:
+    newFile: !uuid '6eadc8181604b6be4dfcb58d74da0b25f58ccc34'
+    oldFile: !uuid '0743913d42659a794e22632047b52ae2c041a41a'
+  /Web/src/api-services/apis/sys-online-user-api.ts:
+    newFile: !uuid '34e344b6c2721e1dff441c0f4b48676d9b4fa359'
+    oldFile: !uuid '4e2556e69005bef711d5809c3e6c8b0971dc1e72'
+  /Web/src/api-services/apis/sys-open-access-api.ts:
+    newFile: !uuid '4e9c7ca167c66df4443ce9a09fbf7a815f051909'
+    oldFile: !uuid '010e0995dc90fb244a9243ccd5e44c9e633b99f8'
+  /Web/src/api-services/apis/sys-org-api.ts:
+    newFile: !uuid 'aef5c4828f4e07088ee3dee3f7c67e6130206532'
+    oldFile: !uuid 'ab4abbfdaf78de16c7ac0f71a783658d47b82521'
+  /Web/src/api-services/apis/sys-plugin-api.ts:
+    newFile: !uuid 'bd7e952642709a9f08f04043abd5b35aacbffb71'
+    oldFile: !uuid '4936aa0d4a0f5aebc3cdf4c2a8959f04fadf1d5a'
+  /Web/src/api-services/apis/sys-pos-api.ts:
+    newFile: !uuid 'ee5f9a87ec9cd9cc543071905fb0fdda2b718b08'
+    oldFile: !uuid '551cade112f229c67996ccbc72b39f59dc3b9d2a'
+  /Web/src/api-services/apis/sys-print-api.ts:
+    newFile: !uuid 'b0038875f59b8c84eb6ccb57b31bd80319ff68f8'
+    oldFile: !uuid '77bca4237ed30f81b303c99dc3f5db598c2e499c'
+  /Web/src/api-services/apis/sys-region-api.ts:
+    newFile: !uuid '18d04580306b1f360aa4b7c27b7b389a7d219c84'
+    oldFile: !uuid 'f134c49a4f945064c35433586bd26787247ef114'
+  /Web/src/api-services/apis/sys-role-api.ts:
+    newFile: !uuid '81f84566e7310682df5ecb9f5e51b4ba1cd22aa0'
+    oldFile: !uuid '19d7ce230bcd83b92e57eca505f7b2730732f3ff'
+  /Web/src/api-services/apis/sys-server-api.ts:
+    newFile: !uuid 'ddc1ca36518505a728643e3531f05e0d6084fc4b'
+    oldFile: !uuid '20a798ab5aa544eddd9f505d4e459829942100f8'
+  /Web/src/api-services/apis/sys-sms-api.ts:
+    newFile: !uuid '2113f5bb853c353393c9098ab5fe6c76586d2f2b'
+    oldFile: !uuid 'a3812177f4850a6f416bd78a18b94416146bd344'
+  /Web/src/api-services/apis/sys-tenant-api.ts:
+    newFile: !uuid 'd26210865347d141e2d184e0466aefddfb64fc92'
+    oldFile: !uuid 'ebffca0523afcc9f74e86c76ac62955e12aa331b'
+  /Web/src/api-services/apis/sys-user-api.ts:
+    newFile: !uuid 'dbc7be5c476866f20f3ee34be90579d7dadb3cd6'
+    oldFile: !uuid '7fd64211f7d0ed917e50303fd92829905b5659de'
+  /Web/src/api-services/apis/sys-wechat-api.ts:
+    newFile: !uuid 'c104d7b7695cb9f152884e7a4601a448834d7100'
+    oldFile: !uuid 'b24a5985ed2aa078ce9e428fa5b019ebd89b9922'
+  /Web/src/api-services/apis/sys-wechat-pay-api.ts:
+    newFile: !uuid 'c6483429ca2f465beeca88f7212c96ca5344a529'
+    oldFile: !uuid '7146e30a91f0cfe531858fd757b54f4c07803099'
+  /Web/src/api-services/apis/sys-wechat-user-api.ts:
+    newFile: !uuid '7d263e73b8f0990ea3fd594942ddd2392f8f3b3d'
+    oldFile: !uuid '836299abe146da6cfad013afb932ce54f630020b'
+  /Web/src/api-services/apis/sys-wx-open-api.ts:
+    newFile: !uuid 'e1cb8a778aa4dc13e1c0a8cf19c70a2f2a9b7ef8'
+    oldFile: !uuid '450f4e59bc8e5b9a1b073d6dcb385a3be40903f3'
+  /Web/src/api-services/models:
+    newFile: !uuid '7d1f1859c9d397c7e01ff19799f73deed18e313b'
+    oldFile: !uuid '46bf3df5c49c67422a26e9ae6f88d58fc8d900ee'
+  /Web/src/api-services/models/add-dict-data-input.ts:
+    newFile: !uuid '7fed9a2da8087d9c630ee9301ba09d65534640d8'
+    oldFile: !uuid 'bc81636741832e65c1e41a3699468a8218c0e1b1'
+  /Web/src/api-services/models/code-gen-input.ts:
+    newFile: !uuid 'b29506be3054ab0a54e2103a9a6d713e2e1de488'
+    oldFile: !uuid 'a5b115a7b524dfcd09985892996d8045674cf0fa'
+  /Web/src/api-services/models/enum-type-output.ts:
+    newFile: !uuid '616c9797dd8ed45ca0b61125c4be03acc4eaac83'
+    oldFile: !uuid 'b334118a4ea46d242467572a2aad12b4dcf7aba1'
+  /Web/src/api-services/models/sys-dict-data.ts:
+    newFile: !uuid '9aadd4d9685dce15d471b4db69031df43e6a207d'
+    oldFile: !uuid 'd3239ee0c37d6b0d26e397bf0ce587924c0d09f9'
+  /Web/src/api-services/models/update-dict-data-input.ts:
+    newFile: !uuid 'aa24490e76882afd39499558fbb4eabcdc08ab40'
+    oldFile: !uuid '7acfc0934cfd896e6943f506438f2205023a2fab'
+gitCommitId: !uuid '70129daac042ac3f10e38edce26543181ce09fd7'
 renames: {
   }
-revisionId: 1640
+revisionId: 1641
