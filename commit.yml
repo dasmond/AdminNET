@@ -3,15 +3,63 @@ branches: {
   }
 fileChange:
   /Web:
-    newFile: !uuid '9efbce76bd5f2c2da4e3ea00f3515b571ae8f48a'
-    oldFile: !uuid '0119957720bf2c359392e25cc72a190399c04079'
-  /Web/README.md:
-    newFile: !uuid 'e7b6da2e88e6e7410eaebf03ea4bb73577da4516'
-    oldFile: !uuid '47dff3e1e584a0da1319693d6f027f464be985e5'
+    newFile: !uuid '8ecd1b7143753ed2925790a9e10b6a334f2944dd'
+    oldFile: !uuid '9efbce76bd5f2c2da4e3ea00f3515b571ae8f48a'
   /Web/package.json:
-    newFile: !uuid '1a4eaced1003c17bb2fd0faaa736c92392eeef55'
-    oldFile: !uuid '6f4bae18fa9889c2d405fb4488f842df29b75ade'
-gitCommitId: !uuid 'e29d605347d66626b78dc684d6efb16fb3d132b2'
+    newFile: !uuid 'e2ac9931c683cb8ed33ec11dfcafd4c60bf88add'
+    oldFile: !uuid '1a4eaced1003c17bb2fd0faaa736c92392eeef55'
+  /Web/src:
+    newFile: !uuid '4b67075d5639791895dd8c9fe77d4593ad507369'
+    oldFile: !uuid 'c5e4d2d3ebbd11fe5780408593a2001c5f8a23dd'
+  /Web/src/layout:
+    newFile: !uuid 'db3a4ec2ac243f2b9382ed2946278a9e74d7f5ed'
+    oldFile: !uuid 'b9ec5526abbbd1f844ed3efd60b6234f69b621a0'
+  /Web/src/layout/navBars:
+    newFile: !uuid '6c0af2fc571372ace12b1327db8cc26919b3594f'
+    oldFile: !uuid 'dd9d640839f99da3d6acfc9813810c20b9282fd4'
+  /Web/src/layout/navBars/topBar:
+    newFile: !uuid '86177a670e1da0ef7c58ce60fb0c501fb75f83e8'
+    oldFile: !uuid '81d5195fdf570329cd401f810de5c2970148b356'
+  /Web/src/layout/navBars/topBar/user.vue:
+    newFile: !uuid 'c918a88aff26a8e0bf1aaa1f9abc59095bedee4d'
+    oldFile: !uuid '8c4abd1f0ab4bfbfda3822af8f1660991459b9ce'
+  /Web/src/views:
+    newFile: !uuid 'b9aac594a4dd1d0956114541f594b068e902c9a5'
+    oldFile: !uuid '0c99072310bcd6a134c13746992e9787f7e0106f'
+  /Web/src/views/system:
+    newFile: !uuid 'c41b12aebfa301bed3eeaf868cc23970cfa9a9db'
+    oldFile: !uuid '1001b1777cecd3a3f2076cddad03159e85ae5793'
+  /Web/src/views/system/print:
+    newFile: !uuid 'b457847c218d4a18f58af04f58cffeb55a6df1cf'
+    oldFile: !uuid '5757047a3317b91773e673d939492a80daef6027'
+  /Web/src/views/system/print/component:
+    newFile: !uuid 'e24a7e3bc98f301ba89889400c4845d75ca5ef4f'
+    oldFile: !uuid '302a97fce6a0e811377eccd92f2c21a1103adb7c'
+  /Web/src/views/system/print/component/hiprint:
+    newFile: !uuid 'd53c07f8db743f8e64916e4c0179eef33cde4648'
+    oldFile: !uuid '28321ba54c8a6ef65e3b2db35ecdbd6f8abca429'
+  /Web/src/views/system/print/component/hiprint/index.vue:
+    newFile: !uuid 'aa50208ff8838ed1190d50c03e41bc86406c03de'
+    oldFile: !uuid 'eb1699b1063f910cb371f14abcffee282517750b'
+  /Web/src/views/system/print/component/hiprint/providers.ts:
+    newFile: !uuid '5495d125d048b63075ade4e1806a5aab4c81d47e'
+    oldFile: !uuid '16262a5cf662f177b2c25353d5cbcf81f973b50c'
+  /Web/vite.config.ts:
+    newFile: !uuid 'ae59ac3071034d9b5ff80cf6b5eceb69b03c9b71'
+    oldFile: !uuid 'afdc6cfa1d389228c5ac5bfd267d49fc4d5a5266'
+  /docker:
+    newFile: !uuid '8c29d7fc44a04260c241e30f3241d6d31c9abd97'
+    oldFile: !uuid '851c5ee0d0321955c4e998f8b0c42687fd1c5da8'
+  /docker/nginx:
+    newFile: !uuid 'cc6780f5b2a3a837f43c63a531a6dbc08d3a920c'
+    oldFile: !uuid '1d641bbbea1b2cd0cf0c15920aaf84338a1603e6'
+  /docker/nginx/conf:
+    newFile: !uuid 'c9e3602850b7b0733b088f6640973d26ab75a48c'
+    oldFile: !uuid '53a0734cd722a9e955dd30da7b8012fb130da594'
+  /docker/nginx/conf/nginx.conf:
+    newFile: !uuid '0d9df7ff6c6392cd84d16dcc3ed583e093de9979'
+    oldFile: !uuid '22cfca9a11276b1d77d83ffccf264ddbd09906ad'
+gitCommitId: !uuid 'b0a4a89f9160e06700d2aed1e1a9645b7f3e091e'
 renames: {
   }
-revisionId: 1600
+revisionId: 1601
