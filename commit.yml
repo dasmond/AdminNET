@@ -2,10 +2,16 @@
 branches: {
   }
 fileChange:
-  /README.md:
-    newFile: !uuid '0f78cadb9c6067fc074716a349597393676aaa7c'
-    oldFile: !uuid '4830f953f811d5ffba178f4314106c6cc4a8321e'
-gitCommitId: !uuid '0be2035e0e59c04dd8710fb774070d0ea96c7f76'
+  /Admin.NET:
+    newFile: !uuid '64fd1fac37f6ee4e18d6da1477a00183c86a2f49'
+    oldFile: !uuid 'ab1b42404cfc7c88631fc0cc0e339f1de48c4ccb'
+  /Admin.NET/Admin.NET.Core:
+    newFile: !uuid '417054ec81f2eddf929edad1b3a615275cd0af09'
+    oldFile: !uuid 'f88e8f09581371fac414862c95687f72f9de2bcc'
+  /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
+    newFile: !uuid '105fe913443bfa5e8deff35fb2d85cd8cf7edae3'
+    oldFile: !uuid 'c2572d8ea4fd0d7b499bb7e06edc71db85544516'
+gitCommitId: !uuid '1e4bf22f52681de97898566ba2b242b90989a3fb'
 renames: {
   }
-revisionId: 1589
+revisionId: 1590
