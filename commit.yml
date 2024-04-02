@@ -2,10 +2,25 @@
 branches: {
   }
 fileChange:
-  /DISCLAIMER.md:
-    newFile: !uuid '9e3750728c92772cb7acf1d50d5932c3bf887d91'
-    oldFile: !uuid 'b11b66d9b5e60f6c3f3966e7561a580dc4979fa2'
-gitCommitId: !uuid 'ec637bed7dcd861fb864d5d042c4ec9b8b6d34e9'
+  /Admin.NET:
+    newFile: !uuid '6488850c37cf33cdb6ee24382f418cfb00af0dcb'
+    oldFile: !uuid 'fe3ba52206b90e0100432565d140bbc37fe7bbbf'
+  /Admin.NET/Admin.NET.Core:
+    newFile: !uuid 'a2a7bf245785c2beedd036f47e70b9d19b5cda5d'
+    oldFile: !uuid 'f27b39816fb437ec00319e8bab2d0d73fc9a7a4a'
+  /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
+    newFile: !uuid 'ea8fc01bfcdfe546761cc51745e8ddffde017c2f'
+    oldFile: !uuid '105fe913443bfa5e8deff35fb2d85cd8cf7edae3'
+  /Admin.NET/Admin.NET.Core/Service:
+    newFile: !uuid '9189f668e2b2355db099472a0c4e38f0ec7dd07f'
+    oldFile: !uuid 'eda2296af872450d3884bbd2e867f26987a7ac72'
+  /Admin.NET/Admin.NET.Core/Service/APIJSON:
+    newFile: !uuid '5df74b34b9230e9bee9342c3dd7facfde4e5a750'
+    oldFile: !uuid '5421a92bfc8059afc170ca49e76c12f2062f4a61'
+  /Admin.NET/Admin.NET.Core/Service/APIJSON/SelectTable.cs:
+    newFile: !uuid 'b38c4eb960fe49c7cd3e7be6f1a464d9963367c8'
+    oldFile: !uuid 'be0f2a7461f399881324b6e44046692ebd6c7e34'
+gitCommitId: !uuid 'dfbd364e8643635260e980c58b4228e6dfe75800'
 renames: {
   }
-revisionId: 1648
+revisionId: 1649
