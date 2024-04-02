@@ -1,11 +1,6 @@
-// 麻省理工学院许可证
+// 此源代码遵循位于源代码树根目录中的 LICENSE 文件的许可证。
 //
-// 版权所有 (c) 2021-2023 zuohuaijun，大名科技（天津）有限公司  联系电话/微信：18020030720  QQ：515096995
-//
-// 特此免费授予获得本软件的任何人以处理本软件的权利，但须遵守以下条件：在所有副本或重要部分的软件中必须包括上述版权声明和本许可声明。
-//
-// 软件按“原样”提供，不提供任何形式的明示或暗示的保证，包括但不限于对适销性、适用性和非侵权的保证。
-// 在任何情况下，作者或版权持有人均不对任何索赔、损害或其他责任负责，无论是因合同、侵权或其他方式引起的，与软件或其使用或其他交易有关。
+// 必须在法律法规允许的范围内正确使用，严禁将其用于非法、欺诈、恶意或侵犯他人合法权益的目的。
 
 using AngleSharp;
 using AngleSharp.Html.Dom;
@@ -13,7 +8,7 @@ using AngleSharp.Html.Dom;
 namespace Admin.NET.Core.Service;
 
 /// <summary>
-/// 系统行政区域服务
+/// 系统行政区域服务 💥
 /// </summary>
 [ApiDescriptionSettings(Order = 310)]
 public class SysRegionService : IDynamicApiController, ITransient
@@ -29,7 +24,7 @@ public class SysRegionService : IDynamicApiController, ITransient
     }
 
     /// <summary>
-    /// 获取行政区域分页列表
+    /// 获取行政区域分页列表 🔖
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
@@ -44,7 +39,7 @@ public class SysRegionService : IDynamicApiController, ITransient
     }
 
     /// <summary>
-    /// 获取行政区域列表
+    /// 获取行政区域列表 🔖
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
@@ -55,7 +50,7 @@ public class SysRegionService : IDynamicApiController, ITransient
     }
 
     /// <summary>
-    /// 增加行政区域
+    /// 增加行政区域 🔖
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
@@ -63,6 +58,19 @@ public class SysRegionService : IDynamicApiController, ITransient
     [DisplayName("增加行政区域")]
     public async Task<long> AddRegion(AddRegionInput input)
     {
+        input.Code = input.Code.Trim();
+        if (input.Code.Length != 12 && input.Code.Length != 9 && input.Code.Length != 6)
+            throw Oops.Oh("行政区代码只能为6、9或12位");
+
+        if (input.Pid != 0)
+        {
+            var pRegion = await _sysRegionRep.GetFirstAsync(u => u.Id == input.Pid);
+            pRegion ??= await _sysRegionRep.GetFirstAsync(u => u.Code == input.Pid.ToString());
+            if (pRegion == null)
+                throw Oops.Oh(ErrorCodeEnum.D2000);
+            input.Pid = pRegion.Id;
+        }
+
         var isExist = await _sysRegionRep.IsAnyAsync(u => u.Name == input.Name && u.Code == input.Code);
         if (isExist)
             throw Oops.Oh(ErrorCodeEnum.R2002);
@@ -73,7 +81,7 @@ public class SysRegionService : IDynamicApiController, ITransient
     }
 
     /// <summary>
-    /// 更新行政区域
+    /// 更新行政区域 🔖
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
@@ -81,11 +89,24 @@ public class SysRegionService : IDynamicApiController, ITransient
     [DisplayName("更新行政区域")]
     public async Task UpdateRegion(UpdateRegionInput input)
     {
-        if (input.Pid != 0)
+        input.Code = input.Code.Trim();
+        if (input.Code.Length != 12 && input.Code.Length != 9 && input.Code.Length != 6)
+            throw Oops.Oh("行政区代码只能为6、9或12位");
+
+        if (input.Pid != input.Pid && input.Pid != 0)
         {
             var pRegion = await _sysRegionRep.GetFirstAsync(u => u.Id == input.Pid);
-            _ = pRegion ?? throw Oops.Oh(ErrorCodeEnum.D2000);
+            pRegion ??= await _sysRegionRep.GetFirstAsync(u => u.Code == input.Pid.ToString());
+            if (pRegion == null)
+                throw Oops.Oh(ErrorCodeEnum.D2000);
+
+            input.Pid = pRegion.Id;
+            var regionTreeList = await _sysRegionRep.AsQueryable().ToChildListAsync(u => u.Pid, input.Id, true);
+            var childIdList = regionTreeList.Select(u => u.Id).ToList();
+            if (childIdList.Contains(input.Pid))
+                throw Oops.Oh("父节点不能为自己的子节点");
         }
+
         if (input.Id == input.Pid)
             throw Oops.Oh(ErrorCodeEnum.R2001);
 
@@ -104,7 +125,7 @@ public class SysRegionService : IDynamicApiController, ITransient
     }
 
     /// <summary>
-    /// 删除行政区域
+    /// 删除行政区域 🔖
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
@@ -118,7 +139,7 @@ public class SysRegionService : IDynamicApiController, ITransient
     }
 
     /// <summary>
-    /// 同步行政区域
+    /// 同步行政区域 🔖
     /// </summary>
     /// <returns></returns>
     [DisplayName("同步行政区域")]

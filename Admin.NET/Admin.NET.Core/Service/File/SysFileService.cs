@@ -1,11 +1,6 @@
-﻿// 麻省理工学院许可证
+﻿// 此源代码遵循位于源代码树根目录中的 LICENSE 文件的许可证。
 //
-// 版权所有 (c) 2021-2023 zuohuaijun，大名科技（天津）有限公司  联系电话/微信：18020030720  QQ：515096995
-//
-// 特此免费授予获得本软件的任何人以处理本软件的权利，但须遵守以下条件：在所有副本或重要部分的软件中必须包括上述版权声明和本许可声明。
-//
-// 软件按“原样”提供，不提供任何形式的明示或暗示的保证，包括但不限于对适销性、适用性和非侵权的保证。
-// 在任何情况下，作者或版权持有人均不对任何索赔、损害或其他责任负责，无论是因合同、侵权或其他方式引起的，与软件或其使用或其他交易有关。
+// 必须在法律法规允许的范围内正确使用，严禁将其用于非法、欺诈、恶意或侵犯他人合法权益的目的。
 
 using Aliyun.OSS.Util;
 using Furion.VirtualFileServer;
@@ -14,7 +9,7 @@ using OnceMi.AspNetCore.OSS;
 namespace Admin.NET.Core.Service;
 
 /// <summary>
-/// 系统文件服务
+/// 系统文件服务 💥
 /// </summary>
 [ApiDescriptionSettings(Order = 410)]
 public class SysFileService : IDynamicApiController, ITransient
@@ -40,7 +35,7 @@ public class SysFileService : IDynamicApiController, ITransient
     }
 
     /// <summary>
-    /// 获取文件分页列表
+    /// 获取文件分页列表 🔖
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
@@ -56,7 +51,7 @@ public class SysFileService : IDynamicApiController, ITransient
     }
 
     /// <summary>
-    /// 上传文件
+    /// 上传文件 🔖
     /// </summary>
     /// <param name="file"></param>
     /// <param name="path"></param>
@@ -94,7 +89,7 @@ public class SysFileService : IDynamicApiController, ITransient
     }
 
     /// <summary>
-    /// 上传文件Base64
+    /// 上传文件Base64 🔖
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
@@ -106,7 +101,7 @@ public class SysFileService : IDynamicApiController, ITransient
     }
 
     /// <summary>
-    /// 上传多文件
+    /// 上传多文件 🔖
     /// </summary>
     /// <param name="files"></param>
     /// <returns></returns>
@@ -122,7 +117,7 @@ public class SysFileService : IDynamicApiController, ITransient
     }
 
     /// <summary>
-    /// 根据文件Id或Url下载
+    /// 根据文件Id或Url下载 🔖
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
@@ -146,11 +141,12 @@ public class SysFileService : IDynamicApiController, ITransient
     }
 
     /// <summary>
-    /// 下载指定文件Base64格式
+    /// 下载指定文件Base64格式 🔖
     /// </summary>
     /// <param name="url"></param>
     /// <returns></returns>
     [AllowAnonymous]
+    [DisplayName("下载指定文件Base64格式")]
     public async Task<string> DownloadFileBase64([FromBody] string url)
     {
         if (_OSSProviderOptions.IsEnable)
@@ -184,7 +180,7 @@ public class SysFileService : IDynamicApiController, ITransient
     }
 
     /// <summary>
-    /// 删除文件
+    /// 删除文件 🔖
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
@@ -211,7 +207,7 @@ public class SysFileService : IDynamicApiController, ITransient
     }
 
     /// <summary>
-    /// 更新文件
+    /// 更新文件 🔖
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
@@ -377,7 +373,7 @@ public class SysFileService : IDynamicApiController, ITransient
     //}
 
     /// <summary>
-    /// 上传头像
+    /// 上传头像 🔖
     /// </summary>
     /// <param name="file"></param>
     /// <returns></returns>
@@ -399,7 +395,7 @@ public class SysFileService : IDynamicApiController, ITransient
     }
 
     /// <summary>
-    /// 上传电子签名
+    /// 上传电子签名 🔖
     /// </summary>
     /// <param name="file"></param>
     /// <returns></returns>

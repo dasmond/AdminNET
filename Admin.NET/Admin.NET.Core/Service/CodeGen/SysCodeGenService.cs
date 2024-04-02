@@ -1,18 +1,13 @@
-// 麻省理工学院许可证
+// 此源代码遵循位于源代码树根目录中的 LICENSE 文件的许可证。
 //
-// 版权所有 (c) 2021-2023 zuohuaijun，大名科技（天津）有限公司  联系电话/微信：18020030720  QQ：515096995
-//
-// 特此免费授予获得本软件的任何人以处理本软件的权利，但须遵守以下条件：在所有副本或重要部分的软件中必须包括上述版权声明和本许可声明。
-//
-// 软件按“原样”提供，不提供任何形式的明示或暗示的保证，包括但不限于对适销性、适用性和非侵权的保证。
-// 在任何情况下，作者或版权持有人均不对任何索赔、损害或其他责任负责，无论是因合同、侵权或其他方式引起的，与软件或其使用或其他交易有关。
+// 必须在法律法规允许的范围内正确使用，严禁将其用于非法、欺诈、恶意或侵犯他人合法权益的目的。
 
 using System.IO.Compression;
 
 namespace Admin.NET.Core.Service;
 
 /// <summary>
-/// 系统代码生成器服务
+/// 系统代码生成器服务 💥
 /// </summary>
 [ApiDescriptionSettings(Order = 270)]
 public class SysCodeGenService : IDynamicApiController, ITransient
@@ -35,7 +30,7 @@ public class SysCodeGenService : IDynamicApiController, ITransient
     }
 
     /// <summary>
-    /// 获取代码生成分页列表
+    /// 获取代码生成分页列表 🔖
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
@@ -49,7 +44,7 @@ public class SysCodeGenService : IDynamicApiController, ITransient
     }
 
     /// <summary>
-    /// 增加代码生成
+    /// 增加代码生成 🔖
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
@@ -68,7 +63,7 @@ public class SysCodeGenService : IDynamicApiController, ITransient
     }
 
     /// <summary>
-    /// 更新代码生成
+    /// 更新代码生成 🔖
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
@@ -84,7 +79,7 @@ public class SysCodeGenService : IDynamicApiController, ITransient
     }
 
     /// <summary>
-    /// 删除代码生成
+    /// 删除代码生成 🔖
     /// </summary>
     /// <param name="inputs"></param>
     /// <returns></returns>
@@ -106,7 +101,7 @@ public class SysCodeGenService : IDynamicApiController, ITransient
     }
 
     /// <summary>
-    /// 获取代码生成详情
+    /// 获取代码生成详情 🔖
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
@@ -117,7 +112,7 @@ public class SysCodeGenService : IDynamicApiController, ITransient
     }
 
     /// <summary>
-    /// 获取数据库库集合
+    /// 获取数据库库集合 🔖
     /// </summary>
     /// <returns></returns>
     [DisplayName("获取数据库库集合")]
@@ -128,7 +123,7 @@ public class SysCodeGenService : IDynamicApiController, ITransient
     }
 
     /// <summary>
-    /// 获取数据库表(实体)集合
+    /// 获取数据库表(实体)集合 🔖
     /// </summary>
     /// <returns></returns>
     [DisplayName("获取数据库表(实体)集合")]
@@ -159,7 +154,7 @@ public class SysCodeGenService : IDynamicApiController, ITransient
     }
 
     /// <summary>
-    /// 根据表名获取列集合
+    /// 根据表名获取列集合 🔖
     /// </summary>
     /// <returns></returns>
     [DisplayName("根据表名获取列集合")]
@@ -225,9 +220,12 @@ public class SysCodeGenService : IDynamicApiController, ITransient
             var propertyInfo = entityProperties.FirstOrDefault(p => (p.GetCustomAttribute<SugarColumn>()?.ColumnName ?? "").ToLower() == columnOutput.ColumnName.ToLower());
             // 如果找不到就再找自动生成字段名的(并且过滤掉没有SugarColumn的属性)
             if (propertyInfo == null)
-                propertyInfo = entityProperties.FirstOrDefault(p => p.GetCustomAttribute<SugarColumn>() != null && p.Name == (config.DbSettings.EnableUnderLine ? CodeGenUtil.CamelColumnName(columnOutput.ColumnName, entityBasePropertyNames) : columnOutput.ColumnName));
+                propertyInfo = entityProperties.FirstOrDefault(p => p.GetCustomAttribute<SugarColumn>() != null && p.Name.ToLower() == (config.DbSettings.EnableUnderLine ? CodeGenUtil.CamelColumnName(columnOutput.ColumnName, entityBasePropertyNames).ToLower() : columnOutput.ColumnName.ToLower()));
             if (propertyInfo != null)
+            {
                 columnOutput.PropertyName = propertyInfo.Name;
+                columnOutput.ColumnComment = propertyInfo.GetCustomAttribute<SugarColumn>().ColumnDescription;
+            }
             else
                 result.RemoveAt(i); //移除没有定义此属性的字段
         }
@@ -289,7 +287,7 @@ public class SysCodeGenService : IDynamicApiController, ITransient
     }
 
     /// <summary>
-    /// 获取程序保存位置
+    /// 获取程序保存位置 🔖
     /// </summary>
     /// <returns></returns>
     [DisplayName("获取程序保存位置")]
@@ -299,7 +297,7 @@ public class SysCodeGenService : IDynamicApiController, ITransient
     }
 
     /// <summary>
-    /// 代码生成到本地
+    /// 代码生成到本地 🔖
     /// </summary>
     /// <returns></returns>
     [DisplayName("代码生成到本地")]
@@ -370,7 +368,7 @@ public class SysCodeGenService : IDynamicApiController, ITransient
             if (File.Exists(downloadPath))
                 File.Delete(downloadPath);
             ZipFile.CreateFromDirectory(zipPath, downloadPath);
-            return new { url = $"{CommonUtil.GetLocalhost()}/CodeGen/{input.TableName}.zip" };
+            return new { url = $"{App.HttpContext.Request.Scheme}://{App.HttpContext.Request.Host.Value}/CodeGen/{input.TableName}.zip" };
         }
     }
 
@@ -517,13 +515,13 @@ public class SysCodeGenService : IDynamicApiController, ITransient
         };
         menuOrder += 10;
 
-        // 按钮-edit
+        // 按钮-update
         var menuType2_4 = new SysMenu
         {
             Pid = pid1,
             Title = "编辑",
             Type = MenuTypeEnum.Btn,
-            Permission = className[..1].ToLower() + className[1..] + ":edit",
+            Permission = className[..1].ToLower() + className[1..] + ":update",
             OrderNo = menuOrder
         };
         menuOrder += 10;

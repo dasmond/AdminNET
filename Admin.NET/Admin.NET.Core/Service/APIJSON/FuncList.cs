@@ -1,11 +1,6 @@
-﻿// 麻省理工学院许可证
+﻿// 此源代码遵循位于源代码树根目录中的 LICENSE 文件的许可证。
 //
-// 版权所有 (c) 2021-2023 zuohuaijun，大名科技（天津）有限公司  联系电话/微信：18020030720  QQ：515096995
-//
-// 特此免费授予获得本软件的任何人以处理本软件的权利，但须遵守以下条件：在所有副本或重要部分的软件中必须包括上述版权声明和本许可声明。
-//
-// 软件按“原样”提供，不提供任何形式的明示或暗示的保证，包括但不限于对适销性、适用性和非侵权的保证。
-// 在任何情况下，作者或版权持有人均不对任何索赔、损害或其他责任负责，无论是因合同、侵权或其他方式引起的，与软件或其使用或其他交易有关。
+// 必须在法律法规允许的范围内正确使用，严禁将其用于非法、欺诈、恶意或侵犯他人合法权益的目的。
 
 namespace Admin.NET.Core.Service;
 
@@ -45,5 +40,75 @@ public class FuncList
     public bool IsContain(object a, object b)
     {
         return a.ToString().Split(',').Contains(b);
+    }
+
+    /// <summary>
+    /// 根据jtoken的实际类型来转换SugarParameter，避免全转成字符串
+    /// </summary>
+    /// <param name="jToken"></param>
+    /// <returns></returns>
+    public static dynamic TransJObjectToSugarPara(JToken jToken)
+    {
+        JTokenType jTokenType = jToken.Type;
+        return jTokenType switch
+        {
+            JTokenType.Integer => jToken.ToObject(typeof(long)),
+            JTokenType.Float => jToken.ToObject(typeof(decimal)),
+            JTokenType.Boolean => jToken.ToObject(typeof(bool)),
+            JTokenType.Date => jToken.ToObject(typeof(DateTime)),
+            JTokenType.Bytes => jToken.ToObject(typeof(byte)),
+            JTokenType.Guid => jToken.ToObject(typeof(Guid)),
+            JTokenType.TimeSpan => jToken.ToObject(typeof(TimeSpan)),
+            JTokenType.Array => TransJArrayToSugarPara(jToken),
+            _ => jToken
+        };
+    }
+
+    /// <summary>
+    /// 根据jArray的实际类型来转换SugarParameter，避免全转成字符串
+    /// </summary>
+    /// <param name="jToken"></param>
+    /// <returns></returns>
+    public static dynamic TransJArrayToSugarPara(JToken jToken)
+    {
+        if (jToken is not JArray) return jToken;
+        if (jToken.Any())
+        {
+            JTokenType jTokenType = jToken.First().Type;
+            return jTokenType switch
+            {
+                JTokenType.Integer => jToken.ToObject<long[]>(),
+                JTokenType.Float => jToken.ToObject<decimal[]>(),
+                JTokenType.Boolean => jToken.ToObject<bool[]>(),
+                JTokenType.Date => jToken.ToObject<DateTime[]>(),
+                JTokenType.Bytes => jToken.ToObject<byte[]>(),
+                JTokenType.Guid => jToken.ToObject<Guid[]>(),
+                JTokenType.TimeSpan => jToken.ToObject<TimeSpan[]>(),
+                _ => jToken.ToArray()
+            };
+        }
+
+        return (JArray)jToken;
+    }
+
+    /// <summary>
+    /// 获取字符串里的值的真正类型
+    /// </summary>
+    /// <param name="input"></param>
+    /// <returns></returns>
+    public static string GetValueCSharpType(string input)
+    {
+        if (DateTime.TryParse(input, out _))
+            return "DateTime";
+        else if (int.TryParse(input, out _))
+            return "int";
+        else if (long.TryParse(input, out _))
+            return "long";
+        else if (decimal.TryParse(input, out _))
+            return "decimal";
+        else if (bool.TryParse(input, out _))
+            return "bool";
+        else
+            return "string";
     }
 }

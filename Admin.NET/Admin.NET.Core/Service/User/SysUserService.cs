@@ -1,16 +1,11 @@
-// 麻省理工学院许可证
+// 此源代码遵循位于源代码树根目录中的 LICENSE 文件的许可证。
 //
-// 版权所有 (c) 2021-2023 zuohuaijun，大名科技（天津）有限公司  联系电话/微信：18020030720  QQ：515096995
-//
-// 特此免费授予获得本软件的任何人以处理本软件的权利，但须遵守以下条件：在所有副本或重要部分的软件中必须包括上述版权声明和本许可声明。
-//
-// 软件按“原样”提供，不提供任何形式的明示或暗示的保证，包括但不限于对适销性、适用性和非侵权的保证。
-// 在任何情况下，作者或版权持有人均不对任何索赔、损害或其他责任负责，无论是因合同、侵权或其他方式引起的，与软件或其使用或其他交易有关。
+// 必须在法律法规允许的范围内正确使用，严禁将其用于非法、欺诈、恶意或侵犯他人合法权益的目的。
 
 namespace Admin.NET.Core.Service;
 
 /// <summary>
-/// 系统用户服务
+/// 系统用户服务 💥
 /// </summary>
 [ApiDescriptionSettings(Order = 490)]
 public class SysUserService : IDynamicApiController, ITransient
@@ -44,12 +39,12 @@ public class SysUserService : IDynamicApiController, ITransient
     }
 
     /// <summary>
-    /// 获取用户分页列表
+    /// 获取用户分页列表 🔖
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
     [DisplayName("获取用户分页列表")]
-    public async Task<SqlSugarPagedList<UserOutput>> Page(PageUserInput input)
+    public virtual async Task<SqlSugarPagedList<UserOutput>> Page(PageUserInput input)
     {
         // 获取用户拥有的机构集合
         var userOrgIdList = await _sysOrgService.GetUserOrgIdList();
@@ -83,14 +78,14 @@ public class SysUserService : IDynamicApiController, ITransient
     }
 
     /// <summary>
-    /// 增加用户
+    /// 增加用户 🔖
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
     [UnitOfWork]
     [ApiDescriptionSettings(Name = "Add"), HttpPost]
     [DisplayName("增加用户")]
-    public async Task<long> AddUser(AddUserInput input)
+    public virtual async Task<long> AddUser(AddUserInput input)
     {
         var isExist = await _sysUserRep.AsQueryable().ClearFilter().AnyAsync(u => u.Account == input.Account);
         if (isExist) throw Oops.Oh(ErrorCodeEnum.D1003);
@@ -107,14 +102,14 @@ public class SysUserService : IDynamicApiController, ITransient
     }
 
     /// <summary>
-    /// 更新用户
+    /// 更新用户 🔖
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
     [UnitOfWork]
     [ApiDescriptionSettings(Name = "Update"), HttpPost]
     [DisplayName("更新用户")]
-    public async Task UpdateUser(UpdateUserInput input)
+    public virtual async Task UpdateUser(UpdateUserInput input)
     {
         if (await _sysUserRep.AsQueryable().ClearFilter().AnyAsync(u => u.Account == input.Account && u.Id != input.Id))
             throw Oops.Oh(ErrorCodeEnum.D1003);
@@ -127,10 +122,10 @@ public class SysUserService : IDynamicApiController, ITransient
         // 删除用户机构缓存
         SqlSugarFilter.DeleteUserOrgCache(input.Id, _sysUserRep.Context.CurrentConnectionConfig.ConfigId.ToString());
 
-        // 若账号的角色和组织架构发生变化，则强制账号下线以刷新权限
+        // 若账号的角色和组织架构发生变化,则强制下线账号进行权限更新
         var user = await _sysUserRep.AsQueryable().ClearFilter().FirstAsync(u => u.Id == input.Id);
-        var roleIds = await GetOwnRoleList(input.Id); // 获取权限集合
-        if (input.OrgId != user.OrgId || input.RoleIdList != roleIds)
+        var roleIds = await GetOwnRoleList(input.Id);
+        if (input.OrgId != user.OrgId || !input.RoleIdList.OrderBy(u => u).SequenceEqual(roleIds.OrderBy(u => u)))
             await _sysOnlineUserService.ForceOffline(input.Id);
     }
 
@@ -147,14 +142,14 @@ public class SysUserService : IDynamicApiController, ITransient
     }
 
     /// <summary>
-    /// 删除用户
+    /// 删除用户 🔖
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
     [UnitOfWork]
     [ApiDescriptionSettings(Name = "Delete"), HttpPost]
     [DisplayName("删除用户")]
-    public async Task DeleteUser(DeleteUserInput input)
+    public virtual async Task DeleteUser(DeleteUserInput input)
     {
         var user = await _sysUserRep.GetFirstAsync(u => u.Id == input.Id) ?? throw Oops.Oh(ErrorCodeEnum.D0009);
         if (user.AccountType == AccountTypeEnum.SuperAdmin)
@@ -175,34 +170,34 @@ public class SysUserService : IDynamicApiController, ITransient
     }
 
     /// <summary>
-    /// 查看用户基本信息
+    /// 查看用户基本信息 🔖
     /// </summary>
     /// <returns></returns>
     [DisplayName("查看用户基本信息")]
-    public async Task<SysUser> GetBaseInfo()
+    public virtual async Task<SysUser> GetBaseInfo()
     {
         return await _sysUserRep.GetFirstAsync(u => u.Id == _userManager.UserId);
     }
 
     /// <summary>
-    /// 更新用户基本信息
+    /// 更新用户基本信息 🔖
     /// </summary>
     /// <returns></returns>
     [ApiDescriptionSettings(Name = "BaseInfo"), HttpPost]
     [DisplayName("更新用户基本信息")]
-    public async Task<int> UpdateBaseInfo(SysUser user)
+    public virtual async Task<int> UpdateBaseInfo(SysUser user)
     {
         return await _sysUserRep.AsUpdateable(user)
             .IgnoreColumns(u => new { u.CreateTime, u.Account, u.Password, u.AccountType, u.OrgId, u.PosId }).ExecuteCommandAsync();
     }
 
     /// <summary>
-    /// 设置用户状态
+    /// 设置用户状态 🔖
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
     [DisplayName("设置用户状态")]
-    public async Task<int> SetStatus(UserInput input)
+    public virtual async Task<int> SetStatus(UserInput input)
     {
         if (_userManager.UserId == input.Id)
             throw Oops.Oh(ErrorCodeEnum.D1026);
@@ -233,7 +228,7 @@ public class SysUserService : IDynamicApiController, ITransient
     }
 
     /// <summary>
-    /// 授权用户角色
+    /// 授权用户角色 🔖
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
@@ -249,12 +244,12 @@ public class SysUserService : IDynamicApiController, ITransient
     }
 
     /// <summary>
-    /// 修改用户密码
+    /// 修改用户密码 🔖
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
     [DisplayName("修改用户密码")]
-    public async Task<int> ChangePwd(ChangePwdInput input)
+    public virtual async Task<int> ChangePwd(ChangePwdInput input)
     {
         var user = await _sysUserRep.GetFirstAsync(u => u.Id == _userManager.UserId) ?? throw Oops.Oh(ErrorCodeEnum.D0009);
         if (CryptogramUtil.CryptoType == CryptogramEnum.MD5.ToString())
@@ -267,6 +262,9 @@ public class SysUserService : IDynamicApiController, ITransient
             if (CryptogramUtil.Decrypt(user.Password) != input.PasswordOld)
                 throw Oops.Oh(ErrorCodeEnum.D1004);
         }
+
+        if (input.PasswordOld == input.PasswordNew)
+            throw Oops.Oh(ErrorCodeEnum.D1028);
 
         // 验证密码强度
         if (CryptogramUtil.StrongPassword)
@@ -284,12 +282,12 @@ public class SysUserService : IDynamicApiController, ITransient
     }
 
     /// <summary>
-    /// 重置用户密码
+    /// 重置用户密码 🔖
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
     [DisplayName("重置用户密码")]
-    public async Task<string> ResetPwd(ResetPwdUserInput input)
+    public virtual async Task<string> ResetPwd(ResetPwdUserInput input)
     {
         var user = await _sysUserRep.GetFirstAsync(u => u.Id == input.Id) ?? throw Oops.Oh(ErrorCodeEnum.D0009);
         var password = await _sysConfigService.GetConfigValue<string>(CommonConst.SysPassword);
@@ -299,12 +297,12 @@ public class SysUserService : IDynamicApiController, ITransient
     }
 
     /// <summary>
-    /// 解除登录锁定
+    /// 解除登录锁定 🔖
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
     [DisplayName("解除登录锁定")]
-    public async Task UnlockLogin(UnlockLoginInput input)
+    public virtual async Task UnlockLogin(UnlockLoginInput input)
     {
         var user = await _sysUserRep.GetFirstAsync(u => u.Id == input.Id) ?? throw Oops.Oh(ErrorCodeEnum.D0009);
 
@@ -314,7 +312,7 @@ public class SysUserService : IDynamicApiController, ITransient
     }
 
     /// <summary>
-    /// 获取用户拥有角色集合
+    /// 获取用户拥有角色集合 🔖
     /// </summary>
     /// <param name="userId"></param>
     /// <returns></returns>
@@ -325,7 +323,7 @@ public class SysUserService : IDynamicApiController, ITransient
     }
 
     /// <summary>
-    /// 获取用户扩展机构集合
+    /// 获取用户扩展机构集合 🔖
     /// </summary>
     /// <param name="userId"></param>
     /// <returns></returns>
