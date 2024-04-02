@@ -8,7 +8,7 @@ import vueJsx from '@vitejs/plugin-vue-jsx';
 import { CodeInspectorPlugin } from 'code-inspector-plugin';
 import fs from 'fs';
 import { visualizer } from 'rollup-plugin-visualizer';
-
+import { webUpdateNotice } from '@plugin-web-update-notification/vite';
 const pathResolve = (dir: string) => {
 	return resolve(__dirname, '.', dir);
 };
@@ -23,18 +23,29 @@ const viteConfig = defineConfig((mode: ConfigEnv) => {
 	fs.writeFileSync('./public/config.js', `window.__env__ = ${JSON.stringify(env, null, 2)} `);
 	return {
 		plugins: [
-			visualizer({ open: true }), // 自动开启分析页面
+			visualizer({ open: false }), // 开启可视化分析页面
 			CodeInspectorPlugin({
 				bundler: 'vite',
 				hotKeys: ['shiftKey'],
 			}),
 			vue(),
 			vueJsx(),
+			webUpdateNotice({
+				notificationConfig: {
+					placement: 'topLeft',
+				},
+				notificationProps: {
+					title: '📢 系统更新',
+					description: '系统更新啦，请刷新页面！',
+					buttonText: '刷新',
+					dismissButtonText: '忽略',
+				},
+			}),
 			vueSetupExtend(),
 			viteCompression({
 				verbose: true, // 是否在控制台中输出压缩结果
 				disable: false, // 是否禁用压缩
-				deleteOriginFile: true, // 压缩后是否删除源文件
+				deleteOriginFile: false, // 压缩后是否删除源文件
 				threshold: 5120, // 对大于 5KB 文件进行 gzip 压缩，单位Bytes
 				algorithm: 'gzip', // 压缩算法，可选[‘gzip’，‘brotliCompress’，‘deflate’，‘deflateRaw’]
 				ext: '.gz', // 生成的压缩包的后缀
@@ -77,8 +88,7 @@ const viteConfig = defineConfig((mode: ConfigEnv) => {
 					assetFileNames: 'assets/[ext]/[name]-[hash].[ext]', // 资源文件像 字体，图片等
 					manualChunks(id) {
 						if (id.includes('node_modules')) {
-							let newId = id.toString().replace('/.', '/');
-							return newId.match(/\/node_modules\/(?!.pnpm)(?<moduleName>[^\/]*)\//)?.groups!.moduleName ?? 'vender';
+							return id.toString().match(/\/node_modules\/(?!.pnpm)(?<moduleName>[^\/]*)\//)?.groups!.moduleName ?? 'vender';
 						}
 					},
 				},

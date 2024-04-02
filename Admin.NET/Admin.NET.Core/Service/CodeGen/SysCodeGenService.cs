@@ -1,6 +1,6 @@
-// 大名科技（天津）有限公司版权所有  电话：18020030720  QQ：515096995
+// 此源代码遵循位于源代码树根目录中的 LICENSE 文件的许可证。
 //
-// 此源代码遵循位于源代码树根目录中的 LICENSE 文件的许可证
+// 必须在法律法规允许的范围内正确使用，严禁将其用于非法、欺诈、恶意或侵犯他人合法权益的目的。
 
 using System.IO.Compression;
 
@@ -220,7 +220,7 @@ public class SysCodeGenService : IDynamicApiController, ITransient
             var propertyInfo = entityProperties.FirstOrDefault(p => (p.GetCustomAttribute<SugarColumn>()?.ColumnName ?? "").ToLower() == columnOutput.ColumnName.ToLower());
             // 如果找不到就再找自动生成字段名的(并且过滤掉没有SugarColumn的属性)
             if (propertyInfo == null)
-                propertyInfo = entityProperties.FirstOrDefault(p => p.GetCustomAttribute<SugarColumn>() != null && p.Name.ToLower() == (config.DbSettings.EnableUnderLine ? CodeGenUtil.CamelColumnName(columnOutput.ColumnName, entityBasePropertyNames) : columnOutput.ColumnName.ToLower()));
+                propertyInfo = entityProperties.FirstOrDefault(p => p.GetCustomAttribute<SugarColumn>() != null && p.Name.ToLower() == (config.DbSettings.EnableUnderLine ? CodeGenUtil.CamelColumnName(columnOutput.ColumnName, entityBasePropertyNames).ToLower() : columnOutput.ColumnName.ToLower()));
             if (propertyInfo != null)
             {
                 columnOutput.PropertyName = propertyInfo.Name;
@@ -368,7 +368,7 @@ public class SysCodeGenService : IDynamicApiController, ITransient
             if (File.Exists(downloadPath))
                 File.Delete(downloadPath);
             ZipFile.CreateFromDirectory(zipPath, downloadPath);
-            return new { url = $"{CommonUtil.GetLocalhost()}/CodeGen/{input.TableName}.zip" };
+            return new { url = $"{App.HttpContext.Request.Scheme}://{App.HttpContext.Request.Host.Value}/CodeGen/{input.TableName}.zip" };
         }
     }
 

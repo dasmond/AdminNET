@@ -1,6 +1,6 @@
-// 大名科技（天津）有限公司版权所有  电话：18020030720  QQ：515096995
+// 此源代码遵循位于源代码树根目录中的 LICENSE 文件的许可证。
 //
-// 此源代码遵循位于源代码树根目录中的 LICENSE 文件的许可证
+// 必须在法律法规允许的范围内正确使用，严禁将其用于非法、欺诈、恶意或侵犯他人合法权益的目的。
 
 namespace Admin.NET.Core;
 
@@ -18,6 +18,13 @@ public static class SqlSugarSetup
         // 注册雪花Id
         var snowIdOpt = App.GetConfig<SnowIdOptions>("SnowId", true);
         YitIdHelper.SetIdGenerator(snowIdOpt);
+
+        // 自定义 SqlSugar 雪花ID算法
+        SnowFlakeSingle.WorkId = snowIdOpt.WorkerId;
+        StaticConfig.CustomSnowFlakeFunc = () =>
+        {
+            return YitIdHelper.NextId();
+        };
 
         var dbOptions = App.GetConfig<DbConnectionOptions>("DbConnection", true);
         dbOptions.ConnectionConfigs.ForEach(SetDbConfig);
@@ -100,6 +107,14 @@ public static class SqlSugarSetup
         {
             db.Aop.OnLogExecuting = (sql, pars) =>
             {
+                //// 若参数值超过100个字符则进行截取
+                //foreach (var par in pars)
+                //{
+                //    if (par.DbType != System.Data.DbType.String || par.Value == null) continue;
+                //    if (par.Value.ToString().Length > 100)
+                //        par.Value = string.Concat(par.Value.ToString()[..100], "......");
+                //}
+
                 var log = $"【{DateTime.Now}——执行SQL】\r\n{UtilMethods.GetNativeSql(sql, pars)}\r\n";
                 var originColor = Console.ForegroundColor;
                 if (sql.StartsWith("SELECT", StringComparison.OrdinalIgnoreCase))
@@ -124,6 +139,14 @@ public static class SqlSugarSetup
             };
             db.Aop.OnLogExecuted = (sql, pars) =>
             {
+                //// 若参数值超过100个字符则进行截取
+                //foreach (var par in pars)
+                //{
+                //    if (par.DbType != System.Data.DbType.String || par.Value == null) continue;
+                //    if (par.Value.ToString().Length > 100)
+                //        par.Value = string.Concat(par.Value.ToString()[..100], "......");
+                //}
+
                 // 执行时间超过5秒时
                 if (db.Ado.SqlExecutionTime.TotalSeconds > 5)
                 {
@@ -234,8 +257,8 @@ public static class SqlSugarSetup
                 AfterData = JSON.Serialize(u.AfterData),
                 // 操作前记录（字段描述、列名、值、表名、表描述）
                 BeforeData = JSON.Serialize(u.BeforeData),
-                // 传进来的对象
-                BusinessData = JSON.Serialize(u.BusinessData),
+                // 传进来的对象（如果对象为空，则使用首个数据的表名作为业务对象）
+                BusinessData = u.BusinessData == null ? u.AfterData.FirstOrDefault()?.TableName : JSON.Serialize(u.BusinessData),
                 // 枚举（insert、update、delete）
                 DiffType = u.DiffType.ToString(),
                 Sql = UtilMethods.GetNativeSql(u.Sql, u.Parameters),

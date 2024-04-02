@@ -1,6 +1,6 @@
-﻿// 大名科技（天津）有限公司版权所有  电话：18020030720  QQ：515096995
+﻿// 此源代码遵循位于源代码树根目录中的 LICENSE 文件的许可证。
 //
-// 此源代码遵循位于源代码树根目录中的 LICENSE 文件的许可证
+// 必须在法律法规允许的范围内正确使用，严禁将其用于非法、欺诈、恶意或侵犯他人合法权益的目的。
 
 namespace Admin.NET.Core.Service;
 
@@ -35,6 +35,11 @@ public class SysEnumService : IDynamicApiController, ITransient
         return result;
     }
 
+    /// <summary>
+    /// 获取字典描述
+    /// </summary>
+    /// <param name="type"></param>
+    /// <returns></returns>
     private EnumTypeOutput GetEnumDescription(Type type)
     {
         string description = type.Name;
@@ -44,11 +49,13 @@ public class SysEnumService : IDynamicApiController, ITransient
             var att = ((DescriptionAttribute[])attrs)[0];
             description = att.Description;
         }
+        var enumType = App.EffectiveTypes.FirstOrDefault(t => t.IsEnum && t.Name == type.Name);
         return new EnumTypeOutput
         {
             TypeDescribe = description,
             TypeName = type.Name,
-            TypeRemark = description
+            TypeRemark = description,
+            EnumEntities = enumType.EnumToList()
         };
     }
 

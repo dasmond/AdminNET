@@ -1,6 +1,6 @@
-﻿// 大名科技（天津）有限公司版权所有  电话：18020030720  QQ：515096995
+﻿// 此源代码遵循位于源代码树根目录中的 LICENSE 文件的许可证。
 //
-// 此源代码遵循位于源代码树根目录中的 LICENSE 文件的许可证
+// 必须在法律法规允许的范围内正确使用，严禁将其用于非法、欺诈、恶意或侵犯他人合法权益的目的。
 
 namespace Admin.NET.Core;
 
@@ -36,9 +36,16 @@ public partial class SysDictData : EntityBase
     /// <summary>
     /// 编码
     /// </summary>
-    [SugarColumn(ColumnDescription = "编码", Length = 64)]
-    [Required, MaxLength(64)]
+    [SugarColumn(ColumnDescription = "编码", Length = 128)]
+    [Required, MaxLength(128)]
     public virtual string Code { get; set; }
+
+    /// <summary>
+    /// 名称
+    /// </summary>
+    [SugarColumn(ColumnDescription = "名称", Length = 128)]
+    [MaxLength(128)]
+    public virtual string? Name { get; set; }
 
     /// <summary>
     /// 显示样式-标签颜色

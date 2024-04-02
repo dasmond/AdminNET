@@ -2,7 +2,7 @@
 /* eslint-disable */
 /**
  * Admin.NET 通用权限开发平台
- * 让 .NET 开发更简单、更通用、更流行。前后端分离架构(.NET6/Vue3)，开箱即用紧随前沿技术。<br/><a href='https://gitee.com/zuohuaijun/Admin.NET/'>https://gitee.com/zuohuaijun/Admin.NET</a>
+ * 让 .NET 开发更简单、更通用、更流行。前后端分离架构(.NET6/Vue3)，开箱即用紧随前沿技术。<br/>
  *
  * OpenAPI spec version: 1.0.0
  * 
@@ -224,7 +224,7 @@ export const SysMenuApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
-         * @summary 获取用户拥有按钮权限集合（缓存）
+         * @summary 获取按钮权限集合
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -380,7 +380,7 @@ export const SysMenuApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @summary 获取用户拥有按钮权限集合（缓存）
+         * @summary 获取按钮权限集合
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -456,7 +456,7 @@ export const SysMenuApiFactory = function (configuration?: Configuration, basePa
         },
         /**
          * 
-         * @summary 获取用户拥有按钮权限集合（缓存）
+         * @summary 获取按钮权限集合
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -529,7 +529,7 @@ export class SysMenuApi extends BaseAPI {
     }
     /**
      * 
-     * @summary 获取用户拥有按钮权限集合（缓存）
+     * @summary 获取按钮权限集合
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof SysMenuApi

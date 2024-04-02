@@ -1,6 +1,6 @@
-// 大名科技（天津）有限公司版权所有  电话：18020030720  QQ：515096995
+// 此源代码遵循位于源代码树根目录中的 LICENSE 文件的许可证。
 //
-// 此源代码遵循位于源代码树根目录中的 LICENSE 文件的许可证
+// 必须在法律法规允许的范围内正确使用，严禁将其用于非法、欺诈、恶意或侵犯他人合法权益的目的。
 
 namespace Admin.NET.Core.Service;
 
@@ -106,8 +106,8 @@ public class SysMenuService : IDynamicApiController, ITransient
     public async Task AddMenu(AddMenuInput input)
     {
         var isExist = input.Type != MenuTypeEnum.Btn
-            ? await _sysMenuRep.IsAnyAsync(u => u.Title == input.Title)
-            : await _sysMenuRep.IsAnyAsync(u => u.Permission == input.Permission);
+            ? await _sysMenuRep.IsAnyAsync(u => u.Title == input.Title && u.Pid == input.Pid)
+            : await _sysMenuRep.IsAnyAsync(u => u.Permission == input.Permission && u.Pid == input.Pid);
         if (isExist)
             throw Oops.Oh(ErrorCodeEnum.D4000);
 
@@ -146,8 +146,8 @@ public class SysMenuService : IDynamicApiController, ITransient
             throw Oops.Oh(ErrorCodeEnum.D4008);
 
         var isExist = input.Type != MenuTypeEnum.Btn
-            ? await _sysMenuRep.IsAnyAsync(u => u.Title == input.Title && u.Type == input.Type && u.Id != input.Id)
-            : await _sysMenuRep.IsAnyAsync(u => u.Permission == input.Permission && u.Type == input.Type && u.Id != input.Id);
+            ? await _sysMenuRep.IsAnyAsync(u => u.Title == input.Title && u.Type == input.Type && u.Pid == input.Pid && u.Id != input.Id)
+            : await _sysMenuRep.IsAnyAsync(u => u.Permission == input.Permission && u.Type == input.Type && u.Pid == input.Pid && u.Id != input.Id);
         if (isExist)
             throw Oops.Oh(ErrorCodeEnum.D4000);
 

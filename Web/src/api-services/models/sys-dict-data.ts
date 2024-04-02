@@ -2,7 +2,7 @@
 /* eslint-disable */
 /**
  * Admin.NET 通用权限开发平台
- * 让 .NET 开发更简单、更通用、更流行。前后端分离架构(.NET6/Vue3)，开箱即用紧随前沿技术。<br/><a href='https://gitee.com/zuohuaijun/Admin.NET/'>https://gitee.com/zuohuaijun/Admin.NET</a>
+ * 让 .NET 开发更简单、更通用、更流行。前后端分离架构(.NET6/Vue3)，开箱即用紧随前沿技术。<br/>
  *
  * OpenAPI spec version: 1.0.0
  * 
@@ -108,6 +108,14 @@ export interface SysDictData {
      * @memberof SysDictData
      */
     code: string;
+
+    /**
+     * 名称
+     *
+     * @type {string}
+     * @memberof SysDictData
+     */
+    name?: string | null;
 
     /**
      * 显示样式-标签颜色

@@ -1,6 +1,6 @@
-// 大名科技（天津）有限公司版权所有  电话：18020030720  QQ：515096995
+// 此源代码遵循位于源代码树根目录中的 LICENSE 文件的许可证。
 //
-// 此源代码遵循位于源代码树根目录中的 LICENSE 文件的许可证
+// 必须在法律法规允许的范围内正确使用，严禁将其用于非法、欺诈、恶意或侵犯他人合法权益的目的。
 
 namespace Admin.NET.Core;
 
@@ -296,7 +296,8 @@ public static partial class ObjectExtension
     {
         if (!idCard.TryValidate(ValidationTypes.IDCard).IsValid) return idCard;
 
-        return idCard.Replace("(?<=\\w{3})\\w(?=\\w{4})", $"{mask}");
+        var masks = mask.ToString().PadLeft(8, mask);
+        return Regex.Replace(idCard, @"^(.{6})(.*)(.{4})$", $"$1{masks}$3");
     }
 
     /// <summary>
@@ -310,20 +311,6 @@ public static partial class ObjectExtension
         if (!email.TryValidate(ValidationTypes.EmailAddress).IsValid) return email;
 
         var masks = mask.ToString().PadLeft(4, mask);
-        return email.Replace("(^\\w)[^@]*(@.*$)", $"$1{masks}$2");
-    }
-
-    /// <summary>
-    /// 银行卡号掩码
-    /// </summary>
-    /// <param name="bankCard">银行卡号</param>
-    /// <param name="mask">掩码符</param>
-    /// <returns></returns>
-    public static string MaskBankCard(this string bankCard, char mask = '*')
-    {
-        if (bankCard.Length < 10) return bankCard;
-
-        var masks = mask.ToString().PadLeft(4, mask);
-        return bankCard.Replace("(\\d{6})\\d{9}(\\d{4})", $"$1{masks}$2");
+        return email.Replace(@"^([^\.]+)\.?", $"$1{masks}$2");
     }
 }

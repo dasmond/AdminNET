@@ -1,6 +1,6 @@
-﻿// 大名科技（天津）有限公司版权所有  电话：18020030720  QQ：515096995
+﻿// 此源代码遵循位于源代码树根目录中的 LICENSE 文件的许可证。
 //
-// 此源代码遵循位于源代码树根目录中的 LICENSE 文件的许可证
+// 必须在法律法规允许的范围内正确使用，严禁将其用于非法、欺诈、恶意或侵犯他人合法权益的目的。
 
 using Newtonsoft.Json;
 
@@ -54,22 +54,5 @@ public class MaskEmailNewtonsoftJsonConverter : JsonConverter<string>
     public override void WriteJson(JsonWriter writer, string value, JsonSerializer serializer)
     {
         writer.WriteValue(value?.ToString().MaskEmail());
-    }
-}
-
-/// <summary>
-/// 银行卡号掩码
-/// </summary>
-[SuppressSniffer]
-public class MaskBankCardNewtonsoftJsonConverter : JsonConverter<string>
-{
-    public override string ReadJson(JsonReader reader, Type objectType, string existingValue, bool hasExistingValue, JsonSerializer serializer)
-    {
-        return reader.Value.ToString();
-    }
-
-    public override void WriteJson(JsonWriter writer, string value, JsonSerializer serializer)
-    {
-        writer.WriteValue(value?.ToString().MaskBankCard());
     }
 }

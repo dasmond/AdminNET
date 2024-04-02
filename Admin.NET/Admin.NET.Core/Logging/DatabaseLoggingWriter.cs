@@ -1,6 +1,6 @@
-// 大名科技（天津）有限公司版权所有  电话：18020030720  QQ：515096995
+// 此源代码遵循位于源代码树根目录中的 LICENSE 文件的许可证。
 //
-// 此源代码遵循位于源代码树根目录中的 LICENSE 文件的许可证
+// 必须在法律法规允许的范围内正确使用，严禁将其用于非法、欺诈、恶意或侵犯他人合法权益的目的。
 
 using IPTools.Core;
 
@@ -19,9 +19,14 @@ public class DatabaseLoggingWriter : IDatabaseLoggingWriter, IDisposable
     public DatabaseLoggingWriter(IServiceScopeFactory scopeFactory)
     {
         _serviceScope = scopeFactory.CreateScope();
-        _db = _serviceScope.ServiceProvider.GetRequiredService<ISqlSugarClient>();
+        //_db = _serviceScope.ServiceProvider.GetRequiredService<ISqlSugarClient>();
         _sysConfigService = _serviceScope.ServiceProvider.GetRequiredService<SysConfigService>();
         _logger = _serviceScope.ServiceProvider.GetRequiredService<ILogger<DatabaseLoggingWriter>>();
+
+        // 切换日志独立数据库
+        _db = SqlSugarSetup.ITenant.IsAnyConnection(SqlSugarConst.LogConfigId)
+            ? SqlSugarSetup.ITenant.GetConnectionScope(SqlSugarConst.LogConfigId)
+            : SqlSugarSetup.ITenant.GetConnectionScope(SqlSugarConst.MainConfigId);
     }
 
     public async Task WriteAsync(LogMessage logMsg, bool flush)
@@ -94,7 +99,11 @@ public class DatabaseLoggingWriter : IDatabaseLoggingWriter, IDisposable
                 }).ExecuteCommandAsync();
 
                 // 将异常日志发送到邮件
-                await App.GetRequiredService<IEventPublisher>().PublishAsync("Send:ErrorMail", loggingMonitor.exception);
+                if (await _sysConfigService.GetConfigValue<bool>(CommonConst.SysErrorMail))
+                {
+                    await App.GetRequiredService<IEventPublisher>().PublishAsync("Send:ErrorMail", loggingMonitor.exception);
+                }
+
                 return;
             }
 
@@ -125,8 +134,7 @@ public class DatabaseLoggingWriter : IDatabaseLoggingWriter, IDisposable
             }
 
             // 记录操作日志
-            var enabledSysOpLog = await _sysConfigService.GetConfigValue<bool>(CommonConst.SysOpLog);
-            if (!enabledSysOpLog) return;
+            if (!(await _sysConfigService.GetConfigValue<bool>(CommonConst.SysOpLog))) return;
             await _db.Insertable(new SysLogOp
             {
                 ControllerName = loggingMonitor.controllerName,
