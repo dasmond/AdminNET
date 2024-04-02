@@ -2,16 +2,10 @@
 branches: {
   }
 fileChange:
-  /LICENSE:
-    newFile: null
-    oldFile: !uuid '53c264ce22cd73ce897a30eeed2744bdeac2e858'
-  /LICENSE-APACHE:
-    newFile: !uuid '71093ceb32437c3f5de77573803185fdba7bb16c'
-    oldFile: null
-  /LICENSE-MIT:
-    newFile: !uuid '8ec56507143d114429cbaaf737c1ab4ba0caf86b'
-    oldFile: null
-gitCommitId: !uuid '9b804b8d73398b61aacd79ca43bcd8395180fea1'
-renames:
-  /LICENSE-MIT: /LICENSE
-revisionId: 1647
+  /DISCLAIMER.md:
+    newFile: !uuid '9e3750728c92772cb7acf1d50d5932c3bf887d91'
+    oldFile: !uuid 'b11b66d9b5e60f6c3f3966e7561a580dc4979fa2'
+gitCommitId: !uuid 'ec637bed7dcd861fb864d5d042c4ec9b8b6d34e9'
+renames: {
+  }
+revisionId: 1648
