@@ -3,21 +3,36 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '0e2309ffccc781088e420b67be5e53ac3e82e39f'
-    oldFile: !uuid '5ec9fd310f9d6729f4c5016de55ece3a27d22e80'
+    newFile: !uuid 'e632239b5ef6823c182f2a112f5397463d7f53f1'
+    oldFile: !uuid '0e2309ffccc781088e420b67be5e53ac3e82e39f'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid 'ccdeec6ee161bcd333f3bb8bb93be4ae211ec6e2'
-    oldFile: !uuid '7db0bcbbe66fa17ff418ded21986d7648b36d717'
+    newFile: !uuid '6fe25d9b540ad7679ac64c81d9978d4cc8afaa52'
+    oldFile: !uuid 'ccdeec6ee161bcd333f3bb8bb93be4ae211ec6e2'
+  /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
+    newFile: !uuid '15d919e78f72bbb1e947db2923027afdcfa8b30f'
+    oldFile: !uuid 'ea8fc01bfcdfe546761cc51745e8ddffde017c2f'
   /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid 'f77954faccc8e4e9700314fbbb2a982527a10903'
-    oldFile: !uuid '32102c96300204fb50ce75618f5d4b4768488a3a'
-  /Admin.NET/Admin.NET.Core/Service/Tenant:
-    newFile: !uuid 'f555bf1fe0138621f1eee7289bb405dca973ae4f'
-    oldFile: !uuid 'd471085c5e537f981a086b7a30a4a8fdd1fc96e9'
-  /Admin.NET/Admin.NET.Core/Service/Tenant/SysTenantService.cs:
-    newFile: !uuid '16c873c77afe69fae7227393f4b86ff02942c1e3'
-    oldFile: !uuid 'b8f156d8e3e1c48bd6bdf322e3657b4fb8e49db3'
-gitCommitId: !uuid '3574da2d1a7977fa530e9a651ef4a977028e19d3'
+    newFile: !uuid '7540a98c179f2fe9b86262192f2a1b9ef52c5292'
+    oldFile: !uuid 'f77954faccc8e4e9700314fbbb2a982527a10903'
+  /Admin.NET/Admin.NET.Core/Service/APIJSON:
+    newFile: !uuid '3c410cd6bc87d9eb0eb58d5368308e1e523173ae'
+    oldFile: !uuid '2a53150439b149d1cadbe5a8e34c3f2d1b745a30'
+  /Admin.NET/Admin.NET.Core/Service/APIJSON/SelectTable.cs:
+    newFile: !uuid 'f842cd6f5d8e1243b6d6f4a08791fd73c7c4a47d'
+    oldFile: !uuid '1cc5c8e6b716a2e8ad359d0ed3996bf8b5c47b0f'
+  /Admin.NET/Admin.NET.Core/Service/CodeGen:
+    newFile: !uuid 'a8a641292e09b7ac5b1b8c707f91d1855e91e706'
+    oldFile: !uuid '5030f0e8f2621be1e908e612e70b1eff301751f2'
+  /Admin.NET/Admin.NET.Core/Service/CodeGen/SysCodeGenService.cs:
+    newFile: !uuid 'a9e9366e82f37e49b652518802c40829a8fc0e13'
+    oldFile: !uuid 'e32f65cbd60b822c49b9a95fcaaa2d927181c26a'
+  /Admin.NET/Admin.NET.Core/Service/Enum:
+    newFile: !uuid '90db944f05a94a5cd0b869ac0b80c982b74b8356'
+    oldFile: !uuid '188669fa832574ab86ca812d1f42bd2021eaea75'
+  /Admin.NET/Admin.NET.Core/Service/Enum/SysEnumService.cs:
+    newFile: !uuid '61b7d20b48ba1112950611fe57b2f1fd360c336d'
+    oldFile: !uuid '1c546a49171e337d450bf6f58668471ed8f71db9'
+gitCommitId: !uuid '18e2f8ada85135d5081b1fd958a10fcc8a7a86dd'
 renames: {
   }
-revisionId: 1653
+revisionId: 1654
