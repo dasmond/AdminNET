@@ -3,36 +3,42 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '4ad91b425bc0ea2775d470f06081bfd4bd58bc31'
-    oldFile: !uuid 'e632239b5ef6823c182f2a112f5397463d7f53f1'
+    newFile: !uuid 'fb8b78828e30515b04f4bb69a212de0d48e1fe8b'
+    oldFile: !uuid '4ad91b425bc0ea2775d470f06081bfd4bd58bc31'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '70fcb154cc535138c9735df343389af749519825'
-    oldFile: !uuid '6fe25d9b540ad7679ac64c81d9978d4cc8afaa52'
+    newFile: !uuid '6bbd9f2a2141e324df8b598f64ffb867329e5df4'
+    oldFile: !uuid '70fcb154cc535138c9735df343389af749519825'
   /Admin.NET/Admin.NET.Core/Enum:
-    newFile: !uuid 'ffce0171a602e1258ad45a8222d70ef017aa7f4a'
-    oldFile: !uuid 'cbfe7bb696196ca986aa36448f8acb4bd0ad4d11'
+    newFile: !uuid '98bdc32a34458b775809f7ce185a98b7af4df7a8'
+    oldFile: !uuid 'ffce0171a602e1258ad45a8222d70ef017aa7f4a'
   /Admin.NET/Admin.NET.Core/Enum/HttpMethodEnum.cs:
-    newFile: !uuid '2215f59a8c1a00b221b9b14faf56ee6ad3dce8df'
-    oldFile: null
+    newFile: !uuid '6fabded261eb457d379385fe9e155a3fcbc87190'
+    oldFile: !uuid '2215f59a8c1a00b221b9b14faf56ee6ad3dce8df'
   /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid '9158b53ae5a564d50140094836202102bf60bbec'
-    oldFile: !uuid '7540a98c179f2fe9b86262192f2a1b9ef52c5292'
+    newFile: !uuid '1650bd2ef46908c86703c8d1acebc0bcd855ddfa'
+    oldFile: !uuid '9158b53ae5a564d50140094836202102bf60bbec'
   /Admin.NET/Admin.NET.Core/Service/OpenAccess:
-    newFile: !uuid 'e5e42581b561e5e41e2b305d1b4483fa25bf11c9'
-    oldFile: !uuid '8c2ad95e28c3ede9cdf61c1ba1b5daf5be3f6e92'
+    newFile: !uuid '89d3b3bf6b4c2b19e6f534c3794a9bbd6c8a9083'
+    oldFile: !uuid 'e5e42581b561e5e41e2b305d1b4483fa25bf11c9'
+  /Admin.NET/Admin.NET.Core/Service/OpenAccess/Dto:
+    newFile: !uuid '8821f9e35cab2766566cded6227d149b61878d4a'
+    oldFile: !uuid '7e00fa687659312d60c9e31f4db9853772944a08'
+  /Admin.NET/Admin.NET.Core/Service/OpenAccess/Dto/OpenAccessInput.cs:
+    newFile: !uuid '2808cc7a7f9ece1737ad531bb8232d711a569e52'
+    oldFile: !uuid '452b612935f7e503a690817171e9891fd5ba1f1e'
   /Admin.NET/Admin.NET.Core/Service/OpenAccess/SysOpenAccessService.cs:
-    newFile: !uuid '0ffb7eb9723aa92f1853b9e562f34e2540d51d74'
-    oldFile: !uuid '0ca7e036fc5f3b752601350b84aacb9a8fff2b3a'
+    newFile: !uuid 'd54377a0618a63a6ae1dab8bdade2900cb6f2006'
+    oldFile: !uuid '0ffb7eb9723aa92f1853b9e562f34e2540d51d74'
   /Admin.NET/Admin.NET.Core/SqlSugar:
-    newFile: !uuid 'a84eb331c90951d681ce2c21f98150c57b029562'
-    oldFile: !uuid '1c7934c20c6742ac0f3f2ef930be1d5a73140ab7'
+    newFile: !uuid 'b3f5cccc09566b4c161fc87af73196ad0dd04524'
+    oldFile: !uuid 'a84eb331c90951d681ce2c21f98150c57b029562'
   /Admin.NET/Admin.NET.Core/SqlSugar/ISqlSugarRepository.cs:
-    newFile: !uuid '4fa0497d4f15263830d73f7604312e796788a47f'
-    oldFile: null
+    newFile: !uuid 'be0d7387c1ae5882fa2ffeb3e298b29ae30ecb86'
+    oldFile: !uuid '4fa0497d4f15263830d73f7604312e796788a47f'
   /Admin.NET/Admin.NET.Core/SqlSugar/SqlSugarRepository.cs:
-    newFile: !uuid '4c22ef2a5c00e3728c443ee2bc5986a9ff63dd73'
-    oldFile: !uuid 'e5397ea25f7db76bbb920a53e0d90f12b3ac59ea'
-gitCommitId: !uuid '3f37b9b164bc3186de2d03c19330a82937320740'
+    newFile: !uuid 'b3e3328e4e3693b2a0868aa8707268f57a746464'
+    oldFile: !uuid '4c22ef2a5c00e3728c443ee2bc5986a9ff63dd73'
+gitCommitId: !uuid '0ad4a34844f4834f80c12e0960bd114965ab9615'
 renames: {
   }
-revisionId: 1655
+revisionId: 1656
