@@ -2,16 +2,16 @@
 branches: {
   }
 fileChange:
-  /Web:
-    newFile: !uuid 'ff314ab22b2ea464cd89d15d9b417a9d640b342b'
-    oldFile: !uuid '0783f0bc356748db87b948b89a57ad24d8a1e7d3'
-  /Web/package.json:
-    newFile: !uuid '7fd1e44472aac423fdc605117cb2b241f8e3815b'
-    oldFile: !uuid '6dbd66688a0463f955b59cadb53e07d5a600e714'
-  /Web/vite.config.ts:
-    newFile: !uuid '99084ffb4bcbe0c6f2acf632ea28d3f9fc74c0d1'
-    oldFile: !uuid '3907d8fd80b8f360b1595fdb54b312b58618c8b2'
-gitCommitId: !uuid '8a46701f73bc21079405f86742f187325ff92092'
+  /Admin.NET:
+    newFile: !uuid 'a49e71500d10733dc930853a18366c69f53891b4'
+    oldFile: !uuid 'fb8b78828e30515b04f4bb69a212de0d48e1fe8b'
+  /Admin.NET/Admin.NET.Web.Core:
+    newFile: !uuid 'b1475d602b45d8c40b942af52542e91a3a1640a5'
+    oldFile: !uuid '33c2282d4ba89a47e62ea9c81847ec6ec8eb3a1d'
+  /Admin.NET/Admin.NET.Web.Core/Startup.cs:
+    newFile: !uuid '3fe48df7098435de913d902037cc41923c4b5f43'
+    oldFile: !uuid '432428e1664c26c88d31866dbcf748a2614d709c'
+gitCommitId: !uuid '452ac8ea4fbb0caec8040211758b2aa7705d0e4a'
 renames: {
   }
-revisionId: 1614
+revisionId: 1615
