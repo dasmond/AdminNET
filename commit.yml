@@ -2,10 +2,31 @@
 branches: {
   }
 fileChange:
-  /.gitignore:
-    newFile: !uuid '0a9dfb0120465cf16ba87a22e81208603d3d85b0'
-    oldFile: !uuid 'e81632027be1dbfefecde43be8998629b3d4c842'
-gitCommitId: !uuid '3bb7e0b5c9cbc214016086293f0961c4d0dea013'
+  /Admin.NET:
+    newFile: !uuid '211201a45c0fe5b513563b16e3d758be275c7677'
+    oldFile: !uuid '14140fcd52363a2c3b88223c9db9f7a1f6299ccb'
+  /Admin.NET/Admin.NET.Core:
+    newFile: !uuid '9d544bdab1fd9f4b518be6a680cc8671e0b69c1f'
+    oldFile: !uuid 'fd7443938fa557e24651d821c762d38249dc73eb'
+  /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
+    newFile: !uuid 'c8fac8264af2bed0b9de769372c71a2c2e4c67f1'
+    oldFile: !uuid 'd02c08a89888154d2f94882b310798e4349648c3'
+  /Admin.NET/Plugins:
+    newFile: !uuid '9f712663387c301a9296870ccbf1d4a13f21c181'
+    oldFile: !uuid '79b8ce9702ed82821b8e4f4c68094d59d570882e'
+  /Admin.NET/Plugins/Admin.NET.Plugin.GoView:
+    newFile: !uuid '5f7edcbefcb6c58f935fcc190186f76c1f031e0e'
+    oldFile: !uuid '9faea2b6c8ad9ac238fec8ce521c9a755a1954ea'
+  /Admin.NET/Plugins/Admin.NET.Plugin.GoView/Service:
+    newFile: !uuid 'be2c8860da87cc145a7abc2de828102077defc3e'
+    oldFile: !uuid '8f46545839760a169127245f2dd37fb5a5b09898'
+  /Admin.NET/Plugins/Admin.NET.Plugin.GoView/Service/GoViewSys:
+    newFile: !uuid '27ed599f153a9efda1074b80005409dcdea4b5a1'
+    oldFile: !uuid '4dd01d9c39fcca52b4f8b0571faeff62fff06234'
+  /Admin.NET/Plugins/Admin.NET.Plugin.GoView/Service/GoViewSys/GoViewSysService.cs:
+    newFile: !uuid '5bf7364df33c6e469230b0f9086133e6a02a9b56'
+    oldFile: !uuid '0d989381095c38b9fb3a57081c6895ba3f2b3ddf'
+gitCommitId: !uuid '207a962a130b930e3404123b6e5fb4c790215601'
 renames: {
   }
-revisionId: 1623
+revisionId: 1624
