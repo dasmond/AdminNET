@@ -2,70 +2,25 @@
 branches: {
   }
 fileChange:
-  /Web:
-    newFile: !uuid '0297ba2d1bef311dfeaf09bae94bc514e3b09c70'
-    oldFile: !uuid '692d87222f06d659b45caf3c060b8a4c6184b93e'
-  /Web/src:
-    newFile: !uuid '85b25eb25f2217a1ecf0a8047f1bbd20a4aff929'
-    oldFile: !uuid '676b0868671e61ffcd2b8d48aff9b07e93579b5f'
-  /Web/src/api-services:
-    newFile: !uuid '3a85553e06b57b6ccebb65072694d0a1c8f6108d'
-    oldFile: !uuid 'e2bb0100abaca74b449e68406e5cb890f0a7d958'
-  /Web/src/api-services/apis:
-    newFile: !uuid '549cfc22a3be8817518a7422828131050e1af3f9'
-    oldFile: !uuid 'bf52a314dd9a68e10b5e2d39d5cc21a8028cbd57'
-  /Web/src/api-services/apis/sys-ldap-api.ts:
-    newFile: !uuid 'e57941d038f76f249e5b911b5cd6173ce96b9432'
-    oldFile: null
-  /Web/src/api-services/models:
-    newFile: !uuid 'a5e82c5d54970d5485b7108a990dad0c97f99dc3'
-    oldFile: !uuid 'dd91a25304b2ef39a9c44634f00e117f9404b66d'
-  /Web/src/api-services/models/add-sys-ldap-input.ts:
-    newFile: !uuid 'ea7b229885ca046cc30e869c01774f70ce6650dc'
-    oldFile: null
-  /Web/src/api-services/models/admin-result-list-sys-ldap.ts:
-    newFile: !uuid '56e58ffa44992682ed1aeeb3f75b25d6c0751e71'
-    oldFile: null
-  /Web/src/api-services/models/admin-result-sql-sugar-paged-list-sys-ldap.ts:
-    newFile: !uuid '3d46fc7886867b5538537f9ee4f38f9aee1555dd'
-    oldFile: null
-  /Web/src/api-services/models/admin-result-sys-ldap.ts:
-    newFile: !uuid 'ee19594a2c63f2a7fa343fe3ec62fa4852d2016c'
-    oldFile: null
-  /Web/src/api-services/models/delete-sys-ldap-input.ts:
-    newFile: !uuid 'e3905b232ec3bccaee0b28336b42bbb7aa2b334e'
-    oldFile: null
-  /Web/src/api-services/models/http-method-enum.ts:
-    newFile: !uuid '2a0fd83d651109e6b90e9331c159c28ad7fb40b4'
-    oldFile: null
-  /Web/src/api-services/models/sql-sugar-paged-list-sys-ldap.ts:
-    newFile: !uuid '335a4888448d41ae1674c75cb49491c00d14e985'
-    oldFile: null
-  /Web/src/api-services/models/sys-ldap-input.ts:
-    newFile: !uuid '37f6871003db7dc52e8c537833269b42752251c9'
-    oldFile: null
-  /Web/src/api-services/models/sys-ldap.ts:
-    newFile: !uuid '323fe7cf5b71b5e7b36f3caa80719da7c300111b'
-    oldFile: null
-  /Web/src/api-services/models/update-sys-ldap-input.ts:
-    newFile: !uuid '5eb32b859e912fd54dc87b94cd4849138901a511'
-    oldFile: null
-  /Web/src/views:
-    newFile: !uuid 'd1c7a733f93563963488a91ec8c8e693ade1188d'
-    oldFile: !uuid 'd6296283a0faf21d25dae07f888675a088210df0'
-  /Web/src/views/system:
-    newFile: !uuid 'd7daef216be288de1f5e1530dbd00baa7a9bfb3e'
-    oldFile: !uuid '3d67667cdc35cb61893668a193a660c89fe357fa'
-  /Web/src/views/system/ldap:
-    newFile: !uuid '5e5d51fc39c5c5d946b46070bbefea900ee22b3e'
-    oldFile: !uuid '623c095afa4f5a1cc29cf5e0a87b98bd5bedf381'
-  /Web/src/views/system/ldap/component:
-    newFile: !uuid 'cf3a738511b1f8d2ca03237f7cb67bc97be69c3e'
-    oldFile: null
-  /Web/src/views/system/ldap/component/editLdap.vue:
-    newFile: !uuid 'a37b2519c94951c28e51475fc7724bdb899da9cb'
-    oldFile: null
-gitCommitId: !uuid 'd980ff5b321aabf9ae97e6df2424449e606d8f1f'
+  /Admin.NET:
+    newFile: !uuid '00a4c5b6968117b22fd3aed8aa263a0941637317'
+    oldFile: !uuid '5404ecb1e81e5752e64fc6650ef94a136264235a'
+  /Admin.NET/Admin.NET.Core:
+    newFile: !uuid '193dc01948e505934b864e2d599424ca083fee54'
+    oldFile: !uuid '2b363056a006b0c7625cdb4d6ddc0bd1f04089cd'
+  /Admin.NET/Admin.NET.Core/Service:
+    newFile: !uuid '908954ab3c539a1fda5fe3f3ed0b6382bb97eb31'
+    oldFile: !uuid 'b7b662027b83eb8e4cbfd96bdaf5b251a5218d80'
+  /Admin.NET/Admin.NET.Core/Service/Auth:
+    newFile: !uuid 'c2ca35d1ecfd178be606f5bed202ffe89c3c4283'
+    oldFile: !uuid '3cdfdcdc4ffc89125706a296e280984650e7524f'
+  /Admin.NET/Admin.NET.Core/Service/Auth/SysAuthService.cs:
+    newFile: !uuid '6c1a4183b25eed08b418bb6e8f2ad40cfbec6120'
+    oldFile: !uuid '695cc9ef16c18b45aeb3aea0a38efc7aa15e1631'
+  /Admin.NET/Admin.NET.Core/Service/Auth/SysLdapService.cs:
+    newFile: !uuid '622841323d87b872cb14303f7d519dcc28dc0a9f'
+    oldFile: !uuid '1f883edb49d9478c695704bfa60889a9663c11c2'
+gitCommitId: !uuid 'e40d0fc3f7646f67e50e4bc7b4ab41b4f3335e6f'
 renames: {
   }
-revisionId: 1678
+revisionId: 1679
