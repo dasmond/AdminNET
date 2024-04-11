@@ -3,18 +3,30 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '9b88a232220763fc9f64cfe2f54cb751589bd3ea'
-    oldFile: !uuid 'aa8105c5c246aaf5103cdf52aaa77633e84f666a'
+    newFile: !uuid '444b19309136cf27ff12301ad8aa6b66f63728c4'
+    oldFile: !uuid '9b88a232220763fc9f64cfe2f54cb751589bd3ea'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid 'a82fc7373ecd9b4ace4633d1bd83b38f18a0d1aa'
-    oldFile: !uuid '7b66802527c61356ac5cf6e21f9957e15180c470'
+    newFile: !uuid '70ede44efd77b86e01297b6c2a6c5e037f38d876'
+    oldFile: !uuid 'a82fc7373ecd9b4ace4633d1bd83b38f18a0d1aa'
+  /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
+    newFile: !uuid 'd532cff405418dfd2ade8da4121a372d12c15cbc'
+    oldFile: !uuid '8cb02cfb4d1ca67f397b9931b15d2f098f396c94'
+  /Admin.NET/Admin.NET.Core/Service:
+    newFile: !uuid '012df48ea54a9a50bbc0a6cb0233d3186dd7f8ff'
+    oldFile: !uuid '7611175d498d8040c5c06478cb58299037c42d9f'
+  /Admin.NET/Admin.NET.Core/Service/Job:
+    newFile: !uuid '2c0b1c5097bb700228cd4092fa7b6f23b5d6149b'
+    oldFile: !uuid 'e7919e45bf3e7dcc5d0fc05123e0e6b063112472'
+  /Admin.NET/Admin.NET.Core/Service/Job/SysJobService.cs:
+    newFile: !uuid '559bc06dca8dc24c9a8b03bbffdbe6cc66667737'
+    oldFile: !uuid '6813a3921df58bddf1a17097e92cb7d1f2a9dc91'
   /Admin.NET/Admin.NET.Core/SqlSugar:
-    newFile: !uuid 'd967e7375e88ede885621cbfbde3b67a1b1f9449'
-    oldFile: !uuid 'b3f5cccc09566b4c161fc87af73196ad0dd04524'
+    newFile: !uuid 'b481d0c73565c66d6023de035f36b42ecf17fb1f'
+    oldFile: !uuid 'd967e7375e88ede885621cbfbde3b67a1b1f9449'
   /Admin.NET/Admin.NET.Core/SqlSugar/SqlSugarSetup.cs:
-    newFile: !uuid '50b5684e257325a7c82bcda311237850e9f1ed4f'
-    oldFile: !uuid '83cd803e0f0c473fdf561e054e1c065ae56f023e'
-gitCommitId: !uuid 'ea223d9d4e0246d5a8e4ecb3f2d8e33baf364bd5'
+    newFile: !uuid 'fa56af1168e5effe36de6362acdfc2e586bff6ab'
+    oldFile: !uuid '50b5684e257325a7c82bcda311237850e9f1ed4f'
+gitCommitId: !uuid '0e648f765b25aed8ae15125be4ffab5c3a5aef88'
 renames: {
   }
-revisionId: 1638
+revisionId: 1639
