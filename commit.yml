@@ -3,24 +3,42 @@ branches: {
   }
 fileChange:
   /Web:
-    newFile: !uuid '0f60c62cb02e891cffb66235f489a1798dec3462'
-    oldFile: !uuid '65689111be6922a6f1ea26e71808ce1ae8b8b7c9'
+    newFile: !uuid '38246a3c0296950cedd8bfe19100d1d10d0fffb8'
+    oldFile: !uuid '0f60c62cb02e891cffb66235f489a1798dec3462'
   /Web/src:
-    newFile: !uuid '869dfe9c9babaf3e81137dac7974d807a312af05'
-    oldFile: !uuid 'ac19aac758836ad18d2ffdb968b606066fd00ed6'
+    newFile: !uuid 'aa3aef006e366b43e4ed52bf235219ab4d300dca'
+    oldFile: !uuid '869dfe9c9babaf3e81137dac7974d807a312af05'
   /Web/src/api-services:
-    newFile: !uuid '61507cdbd542b7036fd60b1d2b2078a955b9ee7a'
-    oldFile: !uuid '424dd841827cab240a55132fbdafff29173edf27'
-  /Web/src/api-services/api.ts:
-    newFile: !uuid '301c18c84382bd445e08f39ff0a0fcd72c3cca25'
-    oldFile: !uuid 'cd910e1fd97ef6f6ed1df3cf3df6b7cf5220efba'
+    newFile: !uuid '54c7127165246d550efc4adfcb1c2fe24a8d602d'
+    oldFile: !uuid '61507cdbd542b7036fd60b1d2b2078a955b9ee7a'
   /Web/src/api-services/apis:
-    newFile: !uuid '6755b4657d33ded120d04324be6c0a10e6e25194'
-    oldFile: !uuid '9b36785380110e0ac56cc4518141496eca1c3f08'
-  /Web/src/api-services/apis/sys-server-api.ts:
-    newFile: !uuid 'f5fe9b928f370d5c3d5b8dd33311b9d327bbd17f'
+    newFile: !uuid '9b49e80055fd7daaadcf8b0d571365ce69cdddf4'
+    oldFile: !uuid '6755b4657d33ded120d04324be6c0a10e6e25194'
+  /Web/src/api-services/apis/sys-code-gen-api.ts:
+    newFile: !uuid '6d39a8007c1b58e590bd3e587f5778bb9be8ae32'
+    oldFile: !uuid '3b09f2af92a74d488181aa01ac2e917a0c4e49d2'
+  /Web/src/api-services/apis/sys-database-api.ts:
+    newFile: !uuid '623e47a41fbf7719680d863d9cb09c87583bb6bd'
+    oldFile: !uuid '654c9bfce99993d677931e1e21890aeec03ab045'
+  /Web/src/api-services/apis/sys-open-access-api.ts:
+    newFile: !uuid 'b491208f8c3d6462c97f69d60b934d9d8521659f'
+    oldFile: !uuid '1f6778bc36ac13b1f105e4687480d6818e42ea64'
+  /Web/src/api-services/models:
+    newFile: !uuid '45ff12b0165113ac1ee96ed0a0660a55bf3b5ad5'
+    oldFile: !uuid '19a692b98b08ede649b6daadf436fa3529279fad'
+  /Web/src/api-services/models/admin-result-list-database-output.ts:
+    newFile: !uuid 'dae36cb368d5e96e351419b083f4933e11563b74'
     oldFile: null
-gitCommitId: !uuid '42fcb8614461e56ada9ecc74c7d4549dd4f2dbf9'
+  /Web/src/api-services/models/database-output.ts:
+    newFile: !uuid '2723ce40d908430a80be1b67099625c183a69996'
+    oldFile: null
+  /Web/src/api-services/models/http-method-enum.ts:
+    newFile: !uuid 'a1cff7379fa25ce8986ef60d3939b896291e0010'
+    oldFile: null
+  /Web/src/api-services/models/index.ts:
+    newFile: !uuid 'f03c8923bac6607c1c62ce0153a173ca923cbaeb'
+    oldFile: !uuid 'e5d0ebd07e199dc9811deb41d4df8ee4038a23ed'
+gitCommitId: !uuid '7080c34fe5afb87fe32a2ada4039935be668cd7c'
 renames: {
   }
-revisionId: 1650
+revisionId: 1651
