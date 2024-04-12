@@ -2,43 +2,46 @@
 branches: {
   }
 fileChange:
-  /Web:
-    newFile: !uuid '38246a3c0296950cedd8bfe19100d1d10d0fffb8'
-    oldFile: !uuid '0f60c62cb02e891cffb66235f489a1798dec3462'
-  /Web/src:
-    newFile: !uuid 'aa3aef006e366b43e4ed52bf235219ab4d300dca'
-    oldFile: !uuid '869dfe9c9babaf3e81137dac7974d807a312af05'
-  /Web/src/api-services:
-    newFile: !uuid '54c7127165246d550efc4adfcb1c2fe24a8d602d'
-    oldFile: !uuid '61507cdbd542b7036fd60b1d2b2078a955b9ee7a'
-  /Web/src/api-services/apis:
-    newFile: !uuid '9b49e80055fd7daaadcf8b0d571365ce69cdddf4'
-    oldFile: !uuid '6755b4657d33ded120d04324be6c0a10e6e25194'
-  /Web/src/api-services/apis/sys-code-gen-api.ts:
-    newFile: !uuid '6d39a8007c1b58e590bd3e587f5778bb9be8ae32'
-    oldFile: !uuid '3b09f2af92a74d488181aa01ac2e917a0c4e49d2'
-  /Web/src/api-services/apis/sys-database-api.ts:
-    newFile: !uuid '623e47a41fbf7719680d863d9cb09c87583bb6bd'
-    oldFile: !uuid '654c9bfce99993d677931e1e21890aeec03ab045'
-  /Web/src/api-services/apis/sys-open-access-api.ts:
-    newFile: !uuid 'b491208f8c3d6462c97f69d60b934d9d8521659f'
-    oldFile: !uuid '1f6778bc36ac13b1f105e4687480d6818e42ea64'
-  /Web/src/api-services/models:
-    newFile: !uuid '45ff12b0165113ac1ee96ed0a0660a55bf3b5ad5'
-    oldFile: !uuid '19a692b98b08ede649b6daadf436fa3529279fad'
-  /Web/src/api-services/models/admin-result-list-database-output.ts:
-    newFile: !uuid 'dae36cb368d5e96e351419b083f4933e11563b74'
-    oldFile: null
-  /Web/src/api-services/models/database-output.ts:
-    newFile: !uuid '2723ce40d908430a80be1b67099625c183a69996'
-    oldFile: null
-  /Web/src/api-services/models/http-method-enum.ts:
-    newFile: !uuid 'a1cff7379fa25ce8986ef60d3939b896291e0010'
-    oldFile: null
-  /Web/src/api-services/models/index.ts:
-    newFile: !uuid 'f03c8923bac6607c1c62ce0153a173ca923cbaeb'
-    oldFile: !uuid 'e5d0ebd07e199dc9811deb41d4df8ee4038a23ed'
-gitCommitId: !uuid '7080c34fe5afb87fe32a2ada4039935be668cd7c'
+  /Admin.NET:
+    newFile: !uuid '8a98538fac9eda2424614d00f206e9ea337e1771'
+    oldFile: !uuid '618b59cbb8605bb9ed726b46132497a56fbf23a3'
+  /Admin.NET/Admin.NET.Core:
+    newFile: !uuid '86ba03745e0b2cb46c6341275d08850f43ceebbc'
+    oldFile: !uuid '24ec3225eae2d730ccb53e6299c29cfe989fd8e8'
+  /Admin.NET/Admin.NET.Core/Logging:
+    newFile: !uuid '83555d95698df170db79ea9f0669b31ca4b0da76'
+    oldFile: !uuid '9b8afbfe4a2e77885197e4b2fbeb2b2097b55265'
+  /Admin.NET/Admin.NET.Core/Logging/DatabaseLoggingWriter.cs:
+    newFile: !uuid '522a53111061bd02f4beff998f4a9eb70f91d855'
+    oldFile: !uuid '458db98d79f3877db8451706d742c272db3fc6a4'
+  /Admin.NET/Admin.NET.Core/Service:
+    newFile: !uuid '544954a99ee21ad16e462e28598a81b913b6579f'
+    oldFile: !uuid 'e14df9f61b0a984f80ad19dbc35b5778d200496f'
+  /Admin.NET/Admin.NET.Core/Service/CodeGen:
+    newFile: !uuid '86eb164580e6a83c5c0f6cafac8f028c4ce1dfbe'
+    oldFile: !uuid '4ee212730a5931da8790a71b80af19b8d43ff930'
+  /Admin.NET/Admin.NET.Core/Service/CodeGen/SysCodeGenService.cs:
+    newFile: !uuid '267ea0914c5d9c2e4f399f471c083e445560c8f2'
+    oldFile: !uuid 'be01377007c1b4168cadc4944dac5784a4ae636b'
+  /Admin.NET/Admin.NET.Core/Service/DataBase:
+    newFile: !uuid 'a62bc8fd198ee70dc149d2f65304c3e990371289'
+    oldFile: !uuid 'eeb8996bb4e6449da63b7f362e25077b36c8c342'
+  /Admin.NET/Admin.NET.Core/Service/DataBase/SysDatabaseService.cs:
+    newFile: !uuid 'e5a3b47f1c419bfdc58131d27c36ce12676a7cd1'
+    oldFile: !uuid '9020f61cf7771a48d73ea2cc7349a0278446b111'
+  /Admin.NET/Admin.NET.Core/Service/OpenAccess:
+    newFile: !uuid '08c15a38efa83abe78a9e74b189166e90cf9ed53'
+    oldFile: !uuid 'd186efd17e597222f47032fd2dd9359f36ea6a36'
+  /Admin.NET/Admin.NET.Core/Service/OpenAccess/SysOpenAccessService.cs:
+    newFile: !uuid 'e29a61ce704467f21c6ef5030bf7e6b880121084'
+    oldFile: !uuid '4f975599bd9edda2752d2ab50f8a352a7cff3d03'
+  /Admin.NET/Admin.NET.Core/Service/Server:
+    newFile: !uuid '5d649f0a7a063f483a4cd29c695d291c5ade2373'
+    oldFile: !uuid '95b6b66e3160f92262e6deaf08d2a9a92d75aecd'
+  /Admin.NET/Admin.NET.Core/Service/Server/SysServerService.cs:
+    newFile: !uuid '98490e0f1295e76f459f91d8d457bf136213e890'
+    oldFile: !uuid '0d0160d60c0567242b666583685d1ad0486882e1'
+gitCommitId: !uuid '6a5468765a514de5386df66a9a245375d2e1f34e'
 renames: {
   }
-revisionId: 1694
+revisionId: 1695
