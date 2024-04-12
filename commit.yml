@@ -2,55 +2,73 @@
 branches: {
   }
 fileChange:
-  /Web:
-    newFile: !uuid '258dadc106b0463cb16ab307b2d187540d08a589'
-    oldFile: !uuid '5018815a8cbd2989475b8efc80d5901a38cb402b'
-  /Web/README.md:
-    newFile: !uuid 'ca551caf25a020944bedb56e565a2b6119a1cd47'
-    oldFile: !uuid 'c61369c7fe26b46565efbc6b950a1e691091598f'
-  /Web/package.json:
-    newFile: !uuid 'd9fc77927ea07eab743ff913b304cf9535a0bb28'
-    oldFile: !uuid '7fd1e44472aac423fdc605117cb2b241f8e3815b'
-  /Web/src:
-    newFile: !uuid '6d1fe80bf2c0da847c0c05debf30e18ab87157c8'
-    oldFile: !uuid '40b50b320dab2c6ade99a572f42ac23af1b5a0e2'
-  /Web/src/App.vue:
-    newFile: !uuid '8868a2dbccc46837490c1f05691340b6502f4d27'
-    oldFile: !uuid 'ef42a854da9c2d4be23bac65486469e9d5f10af6'
-  /Web/src/layout:
-    newFile: !uuid '4278667460efaa1b1b405d8f0042722f9c8bd3aa'
-    oldFile: !uuid 'b3785f987eb88593045c556410377cbb3b387dd3'
-  /Web/src/layout/footer:
-    newFile: !uuid '8bc72aaa88594ddbcd7b22e92971d0c9c5ede4ce'
-    oldFile: !uuid 'e3808efde000898f5808ab071b358142de13d1b8'
-  /Web/src/layout/footer/index.vue:
-    newFile: !uuid 'e7943f71965caca48a182c79e5e3db1b7207c783'
-    oldFile: !uuid '128fcfbc7fadb0af72d55cd093e9ca048825c5dd'
-  /Web/src/layout/index.vue:
-    newFile: !uuid '2e1abd4dd919eb7c0807bc910aa840950de240be'
-    oldFile: !uuid '7c09f17695f67340c8bfe8adb36f51e100e124ab'
-  /Web/src/layout/navBars:
-    newFile: !uuid 'b184713ddd6dce8673d9a92a7773532c28e8ff0e'
-    oldFile: !uuid 'b713d871f71b8f1725bfabdbbdefe5943359d341'
-  /Web/src/layout/navBars/topBar:
-    newFile: !uuid '1bba5382a2b47b59bbdf16477fb7b987d49a9d4e'
-    oldFile: !uuid 'daf5cecf813ad6c7a5e11599966f1f3cd5742b59'
-  /Web/src/layout/navBars/topBar/user.vue:
-    newFile: !uuid '3c5bf619676800af3ed07c8b4b620ce2295afa79'
-    oldFile: !uuid '5c415b85b45d7d5b9519d6b9cb36ad6660e4c5a7'
-  /Web/src/layout/upgrade:
-    newFile: !uuid '421262cce62b3b76741cc09d5c6e5dc57c26cff8'
-    oldFile: !uuid '1b819d3764e1c969a4603d93897a3485175fa2d7'
-  /Web/src/layout/upgrade/index.vue:
-    newFile: !uuid '79574a2addb4b8733286f232ac345dc98c1fa247'
-    oldFile: !uuid '507508a1e3a0ad7ddd91fdd4061facaf4b44591c'
-  /Web/src/stores:
-    newFile: !uuid '2202be215dba22d42b0f056203cba4cadfe43685'
-    oldFile: !uuid '52f22623e7959590d8f44dd3dbf77624e93797b9'
-  /Web/src/stores/themeConfig.ts:
-    newFile: !uuid '640b75d4aec31898f3fbfe9c22cf55175fa25289'
-    oldFile: !uuid '880a1e186c5d8243d28b47367528ed2a095f780b'
-gitCommitId: !uuid 'ee9794fa526119722ccf2c91ce774d66f826e9e0'
+  /Admin.NET:
+    newFile: !uuid '74cb7e7518e14ac8e00b7854b45b1ab0b233d3d7'
+    oldFile: !uuid 'f6a89bb2874c859741d2e6aac030c17f50d7d290'
+  /Admin.NET/Admin.NET.Core:
+    newFile: !uuid '408038b808c2386f9163b2169150a42675f8cd2d'
+    oldFile: !uuid '31258674c7aaaddff5a3f826513ff2931c9e7ca9'
+  /Admin.NET/Admin.NET.Core/Attribute:
+    newFile: !uuid '51a7e4cdcd0372770f9b868c1813f98979acc3b3'
+    oldFile: !uuid '0c5b2f3c4092d3444614e5be2144456bcd5113a9'
+  /Admin.NET/Admin.NET.Core/Attribute/IdempotentAttribute.cs:
+    newFile: !uuid 'fea2b54ced6c928a1da1f7a796faa9d442c12a21'
+    oldFile: !uuid 'b588584f789594252c76f74cd121ff4544cee672'
+  /Admin.NET/Admin.NET.Core/Cache:
+    newFile: !uuid 'a14b3f5d361cb3749d3d98df03a7f02e088c8596'
+    oldFile: !uuid '17542149f6497b039e6660dd70921f9e48520557'
+  /Admin.NET/Admin.NET.Core/Cache/SqlSugarCache.cs:
+    newFile: !uuid 'b89771c4cf18b7700313d3d366eaed6ec3cef277'
+    oldFile: !uuid '6e6a3d4c7c64a396355e77ea4370a350a2ff0011'
+  /Admin.NET/Admin.NET.Core/EventBus:
+    newFile: !uuid '975bfbf37428dcec8839777d6cdf6999a925f52c'
+    oldFile: !uuid '9d267d4bf2144644dd6a0358c7c77cbffac43fd0'
+  /Admin.NET/Admin.NET.Core/EventBus/RedisQueue.cs:
+    newFile: !uuid '2c054f29a7c9f31311a93fb6fe76ed11151afa33'
+    oldFile: !uuid 'c34ed370f00702c4dd76c051ad8dccb626946bf0'
+  /Admin.NET/Admin.NET.Core/Service:
+    newFile: !uuid 'e97dbdb8f70f7d9a071ff829c2d6441d2054bb64'
+    oldFile: !uuid '59a790ecbdb5c60617b9541c59c520a1c679994b'
+  /Admin.NET/Admin.NET.Core/Service/Job:
+    newFile: !uuid '507f02a7f430e0c74a5ff5bc2d4d6ef7c314ce8b'
+    oldFile: !uuid '2c0b1c5097bb700228cd4092fa7b6f23b5d6149b'
+  /Admin.NET/Admin.NET.Core/Service/Job/JobClusterServer.cs:
+    newFile: !uuid '25d392841dd6df17e0da0854067aac9642b8e495'
+    oldFile: !uuid 'ccdca9df53407189a87162b90dfbe007ff842b42'
+  /Admin.NET/Admin.NET.Core/Service/User:
+    newFile: !uuid '77d1472fbf1dd47cb867133254038d9332f420f5'
+    oldFile: !uuid 'e0b002cc13e96db8c01a28fe3eaf39d4fe591950'
+  /Admin.NET/Admin.NET.Core/Service/User/SysUserService.cs:
+    newFile: !uuid 'a6038f9d998aac4bf5776d166beb76a44c050086'
+    oldFile: !uuid '80508fdc9dbd7f40eb7a7f4765b4efd8a11aa91c'
+  /Admin.NET/Admin.NET.Core/SqlSugar:
+    newFile: !uuid '8e257a82e570766a92407b37f4fb10944b5e1d9f'
+    oldFile: !uuid '92c047b47e3b578204e274da64fe931fadf821d8'
+  /Admin.NET/Admin.NET.Core/SqlSugar/SqlSugarFilter.cs:
+    newFile: !uuid 'b7d05fad765fa81e826eb2b14ed829965b39a934'
+    oldFile: !uuid '763f6fe673d0f771fbeeb706fc7b74f3af3d4808'
+  /Admin.NET/Admin.NET.Web.Core:
+    newFile: !uuid '38df590b79bd6217705faa311117ade8a689a1e5'
+    oldFile: !uuid '6d13e5c40f8ff7cd31412c1cda7c5d629fe228b9'
+  /Admin.NET/Admin.NET.Web.Core/Handlers:
+    newFile: !uuid 'e5daba71a7b8dacd8ea193e54bb606aae2c912ae'
+    oldFile: !uuid 'f3cbcda890e5f1dead9a0c4f40bc6f0d550fde41'
+  /Admin.NET/Admin.NET.Web.Core/Handlers/JwtHandler.cs:
+    newFile: !uuid 'a86b73be2993a71325d4cb74b7b819578046c8b6'
+    oldFile: !uuid 'd7312ddd7e1eb5df5354e88bd71a31e1e4779fb4'
+  /Admin.NET/Admin.NET.Web.Entry:
+    newFile: !uuid 'f7362481948f589bea01b997935d68f90f861e7d'
+    oldFile: !uuid 'c8fe83591fdf42ce3b0911dca7c3661e32aaa389'
+  /Admin.NET/Admin.NET.Web.Entry/wwwroot:
+    newFile: !uuid '8d83e3702c59e6feb6c40cc88853d1691f6216d8'
+    oldFile: !uuid '9470f084ea7a8af3f6c55591f47162eec21507b8'
+  /Admin.NET/Admin.NET.Web.Entry/wwwroot/Template:
+    newFile: !uuid '40fc0803062cdada0ec5c3b650932a3142811cac'
+    oldFile: !uuid '6e37f06c8ea29ac4eff6368c36f970ffc981c1fe'
+  /Admin.NET/Admin.NET.Web.Entry/wwwroot/Template/Service.cs.vm:
+    newFile: !uuid '0c013b0643da6e11229d3f50914b7fccbc1b94c0'
+    oldFile: !uuid '9d28ffcabd2bca32b3be9b36e953a02d7ad2b245'
+gitCommitId: !uuid '13acdd68f36383306b65953f3447c90745d805cf'
 renames: {
   }
-revisionId: 1688
+revisionId: 1689
