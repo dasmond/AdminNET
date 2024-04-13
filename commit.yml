@@ -3,27 +3,111 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '375157e7f03c587808b7b4752f690612a45a1855'
-    oldFile: !uuid 'af05db263f3510af51b47f73bd30dea834f10683'
+    newFile: !uuid '912dcb545bf7e947410c02c5ddc5783f082cbc79'
+    oldFile: !uuid '375157e7f03c587808b7b4752f690612a45a1855'
+  /Admin.NET/Admin.NET.Application:
+    newFile: !uuid 'df2f4ecf35a2f997140e11077f4feea9f5ee7613'
+    oldFile: !uuid '3b7ad96ec3df69465dcf5ba13ab7c12677f85f9a'
+  /Admin.NET/Admin.NET.Application/Configuration:
+    newFile: !uuid 'b69fc2e472a849517e98a70f675dced2b7e5209f'
+    oldFile: !uuid '8d284921013b37aef7973cde4da649e20cde09a5'
+  /Admin.NET/Admin.NET.Application/Configuration/DingTalk.json:
+    newFile: !uuid '5e9ee028a328ff9cc950f4ee9ab17e64dc10b90e'
+    oldFile: null
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid 'e991749172e98b4895e5066b7b7b306c2ddd1d53'
-    oldFile: !uuid '05c0890f7c913a542768dbfb75c459dd69a1ee0f'
-  /Admin.NET/Admin.NET.Core/Job:
-    newFile: !uuid '020e7d1a55a40875954cf4f2fe1f3e27954236b7'
-    oldFile: !uuid 'b2898a2baff6af62ada93eb2abe9306f35a38ef6'
-  /Admin.NET/Admin.NET.Core/Job/LogJob.cs:
-    newFile: !uuid 'a139f2b00a1be39d7092975bddb16ee6ba90ad14'
-    oldFile: !uuid 'c54d152f3dcb5321e12ebff479a846fa2a5126bd'
-  /Admin.NET/Admin.NET.Core/Job/OnlineUserJob.cs:
-    newFile: !uuid '2c48a30c2f0dc9187197ee9801b34afbc941e988'
-    oldFile: !uuid '0ba01e81503582a3ff8d735d1bf40180808c9ed0'
-  /Admin.NET/Admin.NET.Core/Logging:
-    newFile: !uuid 'becdfc258225af699d5d0d4e2249929dce86271a'
-    oldFile: !uuid '83555d95698df170db79ea9f0669b31ca4b0da76'
-  /Admin.NET/Admin.NET.Core/Logging/DatabaseLoggingWriter.cs:
-    newFile: !uuid '6f93334ecb8954d92e3b4e15c983f0801f546d86'
-    oldFile: !uuid '522a53111061bd02f4beff998f4a9eb70f91d855'
-gitCommitId: !uuid '760f8aed1be2859a8892cecc0595ec97cd3fe513'
+    newFile: !uuid '7b7b0c43c2691a560c1efcd6637d5be2f1b7e974'
+    oldFile: !uuid 'e991749172e98b4895e5066b7b7b306c2ddd1d53'
+  /Admin.NET/Admin.NET.Core/Const:
+    newFile: !uuid 'd3ec8ace296202955123bdefa5cc977f0e34b110'
+    oldFile: !uuid 'dc71b19ed8e25136c64f585a0cbdbd3d3a94ca7c'
+  /Admin.NET/Admin.NET.Core/Const/DingTalkFieldConst.cs:
+    newFile: !uuid '195e83d8f7db861f0b639556be19038851113d5f'
+    oldFile: null
+  /Admin.NET/Admin.NET.Core/Const/SqlSugarConst.cs:
+    newFile: !uuid '55e8e0429ebbb9c9e381e20facf99865ebe75b34'
+    oldFile: !uuid '897c0c7387c03819c4f54c642dc5209714fea7df'
+  /Admin.NET/Admin.NET.Core/DingTalk:
+    newFile: !uuid 'baffb309e0bf18dd9f6ebf2e359020a0bd0e7519'
+    oldFile: null
+  /Admin.NET/Admin.NET.Core/DingTalk/DingTalkService.cs:
+    newFile: !uuid 'e24aa4ae2e535e436ed863ec7418a3fd04e56619'
+    oldFile: null
+  /Admin.NET/Admin.NET.Core/Entity:
+    newFile: !uuid 'ade53738362d519fa2bbf75468de2961ea4cf6a1'
+    oldFile: !uuid '330bfcc02f0d78c83b7e4bede19013f8fa5d43d4'
+  /Admin.NET/Admin.NET.Core/Entity/SysDingTalkUser.cs:
+    newFile: !uuid 'a5a7b8cf0a1408214cabd1cc8e1ec7de86c4e283'
+    oldFile: null
+  /Admin.NET/Admin.NET.Core/GlobalUsings.cs:
+    newFile: !uuid '5df7aa6f24d082c5838c05b458416caabe5a4eba'
+    oldFile: !uuid 'b5cf2c5d3422fb238aabfd30dfd27d3c83f89b4f'
+  /Admin.NET/Admin.NET.Core/Integrations:
+    newFile: !uuid 'b7649edaa0fb690d43d716a94f7ef5e8bc030711'
+    oldFile: null
+  /Admin.NET/Admin.NET.Core/Integrations/DingTalk:
+    newFile: !uuid 'c70c4c41ecf9af820c30a1f695f390fd9bb53f8e'
+    oldFile: null
+  /Admin.NET/Admin.NET.Core/Integrations/DingTalk/Dto:
+    newFile: !uuid '6974c354ae852dc462e08e67ed74467c5df057c2'
+    oldFile: null
+  /Admin.NET/Admin.NET.Core/Integrations/DingTalk/Dto/DingTalkBaseResponse.cs:
+    newFile: !uuid '1cab83b9cf140e60554ca63b4cee5f2d4b3e4a6d'
+    oldFile: null
+  /Admin.NET/Admin.NET.Core/Integrations/DingTalk/Dto/DingTalkCardData.cs:
+    newFile: !uuid '76a0236c8ece57af679a178cb80ec6b75e1f73b5'
+    oldFile: null
+  /Admin.NET/Admin.NET.Core/Integrations/DingTalk/Dto/DingTalkConversationTypeEnum.cs:
+    newFile: !uuid 'd7445da236b973b5cb6e1a2ab9848dc7d1966055'
+    oldFile: null
+  /Admin.NET/Admin.NET.Core/Integrations/DingTalk/Dto/DingTalkEmpFieldDataVo.cs:
+    newFile: !uuid '8010989bc92a5a7cae8a8b3f07a627c9378f1ee0'
+    oldFile: null
+  /Admin.NET/Admin.NET.Core/Integrations/DingTalk/Dto/DingTalkEmpRosterFieldVo.cs:
+    newFile: !uuid 'da089e2134640c53961d8b6c5035f81d42586ce6'
+    oldFile: null
+  /Admin.NET/Admin.NET.Core/Integrations/DingTalk/Dto/DingTalkFieldValueVo.cs:
+    newFile: !uuid '8306bd1cbc8d71a065f748097e1d2f4f1da74df2'
+    oldFile: null
+  /Admin.NET/Admin.NET.Core/Integrations/DingTalk/Dto/DingTalkSendInteractiveCardsInput.cs:
+    newFile: !uuid 'fc2ff6063d6fc24ba5cab7e8cb9f24f6f42dce3b'
+    oldFile: null
+  /Admin.NET/Admin.NET.Core/Integrations/DingTalk/Dto/DingTalkSendInteractiveCardsOutput.cs:
+    newFile: !uuid '9d0cec5f8758b51054e5455ad63d090b22fcba08'
+    oldFile: null
+  /Admin.NET/Admin.NET.Core/Integrations/DingTalk/Dto/DingTalkSendInteractiveCardsResult.cs:
+    newFile: !uuid 'e694578f344ec3cfdd9950f6a87f203dd8ec7ee6'
+    oldFile: null
+  /Admin.NET/Admin.NET.Core/Integrations/DingTalk/Dto/GetDingTalkCurrentEmployeesListInput.cs:
+    newFile: !uuid 'cbf3a6edda68b9fef03f6d3539083c31395b90fd'
+    oldFile: null
+  /Admin.NET/Admin.NET.Core/Integrations/DingTalk/Dto/GetDingTalkCurrentEmployeesListOutput.cs:
+    newFile: !uuid '18823838918e4ed2d9a289de8489c8ac2b2f2067'
+    oldFile: null
+  /Admin.NET/Admin.NET.Core/Integrations/DingTalk/Dto/GetDingTalkCurrentEmployeesRosterListInput.cs:
+    newFile: !uuid '2d0e93c7d697bae9ea5e5d9cbfd2c2645882586e'
+    oldFile: null
+  /Admin.NET/Admin.NET.Core/Integrations/DingTalk/Dto/GetDingTalkToken.cs:
+    newFile: !uuid 'dbcfe7aa49f788167f0fe59d1c376fd020d7dbd1'
+    oldFile: null
+  /Admin.NET/Admin.NET.Core/Integrations/DingTalk/IDingTalkApi.cs:
+    newFile: !uuid 'a01bbfe5b1d6f6a5a2444bbc5788ff22d5bee6e5'
+    oldFile: null
+  /Admin.NET/Admin.NET.Core/Option:
+    newFile: !uuid '50a61e41c20abbff4f0732475c4d46d07a1d8b4b'
+    oldFile: !uuid 'd51c0829067ab8ef39ab06afbd2c50c30c300343'
+  /Admin.NET/Admin.NET.Core/Option/DingTalkOptions.cs:
+    newFile: !uuid '3c918c96666c77c304ddab4e11a98593233af20e'
+    oldFile: null
+  /Admin.NET/Admin.NET.Core/Option/EmailOptions.cs:
+    newFile: !uuid '07db83a191740198f98339274b81769b4f85e70c'
+    oldFile: !uuid 'bdf8b335356e01b1b82fc11bf0fdb935ed916cd7'
+  /Admin.NET/Admin.NET.Web.Core:
+    newFile: !uuid 'fbad6d9313713ca8d911de0d9771762c44c40457'
+    oldFile: !uuid '2af98cf5ea29865b5e7119f92213edfdf28fb3ef'
+  /Admin.NET/Admin.NET.Web.Core/ProjectOptions.cs:
+    newFile: !uuid '8be17382ebc753738a998b448927d78a03bbcb79'
+    oldFile: !uuid '549d2dadbac9461644d0b0f40f72b3fbfb930aa6'
+gitCommitId: !uuid '6a34ccb95dd6c9b18f1f1716d126b4563a11e448'
 renames: {
   }
-revisionId: 1706
+revisionId: 1707
