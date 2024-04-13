@@ -3,24 +3,24 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '9a6fd4757d4fe362359685ed232cfb33ca431f09'
-    oldFile: !uuid '970e5ab7030668653cf4a6c03fa3e677b02a7a61'
-  /Admin.NET/Admin.NET.Application:
-    newFile: !uuid '3b7ad96ec3df69465dcf5ba13ab7c12677f85f9a'
-    oldFile: !uuid 'bce4bd55deced87b30dea5961469c241cc407ee5'
-  /Admin.NET/Admin.NET.Application/Configuration:
-    newFile: !uuid '8d284921013b37aef7973cde4da649e20cde09a5'
-    oldFile: !uuid 'f5093262a0dc803ca198ded10b7769770476abc9'
-  /Admin.NET/Admin.NET.Application/Configuration/Swagger.json:
-    newFile: !uuid '05683fe3e24ed441b6ae18f3cba9ad29767d9977'
-    oldFile: !uuid 'e72ff4b6378b09b6d1b65bea0d190b272db327d3'
+    newFile: !uuid '9bf510179d9bb04560c55984ec4a6552f9f71b03'
+    oldFile: !uuid '9a6fd4757d4fe362359685ed232cfb33ca431f09'
   /Admin.NET/Admin.NET.Web.Core:
-    newFile: !uuid '8f7725cf441d8f858e114a576879ff6db1b1c6da'
-    oldFile: !uuid 'f2454eaa3f1f1c64a373d946e4d7ecaf3ebb8b19'
+    newFile: !uuid '2af98cf5ea29865b5e7119f92213edfdf28fb3ef'
+    oldFile: !uuid '8f7725cf441d8f858e114a576879ff6db1b1c6da'
   /Admin.NET/Admin.NET.Web.Core/Startup.cs:
-    newFile: !uuid 'f868454b3340ebe7555de9afcc05640c8bd1f197'
-    oldFile: !uuid '267b96e4e1a219587961ade1051d11c5cfd0f16a'
-gitCommitId: !uuid 'f48c601c9bca04d761842d9ab61c5870e57f0d94'
+    newFile: !uuid 'e8800af46e4ed655c232660dc5551c06d13e7fa0'
+    oldFile: !uuid 'f868454b3340ebe7555de9afcc05640c8bd1f197'
+  /Admin.NET/Plugins:
+    newFile: !uuid 'c2e46364fa2c302e731253547d4ff6713511e7f5'
+    oldFile: !uuid 'd034f9f3bcb2805f25c2113aaff6fd85c7b8afbc'
+  /Admin.NET/Plugins/Admin.NET.Plugin.GoView:
+    newFile: !uuid 'c9150359ee2b2835c3a4e0f456c79ebdfbd44ba5'
+    oldFile: !uuid 'a6e55fb1e9eae96752225effa3bbcddc2be065e5'
+  /Admin.NET/Plugins/Admin.NET.Plugin.GoView/GoView.json:
+    newFile: !uuid '42d95f69a40281aee90ed9108111a7326cdfcb9d'
+    oldFile: !uuid '4bc3aa66aced566883e9a5607be9355de268db01'
+gitCommitId: !uuid 'f5987ac8748798cc7c41565c27d16f5f49ddba4b'
 renames: {
   }
-revisionId: 1698
+revisionId: 1699
