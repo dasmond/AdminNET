@@ -2,19 +2,28 @@
 branches: {
   }
 fileChange:
-  /Admin.NET:
-    newFile: !uuid '91f3c6c9724ac9273c9b93e5a184929de129242f'
-    oldFile: !uuid '7f8c1216db31cd90480c3a32b286c5491f1dbe1a'
-  /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '94dc66ff0cb01b96520692bf192159be9536a065'
-    oldFile: !uuid 'ade3983126864de57d550b7a9bc7c8f0ef8fe58f'
-  /Admin.NET/Admin.NET.Core/Entity:
-    newFile: !uuid '681fdcbb4c976c0ec28f9b1f4d3dd0c504de618b'
-    oldFile: !uuid '78fdf3a29634eed023c261774b4f8aacd0716b3d'
-  /Admin.NET/Admin.NET.Core/Entity/EntityBase.cs:
-    newFile: !uuid '4aef2da218e8f07d97e74fb6c73e66487326eaca'
-    oldFile: !uuid '2a8b82d4fbf1c5621155f50cd809d01e6284fd8c'
-gitCommitId: !uuid '779c48a4e82d18dfe0ce25f7342e1ee1dea46ca0'
+  /Web:
+    newFile: !uuid 'ae7d3e6beb2b43d63551edfd8e337af90801ddbb'
+    oldFile: !uuid '910cdf3284d2a79686087e047ba439333d6386cb'
+  /Web/src:
+    newFile: !uuid 'd98d1c81c60c5389b5c6676769e18a41d6705793'
+    oldFile: !uuid '681f4d44a41afe7e333e18b7806995c90cac4e9f'
+  /Web/src/assets:
+    newFile: !uuid '6d6ca4898c4202256cd9608fb6880de304510990'
+    oldFile: !uuid '4154438c6f113b513ef8837a83bb11b2f8640a43'
+  /Web/src/assets/login-icon-two1.svg:
+    newFile: !uuid '85bbac4f2580e2d2a5760017d20abf80594fbb4d'
+    oldFile: !uuid '150850a85d27f0ce69e95dbf00ff2e3c44bc4d69'
+  /Web/src/views:
+    newFile: !uuid '0da7609d0f9fc6729e00534b87a7b0860f50dcb3'
+    oldFile: !uuid 'a54069d9d88108925da56cd92686f1d11e879475'
+  /Web/src/views/login:
+    newFile: !uuid '785f48999b5c5bd20476f86d114f617718124083'
+    oldFile: !uuid '70961b1b178d2304a2489223e169c9452d8d48a4'
+  /Web/src/views/login/index.vue:
+    newFile: !uuid 'ec2f02986cfcfbe7d78d1d956237ed6630180699'
+    oldFile: !uuid '0b17b69af1c1def7b5aea6aa4488c20dbb9ee3f1'
+gitCommitId: !uuid '9cecf55e2c50819e4d3f92ff669151dec0f278f3'
 renames: {
   }
-revisionId: 1722
+revisionId: 1723
