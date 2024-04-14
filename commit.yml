@@ -3,126 +3,30 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '8333a422862c5688f7e6dec2518ce9206f709564'
-    oldFile: !uuid '153eb46891c46ff516bb3a310c8a1a1a1b7c8ffb'
-  /Admin.NET/Admin.NET.Application:
-    newFile: !uuid '3db5e1320b3c4ba5be1dda2334478849793113e8'
-    oldFile: !uuid 'b28601485b60730f16e682ff18d9ab0cd1ba8406'
-  /Admin.NET/Admin.NET.Application/Const:
-    newFile: !uuid 'ce7f27168fe8a75afd3812509d905a8be0c637f2'
-    oldFile: !uuid 'cd7f500a3659a8f51bba058697c839e4cc32b6d7'
-  /Admin.NET/Admin.NET.Application/Const/ApplicationConst.cs:
-    newFile: !uuid 'd6a3ae0dbd30f6b9a0e41ae84f28be8376833d74'
-    oldFile: !uuid '74b857d731604f1ab810e1ccf639db4ac39c26c1'
+    newFile: !uuid '496bb9034d8ed167585ac5cc8ed5ef115787d493'
+    oldFile: !uuid '8333a422862c5688f7e6dec2518ce9206f709564'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '58b787a723ec6ad5a8424780dfdfc94389aad368'
-    oldFile: !uuid '0053e5f86557e765ca13f5e7baa61da4c000ebaf'
-  /Admin.NET/Admin.NET.Core/Option:
-    newFile: !uuid 'd51c0829067ab8ef39ab06afbd2c50c30c300343'
-    oldFile: !uuid '5f73735f3ac70fa663cb1b88c359a0dfd0172e03'
-  /Admin.NET/Admin.NET.Core/Option/EmailOptions.cs:
-    newFile: !uuid 'bdf8b335356e01b1b82fc11bf0fdb935ed916cd7'
-    oldFile: !uuid '07db83a191740198f98339274b81769b4f85e70c'
+    newFile: !uuid 'a5bf41b5b51736b3244133b8937022b39514586d'
+    oldFile: !uuid '58b787a723ec6ad5a8424780dfdfc94389aad368'
+  /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
+    newFile: !uuid '0b9d9221799544b8e8a163b4d56d448df8c6dfbb'
+    oldFile: !uuid '2be5b27e2d46818d1aa7ae06eb6fb93332864ac7'
   /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid '4bfe8d4cf3ce681c7f2ed4505d05ff744536d4e6'
-    oldFile: !uuid '1fc5076b6ce8be82731f46dee8b159569ad1a80e'
-  /Admin.NET/Admin.NET.Core/Service/Wechat:
-    newFile: !uuid 'f02e19c1cee2648bc12ac1ba27c7c6c4fa51cad6'
-    oldFile: !uuid '3f28d2871327fc7cadc316c3a0573f9206ae3b09'
-  /Admin.NET/Admin.NET.Core/Service/Wechat/Dto:
-    newFile: !uuid '888ec33f4e7a1e4cb62912b4e6d181dcbc14270f'
-    oldFile: !uuid '8adb36c04b585b01cb341082c7d02021a40e73ad'
-  /Admin.NET/Admin.NET.Core/Service/Wechat/Dto/WechatInput.cs:
-    newFile: !uuid 'd90e87bebeca2bf250f49a955a6a251ba92362c1'
-    oldFile: !uuid 'b5ede84445c4ef3da65cef8a86d8138c172a9124'
-  /Admin.NET/Admin.NET.Core/Util:
-    newFile: !uuid '81267ee76a26b6a798fa945f8161492429d5149d'
-    oldFile: !uuid 'a9045aeda602e91905214d6a3a0634115668f0fb'
-  /Admin.NET/Admin.NET.Core/Util/ComputerUtil.cs:
-    newFile: !uuid '6ef6f19d7070c1352d6cbee3dfd7d334fc9fe26e'
-    oldFile: !uuid 'd267f17afe7e184b03b3b703e7f5ef44976501c0'
-  /Admin.NET/Plugins:
-    newFile: !uuid 'd06778ab4aa0cfe0dd3339ff96e7ffca1efa6873'
-    oldFile: !uuid '7d3097909a49a9f163d26b9dcf33c826c98b9e26'
-  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk:
-    newFile: !uuid 'a8be707b2a3c3f49cef95107c63c300d097b68d9'
-    oldFile: !uuid '999bad921f809d12d79562c1eeac76c7d7e1b74b'
-  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/GlobalUsings.cs:
-    newFile: !uuid '60f5f7e1b14c87f5cf53e788d11b8977d5ca7a74'
-    oldFile: !uuid '706fbfb3a280044ab40e4b93050172ed193d9c3e'
-  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/Service:
-    newFile: !uuid '0a3e717361886d9b16e51841591a46b6c056a7d7'
-    oldFile: !uuid '86853efc0a0f92c883eec15f89d69c03887e29e5'
-  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/Service/DingTalkService.cs:
-    newFile: !uuid '0bc0c84a89261a84ad0b884c24c3ddaf27aee227'
-    oldFile: !uuid '528056f6bef76b2896438f7df5787cd11432f58e'
-  /Admin.NET/Plugins/Admin.NET.Plugin.GoView:
-    newFile: !uuid 'df2194f2399f7964748c8c8b52822616accbf829'
-    oldFile: !uuid 'b6ac909674b98bd5bdd7017654d8e547880c61cd'
-  /Admin.NET/Plugins/Admin.NET.Plugin.GoView/Const:
-    newFile: !uuid '47b43fd88549220249884716dca28612608a7128'
-    oldFile: !uuid 'de2a31c9f93e2d2e9fe9f11e971801a029ff5ff5'
-  /Admin.NET/Plugins/Admin.NET.Plugin.GoView/Const/GoViewConst.cs:
-    newFile: !uuid '3284878a430a964ed73d2e7ef31df8368a525f09'
-    oldFile: !uuid '3da535685bf92f4f6472beb0b2ae90dd7cd47e63'
-  /Admin.NET/Plugins/Admin.NET.Plugin.GoView/Entity:
-    newFile: !uuid '9ad7bcfa69ee349f499b7bf6dfe4f2821c392285'
-    oldFile: !uuid 'd084421ac4ad5b282f1b5edc635f61921ec0c375'
-  /Admin.NET/Plugins/Admin.NET.Plugin.GoView/Entity/GoViewPro.cs:
-    newFile: !uuid '495f11cd84aa3e545aecaa9efc0921b6e332a229'
-    oldFile: !uuid 'b9151c27e4ea15d1bdde3ada6eca61ba50d3aad9'
-  /Admin.NET/Plugins/Admin.NET.Plugin.GoView/Entity/GoViewProData.cs:
-    newFile: !uuid '142c9016932deb8cfd23e46baee46f3a660a21f5'
-    oldFile: !uuid '4b29688e7f0377e56a4bf24da47bcdbfb4b2e751'
-  /Admin.NET/Plugins/Admin.NET.Plugin.GoView/Enum:
-    newFile: !uuid '55c80f0e28d4190637ac820a11b68b33fd7b8f55'
-    oldFile: !uuid '290a35ffdc9fea5571859ceea6832ba0907f4e99'
-  /Admin.NET/Plugins/Admin.NET.Plugin.GoView/Enum/GoViewProState.cs:
-    newFile: !uuid '5861401e1296e2d486cea720cdbd74e65d9a4b03'
-    oldFile: !uuid 'e4cb080bbe076bf766623a44a29fa4a5b31da892'
-  /Admin.NET/Plugins/Admin.NET.Plugin.GoView/GlobalUsings.cs:
-    newFile: !uuid '106876d164b4fb5e12ff69470f2d3c3f0c31f128'
-    oldFile: !uuid '5d37ca33ee15bcfc61f7e60c3f892a9feb9329a0'
-  /Admin.NET/Plugins/Admin.NET.Plugin.GoView/Service:
-    newFile: !uuid 'e7cf5b43bf2144e7f90f17b0252f46d4dcea5659'
-    oldFile: !uuid '4d6ee2d711f82079db4b671f2d3b3c0a3cd75aff'
-  /Admin.NET/Plugins/Admin.NET.Plugin.GoView/Service/GoViewPro:
-    newFile: !uuid 'b630a945282397e6ccc18c2863ae2b20d9408379'
-    oldFile: !uuid 'd64a3d90db5310d7925fef3c9d237258e07d93ba'
-  /Admin.NET/Plugins/Admin.NET.Plugin.GoView/Service/GoViewPro/Dto:
-    newFile: !uuid 'e08c333e916d28e1a507a6be83dd1d775bf62ce1'
-    oldFile: !uuid '0eb3e386bc6233e5e1f736a8c709767a23676e5e'
-  /Admin.NET/Plugins/Admin.NET.Plugin.GoView/Service/GoViewPro/Dto/GoViewProInput.cs:
-    newFile: !uuid '7487d862c78e5d5bf36f6b65f4af2d890ac76c67'
-    oldFile: !uuid '464f4dae499edc9a68ce0cbb829c93635668cb85'
-  /Admin.NET/Plugins/Admin.NET.Plugin.GoView/Service/GoViewPro/Dto/GoViewProOutput.cs:
-    newFile: !uuid '24168b25ed82a08d06ae16803436d224f59cb0d9'
-    oldFile: !uuid '9c1bdb8e8128023c6ac02177a3b581e8ee0499d1'
-  /Admin.NET/Plugins/Admin.NET.Plugin.GoView/Service/GoViewSys:
-    newFile: !uuid '92a675c0a6a1c14a105a2351b41cc4fc493bc633'
-    oldFile: !uuid '6dd929380d07e718f7a805b860c5691f303beb54'
-  /Admin.NET/Plugins/Admin.NET.Plugin.GoView/Service/GoViewSys/Dto:
-    newFile: !uuid '53c4cc8a665b3dc0dde430dc10c52771fcf632d3'
-    oldFile: !uuid 'bd73c6170aa93efb418d98677505b0ab50c6d3c0'
-  /Admin.NET/Plugins/Admin.NET.Plugin.GoView/Service/GoViewSys/Dto/GoViewLoginInput.cs:
-    newFile: !uuid 'cd938e6d22524f9eb554ca3abf1424c4b7367295'
-    oldFile: !uuid '540ede19dec103a5f34b3ccec8f66f23c1d82884'
-  /Admin.NET/Plugins/Admin.NET.Plugin.GoView/Service/GoViewSys/Dto/GoViewLoginOutput.cs:
-    newFile: !uuid 'e2d38e79a1b576fe24ceeccea6dad6721340c014'
-    oldFile: !uuid '885a6a362ff71bf2d528934cc624275b7f90173b'
-  /Admin.NET/Plugins/Admin.NET.Plugin.GoView/Service/GoViewSys/Dto/GoViewOssUrlOutput.cs:
-    newFile: !uuid 'aa7441e6e083564b5bc33f88cbda4315c7f4c0ba'
-    oldFile: !uuid '4f12103aedebc8a95b0023f2c6dd09a4bbc3b14c'
-  /Admin.NET/Plugins/Admin.NET.Plugin.GoView/Startup.cs:
-    newFile: !uuid '4e204470f21c482795108d76b30d68c204401395'
-    oldFile: !uuid '0968b8fd33167704a45d573a85e3c7b95d26a16e'
-  /Admin.NET/Plugins/Admin.NET.Plugin.GoView/Util:
-    newFile: !uuid '58795e7cda09891599fb51499d695d338bd04de2'
-    oldFile: !uuid '6a119eebee1e3391979b0ba2c206db0b950b7803'
-  /Admin.NET/Plugins/Admin.NET.Plugin.GoView/Util/GoViewResultProvider.cs:
-    newFile: !uuid 'c32511bcc7842ef1f7f9c108076135cd41c659b5'
-    oldFile: !uuid 'ddedcf0983f2bf78732450ff1e10ad54acb96c2c'
-gitCommitId: !uuid 'ade4bc1db347919ea507cd92980d2ae8a43834cd'
+    newFile: !uuid 'a5f32477308460d90880f18715859c1579b2bef3'
+    oldFile: !uuid '4bfe8d4cf3ce681c7f2ed4505d05ff744536d4e6'
+  /Admin.NET/Admin.NET.Core/Service/OpenAccess:
+    newFile: !uuid 'fdc6718ef15e56122807fc68878a6bb1a2d10395'
+    oldFile: !uuid '08c15a38efa83abe78a9e74b189166e90cf9ed53'
+  /Admin.NET/Admin.NET.Core/Service/OpenAccess/SysOpenAccessService.cs:
+    newFile: !uuid '680b773159114df6a65c7f6db40037ea80d4df5b'
+    oldFile: !uuid 'e29a61ce704467f21c6ef5030bf7e6b880121084'
+  /Admin.NET/Admin.NET.Core/Service/Org:
+    newFile: !uuid '9587e931990cfdce520116c5f7a35603e5a6d0c2'
+    oldFile: !uuid '09032826c7c0fb6b466485f7297ee9513127d512'
+  /Admin.NET/Admin.NET.Core/Service/Org/SysOrgService.cs:
+    newFile: !uuid '02046e001b315e96ab881cddeefa4c3418fb124e'
+    oldFile: !uuid '3f2353a3243e7d95192fc7c5a103f7fba5dd7bfc'
+gitCommitId: !uuid '52afa3f425de98f0364448ff3a09bb746dad083d'
 renames: {
   }
-revisionId: 1666
+revisionId: 1667
