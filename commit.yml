@@ -2,28 +2,49 @@
 branches: {
   }
 fileChange:
-  /Admin.NET:
-    newFile: !uuid '0b56c12b6eb9c2007afcb521c988537d8af356e7'
-    oldFile: !uuid 'e00674f9d17e75fe89bfd4fd8ec0e12fb050376a'
-  /Admin.NET/Plugins:
-    newFile: !uuid '4a101844836c004deda3454b3e8169479480bdce'
-    oldFile: !uuid '67666015d75bd85325895ecefd745ee256e6f4c1'
-  /Admin.NET/Plugins/Admin.NET.Plugin.Elsa:
-    newFile: !uuid '0a0bca6852bb3de31dc63513e66a00b131129664'
-    oldFile: !uuid '7e8c6c29ad77fe48327555daba821f68fabd44eb'
-  /Admin.NET/Plugins/Admin.NET.Plugin.Elsa/Admin.NET.Plugin.Elsa.csproj:
-    newFile: !uuid 'dc73cca9bac30537bddb5ffb6bbc11f1e9c93b34'
-    oldFile: !uuid '51f09fae2fcf1b642b6e98323325645621fa9ffb'
-  /Admin.NET/Plugins/Admin.NET.Plugin.Elsa/Configuration:
-    newFile: !uuid '08d77da6ad9e3c1af5f008ee7e420c061fc6008a'
-    oldFile: null
-  /Admin.NET/Plugins/Admin.NET.Plugin.Elsa/Configuration/Elsa.json:
-    newFile: !uuid 'e39d74f0ffb35607aa735b69a764d0638206041a'
-    oldFile: null
-  /Admin.NET/Plugins/Admin.NET.Plugin.Elsa/Elsa.json:
-    newFile: null
-    oldFile: !uuid 'e39d74f0ffb35607aa735b69a764d0638206041a'
-gitCommitId: !uuid 'd1fa2fc473f1ccd28feff05a1780d69fa379688d'
-renames:
-  /Admin.NET/Plugins/Admin.NET.Plugin.Elsa/Configuration/Elsa.json: /Admin.NET/Plugins/Admin.NET.Plugin.Elsa/Elsa.json
-revisionId: 1729
+  /Web:
+    newFile: !uuid 'bf4c349ba65d500bd077008bf086fb5ad097b73d'
+    oldFile: !uuid '240b652faa1be749d040eb989ad3db2f47ec1a32'
+  /Web/.env:
+    newFile: !uuid 'df6847338783aedef7e770794255a974a0a580eb'
+    oldFile: !uuid 'c840527a676558ad9f66341bfadf039d606486ea'
+  /Web/src:
+    newFile: !uuid 'd1bd58ec5eb9b93679d6abf7c2c54a0ad16c809f'
+    oldFile: !uuid '1684f912ae02ed58b89ca869aa8a0d894970491e'
+  /Web/src/layout:
+    newFile: !uuid 'c51cff4030d1a9a03c9ca88d439512a7c8cd2b38'
+    oldFile: !uuid '4278667460efaa1b1b405d8f0042722f9c8bd3aa'
+  /Web/src/layout/lockScreen:
+    newFile: !uuid '864f9e607430e3d0d7d61f57b41a58b288d884bc'
+    oldFile: !uuid '551c5ee02044f2b011fea268bf82cc689d029aed'
+  /Web/src/layout/lockScreen/index.vue:
+    newFile: !uuid '2df9c086480da2c8db51de08e84b31d981c08000'
+    oldFile: !uuid 'ddcb0085e75eabddf3cabbecdd23606264abf279'
+  /Web/src/views:
+    newFile: !uuid 'd595aecd6bdca2adcefef0d7e5758519149d91eb'
+    oldFile: !uuid '7cc44b85202dd6ca17049c544846fc14b09d453a'
+  /Web/src/views/login:
+    newFile: !uuid 'b947b225858f3342b9777bfc47c5d44bd86f2d8a'
+    oldFile: !uuid 'a6c2d4f786b01a38683cb3510d92dee53d265d98'
+  /Web/src/views/login/component:
+    newFile: !uuid '017ebf61899c09bf5f02944ea20f8b3519850125'
+    oldFile: !uuid '88e2c956027510d2217e5cdc7cf8f7b7ddf6f38a'
+  /Web/src/views/login/component/account.vue:
+    newFile: !uuid 'b6c765492faca032cc25e18cc22845b8b0b31cbf'
+    oldFile: !uuid '72105283b8575e0b1781c98e07783aba95b1c82a'
+  /Web/src/views/system:
+    newFile: !uuid '0abec7c66c2798c86b7074f7fb7bb5a7a39a3dea'
+    oldFile: !uuid '6cb9abc9bbdd7c348bbeb9375dce02990586724f'
+  /Web/src/views/system/user:
+    newFile: !uuid '1594a173602af4625d541a7cb6475794b7b932ff'
+    oldFile: !uuid 'd35912c1db573a04acbbb0f7b9125cbc71322cfa'
+  /Web/src/views/system/user/component:
+    newFile: !uuid '88b41ae4f367ddbceb489ee6ad7d0fe4b3839a68'
+    oldFile: !uuid '43d6f444f6f61957442fb03621ed87c153d37c55'
+  /Web/src/views/system/user/component/userCenter.vue:
+    newFile: !uuid '9eac2a0f0873feccbb95316ab5c3421854849700'
+    oldFile: !uuid 'd0d9e66c3ddcb4646706f286966c0e654de0bc6e'
+gitCommitId: !uuid '9b56ce85dc5491c383ad2027ea0e3e753e8795e6'
+renames: {
+  }
+revisionId: 1730
