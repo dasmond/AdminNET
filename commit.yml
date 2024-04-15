@@ -2,22 +2,61 @@
 branches: {
   }
 fileChange:
+  /Admin.NET:
+    newFile: !uuid '643c18381e9b2c34ee0619ef53d7778aceca7891'
+    oldFile: !uuid '91f3c6c9724ac9273c9b93e5a184929de129242f'
+  /Admin.NET/Admin.NET.Core:
+    newFile: !uuid '0aad80f969943c7c2af0545007953bcf372bd860'
+    oldFile: !uuid '94dc66ff0cb01b96520692bf192159be9536a065'
+  /Admin.NET/Admin.NET.Core/Enum:
+    newFile: !uuid '32a8773cfaa820e2f41e8eac991468b69e536b65'
+    oldFile: !uuid '98bdc32a34458b775809f7ce185a98b7af4df7a8'
+  /Admin.NET/Admin.NET.Core/Enum/ErrorCodeEnum.cs:
+    newFile: !uuid '642b0758725d35559e921d999d57ae20f34e370e'
+    oldFile: !uuid '62ec3b663fba7da2ca2741a531f26b52c3173434'
+  /Admin.NET/Admin.NET.Core/Service:
+    newFile: !uuid '8a77ec1b661d9307faf7441e13dd48dc949ea449'
+    oldFile: !uuid 'bd8a0935e523816cf5c4a2e1d4f940f9ff6080d4'
+  /Admin.NET/Admin.NET.Core/Service/Auth:
+    newFile: !uuid 'abb23aea7c88e8299359a23eeb3359c1e1896b44'
+    oldFile: !uuid '56d88329be14bc7baa63e3c76f4f069ab816271a'
+  /Admin.NET/Admin.NET.Core/Service/Auth/SysAuthService.cs:
+    newFile: !uuid '74076337b28a189f1c7ee1d97b417705fffeb60d'
+    oldFile: !uuid 'd51696188c36fd3a2d45a6eba612fa8f5e04133a'
+  /Admin.NET/Admin.NET.Core/Service/User:
+    newFile: !uuid '693c5cd0ce258634cdb22873dc0b087dae8f2e10'
+    oldFile: !uuid 'e5343ed30980700a46e52fd7d2f1e06ce2f00838'
+  /Admin.NET/Admin.NET.Core/Service/User/Dto:
+    newFile: !uuid '3925888c8f3849c8280e31e78dec337ed266cf4f'
+    oldFile: !uuid '01c97c05562dd031ee5a344fcaa5567988df6cf9'
+  /Admin.NET/Admin.NET.Core/Service/User/Dto/UserInput.cs:
+    newFile: !uuid 'f17b84f4486ce03fd2f7d20dcd49ef9a93ccbc71'
+    oldFile: !uuid '375b5899721850da0d210049b50b88f7dc190653'
+  /Admin.NET/Admin.NET.Core/Service/User/SysUserService.cs:
+    newFile: !uuid 'bed897789d3a79613f10e8e923fe6be9ecd7ee8a'
+    oldFile: !uuid 'c9019c3600c8ab7f5ed7cd01fac32d447bca346d'
   /Web:
-    newFile: !uuid '7d2d74916cd8e0a68b00362c57058cdec92cf6ed'
-    oldFile: !uuid 'ae7d3e6beb2b43d63551edfd8e337af90801ddbb'
+    newFile: !uuid '18159576e9c857dbd1e96e2d4f6209df8e84aa8a'
+    oldFile: !uuid '7d2d74916cd8e0a68b00362c57058cdec92cf6ed'
   /Web/src:
-    newFile: !uuid '62d3e251783055ce01c6235df4bf7d488d582e85'
-    oldFile: !uuid 'd98d1c81c60c5389b5c6676769e18a41d6705793'
+    newFile: !uuid '907b4cc6742a1b862a33ce72f3a52c77baace2f2'
+    oldFile: !uuid '62d3e251783055ce01c6235df4bf7d488d582e85'
   /Web/src/views:
-    newFile: !uuid 'f3dafaa906b1e89892d033e693594fc807bd7c4a'
-    oldFile: !uuid '0da7609d0f9fc6729e00534b87a7b0860f50dcb3'
-  /Web/src/views/login:
-    newFile: !uuid 'a6c2d4f786b01a38683cb3510d92dee53d265d98'
-    oldFile: !uuid '785f48999b5c5bd20476f86d114f617718124083'
-  /Web/src/views/login/index.vue:
-    newFile: !uuid '0c4ecaa5e349a3e1f7446b3a7231a62cac5d5eac'
-    oldFile: !uuid 'ec2f02986cfcfbe7d78d1d956237ed6630180699'
-gitCommitId: !uuid '16b46117f1a805a97f6081c14650bded42b1586d'
+    newFile: !uuid 'bd59ac467b478399b4e372a043c67172976a4479'
+    oldFile: !uuid 'f3dafaa906b1e89892d033e693594fc807bd7c4a'
+  /Web/src/views/system:
+    newFile: !uuid '19f2002e25557a6a87f0c7969edaa17ddf74c3d9'
+    oldFile: !uuid 'ea7aba4cf906c302d4859812ae8bf6330776abf4'
+  /Web/src/views/system/user:
+    newFile: !uuid '28003b9796e90ab17b0cdcf41c84d7bb7a3031e2'
+    oldFile: !uuid 'a234ff84460f3712ddf5c1867b65ea6c41b97f4b'
+  /Web/src/views/system/user/component:
+    newFile: !uuid '41cc513c920b05322ebab87fce546023a47d52e9'
+    oldFile: !uuid '62782583199c5f7025db1a712a0d4164af3dc631'
+  /Web/src/views/system/user/component/userCenter.vue:
+    newFile: !uuid '14e378f6115c0b24fdc6d977c61c43c58ee4dc74'
+    oldFile: !uuid 'a397ffcba5b2db22d48673db6ed9c534c33e7555'
+gitCommitId: !uuid '4cf42052ca8eb8bdc8dfee66d35499a4d0ad4c58'
 renames: {
   }
-revisionId: 1681
+revisionId: 1682
