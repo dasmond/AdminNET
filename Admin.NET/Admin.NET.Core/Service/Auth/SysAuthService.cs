@@ -1,6 +1,8 @@
-// 此源代码遵循位于源代码树根目录中的 LICENSE 文件的许可证。
+// Admin.NET 项目的版权、商标、专利和其他相关权利均受相应法律法规的保护。使用本项目应遵守相关法律法规和许可证的要求。
 //
-// 必须在法律法规允许的范围内正确使用，严禁将其用于非法、欺诈、恶意或侵犯他人合法权益的目的。
+// 本项目主要遵循 MIT 许可证和 Apache 许可证（版本 2.0）进行分发和使用。许可证位于源代码树根目录中的 LICENSE-MIT 和 LICENSE-APACHE 文件。
+//
+// 不得利用本项目从事危害国家安全、扰乱社会秩序、侵犯他人合法权益等法律法规禁止的活动！任何基于本项目二次开发而产生的一切法律纠纷和责任，我们不承担任何责任！
 
 using Furion.SpecificationDocument;
 using Lazy.Captcha.Core;
@@ -8,37 +10,43 @@ using Lazy.Captcha.Core;
 namespace Admin.NET.Core.Service;
 
 /// <summary>
-/// 系统登录授权服务 💥
+/// 系统登录授权服务 🧩
 /// </summary>
 [ApiDescriptionSettings(Order = 500)]
 public class SysAuthService : IDynamicApiController, ITransient
 {
     private readonly UserManager _userManager;
     private readonly SqlSugarRepository<SysUser> _sysUserRep;
+    private readonly SqlSugarRepository<SysUserLdap> _sysUserLdap;
     private readonly IHttpContextAccessor _httpContextAccessor;
     private readonly SysMenuService _sysMenuService;
     private readonly SysOnlineUserService _sysOnlineUserService;
     private readonly SysConfigService _sysConfigService;
     private readonly ICaptcha _captcha;
     private readonly SysCacheService _sysCacheService;
+    private readonly SysLdapService _sysLdapService;
 
     public SysAuthService(UserManager userManager,
         SqlSugarRepository<SysUser> sysUserRep,
+        SqlSugarRepository<SysUserLdap> sysUserLdapRep,
         IHttpContextAccessor httpContextAccessor,
         SysMenuService sysMenuService,
         SysOnlineUserService sysOnlineUserService,
         SysConfigService sysConfigService,
         ICaptcha captcha,
-        SysCacheService sysCacheService)
+        SysCacheService sysCacheService,
+        SysLdapService sysLdapService)
     {
         _userManager = userManager;
         _sysUserRep = sysUserRep;
+        _sysUserLdap = sysUserLdapRep;
         _httpContextAccessor = httpContextAccessor;
         _sysMenuService = sysMenuService;
         _sysOnlineUserService = sysOnlineUserService;
         _sysConfigService = sysConfigService;
         _captcha = captcha;
         _sysCacheService = sysCacheService;
+        _sysLdapService = sysLdapService;
     }
 
     /// <summary>
@@ -84,7 +92,38 @@ public class SysAuthService : IDynamicApiController, ITransient
         // 国密SM2解密（前端密码传输SM2加密后的）
         input.Password = CryptogramUtil.SM2Decrypt(input.Password);
 
-        // 密码是否正确
+        // 是否开启域登录验证
+        if (await _sysConfigService.GetConfigValue<bool>(CommonConst.SysDomainLogin))
+        {
+            var userLdap = await _sysUserLdap.GetFirstAsync(u => u.UserId == user.Id && u.TenantId == tenant.Id);
+            if (userLdap == null)
+            {
+                VerifyPassword(input, keyErrorPasswordCount, errorPasswordCount, user);
+            }
+            else if (!await _sysLdapService.AuthAccount(tenant.Id, userLdap.Account, input.Password))
+            {
+                _sysCacheService.Set(keyErrorPasswordCount, ++errorPasswordCount, TimeSpan.FromMinutes(30));
+                throw Oops.Oh(ErrorCodeEnum.D1000);
+            }
+        }
+        else
+            VerifyPassword(input, keyErrorPasswordCount, errorPasswordCount, user);
+
+        // 登录成功则清空密码错误次数
+        _sysCacheService.Remove(keyErrorPasswordCount);
+
+        return await CreateToken(user);
+    }
+
+    /// <summary>
+    /// 验证用户密码
+    /// </summary>
+    /// <param name="input"></param>
+    /// <param name="keyErrorPasswordCount"></param>
+    /// <param name="errorPasswordCount"></param>
+    /// <param name="user"></param>
+    private void VerifyPassword(LoginInput input, string keyErrorPasswordCount, int errorPasswordCount, SysUser user)
+    {
         if (CryptogramUtil.CryptoType == CryptogramEnum.MD5.ToString())
         {
             if (!user.Password.Equals(MD5Encryption.Encrypt(input.Password)))
@@ -101,11 +140,6 @@ public class SysAuthService : IDynamicApiController, ITransient
                 throw Oops.Oh(ErrorCodeEnum.D1000);
             }
         }
-
-        // 登录成功则清空密码错误次数
-        _sysCacheService.Remove(keyErrorPasswordCount);
-
-        return await CreateToken(user);
     }
 
     /// <summary>

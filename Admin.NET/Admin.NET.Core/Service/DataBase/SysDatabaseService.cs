@@ -1,6 +1,8 @@
-﻿// 此源代码遵循位于源代码树根目录中的 LICENSE 文件的许可证。
+﻿// Admin.NET 项目的版权、商标、专利和其他相关权利均受相应法律法规的保护。使用本项目应遵守相关法律法规和许可证的要求。
 //
-// 必须在法律法规允许的范围内正确使用，严禁将其用于非法、欺诈、恶意或侵犯他人合法权益的目的。
+// 本项目主要遵循 MIT 许可证和 Apache 许可证（版本 2.0）进行分发和使用。许可证位于源代码树根目录中的 LICENSE-MIT 和 LICENSE-APACHE 文件。
+//
+// 不得利用本项目从事危害国家安全、扰乱社会秩序、侵犯他人合法权益等法律法规禁止的活动！任何基于本项目二次开发而产生的一切法律纠纷和责任，我们不承担任何责任！
 
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
@@ -9,7 +11,7 @@ using Npgsql;
 namespace Admin.NET.Core.Service;
 
 /// <summary>
-/// 系统数据库管理服务 💥
+/// 系统数据库管理服务 🧩
 /// </summary>
 [ApiDescriptionSettings(Order = 250)]
 public class SysDatabaseService : IDynamicApiController, ITransient
@@ -35,6 +37,66 @@ public class SysDatabaseService : IDynamicApiController, ITransient
     public List<string> GetList()
     {
         return App.GetOptions<DbConnectionOptions>().ConnectionConfigs.Select(u => u.ConfigId.ToString()).ToList();
+    }
+
+    /// <summary>
+    /// 获取可视化库表结构 🔖
+    /// </summary>
+    /// <returns></returns>
+    [DisplayName("获取可视化库表结构")]
+    public VisualDbTable GetVisualDbTable()
+    {
+        var visualTableList = new List<VisualTable>();
+        var visualColumnList = new List<VisualColumn>();
+        var columnRelationList = new List<ColumnRelation>();
+
+        // 遍历所有实体获取所有库表结构
+        var random = new Random();
+        var entityTypes = App.EffectiveTypes.Where(u => !u.IsInterface && !u.IsAbstract && u.IsClass && u.IsDefined(typeof(SugarTable), false)).ToList();
+        foreach (var entityType in entityTypes)
+        {
+            var entityInfo = _db.EntityMaintenance.GetEntityInfoNoCache(entityType);
+
+            var visualTable = new VisualTable
+            {
+                TableName = entityInfo.DbTableName,
+                TableComents = entityInfo.TableDescription + entityInfo.DbTableName,
+                X = random.Next(5000),
+                Y = random.Next(5000)
+            };
+            visualTableList.Add(visualTable);
+
+            foreach (EntityColumnInfo columnInfo in entityInfo.Columns)
+            {
+                var visualColumn = new VisualColumn
+                {
+                    TableName = columnInfo.DbTableName,
+                    ColumnName = columnInfo.DbColumnName,
+                    DataType = columnInfo.PropertyInfo.PropertyType.Name,
+                    DataLength = columnInfo.Length.ToString(),
+                    ColumnDescription = columnInfo.ColumnDescription,
+                };
+                visualColumnList.Add(visualColumn);
+
+                // 根据导航配置获取表之间关联关系
+                if (columnInfo.Navigat != null)
+                {
+                    var name1 = columnInfo.Navigat.GetName();
+                    var name2 = columnInfo.Navigat.GetName2();
+                    var relation = new ColumnRelation
+                    {
+                        SourceTableName = columnInfo.DbTableName,
+                        SourceColumnName = name1,
+                        Type = columnInfo.Navigat.GetNavigateType() == NavigateType.OneToOne ? "ONE_TO_ONE" : "ONE_TO_MANY",
+                        TargetTableName = columnInfo.DbColumnName,
+                        TargetColumnName = string.IsNullOrEmpty(name2) ? "Id" : name2
+                    };
+                    columnRelationList.Add(relation);
+                }
+            }
+        }
+
+        return new VisualDbTable { VisualTableList = visualTableList, VisualColumnList = visualColumnList, ColumnRelationList = columnRelationList };
     }
 
     /// <summary>

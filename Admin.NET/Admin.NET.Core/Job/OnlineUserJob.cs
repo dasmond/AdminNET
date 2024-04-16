@@ -1,6 +1,10 @@
-// 此源代码遵循位于源代码树根目录中的 LICENSE 文件的许可证。
+// Admin.NET 项目的版权、商标、专利和其他相关权利均受相应法律法规的保护。使用本项目应遵守相关法律法规和许可证的要求。
 //
-// 必须在法律法规允许的范围内正确使用，严禁将其用于非法、欺诈、恶意或侵犯他人合法权益的目的。
+// 本项目主要遵循 MIT 许可证和 Apache 许可证（版本 2.0）进行分发和使用。许可证位于源代码树根目录中的 LICENSE-MIT 和 LICENSE-APACHE 文件。
+//
+// 不得利用本项目从事危害国家安全、扰乱社会秩序、侵犯他人合法权益等法律法规禁止的活动！任何基于本项目二次开发而产生的一切法律纠纷和责任，我们不承担任何责任！
+
+using Furion.Logging.Extensions;
 
 namespace Admin.NET.Core;
 
@@ -12,17 +16,19 @@ namespace Admin.NET.Core;
 public class OnlineUserJob : IJob
 {
     private readonly IServiceScopeFactory _scopeFactory;
+    private readonly ILogger _logger;
 
-    public OnlineUserJob(IServiceScopeFactory scopeFactory)
+    public OnlineUserJob(IServiceScopeFactory scopeFactory, ILoggerFactory loggerFactory)
     {
         _scopeFactory = scopeFactory;
+        _logger = loggerFactory.CreateLogger("System.Logging.LoggingMonitor");
     }
 
     public async Task ExecuteAsync(JobExecutingContext context, CancellationToken stoppingToken)
     {
         using var serviceScope = _scopeFactory.CreateScope();
 
-        var rep = serviceScope.ServiceProvider.GetService<SqlSugarRepository<SysOnlineUser>>();
+        var rep = serviceScope.ServiceProvider.GetRequiredService<SqlSugarRepository<SysOnlineUser>>();
         await rep.CopyNew().AsDeleteable().ExecuteCommandAsync(stoppingToken);
 
         var originColor = Console.ForegroundColor;
@@ -31,6 +37,9 @@ public class OnlineUserJob : IJob
         Console.ForegroundColor = originColor;
 
         // 缓存租户列表
-        await serviceScope.ServiceProvider.GetService<SysTenantService>().CacheTenant();
+        await serviceScope.ServiceProvider.GetRequiredService<SysTenantService>().CacheTenant();
+
+        // 自定义日志
+        _logger.LogInformation("服务已重启...");
     }
 }

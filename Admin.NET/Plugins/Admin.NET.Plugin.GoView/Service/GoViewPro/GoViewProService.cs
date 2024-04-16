@@ -1,11 +1,13 @@
-﻿// 此源代码遵循位于源代码树根目录中的 LICENSE 文件的许可证。
+﻿// Admin.NET 项目的版权、商标、专利和其他相关权利均受相应法律法规的保护。使用本项目应遵守相关法律法规和许可证的要求。
 //
-// 必须在法律法规允许的范围内正确使用，严禁将其用于非法、欺诈、恶意或侵犯他人合法权益的目的。
+// 本项目主要遵循 MIT 许可证和 Apache 许可证（版本 2.0）进行分发和使用。许可证位于源代码树根目录中的 LICENSE-MIT 和 LICENSE-APACHE 文件。
+//
+// 不得利用本项目从事危害国家安全、扰乱社会秩序、侵犯他人合法权益等法律法规禁止的活动！任何基于本项目二次开发而产生的一切法律纠纷和责任，我们不承担任何责任！
 
 namespace Admin.NET.Plugin.GoView.Service;
 
 /// <summary>
-/// 项目管理服务
+/// 项目管理服务 🧩
 /// </summary>
 [UnifyProvider("GoView")]
 [ApiDescriptionSettings(GoViewConst.GroupName, Module = "goview", Name = "project", Order = 100)]
@@ -13,22 +15,16 @@ public class GoViewProService : IDynamicApiController
 {
     private readonly SqlSugarRepository<GoViewPro> _goViewProRep;
     private readonly SqlSugarRepository<GoViewProData> _goViewProDataRep;
-    private readonly SqlSugarRepository<SysFile> _sysFileRep;
-    private readonly SysFileService _fileService;
 
     public GoViewProService(SqlSugarRepository<GoViewPro> goViewProjectRep,
-        SqlSugarRepository<GoViewProData> goViewProjectDataRep,
-        SqlSugarRepository<SysFile> fileRep,
-        SysFileService fileService)
+        SqlSugarRepository<GoViewProData> goViewProjectDataRep)
     {
         _goViewProRep = goViewProjectRep;
         _goViewProDataRep = goViewProjectDataRep;
-        _sysFileRep = fileRep;
-        _fileService = fileService;
     }
 
     /// <summary>
-    /// 获取项目列表
+    /// 获取项目列表 🔖
     /// </summary>
     /// <param name="page"></param>
     /// <param name="limit"></param>
@@ -43,7 +39,7 @@ public class GoViewProService : IDynamicApiController
     }
 
     /// <summary>
-    /// 新增项目
+    /// 新增项目 🔖
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
@@ -59,7 +55,7 @@ public class GoViewProService : IDynamicApiController
     }
 
     /// <summary>
-    /// 修改项目
+    /// 修改项目 🔖
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
@@ -70,7 +66,7 @@ public class GoViewProService : IDynamicApiController
     }
 
     /// <summary>
-    /// 删除项目
+    /// 删除项目 🔖
     /// </summary>
     [ApiDescriptionSettings(Name = "Delete")]
     [DisplayName("删除项目")]
@@ -83,7 +79,7 @@ public class GoViewProService : IDynamicApiController
     }
 
     /// <summary>
-    /// 修改发布状态
+    /// 修改发布状态 🔖
     /// </summary>
     [HttpPut]
     [DisplayName("修改发布状态")]
@@ -99,7 +95,7 @@ public class GoViewProService : IDynamicApiController
     }
 
     /// <summary>
-    /// 获取项目数据
+    /// 获取项目数据 🔖
     /// </summary>
     /// <param name="projectId"></param>
     /// <returns></returns>
@@ -119,7 +115,7 @@ public class GoViewProService : IDynamicApiController
     }
 
     /// <summary>
-    /// 保存项目数据
+    /// 保存项目数据 🔖
     /// </summary>
     [ApiDescriptionSettings(Name = "save/data")]
     [DisplayName("保存项目数据")]
@@ -146,7 +142,7 @@ public class GoViewProService : IDynamicApiController
     }
 
     /// <summary>
-    /// 上传预览图
+    /// 上传预览图 🔖
     /// </summary>
     [DisplayName("上传预览图")]
     public async Task<GoViewProUploadOutput> Upload(IFormFile @object)
@@ -157,17 +153,17 @@ public class GoViewProService : IDynamicApiController
          * 否则使用 GetOssInfo 接口获取到的 BucketUrl 和 FileName 进行拼接
          */
 
-        //文件名格式示例 13414795568325_index_preview.png
+        // 文件名格式示例 13414795568325_index_preview.png
         var fileNameSplit = @object.FileName.Split('_');
         var idStr = fileNameSplit[0];
         if (!long.TryParse(idStr, out var id)) return new GoViewProUploadOutput();
 
-        //将预览图转换成 Base64
+        // 将预览图转换成 Base64
         var ms = new MemoryStream();
         await @object.CopyToAsync(ms);
         var base64Image = Convert.ToBase64String(ms.ToArray());
 
-        //保存
+        // 保存
         if (await _goViewProDataRep.IsAnyAsync(u => u.Id == id))
         {
             await _goViewProDataRep.AsUpdateable()
@@ -237,7 +233,7 @@ public class GoViewProService : IDynamicApiController
     }
 
     /// <summary>
-    /// 获取预览图
+    /// 获取预览图 🔖
     /// </summary>
     /// <returns></returns>
     [AllowAnonymous]

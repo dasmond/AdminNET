@@ -1,6 +1,8 @@
-// 此源代码遵循位于源代码树根目录中的 LICENSE 文件的许可证。
+// Admin.NET 项目的版权、商标、专利和其他相关权利均受相应法律法规的保护。使用本项目应遵守相关法律法规和许可证的要求。
 //
-// 必须在法律法规允许的范围内正确使用，严禁将其用于非法、欺诈、恶意或侵犯他人合法权益的目的。
+// 本项目主要遵循 MIT 许可证和 Apache 许可证（版本 2.0）进行分发和使用。许可证位于源代码树根目录中的 LICENSE-MIT 和 LICENSE-APACHE 文件。
+//
+// 不得利用本项目从事危害国家安全、扰乱社会秩序、侵犯他人合法权益等法律法规禁止的活动！任何基于本项目二次开发而产生的一切法律纠纷和责任，我们不承担任何责任！
 
 namespace Admin.NET.Core;
 
@@ -12,19 +14,18 @@ public static class ComputerUtil
     /// <returns></returns>
     public static MemoryMetrics GetComputerInfo()
     {
-        MemoryMetricsClient client = new();
         MemoryMetrics memoryMetrics;
         if (IsMacOS())
         {
-            memoryMetrics = client.GetMacOSMetrics();
+            memoryMetrics = MemoryMetricsClient.GetMacOSMetrics();
         }
         else if (IsUnix())
         {
-            memoryMetrics = client.GetUnixMetrics();
+            memoryMetrics = MemoryMetricsClient.GetUnixMetrics();
         }
         else
         {
-            memoryMetrics = client.GetWindowsMetrics();
+            memoryMetrics = MemoryMetricsClient.GetWindowsMetrics();
         }
         memoryMetrics.FreeRam = Math.Round(memoryMetrics.Free / 1024, 2) + "GB";
         memoryMetrics.UsedRam = Math.Round(memoryMetrics.Used / 1024, 2) + "GB";
@@ -315,7 +316,7 @@ public class MemoryMetricsClient
     /// windows系统获取内存信息
     /// </summary>
     /// <returns></returns>
-    public MemoryMetrics GetWindowsMetrics()
+    public static MemoryMetrics GetWindowsMetrics()
     {
         string output = ShellUtil.Cmd("wmic", "OS get FreePhysicalMemory,TotalVisibleMemorySize /Value");
         var metrics = new MemoryMetrics();
@@ -336,7 +337,7 @@ public class MemoryMetricsClient
     /// Unix系统获取
     /// </summary>
     /// <returns></returns>
-    public MemoryMetrics GetUnixMetrics()
+    public static MemoryMetrics GetUnixMetrics()
     {
         string output = ShellUtil.Bash("free -m | awk '{print $2,$3,$4,$5,$6}'");
         var metrics = new MemoryMetrics();
@@ -360,7 +361,7 @@ public class MemoryMetricsClient
     /// macOS系统获取
     /// </summary>
     /// <returns></returns>
-    public MemoryMetrics GetMacOSMetrics()
+    public static MemoryMetrics GetMacOSMetrics()
     {
         var metrics = new MemoryMetrics();
         //物理内存大小
@@ -410,13 +411,14 @@ public class ShellUtil
     /// <returns></returns>
     public static string Cmd(string fileName, string args)
     {
-        string output = string.Empty;
+        var info = new ProcessStartInfo
+        {
+            FileName = fileName,
+            Arguments = args,
+            RedirectStandardOutput = true
+        };
 
-        var info = new ProcessStartInfo();
-        info.FileName = fileName;
-        info.Arguments = args;
-        info.RedirectStandardOutput = true;
-
+        var output = string.Empty;
         using (var process = Process.Start(info))
         {
             output = process.StandardOutput.ReadToEnd();
@@ -461,13 +463,14 @@ public class ShellHelper
     /// <returns></returns>
     public static string Cmd(string fileName, string args)
     {
-        string output = string.Empty;
+        var info = new ProcessStartInfo
+        {
+            FileName = fileName,
+            Arguments = args,
+            RedirectStandardOutput = true
+        };
 
-        var info = new ProcessStartInfo();
-        info.FileName = fileName;
-        info.Arguments = args;
-        info.RedirectStandardOutput = true;
-
+        var output = string.Empty;
         using (var process = Process.Start(info))
         {
             output = process.StandardOutput.ReadToEnd();

@@ -1,6 +1,8 @@
-﻿// 此源代码遵循位于源代码树根目录中的 LICENSE 文件的许可证。
+﻿// Admin.NET 项目的版权、商标、专利和其他相关权利均受相应法律法规的保护。使用本项目应遵守相关法律法规和许可证的要求。
 //
-// 必须在法律法规允许的范围内正确使用，严禁将其用于非法、欺诈、恶意或侵犯他人合法权益的目的。
+// 本项目主要遵循 MIT 许可证和 Apache 许可证（版本 2.0）进行分发和使用。许可证位于源代码树根目录中的 LICENSE-MIT 和 LICENSE-APACHE 文件。
+//
+// 不得利用本项目从事危害国家安全、扰乱社会秩序、侵犯他人合法权益等法律法规禁止的活动！任何基于本项目二次开发而产生的一切法律纠纷和责任，我们不承担任何责任！
 
 using Admin.NET.Core;
 using Admin.NET.Core.Service;
@@ -35,7 +37,7 @@ namespace Admin.NET.Web.Core
             using var serviceScope = _serviceProvider.CreateScope();
 
             // 若当前账号存在黑名单中则授权失败
-            var sysCacheService = serviceScope.ServiceProvider.GetService<SysCacheService>();
+            var sysCacheService = serviceScope.ServiceProvider.GetRequiredService<SysCacheService>();
             if (sysCacheService.ExistKey($"{CacheConst.KeyBlacklist}{context.User.FindFirst(ClaimConst.UserId)?.Value}"))
             {
                 context.Fail();
@@ -43,7 +45,7 @@ namespace Admin.NET.Web.Core
                 return;
             }
 
-            var sysConfigService = serviceScope.ServiceProvider.GetService<SysConfigService>();
+            var sysConfigService = serviceScope.ServiceProvider.GetRequiredService<SysConfigService>();
             var tokenExpire = await sysConfigService.GetTokenExpire();
             var refreshTokenExpire = await sysConfigService.GetRefreshTokenExpire();
             if (JWTEncryption.AutoRefreshToken(context, context.GetCurrentHttpContext(), tokenExpire, refreshTokenExpire))
@@ -89,10 +91,11 @@ namespace Admin.NET.Web.Core
                 ? httpContext.Request.Path.Value[5..].Replace("/", ":")
                 : httpContext.Request.Path.Value[1..].Replace("/", ":");
 
+            var sysMenuService = App.GetRequiredService<SysMenuService>();
             // 获取用户拥有按钮权限集合
-            var ownBtnPermList = await App.GetService<SysMenuService>().GetOwnBtnPermList();
+            var ownBtnPermList = await sysMenuService.GetOwnBtnPermList();
             // 获取系统所有按钮权限集合
-            var allBtnPermList = await App.GetService<SysMenuService>().GetAllBtnPermList();
+            var allBtnPermList = await sysMenuService.GetAllBtnPermList();
 
             // 已拥有该按钮权限或者所有按钮集合里面不存在
             var exist1 = ownBtnPermList.Exists(u => routeName.Equals(u, StringComparison.CurrentCultureIgnoreCase));

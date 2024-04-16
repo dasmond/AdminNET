@@ -1,19 +1,21 @@
-﻿// 此源代码遵循位于源代码树根目录中的 LICENSE 文件的许可证。
+﻿// Admin.NET 项目的版权、商标、专利和其他相关权利均受相应法律法规的保护。使用本项目应遵守相关法律法规和许可证的要求。
 //
-// 必须在法律法规允许的范围内正确使用，严禁将其用于非法、欺诈、恶意或侵犯他人合法权益的目的。
+// 本项目主要遵循 MIT 许可证和 Apache 许可证（版本 2.0）进行分发和使用。许可证位于源代码树根目录中的 LICENSE-MIT 和 LICENSE-APACHE 文件。
+//
+// 不得利用本项目从事危害国家安全、扰乱社会秩序、侵犯他人合法权益等法律法规禁止的活动！任何基于本项目二次开发而产生的一切法律纠纷和责任，我们不承担任何责任！
 
 using AngleSharp.Html.Parser;
 using AspNetCoreRateLimit;
+using Elastic.Clients.Elasticsearch;
 using Lazy.Captcha.Core;
 using Magicodes.ExporterAndImporter.Pdf;
 using MailKit.Net.Smtp;
-using Nest;
 using OnceMi.AspNetCore.OSS;
 
 namespace Admin.NET.Core.Service;
 
 /// <summary>
-/// 系统服务器监控服务 💥
+/// 系统服务器监控服务 🧩
 /// </summary>
 [ApiDescriptionSettings(Order = 290)]
 public class SysServerService : IDynamicApiController, ITransient
@@ -38,7 +40,7 @@ public class SysServerService : IDynamicApiController, ITransient
             SysRunTime = ComputerUtil.GetRunTime(), // 系统运行时间
             RemoteIp = ComputerUtil.GetIpFromOnline(), // 外网地址
             LocalIp = App.HttpContext?.Connection?.LocalIpAddress.ToString(), // 本地地址
-            FrameworkDescription = RuntimeInformation.FrameworkDescription, // NET框架
+            RuntimeInformation.FrameworkDescription, // NET框架
             Environment = App.HostEnvironment.IsDevelopment() ? "Development" : "Production",
             Wwwroot = App.WebHostEnvironment.WebRootPath, // 网站根目录
             Stage = App.HostEnvironment.IsStaging() ? "Stage环境" : "非Stage环境", // 是否Stage环境
@@ -99,7 +101,7 @@ public class SysServerService : IDynamicApiController, ITransient
         var wechatTenpayAssembly = typeof(WechatTenpayClient).Assembly.GetName();
         var ossAssembly = typeof(IOSSServiceFactory).Assembly.GetName();
         var parserAssembly = typeof(Parser).Assembly.GetName();
-        var nestAssembly = typeof(IElasticClient).Assembly.GetName();
+        var nestAssembly = typeof(ElasticsearchClient).Assembly.GetName();
         var limitAssembly = typeof(IpRateLimitMiddleware).Assembly.GetName();
         var htmlParserAssembly = typeof(HtmlParser).Assembly.GetName();
         var fluentEmailAssembly = typeof(SmtpClient).Assembly.GetName();

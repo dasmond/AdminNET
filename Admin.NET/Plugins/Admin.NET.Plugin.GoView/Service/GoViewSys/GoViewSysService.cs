@@ -1,14 +1,16 @@
-﻿// 此源代码遵循位于源代码树根目录中的 LICENSE 文件的许可证。
+﻿// Admin.NET 项目的版权、商标、专利和其他相关权利均受相应法律法规的保护。使用本项目应遵守相关法律法规和许可证的要求。
 //
-// 必须在法律法规允许的范围内正确使用，严禁将其用于非法、欺诈、恶意或侵犯他人合法权益的目的。
+// 本项目主要遵循 MIT 许可证和 Apache 许可证（版本 2.0）进行分发和使用。许可证位于源代码树根目录中的 LICENSE-MIT 和 LICENSE-APACHE 文件。
+//
+// 不得利用本项目从事危害国家安全、扰乱社会秩序、侵犯他人合法权益等法律法规禁止的活动！任何基于本项目二次开发而产生的一切法律纠纷和责任，我们不承担任何责任！
 
 namespace Admin.NET.Plugin.GoView.Service;
 
 /// <summary>
-/// 系统登录服务
+/// 系统登录服务 🧩
 /// </summary>
 [UnifyProvider("GoView")]
-[ApiDescriptionSettings(GoViewConst.GroupName, Module = "goview", Name = "sys", Order = 500)]
+[ApiDescriptionSettings(GoViewConst.GroupName, Module = "goview", Name = "sys", Order = 100)]
 public class GoViewSysService : IDynamicApiController
 {
     private readonly SysAuthService _sysAuthService;
@@ -25,7 +27,7 @@ public class GoViewSysService : IDynamicApiController
     }
 
     /// <summary>
-    /// GoView 登录
+    /// GoView 登录 🔖
     /// </summary>
     /// <returns></returns>
     [AllowAnonymous]
@@ -34,6 +36,7 @@ public class GoViewSysService : IDynamicApiController
     {
         _sysCacheService.Set(CommonConst.SysCaptcha, false);
 
+        input.Password = CryptogramUtil.SM2Encrypt(input.Password);
         var loginResult = await _sysAuthService.Login(new LoginInput()
         {
             Account = input.Username,
@@ -59,7 +62,7 @@ public class GoViewSysService : IDynamicApiController
     }
 
     /// <summary>
-    /// GoView 退出
+    /// GoView 退出 🔖
     /// </summary>
     [DisplayName("GoView 退出")]
     public void GetLogout()
@@ -68,13 +71,13 @@ public class GoViewSysService : IDynamicApiController
     }
 
     /// <summary>
-    /// 获取 OSS 上传接口
+    /// 获取 OSS 上传接口 🔖
     /// </summary>
     /// <returns></returns>
     [AllowAnonymous]
     [ApiDescriptionSettings(Name = "GetOssInfo")]
     [DisplayName("获取 OSS 上传接口")]
-    public Task<GoViewOssUrlOutput> GetOssInfo()
+    public static Task<GoViewOssUrlOutput> GetOssInfo()
     {
         return Task.FromResult(new GoViewOssUrlOutput { BucketURL = "" });
     }

@@ -1,6 +1,8 @@
-﻿// 此源代码遵循位于源代码树根目录中的 LICENSE 文件的许可证。
+﻿// Admin.NET 项目的版权、商标、专利和其他相关权利均受相应法律法规的保护。使用本项目应遵守相关法律法规和许可证的要求。
 //
-// 必须在法律法规允许的范围内正确使用，严禁将其用于非法、欺诈、恶意或侵犯他人合法权益的目的。
+// 本项目主要遵循 MIT 许可证和 Apache 许可证（版本 2.0）进行分发和使用。许可证位于源代码树根目录中的 LICENSE-MIT 和 LICENSE-APACHE 文件。
+//
+// 不得利用本项目从事危害国家安全、扰乱社会秩序、侵犯他人合法权益等法律法规禁止的活动！任何基于本项目二次开发而产生的一切法律纠纷和责任，我们不承担任何责任！
 
 using Aliyun.OSS.Util;
 using Furion.VirtualFileServer;
@@ -9,7 +11,7 @@ using OnceMi.AspNetCore.OSS;
 namespace Admin.NET.Core.Service;
 
 /// <summary>
-/// 系统文件服务 💥
+/// 系统文件服务 🧩
 /// </summary>
 [ApiDescriptionSettings(Order = 410)]
 public class SysFileService : IDynamicApiController, ITransient
@@ -19,6 +21,7 @@ public class SysFileService : IDynamicApiController, ITransient
     private readonly OSSProviderOptions _OSSProviderOptions;
     private readonly UploadOptions _uploadOptions;
     private readonly IOSSService _OSSService;
+    private readonly string _imageType = ".jpg.png.bmp.gif.tif";
 
     public SysFileService(UserManager userManager,
         SqlSugarRepository<SysFile> sysFileRep,
@@ -237,8 +240,9 @@ public class SysFileService : IDynamicApiController, ITransient
     /// </summary>
     /// <param name="file">文件</param>
     /// <param name="savePath">路径</param>
+    /// <param name="allowSuffix">允许格式：.jpg.png.gif.tif.bmp</param>
     /// <returns></returns>
-    private async Task<SysFile> HandleUploadFile(IFormFile file, string savePath)
+    private async Task<SysFile> HandleUploadFile(IFormFile file, string savePath, string allowSuffix = "")
     {
         if (file == null) throw Oops.Oh(ErrorCodeEnum.D8000);
 
@@ -273,12 +277,15 @@ public class SysFileService : IDynamicApiController, ITransient
             });
         }
 
+        // 验证文件类型
         if (!_uploadOptions.ContentType.Contains(file.ContentType))
             throw Oops.Oh(ErrorCodeEnum.D8001);
 
+        // 验证文件大小
         if (sizeKb > _uploadOptions.MaxSize)
             throw Oops.Oh(ErrorCodeEnum.D8002);
 
+        // 获取文件后缀
         var suffix = Path.GetExtension(file.FileName).ToLower(); // 后缀
         if (string.IsNullOrWhiteSpace(suffix))
         {
@@ -290,6 +297,12 @@ public class SysFileService : IDynamicApiController, ITransient
         }
         if (string.IsNullOrWhiteSpace(suffix))
             throw Oops.Oh(ErrorCodeEnum.D8003);
+
+        // 防止客户端伪造文件类型
+        if (!string.IsNullOrWhiteSpace(allowSuffix) && !allowSuffix.Contains(suffix))
+            throw Oops.Oh(ErrorCodeEnum.D8003);
+        if (!VerifyFileExtensionName.IsSameType(file.OpenReadStream(), suffix))
+            throw Oops.Oh(ErrorCodeEnum.D8001);
 
         var newFile = new SysFile
         {
@@ -380,7 +393,7 @@ public class SysFileService : IDynamicApiController, ITransient
     [DisplayName("上传头像")]
     public async Task<SysFile> UploadAvatar([Required] IFormFile file)
     {
-        var sysFile = await UploadFile(file, "Upload/Avatar");
+        var sysFile = await HandleUploadFile(file, "Upload/Avatar", _imageType);
 
         var sysUserRep = _sysFileRep.ChangeRepository<SqlSugarRepository<SysUser>>();
         var user = sysUserRep.GetFirst(u => u.Id == _userManager.UserId);
@@ -402,7 +415,7 @@ public class SysFileService : IDynamicApiController, ITransient
     [DisplayName("上传电子签名")]
     public async Task<SysFile> UploadSignature([Required] IFormFile file)
     {
-        var sysFile = await UploadFile(file, "Upload/Signature");
+        var sysFile = await HandleUploadFile(file, "Upload/Signature", _imageType);
 
         var sysUserRep = _sysFileRep.ChangeRepository<SqlSugarRepository<SysUser>>();
         var user = sysUserRep.GetFirst(u => u.Id == _userManager.UserId);

@@ -1,11 +1,13 @@
-// 此源代码遵循位于源代码树根目录中的 LICENSE 文件的许可证。
+// Admin.NET 项目的版权、商标、专利和其他相关权利均受相应法律法规的保护。使用本项目应遵守相关法律法规和许可证的要求。
 //
-// 必须在法律法规允许的范围内正确使用，严禁将其用于非法、欺诈、恶意或侵犯他人合法权益的目的。
+// 本项目主要遵循 MIT 许可证和 Apache 许可证（版本 2.0）进行分发和使用。许可证位于源代码树根目录中的 LICENSE-MIT 和 LICENSE-APACHE 文件。
+//
+// 不得利用本项目从事危害国家安全、扰乱社会秩序、侵犯他人合法权益等法律法规禁止的活动！任何基于本项目二次开发而产生的一切法律纠纷和责任，我们不承担任何责任！
 
 namespace Admin.NET.Core.Service;
 
 /// <summary>
-/// 系统用户服务 💥
+/// 系统用户服务 🧩
 /// </summary>
 [ApiDescriptionSettings(Order = 490)]
 public class SysUserService : IDynamicApiController, ITransient
@@ -18,6 +20,7 @@ public class SysUserService : IDynamicApiController, ITransient
     private readonly SysConfigService _sysConfigService;
     private readonly SysOnlineUserService _sysOnlineUserService;
     private readonly SysCacheService _sysCacheService;
+    private readonly SysUserLdapService _sysUserLdapService;
 
     public SysUserService(UserManager userManager,
         SqlSugarRepository<SysUser> sysUserRep,
@@ -26,7 +29,8 @@ public class SysUserService : IDynamicApiController, ITransient
         SysUserRoleService sysUserRoleService,
         SysConfigService sysConfigService,
         SysOnlineUserService sysOnlineUserService,
-        SysCacheService sysCacheService)
+        SysCacheService sysCacheService,
+        SysUserLdapService sysUserLdapService)
     {
         _userManager = userManager;
         _sysUserRep = sysUserRep;
@@ -36,6 +40,7 @@ public class SysUserService : IDynamicApiController, ITransient
         _sysConfigService = sysConfigService;
         _sysOnlineUserService = sysOnlineUserService;
         _sysCacheService = sysCacheService;
+        _sysUserLdapService = sysUserLdapService;
     }
 
     /// <summary>
@@ -72,7 +77,8 @@ public class SysUserService : IDynamicApiController, ITransient
             {
                 OrgName = a.Name,
                 PosName = b.Name,
-                RoleName = SqlFunc.Subqueryable<SysUserRole>().LeftJoin<SysRole>((m, n) => m.RoleId == n.Id).Where(m => m.UserId == u.Id).SelectStringJoin((m, n) => n.Name, ",")
+                RoleName = SqlFunc.Subqueryable<SysUserRole>().LeftJoin<SysRole>((m, n) => m.RoleId == n.Id).Where(m => m.UserId == u.Id).SelectStringJoin((m, n) => n.Name, ","),
+                DomainAccount = SqlFunc.Subqueryable<SysUserLdap>().Where(m => m.UserId == u.Id).Select(m => m.Account)
             }, true)
             .ToPagedListAsync(input.Page, input.PageSize);
     }
@@ -95,8 +101,13 @@ public class SysUserService : IDynamicApiController, ITransient
         var user = input.Adapt<SysUser>();
         user.Password = CryptogramUtil.Encrypt(password);
         var newUser = await _sysUserRep.AsInsertable(user).ExecuteReturnEntityAsync();
+
         input.Id = newUser.Id;
         await UpdateRoleAndExtOrg(input);
+
+        // 增加域账号
+        if (!string.IsNullOrWhiteSpace(input.DomainAccount))
+            await _sysUserLdapService.AddUserLdap(newUser.TenantId.Value, newUser.Id, newUser.Account, input.DomainAccount);
 
         return newUser.Id;
     }
@@ -127,6 +138,8 @@ public class SysUserService : IDynamicApiController, ITransient
         var roleIds = await GetOwnRoleList(input.Id);
         if (input.OrgId != user.OrgId || !input.RoleIdList.OrderBy(u => u).SequenceEqual(roleIds.OrderBy(u => u)))
             await _sysOnlineUserService.ForceOffline(input.Id);
+        // 更新域账号
+        await _sysUserLdapService.AddUserLdap(user.TenantId.Value, user.Id, user.Account, input.DomainAccount);
     }
 
     /// <summary>
@@ -167,6 +180,9 @@ public class SysUserService : IDynamicApiController, ITransient
 
         // 删除用户扩展机构
         await _sysUserExtOrgService.DeleteUserExtOrgByUserId(input.Id);
+
+        // 删除域账号
+        await _sysUserLdapService.DeleteUserLdapByUserId(input.Id);
     }
 
     /// <summary>
@@ -210,7 +226,7 @@ public class SysUserService : IDynamicApiController, ITransient
             throw Oops.Oh(ErrorCodeEnum.D3005);
 
         // 账号禁用则增加黑名单，账号启用则移除黑名单
-        var sysCacheService = App.GetService<SysCacheService>();
+        var sysCacheService = App.GetRequiredService<SysCacheService>();
         if (input.Status == StatusEnum.Disable)
         {
             sysCacheService.Set($"{CacheConst.KeyBlacklist}{user.Id}", $"{user.RealName}-{user.Phone}");
@@ -251,6 +267,10 @@ public class SysUserService : IDynamicApiController, ITransient
     [DisplayName("修改用户密码")]
     public virtual async Task<int> ChangePwd(ChangePwdInput input)
     {
+        // 国密SM2解密（前端密码传输SM2加密后的）
+        input.PasswordOld = CryptogramUtil.SM2Decrypt(input.PasswordOld);
+        input.PasswordNew = CryptogramUtil.SM2Decrypt(input.PasswordNew);
+
         var user = await _sysUserRep.GetFirstAsync(u => u.Id == _userManager.UserId) ?? throw Oops.Oh(ErrorCodeEnum.D0009);
         if (CryptogramUtil.CryptoType == CryptogramEnum.MD5.ToString())
         {

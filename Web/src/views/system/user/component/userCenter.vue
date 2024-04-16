@@ -169,7 +169,7 @@ import { base64ToFile } from '/@/utils/base64Conver';
 import OrgTree from '/@/views/system/user/component/orgTree.vue';
 import CropperDialog from '/@/components/cropper/index.vue';
 import VueGridLayout from 'vue-grid-layout';
-
+import { sm2 } from 'sm-crypto-v2';
 import { clearAccessTokens, getAPI } from '/@/utils/axios-utils';
 import { SysFileApi, SysUserApi } from '/@/api-services/api';
 import { ChangePwdInput, SysUser, SysFile } from '/@/api-services/models';
@@ -290,7 +290,14 @@ const resetPassword = () => {
 const submitPassword = () => {
 	ruleFormPasswordRef.value?.validate(async (valid: boolean) => {
 		if (!valid) return;
-		await getAPI(SysUserApi).apiSysUserChangePwdPost(state.ruleFormPassword);
+
+		// SM2加密密码
+		const cpwd: ChangePwdInput = { passwordOld: '', passwordNew: '' };
+		const publicKey = window.__env__.VITE_SM_PUBLIC_KEY;
+		cpwd.passwordOld = sm2.doEncrypt(state.ruleFormPassword.passwordOld, publicKey, 1);
+		cpwd.passwordNew = sm2.doEncrypt(state.ruleFormPassword.passwordNew, publicKey, 1);
+		await getAPI(SysUserApi).apiSysUserChangePwdPost(cpwd);
+
 		// 退出系统
 		ElMessageBox.confirm('密码已修改，是否重新登录系统？', '提示', {
 			confirmButtonText: '确定',

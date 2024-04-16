@@ -9,6 +9,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Service\**" />
+    <EmbeddedResource Remove="Service\**" />
+    <None Remove="Service\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="Admin.NET.Application.xml" />
     <None Remove="Configuration\Limit.json" />
     <None Remove="Configuration\Logging.json" />
@@ -27,6 +33,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Admin.NET.Core\Admin.NET.Core.csproj" />
+    <ProjectReference Include="..\Plugins\Admin.NET.Plugin.DingTalk\Admin.NET.Plugin.DingTalk.csproj" />
+    <ProjectReference Include="..\Plugins\Admin.NET.Plugin.GoView\Admin.NET.Plugin.GoView.csproj" />
   </ItemGroup>
 
   <ItemGroup>
