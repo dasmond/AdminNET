@@ -3,24 +3,42 @@ branches: {
   }
 fileChange:
   /Web:
-    newFile: !uuid '11aa3978e5dda1e429454751a4c73cfb7c828195'
-    oldFile: !uuid '22bc644e4910a0cc2cbfb032345b44c02c3cdf1a'
+    newFile: !uuid 'f2bf959ab6591d73f5ee3edf1144a2b52ae44186'
+    oldFile: !uuid '11aa3978e5dda1e429454751a4c73cfb7c828195'
   /Web/src:
-    newFile: !uuid '906f69dcf2a936d6b4d99d502ef0521cd5d557e3'
-    oldFile: !uuid '9efba0de46f0678cd6c78b420d5f4baa34ed0dc6'
+    newFile: !uuid 'becf2388efd2f71c757f9d4048bf7f7b0608f428'
+    oldFile: !uuid '906f69dcf2a936d6b4d99d502ef0521cd5d557e3'
   /Web/src/layout:
-    newFile: !uuid '45a312e288d5f74ce5a212a80462494bd2148ce9'
-    oldFile: !uuid 'b0c0cc23b3f30362d1a322ac5b2d5d07c014b9e5'
-  /Web/src/layout/navBars:
-    newFile: !uuid '854387bd7455b4ccb799d318199c7df3aa7e928a'
-    oldFile: !uuid 'b184713ddd6dce8673d9a92a7773532c28e8ff0e'
-  /Web/src/layout/navBars/topBar:
-    newFile: !uuid '47986a157d8a00c9a7161689a5a8544d8c8bc41c'
-    oldFile: !uuid '1bba5382a2b47b59bbdf16477fb7b987d49a9d4e'
-  /Web/src/layout/navBars/topBar/user.vue:
-    newFile: !uuid '42c0b1ccfecf268e7a150ecdfd017f2c74063552'
-    oldFile: !uuid '3c5bf619676800af3ed07c8b4b620ce2295afa79'
-gitCommitId: !uuid '80e5c3510ae0f173c34a1b9d9bde3d27f9269a2b'
+    newFile: !uuid '7eeb3e61bd01dd92ec9e9169f4793c27dfb0e155'
+    oldFile: !uuid '45a312e288d5f74ce5a212a80462494bd2148ce9'
+  /Web/src/layout/footer:
+    newFile: !uuid '2e65f220a51319b4a8265e70bff3d5be3fa34574'
+    oldFile: !uuid '8bc72aaa88594ddbcd7b22e92971d0c9c5ede4ce'
+  /Web/src/layout/footer/index.vue:
+    newFile: !uuid 'f306d2b10ed2bd1a9b8b42fed7bca6e60ab11b62'
+    oldFile: !uuid 'e7943f71965caca48a182c79e5e3db1b7207c783'
+  /Web/src/stores:
+    newFile: !uuid '2a184ca460093b3f641acbf39c7f76ec0fdfaefd'
+    oldFile: !uuid '2202be215dba22d42b0f056203cba4cadfe43685'
+  /Web/src/stores/themeConfig.ts:
+    newFile: !uuid '9bdc65b461d8f8f06909e10c3d95317a5b71fbb3'
+    oldFile: !uuid '640b75d4aec31898f3fbfe9c22cf55175fa25289'
+  /Web/src/types:
+    newFile: !uuid 'e4e6316b1a4ff4d54d125aba05228a8d6c52cedd'
+    oldFile: !uuid '0462e1b66c9e202050e3dc28c3cf8ab714d6228f'
+  /Web/src/types/pinia.d.ts:
+    newFile: !uuid 'be7f69ed5a51c0b185debb7e097e1189ccce2758'
+    oldFile: !uuid '5ad7ee7506c732e8e4b99954d5949a2ec1f57305'
+  /Web/src/views:
+    newFile: !uuid '8e22996713ce9d92a04f54feab751dac07b08fc7'
+    oldFile: !uuid '076763fcd4aa3b8014c38464b08dcb8d0a875536'
+  /Web/src/views/login:
+    newFile: !uuid '9730e487ede010cc130dc7a6f80670224b47b3e5'
+    oldFile: !uuid 'b947b225858f3342b9777bfc47c5d44bd86f2d8a'
+  /Web/src/views/login/index.vue:
+    newFile: !uuid '01cf19a8cbdc60af7fb3d754446f328110da5943'
+    oldFile: !uuid '0c4ecaa5e349a3e1f7446b3a7231a62cac5d5eac'
+gitCommitId: !uuid '86043404be8aeefd149f0b89cea528add3481795'
 renames: {
   }
-revisionId: 1743
+revisionId: 1744
