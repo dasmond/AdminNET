@@ -8,7 +8,6 @@
       {
         //"ConfigId": "1300000000001", // 默认库标识-禁止修改
         "DbType": "MySql", // MySql、SqlServer、Sqlite、Oracle、PostgreSQL、Dm、Kdbndp、Oscar、MySqlConnector、Access、OpenGauss、QuestDB、HG、ClickHouse、GBase、Odbc、Custom
-        //"ConnectionString": "DataSource=./Admin.NET.db", // 库连接字符串
         "ConnectionString": "server=1.94.22.68;Database=admin.net;Uid=Admin.NET;Pwd=S3LrhcyH4Cw46dTT;AllowLoadLocalInfile=true", // 库连接字符串
         //"SlaveConnectionConfigs": [ // 读写分离/主从
         //	{
