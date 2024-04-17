@@ -3,15 +3,57 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid 'e8b45568c74fe50c2c5b0f3252c58a0628b5fe9d'
-    oldFile: !uuid '48ac06b575a6bd74cdbbefe66999b526ad0dc2be'
+    newFile: !uuid '9e6f0cf278b4574c6078fe67c989450b4ffb851f'
+    oldFile: !uuid 'e8b45568c74fe50c2c5b0f3252c58a0628b5fe9d'
+  /Admin.NET/Admin.NET.Application:
+    newFile: !uuid '3ddeeb1cfab90e7e30bda78abc44c7ce7af86863'
+    oldFile: !uuid 'c1b04133e484389a40b02a89ec24f3df0d8d5e83'
+  /Admin.NET/Admin.NET.Application/Admin.NET.Application.csproj:
+    newFile: !uuid '19e383a24f463bdba5ced5c6d5fae176fd6d398c'
+    oldFile: !uuid 'b6f2fdd9bdca0ce0626b99b4d2d1d536f4f51cab'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '78171f668ac65d4f55677d5364c7cf5e06bc3ea4'
-    oldFile: !uuid 'c63b10ab1fcf673ddf8527d2f3d192367d2026f6'
+    newFile: !uuid '218b68cb8a2cd9a6284a7aea2fb663c908531254'
+    oldFile: !uuid '78171f668ac65d4f55677d5364c7cf5e06bc3ea4'
   /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
-    newFile: !uuid '9af5a8febd9db2068ba6594eb95c50613a241adc'
-    oldFile: !uuid 'a25ce8ad83b8dfc1c2918e1f38f957ffba0313bc'
-gitCommitId: !uuid 'b49fff199ca23125714d173e8da6cc937860792e'
+    newFile: !uuid 'aae00385dd9b514253388299cdce33a5531dd7b5'
+    oldFile: !uuid '9af5a8febd9db2068ba6594eb95c50613a241adc'
+  /Admin.NET/Admin.NET.Web.Core:
+    newFile: !uuid '8130ae4de2068278e883f4d0f255a158d6355171'
+    oldFile: !uuid '06952f224d49ef8aecbf50dbcfd264a2cb4a0768'
+  /Admin.NET/Admin.NET.Web.Core/Admin.NET.Web.Core.csproj:
+    newFile: !uuid '90f033dc374ffef747b47020debfa2e483ae3ace'
+    oldFile: !uuid 'b36b0bb7a61f447efd058dc04ee1bec2db486cff'
+  /Admin.NET/Admin.NET.Web.Entry:
+    newFile: !uuid 'e707cbb4c44aaf1383012e7e0bf54cb9b2089ae6'
+    oldFile: !uuid 'c71cb6457f9b1fdecc94676b6854450c698a9b70'
+  /Admin.NET/Admin.NET.Web.Entry/Admin.NET.Web.Entry.csproj:
+    newFile: !uuid '3b015b2af4baa48726be9722f387b2bea2f452f0'
+    oldFile: !uuid '2db2aa2d10975d7b6c3899f2cfc4b9bad3124444'
+  /Admin.NET/Admin.NET.Web.Entry/sensitive-words.txt:
+    newFile: !uuid '901a560b4dbdaff4b5598aed6bedae37e92645df'
+    oldFile: !uuid '6ac28c2038893639387675be9b2abbe9f718874b'
+  /Admin.NET/Plugins:
+    newFile: !uuid '8bec6ffa53583bcd281096c8908a0d81b302d380'
+    oldFile: !uuid '563dafc72e12c7ccf54cd365b946866d29e03d64'
+  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk:
+    newFile: !uuid '4c628d2082c527a94b9f699c564c0a70f1856b10'
+    oldFile: !uuid '3424080e4a46e5c9e9f6e016140cdfcbb70d5b00'
+  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/Admin.NET.Plugin.DingTalk.csproj:
+    newFile: !uuid '5db09a8914eac11abfb6561d5daae27110c18dda'
+    oldFile: !uuid 'f7aec553afdb7d3e4b6f62ea4f7b5a53c6db4cfb'
+  /Admin.NET/Plugins/Admin.NET.Plugin.Elsa:
+    newFile: !uuid 'c3f1f780247b7a691e75587ecb425b8ade389a75'
+    oldFile: !uuid '57e892b65dc7e17b946647704dab0c41b6e573be'
+  /Admin.NET/Plugins/Admin.NET.Plugin.Elsa/Admin.NET.Plugin.Elsa.csproj:
+    newFile: !uuid '020d66d8a117568eafd0c7e6dbb925cd9299fcf3'
+    oldFile: !uuid 'dc73cca9bac30537bddb5ffb6bbc11f1e9c93b34'
+  /Admin.NET/Plugins/Admin.NET.Plugin.GoView:
+    newFile: !uuid 'c8cc49a9351bb2e416c0bf2da515423ce99d2839'
+    oldFile: !uuid 'ad255b6b8b82492a6663088d21b4c510721212f6'
+  /Admin.NET/Plugins/Admin.NET.Plugin.GoView/Admin.NET.Plugin.GoView.csproj:
+    newFile: !uuid '5db09a8914eac11abfb6561d5daae27110c18dda'
+    oldFile: !uuid '910243fafd41f9b4a4d412ffe2ddfd32377ae827'
+gitCommitId: !uuid '9dcf4f87a31a071b08fbb2e2cf8ef2a3930ef2f9'
 renames: {
   }
-revisionId: 1697
+revisionId: 1698
