@@ -22,8 +22,8 @@
 					<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
 						<el-form-item label="状态">
 							<el-radio-group v-model="state.ruleForm.status">
-								<el-radio :label="1">启用</el-radio>
-								<el-radio :label="2">禁用</el-radio>
+								<el-radio :value="1">启用</el-radio>
+								<el-radio :value="2">禁用</el-radio>
 							</el-radio-group>
 						</el-form-item>
 					</el-col>
@@ -59,7 +59,7 @@ import { UpdateDictTypeInput } from '/@/api-services/models';
 const props = defineProps({
 	title: String,
 });
-const emits = defineEmits(['handleQuery']);
+const emits = defineEmits(['handleQuery', 'handleUpdate']);
 const ruleFormRef = ref();
 const state = reactive({
 	isShowDialog: false,
@@ -93,6 +93,7 @@ const submit = () => {
 		} else {
 			await getAPI(SysDictTypeApi).apiSysDictTypeAddPost(state.ruleForm);
 		}
+		emits('handleUpdate');
 		closeDialog();
 	});
 };

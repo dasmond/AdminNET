@@ -1,10 +1,10 @@
 <template>
 	<div class="sys-dict-container">
-		<el-row :gutter="8" style="width: 100%">
-			<el-col :span="12" :xs="24">
-				<el-card class="full-table" shadow="hover" :body-style="{ paddingBottom: '20' }">
+		<el-row :gutter="8" style="width: 100%; height: 100%; flex: 1">
+			<el-col :span="12" :xs="24" style="display: flex; height: 100%; flex: 1">
+				<el-card class="full-table" shadow="hover" :body-style="{ height: 'calc(100% - 51px)' }">
 					<template #header>
-						<el-icon><ele-Collection /></el-icon>字典
+						<el-icon size="16" style="margin-right: 3px; display: inline; vertical-align: middle"><ele-Collection /></el-icon>字典
 					</template>
 					<el-form :model="state.queryDictTypeParams" ref="queryForm" :inline="true">
 						<el-form-item label="名称">
@@ -26,66 +26,18 @@
 
 					<el-table :data="state.dictTypeData" style="width: 100%" v-loading="state.loading" @row-click="handleDictType" highlight-current-row border>
 						<el-table-column type="index" label="序号" width="55" align="center" />
-						<el-table-column prop="name" label="字典名称" header-align="center" show-overflow-tooltip />
-						<el-table-column prop="code" label="字典编码" header-align="center" show-overflow-tooltip />
+						<el-table-column prop="name" label="字典名称" min-width="120" header-align="center" show-overflow-tooltip />
+						<el-table-column prop="code" label="字典编码" min-width="140" header-align="center" show-overflow-tooltip />
 						<el-table-column prop="status" label="状态" width="70" align="center" show-overflow-tooltip>
 							<template #default="scope">
 								<el-tag type="success" v-if="scope.row.status === 1">启用</el-tag>
 								<el-tag type="danger" v-else>禁用</el-tag>
 							</template>
 						</el-table-column>
-						<el-table-column prop="orderNo" label="排序" width="70" align="center" show-overflow-tooltip />
+						<el-table-column prop="orderNo" label="排序" width="60" align="center" show-overflow-tooltip />
 						<el-table-column label="修改记录" width="100" align="center" show-overflow-tooltip>
 							<template #default="scope">
-								<el-popover placement="bottom" width="280" trigger="hover">
-									<template #reference>
-										<el-text type="primary">
-											<el-icon><ele-InfoFilled /></el-icon>详情
-										</el-text>
-									</template>
-									<el-descriptions direction="vertical" :column="2" border>
-										<el-descriptions-item width="140">
-											<template #label>
-												<el-text>
-													<el-icon><ele-UserFilled /></el-icon>创建者
-												</el-text>
-											</template>
-											<el-tag>{{ scope.row.createUserName ?? '无' }}</el-tag>
-										</el-descriptions-item>
-										<el-descriptions-item>
-											<template #label>
-												<el-text>
-													<el-icon><ele-Calendar /></el-icon>创建时间
-												</el-text>
-											</template>
-											<el-tag>{{ scope.row.createTime ?? '无' }}</el-tag>
-										</el-descriptions-item>
-										<el-descriptions-item>
-											<template #label>
-												<el-text>
-													<el-icon><ele-UserFilled /></el-icon>修改者
-												</el-text>
-											</template>
-											<el-tag>{{ scope.row.updateUserName ?? '无' }}</el-tag>
-										</el-descriptions-item>
-										<el-descriptions-item>
-											<template #label>
-												<el-text>
-													<el-icon><ele-Calendar /></el-icon>修改时间
-												</el-text>
-											</template>
-											<el-tag>{{ scope.row.updateTime ?? '无' }}</el-tag>
-										</el-descriptions-item>
-										<el-descriptions-item>
-											<template #label>
-												<el-text>
-													<el-icon><ele-Tickets /></el-icon>备注
-												</el-text>
-											</template>
-											{{ scope.row.remark ?? '无' }}
-										</el-descriptions-item>
-									</el-descriptions>
-								</el-popover>
+								<ModifyRecord :data="scope.row" />
 							</template>
 						</el-table-column>
 						<el-table-column label="操作" width="110" fixed="right" align="center">
@@ -116,10 +68,10 @@
 				</el-card>
 			</el-col>
 
-			<el-col :span="12" :xs="24">
-				<el-card class="full-table" shadow="hover" :body-style="{ paddingBottom: '20' }">
+			<el-col :span="12" :xs="24" style="display: flex; height: 100%; flex: 1">
+				<el-card class="full-table" shadow="hover" :body-style="{ height: 'calc(100% - 51px)' }">
 					<template #header>
-						<el-icon><ele-Collection /></el-icon>字典值【{{ state.editDictTypeName }}】
+						<el-icon size="16" style="margin-right: 3px; display: inline; vertical-align: middle"><ele-Collection /></el-icon>字典值【{{ state.editDictTypeName }}】
 					</template>
 					<el-form :model="state.queryDictDataParams" ref="queryForm" :inline="true">
 						<!-- <el-form-item label="字典值">
@@ -141,12 +93,12 @@
 
 					<el-table :data="state.dictDataData" style="width: 100%" v-loading="state.loading" border>
 						<el-table-column type="index" label="序号" width="55" align="center" />
-						<el-table-column prop="value" label="字典值" header-align="center" min-width="100" show-overflow-tooltip>
+						<el-table-column prop="value" label="字典值" header-align="center" min-width="120" show-overflow-tooltip>
 							<template #default="scope">
 								<el-tag :type="scope.row.tagType" :style="scope.row.styleSetting" :class="scope.row.classSetting">{{ scope.row.value }}</el-tag>
 							</template>
 						</el-table-column>
-						<el-table-column prop="code" label="编码" header-align="center" min-width="100" show-overflow-tooltip />
+						<el-table-column prop="code" label="编码" header-align="center" min-width="120" show-overflow-tooltip />
 						<el-table-column prop="extData" label="拓展数据" width="90" align="center">
 							<template #default="scope">
 								<el-tag type="warning" v-if="scope.row.extData == null || scope.row.extData == ''">空</el-tag>
@@ -159,58 +111,10 @@
 								<el-tag type="danger" v-else>禁用</el-tag>
 							</template>
 						</el-table-column>
-						<el-table-column prop="orderNo" label="排序" width="70" align="center" show-overflow-tooltip />
+						<el-table-column prop="orderNo" label="排序" width="60" align="center" show-overflow-tooltip />
 						<el-table-column label="修改记录" width="100" align="center" show-overflow-tooltip>
 							<template #default="scope">
-								<el-popover placement="bottom" width="280" trigger="hover">
-									<template #reference>
-										<el-text type="primary">
-											<el-icon><ele-InfoFilled /></el-icon>详情
-										</el-text>
-									</template>
-									<el-descriptions direction="vertical" :column="2" border>
-										<el-descriptions-item width="140">
-											<template #label>
-												<el-text>
-													<el-icon><ele-UserFilled /></el-icon>创建者
-												</el-text>
-											</template>
-											<el-tag>{{ scope.row.createUserName ?? '无' }}</el-tag>
-										</el-descriptions-item>
-										<el-descriptions-item>
-											<template #label>
-												<el-text>
-													<el-icon><ele-Calendar /></el-icon>创建时间
-												</el-text>
-											</template>
-											<el-tag>{{ scope.row.createTime ?? '无' }}</el-tag>
-										</el-descriptions-item>
-										<el-descriptions-item>
-											<template #label>
-												<el-text>
-													<el-icon><ele-UserFilled /></el-icon>修改者
-												</el-text>
-											</template>
-											<el-tag>{{ scope.row.updateUserName ?? '无' }}</el-tag>
-										</el-descriptions-item>
-										<el-descriptions-item>
-											<template #label>
-												<el-text>
-													<el-icon><Calendar /></el-icon>修改时间
-												</el-text>
-											</template>
-											<el-tag>{{ scope.row.updateTime ?? '无' }}</el-tag>
-										</el-descriptions-item>
-										<el-descriptions-item>
-											<template #label>
-												<el-text>
-													<el-icon><ele-Tickets /></el-icon>备注
-												</el-text>
-											</template>
-											{{ scope.row.remark ?? '无' }}
-										</el-descriptions-item>
-									</el-descriptions>
-								</el-popover>
+								<ModifyRecord :data="scope.row" />
 							</template>
 						</el-table-column>
 						<el-table-column label="操作" width="80" fixed="right" align="center" show-overflow-tooltip>
@@ -239,8 +143,8 @@
 			</el-col>
 		</el-row>
 
-		<EditDictType ref="editDictTypeRef" :title="state.editDictTypeTitle" @handleQuery="handleDictTypeQuery" />
-		<EditDictData ref="editDictDataRef" :title="state.editDictDataTitle" @handleQuery="handleDictDataQuery" />
+		<EditDictType ref="editDictTypeRef" :title="state.editDictTypeTitle" @handleQuery="handleDictTypeQuery" @handleUpdate="updateDictSession" />
+		<EditDictData ref="editDictDataRef" :title="state.editDictDataTitle" @handleQuery="handleDictDataQuery" @handleUpdate="updateDictSession" />
 	</div>
 </template>
 
@@ -249,8 +153,11 @@ import { onMounted, reactive, ref } from 'vue';
 import { ElMessageBox, ElMessage } from 'element-plus';
 import EditDictType from '/@/views/system/dict/component/editDictType.vue';
 import EditDictData from '/@/views/system/dict/component/editDictData.vue';
+import ModifyRecord from '/@/components/table/modifyRecord.vue';
 
 import { getAPI } from '/@/utils/axios-utils';
+import { Session } from '/@/utils/storage';
+import { useUserInfo } from '/@/stores/userInfo';
 import { SysDictTypeApi, SysDictDataApi } from '/@/api-services/api';
 import { SysDictType, SysDictData } from '/@/api-services/models';
 
@@ -374,6 +281,7 @@ const delDictType = (row: any) => {
 		.then(async () => {
 			await getAPI(SysDictTypeApi).apiSysDictTypeDeletePost({ id: row.id });
 			handleDictTypeQuery();
+			updateDictSession();
 			ElMessage.success('删除成功');
 		})
 		.catch(() => {});
@@ -389,6 +297,7 @@ const delDictData = (row: any) => {
 		.then(async () => {
 			await getAPI(SysDictDataApi).apiSysDictDataDeletePost({ id: row.id });
 			handleDictDataQuery();
+			updateDictSession();
 			ElMessage.success('删除成功');
 		})
 		.catch(() => {});
@@ -416,5 +325,14 @@ const handleDictDataSizeChange = (val: number) => {
 const handleDictDataCurrentChange = (val: number) => {
 	state.tableDictDataParams.page = val;
 	handleDictDataQuery();
+};
+
+// 更新前端字典缓存
+const updateDictSession = async () => {
+	if (Session.get('dictList')) {
+		const dictList = await useUserInfo().getAllDictList();
+		Session.set('dictList', dictList);
+	}
+	await useUserInfo().setDictList();
 };
 </script>

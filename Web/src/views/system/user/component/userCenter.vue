@@ -1,6 +1,6 @@
 <template>
 	<div class="sys-userCenter-container">
-		<el-row :gutter="8" style="width: 100%">
+		<el-row :gutter="5" style="width: 100%">
 			<el-col :span="8" :xs="24">
 				<el-card shadow="hover">
 					<div class="account-center-avatarHolder">
@@ -50,10 +50,10 @@
 				</el-card>
 			</el-col>
 
-			<el-col :span="16" :xs="24" v-loading="state.loading">
+			<el-col :span="16" :xs="24">
 				<el-card shadow="hover">
 					<el-tabs>
-						<el-tab-pane label="基础信息">
+						<el-tab-pane label="基础信息" v-loading="state.loading">
 							<el-form :model="state.ruleFormBase" ref="ruleFormBaseRef" label-width="auto">
 								<el-row :gutter="35">
 									<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
@@ -84,8 +84,8 @@
 									<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
 										<el-form-item label="性别">
 											<el-radio-group v-model="state.ruleFormBase.sex">
-												<el-radio :label="1">男</el-radio>
-												<el-radio :label="2">女</el-radio>
+												<el-radio :value="1">男</el-radio>
+												<el-radio :value="2">女</el-radio>
 											</el-radio-group>
 										</el-form-item>
 									</el-col>
@@ -169,10 +169,10 @@ import { base64ToFile } from '/@/utils/base64Conver';
 import OrgTree from '/@/views/system/user/component/orgTree.vue';
 import CropperDialog from '/@/components/cropper/index.vue';
 import VueGridLayout from 'vue-grid-layout';
-
+import { sm2 } from 'sm-crypto-v2';
 import { clearAccessTokens, getAPI } from '/@/utils/axios-utils';
 import { SysFileApi, SysUserApi } from '/@/api-services/api';
-import { ChangePwdInput, SysUser } from '/@/api-services/models';
+import { ChangePwdInput, SysUser, SysFile } from '/@/api-services/models';
 
 const stores = useUserInfo();
 const { userInfos } = storeToRefs(stores);
@@ -215,7 +215,7 @@ watch(state.signOptions, () => {
 // 上传头像图片
 const uploadCropperImg = async (e: any) => {
 	var res = await getAPI(SysFileApi).apiSysFileUploadAvatarPostForm(e.img);
-	userInfos.value.avatar = res.data.result?.filePath + '/' + res.data.result?.name;
+	userInfos.value.avatar = getFileUrl(res.data.result!);
 };
 
 // 打开电子签名页面
@@ -229,7 +229,7 @@ const saveUploadSign = async () => {
 	if (isEmpty) return;
 
 	var res = await getAPI(SysFileApi).apiSysFileUploadSignaturePostForm(base64ToFile(data, userInfos.value.account + '.png'));
-	userInfos.value.signature = res.data.result?.filePath + '/' + res.data.result?.name;
+	userInfos.value.signature = getFileUrl(res.data.result!);
 
 	clearSign();
 	state.signDialogVisible = false;
@@ -248,7 +248,7 @@ const clearSign = () => {
 // 上传手写电子签名
 const uploadSignFile = async (file: any) => {
 	var res = await getAPI(SysFileApi).apiSysFileUploadSignaturePostForm(file.raw);
-	userInfos.value.signature = res.data.result?.url + '';
+	userInfos.value.signature = res.data.result?.url;
 };
 
 // 获得电子签名文件列表
@@ -290,7 +290,14 @@ const resetPassword = () => {
 const submitPassword = () => {
 	ruleFormPasswordRef.value?.validate(async (valid: boolean) => {
 		if (!valid) return;
-		await getAPI(SysUserApi).apiSysUserChangePwdPost(state.ruleFormPassword);
+
+		// SM2加密密码
+		const cpwd: ChangePwdInput = { passwordOld: '', passwordNew: '' };
+		const publicKey = window.__env__.VITE_SM_PUBLIC_KEY;
+		cpwd.passwordOld = sm2.doEncrypt(state.ruleFormPassword.passwordOld, publicKey, 1);
+		cpwd.passwordNew = sm2.doEncrypt(state.ruleFormPassword.passwordNew, publicKey, 1);
+		await getAPI(SysUserApi).apiSysUserChangePwdPost(cpwd);
+
 		// 退出系统
 		ElMessageBox.confirm('密码已修改，是否重新登录系统？', '提示', {
 			confirmButtonText: '确定',
@@ -323,6 +330,15 @@ const uploadSignFileExceed: UploadProps['onExceed'] = (files) => {
 	const file = files[0] as UploadRawFile;
 	file.uid = genFileId();
 	uploadSignRef.value!.handleStart(file);
+};
+
+// 获取文件地址
+const getFileUrl = (row: SysFile): string => {
+	if (row.bucketName == 'Local') {
+		return `/${row.filePath}/${row.id}${row.suffix}`;
+	} else {
+		return row.url!;
+	}
 };
 
 // 导出对象

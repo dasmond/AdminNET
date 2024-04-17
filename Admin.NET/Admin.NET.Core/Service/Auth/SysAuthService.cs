@@ -1,11 +1,8 @@
-// 麻省理工学院许可证
+// Admin.NET 项目的版权、商标、专利和其他相关权利均受相应法律法规的保护。使用本项目应遵守相关法律法规和许可证的要求。
 //
-// 版权所有 (c) 2021-2023 zuohuaijun，大名科技（天津）有限公司  联系电话/微信：18020030720  QQ：515096995
+// 本项目主要遵循 MIT 许可证和 Apache 许可证（版本 2.0）进行分发和使用。许可证位于源代码树根目录中的 LICENSE-MIT 和 LICENSE-APACHE 文件。
 //
-// 特此免费授予获得本软件的任何人以处理本软件的权利，但须遵守以下条件：在所有副本或重要部分的软件中必须包括上述版权声明和本许可声明。
-//
-// 软件按“原样”提供，不提供任何形式的明示或暗示的保证，包括但不限于对适销性、适用性和非侵权的保证。
-// 在任何情况下，作者或版权持有人均不对任何索赔、损害或其他责任负责，无论是因合同、侵权或其他方式引起的，与软件或其使用或其他交易有关。
+// 不得利用本项目从事危害国家安全、扰乱社会秩序、侵犯他人合法权益等法律法规禁止的活动！任何基于本项目二次开发而产生的一切法律纠纷和责任，我们不承担任何责任！
 
 using Furion.SpecificationDocument;
 using Lazy.Captcha.Core;
@@ -13,51 +10,63 @@ using Lazy.Captcha.Core;
 namespace Admin.NET.Core.Service;
 
 /// <summary>
-/// 系统登录授权服务
+/// 系统登录授权服务 🧩
 /// </summary>
 [ApiDescriptionSettings(Order = 500)]
 public class SysAuthService : IDynamicApiController, ITransient
 {
     private readonly UserManager _userManager;
     private readonly SqlSugarRepository<SysUser> _sysUserRep;
+    private readonly SqlSugarRepository<SysUserLdap> _sysUserLdap;
     private readonly IHttpContextAccessor _httpContextAccessor;
     private readonly SysMenuService _sysMenuService;
     private readonly SysOnlineUserService _sysOnlineUserService;
     private readonly SysConfigService _sysConfigService;
     private readonly ICaptcha _captcha;
     private readonly SysCacheService _sysCacheService;
+    private readonly SysLdapService _sysLdapService;
 
     public SysAuthService(UserManager userManager,
         SqlSugarRepository<SysUser> sysUserRep,
+        SqlSugarRepository<SysUserLdap> sysUserLdapRep,
         IHttpContextAccessor httpContextAccessor,
         SysMenuService sysMenuService,
         SysOnlineUserService sysOnlineUserService,
         SysConfigService sysConfigService,
         ICaptcha captcha,
-        SysCacheService sysCacheService)
+        SysCacheService sysCacheService,
+        SysLdapService sysLdapService)
     {
         _userManager = userManager;
         _sysUserRep = sysUserRep;
+        _sysUserLdap = sysUserLdapRep;
         _httpContextAccessor = httpContextAccessor;
         _sysMenuService = sysMenuService;
         _sysOnlineUserService = sysOnlineUserService;
         _sysConfigService = sysConfigService;
         _captcha = captcha;
         _sysCacheService = sysCacheService;
+        _sysLdapService = sysLdapService;
     }
 
     /// <summary>
-    /// 账号密码登录
+    /// 账号密码登录 🔖
     /// </summary>
     /// <param name="input"></param>
     /// <remarks>用户名/密码：superadmin/123456</remarks>
     /// <returns></returns>
     [AllowAnonymous]
     [DisplayName("账号密码登录")]
-    public async Task<LoginOutput> Login([Required] LoginInput input)
+    public virtual async Task<LoginOutput> Login([Required] LoginInput input)
     {
         //// 可以根据域名获取具体租户
         //var host = _httpContextAccessor.HttpContext.Request.Host;
+
+        // 判断密码错误次数（默认5次，缓存30分钟）
+        var keyErrorPasswordCount = $"{CacheConst.KeyErrorPasswordCount}{input.Account}";
+        var errorPasswordCount = _sysCacheService.Get<int>(keyErrorPasswordCount);
+        if (errorPasswordCount >= 5)
+            throw Oops.Oh(ErrorCodeEnum.D1027);
 
         // 是否开启验证码
         if (await _sysConfigService.GetConfigValue<bool>(CommonConst.SysCaptcha))
@@ -68,7 +77,7 @@ public class SysAuthService : IDynamicApiController, ITransient
         }
 
         // 账号是否存在
-        var user = await _sysUserRep.AsQueryable().Includes(t => t.SysOrg).Filter(null, true).FirstAsync(u => u.Account.Equals(input.Account));
+        var user = await _sysUserRep.AsQueryable().Includes(t => t.SysOrg).ClearFilter().FirstAsync(u => u.Account.Equals(input.Account));
         _ = user ?? throw Oops.Oh(ErrorCodeEnum.D0009);
 
         // 账号是否被冻结
@@ -83,29 +92,94 @@ public class SysAuthService : IDynamicApiController, ITransient
         // 国密SM2解密（前端密码传输SM2加密后的）
         input.Password = CryptogramUtil.SM2Decrypt(input.Password);
 
-        // 密码是否正确
-        if (CryptogramUtil.CryptoType == CryptogramEnum.MD5.ToString())
+        // 是否开启域登录验证
+        if (await _sysConfigService.GetConfigValue<bool>(CommonConst.SysDomainLogin))
         {
-            if (!user.Password.Equals(MD5Encryption.Encrypt(input.Password)))
+            var userLdap = await _sysUserLdap.GetFirstAsync(u => u.UserId == user.Id && u.TenantId == tenant.Id);
+            if (userLdap == null)
+            {
+                VerifyPassword(input, keyErrorPasswordCount, errorPasswordCount, user);
+            }
+            else if (!await _sysLdapService.AuthAccount(tenant.Id, userLdap.Account, input.Password))
+            {
+                _sysCacheService.Set(keyErrorPasswordCount, ++errorPasswordCount, TimeSpan.FromMinutes(30));
                 throw Oops.Oh(ErrorCodeEnum.D1000);
+            }
         }
         else
-        {
-            if (!CryptogramUtil.Decrypt(user.Password).Equals(input.Password))
-                throw Oops.Oh(ErrorCodeEnum.D1000);
-        }
+            VerifyPassword(input, keyErrorPasswordCount, errorPasswordCount, user);
+
+        // 登录成功则清空密码错误次数
+        _sysCacheService.Remove(keyErrorPasswordCount);
 
         return await CreateToken(user);
     }
 
     /// <summary>
-    /// 手机号登录
+    /// 验证用户密码
+    /// </summary>
+    /// <param name="input"></param>
+    /// <param name="keyErrorPasswordCount"></param>
+    /// <param name="errorPasswordCount"></param>
+    /// <param name="user"></param>
+    private void VerifyPassword(LoginInput input, string keyErrorPasswordCount, int errorPasswordCount, SysUser user)
+    {
+        if (CryptogramUtil.CryptoType == CryptogramEnum.MD5.ToString())
+        {
+            if (!user.Password.Equals(MD5Encryption.Encrypt(input.Password)))
+            {
+                _sysCacheService.Set(keyErrorPasswordCount, ++errorPasswordCount, TimeSpan.FromMinutes(30));
+                throw Oops.Oh(ErrorCodeEnum.D1000);
+            }
+        }
+        else
+        {
+            if (!CryptogramUtil.Decrypt(user.Password).Equals(input.Password))
+            {
+                _sysCacheService.Set(keyErrorPasswordCount, ++errorPasswordCount, TimeSpan.FromMinutes(30));
+                throw Oops.Oh(ErrorCodeEnum.D1000);
+            }
+        }
+    }
+
+    /// <summary>
+    /// 验证锁屏密码 🔖
+    /// </summary>
+    /// <param name="password"></param>
+    /// <returns></returns>
+    [DisplayName("验证锁屏密码")]
+    public virtual async Task<bool> UnLockScreen([Required, FromQuery] string password)
+    {
+        // 账号是否存在
+        var user = await _sysUserRep.GetFirstAsync(u => u.Id == _userManager.UserId);
+        _ = user ?? throw Oops.Oh(ErrorCodeEnum.D0009);
+
+        // 国密SM2解密（前端密码传输SM2加密后的）
+        password = CryptogramUtil.SM2Decrypt(password);
+
+        // 密码是否正确
+        if (CryptogramUtil.CryptoType == CryptogramEnum.MD5.ToString())
+        {
+            if (!user.Password.Equals(MD5Encryption.Encrypt(password)))
+                throw Oops.Oh(ErrorCodeEnum.D1000);
+        }
+        else
+        {
+            if (!CryptogramUtil.Decrypt(user.Password).Equals(password))
+                throw Oops.Oh(ErrorCodeEnum.D1000);
+        }
+
+        return true;
+    }
+
+    /// <summary>
+    /// 手机号登录 🔖
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
     [AllowAnonymous]
     [DisplayName("手机号登录")]
-    public async Task<LoginOutput> LoginPhone([Required] LoginPhoneInput input)
+    public virtual async Task<LoginOutput> LoginPhone([Required] LoginPhoneInput input)
     {
         var verifyCode = _sysCacheService.Get<string>($"{CacheConst.KeyPhoneVerCode}{input.Phone}");
         if (string.IsNullOrWhiteSpace(verifyCode))
@@ -114,19 +188,19 @@ public class SysAuthService : IDynamicApiController, ITransient
             throw Oops.Oh("验证码错误！");
 
         // 账号是否存在
-        var user = await _sysUserRep.AsQueryable().Includes(t => t.SysOrg).Filter(null, true).FirstAsync(u => u.Phone.Equals(input.Phone));
+        var user = await _sysUserRep.AsQueryable().Includes(t => t.SysOrg).ClearFilter().FirstAsync(u => u.Phone.Equals(input.Phone));
         _ = user ?? throw Oops.Oh(ErrorCodeEnum.D0009);
 
         return await CreateToken(user);
     }
 
     /// <summary>
-    /// 生成Token令牌
+    /// 生成Token令牌 🔖
     /// </summary>
     /// <param name="user"></param>
     /// <returns></returns>
     [NonAction]
-    public async Task<LoginOutput> CreateToken(SysUser user)
+    public virtual async Task<LoginOutput> CreateToken(SysUser user)
     {
         // 单用户登录
         await _sysOnlineUserService.SingleLogin(user.Id);
@@ -163,11 +237,11 @@ public class SysAuthService : IDynamicApiController, ITransient
     }
 
     /// <summary>
-    /// 获取登录账号
+    /// 获取登录账号 🔖
     /// </summary>
     /// <returns></returns>
     [DisplayName("获取登录账号")]
-    public async Task<LoginUserOutput> GetUserInfo()
+    public virtual async Task<LoginUserOutput> GetUserInfo()
     {
         var user = await _sysUserRep.GetFirstAsync(u => u.Id == _userManager.UserId) ?? throw Oops.Oh(ErrorCodeEnum.D1011).StatusCode(401);
         // 获取机构
@@ -176,12 +250,18 @@ public class SysAuthService : IDynamicApiController, ITransient
         var pos = await _sysUserRep.ChangeRepository<SqlSugarRepository<SysPos>>().GetFirstAsync(u => u.Id == user.PosId);
         // 获取拥有按钮权限集合
         var buttons = await _sysMenuService.GetOwnBtnPermList();
+        // 获取权限集合
+        var roleIds = await _sysUserRep.ChangeRepository<SqlSugarRepository<SysUserRole>>().AsQueryable()
+            .Where(u => u.UserId == user.Id).Select(u => u.RoleId).ToListAsync();
 
         return new LoginUserOutput
         {
             Id = user.Id,
             Account = user.Account,
             RealName = user.RealName,
+            Phone = user.Phone,
+            IdCardNum = user.IdCardNum,
+            Email = user.Email,
             AccountType = user.AccountType,
             Avatar = user.Avatar,
             Address = user.Address,
@@ -190,24 +270,25 @@ public class SysAuthService : IDynamicApiController, ITransient
             OrgName = org?.Name,
             OrgType = org?.Type,
             PosName = pos?.Name,
-            Buttons = buttons
+            Buttons = buttons,
+            RoleIds = roleIds
         };
     }
 
     /// <summary>
-    /// 获取刷新Token
+    /// 获取刷新Token 🔖
     /// </summary>
     /// <param name="accessToken"></param>
     /// <returns></returns>
     [DisplayName("获取刷新Token")]
-    public string GetRefreshToken([FromQuery] string accessToken)
+    public virtual string GetRefreshToken([FromQuery] string accessToken)
     {
         var refreshTokenExpire = _sysConfigService.GetRefreshTokenExpire().GetAwaiter().GetResult();
         return JWTEncryption.GenerateRefreshToken(accessToken, refreshTokenExpire);
     }
 
     /// <summary>
-    /// 退出系统
+    /// 退出系统 🔖
     /// </summary>
     [DisplayName("退出系统")]
     public void Logout()
@@ -219,7 +300,7 @@ public class SysAuthService : IDynamicApiController, ITransient
     }
 
     /// <summary>
-    /// 获取登录配置
+    /// 获取登录配置 🔖
     /// </summary>
     /// <returns></returns>
     [AllowAnonymous]
@@ -233,7 +314,7 @@ public class SysAuthService : IDynamicApiController, ITransient
     }
 
     /// <summary>
-    /// 获取水印配置
+    /// 获取水印配置 🔖
     /// </summary>
     /// <returns></returns>
     [SuppressMonitor]
@@ -245,7 +326,7 @@ public class SysAuthService : IDynamicApiController, ITransient
     }
 
     /// <summary>
-    /// 获取验证码
+    /// 获取验证码 🔖
     /// </summary>
     /// <returns></returns>
     [AllowAnonymous]
@@ -259,11 +340,11 @@ public class SysAuthService : IDynamicApiController, ITransient
     }
 
     /// <summary>
-    /// Swagger登录检查
+    /// Swagger登录检查 🔖
     /// </summary>
     /// <returns></returns>
     [AllowAnonymous]
-    [HttpPost("/swagger/checkUrl"), NonUnify]
+    [HttpPost("/api/swagger/checkUrl"), NonUnify]
     [DisplayName("Swagger登录检查")]
     public int SwaggerCheckUrl()
     {
@@ -271,12 +352,12 @@ public class SysAuthService : IDynamicApiController, ITransient
     }
 
     /// <summary>
-    /// Swagger登录提交
+    /// Swagger登录提交 🔖
     /// </summary>
     /// <param name="auth"></param>
     /// <returns></returns>
     [AllowAnonymous]
-    [HttpPost("/swagger/submitUrl"), NonUnify]
+    [HttpPost("/api/swagger/submitUrl"), NonUnify]
     [DisplayName("Swagger登录提交")]
     public async Task<int> SwaggerSubmitUrl([FromForm] SpecificationAuth auth)
     {

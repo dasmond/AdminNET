@@ -54,7 +54,18 @@
 		</div>
 		<el-dropdown :show-timeout="70" :hide-timeout="50" @command="onHandleCommandClick">
 			<span class="layout-navbars-breadcrumb-user-link">
-				<img :src="userInfos.avatar" class="layout-navbars-breadcrumb-user-link-photo mr5" />
+				<el-tooltip effect="dark" placement="left">
+					<template #content>
+						账号：{{ userInfos.account }}<br />
+						姓名：{{ userInfos.realName }}<br />
+						电话：{{ userInfos.phone }}<br />
+						邮箱：{{ userInfos.email }}<br />
+						部门：{{ userInfos.orgName }}<br />
+						职位：{{ userInfos.posName }}<br />
+					</template>
+					<img :src="userInfos.avatar" class="layout-navbars-breadcrumb-user-link-photo mr5" />
+				</el-tooltip>
+
 				{{ userInfos.realName == '' ? userInfos.account : userInfos.realName }}
 				<el-icon class="el-icon--right">
 					<ele-ArrowDown />
@@ -88,7 +99,7 @@ import { Local } from '/@/utils/storage';
 
 import { clearAccessTokens, getAPI } from '/@/utils/axios-utils';
 import { SysAuthApi, SysNoticeApi } from '/@/api-services/api';
-
+import Push from 'push.js';
 import { signalR } from '/@/views/system/onlineUser/signalR';
 
 // 引入组件
@@ -169,8 +180,6 @@ const onHandleCommandClick = (path: string) => {
 				clearAccessTokens();
 			})
 			.catch(() => {});
-	} else if (path === 'wareHouse') {
-		window.open('https://gitee.com/zuohuaijun/Admin.NET');
 	} else {
 		router.push(path);
 	}
@@ -210,7 +219,18 @@ onMounted(async () => {
 		initI18nOrSize('globalComponentSize', 'disabledSize');
 		initI18nOrSize('globalI18n', 'disabledI18n');
 	}
-
+	// 手动获取用户桌面通知权限
+	if (Push.Permission.GRANTED) {
+		// 判断当前是否有权限，没有则手动获取
+		Push.Permission.request();
+	}
+	// 监听浏览器 当前系统是否在当前页
+	document.addEventListener('visibilitychange', () => {
+		if (!document.hidden) {
+			// 清空关闭消息通知，
+			Push.clear();
+		}
+	});
 	// 加载未读的站内信
 	var res = await getAPI(SysNoticeApi).apiSysNoticeUnReadListGet();
 	state.noticeList = res.data.result ?? [];
@@ -240,6 +260,11 @@ const receiveNotice = (msg: any) => {
 		message: '您有一条新消息...',
 		type: 'info',
 		position: 'bottom-right',
+	});
+	Push.create('提示', {
+		body: '你有一条新的消息',
+		icon: 'logo.png', //public目录下的
+		timeout: 4500, // 通知显示时间，单位为毫秒
 	});
 };
 </script>

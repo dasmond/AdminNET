@@ -39,7 +39,7 @@
 								</el-form-item>
 							</el-col>
 							<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
-								<el-form-item label="账号类型" prop="accountType" :rules="[{ required: true, message: '角色集合不能为空', trigger: 'blur' }]">
+								<el-form-item label="账号类型" prop="accountType" :rules="[{ required: true, message: '账号类型不能为空', trigger: 'blur' }]">
 									<el-select v-model="state.ruleForm.accountType" placeholder="账号类型" collapse-tags collapse-tags-tooltip class="w100">
 										<el-option label="系统管理员" :value="888" :disabled="userInfos.accountType != 888 && userInfos.accountType != 999" />
 										<el-option label="普通账号" :value="777" />
@@ -87,6 +87,11 @@
 							<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
 								<el-form-item label="工号">
 									<el-input v-model="state.ruleForm.jobNum" placeholder="工号" clearable />
+								</el-form-item>
+							</el-col>
+							<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
+								<el-form-item label="域账号">
+									<el-input v-model="state.ruleForm.domainAccount" placeholder="域账号" clearable />
 								</el-form-item>
 							</el-col>
 							<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
@@ -166,9 +171,9 @@
 							<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
 								<el-form-item label="性别">
 									<el-radio-group v-model="state.ruleForm.sex">
-										<el-radio :label="1">男</el-radio>
-										<el-radio :label="2">女</el-radio>
-										<el-radio :label="3">其他</el-radio>
+										<el-radio :value="1">男</el-radio>
+										<el-radio :value="2">女</el-radio>
+										<el-radio :value="3">其他</el-radio>
 									</el-radio-group>
 								</el-form-item>
 							</el-col>

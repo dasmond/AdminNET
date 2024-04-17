@@ -1,11 +1,8 @@
-// 麻省理工学院许可证
+// Admin.NET 项目的版权、商标、专利和其他相关权利均受相应法律法规的保护。使用本项目应遵守相关法律法规和许可证的要求。
 //
-// 版权所有 (c) 2021-2023 zuohuaijun，大名科技（天津）有限公司  联系电话/微信：18020030720  QQ：515096995
+// 本项目主要遵循 MIT 许可证和 Apache 许可证（版本 2.0）进行分发和使用。许可证位于源代码树根目录中的 LICENSE-MIT 和 LICENSE-APACHE 文件。
 //
-// 特此免费授予获得本软件的任何人以处理本软件的权利，但须遵守以下条件：在所有副本或重要部分的软件中必须包括上述版权声明和本许可声明。
-//
-// 软件按“原样”提供，不提供任何形式的明示或暗示的保证，包括但不限于对适销性、适用性和非侵权的保证。
-// 在任何情况下，作者或版权持有人均不对任何索赔、损害或其他责任负责，无论是因合同、侵权或其他方式引起的，与软件或其使用或其他交易有关。
+// 不得利用本项目从事危害国家安全、扰乱社会秩序、侵犯他人合法权益等法律法规禁止的活动！任何基于本项目二次开发而产生的一切法律纠纷和责任，我们不承担任何责任！
 
 namespace Admin.NET.Core;
 
@@ -17,9 +14,19 @@ public static class ComputerUtil
     /// <returns></returns>
     public static MemoryMetrics GetComputerInfo()
     {
-        MemoryMetricsClient client = new();
-        MemoryMetrics memoryMetrics = IsUnix() ? client.GetUnixMetrics() : client.GetWindowsMetrics();
-
+        MemoryMetrics memoryMetrics;
+        if (IsMacOS())
+        {
+            memoryMetrics = MemoryMetricsClient.GetMacOSMetrics();
+        }
+        else if (IsUnix())
+        {
+            memoryMetrics = MemoryMetricsClient.GetUnixMetrics();
+        }
+        else
+        {
+            memoryMetrics = MemoryMetricsClient.GetWindowsMetrics();
+        }
         memoryMetrics.FreeRam = Math.Round(memoryMetrics.Free / 1024, 2) + "GB";
         memoryMetrics.UsedRam = Math.Round(memoryMetrics.Used / 1024, 2) + "GB";
         memoryMetrics.TotalRam = Math.Round(memoryMetrics.Total / 1024, 2) + "GB";
@@ -29,14 +36,63 @@ public static class ComputerUtil
     }
 
     /// <summary>
+    /// 获取正确的操作系统版本（Linux获取发行版本）
+    /// </summary>
+    /// <returns></returns>
+    public static String GetOSInfo()
+    {
+        string opeartion = string.Empty;
+        if (IsMacOS())
+        {
+            var output = ShellHelper.Bash("sw_vers | awk 'NR<=2{printf \"%s \", $NF}'");
+            if (output != null)
+            {
+                opeartion = output.Replace("%", string.Empty);
+            }
+        }
+        else if (IsUnix())
+        {
+            var output = ShellHelper.Bash("awk -F= '/^VERSION_ID/ {print $2}' /etc/os-release | tr -d '\"'");
+            opeartion = output ?? string.Empty;
+        }
+        else
+        {
+            opeartion = RuntimeInformation.OSDescription;
+        }
+        return opeartion;
+    }
+
+    /// <summary>
     /// 磁盘信息
     /// </summary>
     /// <returns></returns>
     public static List<DiskInfo> GetDiskInfos()
     {
         var diskInfos = new List<DiskInfo>();
+        if (IsMacOS())
+        {
+            var output = ShellHelper.Bash(@"df -m | awk '/^\/dev\/disk/ {print $1,$2,$3,$4,$5}'");
+            var disks = output.Split('\n', StringSplitOptions.RemoveEmptyEntries);
+            if (disks.Length < 1) return diskInfos;
+            foreach (var item in disks)
+            {
+                var disk = item.Split(' ', (char)StringSplitOptions.RemoveEmptyEntries);
+                if (disk == null || disk.Length < 5)
+                    continue;
 
-        if (IsUnix())
+                var diskInfo = new DiskInfo()
+                {
+                    DiskName = disk[0],
+                    TypeName = ShellHelper.Bash("diskutil info " + disk[0] + " | awk '/File System Personality/ {print $4}'").Replace("\n", string.Empty),
+                    TotalSize = long.Parse(disk[1]) / 1024,
+                    Used = long.Parse(disk[2]) / 1024,
+                    AvailableFreeSpace = long.Parse(disk[3]) / 1024,
+                    AvailablePercent = decimal.Parse(disk[4].Replace("%", ""))
+                };
+                diskInfos.Add(diskInfo);
+            }
+        }
+        else if (IsUnix())
         {
             var output = ShellHelper.Bash(@"df -mT | awk '/^\/dev\/(sd|vd|xvd|nvme|sda|vda)/ {print $1,$2,$3,$4,$5,$6}'");
             var disks = output.Split('\n', StringSplitOptions.RemoveEmptyEntries);
@@ -91,22 +147,31 @@ public static class ComputerUtil
     /// <returns></returns>
     public static string GetIpFromOnline()
     {
-        var url = "http://myip.ipip.net";
-        var stream = url.GetAsStreamAsync().GetAwaiter().GetResult();
-        var streamReader = new StreamReader(stream.Stream, stream.Encoding);
-        var html = streamReader.ReadToEnd();
-        return !html.Contains("当前 IP：") ? "未知" : html.Replace("当前 IP：", "").Replace("来自于：", "");
+        var url = "https://www.ip.cn/api/index?ip&type=0";
+        var str = url.GetAsStringAsync().GetAwaiter().GetResult();
+        var resp = JSON.Deserialize<IpCnResp>(str);
+        return resp.Ip + " " + resp.Address;
     }
 
     public static bool IsUnix()
     {
-        return RuntimeInformation.IsOSPlatform(OSPlatform.OSX) || RuntimeInformation.IsOSPlatform(OSPlatform.Linux);
+        return RuntimeInformation.IsOSPlatform(OSPlatform.Linux);
+    }
+
+    public static bool IsMacOS()
+    {
+        return RuntimeInformation.IsOSPlatform(OSPlatform.OSX);
     }
 
     public static string GetCPURate()
     {
         string cpuRate;
-        if (IsUnix())
+        if (IsMacOS())
+        {
+            string output = ShellUtil.Bash("top -l 1 | grep \"CPU usage\" | awk '{print $3 + $5}'");
+            cpuRate = output.Trim();
+        }
+        else if (IsUnix())
         {
             string output = ShellUtil.Bash("top -b -n1 | grep \"Cpu(s)\" | awk '{print $2 + $4}'");
             cpuRate = output.Trim();
@@ -126,7 +191,16 @@ public static class ComputerUtil
     public static string GetRunTime()
     {
         string runTime = string.Empty;
-        if (IsUnix())
+        if (IsMacOS())
+        {
+            //macOS 获取系统启动时间：
+            //sysctl -n kern.boottime | awk '{print $4}' | tr -d ','
+            //返回：1705379131
+            //使用date格式化即可
+            string output = ShellUtil.Bash("date -r $(sysctl -n kern.boottime | awk '{print $4}' | tr -d ',') +\"%Y-%m-%d %H:%M:%S\"").Trim();
+            runTime = DateTimeUtil.FormatTime((DateTime.Now - output.ParseToDateTime()).TotalMilliseconds.ToString().Split('.')[0].ParseToLong());
+        }
+        else if (IsUnix())
         {
             string output = ShellUtil.Bash("uptime -s").Trim();
             runTime = DateTimeUtil.FormatTime((DateTime.Now - output.ParseToDateTime()).TotalMilliseconds.ToString().Split('.')[0].ParseToLong());
@@ -140,6 +214,16 @@ public static class ComputerUtil
         }
         return runTime;
     }
+}
+
+/// <summary>
+/// IP信息
+/// </summary>
+public class IpCnResp
+{
+    public string Ip { get; set; }
+
+    public string Address { get; set; }
 }
 
 /// <summary>
@@ -232,7 +316,7 @@ public class MemoryMetricsClient
     /// windows系统获取内存信息
     /// </summary>
     /// <returns></returns>
-    public MemoryMetrics GetWindowsMetrics()
+    public static MemoryMetrics GetWindowsMetrics()
     {
         string output = ShellUtil.Cmd("wmic", "OS get FreePhysicalMemory,TotalVisibleMemorySize /Value");
         var metrics = new MemoryMetrics();
@@ -253,7 +337,7 @@ public class MemoryMetricsClient
     /// Unix系统获取
     /// </summary>
     /// <returns></returns>
-    public MemoryMetrics GetUnixMetrics()
+    public static MemoryMetrics GetUnixMetrics()
     {
         string output = ShellUtil.Bash("free -m | awk '{print $2,$3,$4,$5,$6}'");
         var metrics = new MemoryMetrics();
@@ -270,6 +354,23 @@ public class MemoryMetricsClient
                 metrics.Free = double.Parse(memory[2]);//m
             }
         }
+        return metrics;
+    }
+
+    /// <summary>
+    /// macOS系统获取
+    /// </summary>
+    /// <returns></returns>
+    public static MemoryMetrics GetMacOSMetrics()
+    {
+        var metrics = new MemoryMetrics();
+        //物理内存大小
+        var total = ShellUtil.Bash("sysctl -n hw.memsize | awk '{printf \"%.2f\", $1/1024/1024}'");
+        metrics.Total = float.Parse(total.Replace("%", string.Empty));
+        //TODO:占用内存，检查效率
+        var free = ShellUtil.Bash("top -l 1 -s 0 | awk '/PhysMem/ {print $6+$8}'");
+        metrics.Free = float.Parse(free);
+        metrics.Used = metrics.Total - metrics.Free;
         return metrics;
     }
 }
@@ -310,13 +411,14 @@ public class ShellUtil
     /// <returns></returns>
     public static string Cmd(string fileName, string args)
     {
-        string output = string.Empty;
+        var info = new ProcessStartInfo
+        {
+            FileName = fileName,
+            Arguments = args,
+            RedirectStandardOutput = true
+        };
 
-        var info = new ProcessStartInfo();
-        info.FileName = fileName;
-        info.Arguments = args;
-        info.RedirectStandardOutput = true;
-
+        var output = string.Empty;
         using (var process = Process.Start(info))
         {
             output = process.StandardOutput.ReadToEnd();
@@ -361,13 +463,14 @@ public class ShellHelper
     /// <returns></returns>
     public static string Cmd(string fileName, string args)
     {
-        string output = string.Empty;
+        var info = new ProcessStartInfo
+        {
+            FileName = fileName,
+            Arguments = args,
+            RedirectStandardOutput = true
+        };
 
-        var info = new ProcessStartInfo();
-        info.FileName = fileName;
-        info.Arguments = args;
-        info.RedirectStandardOutput = true;
-
+        var output = string.Empty;
         using (var process = Process.Start(info))
         {
             output = process.StandardOutput.ReadToEnd();
