@@ -3,27 +3,45 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid 'e456c124edc095b8fd621a2e6c9d11610a081d4e'
-    oldFile: !uuid '3194b62653e2c408f386f6cbcdd5f821e673e83a'
+    newFile: !uuid 'f700664a63d757188a6327c515849fbe59dc4a94'
+    oldFile: !uuid 'e456c124edc095b8fd621a2e6c9d11610a081d4e'
+  /Admin.NET/Admin.NET.Web.Entry:
+    newFile: !uuid 'a4815d4047bf068a6feef78e01bfce513287e284'
+    oldFile: !uuid '02a147979458e4372be1cbea28b589ecd8c6d061'
+  /Admin.NET/Admin.NET.Web.Entry/Resources:
+    newFile: !uuid '6aa6f6a292d221643fd2e2a029d82010509e90ab'
+    oldFile: !uuid '75ba98dc71c17f40bb76087c0ecd75e9fd1c2ef1'
+  /Admin.NET/Admin.NET.Web.Entry/Resources/Lang.en.resx:
+    newFile: !uuid 'd5554406b897118188931ed7b7e28bc7162a2e2f'
+    oldFile: !uuid '861321511743be0fbc7320a822563010369f8786'
+  /Admin.NET/Admin.NET.Web.Entry/Resources/Lang.zh-CN.resx:
+    newFile: !uuid '4c2585218b28d127353fde9d7b80d3f29a2a4a63'
+    oldFile: !uuid '2401ee5b676041d0ea02c468ae93dc1d97300293'
   /Admin.NET/Plugins:
-    newFile: !uuid '3ff5e08a96fa578f1721d575b68bcc77d088776a'
-    oldFile: !uuid 'b107095add5742d1c73e8d67b103875465bb1e29'
+    newFile: !uuid 'fac3335e3f6d93a72355df7f0bbfa4631fba4da8'
+    oldFile: !uuid '3ff5e08a96fa578f1721d575b68bcc77d088776a'
   /Admin.NET/Plugins/Admin.NET.Plugin.ReZero:
-    newFile: !uuid '17d79479dac76cd6d7e127aa736ba08cccda42cd'
-    oldFile: !uuid 'd2f6e1bde5368b0aca5f04a773cf15360ca4755e'
+    newFile: !uuid 'fd449dc182609b8e8e259cdb3950c046d6d67039'
+    oldFile: !uuid '17d79479dac76cd6d7e127aa736ba08cccda42cd'
   /Admin.NET/Plugins/Admin.NET.Plugin.ReZero/Admin.NET.Plugin.ReZero.csproj:
-    newFile: !uuid '3d6604155b30d380bacd451652939929f58a0492'
-    oldFile: !uuid '2f59c0e12244634e1cc09a77a4debe270a1d76a9'
+    newFile: !uuid '190422beea3590e2958ff927d9086b5da4a7a649'
+    oldFile: !uuid '3d6604155b30d380bacd451652939929f58a0492'
   /Admin.NET/Plugins/Admin.NET.Plugin.ReZero/SeedData:
-    newFile: !uuid '3a9bd0f2840fe094846bec388c45da293c07be75'
-    oldFile: !uuid 'b89948ddc82521c8889fa8b4b0e7512dce93baed'
+    newFile: !uuid '7c4bf2e82234ac73b8e6b99c94021406091ff951'
+    oldFile: !uuid '3a9bd0f2840fe094846bec388c45da293c07be75'
   /Admin.NET/Plugins/Admin.NET.Plugin.ReZero/SeedData/SysMenuSeedData.cs:
-    newFile: !uuid 'd840f7ce8a0fce3f6fe864818f875b2e6fc44221'
-    oldFile: !uuid '9eedc9d8e9e7b7bbb71cba2bfe288c6ecaa0d969'
+    newFile: !uuid '1ff458add1ed127867b9a6f62925f83083bdf329'
+    oldFile: !uuid 'd840f7ce8a0fce3f6fe864818f875b2e6fc44221'
+  /Admin.NET/Plugins/Admin.NET.Plugin.ReZero/Service:
+    newFile: !uuid '2dcd88d8be9ba45261108719d43c567258957c86'
+    oldFile: null
+  /Admin.NET/Plugins/Admin.NET.Plugin.ReZero/Service/SuperApiAop.cs:
+    newFile: !uuid 'e84c46bf6efbba427c6a82b99672b30f10538833'
+    oldFile: null
   /Admin.NET/Plugins/Admin.NET.Plugin.ReZero/Startup.cs:
-    newFile: !uuid 'f0cde20eccfad6c0c34231b45cd5a02e3ebbaf85'
-    oldFile: !uuid '88ab09ee6c5096befafd3c5f05054ef6787a4da8'
-gitCommitId: !uuid 'cbe40ab7f36ca4cb111eba9336d5b2dfae9bb48e'
+    newFile: !uuid '026d44a437e88495b70328fffad2d74b05b0a4de'
+    oldFile: !uuid 'f0cde20eccfad6c0c34231b45cd5a02e3ebbaf85'
+gitCommitId: !uuid '8298d456abc77a8772714f76673fcc9b2777edbc'
 renames: {
   }
-revisionId: 1707
+revisionId: 1708
