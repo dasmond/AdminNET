@@ -2,40 +2,19 @@
 branches: {
   }
 fileChange:
-  /Web:
-    newFile: !uuid '117271c8abf287a8f298a1b659ef8de752b2d178'
-    oldFile: !uuid 'a877672bed1a2f1cf65e9a4e47805e58ebe07a29'
-  /Web/package.json:
-    newFile: !uuid '5cc767d56e9f40a874425ab164656b6725881179'
-    oldFile: !uuid 'd9fc77927ea07eab743ff913b304cf9535a0bb28'
-  /Web/src:
-    newFile: !uuid '3fd2270f87c4efd1bb8dac010ec3f87ffc1d00cb'
-    oldFile: !uuid '7203b35bc06f3fd86bfce967c0e260aa97f012b9'
-  /Web/src/views:
-    newFile: !uuid 'a55cb41fa736b734d7eb7ea94c57d753352061db'
-    oldFile: !uuid 'ed0363db61faf2eabb03e3417f9a2335fafb38aa'
-  /Web/src/views/system:
-    newFile: !uuid '4949e98af1c0b1b87436be4473e57c44a2f0c3c8'
-    oldFile: !uuid 'a8fda4f44c21a9d618cedcd705c646b75a02bd2b'
-  /Web/src/views/system/config:
-    newFile: !uuid '65ca737eb00f7194bfeea20b92c5858ea4e37628'
-    oldFile: !uuid '0219619071d38a46101cbdad4412b5f844107f57'
-  /Web/src/views/system/config/index.vue:
-    newFile: !uuid '9dec614b146853feedc6e11897cb715be8bc2f72'
-    oldFile: !uuid 'b6df25e517dda4c00cc9aa60881fc48ccf6816aa'
-  /Web/src/views/system/database:
-    newFile: !uuid 'f8accc0287517d4560b96042962b264426679428'
-    oldFile: !uuid 'b75530c7b9b59bfb09383eb1ba70be45187b7644'
-  /Web/src/views/system/database/index.vue:
-    newFile: !uuid 'c4f09e7c0d3d6462abc591888498b2e17c565970'
-    oldFile: !uuid '711926c7e393285c8bc6ad923cf4f3194b83b57f'
-  /Web/src/views/system/dict:
-    newFile: !uuid 'df25efaa069fd115e08cc3fa6e6829e7422d8d45'
-    oldFile: !uuid 'ad11251fe7e67194fcf17f5157241352459647e6'
-  /Web/src/views/system/dict/index.vue:
-    newFile: !uuid '9645d39d97ab7c84a45aaccd3aa36cc3e22c0dcc'
-    oldFile: !uuid '5e2131fe810b989aaf8f3b49bea5fc3740b398b2'
-gitCommitId: !uuid '6da5db01ec580d876f94c7e43abf38b34dbf5ba2'
+  /Admin.NET:
+    newFile: !uuid 'f3998f4a35d190674fe7b1c73866a26457a15824'
+    oldFile: !uuid 'f7ee6aa7798397ef1ae565d379b3c96235c7f4c6'
+  /Admin.NET/Admin.NET.Core:
+    newFile: !uuid '9b135d557dd6ca521a46a810c002fecda8f20fad'
+    oldFile: !uuid '504440f5518c19db6d7c68adf5ffcbc8621e58a2'
+  /Admin.NET/Admin.NET.Core/EventBus:
+    newFile: !uuid '495e4c76f1b1c5e34fb8880cabd83a62570aba64'
+    oldFile: !uuid '61c53aa09955c7e0302aed762180816cbbfeb7c3'
+  /Admin.NET/Admin.NET.Core/EventBus/RedisEventSourceStorer.cs:
+    newFile: !uuid '975a3dc3682e6f35a5de446cde6a436e8a4bc9a8'
+    oldFile: !uuid '4fadf8c593b0c403edfc34aea0bb277a0f263986'
+gitCommitId: !uuid 'bab72fc41d2edd9e77296aabb380931d0bb622a3'
 renames: {
   }
-revisionId: 1759
+revisionId: 1760
