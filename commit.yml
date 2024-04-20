@@ -2,25 +2,28 @@
 branches: {
   }
 fileChange:
-  /Admin.NET:
-    newFile: !uuid '82af668a711dcaa2931d14942707f828e4d6379a'
-    oldFile: !uuid '681008bfa32856f6cae9d9947c55402c81225a6c'
-  /Admin.NET/Admin.NET.Core:
-    newFile: !uuid 'd5402efce7875ea7806c465aa8076167306e521a'
-    oldFile: !uuid '265c40fe0160cc7ddde05ad1c11de9693509e6e1'
-  /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
-    newFile: !uuid '37b30c7937ed65fc8f8dcfd06093eea037643172'
-    oldFile: !uuid '31bdb6b3e664291f3a004449318b33fb34a9e6d4'
-  /Admin.NET/Plugins:
-    newFile: !uuid 'd0816289e4309b40c23d11c2485f4b5f54721316'
-    oldFile: !uuid '302bce24e551b665af9e11deeb073c7cedd8cc3c'
-  /Admin.NET/Plugins/Admin.NET.Plugin.ReZero:
-    newFile: !uuid 'b6b564ddc5f4800fd58f7526f017e719a917b4eb'
-    oldFile: !uuid 'c333dcf67c3c3505e01496a4e31c03077494003d'
-  /Admin.NET/Plugins/Admin.NET.Plugin.ReZero/Admin.NET.Plugin.ReZero.csproj:
-    newFile: !uuid '6617c804fc153b9e2c331294a9109422a2fc0b63'
-    oldFile: !uuid '5c58fda57ef63edf9efb88c1472165a421c965a9'
-gitCommitId: !uuid '02497551f54708d926c1420b89f3c5216eefe139'
+  /Web:
+    newFile: !uuid '00033f235932a3bf41c12fca55f3fc3525dc38e2'
+    oldFile: !uuid '117271c8abf287a8f298a1b659ef8de752b2d178'
+  /Web/src:
+    newFile: !uuid 'c7d1ca71046145b3234e73dfb2d11bdebc584cff'
+    oldFile: !uuid '3fd2270f87c4efd1bb8dac010ec3f87ffc1d00cb'
+  /Web/src/views:
+    newFile: !uuid '7ffc54ccd4704c278ff4cdc46b2ee32945966112'
+    oldFile: !uuid 'a55cb41fa736b734d7eb7ea94c57d753352061db'
+  /Web/src/views/system:
+    newFile: !uuid '5d3f897590cee8b847b002aea2d70fa757446c67'
+    oldFile: !uuid '4949e98af1c0b1b87436be4473e57c44a2f0c3c8'
+  /Web/src/views/system/dict:
+    newFile: !uuid '8ed1586cec1cfb84a3c30d485eb19022d197f9e9'
+    oldFile: !uuid 'df25efaa069fd115e08cc3fa6e6829e7422d8d45'
+  /Web/src/views/system/dict/component:
+    newFile: !uuid '1b834a0e55e3aeaf04034516a62771ca6518f073'
+    oldFile: !uuid 'cfac57479002443cfee35bf4e92992c07c32c820'
+  /Web/src/views/system/dict/component/editDictData.vue:
+    newFile: !uuid 'e2bedfc4fcd75ba6cf593619bf94685e2ea1397e'
+    oldFile: !uuid '0b9f5449dfbc497172bfd372d09a2d9b799ea783'
+gitCommitId: !uuid '5806844106df23d6eae981a2181dc2fc568d99a6'
 renames: {
   }
-revisionId: 1763
+revisionId: 1764
