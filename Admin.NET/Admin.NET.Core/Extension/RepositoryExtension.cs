@@ -381,10 +381,27 @@ public static class RepositoryExtension
     /// <returns></returns>
     public static List<T> WhereIF<T>(this T thisValue, bool isWhere, Func<T, bool> whereExpression) where T : class, new()
     {
-        if (!isWhere)
+        return !isWhere ? new List<T>() { thisValue } : new List<T>() { thisValue };
+    }
+
+    /// <summary>
+    /// 只更新某些列
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <typeparam name="R"></typeparam>
+    /// <param name="updateable"></param>
+    /// <returns></returns>
+    public static IUpdateable<T> OnlyUpdateColumn<T, R>(this IUpdateable<T> updateable) where T : EntityBase, new() where R : class, new()
+    {
+        if (updateable.UpdateBuilder.UpdateColumns == null)
+            updateable.UpdateBuilder.UpdateColumns = new List<string>();
+
+        foreach (PropertyInfo info in typeof(R).GetProperties())
         {
-            return new List<T>() { thisValue };
+            // 判断是否是相同属性
+            if (typeof(T).GetProperty(info.Name) != null)
+                updateable.UpdateBuilder.UpdateColumns.Add(info.Name);
         }
-        return new List<T>() { thisValue };
+        return updateable;
     }
 }
