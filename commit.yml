@@ -3,18 +3,24 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '681008bfa32856f6cae9d9947c55402c81225a6c'
-    oldFile: !uuid '0d4960f60c3f22c4c59babce0110dd54dd59fbaf'
+    newFile: !uuid '82af668a711dcaa2931d14942707f828e4d6379a'
+    oldFile: !uuid '681008bfa32856f6cae9d9947c55402c81225a6c'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '265c40fe0160cc7ddde05ad1c11de9693509e6e1'
-    oldFile: !uuid '454f6b561bc5704702d6202fe37921f206080b14'
-  /Admin.NET/Admin.NET.Core/Extension:
-    newFile: !uuid 'e486aac5a99519b218329ffce726d4d9bc34f8d5'
-    oldFile: !uuid 'dcb35d166b1019d4483843c002e5e23764c0d018'
-  /Admin.NET/Admin.NET.Core/Extension/RepositoryExtension.cs:
-    newFile: !uuid 'a94dedb3d9cadb38130743242d2ce2c156199eb1'
-    oldFile: !uuid '366730031d2b390af78b8aeb9ad10eccd82ec82f'
-gitCommitId: !uuid '85c61274cc5f3e69cbfbb2dc2ba575674296c6f0'
+    newFile: !uuid 'd5402efce7875ea7806c465aa8076167306e521a'
+    oldFile: !uuid '265c40fe0160cc7ddde05ad1c11de9693509e6e1'
+  /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
+    newFile: !uuid '37b30c7937ed65fc8f8dcfd06093eea037643172'
+    oldFile: !uuid '31bdb6b3e664291f3a004449318b33fb34a9e6d4'
+  /Admin.NET/Plugins:
+    newFile: !uuid 'd0816289e4309b40c23d11c2485f4b5f54721316'
+    oldFile: !uuid '302bce24e551b665af9e11deeb073c7cedd8cc3c'
+  /Admin.NET/Plugins/Admin.NET.Plugin.ReZero:
+    newFile: !uuid 'b6b564ddc5f4800fd58f7526f017e719a917b4eb'
+    oldFile: !uuid 'c333dcf67c3c3505e01496a4e31c03077494003d'
+  /Admin.NET/Plugins/Admin.NET.Plugin.ReZero/Admin.NET.Plugin.ReZero.csproj:
+    newFile: !uuid '6617c804fc153b9e2c331294a9109422a2fc0b63'
+    oldFile: !uuid '5c58fda57ef63edf9efb88c1472165a421c965a9'
+gitCommitId: !uuid '02497551f54708d926c1420b89f3c5216eefe139'
 renames: {
   }
-revisionId: 1762
+revisionId: 1763
