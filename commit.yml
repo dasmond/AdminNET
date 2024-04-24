@@ -2,13 +2,19 @@
 branches: {
   }
 fileChange:
-  /Web:
-    newFile: !uuid '62d6571cc7f4a348e30e2d9b1ff250eafaa8fb5f'
-    oldFile: !uuid 'a6dbedca3530d9c6b94b6584aa8afe04683db75d'
-  /Web/package.json:
-    newFile: !uuid '5ce46f67d8e609bb2d343b1346b288efb6aabf02'
-    oldFile: !uuid '4373f9ba7a1376d069cf8f0d217b576918355181'
-gitCommitId: !uuid '09534b3f073ca3d3889ad99da3fb783c34a2c22e'
+  /Admin.NET:
+    newFile: !uuid 'bf1fd5636a14959c528918aefdcce13091738f4a'
+    oldFile: !uuid '32ca77d01ad591761b4557952729ba86062010ba'
+  /Admin.NET/Admin.NET.Core:
+    newFile: !uuid '56e56c8325d978c5eaafeba410c4c25d533606d8'
+    oldFile: !uuid 'c04c9573a37887bf119066a2fa099e2ba96ee162'
+  /Admin.NET/Admin.NET.Core/Util:
+    newFile: !uuid '8017c6659f9ffa50dc64a65bf4c18e3d2b842d48'
+    oldFile: !uuid '3a4ae500aa4a78f0e33e717301e1ea9975798986'
+  /Admin.NET/Admin.NET.Core/Util/VerifyFileExtensionName.cs:
+    newFile: !uuid '18d13aa1ce01cf587dd96c4993667845a4fc1f38'
+    oldFile: !uuid 'b01a1d3594a3b7b51820943d8d936c19d76e3f0e'
+gitCommitId: !uuid '12aa0458de327bdc55207fffb30228b57f6ee671'
 renames: {
   }
-revisionId: 1727
+revisionId: 1728
