@@ -3,12 +3,21 @@ branches: {
   }
 fileChange:
   /Web:
-    newFile: !uuid '1d72bdbf6a17940bb43fbc4a434b44d328a62c7e'
-    oldFile: !uuid '138ad9ce6198ba4568486d97463aaf0f1cad6258'
-  /Web/package.json:
-    newFile: !uuid 'bc1864c5330240b654dfe74b66d823d207b54cca'
-    oldFile: !uuid '5ce46f67d8e609bb2d343b1346b288efb6aabf02'
-gitCommitId: !uuid '50567ec52fc3c636cd5e872fdab5604145196d24'
+    newFile: !uuid '713ecc341ca42788b6887774729ab979647c9ac8'
+    oldFile: !uuid '1d72bdbf6a17940bb43fbc4a434b44d328a62c7e'
+  /Web/src:
+    newFile: !uuid 'f59953d6931e4f7d0792b09c772188f6e48c4d96'
+    oldFile: !uuid '257c537b268a6e916a3828e86c28812d7fb3e617'
+  /Web/src/components:
+    newFile: !uuid 'c77fe1f8b7f1f0bbbd9270c21efede6f8491fe9f'
+    oldFile: !uuid '1a4c7705f110ee93830314923170a888475cc864'
+  /Web/src/components/iconSelector:
+    newFile: !uuid '04764715a78f56c17c1d0a4e1d1c8eb2919a47f8'
+    oldFile: !uuid 'b3f1c82d55de0a034aa9b29a31516f71a63bd98a'
+  /Web/src/components/iconSelector/index.vue:
+    newFile: !uuid 'd5c8dbdfa70c53a289ca45c09133b6fac035d953'
+    oldFile: !uuid '5bba98bda1799e6295c11d610c0b085b36b66448'
+gitCommitId: !uuid '468cff06d6b4e1da7498cd750d2234d03edfe3aa'
 renames: {
   }
-revisionId: 1734
+revisionId: 1735
