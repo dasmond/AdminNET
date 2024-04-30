@@ -16,7 +16,7 @@
 					<el-button-group>
 						<el-button icon="ele-Plus" type="primary" @click="openAddTable"> 增加表 </el-button>
 						<el-button icon="ele-Edit" @click="openEditTable"> 编辑表 </el-button>
-						<el-button icon="ele-Delete" type="danger" @click="delTable"> 删除表 </el-button>
+						<el-button icon="ele-Delete" type="danger" @click="delTable" disabled> 删除表 </el-button>
 						<el-button icon="ele-View" @click="visualTable"> 可视化 </el-button>
 					</el-button-group>
 					<el-button-group style="padding-left: 10px">
@@ -107,7 +107,6 @@ const state = reactive({
 		name: undefined,
 		code: undefined,
 	},
-	editPosTitle: '',
 	appNamespaces: [] as Array<String>, // 存储位置
 });
 
