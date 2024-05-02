@@ -3,21 +3,33 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '256718ab08dfd752ef5e35901b6f14530137a2c6'
-    oldFile: !uuid '507cf3ead99c836d5d3169fff6427153b2644ef5'
+    newFile: !uuid '160f30179573b461dfd601187d98ee23bcb7d460'
+    oldFile: !uuid '256718ab08dfd752ef5e35901b6f14530137a2c6'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid 'fc38fd00baf0d5a17e0422bd62891f495a0e8762'
-    oldFile: !uuid '567f61dc7b668ec9863f93f8c8ea13f0ed78e497'
+    newFile: !uuid '596f64874cdff4f33397339550fdb5c66adf8b41'
+    oldFile: !uuid 'fc38fd00baf0d5a17e0422bd62891f495a0e8762'
+  /Admin.NET/Admin.NET.Core/Enum:
+    newFile: !uuid '34f0d2f1ea76d1baeb27dfce4795e0243f954506'
+    oldFile: !uuid '5450219d4b88069e4302765d81dedd098f6ccee2'
+  /Admin.NET/Admin.NET.Core/Enum/ErrorCodeEnum.cs:
+    newFile: !uuid '104fdffbad6910d7b0055bdb9f519aa64de715b4'
+    oldFile: !uuid '86ae8b9d384596a1f421b4bed736dfaf19637ccb'
+  /Admin.NET/Admin.NET.Core/SeedData:
+    newFile: !uuid '010773f44038820f3cec3e88b204b279662abe04'
+    oldFile: !uuid '0f487b0d918e15fa89e1e8b176ebba619db6f8f6'
+  /Admin.NET/Admin.NET.Core/SeedData/SysDictDataSeedData.cs:
+    newFile: !uuid 'b25188d6225cc59c6ef3eaa1a6961c3ae533d8aa'
+    oldFile: !uuid '9b74f5240fe2cf4f4ab6f1e8b851d45a47abe265'
   /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid 'e2067c3fd41622721dd6f7202fde806ecfaf96ec'
-    oldFile: !uuid 'a47478657ec1201b0eee1e16fee2000eb78a66f6'
+    newFile: !uuid '53955d55ad33e9780ad72f616cb3f09c96deaf3f'
+    oldFile: !uuid 'e2067c3fd41622721dd6f7202fde806ecfaf96ec'
   /Admin.NET/Admin.NET.Core/Service/Auth:
-    newFile: !uuid '6ebe84e5230782c8ef3f55dc6e63dcc511aa8a9e'
-    oldFile: !uuid '4db43d463bca1dc549cefbd35dc8b42f06a194c6'
+    newFile: !uuid '41b7983e3af1f7ddb5db9bb595e668927a5bf4f0'
+    oldFile: !uuid '6ebe84e5230782c8ef3f55dc6e63dcc511aa8a9e'
   /Admin.NET/Admin.NET.Core/Service/Auth/SysAuthService.cs:
-    newFile: !uuid '6ecb62905c02cd58a434f46f49ec3624186e243a'
-    oldFile: !uuid '4cfcc64c2da6f8cdf1e9959d2a4fd21720a6aeff'
-gitCommitId: !uuid 'c4dce5ba6070d5250fcabb97eada61e574dfb050'
+    newFile: !uuid '9c8c57361f2c5c6e9c07a9d79ea3c825b013ff70'
+    oldFile: !uuid '6ecb62905c02cd58a434f46f49ec3624186e243a'
+gitCommitId: !uuid '400b28470b0d12ef7fd7a5985a7513c22dfef2d9'
 renames: {
   }
-revisionId: 1748
+revisionId: 1749
