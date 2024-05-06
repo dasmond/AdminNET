@@ -3,120 +3,21 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid 'c07efaf66cf5d8a786a6a087270dc19ac47d23eb'
-    oldFile: !uuid 'f0f2680833f4acbeb529a256db4276fdbaf74ba4'
-  /Admin.NET/Admin.NET.Core:
-    newFile: !uuid 'd1e20f4b899d1434fd064d59ba726251c2192f2e'
-    oldFile: !uuid '14d8b35f52c1ff406a586df5c71cebcdcd61c222'
-  /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
-    newFile: !uuid 'cd4a429b6cbf384b502f56fd8e47aac8f1bfc586'
-    oldFile: !uuid '6f5c5c0fb4d2483cd7b2d33bae61032b316f110e'
-  /Admin.NET/Admin.NET.Core/Const:
-    newFile: !uuid '1672e132fca34c58670cac07fc19c110a2543dd9'
-    oldFile: !uuid 'afe6bf02c971378ff6e1d0222b13d27f46842e1e'
-  /Admin.NET/Admin.NET.Core/Const/CacheConst.cs:
-    newFile: !uuid '52d1bc0902eef7b06487fcfba810e9a70e94d24f'
-    oldFile: !uuid '106a3f64bdfa18ab1af5964b4065dd5f034381cb'
-  /Admin.NET/Admin.NET.Core/Const/CommonConst.cs:
-    newFile: !uuid '8767431f6100b473d2a3323c093378eee08e4d80'
-    oldFile: !uuid '4cd7c0d04c9a3d2d6976c7293248ed91dab03b3e'
-  /Admin.NET/Admin.NET.Core/Const/SysToDoEventConst.cs:
-    newFile: null
-    oldFile: !uuid '1214f1d49a416aff5c9084aadb34e3093c6a207a'
-  /Admin.NET/Admin.NET.Core/EventBus:
-    newFile: !uuid '5884bd1cec09f36e3071da45113a8c6c2c32273f'
-    oldFile: !uuid '06f4586899678f99aae968fd3d29e444e7dd8937'
-  /Admin.NET/Admin.NET.Core/EventBus/AppEventSubscriber.cs:
-    newFile: !uuid '2a438056bcd0eb810279a4988e79b9dbd9ed5c2e'
-    oldFile: !uuid '78386fafd1f8c09e454f6cbc8c48a5f97f732077'
-  /Admin.NET/Admin.NET.Core/Job:
-    newFile: !uuid 'dbbb19d27e9ad56e52d730dbae6ee33d62352caf'
-    oldFile: !uuid '3d358b30e706e6aa77fc1a96da1edd9210a34662'
-  /Admin.NET/Admin.NET.Core/Job/LogJob.cs:
-    newFile: !uuid 'b8afb5120c11f1a09cf7d3372b1b7d22042df39c'
-    oldFile: !uuid '700d324c5d9431d8585211676ee4c91469963022'
-  /Admin.NET/Admin.NET.Core/Job/OnlineUserJob.cs:
-    newFile: !uuid '4d24ec05bd2662270afecf6f7bc0db466ddefc22'
-    oldFile: !uuid 'd1920682691e70f6d917028f82165b01ef421dc8'
-  /Admin.NET/Admin.NET.Core/Logging:
-    newFile: !uuid 'ee4f72762d68af4375e18edc97b30cc94682f8a1'
-    oldFile: !uuid '4e90826908d9d2d0644d271c0f079c7077c36149'
-  /Admin.NET/Admin.NET.Core/Logging/DatabaseLoggingWriter.cs:
-    newFile: !uuid '5d40a339918f594f36688f174c233a77b6cebeb7'
-    oldFile: !uuid '0f8f4aca9b558ad9f5cd4b07e61d47500f18ee7f'
-  /Admin.NET/Admin.NET.Core/Logging/LoggingSetup.cs:
-    newFile: !uuid 'b0e502df87f82744a1b34496082e7c9c7fe09b85'
-    oldFile: !uuid '4f8979a0f8866662bdf14095cd2cdafe9eceaa4e'
-  /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid '050a161d42797ff0139ef23b9453d17bf4bebf8b'
-    oldFile: !uuid 'e1fa353c4876b53dc6e258b8ae3aacccb2c84bad'
-  /Admin.NET/Admin.NET.Core/Service/Auth:
-    newFile: !uuid '5c742ae8988a21f74ec20e6ac5b29cf80f2afafb'
-    oldFile: !uuid '41b7983e3af1f7ddb5db9bb595e668927a5bf4f0'
-  /Admin.NET/Admin.NET.Core/Service/Auth/SysAuthService.cs:
-    newFile: !uuid '7df38741e8d223696439948437cb8cabe3c573bb'
-    oldFile: !uuid '9c8c57361f2c5c6e9c07a9d79ea3c825b013ff70'
-  /Admin.NET/Admin.NET.Core/Service/Job:
-    newFile: !uuid '570f6efac90eb2c9df720168651c2691f5f2bc65'
-    oldFile: !uuid 'eeabc67fecade3116cb453e7cf4cac7e4a28c3f5'
-  /Admin.NET/Admin.NET.Core/Service/Job/DbJobPersistence.cs:
-    newFile: !uuid '46de01951e4dec2897f392a9e98bfbe4570f1ec2'
-    oldFile: !uuid 'a637a617b05f9fc75f279f25a5f5637807fe54ce'
-  /Admin.NET/Admin.NET.Core/Service/Job/JobMonitor.cs:
-    newFile: !uuid 'cf9afe5eb0e69a97f45a8df6e575dac0cc718a8f'
-    oldFile: !uuid 'd7ac597d46f7f7c98d63da14967977830da0db2c'
-  /Admin.NET/Admin.NET.Web.Core:
-    newFile: !uuid '102ed25096596d042ebbc5bd95eb6a7f76ce6b13'
-    oldFile: !uuid '6cab71aaece8e21c1e246ec5b36ac1c63ab22a09'
-  /Admin.NET/Admin.NET.Web.Core/Startup.cs:
-    newFile: !uuid '0ebb6a731aabdf55df77770b19b9f4c58b921e0a'
-    oldFile: !uuid '5c18ec2a2ac054d35dd93a3e92b57c16b69c5182'
-  /Admin.NET/Plugins:
-    newFile: !uuid 'b132ec486e5c3bd83aa81f979802167dd3641293'
-    oldFile: !uuid '04d9dbdd79da35e47e510ad7ce906ecd707d8347'
-  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk:
-    newFile: !uuid '0fbfef2acc514394fe6d3472581dbfa9f50abba6'
-    oldFile: !uuid '1d49e3a67807d8b072ffeb9ec758d41c8453ced1'
-  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/Job:
-    newFile: !uuid 'b7e69ff77dc7bbaaf701356ee8c71ffe6ee83e20'
-    oldFile: !uuid '7690b78f1f68c50c732b737c798478e38b6f1e4c'
-  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/Job/SyncDingTalkUserJob.cs:
-    newFile: !uuid '32f7c381762bf4c260a4444d29d1d4267ff34357'
-    oldFile: !uuid 'a143bc5db99fe051cea36513e031f7017636bcd4'
-  /Admin.NET/Plugins/Admin.NET.Plugin.ReZero:
-    newFile: !uuid '7e2cfb0ff134a64fe82c3d98c1681e423bd6b5ed'
-    oldFile: !uuid '501a13acb279b13265402b00bef6a5bc81de5f9b'
-  /Admin.NET/Plugins/Admin.NET.Plugin.ReZero/Admin.NET.Plugin.ReZero.csproj:
-    newFile: !uuid '62941d5a91652e8a04861bccadb7ce88646d5ee6'
-    oldFile: !uuid '3f0f569f24d4301e5d465c4b66145edb42d0a378'
-  /Admin.NET/Plugins/Admin.NET.Plugin.ReZero/Service:
-    newFile: !uuid '8a249cbb18bd6f53d9aa541958fc6e6e9b3170f1'
-    oldFile: !uuid '1b5695edb43cf34bb0886cd94eabc1269c8c44bc'
-  /Admin.NET/Plugins/Admin.NET.Plugin.ReZero/Service/SuperApiAop.cs:
-    newFile: !uuid '77599a93d173f3faf220c17c191efda4cc0b4e38'
-    oldFile: !uuid '942460326390cccacb928baf3da6c348e2300619'
-  /Web:
-    newFile: !uuid '4b944d94fb346bc193809ea3e180716eaaf9ce72'
-    oldFile: !uuid 'd5fc2b27705b79ac18cb3b0b331d4ac645757bad'
-  /Web/package.json:
-    newFile: !uuid '6f8d51d0101c2e3cdd9170f0c2c9657dc866d6f2'
-    oldFile: !uuid '6a41c0471be4477ec9f98e838616feb0572b03ac'
-  /Web/src:
-    newFile: !uuid 'e2d0a3f901b368a9457746393bff380f4a2faf41'
-    oldFile: !uuid 'dcea0d11a51076c3cb2f31ed04dade5d8be29726'
-  /Web/src/views:
-    newFile: !uuid '26a36c8bbd24a9e43ec5fa573455fdbd6edcebfe'
-    oldFile: !uuid 'd1771d08879c56fa1cb91e8220306ec270ef3a12'
-  /Web/src/views/login:
-    newFile: !uuid '8da389941bb72acbefedccdc9dee2cac02ce95cb'
-    oldFile: !uuid '4c2a4af56ee2aaeff5a6520839eb08c372ebd68d'
-  /Web/src/views/login/component:
-    newFile: !uuid '9ef7a4d5616af82e2bd7e7b8165535e5b54dee62'
-    oldFile: !uuid '115f79e091c0da42bda8a1309611009ac0731fc4'
-  /Web/src/views/login/component/account.vue:
-    newFile: !uuid '2ddc34d40d6590c9607171355b43738354c700e8'
-    oldFile: !uuid '0aa847ca648f40337a5cc5d9e91dc2752c74ddf9'
-gitCommitId: !uuid '1e80ff0c772c17273e4a7cf41b718147ba8a6f8a'
+    newFile: !uuid '38b4aef5168146bb8d5e90b394a6f843cfa46fd5'
+    oldFile: !uuid 'c07efaf66cf5d8a786a6a087270dc19ac47d23eb'
+  /Admin.NET/Admin.NET.Web.Entry:
+    newFile: !uuid '99d23117084aa0746c78af3b3d06b4d7c20a7d02'
+    oldFile: !uuid 'af88c471db68d5146828219c5ab8b699e8fbd6d6'
+  /Admin.NET/Admin.NET.Web.Entry/wwwroot:
+    newFile: !uuid 'fd8d02b6522e687e9ac705c724d6fe75357f220e'
+    oldFile: !uuid 'eac879e71000bef8626f71b082539ad52a7384b4'
+  /Admin.NET/Admin.NET.Web.Entry/wwwroot/Template:
+    newFile: !uuid '8839c4894142305256d131d1c4bf66278b1313e1'
+    oldFile: !uuid '37bf7d87a282d68a1db110109e87df23d5d27b7b'
+  /Admin.NET/Admin.NET.Web.Entry/wwwroot/Template/editDialog.vue.vm:
+    newFile: !uuid '15ce8325c21635b2217c55cf0baeff91a18909a0'
+    oldFile: !uuid 'b9221ca5cdce94a2be735a23e0a636a4bca62d34'
+gitCommitId: !uuid '694845a5229dcea11a27a9a07f94a77c1e9eeae9'
 renames: {
   }
-revisionId: 1751
+revisionId: 1752
