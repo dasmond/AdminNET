@@ -3,459 +3,51 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid 'd54561aadd869738f3edaedca260ce3e3a1b3242'
-    oldFile: !uuid 'fb4e5909a3041c71032563e471a11a7f404ed961'
-  /Admin.NET/Admin.NET.Application:
-    newFile: !uuid '80e64514a6d44697f78b2c75ba16417e51dc4874'
-    oldFile: !uuid 'b87d1555c08d4c646cde29489c10ddbeb3698764'
-  /Admin.NET/Admin.NET.Application/Admin.NET.Application.csproj:
-    newFile: !uuid 'cc4c307346902eb1bb485969608fa2821f0cc811'
-    oldFile: !uuid '81ec224573ce080a04600bac8bc0c62686d8e370'
-  /Admin.NET/Admin.NET.sln:
-    newFile: !uuid '00c9f4f761e9d159a0ba3aa457bc16487a64a770'
-    oldFile: !uuid '4e65d310c74bc9251f9487edb800186a811ea68c'
+    newFile: !uuid 'b551b3f4389d002dae521d1469c8a6d67bb3a4c6'
+    oldFile: !uuid 'd54561aadd869738f3edaedca260ce3e3a1b3242'
+  /Admin.NET/Admin.NET.Core:
+    newFile: !uuid 'a76077820f624a083e2a22517b6ffe05bd9be704'
+    oldFile: !uuid 'd1e20f4b899d1434fd064d59ba726251c2192f2e'
+  /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
+    newFile: !uuid '32ddec81d137215281b5c4568c6f74f50ef2401b'
+    oldFile: !uuid 'cd4a429b6cbf384b502f56fd8e47aac8f1bfc586'
+  /Admin.NET/Admin.NET.Core/Service:
+    newFile: !uuid 'c1e11e75f5ae28379c3971107a4a418d275403a1'
+    oldFile: !uuid '050a161d42797ff0139ef23b9453d17bf4bebf8b'
+  /Admin.NET/Admin.NET.Core/Service/Job:
+    newFile: !uuid 'f35b60c976a3396704add621ab8e1938d31304e4'
+    oldFile: !uuid '570f6efac90eb2c9df720168651c2691f5f2bc65'
+  /Admin.NET/Admin.NET.Core/Service/Job/DbJobPersistence.cs:
+    newFile: !uuid 'c368ab8de982a0fe9aefb9dfea26a6a4601a0a69'
+    oldFile: !uuid '46de01951e4dec2897f392a9e98bfbe4570f1ec2'
+  /Admin.NET/Admin.NET.Core/Service/Job/JobMonitor.cs:
+    newFile: !uuid '74e407ed77cf010163e80e3cfcf79f4c6e82a7e2'
+    oldFile: !uuid 'cf9afe5eb0e69a97f45a8df6e575dac0cc718a8f'
   /Admin.NET/Plugins:
-    newFile: !uuid 'b2544e54718964b6ebc74712df1e844c2a89efa3'
-    oldFile: !uuid '9b13286bb9e32ed2dedd9fd7e9b26ec6553956e0'
-  /Admin.NET/Plugins/Admin.NET.Plugin.ApprovalFlow:
-    newFile: !uuid 'd6393c85b8d04815ec1e465a5a8b72c21d0e976c'
-    oldFile: null
-  /Admin.NET/Plugins/Admin.NET.Plugin.ApprovalFlow/Admin.NET.Plugin.ApprovalFlow.csproj:
-    newFile: !uuid '84b0b02672a3307dfc1a1173072f90e5a10bdfe0'
-    oldFile: null
-  /Admin.NET/Plugins/Admin.NET.Plugin.ApprovalFlow/Configuration:
-    newFile: !uuid '567377fb99d394ad8f71686502506ab022e2e931'
-    oldFile: null
-  /Admin.NET/Plugins/Admin.NET.Plugin.ApprovalFlow/Configuration/ApprovalFlow.json:
-    newFile: !uuid '85b0512828b386947d71df8e9204b7d7d0b904e9'
-    oldFile: null
-  /Admin.NET/Plugins/Admin.NET.Plugin.ApprovalFlow/Const:
-    newFile: !uuid 'd33ef0d4f0ceeffda199dd5823b20dd57821987d'
-    oldFile: null
-  /Admin.NET/Plugins/Admin.NET.Plugin.ApprovalFlow/Const/ApprovalFlowConst.cs:
-    newFile: !uuid 'de78db031677ec3ae61d9e6316086cfeede8425f'
-    oldFile: null
-  /Admin.NET/Plugins/Admin.NET.Plugin.ApprovalFlow/Entity:
-    newFile: !uuid 'ab47058873b1e393db0831f2ed62d039e4a3a4f0'
-    oldFile: null
-  /Admin.NET/Plugins/Admin.NET.Plugin.ApprovalFlow/Entity/ApprovalFlow.cs:
-    newFile: !uuid '7cfed255e0ad5d479ad14032c4d39ccc2886ff2c'
-    oldFile: null
-  /Admin.NET/Plugins/Admin.NET.Plugin.ApprovalFlow/Enum:
-    newFile: !uuid '03b46f01da48bb6901122051c6e40ee90f0f5726'
-    oldFile: null
-  /Admin.NET/Plugins/Admin.NET.Plugin.ApprovalFlow/Enum/FlowTypeEnum.cs:
-    newFile: !uuid '5b5470b224999274b2b021d15482475333306b1a'
-    oldFile: null
-  /Admin.NET/Plugins/Admin.NET.Plugin.ApprovalFlow/GlobalUsings.cs:
-    newFile: !uuid '99f56f15354f4e08302c9bf28b453c718058c8ba'
-    oldFile: null
-  /Admin.NET/Plugins/Admin.NET.Plugin.ApprovalFlow/Middleware:
-    newFile: !uuid 'aacae3e3c2babe9c6e3270880943efb5c847b5e5'
-    oldFile: null
-  /Admin.NET/Plugins/Admin.NET.Plugin.ApprovalFlow/Middleware/ApprovalFlowMiddleware.cs:
-    newFile: !uuid '6c0ab028e3ff2e70fa06807f7ef2b666ee8bed00'
-    oldFile: null
-  /Admin.NET/Plugins/Admin.NET.Plugin.ApprovalFlow/SeedData:
-    newFile: !uuid 'fa8545be0255291e12d3cc2aeda8a7ab384a2ff5'
-    oldFile: null
-  /Admin.NET/Plugins/Admin.NET.Plugin.ApprovalFlow/SeedData/SysMenuSeedData.cs:
-    newFile: !uuid '7688a96a88d1e69201229316d19d778f9584d647'
-    oldFile: null
-  /Admin.NET/Plugins/Admin.NET.Plugin.ApprovalFlow/Service:
-    newFile: !uuid '91a98af29e84df97e5fb0effae2e36eb4a5fbe9b'
-    oldFile: null
-  /Admin.NET/Plugins/Admin.NET.Plugin.ApprovalFlow/Service/ApprovalFlow:
-    newFile: !uuid '6f6b8afad2f4779e89f811a0f614c54c40def74b'
-    oldFile: null
-  /Admin.NET/Plugins/Admin.NET.Plugin.ApprovalFlow/Service/ApprovalFlow/ApprovalFlowService.cs:
-    newFile: !uuid '89ae520fe25d590b2be8d16e62406434dccd8461'
-    oldFile: null
-  /Admin.NET/Plugins/Admin.NET.Plugin.ApprovalFlow/Service/ApprovalFlow/Dto:
-    newFile: !uuid 'cd05859a6bb7a77e16a1b5044e819639288c4027'
-    oldFile: null
-  /Admin.NET/Plugins/Admin.NET.Plugin.ApprovalFlow/Service/ApprovalFlow/Dto/ApprovalFlowDto.cs:
-    newFile: !uuid 'a8fd9a834c0185628cf71ac61bee085ca9f81f80'
-    oldFile: null
-  /Admin.NET/Plugins/Admin.NET.Plugin.ApprovalFlow/Service/ApprovalFlow/Dto/ApprovalFlowInput.cs:
-    newFile: !uuid '51c91990f46538c18156bad6dfccddc7ed5aa61e'
-    oldFile: null
-  /Admin.NET/Plugins/Admin.NET.Plugin.ApprovalFlow/Service/ApprovalFlow/Dto/ApprovalFlowOutput.cs:
-    newFile: !uuid '81f4b49c25c1ae4871b36525373b4b3274fe7c45'
-    oldFile: null
-  /Admin.NET/Plugins/Admin.NET.Plugin.ApprovalFlow/Startup.cs:
-    newFile: !uuid 'f8d7f83a249e82243e88ab9c84699649a0d51aad'
-    oldFile: null
-  /Admin.NET/Plugins/Admin.NET.Plugin.Flow:
-    newFile: null
-    oldFile: !uuid '26c199ce183791ab4472a879c5384fc7b3bb0188'
-  /Admin.NET/Plugins/Admin.NET.Plugin.Flow/Admin.NET.Plugin.Flow.csproj:
-    newFile: null
-    oldFile: !uuid 'c42ce1de5b65caa0f03438e95c07c8d2bfebbe2d'
-  /Admin.NET/Plugins/Admin.NET.Plugin.Flow/Const:
-    newFile: null
-    oldFile: !uuid 'ff6a21aef0ff32754905736293ac4a46b95f09b9'
-  /Admin.NET/Plugins/Admin.NET.Plugin.Flow/Const/FlowConst.cs:
-    newFile: null
-    oldFile: !uuid '1c13bf4fe861d9434faf040c2a8d95f573ff517f'
-  /Admin.NET/Plugins/Admin.NET.Plugin.Flow/Entity:
-    newFile: null
-    oldFile: !uuid '4500f05d93771e27562f0730eec52a2685434c2d'
-  /Admin.NET/Plugins/Admin.NET.Plugin.Flow/Entity/ApprovalFlow.cs:
-    newFile: null
-    oldFile: !uuid 'd4833122634aca04549d59623b5cd21e5ea3fbc9'
-  /Admin.NET/Plugins/Admin.NET.Plugin.Flow/Enum:
-    newFile: null
-    oldFile: !uuid 'db86a73f7197abd070d52be1a582e594b130601d'
-  /Admin.NET/Plugins/Admin.NET.Plugin.Flow/Enum/FlowTypeEnum.cs:
-    newFile: null
-    oldFile: !uuid 'de18bbe2a1cfcc98c9c37727e48433ed91260876'
-  /Admin.NET/Plugins/Admin.NET.Plugin.Flow/GlobalUsings.cs:
-    newFile: null
-    oldFile: !uuid 'cec97e69bf202e182c3797903a9aef03f8eaddc3'
-  /Admin.NET/Plugins/Admin.NET.Plugin.Flow/Middleware:
-    newFile: null
-    oldFile: !uuid '51d2bf2d7a9a264e90e9dc7149e61f454ad4f873'
-  /Admin.NET/Plugins/Admin.NET.Plugin.Flow/Middleware/ApprovalFlowMiddleware.cs:
-    newFile: null
-    oldFile: !uuid '104a70594978d257a3490ab9d10b968feb696351'
-  /Admin.NET/Plugins/Admin.NET.Plugin.Flow/Service:
-    newFile: null
-    oldFile: !uuid 'e1012178faed9e344ff3e79d9a950b7f56815e12'
-  /Admin.NET/Plugins/Admin.NET.Plugin.Flow/Service/ApprovalFlow:
-    newFile: null
-    oldFile: !uuid 'd483e218f3f30b28c15af84c738380c9f3857ac9'
-  /Admin.NET/Plugins/Admin.NET.Plugin.Flow/Service/ApprovalFlow/ApprovalFlowService.cs:
-    newFile: null
-    oldFile: !uuid 'ad4a6a2247ca911fe98fe64eae2ccb4497cb18d8'
-  /Admin.NET/Plugins/Admin.NET.Plugin.Flow/Service/ApprovalFlow/Dto:
-    newFile: null
-    oldFile: !uuid '12790d6c67e6f57799805d5279a44ccc8edc8537'
-  /Admin.NET/Plugins/Admin.NET.Plugin.Flow/Service/ApprovalFlow/Dto/ApprovalFlowDto.cs:
-    newFile: null
-    oldFile: !uuid 'eecb221b3294445474a78f720e7a6bcfdda2d138'
-  /Admin.NET/Plugins/Admin.NET.Plugin.Flow/Service/ApprovalFlow/Dto/ApprovalFlowInput.cs:
-    newFile: null
-    oldFile: !uuid '98e7d571dc6f8893cbb49a1699dff5fd1d48c30f'
-  /Admin.NET/Plugins/Admin.NET.Plugin.Flow/Service/ApprovalFlow/Dto/ApprovalFlowOutput.cs:
-    newFile: null
-    oldFile: !uuid '28c58cb74e25640b5f85557064528115a91e83b3'
-  /Admin.NET/Plugins/Admin.NET.Plugin.Flow/Service/SysApprovalFlow:
-    newFile: null
-    oldFile: !uuid '9950f40ae946bb8c04e0f9d656558892378abca1'
-  /Admin.NET/Plugins/Admin.NET.Plugin.Flow/Service/SysApprovalFlow/SysApprovalService.cs:
-    newFile: null
-    oldFile: !uuid '81cb9415ac099514a25aa956389f10e9c3cdf9b6'
-  /Admin.NET/Plugins/Admin.NET.Plugin.Flow/SpeedData:
-    newFile: null
-    oldFile: !uuid '889bf4094426604c810714a8f1d24159ef8154f9'
-  /Admin.NET/Plugins/Admin.NET.Plugin.Flow/SpeedData/SysMenuSeedData.cs:
-    newFile: null
-    oldFile: !uuid 'c5dcc511f99ef6d40af109620f4da39423083b02'
-  /Admin.NET/Plugins/Admin.NET.Plugin.Flow/Startup.cs:
-    newFile: null
-    oldFile: !uuid 'd1c872598c4ff06bdf532170e8f3eacd4dffba0e'
+    newFile: !uuid '2e38b8161ec1b80acbab205acbc7187fdcba2222'
+    oldFile: !uuid 'b2544e54718964b6ebc74712df1e844c2a89efa3'
+  /Admin.NET/Plugins/Admin.NET.Plugin.ReZero:
+    newFile: !uuid '3d4421606b9d5c6869a8df9e04a7ac940e27fe50'
+    oldFile: !uuid '7e2cfb0ff134a64fe82c3d98c1681e423bd6b5ed'
+  /Admin.NET/Plugins/Admin.NET.Plugin.ReZero/Admin.NET.Plugin.ReZero.csproj:
+    newFile: !uuid 'f7af80ebe751dd219f160e9cf29fe998fb8745b3'
+    oldFile: !uuid '62941d5a91652e8a04861bccadb7ce88646d5ee6'
   /Web:
-    newFile: !uuid 'b58a3c1b1e77cb99d11e8808a9b1cea436dc5520'
-    oldFile: !uuid '477b5bb6ce44efd5f51a099f3c6f6cfddd1dc884'
-  /Web/package.json:
-    newFile: !uuid '5ceb31000c8fbfaea47f4f847b8ae362a3fb7e3e'
-    oldFile: !uuid '5b8bfa219aaca7655ec78230d536b49f1bfccd15'
+    newFile: !uuid 'cf6cf2874dffb77c18506cde1cfb19e920d9a1f4'
+    oldFile: !uuid 'b58a3c1b1e77cb99d11e8808a9b1cea436dc5520'
   /Web/src:
-    newFile: !uuid '97fc2c13a91fbb6ed0e489667d04c9f067b395ca'
-    oldFile: !uuid '70f6433f808641691e763927267817d990ae2f60'
-  /Web/src/api-services:
-    newFile: !uuid '658439a861f8f05a54fd1c72d7ef018a8fe51b7e'
-    oldFile: !uuid 'f4aa693469838da98ac5f4b7c18ca87447a49a34'
-  /Web/src/api-services/_approvalFlow:
-    newFile: !uuid '6bebcad6ae5cd4cf2f9b60c4f9387038976e903b'
-    oldFile: null
-  /Web/src/api-services/_approvalFlow/api.ts:
-    newFile: !uuid 'f64f054f6ae1ec337cb6c673d4208b92475d58d8'
-    oldFile: null
-  /Web/src/api-services/_approvalFlow/apis:
-    newFile: !uuid '8177e71ba3fa5a27d48c0ccfc54c9de612e5d5eb'
-    oldFile: null
-  /Web/src/api-services/_approvalFlow/apis/approval-flow-api.ts:
-    newFile: !uuid 'cc59bfcd1193435dfc58a87fd4fa5c7d3cd48e6e'
-    oldFile: null
-  /Web/src/api-services/_approvalFlow/base.ts:
-    newFile: !uuid 'b22cbf3405279f5399a631ee4bcfc2f8e362e3fd'
-    oldFile: null
-  /Web/src/api-services/_approvalFlow/configuration.ts:
-    newFile: !uuid '7660b245777c98b1fbfdd8ba1c1f3b08388ece98'
-    oldFile: null
-  /Web/src/api-services/_approvalFlow/index.ts:
-    newFile: !uuid '94bfa3ed4abf57a29b4d580df188ac85cef00156'
-    oldFile: null
-  /Web/src/api-services/_approvalFlow/models:
-    newFile: !uuid 'f6cd34835b9f240bd4fb05cc88f146e06afeccf0'
-    oldFile: null
-  /Web/src/api-services/_approvalFlow/models/add-approval-flow-input.ts:
-    newFile: !uuid '93b3f423aeb6f2840cbe85bf1e3731a4b3590e8d'
-    oldFile: null
-  /Web/src/api-services/_approvalFlow/models/admin-result-approval-flow.ts:
-    newFile: !uuid '0588c7e3afb910117ef3931d1832a83c37087175'
-    oldFile: null
-  /Web/src/api-services/_approvalFlow/models/admin-result-int64.ts:
-    newFile: !uuid '9397ba045fba456b3c7f29faf1600df25c317f12'
-    oldFile: null
-  /Web/src/api-services/_approvalFlow/models/admin-result-list-approval-flow-output.ts:
-    newFile: !uuid '1c5cc8de047c1dc62da834268d481a7197c72dcf'
-    oldFile: null
-  /Web/src/api-services/_approvalFlow/models/admin-result-sql-sugar-paged-list-approval-flow-output.ts:
-    newFile: !uuid '72a81e90b19cfcccd206913ca4484599cd7fc6ec'
-    oldFile: null
-  /Web/src/api-services/_approvalFlow/models/approval-flow-input.ts:
-    newFile: !uuid '3d1bd973b4b6e746bcfcfbacdaa8e31283554cb7'
-    oldFile: null
-  /Web/src/api-services/_approvalFlow/models/approval-flow-output.ts:
-    newFile: !uuid '28bd0bbb3607566a36ba6e74ac3d13eb0e0cb31c'
-    oldFile: null
-  /Web/src/api-services/_approvalFlow/models/approval-flow.ts:
-    newFile: !uuid 'ac3bf79f7ddb0ba0c5b5b7feee1e59e5ca9562c6'
-    oldFile: null
-  /Web/src/api-services/_approvalFlow/models/delete-approval-flow-input.ts:
-    newFile: !uuid '54e6e4bffc768ff3babcd7e30400ca6c29a81bc3'
-    oldFile: null
-  /Web/src/api-services/_approvalFlow/models/index.ts:
-    newFile: !uuid '4da9997f5d965ad1893ef712ac0aca44a8e8a58f'
-    oldFile: null
-  /Web/src/api-services/_approvalFlow/models/sql-sugar-paged-list-approval-flow-output.ts:
-    newFile: !uuid 'c830131deb6b59c8feed3f292a8a3662adcabd30'
-    oldFile: null
-  /Web/src/api-services/_approvalFlow/models/update-approval-flow-input.ts:
-    newFile: !uuid 'af9d92e486d674181ccb6cb750fc471aba9ab4f1'
-    oldFile: null
-  /Web/src/api-services/api.ts:
-    newFile: !uuid '53fa1cf261c3d2454de781b3d85e340391128559'
-    oldFile: !uuid 'd93770b13249020b68c411845df08ba49b2996f6'
-  /Web/src/api-services/apis:
-    newFile: !uuid '4a46bfe21a6f56b8a84025ead2daa97c4df7f961'
-    oldFile: !uuid '31618f8dcbbbceebd1072c39ecb04f700091b8f9'
-  /Web/src/api-services/apis/approval-flow-api.ts:
-    newFile: null
-    oldFile: !uuid '00c5441983886203a55961617d93eab786c327ca'
-  /Web/src/api-services/models:
-    newFile: !uuid '0fcdd36df883345bd545e4107ebe11cd298ded80'
-    oldFile: !uuid '164037361882eb4d671e3b4e7d98e47e5de42738'
-  /Web/src/api-services/models/add-approval-flow-input.ts:
-    newFile: null
-    oldFile: !uuid '494123114fcfeb4aace73df0847cbf3702293dfc'
-  /Web/src/api-services/models/admin-result-approval-flow.ts:
-    newFile: null
-    oldFile: !uuid 'c84f9a2261c3ded20b621c1911e4eab66075294a'
-  /Web/src/api-services/models/admin-result-sql-sugar-paged-list-approval-flow-output.ts:
-    newFile: null
-    oldFile: !uuid '64fa869ad0fc15f5cdfe081c5eb82a83bfff437b'
-  /Web/src/api-services/models/approval-flow-input.ts:
-    newFile: null
-    oldFile: !uuid '0439be9338a87443787a583ff8e142fb3db552c5'
-  /Web/src/api-services/models/approval-flow-output.ts:
-    newFile: null
-    oldFile: !uuid '50581d1a3e27e1783e3ff1fd117135ff0d1ddbd0'
-  /Web/src/api-services/models/approval-flow.ts:
-    newFile: null
-    oldFile: !uuid 'cf80af42c384ff4e7b18f5431268c878a4d88f33'
-  /Web/src/api-services/models/delete-approval-flow-input.ts:
-    newFile: null
-    oldFile: !uuid '056ac0eb0a4c2b829f60c2c5eeac9d92b9101716'
-  /Web/src/api-services/models/sql-sugar-paged-list-approval-flow-output.ts:
-    newFile: null
-    oldFile: !uuid 'bb040113a8ebd8a90a23375753993a19ea2dac2a'
-  /Web/src/api-services/models/update-approval-flow-input.ts:
-    newFile: null
-    oldFile: !uuid '74daaa09e4b3d52ea3025e3831dde80553b4bc84'
+    newFile: !uuid '6e15589ab22367585c0dc243bd38ce7c9e4cd179'
+    oldFile: !uuid '97fc2c13a91fbb6ed0e489667d04c9f067b395ca'
   /Web/src/views:
-    newFile: !uuid '3619cf9ffc0e6195acb89c9d2e5993ab0822ceb3'
-    oldFile: !uuid '39a2033057678393b710ddd34e6f6171ad8f7ab5'
+    newFile: !uuid 'd4cbc679c04573ef47c6b7e9b6e7557f0bef8721'
+    oldFile: !uuid '3619cf9ffc0e6195acb89c9d2e5993ab0822ceb3'
   /Web/src/views/approvalFlow:
-    newFile: !uuid '3795551ceae285f5a343aeadca676831da8727a0'
-    oldFile: null
-  /Web/src/views/approvalFlow/component:
-    newFile: !uuid 'bc403a96dc53265a62a25163f601cd597e69654c'
-    oldFile: null
-  /Web/src/views/approvalFlow/component/LogicFlow:
-    newFile: !uuid '0e77c75bcf7ed4fd3db92f7626706490f7d66bc8'
-    oldFile: null
-  /Web/src/views/approvalFlow/component/LogicFlow/Panel:
-    newFile: !uuid 'b8204815f5c5cf02159755fee346d61704d8deea'
-    oldFile: null
-  /Web/src/views/approvalFlow/component/LogicFlow/Panel/PanelControl.vue:
-    newFile: !uuid '64a2b1072649981352cd9698e9d68006ef5834de'
-    oldFile: null
-  /Web/src/views/approvalFlow/component/LogicFlow/Panel/PanelDataDialog.vue:
-    newFile: !uuid 'f9670e8c7e832f5efc1102d9f20bb55be460a9a2'
-    oldFile: null
-  /Web/src/views/approvalFlow/component/LogicFlow/Panel/PanelNode.vue:
-    newFile: !uuid 'f10c4dad6595c10d7dc40de76e993a38f6098710'
-    oldFile: null
-  /Web/src/views/approvalFlow/component/LogicFlow/Property:
-    newFile: !uuid '7da0d12752e81593a4798d457245574cf8199b77'
-    oldFile: null
-  /Web/src/views/approvalFlow/component/LogicFlow/Property/PropertyCommon.vue:
-    newFile: !uuid '07030862f2337383adb98eb2a55c444d9335e003'
-    oldFile: null
-  /Web/src/views/approvalFlow/component/LogicFlow/Property/PropertyDialog.vue:
-    newFile: !uuid '864136ebb08ad4d26937ad829379f74d4d491212'
-    oldFile: null
-  /Web/src/views/approvalFlow/component/LogicFlow/Register:
-    newFile: !uuid 'ebc50e0db69bfbcb53dc58692662d9056c49b16b'
-    oldFile: null
-  /Web/src/views/approvalFlow/component/LogicFlow/Register/Edges:
-    newFile: !uuid '4f9b7a869dd784edbc89c3657686138d051e63df'
-    oldFile: null
-  /Web/src/views/approvalFlow/component/LogicFlow/Register/Edges/EdgeSql.ts:
-    newFile: !uuid '1632c62d10234f7d0fc84f54d6b88d1a2080cf79'
-    oldFile: null
-  /Web/src/views/approvalFlow/component/LogicFlow/Register/Nodes:
-    newFile: !uuid '6eab6c96af6f25694a6b55cb35d8e1b204909fb6'
-    oldFile: null
-  /Web/src/views/approvalFlow/component/LogicFlow/Register/Nodes/NodeEnd.ts:
-    newFile: !uuid '97c70ffc83a75cf3be909da5ead6496096698f45'
-    oldFile: null
-  /Web/src/views/approvalFlow/component/LogicFlow/Register/Nodes/NodeSql.ts:
-    newFile: !uuid 'fa40a8f25cbcad76fd4c65424d964e539fc560ca'
-    oldFile: null
-  /Web/src/views/approvalFlow/component/LogicFlow/Register/Nodes/NodeStart.ts:
-    newFile: !uuid 'cbaa8a1a3f943595a1f84a9690e320e96b92332b'
-    oldFile: null
-  /Web/src/views/approvalFlow/component/LogicFlow/Register/Nodes/NodeTask.ts:
-    newFile: !uuid '51fd5a8cabeb631e2ea130f7227fc8e3528f98e8'
-    oldFile: null
-  /Web/src/views/approvalFlow/component/LogicFlow/Register/Nodes/NodeUser.ts:
-    newFile: !uuid 'ff0a7861faa0340f9e07e8cfc59125bae804473d'
-    oldFile: null
-  /Web/src/views/approvalFlow/component/LogicFlow/Register/RegisterEdge.ts:
-    newFile: !uuid '29647a0c3a5fe58b13cec26138944ce55900a1e1'
-    oldFile: null
-  /Web/src/views/approvalFlow/component/LogicFlow/Register/RegisterNode.ts:
-    newFile: !uuid 'f5970d9e64526cc9fa449644e8df723c766b8b55'
-    oldFile: null
-  /Web/src/views/approvalFlow/component/detailDialog.vue:
-    newFile: !uuid '947cacf29154282c31d4ca9f5e9bb030c944715b'
-    oldFile: null
-  /Web/src/views/approvalFlow/component/editDialog.vue:
-    newFile: !uuid 'bbfc0c1b5e8346a2252e7a137c2147a407089b08'
-    oldFile: null
-  /Web/src/views/approvalFlow/component/editFlowDialog.vue:
-    newFile: !uuid 'ba96817361ad0fcc2c59b1b7398e448e4089cbd2'
-    oldFile: null
-  /Web/src/views/approvalFlow/component/editFormDialog.vue:
-    newFile: !uuid '98f7b57f53c9b31986dd82d6110edca379cdde71'
-    oldFile: null
+    newFile: !uuid 'd9723a68c47c43ce0a04791f3673b8ba05391c55'
+    oldFile: !uuid '3795551ceae285f5a343aeadca676831da8727a0'
   /Web/src/views/approvalFlow/index.vue:
-    newFile: !uuid 'f118efd0bc1922d7d4e5ac616b40ba9e4eb56b27'
-    oldFile: null
-  /Web/src/views/pages:
-    newFile: null
-    oldFile: !uuid '6dd4bcd0aa633ccffd858fbe410285e48ab37593'
-  /Web/src/views/pages/approvalFlow:
-    newFile: null
-    oldFile: !uuid '431eefbaf52e377d6d284100d59fa336e9b80db6'
-  /Web/src/views/pages/approvalFlow/component:
-    newFile: null
-    oldFile: !uuid '4aa766155fef5470b44d0cedd7c3bfce51710c4d'
-  /Web/src/views/pages/approvalFlow/component/LogicFlow:
-    newFile: null
-    oldFile: !uuid 'aeb30b1a912399344bf9ca506133f514e415d448'
-  /Web/src/views/pages/approvalFlow/component/LogicFlow/Panel:
-    newFile: null
-    oldFile: !uuid 'd4a2740ff86a8fb709b754d5fe68f075124d3d1c'
-  /Web/src/views/pages/approvalFlow/component/LogicFlow/Panel/PanelControl.vue:
-    newFile: null
-    oldFile: !uuid '64a2b1072649981352cd9698e9d68006ef5834de'
-  /Web/src/views/pages/approvalFlow/component/LogicFlow/Panel/PanelDataDialog.vue:
-    newFile: null
-    oldFile: !uuid '82101e6f0a44e874b7a0656b937459357cb83b9c'
-  /Web/src/views/pages/approvalFlow/component/LogicFlow/Panel/PanelNode.vue:
-    newFile: null
-    oldFile: !uuid '6b0a2d641ba4f0a0026d1e881dc294a6910c845e'
-  /Web/src/views/pages/approvalFlow/component/LogicFlow/Property:
-    newFile: null
-    oldFile: !uuid '8218552a96ae94360daa5c3612b8d9af986c8694'
-  /Web/src/views/pages/approvalFlow/component/LogicFlow/Property/PropertyCommon.vue:
-    newFile: null
-    oldFile: !uuid '07030862f2337383adb98eb2a55c444d9335e003'
-  /Web/src/views/pages/approvalFlow/component/LogicFlow/Property/PropertyDialog.vue:
-    newFile: null
-    oldFile: !uuid '0fa4fb4ab72d1f66d2e4e16c7ededf9674c534ad'
-  /Web/src/views/pages/approvalFlow/component/LogicFlow/Register:
-    newFile: null
-    oldFile: !uuid 'ebc50e0db69bfbcb53dc58692662d9056c49b16b'
-  /Web/src/views/pages/approvalFlow/component/LogicFlow/Register/Edges:
-    newFile: null
-    oldFile: !uuid '4f9b7a869dd784edbc89c3657686138d051e63df'
-  /Web/src/views/pages/approvalFlow/component/LogicFlow/Register/Edges/EdgeSql.ts:
-    newFile: null
-    oldFile: !uuid '1632c62d10234f7d0fc84f54d6b88d1a2080cf79'
-  /Web/src/views/pages/approvalFlow/component/LogicFlow/Register/Nodes:
-    newFile: null
-    oldFile: !uuid '6eab6c96af6f25694a6b55cb35d8e1b204909fb6'
-  /Web/src/views/pages/approvalFlow/component/LogicFlow/Register/Nodes/NodeEnd.ts:
-    newFile: null
-    oldFile: !uuid '97c70ffc83a75cf3be909da5ead6496096698f45'
-  /Web/src/views/pages/approvalFlow/component/LogicFlow/Register/Nodes/NodeSql.ts:
-    newFile: null
-    oldFile: !uuid 'fa40a8f25cbcad76fd4c65424d964e539fc560ca'
-  /Web/src/views/pages/approvalFlow/component/LogicFlow/Register/Nodes/NodeStart.ts:
-    newFile: null
-    oldFile: !uuid 'cbaa8a1a3f943595a1f84a9690e320e96b92332b'
-  /Web/src/views/pages/approvalFlow/component/LogicFlow/Register/Nodes/NodeTask.ts:
-    newFile: null
-    oldFile: !uuid '51fd5a8cabeb631e2ea130f7227fc8e3528f98e8'
-  /Web/src/views/pages/approvalFlow/component/LogicFlow/Register/Nodes/NodeUser.ts:
-    newFile: null
-    oldFile: !uuid 'ff0a7861faa0340f9e07e8cfc59125bae804473d'
-  /Web/src/views/pages/approvalFlow/component/LogicFlow/Register/RegisterEdge.ts:
-    newFile: null
-    oldFile: !uuid '29647a0c3a5fe58b13cec26138944ce55900a1e1'
-  /Web/src/views/pages/approvalFlow/component/LogicFlow/Register/RegisterNode.ts:
-    newFile: null
-    oldFile: !uuid 'f5970d9e64526cc9fa449644e8df723c766b8b55'
-  /Web/src/views/pages/approvalFlow/component/detailDialog.vue:
-    newFile: null
-    oldFile: !uuid 'ee1c9294fe098d2302e6f9ecef4bc2b4f3cd598c'
-  /Web/src/views/pages/approvalFlow/component/editDialog.vue:
-    newFile: null
-    oldFile: !uuid '74986f3dad23e35dd94dfff0a0d4c4712ad6e5b8'
-  /Web/src/views/pages/approvalFlow/component/editFlowDialog.vue:
-    newFile: null
-    oldFile: !uuid '6b5c92ef967594b3511c5b0864688217687ab921'
-  /Web/src/views/pages/approvalFlow/component/editFormDialog.vue:
-    newFile: null
-    oldFile: !uuid '3c4c415beca5cb7a994acd058a05dbb3598766e3'
-  /Web/src/views/pages/approvalFlow/index.vue:
-    newFile: null
-    oldFile: !uuid '5ce715511e0842f5f7bff3b706f423b6568f50ac'
-gitCommitId: !uuid 'e1b6551f367ce78fbdb1aa6d56566b4cb5b9dd49'
-renames:
-  /Admin.NET/Plugins/Admin.NET.Plugin.ApprovalFlow/Admin.NET.Plugin.ApprovalFlow.csproj: /Admin.NET/Plugins/Admin.NET.Plugin.Flow/Admin.NET.Plugin.Flow.csproj
-  /Admin.NET/Plugins/Admin.NET.Plugin.ApprovalFlow/Entity/ApprovalFlow.cs: /Admin.NET/Plugins/Admin.NET.Plugin.Flow/Entity/ApprovalFlow.cs
-  /Admin.NET/Plugins/Admin.NET.Plugin.ApprovalFlow/Service/ApprovalFlow/Dto/ApprovalFlowDto.cs: /Admin.NET/Plugins/Admin.NET.Plugin.Flow/Service/ApprovalFlow/Dto/ApprovalFlowDto.cs
-  /Admin.NET/Plugins/Admin.NET.Plugin.ApprovalFlow/Service/ApprovalFlow/Dto/ApprovalFlowInput.cs: /Admin.NET/Plugins/Admin.NET.Plugin.Flow/Service/ApprovalFlow/Dto/ApprovalFlowInput.cs
-  /Admin.NET/Plugins/Admin.NET.Plugin.ApprovalFlow/Service/ApprovalFlow/Dto/ApprovalFlowOutput.cs: /Admin.NET/Plugins/Admin.NET.Plugin.Flow/Service/ApprovalFlow/Dto/ApprovalFlowOutput.cs
-  /Web/src/api-services/_approvalFlow/apis/approval-flow-api.ts: /Web/src/api-services/apis/approval-flow-api.ts
-  /Web/src/api-services/_approvalFlow/models/add-approval-flow-input.ts: /Web/src/api-services/models/add-approval-flow-input.ts
-  /Web/src/api-services/_approvalFlow/models/admin-result-approval-flow.ts: /Web/src/api-services/models/admin-result-approval-flow.ts
-  /Web/src/api-services/_approvalFlow/models/admin-result-sql-sugar-paged-list-approval-flow-output.ts: /Web/src/api-services/models/admin-result-sql-sugar-paged-list-approval-flow-output.ts
-  /Web/src/api-services/_approvalFlow/models/approval-flow-input.ts: /Web/src/api-services/models/approval-flow-input.ts
-  /Web/src/api-services/_approvalFlow/models/approval-flow-output.ts: /Web/src/api-services/models/approval-flow-output.ts
-  /Web/src/api-services/_approvalFlow/models/approval-flow.ts: /Web/src/api-services/models/approval-flow.ts
-  /Web/src/api-services/_approvalFlow/models/sql-sugar-paged-list-approval-flow-output.ts: /Web/src/api-services/models/sql-sugar-paged-list-approval-flow-output.ts
-  /Web/src/api-services/_approvalFlow/models/update-approval-flow-input.ts: /Web/src/api-services/models/update-approval-flow-input.ts
-  /Web/src/views/approvalFlow/component/LogicFlow/Panel/PanelControl.vue: /Web/src/views/pages/approvalFlow/component/LogicFlow/Panel/PanelControl.vue
-  /Web/src/views/approvalFlow/component/LogicFlow/Panel/PanelDataDialog.vue: /Web/src/views/pages/approvalFlow/component/LogicFlow/Panel/PanelDataDialog.vue
-  /Web/src/views/approvalFlow/component/LogicFlow/Panel/PanelNode.vue: /Web/src/views/pages/approvalFlow/component/LogicFlow/Panel/PanelNode.vue
-  /Web/src/views/approvalFlow/component/LogicFlow/Property/PropertyCommon.vue: /Web/src/views/pages/approvalFlow/component/LogicFlow/Property/PropertyCommon.vue
-  /Web/src/views/approvalFlow/component/LogicFlow/Property/PropertyDialog.vue: /Web/src/views/pages/approvalFlow/component/LogicFlow/Property/PropertyDialog.vue
-  /Web/src/views/approvalFlow/component/LogicFlow/Register/Edges/EdgeSql.ts: /Web/src/views/pages/approvalFlow/component/LogicFlow/Register/Edges/EdgeSql.ts
-  /Web/src/views/approvalFlow/component/LogicFlow/Register/Nodes/NodeEnd.ts: /Web/src/views/pages/approvalFlow/component/LogicFlow/Register/Nodes/NodeEnd.ts
-  /Web/src/views/approvalFlow/component/LogicFlow/Register/Nodes/NodeSql.ts: /Web/src/views/pages/approvalFlow/component/LogicFlow/Register/Nodes/NodeSql.ts
-  /Web/src/views/approvalFlow/component/LogicFlow/Register/Nodes/NodeStart.ts: /Web/src/views/pages/approvalFlow/component/LogicFlow/Register/Nodes/NodeStart.ts
-  /Web/src/views/approvalFlow/component/LogicFlow/Register/Nodes/NodeTask.ts: /Web/src/views/pages/approvalFlow/component/LogicFlow/Register/Nodes/NodeTask.ts
-  /Web/src/views/approvalFlow/component/LogicFlow/Register/Nodes/NodeUser.ts: /Web/src/views/pages/approvalFlow/component/LogicFlow/Register/Nodes/NodeUser.ts
-  /Web/src/views/approvalFlow/component/LogicFlow/Register/RegisterEdge.ts: /Web/src/views/pages/approvalFlow/component/LogicFlow/Register/RegisterEdge.ts
-  /Web/src/views/approvalFlow/component/LogicFlow/Register/RegisterNode.ts: /Web/src/views/pages/approvalFlow/component/LogicFlow/Register/RegisterNode.ts
-  /Web/src/views/approvalFlow/component/editFlowDialog.vue: /Web/src/views/pages/approvalFlow/component/editFlowDialog.vue
-revisionId: 1798
+    newFile: !uuid 'd7d1322a445d547bcac79468bd2b2691e848f58c'
+    oldFile: !uuid 'f118efd0bc1922d7d4e5ac616b40ba9e4eb56b27'
+gitCommitId: !uuid 'bab80a4b8e1d98536cbdde5302abce65c3c60fc0'
+renames: {
+  }
+revisionId: 1799
