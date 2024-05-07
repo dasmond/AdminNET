@@ -2,25 +2,22 @@
 branches: {
   }
 fileChange:
-  /Admin.NET:
-    newFile: !uuid 'b85b03e316e634c4ca748566d4dd0af05115f15f'
-    oldFile: !uuid 'ffe147a3c35804a038a9aac4628c2b9c198933a0'
-  /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '3c675c63d218f801060e988a29c849a0c79b7638'
-    oldFile: !uuid '6db88bb76adb360ff6f7d9f616eac8843c3438c2'
-  /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid 'cbe440274bf891b169cafaa6aa5a002284c3a98e'
-    oldFile: !uuid '2c87828bb4ec4418aab6e3e8630c8e6ac0a4dd3e'
-  /Admin.NET/Admin.NET.Core/Service/OpenAccess:
-    newFile: !uuid 'f0823cf40a01a51f070ded38c1b5840f6895aed3'
-    oldFile: !uuid '8cfa9ccff415a7f83b8ab7a7a79dee3fd0d07bb5'
-  /Admin.NET/Admin.NET.Core/Service/OpenAccess/Dto:
-    newFile: !uuid 'e521879800ad16e7b5bd7dcc9b6d20d1ab8f09c9'
-    oldFile: !uuid '4853e5f748ac4b501efe137d717e41c13d6bb421'
-  /Admin.NET/Admin.NET.Core/Service/OpenAccess/Dto/OpenAccessInput.cs:
-    newFile: !uuid 'a3d57932fae40a63be9770ef904c2116c814799c'
-    oldFile: !uuid '699257bcd6824415ae00d6eb1f2353fa20e51bb7'
-gitCommitId: !uuid '03c1ee63d20b7607246d7ecf5004fd458525fd3d'
+  /Web:
+    newFile: !uuid 'a665fcb3c540eb7eab76d8998d708c5a8ead6d60'
+    oldFile: !uuid 'db6ca67b1dae0028a72e075449e2556ff59bda10'
+  /Web/src:
+    newFile: !uuid 'a7e130b4f66c52586e12f326eb1986e532031c44'
+    oldFile: !uuid 'acf4dddd934fad74e343c4fe4c83ed22e8a453e8'
+  /Web/src/api-services:
+    newFile: !uuid '8b02033b74c198273e2a8b9b37f44c1ed9bfaf5e'
+    oldFile: !uuid '94b1e1a583eeb22efcbd0122db8caf98db5a78e5'
+  /Web/src/api-services/models:
+    newFile: !uuid '83d34bbe0a3af75aae6b5279e5f9ffd9287f54db'
+    oldFile: !uuid '55800aeb80a11d30203022e1bc55ce2ab1db4d90'
+  /Web/src/api-services/models/generate-signature-input.ts:
+    newFile: !uuid '1a73c494d6eeb6de97fe8dca56e0bbb0aba01a17'
+    oldFile: !uuid 'e1abb493eeafde70dc82941feb9817dbc86a8822'
+gitCommitId: !uuid '99d76f88d6037286567bdd234269ade11e02eb2c'
 renames: {
   }
-revisionId: 1805
+revisionId: 1806
