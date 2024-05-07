@@ -3,45 +3,72 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '51f455dd01e9e5ad513777e094e6f4070c9de8c3'
-    oldFile: !uuid 'b9d8b11181edab06d07fb732601771990f7e7847'
+    newFile: !uuid 'ffe147a3c35804a038a9aac4628c2b9c198933a0'
+    oldFile: !uuid '51f455dd01e9e5ad513777e094e6f4070c9de8c3'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '814a002a18482e25048283eaf06c420c20d8d1b7'
-    oldFile: !uuid 'e70332c0f5b4d3673534660f1fd2c653cae3e9b8'
-  /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
-    newFile: !uuid '50e20220f09aee05b8564434abb7abec3261a84b'
-    oldFile: !uuid '32ddec81d137215281b5c4568c6f74f50ef2401b'
-  /Admin.NET/Admin.NET.Web.Core:
-    newFile: !uuid 'e44c00d4037c342a2b97d660cf1fa357860d2897'
-    oldFile: !uuid '102ed25096596d042ebbc5bd95eb6a7f76ce6b13'
-  /Admin.NET/Admin.NET.Web.Core/Startup.cs:
-    newFile: !uuid '65ebbe5c121b3fa26220e6fb2f86e4e236e72af8'
-    oldFile: !uuid '0ebb6a731aabdf55df77770b19b9f4c58b921e0a'
-  /Admin.NET/Plugins:
-    newFile: !uuid 'f22ccea2a534cff8e9aa29cd84ede75381e7639d'
-    oldFile: !uuid '869dcde935b7c9607ed9dd1cf73f28c3e706497f'
-  /Admin.NET/Plugins/Admin.NET.Plugin.ReZero:
-    newFile: !uuid 'c695759961601ecc70c0db3588baa7aa29b8fd98'
-    oldFile: !uuid '3d4421606b9d5c6869a8df9e04a7ac940e27fe50'
-  /Admin.NET/Plugins/Admin.NET.Plugin.ReZero/Admin.NET.Plugin.ReZero.csproj:
-    newFile: !uuid '90d1e0d08b94c563ac6a86bb0411a171f0968270'
-    oldFile: !uuid 'f7af80ebe751dd219f160e9cf29fe998fb8745b3'
+    newFile: !uuid '6db88bb76adb360ff6f7d9f616eac8843c3438c2'
+    oldFile: !uuid '814a002a18482e25048283eaf06c420c20d8d1b7'
+  /Admin.NET/Admin.NET.Core/Service:
+    newFile: !uuid '2c87828bb4ec4418aab6e3e8630c8e6ac0a4dd3e'
+    oldFile: !uuid '7613997bb41a6cb6b319fcec2bae018299b3aab6'
+  /Admin.NET/Admin.NET.Core/Service/OpenAccess:
+    newFile: !uuid '8cfa9ccff415a7f83b8ab7a7a79dee3fd0d07bb5'
+    oldFile: !uuid 'b128906a5b87c91204120e8c3593108ef52082d1'
+  /Admin.NET/Admin.NET.Core/Service/OpenAccess/Dto:
+    newFile: !uuid '4853e5f748ac4b501efe137d717e41c13d6bb421'
+    oldFile: !uuid '46636a3e9fa37713037f9d19972d5c4cf00440ed'
+  /Admin.NET/Admin.NET.Core/Service/OpenAccess/Dto/OpenAccessInput.cs:
+    newFile: !uuid '699257bcd6824415ae00d6eb1f2353fa20e51bb7'
+    oldFile: !uuid '04aa186de9583bc1453b2e2680888ecedf3661e2'
+  /Admin.NET/Admin.NET.Core/Service/OpenAccess/SysOpenAccessService.cs:
+    newFile: !uuid 'b8fdf2c972be02db19302fc33fcaff1059f1f625'
+    oldFile: !uuid '817bc9e7e930d2fb81f4c5b39ff4caf5c1da84c6'
   /Web:
-    newFile: !uuid '50c93783e35f0fc28ad2eb48d4ada46b99043dbe'
-    oldFile: !uuid 'cf6cf2874dffb77c18506cde1cfb19e920d9a1f4'
+    newFile: !uuid 'db6ca67b1dae0028a72e075449e2556ff59bda10'
+    oldFile: !uuid '50c93783e35f0fc28ad2eb48d4ada46b99043dbe'
   /Web/src:
-    newFile: !uuid 'ef52a7409439dd6e67e180f925bb9a21d6fd377b'
-    oldFile: !uuid '6e15589ab22367585c0dc243bd38ce7c9e4cd179'
-  /Web/src/layout:
-    newFile: !uuid '8cc296be018627ac0154cc7f13318d09a9fad128'
-    oldFile: !uuid '348807d080d774bd682ec24af574085097ed3e41'
-  /Web/src/layout/routerView:
-    newFile: !uuid '7cfafe42a865f8dc842ff2fd63efc2b077a3989a'
-    oldFile: !uuid '97051ac1c06f7d253f765dcb2795a01fbdcae852'
-  /Web/src/layout/routerView/iframes.vue:
-    newFile: !uuid '2dc2d1a6d4fecd9f4c3ce14fc466cda67cafcab4'
-    oldFile: !uuid '559c06ed0f5584563464ae5edb35c7708757d60f'
-gitCommitId: !uuid '89645229578c1a7a54caa8e0b22d6dfb8d648b14'
+    newFile: !uuid 'acf4dddd934fad74e343c4fe4c83ed22e8a453e8'
+    oldFile: !uuid 'ef52a7409439dd6e67e180f925bb9a21d6fd377b'
+  /Web/src/api-services:
+    newFile: !uuid '94b1e1a583eeb22efcbd0122db8caf98db5a78e5'
+    oldFile: !uuid '658439a861f8f05a54fd1c72d7ef018a8fe51b7e'
+  /Web/src/api-services/apis:
+    newFile: !uuid '1c41e13bf2ffe6a6b23d0a6ecbb32c4d9df7ef25'
+    oldFile: !uuid '4a46bfe21a6f56b8a84025ead2daa97c4df7f961'
+  /Web/src/api-services/apis/sys-open-access-api.ts:
+    newFile: !uuid '730676092817b61a08e7c357b1ea22a5d98be0d0'
+    oldFile: !uuid '82971f9894573517af42dedeeaa8439dde0c379f'
+  /Web/src/api-services/models:
+    newFile: !uuid '55800aeb80a11d30203022e1bc55ce2ab1db4d90'
+    oldFile: !uuid '0fcdd36df883345bd545e4107ebe11cd298ded80'
+  /Web/src/api-services/models/generate-signature-input.ts:
+    newFile: !uuid 'e1abb493eeafde70dc82941feb9817dbc86a8822'
+    oldFile: null
+  /Web/src/api-services/models/index.ts:
+    newFile: !uuid 'db516f21b36a4cc15889749e47c7210083fb4bbb'
+    oldFile: !uuid '536d34b8e4d8c88e2e7a5591db42bd55f31ecea1'
+  /Web/src/views:
+    newFile: !uuid 'd2c571e7f0bbe027fbf1802e3a2b5f3b2a88f541'
+    oldFile: !uuid 'd4cbc679c04573ef47c6b7e9b6e7557f0bef8721'
+  /Web/src/views/system:
+    newFile: !uuid '7a10f7efd40eaaee552b8fdea96e4996275ce10f'
+    oldFile: !uuid 'e8d02530e4718f79361f6e73ea0a8c0f58f085df'
+  /Web/src/views/system/openAccess:
+    newFile: !uuid '1950d62264ef27544786b28b49ce9bbbf26699e3'
+    oldFile: !uuid '57c3d0cb1eb5bb9fd9e55adf7ae9efc674db9272'
+  /Web/src/views/system/openAccess/component:
+    newFile: !uuid '9b65a885073f6a9cc5018f702e160edefc122bc6'
+    oldFile: !uuid '8b77cb4691770fece2a8a07959db0c2dc0ec653e'
+  /Web/src/views/system/openAccess/component/generateSign.vue:
+    newFile: !uuid '014c8e7c3b73d4ab1d0791ed35e18616f750b526'
+    oldFile: null
+  /Web/src/views/system/openAccess/component/helpView.vue:
+    newFile: !uuid 'aa55eb3545b2cd3c880c635e7e60ab6c725aa62d'
+    oldFile: !uuid 'd63a96014220ce9b4cbfa65297d81bbc5ac993c7'
+  /Web/src/views/system/openAccess/index.vue:
+    newFile: !uuid '4a42cb88142f32a34792c2c04718bb44ae390faa'
+    oldFile: !uuid 'bade08015cbb30b4588ec7fe4e80d90439447ab4'
+gitCommitId: !uuid '2488be491deec843b770b17ada1de44e0d9cb1cf'
 renames: {
   }
-revisionId: 1803
+revisionId: 1804
