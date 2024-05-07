@@ -2,10 +2,46 @@
 branches: {
   }
 fileChange:
-  /README.md:
-    newFile: !uuid 'f5e72fe0d9a300d591f946dca4c6a557000ebf3a'
-    oldFile: !uuid 'ba62a120a16d7636217803913aa4bf3a29f9f3fa'
-gitCommitId: !uuid 'ebebfcd2db1ecb7d8204b2bc3fb6ba47e3b23025'
+  /Admin.NET:
+    newFile: !uuid '51f455dd01e9e5ad513777e094e6f4070c9de8c3'
+    oldFile: !uuid 'b9d8b11181edab06d07fb732601771990f7e7847'
+  /Admin.NET/Admin.NET.Core:
+    newFile: !uuid '814a002a18482e25048283eaf06c420c20d8d1b7'
+    oldFile: !uuid 'e70332c0f5b4d3673534660f1fd2c653cae3e9b8'
+  /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
+    newFile: !uuid '50e20220f09aee05b8564434abb7abec3261a84b'
+    oldFile: !uuid '32ddec81d137215281b5c4568c6f74f50ef2401b'
+  /Admin.NET/Admin.NET.Web.Core:
+    newFile: !uuid 'e44c00d4037c342a2b97d660cf1fa357860d2897'
+    oldFile: !uuid '102ed25096596d042ebbc5bd95eb6a7f76ce6b13'
+  /Admin.NET/Admin.NET.Web.Core/Startup.cs:
+    newFile: !uuid '65ebbe5c121b3fa26220e6fb2f86e4e236e72af8'
+    oldFile: !uuid '0ebb6a731aabdf55df77770b19b9f4c58b921e0a'
+  /Admin.NET/Plugins:
+    newFile: !uuid 'f22ccea2a534cff8e9aa29cd84ede75381e7639d'
+    oldFile: !uuid '869dcde935b7c9607ed9dd1cf73f28c3e706497f'
+  /Admin.NET/Plugins/Admin.NET.Plugin.ReZero:
+    newFile: !uuid 'c695759961601ecc70c0db3588baa7aa29b8fd98'
+    oldFile: !uuid '3d4421606b9d5c6869a8df9e04a7ac940e27fe50'
+  /Admin.NET/Plugins/Admin.NET.Plugin.ReZero/Admin.NET.Plugin.ReZero.csproj:
+    newFile: !uuid '90d1e0d08b94c563ac6a86bb0411a171f0968270'
+    oldFile: !uuid 'f7af80ebe751dd219f160e9cf29fe998fb8745b3'
+  /Web:
+    newFile: !uuid '50c93783e35f0fc28ad2eb48d4ada46b99043dbe'
+    oldFile: !uuid 'cf6cf2874dffb77c18506cde1cfb19e920d9a1f4'
+  /Web/src:
+    newFile: !uuid 'ef52a7409439dd6e67e180f925bb9a21d6fd377b'
+    oldFile: !uuid '6e15589ab22367585c0dc243bd38ce7c9e4cd179'
+  /Web/src/layout:
+    newFile: !uuid '8cc296be018627ac0154cc7f13318d09a9fad128'
+    oldFile: !uuid '348807d080d774bd682ec24af574085097ed3e41'
+  /Web/src/layout/routerView:
+    newFile: !uuid '7cfafe42a865f8dc842ff2fd63efc2b077a3989a'
+    oldFile: !uuid '97051ac1c06f7d253f765dcb2795a01fbdcae852'
+  /Web/src/layout/routerView/iframes.vue:
+    newFile: !uuid '2dc2d1a6d4fecd9f4c3ce14fc466cda67cafcab4'
+    oldFile: !uuid '559c06ed0f5584563464ae5edb35c7708757d60f'
+gitCommitId: !uuid '89645229578c1a7a54caa8e0b22d6dfb8d648b14'
 renames: {
   }
-revisionId: 1802
+revisionId: 1803
