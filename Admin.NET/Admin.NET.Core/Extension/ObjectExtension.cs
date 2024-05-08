@@ -260,15 +260,15 @@ public static partial class ObjectExtension
     /// <returns></returns>
     public static string ParseToDateTimeForRep(this string str)
     {
-        if (string.IsNullOrWhiteSpace(str))
+        if (!string.IsNullOrWhiteSpace(str))
         {
             var date = DateTime.Now;
             var reg = new Regex(@"(\{.+?})");
             var match = reg.Matches(str);
             match.ToList().ForEach(a =>
             {
-                var str = date.ToString(a.ToString().Substring(1, a.Length - 2));
-                str = str.Replace(a.ToString(), str);
+                var rep = date.ToString(a.ToString().Substring(1, a.Length - 2));
+                str = str.Replace(a.ToString(), rep);
             });
         }
         return str;
