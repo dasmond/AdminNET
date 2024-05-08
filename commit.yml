@@ -2,22 +2,28 @@
 branches: {
   }
 fileChange:
-  /Web:
-    newFile: !uuid 'a665fcb3c540eb7eab76d8998d708c5a8ead6d60'
-    oldFile: !uuid 'db6ca67b1dae0028a72e075449e2556ff59bda10'
-  /Web/src:
-    newFile: !uuid 'a7e130b4f66c52586e12f326eb1986e532031c44'
-    oldFile: !uuid 'acf4dddd934fad74e343c4fe4c83ed22e8a453e8'
-  /Web/src/api-services:
-    newFile: !uuid '8b02033b74c198273e2a8b9b37f44c1ed9bfaf5e'
-    oldFile: !uuid '94b1e1a583eeb22efcbd0122db8caf98db5a78e5'
-  /Web/src/api-services/models:
-    newFile: !uuid '83d34bbe0a3af75aae6b5279e5f9ffd9287f54db'
-    oldFile: !uuid '55800aeb80a11d30203022e1bc55ce2ab1db4d90'
-  /Web/src/api-services/models/generate-signature-input.ts:
-    newFile: !uuid '1a73c494d6eeb6de97fe8dca56e0bbb0aba01a17'
-    oldFile: !uuid 'e1abb493eeafde70dc82941feb9817dbc86a8822'
-gitCommitId: !uuid '99d76f88d6037286567bdd234269ade11e02eb2c'
+  /Admin.NET:
+    newFile: !uuid '7fe73cae4f3fd835315bcf062581780092a2e219'
+    oldFile: !uuid 'b85b03e316e634c4ca748566d4dd0af05115f15f'
+  /Admin.NET/Admin.NET.Core:
+    newFile: !uuid '4b9b238bfe1121b7eb59e4aca22da2bfb2172c5e'
+    oldFile: !uuid '3c675c63d218f801060e988a29c849a0c79b7638'
+  /Admin.NET/Admin.NET.Core/Extension:
+    newFile: !uuid 'e3fdb513cee68b4b5686d6391833d98d9cb5a76a'
+    oldFile: !uuid '5a950a7ed0710d32303256285299c06f62740d06'
+  /Admin.NET/Admin.NET.Core/Extension/ObjectExtension.cs:
+    newFile: !uuid '80dbebb8d45d1d4241fb9d2f5d9929f4b5e265b5'
+    oldFile: !uuid 'cbf321ec591b2f722df99282452ae707a49f8c1b'
+  /Admin.NET/Admin.NET.Core/Service:
+    newFile: !uuid 'aa4238660e3efacd2c3dfb11bf74863afe760353'
+    oldFile: !uuid 'cbe440274bf891b169cafaa6aa5a002284c3a98e'
+  /Admin.NET/Admin.NET.Core/Service/File:
+    newFile: !uuid 'cfbcb8af55306fb56c8fcbbe7226aa13c84de567'
+    oldFile: !uuid '34be1b0baa15dafe48bac1c514335a19ef6feb8f'
+  /Admin.NET/Admin.NET.Core/Service/File/SysFileService.cs:
+    newFile: !uuid '8d524b4fb79756253a81b52ca4c001e359492fe9'
+    oldFile: !uuid 'a3408c5805be49f85111908a9660c6d2741f0eea'
+gitCommitId: !uuid 'b5494fa3b00876f173252e544ae76f220c5f42c7'
 renames: {
   }
-revisionId: 1762
+revisionId: 1763
