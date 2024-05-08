@@ -3,27 +3,21 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '7fe73cae4f3fd835315bcf062581780092a2e219'
-    oldFile: !uuid 'b85b03e316e634c4ca748566d4dd0af05115f15f'
-  /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '4b9b238bfe1121b7eb59e4aca22da2bfb2172c5e'
-    oldFile: !uuid '3c675c63d218f801060e988a29c849a0c79b7638'
-  /Admin.NET/Admin.NET.Core/Extension:
-    newFile: !uuid 'e3fdb513cee68b4b5686d6391833d98d9cb5a76a'
-    oldFile: !uuid '5a950a7ed0710d32303256285299c06f62740d06'
-  /Admin.NET/Admin.NET.Core/Extension/ObjectExtension.cs:
-    newFile: !uuid '80dbebb8d45d1d4241fb9d2f5d9929f4b5e265b5'
-    oldFile: !uuid 'cbf321ec591b2f722df99282452ae707a49f8c1b'
-  /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid 'aa4238660e3efacd2c3dfb11bf74863afe760353'
-    oldFile: !uuid 'cbe440274bf891b169cafaa6aa5a002284c3a98e'
-  /Admin.NET/Admin.NET.Core/Service/File:
-    newFile: !uuid 'cfbcb8af55306fb56c8fcbbe7226aa13c84de567'
-    oldFile: !uuid '34be1b0baa15dafe48bac1c514335a19ef6feb8f'
-  /Admin.NET/Admin.NET.Core/Service/File/SysFileService.cs:
-    newFile: !uuid '8d524b4fb79756253a81b52ca4c001e359492fe9'
-    oldFile: !uuid 'a3408c5805be49f85111908a9660c6d2741f0eea'
-gitCommitId: !uuid 'b5494fa3b00876f173252e544ae76f220c5f42c7'
+    newFile: !uuid '3b1e9f843754c6226cdb7caf42462391048313c2'
+    oldFile: !uuid '7fe73cae4f3fd835315bcf062581780092a2e219'
+  /Admin.NET/Admin.NET.Web.Entry:
+    newFile: !uuid 'cfbfe7e975e8ae03b44f5bd434b92013e1fe9e07'
+    oldFile: !uuid '99d23117084aa0746c78af3b3d06b4d7c20a7d02'
+  /Admin.NET/Admin.NET.Web.Entry/wwwroot:
+    newFile: !uuid 'a0bf78532a752bc6ec5e98a30a79c155e7a03256'
+    oldFile: !uuid 'fd8d02b6522e687e9ac705c724d6fe75357f220e'
+  /Admin.NET/Admin.NET.Web.Entry/wwwroot/Template:
+    newFile: !uuid 'a08ac45e1a11390ceedf67571c5463ba9146c3e6'
+    oldFile: !uuid '8839c4894142305256d131d1c4bf66278b1313e1'
+  /Admin.NET/Admin.NET.Web.Entry/wwwroot/Template/index.vue.vm:
+    newFile: !uuid '451c7ec9780b1a826f2cbbca8004b75fb8ded4f1'
+    oldFile: !uuid '441fd2509f8a3e45f392338f497e64e335c22d01'
+gitCommitId: !uuid 'd1f11ec1d5e874313008aad7655cc808fc606a0f'
 renames: {
   }
-revisionId: 1763
+revisionId: 1764
