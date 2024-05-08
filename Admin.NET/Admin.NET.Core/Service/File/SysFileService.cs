@@ -264,8 +264,8 @@ public class SysFileService : IDynamicApiController, ITransient
             if (sysFile != null) return sysFile;
         }
 
-        var path = savePath.ParseToDateTimeForRep();
-       
+        var path = savePath ?? _uploadOptions.Path.ParseToDateTimeForRep();
+
 
         // 验证文件类型
         if (!_uploadOptions.ContentType.Contains(file.ContentType))
