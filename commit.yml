@@ -3,15 +3,42 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '4f41b2c269fe5b477604a0ffdfe6f099c47bc96e'
-    oldFile: !uuid '59f9848191e4e3c4822f3de497f233834e6cf1c4'
-  /Admin.NET/Admin.NET.Web.Entry:
-    newFile: !uuid 'cfbfe7e975e8ae03b44f5bd434b92013e1fe9e07'
-    oldFile: !uuid '407467bc6a924adb2b744d185f09f0595edcf662'
-  /Admin.NET/Admin.NET.Web.Entry/Dockerfile:
-    newFile: !uuid '8fc03565420cc7b393326e89c5c80946648c6d4e'
-    oldFile: !uuid '1acb9e3daa78732c7bb2f69e350ff3be71f5abd3'
-gitCommitId: !uuid 'ef481070d3677e244b63de18e6d04f12e02b2d16'
+    newFile: !uuid '9b8693f3167e561f63c3daa00960538080e8a1e7'
+    oldFile: !uuid '4f41b2c269fe5b477604a0ffdfe6f099c47bc96e'
+  /Admin.NET/Admin.NET.Core:
+    newFile: !uuid 'f96cf386c81ecab58bae52badec8b2c46c6f4eae'
+    oldFile: !uuid 'd069b21a037f8c1f4308c0bdcddc69fa0512ecb5'
+  /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
+    newFile: !uuid '29c771c1232b9135b24d0fa8e18efa50d3ddaca9'
+    oldFile: !uuid '9c92438e94b7ae69dd757fa53ac20c128c6a1ae1'
+  /Admin.NET/Admin.NET.Core/Util:
+    newFile: !uuid '62d89d34aa0f108d853d962e88a2e95a55a42e98'
+    oldFile: !uuid '90443c61302690ad22266fa10b0fe7a436834db3'
+  /Admin.NET/Admin.NET.Core/Util/AdminResultProvider.cs:
+    newFile: !uuid 'dc2a8979f0d25e65ed038e2067efb748c42061ee'
+    oldFile: !uuid '0f23d4f3fdf72a07064244c51a35ef9f4cb00c3e'
+  /Admin.NET/Admin.NET.Web.Core:
+    newFile: !uuid 'd4e0d3894e0a312688b18677862401e245019a12'
+    oldFile: !uuid 'e44c00d4037c342a2b97d660cf1fa357860d2897'
+  /Admin.NET/Admin.NET.Web.Core/Handlers:
+    newFile: !uuid '5b67e1cf28a1d0a761e7ac43d9c687ef8a94e8dc'
+    oldFile: !uuid 'c23f55a247ed5cb27bd9d435c96b427a6c4c2f3a'
+  /Admin.NET/Admin.NET.Web.Core/Handlers/JwtHandler.cs:
+    newFile: !uuid 'd943a70896ae8e71e55c586c7ed41f085b5aa887'
+    oldFile: !uuid 'b977619727091a3230379f6ef6e83e24095872d5'
+  /Admin.NET/Plugins:
+    newFile: !uuid 'c9f4bd395767711a60cfe7a465da6445d99323fd'
+    oldFile: !uuid 'd080941cdeda80fe014b8220ddccf96cf7bcf85d'
+  /Admin.NET/Plugins/Admin.NET.Plugin.GoView:
+    newFile: !uuid 'f9b73c2ca0881704cb8a1b6ba8c840b6176bb67c'
+    oldFile: !uuid '7cf3536b813262b67a9c2f9b4ae342b6d15d3833'
+  /Admin.NET/Plugins/Admin.NET.Plugin.GoView/Util:
+    newFile: !uuid '95a84f9a5d3c3f0acc69e81ae6e5bc29ee75eb18'
+    oldFile: !uuid '3ef45e64c4e4a02a3085aef2f85a212a0ed5ea49'
+  /Admin.NET/Plugins/Admin.NET.Plugin.GoView/Util/GoViewResultProvider.cs:
+    newFile: !uuid 'a8970aa1a3017b615b3ffb1df209f4700ec26a58'
+    oldFile: !uuid '8b9044735879f6f78290a836fbb11ccc06ed7209'
+gitCommitId: !uuid '4a831b7db2a366fe72c419eb34b01dd17ecee51e'
 renames: {
   }
-revisionId: 1813
+revisionId: 1814
