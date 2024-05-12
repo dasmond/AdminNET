@@ -3,30 +3,27 @@ branches: {
   }
 fileChange:
   /Web:
-    newFile: !uuid 'b84aecafefa49be50eea6565b0009610db091662'
-    oldFile: !uuid 'c768eafee37828f67d6753e21c1fe52888ffaca9'
+    newFile: !uuid '1575f588c4c762c2faa616130eb7d78c6b29ced9'
+    oldFile: !uuid 'b84aecafefa49be50eea6565b0009610db091662'
+  /Web/package.json:
+    newFile: !uuid '3f0c4a522df0b509bccb27dbba868c7d2d9f4618'
+    oldFile: !uuid '5ceb31000c8fbfaea47f4f847b8ae362a3fb7e3e'
   /Web/src:
-    newFile: !uuid '2ec7bce57812d8d49df66bcb4c59fd025480348d'
-    oldFile: !uuid '018659771c4262cb9f14e123b3ffa5650179abe2'
+    newFile: !uuid '00438a2bc566ace0ee967e83a775d2d4102a45ff'
+    oldFile: !uuid '2ec7bce57812d8d49df66bcb4c59fd025480348d'
   /Web/src/views:
-    newFile: !uuid '15a15e110322e6734c883ccd5a0ae275154df0cd'
-    oldFile: !uuid '3114037344bbafb68cdc01d6bfc59513b6c0a402'
+    newFile: !uuid 'd7750280ef827c649ce5f2222ed14928e9308c2b'
+    oldFile: !uuid '15a15e110322e6734c883ccd5a0ae275154df0cd'
   /Web/src/views/system:
-    newFile: !uuid '4932757d58bf57bf07d0a5723eb5999c78f53482'
-    oldFile: !uuid '62243c3c5e4a8cccdf6b3e5ddac93e81b770c871'
-  /Web/src/views/system/print:
-    newFile: !uuid 'b7045cf566222d6578a929cbb7ef7bef789bda37'
-    oldFile: !uuid '6a5fbf446402b43b5183a6e9a96d15af3b253528'
-  /Web/src/views/system/print/component:
-    newFile: !uuid '6072e9cbb9036c25500f96989240e0258a840718'
-    oldFile: !uuid 'fce48e35865ccd4a36c1f95415e3dbecc4620dba'
-  /Web/src/views/system/print/component/hiprint:
-    newFile: !uuid '2733e0609e395bf0a8196a93837f0c4322942b32'
-    oldFile: !uuid '28dc2c494684dc06f8a6dcc18819ea04ef9e8ff2'
-  /Web/src/views/system/print/component/hiprint/index.vue:
-    newFile: !uuid 'b576362ba2f50293a303f2a52fb1d48d21cfc399'
-    oldFile: !uuid 'aa50208ff8838ed1190d50c03e41bc86406c03de'
-gitCommitId: !uuid '32a2be79ba954f0ceb330a832ee1d43bddd6aff7'
+    newFile: !uuid '13a94da8a0cf454d246bed072fe242dc7bddbff9'
+    oldFile: !uuid '4932757d58bf57bf07d0a5723eb5999c78f53482'
+  /Web/src/views/system/dict:
+    newFile: !uuid '6cbada94e2f16f6991807905fb48998b3e7c38c4'
+    oldFile: !uuid '76943bf10af07312e3ed0b3202e3c7dce54ead7e'
+  /Web/src/views/system/dict/index.vue:
+    newFile: !uuid '18a60fd0ffd5ad333d99a0dca62bd9c55cdda523'
+    oldFile: !uuid '792b27c6bf8f4f4f9b14341c1f90fb5cc4390bc5'
+gitCommitId: !uuid '20c43c734cca55f159bceeb62c44ceb0c163e013'
 renames: {
   }
-revisionId: 1774
+revisionId: 1775
