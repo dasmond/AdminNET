@@ -2,85 +2,229 @@
 branches: {
   }
 fileChange:
-  /Admin.NET:
-    newFile: !uuid '1be8a950b7af6ee01ba712297919635a4c901f0b'
-    oldFile: !uuid '91033ca12bd309eb19b2257a5a66b629f7538d41'
-  /Admin.NET/Admin.NET.Core:
-    newFile: !uuid 'f1c167ec205ae13bd859532dfb020e69503b715a'
-    oldFile: !uuid 'a150de703c7529dff609db7be56128d550034dac'
-  /Admin.NET/Admin.NET.Core/Logging:
-    newFile: !uuid 'ee4f72762d68af4375e18edc97b30cc94682f8a1'
-    oldFile: !uuid 'ed2aa73fd27e381aa7ff9170b04c23c03559524d'
-  /Admin.NET/Admin.NET.Core/Logging/DatabaseLoggingWriter.cs:
-    newFile: !uuid '5d40a339918f594f36688f174c233a77b6cebeb7'
-    oldFile: !uuid 'ce5b01e1a338dbed73f31b8aa278e4308ae2b3aa'
   /Web:
-    newFile: !uuid '198c2b5de93be74aaaf4652f2e85d12d7c148a6a'
-    oldFile: !uuid '18644c1cfead4ef588aa8f373efe02540b1538b5'
+    newFile: !uuid '40bce488e6b28f91aae01161a0ec97f2aab5d56d'
+    oldFile: !uuid '198c2b5de93be74aaaf4652f2e85d12d7c148a6a'
   /Web/src:
-    newFile: !uuid 'e466c06b5f2029d7500644d744bec708e042ece5'
-    oldFile: !uuid 'b5c1ae4254ca5166c3fb1e857e9defef92f22921'
-  /Web/src/components:
-    newFile: !uuid '4bbde7a21d8ef5c357880b71a99ece98999613ae'
-    oldFile: !uuid '1b7637eebd8c1b6e96a2aa368990ef9583d5fbbe'
-  /Web/src/components/scEcharts:
-    newFile: !uuid 'd9c30f397b7e87dd7a14aaa7eadb37f7385b7ceb'
-    oldFile: !uuid '5d92a83213823726bfbeda5298944819ae198f6a'
-  /Web/src/components/scEcharts/index.vue:
-    newFile: !uuid 'd81a7af891393d0e4dffe5dbadcf3eba5b27dba1'
-    oldFile: !uuid 'c76ef4eeee8d3c026a0322934e79c886ec326ea5'
-  /Web/src/views:
-    newFile: !uuid 'c52385276de8e4c8e829c1dcbd4c2b9217254fae'
-    oldFile: !uuid '1624ff2a11a14056e4c6e06d6229fbe5b290f763'
-  /Web/src/views/home:
-    newFile: !uuid '83128e66a73b1b0f5b455293b899802e7b5fcc5f'
-    oldFile: !uuid 'dae19b6434b186d4c588846eb4b5fbdf521c0a7d'
-  /Web/src/views/home/index.vue:
-    newFile: !uuid 'da4767998e0022b2d2be51e2475392b44a50207a'
-    oldFile: !uuid '9c91d8153cb090b09c66a4c2f3caf29ea07c9885'
-  /Web/src/views/home/temp.vue:
-    newFile: !uuid '9c91d8153cb090b09c66a4c2f3caf29ea07c9885'
+    newFile: !uuid 'b344de6bb8ad06b3388d47fde50a8abef5a0e5a6'
+    oldFile: !uuid 'e466c06b5f2029d7500644d744bec708e042ece5'
+  /Web/src/api-services:
+    newFile: !uuid '075d03a5a693e8858efada5cdd9efdb94d2bdb98'
+    oldFile: !uuid '8b02033b74c198273e2a8b9b37f44c1ed9bfaf5e'
+  /Web/src/api-services/api.ts:
+    newFile: !uuid 'e5afa9856c2f3897366e3bc865d8261c1c07c986'
+    oldFile: !uuid '53fa1cf261c3d2454de781b3d85e340391128559'
+  /Web/src/api-services/apis:
+    newFile: !uuid '96344d914665346deed942d42b0c276fcd5fb734'
+    oldFile: !uuid '1c41e13bf2ffe6a6b23d0a6ecbb32c4d9df7ef25'
+  /Web/src/api-services/apis/sys-dict-type-api.ts:
+    newFile: !uuid '0e8992b5a1ee31938c9083dbf5c87e279391c3c4'
+    oldFile: !uuid '3f5868ab1a8d15bb9ac8bc6d74d651d201f4bbaf'
+  /Web/src/api-services/apis/sys-log-diff-api.ts:
+    newFile: !uuid '11816f39cd9ca4155ba468f5a0ffaa7288ce1d3c'
+    oldFile: !uuid '440331ef087b5d13d2b6daea4929aed8813965b4'
+  /Web/src/api-services/apis/sys-log-ex-api.ts:
+    newFile: !uuid '7bea650e7b31d3d9e2849acc66af6723caed496a'
+    oldFile: !uuid '65c0134a93eaef3e0106116c849280db28913486'
+  /Web/src/api-services/apis/sys-log-op-api.ts:
+    newFile: !uuid '71f2421f9c7b77722cd021138cb38cee23464e92'
+    oldFile: !uuid 'd3c52edfb5d0f364d2c3bda59de142a94aeb9172'
+  /Web/src/api-services/apis/sys-log-vis-api.ts:
+    newFile: !uuid '4165448f72d9fc89b06ef03de336fa6af75dd2eb'
+    oldFile: !uuid 'c92d8669a0633b71d254d14cff370a8967d49354'
+  /Web/src/api-services/apis/sys-proc-api.ts:
+    newFile: !uuid '101737a4ead38a64ead68cec7e840ffbc97cb270'
     oldFile: null
-  /Web/src/views/home/test.vue:
-    newFile: null
-    oldFile: !uuid '300af7af853bb1b7da7ba8f612da47e1c45c39a2'
-  /Web/src/views/home/widgets:
-    newFile: !uuid 'd00bd97fe5a7079c74af37baa87fbe1f8bf6b8d5'
-    oldFile: !uuid '56ebb688761966dbc1fa7e6b71eea3b23ac9c3fb'
-  /Web/src/views/home/widgets/components:
-    newFile: !uuid '228a5379ab45134355d1616552f6c116b6027cc5'
-    oldFile: !uuid '0533c965bf857e634d81cc0c4e58b1cab1ba4878'
-  /Web/src/views/home/widgets/components/about.vue:
-    newFile: !uuid '0bb1e7e3d82ce54ff239df8a842a272aa9b03482'
-    oldFile: !uuid 'ef085a4ac56baaeb6ed5ad931c6e9922b7a0a9c4'
-  /Web/src/views/home/widgets/components/echarts.vue:
-    newFile: !uuid '731b569ea98fca68e74883ee53a5dadab9614156'
-    oldFile: !uuid 'ecc1dddd140732b1dc5e3a93bc4fd3ddebcaecb8'
-  /Web/src/views/home/widgets/components/index.js:
-    newFile: !uuid 'e24b57d154ea1f1f9f4c4847226a42645c745fb7'
-    oldFile: !uuid 'b0831292e30d79e624f537e20f16ef571bf79ed5'
-  /Web/src/views/home/widgets/components/myapp.vue:
-    newFile: !uuid '2553b43f58f0737fd43c0191ebe41d6b846595e6'
-    oldFile: !uuid '8fc0d49d109af678f03c697d021bc2c5124bd00b'
-  /Web/src/views/home/widgets/components/progress.vue:
-    newFile: !uuid '40e31f5db94210d687e07e96ed64107527d7038a'
-    oldFile: !uuid '994c082f26abf336ac49e0288e22e8b4b13ad34d'
-  /Web/src/views/home/widgets/components/time.vue:
-    newFile: !uuid '409392d89d3d8e7fa7ebb57a9da840ecf287e0fe'
-    oldFile: !uuid '12cc4e418d4976e0fddd7b9be78d7febc955befe'
-  /Web/src/views/home/widgets/components/ver.vue:
-    newFile: !uuid '321cb81672e634ce562739dbd65573db5ace131e'
-    oldFile: !uuid 'f46cb15edf3ed27d5eed66ea376b74ed3672af35'
-  /Web/src/views/home/widgets/components/welcome.vue:
-    newFile: !uuid '6baea5099a6226664787d3ca21c90b936b72c53a'
-    oldFile: !uuid '5ea610cc17797c009ec659f594f318562fc8b80b'
-  /Web/src/views/home/widgets/index.vue:
-    newFile: !uuid 'e74c2c84dd8a476cf85ebb5f13f4782783c0a54d'
-    oldFile: !uuid 'da434f04f276a03a5556a0f161476fde76c461f5'
-  /Web/src/views/home/widgets/tool.js:
-    newFile: !uuid '39b599eb9ad08a9cec6bc3befc8941a8d348aafb'
-    oldFile: !uuid '7ca0ea6c9a485f99940eb772b4bd0dd9aab98956'
-gitCommitId: !uuid '3a388917dd6089921ad0a1b55224c77913eaf07a'
+  /Web/src/api-services/models:
+    newFile: !uuid '8c1e4cc23540b22393d4f88e13d88fe3b3bdccea'
+    oldFile: !uuid '83d34bbe0a3af75aae6b5279e5f9ffd9287f54db'
+  /Web/src/api-services/models/admin-result-data-set.ts:
+    newFile: !uuid '9af2783f135ac5a4cdfae96c0f4d3eb31f020dba'
+    oldFile: null
+  /Web/src/api-services/models/admin-result-data-table.ts:
+    newFile: !uuid 'dc928a91facf4beb1f7f77b49aec772484cb0361'
+    oldFile: null
+  /Web/src/api-services/models/assembly.ts:
+    newFile: !uuid '2d0701b38c777aaf79dd0489491698dbcf36ebad'
+    oldFile: null
+  /Web/src/api-services/models/base-proc-input.ts:
+    newFile: !uuid 'bb29a59263667c23954c42bde62d39cbad26ca1a'
+    oldFile: null
+  /Web/src/api-services/models/calendar-algorithm-type.ts:
+    newFile: !uuid 'b16c3675590654f8a657dddf60805ae038e4e7f6'
+    oldFile: null
+  /Web/src/api-services/models/calendar-week-rule.ts:
+    newFile: !uuid '35352ccbefea2b606b093700b5839b7e38c0d052'
+    oldFile: null
+  /Web/src/api-services/models/calendar.ts:
+    newFile: !uuid '3ec5e20b6b867c432ced7d14737c5bb1786fb683'
+    oldFile: null
+  /Web/src/api-services/models/calling-conventions.ts:
+    newFile: !uuid '573145234662e3561232b3a27af02b69f96e863c'
+    oldFile: null
+  /Web/src/api-services/models/compare-info.ts:
+    newFile: !uuid '8e65c4f86d00e913176971d029960cfce8cf7340'
+    oldFile: null
+  /Web/src/api-services/models/constructor-info.ts:
+    newFile: !uuid 'b0ed4f0fcb09345b94bcbed51ce9a0b23352b798'
+    oldFile: null
+  /Web/src/api-services/models/culture-info.ts:
+    newFile: !uuid '0f16eaec0d1b25bd9c2fde15b7c82852482e7fa4'
+    oldFile: null
+  /Web/src/api-services/models/culture-types.ts:
+    newFile: !uuid 'a7d66c19e56248f5cdfac0194c137852e2cb1119'
+    oldFile: null
+  /Web/src/api-services/models/custom-attribute-data.ts:
+    newFile: !uuid '72c9f782021b2be69e90d98455bbf482d98b6b03'
+    oldFile: null
+  /Web/src/api-services/models/custom-attribute-named-argument.ts:
+    newFile: !uuid 'b22d729cd324f6af77608209e26199de2abca6f8'
+    oldFile: null
+  /Web/src/api-services/models/custom-attribute-typed-argument.ts:
+    newFile: !uuid 'd157793703dcc328509260279c545645f6ded86e'
+    oldFile: null
+  /Web/src/api-services/models/data-column.ts:
+    newFile: !uuid '2bf4fbbfb121d8511d91b685fb1e4ecb06c94b8b'
+    oldFile: null
+  /Web/src/api-services/models/data-set-date-time.ts:
+    newFile: !uuid 'a0d68c40969c4c4bdf33ef61935db0a8e6ce6869'
+    oldFile: null
+  /Web/src/api-services/models/data-set.ts:
+    newFile: !uuid '9e5a27e2537228190493bd7779fbbc5dc9f07191'
+    oldFile: null
+  /Web/src/api-services/models/data-table.ts:
+    newFile: !uuid '3dd1010135a6cea7e6982a4ba71c12686a2f46d2'
+    oldFile: null
+  /Web/src/api-services/models/date-time-format-info.ts:
+    newFile: !uuid '6b04d613a478c3d3ad0ff041527cbb9006dce7ee'
+    oldFile: null
+  /Web/src/api-services/models/day-of-week.ts:
+    newFile: !uuid '4950cd5b1388fa62b3bfe1daef49b698179fcc0b'
+    oldFile: null
+  /Web/src/api-services/models/digit-shapes.ts:
+    newFile: !uuid 'b38d03259747d3e2ef968ee279a68da0b0758be3'
+    oldFile: null
+  /Web/src/api-services/models/event-attributes.ts:
+    newFile: !uuid '07b116f266f71c8a16486ae40d6551949f62ff9e'
+    oldFile: null
+  /Web/src/api-services/models/event-info.ts:
+    newFile: !uuid '13adb81447846f04851bdd875f2bcba4328dffa6'
+    oldFile: null
+  /Web/src/api-services/models/export-proc-by-tmpinput.ts:
+    newFile: !uuid '8fe00933d35f76c1d4162cb9a95f7cd5bdc42408'
+    oldFile: null
+  /Web/src/api-services/models/export-proc-input.ts:
+    newFile: !uuid '6b1b3ccb8371691e18e69254ec8ba1927a6cb88d'
+    oldFile: null
+  /Web/src/api-services/models/field-attributes.ts:
+    newFile: !uuid '96ed96b05ecbd16fa242537e654cf5c02e34772c'
+    oldFile: null
+  /Web/src/api-services/models/field-info.ts:
+    newFile: !uuid 'bcef11760601968a6d47ebc772478d0776b4ce35'
+    oldFile: null
+  /Web/src/api-services/models/generic-parameter-attributes.ts:
+    newFile: !uuid 'ed5caa8b763b832d59e6d737469da6cb43b00c78'
+    oldFile: null
+  /Web/src/api-services/models/icomponent.ts:
+    newFile: !uuid '5225bf400a97df16da9bdfc117b4a31e9d8a664f'
+    oldFile: null
+  /Web/src/api-services/models/icontainer.ts:
+    newFile: !uuid 'd02690c9489c05790b60d5c76f5f60b408e66092'
+    oldFile: null
+  /Web/src/api-services/models/icustom-attribute-provider.ts:
+    newFile: !uuid 'be753cd04cd73cefe24e188dce2de61cbfb282c9'
+    oldFile: null
+  /Web/src/api-services/models/index.ts:
+    newFile: !uuid '13ea6183c6251036777856a368de9614f01e2715'
+    oldFile: !uuid 'db516f21b36a4cc15889749e47c7210083fb4bbb'
+  /Web/src/api-services/models/int-ptr.ts:
+    newFile: !uuid 'dd51aca110ea96c464f4a9f11e4fb1f0198cd1ef'
+    oldFile: null
+  /Web/src/api-services/models/isite.ts:
+    newFile: !uuid '85311a7596b8b36f9439bf591ed82015cf369ad4'
+    oldFile: null
+  /Web/src/api-services/models/layout-kind.ts:
+    newFile: !uuid '8df219534b3663513eba4a2db07c76d63e86c9e4'
+    oldFile: null
+  /Web/src/api-services/models/mapping-type.ts:
+    newFile: !uuid '9e0cb71d8be0b5333c465cbfaa557ed8e2ba399c'
+    oldFile: null
+  /Web/src/api-services/models/member-info.ts:
+    newFile: !uuid 'b1fbee1e815ba753955b3c29a6e5f57036701c13'
+    oldFile: null
+  /Web/src/api-services/models/member-types.ts:
+    newFile: !uuid 'ab5a6920a872caab0e4b4926ad011e668ac8d979'
+    oldFile: null
+  /Web/src/api-services/models/method-attributes.ts:
+    newFile: !uuid '77ecac7598b150e92dfee1b025160a2f74e39dab'
+    oldFile: null
+  /Web/src/api-services/models/method-base.ts:
+    newFile: !uuid '7b31a457cf18d2f30ccd95729c6fe1fb37919a38'
+    oldFile: null
+  /Web/src/api-services/models/method-impl-attributes.ts:
+    newFile: !uuid '975dc4534c9cfb7e4314c6c00ac795cc25c7c8d9'
+    oldFile: null
+  /Web/src/api-services/models/method-info.ts:
+    newFile: !uuid '3817c7c8c4740fbe5b7a56487152be1535a62f4c'
+    oldFile: null
+  /Web/src/api-services/models/module-handle.ts:
+    newFile: !uuid 'f033619d4359382f16a1b3a34ce56ad85ba91357'
+    oldFile: null
+  /Web/src/api-services/models/module.ts:
+    newFile: !uuid 'aec9ca5091323dd568484811ba554ce34ee4640c'
+    oldFile: null
+  /Web/src/api-services/models/number-format-info.ts:
+    newFile: !uuid '75787d2ac7dc9a36ae3bf24c879169a163ad1a21'
+    oldFile: null
+  /Web/src/api-services/models/parameter-attributes.ts:
+    newFile: !uuid 'e51aafce921d22be447153f3ac298f15cdf4c680'
+    oldFile: null
+  /Web/src/api-services/models/parameter-info.ts:
+    newFile: !uuid '0fc3a33ca813bd1e293fe976bd9120b43fa3c73d'
+    oldFile: null
+  /Web/src/api-services/models/property-attributes.ts:
+    newFile: !uuid 'b5ad540e70be228f39deb06edadf9f38497bb123'
+    oldFile: null
+  /Web/src/api-services/models/property-info.ts:
+    newFile: !uuid '9e604b876ecfe608c8f5ed21a40bce6077c4264d'
+    oldFile: null
+  /Web/src/api-services/models/runtime-field-handle.ts:
+    newFile: !uuid '94133a23da3591ff942882e46a0d3cd011152308'
+    oldFile: null
+  /Web/src/api-services/models/runtime-method-handle.ts:
+    newFile: !uuid '2abf4b4ee01bf215e6f360b52d921254be3916cc'
+    oldFile: null
+  /Web/src/api-services/models/runtime-type-handle.ts:
+    newFile: !uuid '43ba6116a5082018a11ca7b5ae565738d4a46bb9'
+    oldFile: null
+  /Web/src/api-services/models/schema-serialization-mode.ts:
+    newFile: !uuid 'c750575eb0de57aec0b2d84c0b3f125f7d2547d7'
+    oldFile: null
+  /Web/src/api-services/models/security-rule-set.ts:
+    newFile: !uuid '691729e311b6e42a1756ec12b906bf406e75e2d7'
+    oldFile: null
+  /Web/src/api-services/models/serialization-format.ts:
+    newFile: !uuid 'e7834fad9b8342f9a1a32eafda6c7d2336b807fa'
+    oldFile: null
+  /Web/src/api-services/models/sort-version.ts:
+    newFile: !uuid 'a472f670b9bfc7dcbd2d0dad043586ee002b1ade'
+    oldFile: null
+  /Web/src/api-services/models/struct-layout-attribute.ts:
+    newFile: !uuid 'd3a280a41c2eae3a4dd3c5aa4d22442a69db0a9f'
+    oldFile: null
+  /Web/src/api-services/models/text-info.ts:
+    newFile: !uuid '63072d99732cef75fdbdc4858721b95376758eda'
+    oldFile: null
+  /Web/src/api-services/models/type-attributes.ts:
+    newFile: !uuid 'd8770698808c11a00c884caaafcd77db64c899e2'
+    oldFile: null
+  /Web/src/api-services/models/type-info.ts:
+    newFile: !uuid '21e4a8e6765eccc0f73534f7e2d6bfbf876c4ac8'
+    oldFile: null
+  /Web/src/api-services/models/type.ts:
+    newFile: !uuid 'c85ba5de44cc3e6bca6c1981d75810e03be1c0b3'
+    oldFile: null
+gitCommitId: !uuid 'b53fb2fbc2866d57e9205eb65131f6498cbc47d3'
 renames: {
   }
-revisionId: 1830
+revisionId: 1831
