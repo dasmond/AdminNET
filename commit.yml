@@ -2,31 +2,19 @@
 branches: {
   }
 fileChange:
-  /docker:
-    newFile: !uuid '4e4e4739c829d574e6cf4b7476b1cb20f8a8c254'
-    oldFile: !uuid '8c29d7fc44a04260c241e30f3241d6d31c9abd97'
-  /docker/README.md:
-    newFile: !uuid '763c9cc5eb7a39a6ad5beb668f79d5dfb477fe99'
-    oldFile: !uuid '10a18eba67abb72d54faeb34c2b0f6ef3de607dd'
-  /docker/app:
-    newFile: !uuid '82aa11c8ca620c0bd7b2a71ee93d023846a828a5'
-    oldFile: !uuid 'af1b667bbe83333e136c65ba398851cecbaeb5eb'
-  /docker/app/Configuration:
-    newFile: !uuid '53b4eae0ea514ef46986ce63a2ac86ffcff35413'
-    oldFile: !uuid '209cff1f12a627649e9622b2fa5cd11c69bb3c47'
-  /docker/app/Configuration/Cache.json:
-    newFile: !uuid 'c061c8c3a5885004074a419d9904866bfe8025c0'
-    oldFile: null
-  /docker/docker-compose.yml:
-    newFile: !uuid '855e39dd1b1d7b925d42bf9ae7086a8605b86aee'
-    oldFile: !uuid '86dbd37dd0b3c8beb7d025449aee7024e5a24776'
-  /docker/redis:
-    newFile: !uuid 'fae718206d4dd1397a569e1bff1c350733cc8eda'
-    oldFile: null
-  /docker/redis/redis.conf:
-    newFile: !uuid '075e14c1b85e499535ed7f92a6ba63eebaaecf74'
-    oldFile: null
-gitCommitId: !uuid '829b23f041c0e1f5a725f2f3dccb4e65d7454e5d'
+  /Web:
+    newFile: !uuid 'd497af3b2e5e3ad1a827b6fb590c611818ca1d5c'
+    oldFile: !uuid 'b518bb2e6b6801a8182431e8350d77abffa5ef1e'
+  /Web/src:
+    newFile: !uuid '3b1fdea9137a420ffeec53c999774fe43d4a4b25'
+    oldFile: !uuid '86c6b705a23c827cdf7137e0d0e90303b12ea823'
+  /Web/src/theme:
+    newFile: !uuid '2369ff1ed2a0ea58c53f24eb004476251421e2f9'
+    oldFile: !uuid '48030de8dbbb3c0fbe58bd852cda3254277cbe58'
+  /Web/src/theme/element.scss:
+    newFile: !uuid '508f5d812de5b79c90cd50a41c3e84a0c6c66f34'
+    oldFile: !uuid 'e094b579cdff2b274c421fb679e9e637a5c58b6a'
+gitCommitId: !uuid '7e64c723aa1c8d3d2f378e581aa4101855ba023a'
 renames: {
   }
-revisionId: 1778
+revisionId: 1779
