@@ -5,7 +5,7 @@ import vueSetupExtend from 'vite-plugin-vue-setup-extend-plus';
 import compression from 'vite-plugin-compression2';
 import { buildConfig } from './src/utils/build';
 import vueJsx from '@vitejs/plugin-vue-jsx';
-import { CodeInspectorPlugin } from 'code-inspector-plugin';
+import VueDevTools from 'vite-plugin-vue-devtools'
 import fs from 'fs';
 import { visualizer } from 'rollup-plugin-visualizer';
 import { webUpdateNotice } from '@plugin-web-update-notification/vite';
@@ -24,11 +24,8 @@ const viteConfig = defineConfig((mode: ConfigEnv) => {
 	return {
 		plugins: [
 			visualizer({ open: false }), // 开启可视化分析页面
-			CodeInspectorPlugin({
-				bundler: 'vite',
-				hotKeys: ['shiftKey'],
-			}),
 			vue(),
+			VueDevTools(),
 			vueJsx(),
 			webUpdateNotice({
 				notificationConfig: {
