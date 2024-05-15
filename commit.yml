@@ -2,64 +2,16 @@
 branches: {
   }
 fileChange:
-  /Web:
-    newFile: !uuid '36db3f7ee534715deec40b14d1a92d737353feb3'
-    oldFile: !uuid '3a096c2ed1246599c2b23d46884f1cec67b1615e'
-  /Web/src:
-    newFile: !uuid '25db48d077ff3a7f5bb2681559691b4569b8a156'
-    oldFile: !uuid '67174aba379d2ab622caa165eec2cf2c56d9e79e'
-  /Web/src/views:
-    newFile: !uuid 'bd2bded85a502f72afadc769a97ec0f8284ab5b2'
-    oldFile: !uuid 'c52385276de8e4c8e829c1dcbd4c2b9217254fae'
-  /Web/src/views/home:
-    newFile: !uuid 'a31eee4c32a360a2c22206a6768339add8448910'
-    oldFile: !uuid '83128e66a73b1b0f5b455293b899802e7b5fcc5f'
-  /Web/src/views/home/widgets:
-    newFile: !uuid 'f2c7c6b4d69d97aa4050737cee18f189b717aedf'
-    oldFile: !uuid 'd00bd97fe5a7079c74af37baa87fbe1f8bf6b8d5'
-  /Web/src/views/home/widgets/components:
-    newFile: !uuid 'bf73c239da77aedd4b7511844cc28c865165a281'
-    oldFile: !uuid '228a5379ab45134355d1616552f6c116b6027cc5'
-  /Web/src/views/home/widgets/components/about.vue:
-    newFile: !uuid '9f9efb32543b67ae0b05724671d40b0814721565'
-    oldFile: !uuid '0bb1e7e3d82ce54ff239df8a842a272aa9b03482'
-  /Web/src/views/home/widgets/components/echarts.vue:
-    newFile: !uuid 'd0c7b8feb41d8dbacfd17a26b7b77d026846e0f2'
-    oldFile: !uuid '731b569ea98fca68e74883ee53a5dadab9614156'
-  /Web/src/views/home/widgets/components/index.js:
-    newFile: null
-    oldFile: !uuid 'e24b57d154ea1f1f9f4c4847226a42645c745fb7'
-  /Web/src/views/home/widgets/components/index.ts:
-    newFile: !uuid 'a8f13681e71835d19812b65ce444fa97ce51976f'
-    oldFile: null
-  /Web/src/views/home/widgets/components/myapp.vue:
-    newFile: !uuid 'ce74a0fa937396c0bd3a1a2e1cd274e47acb7ab1'
-    oldFile: !uuid '2553b43f58f0737fd43c0191ebe41d6b846595e6'
-  /Web/src/views/home/widgets/components/progress.vue:
-    newFile: null
-    oldFile: !uuid '40e31f5db94210d687e07e96ed64107527d7038a'
-  /Web/src/views/home/widgets/components/progressing.vue:
-    newFile: !uuid '9ed4ed59802a895102f06f710a3bddc40f15d43a'
-    oldFile: null
-  /Web/src/views/home/widgets/components/time.vue:
-    newFile: null
-    oldFile: !uuid '409392d89d3d8e7fa7ebb57a9da840ecf287e0fe'
-  /Web/src/views/home/widgets/components/timeing.vue:
-    newFile: !uuid '33f20057ac4ace641a000b99bb048d62fa538a27'
-    oldFile: null
-  /Web/src/views/home/widgets/components/ver.vue:
-    newFile: !uuid 'a89501915a7a929f90550828c6d0e656c6075859'
-    oldFile: !uuid '321cb81672e634ce562739dbd65573db5ace131e'
-  /Web/src/views/home/widgets/components/welcome.vue:
-    newFile: !uuid '92afd06969523f01ad80da50254fe38193968068'
-    oldFile: !uuid '6baea5099a6226664787d3ca21c90b936b72c53a'
-  /Web/src/views/home/widgets/index.vue:
-    newFile: !uuid '42725627e15af1aa2fcbff311c64cb10d18eef15'
-    oldFile: !uuid 'e74c2c84dd8a476cf85ebb5f13f4782783c0a54d'
-  /Web/src/views/home/widgets/tool.js:
-    newFile: null
-    oldFile: !uuid '39b599eb9ad08a9cec6bc3befc8941a8d348aafb'
-gitCommitId: !uuid 'e35d5bd5988f16f636e36de6bca6c49f02ffc621'
-renames:
-  /Web/src/views/home/widgets/components/progressing.vue: /Web/src/views/home/widgets/components/progress.vue
-revisionId: 1836
+  /Admin.NET:
+    newFile: !uuid '10d4547836d1ce916e605c3f146d36c0a2112087'
+    oldFile: !uuid '1be8a950b7af6ee01ba712297919635a4c901f0b'
+  /Admin.NET/Admin.NET.Core:
+    newFile: !uuid '75731f42d713c5cf8d825570088da78aaedf9117'
+    oldFile: !uuid 'f1c167ec205ae13bd859532dfb020e69503b715a'
+  /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
+    newFile: !uuid '647993ffc997aae925d8378844ad7f5b4ba59d8a'
+    oldFile: !uuid '29c771c1232b9135b24d0fa8e18efa50d3ddaca9'
+gitCommitId: !uuid '148b4124b94cccc03845a363ba63e6134ebecd3b'
+renames: {
+  }
+revisionId: 1837
