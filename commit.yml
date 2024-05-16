@@ -2,34 +2,31 @@
 branches: {
   }
 fileChange:
-  /Admin.NET:
-    newFile: !uuid '3c02f16c0cbb8f05ee58359203ad22d0a5cdc352'
-    oldFile: !uuid '6dac9bf60ac599fc2c35db0dc39f21f99bf360e8'
-  /Admin.NET/Admin.NET.Application:
-    newFile: !uuid '491ee6678a6a96ff168bad23c488ec4d51e7d337'
-    oldFile: !uuid 'c865de2cdee9dd67a57f77a221818c3cb1cfbf3d'
-  /Admin.NET/Admin.NET.Application/Admin.NET.Application.csproj:
-    newFile: !uuid '46c98d7c27d03e6e5a8b3b24ade895d8a75b3d07'
-    oldFile: !uuid '10ceefa65299fac7c456b8e7482e8f39768bb9f2'
   /Web:
-    newFile: !uuid '206b504e4ff5b0a4fe7d1d0d40c9c1827f93604c'
-    oldFile: !uuid '680d35145ec52ed37dee06593bc583e82a5a7d61'
+    newFile: !uuid 'c224f67a4e7d4a6d994d5745156d3fd108686f82'
+    oldFile: !uuid '206b504e4ff5b0a4fe7d1d0d40c9c1827f93604c'
+  /Web/package.json:
+    newFile: !uuid 'f7d12d736ec49ab00c380dd906b0624d12cb3e6e'
+    oldFile: !uuid '1db903dfb090cc25b905b0f88601dde1e75ac74c'
+  /Web/postcss.config.js:
+    newFile: null
+    oldFile: !uuid '2ca25ee7a9a3675b0ed911bc6f0121106fe73d1b'
   /Web/src:
-    newFile: !uuid 'b26de97548efa9ddad1e331461caa572eb42a478'
-    oldFile: !uuid '56162fcd6b649a9636391023747ba0f2839de736'
-  /Web/src/views:
-    newFile: !uuid '1ff4348e74a66be1933d0b6e40c4c1b57194a873'
-    oldFile: !uuid '378d9a9122d5afa1bab25c252420462c4cb1abc2'
-  /Web/src/views/home:
-    newFile: !uuid 'a28c1558c3a0a759d46c5ba1f9548d5f086e6b13'
-    oldFile: !uuid 'fcb0fe1996fad7bc816d79d9d318463a1d60a64c'
-  /Web/src/views/home/widgets:
-    newFile: !uuid '4c4b6eaceb2d41e937a153d0b9d914003ab9edf2'
-    oldFile: !uuid 'e5f408ecf4bccb464283138d8a2d961df051d9c7'
-  /Web/src/views/home/widgets/index.vue:
-    newFile: !uuid 'bfb05048968264957c78ee777eb7f7ebc1978ac1'
-    oldFile: !uuid 'fe2cf6c546484a85723bb704c02200bd873a9292'
-gitCommitId: !uuid '4738d55b7e4d2778c0127d4f6b675e780e4230d3'
+    newFile: !uuid '4deec420996ba27b2455dbf6b1dcc8ca75b23a62'
+    oldFile: !uuid 'b26de97548efa9ddad1e331461caa572eb42a478'
+  /Web/src/assets:
+    newFile: !uuid 'ae3623758c3d217fed1b92b6e63fbfba2a336f20'
+    oldFile: !uuid 'c2db514144058fd0ec723c263d72fa23db69f1dc'
+  /Web/src/assets/main.css:
+    newFile: null
+    oldFile: !uuid '796882ab8758bd294ca8e0662e3df534457ad547'
+  /Web/src/main.ts:
+    newFile: !uuid '9f928ae4633424780a6f5901981a089f7a39b2d9'
+    oldFile: !uuid '6b9ec9e94bdfb8f787975f1a87350ba83f408d1e'
+  /Web/tailwind.config.js:
+    newFile: null
+    oldFile: !uuid '22f8102c491f58f73c8ac4e02c1b625342866aef'
+gitCommitId: !uuid '07c73bbc1439f00c6ad11242c14b21414edfcb5b'
 renames: {
   }
-revisionId: 1849
+revisionId: 1850
