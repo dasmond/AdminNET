@@ -3,36 +3,36 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid 'b9138f670eb6e371d2cb5eab3284c5d4a24e3e05'
-    oldFile: !uuid '4dae5e89ae47233de09c31efe068d871a18e7db0'
-  /Admin.NET/Admin.NET.Core:
-    newFile: !uuid 'fb4564a2e071ef5228c14e8d5738a888826b812c'
-    oldFile: !uuid '53db8bfbb0751cb7423d1ce8b6418fb4ebe8b032'
-  /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid '25d41684b1dbf3409895d2179f74a5c86dd256d3'
-    oldFile: !uuid 'adb27fb56a677f57571f6f2fcb354da7149d465f'
-  /Admin.NET/Admin.NET.Core/Service/Dict:
-    newFile: !uuid 'ced36c055bd510e21cb71ba1c94059684d53badf'
-    oldFile: !uuid '1e4ae448d91ce6c8451f41f18003a5a86ab536d4'
-  /Admin.NET/Admin.NET.Core/Service/Dict/SysDictTypeService.cs:
-    newFile: !uuid '4474bd0b078755054ebd8e83eef223512d5b77ee'
-    oldFile: !uuid '218bc2fcf7bf6b9806396ce713d7db03c514a78f'
-  /Admin.NET/Admin.NET.Core/SignatureAuth:
-    newFile: !uuid 'ee8e8afab3dd3f8d436ff28ca977ee1942674cfd'
-    oldFile: !uuid 'a70a9b9ef0380f22ab67be332cbfcf3da7dc347d'
-  /Admin.NET/Admin.NET.Core/SignatureAuth/SignatureAuthenticationHandler.cs:
-    newFile: !uuid 'b035d1500b9a0e18c7b372f52bbf09d4bacadf62'
-    oldFile: !uuid 'd8a4c20d5edb5d771609e0542541cb0514bc7a75'
+    newFile: !uuid '8b671f32db271f370752e56424c9c96225416bcb'
+    oldFile: !uuid 'b9138f670eb6e371d2cb5eab3284c5d4a24e3e05'
   /Admin.NET/Plugins:
-    newFile: !uuid '40061c9cd40adde8ef8670da2f5357f6557f0188'
-    oldFile: !uuid '235fae6bd4d8922224b7ac0e0a04b51e1a4836ec'
-  /Admin.NET/Plugins/Admin.NET.Plugin.ApprovalFlow:
-    newFile: !uuid '1016e63358be26142f87486f60d7275015a75809'
-    oldFile: !uuid '6aa92e8950f90cff5a606d5727d2d7db69fbeb30'
-  /Admin.NET/Plugins/Admin.NET.Plugin.ApprovalFlow/Admin.NET.Plugin.ApprovalFlow.csproj:
-    newFile: !uuid 'ecbc370d67ef26d9e1609dfa7ae67d9cb563f6c5'
-    oldFile: !uuid '744569fc59b95c27d3b6edf3c54273df90d03527'
-gitCommitId: !uuid 'f684b57a7c10bb44217d20c510a41755c6652ae3'
+    newFile: !uuid '905396ad8c3d6649b0569366ee99de9f121fb183'
+    oldFile: !uuid '40061c9cd40adde8ef8670da2f5357f6557f0188'
+  /Admin.NET/Plugins/Admin.NET.Plugin.Elsa:
+    newFile: null
+    oldFile: !uuid 'bc685f51cddd24667edeac60d98f6265c41c83b2'
+  /Admin.NET/Plugins/Admin.NET.Plugin.Elsa/Admin.NET.Plugin.Elsa.csproj:
+    newFile: null
+    oldFile: !uuid '3fd338e120bf13c82f07e8b487aa28797ced9581'
+  /Admin.NET/Plugins/Admin.NET.Plugin.Elsa/Configuration:
+    newFile: null
+    oldFile: !uuid '08d77da6ad9e3c1af5f008ee7e420c061fc6008a'
+  /Admin.NET/Plugins/Admin.NET.Plugin.Elsa/Configuration/Elsa.json:
+    newFile: null
+    oldFile: !uuid 'e39d74f0ffb35607aa735b69a764d0638206041a'
+  /Admin.NET/Plugins/Admin.NET.Plugin.Elsa/GlobalUsings.cs:
+    newFile: null
+    oldFile: !uuid '80451d591c61a575579f6649b0ea2b872db510d7'
+  /Admin.NET/Plugins/Admin.NET.Plugin.Elsa/Option:
+    newFile: null
+    oldFile: !uuid '9d0377f1c05713021d5e9d431be540b5703bd254'
+  /Admin.NET/Plugins/Admin.NET.Plugin.Elsa/Option/ElsaOptions.cs:
+    newFile: null
+    oldFile: !uuid 'b038016f9a80c8547e7fde4ec11dc2f119fca05d'
+  /Admin.NET/Plugins/Admin.NET.Plugin.Elsa/Startup.cs:
+    newFile: null
+    oldFile: !uuid 'c0ebed6ed1ddd2dd66a2dd724d97211615fb8d19'
+gitCommitId: !uuid 'b1a10bc37530d6be6ecee4e7f561dd7c9011a3d9'
 renames: {
   }
-revisionId: 1812
+revisionId: 1813
