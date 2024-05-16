@@ -3,36 +3,27 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '8b671f32db271f370752e56424c9c96225416bcb'
-    oldFile: !uuid 'b9138f670eb6e371d2cb5eab3284c5d4a24e3e05'
-  /Admin.NET/Plugins:
-    newFile: !uuid '905396ad8c3d6649b0569366ee99de9f121fb183'
-    oldFile: !uuid '40061c9cd40adde8ef8670da2f5357f6557f0188'
-  /Admin.NET/Plugins/Admin.NET.Plugin.Elsa:
+    newFile: !uuid 'ab8a03be492d7bf4bf2ad2c9d8fb88e4560d4ffd'
+    oldFile: !uuid '8b671f32db271f370752e56424c9c96225416bcb'
+  /Admin.NET/Admin.NET.Core:
+    newFile: !uuid '5e6ca10674bdb3bad2c4b612bcdbe67faa03291f'
+    oldFile: !uuid 'fb4564a2e071ef5228c14e8d5738a888826b812c'
+  /Admin.NET/Admin.NET.Core/OAuth:
     newFile: null
-    oldFile: !uuid 'bc685f51cddd24667edeac60d98f6265c41c83b2'
-  /Admin.NET/Plugins/Admin.NET.Plugin.Elsa/Admin.NET.Plugin.Elsa.csproj:
+    oldFile: !uuid '735dc305f08dce3901efc23151d3a3d20a69f022'
+  /Admin.NET/Admin.NET.Core/OAuth/OAuthSetup.cs:
     newFile: null
-    oldFile: !uuid '3fd338e120bf13c82f07e8b487aa28797ced9581'
-  /Admin.NET/Plugins/Admin.NET.Plugin.Elsa/Configuration:
-    newFile: null
-    oldFile: !uuid '08d77da6ad9e3c1af5f008ee7e420c061fc6008a'
-  /Admin.NET/Plugins/Admin.NET.Plugin.Elsa/Configuration/Elsa.json:
-    newFile: null
-    oldFile: !uuid 'e39d74f0ffb35607aa735b69a764d0638206041a'
-  /Admin.NET/Plugins/Admin.NET.Plugin.Elsa/GlobalUsings.cs:
-    newFile: null
-    oldFile: !uuid '80451d591c61a575579f6649b0ea2b872db510d7'
-  /Admin.NET/Plugins/Admin.NET.Plugin.Elsa/Option:
-    newFile: null
-    oldFile: !uuid '9d0377f1c05713021d5e9d431be540b5703bd254'
-  /Admin.NET/Plugins/Admin.NET.Plugin.Elsa/Option/ElsaOptions.cs:
-    newFile: null
-    oldFile: !uuid 'b038016f9a80c8547e7fde4ec11dc2f119fca05d'
-  /Admin.NET/Plugins/Admin.NET.Plugin.Elsa/Startup.cs:
-    newFile: null
-    oldFile: !uuid 'c0ebed6ed1ddd2dd66a2dd724d97211615fb8d19'
-gitCommitId: !uuid 'b1a10bc37530d6be6ecee4e7f561dd7c9011a3d9'
-renames: {
-  }
-revisionId: 1813
+    oldFile: !uuid '4c156d5faa981517d70bd68344f4cd92f12b7f2a'
+  /Admin.NET/Admin.NET.Core/Service:
+    newFile: !uuid '6af2d4f54da6d29caa869f562fe47e2cb7e9ce6b'
+    oldFile: !uuid '25d41684b1dbf3409895d2179f74a5c86dd256d3'
+  /Admin.NET/Admin.NET.Core/Service/OAuth:
+    newFile: !uuid '95aeaf2b9069c8b383c49c25906c6cd70d3020f1'
+    oldFile: !uuid 'fc8a7bca653ae4ca9845c6861a8851e88c98a74a'
+  /Admin.NET/Admin.NET.Core/Service/OAuth/OAuthSetup.cs:
+    newFile: !uuid '4c156d5faa981517d70bd68344f4cd92f12b7f2a'
+    oldFile: null
+gitCommitId: !uuid 'ddf66c0b70fdb99ff6a62c426626b058d2677cb5'
+renames:
+  /Admin.NET/Admin.NET.Core/Service/OAuth/OAuthSetup.cs: /Admin.NET/Admin.NET.Core/OAuth/OAuthSetup.cs
+revisionId: 1814
