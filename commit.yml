@@ -2,28 +2,31 @@
 branches: {
   }
 fileChange:
-  /Admin.NET:
-    newFile: !uuid 'ab8a03be492d7bf4bf2ad2c9d8fb88e4560d4ffd'
-    oldFile: !uuid '8b671f32db271f370752e56424c9c96225416bcb'
-  /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '5e6ca10674bdb3bad2c4b612bcdbe67faa03291f'
-    oldFile: !uuid 'fb4564a2e071ef5228c14e8d5738a888826b812c'
-  /Admin.NET/Admin.NET.Core/OAuth:
-    newFile: null
-    oldFile: !uuid '735dc305f08dce3901efc23151d3a3d20a69f022'
-  /Admin.NET/Admin.NET.Core/OAuth/OAuthSetup.cs:
-    newFile: null
-    oldFile: !uuid '4c156d5faa981517d70bd68344f4cd92f12b7f2a'
-  /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid '6af2d4f54da6d29caa869f562fe47e2cb7e9ce6b'
-    oldFile: !uuid '25d41684b1dbf3409895d2179f74a5c86dd256d3'
-  /Admin.NET/Admin.NET.Core/Service/OAuth:
-    newFile: !uuid '95aeaf2b9069c8b383c49c25906c6cd70d3020f1'
-    oldFile: !uuid 'fc8a7bca653ae4ca9845c6861a8851e88c98a74a'
-  /Admin.NET/Admin.NET.Core/Service/OAuth/OAuthSetup.cs:
-    newFile: !uuid '4c156d5faa981517d70bd68344f4cd92f12b7f2a'
-    oldFile: null
-gitCommitId: !uuid 'ddf66c0b70fdb99ff6a62c426626b058d2677cb5'
-renames:
-  /Admin.NET/Admin.NET.Core/Service/OAuth/OAuthSetup.cs: /Admin.NET/Admin.NET.Core/OAuth/OAuthSetup.cs
-revisionId: 1814
+  /Web:
+    newFile: !uuid '9959a69055259cb624596e71848c24da3256f888'
+    oldFile: !uuid '542f467de68ffc40953b212d981d8c251bbf8fb3'
+  /Web/src:
+    newFile: !uuid '8bdec71148363d4e5440791b34dd32d875dcc2ee'
+    oldFile: !uuid '2e669c0c035defbe015450c0a813d9050dd70809'
+  /Web/src/views:
+    newFile: !uuid '1d33c63402e7755cb84549603e3bed05be5f1abb'
+    oldFile: !uuid '1ff4348e74a66be1933d0b6e40c4c1b57194a873'
+  /Web/src/views/home:
+    newFile: !uuid '4df1407355f3fc7b467eb5997d955987c1578864'
+    oldFile: !uuid 'a28c1558c3a0a759d46c5ba1f9548d5f086e6b13'
+  /Web/src/views/home/widgets:
+    newFile: !uuid '2d850239f43fc613803a720a5a45b6b969ab3486'
+    oldFile: !uuid '4c4b6eaceb2d41e937a153d0b9d914003ab9edf2'
+  /Web/src/views/home/widgets/components:
+    newFile: !uuid '6a80ba7bc85df5ac6dfd30a2b9bae0db180f7a04'
+    oldFile: !uuid '095c036d0d0b24ea3b82b2da7bc32967c33f4244'
+  /Web/src/views/home/widgets/components/myapp.vue:
+    newFile: !uuid 'c13f4c233327a30d917f8d76e20da08b6b18c772'
+    oldFile: !uuid '5073a561721cd559f8cd41bcd2940806037f4378'
+  /Web/src/views/home/widgets/index.vue:
+    newFile: !uuid '636b66f0a7304d2e8e279c11d501bdfb2967b67b'
+    oldFile: !uuid 'bfb05048968264957c78ee777eb7f7ebc1978ac1'
+gitCommitId: !uuid '5b1c8babfd287d681c6f285a85a1466f93b95c2f'
+renames: {
+  }
+revisionId: 1815
