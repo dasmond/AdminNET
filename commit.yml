@@ -3,18 +3,15 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '48c6bbec834d1027d6c16b80b67cd2045fb80b01'
-    oldFile: !uuid 'aa7be1e5c36c8b3af49f73f08c94fc1ddedaaf93'
-  /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '244bb6a6d480ab7eb1eb542b02a216aa3de092da'
-    oldFile: !uuid 'bd2cd468cda4d94b93ae6b524fd520ca70e724e6'
-  /Admin.NET/Admin.NET.Core/SignatureAuth:
-    newFile: !uuid '5138603cc64893cdfcfe7aa40998437351532242'
-    oldFile: !uuid 'fd03974f75346a1e7c356b3cb3f5d3846bf5af55'
-  /Admin.NET/Admin.NET.Core/SignatureAuth/SignatureAuthenticationHandler.cs:
-    newFile: !uuid 'e6beeae6ccbeb669b6c1a967d1aedbbfb3ef77e4'
-    oldFile: !uuid '53fea3e3913a846b2d02961af94c4ed8c1258ae3'
-gitCommitId: !uuid '563657e7a7b7e16796eb6ae5849620ed8023b861'
+    newFile: !uuid 'd67f78dc6d3c31d9269c886272056457a2a5b27e'
+    oldFile: !uuid '48c6bbec834d1027d6c16b80b67cd2045fb80b01'
+  /Admin.NET/Admin.NET.Web.Core:
+    newFile: !uuid '90da5b8adf39113d72afd8d04e323b927c600930'
+    oldFile: !uuid 'b03743e48944ebffb2a86dc2c2830a6e7bf671f4'
+  /Admin.NET/Admin.NET.Web.Core/Startup.cs:
+    newFile: !uuid '6a7f13a1ebfe51f38fbeee5ee47911d5eed05b4c'
+    oldFile: !uuid '65ebbe5c121b3fa26220e6fb2f86e4e236e72af8'
+gitCommitId: !uuid '055ad3e96947bbb2c3525b358a483b434f9ed7c5'
 renames: {
   }
-revisionId: 1820
+revisionId: 1821
