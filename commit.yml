@@ -2,10 +2,28 @@
 branches: {
   }
 fileChange:
-  /.gitignore:
-    newFile: !uuid '5f1d6940821c6cd2ce2ee900ad676c66848f6743'
-    oldFile: !uuid 'e0f4e44972f569d4939cc5d2f0f7c8384594c79a'
-gitCommitId: !uuid '631046781421caa198950927e522f681f9774169'
+  /Web:
+    newFile: !uuid '6a6792caa491cfb2d2d587000f4b4332a8958c57'
+    oldFile: !uuid '9c3aeffe2fd886a4ce006008478584aeb4f6b71e'
+  /Web/src:
+    newFile: !uuid '6ac5abd6e9cdf401178d64e64387c6557cd69ef7'
+    oldFile: !uuid '90a28ba58cc15be6e1f38511f6a302e820abde6e'
+  /Web/src/views:
+    newFile: !uuid 'be3b2479666a151f479a17d3d1e6a37ba5cc73bf'
+    oldFile: !uuid 'de6d4dee99732af5d240a7fc7e6263ebfbb0d182'
+  /Web/src/views/home:
+    newFile: !uuid 'f28cf899990a0f4f6490b9f5e70fb140ff8186b0'
+    oldFile: !uuid 'a7d65e4fbdf6df23717b5780b766cb8fb4978bca'
+  /Web/src/views/home/widgets:
+    newFile: !uuid 'cf6a04a064308da6c3d658c4b180da5de8d6e2b5'
+    oldFile: !uuid 'effb4e18cda10896043cff9e6d3bf998660da0ef'
+  /Web/src/views/home/widgets/components:
+    newFile: !uuid '0f228f5ae96e37055d19e77535f17314a1c143e0'
+    oldFile: !uuid 'b0361a6d59040be1513ffbda7bcb52b411493d52'
+  /Web/src/views/home/widgets/components/myapp.vue:
+    newFile: !uuid '55dea640544e2953e81311447d7db78f726fb271'
+    oldFile: !uuid '9b42aa55fb495f4942a42448dd56ea1eb464d959'
+gitCommitId: !uuid 'e9752a9af16de287a78c6672740889971d9b3e11'
 renames: {
   }
-revisionId: 1826
+revisionId: 1827
