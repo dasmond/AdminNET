@@ -2,28 +2,22 @@
 branches: {
   }
 fileChange:
-  /Web:
-    newFile: !uuid '6a6792caa491cfb2d2d587000f4b4332a8958c57'
-    oldFile: !uuid '9c3aeffe2fd886a4ce006008478584aeb4f6b71e'
-  /Web/src:
-    newFile: !uuid '6ac5abd6e9cdf401178d64e64387c6557cd69ef7'
-    oldFile: !uuid '90a28ba58cc15be6e1f38511f6a302e820abde6e'
-  /Web/src/views:
-    newFile: !uuid 'be3b2479666a151f479a17d3d1e6a37ba5cc73bf'
-    oldFile: !uuid 'de6d4dee99732af5d240a7fc7e6263ebfbb0d182'
-  /Web/src/views/home:
-    newFile: !uuid 'f28cf899990a0f4f6490b9f5e70fb140ff8186b0'
-    oldFile: !uuid 'a7d65e4fbdf6df23717b5780b766cb8fb4978bca'
-  /Web/src/views/home/widgets:
-    newFile: !uuid 'cf6a04a064308da6c3d658c4b180da5de8d6e2b5'
-    oldFile: !uuid 'effb4e18cda10896043cff9e6d3bf998660da0ef'
-  /Web/src/views/home/widgets/components:
-    newFile: !uuid '0f228f5ae96e37055d19e77535f17314a1c143e0'
-    oldFile: !uuid 'b0361a6d59040be1513ffbda7bcb52b411493d52'
-  /Web/src/views/home/widgets/components/myapp.vue:
-    newFile: !uuid '55dea640544e2953e81311447d7db78f726fb271'
-    oldFile: !uuid '9b42aa55fb495f4942a42448dd56ea1eb464d959'
-gitCommitId: !uuid 'e9752a9af16de287a78c6672740889971d9b3e11'
+  /Admin.NET:
+    newFile: !uuid 'be1f3213e15c763d229e11ad1c69b82f0e6379b3'
+    oldFile: !uuid '2b82561ec25f1dae5ac49716f73967ab920c71b2'
+  /Admin.NET/Admin.NET.Core:
+    newFile: !uuid 'd4aca8df0417f3294edbf5aa9050f52fbb79d8d1'
+    oldFile: !uuid 'b11245d601d63aad44a6eed5322e23df551956c4'
+  /Admin.NET/Admin.NET.Core/Service:
+    newFile: !uuid 'e0301e45ef8f4785b4f20e11013c770f3e5bf3e1'
+    oldFile: !uuid 'c72109fe77abbde2b90c4ac01f1888384000010f'
+  /Admin.NET/Admin.NET.Core/Service/Wechat:
+    newFile: !uuid 'b851b5e44fff0804e1c222842b77314a2a5fbee0'
+    oldFile: !uuid 'd8e4424141f32461411d418f044867883f092aaa'
+  /Admin.NET/Admin.NET.Core/Service/Wechat/SysWechatUserService.cs:
+    newFile: !uuid '3e3f38a77b4832d547fc71da12d8bb051da94cc4'
+    oldFile: !uuid 'dde22d87615a7468db32b0e7468a96ae918ec72b'
+gitCommitId: !uuid 'dfd6cc0214b3a93463cce6ac37c116808d718c31'
 renames: {
   }
-revisionId: 1827
+revisionId: 1828
