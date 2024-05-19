@@ -2,25 +2,10 @@
 branches: {
   }
 fileChange:
-  /Admin.NET:
-    newFile: !uuid '2b82561ec25f1dae5ac49716f73967ab920c71b2'
-    oldFile: !uuid '6b691c705732545ca80680e7f2cdf87efdceed2d'
-  /Admin.NET/Admin.NET.Core:
-    newFile: !uuid 'b11245d601d63aad44a6eed5322e23df551956c4'
-    oldFile: !uuid 'd50c2e3d7284c1a21921c05f22718758fe2a0576'
-  /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid 'c72109fe77abbde2b90c4ac01f1888384000010f'
-    oldFile: !uuid '36d82759202b76cad9fb639d393671f98be2c3b4'
-  /Admin.NET/Admin.NET.Core/Service/Wechat:
-    newFile: !uuid 'd8e4424141f32461411d418f044867883f092aaa'
-    oldFile: !uuid 'e9ef7b7ae16fc1d207922df2795eb21db423ddbd'
-  /Admin.NET/Admin.NET.Core/Service/Wechat/Dto:
-    newFile: !uuid '06627ea7879b60feb095084c9c970cad9e8253af'
-    oldFile: !uuid '0d44fe98542047961ac494b44b0d5bbd9035a2ca'
-  /Admin.NET/Admin.NET.Core/Service/Wechat/Dto/WechatUserInput.cs:
-    newFile: !uuid 'f7aa58070a9ddd48d7fa43391aa2b8564767365b'
-    oldFile: !uuid 'ca43b799f75b179e5df5b0aae4b74a0b91b55fdc'
-gitCommitId: !uuid '731d1d428ef7c9a095b8e5c8269d26896f8f5c82'
+  /.gitignore:
+    newFile: !uuid '5f1d6940821c6cd2ce2ee900ad676c66848f6743'
+    oldFile: !uuid 'e0f4e44972f569d4939cc5d2f0f7c8384594c79a'
+gitCommitId: !uuid '631046781421caa198950927e522f681f9774169'
 renames: {
   }
-revisionId: 1825
+revisionId: 1826
