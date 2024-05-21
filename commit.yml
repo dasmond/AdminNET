@@ -3,24 +3,27 @@ branches: {
   }
 fileChange:
   /Web:
-    newFile: !uuid 'cb41dae9beffb8243cbc451b3340d4b0424dc5ca'
-    oldFile: !uuid '3ceea3a8a9a3b14b3f5c93eb529548a57ebbe8ec'
+    newFile: !uuid '65058bd1dd957341398a3ce21912d13ba2e5e3c9'
+    oldFile: !uuid 'cb41dae9beffb8243cbc451b3340d4b0424dc5ca'
   /Web/src:
-    newFile: !uuid '6282adb238197ed82c3d29cf487cd4132eb915e2'
-    oldFile: !uuid '93ee5d81ec59bb60d25ea817ba123a360ded9bbf'
+    newFile: !uuid '93f1ca205b70b55532eb022cf00ed491b56c9781'
+    oldFile: !uuid '6282adb238197ed82c3d29cf487cd4132eb915e2'
   /Web/src/views:
-    newFile: !uuid '74f993f8b1e3daf408f25c4729d0c42f89cc8e43'
-    oldFile: !uuid '2a1257c8d2936c713490f6a3651c1b2554a4d15a'
+    newFile: !uuid 'fc7cd96ef4b7034fdac518e719adb91102284942'
+    oldFile: !uuid '74f993f8b1e3daf408f25c4729d0c42f89cc8e43'
   /Web/src/views/home:
-    newFile: !uuid '81836ebe5cb5122012b9e56d7beafa4177f686b0'
-    oldFile: !uuid '53f98214b759e1938eaba12f50fa2eb03aa2db00'
+    newFile: !uuid '96b1a5a7549cfa6e68887d6d0f5a17fb0b8b19f1'
+    oldFile: !uuid '81836ebe5cb5122012b9e56d7beafa4177f686b0'
   /Web/src/views/home/widgets:
-    newFile: !uuid 'c30003c0b69586781e26ba8c6f209251e56f1020'
-    oldFile: !uuid '2e7a734caf7da18d6d40179345af2375629218fe'
-  /Web/src/views/home/widgets/index.vue:
-    newFile: !uuid '4e71697248fc523d91d2e47c8e2eba3836be5b7c'
-    oldFile: !uuid '0fdc8b8d5bd29c6d85c63f0ca716c11c79645f3b'
-gitCommitId: !uuid 'bfb96322f6295bb5cdd9c742dd4a3e0090c1b7b4'
+    newFile: !uuid 'da81bbf1de30b94aeaeb1d5be817cf20344c3571'
+    oldFile: !uuid 'c30003c0b69586781e26ba8c6f209251e56f1020'
+  /Web/src/views/home/widgets/components:
+    newFile: !uuid '24d5abdab9ee3d8c02ef2f559e2ab16ca6129b76'
+    oldFile: !uuid '0f228f5ae96e37055d19e77535f17314a1c143e0'
+  /Web/src/views/home/widgets/components/myapp.vue:
+    newFile: !uuid '041ba7852406c049d451a5a7a9b9a36930d591b3'
+    oldFile: !uuid '55dea640544e2953e81311447d7db78f726fb271'
+gitCommitId: !uuid '4be45fb3d3bea11f3fce281fb45f4935b073f9e5'
 renames: {
   }
-revisionId: 1880
+revisionId: 1881
