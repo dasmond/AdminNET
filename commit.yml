@@ -2,19 +2,19 @@
 branches: {
   }
 fileChange:
-  /Web:
-    newFile: !uuid '0218ecbde158eb5de6e3c7f5b4e80ee48d5c7ff9'
-    oldFile: !uuid 'f243f57d7fb615b72f9d15378088d06ee01d54e6'
-  /Web/src:
-    newFile: !uuid '16b831e88184cc8c30e5411b81fcbab6dc9f7474'
-    oldFile: !uuid '51d08080c3d1be6759f3f189ac433389563bf65f'
-  /Web/src/utils:
-    newFile: !uuid 'b93d144439696d366740c1ac94cc4491a0411da3'
-    oldFile: !uuid '422b691a705c26e7c7c94795c7d5140382a7dcbf'
-  /Web/src/utils/axios-utils.ts:
-    newFile: !uuid '7339c539d5fdfce91b3ad534133f628887c7299e'
-    oldFile: !uuid 'c2259f854bf95a1af6fa77bb80ae7c44787195fc'
-gitCommitId: !uuid 'df60a375cdb6b64594e4371d0f9e0fc5f54dade8'
+  /Admin.NET:
+    newFile: !uuid '76e517f77fe90a2b8a3590e1c05f71269fbadc5f'
+    oldFile: !uuid '340ee37d7aa23f17475bdeb695d4362847e9160e'
+  /Admin.NET/Admin.NET.Core:
+    newFile: !uuid '09c9597ac4e7635a00a029f06f9ca03d28fd4199'
+    oldFile: !uuid '0387cc2399bef0d4cbf90a961438d62c33ac5ac2'
+  /Admin.NET/Admin.NET.Core/EventBus:
+    newFile: !uuid 'f0ce0c9680af4bb9cbae62f246fa2ff293270ef4'
+    oldFile: !uuid '605827ed146630bf27fa3612e49ed3ab239af854'
+  /Admin.NET/Admin.NET.Core/EventBus/RedisQueue.cs:
+    newFile: !uuid '32cbf25e3f2cb819b36d5467b3dd03ffe2bfeca6'
+    oldFile: !uuid 'c3656d975fe6d9b319064e3b8a934664ab33490a'
+gitCommitId: !uuid '0ecd36d5fcd81f808131f1de099566324b1e62c3'
 renames: {
   }
-revisionId: 1883
+revisionId: 1884
