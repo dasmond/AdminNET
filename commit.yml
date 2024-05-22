@@ -2,19 +2,55 @@
 branches: {
   }
 fileChange:
+  /Admin.NET:
+    newFile: !uuid 'f5e704ff06b78167350f8c25e14b95fb1f6297d9'
+    oldFile: !uuid '684cf624cc47970be59b247e0db6992e294bc4ad'
+  /Admin.NET/Admin.NET.Core:
+    newFile: !uuid '113e095db7e560396f9daa799f1ef47fe9c296a8'
+    oldFile: !uuid 'bc14f0e5795c3fb8d7fa570ee31061acf8db619e'
+  /Admin.NET/Admin.NET.Core/Entity:
+    newFile: !uuid '2a6ba54a42b28083b7111d2766cde8d9ecc350e1'
+    oldFile: !uuid '5c59351b29524a95a8cb21892a0d74358cf21f52'
+  /Admin.NET/Admin.NET.Core/Entity/SysUserFavorites.cs:
+    newFile: !uuid '953670d0ada2c20dd71d0c7eb0032cd0d007f6ba'
+    oldFile: null
+  /Admin.NET/Admin.NET.Core/Service:
+    newFile: !uuid '2d1f93bb7b68edec113f9849299f4ad48aa44ea8'
+    oldFile: !uuid 'f0b4050c5f707fa3983395d2a1e328d0adab2d22'
+  /Admin.NET/Admin.NET.Core/Service/User:
+    newFile: !uuid 'bd2b58504d77b704fa1adb8eb97a997c4eb84dff'
+    oldFile: !uuid '3fded52c971f64928117493853f470a2f412d709'
+  /Admin.NET/Admin.NET.Core/Service/User/Dto:
+    newFile: !uuid 'c80655733bffc332a677e944cb2531e3b6eb25da'
+    oldFile: !uuid 'a68dd7997c32bf511e542c1579950778b923460b'
+  /Admin.NET/Admin.NET.Core/Service/User/Dto/UserFavoritesInput.cs:
+    newFile: !uuid 'ac37f28cd87a6aad7a9a7c370b8e29a3475c3dfa'
+    oldFile: null
+  /Admin.NET/Admin.NET.Core/Service/User/SysUserFavoritesService.cs:
+    newFile: !uuid 'c7f383e76079c6fcbef2349a14441ddd655351c5'
+    oldFile: null
   /Web:
-    newFile: !uuid '096ca7928a71ca5420a614cbc64d65b50201ca9f'
-    oldFile: !uuid '0218ecbde158eb5de6e3c7f5b4e80ee48d5c7ff9'
+    newFile: !uuid '95414ad5961655b5b4d9682c657edfaf743c2b61'
+    oldFile: !uuid '096ca7928a71ca5420a614cbc64d65b50201ca9f'
   /Web/src:
-    newFile: !uuid '332b8a177ddfdea45a89dad6bff25ecff77a9fe4'
-    oldFile: !uuid '16b831e88184cc8c30e5411b81fcbab6dc9f7474'
-  /Web/src/stores:
-    newFile: !uuid '6fe8f95f50ba71e2ce9079414fc38b9c6c959fa9'
-    oldFile: !uuid 'b01cc18310e930ab6f56914e9b4b537933b4dea8'
-  /Web/src/stores/userInfo.ts:
-    newFile: !uuid '7ad4ccda5f06b4f9d2e0d813bc422d01db3f0739'
-    oldFile: !uuid '7185c3976e8197074b42aace89dc77edc6017ec4'
-gitCommitId: !uuid '9c3c8f3263006b3655c1a60a4ead9dc90068a44e'
+    newFile: !uuid '3d589ae511be019268a8500b5e5326e17ed3dd4d'
+    oldFile: !uuid '332b8a177ddfdea45a89dad6bff25ecff77a9fe4'
+  /Web/src/views:
+    newFile: !uuid '196a7b096d407b92ba2f6dd4d016c1d575c05272'
+    oldFile: !uuid '6dec98c5d0b45921996c774ada3935e6fd5f4d33'
+  /Web/src/views/home:
+    newFile: !uuid 'cb3259cb82bf775eee11b089d5ab859acc3186b2'
+    oldFile: !uuid 'fa46d36bbf120d137e56385898bfb5f3e28ddcae'
+  /Web/src/views/home/widgets:
+    newFile: !uuid 'e47db47ade4d91b1bd5613cf2d7d1afdc5687c31'
+    oldFile: !uuid '979d4d30871cf8cc79049efe36478862834182be'
+  /Web/src/views/home/widgets/components:
+    newFile: !uuid '40b028d5014a665f9f7da894e2706d33fa9ff337'
+    oldFile: !uuid '24d5abdab9ee3d8c02ef2f559e2ab16ca6129b76'
+  /Web/src/views/home/widgets/components/myapp.vue:
+    newFile: !uuid '72c6712dc4f272b4344d86f1a176c20e02fed9b2'
+    oldFile: !uuid '041ba7852406c049d451a5a7a9b9a36930d591b3'
+gitCommitId: !uuid 'ad91b24c992db5984f029409b596b76cfe59ac78'
 renames: {
   }
-revisionId: 1842
+revisionId: 1843
