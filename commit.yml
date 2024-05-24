@@ -2,31 +2,25 @@
 branches: {
   }
 fileChange:
-  /Web:
-    newFile: !uuid '4bb26cf6d0f3a13334ac0c253eecf78113f4ce6d'
-    oldFile: !uuid '0f79c2aca960fd8c23693721945bcad3542b4b96'
-  /Web/src:
-    newFile: !uuid '4aa1554d2eb519c2c5c492ac1e0843c7d20b8a2d'
-    oldFile: !uuid '6e4b550447ab60cb15c9be69f27e25c851af5a5c'
-  /Web/src/views:
-    newFile: !uuid '1b0b3f2b68abaeffef97a9ce4811c28d48fc79d1'
-    oldFile: !uuid '6a485210be73ba32cbc3c00504a31748f1140b86'
-  /Web/src/views/system:
-    newFile: !uuid '22709378c773d8c36b46a5e52aa91078f4d48edb'
-    oldFile: !uuid '0133a3bd9752822031559c86c7a4b86f8e7ee81c'
-  /Web/src/views/system/print:
-    newFile: !uuid '9b822c4097571ebac26bbf560251410b3be0b1ce'
-    oldFile: !uuid 'e14a5810c2116362bc4ca04568d628c28563d286'
-  /Web/src/views/system/print/component:
-    newFile: !uuid 'cac1bf47ca0920d766be651ef666e90f80803fdd'
-    oldFile: !uuid '91484136263601567bb3a6ed3c832f214439842d'
-  /Web/src/views/system/print/component/hiprint:
-    newFile: !uuid 'fcebe727cdf80878dcd7705b65d7791b13fd413d'
-    oldFile: !uuid '3190367693104a8a734ab4251479e9bbcde5e5e7'
-  /Web/src/views/system/print/component/hiprint/preview.vue:
-    newFile: !uuid '25d8d68f8f1471052ac38c3e48b76bed9042196c'
-    oldFile: !uuid '8aa0c87faa01ada5ef45bc004980feea4213d615'
-gitCommitId: !uuid 'd0a40f69e8a8929eb7e0200366822f75f499cf1a'
+  /Admin.NET:
+    newFile: !uuid '0ddd030adf213f046ba94e13a59888e4d8d744ec'
+    oldFile: !uuid '63e8efd01ef9ea7a9849bd7889ca64f33ebaca84'
+  /Admin.NET/Admin.NET.Core:
+    newFile: !uuid '9e0e996354e13816cf37132a5aac2fd3046c200b'
+    oldFile: !uuid '1809f5b1e96458c7cc1bd27729d5434dff1da1be'
+  /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
+    newFile: !uuid '20a9e2c03c7c2c7b03ce79c5c5f8b0afe8a1c734'
+    oldFile: !uuid 'c55b2db5bbc2d786c416ab4ad0d631dc6d967ffd'
+  /Admin.NET/Plugins:
+    newFile: !uuid '7ec7e5c0655b1b5c80f4c1d7c22b8fca668b4f42'
+    oldFile: !uuid '4fbf1dec7478c561034b26cba0bc73dc6bd54801'
+  /Admin.NET/Plugins/Admin.NET.Plugin.ReZero:
+    newFile: !uuid 'de4f7a1a7cb412e0f5dee8bb1bd2dd1bf6e39bed'
+    oldFile: !uuid '54583750900ede33c7753361709bc9d0a3117ce8'
+  /Admin.NET/Plugins/Admin.NET.Plugin.ReZero/Admin.NET.Plugin.ReZero.csproj:
+    newFile: !uuid '1273f1c54eb52155597a8e9af0815df06aa68bf6'
+    oldFile: !uuid 'c9d0e2c3014731d808774db3fd6bb5e649d44546'
+gitCommitId: !uuid 'af9f6b4c72f186c0a738011f69029b30a73bc605'
 renames: {
   }
-revisionId: 1909
+revisionId: 1910
