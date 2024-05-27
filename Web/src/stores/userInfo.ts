@@ -1,7 +1,5 @@
 import { defineStore } from 'pinia';
-import { Local, Session } from '/@/utils/storage';
-import Watermark from '/@/utils/watermark';
-import { useThemeConfig } from '/@/stores/themeConfig';
+import { Session } from '/@/utils/storage';
 
 import { getAPI } from '/@/utils/axios-utils';
 import { SysAuthApi, SysConstApi, SysDictTypeApi } from '/@/api-services/api';
@@ -14,7 +12,8 @@ export const useUserInfo = defineStore('userInfo', {
 	state: (): UserInfosState => ({
 		userInfos: {} as any,
 		constList: [] as any,
-		dictList: [] as any,
+		dictList: {} as any,
+		dictListInt: {} as any,
 	}),
 	getters: {
 		// // 获取系统常量列表
@@ -25,8 +24,8 @@ export const useUserInfo = defineStore('userInfo', {
 		// },
 	},
 	actions: {
+		// 存储用户信息到浏览器缓存
 		async setUserInfos() {
-			// 存储用户信息到浏览器缓存
 			if (Session.get('userInfo')) {
 				this.userInfos = Session.get('userInfo');
 			} else {
@@ -34,8 +33,9 @@ export const useUserInfo = defineStore('userInfo', {
 				this.userInfos = userInfos;
 			}
 		},
+
+		// 存储常量信息到浏览器缓存
 		async setConstList() {
-			// 存储常量信息到浏览器缓存
 			if (Session.get('constList')) {
 				this.constList = Session.get('constList');
 			} else {
@@ -44,16 +44,20 @@ export const useUserInfo = defineStore('userInfo', {
 				this.constList = constList;
 			}
 		},
+
+		// 存储字典信息到浏览器缓存
 		async setDictList() {
-			// 存储字典信息到浏览器缓存
-			if (Session.get('dictList')) {
-				this.dictList = Session.get('dictList');
-			} else {
-				const dictList = <any[]>await this.getAllDictList();
-				Session.set('dictList', dictList);
-				this.dictList = dictList;
-			}
+			var res = await getAPI(SysDictTypeApi).apiSysDictTypeAllDictListGet();
+			this.dictList = res.data.result;
+			// if (Session.get('dictList')) {
+			// 	this.dictList = Session.get('dictList');
+			// } else {
+			//	const dictList = <any[]>await this.getAllDictList();
+			//	Session.set('dictList', dictList);
+			//	this.dictList = dictList;
+			// }
 		},
+
 		// 获取当前用户信息
 		getApiUserInfo() {
 			return new Promise((resolve) => {
@@ -84,24 +88,11 @@ export const useUserInfo = defineStore('userInfo', {
 						// 增加了下面代码，引起当前会话的用户信息不会刷新，如：重新提交的头像不更新，需要新开一个页面才能正确显示
 						// Session.set('userInfo', userInfos);
 
-						// 水印配置
-						const configRes: any = await getAPI(SysAuthApi).apiSysAuthWatermarkConfigGet();
-						if (configRes.data.result == null) return;
-
-						const configData = configRes.data.result;
-						const storesThemeConfig = useThemeConfig();
-						storesThemeConfig.themeConfig.isWatermark = configData.watermarkEnabled;
-						storesThemeConfig.themeConfig.watermarkText = userInfos.realName;
-						if (storesThemeConfig.themeConfig.isWatermark) Watermark.set(storesThemeConfig.themeConfig.watermarkText);
-						else Watermark.del();
-
-						Local.remove('themeConfig');
-						Local.set('themeConfig', storesThemeConfig.themeConfig);
-
 						resolve(userInfos);
 					});
 			});
 		},
+
 		// 获取常量集合
 		getSysConstList() {
 			return new Promise((resolve) => {
@@ -112,15 +103,73 @@ export const useUserInfo = defineStore('userInfo', {
 					});
 			});
 		},
+
 		// 获取字典集合
 		getAllDictList() {
 			return new Promise((resolve) => {
-				getAPI(SysDictTypeApi)
-					.apiSysDictTypeAllDictListGet()
-					.then(async (res: any) => {
-						resolve(res.data.result ?? []);
-					});
+				if (this.dictList) {
+					resolve(this.dictList);
+				} else {
+					getAPI(SysDictTypeApi)
+						.apiSysDictTypeAllDictListGet()
+						.then((res: any) => {
+							resolve(res.data.result ?? []);
+						});
+				}
 			});
+		},
+
+		// 根据字典类型和值取字典项
+		getDictItemByVal(typePCode: string, val: string) {
+			if (val) {
+				const _val = val.toString();
+				const ds = this.getDictDatasByCode(typePCode);
+				for (let index = 0; index < ds.length; index++) {
+					const element = ds[index];
+					if (element.code == _val) {
+						return element;
+					}
+				}
+			}
+			return {};
+		},
+
+		// 根据字典类型和值取描述
+		getDictLabelByVal(typePCode: string, val: string) {
+			return this.getDictItemByVal(typePCode, val).value;
+		},
+
+		// 根据字典类型和描述取值
+		getDictValByLabel(typePCode: string, label: string) {
+			if (!label) return '';
+			const ds = this.getDictDatasByCode(typePCode);
+			for (let index = 0; index < ds.length; index++) {
+				const element = ds[index];
+				if (element.value == label) {
+					return element;
+				}
+			}
+		},
+
+		// 根据字典类型字典数据
+		getDictDatasByCode(dictTypeCode: string) {
+			return this.dictList[dictTypeCode] || [];
+		},
+
+		// 根据字典类型字典数据,值转为数字类型
+		getDictIntDatasByCode(dictTypeCode: string) {
+			var ds = this.dictListInt[dictTypeCode];
+			if (ds) {
+				return ds;
+			} else {
+				ds = this.dictList[dictTypeCode].map((element: { code: any }) => {
+					var d = { ...element };
+					d.code = element.code - 0;
+					return d;
+				});
+				this.dictListInt[dictTypeCode] = ds;
+				return ds;
+			}
 		},
 	},
 });

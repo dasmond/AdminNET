@@ -65,6 +65,7 @@ public class SysTenantService : IDynamicApiController, ITransient
             .LeftJoin<SysOrg>((u, a, b) => u.OrgId == b.Id)
             .WhereIF(!string.IsNullOrWhiteSpace(input.Phone), (u, a) => a.Phone.Contains(input.Phone.Trim()))
             .WhereIF(!string.IsNullOrWhiteSpace(input.Name), (u, a, b) => b.Name.Contains(input.Name.Trim()))
+            .Where(u => u.Id.ToString() != SqlSugarConst.MainConfigId) // 排除默认主库/主租户
             .OrderBy(u => u.OrderNo)
             .Select((u, a, b) => new TenantOutput
             {
@@ -120,12 +121,22 @@ public class SysTenantService : IDynamicApiController, ITransient
         if (!string.IsNullOrWhiteSpace(input.SlaveConnections) && !JSON.IsValid(input.SlaveConnections))
             throw Oops.Oh(ErrorCodeEnum.D1302);
 
-        // ID隔离时设置与主库一致
-        if (input.TenantType == TenantTypeEnum.Id)
+        switch (input.TenantType)
         {
-            var config = _sysTenantRep.AsSugarClient().CurrentConnectionConfig;
-            input.DbType = config.DbType;
-            input.Connection = config.ConnectionString;
+            // Id隔离时设置与主库一致
+            case TenantTypeEnum.Id:
+                var config = _sysTenantRep.AsSugarClient().CurrentConnectionConfig;
+                input.DbType = config.DbType;
+                input.Connection = config.ConnectionString;
+                break;
+
+            case TenantTypeEnum.Db:
+                if (string.IsNullOrWhiteSpace(input.Connection))
+                    throw Oops.Oh(ErrorCodeEnum.Z1004);
+                break;
+
+            default:
+                throw Oops.Oh(ErrorCodeEnum.D3004);
         }
 
         var tenant = input.Adapt<TenantOutput>();
@@ -290,6 +301,23 @@ public class SysTenantService : IDynamicApiController, ITransient
         if (isExist)
             throw Oops.Oh(ErrorCodeEnum.D1301);
 
+        // Id隔离时设置与主库一致
+        switch (input.TenantType)
+        {
+            case TenantTypeEnum.Id:
+                var config = _sysTenantRep.AsSugarClient().CurrentConnectionConfig;
+                input.DbType = config.DbType;
+                input.Connection = config.ConnectionString;
+                break;
+
+            case TenantTypeEnum.Db:
+                if (string.IsNullOrWhiteSpace(input.Connection))
+                    throw Oops.Oh(ErrorCodeEnum.Z1004);
+                break;
+
+            default:
+                throw Oops.Oh(ErrorCodeEnum.D3004);
+        }
         // 从库配置判断
         if (!string.IsNullOrWhiteSpace(input.SlaveConnections) && !JSON.IsValid(input.SlaveConnections))
             throw Oops.Oh(ErrorCodeEnum.D1302);
@@ -314,11 +342,12 @@ public class SysTenantService : IDynamicApiController, ITransient
     [DisplayName("授权租户管理员角色菜单")]
     public async Task GrantMenu(RoleMenuInput input)
     {
-        var tenantAdminUser = await _sysUserRep.GetFirstAsync(u => u.TenantId == input.Id && u.AccountType == AccountTypeEnum.SysAdmin);
-        if (tenantAdminUser == null) return;
+        // 获取租户管理员角色【sys_admin】
+        var adminRole = await _sysRoleRep.AsQueryable().ClearFilter()
+            .FirstAsync(u => u.Code == CommonConst.SysAdminRole && u.TenantId == input.Id && u.IsDelete == false);
+        if (adminRole == null) return;
 
-        var roleIds = await _sysUserRoleService.GetUserRoleIdList(tenantAdminUser.Id);
-        input.Id = roleIds[0]; // 重置租户管理员角色Id
+        input.Id = adminRole.Id; // 重置租户管理员角色Id
         await _sysRoleMenuService.GrantRoleMenu(input);
     }
 
@@ -364,7 +393,8 @@ public class SysTenantService : IDynamicApiController, ITransient
         // 对租户库连接进行SM2加密
         foreach (var tenant in tenantList)
         {
-            tenant.Connection = CryptogramUtil.SM2Encrypt(tenant.Connection);
+            if (!string.IsNullOrWhiteSpace(tenant.Connection))
+                tenant.Connection = CryptogramUtil.SM2Encrypt(tenant.Connection);
         }
         _sysCacheService.Set(CacheConst.KeyTenant, tenantList);
     }
@@ -432,7 +462,7 @@ public class SysTenantService : IDynamicApiController, ITransient
         lock (iTenant)
         {
             // 从缓存里面获取租户信息
-            var tenant = _sysCacheService.Get<List<SysTenant>>(CacheConst.KeyTenant)?.First(u => u.Id == tenantId);
+            var tenant = _sysCacheService.Get<List<SysTenant>>(CacheConst.KeyTenant)?.FirstOrDefault(u => u.Id == tenantId);
             if (tenant == null || tenant.TenantType == TenantTypeEnum.Id) return null;
 
             // 获取默认库连接配置

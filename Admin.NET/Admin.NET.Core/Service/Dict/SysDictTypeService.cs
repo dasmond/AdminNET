@@ -1,4 +1,4 @@
-﻿// Admin.NET 项目的版权、商标、专利和其他相关权利均受相应法律法规的保护。使用本项目应遵守相关法律法规和许可证的要求。
+// Admin.NET 项目的版权、商标、专利和其他相关权利均受相应法律法规的保护。使用本项目应遵守相关法律法规和许可证的要求。
 //
 // 本项目主要遵循 MIT 许可证和 Apache 许可证（版本 2.0）进行分发和使用。许可证位于源代码树根目录中的 LICENSE-MIT 和 LICENSE-APACHE 文件。
 //
@@ -153,14 +153,13 @@ public class SysDictTypeService : IDynamicApiController, ITransient
     /// <returns></returns>
     [AllowAnonymous]
     [DisplayName("获取所有字典集合")]
-    public async Task<List<SysDictType>> GetAllDictList()
+    public async Task<dynamic> GetAllDictList()
     {
-        var dictList = await _sysDictTypeRep.AsQueryable()
-            .Includes(u => u.Children)
-            .OrderBy(u => new { u.OrderNo, u.Code })
+        var ds = await _sysDictTypeRep.AsQueryable()
+            .InnerJoin<SysDictData>((u, a) => u.Id == a.DictTypeId)
+            .Where((u, a) => u.IsDelete == false && a.IsDelete == false && a.Status == StatusEnum.Enable)
+            .Select((u, a) => new { TypeCode = u.Code, a.Code, a.Name, a.Value, a.Remark, a.OrderNo, a.TagType })
             .ToListAsync();
-        // 字典数据项排序
-        dictList.ForEach(u => u.Children = u.Children.OrderBy(c => c.OrderNo).ThenBy(c => c.Code).ToList());
-        return dictList;
+        return ds.OrderBy(u => u.OrderNo).GroupBy(u => u.TypeCode).ToDictionary(u => u.Key, u => u);
     }
 }

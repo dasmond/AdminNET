@@ -1,13 +1,5 @@
 import { defineStore } from 'pinia';
 
-/**
- * 布局配置
- * 修复：https://gitee.com/lyt-top/vue-next-admin/issues/I567R1，感谢@lanbao123
- * 2020.05.28 by lyt 优化。开发时配置不生效问题
- * 修改配置时：
- * 1、需要每次都清理 `window.localStorage` 浏览器永久缓存
- * 2、或者点击布局配置最底部 `一键恢复默认` 按钮即可看到效果
- */
 export const useThemeConfig = defineStore('themeConfig', {
 	state: (): ThemeConfigState => ({
 		themeConfig: {
@@ -18,7 +10,7 @@ export const useThemeConfig = defineStore('themeConfig', {
 			 * 全局主题
 			 */
 			// 默认 primary 主题颜色
-			primary: '#11559C', //红色:#DE2910 //蓝色:#11559C //绿色:#057748
+			primary: '#F03F24', //胭脂红:#F03F24 //飞燕草蓝:#0F59A4 //薄荷绿:#207F4C
 			// 是否开启深色模式
 			isIsDark: false,
 
@@ -143,7 +135,7 @@ export const useThemeConfig = defineStore('themeConfig', {
 			// 网站副标题（登录页顶部文字）
 			globalViceTitleMsg: '站在巨人肩膀上的 .NET 通用权限开发框架',
 			// 版权和备案文字
-			copyright: 'Copyright © 2021-2014 Admin.NET All rights reserved.',
+			copyright: 'Copyright © 2021-present Admin.NET All rights reserved.',
 			// 默认初始语言，可选值"<zh-cn|en|zh-tw>"，默认 zh-cn
 			globalI18n: 'zh-cn',
 			// 默认全局组件大小，可选值"<large|'default'|small>"，默认 'large'
