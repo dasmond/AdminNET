@@ -2,31 +2,22 @@
 branches: {
   }
 fileChange:
-  /Web:
-    newFile: !uuid '7803e73926c4b5b2a66e3d3c1be3e83bd7efd3ca'
-    oldFile: !uuid '42c4cf4281755b6c53a3bbee0701467c66a06a53'
-  /Web/src:
-    newFile: !uuid '14bf1e0e7589da76f7c849e21a90a604f62d7db1'
-    oldFile: !uuid '1a015f646fdda0b024d2bc5420e4a44dbc0701c1'
-  /Web/src/views:
-    newFile: !uuid '4d23cf267ddbe0c5a85aed95e4eefa13d2cc6451'
-    oldFile: !uuid '41fb88ce728725b4a2376a054fde13f27b26cef2'
-  /Web/src/views/system:
-    newFile: !uuid 'b7844e377997b3020e594a3261f0477592a3d6ee'
-    oldFile: !uuid '911097f76eebda46ab887590bcdc021ad17bdfcb'
-  /Web/src/views/system/print:
-    newFile: !uuid 'a9b731276110ec37081c3357bd4d72e7d23d3240'
-    oldFile: !uuid '9b822c4097571ebac26bbf560251410b3be0b1ce'
-  /Web/src/views/system/print/component:
-    newFile: !uuid '399653b828616d97261342c281e23fc749da8c0d'
-    oldFile: !uuid 'cac1bf47ca0920d766be651ef666e90f80803fdd'
-  /Web/src/views/system/print/component/hiprint:
-    newFile: !uuid '4d1d8d940cebb7d25470410092a83609ff3c393f'
-    oldFile: !uuid 'fcebe727cdf80878dcd7705b65d7791b13fd413d'
-  /Web/src/views/system/print/component/hiprint/preview.vue:
-    newFile: !uuid 'e6e381f4229606264dce4e8dba887ff831c14ed6'
-    oldFile: !uuid '25d8d68f8f1471052ac38c3e48b76bed9042196c'
-gitCommitId: !uuid 'bd927623dccf2cca3f66957822c0835db9a5efa6'
+  /Admin.NET:
+    newFile: !uuid 'beb5fe9efd33abf3068197ada5fe18df8acfa03f'
+    oldFile: !uuid '89fdb46e00ee659114076bddba2ff3ec40e44cdf'
+  /Admin.NET/Admin.NET.Core:
+    newFile: !uuid '90e080ffd7da7747304ff3c85e95bab1afae2ba0'
+    oldFile: !uuid 'df16f9ac9150339975a0f8062686da875a59828c'
+  /Admin.NET/Admin.NET.Core/Service:
+    newFile: !uuid '49580f77da65a3c3e9a1927a18cfbdf15a5fa639'
+    oldFile: !uuid 'de105a51cbaf3de2aca5fdb39faf722c3d3f38c3'
+  /Admin.NET/Admin.NET.Core/Service/File:
+    newFile: !uuid '003102cfd93a100ec49baf2602c1e6acfa226439'
+    oldFile: !uuid 'd8c89d0c23c8f45f96a4af9461437448e2248722'
+  /Admin.NET/Admin.NET.Core/Service/File/SysFileService.cs:
+    newFile: !uuid '3f51501fb7fafb19c4f1e1eb8766287d89a26ce7'
+    oldFile: !uuid 'c20331a806aa42eff519d8e81794418cd91c602f'
+gitCommitId: !uuid 'a94be0520f29a928efaba8235b51c5f1cf773ef6'
 renames: {
   }
-revisionId: 1927
+revisionId: 1928
