@@ -1,4 +1,4 @@
-﻿// Admin.NET 项目的版权、商标、专利和其他相关权利均受相应法律法规的保护。使用本项目应遵守相关法律法规和许可证的要求。
+// Admin.NET 项目的版权、商标、专利和其他相关权利均受相应法律法规的保护。使用本项目应遵守相关法律法规和许可证的要求。
 //
 // 本项目主要遵循 MIT 许可证和 Apache 许可证（版本 2.0）进行分发和使用。许可证位于源代码树根目录中的 LICENSE-MIT 和 LICENSE-APACHE 文件。
 //
@@ -321,8 +321,7 @@ public class SysFileService : IDynamicApiController, ITransient
              * Mysql8 中如果使用了 utf8mb4_general_ci 之外的编码会出错，尽量避免在条件里使用.ToString()
              * 因为 Squsugar 并不是把变量转换为字符串来构造SQL语句，而是构造了CAST(123 AS CHAR)这样的语句，这样这个返回值是utf8mb4_general_ci，所以容易出错。
              */
-            var strSizeKb = sizeKb.ToString();
-            var sysFile = await _sysFileRep.GetFirstAsync(u => u.FileMd5 == fileMd5 && (u.SizeKb == null || u.SizeKb == strSizeKb));
+            var sysFile = await _sysFileRep.GetFirstAsync(u => u.FileMd5 == fileMd5 && u.SizeKb == sizeKb);
             if (sysFile != null) return sysFile;
         }
 
@@ -340,8 +339,8 @@ public class SysFileService : IDynamicApiController, ITransient
         {
             var contentTypeProvider = FS.GetFileExtensionContentTypeProvider();
             suffix = contentTypeProvider.Mappings.FirstOrDefault(u => u.Value == file.ContentType).Key;
-            // 修改 image/jpeg 类型返回的 .jpe 后缀
-            if (suffix == ".jpe")
+            // 修改 image/jpeg 类型返回的 .jpeg、jpe 后缀
+            if (suffix == ".jpeg" || suffix == ".jpe")
                 suffix = ".jpg";
         }
         if (string.IsNullOrWhiteSpace(suffix))
@@ -364,7 +363,7 @@ public class SysFileService : IDynamicApiController, ITransient
             BucketName = _OSSProviderOptions.IsEnable ? _OSSProviderOptions.Bucket : "Local",
             FileName = Path.GetFileNameWithoutExtension(file.FileName),
             Suffix = suffix,
-            SizeKb = sizeKb.ToString(),
+            SizeKb = sizeKb,
             FilePath = path,
             FileMd5 = fileMd5,
             FileType = fileType
