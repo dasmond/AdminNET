@@ -2,28 +2,22 @@
 branches: {
   }
 fileChange:
-  /Web:
-    newFile: !uuid '16efe52b5a0b67c2a0e1610445f112683a98d211'
-    oldFile: !uuid '53a27b80d9576e875b1d364b5b944e08e2888cc8'
-  /Web/src:
-    newFile: !uuid '4f4269f749a494c00795afec1c7a8ab90f27aaa6'
-    oldFile: !uuid '71765b9074c46f47e2393268e8d7b4bac9fa4ef8'
-  /Web/src/views:
-    newFile: !uuid 'e70c03338667460ab95e4bbe05a33a19a14404a5'
-    oldFile: !uuid 'e936bde24141ade150f638827c80f3888931da7d'
-  /Web/src/views/system:
-    newFile: !uuid '8e6fee06c62c3b2910fd5a5b9e93afa5e7e4c017'
-    oldFile: !uuid 'd7537754cf912979a96d557747966a81dad09644'
-  /Web/src/views/system/file:
-    newFile: !uuid '28885af00e847bea014750595d8f65e53dd79481'
-    oldFile: !uuid '576669c154f801adbeb6f5a5abdec745e599941d'
-  /Web/src/views/system/file/component:
-    newFile: !uuid '899cdb05273d5a26f5857a59a375211ae98b1ec8'
-    oldFile: !uuid '02dc733d229311c9095687e7287afe245e849b07'
-  /Web/src/views/system/file/component/editSysfile.vue:
-    newFile: !uuid '025a83c36d50964c7cfea06c94cf852525a6f9da'
-    oldFile: !uuid '7653785ff08c76fabc456622ef92da061f18dd54'
-gitCommitId: !uuid 'ea61fa909c1502d00bb2d5f3ae93395182eb646f'
+  /Admin.NET:
+    newFile: !uuid 'ca3832d7794d1f7a2fbfddfab622a1935efaf931'
+    oldFile: !uuid '7444f8b52ea1a29415973a1384818bec51b5dc92'
+  /Admin.NET/Admin.NET.Core:
+    newFile: !uuid '6cde410531860d89467950213179a5c3b59ed77c'
+    oldFile: !uuid 'c2f86328b08cbdaa4da6fbecf25af57f9f440f2d'
+  /Admin.NET/Admin.NET.Core/Service:
+    newFile: !uuid 'f4129c02072aa84e28e5744b01243f9742dccb13'
+    oldFile: !uuid '044059b78482887e635a44ba901568b89475b639'
+  /Admin.NET/Admin.NET.Core/Service/Wechat:
+    newFile: !uuid '89c5b8b1694cc915b5b283f4c053656c2495ed95'
+    oldFile: !uuid 'b851b5e44fff0804e1c222842b77314a2a5fbee0'
+  /Admin.NET/Admin.NET.Core/Service/Wechat/SysWechatService.cs:
+    newFile: !uuid 'bca259fb4fcf68b01743cb02238c5ffc3e142039'
+    oldFile: !uuid '4997c42ca229c94733f2ea72488bf467c3a787f3'
+gitCommitId: !uuid '7d2182798eb61c16d2cd7c293424fbf2203d4768'
 renames: {
   }
-revisionId: 1932
+revisionId: 1933
