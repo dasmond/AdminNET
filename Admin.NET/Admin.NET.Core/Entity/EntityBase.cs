@@ -28,7 +28,7 @@ public abstract class EntityBase : EntityBaseId, IDeletedFilter
     /// 创建时间
     /// </summary>
     [SugarColumn(ColumnDescription = "创建时间", IsOnlyIgnoreUpdate = true)]
-    public virtual DateTime? CreateTime { get; set; }
+    public virtual DateTime CreateTime { get; set; }
 
     /// <summary>
     /// 更新时间
