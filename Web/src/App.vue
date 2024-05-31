@@ -4,7 +4,7 @@
 		<LockScreen v-if="themeConfig.isLockScreen" />
 		<Setings ref="setingsRef" v-show="setLockScreen" />
 		<CloseFull v-if="!themeConfig.isLockScreen" />
-		<!-- <Upgrade v-if="needUpdate" /> -->
+		<Upgrade v-if="needUpdate" />
 		<!-- <Sponsors /> -->
 	</el-config-provider>
 </template>
@@ -23,13 +23,15 @@ import setIntroduction from '/@/utils/setIconfont';
 import Watermark from '/@/utils/watermark';
 import { SysConfigApi } from '/@/api-services';
 import { getAPI } from '/@/utils/axios-utils';
+import checkUpdate from "/@/utils/auto-update";
 
 // 引入组件
 const LockScreen = defineAsyncComponent(() => import('/@/layout/lockScreen/index.vue'));
 const Setings = defineAsyncComponent(() => import('/@/layout/navBars/topBar/setings.vue'));
 const CloseFull = defineAsyncComponent(() => import('/@/layout/navBars/topBar/closeFull.vue'));
-// const Upgrade = defineAsyncComponent(() => import('/@/layout/upgrade/index.vue'));
+const Upgrade = defineAsyncComponent(() => import('/@/layout/upgrade/index.vue'));
 // const Sponsors = defineAsyncComponent(() => import('/@/layout/sponsors/index.vue'));
+
 
 // 定义变量内容
 const { messages, locale } = useI18n();
@@ -57,9 +59,9 @@ const setLockScreen = computed(() => {
 // 	return isVersion;
 // });
 
-// checkUpdate(() => {
-// 	needUpdate.value = true;
-// }, 60000);
+checkUpdate(() => {
+	needUpdate.value = true;
+}, 60000);
 
 // 获取全局组件大小
 const getGlobalComponentSize = computed(() => {
@@ -96,7 +98,7 @@ onMounted(() => {
 });
 // 页面销毁时，关闭监听布局配置/i18n监听
 onUnmounted(() => {
-	mittBus.off('openSetingsDrawer', () => {});
+	mittBus.off('openSetingsDrawer', () => { });
 });
 // 监听路由的变化，设置网站标题
 watch(
@@ -152,6 +154,12 @@ const updateFavicon = (url: string): void => {
 
 // 加载系统信息
 loadSysInfo();
+
+// 阻止火狐浏览器在拖动时打开新窗口
+document.body.ondrop = function (event) {
+	event.preventDefault();
+	event.stopPropagation();
+};
 </script>
 
 <style lang="scss">
@@ -160,12 +168,15 @@ loadSysInfo();
 		.el-select {
 			width: 171px !important;
 		}
+
 		.el-select__wrapper {
 			line-height: 22px !important;
 		}
+
 		.el-date-editor {
 			--el-date-editor-width: 171px !important;
 		}
+
 		.el-input {
 			width: 171px !important;
 		}
