@@ -1,6 +1,7 @@
 <template>
 	<div class="upgrade-dialog">
-		<el-dialog v-model="state.isUpgrade" width="300px" destroy-on-close :show-close="false" :close-on-click-modal="false" :close-on-press-escape="false">
+		<el-dialog v-model="state.isUpgrade" width="300px" destroy-on-close :show-close="false"
+			:close-on-click-modal="false" :close-on-press-escape="false">
 			<div class="upgrade-title">
 				<div class="upgrade-title-warp">
 					<span class="upgrade-title-warp-txt">{{ $t('message.upgrade.title') }}</span>
@@ -10,13 +11,16 @@
 			<div class="upgrade-content">
 				{{ getThemeConfig.globalTitle }} {{ $t('message.upgrade.msg') }}
 				<div class="mt5">
-					<el-link type="primary" class="font12" href="https://xxx/CHANGELOG.md" target="_black"> CHANGELOG.md </el-link>
+					<el-link type="primary" class="font12" href="https://xxx/CHANGELOG.md" target="_black"> CHANGELOG.md
+					</el-link>
 				</div>
-				<!-- <div class="upgrade-content-desc mt5">{{ $t("message.upgrade.desc") }}</div> -->
+				<div class="upgrade-content-desc mt5">{{ $t("message.upgrade.desc") }}</div>
 			</div>
 			<div class="upgrade-btn">
-				<el-button round size="default" type="info" text @click="onCancel">{{ $t('message.upgrade.btnOne') }}</el-button>
-				<el-button type="primary" round size="default" @click="onUpgrade" :loading="state.isLoading">{{ state.btnTxt }}</el-button>
+				<el-button round size="default" type="info" text @click="onCancel">{{ $t('message.upgrade.btnOne')
+					}}</el-button>
+				<el-button type="primary" round size="default" @click="onUpgrade" :loading="state.isLoading">{{ state.btnTxt
+					}}</el-button>
 			</div>
 		</el-dialog>
 	</div>
@@ -83,9 +87,11 @@ const delayShow = () => {
 		.el-dialog__body {
 			padding: 0 !important;
 		}
+
 		.el-dialog__header {
 			display: none !important;
 		}
+
 		.upgrade-title {
 			text-align: center;
 			height: 130px;
@@ -93,6 +99,7 @@ const delayShow = () => {
 			align-items: center;
 			justify-content: center;
 			position: relative;
+
 			&::after {
 				content: '';
 				position: absolute;
@@ -102,14 +109,17 @@ const delayShow = () => {
 				border-bottom-left-radius: 100%;
 				border-bottom-right-radius: 100%;
 			}
+
 			.upgrade-title-warp {
 				z-index: 1;
 				position: relative;
+
 				.upgrade-title-warp-txt {
 					color: var(--next-color-white);
 					font-size: 22px;
 					letter-spacing: 3px;
 				}
+
 				.upgrade-title-warp-version {
 					color: var(--next-color-white);
 					background-color: var(--el-color-primary-light-4);
@@ -123,19 +133,23 @@ const delayShow = () => {
 				}
 			}
 		}
+
 		.upgrade-content {
 			padding: 20px;
 			line-height: 22px;
+
 			.upgrade-content-desc {
 				color: var(--el-color-info-light-5);
 				font-size: 12px;
 			}
 		}
+
 		.upgrade-btn {
 			border-top: 1px solid var(--el-border-color-lighter, #ebeef5);
 			display: flex;
 			justify-content: space-around;
 			padding: 15px 20px;
+
 			.el-button {
 				width: 100%;
 			}
