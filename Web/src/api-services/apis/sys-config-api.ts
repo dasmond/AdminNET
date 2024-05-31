@@ -20,9 +20,11 @@ import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } fr
 import { AddConfigInput } from '../models';
 import { AdminResultListString } from '../models';
 import { AdminResultListSysConfig } from '../models';
+import { AdminResultObject } from '../models';
 import { AdminResultSqlSugarPagedListSysConfig } from '../models';
 import { AdminResultSysConfig } from '../models';
 import { DeleteConfigInput } from '../models';
+import { InfoSaveInput } from '../models';
 import { PageConfigInput } from '../models';
 import { UpdateConfigInput } from '../models';
 /**
@@ -363,6 +365,97 @@ export const SysConfigApiAxiosParamCreator = function (configuration?: Configura
         },
         /**
          * 
+         * @summary 保存系统信息 🔖
+         * @param {InfoSaveInput} [body] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiSysConfigSaveSysInfoPost: async (body?: InfoSaveInput, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/sysConfig/saveSysInfo`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions :AxiosRequestConfig = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication Bearer required
+            // http bearer authentication required
+            if (configuration && configuration.accessToken) {
+                const accessToken = typeof configuration.accessToken === 'function'
+                    ? await configuration.accessToken()
+                    : await configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
+            }
+
+            localVarHeaderParameter['Content-Type'] = 'application/json-patch+json';
+
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.params) {
+                query.set(key, options.params[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            const needsSerialization = (typeof body !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(body !== undefined ? body : {}) : (body || "");
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary 获取系统信息 🔖
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiSysConfigSysInfoGet: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/sysConfig/sysInfo`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions :AxiosRequestConfig = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication Bearer required
+            // http bearer authentication required
+            if (configuration && configuration.accessToken) {
+                const accessToken = typeof configuration.accessToken === 'function'
+                    ? await configuration.accessToken()
+                    : await configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
+            }
+
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.params) {
+                query.set(key, options.params[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @summary 更新参数配置 🔖
          * @param {UpdateConfigInput} [body] 
          * @param {*} [options] Override http request option.
@@ -516,6 +609,33 @@ export const SysConfigApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @summary 保存系统信息 🔖
+         * @param {InfoSaveInput} [body] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiSysConfigSaveSysInfoPost(body?: InfoSaveInput, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<void>>> {
+            const localVarAxiosArgs = await SysConfigApiAxiosParamCreator(configuration).apiSysConfigSaveSysInfoPost(body, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
+         * 
+         * @summary 获取系统信息 🔖
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiSysConfigSysInfoGet(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<AdminResultObject>>> {
+            const localVarAxiosArgs = await SysConfigApiAxiosParamCreator(configuration).apiSysConfigSysInfoGet(options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
+         * 
          * @summary 更新参数配置 🔖
          * @param {UpdateConfigInput} [body] 
          * @param {*} [options] Override http request option.
@@ -604,6 +724,25 @@ export const SysConfigApiFactory = function (configuration?: Configuration, base
          */
         async apiSysConfigPagePost(body?: PageConfigInput, options?: AxiosRequestConfig): Promise<AxiosResponse<AdminResultSqlSugarPagedListSysConfig>> {
             return SysConfigApiFp(configuration).apiSysConfigPagePost(body, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary 保存系统信息 🔖
+         * @param {InfoSaveInput} [body] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiSysConfigSaveSysInfoPost(body?: InfoSaveInput, options?: AxiosRequestConfig): Promise<AxiosResponse<void>> {
+            return SysConfigApiFp(configuration).apiSysConfigSaveSysInfoPost(body, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary 获取系统信息 🔖
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiSysConfigSysInfoGet(options?: AxiosRequestConfig): Promise<AxiosResponse<AdminResultObject>> {
+            return SysConfigApiFp(configuration).apiSysConfigSysInfoGet(options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -699,6 +838,27 @@ export class SysConfigApi extends BaseAPI {
      */
     public async apiSysConfigPagePost(body?: PageConfigInput, options?: AxiosRequestConfig) : Promise<AxiosResponse<AdminResultSqlSugarPagedListSysConfig>> {
         return SysConfigApiFp(this.configuration).apiSysConfigPagePost(body, options).then((request) => request(this.axios, this.basePath));
+    }
+    /**
+     * 
+     * @summary 保存系统信息 🔖
+     * @param {InfoSaveInput} [body] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SysConfigApi
+     */
+    public async apiSysConfigSaveSysInfoPost(body?: InfoSaveInput, options?: AxiosRequestConfig) : Promise<AxiosResponse<void>> {
+        return SysConfigApiFp(this.configuration).apiSysConfigSaveSysInfoPost(body, options).then((request) => request(this.axios, this.basePath));
+    }
+    /**
+     * 
+     * @summary 获取系统信息 🔖
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SysConfigApi
+     */
+    public async apiSysConfigSysInfoGet(options?: AxiosRequestConfig) : Promise<AxiosResponse<AdminResultObject>> {
+        return SysConfigApiFp(this.configuration).apiSysConfigSysInfoGet(options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * 

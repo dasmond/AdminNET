@@ -14,6 +14,7 @@ using IGeekFan.AspNetCore.Knife4jUI;
 using IPTools.Core;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -52,6 +53,7 @@ public class Startup : AppStartup
         services.AddSchedule(options =>
         {
             options.AddPersistence<DbJobPersistence>(); // 添加作业持久化器
+            options.AddMonitor<JobMonitor>(); // 添加作业执行监视器
         });
         // 脱敏检测
         services.AddSensitiveDetection();
@@ -186,7 +188,7 @@ public class Startup : AppStartup
 
         app.Use(async (context, next) =>
         {
-            context.Response.Headers.Add("Admin.NET", "Admin.NET");
+            context.Response.Headers.Append("Admin.NET", "Admin.NET");
             await next();
         });
 
@@ -228,7 +230,14 @@ public class Startup : AppStartup
         app.UseClientRateLimiting();
 
         // 任务调度看板
-        app.UseScheduleUI();
+        app.UseScheduleUI(options =>
+        {
+            options.RequestPath = "/schedule";  // 必须以 / 开头且不以 / 结尾
+            options.DisableOnProduction = true; // 生产环境关闭
+            options.DisplayEmptyTriggerJobs = true; // 是否显示空作业触发器的作业
+            options.DisplayHead = false; // 是否显示页头
+            options.DefaultExpandAllJobs = false; // 是否默认展开所有作业
+        });
 
         // 配置Swagger-Knife4UI（路由前缀一致代表独立，不同则代表共存）
         app.UseKnife4UI(options =>

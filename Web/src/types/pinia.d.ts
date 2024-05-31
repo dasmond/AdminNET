@@ -14,7 +14,8 @@ declare interface UserInfos<T = any> {
 declare interface UserInfosState {
 	userInfos: UserInfos;
 	constList: T[];
-	dictList: T[];
+	dictList: T;
+	dictListInt: T;
 }
 
 // 路由缓存列表
@@ -91,5 +92,6 @@ declare interface ThemeConfigState {
 		copyright: string;
 		globalI18n: string;
 		globalComponentSize: string;
+		logoUrl: string; // 系统 logo 地址
 	};
 }

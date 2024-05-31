@@ -34,6 +34,15 @@
 								<el-option label="HG" :value="'12'" />
 								<el-option label="ClickHouse" :value="'13'" />
 								<el-option label="GBase" :value="'14'" />
+								<el-option label="Odbc" :value="'15'" />
+								<el-option label="OceanBaseForOracle" :value="'16'" />
+								<el-option label="TDengine" :value="'17'" />
+								<el-option label="GaussDB" :value="'18'" />
+								<el-option label="OceanBase" :value="'19'" />
+								<el-option label="Tidb" :value="'20'" />
+								<el-option label="Vastbase" :value="'21'" />
+								<el-option label="PolarDB" :value="'22'" />
+								<el-option label="Doris" :value="'23'" />
 								<el-option label="Custom" :value="'900'" />
 							</el-select>
 						</el-form-item>
@@ -56,11 +65,25 @@
 						</el-form-item>
 					</el-col>
 					<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
+						<el-form-item label="生成菜单" prop="generateMenu">
+							<el-radio-group v-model="state.ruleForm.generateMenu">
+								<el-radio :value="true">是</el-radio>
+								<el-radio :value="false">否</el-radio>
+							</el-radio-group>
+						</el-form-item>
+					</el-col>
+					<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
+						<el-form-item label="菜单图标" prop="menuIcon">
+							<IconSelector v-model="state.ruleForm.menuIcon" :size="getGlobalComponentSize" placeholder="菜单图标" type="all" />
+						</el-form-item>
+					</el-col>
+					<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
 						<el-form-item label="父级菜单" prop="menuPid">
 							<el-cascader
 								:options="state.menuData"
 								:props="{ checkStrictly: true, emitPath: false, value: 'id', label: 'title' }"
 								placeholder="请选择上级菜单"
+								:disabled="!state.ruleForm.generateMenu"
 								clearable
 								class="w100"
 								v-model="state.ruleForm.menuPid"
@@ -94,7 +117,7 @@
 					</el-col>
 					<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
 						<el-form-item label="支持打印" prop="printType">
-							<el-select v-model="state.ruleForm.printType" filterable class="w100">
+							<el-select v-model="state.ruleForm.printType" filterable class="w100" @change="printTypeChanged">
 								<el-option v-for="item in state.printTypeList" :key="item.value" :label="item.value" :value="item.code" />
 							</el-select>
 						</el-form-item>
@@ -119,7 +142,9 @@
 </template>
 
 <script lang="ts" setup name="sysEditCodeGen">
-import { onMounted, reactive, ref } from 'vue';
+import { computed, onMounted, reactive, ref } from 'vue';
+import IconSelector from '/@/components/iconSelector/index.vue';
+import other from '/@/utils/other';
 
 import { getAPI } from '/@/utils/axios-utils';
 import { SysCodeGenApi, SysDictDataApi, SysMenuApi, SysPrintApi } from '/@/api-services/api';
@@ -180,6 +205,17 @@ const tableChanged = (item: any) => {
 	state.ruleForm.busName = item.tableComment;
 };
 
+// print改变
+const printTypeChanged = () => {
+	if (state.ruleForm.printType === '') return;
+	if (state.ruleForm.printType == 'off') state.ruleForm.printName = '';
+};
+
+// 获取全局组件大小
+const getGlobalComponentSize = computed(() => {
+	return other.globalComponentSize();
+});
+
 // 打开弹窗
 const openDialog = (row: any) => {
 	state.ruleForm = JSON.parse(JSON.stringify(row));
@@ -214,3 +250,9 @@ const submit = () => {
 // 导出对象
 defineExpose({ openDialog });
 </script>
+
+<style lang="scss" scoped>
+:deep(.el-dialog__body) {
+	min-height: 450px;
+}
+</style>

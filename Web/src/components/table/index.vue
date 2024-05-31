@@ -1,17 +1,17 @@
 <template>
 	<div class="table-container">
-		<div class="table-header mb15">
+		<div v-if="!hideTool" class="table-header mb15">
 			<div>
 				<slot name="command"></slot>
 			</div>
-			<div v-loading="state.importLoading" class="table-footer-tool">
+			<div v-loading="state.exportLoading" class="table-footer-tool">
 				<SvgIcon v-if="!config.hideRefresh" name="iconfont icon-shuaxin" :size="22" title="刷新" @click="onRefreshTable" />
 				<el-dropdown v-if="!config.hideExport" trigger="click">
 					<SvgIcon name="iconfont icon-yunxiazai_o" :size="22" title="导出" />
 					<template #dropdown>
 						<el-dropdown-menu>
-							<el-dropdown-item @click="onImportTable">导出本页数据</el-dropdown-item>
-							<el-dropdown-item @click="onImportTableAll">导出全部数据</el-dropdown-item>
+							<el-dropdown-item @click="onExportTable">导出本页数据</el-dropdown-item>
+							<el-dropdown-item @click="onExportTableAll">导出全部数据</el-dropdown-item>
 						</el-dropdown-menu>
 					</template>
 				</el-dropdown>
@@ -58,6 +58,9 @@
 			<el-table-column type="selection" :reserve-selection="true" :width="30" v-if="config.isSelection && config.showSelection" />
 			<el-table-column type="index" label="序号" align="center" :width="60" v-if="config.isSerialNo" />
 			<el-table-column v-for="(item, index) in setHeader" :key="index" v-bind="item">
+				<template #header v-if="!item.children && $slots[item.prop]">
+					<slot :name="`${item.prop}header`" />
+				</template>
 				<!-- 自定义列插槽，插槽名为columns属性的prop -->
 				<template #default="scope" v-if="!item.children && $slots[item.prop]">
 					<formatter v-if="item.formatter" :fn="item.formatter(scope.row, scope.column, scope.cellValue, scope.index)"> </formatter>
@@ -202,6 +205,10 @@ const state = reactive({
 	checkListIndeterminate: false,
 });
 
+const hideTool = computed(() => {
+	return props.config.hideTool ?? false;
+});
+
 const getProperty = (obj, property) => {
 	const keys = property.split('.');
 	let value = obj;
@@ -269,12 +276,12 @@ const pageReset = () => {
 	handleList();
 };
 // 导出当前页
-const onImportTable = () => {
+const onExportTable = () => {
 	if (setHeader.value.length <= 0) return ElMessage.error('没有勾选要导出的列');
 	exportData(state.data);
 };
 // 全部导出
-const onImportTableAll = async () => {
+const onExportTableAll = async () => {
 	if (setHeader.value.length <= 0) return ElMessage.error('没有勾选要导出的列');
 	state.exportLoading = true;
 	const param = Object.assign({}, props.param, { page: 1, pageSize: 9999999 });
@@ -417,7 +424,7 @@ onMounted(() => {
 		state.page.field = props.defaultSort.prop;
 		state.page.order = props.defaultSort.order;
 	}
-	state.page.pageSize = props.config.pageSize;
+	state.page.pageSize = props.config.pageSize ?? 10;
 	handleList();
 });
 

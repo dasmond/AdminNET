@@ -45,16 +45,15 @@ public partial class SysFile : EntityBase
     /// <summary>
     /// 存储路径
     /// </summary>
-    [SugarColumn(ColumnDescription = "存储路径", Length = 128)]
-    [MaxLength(128)]
+    [SugarColumn(ColumnDescription = "存储路径", Length = 512)]
+    [MaxLength(512)]
     public string? FilePath { get; set; }
 
     /// <summary>
     /// 文件大小KB
     /// </summary>
-    [SugarColumn(ColumnDescription = "文件大小KB", Length = 16)]
-    [MaxLength(16)]
-    public string? SizeKb { get; set; }
+    [SugarColumn(ColumnDescription = "文件大小KB")]
+    public long SizeKb { get; set; }
 
     /// <summary>
     /// 文件大小信息-计算后的
@@ -76,4 +75,30 @@ public partial class SysFile : EntityBase
     [SugarColumn(ColumnDescription = "文件MD5", Length = 128)]
     [MaxLength(128)]
     public string? FileMd5 { get; set; }
+
+    /// <summary>
+    /// 关联对象名称（如子对象）
+    /// </summary>
+    [SugarColumn(ColumnDescription = "关联对象名称", Length = 128)]
+    [MaxLength(128)]
+    public string? RelationName { get; set; }
+
+    /// <summary>
+    /// 关联对象Id
+    /// </summary>
+    [SugarColumn(ColumnDescription = "关联对象Id")]
+    public long? RelationId { get; set; }
+
+    /// <summary>
+    /// 所属Id（如主对象）
+    /// </summary>
+    [SugarColumn(ColumnDescription = "所属Id")]
+    public long? BelongId { get; set; }
+
+    /// <summary>
+    /// 文件类别
+    /// </summary>
+    [SugarColumn(ColumnDescription = "文件类别", Length = 128)]
+    [MaxLength(128)]
+    public string? FileType { get; set; }
 }

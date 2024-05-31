@@ -360,8 +360,8 @@ public class SysCodeGenService : IDynamicApiController, ITransient
                 Directory.CreateDirectory(dirPath);
             File.WriteAllText(targetPathList[i], tResult, Encoding.UTF8);
         }
-
-        await AddMenu(input.TableName, input.BusName, input.MenuPid, tableFieldList);
+        if (input.GenerateMenu)
+            await AddMenu(input.TableName, input.BusName, input.MenuPid ?? 0, input.MenuIcon, tableFieldList);
         // 非ZIP压缩返回空
         if (!input.GenerateType.StartsWith('1'))
             return null;
@@ -406,9 +406,10 @@ public class SysCodeGenService : IDynamicApiController, ITransient
     /// <param name="className"></param>
     /// <param name="busName"></param>
     /// <param name="pid"></param>
+    /// <param name="menuIcon"></param>
     /// <param name="tableFieldList"></param>
     /// <returns></returns>
-    private async Task AddMenu(string className, string busName, long pid, List<CodeGenConfig> tableFieldList)
+    private async Task AddMenu(string className, string busName, long pid, string menuIcon, List<CodeGenConfig> tableFieldList)
     {
         var pPath = string.Empty;
         // 若 pid=0 为顶级则创建菜单目录
@@ -454,6 +455,7 @@ public class SysCodeGenService : IDynamicApiController, ITransient
             Title = busName + "管理",
             Name = className[..1].ToLower() + className[1..],
             Type = MenuTypeEnum.Menu,
+            Icon = menuIcon,
             Path = pPath + "/" + className.ToLower(),
             Component = "/main/" + className[..1].ToLower() + className[1..] + "/index",
         };

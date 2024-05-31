@@ -1,4 +1,4 @@
-﻿// Admin.NET 项目的版权、商标、专利和其他相关权利均受相应法律法规的保护。使用本项目应遵守相关法律法规和许可证的要求。
+// Admin.NET 项目的版权、商标、专利和其他相关权利均受相应法律法规的保护。使用本项目应遵守相关法律法规和许可证的要求。
 //
 // 本项目主要遵循 MIT 许可证和 Apache 许可证（版本 2.0）进行分发和使用。许可证位于源代码树根目录中的 LICENSE-MIT 和 LICENSE-APACHE 文件。
 //
@@ -16,17 +16,24 @@ namespace Admin.NET.Core;
 /// </summary>
 public sealed class SignatureAuthenticationHandler : AuthenticationHandler<SignatureAuthenticationOptions>
 {
-    private readonly SysCacheService _cacheService;
+#if NET6_0
 
     public SignatureAuthenticationHandler(IOptionsMonitor<SignatureAuthenticationOptions> options,
         ILoggerFactory logger,
         UrlEncoder encoder,
-        ISystemClock clock,
-        SysCacheService cacheService)
+        ISystemClock clock)
         : base(options, logger, encoder, clock)
     {
-        _cacheService = cacheService;
     }
+
+#else
+    public SignatureAuthenticationHandler(IOptionsMonitor<SignatureAuthenticationOptions> options,
+        ILoggerFactory logger,
+        UrlEncoder encoder)
+        : base(options, logger, encoder)
+    {
+    }
+#endif
 
     private new SignatureAuthenticationEvent Events
     {
@@ -61,7 +68,13 @@ public sealed class SignatureAuthenticationHandler : AuthenticationHandler<Signa
             return await AuthenticateResultFailAsync("timestamp 值不合法");
 
         var requestDate = DateTimeUtil.ToLocalTimeDateBySeconds(timestamp);
-        if (requestDate > Clock.UtcNow.Add(Options.AllowedDateDrift).LocalDateTime || requestDate < Clock.UtcNow.Subtract(Options.AllowedDateDrift).LocalDateTime)
+
+#if NET6_0
+        var utcNow = Clock.UtcNow;
+#else
+        var utcNow = TimeProvider.GetUtcNow();
+#endif
+        if (requestDate > utcNow.Add(Options.AllowedDateDrift).LocalDateTime || requestDate < utcNow.Subtract(Options.AllowedDateDrift).LocalDateTime)
             return await AuthenticateResultFailAsync("timestamp 值已超过允许的偏差范围");
 
         // 获取 accessSecret
@@ -78,10 +91,11 @@ public sealed class SignatureAuthenticationHandler : AuthenticationHandler<Signa
             return await AuthenticateResultFailAsync("sign 无效的签名");
 
         // 重放检测
+        var cache = App.GetRequiredService<SysCacheService>();
         var cacheKey = $"{CacheConst.KeyOpenAccessNonce}{accessKey}|{nonce}";
-        if (_cacheService.ExistKey(cacheKey))
+        if (cache.ExistKey(cacheKey))
             return await AuthenticateResultFailAsync("重复的请求");
-        _cacheService.Set(cacheKey, null, Options.AllowedDateDrift * 2); // 缓存过期时间为偏差范围时间的2倍
+        cache.Set(cacheKey, null, Options.AllowedDateDrift * 2); // 缓存过期时间为偏差范围时间的2倍
 
         // 已验证成功
         var signatureValidatedContext = new SignatureValidatedContext(Context, Scheme, Options)

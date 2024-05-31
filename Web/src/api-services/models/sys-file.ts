@@ -127,10 +127,10 @@ export interface SysFile {
     /**
      * 文件大小KB
      *
-     * @type {string}
+     * @type {number}
      * @memberof SysFile
      */
-    sizeKb?: string | null;
+    sizeKb?: number;
 
     /**
      * 文件大小信息-计算后的
@@ -155,4 +155,36 @@ export interface SysFile {
      * @memberof SysFile
      */
     fileMd5?: string | null;
+
+    /**
+     * 关联对象名称（如子对象）
+     *
+     * @type {string}
+     * @memberof SysFile
+     */
+    relationName?: string | null;
+
+    /**
+     * 关联对象Id
+     *
+     * @type {number}
+     * @memberof SysFile
+     */
+    relationId?: number | null;
+
+    /**
+     * 所属Id（如主对象）
+     *
+     * @type {number}
+     * @memberof SysFile
+     */
+    belongId?: number | null;
+
+    /**
+     * 文件类别
+     *
+     * @type {string}
+     * @memberof SysFile
+     */
+    fileType?: string | null;
 }

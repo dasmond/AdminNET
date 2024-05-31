@@ -15,6 +15,16 @@
 						</el-form-item>
 					</el-col>
 				</el-row>
+				<el-row>
+					<el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="mb20">
+						<el-form-item label="文件类型" prop="fileType">
+							<el-select v-model="state.ruleForm.fileType" placeholder="请选择文件类型" style="margin-bottom: 10px">
+								<el-option label="相关文件" value="相关文件" />
+								<el-option label="归档文件" value="归档文件" />
+							</el-select>
+						</el-form-item>
+					</el-col>
+				</el-row>
 			</el-form>
 			<template #footer>
 				<span class="dialog-footer">

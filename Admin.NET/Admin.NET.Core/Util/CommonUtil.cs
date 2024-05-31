@@ -100,81 +100,273 @@ public static class CommonUtil
         }
     }
 
-
     /// <summary>
     /// 导出模板Excel
     /// </summary>
-    /// <param name="fileName"></param>
     /// <returns></returns>
-    public static async Task<IActionResult> ExportExcelTemplate<T>(string fileName) where T : class, new()
+    public static async Task<IActionResult> ExportExcelTemplate<T>() where T : class, new()
     {
-        fileName = $"{fileName}_{DateTime.Now.ToString("yyyyMMddHHmmss")}.xlsx";
         IImporter importer = new ExcelImporter();
-        var res = await importer.GenerateTemplate<T>(Path.Combine(App.WebHostEnvironment.WebRootPath, fileName));
-        return new FileStreamResult(new FileStream(res.FileName, FileMode.Open), "application/octet-stream") { FileDownloadName = fileName };
+        var res = await importer.GenerateTemplateBytes<T>();
+
+        return new FileContentResult(res, "application/octet-stream") { FileDownloadName = typeof(T).Name + ".xlsx" };
     }
-
-
 
     /// <summary>
-    /// 导出模板Excel
+    /// 导出数据excel
     /// </summary>
-    /// <param name="fileName"></param>
-    /// <param name="fileDto"></param>
     /// <returns></returns>
-    public static async Task<IActionResult> ExportExcelTemplate(string fileName, dynamic fileDto)
+    public static async Task<IActionResult> ExportExcelData<T>(ICollection<T> data) where T : class, new()
     {
-        MethodInfo generateTemplateMethod = typeof(CommonUtil).GetMethods().FirstOrDefault(p => p.Name == "ExportExcelTemplate" && p.IsGenericMethodDefinition);
-        MethodInfo closedGenerateTemplateMethod = generateTemplateMethod.MakeGenericMethod(fileDto.GetType());
-        return await (Task<IActionResult>)closedGenerateTemplateMethod.Invoke(null, new object[] { fileName });
+        var export = new ExcelExporter();
+        var res = await export.ExportAsByteArray<T>(data);
+
+        return new FileContentResult(res, "application/octet-stream") { FileDownloadName = typeof(T).Name + ".xlsx" };
     }
 
+    /// <summary>
+    /// 导出数据excel,包括字典转换
+    /// </summary>
+    /// <returns></returns>
+    public static async Task<IActionResult> ExportExcelData<TSource, TTarget>(ISugarQueryable<TSource> query, Func<TSource, TTarget, TTarget> action = null)
+        where TSource : class, new() where TTarget : class, new()
+    {
+        var PropMappings = GetExportPropertMap<TSource, TTarget>();
+        var data = query.ToList();
+        //相同属性复制值，字典值转换
+        var result = new List<TTarget>();
+        foreach (var item in data)
+        {
+            var newData = new TTarget();
+            foreach (var dict in PropMappings)
+            {
+                var targeProp = dict.Value.Item3;
+                if (targeProp != null)
+                {
+                    var propertyInfo = dict.Value.Item2;
+                    var sourceVal = propertyInfo.GetValue(item, null);
+                    if (sourceVal == null)
+                    {
+                        continue;
+                    }
+
+                    var map = dict.Value.Item1;
+                    if (map != null && map.ContainsKey(sourceVal))
+                    {
+                        var newVal = map[sourceVal];
+                        targeProp.SetValue(newData, newVal);
+                    }
+                    else
+                    {
+                        if (targeProp.PropertyType.FullName == propertyInfo.PropertyType.FullName)
+                        {
+                            targeProp.SetValue(newData, sourceVal);
+                        }
+                        else
+                        {
+                            var newVal = sourceVal.ToString().ParseTo(targeProp.PropertyType);
+                            targeProp.SetValue(newData, newVal);
+                        }
+                    }
+                }
+                if (action != null)
+                {
+                    newData = action(item, newData);
+                }
+            }
+            result.Add(newData);
+        }
+        var export = new ExcelExporter();
+        var res = await export.ExportAsByteArray(result);
+
+        return new FileContentResult(res, "application/octet-stream") { FileDownloadName = typeof(TTarget).Name + ".xlsx" };
+    }
 
     /// <summary>
     /// 导入数据Excel
     /// </summary>
-    /// <typeparam name="T"></typeparam>
     /// <param name="file"></param>
     /// <returns></returns>
-    public static async Task<ICollection<T>> ImportExcelData<T>([Required] IFormFile file, Func<ImportResult<T>, ImportResult<T>> importResultCallback = null) where T : class, new()
+    public static async Task<ICollection<T>> ImportExcelData<T>([Required] IFormFile file) where T : class, new()
     {
-        var newFile = await App.GetRequiredService<SysFileService>().UploadFile(file, "");
-        var filePath = Path.Combine(App.WebHostEnvironment.WebRootPath, newFile.FilePath, newFile.Id.ToString() + newFile.Suffix);
-        var errorFileUrl = Path.Combine(newFile.FilePath, newFile.Id.ToString() + "_" + newFile.Suffix);
-
         IImporter importer = new ExcelImporter();
-        var res = await importer.Import<T>(filePath,importResultCallback);
-        if (res == null || res.Exception != null)
-            throw Oops.Oh("导入异常:" + res.Exception);
+        var res = await importer.Import<T>(file.OpenReadStream());
+        var message = string.Empty;
         if (res.HasError)
         {
-            if (res.TemplateErrors.Count > 0)
+            if (res.Exception != null)
+                message += $"\r\n{res.Exception.Message}";
+            foreach (DataRowErrorInfo drErrorInfo in res.RowErrors)
             {
-                throw Oops.Oh("导入模板格式错误");
+                int rowNum = drErrorInfo.RowIndex;
+                foreach (var item in drErrorInfo.FieldErrors)
+                    message += $"\r\n{item.Key}：{item.Value}（文件第{drErrorInfo.RowIndex}行）";
             }
-            else
-            {
-                throw Oops.Oh($"请下载错误文件,根据提示修改后再次导入,<a href='{errorFileUrl}' target='_blank'>点击下载</a>");
-            }
+            message += "字段缺失：" + string.Join("，", res.TemplateErrors.Select(m => m.RequireColumnName).ToList());
+            throw Oops.Oh("导入异常:" + message);
         }
         return res.Data;
     }
 
+    // 例：List<Dm_ApplyDemo> ls = CommonUtil.ParseList<Dm_ApplyDemoInport, Dm_ApplyDemo>(importResult.Data);
+    /// <summary>
+    /// 对象转换 含字典转换
+    /// </summary>
+    /// <typeparam name="TSource"></typeparam>
+    /// <typeparam name="TTarget"></typeparam>
+    /// <param name="data"></param>
+    /// <param name="action"></param>
+    /// <returns></returns>
+    public static List<TTarget> ParseList<TSource, TTarget>(IEnumerable<TSource> data, Func<TSource, TTarget, TTarget> action = null) where TTarget : new()
+    {
+        var propMappings = GetImportPropertMap<TSource, TTarget>();
+        // 相同属性复制值，字典值转换
+        var result = new List<TTarget>();
+        foreach (var item in data)
+        {
+            var newData = new TTarget();
+            foreach (var dict in propMappings)
+            {
+                var targeProp = dict.Value.Item3;
+                if (targeProp != null)
+                {
+                    var propertyInfo = dict.Value.Item2;
+                    var sourceVal = propertyInfo.GetValue(item, null);
+                    if (sourceVal == null)
+                        continue;
 
+                    var map = dict.Value.Item1;
+                    if (map != null && map.ContainsKey(sourceVal.ToString()))
+                    {
+                        var newVal = map[sourceVal.ToString()];
+                        targeProp.SetValue(newData, newVal);
+                    }
+                    else
+                    {
+                        if (targeProp.PropertyType.FullName == propertyInfo.PropertyType.FullName)
+                        {
+                            targeProp.SetValue(newData, sourceVal);
+                        }
+                        else
+                        {
+                            var newVal = sourceVal.ToString().ParseTo(targeProp.PropertyType);
+                            targeProp.SetValue(newData, newVal);
+                        }
+                    }
+                }
+            }
+            if (action != null)
+                newData = action(item, newData);
+
+            if (newData != null)
+                result.Add(newData);
+        }
+        return result;
+    }
 
     /// <summary>
-    /// 导入数据Excel
+    /// 获取导入属性映射
     /// </summary>
-    /// <param name="file"></param>
-    /// <param name="dataDto"></param>
-    /// <returns></returns>
-    public static async Task<dynamic> ImportExcelData([Required] IFormFile file, dynamic dataDto)
+    /// <typeparam name="TSource"></typeparam>
+    /// <typeparam name="TTarget"></typeparam>
+    /// <returns>整理导入对象的 属性名称， 字典数据，原属性信息，目标属性信息 </returns>
+    private static Dictionary<string, Tuple<Dictionary<string, object>, PropertyInfo, PropertyInfo>> GetImportPropertMap<TSource, TTarget>() where TTarget : new()
     {
-        MethodInfo importMethod = typeof(CommonUtil).GetMethods().FirstOrDefault(p => p.Name == "ImportExcelData" && p.IsGenericMethodDefinition);
-        MethodInfo closedImportMethod = importMethod.MakeGenericMethod(dataDto.GetType());
-        var parameters=importMethod.GetParameters();
-        var task = (Task)closedImportMethod.Invoke(null, new object[] { file, parameters[1].DefaultValue });
-        await task;
-        return task.GetType().GetProperty("Result").GetValue(task);
+        // 整理导入对象的属性名称，<字典数据，原属性信息，目标属性信息>
+        var propMappings = new Dictionary<string, Tuple<Dictionary<string, object>, PropertyInfo, PropertyInfo>>();
+
+        var dictService = App.GetService<SqlSugarRepository<SysDictData>>();
+        var tSourceProps = typeof(TSource).GetProperties().ToList();
+        var tTargetProps = typeof(TTarget).GetProperties().ToDictionary(m => m.Name);
+        foreach (var propertyInfo in tSourceProps)
+        {
+            var attrs = propertyInfo.GetCustomAttribute<ImportDictAttribute>();
+            if (attrs != null && !string.IsNullOrWhiteSpace(attrs.TypeCode))
+            {
+                var targetProp = tTargetProps[attrs.TargetPropName];
+                var mappingValues = dictService.Context.Queryable<SysDictType, SysDictData>((a, b) =>
+                    new JoinQueryInfos(JoinType.Inner, a.Id == b.DictTypeId))
+                    .Where(a => a.Code == attrs.TypeCode)
+                    .Where((a, b) => a.Status == StatusEnum.Enable && b.Status == StatusEnum.Enable)
+                    .Select((a, b) => new
+                    {
+                        Label = b.Value,
+                        Value = b.Code
+                    }).ToList()
+                    .ToDictionary(m => m.Label, m => m.Value.ParseTo(targetProp.PropertyType));
+                propMappings.Add(propertyInfo.Name, new Tuple<Dictionary<string, object>, PropertyInfo, PropertyInfo>(mappingValues, propertyInfo, targetProp));
+            }
+            else
+            {
+                propMappings.Add(propertyInfo.Name, new Tuple<Dictionary<string, object>, PropertyInfo, PropertyInfo>(
+                    null, propertyInfo, tTargetProps.ContainsKey(propertyInfo.Name) ? tTargetProps[propertyInfo.Name] : null));
+            }
+        }
+
+        return propMappings;
+    }
+
+    /// <summary>
+    /// 获取导出属性映射
+    /// </summary>
+    /// <typeparam name="TSource"></typeparam>
+    /// <typeparam name="TTarget"></typeparam>
+    /// <returns>整理导入对象的 属性名称， 字典数据，原属性信息，目标属性信息 </returns>
+    private static Dictionary<string, Tuple<Dictionary<object, string>, PropertyInfo, PropertyInfo>> GetExportPropertMap<TSource, TTarget>() where TTarget : new()
+    {
+        // 整理导入对象的属性名称，<字典数据，原属性信息，目标属性信息>
+        var propMappings = new Dictionary<string, Tuple<Dictionary<object, string>, PropertyInfo, PropertyInfo>>();
+
+        var dictService = App.GetService<SqlSugarRepository<SysDictData>>();
+        var targetProps = typeof(TTarget).GetProperties().ToList();
+        var sourceProps = typeof(TSource).GetProperties().ToDictionary(m => m.Name);
+        foreach (var propertyInfo in targetProps)
+        {
+            var attrs = propertyInfo.GetCustomAttribute<ImportDictAttribute>();
+            if (attrs != null && !string.IsNullOrWhiteSpace(attrs.TypeCode))
+            {
+                var targetProp = sourceProps[attrs.TargetPropName];
+                var mappingValues = dictService.Context.Queryable<SysDictType, SysDictData>((a, b) =>
+                    new JoinQueryInfos(JoinType.Inner, a.Id == b.DictTypeId))
+                    .Where(a => a.Code == attrs.TypeCode)
+                    .Where((a, b) => a.Status == StatusEnum.Enable && b.Status == StatusEnum.Enable)
+                    .Select((a, b) => new
+                    {
+                        Label = b.Value,
+                        Value = b.Code
+                    }).ToList()
+                    .ToDictionary(m => m.Value.ParseTo(targetProp.PropertyType), m => m.Label);
+                propMappings.Add(propertyInfo.Name, new Tuple<Dictionary<object, string>, PropertyInfo, PropertyInfo>(mappingValues, targetProp, propertyInfo));
+            }
+            else
+            {
+                propMappings.Add(propertyInfo.Name, new Tuple<Dictionary<object, string>, PropertyInfo, PropertyInfo>(
+                    null, sourceProps.ContainsKey(propertyInfo.Name) ? sourceProps[propertyInfo.Name] : null, propertyInfo));
+            }
+        }
+
+        return propMappings;
+    }
+
+    /// <summary>
+    /// 获取属性映射
+    /// </summary>
+    /// <typeparam name="TTarget"></typeparam>
+    /// <returns>整理导入对象的 属性名称， 字典数据，原属性信息，目标属性信息 </returns>
+    private static Dictionary<string, Tuple<string, string>> GetExportDicttMap<TTarget>() where TTarget : new()
+    {
+        // 整理导入对象的属性名称，目标属性名，字典Code
+        var propMappings = new Dictionary<string, Tuple<string, string>>();
+        var tTargetProps = typeof(TTarget).GetProperties();
+        foreach (var propertyInfo in tTargetProps)
+        {
+            var attrs = propertyInfo.GetCustomAttribute<ImportDictAttribute>();
+            if (attrs != null && !string.IsNullOrWhiteSpace(attrs.TypeCode))
+            {
+                propMappings.Add(propertyInfo.Name, new Tuple<string, string>(attrs.TargetPropName, attrs.TypeCode));
+            }
+        }
+
+        return propMappings;
     }
 }

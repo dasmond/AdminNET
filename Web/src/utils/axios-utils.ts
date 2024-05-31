@@ -1,5 +1,5 @@
 /**
- * 当前版本：v1.0.6
+ * 当前版本：v1.4.0
  * 使用描述：https://editor.swagger.io 代码生成 typescript-axios 辅组工具库
  * 依赖说明：适配 axios 版本：v0.21.4
  * 视频教程：https://www.bilibili.com/video/BV1EW4y1C71D
@@ -26,6 +26,11 @@ export const getToken = () => {
 	return Local.get(accessTokenKey);
 };
 
+// 获取请求头 token
+export const getHeader = () => {
+	return { authorization: 'Bearer ' + getToken() };
+};
+
 // 清除 token
 export const clearAccessTokens = () => {
 	clearTokens();
@@ -45,12 +50,13 @@ export const clearTokens = () => {
 export const axiosInstance: AxiosInstance = globalAxios;
 
 // 这里可以配置 axios 更多选项 =========================================
+axiosInstance.defaults.timeout = 1000 * 60 * 10; // 设置超时，默认 10 分钟
 
 // axios 请求拦截
 axiosInstance.interceptors.request.use(
 	(conf) => {
-		// 获取本地的 token
-		const accessToken = Local.get(accessTokenKey);
+		// 获取本地的 token或session中的token
+		const accessToken = Local.get(accessTokenKey) ? Local.get(accessTokenKey) : Session.get('token');
 		if (accessToken) {
 			// 将 token 添加到请求报文头中
 			conf.headers!['Authorization'] = `Bearer ${accessToken}`;
@@ -143,7 +149,10 @@ axiosInstance.interceptors.response.use(
 			} else {
 				message = serve.message;
 			}
-			ElMessage.error(message);
+			// 用户自定义处理异常
+			if (!res.config?.customCatch) {
+				ElMessage.error(message);
+			}
 			throw new Error(message);
 		}
 
@@ -157,8 +166,11 @@ axiosInstance.interceptors.response.use(
 			}
 		}
 
-		// 响应错误代码及自定义处理
-		ElMessage.error(error);
+		// 用户自定义处理异常
+		if (!error.config?.customCatch) {
+			// 响应错误代码及自定义处理
+			ElMessage.error(error);
+		}
 
 		return Promise.reject(error);
 	}
@@ -191,7 +203,7 @@ export function feature<T, U = Error>(promise: Promise<T>, errorExt?: object): P
  * @param axiosObject axios 实例
  * @returns 服务API 实例
  */
-export function getAPI<T extends BaseAPI>(
+export function getAPI<T>(
 	// eslint-disable-next-line no-unused-vars
 	apiType: new (configuration?: Configuration, basePath?: string, axiosInstance?: AxiosInstance) => T,
 	configuration: Configuration = serveConfig,
@@ -220,4 +232,13 @@ export function decryptJWT(token: string): any {
  */
 export function getJWTDate(timestamp: number): Date {
 	return new Date(timestamp * 1000);
+}
+
+/**
+ * 实现异步延迟
+ * @param delay 延迟时间（毫秒）
+ * @returns
+ */
+export function sleep(delay: number) {
+	return new Promise((resolve) => setTimeout(resolve, delay));
 }

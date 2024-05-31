@@ -20,7 +20,9 @@ import other from '/@/utils/other';
 import { Local, Session } from '/@/utils/storage';
 import mittBus from '/@/utils/mitt';
 import setIntroduction from '/@/utils/setIconfont';
-// import checkUpdate from '/@/utils/auto-update';
+import Watermark from '/@/utils/watermark';
+import { SysConfigApi } from '/@/api-services';
+import { getAPI } from '/@/utils/axios-utils';
 
 // 引入组件
 const LockScreen = defineAsyncComponent(() => import('/@/layout/lockScreen/index.vue'));
@@ -44,6 +46,7 @@ const setLockScreen = computed(() => {
 	// https://gitee.com/lyt-top/vue-next-admin/issues/I6AF8P
 	return themeConfig.value.isLockScreen ? themeConfig.value.lockScreenTime > 1 : themeConfig.value.lockScreenTime >= 0;
 });
+
 // // 获取版本号
 // const getVersion = computed(() => {
 // 	let isVersion = false;
@@ -105,6 +108,49 @@ watch(
 		deep: true,
 	}
 );
+
+// 加载系统信息
+const loadSysInfo = () => {
+	getAPI(SysConfigApi)
+		.apiSysConfigSysInfoGet()
+		.then((res) => {
+			if (res.data.type != 'success') return;
+
+			const data = res.data.result;
+			themeConfig.value.logoUrl = data.sysLogo;
+			themeConfig.value.globalTitle = data.sysTitle;
+			themeConfig.value.globalViceTitle = data.sysViceTitle;
+			themeConfig.value.globalViceTitleMsg = data.sysViceDesc;
+			// 水印
+			themeConfig.value.watermarkText = data.sysWatermark;
+			// 版权说明
+			themeConfig.value.copyright = data.sysCopyright;
+
+			// 更新 favicon
+			updateFavicon(data.sysLogo);
+
+			// 保存配置
+			Local.remove('themeConfig');
+			Local.set('themeConfig', storesThemeConfig.themeConfig);
+		})
+		.catch(() => {
+			// 置空 logo 地址
+			themeConfig.value.logoUrl = '';
+			// 保存配置
+			Local.remove('themeConfig');
+			Local.set('themeConfig', storesThemeConfig.themeConfig);
+			return;
+		});
+};
+
+// 更新 favicon
+const updateFavicon = (url: string): void => {
+	const favicon = document.getElementById('favicon') as HTMLAnchorElement;
+	favicon!.href = url ? url : 'data:;base64,=';
+};
+
+// 加载系统信息
+loadSysInfo();
 </script>
 
 <style lang="scss">

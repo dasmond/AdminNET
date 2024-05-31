@@ -37,6 +37,14 @@ export interface FileInput {
     fileName?: string | null;
 
     /**
+     * 文件类型
+     *
+     * @type {string}
+     * @memberof FileInput
+     */
+    fileType?: string | null;
+
+    /**
      * 文件Url
      *
      * @type {string}
