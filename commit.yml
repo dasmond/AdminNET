@@ -3,18 +3,18 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '0b95b60c0c3582103592fc2665db89cd1247611f'
-    oldFile: !uuid '36d7a473c89c5b0537cb6de4a49a84a6765fe30e'
+    newFile: !uuid '47d1be98012cb98419753c194d72ec85f2ccf807'
+    oldFile: !uuid '0b95b60c0c3582103592fc2665db89cd1247611f'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid 'a95d4ab89b2255ff96a02c0fa7d6e381d8879067'
-    oldFile: !uuid '676e9e5080ff4c8cb6b06d117577f828077b9b01'
+    newFile: !uuid 'f51da69220130f6d87c51d548314f5f7c7b049aa'
+    oldFile: !uuid 'a95d4ab89b2255ff96a02c0fa7d6e381d8879067'
   /Admin.NET/Admin.NET.Core/Attribute:
-    newFile: !uuid '14cc9b12b4007a64c410133eae90c24e7ff5f917'
-    oldFile: !uuid 'cbad25493a8f2ea4157be9c9a22d4ab0262e0d3e'
-  /Admin.NET/Admin.NET.Core/Attribute/IgnoreTableAttribute.cs:
-    newFile: !uuid '90405cf4c52e12bdbeceeda52cffad6a0f1b5db7'
+    newFile: !uuid '2efeeef3aaad92a13f931b34c12a0a785bcf6bb1'
+    oldFile: !uuid '14cc9b12b4007a64c410133eae90c24e7ff5f917'
+  /Admin.NET/Admin.NET.Core/Attribute/IgnoreUpdateSeedAttribute.cs:
+    newFile: !uuid 'cf0870cbb58427bd31e524a2022b18d33e7fef3e'
     oldFile: null
-gitCommitId: !uuid '432cb85faaadfa2a9b6dec18caba5bb04b89d77b'
+gitCommitId: !uuid '77d45539eec7ce0f4fd7b626cd6c763494ae3046'
 renames: {
   }
-revisionId: 1951
+revisionId: 1952
