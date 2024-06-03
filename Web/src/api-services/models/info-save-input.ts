@@ -51,6 +51,13 @@ export interface InfoSaveInput {
      * @memberof InfoSaveInput
      */
     sysViceDesc?: string | null;
+    
+    /**
+     * 开启水印
+     * @type {string}
+     * @memberof InfoSaveInput
+     */
+    sysShowWatermark?: string | null;
 
     /**
      * 水印内容

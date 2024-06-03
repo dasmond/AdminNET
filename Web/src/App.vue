@@ -122,7 +122,7 @@ const loadSysInfo = () => {
 			themeConfig.value.globalViceTitle = data.sysViceTitle;
 			themeConfig.value.globalViceTitleMsg = data.sysViceDesc;
 			// 水印
-			themeConfig.value.isWatermark = data.sysWatermark != null;
+			themeConfig.value.isWatermark = data.sysShowWatermark == "True";
 			themeConfig.value.watermarkText = data.sysWatermark;
 			// 版权说明
 			themeConfig.value.copyright = data.sysCopyright;

@@ -25,7 +25,10 @@
 				<el-descriptions-item label="系统描述" :span="2">
 					<el-input v-model="state.formData.sysViceDesc" />
 				</el-descriptions-item>
-				<el-descriptions-item label="水印内容" :span="2">
+				<el-descriptions-item label="开启水印">
+					<el-switch active-value="True" inactive-value="False" v-model="state.formData.sysShowWatermark" @change='changeShowWatermark'/>
+				</el-descriptions-item>
+				<el-descriptions-item label="水印内容">
 					<el-input v-model="state.formData.sysWatermark" />
 				</el-descriptions-item>
 				<el-descriptions-item label="版权说明" :span="2">
@@ -45,6 +48,9 @@ import { getAPI } from '/@/utils/axios-utils';
 import { SysConfigApi } from '/@/api-services';
 import { ElMessage } from 'element-plus';
 import { fileToBase64 } from '/@/utils/base64Conver';
+import { storeToRefs } from 'pinia';
+import { useThemeConfig } from '/@/stores/themeConfig';
+import Watermark from '/@/utils/watermark';
 
 const state = reactive({
 	isLoading: false,
@@ -55,6 +61,7 @@ const state = reactive({
 		sysTitle: '',
 		sysViceTitle: '',
 		sysViceDesc: '',
+		sysShowWatermark: '',
 		sysWatermark: '',
 		sysCopyright: '',
 	},
@@ -65,6 +72,15 @@ const handleUploadChange = (file: any) => {
 	state.file = file;
 	// 改变 sysLogo，显示预览
 	state.formData.sysLogo = URL.createObjectURL(state.file.raw);
+};
+
+// 开启/关闭水印
+const changeShowWatermark = (value: string) => {
+	themeConfig.value.isWatermark = value == "True";
+	if (themeConfig.value.isWatermark)
+		Watermark.set(state.formData.sysWatermark);
+	else
+		Watermark.del();
 };
 
 // 保存
@@ -82,6 +98,7 @@ const onSave = async () => {
 			sysTitle: state.formData.sysTitle,
 			sysViceTitle: state.formData.sysViceTitle,
 			sysViceDesc: state.formData.sysViceDesc,
+			sysShowWatermark: state.formData.sysShowWatermark,
 			sysWatermark: state.formData.sysWatermark,
 			sysCopyright: state.formData.sysCopyright,
 		});
@@ -112,6 +129,7 @@ const loadData = async () => {
 			sysTitle: result.sysTitle,
 			sysViceTitle: result.sysViceTitle,
 			sysViceDesc: result.sysViceDesc,
+			sysShowWatermark: result.sysShowWatermark,
 			sysWatermark: result.sysWatermark,
 			sysCopyright: result.sysCopyright,
 		};
