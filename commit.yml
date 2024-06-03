@@ -2,28 +2,25 @@
 branches: {
   }
 fileChange:
-  /Admin.NET:
-    newFile: !uuid '4365427c30791191b4a002549e9044b79d510d68'
-    oldFile: !uuid '1a301a777d89f64cbafb8edd0a028b7bf7b7037f'
-  /Admin.NET/Admin.NET.Web.Entry:
-    newFile: !uuid 'a2d9cdcc330dd76068e310283ec5273ca6dbce01'
-    oldFile: !uuid '088fc831d3ecae94628f68fbb0eae00755156a48'
-  /Admin.NET/Admin.NET.Web.Entry/wwwroot:
-    newFile: !uuid 'fe0b5f6d80e574b5ea639174001fbe9269a51ea5'
-    oldFile: !uuid '7b23b3ec4504a6f1627fe2703dc93139303c1b46'
-  /Admin.NET/Admin.NET.Web.Entry/wwwroot/Template:
-    newFile: !uuid '1c6b367e084addcacf2acf8ca68a67d48f7dcdfd'
-    oldFile: !uuid '31a13cec4ad28697a18d165f38c3b84f73309eb9'
-  /Admin.NET/Admin.NET.Web.Entry/wwwroot/Template/Input.cs.vm:
-    newFile: !uuid '280f9126a0b693f03e9c667da71801ea3360985c'
-    oldFile: !uuid '48a1aa652585c0ee3d1c0183c2d16891e8e837fa'
-  /Admin.NET/Admin.NET.Web.Entry/wwwroot/Template/Service.cs.vm:
-    newFile: !uuid '0b14872cddb777d2754bfa79737c3ac4909526aa'
-    oldFile: !uuid '404a133d9595ba05c9549347066738fa25377f61'
-  /Admin.NET/Admin.NET.Web.Entry/wwwroot/Template/index.vue.vm:
-    newFile: !uuid 'ed1d33cf30be6eb2f6f71c02f4f8332a6d8c7730'
-    oldFile: !uuid '3a61d9aabab0ff9d7286f0e2604fa6c3ae0889df'
-gitCommitId: !uuid 'a403ebb6ed83f587b5623ac98192cdefbf428e4d'
+  /Web:
+    newFile: !uuid '160e7c5e4dc57031f0db470f2fcbf222aae84a8f'
+    oldFile: !uuid 'e6dddfbb4a2e79c5f0dd1e28eac582f0967db49b'
+  /Web/src:
+    newFile: !uuid 'f13ece5e6f40c31d490acebb5521a606354f28e1'
+    oldFile: !uuid 'ba1d4a592a4111e197b467781c5252578766575a'
+  /Web/src/layout:
+    newFile: !uuid '0b809ae37457d68d9a389a19e3d80b3b4aa4b56f'
+    oldFile: !uuid '430b85d909d7db666bdf141d2c98865d90318ad6'
+  /Web/src/layout/navBars:
+    newFile: !uuid '1174038ad1c02e71e1abe73b0d6631a2220972d1'
+    oldFile: !uuid '535ec9e8ac582c94ab7ff58abc7f385c3b2f3779'
+  /Web/src/layout/navBars/topBar:
+    newFile: !uuid '40ce7d6e248943ad0101d1d2d1d06d7576dd3e3b'
+    oldFile: !uuid '6f6328906de5d6406bb6601a1f67d0e744adc0e3'
+  /Web/src/layout/navBars/topBar/breadcrumb.vue:
+    newFile: !uuid '8b26b01ff4fe645fb721db86da31d12365f8278d'
+    oldFile: !uuid '12d071b7d0cc9feee2a5c68c38f9b985a3397c0a'
+gitCommitId: !uuid '2a562dd28514bbeaa6eef9128e775f568d93647f'
 renames: {
   }
-revisionId: 1914
+revisionId: 1915
