@@ -223,6 +223,7 @@ public class SysConfigService : IDynamicApiController, ITransient
         var sysTitle = await GetConfigValue<string>("sys_web_title");
         var sysViceTitle = await GetConfigValue<string>("sys_web_viceTitle");
         var sysViceDesc = await GetConfigValue<string>("sys_web_viceDesc");
+        var sysShowWatermark = await GetConfigValue<string>("sys_show_watermark");
         var sysWatermark = await GetConfigValue<string>("sys_web_watermark");
         var sysCopyright = await GetConfigValue<string>("sys_web_copyright");
         return new
@@ -231,6 +232,7 @@ public class SysConfigService : IDynamicApiController, ITransient
             SysTitle = sysTitle,
             SysViceTitle = sysViceTitle,
             SysViceDesc = sysViceDesc,
+            SysShowWatermark = sysShowWatermark,
             SysWatermark = sysWatermark,
             SysCopyright = sysCopyright,
         };
@@ -279,6 +281,7 @@ public class SysConfigService : IDynamicApiController, ITransient
         await UpdateConfigValue("sys_web_title", input.SysTitle);
         await UpdateConfigValue("sys_web_viceTitle", input.SysViceTitle);
         await UpdateConfigValue("sys_web_viceDesc", input.SysViceDesc);
+        await UpdateConfigValue("sys_show_watermark", input.SysShowWatermark);
         await UpdateConfigValue("sys_web_watermark", input.SysWatermark);
         await UpdateConfigValue("sys_web_copyright", input.SysCopyright);
     }

@@ -32,9 +32,10 @@ public class SysConfigSeedData : ISqlSugarEntitySeedData<SysConfig>
             new SysConfig{ Id=1300000000211, Name="系统主标题", Code="sys_web_title", Value="Admin.NET", SysFlag=YesNoEnum.Y, Remark="系统主标题", OrderNo=110, GroupCode="WebConfig", CreateTime=DateTime.Parse("2022-02-10 00:00:00") },
             new SysConfig{ Id=1300000000221, Name="系统副标题", Code="sys_web_viceTitle", Value="Admin.NET", SysFlag=YesNoEnum.Y, Remark="系统副标题", OrderNo=120, GroupCode="WebConfig", CreateTime=DateTime.Parse("2022-02-10 00:00:00") },
             new SysConfig{ Id=1300000000231, Name="系统描述", Code="sys_web_viceDesc", Value="站在巨人肩膀上的 .NET 通用权限开发框架", SysFlag=YesNoEnum.Y, Remark="系统描述", OrderNo=130, GroupCode="WebConfig", CreateTime=DateTime.Parse("2022-02-10 00:00:00") },
-            new SysConfig{ Id=1300000000241, Name="水印内容", Code="sys_web_watermark", Value="Admin.NET", SysFlag=YesNoEnum.Y, Remark="水印内容", OrderNo=140, GroupCode="WebConfig", CreateTime=DateTime.Parse("2022-02-10 00:00:00") },
-            new SysConfig{ Id=1300000000251, Name="版权说明", Code="sys_web_copyright", Value="Copyright © 2021-present Admin.NET All rights reserved.", SysFlag=YesNoEnum.Y, Remark="版权说明", OrderNo=150, GroupCode="WebConfig", CreateTime=DateTime.Parse("2022-02-10 00:00:00") },
-            new SysConfig{ Id=1300000000261, Name="系统图标", Code="sys_web_logo", Value="/Upload/logo.png", SysFlag=YesNoEnum.Y, Remark="系统图标", OrderNo=160, GroupCode="WebConfig", CreateTime=DateTime.Parse("2022-02-10 00:00:00") },
+            new SysConfig{ Id=1300000000241, Name="开启水印", Code="sys_show_watermark", Value="Admin.NET", SysFlag=YesNoEnum.Y, Remark="开启水印", OrderNo=140, GroupCode="WebConfig", CreateTime=DateTime.Parse("2022-02-10 00:00:00") },
+            new SysConfig{ Id=1300000000251, Name="水印内容", Code="sys_web_watermark", Value="Admin.NET", SysFlag=YesNoEnum.Y, Remark="水印内容", OrderNo=140, GroupCode="WebConfig", CreateTime=DateTime.Parse("2022-02-10 00:00:00") },
+            new SysConfig{ Id=1300000000261, Name="版权说明", Code="sys_web_copyright", Value="Copyright © 2021-present Admin.NET All rights reserved.", SysFlag=YesNoEnum.Y, Remark="版权说明", OrderNo=150, GroupCode="WebConfig", CreateTime=DateTime.Parse("2022-02-10 00:00:00") },
+            new SysConfig{ Id=1300000000271, Name="系统图标", Code="sys_web_logo", Value="/Upload/logo.png", SysFlag=YesNoEnum.Y, Remark="系统图标", OrderNo=160, GroupCode="WebConfig", CreateTime=DateTime.Parse("2022-02-10 00:00:00") },
         };
     }
 }
