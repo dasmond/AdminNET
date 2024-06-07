@@ -14,7 +14,7 @@ import { getDictDataItem as di, getDictDataList as dl } from '/@/utils/dict-util
 */
 
 export function getDictDataItem(dicName: string, dicItemCode: any): any {
-	return stores.getDictItemByCode(dicName, dicItemCode);
+	return stores.getDictItemByVal(dicName, dicItemCode);
 }
 
 export function getDictValByLabel(dicName: string, dicItemCode: any): any {
