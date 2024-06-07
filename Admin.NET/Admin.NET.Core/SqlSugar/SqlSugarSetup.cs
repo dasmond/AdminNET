@@ -4,12 +4,6 @@
 //
 // 不得利用本项目从事危害国家安全、扰乱社会秩序、侵犯他人合法权益等法律法规禁止的活动！任何基于本项目二次开发而产生的一切法律纠纷和责任，我们不承担任何责任！
 
-// 此源代码遵循位于源代码树根目录中的 LICENSE 文件的许可证
-
-// 不得利用本项目从事危害国家安全、扰乱社会秩序、侵犯他人合法权益等法律法规禁止的活动
-
-// 任何基于本项目二次开发而产生的一切法律纠纷和责任，均与作者无关
-
 namespace Admin.NET.Core;
 
 public static class SqlSugarSetup
@@ -306,6 +300,7 @@ public static class SqlSugarSetup
         if (config.TableSettings.EnableInitTable)
         {
             var entityTypes = App.EffectiveTypes.Where(u => !u.IsInterface && !u.IsAbstract && u.IsClass && u.IsDefined(typeof(SugarTable), false))
+                .Where(u => !u.GetCustomAttributes<IgnoreTableAttribute>().Any())
                 .WhereIF(config.TableSettings.EnableIncreTable, u => u.IsDefined(typeof(IncreTableAttribute), false)).ToList();
 
             if (config.ConfigId.ToString() == SqlSugarConst.MainConfigId) // 默认库（有系统表特性、没有日志表和租户表特性）
@@ -360,7 +355,8 @@ public static class SqlSugarSetup
                     // 按主键进行批量增加和更新
                     var storage = dbProvider.StorageableByObject(seedData.ToList()).ToStorage();
                     storage.AsInsertable.ExecuteCommand();
-                    storage.AsUpdateable.ExecuteCommand();
+                    if (seedType.GetCustomAttribute<IgnoreUpdateSeedAttribute>() == null) // 有忽略更新种子特性时则不更新
+                        storage.AsUpdateable.IgnoreColumns(entityInfo.Columns.Where(c => c.PropertyInfo.GetCustomAttribute<IgnoreUpdateSeedColumnAttribute>() != null).Select(c => c.PropertyName).ToArray()).ExecuteCommand();
                 }
                 else
                 {

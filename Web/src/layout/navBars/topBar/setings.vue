@@ -93,6 +93,27 @@
 						<el-switch v-model="getThemeConfig.isColumnsMenuHoverPreload" size="small" @change="onColumnsMenuHoverPreloadChange" :disabled="getThemeConfig.layout !== 'columns'"></el-switch>
 					</div>
 				</div>
+				<div class="layout-breadcrumb-seting-bar-flex mt11">
+					<div class="layout-breadcrumb-seting-bar-flex-label">{{ $t('message.layout.twoColumnsLogoHeight') }}</div>
+					<div class="layout-breadcrumb-seting-bar-flex-value">
+						<el-input-number v-model="getThemeConfig.columnsLogoHeight" controls-position="right" :min="1" :max="9999" @change="onColumnsLogoHeightChange" size="small" style="width: 90px; margin-right: 1px">
+						</el-input-number>
+					</div>
+				</div>
+				<div class="layout-breadcrumb-seting-bar-flex mt11">
+					<div class="layout-breadcrumb-seting-bar-flex-label">{{ $t('message.layout.twoColumnsMenuWidth') }}</div>
+					<div class="layout-breadcrumb-seting-bar-flex-value">
+						<el-input-number v-model="getThemeConfig.columnsMenuWidth" controls-position="right" :min="1" :max="9999" @change="onColumnsMenuWidthChange" size="small" style="width: 90px; margin-right: 1px">
+						</el-input-number>
+					</div>
+				</div>
+				<div class="layout-breadcrumb-seting-bar-flex mt11">
+					<div class="layout-breadcrumb-seting-bar-flex-label">{{ $t('message.layout.twoColumnsMenuHeight') }}</div>
+					<div class="layout-breadcrumb-seting-bar-flex-value">
+						<el-input-number v-model="getThemeConfig.columnsMenuHeight" controls-position="right" :min="1" :max="9999" @change="onColumnsMenuHeightChange" size="small" style="width: 90px; margin-right: 1px">
+						</el-input-number>
+					</div>
+				</div>
 
 				<!-- 界面设置 -->
 				<el-divider content-position="center">{{ $t('message.layout.threeTitle') }}</el-divider>
@@ -396,7 +417,7 @@ import { storeToRefs } from 'pinia';
 import { useThemeConfig } from '/@/stores/themeConfig';
 import { useChangeColor } from '/@/utils/theme';
 import { verifyAndSpace } from '/@/utils/toolsValidate';
-import { Local } from '/@/utils/storage';
+import { Local, Session } from '/@/utils/storage';
 import Watermark from '/@/utils/watermark';
 import commonFunction from '/@/utils/commonFunction';
 import other from '/@/utils/other';
@@ -414,6 +435,15 @@ const state = reactive({
 
 // 获取布局配置信息
 const getThemeConfig = computed(() => {
+	if (!themeConfig.value.columnsMenuWidth) {
+		themeConfig.value.columnsMenuWidth = 70;
+	}
+	if (!themeConfig.value.columnsMenuHeight) {
+		themeConfig.value.columnsMenuHeight = 50;
+	}
+	if (!themeConfig.value.columnsLogoHeight) {
+		themeConfig.value.columnsLogoHeight = 50;
+	}
 	return themeConfig.value;
 });
 // 1、全局主题
@@ -464,8 +494,25 @@ const setGraduaFun = (el: string, bool: boolean, color: string) => {
 		}, 300);
 	});
 };
-// 2、分栏设置 ->
+// 2、分栏设置 -> 分栏菜单鼠标悬停预加载
 const onColumnsMenuHoverPreloadChange = () => {
+	setLocalThemeConfig();
+};
+// 2、分栏设置 -> 分栏Logo高度
+const onColumnsLogoHeightChange = () => {
+	document.documentElement.style.setProperty('--el-columnsLogoHeight', `${themeConfig.value.columnsLogoHeight}px`);
+	setLocalThemeConfig();
+};
+// 2、分栏设置 -> 分栏菜单宽度
+const onColumnsMenuWidthChange = () => {
+	document.documentElement.style.setProperty('--el-columnsMenuWidth', `${themeConfig.value.columnsMenuWidth}px`);
+	document.documentElement.style.setProperty('--el-columnsMenuRoundWidth', `${themeConfig.value.columnsMenuWidth - 5}px`);
+	setLocalThemeConfig();
+};
+// 2、分栏设置 -> 分栏菜单高度
+const onColumnsMenuHeightChange = () => {
+	document.documentElement.style.setProperty('--el-columnsMenuHeight', `${themeConfig.value.columnsMenuHeight}px`);
+	document.documentElement.style.setProperty('--el-columnsMenuRoundHeight', `${themeConfig.value.columnsMenuHeight - 5}px`);
 	setLocalThemeConfig();
 };
 // 3、界面设置 --> 菜单水平折叠
@@ -590,6 +637,7 @@ const onCopyConfigClick = () => {
 // 一键恢复默认
 const onResetConfigClick = () => {
 	Local.clear();
+    Session.clear();
 	window.location.reload();
 	// @ts-ignore
 	Local.set('version', __NEXT_VERSION__);
@@ -626,6 +674,12 @@ onMounted(() => {
 			if (getThemeConfig.value.isIsDark) onAddDarkChange();
 			// 开启水印
 			onWatermarkChange();
+			// 设置分栏Logo高度
+			onColumnsLogoHeightChange();
+			// 设置分栏菜单宽度
+			onColumnsMenuWidthChange();
+			// 设置分栏菜单高度
+			onColumnsMenuHeightChange();
 			// 语言国际化
 			if (Local.get('themeConfig')) locale.value = Local.get('themeConfig').globalI18n;
 			// 初始化菜单样式等

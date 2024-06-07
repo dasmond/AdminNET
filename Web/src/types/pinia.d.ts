@@ -58,6 +58,9 @@ declare interface ThemeConfigState {
 		columnsMenuBarColor: string;
 		isColumnsMenuBarColorGradual: boolean;
 		isColumnsMenuHoverPreload: boolean;
+		columnsLogoHeight: number;
+		columnsMenuWidth: number;
+		columnsMenuHeight: number;
 		isCollapse: boolean;
 		isUniqueOpened: boolean;
 		isFixedHeader: boolean;
@@ -93,5 +96,7 @@ declare interface ThemeConfigState {
 		globalI18n: string;
 		globalComponentSize: string;
 		logoUrl: string; // 系统 logo 地址
+		icp: string; // Icp备案号
+		icpUrl: string; // Icp地址
 	};
 }

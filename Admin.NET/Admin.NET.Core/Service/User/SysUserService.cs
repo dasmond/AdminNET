@@ -13,7 +13,7 @@ namespace Admin.NET.Core.Service;
 public class SysUserService : IDynamicApiController, ITransient
 {
     private readonly UserManager _userManager;
-    private readonly SqlSugarRepository<SysUser> _sysUserRep;
+    private readonly ISqlSugarClient _db;
     private readonly SysOrgService _sysOrgService;
     private readonly SysUserExtOrgService _sysUserExtOrgService;
     private readonly SysUserRoleService _sysUserRoleService;
@@ -21,9 +21,10 @@ public class SysUserService : IDynamicApiController, ITransient
     private readonly SysOnlineUserService _sysOnlineUserService;
     private readonly SysCacheService _sysCacheService;
     private readonly SysUserLdapService _sysUserLdapService;
+    private SimpleClient<SysUser> sysUserRep = null;
 
     public SysUserService(UserManager userManager,
-        SqlSugarRepository<SysUser> sysUserRep,
+        ISqlSugarClient db,
         SysOrgService sysOrgService,
         SysUserExtOrgService sysUserExtOrgService,
         SysUserRoleService sysUserRoleService,
@@ -33,7 +34,7 @@ public class SysUserService : IDynamicApiController, ITransient
         SysUserLdapService sysUserLdapService)
     {
         _userManager = userManager;
-        _sysUserRep = sysUserRep;
+        _db = db;
         _sysOrgService = sysOrgService;
         _sysUserExtOrgService = sysUserExtOrgService;
         _sysUserRoleService = sysUserRoleService;
@@ -41,6 +42,15 @@ public class SysUserService : IDynamicApiController, ITransient
         _sysOnlineUserService = sysOnlineUserService;
         _sysCacheService = sysCacheService;
         _sysUserLdapService = sysUserLdapService;
+    }
+
+    public SimpleClient<SysUser> SysUserRep
+    {
+        get
+        {
+            sysUserRep ??= _db.GetSimpleClient<SysUser>();
+            return sysUserRep;
+        }
     }
 
     /// <summary>
@@ -64,7 +74,7 @@ public class SysUserService : IDynamicApiController, ITransient
             orgList = _userManager.SuperAdmin ? null : userOrgIdList;
         }
 
-        return await _sysUserRep.AsQueryable()
+        return await SysUserRep.AsQueryable()
             .LeftJoin<SysOrg>((u, a) => u.OrgId == a.Id)
             .LeftJoin<SysPos>((u, a, b) => u.PosId == b.Id)
             .Where(u => u.AccountType != AccountTypeEnum.SuperAdmin)
@@ -93,14 +103,14 @@ public class SysUserService : IDynamicApiController, ITransient
     [DisplayName("增加用户")]
     public virtual async Task<long> AddUser(AddUserInput input)
     {
-        var isExist = await _sysUserRep.AsQueryable().ClearFilter().AnyAsync(u => u.Account == input.Account);
+        var isExist = await SysUserRep.AsQueryable().ClearFilter().AnyAsync(u => u.Account == input.Account);
         if (isExist) throw Oops.Oh(ErrorCodeEnum.D1003);
 
         var password = await _sysConfigService.GetConfigValue<string>(CommonConst.SysPassword);
 
         var user = input.Adapt<SysUser>();
         user.Password = CryptogramUtil.Encrypt(password);
-        var newUser = await _sysUserRep.AsInsertable(user).ExecuteReturnEntityAsync();
+        var newUser = await SysUserRep.AsInsertable(user).ExecuteReturnEntityAsync();
 
         input.Id = newUser.Id;
         await UpdateRoleAndExtOrg(input);
@@ -122,19 +132,19 @@ public class SysUserService : IDynamicApiController, ITransient
     [DisplayName("更新用户")]
     public virtual async Task UpdateUser(UpdateUserInput input)
     {
-        if (await _sysUserRep.AsQueryable().ClearFilter().AnyAsync(u => u.Account == input.Account && u.Id != input.Id))
+        if (await SysUserRep.AsQueryable().ClearFilter().AnyAsync(u => u.Account == input.Account && u.Id != input.Id))
             throw Oops.Oh(ErrorCodeEnum.D1003);
 
-        await _sysUserRep.AsUpdateable(input.Adapt<SysUser>()).IgnoreColumns(true)
+        await SysUserRep.AsUpdateable(input.Adapt<SysUser>()).IgnoreColumns(true)
             .IgnoreColumns(u => new { u.Password, u.Status }).ExecuteCommandAsync();
 
         await UpdateRoleAndExtOrg(input);
 
         // 删除用户机构缓存
-        SqlSugarFilter.DeleteUserOrgCache(input.Id, _sysUserRep.Context.CurrentConnectionConfig.ConfigId.ToString());
+        SqlSugarFilter.DeleteUserOrgCache(input.Id, SysUserRep.Context.CurrentConnectionConfig.ConfigId.ToString());
 
         // 若账号的角色和组织架构发生变化,则强制下线账号进行权限更新
-        var user = await _sysUserRep.AsQueryable().ClearFilter().FirstAsync(u => u.Id == input.Id);
+        var user = await SysUserRep.AsQueryable().ClearFilter().FirstAsync(u => u.Id == input.Id);
         var roleIds = await GetOwnRoleList(input.Id);
         if (input.OrgId != user.OrgId || !input.RoleIdList.OrderBy(u => u).SequenceEqual(roleIds.OrderBy(u => u)))
             await _sysOnlineUserService.ForceOffline(input.Id);
@@ -164,7 +174,7 @@ public class SysUserService : IDynamicApiController, ITransient
     [DisplayName("删除用户")]
     public virtual async Task DeleteUser(DeleteUserInput input)
     {
-        var user = await _sysUserRep.GetFirstAsync(u => u.Id == input.Id) ?? throw Oops.Oh(ErrorCodeEnum.D0009);
+        var user = await SysUserRep.GetFirstAsync(u => u.Id == input.Id) ?? throw Oops.Oh(ErrorCodeEnum.D0009);
         if (user.AccountType == AccountTypeEnum.SuperAdmin)
             throw Oops.Oh(ErrorCodeEnum.D1014);
         if (user.Id == _userManager.UserId)
@@ -173,7 +183,7 @@ public class SysUserService : IDynamicApiController, ITransient
         // 强制下线
         await _sysOnlineUserService.ForceOffline(user.Id);
 
-        await _sysUserRep.DeleteAsync(user);
+        await SysUserRep.DeleteAsync(user);
 
         // 删除用户角色
         await _sysUserRoleService.DeleteUserRoleByUserId(input.Id);
@@ -192,7 +202,7 @@ public class SysUserService : IDynamicApiController, ITransient
     [DisplayName("查看用户基本信息")]
     public virtual async Task<SysUser> GetBaseInfo()
     {
-        return await _sysUserRep.GetFirstAsync(u => u.Id == _userManager.UserId);
+        return await SysUserRep.GetFirstAsync(u => u.Id == _userManager.UserId);
     }
 
     /// <summary>
@@ -203,7 +213,7 @@ public class SysUserService : IDynamicApiController, ITransient
     [DisplayName("更新用户基本信息")]
     public virtual async Task<int> UpdateBaseInfo(SysUser user)
     {
-        return await _sysUserRep.AsUpdateable(user)
+        return await SysUserRep.AsUpdateable(user)
             .IgnoreColumns(u => new { u.CreateTime, u.Account, u.Password, u.AccountType, u.OrgId, u.PosId }).ExecuteCommandAsync();
     }
 
@@ -218,7 +228,7 @@ public class SysUserService : IDynamicApiController, ITransient
         if (_userManager.UserId == input.Id)
             throw Oops.Oh(ErrorCodeEnum.D1026);
 
-        var user = await _sysUserRep.GetFirstAsync(u => u.Id == input.Id) ?? throw Oops.Oh(ErrorCodeEnum.D0009);
+        var user = await SysUserRep.GetFirstAsync(u => u.Id == input.Id) ?? throw Oops.Oh(ErrorCodeEnum.D0009);
         if (user.AccountType == AccountTypeEnum.SuperAdmin)
             throw Oops.Oh(ErrorCodeEnum.D1015);
 
@@ -240,7 +250,7 @@ public class SysUserService : IDynamicApiController, ITransient
         }
 
         user.Status = input.Status;
-        return await _sysUserRep.AsUpdateable(user).UpdateColumns(u => new { u.Status }).ExecuteCommandAsync();
+        return await SysUserRep.AsUpdateable(user).UpdateColumns(u => new { u.Status }).ExecuteCommandAsync();
     }
 
     /// <summary>
@@ -271,7 +281,7 @@ public class SysUserService : IDynamicApiController, ITransient
         input.PasswordOld = CryptogramUtil.SM2Decrypt(input.PasswordOld);
         input.PasswordNew = CryptogramUtil.SM2Decrypt(input.PasswordNew);
 
-        var user = await _sysUserRep.GetFirstAsync(u => u.Id == _userManager.UserId) ?? throw Oops.Oh(ErrorCodeEnum.D0009);
+        var user = await SysUserRep.GetFirstAsync(u => u.Id == _userManager.UserId) ?? throw Oops.Oh(ErrorCodeEnum.D0009);
         if (CryptogramUtil.CryptoType == CryptogramEnum.MD5.ToString())
         {
             if (user.Password != MD5Encryption.Encrypt(input.PasswordOld))
@@ -298,7 +308,7 @@ public class SysUserService : IDynamicApiController, ITransient
             user.Password = CryptogramUtil.Encrypt(input.PasswordNew);
         }
 
-        return await _sysUserRep.AsUpdateable(user).UpdateColumns(u => u.Password).ExecuteCommandAsync();
+        return await SysUserRep.AsUpdateable(user).UpdateColumns(u => u.Password).ExecuteCommandAsync();
     }
 
     /// <summary>
@@ -309,10 +319,10 @@ public class SysUserService : IDynamicApiController, ITransient
     [DisplayName("重置用户密码")]
     public virtual async Task<string> ResetPwd(ResetPwdUserInput input)
     {
-        var user = await _sysUserRep.GetFirstAsync(u => u.Id == input.Id) ?? throw Oops.Oh(ErrorCodeEnum.D0009);
+        var user = await SysUserRep.GetFirstAsync(u => u.Id == input.Id) ?? throw Oops.Oh(ErrorCodeEnum.D0009);
         var password = await _sysConfigService.GetConfigValue<string>(CommonConst.SysPassword);
         user.Password = CryptogramUtil.Encrypt(password);
-        await _sysUserRep.AsUpdateable(user).UpdateColumns(u => u.Password).ExecuteCommandAsync();
+        await SysUserRep.AsUpdateable(user).UpdateColumns(u => u.Password).ExecuteCommandAsync();
 
         // 清空密码错误次数
         var keyErrorPasswordCount = $"{CacheConst.KeyErrorPasswordCount}{user.Account}";
@@ -329,7 +339,7 @@ public class SysUserService : IDynamicApiController, ITransient
     [DisplayName("解除登录锁定")]
     public virtual async Task UnlockLogin(UnlockLoginInput input)
     {
-        var user = await _sysUserRep.GetFirstAsync(u => u.Id == input.Id) ?? throw Oops.Oh(ErrorCodeEnum.D0009);
+        var user = await SysUserRep.GetFirstAsync(u => u.Id == input.Id) ?? throw Oops.Oh(ErrorCodeEnum.D0009);
 
         // 清空密码错误次数
         var keyErrorPasswordCount = $"{CacheConst.KeyErrorPasswordCount}{user.Account}";

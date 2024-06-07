@@ -11,11 +11,21 @@ namespace Admin.NET.Core.Service;
 /// </summary>
 public class SysUserExtOrgService : ITransient
 {
-    private readonly SqlSugarRepository<SysUserExtOrg> _sysUserExtOrgRep;
+    private readonly ISqlSugarClient _db;
+    private SimpleClient<SysUserExtOrg> sysUserExtOrgRep = null;
 
-    public SysUserExtOrgService(SqlSugarRepository<SysUserExtOrg> sysUserExtOrgRep)
+    public SysUserExtOrgService(ISqlSugarClient db)
     {
-        _sysUserExtOrgRep = sysUserExtOrgRep;
+        _db = db;
+    }
+
+    public SimpleClient<SysUserExtOrg> SysUserExtOrgRep
+    {
+        get
+        {
+            sysUserExtOrgRep ??= _db.GetSimpleClient<SysUserExtOrg>();
+            return sysUserExtOrgRep;
+        }
     }
 
     /// <summary>
@@ -25,7 +35,7 @@ public class SysUserExtOrgService : ITransient
     /// <returns></returns>
     public async Task<List<SysUserExtOrg>> GetUserExtOrgList(long userId)
     {
-        return await _sysUserExtOrgRep.GetListAsync(u => u.UserId == userId);
+        return await SysUserExtOrgRep.GetListAsync(u => u.UserId == userId);
     }
 
     /// <summary>
@@ -36,14 +46,14 @@ public class SysUserExtOrgService : ITransient
     /// <returns></returns>
     public async Task UpdateUserExtOrg(long userId, List<SysUserExtOrg> extOrgList)
     {
-        await _sysUserExtOrgRep.DeleteAsync(u => u.UserId == userId);
+        await SysUserExtOrgRep.DeleteAsync(u => u.UserId == userId);
 
         if (extOrgList == null || extOrgList.Count < 1) return;
         extOrgList.ForEach(u =>
         {
             u.UserId = userId;
         });
-        await _sysUserExtOrgRep.InsertRangeAsync(extOrgList);
+        await SysUserExtOrgRep.InsertRangeAsync(extOrgList);
     }
 
     /// <summary>
@@ -53,7 +63,7 @@ public class SysUserExtOrgService : ITransient
     /// <returns></returns>
     public async Task DeleteUserExtOrgByOrgIdList(List<long> orgIdList)
     {
-        await _sysUserExtOrgRep.DeleteAsync(u => orgIdList.Contains(u.OrgId));
+        await SysUserExtOrgRep.DeleteAsync(u => orgIdList.Contains(u.OrgId));
     }
 
     /// <summary>
@@ -63,7 +73,7 @@ public class SysUserExtOrgService : ITransient
     /// <returns></returns>
     public async Task DeleteUserExtOrgByUserId(long userId)
     {
-        await _sysUserExtOrgRep.DeleteAsync(u => u.UserId == userId);
+        await SysUserExtOrgRep.DeleteAsync(u => u.UserId == userId);
     }
 
     /// <summary>
@@ -73,7 +83,7 @@ public class SysUserExtOrgService : ITransient
     /// <returns></returns>
     public async Task<bool> HasUserOrg(long orgId)
     {
-        return await _sysUserExtOrgRep.IsAnyAsync(u => u.OrgId == orgId);
+        return await SysUserExtOrgRep.IsAnyAsync(u => u.OrgId == orgId);
     }
 
     /// <summary>
@@ -83,6 +93,6 @@ public class SysUserExtOrgService : ITransient
     /// <returns></returns>
     public async Task<bool> HasUserPos(long posId)
     {
-        return await _sysUserExtOrgRep.IsAnyAsync(u => u.PosId == posId);
+        return await SysUserExtOrgRep.IsAnyAsync(u => u.PosId == posId);
     }
 }

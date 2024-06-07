@@ -219,8 +219,8 @@ public class SysCodeGenService : IDynamicApiController, ITransient
         {
             var columnOutput = result[i];
             // 先找自定义字段名的，如果找不到就再找自动生成字段名的(并且过滤掉没有SugarColumn的属性)
-            var propertyInfo = entityProperties.FirstOrDefault(p => (p.GetCustomAttribute<SugarColumn>()?.ColumnName ?? "").ToLower() == columnOutput.ColumnName.ToLower()) ??
-                entityProperties.FirstOrDefault(p => p.GetCustomAttribute<SugarColumn>() != null && p.Name.ToLower() == (config.DbSettings.EnableUnderLine
+            var propertyInfo = entityProperties.FirstOrDefault(u => (u.GetCustomAttribute<SugarColumn>()?.ColumnName ?? "").ToLower() == columnOutput.ColumnName.ToLower()) ??
+                entityProperties.FirstOrDefault(u => u.GetCustomAttribute<SugarColumn>() != null && u.Name.ToLower() == (config.DbSettings.EnableUnderLine
                 ? CodeGenUtil.CamelColumnName(columnOutput.ColumnName, entityBasePropertyNames).ToLower()
                 : columnOutput.ColumnName.ToLower()));
             if (propertyInfo != null)
@@ -269,11 +269,11 @@ public class SysCodeGenService : IDynamicApiController, ITransient
         }
         ).ToArray();
 
-        foreach (var c in cosType)
+        foreach (var ct in cosType)
         {
-            var sugarAttribute = c.GetCustomAttributes(type, true)?.FirstOrDefault();
+            var sugarAttribute = ct.GetCustomAttributes(type, true)?.FirstOrDefault();
 
-            var des = c.GetCustomAttributes(typeof(DescriptionAttribute), true);
+            var des = ct.GetCustomAttributes(typeof(DescriptionAttribute), true);
             var description = "";
             if (des.Length > 0)
             {
@@ -281,10 +281,10 @@ public class SysCodeGenService : IDynamicApiController, ITransient
             }
             entityInfos.Add(new EntityInfo()
             {
-                EntityName = c.Name,
-                DbTableName = sugarAttribute == null ? c.Name : ((SugarTable)sugarAttribute).TableName,
+                EntityName = ct.Name,
+                DbTableName = sugarAttribute == null ? ct.Name : ((SugarTable)sugarAttribute).TableName,
                 TableDescription = sugarAttribute == null ? description : ((SugarTable)sugarAttribute).TableDescription,
-                Type = c
+                Type = ct
             });
         }
         return await Task.FromResult(entityInfos);
@@ -408,6 +408,7 @@ public class SysCodeGenService : IDynamicApiController, ITransient
     /// <param name="busName"></param>
     /// <param name="pid"></param>
     /// <param name="menuIcon"></param>
+    /// <param name="pagePath"></param>
     /// <param name="tableFieldList"></param>
     /// <returns></returns>
     private async Task AddMenu(string className, string busName, long pid, string menuIcon, string pagePath, List<CodeGenConfig> tableFieldList)
@@ -547,10 +548,10 @@ public class SysCodeGenService : IDynamicApiController, ITransient
         // 按钮-import
         var menuTypeImport = new SysMenu
         {
-            Pid = pid1,
+            Pid = menuPid,
             Title = "导入",
             Type = MenuTypeEnum.Btn,
-            Permission = lowerEntityName + ":import",
+            Permission = className[..1].ToLower() + className[1..] + ":import",
             OrderNo = menuOrder
         };
         menuOrder += 10;
@@ -558,10 +559,10 @@ public class SysCodeGenService : IDynamicApiController, ITransient
         // 按钮-export
         var menuTypeExport = new SysMenu
         {
-            Pid = pid1,
+            Pid = menuPid,
             Title = "导出",
             Type = MenuTypeEnum.Btn,
-            Permission = lowerEntityName + ":export",
+            Permission = className[..1].ToLower() + className[1..] + ":export",
             OrderNo = menuOrder
         };
         menuOrder += 10;
@@ -572,7 +573,7 @@ public class SysCodeGenService : IDynamicApiController, ITransient
         var fkTableList = tableFieldList.Where(u => u.EffectType == "fk" && (u.WhetherAddUpdate == "Y" || u.QueryWhether == "Y")).ToList();
         foreach (var @column in fkTableList)
         {
-            var menuType = new SysMenu
+            var menuType1 = new SysMenu
             {
                 Pid = menuPid,
                 Title = "外键" + @column.ColumnName,
@@ -581,12 +582,12 @@ public class SysCodeGenService : IDynamicApiController, ITransient
                 OrderNo = menuOrder
             };
             menuOrder += 10;
-            menuList.Add(menuType);
+            menuList.Add(menuType1);
         }
         var treeSelectTableList = tableFieldList.Where(u => u.EffectType == "ApiTreeSelect").ToList();
         foreach (var @column in treeSelectTableList)
         {
-            var menuType = new SysMenu
+            var menuType1 = new SysMenu
             {
                 Pid = menuPid,
                 Title = "树型" + @column.ColumnName,
@@ -595,12 +596,12 @@ public class SysCodeGenService : IDynamicApiController, ITransient
                 OrderNo = menuOrder
             };
             menuOrder += 10;
-            menuList.Add(menuType);
+            menuList.Add(menuType1);
         }
         var uploadTableList = tableFieldList.Where(u => u.EffectType == "Upload").ToList();
         foreach (var @column in uploadTableList)
         {
-            var menuType = new SysMenu
+            var menuType1 = new SysMenu
             {
                 Pid = menuPid,
                 Title = "上传" + @column.ColumnName,
@@ -609,7 +610,7 @@ public class SysCodeGenService : IDynamicApiController, ITransient
                 OrderNo = menuOrder
             };
             menuOrder += 10;
-            menuList.Add(menuType);
+            menuList.Add(menuType1);
         }
         await _db.Insertable(menuList).ExecuteCommandAsync();
     }

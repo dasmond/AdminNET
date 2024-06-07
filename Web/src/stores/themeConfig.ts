@@ -47,6 +47,12 @@ export const useThemeConfig = defineStore('themeConfig', {
 			isColumnsMenuBarColorGradual: false,
 			// 是否开启分栏菜单鼠标悬停预加载(预览菜单)
 			isColumnsMenuHoverPreload: false,
+			// 分栏Logo高度(px)
+			columnsLogoHeight: 50,
+			// 分栏菜单宽度(px)
+			columnsMenuWidth: 70,
+			// 分栏菜单高度(px)
+			columnsMenuHeight: 50,
 
 			/**
 			 * 界面设置
@@ -142,6 +148,10 @@ export const useThemeConfig = defineStore('themeConfig', {
 			globalComponentSize: 'small',
 			// 系统 logo 地址
 			logoUrl: '',
+			// Icp备案号
+			icp: '',
+			// Icp地址
+			icpUrl: '',
 		},
 	}),
 	actions: {

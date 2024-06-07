@@ -117,11 +117,20 @@ const loadSysInfo = () => {
 			if (res.data.type != 'success') return;
 
 			const data = res.data.result;
+			// 系统logo
+			data.sysLogo = window.__env__.VITE_API_URL + data.sysLogo;
 			themeConfig.value.logoUrl = data.sysLogo;
+			// 主标题
 			themeConfig.value.globalTitle = data.sysTitle;
+			// 副标题
 			themeConfig.value.globalViceTitle = data.sysViceTitle;
+			// 系统说明
 			themeConfig.value.globalViceTitleMsg = data.sysViceDesc;
+			// Icp备案信息
+			themeConfig.value.icp = data.sysIcp;
+			themeConfig.value.icpUrl = data.sysIcpUrl;
 			// 水印
+			themeConfig.value.isWatermark = data.sysWatermark != null;
 			themeConfig.value.watermarkText = data.sysWatermark;
 			// 版权说明
 			themeConfig.value.copyright = data.sysCopyright;
