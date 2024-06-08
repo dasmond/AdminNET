@@ -782,4 +782,32 @@ public class SysCodeGenService : IDynamicApiController, ITransient
             };
         }
     }
+
+    /// <summary>
+    /// 获取结构
+    /// </summary>
+    /// <param name="Id"></param>
+    /// <returns></returns>
+    [HttpGet]
+    [ApiDescriptionSettings(Name = "Sync")]
+    [DisplayName("获取结构")]
+    public async Task<dynamic> Sync([FromQuery] long Id)
+    {
+        var sysCodeGen = await _db.Queryable<SysCodeGen>().FirstAsync(u => u.Id == Id);
+        if (sysCodeGen == null) return null;
+
+        var tableFieldList = await _codeGenConfigService.GetList(new CodeGenConfig() { CodeGenId = sysCodeGen.Id }); // 库表字段集合
+        var tableColumnList = tableFieldList.Select(u => u.PropertyName).ToList();
+
+        var entityType = GetEntityInfos().GetAwaiter().GetResult().FirstOrDefault(u => u.EntityName == sysCodeGen.EntityName);
+        if (entityType == null) return null;
+        var entityProperties = entityType.Type.GetProperties(); // 实体字段集合
+        var entityColumnList = entityProperties.Where(u => u.Name != "CreateOrg").Select(u => u.Name).ToList();
+
+        var provider = _db.AsTenant().GetConnectionScope(sysCodeGen.ConfigId);
+        var columnInfos = provider.DbMaintenance.GetColumnInfosByTableName(sysCodeGen.TableName, false);  // 配置字段集合
+        var columnList = columnInfos.Select(u => u.DbColumnName).ToList();
+
+        return new CodeGenSyncOutput { TableColumnList = tableColumnList, EntityColumnList = entityColumnList, ColumnList = columnList };
+    }
 }

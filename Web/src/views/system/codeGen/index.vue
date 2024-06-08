@@ -38,9 +38,10 @@
 						<el-tag type="danger" v-else> 生成到本项目 </el-tag>
 					</template>
 				</el-table-column>
-				<el-table-column label="操作" width="200" fixed="right" align="center" show-overflow-tooltip>
+				<el-table-column label="操作" width="220" fixed="right" align="center" show-overflow-tooltip>
 					<template #default="scope">
 						<el-button size="small" text type="primary" @click="handleGenerate(scope.row)">开始生成</el-button>
+						<el-button size="small" text type="primary" @click="openSyncDialog(scope.row)">同步</el-button>
 						<el-button size="small" text type="primary" @click="openConfigDialog(scope.row)">配置</el-button>
 						<el-button size="small" text type="primary" @click="openEditDialog(scope.row)">编辑</el-button>
 						<el-button size="small" text type="primary" @click="deleConfig(scope.row)">删除</el-button>
@@ -62,15 +63,18 @@
 
 		<EditCodeGenDialog :title="state.editMenuTitle" ref="EditCodeGenRef" @handleQuery="handleQuery" :application-namespaces="state.applicationNamespaces" />
 		<CodeConfigDialog ref="CodeConfigRef" @handleQuery="handleQuery" />
+		<SyncTableDialog :title="state.editMenuTitle" ref="SyncTableRef" @handleQuery="handleQuery" />
 	</div>
 </template>
 
 <script lang="ts" setup name="sysCodeGen">
 import { onMounted, reactive, ref } from 'vue';
 import { ElMessageBox, ElMessage } from 'element-plus';
+import { downloadByUrl } from '/@/utils/download';
+
 import EditCodeGenDialog from './component/editCodeGenDialog.vue';
 import CodeConfigDialog from './component/genConfigDialog.vue';
-import { downloadByUrl } from '/@/utils/download';
+import SyncTableDialog from './component/syncTableDialog.vue';
 
 import { getAPI } from '/@/utils/axios-utils';
 import { SysCodeGenApi } from '/@/api-services/api';
@@ -78,6 +82,8 @@ import { SysCodeGen } from '/@/api-services/models';
 
 const EditCodeGenRef = ref<InstanceType<typeof EditCodeGenDialog>>();
 const CodeConfigRef = ref<InstanceType<typeof CodeConfigDialog>>();
+const SyncTableRef = ref<InstanceType<typeof SyncTableDialog>>();
+
 const state = reactive({
 	loading: false,
 	loading1: false,
@@ -152,6 +158,12 @@ const openAddDialog = () => {
 		nameSpace: state.applicationNamespaces[0],
 		generateMenu: true,
 	});
+};
+
+// 同步数据库
+const openSyncDialog = (row: any) => {
+	state.editMenuTitle = '同步';
+	SyncTableRef.value?.openDialog(row);
 };
 
 // 打开表编辑页面
