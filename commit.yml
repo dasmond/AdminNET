@@ -2,22 +2,28 @@
 branches: {
   }
 fileChange:
-  /Admin.NET:
-    newFile: !uuid '9f7674d9972a54a70588e8a2e1bc1701e36c96ef'
-    oldFile: !uuid '844d53986e04cd8abf169d97361136f5e15694e9'
-  /Admin.NET/Admin.NET.Web.Entry:
-    newFile: !uuid 'b054765dfcee298f3ae71a5adde4d567a32287d9'
-    oldFile: !uuid '246d64ba22c17a4b750f14973803c5542ab686ec'
-  /Admin.NET/Admin.NET.Web.Entry/wwwroot:
-    newFile: !uuid 'e475220a05c46e8c43f77c694c0b5838e0ec2eb9'
-    oldFile: !uuid '7c9dd6db9e87efb773230748b0ebe21fb622643d'
-  /Admin.NET/Admin.NET.Web.Entry/wwwroot/Template:
-    newFile: !uuid '9a6ab742167d772a193c0b2b4fe4ea33e57da08a'
-    oldFile: !uuid '423774659ba9258729cffc90d3aabdadfec6727a'
-  /Admin.NET/Admin.NET.Web.Entry/wwwroot/Template/Service.cs.vm:
-    newFile: !uuid 'af151f191f6ee681b6480e82de91fd1e0a012cc2'
-    oldFile: !uuid '0b14872cddb777d2754bfa79737c3ac4909526aa'
-gitCommitId: !uuid 'd4872bb62c35dc11218da42ccd94f6c28e367768'
+  /Web:
+    newFile: !uuid '1422bdcf966d55973c973c9892c662c74fe7cec0'
+    oldFile: !uuid 'b98b42df1ec957d67a0512a2166d5fa60d45fc9e'
+  /Web/src:
+    newFile: !uuid 'c71c5f01295b3bf49c58bd9e49296f1f493f2836'
+    oldFile: !uuid '8613393303293077d403a1a3e9ebae5719036b11'
+  /Web/src/views:
+    newFile: !uuid 'c2f97ce609581db3cecbb1ade7564a694fbc761b'
+    oldFile: !uuid '68235d18f67594d649ed9f1a462b0219be42af65'
+  /Web/src/views/system:
+    newFile: !uuid 'f075cdbcebf8e319a5015ed3ebfeb497d6c7aad7'
+    oldFile: !uuid 'c4e7fa04a35f693b9826b2b54c981322eee1dba0'
+  /Web/src/views/system/codeGen:
+    newFile: !uuid '65541a6ffa4846b70ecfadee85a58fdfaf7c558a'
+    oldFile: !uuid '2b2e12eb2b3325d2a8e573029223a85c93f1416c'
+  /Web/src/views/system/codeGen/component:
+    newFile: !uuid '25dc705b3a210631e6d659a20d57fc9381269228'
+    oldFile: !uuid 'ba6f67d6fd90a9cfb60c89cef5abb9e44e7b1946'
+  /Web/src/views/system/codeGen/component/previewDialog.vue:
+    newFile: !uuid 'a513d5fbbc96f38388e5c86355619a9105387839'
+    oldFile: !uuid 'bde99c60cbf0c734e6aab96fde1108a3027c04ea'
+gitCommitId: !uuid '5d7dd3b8547a035474e475846ed980b49bd4e0a8'
 renames: {
   }
-revisionId: 1990
+revisionId: 1991
