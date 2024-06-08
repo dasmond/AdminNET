@@ -3,66 +3,21 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '9c4c9e655d352fd9e913a867cd7fb111c69e0889'
-    oldFile: !uuid '31687c154f2b51d4656994ae9252bfd7cee0cc03'
+    newFile: !uuid '844d53986e04cd8abf169d97361136f5e15694e9'
+    oldFile: !uuid '9c4c9e655d352fd9e913a867cd7fb111c69e0889'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '3340e622474d2d818c37d08878608828b0f004fd'
-    oldFile: !uuid '3fdc194ccf42ee08e6f327a82e2c54263517bbe0'
+    newFile: !uuid '58d0738112b3931b6395800433b04d50af55caa6'
+    oldFile: !uuid '3340e622474d2d818c37d08878608828b0f004fd'
   /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid '8856970273acc344ac637765534d07722b38a976'
-    oldFile: !uuid 'ed13983d779b44e42444202824da929de59d52e1'
+    newFile: !uuid '7e1d6092f20e75a5791d6d4d8cd48a6a8e12becd'
+    oldFile: !uuid '8856970273acc344ac637765534d07722b38a976'
   /Admin.NET/Admin.NET.Core/Service/CodeGen:
-    newFile: !uuid 'f9af14a2333af9b9012daea9d8741e0c04306f2e'
-    oldFile: !uuid '8df327e00bd3f732c73cd14cfc75995ae0361f56'
+    newFile: !uuid '9bf7d9bed39a6883ff7e4ab358b26610e3374b59'
+    oldFile: !uuid 'f9af14a2333af9b9012daea9d8741e0c04306f2e'
   /Admin.NET/Admin.NET.Core/Service/CodeGen/SysCodeGenService.cs:
-    newFile: !uuid '603c5c1528c49d8fe56b1dfc64de24d95cdbf4f8'
-    oldFile: !uuid 'a0ae1517dbb07e69cc9fd609aedbc1998afa65cb'
-  /Web:
-    newFile: !uuid 'b98b42df1ec957d67a0512a2166d5fa60d45fc9e'
-    oldFile: !uuid '625c3c20c099ea7268a55c9db9bbb97a6a5d2e29'
-  /Web/src:
-    newFile: !uuid '8613393303293077d403a1a3e9ebae5719036b11'
-    oldFile: !uuid '80fd6c530aef3b6ac854058b1e03f1f34e071988'
-  /Web/src/api-services:
-    newFile: !uuid '0da352114d05786a7891b78d41b06cef0e76b464'
-    oldFile: !uuid '564dee74dfa2956634de5380b08568b422733777'
-  /Web/src/api-services/apis:
-    newFile: !uuid '94f402576df587dd2b5749a22775c83cd233701d'
-    oldFile: !uuid '2060ff19ce4d1c94f9c4d92b48b931d3d8a00721'
-  /Web/src/api-services/apis/sys-code-gen-api.ts:
-    newFile: !uuid '7eabc3ccf589261a4c273d2ac574def66d17185d'
-    oldFile: !uuid '470c31d916d70ea4e1da145f6c2adb055750eb09'
-  /Web/src/api-services/models:
-    newFile: !uuid '8f14a05d1d9f08cedcca83e6fcc793e62dd07990'
-    oldFile: !uuid '2b1c7cec4c15791eb392dec1fc90dfb6bea092cd'
-  /Web/src/api-services/models/sql-sugar-paged-list-approval-flow-output.ts:
-    newFile: !uuid '20fad4351f209cd95491075bd32b019172fe7578'
-    oldFile: null
-  /Web/src/theme:
-    newFile: !uuid '82726995d5d10f6608e4d7c2a7ac0e77c41def28'
-    oldFile: !uuid '2369ff1ed2a0ea58c53f24eb004476251421e2f9'
-  /Web/src/theme/app.scss:
-    newFile: !uuid '6b58e4b8854d806a16fd6051fd1bcc39ecc1267e'
-    oldFile: !uuid '27246f9387c720f20f15f405e943caf790fa7f52'
-  /Web/src/views:
-    newFile: !uuid '68235d18f67594d649ed9f1a462b0219be42af65'
-    oldFile: !uuid '121d5603937c84b99bfeeafef28ae2a728793200'
-  /Web/src/views/system:
-    newFile: !uuid 'c4e7fa04a35f693b9826b2b54c981322eee1dba0'
-    oldFile: !uuid 'bfd8c6522a1c174670fc2981335f272549e4f0cb'
-  /Web/src/views/system/codeGen:
-    newFile: !uuid '2b2e12eb2b3325d2a8e573029223a85c93f1416c'
-    oldFile: !uuid 'ae71dc8e86a9a9f6e1d0977fec7cdeb0e782ea2f'
-  /Web/src/views/system/codeGen/component:
-    newFile: !uuid 'ba6f67d6fd90a9cfb60c89cef5abb9e44e7b1946'
-    oldFile: !uuid 'a14edf08e5d5611869402ac596cfb423fb264054'
-  /Web/src/views/system/codeGen/component/previewDialog.vue:
-    newFile: !uuid 'bde99c60cbf0c734e6aab96fde1108a3027c04ea'
-    oldFile: null
-  /Web/src/views/system/codeGen/index.vue:
-    newFile: !uuid 'ea2014c8f5e7c78b4a290993fdf16401a8506bd7'
-    oldFile: !uuid '6f901163130007c9a4f06b7ec136709719f5f7f9'
-gitCommitId: !uuid '2cddc33100bec6524d2350c0cec3db084617b8a1'
+    newFile: !uuid '1096fb37795adce7e8bd7d5afb0b0ee2187dbaed'
+    oldFile: !uuid '603c5c1528c49d8fe56b1dfc64de24d95cdbf4f8'
+gitCommitId: !uuid '0130627582a83d4ff3f25e185a0ab81c3330a71a'
 renames: {
   }
-revisionId: 1941
+revisionId: 1942
