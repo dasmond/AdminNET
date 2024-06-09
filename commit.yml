@@ -3,60 +3,21 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid 'fd8022e093a7155259a339364d6ec8e0eeb67516'
-    oldFile: !uuid 'e2ddef26b02c0fee04b30a3154847183234f1fc6'
-  /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '500e6cfe02dd045271ca5e985525400a86f1e298'
-    oldFile: !uuid 'f80edcc1ef8f9d3553b67234a123fa49e69e0c14'
-  /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid '80e9eac0e8132236a3592feec0be2bea5fe5bc0c'
-    oldFile: !uuid 'f6a096f18fbedbb441495bd868150b486c2a9008'
-  /Admin.NET/Admin.NET.Core/Service/Auth:
-    newFile: !uuid '0dbf8624f4ab46e7acacf2dce03ff6e1882b470b'
-    oldFile: !uuid 'd7e3b4e35fe350a4b391ccbc15dcf2671b5478f7'
-  /Admin.NET/Admin.NET.Core/Service/Auth/SysLdapService.cs:
-    newFile: !uuid '59fc1dda2e3f812f826588bb141e4fdba998859d'
-    oldFile: !uuid '1669c3075af2a06372e66e60f7c496d71835ccb4'
-  /Admin.NET/Admin.NET.Core/Service/Config:
-    newFile: !uuid 'f1f1ddb8dc9b0f857e04764a0c51cb5de3086728'
-    oldFile: !uuid '43c9168176a8dc66a8882ba3a1dab90677a075dd'
-  /Admin.NET/Admin.NET.Core/Service/Config/SysConfigService.cs:
-    newFile: !uuid 'caa5f6b85c04b0b01d06f52d5adddef60a9566ec'
-    oldFile: !uuid '419b533e3bc790b958cbba33a5c24383ae9c1cc1'
-  /Admin.NET/Admin.NET.Core/Service/OnlineUser:
-    newFile: !uuid '2512c6386c41bc0884edd4c31a8e04324d3b553b'
-    oldFile: !uuid 'e900061cfa6d00a1365a703d4925be0c985782da'
-  /Admin.NET/Admin.NET.Core/Service/OnlineUser/SysOnlineUserService.cs:
-    newFile: !uuid '654d10246059324281f0a5e506a21d0c63322009'
-    oldFile: !uuid 'a465bcb08e88bd6160970d94ff329f5f818df6e3'
-  /Admin.NET/Admin.NET.Core/Service/Org:
-    newFile: !uuid '3b48e95e7bb746ef93abdf685e377f545118621a'
-    oldFile: !uuid '0ec381d84cb1ce491b3f91725c28418527ffcaf6'
-  /Admin.NET/Admin.NET.Core/Service/Org/SysOrgService.cs:
-    newFile: !uuid 'd4f53bc3c8a319efef7c8e9ea1cd27ac0a23573d'
-    oldFile: !uuid 'be01bef315defd2847fc7c40358ed70ab0efdcad'
-  /Admin.NET/Admin.NET.Core/Service/Role:
-    newFile: !uuid 'e77db8170638a4a403feb2287555f605c1de760c'
-    oldFile: !uuid '0f5f1571d9bfa3dc2f897882d4886fb8f72240d5'
-  /Admin.NET/Admin.NET.Core/Service/Role/SysRoleOrgService.cs:
-    newFile: !uuid '7b679e36496114b5dff5c3f42f7972f7ae56362e'
-    oldFile: !uuid 'b3ebc8fbe15025ac66cbf2ba1af40ebf447456c3'
-  /Admin.NET/Admin.NET.Core/Service/User:
-    newFile: !uuid '1bf6bf85dbcee33757c6e2a921d34f176c460f94'
-    oldFile: !uuid '89a87e5d406a7e0c502d8e65d3685ebaa1af2d29'
-  /Admin.NET/Admin.NET.Core/Service/User/SysUserExtOrgService.cs:
-    newFile: !uuid 'eb1b00b1bbc29edf292a54bc15485308f25f6e6b'
-    oldFile: !uuid '1d0d0debcc3b9d7efce631e1d3c56f54c9bdef1b'
-  /Admin.NET/Admin.NET.Core/Service/User/SysUserLdapService.cs:
-    newFile: !uuid 'fa1885a000ae99dda4e634ebdf9b66c606faf050'
-    oldFile: !uuid '935c77200eef0ec58699ab8b71281f1d06f9624a'
-  /Admin.NET/Admin.NET.Core/Service/User/SysUserRoleService.cs:
-    newFile: !uuid '82c26a29e0fcb0f4d06177cbcd5c8d3f8b896cb4'
-    oldFile: !uuid 'ba58930bd4b79fbdec95419a80eb8b3bff4ba828'
-  /Admin.NET/Admin.NET.Core/Service/User/SysUserService.cs:
-    newFile: !uuid 'f5c17b7a32ea8547f898c9537e5a423ba3b9435b'
-    oldFile: !uuid '19e085724ce087b8feb7cb0147b5b404e7499ae6'
-gitCommitId: !uuid '4136201df4f8b1f8e5886f16a73326746fe7e95e'
+    newFile: !uuid '489bd5bb15f77917efa1ac5e9738038801fa6202'
+    oldFile: !uuid 'fd8022e093a7155259a339364d6ec8e0eeb67516'
+  /Admin.NET/Admin.NET.Web.Entry:
+    newFile: !uuid '4241e12b972b9261fa829262ce0e82560392a098'
+    oldFile: !uuid 'b054765dfcee298f3ae71a5adde4d567a32287d9'
+  /Admin.NET/Admin.NET.Web.Entry/wwwroot:
+    newFile: !uuid '58c5888c80938a96a5d29c4e23dd9fc0fee1c492'
+    oldFile: !uuid 'e475220a05c46e8c43f77c694c0b5838e0ec2eb9'
+  /Admin.NET/Admin.NET.Web.Entry/wwwroot/Template:
+    newFile: !uuid 'af80a95f9689feffd9ee9650a9838ff20237c1d3'
+    oldFile: !uuid '9a6ab742167d772a193c0b2b4fe4ea33e57da08a'
+  /Admin.NET/Admin.NET.Web.Entry/wwwroot/Template/Service.cs.vm:
+    newFile: !uuid 'a258129a778141741fbaaf8f9231209635fb5b62'
+    oldFile: !uuid 'af151f191f6ee681b6480e82de91fd1e0a012cc2'
+gitCommitId: !uuid 'c20c249834c45b1b14c90260b282016542154dee'
 renames: {
   }
-revisionId: 1993
+revisionId: 1994
