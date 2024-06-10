@@ -2,22 +2,25 @@
 branches: {
   }
 fileChange:
-  /Admin.NET:
-    newFile: !uuid '634a5c390d52cc05f940524868b6112622018376'
-    oldFile: !uuid '523b14d77c2c188455f3e1aad896721898a8ee2c'
-  /Admin.NET/Admin.NET.Web.Entry:
-    newFile: !uuid '53f68d3fc40475f59732fc6d66c645ce00be341d'
-    oldFile: !uuid '9e9b77aed19faf9be49108a2b5a3bf8e9d24ba7f'
-  /Admin.NET/Admin.NET.Web.Entry/wwwroot:
-    newFile: !uuid 'b2b4d2355777fc0f990eb8a7cfb11ccccf68cb98'
-    oldFile: !uuid '6f17c3b526f3db9429aab6b207753b3958a8072e'
-  /Admin.NET/Admin.NET.Web.Entry/wwwroot/Template:
-    newFile: !uuid 'da8d0ef8f750953382c863499e77ba6a533629ec'
-    oldFile: !uuid 'ef211d117be2395c4ec5b3621e8abc5370d06f4b'
-  /Admin.NET/Admin.NET.Web.Entry/wwwroot/Template/Service.cs.vm:
-    newFile: !uuid '1d7727cc75b6c6db4f3ab36a96c6d9499a71ba31'
-    oldFile: !uuid '42921f48fad10b9f5392f11777ffe34eb9e5fdce'
-gitCommitId: !uuid '1e647fb9920a671e42f339ae1cacafe420ba8644'
+  /Web:
+    newFile: !uuid '96235fd8390818ac1b02cf2336e3240ea2237086'
+    oldFile: !uuid 'b5384c295a3375f080843a2d3f08a1f2e99665e0'
+  /Web/src:
+    newFile: !uuid '4d8496cef10c4e572a3f31110ad482aec5cc2645'
+    oldFile: !uuid 'f03be7a42838eccad2adf33393587e0b2e1595f0'
+  /Web/src/views:
+    newFile: !uuid '0af01f7127f46de1b18dde929b435cb11a6d59df'
+    oldFile: !uuid '7a116aac92c63ad2e88bf5018cd419c98de5e3d9'
+  /Web/src/views/approvalFlow:
+    newFile: !uuid '1b27d598ce9523c522dec41b403ca6c309efdf78'
+    oldFile: !uuid 'fdbc3b474f34cc42e6708012ffe902c627fde618'
+  /Web/src/views/approvalFlow/component:
+    newFile: !uuid 'dd83fa4f56f89935c71b7402c90564cb793073a3'
+    oldFile: !uuid '2c51675f320d93a59c8fa71e44a4b8830e961d3f'
+  /Web/src/views/approvalFlow/component/editFormDialog.vue:
+    newFile: !uuid 'e685ff988af909232816b8f833b8f351c93ca3f9'
+    oldFile: !uuid '736820002c494f874f44ea6b6f0e3cb141a2b57e'
+gitCommitId: !uuid 'fd203b6fd92eb20e2c12824e27a9828ade9ab332'
 renames: {
   }
-revisionId: 2003
+revisionId: 2004
