@@ -120,7 +120,7 @@ const cancel = () => {
 	state.isShowDialog = false;
 };
 
-const submit = () => {
+const submit = async () => {
 	state.ruleSource.formJson = JSON.stringify(state.ruleForm);
 	await getAPI(ApprovalFlowApi).apiApprovalFlowUpdatePost(state.ruleSource);
 	closeDialog();
