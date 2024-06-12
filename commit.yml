@@ -3,27 +3,27 @@ branches: {
   }
 fileChange:
   /Web:
-    newFile: !uuid 'cba19a93b6447a945331beec9486621e7d075120'
-    oldFile: !uuid '9fdf4875d20c97d97cc57dc62509a1c3addd380f'
+    newFile: !uuid 'f9951cd5ebfb4d3348f19eff561b23d46a3f985f'
+    oldFile: !uuid 'cba19a93b6447a945331beec9486621e7d075120'
   /Web/src:
-    newFile: !uuid '66b1fe71e0eec4ff928ad3a9f69f79d148f5d3fc'
-    oldFile: !uuid '6e5f018f3cfa167120bcb7e2c6c3fdf1c5469261'
+    newFile: !uuid '301e6be1853885783a74b8260082bd36e84b7e05'
+    oldFile: !uuid '66b1fe71e0eec4ff928ad3a9f69f79d148f5d3fc'
   /Web/src/views:
-    newFile: !uuid '84fdd9f930520a814765e12112daf8b1ce6db356'
-    oldFile: !uuid '12eee09b6ebb48f9e5414d0e701b2a0a2c820935'
+    newFile: !uuid 'e9be6f9de7ee59f5b53f42d015179161e1dcf582'
+    oldFile: !uuid '84fdd9f930520a814765e12112daf8b1ce6db356'
   /Web/src/views/system:
-    newFile: !uuid '4245969102527deef814b55c52b12483cae9daa1'
-    oldFile: !uuid 'cdd7d12d83214f08ab123fd88996ad39c9e4347b'
-  /Web/src/views/system/database:
-    newFile: !uuid 'bcd2d31c28c6bbe64d4e42c2ce0aa91ddecb128f'
-    oldFile: !uuid '89fcdea9d77cfd0484f5c00a87cea2ec3bc53cbf'
-  /Web/src/views/system/database/component:
-    newFile: !uuid '3ec30bc7d191ad4944a2d5b826fc19de42620224'
-    oldFile: !uuid 'dcdb27589395895b0af6d02ed75345ea288a2d5d'
-  /Web/src/views/system/database/component/addTable.vue:
-    newFile: !uuid '79c9561c005d7b6a5445510393c96178c1c596d5'
-    oldFile: !uuid '3372d95f89738dda0b9b0aa6ba73a2c8f1a3cb8a'
-gitCommitId: !uuid '0575d4c4496ff35bfc7dfb082bd9c50f33ff288f'
+    newFile: !uuid 'ca322dfa2bb9c0f8ef4d066936519d4104ed7313'
+    oldFile: !uuid '4245969102527deef814b55c52b12483cae9daa1'
+  /Web/src/views/system/log:
+    newFile: !uuid 'ee228fdef629035b881a34424e73a6020f5eb56c'
+    oldFile: !uuid 'cdaea0c86b2e18601a6ebca4c318678416378d5e'
+  /Web/src/views/system/log/exlog:
+    newFile: !uuid '5919b39c39908407d49121895a90703acaccbf4d'
+    oldFile: !uuid '5feb8d6f147a0aceb2bc9bc6ff71e12af1946b77'
+  /Web/src/views/system/log/exlog/index.vue:
+    newFile: !uuid 'cf5d3bc1b6d35962d11156b1f97dbeb03a251b0e'
+    oldFile: !uuid '2fbe777d7b438d9b30f92440770d9629ace5d2d4'
+gitCommitId: !uuid '94ff253f58f3bccb09078b5d5d02a83b796cf894'
 renames: {
   }
-revisionId: 1967
+revisionId: 1968
