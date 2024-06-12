@@ -3,21 +3,21 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid 'cea8fbb300f57fb1a48417daa7dc6e4bf7b72d1f'
-    oldFile: !uuid '1e0f372baf9e47feaeb625f3bc0d6ef2b8658601'
+    newFile: !uuid 'ea7504713908006fa90da35b2a0860d85d3f6122'
+    oldFile: !uuid 'cea8fbb300f57fb1a48417daa7dc6e4bf7b72d1f'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '3e4d081fa1ff9cf690bee89236c9286087af74ee'
-    oldFile: !uuid 'b9051824388ff42300ac97ed118ea610ae189666'
+    newFile: !uuid '0eb566170e0b275f2674c0ce3c550ff3b2a81517'
+    oldFile: !uuid '3e4d081fa1ff9cf690bee89236c9286087af74ee'
   /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid 'e31c90e95a1277e5faea7e94b3a0fb3fe86fd913'
-    oldFile: !uuid '0ff98c018900a0996f0866eed21516f67d71ba3c'
-  /Admin.NET/Admin.NET.Core/Service/Message:
-    newFile: !uuid '56d60a6d1eda92be97d903081964867c733abab1'
-    oldFile: !uuid '64345a2d29594a9d0fd90fb29ba5537ca45a48a8'
-  /Admin.NET/Admin.NET.Core/Service/Message/SysSmsService.cs:
-    newFile: !uuid '4c71dc7c5adcfd475c3fc3aa73ef900614f6978a'
-    oldFile: !uuid '466c962d81081136b26025af4d3f2247b4bd05f9'
-gitCommitId: !uuid '83cc92cb6408ef0a665bda9479e4bffe1cbcc2bb'
+    newFile: !uuid '1477f3745d12bc9ec0e3543d867fbb0a432c3163'
+    oldFile: !uuid 'e31c90e95a1277e5faea7e94b3a0fb3fe86fd913'
+  /Admin.NET/Admin.NET.Core/Service/Job:
+    newFile: !uuid '9e77f77990449bf37e8be4ed99c41b55296292fa'
+    oldFile: !uuid '5509ca788d09af89a23e60a82750b7278b1f3437'
+  /Admin.NET/Admin.NET.Core/Service/Job/DbJobPersistence.cs:
+    newFile: !uuid '0145668720f59a6d5d2dd3c77ee786f7ea5850ae'
+    oldFile: !uuid 'c368ab8de982a0fe9aefb9dfea26a6a4601a0a69'
+gitCommitId: !uuid 'f631e949eeebf90f4a1ecad50226f207100129e7'
 renames: {
   }
-revisionId: 1964
+revisionId: 1965
