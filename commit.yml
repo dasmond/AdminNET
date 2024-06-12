@@ -2,28 +2,25 @@
 branches: {
   }
 fileChange:
-  /Web:
-    newFile: !uuid 'f9951cd5ebfb4d3348f19eff561b23d46a3f985f'
-    oldFile: !uuid 'cba19a93b6447a945331beec9486621e7d075120'
-  /Web/src:
-    newFile: !uuid '301e6be1853885783a74b8260082bd36e84b7e05'
-    oldFile: !uuid '66b1fe71e0eec4ff928ad3a9f69f79d148f5d3fc'
-  /Web/src/views:
-    newFile: !uuid 'e9be6f9de7ee59f5b53f42d015179161e1dcf582'
-    oldFile: !uuid '84fdd9f930520a814765e12112daf8b1ce6db356'
-  /Web/src/views/system:
-    newFile: !uuid 'ca322dfa2bb9c0f8ef4d066936519d4104ed7313'
-    oldFile: !uuid '4245969102527deef814b55c52b12483cae9daa1'
-  /Web/src/views/system/log:
-    newFile: !uuid 'ee228fdef629035b881a34424e73a6020f5eb56c'
-    oldFile: !uuid 'cdaea0c86b2e18601a6ebca4c318678416378d5e'
-  /Web/src/views/system/log/exlog:
-    newFile: !uuid '5919b39c39908407d49121895a90703acaccbf4d'
-    oldFile: !uuid '5feb8d6f147a0aceb2bc9bc6ff71e12af1946b77'
-  /Web/src/views/system/log/exlog/index.vue:
-    newFile: !uuid 'cf5d3bc1b6d35962d11156b1f97dbeb03a251b0e'
-    oldFile: !uuid '2fbe777d7b438d9b30f92440770d9629ace5d2d4'
-gitCommitId: !uuid '94ff253f58f3bccb09078b5d5d02a83b796cf894'
+  /Admin.NET:
+    newFile: !uuid 'edb1756b96f36b2b67189fc620208951dc731dee'
+    oldFile: !uuid '6f232898c41bbee726df46acba688fd97dd0a9ad'
+  /Admin.NET/Admin.NET.Web.Entry:
+    newFile: !uuid 'd656faad202fab22d876d2beb1ea2d1bc2b1dba6'
+    oldFile: !uuid 'd435b1cb9667b1988e49d39f7b40b3f2e591724b'
+  /Admin.NET/Admin.NET.Web.Entry/wwwroot:
+    newFile: !uuid '3ca90d93a278af6b6e17a74d2cafe8b0a6a66d66'
+    oldFile: !uuid '278a625ffa2476a4887b0e9761ad1fe03df9a946'
+  /Admin.NET/Admin.NET.Web.Entry/wwwroot/Template:
+    newFile: !uuid '7b243fbf567a3f8f33dab9c388c302e716d12b94'
+    oldFile: !uuid '2438e58689229f4fc545874690e7ffae6fc5b097'
+  /Admin.NET/Admin.NET.Web.Entry/wwwroot/Template/editDialog.vue.vm:
+    newFile: !uuid 'f5214d03a30bc81f907b4570dba36ce25fed2c42'
+    oldFile: !uuid '2fe982e88a37f07dfb828224915bbf507040cf88'
+  /Admin.NET/Admin.NET.Web.Entry/wwwroot/Template/index.vue.vm:
+    newFile: !uuid 'b0ecc7b34202c63f0795d0a2d57c5cf1911d1cbe'
+    oldFile: !uuid 'a9b55298b6ccd6e98ea511b08b2e920af0f7659b'
+gitCommitId: !uuid '3015bf5d1751866e5dc914bddaf8ffc4d8513ae9'
 renames: {
   }
-revisionId: 1968
+revisionId: 1969
