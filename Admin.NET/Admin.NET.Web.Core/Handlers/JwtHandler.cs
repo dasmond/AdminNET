@@ -11,8 +11,11 @@ using Furion.Authorization;
 using Furion.DataEncryption;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc.Controllers;
+using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.DependencyInjection;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Admin.NET.Web.Core
@@ -68,6 +71,15 @@ namespace Admin.NET.Web.Core
 
         public override async Task<bool> PipelineAsync(AuthorizationHandlerContext context, DefaultHttpContext httpContext)
         {
+            #region 检查账号类型
+            //判断是否是前端会员账号
+            if (App.User.FindFirst(ClaimConst.AccountType)?.Value == ((int)AccountTypeEnum.Member).ToString())
+            {
+                //会员账号
+                return CheckAccountType(context, typeof(MemberAttribute));
+            }
+            #endregion
+
             // 已自动验证 Jwt Token 有效性
             return await CheckAuthorizeAsync(httpContext);
         }
@@ -102,6 +114,34 @@ namespace Admin.NET.Web.Core
             var exist1 = ownBtnPermList.Exists(u => routeName.Equals(u, StringComparison.CurrentCultureIgnoreCase));
             var exist2 = allBtnPermList.TrueForAll(u => !routeName.Equals(u, StringComparison.CurrentCultureIgnoreCase));
             return exist1 || exist2;
+        }
+
+        /// <summary>
+        /// 检查账号类型，根据类型判断是否有权限访问
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="attributeType">标记类型</param>
+        /// <returns></returns>
+        private bool CheckAccountType(AuthorizationHandlerContext context, System.Type attributeType)
+        {
+            AuthorizationFilterContext mvcContext = context.Resource as AuthorizationFilterContext;
+            var ctrlActionDesc = mvcContext?.ActionDescriptor as ControllerActionDescriptor;
+            if (ctrlActionDesc != null)
+            {
+                var actionName = ctrlActionDesc.ActionName;
+                var ctrlName = ctrlActionDesc.ControllerName;
+                //先检查控制器上
+                if (ctrlActionDesc.ControllerTypeInfo.GetCustomAttributes(attributeType, true).Any())
+                {
+                    return true;
+                }
+                //检查action上
+                if (ctrlActionDesc.MethodInfo.GetCustomAttributes(attributeType, true).Any())
+                {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }
