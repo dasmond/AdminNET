@@ -2,13 +2,22 @@
 branches: {
   }
 fileChange:
-  /Web:
-    newFile: !uuid '81e9ce49ef1788a920634f85ffddd06cd8c32eb9'
-    oldFile: !uuid 'f9951cd5ebfb4d3348f19eff561b23d46a3f985f'
-  /Web/vite.config.ts:
-    newFile: !uuid '4192e4a9eceecb1f3647ce7739b3a2f91f9b89cc'
-    oldFile: !uuid '055aede4a234babd4ec65b487afd08a6541188dd'
-gitCommitId: !uuid 'f0a066009cb77be724e3a74b6480433fe1c29ae6'
+  /Admin.NET:
+    newFile: !uuid '9b75347bc050195aa8c35460524110bc8a261a5e'
+    oldFile: !uuid 'edb1756b96f36b2b67189fc620208951dc731dee'
+  /Admin.NET/Admin.NET.Web.Entry:
+    newFile: !uuid '1c7705912dfff9b1d1dd68b613c832d8adffdc68'
+    oldFile: !uuid 'd656faad202fab22d876d2beb1ea2d1bc2b1dba6'
+  /Admin.NET/Admin.NET.Web.Entry/wwwroot:
+    newFile: !uuid '86196edb3e739a11081d66ea39fa3d7f4cee7515'
+    oldFile: !uuid '3ca90d93a278af6b6e17a74d2cafe8b0a6a66d66'
+  /Admin.NET/Admin.NET.Web.Entry/wwwroot/Template:
+    newFile: !uuid '688fc0ac531b6d0e2268f3817518281fd2af2b92'
+    oldFile: !uuid '7b243fbf567a3f8f33dab9c388c302e716d12b94'
+  /Admin.NET/Admin.NET.Web.Entry/wwwroot/Template/editDialog.vue.vm:
+    newFile: !uuid 'e26550fcfe828d6b64544e32271d2e15c2279424'
+    oldFile: !uuid 'f5214d03a30bc81f907b4570dba36ce25fed2c42'
+gitCommitId: !uuid 'd4664f26f67b5845441c2a3dfcf85e0fbd1b8e62'
 renames: {
   }
-revisionId: 2017
+revisionId: 2018
