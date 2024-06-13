@@ -2,13 +2,22 @@
 branches: {
   }
 fileChange:
-  /Web:
-    newFile: !uuid 'd7db84d4abe8881700686aac4f1b2f0c39ae9474'
-    oldFile: !uuid '81e9ce49ef1788a920634f85ffddd06cd8c32eb9'
-  /Web/package.json:
-    newFile: !uuid 'a819326be328ba10674afe41fdab001484f8ead9'
-    oldFile: !uuid 'd2ef2087fe826f71d1f76a2ce18f569ca9e9d121'
-gitCommitId: !uuid 'a5d168ffe72a01a22ba15c25a1d97fd6223c5972'
+  /Admin.NET:
+    newFile: !uuid 'e14b257010087b01869c2d6391201d1ff81e7c8b'
+    oldFile: !uuid 'f91432509f90a8e543561c007731ef1846bdec09'
+  /Admin.NET/Admin.NET.Web.Entry:
+    newFile: !uuid '564b08a3ece92c796dbdd0f8513c0b28c1d2e03b'
+    oldFile: !uuid '1c7705912dfff9b1d1dd68b613c832d8adffdc68'
+  /Admin.NET/Admin.NET.Web.Entry/wwwroot:
+    newFile: !uuid '7e57ab7a6a361fe90c7ed938c69c8c5f198ee6eb'
+    oldFile: !uuid '86196edb3e739a11081d66ea39fa3d7f4cee7515'
+  /Admin.NET/Admin.NET.Web.Entry/wwwroot/Template:
+    newFile: !uuid '1259da55d24a2984a32862ee19e0afad58b79f52'
+    oldFile: !uuid '688fc0ac531b6d0e2268f3817518281fd2af2b92'
+  /Admin.NET/Admin.NET.Web.Entry/wwwroot/Template/index.vue.vm:
+    newFile: !uuid '1813923343ff8d1a0273f3b261e04ea32f354fea'
+    oldFile: !uuid 'b0ecc7b34202c63f0795d0a2d57c5cf1911d1cbe'
+gitCommitId: !uuid '4d3882fe36d5770667a3f8daea2846fb29969d0c'
 renames: {
   }
-revisionId: 2020
+revisionId: 2021
