@@ -2,28 +2,13 @@
 branches: {
   }
 fileChange:
-  /Admin.NET:
-    newFile: !uuid 'f91432509f90a8e543561c007731ef1846bdec09'
-    oldFile: !uuid '9b75347bc050195aa8c35460524110bc8a261a5e'
-  /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '0e4d599dd7e9412ebc2228f2f0c7ad0c4e947cd1'
-    oldFile: !uuid '2c8d1f145f807e8445a93276f45ca8b88080b201'
-  /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid 'e3ed3118928f5e3e746174a9dbbe8fa6e884f776'
-    oldFile: !uuid 'ba3cca0628b846cc2a8495fc826d689ef4031107'
-  /Admin.NET/Admin.NET.Core/Service/Config:
-    newFile: !uuid '44efcd5a66ee12543228dfed1b7207e9ee56f421'
-    oldFile: !uuid 'cba0946eab7f8f2a3ebda3ec065d86d60f7d53e3'
-  /Admin.NET/Admin.NET.Core/Service/Config/Dto:
-    newFile: !uuid '486248cbbf69aa50b8cecbf4b87288aca6493dde'
-    oldFile: !uuid 'feb640718492cca3e26f6ae8d6bfbd90459bd266'
-  /Admin.NET/Admin.NET.Core/Service/Config/Dto/ConfigBatchInput.cs:
-    newFile: !uuid '8e184805bba726a43ee4f14d1f8503e821cdbbf7'
-    oldFile: null
-  /Admin.NET/Admin.NET.Core/Service/Config/SysConfigService.cs:
-    newFile: !uuid '4bd208bf880d0e74e90d74f76ae51641ea544602'
-    oldFile: !uuid '5e752399cd347b55fc5aa024c4da8c23618aee04'
-gitCommitId: !uuid '76be237a1955b78b3e8ea5d00948560a21abc3c0'
+  /Web:
+    newFile: !uuid 'd7db84d4abe8881700686aac4f1b2f0c39ae9474'
+    oldFile: !uuid '81e9ce49ef1788a920634f85ffddd06cd8c32eb9'
+  /Web/package.json:
+    newFile: !uuid 'a819326be328ba10674afe41fdab001484f8ead9'
+    oldFile: !uuid 'd2ef2087fe826f71d1f76a2ce18f569ca9e9d121'
+gitCommitId: !uuid 'a5d168ffe72a01a22ba15c25a1d97fd6223c5972'
 renames: {
   }
-revisionId: 2019
+revisionId: 2020
