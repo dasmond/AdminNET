@@ -2,19 +2,40 @@
 branches: {
   }
 fileChange:
+  /.gitignore:
+    newFile: !uuid 'b716a0b6a4ac721499d27735a22b846ec1cb8ee0'
+    oldFile: !uuid 'cc273e32054b95beb0f8e3e47932eb3d7f4d572d'
   /Admin.NET:
-    newFile: !uuid 'cb01ba1c85d437049af208c9ce4a91fc30829d02'
-    oldFile: !uuid 'e14b257010087b01869c2d6391201d1ff81e7c8b'
+    newFile: !uuid 'e423d7649e555c2521acc7fef5fa9ed9471b59fa'
+    oldFile: !uuid 'cb01ba1c85d437049af208c9ce4a91fc30829d02'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '2af96405c7474712220a0a7910ca62d0ad404cb4'
-    oldFile: !uuid '0e4d599dd7e9412ebc2228f2f0c7ad0c4e947cd1'
-  /Admin.NET/Admin.NET.Core/Job:
-    newFile: !uuid '1fb4d8f9f9420d62d1ec5cf7b37cf73718c5a67d'
-    oldFile: !uuid 'b471e6f068f46a4c1fabdc849ff00637829ff5db'
-  /Admin.NET/Admin.NET.Core/Job/EnumToDictJob.cs:
-    newFile: !uuid '958489483d3baf9457790be4b566a53ddc4542d3'
-    oldFile: !uuid 'c113b1bb807241afef3cb4f3967f96ebeaac25da'
-gitCommitId: !uuid '76e6dfaf716970c808a648c3f685b01ee95a64de'
+    newFile: !uuid 'be16e555fe0cd73ca5413623a0995556c1fcd251'
+    oldFile: !uuid '2af96405c7474712220a0a7910ca62d0ad404cb4'
+  /Admin.NET/Admin.NET.Core/SeedData:
+    newFile: !uuid '0478fda02c883efc6c56c1826aa20558660ba66d'
+    oldFile: !uuid '2129b801777ba3118207daf460cf2f1afc713398'
+  /Admin.NET/Admin.NET.Core/SeedData/SysMenuSeedData.cs:
+    newFile: !uuid 'b988f293975d04a452a8c802d17713233bc0e7f1'
+    oldFile: !uuid '1ba92a136b73aeeb14afc40863500a008dca91da'
+  /Web:
+    newFile: !uuid 'd5d765fa5b1449e2ba34f5edd390a890313fc38c'
+    oldFile: !uuid 'd7db84d4abe8881700686aac4f1b2f0c39ae9474'
+  /Web/package.json:
+    newFile: !uuid 'd00363079eff0bb4c1fe4dda86e109962b78ac6a'
+    oldFile: !uuid 'a819326be328ba10674afe41fdab001484f8ead9'
+  /Web/src:
+    newFile: !uuid '1aa373256516c0a067bd4ef762ed16fa9a1d4421'
+    oldFile: !uuid '301e6be1853885783a74b8260082bd36e84b7e05'
+  /Web/src/views:
+    newFile: !uuid '6dedb63c2ce67bbc17e15b72595d09ed18b7c27e'
+    oldFile: !uuid 'e9be6f9de7ee59f5b53f42d015179161e1dcf582'
+  /Web/src/views/about:
+    newFile: !uuid '5fe6133d98ef7f9a06f87740d5bb8281a9b78692'
+    oldFile: null
+  /Web/src/views/about/index.vue:
+    newFile: !uuid '155e593fe9fc4c26d63fd556e44dc13f904c5722'
+    oldFile: null
+gitCommitId: !uuid '9a611400ebc4c20e2405162a2502a0ae6e751b37'
 renames: {
   }
-revisionId: 2022
+revisionId: 2023
