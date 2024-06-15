@@ -109,8 +109,8 @@ const handleQuery = async (updateTree: boolean = false) => {
 		orgTreeRef.value?.initTreeData();
 	}
 
-	// 若无选择节点并且查询条件为空时，更新编辑页面机构列表树
-	if (state.queryParams.id == 0 && state.queryParams.name == undefined && state.queryParams.code == undefined && state.queryParams.type == undefined) state.orgTreeData = state.orgData;
+	// 更新编辑页面机构列表树
+	state.orgTreeData = state.orgData;
 };
 
 // 重置操作
