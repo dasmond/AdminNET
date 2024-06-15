@@ -2,22 +2,103 @@
 branches: {
   }
 fileChange:
+  /.gitignore:
+    newFile: !uuid 'cc273e32054b95beb0f8e3e47932eb3d7f4d572d'
+    oldFile: !uuid 'b716a0b6a4ac721499d27735a22b846ec1cb8ee0'
   /Admin.NET:
-    newFile: !uuid 'bb0c5f6f1dfe0dae5c4dc78e5034a2a6da1eed02'
-    oldFile: !uuid 'e423d7649e555c2521acc7fef5fa9ed9471b59fa'
-  /Admin.NET/Admin.NET.Web.Entry:
-    newFile: !uuid 'd9e3e4147758c0bfa261ffe2936a51e97b5f51e1'
-    oldFile: !uuid '564b08a3ece92c796dbdd0f8513c0b28c1d2e03b'
-  /Admin.NET/Admin.NET.Web.Entry/wwwroot:
-    newFile: !uuid '0e1c7f2ca5326ed172b51cb406a9245b8b486482'
-    oldFile: !uuid '7e57ab7a6a361fe90c7ed938c69c8c5f198ee6eb'
-  /Admin.NET/Admin.NET.Web.Entry/wwwroot/Template:
-    newFile: !uuid '8a0ad3cedcdb5d2c7c3e3bb4a868034ca7f43c00'
-    oldFile: !uuid '1259da55d24a2984a32862ee19e0afad58b79f52'
-  /Admin.NET/Admin.NET.Web.Entry/wwwroot/Template/Service.cs.vm:
-    newFile: !uuid '6b81ee0c1cdca39c803302c3ead40a5631e8cf18'
-    oldFile: !uuid 'a42bda8971226edd3355518cbb3a7d7b04b7a76c'
-gitCommitId: !uuid 'd81dbb6cea34aeb8ac79f1a775c255625a670cb4'
-renames: {
-  }
-revisionId: 2025
+    newFile: !uuid '65624852d6b9b7024be923d85f8b87d1223b1943'
+    oldFile: !uuid 'bb0c5f6f1dfe0dae5c4dc78e5034a2a6da1eed02'
+  /Admin.NET/Admin.NET.Core:
+    newFile: !uuid '54c891125dec54ef291dcb677353c18f103e1e2d'
+    oldFile: !uuid 'be16e555fe0cd73ca5413623a0995556c1fcd251'
+  /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
+    newFile: !uuid '5f5d95874eba1d9494fc340041f4e953a4b6728b'
+    oldFile: !uuid '18f3e793cc97254b5e245ff6a24d630dd9036a8b'
+  /Admin.NET/Admin.NET.Core/SeedData:
+    newFile: !uuid '4133937c2f8b95228838c9ad26b9fb9c53a4e61a'
+    oldFile: !uuid '0478fda02c883efc6c56c1826aa20558660ba66d'
+  /Admin.NET/Admin.NET.Core/SeedData/SysMenuSeedData.cs:
+    newFile: !uuid '11ca54aabc5edc901f8a27530d46c83d06064295'
+    oldFile: !uuid 'b988f293975d04a452a8c802d17713233bc0e7f1'
+  /Admin.NET/Admin.NET.Core/Service:
+    newFile: !uuid '56fa5d359c2b9d21fd408331adec26b2943bd776'
+    oldFile: !uuid 'e3ed3118928f5e3e746174a9dbbe8fa6e884f776'
+  /Admin.NET/Admin.NET.Core/Service/Config:
+    newFile: !uuid '966d1439d0d985b9027004e0a7633ef2324a2742'
+    oldFile: !uuid '44efcd5a66ee12543228dfed1b7207e9ee56f421'
+  /Admin.NET/Admin.NET.Core/Service/Config/Dto:
+    newFile: !uuid 'e184f6eac394c188e3209b2b8c8770f143b7e051'
+    oldFile: !uuid '486248cbbf69aa50b8cecbf4b87288aca6493dde'
+  /Admin.NET/Admin.NET.Core/Service/Config/Dto/ConfigBatchInput.cs:
+    newFile: null
+    oldFile: !uuid '8e184805bba726a43ee4f14d1f8503e821cdbbf7'
+  /Admin.NET/Admin.NET.Core/Service/Config/Dto/ConfigInput.cs:
+    newFile: !uuid 'd5c0b3eca23f95cf749ff89f03f1d7f49754bb35'
+    oldFile: !uuid '1fdc16b476f982d8358b888130aba5c8e307b82e'
+  /Admin.NET/Admin.NET.Core/Service/Config/SysConfigService.cs:
+    newFile: !uuid '6c0fafac8cf86d7fe19ee494a43a22c404f29383'
+    oldFile: !uuid '4bd208bf880d0e74e90d74f76ae51641ea544602'
+  /Admin.NET/Admin.NET.Core/Service/Message:
+    newFile: !uuid 'd0017ef2c5c6736be501c45071dfaaf2e109a76a'
+    oldFile: !uuid '56d60a6d1eda92be97d903081964867c733abab1'
+  /Admin.NET/Admin.NET.Core/Service/Message/SysSmsService.cs:
+    newFile: !uuid '83dfadaf79e5bbc9b18c9a0db2593eac07297f30'
+    oldFile: !uuid '4c71dc7c5adcfd475c3fc3aa73ef900614f6978a'
+  /Admin.NET/Plugins:
+    newFile: !uuid '6a0585e1cff7417a585b2ffd67a1565446f35abc'
+    oldFile: !uuid '546a17ee9e1b831c2a4da4da104be2553a95439b'
+  /Admin.NET/Plugins/Admin.NET.Plugin.ReZero:
+    newFile: !uuid '506f529430e702d90173cdbb2cda1cc08ab14395'
+    oldFile: !uuid '47112d1cbeb11da746544d6cfd656adfe2ede252'
+  /Admin.NET/Plugins/Admin.NET.Plugin.ReZero/Admin.NET.Plugin.ReZero.csproj:
+    newFile: !uuid '7054a9409a770ee73d5ad96cd2ca08dc65e6ee1e'
+    oldFile: !uuid 'ffd008045ad189980cbeece9c5815f389a50e210'
+  /Web:
+    newFile: !uuid '4359bdec69e24f5e338808443d336873a2beb0ab'
+    oldFile: !uuid 'e524419b7c01594b8aca7a29d0238b1cf29bd73c'
+  /Web/.prettierrc.cjs:
+    newFile: !uuid '8bda89ac40f1fb7a7d361accd1998acbed5b369f'
+    oldFile: null
+  /Web/.prettierrc.js:
+    newFile: null
+    oldFile: !uuid '8bda89ac40f1fb7a7d361accd1998acbed5b369f'
+  /Web/package.json:
+    newFile: !uuid '1958eac696fb08f9d4be87f61ce94d495d97ec87'
+    oldFile: !uuid 'd00363079eff0bb4c1fe4dda86e109962b78ac6a'
+  /Web/src:
+    newFile: !uuid '806d3ccbad23b6970b167a14c5d27f35982ed055'
+    oldFile: !uuid '59bf1c825a1daef1b9ecef72f7b17f85eb842048'
+  /Web/src/views:
+    newFile: !uuid 'b2febf42085777cebcd2ff52a98e77f13701284a'
+    oldFile: !uuid '38d2e0c242f194bb845311bf0f709013b56a5b5a'
+  /Web/src/views/about:
+    newFile: !uuid '3bbe850186a211bbc79d5b9a95de2d81be6209c0'
+    oldFile: !uuid '5fe6133d98ef7f9a06f87740d5bb8281a9b78692'
+  /Web/src/views/about/index.vue:
+    newFile: !uuid '88a120bda4fc791a60e3398a8718611accfc7d6b'
+    oldFile: !uuid '155e593fe9fc4c26d63fd556e44dc13f904c5722'
+  /Web/src/views/system:
+    newFile: !uuid '45f992d10be1effecf1a4a066bd6f419c00f6280'
+    oldFile: !uuid 'fc7e1a4bfc47827a000c88fa236c0e90a8e71355'
+  /Web/src/views/system/database:
+    newFile: !uuid 'f822305e9aec9c0b2fe4f14780515a23a471a556'
+    oldFile: !uuid 'bcd2d31c28c6bbe64d4e42c2ce0aa91ddecb128f'
+  /Web/src/views/system/database/component:
+    newFile: !uuid '31e5b57485a9a345cee26a338af9859b8d7f73ca'
+    oldFile: !uuid '3ec30bc7d191ad4944a2d5b826fc19de42620224'
+  /Web/src/views/system/database/component/addTable.vue:
+    newFile: !uuid '19a982634c21ccd06f3b3a446a8756ad29a1cb68'
+    oldFile: !uuid '79c9561c005d7b6a5445510393c96178c1c596d5'
+  /Web/src/views/system/org:
+    newFile: !uuid 'ee43c3745ee2c80d75ff89390d6bfdc5ee624044'
+    oldFile: !uuid '881c70ef7ae8890d68743c06a1ec9533a6387797'
+  /Web/src/views/system/org/index.vue:
+    newFile: !uuid '879dfaa3aa11f5d5f02fa2316850bb65211b277a'
+    oldFile: !uuid '2222b3160fddaf98d6427fe6bff1640fee71f384'
+  /Web/vite.config.ts:
+    newFile: !uuid '3266a0d49fc6c2926eacefd4cc3d1179f996831d'
+    oldFile: !uuid '4192e4a9eceecb1f3647ce7739b3a2f91f9b89cc'
+gitCommitId: !uuid '551ce314f237e29a7646199667fbdaf27cafc95a'
+renames:
+  /Web/.prettierrc.cjs: /Web/.prettierrc.js
+revisionId: 2026
