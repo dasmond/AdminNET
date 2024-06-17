@@ -2,31 +2,67 @@
 branches: {
   }
 fileChange:
+  /Admin.NET:
+    newFile: !uuid 'ef918e7993119310dfa640542415c5f2416898fd'
+    oldFile: !uuid 'd467f60312dba765dde5029f158d2c654ae8293b'
+  /Admin.NET/Admin.NET.Core:
+    newFile: !uuid '2290f4e11f204327483d160748404ead2e6fe0cf'
+    oldFile: !uuid 'fdb23d15ec56c26ae14de93e3a0cf8d409bbf7ec'
+  /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
+    newFile: !uuid '2e13dc2eb2b0031ecba3c746337edf35b64110e9'
+    oldFile: !uuid '5f5d95874eba1d9494fc340041f4e953a4b6728b'
+  /Admin.NET/Admin.NET.Core/Attribute:
+    newFile: !uuid 'c0e37c799a3715a58d6b442b424b6e6a09325ae0'
+    oldFile: !uuid '78b895f1d42fb40e41e7bd69f762187a03870751'
+  /Admin.NET/Admin.NET.Core/Attribute/ThemeAttribute:
+    newFile: null
+    oldFile: !uuid '88a047b6bdbaeb621f57c5bcb64744ab740cb153'
+  /Admin.NET/Admin.NET.Core/Attribute/ThemeAttribute.cs:
+    newFile: !uuid '397e9020822c8a0ac42ca00f5312b42a6f668a81'
+    oldFile: null
+  /Admin.NET/Admin.NET.Core/Extension:
+    newFile: !uuid '4e697a0de7a97246124ef78b8cc790083fc016d6'
+    oldFile: !uuid '9cbdaeabe080cf91f17644201f3c3f6dcdfe406e'
+  /Admin.NET/Admin.NET.Core/Extension/EnumExtension.cs:
+    newFile: !uuid '57f3b06f7dab0fc529e140a4dfb83991e93eb5f6'
+    oldFile: !uuid 'e9b0a3eb66026d0f78b7f3693f986fd461d9238d'
+  /Admin.NET/Plugins:
+    newFile: !uuid '08c905bf3dfc8b30c302a500e4f3f75377fd751c'
+    oldFile: !uuid '6a0585e1cff7417a585b2ffd67a1565446f35abc'
+  /Admin.NET/Plugins/Admin.NET.Plugin.ReZero:
+    newFile: !uuid 'fc9283ec5a2e5ef2923a8b45bfc3d945e9d7b348'
+    oldFile: !uuid '506f529430e702d90173cdbb2cda1cc08ab14395'
+  /Admin.NET/Plugins/Admin.NET.Plugin.ReZero/Admin.NET.Plugin.ReZero.csproj:
+    newFile: !uuid '4a02b77dbd5597e1fbc6e9d3f4cac0182980953d'
+    oldFile: !uuid '7054a9409a770ee73d5ad96cd2ca08dc65e6ee1e'
   /Web:
-    newFile: !uuid 'b211f07d31c5163929f36dcb51f7fda643f20945'
-    oldFile: !uuid '4359bdec69e24f5e338808443d336873a2beb0ab'
+    newFile: !uuid 'e49ea3a54c63dee9ea8bf0b173d8905bc9ee1ec1'
+    oldFile: !uuid 'b211f07d31c5163929f36dcb51f7fda643f20945'
   /Web/src:
-    newFile: !uuid 'c8288ffb1a3b1129af6a6c6a7abf9f25e0350d90'
-    oldFile: !uuid '806d3ccbad23b6970b167a14c5d27f35982ed055'
+    newFile: !uuid 'a4d8fa6de44aa4cb8c59d3d0fc3757b9a410affb'
+    oldFile: !uuid 'c8288ffb1a3b1129af6a6c6a7abf9f25e0350d90'
   /Web/src/views:
-    newFile: !uuid '617c4c93b7d5d41d24f521f1d457968379e014f9'
-    oldFile: !uuid 'b2febf42085777cebcd2ff52a98e77f13701284a'
+    newFile: !uuid '991daea0e606354312e2a520b7fb323dfea2fa31'
+    oldFile: !uuid '617c4c93b7d5d41d24f521f1d457968379e014f9'
   /Web/src/views/system:
-    newFile: !uuid '9ad15fcbb222b45a86cf076a7ef026b630f53ec5'
-    oldFile: !uuid '45f992d10be1effecf1a4a066bd6f419c00f6280'
+    newFile: !uuid '7d5a4e83f6e58d50986820d4047852589ad213cd'
+    oldFile: !uuid '9ad15fcbb222b45a86cf076a7ef026b630f53ec5'
   /Web/src/views/system/print:
-    newFile: !uuid 'a15867dff86adf3a80fc76e1304ebf958876208c'
-    oldFile: !uuid 'a9b731276110ec37081c3357bd4d72e7d23d3240'
+    newFile: !uuid '33148eb8724c487d9a5bfc38a43c2a476a9beda2'
+    oldFile: !uuid 'a15867dff86adf3a80fc76e1304ebf958876208c'
   /Web/src/views/system/print/component:
-    newFile: !uuid '59670a3d67622552f849e58f99759a3a26c7a650'
-    oldFile: !uuid '399653b828616d97261342c281e23fc749da8c0d'
+    newFile: !uuid '5c7484616bc482f70d031aba20c8ffbbdcbb9585'
+    oldFile: !uuid '59670a3d67622552f849e58f99759a3a26c7a650'
   /Web/src/views/system/print/component/hiprint:
-    newFile: !uuid 'd832227fb8de7df88cb742fe4cb67a2644d054b4'
-    oldFile: !uuid '4d1d8d940cebb7d25470410092a83609ff3c393f'
+    newFile: !uuid '9d3a77cb00300788eca3863b0a88ce77f6dc6489'
+    oldFile: !uuid 'd832227fb8de7df88cb742fe4cb67a2644d054b4'
   /Web/src/views/system/print/component/hiprint/preview.vue:
-    newFile: !uuid 'da7da1a0c1912534b538af122fa40c455f673c9d'
-    oldFile: !uuid 'e6e381f4229606264dce4e8dba887ff831c14ed6'
-gitCommitId: !uuid '4863f25f89815195eeb950ed56b0bb573d9743d9'
-renames: {
-  }
-revisionId: 2031
+    newFile: !uuid 'e453dd224c85bf6bd62b88a4c610df42cd78b9b3'
+    oldFile: !uuid 'da7da1a0c1912534b538af122fa40c455f673c9d'
+  /一键净化项目.bat:
+    newFile: !uuid 'ec4096b8408c2cf1690239a3ed0f42757467e704'
+    oldFile: !uuid '9fb964df6a77ef6e3f1170d8ba44d458dd3a6720'
+gitCommitId: !uuid 'b431d93bb7fdc8d43f2c4a3a8c2a1e4842362466'
+renames:
+  /Admin.NET/Admin.NET.Core/Attribute/ThemeAttribute.cs: /Admin.NET/Admin.NET.Core/Attribute/ThemeAttribute
+revisionId: 2032
