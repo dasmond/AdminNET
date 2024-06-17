@@ -3,30 +3,18 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '7f4a0a45c29e7d991207b4c39f33761f35405481'
-    oldFile: !uuid 'a091ff6fcb300e4b45f1d3711b95638f1c40f1c5'
+    newFile: !uuid 'd467f60312dba765dde5029f158d2c654ae8293b'
+    oldFile: !uuid '7f4a0a45c29e7d991207b4c39f33761f35405481'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '9f172eeae6987a950ef9e0da858e841a27636b47'
-    oldFile: !uuid 'e1da9ec5ab0097afee5580ad6aa0a6d6c11e3c88'
-  /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid '70acd3ecd1b7853992184f416d590ccac2a65cd5'
-    oldFile: !uuid '56fa5d359c2b9d21fd408331adec26b2943bd776'
-  /Admin.NET/Admin.NET.Core/Service/CodeGen:
-    newFile: !uuid 'df0442d30b38668bb47df68f26e09ca82c7f3f6e'
-    oldFile: !uuid 'a3c932d34930296e6ad3aa7d43775c33f20edcac'
-  /Admin.NET/Admin.NET.Core/Service/CodeGen/SysCodeGenConfigService.cs:
-    newFile: !uuid '3871c3cbdf08b2b27bbba8b3687a6b2771ba3ac7'
-    oldFile: !uuid 'ad65d449fa609f72b3568d1594e7434b6ca9961f'
-  /Admin.NET/Admin.NET.Core/Util:
-    newFile: !uuid '59daac5800ec8027deeb4a71fdf6f20d51395155'
-    oldFile: !uuid '8753795576ca9e5a009f805cc4799a73d81f0b4f'
-  /Admin.NET/Admin.NET.Core/Util/CodeGenUtil.cs:
-    newFile: !uuid '2db1009ddf35ba20a792d8eb4e3d590d8aa409d5'
-    oldFile: !uuid '10ba5666417a6c405bfdd7456de0dcde3ccf5a81'
-  /一键净化项目.bat:
-    newFile: !uuid '9fb964df6a77ef6e3f1170d8ba44d458dd3a6720'
-    oldFile: null
-gitCommitId: !uuid 'eccdbb2d6d2ca1be4717169134000ea442f3cb03'
+    newFile: !uuid 'fdb23d15ec56c26ae14de93e3a0cf8d409bbf7ec'
+    oldFile: !uuid '9f172eeae6987a950ef9e0da858e841a27636b47'
+  /Admin.NET/Admin.NET.Core/SqlSugar:
+    newFile: !uuid '55db0142cf19232e3aa1a3f5e104fca32443a7bd'
+    oldFile: !uuid '8505ac2663db7cb260e2184ed95a5ec93a8d6d85'
+  /Admin.NET/Admin.NET.Core/SqlSugar/SqlSugarSetup.cs:
+    newFile: !uuid '523b855cc88094baef13844adca384b85221f372'
+    oldFile: !uuid 'a5a491aa01093895aa3abf885200059441d87335'
+gitCommitId: !uuid 'c98f7332eefdfda53cc2a549ebd2b01929908a76'
 renames: {
   }
-revisionId: 2029
+revisionId: 2030
