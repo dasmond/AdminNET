@@ -2,19 +2,31 @@
 branches: {
   }
 fileChange:
-  /Admin.NET:
-    newFile: !uuid 'd467f60312dba765dde5029f158d2c654ae8293b'
-    oldFile: !uuid '7f4a0a45c29e7d991207b4c39f33761f35405481'
-  /Admin.NET/Admin.NET.Core:
-    newFile: !uuid 'fdb23d15ec56c26ae14de93e3a0cf8d409bbf7ec'
-    oldFile: !uuid '9f172eeae6987a950ef9e0da858e841a27636b47'
-  /Admin.NET/Admin.NET.Core/SqlSugar:
-    newFile: !uuid '55db0142cf19232e3aa1a3f5e104fca32443a7bd'
-    oldFile: !uuid '8505ac2663db7cb260e2184ed95a5ec93a8d6d85'
-  /Admin.NET/Admin.NET.Core/SqlSugar/SqlSugarSetup.cs:
-    newFile: !uuid '523b855cc88094baef13844adca384b85221f372'
-    oldFile: !uuid 'a5a491aa01093895aa3abf885200059441d87335'
-gitCommitId: !uuid 'c98f7332eefdfda53cc2a549ebd2b01929908a76'
+  /Web:
+    newFile: !uuid 'b211f07d31c5163929f36dcb51f7fda643f20945'
+    oldFile: !uuid '4359bdec69e24f5e338808443d336873a2beb0ab'
+  /Web/src:
+    newFile: !uuid 'c8288ffb1a3b1129af6a6c6a7abf9f25e0350d90'
+    oldFile: !uuid '806d3ccbad23b6970b167a14c5d27f35982ed055'
+  /Web/src/views:
+    newFile: !uuid '617c4c93b7d5d41d24f521f1d457968379e014f9'
+    oldFile: !uuid 'b2febf42085777cebcd2ff52a98e77f13701284a'
+  /Web/src/views/system:
+    newFile: !uuid '9ad15fcbb222b45a86cf076a7ef026b630f53ec5'
+    oldFile: !uuid '45f992d10be1effecf1a4a066bd6f419c00f6280'
+  /Web/src/views/system/print:
+    newFile: !uuid 'a15867dff86adf3a80fc76e1304ebf958876208c'
+    oldFile: !uuid 'a9b731276110ec37081c3357bd4d72e7d23d3240'
+  /Web/src/views/system/print/component:
+    newFile: !uuid '59670a3d67622552f849e58f99759a3a26c7a650'
+    oldFile: !uuid '399653b828616d97261342c281e23fc749da8c0d'
+  /Web/src/views/system/print/component/hiprint:
+    newFile: !uuid 'd832227fb8de7df88cb742fe4cb67a2644d054b4'
+    oldFile: !uuid '4d1d8d940cebb7d25470410092a83609ff3c393f'
+  /Web/src/views/system/print/component/hiprint/preview.vue:
+    newFile: !uuid 'da7da1a0c1912534b538af122fa40c455f673c9d'
+    oldFile: !uuid 'e6e381f4229606264dce4e8dba887ff831c14ed6'
+gitCommitId: !uuid '4863f25f89815195eeb950ed56b0bb573d9743d9'
 renames: {
   }
-revisionId: 1983
+revisionId: 1984
