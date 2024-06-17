@@ -2,25 +2,28 @@
 branches: {
   }
 fileChange:
-  /Admin.NET:
-    newFile: !uuid '8a46746ff06d1ddad40bf3c866c4ffd1b486c24d'
-    oldFile: !uuid 'ef918e7993119310dfa640542415c5f2416898fd'
-  /Admin.NET/Plugins:
-    newFile: !uuid 'e81e72db3fc87e16b0e570f096a51b3208e0d1b9'
-    oldFile: !uuid '08c905bf3dfc8b30c302a500e4f3f75377fd751c'
-  /Admin.NET/Plugins/Admin.NET.Plugin.GoView:
-    newFile: !uuid '0a8de6842a03dec27efc62fba7091f9f8b641ff6'
-    oldFile: !uuid 'b4756853ebb8db381e8da54e698093e18b926b8b'
-  /Admin.NET/Plugins/Admin.NET.Plugin.GoView/Service:
-    newFile: !uuid 'b9bc80226fb5148aac6b90de3b3b69387959a121'
-    oldFile: !uuid '5ce13ee982f6361d4dff1a54db7f97441c196f29'
-  /Admin.NET/Plugins/Admin.NET.Plugin.GoView/Service/GoViewSys:
-    newFile: !uuid '94e7759eee77d98080097271ee120367af4524a3'
-    oldFile: !uuid 'ffbb7d36539827f439112e0e598710ee0277eabe'
-  /Admin.NET/Plugins/Admin.NET.Plugin.GoView/Service/GoViewSys/GoViewSysService.cs:
-    newFile: !uuid '5da7441fa9e097d686dd1910c7556ab558de9916'
-    oldFile: !uuid '7a23b54c701f68a570e1a1f2c521b87bcdcb4a1a'
-gitCommitId: !uuid '1622822068a314c880af2e7ed3ebe88cf83f0d76'
+  /Web:
+    newFile: !uuid '2c1d312c05e623cfff5c11a418501a77b8f33fa1'
+    oldFile: !uuid 'e49ea3a54c63dee9ea8bf0b173d8905bc9ee1ec1'
+  /Web/src:
+    newFile: !uuid '5a4b4468240bd40e1ec39c9f60715bde616ca685'
+    oldFile: !uuid 'a4d8fa6de44aa4cb8c59d3d0fc3757b9a410affb'
+  /Web/src/App.vue:
+    newFile: !uuid '6a1339013e9024302e34ba769583ed95b5ef4e5e'
+    oldFile: !uuid 'ca28bab2a07241a9b81176e8d86f70821a45dc70'
+  /Web/src/views:
+    newFile: !uuid 'ee0625076da34fc4d27855995a2c1aea1a59cf0c'
+    oldFile: !uuid '991daea0e606354312e2a520b7fb323dfea2fa31'
+  /Web/src/views/system:
+    newFile: !uuid 'a55474aa709fbb642b66246e2cd0c0281b60f1d8'
+    oldFile: !uuid '7d5a4e83f6e58d50986820d4047852589ad213cd'
+  /Web/src/views/system/infoSetting:
+    newFile: !uuid '7e2758e2cdbc45c4a1ff8180755c83f27d51bce3'
+    oldFile: !uuid '2e42756cb65489cbde041810f576f481b7f56702'
+  /Web/src/views/system/infoSetting/index.vue:
+    newFile: !uuid 'ded5e49838d6bf59822de135e745293d29290b9f'
+    oldFile: !uuid '591fefb76dcced2488945bdb91638ed746dbd3b8'
+gitCommitId: !uuid 'e732ba763f03d8eff416ec5d509f883778baaf8f'
 renames: {
   }
-revisionId: 1986
+revisionId: 1987
