@@ -44,9 +44,11 @@ public class SysConfigService : IDynamicApiController, ITransient
     /// </summary>
     /// <returns></returns>
     [DisplayName("获取参数配置列表")]
-    public async Task<List<SysConfig>> GetList()
+    public async Task<List<SysConfig>> List(PageConfigInput input)
     {
-        return await _sysConfigRep.GetListAsync();
+        return await _sysConfigRep.AsQueryable()
+            .WhereIF(!string.IsNullOrWhiteSpace(input.GroupCode?.Trim()), u => u.GroupCode.Equals(input.GroupCode))
+            .ToListAsync();
     }
 
     /// <summary>
@@ -147,7 +149,7 @@ public class SysConfigService : IDynamicApiController, ITransient
         var value = _sysCacheService.Get<string>($"{CacheConst.KeyConfig}{code}");
         if (string.IsNullOrEmpty(value))
         {
-            var config = await _sysConfigRep.GetFirstAsync(u => u.Code == code);
+            var config = await _sysConfigRep.CopyNew().GetFirstAsync(u => u.Code == code);
             value = config != null ? config.Value : default;
             _sysCacheService.Set($"{CacheConst.KeyConfig}{code}", value);
         }
@@ -208,6 +210,22 @@ public class SysConfigService : IDynamicApiController, ITransient
         var refreshTokenExpireStr = await GetConfigValue<string>(CommonConst.SysRefreshTokenExpire);
         _ = int.TryParse(refreshTokenExpireStr, out var refreshTokenExpire);
         return refreshTokenExpire == 0 ? 40 : refreshTokenExpire;
+    }
+
+    /// <summary>
+    /// 批量更新参数配置值
+    /// </summary>
+    /// <param name="input"></param>
+    /// <returns></returns>
+    [ApiDescriptionSettings(Name = "BatchUpdate"), HttpPost]
+    [DisplayName("批量更新参数配置值")]
+    public async Task BatchUpdateConfig(List<BatchConfigInput> input)
+    {
+        foreach (var Config in input)
+        {
+            await _sysConfigRep.AsUpdateable().SetColumns(u => u.Value == Config.Value).Where(u => u.Code == Config.Code).ExecuteCommandAsync();
+            _sysCacheService.Remove($"{CacheConst.KeyConfig}{Config.Code}");
+        }
     }
 
     /// <summary>
