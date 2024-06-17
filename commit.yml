@@ -3,24 +3,30 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid 'a091ff6fcb300e4b45f1d3711b95638f1c40f1c5'
-    oldFile: !uuid '3fe7e0317e7b7a9d5f3f531e92f1db579b2f9b05'
+    newFile: !uuid '7f4a0a45c29e7d991207b4c39f33761f35405481'
+    oldFile: !uuid 'a091ff6fcb300e4b45f1d3711b95638f1c40f1c5'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid 'e1da9ec5ab0097afee5580ad6aa0a6d6c11e3c88'
-    oldFile: !uuid '54c891125dec54ef291dcb677353c18f103e1e2d'
-  /Admin.NET/Admin.NET.Core/Attribute:
-    newFile: !uuid '78b895f1d42fb40e41e7bd69f762187a03870751'
-    oldFile: !uuid '0cc77f1a2f902661b1bc51128771b2ed6f9fe3ba'
-  /Admin.NET/Admin.NET.Core/Attribute/ThemeAttribute:
-    newFile: !uuid '88a047b6bdbaeb621f57c5bcb64744ab740cb153'
+    newFile: !uuid '9f172eeae6987a950ef9e0da858e841a27636b47'
+    oldFile: !uuid 'e1da9ec5ab0097afee5580ad6aa0a6d6c11e3c88'
+  /Admin.NET/Admin.NET.Core/Service:
+    newFile: !uuid '70acd3ecd1b7853992184f416d590ccac2a65cd5'
+    oldFile: !uuid '56fa5d359c2b9d21fd408331adec26b2943bd776'
+  /Admin.NET/Admin.NET.Core/Service/CodeGen:
+    newFile: !uuid 'df0442d30b38668bb47df68f26e09ca82c7f3f6e'
+    oldFile: !uuid 'a3c932d34930296e6ad3aa7d43775c33f20edcac'
+  /Admin.NET/Admin.NET.Core/Service/CodeGen/SysCodeGenConfigService.cs:
+    newFile: !uuid '3871c3cbdf08b2b27bbba8b3687a6b2771ba3ac7'
+    oldFile: !uuid 'ad65d449fa609f72b3568d1594e7434b6ca9961f'
+  /Admin.NET/Admin.NET.Core/Util:
+    newFile: !uuid '59daac5800ec8027deeb4a71fdf6f20d51395155'
+    oldFile: !uuid '8753795576ca9e5a009f805cc4799a73d81f0b4f'
+  /Admin.NET/Admin.NET.Core/Util/CodeGenUtil.cs:
+    newFile: !uuid '2db1009ddf35ba20a792d8eb4e3d590d8aa409d5'
+    oldFile: !uuid '10ba5666417a6c405bfdd7456de0dcde3ccf5a81'
+  /一键净化项目.bat:
+    newFile: !uuid '9fb964df6a77ef6e3f1170d8ba44d458dd3a6720'
     oldFile: null
-  /Admin.NET/Admin.NET.Core/Extension:
-    newFile: !uuid '9cbdaeabe080cf91f17644201f3c3f6dcdfe406e'
-    oldFile: !uuid '5eeb4d816664675e0494e588d969424a7b67ff66'
-  /Admin.NET/Admin.NET.Core/Extension/EnumExtension.cs:
-    newFile: !uuid 'e9b0a3eb66026d0f78b7f3693f986fd461d9238d'
-    oldFile: !uuid '89447cfe01c81045f39122a62041e697832045c3'
-gitCommitId: !uuid 'b819d06e0ff2805048c8ba733f62260fcf0243fa'
+gitCommitId: !uuid 'eccdbb2d6d2ca1be4717169134000ea442f3cb03'
 renames: {
   }
-revisionId: 2028
+revisionId: 2029
