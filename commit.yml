@@ -2,28 +2,25 @@
 branches: {
   }
 fileChange:
-  /Web:
-    newFile: !uuid '2c1d312c05e623cfff5c11a418501a77b8f33fa1'
-    oldFile: !uuid 'e49ea3a54c63dee9ea8bf0b173d8905bc9ee1ec1'
-  /Web/src:
-    newFile: !uuid '5a4b4468240bd40e1ec39c9f60715bde616ca685'
-    oldFile: !uuid 'a4d8fa6de44aa4cb8c59d3d0fc3757b9a410affb'
-  /Web/src/App.vue:
-    newFile: !uuid '6a1339013e9024302e34ba769583ed95b5ef4e5e'
-    oldFile: !uuid 'ca28bab2a07241a9b81176e8d86f70821a45dc70'
-  /Web/src/views:
-    newFile: !uuid 'ee0625076da34fc4d27855995a2c1aea1a59cf0c'
-    oldFile: !uuid '991daea0e606354312e2a520b7fb323dfea2fa31'
-  /Web/src/views/system:
-    newFile: !uuid 'a55474aa709fbb642b66246e2cd0c0281b60f1d8'
-    oldFile: !uuid '7d5a4e83f6e58d50986820d4047852589ad213cd'
-  /Web/src/views/system/infoSetting:
-    newFile: !uuid '7e2758e2cdbc45c4a1ff8180755c83f27d51bce3'
-    oldFile: !uuid '2e42756cb65489cbde041810f576f481b7f56702'
-  /Web/src/views/system/infoSetting/index.vue:
-    newFile: !uuid 'ded5e49838d6bf59822de135e745293d29290b9f'
-    oldFile: !uuid '591fefb76dcced2488945bdb91638ed746dbd3b8'
-gitCommitId: !uuid 'e732ba763f03d8eff416ec5d509f883778baaf8f'
+  /Admin.NET:
+    newFile: !uuid '7eed1cc89e3b0f044f9e493d30fe1bb474f5ec32'
+    oldFile: !uuid '8a46746ff06d1ddad40bf3c866c4ffd1b486c24d'
+  /Admin.NET/Plugins:
+    newFile: !uuid 'd789cd0ff90c904cc977d051582b61a1dd40dc5e'
+    oldFile: !uuid 'e81e72db3fc87e16b0e570f096a51b3208e0d1b9'
+  /Admin.NET/Plugins/Admin.NET.Plugin.GoView:
+    newFile: !uuid '560225977b03c24272076a6674154313568d69bf'
+    oldFile: !uuid '0a8de6842a03dec27efc62fba7091f9f8b641ff6'
+  /Admin.NET/Plugins/Admin.NET.Plugin.GoView/Service:
+    newFile: !uuid 'd19d9d27b24c82d2134ec3add4cf63bef331c9f7'
+    oldFile: !uuid 'b9bc80226fb5148aac6b90de3b3b69387959a121'
+  /Admin.NET/Plugins/Admin.NET.Plugin.GoView/Service/GoViewSys:
+    newFile: !uuid '2a34075c7f8ddb73f10c1227e449acc4f33e5b0c'
+    oldFile: !uuid '94e7759eee77d98080097271ee120367af4524a3'
+  /Admin.NET/Plugins/Admin.NET.Plugin.GoView/Service/GoViewSys/GoViewSysService.cs:
+    newFile: !uuid '61788239f869614fd96f1ba7ae232f8ba395a093'
+    oldFile: !uuid '5da7441fa9e097d686dd1910c7556ab558de9916'
+gitCommitId: !uuid '832ab3ac316c226e24cc0495893cd00f153fc251'
 renames: {
   }
-revisionId: 2034
+revisionId: 2035
