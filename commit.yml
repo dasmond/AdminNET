@@ -3,27 +3,27 @@ branches: {
   }
 fileChange:
   /Web:
-    newFile: !uuid '72002113fa385e50db1d82a7ce0a3b68e93bd3cf'
-    oldFile: !uuid '6411d261659403ff247c2ca13d9287f18c96f274'
+    newFile: !uuid 'e7e2d29179eec562ddad0f7d22512ef8123cb984'
+    oldFile: !uuid '72002113fa385e50db1d82a7ce0a3b68e93bd3cf'
   /Web/src:
-    newFile: !uuid 'c0044cf27ab84c4433aeccd240b48425dd9ce822'
-    oldFile: !uuid '1e4806ad39d6e7e2788f07ecd693208446b55f77'
+    newFile: !uuid '9f6e27f6eddbb76d85acd9f3decd87d6e06e783f'
+    oldFile: !uuid 'c0044cf27ab84c4433aeccd240b48425dd9ce822'
   /Web/src/views:
-    newFile: !uuid '0f4c55c53441b9bc7b0a6d57418d061532ab9b3d'
-    oldFile: !uuid '541128926c9cbb4112a15d5e73133bfbb9d93e8e'
+    newFile: !uuid 'b17e47a45c0c6c596c4b5b3ae58abb016832dc15'
+    oldFile: !uuid '0f4c55c53441b9bc7b0a6d57418d061532ab9b3d'
   /Web/src/views/system:
-    newFile: !uuid '7e0d34c4e232298f040f3cd1b3a94cdbf0be1179'
-    oldFile: !uuid '475b47b5e8869229c03e57e6d8b3492fecdb0879'
-  /Web/src/views/system/job:
-    newFile: !uuid '058af0c2ac55fcf7b8128dfb0c3da10aba903109'
-    oldFile: !uuid 'c8a9c8d8c0cee96d751ec9c80d401b1aa6bed2d8'
-  /Web/src/views/system/job/component:
-    newFile: !uuid 'ba428aedd9537a9c8ed65f8918c51ff07f660d47'
-    oldFile: !uuid 'e06be91d86a3d2ad11181f3628817496f734f1d6'
-  /Web/src/views/system/job/component/editJobDetail.vue:
-    newFile: !uuid '838b3aa23c7c92dec258e6a983d4886577b69d03'
-    oldFile: !uuid '56d429ac7632ef8c0d88a70bc7da65aa93d1b64d'
-gitCommitId: !uuid '1c7f23e848ee02ea2c214aef020682a2af809852'
+    newFile: !uuid 'a2c97a9af9c58d8c7fafe80a5677325dac68b091'
+    oldFile: !uuid '7e0d34c4e232298f040f3cd1b3a94cdbf0be1179'
+  /Web/src/views/system/codeGen:
+    newFile: !uuid '5cdce274be381605c61b38f9fb8a98d9a932f162'
+    oldFile: !uuid '8621d9e9fa8dc553edf23475a6bf813737e495aa'
+  /Web/src/views/system/codeGen/component:
+    newFile: !uuid '7d1903b3ff759492eac50a4ffe294df96dac4464'
+    oldFile: !uuid '9a07576827b9d0bf027945e1e09225cec40f5e32'
+  /Web/src/views/system/codeGen/component/editCodeGenDialog.vue:
+    newFile: !uuid 'a6331395d112794aff46a37da7dea45648847539'
+    oldFile: !uuid '98849190e683668d49be2fdf6e0b068eb7a497e9'
+gitCommitId: !uuid 'be11fdef31a5ab03fe6c2cd8849d22ecaa6ff03e'
 renames: {
   }
-revisionId: 2038
+revisionId: 2039
