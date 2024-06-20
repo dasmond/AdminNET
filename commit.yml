@@ -3,24 +3,21 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid 'fa7086b17d626887d790aebc32e0f5b501a00141'
-    oldFile: !uuid '176f1a337ad029d2619584ab474d47c31d300605'
+    newFile: !uuid 'aef1632e38b6060f0917f5a3760dea2431805d06'
+    oldFile: !uuid 'fa7086b17d626887d790aebc32e0f5b501a00141'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid 'b67b8f70789ef340bc12313adec99f432975edc1'
-    oldFile: !uuid 'f8f73f0ca7c0a8b80466c452759a4349e23842c6'
-  /Admin.NET/Admin.NET.Core/Attribute:
-    newFile: !uuid '49b18b56f882406ee036d2293b6e7120b7b6a5fc'
-    oldFile: !uuid 'c0e37c799a3715a58d6b442b424b6e6a09325ae0'
-  /Admin.NET/Admin.NET.Core/Attribute/SeedDataAttribute.cs:
-    newFile: !uuid '1463eff26c335dc7d6123a051a4f198c291ddeea'
-    oldFile: null
-  /Admin.NET/Admin.NET.Core/SqlSugar:
-    newFile: !uuid 'c71d90c2c834ebad786235bef87a7762540edd67'
-    oldFile: !uuid '55db0142cf19232e3aa1a3f5e104fca32443a7bd'
-  /Admin.NET/Admin.NET.Core/SqlSugar/SqlSugarSetup.cs:
-    newFile: !uuid '64c0f8c11364656073ab4fa828b9518676645f0a'
-    oldFile: !uuid '523b855cc88094baef13844adca384b85221f372'
-gitCommitId: !uuid '0ed8f55c019b116fcf3ecfa95a9f2d6369a13cd9'
+    newFile: !uuid '9d7366a4b17cbbe48f88a2d98bf267ebfe24cbf9'
+    oldFile: !uuid 'b67b8f70789ef340bc12313adec99f432975edc1'
+  /Admin.NET/Admin.NET.Core/Service:
+    newFile: !uuid 'd076d5c3cdc0cb34100dc5a0d27c0dfbb93fd930'
+    oldFile: !uuid '70acd3ecd1b7853992184f416d590ccac2a65cd5'
+  /Admin.NET/Admin.NET.Core/Service/Wechat:
+    newFile: !uuid '3475d187faebf8de7897e0aaef213764a9b73ab0'
+    oldFile: !uuid '98bea0730aed2b2fe27fcbf9d33e98a050cf6af5'
+  /Admin.NET/Admin.NET.Core/Service/Wechat/SysWechatService.cs:
+    newFile: !uuid '9e82b50823b427d900767fd86079abd9da715db2'
+    oldFile: !uuid '9c480a4e3970977bfc1c39c78f18f932ba4cebab'
+gitCommitId: !uuid '04c96c0037eb88c7bafecc5093ad38450804fb31'
 renames: {
   }
-revisionId: 2041
+revisionId: 2042
