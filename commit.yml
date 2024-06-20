@@ -3,36 +3,24 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid 'fbdf98786d57a5e8eb9389e0fa4f6df2f22d3c29'
-    oldFile: !uuid 'aef1632e38b6060f0917f5a3760dea2431805d06'
-  /Admin.NET/Plugins:
-    newFile: !uuid 'c3c921129cccca817dd98bce67b09845e119ec83'
-    oldFile: !uuid '57b9dcc42f1a1ad077eafc0ab3b8e8cece428578'
-  /Admin.NET/Plugins/Admin.NET.Plugin.GoView:
-    newFile: !uuid 'cd3956d597170cce1eea984eccac911facab374d'
-    oldFile: !uuid '560225977b03c24272076a6674154313568d69bf'
-  /Admin.NET/Plugins/Admin.NET.Plugin.GoView/Entity:
-    newFile: !uuid '564ea28f641205def99f8b2f2e719dc66f6323fc'
-    oldFile: !uuid 'a23dd968cc62e096d030ed0415f4c5fb275506be'
-  /Admin.NET/Plugins/Admin.NET.Plugin.GoView/Entity/GoViewProData.cs:
-    newFile: !uuid 'a792c0337f98c7cb316dc9b494a64ca4455963d3'
-    oldFile: !uuid 'ae2841444e43aedf26bfbba61da55804156af7e4'
-  /Admin.NET/Plugins/Admin.NET.Plugin.GoView/Service:
-    newFile: !uuid '8741f5f5382bff5e707e9f23fb604a4ce9bc08c1'
-    oldFile: !uuid 'd19d9d27b24c82d2134ec3add4cf63bef331c9f7'
-  /Admin.NET/Plugins/Admin.NET.Plugin.GoView/Service/GoViewPro:
-    newFile: !uuid 'ad42eeb1ce714a8fde37b58970f2101a0878d093'
-    oldFile: !uuid 'af23420a7d684a8b04748e011ff4ea128c12bd83'
-  /Admin.NET/Plugins/Admin.NET.Plugin.GoView/Service/GoViewPro/Dto:
-    newFile: !uuid '9954f20c0621b4d0709b7267a179aeda5c199d72'
-    oldFile: !uuid '69ab2359527a3fa9067def062fa1f33b2190f00b'
-  /Admin.NET/Plugins/Admin.NET.Plugin.GoView/Service/GoViewPro/Dto/GoViewProOutput.cs:
-    newFile: !uuid '999ea3680cae45c60a2c71189d869fc3a5baa45c'
-    oldFile: !uuid 'a17e5fc69086f490ba0860b831c6153cc0d89e1d'
-  /Admin.NET/Plugins/Admin.NET.Plugin.GoView/Service/GoViewPro/GoViewProService.cs:
-    newFile: !uuid '786fb4b1311bcacf9687904104beb853bb9b377b'
-    oldFile: !uuid '6da6418fb949fc94184d24c18342ab47a9897664'
-gitCommitId: !uuid '92fee80188fe93d7d89e90eefd7266cbd19f3759'
+    newFile: !uuid '7b6cd7a260a336834670da9f13748f72f59e307c'
+    oldFile: !uuid 'fbdf98786d57a5e8eb9389e0fa4f6df2f22d3c29'
+  /Admin.NET/Admin.NET.Web.Entry:
+    newFile: !uuid '072bb447c300c5a2a464d14cef7395304469dbb3'
+    oldFile: !uuid 'e589798fdac1a07083ed18051f4f86c775184b94'
+  /Admin.NET/Admin.NET.Web.Entry/wwwroot:
+    newFile: !uuid 'af657683c95467d64bba76fa81dd53cae2a1a846'
+    oldFile: !uuid 'ab32199decb93798c0de9ade14b96e9a2dd85d45'
+  /Admin.NET/Admin.NET.Web.Entry/wwwroot/Template:
+    newFile: !uuid '04b8e895aad9034a0a56f8c297c9a35bdb678f04'
+    oldFile: !uuid '1a2c5af88289c9393eb91c4c91373281651339bd'
+  /Admin.NET/Admin.NET.Web.Entry/wwwroot/Template/editDialog.vue.vm:
+    newFile: !uuid '4c8ba1818849aa80fd4c45758ddb60289339a930'
+    oldFile: !uuid 'e26550fcfe828d6b64544e32271d2e15c2279424'
+  /Admin.NET/Admin.NET.Web.Entry/wwwroot/Template/index.vue.vm:
+    newFile: !uuid '599d8b309ed0bbd16f696e4a479a1908ca4f5e6e'
+    oldFile: !uuid '00151dc9247667cf060008194f8711a839628cc9'
+gitCommitId: !uuid 'df7217fb5805a18e0648c4487f300e625fbcd429'
 renames: {
   }
-revisionId: 2044
+revisionId: 2045
