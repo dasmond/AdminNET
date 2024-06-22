@@ -3,24 +3,21 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid 'f3561945397b8bd1c50fe3995c7151ac544db716'
-    oldFile: !uuid '3b4fc00620423310d6f9a64613611e740787b94b'
+    newFile: !uuid '04e0d2a86228d2bf11e103abee9f555440aae981'
+    oldFile: !uuid 'f3561945397b8bd1c50fe3995c7151ac544db716'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid 'decb5808ca9b627a2adbd5e198b924bd35f0a899'
-    oldFile: !uuid 'e5a4d7b48c2b88c7b6fb6077b3e86c3bc174a5c9'
-  /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
-    newFile: !uuid 'c1998a04fa3549901d1839d92529a62951f488d1'
-    oldFile: !uuid 'e174b45403eff53660e687d15f34a2512553bd74'
-  /Admin.NET/Admin.NET.Web.Core:
-    newFile: !uuid 'b16a630613b655b3ee33a624ef60776ec751670f'
-    oldFile: !uuid '90da5b8adf39113d72afd8d04e323b927c600930'
-  /Admin.NET/Admin.NET.Web.Core/Handlers:
-    newFile: !uuid '58f6c6318eeaddb5992827241f87e8c35771627b'
-    oldFile: !uuid '5b67e1cf28a1d0a761e7ac43d9c687ef8a94e8dc'
-  /Admin.NET/Admin.NET.Web.Core/Handlers/JwtHandler.cs:
-    newFile: !uuid 'a618ebebe612994c0563129e42f0a79829627458'
-    oldFile: !uuid 'd943a70896ae8e71e55c586c7ed41f085b5aa887'
-gitCommitId: !uuid 'ca3ea242b7b067dba47f0207e8b84dd63382f327'
+    newFile: !uuid 'f75fd3e330a646be2fa7eed0b19168116d976309'
+    oldFile: !uuid 'decb5808ca9b627a2adbd5e198b924bd35f0a899'
+  /Admin.NET/Admin.NET.Core/Service:
+    newFile: !uuid 'd1490afc9121a78e740586dae70fc90dc5e92067'
+    oldFile: !uuid 'f5c4f15d8b74b7b3c5bca8d84e840629aeeb08d6'
+  /Admin.NET/Admin.NET.Core/Service/Auth:
+    newFile: !uuid 'f02d6b7f34fcab01a8970fffc440524f821b6ab4'
+    oldFile: !uuid '3e199d350edadc04b728c4e180701928a69c97a3'
+  /Admin.NET/Admin.NET.Core/Service/Auth/SysAuthService.cs:
+    newFile: !uuid 'd7d6fafaaf9323d52cd6e127e255be5ddd873c08'
+    oldFile: !uuid '15374cf3c71a09baa831eaad3c49efc8c7288bc7'
+gitCommitId: !uuid '55636089672b4b55429489e35e047a975cc3e32e'
 renames: {
   }
-revisionId: 2054
+revisionId: 2055
