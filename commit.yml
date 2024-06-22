@@ -2,28 +2,19 @@
 branches: {
   }
 fileChange:
-  /Web:
-    newFile: !uuid 'de237905234418e5314c72dc87fa3dc05cb9675d'
-    oldFile: !uuid 'e83956773538728511628b3c8678de8eb54a87cb'
-  /Web/src:
-    newFile: !uuid 'e8c9fb02e60e91d97149f98d1a4f460df6f886d9'
-    oldFile: !uuid '3aca18a63685359c5f8af711ae67652560fbd374'
-  /Web/src/views:
-    newFile: !uuid 'bf5e9309ea32116b35c746e21c6a39238caf4508'
-    oldFile: !uuid '7a5a9e37b0d4dba8f67d75b7a42ac38e43a5783c'
-  /Web/src/views/system:
-    newFile: !uuid 'fe42130e235437cefdd77e60e090858ead075ea7'
-    oldFile: !uuid '6e9f5dfa88640cd55f36d0fafff92da8bc18bde2'
-  /Web/src/views/system/job:
-    newFile: !uuid 'bab4d09eec8a9a28d3f4556b0af733daa27354cf'
-    oldFile: !uuid '058af0c2ac55fcf7b8128dfb0c3da10aba903109'
-  /Web/src/views/system/job/component:
-    newFile: !uuid '9baf41b2413a06955b56789b23982e22cbc56de6'
-    oldFile: !uuid 'ba428aedd9537a9c8ed65f8918c51ff07f660d47'
-  /Web/src/views/system/job/component/editJobTrigger.vue:
-    newFile: !uuid '081fdcab3d645e6b2fe4c10f84a9b67bd0de4bd3'
-    oldFile: !uuid '5a3fd4b3c5a9958aa3244c979d42f1a71e3b6e28'
-gitCommitId: !uuid '9710509aaac350b20c37df1cf90ec83fbe2308b4'
+  /Admin.NET:
+    newFile: !uuid 'e4b45cb3498e2981c6a527d83f785920928ad687'
+    oldFile: !uuid '8ad50a7a7c53a19281fc83d1684f262ad4ec19a5'
+  /Admin.NET/Plugins:
+    newFile: !uuid '71b476889c730a24c6e28f087739f6775dac0cd8'
+    oldFile: !uuid '11dc116613f3705d098b2d68d388571968ed828d'
+  /Admin.NET/Plugins/Admin.NET.Plugin.ReZero:
+    newFile: !uuid '2e6dec0110bbd06d25dd3d9e7c9b99c621befcce'
+    oldFile: !uuid 'cfe3f94aaccf8c844a72615e077c9e9447b5de05'
+  /Admin.NET/Plugins/Admin.NET.Plugin.ReZero/Admin.NET.Plugin.ReZero.csproj:
+    newFile: !uuid '3cf8e2b4c8e6d9e9a62fdb73f8651832fd6ae5a8'
+    oldFile: !uuid '635540418e3c19c504d390c55809af27c92fc8af'
+gitCommitId: !uuid '01208fd8db94a9051a9bd2ad3efcaaca59b8e8a5'
 renames: {
   }
-revisionId: 2003
+revisionId: 2004
