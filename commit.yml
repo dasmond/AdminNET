@@ -3,18 +3,27 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid 'dc14e4564a9da813382cba0bbebdffc82c275251'
-    oldFile: !uuid '2c0d45523c3ff2a6239b3e68b80de651d818985c'
+    newFile: !uuid '1ca0cf2f058850863ff6d74bbca98ba05937bf01'
+    oldFile: !uuid 'dc14e4564a9da813382cba0bbebdffc82c275251'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid 'dec2a3641a1b1c469252fecd924abe9db743f609'
-    oldFile: !uuid '7d5599b1c897a78522e8f1c2d4bc53fece701805'
+    newFile: !uuid '5783a85126859de0e9e60ab9751bdbca7f86f14d'
+    oldFile: !uuid 'dec2a3641a1b1c469252fecd924abe9db743f609'
   /Admin.NET/Admin.NET.Core/Attribute:
-    newFile: !uuid '63ab2492725535f6056748fc49e2a6a1ff23a622'
-    oldFile: !uuid 'd60cd44d266d4e949c8229f6aa7e1f7f8eddf418'
+    newFile: !uuid 'ad3821d547fcad8d2c92b06d3ba3f1c0347c2266'
+    oldFile: !uuid '63ab2492725535f6056748fc49e2a6a1ff23a622'
   /Admin.NET/Admin.NET.Core/Attribute/DictAttribute.cs:
-    newFile: !uuid '7bfd788595c7bf9c8a5728b5ee8d996cb9ada9a3'
-    oldFile: !uuid '8eddc8618965dcdc1e0b096488b726c47122207c'
-gitCommitId: !uuid '357ef768e998ec7c8a6ea937407cec847b01e442'
+    newFile: !uuid 'd252cf034bcd90d3b31ee840db5cacfd0ae3bc19'
+    oldFile: !uuid '7bfd788595c7bf9c8a5728b5ee8d996cb9ada9a3'
+  /Admin.NET/Admin.NET.Core/Service:
+    newFile: !uuid '71e93f93f37267bb983014219603c2c5daaec0fe'
+    oldFile: !uuid 'af8309afdd61684643cc16fa5b430ce5ad1f9e09'
+  /Admin.NET/Admin.NET.Core/Service/Dict:
+    newFile: !uuid 'e872919474b80c9d90e22212f5c41d4d0012ab97'
+    oldFile: !uuid '0004d2927c19fad188dc21a45cae47ea3ca75759'
+  /Admin.NET/Admin.NET.Core/Service/Dict/SysDictDataService.cs:
+    newFile: !uuid '88bd328691e10a2baafe2849931cffe4135705f8'
+    oldFile: !uuid 'fb2e0505d10db69474f77943f055a17ad138337c'
+gitCommitId: !uuid 'c4bdf4a0dad7917099f2c42b321cf5a1a6d7470c'
 renames: {
   }
-revisionId: 2015
+revisionId: 2016
