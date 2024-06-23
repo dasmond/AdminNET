@@ -13,11 +13,13 @@ namespace Admin.NET.Core.Service;
 [AllowAnonymous]
 public class SysDictDataService : IDynamicApiController, ITransient
 {
+    private readonly SysCacheService _sysCacheService;
     private readonly SqlSugarRepository<SysDictData> _sysDictDataRep;
 
-    public SysDictDataService(SqlSugarRepository<SysDictData> sysDictDataRep)
+    public SysDictDataService(SqlSugarRepository<SysDictData> sysDictDataRep, SysCacheService sysCacheService)
     {
         _sysDictDataRep = sysDictDataRep;
+        _sysCacheService = sysCacheService;
     }
 
     /// <summary>
@@ -40,6 +42,7 @@ public class SysDictDataService : IDynamicApiController, ITransient
     /// 获取字典值列表 🔖
     /// </summary>
     /// <returns></returns>
+    [UnitOfWork]
     [DisplayName("获取字典值列表")]
     public async Task<List<SysDictData>> GetList([FromQuery] GetDataDictDataInput input)
     {
@@ -67,6 +70,7 @@ public class SysDictDataService : IDynamicApiController, ITransient
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
+    [UnitOfWork]
     [ApiDescriptionSettings(Name = "Update"), HttpPost]
     [DisplayName("更新字典值")]
     public async Task UpdateDictData(UpdateDictDataInput input)
@@ -77,7 +81,9 @@ public class SysDictDataService : IDynamicApiController, ITransient
         isExist = await _sysDictDataRep.IsAnyAsync(u => u.Code == input.Code && u.DictTypeId == input.DictTypeId && u.Id != input.Id);
         if (isExist) throw Oops.Oh(ErrorCodeEnum.D3003);
 
-        await _sysDictDataRep.UpdateAsync(input.Adapt<SysDictData>());
+        var dictData = input.Adapt<SysDictData>();
+        _sysCacheService.Remove($"{CacheConst.KeyDict}{dictData.DictTypeId}");
+        await _sysDictDataRep.UpdateAsync(dictData);
     }
 
     /// <summary>
@@ -85,6 +91,7 @@ public class SysDictDataService : IDynamicApiController, ITransient
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
+    [UnitOfWork]
     [ApiDescriptionSettings(Name = "Delete"), HttpPost]
     [DisplayName("删除字典值")]
     public async Task DeleteDictData(DeleteDictDataInput input)
@@ -93,6 +100,7 @@ public class SysDictDataService : IDynamicApiController, ITransient
         if (dictData == null)
             throw Oops.Oh(ErrorCodeEnum.D3004);
 
+        _sysCacheService.Remove($"{CacheConst.KeyDict}{dictData.DictTypeId}");
         await _sysDictDataRep.DeleteAsync(dictData);
     }
 
@@ -112,6 +120,7 @@ public class SysDictDataService : IDynamicApiController, ITransient
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
+    [UnitOfWork]
     [DisplayName("修改字典值状态")]
     public async Task SetStatus(DictDataInput input)
     {
@@ -121,6 +130,8 @@ public class SysDictDataService : IDynamicApiController, ITransient
 
         if (!Enum.IsDefined(typeof(StatusEnum), input.Status))
             throw Oops.Oh(ErrorCodeEnum.D3005);
+
+        _sysCacheService.Remove($"{CacheConst.KeyDict}{dictData.DictTypeId}");
 
         dictData.Status = input.Status;
         await _sysDictDataRep.UpdateAsync(dictData);
@@ -134,10 +145,19 @@ public class SysDictDataService : IDynamicApiController, ITransient
     [NonAction]
     public async Task<List<SysDictData>> GetDictDataListByDictTypeId(long dictTypeId)
     {
-        return await _sysDictDataRep.AsQueryable()
-            .Where(u => u.DictTypeId == dictTypeId)
-            .OrderBy(u => new { u.OrderNo, u.Code })
-            .ToListAsync();
+        var dictDataList = _sysCacheService.Get<List<SysDictData>>($"{CacheConst.KeyDict}{dictTypeId}");
+
+        if (dictDataList == null)
+        {
+            dictDataList = await _sysDictDataRep.AsQueryable()
+                .Where(u => u.DictTypeId == dictTypeId)
+                .OrderBy(u => new { u.OrderNo, u.Code })
+                .ToListAsync();
+
+            _sysCacheService.Set($"{CacheConst.KeyDict}{dictTypeId}", dictDataList);
+        }
+
+        return dictDataList;
     }
 
     /// <summary>
@@ -179,6 +199,7 @@ public class SysDictDataService : IDynamicApiController, ITransient
     [NonAction]
     public async Task DeleteDictData(long dictTypeId)
     {
+        _sysCacheService.Remove($"{CacheConst.KeyDict}{dictTypeId}");
         await _sysDictDataRep.DeleteAsync(u => u.DictTypeId == dictTypeId);
     }
 }
