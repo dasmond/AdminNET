@@ -6,7 +6,7 @@
 		</template>
 		<div class="commit">
 			<el-timeline style="max-width: 600px" v-if="state.list.length > 0">
-				<el-timeline-item v-for="(item, index) in state.list" :key="index" :timestamp="item.commit.committer.date.replace(/[T+]/g, ' ')">
+				<el-timeline-item v-for="(item, index) in state.list" :key="index" :timestamp="formatDate(new Date(item.commit.committer.date), 'YYYY-mm-dd HH:MM:SS')">
 					<el-link :href="item.html_url" target="_blank"> {{ item.commit.message }}</el-link>
 				</el-timeline-item>
 			</el-timeline>
@@ -26,6 +26,7 @@ export default {
 <script setup lang="ts" name="commit">
 // import axios from 'axios';
 import { reactive, onMounted } from 'vue';
+import { formatDate } from '/@/utils/formatTime';
 
 const state = reactive({
 	list: [] as any,
