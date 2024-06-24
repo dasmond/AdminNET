@@ -2,28 +2,22 @@
 branches: {
   }
 fileChange:
-  /Web:
-    newFile: !uuid 'f846bdd980c2b19bb4ee4ebd7d4b58a4e60170bb'
-    oldFile: !uuid 'fb67548bbcf7a4e122127c72cfc58642c70a25ae'
-  /Web/src:
-    newFile: !uuid '6c32740464332e1f1cbe24251c4ea9e5841d39a9'
-    oldFile: !uuid '85aa66eda9c439a362491bb39e165d681f959297'
-  /Web/src/views:
-    newFile: !uuid 'a788e14946b1297475ea1be93015cd0a01a8a921'
-    oldFile: !uuid '16d8979ca4ab634f84ba6e0fa16878bf5bf767fb'
-  /Web/src/views/home:
-    newFile: !uuid '4bc305042cbf00f7e9d4a4c327b53192a0e5633c'
-    oldFile: !uuid 'e63e75eea6abfbab615fcfffa1fd59d9c2d10c1f'
-  /Web/src/views/home/widgets:
-    newFile: !uuid '86068dd60afffbf91f4aa8e885c84a1fa7cee38d'
-    oldFile: !uuid '4cd50cb497b942e9146115e318f4c2af4ec78666'
-  /Web/src/views/home/widgets/components:
-    newFile: !uuid '8371578d25e3f8a36285ba3766567290c8101938'
-    oldFile: !uuid '7b7c8b48b8f0c5e56d3497212edacc7aa7a1eaa5'
-  /Web/src/views/home/widgets/components/commit.vue:
-    newFile: !uuid '01a790e32e734088a42dd26aad711260ba7456a7'
-    oldFile: !uuid 'c961341d69593121d208add1dc8e305e55c9be17'
-gitCommitId: !uuid '10d6c6afac3589160e83a55c1ae4155cfe24bcd4'
+  /Admin.NET:
+    newFile: !uuid 'e4173935ddd5934e5a2d6df00597686f3dfb4d43'
+    oldFile: !uuid '1ca0cf2f058850863ff6d74bbca98ba05937bf01'
+  /Admin.NET/Admin.NET.Web.Entry:
+    newFile: !uuid 'afa4ae05f81cccc5f6fcecf7851cb96fa9f537af'
+    oldFile: !uuid '83fee1702785b73573f37e8cdb24a5546421a4e5'
+  /Admin.NET/Admin.NET.Web.Entry/wwwroot:
+    newFile: !uuid 'f0a9fc3a447f9b8ec6e22f439596f14a0d665dbf'
+    oldFile: !uuid '9288cf84edd118a2719bdfcfd3ed7c9a8da0aa29'
+  /Admin.NET/Admin.NET.Web.Entry/wwwroot/Template:
+    newFile: !uuid '7a208b11224cce541e15389ad27f3cd9b3fffe37'
+    oldFile: !uuid '6d293b58578dfc994965f466f258a5cb1a1fd2bd'
+  /Admin.NET/Admin.NET.Web.Entry/wwwroot/Template/Service.cs.vm:
+    newFile: !uuid 'b3475215b472261685c5cd05edeba1d3fd1b37eb'
+    oldFile: !uuid 'dbacc2825e4f8109c261fb7e9653e08fffa9963a'
+gitCommitId: !uuid '2cd45de27f1e55f8bd3d031812c22f9e1f0663d7'
 renames: {
   }
-revisionId: 2019
+revisionId: 2020
