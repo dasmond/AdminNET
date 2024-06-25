@@ -140,6 +140,9 @@ public class SysUserService : IDynamicApiController, ITransient
             await _sysOnlineUserService.ForceOffline(input.Id);
         // 更新域账号
         await _sysUserLdapService.AddUserLdap(user.TenantId.Value, user.Id, user.Account, input.DomainAccount);
+
+        _sysCacheService.Remove($"{CacheConst.KeyUserOrg}{user.Id}"); // 删缓存
+
     }
 
     /// <summary>
