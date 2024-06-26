@@ -2,13 +2,19 @@
 branches: {
   }
 fileChange:
-  /Web:
-    newFile: !uuid '4d7785585b67a492d7fa47db318ea87df9e9b3d8'
-    oldFile: !uuid '3d0d13984654020dc115069e95fb1eb7fc603593'
-  /Web/package.json:
-    newFile: !uuid '99ab2d081468749ed360952323cbfb0d1e8be886'
-    oldFile: !uuid 'af2bb25a91bb83d352b9aefdb8fa9553b72cd172'
-gitCommitId: !uuid '7d38181be634060278a12ae4a20a95454bec729d'
+  /Admin.NET:
+    newFile: !uuid 'b25c7ef764cb347a0f862ff1dbf31a5922fca3c2'
+    oldFile: !uuid '44a40d2d8a54862d8abaffaa045a72f5f3a406ff'
+  /Admin.NET/Plugins:
+    newFile: !uuid '46e857941108f093eebe3379849e894ec5d0f150'
+    oldFile: !uuid '9ba62e2e590fa52ee659e973619ba7c26b25682b'
+  /Admin.NET/Plugins/Admin.NET.Plugin.ReZero:
+    newFile: !uuid '6388cb8beb86a69e68b085318549245004d6fddd'
+    oldFile: !uuid '81c973c3acb575c47ff539ed18f642e2ca0f2e78'
+  /Admin.NET/Plugins/Admin.NET.Plugin.ReZero/Admin.NET.Plugin.ReZero.csproj:
+    newFile: !uuid 'd86dab8ae4696f986261d74c57443a64f852ec7a'
+    oldFile: !uuid '1ac80e7ad4f9f51be2f5b52e6ddc71fb71f8f854'
+gitCommitId: !uuid 'ae1c62d0785a967f6d2e30f3e74897a32f8d767e'
 renames: {
   }
-revisionId: 2040
+revisionId: 2041
