@@ -3,18 +3,42 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid 'b25c7ef764cb347a0f862ff1dbf31a5922fca3c2'
-    oldFile: !uuid '44a40d2d8a54862d8abaffaa045a72f5f3a406ff'
-  /Admin.NET/Plugins:
-    newFile: !uuid '46e857941108f093eebe3379849e894ec5d0f150'
-    oldFile: !uuid '9ba62e2e590fa52ee659e973619ba7c26b25682b'
-  /Admin.NET/Plugins/Admin.NET.Plugin.ReZero:
-    newFile: !uuid '6388cb8beb86a69e68b085318549245004d6fddd'
-    oldFile: !uuid '81c973c3acb575c47ff539ed18f642e2ca0f2e78'
-  /Admin.NET/Plugins/Admin.NET.Plugin.ReZero/Admin.NET.Plugin.ReZero.csproj:
-    newFile: !uuid 'd86dab8ae4696f986261d74c57443a64f852ec7a'
-    oldFile: !uuid '1ac80e7ad4f9f51be2f5b52e6ddc71fb71f8f854'
-gitCommitId: !uuid 'ae1c62d0785a967f6d2e30f3e74897a32f8d767e'
+    newFile: !uuid 'e42873383ea37e0eb830bfa6e93ca10cc8ec4713'
+    oldFile: !uuid 'b25c7ef764cb347a0f862ff1dbf31a5922fca3c2'
+  /Admin.NET/Admin.NET.Core:
+    newFile: !uuid '737c4290caf3b2b1521c2e3c05c005c25f684863'
+    oldFile: !uuid 'c18a2ec50ccf3438224414d9d3bfa1dec148de9f'
+  /Admin.NET/Admin.NET.Core/Job:
+    newFile: !uuid 'cf9dbb5bbdbcd247254c3907a229e3f1a20b9536'
+    oldFile: !uuid '1fb4d8f9f9420d62d1ec5cf7b37cf73718c5a67d'
+  /Admin.NET/Admin.NET.Core/Job/EnumToDictJob.cs:
+    newFile: !uuid '183f55d1801e0ef2128a50131ec49b08520e12b3'
+    oldFile: !uuid '958489483d3baf9457790be4b566a53ddc4542d3'
+  /Web:
+    newFile: !uuid '4867242574cb09556e11a08a7bd2d727edcd369d'
+    oldFile: !uuid '4d7785585b67a492d7fa47db318ea87df9e9b3d8'
+  /Web/package.json:
+    newFile: !uuid '9e109c0afde07bafbc63b67794138335f8b02b63'
+    oldFile: !uuid '99ab2d081468749ed360952323cbfb0d1e8be886'
+  /Web/src:
+    newFile: !uuid '983d3fd30ba2da820283ca1543a5f3ab16d81a94'
+    oldFile: !uuid 'bd30d034dd0e8f38b464f15d31698466b0a87db7'
+  /Web/src/views:
+    newFile: !uuid '19d95d95df6de86a96b3c51cbaa6d023dc93eeb8'
+    oldFile: !uuid '534a386b62ee871b0f431b2f85326d9696c7259b'
+  /Web/src/views/elive:
+    newFile: !uuid '1464b80f7ab7b7ab8b406d49d5d84651029c6e7e'
+    oldFile: null
+  /Web/src/views/elive/index.vue:
+    newFile: !uuid '496a9d106b399944df83a070cbeb3455d0f31e3b'
+    oldFile: null
+  /Web/src/views/mqttx:
+    newFile: !uuid '200534e2163f12953fcd60f74592224317d50d22'
+    oldFile: null
+  /Web/src/views/mqttx/index.vue:
+    newFile: !uuid '645c5f52905aa7d686cb10e1e381770f77e7b1e2'
+    oldFile: null
+gitCommitId: !uuid '0c8820d61159152e8275fe7fd21c0dbee6a66268'
 renames: {
   }
-revisionId: 2088
+revisionId: 2089
