@@ -2,16 +2,19 @@
 branches: {
   }
 fileChange:
-  /Admin.NET:
-    newFile: !uuid '9e6e56073f7acd0307ef18a025f0a137cba71b7d'
-    oldFile: !uuid 'f704097154cc8f118574881a681fa7b69fec61e8'
-  /Admin.NET/Admin.NET.Web.Entry:
-    newFile: !uuid 'ead6668bbda56fa04a456f8ace61f18868ccab8f'
-    oldFile: !uuid '458d0bb83b8cf5786a7df480b5df8b7654bc3042'
-  /Admin.NET/Admin.NET.Web.Entry/Program.cs:
-    newFile: !uuid '4cee5bf88fafce37798a1f2959ac0b0d605569fd'
-    oldFile: !uuid '2031b3d63349eece59dc8105a6ead8dc17431fe0'
-gitCommitId: !uuid '3815c36fcc739d1e232b5825c7c98f47a65a4e93'
+  /Web:
+    newFile: !uuid '43979454a0bd21f1821fe158d9a8ead830b2e087'
+    oldFile: !uuid '9576bbde152506d184f7930525f51a33f81746ab'
+  /Web/src:
+    newFile: !uuid '6cdefa0e50a274d8ee3f9ab242edccc5eba7a914'
+    oldFile: !uuid '652065392cb072aa35b4a1e6093114e36efc0c73'
+  /Web/src/theme:
+    newFile: !uuid '5d58526096cdbb83e02885abcd3dbf409ce4a4ae'
+    oldFile: !uuid '20c24af941d7b54c80f627fbee12428fc8e5189a'
+  /Web/src/theme/element.scss:
+    newFile: !uuid '3ddee2a8f60dec5163a980fc1af63d07f59df850'
+    oldFile: !uuid '508f5d812de5b79c90cd50a41c3e84a0c6c66f34'
+gitCommitId: !uuid 'eba8f886b0dff0077e284b75a18273a1f8d3bc63'
 renames: {
   }
-revisionId: 2050
+revisionId: 2051
