@@ -3,21 +3,39 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '96112c970451329b648f43c5d2a95fc9e66e9bc1'
-    oldFile: !uuid '9937598fb0eb5a519fd41c4bae9146455fc4db86'
+    newFile: !uuid '5768c4c46331525c3b058c3649014d53c7b63aed'
+    oldFile: !uuid '96112c970451329b648f43c5d2a95fc9e66e9bc1'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '9823d6bd720f16fc59c8efb13fa6225a65071356'
-    oldFile: !uuid '2ffe3e1a5ae71a991e616771f1b4722906a4b22b'
-  /Admin.NET/Admin.NET.Core/Entity:
-    newFile: !uuid '9bd2f4c9df63c7f1f32c0fc23204e76474f648af'
-    oldFile: !uuid '0afb14e5c31ce06a5eb04f3ed942c4342b01876c'
-  /Admin.NET/Admin.NET.Core/Entity/SysDictData.cs:
-    newFile: !uuid 'f5d847db56448748c5b372ba57810474688a708c'
-    oldFile: !uuid '25f81e0d2a44205396a8a91d0e4d892030b34760'
-  /Admin.NET/Admin.NET.Core/Entity/SysPrint.cs:
-    newFile: !uuid 'c4b054a45c358754322bf9e13c2683b8e2ccf744'
-    oldFile: !uuid 'd7f69c22972cd370b99752670b9a5ebb168e5de2'
-gitCommitId: !uuid '2e004f985052e1ec56002525565443ecbdf9acaf'
+    newFile: !uuid '9c8c7b3194298b3f4fdda7949d87917c0fa8f34b'
+    oldFile: !uuid '9823d6bd720f16fc59c8efb13fa6225a65071356'
+  /Admin.NET/Admin.NET.Core/Cache:
+    newFile: !uuid '97c36a98e3950a3623ce3ad4440d93ceb4af635d'
+    oldFile: !uuid '3cbcf615ebaaec9d388a75bfa30d8448cdc7b558'
+  /Admin.NET/Admin.NET.Core/Cache/CacheSetup.cs:
+    newFile: !uuid 'f9927d862a975a1bf9cbfe03d7f96e5b7af4fb42'
+    oldFile: !uuid '6281765b076ec097777854e57ff57ce4b6050c37'
+  /Admin.NET/Admin.NET.Core/EventBus:
+    newFile: !uuid '0524c3c46be125e23be9391e3b5b9fa8d3687c43'
+    oldFile: !uuid 'f0ce0c9680af4bb9cbae62f246fa2ff293270ef4'
+  /Admin.NET/Admin.NET.Core/EventBus/EventConsumer.cs:
+    newFile: !uuid '0f774b1a265748fb642c285d5a216d929bad157a'
+    oldFile: !uuid '595bc891f17b9ab1b304483161fd54bba9c2f064'
+  /Admin.NET/Admin.NET.Core/EventBus/RedisEventSourceStorer.cs:
+    newFile: !uuid '272b5ba1d540fd4361e4b8a030b479ac5ba3c523'
+    oldFile: !uuid '975a3dc3682e6f35a5de446cde6a436e8a4bc9a8'
+  /Admin.NET/Admin.NET.Core/EventBus/RedisQueue.cs:
+    newFile: !uuid '4f695ef8ac249b1a8a8b4ee84d39cf7e807da165'
+    oldFile: !uuid '32cbf25e3f2cb819b36d5467b3dd03ffe2bfeca6'
+  /Admin.NET/Plugins:
+    newFile: !uuid '5288e7d4c14a3a62f0572785b7dc84b46c161fc1'
+    oldFile: !uuid '108bc3fb34e9f44d32f605d176286bd6bf74688c'
+  /Admin.NET/Plugins/Admin.NET.Plugin.ReZero:
+    newFile: !uuid '3188e3dab547b6b4e9f2722c599089dddda5940a'
+    oldFile: !uuid '6388cb8beb86a69e68b085318549245004d6fddd'
+  /Admin.NET/Plugins/Admin.NET.Plugin.ReZero/Admin.NET.Plugin.ReZero.csproj:
+    newFile: !uuid '38c8fc26a0ac745151afbab1e38c9e6807eb8ee9'
+    oldFile: !uuid 'd86dab8ae4696f986261d74c57443a64f852ec7a'
+gitCommitId: !uuid '1f13f77403a4a420d7e6c10a3c4736156abc07bc'
 renames: {
   }
-revisionId: 2104
+revisionId: 2105
