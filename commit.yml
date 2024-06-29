@@ -3,21 +3,36 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid 'b21cdede6a915c7a54c95d2bc2dc85a755c4fbd8'
-    oldFile: !uuid 'ef0fb1adc23f390771e7e94decb97c706634e2b1'
+    newFile: !uuid '694c03c0bca35b52f489ff25cba2859f19b7b893'
+    oldFile: !uuid 'b21cdede6a915c7a54c95d2bc2dc85a755c4fbd8'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '0f266fc565c779babe6876ecac2a8fff8fa17409'
-    oldFile: !uuid '972bbcc12672f68074f6cb9a23a641c61b36b5ab'
-  /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid '549c91f91f02ac1f13d4cd88c446bf8f7d085d3f'
-    oldFile: !uuid '4c7e8a0815107d0d2edbecd0ea006c800195a0da'
-  /Admin.NET/Admin.NET.Core/Service/Cache:
-    newFile: !uuid 'f0c92fa964a84f45c859dbfb445091e08796204c'
-    oldFile: !uuid '9ee796b4d8e080d72f7b5cc3575f918773f5cc35'
-  /Admin.NET/Admin.NET.Core/Service/Cache/SysCacheService.cs:
-    newFile: !uuid '89d797842fb2722ed9d242e2ab2e31638ea94900'
-    oldFile: !uuid '85e16895b7345820efb5bdf9e278e41544a47c6d'
-gitCommitId: !uuid 'd9b7f6ab04571e04aa90908d7fa7153896e80442'
+    newFile: !uuid '5c8e957308fa45f9f2daa162d98b576c8c8a867d'
+    oldFile: !uuid '0f266fc565c779babe6876ecac2a8fff8fa17409'
+  /Admin.NET/Admin.NET.Core/EventBus:
+    newFile: !uuid '1c746b7a3a7a525d7641a1961d49ce7aa6d69af4'
+    oldFile: !uuid '0524c3c46be125e23be9391e3b5b9fa8d3687c43'
+  /Admin.NET/Admin.NET.Core/EventBus/RedisQueue.cs:
+    newFile: !uuid '109242e2f6dce914f97b4dadf2207e99a2ff43a4'
+    oldFile: !uuid '4f695ef8ac249b1a8a8b4ee84d39cf7e807da165'
+  /Admin.NET/Admin.NET.Core/Util:
+    newFile: !uuid 'ff8f50f7084e678bf75585d1b974def51c7af769'
+    oldFile: !uuid '1ff537c2fe56d8fc988983df1be0e7166ce557f7'
+  /Admin.NET/Admin.NET.Core/Util/CommonUtil.cs:
+    newFile: !uuid '7e910c12e511d8f98035b79b024da3ca0c15d152'
+    oldFile: !uuid 'bba56f4740d29e4a532e22d73afd0b16794fdcb4'
+  /Admin.NET/Plugins:
+    newFile: !uuid '50b6a23c8c317da2e09ba74f37fb8a5ef730aef8'
+    oldFile: !uuid '5288e7d4c14a3a62f0572785b7dc84b46c161fc1'
+  /Admin.NET/Plugins/Admin.NET.Plugin.ApprovalFlow:
+    newFile: !uuid '4b1c436e864abd9583b16d381e3434a0ff5009ed'
+    oldFile: !uuid '1016e63358be26142f87486f60d7275015a75809'
+  /Admin.NET/Plugins/Admin.NET.Plugin.ApprovalFlow/Middleware:
+    newFile: !uuid '02fb1c9280ad35eba7f769a0505feaf147789054'
+    oldFile: !uuid 'aacae3e3c2babe9c6e3270880943efb5c847b5e5'
+  /Admin.NET/Plugins/Admin.NET.Plugin.ApprovalFlow/Middleware/ApprovalFlowMiddleware.cs:
+    newFile: !uuid '19d60f37c64b545bf949011969431c8c3459268f'
+    oldFile: !uuid '6c0ab028e3ff2e70fa06807f7ef2b666ee8bed00'
+gitCommitId: !uuid 'b6722cd37c9cb52adffbe1f0dbc4388a05d72236'
 renames: {
   }
-revisionId: 2107
+revisionId: 2108
