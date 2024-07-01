@@ -3,15 +3,153 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '952e7ced6b6f943e3f06b2a0086bd1ff05cc8033'
-    oldFile: !uuid '6d426ee0e422d957b37bf289b0530cd49c1272e2'
+    newFile: !uuid '22a3792e4ffd00af5de8641038909008acc096c7'
+    oldFile: !uuid '952e7ced6b6f943e3f06b2a0086bd1ff05cc8033'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid 'c06979570b429652f78da7a098117127ae93e6a9'
-    oldFile: !uuid '1d0695bb0224fbd5d0514d5e86f1e315d0220133'
-  /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
-    newFile: !uuid '0bd0ec894b733d5ef3a972ab289c91aebe908fe1'
-    oldFile: !uuid '9f7826c0e01db2f043d99baef0e2b2655bbe7603'
-gitCommitId: !uuid '66aed164a9f57a215f3f8f2ebb7265ee6a5d8d90'
+    newFile: !uuid 'af980940453e80b08b523fd3cdebc2828f46e5c5'
+    oldFile: !uuid 'c06979570b429652f78da7a098117127ae93e6a9'
+  /Admin.NET/Admin.NET.Core/Cache:
+    newFile: !uuid 'ac5e2cc0c2c224ef7a1aa8ea8123322521994424'
+    oldFile: !uuid '89780841155e9cb567741bb21807b8f5ea0222a5'
+  /Admin.NET/Admin.NET.Core/Cache/CacheSetup.cs:
+    newFile: !uuid '59edb082a8542de5f34691f9c2a462aaba0714e3'
+    oldFile: !uuid '52ff6ed03eb0a6081c1baf77f0c64a812c62ee26'
+  /Admin.NET/Admin.NET.Core/Entity:
+    newFile: !uuid '45a56be01a739f66676eda3ca6f17ffe39b63dca'
+    oldFile: !uuid 'b6fcc040fff8f4aaf88b591a2c5660ebe026ce84'
+  /Admin.NET/Admin.NET.Core/Entity/SysWechatPay.cs:
+    newFile: !uuid '9a4a5fa876ab8bddf7835dd5171b92db5bfc1301'
+    oldFile: !uuid 'd86f3f1010ab4b760a73be7bce1b422cb83b32d4'
+  /Admin.NET/Admin.NET.Core/Entity/SysWechatRefund.cs:
+    newFile: !uuid '33c8f913f6b69ec09b90ff647ba8f3ab84036529'
+    oldFile: !uuid 'cc34dda135dc8a889a113385d380181d198b7c0f'
+  /Admin.NET/Admin.NET.Core/SeedData:
+    newFile: !uuid 'ddebe7cb9578c780503f57bebd8137381b8be87b'
+    oldFile: !uuid '3851eec530c7dc705af781ed1a3bf935fce48ac0'
+  /Admin.NET/Admin.NET.Core/SeedData/SysMenuSeedData.cs:
+    newFile: !uuid 'b68166d79724f6f22f726551338497ed46f020b5'
+    oldFile: !uuid '5679ad68a650d7d69203eae48fae11ede3591602'
+  /Admin.NET/Admin.NET.Core/Service:
+    newFile: !uuid 'fed71399482e6bd1c7ed7f8f63e2c59c2d8c11c4'
+    oldFile: !uuid '8058de11c6136fa0d902754d31f849a370a27c99'
+  /Admin.NET/Admin.NET.Core/Service/Job:
+    newFile: !uuid '18913486d1af58ffe8bccb23bc7952a2da8a9deb'
+    oldFile: !uuid '8a58d846a35c5f2302f5d0d5fe7a3f3183ac8d1c'
+  /Admin.NET/Admin.NET.Core/Service/Job/JobClusterServer.cs:
+    newFile: !uuid 'ae879af591df8837606695656731f2536753fadb'
+    oldFile: !uuid '32a952c487edc595dd418b0e86c8c5a928b82f00'
+  /Admin.NET/Admin.NET.Core/Service/Wechat:
+    newFile: !uuid '76e70cad9c17271d59ed94575621b1c0d5f56e14'
+    oldFile: !uuid 'daadfc3f7610f21e5a6ed37ca8932ae558e2bae4'
+  /Admin.NET/Admin.NET.Core/Service/Wechat/Dto:
+    newFile: !uuid 'afca18adb17e1fd3b77373089f765b7a4407e77f'
+    oldFile: !uuid 'db63617516d1120f01b9b17143cf047e76846e9b'
+  /Admin.NET/Admin.NET.Core/Service/Wechat/Dto/WechatPayInput.cs:
+    newFile: !uuid '3e7a3cef4131a3f2ef110cfb93a06ae661d44d54'
+    oldFile: !uuid '0b38447a5af44fcaf54ab6eb5e468b40d563c879'
+  /Admin.NET/Admin.NET.Core/Service/Wechat/SysWechatPayService.cs:
+    newFile: !uuid '849ca62b7ed3f8eae981bd6d15df15a4b28b445f'
+    oldFile: !uuid 'ba18d216cb14fdfa17b6c6f25d65b72af143563d'
+  /Admin.NET/Admin.NET.Web.Core:
+    newFile: !uuid 'cb6f5f5865fe8b1e469ae56745eef5e870ffa496'
+    oldFile: !uuid '4681c16057d129e59587ebdf541bcba7acf29cff'
+  /Admin.NET/Admin.NET.Web.Core/Startup.cs:
+    newFile: !uuid '635f4f0b2277a7a811ced383200c9a37f96ae5f0'
+    oldFile: !uuid '604b527240e456409a8869abb7132a48eb6c926b'
+  /Web:
+    newFile: !uuid 'd4fba5349a7a984bb004f9a35f0267ed1cfe6405'
+    oldFile: !uuid '67d97092c2880f1e3e243e97c1b7a1a05f049456'
+  /Web/package.json:
+    newFile: !uuid 'e2d009f0c458338b7db451a1985520c8a61267c5'
+    oldFile: !uuid 'f97490a6994e53466fe8f455531cab19b67d8bc9'
+  /Web/src:
+    newFile: !uuid 'd49a58359cbe6dba194eab279be6d1bd297a9183'
+    oldFile: !uuid 'e7355517b806727b98e4de65b6845da91035d7a7'
+  /Web/src/api-services:
+    newFile: !uuid '570d258a962550b88982c1b3bdee5d67a0c1b14e'
+    oldFile: !uuid '8078e54afe8dfd29bb4b6e097d8c77b7ab533f07'
+  /Web/src/api-services/apis:
+    newFile: !uuid '21e905662de6772c667bd8dd530e0bd10ef3500e'
+    oldFile: !uuid 'e188a1da56e0c543c39cb81e07e12ce508d11342'
+  /Web/src/api-services/apis/sys-auth-api.ts:
+    newFile: !uuid 'f89cf0dc2ad50e450caabeaf48a0faf9de73f121'
+    oldFile: !uuid '67c54226a2a89397fdf964b0a87c80b06ac1eb27'
+  /Web/src/api-services/apis/sys-config-api.ts:
+    newFile: !uuid '5bee5bff0ae7dfb7049e4256fe2f5251e96607f3'
+    oldFile: !uuid 'c1604a0d5ab1d2d86a015e46ffe641b91423da5d'
+  /Web/src/api-services/apis/sys-sms-api.ts:
+    newFile: !uuid '59366fd1acd9d38ff245f4f861c947ce5f559bb7'
+    oldFile: !uuid 'd09dc3471be05c8be5edbd61e7546eaa8b071cd9'
+  /Web/src/api-services/apis/sys-wechat-pay-api.ts:
+    newFile: !uuid '7a390d48d6e02ad02a7dbc48eaffc159667892f9'
+    oldFile: !uuid '2bb91d935264c8cfe65ab945992daf553e676bfe'
+  /Web/src/api-services/models:
+    newFile: !uuid '506e9290afa1c63e3b1d0d1f31c24c2354488c97'
+    oldFile: !uuid '9e69ba4febe9bbf55355d9b5bf895ea46f534a48'
+  /Web/src/api-services/models/add-org-input.ts:
+    newFile: !uuid 'b41183ea1b1e6055318cc274e84a3b01315bf89f'
+    oldFile: !uuid 'b390f2736abacf526c50690e986c411e7389cb55'
+  /Web/src/api-services/models/admin-result-list-sys-wechat-refund.ts:
+    newFile: !uuid '64d4fb8a23c4a86f75dcd9468532bc8186118b83'
+    oldFile: null
+  /Web/src/api-services/models/admin-result-sql-sugar-paged-list-sys-wechat-pay.ts:
+    newFile: !uuid 'acbc3877217e29e09fdf9b500b4084ace9c62725'
+    oldFile: null
+  /Web/src/api-services/models/admin-result-sys-wechat-refund.ts:
+    newFile: !uuid 'a359b1117d1f8292827f46771950b2ccaeb2de22'
+    oldFile: null
+  /Web/src/api-services/models/admin-result-wechat-pay-para-output.ts:
+    newFile: !uuid '06cebc3a45d060e02ac306f154cb803a95fe77e7'
+    oldFile: null
+  /Web/src/api-services/models/admin-result-wechat-pay-transaction-output.ts:
+    newFile: !uuid '0386a06f196298e5179e290b08bcd9f736b9e283'
+    oldFile: null
+  /Web/src/api-services/models/batch-config-input.ts:
+    newFile: !uuid '452146bf8ec0feae02060a51f3fc53454ef6bd5b'
+    oldFile: null
+  /Web/src/api-services/models/enum-entity.ts:
+    newFile: !uuid 'bf4c4e4a9e359224162e9f231b2a86fc437c4f31'
+    oldFile: !uuid 'ec264eba1f760d93f04c94f646e5b7fc87f59f5e'
+  /Web/src/api-services/models/index.ts:
+    newFile: !uuid '0837236121340a9b7ee36a5b4947efad1cb538fa'
+    oldFile: !uuid 'f46d4032bbe3ddeadf18015428fd02c8d16301a4'
+  /Web/src/api-services/models/login-user-output.ts:
+    newFile: !uuid 'a1f448ad4cf549ee795ea9dfd2db6439c123cecc'
+    oldFile: !uuid 'be86efb865cfa683e5aaca0553aa6cd6b2015ff9'
+  /Web/src/api-services/models/sql-sugar-paged-list-sys-wechat-pay.ts:
+    newFile: !uuid 'dcb7a6b042601387af661506bff3f085abd5aa97'
+    oldFile: null
+  /Web/src/api-services/models/sys-wechat-pay.ts:
+    newFile: !uuid 'e1a629ce4c6e272fbb664c4af8b26d415d026581'
+    oldFile: !uuid 'b1244f111bf38f4392162d795b414146dc11bc42'
+  /Web/src/api-services/models/sys-wechat-refund.ts:
+    newFile: !uuid 'a64e28c4eb6053d8b942f9216835bfde23c3e17b'
+    oldFile: null
+  /Web/src/api-services/models/update-org-input.ts:
+    newFile: !uuid '3e2ebd6e5f1525a58bf5281fde31281124cb672a'
+    oldFile: !uuid '09e7852e0b3ec82ae6a3f35a21f6d06ea0f4c129'
+  /Web/src/api-services/models/wechat-pay-page-input.ts:
+    newFile: !uuid 'e2fa0a2b595aa5972bd8cafdc01369f4f4a64009'
+    oldFile: null
+  /Web/src/api-services/models/wechat-pay-para-output.ts:
+    newFile: !uuid 'd78df25904e614943897d2313e1c5a62260b4248'
+    oldFile: null
+  /Web/src/api-services/models/wechat-pay-refund-domestic-input.ts:
+    newFile: !uuid '4af3ab12fd097ac3fd5734a78c3c9bc9c17adad6'
+    oldFile: null
+  /Web/src/api-services/models/wechat-pay-transaction-input.ts:
+    newFile: !uuid '1b0ffc7da2e8a1bc29f1f6f691afe835499d3f29'
+    oldFile: !uuid '03f3ef8e4696eda82383e86498ed50221684bb58'
+  /Web/src/api-services/models/wechat-pay-transaction-output.ts:
+    newFile: !uuid '5c46c0adcfc834b674ec8592732522b581a6e59f'
+    oldFile: null
+  /Web/src/stores:
+    newFile: !uuid '5f53f43b66c5d0f11712e62764ce38066e2a3ce2'
+    oldFile: !uuid 'a5511307a642b07e041043e38435c1bc8076ef8b'
+  /Web/src/stores/themeConfig.ts:
+    newFile: !uuid '9ab38bed9ef9b9f873eccaa9d9c6bfebff86c2f7'
+    oldFile: !uuid '174f2143f0dc2175f2d6bbbd075984cb6058eebf'
+gitCommitId: !uuid 'fc5986f7e2e6477d1cd9890e9a3dbad7e000d77c'
 renames: {
   }
-revisionId: 2117
+revisionId: 2118
