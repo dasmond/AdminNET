@@ -2,25 +2,25 @@
 branches: {
   }
 fileChange:
-  /Admin.NET:
-    newFile: !uuid '6d426ee0e422d957b37bf289b0530cd49c1272e2'
-    oldFile: !uuid '37a202d18ef448f5af9209ea121d933004ffd92c'
-  /Admin.NET/Plugins:
-    newFile: !uuid '175645ff32d810f12aba493a0f4eaf56d9722fd0'
-    oldFile: !uuid '50b6a23c8c317da2e09ba74f37fb8a5ef730aef8'
-  /Admin.NET/Plugins/Admin.NET.Plugin.GoView:
-    newFile: !uuid 'a1444a3c617aa0595ae74007de0bb03c0f0c6f35'
-    oldFile: !uuid '3a1289a1ee212024caa2eee83b7b452c200f62b9'
-  /Admin.NET/Plugins/Admin.NET.Plugin.GoView/Entity:
-    newFile: !uuid 'cce9a7a12e5db4c686ea95f9dae27c36e038aef1'
-    oldFile: !uuid '564ea28f641205def99f8b2f2e719dc66f6323fc'
-  /Admin.NET/Plugins/Admin.NET.Plugin.GoView/Entity/GoViewPro.cs:
-    newFile: !uuid '0594ca67168086ff2b4b5e2eca9fba84b592479c'
-    oldFile: !uuid '023d5c9b3dd6406805a0956aefa9274f79cf6a11'
-  /Admin.NET/Plugins/Admin.NET.Plugin.GoView/Entity/GoViewProData.cs:
-    newFile: !uuid 'ab5bd036689d4c834ea153815dea7be106707996'
-    oldFile: !uuid 'a792c0337f98c7cb316dc9b494a64ca4455963d3'
-gitCommitId: !uuid 'a67299ef95989aff2c7e4b7b6fbc5335dc92e633'
+  /Web:
+    newFile: !uuid '67d97092c2880f1e3e243e97c1b7a1a05f049456'
+    oldFile: !uuid '5625a80167846dab92811bef9f09d64db9d77060'
+  /Web/src:
+    newFile: !uuid 'e7355517b806727b98e4de65b6845da91035d7a7'
+    oldFile: !uuid '3d839f6aa84abc7bc801804b3d55b07054aa86e9'
+  /Web/src/views:
+    newFile: !uuid '3be83dac9a8418b4abdb132feae040d33ede5e7d'
+    oldFile: !uuid 'b6d9f2338409576bd8512fb46b2059eef0fa4a73'
+  /Web/src/views/system:
+    newFile: !uuid '23049575057a2e7b117522d2dcdf7055dd22ac4d'
+    oldFile: !uuid '832591cb0ed0ebf1bf9a387c8dfc642b16782323'
+  /Web/src/views/system/weChatPay:
+    newFile: !uuid '2f97b0c7c533bb1dc688ef7c963c3dbaf0143680'
+    oldFile: !uuid '30038dba3b52cd00f8159a43318fc6ff5db1dc86'
+  /Web/src/views/system/weChatPay/index.vue:
+    newFile: !uuid '2ae941dd9492caa75f19dfe8781a2108396eb1f0'
+    oldFile: !uuid 'a9ac3e82816467c4b11241414e189e346a425747'
+gitCommitId: !uuid '1c05d4dd5570c115e7999115655f0280d4264e0f'
 renames: {
   }
-revisionId: 2115
+revisionId: 2116
