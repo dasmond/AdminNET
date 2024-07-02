@@ -3,18 +3,30 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid 'df9f479dfd533237750f5fc2bde6c5ffc65b2c48'
-    oldFile: !uuid '22a3792e4ffd00af5de8641038909008acc096c7'
+    newFile: !uuid '882fbef4635ff47b1546c60b315917d67bdfc95a'
+    oldFile: !uuid 'df9f479dfd533237750f5fc2bde6c5ffc65b2c48'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '8c2db5615a784e1d3da7a781dcf1d8be3f434349'
-    oldFile: !uuid 'af980940453e80b08b523fd3cdebc2828f46e5c5'
-  /Admin.NET/Admin.NET.Core/Util:
-    newFile: !uuid 'f4945927b3176d37aa70f5ec1f8c751482c3da19'
-    oldFile: !uuid 'ff8f50f7084e678bf75585d1b974def51c7af769'
-  /Admin.NET/Admin.NET.Core/Util/ComputerUtil.cs:
-    newFile: !uuid 'a7e19630324380a92fa5d0759dcc3ca06c240bcd'
-    oldFile: !uuid '60e6940b505166a00cdd40c80aa2592e90ac6a26'
-gitCommitId: !uuid 'b61bc7d38d59d3a6fb55dbacc4c4192ed54717c9'
+    newFile: !uuid 'f145d3b825e2b03cbc0165148479568917350c4a'
+    oldFile: !uuid '8c2db5615a784e1d3da7a781dcf1d8be3f434349'
+  /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
+    newFile: !uuid '0c6eda365c68113a018e0e71949890924953c56c'
+    oldFile: !uuid '0bd0ec894b733d5ef3a972ab289c91aebe908fe1'
+  /Admin.NET/Admin.NET.Core/Extension:
+    newFile: !uuid '4e697a0de7a97246124ef78b8cc790083fc016d6'
+    oldFile: !uuid 'fdbcd5067ccd0752af27be46259f4b700e76d30d'
+  /Admin.NET/Admin.NET.Core/Extension/HttpContextExtension.cs:
+    newFile: null
+    oldFile: !uuid '82955e2d54a8fac181be14cf5756ea8dccca8546'
+  /Admin.NET/Admin.NET.Core/Service:
+    newFile: !uuid 'ed721120a4e10ede781071f6fa727bc873d14d95'
+    oldFile: !uuid 'fed71399482e6bd1c7ed7f8f63e2c59c2d8c11c4'
+  /Admin.NET/Admin.NET.Core/Service/Auth:
+    newFile: !uuid 'c1063d9c44dc36da7424545156ef88c17d3209a1'
+    oldFile: !uuid 'c3b82eb7b2041bcb12d1136d6fd0992632c0d71a'
+  /Admin.NET/Admin.NET.Core/Service/Auth/SysAuthService.cs:
+    newFile: !uuid '1bcb756c7cdb7277b488549e13a583b4e8cbdab7'
+    oldFile: !uuid 'f8872f8e0f6b0873ca6a85946d80f7666acdad55'
+gitCommitId: !uuid 'da293e340f65012eca78bf8d258d1dc8309316a0'
 renames: {
   }
-revisionId: 2073
+revisionId: 2074
