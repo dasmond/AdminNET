@@ -2,25 +2,19 @@
 branches: {
   }
 fileChange:
-  /Web:
-    newFile: !uuid 'cbedd508e72f021b562528d79b7520af1418ed75'
-    oldFile: !uuid 'd4fba5349a7a984bb004f9a35f0267ed1cfe6405'
-  /Web/src:
-    newFile: !uuid '03c49620987e0402c28d1f674d7b474520f0b686'
-    oldFile: !uuid 'd49a58359cbe6dba194eab279be6d1bd297a9183'
-  /Web/src/views:
-    newFile: !uuid '5de8d00fdd99d51f1045cd67c63c566f5697fa1d'
-    oldFile: !uuid '3be83dac9a8418b4abdb132feae040d33ede5e7d'
-  /Web/src/views/system:
-    newFile: !uuid '4f613c058aeca2f5008523fab91520603065910e'
-    oldFile: !uuid '23049575057a2e7b117522d2dcdf7055dd22ac4d'
-  /Web/src/views/system/weChatPay:
-    newFile: !uuid 'd702294266c3cef270b2390ceb598fd2b22b8009'
-    oldFile: !uuid '2f97b0c7c533bb1dc688ef7c963c3dbaf0143680'
-  /Web/src/views/system/weChatPay/index.vue:
-    newFile: !uuid '4fb8c1aab2e9624639bdfc71d473638faa544524'
-    oldFile: !uuid '2ae941dd9492caa75f19dfe8781a2108396eb1f0'
-gitCommitId: !uuid '17213a8129fc5bfc274a7e1df0dc22619ee499a0'
+  /Admin.NET:
+    newFile: !uuid 'df9f479dfd533237750f5fc2bde6c5ffc65b2c48'
+    oldFile: !uuid '22a3792e4ffd00af5de8641038909008acc096c7'
+  /Admin.NET/Admin.NET.Core:
+    newFile: !uuid '8c2db5615a784e1d3da7a781dcf1d8be3f434349'
+    oldFile: !uuid 'af980940453e80b08b523fd3cdebc2828f46e5c5'
+  /Admin.NET/Admin.NET.Core/Util:
+    newFile: !uuid 'f4945927b3176d37aa70f5ec1f8c751482c3da19'
+    oldFile: !uuid 'ff8f50f7084e678bf75585d1b974def51c7af769'
+  /Admin.NET/Admin.NET.Core/Util/ComputerUtil.cs:
+    newFile: !uuid 'a7e19630324380a92fa5d0759dcc3ca06c240bcd'
+    oldFile: !uuid '60e6940b505166a00cdd40c80aa2592e90ac6a26'
+gitCommitId: !uuid 'b61bc7d38d59d3a6fb55dbacc4c4192ed54717c9'
 renames: {
   }
-revisionId: 2119
+revisionId: 2120
