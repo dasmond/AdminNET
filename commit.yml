@@ -3,30 +3,18 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '882fbef4635ff47b1546c60b315917d67bdfc95a'
-    oldFile: !uuid 'df9f479dfd533237750f5fc2bde6c5ffc65b2c48'
+    newFile: !uuid '75b280c4864f669b07567b22c8e4e1d349d85774'
+    oldFile: !uuid '882fbef4635ff47b1546c60b315917d67bdfc95a'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid 'f145d3b825e2b03cbc0165148479568917350c4a'
-    oldFile: !uuid '8c2db5615a784e1d3da7a781dcf1d8be3f434349'
-  /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
-    newFile: !uuid '0c6eda365c68113a018e0e71949890924953c56c'
-    oldFile: !uuid '0bd0ec894b733d5ef3a972ab289c91aebe908fe1'
-  /Admin.NET/Admin.NET.Core/Extension:
-    newFile: !uuid '4e697a0de7a97246124ef78b8cc790083fc016d6'
-    oldFile: !uuid 'fdbcd5067ccd0752af27be46259f4b700e76d30d'
-  /Admin.NET/Admin.NET.Core/Extension/HttpContextExtension.cs:
-    newFile: null
-    oldFile: !uuid '82955e2d54a8fac181be14cf5756ea8dccca8546'
-  /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid 'ed721120a4e10ede781071f6fa727bc873d14d95'
-    oldFile: !uuid 'fed71399482e6bd1c7ed7f8f63e2c59c2d8c11c4'
-  /Admin.NET/Admin.NET.Core/Service/Auth:
-    newFile: !uuid 'c1063d9c44dc36da7424545156ef88c17d3209a1'
-    oldFile: !uuid 'c3b82eb7b2041bcb12d1136d6fd0992632c0d71a'
-  /Admin.NET/Admin.NET.Core/Service/Auth/SysAuthService.cs:
-    newFile: !uuid '1bcb756c7cdb7277b488549e13a583b4e8cbdab7'
-    oldFile: !uuid 'f8872f8e0f6b0873ca6a85946d80f7666acdad55'
-gitCommitId: !uuid 'da293e340f65012eca78bf8d258d1dc8309316a0'
+    newFile: !uuid '9299d3b4781289dd6b16ca39ef5c7903562b74bf'
+    oldFile: !uuid 'f145d3b825e2b03cbc0165148479568917350c4a'
+  /Admin.NET/Admin.NET.Core/SqlSugar:
+    newFile: !uuid 'e672015d089e9cf0e5cb9da72bc35376fe2fefe0'
+    oldFile: !uuid '3937d3f6078c6a321ff64f6363f00b798af4c3ed'
+  /Admin.NET/Admin.NET.Core/SqlSugar/SqlSugarSetup.cs:
+    newFile: !uuid 'df555720540bda4681a0d4c4bf31f20003ed4127'
+    oldFile: !uuid 'a6a1621aa89e1b3994cdb22cedc273ab81c104a6'
+gitCommitId: !uuid 'd4058ab7464002e245fb558fac1d4326eb37f557'
 renames: {
   }
-revisionId: 2121
+revisionId: 2122
