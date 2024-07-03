@@ -3,21 +3,30 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid 'f285dfaec97042315df9a509203e07bb08537987'
-    oldFile: !uuid '4ac3643fed84f00afab9323061bb6f10422d95c3'
+    newFile: !uuid '54ad36bac6058f52f612d3e3b39aa1cf28939254'
+    oldFile: !uuid 'f285dfaec97042315df9a509203e07bb08537987'
+  /Admin.NET/Admin.NET.Application:
+    newFile: !uuid '556ad02a28ec7edf39f4f67934d998e36bf60e86'
+    oldFile: !uuid '0411d28173e7dc1046388b284ddefeed87e13fd1'
+  /Admin.NET/Admin.NET.Application/Configuration:
+    newFile: !uuid 'ea12e689f6134d942f15356acaaeea45c045205d'
+    oldFile: !uuid 'fab4393e871aa4d6de59741a606e82800a165620'
+  /Admin.NET/Admin.NET.Application/Configuration/Upload.json:
+    newFile: !uuid '218d418e4c97196a341188c6000d625908eb7d83'
+    oldFile: !uuid 'c3ca128ba6e994160d9c544fd308207a76d7f432'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid 'ff81fb77cf04c6dab5dee29f6c6f141d469f202f'
-    oldFile: !uuid '5010ca73c92c7ef6135640b807de63c0bfec8e34'
+    newFile: !uuid '4fdc9e6f2e0655c9abab2898b6b3f0d37742431b'
+    oldFile: !uuid 'ff81fb77cf04c6dab5dee29f6c6f141d469f202f'
   /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid '08d673ce46da9d2ccf7b99581aa1cb3941951381'
-    oldFile: !uuid '5226061c7134fca1dcd098ddb478b578e72a68eb'
-  /Admin.NET/Admin.NET.Core/Service/Wechat:
-    newFile: !uuid '048101aa6afb412f6604a0e987eb1f7f81045ea5'
-    oldFile: !uuid '30734923106345c41a5fb14c64816c7dd714e1e4'
-  /Admin.NET/Admin.NET.Core/Service/Wechat/SysWechatPayService.cs:
-    newFile: !uuid '9899daf8093d2895a94578117c630d4cf359d500'
-    oldFile: !uuid '849ca62b7ed3f8eae981bd6d15df15a4b28b445f'
-gitCommitId: !uuid '91787a51d242bf44263281d4ee354eccf5ffd8e1'
+    newFile: !uuid '418fc068c03706368a6b03a56a6e4d7666a4ea3d'
+    oldFile: !uuid '08d673ce46da9d2ccf7b99581aa1cb3941951381'
+  /Admin.NET/Admin.NET.Core/Service/File:
+    newFile: !uuid '6231e37c1c7f589202c25f672386365d9f61c2f0'
+    oldFile: !uuid '0c5c81ba5471c16a041dab00831b8277920a0591'
+  /Admin.NET/Admin.NET.Core/Service/File/SysFileService.cs:
+    newFile: !uuid 'c66240eb0c3b7e48dc00878d37c2a258cfa0d024'
+    oldFile: !uuid 'd1f2f3ad60ce8165fe9910d8d7b86142b82c41cf'
+gitCommitId: !uuid 'c196b8bff5d46124fc9f188fe79eff39585b54ac'
 renames: {
   }
-revisionId: 2125
+revisionId: 2126
