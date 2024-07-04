@@ -1,4 +1,4 @@
-// Admin.NET 项目的版权、商标、专利和其他相关权利均受相应法律法规的保护。使用本项目应遵守相关法律法规和许可证的要求。
+﻿// Admin.NET 项目的版权、商标、专利和其他相关权利均受相应法律法规的保护。使用本项目应遵守相关法律法规和许可证的要求。
 //
 // 本项目主要遵循 MIT 许可证和 Apache 许可证（版本 2.0）进行分发和使用。许可证位于源代码树根目录中的 LICENSE-MIT 和 LICENSE-APACHE 文件。
 //
@@ -47,6 +47,69 @@ public class SysAuthService : IDynamicApiController, ITransient
         _captcha = captcha;
         _sysCacheService = sysCacheService;
         _sysLdapService = sysLdapService;
+    }
+
+    /// <summary>
+    /// 测试多线程查库
+    /// </summary>
+    /// <returns></returns>
+    [HttpPost]
+    [ApiDescriptionSettings(Name = "TestMutilQuery")]
+    [AllowAnonymous]
+    public async Task TestMutilQuery()
+    {
+        Console.WriteLine("进入 TestMutilQuery\n\n\n");
+        var fun = async (int x) =>
+        {
+            Console.WriteLine($"{DateTime.Now.ToString("HH:mm:ss:fff")} 线程{x} Start");
+            IServiceProvider serviceProvider = App.GetRequiredService<IServiceProvider>().CreateScope().ServiceProvider;
+
+            //用 IServiceProvider.GetRequiredService 得到的对像Scope不相关，确保每次都是新的对象
+            SqlSugarRepository<SysFile> _repSysFile = serviceProvider.GetService<SqlSugarRepository<SysFile>>();
+            SysFileService _sysFileService = serviceProvider.GetService<SysFileService>();
+            try
+            {
+                for (int i = 0; i < 20; i++)
+                {
+                    var files = _repSysFile.AsQueryable().ToList();
+                    /*
+                    for (int j = 0; j < 5; j++)
+                    {
+                        try
+                        {
+                            string str = await _sysFileService.DownloadFileBase64(files[j].Url);
+                            str += "";
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine($"{DateTime.Now.ToString("HH:mm:ss:fff")} 线程{x},{_repSysFile.Id}，第{j}次 出错：{ex.Message}");
+                        }
+                    }
+                    */
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"{DateTime.Now.ToString("HH:mm:ss:fff")} 线程{x},{_repSysFile.Id} ERROR:{ex.Message}");
+                return;
+            }
+            Console.WriteLine($"{DateTime.Now.ToString("HH:mm:ss:fff")} {x} End");
+        };
+        List<Task> tasks = new List<Task>();
+
+        //创建15个线程同步进行查询
+        for (int i = 0; i < 15; i++)
+        {
+            // 注意事项一：如果不把i赋给一个生命期不一样的变量，在 fun(i) 时，所有的task都是同一个引用
+            var a = i;
+            Task t1 = Task.Run(() =>
+            {
+                fun(a);
+            });
+            tasks.Add(t1);
+        }
+        await Task.WhenAll(tasks);
+        Console.WriteLine($"{DateTime.Now.ToString("HHmmss_fff")} 所有完成");
     }
 
     /// <summary>
