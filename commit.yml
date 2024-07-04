@@ -3,18 +3,18 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid 'd6f240230a33ae872c792f936bf774549b915d83'
-    oldFile: !uuid '999187ff3a89513f02cff6ee1536bebb871e6187'
-  /Admin.NET/Admin.NET.Core:
-    newFile: !uuid 'c9270de3d08a06d062baadffd47a7845caf82236'
-    oldFile: !uuid '79ae8f6f7b20da131851cd05f6ec8c0299aa9f9f'
-  /Admin.NET/Admin.NET.Core/Entity:
-    newFile: !uuid '1efd84a73ea8b6ba8d42502b57bcfe5b3d5adfcb'
-    oldFile: !uuid '86f128fe60eb116e4d868b807e9f08e5533a5e8d'
-  /Admin.NET/Admin.NET.Core/Entity/SysOpenAccess.cs:
-    newFile: !uuid '8680426df02eea0d52f4c51a5f10ac32b0b19b03'
-    oldFile: !uuid '68185cfbdc1d96551f934a4db3d489948b330ff5'
-gitCommitId: !uuid '233ff266298e721152793dfd8180bc4746f5b5cc'
+    newFile: !uuid 'c47b663acbbdff3b729eda45c7e0ac7ce13713fd'
+    oldFile: !uuid 'd6f240230a33ae872c792f936bf774549b915d83'
+  /Admin.NET/Admin.NET.Application:
+    newFile: !uuid 'c4b1779b81c3761d83a5508dd093df483ee25602'
+    oldFile: !uuid '556ad02a28ec7edf39f4f67934d998e36bf60e86'
+  /Admin.NET/Admin.NET.Application/Configuration:
+    newFile: !uuid 'd33383a8f7d2f5026cfd971c71f0b71a85501e4f'
+    oldFile: !uuid 'ea12e689f6134d942f15356acaaeea45c045205d'
+  /Admin.NET/Admin.NET.Application/Configuration/CodeGen.json:
+    newFile: !uuid '275087a8c72355a34b0596d7cae6001665333f84'
+    oldFile: !uuid 'a0cd44f060634ba34c286b322184a320ff227c77'
+gitCommitId: !uuid 'a1f5ff2dbdd2954492aaf28694fe0186d6dcc00c'
 renames: {
   }
-revisionId: 2088
+revisionId: 2089
