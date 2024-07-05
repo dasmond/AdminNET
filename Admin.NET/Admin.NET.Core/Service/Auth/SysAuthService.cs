@@ -65,14 +65,15 @@ public class SysAuthService : IDynamicApiController, ITransient
             IServiceProvider serviceProvider = App.GetRequiredService<IServiceProvider>().CreateScope().ServiceProvider;
 
             //用 IServiceProvider.GetRequiredService 得到的对像Scope不相关，确保每次都是新的对象
-            SqlSugarRepository<SysFile> _repSysFile = serviceProvider.GetService<SqlSugarRepository<SysFile>>();
+            //SqlSugarRepository<SysFile> _repSysFile = serviceProvider.GetService<SqlSugarRepository<SysFile>>();
+            var _repSysFile = App.GetService<SqlSugarRepository<SysFile>>().CopyNew();
             SysFileService _sysFileService = serviceProvider.GetService<SysFileService>();
             try
             {
                 for (int i = 0; i < 20; i++)
                 {
                     var files = _repSysFile.AsQueryable().ToList();
-                    /*
+                    
                     for (int j = 0; j < 5; j++)
                     {
                         try
@@ -82,15 +83,14 @@ public class SysAuthService : IDynamicApiController, ITransient
                         }
                         catch (Exception ex)
                         {
-                            Console.WriteLine($"{DateTime.Now.ToString("HH:mm:ss:fff")} 线程{x},{_repSysFile.Id}，第{j}次 出错：{ex.Message}");
+                            Console.WriteLine($"{DateTime.Now.ToString("HH:mm:ss:fff")} 线程{x},第{j}次 出错：{ex.Message}");
                         }
                     }
-                    */
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"{DateTime.Now.ToString("HH:mm:ss:fff")} 线程{x},{_repSysFile.Id} ERROR:{ex.Message}");
+                Console.WriteLine($"{DateTime.Now.ToString("HH:mm:ss:fff")} 线程{x} ERROR:{ex.Message}");
                 return;
             }
             Console.WriteLine($"{DateTime.Now.ToString("HH:mm:ss:fff")} {x} End");

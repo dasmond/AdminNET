@@ -28,7 +28,7 @@ public class SqlSugarRepository<T> : SimpleClient<T>, ISqlSugarRepository<T> whe
         {
             mId = MyCounter.currentId++;
         }
-        Console.WriteLine($"{typeof(T)} - {Id}");
+        //Console.WriteLine($"{typeof(T)} - {Id}");
         var iTenant = SqlSugarSetup.ITenant; // App.GetRequiredService<ISqlSugarClient>().AsTenant();
         base.Context = iTenant.GetConnectionScope(SqlSugarConst.MainConfigId);
 
