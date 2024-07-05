@@ -102,9 +102,9 @@ public class SysAuthService : IDynamicApiController, ITransient
         {
             // 注意事项一：如果不把i赋给一个生命期不一样的变量，在 fun(i) 时，所有的task都是同一个引用
             var a = i;
-            Task t1 = Task.Run(() =>
+            Task t1 = Task.Run(async () =>
             {
-                fun(a);
+                await fun(a);
             });
             tasks.Add(t1);
         }
