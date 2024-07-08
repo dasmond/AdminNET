@@ -2,22 +2,19 @@
 branches: {
   }
 fileChange:
-  /Admin.NET:
-    newFile: !uuid '53a94564b2c5e4eb103f1ad8b2a4a7228d76d646'
-    oldFile: !uuid '61126a03ad3c99bb49bfbbd61ba2e13c15c881de'
-  /Admin.NET/Admin.NET.Core:
-    newFile: !uuid 'd373ccfbb687bd23013a0de611c865a9b6ef84c0'
-    oldFile: !uuid '3ad6ef3874c105b1adbb3586231046bd73bd9f0b'
-  /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid 'bd44312acee690827c97c38a59bba79ab60b8f71'
-    oldFile: !uuid 'ceab22719a344a74955a0b9d7aa0f999636d2111'
-  /Admin.NET/Admin.NET.Core/Service/Wechat:
-    newFile: !uuid '91031de8bed8f9a79865974383046afb53dc462a'
-    oldFile: !uuid '048101aa6afb412f6604a0e987eb1f7f81045ea5'
-  /Admin.NET/Admin.NET.Core/Service/Wechat/SysWechatService.cs:
-    newFile: !uuid '53fbda9f1ea23775a791058c435b0a58283d592e'
-    oldFile: !uuid '9e82b50823b427d900767fd86079abd9da715db2'
-gitCommitId: !uuid 'cbf3861ba1f9b24baabaa0e17268283d713fb30a'
+  /Web:
+    newFile: !uuid '7ac3d1ca625d853062e42ba2b89de27baed1aa56'
+    oldFile: !uuid '9dc75bfd92210bc1b0bff8eea970ea995e08a1f1'
+  /Web/src:
+    newFile: !uuid '8429df0fb9eeae8334334b50c1ba56f1248dc948'
+    oldFile: !uuid 'aca6c8aa3ca36352166588f455aff1291a98d62f'
+  /Web/src/stores:
+    newFile: !uuid 'dd37acbd593a66703aa35ec02b0fa64dc2d88c80'
+    oldFile: !uuid '5f53f43b66c5d0f11712e62764ce38066e2a3ce2'
+  /Web/src/stores/userInfo.ts:
+    newFile: !uuid '5319088466e151c3569caabdaaaf4e9239302909'
+    oldFile: !uuid '9fbb2ec55b66bec128f614513b8fc324a955c651'
+gitCommitId: !uuid '546550d4ca1d239e0617e220216fe78ed0866c63'
 renames: {
   }
-revisionId: 2101
+revisionId: 2102
