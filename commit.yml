@@ -2,28 +2,16 @@
 branches: {
   }
 fileChange:
-  /Web:
-    newFile: !uuid 'c3c503078f84560df74f9cb15fb426857b04b019'
-    oldFile: !uuid '7ac3d1ca625d853062e42ba2b89de27baed1aa56'
-  /Web/src:
-    newFile: !uuid '26d6bf4c6ac7b3a00e85cf7d01601262890fbdac'
-    oldFile: !uuid '8429df0fb9eeae8334334b50c1ba56f1248dc948'
-  /Web/src/views:
-    newFile: !uuid '30369b594ac049e225e4107dd7a93adb5be110e2'
-    oldFile: !uuid '841be7f8751fb06a879e5b2361818f9980ee7b5a'
-  /Web/src/views/system:
-    newFile: !uuid '38903aec40c184fae77f9c6ae02198d884ea442e'
-    oldFile: !uuid '9ae65738b97870a244e69f157ec1ec37fe887bb3'
-  /Web/src/views/system/dict:
-    newFile: !uuid '40b47658b0dca3e5bad19444c4ea72c58f9270cc'
-    oldFile: !uuid '46157c27733126320984fc8820d6456f93d231c1'
-  /Web/src/views/system/dict/component:
-    newFile: !uuid 'bcb5a69fe527b03c34cf8eb8e23ac6fd31784148'
-    oldFile: !uuid '7c1ad1c8a90120997d68f2e9c2eb073e7efb601d'
-  /Web/src/views/system/dict/component/editDictData.vue:
-    newFile: !uuid '740310cc9bae7527b1f11c48474e264ca8a6183e'
-    oldFile: !uuid '176174305ed16aa80b12f7220dfe0b4dcc261ff7'
-gitCommitId: !uuid '6afeda480b5f0b2d9e662a6522678ed14cf97fd5'
+  /Admin.NET:
+    newFile: !uuid '4fa82b3425b7465dcfd10e43d7a0f5c39909d672'
+    oldFile: !uuid '53a94564b2c5e4eb103f1ad8b2a4a7228d76d646'
+  /Admin.NET/Admin.NET.Core:
+    newFile: !uuid 'da1139cbe58ce18aaeb40a8049f2088970881a64'
+    oldFile: !uuid 'd373ccfbb687bd23013a0de611c865a9b6ef84c0'
+  /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
+    newFile: !uuid 'e7f3038671ecbcadbbf8f72c439b0c4211be7077'
+    oldFile: !uuid '2345634ca85227ffb123500440f12cde70137fa3'
+gitCommitId: !uuid '017c72d4425742a146c1486248e19709e274235c'
 renames: {
   }
-revisionId: 2150
+revisionId: 2151
