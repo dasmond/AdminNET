@@ -2,34 +2,19 @@
 branches: {
   }
 fileChange:
-  /Admin.NET:
-    newFile: !uuid '0f6aab6cf9d10de874f5792efe59372914d1339d'
-    oldFile: !uuid '4fa82b3425b7465dcfd10e43d7a0f5c39909d672'
-  /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '25edf314d2aae9dbc60d7cc2a27edec0c0b4e478'
-    oldFile: !uuid 'da1139cbe58ce18aaeb40a8049f2088970881a64'
-  /Admin.NET/Admin.NET.Core/Const:
-    newFile: !uuid 'd1119fb861b02917d22e9b46dde554c8c57a5320'
-    oldFile: !uuid 'c8237cea3daba5ee997999e6fafa9926830069c4'
-  /Admin.NET/Admin.NET.Core/Const/CacheConst.cs:
-    newFile: !uuid '37723855a587a13d6eec2bf9633a2ee636ff4c40'
-    oldFile: !uuid '56dda46450e3bf67dc9b320b2a05ace3cd13fe40'
-  /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid '3e9eb844b7617ff4dbd6a626e3fdbdcff38f361f'
-    oldFile: !uuid 'bd44312acee690827c97c38a59bba79ab60b8f71'
-  /Admin.NET/Admin.NET.Core/Service/Common:
-    newFile: !uuid '3c7936399dd29dfca1f99c8a38151c856d6c0766'
-    oldFile: !uuid '235f4161c7cdaae78d5feeed3ef12600172023e0'
-  /Admin.NET/Admin.NET.Core/Service/Common/SysCommonService.cs:
-    newFile: !uuid '703bf441edb37f73b86a14906b211cf3d9f5a9aa'
-    oldFile: !uuid 'd7921643b77a2b9e418a8b5371733915d8a5911f'
-  /Admin.NET/Admin.NET.Core/Util:
-    newFile: !uuid 'a12b4bc8d19724d88c26b656a41104617d4bfff5'
-    oldFile: !uuid 'b0bcc61aeccc0c87481b7f300d275946771aa4cf'
-  /Admin.NET/Admin.NET.Core/Util/CommonUtil.cs:
-    newFile: !uuid 'de9c141057e4e3db14b8182eddc25b231ec7f431'
-    oldFile: !uuid '7e910c12e511d8f98035b79b024da3ca0c15d152'
-gitCommitId: !uuid '5f0b1ab36952197b46b5e4c6ca84f662e5cf3c66'
+  /Web:
+    newFile: !uuid 'c7460e423fe2a78643906c69e9c9f683ce045f3e'
+    oldFile: !uuid '1f0382288f328e6bde414a75d833692166e305ac'
+  /Web/src:
+    newFile: !uuid '8820b7c78c2832f5f650c318ff57a199d63801b2'
+    oldFile: !uuid 'f240e4ff12a853067a75be51c03e6ec2c068bd44'
+  /Web/src/theme:
+    newFile: !uuid '8dfb621da3b7bc0f699936d081211f7fcdcb85fd'
+    oldFile: !uuid '5d58526096cdbb83e02885abcd3dbf409ce4a4ae'
+  /Web/src/theme/element.scss:
+    newFile: !uuid 'e48e4a4612339a6c15b8bbdac6b358500f92f485'
+    oldFile: !uuid '3ddee2a8f60dec5163a980fc1af63d07f59df850'
+gitCommitId: !uuid '8af2a4194cfda0d397e943b7a33fcd8ab59c1287'
 renames: {
   }
-revisionId: 2106
+revisionId: 2107
