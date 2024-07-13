@@ -3,18 +3,39 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid 'e668c60ad77ce799c4fd1f7a17261972e52ae5e1'
-    oldFile: !uuid 'f24dcd84df3b600d93cf23419089753d43577337'
+    newFile: !uuid '26d16ee5294912edad78731c089fa82134bbbf87'
+    oldFile: !uuid 'e668c60ad77ce799c4fd1f7a17261972e52ae5e1'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid 'e1b4328dc9da5821074168b46f2068971a461d0d'
-    oldFile: !uuid '7144e72ad0386b252442a82a55df0c664bcef2ef'
-  /Admin.NET/Admin.NET.Core/Enum:
-    newFile: !uuid '4773ea6d5485cb2920f849ed9494b2373353f48a'
-    oldFile: !uuid 'b25a67f85f0b3e6706b15633058768622e0bb7c2'
-  /Admin.NET/Admin.NET.Core/Enum/GenderEnum.cs:
-    newFile: !uuid '5b5a7904a2691e7031c0b479e8c56f7e008d7ec7'
-    oldFile: !uuid '3284532cb7440ce9c5d4527f12d0a36c102de06f'
-gitCommitId: !uuid 'd64091b4ceb6430c804e72f4831c23b242d0a8b1'
+    newFile: !uuid '083ac84a0e81789bc84c51c63065a32b8c876886'
+    oldFile: !uuid 'e1b4328dc9da5821074168b46f2068971a461d0d'
+  /Admin.NET/Admin.NET.Core/Service:
+    newFile: !uuid '859c1c0f4ff76bf377b444bc72105018a8867927'
+    oldFile: !uuid '73e754ef069fbac73639d06bb6b21b77fc624a7f'
+  /Admin.NET/Admin.NET.Core/Service/Dict:
+    newFile: !uuid 'bb6a328181285b8e672c3a54efaabb611ba63aaf'
+    oldFile: !uuid '7c118d622a00448457d10a4ee0a897aaa585949f'
+  /Admin.NET/Admin.NET.Core/Service/Dict/Dto:
+    newFile: !uuid '7010efc78f128735953673020c289e38beca85b7'
+    oldFile: !uuid '56b0ffcdcff608f0b32da53d452194f5c48ef7d8'
+  /Admin.NET/Admin.NET.Core/Service/Dict/Dto/DictDataInput.cs:
+    newFile: !uuid 'b9a1b18363943892594fe9004fe8d9eb3d9320f4'
+    oldFile: !uuid 'eccdff367e8a17c35819297bf5204fc98bca63b0'
+  /Admin.NET/Admin.NET.Core/Service/Dict/Dto/DictTypeInput.cs:
+    newFile: !uuid 'fc6327e7c5961c601b97c20ec73231e81908af72'
+    oldFile: !uuid '7884ada2139ab9dba6a983e566feaf246264a410'
+  /Admin.NET/Admin.NET.Core/Service/Dict/SysDictDataService.cs:
+    newFile: !uuid '99031b42e33a77e2fcb01f31c652d028fc04e24f'
+    oldFile: !uuid 'db990951592778e1c397e89dff18442d0839daa3'
+  /Admin.NET/Admin.NET.Core/Service/Dict/SysDictTypeService.cs:
+    newFile: !uuid '829ad8c74478465deb5d5a0a5df947cc8cc601ef'
+    oldFile: !uuid '08d8480db366c4721b3277b5d84a0d6520c2666b'
+  /Admin.NET/Admin.NET.Core/Service/Enum:
+    newFile: !uuid 'e08077051d10c170b365a909184e30041b6d4adf'
+    oldFile: !uuid '0ae25c90f3fce6bad93b1eca5c88e7de501b67b1'
+  /Admin.NET/Admin.NET.Core/Service/Enum/SysEnumService.cs:
+    newFile: !uuid 'a15b1138d3c8eaeb1997661a4a78e794f2c34c0a'
+    oldFile: !uuid 'e8e204bf97713281ab4d59c12f5fb229b234b125'
+gitCommitId: !uuid '0d84cb4dd160a9fb1723dfa470c9a91e32bfc562'
 renames: {
   }
-revisionId: 2167
+revisionId: 2168
