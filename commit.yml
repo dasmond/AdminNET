@@ -3,21 +3,27 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '8e5a293f7152b943710c45e3681f8b3218fb84bf'
-    oldFile: !uuid '26d16ee5294912edad78731c089fa82134bbbf87'
+    newFile: !uuid '6de375ce85d39437fecb3923660b763a9db8ba56'
+    oldFile: !uuid '8e5a293f7152b943710c45e3681f8b3218fb84bf'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '9878f4051902d5045e6d8c3ca2ebebff93f64405'
-    oldFile: !uuid '083ac84a0e81789bc84c51c63065a32b8c876886'
-  /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
-    newFile: !uuid 'ae198a5b5e28ca75cfde3aba679fcfe79d3bf477'
-    oldFile: !uuid 'b3cfdc0b341444a42245ebf331b8f68d0e4cebb6'
-  /Web:
-    newFile: !uuid '61457f349f037ea2c549ee0345feb89fb989731e'
-    oldFile: !uuid 'cf0daefa341024cb85235f1004a8c1b39580e15b'
-  /Web/package.json:
-    newFile: !uuid 'bcc7323a43f9d1844c80b72f0a7fd25bf2287095'
-    oldFile: !uuid '22cf51126837da965a7b8432c5f3de77c27e0a2f'
-gitCommitId: !uuid '815a6723f0c9a8c98dd72e2a745c505d7235d5b5'
+    newFile: !uuid 'ceb77c55f4081261ac809d882ec2d38c367a03aa'
+    oldFile: !uuid '9878f4051902d5045e6d8c3ca2ebebff93f64405'
+  /Admin.NET/Admin.NET.Core/Service:
+    newFile: !uuid 'bdc1e0790f71212d2bdf136e68cf27aec126e07c'
+    oldFile: !uuid '859c1c0f4ff76bf377b444bc72105018a8867927'
+  /Admin.NET/Admin.NET.Core/Service/Job:
+    newFile: !uuid '39e99cca95b0130116f29a4af4a335a0ccbeefb3'
+    oldFile: !uuid '18913486d1af58ffe8bccb23bc7952a2da8a9deb'
+  /Admin.NET/Admin.NET.Core/Service/Job/DbJobPersistence.cs:
+    newFile: !uuid '9bb368fbf87df724c4875473819fc3f2bdef10ff'
+    oldFile: !uuid '418c6b8f8d7bece1b9853820ce736b45926d346f'
+  /Admin.NET/Admin.NET.Core/Service/Menu:
+    newFile: !uuid '27dc0f7c4eed1a6ee5c26b41cdf1e73fa2fca3eb'
+    oldFile: !uuid 'd31a8c0d81fb28ddea1dc11d9703650bdabb4a7c'
+  /Admin.NET/Admin.NET.Core/Service/Menu/SysMenuService.cs:
+    newFile: !uuid '7e8286276e939d0463e30d6a3b42b94ef13e5eb6'
+    oldFile: !uuid '4349ef444ad88ad5d4e5f8f6ad1a0b1b62790091'
+gitCommitId: !uuid '4a846f6c4c07afa12c8ca7c598d1a9e53bc8ef64'
 renames: {
   }
-revisionId: 2122
+revisionId: 2123
