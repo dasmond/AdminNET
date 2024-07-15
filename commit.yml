@@ -3,18 +3,99 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '66a992b62e152416954de9945dbf3b76bfe98f76'
-    oldFile: !uuid '8e4581c685e0c82dbcca13ac30ad716da2a7a22b'
+    newFile: !uuid '023313bbeba0eae01b8f64fba751cb9ba159547a'
+    oldFile: !uuid '66a992b62e152416954de9945dbf3b76bfe98f76'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid 'fadd1192425585bf1264c7516bd5150f35460638'
-    oldFile: !uuid 'ad45e665d55ec654774aa987f938337d1b00b1f9'
-  /Admin.NET/Admin.NET.Core/Extension:
-    newFile: !uuid '00818be7251618847f3de9ef0ca6d2e730842801'
-    oldFile: !uuid '82cd1a37ccbd37c27d78f45dbdf86009b416b014'
-  /Admin.NET/Admin.NET.Core/Extension/SqlSugarFilterExtension.cs:
-    newFile: !uuid 'd719727156e6a046db4165dd6a677dc9d4784be0'
-    oldFile: !uuid '689b8007fbdf372d45ab8e93e8d8003c017c9127'
-gitCommitId: !uuid '20f73e4a5f783eb50af2d577084ffdb8947f01b2'
+    newFile: !uuid '07e3943d900adff7dd7da5c030cac79a106b2f32'
+    oldFile: !uuid 'fadd1192425585bf1264c7516bd5150f35460638'
+  /Admin.NET/Admin.NET.Core/Entity:
+    newFile: !uuid '50ec5ce4fdc943a525196f0d08b225f84d5e881d'
+    oldFile: !uuid '665aed3a4c7235d6c703c77dd50dc77265fef72d'
+  /Admin.NET/Admin.NET.Core/Entity/SysUserSchedule.cs:
+    newFile: !uuid 'dee40fee44c77cf3179a89c9ce136031d4989120'
+    oldFile: null
+  /Admin.NET/Admin.NET.Core/Service:
+    newFile: !uuid '3c4f18472b649cacc6bd703755531013f15345df'
+    oldFile: !uuid '0c0675395248ad1eaed0178208ee9a3555b7c19d'
+  /Admin.NET/Admin.NET.Core/Service/User:
+    newFile: !uuid '7418c76f38e181bf201c36d35d8d00839ebfed72'
+    oldFile: !uuid 'c4e5f13ab5d3b4fbe4f7b64053af39ce5017b806'
+  /Admin.NET/Admin.NET.Core/Service/User/Dto:
+    newFile: !uuid '3a1dc1eb553693a5de90b4c04f9132b0d9cc9d6b'
+    oldFile: !uuid '49bc342cde434a15b8ccf96972a98aa06613393b'
+  /Admin.NET/Admin.NET.Core/Service/User/Dto/UserScheduleInput.cs:
+    newFile: !uuid '54d0645f1ecb620bfcf4197cca281bba1b32c3fd'
+    oldFile: null
+  /Admin.NET/Admin.NET.Core/Service/User/Dto/UserScheduleOutput.cs:
+    newFile: !uuid '7590b613f2667f1c6de472eba68d271de0012bd7'
+    oldFile: null
+  /Admin.NET/Admin.NET.Core/Service/User/SysUserScheduleService.cs:
+    newFile: !uuid 'fc45de926d1e1f02bb7b1f9aad43065525ba8de8'
+    oldFile: null
+  /Web:
+    newFile: !uuid '341a0ff36df8754368bca11f77e19cdb2d6c1e93'
+    oldFile: !uuid '890b7b0c345fe0cfcc2607ba96f6f5c7f4af2061'
+  /Web/src:
+    newFile: !uuid '3ce0c6fad880e7b1d51a5c067dde87c2f23eee4a'
+    oldFile: !uuid '6ed77c9f2a27a73308e5eea136a373b07fe40842'
+  /Web/src/api-services:
+    newFile: !uuid '7387126f9665093288a2e7e2fe7a505f02f5d4d1'
+    oldFile: !uuid 'f9ea8c98f82e48d022e5dd83c0cc10bde57cb7fc'
+  /Web/src/api-services/api.ts:
+    newFile: !uuid 'c32e7003006e619f5e2109c9b568ffd71c186afd'
+    oldFile: !uuid '45262b0e2fc9cc5f99602a6912c12cfa05340a33'
+  /Web/src/api-services/apis:
+    newFile: !uuid '8923667a8da25b431726159e7efdb390cb45e369'
+    oldFile: !uuid '4c21a54e0ff866d910337b4799707c48b7a71a5d'
+  /Web/src/api-services/apis/sys-user-schedule-api.ts:
+    newFile: !uuid '5269b777e211a9160098ada776489ad7f6a38cd6'
+    oldFile: null
+  /Web/src/api-services/models:
+    newFile: !uuid 'a90e01b4331edce69edd78107c38ebe2b01631d7'
+    oldFile: !uuid '7d17acd19cf2f8b1a87334f1ea46f30890be5e67'
+  /Web/src/api-services/models/add-user-schedule-input.ts:
+    newFile: !uuid 'd7548d30a87f84debf49aa6c8b6be5bc911d813a'
+    oldFile: null
+  /Web/src/api-services/models/admin-result-list-sys-user-schedule.ts:
+    newFile: !uuid '91bb787ff0a10effb17fd84091db6616f65b3d49'
+    oldFile: null
+  /Web/src/api-services/models/admin-result-sys-user-schedule.ts:
+    newFile: !uuid 'ebb0c9de83bf26c2c5f925d4bcc33977c65f338c'
+    oldFile: null
+  /Web/src/api-services/models/delete-user-schedule-input.ts:
+    newFile: !uuid '87be1c1909ad9c38f7ec91e61d765eaf2b1eb303'
+    oldFile: null
+  /Web/src/api-services/models/page-user-schedule-input.ts:
+    newFile: !uuid '5e9a49cc87e510f6daaa147158bd03feb539f7bb'
+    oldFile: null
+  /Web/src/api-services/models/sys-user-schedule.ts:
+    newFile: !uuid '189718ae268d9d2a09b52677f394280d00e55f0c'
+    oldFile: null
+  /Web/src/api-services/models/update-user-schedule-input.ts:
+    newFile: !uuid 'ead4d2548c259f62bd2aef378085096d1afd0017'
+    oldFile: null
+  /Web/src/views:
+    newFile: !uuid '6eb92bd57080bc49866d47c3366c09fe0bc70119'
+    oldFile: !uuid '2c786cd3011b2bb6b194dea98d6844f5a09fea4e'
+  /Web/src/views/home:
+    newFile: !uuid '4c8d111e4c4255217e5ba6ed7fe8ca601e24abab'
+    oldFile: !uuid '411704f822a9957fbca6801d8abb8d1e137e725a'
+  /Web/src/views/home/widgets:
+    newFile: !uuid 'eb8f0c10c869543e2139b13d3259db3e193ef09b'
+    oldFile: !uuid 'aba97342746a545f2b2f6959e5758dc26f666427'
+  /Web/src/views/home/widgets/components:
+    newFile: !uuid '43e3a905210f160bb1387db0575ffc62f3350743'
+    oldFile: !uuid '63d55363ae774ad8937db61dd0a4c61cd8d182a5'
+  /Web/src/views/home/widgets/components/schedule.vue:
+    newFile: !uuid 'a7ee230f4b705966bbc09d4e4ed57a1baea70b42'
+    oldFile: null
+  /Web/src/views/home/widgets/components/scheduleEdit.vue:
+    newFile: !uuid 'ae9b05d49afb6381ce749867824e2691a7407851'
+    oldFile: null
+  /Web/src/views/home/widgets/index.vue:
+    newFile: !uuid 'a3aabbfe8c2e1e1ff2ce7aed59323d9b752dcc26'
+    oldFile: !uuid '5ce80685530250f20b4712f04b167fd5c4a4f0a3'
+gitCommitId: !uuid 'f68e116e496ad81a3092caee38e1ad10bda5354d'
 renames: {
   }
-revisionId: 2182
+revisionId: 2183
