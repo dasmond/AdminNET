@@ -3,33 +3,42 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '2583e08b3d2539fae6fac583b56a26f391a4869a'
-    oldFile: !uuid 'd329172b68cb10465391c2734570589229fc40a7'
+    newFile: !uuid '41e8adb7b975e3aa74a41a2805765847dc355911'
+    oldFile: !uuid '2583e08b3d2539fae6fac583b56a26f391a4869a'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '934c4475fabc485fe14c57c7b287654302c5f0ef'
-    oldFile: !uuid '8fce09273061cfd016ec5869e92fa97dbcbbd8ef'
-  /Admin.NET/Admin.NET.Core/Const:
-    newFile: !uuid 'ebc00555da9fd647f535687afe0fb8e50581dcf7'
-    oldFile: !uuid 'be90b11c8bd2519099d9315e0bc460c1a7665faf'
-  /Admin.NET/Admin.NET.Core/Const/ConfigConst.cs:
-    newFile: !uuid '205d1ff40d4c3a36790bb98b38aac46f1127015b'
-    oldFile: null
+    newFile: !uuid '03dca379127b7121ffb14390bee4685878703819'
+    oldFile: !uuid '934c4475fabc485fe14c57c7b287654302c5f0ef'
+  /Admin.NET/Admin.NET.Core/EventBus:
+    newFile: !uuid '91084dbb9c048b1311e7f1264624f79144c570f0'
+    oldFile: !uuid '50d73af4c9dc9a78be71f701044febf05aef551c'
+  /Admin.NET/Admin.NET.Core/EventBus/AppEventSubscriber.cs:
+    newFile: !uuid '8de615006a8c0b82a1ad432b111279151473a9bb'
+    oldFile: !uuid '2a438056bcd0eb810279a4988e79b9dbd9ed5c2e'
+  /Admin.NET/Admin.NET.Core/Job:
+    newFile: !uuid '9a4c1ab4f8e6681d9f5b0956912c8c8fd6f3d85f'
+    oldFile: !uuid '74ddc7000ceba9f5509d59276ceaa864d7e4dfbb'
+  /Admin.NET/Admin.NET.Core/Job/LogJob.cs:
+    newFile: !uuid 'f29036d2ff2d4430757e6bcf62229d652cef25fe'
+    oldFile: !uuid '752791e08a216e841e4e511d335b4867aaeb6bec'
+  /Admin.NET/Admin.NET.Core/Job/OnlineUserJob.cs:
+    newFile: !uuid '91ebb5cd3f3b466ce6f2060149ba1cc1fac95758'
+    oldFile: !uuid '4d24ec05bd2662270afecf6f7bc0db466ddefc22'
   /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid 'd68e36a993afeb24a28957826d25590d11463d48'
-    oldFile: !uuid 'b929257f7b31fbc229b0c1d32a15464f3dcf3c04'
-  /Admin.NET/Admin.NET.Core/Service/Auth:
-    newFile: !uuid '68098e67bfd71bbb243ef733bb633104ab9b063f'
-    oldFile: !uuid 'c1063d9c44dc36da7424545156ef88c17d3209a1'
-  /Admin.NET/Admin.NET.Core/Service/Auth/SysAuthService.cs:
-    newFile: !uuid 'df46e7833fee6555c19384172239396bf14f51eb'
-    oldFile: !uuid '1bcb756c7cdb7277b488549e13a583b4e8cbdab7'
-  /Admin.NET/Admin.NET.Core/Service/Config:
-    newFile: !uuid '28027fa58f78a2bfbf987cc3adeb5ad7cb29c584'
-    oldFile: !uuid '65ea94991d4de05e33d9cf212b7548b1d23129ca'
-  /Admin.NET/Admin.NET.Core/Service/Config/SysConfigService.cs:
-    newFile: !uuid '4f4e841dc946ba493ee84e65a99f3198d86bb845'
-    oldFile: !uuid '5879b1c3d686899ffdfb7214e196bad7a722cca7'
-gitCommitId: !uuid '3f46af9e131dcaa14a1ed808887c3d0c5262b257'
+    newFile: !uuid '2308ef6d4b9544f8aa9cff1b8a0daf250be77792'
+    oldFile: !uuid 'd68e36a993afeb24a28957826d25590d11463d48'
+  /Admin.NET/Admin.NET.Core/Service/Job:
+    newFile: !uuid '9cc68f5c5768c52db71d1faca1ddd5a8f6a4aedb'
+    oldFile: !uuid '39e99cca95b0130116f29a4af4a335a0ccbeefb3'
+  /Admin.NET/Admin.NET.Core/Service/Job/JobMonitor.cs:
+    newFile: !uuid '5dcb02ed86a8fbfe4f66d2dd43d97e921cd1d2bf'
+    oldFile: !uuid 'eaffcb17891cf03a8dfcc28d2a8012448e92a891'
+  /Admin.NET/Admin.NET.Core/Service/Message:
+    newFile: !uuid '8837464ac83ce98dea00b6ca99faf8cdaaf12869'
+    oldFile: !uuid '2da72d8e395c1bda209e64d9c639f407d2d39154'
+  /Admin.NET/Admin.NET.Core/Service/Message/SysEmailService.cs:
+    newFile: !uuid '8bcdd313dde82f7f62d5d31cf69d3980336d4d7c'
+    oldFile: !uuid 'e136ab2e6e8ccda7d893928412aba3d6ecc13ef6'
+gitCommitId: !uuid 'f011a809f36d0e8f823ccae1390e668c19e47b0e'
 renames: {
   }
-revisionId: 2177
+revisionId: 2178
