@@ -3,42 +3,63 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid 'f152dc7d4b247ed450035071906ca9c8da2d7b56'
-    oldFile: !uuid '41e8adb7b975e3aa74a41a2805765847dc355911'
+    newFile: !uuid 'b7648ea92948b32ca27af8e30c821561393dcb23'
+    oldFile: !uuid 'f152dc7d4b247ed450035071906ca9c8da2d7b56'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '666d652db85c19ad5a2ff8c75b07e34d786ae121'
-    oldFile: !uuid '03dca379127b7121ffb14390bee4685878703819'
-  /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
-    newFile: !uuid '0781edd65fd864c08e609fa01313b757b9231e5e'
-    oldFile: !uuid 'ae198a5b5e28ca75cfde3aba679fcfe79d3bf477'
-  /Admin.NET/Admin.NET.Core/Const:
-    newFile: !uuid '8a2e4166c0e467fac3350d2bf322da452c8039cb'
-    oldFile: !uuid 'ebc00555da9fd647f535687afe0fb8e50581dcf7'
-  /Admin.NET/Admin.NET.Core/Const/ConfigConst.cs:
-    newFile: !uuid 'ec33dabb76b7cd74888a86000c6c473e6eee74e0'
-    oldFile: !uuid '205d1ff40d4c3a36790bb98b38aac46f1127015b'
-  /Admin.NET/Admin.NET.Core/EventBus:
-    newFile: !uuid '2affb0d7baea8b6b27d0f664cddcea237793c76e'
-    oldFile: !uuid '91084dbb9c048b1311e7f1264624f79144c570f0'
-  /Admin.NET/Admin.NET.Core/EventBus/AppEventSubscriber.cs:
-    newFile: !uuid '92f27f514a48bee89cd8cf414e450488f79ebbc9'
-    oldFile: !uuid '8de615006a8c0b82a1ad432b111279151473a9bb'
-  /Admin.NET/Admin.NET.Core/Job:
-    newFile: !uuid '1e4945962d28ec41766d90c8c790913a44fa6db6'
-    oldFile: !uuid '9a4c1ab4f8e6681d9f5b0956912c8c8fd6f3d85f'
-  /Admin.NET/Admin.NET.Core/Job/OnlineUserJob.cs:
-    newFile: !uuid '163d96e18cc4ab83e8f91540d53ffe199a01763f'
-    oldFile: !uuid '91ebb5cd3f3b466ce6f2060149ba1cc1fac95758'
+    newFile: !uuid '9cb641b4c57b5df8bbd78469922a258a95f15ba7'
+    oldFile: !uuid '666d652db85c19ad5a2ff8c75b07e34d786ae121'
+  /Admin.NET/Admin.NET.Core/Entity:
+    newFile: !uuid '665aed3a4c7235d6c703c77dd50dc77265fef72d'
+    oldFile: !uuid '3abcdca52b37adb1e73907e53a71f428afa77bbd'
+  /Admin.NET/Admin.NET.Core/Entity/EntityBase.cs:
+    newFile: !uuid '806613dd87dac5c4eba9977d1abc5cace1c9cf7e'
+    oldFile: !uuid '910e7785c35e9a6cf7b68111464d6eaedf5a036e'
+  /Admin.NET/Admin.NET.Core/Entity/IEntityFilter.cs:
+    newFile: !uuid '05c8727dfc680dba7f328a2dfe65861f38d1d6ef'
+    oldFile: !uuid '6507e2040c70bac78f3047bc36631b034582d19b'
   /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid 'af3fd3eb54bf71470dd6e925f464e4187ecc6853'
-    oldFile: !uuid '2308ef6d4b9544f8aa9cff1b8a0daf250be77792'
+    newFile: !uuid '0e611a73ea1c36cc8abf4ae634d4c953706d219c'
+    oldFile: !uuid 'af3fd3eb54bf71470dd6e925f464e4187ecc6853'
   /Admin.NET/Admin.NET.Core/Service/Config:
-    newFile: !uuid '807680061a3fe02fd3eca300e7bbe81bc313903d'
-    oldFile: !uuid '28027fa58f78a2bfbf987cc3adeb5ad7cb29c584'
+    newFile: !uuid '01f20b0038663008d30eebed0c373f30b94fd08a'
+    oldFile: !uuid '807680061a3fe02fd3eca300e7bbe81bc313903d'
+  /Admin.NET/Admin.NET.Core/Service/Config/Dto:
+    newFile: !uuid 'b529cb299e8ad8eb777de06a06d7e6d7e1406ec2'
+    oldFile: !uuid 'b3d3ecddefaeaced8c0c5d194b04e6ad9ff950b7'
+  /Admin.NET/Admin.NET.Core/Service/Config/Dto/InfoInput.cs:
+    newFile: !uuid '32df0fdfa0d6d38ccb735d78922379afba426b1c'
+    oldFile: !uuid 'f520e708f3dc58990b4e6c114e514765b9c4b1a8'
   /Admin.NET/Admin.NET.Core/Service/Config/SysConfigService.cs:
-    newFile: !uuid 'eb667d4b779c0f3e8bb652cd3f6c6d6d251444f2'
-    oldFile: !uuid '4f4e841dc946ba493ee84e65a99f3198d86bb845'
-gitCommitId: !uuid 'd73d1c621ee0a4f13cb34ba640db3132f84cf5a1'
+    newFile: !uuid 'ecb4f26b16bbda07b04174acddef3211f1833d72'
+    oldFile: !uuid 'eb667d4b779c0f3e8bb652cd3f6c6d6d251444f2'
+  /Web:
+    newFile: !uuid '890b7b0c345fe0cfcc2607ba96f6f5c7f4af2061'
+    oldFile: !uuid 'aef616651e875cb900440aaf00e6ca684e0432a8'
+  /Web/src:
+    newFile: !uuid '6ed77c9f2a27a73308e5eea136a373b07fe40842'
+    oldFile: !uuid '728d8e4d62a6b67bfbb7291dd97f9372bda9a114'
+  /Web/src/api-services:
+    newFile: !uuid 'f9ea8c98f82e48d022e5dd83c0cc10bde57cb7fc'
+    oldFile: !uuid '2d49c74798c16be0d71760573c3e38cd221c1781'
+  /Web/src/api-services/models:
+    newFile: !uuid '7d17acd19cf2f8b1a87334f1ea46f30890be5e67'
+    oldFile: !uuid 'ec8d6458a0496dc1d439ff20c856731b0e6fd870'
+  /Web/src/api-services/models/info-save-input.ts:
+    newFile: !uuid 'e07b3ef6550603eb39e0bcf98c7e6d443eef069c'
+    oldFile: !uuid '9e4400e8d055f9035c6c3382555dee605e22460f'
+  /Web/src/views:
+    newFile: !uuid '2c786cd3011b2bb6b194dea98d6844f5a09fea4e'
+    oldFile: !uuid '3ac2a019ceec74a7dccd153b8c2a6e80eeb2b4c6'
+  /Web/src/views/system:
+    newFile: !uuid '04cce90ee0573ab29070391ea181d233269b405a'
+    oldFile: !uuid '385b74f27c865cf0f2c4e5ee9a91fdb8291da20b'
+  /Web/src/views/system/infoSetting:
+    newFile: !uuid 'd7d387586830adfca8c10d2f6c4a81d4670ae4ce'
+    oldFile: !uuid 'e0a863b1339130bb6df866c4ec44ce372f46fba4'
+  /Web/src/views/system/infoSetting/index.vue:
+    newFile: !uuid 'eb6adc0bf2c4cdecdf1eb5355fc6f73f4cfd512e'
+    oldFile: !uuid '4d834c9b10132c549897c294a6ec136bd95e23ef'
+gitCommitId: !uuid 'b1194c6f6fde0bcc4942fbb271bc0f3cc84f9c2d'
 renames: {
   }
-revisionId: 2179
+revisionId: 2180
