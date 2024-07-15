@@ -3,21 +3,18 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '8e4581c685e0c82dbcca13ac30ad716da2a7a22b'
-    oldFile: !uuid 'b7648ea92948b32ca27af8e30c821561393dcb23'
+    newFile: !uuid '66a992b62e152416954de9945dbf3b76bfe98f76'
+    oldFile: !uuid '8e4581c685e0c82dbcca13ac30ad716da2a7a22b'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid 'ad45e665d55ec654774aa987f938337d1b00b1f9'
-    oldFile: !uuid '9cb641b4c57b5df8bbd78469922a258a95f15ba7'
-  /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid '0c0675395248ad1eaed0178208ee9a3555b7c19d'
-    oldFile: !uuid '0e611a73ea1c36cc8abf4ae634d4c953706d219c'
-  /Admin.NET/Admin.NET.Core/Service/Dict:
-    newFile: !uuid '57a92f5dcfdde4d2e3c5294ab306a69961a54d0a'
-    oldFile: !uuid 'bb6a328181285b8e672c3a54efaabb611ba63aaf'
-  /Admin.NET/Admin.NET.Core/Service/Dict/SysDictDataService.cs:
-    newFile: !uuid 'cf24a311fdbadde87bc48dcf971700d6c84e8769'
-    oldFile: !uuid '99031b42e33a77e2fcb01f31c652d028fc04e24f'
-gitCommitId: !uuid '5cf0d48776dd25a7246f9083746823b3b56d066f'
+    newFile: !uuid 'fadd1192425585bf1264c7516bd5150f35460638'
+    oldFile: !uuid 'ad45e665d55ec654774aa987f938337d1b00b1f9'
+  /Admin.NET/Admin.NET.Core/Extension:
+    newFile: !uuid '00818be7251618847f3de9ef0ca6d2e730842801'
+    oldFile: !uuid '82cd1a37ccbd37c27d78f45dbdf86009b416b014'
+  /Admin.NET/Admin.NET.Core/Extension/SqlSugarFilterExtension.cs:
+    newFile: !uuid 'd719727156e6a046db4165dd6a677dc9d4784be0'
+    oldFile: !uuid '689b8007fbdf372d45ab8e93e8d8003c017c9127'
+gitCommitId: !uuid '20f73e4a5f783eb50af2d577084ffdb8947f01b2'
 renames: {
   }
-revisionId: 2134
+revisionId: 2135
