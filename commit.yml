@@ -2,43 +2,22 @@
 branches: {
   }
 fileChange:
-  /Admin.NET:
-    newFile: !uuid '7782688e327840990c1e707a0e16e366cdf32f5e'
-    oldFile: !uuid '873442642af2e4ca085b31233a5402248feb7edd'
-  /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '3aeb64b79ebf72218c030e26316b95585208bdeb'
-    oldFile: !uuid '06359ccc630f1692a48a332e09dc7c2d2081bd98'
-  /Admin.NET/Admin.NET.Core/Extension:
-    newFile: !uuid '07a90b7401fe8bdda1c7e7e4e8a8a91970c6d9cc'
-    oldFile: !uuid '510193084e36197aa085bb41045580140023ca2d'
-  /Admin.NET/Admin.NET.Core/Extension/SqlSugarFilterExtension.cs:
-    newFile: !uuid '760c3e385639bca170f1892aa681a676d308d2fa'
-    oldFile: !uuid '02521e098b0392a01abb4b55c6accb03ed9665b7'
-  /Admin.NET/Admin.NET.Web.Entry:
-    newFile: !uuid '78c9ec93cbff0aa5344d6b10aaaaa2cd9b650b7c'
-    oldFile: !uuid '2d3bc74faaf3797086748f49f2b0f1995c9b2339'
-  /Admin.NET/Admin.NET.Web.Entry/wwwroot:
-    newFile: !uuid '60f5f450b1f0dc15235fda3ea67ca0a8ca2a6a68'
-    oldFile: !uuid 'b19f299dc07bfaf412864153619a48f55fecd72b'
-  /Admin.NET/Admin.NET.Web.Entry/wwwroot/Template:
-    newFile: !uuid '669c4928e8a7f77633789ee743e45c2c5318d11d'
-    oldFile: !uuid 'ba4a9aa714da0eb7efe1f18e7d62bbd6e6d1b05f'
-  /Admin.NET/Admin.NET.Web.Entry/wwwroot/Template/Service.cs.vm:
-    newFile: !uuid '2516af7a28b27282d170500925ca93adc070b324'
-    oldFile: !uuid '324e7c92ef44f442cf54961328e07b3700ae0c86'
   /Web:
-    newFile: !uuid '2c7545ed936f3dbfd00708b60987b6438108e66b'
-    oldFile: !uuid '4f12ff7f07bed06cb30d2ec36fa4a94214f56d84'
+    newFile: !uuid '7664ee52fab3f0157f4c4a02cbce00cfbb458c3d'
+    oldFile: !uuid '2c7545ed936f3dbfd00708b60987b6438108e66b'
+  /Web/package.json:
+    newFile: !uuid '8f15aca8f389d13c354f6d24fea924b907001463'
+    oldFile: !uuid 'bcc7323a43f9d1844c80b72f0a7fd25bf2287095'
   /Web/src:
-    newFile: !uuid '55bff6e4f6858f157b91e2ed5f20bf078778b49f'
-    oldFile: !uuid '0c052593b8297b0aef77319b501d96e720cac107'
-  /Web/src/utils:
-    newFile: !uuid '48743b927381e5a772da207d11c44bc0c40cd4b6'
-    oldFile: !uuid '021f955f5546279e97630c04a97e13c7af29bb35'
-  /Web/src/utils/calendar.js:
-    newFile: !uuid 'd0c1dfe5760c12ab0e2a7ca6064bad2786315e95'
-    oldFile: !uuid '9f2698962fbadfc792f7cd99c920f56dfde8a008'
-gitCommitId: !uuid '65deea6db21796327c63d713773a232a02404658'
+    newFile: !uuid '81950f55bf1c35bbe69cebe4e9b8894e3717726f'
+    oldFile: !uuid '55bff6e4f6858f157b91e2ed5f20bf078778b49f'
+  /Web/src/stores:
+    newFile: !uuid '9b0541cf50a18c2558778cee8ab7b5d97d75a308'
+    oldFile: !uuid '49beb8cde8ac40da3ba01763ab6d4ce3d27fd47c'
+  /Web/src/stores/userInfo.ts:
+    newFile: !uuid 'f85c5f110cda8b773354007ef054ceeceaeabd64'
+    oldFile: !uuid '6465a2f13cce0e082ce3a59433775eb1574bcbc4'
+gitCommitId: !uuid 'b110da9a0ae7171df07441d83e2a73a47e56a6a3'
 renames: {
   }
-revisionId: 2156
+revisionId: 2157
