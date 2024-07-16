@@ -2,28 +2,19 @@
 branches: {
   }
 fileChange:
-  /Web:
-    newFile: !uuid '0032577bc2b2ff753c84a6735b4f10ad29d627be'
-    oldFile: !uuid 'd0da01e6affbf008fabc98bcbab0468143e93e4e'
-  /Web/src:
-    newFile: !uuid '683d06b633d2d74b7a19bbe5c5c9f189461bc873'
-    oldFile: !uuid '3f4f7215ceeb1e33e67f7edef10b991ef8db7161'
-  /Web/src/views:
-    newFile: !uuid '57b0a651051cf9cbfe30e74f8d323e11f3fdbe79'
-    oldFile: !uuid 'e6ed52f122035149c204fa1aed4e5c6774f51722'
-  /Web/src/views/home:
-    newFile: !uuid '9671b02ab9ae61f552de2a09d5b996b9f65ae514'
-    oldFile: !uuid '6ad43959ef62878bfcd39c8dde5dcecdf3bd5de9'
-  /Web/src/views/home/widgets:
-    newFile: !uuid 'c50f1f7b39f9461e388f4e53c49982d9abf690dd'
-    oldFile: !uuid 'ac3c90a22bcecedeadd3fcfbe14fe6f1d56ea598'
-  /Web/src/views/home/widgets/components:
-    newFile: !uuid '0d02aa306436ab256701df0b01f1a4f9f6abd0a1'
-    oldFile: !uuid '51264b06652c522dd441dd8da56073be1b979390'
-  /Web/src/views/home/widgets/components/schedule.vue:
-    newFile: !uuid '57919aaf1bb97fb1f67dff78aeb009e8c16e8f57'
-    oldFile: !uuid 'f5926c9cf7ccf61eb9009cf992ebe26387317b04'
-gitCommitId: !uuid '41813ea2ba15ef71e57c36beeb59ac4485d251a4'
+  /Admin.NET:
+    newFile: !uuid 'ad277c3ad47a1bf43d4df1885e02ce98bfe86b99'
+    oldFile: !uuid 'feed43f74ef01ac4ac4fbe7820cea6bca639f454'
+  /Admin.NET/Admin.NET.Core:
+    newFile: !uuid '6a89e14b5f864705727d6bc3f8c3f05ace72b8be'
+    oldFile: !uuid '914580bb71b4a24ece9e1e22f155baa32e2a4ba4'
+  /Admin.NET/Admin.NET.Core/Util:
+    newFile: !uuid '6a72610367519b10df02e666386f6ae7a8884ff1'
+    oldFile: !uuid '94abe021302382d4403af25569c23a3a6dc66271'
+  /Admin.NET/Admin.NET.Core/Util/CodeGenUtil.cs:
+    newFile: !uuid '4c190ba76d9427bd2c9a280c41679d0aa7735a2e'
+    oldFile: !uuid '2db1009ddf35ba20a792d8eb4e3d590d8aa409d5'
+gitCommitId: !uuid 'd76368ad5746ad1461157cd79e2642671cf55c2c'
 renames: {
   }
-revisionId: 2187
+revisionId: 2188
