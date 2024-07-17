@@ -3,21 +3,24 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid 'ca488aea3452676fd121173017562c9c19e4ef66'
-    oldFile: !uuid 'b70e6ead0cf0a39f638f2d8f123b52169560a5a6'
+    newFile: !uuid '3d688b46445cb10146803d7acc108520dc5828db'
+    oldFile: !uuid 'ca488aea3452676fd121173017562c9c19e4ef66'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '141dab3c1a6269bf3ff6159bdfe35343e2411347'
-    oldFile: !uuid 'e3e4dfee4257bb661916bede51886db0ab93578a'
-  /Admin.NET/Admin.NET.Core/Entity:
-    newFile: !uuid '47a08ea49a6807e18ee7a6191aaf573cc6465a9f'
-    oldFile: !uuid '0e78fc85f6871e25d5d8c87e499178e55c68ec45'
-  /Admin.NET/Admin.NET.Core/Entity/SysWechatPay.cs:
-    newFile: !uuid '86780b5f876e90c6e586c0f1967e6cbc7a63f9f9'
-    oldFile: !uuid '9a4a5fa876ab8bddf7835dd5171b92db5bfc1301'
-  /Admin.NET/Admin.NET.Core/Entity/SysWechatRefund.cs:
-    newFile: !uuid 'd0f071df0eea4dcf4529fb7c29719fc7d000f858'
-    oldFile: !uuid '33c8f913f6b69ec09b90ff647ba8f3ab84036529'
-gitCommitId: !uuid '82a97667b8666af08b9770a5c67c0d59fd3dca20'
+    newFile: !uuid 'a96545005f820655298b149f9381118f1b4f8263'
+    oldFile: !uuid '141dab3c1a6269bf3ff6159bdfe35343e2411347'
+  /Admin.NET/Admin.NET.Core/Extension:
+    newFile: !uuid 'ca77e391425f377754b0318825b0334ff6e4c683'
+    oldFile: !uuid '07a90b7401fe8bdda1c7e7e4e8a8a91970c6d9cc'
+  /Admin.NET/Admin.NET.Core/Extension/SqlSugarExtension.cs:
+    newFile: !uuid '4e47343fc2c7c2d3eb5594e7e7621f095538f3e9'
+    oldFile: !uuid '425e6dec57f04b693cf7dce8582796994c44b7b7'
+  /Admin.NET/Admin.NET.Core/SqlSugar:
+    newFile: !uuid '6631653bce119f2a4b1891908dbd63903deac2d4'
+    oldFile: !uuid 'c8de748fa02f5f39aac592ccfbf7b36e733a03a7'
+  /Admin.NET/Admin.NET.Core/SqlSugar/SqlSugarFilter.cs:
+    newFile: !uuid 'bf9ab63321811110a0c16b040816270d6d6b311d'
+    oldFile: !uuid '74c18bf59c3809c8c8fc4e51222ecd419f28dce4'
+gitCommitId: !uuid 'c892e0db4788128c987c8cb639ddd08232343fff'
 renames: {
   }
-revisionId: 2162
+revisionId: 2163
