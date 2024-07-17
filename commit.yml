@@ -2,22 +2,22 @@
 branches: {
   }
 fileChange:
-  /Web:
-    newFile: !uuid '7664ee52fab3f0157f4c4a02cbce00cfbb458c3d'
-    oldFile: !uuid '2c7545ed936f3dbfd00708b60987b6438108e66b'
-  /Web/package.json:
-    newFile: !uuid '8f15aca8f389d13c354f6d24fea924b907001463'
-    oldFile: !uuid 'bcc7323a43f9d1844c80b72f0a7fd25bf2287095'
-  /Web/src:
-    newFile: !uuid '81950f55bf1c35bbe69cebe4e9b8894e3717726f'
-    oldFile: !uuid '55bff6e4f6858f157b91e2ed5f20bf078778b49f'
-  /Web/src/stores:
-    newFile: !uuid '9b0541cf50a18c2558778cee8ab7b5d97d75a308'
-    oldFile: !uuid '49beb8cde8ac40da3ba01763ab6d4ce3d27fd47c'
-  /Web/src/stores/userInfo.ts:
-    newFile: !uuid 'f85c5f110cda8b773354007ef054ceeceaeabd64'
-    oldFile: !uuid '6465a2f13cce0e082ce3a59433775eb1574bcbc4'
-gitCommitId: !uuid 'b110da9a0ae7171df07441d83e2a73a47e56a6a3'
+  /Admin.NET:
+    newFile: !uuid '86db017ba9b3306a62e5c81cc3e592272a0edf88'
+    oldFile: !uuid '7782688e327840990c1e707a0e16e366cdf32f5e'
+  /Admin.NET/Admin.NET.Core:
+    newFile: !uuid '739da87263a7ef5b300692d35580ac0d6cf058fe'
+    oldFile: !uuid '3aeb64b79ebf72218c030e26316b95585208bdeb'
+  /Admin.NET/Admin.NET.Core/Service:
+    newFile: !uuid 'a79641bf95881cbca9ad2cffb6854a1bb690e7c2'
+    oldFile: !uuid 'e12d4bb29426e64e94fa224c1fcf6f3d09fbb0b3'
+  /Admin.NET/Admin.NET.Core/Service/Region:
+    newFile: !uuid 'ad46139beec3315650069e0ce03afd3a5f423ff6'
+    oldFile: !uuid 'ff8fa3fd3cb6df150be116a7f2376693a6d76ca7'
+  /Admin.NET/Admin.NET.Core/Service/Region/SysRegionService.cs:
+    newFile: !uuid '42f1a9fab81b862ecf5cc54bc20118df2d402b42'
+    oldFile: !uuid '332a82befb21fc1ac84d9b639706dc5f7fb9c4aa'
+gitCommitId: !uuid '405901c052b71aae50406809aa17aa48b9e4d71c'
 renames: {
   }
-revisionId: 2157
+revisionId: 2158
