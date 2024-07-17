@@ -128,8 +128,8 @@ const loadSysInfo = () => {
 			// Icp备案信息
 			themeConfig.value.icp = data.sysIcp;
 			themeConfig.value.icpUrl = data.sysIcpUrl;
-			// 演示环境显示水印
-			themeConfig.value.isWatermark = data.SysDemo;
+			// 水印
+			themeConfig.value.isWatermark = data.sysWatermark != null;
 			themeConfig.value.watermarkText = data.sysWatermark;
 			// 版权说明
 			themeConfig.value.copyright = data.sysCopyright;
