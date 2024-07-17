@@ -45,6 +45,9 @@ public class @(@Model.ClassName)Service : IDynamicApiController, ITransient
 		@:input.SearchKey = input.SearchKey?.Trim();
 }
         var query = _@(@Model.LowerClassName)Rep.AsQueryable()
+@if (Model.TableField.Any(field => field.PropertyName == "IsDelete")) {
+            @:.Where(u => u.IsDelete == false)
+}
 @{string conditionFlag = "";}
 @if (haveLikeCdt) {
             @:.WhereIF(!string.IsNullOrEmpty(input.SearchKey), u =>
