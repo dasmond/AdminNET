@@ -37,6 +37,11 @@ public class ConfigConst
     public const string SysWebViceDesc = "sys_web_viceDesc";
 
     /// <summary>
+    /// 演示环境
+    /// </summary>
+    public const string SysDemo = "sys_demo";
+
+    /// <summary>
     /// 水印内容
     /// </summary>
     public const string SysWebWatermark = "sys_web_watermark";

@@ -241,6 +241,7 @@ public class SysConfigService : IDynamicApiController, ITransient
         var sysTitle = await GetConfigValue<string>(ConfigConst.SysWebTitle);
         var sysViceTitle = await GetConfigValue<string>(ConfigConst.SysWebViceTitle);
         var sysViceDesc = await GetConfigValue<string>(ConfigConst.SysWebViceDesc);
+        var sysDemo = await GetConfigValue<string>(ConfigConst.SysDemo);
         var sysWatermark = await GetConfigValue<string>(ConfigConst.SysWebWatermark);
         var sysCopyright = await GetConfigValue<string>(ConfigConst.SysWebCopyright);
         var sysIcp = await GetConfigValue<string>(ConfigConst.SysWebIcp);
@@ -252,6 +253,7 @@ public class SysConfigService : IDynamicApiController, ITransient
             SysTitle = sysTitle,
             SysViceTitle = sysViceTitle,
             SysViceDesc = sysViceDesc,
+            SysDemo = sysDemo,
             SysWatermark = sysWatermark,
             SysCopyright = sysCopyright,
             SysIcp = sysIcp,
