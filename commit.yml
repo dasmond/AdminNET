@@ -3,27 +3,21 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid 'b70e6ead0cf0a39f638f2d8f123b52169560a5a6'
-    oldFile: !uuid '3a3d14bfba15906e610b36f37df57578ffa9f59b'
+    newFile: !uuid 'ca488aea3452676fd121173017562c9c19e4ef66'
+    oldFile: !uuid 'b70e6ead0cf0a39f638f2d8f123b52169560a5a6'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid 'e3e4dfee4257bb661916bede51886db0ab93578a'
-    oldFile: !uuid '4918c0a19f02a6462ba5500316c78276e093500e'
-  /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid 'ebe3df9f9bf8f94ab5ce17bf33f47e6ee886a0ee'
-    oldFile: !uuid 'a79641bf95881cbca9ad2cffb6854a1bb690e7c2'
-  /Admin.NET/Admin.NET.Core/Service/Region:
-    newFile: !uuid 'cf3cd0c3aac2081286aca2249bb4f6105b09db97'
-    oldFile: !uuid 'ad46139beec3315650069e0ce03afd3a5f423ff6'
-  /Admin.NET/Admin.NET.Core/Service/Region/SysRegionService.cs:
-    newFile: !uuid '3c0ad769a357b80fcab13c297bef85e09fe4149c'
-    oldFile: !uuid '42f1a9fab81b862ecf5cc54bc20118df2d402b42'
-  /Admin.NET/Admin.NET.Web.Core:
-    newFile: !uuid '2ec785e8f519fa0c51c5092f00293e10f19d0220'
-    oldFile: !uuid 'c3355eaf8a12db6b63e6e4136323196d8b0f7592'
-  /Admin.NET/Admin.NET.Web.Core/Startup.cs:
-    newFile: !uuid '938b1a86e9005dfb0e411ac7e0e2274ae19c5da0'
-    oldFile: !uuid '835c3c6b7ce2a13666cd9e4cae279eca5c2db3e6'
-gitCommitId: !uuid '5064c7a6a96c5fb6ecc7fa5308d6f4b6f96ee247'
+    newFile: !uuid '141dab3c1a6269bf3ff6159bdfe35343e2411347'
+    oldFile: !uuid 'e3e4dfee4257bb661916bede51886db0ab93578a'
+  /Admin.NET/Admin.NET.Core/Entity:
+    newFile: !uuid '47a08ea49a6807e18ee7a6191aaf573cc6465a9f'
+    oldFile: !uuid '0e78fc85f6871e25d5d8c87e499178e55c68ec45'
+  /Admin.NET/Admin.NET.Core/Entity/SysWechatPay.cs:
+    newFile: !uuid '86780b5f876e90c6e586c0f1967e6cbc7a63f9f9'
+    oldFile: !uuid '9a4a5fa876ab8bddf7835dd5171b92db5bfc1301'
+  /Admin.NET/Admin.NET.Core/Entity/SysWechatRefund.cs:
+    newFile: !uuid 'd0f071df0eea4dcf4529fb7c29719fc7d000f858'
+    oldFile: !uuid '33c8f913f6b69ec09b90ff647ba8f3ab84036529'
+gitCommitId: !uuid '82a97667b8666af08b9770a5c67c0d59fd3dca20'
 renames: {
   }
-revisionId: 2208
+revisionId: 2209
