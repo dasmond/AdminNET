@@ -2,13 +2,28 @@
 branches: {
   }
 fileChange:
-  /Web:
-    newFile: !uuid '60374cc6d2594ab35d35998f19e43a35ea1759c1'
-    oldFile: !uuid 'f707407eae717bac38ddefe25feff8b2dfc5b5e1'
-  /Web/package.json:
-    newFile: !uuid 'a30df7c101548b77c59f951d29cd78e5d3b5242a'
-    oldFile: !uuid 'bd6fa8922798559747027afb872883f6d6b46f6c'
-gitCommitId: !uuid 'e8040fa2fa5efd29b5e8f621827d6a111203589e'
+  /Admin.NET:
+    newFile: !uuid '07ee970f6d9ae370d44c3d11553f0f8b1b552498'
+    oldFile: !uuid '3d688b46445cb10146803d7acc108520dc5828db'
+  /Admin.NET/Admin.NET.Application:
+    newFile: !uuid 'e789bd71c1828a3483af53e30c150976cbc46865'
+    oldFile: !uuid '984e3f659b7d15b7a0e027e611c1c8817dd609b8'
+  /Admin.NET/Admin.NET.Application/Configuration:
+    newFile: !uuid 'd1691cbb6beecbc16b58abf3c63cd7246b4a3c0a'
+    oldFile: !uuid '643a76cb20b8a447de235945dd89c3cb7a952006'
+  /Admin.NET/Admin.NET.Application/Configuration/Database.json:
+    newFile: !uuid '4db300e57c8e4099441e453927c6fe42a7034cfc'
+    oldFile: !uuid '5d36e072e253e6cadb4eafa479da887a8523f139'
+  /Admin.NET/Admin.NET.Core:
+    newFile: !uuid 'fd7be2c7febc8836c17d4e8e1595dccd4c6d4999'
+    oldFile: !uuid 'a96545005f820655298b149f9381118f1b4f8263'
+  /Admin.NET/Admin.NET.Core/EventBus:
+    newFile: !uuid 'da540a29820755968dd7782e7c6dfa8424249b7f'
+    oldFile: !uuid '2affb0d7baea8b6b27d0f664cddcea237793c76e'
+  /Admin.NET/Admin.NET.Core/EventBus/RedisEventSourceStorer.cs:
+    newFile: !uuid 'e6ff16e3abb68400ef97e38e64ba769b10fc75ef'
+    oldFile: !uuid '272b5ba1d540fd4361e4b8a030b479ac5ba3c523'
+gitCommitId: !uuid '15af1add059c0609a1ce65ff6c2a4a78c6cde10b'
 renames: {
   }
-revisionId: 2212
+revisionId: 2213
