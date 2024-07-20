@@ -3,15 +3,90 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '68371386b5aecf8f0b2a82444211a5a62ccc9451'
-    oldFile: !uuid '151d5ee5d9d32d855b934ba156413ed8e97c49c7'
+    newFile: !uuid '2a5a9789ecb41e74d8f59bf961663927952ec049'
+    oldFile: !uuid '68371386b5aecf8f0b2a82444211a5a62ccc9451'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid 'e5326efb98d6d859c9220b0e584825e3593ddac9'
-    oldFile: !uuid '81eb3afe2c11e9792ecc041f085e5ab09f30c8d1'
-  /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
-    newFile: !uuid '12c6832ea53afb141480f2cff0b3d1acb5498494'
-    oldFile: !uuid 'ae07ab60e8fa421f070712d9c0092a6c13d2dcb0'
-gitCommitId: !uuid 'a5cfbe916acce7987a3fefe1a53bd930a38e434c'
+    newFile: !uuid '324604f26791214b7afdffe7e6268b968348e184'
+    oldFile: !uuid 'e5326efb98d6d859c9220b0e584825e3593ddac9'
+  /Admin.NET/Admin.NET.Core/Entity:
+    newFile: !uuid 'a010732877c1b15792b8efa14ce18639469c62df'
+    oldFile: !uuid '47a08ea49a6807e18ee7a6191aaf573cc6465a9f'
+  /Admin.NET/Admin.NET.Core/Entity/FinishStatusEnum.cs:
+    newFile: !uuid '05cbc5ad8a3b5e7a084a9139813e00867602981a'
+    oldFile: null
+  /Admin.NET/Admin.NET.Core/Entity/SysSchedule.cs:
+    newFile: !uuid '5c792ff8d4a6f90bffd774acf079187656b695f1'
+    oldFile: !uuid '5a0362507364be2d9bc57f6977a9a845a853141a'
+  /Admin.NET/Admin.NET.Core/Service:
+    newFile: !uuid '2bb2d4b1b862cd86cef8298c90c4391908d841d7'
+    oldFile: !uuid 'f84b1957bfcf912e7eebdc61f5d4ebb6da6008b6'
+  /Admin.NET/Admin.NET.Core/Service/Schedule:
+    newFile: !uuid '4a03df8f9a1b91de45feda44d051fa490188a1af'
+    oldFile: !uuid 'f17c1112f371deea5885318a7f3fafa3461c1741'
+  /Admin.NET/Admin.NET.Core/Service/Schedule/Dto:
+    newFile: !uuid '91876538e0a03eabf98a656cad7138484af63ca1'
+    oldFile: !uuid '0d7be840cb86cb021bf9cee5b4314f16cbd483dd'
+  /Admin.NET/Admin.NET.Core/Service/Schedule/Dto/ScheduleInput.cs:
+    newFile: !uuid 'bb9d1b01491dbe42d3d261072a7e8838bbf03a77'
+    oldFile: !uuid 'eb2bfee0836774bcd5915bc5ea1ec8590b7d32a1'
+  /Admin.NET/Admin.NET.Core/Service/Schedule/SysScheduleService.cs:
+    newFile: !uuid '77a8db5c5f38a4a621e987ddb97936f3be5dd83c'
+    oldFile: !uuid '3c3e20afc0de7b236a4da954781c16c4e1e1cad6'
+  /Web:
+    newFile: !uuid 'b7b79e0775873a00dcae09c042ca9f1d7968d239'
+    oldFile: !uuid 'fe33fc2162abe6bfa566f583bed1bd629a84a131'
+  /Web/src:
+    newFile: !uuid 'fed34335b1b860574184b68439ddc2d083686ded'
+    oldFile: !uuid 'bc5b2ee5afdf9064baa2cac6f14320ec0de910c9'
+  /Web/src/api-services:
+    newFile: !uuid '0141da182e2a7d2663c10be9958fbc05d4f1d443'
+    oldFile: !uuid '97cbcc276434c4a6ab5c91134b3699ad9a961a73'
+  /Web/src/api-services/apis:
+    newFile: !uuid '5e098c1cf4c24d1bbe64170ea7ef8b5c4abc5b49'
+    oldFile: !uuid 'b8a840483af46ab4a63c558f6df2658941964ef6'
+  /Web/src/api-services/apis/sys-schedule-api.ts:
+    newFile: !uuid 'a24f4f0f91329f852e2b0604e4b8d025c6f4d1b0'
+    oldFile: !uuid 'a6e6e433d95fba85b9770cbec1fda74c11f9d4ab'
+  /Web/src/api-services/models:
+    newFile: !uuid 'a563abc448fc0acbd45ecdc92e8cac1145d2d8eb'
+    oldFile: !uuid '60525ee9a5f3cc7c2a0c08a78294568fe90ab9d5'
+  /Web/src/api-services/models/add-schedule-input.ts:
+    newFile: !uuid '89793416ac79cc4b27c19aa9993a96c32cfdecee'
+    oldFile: !uuid '659344705333bdd0ebe45b4cf66dd58d4797fd99'
+  /Web/src/api-services/models/finish-status-enum.ts:
+    newFile: !uuid '029aa2d94815f1e8192c4a8383874c7b240b1429'
+    oldFile: null
+  /Web/src/api-services/models/list-schedule-input.ts:
+    newFile: !uuid 'e0338c6e130f411ffbe3c59cc65395514ec190cc'
+    oldFile: null
+  /Web/src/api-services/models/schedule-input.ts:
+    newFile: !uuid '1357d0c2a3fb865e425540267796b0bad4a03324'
+    oldFile: !uuid '56c8cbf676b105e2b69c96c018037760c20ce795'
+  /Web/src/api-services/models/sys-schedule.ts:
+    newFile: !uuid 'bdc6d1208e03264054bf6fdb8fc168263a809f96'
+    oldFile: !uuid '2b1ee14bad7a8feb47ba138cf5288d3b31edb7b9'
+  /Web/src/api-services/models/update-schedule-input.ts:
+    newFile: !uuid 'bb82cefdc8577ebfca3d908e6a07a41188150121'
+    oldFile: !uuid '091f849d44db69e8aacca016ffc55e49110e1356'
+  /Web/src/views:
+    newFile: !uuid '4093f97968ba8fa6ec0fe77e811a81fb0ecea936'
+    oldFile: !uuid '8e685e0bafa68eb8c5a66dc2fbee4cec3c7aec03'
+  /Web/src/views/home:
+    newFile: !uuid 'f882d4d174f31aed113e7d9d604171992fe40958'
+    oldFile: !uuid 'd2d508ee9827da090cc6ce9d16371e9bb013e958'
+  /Web/src/views/home/widgets:
+    newFile: !uuid 'aa0d37a6e5decff6bb39f65a8a59934c0ab9f93f'
+    oldFile: !uuid 'f1c1eed82baa52f8a8c849d58bb9ad25c3cc69c9'
+  /Web/src/views/home/widgets/components:
+    newFile: !uuid '3a1b3375098825e36bd9020429cc5bd36d57a2f7'
+    oldFile: !uuid '63dca0847e2c9a5fa945e24d729ad7d13dbb9653'
+  /Web/src/views/home/widgets/components/schedule.vue:
+    newFile: !uuid 'e8ea71f1e9108b16688830d2e90b775e8e4eb30a'
+    oldFile: !uuid '2437c671c99fd4e0f86d55fe749590d4dc9b73fd'
+  /Web/src/views/home/widgets/components/scheduleEdit.vue:
+    newFile: !uuid '0056c353f8bc51c16beeeb142fd9b3d4d76ddb5e'
+    oldFile: !uuid 'cee9a032080f8627847876d0fadf03cbff7422e4'
+gitCommitId: !uuid '2615d79d7ab9f9ba2d3d0b66675a6ca5f2716230'
 renames: {
   }
-revisionId: 2220
+revisionId: 2221
