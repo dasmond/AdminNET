@@ -3,18 +3,15 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '151d5ee5d9d32d855b934ba156413ed8e97c49c7'
-    oldFile: !uuid 'a1840bbfb76e98d002316a004b9e3196fd83f4e9'
+    newFile: !uuid '68371386b5aecf8f0b2a82444211a5a62ccc9451'
+    oldFile: !uuid '151d5ee5d9d32d855b934ba156413ed8e97c49c7'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '81eb3afe2c11e9792ecc041f085e5ab09f30c8d1'
-    oldFile: !uuid 'c6e5cf64ad4e9b1386336c3d64851af622e8e39c'
-  /Admin.NET/Admin.NET.Core/Job:
-    newFile: !uuid '78e3b3c7ae3d6a5301becbe6cb2aaca883fe724d'
-    oldFile: !uuid 'bada0f73ee73d352d2d36233ddc21b0cb0cf91bb'
-  /Admin.NET/Admin.NET.Core/Job/EnumToDictJob.cs:
-    newFile: !uuid 'fe4726118e5f3005fea33047b39fdc914f993f65'
-    oldFile: !uuid 'e98bab8eede5b70ab1b26c7f8bd197070ed8dee4'
-gitCommitId: !uuid 'd96ac949eaab32b5b0885fdfaec3a2e920ad3b3f'
+    newFile: !uuid 'e5326efb98d6d859c9220b0e584825e3593ddac9'
+    oldFile: !uuid '81eb3afe2c11e9792ecc041f085e5ab09f30c8d1'
+  /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
+    newFile: !uuid '12c6832ea53afb141480f2cff0b3d1acb5498494'
+    oldFile: !uuid 'ae07ab60e8fa421f070712d9c0092a6c13d2dcb0'
+gitCommitId: !uuid 'a5cfbe916acce7987a3fefe1a53bd930a38e434c'
 renames: {
   }
-revisionId: 2219
+revisionId: 2220
