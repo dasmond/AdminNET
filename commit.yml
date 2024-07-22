@@ -3,54 +3,18 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid 'aa2546a8bb2b22bb39b709d4b454dd76e6dc236c'
-    oldFile: !uuid 'c34cb38ddc90a2c2fed2ad7d89b2cf60946c8646'
-  /Admin.NET/Admin.NET.Application:
-    newFile: !uuid 'db94d2348cb904e50b49da40b0ab6f6fedd89a7e'
-    oldFile: !uuid 'e789bd71c1828a3483af53e30c150976cbc46865'
-  /Admin.NET/Admin.NET.Application/Configuration:
-    newFile: !uuid 'baf7b2954d1890cfe9b92c75586a1cc3f97388cc'
-    oldFile: !uuid 'd1691cbb6beecbc16b58abf3c63cd7246b4a3c0a'
-  /Admin.NET/Admin.NET.Application/Configuration/Database.json:
-    newFile: !uuid '67708a07ad3be8a5801df99457f9bfd4da1c46ec'
-    oldFile: !uuid '4db300e57c8e4099441e453927c6fe42a7034cfc'
+    newFile: !uuid '41201d70d6cc1e5bf367139500a2448ba49570dc'
+    oldFile: !uuid 'aa2546a8bb2b22bb39b709d4b454dd76e6dc236c'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '4e123b2877f1e82ed750e7a27d8def298ff65511'
-    oldFile: !uuid '01aae7dd9b0fdeac42ebb0694b3f462a3fded844'
-  /Admin.NET/Admin.NET.Core/Entity:
-    newFile: !uuid '8d86426762b97f55d5a5d93eb6718beaa79ddf82'
-    oldFile: !uuid '69c164ea47839721ff0290e03d92c244a535e4cc'
-  /Admin.NET/Admin.NET.Core/Entity/SysMenu.cs:
-    newFile: !uuid '793d5cb64f29252cfe9cd9a9dbd1f21e69f7d61f'
-    oldFile: !uuid '3f6a51a90df64ed30f0a38ac50988aeb3dde67e6'
-  /Admin.NET/Admin.NET.Core/SqlSugar:
-    newFile: !uuid '61fc53040973e013de445f1b3e3a18e76af66f77'
-    oldFile: !uuid '0ffadf6c637c42d9ed692a9751ba6ba4ce809833'
-  /Admin.NET/Admin.NET.Core/SqlSugar/SqlSugarSetup.cs:
-    newFile: !uuid 'd6e1b324b67a506d84b257508e2991bd54a2dd66'
-    oldFile: !uuid '1941d9d2cfc6aea24d8922fe9dbf1fcb144f34eb'
-  /Web:
-    newFile: !uuid '3c94bd8fadf55c256c89b08daaf580c589810c2a'
-    oldFile: !uuid 'f16e46ca66b42e201f99784df7b889288171a660'
-  /Web/src:
-    newFile: !uuid '0e6df057e4a41e1471095d908853f108eb286a0d'
-    oldFile: !uuid '5598b12186a3febc86ecd02d2b27531f969fb31d'
-  /Web/src/views:
-    newFile: !uuid 'c0da534a7b47de917904fc5558ab136f2065c831'
-    oldFile: !uuid 'f99a50354593973e59fa4783411ef59c4d4db081'
-  /Web/src/views/system:
-    newFile: !uuid '2b6606c46df7fff3eeb7ea726240b4cbfeaf2309'
-    oldFile: !uuid 'afdfd548639d30c32cc092f981339b091c0616a8'
-  /Web/src/views/system/user:
-    newFile: !uuid '5f4492811a41adfc813e30441e3bfc4237e08b02'
-    oldFile: !uuid '7554b603b8310045e7a1869fc2d3f54e2b217d57'
-  /Web/src/views/system/user/component:
-    newFile: !uuid '425920cd65b1abd6b7e5fefef06910848f9f8823'
-    oldFile: !uuid '377db4bfab6703424934cceec27f103e6409c40a'
-  /Web/src/views/system/user/component/editUser.vue:
-    newFile: !uuid 'b16df86db6e1b45e1df84be6a9e99e08d25cbc15'
-    oldFile: !uuid '5fd0c4e227d37285e9cdb846252d5d063a56a3c9'
-gitCommitId: !uuid '4430bbc13da471aa9d529bb70d5647b06f717545'
+    newFile: !uuid '9816e5f96b3244a15510f19719402e9ab9b25634'
+    oldFile: !uuid '4e123b2877f1e82ed750e7a27d8def298ff65511'
+  /Admin.NET/Admin.NET.Core/EventBus:
+    newFile: !uuid '9092c49792b275f7e82a28a5555d2c58c568a84f'
+    oldFile: !uuid '196a677e0b23a17b52596f6e36885c1d226c6204'
+  /Admin.NET/Admin.NET.Core/EventBus/RedisEventSourceStorer.cs:
+    newFile: !uuid '7f84e6550e7c86ab5dd19ea087667b6a72a67042'
+    oldFile: !uuid '412ba797fd609155f1788414a721f7b92d9f5cfc'
+gitCommitId: !uuid 'dec7de61e3ab3f92c92dda4791430352a3dc4d4f'
 renames: {
   }
-revisionId: 2227
+revisionId: 2228
