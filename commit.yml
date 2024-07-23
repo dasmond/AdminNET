@@ -3,21 +3,21 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '332ad2c0083a72dd65cdfb39115df2a36196a577'
-    oldFile: !uuid '6a29e68265ddeb81a36691e2fcd0b888a1181075'
+    newFile: !uuid 'b4ee6a56fafe7fa1ef065fd5d44d52965fc30463'
+    oldFile: !uuid '332ad2c0083a72dd65cdfb39115df2a36196a577'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid 'a68a9ed1069d96528b69f49736def945c419ea2f'
-    oldFile: !uuid '3a17978e04458ea2109673790d2bb981ca2cab4c'
-  /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
-    newFile: !uuid '4bea33349e2b650646efb67bd67e9e949d8674f3'
-    oldFile: !uuid '5378fb62e5ea001baaa2775135a9bf39b6d12ae9'
-  /Admin.NET/Admin.NET.Core/EventBus:
-    newFile: !uuid '54887d587d071dc6c1653d89917e1a3b40d41176'
-    oldFile: !uuid 'fa14259adcf8a560967b13da717e6d3b8a5561f4'
-  /Admin.NET/Admin.NET.Core/EventBus/RedisEventSourceStorer.cs:
-    newFile: !uuid '46bb20ea8b2db7757ffd766faed342860b067589'
-    oldFile: !uuid '3956b830d1b00647146dd655eb30ccc2b9fbe6dd'
-gitCommitId: !uuid '6b5016181f5cc2ef9b220e5c2c8d16b674ee8eb4'
+    newFile: !uuid '8653380b8c20bfdeaa06cbd737d86c6ceda0dbc7'
+    oldFile: !uuid 'a68a9ed1069d96528b69f49736def945c419ea2f'
+  /Admin.NET/Admin.NET.Core/Service:
+    newFile: !uuid '55de4a0744aab1d41cd1198b89a1b71bc652b206'
+    oldFile: !uuid '4e7475a146bd2376ca8fff9c574dbc0dfb8f0875'
+  /Admin.NET/Admin.NET.Core/Service/Region:
+    newFile: !uuid '4807e5b03195adf7f70ba210c881e7ce8a0042cc'
+    oldFile: !uuid 'cb6b365d2cbd525be81c3ca655ffc870e6b46c41'
+  /Admin.NET/Admin.NET.Core/Service/Region/SysRegionService.cs:
+    newFile: !uuid '0bee995b581faac904ea474568b8a175bfaf13ce'
+    oldFile: !uuid 'f974a88e1961fe0b3fbee883a6cb326b22f72e35'
+gitCommitId: !uuid '7b802d5f90298d18c98a40175c28d4d56293882e'
 renames: {
   }
-revisionId: 2231
+revisionId: 2232
