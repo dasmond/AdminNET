@@ -2,22 +2,28 @@
 branches: {
   }
 fileChange:
-  /Admin.NET:
-    newFile: !uuid 'd4c1eb54fb08300ea37c651a125ce43ee6a5b017'
-    oldFile: !uuid 'a9d656d24e28c43b75d3a56e89032f16ff46a99d'
-  /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '49b6b1654985691761a658d02703143eb7522b4f'
-    oldFile: !uuid '0fabec6c50ddba345494c098184a4a34213e0bbb'
-  /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid 'ffa73936b7a6e25258ee0b5aea911cb312848cb1'
-    oldFile: !uuid '91b78afef0aef2781444db40de90a0390ec8d1dd'
-  /Admin.NET/Admin.NET.Core/Service/Dict:
-    newFile: !uuid '57a92f5dcfdde4d2e3c5294ab306a69961a54d0a'
-    oldFile: !uuid '014a953ebcf99a19d4ac32f112851d709dd0759b'
-  /Admin.NET/Admin.NET.Core/Service/Dict/SysDictTypeService.cs:
-    newFile: !uuid '829ad8c74478465deb5d5a0a5df947cc8cc601ef'
-    oldFile: !uuid 'b7902f3d7cc8a2da7c9b7e149bf9bd7bfcd72d37'
-gitCommitId: !uuid 'c0541408392dc16244c4eeb1a3eb6d19973486f0'
+  /Web:
+    newFile: !uuid '32b090e3c4fb65e524c0165af2e04c953fa8dc23'
+    oldFile: !uuid '64ca3b1b09241d17cc7c5bd3f3e2fd62e9f420bc'
+  /Web/src:
+    newFile: !uuid '774fc9365ad3458277c6fa44774997f2f5d207d8'
+    oldFile: !uuid '5a310078261ebd4ba8b9fb977607974e9779f2d8'
+  /Web/src/views:
+    newFile: !uuid '75e055357ecf2fc73f16b74c289288c7e2fe7d3b'
+    oldFile: !uuid '6fa1ace7e0a66f0e6997d815c5e67c5b2b3b3bc4'
+  /Web/src/views/home:
+    newFile: !uuid 'c35b44ea4a04c6f2a6041630d6eaa9c93dd835d2'
+    oldFile: !uuid '88e41ee0f532f6c76d1e818110377c16a7450d09'
+  /Web/src/views/home/widgets:
+    newFile: !uuid '85cccf665514d5a97187fcabafd739096571da6a'
+    oldFile: !uuid '5a09bb0851ccec799511cacf97183da9f9a5baf3'
+  /Web/src/views/home/widgets/components:
+    newFile: !uuid '4106decd32e2229242b142618b6417632527e76f'
+    oldFile: !uuid '091e594310f88962456b923144f563b4ea4068e1'
+  /Web/src/views/home/widgets/components/commit.vue:
+    newFile: !uuid '1a4900ee8f27d6e64fcae092f5b85f36fffc39c0'
+    oldFile: !uuid 'a9e8b9e91d26a1961223fe2634ffb3f94f4e7325'
+gitCommitId: !uuid '6f9ebc9eb0c291f4d978a4ff78491299136a7c40'
 renames: {
   }
-revisionId: 2201
+revisionId: 2202
