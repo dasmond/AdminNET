@@ -2,43 +2,28 @@
 branches: {
   }
 fileChange:
-  /Admin.NET:
-    newFile: !uuid '90762ec1ccea6bebe6cc3c0bf0bdb1105fdb94cd'
-    oldFile: !uuid '9b4b4bc694a88b0854a7e53434f5acba9b259cdc'
-  /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '5bfa18d0752239d5a25b9d0fd16c1b37535523d8'
-    oldFile: !uuid '878a5482d3fa658bfc7ab6ad20c0e0866ab12192'
-  /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid '177246efc99a6605929369dfbd0a31fda54bd913'
-    oldFile: !uuid '254d7d4346cad5d6f1cd4230ed0d8f730bf717a0'
-  /Admin.NET/Admin.NET.Core/Service/CodeGen:
-    newFile: !uuid '2e9ef4c298179a6136290f8aea0ff2aef099c237'
-    oldFile: !uuid '66253410295d8e6eb84d0d626d3401c024dcb3e0'
-  /Admin.NET/Admin.NET.Core/Service/CodeGen/Dto:
-    newFile: !uuid 'a9d581c5d57c92b3d54a231658d627f0888e5d17'
-    oldFile: !uuid 'de48ee6f1171d14b763739d89972c03a99646fdb'
-  /Admin.NET/Admin.NET.Core/Service/CodeGen/Dto/CodeGenInput.cs:
-    newFile: !uuid 'bcc3a53d238f022824b05fb2e8256f3748c83a3c'
-    oldFile: !uuid '1d1756e0e8b50859d0a5a73cd91daf940fc9912d'
   /Web:
-    newFile: !uuid '79b170765a3ff3821d7678f727d6e79ce7379b84'
-    oldFile: !uuid '51d59a5a34188221da6103d7d549c3aa21e2f691'
+    newFile: !uuid '64ca3b1b09241d17cc7c5bd3f3e2fd62e9f420bc'
+    oldFile: !uuid '79b170765a3ff3821d7678f727d6e79ce7379b84'
   /Web/src:
-    newFile: !uuid '19467afa3738cc820c99a529227992378bc6adab'
-    oldFile: !uuid '39e4cf60dd193bb9a858531a6b21df358cc48d43'
-  /Web/src/api-services:
-    newFile: !uuid '3990477263062e73c7b69e4949382612833f660c'
-    oldFile: !uuid 'e0882c07c79bec92f45ed3c0f96d447ac2bfca21'
-  /Web/src/api-services/models:
-    newFile: !uuid '6a2617aa89f6a8e3b688593275f29e2ad04c1027'
-    oldFile: !uuid '8e1bd34a1eb03e5683d35c7e975d5e1b42d005f1'
-  /Web/src/api-services/models/add-code-gen-input.ts:
-    newFile: !uuid '065d87515680876f5cbe29296a61ba42e11d61fa'
-    oldFile: !uuid '2238069a4fd4e4936a86bdfc348d2e0b0a564711'
-  /Web/src/api-services/models/update-code-gen-input.ts:
-    newFile: !uuid '58b6e9e9151b1bc17a30509ff6fb9edd94747e2b'
-    oldFile: !uuid 'b1476675796a34d3b3768a0f47384af2ea7c815d'
-gitCommitId: !uuid '84cfc36f21e17d76e1a1768eb60563ef2953f33b'
+    newFile: !uuid '5a310078261ebd4ba8b9fb977607974e9779f2d8'
+    oldFile: !uuid '19467afa3738cc820c99a529227992378bc6adab'
+  /Web/src/views:
+    newFile: !uuid '6fa1ace7e0a66f0e6997d815c5e67c5b2b3b3bc4'
+    oldFile: !uuid '5b6a9db7973efb3233b881579ce2b5446bb78fcc'
+  /Web/src/views/home:
+    newFile: !uuid '88e41ee0f532f6c76d1e818110377c16a7450d09'
+    oldFile: !uuid 'ebf33a03813b5a0648a8cecbca6e5a376736d867'
+  /Web/src/views/home/widgets:
+    newFile: !uuid '5a09bb0851ccec799511cacf97183da9f9a5baf3'
+    oldFile: !uuid '1fdbda7e3dd2054dbb4c45629379f6372a5322a3'
+  /Web/src/views/home/widgets/components:
+    newFile: !uuid '091e594310f88962456b923144f563b4ea4068e1'
+    oldFile: !uuid '0a68c4a8374594526aff99749a8f363007b45339'
+  /Web/src/views/home/widgets/components/schedule.vue:
+    newFile: !uuid 'f52b47fa36921b54e1dd68ef3becf808a71c57a7'
+    oldFile: !uuid '5b0bd3c97575dfab91a8eb8277d253404560c118'
+gitCommitId: !uuid '55b7c95a3db71a16b9bc37d4b23800b12fa93911'
 renames: {
   }
-revisionId: 2194
+revisionId: 2195
