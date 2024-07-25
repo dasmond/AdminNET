@@ -2,28 +2,25 @@
 branches: {
   }
 fileChange:
-  /Web:
-    newFile: !uuid '64ca3b1b09241d17cc7c5bd3f3e2fd62e9f420bc'
-    oldFile: !uuid '79b170765a3ff3821d7678f727d6e79ce7379b84'
-  /Web/src:
-    newFile: !uuid '5a310078261ebd4ba8b9fb977607974e9779f2d8'
-    oldFile: !uuid '19467afa3738cc820c99a529227992378bc6adab'
-  /Web/src/views:
-    newFile: !uuid '6fa1ace7e0a66f0e6997d815c5e67c5b2b3b3bc4'
-    oldFile: !uuid '5b6a9db7973efb3233b881579ce2b5446bb78fcc'
-  /Web/src/views/home:
-    newFile: !uuid '88e41ee0f532f6c76d1e818110377c16a7450d09'
-    oldFile: !uuid 'ebf33a03813b5a0648a8cecbca6e5a376736d867'
-  /Web/src/views/home/widgets:
-    newFile: !uuid '5a09bb0851ccec799511cacf97183da9f9a5baf3'
-    oldFile: !uuid '1fdbda7e3dd2054dbb4c45629379f6372a5322a3'
-  /Web/src/views/home/widgets/components:
-    newFile: !uuid '091e594310f88962456b923144f563b4ea4068e1'
-    oldFile: !uuid '0a68c4a8374594526aff99749a8f363007b45339'
-  /Web/src/views/home/widgets/components/schedule.vue:
-    newFile: !uuid 'f52b47fa36921b54e1dd68ef3becf808a71c57a7'
-    oldFile: !uuid '5b0bd3c97575dfab91a8eb8277d253404560c118'
-gitCommitId: !uuid '55b7c95a3db71a16b9bc37d4b23800b12fa93911'
+  /Admin.NET:
+    newFile: !uuid 'db8db4cc897cc5074276d318c3a79a05c7df2203'
+    oldFile: !uuid '90762ec1ccea6bebe6cc3c0bf0bdb1105fdb94cd'
+  /Admin.NET/Admin.NET.Core:
+    newFile: !uuid '2a7ce7963ddd05ebcf5083cf3c607f0d0b549b1d'
+    oldFile: !uuid '5bfa18d0752239d5a25b9d0fd16c1b37535523d8'
+  /Admin.NET/Admin.NET.Core/Service:
+    newFile: !uuid '493dd272ada100a93773eec8d1b5639a2ac42481'
+    oldFile: !uuid '177246efc99a6605929369dfbd0a31fda54bd913'
+  /Admin.NET/Admin.NET.Core/Service/CodeGen:
+    newFile: !uuid '0f4cd35d1ab9d1da3653acb7c51ef106d73a1112'
+    oldFile: !uuid '2e9ef4c298179a6136290f8aea0ff2aef099c237'
+  /Admin.NET/Admin.NET.Core/Service/CodeGen/Dto:
+    newFile: !uuid '185aabe950f5aa2e98111a70ad46d2db07241b17'
+    oldFile: !uuid 'a9d581c5d57c92b3d54a231658d627f0888e5d17'
+  /Admin.NET/Admin.NET.Core/Service/CodeGen/Dto/CodeGenInput.cs:
+    newFile: !uuid '3d8a81e57f39d7ba55059cda9f0d08f558e8988d'
+    oldFile: !uuid 'bcc3a53d238f022824b05fb2e8256f3748c83a3c'
+gitCommitId: !uuid 'fa5db5375ec7d657bb8c9ba22f9cd867ca953b59'
 renames: {
   }
-revisionId: 2195
+revisionId: 2196
