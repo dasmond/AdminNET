@@ -3,27 +3,42 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '9b4b4bc694a88b0854a7e53434f5acba9b259cdc'
-    oldFile: !uuid 'e0a741be61b719408ac67feb9e24a3c10ec6b30e'
-  /Admin.NET/Admin.NET.Web.Entry:
-    newFile: !uuid '5d0b2d822c049902055a7c1cd60c192fdf9bd596'
-    oldFile: !uuid '687d03b3e05e8631030a88e35c42b61ad0c9e01d'
-  /Admin.NET/Admin.NET.Web.Entry/wwwroot:
-    newFile: !uuid '1eb19f4222e68585a530945125bf5f3dbaea583a'
-    oldFile: !uuid '0b6e14e7044a920c5330c0a59b687cb5c56a669a'
-  /Admin.NET/Admin.NET.Web.Entry/wwwroot/Template:
-    newFile: !uuid '374ae8fe65a790931a1ad98192a4f18f08e970a9'
-    oldFile: !uuid 'a70b37fa4a6b4885e71103e6c8c3eee8051d06d4'
-  /Admin.NET/Admin.NET.Web.Entry/wwwroot/Template/Service.cs.vm:
-    newFile: !uuid 'de3affe8c659b644f0c8aed3c111fe40fa191c8a'
-    oldFile: !uuid '4b4e83567160e9c08db5eb1c18c2f3b9b1f98da1'
-  /Admin.NET/Admin.NET.Web.Entry/wwwroot/Template/editDialog.vue.vm:
-    newFile: !uuid '891dfadab922955e74eb72241d28bf303a4ff7f5'
-    oldFile: !uuid '74d6424f75f6580f7e3fba921384fa3cba897375'
-  /README.md:
-    newFile: !uuid '344b96d867042a556b879322fdc6e2404ec47c99'
-    oldFile: !uuid 'ec801d9c79d88f258341b741ea56b7b710ea57ef'
-gitCommitId: !uuid '229f138c8cd006da235398c5b5fbec16ca416ac1'
+    newFile: !uuid '90762ec1ccea6bebe6cc3c0bf0bdb1105fdb94cd'
+    oldFile: !uuid '9b4b4bc694a88b0854a7e53434f5acba9b259cdc'
+  /Admin.NET/Admin.NET.Core:
+    newFile: !uuid '5bfa18d0752239d5a25b9d0fd16c1b37535523d8'
+    oldFile: !uuid '878a5482d3fa658bfc7ab6ad20c0e0866ab12192'
+  /Admin.NET/Admin.NET.Core/Service:
+    newFile: !uuid '177246efc99a6605929369dfbd0a31fda54bd913'
+    oldFile: !uuid '254d7d4346cad5d6f1cd4230ed0d8f730bf717a0'
+  /Admin.NET/Admin.NET.Core/Service/CodeGen:
+    newFile: !uuid '2e9ef4c298179a6136290f8aea0ff2aef099c237'
+    oldFile: !uuid '66253410295d8e6eb84d0d626d3401c024dcb3e0'
+  /Admin.NET/Admin.NET.Core/Service/CodeGen/Dto:
+    newFile: !uuid 'a9d581c5d57c92b3d54a231658d627f0888e5d17'
+    oldFile: !uuid 'de48ee6f1171d14b763739d89972c03a99646fdb'
+  /Admin.NET/Admin.NET.Core/Service/CodeGen/Dto/CodeGenInput.cs:
+    newFile: !uuid 'bcc3a53d238f022824b05fb2e8256f3748c83a3c'
+    oldFile: !uuid '1d1756e0e8b50859d0a5a73cd91daf940fc9912d'
+  /Web:
+    newFile: !uuid '79b170765a3ff3821d7678f727d6e79ce7379b84'
+    oldFile: !uuid '51d59a5a34188221da6103d7d549c3aa21e2f691'
+  /Web/src:
+    newFile: !uuid '19467afa3738cc820c99a529227992378bc6adab'
+    oldFile: !uuid '39e4cf60dd193bb9a858531a6b21df358cc48d43'
+  /Web/src/api-services:
+    newFile: !uuid '3990477263062e73c7b69e4949382612833f660c'
+    oldFile: !uuid 'e0882c07c79bec92f45ed3c0f96d447ac2bfca21'
+  /Web/src/api-services/models:
+    newFile: !uuid '6a2617aa89f6a8e3b688593275f29e2ad04c1027'
+    oldFile: !uuid '8e1bd34a1eb03e5683d35c7e975d5e1b42d005f1'
+  /Web/src/api-services/models/add-code-gen-input.ts:
+    newFile: !uuid '065d87515680876f5cbe29296a61ba42e11d61fa'
+    oldFile: !uuid '2238069a4fd4e4936a86bdfc348d2e0b0a564711'
+  /Web/src/api-services/models/update-code-gen-input.ts:
+    newFile: !uuid '58b6e9e9151b1bc17a30509ff6fb9edd94747e2b'
+    oldFile: !uuid 'b1476675796a34d3b3768a0f47384af2ea7c815d'
+gitCommitId: !uuid '84cfc36f21e17d76e1a1768eb60563ef2953f33b'
 renames: {
   }
-revisionId: 2193
+revisionId: 2194
