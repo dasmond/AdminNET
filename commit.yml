@@ -3,27 +3,27 @@ branches: {
   }
 fileChange:
   /Web:
-    newFile: !uuid 'b57a2f49671eaf410f52197f56d9a4a4b7f335b8'
-    oldFile: !uuid '8263c8fdcedbb9c3cc1b01f35144ea08243d58c1'
-  /Web/package.json:
-    newFile: !uuid 'e219ff6e76e001ea525ff02506729116ae4af39c'
-    oldFile: !uuid '144110bff1a0ee017aa9fcfdedf28b26f625661b'
+    newFile: !uuid '62449691708fa0b600f96b19e765f8e261998363'
+    oldFile: !uuid 'b57a2f49671eaf410f52197f56d9a4a4b7f335b8'
   /Web/src:
-    newFile: !uuid '964acff4197f34f1f8d31897a5c1b10a072f2c44'
-    oldFile: !uuid '3514b21d0f66651c6d73a49253066a4ab06634fd'
+    newFile: !uuid 'ed9dcf5c1d9f6f0f15dff397f43c7b5d377dbcd2'
+    oldFile: !uuid '964acff4197f34f1f8d31897a5c1b10a072f2c44'
   /Web/src/views:
-    newFile: !uuid '71a3949580f8e9ef6d84b4a17263c9d13aa1a1ed'
-    oldFile: !uuid '4ab4008e9287c930610b3e3d8eecc729469dfdf6'
-  /Web/src/views/login:
-    newFile: !uuid 'ff0d3cc7eecc2c16b8943d137cde0444a2da75d6'
-    oldFile: !uuid 'eae74d12face34cb7fbc39a72f2f559af3c4881c'
-  /Web/src/views/login/component:
-    newFile: !uuid '14d695a728c02a006abb5f3994d8c13545dd64f8'
-    oldFile: !uuid '43f254a29152c349c4aa6e28b8f667012887e75d'
-  /Web/src/views/login/component/account.vue:
-    newFile: !uuid 'bfc42aa8467dc93ff76ec585a5f42667fbadbc66'
-    oldFile: !uuid '9b07dd80d3a6bd648e150231c6c48d9627dce8de'
-gitCommitId: !uuid 'e15cbb9ea8cc19182cfca1851a874b2a97c3469b'
+    newFile: !uuid '33c190476c01fa6327a1ccb8baeb0714b6df399d'
+    oldFile: !uuid '71a3949580f8e9ef6d84b4a17263c9d13aa1a1ed'
+  /Web/src/views/home:
+    newFile: !uuid 'b1a1fd6820f317d8ddce8604efc02f13dc52c86d'
+    oldFile: !uuid '96f6482fdb2d0c44581c2043988ede2355a8ad19'
+  /Web/src/views/home/widgets:
+    newFile: !uuid '6507b0808ab53ce4d58d5fc44dacec04bf0b89a6'
+    oldFile: !uuid 'b061c2edb1b4ebf5d4c498ba0e7d92927414c47f'
+  /Web/src/views/home/widgets/components:
+    newFile: !uuid '417f2dd55314ce9e66649271d26ebea6ab212099'
+    oldFile: !uuid 'e69872297abc9a9229410f129113cc74738e8669'
+  /Web/src/views/home/widgets/components/schedule.vue:
+    newFile: !uuid '108ce8dd214676a79355fa4c060bfc13faf5b7cc'
+    oldFile: !uuid 'f52b47fa36921b54e1dd68ef3becf808a71c57a7'
+gitCommitId: !uuid '1acaaa338f44f36a2b51dc822c6663eb6a62b5d6'
 renames: {
   }
-revisionId: 2205
+revisionId: 2206
