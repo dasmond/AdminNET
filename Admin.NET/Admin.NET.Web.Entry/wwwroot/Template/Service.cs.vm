@@ -44,6 +44,7 @@ public class @(@Model.ClassName)Service : IDynamicApiController, ITransient
 		@:input.SearchKey = input.SearchKey?.Trim();
 }
         var query = _@(@Model.LowerClassName)Rep.AsQueryable()
+        .Where(u => !u.IsDelete)  //只显示没有被假删除的数据
 @{string conditionFlag = "";}
 @if (haveLikeCdt) {
             @:.WhereIF(!string.IsNullOrEmpty(input.SearchKey), u =>
