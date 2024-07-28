@@ -78,6 +78,11 @@ public class CodeGenConfig
     public string FkColumnName { get; set; }
 
     /// <summary>
+    /// 外键链接字段
+    /// </summary>
+    public string FkLinkColumnName { get; set; }
+
+    /// <summary>
     /// 外键显示字段(首字母小写)
     /// </summary>
     public string LowerFkColumnName =>

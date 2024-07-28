@@ -12,19 +12,20 @@
  * Do not edit the class manually.
  */
 
+import { FinishStatusEnum } from './finish-status-enum';
  /**
  * 
  *
  * @export
- * @interface UpdateUserScheduleInput
+ * @interface AddScheduleInput
  */
-export interface UpdateUserScheduleInput {
+export interface AddScheduleInput {
 
     /**
      * 雪花Id
      *
      * @type {number}
-     * @memberof UpdateUserScheduleInput
+     * @memberof AddScheduleInput
      */
     id?: number;
 
@@ -32,7 +33,7 @@ export interface UpdateUserScheduleInput {
      * 创建时间
      *
      * @type {Date}
-     * @memberof UpdateUserScheduleInput
+     * @memberof AddScheduleInput
      */
     createTime?: Date;
 
@@ -40,7 +41,7 @@ export interface UpdateUserScheduleInput {
      * 更新时间
      *
      * @type {Date}
-     * @memberof UpdateUserScheduleInput
+     * @memberof AddScheduleInput
      */
     updateTime?: Date | null;
 
@@ -48,15 +49,15 @@ export interface UpdateUserScheduleInput {
      * 创建者Id
      *
      * @type {number}
-     * @memberof UpdateUserScheduleInput
+     * @memberof AddScheduleInput
      */
-    createUserId?: number;
+    createUserId?: number | null;
 
     /**
      * 创建者姓名
      *
      * @type {string}
-     * @memberof UpdateUserScheduleInput
+     * @memberof AddScheduleInput
      */
     createUserName?: string | null;
 
@@ -64,7 +65,7 @@ export interface UpdateUserScheduleInput {
      * 修改者Id
      *
      * @type {number}
-     * @memberof UpdateUserScheduleInput
+     * @memberof AddScheduleInput
      */
     updateUserId?: number | null;
 
@@ -72,7 +73,7 @@ export interface UpdateUserScheduleInput {
      * 修改者姓名
      *
      * @type {string}
-     * @memberof UpdateUserScheduleInput
+     * @memberof AddScheduleInput
      */
     updateUserName?: string | null;
 
@@ -80,7 +81,7 @@ export interface UpdateUserScheduleInput {
      * 软删除
      *
      * @type {boolean}
-     * @memberof UpdateUserScheduleInput
+     * @memberof AddScheduleInput
      */
     isDelete?: boolean;
 
@@ -88,7 +89,7 @@ export interface UpdateUserScheduleInput {
      * 租户Id
      *
      * @type {number}
-     * @memberof UpdateUserScheduleInput
+     * @memberof AddScheduleInput
      */
     tenantId?: number | null;
 
@@ -96,23 +97,45 @@ export interface UpdateUserScheduleInput {
      * 用户Id
      *
      * @type {number}
-     * @memberof UpdateUserScheduleInput
+     * @memberof AddScheduleInput
      */
     userId?: number;
 
     /**
-     * 日程时间
+     * 日程日期
      *
      * @type {Date}
-     * @memberof UpdateUserScheduleInput
+     * @memberof AddScheduleInput
      */
     scheduleTime?: Date | null;
+
+    /**
+     * 开始时间
+     *
+     * @type {string}
+     * @memberof AddScheduleInput
+     */
+    startTime?: string | null;
+
+    /**
+     * 结束时间
+     *
+     * @type {string}
+     * @memberof AddScheduleInput
+     */
+    endTime?: string | null;
+
+    /**
+     * @type {FinishStatusEnum}
+     * @memberof AddScheduleInput
+     */
+    status?: FinishStatusEnum;
 
     /**
      * 日程内容
      *
      * @type {string}
-     * @memberof UpdateUserScheduleInput
+     * @memberof AddScheduleInput
      */
     content: string;
 }

@@ -97,7 +97,11 @@ public class SysRegionService : IDynamicApiController, ITransient
         if (input.Code.Length != 12 && input.Code.Length != 9 && input.Code.Length != 6)
             throw Oops.Oh(ErrorCodeEnum.R2003);
 
-        if (input.Pid != input.Pid && input.Pid != 0)
+        var sysRegion = await _sysRegionRep.GetFirstAsync(u => u.Id == input.Id);
+        if (sysRegion == null)
+            throw Oops.Oh(ErrorCodeEnum.D1002);
+
+        if (sysRegion.Pid != input.Pid && input.Pid != 0)
         {
             var pRegion = await _sysRegionRep.GetFirstAsync(u => u.Id == input.Pid);
             pRegion ??= await _sysRegionRep.GetFirstAsync(u => u.Code == input.Pid.ToString());
@@ -114,7 +118,6 @@ public class SysRegionService : IDynamicApiController, ITransient
         if (input.Id == input.Pid)
             throw Oops.Oh(ErrorCodeEnum.R2001);
 
-        var sysRegion = await _sysRegionRep.GetFirstAsync(u => u.Id == input.Id);
         var isExist = await _sysRegionRep.IsAnyAsync(u => (u.Name == input.Name && u.Code == input.Code) && u.Id != sysRegion.Id);
         if (isExist)
             throw Oops.Oh(ErrorCodeEnum.R2002);
@@ -149,7 +152,7 @@ public class SysRegionService : IDynamicApiController, ITransient
     [DisplayName("同步行政区域")]
     public async Task Sync()
     {
-        var syncLevel = await _sysConfigService.GetConfigValue<int>(CommonConst.SysRegionSyncLevel);
+        var syncLevel = await _sysConfigService.GetConfigValue<int>(ConfigConst.SysRegionSyncLevel);
         if (syncLevel < 1 || syncLevel > 5)
             syncLevel = 3;//默认区县级
         var context = BrowsingContext.New(AngleSharp.Configuration.Default.WithDefaultLoader());
@@ -177,7 +180,7 @@ public class SysRegionService : IDynamicApiController, ITransient
             list.Add(region);
 
             // 市级
-            if (!string.IsNullOrEmpty(item.Href) && syncLevel > 1)
+            if (!string.IsNullOrEmpty(item.Href))
             {
                 var dom1 = await context.OpenAsync(item.Href);
                 var itemList1 = dom1.QuerySelectorAll("table.citytable tr.citytr td a");
@@ -193,6 +196,13 @@ public class SysRegionService : IDynamicApiController, ITransient
                         Remark = item1.Href,
                         Level = 2,
                     };
+                    // 若URL中查询的一级行政区域缺少Code则通过二级区域填充
+                    if (list.Count == 1 && !string.IsNullOrEmpty(region1.Code))
+                        region.Code = region1.Code.Substring(0, 2).PadRight(region1.Code.Length, '0');
+                    // 同步层级为“1-省级”退出
+                    if (syncLevel < 2)
+                        break;
+
                     list.Add(region1);
 
                     // 区县级

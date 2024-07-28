@@ -17,7 +17,6 @@ public class OnlineUserHub : Hub<IOnlineUserHub>
 {
     private const string GROUP_ONLINE = "GROUP_ONLINE_"; // 租户分组前缀
 
-    private readonly UserManager _userManager;
     private readonly SqlSugarRepository<SysOnlineUser> _sysOnlineUerRep;
     private readonly SysMessageService _sysMessageService;
     private readonly IHubContext<OnlineUserHub, IOnlineUserHub> _onlineUserHubContext;
@@ -28,15 +27,13 @@ public class OnlineUserHub : Hub<IOnlineUserHub>
         SysMessageService sysMessageService,
         IHubContext<OnlineUserHub, IOnlineUserHub> onlineUserHubContext,
         SysCacheService sysCacheService,
-        SysConfigService sysConfigService,
-        UserManager userManager)
+        SysConfigService sysConfigService)
     {
         _sysOnlineUerRep = sysOnlineUerRep;
         _sysMessageService = sysMessageService;
         _onlineUserHubContext = onlineUserHubContext;
         _sysCacheService = sysCacheService;
         _sysConfigService = sysConfigService;
-        _userManager = userManager;
     }
 
     /// <summary>
@@ -46,22 +43,27 @@ public class OnlineUserHub : Hub<IOnlineUserHub>
     public override async Task OnConnectedAsync()
     {
         var httpContext = Context.GetHttpContext();
+        var userId = (httpContext.User.FindFirst(ClaimConst.UserId)?.Value).ToLong();
+        var account = httpContext.User.FindFirst(ClaimConst.Account)?.Value;
+        var realName = httpContext.User.FindFirst(ClaimConst.RealName)?.Value;
+        var tenantId = (httpContext.User.FindFirst(ClaimConst.TenantId)?.Value).ToLong();
+
         var user = new SysOnlineUser
         {
             ConnectionId = Context.ConnectionId,
-            UserId = _userManager.UserId,
-            UserName = _userManager.Account,
-            RealName = _userManager.RealName,
+            UserId = userId,
+            UserName = account,
+            RealName = realName,
             Time = DateTime.Now,
             Ip = httpContext.GetRemoteIpAddressToIPv4(true),
             Browser = httpContext.GetClientBrowser(),
             Os = httpContext.GetClientOs(),
-            TenantId = _userManager.TenantId,
+            TenantId = tenantId,
         };
         await _sysOnlineUerRep.InsertAsync(user);
 
         // 是否开启单用户登录
-        if (await _sysConfigService.GetConfigValue<bool>(CommonConst.SysSingleLogin))
+        if (await _sysConfigService.GetConfigValue<bool>(ConfigConst.SysSingleLogin))
         {
             _sysCacheService.Set(CacheConst.KeyUserOnline + user.UserId, user);
         }
@@ -102,7 +104,7 @@ public class OnlineUserHub : Hub<IOnlineUserHub>
         await _sysOnlineUerRep.DeleteAsync(u => u.Id == user.Id);
 
         // 是否开启单用户登录
-        if (await _sysConfigService.GetConfigValue<bool>(CommonConst.SysSingleLogin))
+        if (await _sysConfigService.GetConfigValue<bool>(ConfigConst.SysSingleLogin))
         {
             _sysCacheService.Remove(CacheConst.KeyUserOnline + user.UserId);
         }

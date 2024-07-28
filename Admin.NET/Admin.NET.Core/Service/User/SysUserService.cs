@@ -72,7 +72,7 @@ public class SysUserService : IDynamicApiController, ITransient
             .WhereIF(!string.IsNullOrWhiteSpace(input.Account), u => u.Account.Contains(input.Account))
             .WhereIF(!string.IsNullOrWhiteSpace(input.RealName), u => u.RealName.Contains(input.RealName))
             .WhereIF(!string.IsNullOrWhiteSpace(input.Phone), u => u.Phone.Contains(input.Phone))
-            .OrderBy(u => u.OrderNo)
+            .OrderBy(u => new { u.OrderNo, u.Id })
             .Select((u, a, b) => new UserOutput
             {
                 OrgName = a.Name,
@@ -96,7 +96,7 @@ public class SysUserService : IDynamicApiController, ITransient
         var isExist = await _sysUserRep.AsQueryable().ClearFilter().AnyAsync(u => u.Account == input.Account);
         if (isExist) throw Oops.Oh(ErrorCodeEnum.D1003);
 
-        var password = await _sysConfigService.GetConfigValue<string>(CommonConst.SysPassword);
+        var password = await _sysConfigService.GetConfigValue<string>(ConfigConst.SysPassword);
 
         var user = input.Adapt<SysUser>();
         user.Password = CryptogramUtil.Encrypt(password);
@@ -169,10 +169,16 @@ public class SysUserService : IDynamicApiController, ITransient
             throw Oops.Oh(ErrorCodeEnum.D1014);
         if (user.Id == _userManager.UserId)
             throw Oops.Oh(ErrorCodeEnum.D1001);
+
         // 若账号为租户默认账号则禁止删除
         var isTenantUser = await _sysUserRep.ChangeRepository<SqlSugarRepository<SysTenant>>().IsAnyAsync(u => u.UserId == input.Id);
         if (isTenantUser)
             throw Oops.Oh(ErrorCodeEnum.D1029);
+
+        // 若账号为开放接口绑定账号则禁止删除
+        var isOpenAccessUser = await _sysUserRep.ChangeRepository<SqlSugarRepository<SysOpenAccess>>().IsAnyAsync(u => u.BindUserId == input.Id);
+        if (isOpenAccessUser)
+            throw Oops.Oh(ErrorCodeEnum.D1030);
 
         // 强制下线
         await _sysOnlineUserService.ForceOffline(user.Id);
@@ -314,7 +320,7 @@ public class SysUserService : IDynamicApiController, ITransient
     public virtual async Task<string> ResetPwd(ResetPwdUserInput input)
     {
         var user = await _sysUserRep.GetFirstAsync(u => u.Id == input.Id) ?? throw Oops.Oh(ErrorCodeEnum.D0009);
-        var password = await _sysConfigService.GetConfigValue<string>(CommonConst.SysPassword);
+        var password = await _sysConfigService.GetConfigValue<string>(ConfigConst.SysPassword);
         user.Password = CryptogramUtil.Encrypt(password);
         await _sysUserRep.AsUpdateable(user).UpdateColumns(u => u.Password).ExecuteCommandAsync();
 

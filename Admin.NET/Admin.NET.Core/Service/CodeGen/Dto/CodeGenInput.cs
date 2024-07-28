@@ -87,6 +87,11 @@ public class CodeGenInput : BasePageInput
     public virtual long? MenuPid { get; set; }
 
     /// <summary>
+    /// 菜单图标
+    /// </summary>
+    public virtual string MenuIcon { get; set; }
+
+    /// <summary>
     /// 页面目录
     /// </summary>
     public virtual string PagePath { get; set; }
@@ -168,7 +173,7 @@ public class DeleteCodeGenInput
     public long Id { get; set; }
 }
 
-public class UpdateCodeGenInput : CodeGenInput
+public class UpdateCodeGenInput : AddCodeGenInput
 {
     /// <summary>
     /// 代码生成器Id

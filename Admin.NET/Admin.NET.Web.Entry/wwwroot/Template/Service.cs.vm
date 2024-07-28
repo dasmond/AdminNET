@@ -5,7 +5,6 @@
 // 不得利用本项目从事危害国家安全、扰乱社会秩序、侵犯他人合法权益等法律法规禁止的活动！任何基于本项目二次开发而产生的一切法律纠纷和责任，我们不承担任何责任！
 
 using Admin.NET.Core.Service;
-using @(@Model.NameSpace).Entity;
 using Microsoft.AspNetCore.Http;
 @{
     string joinTableName = "u";
@@ -39,7 +38,7 @@ public class @(@Model.ClassName)Service : IDynamicApiController, ITransient
     [HttpPost]
     [ApiDescriptionSettings(Name = "Page")]
     [DisplayName("分页查询@(@Model.BusName)")]
-    public async Task<SqlSugarPagedList<@(@Model.ClassName)Output>> Page(@(@Model.ClassName)Input input)
+    public async Task<SqlSugarPagedList<@(@Model.ClassName)Output>> Page(Page@(@Model.ClassName)Input input)
     {
 @if (haveLikeCdt) {
 		@:input.SearchKey = input.SearchKey?.Trim();
@@ -78,13 +77,12 @@ if (@column.QueryWhether == "Y"){
     @foreach (var column in Model.TableField){
         if(@column.EffectType == "fk"){
             joinTableName += ", " + column.PropertyName.ToLower();
-            @:.LeftJoin<@(@column.FkEntityName)>((@(@joinTableName)) => u.@(@column.PropertyName) == @(@column.PropertyName.ToLower()).Id )
+            @:.LeftJoin<@(@column.FkEntityName)>((@(@joinTableName)) => u.@(@column.PropertyName) == @(@column.PropertyName.ToLower()).@(@column.FkLinkColumnName) )
         } else if(@column.EffectType == "ApiTreeSelect"){
             joinTableName += ", " + column.PropertyName.ToLower();
             @:.LeftJoin<@(@column.FkEntityName)>((@(@joinTableName)) => u.@(@column.PropertyName) == @(@column.PropertyName.ToLower()).@(@column.ValueColumn) )
         }
     }
-            @:.OrderBy(u => u.CreateTime)
             @:.Select((@(@joinTableName)) => new @(@Model.ClassName)Output
             @:{
 @foreach (var column in Model.TableField){
@@ -187,7 +185,7 @@ if (@column.ColumnKey == "True"){
     [HttpGet]
     [ApiDescriptionSettings(Name = "List")]
     [DisplayName("获取@(@Model.BusName)列表")]
-    public async Task<List<@(@Model.ClassName)Output>> List([FromQuery] @(@Model.ClassName)Input input)
+    public async Task<List<@(@Model.ClassName)Output>> List([FromQuery] Page@(@Model.ClassName)Input input)
     {
         return await _@(@Model.LowerClassName)Rep.AsQueryable().Select<@(@Model.ClassName)Output>().ToListAsync();
     }
@@ -206,7 +204,7 @@ if(@column.EffectType == "fk" && (@column.WhetherAddUpdate == "Y" || column.Quer
                 @:.Select(u => new
                 @:{
                     @:Label = u.@(@column.FkColumnName),
-                    @:Value = u.Id
+                    @:Value = u.@(@column.FkLinkColumnName)
                 @:}
                 @:).ToListAsync();
     @:}

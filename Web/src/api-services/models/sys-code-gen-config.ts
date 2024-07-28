@@ -50,7 +50,7 @@ export interface SysCodeGenConfig {
      * @type {number}
      * @memberof SysCodeGenConfig
      */
-    createUserId?: number;
+    createUserId?: number | null;
 
     /**
      * 创建者姓名
@@ -163,6 +163,14 @@ export interface SysCodeGenConfig {
      * @memberof SysCodeGenConfig
      */
     fkColumnName?: string | null;
+
+    /**
+     * 外键链接字段
+     *
+     * @type {string}
+     * @memberof SysCodeGenConfig
+     */
+    fkLinkColumnName?: string | null;
 
     /**
      * 外键显示字段.NET类型

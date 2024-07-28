@@ -31,8 +31,7 @@ public static class SqlSugarFilterExtension
     /// <param name="type"></param>
     /// <param name="owners"></param>
     /// <returns></returns>
-    public static LambdaExpression GetConditionExpression<T>(this Type type, List<long> owners)
-        where T : Attribute
+    public static LambdaExpression GetConditionExpression<T>(this Type type, List<long> owners) where T : Attribute
     {
         var fieldNames = type.GetPropertyNames<T>();
 
@@ -52,10 +51,8 @@ public static class SqlSugarFilterExtension
                     temp = Expression.Convert(temp, Nullable.GetUnderlyingType(propertyType));
                 }
 
-                Expression left = Expression.Equal(
-                    temp, Expression.Constant(owner)
-                );
-                right = Expression.Or(left, right);
+                Expression left = Expression.Equal(temp, Expression.Constant(owner));
+                right = Expression.OrElse(left, right);
             });
         });
         var finalExpression = Expression.Lambda(right, new ParameterExpression[] { parameter });

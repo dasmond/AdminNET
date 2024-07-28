@@ -12,19 +12,26 @@
  * Do not edit the class manually.
  */
 
+import { FinishStatusEnum } from './finish-status-enum';
  /**
  * 
  *
  * @export
- * @interface DeleteUserScheduleInput
+ * @interface ScheduleInput
  */
-export interface DeleteUserScheduleInput {
+export interface ScheduleInput {
 
     /**
      * 主键Id
      *
      * @type {number}
-     * @memberof DeleteUserScheduleInput
+     * @memberof ScheduleInput
      */
     id: number;
+
+    /**
+     * @type {FinishStatusEnum}
+     * @memberof ScheduleInput
+     */
+    status?: FinishStatusEnum;
 }

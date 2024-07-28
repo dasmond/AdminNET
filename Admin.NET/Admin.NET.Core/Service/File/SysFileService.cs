@@ -315,11 +315,11 @@ public class SysFileService : IDynamicApiController, ITransient
 
         // 验证文件类型
         if (!_uploadOptions.ContentType.Contains(file.ContentType))
-            throw Oops.Oh(ErrorCodeEnum.D8001);
+            throw Oops.Oh($"{ErrorCodeEnum.D8001}:{file.ContentType}");
 
         // 验证文件大小
         if (sizeKb > _uploadOptions.MaxSize)
-            throw Oops.Oh(ErrorCodeEnum.D8002);
+            throw Oops.Oh($"{ErrorCodeEnum.D8002}，允许最大：{_uploadOptions.MaxSize}KB");
 
         // 获取文件后缀
         var suffix = Path.GetExtension(file.FileName).ToLower(); // 后缀
@@ -339,8 +339,8 @@ public class SysFileService : IDynamicApiController, ITransient
         // 防止客户端伪造文件类型
         if (!string.IsNullOrWhiteSpace(allowSuffix) && !allowSuffix.Contains(suffix))
             throw Oops.Oh(ErrorCodeEnum.D8003);
-        if (!VerifyFileExtensionName.IsSameType(file.OpenReadStream(), suffix))
-            throw Oops.Oh(ErrorCodeEnum.D8001);
+        //if (!VerifyFileExtensionName.IsSameType(file.OpenReadStream(), suffix))
+        //    throw Oops.Oh(ErrorCodeEnum.D8001);
 
         var path = string.IsNullOrWhiteSpace(savePath) ? _uploadOptions.Path : savePath;
         path = path.ParseToDateTimeForRep();

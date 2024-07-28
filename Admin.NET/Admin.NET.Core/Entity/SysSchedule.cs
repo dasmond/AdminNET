@@ -4,30 +4,49 @@
 //
 // 不得利用本项目从事危害国家安全、扰乱社会秩序、侵犯他人合法权益等法律法规禁止的活动！任何基于本项目二次开发而产生的一切法律纠纷和责任，我们不承担任何责任！
 
-
 namespace Admin.NET.Core;
 
 /// <summary>
-/// 系统用户日程表
+/// 系统日程表
 /// </summary>
-[SugarTable(null, "系统用户日程表")]
+[SugarTable(null, "系统日程表")]
 [SysTable]
-public class SysUserSchedule : EntityTenant
+public class SysSchedule : EntityTenant
 {
     /// <summary>
     /// 用户Id
     /// </summary>
     [SugarColumn(ColumnDescription = "用户Id")]
     public long UserId { get; set; }
+
     /// <summary>
-    /// 日程时间
+    /// 日程日期
     /// </summary>
-    [SugarColumn(ColumnDescription = "日程时间")]
+    [SugarColumn(ColumnDescription = "日程日期")]
     public DateTime? ScheduleTime { get; set; }
+
+    /// <summary>
+    /// 开始时间
+    /// </summary>
+    [SugarColumn(ColumnDescription = "开始时间", Length = 10)]
+    public string? StartTime { get; set; }
+
+    /// <summary>
+    /// 结束时间
+    /// </summary>
+    [SugarColumn(ColumnDescription = "结束时间", Length = 10)]
+    public string? EndTime { get; set; }
+
     /// <summary>
     /// 日程内容
     /// </summary>
-    [SugarColumn(ColumnDescription = "日程内容", Length = 255)]
-    [Required, MaxLength(255)]
+    [SugarColumn(ColumnDescription = "日程内容", Length = 256)]
+    [Required, MaxLength(256)]
     public virtual string Content { get; set; }
+
+    /// <summary>
+    /// 完成状态
+    /// </summary>
+    [SugarColumn(ColumnDescription = "完成状态")]
+    public FinishStatusEnum Status { get; set; } = FinishStatusEnum.UnFinish;
 }

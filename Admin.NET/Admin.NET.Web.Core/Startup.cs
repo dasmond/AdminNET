@@ -79,6 +79,7 @@ public class Startup : AppStartup
         {
             setting.DateFormatHandling = DateFormatHandling.IsoDateFormat;
             setting.DateTimeZoneHandling = DateTimeZoneHandling.Local;
+            // setting.Converters.AddDateTimeTypeConverters(localized: true); // 时间本地化
             setting.DateFormatString = "yyyy-MM-dd HH:mm:ss"; // 时间格式化
             setting.ReferenceLoopHandling = ReferenceLoopHandling.Ignore; // 忽略循环引用
             // setting.ContractResolver = new CamelCasePropertyNamesContractResolver(); // 解决动态对象属性名大写
@@ -135,13 +136,17 @@ public class Startup : AppStartup
 
             #region Redis消息队列
 
-            //// 替换事件源存储器
-            //options.ReplaceStorer(serviceProvider =>
-            //{
-            //    var cacheProvider = serviceProvider.GetRequiredService<NewLife.Caching.ICacheProvider>();
-            //    // 创建默认内存通道事件源对象，可自定义队列路由key，如：adminnet
-            //    return new RedisEventSourceStorer(cacheProvider, "adminnet", 3000);
-            //});
+            // 替换事件源存储器为Redis
+            var cacheOptions = App.GetConfig<CacheOptions>("Cache", true);
+            if (cacheOptions.CacheType == CacheTypeEnum.Redis.ToString())
+            {
+                options.ReplaceStorer(serviceProvider =>
+                {
+                    var cacheProvider = serviceProvider.GetRequiredService<NewLife.Caching.ICacheProvider>();
+                    // 创建默认内存通道事件源对象，可自定义队列路由key，如：adminnet_eventsource_queue
+                    return new RedisEventSourceStorer(cacheProvider, "adminnet_eventsource_queue", 3000);
+                });
+            }
 
             #endregion Redis消息队列
 
@@ -177,7 +182,6 @@ public class Startup : AppStartup
         services.AddViewEngine();
 
         // 即时通讯
-        //services.AddSingleton<IUserIdProvider, UserIdProvider>();
         services.AddSignalR(options =>
         {
             options.KeepAliveInterval = TimeSpan.FromSeconds(5);

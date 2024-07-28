@@ -12,19 +12,20 @@
  * Do not edit the class manually.
  */
 
+import { FinishStatusEnum } from './finish-status-enum';
  /**
- * 
+ * 系统日程表
  *
  * @export
- * @interface AddUserScheduleInput
+ * @interface SysSchedule
  */
-export interface AddUserScheduleInput {
+export interface SysSchedule {
 
     /**
      * 雪花Id
      *
      * @type {number}
-     * @memberof AddUserScheduleInput
+     * @memberof SysSchedule
      */
     id?: number;
 
@@ -32,7 +33,7 @@ export interface AddUserScheduleInput {
      * 创建时间
      *
      * @type {Date}
-     * @memberof AddUserScheduleInput
+     * @memberof SysSchedule
      */
     createTime?: Date;
 
@@ -40,7 +41,7 @@ export interface AddUserScheduleInput {
      * 更新时间
      *
      * @type {Date}
-     * @memberof AddUserScheduleInput
+     * @memberof SysSchedule
      */
     updateTime?: Date | null;
 
@@ -48,15 +49,15 @@ export interface AddUserScheduleInput {
      * 创建者Id
      *
      * @type {number}
-     * @memberof AddUserScheduleInput
+     * @memberof SysSchedule
      */
-    createUserId?: number;
+    createUserId?: number | null;
 
     /**
      * 创建者姓名
      *
      * @type {string}
-     * @memberof AddUserScheduleInput
+     * @memberof SysSchedule
      */
     createUserName?: string | null;
 
@@ -64,7 +65,7 @@ export interface AddUserScheduleInput {
      * 修改者Id
      *
      * @type {number}
-     * @memberof AddUserScheduleInput
+     * @memberof SysSchedule
      */
     updateUserId?: number | null;
 
@@ -72,7 +73,7 @@ export interface AddUserScheduleInput {
      * 修改者姓名
      *
      * @type {string}
-     * @memberof AddUserScheduleInput
+     * @memberof SysSchedule
      */
     updateUserName?: string | null;
 
@@ -80,7 +81,7 @@ export interface AddUserScheduleInput {
      * 软删除
      *
      * @type {boolean}
-     * @memberof AddUserScheduleInput
+     * @memberof SysSchedule
      */
     isDelete?: boolean;
 
@@ -88,7 +89,7 @@ export interface AddUserScheduleInput {
      * 租户Id
      *
      * @type {number}
-     * @memberof AddUserScheduleInput
+     * @memberof SysSchedule
      */
     tenantId?: number | null;
 
@@ -96,23 +97,45 @@ export interface AddUserScheduleInput {
      * 用户Id
      *
      * @type {number}
-     * @memberof AddUserScheduleInput
+     * @memberof SysSchedule
      */
     userId?: number;
 
     /**
-     * 日程时间
+     * 日程日期
      *
      * @type {Date}
-     * @memberof AddUserScheduleInput
+     * @memberof SysSchedule
      */
     scheduleTime?: Date | null;
+
+    /**
+     * 开始时间
+     *
+     * @type {string}
+     * @memberof SysSchedule
+     */
+    startTime?: string | null;
+
+    /**
+     * 结束时间
+     *
+     * @type {string}
+     * @memberof SysSchedule
+     */
+    endTime?: string | null;
 
     /**
      * 日程内容
      *
      * @type {string}
-     * @memberof AddUserScheduleInput
+     * @memberof SysSchedule
      */
     content: string;
+
+    /**
+     * @type {FinishStatusEnum}
+     * @memberof SysSchedule
+     */
+    status?: FinishStatusEnum;
 }

@@ -66,7 +66,7 @@ public class SysTenantService : IDynamicApiController, ITransient
             .WhereIF(!string.IsNullOrWhiteSpace(input.Phone), (u, a) => a.Phone.Contains(input.Phone.Trim()))
             .WhereIF(!string.IsNullOrWhiteSpace(input.Name), (u, a, b) => b.Name.Contains(input.Name.Trim()))
             .Where(u => u.Id.ToString() != SqlSugarConst.MainConfigId) // 排除默认主库/主租户
-            .OrderBy(u => u.OrderNo)
+            .OrderBy(u => new { u.OrderNo, u.Id })
             .Select((u, a, b) => new TenantOutput
             {
                 Id = u.Id,
@@ -207,7 +207,7 @@ public class SysTenantService : IDynamicApiController, ITransient
         await _sysPosRep.InsertAsync(newPos);
 
         // 初始化系统账号
-        var password = await _sysConfigService.GetConfigValue<string>(CommonConst.SysPassword);
+        var password = await _sysConfigService.GetConfigValue<string>(ConfigConst.SysPassword);
         var newUser = new SysUser
         {
             TenantId = tenantId,
@@ -260,6 +260,11 @@ public class SysTenantService : IDynamicApiController, ITransient
         // 禁止删除默认租户
         if (input.Id.ToString() == SqlSugarConst.MainConfigId)
             throw Oops.Oh(ErrorCodeEnum.D1023);
+
+        // 若账号为开放接口绑定租户则禁止删除
+        var isOpenAccessTenant = await _sysTenantRep.ChangeRepository<SqlSugarRepository<SysOpenAccess>>().IsAnyAsync(u => u.BindTenantId == input.Id);
+        if (isOpenAccessTenant)
+            throw Oops.Oh(ErrorCodeEnum.D1031);
 
         await _sysTenantRep.DeleteAsync(u => u.Id == input.Id);
 
@@ -371,7 +376,7 @@ public class SysTenantService : IDynamicApiController, ITransient
     [DisplayName("重置租户管理员密码")]
     public async Task<string> ResetPwd(TenantUserInput input)
     {
-        var password = await _sysConfigService.GetConfigValue<string>(CommonConst.SysPassword);
+        var password = await _sysConfigService.GetConfigValue<string>(ConfigConst.SysPassword);
         var encryptPassword = CryptogramUtil.Encrypt(password);
         await _sysUserRep.UpdateAsync(u => new SysUser() { Password = encryptPassword }, u => u.Id == input.UserId);
         return password;
