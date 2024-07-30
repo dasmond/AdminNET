@@ -3,24 +3,33 @@ branches: {
   }
 fileChange:
   /Web:
-    newFile: !uuid '785197f324d2aa2020c16d39db990ca100575a97'
-    oldFile: !uuid '62449691708fa0b600f96b19e765f8e261998363'
+    newFile: !uuid '16796ec3af0b28a9c3f74129cf6d2dbe8623a02f'
+    oldFile: !uuid '785197f324d2aa2020c16d39db990ca100575a97'
+  /Web/package.json:
+    newFile: !uuid '797e5522b204376e8c22451b83f72ac80439c702'
+    oldFile: !uuid 'e219ff6e76e001ea525ff02506729116ae4af39c'
   /Web/src:
-    newFile: !uuid 'ebba2531dc834ea33c77e8128205584e4510250f'
-    oldFile: !uuid 'ed9dcf5c1d9f6f0f15dff397f43c7b5d377dbcd2'
+    newFile: !uuid '94361c85e36a4561d700e07774b34079ce9e0322'
+    oldFile: !uuid 'ebba2531dc834ea33c77e8128205584e4510250f'
   /Web/src/layout:
-    newFile: !uuid 'bcff480b453f48e79e157271d4f63aa13a12f485'
-    oldFile: !uuid 'fb07d9946e703057becca3c989d3d3015c332cb9'
+    newFile: !uuid 'fb07d9946e703057becca3c989d3d3015c332cb9'
+    oldFile: !uuid 'bcff480b453f48e79e157271d4f63aa13a12f485'
   /Web/src/layout/navBars:
-    newFile: !uuid 'a0cfc9336c03ea892a4b8aeef4e8351fa206c842'
-    oldFile: !uuid '737e56e66bef563b40d64c6b39ee8c070aa935d0'
+    newFile: !uuid '737e56e66bef563b40d64c6b39ee8c070aa935d0'
+    oldFile: !uuid 'a0cfc9336c03ea892a4b8aeef4e8351fa206c842'
   /Web/src/layout/navBars/topBar:
-    newFile: !uuid '424d7f8278816513b53b7fc358e5b86760d50578'
-    oldFile: !uuid 'b0998b85f19208c54f25f6f62a548a553d90246b'
+    newFile: !uuid 'b0998b85f19208c54f25f6f62a548a553d90246b'
+    oldFile: !uuid '424d7f8278816513b53b7fc358e5b86760d50578'
   /Web/src/layout/navBars/topBar/settings.vue:
-    newFile: !uuid 'c572198d9b6eeed5648930af3c1084111fa508cc'
-    oldFile: !uuid 'b3a2446e62d7c61afd32b3c7100f68fa2dd1b901'
-gitCommitId: !uuid '043ae795c49066abaa807b28128256aede7d1414'
+    newFile: !uuid 'b3a2446e62d7c61afd32b3c7100f68fa2dd1b901'
+    oldFile: !uuid 'c572198d9b6eeed5648930af3c1084111fa508cc'
+  /Web/src/theme:
+    newFile: !uuid '66755e7a400df477b3cc05a2430e40fa06ab6283'
+    oldFile: !uuid '8dfb621da3b7bc0f699936d081211f7fcdcb85fd'
+  /Web/src/theme/element.scss:
+    newFile: !uuid '29cd165499ef13c608f8ba564ec4619a88f06d91'
+    oldFile: !uuid 'e48e4a4612339a6c15b8bbdac6b358500f92f485'
+gitCommitId: !uuid 'bb52cc18d4e255621dfd36c305c60b34d15d7b81'
 renames: {
   }
-revisionId: 2263
+revisionId: 2264
