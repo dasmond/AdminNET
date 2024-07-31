@@ -25,4 +25,4 @@ export function getConstType(type: any) {
 	const userStore = useUserInfo();
 	const constType = userStore.constList.filter((x: any) => x.code === type)[0].data.result;
 	return constType;
-} 
+}

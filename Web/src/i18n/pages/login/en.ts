@@ -19,8 +19,7 @@ export default {
 		placeholder2: 'Please enter the verification code',
 		codeText: 'Get code',
 		btnText: 'Sign in',
-		msgText:
-			'Warm tip: it is recommended to use Google, Microsoft edge, version 79.0.1072.62 and above browsers, and 360 browser, please use speed mode',
+		msgText: 'Warm tip: it is recommended to use Google, Microsoft edge, version 79.0.1072.62 and above browsers, and 360 browser, please use speed mode',
 	},
 	scan: {
 		text: 'Open the mobile phone to scan and quickly log in / register',

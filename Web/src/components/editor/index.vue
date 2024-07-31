@@ -1,14 +1,7 @@
 <template>
 	<div class="editor-container">
 		<Toolbar :editor="editorRef" :mode="mode" />
-		<Editor
-			:mode="mode"
-			:defaultConfig="state.editorConfig"
-			:style="{ height }"
-			v-model="state.editorVal"
-			@onCreated="handleCreated"
-			@onChange="handleChange"
-		/>
+		<Editor :mode="mode" :defaultConfig="state.editorConfig" :style="{ height }" v-model="state.editorVal" @onCreated="handleCreated" @onChange="handleChange" />
 	</div>
 </template>
 
