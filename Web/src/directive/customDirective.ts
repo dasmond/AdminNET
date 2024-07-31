@@ -182,7 +182,7 @@ export function dragDirective(app: App) {
  * @directive 默认方式：v-reclick，如 `<el-button v-reclick></el-button>`
  * @directive 参数方式：v-reclick="number"，如 `<el-button v-reclick="500"></el-button>`
  */
- export function reclickDirective(app: App) {
+export function reclickDirective(app: App) {
 	app.directive('reclick', {
 		mounted(el, time) {
 			el.addEventListener('click', () => {

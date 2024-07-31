@@ -3,7 +3,7 @@ enum Api {
 	PagePayList = '/api/sysWechatPay/page',
 	CreatePay = '/api/sysWechatPay/payTransactionNative',
 	GetRefundListByID = '/api/sysWechatPay/listRefund',
-	RefundDomestic = '/api/sysWechatPay/refundDomestic'
+	RefundDomestic = '/api/sysWechatPay/refundDomestic',
 }
 export const pagePayList = (params?: any) =>
 	request({
