@@ -2,76 +2,37 @@
 branches: {
   }
 fileChange:
-  /Web:
-    newFile: !uuid 'a097732078fbe960aa3669757697128206c81ee1'
-    oldFile: !uuid '01d2bb4142f714327d66b0db761f15b92371d711'
-  /Web/src:
-    newFile: !uuid 'ff3b2ffa20834c048dcaea3dba3cb7c1a04f1d6b'
-    oldFile: !uuid 'a2a0d878a63e2c3946f8c08cf5aed21d83efdc04'
-  /Web/src/api-services:
-    newFile: !uuid '1845f734b4c0c10f5f6f4bf75a8b8f96f40edff9'
-    oldFile: !uuid '3990477263062e73c7b69e4949382612833f660c'
-  /Web/src/api-services/apis:
-    newFile: !uuid '50028d2deca0691f5f9dd98e6edbc78a86ec8663'
-    oldFile: !uuid '4395dfb72c21d69447c3fd6f319d13646a351d5e'
-  /Web/src/api-services/apis/sys-log-ex-api.ts:
-    newFile: !uuid '039ff7b491b6a84fe24047577d49d7dc8830ab4b'
-    oldFile: !uuid '7bea650e7b31d3d9e2849acc66af6723caed496a'
-  /Web/src/api-services/apis/sys-log-op-api.ts:
-    newFile: !uuid '111d97bdca74229784492f0a3a4b6ead4e96f977'
-    oldFile: !uuid '71f2421f9c7b77722cd021138cb38cee23464e92'
-  /Web/src/api-services/apis/sys-log-vis-api.ts:
-    newFile: !uuid '7b36db18f4c13c4c01cf878769eb3bc1ff0624d9'
-    oldFile: !uuid '4165448f72d9fc89b06ef03de336fa6af75dd2eb'
-  /Web/src/api-services/apis/sys-wx-open-api.ts:
-    newFile: !uuid '683ebc7ff345f7d7a8f24fbfe51f6a84e6e9b6e9'
-    oldFile: !uuid '04e39e185e310a4c495955f55590fb0c2287f92a'
-  /Web/src/api-services/configuration.ts:
-    newFile: null
-    oldFile: !uuid '9a2853497748e1a82b378e380e22d6fc58ec37ca'
-  /Web/src/api-services/models:
-    newFile: !uuid 'd9cffdf7ae5420e927f3a629bdd82ec958b43f24'
-    oldFile: !uuid '6a2617aa89f6a8e3b688593275f29e2ad04c1027'
-  /Web/src/api-services/models/add-code-gen-input.ts:
-    newFile: !uuid 'e1acf804559e6d536bca67aa06b051034df42e70'
-    oldFile: !uuid '065d87515680876f5cbe29296a61ba42e11d61fa'
-  /Web/src/api-services/models/admin-result-generate-qrimage-output.ts:
-    newFile: !uuid '19811eedec28eb5d28bd8afe704a52bd95a50474'
+  /Admin.NET:
+    newFile: !uuid '5dddfc9db51491ec12f30dcf325401bb28cf824e'
+    oldFile: !uuid '9e88833f5e50397bd1a721bf6750b87816fe5061'
+  /Admin.NET/Admin.NET.Core:
+    newFile: !uuid 'd2c44b6ab6f7912bb064b18013a63f4f0a7de71a'
+    oldFile: !uuid '8ea60e576d3f6165687ffd53d55610f42cb28e28'
+  /Admin.NET/Admin.NET.Core/Service:
+    newFile: !uuid 'be07c270ad7ab2092e22bd50057c47f77c6e72fc'
+    oldFile: !uuid '4102f49728a537edcd0ad4a9980425aa241203f1'
+  /Admin.NET/Admin.NET.Core/Service/Logging:
+    newFile: !uuid '5e2a6dcc4ae530d29bd7584efa83db1c16e95ff5'
+    oldFile: !uuid 'e6d256fed16518411d46255984ef228542d27cf8'
+  /Admin.NET/Admin.NET.Core/Service/Logging/Dto:
+    newFile: !uuid '2602866649bd35c7ae69c3a41c703333ed487ac5'
+    oldFile: !uuid 'f8d0f14bb47938441e1cdcfec6c612236d268932'
+  /Admin.NET/Admin.NET.Core/Service/Logging/Dto/LogVisOutput.cs:
+    newFile: !uuid '8e69aaf90acbcbc633b79304092e01196c383c81'
     oldFile: null
-  /Web/src/api-services/models/code-gen-input.ts:
-    newFile: !uuid '1c938fdd663a05927e7a428403f6174572ce243c'
-    oldFile: !uuid '8ac209a6b47b7ab59e1676313b0fea4e4cd3fa55'
-  /Web/src/api-services/models/generate-qrimage-input.ts:
-    newFile: !uuid 'f625e70760f6b04c177ef68a84292873fe068d8d'
-    oldFile: null
-  /Web/src/api-services/models/generate-qrimage-output.ts:
-    newFile: !uuid '578a16844e397487c524b9f4be1cab1c595d45a7'
-    oldFile: null
-  /Web/src/api-services/models/index.ts:
-    newFile: !uuid 'b90c005b0866b2eb3fc474605928118504e052bb'
-    oldFile: !uuid 'a359892fbc2f479204fd5c6fc24879bd6408ce19'
-  /Web/src/api-services/models/member-info.ts:
-    newFile: !uuid '983879e9df04564828d2b3e094aa5da0bce196c8'
-    oldFile: !uuid 'b1fbee1e815ba753955b3c29a6e5f57036701c13'
-  /Web/src/api-services/models/page-ex-log-input.ts:
-    newFile: !uuid '0dc53ec8ffd7266c9e1734adb9447d2a709e5a48'
-    oldFile: null
-  /Web/src/api-services/models/page-log-input.ts:
-    newFile: !uuid '7354117064f350df8029cdbd6d206f24ad7eac9d'
-    oldFile: !uuid 'b0bdfb57a04cbbd4b6954b4aab50de54a2af8caa'
-  /Web/src/api-services/models/page-op-log-input.ts:
-    newFile: !uuid 'a1a9330f5d308f3f6c49f2d2a09c42a9f5e205eb'
-    oldFile: null
-  /Web/src/api-services/models/page-user-input.ts:
-    newFile: !uuid '0ede23de2d968ac2eb2fa3267f0cc5e4491978e6'
-    oldFile: !uuid '6e85de61f517631a429dbc15e9bd08ef0020fa67'
-  /Web/src/api-services/models/page-vis-log-input.ts:
-    newFile: !uuid 'cb93bc4710d32c369581b15f356f7364eab71a55'
-    oldFile: null
-  /Web/src/api-services/models/update-code-gen-input.ts:
-    newFile: !uuid '05bf977db67a9e33cda204eac0e5471d0ddc64f1'
-    oldFile: !uuid '58b6e9e9151b1bc17a30509ff6fb9edd94747e2b'
-gitCommitId: !uuid 'e3930a6dbecd321b63d3fe8a6822a7e1edb8a236'
+  /Admin.NET/Admin.NET.Core/Service/Logging/SysLogDiffService.cs:
+    newFile: !uuid '8db3141541d06e7a07b483ee8c31533f17c28f16'
+    oldFile: !uuid '755ded76a417f0fb5b9270fdd006580de974be8e'
+  /Admin.NET/Admin.NET.Core/Service/Logging/SysLogExService.cs:
+    newFile: !uuid '2519a26be0c5114aa2068a8304a53f0720d8e754'
+    oldFile: !uuid '7d7781917ccf4965764c72e531c2faaa3cafb7d8'
+  /Admin.NET/Admin.NET.Core/Service/Logging/SysLogOpService.cs:
+    newFile: !uuid '7d3d2d2547aa4564f595ff24fa954750adde1321'
+    oldFile: !uuid '9a320d7f8d42be864fb0839b297b524d68f62870'
+  /Admin.NET/Admin.NET.Core/Service/Logging/SysLogVisService.cs:
+    newFile: !uuid '9c681fd4decf57a34bea63bad87f4f25f878bbff'
+    oldFile: !uuid 'e14a659a8f6147b12fcae4ed8d963fde2ffd6ea0'
+gitCommitId: !uuid '259a07a7496b143490084a8221ea08aac85ae310'
 renames: {
   }
-revisionId: 2275
+revisionId: 2276
