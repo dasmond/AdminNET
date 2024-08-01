@@ -3,36 +3,66 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '5dddfc9db51491ec12f30dcf325401bb28cf824e'
-    oldFile: !uuid '9e88833f5e50397bd1a721bf6750b87816fe5061'
+    newFile: !uuid '28f725aeb3203699f92b20731d1723475216aed3'
+    oldFile: !uuid '5dddfc9db51491ec12f30dcf325401bb28cf824e'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid 'd2c44b6ab6f7912bb064b18013a63f4f0a7de71a'
-    oldFile: !uuid '8ea60e576d3f6165687ffd53d55610f42cb28e28'
-  /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid 'be07c270ad7ab2092e22bd50057c47f77c6e72fc'
-    oldFile: !uuid '4102f49728a537edcd0ad4a9980425aa241203f1'
-  /Admin.NET/Admin.NET.Core/Service/Logging:
-    newFile: !uuid '5e2a6dcc4ae530d29bd7584efa83db1c16e95ff5'
-    oldFile: !uuid 'e6d256fed16518411d46255984ef228542d27cf8'
-  /Admin.NET/Admin.NET.Core/Service/Logging/Dto:
-    newFile: !uuid '2602866649bd35c7ae69c3a41c703333ed487ac5'
-    oldFile: !uuid 'f8d0f14bb47938441e1cdcfec6c612236d268932'
-  /Admin.NET/Admin.NET.Core/Service/Logging/Dto/LogVisOutput.cs:
-    newFile: !uuid '8e69aaf90acbcbc633b79304092e01196c383c81'
+    newFile: !uuid '4c23ab5da9202113c43a997bc9b7fd192fc44cde'
+    oldFile: !uuid 'd2c44b6ab6f7912bb064b18013a63f4f0a7de71a'
+  /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
+    newFile: !uuid '9a2d42428db37aef82d034263c02120979b55dbd'
+    oldFile: !uuid '333518696ed37c49a446cc4e0dc04e317cab00a6'
+  /Web:
+    newFile: !uuid 'a9e85b7382678d8932d73ea095fafae9406d1b2a'
+    oldFile: !uuid 'a097732078fbe960aa3669757697128206c81ee1'
+  /Web/src:
+    newFile: !uuid 'a006e1ffecb2062aa30fa0588070c08c296046b3'
+    oldFile: !uuid 'ff3b2ffa20834c048dcaea3dba3cb7c1a04f1d6b'
+  /Web/src/api-services:
+    newFile: !uuid 'f4b09ff13534cae2c0ee1194d3d15314ce1a8245'
+    oldFile: !uuid '1845f734b4c0c10f5f6f4bf75a8b8f96f40edff9'
+  /Web/src/api-services/apis:
+    newFile: !uuid '2b585531b6f114d4d9e071167685800ec287091c'
+    oldFile: !uuid '50028d2deca0691f5f9dd98e6edbc78a86ec8663'
+  /Web/src/api-services/apis/sys-log-diff-api.ts:
+    newFile: !uuid '8b546c083b55dab7e10677f5b66fcb1ac51ee32d'
+    oldFile: !uuid '11816f39cd9ca4155ba468f5a0ffaa7288ce1d3c'
+  /Web/src/api-services/apis/sys-log-ex-api.ts:
+    newFile: !uuid 'dc6dd636a75bd9613355f3d9bb9a80733d5e05a9'
+    oldFile: !uuid '039ff7b491b6a84fe24047577d49d7dc8830ab4b'
+  /Web/src/api-services/apis/sys-log-op-api.ts:
+    newFile: !uuid '5ba45de23f7f2f12b4eccf13c01ea89320af581b'
+    oldFile: !uuid '111d97bdca74229784492f0a3a4b6ead4e96f977'
+  /Web/src/api-services/apis/sys-log-vis-api.ts:
+    newFile: !uuid 'f13eb46be13f2eff76975edbd0a9ff2b973f310a'
+    oldFile: !uuid '7b36db18f4c13c4c01cf878769eb3bc1ff0624d9'
+  /Web/src/api-services/configuration.ts:
+    newFile: !uuid '9a2853497748e1a82b378e380e22d6fc58ec37ca'
     oldFile: null
-  /Admin.NET/Admin.NET.Core/Service/Logging/SysLogDiffService.cs:
-    newFile: !uuid '8db3141541d06e7a07b483ee8c31533f17c28f16'
-    oldFile: !uuid '755ded76a417f0fb5b9270fdd006580de974be8e'
-  /Admin.NET/Admin.NET.Core/Service/Logging/SysLogExService.cs:
-    newFile: !uuid '2519a26be0c5114aa2068a8304a53f0720d8e754'
-    oldFile: !uuid '7d7781917ccf4965764c72e531c2faaa3cafb7d8'
-  /Admin.NET/Admin.NET.Core/Service/Logging/SysLogOpService.cs:
-    newFile: !uuid '7d3d2d2547aa4564f595ff24fa954750adde1321'
-    oldFile: !uuid '9a320d7f8d42be864fb0839b297b524d68f62870'
-  /Admin.NET/Admin.NET.Core/Service/Logging/SysLogVisService.cs:
-    newFile: !uuid '9c681fd4decf57a34bea63bad87f4f25f878bbff'
-    oldFile: !uuid 'e14a659a8f6147b12fcae4ed8d963fde2ffd6ea0'
-gitCommitId: !uuid '259a07a7496b143490084a8221ea08aac85ae310'
+  /Web/src/api-services/models:
+    newFile: !uuid 'd4eeb659d747f33d933fffbbc7848bf9adc994cf'
+    oldFile: !uuid 'd9cffdf7ae5420e927f3a629bdd82ec958b43f24'
+  /Web/src/api-services/models/admin-result-list-log-vis-output.ts:
+    newFile: !uuid 'abc0a2a1a5370dc647fad6fb7aa482450793dd80'
+    oldFile: null
+  /Web/src/api-services/models/admin-result-sys-log-diff.ts:
+    newFile: !uuid '2156e209ee20b5ad199c1cdf050dca4267dc7d7a'
+    oldFile: null
+  /Web/src/api-services/models/admin-result-sys-log-ex.ts:
+    newFile: !uuid '5d4df26fd28f016d85908d091d411c558425ede9'
+    oldFile: null
+  /Web/src/api-services/models/admin-result-sys-log-op.ts:
+    newFile: !uuid '6c4d3ad5408cab5ea89ce6cab967b61d1f41311a'
+    oldFile: null
+  /Web/src/api-services/models/index.ts:
+    newFile: !uuid 'c5998f3419a6a58c4ba71015f159f174f93be4ef'
+    oldFile: !uuid 'b90c005b0866b2eb3fc474605928118504e052bb'
+  /Web/src/api-services/models/log-vis-output.ts:
+    newFile: !uuid '81d7e2b0e3899118ed6fa0aa37bccda1267fdc3a'
+    oldFile: null
+  /Web/src/api-services/models/member-info.ts:
+    newFile: !uuid 'b1fbee1e815ba753955b3c29a6e5f57036701c13'
+    oldFile: !uuid '983879e9df04564828d2b3e094aa5da0bce196c8'
+gitCommitId: !uuid 'e49f9e66c49170bf1a878536d5bb84560d304344'
 renames: {
   }
-revisionId: 2276
+revisionId: 2277
