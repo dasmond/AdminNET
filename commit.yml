@@ -3,21 +3,33 @@ branches: {
   }
 fileChange:
   /Web:
-    newFile: !uuid '5ed9a63833c7c01592808e78c7b9c11c18983769'
-    oldFile: !uuid 'a9e85b7382678d8932d73ea095fafae9406d1b2a'
+    newFile: !uuid 'a32e4bfbba259d930af5676b662830637c8b0ac9'
+    oldFile: !uuid '5ed9a63833c7c01592808e78c7b9c11c18983769'
   /Web/src:
-    newFile: !uuid '223aa366a748b2c2e80b5b338d7cb756bf920432'
-    oldFile: !uuid 'a006e1ffecb2062aa30fa0588070c08c296046b3'
-  /Web/src/theme:
-    newFile: !uuid 'b92f12028fe51491d2af6de5eca52152757a4504'
-    oldFile: !uuid '66755e7a400df477b3cc05a2430e40fa06ab6283'
-  /Web/src/theme/media:
-    newFile: !uuid 'bbb7f9ad6c46d2cd9d04b2897311b34052d09eb9'
-    oldFile: !uuid '1e7e77ac1468010b698842c01e1e9df23cb312b7'
-  /Web/src/theme/media/form.scss:
-    newFile: !uuid '7814a60c41b11236c22438ea6bcb02a1e6eddf36'
-    oldFile: !uuid '2ff5a5edb77dd63c469887ce1c5e9ef928e41475'
-gitCommitId: !uuid 'f1bc24de31f650eb64f6bdb849d241eeb9f33b22'
+    newFile: !uuid '43fca60b357792da4da9d3748722184a30b9135c'
+    oldFile: !uuid '223aa366a748b2c2e80b5b338d7cb756bf920432'
+  /Web/src/views:
+    newFile: !uuid '0836a68fbedcd9a4cbd0f3e2983c1d73133e2983'
+    oldFile: !uuid '37d268d155f67de74c833288c7f89b99aff06f4b'
+  /Web/src/views/system:
+    newFile: !uuid '48162af50e232ee91e2badbdbdd63db95a698a47'
+    oldFile: !uuid '9f5e56257f7a1fe984f7309abe6560b880d0da7a'
+  /Web/src/views/system/log:
+    newFile: !uuid '7f0736c5182619e3412a611481d6b14200a1965d'
+    oldFile: !uuid '5eb518386e8429121ae29916f27c165cd4ff63a5'
+  /Web/src/views/system/log/exlog:
+    newFile: !uuid 'e7d3b0db99e96096f4286659faa95b4bb0ca81c6'
+    oldFile: !uuid 'a9be4bdb5ccd894e5ca99865058a9740379bae02'
+  /Web/src/views/system/log/exlog/index.vue:
+    newFile: !uuid '496b322633da4d3a775b7a5b3c59f886181b4062'
+    oldFile: !uuid '5440200021bcf6068a72c988eecd6a42d54f8233'
+  /Web/src/views/system/log/oplog:
+    newFile: !uuid 'ca60aa36265b1051ed192dd40ad5119315425ee5'
+    oldFile: !uuid 'd89ad59b955a192a1e83a3d49a58cae95946669a'
+  /Web/src/views/system/log/oplog/index.vue:
+    newFile: !uuid '87c546853035af443b0ba259c50e66178882c552'
+    oldFile: !uuid '5c82e78683e7dade1a2ee10e2246683257e762e5'
+gitCommitId: !uuid '476554b66074c6237e0e05f814135e2a2d4e5d78'
 renames: {
   }
-revisionId: 2278
+revisionId: 2279
