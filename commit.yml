@@ -3,24 +3,27 @@ branches: {
   }
 fileChange:
   /Web:
-    newFile: !uuid 'aef5cd94c74b0af59bbb1782c0ab9c5dacf427e0'
-    oldFile: !uuid '00aaf505bc758111ed20669bba9013ad3ff687c5'
+    newFile: !uuid '54c29e5dbba7b4cdf37236a328cb6b24a3cf56c6'
+    oldFile: !uuid 'aef5cd94c74b0af59bbb1782c0ab9c5dacf427e0'
   /Web/src:
-    newFile: !uuid '4c83dcc7d8489ca9d862c749f0247489b19d125e'
-    oldFile: !uuid 'c28955d2c4aba87acffa9b0cf1085f87508ed50b'
+    newFile: !uuid 'b438d5b12b0dc53509c797a3c0a9c2361ecce133'
+    oldFile: !uuid '4c83dcc7d8489ca9d862c749f0247489b19d125e'
   /Web/src/views:
-    newFile: !uuid 'b0db75c4fe9758f70159052085241a7623be52c8'
-    oldFile: !uuid 'e91317358e63ee9bafc34bef75248a5b22c320c5'
-  /Web/src/views/login:
-    newFile: !uuid 'a9dcdc7e36754561fe8ab0505cea5b45b793c5ad'
-    oldFile: !uuid 'a986da79febe6940f4f5670d7229f9f880fb0609'
-  /Web/src/views/login/component:
-    newFile: !uuid '193b2fabfc9a65308904788b6187cd8330f67228'
-    oldFile: !uuid 'b8b3217901922706006937887779d3614c2794ec'
-  /Web/src/views/login/component/account.vue:
-    newFile: !uuid 'bfa0598f4917f4f7ba65324f8bf68e37b5656347'
-    oldFile: !uuid '11878eb2c93399f24e14c0065bbec0cca5ec3ca0'
-gitCommitId: !uuid 'df1dc594a704812e5c8c5e4a0e99ec560c703028'
+    newFile: !uuid 'ded18ca0cfeb3029dc05c2173d47b0d83cb810e8'
+    oldFile: !uuid 'b0db75c4fe9758f70159052085241a7623be52c8'
+  /Web/src/views/system:
+    newFile: !uuid 'd1021a4d4efca49c8aa34370210270d3d4c26df4'
+    oldFile: !uuid 'c3fa8fb6574aa3229f4b2f4ca737f040dc38cf20'
+  /Web/src/views/system/log:
+    newFile: !uuid 'c38d29f4d0f29e87f20be775d19becde1ca8973f'
+    oldFile: !uuid '7f0736c5182619e3412a611481d6b14200a1965d'
+  /Web/src/views/system/log/exlog:
+    newFile: !uuid '66016437fc450ba9c9f563358bc0f37826cfcb12'
+    oldFile: !uuid 'e7d3b0db99e96096f4286659faa95b4bb0ca81c6'
+  /Web/src/views/system/log/exlog/index.vue:
+    newFile: !uuid '03491151300b7eff05cf5f3aeada19754a2490cf'
+    oldFile: !uuid '496b322633da4d3a775b7a5b3c59f886181b4062'
+gitCommitId: !uuid 'e1a96ca9077679a500795c67faa203688f2d9c25'
 renames: {
   }
-revisionId: 2297
+revisionId: 2298
