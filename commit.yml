@@ -3,18 +3,27 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid 'abcf47f19ac03ee7bb9ecf3933733c984a4ae5c6'
-    oldFile: !uuid '29f8eba262e6112d7960ec8eadb3a6b88648cefd'
+    newFile: !uuid '7e64f21d59b6d24e69df30d682b537ccda98fdeb'
+    oldFile: !uuid 'abcf47f19ac03ee7bb9ecf3933733c984a4ae5c6'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '7250cc1a55b799b429d7181b4d526a0d13b39876'
-    oldFile: !uuid '557802c40a6a460f8c05bed8d9f3c2163c8498e0'
+    newFile: !uuid '6f0d2647fd816f705416029fed80f7b6a581ee90'
+    oldFile: !uuid '7250cc1a55b799b429d7181b4d526a0d13b39876'
+  /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
+    newFile: !uuid '3e6550bc5753a2c7372822b346e1a62b4001496b'
+    oldFile: !uuid '5795d8bd3e0e5f8ec9e9fc345ccb3c0b3828c5d1'
+  /Admin.NET/Admin.NET.Core/EventBus:
+    newFile: !uuid 'c6086c6215c0b5267947a0b39b7dab6e20f4a9fc'
+    oldFile: !uuid '54887d587d071dc6c1653d89917e1a3b40d41176'
+  /Admin.NET/Admin.NET.Core/EventBus/RetryEventHandlerExecutor.cs:
+    newFile: !uuid '6b45e3586bbbf5851fb4302c5fc92123c359fabb'
+    oldFile: !uuid 'df9611c8d6ffff09faa69a0c767fa04b54460799'
   /Admin.NET/Admin.NET.Core/SqlSugar:
-    newFile: !uuid '27ef07ebaddb75ed7fa69e115d66cd88a777044a'
-    oldFile: !uuid '4d50a756a4d3e1888fe1f0530952f4b55bdd64c8'
+    newFile: !uuid '53854b0cfbaff133f1a6fc1cf5d5ef5f3de74c46'
+    oldFile: !uuid '27ef07ebaddb75ed7fa69e115d66cd88a777044a'
   /Admin.NET/Admin.NET.Core/SqlSugar/SqlSugarFilter.cs:
-    newFile: !uuid 'af4198705d3557586f287a7263a4b0bb28392e61'
-    oldFile: !uuid 'f18c52b2ae147bfa021fa0b5658a57bd9f899a67'
-gitCommitId: !uuid '647f6d58b62fd236115d23d21a37482e917aae1d'
+    newFile: !uuid '24c758febf5c6649e0c3aec7f70243c2d99fccba'
+    oldFile: !uuid 'af4198705d3557586f287a7263a4b0bb28392e61'
+gitCommitId: !uuid '4cd78383644df594192c51a51b5284dbb9632a15'
 renames: {
   }
-revisionId: 2250
+revisionId: 2251
