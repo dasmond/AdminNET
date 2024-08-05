@@ -3,27 +3,24 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '7e64f21d59b6d24e69df30d682b537ccda98fdeb'
-    oldFile: !uuid 'abcf47f19ac03ee7bb9ecf3933733c984a4ae5c6'
+    newFile: !uuid '46f434eebc57992eda29ec7b2af6593aced85780'
+    oldFile: !uuid '7e64f21d59b6d24e69df30d682b537ccda98fdeb'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '6f0d2647fd816f705416029fed80f7b6a581ee90'
-    oldFile: !uuid '7250cc1a55b799b429d7181b4d526a0d13b39876'
-  /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
-    newFile: !uuid '3e6550bc5753a2c7372822b346e1a62b4001496b'
-    oldFile: !uuid '5795d8bd3e0e5f8ec9e9fc345ccb3c0b3828c5d1'
-  /Admin.NET/Admin.NET.Core/EventBus:
-    newFile: !uuid 'c6086c6215c0b5267947a0b39b7dab6e20f4a9fc'
-    oldFile: !uuid '54887d587d071dc6c1653d89917e1a3b40d41176'
-  /Admin.NET/Admin.NET.Core/EventBus/RetryEventHandlerExecutor.cs:
-    newFile: !uuid '6b45e3586bbbf5851fb4302c5fc92123c359fabb'
-    oldFile: !uuid 'df9611c8d6ffff09faa69a0c767fa04b54460799'
-  /Admin.NET/Admin.NET.Core/SqlSugar:
-    newFile: !uuid '53854b0cfbaff133f1a6fc1cf5d5ef5f3de74c46'
-    oldFile: !uuid '27ef07ebaddb75ed7fa69e115d66cd88a777044a'
-  /Admin.NET/Admin.NET.Core/SqlSugar/SqlSugarFilter.cs:
-    newFile: !uuid '24c758febf5c6649e0c3aec7f70243c2d99fccba'
-    oldFile: !uuid 'af4198705d3557586f287a7263a4b0bb28392e61'
-gitCommitId: !uuid '4cd78383644df594192c51a51b5284dbb9632a15'
+    newFile: !uuid '7a038a7d084573ff5235031036df6ce3145893ee'
+    oldFile: !uuid '6f0d2647fd816f705416029fed80f7b6a581ee90'
+  /Admin.NET/Admin.NET.Core/SeedData:
+    newFile: !uuid 'a6863621bb678df25d8b7a2801afe34b6266ce1e'
+    oldFile: !uuid 'b54f47f463206dc47295c10fe5fdd246918cb493'
+  /Admin.NET/Admin.NET.Core/SeedData/SysOrgSeedData.cs:
+    newFile: !uuid 'b90221609f3b0f3391bc1585a6d0d1e6a2a596b6'
+    oldFile: !uuid '7652199d8672904b66ddf19a5bfea58a8ed756db'
+  /Admin.NET/Admin.NET.Core/SeedData/SysTenantSeedData.cs:
+    newFile: !uuid '7d39c42c684c498444d1d5b9e13e9ba7a593b6d7'
+    oldFile: !uuid '376b525ef2b056b67fd1a83e18f545133ee511a2'
+  /Admin.NET/Admin.NET.Core/SeedData/SysUserSeedData.cs:
+    newFile: !uuid 'b373a5bcb0cc578e6cd3bd00c4f088d73e33b4b5'
+    oldFile: !uuid 'a809c235d9717ce3ec94e57749da268fb754dd35'
+gitCommitId: !uuid '4a7d85a383b583d206bec810edc428a838128209'
 renames: {
   }
-revisionId: 2251
+revisionId: 2252
