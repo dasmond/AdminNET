@@ -3,129 +3,21 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '837d6e15e29c76fccaf501604561570ff8ead8d4'
-    oldFile: !uuid '39db3f79829bff54b78b600ea29ef8970a3a3750'
+    newFile: !uuid '0c5c4ac53cda5e198af564819af5053abd7c56bb'
+    oldFile: !uuid '837d6e15e29c76fccaf501604561570ff8ead8d4'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '9c5feed5d4786e98d5d20d65543987bc17b79e56'
-    oldFile: !uuid '1f8c39fe6a066940c7d44bef0538ce6b8aed0b16'
-  /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
-    newFile: !uuid '9efda0d71bec1fdbf2404da9874b0bcf17c89946'
-    oldFile: !uuid '36a52f4d2c5f4350012ff3e9073036233c7392ef'
-  /Admin.NET/Admin.NET.Core/SeedData:
-    newFile: !uuid '3b060b0473a05d885835ea903ecf24c2a7838845'
-    oldFile: !uuid 'c103db4658d3e872f1b040ce592c6fa2a48c4404'
-  /Admin.NET/Admin.NET.Core/SeedData/SysRoleMenuSeedData.cs:
-    newFile: !uuid '83e99375cb839e6cdb6e0271c5b73bc875519ab9'
-    oldFile: !uuid '4b125c95a306bcec671ac80ecc31d81d5b658465'
+    newFile: !uuid '500fb52aff5831b1ce01df7d888f1bf57ad13347'
+    oldFile: !uuid '9c5feed5d4786e98d5d20d65543987bc17b79e56'
   /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid '0724ce2590d81211db6bf37102e7d91953af38c0'
-    oldFile: !uuid 'e6d0f996e8bdcb2cb9ff9a593167f8948b22f452'
+    newFile: !uuid 'b552004d7d314781b4605aa5bbfa6b85119f4a13'
+    oldFile: !uuid '0724ce2590d81211db6bf37102e7d91953af38c0'
   /Admin.NET/Admin.NET.Core/Service/Cache:
-    newFile: !uuid '17a10fffa84b0364a7ccbf7029ed4429134445fd'
-    oldFile: !uuid 'c5de9f7271ea0eab1019f5b3dfb1b8c545907f82'
+    newFile: !uuid 'ea8ee143bd7cddf7ec823b3d8273a3063c1e09ee'
+    oldFile: !uuid '17a10fffa84b0364a7ccbf7029ed4429134445fd'
   /Admin.NET/Admin.NET.Core/Service/Cache/SysCacheService.cs:
-    newFile: !uuid '5596f2dce762b03c2eecd040816e6b5fa8b1cce8'
-    oldFile: !uuid '3c22424375c20cab2070551cc8dad5991770bfa4'
-  /Admin.NET/Admin.NET.Core/Service/File:
-    newFile: !uuid 'cddbba0dd8706091df48ef70865af8752c61ff1a'
-    oldFile: !uuid '3b181e99d92a52ad2a79eb92fd9be5739505321e'
-  /Admin.NET/Admin.NET.Core/Service/File/SysFileService.cs:
-    newFile: !uuid '60d9b6bfbeef1777f70fdb275c63cefb267c0693'
-    oldFile: !uuid 'af90f5b70bee0227e64a21cc2c052f5f51ee6051'
-  /Admin.NET/Admin.NET.Core/Service/Log:
-    newFile: !uuid '5e2a6dcc4ae530d29bd7584efa83db1c16e95ff5'
-    oldFile: null
-  /Admin.NET/Admin.NET.Core/Service/Log/Dto:
-    newFile: !uuid '2602866649bd35c7ae69c3a41c703333ed487ac5'
-    oldFile: null
-  /Admin.NET/Admin.NET.Core/Service/Log/Dto/ExportLogDto.cs:
-    newFile: !uuid 'bd99c03289e74c72c0aa90a5ef0ff0e8be5fdfe4'
-    oldFile: null
-  /Admin.NET/Admin.NET.Core/Service/Log/Dto/LogInput.cs:
-    newFile: !uuid 'c342f4be329e367b09622e827d1fa95821094879'
-    oldFile: null
-  /Admin.NET/Admin.NET.Core/Service/Log/Dto/LogVisOutput.cs:
-    newFile: !uuid '8e69aaf90acbcbc633b79304092e01196c383c81'
-    oldFile: null
-  /Admin.NET/Admin.NET.Core/Service/Log/SysLogDiffService.cs:
-    newFile: !uuid '8db3141541d06e7a07b483ee8c31533f17c28f16'
-    oldFile: null
-  /Admin.NET/Admin.NET.Core/Service/Log/SysLogExService.cs:
-    newFile: !uuid '2519a26be0c5114aa2068a8304a53f0720d8e754'
-    oldFile: null
-  /Admin.NET/Admin.NET.Core/Service/Log/SysLogOpService.cs:
-    newFile: !uuid '7d3d2d2547aa4564f595ff24fa954750adde1321'
-    oldFile: null
-  /Admin.NET/Admin.NET.Core/Service/Log/SysLogVisService.cs:
-    newFile: !uuid '9c681fd4decf57a34bea63bad87f4f25f878bbff'
-    oldFile: null
-  /Admin.NET/Admin.NET.Core/Service/Logging:
-    newFile: null
-    oldFile: !uuid '5e2a6dcc4ae530d29bd7584efa83db1c16e95ff5'
-  /Admin.NET/Admin.NET.Core/Service/Logging/Dto:
-    newFile: null
-    oldFile: !uuid '2602866649bd35c7ae69c3a41c703333ed487ac5'
-  /Admin.NET/Admin.NET.Core/Service/Logging/Dto/ExportLogDto.cs:
-    newFile: null
-    oldFile: !uuid 'bd99c03289e74c72c0aa90a5ef0ff0e8be5fdfe4'
-  /Admin.NET/Admin.NET.Core/Service/Logging/Dto/LogInput.cs:
-    newFile: null
-    oldFile: !uuid 'c342f4be329e367b09622e827d1fa95821094879'
-  /Admin.NET/Admin.NET.Core/Service/Logging/Dto/LogVisOutput.cs:
-    newFile: null
-    oldFile: !uuid '8e69aaf90acbcbc633b79304092e01196c383c81'
-  /Admin.NET/Admin.NET.Core/Service/Logging/SysLogDiffService.cs:
-    newFile: null
-    oldFile: !uuid '8db3141541d06e7a07b483ee8c31533f17c28f16'
-  /Admin.NET/Admin.NET.Core/Service/Logging/SysLogExService.cs:
-    newFile: null
-    oldFile: !uuid '2519a26be0c5114aa2068a8304a53f0720d8e754'
-  /Admin.NET/Admin.NET.Core/Service/Logging/SysLogOpService.cs:
-    newFile: null
-    oldFile: !uuid '7d3d2d2547aa4564f595ff24fa954750adde1321'
-  /Admin.NET/Admin.NET.Core/Service/Logging/SysLogVisService.cs:
-    newFile: null
-    oldFile: !uuid '9c681fd4decf57a34bea63bad87f4f25f878bbff'
-  /Web:
-    newFile: !uuid 'fd4caea984e6352a4fecdf1ab3bb68f01ceec11b'
-    oldFile: !uuid 'c107a29801e75f0f963604f67759eb098b88f66c'
-  /Web/package.json:
-    newFile: !uuid '0c041652dbe8992fa4438c81e24be61a4cdf7283'
-    oldFile: !uuid 'e37ba40f2ee43d1a8e9ca6e28220a158fe376bda'
-  /Web/src:
-    newFile: !uuid 'e1b5461da4d10a04883aac1c1b345b7733d66866'
-    oldFile: !uuid '9201176b2ea41d256f7364c5f1516cd223a00d2a'
-  /Web/src/api-services:
-    newFile: !uuid 'cc63f173740bff9411b92105fa7cb4e5f25b856f'
-    oldFile: !uuid 'cb36a1c3b72c994e7a1cc84a27954c4f26025705'
-  /Web/src/api-services/apis:
-    newFile: !uuid '5fa2ce865823a2e94477c3aee06b9f9dad2673d0'
-    oldFile: !uuid 'c59262d091fe9a091aedf95254de0ecdc4545262'
-  /Web/src/api-services/apis/sys-cache-api.ts:
-    newFile: !uuid '4835aedb3f614428afd95fbbf4d12dacf5b35a3f'
-    oldFile: !uuid '2e0b85a943029812d321c22b64ba0726ffe3a221'
-  /Web/src/api-services/apis/sys-file-api.ts:
-    newFile: !uuid 'd1077a0f8c0c120ff79be494ca5e53a76f1425e2'
-    oldFile: !uuid 'f042c005d4142e911bee6668b7934195795ecb3a'
-  /Web/src/views:
-    newFile: !uuid 'c02b67086fe8d8346c118cec317d1b0b78c2cffb'
-    oldFile: !uuid 'fe5d55c39254d32eced2ebc99426227fcef22a32'
-  /Web/src/views/system:
-    newFile: !uuid 'f021dd295ca1b97a95cb60d4daea259bd9d890eb'
-    oldFile: !uuid '8043e46d5a37acf691704709d11f1dcaf523f6d9'
-  /Web/src/views/system/cache:
-    newFile: !uuid 'a1d1d5a3f87bbd23986d383f9748c19f5628f460'
-    oldFile: !uuid '954df83cd573a4c90faa8e365b4d8a0a72277e3e'
-  /Web/src/views/system/cache/index.vue:
-    newFile: !uuid '72629d5c5da45f3c25588aca819086da86975513'
-    oldFile: !uuid 'fcb4d04fa86608cd205fb080e5edd35124de0b1b'
-gitCommitId: !uuid 'c6d016005374caa2e7241d71fec258a30d0aad9d'
-renames:
-  /Admin.NET/Admin.NET.Core/Service/Log/Dto/ExportLogDto.cs: /Admin.NET/Admin.NET.Core/Service/Logging/Dto/ExportLogDto.cs
-  /Admin.NET/Admin.NET.Core/Service/Log/Dto/LogInput.cs: /Admin.NET/Admin.NET.Core/Service/Logging/Dto/LogInput.cs
-  /Admin.NET/Admin.NET.Core/Service/Log/Dto/LogVisOutput.cs: /Admin.NET/Admin.NET.Core/Service/Logging/Dto/LogVisOutput.cs
-  /Admin.NET/Admin.NET.Core/Service/Log/SysLogDiffService.cs: /Admin.NET/Admin.NET.Core/Service/Logging/SysLogDiffService.cs
-  /Admin.NET/Admin.NET.Core/Service/Log/SysLogExService.cs: /Admin.NET/Admin.NET.Core/Service/Logging/SysLogExService.cs
-  /Admin.NET/Admin.NET.Core/Service/Log/SysLogOpService.cs: /Admin.NET/Admin.NET.Core/Service/Logging/SysLogOpService.cs
-  /Admin.NET/Admin.NET.Core/Service/Log/SysLogVisService.cs: /Admin.NET/Admin.NET.Core/Service/Logging/SysLogVisService.cs
-revisionId: 2275
+    newFile: !uuid 'd4a64fc8abec151e94b90bbcbdcccf8893d709f4'
+    oldFile: !uuid '5596f2dce762b03c2eecd040816e6b5fa8b1cce8'
+gitCommitId: !uuid '233e8578fe680ad021d7ae8b87bb899df7fcd00b'
+renames: {
+  }
+revisionId: 2276
