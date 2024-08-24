@@ -3,24 +3,30 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid 'fbec99be8c0be96fe146ed6041905baa964e5a75'
-    oldFile: !uuid '1e706425f626272ed75801fc907297d8ef854066'
+    newFile: !uuid '14576a5215dd9e2591071d560e1d9c69b8a03b6b'
+    oldFile: !uuid 'fbec99be8c0be96fe146ed6041905baa964e5a75'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '4ea59fba5f6d6dc2c0addd8fcd98050bb96451ee'
-    oldFile: !uuid '357c07f248d28b79ef13dc28c7be365f25b22b31'
-  /Admin.NET/Admin.NET.Core/Const:
-    newFile: !uuid 'bbbde19641a99f5c0689c9b70bd003b1a242978a'
-    oldFile: !uuid '4536d4c60b7acff499a4928a8a9aec55b26cb88b'
-  /Admin.NET/Admin.NET.Core/Const/ConfigConst.cs:
-    newFile: !uuid '8e484d4d0a5551190b07ce28ecf840399d757bfe'
-    oldFile: !uuid '0cdd2d2832997b3f62ef5a828b234dbc3a76dd6d'
-  /Admin.NET/Admin.NET.Core/SeedData:
-    newFile: !uuid 'c040d0bbc85b454a088ac495fb1bf9d0143eecb0'
-    oldFile: !uuid 'e155a5206534fc4f158fe1d3d365032d269d0e80'
-  /Admin.NET/Admin.NET.Core/SeedData/SysConfigSeedData.cs:
-    newFile: !uuid '9d589529053688f2df9e4b1f352a5f21e9786ad8'
-    oldFile: !uuid 'b9b4571287da45d759795aedfb1cfa51fc0ae1c1'
-gitCommitId: !uuid '9f043e8e8d5d2b7cbc51a5a2928fbff62317788a'
+    newFile: !uuid 'ca9b1e1f3b1f3fb57dbfe99cc5f67fedc8252654'
+    oldFile: !uuid '4ea59fba5f6d6dc2c0addd8fcd98050bb96451ee'
+  /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
+    newFile: !uuid '8fc1c59f4a8b9e528d536facb6b58d5bc7bdb35c'
+    oldFile: !uuid '6cb2310f5cd1344af16360af6d7baff7305806bd'
+  /Admin.NET/Admin.NET.Core/Service:
+    newFile: !uuid 'a0b159d5a571d1efc621fb0db5c9e79f72c146b4'
+    oldFile: !uuid '9afb1adc6cf744f4a8a0ccceefdb9be72c5a8713'
+  /Admin.NET/Admin.NET.Core/Service/Const:
+    newFile: !uuid 'c14b04d84f7340375a5fdba3fbd1befa9bf4e9dd'
+    oldFile: !uuid 'b038292eb0e48ab9aba11f68b57b985d2bfcadd0'
+  /Admin.NET/Admin.NET.Core/Service/Const/SysConstService.cs:
+    newFile: !uuid '979ed43d28d8e5f982dd841f5fdeeafad452ac92'
+    oldFile: !uuid '64c4d6fda63338162b6f000f4891b146cc405b38'
+  /Web:
+    newFile: !uuid '3944b374f3711f694244b9a7c9d753af267325ca'
+    oldFile: !uuid '0ed0182e75b5b9693970c11d41a29da6bb6a7920'
+  /Web/package.json:
+    newFile: !uuid '64ab93b38cc317f39dde8d6e7a2a7917fb35bb7d'
+    oldFile: !uuid '23e9b6f718ec074225591f3139e897b18cdf433b'
+gitCommitId: !uuid '62d228801bc1299da86532b555cef7133cdb0165'
 renames: {
   }
-revisionId: 2348
+revisionId: 2349
