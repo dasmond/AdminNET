@@ -6,9 +6,16 @@
 </template>
 
 <script setup>
-	import clearPinia from '@/utils/clearPinia.js';
+	import {getUserInfo} from '@/http/apis/user.js';
+	import {onLoad} from '@dcloudio/uni-app';
+	import { TokenStore } from '@/store/token.js';
+	// 获取用户信息
+	onLoad(async () => {
+		const res = await getUserInfo();
+		console.log(res);
+	})
 	const logout = () => {
-		clearPinia();
+		TokenStore().$reset();
 		uni.$u.toast('退出登录成功！')
 		uni.$route({
 			url: '/pages/login/login',

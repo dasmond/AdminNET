@@ -9,25 +9,35 @@ import {
 } from 'uview-plus'
 import {
 	decryptJWT,
-	getJWTDate
+	getJWTDate,
+	tansParams
 } from '@/utils/jwt.js'
 export const setRequestConfig = () => {
 	http.setConfig((config) => {
 		/* config 为默认全局配置*/
-		config.baseURL = BASE_URL
+		config.baseURL = BASE_URL,
+			config.timeout = 60000 //超时时间
+		config.header = {
+			/* 设置全局请求头*/
+			'Content-Type': 'application/json',
+			'X-Requested-With': 'XMLHttpRequest',
+			'Authorization': 'Bearer ' + TokenStore().getToken
+		}
 		return config
 	})
 	// 请求拦截
 	http.interceptors.request.use(
 		(config) => {
-			console.log(TokenStore());
+			console.log(config);
+
 			let token = TokenStore().getToken
+			console.log(token);
 			if (token) {
 				// 将 token 添加到请求报文头中
-				config.headers['Authorization'] = `Bearer ${token}`;
+				config.header['Authorization'] = `Bearer ${token}`;
 
 				// 判断 accessToken 是否过期
-				const jwt = decryptJWT(accessToken);
+				const jwt = decryptJWT(token);
 				const exp = getJWTDate(jwt.exp);
 
 				// token 已经过期
@@ -36,9 +46,16 @@ export const setRequestConfig = () => {
 					const refreshAccessToken = TokenStore().getRefreshToken;
 					// 携带刷新 token
 					if (refreshAccessToken) {
-						config.headers['X-Authorization'] = `Bearer ${refreshAccessToken}`;
+						config.header['X-Authorization'] = `Bearer ${refreshAccessToken}`;
 					}
 				}
+			}
+			// get请求映射params参数
+			if (config.method?.toLowerCase() === 'get' && config.data) {
+				let url = config.url + '?' + tansParams(config.data);
+				url = url.slice(0, -1);
+				config.data = {};
+				config.url = url;
 			}
 			return config
 		},
@@ -52,7 +69,7 @@ export const setRequestConfig = () => {
 			// 获取状态码和返回数据
 			var status = res.status;
 			var serve = res.data;
-
+			console.log(status,serve,11111);
 			// 处理 401
 			if (status === 401) {
 				TokenStore().Clear();
@@ -67,25 +84,22 @@ export const setRequestConfig = () => {
 			if (serve && serve.hasOwnProperty('errors') && serve.errors) {
 				throw new Error(JSON.stringify(serve.errors || 'Request Error.'));
 			}
-			let token = TokenStore().getToken
-			if (token) {
-				// 将 token 添加到请求报文头中
-				// token 键定义
-				const accessTokenKey = 'access-token';
-				const refreshAccessTokenKey = `x-${accessTokenKey}`;
-				// 读取响应报文头 token 信息
-				var accessToken = res.headers[accessTokenKey];
-				var refreshAccessToken = res.headers[refreshAccessTokenKey];
 
-				// 判断是否是无效 token
-				if (accessToken === 'invalid_token') {
-					TokenStore().Clear();
-				}
-				// 判断是否存在刷新 token，如果存在则存储在本地
-				else if (refreshAccessToken && accessToken && accessToken !== 'invalid_token') {
-					TokenStore().SetToken(accessToken, refreshAccessToken);
-				}
-			}
+			// const accessTokenKey = 'access-token';
+			// const refreshAccessTokenKey = `x-${accessTokenKey}`;
+			// // 读取响应报文头 token 信息
+			// var accessToken = res.headers[accessTokenKey];
+			// var refreshAccessToken = res.headers[refreshAccessTokenKey];
+
+			// // 判断是否是无效 token
+			// if (accessToken === 'invalid_token') {
+			// 	TokenStore().Clear();
+			// }
+			// // 判断是否存在刷新 token，如果存在则存储在本地
+			// else if (refreshAccessToken && accessToken && accessToken !== 'invalid_token') {
+			// 	TokenStore().SetToken(accessToken, refreshAccessToken);
+			// }
+
 
 			// 响应拦截及自定义处理
 			if (serve.code === 401) {
@@ -118,6 +132,7 @@ export const setRequestConfig = () => {
 			return res.data;
 		},
 		(error) => {
+			console.log(error);
 			// 处理响应错误
 			if (error.response) {
 				if (error.response.status === 401) {
@@ -131,6 +146,17 @@ export const setRequestConfig = () => {
 					}, 1000);
 				}
 			}
+			uni.$showMsg(error.errMsg);
+			// 对响应错误做点什么
+			// if (error.message.indexOf('timeout') != -1) {
+			// 	uni.$showMsg('请求超时');
+			// } else if (error.message == 'Network Error') {
+			// 	uni.$showMsg('网络异常');
+			// } else {
+			// 	if (error.response.data) uni.$showMsg(error.response.statusText);
+			// 	else uni.$showMsg('接口路径找不到');
+			// }
+
 			return Promise.reject(error);
 		}
 		// (response) => {
