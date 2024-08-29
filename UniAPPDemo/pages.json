@@ -25,6 +25,12 @@
 			"style": {
 				"navigationBarTitleText": "我的"
 			}
+		},
+		{
+			"path": "pages/business/upload/index",
+			"style": {
+				"navigationBarTitleText": "上传"
+			}
 		}
 	],
 	"globalStyle": {
@@ -37,17 +43,20 @@
 		}
 	},
 	"tabBar": {
+		"height": "0",
 		"color": "#7A7E83",
-		"selectedColor": "#3cc51f",
+		"selectedColor": "#ffffff",
 		"borderStyle": "black",
 		"backgroundColor": "#ffffff",
-		"list": [{
-				"pagePath": "pages/index/index",
-				"text": "首页"
+		"list": [
+			{
+				"pagePath": "pages/index/index"
 			},
 			{
-				"pagePath": "pages/my/my",
-				"text": "我的"
+				"pagePath": "pages/business/upload/index"
+			},
+			{
+				"pagePath": "pages/my/my"
 			}
 		]
 	}

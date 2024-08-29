@@ -1,8 +1,7 @@
-import { setRequestConfig } from './request.js';
-import { http} from 'uview-plus'
-// 调用setRequestConfig函数进行请求配置
-setRequestConfig();
+
 // 发起登录请求   post请求
-export const requestLogin = (data) => http.post('/api/sysAuth/login', data);
+export const requestLogin = (data) => uni.$http.post('/api/sysAuth/login',data);
 //获取验证码
-export const requestCode = () => http.get('/api/sysAuth/captcha');
+export const requestCode = () => uni.$http.get('/api/sysAuth/captcha',{custom:{loading:false}});
+//退出登录
+export const requestLogout = () => uni.$http.post('/api/sysAuth/logout');
