@@ -16,6 +16,8 @@
 		'https://cdn.uviewui.com/uview/swiper/swiper2.png',
 		'https://cdn.uviewui.com/uview/swiper/swiper3.png',
 	]);
+	
+	
 </script>
 <style>
 

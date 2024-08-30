@@ -42,7 +42,7 @@
 	import {
 		TabberStore
 	} from '@/store/tabber.js';
-
+import clearPinia from '@/utils/clearPinia.js'
 	const userInfoStore = UserInfoStore();
 	const userInfo = ref(userInfoStore.userInfo);
 
@@ -73,14 +73,8 @@
 			success: async (res) => {
 				if (res.confirm) {
 					await requestLogout();
-					TokenStore().$reset();
-					userInfoStore.$reset();
-					TabberStore().$reset();
 					uni.$u.toast('退出登录成功！')
-					uni.$route({
-						url: '/pages/login/login',
-						type: 'reLaunch'
-					})
+					clearPinia();
 				} else if (res.cancel) {
 					console.log('用户点击取消');
 				}

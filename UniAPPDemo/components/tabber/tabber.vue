@@ -32,6 +32,28 @@
 			type: 'tab'
 		})
 	}
+	
+	//
+	import {
+		signalR
+	} from '@/utils/signalr.js';
+	import {
+		requestLogout
+	} from '@/http/api.js';
+	import {
+		onLoad
+	} from '@dcloudio/uni-app';
+	import clearPinia from '@/utils/clearPinia.js'
+	onLoad(() => {
+		// 强制下线
+		signalR.off('ForceOffline');
+		signalR.on('ForceOffline', async (data) => {
+			console.log('强制下线', data);
+			await signalR.stop();
+			await requestLogout();
+			clearPinia();
+		});
+	});
 </script>
 
 <style>
