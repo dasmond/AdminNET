@@ -3,27 +3,21 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '5168f330c6c1324dfa2678603d7c3f7b6ca4ac3b'
-    oldFile: !uuid 'd0b979f83c827c4d40d3b2d123690d1b0795f74d'
+    newFile: !uuid '90ce9141eb76044293d563be7224e6a17546594b'
+    oldFile: !uuid '5168f330c6c1324dfa2678603d7c3f7b6ca4ac3b'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '82ebe14e3d5c5d71cf5dff48a29b5ee24cbd0536'
-    oldFile: !uuid 'e9572332b5730311c54f279ff2f706850cba7191'
-  /Admin.NET/Admin.NET.Core/Job:
-    newFile: !uuid 'e8fc505dc085f90c81105e1c8715aaf4fdedd5a6'
-    oldFile: !uuid 'c931a266d3670dcc465cca3cc3b39224300493e9'
-  /Admin.NET/Admin.NET.Core/Job/EnumToDictJob.cs:
-    newFile: !uuid '478ac3e8bd43b6f1d1bd08d194c8a434c0e3957a'
-    oldFile: !uuid 'e6626457936726cc3ec45305bedcff6182b97caa'
+    newFile: !uuid '8920dcfe7a4a10c86b3009bf50340d035989e98f'
+    oldFile: !uuid '82ebe14e3d5c5d71cf5dff48a29b5ee24cbd0536'
   /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid '2628e4540f757825a0408fedcaee68cacdfac05d'
-    oldFile: !uuid '1aa9992f1eb1d6810aed6d8b2d049def1f4feb2a'
-  /Admin.NET/Admin.NET.Core/Service/Wechat:
-    newFile: !uuid '58adefe697398e4d6f9bb68dcaa9e040aecf7764'
-    oldFile: !uuid 'da7edf6d1f0c80aa6b5fda85b90289385ce5eee1'
-  /Admin.NET/Admin.NET.Core/Service/Wechat/SysWxOpenService.cs:
-    newFile: !uuid '7da9a83a25f730bc511473070a6c3f60667150eb'
-    oldFile: !uuid '0c7da74bcb1295d13007f65269d4bddae2e6efcc'
-gitCommitId: !uuid '41f4591ac1294826b8a1286434b12ac02d55dd4a'
+    newFile: !uuid 'f4d5f3f9aafa2700eb780231968ac81410e7f8c2'
+    oldFile: !uuid '2628e4540f757825a0408fedcaee68cacdfac05d'
+  /Admin.NET/Admin.NET.Core/Service/User:
+    newFile: !uuid 'ae9518551be1895060e9b107ecc0e96bdd78c905'
+    oldFile: !uuid '70927efd823ab8da3ea5803f303aa10c2ca0b708'
+  /Admin.NET/Admin.NET.Core/Service/User/SysUserService.cs:
+    newFile: !uuid 'a8a1b5ca2db79653472d171e61fcebc5a9673739'
+    oldFile: !uuid 'eeee136c2ee074032aa4deeb09d361bd74a195c7'
+gitCommitId: !uuid '137e53be3b75c492da71c059e6f6b5356c137877'
 renames: {
   }
-revisionId: 2310
+revisionId: 2311
