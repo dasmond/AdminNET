@@ -3,27 +3,105 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '7481c4f4e08f02dd2823c8bb37b2ac69300827cb'
-    oldFile: !uuid '5d1983c2c174dbb8c4c8696641872bb787b07023'
+    newFile: !uuid 'd0b979f83c827c4d40d3b2d123690d1b0795f74d'
+    oldFile: !uuid '7481c4f4e08f02dd2823c8bb37b2ac69300827cb'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid 'ff70cba2ee6bd4e5387260896e1d2bd242439409'
-    oldFile: !uuid '6a835216a616b15a27b663656972c394dea0a8cd'
+    newFile: !uuid 'e9572332b5730311c54f279ff2f706850cba7191'
+    oldFile: !uuid 'ff70cba2ee6bd4e5387260896e1d2bd242439409'
+  /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
+    newFile: !uuid 'd7a67750ccd4499bb37c4392221a57505e369be3'
+    oldFile: !uuid 'c9f50551a821bc5f7ab85f7a6a0d28f14f4e9134'
+  /Admin.NET/Admin.NET.Core/Entity:
+    newFile: !uuid '857fad153ba924b9dcbf63c4d9d9fa8127013010'
+    oldFile: !uuid '9f7cc70eaa26ee1de40ce94a5f32bf7a0826530a'
+  /Admin.NET/Admin.NET.Core/Entity/SysUser.cs:
+    newFile: !uuid 'da8808cd8d1274b6c98bb21976c32ad6f74f7f94'
+    oldFile: !uuid 'e0e7e4bc3ac3f891b4d3d6411324052010bbd0c8'
   /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid 'd1cfaa5dbae994331abf60fae3c3a2440f95134e'
-    oldFile: !uuid '9f7a3e075cb452098484bc6a013a3d6c38ff4002'
+    newFile: !uuid '1aa9992f1eb1d6810aed6d8b2d049def1f4feb2a'
+    oldFile: !uuid 'd1cfaa5dbae994331abf60fae3c3a2440f95134e'
   /Admin.NET/Admin.NET.Core/Service/Wechat:
-    newFile: !uuid '5e557014dd6c5d3d4d866ca58b0a74e768e8d912'
-    oldFile: !uuid '467f7f3e6d9a764b7acbeb44ad14b508f198ea18'
+    newFile: !uuid 'da7edf6d1f0c80aa6b5fda85b90289385ce5eee1'
+    oldFile: !uuid '5e557014dd6c5d3d4d866ca58b0a74e768e8d912'
   /Admin.NET/Admin.NET.Core/Service/Wechat/Dto:
-    newFile: !uuid '2e65ac9366e30da06ff039e197ad44fc74985f54'
-    oldFile: !uuid '2fe4433c8287d6b5af8e89a627d451021ea8bfb2'
+    newFile: !uuid '8900f9c2d4cd6abd006ca8435fea61e61c81a2d9'
+    oldFile: !uuid '2e65ac9366e30da06ff039e197ad44fc74985f54'
   /Admin.NET/Admin.NET.Core/Service/Wechat/Dto/WechatInput.cs:
-    newFile: !uuid 'b861d060b8b77f865f526c99ea15139c7f903daa'
-    oldFile: !uuid '3231f47c56988c862c4e3711acf23bbca748458a'
+    newFile: !uuid '87fcb4775b92159230b15e4344371901b39e110f'
+    oldFile: !uuid 'b861d060b8b77f865f526c99ea15139c7f903daa'
   /Admin.NET/Admin.NET.Core/Service/Wechat/SysWxOpenService.cs:
-    newFile: !uuid '4809ff0d90a29be5a353b2e1c074b67b5bdf687a'
-    oldFile: !uuid '213c41da51cd151267ac2d9d9284ec892410cb39'
-gitCommitId: !uuid '57ff0fe1259b9fbf57bf2bd8fa502ab11eed8531'
+    newFile: !uuid '0c7da74bcb1295d13007f65269d4bddae2e6efcc'
+    oldFile: !uuid '4809ff0d90a29be5a353b2e1c074b67b5bdf687a'
+  /Admin.NET/Plugins:
+    newFile: !uuid '91ca17f3afd82ca71205d39a4247d691c3a07f74'
+    oldFile: !uuid '3cdeeaa708e1f5a639d91bbc6702296dd974bf15'
+  /Admin.NET/Plugins/Admin.NET.Plugin.K3Cloud:
+    newFile: !uuid '07222e9f844b5f726d72cb176c9f697f36deb384'
+    oldFile: !uuid 'bf33f4d7a99dbb00b563acc74e7c34d1b1ff6a72'
+  /Admin.NET/Plugins/Admin.NET.Plugin.K3Cloud/Admin.NET.Plugin.K3Cloud.csproj:
+    newFile: !uuid 'd2313554d22e9d8c75e69fb25fe7f9fc2b86495f'
+    oldFile: !uuid '9526c42069bac30d874dfd42b304103baf590cf1'
+  /Admin.NET/Plugins/Admin.NET.Plugin.K3Cloud/Configuration:
+    newFile: !uuid '4a9ea828ab482a88130cf019cd5492fbeee74d08'
+    oldFile: !uuid '11ad351ff9748e2fe3f43e9204dc97093c3c6c4e'
+  /Admin.NET/Plugins/Admin.NET.Plugin.K3Cloud/Configuration/K3Cloud.json:
+    newFile: !uuid '4a7b4d0a57a6ecfff90c9f2d36a6325dc28b0614'
+    oldFile: !uuid '7352771c278f75adfaba120727205163269cb48f'
+  /Admin.NET/Plugins/Admin.NET.Plugin.K3Cloud/Option:
+    newFile: !uuid '635633bdbbc257c77405fece4a34910a7599073d'
+    oldFile: !uuid 'aa6dbe0edde05bc401dfb50135600352cfa8ef70'
+  /Admin.NET/Plugins/Admin.NET.Plugin.K3Cloud/Option/K3CloudOptions.cs:
+    newFile: !uuid '134c9362d14a36e728f2b6868ee65cf6bd9fa273'
+    oldFile: !uuid 'b1d2f1597a2afa43e98f377d86368a517495e9e6'
+  /Admin.NET/Plugins/Admin.NET.Plugin.K3Cloud/Service:
+    newFile: !uuid 'a12f689e80e44a6e786bbaa1fb987475994defd4'
+    oldFile: !uuid '0cb76c779ba13be613fd6e2476dcdd139943c9b0'
+  /Admin.NET/Plugins/Admin.NET.Plugin.K3Cloud/Service/Dto:
+    newFile: !uuid '5dec8cf0d540738e3a6360842c5b08859eae0a3d'
+    oldFile: !uuid '49da8116017eb0c08c285ed71574c44198e1d42b'
+  /Admin.NET/Plugins/Admin.NET.Plugin.K3Cloud/Service/Dto/K3CloudBaeInput.cs:
+    newFile: !uuid '28ae79d2d468b533dc2ad6478596dab27e16ac98'
+    oldFile: !uuid '2b6506b78d6d59055408c4206c63ec47ca508bb6'
+  /Admin.NET/Plugins/Admin.NET.Plugin.K3Cloud/Service/Dto/K3CloudLoginInput.cs:
+    newFile: !uuid '6579cb114894f00c536871687ea92881a36c7cee'
+    oldFile: !uuid '584bc334e5d8c6565c5874c00c4edcdf62136e2b'
+  /Admin.NET/Plugins/Admin.NET.Plugin.K3Cloud/Service/Dto/K3CloudLoginOutput.cs:
+    newFile: !uuid '43e0c25aa8ddb59eea9afa146665010f28fe5055'
+    oldFile: !uuid 'cadbd9d430ae463d1e57fabad004a8c38d3a75e9'
+  /Admin.NET/Plugins/Admin.NET.Plugin.K3Cloud/Service/Dto/K3CloudPushResultOutput.cs:
+    newFile: !uuid 'd0ede436eea0d2b4c5809defee1e12b60c191e29'
+    oldFile: !uuid '4cd782d6bf38ddf4a338cf1e11e9f2d3f749f192'
+  /Admin.NET/Plugins/Admin.NET.Plugin.K3Cloud/Service/IK3CloudApi.cs:
+    newFile: !uuid '7c8627c5103cbc8b1cdb9acbb708f8d78117f06a'
+    oldFile: !uuid '58a1d3c1a277541928da5885f2af264e9760d0d3'
+  /Admin.NET/Plugins/Admin.NET.Plugin.K3Cloud/Startup.cs:
+    newFile: !uuid '69a76d5aa17fc6bac3b31c41a76a02b042c66006'
+    oldFile: !uuid '970a57de8a76b31ab6e3a21e91d7d95a60582a9f'
+  /Web:
+    newFile: !uuid '69249a45c9e9e3e12e17ced104ae81ee76cf7881'
+    oldFile: !uuid '4027e8e22018e2f938695c40c22d8845962174e0'
+  /Web/package.json:
+    newFile: !uuid '38cc9f4484ac096e3141bfbc275a12de5fc47a86'
+    oldFile: !uuid '510b6225a192a8e57ce1b4835cefad73eb564f8e'
+  /Web/src:
+    newFile: !uuid '57bba6ac58ebb9a4497eb322fd79a0ecf7f4cc69'
+    oldFile: !uuid 'dadfa540eee4617f6abe37a503385353bdbabe88'
+  /Web/src/views:
+    newFile: !uuid 'b6340e1861858dbf39a88bd9906567f35f365c56'
+    oldFile: !uuid '34d3d9502890aabceb2863d1c8dee7c18676d7ed'
+  /Web/src/views/system:
+    newFile: !uuid '749ce9322684585492b25fa66c2423e9b2b0ad19'
+    oldFile: !uuid '109c673dbb77b58cbdf5af297c370eaacf00a885'
+  /Web/src/views/system/user:
+    newFile: !uuid 'ba8ddb8642c032e9e4dd0bc38cfdc0f073c3563f'
+    oldFile: !uuid '5c9b4e5907d808eee49672009925811298db0300'
+  /Web/src/views/system/user/component:
+    newFile: !uuid '56b9c95d7ac4feb827168ab2fcf6c81934262859'
+    oldFile: !uuid 'e2432362dfbc65e2c4dacf4a144ca83c9c729884'
+  /Web/src/views/system/user/component/userCenter.vue:
+    newFile: !uuid '3ba706d051920c2ddc5166b2b85510e9b75bc7e7'
+    oldFile: !uuid '810722d6400832ac1fd7597c51384a517d48c12e'
+gitCommitId: !uuid '3bb50112465a7056aa7da5b30e4786c2dd59a2e6'
 renames: {
   }
-revisionId: 2308
+revisionId: 2309
