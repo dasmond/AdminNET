@@ -3,105 +3,18 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '61f976837ad3c8af7a96013c02727e87861bf1bb'
-    oldFile: !uuid '82b1888ca476bbd4dc86deab0db11481f3b8f3bb'
+    newFile: !uuid '5d1983c2c174dbb8c4c8696641872bb787b07023'
+    oldFile: !uuid '61f976837ad3c8af7a96013c02727e87861bf1bb'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '4c6bb0665a6d2c354a0b7ebe0f566a17a2553694'
-    oldFile: !uuid '2efc7eb5040f02f5d79e67e622220ddb74709960'
-  /Admin.NET/Admin.NET.Core/Entity:
-    newFile: !uuid '9f7cc70eaa26ee1de40ce94a5f32bf7a0826530a'
-    oldFile: !uuid 'e840adb5e74d365ab01df3249b003d0226fd6b8c'
-  /Admin.NET/Admin.NET.Core/Entity/SysUser.cs:
-    newFile: !uuid 'e0e7e4bc3ac3f891b4d3d6411324052010bbd0c8'
-    oldFile: !uuid 'eea9f1df32f68202367736b5f6643db59ad3f8ff'
-  /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid '9f7a3e075cb452098484bc6a013a3d6c38ff4002'
-    oldFile: !uuid '84543385c41f9e77dfa141957e4ac9a9052230b3'
-  /Admin.NET/Admin.NET.Core/Service/User:
-    newFile: !uuid '70927efd823ab8da3ea5803f303aa10c2ca0b708'
-    oldFile: !uuid '00f8b10ead69ba17548af7fa5a5e3603ea4b7817'
-  /Admin.NET/Admin.NET.Core/Service/User/SysUserService.cs:
-    newFile: !uuid 'eeee136c2ee074032aa4deeb09d361bd74a195c7'
-    oldFile: !uuid 'e814927b756abf132d1e347d70e870588044ddb1'
-  /Admin.NET/Admin.NET.sln:
-    newFile: !uuid 'c4144a2b6bb5b291080fc64580ec3e369437f049'
-    oldFile: !uuid '7949bdba680383d752f55dd7752e91de2cc786a6'
-  /Admin.NET/Plugins:
-    newFile: !uuid '3cdeeaa708e1f5a639d91bbc6702296dd974bf15'
-    oldFile: !uuid '2dd37e8187aa180192e8dafb266a1d87fe6dec02'
-  /Admin.NET/Plugins/Admin.NET.Plugin.K3Cloud:
-    newFile: !uuid 'bf33f4d7a99dbb00b563acc74e7c34d1b1ff6a72'
-    oldFile: null
-  /Admin.NET/Plugins/Admin.NET.Plugin.K3Cloud/Admin.NET.Plugin.K3Cloud.csproj:
-    newFile: !uuid '9526c42069bac30d874dfd42b304103baf590cf1'
-    oldFile: null
-  /Admin.NET/Plugins/Admin.NET.Plugin.K3Cloud/Configuration:
-    newFile: !uuid '11ad351ff9748e2fe3f43e9204dc97093c3c6c4e'
-    oldFile: null
-  /Admin.NET/Plugins/Admin.NET.Plugin.K3Cloud/Configuration/K3Cloud.json:
-    newFile: !uuid '7352771c278f75adfaba120727205163269cb48f'
-    oldFile: null
-  /Admin.NET/Plugins/Admin.NET.Plugin.K3Cloud/GlobalUsings.cs:
-    newFile: !uuid '80451d591c61a575579f6649b0ea2b872db510d7'
-    oldFile: null
-  /Admin.NET/Plugins/Admin.NET.Plugin.K3Cloud/Option:
-    newFile: !uuid 'aa6dbe0edde05bc401dfb50135600352cfa8ef70'
-    oldFile: null
-  /Admin.NET/Plugins/Admin.NET.Plugin.K3Cloud/Option/K3CloudOptions.cs:
-    newFile: !uuid 'b1d2f1597a2afa43e98f377d86368a517495e9e6'
-    oldFile: null
-  /Admin.NET/Plugins/Admin.NET.Plugin.K3Cloud/Service:
-    newFile: !uuid '0cb76c779ba13be613fd6e2476dcdd139943c9b0'
-    oldFile: null
-  /Admin.NET/Plugins/Admin.NET.Plugin.K3Cloud/Service/Dto:
-    newFile: !uuid '49da8116017eb0c08c285ed71574c44198e1d42b'
-    oldFile: null
-  /Admin.NET/Plugins/Admin.NET.Plugin.K3Cloud/Service/Dto/K3CloudBaeInput.cs:
-    newFile: !uuid '2b6506b78d6d59055408c4206c63ec47ca508bb6'
-    oldFile: null
-  /Admin.NET/Plugins/Admin.NET.Plugin.K3Cloud/Service/Dto/K3CloudLoginInput.cs:
-    newFile: !uuid '584bc334e5d8c6565c5874c00c4edcdf62136e2b'
-    oldFile: null
-  /Admin.NET/Plugins/Admin.NET.Plugin.K3Cloud/Service/Dto/K3CloudLoginOutput.cs:
-    newFile: !uuid 'cadbd9d430ae463d1e57fabad004a8c38d3a75e9'
-    oldFile: null
-  /Admin.NET/Plugins/Admin.NET.Plugin.K3Cloud/Service/Dto/K3CloudPushResultOutput.cs:
-    newFile: !uuid '4cd782d6bf38ddf4a338cf1e11e9f2d3f749f192'
-    oldFile: null
-  /Admin.NET/Plugins/Admin.NET.Plugin.K3Cloud/Service/IK3CloudApi.cs:
-    newFile: !uuid '58a1d3c1a277541928da5885f2af264e9760d0d3'
-    oldFile: null
-  /Admin.NET/Plugins/Admin.NET.Plugin.K3Cloud/Startup.cs:
-    newFile: !uuid '970a57de8a76b31ab6e3a21e91d7d95a60582a9f'
-    oldFile: null
-  /Web:
-    newFile: !uuid '4027e8e22018e2f938695c40c22d8845962174e0'
-    oldFile: !uuid '059f8262d1e931954a83ec9055c2ac43c27af30a'
-  /Web/api_build:
-    newFile: !uuid 'b72cbfa4817857d131bc8c02e2756174892ba2a5'
-    oldFile: !uuid 'f56e0ffe1fec7dd4f612e404411b7be7d2cfb87a'
-  /Web/api_build/build_api.sh:
-    newFile: !uuid '3daf1ce5d117101aa00652740af51bc2ac0adc58'
-    oldFile: null
-  /Web/src:
-    newFile: !uuid 'dadfa540eee4617f6abe37a503385353bdbabe88'
-    oldFile: !uuid 'c0bdc505d4e246d3c8ef5a7283288bf76f67e5f7'
-  /Web/src/views:
-    newFile: !uuid '34d3d9502890aabceb2863d1c8dee7c18676d7ed'
-    oldFile: !uuid 'd749379e9b09ffd061815ea0047fa9218312e679'
-  /Web/src/views/system:
-    newFile: !uuid '109c673dbb77b58cbdf5af297c370eaacf00a885'
-    oldFile: !uuid '4a5047fd50e976a7c49f6c7d6d1c6ce758d8c90f'
-  /Web/src/views/system/user:
-    newFile: !uuid '5c9b4e5907d808eee49672009925811298db0300'
-    oldFile: !uuid '1455847d01229f695d4fe7a0b342365641b6eb5f'
-  /Web/src/views/system/user/component:
-    newFile: !uuid 'e2432362dfbc65e2c4dacf4a144ca83c9c729884'
-    oldFile: !uuid '425920cd65b1abd6b7e5fefef06910848f9f8823'
-  /Web/src/views/system/user/component/userCenter.vue:
-    newFile: !uuid '810722d6400832ac1fd7597c51384a517d48c12e'
-    oldFile: !uuid '9eac2a0f0873feccbb95316ab5c3421854849700'
-gitCommitId: !uuid 'f6d3c03d17fe36242b058213078082c9fcc11f10'
+    newFile: !uuid '6a835216a616b15a27b663656972c394dea0a8cd'
+    oldFile: !uuid '4c6bb0665a6d2c354a0b7ebe0f566a17a2553694'
+  /Admin.NET/Admin.NET.Core/Job:
+    newFile: !uuid 'c931a266d3670dcc465cca3cc3b39224300493e9'
+    oldFile: !uuid '3e0fa103d9d74e7de9b3e33647b6f4595db97daf'
+  /Admin.NET/Admin.NET.Core/Job/EnumToDictJob.cs:
+    newFile: !uuid 'e6626457936726cc3ec45305bedcff6182b97caa'
+    oldFile: !uuid '4041a8f798ac632d2945fd0b0c0d599f3967ae99'
+gitCommitId: !uuid 'd9e70c13024accb83ffd89ded15f489ee3a599ec'
 renames: {
   }
-revisionId: 2358
+revisionId: 2359
