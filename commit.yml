@@ -2,25 +2,25 @@
 branches: {
   }
 fileChange:
-  /Admin.NET:
-    newFile: !uuid '695cce4d8417365c532ab441b8eb73842d3c7ae0'
-    oldFile: !uuid 'e453b7154d9a10bb6e7d517a21e6b891f7f98243'
-  /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '210a19b20a5cdcc1c61bcd1b347743dcb4fe4cb2'
-    oldFile: !uuid 'fe73952ff96a1d6e0b4a11b3bff6743f8ca83479'
-  /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
-    newFile: !uuid '2f9343cf209e400acf9aecbde594bd9eb7c02798'
-    oldFile: !uuid '98d5dd0c12c050d5b230047fba0b61ab05fe9b7e'
-  /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid 'eacde0efe2df9f6f566aa959f584d2c246017d48'
-    oldFile: !uuid 'a80c846f2e8b7e10d60ffcbb33f20d11bc316964'
-  /Admin.NET/Admin.NET.Core/Service/Wechat:
-    newFile: !uuid 'c081f01d2f08b892df2124f058f6776d9f96c94a'
-    oldFile: !uuid '58adefe697398e4d6f9bb68dcaa9e040aecf7764'
-  /Admin.NET/Admin.NET.Core/Service/Wechat/SysWechatService.cs:
-    newFile: !uuid 'd0b8ae026c42bcdc2f9569849d3619cd28df7036'
-    oldFile: !uuid '53fbda9f1ea23775a791058c435b0a58283d592e'
-gitCommitId: !uuid '340633793952ca7f5ea2393fc303d76fb327962d'
+  /Web:
+    newFile: !uuid 'f5eb3441cace1975225e518c44bd9ed143b6989d'
+    oldFile: !uuid '9603c70f933f9caa253d20c6d95c4621b34e8716'
+  /Web/src:
+    newFile: !uuid 'e0518c4b637474a05cbfc0bb30833e30bc1f4970'
+    oldFile: !uuid '57bba6ac58ebb9a4497eb322fd79a0ecf7f4cc69'
+  /Web/src/views:
+    newFile: !uuid '99cbca965ef5443ee307762bc992ef18bb29da76'
+    oldFile: !uuid 'b6340e1861858dbf39a88bd9906567f35f365c56'
+  /Web/src/views/system:
+    newFile: !uuid '6f07dc116091566fae134b5c365e6cc266b96c65'
+    oldFile: !uuid '749ce9322684585492b25fa66c2423e9b2b0ad19'
+  /Web/src/views/system/weChatPay:
+    newFile: !uuid '116b34369a0bb3860322e2d8bc11052351f13ec9'
+    oldFile: !uuid 'd702294266c3cef270b2390ceb598fd2b22b8009'
+  /Web/src/views/system/weChatPay/index.vue:
+    newFile: !uuid '8f373c988228dae4575f1fe481cf80f8ba3d5dfd'
+    oldFile: !uuid '4fb8c1aab2e9624639bdfc71d473638faa544524'
+gitCommitId: !uuid 'fe5c54d7f5ca36f09acce2d58be4dade3153701a'
 renames: {
   }
-revisionId: 2368
+revisionId: 2369
