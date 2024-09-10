@@ -3,24 +3,48 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '3ccfdd3429b2589d03587103203f4f5f5f3acca0'
-    oldFile: !uuid '142feb374fa602b87a6932ad6f62676dc6eeba2e'
-  /Admin.NET/Admin.NET.Core:
-    newFile: !uuid 'd1b0bc542c7adfb0d8ee5afa12593f89ce6c8d19'
-    oldFile: !uuid '4e195f70ae962fb901071985a508896271a4c7d5'
-  /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
-    newFile: !uuid '36096c0e2dd8578dd052ebc3a0a29db83a69b2d7'
-    oldFile: !uuid 'b2cc43b73e66c7300b0eacfbb3c9e553d5d03f01'
-  /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid 'ba08561d1d3fe5d26e58273a55048738b4c92aca'
-    oldFile: !uuid 'f6e3276c6b25571630c2a3e30c270d9c58ba66cd'
-  /Admin.NET/Admin.NET.Core/Service/Auth:
-    newFile: !uuid '65242194535c9d512b82726c17ad451f729b4c0e'
-    oldFile: !uuid 'df9337a3675d12fe8b970485b68edb389b464679'
-  /Admin.NET/Admin.NET.Core/Service/Auth/SysAuthService.cs:
-    newFile: !uuid 'd7129d22607bba7776b37e829fdb73d8e3c913d1'
-    oldFile: !uuid '14df839540da06419ef6f00804d63fd5ecab8a98'
-gitCommitId: !uuid '50db20d90d3468c1de34186ff2ff97f2c3ba9877'
+    newFile: !uuid '62f4a2c4a8f5669387422a086137a2c915e1a560'
+    oldFile: !uuid '3ccfdd3429b2589d03587103203f4f5f5f3acca0'
+  /Admin.NET/Admin.NET.Web.Entry:
+    newFile: !uuid '4917142e7ef2b91ff0693b6355f2e4b56fc51a1e'
+    oldFile: !uuid '99267fa61bb260785df851383d8287b9ab8572e2'
+  /Admin.NET/Admin.NET.Web.Entry/wwwroot:
+    newFile: !uuid '1ca160ff7a02cabe60b5b01cfceaee40a63fdc78'
+    oldFile: !uuid '69156aa2852346362e7685bd484fc21a2fde6b34'
+  /Admin.NET/Admin.NET.Web.Entry/wwwroot/images:
+    newFile: !uuid '574d211ef513516b0072b1fccbe6f429838b632c'
+    oldFile: !uuid '0d68182d70dd0f38d060d5c5c7c356d75187ec20'
+  /Admin.NET/Admin.NET.Web.Entry/wwwroot/images/logo.png:
+    newFile: !uuid 'da7942977438b43b1e5cc8aa10d56d82c840613a'
+    oldFile: !uuid '166b80180fb7e665c6617c39393aa57dd204046a'
+  /Admin.NET/Admin.NET.Web.Entry/wwwroot/upload:
+    newFile: !uuid '574d211ef513516b0072b1fccbe6f429838b632c'
+    oldFile: !uuid '0d68182d70dd0f38d060d5c5c7c356d75187ec20'
+  /Admin.NET/Admin.NET.Web.Entry/wwwroot/upload/logo.png:
+    newFile: !uuid 'da7942977438b43b1e5cc8aa10d56d82c840613a'
+    oldFile: !uuid '166b80180fb7e665c6617c39393aa57dd204046a'
+  /Web:
+    newFile: !uuid 'ec6a17a6ebe421e8c91bb5b0cb18e7173a05cffc'
+    oldFile: !uuid '8502e60736b50e2bf310127d877a3a1ca82a43ea'
+  /Web/public:
+    newFile: !uuid 'a77cadeda0f92f4a5d3e9215b6cf0d8afa73947e'
+    oldFile: !uuid '82c450bfcff0f89750ae556585e596fe73cf0049'
+  /Web/public/favicon.ico:
+    newFile: !uuid '57658d1498f5e93b4ea77e7deef60d997d872762'
+    oldFile: !uuid '487b95aed81d9144a348aa27733fc2f1e704c2a0'
+  /Web/src:
+    newFile: !uuid '6e0a1fdb52393727d30b9431c72946e6a4b1baf7'
+    oldFile: !uuid 'fe569845472998fa4d83fd160cc10d98e4597b85'
+  /Web/src/assets:
+    newFile: !uuid '6620fc674d44e0df288449a0b393955efaab8616'
+    oldFile: !uuid '578ad55956b4295c91c4088a12c132b79f272237'
+  /Web/src/assets/logo-mini.svg:
+    newFile: !uuid '8822272a4c01e9a28e6ccec929cc0e700efcf9ae'
+    oldFile: !uuid 'cdb23a59d358f4d612379a746c151114f6364ee0'
+  /Web/src/assets/logo.png:
+    newFile: !uuid 'da7942977438b43b1e5cc8aa10d56d82c840613a'
+    oldFile: !uuid '5de6838f98ff076058d38ba125b4d1cbd6040804'
+gitCommitId: !uuid '3583c9971a88de167ab6379f6f69a98bc4feccce'
 renames: {
   }
-revisionId: 2323
+revisionId: 2324
