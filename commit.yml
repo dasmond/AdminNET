@@ -2,10 +2,49 @@
 branches: {
   }
 fileChange:
-  /README.md:
-    newFile: !uuid '185b09637dc2f88486a3d15e83d1ff7f2eb868e3'
-    oldFile: !uuid '9496e12c6a67de4f9403da89d9a6d3681e5d424f'
-gitCommitId: !uuid '94178cfb34cdc9199e7b0cf6a57e07a60d8330f5'
+  /Admin.NET:
+    newFile: !uuid '58fa079cb600a11bccb051587e301c871be51bb9'
+    oldFile: !uuid '62f4a2c4a8f5669387422a086137a2c915e1a560'
+  /Admin.NET/Admin.NET.Core:
+    newFile: !uuid '2c44108dab2da08fbaf74af7746737aa08cb09c8'
+    oldFile: !uuid 'd1b0bc542c7adfb0d8ee5afa12593f89ce6c8d19'
+  /Admin.NET/Admin.NET.Core/Service:
+    newFile: !uuid 'c357f977b525f4bccae074bf05128c0fd6a2f799'
+    oldFile: !uuid 'ba08561d1d3fe5d26e58273a55048738b4c92aca'
+  /Admin.NET/Admin.NET.Core/Service/DataBase:
+    newFile: !uuid '8a6f0c596ab4abf7e259ac783090deefc3080772'
+    oldFile: !uuid 'ea712613dc898171f58d1dcef3ff1d26c5c5306e'
+  /Admin.NET/Admin.NET.Core/Service/DataBase/Dto:
+    newFile: !uuid 'da73cf72f4469fd16c80e9370c4090644176002e'
+    oldFile: !uuid '545e89dd710f5ae1a5a7f0c688284b52eb673918'
+  /Admin.NET/Admin.NET.Core/Service/DataBase/Dto/CreateSeedDataInput.cs:
+    newFile: !uuid 'e9abf90ae12f0c9dabd71c7ffb27881967b1d43b'
+    oldFile: !uuid '6e107dbf0d2aeb05c97f3c228e8ef2aa57376aef'
+  /Admin.NET/Admin.NET.Core/Service/DataBase/SysDatabaseService.cs:
+    newFile: !uuid 'e22a91763ebdfadefe392d12ee744a06367be57f'
+    oldFile: !uuid '689065b5ad46a3f614e3a3d2af5bbe6c209cc5db'
+  /Web:
+    newFile: !uuid 'dc991403387e15a9eca9584349037392d6e2b1cf'
+    oldFile: !uuid 'ec6a17a6ebe421e8c91bb5b0cb18e7173a05cffc'
+  /Web/src:
+    newFile: !uuid 'afbcd47235f2762246936b4359dd208de8c71d62'
+    oldFile: !uuid '6e0a1fdb52393727d30b9431c72946e6a4b1baf7'
+  /Web/src/views:
+    newFile: !uuid 'd8c6f08af49cb2338dd6b294d729717e77c8db0d'
+    oldFile: !uuid 'c56065f1745b85da4af06c61e672436a2a405be6'
+  /Web/src/views/system:
+    newFile: !uuid 'd089e10927bae2abe0cc7ddf87a83bf2a2aa290b'
+    oldFile: !uuid 'f33ff98e1c5098b1191ae4daa4fac89a3f161844'
+  /Web/src/views/system/database:
+    newFile: !uuid '0d8ac96e604016a000696dbd5b71f9388ea39fd6'
+    oldFile: !uuid 'ce2885713bb6199be1c650eda12b471568b22949'
+  /Web/src/views/system/database/component:
+    newFile: !uuid 'a06ddb8eb6c2aab1943c3b3ce08786b24d2b44a1'
+    oldFile: !uuid '31e5b57485a9a345cee26a338af9859b8d7f73ca'
+  /Web/src/views/system/database/component/genSeedData.vue:
+    newFile: !uuid '20208f6a202581f3ef9abc1ba54c3bc572a41986'
+    oldFile: !uuid 'b8ec2c22022256b0f7df150b319fbe33c94e41dd'
+gitCommitId: !uuid 'fbd3a70b4345bffad93d23c45580dc9d3fb6b633'
 renames: {
   }
-revisionId: 2326
+revisionId: 2327
