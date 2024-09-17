@@ -3,48 +3,30 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '58fa079cb600a11bccb051587e301c871be51bb9'
-    oldFile: !uuid '62f4a2c4a8f5669387422a086137a2c915e1a560'
+    newFile: !uuid 'ada61de78823b7e50233a5f7714265b8c6a5e514'
+    oldFile: !uuid '58fa079cb600a11bccb051587e301c871be51bb9'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '2c44108dab2da08fbaf74af7746737aa08cb09c8'
-    oldFile: !uuid 'd1b0bc542c7adfb0d8ee5afa12593f89ce6c8d19'
+    newFile: !uuid '4d2aed8734c01e8255b780e3c66d27f3866a0b0f'
+    oldFile: !uuid '2c44108dab2da08fbaf74af7746737aa08cb09c8'
+  /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
+    newFile: !uuid '8e36c87e972194836bb79b0983de3f1c52b9fb57'
+    oldFile: !uuid '36096c0e2dd8578dd052ebc3a0a29db83a69b2d7'
   /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid 'c357f977b525f4bccae074bf05128c0fd6a2f799'
-    oldFile: !uuid 'ba08561d1d3fe5d26e58273a55048738b4c92aca'
+    newFile: !uuid '8ccb9620c4ca4e37b30f6193b30731128eafa98e'
+    oldFile: !uuid 'c357f977b525f4bccae074bf05128c0fd6a2f799'
   /Admin.NET/Admin.NET.Core/Service/DataBase:
-    newFile: !uuid '8a6f0c596ab4abf7e259ac783090deefc3080772'
-    oldFile: !uuid 'ea712613dc898171f58d1dcef3ff1d26c5c5306e'
-  /Admin.NET/Admin.NET.Core/Service/DataBase/Dto:
-    newFile: !uuid 'da73cf72f4469fd16c80e9370c4090644176002e'
-    oldFile: !uuid '545e89dd710f5ae1a5a7f0c688284b52eb673918'
-  /Admin.NET/Admin.NET.Core/Service/DataBase/Dto/CreateSeedDataInput.cs:
-    newFile: !uuid 'e9abf90ae12f0c9dabd71c7ffb27881967b1d43b'
-    oldFile: !uuid '6e107dbf0d2aeb05c97f3c228e8ef2aa57376aef'
+    newFile: !uuid '42344798c25c85826effca90e5c36a7b23877855'
+    oldFile: !uuid '8a6f0c596ab4abf7e259ac783090deefc3080772'
   /Admin.NET/Admin.NET.Core/Service/DataBase/SysDatabaseService.cs:
-    newFile: !uuid 'e22a91763ebdfadefe392d12ee744a06367be57f'
-    oldFile: !uuid '689065b5ad46a3f614e3a3d2af5bbe6c209cc5db'
+    newFile: !uuid '69c7bb2e561b5c1015278014b89ca2f5a1e0293d'
+    oldFile: !uuid 'e22a91763ebdfadefe392d12ee744a06367be57f'
   /Web:
-    newFile: !uuid 'dc991403387e15a9eca9584349037392d6e2b1cf'
-    oldFile: !uuid 'ec6a17a6ebe421e8c91bb5b0cb18e7173a05cffc'
-  /Web/src:
-    newFile: !uuid 'afbcd47235f2762246936b4359dd208de8c71d62'
-    oldFile: !uuid '6e0a1fdb52393727d30b9431c72946e6a4b1baf7'
-  /Web/src/views:
-    newFile: !uuid 'd8c6f08af49cb2338dd6b294d729717e77c8db0d'
-    oldFile: !uuid 'c56065f1745b85da4af06c61e672436a2a405be6'
-  /Web/src/views/system:
-    newFile: !uuid 'd089e10927bae2abe0cc7ddf87a83bf2a2aa290b'
-    oldFile: !uuid 'f33ff98e1c5098b1191ae4daa4fac89a3f161844'
-  /Web/src/views/system/database:
-    newFile: !uuid '0d8ac96e604016a000696dbd5b71f9388ea39fd6'
-    oldFile: !uuid 'ce2885713bb6199be1c650eda12b471568b22949'
-  /Web/src/views/system/database/component:
-    newFile: !uuid 'a06ddb8eb6c2aab1943c3b3ce08786b24d2b44a1'
-    oldFile: !uuid '31e5b57485a9a345cee26a338af9859b8d7f73ca'
-  /Web/src/views/system/database/component/genSeedData.vue:
-    newFile: !uuid '20208f6a202581f3ef9abc1ba54c3bc572a41986'
-    oldFile: !uuid 'b8ec2c22022256b0f7df150b319fbe33c94e41dd'
-gitCommitId: !uuid 'fbd3a70b4345bffad93d23c45580dc9d3fb6b633'
+    newFile: !uuid 'd3b8b88667493fe5c214b4b87a95f723d38d63cf'
+    oldFile: !uuid 'dc991403387e15a9eca9584349037392d6e2b1cf'
+  /Web/package.json:
+    newFile: !uuid '0cc47fdfbeafd5f0dc24f9732f3c20c5fcbdae51'
+    oldFile: !uuid 'd8fcc5884f33b40a70d01b02d260af12971e160a'
+gitCommitId: !uuid '9dd1cabefd13dc4d8d4360143119bec9cd190d1a'
 renames: {
   }
-revisionId: 2380
+revisionId: 2381
