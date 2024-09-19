@@ -3,24 +3,63 @@ branches: {
   }
 fileChange:
   /Web:
-    newFile: !uuid 'cf3fe3218b40d1615f90e93bf95a92af88516071'
-    oldFile: !uuid '7bee5f33c2cd984caec09e163eeabd6815b1aabc'
+    newFile: !uuid 'f3c93d75ee7d0d2132e00766fd17e91e07ed586f'
+    oldFile: !uuid 'cf3fe3218b40d1615f90e93bf95a92af88516071'
   /Web/src:
-    newFile: !uuid '0336147a2ecd06736f710508dca78796c5641463'
-    oldFile: !uuid '872ad1d214ce7420a531c5fcb0a7c7a926ea3b86'
+    newFile: !uuid 'e5b09a242c75c515a78576f182755b1dee50cfee'
+    oldFile: !uuid '0336147a2ecd06736f710508dca78796c5641463'
   /Web/src/views:
-    newFile: !uuid 'e7e5d9e9b58ef602542cc8a0ddb222bdd84a8e17'
-    oldFile: !uuid '45385286c51a5771d77d6e64b5c2856b5721bbad'
+    newFile: !uuid '3b2a142ce395f68a3e3b6f54c665b3b814515145'
+    oldFile: !uuid 'e7e5d9e9b58ef602542cc8a0ddb222bdd84a8e17'
   /Web/src/views/system:
-    newFile: !uuid '178a5b0f718a1fe6af6a3720d8080566dddf0c51'
-    oldFile: !uuid '3a6c4299379f43e4f2c93ed4c1729a0caf2445e2'
-  /Web/src/views/system/server:
-    newFile: !uuid '176e31333ccdf9bdda69cf8420675f4a82acaa4a'
-    oldFile: !uuid '9c1c4a79db030984b3622645c20391dcb5f77809'
-  /Web/src/views/system/server/index.vue:
-    newFile: !uuid '3dbb808731e8f214a9b1508aa920335595f60196'
-    oldFile: !uuid 'c9fe47150fc11824e8a0d40625e28a041336ecae'
-gitCommitId: !uuid '753cda19f2d9155c0e47fdff505fed29678a1eb1'
+    newFile: !uuid '2eb5ee6959f32fd7f09269accf18c12c4fc53280'
+    oldFile: !uuid '178a5b0f718a1fe6af6a3720d8080566dddf0c51'
+  /Web/src/views/system/codeGen:
+    newFile: !uuid '46abe100b3d42c11dd39571d07ca1a41fc76493d'
+    oldFile: !uuid '5963015a6b7f807ad9a5398d20675ba1b29196db'
+  /Web/src/views/system/codeGen/component:
+    newFile: !uuid '10f26e3315345e7ebd9c4bfa74024318a9bf0cac'
+    oldFile: !uuid '02c3e5747aec763004c0ffa29c742819cb3c91c6'
+  /Web/src/views/system/codeGen/component/editCodeGenDialog.vue:
+    newFile: !uuid '6217c165a393d573ed62eb1b2ae08bd654413291'
+    oldFile: !uuid 'a6331395d112794aff46a37da7dea45648847539'
+  /Web/src/views/system/menu:
+    newFile: !uuid 'd6568290b022350251382dead70dc56d9bb3257b'
+    oldFile: !uuid '780690900f31fce33fa3a91c8472048a96fc759d'
+  /Web/src/views/system/menu/component:
+    newFile: !uuid 'c1c2558fe4fdacba8371489ec79c629004dc044d'
+    oldFile: !uuid 'b5cb70a258cf5256f42694b4239a49901788b3c5'
+  /Web/src/views/system/menu/component/editMenu.vue:
+    newFile: !uuid 'b5e5e7bc31931c8a56900070cc0babf1f6cbd00d'
+    oldFile: !uuid 'c1767b88add1f2aa3982f157239cfbb5cc42203a'
+  /Web/src/views/system/org:
+    newFile: !uuid '9e8d014bdd0abb7ef165a372e46e3a67e6c1b533'
+    oldFile: !uuid 'bde1d40fd7e75679de8c658d332060b131ea92c6'
+  /Web/src/views/system/org/component:
+    newFile: !uuid '5049f6d1d48833cfb9ff723a06cd26e1a68186e2'
+    oldFile: !uuid '9175cee7b8497d3d1623acb822564b8fc93b8870'
+  /Web/src/views/system/org/component/editOrg.vue:
+    newFile: !uuid 'a342ada2d705ed589adc740060a1f8e0f1be59da'
+    oldFile: !uuid '52ecb46a3efac0d442f19538e204c8acee35041e'
+  /Web/src/views/system/region:
+    newFile: !uuid 'fc29acb2cdfa0d7ee3c7552ba02c436c577c5421'
+    oldFile: !uuid 'bbb7fbada82df64c423caee4064332884b9bcabd'
+  /Web/src/views/system/region/component:
+    newFile: !uuid '3b6c6cb83f3b717362d7381455e9fc3accfe8565'
+    oldFile: !uuid 'ec1e334a80978c1100965c589fe03169248f1827'
+  /Web/src/views/system/region/component/editRegion.vue:
+    newFile: !uuid 'cba4ccec5751491c47a658e13df1d45e36969670'
+    oldFile: !uuid 'a89977f4fdc02a381f09a9798d8cd06e201d7933'
+  /Web/src/views/system/user:
+    newFile: !uuid 'be6fc8ca086ee713e01b03ded2501903dc4292ff'
+    oldFile: !uuid 'c9c65a60e85dc3458d39ce9dec8e0b8a79e3bee8'
+  /Web/src/views/system/user/component:
+    newFile: !uuid '6efc9a8cc1bd4da8f9acdca7846cd69762783636'
+    oldFile: !uuid 'c099577d53ff5a401f64e8590f1bc0d6d3f14476'
+  /Web/src/views/system/user/component/editUser.vue:
+    newFile: !uuid '2d06b155b6e56af79ae9530685de7520252750fe'
+    oldFile: !uuid 'f2c9d1c12b787aa28d6e3e020ebb7e0368e0a1a1'
+gitCommitId: !uuid 'b6d17f63e7a198b7823dcb31471cf517277128e6'
 renames: {
   }
-revisionId: 2386
+revisionId: 2387
