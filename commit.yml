@@ -3,21 +3,21 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid 'c80798ec8cc011ec921b26bf9559abbc608f3b97'
-    oldFile: !uuid '12e2e5eaec359a6741f78d54c84d2c900309d235'
+    newFile: !uuid 'b18dbc129a67b5fd2843e7b65816cf66a867d8b2'
+    oldFile: !uuid 'c80798ec8cc011ec921b26bf9559abbc608f3b97'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid 'e9355fdf16af9465e93b2dd7c3ad8a838eaeebea'
-    oldFile: !uuid '907f11bd9ea60f5bf246d9856004cbff48bec431'
-  /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid '31857ad7ff934e6a3b71a6e863b17fee2d976ca9'
-    oldFile: !uuid '5966f2db5abc1ef91acb1efba03904caf4a4a7ac'
-  /Admin.NET/Admin.NET.Core/Service/Enum:
-    newFile: !uuid '444c0750bbdbf111700de66be71d91a45a402234'
-    oldFile: !uuid 'b6a14b44c77f11c9ad80337da312b00925848e0c'
-  /Admin.NET/Admin.NET.Core/Service/Enum/SysEnumService.cs:
-    newFile: !uuid '9230ec1e19a76afc6adf0d9d6c782c60333cd3b5'
-    oldFile: !uuid '1fce3519b64933f6f526e8a43e94c26baf3d473f'
-gitCommitId: !uuid '80496261d488fdd5a716a5a7282e5ce6fac1ee73'
+    newFile: !uuid '5e5a5b429447d2b1974449642ab8f0d2c8d7d796'
+    oldFile: !uuid 'e9355fdf16af9465e93b2dd7c3ad8a838eaeebea'
+  /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
+    newFile: !uuid '8ee471886ee5101db017c4e4dc3289070fe29576'
+    oldFile: !uuid '410e5c4cc478f52e2f1eb251e6c3a1ee9e6d2e65'
+  /Web:
+    newFile: !uuid 'd626874f20d14f1908e109c34931811bbf3bc0f7'
+    oldFile: !uuid '5f7056201f658da4e7e1475172d429009fd0fba3'
+  /Web/package.json:
+    newFile: !uuid '616a99caa865f761203931b53b9c7defb5f5e5fa'
+    oldFile: !uuid 'af672454495f6aa0597a8bb3b7efb535de7f9699'
+gitCommitId: !uuid 'fb6e0be6b655219402025ac08f046abe0d275568'
 renames: {
   }
-revisionId: 2342
+revisionId: 2343
