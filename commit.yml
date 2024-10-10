@@ -3,30 +3,18 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '14b758adc92cc343c423266e25fb687e2b9d697e'
-    oldFile: !uuid '5e8edd20b062cf23de7ac843b3207e10c54aed7d'
+    newFile: !uuid 'c3dc1c5c90026099a71940b0f516ba5c5afc38dc'
+    oldFile: !uuid '14b758adc92cc343c423266e25fb687e2b9d697e'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid 'b88358ec59c3ce593f67f3558b4280241502d6b2'
-    oldFile: !uuid '33271167a4000a968a0ea8145c727468c1841705'
-  /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
-    newFile: !uuid 'd5781e9d223a863b682a0a2a60e58d0152f8d6da'
-    oldFile: !uuid '9b7d30076eddd77001a26a66c16d51f80ae8a1e0'
-  /Admin.NET/Admin.NET.Web.Core:
-    newFile: !uuid '7097e53cd0f39ca862ab1412c2db5d801ccfab91'
-    oldFile: !uuid '21521d588cf3398daab1a08930f4cee7212fffdf'
-  /Admin.NET/Admin.NET.Web.Core/Admin.NET.Web.Core.csproj:
-    newFile: !uuid 'c7b6eeb3e408b7e130bbf79a25b685b4283c9210'
-    oldFile: !uuid '245911c5fa4c6940197ddacb8c38d41834aa8216'
-  /Admin.NET/Admin.NET.Web.Core/Startup.cs:
-    newFile: !uuid '1e7fc77586349704c714af11adabe1fd67e73343'
-    oldFile: !uuid '664cbff5e2ba91ba876ef59f78eac873ccfd299b'
-  /Web:
-    newFile: !uuid '69e224bc7e826b2d9ca77066d61f08e52696d8ea'
-    oldFile: !uuid '60f22e9189ef277173025b1b78abf9c1e815e492'
-  /Web/package.json:
-    newFile: !uuid '12606883205fa21ce5a72a17aeb65d35b177ac5e'
-    oldFile: !uuid '2782eb24101f2c4510cd7a12e77cd7caf06f3ba6'
-gitCommitId: !uuid '3da79015ba4226916f1cefc295f94ad3dd389d0e'
+    newFile: !uuid '412f2b79494530cf7c505f6973246542bc49ebfa'
+    oldFile: !uuid 'b88358ec59c3ce593f67f3558b4280241502d6b2'
+  /Admin.NET/Admin.NET.Core/Extension:
+    newFile: !uuid '8c1bee583bb7a2ce8674cd30ea68c4756e30ab4b'
+    oldFile: !uuid '2902d731bf457dbaaa0fbf557fc478223a4e7d19'
+  /Admin.NET/Admin.NET.Core/Extension/DataTypeExtension:
+    newFile: !uuid 'cab7f15912728ce12819660f0e91b6e8e5ae1f85'
+    oldFile: null
+gitCommitId: !uuid '583e4b7ddeeaeac1f35b5edd6f5f719d9dc38dbe'
 renames: {
   }
-revisionId: 2401
+revisionId: 2402
