@@ -2,37 +2,40 @@
 branches: {
   }
 fileChange:
+  /Admin.NET:
+    newFile: !uuid '1de41504179756dc4e45dd0fdbb560dfe2963cb2'
+    oldFile: !uuid 'a5b5e91ed3dfd706d1cd4ad8ff72700abf7fc000'
+  /Admin.NET/Admin.NET.Core:
+    newFile: !uuid '210af66539a2c7e3d05340ab3ecc61f09d304353'
+    oldFile: !uuid 'c08b230bc11585f8c8fa619ad60f174878d11f0d'
+  /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
+    newFile: !uuid 'a49350a5e56f355906a529fc4a7a282481b2125f'
+    oldFile: !uuid '159cdde7965f9eaa9f4f30736c53837157b74684'
+  /Admin.NET/Admin.NET.Web.Core:
+    newFile: !uuid 'ba4ca6da662b75a86642154ab6717e5412100f07'
+    oldFile: !uuid 'c1be3c06ef633e9bc894851d11d755019b27359a'
+  /Admin.NET/Admin.NET.Web.Core/Startup.cs:
+    newFile: !uuid '5135b35688c08237cb54b7d5c17b9a930ec47ff1'
+    oldFile: !uuid '56e79a12c0d1d406705118d514908e136ac82e8f'
   /Web:
-    newFile: !uuid '7333d38211e629dc78b7076cfa92edecd944c2a0'
-    oldFile: !uuid '69e224bc7e826b2d9ca77066d61f08e52696d8ea'
+    newFile: !uuid '905e82a2810c37efe85ed3c1069a68cf18b2eba6'
+    oldFile: !uuid '7333d38211e629dc78b7076cfa92edecd944c2a0'
+  /Web/package.json:
+    newFile: !uuid '2d0755c622e19164ed7baabe3d6a4c119c4d7967'
+    oldFile: !uuid '12606883205fa21ce5a72a17aeb65d35b177ac5e'
   /Web/src:
-    newFile: !uuid '1f190580bccef7edbaa2460384d080d6772b4fd7'
-    oldFile: !uuid '083cfe4ab8f5e4e9a79240e0ff50ba7f374d2efd'
-  /Web/src/assets:
-    newFile: !uuid '173b943a4ff7b35935cb183f89dcabb767b60f50'
-    oldFile: !uuid '6620fc674d44e0df288449a0b393955efaab8616'
-  /Web/src/assets/lockscreen.img:
-    newFile: !uuid 'b538e11d550a1820b1f7ea55bb3e2f0db8b45f67'
-    oldFile: null
+    newFile: !uuid 'e2ca7128c6018eebe4ee625b70b80e947f013158'
+    oldFile: !uuid '1f190580bccef7edbaa2460384d080d6772b4fd7'
   /Web/src/layout:
-    newFile: !uuid '95fc91e813c3b12e8f7210e0f9244fe4c8e42716'
-    oldFile: !uuid '71c6ba9648e026db9326618e0013b022b5c6f9c1'
+    newFile: !uuid '6804da85dbd50364e4ebcf3e8743c154e903ed63'
+    oldFile: !uuid '95fc91e813c3b12e8f7210e0f9244fe4c8e42716'
   /Web/src/layout/lockScreen:
-    newFile: !uuid '75bbd174324c2665683dff339c9f6e1e041a0615'
-    oldFile: !uuid 'fbd4961db392099684e2bb1c222438f9de1fb7b6'
+    newFile: !uuid '89f5259c86b35ec629a0498644cf16e9555cb6b3'
+    oldFile: !uuid '75bbd174324c2665683dff339c9f6e1e041a0615'
   /Web/src/layout/lockScreen/index.vue:
-    newFile: !uuid 'ac333f7f79f3af4b25bcd7a6f32f4b530b1ce996'
-    oldFile: !uuid '13e4cb482a4106b10986d20f05c2d708ec6c6978'
-  /Web/src/layout/navBars:
-    newFile: !uuid '6d3a8c9b809fce37a2819f4571d107ed554dff5e'
-    oldFile: !uuid '3f3fc462bcb472e30050c3b765e83bdf219e5e77'
-  /Web/src/layout/navBars/topBar:
-    newFile: !uuid 'c06042978326cf75abbcdac5590729b329d0d9bd'
-    oldFile: !uuid 'aaa5ba3c662504257ef855b7360652bbe2b33339'
-  /Web/src/layout/navBars/topBar/user.vue:
-    newFile: !uuid '0d0e48f80770ccb66d6a78dbf583011c41cbd2de'
-    oldFile: !uuid '03525606ef2943e8fddf98c86cefa57923b21238'
-gitCommitId: !uuid '5b1da85950bd473531de85f480c9d0907ba4adb8'
+    newFile: !uuid '989724ec291685551eb63b4abb74839c7ecf6a6f'
+    oldFile: !uuid 'ac333f7f79f3af4b25bcd7a6f32f4b530b1ce996'
+gitCommitId: !uuid '713df8a2d30e5684722493f631f9a3503f2bda95'
 renames: {
   }
-revisionId: 2354
+revisionId: 2355
