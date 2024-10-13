@@ -2,16 +2,37 @@
 branches: {
   }
 fileChange:
-  /Admin.NET:
-    newFile: !uuid 'd77a9061e27f6dc29e0282ac3f804b1487435734'
-    oldFile: !uuid '1de41504179756dc4e45dd0fdbb560dfe2963cb2'
-  /Admin.NET/Admin.NET.Web.Core:
-    newFile: !uuid 'd83ede1f63e519ea37417105e68ebef73f38e880'
-    oldFile: !uuid 'ba4ca6da662b75a86642154ab6717e5412100f07'
-  /Admin.NET/Admin.NET.Web.Core/Startup.cs:
-    newFile: !uuid '383a55e9562d101367fdba943cd5596f74e2562e'
-    oldFile: !uuid '5135b35688c08237cb54b7d5c17b9a930ec47ff1'
-gitCommitId: !uuid '20682aa1f82db3cbe7f055543a991911cdce90d5'
+  /Web:
+    newFile: !uuid 'fcc524c881f63f033efb6353fd2e51dee9bed513'
+    oldFile: !uuid '905e82a2810c37efe85ed3c1069a68cf18b2eba6'
+  /Web/src:
+    newFile: !uuid '21f0855a18bd54e26a44b47d539c3e7770e1c8de'
+    oldFile: !uuid 'e2ca7128c6018eebe4ee625b70b80e947f013158'
+  /Web/src/views:
+    newFile: !uuid '7aeb57ef2e1c6fe259800bcca061d6299d271b14'
+    oldFile: !uuid 'ab3206cf3660875b8b92a97b341dd08a0ec3412d'
+  /Web/src/views/system:
+    newFile: !uuid '95ef3acd3ded2f4f8c37d71b12948d5e72df348f'
+    oldFile: !uuid 'a3130e34c3847cf16a648a54c671189d3e66cacc'
+  /Web/src/views/system/print:
+    newFile: !uuid '88ae3cf01ff7b3388cb2521b25a548a2c73667ac'
+    oldFile: !uuid '4a2e9d7c62b974f9c9e5f8d335fc08d8775925b2'
+  /Web/src/views/system/print/component:
+    newFile: !uuid '017db3f0ff34a125de47939981bf8f07839b49fb'
+    oldFile: !uuid '56c33ae1ecdd950b60711808a883a82d4502f852'
+  /Web/src/views/system/print/component/editPrint.vue:
+    newFile: !uuid '71d67f6fb3fbced869a6f6856d353348d9b622f5'
+    oldFile: !uuid '21157f753d9f476031a0766067b2f4c58caf8322'
+  /Web/src/views/system/print/component/hiprint:
+    newFile: !uuid 'a315dafbf8816a565c9186af9335276c80256937'
+    oldFile: !uuid 'd16ec1bf4e92e57506048efc91d70b97216fe421'
+  /Web/src/views/system/print/component/hiprint/index.vue:
+    newFile: !uuid 'ba890ca3fd66b8a345bbe3a42c624ca9b8f97895'
+    oldFile: !uuid '76049e048ef32a1eef9260b72ddfd0143f4b474a'
+  /Web/src/views/system/print/component/hiprint/preview.vue:
+    newFile: !uuid '681c54803c781cb7b0dfe09680018f9981e81c1c'
+    oldFile: !uuid '0cf5aa0a83e40f6d88023c2b4aec229d947c9505'
+gitCommitId: !uuid '457fa25bb9fb4bb459b53a9aec7091f6d3ed5555'
 renames: {
   }
-revisionId: 2409
+revisionId: 2410
