@@ -2,150 +2,22 @@
 branches: {
   }
 fileChange:
-  /Admin.NET:
-    newFile: !uuid 'fa4e6d7fbacb764b1a93399645999e13fd0d345f'
-    oldFile: !uuid '3bab7249aae063391e6e9474adb8980e4e1314d6'
-  /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '446d468e393f57232f01ace3e39f6c6545e5f731'
-    oldFile: !uuid '181cb2fd409e94a9768aa4e1e90f891c02d45c5e'
-  /Admin.NET/Admin.NET.Core/Util:
-    newFile: null
-    oldFile: !uuid '9b8b48bb3588590f854843c678d14fed494797db'
-  /Admin.NET/Admin.NET.Core/Util/AdminResultProvider.cs:
-    newFile: null
-    oldFile: !uuid '0a555b823b3299a853195693421c77df7f37fe1c'
-  /Admin.NET/Admin.NET.Core/Util/BaseFilter.cs:
-    newFile: null
-    oldFile: !uuid '7ca6c2a3ed56e8edb70add9d0dfe2a96b1f188f0'
-  /Admin.NET/Admin.NET.Core/Util/BaseIdInput.cs:
-    newFile: null
-    oldFile: !uuid 'bdc86b258f1a7f394fc3ce7b07f47839288c52ff'
-  /Admin.NET/Admin.NET.Core/Util/BasePageInput.cs:
-    newFile: null
-    oldFile: !uuid 'd8bea2f0ed81b777e947d30f6a3bffa927b8e496'
-  /Admin.NET/Admin.NET.Core/Util/ChinaDateTimeConverter.cs:
-    newFile: null
-    oldFile: !uuid '020a5d3defa6cba49171130bdea4fc72fc568728'
-  /Admin.NET/Admin.NET.Core/Util/CodeGenUtil.cs:
-    newFile: null
-    oldFile: !uuid '4c190ba76d9427bd2c9a280c41679d0aa7735a2e'
-  /Admin.NET/Admin.NET.Core/Util/CommonUtil.cs:
-    newFile: null
-    oldFile: !uuid '15c63bf3e1b86a0747dd917c4c4d312d94c4c4c1'
-  /Admin.NET/Admin.NET.Core/Util/ComputerUtil.cs:
-    newFile: null
-    oldFile: !uuid 'a3458d3f60d85f487b9d23b4532955345f10d462'
-  /Admin.NET/Admin.NET.Core/Util/CryptogramUtil.cs:
-    newFile: null
-    oldFile: !uuid '8b2e5a4a6395c02f761a5cc03535071d294dc641'
-  /Admin.NET/Admin.NET.Core/Util/DateTimeUtil.cs:
-    newFile: null
-    oldFile: !uuid '7e76b27410afcc670a93ea80149d46390ff32822'
-  /Admin.NET/Admin.NET.Core/Util/GM:
-    newFile: null
-    oldFile: !uuid '673f856a4e70a01bfd25aa15cc6f17651147e81a'
-  /Admin.NET/Admin.NET.Core/Util/GM/GM.cs:
-    newFile: null
-    oldFile: !uuid '69ea734142a03161079664204a406476403b2e5a'
-  /Admin.NET/Admin.NET.Core/Util/GM/GMUtil.cs:
-    newFile: null
-    oldFile: !uuid '39974c04d7295b2b6dc882e067c2346d4b147ca6'
-  /Admin.NET/Admin.NET.Core/Util/NewtonsoftJsonSerializerProvider.cs:
-    newFile: null
-    oldFile: !uuid '568ffbd9327115a157f602e7cd18c23ec5617493'
-  /Admin.NET/Admin.NET.Core/Util/ReflectionUtil.cs:
-    newFile: null
-    oldFile: !uuid '0797a1d58c3200216906ddd906304fb9fff9b965'
-  /Admin.NET/Admin.NET.Core/Util/RegularValidate.cs:
-    newFile: null
-    oldFile: !uuid 'b7c8bfe373c0a13eacd279e342c2290f74e87b96'
-  /Admin.NET/Admin.NET.Core/Util/SSHHelper.cs:
-    newFile: null
-    oldFile: !uuid '82050436df446a3b8252d83198f2734cb4f49c7a'
-  /Admin.NET/Admin.NET.Core/Util/TripleDES.cs:
-    newFile: null
-    oldFile: !uuid 'fb91dbd28401c81d4500f09584d8cf32fd1c460b'
-  /Admin.NET/Admin.NET.Core/Util/VerifyFileExtensionName.cs:
-    newFile: null
-    oldFile: !uuid '13f101850dac4567b554e7f835fd34ffc973239c'
-  /Admin.NET/Admin.NET.Core/Utils:
-    newFile: !uuid '9bef2c7b5ad147489e5ab0efd3a66658f9911df0'
-    oldFile: null
-  /Admin.NET/Admin.NET.Core/Utils/AdminResultProvider.cs:
-    newFile: !uuid '0a555b823b3299a853195693421c77df7f37fe1c'
-    oldFile: null
-  /Admin.NET/Admin.NET.Core/Utils/BaseFilter.cs:
-    newFile: !uuid '5ab7d4ac712c61005c420a723e8158853e7607bc'
-    oldFile: null
-  /Admin.NET/Admin.NET.Core/Utils/BaseIdInput.cs:
-    newFile: !uuid 'bdc86b258f1a7f394fc3ce7b07f47839288c52ff'
-    oldFile: null
-  /Admin.NET/Admin.NET.Core/Utils/BasePageInput.cs:
-    newFile: !uuid 'd8bea2f0ed81b777e947d30f6a3bffa927b8e496'
-    oldFile: null
-  /Admin.NET/Admin.NET.Core/Utils/ChinaDateTimeConverter.cs:
-    newFile: !uuid '020a5d3defa6cba49171130bdea4fc72fc568728'
-    oldFile: null
-  /Admin.NET/Admin.NET.Core/Utils/CodeGenUtil.cs:
-    newFile: !uuid '4c190ba76d9427bd2c9a280c41679d0aa7735a2e'
-    oldFile: null
-  /Admin.NET/Admin.NET.Core/Utils/CommonUtil.cs:
-    newFile: !uuid '66d8b1c9565d2807528c9386dce4ab9b2ed6a4d6'
-    oldFile: null
-  /Admin.NET/Admin.NET.Core/Utils/ComputerUtil.cs:
-    newFile: !uuid 'a3458d3f60d85f487b9d23b4532955345f10d462'
-    oldFile: null
-  /Admin.NET/Admin.NET.Core/Utils/CryptogramUtil.cs:
-    newFile: !uuid 'ebbedede515fe9ae819593584d569d07790c31d4'
-    oldFile: null
-  /Admin.NET/Admin.NET.Core/Utils/DateTimeUtil.cs:
-    newFile: !uuid '7e76b27410afcc670a93ea80149d46390ff32822'
-    oldFile: null
-  /Admin.NET/Admin.NET.Core/Utils/GM:
-    newFile: !uuid 'edccb968a2319fdb964e9f60478f76005ddda3ba'
-    oldFile: null
-  /Admin.NET/Admin.NET.Core/Utils/GM/GM.cs:
-    newFile: !uuid '69ea734142a03161079664204a406476403b2e5a'
-    oldFile: null
-  /Admin.NET/Admin.NET.Core/Utils/GM/GMUtil.cs:
-    newFile: !uuid 'd92853ac71d0695d06587ed7b5b123ebcfa696fb'
-    oldFile: null
-  /Admin.NET/Admin.NET.Core/Utils/NewtonsoftJsonSerializerProvider.cs:
-    newFile: !uuid '568ffbd9327115a157f602e7cd18c23ec5617493'
-    oldFile: null
-  /Admin.NET/Admin.NET.Core/Utils/ReflectionUtil.cs:
-    newFile: !uuid '0797a1d58c3200216906ddd906304fb9fff9b965'
-    oldFile: null
-  /Admin.NET/Admin.NET.Core/Utils/RegularValidate.cs:
-    newFile: !uuid 'b7c8bfe373c0a13eacd279e342c2290f74e87b96'
-    oldFile: null
-  /Admin.NET/Admin.NET.Core/Utils/SSHHelper.cs:
-    newFile: !uuid '82050436df446a3b8252d83198f2734cb4f49c7a'
-    oldFile: null
-  /Admin.NET/Admin.NET.Core/Utils/TripleDES.cs:
-    newFile: !uuid '5410eae3dd16cf70d09ed464207ee4f77d45437e'
-    oldFile: null
-  /Admin.NET/Admin.NET.Core/Utils/VerifyFileExtensionName.cs:
-    newFile: !uuid '13f101850dac4567b554e7f835fd34ffc973239c'
-    oldFile: null
-gitCommitId: !uuid '5b7e8a2f3d618422304b162c3a7f6be7e2584ead'
-renames:
-  /Admin.NET/Admin.NET.Core/Utils/AdminResultProvider.cs: /Admin.NET/Admin.NET.Core/Util/AdminResultProvider.cs
-  /Admin.NET/Admin.NET.Core/Utils/BaseFilter.cs: /Admin.NET/Admin.NET.Core/Util/BaseFilter.cs
-  /Admin.NET/Admin.NET.Core/Utils/BaseIdInput.cs: /Admin.NET/Admin.NET.Core/Util/BaseIdInput.cs
-  /Admin.NET/Admin.NET.Core/Utils/BasePageInput.cs: /Admin.NET/Admin.NET.Core/Util/BasePageInput.cs
-  /Admin.NET/Admin.NET.Core/Utils/ChinaDateTimeConverter.cs: /Admin.NET/Admin.NET.Core/Util/ChinaDateTimeConverter.cs
-  /Admin.NET/Admin.NET.Core/Utils/CodeGenUtil.cs: /Admin.NET/Admin.NET.Core/Util/CodeGenUtil.cs
-  /Admin.NET/Admin.NET.Core/Utils/CommonUtil.cs: /Admin.NET/Admin.NET.Core/Util/CommonUtil.cs
-  /Admin.NET/Admin.NET.Core/Utils/ComputerUtil.cs: /Admin.NET/Admin.NET.Core/Util/ComputerUtil.cs
-  /Admin.NET/Admin.NET.Core/Utils/CryptogramUtil.cs: /Admin.NET/Admin.NET.Core/Util/CryptogramUtil.cs
-  /Admin.NET/Admin.NET.Core/Utils/DateTimeUtil.cs: /Admin.NET/Admin.NET.Core/Util/DateTimeUtil.cs
-  /Admin.NET/Admin.NET.Core/Utils/GM/GM.cs: /Admin.NET/Admin.NET.Core/Util/GM/GM.cs
-  /Admin.NET/Admin.NET.Core/Utils/GM/GMUtil.cs: /Admin.NET/Admin.NET.Core/Util/GM/GMUtil.cs
-  /Admin.NET/Admin.NET.Core/Utils/NewtonsoftJsonSerializerProvider.cs: /Admin.NET/Admin.NET.Core/Util/NewtonsoftJsonSerializerProvider.cs
-  /Admin.NET/Admin.NET.Core/Utils/ReflectionUtil.cs: /Admin.NET/Admin.NET.Core/Util/ReflectionUtil.cs
-  /Admin.NET/Admin.NET.Core/Utils/RegularValidate.cs: /Admin.NET/Admin.NET.Core/Util/RegularValidate.cs
-  /Admin.NET/Admin.NET.Core/Utils/SSHHelper.cs: /Admin.NET/Admin.NET.Core/Util/SSHHelper.cs
-  /Admin.NET/Admin.NET.Core/Utils/TripleDES.cs: /Admin.NET/Admin.NET.Core/Util/TripleDES.cs
-  /Admin.NET/Admin.NET.Core/Utils/VerifyFileExtensionName.cs: /Admin.NET/Admin.NET.Core/Util/VerifyFileExtensionName.cs
-revisionId: 2415
+  /Web:
+    newFile: !uuid '17d6cb7388e2ba741735040fcfb2b9d135f88f0a'
+    oldFile: !uuid '71b5c21a171e1cc591083f480d49906d17fe7050'
+  /Web/src:
+    newFile: !uuid 'd037dda4ce6d22ccd6237a324d423dc0d042d272'
+    oldFile: !uuid 'ed71327dc0f9bae596c5a30634c4212bd0a7c303'
+  /Web/src/layout:
+    newFile: !uuid '32ffcf69ab239c1cb7dd1330c928c9dd4bd9658c'
+    oldFile: !uuid '6804da85dbd50364e4ebcf3e8743c154e903ed63'
+  /Web/src/layout/lockScreen:
+    newFile: !uuid 'd683c87f2826f6b84a069e3c7f6d3eee32636330'
+    oldFile: !uuid '89f5259c86b35ec629a0498644cf16e9555cb6b3'
+  /Web/src/layout/lockScreen/index.vue:
+    newFile: !uuid 'dd08b3e772ac3a6e4abb32937d8fb4567136e4f3'
+    oldFile: !uuid '989724ec291685551eb63b4abb74839c7ecf6a6f'
+gitCommitId: !uuid 'c68fac981ca8e02dbe21855992b83e593837935b'
+renames: {
+  }
+revisionId: 2416
