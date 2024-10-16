@@ -2,31 +2,97 @@
 branches: {
   }
 fileChange:
+  /Admin.NET:
+    newFile: !uuid '2cf193a9cea4fa45674e20a26c2bb5c1263b8f57'
+    oldFile: !uuid 'fa4e6d7fbacb764b1a93399645999e13fd0d345f'
+  /Admin.NET/Admin.NET.Core:
+    newFile: !uuid '1f02c4d532ef3ad8914820991ecab2d99f802e35'
+    oldFile: !uuid '446d468e393f57232f01ace3e39f6c6545e5f731'
+  /Admin.NET/Admin.NET.Core/Entity:
+    newFile: !uuid 'afabb78632a8c1ffd8c79d626d616be6f9739bd5'
+    oldFile: !uuid '857fad153ba924b9dcbf63c4d9d9fa8127013010'
+  /Admin.NET/Admin.NET.Core/Entity/SysPrint.cs:
+    newFile: !uuid '8a253b297134f8a1ce44e8d1099ca3c84498ccb5'
+    oldFile: !uuid 'c4b054a45c358754322bf9e13c2683b8e2ccf744'
+  /Admin.NET/Admin.NET.Web.Entry:
+    newFile: !uuid '600812c0ab760348d99ed3ec6ce548bb59f0ede0'
+    oldFile: !uuid '9146fa8421363b01140368b16533dbd4ef3caac2'
+  /Admin.NET/Admin.NET.Web.Entry/wwwroot:
+    newFile: !uuid '9011ede00a3f2a3fbc48207d76f6eeb4321669f6'
+    oldFile: !uuid '1ca160ff7a02cabe60b5b01cfceaee40a63fdc78'
+  /Admin.NET/Admin.NET.Web.Entry/wwwroot/template:
+    newFile: !uuid '1f18d7192d7e4fc19032b0172e40cfcb640c5ab3'
+    oldFile: !uuid 'eeea9520ea891d7a861be430593a684959737acd'
+  /Admin.NET/Admin.NET.Web.Entry/wwwroot/template/index.vue.vm:
+    newFile: !uuid '948a94b1f6b430dce107b7c81dcd9a88e3025a49'
+    oldFile: !uuid '06c04556d307198cb093726c835dc9373eac6450'
   /Web:
-    newFile: !uuid '46ecab0866aeb85282fd8950cbf20ca8ddb92f84'
-    oldFile: !uuid '4765c499c77411f794148fdafec00a357be82544'
+    newFile: !uuid '5ec2b6956e3e8733398e2ff851d39beb4234baff'
+    oldFile: !uuid '46ecab0866aeb85282fd8950cbf20ca8ddb92f84'
   /Web/src:
-    newFile: !uuid 'ddb8f42c0379fb180be455cea1da34f3f78edc69'
-    oldFile: !uuid 'c228dc3c97e86618b93bdd18e2c494e69b179abe'
+    newFile: !uuid '97359df0233f656ff042f2a33fac7b4d1a2442a0'
+    oldFile: !uuid 'ddb8f42c0379fb180be455cea1da34f3f78edc69'
+  /Web/src/api-services:
+    newFile: !uuid 'ce56aa828e58a1601fbb6f684f8262e2591a5dd5'
+    oldFile: !uuid '84733e45bd7d2fbbf8e7c7cac8455e9c13f437f0'
+  /Web/src/api-services/apis:
+    newFile: !uuid '2e4787ed1bbda7e8151799ff3856c24348ae6e1f'
+    oldFile: !uuid '62d494c87155cca8ea7f87cba362b06584681c6e'
+  /Web/src/api-services/apis/sys-auth-api.ts:
+    newFile: !uuid '1b250da2609ae193cea65bc0679a389dff1c35fc'
+    oldFile: !uuid '1768da30f80af830b881f9072c1a0d7aea3bce98'
+  /Web/src/api-services/apis/sys-database-api.ts:
+    newFile: !uuid '754b93af4f4cc5d890faa95ae993cafab7ce6c8b'
+    oldFile: !uuid 'dcbf34ae13dee80c77748a2b8233f8285f7b8248'
+  /Web/src/api-services/apis/sys-wx-open-api.ts:
+    newFile: !uuid '567580ee28da1d2bf953b2e7fc535d81213a0253'
+    oldFile: !uuid '683ebc7ff345f7d7a8f24fbfe51f6a84e6e9b6e9'
+  /Web/src/api-services/models:
+    newFile: !uuid '99b411672c0f287c7c9b688517cb641f67b8c2a4'
+    oldFile: !uuid '9af3de91ba96570a9ea8e41eebcc069aeb00c051'
+  /Web/src/api-services/models/add-print-input.ts:
+    newFile: !uuid 'fe8b2cb0932f5d5701a8d3d87833e00eff40eeeb'
+    oldFile: !uuid '82b47a7efb715839f9b8198235096b57370a187b'
+  /Web/src/api-services/models/create-seed-data-input.ts:
+    newFile: !uuid '5d4a20aed7c7a0a8bf08e36b292eb19404001d71'
+    oldFile: !uuid 'd7ca8369c8f60591b6ee3f7f96142d141c01491d'
+  /Web/src/api-services/models/index.ts:
+    newFile: !uuid 'a9f207e5ea2f4df8dd5a50659b37794c6d2e262f'
+    oldFile: !uuid 'f2ea00ba57ce1c61e9ad3e18b5647445472739b5'
+  /Web/src/api-services/models/set-nick-name-input.ts:
+    newFile: !uuid '62acc410c0d6a35d8745f7ff27ff05c50239bc81'
+    oldFile: null
+  /Web/src/api-services/models/sys-print.ts:
+    newFile: !uuid '6414c404610f2358a6986ecbc48aab389a7b06f1'
+    oldFile: !uuid '8095cdc70b8112c5a994fa476a554620dee2137a'
+  /Web/src/api-services/models/sys-wx-open-upload-avatar-body.ts:
+    newFile: !uuid 'd1faa9dd48a3fb18dd24a61d7c408b0a3dc97a36'
+    oldFile: null
+  /Web/src/api-services/models/update-print-input.ts:
+    newFile: !uuid 'a5195c5df9ea64e4472ebefb60a2badbd8475148'
+    oldFile: !uuid '2c189d53456418e52a625c1e29db0a7cb3ed814a'
   /Web/src/views:
-    newFile: !uuid '899f0bf93f25b2df752617763aa6f36c8f2e5c26'
-    oldFile: !uuid '16e7ca64014a69a6ef860092612b493a9c8bf241'
+    newFile: !uuid '47866c2dad515809f8f396efbc52447de859da31'
+    oldFile: !uuid '899f0bf93f25b2df752617763aa6f36c8f2e5c26'
   /Web/src/views/system:
-    newFile: !uuid '2e9711551f210d114849932b4d8b7da539501164'
-    oldFile: !uuid '6024834606b89c8db1ec8891be2b50bb05582055'
+    newFile: !uuid '218f77c6c4abc259d0d5e34b888969ac310a0ead'
+    oldFile: !uuid '2e9711551f210d114849932b4d8b7da539501164'
   /Web/src/views/system/print:
-    newFile: !uuid 'c8ac8268ff2c01b44356975eb97a9893dd05a9fa'
-    oldFile: !uuid 'baad5235715e50bb95d2a27c8ba5a12cf26fa1a2'
+    newFile: !uuid 'd4508e86d5e8a2a446800288e029dc1cdd62e005'
+    oldFile: !uuid 'c8ac8268ff2c01b44356975eb97a9893dd05a9fa'
   /Web/src/views/system/print/component:
-    newFile: !uuid 'a19b37b6c2f50c0f6ff6496c1f33b9244e5140db'
-    oldFile: !uuid 'df3a95d7fac26ee8d15bcd99c33bcb4ae8e9387e'
+    newFile: !uuid 'b839042372ffeb19fd17adce5676dff0367342a2'
+    oldFile: !uuid 'a19b37b6c2f50c0f6ff6496c1f33b9244e5140db'
+  /Web/src/views/system/print/component/editPrint.vue:
+    newFile: !uuid '27fe39fafa6cac53f2c13c7a59ae3796cd6d9731'
+    oldFile: !uuid '71d67f6fb3fbced869a6f6856d353348d9b622f5'
   /Web/src/views/system/print/component/hiprint:
-    newFile: !uuid '7cb8331e8bb9baad9d715dbca7f7adc9e43e60a6'
-    oldFile: !uuid '55a7056a66979c0561e098d8a9a60aa3e2b85770'
-  /Web/src/views/system/print/component/hiprint/providers.ts:
-    newFile: !uuid 'c6870205ad68064cef94a06c62c7f028d80898d3'
-    oldFile: !uuid '266668eaa7db9e274f4a02c9b9a93b994e0144bf'
-gitCommitId: !uuid '3ec042919cde294ac82fb60745ee08bf65401ab1'
+    newFile: !uuid '5cb20b98a42f205ab46bcf4926caf4851785a1b5'
+    oldFile: !uuid '7cb8331e8bb9baad9d715dbca7f7adc9e43e60a6'
+  /Web/src/views/system/print/component/hiprint/index.vue:
+    newFile: !uuid '6ea2b4a41e666698afb2b7e2acb33ebc2b583d1d'
+    oldFile: !uuid 'ba890ca3fd66b8a345bbe3a42c624ca9b8f97895'
+gitCommitId: !uuid '41b88f95ae334e48526a88a9e166aeffbd6255ad'
 renames: {
   }
-revisionId: 2418
+revisionId: 2419
