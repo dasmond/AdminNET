@@ -2,25 +2,25 @@
 branches: {
   }
 fileChange:
-  /Admin.NET:
-    newFile: !uuid '9a154ed0cbfa1e43696d5933543b22d6f73c30eb'
-    oldFile: !uuid '4f4b19fa37fa25067682f2f657ad6ec7ef01f4b0'
-  /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '717b4d7dcb4d73232f77a1ae9e141a490ac08d90'
-    oldFile: !uuid '9c34f61ff8e09512dffa5979af81c9578d7ea7d6'
-  /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
-    newFile: !uuid '8c1d2b610a7d552213b8a3aa91dedf1a82aeb08e'
-    oldFile: !uuid '5c7a419e2e6b631bf65951d554661f8583779c6c'
-  /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid '79385506d6d0085e45998a1854454523f8905ccb'
-    oldFile: !uuid '44413aaf93b11bf087f3bfa3cfd9e01afe7c378a'
-  /Admin.NET/Admin.NET.Core/Service/Message:
-    newFile: !uuid '44780833b941725d1e38be9a6cdadbb314a75169'
-    oldFile: !uuid '2b01b87962130914c300a5eee7aed1c96bdfe545'
-  /Admin.NET/Admin.NET.Core/Service/Message/SysEmailService.cs:
-    newFile: !uuid '58d4b873181d455ecb633462917036663aef3b3d'
-    oldFile: !uuid '8bcdd313dde82f7f62d5d31cf69d3980336d4d7c'
-gitCommitId: !uuid '20ec0264c34456ece6ad8b77db26b17fe28d4a67'
+  /Web:
+    newFile: !uuid '07b3bfc536181936585a22c69bf0f483014eed2b'
+    oldFile: !uuid '09e2def8092a1adde02bb87a58fd4417565a07a0'
+  /Web/src:
+    newFile: !uuid 'b452854066e00b9e52a18dd52b3de48efd96574e'
+    oldFile: !uuid '33fee3a0b773cde7a8ddc70f1d580a79fd816b1c'
+  /Web/src/views:
+    newFile: !uuid '472d055338a48b9113a430d60563d7fceabb2347'
+    oldFile: !uuid 'b1f77f73991d6ac013b6dd093888677453eaed49'
+  /Web/src/views/system:
+    newFile: !uuid '52e0921bf944f94ec5e7842e9d288c98ab7bfcc3'
+    oldFile: !uuid 'eee60b6ff8548e0aa321b66c50ea262b9aec7641'
+  /Web/src/views/system/pos:
+    newFile: !uuid '755c3d83f7edcf31ea010c596c6c91db9599d930'
+    oldFile: !uuid 'd3498f15194b1c5ec7cc2c5ab1f791fc06b4361a'
+  /Web/src/views/system/pos/index.vue:
+    newFile: !uuid '6cc01a0b6ed54b9cb08dd4e755a4a3b6477ef53f'
+    oldFile: !uuid '24538e3d8d19a23696cb3dd2a3528489e61f55b1'
+gitCommitId: !uuid '5b8672f0147310276d7711017bc3acdc4fbee64d'
 renames: {
   }
-revisionId: 2370
+revisionId: 2371
