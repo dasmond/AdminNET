@@ -4,7 +4,7 @@
   使用注意：1. 业务模型需要id列,以支持删除 2.下拉选项用数组[label :string,value :any]输入 3. 父组件需要update:modelValue，并将父组件的数据更新
    2024年10月7日 ccj
   -->
-  <el-table :data="localData"  border=true stripe=true>
+  <el-table :data="localData"  :border=true :stripe=true>
     <el-table-column v-for="col in columns" :key="col.id" :label="col.label" :prop="col.prop" :width="col.width">
       <template #default="{ row }">
         <template v-if="isEditable(col)">
@@ -36,6 +36,7 @@ import { EditableColumn } from './editableColumn';
 import { style } from '@logicflow/extension/es/bpmn-elements/presets/icons';
 import { ArrowUp, ArrowDown, Delete } from '@element-plus/icons-vue';
 import { ElTable } from 'element-plus';
+
 const props = defineProps({
   columns: {
     type: Array as () => EditableColumn[],
@@ -73,8 +74,7 @@ const isEditable = (col: EditableColumn) => col.editable !== false;
 const isFirstRow = (row: Record<string, any>) => localData.value[0].id === row.id;
 const isLastRow = (row: Record<string, any>) => localData.value[localData.value.length - 1].id === row.id;
 
-// 导出对象
-defineExpose({ ElTable });
+
 </script>
 
 <style scoped></style>
