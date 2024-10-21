@@ -2,22 +2,13 @@
 branches: {
   }
 fileChange:
-  /Admin.NET:
-    newFile: !uuid 'd2e5fbbc327c3ef9f16a38b27e4d54088f4cb45e'
-    oldFile: !uuid '945dc3818b010b33acc709d61a0d7bd55aba4ded'
-  /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '8fe926dff8ea73b1fc35046c63326f1a93d53c65'
-    oldFile: !uuid 'b24b7f8c67d1e9a050efb84dfce30419ed2e116b'
-  /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid '08f9cd059034d8728c299817d6eed989d5d6f2a3'
-    oldFile: !uuid 'ff7486942215e04ebd49c5afa01eaaf512d1bae4'
-  /Admin.NET/Admin.NET.Core/Service/Role:
-    newFile: !uuid 'cf43848d6c48fa491bc8d33bafe1a79d044bd621'
-    oldFile: !uuid 'aeb86244db110fd0d72e34d46ab6de3fb7237da3'
-  /Admin.NET/Admin.NET.Core/Service/Role/SysRoleService.cs:
-    newFile: !uuid '2554e9db32556094a7486215db5155bfedbd7d50'
-    oldFile: !uuid '8037bcc573b9b44197194f68d5b38ef6a8f20c92'
-gitCommitId: !uuid '23a7a353f62755d7abf73707ca488a5636881cd0'
+  /Web:
+    newFile: !uuid '7df32cadb916edb301a4ff5f6adad94df24c442f'
+    oldFile: !uuid '15589dca5425ddd799ac3cb74e5d606cac789136'
+  /Web/vite.config.ts:
+    newFile: !uuid '2b92855afc4326526ead8614d725019b9b84b0db'
+    oldFile: !uuid 'f198f7f7ca5b77f324587ddc24b6acc248f2b233'
+gitCommitId: !uuid '1c2e529912fbfd0898d60b71de33def77f194102'
 renames: {
   }
-revisionId: 2375
+revisionId: 2376
