@@ -2,13 +2,22 @@
 branches: {
   }
 fileChange:
+  /Admin.NET:
+    newFile: !uuid '0072cec59ee6ed8b18a967021368ce8bddeb0da6'
+    oldFile: !uuid 'd2e5fbbc327c3ef9f16a38b27e4d54088f4cb45e'
+  /Admin.NET/Admin.NET.Core:
+    newFile: !uuid 'c3244e8627eaf535bcca55211f7d9bcc0afdbcff'
+    oldFile: !uuid '8fe926dff8ea73b1fc35046c63326f1a93d53c65'
+  /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
+    newFile: !uuid '596db82f366a482991c8a00b3b5d192fcbe89771'
+    oldFile: !uuid '8c1d2b610a7d552213b8a3aa91dedf1a82aeb08e'
   /Web:
-    newFile: !uuid '7df32cadb916edb301a4ff5f6adad94df24c442f'
-    oldFile: !uuid '15589dca5425ddd799ac3cb74e5d606cac789136'
-  /Web/vite.config.ts:
-    newFile: !uuid '2b92855afc4326526ead8614d725019b9b84b0db'
-    oldFile: !uuid 'f198f7f7ca5b77f324587ddc24b6acc248f2b233'
-gitCommitId: !uuid '1c2e529912fbfd0898d60b71de33def77f194102'
+    newFile: !uuid '8054d82e8ea1e5c7941ac01ea91264bddfc9abdd'
+    oldFile: !uuid '7df32cadb916edb301a4ff5f6adad94df24c442f'
+  /Web/package.json:
+    newFile: !uuid '6a2b1d63b4c42e8c1bf06e19076cbc0a9b704f09'
+    oldFile: !uuid '19cb89a5b5fd97a6d092f1db4e71b11700590af0'
+gitCommitId: !uuid '9ec3ae65eec7b0624612b28d4b06946c4e9f0a4c'
 renames: {
   }
-revisionId: 2376
+revisionId: 2377
