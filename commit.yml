@@ -2,22 +2,31 @@
 branches: {
   }
 fileChange:
-  /Admin.NET:
-    newFile: !uuid 'a8376c4edfa0d1fbfc978bd336af7b72d787a5ab'
-    oldFile: !uuid '0072cec59ee6ed8b18a967021368ce8bddeb0da6'
-  /Admin.NET/Admin.NET.Core:
-    newFile: !uuid 'b37714dbe38cdb89a1ee52e777749d7acf781923'
-    oldFile: !uuid 'c3244e8627eaf535bcca55211f7d9bcc0afdbcff'
-  /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid '9ecfdeb43f66b907aacb812ae6632d3b6399166f'
-    oldFile: !uuid '08f9cd059034d8728c299817d6eed989d5d6f2a3'
-  /Admin.NET/Admin.NET.Core/Service/Config:
-    newFile: !uuid '211bb7016ed06ff228b35430764eda1bf367888c'
-    oldFile: !uuid '87d83e12c52c8bc5b081f3d51b37f2a40ca311ba'
-  /Admin.NET/Admin.NET.Core/Service/Config/SysConfigService.cs:
-    newFile: !uuid 'afe3567682115bf3e27c426c7705bfa8aeba9487'
-    oldFile: !uuid 'd329ae1db2428199b6c05be65eae2f3a6ab9e4fe'
-gitCommitId: !uuid 'c15c4c857e5d6a0f94b14a5988b3671d229e6ee7'
+  /Web:
+    newFile: !uuid '59cb85ac00390b366f36c57a49dc02c1d3275e5f'
+    oldFile: !uuid '8054d82e8ea1e5c7941ac01ea91264bddfc9abdd'
+  /Web/src:
+    newFile: !uuid '3493df7b767b370c29d5e35ca462b62fd5ebe07b'
+    oldFile: !uuid 'e9e3d70ba5135ff93396d285261bc89b7aff011e'
+  /Web/src/views:
+    newFile: !uuid 'd4c4942cee2f7a42bea5b4b37a8b8b17ff72a55a'
+    oldFile: !uuid '8c0ef72da2ff967fa6a44e3fb479dbb2321c0e3d'
+  /Web/src/views/system:
+    newFile: !uuid 'e977f0e6139fd901a4263aea0c21b092ab0e483e'
+    oldFile: !uuid '897c74956a0cd316298d70fa6a4baa17e09bbfe5'
+  /Web/src/views/system/print:
+    newFile: !uuid 'aacfa7a37355c1a0d36ad54639dd3987fb5b170d'
+    oldFile: !uuid 'eaf50594546333c44178ed9b5677a7de6066d0d9'
+  /Web/src/views/system/print/component:
+    newFile: !uuid '6de5c06c4be561026a0866dbac787bc79cf43b9d'
+    oldFile: !uuid '284388c1c962dd5ec9ea3a1d4ecc71843fdd3e42'
+  /Web/src/views/system/print/component/hiprint:
+    newFile: !uuid '6099af2f27d092cec609a761590057e3cf2e70cc'
+    oldFile: !uuid '01fe8ccd7ab18dc49770839f892401d962dba4c9'
+  /Web/src/views/system/print/component/hiprint/index.vue:
+    newFile: !uuid 'ebf5bcad025b23c5f5ebd258346f67b05dec8cd4'
+    oldFile: !uuid '2ae72baf3c7a72eb0f4139758bb316da4f0c2ce4'
+gitCommitId: !uuid '0cf560733c8c91ed0292d2a722ea2f11d01895a5'
 renames: {
   }
-revisionId: 2378
+revisionId: 2379
