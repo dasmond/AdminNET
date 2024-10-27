@@ -36,10 +36,12 @@ public class DingTalkConst
     /// 主部门Id
     /// </summary>
     public const string DeptId = "sys00-mainDeptId";
+
     /// <summary>
     /// 主部门
     /// </summary>
     public const string Dept = "sys00-mainDept";
+
     /// <summary>
     /// 职位
     /// </summary>
