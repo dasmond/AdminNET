@@ -3,18 +3,54 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '6c9983494341d39ff7e644e239bc53acfaa2d18f'
-    oldFile: !uuid '40fce9e570d0dcf321ba3257d53986eb5e347a06'
+    newFile: !uuid '6da02cec8ee0c992e480491aad450cd27e0a20ed'
+    oldFile: !uuid '6c9983494341d39ff7e644e239bc53acfaa2d18f'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '1a07fb65623cd63aeb772da3ad8cd2fe6f4e5d66'
-    oldFile: !uuid '8f4722dc9f8d6c6985b2d8cb0c3259c481925028'
+    newFile: !uuid 'd45fc1be8ac7aed0cb0f203c97e9dd1f975841e2'
+    oldFile: !uuid '1a07fb65623cd63aeb772da3ad8cd2fe6f4e5d66'
+  /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
+    newFile: !uuid '6e69b4ca38578ee93065d98700cd6e3f9f0482ff'
+    oldFile: !uuid '4b8823091a535d4ddc7c15f8799d8927903c2ebc'
   /Admin.NET/Admin.NET.Core/Extension:
-    newFile: !uuid '8870f8b13b81f3b23d4e2bfb93db69ef4f26eebc'
-    oldFile: !uuid '290c142b2a8da82432cb7ca2825253d2aee56f7d'
+    newFile: !uuid '67b0328888d54b8acf5dafbef7c5cd85cef7dc2b'
+    oldFile: !uuid '8870f8b13b81f3b23d4e2bfb93db69ef4f26eebc'
   /Admin.NET/Admin.NET.Core/Extension/RepositoryExtension.cs:
-    newFile: !uuid 'aca0fcb977c0b6010599872956f35509b27da615'
-    oldFile: !uuid 'a390143f295de701dfc5eaf27b6977328023eb0e'
-gitCommitId: !uuid '4dac9111a2e8415fabedf4afacf4e5adb92c97d2'
+    newFile: !uuid '6d142a3398808ab9296121026b4f07c9132b1be4'
+    oldFile: !uuid 'aca0fcb977c0b6010599872956f35509b27da615'
+  /Admin.NET/Admin.NET.Core/Utils:
+    newFile: !uuid 'c2bfd5c450a9c1f6f7d289994e9fd22a4a3a6eb7'
+    oldFile: !uuid 'c50aeeba46871d72cab4ff8615d64b41177fa401'
+  /Admin.NET/Admin.NET.Core/Utils/MiniExcelUtil.cs:
+    newFile: !uuid '985774129eea6fdc4bc2aa45ace643671b4101a0'
+    oldFile: !uuid '789f9fef5fff37c4a88ae7b99df285a0a7ffe0bc'
+  /Web:
+    newFile: !uuid '35e1f12f051bbf731ecd0f0420867c8fd32ed094'
+    oldFile: !uuid '98a83a87f10f69e1506c781b9800cffc1326f5d7'
+  /Web/package.json:
+    newFile: !uuid '51f8a074eb3ff8b4b08cccecc9bb3bffc57cff6c'
+    oldFile: !uuid '1b9d742ffeb319db7c277be8938026015150ecca'
+  /Web/src:
+    newFile: !uuid 'aa46cdd21ec31eb9d83293a164a112bc1d3087b3'
+    oldFile: !uuid '9b6f25656c5eb805baed52cddea901516d963204'
+  /Web/src/views:
+    newFile: !uuid '7fcf111817759502ef02926850c727b44d6d0595'
+    oldFile: !uuid '8b89bae7fc72d9aeb7c2b62390d72ce747d5be58'
+  /Web/src/views/system:
+    newFile: !uuid '5021eb21cb9a09f576fc4507df5e6df6d6a73213'
+    oldFile: !uuid 'ba29a91f4f45fcd3198b690ca8c5c85d7e2ad430'
+  /Web/src/views/system/print:
+    newFile: !uuid 'b3955dbc5e1c4ad327518dcfe4ae17edb8d556f0'
+    oldFile: !uuid '50a71b48743bafea6d3093699268a13ee15dfdfb'
+  /Web/src/views/system/print/component:
+    newFile: !uuid 'deb6bc3b07b133ee3bc64be583b5432d1754f3df'
+    oldFile: !uuid '28ed7fc6ac81d6b48d8a177627e4da7c01296f5e'
+  /Web/src/views/system/print/component/hiprint:
+    newFile: !uuid 'b27ba70d24e2f5eec236cc724205696bbdae5ace'
+    oldFile: !uuid 'f73d3c7e83e38ecbf7b3c6d6cf8878d51bb6ddbe'
+  /Web/src/views/system/print/component/hiprint/index.vue:
+    newFile: !uuid 'be6b6af13dc2869651bc68918e5b81d0ff687d99'
+    oldFile: !uuid 'c08d84db8b268c35cc75db2a6dd41c9ddf03e366'
+gitCommitId: !uuid '9ac9c8fb60e5855a55efdf8a2db4bedbab84f737'
 renames: {
   }
-revisionId: 2438
+revisionId: 2439
