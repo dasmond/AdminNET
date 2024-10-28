@@ -129,6 +129,12 @@ import PrintPreview from './preview.vue';
 import printDataDefault from './print-data';
 import { IPaperType } from './type';
 
+interface IPaperType{
+    type:string;
+    width:number;
+    height:number;
+}
+
 var props = defineProps({
 	modeIndex: {
 		type: Number,
