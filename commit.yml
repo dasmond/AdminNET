@@ -3,87 +3,18 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid 'a903316ba4bb66254f9b1fb802a0286bebf43089'
-    oldFile: !uuid 'a8376c4edfa0d1fbfc978bd336af7b72d787a5ab'
-  /Admin.NET/Admin.NET.Application:
-    newFile: !uuid 'c1c856bafd772898ddd510d789ca91872ca17cfa'
-    oldFile: !uuid '16fad31eeea0541078723703b0eef365fd4c3e33'
-  /Admin.NET/Admin.NET.Application/Configuration:
-    newFile: !uuid 'd287394117e2936c1447e56a04311455e0aae482'
-    oldFile: !uuid '5b4131d2d463cc7ceb9c3f7b7bab84d2cec4580c'
-  /Admin.NET/Admin.NET.Application/Configuration/Limit.json:
-    newFile: !uuid 'd23bbca1fe9af3be2b6ada6742313ff6ae6d30ba'
-    oldFile: !uuid '8239c53c6eb2bf7ae853b5d19a8911178127dd99'
+    newFile: !uuid '40fce9e570d0dcf321ba3257d53986eb5e347a06'
+    oldFile: !uuid 'a903316ba4bb66254f9b1fb802a0286bebf43089'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '8a9ff52c4c5da540f5b804853e05012fd0a60bcf'
-    oldFile: !uuid 'b37714dbe38cdb89a1ee52e777749d7acf781923'
-  /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
-    newFile: !uuid '4b8823091a535d4ddc7c15f8799d8927903c2ebc'
-    oldFile: !uuid '596db82f366a482991c8a00b3b5d192fcbe89771'
-  /Admin.NET/Admin.NET.Core/Extension:
-    newFile: !uuid '290c142b2a8da82432cb7ca2825253d2aee56f7d'
-    oldFile: !uuid 'd90ab30894b9356bd347423329e2aa7deba47c94'
-  /Admin.NET/Admin.NET.Core/Extension/DataTypeExtension.cs:
-    newFile: !uuid '0f9d4ab5bda3453bae813d7203f93069a22b9657'
-    oldFile: !uuid '818bfc706dca7d09926851dda47430867c19ebeb'
+    newFile: !uuid '8f4722dc9f8d6c6985b2d8cb0c3259c481925028'
+    oldFile: !uuid '8a9ff52c4c5da540f5b804853e05012fd0a60bcf'
   /Admin.NET/Admin.NET.Core/Utils:
-    newFile: !uuid '6f180e9757085978556c904351bd1ac4c84dc624'
-    oldFile: !uuid '9bef2c7b5ad147489e5ab0efd3a66658f9911df0'
-  /Admin.NET/Admin.NET.Core/Utils/VerifyFileExtensionName.cs:
-    newFile: !uuid '49dd86b9aca601e62f5362da3a0d2e9f2f0d5bb7'
-    oldFile: !uuid '13f101850dac4567b554e7f835fd34ffc973239c'
-  /Admin.NET/Plugins:
-    newFile: !uuid '400e5060ba888686a4aa24191161dcd6534adc1b'
-    oldFile: !uuid 'eeb1026527bb4777475fd6418a52faf40be89e9c'
-  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk:
-    newFile: !uuid '7602de9862d68972802783e9b57a07cea9eba435'
-    oldFile: !uuid '1d6ac43c5353fbdb6230d5a4c0957fab43333cef'
-  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/Const:
-    newFile: !uuid '3b1449981c68ccae29d490014714da90cc280d91'
-    oldFile: !uuid 'c6ef02168996459f58b0355b7054eeb4e74bff16'
-  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/Const/DingTalkConst.cs:
-    newFile: !uuid '4547390ee521d746308b93c082766a8af554e875'
-    oldFile: !uuid '9df79af4095063cc755cf838e058950f3e9d0f12'
-  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/Entity:
-    newFile: !uuid '8958039a0d26d127f46adf31611ad852761c5e99'
-    oldFile: !uuid 'ea7e57f422107ecfc002b9a2b4f693e92b426b52'
-  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/Entity/DingTalkUser.cs:
-    newFile: !uuid 'fe2f0137842950348223899496f350def05eb053'
-    oldFile: !uuid 'fee3251cdcdb430354ce8581f097cd075865814e'
-  /Admin.NET/Plugins/Admin.NET.Plugin.ReZero:
-    newFile: !uuid '874b38a0899b12d5f791de96b9baa7fac5d4f127'
-    oldFile: !uuid '4f025574ba229f398d705382cb04aae0523416aa'
-  /Admin.NET/Plugins/Admin.NET.Plugin.ReZero/Startup.cs:
-    newFile: !uuid 'c6cb664534ce457373968138ceae09bb45817271'
-    oldFile: !uuid '4364e9fc16df84c88e13eada9293e7309d96eea7'
-  /Web:
-    newFile: !uuid '735aaff25ac832a6c6a023dcd7053aa5005c02b2'
-    oldFile: !uuid '59cb85ac00390b366f36c57a49dc02c1d3275e5f'
-  /Web/package.json:
-    newFile: !uuid '1b9d742ffeb319db7c277be8938026015150ecca'
-    oldFile: !uuid '6a2b1d63b4c42e8c1bf06e19076cbc0a9b704f09'
-  /Web/src:
-    newFile: !uuid '89533afe65a781695ae3cdb6a54f85c91e60b53a'
-    oldFile: !uuid '3493df7b767b370c29d5e35ca462b62fd5ebe07b'
-  /Web/src/views:
-    newFile: !uuid '80b183f49cb50fee65e583cf57fb541f8b0873b9'
-    oldFile: !uuid 'd4c4942cee2f7a42bea5b4b37a8b8b17ff72a55a'
-  /Web/src/views/system:
-    newFile: !uuid '723982244e8034de5989d0ed0aa423dc9b263ba3'
-    oldFile: !uuid 'e977f0e6139fd901a4263aea0c21b092ab0e483e'
-  /Web/src/views/system/print:
-    newFile: !uuid '9f08eeea1ce86e7685bd5a4f9d8a9a3d4ef133e6'
-    oldFile: !uuid 'aacfa7a37355c1a0d36ad54639dd3987fb5b170d'
-  /Web/src/views/system/print/component:
-    newFile: !uuid '118d004a7ab0227219528c9b4d043835b27027d7'
-    oldFile: !uuid '6de5c06c4be561026a0866dbac787bc79cf43b9d'
-  /Web/src/views/system/print/component/hiprint:
-    newFile: !uuid '4d9bda3ba9bc76a0e34f53145b671eaeed7e1981'
-    oldFile: !uuid '6099af2f27d092cec609a761590057e3cf2e70cc'
-  /Web/src/views/system/print/component/hiprint/index.vue:
-    newFile: !uuid '401109d7af0748b29a12e5232da6593c92db067c'
-    oldFile: !uuid 'ebf5bcad025b23c5f5ebd258346f67b05dec8cd4'
-gitCommitId: !uuid 'a045ed60cee5ed303c93e56acdb21c620ca4a5c9'
+    newFile: !uuid 'c50aeeba46871d72cab4ff8615d64b41177fa401'
+    oldFile: !uuid '6f180e9757085978556c904351bd1ac4c84dc624'
+  /Admin.NET/Admin.NET.Core/Utils/MiniExcelUtil.cs:
+    newFile: !uuid '789f9fef5fff37c4a88ae7b99df285a0a7ffe0bc'
+    oldFile: null
+gitCommitId: !uuid 'dc577a903aa3fff8f62976026e3800f62b0ab7eb'
 renames: {
   }
-revisionId: 2434
+revisionId: 2435
