@@ -127,12 +127,12 @@ import { hiprint } from 'vue-plugin-hiprint';
 import providers from './providers';
 import PrintPreview from './preview.vue';
 import printDataDefault from './print-data';
-import { IPaperType } from './type';
+// import { IPaperType } from './type';
 
-interface IPaperType{
-    type:string;
-    width:number;
-    height:number;
+interface IPaperType {
+	type: string;
+	width: number;
+	height: number;
 }
 
 var props = defineProps({

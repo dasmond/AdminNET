@@ -405,6 +405,7 @@ public static class RepositoryExtension
         }
         return updateable;
     }
+
     /// <summary>
     /// 批量列表in查询
     /// </summary>
@@ -417,7 +418,6 @@ public static class RepositoryExtension
     /// <returns></returns>
     public static async Task<List<T1>> BulkListQuery<T1, T2>(this ISugarQueryable<T1> queryable,
             Expression<Func<T1, SingleColumnEntity<T2>, bool>> exp,
-
             IEnumerable<T2> queryList,
             CancellationToken stoppingToken) where T1 : class, new()
     {
@@ -426,7 +426,7 @@ public static class RepositoryExtension
         try
         {
             var type = queryable.Context.DynamicBuilder().CreateClass(tableName, new SugarTable())
-                .CreateProperty("ColumnName", typeof(string), new SugarColumn() { IsPrimaryKey = true })//主键不要自增 
+                .CreateProperty("ColumnName", typeof(string), new SugarColumn() { IsPrimaryKey = true }) // 主键不要自增
                 .BuilderType();
             // 创建表
             queryable.Context.CodeFirst.InitTables(type);
@@ -450,6 +450,5 @@ public static class RepositoryExtension
             queryable.Context.DbMaintenance.DropTable(tableName);
             throw Oops.Oh(error);
         }
-
     }
 }

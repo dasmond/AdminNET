@@ -6,7 +6,7 @@
 
 using MiniExcelLibs;
 
-namespace Admin.NET.Core;   
+namespace Admin.NET.Core;
 
 public static class MiniExcelUtil
 {
@@ -20,11 +20,11 @@ public static class MiniExcelUtil
     public static async Task<IActionResult> ExportExcelTemplate<T>(string fileName = null) where T : class, new()
     {
         var values = Array.Empty<T>();
-        //在内存中当开辟空间
+        // 在内存中当开辟空间
         var memoryStream = new MemoryStream();
-        //将数据写到内存当中
+        // 将数据写到内存当中
         await memoryStream.SaveAsAsync(values, sheetName: _sheetName);
-        //从0的位置开始写入
+        // 从0的位置开始写入
         memoryStream.Seek(0, SeekOrigin.Begin);
         return new FileStreamResult(memoryStream, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
         {
