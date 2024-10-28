@@ -7,10 +7,19 @@
 	"author": "zuohuaijun",
 	"license": "MIT",
 	"scripts": {
-		"dev": "vite",
-		"build": "node --max-old-space-size=8192 ./node_modules/vite/bin/vite build",
+		"bootstrap": "pnpm install",
+		"dev": "vite dev",
+		"build": "vite build",
+		"preview": "vite preview",
+		"format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,vue,css,scss,less,json,md}\"",
+		"update-pkg": "ncu -u",
+		"cache-verify": "npm cache verify",
+		"clean-lock": "node ./scripts/clean-lock.js",
+		"clean-modules": "node ./scripts/clean-modules.js",
+		"clean-dist": "node ./scripts/clean-dist.js",
+		"clean-node": "pnpm run clean-lock && pnpm run clean-modules && pnpm run clean-dist",
+		"reinstall": "pnpm run clean-node && pnpm run bootstrap",
 		"lint-fix": "eslint --fix src/",
-		"format": "prettier --write .",
 		"build-api": "cd api_build/ && build.bat"
 	},
 	"dependencies": {
