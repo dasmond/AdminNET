@@ -270,6 +270,21 @@ public static class SqlSugarSetup
 
         db.Aop.OnDiffLogEvent = async u =>
         {
+            // 移除相同字段
+            for (int i = 0; i < u.AfterData.Count; i++)
+            {
+                var afterColumns = u.AfterData[i].Columns;
+                var beforeColumns = u.BeforeData[i].Columns;
+                for (int j = 0; j < afterColumns.Count; j++)
+                {
+                    if (afterColumns[j].Value.Equals(beforeColumns[j].Value))
+                    {
+                        beforeColumns.Remove(beforeColumns[j]);
+                        afterColumns.Remove(afterColumns[j]);
+                        j--;
+                    }
+                }
+            }
             var logDiff = new SysLogDiff
             {
                 // 操作后记录（字段描述、列名、值、表名、表描述）
