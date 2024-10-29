@@ -33,10 +33,14 @@ public class EnumToDictJob : IJob
         var enumTypeList = sysEnumService.GetEnumTypeList();
         var enumCodeList = enumTypeList.Select(u => u.TypeName);
         // 查询数据库中已存在的枚举类型代码
-        var sysDictTypeList = await db.Queryable<SysDictType>()
-                                      .Includes(d => d.Children)
-                                      .Where(d => enumCodeList.Contains(d.Code))
-                                      .ToListAsync(stoppingToken);
+        // 查询数据库中已存在的枚举类型代码
+        var exp = Expressionable.Create<SysDictType, SingleColumnEntity<string>>()
+        .And((t1, t2) => t1.Code == t2.ColumnName)
+        .ToExpression();
+        var sysDictTypeList = await db.Queryable<SysDictType>().Includes(t1 => t1.Children).BulkListQuery(
+            exp,
+            enumCodeList,
+            stoppingToken);
         // 更新的枚举转换字典
         var updatedEnumCodes = sysDictTypeList.Select(u => u.Code);
         var updatedEnumType = enumTypeList.Where(u => updatedEnumCodes.Contains(u.TypeName)).ToList();
