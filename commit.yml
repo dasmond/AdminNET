@@ -2,22 +2,37 @@
 branches: {
   }
 fileChange:
+  /Admin.NET:
+    newFile: !uuid 'efce4e1f9d50681d0cc371a96ed5126c768c6fbf'
+    oldFile: !uuid '25ba634e30bd9605eafd67abadead3ce9c9949cb'
+  /Admin.NET/Admin.NET.Core:
+    newFile: !uuid '30b6fc4e8ca452965a5ed7a21b3a8eb7d18ca3cb'
+    oldFile: !uuid 'c27cc5ecd59316d51053968b016c45761360e460'
+  /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
+    newFile: !uuid 'b50b0d50a94a6c7239fd898027db1b920833608a'
+    oldFile: !uuid '6e69b4ca38578ee93065d98700cd6e3f9f0482ff'
+  /Admin.NET/Admin.NET.Core/SqlSugar:
+    newFile: !uuid 'ac069d3cf8c97bf73777dd95ce2fc973526fa7e0'
+    oldFile: !uuid '1c9461ec9b48dfb809cf7a8b8b00debea5d00851'
+  /Admin.NET/Admin.NET.Core/SqlSugar/SqlSugarSetup.cs:
+    newFile: !uuid '5808d9ef984de8ed128d4f16fccbf85facaca574'
+    oldFile: !uuid '2e3013f436c39f5047587f65c376f9f7a684f30c'
+  /Admin.NET/Plugins:
+    newFile: !uuid '3832527741e393306f8a908569398e47b4283a49'
+    oldFile: !uuid '400e5060ba888686a4aa24191161dcd6534adc1b'
+  /Admin.NET/Plugins/Admin.NET.Plugin.ReZero:
+    newFile: !uuid 'f48ede2600e4e2f0782a421441cfda36a07817c7'
+    oldFile: !uuid '874b38a0899b12d5f791de96b9baa7fac5d4f127'
+  /Admin.NET/Plugins/Admin.NET.Plugin.ReZero/Admin.NET.Plugin.ReZero.csproj:
+    newFile: !uuid '1ce0c90582f77cdd1e1799bef2f0d3d8fba777e4'
+    oldFile: !uuid '4f662abde7f5f17eb39e2c271859ccc973259730'
   /Web:
-    newFile: !uuid '7e3c3dba5c3723828993862d7e19c515551abd5e'
+    newFile: !uuid 'db424b1b1080a6e00afc141da1edb94386833e23'
     oldFile: !uuid '938939e7f6ea1d9e1c1586cced00c87608743e37'
-  /Web/src:
-    newFile: !uuid '03d8ec403898214a42dbbaf2e68e5f0e58a48b19'
-    oldFile: !uuid 'aa46cdd21ec31eb9d83293a164a112bc1d3087b3'
-  /Web/src/components:
-    newFile: !uuid '9a47e9700434437dbbc367b221e7a24a4a1396b2'
-    oldFile: !uuid 'fc12e32769882de20ea7b82fa8371abe479974c5'
-  /Web/src/components/table:
-    newFile: !uuid '5b278aa4305dda60f8486e923d8b198f3d48c592'
-    oldFile: !uuid '342c4036bc242f35be872918da4c297fc32d94b9'
-  /Web/src/components/table/search.vue:
-    newFile: !uuid '33cfd9633b4ec6e8f28a90195e84b8c29c1a68cc'
-    oldFile: !uuid 'd951fbbad52900fca5fd27f028914ceab532422b'
-gitCommitId: !uuid 'e5bfa979b2e9d42fd92f006a3d18a125b97b6ff8'
+  /Web/package.json:
+    newFile: !uuid '6165134167b4859bd7292d3baba8db05979bbecd'
+    oldFile: !uuid 'a478642071c2788b5b606e10c3271cbb53112d58'
+gitCommitId: !uuid '801f4b99388c0f73a5dff7d0d700240a636eea63'
 renames: {
   }
-revisionId: 2444
+revisionId: 2445
