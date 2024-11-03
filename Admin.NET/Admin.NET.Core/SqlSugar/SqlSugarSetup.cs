@@ -285,6 +285,7 @@ public static class SqlSugarSetup
                     }
                 }
             }
+
             var logDiff = new SysLogDiff
             {
                 // 操作后记录（字段描述、列名、值、表名、表描述）
