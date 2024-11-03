@@ -139,7 +139,8 @@ watch(
 	() => props.modelValue,
 	(val) => {
 		state.innerModelValue = val;
-	}
+	},
+	{ immediate: true }
 );
 
 /** 监听 state.innerModelValue 变化 */
