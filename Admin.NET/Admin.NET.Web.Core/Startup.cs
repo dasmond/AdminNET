@@ -191,10 +191,7 @@ public class Startup : AppStartup
         services.AddViewEngine();
 
         // 即时通讯
-        services.AddSignalR(options =>
-        {
-            options.KeepAliveInterval = TimeSpan.FromSeconds(5);
-        }).AddNewtonsoftJsonProtocol(options => SetNewtonsoftJsonSetting(options.PayloadSerializerSettings));
+        services.AddSignalR(setting => SetNewtonsoftJsonSetting(setting));
 
         // 系统日志
         services.AddLoggingSetup();
