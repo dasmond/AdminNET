@@ -234,6 +234,9 @@ public class Startup : AppStartup
                     "image/svg+xml"
              });
         });
+
+        //注册虚拟文件系统服务
+        services.AddVirtualFileServer();
     }
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
