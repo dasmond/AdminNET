@@ -12,6 +12,9 @@ namespace Admin.NET.Core;
 /// <typeparam name="T"></typeparam>
 public class XlsxFileResult<T> : XlsxFileResultBase where T : class, new()
 {
+    public string FileDownloadName { get; }
+    public ICollection<T> Data { get; }
+
     /// <summary>
     ///
     /// </summary>
@@ -22,9 +25,6 @@ public class XlsxFileResult<T> : XlsxFileResultBase where T : class, new()
         FileDownloadName = fileDownloadName;
         Data = data;
     }
-
-    public string FileDownloadName { get; }
-    public ICollection<T> Data { get; }
 
     public override async Task ExecuteResultAsync(ActionContext context)
     {
@@ -63,12 +63,10 @@ public class XlsxFileResult : XlsxFileResultBase
         FileDownloadName = fileDownloadName;
     }
 
-
     public Stream Stream { get; protected set; }
     public string FileDownloadName { get; protected set; }
 
-
-    public async override Task ExecuteResultAsync(ActionContext context)
+    public override async Task ExecuteResultAsync(ActionContext context)
     {
         await DownloadExcelFileAsync(context, Stream, FileDownloadName);
     }
@@ -101,7 +99,7 @@ public class XlsxFileResultBase : ActionResult
             downloadFileName += ".xlsx";
         }
 
-        context.HttpContext.Response.Headers.Append("Content-Disposition", new[] { "attachment; filename=" +HttpUtility.UrlEncode(downloadFileName) });
+        context.HttpContext.Response.Headers.Append("Content-Disposition", new[] { "attachment; filename=" + HttpUtility.UrlEncode(downloadFileName) });
         await stream.CopyToAsync(context.HttpContext.Response.Body);
     }
 }

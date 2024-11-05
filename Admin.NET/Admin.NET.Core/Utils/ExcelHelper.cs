@@ -37,7 +37,7 @@ public class ExcelHelper
                     }
                 }));
             });
-            
+
             // 等待所有标记验证信息任务完成
             Task.WhenAll(tasks).GetAwaiter().GetResult();
 
@@ -82,11 +82,11 @@ public class ExcelHelper
     {
         using var package = new ExcelPackage((ExportData(list, filename) as XlsxFileResult)!.Stream);
         var worksheet = package.Workbook.Worksheets[0];
-        
+
         foreach (var prop in typeof(T).GetProperties())
         {
             var propType = prop.PropertyType;
-            
+
             var headerAttr = prop.GetCustomAttribute<ExporterHeaderAttribute>();
             var isNullableEnum = propType.IsGenericType && propType.GetGenericTypeDefinition() == typeof(Nullable<>) && Nullable.GetUnderlyingType(propType).IsEnum();
             if (isNullableEnum) propType = Nullable.GetUnderlyingType(propType);
@@ -97,7 +97,7 @@ public class ExcelHelper
             foreach (var item in worksheet.Cells[1, 1, 1, worksheet.Dimension.End.Column])
                 if (++columnIndex > 0 && item.Text.Equals(headerAttr.DisplayName)) break;
             if (columnIndex <= 0) continue;
-            
+
             // 优先从代理函数中获取下列列表，若为空且字段为枚举型，则填充枚举项为下列列表，否则不设置下列列表
             var dataList = addListValidationFun?.Invoke(worksheet, prop)?.ToList();
             if (dataList == null && propType.IsEnum()) dataList = propType.EnumToList()?.Select(it => it.Describe).ToList();
@@ -112,7 +112,7 @@ public class ExcelHelper
             validation.ErrorTitle = "无效输入";
             validation.Error = "请从列表中选择一个有效的选项";
         }
-        
+
         package.Save();
         package.Stream.Position = 0;
         return new XlsxFileResult(stream: package.Stream, fileDownloadName: $"{filename}-{DateTime.Now:yyyy-MM-dd_HHmmss}");

@@ -7,7 +7,7 @@
 namespace Admin.NET.Core;
 
 /// <summary>
-/// 数据导入输入参数基类
+/// 数据导入输入参数
 /// </summary>
 public class BaseImportInput
 {
