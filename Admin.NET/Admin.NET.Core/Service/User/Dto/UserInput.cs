@@ -9,13 +9,8 @@ namespace Admin.NET.Core.Service;
 /// <summary>
 /// 设置用户状态输入参数
 /// </summary>
-public class UserInput : BaseIdInput
+public class UserInput : BaseStatusInput
 {
-    /// <summary>
-    /// 状态
-    /// </summary>
-    [Dict("StatusEnum")]
-    public StatusEnum Status { get; set; }
 }
 
 /// <summary>
