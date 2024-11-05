@@ -332,7 +332,7 @@ public class SysWechatPayService : IDynamicApiController, ITransient
 
             OutTradeNumber = input.TradeId,
             OutRefundNumber = "R" + DateTimeOffset.Now.ToString("yyyyMMddHHmmssfff") + (new Random()).Next(100, 1000), // 订单号
-            NotifyUrl = _payCallBackOptions.WechatPayUrl,
+            NotifyUrl = _payCallBackOptions.WechatRefundUrl, // 应采用WechatRefundUrl参数，如与WechatPayUrl入口相同，也应分开设置参数
             Reason = input.Reason,
         };
         var response = await _wechatTenpayClient.ExecuteCreateRefundDomesticRefundAsync(request);
