@@ -15,14 +15,13 @@ public partial class WechatApiClientFactory : ISingleton
 {
     private readonly IHttpClientFactory _httpClientFactory;
     public readonly WechatOptions _wechatOptions;
-    private readonly SysCacheService _sysCacheSrv;
+    private readonly SysCacheService _sysCacheService;
 
-
-    public WechatApiClientFactory(IHttpClientFactory httpClientFactory, IOptions<WechatOptions> wechatOptions, SysCacheService sysCacheSrv)
+    public WechatApiClientFactory(IHttpClientFactory httpClientFactory, IOptions<WechatOptions> wechatOptions, SysCacheService sysCacheService)
     {
         _httpClientFactory = httpClientFactory ?? throw new ArgumentNullException(nameof(httpClientFactory));
         _wechatOptions = wechatOptions.Value ?? throw new ArgumentNullException(nameof(wechatOptions));
-        _sysCacheSrv = sysCacheSrv;
+        _sysCacheService = sysCacheService;
     }
 
     /// <summary>
@@ -85,28 +84,23 @@ public partial class WechatApiClientFactory : ISingleton
         return client;
     }
 
-
-
-
     /// <summary>
     /// 获取微信公众号AccessToken
     /// </summary>
     /// <returns></returns>
     public async Task<string> TryGetWechatAccessTokenAsync()
     {
-        var _sysCacheSrv = App.GetRequiredService<SysCacheService>();
-
-        if (!_sysCacheSrv.ExistKey($"WxAccessToken_{_wechatOptions.WechatAppId}") || string.IsNullOrEmpty(_sysCacheSrv.Get<string>($"WxAccessToken_{_wechatOptions.WechatAppId}")))
+        if (!_sysCacheService.ExistKey($"WxAccessToken_{_wechatOptions.WechatAppId}") || string.IsNullOrEmpty(_sysCacheService.Get<string>($"WxAccessToken_{_wechatOptions.WechatAppId}")))
         {
             var client = CreateWechatClient();
             var reqCgibinToken = new CgibinTokenRequest();
             var resCgibinToken = await client.ExecuteCgibinTokenAsync(reqCgibinToken);
             if (resCgibinToken.ErrorCode != (int)WechatReturnCodeEnum.请求成功)
                 throw Oops.Oh(resCgibinToken.ErrorMessage + " " + resCgibinToken.ErrorCode);
-            _sysCacheSrv.Set($"WxAccessToken_{_wechatOptions.WechatAppId}", resCgibinToken.AccessToken, TimeSpan.FromSeconds(resCgibinToken.ExpiresIn - 60));
+            _sysCacheService.Set($"WxAccessToken_{_wechatOptions.WechatAppId}", resCgibinToken.AccessToken, TimeSpan.FromSeconds(resCgibinToken.ExpiresIn - 60));
         }
 
-        return _sysCacheSrv.Get<string>($"WxAccessToken_{_wechatOptions.WechatAppId}");
+        return _sysCacheService.Get<string>($"WxAccessToken_{_wechatOptions.WechatAppId}");
     }
 
     /// <summary>
@@ -115,21 +109,18 @@ public partial class WechatApiClientFactory : ISingleton
     /// <returns></returns>
     public async Task<string> TryGetWxOpenAccessTokenAsync()
     {
-        var _sysCacheSrv = App.GetRequiredService<SysCacheService>();
-
-        if (!_sysCacheSrv.ExistKey($"WxAccessToken_{_wechatOptions.WxOpenAppId}") || string.IsNullOrEmpty(_sysCacheSrv.Get<string>($"WxAccessToken_{_wechatOptions.WxOpenAppId}")))
+        if (!_sysCacheService.ExistKey($"WxAccessToken_{_wechatOptions.WxOpenAppId}") || string.IsNullOrEmpty(_sysCacheService.Get<string>($"WxAccessToken_{_wechatOptions.WxOpenAppId}")))
         {
             var client = CreateWxOpenClient();
             var reqCgibinToken = new CgibinTokenRequest();
             var resCgibinToken = await client.ExecuteCgibinTokenAsync(reqCgibinToken);
             if (resCgibinToken.ErrorCode != (int)WechatReturnCodeEnum.请求成功)
                 throw Oops.Oh(resCgibinToken.ErrorMessage + " " + resCgibinToken.ErrorCode);
-            _sysCacheSrv.Set($"WxAccessToken_{_wechatOptions.WxOpenAppId}", resCgibinToken.AccessToken, TimeSpan.FromSeconds(resCgibinToken.ExpiresIn - 60));
+            _sysCacheService.Set($"WxAccessToken_{_wechatOptions.WxOpenAppId}", resCgibinToken.AccessToken, TimeSpan.FromSeconds(resCgibinToken.ExpiresIn - 60));
         }
 
-        return _sysCacheSrv.Get<string>($"WxAccessToken_{_wechatOptions.WxOpenAppId}");
+        return _sysCacheService.Get<string>($"WxAccessToken_{_wechatOptions.WxOpenAppId}");
     }
-
 
     /// <summary>
     /// 检查微信公众号AccessToken
@@ -137,8 +128,6 @@ public partial class WechatApiClientFactory : ISingleton
     /// <returns></returns>
     public async Task CheckWechatAccessTokenAsync()
     {
-        var _sysCacheSrv = App.GetRequiredService<SysCacheService>();
-
         if (string.IsNullOrEmpty(_wechatOptions.WechatAppId) || string.IsNullOrEmpty(_wechatOptions.WechatAppSecret)) return;
 
         var req = new CgibinOpenApiQuotaGetRequest
@@ -152,7 +141,7 @@ public partial class WechatApiClientFactory : ISingleton
         var originColor = Console.ForegroundColor;
         if (res.ErrorCode != (int)WechatReturnCodeEnum.请求成功)
         {
-            _sysCacheSrv.Remove($"WxAccessToken_{_wechatOptions.WechatAppId}");
+            _sysCacheService.Remove($"WxAccessToken_{_wechatOptions.WechatAppId}");
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("【" + DateTime.Now + "】" + _wechatOptions.WxOpenAppId + " 微信公众号令牌 无效");
         }
@@ -164,15 +153,12 @@ public partial class WechatApiClientFactory : ISingleton
         Console.ForegroundColor = originColor;
     }
 
-
     /// <summary>
     /// 检查微信小程序AccessToken
     /// </summary>
     /// <returns></returns>
     public async Task CheckWxOpenAccessTokenAsync()
     {
-        var _sysCacheSrv = App.GetRequiredService<SysCacheService>();
-
         if (string.IsNullOrEmpty(_wechatOptions.WxOpenAppId) || string.IsNullOrEmpty(_wechatOptions.WxOpenAppSecret)) return;
 
         var req = new CgibinOpenApiQuotaGetRequest
@@ -186,7 +172,7 @@ public partial class WechatApiClientFactory : ISingleton
         var originColor = Console.ForegroundColor;
         if (res.ErrorCode != (int)WechatReturnCodeEnum.请求成功)
         {
-            _sysCacheSrv.Remove($"WxAccessToken_{_wechatOptions.WxOpenAppId}");
+            _sysCacheService.Remove($"WxAccessToken_{_wechatOptions.WxOpenAppId}");
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("【" + DateTime.Now + "】" + _wechatOptions.WxOpenAppId + " 微信小程序令牌 无效");
         }

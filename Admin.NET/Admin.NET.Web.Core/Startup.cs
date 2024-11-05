@@ -193,7 +193,10 @@ public class Startup : AppStartup
         // 即时通讯
         services.AddSignalR(options =>
         {
-            options.KeepAliveInterval = TimeSpan.FromSeconds(5);
+            options.EnableDetailedErrors = true;
+            options.KeepAliveInterval = TimeSpan.FromSeconds(15); // 服务器端向客户端ping的间隔
+            options.ClientTimeoutInterval = TimeSpan.FromSeconds(30); // 客户端向服务器端ping的间隔
+            options.MaximumReceiveMessageSize = 1024 * 1014 * 10; // 数据包大小10M，默认最大为32K
         }).AddNewtonsoftJsonProtocol(options => SetNewtonsoftJsonSetting(options.PayloadSerializerSettings));
 
         // 系统日志
@@ -235,7 +238,7 @@ public class Startup : AppStartup
              });
         });
 
-        //注册虚拟文件系统服务
+        // 注册虚拟文件系统服务
         services.AddVirtualFileServer();
     }
 

@@ -12,6 +12,13 @@
  * Do not edit the class manually.
  */
 
+import { AccountTypeEnum } from './account-type-enum';
+import { CardTypeEnum } from './card-type-enum';
+import { CultureLevelEnum } from './culture-level-enum';
+import { GenderEnum } from './gender-enum';
+import { StatusEnum } from './status-enum';
+import { SysOrg } from './sys-org';
+import { SysUser } from './sys-user';
  /**
  * 
  *
@@ -29,7 +36,127 @@ export interface SysFileUploadFileBody {
     file: Blob;
 
     /**
-     * 文件类型
+     * 文件路径
+     *
+     * @type {string}
+     * @memberof SysFileUploadFileBody
+     */
+    path?: string;
+
+    /**
+     * 文件保存路径
+     *
+     * @type {string}
+     * @memberof SysFileUploadFileBody
+     */
+    savePath?: string;
+
+    /**
+     * 允许格式：.jpeg.jpg.png.bmp.gif.tif
+     *
+     * @type {string}
+     * @memberof SysFileUploadFileBody
+     */
+    allowSuffix?: string;
+
+    /**
+     * 提供者
+     *
+     * @type {string}
+     * @memberof SysFileUploadFileBody
+     */
+    provider?: string;
+
+    /**
+     * 仓储名称
+     *
+     * @type {string}
+     * @memberof SysFileUploadFileBody
+     */
+    bucketName?: string;
+
+    /**
+     * 文件名称（源文件名）
+     *
+     * @type {string}
+     * @memberof SysFileUploadFileBody
+     */
+    fileName?: string;
+
+    /**
+     * 文件后缀
+     *
+     * @type {string}
+     * @memberof SysFileUploadFileBody
+     */
+    suffix?: string;
+
+    /**
+     * 存储路径
+     *
+     * @type {string}
+     * @memberof SysFileUploadFileBody
+     */
+    filePath?: string;
+
+    /**
+     * 文件大小KB
+     *
+     * @type {number}
+     * @memberof SysFileUploadFileBody
+     */
+    sizeKb?: number;
+
+    /**
+     * 文件大小信息-计算后的
+     *
+     * @type {string}
+     * @memberof SysFileUploadFileBody
+     */
+    sizeInfo?: string;
+
+    /**
+     * 外链地址-OSS上传后生成外链地址方便前端预览
+     *
+     * @type {string}
+     * @memberof SysFileUploadFileBody
+     */
+    url?: string;
+
+    /**
+     * 文件MD5
+     *
+     * @type {string}
+     * @memberof SysFileUploadFileBody
+     */
+    fileMd5?: string;
+
+    /**
+     * 关联对象名称（如子对象）
+     *
+     * @type {string}
+     * @memberof SysFileUploadFileBody
+     */
+    relationName?: string;
+
+    /**
+     * 关联对象Id
+     *
+     * @type {number}
+     * @memberof SysFileUploadFileBody
+     */
+    relationId?: number;
+
+    /**
+     * 所属Id（如主对象）
+     *
+     * @type {number}
+     * @memberof SysFileUploadFileBody
+     */
+    belongId?: number;
+
+    /**
+     * 文件类别
      *
      * @type {string}
      * @memberof SysFileUploadFileBody
@@ -45,34 +172,1582 @@ export interface SysFileUploadFileBody {
     isPublic?: boolean;
 
     /**
-     * 文件路径
-     *
-     * @type {string}
-     * @memberof SysFileUploadFileBody
-     */
-    path?: string;
-
-    /**
-     * 所属实体ID
+     * 租户Id
      *
      * @type {number}
      * @memberof SysFileUploadFileBody
      */
-    belongId?: number;
+    tenantId?: number;
 
     /**
-     * 关联对象Id
+     * 创建者部门Id
      *
      * @type {number}
      * @memberof SysFileUploadFileBody
      */
-    relationId?: number;
+    createOrgId?: number;
 
     /**
-     * 关联对象名称
+     * 父Id
+     *
+     * @type {number}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgPid?: number;
+
+    /**
+     * 名称
      *
      * @type {string}
      * @memberof SysFileUploadFileBody
      */
-    relationName?: string;
+    createOrgName: string;
+
+    /**
+     * 编码
+     *
+     * @type {string}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgCode?: string;
+
+    /**
+     * 级别
+     *
+     * @type {number}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgLevel?: number;
+
+    /**
+     * 机构类型-数据字典
+     *
+     * @type {string}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgType?: string;
+
+    /**
+     * 负责人Id
+     *
+     * @type {number}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorId?: number;
+
+    /**
+     * 账号
+     *
+     * @type {string}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorAccount: string;
+
+    /**
+     * 密码
+     *
+     * @type {string}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorPassword?: string;
+
+    /**
+     * 真实姓名
+     *
+     * @type {string}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorRealName?: string;
+
+    /**
+     * 昵称
+     *
+     * @type {string}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorNickName?: string;
+
+    /**
+     * 头像
+     *
+     * @type {string}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorAvatar?: string;
+
+    /**
+     * @type {GenderEnum}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorSex?: GenderEnum;
+
+    /**
+     * 年龄
+     *
+     * @type {number}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorAge?: number;
+
+    /**
+     * 出生日期
+     *
+     * @type {Date}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorBirthday?: Date;
+
+    /**
+     * 民族
+     *
+     * @type {string}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorNation?: string;
+
+    /**
+     * 手机号码
+     *
+     * @type {string}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorPhone?: string;
+
+    /**
+     * @type {CardTypeEnum}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorCardType?: CardTypeEnum;
+
+    /**
+     * 身份证号
+     *
+     * @type {string}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorIdCardNum?: string;
+
+    /**
+     * 邮箱
+     *
+     * @type {string}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorEmail?: string;
+
+    /**
+     * 地址
+     *
+     * @type {string}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorAddress?: string;
+
+    /**
+     * @type {CultureLevelEnum}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorCultureLevel?: CultureLevelEnum;
+
+    /**
+     * 政治面貌
+     *
+     * @type {string}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorPoliticalOutlook?: string;
+
+    /**
+     * 毕业院校
+     *
+     * @type {string}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorCollege?: string;
+
+    /**
+     * 办公电话
+     *
+     * @type {string}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorOfficePhone?: string;
+
+    /**
+     * 紧急联系人
+     *
+     * @type {string}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorEmergencyContact?: string;
+
+    /**
+     * 紧急联系人电话
+     *
+     * @type {string}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorEmergencyPhone?: string;
+
+    /**
+     * 紧急联系人地址
+     *
+     * @type {string}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorEmergencyAddress?: string;
+
+    /**
+     * 个人简介
+     *
+     * @type {string}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorIntroduction?: string;
+
+    /**
+     * 排序
+     *
+     * @type {number}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorOrderNo?: number;
+
+    /**
+     * @type {StatusEnum}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorStatus?: StatusEnum;
+
+    /**
+     * 备注
+     *
+     * @type {string}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorRemark?: string;
+
+    /**
+     * @type {AccountTypeEnum}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorAccountType?: AccountTypeEnum;
+
+    /**
+     * 直属机构Id
+     *
+     * @type {number}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorOrgId?: number;
+
+    /**
+     * 父Id
+     *
+     * @type {number}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorSysOrgPid?: number;
+
+    /**
+     * 名称
+     *
+     * @type {string}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorSysOrgName: string;
+
+    /**
+     * 编码
+     *
+     * @type {string}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorSysOrgCode?: string;
+
+    /**
+     * 级别
+     *
+     * @type {number}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorSysOrgLevel?: number;
+
+    /**
+     * 机构类型-数据字典
+     *
+     * @type {string}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorSysOrgType?: string;
+
+    /**
+     * 负责人Id
+     *
+     * @type {number}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorSysOrgDirectorId?: number;
+
+    /**
+     * @type {SysUser}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorSysOrgDirector?: SysUser;
+
+    /**
+     * 排序
+     *
+     * @type {number}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorSysOrgOrderNo?: number;
+
+    /**
+     * @type {StatusEnum}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorSysOrgStatus?: StatusEnum;
+
+    /**
+     * 备注
+     *
+     * @type {string}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorSysOrgRemark?: string;
+
+    /**
+     * 机构子项
+     *
+     * @type {Array<SysOrg>}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorSysOrgChildren?: Array<SysOrg>;
+
+    /**
+     * 是否禁止选中
+     *
+     * @type {boolean}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorSysOrgDisabled?: boolean;
+
+    /**
+     * 租户Id
+     *
+     * @type {number}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorSysOrgTenantId?: number;
+
+    /**
+     * 创建时间
+     *
+     * @type {Date}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorSysOrgCreateTime?: Date;
+
+    /**
+     * 更新时间
+     *
+     * @type {Date}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorSysOrgUpdateTime?: Date;
+
+    /**
+     * 创建者Id
+     *
+     * @type {number}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorSysOrgCreateUserId?: number;
+
+    /**
+     * 创建者姓名
+     *
+     * @type {string}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorSysOrgCreateUserName?: string;
+
+    /**
+     * 修改者Id
+     *
+     * @type {number}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorSysOrgUpdateUserId?: number;
+
+    /**
+     * 修改者姓名
+     *
+     * @type {string}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorSysOrgUpdateUserName?: string;
+
+    /**
+     * 软删除
+     *
+     * @type {boolean}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorSysOrgIsDelete?: boolean;
+
+    /**
+     * 雪花Id
+     *
+     * @type {number}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorSysOrgId?: number;
+
+    /**
+     * 直属主管Id
+     *
+     * @type {number}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorManagerUserId?: number;
+
+    /**
+     * 账号
+     *
+     * @type {string}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorManagerUserAccount: string;
+
+    /**
+     * 密码
+     *
+     * @type {string}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorManagerUserPassword?: string;
+
+    /**
+     * 真实姓名
+     *
+     * @type {string}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorManagerUserRealName?: string;
+
+    /**
+     * 昵称
+     *
+     * @type {string}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorManagerUserNickName?: string;
+
+    /**
+     * 头像
+     *
+     * @type {string}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorManagerUserAvatar?: string;
+
+    /**
+     * @type {GenderEnum}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorManagerUserSex?: GenderEnum;
+
+    /**
+     * 年龄
+     *
+     * @type {number}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorManagerUserAge?: number;
+
+    /**
+     * 出生日期
+     *
+     * @type {Date}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorManagerUserBirthday?: Date;
+
+    /**
+     * 民族
+     *
+     * @type {string}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorManagerUserNation?: string;
+
+    /**
+     * 手机号码
+     *
+     * @type {string}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorManagerUserPhone?: string;
+
+    /**
+     * @type {CardTypeEnum}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorManagerUserCardType?: CardTypeEnum;
+
+    /**
+     * 身份证号
+     *
+     * @type {string}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorManagerUserIdCardNum?: string;
+
+    /**
+     * 邮箱
+     *
+     * @type {string}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorManagerUserEmail?: string;
+
+    /**
+     * 地址
+     *
+     * @type {string}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorManagerUserAddress?: string;
+
+    /**
+     * @type {CultureLevelEnum}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorManagerUserCultureLevel?: CultureLevelEnum;
+
+    /**
+     * 政治面貌
+     *
+     * @type {string}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorManagerUserPoliticalOutlook?: string;
+
+    /**
+     * 毕业院校
+     *
+     * @type {string}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorManagerUserCollege?: string;
+
+    /**
+     * 办公电话
+     *
+     * @type {string}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorManagerUserOfficePhone?: string;
+
+    /**
+     * 紧急联系人
+     *
+     * @type {string}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorManagerUserEmergencyContact?: string;
+
+    /**
+     * 紧急联系人电话
+     *
+     * @type {string}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorManagerUserEmergencyPhone?: string;
+
+    /**
+     * 紧急联系人地址
+     *
+     * @type {string}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorManagerUserEmergencyAddress?: string;
+
+    /**
+     * 个人简介
+     *
+     * @type {string}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorManagerUserIntroduction?: string;
+
+    /**
+     * 排序
+     *
+     * @type {number}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorManagerUserOrderNo?: number;
+
+    /**
+     * @type {StatusEnum}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorManagerUserStatus?: StatusEnum;
+
+    /**
+     * 备注
+     *
+     * @type {string}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorManagerUserRemark?: string;
+
+    /**
+     * @type {AccountTypeEnum}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorManagerUserAccountType?: AccountTypeEnum;
+
+    /**
+     * 直属机构Id
+     *
+     * @type {number}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorManagerUserOrgId?: number;
+
+    /**
+     * 父Id
+     *
+     * @type {number}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorManagerUserSysOrgPid?: number;
+
+    /**
+     * 名称
+     *
+     * @type {string}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorManagerUserSysOrgName: string;
+
+    /**
+     * 编码
+     *
+     * @type {string}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorManagerUserSysOrgCode?: string;
+
+    /**
+     * 级别
+     *
+     * @type {number}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorManagerUserSysOrgLevel?: number;
+
+    /**
+     * 机构类型-数据字典
+     *
+     * @type {string}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorManagerUserSysOrgType?: string;
+
+    /**
+     * 负责人Id
+     *
+     * @type {number}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorManagerUserSysOrgDirectorId?: number;
+
+    /**
+     * @type {SysUser}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorManagerUserSysOrgDirector?: SysUser;
+
+    /**
+     * 排序
+     *
+     * @type {number}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorManagerUserSysOrgOrderNo?: number;
+
+    /**
+     * @type {StatusEnum}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorManagerUserSysOrgStatus?: StatusEnum;
+
+    /**
+     * 备注
+     *
+     * @type {string}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorManagerUserSysOrgRemark?: string;
+
+    /**
+     * 机构子项
+     *
+     * @type {Array<SysOrg>}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorManagerUserSysOrgChildren?: Array<SysOrg>;
+
+    /**
+     * 是否禁止选中
+     *
+     * @type {boolean}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorManagerUserSysOrgDisabled?: boolean;
+
+    /**
+     * 租户Id
+     *
+     * @type {number}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorManagerUserSysOrgTenantId?: number;
+
+    /**
+     * 创建时间
+     *
+     * @type {Date}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorManagerUserSysOrgCreateTime?: Date;
+
+    /**
+     * 更新时间
+     *
+     * @type {Date}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorManagerUserSysOrgUpdateTime?: Date;
+
+    /**
+     * 创建者Id
+     *
+     * @type {number}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorManagerUserSysOrgCreateUserId?: number;
+
+    /**
+     * 创建者姓名
+     *
+     * @type {string}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorManagerUserSysOrgCreateUserName?: string;
+
+    /**
+     * 修改者Id
+     *
+     * @type {number}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorManagerUserSysOrgUpdateUserId?: number;
+
+    /**
+     * 修改者姓名
+     *
+     * @type {string}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorManagerUserSysOrgUpdateUserName?: string;
+
+    /**
+     * 软删除
+     *
+     * @type {boolean}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorManagerUserSysOrgIsDelete?: boolean;
+
+    /**
+     * 雪花Id
+     *
+     * @type {number}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorManagerUserSysOrgId?: number;
+
+    /**
+     * 直属主管Id
+     *
+     * @type {number}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorManagerUserManagerUserId?: number;
+
+    /**
+     * @type {SysUser}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorManagerUserManagerUser?: SysUser;
+
+    /**
+     * 职位Id
+     *
+     * @type {number}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorManagerUserPosId?: number;
+
+    /**
+     * 名称
+     *
+     * @type {string}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorManagerUserSysPosName: string;
+
+    /**
+     * 编码
+     *
+     * @type {string}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorManagerUserSysPosCode?: string;
+
+    /**
+     * 排序
+     *
+     * @type {number}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorManagerUserSysPosOrderNo?: number;
+
+    /**
+     * 备注
+     *
+     * @type {string}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorManagerUserSysPosRemark?: string;
+
+    /**
+     * @type {StatusEnum}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorManagerUserSysPosStatus?: StatusEnum;
+
+    /**
+     * 租户Id
+     *
+     * @type {number}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorManagerUserSysPosTenantId?: number;
+
+    /**
+     * 创建时间
+     *
+     * @type {Date}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorManagerUserSysPosCreateTime?: Date;
+
+    /**
+     * 更新时间
+     *
+     * @type {Date}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorManagerUserSysPosUpdateTime?: Date;
+
+    /**
+     * 创建者Id
+     *
+     * @type {number}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorManagerUserSysPosCreateUserId?: number;
+
+    /**
+     * 创建者姓名
+     *
+     * @type {string}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorManagerUserSysPosCreateUserName?: string;
+
+    /**
+     * 修改者Id
+     *
+     * @type {number}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorManagerUserSysPosUpdateUserId?: number;
+
+    /**
+     * 修改者姓名
+     *
+     * @type {string}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorManagerUserSysPosUpdateUserName?: string;
+
+    /**
+     * 软删除
+     *
+     * @type {boolean}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorManagerUserSysPosIsDelete?: boolean;
+
+    /**
+     * 雪花Id
+     *
+     * @type {number}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorManagerUserSysPosId?: number;
+
+    /**
+     * 工号
+     *
+     * @type {string}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorManagerUserJobNum?: string;
+
+    /**
+     * 职级
+     *
+     * @type {string}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorManagerUserPosLevel?: string;
+
+    /**
+     * 职称
+     *
+     * @type {string}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorManagerUserPosTitle?: string;
+
+    /**
+     * 擅长领域
+     *
+     * @type {string}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorManagerUserExpertise?: string;
+
+    /**
+     * 办公区域
+     *
+     * @type {string}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorManagerUserOfficeZone?: string;
+
+    /**
+     * 办公室
+     *
+     * @type {string}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorManagerUserOffice?: string;
+
+    /**
+     * 入职日期
+     *
+     * @type {Date}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorManagerUserJoinDate?: Date;
+
+    /**
+     * 最新登录Ip
+     *
+     * @type {string}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorManagerUserLastLoginIp?: string;
+
+    /**
+     * 最新登录地点
+     *
+     * @type {string}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorManagerUserLastLoginAddress?: string;
+
+    /**
+     * 最新登录时间
+     *
+     * @type {Date}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorManagerUserLastLoginTime?: Date;
+
+    /**
+     * 最新登录设备
+     *
+     * @type {string}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorManagerUserLastLoginDevice?: string;
+
+    /**
+     * 电子签名
+     *
+     * @type {string}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorManagerUserSignature?: string;
+
+    /**
+     * 租户Id
+     *
+     * @type {number}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorManagerUserTenantId?: number;
+
+    /**
+     * 创建时间
+     *
+     * @type {Date}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorManagerUserCreateTime?: Date;
+
+    /**
+     * 更新时间
+     *
+     * @type {Date}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorManagerUserUpdateTime?: Date;
+
+    /**
+     * 创建者Id
+     *
+     * @type {number}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorManagerUserCreateUserId?: number;
+
+    /**
+     * 创建者姓名
+     *
+     * @type {string}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorManagerUserCreateUserName?: string;
+
+    /**
+     * 修改者Id
+     *
+     * @type {number}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorManagerUserUpdateUserId?: number;
+
+    /**
+     * 修改者姓名
+     *
+     * @type {string}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorManagerUserUpdateUserName?: string;
+
+    /**
+     * 软删除
+     *
+     * @type {boolean}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorManagerUserIsDelete?: boolean;
+
+    /**
+     * 雪花Id
+     *
+     * @type {number}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorManagerUserId?: number;
+
+    /**
+     * 职位Id
+     *
+     * @type {number}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorPosId?: number;
+
+    /**
+     * 名称
+     *
+     * @type {string}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorSysPosName: string;
+
+    /**
+     * 编码
+     *
+     * @type {string}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorSysPosCode?: string;
+
+    /**
+     * 排序
+     *
+     * @type {number}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorSysPosOrderNo?: number;
+
+    /**
+     * 备注
+     *
+     * @type {string}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorSysPosRemark?: string;
+
+    /**
+     * @type {StatusEnum}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorSysPosStatus?: StatusEnum;
+
+    /**
+     * 租户Id
+     *
+     * @type {number}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorSysPosTenantId?: number;
+
+    /**
+     * 创建时间
+     *
+     * @type {Date}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorSysPosCreateTime?: Date;
+
+    /**
+     * 更新时间
+     *
+     * @type {Date}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorSysPosUpdateTime?: Date;
+
+    /**
+     * 创建者Id
+     *
+     * @type {number}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorSysPosCreateUserId?: number;
+
+    /**
+     * 创建者姓名
+     *
+     * @type {string}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorSysPosCreateUserName?: string;
+
+    /**
+     * 修改者Id
+     *
+     * @type {number}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorSysPosUpdateUserId?: number;
+
+    /**
+     * 修改者姓名
+     *
+     * @type {string}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorSysPosUpdateUserName?: string;
+
+    /**
+     * 软删除
+     *
+     * @type {boolean}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorSysPosIsDelete?: boolean;
+
+    /**
+     * 雪花Id
+     *
+     * @type {number}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorSysPosId?: number;
+
+    /**
+     * 工号
+     *
+     * @type {string}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorJobNum?: string;
+
+    /**
+     * 职级
+     *
+     * @type {string}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorPosLevel?: string;
+
+    /**
+     * 职称
+     *
+     * @type {string}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorPosTitle?: string;
+
+    /**
+     * 擅长领域
+     *
+     * @type {string}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorExpertise?: string;
+
+    /**
+     * 办公区域
+     *
+     * @type {string}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorOfficeZone?: string;
+
+    /**
+     * 办公室
+     *
+     * @type {string}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorOffice?: string;
+
+    /**
+     * 入职日期
+     *
+     * @type {Date}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorJoinDate?: Date;
+
+    /**
+     * 最新登录Ip
+     *
+     * @type {string}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorLastLoginIp?: string;
+
+    /**
+     * 最新登录地点
+     *
+     * @type {string}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorLastLoginAddress?: string;
+
+    /**
+     * 最新登录时间
+     *
+     * @type {Date}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorLastLoginTime?: Date;
+
+    /**
+     * 最新登录设备
+     *
+     * @type {string}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorLastLoginDevice?: string;
+
+    /**
+     * 电子签名
+     *
+     * @type {string}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorSignature?: string;
+
+    /**
+     * 租户Id
+     *
+     * @type {number}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorTenantId?: number;
+
+    /**
+     * 创建时间
+     *
+     * @type {Date}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorCreateTime?: Date;
+
+    /**
+     * 更新时间
+     *
+     * @type {Date}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorUpdateTime?: Date;
+
+    /**
+     * 创建者Id
+     *
+     * @type {number}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorCreateUserId?: number;
+
+    /**
+     * 创建者姓名
+     *
+     * @type {string}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorCreateUserName?: string;
+
+    /**
+     * 修改者Id
+     *
+     * @type {number}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorUpdateUserId?: number;
+
+    /**
+     * 修改者姓名
+     *
+     * @type {string}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorUpdateUserName?: string;
+
+    /**
+     * 软删除
+     *
+     * @type {boolean}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorIsDelete?: boolean;
+
+    /**
+     * 雪花Id
+     *
+     * @type {number}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDirectorId?: number;
+
+    /**
+     * 排序
+     *
+     * @type {number}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgOrderNo?: number;
+
+    /**
+     * @type {StatusEnum}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgStatus?: StatusEnum;
+
+    /**
+     * 备注
+     *
+     * @type {string}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgRemark?: string;
+
+    /**
+     * 机构子项
+     *
+     * @type {Array<SysOrg>}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgChildren?: Array<SysOrg>;
+
+    /**
+     * 是否禁止选中
+     *
+     * @type {boolean}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgDisabled?: boolean;
+
+    /**
+     * 租户Id
+     *
+     * @type {number}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgTenantId?: number;
+
+    /**
+     * 创建时间
+     *
+     * @type {Date}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgCreateTime?: Date;
+
+    /**
+     * 更新时间
+     *
+     * @type {Date}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgUpdateTime?: Date;
+
+    /**
+     * 创建者Id
+     *
+     * @type {number}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgCreateUserId?: number;
+
+    /**
+     * 创建者姓名
+     *
+     * @type {string}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgCreateUserName?: string;
+
+    /**
+     * 修改者Id
+     *
+     * @type {number}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgUpdateUserId?: number;
+
+    /**
+     * 修改者姓名
+     *
+     * @type {string}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgUpdateUserName?: string;
+
+    /**
+     * 软删除
+     *
+     * @type {boolean}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgIsDelete?: boolean;
+
+    /**
+     * 雪花Id
+     *
+     * @type {number}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgId?: number;
+
+    /**
+     * 创建者部门名称
+     *
+     * @type {string}
+     * @memberof SysFileUploadFileBody
+     */
+    createOrgName?: string;
+
+    /**
+     * 创建时间
+     *
+     * @type {Date}
+     * @memberof SysFileUploadFileBody
+     */
+    createTime?: Date;
+
+    /**
+     * 更新时间
+     *
+     * @type {Date}
+     * @memberof SysFileUploadFileBody
+     */
+    updateTime?: Date;
+
+    /**
+     * 创建者Id
+     *
+     * @type {number}
+     * @memberof SysFileUploadFileBody
+     */
+    createUserId?: number;
+
+    /**
+     * 创建者姓名
+     *
+     * @type {string}
+     * @memberof SysFileUploadFileBody
+     */
+    createUserName?: string;
+
+    /**
+     * 修改者Id
+     *
+     * @type {number}
+     * @memberof SysFileUploadFileBody
+     */
+    updateUserId?: number;
+
+    /**
+     * 修改者姓名
+     *
+     * @type {string}
+     * @memberof SysFileUploadFileBody
+     */
+    updateUserName?: string;
+
+    /**
+     * 软删除
+     *
+     * @type {boolean}
+     * @memberof SysFileUploadFileBody
+     */
+    isDelete?: boolean;
+
+    /**
+     * 雪花Id
+     *
+     * @type {number}
+     * @memberof SysFileUploadFileBody
+     */
+    id?: number;
 }

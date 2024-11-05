@@ -13,12 +13,212 @@
  */
 
  /**
- * 
+ * 上传文件Base64
  *
  * @export
  * @interface UploadFileFromBase64Input
  */
 export interface UploadFileFromBase64Input {
+
+    /**
+     * 雪花Id
+     *
+     * @type {number}
+     * @memberof UploadFileFromBase64Input
+     */
+    id?: number;
+
+    /**
+     * 创建时间
+     *
+     * @type {Date}
+     * @memberof UploadFileFromBase64Input
+     */
+    createTime?: Date;
+
+    /**
+     * 更新时间
+     *
+     * @type {Date}
+     * @memberof UploadFileFromBase64Input
+     */
+    updateTime?: Date | null;
+
+    /**
+     * 创建者Id
+     *
+     * @type {number}
+     * @memberof UploadFileFromBase64Input
+     */
+    createUserId?: number | null;
+
+    /**
+     * 创建者姓名
+     *
+     * @type {string}
+     * @memberof UploadFileFromBase64Input
+     */
+    createUserName?: string | null;
+
+    /**
+     * 修改者Id
+     *
+     * @type {number}
+     * @memberof UploadFileFromBase64Input
+     */
+    updateUserId?: number | null;
+
+    /**
+     * 修改者姓名
+     *
+     * @type {string}
+     * @memberof UploadFileFromBase64Input
+     */
+    updateUserName?: string | null;
+
+    /**
+     * 软删除
+     *
+     * @type {boolean}
+     * @memberof UploadFileFromBase64Input
+     */
+    isDelete?: boolean;
+
+    /**
+     * 创建者部门Id
+     *
+     * @type {number}
+     * @memberof UploadFileFromBase64Input
+     */
+    createOrgId?: number | null;
+
+    /**
+     * 创建者部门名称
+     *
+     * @type {string}
+     * @memberof UploadFileFromBase64Input
+     */
+    createOrgName?: string | null;
+
+    /**
+     * 租户Id
+     *
+     * @type {number}
+     * @memberof UploadFileFromBase64Input
+     */
+    tenantId?: number | null;
+
+    /**
+     * 提供者
+     *
+     * @type {string}
+     * @memberof UploadFileFromBase64Input
+     */
+    provider?: string | null;
+
+    /**
+     * 仓储名称
+     *
+     * @type {string}
+     * @memberof UploadFileFromBase64Input
+     */
+    bucketName?: string | null;
+
+    /**
+     * 文件名称（源文件名）
+     *
+     * @type {string}
+     * @memberof UploadFileFromBase64Input
+     */
+    fileName?: string | null;
+
+    /**
+     * 文件后缀
+     *
+     * @type {string}
+     * @memberof UploadFileFromBase64Input
+     */
+    suffix?: string | null;
+
+    /**
+     * 存储路径
+     *
+     * @type {string}
+     * @memberof UploadFileFromBase64Input
+     */
+    filePath?: string | null;
+
+    /**
+     * 文件大小KB
+     *
+     * @type {number}
+     * @memberof UploadFileFromBase64Input
+     */
+    sizeKb?: number;
+
+    /**
+     * 文件大小信息-计算后的
+     *
+     * @type {string}
+     * @memberof UploadFileFromBase64Input
+     */
+    sizeInfo?: string | null;
+
+    /**
+     * 外链地址-OSS上传后生成外链地址方便前端预览
+     *
+     * @type {string}
+     * @memberof UploadFileFromBase64Input
+     */
+    url?: string | null;
+
+    /**
+     * 文件MD5
+     *
+     * @type {string}
+     * @memberof UploadFileFromBase64Input
+     */
+    fileMd5?: string | null;
+
+    /**
+     * 关联对象名称（如子对象）
+     *
+     * @type {string}
+     * @memberof UploadFileFromBase64Input
+     */
+    relationName?: string | null;
+
+    /**
+     * 关联对象Id
+     *
+     * @type {number}
+     * @memberof UploadFileFromBase64Input
+     */
+    relationId?: number | null;
+
+    /**
+     * 所属Id（如主对象）
+     *
+     * @type {number}
+     * @memberof UploadFileFromBase64Input
+     */
+    belongId?: number | null;
+
+    /**
+     * 文件类别
+     *
+     * @type {string}
+     * @memberof UploadFileFromBase64Input
+     */
+    fileType?: string | null;
+
+    /**
+     * 是否公开  若为true则所有人都可以查看，默认只有自己或有权限的可以查看
+     *
+     * @type {boolean}
+     * @memberof UploadFileFromBase64Input
+     */
+    isPublic?: boolean;
 
     /**
      * 文件内容
@@ -37,58 +237,10 @@ export interface UploadFileFromBase64Input {
     contentType?: string | null;
 
     /**
-     * 文件名称
-     *
-     * @type {string}
-     * @memberof UploadFileFromBase64Input
-     */
-    fileName?: string | null;
-
-    /**
      * 保存路径
      *
      * @type {string}
      * @memberof UploadFileFromBase64Input
      */
     path?: string | null;
-
-    /**
-     * 文件类型
-     *
-     * @type {string}
-     * @memberof UploadFileFromBase64Input
-     */
-    fileType?: string | null;
-
-    /**
-     * 是否公开  若为true则所有人都可以查看，默认只有自己或有权限的可以查看
-     *
-     * @type {boolean}
-     * @memberof UploadFileFromBase64Input
-     */
-    isPublic?: boolean;
-
-    /**
-     * 所属实体ID
-     *
-     * @type {number}
-     * @memberof UploadFileFromBase64Input
-     */
-    belongId?: number;
-
-    /**
-     * 关联对象Id
-     *
-     * @type {number}
-     * @memberof UploadFileFromBase64Input
-     */
-    relationId?: number;
-
-    /**
-     * 关联对象名称
-     *
-     * @type {string}
-     * @memberof UploadFileFromBase64Input
-     */
-    relationName?: string | null;
 }

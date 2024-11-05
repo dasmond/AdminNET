@@ -15,7 +15,7 @@
 import { Filter } from './filter';
 import { Search } from './search';
  /**
- * 
+ * 文件分页查询
  *
  * @export
  * @interface PageFileInput
@@ -89,6 +89,14 @@ export interface PageFileInput {
      * @memberof PageFileInput
      */
     fileName?: string | null;
+
+    /**
+     * 文件后缀
+     *
+     * @type {string}
+     * @memberof PageFileInput
+     */
+    suffix?: string | null;
 
     /**
      * 开始时间

@@ -6,6 +6,9 @@
 
 namespace Admin.NET.Core;
 
+/// <summary>
+/// 微信AccessToken有效性检查作业任务
+/// </summary>
 [JobDetail("job_WechatAccessTokenCheckJob", Description = "微信AccessToken有效性检查", GroupName = "default", Concurrent = false)]
 [PeriodSeconds(60, TriggerId = "trigger_WechatAccessTokenCheckJob", Description = "微信AccessToken有效性检查", RunOnStart = true)]
 public class WechatAccessTokenCheckJob : IJob
@@ -19,7 +22,6 @@ public class WechatAccessTokenCheckJob : IJob
         _logger = loggerFactory.CreateLogger(nameof(WechatAccessTokenCheckJob));
     }
 
-
     public async Task ExecuteAsync(JobExecutingContext context, CancellationToken stoppingToken)
     {
         using var serviceScope = _scopeFactory.CreateScope();
@@ -27,7 +29,5 @@ public class WechatAccessTokenCheckJob : IJob
         var factory = serviceScope.ServiceProvider.GetService<WechatApiClientFactory>();
         await factory.CheckWechatAccessTokenAsync();
         await factory.CheckWxOpenAccessTokenAsync();
-
-
     }
 }
