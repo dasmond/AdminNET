@@ -247,6 +247,34 @@ public static class CommonUtil
         }
         return res.Data;
     }
+    
+    /// <summary>
+    /// 导入数据Excel
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="file"></param>
+    /// <returns></returns>
+    public static async Task<List<T>> ImportExcelDataAsync<T>([Required] IFormFile file) where T : class, new()
+    {
+        var sysFileService = App.GetRequiredService<SysFileService>();
+        var newFile = await sysFileService.UploadFile(new FileUploadInput { File = file });
+        var filePath = Path.Combine(App.WebHostEnvironment.WebRootPath, newFile.FilePath!, newFile.Id + newFile.Suffix);
+
+        IImporter importer = new ExcelImporter();
+        var res = await importer.Import<T>(filePath);
+
+        // 删除文件
+        _ = sysFileService.DeleteFile(new DeleteFileInput { Id = newFile.Id });
+
+        if (res == null)
+            throw Oops.Oh("导入数据为空");
+        if (res.Exception != null)
+            throw Oops.Oh("导入异常:" + res.Exception);
+        if (res.TemplateErrors?.Count > 0)
+            throw Oops.Oh("模板异常:" + res.TemplateErrors.Select(x => $"[{x.RequireColumnName}]{x.Message}").Join("\n"));
+
+        return res.Data.ToList();
+    }
 
     // 例：List<Dm_ApplyDemo> ls = CommonUtil.ParseList<Dm_ApplyDemoInport, Dm_ApplyDemo>(importResult.Data);
     /// <summary>
