@@ -3,15 +3,57 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid 'ea62c3c478e922f58fde2d4b5ec3d61b1a494ee4'
-    oldFile: !uuid 'f6b218a0c13207f22cd978291635910c5e778c89'
-  /Admin.NET/Admin.NET.Web.Core:
-    newFile: !uuid '55cfceb0035f291f536cdff16f6c43b643890326'
-    oldFile: !uuid 'd83ede1f63e519ea37417105e68ebef73f38e880'
-  /Admin.NET/Admin.NET.Web.Core/Startup.cs:
-    newFile: !uuid '62189f68d4359d50206e873c7c9d4aaf9e3a5741'
-    oldFile: !uuid '383a55e9562d101367fdba943cd5596f74e2562e'
-gitCommitId: !uuid '764403e483f3594835f290d4369abc043ddd9bf1'
+    newFile: !uuid '41143e423650819f04cf2d64a9b48019b5519a00'
+    oldFile: !uuid 'ea62c3c478e922f58fde2d4b5ec3d61b1a494ee4'
+  /Admin.NET/Admin.NET.Application:
+    newFile: !uuid 'b765fd42102e714c907aea80962c1fdf51e3d2ec'
+    oldFile: !uuid 'c1c856bafd772898ddd510d789ca91872ca17cfa'
+  /Admin.NET/Admin.NET.Application/Configuration:
+    newFile: !uuid '749b40ccdf2d1810ed24e244c3831a2127d07481'
+    oldFile: !uuid 'd287394117e2936c1447e56a04311455e0aae482'
+  /Admin.NET/Admin.NET.Application/Configuration/Upload.json:
+    newFile: !uuid '601f8f294ee76ab6d79a6847b687b00737d16cf9'
+    oldFile: !uuid '75fea25860d418dc29ed31dbf37109c99ce23a5a'
+  /Admin.NET/Admin.NET.Core:
+    newFile: !uuid '11750b894d513c52cca0e6d821b1d932a3486dd3'
+    oldFile: !uuid '092145e28d1210368faf7b1d4d40031a0688bb2b'
+  /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
+    newFile: !uuid '6beebb6e79daecd5525c65e6252ed8ae54e470eb'
+    oldFile: !uuid 'b50b0d50a94a6c7239fd898027db1b920833608a'
+  /Admin.NET/Admin.NET.Core/Option:
+    newFile: !uuid '8392a7bd7d353e5bad58b9d1ee80dd4b38f8d3af'
+    oldFile: !uuid 'bdd44d654d543434ea52928b6aecc5614a75f90a'
+  /Admin.NET/Admin.NET.Core/Option/UploadOptions.cs:
+    newFile: !uuid '8eb73931cd55e8e34e9b14075669baee2eee9a1a'
+    oldFile: !uuid '83615d61fa531e8ac0d3a6c01f7d35b044d572fe'
+  /Admin.NET/Admin.NET.Core/Service:
+    newFile: !uuid '6568e80485b598047b689cad5a5676d4e8f29d6b'
+    oldFile: !uuid 'cc6384042b3801acb83c62d459f8b577e5c18139'
+  /Admin.NET/Admin.NET.Core/Service/File:
+    newFile: !uuid 'cb7f2dee5c4666313d4de867bed590c055996b64'
+    oldFile: !uuid '507ef58a5fb3e421479a74d8bc3e21c8053f34a8'
+  /Admin.NET/Admin.NET.Core/Service/File/Dto:
+    newFile: !uuid '713b4e793f824c3115c2d432d500ed0163bd778d'
+    oldFile: !uuid '47f937f4367344fe64f0b342c9fe62c60ef153b2'
+  /Admin.NET/Admin.NET.Core/Service/File/Dto/FileInput.cs:
+    newFile: !uuid '628b6a3b75ef212144128f51cfb1d465ac61ebae'
+    oldFile: !uuid 'de6df64b6bc25626a477f6c1c378f091800c097e'
+  /Admin.NET/Admin.NET.Core/Service/File/SysFileService.cs:
+    newFile: !uuid 'c88d69dc8c3979cd5942e1e5b054d285854ec8f9'
+    oldFile: !uuid 'b6c72a54d1dde7b3a5cc2456da146e81482d825e'
+  /Admin.NET/Admin.NET.Core/Service/Notice:
+    newFile: !uuid '82b5b256060523be9aedee6827775f07e9033d3c'
+    oldFile: !uuid 'cd853d6811cba4ee2a9d849242bc6cd82575fd5d'
+  /Admin.NET/Admin.NET.Core/Service/Notice/SysNoticeService.cs:
+    newFile: !uuid 'b4379d106b7695cdb7c8728fbe2d958152564817'
+    oldFile: !uuid 'c5896ba2124d7adbf51904c754d9f4783569d97b'
+  /Admin.NET/Admin.NET.Core/Service/Wechat:
+    newFile: !uuid 'a2e7c73e8b468cb51c082d2a936701b4cbb7ba28'
+    oldFile: !uuid '46eac594c6da25e5dda953bc9020d3e7ef8176b3'
+  /Admin.NET/Admin.NET.Core/Service/Wechat/SysWxOpenService.cs:
+    newFile: !uuid '75bf8c4d5bd9c3809c6bac584648f01ebd23cb99'
+    oldFile: !uuid '7da9a83a25f730bc511473070a6c3f60667150eb'
+gitCommitId: !uuid '61d23ca0c7bb13ca911cb5b6a6cead5c3c70773d'
 renames: {
   }
-revisionId: 2448
+revisionId: 2449
