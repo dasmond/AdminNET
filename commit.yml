@@ -3,96 +3,27 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '21cc898eff4f04c56bfe12263ea9d640abd45037'
-    oldFile: !uuid '29eca9e3cc5cf6648d243aaef5932581da53660f'
+    newFile: !uuid '0347eb1ab390e98dba774bcef068a97a0a9ab7be'
+    oldFile: !uuid '21cc898eff4f04c56bfe12263ea9d640abd45037'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid 'a4128b7b46fde8272997e2071a30714481bfe8ee'
-    oldFile: !uuid 'f3448feb76b3591c623738a9a24d6fed51352d78'
-  /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
-    newFile: !uuid 'd1c62eab4686f1747d8be2db13b7f71cfcdfbc35'
-    oldFile: !uuid '6beebb6e79daecd5525c65e6252ed8ae54e470eb'
-  /Admin.NET/Admin.NET.Core/Job:
-    newFile: !uuid 'f341673fbb55b67b67f7ac616a8598882bef65be'
-    oldFile: !uuid '711065fddbce19dc023bb466759a974b54af2c31'
-  /Admin.NET/Admin.NET.Core/Job/WechatAccessTokenCheckJob.cs:
-    newFile: !uuid '2d99afee87b3361d75923d6b3e52e498cd824e50'
-    oldFile: !uuid '0973881591374602353b71b0d1b64237b39ef0ca'
-  /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid '343d8d24ead5b1b5ff1c7cbfdfb06a8b318e3e83'
-    oldFile: !uuid '7ac5ef359e92fd09cfeb6262df2a9142a25f6a94'
-  /Admin.NET/Admin.NET.Core/Service/Wechat:
-    newFile: !uuid '649a806771984828681c0b20312e6506c5a637e5'
-    oldFile: !uuid '498aa3d59c2ea9504aef359c8e2285b476d34e9c'
-  /Admin.NET/Admin.NET.Core/Service/Wechat/WechatApiHttpClient.cs:
-    newFile: !uuid 'e71653b1de8a93042c06c04a29292b46eec8e517'
-    oldFile: !uuid 'c47d5ba22063b404610593cdc6ad94c17872a8b7'
+    newFile: !uuid '3ea02e48d036eb42c9aa1b11ef00a820f694e118'
+    oldFile: !uuid 'a4128b7b46fde8272997e2071a30714481bfe8ee'
   /Admin.NET/Admin.NET.Core/Utils:
-    newFile: !uuid 'a062f4838e76ee77b57dc6369a6ca5f9f686b8f1'
-    oldFile: !uuid '5e39f824261426eaa67b4d056c80600b5db8c835'
-  /Admin.NET/Admin.NET.Core/Utils/BaseStatusInput.cs:
-    newFile: !uuid '00ca9fcc19947d332eff1184e793438688162d5b'
-    oldFile: !uuid 'a57cd701326579ee56c2d5b7d030f5e740cbf5ee'
-  /Admin.NET/Admin.NET.Web.Core:
-    newFile: !uuid '5233b68e09746efafaf8380311a87e80205d51d0'
-    oldFile: !uuid '55cfceb0035f291f536cdff16f6c43b643890326'
-  /Admin.NET/Admin.NET.Web.Core/Startup.cs:
-    newFile: !uuid '6779aff65062c3d7b053968dccbf62c1d19650e2'
-    oldFile: !uuid '62189f68d4359d50206e873c7c9d4aaf9e3a5741'
-  /Web:
-    newFile: !uuid '2836baa0e16aaea9f7b0d1aa70181461779658e9'
-    oldFile: !uuid '5e48e7117009eaf267c2a02ae7e8352d1278a361'
-  /Web/package.json:
-    newFile: !uuid '59aff9b73da7c7ffbede8bcfbe3e8c3b829981ee'
-    oldFile: !uuid '4d0b6f82ffa4b7c79289d988ee3e0399b8a3a17c'
-  /Web/scripts:
-    newFile: !uuid '44de6f681489da73f62ac6b94521c83913f061df'
-    oldFile: !uuid '1043d29b2e56b5adf34fa1d4402c18c8274fe3fc'
-  /Web/scripts/clean-lock.js:
-    newFile: !uuid '920a63d85d03ca9875305a9a198420f6d2e169df'
-    oldFile: !uuid 'e94f434fd08303be32004d6f11593f28a95fffbb'
-  /Web/src:
-    newFile: !uuid '53effcba9bcccf10ff420793c12742470509a381'
-    oldFile: !uuid '285ac11e8d5f2ce64cbe93d0ab16098dd7303ea4'
-  /Web/src/api-services:
-    newFile: !uuid '3607f94e89d27e6ad50d30cf36913946ee6bff2f'
-    oldFile: !uuid '8526159a7aa620c22c3d2a1f6dd5c2c1a19e55ef'
-  /Web/src/api-services/apis:
-    newFile: !uuid '2464f3e941ebded0a1bf3575e364981cddd303e9'
-    oldFile: !uuid '618340ece7ab0b246e5cdeb527bfd389515fefb3'
-  /Web/src/api-services/apis/sys-file-api.ts:
-    newFile: !uuid '77b58661d8a0609ee5fb40f491dd4c94e6ce28fd'
-    oldFile: !uuid 'ca3168d4d7cc345922c06008ba3da858c10fef62'
-  /Web/src/api-services/apis/sys-notice-api.ts:
-    newFile: !uuid '2ffba22ee6db04b05a620225500696528efc7328'
-    oldFile: !uuid '446f6b12a1c52e34a5df1cc4429b19392f5f34a5'
-  /Web/src/api-services/models:
-    newFile: !uuid 'dd4b752cf864ae57d454bd1fc710f257038966a4'
-    oldFile: !uuid '24ff2f3e24c3986e98121c9ae41f3ef7ff0298e5'
-  /Web/src/api-services/models/admin-result-list-file-output.ts:
-    newFile: null
-    oldFile: !uuid '03529dd72048bf9ce72fdbc86c352895a52435c7'
-  /Web/src/api-services/models/db-type.ts:
-    newFile: !uuid '42efddf45228f6e5b3d949223f711dae3ef1f633'
-    oldFile: !uuid 'c38670281ea71ce087bf25aa2071271add6efe27'
-  /Web/src/api-services/models/file-input.ts:
-    newFile: null
-    oldFile: !uuid '141f1c775e58b6b21353d411698b522f787c85af'
-  /Web/src/api-services/models/file-output.ts:
-    newFile: null
-    oldFile: !uuid 'ebafa803cc2066136a6e2184dec1e65c31efe67c'
-  /Web/src/api-services/models/index.ts:
-    newFile: !uuid 'a1ff52badcaf43177f607a5cd94fe757cf13bf2d'
-    oldFile: !uuid 'a9f207e5ea2f4df8dd5a50659b37794c6d2e262f'
-  /Web/src/api-services/models/page-file-input.ts:
-    newFile: !uuid '1a5213b6be83e21f2c0156879c87240248a811f7'
-    oldFile: !uuid '1ca5f868322c2711ed914f01c72acacd54957270'
-  /Web/src/api-services/models/sys-file-upload-file-body.ts:
-    newFile: !uuid '0accdef2d09a0eea3e50e0a969f292dbd2d8e7e7'
-    oldFile: !uuid 'accfa6909b9dc981bfad841a43420b462af151d5'
-  /Web/src/api-services/models/upload-file-from-base64-input.ts:
-    newFile: !uuid '2f193aa453a32ed465987405f2e39eb31aad831c'
-    oldFile: !uuid '11507b52dda8b2ca690d4878e79167196c5d56ca'
-gitCommitId: !uuid '283d74841d86b0beeb66809f74ce3a1283e5b58b'
+    newFile: !uuid '8baf7afa652f7b4fdf39c5611253be92b524d092'
+    oldFile: !uuid 'a062f4838e76ee77b57dc6369a6ca5f9f686b8f1'
+  /Admin.NET/Admin.NET.Core/Utils/BaseImportInput.cs:
+    newFile: !uuid '6b5104a5efc321ff9e2dd6fd44b67fa90d0a0879'
+    oldFile: null
+  /Admin.NET/Admin.NET.Core/Utils/CommonUtil.cs:
+    newFile: !uuid '405790b5f27c276b4004f26b0f6ecdbd81e44a63'
+    oldFile: !uuid '66d8b1c9565d2807528c9386dce4ab9b2ed6a4d6'
+  /Admin.NET/Admin.NET.Core/Utils/ExcelHelper.cs:
+    newFile: !uuid '58a12ff3eb4f7001ac1cec7db4e3314299ddf463'
+    oldFile: null
+  /Admin.NET/Admin.NET.Core/Utils/XlsxFileResult.cs:
+    newFile: !uuid '1ecbc8e7446bb17a360167082e91a78e928d3a27'
+    oldFile: null
+gitCommitId: !uuid 'd4f4865cb66adf3ab1a3e7d19fb6bcfbf7eb2b4c'
 renames: {
   }
-revisionId: 2453
+revisionId: 2454
