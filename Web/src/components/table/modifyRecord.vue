@@ -38,7 +38,7 @@
 				</template>
 				<el-tag>{{ props.data.updateTime ?? '无' }}</el-tag>
 			</el-descriptions-item>
-			<el-descriptions-item>
+			<el-descriptions-item v-if="'remark' in props.data">
 				<template #label>
 					<el-text>
 						<el-icon><ele-Tickets /></el-icon>备注
