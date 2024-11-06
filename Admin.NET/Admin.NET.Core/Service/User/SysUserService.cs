@@ -21,6 +21,7 @@ public class SysUserService : IDynamicApiController, ITransient
     private readonly SysCacheService _sysCacheService;
     private readonly SysUserLdapService _sysUserLdapService;
     private readonly SqlSugarRepository<SysUser> _sysUserRep;
+    private readonly SysUserEventHandler _sysUserEventHandler;
 
     public SysUserService(UserManager userManager,
         SysOrgService sysOrgService,
@@ -30,7 +31,8 @@ public class SysUserService : IDynamicApiController, ITransient
         SysOnlineUserService sysOnlineUserService,
         SysCacheService sysCacheService,
         SysUserLdapService sysUserLdapService,
-        SqlSugarRepository<SysUser> sysUserRep)
+        SqlSugarRepository<SysUser> sysUserRep,
+        SysUserEventHandler sysUserEventHandler)
     {
         _userManager = userManager;
         _sysOrgService = sysOrgService;
@@ -41,6 +43,7 @@ public class SysUserService : IDynamicApiController, ITransient
         _sysCacheService = sysCacheService;
         _sysUserLdapService = sysUserLdapService;
         _sysUserRep = sysUserRep;
+        _sysUserEventHandler = sysUserEventHandler;
     }
 
     /// <summary>
@@ -109,7 +112,10 @@ public class SysUserService : IDynamicApiController, ITransient
         // 增加域账号
         if (!string.IsNullOrWhiteSpace(input.DomainAccount))
             await _sysUserLdapService.AddUserLdap(newUser.TenantId.Value, newUser.Id, newUser.Account, input.DomainAccount);
-
+        
+        // 执行订阅事件
+        _sysUserEventHandler.OnEvent(this, SysUserEventTypeEnum.Add, input);
+        
         return newUser.Id;
     }
 
@@ -141,6 +147,9 @@ public class SysUserService : IDynamicApiController, ITransient
             await _sysOnlineUserService.ForceOffline(input.Id);
         // 更新域账号
         await _sysUserLdapService.AddUserLdap(user.TenantId.Value, user.Id, user.Account, input.DomainAccount);
+        
+        // 执行订阅事件
+        _sysUserEventHandler.OnEvent(this, SysUserEventTypeEnum.Update, input);
     }
 
     /// <summary>
@@ -192,6 +201,9 @@ public class SysUserService : IDynamicApiController, ITransient
 
         // 删除域账号
         await _sysUserLdapService.DeleteUserLdapByUserId(input.Id);
+        
+        // 执行订阅事件
+        _sysUserEventHandler.OnEvent(this, SysUserEventTypeEnum.Delete, input);
     }
 
     /// <summary>
@@ -248,7 +260,12 @@ public class SysUserService : IDynamicApiController, ITransient
         }
 
         user.Status = input.Status;
-        return await _sysUserRep.AsUpdateable(user).UpdateColumns(u => new { u.Status }).ExecuteCommandAsync();
+        var rows = await _sysUserRep.AsUpdateable(user).UpdateColumns(u => new { u.Status }).ExecuteCommandAsync();
+        
+        // 执行订阅事件
+        if (rows > 0) _sysUserEventHandler.OnEvent(this, SysUserEventTypeEnum.SetStatus, input);
+
+        return rows;
     }
 
     /// <summary>
@@ -265,6 +282,9 @@ public class SysUserService : IDynamicApiController, ITransient
         //    throw Oops.Oh(ErrorCodeEnum.D1022);
 
         await _sysUserRoleService.GrantUserRole(input);
+        
+        // 执行订阅事件
+        _sysUserEventHandler.OnEvent(this, SysUserEventTypeEnum.UpdateRole, input);
     }
 
     /// <summary>
@@ -306,7 +326,12 @@ public class SysUserService : IDynamicApiController, ITransient
             user.Password = CryptogramUtil.Encrypt(input.PasswordNew);
         }
 
-        return await _sysUserRep.AsUpdateable(user).UpdateColumns(u => u.Password).ExecuteCommandAsync();
+        var rows = await _sysUserRep.AsUpdateable(user).UpdateColumns(u => u.Password).ExecuteCommandAsync();
+        
+        // 执行订阅事件
+        if (rows > 0) _sysUserEventHandler.OnEvent(this, SysUserEventTypeEnum.ChangePwd, input);
+
+        return rows;
     }
 
     /// <summary>
@@ -325,6 +350,9 @@ public class SysUserService : IDynamicApiController, ITransient
         // 清空密码错误次数
         var keyErrorPasswordCount = $"{CacheConst.KeyPasswordErrorTimes}{user.Account}";
         _sysCacheService.Remove(keyErrorPasswordCount);
+        
+        // 执行订阅事件
+        _sysUserEventHandler.OnEvent(this, SysUserEventTypeEnum.ResetPwd, input);
 
         return password;
     }
@@ -342,6 +370,9 @@ public class SysUserService : IDynamicApiController, ITransient
         // 清空密码错误次数
         var keyPasswordErrorTimes = $"{CacheConst.KeyPasswordErrorTimes}{user.Account}";
         _sysCacheService.Remove(keyPasswordErrorTimes);
+        
+        // 执行订阅事件
+        _sysUserEventHandler.OnEvent(this, SysUserEventTypeEnum.UnlockLogin, input);
     }
 
     /// <summary>
