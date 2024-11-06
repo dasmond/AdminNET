@@ -85,20 +85,17 @@
 							<el-table-column prop="retryTimeout" label="重试间隔ms" width="100" align="center" show-overflow-tooltip />
 							<el-table-column prop="startNow" label="是否立即启动" width="100" align="center" show-overflow-tooltip>
 								<template #default="scope">
-									<el-tag v-if="(scope.row as SysJobTrigger).startNow == true"> 是 </el-tag>
-									<el-tag type="info" v-else> 否 </el-tag>
+									<dict-label :value="scope.row.startNow ? '1' : '2'" code="YesNoEnum" />
 								</template>
 							</el-table-column>
 							<el-table-column prop="runOnStart" label="是否启动时执行一次" width="150" align="center" show-overflow-tooltip>
 								<template #default="scope">
-									<el-tag v-if="(scope.row as SysJobTrigger).runOnStart == true"> 是 </el-tag>
-									<el-tag type="info" v-else> 否 </el-tag>
+									<dict-label :value="scope.row.runOnStart ? '1' : '2'" code="YesNoEnum" />
 								</template>
 							</el-table-column>
 							<el-table-column prop="resetOnlyOnce" label="是否重置触发次数" width="120" align="center" show-overflow-tooltip>
 								<template #default="scope">
-									<el-tag v-if="(scope.row as SysJobTrigger).resetOnlyOnce == true"> 是 </el-tag>
-									<el-tag type="info" v-else> 否 </el-tag>
+									<dict-label :value="scope.row.resetOnlyOnce ? '1' : '2'" code="YesNoEnum" />
 								</template>
 							</el-table-column>
 							<el-table-column prop="updatedTime" label="更新时间" width="130" align="center" show-overflow-tooltip />
@@ -142,9 +139,7 @@
 				</el-table-column>
 				<el-table-column prop="jobDetail.createType" label="作业创建类型" width="110" align="center" show-overflow-tooltip>
 					<template #default="scope">
-						<el-tag type="info" v-if="(scope.row as JobDetailOutput).jobDetail?.createType == JobCreateTypeEnum.NUMBER_0"> 内置 </el-tag>
-						<el-tag type="warning" v-if="(scope.row as JobDetailOutput).jobDetail?.createType == JobCreateTypeEnum.NUMBER_1"> 脚本 </el-tag>
-						<el-tag type="success" v-if="(scope.row as JobDetailOutput).jobDetail?.createType == JobCreateTypeEnum.NUMBER_2"> HTTP请求 </el-tag>
+						<dict-label :value="scope.row.jobDetail?.createType" code="JobCreateTypeEnum" />
 					</template>
 				</el-table-column>
 				<!-- <el-table-column prop="jobDetail.includeAnnotations" label="扫描特性触发器" align="center" show-overflow-tooltip>
@@ -277,6 +272,7 @@ import { Timer } from '@element-plus/icons-vue';
 import EditJobDetail from '/@/views/system/job/component/editJobDetail.vue';
 import EditJobTrigger from '/@/views/system/job/component/editJobTrigger.vue';
 import JobCluster from '/@/views/system/job/component/jobCluster.vue';
+import DictLabel from '/@/components/table/dictLabel.vue';
 
 import { getAPI } from '/@/utils/axios-utils';
 import { SysJobApi } from '/@/api-services/api';

@@ -55,8 +55,7 @@
 				<el-table-column prop="fileType" label="文件类型" min-width="100" header-align="center" show-overflow-tooltip />
 				<el-table-column prop="isPublic" label="是否公开" min-width="100" header-align="center" show-overflow-tooltip>
 					<template #default="scope">
-						<el-tag v-if="scope.row.isPublic === true" type="success">是</el-tag>
-						<el-tag v-else type="danger">否</el-tag>
+						<dict-label :value="scope.row.isPublic ? '1' : '2'" code="YesNoEnum" />
 					</template>
 				</el-table-column>
 				<el-table-column prop="relationName" label="关联对象名称" min-width="150" align="center" />
@@ -151,6 +150,7 @@ import '@vue-office/excel/lib/index.css';
 
 import EditSysFile from '/@/views/system/file/component/editSysfile.vue';
 import ModifyRecord from '/@/components/table/modifyRecord.vue';
+import DictLabel from '/@/components/table/dictLabel.vue';
 
 import { downloadByUrl } from '/@/utils/download';
 import { getAPI } from '/@/utils/axios-utils';

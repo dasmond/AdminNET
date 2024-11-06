@@ -39,20 +39,17 @@
 				<el-table-column prop="dataType" label="数据类型" align="center" show-overflow-tooltip />
 				<el-table-column prop="isPrimarykey" label="主键" width="70" align="center" show-overflow-tooltip>
 					<template #default="scope">
-						<el-tag type="success" v-if="scope.row.isPrimarykey === true">是</el-tag>
-						<el-tag type="info" v-else>否</el-tag>
+						<dict-label :value="scope.row.isPrimarykey ? '1' : '2'" code="YesNoEnum" />
 					</template>
 				</el-table-column>
 				<el-table-column prop="isIdentity" label="自增" width="70" align="center" show-overflow-tooltip>
 					<template #default="scope">
-						<el-tag type="success" v-if="scope.row.isIdentity === true">是</el-tag>
-						<el-tag type="info" v-else>否</el-tag>
+						<dict-label :value="scope.row.isIdentity ? '1' : '2'" code="YesNoEnum" />
 					</template>
 				</el-table-column>
 				<el-table-column prop="isNullable" label="可空" width="70" align="center" show-overflow-tooltip>
 					<template #default="scope">
-						<el-tag v-if="scope.row.isNullable === true">是</el-tag>
-						<el-tag type="info" v-else>否</el-tag>
+						<dict-label :value="scope.row.isNullable ? '1' : '2'" code="YesNoEnum" />
 					</template>
 				</el-table-column>
 				<el-table-column prop="length" label="长度" width="70" align="center" show-overflow-tooltip />
@@ -87,6 +84,7 @@ import AddTable from '/@/views/system/database/component/addTable.vue';
 import AddColumn from '/@/views/system/database/component/addColumn.vue';
 import GenEntity from '/@/views/system/database/component/genEntity.vue';
 import GenSeedData from '/@/views/system/database/component/genSeedData.vue';
+import DictLabel from '/@/components/table/dictLabel.vue';
 
 import { getAPI } from '/@/utils/axios-utils';
 import { SysDatabaseApi, SysCodeGenApi } from '/@/api-services/api';

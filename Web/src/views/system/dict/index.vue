@@ -30,8 +30,7 @@
 						<el-table-column prop="code" label="字典编码" min-width="140" header-align="center" show-overflow-tooltip />
 						<el-table-column prop="status" label="状态" width="70" align="center" show-overflow-tooltip>
 							<template #default="scope">
-								<el-tag type="success" v-if="scope.row.status === 1">启用</el-tag>
-								<el-tag type="danger" v-else>禁用</el-tag>
+								<dict-label :value="scope.row.status" code="StatusEnum" />
 							</template>
 						</el-table-column>
 						<el-table-column prop="orderNo" label="排序" width="60" align="center" show-overflow-tooltip />
@@ -108,8 +107,7 @@
 						</el-table-column>
 						<el-table-column prop="status" label="状态" width="70" align="center" show-overflow-tooltip>
 							<template #default="scope">
-								<el-tag type="success" v-if="scope.row.status === 1">启用</el-tag>
-								<el-tag type="danger" v-else>禁用</el-tag>
+								<dict-label :value="scope.row.status" code="StatusEnum" />
 							</template>
 						</el-table-column>
 						<el-table-column prop="orderNo" label="排序" width="60" align="center" show-overflow-tooltip />
@@ -158,6 +156,7 @@ import { ElMessageBox, ElMessage } from 'element-plus';
 import EditDictType from '/@/views/system/dict/component/editDictType.vue';
 import EditDictData from '/@/views/system/dict/component/editDictData.vue';
 import ModifyRecord from '/@/components/table/modifyRecord.vue';
+import DictLabel from '/@/components/table/dictLabel.vue';
 
 import { getAPI } from '/@/utils/axios-utils';
 import { Session } from '/@/utils/storage';

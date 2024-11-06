@@ -25,8 +25,7 @@
 				<el-table-column prop="orderNo" label="排序" align="center" show-overflow-tooltip />
 				<el-table-column label="状态" align="center" show-overflow-tooltip>
 					<template #default="scope">
-						<el-tag type="success" v-if="scope.row.status === 1">启用</el-tag>
-						<el-tag type="danger" v-else>禁用</el-tag>
+						<dict-label :value="scope.row.status" code="StatusEnum" />
 					</template>
 				</el-table-column>
 				<el-table-column label="修改记录" width="100" align="center" show-overflow-tooltip>
@@ -63,6 +62,7 @@ import { onMounted, reactive, ref } from 'vue';
 import { ElMessageBox, ElMessage } from 'element-plus';
 import EditPrint from '/@/views/system/print/component/editPrint.vue';
 import ModifyRecord from '/@/components/table/modifyRecord.vue';
+import DictLabel from '/@/components/table/dictLabel.vue';
 
 import { getAPI } from '/@/utils/axios-utils';
 import { SysPrintApi } from '/@/api-services/api';

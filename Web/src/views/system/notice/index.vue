@@ -32,15 +32,13 @@
 				</el-table-column>
 				<el-table-column prop="type" label="类型" width="100" align="center" show-overflow-tooltip>
 					<template #default="scope">
-						<el-tag v-if="scope.row.type === 1"> 通知 </el-tag>
-						<el-tag type="warning" v-else> 公告 </el-tag>
+						<dict-label :value="scope.row.type" code="NoticeTypeEnum" />
 					</template>
 				</el-table-column>
 				<el-table-column prop="createTime" label="创建时间" align="center" show-overflow-tooltip />
 				<el-table-column prop="status" label="状态" width="100" align="center" show-overflow-tooltip>
 					<template #default="scope">
-						<el-tag type="info" v-if="scope.row.status === 1"> 已发布 </el-tag>
-						<el-tag type="warning" v-else> 未发布 </el-tag>
+						<dict-label :value="scope.row.status" code="NoticeStatusEnum" />
 					</template>
 				</el-table-column>
 				<el-table-column prop="publicUserName" label="发布者" align="center" show-overflow-tooltip />
@@ -75,6 +73,7 @@ import { onMounted, reactive, ref } from 'vue';
 import { ElMessageBox, ElMessage } from 'element-plus';
 import commonFunction from '/@/utils/commonFunction';
 import EditNotice from '/@/views/system/notice/component/editNotice.vue';
+import DictLabel from '/@/components/table/dictLabel.vue';
 
 import { getAPI } from '/@/utils/axios-utils';
 import { SysNoticeApi } from '/@/api-services/api';

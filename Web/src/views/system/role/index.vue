@@ -27,18 +27,13 @@
 				<el-table-column prop="code" label="角色编码" align="center" show-overflow-tooltip />
 				<el-table-column label="数据范围" align="center" show-overflow-tooltip>
 					<template #default="scope">
-						<el-tag effect="plain" v-if="scope.row.dataScope === 1">全部数据</el-tag>
-						<el-tag effect="plain" v-else-if="scope.row.dataScope === 2">本部门及以下数据</el-tag>
-						<el-tag effect="plain" v-else-if="scope.row.dataScope === 3">本部门数据</el-tag>
-						<el-tag effect="plain" v-else-if="scope.row.dataScope === 4">仅本人数据</el-tag>
-						<el-tag effect="plain" v-else-if="scope.row.dataScope === 5">自定义数据</el-tag>
+						<dict-label :value="scope.row.dataScope" code="DataScopeEnum" />
 					</template>
 				</el-table-column>
 				<el-table-column prop="orderNo" label="排序" width="70" align="center" show-overflow-tooltip />
 				<el-table-column label="状态" width="70" align="center" show-overflow-tooltip>
 					<template #default="scope">
-						<el-tag type="success" v-if="scope.row.status === 1">启用</el-tag>
-						<el-tag type="danger" v-else>禁用</el-tag>
+						<dict-label code="StatusEnum" :value="scope.row.status" />
 					</template>
 				</el-table-column>
 				<el-table-column label="修改记录" width="100" align="center" show-overflow-tooltip>
@@ -79,6 +74,7 @@ import { auth } from '/@/utils/authFunction';
 import EditRole from '/@/views/system/role/component/editRole.vue';
 import GrantData from '/@/views/system/role/component/grantData.vue';
 import ModifyRecord from '/@/components/table/modifyRecord.vue';
+import DictLabel from '/@/components/table/dictLabel.vue';
 
 import { getAPI } from '/@/utils/axios-utils';
 import { SysRoleApi } from '/@/api-services/api';
