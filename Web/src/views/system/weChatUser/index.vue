@@ -24,12 +24,7 @@
 				<el-table-column prop="unionId" label="UnionId" align="center" show-overflow-tooltip />
 				<el-table-column prop="platformType" label="平台类型" width="110" align="center" show-overflow-tooltip>
 					<template #default="scope">
-						<el-tag v-if="scope.row.platformType === 1"> 微信公众号 </el-tag>
-						<el-tag v-else-if="scope.row.platformType === 2"> 微信小程序 </el-tag>
-						<el-tag v-else-if="scope.row.platformType === 3"> QQ </el-tag>
-						<el-tag v-else-if="scope.row.platformType === 4"> Alipay </el-tag>
-						<el-tag v-else-if="scope.row.platformType === 5"> Gitee </el-tag>
-						<el-tag v-else> 未知 </el-tag>
+						<dict-label :value="scope.row.platformType" code="PlatformTypeEnum" default-value="未知" />
 					</template>
 				</el-table-column>
 				<el-table-column prop="nickName" label="昵称" align="center" show-overflow-tooltip />
@@ -75,6 +70,7 @@
 <script lang="ts" setup name="weChatUser">
 import { onMounted, reactive, ref } from 'vue';
 import { ElMessageBox, ElMessage } from 'element-plus';
+import DictLabel from '/@/components/table/dictLabel.vue';
 import EditWeChatUser from '/@/views/system/weChatUser/component/editWeChatUser.vue';
 
 import { getAPI } from '/@/utils/axios-utils';

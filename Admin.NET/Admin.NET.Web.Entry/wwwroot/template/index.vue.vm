@@ -158,14 +158,14 @@
         else if(@column.EffectType == "Select"){
           @:<el-table-column prop="@column.LowerPropertyName" label="@column.ColumnComment" @(column.WhetherSortable == "Y" ? "sortable='custom'" : "") show-overflow-tooltip="" >
             @:<template #default="scope">
-              @:<el-tag :type="di('@(@column.DictTypeCode)', scope.row.@(@column.LowerPropertyName))?.tagType"> {{di("@(@column.DictTypeCode)", scope.row.@(@column.LowerPropertyName))?.value}} </el-tag>
+              @:<dict-label :value="scope.row.@column.LowerPropertyName" code="@column.DictTypeCode" prop-label="value" prop-value="code" />
             @:</template>
           @:</el-table-column>
         }
         else if(@column.EffectType == "EnumSelector"){
           @:<el-table-column prop="@column.LowerPropertyName" label="@column.ColumnComment" @(column.WhetherSortable == "Y" ? "sortable='custom'" : "") show-overflow-tooltip="" >
             @:<template #default="scope">
-              @:<el-tag :type="dv('@(@column.DictTypeCode)', scope.row.@(@column.LowerPropertyName))?.tagType"> {{dv('@(@column.DictTypeCode)', scope.row.@column.LowerPropertyName)?.name}}</el-tag>
+              @:<dict-label :value="scope.row.@column.LowerPropertyName" code="@column.DictTypeCode"/>
             @:</template>
           @:</el-table-column>
         }
@@ -221,10 +221,7 @@
   @:import { codeToName, getConstType } from "/@@/utils/constHelper";
   } 
   @if(@Model.TableField.Any(x=>x.EffectType == "Select") || @Model.TableField.Any(x=>x.EffectType == "EnumSelector")){
-  @:import { getDictDataItem as di, getDictDataList as dl } from '/@@/utils/dict-utils';
-  }
-  @if(@Model.TableField.Any(x=>x.EffectType == "EnumSelector")){
-  @:import { getDictLabelByVal as dv } from '/@@/utils/dict-utils';
+  @:import { getDictDataList as dl } from '/@@/utils/dict-utils';
   }
   @if(@Model.TableField.Any(x=>x.EffectType == "DatePicker")){
   @:import { formatDate } from '/@@/utils/formatTime';
@@ -237,6 +234,9 @@
   @:import { SysPrint } from '/@@/api-services/models';
   }
 
+  @if(@Model.TableField.Any(x=>x.EffectType == "EnumSelector" || x.EffectType == "Select")){
+  @:import { DictLabel } from "/@@/components/table/dictLabel.vue";
+  }
   import printDialog from '/@@/views/system/print/component/hiprint/preview.vue'
   import editDialog from '/@@/views/@(@Model.PagePath)/@(@Model.LowerClassName)/component/editDialog.vue'
   import { page@(@Model.ClassName), delete@(@Model.ClassName) } from '/@@/api/@(@Model.PagePath)/@(@Model.LowerClassName)';
@@ -245,10 +245,6 @@
   @:import { get@(@column.FkEntityName)@(@column.PropertyName)Dropdown } from '/@@/api/@(@Model.PagePath)/@(@Model.LowerClassName)';
   }
   }
-  @if(@Model.QueryWhetherList.Any(x=>x.EffectType == "EnumSelector")){
-	@:import { SysEnumApi } from '/@@/api-services/api';
-  @:import commonFunction from '/@@/utils/commonFunction';
-	}
 
   @if(haveLikeCdt){
   @:const showAdvanceQueryUI = ref(false);

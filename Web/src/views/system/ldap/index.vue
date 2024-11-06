@@ -32,8 +32,7 @@
 				<el-table-column prop="version" label="Ldap版本" show-overflow-tooltip="" />
 				<el-table-column prop="status" label="状态" width="80" align="center" show-overflow-tooltip="">
 					<template #default="scope">
-						<el-tag v-if="scope.row.status"> 是 </el-tag>
-						<el-tag type="danger" v-else> 否 </el-tag>
+						<dict-label :value="scope.row.status" code="StatusEnum" />
 					</template>
 				</el-table-column>
 				<el-table-column label="修改记录" width="100" align="center" show-overflow-tooltip>
@@ -71,6 +70,7 @@
 import { onMounted, reactive, ref } from 'vue';
 import { ElMessageBox, ElMessage } from 'element-plus';
 import { auth } from '/@/utils/authFunction';
+import DictLabel from '/@/components/table/dictLabel.vue';
 import ModifyRecord from '/@/components/table/modifyRecord.vue';
 import EditLdap from './component/editLdap.vue';
 

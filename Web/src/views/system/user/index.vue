@@ -58,10 +58,7 @@
 						</el-table-column> -->
 						<el-table-column label="账号类型" width="110" align="center" show-overflow-tooltip>
 							<template #default="scope">
-								<el-tag v-if="scope.row.accountType === 888"> 系统管理员 </el-tag>
-								<el-tag v-else-if="scope.row.accountType === 777"> 普通账号 </el-tag>
-								<el-tag v-else-if="scope.row.accountType === 666"> 会员 </el-tag>
-								<el-tag v-else> 其他 </el-tag>
+								<dict-label :value="scope.row.accountType" code="AccountTypeEnum" default-value="其他" />
 							</template>
 						</el-table-column>
 						<el-table-column prop="roleName" label="角色集合" min-width="150" align="center" show-overflow-tooltip />
@@ -121,6 +118,7 @@ import { auth } from '/@/utils/authFunction';
 import OrgTree from '/@/views/system/org/component/orgTree.vue';
 import EditUser from '/@/views/system/user/component/editUser.vue';
 import ModifyRecord from '/@/components/table/modifyRecord.vue';
+import DictLabel from '/@/components/table/dictLabel.vue';
 
 import { Splitpanes, Pane } from 'splitpanes';
 import 'splitpanes/dist/splitpanes.css';
