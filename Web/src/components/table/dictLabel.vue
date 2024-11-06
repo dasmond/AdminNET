@@ -25,7 +25,7 @@ const props = defineProps({
 });
 
 const state = reactive({
-  label: '' as string,
+	label: '' as string,
 	tagType: '' as string
 });
 
