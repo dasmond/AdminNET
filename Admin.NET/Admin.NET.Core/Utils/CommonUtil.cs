@@ -257,7 +257,7 @@ public static class CommonUtil
     public static async Task<List<T>> ImportExcelDataAsync<T>([Required] IFormFile file) where T : class, new()
     {
         var sysFileService = App.GetRequiredService<SysFileService>();
-        var newFile = await sysFileService.UploadFile(new FileUploadInput { File = file });
+        var newFile = await sysFileService.UploadFile(new UploadFileInput { File = file });
         var filePath = Path.Combine(App.WebHostEnvironment.WebRootPath, newFile.FilePath!, newFile.Id + newFile.Suffix);
 
         IImporter importer = new ExcelImporter();
