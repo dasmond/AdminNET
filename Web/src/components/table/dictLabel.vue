@@ -13,5 +13,5 @@ const props = defineProps<{
 	defaultValue: string
 }>();
 
-const dict = reactive(useUserInfo().getDictLabelByVal(props.code, props.value));
+const dict = reactive(useUserInfo().getDictLabelByVal(props.code, props.value + ""));
 </script>
