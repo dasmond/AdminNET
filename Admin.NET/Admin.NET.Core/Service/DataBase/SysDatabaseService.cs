@@ -1,4 +1,4 @@
-﻿// Admin.NET 项目的版权、商标、专利和其他相关权利均受相应法律法规的保护。使用本项目应遵守相关法律法规和许可证的要求。
+// Admin.NET 项目的版权、商标、专利和其他相关权利均受相应法律法规的保护。使用本项目应遵守相关法律法规和许可证的要求。
 //
 // 本项目主要遵循 MIT 许可证和 Apache 许可证（版本 2.0）进行分发和使用。许可证位于源代码树根目录中的 LICENSE-MIT 和 LICENSE-APACHE 文件。
 //
@@ -49,6 +49,7 @@ public class SysDatabaseService : IDynamicApiController, ITransient
         var visualTableList = new List<VisualTable>();
         var visualColumnList = new List<VisualColumn>();
         var columnRelationList = new List<ColumnRelation>();
+        var dbOptions = App.GetOptions<DbConnectionOptions>().ConnectionConfigs.First(u => u.ConfigId.ToString() == SqlSugarConst.MainConfigId);
 
         // 遍历所有实体获取所有库表结构
         var random = new Random();
@@ -71,7 +72,7 @@ public class SysDatabaseService : IDynamicApiController, ITransient
                 var visualColumn = new VisualColumn
                 {
                     TableName = columnInfo.DbTableName,
-                    ColumnName = columnInfo.DbColumnName,
+                    ColumnName = dbOptions.DbSettings.EnableUnderLine ? UtilMethods.ToUnderLine(columnInfo.DbColumnName) : columnInfo.DbColumnName,
                     DataType = columnInfo.PropertyInfo.PropertyType.Name,
                     DataLength = columnInfo.Length.ToString(),
                     ColumnDescription = columnInfo.ColumnDescription,
@@ -83,13 +84,14 @@ public class SysDatabaseService : IDynamicApiController, ITransient
                 {
                     var name1 = columnInfo.Navigat.GetName();
                     var name2 = columnInfo.Navigat.GetName2();
+                    var targetColumnName = string.IsNullOrEmpty(name2) ? "Id" : name2;
                     var relation = new ColumnRelation
                     {
                         SourceTableName = columnInfo.DbTableName,
-                        SourceColumnName = name1,
+                        SourceColumnName = dbOptions.DbSettings.EnableUnderLine ? UtilMethods.ToUnderLine(name1) : name1,
                         Type = columnInfo.Navigat.GetNavigateType() == NavigateType.OneToOne ? "ONE_TO_ONE" : "ONE_TO_MANY",
-                        TargetTableName = columnInfo.DbColumnName,
-                        TargetColumnName = string.IsNullOrEmpty(name2) ? "Id" : name2
+                        TargetTableName = dbOptions.DbSettings.EnableUnderLine ? UtilMethods.ToUnderLine(columnInfo.DbColumnName) : columnInfo.DbColumnName,
+                        TargetColumnName = dbOptions.DbSettings.EnableUnderLine ? UtilMethods.ToUnderLine(targetColumnName) : targetColumnName
                     };
                     columnRelationList.Add(relation);
                 }
