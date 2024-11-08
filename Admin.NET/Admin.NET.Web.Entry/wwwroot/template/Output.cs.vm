@@ -39,10 +39,10 @@ if(column.EffectType == "fk")
 }
     @:
 }
-    }
-
+}
 @foreach (var column in Model.TableField){
 if (@column.EffectType == "ApiTreeSelect"){
+@:
     @:// 使用实际实体@(@column.FkTableName),所以这里就删了
     @:/*
     @:[SugarTable("@(@column.FkTableName)")]
@@ -61,8 +61,8 @@ if (@column.EffectType == "ApiTreeSelect"){
     @:*/
 }
 }
-
 @if (Model.TableField.Any(x => x.WhetherImport == "Y")) {
+@:
 @:/// <summary>
 @:/// @(@Model.BusName)数据导入模板实体
 @:/// </summary>

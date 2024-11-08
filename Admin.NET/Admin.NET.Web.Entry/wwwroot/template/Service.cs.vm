@@ -308,7 +308,7 @@ if(@column.EffectType == "ApiTreeSelect" && !definedObjects.ContainsKey("@(@colu
                 @:{
                     @:// 校验并过滤必填基本类型为null的字段
                     @:var rows = pageItems.Where(x => {
-                        foreach (var column in importField.Where(x => x.WhetherRequired == "Y" && Regex.IsMatch(x.NetType, "(int|long|double|float|bool)"))){
+                        foreach (var column in importField.Where(x => x.WhetherRequired == "Y" && Regex.IsMatch(x.NetType, "(int|long|double|float|bool|Enum[?]?)"))){
                         @:if (x.@(@column.PropertyName) == null){
                             @:x.Error = "@(@column.ColumnComment)不能为空";
                             @:return false;
@@ -329,8 +329,6 @@ if(@column.EffectType == "ApiTreeSelect" && !definedObjects.ContainsKey("@(@colu
                         if (@column.WhetherRequired == "Y"){
                         if(@column.NetType.TrimEnd('?') == "string"){
                         @:.SplitError(it => string.IsNullOrWhiteSpace(it.Item.@(@column.PropertyName)), "@(@column.ColumnComment)不能为空")
-                        } else if(@column.EffectType == "EnumSelector"){
-                        @:.SplitError(it => (int)it.Item.@(@column.PropertyName) == 0, "@(@column.ColumnComment)不能为空")
                         } else if(@column.NetType.EndsWith('?') == true){
                         @:.SplitError(it => it.Item.@(@column.PropertyName) == null, "@(@column.ColumnComment)不能为空")
                         }}
@@ -349,5 +347,5 @@ if(@column.EffectType == "ApiTreeSelect" && !definedObjects.ContainsKey("@(@colu
             @:return stream;
         @:}
     @:}
-@:}
 }
+@}
