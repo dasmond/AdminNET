@@ -247,7 +247,7 @@ if(@column.EffectType == "ApiTreeSelect" && !definedObjects.ContainsKey("@(@colu
     @:/// </summary>
     @:/// <returns></returns>
     @:[DisplayName("下载@(@Model.BusName)数据导入模板")]
-    @:[HttpGet("ImportData"), NonUnify]
+    @:[HttpGet("Import"), NonUnify]
     @:public IActionResult DownloadTemplate()
     @:{
     @:    return ExcelHelper.ExportTemplate(new List<Export@(@Model.ClassName)Output>{}, "@(@Model.BusName)导入模板");
@@ -258,7 +258,7 @@ if(@column.EffectType == "ApiTreeSelect" && !definedObjects.ContainsKey("@(@colu
     @:/// </summary>
     @:/// <returns></returns>
     @:[DisplayName("导入@(@Model.BusName)记录")]
-    @:[HttpPost("ImportData"), NonUnify, UnitOfWork]
+    @:[HttpPost("Import"), NonUnify, UnitOfWork]
     @:public IActionResult ImportData([Required] IFormFile file)
     @:{
         @:lock (this)
