@@ -1,0 +1,101 @@
+<template v-loading="state.loading">
+	<div class="sys-import-data-container" v-loading="state.loading">
+		<el-dialog v-model="state.isShowDialog" draggable :close-on-click-modal="false" width="300px" v-loading="state.loading">
+			<template #header>
+				<div style="color: #fff">
+					<el-icon size="16" style="margin-right: 3px; display: inline; vertical-align: middle"> <ele-UploadFilled /> </el-icon>
+					<span> 数据导入 </span>
+				</div>
+			</template>
+			
+			<el-row :gutter="15">
+				<el-col :xs="12" :sm="12" :md="12" :lg="12" :xl="12">
+					<el-button class="ml10" type="info" icon="ele-Download" @click="() => download()">模板</el-button>
+				</el-col>
+				<el-col :xs="12" :sm="12" :md="12" :lg="12" :xl="12">
+					<el-upload
+						:limit="1"
+						:show-file-list="false"
+						:on-exceed="handleExceed"
+						:http-request="handleImportData"
+						ref="uploadRef"
+					>
+						<template #trigger>
+							<el-button type="primary" icon="ele-MostlyCloudy">导入</el-button>
+						</template>
+					</el-upload>
+				</el-col>
+			</el-row>
+
+			<template #footer>
+				<span class="dialog-footer">
+					<el-button @click="() => state.isShowDialog = false">取 消</el-button>
+				</span>
+			</template>
+		</el-dialog>
+	</div>
+</template>
+
+<script lang="ts" setup name="sysImportData">
+import type {UploadInstance, UploadProps, UploadRawFile, UploadRequestOptions} from 'element-plus'
+import { ElUpload, ElMessage, genFileId } from 'element-plus';
+import { downloadFile } from '/@/utils/downloadFile';
+import { reactive, ref } from 'vue';
+
+const uploadRef = ref<UploadInstance>();
+const state = reactive({
+	isShowDialog: false,
+	loading: false,
+});
+
+// 定义子组件向父组件传值/事件
+const props = defineProps(['import', 'download']);
+const emit = defineEmits(['refresh']);
+
+// 打开弹窗
+const openDialog = () => {
+	state.isShowDialog = true;
+};
+
+// 选择文件超出上限事件
+const handleExceed: UploadProps['onExceed'] = (files) => {
+  uploadRef.value!.clearFiles();
+  const file = files[0] as UploadRawFile;
+  file.uid = genFileId();
+  uploadRef.value!.handleStart(file);
+}
+
+// 数据导入
+const handleImportData = (opt: UploadRequestOptions) => {
+  state.loading = true;
+  props.import(opt.file).then((res: any) => {
+    try {
+      handleFileStream(res);
+	  state.isShowDialog = false;
+      emit('refresh');
+    } catch (err) {
+      ElMessage.error(res.data.message || '上传失败');
+    }
+  }).finally(() => {
+    state.loading = false;
+    uploadRef.value?.clearFiles();
+  });
+}
+
+// 下载模板
+const download = () => {
+	props.download().then((res: any) => handleFileStream(res)).catch((res: any) => ElMessage.error('下载错误: ' + res));
+}
+
+// 下载文件流
+const handleFileStream = (res: any) => {
+  const contentType = res.headers['content-type'];
+  const contentDisposition = res.headers['content-disposition'];
+  const filename = decodeURIComponent(contentDisposition.split('; ')[1].split('=')[1])
+  const blob = res.data instanceof Blob ? res.data : new Blob([res.data], { type: contentType });
+  downloadFile(window.URL.createObjectURL(blob), filename);
+}
+
+// 导出对象
+defineExpose({ openDialog });
+</script>
