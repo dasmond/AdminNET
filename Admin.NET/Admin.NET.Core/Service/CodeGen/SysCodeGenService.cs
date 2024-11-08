@@ -239,7 +239,7 @@ public class SysCodeGenService : IDynamicApiController, ITransient
                 }
                 else
                 {
-                    var dict = propertyInfo.PropertyType.GetCustomAttribute<DictAttribute>();
+                    var dict = propertyInfo.GetCustomAttribute<DictAttribute>();
                     if (dict != null) columnOutput.DictTypeCode = dict.DictTypeCode;
                 }
             }

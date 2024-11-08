@@ -265,10 +265,10 @@ if(@column.EffectType == "ApiTreeSelect" && !definedObjects.ContainsKey("@(@colu
         @:{
             @:var stream = ExcelHelper.ImportData<Import@(@Model.ClassName)Input, @(@Model.ClassName)>(file, (list, markerErrorAction) =>
             @:{
-                @:_sysMenuRep.Context.Utilities.PageEach(list, 2048, pageItems =>
+                @:_@(@Model.LowerClassName)Rep.Context.Utilities.PageEach(list, 2048, pageItems =>
                 @:{
                     @:var rows = pageItems.Adapt<List<@(@Model.ClassName)>>();
-                    @:var storageable = _sysMenuRep.Context.Storageable(rows)
+                    @:var storageable = _@(@Model.LowerClassName)Rep.Context.Storageable(rows)
     foreach (var column in Model.TableField.Where(x => x.WhetherImport == "Y")){
         if (@column.WhetherRequired == "Y") {
             if(@column.NetType?.TrimEnd('?') == "string"){
