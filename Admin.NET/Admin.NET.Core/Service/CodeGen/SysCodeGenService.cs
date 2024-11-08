@@ -233,6 +233,15 @@ public class SysCodeGenService : IDynamicApiController, ITransient
             {
                 columnOutput.PropertyName = propertyInfo.Name;
                 columnOutput.ColumnComment = propertyInfo.GetCustomAttribute<SugarColumn>().ColumnDescription;
+                if (propertyInfo.PropertyType.IsEnum)
+                {
+                    columnOutput.DictTypeCode = propertyInfo.PropertyType.Name;
+                }
+                else
+                {
+                    var dict = propertyInfo.PropertyType.GetCustomAttribute<DictAttribute>();
+                    if (dict != null) columnOutput.DictTypeCode = dict.DictTypeCode;
+                }
             }
             else
             {

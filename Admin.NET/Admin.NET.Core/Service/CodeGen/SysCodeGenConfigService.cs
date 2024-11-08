@@ -128,6 +128,12 @@ public class SysCodeGenConfigService : IDynamicApiController, ITransient
             codeGenConfig.QueryType = GetDefaultQueryType(codeGenConfig); // QueryTypeEnum.eq.ToString();
             codeGenConfig.OrderNo = orderNo;
             codeGenConfigs.Add(codeGenConfig);
+            
+            if (!string.IsNullOrWhiteSpace(tableColumn.DictTypeCode))
+            {
+                codeGenConfig.DictTypeCode = tableColumn.DictTypeCode;
+                codeGenConfig.EffectType = tableColumn.DictTypeCode.EndsWith("Enum") ? "EnumSelector" : "Select";
+            }
 
             orderNo += 10; // 每个配置排序间隔10
         }
