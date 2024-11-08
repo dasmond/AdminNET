@@ -119,3 +119,33 @@ public class QueryById@(@Model.ClassName)Input : Delete@(@Model.ClassName)Input
 {
 
 }
+
+@if (Model.TableField.Any(x => x.WhetherImport == "Y")) {
+@:/// <summary>
+@:/// @(@Model.BusName)数据导入实体
+@:/// </summary>
+@:[ExcelImporter(SheetIndex = 1, IsOnlyErrorRows = true)]
+@:public class Import@(@Model.ClassName)Input : BaseImportInput
+@:{
+  foreach (var column in Model.TableField.Where(x => x.WhetherImport == "Y")){
+    if (@column.WhetherAddUpdate == "Y") {
+    @:/// <summary>
+    @:/// @column.ColumnComment
+    @:/// </summary>
+      if (@column.WhetherRequired == "Y" || @column.NetType.TrimEnd('?').EndsWith("Enum")){
+    @:[ImporterHeader(Name = "*@(@column.ColumnComment)")]
+    @:[ExporterHeader("*@(@column.ColumnComment)", Format = "@", Width = 25, IsBold = true)]
+      } else {
+    @:[ImporterHeader(Name = "@(@column.ColumnComment)")]
+    @:[ExporterHeader("@(@column.ColumnComment)", Format = "@", Width = 25, IsBold = true)]
+      }
+      if (@column.NetType.TrimEnd('?').EndsWith("Enum") || @column.NetType.EndsWith("int") || @column.NetType.EndsWith("float") || @column.NetType.EndsWith("long")){
+    @:public @column.NetType? @column.PropertyName { get; set; }
+      } else {
+    @:public @column.NetType @column.PropertyName { get; set; }
+      }
+    @:
+    }
+  }
+@:}
+}

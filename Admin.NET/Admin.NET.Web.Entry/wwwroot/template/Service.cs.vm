@@ -241,4 +241,59 @@ if(@column.EffectType == "ApiTreeSelect" && !definedObjects.ContainsKey("@(@colu
 }
 }
 
+@if (Model.TableField.Any(x => x.WhetherImport == "Y")) {
+    @:/// <summary>
+    @:/// 下载@(@Model.BusName)数据导入模板
+    @:/// </summary>
+    @:/// <returns></returns>
+    @:[DisplayName("下载@(@Model.BusName)数据导入模板")]
+    @:[HttpGet("ImportData"), NonUnify]
+    @:public IActionResult DownloadTemplate()
+    @:{
+    @:    return ExcelHelper.ExportTemplate(new List<Export@(@Model.ClassName)Output>{}, "@(@Model.BusName)导入模板");
+    @:}
+@:
+    @:/// <summary>
+    @:/// 导入@(@Model.BusName)记录 📃
+    @:/// </summary>
+    @:/// <returns></returns>
+    @:[DisplayName("导入@(@Model.BusName)记录")]
+    @:[HttpPost("ImportData"), NonUnify, UnitOfWork]
+    @:public IActionResult ImportData([Required] IFormFile file)
+    @:{
+        @:lock (this)
+        @:{
+            @:var stream = ExcelHelper.ImportData<Import@(@Model.ClassName)Input, @(@Model.ClassName)>(file, (list, markerErrorAction) =>
+            @:{
+                @:_sysMenuRep.Context.Utilities.PageEach(list, 2048, pageItems =>
+                @:{
+                    @:var rows = pageItems.Adapt<List<@(@Model.ClassName)>>();
+                    @:var storageable = _sysMenuRep.Context.Storageable(rows)
+    foreach (var column in Model.TableField.Where(x => x.WhetherImport == "Y")){
+        if (@column.WhetherRequired == "Y") {
+            if(@column.NetType?.TrimEnd('?') == "string"){
+                        @:.SplitError(it => string.IsNullOrWhiteSpace(it.Item.@(@column.PropertyName)), "@(@column.ColumnComment)不能为空")
+            } else if(@column.EffectType == "EnumSelector"){
+                        @:.SplitError(it => (int)it.Item.@(@column.PropertyName) == 0, "@(@column.ColumnComment)不能为空")
+            } else if(@column.NetType.EndsWith('?') == true){
+                        @:.SplitError(it => it.Item.@(@column.PropertyName) == null, "@(@column.ColumnComment)不能为空")
+            }
+        }
+        if (@column.NetType?.TrimEnd('?') == "string") {
+                        @:.SplitError(it => it.Item.@(@column.PropertyName)?.Length > @column.ColumnLength, "@(@column.ColumnComment)长度不能超过@(@column.ColumnLength)个字符")
+        }
+    }
+                        @:.ToStorage();
+
+                    @:storageable.BulkCopy();
+                    @:storageable.BulkUpdate();
+                    
+                    @:markerErrorAction.Invoke(storageable, pageItems, rows);
+                @:});
+            @:});
+@:
+            @:return stream;
+        @:}
+    @:}
+@:}
 }

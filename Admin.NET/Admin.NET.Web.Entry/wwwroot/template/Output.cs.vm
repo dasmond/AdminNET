@@ -40,7 +40,6 @@ if(column.EffectType == "fk")
     @:
 }
     }
- 
 
 @foreach (var column in Model.TableField){
 if (@column.EffectType == "ApiTreeSelect"){
@@ -61,4 +60,16 @@ if (@column.EffectType == "ApiTreeSelect"){
     @:}
     @:*/
 }
+}
+
+@if (Model.TableField.Any(x => x.WhetherImport == "Y")) {
+@:/// <summary>
+@:/// @(@Model.BusName)数据导入模板实体
+@:/// </summary>
+@:public class Export@(@Model.ClassName)Output : Import@(@Model.ClassName)Input
+@:{
+@:    [ImporterHeader(IsIgnore = true)]
+@:    [ExporterHeader(IsIgnore = true)]
+@:    public virtual string Error { get; set; }
+@:}
 }

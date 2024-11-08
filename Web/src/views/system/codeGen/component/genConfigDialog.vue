@@ -51,6 +51,11 @@
 						<el-checkbox v-model="scope.row.whetherAddUpdate" :disabled="judgeColumns(scope.row)" />
 					</template>
 				</el-table-column>
+				<el-table-column prop="whetherImport" label="导入" width="80" align="center" show-overflow-tooltip>
+					<template #default="scope">
+						<el-checkbox v-model="scope.row.whetherImport" :disabled="judgeColumns(scope.row)" />
+					</template>
+				</el-table-column>
 				<el-table-column prop="whetherRequired" label="必填" width="80" align="center" show-overflow-tooltip>
 					<template #default="scope">
 						<el-checkbox v-model="scope.row.whetherRequired" :disabled="judgeColumns(scope.row)" />
@@ -175,7 +180,7 @@ const handleQuery = async (row: any) => {
 	state.loading = true;
 	var res = await getAPI(SysCodeGenConfigApi).apiSysCodeGenConfigListGet(undefined, row.id);
 	var data = res.data.result ?? [];
-	let lstWhetherColumn = ['whetherTable', 'whetherAddUpdate', 'whetherRequired', 'whetherSortable']; //列表显示的checkbox
+	let lstWhetherColumn = ['whetherTable', 'whetherAddUpdate', 'whetherImport', 'whetherRequired', 'whetherSortable']; //列表显示的checkbox
 	data.forEach((item: any) => {
 		for (const key in item) {
 			if (item[key] === 'Y') {

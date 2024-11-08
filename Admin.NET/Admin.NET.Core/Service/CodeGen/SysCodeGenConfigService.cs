@@ -118,6 +118,7 @@ public class SysCodeGenConfigService : IDynamicApiController, ITransient
             // 生成代码时，主键并不是必要输入项，故一定要排除主键字段
             codeGenConfig.WhetherRequired = (tableColumn.IsNullable || tableColumn.IsPrimarykey) ? YesNoEnum.N.ToString() : YesNoEnum.Y.ToString();
             codeGenConfig.QueryWhether = YesOrNo;
+            codeGenConfig.WhetherImport = YesOrNo;
             codeGenConfig.WhetherAddUpdate = YesOrNo;
             codeGenConfig.WhetherTable = YesOrNo;
 
