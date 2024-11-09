@@ -36,7 +36,14 @@
 				<el-table-column prop="dictTypeCode" label="字典" width="180" show-overflow-tooltip>
 					<template #default="scope">
 						<el-select v-model="scope.row.dictTypeCode" class="m-2" :disabled="effectTypeEnable(scope.row)">
-							<el-option v-for="item in state.dictTypeCodeList" :key="item.code" :label="item.name" :value="item.code" />
+							<el-option
+							v-for="item in scope.row.effectType == 'Select' ? state.dictDataAll :
+								scope.row.effectType == 'EnumSelector' ? state.allEnumSelector :
+								scope.row.effectType == 'ConstSelector' ? allConstSelector :
+								state.dictTypeCodeList" 
+							:key="item.code"
+							:label="item.name" 
+							:value="item.code" />
 						</el-select>
 					</template>
 				</el-table-column>
@@ -130,8 +137,8 @@ onMounted(async () => {
 	state.effectTypeList = res.data.result;
 
 	var res1 = await getAPI(SysDictTypeApi).apiSysDictTypeListGet();
-	state.dictTypeCodeList = res1.data.result;
-	state.dictDataAll = res1.data.result;
+	state.dictTypeCodeList = res1.data.result.filter(x => !x.code.endsWith("Enum"));
+	state.dictDataAll = state.dictTypeCodeList;
 
 	var res2 = await getAPI(SysDictDataApi).apiSysDictDataDataListCodeGet('code_gen_query_type');
 	state.queryTypeList = res2.data.result;
