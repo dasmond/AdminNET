@@ -33,7 +33,7 @@ public class ExcelHelper
                         for (int i = 0; i < rows.Count; i++) pageItems[i].Id = rows[i].Id;
 
                         for (int i = 0; i < storageable.TotalList.Count; i++)
-                            pageItems[i].Error = storageable.TotalList[i].StorageMessage;
+                            pageItems[i].Error ??= storageable.TotalList[i].StorageMessage;
                     }
                 }));
             });
@@ -98,9 +98,24 @@ public class ExcelHelper
                 if (++columnIndex > 0 && item.Text.Equals(headerAttr.DisplayName)) break;
             if (columnIndex <= 0) continue;
 
-            // 优先从代理函数中获取下列列表，若为空且字段为枚举型，则填充枚举项为下列列表，否则不设置下列列表
+            // 优先从代理函数中获取下列列表，若为空且字段为枚举型，则填充枚举项为下列列表，若为字典字段，则填充字典值value列表为下列列表
             var dataList = addListValidationFun?.Invoke(worksheet, prop)?.ToList();
-            if (dataList == null && propType.IsEnum()) dataList = propType.EnumToList()?.Select(it => it.Describe).ToList();
+            if (dataList == null)
+            {
+                if (propType.IsEnum())
+                {// 填充枚举项为下列列表
+                    dataList = propType.EnumToList()?.Select(it => it.Describe).ToList();
+                }
+                else
+                {// 获取字段上的字典特性
+                    var dict = prop.GetCustomAttribute<DictAttribute>();
+                    if (dict != null)
+                    {// 填充字典值value为下列列表
+                        dataList = App.GetService<SysDictTypeService>().GetDataList(new GetDataDictTypeInput
+                            { Code = dict.DictTypeCode }).Result?.Select(x => x.Value).ToList();
+                    }
+                }
+            }
             if (dataList != null) AddListValidation(columnIndex, dataList);
         }
 

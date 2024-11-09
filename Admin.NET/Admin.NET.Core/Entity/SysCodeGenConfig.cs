@@ -157,7 +157,14 @@ public partial class SysCodeGenConfig : EntityBase
     [SugarColumn(ColumnDescription = "增改", Length = 8)]
     [MaxLength(8)]
     public string? WhetherAddUpdate { get; set; }
-
+    
+    /// <summary>
+    /// 导入
+    /// </summary>
+    [SugarColumn(ColumnDescription = "导入", Length = 8)]
+    [MaxLength(8)]
+    public string? WhetherImport { get; set; }
+    
     /// <summary>
     /// 主键
     /// </summary>

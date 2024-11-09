@@ -137,7 +137,12 @@ public class CodeGenConfig
     /// 增改
     /// </summary>
     public string WhetherAddUpdate { get; set; }
-
+    
+    /// <summary>
+    /// 导入
+    /// </summary>
+    public string WhetherImport { get; set; }
+    
     /// <summary>
     /// 主外键
     /// </summary>

@@ -45,6 +45,11 @@ public class ColumnOuput
     /// .NET字段类型
     /// </summary>
     public string NetType { get; set; }
+    
+    /// <summary>
+    /// 字典编码
+    /// </summary>
+    public string DictTypeCode { get; set; }
 
     /// <summary>
     /// 字段描述

@@ -6,6 +6,10 @@ enum Api {
   Update@(@Model.ClassName) = '/api/@(@Model.LowerClassName)/update',
   Page@(@Model.ClassName) = '/api/@(@Model.LowerClassName)/page',
   Detail@(@Model.ClassName) = '/api/@(@Model.LowerClassName)/detail',
+@if (Model.TableField.Any(x => x.WhetherImport == "Y")) {
+  @:Import@(@Model.ClassName)Data = '/api/@(@Model.LowerClassName)/import',
+  @:Download@(@Model.ClassName)Template = '/api/@(@Model.LowerClassName)/import',
+}
   @foreach (var column in Model.TableField){
 if(@column.EffectType == "fk" && (@column.WhetherAddUpdate == "Y" || column.QueryWhether == "Y")){
   @:Get@(@column.FkEntityName)@(@column.PropertyName)Dropdown = '/api/@(@Model.LowerClassName)/@(@column.FkEntityName)@(@column.PropertyName)Dropdown',
@@ -57,6 +61,29 @@ export const detail@(@Model.ClassName) = (id: any) =>
 			method: 'get',
 			data: { id },
 		});
+
+@if (Model.TableField.Any(x => x.WhetherImport == "Y")) {
+@:// 下载@(@Model.BusName)数据导入模板
+@:export const download@(@Model.ClassName)Template = () =>
+	@:request({
+		@:url: Api.Download@(@Model.ClassName)Template,
+		@:responseType: 'arraybuffer',
+		@:method: 'get',
+	@:});
+@:
+@:// 导入@(@Model.BusName)记录
+@:export const import@(@Model.ClassName)Data = (file: any) => {
+	@:const formData = new FormData();
+	@:formData.append('file', file);
+	@:return request({
+		@:headers: { 'Content-Type': 'multipart/form-data' },
+		@:url: Api.Import@(@Model.ClassName)Data,
+		@:responseType: 'arraybuffer',
+		@:method: 'post',
+		@:data: formData,
+	@:});
+@:}
+}
 
 @foreach (var column in Model.TableField){
 	if(@column.EffectType == "fk" && (@column.WhetherAddUpdate == "Y" || column.QueryWhether == "Y")){
