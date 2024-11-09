@@ -15,6 +15,7 @@ using Microsoft.AspNetCore.Http;
             haveLikeCdt = true;
         }
     }
+    var hasSetStatus = Model.TableField.Any(col => col.NetType == "StatusEnum" && col.PropertyName == "Status");
     var dictTableField = Model.TableField.Where(x => x.WhetherImport == "Y" && x.EffectType == "Select") ?? default;
     var hasdictService = dictTableField.Count() > 0;
     var importField = Model.TableField.Where(x => x.WhetherImport == "Y");
@@ -149,10 +150,8 @@ if (@column.QueryWhether == "Y"){
     [DisplayName("删除@(@Model.BusName)")]
     public async Task Delete(Delete@(@Model.ClassName)Input input)
     {
-@foreach (var column in Model.TableField){
-if (@column.ColumnKey == "True"){
+@foreach (var column in Model.TableField.Where(u => u.ColumnKey == "True")){
         @:var entity = await _@(@Model.LowerClassName)Rep.GetFirstAsync(u => u.@(@column.PropertyName) == input.@(@column.PropertyName)) ?? throw Oops.Oh(ErrorCodeEnum.D1002);
-}
 }
         await _@(@Model.LowerClassName)Rep.FakeDeleteAsync(entity);   //假删除
         //await _@(@Model.LowerClassName)Rep.DeleteAsync(entity);   //真删除
@@ -171,6 +170,20 @@ if (@column.ColumnKey == "True"){
         var entity = input.Adapt<@(@Model.ClassName)>();
         await _@(@Model.LowerClassName)Rep.AsUpdateable(entity).IgnoreColumns(ignoreAllNullColumns: true).ExecuteCommandAsync();
     }
+@if (hasSetStatus) {
+@:
+    @:/// <summary>
+    @:/// 设置@(@Model.BusName)状态
+    @:/// </summary>
+    @:/// <param name="input"></param>
+    @:/// <returns></returns>
+    @:[ApiDescriptionSettings(Name = "SetStatus"), HttpPost]
+    @:[DisplayName("设置@(@Model.BusName)状态")]
+    @:public async Task SetStatus(BaseStatusInput input)
+    @:{
+        @:await _@(@Model.LowerClassName)Rep.AsUpdateable().SetColumns(u => u.Status, input.Status).Where(u => u.Id == input.Id).ExecuteCommandAsync();
+    @:} 
+}
 
     /// <summary>
     /// 获取@(@Model.BusName)

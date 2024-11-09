@@ -612,6 +612,17 @@ public class SysCodeGenService : IDynamicApiController, ITransient
             OrderNo = menuOrder
         };
         menuOrder += 10;
+        
+        // 按钮-Status
+        var menuTypeStatus = new SysMenu
+        {
+            Pid = menuPid,
+            Title = "状态",
+            Type = MenuTypeEnum.Btn,
+            Permission = className[..1].ToLower() + className[1..] + ":setStatus",
+            OrderNo = menuOrder
+        };
+        menuOrder += 10;
 
         // 按钮-print
         var menuTypePrint = new SysMenu
@@ -646,7 +657,7 @@ public class SysCodeGenService : IDynamicApiController, ITransient
         };
         menuOrder += 10;
 
-        var menuList = new List<SysMenu>() { menuTypePage, menuTypeDetail, menuTypeAdd, menuTypeDelete, menuTypeUpdate, menuTypePrint, menuTypeImport, menuTypeExport };
+        var menuList = new List<SysMenu>() { menuTypePage, menuTypeDetail, menuTypeAdd, menuTypeStatus, menuTypeDelete, menuTypeUpdate, menuTypePrint, menuTypeImport, menuTypeExport };
         // 加入fk、Upload、ApiTreeSelect 等接口的权限
         // 在生成表格时，有些字段只是查询时显示，不需要填写（WhetherAddUpdate），所以这些字段没必要生成相应接口
         var fkTableList = tableFieldList.Where(u => u.EffectType == "fk" && (u.WhetherAddUpdate == "Y" || u.QueryWhether == "Y")).ToList();
