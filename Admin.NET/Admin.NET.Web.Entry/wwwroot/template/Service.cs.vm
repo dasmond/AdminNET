@@ -15,6 +15,9 @@ using Microsoft.AspNetCore.Http;
             haveLikeCdt = true;
         }
     }
+    var dictTableField = Model.TableField.Where(x => x.WhetherImport == "Y" && x.EffectType == "Select") ?? default;
+    var hasdictService = dictTableField.Count() > 0;
+    var importField = Model.TableField.Where(x => x.WhetherImport == "Y");
 }
 namespace @Model.NameSpace;
 
@@ -25,9 +28,18 @@ namespace @Model.NameSpace;
 public class @(@Model.ClassName)Service : IDynamicApiController, ITransient
 {
     private readonly SqlSugarRepository<@(@Model.ClassName)> _@(@Model.LowerClassName)Rep;
-    public @(@Model.ClassName)Service(SqlSugarRepository<@(@Model.ClassName)> @(@Model.LowerClassName)Rep)
-    {
+@if (hasdictService) {
+    @:private readonly SysDictTypeService _sysDictTypeService;
+}
+    public @(@Model.ClassName)Service(SqlSugarRepository<@(@Model.ClassName)> @(@Model.LowerClassName)Rep
+@if (hasdictService) {
+        @:,SysDictTypeService sysDictTypeService
+}
+    ){
         _@(@Model.LowerClassName)Rep = @(@Model.LowerClassName)Rep;
+@if (hasdictService) {
+        @:_sysDictTypeService = sysDictTypeService;
+}
     }
 
     /// <summary>
@@ -189,9 +201,9 @@ if (@column.ColumnKey == "True"){
     {
         return await _@(@Model.LowerClassName)Rep.AsQueryable().Select<@(@Model.ClassName)Output>().ToListAsync();
     }
-
 @foreach (var column in Model.TableField){
-if(@column.EffectType == "fk" && (@column.WhetherAddUpdate == "Y" || column.QueryWhether == "Y")){  
+if(@column.EffectType == "fk" && (@column.WhetherAddUpdate == "Y" || column.QueryWhether == "Y")){
+@:
     @:/// <summary>
     @:/// 获取@(@column.ColumnComment)列表
     @:/// </summary>
@@ -210,9 +222,9 @@ if(@column.EffectType == "fk" && (@column.WhetherAddUpdate == "Y" || column.Quer
     @:}
 }
 }
-
 @foreach (var column in Model.TableField){
-if(@column.EffectType == "Upload"){  
+if(@column.EffectType == "Upload"){
+@:
     @:/// <summary>
     @:/// 上传@(@column.ColumnComment)
     @:/// </summary>
@@ -227,10 +239,9 @@ if(@column.EffectType == "Upload"){
     @:} 
 }
 }
-
-
 @foreach (var column in Model.TableField){
 if(@column.EffectType == "ApiTreeSelect" && !definedObjects.ContainsKey("@(@column.FkEntityName)Tree")){
+@:
     @{definedObjects.Add("@(@column.FkEntityName)Tree", 1);}
     @:[HttpGet("@(@column.FkEntityName)Tree")]
     @:[DisplayName("获取@(@column.FkEntityName)Tree")]
@@ -240,5 +251,88 @@ if(@column.EffectType == "ApiTreeSelect" && !definedObjects.ContainsKey("@(@colu
     @:}
 }
 }
-
+@if (hasdictService) {
+@:
+    @:/// <summary>
+    @:/// 获取字典文本列表
+    @:/// </summary>
+    @:/// <param name="dictTypeCode"></param>
+    @:/// <returns></returns>
+    @:private List<string> GetDictDataTextList(string dictTypeCode)
+    @:{
+    @:    return _sysDictTypeService.GetDataList(new GetDataDictTypeInput { Code = dictTypeCode }).Result?.Select(x => x.Value).ToList();
+    @:}
 }
+@if (importField?.Count() > 0) {
+@:
+    @:/// <summary>
+    @:/// 下载@(@Model.BusName)数据导入模板
+    @:/// </summary>
+    @:/// <returns></returns>
+    @:[DisplayName("下载@(@Model.BusName)数据导入模板")]
+    @:[ApiDescriptionSettings(Name = "Import"), HttpGet, NonUnify]
+    @:public IActionResult DownloadTemplate()
+    @:{
+        @:return ExcelHelper.ExportTemplate(new List<Export@(@Model.ClassName)Output>(), "@(@Model.BusName)导入模板");
+    @:}
+@:
+    @:/// <summary>
+    @:/// 导入@(@Model.BusName)记录 📃
+    @:/// </summary>
+    @:/// <returns></returns>
+    @:[DisplayName("导入@(@Model.BusName)记录")]
+    @:[ApiDescriptionSettings(Name = "Import"), HttpPost, NonUnify, UnitOfWork]
+    @:public IActionResult ImportData([Required] IFormFile file)
+    @:{
+        @:lock (this)
+        @:{
+            foreach (var column in dictTableField){
+            @:var @(@column.LowerPropertyName)DictMap = _sysDictTypeService.GetDataList(new GetDataDictTypeInput { Code = "@(@column.DictTypeCode)" }).Result.ToDictionary(x => x.Value, x => x.Code);
+            }
+            @:var stream = ExcelHelper.ImportData<Import@(@Model.ClassName)Input, @(@Model.ClassName)>(file, (list, markerErrorAction) =>
+            @:{
+                @:_@(@Model.LowerClassName)Rep.Context.Utilities.PageEach(list, 2048, pageItems =>
+                @:{
+                    @:// 校验并过滤必填基本类型为null的字段
+                    @:var rows = pageItems.Where(x => {
+                        foreach (var column in importField.Where(x => x.WhetherRequired == "Y" && Regex.IsMatch(x.NetType, "(int|long|double|float|bool|Enum[?]?)"))){
+                        @:if (x.@(@column.PropertyName) == null){
+                            @:x.Error = "@(@column.ColumnComment)不能为空";
+                            @:return false;
+                        @:}
+                        }
+                        @:return true;
+                    @:}).Adapt<List<@(@Model.ClassName)>>();
+                    if (hasdictService){
+                    @:// 映射字典值
+                    @:foreach(var row in rows){
+                        foreach (var column in dictTableField){
+                        @:row.@(@column.PropertyName) = @(@column.LowerPropertyName)DictMap.GetValueOrDefault(row.@(@column.PropertyName) ?? "");
+                        }
+                    @:}
+                    }
+                    @:var storageable = _@(@Model.LowerClassName)Rep.Context.Storageable(rows)
+                        foreach (var column in importField){
+                        if (@column.WhetherRequired == "Y"){
+                        if(@column.NetType.TrimEnd('?') == "string"){
+                        @:.SplitError(it => string.IsNullOrWhiteSpace(it.Item.@(@column.PropertyName)), "@(@column.ColumnComment)不能为空")
+                        } else if(@column.NetType.EndsWith('?') == true){
+                        @:.SplitError(it => it.Item.@(@column.PropertyName) == null, "@(@column.ColumnComment)不能为空")
+                        }}
+                        if (@column.NetType?.TrimEnd('?') == "string"){
+                        @:.SplitError(it => it.Item.@(@column.PropertyName)?.Length > @column.ColumnLength, "@(@column.ColumnComment)长度不能超过@(@column.ColumnLength)个字符")
+                        }}
+                        @:.ToStorage();
+
+                    @:storageable.BulkCopy();
+                    @:storageable.BulkUpdate();
+                    
+                    @:markerErrorAction.Invoke(storageable, pageItems, rows);
+                @:});
+            @:});
+@:
+            @:return stream;
+        @:}
+    @:}
+}
+@}

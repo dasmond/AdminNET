@@ -22,7 +22,7 @@ public class SysDictDataSeedData : ISqlSugarEntitySeedData<SysDictData>
             new SysDictData{ Id=1300000000101, DictTypeId=1300000000101, Value="输入框", Code="Input", OrderNo=100, Remark="输入框", Status=StatusEnum.Enable, CreateTime=DateTime.Parse("2022-02-10 00:00:00") },
             new SysDictData{ Id=1300000000102, DictTypeId=1300000000101, Value="外键", Code="fk", OrderNo=100, Remark="外键", Status=StatusEnum.Enable, CreateTime=DateTime.Parse("2022-02-10 00:00:00") },
             new SysDictData{ Id=1300000000103, DictTypeId=1300000000101, Value="时间选择", Code="DatePicker", OrderNo=100, Remark="时间选择", Status=StatusEnum.Enable, CreateTime=DateTime.Parse("2022-02-10 00:00:00") },
-            new SysDictData{ Id=1300000000104, DictTypeId=1300000000101, Value="选择器", Code="Select", OrderNo=100, Remark="选择器", Status=StatusEnum.Enable, CreateTime=DateTime.Parse("2022-02-10 00:00:00") },
+            new SysDictData{ Id=1300000000104, DictTypeId=1300000000101, Value="字典选择器", Code="Select", OrderNo=100, Remark="字典选择器", Status=StatusEnum.Enable, CreateTime=DateTime.Parse("2022-02-10 00:00:00") },
             new SysDictData{ Id=1300000000105, DictTypeId=1300000000101, Value="数字输入框", Code="InputNumber", OrderNo=100, Remark="数字输入框", Status=StatusEnum.Enable, CreateTime=DateTime.Parse("2022-02-10 00:00:00") },
             new SysDictData{ Id=1300000000106, DictTypeId=1300000000101, Value="文本域", Code="InputTextArea", OrderNo=100, Remark="文本域", Status=StatusEnum.Enable, CreateTime=DateTime.Parse("2022-02-10 00:00:00") },
             new SysDictData{ Id=1300000000107, DictTypeId=1300000000101, Value="上传", Code="Upload", OrderNo=100, Remark="上传", Status=StatusEnum.Enable, CreateTime=DateTime.Parse("2022-02-10 00:00:00") },

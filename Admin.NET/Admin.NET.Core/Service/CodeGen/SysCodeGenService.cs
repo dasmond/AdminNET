@@ -233,6 +233,15 @@ public class SysCodeGenService : IDynamicApiController, ITransient
             {
                 columnOutput.PropertyName = propertyInfo.Name;
                 columnOutput.ColumnComment = propertyInfo.GetCustomAttribute<SugarColumn>().ColumnDescription;
+                if (propertyInfo.PropertyType.IsEnum)
+                {
+                    columnOutput.DictTypeCode = propertyInfo.PropertyType.Name;
+                }
+                else
+                {
+                    var dict = propertyInfo.GetCustomAttribute<DictAttribute>();
+                    if (dict != null) columnOutput.DictTypeCode = dict.DictTypeCode;
+                }
             }
             else
             {
@@ -367,6 +376,8 @@ public class SysCodeGenService : IDynamicApiController, ITransient
             {
                 builder.AddAssemblyReferenceByName("System.Linq");
                 builder.AddAssemblyReferenceByName("System.Collections");
+                builder.AddAssemblyReferenceByName("System.Text.RegularExpressions");
+                builder.AddUsing("System.Text.RegularExpressions");
                 builder.AddUsing("System.Collections.Generic");
                 builder.AddUsing("System.Linq");
             });
@@ -434,6 +445,8 @@ public class SysCodeGenService : IDynamicApiController, ITransient
             {
                 builder.AddAssemblyReferenceByName("System.Linq");
                 builder.AddAssemblyReferenceByName("System.Collections");
+                builder.AddAssemblyReferenceByName("System.Text.RegularExpressions");
+                builder.AddUsing("System.Text.RegularExpressions");
                 builder.AddUsing("System.Collections.Generic");
                 builder.AddUsing("System.Linq");
             });
