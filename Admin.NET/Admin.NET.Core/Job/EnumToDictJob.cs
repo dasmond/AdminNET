@@ -15,7 +15,7 @@ public class EnumToDictJob : IJob
 {
     private readonly IServiceScopeFactory _scopeFactory;
     private const int OrderOffset = 10;
-    private const string DefaultTagType = "info";
+    private const string DefaultTagType = "primary";
 
     public EnumToDictJob(IServiceScopeFactory scopeFactory)
     {

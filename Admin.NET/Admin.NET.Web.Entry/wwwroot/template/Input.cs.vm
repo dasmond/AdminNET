@@ -7,16 +7,15 @@
 using Admin.NET.Core;
 using System.ComponentModel.DataAnnotations;
 
-namespace @Model.NameSpace;
+namespace @Model.NameSpace.Service;
 
 /// <summary>
-/// @(@Model.BusName)基础输入参数
+/// @(Model.BusName)基础输入参数
 /// </summary>
-public class @(@Model.ClassName)BaseInput
+public class @(Model.ClassName)BaseInput
 {
 @foreach (var column in Model.TableField){
-if (@column.ColumnKey != "True" && @column.WhetherAddUpdate == "Y" && !(@column.NetType == "StatusEnum" && @column.PropertyName == "Status")){
-
+if (column.ColumnKey != "True" && column.WhetherAddUpdate == "Y" && !(column.NetType == "StatusEnum" && column.PropertyName == "Status")){
     @:/// <summary>
     @:/// @column.ColumnComment
     @:/// </summary>
@@ -27,48 +26,40 @@ if (@column.ColumnKey != "True" && @column.WhetherAddUpdate == "Y" && !(@column.
 }
 
 /// <summary>
-/// @(@Model.BusName)分页查询输入参数
+/// @(Model.BusName)分页查询输入参数
 /// </summary>
-public class Page@(@Model.ClassName)Input : BasePageInput
+public class Page@(Model.ClassName)Input : BasePageInput
 {
-@foreach (var column in Model.TableField){
-    if (@column.QueryWhether == "Y"){
-
+@foreach (var column in Model.TableField.Where(u => u.QueryWhether == "Y")){
+    if(column.NetType?.TrimEnd('?') == "DateTime" && column.QueryType == "~"){
+    @:/// <summary>
+    @: /// @(column.ColumnComment)范围
+    @: /// </summary>
+    @: public DateTime?[] @(column.PropertyName)Range { get; set; }
+    } else {
     @:/// <summary>
     @:/// @column.ColumnComment
     @:/// </summary>
-    if(@column.NetType?.EndsWith("?") == true){
-    @:public @column.NetType @column.PropertyName { get; set; }
-    }else {
-    @:public @(@column.NetType)? @column.PropertyName { get; set; }
+    @:public @column.NetType.TrimEnd('?')? @column.PropertyName { get; set; }
     }
     @:
-
-    if(@column.NetType?.TrimEnd('?') == "DateTime" && @column.QueryType == "~"){
-    @:/// <summary>
-    @: /// @(@column.ColumnComment)范围
-    @: /// </summary>
-    @: public DateTime?[] @(@column.PropertyName)Range { get; set; } 
-
-}
-}
 }
 }
 
 /// <summary>
-/// @(@Model.BusName)增加输入参数
+/// @(Model.BusName)增加输入参数
 /// </summary>
-public class Add@(@Model.ClassName)Input
+public class Add@(Model.ClassName)Input
 {
 @foreach (var column in Model.TableField){
-if (@column.WhetherAddUpdate == "Y"){
+if (column.WhetherAddUpdate == "Y"){
     @:/// <summary>
     @:/// @column.ColumnComment
     @:/// </summary>
-if (@column.WhetherRequired == "Y") {
-    @:[Required(ErrorMessage = "@(@column.ColumnComment)不能为空")]
+if (column.WhetherRequired == "Y") {
+    @:[Required(ErrorMessage = "@(column.ColumnComment)不能为空")]
 }
-if (Regex.IsMatch(@column.NetType, "(.*?Enum|int|long|double|float|bool)[?]?")){
+if (Regex.IsMatch(column.NetType, "(.*?Enum|int|long|double|float|bool)[?]?")){
     @:public @column.NetType.TrimEnd('?')? @column.PropertyName { get; set; }
 }else{
     @:public @column.NetType @column.PropertyName { get; set; }
@@ -79,16 +70,16 @@ if (Regex.IsMatch(@column.NetType, "(.*?Enum|int|long|double|float|bool)[?]?")){
 }
 
 /// <summary>
-/// @(@Model.BusName)删除输入参数
+/// @(Model.BusName)删除输入参数
 /// </summary>
-public class Delete@(@Model.ClassName)Input
+public class Delete@(Model.ClassName)Input
 {
 @foreach (var column in Model.TableField.Where(u => u.ColumnKey == "True")){
     @:/// <summary>
     @:/// @column.ColumnComment
     @:/// </summary>
-    @:[Required(ErrorMessage = "@(@column.ColumnComment)不能为空")]
-if (Regex.IsMatch(@column.NetType, "(.*?Enum|int|long|double|float|bool)[?]?")){
+    @:[Required(ErrorMessage = "@(column.ColumnComment)不能为空")]
+if (Regex.IsMatch(column.NetType, "(.*?Enum|int|long|double|float|bool)[?]?")){
     @:public @column.NetType.TrimEnd('?')? @column.PropertyName { get; set; }
 }else{
     @:public @column.NetType @column.PropertyName { get; set; }
@@ -98,38 +89,38 @@ if (Regex.IsMatch(@column.NetType, "(.*?Enum|int|long|double|float|bool)[?]?")){
 }
 
 /// <summary>
-/// @(@Model.BusName)批量删除输入参数
+/// @(Model.BusName)批量删除输入参数
 /// </summary>
-public class BatchDelete@(@Model.ClassName)Input
+public class BatchDelete@(Model.ClassName)Input
 {
 @foreach (var column in Model.TableField.Where(u => u.ColumnKey == "True")){
     @:/// <summary>
     @:/// @column.ColumnComment
     @:/// </summary>
-    @:[Required(ErrorMessage = "@(@column.ColumnComment)列表不能为空")]
-if (Regex.IsMatch(@column.NetType, "(.*?Enum|int|long|double|float|bool)[?]?")){
-    @:public List<@column.NetType.TrimEnd('?')?> @(@column.PropertyName)List { get; set; }
+    @:[Required(ErrorMessage = "@(column.ColumnComment)列表不能为空")]
+if (Regex.IsMatch(column.NetType, "(.*?Enum|int|long|double|float|bool)[?]?")){
+    @:public List<@column.NetType.TrimEnd('?')?> @(column.PropertyName)List { get; set; }
 }else{
-    @:public List<@column.NetType> @(@column.PropertyName)List { get; set; }
+    @:public List<@column.NetType> @(column.PropertyName)List { get; set; }
 }
     @:
 }
 }
 
 /// <summary>
-/// @(@Model.BusName)更新输入参数
+/// @(Model.BusName)更新输入参数
 /// </summary>
-public class Update@(@Model.ClassName)Input
+public class Update@(Model.ClassName)Input
 {
 @foreach (var column in Model.TableField){
-if (@column.ColumnKey == "True" || @column.WhetherAddUpdate == "Y" && !(@column.NetType == "StatusEnum" && @column.PropertyName == "Status")){
+if (column.ColumnKey == "True" || column.WhetherAddUpdate == "Y" && !(column.NetType == "StatusEnum" && column.PropertyName == "Status")){
     @:/// <summary>
     @:/// @column.ColumnComment
     @:/// </summary>
-if (@column.WhetherRequired == "Y" || @column.ColumnKey == "True") {
-    @:[Required(ErrorMessage = "@(@column.ColumnComment)不能为空")]
+if (column.WhetherRequired == "Y" || column.ColumnKey == "True") {
+    @:[Required(ErrorMessage = "@(column.ColumnComment)不能为空")]
 }
-if (Regex.IsMatch(@column.NetType, "(.*?Enum|int|long|double|float|bool)[?]?")){
+if (Regex.IsMatch(column.NetType, "(.*?Enum|int|long|double|float|bool)[?]?")){
     @:public @column.NetType.TrimEnd('?')? @column.PropertyName { get; set; }
 }else{
     @:public @column.NetType @column.PropertyName { get; set; }
@@ -140,35 +131,35 @@ if (Regex.IsMatch(@column.NetType, "(.*?Enum|int|long|double|float|bool)[?]?")){
 }
 
 /// <summary>
-/// @(@Model.BusName)主键查询输入参数
+/// @(Model.BusName)主键查询输入参数
 /// </summary>
-public class QueryById@(@Model.ClassName)Input : Delete@(@Model.ClassName)Input
+public class QueryById@(Model.ClassName)Input : Delete@(Model.ClassName)Input
 {
 
 }
 
 @if (Model.TableField.Any(x => x.WhetherImport == "Y")){
 @:/// <summary>
-@:/// @(@Model.BusName)数据导入实体
+@:/// @(Model.BusName)数据导入实体
 @:/// </summary>
 @:[ExcelImporter(SheetIndex = 1, IsOnlyErrorRows = true)]
-@:public class Import@(@Model.ClassName)Input : BaseImportInput
+@:public class Import@(Model.ClassName)Input : BaseImportInput
 @:{
     foreach (var column in Model.TableField.Where(x => x.WhetherImport == "Y")){
-    if (@column.WhetherAddUpdate == "Y") {
+    if (column.WhetherAddUpdate == "Y") {
     @:/// <summary>
     @:/// @column.ColumnComment
     @:/// </summary>
-    if (@column.WhetherRequired == "Y" || @column.NetType.TrimEnd('?').EndsWith("Enum")){
-    @:[ImporterHeader(Name = "*@(@column.ColumnComment)")]
-    @:[ExporterHeader("*@(@column.ColumnComment)", Format = "@", Width = 25, IsBold = true)]
-    }else{
-    @:[ImporterHeader(Name = "@(@column.ColumnComment)")]
-    @:[ExporterHeader("@(@column.ColumnComment)", Format = "@", Width = 25, IsBold = true)]
+    if (column.WhetherRequired == "Y" || column.NetType.TrimEnd('?').EndsWith("Enum")){
+    @:[ImporterHeader(Name = "*@(column.ColumnComment)")]
+    @:[ExporterHeader("*@(column.ColumnComment)", Format = "@", Width = 25, IsBold = true)]
+    } else {
+    @:[ImporterHeader(Name = "@(column.ColumnComment)")]
+    @:[ExporterHeader("@(column.ColumnComment)", Format = "@", Width = 25, IsBold = true)]
     }
-    if (Regex.IsMatch(@column.NetType, "(.*?Enum|int|long|double|float|bool)[?]?")){
+    if (Regex.IsMatch(column.NetType, "(.*?Enum|int|long|double|float|bool)[?]?")){
     @:public @column.NetType.TrimEnd('?')? @column.PropertyName { get; set; }
-    }else{
+    } else {
     @:public @column.NetType @column.PropertyName { get; set; }
     }
     @:
