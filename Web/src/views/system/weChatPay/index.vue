@@ -3,7 +3,7 @@
 		<el-card shadow="hover" :body-style="{ paddingBottom: '0' }">
 			<el-form :model="state.queryParams" ref="queryForm" :inline="true">
 				<el-form-item label="订单号">
-					<el-input v-model="state.queryParams.searchKey" clearable="" placeholder="请输入订单号" />
+					<el-input v-model="state.queryParams.keyword" clearable="" placeholder="请输入订单号" />
 				</el-form-item>
 				<el-form-item label="创建时间">
 					<el-date-picker placeholder="请选择创建时间" value-format="YYYY/MM/DD" type="daterange" v-model="state.queryParams.createTimeRange" />
@@ -149,7 +149,7 @@ const state = reactive({
 	loading: false,
 	tableData: [] as Array<SysWechatPay>,
 	queryParams: {
-		searchKey: undefined,
+		keyword: undefined,
 		createTimeRange: undefined,
 	},
 	tableParams: {
@@ -178,7 +178,7 @@ const handleQuery = async () => {
 
 // 重置操作
 const resetQuery = () => {
-	state.queryParams.searchKey = undefined;
+	state.queryParams.keyword = undefined;
 	state.queryParams.createTimeRange = undefined;
 	handleQuery();
 };

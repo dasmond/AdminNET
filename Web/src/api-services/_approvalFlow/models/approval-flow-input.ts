@@ -66,7 +66,7 @@ export interface ApprovalFlowInput {
      * @type {string}
      * @memberof ApprovalFlowInput
      */
-    searchKey?: string | null;
+    keyword?: string | null;
 
     /**
      * 编号

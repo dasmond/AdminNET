@@ -31,11 +31,6 @@ if (@column.ColumnKey != "True" && @column.WhetherAddUpdate == "Y" && !(@column.
 /// </summary>
 public class Page@(@Model.ClassName)Input : BasePageInput
 {
-    /// <summary>
-    /// 关键字查询
-    /// </summary>
-    public string? SearchKey { get; set; }
-
 @foreach (var column in Model.TableField){
     if (@column.QueryWhether == "Y"){
 
