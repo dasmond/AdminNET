@@ -168,7 +168,7 @@ if (@column.QueryWhether == "Y"){
     public async Task<int> BatchDelete(BatchDelete@(@Model.ClassName)Input input)
     {
 @foreach (var column in Model.TableField.Where(u => u.ColumnKey == "True")){
-        @:var list = await _@(@Model.LowerClassName)Rep.Where(u => input.@(@column.PropertyName)List.Contains(u.@(@column.PropertyName))).ToListAsync() ?? throw Oops.Oh(ErrorCodeEnum.D1002);
+        @:var list = await _@(@Model.LowerClassName)Rep.AsQueryable().Where(u => input.@(@column.PropertyName)List.Contains(u.@(@column.PropertyName))).ToListAsync() ?? throw Oops.Oh(ErrorCodeEnum.D1002);
 }
         return await _@(@Model.LowerClassName)Rep.FakeDeleteAsync(list);   //假删除
         //return await _@(@Model.LowerClassName)Rep.DeleteAsync(list);   //真删除
