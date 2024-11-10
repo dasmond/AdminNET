@@ -21,7 +21,7 @@ using Microsoft.AspNetCore.Http;
     var hasdictService = dictTableField.Count() > 0;
     var importField = Model.TableField.Where(x => x.WhetherImport == "Y");
 }
-namespace @Model.NameSpace;
+namespace @Model.NameSpace.Service;
 
 /// <summary>
 /// @(Model.BusName)服务

@@ -146,7 +146,7 @@
           if (isStatus) {
             @:<el-switch v-model="scope.row.@column.LowerPropertyName" :active-value="1" :inactive-value="2" size="small" @@change="change@(Model.ClassName)Status(scope.row)" />
           } else {
-            @:<dict-label :value="scope.row.@column.LowerPropertyName" code="@column.DictTypeCode" prop-label="value" prop-value="code" />
+            @:<dict-label :value="scope.row.@column.LowerPropertyName" code="@column.DictTypeCode" />
           }
           @:</template>
         @:</el-table-column>
@@ -329,13 +329,13 @@
 
   // 批量删除
   const batchDel@(@Model.ClassName) = () => {
-    ElMessageBox.confirm(`确定要删除${selectData.length}条记录吗?`, "提示", {
+    ElMessageBox.confirm(`确定要删除${selectData.value.length}条记录吗?`, "提示", {
       confirmButtonText: "确定",
       cancelButtonText: "取消",
       type: "warning",
     }).then(async () => {
       @foreach (var column in @Model.TableField.Where(u => u.ColumnKey == "True")) {
-      @:const count = await batchDelete@(@Model.ClassName)({ @(@column.LowerPropertyName)List: selectData.map(u => u.@(@column.LowerPropertyName)) });
+      @:const count = await batchDelete@(@Model.ClassName)({ @(@column.LowerPropertyName)List: selectData.value.map(u => u.@(@column.LowerPropertyName)) });
       }
       handleQuery();
       ElMessage.success(`成功批量删除${count}条记录`);
