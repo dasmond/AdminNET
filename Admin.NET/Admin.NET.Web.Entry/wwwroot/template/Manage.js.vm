@@ -4,103 +4,105 @@
 }
 import request from '/@@/utils/request';
 enum Api {
-  Add@(@Model.ClassName) = '/api/@(@Model.LowerClassName)/add',
-  Delete@(@Model.ClassName) = '/api/@(@Model.LowerClassName)/delete',
-  BatchDelete@(@Model.ClassName) = '/api/@(@Model.LowerClassName)/batchDelete',
-  Update@(@Model.ClassName) = '/api/@(@Model.LowerClassName)/update',
-  Page@(@Model.ClassName) = '/api/@(@Model.LowerClassName)/page',
-  Detail@(@Model.ClassName) = '/api/@(@Model.LowerClassName)/detail',
+  Add@(Model.ClassName) = '/api/@(Model.LowerClassName)/add',
+  Delete@(Model.ClassName) = '/api/@(Model.LowerClassName)/delete',
+  BatchDelete@(Model.ClassName) = '/api/@(Model.LowerClassName)/batchDelete',
+  Update@(Model.ClassName) = '/api/@(Model.LowerClassName)/update',
+  Page@(Model.ClassName) = '/api/@(Model.LowerClassName)/page',
+  Detail@(Model.ClassName) = '/api/@(Model.LowerClassName)/detail',
 @if (Model.TableField.Any(x => x.WhetherImport == "Y")) {
-  @:Import@(@Model.ClassName)Data = '/api/@(@Model.LowerClassName)/import',
-  @:Download@(@Model.ClassName)Template = '/api/@(@Model.LowerClassName)/import',
+  @:Import@(Model.ClassName)Data = '/api/@(Model.LowerClassName)/import',
+  @:Download@(Model.ClassName)Template = '/api/@(Model.LowerClassName)/import',
 }
-@if (hasSetStatus) @:  Set@(@Model.ClassName)Status = '/api/@(@Model.LowerClassName)/setStatus',
+@if (hasSetStatus) {
+  @:Set@(Model.ClassName)Status = '/api/@(Model.LowerClassName)/setStatus',
+}
 @foreach (var column in Model.TableField){
-if(@column.EffectType == "fk" && (@column.WhetherAddUpdate == "Y" || @column.QueryWhether == "Y")){
-  @:Get@(@column.FkEntityName)@(@column.PropertyName)Dropdown = '/api/@(@Model.LowerClassName)/@(@column.FkEntityName)@(@column.PropertyName)Dropdown',
-}else if(@column.EffectType == "ApiTreeSelect" && !definedObjects.ContainsKey("Get@(@column.FkEntityName)Tree")){
-  @{definedObjects.Add("Get@(@column.FkEntityName)Tree", 1);}
-  @:Get@(@column.FkEntityName)Tree = '/api/@(@Model.LowerClassName)/@(@column.FkEntityName)Tree',
-}else if(@column.EffectType == "Upload"){
-  @:Upload@(@column.PropertyName) = '/api/@(@Model.LowerClassName)/Upload@(@column.PropertyName)',
+if(column.EffectType == "fk" && (column.WhetherAddUpdate == "Y" || column.QueryWhether == "Y")){
+  @:Get@(column.FkEntityName)@(column.PropertyName)Dropdown = '/api/@(Model.LowerClassName)/@(column.FkEntityName)@(column.PropertyName)Dropdown',
+}else if(column.EffectType == "ApiTreeSelect" && !definedObjects.ContainsKey("Get@(column.FkEntityName)Tree")){
+  @{definedObjects.Add("Get@(column.FkEntityName)Tree", 1);}
+  @:Get@(column.FkEntityName)Tree = '/api/@(Model.LowerClassName)/@(column.FkEntityName)Tree',
+}else if(column.EffectType == "Upload"){
+  @:Upload@(column.PropertyName) = '/api/@(Model.LowerClassName)/Upload@(column.PropertyName)',
 }
 }
 }
 
-// 增加@(@Model.BusName)
-export const add@(@Model.ClassName) = (params?: any) =>
+// 增加@(Model.BusName)
+export const add@(Model.ClassName) = (params?: any) =>
 	request({
-		url: Api.Add@(@Model.ClassName),
+		url: Api.Add@(Model.ClassName),
 		method: 'post',
 		data: params,
 	});
 
-// 删除@(@Model.BusName)
-export const delete@(@Model.ClassName) = (params?: any) => 
+// 删除@(Model.BusName)
+export const delete@(Model.ClassName) = (params?: any) => 
 	request({
-			url: Api.Delete@(@Model.ClassName),
+			url: Api.Delete@(Model.ClassName),
 			method: 'post',
 			data: params,
 		});
 
-// 批量删除@(@Model.BusName)
-export const batchDelete@(@Model.ClassName) = (params?: any) =>
+// 批量删除@(Model.BusName)
+export const batchDelete@(Model.ClassName) = (params?: any) =>
 	request({
-		url: Api.BatchDelete@(@Model.ClassName),
+		url: Api.BatchDelete@(Model.ClassName),
 		method: 'post',
 		data: params,
 	});
 
-// 编辑@(@Model.BusName)
-export const update@(@Model.ClassName) = (params?: any) => 
+// 编辑@(Model.BusName)
+export const update@(Model.ClassName) = (params?: any) => 
 	request({
-			url: Api.Update@(@Model.ClassName),
+			url: Api.Update@(Model.ClassName),
 			method: 'post',
 			data: params,
 		});
 @if (hasSetStatus) {
 @:
-@:// 设置@(@Model.BusName)状态
-@:export const set@(@Model.ClassName)Status = (params?: any) =>
+@:// 设置@(Model.BusName)状态
+@:export const set@(Model.ClassName)Status = (params?: any) =>
 	@:request({
-		@:url: Api.Set@(@Model.ClassName)Status,
+		@:url: Api.Set@(Model.ClassName)Status,
 		@:method: 'post',
 		@:data: params,
 	@:});
 }
 
-// 分页查询@(@Model.BusName)
-export const page@(@Model.ClassName) = (params?: any) => 
+// 分页查询@(Model.BusName)
+export const page@(Model.ClassName) = (params?: any) => 
 	request({
-			url: Api.Page@(@Model.ClassName),
+			url: Api.Page@(Model.ClassName),
 			method: 'post',
 			data: params,
 		});
 
-// 详情@(@Model.BusName)
-export const detail@(@Model.ClassName) = (id: any) => 
+// 详情@(Model.BusName)
+export const detail@(Model.ClassName) = (id: any) => 
 	request({
-			url: Api.Detail@(@Model.ClassName),
+			url: Api.Detail@(Model.ClassName),
 			method: 'get',
 			data: { id },
 		});
 
 @if (Model.TableField.Any(x => x.WhetherImport == "Y")) {
-@:// 下载@(@Model.BusName)数据导入模板
-@:export const download@(@Model.ClassName)Template = () =>
+@:// 下载@(Model.BusName)数据导入模板
+@:export const download@(Model.ClassName)Template = () =>
 	@:request({
-		@:url: Api.Download@(@Model.ClassName)Template,
+		@:url: Api.Download@(Model.ClassName)Template,
 		@:responseType: 'arraybuffer',
 		@:method: 'get',
 	@:});
 @:
-@:// 导入@(@Model.BusName)记录
-@:export const import@(@Model.ClassName)Data = (file: any) => {
+@:// 导入@(Model.BusName)记录
+@:export const import@(Model.ClassName)Data = (file: any) => {
 	@:const formData = new FormData();
 	@:formData.append('file', file);
 	@:return request({
 		@:headers: { 'Content-Type': 'multipart/form-data' },
-		@:url: Api.Import@(@Model.ClassName)Data,
+		@:url: Api.Import@(Model.ClassName)Data,
 		@:responseType: 'arraybuffer',
 		@:method: 'post',
 		@:data: formData,
@@ -109,31 +111,31 @@ export const detail@(@Model.ClassName) = (id: any) =>
 }
 
 @foreach (var column in Model.TableField){
-	if(@column.EffectType == "fk" && (@column.WhetherAddUpdate == "Y" || column.QueryWhether == "Y")){
-@:export const get@(@column.FkEntityName)@(@column.PropertyName)Dropdown = () =>
+	if(column.EffectType == "fk" && (column.WhetherAddUpdate == "Y" || column.QueryWhether == "Y")){
+@:export const get@(column.FkEntityName)@(column.PropertyName)Dropdown = () =>
 		@:request({
-		@:url: Api.Get@(@column.FkEntityName)@(@column.PropertyName)Dropdown,
+		@:url: Api.Get@(column.FkEntityName)@(column.PropertyName)Dropdown,
 		@:method: 'get'
 		@:});
-	}else if(@column.EffectType == "ApiTreeSelect" && !definedObjects.ContainsKey("get@(@column.FkEntityName)Tree")){
-		@{definedObjects.Add("get@(@column.FkEntityName)Tree", 1);}
-@:export const get@(@column.FkEntityName)Tree = () =>
+	}else if(column.EffectType == "ApiTreeSelect" && !definedObjects.ContainsKey("get@(column.FkEntityName)Tree")){
+		@{definedObjects.Add("get@(column.FkEntityName)Tree", 1);}
+@:export const get@(column.FkEntityName)Tree = () =>
 		@:request({
-		@:url: Api.Get@(@column.FkEntityName)Tree,
+		@:url: Api.Get@(column.FkEntityName)Tree,
 		@:method: 'get'
 		@:});
-    }else if(@column.EffectType == "Upload"){
+    }else if(column.EffectType == "Upload"){
 	
 	@:/**
-	@:* 上传@(@column.ColumnComment) 
+	@:* 上传@(column.ColumnComment) 
 	@:*/
-@:export const upload@(@column.PropertyName) = (params: any) =>
-		@:uploadFileHandle(params, Api.Upload@(@column.PropertyName))
+@:export const upload@(column.PropertyName) = (params: any) =>
+		@:uploadFileHandle(params, Api.Upload@(column.PropertyName))
 		}
 }
 
 @foreach (var column in Model.TableField){
-	if(@column.EffectType == "Upload"){
+	if(column.EffectType == "Upload"){
 	@:export const uploadFileHandle = (params: any, url: string) => { 
 	@:const formData = new window.FormData();
 	@:formData.append('file', params.file);

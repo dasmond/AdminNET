@@ -14,7 +14,7 @@
   var isStatus = false;
 }
 <template>
-  <div class="@(@Model.LowerClassName)-container">
+  <div class="@(Model.LowerClassName)-container">
     <el-card shadow="hover" :body-style="{ paddingBottom: '0' }"> 
       <el-form :model="queryParams" ref="queryForm" labelWidth="90">
         <el-row>
@@ -28,43 +28,43 @@
           }
           foreach (var column in Model.QueryWhetherList){
           @:<el-col :xs="24" :sm="12" :md="12" :lg="8" :xl="4" class="mb10" v-if="showAdvanceQueryUI">
-            if(@column.EffectType == "Input" || @column.EffectType == "InputTextArea"){
+            if(column.EffectType == "Input" || column.EffectType == "InputTextArea"){
             @:<el-form-item label="@column.ColumnComment">
-              @:<el-input v-model="queryParams.@(@column.LowerPropertyName)" clearable="" placeholder="请输入@(@column.ColumnComment)"/>
+              @:<el-input v-model="queryParams.@(column.LowerPropertyName)" clearable="" placeholder="请输入@(column.ColumnComment)"/>
             @:</el-form-item>
-            }else if(@column.EffectType == "InputTextArea"){
+            }else if(column.EffectType == "InputTextArea"){
             @:<el-form-item label="@column.ColumnComment">
-              @:<el-input-number v-model="queryParams.@(@column.LowerPropertyName)"  clearable="" placeholder="请输入@(@column.ColumnComment)"/>
+              @:<el-input-number v-model="queryParams.@(column.LowerPropertyName)"  clearable="" placeholder="请输入@(column.ColumnComment)"/>
               @:
             @:</el-form-item>
-            }else if(@column.EffectType == "InputNumber"){
+            }else if(column.EffectType == "InputNumber"){
             @:<el-form-item label="@column.ColumnComment">
-              @:<el-input-number v-model="queryParams.@(@column.LowerPropertyName)"  clearable="" placeholder="请输入@(@column.ColumnComment)"/>
+              @:<el-input-number v-model="queryParams.@(column.LowerPropertyName)"  clearable="" placeholder="请输入@(column.ColumnComment)"/>
             @:</el-form-item>
-            }else if(@column.EffectType == "fk"){
+            }else if(column.EffectType == "fk"){
             @:<el-form-item label="@column.ColumnComment">
-              @:<el-select clearable="" filterable="" v-model="queryParams.@(@column.LowerPropertyName)" placeholder="请选择@(@column.ColumnComment)">
-                @:<el-option v-for="(item,index) in @LowerFirstLetter(@column.FkEntityName)@(@column.PropertyName)DropdownList" :key="index" :value="item.value" :label="item.label" />
+              @:<el-select clearable="" filterable="" v-model="queryParams.@(column.LowerPropertyName)" placeholder="请选择@(column.ColumnComment)">
+                @:<el-option v-for="(item,index) in @LowerFirstLetter(@column.FkEntityName)@(column.PropertyName)DropdownList" :key="index" :value="item.value" :label="item.label" />
               @:</el-select>
             @:</el-form-item>
-            }else if(@column.EffectType == "Select"){
+            }else if(column.EffectType == "Select"){
             @:<el-form-item label="@column.ColumnComment">
-              @:<el-select clearable="" v-model="queryParams.@(@column.LowerPropertyName)" placeholder="请选择@(@column.ColumnComment)">
-                @:<el-option v-for="(item,index) in dl('@(@column.DictTypeCode)')" :key="index" :value="item.code" :label="`[${item.code}] ${item.value}`" />
+              @:<el-select clearable="" v-model="queryParams.@(column.LowerPropertyName)" placeholder="请选择@(column.ColumnComment)">
+                @:<el-option v-for="(item,index) in dl('@(column.DictTypeCode)')" :key="index" :value="item.code" :label="`[${item.code}] ${item.value}`" />
               @:</el-select>
             @:</el-form-item>
-            }else if(@column.EffectType == "EnumSelector"){
+            }else if(column.EffectType == "EnumSelector"){
             @:<el-form-item label="@column.ColumnComment">
-              @:<el-select clearable="" v-model="queryParams.@(@column.LowerPropertyName)" placeholder="请选择@(@column.ColumnComment)">
-                @:<el-option v-for="(item,index) in dl('@(@column.DictTypeCode)')" :key="index" :value="item.value" :label="`${item.name} (${item.code}) [${item.value}] `" />
+              @:<el-select clearable="" v-model="queryParams.@(column.LowerPropertyName)" placeholder="请选择@(column.ColumnComment)">
+                @:<el-option v-for="(item,index) in dl('@(column.DictTypeCode)')" :key="index" :value="item.value" :label="`${item.name} (${item.code}) [${item.value}] `" />
               @:</el-select>
             @:</el-form-item>
-            }else if(@column.EffectType == "DatePicker"){
+            }else if(column.EffectType == "DatePicker"){
             @:<el-form-item label="@column.ColumnComment">
-              if(@column.QueryType == "~"){
-              @:<el-date-picker type="daterange" v-model="queryParams.@(@column.LowerPropertyName)Range"  value-format="YYYY-MM-DD HH:mm:ss" start-placeholder="开始日期" end-placeholder="结束日期" :default-time="[new Date('1 00:00:00'), new Date('1 23:59:59')]" />
+              if(column.QueryType == "~"){
+              @:<el-date-picker type="daterange" v-model="queryParams.@(column.LowerPropertyName)Range"  value-format="YYYY-MM-DD HH:mm:ss" start-placeholder="开始日期" end-placeholder="结束日期" :default-time="[new Date('1 00:00:00'), new Date('1 23:59:59')]" />
               } else {
-              @:<el-date-picker placeholder="请选择@(@column.ColumnComment)" value-format="YYYY/MM/DD"  v-model="queryParams.@(@column.LowerPropertyName)" />
+              @:<el-date-picker placeholder="请选择@(column.ColumnComment)" value-format="YYYY/MM/DD"  v-model="queryParams.@(column.LowerPropertyName)" />
               }
             @:</el-form-item>
             }
@@ -74,7 +74,7 @@
           <el-col :xs="24" :sm="12" :md="12" :lg="8" :xl="4" class="mb10">
             <el-form-item @(Model.QueryWhetherList.Count > 0?"":"label-width=\"0px\"")>
               <el-button-group style="display: flex; align-items: center;">
-                <el-button type="primary"  icon="ele-Search" @@click="handleQuery" v-auth="'@(@Model.LowerClassName):page'"> @(Model.QueryWhetherList.Count > 0?"查询":"刷新") </el-button>
+                <el-button type="primary"  icon="ele-Search" @@click="handleQuery" v-auth="'@(Model.LowerClassName):page'"> @(Model.QueryWhetherList.Count > 0?"查询":"刷新") </el-button>
                 @if(Model.QueryWhetherList.Count > 0){
                 @:<el-button icon="ele-Refresh" @@click="() => queryParams = {}"> 重置 </el-button>
                 @if(haveLikeCdt){
@@ -82,10 +82,10 @@
                 @:<el-button icon="ele-ZoomOut" @@click="changeAdvanceQueryUI" v-if="showAdvanceQueryUI" style="margin-left:5px;"> 隐藏 </el-button>
                 }
                 }
-                <el-button type="danger" style="margin-left:5px;" icon="ele-Delete" @@click="batchDel@(@Model.ClassName)" :disabled="selectData.length == 0" v-auth="'@(@Model.LowerClassName):batchDelete'"> 删除 </el-button>
-                <el-button type="primary" style="margin-left:5px;" icon="ele-Plus" @@click="openAdd@(@Model.ClassName)" v-auth="'@(@Model.LowerClassName):add'"> 新增 </el-button>
+                <el-button type="danger" style="margin-left:5px;" icon="ele-Delete" @@click="batchDel@(Model.ClassName)" :disabled="selectData.length == 0" v-auth="'@(Model.LowerClassName):batchDelete'"> 删除 </el-button>
+                <el-button type="primary" style="margin-left:5px;" icon="ele-Plus" @@click="openAdd@(Model.ClassName)" v-auth="'@(Model.LowerClassName):add'"> 新增 </el-button>
                 @if (hasImport) {
-                @:<el-button type="warning" icon="ele-MostlyCloudy" @@click="importDataRef.openDialog()" v-auth="'@(@Model.LowerClassName):import'"> 导入 </el-button>
+                @:<el-button type="warning" icon="ele-MostlyCloudy" @@click="importDataRef.openDialog()" v-auth="'@(Model.LowerClassName):import'"> 导入 </el-button>
                 }
               </el-button-group>
             </el-form-item>
@@ -95,7 +95,7 @@
         @:<el-row>
           @:<el-col>
             @:<el-button-group style="margin-left:20px;margin-bottom:5px;">
-              @:<el-button type="primary" icon="ele-Plus" @@click="openAdd@(@Model.ClassName)" v-auth="'@(@Model.LowerClassName):add'"> 新增 </el-button>
+              @:<el-button type="primary" icon="ele-Plus" @@click="openAdd@(Model.ClassName)" v-auth="'@(Model.LowerClassName):add'"> 新增 </el-button>
             </el-button-group>
           @:</el-col>
         @:</el-row>
@@ -103,14 +103,14 @@
       </el-form>
     </el-card>
     <el-card class="full-table" shadow="hover" style="margin-top: 5px">
-      <el-table :data="tableData" @@selection-change="(val: any[]) => { selectData = val; }" style="width: 100%" v-loading="loading" tooltip-effect="light" @(@pkFieldName != null ? $"row-key=\"{@pkFieldName}\"" : "") @@sort-change="sortChange" border="">
-        <el-table-column type="selection" width="40" align="center" v-auth="'@(@Model.LowerClassName):batchDelete'" />
+      <el-table :data="tableData" @@selection-change="(val: any[]) => { selectData = val; }" style="width: 100%" v-loading="loading" tooltip-effect="light" @(pkFieldName != null ? $"row-key=\"{@pkFieldName}\"" : "") @@sort-change="sortChange" border="">
+        <el-table-column type="selection" width="40" align="center" v-auth="'@(Model.LowerClassName):batchDelete'" />
         <el-table-column type="index" label="序号" width="55" align="center"/>
         @foreach (var column in Model.TableField.Where(u => u.WhetherTable == "Y")){
-        if(@column.EffectType == "Upload"||@column.EffectType == "fk"||@column.EffectType == "ApiTreeSelect"||@column.EffectType == "Switch"||@column.EffectType == "ConstSelector"){
+        if(column.EffectType == "Upload"||@column.EffectType == "fk"||@column.EffectType == "ApiTreeSelect"||@column.EffectType == "Switch"||@column.EffectType == "ConstSelector"){
         @:<el-table-column prop="@column.LowerPropertyName" label="@column.ColumnComment" @(column.WhetherSortable == "Y" ? "sortable='custom'" : "") show-overflow-tooltip="">
           @:<template #default="scope">
-            if(@column.EffectType == "Upload"){
+            if(column.EffectType == "Upload"){
             @:<el-image
             @:v-if="scope.row.@column.LowerPropertyName"
             @:style="width: 60px; height: 60px"
@@ -121,15 +121,15 @@
             @::initial-index="0"
             @:fit="scale-down"
             @:preview-teleported=""/>
-            }else if(@column.EffectType == "fk"){
-            @:<span>{{scope.row.@LowerFirstLetter(@column.PropertyName)@(@column.FkColumnName)}}</span>
-            }else if(@column.EffectType == "ApiTreeSelect"){
+            }else if(column.EffectType == "fk"){
+            @:<span>{{scope.row.@LowerFirstLetter(@column.PropertyName)@(column.FkColumnName)}}</span>
+            }else if(column.EffectType == "ApiTreeSelect"){
             @:<span>{{scope.row.@LowerFirstLetter(@column.PropertyName)@(column.DisplayColumn)}}</span>
-            }else if(@column.EffectType == "Switch"){
-            @:<el-tag v-if="scope.row.@(@column.LowerPropertyName)"> 是 </el-tag>
+            }else if(column.EffectType == "Switch"){
+            @:<el-tag v-if="scope.row.@(column.LowerPropertyName)"> 是 </el-tag>
             @:<el-tag type="danger" v-else> 否 </el-tag>
-            }else if(@column.EffectType == "ConstSelector"){
-            @:<span>{{codeToName(scope.row.@(@column.LowerPropertyName), '@(@column.DictTypeCode)')}}</span>
+            }else if(column.EffectType == "ConstSelector"){
+            @:<span>{{codeToName(scope.row.@(column.LowerPropertyName), '@(column.DictTypeCode)')}}</span>
             }
           @:</template>
         @:</el-table-column>
@@ -144,7 +144,7 @@
         @:<el-table-column prop="@column.LowerPropertyName" label="@column.ColumnComment" @(column.WhetherSortable == "Y" ? "sortable='custom'" : "") show-overflow-tooltip="" @(isStatus ? $"v-auth=\"'{@Model.LowerClassName}:setStatus'\"": "")>
           @:<template #default="scope">
           if (isStatus) {
-            @:<el-switch v-model="scope.row.@column.LowerPropertyName" :active-value="1" :inactive-value="2" size="small" @@change="change@(@Model.ClassName)Status(scope.row)" />
+            @:<el-switch v-model="scope.row.@column.LowerPropertyName" :active-value="1" :inactive-value="2" size="small" @@change="change@(Model.ClassName)Status(scope.row)" />
           } else {
             @:<dict-label :value="scope.row.@column.LowerPropertyName" code="@column.DictTypeCode" prop-label="value" prop-value="code" />
           }
@@ -154,7 +154,7 @@
         @:<el-table-column prop="@column.LowerPropertyName" label="@column.ColumnComment" @(column.WhetherSortable == "Y" ? "sortable='custom'" : "") show-overflow-tooltip="" />
         }
         }
-        <el-table-column label="操作" width="@(@Model.PrintType == "custom" ? "200" : "140")" align="center" fixed="right" show-overflow-tooltip="" v-if="auth('@(@Model.LowerClassName):update') || auth('@(@Model.LowerClassName):delete')">
+        <el-table-column label="操作" width="@(Model.PrintType == "custom" ? "200" : "140")" align="center" fixed="right" show-overflow-tooltip="" v-if="auth('@(@Model.LowerClassName):update') || auth('@(@Model.LowerClassName):delete')">
           <template #default="scope">
             @if (Model.PrintType == "custom"){
             @:<el-button icon="ele-Printer" size="small" text="" type="primary" @@click="openPrint@(@Model.ClassName)(scope.row)" v-auth="'@(@Model.LowerClassName):print'"> 打印 </el-button>
@@ -217,7 +217,7 @@
   @:import { SysPrintApi } from '/@@/api-services/api';
   @:import { SysPrint } from '/@@/api-services/models';
   }
-  @if(@Model.TableField.Any(x => x.EffectType == "Select" || x.EffectType == "EnumSelector")) {
+  @if(Model.TableField.Any(x => x.EffectType == "Select" || x.EffectType == "EnumSelector")) {
   @:import DictLabel from "/@@/components/table/dictLabel.vue";
   }
   @if(hasImport) {
@@ -297,7 +297,7 @@
   // 打开打印页面
   const openPrint@(@Model.ClassName) = async (row: any) => {
     print@(@Model.ClassName)Title.value = '打印@(@Model.BusName)';
-    @if(@Model.PrintType == "custom"){
+    @if(Model.PrintType == "custom"){
     @:var res = await getAPI(SysPrintApi).apiSysPrintPrintNameGet('@Model.PrintName');
 	  @:var printTemplate = res.data.result as SysPrint;
     @:var template = JSON.parse(printTemplate.template);

@@ -7,16 +7,16 @@
 namespace @Model.NameSpace;
 
 /// <summary>
-/// @(@Model.BusName)输出参数
+/// @(Model.BusName)输出参数
 /// </summary>
-public class @(@Model.ClassName)Dto
+public class @(Model.ClassName)Dto
 {
 @foreach (var column in Model.TableField){
-if(@column.EffectType == "fk" && @column.FkEntityName != "" && @column.FkColumnName != ""){
+if(column.EffectType == "fk" && column.FkEntityName != "" && column.FkColumnName != ""){
     @:/// <summary>
     @:/// @column.ColumnComment
     @:/// </summary>
-    @:public @(@column.FkColumnNetType) @(@column.PropertyName)@(@column.FkColumnName) { get; set; }
+    @:public @(column.FkColumnNetType) @(column.PropertyName)@(column.FkColumnName) { get; set; }
     @:
 }
 }
