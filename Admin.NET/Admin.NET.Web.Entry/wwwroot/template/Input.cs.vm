@@ -103,6 +103,25 @@ if (Regex.IsMatch(@column.NetType, "(.*?Enum|int|long|double|float|bool)[?]?")){
 }
 
 /// <summary>
+/// @(@Model.BusName)批量删除输入参数
+/// </summary>
+public class BatchDelete@(@Model.ClassName)Input
+{
+@foreach (var column in Model.TableField.Where(u => u.ColumnKey == "True")){
+    @:/// <summary>
+    @:/// @column.ColumnComment
+    @:/// </summary>
+    @:[Required(ErrorMessage = "@(@column.ColumnComment)列表不能为空")]
+if (Regex.IsMatch(@column.NetType, "(.*?Enum|int|long|double|float|bool)[?]?")){
+    @:public List<@column.NetType.TrimEnd('?')?> @(@column.PropertyName)List { get; set; }
+}else{
+    @:public List<@column.NetType> @(@column.PropertyName)List { get; set; }
+}
+    @:
+}
+}
+
+/// <summary>
 /// @(@Model.BusName)更新输入参数
 /// </summary>
 public class Update@(@Model.ClassName)Input

@@ -158,6 +158,23 @@ if (@column.QueryWhether == "Y"){
     }
 
     /// <summary>
+    /// 批量删除@(@Model.BusName)
+    /// </summary>
+    /// <param name="input"></param>
+    /// <returns></returns>
+    [HttpPost]
+    [ApiDescriptionSettings(Name = "BatchDelete")]
+    [DisplayName("批量删除@(@Model.BusName)")]
+    public async Task<int> BatchDelete(BatchDelete@(@Model.ClassName)Input input)
+    {
+@foreach (var column in Model.TableField.Where(u => u.ColumnKey == "True")){
+        @:var list = await _@(@Model.LowerClassName)Rep.Where(u => input.@(@column.PropertyName)List.Contains(u.@(@column.PropertyName))).ToListAsync() ?? throw Oops.Oh(ErrorCodeEnum.D1002);
+}
+        return await _@(@Model.LowerClassName)Rep.FakeDeleteAsync(list);   //假删除
+        //return await _@(@Model.LowerClassName)Rep.DeleteAsync(list);   //真删除
+    }
+
+    /// <summary>
     /// 更新@(@Model.BusName)
     /// </summary>
     /// <param name="input"></param>

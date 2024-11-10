@@ -6,6 +6,7 @@ import request from '/@@/utils/request';
 enum Api {
   Add@(@Model.ClassName) = '/api/@(@Model.LowerClassName)/add',
   Delete@(@Model.ClassName) = '/api/@(@Model.LowerClassName)/delete',
+  BatchDelete@(@Model.ClassName) = '/api/@(@Model.LowerClassName)/batchDelete',
   Update@(@Model.ClassName) = '/api/@(@Model.LowerClassName)/update',
   Page@(@Model.ClassName) = '/api/@(@Model.LowerClassName)/page',
   Detail@(@Model.ClassName) = '/api/@(@Model.LowerClassName)/detail',
@@ -41,6 +42,14 @@ export const delete@(@Model.ClassName) = (params?: any) =>
 			method: 'post',
 			data: params,
 		});
+
+// 批量删除@(@Model.BusName)
+export const batchDelete@(@Model.ClassName) = (params?: any) =>
+	request({
+		url: Api.BatchDelete@(@Model.ClassName),
+		method: 'post',
+		data: params,
+	});
 
 // 编辑@(@Model.BusName)
 export const update@(@Model.ClassName) = (params?: any) => 
