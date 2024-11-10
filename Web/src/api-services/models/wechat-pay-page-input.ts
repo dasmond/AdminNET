@@ -83,12 +83,6 @@ export interface WechatPayPageInput {
     descStr?: string | null;
 
     /**
-     * @type {string}
-     * @memberof WechatPayPageInput
-     */
-    searchKey?: string | null;
-
-    /**
      * 添加时间范围
      *
      * @type {Array<Date>}

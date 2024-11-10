@@ -80,8 +80,6 @@ public class WechatPayRefundDomesticInput
 
 public class WechatPayPageInput : BasePageInput
 {
-    public string SearchKey { get; set; }
-
     /// <summary>
     /// 添加时间范围
     /// </summary>

@@ -22,7 +22,7 @@
           if(haveLikeCdt){
           @:<el-col :xs="24" :sm="12" :md="12" :lg="8" :xl="4" class="mb10">
             @:<el-form-item label="关键字">
-              @:<el-input v-model="queryParams.searchKey" clearable="" placeholder="请输入模糊查询关键字"/>
+              @:<el-input v-model="queryParams.keyword" clearable="" placeholder="请输入模糊查询关键字"/>
             @:</el-form-item>
           @:</el-col>
           }

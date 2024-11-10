@@ -31,7 +31,7 @@ public class ApprovalFlowService : IDynamicApiController, ITransient
     public async Task<SqlSugarPagedList<ApprovalFlowOutput>> Page(ApprovalFlowInput input)
     {
         return await _approvalFlowRep.AsQueryable()
-            .WhereIF(!string.IsNullOrWhiteSpace(input.SearchKey), u => u.Code.Contains(input.SearchKey.Trim()) || u.Name.Contains(input.SearchKey.Trim()) || u.Remark.Contains(input.SearchKey.Trim()))
+            .WhereIF(!string.IsNullOrWhiteSpace(input.Keyword), u => u.Code.Contains(input.Keyword.Trim()) || u.Name.Contains(input.Keyword.Trim()) || u.Remark.Contains(input.Keyword.Trim()))
             .WhereIF(!string.IsNullOrWhiteSpace(input.Code), u => u.Code.Contains(input.Code.Trim()))
             .WhereIF(!string.IsNullOrWhiteSpace(input.Name), u => u.Name.Contains(input.Name.Trim()))
             .WhereIF(!string.IsNullOrWhiteSpace(input.Remark), u => u.Remark.Contains(input.Remark.Trim()))

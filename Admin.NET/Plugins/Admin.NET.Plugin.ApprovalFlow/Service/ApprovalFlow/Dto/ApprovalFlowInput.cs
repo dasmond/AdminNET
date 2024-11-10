@@ -88,11 +88,6 @@ public class ApprovalFlowBaseInput
 public class ApprovalFlowInput : BasePageInput
 {
     /// <summary>
-    /// 关键字查询
-    /// </summary>
-    public string? SearchKey { get; set; }
-
-    /// <summary>
     /// 编号
     /// </summary>
     public string? Code { get; set; }
