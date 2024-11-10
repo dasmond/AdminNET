@@ -82,6 +82,7 @@
                 @:<el-button icon="ele-ZoomOut" @@click="changeAdvanceQueryUI" v-if="showAdvanceQueryUI" style="margin-left:5px;"> 隐藏 </el-button>
                 }
                 }
+                <el-button type="danger" style="margin-left:5px;" icon="ele-Delete" @@click="batchDel@(@Model.ClassName)" :disabled="selectData.length == 0" v-auth="'@(@Model.LowerClassName):batchDelete'"> 删除 </el-button>
                 <el-button type="primary" style="margin-left:5px;" icon="ele-Plus" @@click="openAdd@(@Model.ClassName)" v-auth="'@(@Model.LowerClassName):add'"> 新增 </el-button>
                 @if (hasImport) {
                 @:<el-button type="warning" icon="ele-MostlyCloudy" @@click="importDataRef.openDialog()" v-auth="'@(@Model.LowerClassName):import'"> 导入 </el-button>
@@ -102,7 +103,8 @@
       </el-form>
     </el-card>
     <el-card class="full-table" shadow="hover" style="margin-top: 5px">
-      <el-table :data="tableData" style="width: 100%" v-loading="loading" tooltip-effect="light" @(@pkFieldName != null ? $"row-key=\"{@pkFieldName}\"" : "") @@sort-change="sortChange" border="">
+      <el-table :data="tableData" @@selection-change="(val: any[]) => { selectData = val; }" style="width: 100%" v-loading="loading" tooltip-effect="light" @(@pkFieldName != null ? $"row-key=\"{@pkFieldName}\"" : "") @@sort-change="sortChange" border="">
+        <el-table-column type="selection" width="40" align="center" v-auth="'@(@Model.LowerClassName):batchDelete'" />
         <el-table-column type="index" label="序号" width="55" align="center"/>
         @foreach (var column in Model.TableField.Where(u => u.WhetherTable == "Y")){
         if(@column.EffectType == "Upload"||@column.EffectType == "fk"||@column.EffectType == "ApiTreeSelect"||@column.EffectType == "Switch"||@column.EffectType == "ConstSelector"){
@@ -223,7 +225,7 @@
   }
   import editDialog from '/@@/views/@(@Model.PagePath)/@(@Model.LowerClassName)/component/editDialog.vue'
   import printDialog from '/@@/views/system/print/component/hiprint/preview.vue'
-  import { page@(@Model.ClassName), delete@(@Model.ClassName) @(hasImport ? $", download{@Model.ClassName}Template, import{@Model.ClassName}Data" : "")@(hasSetStatus ? $", set{@Model.ClassName}Status" : "") } from '/@@/api/@(@Model.PagePath)/@(@Model.LowerClassName)';
+  import { page@(@Model.ClassName), delete@(@Model.ClassName), batchDelete@(@Model.ClassName) @(hasImport ? $", download{@Model.ClassName}Template, import{@Model.ClassName}Data" : "")@(hasSetStatus ? $", set{@Model.ClassName}Status" : "") } from '/@@/api/@(@Model.PagePath)/@(@Model.LowerClassName)';
   @foreach (var column in Model.QueryWhetherList.Where(u => u.EffectType == "fk")) {
   @:import { get@(@column.FkEntityName)@(@column.PropertyName)Dropdown } from '/@@/api/@(@Model.PagePath)/@(@Model.LowerClassName)';
   }
@@ -236,6 +238,7 @@
   }
   const loading = ref(false);
   const tableData = ref<any>([]);
+  const selectData = ref<any>([]);
   const queryParams = ref<any>({});
   const tableParams = ref({
     page: 1,
@@ -322,6 +325,21 @@
     ElMessage.success("删除成功");
   })
   .catch(() => {});
+  };
+
+  // 批量删除
+  const batchDel@(@Model.ClassName) = () => {
+    ElMessageBox.confirm(`确定要删除${selectData.length}条记录吗?`, "提示", {
+      confirmButtonText: "确定",
+      cancelButtonText: "取消",
+      type: "warning",
+    }).then(async () => {
+      @foreach (var column in @Model.TableField.Where(u => u.ColumnKey == "True")) {
+      @:const count = await batchDelete@(@Model.ClassName)({ @(@column.LowerPropertyName)List: selectData.map(u => u.@(@column.LowerPropertyName)) });
+      }
+      handleQuery();
+      ElMessage.success(`成功批量删除${count}条记录`);
+    }).catch(() => {});
   };
 
   // 改变页面容量
