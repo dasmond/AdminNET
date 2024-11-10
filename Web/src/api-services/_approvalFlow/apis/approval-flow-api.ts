@@ -230,7 +230,7 @@ export const ApprovalFlowApiAxiosParamCreator = function (configuration?: Config
         /**
          * 
          * @summary 获取审批流列表
-         * @param {string} [searchKey] 关键字查询
+         * @param {string} [keyword] 关键字查询
          * @param {string} [code] 编号
          * @param {string} [name] 名称
          * @param {string} [remark] 备注
@@ -242,7 +242,7 @@ export const ApprovalFlowApiAxiosParamCreator = function (configuration?: Config
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiApprovalFlowListGet: async (searchKey?: string, code?: string, name?: string, remark?: string, page?: number, pageSize?: number, field?: string, order?: string, descStr?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        apiApprovalFlowListGet: async (keyword?: string, code?: string, name?: string, remark?: string, page?: number, pageSize?: number, field?: string, order?: string, descStr?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/approvalFlow/list`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
@@ -263,8 +263,8 @@ export const ApprovalFlowApiAxiosParamCreator = function (configuration?: Config
                 localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
             }
 
-            if (searchKey !== undefined) {
-                localVarQueryParameter['SearchKey'] = searchKey;
+            if (keyword !== undefined) {
+                localVarQueryParameter['Keyword'] = keyword;
             }
 
             if (code !== undefined) {
@@ -479,7 +479,7 @@ export const ApprovalFlowApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @summary 获取审批流列表
-         * @param {string} [searchKey] 关键字查询
+         * @param {string} [keyword] 关键字查询
          * @param {string} [code] 编号
          * @param {string} [name] 名称
          * @param {string} [remark] 备注
@@ -491,8 +491,8 @@ export const ApprovalFlowApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiApprovalFlowListGet(searchKey?: string, code?: string, name?: string, remark?: string, page?: number, pageSize?: number, field?: string, order?: string, descStr?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<AdminResultListApprovalFlowOutput>>> {
-            const localVarAxiosArgs = await ApprovalFlowApiAxiosParamCreator(configuration).apiApprovalFlowListGet(searchKey, code, name, remark, page, pageSize, field, order, descStr, options);
+        async apiApprovalFlowListGet(keyword?: string, code?: string, name?: string, remark?: string, page?: number, pageSize?: number, field?: string, order?: string, descStr?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<AdminResultListApprovalFlowOutput>>> {
+            const localVarAxiosArgs = await ApprovalFlowApiAxiosParamCreator(configuration).apiApprovalFlowListGet(keyword, code, name, remark, page, pageSize, field, order, descStr, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -578,7 +578,7 @@ export const ApprovalFlowApiFactory = function (configuration?: Configuration, b
         /**
          * 
          * @summary 获取审批流列表
-         * @param {string} [searchKey] 关键字查询
+         * @param {string} [keyword] 关键字查询
          * @param {string} [code] 编号
          * @param {string} [name] 名称
          * @param {string} [remark] 备注
@@ -590,8 +590,8 @@ export const ApprovalFlowApiFactory = function (configuration?: Configuration, b
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiApprovalFlowListGet(searchKey?: string, code?: string, name?: string, remark?: string, page?: number, pageSize?: number, field?: string, order?: string, descStr?: string, options?: AxiosRequestConfig): Promise<AxiosResponse<AdminResultListApprovalFlowOutput>> {
-            return ApprovalFlowApiFp(configuration).apiApprovalFlowListGet(searchKey, code, name, remark, page, pageSize, field, order, descStr, options).then((request) => request(axios, basePath));
+        async apiApprovalFlowListGet(keyword?: string, code?: string, name?: string, remark?: string, page?: number, pageSize?: number, field?: string, order?: string, descStr?: string, options?: AxiosRequestConfig): Promise<AxiosResponse<AdminResultListApprovalFlowOutput>> {
+            return ApprovalFlowApiFp(configuration).apiApprovalFlowListGet(keyword, code, name, remark, page, pageSize, field, order, descStr, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -670,7 +670,7 @@ export class ApprovalFlowApi extends BaseAPI {
     /**
      * 
      * @summary 获取审批流列表
-     * @param {string} [searchKey] 关键字查询
+     * @param {string} [keyword] 关键字查询
      * @param {string} [code] 编号
      * @param {string} [name] 名称
      * @param {string} [remark] 备注
@@ -683,8 +683,8 @@ export class ApprovalFlowApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof ApprovalFlowApi
      */
-    public async apiApprovalFlowListGet(searchKey?: string, code?: string, name?: string, remark?: string, page?: number, pageSize?: number, field?: string, order?: string, descStr?: string, options?: AxiosRequestConfig) : Promise<AxiosResponse<AdminResultListApprovalFlowOutput>> {
-        return ApprovalFlowApiFp(this.configuration).apiApprovalFlowListGet(searchKey, code, name, remark, page, pageSize, field, order, descStr, options).then((request) => request(this.axios, this.basePath));
+    public async apiApprovalFlowListGet(keyword?: string, code?: string, name?: string, remark?: string, page?: number, pageSize?: number, field?: string, order?: string, descStr?: string, options?: AxiosRequestConfig) : Promise<AxiosResponse<AdminResultListApprovalFlowOutput>> {
+        return ApprovalFlowApiFp(this.configuration).apiApprovalFlowListGet(keyword, code, name, remark, page, pageSize, field, order, descStr, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * 

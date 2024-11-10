@@ -3,7 +3,7 @@
 		<el-card shadow="hover" :body-style="{ paddingBottom: '0' }">
 			<el-form :model="state.queryParams" ref="queryForm" :inline="true">
 				<el-form-item label="关键字">
-					<el-input v-model="state.queryParams.searchKey" clearable="" placeholder="请输入模糊查询关键字" />
+					<el-input v-model="state.queryParams.keyword" clearable="" placeholder="请输入模糊查询关键字" />
 				</el-form-item>
 				<el-form-item label="主机">
 					<el-input v-model="state.queryParams.host" clearable="" placeholder="请输入主机" />
@@ -82,7 +82,7 @@ const state = reactive({
 	loading: false,
 	tableData: [] as any,
 	queryParams: {
-		searchKey: undefined,
+		keyword: undefined,
 		host: undefined,
 	},
 	tableParams: {
@@ -109,7 +109,7 @@ const handleQuery = async () => {
 
 // 重置操作
 const resetQuery = () => {
-	state.queryParams.searchKey = undefined;
+	state.queryParams.keyword = undefined;
 	state.queryParams.host = undefined;
 	handleQuery();
 };

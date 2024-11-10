@@ -83,14 +83,6 @@ export interface SysLdapInput {
     descStr?: string | null;
 
     /**
-     * 关键字查询
-     *
-     * @type {string}
-     * @memberof SysLdapInput
-     */
-    searchKey?: string | null;
-
-    /**
      * 主机
      *
      * @type {string}
