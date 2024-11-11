@@ -180,7 +180,7 @@ public static class ComputerUtil
         }
         else if (IsUnix())
         {
-            string output = ShellUtil.Bash("top -b -n1 | grep \"Cpu(s)\" | awk '{print $2 + $4}'");
+            string output = ShellUtil.Bash("awk '{u=$2+$4; t=$2+$4+$5; if (NR==1){u1=u; t1=t;} else print ($2+$4-u1) * 100 / (t-t1); }' <(grep 'cpu ' /proc/stat) <(sleep 1;grep 'cpu ' /proc/stat)");
             cpuRate = output.Trim();
         }
         else
@@ -209,7 +209,7 @@ public static class ComputerUtil
         }
         else if (IsUnix())
         {
-            string output = ShellUtil.Bash("uptime -s").Trim();
+            string output = ShellUtil.Bash("date -d \"$(awk -F. '{print $1}' /proc/uptime) second ago\" +\"%Y-%m-%d %H:%M:%S\"").Trim();
             runTime = DateTimeUtil.FormatTime((DateTime.Now - output.ParseToDateTime()).TotalMilliseconds.ToString().Split('.')[0].ParseToLong());
         }
         else
@@ -346,21 +346,15 @@ public class MemoryMetricsClient
     /// <returns></returns>
     public static MemoryMetrics GetUnixMetrics()
     {
-        string output = ShellUtil.Bash("free -m | awk '{print $2,$3,$4,$5,$6}'");
+        string output = ShellUtil.Bash("awk '/MemTotal/ {total=$2} /MemAvailable/ {available=$2} END {print total,available}' /proc/meminfo");
         var metrics = new MemoryMetrics();
-        var lines = output.Split('\n', (char)StringSplitOptions.RemoveEmptyEntries);
-        if (lines.Length <= 0) return metrics;
+        var memory = output.Split(' ', (char)StringSplitOptions.RemoveEmptyEntries);
+        if (memory.Length != 2) return metrics;
+ 
+        metrics.Total = double.Parse(memory[0]) / 1024;
+        metrics.Free = double.Parse(memory[1]) / 1024;
+        metrics.Used = metrics.Total - metrics.Free;
 
-        if (lines != null && lines.Length > 0)
-        {
-            var memory = lines[1].Split(' ', (char)StringSplitOptions.RemoveEmptyEntries);
-            if (memory.Length >= 3)
-            {
-                metrics.Total = double.Parse(memory[0]);
-                metrics.Used = double.Parse(memory[1]);
-                metrics.Free = double.Parse(memory[2]);//m
-            }
-        }
         return metrics;
     }
 
