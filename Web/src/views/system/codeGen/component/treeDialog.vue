@@ -24,8 +24,8 @@
 						</el-form-item>
 					</el-col>
 					<el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="mb20">
-						<el-form-item label="显示字段" prop="displayColumn" :rules="[{ required: true, message: '显示字段不能为空', trigger: 'blur' }]">
-							<el-select v-model="state.ruleForm.displayColumn" class="w100">
+						<el-form-item label="显示字段" prop="displayColumns" :rules="[{ required: true, message: '显示字段不能为空', trigger: 'blur' }]">
+							<el-select v-model="state.ruleForm.displayColumns" multiple class="w100">
 								<el-option v-for="item in state.columnData" :key="item.columnName" :label="item.columnName + ' [' + item.columnComment + ']'" :value="item.columnName" />
 							</el-select>
 						</el-form-item>
@@ -117,7 +117,7 @@ const openDialog = async (row: any) => {
 	if (rowdata.fkConfigId) {
 		await getDbList();
 		state.ruleForm.tableName = rowdata.fkTableName;
-		state.ruleForm.displayColumn = rowdata.displayColumn;
+		state.ruleForm.displayColumns = rowdata.displayColumn?.split(",");
 		state.ruleForm.valueColumn = rowdata.valueColumn;
 		state.ruleForm.pidColumn = rowdata.pidColumn;
 		state.ruleForm.configId = rowdata.fkConfigId;
@@ -157,7 +157,8 @@ const cancel = () => {
 const submit = () => {
 	ruleFormRef.value.validate(async (valid: boolean) => {
 		if (!valid) return;
-
+		state.ruleForm.displayColumn = state.ruleForm.displayColumns.join()
+		state.ruleForm.displayColumns = undefined;
 		closeDialog();
 	});
 };

@@ -33,7 +33,7 @@ if(column.EffectType == "fk")
     @:/// <summary>
     @:/// @(column.ColumnComment) 描述 
     @:/// </summary>
-    @:public string? @(column.PropertyName)@(column.DisplayColumn) { get; set; } 
+    @:public string? @(column.PropertyName)Display { get; set; } 
 }else{
     @:public @column.NetType @(column.PropertyName) { get; set; }
 }
@@ -43,22 +43,26 @@ if(column.EffectType == "fk")
 @foreach (var column in Model.TableField){
 if (column.EffectType == "ApiTreeSelect"){
 @:
-    @:// 使用实际实体@(column.FkTableName),所以这里就删了
-    @:/*
-    @:[SugarTable("@(column.FkTableName)")]
-    @:public class @(column.FkEntityName)TreeOutput: EntityBaseId
-    @:{
-        @:[SugarColumn(ColumnName = "@(column.DisplayColumn)")]
-        @:public @(Model.GetColumnNetType(@column.FkTableName,@column.DisplayColumn)) Label { get; set; }
-
-        @:[SugarColumn(ColumnName = "@(column.ValueColumn)", IsPrimaryKey = true, IsIdentity = false)]
-        @:public @(Model.GetColumnNetType(@column.FkTableName,@column.ValueColumn))  Value { get; set; }
-
-        @:public @(Model.GetColumnNetType(@column.FkTableName,@column.PidColumn)) @column.PidColumn { get; set; }
-        @:[SugarColumn(IsIgnore = true)]
-        @:public List<@(column.FkEntityName)TreeOutput> Children { get; set; }
-    @:}
-    @:*/
+@:/// <summary>
+@:/// @(Model.BusName)树选择器输出参数
+@:/// </summary>
+@:public class @(column.FkEntityName)TreeOutput: @(column.FkEntityName)
+@:{
+    @:/// <summary>
+    @:/// 显示文本
+    @:/// </summary>
+    @:public @(@column.DisplayColumn.Contains(",") ? "string" : Model.GetColumnNetType(@column.FkTableName,@column.DisplayColumn)) Label { get; set; }
+    @:
+    @:/// <summary>
+    @:/// 选项值
+    @:/// </summary>
+    @:public @(Model.GetColumnNetType(@column.FkTableName, @column.ValueColumn)) Value { get; set; }
+    @:
+    @:/// <summary>
+    @:/// 子集列表
+    @:/// </summary>
+    @:public List<@(column.FkEntityName)TreeOutput> Children { get; set; }
+@:}
 }
 }
 @if (Model.TableField.Any(x => x.WhetherImport == "Y")) {

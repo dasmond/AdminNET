@@ -2,6 +2,7 @@
 	var definedObjects = new Dictionary<string, int>();
 	var pkField = Model.TableField.Where(c => c.ColumnKey == "True").FirstOrDefault();
 	var pkFieldName = LowerFirstLetter(pkField.PropertyName);
+	var displayColumnList = new List<string>();
 }
 <template>
 	<div class="@(Model.LowerClassName)-container">
@@ -30,18 +31,19 @@
 						</el-form-item>
 					</el-col>
 					}else if(column.EffectType == "ApiTreeSelect"){
+					displayColumnList = column.DisplayColumn.Split(",").Select(u => $"${{data.{LowerFirstLetter(u)}}}").ToList();
 					@:<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
 						@:<el-form-item label="@column.ColumnComment" prop="@(column.LowerPropertyName)">
 							<el-cascader
 								@:options="@LowerFirstLetter(@column.FkEntityName)TreeData"
-								@:props="{ checkStrictly: true, emitPath: false, value: '@LowerFirstLetter(@column.ValueColumn)', label: '@LowerFirstLetter(@column.DisplayColumn)' }"
+								@:props="{ checkStrictly: true, emitPath: false, value: '@LowerFirstLetter(@column.ValueColumn)' }"
 								placeholder="请选择@(column.ColumnComment)"
 								clearable=""
 								class="w100"
 								v-model="ruleForm.@(column.LowerPropertyName)"
 							>
 								<template #default="{ node, data }">
-									<span>{{ data.name }}</span>
+									<span>{{ data.label }}</span>
 									<span v-if="!node.isLeaf"> ({{ data.children.length }}) </span>
 								</template>
 							</el-cascader>

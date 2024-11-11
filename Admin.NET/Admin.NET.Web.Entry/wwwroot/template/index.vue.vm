@@ -124,7 +124,7 @@
             }else if(column.EffectType == "fk"){
             @:<span>{{scope.row.@LowerFirstLetter(@column.PropertyName)@(column.FkColumnName)}}</span>
             }else if(column.EffectType == "ApiTreeSelect"){
-            @:<span>{{scope.row.@LowerFirstLetter(@column.PropertyName)@(column.DisplayColumn)}}</span>
+            @:<span>{{scope.row.@LowerFirstLetter(@column.PropertyName)Display}}</span>
             }else if(column.EffectType == "Switch"){
             @:<el-tag v-if="scope.row.@(column.LowerPropertyName)"> 是 </el-tag>
             @:<el-tag type="danger" v-else> 否 </el-tag>

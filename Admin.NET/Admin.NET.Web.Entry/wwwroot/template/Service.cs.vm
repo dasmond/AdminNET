@@ -20,6 +20,7 @@ using Microsoft.AspNetCore.Http;
     var dictTableField = Model.TableField.Where(x => x.WhetherImport == "Y" && x.EffectType == "Select") ?? default;
     var hasdictService = dictTableField.Count() > 0;
     var importField = Model.TableField.Where(x => x.WhetherImport == "Y");
+    var displayColumnList = new List<string>();
 }
 namespace @Model.NameSpace.Service;
 
@@ -100,9 +101,10 @@ if (column.QueryWhether == "Y"){
                 if(column.EffectType == "fk"){
                 @:@(column.PropertyName) = u.@(column.PropertyName), 
                 @:@(column.PropertyName)@(column.FkColumnName) = @(joinTableAlias).@(column.FkColumnName),
-                } else if(column.EffectType == "ApiTreeSelect"){  
+                } else if(column.EffectType == "ApiTreeSelect"){
+                displayColumnList = column.DisplayColumn.Split(",").Select(u => $"{{{joinTableAlias}.{u}}}").ToList();
                 @:@(column.PropertyName) = u.@(column.PropertyName),  
-                @:@(column.PropertyName)@(column.DisplayColumn) = @(joinTableAlias).@(column.DisplayColumn),
+                @:@(column.PropertyName)Display = $"@(string.Join("-", displayColumnList))",
                 } else if(column.NetType?.TrimEnd('?').EndsWith("Enum") == true){
                 @:@(column.PropertyName) = u.@(column.PropertyName),
                 } else {
@@ -269,12 +271,19 @@ if(column.EffectType == "Upload"){
 @foreach (var column in Model.TableField){
 if(column.EffectType == "ApiTreeSelect" && !definedObjects.ContainsKey("@(column.FkEntityName)Tree")){
 @:
-    @{definedObjects.Add("@(column.FkEntityName)Tree", 1);}
-    @:[HttpGet("@(column.FkEntityName)Tree")]
-    @:[DisplayName("获取@(column.FkEntityName)Tree")]
-    @:public async Task<dynamic> @(column.FkEntityName)Tree()
+    definedObjects.Add("@(column.FkEntityName)Tree", 1);
+    @:/// <summary>
+    @:/// 获取@(column.ColumnComment)选择数据
+    @:/// </summary>
+    @:[ApiDescriptionSettings(Name = "@(column.FkEntityName)Tree")]
+    @:[DisplayName("获取@(column.ColumnComment)选择数据")]
+    @:public async Task<List<@(column.FkEntityName)TreeOutput>> @(column.FkEntityName)Tree()
     @:{
-        @:return await _@(Model.LowerClassName)Rep.Context.Queryable<@(column.FkEntityName)>().ToTreeAsync(u => u.Children, u => u.@(column.PidColumn), 0);
+        displayColumnList = column.DisplayColumn.Split(",").Select(u => $"{{u.{u}}}").ToList();
+        @:return await _@(Model.LowerClassName)Rep.Context.Queryable<@(column.FkEntityName)>().Select(u => new @(column.FkEntityName)TreeOutput {
+            @:Label = $"@(string.Join("-", displayColumnList))",
+            @:Value = u.@column.ValueColumn
+        @:}, true).ToTreeAsync(u => u.Children, u => u.@(column.PidColumn), 0);
     @:}
 }
 }
