@@ -135,7 +135,6 @@ if (Regex.IsMatch(column.NetType, "(.*?Enum|int|long|double|float|bool)[?]?")){
 /// </summary>
 public class QueryById@(Model.ClassName)Input : Delete@(Model.ClassName)Input
 {
-
 }
 
 @if (Model.TableField.Any(x => x.WhetherImport == "Y")){

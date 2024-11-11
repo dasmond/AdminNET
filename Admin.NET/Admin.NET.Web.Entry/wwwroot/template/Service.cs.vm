@@ -25,7 +25,7 @@ using Microsoft.AspNetCore.Http;
 namespace @(Model.NameSpace).Service;
 
 /// <summary>
-/// @(Model.BusName)服务
+/// @(Model.BusName)服务 🧩
 /// </summary>
 [ApiDescriptionSettings(@(Model.ProjectLastName)Const.GroupName, Order = 100)]
 public class @(Model.ClassName)Service : IDynamicApiController, ITransient
@@ -46,12 +46,11 @@ public class @(Model.ClassName)Service : IDynamicApiController, ITransient
     }
 
     /// <summary>
-    /// 分页查询@(Model.BusName)
+    /// 分页查询@(Model.BusName) 🔖
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
-    [HttpPost]
-    [ApiDescriptionSettings(Name = "Page")]
+    [ApiDescriptionSettings(Name = "Page"), HttpPost]
     [DisplayName("分页查询@(Model.BusName)")]
     public async Task<SqlSugarPagedList<@(Model.ClassName)Output>> Page(Page@(Model.ClassName)Input input)
     {
@@ -126,12 +125,11 @@ if (column.QueryWhether == "Y"){
     }
 
     /// <summary>
-    /// 增加@(Model.BusName)
+    /// 增加@(Model.BusName) ➕
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
-    [HttpPost]
-    [ApiDescriptionSettings(Name = "Add")]
+    [ApiDescriptionSettings(Name = "Add"), HttpPost]
     [DisplayName("增加@(Model.BusName)")]
     public async Task<long> Add(Add@(Model.ClassName)Input input)
     {
@@ -141,12 +139,11 @@ if (column.QueryWhether == "Y"){
     }
 
     /// <summary>
-    /// 删除@(Model.BusName)
+    /// 删除@(Model.BusName) ❌
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
-    [HttpPost]
-    [ApiDescriptionSettings(Name = "Delete")]
+    [ApiDescriptionSettings(Name = "Delete"), HttpPost]
     [DisplayName("删除@(Model.BusName)")]
     public async Task Delete(Delete@(Model.ClassName)Input input)
     {
@@ -158,12 +155,11 @@ if (column.QueryWhether == "Y"){
     }
 
     /// <summary>
-    /// 批量删除@(Model.BusName)
+    /// 批量删除@(Model.BusName) ❌
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
-    [HttpPost]
-    [ApiDescriptionSettings(Name = "BatchDelete")]
+    [ApiDescriptionSettings(Name = "BatchDelete"), HttpPost]
     [DisplayName("批量删除@(Model.BusName)")]
     public async Task<int> BatchDelete(BatchDelete@(Model.ClassName)Input input)
     {
@@ -175,12 +171,11 @@ if (column.QueryWhether == "Y"){
     }
 
     /// <summary>
-    /// 更新@(Model.BusName)
+    /// 更新@(Model.BusName) ✏️
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
-    [HttpPost]
-    [ApiDescriptionSettings(Name = "Update")]
+    [ApiDescriptionSettings(Name = "Update"), HttpPost]
     [DisplayName("更新@(Model.BusName)")]
     public async Task Update(Update@(Model.ClassName)Input input)
     {
@@ -190,7 +185,7 @@ if (column.QueryWhether == "Y"){
 @if (hasSetStatus) {
 @:
     @:/// <summary>
-    @:/// 设置@(Model.BusName)状态
+    @:/// 设置@(Model.BusName)状态 🚫
     @:/// </summary>
     @:/// <param name="input"></param>
     @:/// <returns></returns>
@@ -203,12 +198,11 @@ if (column.QueryWhether == "Y"){
 }
 
     /// <summary>
-    /// 获取@(Model.BusName)
+    /// 获取@(Model.BusName) ℹ️
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
-    [HttpGet]
-    [ApiDescriptionSettings(Name = "Detail")]
+    [ApiDescriptionSettings(Name = "Detail"), HttpGet]
     [DisplayName("获取@(Model.BusName)")]
     public async Task<@(Model.ClassName)> Detail([FromQuery] QueryById@(Model.ClassName)Input input)
     {
@@ -220,12 +214,11 @@ if (@column.ColumnKey == "True"){
     }
 
     /// <summary>
-    /// 获取@(Model.BusName)列表
+    /// 获取@(Model.BusName)列表 🔖
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
-    [HttpGet]
-    [ApiDescriptionSettings(Name = "List")]
+    [ApiDescriptionSettings(Name = "List"), HttpGet]
     [DisplayName("获取@(Model.BusName)列表")]
     public async Task<List<@(Model.ClassName)Output>> List([FromQuery] Page@(Model.ClassName)Input input)
     {
@@ -235,7 +228,7 @@ if (@column.ColumnKey == "True"){
 if(column.EffectType == "fk" && (@column.WhetherAddUpdate == "Y" || column.QueryWhether == "Y")){
 @:
     @:/// <summary>
-    @:/// 获取@(column.ColumnComment)列表
+    @:/// 获取@(column.ColumnComment)列表 🔖
     @:/// </summary>
     @:/// <returns></returns>
     @:[ApiDescriptionSettings(Name = "@(column.FkEntityName)@(column.PropertyName)Dropdown"), HttpGet]
@@ -255,7 +248,7 @@ if(column.EffectType == "fk" && (@column.WhetherAddUpdate == "Y" || column.Query
 if(column.EffectType == "Upload"){
 @:
     @:/// <summary>
-    @:/// 上传@(column.ColumnComment)
+    @:/// 上传@(column.ColumnComment) ⬆️
     @:/// </summary>
     @:/// <param name="file"></param>
     @:/// <returns></returns>
@@ -273,9 +266,9 @@ if(column.EffectType == "ApiTreeSelect" && !definedObjects.ContainsKey("@(column
 @:
     definedObjects.Add("@(column.FkEntityName)Tree", 1);
     @:/// <summary>
-    @:/// 获取@(column.ColumnComment)选择数据
+    @:/// 获取@(column.ColumnComment)选择数据 🔖
     @:/// </summary>
-    @:[ApiDescriptionSettings(Name = "@(column.FkEntityName)Tree")]
+    @:[ApiDescriptionSettings(Name = "@(column.FkEntityName)Tree"), HttpGet]
     @:[DisplayName("获取@(column.ColumnComment)选择数据")]
     @:public async Task<List<@(column.FkEntityName)TreeOutput>> @(column.FkEntityName)Tree()
     @:{
@@ -290,10 +283,12 @@ if(column.EffectType == "ApiTreeSelect" && !definedObjects.ContainsKey("@(column
 @if (hasdictService) {
 @:
     @:/// <summary>
-    @:/// 获取字典文本列表
+    @:/// 获取字典文本列表 🔖
     @:/// </summary>
     @:/// <param name="dictTypeCode"></param>
     @:/// <returns></returns>
+    @:[ApiDescriptionSettings, HttpGet]
+    @:[DisplayName("获取字典文本列表")]
     @:private List<string> GetDictDataTextList(string dictTypeCode)
     @:{
     @:    return _sysDictTypeService.GetDataList(new GetDataDictTypeInput { Code = dictTypeCode }).Result?.Select(x => x.Value).ToList();
@@ -302,7 +297,7 @@ if(column.EffectType == "ApiTreeSelect" && !definedObjects.ContainsKey("@(column
 @if (importField?.Count() > 0) {
 @:
     @:/// <summary>
-    @:/// 下载@(Model.BusName)数据导入模板
+    @:/// 下载@(Model.BusName)数据导入模板 ⬇️
     @:/// </summary>
     @:/// <returns></returns>
     @:[DisplayName("下载@(Model.BusName)数据导入模板")]
@@ -313,7 +308,7 @@ if(column.EffectType == "ApiTreeSelect" && !definedObjects.ContainsKey("@(column
     @:}
 @:
     @:/// <summary>
-    @:/// 导入@(Model.BusName)记录 📃
+    @:/// 导入@(Model.BusName)记录 💾
     @:/// </summary>
     @:/// <returns></returns>
     @:[DisplayName("导入@(Model.BusName)记录")]

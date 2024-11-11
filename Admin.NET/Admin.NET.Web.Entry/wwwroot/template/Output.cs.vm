@@ -46,7 +46,7 @@ if (column.EffectType == "ApiTreeSelect"){
 @:/// <summary>
 @:/// @(Model.BusName)树选择器输出参数
 @:/// </summary>
-@:public class @(column.FkEntityName)TreeOutput: @(column.FkEntityName)
+@:public class @(column.FkEntityName)TreeOutput : @(column.FkEntityName)
 @:{
     @:/// <summary>
     @:/// 显示文本
