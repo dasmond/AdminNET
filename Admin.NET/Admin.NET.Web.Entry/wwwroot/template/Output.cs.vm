@@ -51,7 +51,7 @@ if (column.EffectType == "ApiTreeSelect"){
     @:/// <summary>
     @:/// 显示文本
     @:/// </summary>
-    @:public @(@column.DisplayColumn.Contains(",") ? "string" : Model.GetColumnNetType(@column.FkTableName,@column.DisplayColumn)) Label { get; set; }
+    @:public string Label { get; set; }
     @:
     @:/// <summary>
     @:/// 选项值

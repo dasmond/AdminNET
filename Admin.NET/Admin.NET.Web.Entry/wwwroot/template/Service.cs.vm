@@ -283,7 +283,7 @@ if(column.EffectType == "ApiTreeSelect" && !definedObjects.ContainsKey("@(column
         @:return await _@(Model.LowerClassName)Rep.Context.Queryable<@(column.FkEntityName)>().Select(u => new @(column.FkEntityName)TreeOutput {
             @:Label = $"@(string.Join("-", displayColumnList))",
             @:Value = u.@column.ValueColumn
-        @:}, true).ToTreeAsync(u => u.Children, u => u.@(column.PidColumn), 0);
+        @:}, true).ToTreeAsync(u => u.Children, u => u.@(column.PidColumn), @(column.WhetherRequired == "Y" ? "0" : "null"));
     @:}
 }
 }
