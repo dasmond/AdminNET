@@ -3,129 +3,60 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid 'f9c15edd66711a5c552b6ff93cb1b6e508744223'
-    oldFile: !uuid '173936680464c3a09e96cdbb058ec694b2152c69'
+    newFile: !uuid '49dcf7c93c14b4ef57f2e0fc8e54d48f045299ac'
+    oldFile: !uuid 'f9c15edd66711a5c552b6ff93cb1b6e508744223'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid 'a8244a1d47d59765d2dc29c213813f562caaa69d'
-    oldFile: !uuid '9a73692e88f8adf4e23bc6066dd6c447b2b50cd4'
-  /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid '1fab41a4303cd6c40d0b3d1cc46643295466c8ea'
-    oldFile: !uuid '774cb7f85aee4d19ea6b11f547f6c83606d4f838'
-  /Admin.NET/Admin.NET.Core/Service/Auth:
-    newFile: !uuid 'a106973b0fed0eb99ebea709ab6c8c742683529b'
-    oldFile: !uuid '65242194535c9d512b82726c17ad451f729b4c0e'
-  /Admin.NET/Admin.NET.Core/Service/Auth/Dto:
-    newFile: !uuid '14b68708fcbe4dd006d4b745c06384ea5dc2ee7e'
-    oldFile: !uuid '876745e6cdb049eb0a8b2f29e410e154b90f71ad'
-  /Admin.NET/Admin.NET.Core/Service/Auth/Dto/SysLdapInput.cs:
-    newFile: !uuid 'ee4efd52dc496e3eacf17d864c66750e4a13787c'
-    oldFile: !uuid '009000b213f3ba718ccee17e4e908ec6bba4a298'
-  /Admin.NET/Admin.NET.Core/Service/Auth/SysLdapService.cs:
-    newFile: !uuid '15dad8b079fc43e79a9b65fac6f5b14fcb0cb895'
-    oldFile: !uuid '2514891f254742dd6e27026485164e9657297569'
-  /Admin.NET/Admin.NET.Core/Service/Wechat:
-    newFile: !uuid '03ae3a8166301a17841d4e0b165d1fd2ad3189b0'
-    oldFile: !uuid '649a806771984828681c0b20312e6506c5a637e5'
-  /Admin.NET/Admin.NET.Core/Service/Wechat/Dto:
-    newFile: !uuid 'cf3919d023f337be3fb5210a4069c1063c221164'
-    oldFile: !uuid '8900f9c2d4cd6abd006ca8435fea61e61c81a2d9'
-  /Admin.NET/Admin.NET.Core/Service/Wechat/Dto/WechatPayInput.cs:
-    newFile: !uuid '8ba466317296866b4d858600baff4c6ee42f9cbf'
-    oldFile: !uuid 'c6cb18f8c4f3f40da340a229f9908beb312aa1c9'
-  /Admin.NET/Admin.NET.Core/Service/Wechat/SysWechatPayService.cs:
-    newFile: !uuid '66c5e1d62244f592726b93ce12c2b32948673d69'
-    oldFile: !uuid '254172dc30d8ef56196eba722519d702682468f1'
+    newFile: !uuid '0ea19a4ab530bb852eba1de5679e5492a6e43a08'
+    oldFile: !uuid 'a8244a1d47d59765d2dc29c213813f562caaa69d'
+  /Admin.NET/Admin.NET.Core/Job:
+    newFile: !uuid 'ffecf0ba8f389445f85268dc43cdeaa78ff91a94'
+    oldFile: !uuid 'f341673fbb55b67b67f7ac616a8598882bef65be'
+  /Admin.NET/Admin.NET.Core/Job/EnumToDictJob.cs:
+    newFile: !uuid '5491097474991f36e903113792f263b89883a5e6'
+    oldFile: !uuid '55a7891aeba2e5139f30039b15da355c96b14825'
   /Admin.NET/Admin.NET.Web.Entry:
-    newFile: !uuid 'ffa0f9b58de4fc62d15d913100eb3dd73022bc6f'
-    oldFile: !uuid 'e8a4626b6b8193d432b351ba6fd79f73d819847f'
+    newFile: !uuid 'a172312830f74d8364d2d26ba3938f073eeef71c'
+    oldFile: !uuid 'ffa0f9b58de4fc62d15d913100eb3dd73022bc6f'
   /Admin.NET/Admin.NET.Web.Entry/wwwroot:
-    newFile: !uuid '2206ab7ec0a07e06fda98fc0600cc3fba9274d42'
-    oldFile: !uuid 'a28028e2f8aa0c7bda81029b9aec10eb166e8dc4'
+    newFile: !uuid 'c01cca6381527622279952db46f3ef9a5e769fec'
+    oldFile: !uuid '2206ab7ec0a07e06fda98fc0600cc3fba9274d42'
   /Admin.NET/Admin.NET.Web.Entry/wwwroot/template:
-    newFile: !uuid 'e19f54610d8aa2a357d70f2b359df454cbec6d0a'
-    oldFile: !uuid '71038fa3e0ec892ebbfaa3ec6771ccbc80924b4a'
+    newFile: !uuid 'c8e973859d150b4ca0096625776754666bfb5596'
+    oldFile: !uuid 'e19f54610d8aa2a357d70f2b359df454cbec6d0a'
+  /Admin.NET/Admin.NET.Web.Entry/wwwroot/template/Dto.cs.vm:
+    newFile: !uuid '5417ae76efdb84e8a9ae5ae10d6f0306e961717d'
+    oldFile: !uuid 'd4d88b1015c67f5d20437940117a5bb9501df9f1'
+  /Admin.NET/Admin.NET.Web.Entry/wwwroot/template/Entity.cs.vm:
+    newFile: !uuid '6129131f7ab334f14da920216c959282edf5ef80'
+    oldFile: !uuid 'e4baf1facde3fa1df0fa427c8c7483155f593ada'
   /Admin.NET/Admin.NET.Web.Entry/wwwroot/template/Input.cs.vm:
-    newFile: !uuid '8b800cafdd519770ba1980e805f5eae8f0c5b0f6'
-    oldFile: !uuid '17ee169923b996cca1f9a79991966f23b1aa0bfc'
+    newFile: !uuid 'a89a791696282a9402c25e2fa83f148dabee734d'
+    oldFile: !uuid '8b800cafdd519770ba1980e805f5eae8f0c5b0f6'
+  /Admin.NET/Admin.NET.Web.Entry/wwwroot/template/Manage.js.vm:
+    newFile: !uuid '52ed62a4cc367438728533639652602caadcaf76'
+    oldFile: !uuid 'ab35a45ea89dbd1e31e2c7f8154ee7e7d541b610'
+  /Admin.NET/Admin.NET.Web.Entry/wwwroot/template/Output.cs.vm:
+    newFile: !uuid '671258ca8eae4a13a180b810648674664bdbddcb'
+    oldFile: !uuid '131ad116a384af6a6c82fc9421aed33f6623772b'
+  /Admin.NET/Admin.NET.Web.Entry/wwwroot/template/SeedData.cs.vm:
+    newFile: !uuid '0f34688af401adeccdfcf9798e9c562d4b93ae4d'
+    oldFile: !uuid '7107024b558e3c354a18dbb1481e76ddc8a52366'
   /Admin.NET/Admin.NET.Web.Entry/wwwroot/template/Service.cs.vm:
-    newFile: !uuid 'fe6f3f4708c5e54a76ec4401c6d5c6507eb56501'
-    oldFile: !uuid '484473fbee858b061d67d32a98889f4566526cc3'
+    newFile: !uuid 'f73f309e68c1e528d2fc026b3c90e57234c4357d'
+    oldFile: !uuid 'fe6f3f4708c5e54a76ec4401c6d5c6507eb56501'
+  /Admin.NET/Admin.NET.Web.Entry/wwwroot/template/data.data.ts.vm:
+    newFile: !uuid 'b57f6a95eabf46de059932bbffa5553db0d9c5df'
+    oldFile: !uuid 'f404ea20e2c2bbf5b153e95e11e84c554be1cc80'
+  /Admin.NET/Admin.NET.Web.Entry/wwwroot/template/dataModal.vue.vm:
+    newFile: !uuid '900015b836db1cfc28fff5ed43d3a929a7a01cd7'
+    oldFile: !uuid '25db585ded7339975ac15e9966fedb1a8bed1cf3'
+  /Admin.NET/Admin.NET.Web.Entry/wwwroot/template/editDialog.vue.vm:
+    newFile: !uuid '36199005872dd4320aa3304950d94ca3de43f1e3'
+    oldFile: !uuid '279b20a51d19d95bb854f258ecb88ab9db4eb5c6'
   /Admin.NET/Admin.NET.Web.Entry/wwwroot/template/index.vue.vm:
-    newFile: !uuid 'ca34423c745a88da6a4a0c0a95f64efec6c37d71'
-    oldFile: !uuid '7290ad53cb675d77a818df45a3a603bbb5dd0e0d'
-  /Admin.NET/Plugins:
-    newFile: !uuid '6712af302d33e32416cf181403a74552a8c095ee'
-    oldFile: !uuid '3832527741e393306f8a908569398e47b4283a49'
-  /Admin.NET/Plugins/Admin.NET.Plugin.ApprovalFlow:
-    newFile: !uuid '55cfd31c266d28b39a1f978be3aad7d925d404f3'
-    oldFile: !uuid '4b1c436e864abd9583b16d381e3434a0ff5009ed'
-  /Admin.NET/Plugins/Admin.NET.Plugin.ApprovalFlow/Service:
-    newFile: !uuid '7e1b2105e61b74817fd1a0f4e6505d517de6047e'
-    oldFile: !uuid '91a98af29e84df97e5fb0effae2e36eb4a5fbe9b'
-  /Admin.NET/Plugins/Admin.NET.Plugin.ApprovalFlow/Service/ApprovalFlow:
-    newFile: !uuid '44953d82f519bc2ca0c56db1e603d34919468a9a'
-    oldFile: !uuid '6f6b8afad2f4779e89f811a0f614c54c40def74b'
-  /Admin.NET/Plugins/Admin.NET.Plugin.ApprovalFlow/Service/ApprovalFlow/ApprovalFlowService.cs:
-    newFile: !uuid 'ce54186e07c35bed53df0c51875cb8d712bc6806'
-    oldFile: !uuid '89ae520fe25d590b2be8d16e62406434dccd8461'
-  /Admin.NET/Plugins/Admin.NET.Plugin.ApprovalFlow/Service/ApprovalFlow/Dto:
-    newFile: !uuid 'ec137a1154d6668b8d97f1776ab6d3e679286b78'
-    oldFile: !uuid 'cd05859a6bb7a77e16a1b5044e819639288c4027'
-  /Admin.NET/Plugins/Admin.NET.Plugin.ApprovalFlow/Service/ApprovalFlow/Dto/ApprovalFlowInput.cs:
-    newFile: !uuid 'dc9328f2e98e762b1bb7d8312b5f4e3251af9be7'
-    oldFile: !uuid '51c91990f46538c18156bad6dfccddc7ed5aa61e'
-  /Web:
-    newFile: !uuid '9c7ba89dc1491975ef2d78e20b450e08a271daab'
-    oldFile: !uuid '1e823de84e36923bb55f7d1af25bd2d3574d29f8'
-  /Web/src:
-    newFile: !uuid '7b01d5244a95a17948a12da8be2f931c2cf059c1'
-    oldFile: !uuid '0a1e5334c2f1fce1077cff5732b7fccfa7bc5d6c'
-  /Web/src/api-services:
-    newFile: !uuid '5fc402f67b7c9f5db475aa536d3fd968bade01cc'
-    oldFile: !uuid '3607f94e89d27e6ad50d30cf36913946ee6bff2f'
-  /Web/src/api-services/_approvalFlow:
-    newFile: !uuid 'd61e8ff883955c1c20ffd487385cef7185fe8dc5'
-    oldFile: !uuid '6bebcad6ae5cd4cf2f9b60c4f9387038976e903b'
-  /Web/src/api-services/_approvalFlow/apis:
-    newFile: !uuid '7e500017dcafc59fec1c9dc57f89dd98a1616101'
-    oldFile: !uuid '8177e71ba3fa5a27d48c0ccfc54c9de612e5d5eb'
-  /Web/src/api-services/_approvalFlow/apis/approval-flow-api.ts:
-    newFile: !uuid '2555e358bc82c962618b2a7c8cc6207be317d447'
-    oldFile: !uuid 'cc59bfcd1193435dfc58a87fd4fa5c7d3cd48e6e'
-  /Web/src/api-services/_approvalFlow/models:
-    newFile: !uuid '2e8be1df257379653d308d688172e7cfd74b2517'
-    oldFile: !uuid 'f6cd34835b9f240bd4fb05cc88f146e06afeccf0'
-  /Web/src/api-services/_approvalFlow/models/approval-flow-input.ts:
-    newFile: !uuid '1b813d5075802c1ceacb79413baf2454e5221ce6'
-    oldFile: !uuid '3d1bd973b4b6e746bcfcfbacdaa8e31283554cb7'
-  /Web/src/api-services/models:
-    newFile: !uuid 'ff73f1521c21fa0fc2253bdc0cc06cbf3109e0e0'
-    oldFile: !uuid 'dd4b752cf864ae57d454bd1fc710f257038966a4'
-  /Web/src/api-services/models/sys-ldap-input.ts:
-    newFile: !uuid '10394f9a553da66456c517212107ddd3f0e38944'
-    oldFile: !uuid '3801f881e39d544d498635d1ff5cc409a6dbcd0c'
-  /Web/src/api-services/models/wechat-pay-page-input.ts:
-    newFile: !uuid '92f17a7389b451b64392e2c3c2b59e2f4f78c29e'
-    oldFile: !uuid 'd269ced953ed63727f7323e9815d1d790ff101ad'
-  /Web/src/views:
-    newFile: !uuid '8c4f3319321d17b1303fe417024e08874d00a0a9'
-    oldFile: !uuid '6209788ba75476e7172206c5f62b4cb95f2dc6ac'
-  /Web/src/views/system:
-    newFile: !uuid '927d1a1943ac24fc699ec55b4fe872d81637906b'
-    oldFile: !uuid '22a11096efbff5dcdafda909d675362b5e98955f'
-  /Web/src/views/system/ldap:
-    newFile: !uuid '13c5a61085351a0b787282c2a7727e438f8114d8'
-    oldFile: !uuid '163ae8f85cc40d329db8f5dd49f82db3f921944f'
-  /Web/src/views/system/ldap/index.vue:
-    newFile: !uuid 'ecc2e68311656fb3c3923a1978a0d941a90b36d4'
-    oldFile: !uuid 'fa77237f461fb7f9bbd4c3fc81197a26aed1dbc1'
-  /Web/src/views/system/weChatPay:
-    newFile: !uuid 'a091004ce61bb1ec6b8a60e1c3874fae576d674b'
-    oldFile: !uuid '324de4a465fa6c56d153ef156271d76fb0f61f96'
-  /Web/src/views/system/weChatPay/index.vue:
-    newFile: !uuid '92f5a9bcd36fa8c59cd80425df22c606428b70ea'
-    oldFile: !uuid 'eede8068743c0e21c26b7f7d24d25edb1401971c'
-gitCommitId: !uuid '2ab6bab4a6245e06139353ad51dff94e3c141e9d'
+    newFile: !uuid '5f8e98a48568f2e3397d448b0e4e246234272ca9'
+    oldFile: !uuid 'ca34423c745a88da6a4a0c0a95f64efec6c37d71'
+gitCommitId: !uuid '7891b11e49d76e64e2e98e9ac1ec3b9866ce5c21'
 renames: {
   }
-revisionId: 2468
+revisionId: 2469
