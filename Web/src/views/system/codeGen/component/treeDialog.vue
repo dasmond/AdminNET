@@ -10,35 +10,35 @@
 			<el-form :model="state.ruleForm" ref="ruleFormRef" label-width="auto">
 				<el-row :gutter="35">
 					<el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="mb20">
-						<el-form-item label="库定位器" prop="configId">
+						<el-form-item label="库定位器" prop="configId" :rules="[{ required: true, message: '库不能为空', trigger: 'blur' }]">
 							<el-select clearable v-model="state.ruleForm.configId" placeholder="库名" filterable @change="DbChanged()" class="w100">
 								<el-option v-for="item in state.dbData" :key="item.configId" :label="item.configId" :value="item.configId" />
 							</el-select>
 						</el-form-item>
 					</el-col>
 					<el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="mb20">
-						<el-form-item label="数据库表" prop="tableName">
+						<el-form-item label="数据库表" prop="tableName" :rules="[{ required: true, message: '数据表不能为空', trigger: 'blur' }]">
 							<el-select v-model="state.ruleForm.tableName" class="w100" filterable clearable @change="TableChanged()">
 								<el-option v-for="item in state.tableData" :key="item.entityName" :label="item.tableName + ' [' + item.tableComment + ']'" :value="item.tableName" />
 							</el-select>
 						</el-form-item>
 					</el-col>
 					<el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="mb20">
-						<el-form-item label="显示字段" prop="displayColumn">
+						<el-form-item label="显示字段" prop="displayColumn" :rules="[{ required: true, message: '显示字段不能为空', trigger: 'blur' }]">
 							<el-select v-model="state.ruleForm.displayColumn" class="w100">
 								<el-option v-for="item in state.columnData" :key="item.columnName" :label="item.columnName + ' [' + item.columnComment + ']'" :value="item.columnName" />
 							</el-select>
 						</el-form-item>
 					</el-col>
 					<el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="mb20">
-						<el-form-item label="选择值字段" prop="valueColumn">
+						<el-form-item label="选择值字段" prop="valueColumn" :rules="[{ required: true, message: '值字段不能为空', trigger: 'blur' }]">
 							<el-select v-model="state.ruleForm.valueColumn" class="w100">
 								<el-option v-for="item in state.columnData" :key="item.columnName" :label="item.columnName + ' [' + item.columnComment + ']'" :value="item.columnName" />
 							</el-select>
 						</el-form-item>
 					</el-col>
 					<el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="mb20">
-						<el-form-item label="父级字段" prop="pidColumn">
+						<el-form-item label="父级字段" prop="pidColumn" :rules="[{ required: true, message: '父级字段不能为空', trigger: 'blur' }]">
 							<el-select v-model="state.ruleForm.pidColumn" class="w100">
 								<el-option v-for="item in state.columnData" :key="item.columnName" :label="item.columnName + ' [' + item.columnComment + ']'" :value="item.columnName" />
 							</el-select>
