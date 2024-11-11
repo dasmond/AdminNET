@@ -44,7 +44,7 @@ public static class ComputerUtil
         string opeartion = string.Empty;
         if (IsMacOS())
         {
-            var output = ShellHelper.Bash("sw_vers | awk 'NR<=2{printf \"%s \", $NF}'");
+            var output = ShellUtil.Bash("sw_vers | awk 'NR<=2{printf \"%s \", $NF}'");
             if (output != null)
             {
                 opeartion = output.Replace("%", string.Empty);
@@ -52,7 +52,7 @@ public static class ComputerUtil
         }
         else if (IsUnix())
         {
-            var output = ShellHelper.Bash("awk -F= '/^VERSION_ID/ {print $2}' /etc/os-release | tr -d '\"'");
+            var output = ShellUtil.Bash("awk -F= '/^VERSION_ID/ {print $2}' /etc/os-release | tr -d '\"'");
             opeartion = output ?? string.Empty;
         }
         else
@@ -71,7 +71,7 @@ public static class ComputerUtil
         var diskInfos = new List<DiskInfo>();
         if (IsMacOS())
         {
-            var output = ShellHelper.Bash(@"df -m | awk '/^\/dev\/disk/ {print $1,$2,$3,$4,$5}'");
+            var output = ShellUtil.Bash(@"df -m | awk '/^\/dev\/disk/ {print $1,$2,$3,$4,$5}'");
             var disks = output.Split('\n', StringSplitOptions.RemoveEmptyEntries);
             if (disks.Length < 1) return diskInfos;
             foreach (var item in disks)
@@ -83,7 +83,7 @@ public static class ComputerUtil
                 var diskInfo = new DiskInfo()
                 {
                     DiskName = disk[0],
-                    TypeName = ShellHelper.Bash("diskutil info " + disk[0] + " | awk '/File System Personality/ {print $4}'").Replace("\n", string.Empty),
+                    TypeName = ShellUtil.Bash("diskutil info " + disk[0] + " | awk '/File System Personality/ {print $4}'").Replace("\n", string.Empty),
                     TotalSize = Math.Round(long.Parse(disk[1]) / 1024.0m, 2, MidpointRounding.AwayFromZero),
                     Used = Math.Round(long.Parse(disk[2]) / 1024.0m, 2, MidpointRounding.AwayFromZero),
                     AvailableFreeSpace = Math.Round(long.Parse(disk[3]) / 1024.0m, 2, MidpointRounding.AwayFromZero),
@@ -94,7 +94,7 @@ public static class ComputerUtil
         }
         else if (IsUnix())
         {
-            var output = ShellHelper.Bash(@"df -mT | awk '/^\/dev\/(sd|vd|xvd|nvme|sda|vda)/ {print $1,$2,$3,$4,$5,$6}'");
+            var output = ShellUtil.Bash(@"df -mT | awk '/^\/dev\/(sd|vd|xvd|nvme|sda|vda)/ {print $1,$2,$3,$4,$5,$6}'");
             var disks = output.Split('\n', StringSplitOptions.RemoveEmptyEntries);
             if (disks.Length < 1) return diskInfos;
 
@@ -412,58 +412,6 @@ public class ShellUtil
 
     /// <summary>
     /// windows系统命令
-    /// </summary>
-    /// <param name="fileName"></param>
-    /// <param name="args"></param>
-    /// <returns></returns>
-    public static string Cmd(string fileName, string args)
-    {
-        var info = new ProcessStartInfo
-        {
-            FileName = fileName,
-            Arguments = args,
-            RedirectStandardOutput = true
-        };
-
-        var output = string.Empty;
-        using (var process = Process.Start(info))
-        {
-            output = process.StandardOutput.ReadToEnd();
-        }
-        return output;
-    }
-}
-
-public class ShellHelper
-{
-    /// <summary>
-    /// Linux 系统命令
-    /// </summary>
-    /// <param name="command"></param>
-    /// <returns></returns>
-    public static string Bash(string command)
-    {
-        var escapedArgs = command.Replace("\"", "\\\"");
-        var process = new Process()
-        {
-            StartInfo = new ProcessStartInfo
-            {
-                FileName = "/bin/bash",
-                Arguments = $"-c \"{escapedArgs}\"",
-                RedirectStandardOutput = true,
-                UseShellExecute = false,
-                CreateNoWindow = true,
-            }
-        };
-        process.Start();
-        string result = process.StandardOutput.ReadToEnd();
-        process.WaitForExit();
-        process.Dispose();
-        return result;
-    }
-
-    /// <summary>
-    /// Windows 系统命令
     /// </summary>
     /// <param name="fileName"></param>
     /// <param name="args"></param>
