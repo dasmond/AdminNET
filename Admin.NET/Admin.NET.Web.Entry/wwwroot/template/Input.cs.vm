@@ -7,7 +7,7 @@
 using Admin.NET.Core;
 using System.ComponentModel.DataAnnotations;
 
-namespace @Model.NameSpace.Service;
+namespace @(Model.NameSpace).Service;
 
 /// <summary>
 /// @(Model.BusName)基础输入参数

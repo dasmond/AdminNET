@@ -22,7 +22,7 @@ using Microsoft.AspNetCore.Http;
     var importField = Model.TableField.Where(x => x.WhetherImport == "Y");
     var displayColumnList = new List<string>();
 }
-namespace @Model.NameSpace.Service;
+namespace @(Model.NameSpace).Service;
 
 /// <summary>
 /// @(Model.BusName)服务
