@@ -7,12 +7,12 @@
 using Admin.NET.Core;
 using @Model.EntityNameSpace;
 
-namespace @Model.NameSpace.SeedData;
+namespace @(Model.NameSpace).SeedData;
 
 /// <summary>
 /// @(Model.Description) 表种子数据
 /// </summary>
-public class @(Model.SeedDataName): ISqlSugarEntitySeedData<@(Model.EntityName)>
+public class @(Model.SeedDataName) : ISqlSugarEntitySeedData<@(Model.EntityName)>
 {
     /// <summary>
     /// 种子数据
