@@ -326,6 +326,24 @@ public class SysCacheService : IDynamicApiController, ISingleton
         var hash = GetHashMap<T>(key);
         hash.Add(hashKey, value);
     }
+    /// <summary>
+    /// 添加或更新一条HASH
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="key"></param>
+    /// <param name="hashKey"></param>
+    /// <param name="value"></param>
+    [NonAction]
+    public void HashAddOrUpdate<T>(string key, string hashKey, T value)
+    {
+        var hash = GetHashMap<T>(key);
+        if (hash.ContainsKey(hashKey))
+        {
+            hash[hashKey] = value;
+        }
+        else
+            hash.Add(hashKey, value);
+    }
 
     /// <summary>
     /// 获取多条HASH
@@ -352,12 +370,7 @@ public class SysCacheService : IDynamicApiController, ISingleton
     public T HashGetOne<T>(string key, string field)
     {
         var hash = GetHashMap<T>(key);
-        var value = hash.GetValue(field);
-        if (value == null)
-        {
-            return default(T);
-        }
-        return (T)hash.GetValue(field);
+        return hash.ContainsKey(field) ? hash[field] : default(T);
     }
 
     /// <summary>
