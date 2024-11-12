@@ -7,7 +7,7 @@
 using Admin.NET.Core;
 using System.ComponentModel.DataAnnotations;
 
-namespace @Model.NameSpace.Service;
+namespace @(Model.NameSpace).Service;
 
 /// <summary>
 /// @(Model.BusName)基础输入参数
@@ -135,7 +135,6 @@ if (Regex.IsMatch(column.NetType, "(.*?Enum|int|long|double|float|bool)[?]?")){
 /// </summary>
 public class QueryById@(Model.ClassName)Input : Delete@(Model.ClassName)Input
 {
-
 }
 
 @if (Model.TableField.Any(x => x.WhetherImport == "Y")){
