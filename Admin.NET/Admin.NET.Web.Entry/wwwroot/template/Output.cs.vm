@@ -4,7 +4,10 @@
 //
 // 不得利用本项目从事危害国家安全、扰乱社会秩序、侵犯他人合法权益等法律法规禁止的活动！任何基于本项目二次开发而产生的一切法律纠纷和责任，我们不承担任何责任！
 
-namespace @(Model.NameSpace).Service;
+@{
+    string GetFinalType(string type) => Regex.IsMatch(type, "(.*?Enum|bool|char|int|long|double|float|decimal)[?]?") ? type.TrimEnd('?') + "?" : type;
+}
+namespace @(Model.NameSpace);
 
 /// <summary>
 /// @(Model.BusName)输出参数
@@ -22,8 +25,7 @@ if(column.EffectType == "fk")
     @:/// <summary>
     @:/// @(column.ColumnComment) 描述
     @:/// </summary>
-    @:public @(column.FkColumnNetType) @(column.PropertyName)@(column.FkColumnName) { get; set; } 
-
+    @:public string @(column.PropertyName)FkColumn { get; set; } 
 }else if(column.EffectType == "Upload"){
     @:public @column.NetType @column.PropertyName { get; set; }
     @:public SysFile @(column.PropertyName)Attachment { get; set; }
@@ -35,7 +37,7 @@ if(column.EffectType == "fk")
     @:/// </summary>
     @:public string? @(column.PropertyName)Display { get; set; } 
 }else{
-    @:public @column.NetType @(column.PropertyName) { get; set; }
+    @:public @GetFinalType(column.NetType) @(column.PropertyName) { get; set; }
 }
     @:
 }

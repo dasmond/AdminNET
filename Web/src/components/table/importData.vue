@@ -1,6 +1,6 @@
-<template v-loading="state.loading">
-	<div class="sys-import-data-container" v-loading="state.loading">
-		<el-dialog v-model="state.isShowDialog" draggable :close-on-click-modal="false" width="300px" v-loading="state.loading">
+<template>
+	<div class="sys-import-data-container">
+		<el-dialog v-model="state.isShowDialog" draggable :close-on-click-modal="false" width="300px">
 			<template #header>
 				<div style="color: #fff">
 					<el-icon size="16" style="margin-right: 3px; display: inline; vertical-align: middle"> <ele-UploadFilled /> </el-icon>
@@ -21,7 +21,7 @@
 						ref="uploadRef"
 					>
 						<template #trigger>
-							<el-button type="primary" icon="ele-MostlyCloudy">导入</el-button>
+							<el-button type="primary" icon="ele-MostlyCloudy" :disable="state.loading">导入</el-button>
 						</template>
 					</el-upload>
 				</el-col>
@@ -73,11 +73,13 @@ const handleImportData = (opt: UploadRequestOptions) => {
       handleFileStream(res);
 	  state.isShowDialog = false;
       emit('refresh');
-    } catch (err) {
+    } catch {
       ElMessage.error(res.data.message || '上传失败');
     }
+	state.loading = false;
+  }).catch(() => {
+	state.loading = false;
   }).finally(() => {
-    state.loading = false;
     uploadRef.value?.clearFiles();
   });
 }

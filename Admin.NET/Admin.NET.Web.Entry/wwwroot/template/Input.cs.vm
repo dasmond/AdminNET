@@ -4,24 +4,27 @@
 //
 // 不得利用本项目从事危害国家安全、扰乱社会秩序、侵犯他人合法权益等法律法规禁止的活动！任何基于本项目二次开发而产生的一切法律纠纷和责任，我们不承担任何责任！
 
+@{
+    bool IsNetEnumType(dynamic column) => column.NetType.TrimEnd('?').EndsWith("Enum");
+    bool IsStatusEnumField(dynamic column) => column.NetType.TrimEnd('?') == "StatusEnum" && column.PropertyName == "Status";
+    string GetFinalType(string type) => Regex.IsMatch(type, "(.*?Enum|bool|char|int|long|double|float|decimal)[?]?") ? type.TrimEnd('?') + "?" : type;
+}
 using Admin.NET.Core;
 using System.ComponentModel.DataAnnotations;
 
-namespace @(Model.NameSpace).Service;
+namespace @(Model.NameSpace);
 
 /// <summary>
 /// @(Model.BusName)基础输入参数
 /// </summary>
 public class @(Model.ClassName)BaseInput
 {
-@foreach (var column in Model.TableField){
-if (column.ColumnKey != "True" && column.WhetherAddUpdate == "Y" && !(column.NetType == "StatusEnum" && column.PropertyName == "Status")){
+@foreach (var column in Model.TableField.Where(u => u.ColumnKey != "True" && u.WhetherAddUpdate == "Y")){
     @:/// <summary>
     @:/// @column.ColumnComment
     @:/// </summary>
-    @:public virtual @column.NetType @column.PropertyName { get; set; }
-    @:
-}
+    @:public virtual @GetFinalType(column.NetType) @column.PropertyName { get; set; }
+@:
 }
 }
 
@@ -33,16 +36,16 @@ public class Page@(Model.ClassName)Input : BasePageInput
 @foreach (var column in Model.TableField.Where(u => u.QueryWhether == "Y")){
     if(column.NetType?.TrimEnd('?') == "DateTime" && column.QueryType == "~"){
     @:/// <summary>
-    @: /// @(column.ColumnComment)范围
-    @: /// </summary>
+    @:/// @(column.ColumnComment)范围
+    @:/// </summary>
     @: public DateTime?[] @(column.PropertyName)Range { get; set; }
     } else {
     @:/// <summary>
     @:/// @column.ColumnComment
     @:/// </summary>
-    @:public @column.NetType.TrimEnd('?')? @column.PropertyName { get; set; }
+    @:public @GetFinalType(column.NetType) @column.PropertyName { get; set; }
     }
-    @:
+@:
 }
 }
 
@@ -51,21 +54,18 @@ public class Page@(Model.ClassName)Input : BasePageInput
 /// </summary>
 public class Add@(Model.ClassName)Input
 {
-@foreach (var column in Model.TableField){
-if (column.WhetherAddUpdate == "Y"){
+@foreach (var column in Model.TableField.Where(col => col.WhetherAddUpdate == "Y")){
     @:/// <summary>
     @:/// @column.ColumnComment
     @:/// </summary>
-if (column.WhetherRequired == "Y") {
+    if (column.WhetherRequired == "Y") {
     @:[Required(ErrorMessage = "@(column.ColumnComment)不能为空")]
-}
-if (Regex.IsMatch(column.NetType, "(.*?Enum|int|long|double|float|bool)[?]?")){
-    @:public @column.NetType.TrimEnd('?')? @column.PropertyName { get; set; }
-}else{
-    @:public @column.NetType @column.PropertyName { get; set; }
-}
-    @:
-}
+    }
+    if (column.NetType.TrimEnd('?').EndsWith("string") && column.ColumnLength > 0){
+    @:[MaxLength(@column.ColumnLength, ErrorMessage = "@(column.ColumnComment)字符长度不能超过@(column.ColumnLength)")]
+    }
+    @:public @GetFinalType(column.NetType) @column.PropertyName { get; set; }
+@:
 }
 }
 
@@ -79,12 +79,8 @@ public class Delete@(Model.ClassName)Input
     @:/// @column.ColumnComment
     @:/// </summary>
     @:[Required(ErrorMessage = "@(column.ColumnComment)不能为空")]
-if (Regex.IsMatch(column.NetType, "(.*?Enum|int|long|double|float|bool)[?]?")){
-    @:public @column.NetType.TrimEnd('?')? @column.PropertyName { get; set; }
-}else{
-    @:public @column.NetType @column.PropertyName { get; set; }
-}
-    @:
+    @:public @GetFinalType(column.NetType) @column.PropertyName { get; set; }
+@:
 }
 }
 
@@ -98,12 +94,8 @@ public class BatchDelete@(Model.ClassName)Input
     @:/// @column.ColumnComment
     @:/// </summary>
     @:[Required(ErrorMessage = "@(column.ColumnComment)列表不能为空")]
-if (Regex.IsMatch(column.NetType, "(.*?Enum|int|long|double|float|bool)[?]?")){
-    @:public List<@column.NetType.TrimEnd('?')?> @(column.PropertyName)List { get; set; }
-}else{
-    @:public List<@column.NetType> @(column.PropertyName)List { get; set; }
-}
-    @:
+    @:public List<@GetFinalType(column.NetType)> @(column.PropertyName)List { get; set; }
+@:
 }
 }
 
@@ -112,21 +104,18 @@ if (Regex.IsMatch(column.NetType, "(.*?Enum|int|long|double|float|bool)[?]?")){
 /// </summary>
 public class Update@(Model.ClassName)Input
 {
-@foreach (var column in Model.TableField){
-if (column.ColumnKey == "True" || column.WhetherAddUpdate == "Y" && !(column.NetType == "StatusEnum" && column.PropertyName == "Status")){
+@foreach (var column in Model.TableField.Where(u => u.ColumnKey == "True" || u.WhetherAddUpdate == "Y" && !IsStatusEnumField(u))){
     @:/// <summary>
     @:/// @column.ColumnComment
-    @:/// </summary>
-if (column.WhetherRequired == "Y" || column.ColumnKey == "True") {
+    @:/// </summary>    
+    if (column.WhetherRequired == "Y" || column.ColumnKey == "True") {
     @:[Required(ErrorMessage = "@(column.ColumnComment)不能为空")]
-}
-if (Regex.IsMatch(column.NetType, "(.*?Enum|int|long|double|float|bool)[?]?")){
-    @:public @column.NetType.TrimEnd('?')? @column.PropertyName { get; set; }
-}else{
-    @:public @column.NetType @column.PropertyName { get; set; }
-}
-    @:
-}
+    }
+    if (column.NetType.TrimEnd('?').EndsWith("string") && column.ColumnLength > 0){
+    @:[MaxLength(@column.ColumnLength, ErrorMessage = "@(column.ColumnComment)字符长度不能超过@(column.ColumnLength)")]
+    }
+    @:public @GetFinalType(column.NetType) @column.PropertyName { get; set; }
+@:
 }
 }
 
@@ -145,23 +134,30 @@ public class QueryById@(Model.ClassName)Input : Delete@(Model.ClassName)Input
 @:public class Import@(Model.ClassName)Input : BaseImportInput
 @:{
     foreach (var column in Model.TableField.Where(x => x.WhetherImport == "Y")){
-    if (column.WhetherAddUpdate == "Y") {
+    var prefix = column.WhetherRequired == "Y" || column.NetType.TrimEnd('?').EndsWith("Enum") ? "*" : "";
+    if(column.EffectType == "fk" || column.EffectType == "ApiTreeSelect") {
+    @:/// <summary>
+    @:/// @column.ColumnComment 关联值
+    @:/// </summary>
+    @:[ImporterHeader(IsIgnore = true)]
+    @:[ExporterHeader(IsIgnore = true)]
+    @:public @GetFinalType(column.NetType) @column.PropertyName { get; set; }
+@:
+    @:/// <summary>
+    @:/// @column.ColumnComment 文本
+    @:/// </summary>
+    @:[ImporterHeader(Name = "@(prefix + column.ColumnComment)")]
+    @:[ExporterHeader("@(prefix + column.ColumnComment)", Format = "@", Width = 25, IsBold = true)]
+    @:public string @(column.PropertyName)Label { get; set; }
+    } else {
     @:/// <summary>
     @:/// @column.ColumnComment
     @:/// </summary>
-    if (column.WhetherRequired == "Y" || column.NetType.TrimEnd('?').EndsWith("Enum")){
-    @:[ImporterHeader(Name = "*@(column.ColumnComment)")]
-    @:[ExporterHeader("*@(column.ColumnComment)", Format = "@", Width = 25, IsBold = true)]
-    } else {
-    @:[ImporterHeader(Name = "@(column.ColumnComment)")]
-    @:[ExporterHeader("@(column.ColumnComment)", Format = "@", Width = 25, IsBold = true)]
+    @:[ImporterHeader(Name = "@(prefix + column.ColumnComment)")]
+    @:[ExporterHeader("@(prefix + column.ColumnComment)", Format = "@", Width = 25, IsBold = true)]
+    @:public @GetFinalType(column.NetType) @column.PropertyName { get; set; }
     }
-    if (Regex.IsMatch(column.NetType, "(.*?Enum|int|long|double|float|bool)[?]?")){
-    @:public @column.NetType.TrimEnd('?')? @column.PropertyName { get; set; }
-    } else {
-    @:public @column.NetType @column.PropertyName { get; set; }
+@:
     }
-    @:
-    }}
 @:}
 }
