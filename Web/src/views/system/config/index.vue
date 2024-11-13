@@ -70,7 +70,7 @@ const tb = reactive<TableDemoState>({
 			isSerialNo: true, // 是否显示表格序号
 			isSelection: true, // 是否勾选表格多选
 			showSelection: auth('sysConfig:batchDelete'), //是否显示表格多选
-			pageSize: 20, // 每页条数
+			pageSize: 50, // 每页条数
 			hideExport: false, //是否隐藏导出按钮
 			exportFileName: '系统参数', //导出报表的文件名，不填写取应用名称
 		},

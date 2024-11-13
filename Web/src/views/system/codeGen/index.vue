@@ -99,7 +99,7 @@ const state = reactive({
 	},
 	tableParams: {
 		page: 1,
-		pageSize: 10,
+		pageSize: 50,
 		total: 0 as any,
 	},
 	editMenuTitle: '',

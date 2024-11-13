@@ -116,7 +116,7 @@ const state = reactive({
 	queryParams: {} as ApprovalFlowInput,
 	tableParams: {
 		page: 1,
-		pageSize: 20,
+		pageSize: 50,
 		total: 0 as any,
 	},
 	dialogTitle: '',
