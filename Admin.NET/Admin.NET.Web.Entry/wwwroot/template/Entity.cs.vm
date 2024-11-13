@@ -7,7 +7,7 @@
 @if(Model.BaseClassName!=""){
 @:using Admin.NET.Core;
 }
-namespace @Model.NameSpace.Entity;
+namespace @(Model.NameSpace);
 
 /// <summary>
 /// @(Model.Description)
