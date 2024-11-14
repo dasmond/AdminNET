@@ -348,7 +348,7 @@ var definedObjects = new Dictionary<string, object>();
                         if (column.NetType?.TrimEnd('?') == "string"){
                         @:.SplitError(it => it.Item.@(column.PropertyName)?.Length > @(column.ColumnLength), "@(column.ColumnComment)长度不能超过@(column.ColumnLength)个字符")
                         }}
-                        @foreach (var config in Model.TableUniqueList.Where(x => x.Columns.All(x1 => Model.TableField.Any(x2 => x2.WhetherAddUpdate == "Y" && x2.PropertyName == x1)))) {
+                        @foreach (var config in Model.TableUniqueList.Where(x => x.Columns.All(x1 => importFields.Any(x2 => x2.PropertyName == x1)))) {
                         @:.WhereColumns(it => new { @(string.Join(", ", config.Columns.Select(x => $"it.{x}"))) }).SplitError(it => it.Any(), "@(config.Message)")
                         }
                         @:.SplitInsert(_ => true)
