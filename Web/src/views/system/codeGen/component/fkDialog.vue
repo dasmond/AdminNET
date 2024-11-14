@@ -10,28 +10,28 @@
 			<el-form :model="state.ruleForm" ref="ruleFormRef" label-width="auto">
 				<el-row :gutter="35">
 					<el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="mb20">
-						<el-form-item label="库定位器" prop="configId">
+						<el-form-item label="库定位器" prop="configId" :rules="[{ required: true, message: '库不能为空', trigger: 'blur' }]">
 							<el-select clearable v-model="state.ruleForm.configId" placeholder="库名" filterable @change="DbChanged()" class="w100">
 								<el-option v-for="item in state.dbData" :key="item.configId" :label="item.configId" :value="item.configId" />
 							</el-select>
 						</el-form-item>
 					</el-col>
 					<el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="mb20">
-						<el-form-item label="数据库表" prop="tableName">
+						<el-form-item label="数据库表" prop="tableName" :rules="[{ required: true, message: '数据表不能为空', trigger: 'blur' }]">
 							<el-select v-model="state.ruleForm.tableName" filterable clearable @change="TableChanged()" class="w100">
 								<el-option v-for="item in state.tableData" :key="item.entityName" :label="item.entityName + ' ( ' + item.tableName + ' )[' + item.tableComment + ']'" :value="item.tableName" />
 							</el-select>
 						</el-form-item>
 					</el-col>
 					<el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="mb20">
-						<el-form-item label="显示字段" prop="columnName">
-							<el-select v-model="state.ruleForm.columnName" class="w100">
+						<el-form-item label="显示字段" prop="columnNames" :rules="[{ required: true, message: '显示字段不能为空', trigger: 'blur' }]">
+							<el-select v-model="state.ruleForm.columnNames" multiple class="w100">
 								<el-option v-for="item in state.columnData" :key="item.columnName" :label="item.columnName + ' [' + item.columnComment + ']'" :value="item.columnName" />
 							</el-select>
 						</el-form-item>
 					</el-col>
 					<el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="mb20">
-						<el-form-item label="链接字段" prop="linkColumnName">
+						<el-form-item label="链接字段" prop="linkColumnName" :rules="[{ required: true, message: '链接字段不能为空', trigger: 'blur' }]">
 							<el-select v-model="state.ruleForm.linkColumnName" class="w100">
 								<el-option v-for="item in state.columnData" :key="item.columnName" :label="item.columnName + ' [' + item.columnComment + ']'" :value="item.columnName" />
 							</el-select>
@@ -109,7 +109,7 @@ const openDialog = async (row: any) => {
 	if (rowdata.fkConfigId) {
 		await getDbList();
 		state.ruleForm.tableName = rowdata.fkTableName;
-		state.ruleForm.columnName = rowdata.fkColumnName;
+		state.ruleForm.columnNames = rowdata.fkColumnName?.split(",");
 		state.ruleForm.linkColumnName = rowdata.fkLinkColumnName;
 		state.ruleForm.configId = rowdata.fkConfigId;
 		await DbChanged();
@@ -123,7 +123,7 @@ const closeDialog = () => {
 	rowdata.fkTableName = state.ruleForm.tableName;
 	let tableData = state.tableData.filter((x: any) => x.tableName == state.ruleForm.tableName);
 	rowdata.fkEntityName = tableData.length == 0 ? '' : tableData[0].entityName;
-	rowdata.fkColumnName = state.ruleForm.columnName;
+	rowdata.fkColumnName = state.ruleForm.fkColumnName;
 	rowdata.fkLinkColumnName = state.ruleForm.linkColumnName;
 	rowdata.fkConfigId = state.ruleForm.configId;
 	let columnData = state.columnData.filter((x: any) => x.columnName == state.ruleForm.columnName);
@@ -146,6 +146,8 @@ const cancel = () => {
 const submit = () => {
 	ruleFormRef.value.validate(async (valid: boolean) => {
 		if (!valid) return;
+		state.ruleForm.fkColumnName = state.ruleForm.columnNames.join()
+		state.ruleForm.columnNames = undefined;
 		closeDialog();
 	});
 };

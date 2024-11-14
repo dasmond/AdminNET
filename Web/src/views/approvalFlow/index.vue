@@ -5,7 +5,7 @@
 				<el-row :gutter="35">
 					<el-col :xs="24" :sm="12" :md="12" :lg="8" :xl="4" class="mb10">
 						<el-form-item label="关键字">
-							<el-input v-model="state.queryParams.searchKey" placeholder="请输入模糊查询关键字" clearable />
+							<el-input v-model="state.queryParams.keyword" placeholder="请输入模糊查询关键字" clearable />
 						</el-form-item>
 					</el-col>
 					<el-col :xs="24" :sm="12" :md="12" :lg="8" :xl="4" class="mb10" v-if="showAdvanceQueryUI">
@@ -116,7 +116,7 @@ const state = reactive({
 	queryParams: {} as ApprovalFlowInput,
 	tableParams: {
 		page: 1,
-		pageSize: 20,
+		pageSize: 50,
 		total: 0 as any,
 	},
 	dialogTitle: '',

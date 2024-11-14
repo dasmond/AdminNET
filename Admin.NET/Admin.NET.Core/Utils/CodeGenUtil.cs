@@ -258,14 +258,14 @@ public static class CodeGenUtil
     public static string DataTypeToEff(string dataType)
     {
         if (string.IsNullOrEmpty(dataType)) return "";
-        return dataType?.TrimEnd('?') switch
+        return dataType.TrimEnd('?') switch
         {
             "string" => "Input",
             "int" => "InputNumber",
             "long" => "Input",
-            "float" => "Input",
-            "double" => "Input",
-            "decimal" => "Input",
+            "float" => "InputNumber",
+            "double" => "InputNumber",
+            "decimal" => "InputNumber",
             "bool" => "Switch",
             "Guid" => "Input",
             "DateTime" => "DatePicker",
