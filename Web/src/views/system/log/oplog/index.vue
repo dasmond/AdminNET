@@ -129,7 +129,7 @@ const state = reactive({
 	},
 	tableParams: {
 		page: 1,
-		pageSize: 20,
+		pageSize: 50,
 		field: 'createTime', // 默认的排序字段
 		order: 'descending', // 排序方向
 		descStr: 'descending', // 降序排序的关键字符

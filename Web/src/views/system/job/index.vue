@@ -296,12 +296,12 @@ const state = reactive({
 	},
 	tableParams: {
 		page: 1,
-		pageSize: 20,
+		pageSize: 50,
 		total: 0 as any,
 	},
 	tableParams2: {
 		page: 1,
-		pageSize: 20,
+		pageSize: 50,
 		total: 0 as any,
 	},
 	editJobDetailTitle: '',

@@ -1,4 +1,6 @@
 ﻿@{
+  string LowerFirstLetter(string text) => text.ToString()[..1].ToLower() + text[1..];
+
   var pkField = Model.TableField.Where(c => c.ColumnKey == "True").FirstOrDefault();
 
   string pkFieldName = pkField != null && !string.IsNullOrEmpty(pkField.PropertyName) ? LowerFirstLetter(pkField.PropertyName) : null;
@@ -56,7 +58,7 @@
             }else if(column.EffectType == "EnumSelector"){
             @:<el-form-item label="@column.ColumnComment">
               @:<el-select clearable="" v-model="queryParams.@(column.LowerPropertyName)" placeholder="请选择@(column.ColumnComment)">
-                @:<el-option v-for="(item,index) in dl('@(column.DictTypeCode)')" :key="index" :value="item.value" :label="`${item.name} (${item.code}) [${item.value}] `" />
+                @:<el-option v-for="(item,index) in dl('@(column.DictTypeCode)')" :key="index" :value="item.value" :label="`${item.name} (${item.code}-${item.value})`" />
               @:</el-select>
             @:</el-form-item>
             }else if(column.EffectType == "ApiTreeSelect"){
@@ -138,7 +140,7 @@
             @:fit="scale-down"
             @:preview-teleported=""/>
             }else if(column.EffectType == "fk"){
-            @:<span>{{scope.row.@LowerFirstLetter(@column.PropertyName)@(column.FkColumnName)}}</span>
+            @:<span>{{scope.row.@LowerFirstLetter(@column.PropertyName)FkColumn}}</span>
             }else if(column.EffectType == "ApiTreeSelect"){
             @:<span>{{scope.row.@LowerFirstLetter(@column.PropertyName)Display}}</span>
             }else if(column.EffectType == "Switch"){
@@ -170,13 +172,18 @@
         @:<el-table-column prop="@column.LowerPropertyName" label="@column.ColumnComment" @(column.WhetherSortable == "Y" ? "sortable='custom'" : "") show-overflow-tooltip="" />
         }
         }
-        <el-table-column label="操作" width="@(Model.PrintType == "custom" ? "200" : "140")" align="center" fixed="right" show-overflow-tooltip="" v-if="auth('@(@Model.LowerClassName):update') || auth('@(@Model.LowerClassName):delete')">
+        <el-table-column label="修改记录" width="100" align="center" show-overflow-tooltip>
+          <template #default="scope">
+            <ModifyRecord :data="scope.row" />
+          </template>
+        </el-table-column>
+        <el-table-column label="操作" width="@(Model.PrintType == "custom" ? "200" : "140")" align="center" fixed="right" show-overflow-tooltip="" v-if="auth('@(Model.LowerClassName):update') || auth('@(Model.LowerClassName):delete')">
           <template #default="scope">
             @if (Model.PrintType == "custom"){
-            @:<el-button icon="ele-Printer" size="small" text="" type="primary" @@click="openPrint@(@Model.ClassName)(scope.row)" v-auth="'@(@Model.LowerClassName):print'"> 打印 </el-button>
+            @:<el-button icon="ele-Printer" size="small" text="" type="primary" @@click="openPrint@(Model.ClassName)(scope.row)" v-auth="'@(Model.LowerClassName):print'"> 打印 </el-button>
             }
-            <el-button icon="ele-Edit" size="small" text="" type="primary" @@click="openEdit@(@Model.ClassName)(scope.row)" v-auth="'@(@Model.LowerClassName):update'"> 编辑 </el-button>
-            <el-button icon="ele-Delete" size="small" text="" type="primary" @@click="del@(@Model.ClassName)(scope.row)" v-auth="'@(@Model.LowerClassName):delete'"> 删除 </el-button>
+            <el-button icon="ele-Edit" size="small" text="" type="primary" @@click="openEdit@(Model.ClassName)(scope.row)" v-auth="'@(Model.LowerClassName):update'"> 编辑 </el-button>
+            <el-button icon="ele-Delete" size="small" text="" type="primary" @@click="del@(Model.ClassName)(scope.row)" v-auth="'@(Model.LowerClassName):delete'"> 删除 </el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -193,11 +200,11 @@
 	/>
       <printDialog
         ref="printDialogRef"
-        :title="print@(@Model.ClassName)Title"
+        :title="print@(Model.ClassName)Title"
         @@reloadTable="handleQuery" />
       <editDialog
         ref="editDialogRef"
-        :title="edit@(@Model.ClassName)Title"
+        :title="edit@(Model.ClassName)Title"
         @@reloadTable="handleQuery"
       />
     </el-card>
@@ -205,15 +212,15 @@
   @if (hasImport) {
   @:<ImportData
         @:ref="importDataRef"
-        @::import="import@(@Model.ClassName)Data"
-        @::download="download@(@Model.ClassName)Template"
-        @:v-auth="'@(@Model.LowerClassName):import'"
+        @::import="@(Model.LowerClassName)Api.importData"
+        @::download="@(Model.LowerClassName)Api.downloadTemplate"
+        @:v-auth="'@(Model.LowerClassName):import'"
         @:@@refresh="handleQuery"
         @:/>
   }
 </template>
 
-<script lang="ts" setup="" name="@(@Model.LowerClassName)">
+<script lang="ts" setup name="@(Model.LowerClassName)">
   import { ref } from "vue";
   import { auth } from '/@@/utils/authFunction';
   import { getAPI } from '/@@/utils/axios-utils';
@@ -239,17 +246,13 @@
   @if(hasImport) {
   @:import ImportData from "/@@/components/table/importData.vue";
   }
-  import editDialog from '/@@/views/@(@Model.PagePath)/@(@Model.LowerClassName)/component/editDialog.vue'
+  import editDialog from '/@@/views/@(Model.PagePath)/@(Model.LowerClassName)/component/editDialog.vue'
   import printDialog from '/@@/views/system/print/component/hiprint/preview.vue'
-  import { page@(@Model.ClassName), delete@(@Model.ClassName), batchDelete@(@Model.ClassName) @(hasImport ? $", download{@Model.ClassName}Template, import{@Model.ClassName}Data" : "")@(hasSetStatus ? $", set{@Model.ClassName}Status" : "") } from '/@@/api/@(@Model.PagePath)/@(@Model.LowerClassName)';
-  @foreach (var column in Model.QueryWhetherList.Where(u => u.EffectType == "fk")) {
-  @:import { get@(@column.FkEntityName)@(@column.PropertyName)Dropdown } from '/@@/api/@(@Model.PagePath)/@(@Model.LowerClassName)';
-  }
-  @foreach (var column in Model.QueryWhetherList.Where(u => u.EffectType == "ApiTreeSelect")) {
-  @:import { get@(column.FkEntityName)Tree } from '/@@/api/@(@Model.PagePath)/@(@Model.LowerClassName)';
-  }
-
-  const showAdvanceQueryUI = ref(@(@haveLikeCdt ? "false" : "true"));
+  import ModifyRecord from '/@@/components/table/modifyRecord.vue';
+  import { use@(Model.ClassName)Api} from '/@@/api/@(Model.PagePath)/@(Model.LowerClassName)';
+  
+  const showAdvanceQueryUI = ref(@(haveLikeCdt ? "false" : "true"));
+  const @(Model.LowerClassName)Api = use@(Model.ClassName)Api();
   const printDialogRef = ref();
   const editDialogRef = ref();
   @if (hasImport){
@@ -268,8 +271,8 @@
     total: 0 as any,
   });
 
-  const print@(@Model.ClassName)Title = ref("");
-  const edit@(@Model.ClassName)Title = ref("")
+  const print@(Model.ClassName)Title = ref("");
+  const edit@(Model.ClassName)Title = ref("")
 
   // 改变高级查询的控件显示状态
   const changeAdvanceQueryUI = () => {
@@ -279,7 +282,7 @@
   // 查询操作
   const handleQuery = async () => {
     loading.value = true;
-    var res = await page@(@Model.ClassName)(Object.assign(queryParams.value, tableParams.value));
+    var res = await @(Model.LowerClassName)Api.page(Object.assign(queryParams.value, tableParams.value));
     tableData.value = res.data.result?.items ?? [];
     tableParams.value.total = res.data.result?.total;
     loading.value = false;
@@ -293,8 +296,8 @@
   };
 
   // 打开新增页面
-  const openAdd@(@Model.ClassName) = () => {
-    edit@(@Model.ClassName)Title.value = '添加@(@Model.BusName)';
+  const openAdd@(Model.ClassName) = () => {
+    edit@(Model.ClassName)Title.value = '添加@(Model.BusName)';
     const data = {
 @if (hasSetStatus) {
         @:status: 1,
@@ -307,18 +310,18 @@
   };
 
   // 设置状态
-  const change@(@Model.ClassName)Status = async (row: any) => {
-    await set@(@Model.ClassName)Status({ id: row.id, status: row.status })
+  const change@(Model.ClassName)Status = async (row: any) => {
+    await @(Model.LowerClassName)Api.setStatus({ id: row.id, status: row.status })
             .then(() => ElMessage.success('状态设置成功'))
             .catch(() => { row.status = row.status == 1 ? 2 : 1; });
   };
   
   // 打开打印页面
-  const openPrint@(@Model.ClassName) = async (row: any) => {
-    print@(@Model.ClassName)Title.value = '打印@(@Model.BusName)';
+  const openPrint@(Model.ClassName) = async (row: any) => {
+    print@(Model.ClassName)Title.value = '打印@(Model.BusName)';
     @if(Model.PrintType == "custom"){
     @:var res = await getAPI(SysPrintApi).apiSysPrintPrintNameGet('@Model.PrintName');
-	  @:var printTemplate = res.data.result as SysPrint;
+	@:var printTemplate = res.data.result as SysPrint;
     @:var template = JSON.parse(printTemplate.template);
     @:row['printDate'] = formatDate(new Date(), 'YYYY-mm-dd HH:MM:SS')
     @:printDialogRef.value.showDialog(new hiprint.PrintTemplate({template: template}), row, template.panels[0].width);
@@ -326,20 +329,20 @@
   }
   
   // 打开编辑页面
-  const openEdit@(@Model.ClassName) = (row: any) => {
-    edit@(@Model.ClassName)Title.value = '编辑@(@Model.BusName)';
+  const openEdit@(Model.ClassName) = (row: any) => {
+    edit@(Model.ClassName)Title.value = '编辑@(Model.BusName)';
     editDialogRef.value.openDialog(row);
   };
 
   // 删除
-  const del@(@Model.ClassName) = (row: any) => {
+  const del@(Model.ClassName) = (row: any) => {
     ElMessageBox.confirm(`确定要删除吗?`, "提示", {
     confirmButtonText: "确定",
     cancelButtonText: "取消",
     type: "warning",
   })
   .then(async () => {
-    await delete@(@Model.ClassName)(row);
+    await @(Model.LowerClassName)Api.delete(row);
     handleQuery();
     ElMessage.success("删除成功");
   })
@@ -347,14 +350,14 @@
   };
 
   // 批量删除
-  const batchDel@(@Model.ClassName) = () => {
+  const batchDel@(Model.ClassName) = () => {
     ElMessageBox.confirm(`确定要删除${selectData.value.length}条记录吗?`, "提示", {
       confirmButtonText: "确定",
       cancelButtonText: "取消",
       type: "warning",
     }).then(async () => {
       @foreach (var column in @Model.TableField.Where(u => u.ColumnKey == "True")) {
-      @:const count = await batchDelete@(@Model.ClassName)({ @(@column.LowerPropertyName)List: selectData.value.map(u => u.@(@column.LowerPropertyName)) });
+      @:const count = await @(Model.LowerClassName)Api.batchDelete({ @(column.LowerPropertyName)List: selectData.value.map(u => u.@(column.LowerPropertyName)) });
       }
       handleQuery();
       ElMessage.success(`成功批量删除${count}条记录`);
@@ -374,26 +377,26 @@
   };
 
 @foreach (var column in Model.TableField) {
-  if (column.EffectType == "ApiTreeSelect" && !definedObjects.ContainsKey("define_get@(@column.FkEntityName)TreeData")) {
-  definedObjects.Add("define_get@(@column.FkEntityName)TreeData", 1);
+  if (column.EffectType == "fk") {
+    var dropdownName = $"{column.FkEntityName}{Regex.Replace(column.PropertyName, "[iI]d$", "")}Dropdown";
+  @:const @LowerFirstLetter(dropdownName)List = ref<any>([]);
+  @:const get@(dropdownName)List = async () => {
+    @:let list = await @(Model.LowerClassName)Api.get@(dropdownName)();
+    @:@(LowerFirstLetter(dropdownName))List.value = list.data.result ?? [];
+  @:};
+  @:get@(dropdownName)List();
+  @:
+  } else if (column.EffectType == "ApiTreeSelect" && !definedObjects.ContainsKey("define_get@(column.FkEntityName)TreeData")) {
+  definedObjects.Add("define_get@(column.FkEntityName)TreeData", 1);
   @:const @LowerFirstLetter(@column.FkEntityName)TreeData = ref<any>([]);
   @:const get@(column.FkEntityName)TreeData = async () => {
-    @:let list = await get@(column.FkEntityName)Tree();
+    @:let list = await @(Model.LowerClassName)Api.get@(column.FkEntityName)Tree();
     @:@LowerFirstLetter(@column.FkEntityName)TreeData.value = list.data.result ?? [];
   @:};
   @:get@(column.FkEntityName)TreeData();
   @:
-  } else if (column.EffectType == "fk") {
-  @:const @LowerFirstLetter(@column.FkEntityName)@(@column.PropertyName)DropdownList = ref<any>([]);
-  @:const get@(@column.FkEntityName)@(@column.PropertyName)DropdownList = async () => {
-    @:let list = await get@(@column.FkEntityName)@(@column.PropertyName)Dropdown();
-    @:@LowerFirstLetter(@column.FkEntityName)@(@column.PropertyName)DropdownList.value = list.data.result ?? [];
-  @:};
-  @:get@(@column.FkEntityName)@(@column.PropertyName)DropdownList();
-  @:
-  }
+  } 
 }
-
   handleQuery();
 </script>
 <style scoped>
@@ -401,10 +404,3 @@
   width: 100%;
 }
 </style>
-
-@{
-string LowerFirstLetter(string text)
-{
-return text.ToString()[..1].ToLower() + text[1..]; // 首字母小写
-}
-}

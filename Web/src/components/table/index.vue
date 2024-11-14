@@ -195,7 +195,7 @@ const state = reactive({
 	total: 0,
 	page: {
 		page: 1,
-		pageSize: 10,
+		pageSize: 50,
 		field: '',
 		order: '',
 	},

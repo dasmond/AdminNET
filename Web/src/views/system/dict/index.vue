@@ -178,7 +178,7 @@ const state = reactive({
 	},
 	tableDictTypeParams: {
 		page: 1,
-		pageSize: 20,
+		pageSize: 50,
 		total: 0 as any,
 	},
 	queryDictDataParams: {
@@ -188,7 +188,7 @@ const state = reactive({
 	},
 	tableDictDataParams: {
 		page: 1,
-		pageSize: 20,
+		pageSize: 50,
 		total: 0 as any,
 	},
 	editDictTypeTitle: '',
