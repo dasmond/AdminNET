@@ -25,7 +25,7 @@
 					</el-col>
 					<el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="mb20">
 						<el-form-item label="显示字段" prop="displayColumns" :rules="[{ required: true, message: '显示字段不能为空', trigger: 'blur' }]">
-							<el-select v-model="state.ruleForm.displayColumns" multiple class="w100">
+							<el-select v-model="state.ruleForm.displayColumns" multiple filterable class="w100">
 								<el-option v-for="item in state.columnData" :key="item.columnName" :label="item.columnName + ' [' + item.columnComment + ']'" :value="item.columnName" />
 							</el-select>
 						</el-form-item>
@@ -90,6 +90,9 @@ const DbChanged = async () => {
 const TableChanged = async () => {
 	state.columnData = [];
 	await getColumnInfoList();
+	state.ruleForm.displayColumns = undefined;
+	state.ruleForm.valueColumn = undefined;
+	state.ruleForm.pidColumn = undefined;
 };
 
 const getDbList = async () => {
