@@ -152,7 +152,7 @@
 											<el-button icon="ele-Delete" type="danger" circle plain size="small" @click="() => state.ruleForm.tableUniqueList?.splice(k, 1)" />
 											<span class="ml5">字段</span>
 										</template>
-										<el-select v-model="state.ruleForm.tableUniqueList[k].columns" multiple filterable class="w100">
+										<el-select v-model="state.ruleForm.tableUniqueList[k].columns" @change="(val: any) => changeTableUniqueColumn(val, k)" multiple filterable clearable class="w100">
 											<el-option v-for="item in state.columnData" :key="item.columnName" :label="item.columnName + ' [' + item.columnComment + ']'" :value="item.columnName" />
 										</el-select>
 									</el-form-item>
@@ -244,6 +244,13 @@ const tableChanged = (item: any) => {
 	state.ruleForm.busName = item.tableComment;
 	getColumnInfoList();
 };
+
+// 表唯一约束配置项字段改变事件
+const changeTableUniqueColumn = (value: any, index: number) => {
+  if (value?.length === 1 && !state.ruleForm.tableUniqueList[index].message) {
+    state.ruleForm.tableUniqueList[index].message = state.columnData.find((u: any) => u.columnName === value[0])?.columnComment;
+  }
+}
 
 const getColumnInfoList = async () => {
 	if (state.ruleForm.configId == '' || state.ruleForm.tableName == '') return;
