@@ -250,7 +250,7 @@ var definedObjects = new Dictionary<string, object>();
     @:[ApiDescriptionSettings(Name = "Upload@(column.PropertyName)"), HttpPost]
     @:public async Task<SysFile> Upload@(column.PropertyName)([Required] IFormFile file)
     @:{
-        @:return await _sysFileService.UploadFile(new FileUploadInput { File = file, Path = "upload/@(Model.ClassName)/@(column.PropertyName)" }); 
+        @:return await _sysFileService.UploadFile(new FileUploadInput { File = file, SavePath = "upload/@(Model.ClassName)/@(column.PropertyName)" }); 
     @:}
 }
 @if (importFields.Count() > 0) {
