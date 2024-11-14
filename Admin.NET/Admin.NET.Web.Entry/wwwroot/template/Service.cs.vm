@@ -110,6 +110,9 @@ public class @(Model.ClassName)Service : IDynamicApiController, ITransient
     public async Task<long> Add(Add@(Model.ClassName)Input input)
     {
         var entity = input.Adapt<@(Model.ClassName)>();
+        @foreach (var config in Model.TableUniqueList.Where(x => x.Columns.All(x1 => Model.TableField.Any(x2 => x2.WhetherAddUpdate == "Y" && x2.PropertyName == x1)))) {
+        @:if (_@(Model.LowerClassName)Rep.AnyAsync(u => @(string.Join(" && ", config.Columns.Select(x => $"u.{x} != null && u.{x} == input.{x}"))))) throw Oops.Oh("@config.Message");
+        }
         return await _@(Model.LowerClassName)Rep.InsertAsync(entity) ? entity.Id : 0;
     }
 
@@ -154,6 +157,9 @@ public class @(Model.ClassName)Service : IDynamicApiController, ITransient
     [ApiDescriptionSettings(Name = "Update"), HttpPost]
     public async Task Update(Update@(Model.ClassName)Input input)
     {
+        @foreach (var config in Model.TableUniqueList.Where(x => x.Columns.All(x1 => Model.TableField.Any(x2 => x2.WhetherAddUpdate == "Y" && x2.PropertyName == x1)))) {
+        @:if (_@(Model.LowerClassName)Rep.AnyAsync(u => u.@(primaryKey.PropertyName) != input.@(primaryKey.PropertyName) && @(string.Join(" && ", config.Columns.Select(x => $"u.{x} != null && u.{x} == input.{x}"))))) throw Oops.Oh("@config.Message");
+        }
         var entity = input.Adapt<@(Model.ClassName)>();
         await _@(Model.LowerClassName)Rep.AsUpdateable(entity).IgnoreColumns(ignoreAllNullColumns: true).ExecuteCommandAsync();
     }
@@ -342,7 +348,9 @@ var definedObjects = new Dictionary<string, object>();
                         if (column.NetType?.TrimEnd('?') == "string"){
                         @:.SplitError(it => it.Item.@(column.PropertyName)?.Length > @(column.ColumnLength), "@(column.ColumnComment)长度不能超过@(column.ColumnLength)个字符")
                         }}
-                        @:.SplitError(it => it.Any(), "记录已存在")
+                        @foreach (var config in Model.TableUniqueList.Where(x => x.Columns.All(x1 => importFields.Any(x2 => x2.PropertyName == x1)))) {
+                        @:.WhereColumns(it => new { @(string.Join(", ", config.Columns.Select(x => $"it.{x}"))) }).SplitError(it => it.Any(), "@(config.Message)")
+                        }
                         @:.SplitInsert(_ => true)
                         @:.ToStorage();
 

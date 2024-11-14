@@ -38,14 +38,15 @@
 						<el-tag type="danger" v-else> 生成到本项目 </el-tag>
 					</template>
 				</el-table-column>
-				<el-table-column label="操作" width="400" fixed="right" align="center" show-overflow-tooltip>
+				<el-table-column label="操作" width="280" fixed="right" align="center" show-overflow-tooltip>
 					<template #default="scope">
-						<el-button icon="ele-Position" size="small" text type="primary" @click="handleGenerate(scope.row)">开始生成</el-button>
-						<el-button icon="ele-View" size="small" text type="primary" @click="handlePreview(scope.row)">预览</el-button>
-						<el-button icon="ele-Setting" size="small" text type="primary" @click="openConfigDialog(scope.row)">配置</el-button>
-						<el-button icon="ele-CopyDocument" size="small" text type="primary" @click="openCopyDialog(scope.row)"> 复制 </el-button>
-						<el-button icon="ele-Edit" size="small" text type="primary" @click="openEditDialog(scope.row)">编辑</el-button>
-						<el-button icon="ele-Delete" size="small" text type="danger" @click="deleConfig(scope.row)">删除</el-button>
+						<el-button icon="ele-Delete" size="small" text type="danger" title="删除" @click="deleConfig(scope.row)" />
+						<el-button icon="ele-Edit" size="small" text type="primary" title="编辑" @click="openEditDialog(scope.row)" />
+						<el-button icon="ele-CopyDocument" size="small" text type="primary" title="复制" @click="openCopyDialog(scope.row)" />
+						<el-button icon="ele-View" size="small" text type="primary" title="预览" @click="handlePreview(scope.row)" />
+						<el-button icon="ele-Setting" size="small" text type="primary" title="配置" @click="openConfigDialog(scope.row)" />
+						<el-button icon="ele-Refresh" size="small" text type="primary" title="同步" @click="syncCodeGen(scope.row)" />
+						<el-button icon="ele-Position" size="small" text type="primary" @click="handleGenerate(scope.row)">生成</el-button>
 					</template>
 				</el-table-column>
 			</el-table>
@@ -62,9 +63,9 @@
 			/>
 		</el-card>
 
-		<EditCodeGenDialog :title="state.editMenuTitle" ref="EditCodeGenRef" @handleQuery="handleQuery" :application-namespaces="state.applicationNamespaces" />
+		<EditCodeGenDialog :title="state.editTitle" ref="EditCodeGenRef" @handleQuery="handleQuery" :application-namespaces="state.applicationNamespaces" />
 		<CodeConfigDialog ref="CodeConfigRef" @handleQuery="handleQuery" />
-		<PreviewDialog :title="state.editMenuTitle" ref="PreviewRef" />
+		<PreviewDialog :title="state.editTitle" ref="PreviewRef" />
 	</div>
 </template>
 
@@ -102,7 +103,7 @@ const state = reactive({
 		pageSize: 50,
 		total: 0 as any,
 	},
-	editMenuTitle: '',
+	editTitle: '',
 	applicationNamespaces: [] as Array<string>,
 });
 
@@ -148,7 +149,7 @@ const handleCurrentChange = (val: number) => {
 
 // 打开表增加页面
 const openAddDialog = () => {
-	state.editMenuTitle = '增加';
+	state.editTitle = '增加';
 	EditCodeGenRef.value?.openDialog({
 		authorName: 'Admin.NET',
 		generateType: '200',
@@ -162,13 +163,13 @@ const openAddDialog = () => {
 
 // 打开表编辑页面
 const openEditDialog = (row: any) => {
-	state.editMenuTitle = '编辑';
+	state.editTitle = '编辑';
 	EditCodeGenRef.value?.openDialog(row);
 };
 
 // 打开复制页面
 const openCopyDialog = (row: any) => {
-	state.editUserTitle = '复制';
+	state.editTitle = '复制';
 	var copyRow = JSON.parse(JSON.stringify(row));
 	copyRow.id = 0;
 	copyRow.busName = '';
@@ -191,6 +192,22 @@ const deleConfig = (row: any) => {
 		.catch(() => {});
 };
 
+// 同步生成
+const syncCodeGen = async (row: any) => {
+  ElMessageBox.confirm(`确定要同步吗?`, '提示', {
+    confirmButtonText: '确定',
+    cancelButtonText: '取消',
+    type: 'warning',
+  }).then(async () => {
+    await getAPI(SysCodeGenApi).apiSysCodeGenDeletePost([{ id: state.ruleForm.id }]);
+    state.ruleForm.id = undefined;
+    await getAPI(SysCodeGenApi).apiSysCodeGenAddPost(state.ruleForm as AddCodeGenInput);
+    handleQuery();
+    ElMessage.success('同步成功');
+  })
+  .catch(() => {});
+}
+
 // 开始生成代码
 const handleGenerate = (row: any) => {
 	ElMessageBox.confirm(`确定要生成吗?`, '提示', {
@@ -209,7 +226,7 @@ const handleGenerate = (row: any) => {
 
 // 预览代码
 const handlePreview = (row: any) => {
-	state.editMenuTitle = '预览代码';
+	state.editTitle = '预览代码';
 	PreviewRef.value?.openDialog(row);
 };
 </script>

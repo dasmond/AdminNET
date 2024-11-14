@@ -132,8 +132,9 @@ public class SysCodeGenConfigService : IDynamicApiController, ITransient
             
             if (!string.IsNullOrWhiteSpace(tableColumn.DictTypeCode))
             {
+                codeGenConfig.QueryType = "==";
                 codeGenConfig.DictTypeCode = tableColumn.DictTypeCode;
-                codeGenConfig.EffectType = tableColumn.DictTypeCode.TrimEnd('?').EndsWith("Enum") ? "EnumSelector" : "Select";
+                codeGenConfig.EffectType = tableColumn.DictTypeCode.EndsWith("Enum") ? "EnumSelector" : "Select";
             }
 
             orderNo += 10; // 每个配置排序间隔10
