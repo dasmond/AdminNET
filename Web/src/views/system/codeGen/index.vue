@@ -63,9 +63,9 @@
 			/>
 		</el-card>
 
-		<EditCodeGenDialog :title="state.editMenuTitle" ref="EditCodeGenRef" @handleQuery="handleQuery" :application-namespaces="state.applicationNamespaces" />
+		<EditCodeGenDialog :title="state.editTitle" ref="EditCodeGenRef" @handleQuery="handleQuery" :application-namespaces="state.applicationNamespaces" />
 		<CodeConfigDialog ref="CodeConfigRef" @handleQuery="handleQuery" />
-		<PreviewDialog :title="state.editMenuTitle" ref="PreviewRef" />
+		<PreviewDialog :title="state.editTitle" ref="PreviewRef" />
 	</div>
 </template>
 
@@ -103,7 +103,7 @@ const state = reactive({
 		pageSize: 50,
 		total: 0 as any,
 	},
-	editMenuTitle: '',
+	editTitle: '',
 	applicationNamespaces: [] as Array<string>,
 });
 
@@ -149,7 +149,7 @@ const handleCurrentChange = (val: number) => {
 
 // 打开表增加页面
 const openAddDialog = () => {
-	state.editMenuTitle = '增加';
+	state.editTitle = '增加';
 	EditCodeGenRef.value?.openDialog({
 		authorName: 'Admin.NET',
 		generateType: '200',
@@ -163,13 +163,13 @@ const openAddDialog = () => {
 
 // 打开表编辑页面
 const openEditDialog = (row: any) => {
-	state.editMenuTitle = '编辑';
+	state.editTitle = '编辑';
 	EditCodeGenRef.value?.openDialog(row);
 };
 
 // 打开复制页面
 const openCopyDialog = (row: any) => {
-	state.editUserTitle = '复制';
+	state.editTitle = '复制';
 	var copyRow = JSON.parse(JSON.stringify(row));
 	copyRow.id = 0;
 	copyRow.busName = '';
@@ -226,7 +226,7 @@ const handleGenerate = (row: any) => {
 
 // 预览代码
 const handlePreview = (row: any) => {
-	state.editMenuTitle = '预览代码';
+	state.editTitle = '预览代码';
 	PreviewRef.value?.openDialog(row);
 };
 </script>
