@@ -132,6 +132,7 @@ public class SysCodeGenConfigService : IDynamicApiController, ITransient
             
             if (!string.IsNullOrWhiteSpace(tableColumn.DictTypeCode))
             {
+                codeGenConfig.QueryType = "==";
                 codeGenConfig.DictTypeCode = tableColumn.DictTypeCode;
                 codeGenConfig.EffectType = tableColumn.DictTypeCode.EndsWith("Enum") ? "EnumSelector" : "Select";
             }
