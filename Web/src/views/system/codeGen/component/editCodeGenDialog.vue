@@ -136,6 +136,35 @@
 							</el-select>
 						</el-form-item>
 					</el-col>
+					<el-divider border-style="dashed" content-position="center">
+						<div style="color: #b1b3b8">数据唯一性配置</div>
+					</el-divider>
+					<el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="mb20">
+						<el-button icon="ele-Plus" type="primary" plain @click="() => state.ruleForm.tableUniqueList?.push({})"> 增加配置 </el-button>
+						<span style="font-size: 12px; color: gray; padding-left: 5px"> 保证字段值的唯一性，排除null值 </span>
+					</el-col>
+					<el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="mb20">
+						<template v-if="state.ruleForm.tableUniqueList != undefined && state.ruleForm.tableUniqueList.length > 0">
+							<el-row :gutter="35" v-for="(v, k) in state.ruleForm.tableUniqueList" :key="k">
+								<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
+									<el-form-item label="字段" :prop="`tableUniqueList[${k}].columns`" :rules="[{ required: true, message: `字段不能为空`, trigger: 'blur' }]">
+										<template #label>
+											<el-button icon="ele-Delete" type="danger" circle plain size="small" @click="() => state.ruleForm.tableUniqueList?.splice(k, 1)" />
+											<span class="ml5">字段</span>
+										</template>
+										<el-select v-model="state.ruleForm.tableUniqueList[k].columns" multiple filterable class="w100">
+											<el-option v-for="item in state.columnData" :key="item.columnName" :label="item.columnName + ' [' + item.columnComment + ']'" :value="item.columnName" />
+										</el-select>
+									</el-form-item>
+								</el-col>
+								<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
+									<el-form-item label="描述信息" :prop="`tableUniqueList[${k}].message`" :rules="[{ required: true, message: `描述信息不能为空`, trigger: 'blur' }]">
+										<el-input v-model="state.ruleForm.tableUniqueList[k].message" clearable placeholder="请输入" />
+									</el-form-item>
+								</el-col>
+							</el-row>
+						</template>
+					</el-col>
 				</el-row>
 			</el-form>
 			<template #footer>
@@ -168,6 +197,7 @@ const state = reactive({
 	ruleForm: {} as UpdateCodeGenInput,
 	tableData: [] as any,
 	dbData: [] as any,
+	columnData: [] as any,
 	menuData: [] as Array<SysMenu>,
 	codeGenTypeList: [] as any,
 	printTypeList: [] as any,
@@ -212,6 +242,13 @@ const dbChanged = async () => {
 const tableChanged = (item: any) => {
 	state.ruleForm.tableName = item.entityName;
 	state.ruleForm.busName = item.tableComment;
+	getColumnInfoList();
+};
+
+const getColumnInfoList = async () => {
+	if (state.ruleForm.configId == '' || state.ruleForm.tableName == '') return;
+	var res = await getAPI(SysCodeGenApi).apiSysCodeGenColumnListByTableNameTableNameConfigIdGet(state.ruleForm.tableName, state.ruleForm.configId);
+	state.columnData = res.data.result;
 };
 
 // 菜单改变
@@ -233,8 +270,10 @@ const getGlobalComponentSize = computed(() => {
 // 打开弹窗
 const openDialog = (row: any) => {
 	state.ruleForm = JSON.parse(JSON.stringify(row));
+	state.ruleForm.tableUniqueList = JSON.parse(row.tableUniqueConfig ?? "[]");
 	state.isShowDialog = true;
 	ruleFormRef.value?.resetFields();
+	getColumnInfoList();
 };
 
 // 关闭弹窗
@@ -252,6 +291,7 @@ const cancel = () => {
 const submit = () => {
 	ruleFormRef.value.validate(async (valid: boolean) => {
 		if (!valid) return;
+		state.ruleForm.tableUniqueConfig = state.ruleForm.tableUniqueList?.length > 0 ? JSON.stringify(state.ruleForm.tableUniqueList) : undefined;
 		if (state.ruleForm.id != undefined && state.ruleForm.id > 0) {
 			await getAPI(SysCodeGenApi).apiSysCodeGenUpdatePost(state.ruleForm as UpdateCodeGenInput);
 		} else {

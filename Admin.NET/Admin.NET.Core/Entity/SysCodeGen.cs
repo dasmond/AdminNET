@@ -84,6 +84,13 @@ public partial class SysCodeGen : EntityBase
     [SugarColumn(ColumnDescription = "业务名", Length = 128)]
     [MaxLength(128)]
     public string? BusName { get; set; }
+    
+    /// <summary>
+    /// 表唯一字段配置
+    /// </summary>
+    [SugarColumn(ColumnDescription = "表唯一字段配置", Length = 512)]
+    [MaxLength(128)]
+    public string? TableUniqueConfig { get; set; }
 
     /// <summary>
     /// 是否生成菜单

@@ -34,6 +34,8 @@ public class CustomViewEngine : ViewEngineModel
 
     public string ProjectLastName { get; set; }
 
+    public List<TableUniqueConfigItem> TableUniqueList { get; set; }
+
     public string LowerClassName
     {
         get
