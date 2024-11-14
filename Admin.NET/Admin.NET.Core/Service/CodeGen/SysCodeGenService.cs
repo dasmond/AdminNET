@@ -233,9 +233,10 @@ public class SysCodeGenService : IDynamicApiController, ITransient
             {
                 columnOutput.PropertyName = propertyInfo.Name;
                 columnOutput.ColumnComment = propertyInfo.GetCustomAttribute<SugarColumn>().ColumnDescription;
-                if (propertyInfo.PropertyType.IsEnum)
+                var propertyType = Nullable.GetUnderlyingType(propertyInfo.PropertyType);
+                if (propertyInfo.PropertyType.IsEnum || propertyType != null)
                 {
-                    columnOutput.DictTypeCode = propertyInfo.PropertyType.Name;
+                    columnOutput.DictTypeCode = (propertyType ?? propertyInfo.PropertyType).Name;
                 }
                 else
                 {

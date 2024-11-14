@@ -38,10 +38,11 @@
 						<el-tag type="danger" v-else> 生成到本项目 </el-tag>
 					</template>
 				</el-table-column>
-				<el-table-column label="操作" width="400" fixed="right" align="center" show-overflow-tooltip>
+				<el-table-column label="操作" width="450" fixed="right" align="center" show-overflow-tooltip>
 					<template #default="scope">
 						<el-button icon="ele-Position" size="small" text type="primary" @click="handleGenerate(scope.row)">开始生成</el-button>
 						<el-button icon="ele-View" size="small" text type="primary" @click="handlePreview(scope.row)">预览</el-button>
+						<el-button icon="ele-Refresh" size="small" text type="primary" @click="syncCodeGen(scope.row)">同步</el-button>
 						<el-button icon="ele-Setting" size="small" text type="primary" @click="openConfigDialog(scope.row)">配置</el-button>
 						<el-button icon="ele-CopyDocument" size="small" text type="primary" @click="openCopyDialog(scope.row)"> 复制 </el-button>
 						<el-button icon="ele-Edit" size="small" text type="primary" @click="openEditDialog(scope.row)">编辑</el-button>
@@ -190,6 +191,22 @@ const deleConfig = (row: any) => {
 		})
 		.catch(() => {});
 };
+
+// 同步生成
+const syncCodeGen = async (row: any) => {
+  ElMessageBox.confirm(`确定要同步吗?`, '提示', {
+    confirmButtonText: '确定',
+    cancelButtonText: '取消',
+    type: 'warning',
+  }).then(async () => {
+    await getAPI(SysCodeGenApi).apiSysCodeGenDeletePost([{ id: state.ruleForm.id }]);
+    state.ruleForm.id = undefined;
+    await getAPI(SysCodeGenApi).apiSysCodeGenAddPost(state.ruleForm as AddCodeGenInput);
+    handleQuery();
+    ElMessage.success('同步成功');
+  })
+  .catch(() => {});
+}
 
 // 开始生成代码
 const handleGenerate = (row: any) => {
