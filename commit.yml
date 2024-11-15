@@ -2,19 +2,25 @@
 branches: {
   }
 fileChange:
-  /Admin.NET:
-    newFile: !uuid 'd23af272a050759342b0dde4401d199e57c0b2b4'
-    oldFile: !uuid '022d1dd0ea7790181cea5cbbd07037b449371325'
-  /Admin.NET/Admin.NET.Core:
-    newFile: !uuid 'a377fb78c3c4e82c773ab585c7b138e050a89fdf'
-    oldFile: !uuid 'aa9b1bcd1bc79b1ffa7859f66979206b0dd6d972'
-  /Admin.NET/Admin.NET.Core/Job:
-    newFile: !uuid '0b49eb13c70be99fbc3c78a90e60e2fa589c2822'
-    oldFile: !uuid '7d5ed187b5b360fc24c9cd92a1d184bf42ea31fa'
-  /Admin.NET/Admin.NET.Core/Job/EnumToDictJob.cs:
-    newFile: !uuid 'e09f6132ac037d8b471cdc30b84e526e8d389f27'
-    oldFile: !uuid '56b9aa6b4001a37d707d28468d14797527d469cf'
-gitCommitId: !uuid 'dad4d07cbce62d5011e73158993d271a6281c3e7'
+  /Web:
+    newFile: !uuid 'f4b219e4666041b33a372024e363216be3683498'
+    oldFile: !uuid 'c730913fe3979a8653b3d7e9502b58402fffd745'
+  /Web/src:
+    newFile: !uuid '6ca7ff4fb756bd9a9ea2a9760f97eea6b39dbce5'
+    oldFile: !uuid '5c26b5fea22a534ed6ace38a8b3d36c86e885768'
+  /Web/src/views:
+    newFile: !uuid '95ee1fad10598cb476e5a92988b37a4ac75e9da5'
+    oldFile: !uuid '0895bafa73f46097ff7155bf31e1e0d50f191ccc'
+  /Web/src/views/home:
+    newFile: !uuid '418c17d50238414a2d902b8344b1f69ef973b990'
+    oldFile: !uuid '4920efe5759d291b6e70b8bea2b37f716d291b7a'
+  /Web/src/views/home/notice:
+    newFile: !uuid 'd8763fb9d33749b4efcc2465c654f6c99e46aceb'
+    oldFile: !uuid '9a7e73dc245bb970e01d71e3d1ea620c5571302d'
+  /Web/src/views/home/notice/index.vue:
+    newFile: !uuid '2dd3b5f1c437c4e287cf5817666d31adf1f2c26a'
+    oldFile: !uuid 'c53ee411e9151106f15ea4cd680346cd319d88a7'
+gitCommitId: !uuid '4107f11157dd913b2781570a69790a24c9b14129'
 renames: {
   }
-revisionId: 2482
+revisionId: 2483
