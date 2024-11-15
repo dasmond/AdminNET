@@ -15,7 +15,7 @@
 						</el-form-item> -->
 						<el-form-item label="机构类型">
 							<el-select v-model="state.queryParams.type" filterable clearable>
-								<el-option v-for="item in state.orgTypeList" :key="item.value" :label="item.value" :value="item.code" />
+                <el-option :label="item.value" :value="item.code" v-for="(item, index) in getDictDataByCode('org_type') ?? []" :key="index" />
 							</el-select>
 						</el-form-item>
 						<el-form-item>
@@ -35,12 +35,15 @@
 						<el-table-column prop="name" label="机构名称" min-width="160" header-align="center" show-overflow-tooltip />
 						<el-table-column prop="code" label="机构编码" align="center" show-overflow-tooltip />
 						<el-table-column prop="level" label="级别" width="70" align="center" show-overflow-tooltip />
-						<el-table-column prop="type" label="机构类型" align="center" :formatter="dictFormatter" show-overflow-tooltip />
+						<el-table-column prop="type" label="机构类型" align="center" show-overflow-tooltip>
+              <template #default="scope">
+                <DictLabel :value="scope.row.type" code="org_type" />
+              </template>
+            </el-table-column>
 						<el-table-column prop="orderNo" label="排序" width="70" align="center" show-overflow-tooltip />
 						<el-table-column label="状态" width="70" align="center" show-overflow-tooltip>
 							<template #default="scope">
-								<el-tag type="success" v-if="scope.row.status === 1">启用</el-tag>
-								<el-tag type="danger" v-else>禁用</el-tag>
+                <DictLabel :value="scope.row.status" code="StatusEnum" />
 							</template>
 						</el-table-column>
 						<el-table-column label="修改记录" width="100" align="center" show-overflow-tooltip>
@@ -74,10 +77,13 @@ import OrgTree from '/@/views/system/org/component/orgTree.vue';
 import EditOrg from '/@/views/system/org/component/editOrg.vue';
 import ModifyRecord from '/@/components/table/modifyRecord.vue';
 
+import {useUserInfo} from "/@/stores/userInfo";
 import { getAPI } from '/@/utils/axios-utils';
-import { SysOrgApi, SysDictDataApi } from '/@/api-services/api';
+import { SysOrgApi } from '/@/api-services/api';
 import { SysOrg, UpdateOrgInput } from '/@/api-services/models';
+import DictLabel from "/@/components/table/dictLabel.vue";
 
+const getDictDataByCode = useUserInfo.getDictDataByCode;
 const editOrgRef = ref<InstanceType<typeof EditOrg>>();
 const orgTreeRef = ref<InstanceType<typeof OrgTree>>();
 const state = reactive({
@@ -90,15 +96,11 @@ const state = reactive({
 		code: undefined,
 		type: undefined,
 	},
-	editOrgTitle: '',
-	orgTypeList: [] as any,
+	editOrgTitle: ''
 });
 
 onMounted(async () => {
 	handleQuery();
-
-	let resDicData = await getAPI(SysDictDataApi).apiSysDictDataDataListCodeGet('org_type');
-	state.orgTypeList = resDicData.data.result;
 });
 
 // 查询操作
@@ -172,10 +174,5 @@ const nodeClick = async (node: any) => {
 	state.queryParams.code = undefined;
 	state.queryParams.type = undefined;
 	handleQuery();
-};
-
-// 字典转换
-const dictFormatter = (row: any, column: any, cellValue: any) => {
-	return state.orgTypeList.find((u: any) => u.code == cellValue)?.value;
 };
 </script>

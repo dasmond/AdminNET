@@ -18,7 +18,7 @@ public class @(Model.ClassName)Output
     @:/// <summary>
     @:/// @column.ColumnComment
     @:/// </summary>
-if(column.EffectType == "fk")
+if(column.EffectType == "ForeignKey")
 {
     @:public @column.NetType @column.PropertyName { get; set; } 
     @:
@@ -29,7 +29,7 @@ if(column.EffectType == "fk")
 }else if(column.EffectType == "Upload"){
     @:public @column.NetType @column.PropertyName { get; set; }
     @:public SysFile @(column.PropertyName)Attachment { get; set; }
-}else if(column.EffectType == "ApiTreeSelect"){
+}else if(column.EffectType == "ApiTreeSelector"){
     @:public @column.NetType @column.PropertyName { get; set; } 
     @:
     @:/// <summary>
@@ -43,7 +43,7 @@ if(column.EffectType == "fk")
 }
 }
 @foreach (var column in Model.TableField){
-if (column.EffectType == "ApiTreeSelect"){
+if (column.EffectType == "ApiTreeSelector"){
 @:
 @:/// <summary>
 @:/// @(Model.BusName)树选择器输出参数

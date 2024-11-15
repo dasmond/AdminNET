@@ -7,9 +7,7 @@
 				</el-form-item>
 				<el-form-item label="类型">
 					<el-select v-model="state.queryParams.type" placeholder="类型" clearable>
-						<el-option label="目录" :value="1" />
-						<el-option label="菜单" :value="2" />
-						<el-option label="按钮" :value="3" />
+            <el-option :value="item.value" :label="item.name" v-for="(item, index) in getDictDataByCode('MenuTypeEnum')" :key="index" />
 					</el-select>
 				</el-form-item>
 				<el-form-item>
@@ -34,9 +32,7 @@
 				</el-table-column>
 				<el-table-column label="类型" width="70" align="center" show-overflow-tooltip>
 					<template #default="scope">
-						<el-tag type="warning" v-if="scope.row.type === 1">目录</el-tag>
-						<el-tag v-else-if="scope.row.type === 2">菜单</el-tag>
-						<el-tag type="info" v-else>按钮</el-tag>
+            <DictLabel :value="scope.row.type" code="MenuTypeEnum" />
 					</template>
 				</el-table-column>
 				<el-table-column prop="path" label="路由路径" header-align="center" show-overflow-tooltip />
@@ -45,8 +41,7 @@
 				<el-table-column prop="orderNo" label="排序" width="70" align="center" show-overflow-tooltip />
 				<el-table-column label="状态" width="80" align="center" show-overflow-tooltip>
 					<template #default="scope">
-						<el-tag type="success" v-if="scope.row.status === 1">启用</el-tag>
-						<el-tag type="danger" v-else>禁用</el-tag>
+            <DictLabel :value="scope.row.status" code="StatusEnum" />
 					</template>
 				</el-table-column>
 				<el-table-column label="修改记录" width="100" align="center" show-overflow-tooltip>
@@ -77,7 +72,10 @@ import ModifyRecord from '/@/components/table/modifyRecord.vue';
 import { getAPI } from '/@/utils/axios-utils';
 import { SysMenuApi } from '/@/api-services/api';
 import { SysMenu, UpdateMenuInput } from '/@/api-services/models';
+import DictLabel from "/@/components/table/dictLabel.vue";
+import {useUserInfo} from "/@/stores/userInfo";
 
+const getDictDataByCode = useUserInfo().getDictDataByCode;
 const editMenuRef = ref<InstanceType<typeof EditMenu>>();
 const state = reactive({
 	loading: false,

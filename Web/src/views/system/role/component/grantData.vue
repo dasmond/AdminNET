@@ -12,7 +12,7 @@
 					<el-col :xs="24" :sm="24" :md="24" :lg="24" :xl1="24" class="mb20">
 						<el-form-item label="数据范围：">
 							<el-select v-model="state.ruleForm.dataScope" placeholder="数据范围" style="width: 100%">
-								<el-option v-for="d in state.dataScopeType" :key="d.value" :label="d.label" :value="d.value" />
+                <el-option :label="item.value" :value="item.code" v-for="(item, index) in getDictDataByCode('DataScopeEnum') ?? []" :key="index" />
 							</el-select>
 						</el-form-item>
 					</el-col>
@@ -37,22 +37,17 @@
 import { reactive, ref } from 'vue';
 import OrgTree from '/@/views/system/org/component/orgTree.vue';
 
+import {useUserInfo} from "/@/stores/userInfo";
 import { getAPI } from '/@/utils/axios-utils';
 import { SysRoleApi } from '/@/api-services/api';
 import { RoleOrgInput } from '/@/api-services/models';
 
+const getDictDataByCode = useUserInfo.getDictDataByCode;
 const emits = defineEmits(['handleQuery']);
 const orgTreeRef = ref();
 const state = reactive({
 	isShowDialog: false,
-	ruleForm: {} as RoleOrgInput,
-	dataScopeType: [
-		{ value: 1, label: '全部数据' },
-		{ value: 2, label: '本部门及以下数据' },
-		{ value: 3, label: '本部门数据' },
-		{ value: 4, label: '仅本人数据' },
-		{ value: 5, label: '自定义数据' },
-	],
+	ruleForm: {} as RoleOrgInput
 });
 
 // 打开弹窗

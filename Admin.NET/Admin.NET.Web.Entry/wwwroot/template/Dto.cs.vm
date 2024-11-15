@@ -12,7 +12,7 @@ namespace @(Model.NameSpace);
 public class @(Model.ClassName)Dto
 {
 @foreach (var column in Model.TableField){
-if(column.EffectType == "fk" && column.FkEntityName != "" && column.FkColumnName != ""){
+if(column.EffectType == "ForeignKey" && column.FkEntityName != "" && column.FkColumnName != ""){
     @:/// <summary>
     @:/// @column.ColumnComment
     @:/// </summary>

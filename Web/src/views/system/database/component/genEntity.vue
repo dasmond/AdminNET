@@ -22,7 +22,7 @@
 					<el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="mb20">
 						<el-form-item label="基类" prop="baseClassName">
 							<el-select v-model="state.ruleForm.baseClassName" clearable class="w100">
-								<el-option v-for="item in state.codeGenBaseClassName" :key="item.code" :label="item.value" :value="item.code" />
+								<el-option v-for="item in getDictDataByCode('code_gen_base_class') ?? []" :key="item.code" :label="item.value" :value="item.code" />
 							</el-select>
 						</el-form-item>
 					</el-col>
@@ -47,26 +47,22 @@
 </template>
 
 <script lang="ts" setup name="sysGenEntity">
-import { onMounted, reactive, ref } from 'vue';
+import { reactive, ref } from 'vue';
 import { camelCase, upperFirst } from 'lodash-es';
+import {useUserInfo} from "/@/stores/userInfo";
 import { getAPI } from '/@/utils/axios-utils';
-import { SysDatabaseApi, SysDictTypeApi } from '/@/api-services/api';
+import { SysDatabaseApi } from '/@/api-services/api';
 
+const getDictDataByCode = useUserInfo.getDictDataByCode;
 const emits = defineEmits(['handleQueryColumn']);
 const ruleFormRef = ref();
 const state = reactive({
 	isShowDialog: false,
-	ruleForm: {} as any,
-	codeGenBaseClassName: [] as any,
+	ruleForm: {} as any
 });
 
 const props = defineProps({
 	applicationNamespaces: { type: Array },
-});
-
-onMounted(async () => {
-	let resDicData = await getAPI(SysDictTypeApi).apiSysDictTypeDataListGet('code_gen_base_class');
-	state.codeGenBaseClassName = resDicData.data.result;
 });
 
 // 打开弹窗

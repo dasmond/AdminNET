@@ -22,9 +22,7 @@
 					<el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="mb20">
 						<el-form-item label="菜单类型" prop="type" :rules="[{ required: true, message: '菜单类型不能为空', trigger: 'blur' }]">
 							<el-radio-group v-model="state.ruleForm.type">
-								<el-radio :value="1">目录</el-radio>
-								<el-radio :value="2">菜单</el-radio>
-								<el-radio :value="3">按钮</el-radio>
+								<el-radio :value="item.code" v-for="(item, index) in getDictDataByCode('MenuTypeEnum') ?? []" :key="index">{{item.value}}</el-radio>
 							</el-radio-group>
 						</el-form-item>
 					</el-col>
@@ -143,11 +141,13 @@
 import { computed, reactive, ref } from 'vue';
 import IconSelector from '/@/components/iconSelector/index.vue';
 
-import { getAPI } from '/@/utils/axios-utils';
 import other from '/@/utils/other';
+import {useUserInfo} from "/@/stores/userInfo";
+import { getAPI } from '/@/utils/axios-utils';
 import { SysMenuApi } from '/@/api-services/api';
 import { SysMenu, UpdateMenuInput } from '/@/api-services/models';
 
+const getDictDataByCode = useUserInfo.getDictDataByCode;
 const props = defineProps({
 	title: String,
 	menuData: Array<SysMenu>,

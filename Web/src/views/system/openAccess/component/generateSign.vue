@@ -24,15 +24,7 @@
 							<el-input v-model="state.ruleForm.url" placeholder="接口请求地址" class="input-with-select" clearable>
 								<template #prepend>
 									<el-select v-model="state.ruleForm.method" placeholder="请求方法" style="width: 100px">
-										<el-option label="Get" :value="HttpMethodEnum.NUMBER_0" />
-										<el-option label="Post" :value="HttpMethodEnum.NUMBER_1" />
-										<el-option label="Put" :value="HttpMethodEnum.NUMBER_2" />
-										<el-option label="Delete" :value="HttpMethodEnum.NUMBER_3" />
-										<el-option label="Patch" :value="HttpMethodEnum.NUMBER_4" />
-										<el-option label="Head" :value="HttpMethodEnum.NUMBER_5" />
-										<el-option label="Options" :value="HttpMethodEnum.NUMBER_6" />
-										<el-option label="Trace" :value="HttpMethodEnum.NUMBER_7" />
-										<el-option label="Connect" :value="HttpMethodEnum.NUMBER_8" />
+                    <el-option :label="item.value" :value="item.code" v-for="(item, index) in getDictDataByCode('HttpMethodEnum') ?? []" :key="index" />
 									</el-select>
 								</template>
 							</el-input>
@@ -70,10 +62,12 @@
 <script lang="ts" setup name="sysOpenAccessEdit">
 import { reactive, ref, watch } from 'vue';
 
+import {useUserInfo} from "/@/stores/userInfo";
 import { getAPI } from '/@/utils/axios-utils';
 import { SysOpenAccessApi } from '/@/api-services/api';
 import { GenerateSignatureInput, HttpMethodEnum } from '/@/api-services/models';
 
+const getDictDataByCode = useUserInfo.getDictDataByCode;
 const props = defineProps({
 	title: String,
 });

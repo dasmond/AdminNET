@@ -166,7 +166,7 @@ public class CodeGenConfig
         get
         {
             string str = "";
-            if (EffectType == "fk")
+            if (EffectType == "ForeignKey")
             {
                 str = LowerFkEntityName + "_FK_" + LowerFkColumnName;
             }

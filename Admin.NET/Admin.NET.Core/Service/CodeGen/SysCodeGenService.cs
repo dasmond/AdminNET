@@ -346,7 +346,7 @@ public class SysCodeGenService : IDynamicApiController, ITransient
 
         var tableFieldList = await _codeGenConfigService.GetList(new CodeGenConfig() { CodeGenId = input.Id }); // 字段集合
         var queryWhetherList = tableFieldList.Where(u => u.QueryWhether == YesNoEnum.Y.ToString()).ToList(); // 前端查询集合
-        var joinTableList = tableFieldList.Where(u => u.EffectType == "Upload" || u.EffectType == "fk" || u.EffectType == "ApiTreeSelect").ToList(); // 需要连表查询的字段
+        var joinTableList = tableFieldList.Where(u => u.EffectType == "Upload" || u.EffectType == "ForeignKey" || u.EffectType == "ApiTreeSelector").ToList(); // 需要连表查询的字段
         (string joinTableNames, string lowerJoinTableNames) = GetJoinTableStr(joinTableList); // 获取连表的实体名和别名
 
         var data = new CustomViewEngine(_db)
@@ -414,7 +414,7 @@ public class SysCodeGenService : IDynamicApiController, ITransient
     {
         var tableFieldList = await _codeGenConfigService.GetList(new CodeGenConfig() { CodeGenId = input.Id }); // 字段集合
         var queryWhetherList = tableFieldList.Where(u => u.QueryWhether == YesNoEnum.Y.ToString()).ToList(); // 前端查询集合
-        var joinTableList = tableFieldList.Where(u => u.EffectType == "Upload" || u.EffectType == "fk" || u.EffectType == "ApiTreeSelect").ToList(); // 需要连表查询的字段
+        var joinTableList = tableFieldList.Where(u => u.EffectType == "Upload" || u.EffectType == "ForeignKey" || u.EffectType == "ApiTreeSelector").ToList(); // 需要连表查询的字段
         (string joinTableNames, string lowerJoinTableNames) = GetJoinTableStr(joinTableList); // 获取连表的实体名和别名
 
         var data = new CustomViewEngine(_db)
@@ -468,7 +468,7 @@ public class SysCodeGenService : IDynamicApiController, ITransient
     private static (string, string) GetJoinTableStr(List<CodeGenConfig> configs)
     {
         var uploads = configs.Where(u => u.EffectType == "Upload").ToList();
-        var fks = configs.Where(u => u.EffectType == "fk").ToList();
+        var fks = configs.Where(u => u.EffectType == "ForeignKey").ToList();
         string str = ""; // <Order, OrderItem, Custom>
         string lowerStr = ""; // (o, i, c)
         foreach (var item in uploads)
@@ -673,9 +673,9 @@ public class SysCodeGenService : IDynamicApiController, ITransient
         menuOrder += 10;
 
         var menuList = new List<SysMenu> { menuTypePage, menuTypeDetail, menuTypeAdd, menuTypeStatus, menuTypeDelete, menuTypeBatchDelete, menuTypeUpdate, menuTypePrint, menuTypeImport, menuTypeExport };
-        // 加入fk、Upload、ApiTreeSelect 等接口的权限
+        // 加入ForeignKey、Upload、ApiTreeSelector 等接口的权限
         // 在生成表格时，有些字段只是查询时显示，不需要填写（WhetherAddUpdate），所以这些字段没必要生成相应接口
-        var fkTableList = tableFieldList.Where(u => u.EffectType == "fk" && (u.WhetherAddUpdate == "Y" || u.QueryWhether == "Y")).ToList();
+        var fkTableList = tableFieldList.Where(u => u.EffectType == "ForeignKey" && (u.WhetherAddUpdate == "Y" || u.QueryWhether == "Y")).ToList();
         foreach (var @column in fkTableList)
         {
             var menuType1 = new SysMenu
@@ -689,7 +689,7 @@ public class SysCodeGenService : IDynamicApiController, ITransient
             menuOrder += 10;
             menuList.Add(menuType1);
         }
-        var treeSelectTableList = tableFieldList.Where(u => u.EffectType == "ApiTreeSelect").ToList();
+        var treeSelectTableList = tableFieldList.Where(u => u.EffectType == "ApiTreeSelector").ToList();
         foreach (var @column in treeSelectTableList)
         {
             var menuType1 = new SysMenu
