@@ -112,7 +112,13 @@ onMounted(async () => {
 // 查询操作
 const handleQuery = async () => {
 	state.loading = true;
-	var res = await getAPI(SysNoticeApi).apiSysNoticePageReceivedGet(state.queryParams.title, state.queryParams.type, state.tableParams.page, state.tableParams.pageSize);
+	const pageNoticeInput = {
+		title: state.queryParams.title,
+		type: state.queryParams.type,
+		page: state.tableParams.page,
+		pageSize: state.tableParams.pageSize
+	};
+	var res = await getAPI(SysNoticeApi).apiSysNoticePageReceivedPost(pageNoticeInput);
 	state.noticeData = res.data.result?.items ?? [];
 	state.tableParams.total = res.data.result?.total;
 	state.loading = false;
