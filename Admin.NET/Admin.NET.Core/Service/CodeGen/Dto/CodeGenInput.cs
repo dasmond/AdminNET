@@ -74,7 +74,14 @@ public class CodeGenInput : BasePageInput
     /// <summary>
     /// 表唯一字段
     /// </summary>
+    [Newtonsoft.Json.JsonIgnore]
+    [System.Text.Json.Serialization.JsonIgnore]
     public virtual string TableUniqueConfig { get; set; }
+    
+    /// <summary>
+    /// 表唯一字段列表
+    /// </summary>
+    public virtual List<TableUniqueConfigItem> TableUniqueList { get; set; }
     
     /// <summary>
     /// 菜单应用分类（应用编码）

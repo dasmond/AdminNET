@@ -24,8 +24,8 @@
 						</el-form-item>
 					</el-col>
 					<el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="mb20">
-						<el-form-item label="显示字段" prop="columnNames" :rules="[{ required: true, message: '显示字段不能为空', trigger: 'blur' }]">
-							<el-select v-model="state.ruleForm.columnNames" multiple filterable class="w100">
+						<el-form-item label="显示字段" prop="fkColumnList" :rules="[{ required: true, message: '显示字段不能为空', trigger: 'blur' }]">
+							<el-select v-model="state.ruleForm.fkColumnList" multiple filterable class="w100">
 								<el-option v-for="item in state.columnData" :key="item.columnName" :label="item.columnName + ' [' + item.columnComment + ']'" :value="item.columnName" />
 							</el-select>
 						</el-form-item>
@@ -83,8 +83,8 @@ const DbChanged = async () => {
 const TableChanged = async () => {
 	state.columnData = [];
 	await getColumnInfoList();
-	state.ruleForm.columnNames = undefined;
-	state.ruleForm.linkColumnName = undefined;
+  state.ruleForm.fkColumnList = null;
+  state.ruleForm.linkColumnName = null;
 };
 
 const getDbList = async () => {
@@ -110,12 +110,12 @@ const openDialog = async (row: any) => {
 	rowdata = row;
 	if (rowdata.fkConfigId) {
 		await getDbList();
+    state.ruleForm.configId = rowdata.fkConfigId;
 		state.ruleForm.tableName = rowdata.fkTableName;
-		state.ruleForm.columnNames = rowdata.fkColumnName?.split(",");
-		state.ruleForm.linkColumnName = rowdata.fkLinkColumnName;
-		state.ruleForm.configId = rowdata.fkConfigId;
 		await DbChanged();
 		await TableChanged();
+    state.ruleForm.fkColumnList = rowdata.fkColumnList;
+    state.ruleForm.linkColumnName = rowdata.fkLinkColumnName;
 	}
 	state.isShowDialog = true;
 };
@@ -125,7 +125,7 @@ const closeDialog = () => {
 	rowdata.fkTableName = state.ruleForm.tableName;
 	let tableData = state.tableData.filter((x: any) => x.tableName == state.ruleForm.tableName);
 	rowdata.fkEntityName = tableData.length == 0 ? '' : tableData[0].entityName;
-	rowdata.fkColumnName = state.ruleForm.fkColumnName;
+	rowdata.fkColumnList = state.ruleForm.fkColumnList;
 	rowdata.fkLinkColumnName = state.ruleForm.linkColumnName;
 	rowdata.fkConfigId = state.ruleForm.configId;
 	let columnData = state.columnData.filter((x: any) => x.columnName == state.ruleForm.columnName);
@@ -148,8 +148,6 @@ const cancel = () => {
 const submit = () => {
 	ruleFormRef.value.validate(async (valid: boolean) => {
 		if (!valid) return;
-		state.ruleForm.fkColumnName = state.ruleForm.columnNames.join()
-		state.ruleForm.columnNames = undefined;
 		closeDialog();
 	});
 };

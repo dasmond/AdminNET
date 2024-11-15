@@ -5,7 +5,6 @@
 // 不得利用本项目从事危害国家安全、扰乱社会秩序、侵犯他人合法权益等法律法规禁止的活动！任何基于本项目二次开发而产生的一切法律纠纷和责任，我们不承担任何责任！
 
 using System.IO.Compression;
-using NewLife.Serialization;
 
 namespace Admin.NET.Core.Service;
 
@@ -56,8 +55,9 @@ public class SysCodeGenService : IDynamicApiController, ITransient
     public async Task AddCodeGen(AddCodeGenInput input)
     {
         var isExist = await _db.Queryable<SysCodeGen>().Where(u => u.TableName == input.TableName).AnyAsync();
-        if (isExist)
-            throw Oops.Oh(ErrorCodeEnum.D1400);
+        if (isExist) throw Oops.Oh(ErrorCodeEnum.D1400);
+
+        if (input.TableUniqueList?.Count > 0) input.TableUniqueConfig = JSON.Serialize(input.TableUniqueList);
 
         var codeGen = input.Adapt<SysCodeGen>();
         var newCodeGen = await _db.Insertable(codeGen).ExecuteReturnEntityAsync();
@@ -76,9 +76,9 @@ public class SysCodeGenService : IDynamicApiController, ITransient
     public async Task UpdateCodeGen(UpdateCodeGenInput input)
     {
         var isExist = await _db.Queryable<SysCodeGen>().AnyAsync(u => u.TableName == input.TableName && u.Id != input.Id);
-        if (isExist)
-            throw Oops.Oh(ErrorCodeEnum.D1400);
+        if (isExist) throw Oops.Oh(ErrorCodeEnum.D1400);
 
+        if (input.TableUniqueList?.Count > 0) input.TableUniqueConfig = JSON.Serialize(input.TableUniqueList);
         var codeGen = input.Adapt<SysCodeGen>();
         await _db.Updateable(codeGen).ExecuteCommandAsync();
 
@@ -347,7 +347,6 @@ public class SysCodeGenService : IDynamicApiController, ITransient
         var tableFieldList = await _codeGenConfigService.GetList(new CodeGenConfig() { CodeGenId = input.Id }); // 字段集合
         var queryWhetherList = tableFieldList.Where(u => u.QueryWhether == YesNoEnum.Y.ToString()).ToList(); // 前端查询集合
         var joinTableList = tableFieldList.Where(u => u.EffectType == "Upload" || u.EffectType == "ForeignKey" || u.EffectType == "ApiTreeSelector").ToList(); // 需要连表查询的字段
-        (string joinTableNames, string lowerJoinTableNames) = GetJoinTableStr(joinTableList); // 获取连表的实体名和别名
 
         var data = new CustomViewEngine(_db)
         {
@@ -357,7 +356,7 @@ public class SysCodeGenService : IDynamicApiController, ITransient
             NameSpace = input.NameSpace,
             ClassName = input.TableName,
             PagePath = input.PagePath,
-            TableUniqueList = input.TableUniqueConfig?.ToJsonEntity<List<TableUniqueConfigItem>>() ?? new(),
+            TableUniqueList = input.TableUniqueList ?? new(),
             ProjectLastName = input.NameSpace.Split('.').Last(),
             QueryWhetherList = queryWhetherList,
             TableField = tableFieldList,
@@ -415,7 +414,6 @@ public class SysCodeGenService : IDynamicApiController, ITransient
         var tableFieldList = await _codeGenConfigService.GetList(new CodeGenConfig() { CodeGenId = input.Id }); // 字段集合
         var queryWhetherList = tableFieldList.Where(u => u.QueryWhether == YesNoEnum.Y.ToString()).ToList(); // 前端查询集合
         var joinTableList = tableFieldList.Where(u => u.EffectType == "Upload" || u.EffectType == "ForeignKey" || u.EffectType == "ApiTreeSelector").ToList(); // 需要连表查询的字段
-        (string joinTableNames, string lowerJoinTableNames) = GetJoinTableStr(joinTableList); // 获取连表的实体名和别名
 
         var data = new CustomViewEngine(_db)
         {
@@ -425,7 +423,7 @@ public class SysCodeGenService : IDynamicApiController, ITransient
             NameSpace = input.NameSpace,
             ClassName = input.TableName,
             PagePath = input.PagePath,
-            TableUniqueList = input.TableUniqueConfig?.ToJsonEntity<List<TableUniqueConfigItem>>() ?? new(),
+            TableUniqueList = input.TableUniqueList ?? new(),
             ProjectLastName = input.NameSpace.Split('.').Last(),
             QueryWhetherList = queryWhetherList,
             TableField = tableFieldList,
@@ -458,30 +456,6 @@ public class SysCodeGenService : IDynamicApiController, ITransient
         }
 
         return result;
-    }
-
-    /// <summary>
-    /// 获取连表的实体名和别名
-    /// </summary>
-    /// <param name="configs"></param>
-    /// <returns></returns>
-    private static (string, string) GetJoinTableStr(List<CodeGenConfig> configs)
-    {
-        var uploads = configs.Where(u => u.EffectType == "Upload").ToList();
-        var fks = configs.Where(u => u.EffectType == "ForeignKey").ToList();
-        string str = ""; // <Order, OrderItem, Custom>
-        string lowerStr = ""; // (o, i, c)
-        foreach (var item in uploads)
-        {
-            lowerStr += "sysFile_FK_" + item.LowerPropertyName + ",";
-            str += "SysFile,";
-        }
-        foreach (var item in fks)
-        {
-            lowerStr += item.LowerFkEntityName + "_FK_" + item.LowerFkColumnName + ",";
-            str += item.FkEntityName + ",";
-        }
-        return (str.TrimEnd(','), lowerStr.TrimEnd(','));
     }
 
     /// <summary>
