@@ -15,7 +15,7 @@ public class EnumToDictJob : IJob
 {
     private readonly IServiceScopeFactory _scopeFactory;
     private const int OrderOffset = 10;
-    private const string DefaultTagType = "primary";
+    private const string DefaultTagType = null;
 
     public EnumToDictJob(IServiceScopeFactory scopeFactory)
     {
@@ -114,9 +114,9 @@ public class EnumToDictJob : IJob
             {
                 Id = YitIdHelper.NextId(),
                 DictTypeId = t2.Id,
-                Name = u.Describe,
-                Value = u.Value.ToString(),
-                Code = u.Name,
+                Name = u.Name,
+                Value = u.Describe,
+                Code = u.Value.ToString(),
                 Remark = t2.Remark,
                 OrderNo = u.Value + OrderOffset,
                 TagType = u.Theme != "" ? u.Theme : DefaultTagType,
