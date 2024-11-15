@@ -134,7 +134,7 @@ public class SysCodeGenConfigService : IDynamicApiController, ITransient
             {
                 codeGenConfig.QueryType = "==";
                 codeGenConfig.DictTypeCode = tableColumn.DictTypeCode;
-                codeGenConfig.EffectType = tableColumn.DictTypeCode.EndsWith("Enum") ? "EnumSelector" : "Select";
+                codeGenConfig.EffectType = tableColumn.DictTypeCode.EndsWith("Enum") ? "EnumSelector" : "DictSelector";
             }
 
             orderNo += 10; // 每个配置排序间隔10

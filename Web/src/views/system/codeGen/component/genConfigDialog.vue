@@ -23,7 +23,7 @@
 								<el-option v-for="item in state.effectTypeList" :key="item.code" :label="item.value" :value="item.code" />
 							</el-select>
 							<el-button
-								v-if="scope.row.effectType === 'ApiTreeSelect' || scope.row.effectType === 'fk'"
+								v-if="scope.row.effectType === 'ApiTreeSelector' || scope.row.effectType === 'ForeignKey'"
 								:icon="Edit"
 								type="dashed"
 								title="修改"
@@ -166,19 +166,12 @@ onUnmounted(() => {
 // 控件类型改变
 const effectTypeChange = (data: any, index: number) => {
 	let value = data.effectType;
-	if (value === 'fk') {
+	if (value === 'ForeignKey') {
 		openFkDialog(data, index);
-	} else if (value === 'ApiTreeSelect') {
+	} else if (value === 'ApiTreeSelector') {
 		openTreeDialog(data, index);
-	} else if (value === 'Select') {
+	} else if (['DictSelector', 'ConstSelector', 'EnumSelector'].some(key => value === key)) {
 		data.dictTypeCode = '';
-		state.dictTypeCodeList = state.dictDataAll;
-	} else if (value === 'ConstSelector') {
-		data.dictTypeCode = '';
-		state.dictTypeCodeList = state.allConstSelector;
-	} else if (value == 'EnumSelector') {
-		data.dictTypeCode = '';
-		state.dictTypeCodeList = state.allEnumSelector;
 	}
 };
 
@@ -208,8 +201,7 @@ function judgeColumns(data: any) {
 }
 
 function effectTypeEnable(data: any) {
-	var lst = ['Radio', 'Select', 'Checkbox', 'ConstSelector', 'EnumSelector'];
-	return lst.indexOf(data.effectType) === -1;
+  return !['Radio', 'Checkbox', 'DictSelector', 'ConstSelector', 'EnumSelector'].some((e: any) => e === data.effectType)
 }
 
 // 打开弹窗

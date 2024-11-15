@@ -135,7 +135,7 @@ public class QueryById@(Model.ClassName)Input : Delete@(Model.ClassName)Input
 @:{
     foreach (var column in Model.TableField.Where(x => x.WhetherImport == "Y")){
     var prefix = column.WhetherRequired == "Y" || column.NetType.TrimEnd('?').EndsWith("Enum") ? "*" : "";
-    if(column.EffectType == "fk" || column.EffectType == "ApiTreeSelect") {
+    if(column.EffectType == "ForeignKey" || column.EffectType == "ApiTreeSelector") {
     @:/// <summary>
     @:/// @column.ColumnComment 关联值
     @:/// </summary>
