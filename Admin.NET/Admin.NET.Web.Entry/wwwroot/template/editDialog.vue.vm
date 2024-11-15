@@ -70,12 +70,16 @@
 							@:<el-input v-model="ruleForm.@(column.LowerPropertyName)" placeholder="请输入@(column.ColumnComment)" type="textarea" maxlength="@(column.ColumnLength)" show-word-limit clearable />
 						</el-form-item>
 					</el-col>
-					}else if(column.EffectType == "Select"){
-					@:<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
+					}else if(column.EffectType == "Select" || column.EffectType == "EnumSelector"){
+					@:<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20" @(IsStatusEnum(column) ? $"v-if='!ruleForm.{pkFieldName}'" : "")>
 						@:<el-form-item label="@column.ColumnComment" prop="@(column.LowerPropertyName)">
-							@:<el-select clearable v-model="ruleForm.@(column.LowerPropertyName)" placeholder="请选择@(column.ColumnComment)">
-								@:<el-option v-for="(item,index) in dl('@(column.DictTypeCode)')"  :key="index" :value="@(column.NetType.StartsWith("string") ? "item.code" : "Number(item.code)")" :label="`[${item.code}] ${item.value}`"></el-option>
-							</el-select>
+							if (IsStatusEnum(column)) {
+							@:<el-switch v-model="ruleForm.@column.LowerPropertyName" :active-value="1" :inactive-value="2" size="small" />
+							} else {
+							@:<el-select clearable filterable v-model="ruleForm.@(column.LowerPropertyName)" placeholder="请选择@(column.ColumnComment)">
+								@:<el-option v-for="(item, index) in dl('@(column.DictTypeCode)')"  :key="index" :value="@(column.NetType.StartsWith("string") ? "item.code" : "Number(item.code)")" :label="`[${item.code}] ${item.value}`"></el-option>
+							@:</el-select>
+							}
 						</el-form-item>
 					</el-col>
 					}else if(column.EffectType == "ConstSelector"){
@@ -112,18 +116,6 @@
 								@:style="width: 100%; height: 100%; object-fit: contain"/>
 								@:<el-icon v-else><Plus /></el-icon>
 							</el-upload>
-						</el-form-item>
-					</el-col>
-					}else if(column.EffectType == "EnumSelector"){
-					@:<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20" @(IsStatusEnum(column) ? $"v-if='!ruleForm.{pkFieldName}'" : "") >
-						@:<el-form-item label="@column.ColumnComment" prop="@(column.LowerPropertyName)">
-							if (@column.NetType == "StatusEnum" && @column.PropertyName == "Status") {
-							@:<el-switch v-model="ruleForm.@column.LowerPropertyName" :active-value="1" :inactive-value="2" size="small" />
-							} else {
-							@:<el-select clearable v-model="ruleForm.@(column.LowerPropertyName)" placeholder="请选择@(column.ColumnComment)">
-								@:<el-option v-for="(item, index) in dl('@(column.DictTypeCode)')" :key="index" :value="@(column.NetType.TrimEnd('?').StartsWith("string") ? "item.value" : "Number(item.value)")" :label="`${item.name} (${item.code}-${item.value})`"></el-option>
-							@:</el-select>
-							}
 						</el-form-item>
 					</el-col>
 					}else{
