@@ -24,7 +24,7 @@
           if(haveLikeCdt){
           @:<el-col :xs="24" :sm="12" :md="12" :lg="8" :xl="4" class="mb10">
             @:<el-form-item label="关键字">
-              @:<el-input v-model="queryParams.keyword" clearable="" placeholder="请输入模糊查询关键字"/>
+              @:<el-input v-model="queryParams.keyword" clearable placeholder="请输入模糊查询关键字"/>
             @:</el-form-item>
           @:</el-col>
           }
@@ -32,33 +32,27 @@
           @:<el-col :xs="24" :sm="12" :md="12" :lg="8" :xl="4" class="mb10" v-if="showAdvanceQueryUI">
             if(column.EffectType == "Input" || column.EffectType == "InputTextArea"){
             @:<el-form-item label="@column.ColumnComment">
-              @:<el-input v-model="queryParams.@(column.LowerPropertyName)" clearable="" placeholder="请输入@(column.ColumnComment)"/>
+              @:<el-input v-model="queryParams.@(column.LowerPropertyName)" clearable placeholder="请输入@(column.ColumnComment)"/>
             @:</el-form-item>
             }else if(column.EffectType == "InputTextArea"){
             @:<el-form-item label="@column.ColumnComment">
-              @:<el-input-number v-model="queryParams.@(column.LowerPropertyName)"  clearable="" placeholder="请输入@(column.ColumnComment)"/>
+              @:<el-input-number v-model="queryParams.@(column.LowerPropertyName)"  clearable placeholder="请输入@(column.ColumnComment)"/>
               @:
             @:</el-form-item>
             }else if(column.EffectType == "InputNumber"){
             @:<el-form-item label="@column.ColumnComment">
-              @:<el-input-number v-model="queryParams.@(column.LowerPropertyName)"  clearable="" placeholder="请输入@(column.ColumnComment)"/>
+              @:<el-input-number v-model="queryParams.@(column.LowerPropertyName)"  clearable placeholder="请输入@(column.ColumnComment)"/>
             @:</el-form-item>
             }else if(column.EffectType == "fk"){
             @:<el-form-item label="@column.ColumnComment">
-              @:<el-select clearable="" filterable="" v-model="queryParams.@(column.LowerPropertyName)" placeholder="请选择@(column.ColumnComment)">
+              @:<el-select clearable filterable v-model="queryParams.@(column.LowerPropertyName)" placeholder="请选择@(column.ColumnComment)">
                 @:<el-option v-for="(item,index) in @LowerFirstLetter(@column.FkEntityName)@(column.PropertyName)DropdownList" :key="index" :value="item.value" :label="item.label" />
               @:</el-select>
             @:</el-form-item>
-            }else if(column.EffectType == "Select"){
+            }else if(column.EffectType == "Select" || column.EffectType == "EnumSelector"){
             @:<el-form-item label="@column.ColumnComment">
-              @:<el-select clearable="" v-model="queryParams.@(column.LowerPropertyName)" placeholder="请选择@(column.ColumnComment)">
-                @:<el-option v-for="(item,index) in dl('@(column.DictTypeCode)')" :key="index" :value="item.code" :label="`[${item.code}] ${item.value}`" />
-              @:</el-select>
-            @:</el-form-item>
-            }else if(column.EffectType == "EnumSelector"){
-            @:<el-form-item label="@column.ColumnComment">
-              @:<el-select clearable="" v-model="queryParams.@(column.LowerPropertyName)" placeholder="请选择@(column.ColumnComment)">
-                @:<el-option v-for="(item,index) in dl('@(column.DictTypeCode)')" :key="index" :value="item.value" :label="`${item.name} (${item.code}-${item.value})`" />
+              @:<el-select clearable filterable v-model="queryParams.@(column.LowerPropertyName)" placeholder="请选择@(column.ColumnComment)">
+                @:<el-option v-for="(item,index) in dl('@(column.DictTypeCode)')" :key="index" :value="item.code" :label="`[${item.code}]${item.value}`" />
               @:</el-select>
             @:</el-form-item>
             }else if(column.EffectType == "ApiTreeSelect"){
@@ -67,7 +61,8 @@
                   @::options="@LowerFirstLetter(@column.FkEntityName)TreeData"
                   @:@:props="{ checkStrictly: true, emitPath: false, value: '@LowerFirstLetter(@column.ValueColumn)' }"
                   @:placeholder="请选择@(column.ColumnComment)"
-                  @:clearable=""
+                  @:clearable
+                  @:filterable
                   @:class="w100"
                   @:v-model="queryParams.@(column.LowerPropertyName)"
                   @:>
@@ -151,21 +146,15 @@
             }
           @:</template>
         @:</el-table-column>
-        } else if (@column.EffectType == "Select"){
-        @:<el-table-column prop="@column.LowerPropertyName" label="@column.ColumnComment" @(column.WhetherSortable == "Y" ? "sortable='custom'" : "") show-overflow-tooltip="" >
-          @:<template #default="scope">
-            @:<dict-label :value="scope.row.@column.LowerPropertyName" code="@column.DictTypeCode" prop-label="value" prop-value="code" />
-          @:</template>
-        @:</el-table-column>
-        } else if (@column.EffectType == "EnumSelector"){
-        {@ isStatus = column.NetType == "StatusEnum" && column.PropertyName == "Status"; }
+        } else if (column.EffectType == "Select" || column.EffectType == "EnumSelector") {
+        isStatus = column.NetType == "StatusEnum" && column.PropertyName == "Status";
         @:<el-table-column prop="@column.LowerPropertyName" label="@column.ColumnComment" @(column.WhetherSortable == "Y" ? "sortable='custom'" : "") show-overflow-tooltip="" @(isStatus ? $"v-auth=\"'{@Model.LowerClassName}:setStatus'\"": "")>
           @:<template #default="scope">
-          if (isStatus) {
-            @:<el-switch v-model="scope.row.@column.LowerPropertyName" :active-value="1" :inactive-value="2" size="small" @@change="change@(Model.ClassName)Status(scope.row)" />
-          } else {
-            @:<dict-label :value="scope.row.@column.LowerPropertyName" code="@column.DictTypeCode" />
-          }
+            if (isStatus) {
+              @:<el-switch v-model="scope.row.@column.LowerPropertyName" :active-value="1" :inactive-value="2" size="small" @@change="change@(Model.ClassName)Status(scope.row)" />
+            } else {
+              @:<DictLabel :value="scope.row.@column.LowerPropertyName" code="@column.DictTypeCode" />
+            }
           @:</template>
         @:</el-table-column>
         } else {
