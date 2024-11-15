@@ -30,8 +30,7 @@
 						<el-table-column prop="code" label="字典编码" min-width="140" header-align="center" show-overflow-tooltip />
 						<el-table-column prop="status" label="状态" width="70" align="center" show-overflow-tooltip>
 							<template #default="scope">
-								<el-tag type="success" v-if="scope.row.status === 1">启用</el-tag>
-								<el-tag type="danger" v-else>禁用</el-tag>
+                <DictLabel :value="scope.row.status" code="StatusEnum" />
 							</template>
 						</el-table-column>
 						<el-table-column prop="orderNo" label="排序" width="60" align="center" show-overflow-tooltip />
@@ -108,8 +107,7 @@
 						</el-table-column>
 						<el-table-column prop="status" label="状态" width="70" align="center" show-overflow-tooltip>
 							<template #default="scope">
-								<el-tag type="success" v-if="scope.row.status === 1">启用</el-tag>
-								<el-tag type="danger" v-else>禁用</el-tag>
+                <DictLabel :value="scope.row.status" code="StatusEnum" />
 							</template>
 						</el-table-column>
 						<el-table-column prop="orderNo" label="排序" width="60" align="center" show-overflow-tooltip />
@@ -160,10 +158,10 @@ import EditDictData from '/@/views/system/dict/component/editDictData.vue';
 import ModifyRecord from '/@/components/table/modifyRecord.vue';
 
 import { getAPI } from '/@/utils/axios-utils';
-import { Session } from '/@/utils/storage';
 import { useUserInfo } from '/@/stores/userInfo';
 import { SysDictTypeApi, SysDictDataApi } from '/@/api-services/api';
 import { SysDictType, SysDictData, UpdateDictDataInput } from '/@/api-services/models';
+import DictLabel from "/@/components/table/dictLabel.vue";
 
 const editDictTypeRef = ref<InstanceType<typeof EditDictType>>();
 const editDictDataRef = ref<InstanceType<typeof EditDictData>>();

@@ -118,14 +118,14 @@
 					<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
 						<el-form-item label="生成方式" prop="generateType">
 							<el-select v-model="state.ruleForm.generateType" filterable class="w100">
-								<el-option v-for="item in state.codeGenTypeList" :key="item.value" :label="item.value" :value="item.code" />
+								<el-option v-for="item in getDictDataByCode('code_gen_create_type')" :key="item.value" :label="item.value" :value="item.code" />
 							</el-select>
 						</el-form-item>
 					</el-col>
 					<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
 						<el-form-item label="支持打印" prop="printType">
 							<el-select v-model="state.ruleForm.printType" filterable class="w100" @change="printTypeChanged">
-								<el-option v-for="item in state.printTypeList" :key="item.value" :label="item.value" :value="item.code" />
+								<el-option v-for="item in getDictDataByCode('code_gen_print_type')" :key="item.value" :label="item.value" :value="item.code" />
 							</el-select>
 						</el-form-item>
 					</el-col>
@@ -182,10 +182,12 @@ import { computed, onMounted, reactive, ref } from 'vue';
 import IconSelector from '/@/components/iconSelector/index.vue';
 import other from '/@/utils/other';
 
+import {useUserInfo} from "/@/stores/userInfo";
 import { getAPI } from '/@/utils/axios-utils';
-import { SysCodeGenApi, SysDictDataApi, SysMenuApi, SysPrintApi } from '/@/api-services/api';
+import { SysCodeGenApi, SysMenuApi, SysPrintApi } from '/@/api-services/api';
 import { UpdateCodeGenInput, AddCodeGenInput, SysMenu, SysPrint } from '/@/api-services/models';
 
+const getDictDataByCode = useUserInfo().getDictDataByCode;
 const props = defineProps({
 	title: String,
 	applicationNamespaces: Array<String>,
@@ -194,44 +196,26 @@ const emits = defineEmits(['handleQuery']);
 const ruleFormRef = ref();
 const state = reactive({
 	isShowDialog: false,
-	ruleForm: {} as UpdateCodeGenInput,
+	ruleForm: {} as any,
 	tableData: [] as any,
 	dbData: [] as any,
 	columnData: [] as any,
 	menuData: [] as Array<SysMenu>,
-	codeGenTypeList: [] as any,
-	printTypeList: [] as any,
 	printList: [] as Array<SysPrint>,
 });
 // 级联选择器配置选项
 const cascaderProps = { checkStrictly: true, emitPath: false, value: 'id', label: 'title' };
 
 onMounted(async () => {
-	var resDb = await getAPI(SysCodeGenApi).apiSysCodeGenDatabaseListGet();
-	state.dbData = resDb.data.result;
-
-	let resMenu = await getAPI(SysMenuApi).apiSysMenuListGet();
-	state.menuData = resMenu.data.result ?? [];
-
-	let resDicData = await getAPI(SysDictDataApi).apiSysDictDataDataListCodeGet('code_gen_create_type');
-	state.codeGenTypeList = resDicData.data.result;
-
-	let printTypeResDicData = await getAPI(SysDictDataApi).apiSysDictDataDataListCodeGet('code_gen_print_type');
-	state.printTypeList = printTypeResDicData.data.result;
-
-	let resPrintIdData = await getAPI(SysPrintApi).apiSysPrintPagePost();
-	state.printList = resPrintIdData.data.result?.items ?? [];
-
-	// 默认使用第一个库
-	//state.ruleForm.configId = state.dbData[0].configId;
-	//await dbChanged();
+  state.dbData = await getAPI(SysCodeGenApi).apiSysCodeGenDatabaseListGet().then(res => res.data.result ?? []);
+  state.printList = await getAPI(SysPrintApi).apiSysPrintPagePost().then(res => res.data.result?.items ?? []);
+  state.menuData = await getAPI(SysMenuApi).apiSysMenuListGet().then(res => res.data.result ?? []);
 });
 
 // db改变
 const dbChanged = async () => {
 	if (state.ruleForm.configId === '') return;
-	let res = await getAPI(SysCodeGenApi).apiSysCodeGenTableListConfigIdGet(state.ruleForm.configId as string);
-	state.tableData = res.data.result ?? [];
+  state.tableData = await getAPI(SysCodeGenApi).apiSysCodeGenTableListConfigIdGet(state.ruleForm.configId as string).then(res => res.data.result ?? []);
 
 	let db = state.dbData.filter((u: any) => u.configId == state.ruleForm.configId);
 	state.ruleForm.connectionString = db[0].connectionString;
@@ -242,6 +226,7 @@ const dbChanged = async () => {
 const tableChanged = (item: any) => {
 	state.ruleForm.tableName = item.entityName;
 	state.ruleForm.busName = item.tableComment;
+  state.ruleForm.tableUniqueList = [];
 	getColumnInfoList();
 };
 
@@ -254,8 +239,10 @@ const changeTableUniqueColumn = (value: any, index: number) => {
 
 const getColumnInfoList = async () => {
 	if (state.ruleForm.configId == '' || state.ruleForm.tableName == '') return;
-	var res = await getAPI(SysCodeGenApi).apiSysCodeGenColumnListByTableNameTableNameConfigIdGet(state.ruleForm.tableName, state.ruleForm.configId);
-	state.columnData = res.data.result;
+  state.columnData = await getAPI(SysCodeGenApi)
+      .apiSysCodeGenColumnListByTableNameTableNameConfigIdGet(state.ruleForm.tableName, state.ruleForm.configId)
+      .then(res => res.data.result)
+      ?? [];
 };
 
 // 菜单改变
@@ -278,9 +265,9 @@ const getGlobalComponentSize = computed(() => {
 const openDialog = (row: any) => {
 	state.ruleForm = JSON.parse(JSON.stringify(row));
 	state.ruleForm.tableUniqueList = JSON.parse(row.tableUniqueConfig ?? "[]");
+  dbChanged().then(() => getColumnInfoList());
 	state.isShowDialog = true;
 	ruleFormRef.value?.resetFields();
-	getColumnInfoList();
 };
 
 // 关闭弹窗

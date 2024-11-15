@@ -31,7 +31,7 @@
 								<el-radio value="success"><el-tag type="success">success</el-tag></el-radio>
 								<el-radio value="info"><el-tag type="info">info</el-tag></el-radio>
 								<el-radio value="warning"><el-tag type="warning">warning</el-tag></el-radio>
-								<el-radio value="danger"><el-tag type="danger" style="font:">danger</el-tag></el-radio>
+								<el-radio value="danger"><el-tag type="danger">danger</el-tag></el-radio>
 							</el-radio-group>
 						</el-form-item>
 					</el-col>

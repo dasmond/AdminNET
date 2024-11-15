@@ -58,10 +58,7 @@
 						</el-table-column> -->
 						<el-table-column label="账号类型" width="110" align="center" show-overflow-tooltip>
 							<template #default="scope">
-								<el-tag v-if="scope.row.accountType === 888"> 系统管理员 </el-tag>
-								<el-tag v-else-if="scope.row.accountType === 777"> 普通账号 </el-tag>
-								<el-tag v-else-if="scope.row.accountType === 666"> 会员 </el-tag>
-								<el-tag v-else> 其他 </el-tag>
+                <DictLabel :value="scope.row.status" code="AccountTypeEnum" />
 							</template>
 						</el-table-column>
 						<el-table-column prop="roleName" label="角色集合" min-width="150" align="center" show-overflow-tooltip />
@@ -128,6 +125,7 @@ import 'splitpanes/dist/splitpanes.css';
 import { getAPI } from '/@/utils/axios-utils';
 import { SysUserApi, SysOrgApi } from '/@/api-services/api';
 import { SysUser, SysOrg, UpdateUserInput } from '/@/api-services/models';
+import DictLabel from "/@/components/table/dictLabel.vue";
 
 const orgTreeRef = ref<InstanceType<typeof OrgTree>>();
 const editUserRef = ref<InstanceType<typeof EditUser>>();

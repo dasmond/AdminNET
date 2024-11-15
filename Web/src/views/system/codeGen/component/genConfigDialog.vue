@@ -20,7 +20,7 @@
 					<template #default="scope">
 						<div class="effect-type-container">
 							<el-select v-model="scope.row.effectType" class="m-2" placeholder="Select" :disabled="judgeColumns(scope.row)" @change="effectTypeChange(scope.row, scope.$index)">
-								<el-option v-for="item in state.effectTypeList" :key="item.code" :label="item.value" :value="item.code" />
+								<el-option v-for="item in getDictDataByCode('code_gen_effect_type')" :key="item.code" :label="item.value" :value="item.code" />
 							</el-select>
 							<el-button
 								v-if="scope.row.effectType === 'ApiTreeSelector' || scope.row.effectType === 'ForeignKey'"
@@ -37,12 +37,9 @@
 					<template #default="scope">
 						<el-select v-model="scope.row.dictTypeCode" class="m-2" :disabled="effectTypeEnable(scope.row)">
 							<el-option
-							v-for="item in scope.row.effectType == 'Select' ? state.dictDataAll :
-								scope.row.effectType == 'EnumSelector' ? state.allEnumSelector :
-								scope.row.effectType == 'ConstSelector' ? allConstSelector :
-								state.dictTypeCodeList" 
+							v-for="item in state.selectDataMap[scope.row.effectType] ?? []"
 							:key="item.code"
-							:label="item.name" 
+							:label="item.name"
 							:value="item.code" />
 						</el-select>
 					</template>
@@ -81,7 +78,7 @@
 				<el-table-column prop="queryType" label="查询方式" min-width="120" align="center" show-overflow-tooltip>
 					<template #default="scope">
 						<el-select v-model="scope.row.queryType" class="m-2" placeholder="Select" :disabled="!scope.row.queryWhether">
-							<el-option v-for="item in state.queryTypeList" :key="item.code" :label="item.value" :value="item.code" />
+							<el-option v-for="item in getDictDataByCode('code_gen_query_type')" :key="item.code" :label="item.value" :value="item.code" />
 						</el-select>
 					</template>
 				</el-table-column>
@@ -105,53 +102,34 @@
 </template>
 
 <script lang="ts" setup name="sysCodeGenConfig">
-import { onMounted, onUnmounted, reactive, ref } from 'vue';
-import mittBus from '/@/utils/mitt';
+import { onMounted, reactive, ref } from 'vue';
 import { Edit } from '@element-plus/icons-vue';
 
 import fkDialog from '/@/views/system/codeGen/component/fkDialog.vue';
 import treeDialog from '/@/views/system/codeGen/component/treeDialog.vue';
 
+import {useUserInfo} from "/@/stores/userInfo";
 import { getAPI } from '/@/utils/axios-utils';
-import { SysCodeGenConfigApi, SysConstApi, SysDictDataApi, SysDictTypeApi, SysEnumApi } from '/@/api-services/api';
+import { SysCodeGenConfigApi, SysDictTypeApi } from '/@/api-services/api';
 import { CodeGenConfig } from '/@/api-services/models/code-gen-config';
 
+const getDictDataByCode = useUserInfo().getDictDataByCode;
 const emits = defineEmits(['handleQuery']);
 const fkDialogRef = ref();
 const treeDialogRef = ref();
 const state = reactive({
 	isShowDialog: false,
 	loading: false,
-	tableData: [] as CodeGenConfig[],
-	dbData: [] as any,
-	effectTypeList: [] as any,
-	dictTypeCodeList: [] as any,
-	dictDataAll: [] as any,
-	queryTypeList: [] as any,
-	allConstSelector: [] as any,
-	allEnumSelector: [] as any,
+  selectDataMap: {} as any,
+  tableData: [] as CodeGenConfig[]
 });
 
 onMounted(async () => {
-	var res = await getAPI(SysDictDataApi).apiSysDictDataDataListCodeGet('code_gen_effect_type');
-	state.effectTypeList = res.data.result;
-
-	var res1 = await getAPI(SysDictTypeApi).apiSysDictTypeListGet();
-	state.dictTypeCodeList = res1.data.result.filter(x => !x.code.endsWith("Enum"));
-	state.dictDataAll = state.dictTypeCodeList;
-
-	var res2 = await getAPI(SysDictDataApi).apiSysDictDataDataListCodeGet('code_gen_query_type');
-	state.queryTypeList = res2.data.result;
-
-	var res3 = await getAPI(SysConstApi).apiSysConstListGet();
-	state.allConstSelector = res3.data.result;
-
-	let resEnum = await getAPI(SysEnumApi).apiSysEnumEnumTypeListGet();
-	state.allEnumSelector = resEnum.data.result?.map((item) => ({ ...item, name: `${item.typeDescribe} [${item.typeName?.replace('Enum', '')}]`, code: item.typeName }));
-
-	mittBus.on('submitRefreshFk', (data: any) => {
-		state.tableData[data.index] = data;
-	});
+  state.selectDataMap.DictSelector = [];
+  state.selectDataMap.EnumSelector = [];
+  state.selectDataMap.ConstSelector = useUserInfo().constList;
+  const dictList = await getAPI(SysDictTypeApi).apiSysDictTypeListGet().then(res => res.data.result ?? []);
+  for (const item of dictList) state.selectDataMap[item.code?.endsWith('Enum') ? 'EnumSelector' : 'DictSelector'].push(item);
 });
 
 // 更新主键
@@ -159,10 +137,6 @@ const submitRefreshFk = (data: any) => {
 	state.tableData[data.index] = data;
 };
 
-onUnmounted(() => {
-	mittBus.off('submitRefresh', () => {});
-	mittBus.off('submitRefreshFk', () => {});
-});
 // 控件类型改变
 const effectTypeChange = (data: any, index: number) => {
 	let value = data.effectType;
@@ -178,15 +152,13 @@ const effectTypeChange = (data: any, index: number) => {
 // 查询操作
 const handleQuery = async (row: any) => {
 	state.loading = true;
-	var res = await getAPI(SysCodeGenConfigApi).apiSysCodeGenConfigListGet(undefined, row.id);
-	var data = res.data.result ?? [];
-	let lstWhetherColumn = ['whetherTable', 'whetherAddUpdate', 'whetherImport', 'whetherRequired', 'whetherSortable']; //列表显示的checkbox
-	data.forEach((item: any) => {
+	const data = await getAPI(SysCodeGenConfigApi).apiSysCodeGenConfigListGet(undefined, row.id).then(res => res.data.result ?? []);
+  const lstWhetherColumn = ['whetherTable', 'whetherAddUpdate', 'whetherImport', 'whetherRequired', 'whetherSortable']; //列表显示的checkbox
+  data.forEach((item: any) => {
 		for (const key in item) {
 			if (item[key] === 'Y') {
 				item[key] = true;
-			}
-			if (item[key] === 'N' || (lstWhetherColumn.includes(key) && item[key] === null)) {
+			} else if (item[key] === 'N' || (lstWhetherColumn.includes(key) && item[key] === null)) {
 				item[key] = false;
 			}
 		}
@@ -236,73 +208,15 @@ const cancel = () => {
 const submit = async () => {
 	state.loading = true;
 	var lst = state.tableData;
-	lst.forEach((item: CodeGenConfig) => {
-		// 必填那一项转换
+  const whetherMap = { true: 'Y', false: 'N' } as any;
+	lst.forEach((item: any) => { // 转换是否字段值
 		for (var key in item) {
-			if (item[key] === true) {
-				item[key] = 'Y';
-			}
-			if (item[key] === false) {
-				item[key] = 'N';
-			}
+      item[key] = whetherMap[item[key]] || item[key];
 		}
 	});
 	await getAPI(SysCodeGenConfigApi).apiSysCodeGenConfigUpdatePost(lst);
 	state.loading = false;
 	closeDialog();
-};
-
-const convertDbType = (dbType: number) => {
-	let result = '';
-	switch (dbType) {
-		case 0:
-			result = 'MySql';
-			break;
-		case 1:
-			result = 'SqlServer';
-			break;
-		case 2:
-			result = 'Sqlite';
-			break;
-		case 3:
-			result = 'Oracle';
-			break;
-		case 4:
-			result = 'PostgreSql';
-			break;
-		case 5:
-			result = 'Dm';
-			break;
-		case 6:
-			result = 'Kdbndp';
-			break;
-		case 7:
-			result = 'Oscar';
-			break;
-		case 8:
-			result = 'MySqlConnector';
-			break;
-		case 9:
-			result = 'Access';
-			break;
-		default:
-			result = 'Custom';
-			break;
-	}
-	return result;
-};
-
-const isOrNotSelect = () => {
-	return [
-		{
-			label: '是',
-			value: 1,
-		},
-		{
-			label: '否',
-			value: 0,
-		},
-	];
 };
 
 // 导出对象

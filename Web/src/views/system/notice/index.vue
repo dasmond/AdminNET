@@ -7,8 +7,7 @@
 				</el-form-item>
 				<el-form-item label="类型">
 					<el-select v-model="state.queryParams.type" placeholder="类型" clearable>
-						<el-option label="通知" :value="1" />
-						<el-option label="公告" :value="2" />
+            <el-option :label="item.value" :value="item.code" v-for="(item, index) in getDictDataByCode('NoticeTypeEnum') ?? []" :key="index" />
 					</el-select>
 				</el-form-item>
 				<el-form-item>
@@ -32,15 +31,13 @@
 				</el-table-column>
 				<el-table-column prop="type" label="类型" width="100" align="center" show-overflow-tooltip>
 					<template #default="scope">
-						<el-tag v-if="scope.row.type === 1"> 通知 </el-tag>
-						<el-tag type="warning" v-else> 公告 </el-tag>
+            <DictLabel :value="scope.row.type" code="NoticeTypeEnum" />
 					</template>
 				</el-table-column>
 				<el-table-column prop="createTime" label="创建时间" align="center" show-overflow-tooltip />
 				<el-table-column prop="status" label="状态" width="100" align="center" show-overflow-tooltip>
 					<template #default="scope">
-						<el-tag type="info" v-if="scope.row.status === 1"> 已发布 </el-tag>
-						<el-tag type="warning" v-else> 未发布 </el-tag>
+            <DictLabel :value="scope.row.status" code="NoticeStatusEnum" />
 					</template>
 				</el-table-column>
 				<el-table-column prop="publicUserName" label="发布者" align="center" show-overflow-tooltip />
@@ -76,10 +73,13 @@ import { ElMessageBox, ElMessage } from 'element-plus';
 import commonFunction from '/@/utils/commonFunction';
 import EditNotice from '/@/views/system/notice/component/editNotice.vue';
 
+import {useUserInfo} from "/@/stores/userInfo";
 import { getAPI } from '/@/utils/axios-utils';
 import { SysNoticeApi } from '/@/api-services/api';
 import { SysNotice } from '/@/api-services/models';
+import DictLabel from "/@/components/table/dictLabel.vue";
 
+const getDictDataByCode = useUserInfo.getDictDataByCode;
 const editNoticeRef = ref<InstanceType<typeof EditNotice>>();
 const { removeHtml } = commonFunction();
 const state = reactive({
