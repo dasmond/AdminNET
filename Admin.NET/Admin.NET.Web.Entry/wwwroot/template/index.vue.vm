@@ -24,7 +24,7 @@
           if(haveLikeCdt){
           @:<el-col :xs="24" :sm="12" :md="12" :lg="8" :xl="4" class="mb10">
             @:<el-form-item label="关键字">
-              @:<el-input v-model="queryParams.keyword" clearable="" placeholder="请输入模糊查询关键字"/>
+              @:<el-input v-model="queryParams.keyword" clearable placeholder="请输入模糊查询关键字"/>
             @:</el-form-item>
           @:</el-col>
           }
@@ -32,20 +32,20 @@
           @:<el-col :xs="24" :sm="12" :md="12" :lg="8" :xl="4" class="mb10" v-if="showAdvanceQueryUI">
             if(column.EffectType == "Input" || column.EffectType == "InputTextArea"){
             @:<el-form-item label="@column.ColumnComment">
-              @:<el-input v-model="queryParams.@(column.LowerPropertyName)" clearable="" placeholder="请输入@(column.ColumnComment)"/>
+              @:<el-input v-model="queryParams.@(column.LowerPropertyName)" clearable placeholder="请输入@(column.ColumnComment)"/>
             @:</el-form-item>
             }else if(column.EffectType == "InputTextArea"){
             @:<el-form-item label="@column.ColumnComment">
-              @:<el-input-number v-model="queryParams.@(column.LowerPropertyName)"  clearable="" placeholder="请输入@(column.ColumnComment)"/>
+              @:<el-input-number v-model="queryParams.@(column.LowerPropertyName)"  clearable placeholder="请输入@(column.ColumnComment)"/>
               @:
             @:</el-form-item>
             }else if(column.EffectType == "InputNumber"){
             @:<el-form-item label="@column.ColumnComment">
-              @:<el-input-number v-model="queryParams.@(column.LowerPropertyName)"  clearable="" placeholder="请输入@(column.ColumnComment)"/>
+              @:<el-input-number v-model="queryParams.@(column.LowerPropertyName)"  clearable placeholder="请输入@(column.ColumnComment)"/>
             @:</el-form-item>
             }else if(column.EffectType == "fk"){
             @:<el-form-item label="@column.ColumnComment">
-              @:<el-select clearable="" filterable="" v-model="queryParams.@(column.LowerPropertyName)" placeholder="请选择@(column.ColumnComment)">
+              @:<el-select clearable filterable v-model="queryParams.@(column.LowerPropertyName)" placeholder="请选择@(column.ColumnComment)">
                 @:<el-option v-for="(item,index) in @LowerFirstLetter(@column.FkEntityName)@(column.PropertyName)DropdownList" :key="index" :value="item.value" :label="item.label" />
               @:</el-select>
             @:</el-form-item>
@@ -61,7 +61,8 @@
                   @::options="@LowerFirstLetter(@column.FkEntityName)TreeData"
                   @:@:props="{ checkStrictly: true, emitPath: false, value: '@LowerFirstLetter(@column.ValueColumn)' }"
                   @:placeholder="请选择@(column.ColumnComment)"
-                  @:clearable=""
+                  @:clearable
+                  @:filterable
                   @:class="w100"
                   @:v-model="queryParams.@(column.LowerPropertyName)"
                   @:>

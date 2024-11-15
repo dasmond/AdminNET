@@ -41,7 +41,8 @@
 								@:options="@LowerFirstLetter(@column.FkEntityName)TreeData"
 								@:props="{ checkStrictly: true, emitPath: false, value: '@LowerFirstLetter(@column.ValueColumn)' }"
 								placeholder="请选择@(column.ColumnComment)"
-								clearable=""
+								clearable
+								filterable
 								class="w100"
 								v-model="ruleForm.@(column.LowerPropertyName)"
 							>
@@ -85,7 +86,7 @@
 					}else if(column.EffectType == "ConstSelector"){
 					@:<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
 						@:<el-form-item label="@column.ColumnComment" prop="@(column.LowerPropertyName)">
-							@:<el-select clearable v-model="ruleForm.@(column.LowerPropertyName)" placeholder="请选择@(column.ColumnComment)">
+							@:<el-select clearable filterable v-model="ruleForm.@(column.LowerPropertyName)" placeholder="请选择@(column.ColumnComment)">
 								@:<el-option v-for="(item,index) in getConstType('@column.DictTypeCode')" :key="index" :label="item.name" :value="@(column.NetType.StartsWith("string") ? "item.code" : "Number(item.code)")">{{ item.name }}</el-option>
 							</el-select>
 						</el-form-item>
