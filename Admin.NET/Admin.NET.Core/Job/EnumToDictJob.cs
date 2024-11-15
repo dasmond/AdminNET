@@ -183,9 +183,9 @@ public class EnumToDictJob : IJob
                     {
                         Id = YitIdHelper.NextId(),
                         DictTypeId = updatedDictType.Id,
-                        Name = enumData.Describe,
-                        Value = enumData.Value.ToString(),
-                        Code = enumData.Name,
+                        Name = enumData.Name,
+                        Value = enumData.Describe,
+                        Code = enumData.Value.ToString(),
                         Remark = updatedDictType.Remark,
                         OrderNo = enumData.Value + OrderOffset,
                         TagType = enumData.Theme != "" ? enumData.Theme : DefaultTagType,

@@ -15,7 +15,7 @@ public enum GenderEnum
     /// <summary>
     /// 未知的性别
     /// </summary>
-    [Description("未知的性别")]
+    [Description("未知的性别"), Theme("info")]
     Unknown = 0,
 
     /// <summary>
@@ -33,6 +33,6 @@ public enum GenderEnum
     /// <summary>
     /// 未说明的性别
     /// </summary>
-    [Description("未说明的性别")]
+    [Description("未说明的性别"), Theme("info")]
     Unspecified = 9
 }

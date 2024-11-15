@@ -15,7 +15,7 @@ public enum CultureLevelEnum
     /// <summary>
     /// 其他
     /// </summary>
-    [Description("其他")]
+    [Description("其他"), Theme("info")]
     Level0 = 0,
 
     /// <summary>
