@@ -11,8 +11,7 @@
 					<el-button v-if="state.selectlist.length > 0" type="danger" icon="ele-Delete" @click="bacthDelete" v-auth="'sysConfig:batchDelete'"> 批量删除 </el-button>
 				</template>
 				<template #sysFlag="scope">
-					<el-tag v-if="scope.row.sysFlag === 1"> 是 </el-tag>
-					<el-tag type="danger" v-else> 否 </el-tag>
+          <DictLabel :value="scope.row.sysFlag" code="YesNoEnum" />
 				</template>
 				<template #remark="scope">
 					<ModifyRecord :data="scope.row" />
@@ -37,6 +36,7 @@ import ModifyRecord from '/@/components/table/modifyRecord.vue';
 import { getAPI } from '/@/utils/axios-utils';
 import { SysConfigApi } from '/@/api-services/api';
 import { auth } from '/@/utils/authFunction';
+import DictLabel from "/@/components/table/dictLabel.vue";
 
 // 引入组件
 const Table = defineAsyncComponent(() => import('/@/components/table/index.vue'));
