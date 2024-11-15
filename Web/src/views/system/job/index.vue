@@ -142,9 +142,7 @@
 				</el-table-column>
 				<el-table-column prop="jobDetail.createType" label="作业创建类型" width="110" align="center" show-overflow-tooltip>
 					<template #default="scope">
-						<el-tag type="info" v-if="(scope.row as JobDetailOutput).jobDetail?.createType == JobCreateTypeEnum.NUMBER_0"> 内置 </el-tag>
-						<el-tag type="warning" v-if="(scope.row as JobDetailOutput).jobDetail?.createType == JobCreateTypeEnum.NUMBER_1"> 脚本 </el-tag>
-						<el-tag type="success" v-if="(scope.row as JobDetailOutput).jobDetail?.createType == JobCreateTypeEnum.NUMBER_2"> HTTP请求 </el-tag>
+            <DictLabel :value="(scope.row as JobDetailOutput).jobDetail?.createType ?? ''" code="JobCreateTypeEnum" />
 					</template>
 				</el-table-column>
 				<!-- <el-table-column prop="jobDetail.includeAnnotations" label="扫描特性触发器" align="center" show-overflow-tooltip>
@@ -281,6 +279,7 @@ import JobCluster from '/@/views/system/job/component/jobCluster.vue';
 import { getAPI } from '/@/utils/axios-utils';
 import { SysJobApi } from '/@/api-services/api';
 import { JobCreateTypeEnum, JobDetailOutput, SysJobTrigger } from '/@/api-services/models';
+import DictLabel from "/@/components/table/dictLabel.vue";
 
 const router = useRouter();
 const editJobDetailRef = ref<InstanceType<typeof EditJobDetail>>();

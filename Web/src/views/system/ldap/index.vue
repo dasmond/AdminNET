@@ -32,8 +32,7 @@
 				<el-table-column prop="version" label="Ldap版本" show-overflow-tooltip="" />
 				<el-table-column prop="status" label="状态" width="80" align="center" show-overflow-tooltip="">
 					<template #default="scope">
-						<el-tag v-if="scope.row.status"> 是 </el-tag>
-						<el-tag type="danger" v-else> 否 </el-tag>
+            <DictLabel :value="scope.row.status" code="StatusEnum" />
 					</template>
 				</el-table-column>
 				<el-table-column label="修改记录" width="100" align="center" show-overflow-tooltip>
@@ -76,6 +75,7 @@ import EditLdap from './component/editLdap.vue';
 
 import { getAPI } from '/@/utils/axios-utils';
 import { SysLdapApi } from '/@/api-services/api';
+import DictLabel from "/@/components/table/dictLabel.vue";
 
 const editLdapRef = ref<InstanceType<typeof EditLdap>>();
 const state = reactive({

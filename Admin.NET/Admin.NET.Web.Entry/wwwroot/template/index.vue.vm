@@ -43,19 +43,19 @@
             @:<el-form-item label="@column.ColumnComment">
               @:<el-input-number v-model="queryParams.@(column.LowerPropertyName)"  clearable placeholder="请输入@(column.ColumnComment)"/>
             @:</el-form-item>
-            }else if(column.EffectType == "fk"){
+            }else if(column.EffectType == "ForeignKey"){
             @:<el-form-item label="@column.ColumnComment">
               @:<el-select clearable filterable v-model="queryParams.@(column.LowerPropertyName)" placeholder="请选择@(column.ColumnComment)">
                 @:<el-option v-for="(item,index) in @LowerFirstLetter(@column.FkEntityName)@(column.PropertyName)DropdownList" :key="index" :value="item.value" :label="item.label" />
               @:</el-select>
             @:</el-form-item>
-            }else if(column.EffectType == "Select" || column.EffectType == "EnumSelector"){
+            }else if(column.EffectType == "DictSelector" || column.EffectType == "EnumSelector"){
             @:<el-form-item label="@column.ColumnComment">
               @:<el-select clearable filterable v-model="queryParams.@(column.LowerPropertyName)" placeholder="请选择@(column.ColumnComment)">
                 @:<el-option v-for="(item,index) in dl('@(column.DictTypeCode)')" :key="index" :value="item.code" :label="`[${item.code}]${item.value}`" />
               @:</el-select>
             @:</el-form-item>
-            }else if(column.EffectType == "ApiTreeSelect"){
+            }else if(column.EffectType == "ApiTreeSelector"){
             @:<el-form-item label="@column.ColumnComment">
               @:<el-cascader
                   @::options="@LowerFirstLetter(@column.FkEntityName)TreeData"
@@ -120,7 +120,7 @@
         <el-table-column type="selection" width="40" align="center" v-auth="'@(Model.LowerClassName):batchDelete'" />
         <el-table-column type="index" label="序号" width="55" align="center"/>
         @foreach (var column in Model.TableField.Where(u => u.WhetherTable == "Y")){
-        if(column.EffectType == "Upload"||@column.EffectType == "fk"||@column.EffectType == "ApiTreeSelect"||@column.EffectType == "Switch"||@column.EffectType == "ConstSelector"){
+        if(column.EffectType == "Upload"||@column.EffectType == "ForeignKey" || @column.EffectType == "ApiTreeSelector" || @column.EffectType == "Switch" || @column.EffectType == "ConstSelector"){
         @:<el-table-column prop="@column.LowerPropertyName" label="@column.ColumnComment" @(column.WhetherSortable == "Y" ? "sortable='custom'" : "") show-overflow-tooltip="">
           @:<template #default="scope">
             if(column.EffectType == "Upload"){
@@ -134,9 +134,9 @@
             @::initial-index="0"
             @:fit="scale-down"
             @:preview-teleported=""/>
-            }else if(column.EffectType == "fk"){
+            }else if(column.EffectType == "ForeignKey"){
             @:<span>{{scope.row.@LowerFirstLetter(@column.PropertyName)FkColumn}}</span>
-            }else if(column.EffectType == "ApiTreeSelect"){
+            }else if(column.EffectType == "ApiTreeSelector"){
             @:<span>{{scope.row.@LowerFirstLetter(@column.PropertyName)Display}}</span>
             }else if(column.EffectType == "Switch"){
             @:<el-tag v-if="scope.row.@(column.LowerPropertyName)"> 是 </el-tag>
@@ -146,7 +146,7 @@
             }
           @:</template>
         @:</el-table-column>
-        } else if (column.EffectType == "Select" || column.EffectType == "EnumSelector") {
+        } else if (column.EffectType == "DictSelector" || column.EffectType == "EnumSelector") {
         isStatus = column.NetType == "StatusEnum" && column.PropertyName == "Status";
         @:<el-table-column prop="@column.LowerPropertyName" label="@column.ColumnComment" @(column.WhetherSortable == "Y" ? "sortable='custom'" : "") show-overflow-tooltip="" @(isStatus ? $"v-auth=\"'{@Model.LowerClassName}:setStatus'\"": "")>
           @:<template #default="scope">
@@ -220,7 +220,7 @@
   @if(Model.TableField.Any(x => x.EffectType == "ConstSelector")) {
   @:import { codeToName, getConstType } from '/@@/utils/constHelper';
   }
-  @if(Model.TableField.Any(x => x.EffectType == "Select" || x.EffectType == "EnumSelector")) {
+  @if(Model.TableField.Any(x => x.EffectType == "DictSelector" || x.EffectType == "EnumSelector")) {
   @:import { getDictDataList as dl } from '/@@/utils/dict-utils';
   }
   @if(Model.PrintType == "custom") {
@@ -229,7 +229,7 @@
   @:import { SysPrintApi } from '/@@/api-services/api';
   @:import { SysPrint } from '/@@/api-services/models';
   }
-  @if(Model.TableField.Any(x => x.EffectType == "Select" || x.EffectType == "EnumSelector")) {
+  @if(Model.TableField.Any(x => x.EffectType == "DictSelector" || x.EffectType == "EnumSelector")) {
   @:import DictLabel from "/@@/components/table/dictLabel.vue";
   }
   @if(hasImport) {
@@ -366,7 +366,7 @@
   };
 
 @foreach (var column in Model.TableField) {
-  if (column.EffectType == "fk") {
+  if (column.EffectType == "ForeignKey") {
     var dropdownName = $"{column.FkEntityName}{Regex.Replace(column.PropertyName, "[iI]d$", "")}Dropdown";
   @:const @LowerFirstLetter(dropdownName)List = ref<any>([]);
   @:const get@(dropdownName)List = async () => {
@@ -375,7 +375,7 @@
   @:};
   @:get@(dropdownName)List();
   @:
-  } else if (column.EffectType == "ApiTreeSelect" && !definedObjects.ContainsKey("define_get@(column.FkEntityName)TreeData")) {
+  } else if (column.EffectType == "ApiTreeSelector" && !definedObjects.ContainsKey("define_get@(column.FkEntityName)TreeData")) {
   definedObjects.Add("define_get@(column.FkEntityName)TreeData", 1);
   @:const @LowerFirstLetter(@column.FkEntityName)TreeData = ref<any>([]);
   @:const get@(column.FkEntityName)TreeData = async () => {

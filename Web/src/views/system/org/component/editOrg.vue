@@ -37,7 +37,7 @@
 					<el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="mb20">
 						<el-form-item label="机构类型">
 							<el-select v-model="state.ruleForm.type" filterable clearable class="w100">
-								<el-option v-for="item in state.orgTypeList" :key="item.value" :label="item.value" :value="item.code" />
+                <el-option :label="item.value" :value="item.code" v-for="(item, index) in getDictDataByCode('org_type') ?? []" :key="index" />
 							</el-select>
 						</el-form-item>
 					</el-col>
@@ -72,12 +72,14 @@
 </template>
 
 <script lang="ts" setup name="sysEditOrg">
-import { onMounted, reactive, ref } from 'vue';
+import { reactive, ref } from 'vue';
 
+import {useUserInfo} from "/@/stores/userInfo";
 import { getAPI } from '/@/utils/axios-utils';
-import { SysOrgApi, SysDictDataApi } from '/@/api-services/api';
+import { SysOrgApi } from '/@/api-services/api';
 import { SysOrg, UpdateOrgInput } from '/@/api-services/models';
 
+const getDictDataByCode = useUserInfo.getDictDataByCode;
 const props = defineProps({
 	title: String,
 	orgData: Array<SysOrg>,
@@ -91,11 +93,6 @@ const state = reactive({
 });
 // 级联选择器配置选项
 const cascaderProps = { checkStrictly: true, emitPath: false, value: 'id', label: 'name' };
-
-onMounted(async () => {
-	let resDicData = await getAPI(SysDictDataApi).apiSysDictDataDataListCodeGet('org_type');
-	state.orgTypeList = resDicData.data.result;
-});
 
 // 打开弹窗
 const openDialog = (row: any) => {

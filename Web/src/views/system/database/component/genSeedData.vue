@@ -45,10 +45,10 @@
 </template>
 
 <script lang="ts" setup name="sysGenEntity">
-import { onMounted, reactive, ref } from 'vue';
+import { reactive, ref } from 'vue';
 
 import { getAPI } from '/@/utils/axios-utils';
-import { SysDatabaseApi, SysDictTypeApi } from '/@/api-services/api';
+import { SysDatabaseApi } from '/@/api-services/api';
 
 const emits = defineEmits(['handleQueryColumn']);
 
@@ -60,13 +60,7 @@ const ruleFormRef = ref();
 const state = reactive({
 	isShowDialog: false,
 	ruleForm: {} as any,
-	codeGenBaseClassName: [] as any,
 	rules: { position: [{ required: true, message: '请选择存放位置', trigger: 'blur' }] },
-});
-
-onMounted(async () => {
-	let resDicData = await getAPI(SysDictTypeApi).apiSysDictTypeDataListGet('code_gen_base_class');
-	state.codeGenBaseClassName = resDicData.data.result;
 });
 
 // 打开弹窗

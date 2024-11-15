@@ -15,7 +15,6 @@ export const useUserInfo = defineStore('userInfo', {
 		userInfos: {} as any,
 		constList: [] as any,
 		dictList: {} as any,
-		dictListInt: {} as any,
 	}),
 	getters: {
 		// // 获取系统常量列表
@@ -28,36 +27,19 @@ export const useUserInfo = defineStore('userInfo', {
 	actions: {
 		// 存储用户信息到浏览器缓存
 		async setUserInfos() {
-			if (Session.get('userInfo')) {
-				this.userInfos = Session.get('userInfo');
-			} else {
-				const userInfos = <UserInfos>await this.getApiUserInfo();
-				this.userInfos = userInfos;
-			}
+			this.userInfos = Session.get('userInfo') ?? <UserInfos>await this.getApiUserInfo();
 		},
 
 		// 存储常量信息到浏览器缓存
 		async setConstList() {
-			if (Session.get('constList')) {
-				this.constList = Session.get('constList');
-			} else {
-				const constList = <any[]>await this.getSysConstList();
-				Session.set('constList', constList);
-				this.constList = constList;
-			}
+			this.constList = Session.get('constList') ?? <any[]>await this.getSysConstList();
+			if (!Session.get('constList')) Session.set('constList', this.constList);
 		},
 
 		// 存储字典信息到浏览器缓存
 		async setDictList() {
-			var res = await getAPI(SysDictTypeApi).apiSysDictTypeAllDictListGet();
-			this.dictList = res.data.result;
-			// if (Session.get('dictList')) {
-			// 	this.dictList = Session.get('dictList');
-			// } else {
-			//	const dictList = <any[]>await this.getAllDictList();
-			//	Session.set('dictList', dictList);
-			//	this.dictList = dictList;
-			// }
+			this.dictList = await getAPI(SysDictTypeApi).apiSysDictTypeAllDictListGet().then(res => res.data.result ?? {});
+			for (const key in this.dictList) if (key.endsWith("Enum")) this.dictList[key].forEach(e => e.code = Number(e.code));
 		},
 
 		// 获取当前用户信息
@@ -115,82 +97,9 @@ export const useUserInfo = defineStore('userInfo', {
 			});
 		},
 
-		// 获取字典集合
-		getAllDictList() {
-			return new Promise((resolve) => {
-				if (this.dictList) {
-					resolve(this.dictList);
-				} else {
-					getAPI(SysDictTypeApi)
-						.apiSysDictTypeAllDictListGet()
-						.then((res: any) => {
-							resolve(res.data.result ?? []);
-						});
-				}
-			});
-		},
-
-		// 根据字典类型和代码取字典项
-		getDictItemByCode(typePCode: string, val: string) {
-			if (val != undefined && val !== '') {
-				const _val = val.toString();
-				const ds = this.getDictDatasByCode(typePCode);
-				for (const element of ds) {
-					if (element.code === _val) {
-						return element;
-					}
-				}
-			}
-			return {};
-		},
-
-		// 根据字典类型和值取描述
-		getDictLabelByVal(typePCode: string, val: string) {
-			if (val != undefined && val !== '') {
-				const _val = val.toString();
-				const ds = this.getDictDatasByCode(typePCode);
-				for (const element of ds) {
-					if (element.value === _val) {
-						return element;
-					}
-				}
-			}
-			return {};
-		},
-
-		// 根据字典类型和描述取值
-		getDictValByLabel(typePCode: string, label: string) {
-			if (!label) return '';
-			const ds = this.getDictDatasByCode(typePCode);
-			for (const element of ds) {
-				if (element.name === label) {
-					return element;
-				}
-			}
-			return ''; // 明确返回空字符串
-		},
-
 		// 根据字典类型获取字典数据
-		getDictDatasByCode(dictTypeCode: string) {
+		getDictDataByCode(dictTypeCode: string) {
 			return this.dictList[dictTypeCode] || [];
-		},
-
-		// 根据字典类型获取字典数据（值转为数字类型）
-		getDictIntDatasByCode(dictTypeCode: string) {
-			let ds = this.dictListInt[dictTypeCode];
-			if (ds) {
-				return ds;
-			}
-
-			const dictList = this.dictList[dictTypeCode];
-			if (dictList) {
-				ds = dictList.map((element: { code: any }) => {
-					return { ...element, code: Number(element.code) };
-				});
-				this.dictListInt[dictTypeCode] = ds;
-			}
-
-			return ds;
-		},
+		}
 	},
 });

@@ -30,8 +30,7 @@
 				<!-- <el-table-column prop="email" label="邮箱" show-overflow-tooltip /> -->
 				<el-table-column prop="tenantType" label="租户类型" width="100" align="center" show-overflow-tooltip>
 					<template #default="scope">
-						<el-tag v-if="scope.row.tenantType === 0"> ID隔离 </el-tag>
-						<el-tag type="danger" v-else> 库隔离 </el-tag>
+            <DictLabel :value="scope.row.status" code="TenantTypeEnum" />
 					</template>
 				</el-table-column>
 				<el-table-column label="状态" width="70" align="center" show-overflow-tooltip>
@@ -122,6 +121,7 @@ import ModifyRecord from '/@/components/table/modifyRecord.vue';
 import { getAPI } from '/@/utils/axios-utils';
 import { SysTenantApi } from '/@/api-services/api';
 import { TenantOutput } from '/@/api-services/models';
+import DictLabel from "/@/components/table/dictLabel.vue";
 
 const editTenantRef = ref<InstanceType<typeof EditTenant>>();
 const grantMenuRef = ref<InstanceType<typeof GrantMenu>>();

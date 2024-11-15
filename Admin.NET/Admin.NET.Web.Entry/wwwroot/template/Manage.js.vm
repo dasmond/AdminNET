@@ -35,7 +35,7 @@ export const use@(Model.ClassName)Api = () => {
 		if (column.EffectType == "Upload") {
 		@:// 上传@(column.ColumnComment)
 		@:upload@(column.PropertyName): (params: any) => baseApi.uploadFile(params, baseApi.baseUrl + 'upload@(column.PropertyName)'),
-		} else if (column.EffectType == "fk" && (column.WhetherAddUpdate == "Y" || column.QueryWhether == "Y")) {
+		} else if (column.EffectType == "ForeignKey" && (column.WhetherAddUpdate == "Y" || column.QueryWhether == "Y")) {
 		var dropdownName = $"{column.FkEntityName}{Regex.Replace(column.PropertyName, "[iI]d$", "")}Dropdown";
 		@:// 获取@(column.ColumnComment)选择数据
 		@:get@(dropdownName): (all: Boolean = false) => baseApi.request({
@@ -43,7 +43,7 @@ export const use@(Model.ClassName)Api = () => {
 			@:params: { all },
 			@:method: 'get',
 		@:}),
-		} else if (column.EffectType == "ApiTreeSelect" && !definedObjects.ContainsKey("get@(column.FkEntityName)Tree")) {
+		} else if (column.EffectType == "ApiTreeSelector" && !definedObjects.ContainsKey("get@(column.FkEntityName)Tree")) {
 		definedObjects.Add("get@(column.FkEntityName)Tree", 1);
 		@:// 获取@(column.ColumnComment)选择数据
 		@:get@(column.FkEntityName)Tree: (all: Boolean = false) => baseApi.request({

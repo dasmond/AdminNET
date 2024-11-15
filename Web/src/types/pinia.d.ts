@@ -15,7 +15,6 @@ declare interface UserInfosState {
 	userInfos: UserInfos;
 	constList: T[];
 	dictList: T;
-	dictListInt: T;
 }
 
 // 路由缓存列表

@@ -51,8 +51,7 @@
 					<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
 						<el-form-item label="打印类型">
 							<el-radio-group v-model="state.ruleForm.printType">
-								<el-radio :value="1">浏览器打印</el-radio>
-								<el-radio :value="2">客户端打印</el-radio>
+                <el-radio :value="item.code" v-for="(item, index) in getDictDataByCode('PrintTypeEnum') ?? []" :key="index">{{item.value}}</el-radio>
 							</el-radio-group>
 						</el-form-item>
 					</el-col>
@@ -87,14 +86,14 @@
 import { onMounted, reactive, ref, nextTick } from 'vue';
 import HiprintDesign from '/@/views/system/print/component/hiprint/index.vue';
 
+import {useUserInfo} from "/@/stores/userInfo";
 import { getAPI } from '/@/utils/axios-utils';
 import { SysPrintApi } from '/@/api-services/api';
 import { UpdatePrintInput } from '/@/api-services/models';
 
+const getDictDataByCode = useUserInfo.getDictDataByCode;
 const hiprintDesignRef = ref<InstanceType<typeof HiprintDesign>>();
-
 const mode = ref(0);
-
 const props = defineProps({
 	title: String,
 });

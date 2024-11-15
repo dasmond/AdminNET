@@ -24,7 +24,7 @@
 					</el-form-item>
 					}else{
 					if (column.WhetherAddUpdate == "Y"){
-					if(column.EffectType == "fk"){
+					if(column.EffectType == "ForeignKey"){
 					var dropdownName = $"{column.FkEntityName}{Regex.Replace(column.PropertyName, "[iI]d$", "")}Dropdown";
 					@:<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
 						@:<el-form-item label="@column.ColumnComment" prop="@(column.LowerPropertyName)">
@@ -33,7 +33,7 @@
 							</el-select>
 						</el-form-item>
 					</el-col>
-					}else if(column.EffectType == "ApiTreeSelect"){
+					}else if(column.EffectType == "ApiTreeSelector"){
 					displayColumnList = column.DisplayColumn.Split(",").Select(u => $"${{data.{LowerFirstLetter(u)}}}").ToList();
 					@:<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
 						@:<el-form-item label="@column.ColumnComment" prop="@(column.LowerPropertyName)">
@@ -71,7 +71,7 @@
 							@:<el-input v-model="ruleForm.@(column.LowerPropertyName)" placeholder="请输入@(column.ColumnComment)" type="textarea" maxlength="@(column.ColumnLength)" show-word-limit clearable />
 						</el-form-item>
 					</el-col>
-					}else if(column.EffectType == "Select" || column.EffectType == "EnumSelector"){
+					}else if(column.EffectType == "DictSelector" || column.EffectType == "EnumSelector"){
 					@:<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20" @(IsStatusEnum(column) ? $"v-if='!ruleForm.{pkFieldName}'" : "")>
 						@:<el-form-item label="@column.ColumnComment" prop="@(column.LowerPropertyName)">
 							if (IsStatusEnum(column)) {
@@ -147,7 +147,7 @@
 @if(Model.TableField.Any(x=>x.EffectType == "ConstSelector")){
 	@:import { getConstType } from "/@@/utils/constHelper";
 } 
-@if(Model.TableField.Any(x=>x.EffectType == "Select") || @Model.TableField.Any(x=>x.EffectType == "EnumSelector")){
+@if(Model.TableField.Any(x=>x.EffectType == "DictSelector") || @Model.TableField.Any(x=>x.EffectType == "EnumSelector")){
 	@:import { getDictDataItem as di, getDictDataList as dl } from '/@@/utils/dict-utils';
 }
 @if(Model.TableField.Any(x=>x.EffectType == "EnumSelector")){
@@ -185,7 +185,7 @@
 	if(column.WhetherRequired == "Y"){
 		if(column.EffectType == "Input" || @column.EffectType == "InputNumber" || @column.EffectType == "InputTextArea"){
 		@:@column.LowerPropertyName: [{required: true, message: '请输入@(column.ColumnComment)！', trigger: 'blur',},],
-		}else if(column.EffectType == "DatePicker" || @column.EffectType == "Select" || @column.EffectType == "EnumSelector" || @column.EffectType == "ApiTreeSelect"){
+		}else if(column.EffectType == "DatePicker" || @column.EffectType == "DictSelector" || @column.EffectType == "EnumSelector" || @column.EffectType == "ApiTreeSelector"){
 		@:@column.LowerPropertyName: [{required: true, message: '请选择@(column.ColumnComment)！', trigger: 'change',},],
 		}
     }
@@ -241,7 +241,7 @@
 	};
 	
 	@foreach (var column in Model.TableField) {
-	if (column.EffectType == "fk" && column.WhetherAddUpdate == "Y") {
+	if (column.EffectType == "ForeignKey" && column.WhetherAddUpdate == "Y") {
 		var dropdownName = $"{column.FkEntityName}{Regex.Replace(column.PropertyName, "[iI]d$", "")}Dropdown";
 	@:const @LowerFirstLetter(dropdownName)List = ref<any>([]);
 	@:const get@(dropdownName)List = async () => {
@@ -250,7 +250,7 @@
 	@:};
 	@:get@(dropdownName)List();
 	@:
-	} else if (column.EffectType == "ApiTreeSelect" && !definedObjects.ContainsKey("define_get@(column.FkEntityName)TreeData")) {
+	} else if (column.EffectType == "ApiTreeSelector" && !definedObjects.ContainsKey("define_get@(column.FkEntityName)TreeData")) {
 		definedObjects.Add("define_get@(column.FkEntityName)TreeData", 1);
 	@:const @LowerFirstLetter(@column.FkEntityName)TreeData = ref<any>([]);
 	@:const get@(column.FkEntityName)TreeData = async () => {

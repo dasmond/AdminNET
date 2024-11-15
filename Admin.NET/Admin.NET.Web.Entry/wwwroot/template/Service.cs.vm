@@ -14,7 +14,7 @@ using Microsoft.AspNetCore.Http;
 
     var injectServices = new List<string>();
     if (Model.TableField.Any(u => u.EffectType == "Upload")) injectServices.Add("SysFileService");
-    if (Model.TableField.Any(x => x.WhetherImport == "Y" && x.EffectType == "Select")) injectServices.Add("SysDictTypeService");
+    if (Model.TableField.Any(x => x.WhetherImport == "Y" && x.EffectType == "DictSelector")) injectServices.Add("SysDictTypeService");
 }
 namespace @(Model.NameSpace);
 
@@ -69,21 +69,21 @@ public class @(Model.ClassName)Service : IDynamicApiController, ITransient
           }
           // 联表
           if (Model.IsJoinTable) {
-            @foreach (var column in Model.TableField.Where(u => u.EffectType == "fk" || u.EffectType == "ApiTreeSelect")){
+            @foreach (var column in Model.TableField.Where(u => u.EffectType == "ForeignKey" || u.EffectType == "ApiTreeSelector")){
             var joinTableAlias = Regex.Replace(column.LowerPropertyName, "[iI]d$", "");
             joinTableName += ", " + joinTableAlias;
-            @:.LeftJoin<@column.FkEntityName>((@joinTableName) => u.@(column.PropertyName) == @joinTableAlias.@(column.EffectType == "fk" ? column.FkLinkColumnName : column.ValueColumn))
+            @:.LeftJoin<@column.FkEntityName>((@joinTableName) => u.@(column.PropertyName) == @joinTableAlias.@(column.EffectType == "ForeignKey" ? column.FkLinkColumnName : column.ValueColumn))
           }
             // 查询列表
             @:.Select((@joinTableName) => new @(Model.ClassName)Output
             @:{
             foreach (var column in Model.TableField) {
                 var joinTableAlias = Regex.Replace(column.LowerPropertyName, "[iI]d$", "");
-                if (column.EffectType == "fk") {
+                if (column.EffectType == "ForeignKey") {
                 var columnList = column.FkColumnName.Split(",").Select(n => $"{{{joinTableAlias}.{n}}}").ToList();
                 @:@(column.PropertyName) = u.@(column.PropertyName), 
                 @:@(column.PropertyName)FkColumn = $"@(string.Join("-", columnList))",
-                } else if (column.EffectType == "ApiTreeSelect") {
+                } else if (column.EffectType == "ApiTreeSelector") {
                 var columnList = column.DisplayColumn.Split(",").Select(n => $"{{{joinTableAlias}.{n}}}").ToList();
                 @:@(column.PropertyName) = u.@(column.PropertyName),  
                 @:@(column.PropertyName)Display = $"@(string.Join("-", columnList))",
@@ -201,7 +201,7 @@ public class @(Model.ClassName)Service : IDynamicApiController, ITransient
     {
         return await _@(Model.LowerClassName)Rep.AsQueryable().Select<@(Model.ClassName)Output>().ToListAsync();
     }
-@foreach (var column in Model.TableField.Where(u => u.EffectType == "fk" && (u.WhetherAddUpdate == "Y" || u.QueryWhether == "Y"))){
+@foreach (var column in Model.TableField.Where(u => u.EffectType == "ForeignKey" && (u.WhetherAddUpdate == "Y" || u.QueryWhether == "Y"))){
 @:
     var dropdownName = $"{column.FkEntityName}{Regex.Replace(column.PropertyName, "[iI]d$", "")}Dropdown";
     @:/// <summary>
@@ -225,7 +225,7 @@ public class @(Model.ClassName)Service : IDynamicApiController, ITransient
 }
 @{
 var definedObjects = new Dictionary<string, object>();
-@foreach (var column in Model.TableField.Where(u => u.EffectType == "ApiTreeSelect" && !definedObjects.ContainsKey("@(u.FkEntityName)Tree"))){
+@foreach (var column in Model.TableField.Where(u => u.EffectType == "ApiTreeSelector" && !definedObjects.ContainsKey("@(u.FkEntityName)Tree"))){
 @:
     definedObjects.Add("@(column.FkEntityName)Tree", 1);
     @:/// <summary>
@@ -269,12 +269,12 @@ var definedObjects = new Dictionary<string, object>();
     @:[ApiDescriptionSettings(Name = "Import"), HttpGet, NonUnify]
     @:public IActionResult DownloadTemplate()
     @:{
-        var fieldsList = importFields.Where(u => u.EffectType == "fk" || u.EffectType == "ApiTreeSelect").ToList();
+        var fieldsList = importFields.Where(u => u.EffectType == "ForeignKey" || u.EffectType == "ApiTreeSelector").ToList();
         if (fieldsList.Any()) {
         @:return ExcelHelper.ExportTemplate(new List<Export@(Model.ClassName)Output>(), "@(Model.BusName)导入模板", (_, info) =>
         @:{
             foreach (var column in fieldsList) {
-            var columnList = (column.EffectType == "fk" ? column.FkColumnName : column.DisplayColumn).Split(",").Select(n => $"{{u.{n}}}").ToList();
+            var columnList = (column.EffectType == "ForeignKey" ? column.FkColumnName : column.DisplayColumn).Split(",").Select(n => $"{{u.{n}}}").ToList();
             @:if (nameof(Export@(Model.ClassName)Output.@(column.PropertyName)Label) == info.Name) return _@(Model.LowerClassName)Rep.Context.Queryable<@(column.FkEntityName)>().Select(u => $"@(string.Join("-", columnList))").Distinct().ToList();
             }
             @:return null;
@@ -294,7 +294,7 @@ var definedObjects = new Dictionary<string, object>();
     @:{
         @:lock (this)
         @:{
-            var dictTableField = Model.TableField.Where(x => x.WhetherImport == "Y" && x.EffectType == "Select") ?? default;
+            var dictTableField = Model.TableField.Where(x => x.WhetherImport == "Y" && x.EffectType == "DictSelector") ?? default;
             foreach (var column in dictTableField){
             @:var @(column.LowerPropertyName)DictMap = _sysDictTypeService.GetDataList(new GetDataDictTypeInput { Code = "@(column.DictTypeCode)" }).Result.ToDictionary(x => x.Value, x => x.Code);
             }
@@ -303,12 +303,12 @@ var definedObjects = new Dictionary<string, object>();
             @:{
                 @:_@(Model.LowerClassName)Rep.Context.Utilities.PageEach(list, 2048, pageItems =>
                 @:{
-                    foreach (var column in importFields.Where(u => u.EffectType == "fk" || u.EffectType == "ApiTreeSelect")) {
+                    foreach (var column in importFields.Where(u => u.EffectType == "ForeignKey" || u.EffectType == "ApiTreeSelector")) {
                     @:// 链接 @(column.ColumnComment)
                     @:var @(column.LowerPropertyName)LabelList = pageItems.Where(x => x.@(column.PropertyName)Label != null).Select(x => x.@(column.PropertyName)Label).Distinct().ToList();
                     @:if (@(column.LowerPropertyName)LabelList.Any()) {
-                        var valueColumn = column.EffectType == "fk" ? column.FkLinkColumnName : column.ValueColumn;
-                        var columnList = (column.EffectType == "fk" ? column.FkColumnName : column.DisplayColumn).Split(",").Select(n => $"{{u.{n}}}").ToList();
+                        var valueColumn = column.EffectType == "ForeignKey" ? column.FkLinkColumnName : column.ValueColumn;
+                        var columnList = (column.EffectType == "ForeignKey" ? column.FkColumnName : column.DisplayColumn).Split(",").Select(n => $"{{u.{n}}}").ToList();
                         @:var @(column.LowerPropertyName)LinkMap = _@(Model.LowerClassName)Rep.Context.Queryable<@(column.FkEntityName)>().Where(u => @(column.LowerPropertyName)LabelList.Contains($"@(string.Join("-", columnList))")).ToList().ToDictionary(u => $"@(string.Join("-", columnList))", u => u.@(valueColumn));
                         @:pageItems.ForEach(e => e.@(column.PropertyName) = @(column.LowerPropertyName)LinkMap?.GetValueOrDefault(e.@(column.PropertyName)Label, default));
                     @:}
