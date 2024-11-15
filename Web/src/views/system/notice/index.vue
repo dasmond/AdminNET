@@ -79,7 +79,7 @@ import { SysNoticeApi } from '/@/api-services/api';
 import { SysNotice } from '/@/api-services/models';
 import DictLabel from "/@/components/table/dictLabel.vue";
 
-const getDictDataByCode = useUserInfo.getDictDataByCode;
+const getDictDataByCode = useUserInfo().getDictDataByCode;
 const editNoticeRef = ref<InstanceType<typeof EditNotice>>();
 const { removeHtml } = commonFunction();
 const state = reactive({

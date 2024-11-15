@@ -41,7 +41,12 @@
 							<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
 								<el-form-item label="账号类型" prop="accountType" :rules="[{ required: true, message: '账号类型不能为空', trigger: 'blur' }]">
 									<el-select v-model="state.ruleForm.accountType" placeholder="账号类型" collapse-tags collapse-tags-tooltip class="w100">
-                    <el-option :disabled="item.name == 'SysAdmin' && ![888, 999].some(x => x == userInfos.accountType)" :label="item.value" :value="item.code" v-for="(item, index) in getDictDataByCode('AccountTypeEnum').filter(x => x.name != 'SuperAdmin') ?? []" :key="index" />
+                    <el-option
+                        v-for="(item, index) in getDictDataByCode('AccountTypeEnum').filter(x => x.name != 'SuperAdmin') ?? []"
+                        :disabled="item.name == 'SysAdmin' && ![888, 999].some(x => x == userInfos.accountType)"
+                        :label="item.value"
+                        :value="item.code"
+                        :key="index" />
 									</el-select>
 								</el-form-item>
 							</el-col>
@@ -235,7 +240,7 @@ import { getAPI } from '/@/utils/axios-utils';
 import { SysPosApi, SysRoleApi, SysUserApi } from '/@/api-services/api';
 import { RoleOutput, SysOrg, SysPos, UpdateUserInput } from '/@/api-services/models';
 
-const getDictDataByCode = useUserInfo.getDictDataByCode;
+const getDictDataByCode = useUserInfo().getDictDataByCode;
 const props = defineProps({
 	title: String,
 	orgData: Array<SysOrg>,

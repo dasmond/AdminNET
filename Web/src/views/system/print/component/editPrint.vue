@@ -91,7 +91,7 @@ import { getAPI } from '/@/utils/axios-utils';
 import { SysPrintApi } from '/@/api-services/api';
 import { UpdatePrintInput } from '/@/api-services/models';
 
-const getDictDataByCode = useUserInfo.getDictDataByCode;
+const getDictDataByCode = useUserInfo().getDictDataByCode;
 const hiprintDesignRef = ref<InstanceType<typeof HiprintDesign>>();
 const mode = ref(0);
 const props = defineProps({

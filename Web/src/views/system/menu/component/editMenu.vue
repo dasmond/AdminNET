@@ -147,7 +147,7 @@ import { getAPI } from '/@/utils/axios-utils';
 import { SysMenuApi } from '/@/api-services/api';
 import { SysMenu, UpdateMenuInput } from '/@/api-services/models';
 
-const getDictDataByCode = useUserInfo.getDictDataByCode;
+const getDictDataByCode = useUserInfo().getDictDataByCode;
 const props = defineProps({
 	title: String,
 	menuData: Array<SysMenu>,

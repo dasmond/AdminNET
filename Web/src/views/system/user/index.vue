@@ -58,7 +58,7 @@
 						</el-table-column> -->
 						<el-table-column label="账号类型" width="110" align="center" show-overflow-tooltip>
 							<template #default="scope">
-                <DictLabel :value="scope.row.status" code="AccountTypeEnum" />
+                <DictLabel :value="scope.row.accountType" code="AccountTypeEnum" />
 							</template>
 						</el-table-column>
 						<el-table-column prop="roleName" label="角色集合" min-width="150" align="center" show-overflow-tooltip />

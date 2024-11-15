@@ -53,7 +53,7 @@ import {useUserInfo} from "/@/stores/userInfo";
 import { getAPI } from '/@/utils/axios-utils';
 import { SysDatabaseApi } from '/@/api-services/api';
 
-const getDictDataByCode = useUserInfo.getDictDataByCode;
+const getDictDataByCode = useUserInfo().getDictDataByCode;
 const emits = defineEmits(['handleQueryColumn']);
 const ruleFormRef = ref();
 const state = reactive({
