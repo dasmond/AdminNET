@@ -94,7 +94,7 @@ public static class ComputerUtil
         }
         else if (IsUnix())
         {
-            var output = ShellUtil.Bash(@"df -mT | awk '/^\/dev\/(sd|vd|xvd|nvme|sda|vda)/ {print $1,$2,$3,$4,$5,$6}'");
+            var output = ShellUtil.Bash(@"df -mT | awk '/^\/dev\/(sd|vd|xvd|nvme|sda|vda|mapper)/ {print $1,$2,$3,$4,$5,$6}'");
             var disks = output.Split('\n', StringSplitOptions.RemoveEmptyEntries);
             if (disks.Length < 1) return diskInfos;
 
