@@ -21,6 +21,6 @@ public enum NoticeUserStatusEnum
     /// <summary>
     /// 已读
     /// </summary>
-    [Description("已读")]
+    [Description("已读"), Theme("info")]
     READ = 1
 }

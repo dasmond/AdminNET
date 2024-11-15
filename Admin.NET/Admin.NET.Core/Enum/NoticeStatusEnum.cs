@@ -15,7 +15,7 @@ public enum NoticeStatusEnum
     /// <summary>
     /// 草稿
     /// </summary>
-    [Description("草稿")]
+    [Description("草稿"), Theme("info")]
     DRAFT = 0,
 
     /// <summary>

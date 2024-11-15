@@ -15,7 +15,7 @@ public enum JobCreateTypeEnum
     /// <summary>
     /// 内置
     /// </summary>
-    [Description("内置")]
+    [Description("内置"), Theme("info")]
     BuiltIn = 0,
 
     /// <summary>
