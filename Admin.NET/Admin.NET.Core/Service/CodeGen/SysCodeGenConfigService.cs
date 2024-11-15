@@ -33,6 +33,8 @@ public class SysCodeGenConfigService : IDynamicApiController, ITransient
             .Mapper(u =>
             {
                 u.NetType = (u.EffectType == "EnumSelector" || u.EffectType == "ConstSelector" ? u.DictTypeCode : u.NetType);
+                u.DisplayColumnList = u.DisplayColumn?.Split(",").ToList();
+                u.FkColumnList = u.FkColumnName?.Split(",").ToList();
             })
             .OrderBy(u => new { u.OrderNo, u.Id })
             .ToListAsync();
@@ -48,6 +50,11 @@ public class SysCodeGenConfigService : IDynamicApiController, ITransient
     public async Task UpdateCodeGenConfig(List<CodeGenConfig> inputList)
     {
         if (inputList == null || inputList.Count < 1) return;
+        inputList.ForEach(e =>
+        {
+            e.DisplayColumn = e.DisplayColumnList?.Count > 0 ? string.Join(",", e.DisplayColumnList) : null;
+            e.FkColumnName = e.FkColumnList?.Count > 0 ? string.Join(",", e.FkColumnList) : null;
+        });
         await _db.Updateable(inputList.Adapt<List<SysCodeGenConfig>>())
             .IgnoreColumns(u => new { u.ColumnLength, u.ColumnName, u.PropertyName })
             .ExecuteCommandAsync();

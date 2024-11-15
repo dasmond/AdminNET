@@ -30,12 +30,7 @@
 				<el-table-column prop="authorName" label="作者姓名" align="center" show-overflow-tooltip />
 				<el-table-column prop="generateType" label="生成方式" align="center" show-overflow-tooltip>
 					<template #default="scope">
-						<el-tag v-if="scope.row.generateType == 100"> 下载压缩包 </el-tag>
-						<el-tag v-else-if="scope.row.generateType == 111"> 下载压缩包(前端) </el-tag>
-						<el-tag v-else-if="scope.row.generateType == 121"> 下载压缩包(后端) </el-tag>
-						<el-tag v-else-if="scope.row.generateType == 211"> 生成到本项目(前端) </el-tag>
-						<el-tag v-else-if="scope.row.generateType == 221"> 生成到本项目(后端) </el-tag>
-						<el-tag type="danger" v-else> 生成到本项目 </el-tag>
+            <DictLabel :value="scope.row.generateType" code="code_gen_create_type" />
 					</template>
 				</el-table-column>
 				<el-table-column label="操作" width="280" fixed="right" align="center" show-overflow-tooltip>
@@ -79,6 +74,7 @@ import { downloadByUrl } from '/@/utils/download';
 import { getAPI } from '/@/utils/axios-utils';
 import { SysCodeGenApi } from '/@/api-services/api';
 import { SysCodeGen } from '/@/api-services/models';
+import DictLabel from "/@/components/table/dictLabel.vue";
 
 const PreviewDialog = defineAsyncComponent(() => import('./component/previewDialog.vue'));
 

@@ -1,4 +1,5 @@
 @{
+	var hasDictData = Model.TableField.Any(x => x.EffectType == "ConstSelector" || x.EffectType == "DictSelector" || x.EffectType == "EnumSelector");
 	bool IsStatusEnum(dynamic column) => column.NetType == "StatusEnum" && column.PropertyName == "Status";
 	string LowerFirstLetter(string text) => text.ToString()[..1].ToLower() + text[1..];
 	var definedObjects = new Dictionary<string, int>();
@@ -78,7 +79,7 @@
 							@:<el-switch v-model="ruleForm.@column.LowerPropertyName" :active-value="1" :inactive-value="2" size="small" />
 							} else {
 							@:<el-select clearable filterable v-model="ruleForm.@(column.LowerPropertyName)" placeholder="请选择@(column.ColumnComment)">
-								@:<el-option v-for="(item, index) in dl('@(column.DictTypeCode)')"  :key="index" :value="@(column.NetType.StartsWith("string") ? "item.code" : "Number(item.code)")" :label="`[${item.code}] ${item.value}`"></el-option>
+								@:<el-option v-for="(item, index) in getDictDataByCode('@(column.DictTypeCode)')"  :key="index" :value="item.code" :label="`[${item.code}]${item.value}`"></el-option>
 							@:</el-select>
 							}
 						</el-form-item>
@@ -87,7 +88,7 @@
 					@:<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
 						@:<el-form-item label="@column.ColumnComment" prop="@(column.LowerPropertyName)">
 							@:<el-select clearable filterable v-model="ruleForm.@(column.LowerPropertyName)" placeholder="请选择@(column.ColumnComment)">
-								@:<el-option v-for="(item,index) in getConstType('@column.DictTypeCode')" :key="index" :label="item.name" :value="@(column.NetType.StartsWith("string") ? "item.code" : "Number(item.code)")">{{ item.name }}</el-option>
+								@:<el-option v-for="(item, index) in getConstDataByType('@column.DictTypeCode')" :key="index" :label="item.name" :value="item.code">{{ item.name }}</el-option>
 							</el-select>
 						</el-form-item>
 					</el-col>
@@ -144,14 +145,8 @@
 	import { ref,onMounted } from "vue";
 	import { ElMessage } from "element-plus";
 	import type { FormRules } from "element-plus";
-@if(Model.TableField.Any(x=>x.EffectType == "ConstSelector")){
-	@:import { getConstType } from "/@@/utils/constHelper";
-} 
-@if(Model.TableField.Any(x=>x.EffectType == "DictSelector") || @Model.TableField.Any(x=>x.EffectType == "EnumSelector")){
-	@:import { getDictDataItem as di, getDictDataList as dl } from '/@@/utils/dict-utils';
-}
-@if(Model.TableField.Any(x=>x.EffectType == "EnumSelector")){
-	@:import { getDictLabelByVal as dv } from '/@@/utils/dict-utils';
+@if(hasDictData) {
+	@:import { useUserInfo } from "/@@/stores/userInfo";
 }
 @if(Model.TableField.Any(x=>x.EffectType == "DatePicker")){
   	@:import { formatDate } from '/@@/utils/formatTime';
@@ -160,12 +155,11 @@
     @:import { Plus } from "@@element-plus/icons-vue";
     @:import { UploadRequestOptions } from "element-plus";
 }
-@if(Model.TableField.Any(x=>x.EffectType == "EnumSelector")){
-	@:import { getAPI } from '/@@/utils/axios-utils';
-	@:import { SysEnumApi } from '/@@/api-services/api';
-}
 	import { use@(Model.ClassName)Api } from '/@@/api/@(Model.PagePath)/@(Model.LowerClassName)';
 
+@if(hasDictData) {
+	@:const getDictDataByCode = useUserInfo().getDictDataByCode;
+}
 	//父级传递来的参数
 	var props = defineProps({
 		title: {
@@ -196,6 +190,11 @@
 	onMounted(() => {
 
 	});
+
+	@if(Model.TableField.Any(x=>x.EffectType == "ConstSelector")){
+	@:// 获取根据常量类型获取常量数据列表
+	@:const getConstDataByType = (type: string) => useUserInfo().constList?.find(x => x.code == type)?.data?.result ?? [];
+	}
 
 	// 打开弹窗
 	const openDialog = async (row: any) => {

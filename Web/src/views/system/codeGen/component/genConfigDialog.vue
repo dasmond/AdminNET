@@ -9,14 +9,14 @@
 			</template>
 			<el-table :data="state.tableData" style="width: 100%" v-loading="state.loading" border>
 				<el-table-column type="index" label="序号" width="55" align="center" />
-				<el-table-column prop="propertyName" label="实体属性" width="180" show-overflow-tooltip />
-				<el-table-column prop="columnComment" label="描述" width="180" show-overflow-tooltip>
+				<el-table-column prop="propertyName" label="实体属性" show-overflow-tooltip />
+				<el-table-column prop="columnComment" label="描述" show-overflow-tooltip>
 					<template #default="scope">
 						<el-input v-model="scope.row.columnComment" autocomplete="off" />
 					</template>
 				</el-table-column>
-				<el-table-column prop="netType" label="数据类型" min-width="90" show-overflow-tooltip />
-				<el-table-column prop="effectType" label="作用类型" width="140" show-overflow-tooltip>
+				<el-table-column prop="netType" label="数据类型" width="130" show-overflow-tooltip />
+				<el-table-column prop="effectType" label="作用类型" width="150" show-overflow-tooltip>
 					<template #default="scope">
 						<div class="effect-type-container">
 							<el-select v-model="scope.row.effectType" class="m-2" placeholder="Select" :disabled="judgeColumns(scope.row)" @change="effectTypeChange(scope.row, scope.$index)">
@@ -25,7 +25,6 @@
 							<el-button
 								v-if="scope.row.effectType === 'ApiTreeSelector' || scope.row.effectType === 'ForeignKey'"
 								:icon="Edit"
-								type="dashed"
 								title="修改"
 								link
 								@click="effectTypeChange(scope.row, scope.$index)"
@@ -33,7 +32,7 @@
 						</div>
 					</template>
 				</el-table-column>
-				<el-table-column prop="dictTypeCode" label="字典" width="180" show-overflow-tooltip>
+				<el-table-column prop="dictTypeCode" label="字典" width="150" show-overflow-tooltip>
 					<template #default="scope">
 						<el-select v-model="scope.row.dictTypeCode" class="m-2" :disabled="effectTypeEnable(scope.row)">
 							<el-option
@@ -44,45 +43,44 @@
 						</el-select>
 					</template>
 				</el-table-column>
-
-				<el-table-column prop="whetherTable" label="列表显示" width="85" align="center" show-overflow-tooltip>
+				<el-table-column prop="whetherTable" label="列表显示" width="70" align="center" show-overflow-tooltip>
 					<template #default="scope">
 						<el-checkbox v-model="scope.row.whetherTable" />
 					</template>
 				</el-table-column>
-				<el-table-column prop="whetherAddUpdate" label="增改" width="80" align="center" show-overflow-tooltip>
+				<el-table-column prop="whetherAddUpdate" label="增改" width="70" align="center" show-overflow-tooltip>
 					<template #default="scope">
 						<el-checkbox v-model="scope.row.whetherAddUpdate" :disabled="judgeColumns(scope.row)" />
 					</template>
 				</el-table-column>
-				<el-table-column prop="whetherImport" label="导入" width="80" align="center" show-overflow-tooltip>
+				<el-table-column prop="whetherImport" label="导入" width="70" align="center" show-overflow-tooltip>
 					<template #default="scope">
 						<el-checkbox v-model="scope.row.whetherImport" :disabled="judgeColumns(scope.row)" />
 					</template>
 				</el-table-column>
-				<el-table-column prop="whetherRequired" label="必填" width="80" align="center" show-overflow-tooltip>
+				<el-table-column prop="whetherRequired" label="必填" width="70" align="center" show-overflow-tooltip>
 					<template #default="scope">
 						<el-checkbox v-model="scope.row.whetherRequired" :disabled="judgeColumns(scope.row)" />
 					</template>
 				</el-table-column>
-				<el-table-column prop="whetherSortable" label="可排序" width="80" align="center" show-overflow-tooltip>
+				<el-table-column prop="whetherSortable" label="可排序" width="70" align="center" show-overflow-tooltip>
 					<template #default="scope">
 						<el-checkbox v-model="scope.row.whetherSortable" />
 					</template>
 				</el-table-column>
-				<el-table-column prop="queryWhether" label="是否是查询" min-width="80" align="center" show-overflow-tooltip>
+				<el-table-column prop="queryWhether" label="查询" width="70" align="center" show-overflow-tooltip>
 					<template #default="scope">
 						<el-switch v-model="scope.row.queryWhether" :active-value="true" :inactive-value="false" />
 					</template>
 				</el-table-column>
-				<el-table-column prop="queryType" label="查询方式" min-width="120" align="center" show-overflow-tooltip>
+				<el-table-column prop="queryType" label="查询方式" width="110" align="center" show-overflow-tooltip>
 					<template #default="scope">
 						<el-select v-model="scope.row.queryType" class="m-2" placeholder="Select" :disabled="!scope.row.queryWhether">
 							<el-option v-for="item in getDictDataByCode('code_gen_query_type')" :key="item.code" :label="item.value" :value="item.code" />
 						</el-select>
 					</template>
 				</el-table-column>
-				<el-table-column prop="orderNo" label="排序" width="100" show-overflow-tooltip>
+				<el-table-column prop="orderNo" label="排序" width="80" show-overflow-tooltip>
 					<template #default="scope">
 						<el-input v-model="scope.row.orderNo" autocomplete="off" type="number" />
 					</template>
