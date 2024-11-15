@@ -109,7 +109,7 @@ import { getAPI } from '/@/utils/axios-utils';
 import { SysJobApi } from '/@/api-services/api';
 import { JobCreateTypeEnum, UpdateJobDetailInput } from '/@/api-services/models';
 
-const getDictDataByCode = useUserInfo.getDictDataByCode;
+const getDictDataByCode = useUserInfo().getDictDataByCode;
 // HttpMethod 定义，来源后端 HttpMethod 对象的序列化
 // 下面定义内容【不要】加空格，否则 getHttpJobMessage 中 JSON.stringify(httpJobMessageNet.HttpMethod) 后无法匹配
 const httpMethodDef = {

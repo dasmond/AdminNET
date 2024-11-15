@@ -83,7 +83,7 @@ import { SysOrgApi } from '/@/api-services/api';
 import { SysOrg, UpdateOrgInput } from '/@/api-services/models';
 import DictLabel from "/@/components/table/dictLabel.vue";
 
-const getDictDataByCode = useUserInfo.getDictDataByCode;
+const getDictDataByCode = useUserInfo().getDictDataByCode;
 const editOrgRef = ref<InstanceType<typeof EditOrg>>();
 const orgTreeRef = ref<InstanceType<typeof OrgTree>>();
 const state = reactive({

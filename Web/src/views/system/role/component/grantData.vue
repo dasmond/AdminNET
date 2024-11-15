@@ -42,7 +42,7 @@ import { getAPI } from '/@/utils/axios-utils';
 import { SysRoleApi } from '/@/api-services/api';
 import { RoleOrgInput } from '/@/api-services/models';
 
-const getDictDataByCode = useUserInfo.getDictDataByCode;
+const getDictDataByCode = useUserInfo().getDictDataByCode;
 const emits = defineEmits(['handleQuery']);
 const orgTreeRef = ref();
 const state = reactive({

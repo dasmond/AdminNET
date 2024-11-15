@@ -79,7 +79,7 @@ import { getAPI } from '/@/utils/axios-utils';
 import { SysOrgApi } from '/@/api-services/api';
 import { SysOrg, UpdateOrgInput } from '/@/api-services/models';
 
-const getDictDataByCode = useUserInfo.getDictDataByCode;
+const getDictDataByCode = useUserInfo().getDictDataByCode;
 const props = defineProps({
 	title: String,
 	orgData: Array<SysOrg>,
