@@ -29,12 +29,10 @@ const state = reactive({
 });
 
 onMounted(() => {
-	const dictList = useUserInfo().getDictDataByCode(props.code as string);
-	const dict = dictList?.find((x: any) => x[props.propValue] == props.value) ?? {};
+	const dict = useUserInfo().dictList[props.code]?.find(x => x[props.propValue] == props.value);
 	if (dict) {
 		state.label = dict[props.propLabel] || props.defaultValue;
 		state.tagType = dict.tagType;
 	}
-  console.log(props)
 })
 </script>
