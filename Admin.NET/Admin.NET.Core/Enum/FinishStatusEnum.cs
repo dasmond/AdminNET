@@ -15,12 +15,12 @@ public enum FinishStatusEnum
     /// <summary>
     /// 已完成
     /// </summary>
-    [Description("已完成")]
+    [Description("已完成"), Theme("success")]
     Finish = 1,
 
     /// <summary>
     /// 未完成
     /// </summary>
-    [Description("未完成")]
+    [Description("未完成"), Theme("danger")]
     UnFinish = 0,
 }

@@ -15,12 +15,12 @@ public enum YesNoEnum
     /// <summary>
     /// 是
     /// </summary>
-    [Description("是")]
+    [Description("是"), Theme("success")]
     Y = 1,
 
     /// <summary>
     /// 否
     /// </summary>
-    [Description("否")]
+    [Description("否"), Theme("danger")]
     N = 2
 }

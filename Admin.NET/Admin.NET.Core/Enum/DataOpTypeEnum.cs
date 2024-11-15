@@ -15,7 +15,7 @@ public enum DataOpTypeEnum
     /// <summary>
     /// 其它
     /// </summary>
-    [Description("其它")]
+    [Description("其它"), Theme("info")]
     Other,
 
     /// <summary>
