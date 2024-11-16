@@ -1,6 +1,8 @@
 ﻿@{
   string LowerFirstLetter(string text) => text.ToString()[..1].ToLower() + text[1..];
 
+  string getDropdownName(dynamic column) => $"{column.FkEntityName}{Regex.Replace(column.PropertyName, "[iI]d$", "")}Dropdown";
+
   var pkField = Model.TableField.Where(c => c.ColumnKey == "True").FirstOrDefault();
 
   string pkFieldName = pkField != null && !string.IsNullOrEmpty(pkField.PropertyName) ? LowerFirstLetter(pkField.PropertyName) : null;
@@ -46,13 +48,13 @@
             }else if(column.EffectType == "ForeignKey"){
             @:<el-form-item label="@column.ColumnComment">
               @:<el-select clearable filterable v-model="queryParams.@(column.LowerPropertyName)" placeholder="请选择@(column.ColumnComment)">
-                @:<el-option v-for="(item,index) in @LowerFirstLetter(@column.FkEntityName)@(column.PropertyName)DropdownList" :key="index" :value="item.value" :label="item.label" />
+                @:<el-option v-for="(item,index) in get@(getDropdownName(column))List" :key="index" :value="item.value" :label="item.label" />
               @:</el-select>
             @:</el-form-item>
             }else if(column.EffectType == "DictSelector" || column.EffectType == "EnumSelector"){
             @:<el-form-item label="@column.ColumnComment">
               @:<el-select clearable filterable v-model="queryParams.@(column.LowerPropertyName)" placeholder="请选择@(column.ColumnComment)">
-                @:<el-option v-for="(item,index) in getDictDataByCode('code_gen_create_type')('@(column.DictTypeCode)')" :key="index" :value="item.code" :label="`[${item.code}]${item.value}`" />
+                @:<el-option v-for="(item,index) in getDictDataByCode('@(column.DictTypeCode)')" :key="index" :value="item.code" :label="`[${item.code}]${item.value}`" />
               @:</el-select>
             @:</el-form-item>
             }else if(column.EffectType == "ApiTreeSelector"){
@@ -369,7 +371,7 @@
 
 @foreach (var column in Model.TableField) {
   if (column.EffectType == "ForeignKey") {
-    var dropdownName = $"{column.FkEntityName}{Regex.Replace(column.PropertyName, "[iI]d$", "")}Dropdown";
+  var dropdownName = getDropdownName(column);
   @:const @LowerFirstLetter(dropdownName)List = ref<any>([]);
   @:const get@(dropdownName)List = async () => {
     @:let list = await @(Model.LowerClassName)Api.get@(dropdownName)();
