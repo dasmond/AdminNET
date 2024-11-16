@@ -58,6 +58,10 @@ import NumberRange from '/@/components/numberRange/index.vue';
 				v-bind="$attrs"
 				:controls="false"
 			/>
+			<!-- 清除图标 -->
+			<el-icon v-if="clearable && (minValue_ || maxValue_)" class="el-icon el-input__icon el-input__clear" @click="clearValues">
+				<CircleClose />
+			</el-icon>
 		</div>
 		<div :id="useAppend ? 'append' : ''" :class="{ 'slot-default': slotStyle === 'default', 'slot-pend ': useAppend }">
 			<slot name="append">
@@ -68,11 +72,16 @@ import NumberRange from '/@/components/numberRange/index.vue';
 </template>
 <script lang="ts" setup name="numberRange">
 import { computed, ref, useSlots } from 'vue';
+import { CircleClose } from '@element-plus/icons-vue';
 
 const props = defineProps({
 	modelValue: {
 		type: Array<Number>,
 		default: () => [null, null], // 调用时使用v-model="[min,max]" 绑定
+	},
+	clearable: {
+		type: Boolean,
+		default: false,
 	},
 	minValue: {
 		type: Number,
@@ -89,7 +98,7 @@ const props = defineProps({
 	},
 	to: {
 		type: String,
-		default: '至',
+		default: '-',
 	},
 	// 精度参数 -保留小数位数
 	precision: {
@@ -124,7 +133,7 @@ const props = defineProps({
 	// 插槽样式
 	slotStyle: {
 		type: String, // default --异色背景 |  plain--无背景色
-		default: 'default',
+		default: 'plain',
 	},
 });
 
@@ -135,6 +144,11 @@ const minValue_ = computed({
 		return props.minValue || props.modelValue[0] || null;
 	},
 	set(value) {
+		if (value === null) {
+			emit('update:minValue', null);
+			emit('update:modelValue', [null, maxValue_.value]);
+			return;
+		}
 		emit('update:minValue', value);
 		emit('update:modelValue', [value, maxValue_.value]);
 	},
@@ -145,14 +159,26 @@ const maxValue_ = computed({
 		return props.maxValue || props.modelValue[1] || null;
 	},
 	set(value) {
+		if (value === null) {
+			emit('update:maxValue', null);
+			emit('update:modelValue', [minValue_.value, null]);
+			return;
+		}
 		emit('update:maxValue', value);
 		emit('update:modelValue', [minValue_.value, value]);
 	},
 });
 
-const handleChangeMinValue = (value: number) => {
+// 清除值的方法
+const clearValues = () => {
+	minValue_.value = null;
+	maxValue_.value = null;
+	emit('update:modelValue', [null, null]);
+};
+
+const handleChangeMinValue = (value: number | null) => {
 	// 非数字空返回null
-	if (isNaN(value)) {
+	if (value === null || isNaN(value)) {
 		emit('update:minValue', null);
 		return;
 	}
@@ -164,17 +190,12 @@ const handleChangeMinValue = (value: number) => {
 		const { min, max } = decideValueRange(Number(maxValue_.value), newMinValue);
 		// 更新绑定值
 		updateValue(min, max);
-	} else {
-		// 取值范围判定
-		const { min, max } = decideValueRange(newMinValue, Number(maxValue_.value));
-		// 更新绑定值
-		updateValue(min, max);
 	}
 };
 
-const handleChangeMaxValue = (value: number) => {
+const handleChangeMaxValue = (value: number | null) => {
 	// 非数字空返回null
-	if (isNaN(value)) {
+	if (value === null || isNaN(value)) {
 		emit('update:maxValue', null);
 		return;
 	}
@@ -186,24 +207,19 @@ const handleChangeMaxValue = (value: number) => {
 		const { min, max } = decideValueRange(newMaxValue, Number(minValue_.value));
 		// 更新绑定值
 		updateValue(min, max);
-	} else {
-		// 取值范围判定
-		const { min, max } = decideValueRange(Number(minValue_.value), newMaxValue);
-		// 更新绑定值
-		updateValue(min, max);
 	}
 };
 
-const updateMinValue = (value: number) => {
+const updateMinValue = (value: number | null) => {
 	minValue_.value = value;
 };
 
-const updateMaxValue = (value: number) => {
+const updateMaxValue = (value: number | null) => {
 	maxValue_.value = value;
 };
 
 // 更新数据
-const updateValue = (min: number, max: number) => {
+const updateValue = (min: number | null, max: number | null) => {
 	emit('update:minValue', min);
 	emit('update:maxValue', max);
 	emit('update:modelValue', [min, max]);
@@ -211,7 +227,11 @@ const updateValue = (min: number, max: number) => {
 };
 
 // 取值范围判定
-const decideValueRange = (min: number, max: number) => {
+const decideValueRange = (min: number | null, max: number | null) => {
+	if (min === null || max === null) {
+		return { min, max };
+	}
+
 	if (props.valueRange && props.valueRange.length > 0) {
 		// @ts-ignore
 		min = min < props.valueRange[0] ? props.valueRange[0] : min > props.valueRange[1] ? props.valueRange[1] : min;
@@ -233,7 +253,10 @@ const handleBlur = () => {
 };
 
 // 处理数字精度
-const parsePrecision = (number: number, precision = 0) => {
+const parsePrecision = (number: number | null, precision = 0) => {
+	if (number === null) {
+		return null;
+	}
 	return parseFloat(String(Math.round(number * Math.pow(10, precision)) / Math.pow(10, precision)));
 };
 
@@ -254,6 +277,7 @@ const useAppend = computed(() => {
 </script>
 <style lang="scss" scoped>
 .number-range-container {
+	position: relative;
 	display: flex;
 	height: 100%;
 	.slot-pend {
@@ -272,7 +296,7 @@ const useAppend = computed(() => {
 		border-bottom-right-radius: 0;
 	}
 	#append {
-		padding: 0 15px;
+		padding: 0 20px;
 		box-shadow:
 			0 1px 0 0 var(--el-input-border-color, var(--el-border-color)) inset,
 			0 -1px 0 0 var(--el-input-border-color, var(--el-border-color)) inset,
@@ -329,6 +353,23 @@ const useAppend = computed(() => {
 	}
 }
 
+.el-input__clear {
+	cursor: pointer;
+	color: var(--el-input-icon-color, var(--el-text-color-placeholder));
+	margin-left: 10px;
+	display: none;
+	position: absolute;
+	right: 10px;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+.number-range:hover .el-input__clear {
+	display: flex;
+	align-items: center;
+	color: var(--el-input-clear-hover-color);
+}
+
 :deep(.el-input) {
 	border: none;
 }
@@ -342,5 +383,11 @@ const useAppend = computed(() => {
 		border: none !important;
 		box-shadow: none !important;
 	}
+}
+
+:deep(.el-input),
+:deep(.el-select),
+:deep(.el-input-number) {
+	width: 100%;
 }
 </style>
