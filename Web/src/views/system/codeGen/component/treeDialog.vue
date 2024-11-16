@@ -24,8 +24,8 @@
 						</el-form-item>
 					</el-col>
 					<el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="mb20">
-						<el-form-item label="显示字段" prop="displayColumns" :rules="[{ required: true, message: '显示字段不能为空', trigger: 'blur' }]">
-							<el-select v-model="state.ruleForm.displayColumns" multiple filterable class="w100">
+						<el-form-item label="显示字段" prop="displayColumnList" :rules="[{ required: true, message: '显示字段不能为空', trigger: 'blur' }]">
+							<el-select v-model="state.ruleForm.displayColumnList" multiple filterable class="w100">
 								<el-option v-for="item in state.columnData" :key="item.columnName" :label="item.columnName + ' [' + item.columnComment + ']'" :value="item.columnName" />
 							</el-select>
 						</el-form-item>
@@ -90,7 +90,7 @@ const DbChanged = async () => {
 const TableChanged = async () => {
 	state.columnData = [];
 	await getColumnInfoList();
-	state.ruleForm.displayColumns = undefined;
+	state.ruleForm.displayColumnList = undefined;
 	state.ruleForm.valueColumn = undefined;
 	state.ruleForm.pidColumn = undefined;
 };
@@ -119,13 +119,15 @@ const openDialog = async (row: any) => {
 	ruleFormRef.value?.resetFields();
 	if (rowdata.fkConfigId) {
 		await getDbList();
+    state.ruleForm.configId = rowdata.fkConfigId;
 		state.ruleForm.tableName = rowdata.fkTableName;
-		state.ruleForm.displayColumns = rowdata.displayColumn?.split(",");
-		state.ruleForm.valueColumn = rowdata.valueColumn;
-		state.ruleForm.pidColumn = rowdata.pidColumn;
-		state.ruleForm.configId = rowdata.fkConfigId;
+
 		await DbChanged();
 		await TableChanged();
+
+    state.ruleForm.pidColumn = rowdata.pidColumn;
+    state.ruleForm.valueColumn = rowdata.valueColumn;
+    state.ruleForm.displayColumnList = rowdata.displayColumnList;
 	}
 };
 
@@ -160,8 +162,6 @@ const cancel = () => {
 const submit = () => {
 	ruleFormRef.value.validate(async (valid: boolean) => {
 		if (!valid) return;
-		state.ruleForm.displayColumn = state.ruleForm.displayColumns.join()
-		state.ruleForm.displayColumns = undefined;
 		closeDialog();
 	});
 };

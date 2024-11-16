@@ -52,7 +52,7 @@
             }else if(column.EffectType == "DictSelector" || column.EffectType == "EnumSelector"){
             @:<el-form-item label="@column.ColumnComment">
               @:<el-select clearable filterable v-model="queryParams.@(column.LowerPropertyName)" placeholder="请选择@(column.ColumnComment)">
-                @:<el-option v-for="(item,index) in dl('@(column.DictTypeCode)')" :key="index" :value="item.code" :label="`[${item.code}]${item.value}`" />
+                @:<el-option v-for="(item,index) in getDictDataByCode('code_gen_create_type')('@(column.DictTypeCode)')" :key="index" :value="item.code" :label="`[${item.code}]${item.value}`" />
               @:</el-select>
             @:</el-form-item>
             }else if(column.EffectType == "ApiTreeSelector"){
@@ -221,7 +221,7 @@
   @:import { codeToName, getConstType } from '/@@/utils/constHelper';
   }
   @if(Model.TableField.Any(x => x.EffectType == "DictSelector" || x.EffectType == "EnumSelector")) {
-  @:import { getDictDataList as dl } from '/@@/utils/dict-utils';
+  @:import { useUserInfo } from "/@@/stores/userInfo";
   }
   @if(Model.PrintType == "custom") {
   @:// 推荐设置操作 width 为 200
@@ -239,7 +239,9 @@
   import printDialog from '/@@/views/system/print/component/hiprint/preview.vue'
   import ModifyRecord from '/@@/components/table/modifyRecord.vue';
   import { use@(Model.ClassName)Api} from '/@@/api/@(Model.PagePath)/@(Model.LowerClassName)';
-  
+  @if(Model.TableField.Any(x => x.EffectType == "DictSelector" || x.EffectType == "EnumSelector")) {
+  @:const getDictDataByCode = useUserInfo().getDictDataByCode;
+  }
   const showAdvanceQueryUI = ref(@(haveLikeCdt ? "false" : "true"));
   const @(Model.LowerClassName)Api = use@(Model.ClassName)Api();
   const printDialogRef = ref();

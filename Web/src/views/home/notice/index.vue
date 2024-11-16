@@ -29,15 +29,13 @@
 				</el-table-column>
 				<el-table-column prop="sysNotice.type" label="类型" width="100" align="center" show-overflow-tooltip>
 					<template #default="scope">
-						<el-tag v-if="scope.row.sysNotice.type === 1"> 通知 </el-tag>
-						<el-tag type="warning" v-else> 公告 </el-tag>
+            <DictLabel :value="scope.row.sysNotice.type" code="NoticeTypeEnum" />
 					</template>
 				</el-table-column>
 				<el-table-column prop="sysNotice.createTime" label="创建时间" align="center" show-overflow-tooltip />
 				<el-table-column prop="readStatus" label="阅读状态" width="100" align="center" show-overflow-tooltip>
 					<template #default="scope">
-						<el-tag type="info" v-if="scope.row.readStatus === 1"> 已读 </el-tag>
-						<el-tag type="danger" v-else> 未读 </el-tag>
+            <DictLabel :value="scope.row.readStatus" code="NoticeUserStatusEnum" />
 					</template>
 				</el-table-column>
 				<el-table-column prop="sysNotice.publicUserName" label="发布者" align="center" show-overflow-tooltip />
@@ -87,6 +85,7 @@ import commonFunction from '/@/utils/commonFunction';
 import { getAPI } from '/@/utils/axios-utils';
 import { SysNoticeApi } from '/@/api-services/api';
 import { SysNoticeUser } from '/@/api-services/models';
+import DictLabel from "/@/components/table/dictLabel.vue";
 
 const { removeHtml } = commonFunction();
 const state = reactive({

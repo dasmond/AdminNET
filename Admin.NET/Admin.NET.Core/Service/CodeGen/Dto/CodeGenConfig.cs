@@ -74,24 +74,29 @@ public class CodeGenConfig
     /// <summary>
     /// 外键实体名称(首字母小写)
     /// </summary>
-    public string LowerFkEntityName =>
-        string.IsNullOrWhiteSpace(FkEntityName) ? null : FkEntityName[..1].ToLower() + FkEntityName[1..];
-
-    /// <summary>
-    /// 外键显示字段
-    /// </summary>
-    public string FkColumnName { get; set; }
+    public string LowerFkEntityName => string.IsNullOrWhiteSpace(FkEntityName) ? null : FkEntityName[..1].ToLower() + FkEntityName[1..];
 
     /// <summary>
     /// 外键链接字段
     /// </summary>
     public string FkLinkColumnName { get; set; }
+    
+    /// <summary>
+    /// 外键显示字段
+    /// </summary>
+    [Newtonsoft.Json.JsonIgnore]
+    [System.Text.Json.Serialization.JsonIgnore]
+    public string FkColumnName { get; set; }
+    
+    /// <summary>
+    /// 外键显示字段
+    /// </summary>
+    public List<string> FkColumnList { get; set; }
 
     /// <summary>
     /// 外键显示字段(首字母小写)
     /// </summary>
-    public string LowerFkColumnName =>
-        string.IsNullOrWhiteSpace(FkColumnName) ? null : FkColumnName[..1].ToLower() + FkColumnName[1..];
+    public List<string> LowerFkColumnList => FkColumnList?.Select(name => name[..1].ToLower() + name[1..]).ToList();
 
     /// <summary>
     /// 外键显示字段.NET类型
@@ -157,31 +162,18 @@ public class CodeGenConfig
     /// 是否是通用字段
     /// </summary>
     public string WhetherCommon { get; set; }
-
+    
     /// <summary>
-    /// 表的别名 Table as XXX
+    /// 外键显示字段
     /// </summary>
-    public string TableNickName
-    {
-        get
-        {
-            string str = "";
-            if (EffectType == "ForeignKey")
-            {
-                str = LowerFkEntityName + "_FK_" + LowerFkColumnName;
-            }
-            else if (EffectType == "Upload")
-            {
-                str = "sysFile_FK_" + LowerPropertyName;
-            }
-            return str;
-        }
-    }
-
+    [Newtonsoft.Json.JsonIgnore]
+    [System.Text.Json.Serialization.JsonIgnore]
+    public string DisplayColumn { get; set; }
+    
     /// <summary>
     /// 显示文本字段
     /// </summary>
-    public string DisplayColumn { get; set; }
+    public List<string> DisplayColumnList { get; set; }
 
     /// <summary>
     /// 选中值字段

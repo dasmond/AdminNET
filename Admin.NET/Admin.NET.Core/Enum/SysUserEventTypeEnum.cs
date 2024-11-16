@@ -9,6 +9,7 @@ namespace Admin.NET.Core;
 /// <summary>
 /// 事件类型-系统用户操作枚举
 /// </summary>
+[SuppressSniffer]
 [Description("事件类型-系统用户操作枚举")]
 public enum SysUserEventTypeEnum
 {

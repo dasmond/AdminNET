@@ -129,4 +129,10 @@ public partial class SysCodeGen : EntityBase
     [SugarColumn(ColumnDescription = "打印模版名称", Length = 32)]
     [MaxLength(32)]
     public string? PrintName { get; set; }
+
+    /// <summary>
+    /// 表唯一字段列表
+    /// </summary>
+    [SugarColumn(IsIgnore = true)]
+    public virtual List<TableUniqueConfigItem> TableUniqueList => string.IsNullOrWhiteSpace(TableUniqueConfig) ? null : JSON.Deserialize<List<TableUniqueConfigItem>>(TableUniqueConfig);
 }
