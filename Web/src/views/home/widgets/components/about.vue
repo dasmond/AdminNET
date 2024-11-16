@@ -2,7 +2,7 @@
 	<el-card shadow="hover" header="关于项目" class="item-background">
 		<template #header>
 			<el-icon style="display: inline; vertical-align: middle"> <ele-QuestionFilled /> </el-icon>
-			<span style=""> 关于项目 </span>
+			<span> 关于项目 </span>
 		</template>
 		<p>
 			基于 .NET6 (Furion/SqlSugar) 实现的通用权限开发框架，前端采用

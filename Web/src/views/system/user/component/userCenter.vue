@@ -4,7 +4,7 @@
 			<el-col :span="8" :xs="24">
 				<el-card shadow="hover">
 					<div class="account-center-avatarHolder">
-						<!-- <el-upload class="h100" ref="uploadAvatarRef" action="" :limit="1" :show-file-list="false" :auto-upload="false" :on-change="uploadAvatarFile" accept=".jpg,.png,.bmp,.gif">
+						<!-- <el-upload class="h100" ref="uploadAvatarRef" action :limit="1" :show-file-list="false" :auto-upload="false" :on-change="uploadAvatarFile" accept=".jpg,.png,.bmp,.gif">
 							<el-avatar :size="100" :src="userInfos.avatar" />
 						</el-upload> -->
 						<el-avatar
@@ -36,7 +36,7 @@
 					<el-button icon="ele-Edit" type="primary" @click="openSignDialog" v-auth="'sysFile:uploadSignature'"> 电子签名 </el-button>
 					<el-upload
 						ref="uploadSignRef"
-						action=""
+						action
 						accept=".png"
 						:limit="1"
 						:show-file-list="false"

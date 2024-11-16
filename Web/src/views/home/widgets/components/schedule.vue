@@ -2,7 +2,7 @@
 	<el-card shadow="hover" header="我的日程" class="item-background">
 		<template #header>
 			<el-icon style="display: inline; vertical-align: middle"> <ele-Calendar /> </el-icon>
-			<span style=""> 我的日程 </span>
+			<span> 我的日程 </span>
 			<el-button type="primary" icon="ele-CirclePlus" round plain @click="openAddSchedule" style="float: right">添加日程</el-button>
 		</template>
 

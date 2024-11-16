@@ -34,7 +34,7 @@
 				</el-table-column>
 				<el-table-column prop="dictTypeCode" label="字典" width="150" show-overflow-tooltip>
 					<template #default="scope">
-						<el-select v-model="scope.row.dictTypeCode" class="m-2" :disabled="effectTypeEnable(scope.row)">
+						<el-select v-model="scope.row.dictTypeCode" :disabled="effectTypeEnable(scope.row)" class="m-2">
 							<el-option
 							v-for="item in state.selectDataMap[scope.row.effectType] ?? []"
 							:key="item.code"
@@ -45,32 +45,32 @@
 				</el-table-column>
 				<el-table-column prop="whetherTable" label="列表显示" width="70" align="center" show-overflow-tooltip>
 					<template #default="scope">
-						<el-checkbox v-model="scope.row.whetherTable" />
+						<el-checkbox v-model="scope.row.whetherTable" true-value="Y" false-value="N" />
 					</template>
 				</el-table-column>
 				<el-table-column prop="whetherAddUpdate" label="增改" width="70" align="center" show-overflow-tooltip>
 					<template #default="scope">
-						<el-checkbox v-model="scope.row.whetherAddUpdate" :disabled="judgeColumns(scope.row)" />
+						<el-checkbox v-model="scope.row.whetherAddUpdate" true-value="Y" false-value="N" :disabled="judgeColumns(scope.row)" />
 					</template>
 				</el-table-column>
 				<el-table-column prop="whetherImport" label="导入" width="70" align="center" show-overflow-tooltip>
 					<template #default="scope">
-						<el-checkbox v-model="scope.row.whetherImport" :disabled="judgeColumns(scope.row)" />
+						<el-checkbox v-model="scope.row.whetherImport" true-value="Y" false-value="N" :disabled="judgeColumns(scope.row)" />
 					</template>
 				</el-table-column>
 				<el-table-column prop="whetherRequired" label="必填" width="70" align="center" show-overflow-tooltip>
 					<template #default="scope">
-						<el-checkbox v-model="scope.row.whetherRequired" :disabled="judgeColumns(scope.row)" />
+						<el-checkbox v-model="scope.row.whetherRequired" true-value="Y" false-value="N" :disabled="judgeColumns(scope.row)" />
 					</template>
 				</el-table-column>
 				<el-table-column prop="whetherSortable" label="可排序" width="70" align="center" show-overflow-tooltip>
 					<template #default="scope">
-						<el-checkbox v-model="scope.row.whetherSortable" />
+						<el-checkbox v-model="scope.row.whetherSortable" true-value="Y" false-value="N" />
 					</template>
 				</el-table-column>
 				<el-table-column prop="queryWhether" label="查询" width="70" align="center" show-overflow-tooltip>
 					<template #default="scope">
-						<el-switch v-model="scope.row.queryWhether" :active-value="true" :inactive-value="false" />
+						<el-switch v-model="scope.row.queryWhether" active-value="Y" inactive-value="N" />
 					</template>
 				</el-table-column>
 				<el-table-column prop="queryType" label="查询方式" width="110" align="center" show-overflow-tooltip>
@@ -150,24 +150,13 @@ const effectTypeChange = (data: any, index: number) => {
 // 查询操作
 const handleQuery = async (row: any) => {
 	state.loading = true;
-	const data = await getAPI(SysCodeGenConfigApi).apiSysCodeGenConfigListGet(undefined, row.id).then(res => res.data.result ?? []);
-  const lstWhetherColumn = ['whetherTable', 'whetherAddUpdate', 'whetherImport', 'whetherRequired', 'whetherSortable']; //列表显示的checkbox
-  data.forEach((item: any) => {
-		for (const key in item) {
-			if (item[key] === 'Y') {
-				item[key] = true;
-			} else if (item[key] === 'N' || (lstWhetherColumn.includes(key) && item[key] === null)) {
-				item[key] = false;
-			}
-		}
-	});
-	state.tableData = data;
+	state.tableData = await getAPI(SysCodeGenConfigApi).apiSysCodeGenConfigListGet(undefined, row.id).then(res => res.data.result ?? []);
 	state.loading = false;
 };
 
 // 判断是否（用于是否能选择或输入等）
 function judgeColumns(data: any) {
-	return data.whetherCommon == true || data.columnKey === 'True';
+	return data.whetherCommon == "Y" || data.columnKey === 'True';
 }
 
 function effectTypeEnable(data: any) {
@@ -205,14 +194,7 @@ const cancel = () => {
 // 提交
 const submit = async () => {
 	state.loading = true;
-	var lst = state.tableData;
-  const whetherMap = { true: 'Y', false: 'N' } as any;
-	lst.forEach((item: any) => { // 转换是否字段值
-		for (var key in item) {
-      item[key] = whetherMap[item[key]] || item[key];
-		}
-	});
-	await getAPI(SysCodeGenConfigApi).apiSysCodeGenConfigUpdatePost(lst);
+	await getAPI(SysCodeGenConfigApi).apiSysCodeGenConfigUpdatePost(state.tableData);
 	state.loading = false;
 	closeDialog();
 };
