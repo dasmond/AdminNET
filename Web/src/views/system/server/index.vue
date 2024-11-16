@@ -110,7 +110,7 @@
 					<div v-for="d in state.assemblyInfo" :key="d.name" style="display: inline-block; margin: 4px; text-align: left">
 						<el-tag round>
 							<div style="display: inline-flex">
-								<div style="">{{ d.name }}</div>
+								<div>{{ d.name }}</div>
 								<div style="color: black; font-size: 9px; margin-left: 3px">v{{ d.version }}</div>
 							</div>
 						</el-tag>

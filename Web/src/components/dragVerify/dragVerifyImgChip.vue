@@ -1,7 +1,7 @@
 <template>
   <div class="drag-verify-container">
     <div :style="dragVerifyImgStyle">
-      <img ref="checkImg" crossOrigin="anonymous" :src="imgsrc" @load="checkimgLoaded" style="width:100%" alt="">
+      <img ref="checkImg" crossOrigin="anonymous" :src="imgsrc" @load="checkimgLoaded" style="width:100%">
       <canvas ref="maincanvas" class="main-canvas"></canvas>
       <canvas ref="movecanvas" :class="{goFirst:isOk, goKeep:isKeep}" class="move-canvas"></canvas>
       <div class="refresh" v-if="showRefresh && !isPassing">

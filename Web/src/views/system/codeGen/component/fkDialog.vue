@@ -55,7 +55,7 @@ import { onMounted, reactive, ref } from 'vue';
 import { getAPI } from '/@/utils/axios-utils';
 import { SysCodeGenApi } from '/@/api-services/api';
 
-var rowdata = {} as any;
+let rowData = {} as any;
 const emits = defineEmits(['submitRefreshFk']);
 const ruleFormRef = ref();
 const state = reactive({
@@ -88,49 +88,48 @@ const TableChanged = async () => {
 };
 
 const getDbList = async () => {
-	var res = await getAPI(SysCodeGenApi).apiSysCodeGenDatabaseListGet();
+  const res = await getAPI(SysCodeGenApi).apiSysCodeGenDatabaseListGet();
 	state.dbData = res.data.result;
 };
 
 const getTableInfoList = async () => {
 	if (state.ruleForm.configId == '') return;
-	var res = await getAPI(SysCodeGenApi).apiSysCodeGenTableListConfigIdGet(state.ruleForm.configId);
+	const res = await getAPI(SysCodeGenApi).apiSysCodeGenTableListConfigIdGet(state.ruleForm.configId);
 	state.tableData = res.data.result;
 };
 
 const getColumnInfoList = async () => {
 	if (state.ruleForm.configId == '' || state.ruleForm.tableName == '') return;
 	console.log(state.ruleForm.configId, state.ruleForm.tableName);
-	var res = await getAPI(SysCodeGenApi).apiSysCodeGenColumnListByTableNameTableNameConfigIdGet(state.ruleForm.tableName, state.ruleForm.configId);
+	const res = await getAPI(SysCodeGenApi).apiSysCodeGenColumnListByTableNameTableNameConfigIdGet(state.ruleForm.tableName, state.ruleForm.configId);
 	state.columnData = res.data.result;
 };
 
 // 打开弹窗
 const openDialog = async (row: any) => {
-	rowdata = row;
-	if (rowdata.fkConfigId) {
+	rowData = row;
+	if (rowData.fkConfigId) {
 		await getDbList();
-    state.ruleForm.configId = rowdata.fkConfigId;
-		state.ruleForm.tableName = rowdata.fkTableName;
+    state.ruleForm.configId = rowData.fkConfigId;
+		state.ruleForm.tableName = rowData.fkTableName;
 		await DbChanged();
 		await TableChanged();
-    state.ruleForm.fkColumnList = rowdata.fkColumnList;
-    state.ruleForm.linkColumnName = rowdata.fkLinkColumnName;
+    state.ruleForm.fkColumnList = rowData.fkColumnList;
+    state.ruleForm.linkColumnName = rowData.fkLinkColumnName;
 	}
 	state.isShowDialog = true;
 };
 
 // 关闭弹窗
 const closeDialog = () => {
-	rowdata.fkTableName = state.ruleForm.tableName;
-	let tableData = state.tableData.filter((x: any) => x.tableName == state.ruleForm.tableName);
-	rowdata.fkEntityName = tableData.length == 0 ? '' : tableData[0].entityName;
-	rowdata.fkColumnList = state.ruleForm.fkColumnList;
-	rowdata.fkLinkColumnName = state.ruleForm.linkColumnName;
-	rowdata.fkConfigId = state.ruleForm.configId;
-	let columnData = state.columnData.filter((x: any) => x.columnName == state.ruleForm.columnName);
-	rowdata.fkColumnNetType = columnData.length == 0 ? '' : columnData[0].netType;
-	emits('submitRefreshFk', rowdata);
+  rowData.fkColumnNetType = state.columnData.find(x => x.columnName == state.ruleForm.linkColumnName)?.netType;
+  const table = state.tableData.find(x => x.tableName == state.ruleForm.tableName);
+  rowData.fkLinkColumnName = state.ruleForm.linkColumnName;
+  rowData.fkColumnList = state.ruleForm.fkColumnList;
+  rowData.fkTableName = state.ruleForm.tableName;
+  rowData.fkConfigId = state.ruleForm.configId;
+  rowData.fkEntityName = table?.entityName;
+	emits('submitRefreshFk', rowData);
 	cancel();
 };
 

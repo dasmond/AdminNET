@@ -10,7 +10,7 @@
 			<el-form :model="state.ruleForm" v-loading="state.loading">
 				<el-row :gutter="35">
 					<el-col :xs="24" :sm="24" :md="24" :lg="24" :xl1="24">
-						<el-form-item prop="orgIdList" label="">
+						<el-form-item prop="orgIdList">
 							<el-tree
 								ref="treeRef"
 								:data="state.menuData"

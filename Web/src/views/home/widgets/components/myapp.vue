@@ -2,7 +2,7 @@
 	<el-card shadow="hover" header="快捷入口">
 		<template #header>
 			<el-icon style="display: inline; vertical-align: middle"> <ele-Guide /> </el-icon>
-			<span style=""> 快捷入口 </span>
+			<span> 快捷入口 </span>
 		</template>
 		<ul class="myMods">
 			<li v-for="mod in myMods" :key="mod.path!">
