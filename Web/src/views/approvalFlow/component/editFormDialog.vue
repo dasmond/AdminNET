@@ -1,4 +1,4 @@
-<template lang="">
+<template>
 	<div class="flow-container">
 		<el-dialog v-model="state.isShowDialog" :width="800" draggable :close-on-click-modal="false">
 			<template #header>

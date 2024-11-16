@@ -62,7 +62,7 @@ import { onMounted, reactive, ref } from 'vue';
 import { getAPI } from '/@/utils/axios-utils';
 import { SysCodeGenApi } from '/@/api-services/api';
 
-var rowdata = {} as any;
+let rowData = {} as any;
 const emits = defineEmits(['submitRefreshFk']);
 const ruleFormRef = ref();
 const state = reactive({
@@ -96,55 +96,52 @@ const TableChanged = async () => {
 };
 
 const getDbList = async () => {
-	var res = await getAPI(SysCodeGenApi).apiSysCodeGenDatabaseListGet();
+	const res = await getAPI(SysCodeGenApi).apiSysCodeGenDatabaseListGet();
 	state.dbData = res.data.result;
 };
 
 const getTableInfoList = async () => {
 	if (state.ruleForm.configId == '') return;
-	var res = await getAPI(SysCodeGenApi).apiSysCodeGenTableListConfigIdGet(state.ruleForm.configId);
+  const res = await getAPI(SysCodeGenApi).apiSysCodeGenTableListConfigIdGet(state.ruleForm.configId);
 	state.tableData = res.data.result;
 };
 
 const getColumnInfoList = async () => {
 	if (state.ruleForm.configId == '' || state.ruleForm.tableName == '') return;
-	var res = await getAPI(SysCodeGenApi).apiSysCodeGenColumnListByTableNameTableNameConfigIdGet(state.ruleForm.tableName, state.ruleForm.configId);
+  const res = await getAPI(SysCodeGenApi).apiSysCodeGenColumnListByTableNameTableNameConfigIdGet(state.ruleForm.tableName, state.ruleForm.configId);
 	state.columnData = res.data.result;
 };
 
 // 打开弹窗
 const openDialog = async (row: any) => {
-	rowdata = row;
+	rowData = row;
 	state.isShowDialog = true;
 	ruleFormRef.value?.resetFields();
-	if (rowdata.fkConfigId) {
+	if (rowData.fkConfigId) {
 		await getDbList();
-    state.ruleForm.configId = rowdata.fkConfigId;
-		state.ruleForm.tableName = rowdata.fkTableName;
+    state.ruleForm.configId = rowData.fkConfigId;
+		state.ruleForm.tableName = rowData.fkTableName;
 
 		await DbChanged();
 		await TableChanged();
 
-    state.ruleForm.pidColumn = rowdata.pidColumn;
-    state.ruleForm.valueColumn = rowdata.valueColumn;
-    state.ruleForm.displayColumnList = rowdata.displayColumnList;
+    state.ruleForm.pidColumn = rowData.pidColumn;
+    state.ruleForm.valueColumn = rowData.valueColumn;
+    state.ruleForm.displayColumnList = rowData.displayColumnList;
 	}
 };
 
 // 关闭弹窗
 const closeDialog = () => {
-	rowdata.fkTableName = state.ruleForm.tableName;
-	// rowdata.fkEntityName = state.ruleForm.entityName;
-	// 这里一定要设置 fkEntityName,因为模板文件用到了
-	let tableData = state.tableData.filter((x: any) => x.tableName == state.ruleForm.tableName);
-	rowdata.fkEntityName = tableData.length == 0 ? '' : tableData[0].entityName;
-	// rowdata.fkColumnName = state.ruleForm.columnName;
-	// rowdata.fkColumnNetType = state.ruleForm.columnNetType;
-	rowdata.displayColumn = state.ruleForm.displayColumn;
-	rowdata.valueColumn = state.ruleForm.valueColumn;
-	rowdata.pidColumn = state.ruleForm.pidColumn;
-	rowdata.fkConfigId = state.ruleForm.configId;
-	emits('submitRefreshFk', rowdata);
+  rowData.fkColumnNetType = state.columnData.find(x => x.columnName == state.ruleForm.valueColumn)?.netType;
+	let table = state.tableData.find(x => x.tableName == state.ruleForm.tableName);
+	rowData.displayColumn = state.ruleForm.displayColumn;
+	rowData.valueColumn = state.ruleForm.valueColumn;
+  rowData.fkTableName = state.ruleForm.tableName;
+	rowData.pidColumn = state.ruleForm.pidColumn;
+	rowData.fkConfigId = state.ruleForm.configId;
+  rowData.fkEntityName = table?.entityName;
+	emits('submitRefreshFk', rowData);
 	cancel();
 };
 

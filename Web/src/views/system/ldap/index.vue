@@ -3,10 +3,10 @@
 		<el-card shadow="hover" :body-style="{ paddingBottom: '0' }">
 			<el-form :model="state.queryParams" ref="queryForm" :inline="true">
 				<el-form-item label="关键字">
-					<el-input v-model="state.queryParams.keyword" clearable="" placeholder="请输入模糊查询关键字" />
+					<el-input v-model="state.queryParams.keyword" clearable placeholder="请输入模糊查询关键字" />
 				</el-form-item>
 				<el-form-item label="主机">
-					<el-input v-model="state.queryParams.host" clearable="" placeholder="请输入主机" />
+					<el-input v-model="state.queryParams.host" clearable placeholder="请输入主机" />
 				</el-form-item>
 				<el-form-item>
 					<el-button-group>
@@ -21,16 +21,16 @@
 		</el-card>
 
 		<el-card class="full-table" shadow="hover" style="margin-top: 5px">
-			<el-table :data="state.tableData" style="width: 100%" v-loading="state.loading" border="">
+			<el-table :data="state.tableData" style="width: 100%" v-loading="state.loading" border>
 				<el-table-column type="index" label="序号" width="55" align="center" />
-				<el-table-column prop="host" label="主机" min-width="150" show-overflow-tooltip="" />
-				<el-table-column prop="port" label="端口" show-overflow-tooltip="" />
-				<el-table-column prop="baseDn" label="用户搜索基准" show-overflow-tooltip="" />
-				<el-table-column prop="bindDn" label="绑定DN" show-overflow-tooltip="" />
-				<el-table-column prop="bindPass" label="绑定密码" min-width="200" show-overflow-tooltip="" />
-				<el-table-column prop="authFilter" label="用户过滤规则" show-overflow-tooltip="" />
-				<el-table-column prop="version" label="Ldap版本" show-overflow-tooltip="" />
-				<el-table-column prop="status" label="状态" width="80" align="center" show-overflow-tooltip="">
+				<el-table-column prop="host" label="主机" min-width="150" show-overflow-tooltip />
+				<el-table-column prop="port" label="端口" show-overflow-tooltip />
+				<el-table-column prop="baseDn" label="用户搜索基准" show-overflow-tooltip />
+				<el-table-column prop="bindDn" label="绑定DN" show-overflow-tooltip />
+				<el-table-column prop="bindPass" label="绑定密码" min-width="200" show-overflow-tooltip />
+				<el-table-column prop="authFilter" label="用户过滤规则" show-overflow-tooltip />
+				<el-table-column prop="version" label="Ldap版本" show-overflow-tooltip />
+				<el-table-column prop="status" label="状态" width="80" align="center" show-overflow-tooltip>
 					<template #default="scope">
             <DictLabel :value="scope.row.status" code="StatusEnum" />
 					</template>
@@ -40,9 +40,9 @@
 						<ModifyRecord :data="scope.row" />
 					</template>
 				</el-table-column>
-				<el-table-column label="操作" width="300" align="center" fixed="right" show-overflow-tooltip="" v-if="auth('sysLdap:update') || auth('sysLdap:delete') || auth('sysLdap:syncUser') || auth('sysLdap:syncOrg')">
+				<el-table-column label="操作" width="300" align="center" fixed="right" show-overflow-tooltip v-if="auth('sysLdap:update') || auth('sysLdap:delete') || auth('sysLdap:syncUser') || auth('sysLdap:syncOrg')">
 					<template #default="scope">
-						<el-button icon="ele-Edit" size="small" text="" type="primary" @click="openEditSysLdap(scope.row)" v-auth="'sysLdap:update'"> 编辑 </el-button>
+						<el-button icon="ele-Edit" size="small" text type="primary" @click="openEditSysLdap(scope.row)" v-auth="'sysLdap:update'"> 编辑 </el-button>
 						<el-button icon="ele-Delete" size="small" text type="danger" @click="delSysLdap(scope.row)" v-auth="'sysLdap:delete'"> 删除 </el-button>
 						<el-button icon="ele-Refresh" size="small" text type="primary" @click="syncDomainUser(scope.row)" v-auth="'sysLdap:syncUser'"> 同步域账户 </el-button>
 						<el-button icon="ele-Refresh" size="small" text type="primary" @click="syncDomainOrg(scope.row)" v-auth="'sysLdap:syncOrg'"> 同步域组织 </el-button>
@@ -55,7 +55,7 @@
 				:total="state.tableParams.total"
 				:page-sizes="[10, 20, 50, 100, 200, 500]"
 				size="small"
-				background=""
+				background
 				@size-change="handleSizeChange"
 				@current-change="handleCurrentChange"
 				layout="total, sizes, prev, pager, next, jumper"
@@ -66,7 +66,7 @@
 	</div>
 </template>
 
-<script lang="ts" setup="" name="sysLdap">
+<script lang="ts" setup name="sysLdap">
 import { onMounted, reactive, ref } from 'vue';
 import { ElMessageBox, ElMessage } from 'element-plus';
 import { auth } from '/@/utils/authFunction';

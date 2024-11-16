@@ -2,7 +2,7 @@
 	<el-card shadow="hover" header="当前时钟" class="item-background">
 		<template #header>
 			<el-icon style="display: inline; vertical-align: middle"> <ele-Clock /> </el-icon>
-			<span style=""> 当前时钟 </span>
+			<span> 当前时钟 </span>
 		</template>
 		<div class="time">
 			<h2>{{ time }}</h2>

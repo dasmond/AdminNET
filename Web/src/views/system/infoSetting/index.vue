@@ -11,7 +11,7 @@
 							<el-icon><ele-PictureRounded /></el-icon> 系统图标
 						</div>
 					</template> -->
-					<el-upload ref="uploadRef" class="avatar-uploader" :showFileList="false" :autoUpload="false" accept=".jpg,.png,.svg" action="" :limit="1" :onChange="handleUploadChange">
+					<el-upload ref="uploadRef" class="avatar-uploader" :showFileList="false" :autoUpload="false" accept=".jpg,.png,.svg" action :limit="1" :onChange="handleUploadChange">
 						<img v-if="state.formData.sysLogo" :src="state.formData.sysLogo" class="avatar" />
 						<SvgIcon v-else class="avatar-uploader-icon" name="ele-Plus" :size="28" />
 					</el-upload>

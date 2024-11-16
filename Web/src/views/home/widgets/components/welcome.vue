@@ -2,7 +2,7 @@
 	<el-card shadow="hover" header="欢迎">
 		<template #header>
 			<el-icon style="display: inline; vertical-align: middle"> <ele-Promotion /> </el-icon>
-			<span style=""> 欢迎 </span>
+			<span> 欢迎 </span>
 		</template>
 		<div class="welcome">
 			<div class="logo">

@@ -3,7 +3,7 @@
 		<el-card shadow="hover" :body-style="{ paddingBottom: '0' }">
 			<el-form :model="state.queryParams" ref="queryForm" :inline="true">
 				<el-form-item label="订单号">
-					<el-input v-model="state.queryParams.keyword" clearable="" placeholder="请输入订单号" />
+					<el-input v-model="state.queryParams.keyword" clearable placeholder="请输入订单号" />
 				</el-form-item>
 				<el-form-item label="创建时间">
 					<el-date-picker placeholder="请选择创建时间" value-format="YYYY/MM/DD" type="daterange" v-model="state.queryParams.createTimeRange" />
@@ -21,7 +21,7 @@
 		</el-card>
 
 		<el-card class="full-table" shadow="hover" style="margin-top: 5px">
-			<el-table :data="state.tableData" style="width: 100%" v-loading="state.loading" border="">
+			<el-table :data="state.tableData" style="width: 100%" v-loading="state.loading" border>
 				<el-table-column type="index" label="序号" width="55" align="center" />
 				<el-table-column prop="outTradeNumber" label="商户订单号" width="180"></el-table-column>
 				<el-table-column prop="transactionId" label="支付订单号" width="220"></el-table-column>
@@ -42,15 +42,15 @@
 				<el-table-column label="操作" align="center" fixed="right">
 					<template #default="scope">
 						<el-button
+              text
 							size="small"
-							text=""
 							type="primary"
 							v-if="scope.row.qrcodeContent != null && scope.row.qrcodeContent != '' && (scope.row.tradeState === '' || !scope.row.tradeState)"
 							@click="openQrDialog(scope.row.qrcodeContent)"
 							>付款二维码</el-button
 						>
-						<el-button size="small" text="" type="primary" v-if="scope.row.tradeState === 'REFUND'" @click="openRefundDialog(scope.row.transactionId)">查看退款</el-button>
-						<el-button size="small" text="" type="primary" v-if="scope.row.tradeState === 'SUCCESS'" @click="doRefund(scope.row)">全额退款</el-button>
+						<el-button size="small" text type="primary" v-if="scope.row.tradeState === 'REFUND'" @click="openRefundDialog(scope.row.transactionId)">查看退款</el-button>
+						<el-button size="small" text type="primary" v-if="scope.row.tradeState === 'SUCCESS'" @click="doRefund(scope.row)">全额退款</el-button>
 					</template>
 				</el-table-column>
 			</el-table>
@@ -109,7 +109,7 @@
 					<span>退款信息</span>
 				</div>
 			</template>
-			<el-table :data="subTableData" style="width: 100%" tooltip-effect="light" row-key="id" border="">
+			<el-table :data="subTableData" style="width: 100%" tooltip-effect="light" row-key="id" border>
 				<el-table-column type="index" label="序号" width="55" align="center" />
 				<el-table-column prop="outRefundNumber" label="商户退款号" width="180"></el-table-column>
 				<el-table-column prop="transactionId" label="支付订单号" width="220"></el-table-column>
