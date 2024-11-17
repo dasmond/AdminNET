@@ -6,19 +6,11 @@
 
 namespace Admin.NET.Core.Service;
 
+/// <summary>
+/// 自定义模板引擎
+/// </summary>
 public class CustomViewEngine : ViewEngineModel
 {
-    private readonly ISqlSugarClient _db;
-
-    public CustomViewEngine()
-    {
-    }
-
-    public CustomViewEngine(ISqlSugarClient db)
-    {
-        _db = db;
-    }
-
     /// <summary>
     /// 库定位器
     /// </summary>
@@ -31,72 +23,93 @@ public class CustomViewEngine : ViewEngineModel
     public string NameSpace { get; set; }
 
     public string ClassName { get; set; }
+    
+    public string LowerClassName { get; set; }
 
     public string ProjectLastName { get; set; }
 
-    public List<TableUniqueConfigItem> TableUniqueList { get; set; }
-
-    public string LowerClassName
-    {
-        get
-        {
-            return ClassName[..1].ToLower() + ClassName[1..]; // 首字母小写
-        }
-    }
-
     public string PagePath { get; set; } = "main";
-
-    public bool IsJoinTable { get; set; }
-
-    public bool IsUpload { get; set; }
 
     public string PrintType { get; set; }
 
     public string PrintName { get; set; }
+    
+    public bool HasLikeQuery { get; set; }
+    
+    public bool HasJoinTable { get; set; }
+    
+    public bool HasSetStatus { get; set; }
+    
+    public bool HasEnumField { get; set; }
+    
+    public bool HasDictField { get; set; }
+    
+    public bool HasConstField { get; set; }
+    
+    public List<CodeGenConfig> TableField { get; set; }
+    
+    public List<CodeGenConfig> ImportFieldList { get; set; }
+    
+    public List<CodeGenConfig> UploadFieldList { get; set; }
 
     public List<CodeGenConfig> QueryWhetherList { get; set; }
+    
+    public List<CodeGenConfig> ApiTreeFieldList { get; set; }
+    
+    public List<CodeGenConfig> DropdownFieldList { get; set; }
+    
+    public List<CodeGenConfig> AddUpdateFieldList { get; set; }
+    
+    public List<CodeGenConfig> PrimaryKeyFieldList { get; set; }
+    
+    public List<TableUniqueConfigItem> TableUniqueConfigList { get; set; }
 
-    public List<CodeGenConfig> TableField { get; set; }
-
-    private List<ColumnOuput> ColumnList { get; set; }
-
-    public string GetColumnNetType(object tbName, object colName)
-    {
-        if (tbName == null || colName == null) return null;
-
-        var config = App.GetOptions<DbConnectionOptions>().ConnectionConfigs.FirstOrDefault(u => u.ConfigId.ToString() == ConfigId);
-        ColumnList = GetColumnListByTableName(tbName.ToString());
-        var col = ColumnList.Where(c => (config.DbSettings.EnableUnderLine
-            ? CodeGenUtil.CamelColumnName(c.ColumnName, Array.Empty<string>())
-            : c.ColumnName) == colName.ToString()).FirstOrDefault();
-        return col.NetType;
-    }
-
-    public List<ColumnOuput> GetColumnListByTableName(string tableName)
-    {
-        // 多库代码生成切换库
-        var provider = _db.AsTenant().GetConnectionScope(ConfigId != SqlSugarConst.MainConfigId ? ConfigId : SqlSugarConst.MainConfigId);
-
-        // 获取实体类型属性
-        var entityType = provider.DbMaintenance.GetTableInfoList().FirstOrDefault(u => u.Name == tableName);
-        
-        // 因为ConfigId的表通常也会用到主库的表来做连接，所以这里如果在ConfigId中找不到实体也尝试一下在主库中查找
-        if (entityType == null)
+    public List<string> PrimaryKeyNames => PrimaryKeyFieldList.Select(u => u.PropertyName).ToList();
+    
+    public string PrimaryKeysFormat(string separator, string format) => string.Join(separator, PrimaryKeyFieldList.Select(u => string.Format(format, u.PropertyName)));
+    
+    /// <summary>
+    /// 注入的服务
+    /// </summary>
+    /// <returns></returns>
+    public Dictionary<string, string> InjectServiceMap {
+        get
         {
-            if (ConfigId == SqlSugarConst.MainConfigId) return null;
-            provider = _db.AsTenant().GetConnectionScope(SqlSugarConst.MainConfigId);
-            entityType = provider.DbMaintenance.GetTableInfoList().FirstOrDefault(u => u.Name == tableName);
-            if (entityType == null) return null;
+            var text = PrimaryKeysFormat(" && ", "u.{0} == input.{0}");
+            var injectMap = new Dictionary<string, string>();
+            if (UploadFieldList.Count > 0) injectMap.Add(nameof(SysFileService), ToLowerFirstLetter(nameof(SysFileService)));
+            if (DropdownFieldList.Count > 0) injectMap.Add(nameof(ISqlSugarClient), ToLowerFirstLetter(nameof(ISqlSugarClient).TrimStart('I')));
+            if (ImportFieldList.Any(c => c.EffectType == "DictSelector")) injectMap.Add(nameof(SysDictTypeService), ToLowerFirstLetter(nameof(SysDictTypeService)));
+            return injectMap;
         }
-
-        // 按原始类型的顺序获取所有实体类型属性（不包含导航属性，会返回null）
-        return provider.DbMaintenance.GetColumnInfosByTableName(entityType.Name).Select(u => new ColumnOuput
-        {
-            ColumnName = u.DbColumnName,
-            ColumnKey = u.IsPrimarykey.ToString(),
-            DataType = u.DataType.ToString(),
-            NetType = CodeGenUtil.ConvertDataType(u, provider.CurrentConnectionConfig.DbType),
-            ColumnComment = u.ColumnDescription
-        }).ToList();
     }
+
+    /// <summary>
+    /// 服务构造参数
+    /// </summary>
+    public string InjectServiceArgs => InjectServiceMap.Count > 0 ? string.Join(", ", InjectServiceMap.Select(kv => $"{kv.Key} {kv.Value}")) : "";
+   
+    /// <summary>
+    /// 导入唯一性校验配置
+    /// </summary>
+    public List<TableUniqueConfigItem> ImportUniqueConfigList => TableUniqueConfigList.Where(c => c.Columns.All(x1 => ImportFieldList.Any(x2 => x2.PropertyName == x1))).ToList();
+    
+    /// <summary>
+    /// 增改唯一性校验配置
+    /// </summary>
+    public List<TableUniqueConfigItem> AddUpdateUniqueConfigList => TableUniqueConfigList.Where(c => c.Columns.All(x1 => UploadFieldList.Any(x2 => x2.PropertyName == x1))).ToList();
+
+    /// <summary>
+    /// 获取首字母小写字符串
+    /// </summary>
+    /// <param name="text"></param>
+    /// <returns></returns>
+    public string ToLowerFirstLetter(string text) => string.IsNullOrWhiteSpace(text) ? text : text[..1].ToLower() + text[1..];
+    
+    /// <summary>
+    /// 将基本字段类型转为可空类型
+    /// </summary>
+    /// <param name="netType"></param>
+    /// <returns></returns>
+    public string GetNullableNetType(string netType) => Regex.IsMatch(netType, "(.*?Enum|bool|char|int|long|double|float|decimal)[?]?") ? netType.TrimEnd('?') + "?" : netType;
 }

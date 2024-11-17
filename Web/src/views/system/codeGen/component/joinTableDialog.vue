@@ -4,42 +4,42 @@
 			<template #header>
 				<div style="color: #fff">
 					<el-icon size="16" style="margin-right: 3px; display: inline; vertical-align: middle"> <ele-Edit /> </el-icon>
-					<span> 树选择配置 </span>
+					<span> {{state.dialogTitle}} </span>
 				</div>
 			</template>
 			<el-form :model="state.ruleForm" ref="ruleFormRef" label-width="auto">
 				<el-row :gutter="35">
 					<el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="mb20">
-						<el-form-item label="库定位器" prop="configId" :rules="[{ required: true, message: '库不能为空', trigger: 'blur' }]">
-							<el-select clearable v-model="state.ruleForm.configId" placeholder="库名" filterable @change="DbChanged()" class="w100">
+						<el-form-item label="库定位器" prop="fkConfigId" :rules="[{ required: true, message: '库不能为空', trigger: 'blur' }]">
+							<el-select v-model="state.ruleForm.fkConfigId" placeholder="库名" filterable clearable @change="DbChanged()" class="w100">
 								<el-option v-for="item in state.dbData" :key="item.configId" :label="item.configId" :value="item.configId" />
 							</el-select>
 						</el-form-item>
 					</el-col>
 					<el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="mb20">
-						<el-form-item label="数据库表" prop="tableName" :rules="[{ required: true, message: '数据表不能为空', trigger: 'blur' }]">
-							<el-select v-model="state.ruleForm.tableName" class="w100" filterable clearable @change="TableChanged()">
+						<el-form-item label="数据库表" prop="fkTableName" :rules="[{ required: true, message: '数据表不能为空', trigger: 'blur' }]">
+							<el-select v-model="state.ruleForm.fkTableName" class="w100" filterable clearable @change="TableChanged()">
 								<el-option v-for="item in state.tableData" :key="item.entityName" :label="item.tableName + ' [' + item.tableComment + ']'" :value="item.tableName" />
 							</el-select>
 						</el-form-item>
 					</el-col>
 					<el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="mb20">
-						<el-form-item label="显示字段" prop="displayColumnList" :rules="[{ required: true, message: '显示字段不能为空', trigger: 'blur' }]">
-							<el-select v-model="state.ruleForm.displayColumnList" multiple filterable class="w100">
+						<el-form-item label="显示字段" prop="fkDisplayColumnList" :rules="[{ required: true, message: '显示字段不能为空', trigger: 'blur' }]">
+							<el-select v-model="state.ruleForm.fkDisplayColumnList" multiple filterable clearable class="w100">
 								<el-option v-for="item in state.columnData" :key="item.columnName" :label="item.columnName + ' [' + item.columnComment + ']'" :value="item.columnName" />
 							</el-select>
 						</el-form-item>
 					</el-col>
 					<el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="mb20">
-						<el-form-item label="选择值字段" prop="valueColumn" :rules="[{ required: true, message: '值字段不能为空', trigger: 'blur' }]">
-							<el-select v-model="state.ruleForm.valueColumn" class="w100">
+						<el-form-item label="值&ensp;字&ensp;段" prop="fkLinkColumnName" :rules="[{ required: true, message: '值字段不能为空', trigger: 'blur' }]">
+							<el-select v-model="state.ruleForm.fkLinkColumnName" filterable clearable class="w100">
 								<el-option v-for="item in state.columnData" :key="item.columnName" :label="item.columnName + ' [' + item.columnComment + ']'" :value="item.columnName" />
 							</el-select>
 						</el-form-item>
 					</el-col>
-					<el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="mb20">
+					<el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="mb20" v-if="state.ruleForm.effectType == 'ApiTreeSelector'">
 						<el-form-item label="父级字段" prop="pidColumn" :rules="[{ required: true, message: '父级字段不能为空', trigger: 'blur' }]">
-							<el-select v-model="state.ruleForm.pidColumn" class="w100">
+							<el-select v-model="state.ruleForm.pidColumn" filterable clearable class="w100">
 								<el-option v-for="item in state.columnData" :key="item.columnName" :label="item.columnName + ' [' + item.columnComment + ']'" :value="item.columnName" />
 							</el-select>
 						</el-form-item>
@@ -57,28 +57,19 @@
 </template>
 
 <script lang="ts" setup name="sysCodeGenTree">
-import { onMounted, reactive, ref } from 'vue';
-
+import { reactive, ref } from 'vue';
 import { getAPI } from '/@/utils/axios-utils';
 import { SysCodeGenApi } from '/@/api-services/api';
 
-let rowData = {} as any;
 const emits = defineEmits(['submitRefreshFk']);
 const ruleFormRef = ref();
 const state = reactive({
+  dialogTitle: '' as string,
 	isShowDialog: false,
 	ruleForm: {} as any,
 	dbData: [] as any,
 	tableData: [] as any,
 	columnData: [] as any,
-});
-
-onMounted(async () => {
-	await getDbList();
-
-	// 默认使用第一个库
-	//state.ruleForm.configId = state.dbData[0].configId;
-	//await DbChanged();
 });
 
 const DbChanged = async () => {
@@ -90,66 +81,56 @@ const DbChanged = async () => {
 const TableChanged = async () => {
 	state.columnData = [];
 	await getColumnInfoList();
-	state.ruleForm.displayColumnList = undefined;
-	state.ruleForm.valueColumn = undefined;
-	state.ruleForm.pidColumn = undefined;
+  state.ruleForm.pidColumn = undefined;
+	state.ruleForm.fkDisplayColumnList = undefined;
+  state.ruleForm.fkLinkColumnName = state.columnData.find(x => "True" === x.columnKey)?.columnName;
 };
 
 const getDbList = async () => {
-	const res = await getAPI(SysCodeGenApi).apiSysCodeGenDatabaseListGet();
-	state.dbData = res.data.result;
+  state.dbData = await getAPI(SysCodeGenApi).apiSysCodeGenDatabaseListGet().then(res => res.data.result ?? []);
 };
 
 const getTableInfoList = async () => {
-	if (state.ruleForm.configId == '') return;
-  const res = await getAPI(SysCodeGenApi).apiSysCodeGenTableListConfigIdGet(state.ruleForm.configId);
-	state.tableData = res.data.result;
+	if (!state.ruleForm.fkConfigId) return;
+  state.tableData = await getAPI(SysCodeGenApi)
+      .apiSysCodeGenTableListConfigIdGet(state.ruleForm.fkConfigId)
+      .then(res => res.data.result ?? []);
 };
 
 const getColumnInfoList = async () => {
-	if (state.ruleForm.configId == '' || state.ruleForm.tableName == '') return;
-  const res = await getAPI(SysCodeGenApi).apiSysCodeGenColumnListByTableNameTableNameConfigIdGet(state.ruleForm.tableName, state.ruleForm.configId);
-	state.columnData = res.data.result;
+	if (!state.ruleForm.fkConfigId || !state.ruleForm.fkTableName) return;
+  state.columnData = await getAPI(SysCodeGenApi)
+      .apiSysCodeGenColumnListByTableNameTableNameConfigIdGet(state.ruleForm.fkTableName, state.ruleForm.fkConfigId)
+      .then(res => res.data.result ?? []);
 };
 
 // 打开弹窗
-const openDialog = async (row: any) => {
-	rowData = row;
-	state.isShowDialog = true;
-	ruleFormRef.value?.resetFields();
-	if (rowData.fkConfigId) {
-		await getDbList();
-    state.ruleForm.configId = rowData.fkConfigId;
-		state.ruleForm.tableName = rowData.fkTableName;
-
+const openDialog = async (row: any, title: string) => {
+  await getDbList();
+  state.dialogTitle = title;
+  state.isShowDialog = true;
+  state.ruleForm = JSON.parse(JSON.stringify(row));
+	if (row.fkConfigId) {
 		await DbChanged();
-		await TableChanged();
-
-    state.ruleForm.pidColumn = rowData.pidColumn;
-    state.ruleForm.valueColumn = rowData.valueColumn;
-    state.ruleForm.displayColumnList = rowData.displayColumnList;
+    await TableChanged();
+    state.ruleForm.pidColumn = row.pidColumn;
+    state.ruleForm.fkLinkColumnName = row.fkLinkColumnName;
+    state.ruleForm.fkDisplayColumnList = row.fkDisplayColumnList;
 	}
 };
 
 // 关闭弹窗
 const closeDialog = () => {
-  rowData.fkColumnNetType = state.columnData.find(x => x.columnName == state.ruleForm.valueColumn)?.netType;
-	let table = state.tableData.find(x => x.tableName == state.ruleForm.tableName);
-	rowData.displayColumn = state.ruleForm.displayColumn;
-	rowData.valueColumn = state.ruleForm.valueColumn;
-  rowData.fkTableName = state.ruleForm.tableName;
-	rowData.pidColumn = state.ruleForm.pidColumn;
-	rowData.fkConfigId = state.ruleForm.configId;
-  rowData.fkEntityName = table?.entityName;
-	emits('submitRefreshFk', rowData);
+  state.ruleForm.fkColumnNetType = state.columnData.find(x => x.columnName == state.ruleForm.fkLinkColumnName)?.netType;
+  state.ruleForm.fkEntityName = state.tableData.find(x => x.tableName == state.ruleForm.fkTableName)?.entityName;
+	if (state.ruleForm.effectType != 'ApiTreeSelector') state.ruleForm.pidColumn = null;
+  emits('submitRefreshFk', state.ruleForm);
 	cancel();
 };
 
 // 取消
 const cancel = () => {
 	state.isShowDialog = false;
-	ruleFormRef.value?.resetFields();
-	state.ruleForm = {};
 	state.dbData.value = [];
 	state.tableData.value = [];
 	state.columnData.value = [];

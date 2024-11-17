@@ -6,16 +6,7 @@
 
 using Admin.NET.Core.Service;
 using Microsoft.AspNetCore.Http;
-@{
-    string LowerFirstLetter(string text) => text.ToString()[..1].ToLower() + text[1..];
 
-    var primaryKey = Model.TableField.First(u => u.ColumnKey == "True");
-    var importFields = Model.TableField.Where(x => x.WhetherImport == "Y");
-
-    var injectServices = new List<string>();
-    if (Model.TableField.Any(u => u.EffectType == "Upload")) injectServices.Add("SysFileService");
-    if (Model.TableField.Any(x => x.WhetherImport == "Y" && x.EffectType == "DictSelector")) injectServices.Add("SysDictTypeService");
-}
 namespace @(Model.NameSpace);
 
 /// <summary>
@@ -25,15 +16,15 @@ namespace @(Model.NameSpace);
 public class @(Model.ClassName)Service : IDynamicApiController, ITransient
 {
     private readonly SqlSugarRepository<@(Model.ClassName)> _@(Model.LowerClassName)Rep;
-    @foreach(var name in injectServices) {
-    @:private readonly @name _@(LowerFirstLetter(name));
+    @foreach(var kv in Model.InjectServiceMap) {
+    @:private readonly @(kv.Key) _@(kv.Value);
     }
 
-    public @(Model.ClassName)Service(SqlSugarRepository<@(Model.ClassName)> @(Model.LowerClassName)Rep@(injectServices.Count > 0 ? ", " + string.Join(", ", injectServices.Select(name => $"{name} {LowerFirstLetter(name)}")) : ""))
+    public @(Model.ClassName)Service(SqlSugarRepository<@(Model.ClassName)> @(Model.LowerClassName)Rep@(Model.InjectServiceArgs))
     {
         _@(Model.LowerClassName)Rep = @(Model.LowerClassName)Rep;
-        @foreach(var name in injectServices) {
-        @:_@LowerFirstLetter(name) = @LowerFirstLetter(name);
+        @foreach(var kv in Model.InjectServiceMap) {
+        @:_@(kv.Value) = @(kv.Value);
         }
     }
 
@@ -48,9 +39,9 @@ public class @(Model.ClassName)Service : IDynamicApiController, ITransient
     {
         input.Keyword = input.Keyword?.Trim();
         var query = _@(Model.LowerClassName)Rep.AsQueryable()
-@{
+    @{
           string joinTableName = "u";
-          var queryFields = Model.TableField.Where(u => u.QueryWhether == "Y");
+          var queryFields = Model.TableField.Where(u => u.WhetherQuery == "Y");
           // 关键字模糊查询
           if (queryFields.Any(u => u.QueryType == "like")) {
             @:.WhereIF(!string.IsNullOrEmpty(input.Keyword), u => @string.Join(" || ", queryFields.Where(u => u.QueryType == "like").Select(col => $"u.{col.PropertyName}.Contains(input.Keyword)")))
@@ -68,11 +59,11 @@ public class @(Model.ClassName)Service : IDynamicApiController, ITransient
             }
           }
           // 联表
-          if (Model.IsJoinTable) {
-            @foreach (var column in Model.TableField.Where(u => u.EffectType == "ForeignKey" || u.EffectType == "ApiTreeSelector")){
+          if (Model.HasJoinTable) {
+            foreach (var column in Model.TableField.Where(u => u.EffectType == "ForeignKey" || u.EffectType == "ApiTreeSelector")){
             var joinTableAlias = Regex.Replace(column.LowerPropertyName, "[iI]d$", "");
             joinTableName += ", " + joinTableAlias;
-            @:.LeftJoin<@column.FkEntityName>((@joinTableName) => u.@(column.PropertyName) == @joinTableAlias.@(column.EffectType == "ForeignKey" ? column.FkLinkColumnName : column.ValueColumn))
+            @:.LeftJoin<@column.FkEntityName>((@joinTableName) => u.@(column.PropertyName) == @joinTableAlias.@(column.EffectType == "ForeignKey" ? column.FkLinkColumnName : column.FkLinkColumnName))
           }
             // 查询列表
             @:.Select((@joinTableName) => new @(Model.ClassName)Output
@@ -80,12 +71,12 @@ public class @(Model.ClassName)Service : IDynamicApiController, ITransient
             foreach (var column in Model.TableField) {
                 var joinTableAlias = Regex.Replace(column.LowerPropertyName, "[iI]d$", "");
                 if (column.EffectType == "ForeignKey") {
-                var columnList = column.FkColumnName.Split(",").Select(n => $"{{{joinTableAlias}.{n}}}").ToList();
-                @:@(column.PropertyName) = u.@(column.PropertyName), 
+                var columnList = column.FkDisplayColumnList.Select(n => $"{{{joinTableAlias}.{n}}}").ToList();
+                @:@(column.PropertyName) = u.@(column.PropertyName),
                 @:@(column.PropertyName)FkColumn = $"@(string.Join("-", columnList))",
                 } else if (column.EffectType == "ApiTreeSelector") {
-                var columnList = column.DisplayColumn.Split(",").Select(n => $"{{{joinTableAlias}.{n}}}").ToList();
-                @:@(column.PropertyName) = u.@(column.PropertyName),  
+                var columnList = column.FkDisplayColumnList.Select(n => $"{{{joinTableAlias}.{n}}}").ToList();
+                @:@(column.PropertyName) = u.@(column.PropertyName),
                 @:@(column.PropertyName)Display = $"@(string.Join("-", columnList))",
                 } else {
                 @:@(column.PropertyName) = u.@(column.PropertyName),
@@ -96,7 +87,7 @@ public class @(Model.ClassName)Service : IDynamicApiController, ITransient
             // 无联表
             @:.Select<@(Model.ClassName)Output>();
          }
-}
+    }
 		return await query.OrderBuilder(input).ToPagedListAsync(input.Page, input.PageSize);
     }
 
@@ -110,8 +101,8 @@ public class @(Model.ClassName)Service : IDynamicApiController, ITransient
     public async Task<long> Add(Add@(Model.ClassName)Input input)
     {
         var entity = input.Adapt<@(Model.ClassName)>();
-        @foreach (var config in Model.TableUniqueList.Where(x => x.Columns.All(x1 => Model.TableField.Any(x2 => x2.WhetherAddUpdate == "Y" && x2.PropertyName == x1)))) {
-        @:if (await _@(Model.LowerClassName)Rep.IsAnyAsync(u => @(string.Join(" && ", config.Columns.Select(x => $"u.{x} != null && u.{x} == input.{x}"))))) throw Oops.Oh("@(config.Message)已存在");
+        @foreach (var config in Model.AddUpdateUniqueConfigList) {
+        @:if (await _@(Model.LowerClassName)Rep.IsAnyAsync(u => @(string.Join(" && ", @config.Columns.Select(x => $"u.{x} != null && u.{x} == input.{x}"))))) throw Oops.Oh("@(config.Message)已存在");
         }
         return await _@(Model.LowerClassName)Rep.InsertAsync(entity) ? entity.Id : 0;
     }
@@ -125,9 +116,7 @@ public class @(Model.ClassName)Service : IDynamicApiController, ITransient
     [ApiDescriptionSettings(Name = "Delete"), HttpPost]
     public async Task Delete(Delete@(Model.ClassName)Input input)
     {
-        @foreach (var column in Model.TableField.Where(u => u.ColumnKey == "True")) {
-        @:var entity = await _@(Model.LowerClassName)Rep.GetFirstAsync(u => u.@(column.PropertyName) == input.@(column.PropertyName)) ?? throw Oops.Oh(ErrorCodeEnum.D1002);
-        }
+        var entity = await _@(Model.LowerClassName)Rep.GetFirstAsync(u => @Model.PrimaryKeysFormat(" && ", "u.{0} == input.{0}")) ?? throw Oops.Oh(ErrorCodeEnum.D1002);
         await _@(Model.LowerClassName)Rep.FakeDeleteAsync(entity);   //假删除
         //await _@(Model.LowerClassName)Rep.DeleteAsync(entity);   //真删除
     }
@@ -139,11 +128,9 @@ public class @(Model.ClassName)Service : IDynamicApiController, ITransient
     /// <returns></returns>
     [DisplayName("批量删除@(Model.BusName)")]
     [ApiDescriptionSettings(Name = "BatchDelete"), HttpPost]
-    public async Task<int> BatchDelete(BatchDelete@(Model.ClassName)Input input)
+    public async Task<int> BatchDelete([Required(ErrorMessage = "主键列表不能为空")]List<Delete@(Model.ClassName)Input> input)
     {
-        @foreach (var column in Model.TableField.Where(u => u.ColumnKey == "True")) {
-        @:var list = await _@(Model.LowerClassName)Rep.AsQueryable().Where(u => input.@(column.PropertyName)List.Contains(u.@(column.PropertyName))).ToListAsync() ?? throw Oops.Oh(ErrorCodeEnum.D1002);
-        }
+        var list = await _@(Model.LowerClassName)Rep.AsQueryable().In(u => new { @string.Join(", ", Model.PrimaryKeyFieldList.Select(n => $"u.{n}")) }, input).ToListAsync();
         return await _@(Model.LowerClassName)Rep.FakeDeleteAsync(list);   //假删除
         //return await _@(Model.LowerClassName)Rep.DeleteAsync(list);   //真删除
     }
@@ -157,13 +144,16 @@ public class @(Model.ClassName)Service : IDynamicApiController, ITransient
     [ApiDescriptionSettings(Name = "Update"), HttpPost]
     public async Task Update(Update@(Model.ClassName)Input input)
     {
-        @foreach (var config in Model.TableUniqueList.Where(x => x.Columns.All(x1 => Model.TableField.Any(x2 => x2.WhetherAddUpdate == "Y" && x2.PropertyName == x1)))) {
-        @:if (await _@(Model.LowerClassName)Rep.IsAnyAsync(u => u.@(primaryKey.PropertyName) != input.@(primaryKey.PropertyName) && @(string.Join(" && ", config.Columns.Select(x => $"u.{x} != null && u.{x} == input.{x}"))))) throw Oops.Oh("@(config.Message)已存在");
+        @{
+        var primaryKeyWhere = string.Join(" && ", Model.PrimaryKeyFieldList.Select(n => $"u.{n} == input.{n}"));
+        foreach (var config in Model.AddUpdateUniqueConfigList) {
+        @:if (await _@(Model.LowerClassName)Rep.IsAnyAsync(u => !(@primaryKeyWhere) && @(string.Join(" && ", config.Columns.Select(x => $"u.{x} != null && u.{x} == input.{x}"))))) throw Oops.Oh("@(config.Message)已存在");
+        }
         }
         var entity = input.Adapt<@(Model.ClassName)>();
         await _@(Model.LowerClassName)Rep.AsUpdateable(entity).IgnoreColumns(ignoreAllNullColumns: true).ExecuteCommandAsync();
     }
-    @if (Model.TableField.Any(col => col.NetType == "StatusEnum" && col.PropertyName == "Status")) {
+    @if (Model.HasSetStatus) {
     @:
     @:/// <summary>
     @:/// 设置@(Model.BusName)状态 🚫
@@ -187,7 +177,7 @@ public class @(Model.ClassName)Service : IDynamicApiController, ITransient
     [ApiDescriptionSettings(Name = "Detail"), HttpGet]
     public async Task<@(Model.ClassName)> Detail([FromQuery] QueryById@(Model.ClassName)Input input)
     {
-        return await _@(Model.LowerClassName)Rep.GetFirstAsync(u => u.@(primaryKey.PropertyName) == input.@(primaryKey.PropertyName));
+        return await _@(Model.LowerClassName)Rep.GetFirstAsync(u => @Model.PrimaryKeysFormat(" && ", "u.{0} == input.{0}"));
     }
 
     /// <summary>
@@ -201,9 +191,9 @@ public class @(Model.ClassName)Service : IDynamicApiController, ITransient
     {
         return await _@(Model.LowerClassName)Rep.AsQueryable().Select<@(Model.ClassName)Output>().ToListAsync();
     }
-@foreach (var column in Model.TableField.Where(u => u.EffectType == "ForeignKey" && (u.WhetherAddUpdate == "Y" || u.QueryWhether == "Y"))){
-@:
-    var dropdownName = $"{column.FkEntityName}{Regex.Replace(column.PropertyName, "[iI]d$", "")}Dropdown";
+    @foreach (var column in Model.TableField.Where(u => u.EffectType == "ForeignKey" && (u.WhetherAddUpdate == "Y" || u.WhetherQuery == "Y"))){
+    @:
+    var dropdownName = $"{column.FkEntityName}{column.PropertyName.TrimEnd("Id")}Dropdown";
     @:/// <summary>
     @:/// 获取@(column.ColumnComment)列表 🔖
     @:/// </summary>
@@ -212,7 +202,7 @@ public class @(Model.ClassName)Service : IDynamicApiController, ITransient
     @:[ApiDescriptionSettings(Name = "@(dropdownName)"), HttpGet]
     @:public async Task<dynamic> @(dropdownName)([FromQuery]bool all)
     @:{
-        var columnList = column.FkColumnName.Split(",").Select(name => $"{{u.{name}}}").ToList();
+        var columnList = column.FkDisplayColumnList.Select(name => $"{{u.{name}}}").ToList();
         @:return await _@(Model.LowerClassName)Rep.Context.Queryable<@(column.FkEntityName)>()
             @:.InnerJoinIF<@Model.ClassName>(!all, (u, r) => u.@(column.FkLinkColumnName) == r.@(column.PropertyName))
             @:.Select(u => new
@@ -222,31 +212,10 @@ public class @(Model.ClassName)Service : IDynamicApiController, ITransient
             @:}
         @:).ToListAsync();
     @:}
-}
-@{
-var definedObjects = new Dictionary<string, object>();
-@foreach (var column in Model.TableField.Where(u => u.EffectType == "ApiTreeSelector" && !definedObjects.ContainsKey("@(u.FkEntityName)Tree"))){
-@:
-    definedObjects.Add("@(column.FkEntityName)Tree", 1);
-    @:/// <summary>
-    @:/// 获取@(column.ColumnComment)选择数据 🔖
-    @:/// </summary>
-    @:[DisplayName("获取@(column.ColumnComment)选择数据")]
-    @:[ApiDescriptionSettings(Name = "@(column.FkEntityName)Tree"), HttpGet]
-    @:public async Task<List<@(column.FkEntityName)TreeOutput>> @(column.FkEntityName)Tree([FromQuery]bool all)
-    @:{
-        var columnList = column.DisplayColumn.Split(",").Select(name => $"{{u.{name}}}").ToList();
-        @:return await _@(Model.LowerClassName)Rep.Context.Queryable<@column.FkEntityName>()
-          @:.InnerJoinIF<@Model.ClassName>(!all, (u, r) => u.@(column.ValueColumn) == r.@(column.PropertyName))
-          @:.Select(u => new @(column.FkEntityName)TreeOutput {
-            @:Label = $"@(string.Join("-", columnList))",
-            @:Value = u.@column.ValueColumn
-        @:}, true).ToTreeAsync(u => u.Children, u => u.@column.PidColumn, @(column.WhetherRequired == "Y" ? "0" : "null"));
-    @:}
-}
-}
-@foreach (var column in Model.TableField.Where(u => u.EffectType == "Upload")) {
-@:
+    }
+
+    @foreach (var column in Model.AddUpdateFieldList) {
+    @:
     @:/// <summary>
     @:/// 上传@(column.ColumnComment) ⬆️
     @:/// </summary>
@@ -258,9 +227,9 @@ var definedObjects = new Dictionary<string, object>();
     @:{
         @:return await _sysFileService.UploadFile(new FileUploadInput { File = file, SavePath = "upload/@(Model.ClassName)/@(column.PropertyName)" }); 
     @:}
-}
-@if (importFields.Count() > 0) {
-@:
+    }
+    @if (Model.ImportFieldList.Count > 0) {
+    @:
     @:/// <summary>
     @:/// 下载@(Model.BusName)数据导入模板 ⬇️
     @:/// </summary>
@@ -269,12 +238,12 @@ var definedObjects = new Dictionary<string, object>();
     @:[ApiDescriptionSettings(Name = "Import"), HttpGet, NonUnify]
     @:public IActionResult DownloadTemplate()
     @:{
-        var fieldsList = importFields.Where(u => u.EffectType == "ForeignKey" || u.EffectType == "ApiTreeSelector").ToList();
+        var fieldsList = Model.ImportFieldList.Where(u => u.EffectType == "ForeignKey" || u.EffectType == "ApiTreeSelector").ToList();
         if (fieldsList.Any()) {
         @:return ExcelHelper.ExportTemplate(new List<Export@(Model.ClassName)Output>(), "@(Model.BusName)导入模板", (_, info) =>
         @:{
             foreach (var column in fieldsList) {
-            var columnList = (column.EffectType == "ForeignKey" ? column.FkColumnName : column.DisplayColumn).Split(",").Select(n => $"{{u.{n}}}").ToList();
+            var columnList = column.FkDisplayColumnList.Select(n => $"{{u.{n}}}").ToList();
             @:if (nameof(Export@(Model.ClassName)Output.@(column.PropertyName)Label) == info.Name) return _@(Model.LowerClassName)Rep.Context.Queryable<@(column.FkEntityName)>().Select(u => $"@(string.Join("-", columnList))").Distinct().ToList();
             }
             @:return null;
@@ -283,7 +252,7 @@ var definedObjects = new Dictionary<string, object>();
         @:return ExcelHelper.ExportTemplate(new List<Export@(Model.ClassName)Output>(), "@(Model.BusName)导入模板");
         }
     @:}
-@:
+    @:
     @:/// <summary>
     @:/// 导入@(Model.BusName)记录 💾
     @:/// </summary>
@@ -303,13 +272,12 @@ var definedObjects = new Dictionary<string, object>();
             @:{
                 @:_@(Model.LowerClassName)Rep.Context.Utilities.PageEach(list, 2048, pageItems =>
                 @:{
-                    foreach (var column in importFields.Where(u => u.EffectType == "ForeignKey" || u.EffectType == "ApiTreeSelector")) {
+                    foreach (var column in Model.ImportFieldList.Where(u => u.EffectType == "ForeignKey" || u.EffectType == "ApiTreeSelector")) {
                     @:// 链接 @(column.ColumnComment)
                     @:var @(column.LowerPropertyName)LabelList = pageItems.Where(x => x.@(column.PropertyName)Label != null).Select(x => x.@(column.PropertyName)Label).Distinct().ToList();
                     @:if (@(column.LowerPropertyName)LabelList.Any()) {
-                        var valueColumn = column.EffectType == "ForeignKey" ? column.FkLinkColumnName : column.ValueColumn;
-                        var columnList = (column.EffectType == "ForeignKey" ? column.FkColumnName : column.DisplayColumn).Split(",").Select(n => $"{{u.{n}}}").ToList();
-                        @:var @(column.LowerPropertyName)LinkMap = _@(Model.LowerClassName)Rep.Context.Queryable<@(column.FkEntityName)>().Where(u => @(column.LowerPropertyName)LabelList.Contains($"@(string.Join("-", columnList))")).ToList().ToDictionary(u => $"@(string.Join("-", columnList))", u => u.@(valueColumn));
+                        var columnList = column.FkDisplayColumnList.Select(n => $"{{u.{n}}}").ToList();
+                        @:var @(column.LowerPropertyName)LinkMap = _@(Model.LowerClassName)Rep.Context.Queryable<@(column.FkEntityName)>().Where(u => @(column.LowerPropertyName)LabelList.Contains($"@(string.Join("-", columnList))")).ToList().ToDictionary(u => $"@(string.Join("-", columnList))", u => u.@(column.FkLinkColumnName));
                         @:pageItems.ForEach(e => e.@(column.PropertyName) = @(column.LowerPropertyName)LinkMap?.GetValueOrDefault(e.@(column.PropertyName)Label, default));
                     @:}
                     }
@@ -317,7 +285,7 @@ var definedObjects = new Dictionary<string, object>();
                     @:
                     @:// 校验并过滤必填基本类型为null的字段
                     @:var rows = pageItems.Where(x => {
-                        foreach (var column in importFields.Where(x => x.WhetherRequired == "Y" && Regex.IsMatch(x.NetType, "(int|long|double|float|bool|Enum[?]?)"))){
+                        foreach (var column in Model.ImportFieldList.Where(x => x.WhetherRequired == "Y" && Regex.IsMatch(x.NetType, "(int|long|double|float|bool|Enum[?]?)"))){
                         @:if (x.@(column.PropertyName) == null){
                             @:x.Error = "@(column.ColumnComment)不能为空";
                             @:return false;
@@ -338,7 +306,7 @@ var definedObjects = new Dictionary<string, object>();
 
                     @:
                     @:var storageable = _@(Model.LowerClassName)Rep.Context.Storageable(rows)
-                        foreach (var column in importFields){
+                        foreach (var column in Model.ImportFieldList){
                         if (column.WhetherRequired == "Y"){
                         if(column.NetType.TrimEnd('?') == "string"){
                         @:.SplitError(it => string.IsNullOrWhiteSpace(it.Item.@(column.PropertyName)), "@(column.ColumnComment)不能为空")
@@ -348,7 +316,7 @@ var definedObjects = new Dictionary<string, object>();
                         if (column.NetType?.TrimEnd('?') == "string"){
                         @:.SplitError(it => it.Item.@(column.PropertyName)?.Length > @(column.ColumnLength), "@(column.ColumnComment)长度不能超过@(column.ColumnLength)个字符")
                         }}
-                        @foreach (var config in Model.TableUniqueList.Where(x => x.Columns.All(x1 => importFields.Any(x2 => x2.PropertyName == x1)))) {
+                        foreach (var config in Model.ImportUniqueConfigList) {
                         @:.WhereColumns(it => new { @(string.Join(", ", config.Columns.Select(x => $"it.{x}"))) }).SplitError(it => it.Any(), "@(config.Message)已存在")
                         }
                         @:.SplitInsert(_ => true)
@@ -362,9 +330,9 @@ var definedObjects = new Dictionary<string, object>();
                     @:markerErrorAction.Invoke(storageable, pageItems, rows);
                 @:});
             @:});
-@:
+            @:
             @:return stream;
         @:}
     @:}
+    }
 }
-@}

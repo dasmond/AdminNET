@@ -11,7 +11,7 @@
 
   bool hasImport = Model.TableField.Any(x => x.WhetherImport == "Y");
 
-  bool haveLikeCdt = Model.TableField.Any(col => col.QueryWhether == "Y" && col.QueryType == "like");
+  bool haveLikeCdt = Model.TableField.Any(col => col.WhetherQuery == "Y" && col.QueryType == "like");
 
   var hasSetStatus = Model.TableField.Any(col => col.NetType == "StatusEnum" && col.PropertyName == "Status");
 
@@ -61,7 +61,7 @@
             @:<el-form-item label="@column.ColumnComment">
               @:<el-cascader
                   @::options="@LowerFirstLetter(@column.FkEntityName)TreeData"
-                  @:@:props="{ checkStrictly: true, emitPath: false, value: '@LowerFirstLetter(@column.ValueColumn)' }"
+                  @:@:props="{ checkStrictly: true, emitPath: false, value: '@LowerFirstLetter(@column.FkLinkColumnName)' }"
                   @:placeholder="请选择@(column.ColumnComment)"
                   @:clearable
                   @:filterable
@@ -76,7 +76,7 @@
             @:</el-form-item>
             }else if(column.EffectType == "DatePicker"){
             @:<el-form-item label="@column.ColumnComment">
-              if(column.QueryType == "~"){
+              if (column.QueryType == "~") {
               @:<el-date-picker type="daterange" v-model="queryParams.@(column.LowerPropertyName)Range"  value-format="YYYY-MM-DD HH:mm:ss" start-placeholder="开始日期" end-placeholder="结束日期" :default-time="[new Date('1 00:00:00'), new Date('1 23:59:59')]" />
               } else {
               @:<el-date-picker placeholder="请选择@(column.ColumnComment)" value-format="YYYY/MM/DD"  v-model="queryParams.@(column.LowerPropertyName)" />
@@ -89,10 +89,10 @@
           <el-col :xs="24" :sm="12" :md="12" :lg="8" :xl="4" class="mb10">
             <el-form-item @(Model.QueryWhetherList.Count > 0?"":"label-width=\"0px\"")>
               <el-button-group style="display: flex; align-items: center;">
-                <el-button type="primary"  icon="ele-Search" @@click="handleQuery" v-auth="'@(Model.LowerClassName):page'"> @(Model.QueryWhetherList.Count > 0?"查询":"刷新") </el-button>
-                @if(Model.QueryWhetherList.Count > 0){
+                <el-button type="primary"  icon="ele-Search" @@click="handleQuery" v-auth="'@(Model.LowerClassName):page'"> @(Model.QueryWhetherList.Count > 0 ? "查询" : "刷新") </el-button>
+                @if (Model.QueryWhetherList.Count > 0) {
                 @:<el-button icon="ele-Refresh" @@click="() => queryParams = {}"> 重置 </el-button>
-                @if(haveLikeCdt){
+                @if (haveLikeCdt) {
                 @:<el-button icon="ele-ZoomIn" @@click="changeAdvanceQueryUI" v-if="!showAdvanceQueryUI" style="margin-left:5px;"> 高级查询 </el-button>
                 @:<el-button icon="ele-ZoomOut" @@click="changeAdvanceQueryUI" v-if="showAdvanceQueryUI" style="margin-left:5px;"> 隐藏 </el-button>
                 }
