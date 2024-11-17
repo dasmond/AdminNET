@@ -4,11 +4,6 @@
 //
 // 不得利用本项目从事危害国家安全、扰乱社会秩序、侵犯他人合法权益等法律法规禁止的活动！任何基于本项目二次开发而产生的一切法律纠纷和责任，我们不承担任何责任！
 
-@{
-    bool IsNetEnumType(dynamic column) => column.NetType.TrimEnd('?').EndsWith("Enum");
-    bool IsStatusEnumField(dynamic column) => column.NetType.TrimEnd('?') == "StatusEnum" && column.PropertyName == "Status";
-    string GetFinalType(string type) => Regex.IsMatch(type, "(.*?Enum|bool|char|int|long|double|float|decimal)[?]?") ? type.TrimEnd('?') + "?" : type;
-}
 using Admin.NET.Core;
 using System.ComponentModel.DataAnnotations;
 
@@ -19,12 +14,12 @@ namespace @(Model.NameSpace);
 /// </summary>
 public class @(Model.ClassName)BaseInput
 {
-@foreach (var column in Model.TableField.Where(u => u.ColumnKey != "True" && u.WhetherAddUpdate == "Y")){
+@foreach (var column in Model.PrimaryKeyFieldList.Concat(Model.AddUpdateFieldList)){
     @:/// <summary>
     @:/// @column.ColumnComment
     @:/// </summary>
-    @:public virtual @GetFinalType(column.NetType) @column.PropertyName { get; set; }
-@:
+    @:public virtual @Model.GetNullableNetType(column.NetType) @column.PropertyName { get; set; }
+    @:
 }
 }
 
@@ -33,7 +28,7 @@ public class @(Model.ClassName)BaseInput
 /// </summary>
 public class Page@(Model.ClassName)Input : BasePageInput
 {
-@foreach (var column in Model.TableField.Where(u => u.QueryWhether == "Y")){
+@foreach (var column in Model.TableField.Where(u => u.WhetherQuery == "Y")){
     if(column.NetType?.TrimEnd('?') == "DateTime" && column.QueryType == "~"){
     @:/// <summary>
     @:/// @(column.ColumnComment)范围
@@ -43,9 +38,9 @@ public class Page@(Model.ClassName)Input : BasePageInput
     @:/// <summary>
     @:/// @column.ColumnComment
     @:/// </summary>
-    @:public @GetFinalType(column.NetType) @column.PropertyName { get; set; }
+    @:public @Model.GetNullableNetType(column.NetType) @column.PropertyName { get; set; }
     }
-@:
+    @:
 }
 }
 
@@ -54,7 +49,7 @@ public class Page@(Model.ClassName)Input : BasePageInput
 /// </summary>
 public class Add@(Model.ClassName)Input
 {
-@foreach (var column in Model.TableField.Where(col => col.WhetherAddUpdate == "Y")){
+@foreach (var column in Model.AddUpdateFieldList){
     @:/// <summary>
     @:/// @column.ColumnComment
     @:/// </summary>
@@ -64,8 +59,8 @@ public class Add@(Model.ClassName)Input
     if (column.NetType.TrimEnd('?').EndsWith("string") && column.ColumnLength > 0){
     @:[MaxLength(@column.ColumnLength, ErrorMessage = "@(column.ColumnComment)字符长度不能超过@(column.ColumnLength)")]
     }
-    @:public @GetFinalType(column.NetType) @column.PropertyName { get; set; }
-@:
+    @:public @Model.GetNullableNetType(column.NetType) @column.PropertyName { get; set; }
+    @:
 }
 }
 
@@ -74,28 +69,13 @@ public class Add@(Model.ClassName)Input
 /// </summary>
 public class Delete@(Model.ClassName)Input
 {
-@foreach (var column in Model.TableField.Where(u => u.ColumnKey == "True")){
+@foreach (var column in Model.PrimaryKeyFieldList) {
     @:/// <summary>
     @:/// @column.ColumnComment
     @:/// </summary>
     @:[Required(ErrorMessage = "@(column.ColumnComment)不能为空")]
-    @:public @GetFinalType(column.NetType) @column.PropertyName { get; set; }
-@:
-}
-}
-
-/// <summary>
-/// @(Model.BusName)批量删除输入参数
-/// </summary>
-public class BatchDelete@(Model.ClassName)Input
-{
-@foreach (var column in Model.TableField.Where(u => u.ColumnKey == "True")){
-    @:/// <summary>
-    @:/// @column.ColumnComment
-    @:/// </summary>
-    @:[Required(ErrorMessage = "@(column.ColumnComment)列表不能为空")]
-    @:public List<@GetFinalType(column.NetType)> @(column.PropertyName)List { get; set; }
-@:
+    @:public @Model.GetNullableNetType(column.NetType) @column.PropertyName { get; set; }
+    @:
 }
 }
 
@@ -104,7 +84,7 @@ public class BatchDelete@(Model.ClassName)Input
 /// </summary>
 public class Update@(Model.ClassName)Input
 {
-@foreach (var column in Model.TableField.Where(u => u.ColumnKey == "True" || u.WhetherAddUpdate == "Y" && !IsStatusEnumField(u))){
+    @foreach (var column in Model.PrimaryKeyFieldList.Concat(Model.AddUpdateFieldList)){
     @:/// <summary>
     @:/// @column.ColumnComment
     @:/// </summary>    
@@ -114,9 +94,9 @@ public class Update@(Model.ClassName)Input
     if (column.NetType.TrimEnd('?').EndsWith("string") && column.ColumnLength > 0){
     @:[MaxLength(@column.ColumnLength, ErrorMessage = "@(column.ColumnComment)字符长度不能超过@(column.ColumnLength)")]
     }
-    @:public @GetFinalType(column.NetType) @column.PropertyName { get; set; }
-@:
-}
+    @:public @Model.GetNullableNetType(column.NetType) @column.PropertyName { get; set; }
+    @:
+    }
 }
 
 /// <summary>
@@ -126,38 +106,57 @@ public class QueryById@(Model.ClassName)Input : Delete@(Model.ClassName)Input
 {
 }
 
-@if (Model.TableField.Any(x => x.WhetherImport == "Y")){
+@if (Model.DropdownFieldList.Count > 0) {
+@:/// <summary>
+@:/// 下拉数据输入参数
+@:/// </summary>
+@:public class DropdownData@(Model.ClassName)Input
+@:{
+    @:/// <summary>
+    @:/// 字段名称
+    @:/// </summary>
+    @:[Required(ErrorMessage = "字段名称不能为空")]
+    @:public string PropertyName { get; set; }
+    @:
+    @:/// <summary>
+    @:/// 是否用于分页查询
+    @:/// </summary>
+    @:public bool FromPage { get; set; }
+@:}
+}
+
+@if (Model.ImportFieldList.Count > 0){
 @:/// <summary>
 @:/// @(Model.BusName)数据导入实体
 @:/// </summary>
 @:[ExcelImporter(SheetIndex = 1, IsOnlyErrorRows = true)]
 @:public class Import@(Model.ClassName)Input : BaseImportInput
 @:{
-    foreach (var column in Model.TableField.Where(x => x.WhetherImport == "Y")){
-    var prefix = column.WhetherRequired == "Y" || column.NetType.TrimEnd('?').EndsWith("Enum") ? "*" : "";
+    foreach (var column in Model.ImportFieldList){
+    var headerName = (column.WhetherRequired == "Y" ? "*" : "") + column.ColumnComment;
     if(column.EffectType == "ForeignKey" || column.EffectType == "ApiTreeSelector") {
     @:/// <summary>
     @:/// @column.ColumnComment 关联值
     @:/// </summary>
     @:[ImporterHeader(IsIgnore = true)]
     @:[ExporterHeader(IsIgnore = true)]
-    @:public @GetFinalType(column.NetType) @column.PropertyName { get; set; }
-@:
+    @:public @Model.GetNullableNetType(column.NetType) @column.PropertyName { get; set; }
+    @:
     @:/// <summary>
     @:/// @column.ColumnComment 文本
     @:/// </summary>
-    @:[ImporterHeader(Name = "@(prefix + column.ColumnComment)")]
-    @:[ExporterHeader("@(prefix + column.ColumnComment)", Format = "@", Width = 25, IsBold = true)]
+    @:[ImporterHeader(Name = "@(headerName)")]
+    @:[ExporterHeader("@(headerName)", Format = "@", Width = 25, IsBold = true)]
     @:public string @(column.PropertyName)Label { get; set; }
     } else {
     @:/// <summary>
     @:/// @column.ColumnComment
     @:/// </summary>
-    @:[ImporterHeader(Name = "@(prefix + column.ColumnComment)")]
-    @:[ExporterHeader("@(prefix + column.ColumnComment)", Format = "@", Width = 25, IsBold = true)]
-    @:public @GetFinalType(column.NetType) @column.PropertyName { get; set; }
+    @:[ImporterHeader(Name = "@(headerName)")]
+    @:[ExporterHeader("@(headerName)", Format = "@", Width = 25, IsBold = true)]
+    @:public @Model.GetNullableNetType(column.NetType) @column.PropertyName { get; set; }
     }
-@:
+    @:
     }
 @:}
 }

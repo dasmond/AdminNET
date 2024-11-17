@@ -1,8 +1,3 @@
-@{
-	var definedObjects = new Dictionary<string, object>();
-	string LowerFirstLetter(string text) => text.ToString()[..1].ToLower() + text[1..];
-	var hasSetStatus = Model.TableField.Any(col => col.NetType == "StatusEnum" && col.PropertyName == "Status");
-}
 import {useBaseApi} from '/@@/api/base';
 
 // @(Model.BusName)接口服务
@@ -17,41 +12,40 @@ export const use@(Model.ClassName)Api = () => {
 		add: baseApi.add,
 		// 更新@(Model.BusName)
 		update: baseApi.update,
-@if (hasSetStatus) {
+		@if (Model.HasSetStatus) {
 		@:// 设置@(Model.BusName)状态
 		@:setStatus: baseApi.setStatus,
-}
+		}
 		// 删除@(Model.BusName)
 		delete: baseApi.delete,
 		// 批量删除@(Model.BusName)
 		batchDelete: baseApi.batchDelete,
-@if (Model.TableField.Any(x => x.WhetherImport == "Y")) {
-		@:// 下载@(Model.BusName)数据导入模板
-		@:downloadTemplate: baseApi.downloadTemplate,
+		@if (Model.ImportFieldList.Count > 0) {
 		@:// 导入@(Model.BusName)数据
 		@:importData: baseApi.importData,
-}
-@foreach (var column in Model.TableField) {
+		@:// 下载@(Model.BusName)数据导入模板
+		@:downloadTemplate: baseApi.downloadTemplate,
+		}
+		@foreach (var column in Model.TableField) {
 		if (column.EffectType == "Upload") {
 		@:// 上传@(column.ColumnComment)
 		@:upload@(column.PropertyName): (params: any) => baseApi.uploadFile(params, baseApi.baseUrl + 'upload@(column.PropertyName)'),
-		} else if (column.EffectType == "ForeignKey" && (column.WhetherAddUpdate == "Y" || column.QueryWhether == "Y")) {
-		var dropdownName = $"{column.FkEntityName}{Regex.Replace(column.PropertyName, "[iI]d$", "")}Dropdown";
+		} else if (column.EffectType == "ForeignKey" && (column.WhetherAddUpdate == "Y" || column.WhetherQuery == "Y")) {
+		var dropdownName = $"{column.FkEntityName}{column.PropertyName.TrimEnd("Id")}Dropdown";
 		@:// 获取@(column.ColumnComment)选择数据
 		@:get@(dropdownName): (all: Boolean = false) => baseApi.request({
-			@:url: baseApi.baseUrl + '@LowerFirstLetter(dropdownName)',
-			@:params: { all },
-			@:method: 'get',
-		@:}),
-		} else if (column.EffectType == "ApiTreeSelector" && !definedObjects.ContainsKey("get@(column.FkEntityName)Tree")) {
-		definedObjects.Add("get@(column.FkEntityName)Tree", 1);
-		@:// 获取@(column.ColumnComment)选择数据
-		@:get@(column.FkEntityName)Tree: (all: Boolean = false) => baseApi.request({
-			@:url: baseApi.baseUrl + '@LowerFirstLetter(column.FkEntityName)Tree',
+			@:url: baseApi.baseUrl + '@Model.ToLowerFirstLetter(dropdownName)',
 			@:params: { all },
 			@:method: 'get',
 		@:}),
 		}
-}
+		}
+		@foreach (var column in Model.TableField.Where(c => c.EffectType == "ApiTreeSelector").DistinctBy(c => c.FkEntityName)) {
+		@:// 获取@(column.ColumnComment)选择数据
+		@:get@(column.FkEntityName)Tree: () => baseApi.request({
+			@:url: baseApi.baseUrl + '@Model.ToLowerFirstLetter(column.FkEntityName)Tree',
+			@:method: 'get',
+		@:}),
+		}
 	}
 }

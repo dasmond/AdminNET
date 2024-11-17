@@ -19,16 +19,15 @@
 				<el-table-column prop="effectType" label="作用类型" width="150" show-overflow-tooltip>
 					<template #default="scope">
 						<div class="effect-type-container">
-							<el-select v-model="scope.row.effectType" class="m-2" placeholder="Select" :disabled="judgeColumns(scope.row)" @change="effectTypeChange(scope.row, scope.$index)">
+							<el-select v-model="scope.row.effectType" @change="effectTypeChange(scope.row, scope.$index)" :disabled="judgeColumns(scope.row)" class="m-2">
 								<el-option v-for="item in getDictDataByCode('code_gen_effect_type')" :key="item.code" :label="item.value" :value="item.code" />
 							</el-select>
-							<el-button
-								v-if="scope.row.effectType === 'ApiTreeSelector' || scope.row.effectType === 'ForeignKey'"
-								:icon="Edit"
-								title="修改"
-								link
-								@click="effectTypeChange(scope.row, scope.$index)"
-							/>
+              <el-button
+                  v-if="['ApiTreeSelector','ForeignKey'].some(x => scope.row.effectType == x)"
+                  @click="effectTypeChange(scope.row, scope.$index)"
+                  type="warning"
+                  :icon="Edit"
+                  link />
 						</div>
 					</template>
 				</el-table-column>
@@ -68,14 +67,14 @@
 						<el-checkbox v-model="scope.row.whetherSortable" true-value="Y" false-value="N" />
 					</template>
 				</el-table-column>
-				<el-table-column prop="queryWhether" label="查询" width="70" align="center" show-overflow-tooltip>
+				<el-table-column prop="whetherQuery" label="查询" width="70" align="center" show-overflow-tooltip>
 					<template #default="scope">
-						<el-switch v-model="scope.row.queryWhether" active-value="Y" inactive-value="N" />
+						<el-switch v-model="scope.row.whetherQuery" active-value="Y" inactive-value="N" />
 					</template>
 				</el-table-column>
 				<el-table-column prop="queryType" label="查询方式" width="110" align="center" show-overflow-tooltip>
 					<template #default="scope">
-						<el-select v-model="scope.row.queryType" class="m-2" placeholder="Select" :disabled="!scope.row.queryWhether">
+						<el-select v-model="scope.row.queryType" class="m-2" placeholder="Select" :disabled="!scope.row.whetherQuery">
 							<el-option v-for="item in getDictDataByCode('code_gen_query_type')" :key="item.code" :label="item.value" :value="item.code" />
 						</el-select>
 					</template>
@@ -94,32 +93,26 @@
 			</template>
 		</el-dialog>
 
-		<fkDialog ref="fkDialogRef" @submitRefreshFk="submitRefreshFk" />
-		<treeDialog ref="treeDialogRef" @submitRefreshFk="submitRefreshFk" />
+		<JoinTableDialog ref="joinTableDialogRef" @submitRefreshFk="submitRefreshFk" />
 	</div>
 </template>
 
 <script lang="ts" setup name="sysCodeGenConfig">
 import { onMounted, reactive, ref } from 'vue';
 import { Edit } from '@element-plus/icons-vue';
-
-import fkDialog from '/@/views/system/codeGen/component/fkDialog.vue';
-import treeDialog from '/@/views/system/codeGen/component/treeDialog.vue';
-
-import {useUserInfo} from "/@/stores/userInfo";
+import { useUserInfo } from "/@/stores/userInfo";
 import { getAPI } from '/@/utils/axios-utils';
 import { SysCodeGenConfigApi, SysDictTypeApi } from '/@/api-services/api';
-import { CodeGenConfig } from '/@/api-services/models/code-gen-config';
+import JoinTableDialog from '/src/views/system/codeGen/component/joinTableDialog.vue';
 
 const getDictDataByCode = useUserInfo().getDictDataByCode;
 const emits = defineEmits(['handleQuery']);
-const fkDialogRef = ref();
-const treeDialogRef = ref();
+const joinTableDialogRef = ref();
 const state = reactive({
 	isShowDialog: false,
 	loading: false,
   selectDataMap: {} as any,
-  tableData: [] as CodeGenConfig[]
+  tableData: [] as any[]
 });
 
 onMounted(async () => {
@@ -137,12 +130,9 @@ const submitRefreshFk = (data: any) => {
 
 // 控件类型改变
 const effectTypeChange = (data: any, index: number) => {
-	let value = data.effectType;
-	if (value === 'ForeignKey') {
-		openFkDialog(data, index);
-	} else if (value === 'ApiTreeSelector') {
-		openTreeDialog(data, index);
-	} else if (['DictSelector', 'ConstSelector', 'EnumSelector'].some(key => value === key)) {
+	if (['ForeignKey', 'ApiTreeSelector'].some(type => data.effectType == type)) {
+    openJoinTableDialog(data, 'ForeignKey' === data.effectType ? '外键配置' : '树选择器配置', index);
+	} else if (['DictSelector', 'ConstSelector', 'EnumSelector'].some(type => data.effectType === type)) {
 		data.dictTypeCode = '';
 	}
 };
@@ -164,20 +154,15 @@ function effectTypeEnable(data: any) {
 }
 
 // 打开弹窗
-const openDialog = (addRow: any) => {
-	handleQuery(addRow);
+const openDialog = (row: any) => {
+	handleQuery(row);
 	state.isShowDialog = true;
 };
 
 // 打开弹窗
-const openFkDialog = (addRow: any, index: number) => {
-	addRow.index = index;
-	fkDialogRef.value.openDialog(addRow);
-};
-
-const openTreeDialog = (addRow: any, index: number) => {
-	addRow.index = index;
-	treeDialogRef.value.openDialog(addRow);
+const openJoinTableDialog = (row: any, title: string, index: number) => {
+  row.index = index;
+  joinTableDialogRef.value.openDialog(row, title);
 };
 
 // 关闭弹窗
