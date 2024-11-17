@@ -6,7 +6,7 @@ export const use@(Model.ClassName)Api = () => {
 	return {
 		// 分页查询@(Model.BusName)
 		page: baseApi.page,
-		// 获取导出数据@(Model.BusName)
+		// 获取@(Model.BusName)导出数据
 		list: baseApi.list,
 		// 查看@(Model.BusName)详细
 		detail: baseApi.detail,
