@@ -1,36 +1,17 @@
-﻿@{
-  string LowerFirstLetter(string text) => text.ToString()[..1].ToLower() + text[1..];
-
-  string getDropdownName(dynamic column) => $"{column.FkEntityName}{Regex.Replace(column.PropertyName, "[iI]d$", "")}Dropdown";
-
-  var pkField = Model.TableField.Where(c => c.ColumnKey == "True").FirstOrDefault();
-
-  string pkFieldName = pkField != null && !string.IsNullOrEmpty(pkField.PropertyName) ? LowerFirstLetter(pkField.PropertyName) : null;
-
-  var definedObjects = new Dictionary<string, int>();
-
-  bool hasImport = Model.TableField.Any(x => x.WhetherImport == "Y");
-
-  bool haveLikeCdt = Model.TableField.Any(col => col.WhetherQuery == "Y" && col.QueryType == "like");
-
-  var hasSetStatus = Model.TableField.Any(col => col.NetType == "StatusEnum" && col.PropertyName == "Status");
-
-  var isStatus = false;
-}
-<template>
+﻿<template>
   <div class="@(Model.LowerClassName)-container">
     <el-card shadow="hover" :body-style="{ paddingBottom: '0' }"> 
       <el-form :model="queryParams" ref="queryForm" labelWidth="90">
         <el-row>
-          @if(Model.QueryWhetherList.Count > 0){
-          if(haveLikeCdt){
+          @if(Model.QueryWhetherList.Count > 0) {
+          if(Model.HasLikeQuery) {
           @:<el-col :xs="24" :sm="12" :md="12" :lg="8" :xl="4" class="mb10">
             @:<el-form-item label="关键字">
               @:<el-input v-model="queryParams.keyword" clearable placeholder="请输入模糊查询关键字"/>
             @:</el-form-item>
           @:</el-col>
           }
-          foreach (var column in Model.QueryWhetherList){
+          foreach (var column in Model.QueryWhetherList) {
           @:<el-col :xs="24" :sm="12" :md="12" :lg="8" :xl="4" class="mb10" v-if="showAdvanceQueryUI">
             if(column.EffectType == "Input" || column.EffectType == "InputTextArea"){
             @:<el-form-item label="@column.ColumnComment">
@@ -45,34 +26,34 @@
             @:<el-form-item label="@column.ColumnComment">
               @:<el-input-number v-model="queryParams.@(column.LowerPropertyName)"  clearable placeholder="请输入@(column.ColumnComment)"/>
             @:</el-form-item>
-            }else if(column.EffectType == "ForeignKey"){
+            }else if(column.EffectType == "ForeignKey") {
             @:<el-form-item label="@column.ColumnComment">
               @:<el-select clearable filterable v-model="queryParams.@(column.LowerPropertyName)" placeholder="请选择@(column.ColumnComment)">
-                @:<el-option v-for="(item,index) in get@(getDropdownName(column))List" :key="index" :value="item.value" :label="item.label" />
+                @:<el-option v-for="(item,index) in dropdownData.@(column.LowerPropertyName) ?? []" :key="index" :value="item.value" :label="item.label" />
               @:</el-select>
+            @:</el-form-item>
+            }else if(column.EffectType == "ApiTreeSelector"){
+            @:<el-form-item label="@column.ColumnComment">
+              @:<el-cascader
+                @::options="dropdownData.@(column.LowerPropertyName) ?? []"
+                @:@:props="{ checkStrictly: true, emitPath: false }"
+                @:placeholder="请选择@(column.ColumnComment)"
+                @:clearable
+                @:filterable
+                @:class="w100"
+                @:v-model="queryParams.@(column.LowerPropertyName)"
+                @:>
+                  @:<template #default="{ node, data }">
+                    @:<span>{{ data.label }}</span>
+                    @:<span v-if="!node.isLeaf"> ({{ data.children.length }}) </span>
+                  @:</template>
+              @:</el-cascader>
             @:</el-form-item>
             }else if(column.EffectType == "DictSelector" || column.EffectType == "EnumSelector"){
             @:<el-form-item label="@column.ColumnComment">
               @:<el-select clearable filterable v-model="queryParams.@(column.LowerPropertyName)" placeholder="请选择@(column.ColumnComment)">
                 @:<el-option v-for="(item,index) in getDictDataByCode('@(column.DictTypeCode)')" :key="index" :value="item.code" :label="`[${item.code}]${item.value}`" />
               @:</el-select>
-            @:</el-form-item>
-            }else if(column.EffectType == "ApiTreeSelector"){
-            @:<el-form-item label="@column.ColumnComment">
-              @:<el-cascader
-                  @::options="@LowerFirstLetter(@column.FkEntityName)TreeData"
-                  @:@:props="{ checkStrictly: true, emitPath: false, value: '@LowerFirstLetter(@column.FkLinkColumnName)' }"
-                  @:placeholder="请选择@(column.ColumnComment)"
-                  @:clearable
-                  @:filterable
-                  @:class="w100"
-                  @:v-model="queryParams.@(column.LowerPropertyName)"
-                  @:>
-                @:<template #default="{ node, data }">
-                  @:<span>{{ data.label }}</span>
-                  @:<span v-if="!node.isLeaf"> ({{ data.children.length }}) </span>
-                @:</template>
-              @:</el-cascader>
             @:</el-form-item>
             }else if(column.EffectType == "DatePicker"){
             @:<el-form-item label="@column.ColumnComment">
@@ -92,14 +73,14 @@
                 <el-button type="primary"  icon="ele-Search" @@click="handleQuery" v-auth="'@(Model.LowerClassName):page'"> @(Model.QueryWhetherList.Count > 0 ? "查询" : "刷新") </el-button>
                 @if (Model.QueryWhetherList.Count > 0) {
                 @:<el-button icon="ele-Refresh" @@click="() => queryParams = {}"> 重置 </el-button>
-                @if (haveLikeCdt) {
+                @if (Model.HasLikeQuery) {
                 @:<el-button icon="ele-ZoomIn" @@click="changeAdvanceQueryUI" v-if="!showAdvanceQueryUI" style="margin-left:5px;"> 高级查询 </el-button>
                 @:<el-button icon="ele-ZoomOut" @@click="changeAdvanceQueryUI" v-if="showAdvanceQueryUI" style="margin-left:5px;"> 隐藏 </el-button>
                 }
                 }
                 <el-button type="danger" style="margin-left:5px;" icon="ele-Delete" @@click="batchDel@(Model.ClassName)" :disabled="selectData.length == 0" v-auth="'@(Model.LowerClassName):batchDelete'"> 删除 </el-button>
                 <el-button type="primary" style="margin-left:5px;" icon="ele-Plus" @@click="openAdd@(Model.ClassName)" v-auth="'@(Model.LowerClassName):add'"> 新增 </el-button>
-                @if (hasImport) {
+                @if (Model.ImportFieldList.Count > 0) {
                 @:<el-button type="warning" icon="ele-MostlyCloudy" @@click="importDataRef.openDialog()" v-auth="'@(Model.LowerClassName):import'"> 导入 </el-button>
                 }
               </el-button-group>
@@ -118,12 +99,12 @@
       </el-form>
     </el-card>
     <el-card class="full-table" shadow="hover" style="margin-top: 5px">
-      <el-table :data="tableData" @@selection-change="(val: any[]) => { selectData = val; }" style="width: 100%" v-loading="loading" tooltip-effect="light" @(pkFieldName != null ? $"row-key=\"{@pkFieldName}\"" : "") @@sort-change="sortChange" border>
+      <el-table :data="tableData" @@selection-change="(val: any[]) => { selectData = val; }" style="width: 100%" v-loading="loading" tooltip-effect="light" row-key="@Model.ToLowerFirstLetter(Model.PrimaryKeyNames.First())" @@sort-change="sortChange" border>
         <el-table-column type="selection" width="40" align="center" v-auth="'@(Model.LowerClassName):batchDelete'" />
         <el-table-column type="index" label="序号" width="55" align="center"/>
         @foreach (var column in Model.TableField.Where(u => u.WhetherTable == "Y")){
-        if(column.EffectType == "Upload"||@column.EffectType == "ForeignKey" || @column.EffectType == "ApiTreeSelector" || @column.EffectType == "Switch" || @column.EffectType == "ConstSelector"){
-        @:<el-table-column prop="@column.LowerPropertyName" label="@column.ColumnComment" @(column.WhetherSortable == "Y" ? "sortable='custom'" : "") show-overflow-tooltip="">
+        if(column.EffectType == "Upload" || @column.EffectType == "ForeignKey" || @column.EffectType == "ApiTreeSelector" || @column.EffectType == "Switch" || @column.EffectType == "ConstSelector"){
+        @:<el-table-column @(Model.GetElTableColumnCustomProperty(column)) show-overflow-tooltip>
           @:<template #default="scope">
             if(column.EffectType == "Upload"){
             @:<el-image
@@ -136,10 +117,8 @@
             @::initial-index="0"
             @:fit="scale-down"
             @:preview-teleported />
-            }else if(column.EffectType == "ForeignKey"){
-            @:<span>{{scope.row.@LowerFirstLetter(@column.PropertyName)FkColumn}}</span>
-            }else if(column.EffectType == "ApiTreeSelector"){
-            @:<span>{{scope.row.@LowerFirstLetter(@column.PropertyName)Display}}</span>
+            }else if(column.EffectType == "ForeignKey" || column.EffectType == "ApiTreeSelector"){
+            @:<span>{{scope.row.@(column.LowerFkLinkDisplayPropertyName)}}</span>
             }else if(column.EffectType == "Switch"){
             @:<el-tag v-if="scope.row.@(column.LowerPropertyName)"> 是 </el-tag>
             @:<el-tag type="danger" v-else> 否 </el-tag>
@@ -149,10 +128,9 @@
           @:</template>
         @:</el-table-column>
         } else if (column.EffectType == "DictSelector" || column.EffectType == "EnumSelector") {
-        isStatus = column.NetType == "StatusEnum" && column.PropertyName == "Status";
-        @:<el-table-column prop="@column.LowerPropertyName" label="@column.ColumnComment" @(column.WhetherSortable == "Y" ? "sortable='custom'" : "") show-overflow-tooltip @(isStatus ? $"v-auth=\"'{@Model.LowerClassName}:setStatus'\"": "")>
+        @:<el-table-column @(Model.GetElTableColumnCustomProperty(column)) show-overflow-tooltip>
           @:<template #default="scope">
-            if (isStatus) {
+            if (Model.IsStatus(column)) {
               @:<el-switch v-model="scope.row.@column.LowerPropertyName" :active-value="1" :inactive-value="2" size="small" @@change="change@(Model.ClassName)Status(scope.row)" />
             } else {
               @:<DictLabel :value="scope.row.@column.LowerPropertyName" code="@column.DictTypeCode" />
@@ -160,7 +138,7 @@
           @:</template>
         @:</el-table-column>
         } else {
-        @:<el-table-column prop="@column.LowerPropertyName" label="@column.ColumnComment" @(column.WhetherSortable == "Y" ? "sortable='custom'" : "") show-overflow-tooltip />
+        @:<el-table-column @(Model.GetElTableColumnCustomProperty(column)) show-overflow-tooltip />
         }
         }
         <el-table-column label="修改记录" width="100" align="center" show-overflow-tooltip>
@@ -200,7 +178,7 @@
       />
     </el-card>
   </div>
-  @if (hasImport) {
+  @if (Model.ImportFieldList.Count > 0) {
   @:<ImportData
         @:ref="importDataRef"
         @::import="@(Model.LowerClassName)Api.importData"
@@ -212,7 +190,7 @@
 </template>
 
 <script lang="ts" setup name="@(Model.LowerClassName)">
-  import { ref } from "vue";
+  import { ref, onMounted } from "vue";
   import { auth } from '/@@/utils/authFunction';
   import { getAPI } from '/@@/utils/axios-utils';
   import { ElMessageBox, ElMessage } from "element-plus";
@@ -222,34 +200,34 @@
   @if(Model.TableField.Any(x => x.EffectType == "ConstSelector")) {
   @:import { codeToName, getConstType } from '/@@/utils/constHelper';
   }
-  @if(Model.TableField.Any(x => x.EffectType == "DictSelector" || x.EffectType == "EnumSelector")) {
-  @:import { useUserInfo } from "/@@/stores/userInfo";
-  }
   @if(Model.PrintType == "custom") {
   @:// 推荐设置操作 width 为 200
   @:import { hiprint } from 'vue-plugin-hiprint';
   @:import { SysPrintApi } from '/@@/api-services/api';
   @:import { SysPrint } from '/@@/api-services/models';
   }
-  @if(Model.TableField.Any(x => x.EffectType == "DictSelector" || x.EffectType == "EnumSelector")) {
-  @:import DictLabel from "/@@/components/table/dictLabel.vue";
-  }
-  @if(hasImport) {
+  @if(Model.ImportFieldList.Count > 0) {
   @:import ImportData from "/@@/components/table/importData.vue";
   }
   import editDialog from '/@@/views/@(Model.PagePath)/@(Model.LowerClassName)/component/editDialog.vue'
   import printDialog from '/@@/views/system/print/component/hiprint/preview.vue'
   import ModifyRecord from '/@@/components/table/modifyRecord.vue';
   import { use@(Model.ClassName)Api} from '/@@/api/@(Model.PagePath)/@(Model.LowerClassName)';
-  @if(Model.TableField.Any(x => x.EffectType == "DictSelector" || x.EffectType == "EnumSelector")) {
+  @if(Model.HasDictField || Model.HasEnumField) {
+  @:import { useUserInfo } from "/@@/stores/userInfo";
+  @:import DictLabel from "/@@/components/table/dictLabel.vue";
+  @:
   @:const getDictDataByCode = useUserInfo().getDictDataByCode;
   }
-  const showAdvanceQueryUI = ref(@(haveLikeCdt ? "false" : "true"));
+  const showAdvanceQueryUI = ref(@(Model.HasLikeQuery ? "false" : "true"));
   const @(Model.LowerClassName)Api = use@(Model.ClassName)Api();
   const printDialogRef = ref();
   const editDialogRef = ref();
-  @if (hasImport){
+  @if (Model.ImportFieldList.Count > 0){
   @:const importDataRef = ref();
+  }
+  @if (Model.DropdownFieldList.Count > 0) {
+  @:const dropdownData = ref<any>({});
   }
   const loading = ref(false);
   const tableData = ref<any>([]);
@@ -265,7 +243,17 @@
   });
 
   const print@(Model.ClassName)Title = ref("");
-  const edit@(Model.ClassName)Title = ref("")
+  const edit@(Model.ClassName)Title = ref("");
+
+  // 页面加载时
+  onMounted(async () => {
+    @if (Model.DropdownFieldList.Count > 0) {
+    @:const data = await @(Model.LowerClassName)Api.getDropdownData(true).then(res => res.data.result) ?? {};
+    @foreach (var column in Model.DropdownFieldList) {
+    @:dropdownData.value.@(column.LowerPropertyName) = data.@(column.LowerPropertyName);
+    }
+    }
+  });
 
   // 改变高级查询的控件显示状态
   const changeAdvanceQueryUI = () => {
@@ -291,14 +279,7 @@
   // 打开新增页面
   const openAdd@(Model.ClassName) = () => {
     edit@(Model.ClassName)Title.value = '添加@(Model.BusName)';
-    const data = {
-@if (hasSetStatus) {
-        @:status: 1,
-}
-@if (Model.TableField.Any(col => col.PropertyName == "OrderNo")) {
-        @:orderNo: 100,
-}
-    };
+    const data = { @(Model.GetAddDefaultValue()) };
     editDialogRef.value.openDialog(data);
   };
 
@@ -330,16 +311,14 @@
   // 删除
   const del@(Model.ClassName) = (row: any) => {
     ElMessageBox.confirm(`确定要删除吗?`, "提示", {
-    confirmButtonText: "确定",
-    cancelButtonText: "取消",
-    type: "warning",
-  })
-  .then(async () => {
-    await @(Model.LowerClassName)Api.delete(row);
-    handleQuery();
-    ElMessage.success("删除成功");
-  })
-  .catch(() => {});
+      confirmButtonText: "确定",
+      cancelButtonText: "取消",
+      type: "warning",
+    }).then(async () => {
+      await @(Model.LowerClassName)Api.delete(row);
+      handleQuery();
+      ElMessage.success("删除成功");
+    }).catch(() => {});
   };
 
   // 批量删除
@@ -350,7 +329,7 @@
       type: "warning",
     }).then(async () => {
       @foreach (var column in @Model.TableField.Where(u => u.ColumnKey == "True")) {
-      @:const count = await @(Model.LowerClassName)Api.batchDelete({ @(column.LowerPropertyName)List: selectData.value.map(u => u.@(column.LowerPropertyName)) });
+      @:const count = await @(Model.LowerClassName)Api.batchDelete({ @(column.LowerPropertyName)List: selectData.value.map(u => { @(Model.PrimaryKeysFormat(", ", "u.{0}", true)) }) });
       }
       handleQuery();
       ElMessage.success(`成功批量删除${count}条记录`);
@@ -368,28 +347,7 @@
     tableParams.value.page = val;
     handleQuery();
   };
-
-@foreach (var column in Model.TableField) {
-  if (column.EffectType == "ForeignKey") {
-  var dropdownName = getDropdownName(column);
-  @:const @LowerFirstLetter(dropdownName)List = ref<any>([]);
-  @:const get@(dropdownName)List = async () => {
-    @:let list = await @(Model.LowerClassName)Api.get@(dropdownName)();
-    @:@(LowerFirstLetter(dropdownName))List.value = list.data.result ?? [];
-  @:};
-  @:get@(dropdownName)List();
-  @:
-  } else if (column.EffectType == "ApiTreeSelector" && !definedObjects.ContainsKey("define_get@(column.FkEntityName)TreeData")) {
-  definedObjects.Add("define_get@(column.FkEntityName)TreeData", 1);
-  @:const @LowerFirstLetter(@column.FkEntityName)TreeData = ref<any>([]);
-  @:const get@(column.FkEntityName)TreeData = async () => {
-    @:let list = await @(Model.LowerClassName)Api.get@(column.FkEntityName)Tree();
-    @:@LowerFirstLetter(@column.FkEntityName)TreeData.value = list.data.result ?? [];
-  @:};
-  @:get@(column.FkEntityName)TreeData();
-  @:
-  } 
-}
+  
   handleQuery();
 </script>
 <style scoped>

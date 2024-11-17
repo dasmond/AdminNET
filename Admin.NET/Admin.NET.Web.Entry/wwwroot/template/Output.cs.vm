@@ -11,60 +11,26 @@ namespace @(Model.NameSpace);
 /// </summary>
 public class @(Model.ClassName)Output
 {
-@foreach (var column in Model.TableField){
+    @foreach (var column in Model.TableField){
     @:/// <summary>
     @:/// @column.ColumnComment
     @:/// </summary>
-    if(column.EffectType == "ForeignKey")
-    {
-    @:public @column.NetType @column.PropertyName { get; set; } 
+    @:public @column.NetType @(column.PropertyName) { get; set; }    
+    if(column.EffectType == "ForeignKey" || column.EffectType == "ApiTreeSelector") {
     @:
     @:/// <summary>
     @:/// @(column.ColumnComment) 描述
     @:/// </summary>
-    @:public string @(column.PropertyName)FkColumn { get; set; } 
+    @:public string @(column.FkLinkDisplayPropertyName) { get; set; } 
     }else if(column.EffectType == "Upload"){
-    @:public @column.NetType @column.PropertyName { get; set; }
     @:
     @:/// <summary>
     @:/// @(column.ColumnComment) 文件信息
     @:/// </summary>
     @:public SysFile @(column.PropertyName)Attachment { get; set; }
-    }else if(column.EffectType == "ApiTreeSelector"){
-    @:public @column.NetType @column.PropertyName { get; set; } 
-    @:
-    @:/// <summary>
-    @:/// @(column.ColumnComment) 描述 
-    @:/// </summary>
-    @:public string @(column.PropertyName)Display { get; set; } 
-    }else{
-    @:public @column.NetType @(column.PropertyName) { get; set; }
     }
     @:
-}
-}
-@foreach (var column in Model.ApiTreeFieldList){
-@:
-@:/// <summary>
-@:/// @(Model.BusName)树选择器输出参数
-@:/// </summary>
-@:public class @(column.FkEntityName)TreeOutput : @(column.FkEntityName)
-@:{
-    @:/// <summary>
-    @:/// 显示文本
-    @:/// </summary>
-    @:public string Label { get; set; }
-    @:
-    @:/// <summary>
-    @:/// 选项值
-    @:/// </summary>
-    @:public @(column.FkColumnNetType) Value { get; set; }
-    @:
-    @:/// <summary>
-    @:/// 子集列表
-    @:/// </summary>
-    @:public List<@(column.FkEntityName)TreeOutput> Children { get; set; }
-@:}
+    }
 }
 @if (Model.ImportFieldList.Count > 0) {
 @:
