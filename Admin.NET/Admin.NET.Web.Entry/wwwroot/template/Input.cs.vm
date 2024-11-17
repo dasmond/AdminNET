@@ -158,7 +158,7 @@ public class QueryById@(Model.ClassName)Input : Delete@(Model.ClassName)Input
     @:/// </summary>
     @:[ImporterHeader(Name = "@(headerName)")]
     @:[ExporterHeader("@(headerName)", Format = "@", Width = 25, IsBold = true)]
-    @:public string @column.FkLinkDisplayPropertyName { get; set; }
+    @:public string @column.ExtendedPropertyName { get; set; }
     } else {
     @:/// <summary>
     @:/// @column.ColumnComment

@@ -21,13 +21,13 @@ public class @(Model.ClassName)Output
     @:/// <summary>
     @:/// @(column.ColumnComment) 描述
     @:/// </summary>
-    @:public string @(column.FkLinkDisplayPropertyName) { get; set; } 
+    @:public string @(column.ExtendedPropertyName) { get; set; } 
     }else if(column.EffectType == "Upload"){
     @:
     @:/// <summary>
-    @:/// @(column.ColumnComment) 文件信息
+    @:/// @(column.ColumnComment) 附件信息
     @:/// </summary>
-    @:public SysFile @(column.PropertyName)Attachment { get; set; }
+    @:public SysFile @(column.ExtendedPropertyName) { get; set; }
     }
     @:
     }

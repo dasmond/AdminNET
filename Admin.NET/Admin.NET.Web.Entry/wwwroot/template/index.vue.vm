@@ -118,7 +118,7 @@
             @:fit="scale-down"
             @:preview-teleported />
             }else if(column.EffectType == "ForeignKey" || column.EffectType == "ApiTreeSelector"){
-            @:<span>{{scope.row.@(column.LowerFkLinkDisplayPropertyName)}}</span>
+            @:<span>{{scope.row.@(column.LowerExtendedPropertyName)}}</span>
             }else if(column.EffectType == "Switch"){
             @:<el-tag v-if="scope.row.@(column.LowerPropertyName)"> 是 </el-tag>
             @:<el-tag type="danger" v-else> 否 </el-tag>
