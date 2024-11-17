@@ -38,13 +38,13 @@ public class CustomViewEngine : ViewEngineModel
     
     public bool HasJoinTable { get; set; }
     
-    public bool HasSetStatus { get; set; }
-    
     public bool HasEnumField { get; set; }
     
     public bool HasDictField { get; set; }
     
     public bool HasConstField { get; set; }
+    
+    public bool HasSetStatus => TableField.Any(IsStatus);
     
     public List<CodeGenConfig> TableField { get; set; }
     
@@ -66,7 +66,17 @@ public class CustomViewEngine : ViewEngineModel
 
     public List<string> PrimaryKeyNames => PrimaryKeyFieldList.Select(u => u.PropertyName).ToList();
     
-    public string PrimaryKeysFormat(string separator, string format) => string.Join(separator, PrimaryKeyFieldList.Select(u => string.Format(format, u.PropertyName)));
+    /// <summary>
+    /// 格式化主键查询条件
+    /// 例： PrimaryKeysFormat(" && ", "u.{0} == input.{0}")
+    /// 单主键返回 u.Id == input.Id
+    /// 组合主键返回 u.Id == input.Id && u.FkId == input.FkId
+    /// </summary>
+    /// <param name="separator">分隔符</param>
+    /// <param name="format">模板字符串</param>
+    /// <param name="lowerFirstLetter">字段首字母小写</param>
+    /// <returns></returns>
+    public string PrimaryKeysFormat(string separator, string format, bool lowerFirstLetter = false) => string.Join(separator, PrimaryKeyFieldList.Select(u => string.Format(format, lowerFirstLetter ? u.LowerPropertyName : u.PropertyName)));
     
     /// <summary>
     /// 注入的服务
@@ -75,30 +85,26 @@ public class CustomViewEngine : ViewEngineModel
     public Dictionary<string, string> InjectServiceMap {
         get
         {
-            var text = PrimaryKeysFormat(" && ", "u.{0} == input.{0}");
             var injectMap = new Dictionary<string, string>();
             if (UploadFieldList.Count > 0) injectMap.Add(nameof(SysFileService), ToLowerFirstLetter(nameof(SysFileService)));
-            if (DropdownFieldList.Count > 0) injectMap.Add(nameof(ISqlSugarClient), ToLowerFirstLetter(nameof(ISqlSugarClient).TrimStart('I')));
+            if (DropdownFieldList.Count > 0 || ImportFieldList.Count > 0) injectMap.Add(nameof(ISqlSugarClient), ToLowerFirstLetter(nameof(ISqlSugarClient).TrimStart('I')));
             if (ImportFieldList.Any(c => c.EffectType == "DictSelector")) injectMap.Add(nameof(SysDictTypeService), ToLowerFirstLetter(nameof(SysDictTypeService)));
             return injectMap;
         }
     }
-
+    
     /// <summary>
     /// 服务构造参数
     /// </summary>
-    public string InjectServiceArgs => InjectServiceMap.Count > 0 ? string.Join(", ", InjectServiceMap.Select(kv => $"{kv.Key} {kv.Value}")) : "";
-   
-    /// <summary>
-    /// 导入唯一性校验配置
-    /// </summary>
-    public List<TableUniqueConfigItem> ImportUniqueConfigList => TableUniqueConfigList.Where(c => c.Columns.All(x1 => ImportFieldList.Any(x2 => x2.PropertyName == x1))).ToList();
+    public string InjectServiceArgs => InjectServiceMap.Count > 0 ? ", " +string.Join(", ", InjectServiceMap.Select(kv => $"{kv.Key} {kv.Value}")) : "";
     
     /// <summary>
-    /// 增改唯一性校验配置
+    /// 判断字段是否为状态字段
     /// </summary>
-    public List<TableUniqueConfigItem> AddUpdateUniqueConfigList => TableUniqueConfigList.Where(c => c.Columns.All(x1 => UploadFieldList.Any(x2 => x2.PropertyName == x1))).ToList();
-
+    /// <param name="column"></param>
+    /// <returns></returns>
+    public bool IsStatus(CodeGenConfig column) => column.PropertyName == nameof(SysUser.Status) && column.NetType == nameof(StatusEnum);
+    
     /// <summary>
     /// 获取首字母小写字符串
     /// </summary>
@@ -112,4 +118,32 @@ public class CustomViewEngine : ViewEngineModel
     /// <param name="netType"></param>
     /// <returns></returns>
     public string GetNullableNetType(string netType) => Regex.IsMatch(netType, "(.*?Enum|bool|char|int|long|double|float|decimal)[?]?") ? netType.TrimEnd('?') + "?" : netType;
+    
+    /// <summary>
+    /// 获取前端表格列定义的属性
+    /// </summary>
+    /// <param name="column"></param>
+    /// <returns></returns>
+    public string GetElTableColumnCustomProperty(CodeGenConfig column)
+    {
+        var content = $"prop='{column.LowerPropertyName}' label='{column.ColumnComment}'";
+        if (IsStatus(column)) content += $" v-auth=\"'{LowerClassName}:setStatus'\"";
+        if (column.WhetherSortable == "Y") content += " sortable='custom'";
+        return content;
+    }
+
+    /// <summary>
+    /// 设置默认值
+    /// </summary>
+    /// <param name="column"></param>
+    /// <returns></returns>
+    public string GetAddDefaultValue()
+    {
+        var content = "";
+        var status = TableField.FirstOrDefault(IsStatus);
+        var orderNo = TableField.FirstOrDefault(c => c.NetType.TrimEnd('?') == "int" && c.PropertyName == nameof(SysUser.OrderNo));
+        if (status != null) content += $"{status.LowerPropertyName}: {(int)StatusEnum.Enable},";
+        if (orderNo != null) content += $"{orderNo.LowerPropertyName}: 100,";
+        return content;
+    }
 }

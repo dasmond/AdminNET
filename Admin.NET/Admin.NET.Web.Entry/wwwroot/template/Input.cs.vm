@@ -113,18 +113,29 @@ public class QueryById@(Model.ClassName)Input : Delete@(Model.ClassName)Input
 @:public class DropdownData@(Model.ClassName)Input
 @:{
     @:/// <summary>
-    @:/// 字段名称
-    @:/// </summary>
-    @:[Required(ErrorMessage = "字段名称不能为空")]
-    @:public string PropertyName { get; set; }
-    @:
-    @:/// <summary>
     @:/// 是否用于分页查询
     @:/// </summary>
     @:public bool FromPage { get; set; }
 @:}
+@:
 }
-
+@if (Model.HasSetStatus) {
+@:/// <summary>
+@:/// 设置状态输入参数
+@:/// </summary>
+@:public class Set@(Model.ClassName)StatusInput : BaseStatusInput
+@:{
+    @foreach (var column in Model.PrimaryKeyFieldList.Where(u => u.PropertyName != "Id")) {
+    @:/// <summary>
+    @:/// @column.ColumnComment
+    @:/// </summary>
+    @:[Required(ErrorMessage = "@(column.ColumnComment)不能为空")]
+    @:public @Model.GetNullableNetType(column.NetType) @column.PropertyName { get; set; }
+    @:
+    }
+@:}
+@:
+}
 @if (Model.ImportFieldList.Count > 0){
 @:/// <summary>
 @:/// @(Model.BusName)数据导入实体
@@ -147,7 +158,7 @@ public class QueryById@(Model.ClassName)Input : Delete@(Model.ClassName)Input
     @:/// </summary>
     @:[ImporterHeader(Name = "@(headerName)")]
     @:[ExporterHeader("@(headerName)", Format = "@", Width = 25, IsBold = true)]
-    @:public string @(column.PropertyName)Label { get; set; }
+    @:public string @column.FkLinkDisplayPropertyName { get; set; }
     } else {
     @:/// <summary>
     @:/// @column.ColumnComment
