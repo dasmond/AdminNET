@@ -63,8 +63,6 @@ public class CustomViewEngine : ViewEngineModel
     public List<CodeGenConfig> PrimaryKeyFieldList { get; set; }
     
     public List<TableUniqueConfigItem> TableUniqueConfigList { get; set; }
-
-    public List<string> PrimaryKeyNames => PrimaryKeyFieldList.Select(u => u.PropertyName).ToList();
     
     /// <summary>
     /// 格式化主键查询条件
