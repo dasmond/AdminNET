@@ -4,35 +4,46 @@
 
 <script lang="ts" setup>
 import { useUserInfo } from '/@/stores/userInfo';
-import { reactive, onMounted } from 'vue';
+import { reactive, onMounted, watch } from 'vue';
 
 const props = defineProps({
 	code: String,
 	value: Object,
 	propLabel: {
 		type: String,
-		default: 'value'
+		default: 'value',
 	},
 	propValue: {
 		type: String,
-		default: 'code'
+		default: 'code',
 	},
 	defaultValue: {
 		type: String,
-		default: '-'
+		default: '-',
 	},
 });
 
 const state = reactive({
-  label: '' as string,
-  tagType: '' as string
+	label: '' as string,
+	tagType: '' as string,
 });
 
 onMounted(() => {
-	const dict = useUserInfo().dictList[props.code]?.find(x => x[props.propValue] == props.value);
+	const dict = useUserInfo().dictList[props.code]?.find((x:any) => x[props.propValue] == props.value);
 	if (dict) {
 		state.label = dict[props.propLabel] || props.defaultValue;
 		state.tagType = dict.tagType;
 	}
-})
+});
+
+watch(
+	() => props.value,
+	(newValue, oldValue) => {
+		const dict = useUserInfo().dictList[props.code]?.find((x:any) => x[props.propValue] == newValue);
+		if (dict) {
+			state.label = dict[props.propLabel] || props.defaultValue;
+			state.tagType = dict.tagType;
+		}
+	}
+);
 </script>
