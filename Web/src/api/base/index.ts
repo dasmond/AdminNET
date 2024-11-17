@@ -8,20 +8,25 @@ export const useBaseApi = (module: string) => {
         request,
         uploadFile,
         baseUrl: baseUrl,
-        list: (params: any) => request({
-            url: baseUrl + "list",
-            method: 'get',
-            params,
-        }),
         page: (data: any) => request({
             url: baseUrl + "page",
             method: 'post',
             data,
         }),
+        list: (params: any) => request({
+            url: baseUrl + "list",
+            method: 'get',
+            params,
+        }),
         detail: (id: any) => request({
             url: baseUrl + "detail",
             method: 'get',
             data: { id },
+        }),
+        dropdownData: (data: any) => request({
+            url: baseUrl + "dropdownData",
+            method: 'post',
+            data,
         }),
         add: (data: any) => request({
             url: baseUrl + 'add',

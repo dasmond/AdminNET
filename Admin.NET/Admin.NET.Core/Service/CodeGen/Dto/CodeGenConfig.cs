@@ -177,6 +177,34 @@ public class CodeGenConfig
     /// 排序
     /// </summary>
     public int OrderNo { get; set; }
+
+    /// <summary>
+    /// 去掉尾部Id的属性名
+    /// </summary>
+    public string LowerPropertyNameTrimEndId => LowerPropertyName.TrimEnd("Id");
+
+    /// <summary>
+    /// 联表显示字段名称
+    /// </summary>
+    public string FkLinkDisplayPropertyName => EffectType switch
+    {
+        "ForeignKey" => $"{LowerPropertyNameTrimEndId}FkDisplayName",
+        "ApiTreeSelector" => $"{LowerPropertyNameTrimEndId}DisplayName",
+        _ => PropertyName
+    };
+
+    /// <summary>
+    /// 联表显示字段首字母小写名称
+    /// </summary>
+    public string LowerFkLinkDisplayPropertyName
+    {
+        get
+        {
+            var displayPropertyName = FkLinkDisplayPropertyName;
+            if (string.IsNullOrWhiteSpace(displayPropertyName)) return null;
+            return displayPropertyName[..1].ToLower() + displayPropertyName[1..];
+        }
+    }
     
     /// <summary>
     /// 获取外键显示值语句
@@ -184,6 +212,5 @@ public class CodeGenConfig
     /// <param name="tableAlias">表别名</param>
     /// <param name="separator">多字段时的连接符</param>
     /// <returns></returns>
-    public string GetDisplayColumn(string tableAlias, string separator = "-") => string.Join(separator, FkDisplayColumnList.Select(name => $"{{{tableAlias}.{name}}}"));
-
+    public string GetDisplayColumn(string tableAlias, string separator = "-") => "$\"" + string.Join(separator, FkDisplayColumnList.Select(name => $"{{{tableAlias}.{name}}}")) + "\"";
 }

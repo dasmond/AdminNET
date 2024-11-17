@@ -409,8 +409,7 @@ public class SysCodeGenService : IDynamicApiController, ITransient
             HasDictField = tableFieldList.Any(u => u.EffectType == "DictSelector"),
             HasEnumField = tableFieldList.Any(u => u.EffectType == "EnumSelector"),
             HasConstField = tableFieldList.Any(u => u.EffectType == "ConstSelector"),
-            HasLikeQuery = tableFieldList.Any(c => c.WhetherQuery == "Y" && c.QueryType == "like"),
-            HasSetStatus = tableFieldList.Any(c => c.NetType == nameof(StatusEnum) && c.PropertyName == nameof(SysUser.Status)),
+            HasLikeQuery = tableFieldList.Any(c => c.WhetherQuery == "Y" && c.QueryType == "like")
         };
 
         // 获取模板文件并替换
@@ -682,23 +681,20 @@ public class SysCodeGenService : IDynamicApiController, ITransient
     {
         if (input.GenerateType!.Substring(1, 1).Contains('1'))
         {
-            return new() { "index.vue.vm", "editDialog.vue.vm", "manage.js.vm" };
+            return new() { "index.vue.vm", "editDialog.vue.vm", "api.js.vm" };
         }
-        else if (input.GenerateType.Substring(1, 1).Contains('2'))
+        if (input.GenerateType.Substring(1, 1).Contains('2'))
         {
             return new() { "Service.cs.vm", "Input.cs.vm", "Output.cs.vm", "Dto.cs.vm" };
         }
-        else
-        {
-            return new() { "Service.cs.vm", "Input.cs.vm", "Output.cs.vm", "Dto.cs.vm", "index.vue.vm", "editDialog.vue.vm", "manage.js.vm" };
-        }
+        return new() { "Service.cs.vm", "Input.cs.vm", "Output.cs.vm", "Dto.cs.vm", "index.vue.vm", "editDialog.vue.vm", "api.js.vm" };
     }
 
     /// <summary>
     /// 获取模板文件路径集合
     /// </summary>
     /// <returns></returns>
-    private static List<string> GetTemplatePathList() => new() { "Service.cs.vm", "Input.cs.vm", "Output.cs.vm", "Dto.cs.vm", "index.vue.vm", "editDialog.vue.vm", "manage.js.vm" };
+    private static List<string> GetTemplatePathList() => new() { "Service.cs.vm", "Input.cs.vm", "Output.cs.vm", "Dto.cs.vm", "index.vue.vm", "editDialog.vue.vm", "api.js.vm" };
 
     /// <summary>
     /// 设置生成文件路径
