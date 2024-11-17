@@ -25,6 +25,11 @@ public class CodeGenConfig
     /// 数据库字段名
     /// </summary>
     public string ColumnName { get; set; }
+    
+    /// <summary>
+    /// 主外键
+    /// </summary>
+    public string ColumnKey { get; set; }
 
     /// <summary>
     /// 实体属性名
@@ -50,6 +55,16 @@ public class CodeGenConfig
     /// .NET类型
     /// </summary>
     public string NetType { get; set; }
+    
+    /// <summary>
+    /// 数据库中类型（物理类型）
+    /// </summary>
+    public string DataType { get; set; }
+    
+    /// <summary>
+    /// 可空.NET类型
+    /// </summary>
+    public string NullableNetType => Regex.IsMatch(NetType ?? "", "(.*?Enum|bool|char|int|long|double|float|decimal)[?]?") ? NetType.TrimEnd('?') + "?" : NetType;
 
     /// <summary>
     /// 作用类型（字典）
@@ -86,27 +101,42 @@ public class CodeGenConfig
     /// </summary>
     [Newtonsoft.Json.JsonIgnore]
     [System.Text.Json.Serialization.JsonIgnore]
-    public string FkColumnName { get; set; }
+    public string FkDisplayColumns { get; set; }
     
     /// <summary>
     /// 外键显示字段
     /// </summary>
-    public List<string> FkColumnList { get; set; }
+    public List<string> FkDisplayColumnList { get; set; }
 
     /// <summary>
     /// 外键显示字段(首字母小写)
     /// </summary>
-    public List<string> LowerFkColumnList => FkColumnList?.Select(name => name[..1].ToLower() + name[1..]).ToList();
+    public List<string> LowerFkDisplayColumnsList => FkDisplayColumnList?.Select(name => name[..1].ToLower() + name[1..]).ToList();
 
     /// <summary>
     /// 外键显示字段.NET类型
     /// </summary>
     public string FkColumnNetType { get; set; }
-
+    
+    /// <summary>
+    /// 父级字段
+    /// </summary>
+    public string PidColumn { get; set; }
+    
     /// <summary>
     /// 字典code
     /// </summary>
     public string DictTypeCode { get; set; }
+    
+    /// <summary>
+    /// 查询方式
+    /// </summary>
+    public string QueryType { get; set; }
+
+    /// <summary>
+    /// 是否是查询条件
+    /// </summary>
+    public string WhetherQuery { get; set; }
 
     /// <summary>
     /// 列表是否缩进（字典）
@@ -124,16 +154,6 @@ public class CodeGenConfig
     public string WhetherSortable { get; set; }
 
     /// <summary>
-    /// 是否是查询条件
-    /// </summary>
-    public string QueryWhether { get; set; }
-
-    /// <summary>
-    /// 查询方式
-    /// </summary>
-    public string QueryType { get; set; }
-
-    /// <summary>
     /// 列表显示
     /// </summary>
     public string WhetherTable { get; set; }
@@ -147,16 +167,6 @@ public class CodeGenConfig
     /// 导入
     /// </summary>
     public string WhetherImport { get; set; }
-    
-    /// <summary>
-    /// 主外键
-    /// </summary>
-    public string ColumnKey { get; set; }
-
-    /// <summary>
-    /// 数据库中类型（物理类型）
-    /// </summary>
-    public string DataType { get; set; }
 
     /// <summary>
     /// 是否是通用字段
@@ -164,29 +174,16 @@ public class CodeGenConfig
     public string WhetherCommon { get; set; }
     
     /// <summary>
-    /// 外键显示字段
-    /// </summary>
-    [Newtonsoft.Json.JsonIgnore]
-    [System.Text.Json.Serialization.JsonIgnore]
-    public string DisplayColumn { get; set; }
-    
-    /// <summary>
-    /// 显示文本字段
-    /// </summary>
-    public List<string> DisplayColumnList { get; set; }
-
-    /// <summary>
-    /// 选中值字段
-    /// </summary>
-    public string ValueColumn { get; set; }
-
-    /// <summary>
-    /// 父级字段
-    /// </summary>
-    public string PidColumn { get; set; }
-
-    /// <summary>
     /// 排序
     /// </summary>
     public int OrderNo { get; set; }
+    
+    /// <summary>
+    /// 获取外键显示值语句
+    /// </summary>
+    /// <param name="tableAlias">表别名</param>
+    /// <param name="separator">多字段时的连接符</param>
+    /// <returns></returns>
+    public string GetDisplayColumn(string tableAlias, string separator = "-") => string.Join(separator, FkDisplayColumnList.Select(name => $"{{{tableAlias}.{name}}}"));
+
 }

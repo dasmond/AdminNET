@@ -25,6 +25,13 @@ public partial class SysCodeGenConfig : EntityBase
     [SugarColumn(ColumnDescription = "字段名称", Length = 128)]
     [Required, MaxLength(128)]
     public virtual string ColumnName { get; set; }
+    
+    /// <summary>
+    /// 主键
+    /// </summary>
+    [SugarColumn(ColumnDescription = "主键", Length = 8)]
+    [MaxLength(8)]
+    public string? ColumnKey { get; set; }
 
     /// <summary>
     /// 实体属性名
@@ -45,6 +52,13 @@ public partial class SysCodeGenConfig : EntityBase
     [SugarColumn(ColumnDescription = "字段描述", Length = 128)]
     [MaxLength(128)]
     public string? ColumnComment { get; set; }
+    
+    /// <summary>
+    /// 数据库中类型（物理类型）
+    /// </summary>
+    [SugarColumn(ColumnDescription = "数据库中类型", Length = 64)]
+    [MaxLength(64)]
+    public string? DataType { get; set; }
 
     /// <summary>
     /// .NET数据类型
@@ -86,7 +100,7 @@ public partial class SysCodeGenConfig : EntityBase
     /// </summary>
     [SugarColumn(ColumnDescription = "外键显示字段", Length = 64)]
     [MaxLength(64)]
-    public string? FkColumnName { get; set; }
+    public string? FkDisplayColumns { get; set; }
 
     /// <summary>
     /// 外键链接字段
@@ -101,6 +115,13 @@ public partial class SysCodeGenConfig : EntityBase
     [SugarColumn(ColumnDescription = "外键显示字段.NET类型", Length = 64)]
     [MaxLength(64)]
     public string? FkColumnNetType { get; set; }
+    
+    /// <summary>
+    /// 父级字段
+    /// </summary>
+    [SugarColumn(ColumnDescription = "父级字段", Length = 128)]
+    [MaxLength(128)]
+    public string? PidColumn { get; set; }
 
     /// <summary>
     /// 字典编码
@@ -108,6 +129,20 @@ public partial class SysCodeGenConfig : EntityBase
     [SugarColumn(ColumnDescription = "字典编码", Length = 64)]
     [MaxLength(64)]
     public string? DictTypeCode { get; set; }
+    
+    /// <summary>
+    /// 查询方式
+    /// </summary>
+    [SugarColumn(ColumnDescription = "查询方式", Length = 16)]
+    [MaxLength(16)]
+    public string? QueryType { get; set; }
+    
+    /// <summary>
+    /// 是否是查询条件
+    /// </summary>
+    [SugarColumn(ColumnDescription = "是否是查询条件", Length = 8)]
+    [MaxLength(8)]
+    public string? WhetherQuery { get; set; }
 
     /// <summary>
     /// 列表是否缩进（字典）
@@ -131,20 +166,6 @@ public partial class SysCodeGenConfig : EntityBase
     public string? WhetherSortable { get; set; }
 
     /// <summary>
-    /// 是否是查询条件
-    /// </summary>
-    [SugarColumn(ColumnDescription = "是否是查询条件", Length = 8)]
-    [MaxLength(8)]
-    public string? QueryWhether { get; set; }
-
-    /// <summary>
-    /// 查询方式
-    /// </summary>
-    [SugarColumn(ColumnDescription = "查询方式", Length = 16)]
-    [MaxLength(16)]
-    public string? QueryType { get; set; }
-
-    /// <summary>
     /// 列表显示
     /// </summary>
     [SugarColumn(ColumnDescription = "列表显示", Length = 8)]
@@ -164,20 +185,6 @@ public partial class SysCodeGenConfig : EntityBase
     [SugarColumn(ColumnDescription = "导入", Length = 8)]
     [MaxLength(8)]
     public string? WhetherImport { get; set; }
-    
-    /// <summary>
-    /// 主键
-    /// </summary>
-    [SugarColumn(ColumnDescription = "主键", Length = 8)]
-    [MaxLength(8)]
-    public string? ColumnKey { get; set; }
-
-    /// <summary>
-    /// 数据库中类型（物理类型）
-    /// </summary>
-    [SugarColumn(ColumnDescription = "数据库中类型", Length = 64)]
-    [MaxLength(64)]
-    public string? DataType { get; set; }
 
     /// <summary>
     /// 是否通用字段
@@ -185,26 +192,6 @@ public partial class SysCodeGenConfig : EntityBase
     [SugarColumn(ColumnDescription = "是否通用字段", Length = 8)]
     [MaxLength(8)]
     public string? WhetherCommon { get; set; }
-
-    /// <summary>
-    /// 显示文本字段
-    /// </summary>
-    [SugarColumn(ColumnDescription = "显示文本字段", ColumnDataType = StaticConfig.CodeFirst_BigString)]
-    public string? DisplayColumn { get; set; }
-
-    /// <summary>
-    /// 选中值字段
-    /// </summary>
-    [SugarColumn(ColumnDescription = "选中值字段", Length = 128)]
-    [MaxLength(128)]
-    public string? ValueColumn { get; set; }
-
-    /// <summary>
-    /// 父级字段
-    /// </summary>
-    [SugarColumn(ColumnDescription = "父级字段", Length = 128)]
-    [MaxLength(128)]
-    public string? PidColumn { get; set; }
 
     /// <summary>
     /// 排序

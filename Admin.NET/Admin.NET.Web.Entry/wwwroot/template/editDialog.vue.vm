@@ -35,12 +35,12 @@
 						</el-form-item>
 					</el-col>
 					}else if(column.EffectType == "ApiTreeSelector"){
-					displayColumnList = column.DisplayColumn.Split(",").Select(u => $"${{data.{LowerFirstLetter(u)}}}").ToList();
+					displayColumnList = column.FkDisplayColumns.Split(",").Select(u => $"${{data.{LowerFirstLetter(u)}}}").ToList();
 					@:<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
 						@:<el-form-item label="@column.ColumnComment" prop="@(column.LowerPropertyName)">
 							<el-cascader
 								@:options="@LowerFirstLetter(@column.FkEntityName)TreeData"
-								@:props="{ checkStrictly: true, emitPath: false, value: '@LowerFirstLetter(@column.ValueColumn)' }"
+								@:props="{ checkStrictly: true, emitPath: false, value: '@LowerFirstLetter(@column.FkLinkColumnName)' }"
 								placeholder="请选择@(column.ColumnComment)"
 								clearable
 								filterable
