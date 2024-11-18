@@ -99,7 +99,7 @@
       </el-form>
     </el-card>
     <el-card class="full-table" shadow="hover" style="margin-top: 5px">
-      <el-table :data="tableData" @@selection-change="(val: any[]) => { selectData = val; }" style="width: 100%" v-loading="loading" tooltip-effect="light" row-key="@Model.ToLowerFirstLetter(Model.PrimaryKeyNames.First())" @@sort-change="sortChange" border>
+      <el-table :data="tableData" @@selection-change="(val: any[]) => { selectData = val; }" style="width: 100%" v-loading="loading" tooltip-effect="light" row-key="@Model.PrimaryKeyFieldList.First().LowerPropertyName" @@sort-change="sortChange" border>
         <el-table-column type="selection" width="40" align="center" v-auth="'@(Model.LowerClassName):batchDelete'" />
         <el-table-column type="index" label="序号" width="55" align="center"/>
         @foreach (var column in Model.TableField.Where(u => u.WhetherTable == "Y")){
@@ -118,7 +118,7 @@
             @:fit="scale-down"
             @:preview-teleported />
             }else if(column.EffectType == "ForeignKey" || column.EffectType == "ApiTreeSelector"){
-            @:<span>{{scope.row.@(column.LowerFkLinkDisplayPropertyName)}}</span>
+            @:<span>{{scope.row.@(column.LowerExtendedPropertyName)}}</span>
             }else if(column.EffectType == "Switch"){
             @:<el-tag v-if="scope.row.@(column.LowerPropertyName)"> 是 </el-tag>
             @:<el-tag type="danger" v-else> 否 </el-tag>
@@ -328,9 +328,7 @@
       cancelButtonText: "取消",
       type: "warning",
     }).then(async () => {
-      @foreach (var column in @Model.TableField.Where(u => u.ColumnKey == "True")) {
-      @:const count = await @(Model.LowerClassName)Api.batchDelete({ @(column.LowerPropertyName)List: selectData.value.map(u => { @(Model.PrimaryKeysFormat(", ", "u.{0}", true)) }) });
-      }
+      const count = await @(Model.LowerClassName)Api.batchDelete(selectData.value.map(u => ({ @(Model.PrimaryKeysFormat(", ", "{0}: u.{0}", true)) }) )).then(res => res.data.result);
       handleQuery();
       ElMessage.success(`成功批量删除${count}条记录`);
     }).catch(() => {});

@@ -44,7 +44,7 @@
 						</el-form-item>
 					</el-col>
 					}else if(column.EffectType == "DictSelector" || column.EffectType == "EnumSelector"){
-					@:<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20" @(Model.IsStatus(column) ? $"v-if='!ruleForm.{Model.ToLowerFirstLetter(Model.PrimaryKeyNames.First())}'" : "")>
+					@:<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20" @(Model.IsStatus(column) ? $"v-if='!ruleForm.{Model.PrimaryKeyFieldList.First().LowerPropertyName}'" : "")>
 						@:<el-form-item label="@column.ColumnComment" prop="@(column.LowerPropertyName)">
 							if (Model.IsStatus(column)) {
 							@:<el-switch v-model="ruleForm.@column.LowerPropertyName" :active-value="1" :inactive-value="2" size="small" />
@@ -219,7 +219,7 @@
 		ruleFormRef.value.validate(async (isValid: boolean, fields?: any) => {
 			if (isValid) {
 				let values = ruleForm.value;
-				await @(Model.LowerClassName)Api[ruleForm.value.@(Model.ToLowerFirstLetter(Model.PrimaryKeyNames.First())) ? 'update' : 'add'](values);
+				await @(Model.LowerClassName)Api[ruleForm.value.@(Model.PrimaryKeyFieldList.First().LowerPropertyName) ? 'update' : 'add'](values);
 				closeDialog();
 			} else {
 				ElMessage({
