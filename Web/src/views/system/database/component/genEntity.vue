@@ -39,7 +39,7 @@
 			<template #footer>
 				<span class="dialog-footer">
 					<el-button @click="cancel">取 消</el-button>
-					<el-button type="primary" @click="submit">确 定</el-button>
+					<el-button type="primary" v-reclick="3000" @click="submit">确 定</el-button>
 				</span>
 			</template>
 		</el-dialog>

@@ -4,8 +4,6 @@
 //
 // 不得利用本项目从事危害国家安全、扰乱社会秩序、侵犯他人合法权益等法律法规禁止的活动！任何基于本项目二次开发而产生的一切法律纠纷和责任，我们不承担任何责任！
 
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 using Npgsql;
 
 namespace Admin.NET.Core.Service;
@@ -303,7 +301,7 @@ public class SysDatabaseService : IDynamicApiController, ITransient
             NameSpace = $"{input.Position}.Entity",
             input.TableName,
             input.EntityName,
-            BaseClassName = string.IsNullOrWhiteSpace(input.BaseClassName) ? "" : $" : {input.BaseClassName}",
+            BaseClassName = string.IsNullOrWhiteSpace(input.BaseClassName) ? "" : $": {input.BaseClassName}",
             input.ConfigId,
             dbTableInfo.Description,
             TableField = dbColumnInfos
@@ -338,25 +336,19 @@ public class SysDatabaseService : IDynamicApiController, ITransient
 
         input.EntityName = entityType.Name;
         input.SeedDataName = entityType.Name + "SeedData";
-        if (!string.IsNullOrWhiteSpace(input.Suffix))
-            input.SeedDataName += input.Suffix;
-        var targetPath = GetSeedDataTargetPath(input);
+        if (!string.IsNullOrWhiteSpace(input.Suffix)) input.SeedDataName += input.Suffix;
 
         // 查询所有数据
         var query = db.QueryableByObject(entityType);
-        DbColumnInfo orderField = null; // 排序字段
         // 优先用创建时间排序
-        orderField = dbColumnInfos.Where(u => u.DbColumnName.ToLower() == "create_time" || u.DbColumnName.ToLower() == "createtime").FirstOrDefault();
-        if (orderField != null)
-            query.OrderBy(orderField.DbColumnName);
-        // 其次用Id排序
-        orderField = dbColumnInfos.Where(u => u.DbColumnName.ToLower() == "id").FirstOrDefault();
-        if (orderField != null)
-            query.OrderBy(orderField.DbColumnName);
-        IEnumerable recordsTmp = (IEnumerable)query.ToList();
-        List<dynamic> records = recordsTmp.ToDynamicList();
+        DbColumnInfo orderField = dbColumnInfos.FirstOrDefault(u => u.DbColumnName.ToLower() == "create_time" || u.DbColumnName.ToLower() == "createtime");
+        if (orderField != null) query = query.OrderBy(orderField.DbColumnName);
+        // 再使用第一个主键排序
+        query = query.OrderBy(dbColumnInfos.First(u => u.IsPrimarykey).DbColumnName);
+        var records = ((IEnumerable)await query.ToListAsync()).ToDynamicList();
+        
         // 过滤已存在的数据
-        if (input.FilterExistingData && records.Count() > 0)
+        if (input.FilterExistingData && records.Any())
         {
             // 获取实体类型-所有种数据数据类型
             var entityTypes = App.EffectiveTypes.Where(u => !u.IsInterface && !u.IsAbstract && u.IsClass && u.IsDefined(typeof(SugarTable), false) && u.FullName.EndsWith("." + input.EntityName))
@@ -413,39 +405,71 @@ public class SysDatabaseService : IDynamicApiController, ITransient
                 }
             }
         }
-        var timeConverter = new IsoDateTimeConverter { DateTimeFormat = "yyyy-MM-dd HH:mm:ss" };
-        var recordsJSON = JsonConvert.SerializeObject(records, Formatting.Indented, timeConverter);
 
         // 检查有没有 System.Text.Json.Serialization.JsonIgnore 的属性
-        var jsonIgnoreProperties = entityType.GetProperties().Where(p => (p.GetAttribute<System.Text.Json.Serialization.JsonIgnoreAttribute>() != null ||
-            p.GetAttribute<JsonIgnoreAttribute>() != null) && p.GetAttribute<SugarColumn>() != null).ToList();
-        var jsonIgnoreInfo = new List<List<JsonIgnoredPropertyData>>();
-        if (jsonIgnoreProperties.Count > 0)
+        // var jsonIgnoreProperties = entityType.GetProperties().Where(p => (p.GetAttribute<System.Text.Json.Serialization.JsonIgnoreAttribute>() != null ||
+        //     p.GetAttribute<JsonIgnoreAttribute>() != null) && p.GetAttribute<SugarColumn>() != null).ToList();
+        // var jsonIgnoreInfo = new List<List<JsonIgnoredPropertyData>>();
+        // if (jsonIgnoreProperties.Count > 0)
+        // {
+        //     int recordIndex = 0;
+        //     foreach (var r in (IEnumerable)records)
+        //     {
+        //         List<JsonIgnoredPropertyData> record = new();
+        //         foreach (var item in jsonIgnoreProperties)
+        //         {
+        //             object v = item.GetValue(r);
+        //             string strValue = "null";
+        //             if (v != null)
+        //             {
+        //                 strValue = v.ToString();
+        //                 if (v.GetType() == typeof(string))
+        //                     strValue = "\"" + strValue + "\"";
+        //                 else if (v.GetType() == typeof(DateTime))
+        //                     strValue = "DateTime.Parse(\"" + ((DateTime)v).ToString("yyyy-MM-dd HH:mm:ss") + "\")";
+        //             }
+        //             record.Add(new JsonIgnoredPropertyData { RecordIndex = recordIndex, Name = item.Name, Value = strValue });
+        //         }
+        //         recordIndex++;
+        //         jsonIgnoreInfo.Add(record);
+        //     }
+        // }
+        
+        // 获取所有字段信息
+        var propertyList = entityType.GetProperties().Where(x => false == (x.GetCustomAttribute<SugarColumn>()?.IsIgnore ?? false)).ToList();
+        for (var i = 0; i < propertyList.Count; i++)
         {
-            int recordIndex = 0;
-            foreach (var r in (IEnumerable)records)
-            {
-                List<JsonIgnoredPropertyData> record = new();
-                foreach (var item in jsonIgnoreProperties)
-                {
-                    object v = item.GetValue(r);
-                    string strValue = "null";
-                    if (v != null)
-                    {
-                        strValue = v.ToString();
-                        if (v.GetType() == typeof(string))
-                            strValue = "\"" + strValue + "\"";
-                        else if (v.GetType() == typeof(DateTime))
-                            strValue = "DateTime.Parse(\"" + ((DateTime)v).ToString("yyyy-MM-dd HH:mm:ss") + "\")";
-                    }
-                    record.Add(new JsonIgnoredPropertyData { RecordIndex = recordIndex, Name = item.Name, Value = strValue });
-                }
-                recordIndex++;
-                jsonIgnoreInfo.Add(record);
-            }
+            if (propertyList[i].Name != nameof(EntityBaseId.Id) || !(propertyList[i].GetCustomAttribute<SugarColumn>()?.IsPrimaryKey ?? true)) continue;
+            var temp = propertyList[i];
+            for (var j = i; j > 0; j--) propertyList[j] = propertyList[j - 1];
+            propertyList[0] = temp;
         }
+        // 拼接数据
+        var recordList = records.Select(obj => string.Join(", ", propertyList.Select(prop =>
+        {
+            var propType = Nullable.GetUnderlyingType(prop.PropertyType) ?? prop.PropertyType;
+            object value = prop.GetValue(obj);
+            if (value == null) value = "null";
+            else if (propType == typeof(string))
+            {
+                value = $"\"{value}\"";
+            }
+            else if (propType.IsEnum)
+            {
+                value = $"{propType.Name}.{value}";
+            }
+            else if (propType == typeof(bool))
+            {
+                value = (bool)value ? "true" : "false";
+            }
+            else if (propType == typeof(DateTime))
+            {
+                value = $"DateTime.Parse(\"{((DateTime)value):yyyy-MM-dd HH:mm:ss.fff}\")";
+            }
+            return $"{prop.Name}={value}";
+        }))).ToList();
 
-        var tContent = File.ReadAllText(templatePath);
+        var tContent = await File.ReadAllTextAsync(templatePath);
         var data = new
         {
             NameSpace = $"{input.Position}.SeedData",
@@ -455,17 +479,19 @@ public class SysDatabaseService : IDynamicApiController, ITransient
             input.SeedDataName,
             input.ConfigId,
             tableInfo.Description,
-            JsonIgnoreInfo = jsonIgnoreInfo,
-            RecordsJSON = recordsJSON
+            // JsonIgnoreInfo = jsonIgnoreInfo,
+            RecordList = recordList
         };
-        var tResult = _viewEngine.RunCompile(tContent, data, builderAction: builder =>
+        var tResult = await _viewEngine.RunCompileAsync(tContent, data, builderAction: builder =>
         {
             builder.AddAssemblyReferenceByName("System.Linq");
             builder.AddAssemblyReferenceByName("System.Collections");
             builder.AddUsing("System.Collections.Generic");
             builder.AddUsing("System.Linq");
         });
-        File.WriteAllText(targetPath, tResult, Encoding.UTF8);
+        
+        var targetPath = GetSeedDataTargetPath(input);
+        await File.WriteAllTextAsync(targetPath, tResult, Encoding.UTF8);
     }
 
     /// <summary>

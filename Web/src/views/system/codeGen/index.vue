@@ -105,7 +105,6 @@ const state = reactive({
 
 onMounted(async () => {
 	handleQuery();
-
 	let res = await getAPI(SysCodeGenApi).apiSysCodeGenApplicationNamespacesGet();
 	state.applicationNamespaces = res.data.result as Array<string>;
 });
@@ -180,13 +179,11 @@ const deleConfig = (row: any) => {
 		confirmButtonText: '确定',
 		cancelButtonText: '取消',
 		type: 'warning',
-	})
-		.then(async () => {
+	}).then(async () => {
 			await getAPI(SysCodeGenApi).apiSysCodeGenDeletePost([{ id: row.id }]);
 			handleQuery();
 			ElMessage.success('操作成功');
-		})
-		.catch(() => {});
+	}).catch(() => {});
 };
 
 // 同步生成
@@ -196,13 +193,12 @@ const syncCodeGen = async (row: any) => {
     cancelButtonText: '取消',
     type: 'warning',
   }).then(async () => {
-    await getAPI(SysCodeGenApi).apiSysCodeGenDeletePost([{ id: state.ruleForm.id }]);
-    state.ruleForm.id = undefined;
-    await getAPI(SysCodeGenApi).apiSysCodeGenAddPost(state.ruleForm as AddCodeGenInput);
+    await getAPI(SysCodeGenApi).apiSysCodeGenDeletePost([{ id: row.id }]);
+    row.id = undefined;
+    await getAPI(SysCodeGenApi).apiSysCodeGenAddPost(row);
     handleQuery();
     ElMessage.success('同步成功');
-  })
-  .catch(() => {});
+  }).catch(() => {});
 }
 
 // 开始生成代码

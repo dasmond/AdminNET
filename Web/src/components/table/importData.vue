@@ -10,7 +10,7 @@
 			
 			<el-row :gutter="15">
 				<el-col :xs="12" :sm="12" :md="12" :lg="12" :xl="12">
-					<el-button class="ml10" type="info" icon="ele-Download" @click="() => download()">模板</el-button>
+					<el-button class="ml10" type="info" icon="ele-Download" v-reclick="3000" @click="() => download()">模板</el-button>
 				</el-col>
 				<el-col :xs="12" :sm="12" :md="12" :lg="12" :xl="12">
 					<el-upload
@@ -21,7 +21,7 @@
 						ref="uploadRef"
 					>
 						<template #trigger>
-							<el-button type="primary" icon="ele-MostlyCloudy" :disable="state.loading">导入</el-button>
+							<el-button type="primary" icon="ele-MostlyCloudy" v-reclick="3000">导入</el-button>
 						</template>
 					</el-upload>
 				</el-col>

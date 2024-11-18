@@ -44,7 +44,7 @@ public class DictAttribute : ValidationAttribute, ITransient
         var dictDataList = sysDictDataServiceProvider.GetDataList(DictTypeCode).Result;
 
         // 使用HashSet来提高查找效率
-        var dictCodes = new HashSet<string>(dictDataList.Select(u => u.Code));
+        var dictCodes = new HashSet<string>(dictDataList.Select(u => u.Name));
 
         if (!dictCodes.Contains(valueAsString))
             return new ValidationResult($"提示：{ErrorMessage}|字典【{DictTypeCode}】不包含【{valueAsString}】！");

@@ -13,11 +13,6 @@ export const useBaseApi = (module: string) => {
             method: 'post',
             data,
         }),
-        list: (params: any) => request({
-            url: baseUrl + "list",
-            method: 'get',
-            params,
-        }),
         detail: (id: any) => request({
             url: baseUrl + "detail",
             method: 'get',
@@ -50,6 +45,12 @@ export const useBaseApi = (module: string) => {
         }),
         batchDelete: (data: any) => request({
             url: baseUrl + 'batchDelete',
+            method: 'post',
+            data
+        }),
+        exportData: (data: any) => request({
+            responseType: 'arraybuffer',
+            url: baseUrl + 'export',
             method: 'post',
             data
         }),

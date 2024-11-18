@@ -32,6 +32,31 @@ public class @(Model.ClassName)Output
     @:
     }
 }
+@if (Model.ApiTreeFieldList.Count > 0) {
+foreach(var column in Model.ApiTreeFieldList) {
+@:/// <summary>
+@:/// @column.ColumnComment 树选择器输出参数
+@:/// </summary>
+@:public class Tree@(column.PropertyNameTrimEndId)Output : @(Model.ClassName)
+@:{
+    @:/// <summary>
+    @:/// 节点值
+    @:/// </summary>
+    @:public @column.NetType Value { get; set; }
+    @:
+    @:/// <summary>
+    @:/// 节点文本
+    @:/// </summary>
+    @:public string Label { get; set; }
+    @:
+    @:/// <summary>
+    @:/// 子集数据
+    @:/// </summary>
+    @:public List<Tree@(column.PropertyNameTrimEndId)Output> Children { get; set; }
+@:}
+@:
+}
+}
 @if (Model.ImportFieldList.Count > 0) {
 @:
 @:/// <summary>
