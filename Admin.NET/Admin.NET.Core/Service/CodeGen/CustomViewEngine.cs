@@ -63,6 +63,8 @@ public class CustomViewEngine : ViewEngineModel
     public List<CodeGenConfig> PrimaryKeyFieldList { get; set; }
     
     public List<TableUniqueConfigItem> TableUniqueConfigList { get; set; }
+
+    public List<CodeGenConfig> IgnoreUpdateFieldList => TableField.Where(u => u.WhetherAddUpdate == "N" && u.ColumnKey != "True" && u.WhetherCommon != "Y").ToList();
     
     /// <summary>
     /// 格式化主键查询条件
