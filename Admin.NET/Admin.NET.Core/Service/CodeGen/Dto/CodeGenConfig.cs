@@ -184,23 +184,24 @@ public class CodeGenConfig
     public string LowerPropertyNameTrimEndId => LowerPropertyName.TrimEnd("Id");
 
     /// <summary>
-    /// 联表显示字段名称
+    /// 扩展属性名称
     /// </summary>
-    public string FkLinkDisplayPropertyName => EffectType switch
+    public string ExtendedPropertyName => EffectType switch
     {
         "ForeignKey" => $"{LowerPropertyNameTrimEndId}FkDisplayName",
         "ApiTreeSelector" => $"{LowerPropertyNameTrimEndId}DisplayName",
+        "Upload" => $"{LowerPropertyName}Attachment",
         _ => PropertyName
     };
 
     /// <summary>
-    /// 联表显示字段首字母小写名称
+    /// 首字母小写的扩展属性名称
     /// </summary>
-    public string LowerFkLinkDisplayPropertyName
+    public string LowerExtendedPropertyName
     {
         get
         {
-            var displayPropertyName = FkLinkDisplayPropertyName;
+            var displayPropertyName = ExtendedPropertyName;
             if (string.IsNullOrWhiteSpace(displayPropertyName)) return null;
             return displayPropertyName[..1].ToLower() + displayPropertyName[1..];
         }
