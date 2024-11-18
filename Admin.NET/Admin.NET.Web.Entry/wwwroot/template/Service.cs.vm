@@ -217,16 +217,16 @@ public class @(Model.ClassName)Service : IDynamicApiController, ITransient
             if (column.EffectType != "ApiTreeSelector") {
             @:.InnerJoinIF<@Model.ClassName>(input.FromPage, (u, r) => u.@(column.FkLinkColumnName) == r.@(column.PropertyName))
             }
+            if (column.EffectType != "ApiTreeSelector") {
             @:.Select(u => new {
                 @:Value = u.@(column.FkLinkColumnName),
                 @:Label = @column.GetDisplayColumn("u")
-            if (column.EffectType != "ApiTreeSelector") {
             @:}).ToListAsync();
             } else {
-                @:, Id = u.Id,
-                @:ParentId = u.@(column.PidColumn),
-                @:Children = new List<dynamic>()
-            @:}).ToTreeAsync(u => u.Children, u => u.ParentId, @(column.WhetherRequired == "Y" ? "0" : "null"));
+            @:.Select(u => new Tree@(column.PropertyNameTrimEndId)Output {
+                @:Value = u.@(column.FkLinkColumnName),
+                @:Label = @column.GetDisplayColumn("u")
+            @:}, true).ToTreeAsync(u => u.Children, u => u.@(column.PidColumn), @(column.WhetherRequired == "Y" ? "0" : "null"));
             }
         }
         @:return new Dictionary<string, dynamic>
@@ -294,6 +294,18 @@ public class @(Model.ClassName)Service : IDynamicApiController, ITransient
                     @:}
                     }
 
+                    if (dictTableField.Any()) {
+                    @:
+                    @:// 映射字典值
+                    @:foreach(var item in pageItems) {
+                        foreach (var column in dictTableField) {
+                        @:if (item.@(column.PropertyName) == null) continue;
+                        @:item.@(column.PropertyName) = @(column.LowerPropertyName)DictMap.GetValueOrDefault(item.@(column.ExtendedPropertyName));
+                        @:if (item.@(column.PropertyName) == null) item.Error = "@(column.ColumnComment)字典映射失败";
+                        }
+                    @:}
+                    }
+
                     @:
                     @:// 校验并过滤必填基本类型为null的字段
                     @:var rows = pageItems.Where(x => {
@@ -306,18 +318,6 @@ public class @(Model.ClassName)Service : IDynamicApiController, ITransient
                         }
                         @:return true;
                     @:}).Adapt<List<@(Model.ClassName)>>();
-
-                    if (dictTableField.Any()) {
-                    @:
-                    @:// 映射字典值
-                    @:foreach(var row in rows) {
-                        foreach (var column in dictTableField){
-                        @:if (row.@(column.PropertyName) == null) continue;
-                        @:row.@(column.PropertyName) = @(column.LowerPropertyName)DictMap.GetValueOrDefault(row.@(column.PropertyName));
-                        @:if (row.@(column.PropertyName) == null) row.Error = "@(column.ColumnComment)字典匹配失败";
-                        }
-                    @:}
-                    }
 
                     @:
                     @:var storageable = _sqlSugarClient.Storageable(rows)

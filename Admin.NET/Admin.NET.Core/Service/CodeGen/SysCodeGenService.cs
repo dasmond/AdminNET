@@ -401,9 +401,10 @@ public class SysCodeGenService : IDynamicApiController, ITransient
             QueryWhetherList = tableFieldList.Where(u => u.WhetherQuery == "Y").ToList(),
             ImportFieldList = tableFieldList.Where(u => u.WhetherImport == "Y").ToList(),
             UploadFieldList = tableFieldList.Where(u => u.EffectType == "Upload").ToList(),
-            DropdownFieldList = joinTableList.Where(u => u.EffectType != "Upload").ToList(),
             PrimaryKeyFieldList = tableFieldList.Where(c => c.ColumnKey == "True").ToList(),
             AddUpdateFieldList = tableFieldList.Where(u => u.WhetherAddUpdate == "Y").ToList(),
+            ApiTreeFieldList = tableFieldList.Where(u => u.EffectType == "ApiTreeSelector").ToList(),
+            DropdownFieldList = tableFieldList.Where(u => u.EffectType is "ForeignKey" or "ApiTreeSelector").ToList(),
             
             HasJoinTable = joinTableList.Count > 0,
             HasDictField = tableFieldList.Any(u => u.EffectType == "DictSelector"),
