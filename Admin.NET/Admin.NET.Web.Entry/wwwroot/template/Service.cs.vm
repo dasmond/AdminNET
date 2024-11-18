@@ -83,18 +83,6 @@ public class @(Model.ClassName)Service : IDynamicApiController, ITransient
     }
 
     /// <summary>
-    /// 获取@(Model.BusName)列表 🔖
-    /// </summary>
-    /// <param name="input"></param>
-    /// <returns></returns>
-    [DisplayName("获取@(Model.BusName)列表")]
-    [ApiDescriptionSettings(Name = "List"), HttpGet]
-    public async Task<List<@(Model.ClassName)Output>> List([FromQuery] Page@(Model.ClassName)Input input)
-    {
-        return await _@(Model.LowerClassName)Rep.AsQueryable().Select<@(Model.ClassName)Output>().ToListAsync();
-    }
-
-    /// <summary>
     /// 获取@(Model.BusName)详情 ℹ️
     /// </summary>
     /// <param name="input"></param>
@@ -238,6 +226,19 @@ public class @(Model.ClassName)Service : IDynamicApiController, ITransient
     @:}
     }
     @if (Model.ImportFieldList.Count > 0) {
+    @:
+    @:/// <summary>
+    @:/// 导出@(Model.BusName)记录 🔖
+    @:/// </summary>
+    @:/// <param name="input"></param>
+    @:/// <returns></returns>
+    @:[DisplayName("导出@(Model.BusName)记录")]
+    @:[ApiDescriptionSettings(Name = "Export"), HttpPost, NonUnify]
+    @:public async Task<IActionResult> Export(Page@(Model.ClassName)Input input)
+    @:{
+        @:var list = (await Page(input)).Items?.Adapt<List<Export@(Model.ClassName)Output>>() ?? new();
+        @:return ExcelHelper.ExportTemplate(list, "@(Model.BusName)导出记录");
+    @:}
     @:
     @:/// <summary>
     @:/// 下载@(Model.BusName)数据导入模板 ⬇️

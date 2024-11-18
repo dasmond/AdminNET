@@ -3,6 +3,7 @@ import { ref, reactive, onMounted } from "vue";
 import { auth } from '/@@/utils/authFunction';
 import { getAPI } from '/@@/utils/axios-utils';
 import { ElMessageBox, ElMessage } from "element-plus";
+import { downloadStreamFile } from "/@@/utils/downloadFile";
 @if(Model.TableField.Any(x => x.EffectType == "ConstSelector")) {
 @:import { codeToName, getConstType } from '/@@/utils/constHelper';
 }
@@ -95,11 +96,6 @@ const openPrint@(Model.ClassName) = async (row: any) => {
   }
 }
 
-// 导出数据
-const export@(Model.LowerClassName) = async () => {
-  var data = await @(Model.LowerClassName)Api.list(Object.assign(state.tableQueryParams, state.tableParams)).then(res => res.data.result ?? []);
-}
-
 // 删除
 const del@(Model.ClassName) = (row: any) => {
   ElMessageBox.confirm(`确定要删除吗?`, "提示", {
@@ -126,6 +122,14 @@ const batchDel@(Model.ClassName) = () => {
     });
   }).catch(() => {});
 };
+
+@if (Model.ImportFieldList.Count > 0) {
+@:// 导出数据
+@:const export@(Model.ClassName)Data = async () => {
+  @:const params = Object.assign(state.tableQueryParams, state.tableParams, { page: 1, pageSize: 99999999 });
+  @:@(Model.LowerClassName)Api.exportData(params).then(res => downloadStreamFile(res));
+@:}
+}
 
 handleQuery();
 </script>
@@ -211,8 +215,8 @@ handleQuery();
                 }
                 <el-button type="danger" style="margin-left:5px;" icon="ele-Delete" @@click="batchDel@(Model.ClassName)" :disabled="state.selectData.length == 0" v-auth="'@(Model.LowerClassName):batchDelete'"> 删除 </el-button>
                 <el-button type="primary" style="margin-left:5px;" icon="ele-Plus" @@click="editDialogRef.openDialog(null, '新增@(Model.BusName)')" v-auth="'@(Model.LowerClassName):add'"> 新增 </el-button>
-                <el-button type="primary" style="margin-left:5px;" icon="ele-FolderOpened" @@click="export@(Model.LowerClassName)" v-auth="'@(Model.LowerClassName):export'"> 导出 </el-button>
                 @if (Model.ImportFieldList.Count > 0) {
+                @:<el-button type="primary" style="margin-left:5px;" icon="ele-FolderOpened" @@click="export@(Model.ClassName)Data" v-reclick="20000" v-auth="'@(Model.LowerClassName):export'"> 导出 </el-button>
                 @:<el-button type="warning" style="margin-left:5px;" icon="ele-MostlyCloudy" @@click="importDataRef.openDialog()" v-auth="'@(Model.LowerClassName):import'"> 导入 </el-button>
                 }
               </el-button-group>
