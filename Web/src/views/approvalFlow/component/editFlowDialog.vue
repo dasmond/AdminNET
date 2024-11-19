@@ -49,8 +49,8 @@ import PanelDataDialog from './LogicFlow/Panel/PanelDataDialog.vue';
 import PropertyDialog from './LogicFlow/Property/PropertyDialog.vue';
 
 import { getAPI } from '/@/utils/axios-utils';
-import { ApprovalFlowApi } from '/@/api-services/_approvalFlow/api';
-import { ApprovalFlowOutput, UpdateApprovalFlowInput } from '/@/api-services/_approvalFlow/models';
+import { ApprovalFlowApi } from '/@/api-plugins/_approvalFlow/api';
+import { ApprovalFlowOutput, UpdateApprovalFlowInput } from '/@/api-plugins/_approvalFlow/models';
 
 var props = defineProps({
 	title: {

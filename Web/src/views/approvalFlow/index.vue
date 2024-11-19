@@ -99,8 +99,8 @@ import editDialog from './component/editDialog.vue';
 import ModifyRecord from '/@/components/table/modifyRecord.vue';
 
 import { getAPI } from '/@/utils/axios-utils';
-import { ApprovalFlowApi } from '/@/api-services/_approvalFlow/api';
-import { ApprovalFlowInput, ApprovalFlowOutput } from '/@/api-services/_approvalFlow/models';
+import { ApprovalFlowApi } from '/@/api-plugins/_approvalFlow/api';
+import { ApprovalFlowInput, ApprovalFlowOutput } from '/@/api-plugins/_approvalFlow/models';
 
 const showAdvanceQueryUI = ref(false);
 
