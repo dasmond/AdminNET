@@ -140,10 +140,8 @@ let timer: any = null;
 // 页面初始化
 onMounted(async () => {
 	// 若URL带有Token参数（第三方登录）
-	var accessToken = route.query.token;
-	if (accessToken != null && accessToken != undefined) {
-		await saveTokenAndInitRoutes(accessToken);
-	}
+	const accessToken = route.query.token;
+	if (accessToken) await saveTokenAndInitRoutes(accessToken);
 
 	// 获取登录配置
 	state.secondVerEnabled = themeConfig.value.secondVer ?? true;
@@ -174,8 +172,7 @@ onUnmounted(() => {
 
 // 检测大小写按键
 const handleKeyPress = (e: KeyboardEvent) => {
-	const isCapsLockOn = e.getModifierState('CapsLock');
-	state.capsLockVisible = isCapsLockOn;
+	state.capsLockVisible = e.getModifierState('CapsLock');
 };
 
 // 获取验证码
@@ -183,10 +180,10 @@ const getCaptcha = async () => {
 	if (!state.captchaEnabled) return;
 
 	state.ruleForm.code = '';
-	var res = await getAPI(SysAuthApi).apiSysAuthCaptchaGet();
-	state.captchaImage = 'data:text/html;base64,' + res.data.result?.img;
-	state.ruleForm.codeId = res.data.result?.id;
-	state.expirySeconds = res.data.result?.expirySeconds;
+	const res = await getAPI(SysAuthApi).apiSysAuthCaptchaGet().then(res => res.data.result);
+	state.captchaImage = 'data:text/html;base64,' + res?.img;
+	state.expirySeconds = res?.expirySeconds;
+  state.ruleForm.codeId = res?.id;
 };
 
 // 获取时间

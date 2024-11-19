@@ -1,20 +1,15 @@
 <script lang="ts" setup name="@(Model.LowerClassName)">
 import { ref, reactive, onMounted } from "vue";
 import { auth } from '/@@/utils/authFunction';
-import { getAPI } from '/@@/utils/axios-utils';
 import { ElMessageBox, ElMessage } from "element-plus";
 import { downloadStreamFile } from "/@@/utils/downloadFile";
-@if(Model.TableField.Any(x => x.EffectType == "ConstSelector")) {
-@:import { codeToName, getConstType } from '/@@/utils/constHelper';
-}
-@if(Model.TableField.Any(x => x.EffectType == "DatePicker")) {
-@:import { formatDate } from '/@@/utils/formatTime';
-}
 @if(Model.PrintType == "custom") {
 @:// 推荐设置操作 width 为 200
 @:import { hiprint } from 'vue-plugin-hiprint';
+@:import { getAPI } from '/@@/utils/axios-utils';
 @:import { SysPrintApi } from '/@@/api-services/api';
 @:import { SysPrint } from '/@@/api-services/models';
+@:import { formatDate } from '/@@/utils/formatTime';
 }
 import { use@(Model.ClassName)Api } from '/@@/api/@(Model.PagePath)/@(Model.LowerClassName)';
 @if(Model.HasDictField || Model.HasEnumField || Model.HasConstField) {
@@ -148,27 +143,24 @@ handleQuery();
           }
           foreach (var column in Model.QueryWhetherList) {
           @:<el-col :xs="24" :sm="12" :md="12" :lg="8" :xl="4" class="mb10" v-if="state.showAdvanceQueryUI">
+            @:<el-form-item label="@column.ColumnComment">
             if(column.EffectType == "Input" || column.EffectType == "InputTextArea"){
-            @:<el-form-item label="@column.ColumnComment">
               @:<el-input v-model="state.tableQueryParams.@(column.LowerPropertyName)" clearable placeholder="请输入@(column.ColumnComment)"/>
-            @:</el-form-item>
             }else if(column.EffectType == "InputTextArea"){
-            @:<el-form-item label="@column.ColumnComment">
               @:<el-input-number v-model="state.tableQueryParams.@(column.LowerPropertyName)"  clearable placeholder="请输入@(column.ColumnComment)"/>
-              @:
-            @:</el-form-item>
             }else if(column.EffectType == "InputNumber"){
-            @:<el-form-item label="@column.ColumnComment">
               @:<el-input-number v-model="state.tableQueryParams.@(column.LowerPropertyName)"  clearable placeholder="请输入@(column.ColumnComment)"/>
-            @:</el-form-item>
-            }else if(column.EffectType == "ForeignKey") {
-            @:<el-form-item label="@column.ColumnComment">
+            }else if(column.IsSelectorEffectType || column.EffectType == "ForeignKey") {
               @:<el-select clearable filterable v-model="state.tableQueryParams.@(column.LowerPropertyName)" placeholder="请选择@(column.ColumnComment)">
+                if (column.EffectType == "ForeignKey") {
                 @:<el-option v-for="(item,index) in state.dropdownData.@(column.LowerPropertyName) ?? []" :key="index" :value="item.value" :label="item.label" />
+                } else if (column.EffectType == "ConstSelector") {
+                @:<el-option v-for="(item, index) in state.stores.getConstDataByTypeCode('@column.DictTypeCode')" :key="index" :label="item.name" :value="item.code" />
+                } else {
+                @:<el-option v-for="(item,index) in state.stores.getDictDataByCode('@(column.DictTypeCode)')" :key="index" :value="item.code" :label="`[${item.code}]${item.value}`" />
+                }
               @:</el-select>
-            @:</el-form-item>
             }else if(column.EffectType == "ApiTreeSelector"){
-            @:<el-form-item label="@column.ColumnComment">
               @:<el-cascader
                 @::options="state.dropdownData.@(column.LowerPropertyName) ?? []"
                 @:@:props="{ checkStrictly: true, emitPath: false }"
@@ -183,22 +175,16 @@ handleQuery();
                     @:<span v-if="!node.isLeaf"> ({{ data.children.length }}) </span>
                   @:</template>
               @:</el-cascader>
-            @:</el-form-item>
-            }else if(column.EffectType == "DictSelector" || column.EffectType == "EnumSelector"){
-            @:<el-form-item label="@column.ColumnComment">
-              @:<el-select clearable filterable v-model="state.tableQueryParams.@(column.LowerPropertyName)" placeholder="请选择@(column.ColumnComment)">
-                @:<el-option v-for="(item,index) in state.stores.getDictDataByCode('@(column.DictTypeCode)')" :key="index" :value="item.code" :label="`[${item.code}]${item.value}`" />
-              @:</el-select>
-            @:</el-form-item>
-            }else if(column.EffectType == "DatePicker"){
-            @:<el-form-item label="@column.ColumnComment">
+            } else if (column.EffectType == "DatePicker"){
               if (column.QueryType == "~") {
               @:<el-date-picker type="daterange" v-model="state.tableQueryParams.@(column.LowerPropertyName)Range"  value-format="YYYY-MM-DD HH:mm:ss" start-placeholder="开始日期" end-placeholder="结束日期" :default-time="[new Date('1 00:00:00'), new Date('1 23:59:59')]" />
               } else {
               @:<el-date-picker placeholder="请选择@(column.ColumnComment)" value-format="YYYY/MM/DD"  v-model="state.tableQueryParams.@(column.LowerPropertyName)" />
               }
-            @:</el-form-item>
+            } else {
+              @:<el-input v-model="state.tableQueryParams.@(column.LowerPropertyName)" clearable placeholder="请输入@(column.ColumnComment)"/>
             }
+            @:</el-form-item>
           @:</el-col>
           }
           }
@@ -264,8 +250,8 @@ handleQuery();
           @:</template>
         @:</el-table-column>
       } else if (column.EffectType == "ConstSelector" || column.EffectType == "ForeignKey" || column.EffectType == "ApiTreeSelector") {
-        var formatter = column.EffectType == "ConstSelector" ? $"codeToName(row.{column.LowerPropertyName}, '{column.DictTypeCode}')" : $"row.{column.LowerExtendedPropertyName}";
-        @:<el-table-column @(Model.GetElTableColumnCustomProperty(column)) :formatter="(row) => @(formatter)" show-overflow-tooltip />
+        var formatter = column.EffectType == "ConstSelector" ? $"state.stores.getConstItemNameByType('{column.DictTypeCode}', row.{column.LowerPropertyName})" : $"row.{column.LowerExtendedPropertyName}";
+        @:<el-table-column @(Model.GetElTableColumnCustomProperty(column)) :formatter="(row: any) => @(formatter)" show-overflow-tooltip />
       } else {
         @:<el-table-column @(Model.GetElTableColumnCustomProperty(column)) show-overflow-tooltip />
       }
@@ -288,8 +274,8 @@ handleQuery();
       <el-pagination 
               v-model:currentPage="state.tableParams.page"
               v-model:page-size="state.tableParams.pageSize"
-              @@size-change="(val) => handleQuery({ pageSize: val })"
-              @@current-change="(val) => handleQuery({ page: val })"
+              @@size-change="(val: any) => handleQuery({ pageSize: val })"
+              @@current-change="(val: any) => handleQuery({ page: val })"
               layout="total, sizes, prev, pager, next, jumper"
               :page-sizes="[10, 20, 50, 100, 200, 500]"
               :total="state.tableParams.total"

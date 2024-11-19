@@ -1,5 +1,5 @@
 <template>
-	<el-Tag :type="state.tagType ?? ''">{{ state.label }}</el-Tag>
+	<el-Tag :type="state.tagType">{{ state.label }}</el-Tag>
 </template>
 
 <script lang="ts" setup>
@@ -8,7 +8,7 @@ import { reactive, onMounted, watch } from 'vue';
 
 const props = defineProps({
 	code: String,
-	value: Object,
+	value: null,
 	propLabel: {
 		type: String,
 		default: 'value',
@@ -25,7 +25,7 @@ const props = defineProps({
 
 const state = reactive({
 	label: '' as string,
-	tagType: '' as string,
+	tagType: "primary" as "success" | "warning" | "info" | "primary" | "danger"
 });
 
 onMounted(() => {
@@ -41,7 +41,7 @@ const setDictValue = (value: any) => {
   const dict = useUserInfo().dictList[props.code]?.find((x: any) => x[props.propValue] == value);
   if (dict) {
     state.label = dict[props.propLabel] || props.defaultValue;
-    state.tagType = dict.tagType;
+    state.tagType = dict.tagType ?? "primary";
   }
 }
 </script>

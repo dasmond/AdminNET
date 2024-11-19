@@ -39,7 +39,7 @@
 <script lang="ts" setup name="sysImportData">
 import type {UploadInstance, UploadProps, UploadRawFile, UploadRequestOptions} from 'element-plus'
 import { ElUpload, ElMessage, genFileId } from 'element-plus';
-import { downloadFile } from '/@/utils/downloadFile';
+import { downloadStreamFile } from '/@/utils/downloadFile';
 import { reactive, ref } from 'vue';
 
 const uploadRef = ref<UploadInstance>();
@@ -70,15 +70,15 @@ const handleImportData = (opt: UploadRequestOptions) => {
   state.loading = true;
   props.import(opt.file).then((res: any) => {
     try {
-      handleFileStream(res);
-	  state.isShowDialog = false;
+      downloadStreamFile(res);
+	    state.isShowDialog = false;
       emit('refresh');
     } catch {
       ElMessage.error(res.data.message || '上传失败');
     }
-	state.loading = false;
+	  state.loading = false;
   }).catch(() => {
-	state.loading = false;
+	  state.loading = false;
   }).finally(() => {
     uploadRef.value?.clearFiles();
   });
@@ -86,16 +86,7 @@ const handleImportData = (opt: UploadRequestOptions) => {
 
 // 下载模板
 const download = () => {
-	props.download().then((res: any) => handleFileStream(res)).catch((res: any) => ElMessage.error('下载错误: ' + res));
-}
-
-// 下载文件流
-const handleFileStream = (res: any) => {
-  const contentType = res.headers['content-type'];
-  const contentDisposition = res.headers['content-disposition'];
-  const filename = decodeURIComponent(contentDisposition.split('; ')[1].split('=')[1])
-  const blob = res.data instanceof Blob ? res.data : new Blob([res.data], { type: contentType });
-  downloadFile(window.URL.createObjectURL(blob), filename);
+	props.download().then((res: any) => downloadStreamFile(res)).catch((res: any) => ElMessage.error('下载错误: ' + res));
 }
 
 // 导出对象

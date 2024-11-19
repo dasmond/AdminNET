@@ -32,7 +32,7 @@ public class SysCodeGenConfigService : IDynamicApiController, ITransient
             .Select<CodeGenConfig>()
             .Mapper(u =>
             {
-                u.NetType = (u.EffectType is "EnumSelector" or "ConstSelector" ? u.DictTypeCode : u.NetType);
+                u.NetType = (u.EffectType == "EnumSelector" ? u.DictTypeCode : u.NetType);
                 u.FkDisplayColumnList = u.FkDisplayColumns?.Split(",").ToList();
             })
             .OrderBy(u => new { u.OrderNo, u.Id })

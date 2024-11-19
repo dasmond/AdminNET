@@ -44,12 +44,18 @@ public class @(Model.ClassName)Service : IDynamicApiController, ITransient
           var queryFields = Model.TableField.Where(u => u.WhetherQuery == "Y");
           // 关键字模糊查询
           if (queryFields.Any(u => u.QueryType == "like")) {
-            @:.WhereIF(!string.IsNullOrEmpty(input.Keyword), u => @string.Join(" || ", queryFields.Where(u => u.QueryType == "like").Select(col => $"u.{col.PropertyName}.Contains(input.Keyword)")))
+            @:.WhereIF(!string.IsNullOrWhiteSpace(input.Keyword), u => @string.Join(" || ", queryFields.Where(u => u.QueryType == "like").Select(col => $"u.{col.PropertyName}.Contains(input.Keyword)")))
           }
+
+          // 单字段模糊查询
+          foreach(var column in queryFields.Where(u => u.QueryType == "like")) {
+            @:.WhereIF(!string.IsNullOrWhiteSpace(input.@(column.PropertyName)), u => u.@(column.PropertyName).Contains(input.@(column.PropertyName).Trim()))
+          }
+
           // 字段组合查询
-          foreach(var column in queryFields) {
+          foreach(var column in queryFields.Where(u => u.QueryType != "like")) {
             if (column.NetType.TrimEnd('?') == "string") {
-            @:.WhereIF(!string.IsNullOrWhiteSpace(input.@(column.PropertyName)), u => u.@(column.PropertyName)@(column.QueryType == "like" ? $".Contains(input.{column.PropertyName}.Trim())" : $" {column.QueryType} input.{column.PropertyName}.Trim()"))
+            @:.WhereIF(!string.IsNullOrWhiteSpace(input.@(column.PropertyName)), u => u.@(column.PropertyName) == input.@(column.PropertyName))
             } else if (column.NetType.TrimEnd('?') == "int" || column.NetType.TrimEnd('?') == "long") {
             @:.WhereIF(input.@(column.PropertyName) != null, u => u.@(column.PropertyName) @(column.QueryType) input.@(column.PropertyName))
             } else if (column.NetType.TrimEnd('?').EndsWith("Enum")) {
