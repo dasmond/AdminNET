@@ -680,14 +680,8 @@ public class SysCodeGenService : IDynamicApiController, ITransient
     /// <returns></returns>
     private static List<string> GetTemplatePathList(SysCodeGen input)
     {
-        if (input.GenerateType!.Substring(1, 1).Contains('1'))
-        {
-            return new() { "index.vue.vm", "editDialog.vue.vm", "api.ts.vm" };
-        }
-        if (input.GenerateType.Substring(1, 1).Contains('2'))
-        {
-            return new() { "Service.cs.vm", "Input.cs.vm", "Output.cs.vm", "Dto.cs.vm" };
-        }
+        if (input.GenerateType!.Substring(1, 1).Contains('1')) return new() { "index.vue.vm", "editDialog.vue.vm", "api.ts.vm" };
+        if (input.GenerateType.Substring(1, 1).Contains('2')) return new() { "Service.cs.vm", "Input.cs.vm", "Output.cs.vm", "Dto.cs.vm" };
         return new() { "Service.cs.vm", "Input.cs.vm", "Output.cs.vm", "Dto.cs.vm", "index.vue.vm", "editDialog.vue.vm", "api.ts.vm" };
     }
 
@@ -725,7 +719,8 @@ public class SysCodeGenService : IDynamicApiController, ITransient
                 apiJsPath
             };
         }
-        else if (input.GenerateType.Substring(1, 1).Contains('2'))
+
+        if (input.GenerateType.Substring(1, 1).Contains('2'))
         {
             // 生成到本项目(后端)
             return new List<string>()
@@ -736,20 +731,17 @@ public class SysCodeGenService : IDynamicApiController, ITransient
                 viewPath,
             };
         }
-        else
+        // 前后端同时生成到本项目
+        return new List<string>()
         {
-            // 前后端同时生成到本项目
-            return new List<string>()
-            {
-                servicePath,
-                inputPath,
-                outputPath,
-                viewPath,
-                indexPath,
-                formModalPath,
-                apiJsPath
-            };
-        }
+            servicePath,
+            inputPath,
+            outputPath,
+            viewPath,
+            indexPath,
+            formModalPath,
+            apiJsPath
+        };
     }
 
     /// <summary>
@@ -780,7 +772,8 @@ public class SysCodeGenService : IDynamicApiController, ITransient
                 apiJsPath
             };
         }
-        else if (input.GenerateType.StartsWith("12"))
+
+        if (input.GenerateType.StartsWith("12"))
         {
             return new List<string>()
             {
@@ -790,18 +783,16 @@ public class SysCodeGenService : IDynamicApiController, ITransient
                 viewPath
             };
         }
-        else
+
+        return new List<string>()
         {
-            return new List<string>()
-            {
-                servicePath,
-                inputPath,
-                outputPath,
-                viewPath,
-                indexPath,
-                formModalPath,
-                apiJsPath
-            };
-        }
+            servicePath,
+            inputPath,
+            outputPath,
+            viewPath,
+            indexPath,
+            formModalPath,
+            apiJsPath
+        };
     }
 }

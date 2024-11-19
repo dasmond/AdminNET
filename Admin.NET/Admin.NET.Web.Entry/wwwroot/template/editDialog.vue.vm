@@ -41,7 +41,7 @@ onMounted(async () => {
   @if (Model.DropdownFieldList.Count > 0) {
   @:const data = await @(Model.LowerClassName)Api.getDropdownData(false).then(res => res.data.result) ?? {};
   @foreach (var column in Model.DropdownFieldList) {
-  @:state.dropdownData.@(column.LowerPropertyName) = data.@(column.LowerPropertyName);
+  @:state.dropdownData.@(column.LowerPropertyName) = data.@(column.LowerPropertyName) ?? [];
   }
   }
 });
@@ -108,7 +108,7 @@ defineExpose({ openDialog });
 						if (column.IsSelectorEffectType) {
 							if (column.EffectType == "ApiTreeSelector") {
 							@:<el-cascader
-								@::options="state.dropdownData.@(column.LowerPropertyName) ?? []"
+								@::options="state.dropdownData.@(column.LowerPropertyName)"
 								@::props="{ checkStrictly: true, emitPath: false }"
 								@:v-model="state.ruleForm.@(column.LowerPropertyName)"
 								@:placeholder="请选择@(column.ColumnComment)"
@@ -123,11 +123,11 @@ defineExpose({ openDialog });
 							} else {
 							@:<el-select clearable filterable v-model="state.ruleForm.@(column.LowerPropertyName)" placeholder="请选择@(column.ColumnComment)">
 								if (column.EffectType == "ForeignKey") {
-								@:<el-option v-for="(item,index) in state.dropdownData.@(column.LowerPropertyName) ?? []" :key="index" :value="item.value" :label="item.label" />
+								@:<el-option v-for="(item,index) in state.dropdownData.@(column.LowerPropertyName)" :key="index" :value="item.value" :label="item.label" />
 								} else if (column.EffectType == "ConstSelector") {
-								@:<el-option v-for="(item, index) in state.stores.getConstDataByType('@column.DictTypeCode') ?? []" :key="index" :label="item.name" :value="item.code" />
+								@:<el-option v-for="(item, index) in state.stores.getConstDataByTypeCode('@column.DictTypeCode')" :key="index" :label="item.name" :value="item.code" />
 								} else if (column.EffectType == "DictSelector" || column.EffectType == "EnumSelector") {
-								@:<el-option v-for="(item, index) in state.stores.getDictDataByCode('@(column.DictTypeCode)') ?? []"  :key="index" :value="item.code" :label="`[${item.code}]${item.value}`" />
+								@:<el-option v-for="(item, index) in state.stores.getDictDataByCode('@(column.DictTypeCode)')"  :key="index" :value="item.code" :label="`[${item.code}]${item.value}`" />
 								}
 							@:</el-select>
 							}
