@@ -70,7 +70,7 @@ import { ElMessage } from 'element-plus';
 import type { FormRules } from 'element-plus';
 
 import { getAPI } from '/@/utils/axios-utils';
-import { ApprovalFlowApi } from '/@/api-plugins/_approvalFlow/api';
+import { ApprovalFlowApi } from '/@/api-plugins/approvalFlow/api';
 import { SysEnumApi } from '/@/api-services/api';
 
 const getEnumStatusData = ref<any>([]);

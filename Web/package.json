@@ -11,7 +11,10 @@
 		"build": "node --max-old-space-size=8192 ./node_modules/vite/bin/vite build",
 		"lint-fix": "eslint --fix src/",
 		"format": "prettier --write .",
-		"build-api": "cd api_build/ && build.bat"
+		"build-api": "cd api_build/ && build.bat",
+		"build-approvalFlow-api": "cd api_build/ && build.bat approvalFlow",
+		"build-dingTalk-api": "cd api_build/ && build.bat dingTalk",
+		"build-goView-api": "cd api_build/ && build.bat goView"
 	},
 	"dependencies": {
 		"@element-plus/icons-vue": "^2.3.1",

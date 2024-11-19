@@ -47,8 +47,8 @@ import { reactive, ref, onMounted } from 'vue';
 import type { FormRules } from 'element-plus';
 
 import { getAPI } from '/@/utils/axios-utils';
-import { ApprovalFlowApi } from '/@/api-plugins/_approvalFlow/api';
-import { ApprovalFlowOutput, UpdateApprovalFlowInput } from '/@/api-plugins/_approvalFlow/models';
+import { ApprovalFlowApi } from '/@/api-plugins/approvalFlow/api';
+import { ApprovalFlowOutput, UpdateApprovalFlowInput } from '/@/api-plugins/approvalFlow/models';
 import { SysDatabaseApi, SysCodeGenApi } from '/@/api-services/api';
 import { DbTableInfo } from '/@/api-services/models';
 
