@@ -11,26 +11,14 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-
- /**
+/**
  * 系统用户菜单快捷导航输入
- *
  * @export
  * @interface UserMenuInput
  */
 export interface UserMenuInput {
-
-    /**
-     * 用户Id
-     *
-     * @type {number}
-     * @memberof UserMenuInput
-     */
-    userId?: number;
-
     /**
      * 收藏菜单Id集合
-     *
      * @type {Array<number>}
      * @memberof UserMenuInput
      */

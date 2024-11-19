@@ -11,57 +11,45 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-
 import { SqlSugarPagedListSysLdap } from './sql-sugar-paged-list-sys-ldap';
- /**
+/**
  * 全局返回结果
- *
  * @export
  * @interface AdminResultSqlSugarPagedListSysLdap
  */
 export interface AdminResultSqlSugarPagedListSysLdap {
-
     /**
      * 状态码
-     *
      * @type {number}
      * @memberof AdminResultSqlSugarPagedListSysLdap
      */
     code?: number;
-
     /**
      * 类型success、warning、error
-     *
      * @type {string}
      * @memberof AdminResultSqlSugarPagedListSysLdap
      */
     type?: string | null;
-
     /**
      * 错误信息
-     *
      * @type {string}
      * @memberof AdminResultSqlSugarPagedListSysLdap
      */
     message?: string | null;
-
     /**
+     * 
      * @type {SqlSugarPagedListSysLdap}
      * @memberof AdminResultSqlSugarPagedListSysLdap
      */
     result?: SqlSugarPagedListSysLdap;
-
     /**
      * 附加数据
-     *
      * @type {any}
      * @memberof AdminResultSqlSugarPagedListSysLdap
      */
     extras?: any | null;
-
     /**
      * 时间
-     *
      * @type {Date}
      * @memberof AdminResultSqlSugarPagedListSysLdap
      */

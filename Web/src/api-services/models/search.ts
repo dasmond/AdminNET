@@ -11,26 +11,20 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-
- /**
+/**
  * 模糊查询条件
- *
  * @export
  * @interface Search
  */
 export interface Search {
-
     /**
      * 字段名称集合
-     *
      * @type {Array<string>}
      * @memberof Search
      */
     fields?: Array<string> | null;
-
     /**
      * 关键字
-     *
      * @type {string}
      * @memberof Search
      */

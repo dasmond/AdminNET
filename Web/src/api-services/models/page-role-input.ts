@@ -11,88 +11,70 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-
 import { Filter } from './filter';
 import { Search } from './search';
- /**
+/**
  * 
- *
  * @export
  * @interface PageRoleInput
  */
 export interface PageRoleInput {
-
     /**
+     * 
      * @type {Search}
      * @memberof PageRoleInput
      */
     search?: Search;
-
     /**
      * 模糊查询关键字
-     *
      * @type {string}
      * @memberof PageRoleInput
      */
     keyword?: string | null;
-
     /**
+     * 
      * @type {Filter}
      * @memberof PageRoleInput
      */
     filter?: Filter;
-
     /**
      * 当前页码
-     *
      * @type {number}
      * @memberof PageRoleInput
      */
     page?: number;
-
     /**
      * 页码容量
-     *
      * @type {number}
      * @memberof PageRoleInput
      */
     pageSize?: number;
-
     /**
      * 排序字段
-     *
      * @type {string}
      * @memberof PageRoleInput
      */
     field?: string | null;
-
     /**
      * 排序方向
-     *
      * @type {string}
      * @memberof PageRoleInput
      */
     order?: string | null;
-
     /**
      * 降序排序
-     *
      * @type {string}
      * @memberof PageRoleInput
      */
     descStr?: string | null;
-
     /**
      * 名称
-     *
      * @type {string}
      * @memberof PageRoleInput
      */
     name?: string | null;
-
     /**
      * 编码
-     *
      * @type {string}
      * @memberof PageRoleInput
      */

@@ -11,98 +11,74 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-
- /**
+/**
  * 系统信息保存输入参数
- *
  * @export
  * @interface InfoSaveInput
  */
 export interface InfoSaveInput {
-
     /**
      * 系统图标（Data URI scheme base64 编码）
-     *
      * @type {string}
      * @memberof InfoSaveInput
      */
     sysLogoBase64?: string | null;
-
     /**
      * 系统图标文件名
-     *
      * @type {string}
      * @memberof InfoSaveInput
      */
     sysLogoFileName?: string | null;
-
     /**
      * 系统主标题
-     *
      * @type {string}
      * @memberof InfoSaveInput
      */
     sysTitle?: string | null;
-
     /**
      * 系统副标题
-     *
      * @type {string}
      * @memberof InfoSaveInput
      */
     sysViceTitle?: string | null;
-
     /**
      * 系统描述
-     *
      * @type {string}
      * @memberof InfoSaveInput
      */
     sysViceDesc?: string | null;
-
     /**
      * 水印内容
-     *
      * @type {string}
      * @memberof InfoSaveInput
      */
     sysWatermark?: string | null;
-
     /**
      * 版权说明
-     *
      * @type {string}
      * @memberof InfoSaveInput
      */
     sysCopyright?: string | null;
-
     /**
      * ICP备案号
-     *
      * @type {string}
      * @memberof InfoSaveInput
      */
     sysIcp?: string | null;
-
     /**
      * ICP地址
-     *
      * @type {string}
      * @memberof InfoSaveInput
      */
     sysIcpUrl?: string | null;
-
     /**
      * 登录二次验证
-     *
      * @type {boolean}
      * @memberof InfoSaveInput
      */
     sysSecondVer?: boolean | null;
-
     /**
      * 图形验证码
-     *
      * @type {boolean}
      * @memberof InfoSaveInput
      */

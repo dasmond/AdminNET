@@ -11,36 +11,34 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-
 import { CustomAttributeTypedArgument } from './custom-attribute-typed-argument';
 import { MemberInfo } from './member-info';
- /**
+/**
  * 
- *
  * @export
  * @interface CustomAttributeNamedArgument
  */
 export interface CustomAttributeNamedArgument {
-
     /**
+     * 
      * @type {MemberInfo}
      * @memberof CustomAttributeNamedArgument
      */
     memberInfo?: MemberInfo;
-
     /**
+     * 
      * @type {CustomAttributeTypedArgument}
      * @memberof CustomAttributeNamedArgument
      */
     typedValue?: CustomAttributeTypedArgument;
-
     /**
+     * 
      * @type {string}
      * @memberof CustomAttributeNamedArgument
      */
     memberName?: string | null;
-
     /**
+     * 
      * @type {boolean}
      * @memberof CustomAttributeNamedArgument
      */

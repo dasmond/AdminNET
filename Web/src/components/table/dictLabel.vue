@@ -29,21 +29,19 @@ const state = reactive({
 });
 
 onMounted(() => {
-	const dict = useUserInfo().dictList[props.code]?.find((x:any) => x[props.propValue] == props.value);
-	if (dict) {
-		state.label = dict[props.propLabel] || props.defaultValue;
-		state.tagType = dict.tagType;
-	}
+  setDictValue(props.value);
 });
 
 watch(
 	() => props.value,
-	(newValue, oldValue) => {
-		const dict = useUserInfo().dictList[props.code]?.find((x:any) => x[props.propValue] == newValue);
-		if (dict) {
-			state.label = dict[props.propLabel] || props.defaultValue;
-			state.tagType = dict.tagType;
-		}
-	}
+	(newValue) => setDictValue(newValue)
 );
+
+const setDictValue = (value: any) => {
+  const dict = useUserInfo().dictList[props.code]?.find((x: any) => x[props.propValue] == value);
+  if (dict) {
+    state.label = dict[props.propLabel] || props.defaultValue;
+    state.tagType = dict.tagType;
+  }
+}
 </script>

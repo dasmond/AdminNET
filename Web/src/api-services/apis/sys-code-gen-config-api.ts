@@ -11,7 +11,6 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-
 import globalAxios, { AxiosResponse, AxiosInstance, AxiosRequestConfig } from 'axios';
 import { Configuration } from '../configuration';
 // Some imports not used depending on template conditions
@@ -32,40 +31,45 @@ export const SysCodeGenConfigApiAxiosParamCreator = function (configuration?: Co
          * @param {number} [id] 主键Id
          * @param {number} [codeGenId] 代码生成主表ID
          * @param {string} [columnName] 数据库字段名
+         * @param {string} [columnKey] 主外键
          * @param {string} [propertyName] 实体属性名
          * @param {number} [columnLength] 字段数据长度
          * @param {string} [lowerPropertyName] 数据库字段名(首字母小写)
          * @param {string} [columnComment] 字段描述
          * @param {string} [netType] .NET类型
+         * @param {string} [dataType] 数据库中类型（物理类型）
+         * @param {string} [nullableNetType] 可空.NET类型
          * @param {string} [effectType] 作用类型（字典）
          * @param {string} [fkConfigId] 外键库标识
          * @param {string} [fkEntityName] 外键实体名称
          * @param {string} [fkTableName] 外键表名称
          * @param {string} [lowerFkEntityName] 外键实体名称(首字母小写)
-         * @param {string} [fkColumnName] 外键显示字段
          * @param {string} [fkLinkColumnName] 外键链接字段
-         * @param {string} [lowerFkColumnName] 外键显示字段(首字母小写)
+         * @param {string} [fkDisplayColumns] 外键显示字段
+         * @param {Array<string>} [fkDisplayColumnList] 外键显示字段
+         * @param {Array<string>} [lowerFkDisplayColumnsList] 外键显示字段(首字母小写)
          * @param {string} [fkColumnNetType] 外键显示字段.NET类型
+         * @param {string} [pidColumn] 父级字段
          * @param {string} [dictTypeCode] 字典code
+         * @param {string} [queryType] 查询方式
+         * @param {string} [whetherQuery] 是否是查询条件
          * @param {string} [whetherRetract] 列表是否缩进（字典）
          * @param {string} [whetherRequired] 是否必填（字典）
          * @param {string} [whetherSortable] 是否可排序（字典）
-         * @param {string} [queryWhether] 是否是查询条件
-         * @param {string} [queryType] 查询方式
          * @param {string} [whetherTable] 列表显示
          * @param {string} [whetherAddUpdate] 增改
-         * @param {string} [columnKey] 主外键
-         * @param {string} [dataType] 数据库中类型（物理类型）
+         * @param {string} [whetherImport] 导入
          * @param {string} [whetherCommon] 是否是通用字段
-         * @param {string} [tableNickName] 表的别名 Table as XXX
-         * @param {string} [displayColumn] 显示文本字段
-         * @param {string} [valueColumn] 选中值字段
-         * @param {string} [pidColumn] 父级字段
          * @param {number} [orderNo] 排序
+         * @param {boolean} [isSelectorEffectType] 是否是选择器控件
+         * @param {string} [propertyNameTrimEndId] 去掉尾部Id的属性名
+         * @param {string} [lowerPropertyNameTrimEndId] 去掉尾部Id的属性名
+         * @param {string} [extendedPropertyName] 扩展属性名称
+         * @param {string} [lowerExtendedPropertyName] 首字母小写的扩展属性名称
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiSysCodeGenConfigDetailGet: async (id?: number, codeGenId?: number, columnName?: string, propertyName?: string, columnLength?: number, lowerPropertyName?: string, columnComment?: string, netType?: string, effectType?: string, fkConfigId?: string, fkEntityName?: string, fkTableName?: string, lowerFkEntityName?: string, fkColumnName?: string, fkLinkColumnName?: string, lowerFkColumnName?: string, fkColumnNetType?: string, dictTypeCode?: string, whetherRetract?: string, whetherRequired?: string, whetherSortable?: string, queryWhether?: string, queryType?: string, whetherTable?: string, whetherAddUpdate?: string, columnKey?: string, dataType?: string, whetherCommon?: string, tableNickName?: string, displayColumn?: string, valueColumn?: string, pidColumn?: string, orderNo?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        apiSysCodeGenConfigDetailGet: async (id?: number, codeGenId?: number, columnName?: string, columnKey?: string, propertyName?: string, columnLength?: number, lowerPropertyName?: string, columnComment?: string, netType?: string, dataType?: string, nullableNetType?: string, effectType?: string, fkConfigId?: string, fkEntityName?: string, fkTableName?: string, lowerFkEntityName?: string, fkLinkColumnName?: string, fkDisplayColumns?: string, fkDisplayColumnList?: Array<string>, lowerFkDisplayColumnsList?: Array<string>, fkColumnNetType?: string, pidColumn?: string, dictTypeCode?: string, queryType?: string, whetherQuery?: string, whetherRetract?: string, whetherRequired?: string, whetherSortable?: string, whetherTable?: string, whetherAddUpdate?: string, whetherImport?: string, whetherCommon?: string, orderNo?: number, isSelectorEffectType?: boolean, propertyNameTrimEndId?: string, lowerPropertyNameTrimEndId?: string, extendedPropertyName?: string, lowerExtendedPropertyName?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/sysCodeGenConfig/detail`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
@@ -98,6 +102,10 @@ export const SysCodeGenConfigApiAxiosParamCreator = function (configuration?: Co
                 localVarQueryParameter['ColumnName'] = columnName;
             }
 
+            if (columnKey !== undefined) {
+                localVarQueryParameter['ColumnKey'] = columnKey;
+            }
+
             if (propertyName !== undefined) {
                 localVarQueryParameter['PropertyName'] = propertyName;
             }
@@ -116,6 +124,14 @@ export const SysCodeGenConfigApiAxiosParamCreator = function (configuration?: Co
 
             if (netType !== undefined) {
                 localVarQueryParameter['NetType'] = netType;
+            }
+
+            if (dataType !== undefined) {
+                localVarQueryParameter['DataType'] = dataType;
+            }
+
+            if (nullableNetType !== undefined) {
+                localVarQueryParameter['NullableNetType'] = nullableNetType;
             }
 
             if (effectType !== undefined) {
@@ -138,24 +154,40 @@ export const SysCodeGenConfigApiAxiosParamCreator = function (configuration?: Co
                 localVarQueryParameter['LowerFkEntityName'] = lowerFkEntityName;
             }
 
-            if (fkColumnName !== undefined) {
-                localVarQueryParameter['FkColumnName'] = fkColumnName;
-            }
-
             if (fkLinkColumnName !== undefined) {
                 localVarQueryParameter['FkLinkColumnName'] = fkLinkColumnName;
             }
 
-            if (lowerFkColumnName !== undefined) {
-                localVarQueryParameter['LowerFkColumnName'] = lowerFkColumnName;
+            if (fkDisplayColumns !== undefined) {
+                localVarQueryParameter['FkDisplayColumns'] = fkDisplayColumns;
+            }
+
+            if (fkDisplayColumnList) {
+                localVarQueryParameter['FkDisplayColumnList'] = fkDisplayColumnList;
+            }
+
+            if (lowerFkDisplayColumnsList) {
+                localVarQueryParameter['LowerFkDisplayColumnsList'] = lowerFkDisplayColumnsList;
             }
 
             if (fkColumnNetType !== undefined) {
                 localVarQueryParameter['FkColumnNetType'] = fkColumnNetType;
             }
 
+            if (pidColumn !== undefined) {
+                localVarQueryParameter['PidColumn'] = pidColumn;
+            }
+
             if (dictTypeCode !== undefined) {
                 localVarQueryParameter['DictTypeCode'] = dictTypeCode;
+            }
+
+            if (queryType !== undefined) {
+                localVarQueryParameter['QueryType'] = queryType;
+            }
+
+            if (whetherQuery !== undefined) {
+                localVarQueryParameter['WhetherQuery'] = whetherQuery;
             }
 
             if (whetherRetract !== undefined) {
@@ -170,14 +202,6 @@ export const SysCodeGenConfigApiAxiosParamCreator = function (configuration?: Co
                 localVarQueryParameter['WhetherSortable'] = whetherSortable;
             }
 
-            if (queryWhether !== undefined) {
-                localVarQueryParameter['QueryWhether'] = queryWhether;
-            }
-
-            if (queryType !== undefined) {
-                localVarQueryParameter['QueryType'] = queryType;
-            }
-
             if (whetherTable !== undefined) {
                 localVarQueryParameter['WhetherTable'] = whetherTable;
             }
@@ -186,36 +210,36 @@ export const SysCodeGenConfigApiAxiosParamCreator = function (configuration?: Co
                 localVarQueryParameter['WhetherAddUpdate'] = whetherAddUpdate;
             }
 
-            if (columnKey !== undefined) {
-                localVarQueryParameter['ColumnKey'] = columnKey;
-            }
-
-            if (dataType !== undefined) {
-                localVarQueryParameter['DataType'] = dataType;
+            if (whetherImport !== undefined) {
+                localVarQueryParameter['WhetherImport'] = whetherImport;
             }
 
             if (whetherCommon !== undefined) {
                 localVarQueryParameter['WhetherCommon'] = whetherCommon;
             }
 
-            if (tableNickName !== undefined) {
-                localVarQueryParameter['TableNickName'] = tableNickName;
-            }
-
-            if (displayColumn !== undefined) {
-                localVarQueryParameter['DisplayColumn'] = displayColumn;
-            }
-
-            if (valueColumn !== undefined) {
-                localVarQueryParameter['ValueColumn'] = valueColumn;
-            }
-
-            if (pidColumn !== undefined) {
-                localVarQueryParameter['PidColumn'] = pidColumn;
-            }
-
             if (orderNo !== undefined) {
                 localVarQueryParameter['OrderNo'] = orderNo;
+            }
+
+            if (isSelectorEffectType !== undefined) {
+                localVarQueryParameter['IsSelectorEffectType'] = isSelectorEffectType;
+            }
+
+            if (propertyNameTrimEndId !== undefined) {
+                localVarQueryParameter['PropertyNameTrimEndId'] = propertyNameTrimEndId;
+            }
+
+            if (lowerPropertyNameTrimEndId !== undefined) {
+                localVarQueryParameter['LowerPropertyNameTrimEndId'] = lowerPropertyNameTrimEndId;
+            }
+
+            if (extendedPropertyName !== undefined) {
+                localVarQueryParameter['ExtendedPropertyName'] = extendedPropertyName;
+            }
+
+            if (lowerExtendedPropertyName !== undefined) {
+                localVarQueryParameter['LowerExtendedPropertyName'] = lowerExtendedPropertyName;
             }
 
             const query = new URLSearchParams(localVarUrlObj.search);
@@ -240,40 +264,45 @@ export const SysCodeGenConfigApiAxiosParamCreator = function (configuration?: Co
          * @param {number} [id] 主键Id
          * @param {number} [codeGenId] 代码生成主表ID
          * @param {string} [columnName] 数据库字段名
+         * @param {string} [columnKey] 主外键
          * @param {string} [propertyName] 实体属性名
          * @param {number} [columnLength] 字段数据长度
          * @param {string} [lowerPropertyName] 数据库字段名(首字母小写)
          * @param {string} [columnComment] 字段描述
          * @param {string} [netType] .NET类型
+         * @param {string} [dataType] 数据库中类型（物理类型）
+         * @param {string} [nullableNetType] 可空.NET类型
          * @param {string} [effectType] 作用类型（字典）
          * @param {string} [fkConfigId] 外键库标识
          * @param {string} [fkEntityName] 外键实体名称
          * @param {string} [fkTableName] 外键表名称
          * @param {string} [lowerFkEntityName] 外键实体名称(首字母小写)
-         * @param {string} [fkColumnName] 外键显示字段
          * @param {string} [fkLinkColumnName] 外键链接字段
-         * @param {string} [lowerFkColumnName] 外键显示字段(首字母小写)
+         * @param {string} [fkDisplayColumns] 外键显示字段
+         * @param {Array<string>} [fkDisplayColumnList] 外键显示字段
+         * @param {Array<string>} [lowerFkDisplayColumnsList] 外键显示字段(首字母小写)
          * @param {string} [fkColumnNetType] 外键显示字段.NET类型
+         * @param {string} [pidColumn] 父级字段
          * @param {string} [dictTypeCode] 字典code
+         * @param {string} [queryType] 查询方式
+         * @param {string} [whetherQuery] 是否是查询条件
          * @param {string} [whetherRetract] 列表是否缩进（字典）
          * @param {string} [whetherRequired] 是否必填（字典）
          * @param {string} [whetherSortable] 是否可排序（字典）
-         * @param {string} [queryWhether] 是否是查询条件
-         * @param {string} [queryType] 查询方式
          * @param {string} [whetherTable] 列表显示
          * @param {string} [whetherAddUpdate] 增改
-         * @param {string} [columnKey] 主外键
-         * @param {string} [dataType] 数据库中类型（物理类型）
+         * @param {string} [whetherImport] 导入
          * @param {string} [whetherCommon] 是否是通用字段
-         * @param {string} [tableNickName] 表的别名 Table as XXX
-         * @param {string} [displayColumn] 显示文本字段
-         * @param {string} [valueColumn] 选中值字段
-         * @param {string} [pidColumn] 父级字段
          * @param {number} [orderNo] 排序
+         * @param {boolean} [isSelectorEffectType] 是否是选择器控件
+         * @param {string} [propertyNameTrimEndId] 去掉尾部Id的属性名
+         * @param {string} [lowerPropertyNameTrimEndId] 去掉尾部Id的属性名
+         * @param {string} [extendedPropertyName] 扩展属性名称
+         * @param {string} [lowerExtendedPropertyName] 首字母小写的扩展属性名称
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiSysCodeGenConfigListGet: async (id?: number, codeGenId?: number, columnName?: string, propertyName?: string, columnLength?: number, lowerPropertyName?: string, columnComment?: string, netType?: string, effectType?: string, fkConfigId?: string, fkEntityName?: string, fkTableName?: string, lowerFkEntityName?: string, fkColumnName?: string, fkLinkColumnName?: string, lowerFkColumnName?: string, fkColumnNetType?: string, dictTypeCode?: string, whetherRetract?: string, whetherRequired?: string, whetherSortable?: string, queryWhether?: string, queryType?: string, whetherTable?: string, whetherAddUpdate?: string, columnKey?: string, dataType?: string, whetherCommon?: string, tableNickName?: string, displayColumn?: string, valueColumn?: string, pidColumn?: string, orderNo?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        apiSysCodeGenConfigListGet: async (id?: number, codeGenId?: number, columnName?: string, columnKey?: string, propertyName?: string, columnLength?: number, lowerPropertyName?: string, columnComment?: string, netType?: string, dataType?: string, nullableNetType?: string, effectType?: string, fkConfigId?: string, fkEntityName?: string, fkTableName?: string, lowerFkEntityName?: string, fkLinkColumnName?: string, fkDisplayColumns?: string, fkDisplayColumnList?: Array<string>, lowerFkDisplayColumnsList?: Array<string>, fkColumnNetType?: string, pidColumn?: string, dictTypeCode?: string, queryType?: string, whetherQuery?: string, whetherRetract?: string, whetherRequired?: string, whetherSortable?: string, whetherTable?: string, whetherAddUpdate?: string, whetherImport?: string, whetherCommon?: string, orderNo?: number, isSelectorEffectType?: boolean, propertyNameTrimEndId?: string, lowerPropertyNameTrimEndId?: string, extendedPropertyName?: string, lowerExtendedPropertyName?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/sysCodeGenConfig/list`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
@@ -306,6 +335,10 @@ export const SysCodeGenConfigApiAxiosParamCreator = function (configuration?: Co
                 localVarQueryParameter['ColumnName'] = columnName;
             }
 
+            if (columnKey !== undefined) {
+                localVarQueryParameter['ColumnKey'] = columnKey;
+            }
+
             if (propertyName !== undefined) {
                 localVarQueryParameter['PropertyName'] = propertyName;
             }
@@ -324,6 +357,14 @@ export const SysCodeGenConfigApiAxiosParamCreator = function (configuration?: Co
 
             if (netType !== undefined) {
                 localVarQueryParameter['NetType'] = netType;
+            }
+
+            if (dataType !== undefined) {
+                localVarQueryParameter['DataType'] = dataType;
+            }
+
+            if (nullableNetType !== undefined) {
+                localVarQueryParameter['NullableNetType'] = nullableNetType;
             }
 
             if (effectType !== undefined) {
@@ -346,24 +387,40 @@ export const SysCodeGenConfigApiAxiosParamCreator = function (configuration?: Co
                 localVarQueryParameter['LowerFkEntityName'] = lowerFkEntityName;
             }
 
-            if (fkColumnName !== undefined) {
-                localVarQueryParameter['FkColumnName'] = fkColumnName;
-            }
-
             if (fkLinkColumnName !== undefined) {
                 localVarQueryParameter['FkLinkColumnName'] = fkLinkColumnName;
             }
 
-            if (lowerFkColumnName !== undefined) {
-                localVarQueryParameter['LowerFkColumnName'] = lowerFkColumnName;
+            if (fkDisplayColumns !== undefined) {
+                localVarQueryParameter['FkDisplayColumns'] = fkDisplayColumns;
+            }
+
+            if (fkDisplayColumnList) {
+                localVarQueryParameter['FkDisplayColumnList'] = fkDisplayColumnList;
+            }
+
+            if (lowerFkDisplayColumnsList) {
+                localVarQueryParameter['LowerFkDisplayColumnsList'] = lowerFkDisplayColumnsList;
             }
 
             if (fkColumnNetType !== undefined) {
                 localVarQueryParameter['FkColumnNetType'] = fkColumnNetType;
             }
 
+            if (pidColumn !== undefined) {
+                localVarQueryParameter['PidColumn'] = pidColumn;
+            }
+
             if (dictTypeCode !== undefined) {
                 localVarQueryParameter['DictTypeCode'] = dictTypeCode;
+            }
+
+            if (queryType !== undefined) {
+                localVarQueryParameter['QueryType'] = queryType;
+            }
+
+            if (whetherQuery !== undefined) {
+                localVarQueryParameter['WhetherQuery'] = whetherQuery;
             }
 
             if (whetherRetract !== undefined) {
@@ -378,14 +435,6 @@ export const SysCodeGenConfigApiAxiosParamCreator = function (configuration?: Co
                 localVarQueryParameter['WhetherSortable'] = whetherSortable;
             }
 
-            if (queryWhether !== undefined) {
-                localVarQueryParameter['QueryWhether'] = queryWhether;
-            }
-
-            if (queryType !== undefined) {
-                localVarQueryParameter['QueryType'] = queryType;
-            }
-
             if (whetherTable !== undefined) {
                 localVarQueryParameter['WhetherTable'] = whetherTable;
             }
@@ -394,36 +443,36 @@ export const SysCodeGenConfigApiAxiosParamCreator = function (configuration?: Co
                 localVarQueryParameter['WhetherAddUpdate'] = whetherAddUpdate;
             }
 
-            if (columnKey !== undefined) {
-                localVarQueryParameter['ColumnKey'] = columnKey;
-            }
-
-            if (dataType !== undefined) {
-                localVarQueryParameter['DataType'] = dataType;
+            if (whetherImport !== undefined) {
+                localVarQueryParameter['WhetherImport'] = whetherImport;
             }
 
             if (whetherCommon !== undefined) {
                 localVarQueryParameter['WhetherCommon'] = whetherCommon;
             }
 
-            if (tableNickName !== undefined) {
-                localVarQueryParameter['TableNickName'] = tableNickName;
-            }
-
-            if (displayColumn !== undefined) {
-                localVarQueryParameter['DisplayColumn'] = displayColumn;
-            }
-
-            if (valueColumn !== undefined) {
-                localVarQueryParameter['ValueColumn'] = valueColumn;
-            }
-
-            if (pidColumn !== undefined) {
-                localVarQueryParameter['PidColumn'] = pidColumn;
-            }
-
             if (orderNo !== undefined) {
                 localVarQueryParameter['OrderNo'] = orderNo;
+            }
+
+            if (isSelectorEffectType !== undefined) {
+                localVarQueryParameter['IsSelectorEffectType'] = isSelectorEffectType;
+            }
+
+            if (propertyNameTrimEndId !== undefined) {
+                localVarQueryParameter['PropertyNameTrimEndId'] = propertyNameTrimEndId;
+            }
+
+            if (lowerPropertyNameTrimEndId !== undefined) {
+                localVarQueryParameter['LowerPropertyNameTrimEndId'] = lowerPropertyNameTrimEndId;
+            }
+
+            if (extendedPropertyName !== undefined) {
+                localVarQueryParameter['ExtendedPropertyName'] = extendedPropertyName;
+            }
+
+            if (lowerExtendedPropertyName !== undefined) {
+                localVarQueryParameter['LowerExtendedPropertyName'] = lowerExtendedPropertyName;
             }
 
             const query = new URLSearchParams(localVarUrlObj.search);
@@ -505,41 +554,46 @@ export const SysCodeGenConfigApiFp = function(configuration?: Configuration) {
          * @param {number} [id] 主键Id
          * @param {number} [codeGenId] 代码生成主表ID
          * @param {string} [columnName] 数据库字段名
+         * @param {string} [columnKey] 主外键
          * @param {string} [propertyName] 实体属性名
          * @param {number} [columnLength] 字段数据长度
          * @param {string} [lowerPropertyName] 数据库字段名(首字母小写)
          * @param {string} [columnComment] 字段描述
          * @param {string} [netType] .NET类型
+         * @param {string} [dataType] 数据库中类型（物理类型）
+         * @param {string} [nullableNetType] 可空.NET类型
          * @param {string} [effectType] 作用类型（字典）
          * @param {string} [fkConfigId] 外键库标识
          * @param {string} [fkEntityName] 外键实体名称
          * @param {string} [fkTableName] 外键表名称
          * @param {string} [lowerFkEntityName] 外键实体名称(首字母小写)
-         * @param {string} [fkColumnName] 外键显示字段
          * @param {string} [fkLinkColumnName] 外键链接字段
-         * @param {string} [lowerFkColumnName] 外键显示字段(首字母小写)
+         * @param {string} [fkDisplayColumns] 外键显示字段
+         * @param {Array<string>} [fkDisplayColumnList] 外键显示字段
+         * @param {Array<string>} [lowerFkDisplayColumnsList] 外键显示字段(首字母小写)
          * @param {string} [fkColumnNetType] 外键显示字段.NET类型
+         * @param {string} [pidColumn] 父级字段
          * @param {string} [dictTypeCode] 字典code
+         * @param {string} [queryType] 查询方式
+         * @param {string} [whetherQuery] 是否是查询条件
          * @param {string} [whetherRetract] 列表是否缩进（字典）
          * @param {string} [whetherRequired] 是否必填（字典）
          * @param {string} [whetherSortable] 是否可排序（字典）
-         * @param {string} [queryWhether] 是否是查询条件
-         * @param {string} [queryType] 查询方式
          * @param {string} [whetherTable] 列表显示
          * @param {string} [whetherAddUpdate] 增改
-         * @param {string} [columnKey] 主外键
-         * @param {string} [dataType] 数据库中类型（物理类型）
+         * @param {string} [whetherImport] 导入
          * @param {string} [whetherCommon] 是否是通用字段
-         * @param {string} [tableNickName] 表的别名 Table as XXX
-         * @param {string} [displayColumn] 显示文本字段
-         * @param {string} [valueColumn] 选中值字段
-         * @param {string} [pidColumn] 父级字段
          * @param {number} [orderNo] 排序
+         * @param {boolean} [isSelectorEffectType] 是否是选择器控件
+         * @param {string} [propertyNameTrimEndId] 去掉尾部Id的属性名
+         * @param {string} [lowerPropertyNameTrimEndId] 去掉尾部Id的属性名
+         * @param {string} [extendedPropertyName] 扩展属性名称
+         * @param {string} [lowerExtendedPropertyName] 首字母小写的扩展属性名称
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiSysCodeGenConfigDetailGet(id?: number, codeGenId?: number, columnName?: string, propertyName?: string, columnLength?: number, lowerPropertyName?: string, columnComment?: string, netType?: string, effectType?: string, fkConfigId?: string, fkEntityName?: string, fkTableName?: string, lowerFkEntityName?: string, fkColumnName?: string, fkLinkColumnName?: string, lowerFkColumnName?: string, fkColumnNetType?: string, dictTypeCode?: string, whetherRetract?: string, whetherRequired?: string, whetherSortable?: string, queryWhether?: string, queryType?: string, whetherTable?: string, whetherAddUpdate?: string, columnKey?: string, dataType?: string, whetherCommon?: string, tableNickName?: string, displayColumn?: string, valueColumn?: string, pidColumn?: string, orderNo?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<AdminResultSysCodeGenConfig>>> {
-            const localVarAxiosArgs = await SysCodeGenConfigApiAxiosParamCreator(configuration).apiSysCodeGenConfigDetailGet(id, codeGenId, columnName, propertyName, columnLength, lowerPropertyName, columnComment, netType, effectType, fkConfigId, fkEntityName, fkTableName, lowerFkEntityName, fkColumnName, fkLinkColumnName, lowerFkColumnName, fkColumnNetType, dictTypeCode, whetherRetract, whetherRequired, whetherSortable, queryWhether, queryType, whetherTable, whetherAddUpdate, columnKey, dataType, whetherCommon, tableNickName, displayColumn, valueColumn, pidColumn, orderNo, options);
+        async apiSysCodeGenConfigDetailGet(id?: number, codeGenId?: number, columnName?: string, columnKey?: string, propertyName?: string, columnLength?: number, lowerPropertyName?: string, columnComment?: string, netType?: string, dataType?: string, nullableNetType?: string, effectType?: string, fkConfigId?: string, fkEntityName?: string, fkTableName?: string, lowerFkEntityName?: string, fkLinkColumnName?: string, fkDisplayColumns?: string, fkDisplayColumnList?: Array<string>, lowerFkDisplayColumnsList?: Array<string>, fkColumnNetType?: string, pidColumn?: string, dictTypeCode?: string, queryType?: string, whetherQuery?: string, whetherRetract?: string, whetherRequired?: string, whetherSortable?: string, whetherTable?: string, whetherAddUpdate?: string, whetherImport?: string, whetherCommon?: string, orderNo?: number, isSelectorEffectType?: boolean, propertyNameTrimEndId?: string, lowerPropertyNameTrimEndId?: string, extendedPropertyName?: string, lowerExtendedPropertyName?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<AdminResultSysCodeGenConfig>>> {
+            const localVarAxiosArgs = await SysCodeGenConfigApiAxiosParamCreator(configuration).apiSysCodeGenConfigDetailGet(id, codeGenId, columnName, columnKey, propertyName, columnLength, lowerPropertyName, columnComment, netType, dataType, nullableNetType, effectType, fkConfigId, fkEntityName, fkTableName, lowerFkEntityName, fkLinkColumnName, fkDisplayColumns, fkDisplayColumnList, lowerFkDisplayColumnsList, fkColumnNetType, pidColumn, dictTypeCode, queryType, whetherQuery, whetherRetract, whetherRequired, whetherSortable, whetherTable, whetherAddUpdate, whetherImport, whetherCommon, orderNo, isSelectorEffectType, propertyNameTrimEndId, lowerPropertyNameTrimEndId, extendedPropertyName, lowerExtendedPropertyName, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -551,41 +605,46 @@ export const SysCodeGenConfigApiFp = function(configuration?: Configuration) {
          * @param {number} [id] 主键Id
          * @param {number} [codeGenId] 代码生成主表ID
          * @param {string} [columnName] 数据库字段名
+         * @param {string} [columnKey] 主外键
          * @param {string} [propertyName] 实体属性名
          * @param {number} [columnLength] 字段数据长度
          * @param {string} [lowerPropertyName] 数据库字段名(首字母小写)
          * @param {string} [columnComment] 字段描述
          * @param {string} [netType] .NET类型
+         * @param {string} [dataType] 数据库中类型（物理类型）
+         * @param {string} [nullableNetType] 可空.NET类型
          * @param {string} [effectType] 作用类型（字典）
          * @param {string} [fkConfigId] 外键库标识
          * @param {string} [fkEntityName] 外键实体名称
          * @param {string} [fkTableName] 外键表名称
          * @param {string} [lowerFkEntityName] 外键实体名称(首字母小写)
-         * @param {string} [fkColumnName] 外键显示字段
          * @param {string} [fkLinkColumnName] 外键链接字段
-         * @param {string} [lowerFkColumnName] 外键显示字段(首字母小写)
+         * @param {string} [fkDisplayColumns] 外键显示字段
+         * @param {Array<string>} [fkDisplayColumnList] 外键显示字段
+         * @param {Array<string>} [lowerFkDisplayColumnsList] 外键显示字段(首字母小写)
          * @param {string} [fkColumnNetType] 外键显示字段.NET类型
+         * @param {string} [pidColumn] 父级字段
          * @param {string} [dictTypeCode] 字典code
+         * @param {string} [queryType] 查询方式
+         * @param {string} [whetherQuery] 是否是查询条件
          * @param {string} [whetherRetract] 列表是否缩进（字典）
          * @param {string} [whetherRequired] 是否必填（字典）
          * @param {string} [whetherSortable] 是否可排序（字典）
-         * @param {string} [queryWhether] 是否是查询条件
-         * @param {string} [queryType] 查询方式
          * @param {string} [whetherTable] 列表显示
          * @param {string} [whetherAddUpdate] 增改
-         * @param {string} [columnKey] 主外键
-         * @param {string} [dataType] 数据库中类型（物理类型）
+         * @param {string} [whetherImport] 导入
          * @param {string} [whetherCommon] 是否是通用字段
-         * @param {string} [tableNickName] 表的别名 Table as XXX
-         * @param {string} [displayColumn] 显示文本字段
-         * @param {string} [valueColumn] 选中值字段
-         * @param {string} [pidColumn] 父级字段
          * @param {number} [orderNo] 排序
+         * @param {boolean} [isSelectorEffectType] 是否是选择器控件
+         * @param {string} [propertyNameTrimEndId] 去掉尾部Id的属性名
+         * @param {string} [lowerPropertyNameTrimEndId] 去掉尾部Id的属性名
+         * @param {string} [extendedPropertyName] 扩展属性名称
+         * @param {string} [lowerExtendedPropertyName] 首字母小写的扩展属性名称
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiSysCodeGenConfigListGet(id?: number, codeGenId?: number, columnName?: string, propertyName?: string, columnLength?: number, lowerPropertyName?: string, columnComment?: string, netType?: string, effectType?: string, fkConfigId?: string, fkEntityName?: string, fkTableName?: string, lowerFkEntityName?: string, fkColumnName?: string, fkLinkColumnName?: string, lowerFkColumnName?: string, fkColumnNetType?: string, dictTypeCode?: string, whetherRetract?: string, whetherRequired?: string, whetherSortable?: string, queryWhether?: string, queryType?: string, whetherTable?: string, whetherAddUpdate?: string, columnKey?: string, dataType?: string, whetherCommon?: string, tableNickName?: string, displayColumn?: string, valueColumn?: string, pidColumn?: string, orderNo?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<AdminResultListCodeGenConfig>>> {
-            const localVarAxiosArgs = await SysCodeGenConfigApiAxiosParamCreator(configuration).apiSysCodeGenConfigListGet(id, codeGenId, columnName, propertyName, columnLength, lowerPropertyName, columnComment, netType, effectType, fkConfigId, fkEntityName, fkTableName, lowerFkEntityName, fkColumnName, fkLinkColumnName, lowerFkColumnName, fkColumnNetType, dictTypeCode, whetherRetract, whetherRequired, whetherSortable, queryWhether, queryType, whetherTable, whetherAddUpdate, columnKey, dataType, whetherCommon, tableNickName, displayColumn, valueColumn, pidColumn, orderNo, options);
+        async apiSysCodeGenConfigListGet(id?: number, codeGenId?: number, columnName?: string, columnKey?: string, propertyName?: string, columnLength?: number, lowerPropertyName?: string, columnComment?: string, netType?: string, dataType?: string, nullableNetType?: string, effectType?: string, fkConfigId?: string, fkEntityName?: string, fkTableName?: string, lowerFkEntityName?: string, fkLinkColumnName?: string, fkDisplayColumns?: string, fkDisplayColumnList?: Array<string>, lowerFkDisplayColumnsList?: Array<string>, fkColumnNetType?: string, pidColumn?: string, dictTypeCode?: string, queryType?: string, whetherQuery?: string, whetherRetract?: string, whetherRequired?: string, whetherSortable?: string, whetherTable?: string, whetherAddUpdate?: string, whetherImport?: string, whetherCommon?: string, orderNo?: number, isSelectorEffectType?: boolean, propertyNameTrimEndId?: string, lowerPropertyNameTrimEndId?: string, extendedPropertyName?: string, lowerExtendedPropertyName?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<AdminResultListCodeGenConfig>>> {
+            const localVarAxiosArgs = await SysCodeGenConfigApiAxiosParamCreator(configuration).apiSysCodeGenConfigListGet(id, codeGenId, columnName, columnKey, propertyName, columnLength, lowerPropertyName, columnComment, netType, dataType, nullableNetType, effectType, fkConfigId, fkEntityName, fkTableName, lowerFkEntityName, fkLinkColumnName, fkDisplayColumns, fkDisplayColumnList, lowerFkDisplayColumnsList, fkColumnNetType, pidColumn, dictTypeCode, queryType, whetherQuery, whetherRetract, whetherRequired, whetherSortable, whetherTable, whetherAddUpdate, whetherImport, whetherCommon, orderNo, isSelectorEffectType, propertyNameTrimEndId, lowerPropertyNameTrimEndId, extendedPropertyName, lowerExtendedPropertyName, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -620,41 +679,46 @@ export const SysCodeGenConfigApiFactory = function (configuration?: Configuratio
          * @param {number} [id] 主键Id
          * @param {number} [codeGenId] 代码生成主表ID
          * @param {string} [columnName] 数据库字段名
+         * @param {string} [columnKey] 主外键
          * @param {string} [propertyName] 实体属性名
          * @param {number} [columnLength] 字段数据长度
          * @param {string} [lowerPropertyName] 数据库字段名(首字母小写)
          * @param {string} [columnComment] 字段描述
          * @param {string} [netType] .NET类型
+         * @param {string} [dataType] 数据库中类型（物理类型）
+         * @param {string} [nullableNetType] 可空.NET类型
          * @param {string} [effectType] 作用类型（字典）
          * @param {string} [fkConfigId] 外键库标识
          * @param {string} [fkEntityName] 外键实体名称
          * @param {string} [fkTableName] 外键表名称
          * @param {string} [lowerFkEntityName] 外键实体名称(首字母小写)
-         * @param {string} [fkColumnName] 外键显示字段
          * @param {string} [fkLinkColumnName] 外键链接字段
-         * @param {string} [lowerFkColumnName] 外键显示字段(首字母小写)
+         * @param {string} [fkDisplayColumns] 外键显示字段
+         * @param {Array<string>} [fkDisplayColumnList] 外键显示字段
+         * @param {Array<string>} [lowerFkDisplayColumnsList] 外键显示字段(首字母小写)
          * @param {string} [fkColumnNetType] 外键显示字段.NET类型
+         * @param {string} [pidColumn] 父级字段
          * @param {string} [dictTypeCode] 字典code
+         * @param {string} [queryType] 查询方式
+         * @param {string} [whetherQuery] 是否是查询条件
          * @param {string} [whetherRetract] 列表是否缩进（字典）
          * @param {string} [whetherRequired] 是否必填（字典）
          * @param {string} [whetherSortable] 是否可排序（字典）
-         * @param {string} [queryWhether] 是否是查询条件
-         * @param {string} [queryType] 查询方式
          * @param {string} [whetherTable] 列表显示
          * @param {string} [whetherAddUpdate] 增改
-         * @param {string} [columnKey] 主外键
-         * @param {string} [dataType] 数据库中类型（物理类型）
+         * @param {string} [whetherImport] 导入
          * @param {string} [whetherCommon] 是否是通用字段
-         * @param {string} [tableNickName] 表的别名 Table as XXX
-         * @param {string} [displayColumn] 显示文本字段
-         * @param {string} [valueColumn] 选中值字段
-         * @param {string} [pidColumn] 父级字段
          * @param {number} [orderNo] 排序
+         * @param {boolean} [isSelectorEffectType] 是否是选择器控件
+         * @param {string} [propertyNameTrimEndId] 去掉尾部Id的属性名
+         * @param {string} [lowerPropertyNameTrimEndId] 去掉尾部Id的属性名
+         * @param {string} [extendedPropertyName] 扩展属性名称
+         * @param {string} [lowerExtendedPropertyName] 首字母小写的扩展属性名称
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiSysCodeGenConfigDetailGet(id?: number, codeGenId?: number, columnName?: string, propertyName?: string, columnLength?: number, lowerPropertyName?: string, columnComment?: string, netType?: string, effectType?: string, fkConfigId?: string, fkEntityName?: string, fkTableName?: string, lowerFkEntityName?: string, fkColumnName?: string, fkLinkColumnName?: string, lowerFkColumnName?: string, fkColumnNetType?: string, dictTypeCode?: string, whetherRetract?: string, whetherRequired?: string, whetherSortable?: string, queryWhether?: string, queryType?: string, whetherTable?: string, whetherAddUpdate?: string, columnKey?: string, dataType?: string, whetherCommon?: string, tableNickName?: string, displayColumn?: string, valueColumn?: string, pidColumn?: string, orderNo?: number, options?: AxiosRequestConfig): Promise<AxiosResponse<AdminResultSysCodeGenConfig>> {
-            return SysCodeGenConfigApiFp(configuration).apiSysCodeGenConfigDetailGet(id, codeGenId, columnName, propertyName, columnLength, lowerPropertyName, columnComment, netType, effectType, fkConfigId, fkEntityName, fkTableName, lowerFkEntityName, fkColumnName, fkLinkColumnName, lowerFkColumnName, fkColumnNetType, dictTypeCode, whetherRetract, whetherRequired, whetherSortable, queryWhether, queryType, whetherTable, whetherAddUpdate, columnKey, dataType, whetherCommon, tableNickName, displayColumn, valueColumn, pidColumn, orderNo, options).then((request) => request(axios, basePath));
+        async apiSysCodeGenConfigDetailGet(id?: number, codeGenId?: number, columnName?: string, columnKey?: string, propertyName?: string, columnLength?: number, lowerPropertyName?: string, columnComment?: string, netType?: string, dataType?: string, nullableNetType?: string, effectType?: string, fkConfigId?: string, fkEntityName?: string, fkTableName?: string, lowerFkEntityName?: string, fkLinkColumnName?: string, fkDisplayColumns?: string, fkDisplayColumnList?: Array<string>, lowerFkDisplayColumnsList?: Array<string>, fkColumnNetType?: string, pidColumn?: string, dictTypeCode?: string, queryType?: string, whetherQuery?: string, whetherRetract?: string, whetherRequired?: string, whetherSortable?: string, whetherTable?: string, whetherAddUpdate?: string, whetherImport?: string, whetherCommon?: string, orderNo?: number, isSelectorEffectType?: boolean, propertyNameTrimEndId?: string, lowerPropertyNameTrimEndId?: string, extendedPropertyName?: string, lowerExtendedPropertyName?: string, options?: AxiosRequestConfig): Promise<AxiosResponse<AdminResultSysCodeGenConfig>> {
+            return SysCodeGenConfigApiFp(configuration).apiSysCodeGenConfigDetailGet(id, codeGenId, columnName, columnKey, propertyName, columnLength, lowerPropertyName, columnComment, netType, dataType, nullableNetType, effectType, fkConfigId, fkEntityName, fkTableName, lowerFkEntityName, fkLinkColumnName, fkDisplayColumns, fkDisplayColumnList, lowerFkDisplayColumnsList, fkColumnNetType, pidColumn, dictTypeCode, queryType, whetherQuery, whetherRetract, whetherRequired, whetherSortable, whetherTable, whetherAddUpdate, whetherImport, whetherCommon, orderNo, isSelectorEffectType, propertyNameTrimEndId, lowerPropertyNameTrimEndId, extendedPropertyName, lowerExtendedPropertyName, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -662,41 +726,46 @@ export const SysCodeGenConfigApiFactory = function (configuration?: Configuratio
          * @param {number} [id] 主键Id
          * @param {number} [codeGenId] 代码生成主表ID
          * @param {string} [columnName] 数据库字段名
+         * @param {string} [columnKey] 主外键
          * @param {string} [propertyName] 实体属性名
          * @param {number} [columnLength] 字段数据长度
          * @param {string} [lowerPropertyName] 数据库字段名(首字母小写)
          * @param {string} [columnComment] 字段描述
          * @param {string} [netType] .NET类型
+         * @param {string} [dataType] 数据库中类型（物理类型）
+         * @param {string} [nullableNetType] 可空.NET类型
          * @param {string} [effectType] 作用类型（字典）
          * @param {string} [fkConfigId] 外键库标识
          * @param {string} [fkEntityName] 外键实体名称
          * @param {string} [fkTableName] 外键表名称
          * @param {string} [lowerFkEntityName] 外键实体名称(首字母小写)
-         * @param {string} [fkColumnName] 外键显示字段
          * @param {string} [fkLinkColumnName] 外键链接字段
-         * @param {string} [lowerFkColumnName] 外键显示字段(首字母小写)
+         * @param {string} [fkDisplayColumns] 外键显示字段
+         * @param {Array<string>} [fkDisplayColumnList] 外键显示字段
+         * @param {Array<string>} [lowerFkDisplayColumnsList] 外键显示字段(首字母小写)
          * @param {string} [fkColumnNetType] 外键显示字段.NET类型
+         * @param {string} [pidColumn] 父级字段
          * @param {string} [dictTypeCode] 字典code
+         * @param {string} [queryType] 查询方式
+         * @param {string} [whetherQuery] 是否是查询条件
          * @param {string} [whetherRetract] 列表是否缩进（字典）
          * @param {string} [whetherRequired] 是否必填（字典）
          * @param {string} [whetherSortable] 是否可排序（字典）
-         * @param {string} [queryWhether] 是否是查询条件
-         * @param {string} [queryType] 查询方式
          * @param {string} [whetherTable] 列表显示
          * @param {string} [whetherAddUpdate] 增改
-         * @param {string} [columnKey] 主外键
-         * @param {string} [dataType] 数据库中类型（物理类型）
+         * @param {string} [whetherImport] 导入
          * @param {string} [whetherCommon] 是否是通用字段
-         * @param {string} [tableNickName] 表的别名 Table as XXX
-         * @param {string} [displayColumn] 显示文本字段
-         * @param {string} [valueColumn] 选中值字段
-         * @param {string} [pidColumn] 父级字段
          * @param {number} [orderNo] 排序
+         * @param {boolean} [isSelectorEffectType] 是否是选择器控件
+         * @param {string} [propertyNameTrimEndId] 去掉尾部Id的属性名
+         * @param {string} [lowerPropertyNameTrimEndId] 去掉尾部Id的属性名
+         * @param {string} [extendedPropertyName] 扩展属性名称
+         * @param {string} [lowerExtendedPropertyName] 首字母小写的扩展属性名称
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiSysCodeGenConfigListGet(id?: number, codeGenId?: number, columnName?: string, propertyName?: string, columnLength?: number, lowerPropertyName?: string, columnComment?: string, netType?: string, effectType?: string, fkConfigId?: string, fkEntityName?: string, fkTableName?: string, lowerFkEntityName?: string, fkColumnName?: string, fkLinkColumnName?: string, lowerFkColumnName?: string, fkColumnNetType?: string, dictTypeCode?: string, whetherRetract?: string, whetherRequired?: string, whetherSortable?: string, queryWhether?: string, queryType?: string, whetherTable?: string, whetherAddUpdate?: string, columnKey?: string, dataType?: string, whetherCommon?: string, tableNickName?: string, displayColumn?: string, valueColumn?: string, pidColumn?: string, orderNo?: number, options?: AxiosRequestConfig): Promise<AxiosResponse<AdminResultListCodeGenConfig>> {
-            return SysCodeGenConfigApiFp(configuration).apiSysCodeGenConfigListGet(id, codeGenId, columnName, propertyName, columnLength, lowerPropertyName, columnComment, netType, effectType, fkConfigId, fkEntityName, fkTableName, lowerFkEntityName, fkColumnName, fkLinkColumnName, lowerFkColumnName, fkColumnNetType, dictTypeCode, whetherRetract, whetherRequired, whetherSortable, queryWhether, queryType, whetherTable, whetherAddUpdate, columnKey, dataType, whetherCommon, tableNickName, displayColumn, valueColumn, pidColumn, orderNo, options).then((request) => request(axios, basePath));
+        async apiSysCodeGenConfigListGet(id?: number, codeGenId?: number, columnName?: string, columnKey?: string, propertyName?: string, columnLength?: number, lowerPropertyName?: string, columnComment?: string, netType?: string, dataType?: string, nullableNetType?: string, effectType?: string, fkConfigId?: string, fkEntityName?: string, fkTableName?: string, lowerFkEntityName?: string, fkLinkColumnName?: string, fkDisplayColumns?: string, fkDisplayColumnList?: Array<string>, lowerFkDisplayColumnsList?: Array<string>, fkColumnNetType?: string, pidColumn?: string, dictTypeCode?: string, queryType?: string, whetherQuery?: string, whetherRetract?: string, whetherRequired?: string, whetherSortable?: string, whetherTable?: string, whetherAddUpdate?: string, whetherImport?: string, whetherCommon?: string, orderNo?: number, isSelectorEffectType?: boolean, propertyNameTrimEndId?: string, lowerPropertyNameTrimEndId?: string, extendedPropertyName?: string, lowerExtendedPropertyName?: string, options?: AxiosRequestConfig): Promise<AxiosResponse<AdminResultListCodeGenConfig>> {
+            return SysCodeGenConfigApiFp(configuration).apiSysCodeGenConfigListGet(id, codeGenId, columnName, columnKey, propertyName, columnLength, lowerPropertyName, columnComment, netType, dataType, nullableNetType, effectType, fkConfigId, fkEntityName, fkTableName, lowerFkEntityName, fkLinkColumnName, fkDisplayColumns, fkDisplayColumnList, lowerFkDisplayColumnsList, fkColumnNetType, pidColumn, dictTypeCode, queryType, whetherQuery, whetherRetract, whetherRequired, whetherSortable, whetherTable, whetherAddUpdate, whetherImport, whetherCommon, orderNo, isSelectorEffectType, propertyNameTrimEndId, lowerPropertyNameTrimEndId, extendedPropertyName, lowerExtendedPropertyName, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -724,42 +793,47 @@ export class SysCodeGenConfigApi extends BaseAPI {
      * @param {number} [id] 主键Id
      * @param {number} [codeGenId] 代码生成主表ID
      * @param {string} [columnName] 数据库字段名
+     * @param {string} [columnKey] 主外键
      * @param {string} [propertyName] 实体属性名
      * @param {number} [columnLength] 字段数据长度
      * @param {string} [lowerPropertyName] 数据库字段名(首字母小写)
      * @param {string} [columnComment] 字段描述
      * @param {string} [netType] .NET类型
+     * @param {string} [dataType] 数据库中类型（物理类型）
+     * @param {string} [nullableNetType] 可空.NET类型
      * @param {string} [effectType] 作用类型（字典）
      * @param {string} [fkConfigId] 外键库标识
      * @param {string} [fkEntityName] 外键实体名称
      * @param {string} [fkTableName] 外键表名称
      * @param {string} [lowerFkEntityName] 外键实体名称(首字母小写)
-     * @param {string} [fkColumnName] 外键显示字段
      * @param {string} [fkLinkColumnName] 外键链接字段
-     * @param {string} [lowerFkColumnName] 外键显示字段(首字母小写)
+     * @param {string} [fkDisplayColumns] 外键显示字段
+     * @param {Array<string>} [fkDisplayColumnList] 外键显示字段
+     * @param {Array<string>} [lowerFkDisplayColumnsList] 外键显示字段(首字母小写)
      * @param {string} [fkColumnNetType] 外键显示字段.NET类型
+     * @param {string} [pidColumn] 父级字段
      * @param {string} [dictTypeCode] 字典code
+     * @param {string} [queryType] 查询方式
+     * @param {string} [whetherQuery] 是否是查询条件
      * @param {string} [whetherRetract] 列表是否缩进（字典）
      * @param {string} [whetherRequired] 是否必填（字典）
      * @param {string} [whetherSortable] 是否可排序（字典）
-     * @param {string} [queryWhether] 是否是查询条件
-     * @param {string} [queryType] 查询方式
      * @param {string} [whetherTable] 列表显示
      * @param {string} [whetherAddUpdate] 增改
-     * @param {string} [columnKey] 主外键
-     * @param {string} [dataType] 数据库中类型（物理类型）
+     * @param {string} [whetherImport] 导入
      * @param {string} [whetherCommon] 是否是通用字段
-     * @param {string} [tableNickName] 表的别名 Table as XXX
-     * @param {string} [displayColumn] 显示文本字段
-     * @param {string} [valueColumn] 选中值字段
-     * @param {string} [pidColumn] 父级字段
      * @param {number} [orderNo] 排序
+     * @param {boolean} [isSelectorEffectType] 是否是选择器控件
+     * @param {string} [propertyNameTrimEndId] 去掉尾部Id的属性名
+     * @param {string} [lowerPropertyNameTrimEndId] 去掉尾部Id的属性名
+     * @param {string} [extendedPropertyName] 扩展属性名称
+     * @param {string} [lowerExtendedPropertyName] 首字母小写的扩展属性名称
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof SysCodeGenConfigApi
      */
-    public async apiSysCodeGenConfigDetailGet(id?: number, codeGenId?: number, columnName?: string, propertyName?: string, columnLength?: number, lowerPropertyName?: string, columnComment?: string, netType?: string, effectType?: string, fkConfigId?: string, fkEntityName?: string, fkTableName?: string, lowerFkEntityName?: string, fkColumnName?: string, fkLinkColumnName?: string, lowerFkColumnName?: string, fkColumnNetType?: string, dictTypeCode?: string, whetherRetract?: string, whetherRequired?: string, whetherSortable?: string, queryWhether?: string, queryType?: string, whetherTable?: string, whetherAddUpdate?: string, columnKey?: string, dataType?: string, whetherCommon?: string, tableNickName?: string, displayColumn?: string, valueColumn?: string, pidColumn?: string, orderNo?: number, options?: AxiosRequestConfig) : Promise<AxiosResponse<AdminResultSysCodeGenConfig>> {
-        return SysCodeGenConfigApiFp(this.configuration).apiSysCodeGenConfigDetailGet(id, codeGenId, columnName, propertyName, columnLength, lowerPropertyName, columnComment, netType, effectType, fkConfigId, fkEntityName, fkTableName, lowerFkEntityName, fkColumnName, fkLinkColumnName, lowerFkColumnName, fkColumnNetType, dictTypeCode, whetherRetract, whetherRequired, whetherSortable, queryWhether, queryType, whetherTable, whetherAddUpdate, columnKey, dataType, whetherCommon, tableNickName, displayColumn, valueColumn, pidColumn, orderNo, options).then((request) => request(this.axios, this.basePath));
+    public async apiSysCodeGenConfigDetailGet(id?: number, codeGenId?: number, columnName?: string, columnKey?: string, propertyName?: string, columnLength?: number, lowerPropertyName?: string, columnComment?: string, netType?: string, dataType?: string, nullableNetType?: string, effectType?: string, fkConfigId?: string, fkEntityName?: string, fkTableName?: string, lowerFkEntityName?: string, fkLinkColumnName?: string, fkDisplayColumns?: string, fkDisplayColumnList?: Array<string>, lowerFkDisplayColumnsList?: Array<string>, fkColumnNetType?: string, pidColumn?: string, dictTypeCode?: string, queryType?: string, whetherQuery?: string, whetherRetract?: string, whetherRequired?: string, whetherSortable?: string, whetherTable?: string, whetherAddUpdate?: string, whetherImport?: string, whetherCommon?: string, orderNo?: number, isSelectorEffectType?: boolean, propertyNameTrimEndId?: string, lowerPropertyNameTrimEndId?: string, extendedPropertyName?: string, lowerExtendedPropertyName?: string, options?: AxiosRequestConfig) : Promise<AxiosResponse<AdminResultSysCodeGenConfig>> {
+        return SysCodeGenConfigApiFp(this.configuration).apiSysCodeGenConfigDetailGet(id, codeGenId, columnName, columnKey, propertyName, columnLength, lowerPropertyName, columnComment, netType, dataType, nullableNetType, effectType, fkConfigId, fkEntityName, fkTableName, lowerFkEntityName, fkLinkColumnName, fkDisplayColumns, fkDisplayColumnList, lowerFkDisplayColumnsList, fkColumnNetType, pidColumn, dictTypeCode, queryType, whetherQuery, whetherRetract, whetherRequired, whetherSortable, whetherTable, whetherAddUpdate, whetherImport, whetherCommon, orderNo, isSelectorEffectType, propertyNameTrimEndId, lowerPropertyNameTrimEndId, extendedPropertyName, lowerExtendedPropertyName, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * 
@@ -767,42 +841,47 @@ export class SysCodeGenConfigApi extends BaseAPI {
      * @param {number} [id] 主键Id
      * @param {number} [codeGenId] 代码生成主表ID
      * @param {string} [columnName] 数据库字段名
+     * @param {string} [columnKey] 主外键
      * @param {string} [propertyName] 实体属性名
      * @param {number} [columnLength] 字段数据长度
      * @param {string} [lowerPropertyName] 数据库字段名(首字母小写)
      * @param {string} [columnComment] 字段描述
      * @param {string} [netType] .NET类型
+     * @param {string} [dataType] 数据库中类型（物理类型）
+     * @param {string} [nullableNetType] 可空.NET类型
      * @param {string} [effectType] 作用类型（字典）
      * @param {string} [fkConfigId] 外键库标识
      * @param {string} [fkEntityName] 外键实体名称
      * @param {string} [fkTableName] 外键表名称
      * @param {string} [lowerFkEntityName] 外键实体名称(首字母小写)
-     * @param {string} [fkColumnName] 外键显示字段
      * @param {string} [fkLinkColumnName] 外键链接字段
-     * @param {string} [lowerFkColumnName] 外键显示字段(首字母小写)
+     * @param {string} [fkDisplayColumns] 外键显示字段
+     * @param {Array<string>} [fkDisplayColumnList] 外键显示字段
+     * @param {Array<string>} [lowerFkDisplayColumnsList] 外键显示字段(首字母小写)
      * @param {string} [fkColumnNetType] 外键显示字段.NET类型
+     * @param {string} [pidColumn] 父级字段
      * @param {string} [dictTypeCode] 字典code
+     * @param {string} [queryType] 查询方式
+     * @param {string} [whetherQuery] 是否是查询条件
      * @param {string} [whetherRetract] 列表是否缩进（字典）
      * @param {string} [whetherRequired] 是否必填（字典）
      * @param {string} [whetherSortable] 是否可排序（字典）
-     * @param {string} [queryWhether] 是否是查询条件
-     * @param {string} [queryType] 查询方式
      * @param {string} [whetherTable] 列表显示
      * @param {string} [whetherAddUpdate] 增改
-     * @param {string} [columnKey] 主外键
-     * @param {string} [dataType] 数据库中类型（物理类型）
+     * @param {string} [whetherImport] 导入
      * @param {string} [whetherCommon] 是否是通用字段
-     * @param {string} [tableNickName] 表的别名 Table as XXX
-     * @param {string} [displayColumn] 显示文本字段
-     * @param {string} [valueColumn] 选中值字段
-     * @param {string} [pidColumn] 父级字段
      * @param {number} [orderNo] 排序
+     * @param {boolean} [isSelectorEffectType] 是否是选择器控件
+     * @param {string} [propertyNameTrimEndId] 去掉尾部Id的属性名
+     * @param {string} [lowerPropertyNameTrimEndId] 去掉尾部Id的属性名
+     * @param {string} [extendedPropertyName] 扩展属性名称
+     * @param {string} [lowerExtendedPropertyName] 首字母小写的扩展属性名称
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof SysCodeGenConfigApi
      */
-    public async apiSysCodeGenConfigListGet(id?: number, codeGenId?: number, columnName?: string, propertyName?: string, columnLength?: number, lowerPropertyName?: string, columnComment?: string, netType?: string, effectType?: string, fkConfigId?: string, fkEntityName?: string, fkTableName?: string, lowerFkEntityName?: string, fkColumnName?: string, fkLinkColumnName?: string, lowerFkColumnName?: string, fkColumnNetType?: string, dictTypeCode?: string, whetherRetract?: string, whetherRequired?: string, whetherSortable?: string, queryWhether?: string, queryType?: string, whetherTable?: string, whetherAddUpdate?: string, columnKey?: string, dataType?: string, whetherCommon?: string, tableNickName?: string, displayColumn?: string, valueColumn?: string, pidColumn?: string, orderNo?: number, options?: AxiosRequestConfig) : Promise<AxiosResponse<AdminResultListCodeGenConfig>> {
-        return SysCodeGenConfigApiFp(this.configuration).apiSysCodeGenConfigListGet(id, codeGenId, columnName, propertyName, columnLength, lowerPropertyName, columnComment, netType, effectType, fkConfigId, fkEntityName, fkTableName, lowerFkEntityName, fkColumnName, fkLinkColumnName, lowerFkColumnName, fkColumnNetType, dictTypeCode, whetherRetract, whetherRequired, whetherSortable, queryWhether, queryType, whetherTable, whetherAddUpdate, columnKey, dataType, whetherCommon, tableNickName, displayColumn, valueColumn, pidColumn, orderNo, options).then((request) => request(this.axios, this.basePath));
+    public async apiSysCodeGenConfigListGet(id?: number, codeGenId?: number, columnName?: string, columnKey?: string, propertyName?: string, columnLength?: number, lowerPropertyName?: string, columnComment?: string, netType?: string, dataType?: string, nullableNetType?: string, effectType?: string, fkConfigId?: string, fkEntityName?: string, fkTableName?: string, lowerFkEntityName?: string, fkLinkColumnName?: string, fkDisplayColumns?: string, fkDisplayColumnList?: Array<string>, lowerFkDisplayColumnsList?: Array<string>, fkColumnNetType?: string, pidColumn?: string, dictTypeCode?: string, queryType?: string, whetherQuery?: string, whetherRetract?: string, whetherRequired?: string, whetherSortable?: string, whetherTable?: string, whetherAddUpdate?: string, whetherImport?: string, whetherCommon?: string, orderNo?: number, isSelectorEffectType?: boolean, propertyNameTrimEndId?: string, lowerPropertyNameTrimEndId?: string, extendedPropertyName?: string, lowerExtendedPropertyName?: string, options?: AxiosRequestConfig) : Promise<AxiosResponse<AdminResultListCodeGenConfig>> {
+        return SysCodeGenConfigApiFp(this.configuration).apiSysCodeGenConfigListGet(id, codeGenId, columnName, columnKey, propertyName, columnLength, lowerPropertyName, columnComment, netType, dataType, nullableNetType, effectType, fkConfigId, fkEntityName, fkTableName, lowerFkEntityName, fkLinkColumnName, fkDisplayColumns, fkDisplayColumnList, lowerFkDisplayColumnsList, fkColumnNetType, pidColumn, dictTypeCode, queryType, whetherQuery, whetherRetract, whetherRequired, whetherSortable, whetherTable, whetherAddUpdate, whetherImport, whetherCommon, orderNo, isSelectorEffectType, propertyNameTrimEndId, lowerPropertyNameTrimEndId, extendedPropertyName, lowerExtendedPropertyName, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * 

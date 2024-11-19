@@ -11,7 +11,6 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-
 /**
  * 平台类型枚举<br />&nbsp;微信公众号 微信公众号 = 1<br />&nbsp;微信小程序 微信小程序 = 2<br />&nbsp;QQ QQ = 3<br />&nbsp;支付宝 Alipay = 4<br />&nbsp;Gitee Gitee = 5<br />
  * @export

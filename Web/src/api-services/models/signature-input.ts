@@ -11,18 +11,14 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-
- /**
+/**
  * 获取配置签名
- *
  * @export
  * @interface SignatureInput
  */
 export interface SignatureInput {
-
     /**
      * Url
-     *
      * @type {string}
      * @memberof SignatureInput
      */

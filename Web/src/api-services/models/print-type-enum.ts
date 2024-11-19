@@ -11,7 +11,6 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-
 /**
  * 打印类型枚举<br />&nbsp;浏览器打印 Browser = 1<br />&nbsp;客户端打印 Client = 2<br />
  * @export

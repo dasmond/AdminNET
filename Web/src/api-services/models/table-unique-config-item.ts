@@ -12,15 +12,21 @@
  * Do not edit the class manually.
  */
 /**
- * 
+ * 表唯一配置项
  * @export
- * @interface DeleteRoleInput
+ * @interface TableUniqueConfigItem
  */
-export interface DeleteRoleInput {
+export interface TableUniqueConfigItem {
     /**
-     * 主键Id
-     * @type {number}
-     * @memberof DeleteRoleInput
+     * 字段列表
+     * @type {Array<string>}
+     * @memberof TableUniqueConfigItem
      */
-    id: number;
+    columns?: Array<string> | null;
+    /**
+     * 描述信息
+     * @type {string}
+     * @memberof TableUniqueConfigItem
+     */
+    message?: string | null;
 }

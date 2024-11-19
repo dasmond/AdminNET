@@ -11,26 +11,20 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-
- /**
+/**
  * 批量配置参数输入
- *
  * @export
  * @interface BatchConfigInput
  */
 export interface BatchConfigInput {
-
     /**
      * 编码
-     *
      * @type {string}
      * @memberof BatchConfigInput
      */
     code?: string | null;
-
     /**
      * 属性值
-     *
      * @type {string}
      * @memberof BatchConfigInput
      */

@@ -11,34 +11,26 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-
- /**
+/**
  * 生成带参数小程序二维码
- *
  * @export
  * @interface GenerateQRImageInput
  */
 export interface GenerateQRImageInput {
-
     /**
      * 扫码进入的小程序页面路径，最大长度 128 个字符，不能为空； eg: pages/index?id=0001
-     *
      * @type {string}
      * @memberof GenerateQRImageInput
      */
     pagePath?: string | null;
-
     /**
      * 文件保存的名称
-     *
      * @type {string}
      * @memberof GenerateQRImageInput
      */
     imageName?: string | null;
-
     /**
      * 图片宽度 默认430
-     *
      * @type {number}
      * @memberof GenerateQRImageInput
      */

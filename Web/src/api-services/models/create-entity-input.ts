@@ -11,54 +11,38 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-
- /**
+/**
  * 
- *
  * @export
  * @interface CreateEntityInput
  */
 export interface CreateEntityInput {
-
     /**
      * 表名
-     *
      * @type {string}
      * @memberof CreateEntityInput
-     * @example student
      */
     tableName?: string | null;
-
     /**
      * 实体名
-     *
      * @type {string}
      * @memberof CreateEntityInput
-     * @example Student
      */
     entityName?: string | null;
-
     /**
      * 基类名
-     *
      * @type {string}
      * @memberof CreateEntityInput
-     * @example AutoIncrementEntity
      */
     baseClassName?: string | null;
-
     /**
      * 导出位置
-     *
      * @type {string}
      * @memberof CreateEntityInput
-     * @example Web.Application
      */
     position?: string | null;
-
     /**
      * 库标识
-     *
      * @type {string}
      * @memberof CreateEntityInput
      */

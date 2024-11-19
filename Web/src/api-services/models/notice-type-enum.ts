@@ -11,7 +11,6 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-
 /**
  * 通知公告状类型枚举<br />&nbsp;通知 NOTICE = 1<br />&nbsp;公告 ANNOUNCEMENT = 2<br />
  * @export

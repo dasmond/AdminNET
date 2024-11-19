@@ -11,7 +11,6 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-
 /**
  * 完成状态枚举<br />&nbsp;未完成 UnFinish = 0<br />&nbsp;已完成 Finish = 1<br />
  * @export

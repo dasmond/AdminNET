@@ -11,18 +11,14 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-
- /**
+/**
  * 
- *
  * @export
  * @interface DeleteOpenAccessInput
  */
 export interface DeleteOpenAccessInput {
-
     /**
      * 主键Id
-     *
      * @type {number}
      * @memberof DeleteOpenAccessInput
      */

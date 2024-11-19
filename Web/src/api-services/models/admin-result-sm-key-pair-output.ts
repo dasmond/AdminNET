@@ -11,57 +11,45 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-
 import { SmKeyPairOutput } from './sm-key-pair-output';
- /**
+/**
  * 全局返回结果
- *
  * @export
  * @interface AdminResultSmKeyPairOutput
  */
 export interface AdminResultSmKeyPairOutput {
-
     /**
      * 状态码
-     *
      * @type {number}
      * @memberof AdminResultSmKeyPairOutput
      */
     code?: number;
-
     /**
      * 类型success、warning、error
-     *
      * @type {string}
      * @memberof AdminResultSmKeyPairOutput
      */
     type?: string | null;
-
     /**
      * 错误信息
-     *
      * @type {string}
      * @memberof AdminResultSmKeyPairOutput
      */
     message?: string | null;
-
     /**
+     * 
      * @type {SmKeyPairOutput}
      * @memberof AdminResultSmKeyPairOutput
      */
     result?: SmKeyPairOutput;
-
     /**
      * 附加数据
-     *
      * @type {any}
      * @memberof AdminResultSmKeyPairOutput
      */
     extras?: any | null;
-
     /**
      * 时间
-     *
      * @type {Date}
      * @memberof AdminResultSmKeyPairOutput
      */
