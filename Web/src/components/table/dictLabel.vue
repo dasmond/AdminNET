@@ -8,7 +8,10 @@ import { reactive, onMounted, watch } from 'vue';
 
 const props = defineProps({
 	code: String,
-	value: Object,
+	value: {
+    type: null,
+    default: null
+  },
 	propLabel: {
 		type: String,
 		default: 'value',
