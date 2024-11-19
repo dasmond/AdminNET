@@ -3,48 +3,21 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid 'b16a40c6d35661b8ea8cda80df8606c232e10652'
-    oldFile: !uuid '40ae35425cb19e28238e5578a514d517eebac43b'
+    newFile: !uuid '6b0da1408b8ec0a640051a8f8ed944187ef3a916'
+    oldFile: !uuid 'b16a40c6d35661b8ea8cda80df8606c232e10652'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '591d325d9a26a75d1862f01a19c264c70b488608'
-    oldFile: !uuid '11c92ef67d3ef01ffbea29f78c7500f4f8bb3ee4'
-  /Admin.NET/Admin.NET.Core/Entity:
-    newFile: !uuid '33340e7c397ba9543b3b6711157754627bdef9f7'
-    oldFile: !uuid '778e9064c5c3b830dffd04e17540b1cb51e6dff2'
-  /Admin.NET/Admin.NET.Core/Entity/SysUserLdap.cs:
-    newFile: !uuid '2e92e51a60d42597248da8f97bccba60627fec2a'
-    oldFile: !uuid 'f2e0b74e408b3f2b91756b4189d82c9bd71c73fc'
-  /Admin.NET/Admin.NET.Core/Extension:
-    newFile: !uuid 'd954598c0c013fd56109f885b12209b8e91befdc'
-    oldFile: !uuid '67b0328888d54b8acf5dafbef7c5cd85cef7dc2b'
-  /Admin.NET/Admin.NET.Core/Extension/ListExtensions.cs:
-    newFile: !uuid 'dcf9e9c5557698fdc74a370b88d18ab4d67b1399'
-    oldFile: !uuid '77d8c90337d71b1e7d886d45e4f3375ab178467a'
+    newFile: !uuid '0ba82fb30bdbeea0f6ead0582dd3750f4767d4c0'
+    oldFile: !uuid '591d325d9a26a75d1862f01a19c264c70b488608'
   /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid 'a88ae41667637e24d98e6bd5fc212d6cdb5e3cb5'
-    oldFile: !uuid '97fdaa53c5117aba6f389775431a2825810dc138'
+    newFile: !uuid 'bf33f97486d5efff823666bfca66eab582ea2e14'
+    oldFile: !uuid 'a88ae41667637e24d98e6bd5fc212d6cdb5e3cb5'
   /Admin.NET/Admin.NET.Core/Service/Auth:
-    newFile: !uuid 'dae1c5fd89f973ec3d19a07f478ac962e82dccc3'
-    oldFile: !uuid 'a106973b0fed0eb99ebea709ab6c8c742683529b'
+    newFile: !uuid '912f19e068a3721d78839229b13ba833aa2caa02'
+    oldFile: !uuid 'dae1c5fd89f973ec3d19a07f478ac962e82dccc3'
   /Admin.NET/Admin.NET.Core/Service/Auth/SysAuthService.cs:
-    newFile: !uuid '3a958b30fbaa4c98d58c28f61b39fb5e314c6acc'
-    oldFile: !uuid 'd7129d22607bba7776b37e829fdb73d8e3c913d1'
-  /Admin.NET/Admin.NET.Core/Service/Auth/SysLdapService.cs:
-    newFile: !uuid 'e0995de5517f62a070ebb72a5bf80c1d46c273ca'
-    oldFile: !uuid '15dad8b079fc43e79a9b65fac6f5b14fcb0cb895'
-  /Admin.NET/Admin.NET.Core/Service/Config:
-    newFile: !uuid 'a0bf6c36fba5b10f65d6f8ba34ebec6048d542e6'
-    oldFile: !uuid '211bb7016ed06ff228b35430764eda1bf367888c'
-  /Admin.NET/Admin.NET.Core/Service/Config/SysConfigService.cs:
-    newFile: !uuid '7d7fe0cc663b6d7e43d419837f5903826ef4dd0a'
-    oldFile: !uuid 'afe3567682115bf3e27c426c7705bfa8aeba9487'
-  /Admin.NET/Admin.NET.Core/Service/User:
-    newFile: !uuid '45fa969d66907d7ae08bfbb7ded50d0a4f3f7686'
-    oldFile: !uuid '906f213ddf50c188903cbe9f3170153daa901047'
-  /Admin.NET/Admin.NET.Core/Service/User/SysUserLdapService.cs:
-    newFile: !uuid '0846b135240c8a9cd54c87545a5a02d3e03ba36a'
-    oldFile: !uuid '1f506616442aed84f94a5c8e9b7ce9a33e257bb6'
-gitCommitId: !uuid 'd1cdc4278315efbc7d13ae2322f99225a93a8b20'
+    newFile: !uuid 'a24cde280424a87f311b8ffbfd9ef20ffeb32c75'
+    oldFile: !uuid '3a958b30fbaa4c98d58c28f61b39fb5e314c6acc'
+gitCommitId: !uuid 'fb6163d64bf30d4e35a187fb27651d17e2b1c6b5'
 renames: {
   }
-revisionId: 2496
+revisionId: 2497
