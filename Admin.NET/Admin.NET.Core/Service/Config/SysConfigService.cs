@@ -83,7 +83,7 @@ public class SysConfigService : IDynamicApiController, ITransient
         var config = input.Adapt<SysConfig>();
         await _sysConfigRep.AsUpdateable(config).IgnoreColumns(true).ExecuteCommandAsync();
 
-        _sysCacheService.Remove($"{CacheConst.KeyConfig}{config.Code}");
+        Remove(config);
     }
 
     /// <summary>
@@ -101,7 +101,7 @@ public class SysConfigService : IDynamicApiController, ITransient
 
         await _sysConfigRep.DeleteAsync(config);
 
-        _sysCacheService.Remove($"{CacheConst.KeyConfig}{config.Code}");
+        Remove(config);
     }
 
     /// <summary>
@@ -121,7 +121,7 @@ public class SysConfigService : IDynamicApiController, ITransient
 
             await _sysConfigRep.DeleteAsync(config);
 
-            _sysCacheService.Remove($"{CacheConst.KeyConfig}{config.Code}");
+            Remove(config);
         }
     }
 
@@ -172,7 +172,7 @@ public class SysConfigService : IDynamicApiController, ITransient
         config.Value = value;
         await _sysConfigRep.AsUpdateable(config).ExecuteCommandAsync();
 
-        _sysCacheService.Remove($"{CacheConst.KeyConfig}{config.Code}");
+        Remove(config);
     }
 
     /// <summary>
@@ -223,8 +223,11 @@ public class SysConfigService : IDynamicApiController, ITransient
     {
         foreach (var Config in input)
         {
+            var info = await _sysConfigRep.GetFirstAsync(c => c.Code == Config.Code);
+            if (info == null)
+                continue;
             await _sysConfigRep.AsUpdateable().SetColumns(u => u.Value == Config.Value).Where(u => u.Code == Config.Code).ExecuteCommandAsync();
-            _sysCacheService.Remove($"{CacheConst.KeyConfig}{Config.Code}");
+            Remove(info);
         }
     }
 
@@ -314,5 +317,13 @@ public class SysConfigService : IDynamicApiController, ITransient
         await UpdateConfigValue(ConfigConst.SysWebIcpUrl, input.SysIcpUrl);
         await UpdateConfigValue(ConfigConst.SysSecondVer, (input.SysSecondVer ?? false).ToString());
         await UpdateConfigValue(ConfigConst.SysCaptcha, (input.SysCaptcha ?? true).ToString());
+    }
+
+    private void Remove(SysConfig config)
+    {
+        _sysCacheService.Remove($"{CacheConst.KeyConfig}Value:{config.Code}");
+        _sysCacheService.Remove($"{CacheConst.KeyConfig}Remark:{config.Code}");
+        _sysCacheService.Remove($"{CacheConst.KeyConfig}{config.GroupCode}:GroupWithCache");
+        _sysCacheService.Remove($"{CacheConst.KeyConfig}{config.GroupCode}:{config.Value}");
     }
 }

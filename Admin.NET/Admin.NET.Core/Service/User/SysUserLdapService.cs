@@ -31,8 +31,9 @@ public class SysUserLdapService : ITransient
         await _sysUserLdapRep.InsertRangeAsync(sysUserLdaps);
 
         await _sysUserLdapRep.AsUpdateable()
-            .InnerJoin<SysUser>((l, u) => l.EmployeeId == u.Account && u.Status == StatusEnum.Enable && u.IsDelete == false && l.IsDelete == false)
+            .InnerJoin<SysUser>((l, u) => l.EmployeeId == u.Account)
             .SetColumns((l, u) => new SysUserLdap { UserId = u.Id })
+            .Where((l, u) => l.TenantId == tenantId && u.Status == StatusEnum.Enable && u.IsDelete == false && l.IsDelete == false)
             .ExecuteCommandAsync();
     }
 

@@ -106,19 +106,19 @@ public class SysAuthService : IDynamicApiController, ITransient
         // 是否开启域登录验证
         if (await _sysConfigService.GetConfigValue<bool>(ConfigConst.SysDomainLogin))
         {
-            var userLdap = await _sysUserLdap.GetFirstAsync(u => u.UserId == user.Id && u.TenantId == tenant.Id);
+            var userLdap = await _sysUserRep.ChangeRepository<SqlSugarRepository<SysUserLdap>>().GetFirstAsync(u => u.UserId == user.Id && u.TenantId == tenant.Id);
             if (userLdap == null)
             {
-                VerifyPassword(input, keyPasswordErrorTimes, passwordErrorTimes, user);
+                VerifyPassword(input.Password, keyPasswordErrorTimes, passwordErrorTimes, user);
             }
-            else if (!await _sysLdapService.AuthAccount(tenant.Id, userLdap.Account, input.Password))
+            else if (!await App.GetRequiredService<SysLdapService>().AuthAccount(tenant.Id, userLdap.Account, CryptogramUtil.Decrypt(input.Password)))
             {
                 _sysCacheService.Set(keyPasswordErrorTimes, ++passwordErrorTimes, TimeSpan.FromMinutes(30));
                 throw Oops.Oh(ErrorCodeEnum.D1000);
             }
         }
         else
-            VerifyPassword(input, keyPasswordErrorTimes, passwordErrorTimes, user);
+            VerifyPassword(input.Password, keyPasswordErrorTimes, passwordErrorTimes, user);
 
         // 登录成功则清空密码错误次数
         _sysCacheService.Remove(keyPasswordErrorTimes);
@@ -129,15 +129,15 @@ public class SysAuthService : IDynamicApiController, ITransient
     /// <summary>
     /// 验证用户密码
     /// </summary>
-    /// <param name="input"></param>
+    /// <param name="password"></param>
     /// <param name="keyPasswordErrorTimes"></param>
     /// <param name="passwordErrorTimes"></param>
     /// <param name="user"></param>
-    private void VerifyPassword(LoginInput input, string keyPasswordErrorTimes, int passwordErrorTimes, SysUser user)
+    private void VerifyPassword(string password, string keyPasswordErrorTimes, int passwordErrorTimes, SysUser user)
     {
         if (CryptogramUtil.CryptoType == CryptogramEnum.MD5.ToString())
         {
-            if (!user.Password.Equals(MD5Encryption.Encrypt(input.Password)))
+            if (!user.Password.Equals(MD5Encryption.Encrypt(password)))
             {
                 _sysCacheService.Set(keyPasswordErrorTimes, ++passwordErrorTimes, TimeSpan.FromMinutes(30));
                 throw Oops.Oh(ErrorCodeEnum.D1000);
@@ -145,7 +145,10 @@ public class SysAuthService : IDynamicApiController, ITransient
         }
         else
         {
-            if (!CryptogramUtil.Decrypt(user.Password).Equals(input.Password))
+            // 国密SM2解密（前端密码传输SM2加密后的）
+            password = CryptogramUtil.SM2Decrypt(password);
+
+            if (!CryptogramUtil.Decrypt(user.Password).Equals(password))
             {
                 _sysCacheService.Set(keyPasswordErrorTimes, ++passwordErrorTimes, TimeSpan.FromMinutes(30));
                 throw Oops.Oh(ErrorCodeEnum.D1000);
@@ -165,20 +168,25 @@ public class SysAuthService : IDynamicApiController, ITransient
         var user = await _sysUserRep.GetFirstAsync(u => u.Id == _userManager.UserId);
         _ = user ?? throw Oops.Oh(ErrorCodeEnum.D0009);
 
-        // 国密SM2解密（前端密码传输SM2加密后的）
-        password = CryptogramUtil.SM2Decrypt(password);
+        var keyPasswordErrorTimes = $"{CacheConst.KeyPasswordErrorTimes}{user.Account}";
+        var passwordErrorTimes = _sysCacheService.Get<int>(keyPasswordErrorTimes);
 
-        // 密码是否正确
-        if (CryptogramUtil.CryptoType == CryptogramEnum.MD5.ToString())
+        // 是否开启域登录验证
+        if (await _sysConfigService.GetConfigValue<bool>(ConfigConst.SysDomainLogin))
         {
-            if (!user.Password.Equals(MD5Encryption.Encrypt(password)))
+            var userLdap = await _sysUserRep.ChangeRepository<SqlSugarRepository<SysUserLdap>>().GetFirstAsync(u => u.UserId == user.Id && u.TenantId == user.TenantId);
+            if (userLdap == null)
+            {
+                VerifyPassword(password, keyPasswordErrorTimes, passwordErrorTimes, user);
+            }
+            else if (!await App.GetRequiredService<SysLdapService>().AuthAccount(user.TenantId.Value, userLdap.Account, CryptogramUtil.Decrypt(password)))
+            {
+                _sysCacheService.Set(keyPasswordErrorTimes, ++passwordErrorTimes, TimeSpan.FromMinutes(30));
                 throw Oops.Oh(ErrorCodeEnum.D1000);
+            }
         }
         else
-        {
-            if (!CryptogramUtil.Decrypt(user.Password).Equals(password))
-                throw Oops.Oh(ErrorCodeEnum.D1000);
-        }
+            VerifyPassword(password, keyPasswordErrorTimes, passwordErrorTimes, user);
 
         return true;
     }
