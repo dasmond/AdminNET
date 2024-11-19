@@ -31,8 +31,8 @@ const state = reactive({
 // 自行添加其他规则
 const rules = ref<FormRules>({
   @foreach (var column in Model.AddUpdateFieldList.Where(col => col.WhetherRequired == "Y")) {
-	var trigger = column.EffectType == "DatePicker" || @column.EffectType == "DictSelector" || @column.EffectType == "EnumSelector" || @column.EffectType == "ApiTreeSelector" ? "change" : "blur";
-	@:@column.LowerPropertyName: [{required: true, message: '请选择@(column.ColumnComment)！', trigger: '@trigger',},],
+  var trigger = column.EffectType == "DatePicker" || column.EffectType == "DictSelector" || column.EffectType == "EnumSelector" || column.EffectType == "ApiTreeSelector" ? "change" : "blur";
+  @:@column.LowerPropertyName: [{required: true, message: '请选择@(column.ColumnComment)！', trigger: '@trigger',},],
   }
 });
 
