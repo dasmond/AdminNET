@@ -39,7 +39,7 @@ export const useUserInfo = defineStore('userInfo', {
 		// 存储字典信息到浏览器缓存
 		async setDictList() {
 			this.dictList = await getAPI(SysDictTypeApi).apiSysDictTypeAllDictListGet().then(res => res.data.result ?? {});
-			for (const key in this.dictList) if (key.endsWith("Enum")) this.dictList[key].forEach(e => e.code = Number(e.code));
+			for (const key in this.dictList) if (key.endsWith("Enum")) this.dictList[key].forEach((e: any) => e.code = Number(e.code));
 		},
 
 		// 获取当前用户信息
@@ -95,6 +95,17 @@ export const useUserInfo = defineStore('userInfo', {
 						resolve(res.data.result ?? []);
 					});
 			});
+		},
+
+		// 根据常量类名获取常量数据
+		getConstDataByTypeCode(typeCode: string) {
+			return this.constList.find((item: any) => item.code === typeCode)?.data?.result || [];
+		},
+
+		// 根据常量类名和编码获取常量值
+		getConstItemNameByType(typeCode: string, itemCode: string) {
+			const data = this.getConstDataByTypeCode(typeCode);
+			return data.find((item: any) => item.code === itemCode)?.name;
 		},
 
 		// 根据字典类型获取字典数据

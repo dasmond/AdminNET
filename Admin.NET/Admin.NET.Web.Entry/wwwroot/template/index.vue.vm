@@ -1,20 +1,15 @@
 ﻿<script lang="ts" setup name="@(Model.LowerClassName)">
 import { ref, reactive, onMounted } from "vue";
 import { auth } from '/@@/utils/authFunction';
-import { getAPI } from '/@@/utils/axios-utils';
 import { ElMessageBox, ElMessage } from "element-plus";
 import { downloadStreamFile } from "/@@/utils/downloadFile";
-@if(Model.TableField.Any(x => x.EffectType == "ConstSelector")) {
-@:import { codeToName, getConstType } from '/@@/utils/constHelper';
-}
-@if(Model.TableField.Any(x => x.EffectType == "DatePicker")) {
-@:import { formatDate } from '/@@/utils/formatTime';
-}
 @if(Model.PrintType == "custom") {
 @:// 推荐设置操作 width 为 200
 @:import { hiprint } from 'vue-plugin-hiprint';
+@:import { getAPI } from '/@@/utils/axios-utils';
 @:import { SysPrintApi } from '/@@/api-services/api';
 @:import { SysPrint } from '/@@/api-services/models';
+@:import { formatDate } from '/@@/utils/formatTime';
 }
 import { use@(Model.ClassName)Api } from '/@@/api/@(Model.PagePath)/@(Model.LowerClassName)';
 @if(Model.HasDictField || Model.HasEnumField || Model.HasConstField) {
@@ -198,7 +193,6 @@ handleQuery();
               @:<el-date-picker placeholder="请选择@(column.ColumnComment)" value-format="YYYY/MM/DD"  v-model="state.tableQueryParams.@(column.LowerPropertyName)" />
               }
             @:</el-form-item>
-            }
           @:</el-col>
           }
           }
@@ -264,8 +258,8 @@ handleQuery();
           @:</template>
         @:</el-table-column>
       } else if (column.EffectType == "ConstSelector" || column.EffectType == "ForeignKey" || column.EffectType == "ApiTreeSelector") {
-        var formatter = column.EffectType == "ConstSelector" ? $"codeToName(row.{column.LowerPropertyName}, '{column.DictTypeCode}')" : $"row.{column.LowerExtendedPropertyName}";
-        @:<el-table-column @(Model.GetElTableColumnCustomProperty(column)) :formatter="(row) => @(formatter)" show-overflow-tooltip />
+        var formatter = column.EffectType == "ConstSelector" ? $"state.stores.getConstItemNameByType('{column.DictTypeCode}', row.{column.LowerPropertyName})" : $"row.{column.LowerExtendedPropertyName}";
+        @:<el-table-column @(Model.GetElTableColumnCustomProperty(column)) :formatter="(row: any) => @(formatter)" show-overflow-tooltip />
       } else {
         @:<el-table-column @(Model.GetElTableColumnCustomProperty(column)) show-overflow-tooltip />
       }
