@@ -179,6 +179,16 @@ public class CodeGenConfig
     public int OrderNo { get; set; }
 
     /// <summary>
+    /// 是否是选择器控件
+    /// </summary>
+    public bool IsSelectorEffectType => Regex.IsMatch(EffectType ?? "", "Selector$|ForeignKey", RegexOptions.IgnoreCase);
+    
+    /// <summary>
+    /// 去掉尾部Id的属性名
+    /// </summary>
+    public string PropertyNameTrimEndId => PropertyName.TrimEnd("Id");
+
+    /// <summary>
     /// 去掉尾部Id的属性名
     /// </summary>
     public string LowerPropertyNameTrimEndId => LowerPropertyName.TrimEnd("Id");
@@ -188,9 +198,10 @@ public class CodeGenConfig
     /// </summary>
     public string ExtendedPropertyName => EffectType switch
     {
-        "ForeignKey" => $"{LowerPropertyNameTrimEndId}FkDisplayName",
-        "ApiTreeSelector" => $"{LowerPropertyNameTrimEndId}DisplayName",
-        "Upload" => $"{LowerPropertyName}Attachment",
+        "ForeignKey" => $"{PropertyName.TrimEnd("Id")}FkDisplayName",
+        "ApiTreeSelector" => $"{PropertyName.TrimEnd("Id")}DisplayName",
+        "DictSelector" => $"{PropertyName.TrimEnd("Id")}DictLabel",
+        "Upload" => $"{PropertyName.TrimEnd("Id")}Attachment",
         _ => PropertyName
     };
 
@@ -213,5 +224,5 @@ public class CodeGenConfig
     /// <param name="tableAlias">表别名</param>
     /// <param name="separator">多字段时的连接符</param>
     /// <returns></returns>
-    public string GetDisplayColumn(string tableAlias, string separator = "-") => "$\"" + string.Join(separator, FkDisplayColumnList.Select(name => $"{{{tableAlias}.{name}}}")) + "\"";
+    public string GetDisplayColumn(string tableAlias, string separator = "-") => "$\"" + string.Join(separator, FkDisplayColumnList?.Select(name => $"{{{tableAlias}.{name}}}") ?? new List<string>()) + "\"";
 }

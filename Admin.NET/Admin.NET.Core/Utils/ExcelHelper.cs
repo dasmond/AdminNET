@@ -78,7 +78,7 @@ public class ExcelHelper
     /// <param name="filename"></param>
     /// <param name="addListValidationFun"></param>
     /// <returns></returns>
-    public static IActionResult ExportTemplate<T>(List<T> list, string filename = "导入模板", Func<ExcelWorksheet, PropertyInfo, IEnumerable<string>> addListValidationFun = null)
+    public static IActionResult ExportTemplate<T>(IEnumerable<T> list, string filename = "导入模板", Func<ExcelWorksheet, PropertyInfo, IEnumerable<string>> addListValidationFun = null)
     {
         using var package = new ExcelPackage((ExportData(list, filename) as XlsxFileResult)!.Stream);
         var worksheet = package.Workbook.Worksheets[0];
