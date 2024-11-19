@@ -11,89 +11,69 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-
 import { TriggerStatus } from './trigger-status';
- /**
+/**
  * 系统作业触发器运行记录表
- *
  * @export
  * @interface SysJobTriggerRecord
  */
 export interface SysJobTriggerRecord {
-
     /**
      * 雪花Id
-     *
      * @type {number}
      * @memberof SysJobTriggerRecord
      */
     id?: number;
-
     /**
      * 作业Id
-     *
      * @type {string}
      * @memberof SysJobTriggerRecord
      */
     jobId: string;
-
     /**
      * 触发器Id
-     *
      * @type {string}
      * @memberof SysJobTriggerRecord
      */
     triggerId: string;
-
     /**
      * 当前运行次数
-     *
      * @type {number}
      * @memberof SysJobTriggerRecord
      */
     numberOfRuns?: number;
-
     /**
      * 最近运行时间
-     *
      * @type {Date}
      * @memberof SysJobTriggerRecord
      */
     lastRunTime?: Date | null;
-
     /**
      * 下一次运行时间
-     *
      * @type {Date}
      * @memberof SysJobTriggerRecord
      */
     nextRunTime?: Date | null;
-
     /**
+     * 
      * @type {TriggerStatus}
      * @memberof SysJobTriggerRecord
      */
     status?: TriggerStatus;
-
     /**
      * 本次执行结果
-     *
      * @type {string}
      * @memberof SysJobTriggerRecord
      */
     result?: string | null;
-
     /**
      * 本次执行耗时
-     *
      * @type {number}
      * @memberof SysJobTriggerRecord
      */
     elapsedTime?: number;
-
     /**
      * 创建时间
-     *
      * @type {Date}
      * @memberof SysJobTriggerRecord
      */

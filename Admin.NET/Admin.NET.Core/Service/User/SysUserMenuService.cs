@@ -13,10 +13,12 @@ namespace Admin.NET.Core.Service;
 public class SysUserMenuService : IDynamicApiController, ITransient
 {
     private readonly SqlSugarRepository<SysUserMenu> _sysUserMenuRep;
+    private readonly UserManager _userManager;
 
-    public SysUserMenuService(SqlSugarRepository<SysUserMenu> sysUserMenuRep)
+    public SysUserMenuService(SqlSugarRepository<SysUserMenu> sysUserMenuRep, UserManager userManager)
     {
         _sysUserMenuRep = sysUserMenuRep;
+        _userManager = userManager;
     }
 
     /// <summary>
@@ -25,16 +27,16 @@ public class SysUserMenuService : IDynamicApiController, ITransient
     /// <param name="input"></param>
     /// <returns></returns>
     [UnitOfWork]
-    [ApiDescriptionSettings(Name = "Add"), HttpPost]
     [DisplayName("收藏菜单")]
+    [ApiDescriptionSettings(Name = "Add"), HttpPost]
     public async Task AddUserMenu(UserMenuInput input)
     {
-        await _sysUserMenuRep.DeleteAsync(u => u.UserId == input.UserId);
+        await _sysUserMenuRep.DeleteAsync(u => u.UserId == _userManager.UserId);
 
-        if (input.MenuIdList == null || input.MenuIdList.Count < 1) return;
+        if (input.MenuIdList == null || input.MenuIdList.Count == 0) return;
         var menus = input.MenuIdList.Select(u => new SysUserMenu
         {
-            UserId = input.UserId,
+            UserId = _userManager.UserId,
             MenuId = u
         }).ToList();
         await _sysUserMenuRep.InsertRangeAsync(menus);
@@ -45,48 +47,45 @@ public class SysUserMenuService : IDynamicApiController, ITransient
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
-    [ApiDescriptionSettings(Name = "Delete"), HttpPost]
+    [ApiDescriptionSettings(Name = "DeleteUserMenu"), HttpPost]
     [DisplayName("取消收藏菜单")]
     public async Task DeleteUserMenu(UserMenuInput input)
     {
-        await _sysUserMenuRep.DeleteAsync(u => u.UserId == input.UserId && input.MenuIdList.Contains(u.MenuId));
+        await _sysUserMenuRep.DeleteAsync(u => u.UserId == _userManager.UserId && input.MenuIdList.Contains(u.MenuId));
     }
 
     /// <summary>
-    /// 根据用户Id删除收藏菜单 🔖
+    /// 清空当前用户收藏的菜单 🔖
     /// </summary>
-    /// <param name="userId"></param>
     /// <returns></returns>
-    [ApiDescriptionSettings(Name = "DeleteByUserId"), HttpPost]
-    [DisplayName("根据用户Id删除收藏菜单")]
-    public async Task DeleteByUserId(long userId)
+    [ApiDescriptionSettings(Name = "ClearUserMenu"), HttpPost]
+    [DisplayName("清空当前用户收藏的菜单")]
+    public async Task ClearUserMenu()
     {
-        await _sysUserMenuRep.DeleteAsync(u => u.UserId == userId);
+        await _sysUserMenuRep.DeleteAsync(u => u.UserId == _userManager.UserId);
     }
 
     /// <summary>
-    /// 根据用户Id获取收藏菜单集合 🔖
+    /// 获取当前用户收藏的菜单集合 🔖
     /// </summary>
-    /// <param name="userId"></param>
     /// <returns></returns>
-    [DisplayName("根据用户Id获取收藏菜单集合")]
-    public async Task<List<MenuOutput>> GetUserMenuList(long userId)
+    [DisplayName("获取当前用户收藏的菜单集合")]
+    public async Task<List<MenuOutput>> GetUserMenuList()
     {
         var sysUserMenuList = await _sysUserMenuRep.AsQueryable()
             .Includes(u => u.SysMenu)
-            .Where(u => u.UserId == userId).ToListAsync();
+            .Where(u => u.UserId == _userManager.UserId).ToListAsync();
         return sysUserMenuList.Where(u => u.SysMenu != null).Select(u => u.SysMenu).ToList().Adapt<List<MenuOutput>>();
     }
 
     /// <summary>
-    /// 根据用户Id获取收藏菜单Id集合 🔖
+    /// 获取当前用户收藏的菜单Id集合 🔖
     /// </summary>
-    /// <param name="userId"></param>
     /// <returns></returns>
-    [DisplayName("根据用户Id获取收藏菜单Id集合")]
-    public async Task<List<long>> GetUserMenuIdList(long userId)
+    [DisplayName("获取当前用户收藏的菜单Id集合")]
+    public async Task<List<long>> GetUserMenuIdList()
     {
         return await _sysUserMenuRep.AsQueryable()
-            .Where(u => u.UserId == userId).Select(u => u.MenuId).ToListAsync();
+            .Where(u => u.UserId == _userManager.UserId).Select(u => u.MenuId).ToListAsync();
     }
 }

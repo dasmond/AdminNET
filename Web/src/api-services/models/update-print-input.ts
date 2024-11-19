@@ -11,152 +11,118 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-
 import { PrintTypeEnum } from './print-type-enum';
 import { StatusEnum } from './status-enum';
- /**
+/**
  * 
- *
  * @export
  * @interface UpdatePrintInput
  */
 export interface UpdatePrintInput {
-
     /**
      * 雪花Id
-     *
      * @type {number}
      * @memberof UpdatePrintInput
      */
     id?: number;
-
     /**
      * 创建时间
-     *
      * @type {Date}
      * @memberof UpdatePrintInput
      */
     createTime?: Date;
-
     /**
      * 更新时间
-     *
      * @type {Date}
      * @memberof UpdatePrintInput
      */
     updateTime?: Date | null;
-
     /**
      * 创建者Id
-     *
      * @type {number}
      * @memberof UpdatePrintInput
      */
     createUserId?: number | null;
-
     /**
      * 创建者姓名
-     *
      * @type {string}
      * @memberof UpdatePrintInput
      */
     createUserName?: string | null;
-
     /**
      * 修改者Id
-     *
      * @type {number}
      * @memberof UpdatePrintInput
      */
     updateUserId?: number | null;
-
     /**
      * 修改者姓名
-     *
      * @type {string}
      * @memberof UpdatePrintInput
      */
     updateUserName?: string | null;
-
     /**
      * 软删除
-     *
      * @type {boolean}
      * @memberof UpdatePrintInput
      */
     isDelete?: boolean;
-
     /**
      * 租户Id
-     *
      * @type {number}
      * @memberof UpdatePrintInput
      */
     tenantId?: number | null;
-
     /**
      * 打印模板
-     *
      * @type {string}
      * @memberof UpdatePrintInput
      */
     template: string;
-
     /**
+     * 
      * @type {PrintTypeEnum}
      * @memberof UpdatePrintInput
      */
     printType: PrintTypeEnum;
-
     /**
      * 客户端服务地址
-     *
      * @type {string}
      * @memberof UpdatePrintInput
      */
     clientServiceAddress?: string | null;
-
     /**
      * 打印参数
-     *
      * @type {string}
      * @memberof UpdatePrintInput
      */
     printParam?: string | null;
-
     /**
      * 排序
-     *
      * @type {number}
      * @memberof UpdatePrintInput
      */
     orderNo?: number;
-
     /**
+     * 
      * @type {StatusEnum}
      * @memberof UpdatePrintInput
      */
     status?: StatusEnum;
-
     /**
      * 备注
-     *
      * @type {string}
      * @memberof UpdatePrintInput
      */
     remark?: string | null;
-
     /**
      * 打印预览测试数据
-     *
      * @type {string}
      * @memberof UpdatePrintInput
      */
     printDataDemo?: string | null;
-
     /**
      * 名称
-     *
      * @type {string}
      * @memberof UpdatePrintInput
      */

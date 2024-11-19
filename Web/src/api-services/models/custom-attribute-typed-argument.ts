@@ -11,23 +11,21 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-
 import { Type } from './type';
- /**
+/**
  * 
- *
  * @export
  * @interface CustomAttributeTypedArgument
  */
 export interface CustomAttributeTypedArgument {
-
     /**
+     * 
      * @type {Type}
      * @memberof CustomAttributeTypedArgument
      */
     argumentType?: Type;
-
     /**
+     * 
      * @type {any}
      * @memberof CustomAttributeTypedArgument
      */

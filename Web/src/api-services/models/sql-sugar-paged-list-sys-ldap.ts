@@ -11,67 +11,51 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-
 import { SysLdap } from './sys-ldap';
- /**
+/**
  * 分页泛型集合
- *
  * @export
  * @interface SqlSugarPagedListSysLdap
  */
 export interface SqlSugarPagedListSysLdap {
-
     /**
      * 页码
-     *
      * @type {number}
      * @memberof SqlSugarPagedListSysLdap
      */
     page?: number;
-
     /**
      * 页容量
-     *
      * @type {number}
      * @memberof SqlSugarPagedListSysLdap
      */
     pageSize?: number;
-
     /**
      * 总条数
-     *
      * @type {number}
      * @memberof SqlSugarPagedListSysLdap
      */
     total?: number;
-
     /**
      * 总页数
-     *
      * @type {number}
      * @memberof SqlSugarPagedListSysLdap
      */
     totalPages?: number;
-
     /**
      * 当前页集合
-     *
      * @type {Array<SysLdap>}
      * @memberof SqlSugarPagedListSysLdap
      */
     items?: Array<SysLdap> | null;
-
     /**
      * 是否有上一页
-     *
      * @type {boolean}
      * @memberof SqlSugarPagedListSysLdap
      */
     hasPrevPage?: boolean;
-
     /**
      * 是否有下一页
-     *
      * @type {boolean}
      * @memberof SqlSugarPagedListSysLdap
      */

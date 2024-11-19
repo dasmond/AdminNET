@@ -11,152 +11,118 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-
 import { PrintTypeEnum } from './print-type-enum';
 import { StatusEnum } from './status-enum';
- /**
+/**
  * 系统打印模板表
- *
  * @export
  * @interface SysPrint
  */
 export interface SysPrint {
-
     /**
      * 雪花Id
-     *
      * @type {number}
      * @memberof SysPrint
      */
     id?: number;
-
     /**
      * 创建时间
-     *
      * @type {Date}
      * @memberof SysPrint
      */
     createTime?: Date;
-
     /**
      * 更新时间
-     *
      * @type {Date}
      * @memberof SysPrint
      */
     updateTime?: Date | null;
-
     /**
      * 创建者Id
-     *
      * @type {number}
      * @memberof SysPrint
      */
     createUserId?: number | null;
-
     /**
      * 创建者姓名
-     *
      * @type {string}
      * @memberof SysPrint
      */
     createUserName?: string | null;
-
     /**
      * 修改者Id
-     *
      * @type {number}
      * @memberof SysPrint
      */
     updateUserId?: number | null;
-
     /**
      * 修改者姓名
-     *
      * @type {string}
      * @memberof SysPrint
      */
     updateUserName?: string | null;
-
     /**
      * 软删除
-     *
      * @type {boolean}
      * @memberof SysPrint
      */
     isDelete?: boolean;
-
     /**
      * 租户Id
-     *
      * @type {number}
      * @memberof SysPrint
      */
     tenantId?: number | null;
-
     /**
      * 名称
-     *
      * @type {string}
      * @memberof SysPrint
      */
     name: string;
-
     /**
      * 打印模板
-     *
      * @type {string}
      * @memberof SysPrint
      */
     template: string;
-
     /**
+     * 
      * @type {PrintTypeEnum}
      * @memberof SysPrint
      */
     printType: PrintTypeEnum;
-
     /**
      * 客户端服务地址
-     *
      * @type {string}
      * @memberof SysPrint
      */
     clientServiceAddress?: string | null;
-
     /**
      * 打印参数
-     *
      * @type {string}
      * @memberof SysPrint
      */
     printParam?: string | null;
-
     /**
      * 排序
-     *
      * @type {number}
      * @memberof SysPrint
      */
     orderNo?: number;
-
     /**
+     * 
      * @type {StatusEnum}
      * @memberof SysPrint
      */
     status?: StatusEnum;
-
     /**
      * 备注
-     *
      * @type {string}
      * @memberof SysPrint
      */
     remark?: string | null;
-
     /**
      * 打印预览测试数据
-     *
      * @type {string}
      * @memberof SysPrint
      */

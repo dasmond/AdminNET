@@ -11,18 +11,14 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-
- /**
+/**
  * 
- *
  * @export
  * @interface DeleteJobDetailInput
  */
 export interface DeleteJobDetailInput {
-
     /**
      * 作业Id
-     *
      * @type {string}
      * @memberof DeleteJobDetailInput
      */

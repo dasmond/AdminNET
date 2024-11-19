@@ -11,80 +11,64 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-
 import { Filter } from './filter';
 import { Search } from './search';
- /**
+/**
  * 
- *
  * @export
  * @interface WechatPayPageInput
  */
 export interface WechatPayPageInput {
-
     /**
+     * 
      * @type {Search}
      * @memberof WechatPayPageInput
      */
     search?: Search;
-
     /**
      * 模糊查询关键字
-     *
      * @type {string}
      * @memberof WechatPayPageInput
      */
     keyword?: string | null;
-
     /**
+     * 
      * @type {Filter}
      * @memberof WechatPayPageInput
      */
     filter?: Filter;
-
     /**
      * 当前页码
-     *
      * @type {number}
      * @memberof WechatPayPageInput
      */
     page?: number;
-
     /**
      * 页码容量
-     *
      * @type {number}
      * @memberof WechatPayPageInput
      */
     pageSize?: number;
-
     /**
      * 排序字段
-     *
      * @type {string}
      * @memberof WechatPayPageInput
      */
     field?: string | null;
-
     /**
      * 排序方向
-     *
      * @type {string}
      * @memberof WechatPayPageInput
      */
     order?: string | null;
-
     /**
      * 降序排序
-     *
      * @type {string}
      * @memberof WechatPayPageInput
      */
     descStr?: string | null;
-
     /**
      * 添加时间范围
-     *
      * @type {Array<Date>}
      * @memberof WechatPayPageInput
      */

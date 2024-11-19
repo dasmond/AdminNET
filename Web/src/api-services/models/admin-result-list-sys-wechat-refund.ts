@@ -11,59 +11,45 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-
 import { SysWechatRefund } from './sys-wechat-refund';
- /**
+/**
  * 全局返回结果
- *
  * @export
  * @interface AdminResultListSysWechatRefund
  */
 export interface AdminResultListSysWechatRefund {
-
     /**
      * 状态码
-     *
      * @type {number}
      * @memberof AdminResultListSysWechatRefund
      */
     code?: number;
-
     /**
      * 类型success、warning、error
-     *
      * @type {string}
      * @memberof AdminResultListSysWechatRefund
      */
     type?: string | null;
-
     /**
      * 错误信息
-     *
      * @type {string}
      * @memberof AdminResultListSysWechatRefund
      */
     message?: string | null;
-
     /**
      * 数据
-     *
      * @type {Array<SysWechatRefund>}
      * @memberof AdminResultListSysWechatRefund
      */
     result?: Array<SysWechatRefund> | null;
-
     /**
      * 附加数据
-     *
      * @type {any}
      * @memberof AdminResultListSysWechatRefund
      */
     extras?: any | null;
-
     /**
      * 时间
-     *
      * @type {Date}
      * @memberof AdminResultListSysWechatRefund
      */

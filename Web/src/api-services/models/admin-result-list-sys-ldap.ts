@@ -11,59 +11,45 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-
 import { SysLdap } from './sys-ldap';
- /**
+/**
  * 全局返回结果
- *
  * @export
  * @interface AdminResultListSysLdap
  */
 export interface AdminResultListSysLdap {
-
     /**
      * 状态码
-     *
      * @type {number}
      * @memberof AdminResultListSysLdap
      */
     code?: number;
-
     /**
      * 类型success、warning、error
-     *
      * @type {string}
      * @memberof AdminResultListSysLdap
      */
     type?: string | null;
-
     /**
      * 错误信息
-     *
      * @type {string}
      * @memberof AdminResultListSysLdap
      */
     message?: string | null;
-
     /**
      * 数据
-     *
      * @type {Array<SysLdap>}
      * @memberof AdminResultListSysLdap
      */
     result?: Array<SysLdap> | null;
-
     /**
      * 附加数据
-     *
      * @type {any}
      * @memberof AdminResultListSysLdap
      */
     extras?: any | null;
-
     /**
      * 时间
-     *
      * @type {Date}
      * @memberof AdminResultListSysLdap
      */

@@ -11,7 +11,6 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-
 import { Calendar } from './calendar';
 import { CompareInfo } from './compare-info';
 import { CultureInfo } from './culture-info';
@@ -19,135 +18,134 @@ import { CultureTypes } from './culture-types';
 import { DateTimeFormatInfo } from './date-time-format-info';
 import { NumberFormatInfo } from './number-format-info';
 import { TextInfo } from './text-info';
- /**
+/**
  * 
- *
  * @export
  * @interface CultureInfo
  */
 export interface CultureInfo {
-
     /**
+     * 
      * @type {CultureInfo}
      * @memberof CultureInfo
      */
     parent?: CultureInfo;
-
     /**
+     * 
      * @type {number}
      * @memberof CultureInfo
      */
     lcid?: number;
-
     /**
+     * 
      * @type {number}
      * @memberof CultureInfo
      */
     keyboardLayoutId?: number;
-
     /**
+     * 
      * @type {string}
      * @memberof CultureInfo
      */
     name?: string | null;
-
     /**
+     * 
      * @type {string}
      * @memberof CultureInfo
      */
     ietfLanguageTag?: string | null;
-
     /**
+     * 
      * @type {string}
      * @memberof CultureInfo
      */
     displayName?: string | null;
-
     /**
+     * 
      * @type {string}
      * @memberof CultureInfo
      */
     nativeName?: string | null;
-
     /**
+     * 
      * @type {string}
      * @memberof CultureInfo
      */
     englishName?: string | null;
-
     /**
+     * 
      * @type {string}
      * @memberof CultureInfo
      */
     twoLetterISOLanguageName?: string | null;
-
     /**
+     * 
      * @type {string}
      * @memberof CultureInfo
      */
     threeLetterISOLanguageName?: string | null;
-
     /**
+     * 
      * @type {string}
      * @memberof CultureInfo
      */
     threeLetterWindowsLanguageName?: string | null;
-
     /**
+     * 
      * @type {CompareInfo}
      * @memberof CultureInfo
      */
     compareInfo?: CompareInfo;
-
     /**
+     * 
      * @type {TextInfo}
      * @memberof CultureInfo
      */
     textInfo?: TextInfo;
-
     /**
+     * 
      * @type {boolean}
      * @memberof CultureInfo
      */
     isNeutralCulture?: boolean;
-
     /**
+     * 
      * @type {CultureTypes}
      * @memberof CultureInfo
      */
     cultureTypes?: CultureTypes;
-
     /**
+     * 
      * @type {NumberFormatInfo}
      * @memberof CultureInfo
      */
     numberFormat?: NumberFormatInfo;
-
     /**
+     * 
      * @type {DateTimeFormatInfo}
      * @memberof CultureInfo
      */
     dateTimeFormat?: DateTimeFormatInfo;
-
     /**
+     * 
      * @type {Calendar}
      * @memberof CultureInfo
      */
     calendar?: Calendar;
-
     /**
+     * 
      * @type {Array<Calendar>}
      * @memberof CultureInfo
      */
     optionalCalendars?: Array<Calendar> | null;
-
     /**
+     * 
      * @type {boolean}
      * @memberof CultureInfo
      */
     useUserOverride?: boolean;
-
     /**
+     * 
      * @type {boolean}
      * @memberof CultureInfo
      */

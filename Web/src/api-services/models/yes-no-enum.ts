@@ -11,7 +11,6 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-
 /**
  * 是否枚举<br />&nbsp;是 Y = 1<br />&nbsp;否 N = 2<br />
  * @export

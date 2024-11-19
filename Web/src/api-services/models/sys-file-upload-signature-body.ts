@@ -11,16 +11,14 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-
- /**
+/**
  * 
- *
  * @export
  * @interface SysFileUploadSignatureBody
  */
 export interface SysFileUploadSignatureBody {
-
     /**
+     * 
      * @type {Blob}
      * @memberof SysFileUploadSignatureBody
      */

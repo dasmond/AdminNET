@@ -12,7 +12,7 @@ if exist %apiServicesPath% (
 
 echo ================================ 开始生成 api-services ================================
 
-java -jar %dir%swagger-codegen-cli.jar generate -i http://localhost:5005/swagger/All%%20Groups/swagger.json -l typescript-axios -o %apiServicesPath%
+java -jar %dir%swagger-codegen-cli.jar generate -i http://localhost:5005/swagger/Default/swagger.json -l typescript-axios -o %apiServicesPath%
 
 @rem 删除不必要的文件和文件夹
 rd /s /q %apiServicesPath%.swagger-codegen

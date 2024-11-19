@@ -11,7 +11,6 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-
 /**
  * <br />&nbsp; Backlog = 0<br />&nbsp; Ready = 1<br />&nbsp; Running = 2<br />&nbsp; Pause = 3<br />&nbsp; Blocked = 4<br />&nbsp; ErrorToReady = 5<br />&nbsp; Archived = 6<br />&nbsp; Panic = 7<br />&nbsp; Overrun = 8<br />&nbsp; Unoccupied = 9<br />&nbsp; NotStart = 10<br />&nbsp; Unknown = 11<br />&nbsp; Unhandled = 12<br />
  * @export

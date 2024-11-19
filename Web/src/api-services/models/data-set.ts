@@ -11,117 +11,115 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-
 import { CultureInfo } from './culture-info';
 import { IContainer } from './icontainer';
 import { ISite } from './isite';
 import { SchemaSerializationMode } from './schema-serialization-mode';
 import { SerializationFormat } from './serialization-format';
- /**
+/**
  * 
- *
  * @export
  * @interface DataSet
  */
 export interface DataSet {
-
     /**
+     * 
      * @type {IContainer}
      * @memberof DataSet
      */
     container?: IContainer;
-
     /**
+     * 
      * @type {boolean}
      * @memberof DataSet
      */
     designMode?: boolean;
-
     /**
+     * 
      * @type {SerializationFormat}
      * @memberof DataSet
      */
     remotingFormat?: SerializationFormat;
-
     /**
+     * 
      * @type {SchemaSerializationMode}
      * @memberof DataSet
      */
     schemaSerializationMode?: SchemaSerializationMode;
-
     /**
+     * 
      * @type {boolean}
      * @memberof DataSet
      */
     caseSensitive?: boolean;
-
     /**
+     * 
      * @type {Array<any>}
      * @memberof DataSet
      */
     defaultViewManager?: Array<any> | null;
-
     /**
+     * 
      * @type {boolean}
      * @memberof DataSet
      */
     enforceConstraints?: boolean;
-
     /**
+     * 
      * @type {string}
      * @memberof DataSet
      */
     dataSetName?: string | null;
-
     /**
+     * 
      * @type {string}
      * @memberof DataSet
      */
     namespace?: string | null;
-
     /**
+     * 
      * @type {string}
      * @memberof DataSet
      */
     prefix?: string | null;
-
     /**
+     * 
      * @type {{ [key: string]: any; }}
      * @memberof DataSet
      */
     extendedProperties?: { [key: string]: any; } | null;
-
     /**
+     * 
      * @type {boolean}
      * @memberof DataSet
      */
     hasErrors?: boolean;
-
     /**
+     * 
      * @type {boolean}
      * @memberof DataSet
      */
     isInitialized?: boolean;
-
     /**
+     * 
      * @type {CultureInfo}
      * @memberof DataSet
      */
     locale?: CultureInfo;
-
     /**
+     * 
      * @type {ISite}
      * @memberof DataSet
      */
     site?: ISite;
-
     /**
+     * 
      * @type {Array<any>}
      * @memberof DataSet
      */
     relations?: Array<any> | null;
-
     /**
+     * 
      * @type {Array<any>}
      * @memberof DataSet
      */

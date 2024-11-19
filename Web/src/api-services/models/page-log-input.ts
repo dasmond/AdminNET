@@ -11,120 +11,94 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-
 import { Filter } from './filter';
 import { Search } from './search';
- /**
+/**
  * 
- *
  * @export
  * @interface PageLogInput
  */
 export interface PageLogInput {
-
     /**
+     * 
      * @type {Search}
      * @memberof PageLogInput
      */
     search?: Search;
-
     /**
      * 模糊查询关键字
-     *
      * @type {string}
      * @memberof PageLogInput
      */
     keyword?: string | null;
-
     /**
+     * 
      * @type {Filter}
      * @memberof PageLogInput
      */
     filter?: Filter;
-
     /**
      * 当前页码
-     *
      * @type {number}
      * @memberof PageLogInput
      */
     page?: number;
-
     /**
      * 页码容量
-     *
      * @type {number}
      * @memberof PageLogInput
      */
     pageSize?: number;
-
     /**
      * 排序字段
-     *
      * @type {string}
      * @memberof PageLogInput
      */
     field?: string | null;
-
     /**
      * 排序方向
-     *
      * @type {string}
      * @memberof PageLogInput
      */
     order?: string | null;
-
     /**
      * 降序排序
-     *
      * @type {string}
      * @memberof PageLogInput
      */
     descStr?: string | null;
-
     /**
      * 开始时间
-     *
      * @type {Date}
      * @memberof PageLogInput
      */
     startTime?: Date | null;
-
     /**
      * 结束时间
-     *
      * @type {Date}
      * @memberof PageLogInput
      */
     endTime?: Date | null;
-
     /**
      * 账号
-     *
      * @type {string}
      * @memberof PageLogInput
      */
     account?: string | null;
-
     /**
      * 操作用时
-     *
      * @type {number}
      * @memberof PageLogInput
      */
     elapsed?: number | null;
-
     /**
      * 状态
-     *
      * @type {string}
      * @memberof PageLogInput
      */
     status?: string | null;
-
     /**
      * IP地址
-     *
      * @type {string}
      * @memberof PageLogInput
      */

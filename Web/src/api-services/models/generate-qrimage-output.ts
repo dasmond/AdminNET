@@ -11,28 +11,26 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-
- /**
+/**
  * 
- *
  * @export
  * @interface GenerateQRImageOutput
  */
 export interface GenerateQRImageOutput {
-
     /**
+     * 
      * @type {boolean}
      * @memberof GenerateQRImageOutput
      */
     success?: boolean;
-
     /**
+     * 
      * @type {string}
      * @memberof GenerateQRImageOutput
      */
     imgPath?: string | null;
-
     /**
+     * 
      * @type {string}
      * @memberof GenerateQRImageOutput
      */

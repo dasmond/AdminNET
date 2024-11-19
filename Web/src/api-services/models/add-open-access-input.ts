@@ -11,113 +11,87 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-
 import { SysUser } from './sys-user';
- /**
+/**
  * 
- *
  * @export
  * @interface AddOpenAccessInput
  */
 export interface AddOpenAccessInput {
-
     /**
      * 雪花Id
-     *
      * @type {number}
      * @memberof AddOpenAccessInput
      */
     id?: number;
-
     /**
      * 创建时间
-     *
      * @type {Date}
      * @memberof AddOpenAccessInput
      */
     createTime?: Date;
-
     /**
      * 更新时间
-     *
      * @type {Date}
      * @memberof AddOpenAccessInput
      */
     updateTime?: Date | null;
-
     /**
      * 创建者Id
-     *
      * @type {number}
      * @memberof AddOpenAccessInput
      */
     createUserId?: number | null;
-
     /**
      * 创建者姓名
-     *
      * @type {string}
      * @memberof AddOpenAccessInput
      */
     createUserName?: string | null;
-
     /**
      * 修改者Id
-     *
      * @type {number}
      * @memberof AddOpenAccessInput
      */
     updateUserId?: number | null;
-
     /**
      * 修改者姓名
-     *
      * @type {string}
      * @memberof AddOpenAccessInput
      */
     updateUserName?: string | null;
-
     /**
      * 软删除
-     *
      * @type {boolean}
      * @memberof AddOpenAccessInput
      */
     isDelete?: boolean;
-
     /**
      * 绑定租户Id
-     *
      * @type {number}
      * @memberof AddOpenAccessInput
      */
     bindTenantId?: number;
-
     /**
+     * 
      * @type {SysUser}
      * @memberof AddOpenAccessInput
      */
     bindUser?: SysUser;
-
     /**
      * 身份标识
-     *
      * @type {string}
      * @memberof AddOpenAccessInput
      */
     accessKey: string;
-
     /**
      * 密钥
-     *
      * @type {string}
      * @memberof AddOpenAccessInput
      */
     accessSecret: string;
-
     /**
      * 绑定用户Id
-     *
      * @type {number}
      * @memberof AddOpenAccessInput
      */

@@ -11,18 +11,14 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-
- /**
+/**
  * 解除登录锁定输入参数
- *
  * @export
  * @interface UnlockLoginInput
  */
 export interface UnlockLoginInput {
-
     /**
      * 主键Id
-     *
      * @type {number}
      * @memberof UnlockLoginInput
      */

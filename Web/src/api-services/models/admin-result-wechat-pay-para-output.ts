@@ -11,57 +11,45 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-
 import { WechatPayParaOutput } from './wechat-pay-para-output';
- /**
+/**
  * 全局返回结果
- *
  * @export
  * @interface AdminResultWechatPayParaOutput
  */
 export interface AdminResultWechatPayParaOutput {
-
     /**
      * 状态码
-     *
      * @type {number}
      * @memberof AdminResultWechatPayParaOutput
      */
     code?: number;
-
     /**
      * 类型success、warning、error
-     *
      * @type {string}
      * @memberof AdminResultWechatPayParaOutput
      */
     type?: string | null;
-
     /**
      * 错误信息
-     *
      * @type {string}
      * @memberof AdminResultWechatPayParaOutput
      */
     message?: string | null;
-
     /**
+     * 
      * @type {WechatPayParaOutput}
      * @memberof AdminResultWechatPayParaOutput
      */
     result?: WechatPayParaOutput;
-
     /**
      * 附加数据
-     *
      * @type {any}
      * @memberof AdminResultWechatPayParaOutput
      */
     extras?: any | null;
-
     /**
      * 时间
-     *
      * @type {Date}
      * @memberof AdminResultWechatPayParaOutput
      */

@@ -11,88 +11,70 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-
 import { Filter } from './filter';
 import { Search } from './search';
- /**
+/**
  * 
- *
  * @export
  * @interface PageJobTriggerRecordInput
  */
 export interface PageJobTriggerRecordInput {
-
     /**
+     * 
      * @type {Search}
      * @memberof PageJobTriggerRecordInput
      */
     search?: Search;
-
     /**
      * 模糊查询关键字
-     *
      * @type {string}
      * @memberof PageJobTriggerRecordInput
      */
     keyword?: string | null;
-
     /**
+     * 
      * @type {Filter}
      * @memberof PageJobTriggerRecordInput
      */
     filter?: Filter;
-
     /**
      * 当前页码
-     *
      * @type {number}
      * @memberof PageJobTriggerRecordInput
      */
     page?: number;
-
     /**
      * 页码容量
-     *
      * @type {number}
      * @memberof PageJobTriggerRecordInput
      */
     pageSize?: number;
-
     /**
      * 排序字段
-     *
      * @type {string}
      * @memberof PageJobTriggerRecordInput
      */
     field?: string | null;
-
     /**
      * 排序方向
-     *
      * @type {string}
      * @memberof PageJobTriggerRecordInput
      */
     order?: string | null;
-
     /**
      * 降序排序
-     *
      * @type {string}
      * @memberof PageJobTriggerRecordInput
      */
     descStr?: string | null;
-
     /**
      * 作业Id
-     *
      * @type {string}
      * @memberof PageJobTriggerRecordInput
      */
     jobId?: string | null;
-
     /**
      * 触发器Id
-     *
      * @type {string}
      * @memberof PageJobTriggerRecordInput
      */

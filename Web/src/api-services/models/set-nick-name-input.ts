@@ -11,26 +11,20 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-
- /**
+/**
  * 
- *
  * @export
  * @interface SetNickNameInput
  */
 export interface SetNickNameInput {
-
     /**
      * 小程序用户身份标识
-     *
      * @type {string}
      * @memberof SetNickNameInput
      */
     openId: string;
-
     /**
      * 昵称
-     *
      * @type {string}
      * @memberof SetNickNameInput
      */

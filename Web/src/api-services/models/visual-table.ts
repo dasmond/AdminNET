@@ -11,34 +11,32 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-
- /**
+/**
  * 
- *
  * @export
  * @interface VisualTable
  */
 export interface VisualTable {
-
     /**
+     * 
      * @type {string}
      * @memberof VisualTable
      */
     tableName?: string | null;
-
     /**
+     * 
      * @type {string}
      * @memberof VisualTable
      */
     tableComents?: string | null;
-
     /**
+     * 
      * @type {number}
      * @memberof VisualTable
      */
     x?: number;
-
     /**
+     * 
      * @type {number}
      * @memberof VisualTable
      */

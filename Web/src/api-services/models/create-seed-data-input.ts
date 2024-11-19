@@ -11,71 +11,50 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-
- /**
+/**
  * 
- *
  * @export
  * @interface CreateSeedDataInput
  */
 export interface CreateSeedDataInput {
-
     /**
      * 库标识
-     *
      * @type {string}
      * @memberof CreateSeedDataInput
      */
     configId?: string | null;
-
     /**
      * 表名
-     *
      * @type {string}
      * @memberof CreateSeedDataInput
-     * @example student
      */
     tableName?: string | null;
-
     /**
      * 实体名称
-     *
      * @type {string}
      * @memberof CreateSeedDataInput
-     * @example Student
      */
     entityName?: string | null;
-
     /**
      * 种子名称
-     *
      * @type {string}
      * @memberof CreateSeedDataInput
-     * @example Student
      */
     seedDataName?: string | null;
-
     /**
      * 导出位置
-     *
      * @type {string}
      * @memberof CreateSeedDataInput
-     * @example Web.Application
      */
     position?: string | null;
-
     /**
      * 后缀
-     *
      * @type {string}
      * @memberof CreateSeedDataInput
-     * @example Web.Application
      */
     suffix?: string | null;
-
     /**
      * 过滤已有数据
-     *
      * @type {boolean}
      * @memberof CreateSeedDataInput
      */
