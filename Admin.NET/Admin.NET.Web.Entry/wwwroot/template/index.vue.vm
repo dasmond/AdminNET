@@ -1,4 +1,4 @@
-﻿<script lang="ts" setup name="@(Model.LowerClassName)">
+<script lang="ts" setup name="@(Model.LowerClassName)">
 import { ref, reactive, onMounted } from "vue";
 import { auth } from '/@@/utils/authFunction';
 import { getAPI } from '/@@/utils/axios-utils';
@@ -40,8 +40,8 @@ const state = reactive({
   stores: @(Model.HasDictField || Model.HasEnumField || Model.HasConstField ? "useUserInfo()" : "{}"),
   showAdvanceQueryUI: @(Model.HasLikeQuery ? "false" : "true"),
   dropdownData: {} as any,
-  selectData: [] as [],
-  tableQueryParams: {},
+  selectData: [] as any[],
+  tableQueryParams: {} as any,
   tableParams: {
     page: 1,
     pageSize: 20,
