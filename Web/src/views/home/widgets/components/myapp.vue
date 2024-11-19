@@ -58,22 +58,17 @@ export default {
 <script setup lang="ts" name="myapp">
 import { onMounted, ref } from 'vue';
 import { ElMessage } from 'element-plus';
-import { useRequestOldRoutes } from '/@/stores/requestOldRoutes';
-import { storeToRefs } from 'pinia';
 import { VueDraggable } from 'vue-draggable-plus';
-import { useUserInfo } from '/@/stores/userInfo';
-
 import { getAPI } from '/@/utils/axios-utils';
 import { SysUserMenuApi } from '/@/api-services/api';
 import { MenuOutput } from '/@/api-services/models';
+import { useRequestOldRoutes } from '/@/stores/requestOldRoutes';
 
 const mods = ref<MenuOutput[]>([]); // 所有应用
 const myMods = ref<MenuOutput[]>([]); // 我的常用
 const myModsName = ref<Array<string | null | undefined>>([]); // 我的常用
 const filterMods = ref<MenuOutput[]>([]); // 过滤我的常用后的应用
 const modsDrawer = ref<boolean>(false);
-
-const { userInfos } = storeToRefs(useUserInfo());
 
 onMounted(() => {
 	getMods();
@@ -82,7 +77,7 @@ onMounted(() => {
 // 请求已收藏菜单列表
 const getFavoriteMenuList = async () => {
 	try {
-		const res = await getAPI(SysUserMenuApi).apiSysUserMenuUserMenuListUserIdGet(userInfos.value.id);
+		const res = await getAPI(SysUserMenuApi).apiSysUserMenuUserMenuListGet();
 		return res.data.result || [];
 	} catch (error) {
 		return [];
@@ -124,9 +119,8 @@ const filterMenu = (map: MenuOutput[]) => {
 
 // 保存我的常用
 const saveMods = async () => {
-	const myFavoriteMods = myMods.value.map((v: MenuOutput) => v.id) as any;
-	const param = { userId: userInfos.value.id, menuIdList: myFavoriteMods };
-	await getAPI(SysUserMenuApi).apiSysUserMenuAddPost(param);
+	const menuIds = myMods.value.map((v: MenuOutput) => v.id) as any;
+	await getAPI(SysUserMenuApi).apiSysUserMenuAddPost({ menuIdList: menuIds });
 	ElMessage.success('设置常用成功');
 	modsDrawer.value = false;
 };
