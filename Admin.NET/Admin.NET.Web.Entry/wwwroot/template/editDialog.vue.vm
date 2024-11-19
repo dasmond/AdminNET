@@ -23,7 +23,7 @@ const state = reactive({
 	title: '',
 	loading: false,
 	showDialog: false,
-	ruleForm: {},
+	ruleForm: {} as any,
 	stores: @(Model.HasDictField || Model.HasEnumField || Model.HasConstField ? "useUserInfo()" : "{}"),
 	dropdownData: {} as any,
 });
@@ -47,7 +47,7 @@ onMounted(async () => {
 });
 
 // 打开弹窗
-const openDialog = async (row: any, title) => {
+const openDialog = async (row: any, title: string) => {
 	state.title = title;
 	row = row ?? { @(Model.GetAddDefaultValue()) };
 	state.ruleForm = row.id ? await @(Model.LowerClassName)Api.detail(row.id).then(res => res.data.result) : JSON.parse(JSON.stringify(row));
