@@ -11,29 +11,27 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-
 import { SortVersion } from './sort-version';
- /**
+/**
  * 
- *
  * @export
  * @interface CompareInfo
  */
 export interface CompareInfo {
-
     /**
+     * 
      * @type {string}
      * @memberof CompareInfo
      */
     name?: string | null;
-
     /**
+     * 
      * @type {SortVersion}
      * @memberof CompareInfo
      */
     version?: SortVersion;
-
     /**
+     * 
      * @type {number}
      * @memberof CompareInfo
      */

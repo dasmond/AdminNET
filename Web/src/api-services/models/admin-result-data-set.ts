@@ -11,57 +11,45 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-
 import { DataSet } from './data-set';
- /**
+/**
  * 全局返回结果
- *
  * @export
  * @interface AdminResultDataSet
  */
 export interface AdminResultDataSet {
-
     /**
      * 状态码
-     *
      * @type {number}
      * @memberof AdminResultDataSet
      */
     code?: number;
-
     /**
      * 类型success、warning、error
-     *
      * @type {string}
      * @memberof AdminResultDataSet
      */
     type?: string | null;
-
     /**
      * 错误信息
-     *
      * @type {string}
      * @memberof AdminResultDataSet
      */
     message?: string | null;
-
     /**
+     * 
      * @type {DataSet}
      * @memberof AdminResultDataSet
      */
     result?: DataSet;
-
     /**
      * 附加数据
-     *
      * @type {any}
      * @memberof AdminResultDataSet
      */
     extras?: any | null;
-
     /**
      * 时间
-     *
      * @type {Date}
      * @memberof AdminResultDataSet
      */

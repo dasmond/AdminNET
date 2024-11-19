@@ -11,42 +11,32 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-
- /**
+/**
  * 
- *
  * @export
  * @interface SysWxOpenUploadAvatarBody
  */
 export interface SysWxOpenUploadAvatarBody {
-
     /**
      * 小程序用户身份标识
-     *
      * @type {string}
      * @memberof SysWxOpenUploadAvatarBody
      */
     openId: string;
-
     /**
      * 文件
-     *
      * @type {Blob}
      * @memberof SysWxOpenUploadAvatarBody
      */
     file: Blob;
-
     /**
      * 文件类型
-     *
      * @type {string}
      * @memberof SysWxOpenUploadAvatarBody
      */
     fileType?: string;
-
     /**
      * 文件路径
-     *
      * @type {string}
      * @memberof SysWxOpenUploadAvatarBody
      */

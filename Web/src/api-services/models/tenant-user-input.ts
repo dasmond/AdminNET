@@ -11,18 +11,14 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-
- /**
+/**
  * 
- *
  * @export
  * @interface TenantUserInput
  */
 export interface TenantUserInput {
-
     /**
      * 用户Id
-     *
      * @type {number}
      * @memberof TenantUserInput
      */

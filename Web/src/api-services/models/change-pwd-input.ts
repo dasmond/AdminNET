@@ -11,26 +11,20 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-
- /**
+/**
  * 修改用户密码输入参数
- *
  * @export
  * @interface ChangePwdInput
  */
 export interface ChangePwdInput {
-
     /**
      * 当前密码
-     *
      * @type {string}
      * @memberof ChangePwdInput
      */
     passwordOld: string;
-
     /**
      * 新密码
-     *
      * @type {string}
      * @memberof ChangePwdInput
      */

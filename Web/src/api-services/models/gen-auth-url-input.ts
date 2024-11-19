@@ -11,34 +11,26 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-
- /**
+/**
  * 生成网页授权Url
- *
  * @export
  * @interface GenAuthUrlInput
  */
 export interface GenAuthUrlInput {
-
     /**
      * RedirectUrl
-     *
      * @type {string}
      * @memberof GenAuthUrlInput
      */
     redirectUrl?: string | null;
-
     /**
      * Scope
-     *
      * @type {string}
      * @memberof GenAuthUrlInput
      */
     scope?: string | null;
-
     /**
      * State
-     *
      * @type {string}
      * @memberof GenAuthUrlInput
      */

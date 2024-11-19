@@ -11,7 +11,6 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-
 /**
  * HTTP请求方法枚举<br />&nbsp;HTTP \"GET\" method. Get = 0<br />&nbsp;HTTP \"POST\" method. Post = 1<br />&nbsp; HTTP \"PUT\" method. Put = 2<br />&nbsp;HTTP \"DELETE\" method. Delete = 3<br />&nbsp;HTTP \"PATCH\" method.  Patch = 4<br />&nbsp;HTTP \"HEAD\" method. Head = 5<br />&nbsp;HTTP \"OPTIONS\" method. Options = 6<br />&nbsp; HTTP \"TRACE\" method. Trace = 7<br />&nbsp;HTTP \"CONNECT\" method. Connect = 8<br />
  * @export

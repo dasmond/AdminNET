@@ -11,82 +11,68 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-
- /**
+/**
  * 数据库表列
- *
  * @export
  * @interface ColumnOuput
  */
 export interface ColumnOuput {
-
     /**
      * 字段名
-     *
      * @type {string}
      * @memberof ColumnOuput
      */
     columnName?: string | null;
-
     /**
      * 实体的Property名
-     *
      * @type {string}
      * @memberof ColumnOuput
      */
     propertyName?: string | null;
-
     /**
      * 字段数据长度
-     *
      * @type {number}
      * @memberof ColumnOuput
      */
     columnLength?: number;
-
     /**
      * 数据库中类型
-     *
      * @type {string}
      * @memberof ColumnOuput
      */
     dataType?: string | null;
-
     /**
      * 是否为主键
-     *
      * @type {boolean}
      * @memberof ColumnOuput
      */
     isPrimarykey?: boolean;
-
     /**
      * 是否允许为空
-     *
      * @type {boolean}
      * @memberof ColumnOuput
      */
     isNullable?: boolean;
-
     /**
      * .NET字段类型
-     *
      * @type {string}
      * @memberof ColumnOuput
      */
     netType?: string | null;
-
+    /**
+     * 字典编码
+     * @type {string}
+     * @memberof ColumnOuput
+     */
+    dictTypeCode?: string | null;
     /**
      * 字段描述
-     *
      * @type {string}
      * @memberof ColumnOuput
      */
     columnComment?: string | null;
-
     /**
      * 主外键
-     *
      * @type {string}
      * @memberof ColumnOuput
      */

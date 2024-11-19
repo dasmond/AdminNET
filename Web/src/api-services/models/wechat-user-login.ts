@@ -11,18 +11,14 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-
- /**
+/**
  * 微信用户登录
- *
  * @export
  * @interface WechatUserLogin
  */
 export interface WechatUserLogin {
-
     /**
      * OpenId
-     *
      * @type {string}
      * @memberof WechatUserLogin
      */

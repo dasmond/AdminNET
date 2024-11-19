@@ -11,57 +11,45 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-
 import { HttpMethodEnum } from './http-method-enum';
- /**
+/**
  * 
- *
  * @export
  * @interface GenerateSignatureInput
  */
 export interface GenerateSignatureInput {
-
     /**
      * 身份标识
-     *
      * @type {string}
      * @memberof GenerateSignatureInput
      */
     accessKey: string;
-
     /**
      * 密钥
-     *
      * @type {string}
      * @memberof GenerateSignatureInput
      */
     accessSecret: string;
-
     /**
+     * 
      * @type {HttpMethodEnum}
      * @memberof GenerateSignatureInput
      */
     method?: HttpMethodEnum;
-
     /**
      * 请求接口地址
-     *
      * @type {string}
      * @memberof GenerateSignatureInput
      */
     url: string;
-
     /**
      * 时间戳
-     *
      * @type {number}
      * @memberof GenerateSignatureInput
      */
     timestamp: number;
-
     /**
      * 随机数
-     *
      * @type {string}
      * @memberof GenerateSignatureInput
      */

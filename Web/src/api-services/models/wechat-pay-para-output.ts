@@ -11,46 +11,44 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-
- /**
+/**
  * 
- *
  * @export
  * @interface WechatPayParaOutput
  */
 export interface WechatPayParaOutput {
-
     /**
+     * 
      * @type {string}
      * @memberof WechatPayParaOutput
      */
     appId?: string | null;
-
     /**
+     * 
      * @type {string}
      * @memberof WechatPayParaOutput
      */
     timeStamp?: string | null;
-
     /**
+     * 
      * @type {string}
      * @memberof WechatPayParaOutput
      */
     nonceStr?: string | null;
-
     /**
+     * 
      * @type {string}
      * @memberof WechatPayParaOutput
      */
     _package?: string | null;
-
     /**
+     * 
      * @type {string}
      * @memberof WechatPayParaOutput
      */
     signType?: string | null;
-
     /**
+     * 
      * @type {string}
      * @memberof WechatPayParaOutput
      */

@@ -11,26 +11,20 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-
- /**
+/**
  * 删除用户输入参数
- *
  * @export
  * @interface DeleteUserInput
  */
 export interface DeleteUserInput {
-
     /**
      * 主键Id
-     *
      * @type {number}
      * @memberof DeleteUserInput
      */
     id: number;
-
     /**
      * 机构Id
-     *
      * @type {number}
      * @memberof DeleteUserInput
      */

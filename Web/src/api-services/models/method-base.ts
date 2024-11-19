@@ -11,7 +11,6 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-
 import { CallingConventions } from './calling-conventions';
 import { CustomAttributeData } from './custom-attribute-data';
 import { MemberTypes } from './member-types';
@@ -20,201 +19,200 @@ import { MethodImplAttributes } from './method-impl-attributes';
 import { Module } from './module';
 import { RuntimeMethodHandle } from './runtime-method-handle';
 import { Type } from './type';
- /**
+/**
  * 
- *
  * @export
  * @interface MethodBase
  */
 export interface MethodBase {
-
     /**
+     * 
      * @type {MemberTypes}
      * @memberof MethodBase
      */
     memberType?: MemberTypes;
-
     /**
+     * 
      * @type {string}
      * @memberof MethodBase
      */
     name?: string | null;
-
     /**
+     * 
      * @type {Type}
      * @memberof MethodBase
      */
     declaringType?: Type;
-
     /**
+     * 
      * @type {Type}
      * @memberof MethodBase
      */
     reflectedType?: Type;
-
     /**
+     * 
      * @type {Module}
      * @memberof MethodBase
      */
     module?: Module;
-
     /**
+     * 
      * @type {Array<CustomAttributeData>}
      * @memberof MethodBase
      */
     customAttributes?: Array<CustomAttributeData> | null;
-
     /**
+     * 
      * @type {boolean}
      * @memberof MethodBase
      */
     isCollectible?: boolean;
-
     /**
+     * 
      * @type {number}
      * @memberof MethodBase
      */
     metadataToken?: number;
-
     /**
+     * 
      * @type {MethodAttributes}
      * @memberof MethodBase
      */
     attributes?: MethodAttributes;
-
     /**
+     * 
      * @type {MethodImplAttributes}
      * @memberof MethodBase
      */
     methodImplementationFlags?: MethodImplAttributes;
-
     /**
+     * 
      * @type {CallingConventions}
      * @memberof MethodBase
      */
     callingConvention?: CallingConventions;
-
     /**
+     * 
      * @type {boolean}
      * @memberof MethodBase
      */
     isAbstract?: boolean;
-
     /**
+     * 
      * @type {boolean}
      * @memberof MethodBase
      */
     isConstructor?: boolean;
-
     /**
+     * 
      * @type {boolean}
      * @memberof MethodBase
      */
     isFinal?: boolean;
-
     /**
+     * 
      * @type {boolean}
      * @memberof MethodBase
      */
     isHideBySig?: boolean;
-
     /**
+     * 
      * @type {boolean}
      * @memberof MethodBase
      */
     isSpecialName?: boolean;
-
     /**
+     * 
      * @type {boolean}
      * @memberof MethodBase
      */
     isStatic?: boolean;
-
     /**
+     * 
      * @type {boolean}
      * @memberof MethodBase
      */
     isVirtual?: boolean;
-
     /**
+     * 
      * @type {boolean}
      * @memberof MethodBase
      */
     isAssembly?: boolean;
-
     /**
+     * 
      * @type {boolean}
      * @memberof MethodBase
      */
     isFamily?: boolean;
-
     /**
+     * 
      * @type {boolean}
      * @memberof MethodBase
      */
     isFamilyAndAssembly?: boolean;
-
     /**
+     * 
      * @type {boolean}
      * @memberof MethodBase
      */
     isFamilyOrAssembly?: boolean;
-
     /**
+     * 
      * @type {boolean}
      * @memberof MethodBase
      */
     isPrivate?: boolean;
-
     /**
+     * 
      * @type {boolean}
      * @memberof MethodBase
      */
     isPublic?: boolean;
-
     /**
+     * 
      * @type {boolean}
      * @memberof MethodBase
      */
     isConstructedGenericMethod?: boolean;
-
     /**
+     * 
      * @type {boolean}
      * @memberof MethodBase
      */
     isGenericMethod?: boolean;
-
     /**
+     * 
      * @type {boolean}
      * @memberof MethodBase
      */
     isGenericMethodDefinition?: boolean;
-
     /**
+     * 
      * @type {boolean}
      * @memberof MethodBase
      */
     containsGenericParameters?: boolean;
-
     /**
+     * 
      * @type {RuntimeMethodHandle}
      * @memberof MethodBase
      */
     methodHandle?: RuntimeMethodHandle;
-
     /**
+     * 
      * @type {boolean}
      * @memberof MethodBase
      */
     isSecurityCritical?: boolean;
-
     /**
+     * 
      * @type {boolean}
      * @memberof MethodBase
      */
     isSecuritySafeCritical?: boolean;
-
     /**
+     * 
      * @type {boolean}
      * @memberof MethodBase
      */

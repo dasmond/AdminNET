@@ -350,6 +350,7 @@ export * from './sys-wechat-refund';
 export * from './sys-wechat-user';
 export * from './sys-wx-open-upload-avatar-body';
 export * from './table-output';
+export * from './table-unique-config-item';
 export * from './tenant-id-input';
 export * from './tenant-input';
 export * from './tenant-output';

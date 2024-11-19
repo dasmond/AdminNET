@@ -11,17 +11,15 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-
 import { ISite } from './isite';
- /**
+/**
  * 
- *
  * @export
  * @interface IComponent
  */
 export interface IComponent {
-
     /**
+     * 
      * @type {ISite}
      * @memberof IComponent
      */

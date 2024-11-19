@@ -11,7 +11,6 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-
 /**
  * 性别枚举（GB/T 2261.1-2003）<br />&nbsp;未知的性别 Unknown = 0<br />&nbsp;男性 Male = 1<br />&nbsp;女性 Female = 2<br />&nbsp;未说明的性别 Unspecified = 9<br />
  * @export

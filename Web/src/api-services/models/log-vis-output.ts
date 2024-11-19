@@ -11,50 +11,38 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-
- /**
+/**
  * 
- *
  * @export
  * @interface LogVisOutput
  */
 export interface LogVisOutput {
-
     /**
      * 登录地点
-     *
      * @type {string}
      * @memberof LogVisOutput
      */
     location?: string | null;
-
     /**
      * 经度
-     *
      * @type {number}
      * @memberof LogVisOutput
      */
     longitude?: number | null;
-
     /**
      * 维度
-     *
      * @type {number}
      * @memberof LogVisOutput
      */
     latitude?: number | null;
-
     /**
      * 真实姓名
-     *
      * @type {string}
      * @memberof LogVisOutput
      */
     realName?: string | null;
-
     /**
      * 日志时间
-     *
      * @type {Date}
      * @memberof LogVisOutput
      */

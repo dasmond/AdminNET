@@ -11,106 +11,104 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-
 import { CustomAttributeData } from './custom-attribute-data';
 import { EventAttributes } from './event-attributes';
 import { MemberTypes } from './member-types';
 import { MethodInfo } from './method-info';
 import { Module } from './module';
 import { Type } from './type';
- /**
+/**
  * 
- *
  * @export
  * @interface EventInfo
  */
 export interface EventInfo {
-
     /**
+     * 
      * @type {string}
      * @memberof EventInfo
      */
     name?: string | null;
-
     /**
+     * 
      * @type {Type}
      * @memberof EventInfo
      */
     declaringType?: Type;
-
     /**
+     * 
      * @type {Type}
      * @memberof EventInfo
      */
     reflectedType?: Type;
-
     /**
+     * 
      * @type {Module}
      * @memberof EventInfo
      */
     module?: Module;
-
     /**
+     * 
      * @type {Array<CustomAttributeData>}
      * @memberof EventInfo
      */
     customAttributes?: Array<CustomAttributeData> | null;
-
     /**
+     * 
      * @type {boolean}
      * @memberof EventInfo
      */
     isCollectible?: boolean;
-
     /**
+     * 
      * @type {number}
      * @memberof EventInfo
      */
     metadataToken?: number;
-
     /**
+     * 
      * @type {MemberTypes}
      * @memberof EventInfo
      */
     memberType?: MemberTypes;
-
     /**
+     * 
      * @type {EventAttributes}
      * @memberof EventInfo
      */
     attributes?: EventAttributes;
-
     /**
+     * 
      * @type {boolean}
      * @memberof EventInfo
      */
     isSpecialName?: boolean;
-
     /**
+     * 
      * @type {MethodInfo}
      * @memberof EventInfo
      */
     addMethod?: MethodInfo;
-
     /**
+     * 
      * @type {MethodInfo}
      * @memberof EventInfo
      */
     removeMethod?: MethodInfo;
-
     /**
+     * 
      * @type {MethodInfo}
      * @memberof EventInfo
      */
     raiseMethod?: MethodInfo;
-
     /**
+     * 
      * @type {boolean}
      * @memberof EventInfo
      */
     isMulticast?: boolean;
-
     /**
+     * 
      * @type {Type}
      * @memberof EventInfo
      */
