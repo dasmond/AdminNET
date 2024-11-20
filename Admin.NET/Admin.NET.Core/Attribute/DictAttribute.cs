@@ -44,12 +44,12 @@ public class DictAttribute : ValidationAttribute, ITransient
         var dictDataList = sysDictDataServiceProvider.GetDataList(DictTypeCode).Result;
 
         // 使用HashSet来提高查找效率
-        var dictCodes = new HashSet<string>(dictDataList.Select(u => u.Name));
-
-        if (!dictCodes.Contains(valueAsString))
+        var valueList = (value?.GetType().IsEnum ?? DictTypeCode.EndsWith("Enum")) ? dictDataList.Select(u => u.Name) : dictDataList.Select(u => u.Code);
+        var dictHash = new HashSet<string>(valueList);
+        
+        if (!dictHash.Contains(valueAsString))
             return new ValidationResult($"提示：{ErrorMessage}|字典【{DictTypeCode}】不包含【{valueAsString}】！");
-        else
-            return ValidationResult.Success;
+        return ValidationResult.Success;
     }
 
     /// <summary>
