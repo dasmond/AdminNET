@@ -18,6 +18,7 @@ public class SysUserService : IDynamicApiController, ITransient
     private readonly SysUserRoleService _sysUserRoleService;
     private readonly SysConfigService _sysConfigService;
     private readonly SysOnlineUserService _sysOnlineUserService;
+    private readonly SysUserMenuService _sysUserMenuService;
     private readonly SysCacheService _sysCacheService;
     private readonly SysUserLdapService _sysUserLdapService;
     private readonly SqlSugarRepository<SysUser> _sysUserRep;
@@ -32,6 +33,7 @@ public class SysUserService : IDynamicApiController, ITransient
         SysCacheService sysCacheService,
         SysUserLdapService sysUserLdapService,
         SqlSugarRepository<SysUser> sysUserRep,
+        SysUserMenuService sysUserMenuService,
         SysUserEventHandler sysUserEventHandler)
     {
         _userManager = userManager;
@@ -42,6 +44,7 @@ public class SysUserService : IDynamicApiController, ITransient
         _sysOnlineUserService = sysOnlineUserService;
         _sysCacheService = sysCacheService;
         _sysUserLdapService = sysUserLdapService;
+        _sysUserMenuService = sysUserMenuService;
         _sysUserRep = sysUserRep;
         _sysUserEventHandler = sysUserEventHandler;
     }
@@ -201,6 +204,9 @@ public class SysUserService : IDynamicApiController, ITransient
 
         // 删除域账号
         await _sysUserLdapService.DeleteUserLdapByUserId(input.Id);
+        
+        // 删除用户收藏菜单
+        await _sysUserMenuService.DeleteUserMenuList(input.Id);
 
         // 执行订阅事件
         _sysUserEventHandler.OnEvent(this, SysUserEventTypeEnum.Delete, input);
