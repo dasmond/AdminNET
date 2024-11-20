@@ -71,7 +71,7 @@ import { ElMessage } from 'element-plus';
 
 import { getAPI } from '/@/utils/axios-utils';
 import { SysFileApi } from '/@/api-services/api';
-import { FileInput } from '/@/api-services/models';
+import { SysFile } from '/@/api-services/models';
 
 const props = defineProps({
 	title: String,
@@ -81,7 +81,7 @@ const emits = defineEmits(['handleQuery']);
 const ruleFormRef = ref();
 const state = reactive({
 	isShowDialog: false,
-	ruleForm: {} as FileInput,
+	ruleForm: {} as SysFile,
 });
 
 // 打开弹窗
