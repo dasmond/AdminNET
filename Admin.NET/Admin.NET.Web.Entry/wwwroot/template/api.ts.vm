@@ -20,10 +20,6 @@ export const use@(Model.ClassName)Api = () => {
 		delete: baseApi.delete,
 		// 批量删除@(Model.BusName)
 		batchDelete: baseApi.batchDelete,
-		@foreach (var column in Model.UploadFieldList){
-		@:// 上传@(column.ColumnComment)
-		@:upload@(column.PropertyName): (params: any) => baseApi.uploadFile(params, baseApi.baseUrl + 'upload@(column.PropertyName)'),
-		}
 		@if (Model.ImportFieldList.Count > 0) {
 		@:// 导出@(Model.BusName)数据
 		@:exportData: baseApi.exportData,
@@ -34,7 +30,11 @@ export const use@(Model.ClassName)Api = () => {
 		}
 		@if (Model.DropdownFieldList.Count > 0) {
 		@:// 获取下拉列表数据
-		@:getDropdownData: (fromPage: Boolean = false) => baseApi.dropdownData({ fromPage }),
+		@:getDropdownData: (fromPage: Boolean = false, cancel: boolean = false) => baseApi.dropdownData({ fromPage }, cancel),
+		}
+		@foreach (var column in Model.UploadFieldList) {
+		@:// 上传@(column.ColumnComment)
+		@:upload@(column.PropertyName): (params: any, cancel: boolean = false) => baseApi.uploadFile(params, 'upload@(column.PropertyName)', cancel),
 		}
 	}
 }
