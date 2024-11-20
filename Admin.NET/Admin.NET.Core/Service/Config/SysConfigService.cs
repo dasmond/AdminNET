@@ -324,6 +324,7 @@ public class SysConfigService : IDynamicApiController, ITransient
         _sysCacheService.Remove($"{CacheConst.KeyConfig}Value:{config.Code}");
         _sysCacheService.Remove($"{CacheConst.KeyConfig}Remark:{config.Code}");
         _sysCacheService.Remove($"{CacheConst.KeyConfig}{config.GroupCode}:GroupWithCache");
-        _sysCacheService.Remove($"{CacheConst.KeyConfig}{config.GroupCode}:{config.Value}");
+        _sysCacheService.Remove($"{CacheConst.KeyConfig}{config.Code}");
+
     }
 }
