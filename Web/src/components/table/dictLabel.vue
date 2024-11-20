@@ -43,5 +43,9 @@ const setDictValue = (value: any) => {
     state.label = dict[props.propLabel] || props.defaultValue;
     state.tagType = dict.tagType ?? "primary";
   }
+  else {
+	state.label = props.defaultValue;
+    state.tagType = "info";
+  }
 }
 </script>
