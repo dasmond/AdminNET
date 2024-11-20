@@ -43,7 +43,7 @@ public class DeleteFileInput : BaseIdInput
 /// <summary>
 /// 上传文件
 /// </summary>
-public class UploadFileInput : SysFile
+public class UploadFileInput
 {
     /// <summary>
     /// 文件
@@ -65,13 +65,23 @@ public class UploadFileInput : SysFile
     /// 允许格式：.jpeg.jpg.png.bmp.gif.tif
     /// </summary>
     public string AllowSuffix { get; set; }
+    
+    /// <summary>
+    /// 文件类型
+    /// </summary>
+    public string FileType { get; set; }
 }
 
 /// <summary>
 /// 上传文件Base64
 /// </summary>
-public class UploadFileFromBase64Input : SysFile
+public class UploadFileFromBase64Input
 {
+    /// <summary>
+    /// 文件名
+    /// </summary>
+    public string? FileName { get; set; }
+    
     /// <summary>
     /// 文件内容
     /// </summary>

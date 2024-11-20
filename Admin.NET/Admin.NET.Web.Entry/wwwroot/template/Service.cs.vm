@@ -132,11 +132,15 @@ public class @(Model.ClassName)Service : IDynamicApiController, ITransient
         }
         }
         var entity = input.Adapt<@(Model.ClassName)>();
-        await _@(Model.LowerClassName)Rep.AsUpdateable(entity).IgnoreColumns(u => new {
-        @foreach (var column in Model.IgnoreUpdateFieldList) {
+        await _@(Model.LowerClassName)Rep.AsUpdateable(entity)
+        @if (Model.IgnoreUpdateFieldList.Count > 0) {
+        @:.IgnoreColumns(u => new {
+        foreach (var column in Model.IgnoreUpdateFieldList) {
             @:u.@(column.PropertyName),
         }
-        }).ExecuteCommandAsync();
+        @:})
+        }
+        .ExecuteCommandAsync();
     }
 
     /// <summary>

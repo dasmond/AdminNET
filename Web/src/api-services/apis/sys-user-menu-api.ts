@@ -75,49 +75,6 @@ export const SysUserMenuApiAxiosParamCreator = function (configuration?: Configu
         },
         /**
          * 
-         * @summary 清空当前用户收藏的菜单 🔖
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        apiSysUserMenuClearUserMenuPost: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/api/sysUserMenu/clearUserMenu`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-            const localVarRequestOptions :AxiosRequestConfig = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication Bearer required
-            // http bearer authentication required
-            if (configuration && configuration.accessToken) {
-                const accessToken = typeof configuration.accessToken === 'function'
-                    ? await configuration.accessToken()
-                    : await configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
-            }
-
-            const query = new URLSearchParams(localVarUrlObj.search);
-            for (const key in localVarQueryParameter) {
-                query.set(key, localVarQueryParameter[key]);
-            }
-            for (const key in options.params) {
-                query.set(key, options.params[key]);
-            }
-            localVarUrlObj.search = (new URLSearchParams(query)).toString();
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
          * @summary 取消收藏菜单 🔖
          * @param {UserMenuInput} [body] 
          * @param {*} [options] Override http request option.
@@ -275,19 +232,6 @@ export const SysUserMenuApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @summary 清空当前用户收藏的菜单 🔖
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async apiSysUserMenuClearUserMenuPost(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<void>>> {
-            const localVarAxiosArgs = await SysUserMenuApiAxiosParamCreator(configuration).apiSysUserMenuClearUserMenuPost(options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
-        },
-        /**
-         * 
          * @summary 取消收藏菜单 🔖
          * @param {UserMenuInput} [body] 
          * @param {*} [options] Override http request option.
@@ -347,15 +291,6 @@ export const SysUserMenuApiFactory = function (configuration?: Configuration, ba
         },
         /**
          * 
-         * @summary 清空当前用户收藏的菜单 🔖
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async apiSysUserMenuClearUserMenuPost(options?: AxiosRequestConfig): Promise<AxiosResponse<void>> {
-            return SysUserMenuApiFp(configuration).apiSysUserMenuClearUserMenuPost(options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
          * @summary 取消收藏菜单 🔖
          * @param {UserMenuInput} [body] 
          * @param {*} [options] Override http request option.
@@ -402,16 +337,6 @@ export class SysUserMenuApi extends BaseAPI {
      */
     public async apiSysUserMenuAddPost(body?: UserMenuInput, options?: AxiosRequestConfig) : Promise<AxiosResponse<void>> {
         return SysUserMenuApiFp(this.configuration).apiSysUserMenuAddPost(body, options).then((request) => request(this.axios, this.basePath));
-    }
-    /**
-     * 
-     * @summary 清空当前用户收藏的菜单 🔖
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof SysUserMenuApi
-     */
-    public async apiSysUserMenuClearUserMenuPost(options?: AxiosRequestConfig) : Promise<AxiosResponse<void>> {
-        return SysUserMenuApiFp(this.configuration).apiSysUserMenuClearUserMenuPost(options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * 

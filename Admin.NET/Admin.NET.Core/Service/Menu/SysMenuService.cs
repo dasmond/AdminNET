@@ -16,18 +16,21 @@ public class SysMenuService : IDynamicApiController, ITransient
     private readonly SqlSugarRepository<SysMenu> _sysMenuRep;
     private readonly SysRoleMenuService _sysRoleMenuService;
     private readonly SysUserRoleService _sysUserRoleService;
+    private readonly SysUserMenuService _sysUserMenuService;
     private readonly SysCacheService _sysCacheService;
 
     public SysMenuService(UserManager userManager,
         SqlSugarRepository<SysMenu> sysMenuRep,
         SysRoleMenuService sysRoleMenuService,
         SysUserRoleService sysUserRoleService,
+        SysUserMenuService sysUserMenuService,
         SysCacheService sysCacheService)
     {
         _userManager = userManager;
         _sysMenuRep = sysMenuRep;
         _sysRoleMenuService = sysRoleMenuService;
         _sysUserRoleService = sysUserRoleService;
+        _sysUserMenuService = sysUserMenuService;
         _sysCacheService = sysCacheService;
     }
 
@@ -191,6 +194,9 @@ public class SysMenuService : IDynamicApiController, ITransient
 
         // 级联删除角色菜单数据
         await _sysRoleMenuService.DeleteRoleMenuByMenuIdList(menuIdList);
+        
+        // 级联删除用户收藏菜单
+        await _sysUserMenuService.DeleteMenuList(menuIdList);
 
         // 清除缓存
         DeleteMenuCache();

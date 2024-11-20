@@ -68,9 +68,9 @@ public class CustomViewEngine : ViewEngineModel
     
     /// <summary>
     /// 格式化主键查询条件
-    /// 例： PrimaryKeysFormat(" && ", "u.{0} == input.{0}")
+    /// 例： PrimaryKeysFormat(" || ", "u.{0} == input.{0}")
     /// 单主键返回 u.Id == input.Id
-    /// 组合主键返回 u.Id == input.Id && u.FkId == input.FkId
+    /// 组合主键返回 u.Id == input.Id || u.FkId == input.FkId
     /// </summary>
     /// <param name="separator">分隔符</param>
     /// <param name="format">模板字符串</param>
