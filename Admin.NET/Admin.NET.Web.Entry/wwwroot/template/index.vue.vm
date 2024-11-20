@@ -2,7 +2,7 @@
 import { ref, reactive, onMounted } from "vue";
 import { auth } from '/@@/utils/authFunction';
 import { ElMessageBox, ElMessage } from "element-plus";
-import { downloadStreamFile } from "/@@/utils/downloadFile";
+import { downloadStreamFile } from "/@@/utils/download";
 @if(Model.PrintType == "custom") {
 @:// 推荐设置操作 width 为 200
 @:import { hiprint } from 'vue-plugin-hiprint';
