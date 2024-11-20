@@ -34,16 +34,13 @@
 							</template>
 						</el-table-column>
 						<el-table-column prop="orderNo" label="排序" width="60" align="center" show-overflow-tooltip />
-						<el-table-column label="修改记录" width="100" align="center" show-overflow-tooltip>
+						<el-table-column label="修改记录" width="80" align="center" show-overflow-tooltip>
 							<template #default="scope">
 								<ModifyRecord :data="scope.row" />
 							</template>
 						</el-table-column>
-						<el-table-column label="操作" width="110" fixed="right" align="center">
+						<el-table-column label="操作" width="80" fixed="right" align="center">
 							<template #default="scope">
-								<el-tooltip content="字典值">
-									<el-button icon="ele-Memo" size="small" text type="primary" @click="openDictDataDialog(scope.row)" v-auth="'sysDictType:page'"> </el-button>
-								</el-tooltip>
 								<el-tooltip content="编辑">
 									<el-button icon="ele-Edit" size="small" text type="primary" @click="openEditDictType(scope.row)" v-auth="'sysDictType:update'"> </el-button>
 								</el-tooltip>
