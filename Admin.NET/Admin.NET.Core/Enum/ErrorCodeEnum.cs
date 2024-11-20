@@ -318,6 +318,18 @@ public enum ErrorCodeEnum
     /// </summary>
     [ErrorCodeItemMetadata("字典状态错误")]
     D3005,
+    
+    /// <summary>
+    /// 字典编码不能以Enum结尾
+    /// </summary>
+    [ErrorCodeItemMetadata("字典编码不能以Enum结尾")]
+    D3006,
+    
+    /// <summary>
+    /// 禁止修改枚举类型的字典编码
+    /// </summary>
+    [ErrorCodeItemMetadata("禁止修改枚举类型的字典编码")]
+    D3007,
 
     /// <summary>
     /// 菜单已存在

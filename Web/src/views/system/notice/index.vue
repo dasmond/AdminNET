@@ -7,7 +7,7 @@
 				</el-form-item>
 				<el-form-item label="类型">
 					<el-select v-model="state.queryParams.type" placeholder="类型" clearable>
-            <el-option :label="item.value" :value="item.code" v-for="(item, index) in getDictDataByCode('NoticeTypeEnum') ?? []" :key="index" />
+            <el-option :label="item.value" :value="item.code" v-for="(item, index) in getDictDataByCode('NoticeTypeEnum')" :key="index" />
 					</el-select>
 				</el-form-item>
 				<el-form-item>

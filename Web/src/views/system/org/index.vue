@@ -15,7 +15,7 @@
 						</el-form-item> -->
 						<el-form-item label="机构类型">
 							<el-select v-model="state.queryParams.type" filterable clearable>
-                <el-option :label="item.value" :value="item.code" v-for="(item, index) in getDictDataByCode('org_type') ?? []" :key="index" />
+                <el-option :label="item.value" :value="item.code" v-for="(item, index) in getDictDataByCode('org_type')" :key="index" />
 							</el-select>
 						</el-form-item>
 						<el-form-item>
