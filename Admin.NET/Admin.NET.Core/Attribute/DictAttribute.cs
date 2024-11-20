@@ -1,4 +1,4 @@
-﻿// Admin.NET 项目的版权、商标、专利和其他相关权利均受相应法律法规的保护。使用本项目应遵守相关法律法规和许可证的要求。
+// Admin.NET 项目的版权、商标、专利和其他相关权利均受相应法律法规的保护。使用本项目应遵守相关法律法规和许可证的要求。
 //
 // 本项目主要遵循 MIT 许可证和 Apache 许可证（版本 2.0）进行分发和使用。许可证位于源代码树根目录中的 LICENSE-MIT 和 LICENSE-APACHE 文件。
 //
@@ -42,20 +42,29 @@ public class DictAttribute : ValidationAttribute, ITransient
 
         var sysDictDataServiceProvider = App.GetRequiredService<SysDictDataService>();
         var dictDataList = sysDictDataServiceProvider.GetDataList(DictTypeCode).Result;
-
-        // 使用HashSet来提高查找效率
-        var valueList = (value?.GetType().IsEnum ?? DictTypeCode.EndsWith("Enum")) ? dictDataList.Select(u => u.Name) : dictDataList.Select(u => u.Code);
-        var dictHash = new HashSet<string>(valueList);
         
-        if (!dictHash.Contains(valueAsString))
+        // 检查校验的属性是否存在
+        var property = typeof(SysDictData).GetProperties().Where(x=>string.Compare(x.Name, ValidPropertyName, true)==0).FirstOrDefault();
+        if(property == null) return new ValidationResult($"提示：{ErrorMessage}|字典【{DictTypeCode}】不包含【{ValidPropertyName}】属性！");
+        
+        // 使用HashSet来提高查找效率
+        var dictCodes = new HashSet<string>(dictDataList.Select(u => property.GetValue(u)?.ToString()));
+
+        if (!dictCodes.Contains(valueAsString))
             return new ValidationResult($"提示：{ErrorMessage}|字典【{DictTypeCode}】不包含【{valueAsString}】！");
-        return ValidationResult.Success;
+        else
+            return ValidationResult.Success;
     }
 
     /// <summary>
     /// 字典编码
     /// </summary>
     public string DictTypeCode { get; set; }
+    
+    /// <summary>
+    /// 要校验的属性名称
+    /// </summary>
+    public string ValidPropertyName { get; set; } = "Name";
 
     /// <summary>
     /// 是否允许空字符串
