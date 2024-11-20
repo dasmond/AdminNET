@@ -36,12 +36,10 @@ public class EnumToDictJob : IJob
         try
         {
             await db.BeginTranAsync();
-
-            var sysEnumService = serviceScope.ServiceProvider.GetRequiredService<SysEnumService>();
-            var sysDictTypeList = GetDictByEnumType(sysEnumService.GetEnumTypeList());
             var storageable1 = await db.Storageable(sysDictTypeList)
+                .WhereColumns(it => new { it.Code })
+                .SplitInsert(it => !it.Any())
                 .SplitUpdate(it => it.Any())
-                .SplitInsert(_ => true)
                 .ToStorageAsync();
             await storageable1.BulkCopyAsync();
             await storageable1.BulkUpdateAsync();
@@ -49,8 +47,9 @@ public class EnumToDictJob : IJob
             Log.Information($"系统枚举类转字典类型数据: 共{storageable1.TotalList.Count}条");
         
             var storageable2 = await db.Storageable(sysDictTypeList.SelectMany(x => x.Children).ToList())
+                .WhereColumns(it => new { it.DictTypeId, it.Code })
+                .SplitInsert(it => !it.Any())
                 .SplitUpdate(it => it.Any())
-                .SplitInsert(_ => true)
                 .ToStorageAsync();
             await storageable2.BulkCopyAsync();
             await storageable2.BulkUpdateAsync();
@@ -74,6 +73,7 @@ public class EnumToDictJob : IJob
     /// <returns></returns>
     private List<SysDictType> GetDictByEnumType(List<EnumTypeOutput> enumTypeList)
     {
+        var orderNo = 1;
         var list = new List<SysDictType>();
         foreach (var type in enumTypeList)
         {
@@ -86,7 +86,7 @@ public class EnumToDictJob : IJob
             };
             dictType.Children = type.EnumEntities.Select(x => new SysDictData
             {
-                Id = dictType.Id + x.Value + OrderOffset,
+                Id = dictType.Id + orderNo++,
                 DictTypeId = dictType.Id,
                 Name = x.Name,
                 Value = x.Describe,
