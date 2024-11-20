@@ -71,6 +71,8 @@ public class SysDictTypeService : IDynamicApiController, ITransient
     [DisplayName("添加字典类型")]
     public async Task AddDictType(AddDictTypeInput input)
     {
+        if (input.Code.ToLower().EndsWith("enum")) throw Oops.Oh(ErrorCodeEnum.D3006);
+        
         var isExist = await _sysDictTypeRep.IsAnyAsync(u => u.Code == input.Code);
         if (isExist) throw Oops.Oh(ErrorCodeEnum.D3001);
 
@@ -87,10 +89,12 @@ public class SysDictTypeService : IDynamicApiController, ITransient
     [DisplayName("更新字典类型")]
     public async Task UpdateDictType(UpdateDictTypeInput input)
     {
-        var isExist = await _sysDictTypeRep.IsAnyAsync(u => u.Id == input.Id);
-        if (!isExist) throw Oops.Oh(ErrorCodeEnum.D3000);
+        var dict = await _sysDictTypeRep.GetFirstAsync(x => x.Id == input.Id);
+        if (dict == null) throw Oops.Oh(ErrorCodeEnum.D3000);
+        
+        if (dict.Code.ToLower().EndsWith("enum") && input.Code != dict.Code) throw Oops.Oh(ErrorCodeEnum.D3007);
 
-        isExist = await _sysDictTypeRep.IsAnyAsync(u => u.Code == input.Code && u.Id != input.Id);
+        var isExist = await _sysDictTypeRep.IsAnyAsync(u => u.Code == input.Code && u.Id != input.Id);
         if (isExist) throw Oops.Oh(ErrorCodeEnum.D3001);
 
         _sysCacheService.Remove($"{CacheConst.KeyDict}{input.Code}");
