@@ -2,6 +2,9 @@ import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
 import { ElMessage } from 'element-plus';
 import { Local, Session } from '/@/utils/storage';
 
+// 定义请求中止控制器映射表
+const abortControllerMap: Map<string, AbortController> = new Map();
+
 // 配置新建一个 axios 实例
 export const service = axios.create({
 	baseURL: window.__env__.VITE_API_URL as any,
@@ -40,6 +43,12 @@ service.interceptors.request.use(
 		// if (Session.get('token')) {
 		// 	(<any>config.headers).common['Authorization'] = `${Session.get('token')}`;
 		// }
+
+		// 记录中止控制信息
+		const controller = new AbortController();
+		config.signal = controller.signal;
+		const url = config.url || '';
+		abortControllerMap.set(url, controller);
 
 		// 获取本地的 token
 		const accessToken = Local.get(accessTokenKey);
@@ -81,6 +90,11 @@ service.interceptors.request.use(
 // 添加响应拦截器
 service.interceptors.response.use(
 	(res) => {
+
+		// 请求结束后清除中止控制项
+		const url = res.config.url || '';
+		abortControllerMap.delete(url);
+
 		// 获取状态码和返回数据
 		var status = res.status;
 		var serve = res.data;
@@ -158,6 +172,23 @@ service.interceptors.response.use(
 		return Promise.reject(error);
 	}
 );
+
+// 取消指定请求
+export const cancelRequest = (url: string | string[]) => {
+	const urlList = Array.isArray(url) ? url : [url];
+	for (const _url of urlList) {
+		abortControllerMap.get(_url)?.abort();
+		abortControllerMap.delete(_url);
+	}
+}
+
+// 取消全部请求
+export const cancelAllRequest = () => {
+	for (const [_, controller] of abortControllerMap) {
+		controller.abort();
+	}
+	abortControllerMap.clear();
+}
 
 /**
  *  参数处理
