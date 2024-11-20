@@ -33,6 +33,13 @@ public class EnumToDictJob : IJob
         
         using var serviceScope = _scopeFactory.CreateScope();
         var db = serviceScope.ServiceProvider.GetRequiredService<ISqlSugarClient>().CopyNew();
+        
+        var sysEnumService = serviceScope.ServiceProvider.GetRequiredService<SysEnumService>();
+        var sysDictTypeList = GetDictByEnumType(sysEnumService.GetEnumTypeList());
+
+        // 校验枚举类命名规范，字典相关功能中需要通过后缀判断是否为枚举类型
+        if (sysDictTypeList.Any(x => !x.Name.EndsWith("Enum"))) throw Oops.Bah("枚举类名称必须以Enum结尾");
+            
         try
         {
             await db.BeginTranAsync();
