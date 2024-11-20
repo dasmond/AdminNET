@@ -55,17 +55,6 @@ public class SysUserMenuService : IDynamicApiController, ITransient
     }
 
     /// <summary>
-    /// 清空当前用户收藏的菜单 🔖
-    /// </summary>
-    /// <returns></returns>
-    [ApiDescriptionSettings(Name = "ClearUserMenu"), HttpPost]
-    [DisplayName("清空当前用户收藏的菜单")]
-    public async Task ClearUserMenu()
-    {
-        await _sysUserMenuRep.DeleteAsync(u => u.UserId == _userManager.UserId);
-    }
-
-    /// <summary>
     /// 获取当前用户收藏的菜单集合 🔖
     /// </summary>
     /// <returns></returns>
@@ -87,5 +76,26 @@ public class SysUserMenuService : IDynamicApiController, ITransient
     {
         return await _sysUserMenuRep.AsQueryable()
             .Where(u => u.UserId == _userManager.UserId).Select(u => u.MenuId).ToListAsync();
+    }
+    
+    /// <summary>
+    /// 删除指定用户的收藏菜单
+    /// </summary>
+    /// <returns></returns>
+    [NonAction]
+    public async Task DeleteUserMenuList(long userId)
+    {
+        await _sysUserMenuRep.DeleteAsync(u => u.UserId == userId);
+    }
+
+    /// <summary>
+    /// 批量删除收藏菜单
+    /// </summary>
+    /// <param name="ids"></param>
+    [NonAction]
+    public async Task DeleteMenuList(List<long> ids)
+    {
+        if (ids == null || ids.Count == 0) return;
+        await _sysUserMenuRep.DeleteAsync(u => ids.Contains(u.MenuId));
     }
 }

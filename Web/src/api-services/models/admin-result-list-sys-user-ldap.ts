@@ -11,40 +11,47 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+import { SysUserLdap } from './sys-user-ldap';
 /**
- * 
+ * 全局返回结果
  * @export
- * @interface SysFileUploadFileBody
+ * @interface AdminResultListSysUserLdap
  */
-export interface SysFileUploadFileBody {
+export interface AdminResultListSysUserLdap {
     /**
-     * 文件
-     * @type {Blob}
-     * @memberof SysFileUploadFileBody
+     * 状态码
+     * @type {number}
+     * @memberof AdminResultListSysUserLdap
      */
-    file: Blob;
+    code?: number;
     /**
-     * 文件路径
+     * 类型success、warning、error
      * @type {string}
-     * @memberof SysFileUploadFileBody
+     * @memberof AdminResultListSysUserLdap
      */
-    path?: string;
+    type?: string | null;
     /**
-     * 文件保存路径
+     * 错误信息
      * @type {string}
-     * @memberof SysFileUploadFileBody
+     * @memberof AdminResultListSysUserLdap
      */
-    savePath?: string;
+    message?: string | null;
     /**
-     * 允许格式：.jpeg.jpg.png.bmp.gif.tif
-     * @type {string}
-     * @memberof SysFileUploadFileBody
+     * 数据
+     * @type {Array<SysUserLdap>}
+     * @memberof AdminResultListSysUserLdap
      */
-    allowSuffix?: string;
+    result?: Array<SysUserLdap> | null;
     /**
-     * 文件类型
-     * @type {string}
-     * @memberof SysFileUploadFileBody
+     * 附加数据
+     * @type {any}
+     * @memberof AdminResultListSysUserLdap
      */
-    fileType?: string;
+    extras?: any | null;
+    /**
+     * 时间
+     * @type {Date}
+     * @memberof AdminResultListSysUserLdap
+     */
+    time?: Date;
 }

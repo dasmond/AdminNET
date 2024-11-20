@@ -15,20 +15,20 @@ namespace Admin.NET.Core.Service;
 public class SysCodeGenService : IDynamicApiController, ITransient
 {
     private readonly ISqlSugarClient _db;
-
+    
     private readonly SysCodeGenConfigService _codeGenConfigService;
-    private readonly IViewEngine _viewEngine;
     private readonly CodeGenOptions _codeGenOptions;
+    private readonly IViewEngine _viewEngine;
 
     public SysCodeGenService(ISqlSugarClient db,
         SysCodeGenConfigService codeGenConfigService,
-        IViewEngine viewEngine,
-        IOptions<CodeGenOptions> codeGenOptions)
+        IOptions<CodeGenOptions> codeGenOptions,
+        IViewEngine viewEngine)
     {
         _db = db;
-        _codeGenConfigService = codeGenConfigService;
         _viewEngine = viewEngine;
         _codeGenOptions = codeGenOptions.Value;
+        _codeGenConfigService = codeGenConfigService;
     }
 
     /// <summary>
@@ -450,228 +450,61 @@ public class SysCodeGenService : IDynamicApiController, ITransient
     /// <returns></returns>
     private async Task AddMenu(string className, string busName, long pid, string menuIcon, string pagePath, List<CodeGenConfig> tableFieldList)
     {
-        var pPath = string.Empty;
-        // 若 pid=0 为顶级则创建菜单目录
+        // 删除已存在的菜单
+        var title = $"{busName}管理";
+        await DeleteMenuTree(title, pid == 0 ? MenuTypeEnum.Dir : MenuTypeEnum.Menu);
+
+        var parentMenuPath = "";
+        var lowerClassName =  className[..1].ToLower() + className[1..];
         if (pid == 0)
         {
-            // 目录
-            var menuType0 = new SysMenu
-            {
-                Pid = 0,
-                Title = busName + "管理",
-                Type = MenuTypeEnum.Dir,
-                Icon = "robot",
-                Path = "/" + className.ToLower(),
-                Component = "Layout",
-            };
-            // 若先前存在则删除本级和下级
-            var menuList0 = await _db.Queryable<SysMenu>().Where(u => u.Title == menuType0.Title && u.Type == menuType0.Type).ToListAsync();
-            if (menuList0.Count > 0)
-            {
-                var listIds = menuList0.Select(u => u.Id).ToList();
-                var childrenIds = new List<long>();
-                foreach (var item in listIds)
-                {
-                    var children = await _db.Queryable<SysMenu>().ToChildListAsync(u => u.Pid, item);
-                    childrenIds.AddRange(children.Select(u => u.Id).ToList());
-                }
-                listIds.AddRange(childrenIds);
-                await _db.Deleteable<SysMenu>().Where(u => listIds.Contains(u.Id)).ExecuteCommandAsync();
-                await _db.Deleteable<SysRoleMenu>().Where(u => listIds.Contains(u.MenuId)).ExecuteCommandAsync();
-            }
-            pid = (await _db.Insertable(menuType0).ExecuteReturnEntityAsync()).Id;
+            // 新增目录，并记录Id
+            var dirMenu = new SysMenu { Pid=0, Title=title, Type=MenuTypeEnum.Dir, Icon="robot", Path="/" + className.ToLower(), Component="Layout" };
+            pid = (await _db.Insertable(dirMenu).ExecuteReturnEntityAsync()).Id;
         }
         else
         {
-            var pMenu = await _db.Queryable<SysMenu>().FirstAsync(u => u.Id == pid) ?? throw Oops.Oh(ErrorCodeEnum.D1505);
-            pPath = pMenu.Path;
+            var parentMenu = await _db.Queryable<SysMenu>().FirstAsync(u => u.Id == pid) ?? throw Oops.Oh(ErrorCodeEnum.D1505);
+            parentMenuPath = parentMenu.Path;
         }
-
-        // 菜单
-        var menuType = new SysMenu
-        {
-            Pid = pid,
-            Title = busName + "管理",
-            Name = className[..1].ToLower() + className[1..],
-            Type = MenuTypeEnum.Menu,
-            Icon = menuIcon,
-            Path = pPath + "/" + className.ToLower(),
-            Component = "/" + pagePath + "/" + className[..1].ToLower() + className[1..] + "/index",
-        };
-        // 若先前存在则删除本级和下级
-        var menuListCurrent = await _db.Queryable<SysMenu>().Where(u => u.Title == menuType.Title && u.Type == menuType.Type).ToListAsync();
-        if (menuListCurrent.Count > 0)
-        {
-            var listIds = menuListCurrent.Select(u => u.Id).ToList();
-            var childListIds = new List<long>();
-            foreach (var item in listIds)
-            {
-                var childList = await _db.Queryable<SysMenu>().ToChildListAsync(u => u.Pid, item);
-                childListIds.AddRange(childList.Select(u => u.Id).ToList());
-            }
-            listIds.AddRange(childListIds);
-            await _db.Deleteable<SysMenu>().Where(u => listIds.Contains(u.Id)).ExecuteCommandAsync();
-            await _db.Deleteable<SysRoleMenu>().Where(u => listIds.Contains(u.MenuId)).ExecuteCommandAsync();
-        }
-
-        var menuPid = (await _db.Insertable(menuType).ExecuteReturnEntityAsync()).Id;
-        int menuOrder = 100;
-        // 按钮-page
-        var menuTypePage = new SysMenu
-        {
-            Pid = menuPid,
-            Title = "查询",
-            Type = MenuTypeEnum.Btn,
-            Permission = className[..1].ToLower() + className[1..] + ":page",
-            OrderNo = menuOrder
-        };
-        menuOrder += 10;
-
-        // 按钮-detail
-        var menuTypeDetail = new SysMenu
-        {
-            Pid = menuPid,
-            Title = "详情",
-            Type = MenuTypeEnum.Btn,
-            Permission = className[..1].ToLower() + className[1..] + ":detail",
-            OrderNo = menuOrder
-        };
-        menuOrder += 10;
-
-        // 按钮-add
-        var menuTypeAdd = new SysMenu
-        {
-            Pid = menuPid,
-            Title = "增加",
-            Type = MenuTypeEnum.Btn,
-            Permission = className[..1].ToLower() + className[1..] + ":add",
-            OrderNo = menuOrder
-        };
-        menuOrder += 10;
-
-        // 按钮-delete
-        var menuTypeDelete = new SysMenu
-        {
-            Pid = menuPid,
-            Title = "删除",
-            Type = MenuTypeEnum.Btn,
-            Permission = className[..1].ToLower() + className[1..] + ":delete",
-            OrderNo = menuOrder
-        };
-        menuOrder += 10;
-
-        // 按钮-update
-        var menuTypeUpdate = new SysMenu
-        {
-            Pid = menuPid,
-            Title = "编辑",
-            Type = MenuTypeEnum.Btn,
-            Permission = className[..1].ToLower() + className[1..] + ":update",
-            OrderNo = menuOrder
-        };
-        menuOrder += 10;
         
-        // 按钮-Status
-        var menuTypeStatus = new SysMenu
+        // 新增菜单，并记录Id
+        var rootMenu = new SysMenu { Pid=pid, Title=title, Type=MenuTypeEnum.Menu, Icon=menuIcon, Path=$"{parentMenuPath}/{className.ToLower()}", Component=$"/{pagePath}/{lowerClassName}/index" };
+        pid = (await _db.Insertable(rootMenu).ExecuteReturnEntityAsync()).Id;
+
+        var orderNo = 100;
+        var menuList = new List<SysMenu>
         {
-            Pid = menuPid,
-            Title = "状态",
-            Type = MenuTypeEnum.Btn,
-            Permission = className[..1].ToLower() + className[1..] + ":setStatus",
-            OrderNo = menuOrder
+            new() { Title="查询", Permission=$"{lowerClassName}:page", Pid=pid, Type=MenuTypeEnum.Btn, OrderNo=orderNo+=10},
+            new() { Title="详情", Permission=$"{lowerClassName}:detail", Pid=pid, Type=MenuTypeEnum.Btn, OrderNo=orderNo+=10},
+            new() { Title="增加", Permission=$"{lowerClassName}:add", Pid=pid, Type=MenuTypeEnum.Btn, OrderNo=orderNo+=10},
+            new() { Title="编辑", Permission=$"{lowerClassName}:update", Pid=pid, Type=MenuTypeEnum.Btn, OrderNo=orderNo+=10},
+            new() { Title="删除", Permission=$"{lowerClassName}:delete", Pid=pid, Type=MenuTypeEnum.Btn, OrderNo=orderNo+=10},
+            new() { Title="批量删除", Permission=$"{lowerClassName}:batchDelete", Pid=pid, Type=MenuTypeEnum.Btn, OrderNo=orderNo+=10},
+            new() { Title="设置状态", Permission=$"{lowerClassName}:setStatus", Pid=pid, Type=MenuTypeEnum.Btn, OrderNo=orderNo+=10},
+            new() { Title="打印", Permission=$"{lowerClassName}:print", Pid=pid, Type=MenuTypeEnum.Btn, OrderNo=orderNo+=10},
+            new() { Title="导入", Permission=$"{lowerClassName}:import", Pid=pid, Type=MenuTypeEnum.Btn, OrderNo=orderNo+=10},
+            new() { Title="导出", Permission=$"{lowerClassName}:export", Pid=pid, Type=MenuTypeEnum.Btn, OrderNo=orderNo+=10}
         };
-        menuOrder += 10;
+
+        if (tableFieldList.Any(u => u.EffectType is "ForeignKey" or "ApiTreeSelector" && (u.WhetherAddUpdate == "Y" || u.WhetherQuery == "Y")))
+            menuList.Add(new SysMenu { Title="下拉列表数据", Permission=$"{lowerClassName}:dropdownData", Pid=pid, Type=MenuTypeEnum.Btn, OrderNo=orderNo+=10});
         
-        // 按钮-batchDelete
-        var menuTypeBatchDelete = new SysMenu
-        {
-            Pid = menuPid,
-            Title = "批量删除",
-            Type = MenuTypeEnum.Btn,
-            Permission = className[..1].ToLower() + className[1..] + ":batchDelete",
-            OrderNo = menuOrder
-        };
-        menuOrder += 10;
-
-        // 按钮-print
-        var menuTypePrint = new SysMenu
-        {
-            Pid = menuPid,
-            Title = "打印",
-            Type = MenuTypeEnum.Btn,
-            Permission = className[..1].ToLower() + className[1..] + ":print",
-            OrderNo = menuOrder
-        };
-        menuOrder += 10;
-
-        // 按钮-import
-        var menuTypeImport = new SysMenu
-        {
-            Pid = menuPid,
-            Title = "导入",
-            Type = MenuTypeEnum.Btn,
-            Permission = className[..1].ToLower() + className[1..] + ":import",
-            OrderNo = menuOrder
-        };
-        menuOrder += 10;
-
-        // 按钮-export
-        var menuTypeExport = new SysMenu
-        {
-            Pid = menuPid,
-            Title = "导出",
-            Type = MenuTypeEnum.Btn,
-            Permission = className[..1].ToLower() + className[1..] + ":export",
-            OrderNo = menuOrder
-        };
-        menuOrder += 10;
-
-        var menuList = new List<SysMenu> { menuTypePage, menuTypeDetail, menuTypeAdd, menuTypeStatus, menuTypeDelete, menuTypeBatchDelete, menuTypeUpdate, menuTypePrint, menuTypeImport, menuTypeExport };
-        // 加入ForeignKey、Upload、ApiTreeSelector 等接口的权限
-        // 在生成表格时，有些字段只是查询时显示，不需要填写（WhetherAddUpdate），所以这些字段没必要生成相应接口
-        var fkTableList = tableFieldList.Where(u => u.EffectType == "ForeignKey" && (u.WhetherAddUpdate == "Y" || u.WhetherQuery == "Y")).ToList();
-        foreach (var @column in fkTableList)
-        {
-            var menuType1 = new SysMenu
-            {
-                Pid = menuPid,
-                Title = "外键" + @column.ColumnName,
-                Type = MenuTypeEnum.Btn,
-                Permission = className[..1].ToLower() + className[1..] + ":" + column.FkEntityName + column.ColumnName + "Dropdown",
-                OrderNo = menuOrder
-            };
-            menuOrder += 10;
-            menuList.Add(menuType1);
-        }
-        var treeSelectTableList = tableFieldList.Where(u => u.EffectType == "ApiTreeSelector").ToList();
-        foreach (var @column in treeSelectTableList)
-        {
-            var menuType1 = new SysMenu
-            {
-                Pid = menuPid,
-                Title = "树型" + @column.ColumnName,
-                Type = MenuTypeEnum.Btn,
-                Permission = className[..1].ToLower() + className[1..] + ":" + column.FkEntityName + "Tree",
-                OrderNo = menuOrder
-            };
-            menuOrder += 10;
-            menuList.Add(menuType1);
-        }
-        var uploadTableList = tableFieldList.Where(u => u.EffectType == "Upload").ToList();
-        foreach (var @column in uploadTableList)
-        {
-            var menuType1 = new SysMenu
-            {
-                Pid = menuPid,
-                Title = "上传" + @column.ColumnName,
-                Type = MenuTypeEnum.Btn,
-                Permission = className[..1].ToLower() + className[1..] + ":Upload" + column.ColumnName,
-                OrderNo = menuOrder
-            };
-            menuOrder += 10;
-            menuList.Add(menuType1);
-        }
+        foreach (var column in tableFieldList.Where(u => u.EffectType == "Upload"))
+            menuList.Add(new SysMenu { Title=$"上传{column.ColumnComment}", Permission=$"{lowerClassName}:upload{column.PropertyName}", Pid=pid, Type=MenuTypeEnum.Btn, OrderNo=orderNo+=10});
+        
         await _db.Insertable(menuList).ExecuteCommandAsync();
+    }
+
+    /// <summary>
+    /// 根据菜单名称和类型删除关联的菜单树
+    /// </summary>
+    /// <param name="title"></param>
+    /// <param name="type"></param>
+    private async Task DeleteMenuTree(string title, MenuTypeEnum type)
+    {
+        var menuList = await _db.Queryable<SysMenu>().Where(u => u.Title == title && u.Type == type).ToListAsync() ?? new();
+        foreach (var menu in menuList) await App.GetService<SysMenuService>().DeleteMenu(new DeleteMenuInput { Id = menu.Id });
     }
 
     /// <summary>
@@ -712,7 +545,7 @@ public class SysCodeGenService : IDynamicApiController, ITransient
         if (input.GenerateType!.Substring(1, 1).Contains('1'))
         {
             // 生成到本项目(前端)
-            return new List<string>()
+            return new List<string>
             {
                 indexPath,
                 formModalPath,
@@ -723,7 +556,7 @@ public class SysCodeGenService : IDynamicApiController, ITransient
         if (input.GenerateType.Substring(1, 1).Contains('2'))
         {
             // 生成到本项目(后端)
-            return new List<string>()
+            return new List<string>
             {
                 servicePath,
                 inputPath,
@@ -732,7 +565,7 @@ public class SysCodeGenService : IDynamicApiController, ITransient
             };
         }
         // 前后端同时生成到本项目
-        return new List<string>()
+        return new List<string>
         {
             servicePath,
             inputPath,
@@ -765,7 +598,7 @@ public class SysCodeGenService : IDynamicApiController, ITransient
         var apiJsPath = Path.Combine(zipPath, _codeGenOptions.FrontRootPath, "src", "api", input.PagePath, input.TableName[..1].ToLower() + input.TableName[1..] + ".ts");
         if (input.GenerateType!.StartsWith("11"))
         {
-            return new List<string>()
+            return new List<string>
             {
                 indexPath,
                 formModalPath,
@@ -775,7 +608,7 @@ public class SysCodeGenService : IDynamicApiController, ITransient
 
         if (input.GenerateType.StartsWith("12"))
         {
-            return new List<string>()
+            return new List<string>
             {
                 servicePath,
                 inputPath,
@@ -784,7 +617,7 @@ public class SysCodeGenService : IDynamicApiController, ITransient
             };
         }
 
-        return new List<string>()
+        return new List<string>
         {
             servicePath,
             inputPath,
