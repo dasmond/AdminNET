@@ -75,6 +75,12 @@ export default function () {
 	const getEnumDesc = (key: any, lstEnum: any) => {
 		return lstEnum.find((x: any) => x.value == key)?.describe;
 	};
+	// 追加query参数到url
+	const appendQueryParams = (url: string, params: { [key : string]: any }) => {
+		if (!params || Object.keys(params).length == 0) return url;
+		const queryString = Object.keys(params).map(key => `${encodeURIComponent(key)}=${encodeURIComponent(params[key])}`).join('&');
+		return `${url}${url.includes('?') ? '&' : '?'}${queryString}`;
+	};
 	return {
 		percentFormat,
 		dateFormatYMD,
@@ -87,5 +93,6 @@ export default function () {
 		removeHtmlSub,
 		removeHtml,
 		getEnumDesc,
+		appendQueryParams
 	};
 }

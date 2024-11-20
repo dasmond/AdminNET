@@ -39,7 +39,7 @@
 <script lang="ts" setup name="sysImportData">
 import type {UploadInstance, UploadProps, UploadRawFile, UploadRequestOptions} from 'element-plus'
 import { ElUpload, ElMessage, genFileId } from 'element-plus';
-import { downloadStreamFile } from '/@/utils/downloadFile';
+import { downloadStreamFile } from '/@/utils/download';
 import { reactive, ref } from 'vue';
 
 const uploadRef = ref<UploadInstance>();
