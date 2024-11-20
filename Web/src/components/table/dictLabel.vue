@@ -24,7 +24,7 @@ const props = defineProps({
 });
 
 const state = reactive({
-	label: '' as string,
+	label: props.defaultValue as string,
 	tagType: "primary" as "success" | "warning" | "info" | "primary" | "danger"
 });
 
@@ -42,10 +42,6 @@ const setDictValue = (value: any) => {
   if (dict) {
     state.label = dict[props.propLabel] || props.defaultValue;
     state.tagType = dict.tagType ?? "primary";
-  }
-  else {
-	state.label = props.defaultValue;
-    state.tagType = "info";
   }
 }
 </script>

@@ -169,7 +169,7 @@ const openCopyDialog = (row: any) => {
 	copyRow.id = 0;
 	copyRow.busName = '';
 	copyRow.tableName = '';
-  copyRow.tableUniqueConfig = undefined;
+  copyRow.tableUniqueList = undefined;
 	EditCodeGenRef.value?.openDialog(copyRow);
 };
 

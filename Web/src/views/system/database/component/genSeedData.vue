@@ -1,6 +1,6 @@
 <template>
 	<div class="sys-dbEntity-container">
-		<el-dialog v-model="state.isShowDialog" draggable :close-on-click-modal="false" width="700px">
+		<el-dialog v-model="state.isShowDialog" draggable :close-on-click-modal="false" width="700px" v-loading="state.loading">
 			<template #header>
 				<div style="color: #fff">
 					<el-icon size="16" style="margin-right: 3px; display: inline; vertical-align: middle"> <ele-Cpu /> </el-icon>
@@ -36,8 +36,8 @@
 			</el-form>
 			<template #footer>
 				<span class="dialog-footer">
-					<el-button @click="cancel">取 消</el-button>
-					<el-button type="primary" v-reclick="3000" @click="submit">确 定</el-button>
+					<el-button @click="cancel" :disabled="state.loading">取 消</el-button>
+					<el-button type="primary" v-reclick="3000" @click="submit" :disabled="state.loading">确 定</el-button>
 				</span>
 			</template>
 		</el-dialog>
@@ -46,7 +46,7 @@
 
 <script lang="ts" setup name="sysGenEntity">
 import { reactive, ref } from 'vue';
-
+import { ElMessage } from "element-plus";
 import { getAPI } from '/@/utils/axios-utils';
 import { SysDatabaseApi } from '/@/api-services/api';
 
@@ -58,6 +58,7 @@ const props = defineProps({
 
 const ruleFormRef = ref();
 const state = reactive({
+  loading: false,
 	isShowDialog: false,
 	ruleForm: {} as any,
 	rules: { position: [{ required: true, message: '请选择存放位置', trigger: 'blur' }] },
@@ -87,8 +88,13 @@ const cancel = () => {
 const submit = () => {
 	ruleFormRef.value.validate(async (valid: boolean) => {
 		if (!valid) return;
-		await getAPI(SysDatabaseApi).apiSysDatabaseCreateSeedDataPost(state.ruleForm);
-		closeDialog();
+    state.loading = true;
+		try {
+      await getAPI(SysDatabaseApi).apiSysDatabaseCreateSeedDataPost(state.ruleForm);
+      closeDialog();
+      ElMessage.success('生成成功');
+    } catch (e) { /* empty */ }
+    state.loading = false;
 	});
 };
 
