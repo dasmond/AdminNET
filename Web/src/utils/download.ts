@@ -101,6 +101,7 @@ export function openWindow(url: string, opt?: { target?: string; noopener?: bool
 export function getFileName(headers: RawAxiosResponseHeaders | AxiosResponseHeaders) {
 	var fileName = headers['content-disposition'].split(';')[1].split('filename=')[1];
 	var fileNameUnicode = headers['content-disposition'].split('filename*=')[1];
+	if (fileName?.includes("%")) fileName = decodeURIComponent(fileName);
 	if (fileNameUnicode) {
 		//当存在 filename* 时，取filename* 并进行解码（为了解决中文乱码问题）
 		fileName = decodeURIComponent(fileNameUnicode.split("''")[1]);
@@ -115,7 +116,7 @@ export function getFileName(headers: RawAxiosResponseHeaders | AxiosResponseHead
  */
 export function downloadStreamFile(res: any, fileName: string | undefined = undefined) {
 	const contentType = res.headers['content-type'];
-	fileName = fileName || getFileName(res.headers['content-disposition']);
+	fileName = fileName || getFileName(res.headers);
 	const blob = res.data instanceof Blob ? res.data : new Blob([res.data], { type: contentType });
 	downloadByUrl({ url: window.URL.createObjectURL(blob), fileName });
 }
