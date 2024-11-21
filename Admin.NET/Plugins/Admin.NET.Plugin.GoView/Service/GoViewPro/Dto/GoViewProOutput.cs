@@ -24,7 +24,7 @@ public class GoViewProItemOutput
     /// <summary>
     /// 项目状态
     /// </summary>
-    public GoViewProState State { get; set; }
+    public GoViewProStateEnum StateEnum { get; set; }
 
     /// <summary>
     /// 创建时间
