@@ -33,6 +33,17 @@ public static class SqlSugarFilter
     }
 
     /// <summary>
+    /// 删除自定义过滤器缓存
+    /// </summary>
+    /// <param name="userId"></param>
+    /// <param name="dbConfigId"></param>
+    public static void DeleteCustomCache(long userId, string dbConfigId)
+    {
+        // 删除自定义缓存——过滤器
+        _cache.Remove($"db:{dbConfigId}:custom:{userId}");
+    }
+
+    /// <summary>
     /// 配置用户机构集合过滤器
     /// </summary>
     public static void SetOrgEntityFilter(SqlSugarScopeProvider db)

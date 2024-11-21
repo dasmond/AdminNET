@@ -30,6 +30,12 @@ public static class SqlSugarSetup
         {
             return YitIdHelper.NextId();
         };
+        // 动态表达式 SqlFunc 支持，https://www.donet5.com/Home/Doc?typeId=2569
+        StaticConfig.DynamicExpressionParserType = typeof(DynamicExpressionParser);
+        StaticConfig.DynamicExpressionParsingConfig = new ParsingConfig
+        {
+            CustomTypeProvider = new SqlSugarTypeProvider()
+        };
 
         var dbOptions = App.GetConfig<DbConnectionOptions>("DbConnection", true);
         dbOptions.ConnectionConfigs.ForEach(SetDbConfig);
