@@ -59,12 +59,12 @@ public class SysDictDataSeedData : ISqlSugarEntitySeedData<SysDictData>
             new SysDictData{ Id=1300000000405, DictTypeId=1300000000104, Value="生成到本项目(前端)", Code="211", OrderNo=5, Remark="生成到本项目(前端)", Status=StatusEnum.Enable, CreateTime=DateTime.Parse("2022-02-10 00:00:00") },
             new SysDictData{ Id=1300000000406, DictTypeId=1300000000104, Value="生成到本项目(后端)", Code="221", OrderNo=6, Remark="生成到本项目(后端)", Status=StatusEnum.Enable, CreateTime=DateTime.Parse("2022-02-10 00:00:00") },
 
-            new SysDictData{ Id=1300000000501, DictTypeId=1300000000105, Value="EntityBaseId【基础实体Id】", Code="EntityBaseId", OrderNo=1, Remark="【基础实体Id】", Status=StatusEnum.Disable, CreateTime=DateTime.Parse("2022-02-10 00:00:00") },
-            new SysDictData{ Id=1300000000502, DictTypeId=1300000000105, Value="EntityBase【基础实体】", Code="EntityBase", OrderNo=1, Remark="【基础实体】", Status=StatusEnum.Disable, CreateTime=DateTime.Parse("2022-02-10 00:00:00") },
-            new SysDictData{ Id=1300000000503, DictTypeId=1300000000105, Value="EntityTenantId【租户实体Id】", Code="EntityTenantId", OrderNo=1, Remark="【租户实体Id】", Status=StatusEnum.Disable, CreateTime=DateTime.Parse("2022-02-10 00:00:00") },
-            new SysDictData{ Id=1300000000504, DictTypeId=1300000000105, Value="EntityTenant【租户实体】", Code="EntityTenant", OrderNo=1, Remark="【租户实体】", Status=StatusEnum.Disable, CreateTime=DateTime.Parse("2022-02-10 00:00:00") },
-            new SysDictData{ Id=1300000000505, DictTypeId=1300000000105, Value="EntityBaseData【业务实体】", Code="EntityBaseData", OrderNo=1, Remark="【业务实体】", Status=StatusEnum.Disable, CreateTime=DateTime.Parse("2022-02-10 00:00:00") },
-            new SysDictData{ Id=1300000000506, DictTypeId=1300000000105, Value="EntityTenantBaseData【租户业务实体】", Code="EntityTenantBaseData", OrderNo=1, Remark="【租户业务实体】", Status=StatusEnum.Disable, CreateTime=DateTime.Parse("2022-02-10 00:00:00") },
+            new SysDictData{ Id=1300000000501, DictTypeId=1300000000105, Value="EntityBaseId【基础实体Id】", Code="EntityBaseId", OrderNo=1, Remark="【基础实体Id】", Status=StatusEnum.Enable, CreateTime=DateTime.Parse("2022-02-10 00:00:00") },
+            new SysDictData{ Id=1300000000502, DictTypeId=1300000000105, Value="EntityBase【基础实体】", Code="EntityBase", OrderNo=1, Remark="【基础实体】", Status=StatusEnum.Enable, CreateTime=DateTime.Parse("2022-02-10 00:00:00") },
+            new SysDictData{ Id=1300000000503, DictTypeId=1300000000105, Value="EntityTenantId【租户实体Id】", Code="EntityTenantId", OrderNo=1, Remark="【租户实体Id】", Status=StatusEnum.Enable, CreateTime=DateTime.Parse("2022-02-10 00:00:00") },
+            new SysDictData{ Id=1300000000504, DictTypeId=1300000000105, Value="EntityTenant【租户实体】", Code="EntityTenant", OrderNo=1, Remark="【租户实体】", Status=StatusEnum.Enable, CreateTime=DateTime.Parse("2022-02-10 00:00:00") },
+            new SysDictData{ Id=1300000000505, DictTypeId=1300000000105, Value="EntityBaseData【业务实体】", Code="EntityBaseData", OrderNo=1, Remark="【业务实体】", Status=StatusEnum.Enable, CreateTime=DateTime.Parse("2022-02-10 00:00:00") },
+            new SysDictData{ Id=1300000000506, DictTypeId=1300000000105, Value="EntityTenantBaseData【租户业务实体】", Code="EntityTenantBaseData", OrderNo=1, Remark="【租户业务实体】", Status=StatusEnum.Enable, CreateTime=DateTime.Parse("2022-02-10 00:00:00") },
 
             new SysDictData{ Id=1300000000601, DictTypeId=1300000000106, Value="不需要", Code="off", OrderNo=100, Remark="不需要打印支持", Status=StatusEnum.Enable, CreateTime=DateTime.Parse("2023-12-04 00:00:00") },
             new SysDictData{ Id=1300000000602, DictTypeId=1300000000106, Value="绑定打印模版", Code="custom", OrderNo=101, Remark="绑定打印模版", Status=StatusEnum.Enable, CreateTime=DateTime.Parse("2023-12-04 00:00:00") },

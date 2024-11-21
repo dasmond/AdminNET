@@ -356,10 +356,7 @@ public static class SqlSugarSetup
         }
 
         // 初始化种子数据
-        if (config.SeedSettings.EnableInitSeed)
-        {
-            
-        }
+        if (config.SeedSettings.EnableInitSeed) InitSeedData(db, config);
     }
 
     /// <summary>
