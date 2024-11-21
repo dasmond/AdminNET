@@ -71,6 +71,11 @@ public sealed class DbSettings
     /// 启用驼峰转下划线
     /// </summary>
     public bool EnableUnderLine { get; set; }
+
+    /// <summary>
+    /// 启用数据库连接串加密策略
+    /// </summary>
+    public bool EnableConnStringEncrypt { get; set; }
 }
 
 /// <summary>
