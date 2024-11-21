@@ -62,6 +62,9 @@ public static class SqlSugarSetup
     /// <param name="config"></param>
     public static void SetDbConfig(DbConnectionConfig config)
     {
+        if (config.DbSettings.EnableConnStringEncrypt)
+            config.ConnectionString = CryptogramUtil.Decrypt(config.ConnectionString);
+
         var configureExternalServices = new ConfigureExternalServices
         {
             EntityNameService = (type, entity) => // 处理表
