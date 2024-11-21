@@ -78,8 +78,7 @@ public class SysCommonService : IDynamicApiController, ITransient
         var userId = App.User?.FindFirst(ClaimConst.UserId)?.Value;
         var resultStream = App.GetRequiredService<SysCacheService>().Get<MemoryStream>(CacheConst.KeyExcelTemp + userId);
 
-        if (resultStream == null)
-            throw Oops.Oh("错误标记文件已过期。");
+        if (resultStream == null) throw Oops.Oh("错误标记文件已过期。");
 
         return await Task.FromResult(new FileStreamResult(resultStream, "application/octet-stream")
         {

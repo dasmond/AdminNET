@@ -22,13 +22,13 @@ public class SysUserLdapService : ITransient
     /// 批量插入域账号
     /// </summary>
     /// <param name="tenantId"></param>
-    /// <param name="sysUserLdaps"></param>
+    /// <param name="sysUserLdapList"></param>
     /// <returns></returns>
-    public async Task InsertUserLdaps(long tenantId, List<SysUserLdap> sysUserLdaps)
+    public async Task InsertUserLdapList(long tenantId, List<SysUserLdap> sysUserLdapList)
     {
         await _sysUserLdapRep.DeleteAsync(u => u.TenantId == tenantId);
 
-        await _sysUserLdapRep.InsertRangeAsync(sysUserLdaps);
+        await _sysUserLdapRep.InsertRangeAsync(sysUserLdapList);
 
         await _sysUserLdapRep.AsUpdateable()
             .InnerJoin<SysUser>((l, u) => l.EmployeeId == u.Account)
@@ -48,8 +48,7 @@ public class SysUserLdapService : ITransient
     public async Task AddUserLdap(long tenantId, long userId, string account, string domainAccount)
     {
         var userLdap = await _sysUserLdapRep.GetFirstAsync(u => u.TenantId == tenantId && u.IsDelete == false && (u.Account == account || u.UserId == userId || u.EmployeeId == domainAccount));
-        if (userLdap != null)
-            await _sysUserLdapRep.DeleteByIdAsync(userLdap.Id);
+        if (userLdap != null) await _sysUserLdapRep.DeleteByIdAsync(userLdap.Id);
 
         if (!string.IsNullOrWhiteSpace(domainAccount))
             await _sysUserLdapRep.InsertAsync(new SysUserLdap { EmployeeId = account, TenantId = tenantId, UserId = userId, Account = domainAccount });

@@ -30,7 +30,7 @@ public static class ComputerUtil
         memoryMetrics.FreeRam = Math.Round(memoryMetrics.Free / 1024, 2) + "GB";
         memoryMetrics.UsedRam = Math.Round(memoryMetrics.Used / 1024, 2) + "GB";
         memoryMetrics.TotalRam = Math.Round(memoryMetrics.Total / 1024, 2) + "GB";
-        memoryMetrics.RamRate = Math.Ceiling(100 * memoryMetrics.Used / memoryMetrics.Total).ToString() + "%";
+        memoryMetrics.RamRate = Math.Ceiling(100 * memoryMetrics.Used / memoryMetrics.Total) + "%";
         memoryMetrics.CpuRate = Math.Ceiling(GetCPURate().ParseToDouble()) + "%";
         return memoryMetrics;
     }
@@ -41,25 +41,25 @@ public static class ComputerUtil
     /// <returns></returns>
     public static String GetOSInfo()
     {
-        string opeartion = string.Empty;
+        string operation = string.Empty;
         if (IsMacOS())
         {
             var output = ShellUtil.Bash("sw_vers | awk 'NR<=2{printf \"%s \", $NF}'");
             if (output != null)
             {
-                opeartion = output.Replace("%", string.Empty);
+                operation = output.Replace("%", string.Empty);
             }
         }
         else if (IsUnix())
         {
             var output = ShellUtil.Bash("awk -F= '/^VERSION_ID/ {print $2}' /etc/os-release | tr -d '\"'");
-            opeartion = output ?? string.Empty;
+            operation = output ?? string.Empty;
         }
         else
         {
-            opeartion = RuntimeInformation.OSDescription;
+            operation = RuntimeInformation.OSDescription;
         }
-        return opeartion;
+        return operation;
     }
 
     /// <summary>
@@ -77,8 +77,7 @@ public static class ComputerUtil
             foreach (var item in disks)
             {
                 var disk = item.Split(' ', (char)StringSplitOptions.RemoveEmptyEntries);
-                if (disk == null || disk.Length < 5)
-                    continue;
+                if (disk.Length < 5) continue;
 
                 var diskInfo = new DiskInfo()
                 {
@@ -105,8 +104,7 @@ public static class ComputerUtil
             foreach (var item in disks)
             {
                 var disk = item.Split(' ', (char)StringSplitOptions.RemoveEmptyEntries);
-                if (disk == null || disk.Length < 6)
-                    continue;
+                if (disk.Length < 6) continue;
 
                 var diskInfo = new DiskInfo()
                 {
@@ -122,8 +120,8 @@ public static class ComputerUtil
         }
         else
         {
-            var driv = DriveInfo.GetDrives().Where(u => u.IsReady);
-            foreach (var item in driv)
+            var driveList = DriveInfo.GetDrives().Where(u => u.IsReady);
+            foreach (var item in driveList)
             {
                 if (item.DriveType == DriveType.CDRom) continue;
                 var obj = new DiskInfo()

@@ -1,5 +1,6 @@
 <template>
-	<el-Tag :type="state.tagType">{{ state.label }}</el-Tag>
+	<el-Tag v-if="state.dict" :type="state.dict.tagType ?? 'primary'">{{ state.dict[props.propLabel] ?? props.defaultValue }}</el-Tag>
+  <span v-else>{{ props.value }}</span>
 </template>
 
 <script lang="ts" setup>
@@ -23,9 +24,16 @@ const props = defineProps({
 	},
 });
 
+const tagTypeMap = {
+  "success": 1,
+  "warning": 1,
+  "info": 1,
+  "primary": 1,
+  "danger": 1
+} as any;
+
 const state = reactive({
-	label: props.defaultValue as string,
-	tagType: "primary" as "success" | "warning" | "info" | "primary" | "danger"
+  dict: null as any,
 });
 
 onMounted(() => {
@@ -38,10 +46,7 @@ watch(
 );
 
 const setDictValue = (value: any) => {
-  const dict = useUserInfo().dictList[props.code]?.find((x: any) => x[props.propValue] == value);
-  if (dict) {
-    state.label = dict[props.propLabel] || props.defaultValue;
-    state.tagType = dict.tagType ?? "primary";
-  }
+  state.dict = useUserInfo().dictList[props.code]?.find((x: any) => x[props.propValue] == value);
+  if (state.dict != null && !tagTypeMap[state.dict.tagType]) state.dict.tagType = "primary";
 }
 </script>

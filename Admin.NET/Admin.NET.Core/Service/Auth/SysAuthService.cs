@@ -17,36 +17,30 @@ public class SysAuthService : IDynamicApiController, ITransient
 {
     private readonly UserManager _userManager;
     private readonly SqlSugarRepository<SysUser> _sysUserRep;
-    private readonly SqlSugarRepository<SysUserLdap> _sysUserLdap;
     private readonly IHttpContextAccessor _httpContextAccessor;
     private readonly SysMenuService _sysMenuService;
     private readonly SysOnlineUserService _sysOnlineUserService;
     private readonly SysConfigService _sysConfigService;
     private readonly ICaptcha _captcha;
     private readonly SysCacheService _sysCacheService;
-    private readonly SysLdapService _sysLdapService;
 
     public SysAuthService(UserManager userManager,
         SqlSugarRepository<SysUser> sysUserRep,
-        SqlSugarRepository<SysUserLdap> sysUserLdapRep,
         IHttpContextAccessor httpContextAccessor,
         SysMenuService sysMenuService,
         SysOnlineUserService sysOnlineUserService,
         SysConfigService sysConfigService,
         ICaptcha captcha,
-        SysCacheService sysCacheService,
-        SysLdapService sysLdapService)
+        SysCacheService sysCacheService)
     {
         _userManager = userManager;
         _sysUserRep = sysUserRep;
-        _sysUserLdap = sysUserLdapRep;
         _httpContextAccessor = httpContextAccessor;
         _sysMenuService = sysMenuService;
         _sysOnlineUserService = sysOnlineUserService;
         _sysConfigService = sysConfigService;
         _captcha = captcha;
         _sysCacheService = sysCacheService;
-        _sysLdapService = sysLdapService;
     }
 
     /// <summary>
@@ -67,17 +61,14 @@ public class SysAuthService : IDynamicApiController, ITransient
         var passwordErrorTimes = _sysCacheService.Get<int>(keyPasswordErrorTimes);
         var passwordMaxErrorTimes = await _sysConfigService.GetConfigValue<int>(ConfigConst.SysPasswordMaxErrorTimes);
         // 若未配置或误配置为0、负数, 则默认密码错误次数最大为10次
-        if (passwordMaxErrorTimes < 1)
-            passwordMaxErrorTimes = 10;
-        if (passwordErrorTimes > passwordMaxErrorTimes)
-            throw Oops.Oh(ErrorCodeEnum.D1027);
+        if (passwordMaxErrorTimes < 1) passwordMaxErrorTimes = 10;
+        if (passwordErrorTimes > passwordMaxErrorTimes) throw Oops.Oh(ErrorCodeEnum.D1027);
 
         // 是否开启验证码
         if (await _sysConfigService.GetConfigValue<bool>(ConfigConst.SysCaptcha))
         {
             // 判断验证码
-            if (!_captcha.Validate(input.CodeId.ToString(), input.Code))
-                throw Oops.Oh(ErrorCodeEnum.D0008);
+            if (!_captcha.Validate(input.CodeId.ToString(), input.Code)) throw Oops.Oh(ErrorCodeEnum.D0008);
         }
 
         // 账号是否存在
@@ -85,13 +76,11 @@ public class SysAuthService : IDynamicApiController, ITransient
         _ = user ?? throw Oops.Oh(ErrorCodeEnum.D0009);
 
         // 账号是否被冻结
-        if (user.Status == StatusEnum.Disable)
-            throw Oops.Oh(ErrorCodeEnum.D1017);
+        if (user.Status == StatusEnum.Disable) throw Oops.Oh(ErrorCodeEnum.D1017);
 
         // 租户是否被禁用
         var tenant = await _sysUserRep.ChangeRepository<SqlSugarRepository<SysTenant>>().GetFirstAsync(u => u.Id == user.TenantId);
-        if (tenant != null && tenant.Status == StatusEnum.Disable)
-            throw Oops.Oh(ErrorCodeEnum.Z1003);
+        if (tenant?.Status == StatusEnum.Disable) throw Oops.Oh(ErrorCodeEnum.Z1003);
 
         // 是否开启域登录验证
         if (await _sysConfigService.GetConfigValue<bool>(ConfigConst.SysDomainLogin))
@@ -127,23 +116,18 @@ public class SysAuthService : IDynamicApiController, ITransient
     {
         if (CryptogramUtil.CryptoType == CryptogramEnum.MD5.ToString())
         {
-            if (!user.Password.Equals(MD5Encryption.Encrypt(password)))
-            {
-                _sysCacheService.Set(keyPasswordErrorTimes, ++passwordErrorTimes, TimeSpan.FromMinutes(30));
-                throw Oops.Oh(ErrorCodeEnum.D1000);
-            }
+            if (user.Password.Equals(MD5Encryption.Encrypt(password))) return;
+            
+            _sysCacheService.Set(keyPasswordErrorTimes, ++passwordErrorTimes, TimeSpan.FromMinutes(30));
+            throw Oops.Oh(ErrorCodeEnum.D1000);
         }
-        else
-        {
-            // 国密SM2解密（前端密码传输SM2加密后的）
-            password = CryptogramUtil.SM2Decrypt(password);
 
-            if (!CryptogramUtil.Decrypt(user.Password).Equals(password))
-            {
-                _sysCacheService.Set(keyPasswordErrorTimes, ++passwordErrorTimes, TimeSpan.FromMinutes(30));
-                throw Oops.Oh(ErrorCodeEnum.D1000);
-            }
-        }
+        // 国密SM2解密（前端密码传输SM2加密后的）
+        password = CryptogramUtil.SM2Decrypt(password);
+        if (CryptogramUtil.Decrypt(user.Password).Equals(password)) return;
+
+        _sysCacheService.Set(keyPasswordErrorTimes, ++passwordErrorTimes, TimeSpan.FromMinutes(30));
+        throw Oops.Oh(ErrorCodeEnum.D1000);
     }
 
     /// <summary>

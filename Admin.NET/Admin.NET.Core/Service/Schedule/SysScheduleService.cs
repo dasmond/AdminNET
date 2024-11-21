@@ -16,10 +16,10 @@ public class SysScheduleService : IDynamicApiController, ITransient
     private readonly SqlSugarRepository<SysSchedule> _sysSchedule;
 
     public SysScheduleService(UserManager userManager,
-        SqlSugarRepository<SysSchedule> sysSchedle)
+        SqlSugarRepository<SysSchedule> sysSchedule)
     {
         _userManager = userManager;
-        _sysSchedule = sysSchedle;
+        _sysSchedule = sysSchedule;
     }
 
     /// <summary>
@@ -93,8 +93,7 @@ public class SysScheduleService : IDynamicApiController, ITransient
     [DisplayName("设置日程状态")]
     public async Task<int> SetStatus(ScheduleInput input)
     {
-        if (!Enum.IsDefined(typeof(FinishStatusEnum), input.Status))
-            throw Oops.Oh(ErrorCodeEnum.D3005);
+        if (!Enum.IsDefined(typeof(FinishStatusEnum), input.Status)) throw Oops.Oh(ErrorCodeEnum.D3005);
 
         return await _sysSchedule.AsUpdateable()
             .SetColumns(u => u.Status == input.Status)

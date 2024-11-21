@@ -93,14 +93,11 @@ public class SysFileService : IDynamicApiController, ITransient
     /// <param name="files"></param>
     /// <returns></returns>
     [DisplayName("上传多文件")]
-    public async Task<List<SysFile>> UploadFiles([Required] List<IFormFile> files)
+    public List<SysFile> UploadFiles([Required] List<IFormFile> files)
     {
-        var filelist = new List<SysFile>();
-        foreach (var file in files)
-        {
-            filelist.Add(await UploadFile(new UploadFileInput { File = file }));
-        }
-        return filelist;
+        var fileList = new List<SysFile>();
+        files.ForEach(file => fileList.Add(UploadFile(new UploadFileInput { File = file }).Result));
+        return fileList;
     }
 
     /// <summary>
@@ -113,26 +110,7 @@ public class SysFileService : IDynamicApiController, ITransient
     {
         var file = input.Id > 0 ? await GetFile(input.Id) : await _sysFileRep.CopyNew().GetFirstAsync(u => u.Url == input.Url);
         var fileName = HttpUtility.UrlEncode(file.FileName, Encoding.GetEncoding("UTF-8"));
-        var filePath = Path.Combine(file.FilePath, file.Id.ToString() + file.Suffix);
-
-        if (_OSSProviderOptions.Enabled)
-        {
-            var stream = await (await _OSSService.PresignedGetObjectAsync(file.BucketName.ToString(), filePath, 5)).GetAsStreamAsync();
-            return new FileStreamResult(stream.Stream, "application/octet-stream") { FileDownloadName = fileName + file.Suffix };
-        }
-        else if (App.Configuration["SSHProvider:Enabled"].ToBoolean())
-        {
-            using (SSHHelper helper = new SSHHelper(App.Configuration["SSHProvider:Host"],
-               App.Configuration["SSHProvider:Port"].ToInt(), App.Configuration["SSHProvider:Username"], App.Configuration["SSHProvider:Password"]))
-            {
-                return new FileStreamResult(helper.OpenRead(filePath), "application/octet-stream") { FileDownloadName = fileName + file.Suffix };
-            }
-        }
-        else
-        {
-            var path = Path.Combine(App.WebHostEnvironment.WebRootPath, filePath);
-            return new FileStreamResult(new FileStream(path, FileMode.Open), "application/octet-stream") { FileDownloadName = fileName + file.Suffix };
-        }
+        return await GetFileStreamResult(file, fileName);
     }
 
     /// <summary>
@@ -144,27 +122,34 @@ public class SysFileService : IDynamicApiController, ITransient
     public async Task<IActionResult> GetPreview([FromRoute] long id)
     {
         var file = await GetFile(id);
-        //var fileName = HttpUtility.UrlEncode(file.FileName, Encoding.GetEncoding("UTF-8"));
-        var filePath = Path.Combine(file.FilePath, file.Id.ToString() + file.Suffix);
+        return await GetFileStreamResult(file, file.Id + "");
+    }
 
+    /// <summary>
+    /// 获取文件流
+    /// </summary>
+    /// <param name="file"></param>
+    /// <param name="fileName"></param>
+    /// <returns></returns>
+    [NonAction]
+    public async Task<IActionResult> GetFileStreamResult(SysFile file, string fileName)
+    {
+        var filePath = Path.Combine(file.FilePath ?? "", file.Id + file.Suffix);
         if (_OSSProviderOptions.Enabled)
         {
-            var stream = await (await _OSSService.PresignedGetObjectAsync(file.BucketName.ToString(), filePath, 5)).GetAsStreamAsync();
-            return new FileStreamResult(stream.Stream, "application/octet-stream");
+            var stream = await (await _OSSService.PresignedGetObjectAsync(file.BucketName, filePath, 5)).GetAsStreamAsync();
+            return new FileStreamResult(stream.Stream, "application/octet-stream") { FileDownloadName = fileName + file.Suffix };
         }
-        else if (App.Configuration["SSHProvider:Enabled"].ToBoolean())
+
+        if (App.Configuration["SSHProvider:Enabled"].ToBoolean())
         {
-            using (SSHHelper helper = new SSHHelper(App.Configuration["SSHProvider:Host"],
-               App.Configuration["SSHProvider:Port"].ToInt(), App.Configuration["SSHProvider:Username"], App.Configuration["SSHProvider:Password"]))
-            {
-                return new FileStreamResult(helper.OpenRead(filePath), "application/octet-stream");
-            }
+            using SSHHelper helper = new(App.Configuration["SSHProvider:Host"],
+                App.Configuration["SSHProvider:Port"].ToInt(), App.Configuration["SSHProvider:Username"], App.Configuration["SSHProvider:Password"]);
+            return new FileStreamResult(helper.OpenRead(filePath), "application/octet-stream") { FileDownloadName = fileName + file.Suffix };
         }
-        else
-        {
-            var path = Path.Combine(App.WebHostEnvironment.WebRootPath, filePath);
-            return new FileStreamResult(new FileStream(path, FileMode.Open), "application/octet-stream");
-        }
+
+        var path = Path.Combine(App.WebHostEnvironment.WebRootPath, filePath);
+        return new FileStreamResult(new FileStream(path, FileMode.Open), "application/octet-stream") { FileDownloadName = fileName + file.Suffix };
     }
 
     /// <summary>
@@ -185,19 +170,15 @@ public class SysFileService : IDynamicApiController, ITransient
                 byte[] fileBytes = await response.Content.ReadAsByteArrayAsync();
                 return Convert.ToBase64String(fileBytes);
             }
-            else
-            {
-                throw new HttpRequestException($"Request failed with status code: {response.StatusCode}");
-            }
+            throw new HttpRequestException($"Request failed with status code: {response.StatusCode}");
         }
-        else if (App.Configuration["SSHProvider:Enabled"].ToBoolean())
+
+        if (App.Configuration["SSHProvider:Enabled"].ToBoolean())
         {
             var sysFile = await _sysFileRep.CopyNew().GetFirstAsync(u => u.Url == url) ?? throw Oops.Oh($"文件不存在");
-            using (SSHHelper helper = new SSHHelper(App.Configuration["SSHProvider:Host"],
-               App.Configuration["SSHProvider:Port"].ToInt(), App.Configuration["SSHProvider:Username"], App.Configuration["SSHProvider:Password"]))
-            {
-                return Convert.ToBase64String(helper.ReadAllBytes(sysFile.FilePath));
-            }
+            using SSHHelper helper = new SSHHelper(App.Configuration["SSHProvider:Host"],
+                App.Configuration["SSHProvider:Port"].ToInt(), App.Configuration["SSHProvider:Username"], App.Configuration["SSHProvider:Password"]);
+            return Convert.ToBase64String(helper.ReadAllBytes(sysFile.FilePath));
         }
         else
         {
@@ -212,7 +193,7 @@ public class SysFileService : IDynamicApiController, ITransient
                 Log.Error($"DownloadFileBase64:文件[{realFile}]不存在");
                 throw Oops.Oh($"文件[{sysFile.FilePath}]不存在");
             }
-            byte[] fileBytes = File.ReadAllBytes(realFile);
+            byte[] fileBytes = await File.ReadAllBytesAsync(realFile);
             return Convert.ToBase64String(fileBytes);
         }
     }
@@ -233,22 +214,19 @@ public class SysFileService : IDynamicApiController, ITransient
 
             if (_OSSProviderOptions.Enabled)
             {
-                await _OSSService.RemoveObjectAsync(file.BucketName.ToString(), string.Concat(file.FilePath, "/", $"{input.Id}{file.Suffix}"));
+                await _OSSService.RemoveObjectAsync(file.BucketName, string.Concat(file.FilePath, "/", $"{input.Id}{file.Suffix}"));
             }
             else if (App.Configuration["SSHProvider:Enabled"].ToBoolean())
             {
                 var fullPath = string.Concat(file.FilePath, "/", file.Id + file.Suffix);
-                using (SSHHelper helper = new SSHHelper(App.Configuration["SSHProvider:Host"],
-                   App.Configuration["SSHProvider:Port"].ToInt(), App.Configuration["SSHProvider:Username"], App.Configuration["SSHProvider:Password"]))
-                {
-                    helper.DeleteFile(fullPath);
-                }
+                using SSHHelper helper = new(App.Configuration["SSHProvider:Host"],
+                    App.Configuration["SSHProvider:Port"].ToInt(), App.Configuration["SSHProvider:Username"], App.Configuration["SSHProvider:Password"]);
+                helper.DeleteFile(fullPath);
             }
             else
             {
-                var filePath = Path.Combine(App.WebHostEnvironment.WebRootPath, file.FilePath, input.Id.ToString() + file.Suffix);
-                if (File.Exists(filePath))
-                    File.Delete(filePath);
+                var filePath = Path.Combine(App.WebHostEnvironment.WebRootPath, file.FilePath ?? "", input.Id + file.Suffix);
+                if (File.Exists(filePath)) File.Delete(filePath);
             }
         }
     }
@@ -295,7 +273,7 @@ public class SysFileService : IDynamicApiController, ITransient
         var fileMd5 = string.Empty;
         if (_uploadOptions.EnableMd5)
         {
-            using (var fileStream = input.File.OpenReadStream())
+            await using (var fileStream = input.File.OpenReadStream())
             {
                 fileMd5 = OssUtils.ComputeContentMd5(fileStream, fileStream.Length);
             }
@@ -306,12 +284,10 @@ public class SysFileService : IDynamicApiController, ITransient
         }
 
         // 验证文件类型
-        if (!_uploadOptions.ContentType.Contains(input.File.ContentType))
-            throw Oops.Oh($"{ErrorCodeEnum.D8001}:{input.File.ContentType}");
+        if (!_uploadOptions.ContentType.Contains(input.File.ContentType)) throw Oops.Oh($"{ErrorCodeEnum.D8001}:{input.File.ContentType}");
 
         // 验证文件大小
-        if (sizeKb > _uploadOptions.MaxSize)
-            throw Oops.Oh($"{ErrorCodeEnum.D8002}，允许最大：{_uploadOptions.MaxSize}KB");
+        if (sizeKb > _uploadOptions.MaxSize) throw Oops.Oh($"{ErrorCodeEnum.D8002}，允许最大：{_uploadOptions.MaxSize}KB");
 
         // 获取文件后缀
         var suffix = Path.GetExtension(input.File.FileName).ToLower(); // 后缀
@@ -325,12 +301,10 @@ public class SysFileService : IDynamicApiController, ITransient
             if (suffix == ".jpeg" || suffix == ".jpe")
                 suffix = ".jpg";
         }
-        if (string.IsNullOrWhiteSpace(suffix))
-            throw Oops.Oh(ErrorCodeEnum.D8003);
+        if (string.IsNullOrWhiteSpace(suffix)) throw Oops.Oh(ErrorCodeEnum.D8003);
 
         // 防止客户端伪造文件类型
-        if (!string.IsNullOrWhiteSpace(input.AllowSuffix) && !input.AllowSuffix.Contains(suffix))
-            throw Oops.Oh(ErrorCodeEnum.D8003);
+        if (!string.IsNullOrWhiteSpace(input.AllowSuffix) && !input.AllowSuffix.Contains(suffix)) throw Oops.Oh(ErrorCodeEnum.D8003);
         //if (!VerifyFileExtensionName.IsSameType(file.OpenReadStream(), suffix))
         //    throw Oops.Oh(ErrorCodeEnum.D8001);
 
@@ -379,11 +353,9 @@ public class SysFileService : IDynamicApiController, ITransient
         else if (App.Configuration["SSHProvider:Enabled"].ToBoolean())
         {
             var fullPath = string.Concat(path.StartsWith('/') ? path : "/" + path, "/", finalName);
-            using (SSHHelper helper = new SSHHelper(App.Configuration["SSHProvider:Host"],
-               App.Configuration["SSHProvider:Port"].ToInt(), App.Configuration["SSHProvider:Username"], App.Configuration["SSHProvider:Password"]))
-            {
-                helper.UploadFile(input.File.OpenReadStream(), fullPath);
-            }
+            using SSHHelper helper = new(App.Configuration["SSHProvider:Host"],
+                App.Configuration["SSHProvider:Port"].ToInt(), App.Configuration["SSHProvider:Username"], App.Configuration["SSHProvider:Password"]);
+            helper.UploadFile(input.File.OpenReadStream(), fullPath);
         }
         else
         {
@@ -393,7 +365,7 @@ public class SysFileService : IDynamicApiController, ITransient
                 Directory.CreateDirectory(filePath);
 
             var realFile = Path.Combine(filePath, finalName);
-            using (var stream = File.Create(realFile))
+            await using (var stream = File.Create(realFile))
             {
                 await input.File.CopyToAsync(stream);
             }
@@ -479,8 +451,8 @@ public class SysFileService : IDynamicApiController, ITransient
     public async Task<List<SysFile>> GetRelationFiles([FromQuery] RelationQueryInput input)
     {
         return await _sysFileRep.AsQueryable()
-            .WhereIF(input.RelationId.HasValue && input.RelationId > 0, u => u.RelationId == input.RelationId)
-            .WhereIF(input.BelongId.HasValue && input.BelongId > 0, u => u.BelongId == input.BelongId.Value)
+            .WhereIF(input.RelationId is > 0, u => u.RelationId == input.RelationId)
+            .WhereIF(input.BelongId is > 0, u => u.BelongId == input.BelongId.Value)
             .WhereIF(!string.IsNullOrWhiteSpace(input.RelationName), u => u.RelationName == input.RelationName)
             .WhereIF(!string.IsNullOrWhiteSpace(input.FileTypes), u => input.GetFileTypeBS().Contains(u.FileType))
             .Select(u => new SysFile

@@ -167,19 +167,18 @@ public static class SqlSugarSetup
                 //}
 
                 // 执行时间超过5秒时
-                if (db.Ado.SqlExecutionTime.TotalSeconds > 5)
-                {
-                    var fileName = db.Ado.SqlStackTrace.FirstFileName; // 文件名
-                    var fileLine = db.Ado.SqlStackTrace.FirstLine; // 行号
-                    var firstMethodName = db.Ado.SqlStackTrace.FirstMethodName; // 方法名
-                    var log = $"【{DateTime.Now}——超时SQL】\r\n【所在文件名】：{fileName}\r\n【代码行数】：{fileLine}\r\n【方法名】：{firstMethodName}\r\n" + $"【SQL语句】：{UtilMethods.GetNativeSql(sql, pars)}";
-                    Log.Warning(log);
-                    App.PrintToMiniProfiler("SqlSugar", "Slow", log);
-                }
+                if (!(db.Ado.SqlExecutionTime.TotalSeconds > 5)) return;
+
+                var fileName = db.Ado.SqlStackTrace.FirstFileName; // 文件名
+                var fileLine = db.Ado.SqlStackTrace.FirstLine; // 行号
+                var firstMethodName = db.Ado.SqlStackTrace.FirstMethodName; // 方法名
+                var log = $"【{DateTime.Now}——超时SQL】\r\n【所在文件名】：{fileName}\r\n【代码行数】：{fileLine}\r\n【方法名】：{firstMethodName}\r\n" + $"【SQL语句】：{UtilMethods.GetNativeSql(sql, pars)}";
+                Log.Warning(log);
+                App.PrintToMiniProfiler("SqlSugar", "Slow", log);
             };
         }
         // 数据审计
-        db.Aop.DataExecuting = (oldValue, entityInfo) =>
+        db.Aop.DataExecuting = (_, entityInfo) =>
         {
             // 若正在处理种子数据则直接返回
             if (_isHandlingSeedData) return;
@@ -201,40 +200,39 @@ public static class SqlSugarSetup
                     if (createTime == null || createTime.Equals(DateTime.MinValue))
                         entityInfo.SetValue(DateTime.Now);
                 }
-                // 若当前用户非空（web线程时）
-                if (App.User != null)
+                // 若当前用户为空（非web线程时）
+                if (App.User == null) return;
+
+                dynamic entityValue = entityInfo.EntityValue;
+                if (entityInfo.PropertyName == nameof(EntityTenantId.TenantId))
                 {
-                    dynamic entityValue = entityInfo.EntityValue;
-                    if (entityInfo.PropertyName == nameof(EntityTenantId.TenantId))
-                    {
-                        var tenantId = entityValue.TenantId;
-                        if (tenantId == null || tenantId == 0)
-                            entityInfo.SetValue(App.User.FindFirst(ClaimConst.TenantId)?.Value);
-                    }
-                    else if (entityInfo.PropertyName == nameof(EntityBase.CreateUserId))
-                    {
-                        var createUserId = entityValue.CreateUserId;
-                        if (createUserId == 0 || createUserId == null)
-                            entityInfo.SetValue(App.User.FindFirst(ClaimConst.UserId)?.Value);
-                    }
-                    else if (entityInfo.PropertyName == nameof(EntityBase.CreateUserName))
-                    {
-                        var createUserName = entityValue.CreateUserName;
-                        if (string.IsNullOrEmpty(createUserName))
-                            entityInfo.SetValue(App.User.FindFirst(ClaimConst.RealName)?.Value);
-                    }
-                    else if (entityInfo.PropertyName == nameof(EntityBaseData.CreateOrgId))
-                    {
-                        var createOrgId = entityValue.CreateOrgId;
-                        if (createOrgId == 0 || createOrgId == null)
-                            entityInfo.SetValue(App.User.FindFirst(ClaimConst.OrgId)?.Value);
-                    }
-                    else if (entityInfo.PropertyName == nameof(EntityBaseData.CreateOrgName))
-                    {
-                        var createOrgName = entityValue.CreateOrgName;
-                        if (string.IsNullOrEmpty(createOrgName))
-                            entityInfo.SetValue(App.User.FindFirst(ClaimConst.OrgName)?.Value);
-                    }
+                    var tenantId = entityValue.TenantId;
+                    if (tenantId == null || tenantId == 0)
+                        entityInfo.SetValue(App.User.FindFirst(ClaimConst.TenantId)?.Value);
+                }
+                else if (entityInfo.PropertyName == nameof(EntityBase.CreateUserId))
+                {
+                    var createUserId = entityValue.CreateUserId;
+                    if (createUserId == 0 || createUserId == null)
+                        entityInfo.SetValue(App.User.FindFirst(ClaimConst.UserId)?.Value);
+                }
+                else if (entityInfo.PropertyName == nameof(EntityBase.CreateUserName))
+                {
+                    var createUserName = entityValue.CreateUserName;
+                    if (string.IsNullOrEmpty(createUserName))
+                        entityInfo.SetValue(App.User.FindFirst(ClaimConst.RealName)?.Value);
+                }
+                else if (entityInfo.PropertyName == nameof(EntityBaseData.CreateOrgId))
+                {
+                    var createOrgId = entityValue.CreateOrgId;
+                    if (createOrgId == 0 || createOrgId == null)
+                        entityInfo.SetValue(App.User.FindFirst(ClaimConst.OrgId)?.Value);
+                }
+                else if (entityInfo.PropertyName == nameof(EntityBaseData.CreateOrgName))
+                {
+                    var createOrgName = entityValue.CreateOrgName;
+                    if (string.IsNullOrEmpty(createOrgName))
+                        entityInfo.SetValue(App.User.FindFirst(ClaimConst.OrgName)?.Value);
                 }
             }
             // 编辑/更新
@@ -286,12 +284,11 @@ public static class SqlSugarSetup
                 var beforeColumns = u.BeforeData[i].Columns;
                 for (int j = 0; j < afterColumns.Count; j++)
                 {
-                    if (afterColumns[j].Value.Equals(beforeColumns[j].Value))
-                    {
-                        beforeColumns.Remove(beforeColumns[j]);
-                        afterColumns.Remove(afterColumns[j]);
-                        j--;
-                    }
+                    if (!afterColumns[j].Value.Equals(beforeColumns[j].Value)) continue;
+
+                    beforeColumns.Remove(beforeColumns[j]);
+                    afterColumns.Remove(afterColumns[j]);
+                    j--;
                 }
             }
 
@@ -329,8 +326,7 @@ public static class SqlSugarSetup
         if (config.DbSettings.EnableInitDb)
         {
             Log.Information($"初始化数据库 {config.DbType} - {config.ConfigId} - {config.ConnectionString}");
-            if (config.DbType != SqlSugar.DbType.Oracle)
-                dbProvider.DbMaintenance.CreateDatabase();
+            if (config.DbType != SqlSugar.DbType.Oracle) dbProvider.DbMaintenance.CreateDatabase();
         }
 
         // 初始化表结构
@@ -362,87 +358,96 @@ public static class SqlSugarSetup
         // 初始化种子数据
         if (config.SeedSettings.EnableInitSeed)
         {
-            _isHandlingSeedData = true;
+            
+        }
+    }
 
-            Log.Information($"初始化种子数据 {config.DbType} - {config.ConfigId}");
-            var seedDataTypes = App.EffectiveTypes.Where(u => !u.IsInterface && !u.IsAbstract && u.IsClass && u.GetInterfaces().Any(i => i.HasImplementedRawGeneric(typeof(ISqlSugarEntitySeedData<>))))
-                .WhereIF(config.SeedSettings.EnableIncreSeed, u => u.IsDefined(typeof(IncreSeedAttribute), false))
-                .OrderBy(u => u.GetCustomAttributes(typeof(SeedDataAttribute), false).Length > 0 ? ((SeedDataAttribute)u.GetCustomAttributes(typeof(SeedDataAttribute), false)[0]).Order : 0).ToList();
-
-            int count = 0, sum = seedDataTypes.Count;
-            foreach (var seedType in seedDataTypes)
+    /// <summary>
+    /// 初始化种子数据
+    /// </summary>
+    /// <param name="db"></param>
+    /// <param name="config"></param>
+    private static void InitSeedData(SqlSugarScope db, DbConnectionConfig config)
+    {
+        SqlSugarScopeProvider dbProvider = db.GetConnectionScope(config.ConfigId); 
+        _isHandlingSeedData = true;
+        
+        Log.Information($"初始化种子数据 {config.DbType} - {config.ConfigId}");
+        var seedDataTypes = App.EffectiveTypes.Where(u => !u.IsInterface && !u.IsAbstract && u.IsClass && u.GetInterfaces().Any(i => i.HasImplementedRawGeneric(typeof(ISqlSugarEntitySeedData<>))))
+            .WhereIF(config.SeedSettings.EnableIncreSeed, u => u.IsDefined(typeof(IncreSeedAttribute), false))
+            .OrderBy(u => u.GetCustomAttributes(typeof(SeedDataAttribute), false).Length > 0 ? ((SeedDataAttribute)u.GetCustomAttributes(typeof(SeedDataAttribute), false)[0]).Order : 0).ToList();
+        
+        int count = 0, sum = seedDataTypes.Count; 
+        foreach (var seedType in seedDataTypes) 
+        { 
+            var entityType = seedType.GetInterfaces().First().GetGenericArguments().First(); 
+            if (config.ConfigId.ToString() == SqlSugarConst.MainConfigId) // 默认库（有系统表特性、没有日志表和租户表特性）
             {
-                var entityType = seedType.GetInterfaces().First().GetGenericArguments().First();
-                if (config.ConfigId.ToString() == SqlSugarConst.MainConfigId) // 默认库（有系统表特性、没有日志表和租户表特性）
+                if (entityType.GetCustomAttribute<SysTableAttribute>() == null && (entityType.GetCustomAttribute<LogTableAttribute>() != null || entityType.GetCustomAttribute<TenantAttribute>() != null)) continue;
+            }
+            else if (config.ConfigId.ToString() == SqlSugarConst.LogConfigId) // 日志库
+            {
+                if (entityType.GetCustomAttribute<LogTableAttribute>() == null) continue;
+            }
+            else
+            {
+                var att = entityType.GetCustomAttribute<TenantAttribute>(); // 自定义的库
+                if (att == null || att.configId.ToString() != config.ConfigId.ToString()) continue;
+            }
+            
+            var instance = Activator.CreateInstance(seedType); 
+            var hasDataMethod = seedType.GetMethod("HasData"); 
+            var seedData = ((IEnumerable)hasDataMethod?.Invoke(instance, null))?.Cast<object>(); 
+            if (seedData == null) continue;
+            
+            var entityInfo = dbProvider.EntityMaintenance.GetEntityInfo(entityType); 
+            Console.WriteLine($"添加数据 {entityInfo.DbTableName} ({config.ConfigId} - {++count}/{sum}，数据量：{seedData.Count()})"); 
+            
+            // 若实体包含Id字段，则设置为当前租户Id递增1
+            if (entityInfo.Columns.Any(u => u.PropertyName == nameof(EntityBaseId.Id))) 
+            {
+                var seedId = config.ConfigId.ToLong();
+                foreach (var sd in seedData)
                 {
-                    if (entityType.GetCustomAttribute<SysTableAttribute>() == null && (entityType.GetCustomAttribute<LogTableAttribute>() != null || entityType.GetCustomAttribute<TenantAttribute>() != null))
-                        continue;
+                    var id = sd.GetType().GetProperty(nameof(EntityBaseId.Id))!.GetValue(sd, null);
+                    if (id != null && (id.ToString() == "0" || string.IsNullOrWhiteSpace(id.ToString())))
+                        sd.GetType().GetProperty(nameof(EntityBaseId.Id))!.SetValue(sd, ++seedId);
                 }
-                else if (config.ConfigId.ToString() == SqlSugarConst.LogConfigId) // 日志库
+            } 
+            
+            if (entityType.GetCustomAttribute<SplitTableAttribute>(true) != null)
+            {
+                //拆分表的操作需要实体类型，而通过反射很难实现
+                //所以，这里将Init方法写在“种子数据类”内部，再传入 db 反射调用
+                var hasInitMethod = seedType.GetMethod("Init");
+                var parameters = new object[] { db };
+                hasInitMethod?.Invoke(instance, parameters);
+            }
+            else
+            {
+                if (entityInfo.Columns.Any(u => u.IsPrimarykey))
                 {
-                    if (entityType.GetCustomAttribute<LogTableAttribute>() == null)
-                        continue;
+                    // 按主键进行批量增加和更新
+                    var storage = dbProvider.StorageableByObject(seedData.ToList()).ToStorage();
+                    
+                    // 先修改再插入，否则会更新修改时间字段
+                    if (seedType.GetCustomAttribute<IgnoreUpdateSeedAttribute>() == null) // 有忽略更新种子特性时则不更新
+                    {
+                        int updateCount = storage.AsUpdateable.IgnoreColumns(entityInfo.Columns.Where(u => u.PropertyInfo.GetCustomAttribute<IgnoreUpdateSeedColumnAttribute>() != null).Select(u => u.PropertyName).ToArray()).ExecuteCommand();
+                        Console.WriteLine($"  修改 {updateCount}/{seedData.Count()} 条记录");
+                    }
+                    int insertCount = storage.AsInsertable.ExecuteCommand();
+                    Console.WriteLine($"  插入 {insertCount}/{seedData.Count()} 条记录");
                 }
                 else
                 {
-                    var att = entityType.GetCustomAttribute<TenantAttribute>(); // 自定义的库
-                    if (att == null || att.configId.ToString() != config.ConfigId.ToString()) continue;
-                }
-
-                var instance = Activator.CreateInstance(seedType);
-                var hasDataMethod = seedType.GetMethod("HasData");
-                var seedData = ((IEnumerable)hasDataMethod?.Invoke(instance, null))?.Cast<object>();
-                if (seedData == null) continue;
-
-                var entityInfo = dbProvider.EntityMaintenance.GetEntityInfo(entityType);
-                Console.WriteLine($"添加数据 {entityInfo.DbTableName} ({config.ConfigId} - {++count}/{sum}，数据量：{seedData.Count()})");
-
-                // 若实体包含Id字段，则设置为当前租户Id递增1
-                if (entityInfo.Columns.Any(u => u.PropertyName == nameof(EntityBaseId.Id)))
-                {
-                    var seedId = config.ConfigId.ToLong();
-                    foreach (var sd in seedData)
-                    {
-                        var id = sd.GetType().GetProperty(nameof(EntityBaseId.Id))!.GetValue(sd, null);
-                        if (id != null && (id.ToString() == "0" || string.IsNullOrWhiteSpace(id.ToString())))
-                            sd.GetType().GetProperty(nameof(EntityBaseId.Id))!.SetValue(sd, ++seedId);
-                    }
-                }
-
-                if (entityType.GetCustomAttribute<SplitTableAttribute>(true) != null)
-                {
-                    //拆分表的操作需要实体类型，而通过反射很难实现
-                    //所以，这里将Init方法写在“种子数据类”内部，再传入 db 反射调用
-                    var hasInitMethod = seedType.GetMethod("Init");
-                    var parameters = new object[] { db };
-                    hasInitMethod?.Invoke(instance, parameters);
-                }
-                else
-                {
-                    if (entityInfo.Columns.Any(u => u.IsPrimarykey))
-                    {
-                        // 按主键进行批量增加和更新
-                        var storage = dbProvider.StorageableByObject(seedData.ToList()).ToStorage();
-
-                        // 先修改再插入，否则会更新修改时间字段
-                        if (seedType.GetCustomAttribute<IgnoreUpdateSeedAttribute>() == null) // 有忽略更新种子特性时则不更新
-                        {
-                            int updateCount = storage.AsUpdateable.IgnoreColumns(entityInfo.Columns.Where(u => u.PropertyInfo.GetCustomAttribute<IgnoreUpdateSeedColumnAttribute>() != null).Select(u => u.PropertyName).ToArray()).ExecuteCommand();
-                            Console.WriteLine($"  修改 {updateCount}/{seedData.Count()} 条记录");
-                        }
-                        int insertCount = storage.AsInsertable.ExecuteCommand();
-                        Console.WriteLine($"  插入 {insertCount}/{seedData.Count()} 条记录");
-                    }
-                    else
-                    {
-                        // 无主键则只进行插入
-                        if (!dbProvider.Queryable(entityInfo.DbTableName, entityInfo.DbTableName).Any())
-                            dbProvider.InsertableByObject(seedData.ToList()).ExecuteCommand();
-                    }
+                    // 无主键则只进行插入
+                    if (!dbProvider.Queryable(entityInfo.DbTableName, entityInfo.DbTableName).Any())
+                        dbProvider.InsertableByObject(seedData.ToList()).ExecuteCommand();
                 }
             }
-            _isHandlingSeedData = false;
         }
+        _isHandlingSeedData = false;
     }
 
     /// <summary>

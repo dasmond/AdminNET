@@ -118,8 +118,7 @@ public class SysTenantService : IDynamicApiController, ITransient
         if (isExist) throw Oops.Oh(ErrorCodeEnum.D1301);
 
         // 从库配置判断
-        if (!string.IsNullOrWhiteSpace(input.SlaveConnections) && !JSON.IsValid(input.SlaveConnections))
-            throw Oops.Oh(ErrorCodeEnum.D1302);
+        if (!string.IsNullOrWhiteSpace(input.SlaveConnections) && !JSON.IsValid(input.SlaveConnections)) throw Oops.Oh(ErrorCodeEnum.D1302);
 
         switch (input.TenantType)
         {
@@ -155,11 +154,9 @@ public class SysTenantService : IDynamicApiController, ITransient
     public async Task<int> SetStatus(TenantInput input)
     {
         var tenant = await _sysTenantRep.GetFirstAsync(u => u.Id == input.Id);
-        if (tenant == null || tenant.ConfigId == SqlSugarConst.MainConfigId)
-            throw Oops.Oh(ErrorCodeEnum.Z1001);
+        if (tenant == null || tenant.ConfigId == SqlSugarConst.MainConfigId) throw Oops.Oh(ErrorCodeEnum.Z1001);
 
-        if (!Enum.IsDefined(typeof(StatusEnum), input.Status))
-            throw Oops.Oh(ErrorCodeEnum.D3005);
+        if (!Enum.IsDefined(typeof(StatusEnum), input.Status)) throw Oops.Oh(ErrorCodeEnum.D3005);
 
         tenant.Status = input.Status;
         return await _sysTenantRep.AsUpdateable(tenant).UpdateColumns(u => new { u.Status }).ExecuteCommandAsync();
@@ -175,41 +172,20 @@ public class SysTenantService : IDynamicApiController, ITransient
         var tenantName = tenant.Name;
 
         // 初始化机构
-        var newOrg = new SysOrg
-        {
-            TenantId = tenantId,
-            Pid = 0,
-            Name = tenantName,
-            Code = tenantName,
-            Remark = tenantName,
-        };
+        var newOrg = new SysOrg { TenantId=tenantId, Pid=0, Name=tenantName, Code=tenantName, Remark=tenantName, };
         await _sysOrgRep.InsertAsync(newOrg);
 
         // 初始化角色
-        var newRole = new SysRole
-        {
-            TenantId = tenantId,
-            Name = "租管-" + tenantName,
-            Code = CommonConst.SysAdminRole,
-            DataScope = DataScopeEnum.All,
-            Remark = tenantName
-        };
+        var newRole = new SysRole { TenantId=tenantId, Name="租管-" + tenantName, Code=CommonConst.SysAdminRole, DataScope=DataScopeEnum.All, Remark=tenantName };
         await _sysRoleRep.InsertAsync(newRole);
 
         // 初始化职位
-        var newPos = new SysPos
-        {
-            TenantId = tenantId,
-            Name = "租管-" + tenantName,
-            Code = tenantName,
-            Remark = tenantName,
-        };
+        var newPos = new SysPos { TenantId=tenantId, Name="租管-" + tenantName, Code=tenantName, Remark=tenantName };
         await _sysPosRep.InsertAsync(newPos);
 
         // 初始化系统账号
         var password = await _sysConfigService.GetConfigValue<string>(ConfigConst.SysPassword);
-        var newUser = new SysUser
-        {
+        var newUser = new SysUser {
             TenantId = tenantId,
             Account = tenant.AdminAccount,
             Password = CryptogramUtil.Encrypt(password),
@@ -226,15 +202,11 @@ public class SysTenantService : IDynamicApiController, ITransient
         await _sysUserRep.InsertAsync(newUser);
 
         // 关联用户及角色
-        var newUserRole = new SysUserRole
-        {
-            RoleId = newRole.Id,
-            UserId = newUser.Id
-        };
+        var newUserRole = new SysUserRole { RoleId = newRole.Id, UserId = newUser.Id };
         await _userRoleRep.InsertAsync(newUserRole);
 
         // 关联租户组织机构和管理员用户
-        await _sysTenantRep.UpdateAsync(u => new SysTenant() { UserId = newUser.Id, OrgId = newOrg.Id }, u => u.Id == tenantId);
+        await _sysTenantRep.UpdateAsync(u => new SysTenant { UserId = newUser.Id, OrgId = newOrg.Id }, u => u.Id == tenantId);
 
         // 默认租户管理员角色菜单集合
         var menuIdList = new List<long> { 1300000000111,1300000000121, // 工作台
@@ -259,13 +231,11 @@ public class SysTenantService : IDynamicApiController, ITransient
     public async Task DeleteTenant(DeleteTenantInput input)
     {
         // 禁止删除默认租户
-        if (input.Id.ToString() == SqlSugarConst.MainConfigId)
-            throw Oops.Oh(ErrorCodeEnum.D1023);
+        if (input.Id.ToString() == SqlSugarConst.MainConfigId) throw Oops.Oh(ErrorCodeEnum.D1023);
 
         // 若账号为开放接口绑定租户则禁止删除
         var isOpenAccessTenant = await _sysTenantRep.ChangeRepository<SqlSugarRepository<SysOpenAccess>>().IsAnyAsync(u => u.BindTenantId == input.Id);
-        if (isOpenAccessTenant)
-            throw Oops.Oh(ErrorCodeEnum.D1031);
+        if (isOpenAccessTenant) throw Oops.Oh(ErrorCodeEnum.D1031);
 
         await _sysTenantRep.DeleteAsync(u => u.Id == input.Id);
 
@@ -301,11 +271,10 @@ public class SysTenantService : IDynamicApiController, ITransient
     public async Task UpdateTenant(UpdateTenantInput input)
     {
         var isExist = await _sysOrgRep.IsAnyAsync(u => u.Name == input.Name && u.Id != input.OrgId);
-        if (isExist)
-            throw Oops.Oh(ErrorCodeEnum.D1300);
+        if (isExist) throw Oops.Oh(ErrorCodeEnum.D1300);
+        
         isExist = await _sysUserRep.IsAnyAsync(u => u.Account == input.AdminAccount && u.Id != input.UserId);
-        if (isExist)
-            throw Oops.Oh(ErrorCodeEnum.D1301);
+        if (isExist) throw Oops.Oh(ErrorCodeEnum.D1301);
 
         // Id隔离时设置与主库一致
         switch (input.TenantType)
@@ -396,12 +365,11 @@ public class SysTenantService : IDynamicApiController, ITransient
             _sysTenantRep.AsTenant().RemoveConnection(tenantId);
 
         var tenantList = await _sysTenantRep.GetListAsync();
+        
         // 对租户库连接进行SM2加密
-        foreach (var tenant in tenantList)
-        {
-            if (!string.IsNullOrWhiteSpace(tenant.Connection))
-                tenant.Connection = CryptogramUtil.SM2Encrypt(tenant.Connection);
-        }
+        foreach (var tenant in tenantList.Where(tenant => !string.IsNullOrWhiteSpace(tenant.Connection)))
+            tenant.Connection = CryptogramUtil.SM2Encrypt(tenant.Connection);
+        
         _sysCacheService.Set(CacheConst.KeyTenant, tenantList);
     }
 
@@ -435,7 +403,7 @@ public class SysTenantService : IDynamicApiController, ITransient
             {
                 EnableInitDb = true,
                 EnableDiffLog = false,
-                EnableUnderLine = defaultConfig.DbSettings.EnableUnderLine,
+                EnableUnderLine = defaultConfig!.DbSettings.EnableUnderLine,
             }
         };
         SqlSugarSetup.InitTenantDatabase(App.GetRequiredService<ISqlSugarClient>().AsTenant(), config);
@@ -462,8 +430,7 @@ public class SysTenantService : IDynamicApiController, ITransient
         var iTenant = _sysTenantRep.AsTenant();
 
         // 若已存在租户库连接，则直接返回
-        if (iTenant.IsAnyConnection(tenantId.ToString()))
-            return iTenant.GetConnectionScope(tenantId.ToString());
+        if (iTenant.IsAnyConnection(tenantId.ToString())) return iTenant.GetConnectionScope(tenantId.ToString());
 
         lock (iTenant)
         {

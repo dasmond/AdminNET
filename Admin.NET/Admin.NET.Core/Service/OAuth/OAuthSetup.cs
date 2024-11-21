@@ -31,13 +31,13 @@ public static class OAuthSetup
             })
             .AddWeixin(options =>
             {
-                options.ClientId = authOpt.Weixin?.ClientId;
-                options.ClientSecret = authOpt.Weixin?.ClientSecret;
+                options.ClientId = authOpt.Weixin?.ClientId!;
+                options.ClientSecret = authOpt.Weixin?.ClientSecret!;
             })
             .AddGitee(options =>
             {
-                options.ClientId = authOpt.Gitee?.ClientId;
-                options.ClientSecret = authOpt.Gitee?.ClientSecret;
+                options.ClientId = authOpt.Gitee?.ClientId!;
+                options.ClientSecret = authOpt.Gitee?.ClientSecret!;
 
                 options.ClaimActions.MapJsonKey(OAuthClaim.GiteeAvatarUrl, "avatar_url");
             });

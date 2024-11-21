@@ -242,17 +242,16 @@ public class SysMenuService : IDynamicApiController, ITransient
     {
         var userId = _userManager.UserId;
         var permissions = _sysCacheService.Get<List<string>>(CacheConst.KeyUserButton + userId);
-        if (permissions == null)
-        {
-            var menuIdList = _userManager.SuperAdmin ? new List<long>() : await GetMenuIdList();
-            permissions = menuIdList.Count > 0 || _userManager.SuperAdmin
-                ? await _sysMenuRep.AsQueryable()
-                    .Where(u => u.Type == MenuTypeEnum.Btn)
-                    .WhereIF(menuIdList.Count > 0, u => menuIdList.Contains(u.Id))
-                    .Select(u => u.Permission).ToListAsync()
-                : new List<string>();
-            _sysCacheService.Set(CacheConst.KeyUserButton + userId, permissions, TimeSpan.FromDays(7));
-        }
+        if (permissions != null) return permissions;
+
+        var menuIdList = _userManager.SuperAdmin ? new() : await GetMenuIdList();
+        permissions = menuIdList.Count > 0 || _userManager.SuperAdmin
+            ? await _sysMenuRep.AsQueryable()
+                .Where(u => u.Type == MenuTypeEnum.Btn)
+                .WhereIF(menuIdList.Count > 0, u => menuIdList.Contains(u.Id))
+                .Select(u => u.Permission).ToListAsync()
+            : new();
+        _sysCacheService.Set(CacheConst.KeyUserButton + userId, permissions, TimeSpan.FromDays(7));
 
         return permissions;
     }
@@ -265,13 +264,12 @@ public class SysMenuService : IDynamicApiController, ITransient
     public async Task<List<string>> GetAllBtnPermList()
     {
         var permissions = _sysCacheService.Get<List<string>>(CacheConst.KeyUserButton + 0);
-        if (permissions == null || permissions.Count == 0)
-        {
-            permissions = await _sysMenuRep.AsQueryable()
-                .Where(u => u.Type == MenuTypeEnum.Btn)
-                .Select(u => u.Permission).ToListAsync();
-            _sysCacheService.Set(CacheConst.KeyUserButton + 0, permissions);
-        }
+        if (permissions != null && permissions.Count != 0) return permissions;
+
+        permissions = await _sysMenuRep.AsQueryable()
+            .Where(u => u.Type == MenuTypeEnum.Btn)
+            .Select(u => u.Permission).ToListAsync();
+        _sysCacheService.Set(CacheConst.KeyUserButton + 0, permissions);
 
         return permissions;
     }
