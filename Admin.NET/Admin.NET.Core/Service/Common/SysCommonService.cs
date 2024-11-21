@@ -86,4 +86,15 @@ public class SysCommonService : IDynamicApiController, ITransient
             FileDownloadName = $"{(string.IsNullOrEmpty(fileName) ? "错误标记＿" + DateTime.Now.ToString("yyyyMMddhhmmss") : fileName)}.xlsx"
         });
     }
+
+    /// <summary>
+    /// 加密字符串 🔖
+    /// </summary>
+    /// <returns></returns>
+    [SuppressMonitor]
+    [DisplayName("加密字符串")]
+    public dynamic EncryptPlainText([Required] string plainText)
+    {
+        return CryptogramUtil.Encrypt(plainText);
+    }
 }
