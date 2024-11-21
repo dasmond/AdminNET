@@ -126,12 +126,10 @@ public class SysLdapService : IDynamicApiController, ITransient
             while (ldapSearchResults.HasMore())
             {
                 var ldapEntry = ldapSearchResults.Next();
-                var sAMAccountName = ldapEntry.GetAttribute(sysLdap.BindAttrAccount)?.StringValue;
-                if (!string.IsNullOrEmpty(sAMAccountName))
-                {
-                    dn = ldapEntry.Dn;
-                    break;
-                }
+                var sAmAccountName = ldapEntry.GetAttribute(sysLdap.BindAttrAccount)?.StringValue;
+                if (string.IsNullOrEmpty(sAmAccountName)) continue;
+                dn = ldapEntry.Dn;
+                break;
             }
 
             if (string.IsNullOrEmpty(dn)) throw Oops.Oh(ErrorCodeEnum.D1002);
@@ -222,10 +220,9 @@ public class SysLdapService : IDynamicApiController, ITransient
                 }
             }
 
-            if (userLdapList.Count == 0)
-                return null;
+            if (userLdapList.Count == 0) return null;
 
-            await App.GetRequiredService<SysUserLdapService>().InsertUserLdaps(sysLdap.TenantId!.Value, userLdapList);
+            await App.GetRequiredService<SysUserLdapService>().InsertUserLdapList(sysLdap.TenantId!.Value, userLdapList);
             return userLdapList;
         }
         catch (LdapException e)
@@ -251,7 +248,7 @@ public class SysLdapService : IDynamicApiController, ITransient
     private static string GetDepartmentCode(LdapAttributeSet attrs, string bindAttrCode)
     {
         return bindAttrCode == "objectGUID"
-            ? new Guid(attrs.GetAttribute(bindAttrCode)?.ByteValue).ToString()
+            ? new Guid(attrs.GetAttribute(bindAttrCode)?.ByteValue!).ToString()
             : attrs.GetAttribute(bindAttrCode)?.StringValue ?? "0";
     }
 
@@ -269,13 +266,12 @@ public class SysLdapService : IDynamicApiController, ITransient
         {
             Account = !attrs.ContainsKey(bindAttrAccount) ? null : attrs.GetAttribute(bindAttrAccount)?.StringValue,
             EmployeeId = !attrs.ContainsKey(bindAttrEmployeeId) ? null : attrs.GetAttribute(bindAttrEmployeeId)?.StringValue,
-            DeptCode = deptCode
+            DeptCode = deptCode,
+            UserName = !attrs.ContainsKey("name") ? null : attrs.GetAttribute("name")?.StringValue,
+            Mail = !attrs.ContainsKey("mail") ? null : attrs.GetAttribute("mail")?.StringValue
         };
-        userLdap.UserName = !attrs.ContainsKey("name") ? null : attrs.GetAttribute("name")?.StringValue;
-        userLdap.Mail = !attrs.ContainsKey("mail") ? null : attrs.GetAttribute("mail")?.StringValue;
         var pwdLastSet = !attrs.ContainsKey("pwdLastSet") ? null : attrs.GetAttribute("pwdLastSet")?.StringValue;
-        if (!pwdLastSet.Equals("0"))
-            userLdap.PwdLastSetTime = DateTime.FromFileTime(Convert.ToInt64(pwdLastSet));
+        if (!pwdLastSet!.Equals("0")) userLdap.PwdLastSetTime = DateTime.FromFileTime(Convert.ToInt64(pwdLastSet));
         var userAccountControl = !attrs.ContainsKey("userAccountControl") ? null : attrs.GetAttribute("userAccountControl")?.StringValue;
         if ((Convert.ToInt32(userAccountControl) & 0x2) == 0x2) // 检查账户是否已过期（通过检查userAccountControl属性的特定位）  
             userLdap.AccountExpiresFlag = true;
@@ -354,13 +350,12 @@ public class SysLdapService : IDynamicApiController, ITransient
                 }
 
                 var attrs = ldapEntry.GetAttributeSet();
-                if (attrs.Count == 0 || attrs.ContainsKey("OU"))
-                {
-                    var sysOrg = CreateSysOrg(attrs, sysLdap, orgList, new SysOrg { Id = 0, Level = 0 });
-                    orgList.Add(sysOrg);
+                if (attrs.Count != 0 && !attrs.ContainsKey("OU")) continue;
 
-                    SearchDnLdapDept(ldapConn, sysLdap, orgList, ldapEntry.Dn, sysOrg);
-                }
+                var sysOrg = CreateSysOrg(attrs, sysLdap, orgList, new SysOrg { Id = 0, Level = 0 });
+                orgList.Add(sysOrg);
+
+                SearchDnLdapDept(ldapConn, sysLdap, orgList, ldapEntry.Dn, sysOrg);
             }
 
             if (orgList.Count == 0)
@@ -407,13 +402,12 @@ public class SysLdapService : IDynamicApiController, ITransient
             }
 
             var attrs = ldapEntry.GetAttributeSet();
-            if (attrs.Count == 0 || attrs.ContainsKey("OU"))
-            {
-                var sysOrg = CreateSysOrg(attrs, sysLdap, listOrgs, org);
-                listOrgs.Add(sysOrg);
+            if (attrs.Count != 0 && !attrs.ContainsKey("OU")) continue;
 
-                SearchDnLdapDept(ldapConn, sysLdap, listOrgs, ldapEntry.Dn, sysOrg);
-            }
+            var sysOrg = CreateSysOrg(attrs, sysLdap, listOrgs, org);
+            listOrgs.Add(sysOrg);
+
+            SearchDnLdapDept(ldapConn, sysLdap, listOrgs, ldapEntry.Dn, sysOrg);
         }
     }
 

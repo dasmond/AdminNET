@@ -92,8 +92,7 @@ public class SysRoleService : IDynamicApiController, ITransient
     /// <returns></returns>
     private async Task UpdateRoleMenu(AddRoleInput input)
     {
-        if (input.MenuIdList == null || input.MenuIdList.Count < 1)
-            return;
+        if (input.MenuIdList == null || input.MenuIdList.Count < 1) return;
 
         // 将父节点为0的菜单排除，防止前端全选异常
         var pMenuIds = await _sysRoleRep.ChangeRepository<SqlSugarRepository<SysMenu>>().AsQueryable().Where(u => input.MenuIdList.Contains(u.Id) && u.Pid == 0).ToListAsync(u => u.Id);
@@ -135,13 +134,11 @@ public class SysRoleService : IDynamicApiController, ITransient
     {
         // 禁止删除系统管理员角色
         var sysRole = await _sysRoleRep.GetFirstAsync(u => u.Id == input.Id) ?? throw Oops.Oh(ErrorCodeEnum.D1002);
-        if (sysRole.Code == CommonConst.SysAdminRole)
-            throw Oops.Oh(ErrorCodeEnum.D1019);
+        if (sysRole.Code == CommonConst.SysAdminRole) throw Oops.Oh(ErrorCodeEnum.D1019);
 
         // 若角色有用户则禁止删除
         var userIds = await _sysUserRoleService.GetUserIdList(input.Id);
-        if (userIds != null && userIds.Count > 0)
-            throw Oops.Oh(ErrorCodeEnum.D1025);
+        if (userIds != null && userIds.Count > 0) throw Oops.Oh(ErrorCodeEnum.D1025);
 
         await _sysRoleRep.DeleteAsync(sysRole);
 
@@ -187,21 +184,24 @@ public class SysRoleService : IDynamicApiController, ITransient
         var dataScope = input.DataScope;
         if (!_userManager.SuperAdmin)
         {
-            // 非超级管理员没有全部数据范围权限
-            if (dataScope == (int)DataScopeEnum.All)
-                throw Oops.Oh(ErrorCodeEnum.D1016);
-
-            // 若数据范围自定义，则判断授权数据范围是否有权限
-            if (dataScope == (int)DataScopeEnum.Define)
+            switch (dataScope)
             {
-                var grantOrgIdList = input.OrgIdList;
-                if (grantOrgIdList.Count > 0)
+                // 非超级管理员没有全部数据范围权限
+                case (int)DataScopeEnum.All: throw Oops.Oh(ErrorCodeEnum.D1016);
+                // 若数据范围自定义，则判断授权数据范围是否有权限
+                case (int)DataScopeEnum.Define:
                 {
-                    var orgIdList = await _sysOrgService.GetUserOrgIdList();
-                    if (orgIdList.Count < 1)
-                        throw Oops.Oh(ErrorCodeEnum.D1016);
-                    else if (!grantOrgIdList.All(u => orgIdList.Any(c => c == u)))
-                        throw Oops.Oh(ErrorCodeEnum.D1016);
+                    var grantOrgIdList = input.OrgIdList;
+                    if (grantOrgIdList.Count > 0)
+                    {
+                        var orgIdList = await _sysOrgService.GetUserOrgIdList();
+                        if (orgIdList.Count < 1)
+                            throw Oops.Oh(ErrorCodeEnum.D1016);
+                        if (!grantOrgIdList.All(u => orgIdList.Any(c => c == u)))
+                            throw Oops.Oh(ErrorCodeEnum.D1016);
+                    }
+
+                    break;
                 }
             }
         }
@@ -240,8 +240,7 @@ public class SysRoleService : IDynamicApiController, ITransient
     [DisplayName("设置角色状态")]
     public async Task<int> SetStatus(RoleInput input)
     {
-        if (!Enum.IsDefined(typeof(StatusEnum), input.Status))
-            throw Oops.Oh(ErrorCodeEnum.D3005);
+        if (!Enum.IsDefined(typeof(StatusEnum), input.Status)) throw Oops.Oh(ErrorCodeEnum.D3005);
 
         return await _sysRoleRep.AsUpdateable()
             .SetColumns(u => u.Status == input.Status)

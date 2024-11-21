@@ -43,15 +43,15 @@ public static class CommonUtil
     /// <summary>
     /// 生成百分数
     /// </summary>
-    /// <param name="PassCount"></param>
+    /// <param name="passCount"></param>
     /// <param name="allCount"></param>
     /// <returns></returns>
-    public static string ExecPercent(decimal PassCount, decimal allCount)
+    public static string ExecPercent(decimal passCount, decimal allCount)
     {
         string res = "";
         if (allCount > 0)
         {
-            var value = (double)Math.Round(PassCount / allCount * 100, 1);
+            var value = (double)Math.Round(passCount / allCount * 100, 1);
             if (value < 0)
                 res = Math.Round(value + 5 / Math.Pow(10, 0 + 1), 0, MidpointRounding.AwayFromZero).ToString();
             else
@@ -155,17 +155,17 @@ public static class CommonUtil
     public static async Task<IActionResult> ExportExcelData<TSource, TTarget>(ISugarQueryable<TSource> query, Func<TSource, TTarget, TTarget> action = null)
         where TSource : class, new() where TTarget : class, new()
     {
-        var PropMappings = GetExportPropertMap<TSource, TTarget>();
+        var propMappings = GetExportPropertMap<TSource, TTarget>();
         var data = query.ToList();
         //相同属性复制值，字典值转换
         var result = new List<TTarget>();
         foreach (var item in data)
         {
             var newData = new TTarget();
-            foreach (var dict in PropMappings)
+            foreach (var dict in propMappings)
             {
-                var targeProp = dict.Value.Item3;
-                if (targeProp != null)
+                var targetProp = dict.Value.Item3;
+                if (targetProp != null)
                 {
                     var propertyInfo = dict.Value.Item2;
                     var sourceVal = propertyInfo.GetValue(item, null);
@@ -175,21 +175,20 @@ public static class CommonUtil
                     }
 
                     var map = dict.Value.Item1;
-                    if (map != null && map.ContainsKey(sourceVal))
+                    if (map != null && map.TryGetValue(sourceVal, out string newVal1))
                     {
-                        var newVal = map[sourceVal];
-                        targeProp.SetValue(newData, newVal);
+                        targetProp.SetValue(newData, newVal1);
                     }
                     else
                     {
-                        if (targeProp.PropertyType.FullName == propertyInfo.PropertyType.FullName)
+                        if (targetProp.PropertyType.FullName == propertyInfo.PropertyType.FullName)
                         {
-                            targeProp.SetValue(newData, sourceVal);
+                            targetProp.SetValue(newData, sourceVal);
                         }
                         else
                         {
-                            var newVal = sourceVal.ToString().ParseTo(targeProp.PropertyType);
-                            targeProp.SetValue(newData, newVal);
+                            var newVal = sourceVal.ToString().ParseTo(targetProp.PropertyType);
+                            targetProp.SetValue(newData, newVal);
                         }
                     }
                 }
@@ -216,20 +215,19 @@ public static class CommonUtil
         IImporter importer = new ExcelImporter();
         var res = await importer.Import<T>(file.OpenReadStream());
         var message = string.Empty;
-        if (res.HasError)
+        
+        if (!res.HasError) return res.Data;
+
+        if (res.Exception != null)
+            message += $"\r\n{res.Exception.Message}";
+        foreach (DataRowErrorInfo drErrorInfo in res.RowErrors)
         {
-            if (res.Exception != null)
-                message += $"\r\n{res.Exception.Message}";
-            foreach (DataRowErrorInfo drErrorInfo in res.RowErrors)
-            {
-                int rowNum = drErrorInfo.RowIndex;
-                foreach (var item in drErrorInfo.FieldErrors)
-                    message += $"\r\n{item.Key}：{item.Value}（文件第{drErrorInfo.RowIndex}行）";
-            }
-            message += "\r\n字段缺失：" + string.Join("，", res.TemplateErrors.Select(m => m.RequireColumnName).ToList());
-            throw Oops.Oh("导入异常:" + message);
+            int rowNum = drErrorInfo.RowIndex;
+            foreach (var item in drErrorInfo.FieldErrors)
+                message += $"\r\n{item.Key}：{item.Value}（文件第{drErrorInfo.RowIndex}行）";
         }
-        return res.Data;
+        message += "\r\n字段缺失：" + string.Join("，", res.TemplateErrors.Select(m => m.RequireColumnName).ToList());
+        throw Oops.Oh("导入异常:" + message);
     }
 
     /// <summary>
@@ -251,24 +249,20 @@ public static class CommonUtil
         App.GetRequiredService<SysCacheService>().Set(CacheConst.KeyExcelTemp + userId, resultStream, TimeSpan.FromMinutes(5));
 
         var message = string.Empty;
-        if (res.HasError)
-        {
-            if (res.Exception != null)
-                message += $"\r\n{res.Exception.Message}";
-            foreach (DataRowErrorInfo drErrorInfo in res.RowErrors)
-            {
-                int rowNum = drErrorInfo.RowIndex;
-                foreach (var item in drErrorInfo.FieldErrors)
-                    message += $"\r\n{item.Key}：{item.Value}（文件第{drErrorInfo.RowIndex}行）";
-            }
-            if (res.TemplateErrors.Count > 0)
-                message += "\r\n字段缺失：" + string.Join("，", res.TemplateErrors.Select(m => m.RequireColumnName).ToList());
+        if (!res.HasError) return res.Data;
 
-            if (message.Length > 200)
-                message = message.Substring(0, 200) + "...\r\n异常过多，建议下载错误标记文件查看详细错误信息并重新导入。";
-            throw Oops.Oh("导入异常:" + message);
+        if (res.Exception != null)
+            message += $"\r\n{res.Exception.Message}";
+        foreach (DataRowErrorInfo drErrorInfo in res.RowErrors)
+        {
+            message = drErrorInfo.FieldErrors.Aggregate(message, (current, item) => current + $"\r\n{item.Key}：{item.Value}（文件第{drErrorInfo.RowIndex}行）");
         }
-        return res.Data;
+        if (res.TemplateErrors.Count > 0)
+            message += "\r\n字段缺失：" + string.Join("，", res.TemplateErrors.Select(m => m.RequireColumnName).ToList());
+
+        if (message.Length > 200)
+            message = message.Substring(0, 200) + "...\r\n异常过多，建议下载错误标记文件查看详细错误信息并重新导入。";
+        throw Oops.Oh("导入异常:" + message);
     }
 
     /// <summary>
@@ -432,7 +426,7 @@ public static class CommonUtil
             else
             {
                 propMappings.Add(propertyInfo.Name, new Tuple<Dictionary<object, string>, PropertyInfo, PropertyInfo>(
-                    null, sourceProps.ContainsKey(propertyInfo.Name) ? sourceProps[propertyInfo.Name] : null, propertyInfo));
+                    null, sourceProps.TryGetValue(propertyInfo.Name, out PropertyInfo prop) ? prop : null, propertyInfo));
             }
         }
 
@@ -444,7 +438,7 @@ public static class CommonUtil
     /// </summary>
     /// <typeparam name="TTarget"></typeparam>
     /// <returns>整理导入对象的 属性名称， 字典数据，原属性信息，目标属性信息 </returns>
-    private static Dictionary<string, Tuple<string, string>> GetExportDicttMap<TTarget>() where TTarget : new()
+    private static Dictionary<string, Tuple<string, string>> GetExportDictMap<TTarget>() where TTarget : new()
     {
         // 整理导入对象的属性名称，目标属性名，字典Code
         var propMappings = new Dictionary<string, Tuple<string, string>>();

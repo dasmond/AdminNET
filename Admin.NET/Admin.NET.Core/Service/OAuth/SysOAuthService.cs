@@ -39,10 +39,13 @@ public class SysOAuthService : IDynamicApiController, ITransient
         if (string.IsNullOrWhiteSpace(provider) || !await _httpContextAccessor.HttpContext.IsProviderSupportedAsync(provider))
             throw Oops.Oh("不支持的OAuth类型");
 
-        var request = _httpContextAccessor.HttpContext.Request;
+        var request = _httpContextAccessor.HttpContext!.Request;
         var url = $"{request.Scheme}://{request.Host}{request.PathBase}{request.Path}Callback?provider={provider}&redirectUrl={redirectUrl}";
-        var properties = new AuthenticationProperties { RedirectUri = url };
-        properties.Items["LoginProvider"] = provider;
+        var properties = new AuthenticationProperties
+        {
+            RedirectUri = url,
+            Items = { ["LoginProvider"] = provider }
+        };
         return await Task.FromResult(new ChallengeResult(provider, properties));
     }
 
@@ -59,7 +62,7 @@ public class SysOAuthService : IDynamicApiController, ITransient
         if (string.IsNullOrWhiteSpace(provider) || !await _httpContextAccessor.HttpContext.IsProviderSupportedAsync(provider))
             throw Oops.Oh("不支持的OAuth类型");
 
-        var authenticateResult = await _httpContextAccessor.HttpContext.AuthenticateAsync(provider);
+        var authenticateResult = await _httpContextAccessor.HttpContext!.AuthenticateAsync(provider);
         if (!authenticateResult.Succeeded)
             throw Oops.Oh("授权失败");
 

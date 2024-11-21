@@ -114,7 +114,7 @@ public class SysUserService : IDynamicApiController, ITransient
 
         // 增加域账号
         if (!string.IsNullOrWhiteSpace(input.DomainAccount))
-            await _sysUserLdapService.AddUserLdap(newUser.TenantId.Value, newUser.Id, newUser.Account, input.DomainAccount);
+            await _sysUserLdapService.AddUserLdap(newUser.TenantId!.Value, newUser.Id, newUser.Account, input.DomainAccount);
 
         // 执行订阅事件
         _sysUserEventHandler.OnEvent(this, SysUserEventTypeEnum.Add, input);
@@ -149,7 +149,7 @@ public class SysUserService : IDynamicApiController, ITransient
         if (input.OrgId != user.OrgId || !input.RoleIdList.OrderBy(u => u).SequenceEqual(roleIds.OrderBy(u => u)))
             await _sysOnlineUserService.ForceOffline(input.Id);
         // 更新域账号
-        await _sysUserLdapService.AddUserLdap(user.TenantId.Value, user.Id, user.Account, input.DomainAccount);
+        await _sysUserLdapService.AddUserLdap(user.TenantId!.Value, user.Id, user.Account, input.DomainAccount);
 
         // 执行订阅事件
         _sysUserEventHandler.OnEvent(this, SysUserEventTypeEnum.Update, input);

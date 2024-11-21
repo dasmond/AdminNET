@@ -56,7 +56,7 @@ public class SysOrgService : IDynamicApiController, ITransient
                 .ToListAsync();
         }
 
-        var orgTree = new List<SysOrg>();
+        List<SysOrg> orgTree;
         if (_userManager.SuperAdmin)
         {
             orgTree = await iSugarQueryable.ToTreeAsync(u => u.Children, u => u.Pid, input.Id);
@@ -69,11 +69,10 @@ public class SysOrgService : IDynamicApiController, ITransient
         }
 
         var sysOrg = await _sysOrgRep.GetSingleAsync(u => u.Id == input.Id);
-        if (sysOrg != null)
-        {
-            sysOrg.Children = orgTree;
-            orgTree = new List<SysOrg> { sysOrg };
-        }
+        if (sysOrg == null) return orgTree;
+
+        sysOrg.Children = orgTree;
+        orgTree = new List<SysOrg> { sysOrg };
         return orgTree;
     }
 
@@ -261,25 +260,20 @@ public class SysOrgService : IDynamicApiController, ITransient
     private void DeleteAllUserOrgCache(long orgId, long orgPid)
     {
         var userOrgKeyList = _sysCacheService.GetKeysByPrefixKey(CacheConst.KeyUserOrg);
-        if (userOrgKeyList != null && userOrgKeyList.Count > 0)
+        if (userOrgKeyList is not { Count: > 0 }) return;
+
+        foreach (var userOrgKey in userOrgKeyList)
         {
-            foreach (var userOrgKey in userOrgKeyList)
-            {
-                var userOrgs = _sysCacheService.Get<List<long>>(userOrgKey);
-                var userId = long.Parse(userOrgKey.Substring(CacheConst.KeyUserOrg));
-                if (userOrgs != null && (userOrgs.Contains(orgId) || userOrgs.Contains(orgPid)))
-                {
-                    SqlSugarFilter.DeleteUserOrgCache(userId, _sysOrgRep.Context.CurrentConnectionConfig.ConfigId.ToString());
-                }
-                if (orgPid == 0)
-                {
-                    var dataScope = _sysCacheService.Get<int>($"{CacheConst.KeyRoleMaxDataScope}{userId}");
-                    if (dataScope == (int)DataScopeEnum.All)
-                    {
-                        SqlSugarFilter.DeleteUserOrgCache(userId, _sysOrgRep.Context.CurrentConnectionConfig.ConfigId.ToString());
-                    }
-                }
-            }
+            var userOrgList = _sysCacheService.Get<List<long>>(userOrgKey);
+            var userId = long.Parse(userOrgKey.Substring(CacheConst.KeyUserOrg));
+            if (userOrgList != null && (userOrgList.Contains(orgId) || userOrgList.Contains(orgPid)))
+                SqlSugarFilter.DeleteUserOrgCache(userId, _sysOrgRep.Context.CurrentConnectionConfig.ConfigId.ToString());
+
+            if (orgPid != 0) continue;
+
+            var dataScope = _sysCacheService.Get<int>($"{CacheConst.KeyRoleMaxDataScope}{userId}");
+            if (dataScope == (int)DataScopeEnum.All)
+                SqlSugarFilter.DeleteUserOrgCache(userId, _sysOrgRep.Context.CurrentConnectionConfig.ConfigId.ToString());
         }
     }
 
@@ -290,8 +284,7 @@ public class SysOrgService : IDynamicApiController, ITransient
     [NonAction]
     public async Task<List<long>> GetUserOrgIdList()
     {
-        if (_userManager.SuperAdmin)
-            return new List<long>();
+        if (_userManager.SuperAdmin) return new();
         return await GetUserOrgIdList(_userManager.UserId, _userManager.OrgId);
     }
 
@@ -303,21 +296,24 @@ public class SysOrgService : IDynamicApiController, ITransient
     public async Task<List<long>> GetUserOrgIdList(long userId, long userOrgId)
     {
         var orgIdList = _sysCacheService.Get<List<long>>($"{CacheConst.KeyUserOrg}{userId}"); // 取缓存
-        if (orgIdList == null || orgIdList.Count < 1)
-        {
-            // 本人创建机构集合
-            var orgList0 = await _sysOrgRep.AsQueryable().Where(u => u.CreateUserId == userId).Select(u => u.Id).ToListAsync();
-            // 扩展机构集合
-            var orgList1 = await _sysUserExtOrgService.GetUserExtOrgList(userId);
-            // 角色机构集合
-            var orgList2 = await GetUserRoleOrgIdList(userId, userOrgId);
-            // 机构并集
-            orgIdList = orgList1.Select(u => u.OrgId).Union(orgList2).Union(orgList0).ToList();
-            // 当前所属机构
-            if (!orgIdList.Contains(userOrgId))
-                orgIdList.Add(userOrgId);
-            _sysCacheService.Set($"{CacheConst.KeyUserOrg}{userId}", orgIdList, TimeSpan.FromDays(7)); // 存缓存
-        }
+        if (orgIdList is { Count: >= 1 }) return orgIdList;
+
+        // 本人创建机构集合
+        var orgList0 = await _sysOrgRep.AsQueryable().Where(u => u.CreateUserId == userId).Select(u => u.Id).ToListAsync();
+        
+        // 扩展机构集合
+        var orgList1 = await _sysUserExtOrgService.GetUserExtOrgList(userId);
+        
+        // 角色机构集合
+        var orgList2 = await GetUserRoleOrgIdList(userId, userOrgId);
+        
+        // 机构并集
+        orgIdList = orgList1.Select(u => u.OrgId).Union(orgList2).Union(orgList0).ToList();
+        
+        // 当前所属机构
+        if (!orgIdList.Contains(userOrgId)) orgIdList.Add(userOrgId);
+        
+        _sysCacheService.Set($"{CacheConst.KeyUserOrg}{userId}", orgIdList, TimeSpan.FromDays(7)); // 存缓存
         return orgIdList;
     }
 
@@ -330,8 +326,8 @@ public class SysOrgService : IDynamicApiController, ITransient
     private async Task<List<long>> GetUserRoleOrgIdList(long userId, long userOrgId)
     {
         var roleList = await _sysUserRoleService.GetUserRoleList(userId);
-        if (roleList.Count < 1)
-            return new List<long>(); // 空机构Id集合
+        
+        if (roleList.Count < 1) return new(); // 空机构Id集合
 
         return await GetUserOrgIdList(roleList, userId, userOrgId);
     }
@@ -354,7 +350,7 @@ public class SysOrgService : IDynamicApiController, ITransient
         // 数据范围的机构集合
         var dataScopeOrgIdList = new List<long>();
 
-        if (roleList != null && roleList.Count > 0)
+        if (roleList is { Count: > 0 })
         {
             roleList.ForEach(u =>
             {
@@ -393,20 +389,20 @@ public class SysOrgService : IDynamicApiController, ITransient
     {
         var orgId = userOrgId;//var orgId = _userManager.OrgId;
         var orgIdList = new List<long>();
-        // 若数据范围是全部，则获取所有机构Id集合
-        if (dataScope == (int)DataScopeEnum.All)
+        switch (dataScope)
         {
-            orgIdList = await _sysOrgRep.AsQueryable().Select(u => u.Id).ToListAsync();
-        }
-        // 若数据范围是本部门及以下，则获取本节点和子节点集合
-        else if (dataScope == (int)DataScopeEnum.DeptChild)
-        {
-            orgIdList = await GetChildIdListWithSelfById(orgId);
-        }
-        // 若数据范围是本部门不含子节点，则直接返回本部门
-        else if (dataScope == (int)DataScopeEnum.Dept)
-        {
-            orgIdList.Add(orgId);
+            // 若数据范围是全部，则获取所有机构Id集合
+            case (int)DataScopeEnum.All:
+                orgIdList = await _sysOrgRep.AsQueryable().Select(u => u.Id).ToListAsync();
+                break;
+            // 若数据范围是本部门及以下，则获取本节点和子节点集合
+            case (int)DataScopeEnum.DeptChild:
+                orgIdList = await GetChildIdListWithSelfById(orgId);
+                break;
+            // 若数据范围是本部门不含子节点，则直接返回本部门
+            case (int)DataScopeEnum.Dept:
+                orgIdList.Add(orgId);
+                break;
         }
         return orgIdList;
     }

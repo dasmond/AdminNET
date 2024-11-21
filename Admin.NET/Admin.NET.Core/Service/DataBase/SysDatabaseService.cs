@@ -109,10 +109,7 @@ public class SysDatabaseService : IDynamicApiController, ITransient
     public List<DbColumnOutput> GetColumnList(string tableName, string configId = SqlSugarConst.MainConfigId)
     {
         var db = _db.AsTenant().GetConnectionScope(configId);
-        if (string.IsNullOrWhiteSpace(tableName))
-            return new List<DbColumnOutput>();
-
-        return db.DbMaintenance.GetColumnInfosByTableName(tableName, false).Adapt<List<DbColumnOutput>>();
+        return string.IsNullOrWhiteSpace(tableName) ? new List<DbColumnOutput>() : db.DbMaintenance.GetColumnInfosByTableName(tableName, false).Adapt<List<DbColumnOutput>>();
     }
 
     /// <summary>
@@ -149,8 +146,7 @@ public class SysDatabaseService : IDynamicApiController, ITransient
         var db = _db.AsTenant().GetConnectionScope(input.ConfigId);
         db.DbMaintenance.AddColumn(input.TableName, column);
         db.DbMaintenance.AddColumnRemark(input.DbColumnName, input.TableName, input.ColumnDescription);
-        if (column.IsPrimarykey)
-            db.DbMaintenance.AddPrimaryKey(input.TableName, input.DbColumnName);
+        if (column.IsPrimarykey) db.DbMaintenance.AddPrimaryKey(input.TableName, input.DbColumnName);
     }
 
     /// <summary>
@@ -211,7 +207,7 @@ public class SysDatabaseService : IDynamicApiController, ITransient
         var typeBuilder = db.DynamicBuilder().CreateClass(input.TableName, new SugarTable() { TableName = input.TableName, TableDescription = input.Description });
         input.DbColumnInfoList.ForEach(u =>
         {
-            var dbColumnName = config.DbSettings.EnableUnderLine ? UtilMethods.ToUnderLine(u.DbColumnName.Trim()) : u.DbColumnName.Trim();
+            var dbColumnName = config!.DbSettings.EnableUnderLine ? UtilMethods.ToUnderLine(u.DbColumnName.Trim()) : u.DbColumnName.Trim();
             // 虚拟类都默认string类型，具体以列数据类型为准
             typeBuilder.CreateProperty(dbColumnName, typeof(string), new SugarColumn()
             {
@@ -357,7 +353,7 @@ public class SysDatabaseService : IDynamicApiController, ITransient
             if (entityTypes.Count == 1) // 只有一个实体匹配才能过滤
             {
                 // 获取实体的主键对应的属性名称
-                var pkInfo = entityTypes[0].GetProperties().Where(u => u.GetCustomAttribute<SugarColumn>() != null && u.GetCustomAttribute<SugarColumn>().IsPrimaryKey).First();
+                var pkInfo = entityTypes[0].GetProperties().FirstOrDefault(u => u.GetCustomAttribute<SugarColumn>()?.IsPrimaryKey == true);
                 if (pkInfo != null)
                 {
                     var seedDataTypes = App.EffectiveTypes
@@ -367,34 +363,29 @@ public class SysDatabaseService : IDynamicApiController, ITransient
                         )
                         .ToList();
                     // 可能会重名的种子数据不作为过滤项
-                    string doNotFilterfullName1 = $"{input.Position}.SeedData.{input.SeedDataName}";
-                    string doNotFilterfullName2 = $"{input.Position}.{input.SeedDataName}"; // Core中的命名空间没有SeedData
+                    string doNotFilterFullName1 = $"{input.Position}.SeedData.{input.SeedDataName}";
+                    string doNotFilterFullName2 = $"{input.Position}.{input.SeedDataName}"; // Core中的命名空间没有SeedData
 
                     PropertyInfo idPropertySeedData = records[0].GetType().GetProperty("Id");
 
                     for (int i = seedDataTypes.Count - 1; i >= 0; i--)
                     {
                         string fullName = seedDataTypes[i].FullName;
-                        if ((fullName == doNotFilterfullName1) || (fullName == doNotFilterfullName2))
-                            continue;
+                        if ((fullName == doNotFilterFullName1) || (fullName == doNotFilterFullName2)) continue;
+                        
                         // 删除重复数据
                         var instance = Activator.CreateInstance(seedDataTypes[i]);
                         var hasDataMethod = seedDataTypes[i].GetMethod("HasData");
                         var seedData = ((IEnumerable)hasDataMethod?.Invoke(instance, null))?.Cast<object>();
                         if (seedData == null) continue;
 
-                        List<object> recordsToRemove = new List<object>();
+                        List<object> recordsToRemove = new ();
                         foreach (var record in records)
                         {
                             object recordId = pkInfo.GetValue(record);
-                            foreach (var d1 in seedData)
+                            if (seedData.Select(d1 => idPropertySeedData.GetValue(d1)).Any(dataId => recordId != null && dataId != null && recordId.Equals(dataId)))
                             {
-                                object dataId = idPropertySeedData.GetValue(d1);
-                                if (recordId != null && dataId != null && recordId.Equals(dataId))
-                                {
-                                    recordsToRemove.Add(record);
-                                    break;
-                                }
+                                recordsToRemove.Add(record);
                             }
                         }
                         foreach (var itemToRemove in recordsToRemove)
@@ -506,26 +497,13 @@ public class SysDatabaseService : IDynamicApiController, ITransient
         var types = new List<Type>();
         if (_codeGenOptions.EntityAssemblyNames != null)
         {
-            foreach (var assemblyName in _codeGenOptions.EntityAssemblyNames)
+            foreach (var asm in _codeGenOptions.EntityAssemblyNames.Select(Assembly.Load))
             {
-                Assembly asm = Assembly.Load(assemblyName);
                 types.AddRange(asm.GetExportedTypes().ToList());
             }
         }
-        bool IsMyAttribute(Attribute[] o)
-        {
-            foreach (Attribute a in o)
-            {
-                if (a.GetType() == type)
-                    return true;
-            }
-            return false;
-        }
-        Type[] cosType = types.Where(o =>
-        {
-            return IsMyAttribute(Attribute.GetCustomAttributes(o, true));
-        }
-        ).ToArray();
+
+        Type[] cosType = types.Where(o => IsMyAttribute(Attribute.GetCustomAttributes(o, true))).ToArray();
 
         foreach (var c in cosType)
         {
@@ -546,6 +524,11 @@ public class SysDatabaseService : IDynamicApiController, ITransient
             });
         }
         return await Task.FromResult(entityInfos);
+
+        bool IsMyAttribute(Attribute[] o)
+        {
+            return o.Any(a => a.GetType() == type);
+        }
     }
 
     /// <summary>

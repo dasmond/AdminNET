@@ -22,13 +22,13 @@ public static class TripleDES
     [Obsolete]
     public static void EncryptFile(string inputFile, string outputFile, string password)
     {
-        using var tdes = new TripleDESCryptoServiceProvider();
-        tdes.Mode = CipherMode.ECB;
-        tdes.Padding = PaddingMode.PKCS7;
-        tdes.Key = Encoding.UTF8.GetBytes(password);
+        using var ties = new TripleDESCryptoServiceProvider();
+        ties.Mode = CipherMode.ECB;
+        ties.Padding = PaddingMode.PKCS7;
+        ties.Key = Encoding.UTF8.GetBytes(password);
         using var inputFileStream = new FileStream(inputFile, FileMode.Open);
         using var encryptedFileStream = new FileStream(outputFile, FileMode.Create);
-        using var cryptoStream = new CryptoStream(encryptedFileStream, tdes.CreateEncryptor(), CryptoStreamMode.Write);
+        using var cryptoStream = new CryptoStream(encryptedFileStream, ties.CreateEncryptor(), CryptoStreamMode.Write);
         inputFileStream.CopyTo(cryptoStream);
     }
 
@@ -41,13 +41,13 @@ public static class TripleDES
     [Obsolete]
     public static void DecryptFile(string inputFile, string outputFile, string password)
     {
-        using var tdes = new TripleDESCryptoServiceProvider();
-        tdes.Mode = CipherMode.ECB;
-        tdes.Padding = PaddingMode.PKCS7;
-        tdes.Key = Encoding.UTF8.GetBytes(password);
+        using var ties = new TripleDESCryptoServiceProvider();
+        ties.Mode = CipherMode.ECB;
+        ties.Padding = PaddingMode.PKCS7;
+        ties.Key = Encoding.UTF8.GetBytes(password);
         using var encryptedFileStream = new FileStream(inputFile, FileMode.Open);
         using var decryptedFileStream = new FileStream(outputFile, FileMode.Create);
-        using var cryptoStream = new CryptoStream(encryptedFileStream, tdes.CreateDecryptor(), CryptoStreamMode.Read);
+        using var cryptoStream = new CryptoStream(encryptedFileStream, ties.CreateDecryptor(), CryptoStreamMode.Read);
         cryptoStream.CopyTo(decryptedFileStream);
     }
 }

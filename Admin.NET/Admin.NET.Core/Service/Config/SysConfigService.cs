@@ -61,8 +61,7 @@ public class SysConfigService : IDynamicApiController, ITransient
     public async Task AddConfig(AddConfigInput input)
     {
         var isExist = await _sysConfigRep.IsAnyAsync(u => u.Name == input.Name || u.Code == input.Code);
-        if (isExist)
-            throw Oops.Oh(ErrorCodeEnum.D9000);
+        if (isExist) throw Oops.Oh(ErrorCodeEnum.D9000);
 
         await _sysConfigRep.InsertAsync(input.Adapt<SysConfig>());
     }
@@ -77,8 +76,7 @@ public class SysConfigService : IDynamicApiController, ITransient
     public async Task UpdateConfig(UpdateConfigInput input)
     {
         var isExist = await _sysConfigRep.IsAnyAsync(u => (u.Name == input.Name || u.Code == input.Code) && u.Id != input.Id);
-        if (isExist)
-            throw Oops.Oh(ErrorCodeEnum.D9000);
+        if (isExist) throw Oops.Oh(ErrorCodeEnum.D9000);
 
         var config = input.Adapt<SysConfig>();
         await _sysConfigRep.AsUpdateable(config).IgnoreColumns(true).ExecuteCommandAsync();
@@ -96,8 +94,9 @@ public class SysConfigService : IDynamicApiController, ITransient
     public async Task DeleteConfig(DeleteConfigInput input)
     {
         var config = await _sysConfigRep.GetFirstAsync(u => u.Id == input.Id);
-        if (config.SysFlag == YesNoEnum.Y) // 禁止删除系统参数
-            throw Oops.Oh(ErrorCodeEnum.D9001);
+        
+        // 禁止删除系统参数
+        if (config.SysFlag == YesNoEnum.Y) throw Oops.Oh(ErrorCodeEnum.D9001);
 
         await _sysConfigRep.DeleteAsync(config);
 
@@ -116,8 +115,9 @@ public class SysConfigService : IDynamicApiController, ITransient
         foreach (var id in ids)
         {
             var config = await _sysConfigRep.GetFirstAsync(u => u.Id == id);
-            if (config.SysFlag == YesNoEnum.Y) // 禁止删除系统参数
-                continue;
+            
+            // 禁止删除系统参数
+            if (config.SysFlag == YesNoEnum.Y) continue;
 
             await _sysConfigRep.DeleteAsync(config);
 
@@ -224,8 +224,8 @@ public class SysConfigService : IDynamicApiController, ITransient
         foreach (var Config in input)
         {
             var info = await _sysConfigRep.GetFirstAsync(c => c.Code == Config.Code);
-            if (info == null)
-                continue;
+            if (info == null) continue;
+            
             await _sysConfigRep.AsUpdateable().SetColumns(u => u.Value == Config.Value).Where(u => u.Code == Config.Code).ExecuteCommandAsync();
             Remove(info);
         }
@@ -297,8 +297,7 @@ public class SysConfigService : IDynamicApiController, ITransient
 
             // 创建文件夹
             var absoluteFileDir = Path.GetDirectoryName(absoluteFilePath);
-            if (!Directory.Exists(absoluteFileDir))
-                Directory.CreateDirectory(absoluteFileDir);
+            if (!Directory.Exists(absoluteFileDir)) Directory.CreateDirectory(absoluteFileDir);
 
             // 保存图标文件
             await File.WriteAllBytesAsync(absoluteFilePath, binData);

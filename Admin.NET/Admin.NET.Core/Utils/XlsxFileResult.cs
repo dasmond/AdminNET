@@ -89,10 +89,7 @@ public class XlsxFileResultBase : ActionResult
         var response = context.HttpContext.Response;
         response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
 
-        if (downloadFileName == null)
-        {
-            downloadFileName = Guid.NewGuid().ToString("N") + ".xlsx";
-        }
+        downloadFileName ??= Guid.NewGuid().ToString("N") + ".xlsx";
 
         if (string.IsNullOrEmpty(Path.GetExtension(downloadFileName)))
         {

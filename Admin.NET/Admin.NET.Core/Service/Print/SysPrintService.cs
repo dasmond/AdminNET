@@ -54,8 +54,7 @@ public class SysPrintService : IDynamicApiController, ITransient
     public async Task AddPrint(AddPrintInput input)
     {
         var isExist = await _sysPrintRep.IsAnyAsync(u => u.Name == input.Name);
-        if (isExist)
-            throw Oops.Oh(ErrorCodeEnum.D1800);
+        if (isExist) throw Oops.Oh(ErrorCodeEnum.D1800);
 
         await _sysPrintRep.InsertAsync(input.Adapt<SysPrint>());
     }
@@ -70,8 +69,7 @@ public class SysPrintService : IDynamicApiController, ITransient
     public async Task UpdatePrint(UpdatePrintInput input)
     {
         var isExist = await _sysPrintRep.IsAnyAsync(u => u.Name == input.Name && u.Id != input.Id);
-        if (isExist)
-            throw Oops.Oh(ErrorCodeEnum.D1800);
+        if (isExist) throw Oops.Oh(ErrorCodeEnum.D1800);
 
         await _sysPrintRep.AsUpdateable(input.Adapt<SysPrint>()).IgnoreColumns(true).ExecuteCommandAsync();
     }

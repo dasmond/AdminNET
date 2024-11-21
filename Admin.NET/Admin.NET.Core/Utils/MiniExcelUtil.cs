@@ -10,8 +10,8 @@ namespace Admin.NET.Core;
 
 public static class MiniExcelUtil
 {
-    private const string _sheetName = "ImportTemplate";
-    private const string _directory = "export";
+    private const string SheetName = "ImportTemplate";
+    private const string DirectoryName = "export";
 
     /// <summary>
     /// 导出模板Excel
@@ -23,7 +23,7 @@ public static class MiniExcelUtil
         // 在内存中当开辟空间
         var memoryStream = new MemoryStream();
         // 将数据写到内存当中
-        await memoryStream.SaveAsAsync(values, sheetName: _sheetName);
+        await memoryStream.SaveAsAsync(values, sheetName: SheetName);
         // 从0的位置开始写入
         memoryStream.Seek(0, SeekOrigin.Begin);
         return new FileStreamResult(memoryStream, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
@@ -41,7 +41,7 @@ public static class MiniExcelUtil
     {
         using MemoryStream stream = new MemoryStream();
         await file.CopyToAsync(stream);
-        var res = await stream.QueryAsync<T>(sheetName: _sheetName);
+        var res = await stream.QueryAsync<T>(sheetName: SheetName);
         return res.ToArray();
     }
 
@@ -54,7 +54,7 @@ public static class MiniExcelUtil
         var fileName = string.Format("{0}.xlsx", YitIdHelper.NextId());
         try
         {
-            var path = Path.Combine(App.WebHostEnvironment.WebRootPath, _directory);
+            var path = Path.Combine(App.WebHostEnvironment.WebRootPath, DirectoryName);
             if (!Directory.Exists(path))
                 Directory.CreateDirectory(path);
             var filePath = Path.Combine(path, fileName);
@@ -65,6 +65,6 @@ public static class MiniExcelUtil
             throw Oops.Oh("出现错误：" + error);
         }
         var host = CommonUtil.GetLocalhost();
-        return $"{host}/{_directory}/{fileName}";
+        return $"{host}/{DirectoryName}/{fileName}";
     }
 }
