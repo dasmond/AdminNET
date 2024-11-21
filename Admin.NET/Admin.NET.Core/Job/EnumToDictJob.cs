@@ -49,9 +49,8 @@ public class EnumToDictJob : IJob
         {
             await db.BeginTranAsync();
             var storageable1 = await db.Storageable(sysDictTypeList)
-                .WhereColumns(it => new { it.Code })
-                .SplitInsert(it => !it.Any())
                 .SplitUpdate(it => it.Any())
+                .SplitInsert(_ => true)
                 .ToStorageAsync();
             await storageable1.BulkCopyAsync();
             await storageable1.BulkUpdateAsync();
@@ -60,8 +59,8 @@ public class EnumToDictJob : IJob
 
             var storageable2 = await db.Storageable(sysDictTypeList.SelectMany(x => x.Children).ToList())
                 .WhereColumns(it => new { it.DictTypeId, it.Code })
-                .SplitInsert(it => !it.Any())
                 .SplitUpdate(it => it.Any())
+                .SplitInsert(_ => true)
                 .ToStorageAsync();
             await storageable2.BulkCopyAsync();
             await storageable2.BulkUpdateAsync();
