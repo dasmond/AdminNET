@@ -93,16 +93,12 @@ public class EnumToDictJob : IJob
         foreach (var dbDictType in await db.Queryable<SysDictType>().Where(x => codeList.Contains(x.Code)).ToListAsync() ?? new())
         {
             var enumDictType = list.First(x => x.Code == dbDictType.Code);
-            enumDictType.Children?.ForEach(e => e.DictTypeId = dbDictType.Id);
-
-            // 数据不一致则删除
-            if (enumDictType.Id != dbDictType.Id)
-            {
-                _ = db.Deleteable<SysDictData>().Where(x => x.DictTypeId == dbDictType.Id).ExecuteCommandAsync();
-                _ = db.Deleteable<SysDictType>().Where(x => x.Id == dbDictType.Id).ExecuteCommandAsync();
-            }
+            if (enumDictType.Id == dbDictType.Id) continue;
             
-            enumDictType.Id = dbDictType.Id;
+            // 数据不一致则删除
+            _ = db.Deleteable<SysDictData>().Where(x => x.DictTypeId == dbDictType.Id).ExecuteCommandAsync();
+            _ = db.Deleteable<SysDictType>().Where(x => x.Id == dbDictType.Id).ExecuteCommandAsync();
+            Console.WriteLine($"【{DateTime.Now}】删除字典数据: {dbDictType.Name}-{dbDictType.Code}");
         }
     }
 
