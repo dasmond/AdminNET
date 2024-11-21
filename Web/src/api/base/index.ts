@@ -1,11 +1,14 @@
 import { service, cancelRequest } from '/@/utils/request';
-import { AxiosRequestConfig } from "axios";
+import {AxiosRequestConfig, AxiosResponse} from "axios";
 
 // 接口基类
 export const useBaseApi = (module: string) => {
     const baseUrl = `/api/${module}/`;
     const request = <T>(config: AxiosRequestConfig<T>, cancel: boolean = false) => {
-        if (cancel) return cancelRequest(config.url || "");
+        if (cancel) {
+            cancelRequest(config.url || "");
+            return Promise.resolve({} as AxiosResponse<any, any>);
+        }
         return service(config);
     }
     return {

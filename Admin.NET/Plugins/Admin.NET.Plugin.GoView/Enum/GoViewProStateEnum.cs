@@ -10,7 +10,7 @@ namespace Admin.NET.Plugin.GoView;
 /// GoView 项目状态
 /// </summary>
 [Description("GoView 项目状态")]
-public enum GoViewProState
+public enum GoViewProStateEnum
 {
     /// <summary>
     /// 未发布

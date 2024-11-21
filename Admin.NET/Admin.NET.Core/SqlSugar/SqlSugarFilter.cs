@@ -40,7 +40,7 @@ public static class SqlSugarFilter
     public static void DeleteCustomCache(long userId, string dbConfigId)
     {
         // 删除自定义缓存——过滤器
-        _cache.Remove($"db:{dbConfigId}:custom:{userId}");
+        Cache.Remove($"db:{dbConfigId}:custom:{userId}");
     }
 
     /// <summary>

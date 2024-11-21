@@ -24,7 +24,7 @@ public class GoViewPro : EntityTenant
     /// 项目状态
     /// </summary>
     [SugarColumn(ColumnDescription = "项目状态")]
-    public GoViewProState State { get; set; } = GoViewProState.UnPublish;
+    public GoViewProStateEnum StateEnum { get; set; } = GoViewProStateEnum.UnPublish;
 
     /// <summary>
     /// 预览图片Url
