@@ -42,6 +42,8 @@ public class EnumToDictJob : IJob
             Console.WriteLine($"【{DateTime.Now}】系统枚举转换字典的枚举类名称必须以Enum结尾: {dictType.Code} ({dictType.Name})");
         sysDictTypeList = sysDictTypeList.Where(x => x.Code.EndsWith("Enum")).ToList();
 
+        await SyncEnumToDictInfoAsync(db, sysDictTypeList);
+        
         Console.ForegroundColor = ConsoleColor.Yellow;
         try
         {
@@ -77,6 +79,31 @@ public class EnumToDictJob : IJob
         finally
         {
             Console.ForegroundColor = originColor;
+        }
+    }
+
+    /// <summary>
+    /// 用于同步枚举转字典旧数据, 后期可删除
+    /// </summary>
+    /// <param name="db"></param>
+    /// <param name="list"></param>
+    [Obsolete]
+    private async Task SyncEnumToDictInfoAsync(SqlSugarClient db, List<SysDictType> list)
+    {
+        var codeList = list.Select(x => x.Code).ToList();
+        foreach (var dbDictType in await db.Queryable<SysDictType>().Where(x => codeList.Contains(x.Code)).ToListAsync() ?? new())
+        {
+            var enumDictType = list.First(x => x.Code == dbDictType.Code);
+            enumDictType.Children?.ForEach(e => e.DictTypeId = dbDictType.Id);
+
+            // 数据不一致则删除
+            if (enumDictType.Id != dbDictType.Id)
+            {
+                _ = db.Deleteable<SysDictData>().Where(x => x.DictTypeId == dbDictType.Id).ExecuteCommandAsync();
+                _ = db.Deleteable<SysDictType>().Where(x => x.Id == dbDictType.Id).ExecuteCommandAsync();
+            }
+            
+            enumDictType.Id = dbDictType.Id;
         }
     }
 
