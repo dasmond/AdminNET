@@ -27,9 +27,8 @@ public class EnumToDictJob : IJob
     public async Task ExecuteAsync(JobExecutingContext context, CancellationToken stoppingToken)
     {
         var originColor = Console.ForegroundColor;
-        Console.ForegroundColor = ConsoleColor.Green;
+        Console.ForegroundColor = ConsoleColor.Yellow;
         Console.WriteLine($"【{DateTime.Now}】系统枚举转换字典");
-        Console.ForegroundColor = originColor;
         
         using var serviceScope = _scopeFactory.CreateScope();
         var db = serviceScope.ServiceProvider.GetRequiredService<ISqlSugarClient>().CopyNew();
@@ -38,9 +37,12 @@ public class EnumToDictJob : IJob
         var sysDictTypeList = GetDictByEnumType(sysEnumService.GetEnumTypeList());
 
         // 校验枚举类命名规范，字典相关功能中需要通过后缀判断是否为枚举类型
-        foreach (var dictType in sysDictTypeList.Where(x => !x.Code.EndsWith("Enum"))) Log.Warning($"系统枚举转换字典的枚举类名称必须以Enum结尾: {dictType.Code} ({dictType.Name})");
+        Console.ForegroundColor = ConsoleColor.Red;
+        foreach (var dictType in sysDictTypeList.Where(x => !x.Code.EndsWith("Enum")))
+            Console.WriteLine($"【{DateTime.Now}】系统枚举转换字典的枚举类名称必须以Enum结尾: {dictType.Code} ({dictType.Name})");
         sysDictTypeList = sysDictTypeList.Where(x => x.Code.EndsWith("Enum")).ToList();
 
+        Console.ForegroundColor = ConsoleColor.Yellow;
         try
         {
             await db.BeginTranAsync();
@@ -52,8 +54,8 @@ public class EnumToDictJob : IJob
             await storageable1.BulkCopyAsync();
             await storageable1.BulkUpdateAsync();
             
-            Log.Information($"系统枚举类转字典类型数据: 共{storageable1.TotalList.Count}条");
-        
+            Console.WriteLine($"【{DateTime.Now}】系统枚举类转字典类型数据: 插入{storageable1.InsertList.Count}条, 更新{storageable1.UpdateList.Count}条, 共{storageable1.TotalList.Count}条。");
+
             var storageable2 = await db.Storageable(sysDictTypeList.SelectMany(x => x.Children).ToList())
                 .WhereColumns(it => new { it.DictTypeId, it.Code })
                 .SplitInsert(it => !it.Any())
@@ -61,8 +63,8 @@ public class EnumToDictJob : IJob
                 .ToStorageAsync();
             await storageable2.BulkCopyAsync();
             await storageable2.BulkUpdateAsync();
-            
-            Log.Information($"系统枚举项转字典值数据: 共{storageable2.TotalList.Count}条");
+
+            Console.WriteLine($"【{DateTime.Now}】系统枚举项转字典值数据: 插入{storageable2.InsertList.Count}条, 更新{storageable2.UpdateList.Count}条, 共{storageable2.TotalList.Count}条。");
 
             await db.CommitTranAsync();
         }
@@ -71,6 +73,10 @@ public class EnumToDictJob : IJob
             await db.RollbackTranAsync();
             Log.Error($"系统枚举转换字典操作错误：{error.Message}\n堆栈跟踪：{error.StackTrace}", error);
             throw;
+        }
+        finally
+        {
+            Console.ForegroundColor = originColor;
         }
     }
 
