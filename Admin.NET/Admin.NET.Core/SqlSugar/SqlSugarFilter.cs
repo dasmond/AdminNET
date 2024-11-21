@@ -26,6 +26,8 @@ public static class SqlSugarFilter
         sysCacheService.Remove($"{CacheConst.KeyUserOrg}{userId}");
         // 删除最大数据权限缓存
         sysCacheService.Remove($"{CacheConst.KeyRoleMaxDataScope}{userId}");
+        // 用户权限缓存（按钮集合）
+        sysCacheService.Remove($"{CacheConst.KeyUserButton}{userId}");
         // 删除用户机构（数据范围）缓存——过滤器
         _cache.Remove($"db:{dbConfigId}:orgList:{userId}");
     }
