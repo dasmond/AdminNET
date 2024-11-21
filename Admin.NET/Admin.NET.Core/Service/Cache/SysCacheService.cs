@@ -66,8 +66,7 @@ public class SysCacheService : IDynamicApiController, ISingleton
     [NonAction]
     public bool Set(string key, object value)
     {
-        if (string.IsNullOrWhiteSpace(key)) return false;
-        return _cacheProvider.Cache.Set($"{_cacheOptions.Prefix}{key}", value);
+        return !string.IsNullOrWhiteSpace(key) && _cacheProvider.Cache.Set($"{_cacheOptions.Prefix}{key}", value);
     }
 
     /// <summary>
@@ -80,8 +79,7 @@ public class SysCacheService : IDynamicApiController, ISingleton
     [NonAction]
     public bool Set(string key, object value, TimeSpan expire)
     {
-        if (string.IsNullOrWhiteSpace(key)) return false;
-        return _cacheProvider.Cache.Set($"{_cacheOptions.Prefix}{key}", value, expire);
+        return !string.IsNullOrWhiteSpace(key) && _cacheProvider.Cache.Set($"{_cacheOptions.Prefix}{key}", value, expire);
     }
 
     public async Task<TR> AdGetAsync<TR>(String cacheName, Func<Task<TR>> del, TimeSpan? expiry = default(TimeSpan?)) where TR : class
@@ -140,28 +138,15 @@ public class SysCacheService : IDynamicApiController, ISingleton
 
     private static string Key(string cacheName, object[] obs)
     {
-        foreach (var obj in obs)
-        {
-            if (obj is TimeSpan)
-            {
-                throw new Exception("缓存参数类型不能能是:TimeSpan类型");
-            }
-        }
-        StringBuilder sb = new StringBuilder(cacheName + ":");
-        foreach (var a in obs)
-        {
-            sb.Append($@"<{KeySingle(a)}>");
-        }
+        if (obs.OfType<TimeSpan>().Any()) throw new Exception("缓存参数类型不能能是:TimeSpan类型");
+        StringBuilder sb = new (cacheName + ":");
+        foreach (var a in obs) sb.Append($"<{KeySingle(a)}>");
         return sb.ToString();
     }
 
-    public static string KeySingle(object t)
+    private static string KeySingle(object t)
     {
-        if (t.GetType().IsClass && !t.GetType().IsPrimitive)
-        {
-            return JsonConvert.SerializeObject(t);
-        }
-        return t?.ToString();
+        return t.GetType().IsClass && !t.GetType().IsPrimitive ? JsonConvert.SerializeObject(t) : t.ToString();
     }
 
     /// <summary>

@@ -11,7 +11,7 @@ public static class SqlSugarFilter
     /// <summary>
     /// 缓存全局查询过滤器（内存缓存）
     /// </summary>
-    private static readonly ICache _cache = Cache.Default;
+    private static readonly ICache Cache = NewLife.Caching.Cache.Default;
 
     /// <summary>
     /// 删除用户机构缓存
@@ -29,7 +29,7 @@ public static class SqlSugarFilter
         // 用户权限缓存（按钮集合）
         sysCacheService.Remove($"{CacheConst.KeyUserButton}{userId}");
         // 删除用户机构（数据范围）缓存——过滤器
-        _cache.Remove($"db:{dbConfigId}:orgList:{userId}");
+        Cache.Remove($"db:{dbConfigId}:orgList:{userId}");
     }
 
     /// <summary>
@@ -57,7 +57,7 @@ public static class SqlSugarFilter
 
         // 配置用户机构集合缓存
         var cacheKey = $"db:{db.CurrentConnectionConfig.ConfigId}:orgList:{userId}";
-        var orgFilter = _cache.Get<ConcurrentDictionary<Type, LambdaExpression>>(cacheKey);
+        var orgFilter = Cache.Get<ConcurrentDictionary<Type, LambdaExpression>>(cacheKey);
         if (orgFilter == null)
         {
             // 获取用户最大数据范围，如果是全部数据，则跳过
@@ -92,7 +92,7 @@ public static class SqlSugarFilter
                 db.QueryFilter.AddTableFilter(entityType, lambda);
                 orgFilter.TryAdd(entityType, lambda);
             }
-            _cache.Add(cacheKey, orgFilter);
+            Cache.Add(cacheKey, orgFilter);
         }
         else
         {
@@ -128,7 +128,7 @@ public static class SqlSugarFilter
 
         // 配置用户数据范围缓存
         var cacheKey = $"db:{db.CurrentConnectionConfig.ConfigId}:dataScope:{userId}";
-        var dataScopeFilter = _cache.Get<ConcurrentDictionary<Type, LambdaExpression>>(cacheKey);
+        var dataScopeFilter = Cache.Get<ConcurrentDictionary<Type, LambdaExpression>>(cacheKey);
         if (dataScopeFilter == null)
         {
             // 获取业务实体数据表
@@ -151,7 +151,7 @@ public static class SqlSugarFilter
                 db.QueryFilter.AddTableFilter(entityType, lambda);
                 dataScopeFilter.TryAdd(entityType, lambda);
             }
-            _cache.Add(cacheKey, dataScopeFilter);
+            Cache.Add(cacheKey, dataScopeFilter);
         }
         else
         {
@@ -169,7 +169,7 @@ public static class SqlSugarFilter
         // 配置自定义缓存
         var userId = App.User?.FindFirst(ClaimConst.UserId)?.Value;
         var cacheKey = $"db:{db.CurrentConnectionConfig.ConfigId}:custom:{userId}";
-        var tableFilterItemList = _cache.Get<List<TableFilterItem<object>>>(cacheKey);
+        var tableFilterItemList = Cache.Get<List<TableFilterItem<object>>>(cacheKey);
         if (tableFilterItemList == null)
         {
             // 获取自定义实体过滤器
@@ -199,7 +199,7 @@ public static class SqlSugarFilter
                     db.QueryFilter.Add(tableFilterItem);
                 }
             }
-            _cache.Add(cacheKey, tableFilterItems);
+            Cache.Add(cacheKey, tableFilterItems);
         }
         else
         {

@@ -36,10 +36,7 @@ public class DateTimeUtil
     /// <returns></returns>
     public static DateTime GetBeginTime(DateTime? dateTime, int days = 0)
     {
-        if (dateTime == DateTime.MinValue || dateTime == null)
-            return DateTime.Now.AddDays(days);
-
-        return dateTime ?? DateTime.Now;
+        return dateTime == DateTime.MinValue || dateTime == null ? DateTime.Now.AddDays(days) : (DateTime)dateTime;
     }
 
     /// <summary>
@@ -90,16 +87,16 @@ public class DateTimeUtil
         long hour = (ms - day * dd) / hh;
         long minute = (ms - day * dd - hour * hh) / mi;
         long second = (ms - day * dd - hour * hh - minute * mi) / ss;
-        long milliSecond = ms - day * dd - hour * hh - minute * mi - second * ss;
+        //long milliSecond = ms - day * dd - hour * hh - minute * mi - second * ss;
 
         string sDay = day < 10 ? "0" + day : "" + day; //天
         string sHour = hour < 10 ? "0" + hour : "" + hour;//小时
         string sMinute = minute < 10 ? "0" + minute : "" + minute;//分钟
         string sSecond = second < 10 ? "0" + second : "" + second;//秒
-        string sMilliSecond = milliSecond < 10 ? "0" + milliSecond : "" + milliSecond;//毫秒
-        sMilliSecond = milliSecond < 100 ? "0" + sMilliSecond : "" + sMilliSecond;
+        //string sMilliSecond = milliSecond < 10 ? "0" + milliSecond : "" + milliSecond;//毫秒
+        //sMilliSecond = milliSecond < 100 ? "0" + sMilliSecond : "" + sMilliSecond;
 
-        return string.Format("{0} 天 {1} 小时 {2} 分 {3} 秒", sDay, sHour, sMinute, sSecond);
+        return $"{sDay} 天 {sHour} 小时 {sMinute} 分 {sSecond} 秒";
     }
 
     /// <summary>
@@ -140,12 +137,7 @@ public class DateTimeUtil
     /// <returns></returns>
     public static string FormatDateTime(DateTime? dt)
     {
-        if (dt == null) return string.Empty;
-
-        if (dt.Value.Year == DateTime.Now.Year)
-            return dt.Value.ToString("MM-dd HH:mm");
-        else
-            return dt.Value.ToString("yyyy-MM-dd HH:mm");
+        return dt == null ? string.Empty : dt.Value.ToString(dt.Value.Year == DateTime.Now.Year ? "MM-dd HH:mm" : "yyyy-MM-dd HH:mm");
     }
 
     /// <summary>
@@ -156,8 +148,8 @@ public class DateTimeUtil
     {
         return new List<DateTime>
         {
-            Convert.ToDateTime(time.ToString("D").ToString()),
-            Convert.ToDateTime(time.AddDays(1).ToString("D").ToString()).AddSeconds(-1)
+            Convert.ToDateTime(time.ToString("D")),
+            Convert.ToDateTime(time.AddDays(1).ToString("D")).AddSeconds(-1)
         };
     }
 

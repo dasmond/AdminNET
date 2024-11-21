@@ -55,63 +55,41 @@ public static class CodeGenUtil
 
         var dataType = dbType switch
         {
-            DbType.Oracle => ConvertDataType_OracleSQL(string.IsNullOrEmpty(dbColumnInfo.OracleDataType) ? dbColumnInfo.DataType : dbColumnInfo.OracleDataType, dbColumnInfo.Length, dbColumnInfo.Scale),
-            DbType.PostgreSQL => ConvertDataType_PostgreSQL(dbColumnInfo.DataType),
-            _ => ConvertDataType_Default(dbColumnInfo.DataType),
+            DbType.Oracle => ConvertDataTypeOracleSql(string.IsNullOrEmpty(dbColumnInfo.OracleDataType) ? dbColumnInfo.DataType : dbColumnInfo.OracleDataType, dbColumnInfo.Length, dbColumnInfo.Scale),
+            DbType.PostgreSQL => ConvertDataTypePostgresSql(dbColumnInfo.DataType),
+            _ => ConvertDataTypeDefault(dbColumnInfo.DataType),
         };
         return dataType + (dbColumnInfo.IsNullable ? "?" : "");
     }
 
-    public static string ConvertDataType_OracleSQL(string dataType, int? length, int? scale)
+    public static string ConvertDataTypeOracleSql(string dataType, int? length, int? scale)
     {
         switch (dataType.ToLower())
         {
-            case "interval year to month":
-                return "int";
-
-            case "interval day to second":
-                return "TimeSpan";
-
-            case "smallint":
-                return "Int16";
-
+            case "interval year to month": return "int";
+            
+            case "interval day to second": return "TimeSpan";
+            
+            case "smallint": return "Int16";
+            
             case "int":
-            case "integer":
-                return "int";
-
-            case "long":
-                return "long";
-
-            case "float":
-                return "float";
-
-            case "decimal":
-                return "decimal";
-
+            case "integer": return "int";
+            
+            case "long": return "long";
+            
+            case "float": return "float";
+            
+            case "decimal": return "decimal";
+            
             case "number":
-                if (length != null)
+                if (length == null) return "decimal";
+                return scale switch
                 {
-                    if (scale != null && scale > 0)
-                    {
-                        return "decimal";
-                    }
-                    else if ((scale != null && scale == 0) || scale == null)
-                    {
-                        if (length > 1 && length < 12)
-                        {
-                            return "int";
-                        }
-                        else if (length > 11)
-                        {
-                            return "long";
-                        }
-                    }
-                    if (length == 1)
-                    {
-                        return "bool";
-                    }
-                }
-                return "decimal";
+                    > 0 => "decimal",
+                    0 or null when length is > 1 and < 12 => "int",
+                    0 or null when length > 11 => "long",
+                    _ => length == 1 ? "bool" : "decimal"
+                };
 
             case "char":
             case "clob":
@@ -145,8 +123,8 @@ public static class CodeGenUtil
         }
     }
 
-    //PostgreSQL数据类型对应的字段类型
-    public static string ConvertDataType_PostgreSQL(string dataType)
+    //PostgresSQL数据类型对应的字段类型
+    public static string ConvertDataTypePostgresSql(string dataType)
     {
         switch (dataType)
         {
@@ -229,7 +207,7 @@ public static class CodeGenUtil
         }
     }
 
-    public static string ConvertDataType_Default(string dataType)
+    public static string ConvertDataTypeDefault(string dataType)
     {
         return dataType.ToLower() switch
         {

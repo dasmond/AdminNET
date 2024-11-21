@@ -49,7 +49,7 @@ public class SysOnlineUserService : IDynamicApiController, ITransient
     [DisplayName("强制下线")]
     public async Task ForceOffline(SysOnlineUser user)
     {
-        await _onlineUserHubContext.Clients.Client(user.ConnectionId).ForceOffline("强制下线");
+        await _onlineUserHubContext.Clients.Client(user.ConnectionId ?? "").ForceOffline("强制下线");
         await _sysOnlineUerRep.DeleteAsync(user);
     }
 
@@ -67,7 +67,7 @@ public class SysOnlineUserService : IDynamicApiController, ITransient
 
         foreach (var item in userList)
         {
-            await _onlineUserHubContext.Clients.Client(item.ConnectionId).PublicNotice(notice);
+            await _onlineUserHubContext.Clients.Client(item.ConnectionId ?? "").PublicNotice(notice);
         }
     }
 

@@ -32,12 +32,7 @@ public class SysEnumService : IDynamicApiController, ITransient
             .OrderBy(u => u.Name).ThenBy(u => u.FullName)
             .ToList();
 
-        var result = new List<EnumTypeOutput>();
-        foreach (var item in enumTypeList)
-        {
-            result.Add(GetEnumDescription(item));
-        }
-        return result;
+        return enumTypeList.Select(GetEnumDescription).ToList();
     }
 
     /// <summary>
@@ -73,8 +68,7 @@ public class SysEnumService : IDynamicApiController, ITransient
     public List<EnumEntity> GetEnumDataList([FromQuery] EnumInput input)
     {
         var enumType = App.EffectiveTypes.FirstOrDefault(u => u.IsEnum && u.Name == input.EnumName);
-        if (enumType is not { IsEnum: true })
-            throw Oops.Oh(ErrorCodeEnum.D1503);
+        if (enumType is not { IsEnum: true }) throw Oops.Oh(ErrorCodeEnum.D1503);
 
         return enumType.EnumToList();
     }
@@ -92,8 +86,7 @@ public class SysEnumService : IDynamicApiController, ITransient
 
         // 获取字段类型
         var fieldType = entityType.GetProperties().FirstOrDefault(u => u.Name == input.FieldName)?.PropertyType;
-        if (fieldType is not { IsEnum: true })
-            throw Oops.Oh(ErrorCodeEnum.D1503);
+        if (fieldType is not { IsEnum: true }) throw Oops.Oh(ErrorCodeEnum.D1503);
 
         return fieldType.EnumToList();
     }

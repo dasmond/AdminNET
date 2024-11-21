@@ -18,6 +18,12 @@ public class @(Model.ClassName)BaseInput
     @:/// <summary>
     @:/// @column.ColumnComment
     @:/// </summary>
+    if (column.EffectType is "EnumSelector" or "DictSelector") {
+    @:[Dict(@(column.EffectType == "EnumSelector" ? $"nameof({column.DictTypeCode})" : $"\"{column.DictTypeCode}\""), AllowNullValue=true)]
+    }
+    if (column.WhetherRequired == "Y") {
+    @:[Required(ErrorMessage = "@(column.ColumnComment)不能为空")]
+    }
     @:public virtual @Model.GetNullableNetType(column.NetType) @column.PropertyName { get; set; }
     @:
 }
@@ -38,6 +44,9 @@ public class Page@(Model.ClassName)Input : BasePageInput
     @:/// <summary>
     @:/// @column.ColumnComment
     @:/// </summary>
+    if (column.EffectType is "EnumSelector" or "DictSelector") {
+    @:[Dict(@(column.EffectType == "EnumSelector" ? $"nameof({column.DictTypeCode})" : $"\"{column.DictTypeCode}\""), AllowNullValue=true)]
+    }
     @:public @Model.GetNullableNetType(column.NetType) @column.PropertyName { get; set; }
     }
     @:
@@ -53,6 +62,9 @@ public class Add@(Model.ClassName)Input
     @:/// <summary>
     @:/// @column.ColumnComment
     @:/// </summary>
+    if (column.EffectType is "EnumSelector" or "DictSelector") {
+    @:[Dict(@(column.EffectType == "EnumSelector" ? $"nameof({column.DictTypeCode})" : $"\"{column.DictTypeCode}\""), AllowNullValue=true)]
+    }
     if (column.WhetherRequired == "Y") {
     @:[Required(ErrorMessage = "@(column.ColumnComment)不能为空")]
     }
@@ -88,6 +100,9 @@ public class Update@(Model.ClassName)Input
     @:/// <summary>
     @:/// @column.ColumnComment
     @:/// </summary>    
+    if (column.EffectType is "EnumSelector" or "DictSelector") {
+    @:[Dict(@(column.EffectType == "EnumSelector" ? $"nameof({column.DictTypeCode})" : $"\"{column.DictTypeCode}\""), AllowNullValue=true)]
+    }
     if (column.WhetherRequired == "Y" || column.ColumnKey == "True") {
     @:[Required(ErrorMessage = "@(column.ColumnComment)不能为空")]
     }

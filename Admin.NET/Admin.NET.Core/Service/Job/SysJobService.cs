@@ -83,8 +83,7 @@ public class SysJobService : IDynamicApiController, ITransient
     public async Task AddJobDetail(AddJobDetailInput input)
     {
         var isExist = await _sysJobDetailRep.IsAnyAsync(u => u.JobId == input.JobId && u.Id != input.Id);
-        if (isExist)
-            throw Oops.Oh(ErrorCodeEnum.D1006);
+        if (isExist) throw Oops.Oh(ErrorCodeEnum.D1006);
 
         // 动态创建作业
         Type jobType;
@@ -110,9 +109,7 @@ public class SysJobService : IDynamicApiController, ITransient
                 throw new NotSupportedException();
         }
 
-        _schedulerFactory.AddJob(
-            JobBuilder.Create(jobType)
-                .LoadFrom(input.Adapt<SysJobDetail>()).SetJobType(jobType));
+        _schedulerFactory.AddJob( JobBuilder.Create(jobType).LoadFrom(input.Adapt<SysJobDetail>() ).SetJobType(jobType));
 
         // 延迟一下等待持久化写入，再执行其他字段的更新
         await Task.Delay(500);
@@ -130,12 +127,10 @@ public class SysJobService : IDynamicApiController, ITransient
     public async Task UpdateJobDetail(UpdateJobDetailInput input)
     {
         var isExist = await _sysJobDetailRep.IsAnyAsync(u => u.JobId == input.JobId && u.Id != input.Id);
-        if (isExist)
-            throw Oops.Oh(ErrorCodeEnum.D1006);
+        if (isExist) throw Oops.Oh(ErrorCodeEnum.D1006);
 
         var sysJobDetail = await _sysJobDetailRep.GetFirstAsync(u => u.Id == input.Id);
-        if (sysJobDetail.JobId != input.JobId)
-            throw Oops.Oh(ErrorCodeEnum.D1704);
+        if (sysJobDetail.JobId != input.JobId) throw Oops.Oh(ErrorCodeEnum.D1704);
 
         var scheduler = _schedulerFactory.GetJob(sysJobDetail.JobId);
         var oldScriptCode = sysJobDetail.ScriptCode; // 旧脚本代码
@@ -143,8 +138,7 @@ public class SysJobService : IDynamicApiController, ITransient
 
         if (input.CreateType == JobCreateTypeEnum.Script)
         {
-            if (string.IsNullOrEmpty(input.ScriptCode))
-                throw Oops.Oh(ErrorCodeEnum.D1701);
+            if (string.IsNullOrEmpty(input.ScriptCode)) throw Oops.Oh(ErrorCodeEnum.D1701);
 
             if (input.ScriptCode != oldScriptCode)
             {
@@ -153,8 +147,7 @@ public class SysJobService : IDynamicApiController, ITransient
 
                 if (jobType.GetCustomAttributes(typeof(JobDetailAttribute)).FirstOrDefault() is not JobDetailAttribute jobDetailAttribute)
                     throw Oops.Oh(ErrorCodeEnum.D1702);
-                if (jobDetailAttribute.JobId != input.JobId)
-                    throw Oops.Oh(ErrorCodeEnum.D1703);
+                if (jobDetailAttribute.JobId != input.JobId) throw Oops.Oh(ErrorCodeEnum.D1703);
 
                 scheduler?.UpdateDetail(JobBuilder.Create(jobType).LoadFrom(sysJobDetail).SetJobType(jobType));
             }
@@ -205,8 +198,7 @@ public class SysJobService : IDynamicApiController, ITransient
     public async Task AddJobTrigger(AddJobTriggerInput input)
     {
         var isExist = await _sysJobTriggerRep.IsAnyAsync(u => u.TriggerId == input.TriggerId && u.Id != input.Id);
-        if (isExist)
-            throw Oops.Oh(ErrorCodeEnum.D1006);
+        if (isExist) throw Oops.Oh(ErrorCodeEnum.D1006);
 
         var jobTrigger = input.Adapt<SysJobTrigger>();
         jobTrigger.Args = "[" + jobTrigger.Args + "]";
@@ -224,8 +216,7 @@ public class SysJobService : IDynamicApiController, ITransient
     public async Task UpdateJobTrigger(UpdateJobTriggerInput input)
     {
         var isExist = await _sysJobTriggerRep.IsAnyAsync(u => u.TriggerId == input.TriggerId && u.Id != input.Id);
-        if (isExist)
-            throw Oops.Oh(ErrorCodeEnum.D1006);
+        if (isExist) throw Oops.Oh(ErrorCodeEnum.D1006);
 
         var jobTrigger = input.Adapt<SysJobTrigger>();
         jobTrigger.Args = "[" + jobTrigger.Args + "]";
@@ -303,8 +294,7 @@ public class SysJobService : IDynamicApiController, ITransient
     [DisplayName("执行作业")]
     public void RunJob(JobDetailInput input)
     {
-        if (_schedulerFactory.TryRunJob(input.JobId, out _) != ScheduleResult.Succeed)
-            throw Oops.Oh(ErrorCodeEnum.D1705);
+        if (_schedulerFactory.TryRunJob(input.JobId, out _) != ScheduleResult.Succeed) throw Oops.Oh(ErrorCodeEnum.D1705);
     }
 
     /// <summary>

@@ -33,7 +33,7 @@ public class DbJobPersistence : IJobPersistence
         // 获取所有定义的作业
         var allJobs = App.EffectiveTypes.ScanToBuilders().ToList();
         // 若数据库不存在任何作业，则直接返回
-        if (!db.Queryable<SysJobDetail>().Any(u => true)) return allJobs;
+        if (!await db.Queryable<SysJobDetail>().AnyAsync(u => true, stoppingToken)) return allJobs;
 
         // 遍历所有定义的作业
         foreach (var schedulerBuilder in allJobs)

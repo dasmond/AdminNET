@@ -53,10 +53,10 @@ public class SysSmsService : IDynamicApiController, ITransient
     public bool VerifyCode(SmsVerifyCodeInput input)
     {
         var verifyCode = _sysCacheService.Get<string>($"{CacheConst.KeyPhoneVerCode}{input.Phone}");
-        if (string.IsNullOrWhiteSpace(verifyCode))
-            throw Oops.Oh("验证码不存在或已失效，请重新获取！");
-        if (verifyCode != input.Code)
-            throw Oops.Oh("验证码错误！");
+        
+        if (string.IsNullOrWhiteSpace(verifyCode)) throw Oops.Oh("验证码不存在或已失效，请重新获取！");
+        
+        if (verifyCode != input.Code) throw Oops.Oh("验证码错误！");
 
         return true;
     }
@@ -70,8 +70,7 @@ public class SysSmsService : IDynamicApiController, ITransient
     [DisplayName("阿里云发送短信")]
     public async Task AliyunSendSms([Required] string phoneNumber)
     {
-        if (!phoneNumber.TryValidate(ValidationTypes.PhoneNumber).IsValid)
-            throw Oops.Oh("请正确填写手机号码");
+        if (!phoneNumber.TryValidate(ValidationTypes.PhoneNumber).IsValid) throw Oops.Oh("请正确填写手机号码");
 
         // 生成随机验证码
         var random = new Random();
@@ -116,11 +115,9 @@ public class SysSmsService : IDynamicApiController, ITransient
     [DisplayName("发送短信模板")]
     public async Task AliyunSendSmsTemplate([Required] string phoneNumber, [Required] dynamic templateParam)
     {
-        if (!phoneNumber.TryValidate(ValidationTypes.PhoneNumber).IsValid)
-            throw Oops.Oh("请正确填写手机号码");
+        if (!phoneNumber.TryValidate(ValidationTypes.PhoneNumber).IsValid) throw Oops.Oh("请正确填写手机号码");
 
-        if (string.IsNullOrWhiteSpace(templateParam.ToString()))
-            throw Oops.Oh("短信内容不能为空");
+        if (string.IsNullOrWhiteSpace(templateParam.ToString())) throw Oops.Oh("短信内容不能为空");
 
         var client = CreateAliyunClient();
         var template = _smsOptions.Aliyun.GetTemplate();
@@ -153,8 +150,7 @@ public class SysSmsService : IDynamicApiController, ITransient
     [DisplayName("腾讯云发送短信")]
     public async Task TencentSendSms([Required] string phoneNumber)
     {
-        if (!phoneNumber.TryValidate(ValidationTypes.PhoneNumber).IsValid)
-            throw Oops.Oh("请正确填写手机号码");
+        if (!phoneNumber.TryValidate(ValidationTypes.PhoneNumber).IsValid) throw Oops.Oh("请正确填写手机号码");
 
         // 生成随机验证码
         var random = new Random();

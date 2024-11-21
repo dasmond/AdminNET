@@ -97,10 +97,7 @@ public class SysCodeGenConfigService : IDynamicApiController, ITransient
             var codeGenConfig = new SysCodeGenConfig();
 
             var yesOrNo = YesNoEnum.Y.ToString();
-            if (Convert.ToBoolean(tableColumn.ColumnKey))
-            {
-                yesOrNo = YesNoEnum.N.ToString();
-            }
+            if (Convert.ToBoolean(tableColumn.ColumnKey)) yesOrNo = YesNoEnum.N.ToString();
 
             if (CodeGenUtil.IsCommonColumn(tableColumn.PropertyName))
             {

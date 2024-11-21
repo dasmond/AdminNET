@@ -113,7 +113,7 @@ export function getFileName(headers: RawAxiosResponseHeaders | AxiosResponseHead
  * @param res
  * @param fileName 文件名
  */
-export function downloadStreamFile(res: any, fileName: string | undefined) {
+export function downloadStreamFile(res: any, fileName: string | undefined = undefined) {
 	const contentType = res.headers['content-type'];
 	fileName = fileName || getFileName(res.headers['content-disposition']);
 	const blob = res.data instanceof Blob ? res.data : new Blob([res.data], { type: contentType });

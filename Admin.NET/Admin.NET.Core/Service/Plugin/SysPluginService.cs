@@ -46,8 +46,7 @@ public class SysPluginService : IDynamicApiController, ITransient
     public async Task AddPlugin(AddPluginInput input)
     {
         var isExist = await _sysPluginRep.IsAnyAsync(u => u.Name == input.Name || u.AssemblyName == input.AssemblyName);
-        if (isExist)
-            throw Oops.Oh(ErrorCodeEnum.D1900);
+        if (isExist) throw Oops.Oh(ErrorCodeEnum.D1900);
 
         // 添加动态程序集/接口
         input.AssemblyName = CompileAssembly(input.CsharpCode, input.AssemblyName);
@@ -65,8 +64,7 @@ public class SysPluginService : IDynamicApiController, ITransient
     public async Task UpdatePlugin(UpdatePluginInput input)
     {
         var isExist = await _sysPluginRep.IsAnyAsync(u => (u.Name == input.Name || u.AssemblyName == input.AssemblyName) && u.Id != input.Id);
-        if (isExist)
-            throw Oops.Oh(ErrorCodeEnum.D1900);
+        if (isExist) throw Oops.Oh(ErrorCodeEnum.D1900);
 
         // 先移除再添加动态程序集/接口
         RemoveAssembly(input.AssemblyName);

@@ -28,12 +28,12 @@ public class SysRoleOrgService : ITransient
         await _sysRoleOrgRep.DeleteAsync(u => u.RoleId == input.Id);
         if (input.DataScope == (int)DataScopeEnum.Define)
         {
-            var roleOrgs = input.OrgIdList.Select(u => new SysRoleOrg
+            var roleOrgList = input.OrgIdList.Select(u => new SysRoleOrg
             {
                 RoleId = input.Id,
                 OrgId = u
             }).ToList();
-            await _sysRoleOrgRep.InsertRangeAsync(roleOrgs);
+            await _sysRoleOrgRep.InsertRangeAsync(roleOrgList);
         }
     }
 
