@@ -222,6 +222,12 @@ public enum ErrorCodeEnum
     /// </summary>
     [ErrorCodeItemMetadata("开放接口绑定租户禁止删除")]
     D1031,
+    
+    /// <summary>
+    /// 手机号已存在
+    /// </summary>
+    [ErrorCodeItemMetadata("手机号已存在")]
+    D1032,
 
     /// <summary>
     /// 父机构不存在
@@ -546,6 +552,12 @@ public enum ErrorCodeEnum
     /// </summary>
     [ErrorCodeItemMetadata("租户从库配置错误")]
     D1302,
+    
+    /// <summary>
+    /// 已存在同名的租户域名
+    /// </summary>
+    [ErrorCodeItemMetadata("已存在同名的租户域名")]
+    D1303,
 
     /// <summary>
     /// 该表代码模板已经生成过
@@ -734,9 +746,9 @@ public enum ErrorCodeEnum
     Z1002,
 
     /// <summary>
-    /// 租户已禁用
+    /// 租户不存在或已禁用
     /// </summary>
-    [ErrorCodeItemMetadata("租户已禁用")]
+    [ErrorCodeItemMetadata("租户不存在或已禁用")]
     Z1003,
 
     /// <summary>

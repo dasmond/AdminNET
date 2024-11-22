@@ -29,4 +29,10 @@ export interface LoginPhoneInput {
      * @memberof LoginPhoneInput
      */
     code: string;
+    /**
+     * 租户域名
+     * @type {string}
+     * @memberof LoginPhoneInput
+     */
+    host?: string | null;
 }

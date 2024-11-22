@@ -70,17 +70,19 @@ public class SysAuthService : IDynamicApiController, ITransient
             // 判断验证码
             if (!_captcha.Validate(input.CodeId.ToString(), input.Code)) throw Oops.Oh(ErrorCodeEnum.D0008);
         }
+        
+        // 获取租户
+        var tenant = await GetTenantByHost(input.Host);
 
         // 账号是否存在
-        var user = await _sysUserRep.AsQueryable().Includes(t => t.SysOrg).ClearFilter().FirstAsync(u => u.Account.Equals(input.Account));
+        var user = await _sysUserRep.AsQueryable().Includes(t => t.SysOrg).ClearFilter().FirstAsync(u => (u.TenantId == tenant.Id || u.AccountType == AccountTypeEnum.SuperAdmin) && u.Account.Equals(input.Account));
         _ = user ?? throw Oops.Oh(ErrorCodeEnum.D0009);
+        
+        // 若登录的是超级管理员，则引用当前绑定的租户，这样登陆后操作的租户数据才会与该租户关联
+        if (user.AccountType == AccountTypeEnum.SuperAdmin) user.TenantId = tenant.Id;
 
         // 账号是否被冻结
         if (user.Status == StatusEnum.Disable) throw Oops.Oh(ErrorCodeEnum.D1017);
-
-        // 租户是否被禁用
-        var tenant = await _sysUserRep.ChangeRepository<SqlSugarRepository<SysTenant>>().GetFirstAsync(u => u.Id == user.TenantId);
-        if (tenant?.Status == StatusEnum.Disable) throw Oops.Oh(ErrorCodeEnum.Z1003);
 
         // 是否开启域登录验证
         if (await _sysConfigService.GetConfigValue<bool>(ConfigConst.SysDomainLogin))
@@ -103,6 +105,23 @@ public class SysAuthService : IDynamicApiController, ITransient
         _sysCacheService.Remove(keyPasswordErrorTimes);
 
         return await CreateToken(user);
+    }
+    
+    /// <summary>
+    /// 根据绑定域名获取租户
+    /// </summary>
+    /// <param name="host"></param>
+    /// <returns></returns>
+    private async Task<SysTenant> GetTenantByHost(string host)
+    {
+        // 若租户域名为空或为本地域名，则取默认租户域名
+        if (string.IsNullOrWhiteSpace(host) || host.StartsWith("localhost")) host = SqlSugarConst.DefaultTenantHost;
+        
+        // 租户是否存在或已禁用
+        var tenant = await _sysUserRep.ChangeRepository<SqlSugarRepository<SysTenant>>().GetFirstAsync(u => u.Host == host.ToLower());
+        if (tenant?.Status != StatusEnum.Enable) throw Oops.Oh(ErrorCodeEnum.Z1003);
+
+        return tenant;
     }
 
     /// <summary>
@@ -176,9 +195,12 @@ public class SysAuthService : IDynamicApiController, ITransient
     {
         // 校验短信验证码
         App.GetRequiredService<SysSmsService>().VerifyCode(new SmsVerifyCodeInput { Phone = input.Phone, Code = input.Code });
-
+        
+        // 获取租户
+        var tenant = await GetTenantByHost(input.Host);
+        
         // 账号是否存在
-        var user = await _sysUserRep.AsQueryable().Includes(u => u.SysOrg).ClearFilter().FirstAsync(u => u.Phone.Equals(input.Phone));
+        var user = await _sysUserRep.AsQueryable().Includes(u => u.SysOrg).ClearFilter().FirstAsync(u => (u.TenantId == tenant.Id || u.AccountType == AccountTypeEnum.SuperAdmin) && u.Phone.Equals(input.Phone));
         _ = user ?? throw Oops.Oh(ErrorCodeEnum.D0009);
 
         return await CreateToken(user);
@@ -351,6 +373,7 @@ public class SysAuthService : IDynamicApiController, ITransient
             {
                 Account = auth.UserName,
                 Password = CryptogramUtil.SM2Encrypt(auth.Password),
+                Host = SqlSugarConst.DefaultTenantHost
             });
 
             _sysCacheService.Remove($"{CacheConst.KeyConfig}{ConfigConst.SysCaptcha}");

@@ -81,12 +81,6 @@ export interface UpdateTenantInput {
      */
     orgId?: number;
     /**
-     * 主机
-     * @type {string}
-     * @memberof UpdateTenantInput
-     */
-    host?: string | null;
-    /**
      * 
      * @type {TenantTypeEnum}
      * @memberof UpdateTenantInput
@@ -158,4 +152,10 @@ export interface UpdateTenantInput {
      * @memberof UpdateTenantInput
      */
     adminAccount: string;
+    /**
+     * 租户域名
+     * @type {string}
+     * @memberof UpdateTenantInput
+     */
+    host: string;
 }

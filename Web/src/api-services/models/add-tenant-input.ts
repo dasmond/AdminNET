@@ -81,12 +81,6 @@ export interface AddTenantInput {
      */
     orgId?: number;
     /**
-     * 主机
-     * @type {string}
-     * @memberof AddTenantInput
-     */
-    host?: string | null;
-    /**
      * 
      * @type {TenantTypeEnum}
      * @memberof AddTenantInput
@@ -158,4 +152,10 @@ export interface AddTenantInput {
      * @memberof AddTenantInput
      */
     adminAccount: string;
+    /**
+     * 租户域名
+     * @type {string}
+     * @memberof AddTenantInput
+     */
+    host: string;
 }

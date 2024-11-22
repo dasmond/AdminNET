@@ -18,6 +18,7 @@ import { Configuration } from '../configuration';
 import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base';
 import { AdminResultIActionResult } from '../models';
 import { AdminResultListApiOutput } from '../models';
+import { AdminResultObject } from '../models';
 import { AdminResultSmKeyPairOutput } from '../models';
 /**
  * SysCommonApi - axios parameter creator
@@ -118,6 +119,55 @@ export const SysCommonApiAxiosParamCreator = function (configuration?: Configura
         },
         /**
          * 
+         * @summary 加密字符串 🔖
+         * @param {string} plainText 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiSysCommonEncryptPlainTextPlainTextPost: async (plainText: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'plainText' is not null or undefined
+            if (plainText === null || plainText === undefined) {
+                throw new RequiredError('plainText','Required parameter plainText was null or undefined when calling apiSysCommonEncryptPlainTextPlainTextPost.');
+            }
+            const localVarPath = `/api/sysCommon/encryptPlainText/{plainText}`
+                .replace(`{${"plainText"}}`, encodeURIComponent(String(plainText)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions :AxiosRequestConfig = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication Bearer required
+            // http bearer authentication required
+            if (configuration && configuration.accessToken) {
+                const accessToken = typeof configuration.accessToken === 'function'
+                    ? await configuration.accessToken()
+                    : await configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
+            }
+
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.params) {
+                query.set(key, options.params[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @summary 获取国密公钥私钥对 🏆
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -197,6 +247,20 @@ export const SysCommonApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @summary 加密字符串 🔖
+         * @param {string} plainText 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiSysCommonEncryptPlainTextPlainTextPost(plainText: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<AdminResultObject>>> {
+            const localVarAxiosArgs = await SysCommonApiAxiosParamCreator(configuration).apiSysCommonEncryptPlainTextPlainTextPost(plainText, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
+         * 
          * @summary 获取国密公钥私钥对 🏆
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -238,6 +302,16 @@ export const SysCommonApiFactory = function (configuration?: Configuration, base
         },
         /**
          * 
+         * @summary 加密字符串 🔖
+         * @param {string} plainText 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiSysCommonEncryptPlainTextPlainTextPost(plainText: string, options?: AxiosRequestConfig): Promise<AxiosResponse<AdminResultObject>> {
+            return SysCommonApiFp(configuration).apiSysCommonEncryptPlainTextPlainTextPost(plainText, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
          * @summary 获取国密公钥私钥对 🏆
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -275,6 +349,17 @@ export class SysCommonApi extends BaseAPI {
      */
     public async apiSysCommonDownloadErrorExcelTempPost(fileName?: string, options?: AxiosRequestConfig) : Promise<AxiosResponse<AdminResultIActionResult>> {
         return SysCommonApiFp(this.configuration).apiSysCommonDownloadErrorExcelTempPost(fileName, options).then((request) => request(this.axios, this.basePath));
+    }
+    /**
+     * 
+     * @summary 加密字符串 🔖
+     * @param {string} plainText 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SysCommonApi
+     */
+    public async apiSysCommonEncryptPlainTextPlainTextPost(plainText: string, options?: AxiosRequestConfig) : Promise<AxiosResponse<AdminResultObject>> {
+        return SysCommonApiFp(this.configuration).apiSysCommonEncryptPlainTextPlainTextPost(plainText, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * 
