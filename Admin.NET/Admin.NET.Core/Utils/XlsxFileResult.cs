@@ -91,10 +91,7 @@ public class XlsxFileResultBase : ActionResult
 
         downloadFileName ??= Guid.NewGuid().ToString("N") + ".xlsx";
 
-        if (string.IsNullOrEmpty(Path.GetExtension(downloadFileName)))
-        {
-            downloadFileName += ".xlsx";
-        }
+        if (string.IsNullOrEmpty(Path.GetExtension(downloadFileName))) downloadFileName += ".xlsx";
 
         context.HttpContext.Response.Headers.Append("Content-Disposition", new[] { "attachment; filename=" + HttpUtility.UrlEncode(downloadFileName) });
         await stream.CopyToAsync(context.HttpContext.Response.Body);

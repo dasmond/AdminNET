@@ -247,6 +247,7 @@ public class @(Model.ClassName)Service : IDynamicApiController, ITransient
     @:public async Task<IActionResult> Export(Page@(Model.ClassName)Input input)
     @:{
         @:var list = (await Page(input)).Items?.Adapt<List<Export@(Model.ClassName)Output>>() ?? new();
+        @:if (input.SelectKeyList?.Count > 0) list = list.Where(x => input.SelectKeyList.Contains(x.@(Model.PrimaryKeyFieldList.First().PropertyName))).ToList();
         @:return ExcelHelper.ExportTemplate(list, "@(Model.BusName)导出记录");
     @:}
     @:
@@ -299,7 +300,7 @@ public class @(Model.ClassName)Service : IDynamicApiController, ITransient
                         var columnList = column.FkDisplayColumnList.Select(n => $"{{u.{n}}}").ToList();
                         @:var @(column.LowerPropertyName)LinkMap = _@(Model.LowerClassName)Rep.Context.Queryable<@(column.FkEntityName)>().Where(u => @(column.LowerPropertyName)LabelList.Contains($"@(string.Join("-", columnList))")).ToList().ToDictionary(u => $"@(string.Join("-", columnList))", u => u.@(column.FkLinkColumnName));
                         @:pageItems.ForEach(e => {
-                            @:e.@(column.PropertyName) = @(column.LowerPropertyName)LinkMap?.GetValueOrDefault(e.@column.ExtendedPropertyName);
+                            @:e.@(column.PropertyName) = @(column.LowerPropertyName)LinkMap.GetValueOrDefault(e.@column.ExtendedPropertyName ?? "");
                             @:if (e.@(column.PropertyName) == null) e.Error = "@(column.ColumnComment)链接失败";
                         @:});
                     @:}
@@ -331,7 +332,7 @@ public class @(Model.ClassName)Service : IDynamicApiController, ITransient
                     @:}).Adapt<List<@(Model.ClassName)>>();
 
                     @:
-                    @:var storageable = _sqlSugarClient.Storageable(rows)
+                    @:var storageable = _@(Model.LowerClassName)Rep.Context.Storageable(rows)
                         foreach (var column in Model.ImportFieldList){
                         if (column.WhetherRequired == "Y"){
                         if(column.NetType.TrimEnd('?') == "string"){

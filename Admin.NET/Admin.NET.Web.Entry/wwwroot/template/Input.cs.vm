@@ -51,6 +51,13 @@ public class Page@(Model.ClassName)Input : BasePageInput
     }
     @:
 }
+@if (Model.ImportFieldList.Count > 0){
+    var primaryKey = Model.PrimaryKeyFieldList.First();
+    @:/// <summary>
+    @:/// 选中主键列表
+    @:/// </summary>
+    @: public List<@(primaryKey.NetType)> SelectKeyList { get; set; }
+}
 }
 
 /// <summary>
