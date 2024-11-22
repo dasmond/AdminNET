@@ -41,4 +41,10 @@ export interface LoginInput {
      * @memberof LoginInput
      */
     code?: string | null;
+    /**
+     * 租户域名
+     * @type {string}
+     * @memberof LoginInput
+     */
+    host?: string | null;
 }

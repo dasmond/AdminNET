@@ -26,9 +26,9 @@ public partial class SysTenant : EntityBase
     public long OrgId { get; set; }
 
     /// <summary>
-    /// 主机
+    /// 域名
     /// </summary>
-    [SugarColumn(ColumnDescription = "主机", Length = 128)]
+    [SugarColumn(ColumnDescription = "域名", Length = 128)]
     [MaxLength(128)]
     public string? Host { get; set; }
 

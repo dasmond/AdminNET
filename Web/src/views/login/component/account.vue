@@ -204,7 +204,8 @@ const onSignIn = async () => {
 			const publicKey = window.__env__.VITE_SM_PUBLIC_KEY;
 			const password = sm2.doEncrypt(state.ruleForm.password, publicKey, 1);
 
-			const [err, res] = await feature(getAPI(SysAuthApi).apiSysAuthLoginPost({ ...state.ruleForm, password: password }));
+      const host = route.query.host ?? location.host;
+			const [err, res] = await feature(getAPI(SysAuthApi).apiSysAuthLoginPost({ ...state.ruleForm, password: password, host: host }));
 			if (err) {
 				getCaptcha(); // 重新获取验证码
 				return;

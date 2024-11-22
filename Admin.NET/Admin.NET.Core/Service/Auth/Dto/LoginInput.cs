@@ -34,6 +34,11 @@ public class LoginInput
     /// 验证码
     /// </summary>
     public string Code { get; set; }
+    
+    /// <summary>
+    /// 租户域名
+    /// </summary>
+    public string? Host { get; set; }
 }
 
 public class LoginPhoneInput
@@ -52,4 +57,9 @@ public class LoginPhoneInput
     /// <example>123456</example>
     [Required(ErrorMessage = "验证码不能为空"), MinLength(4, ErrorMessage = "验证码不能少于4个字符")]
     public string Code { get; set; }
+    
+    /// <summary>
+    /// 租户域名
+    /// </summary>
+    public string? Host { get; set; }
 }

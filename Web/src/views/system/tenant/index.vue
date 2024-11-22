@@ -26,7 +26,7 @@
 				<el-table-column prop="name" label="租户名称" width="160" align="center" show-overflow-tooltip />
 				<el-table-column prop="adminAccount" label="租管账号" align="center" width="120" show-overflow-tooltip />
 				<el-table-column prop="phone" label="电话" width="120" align="center" show-overflow-tooltip />
-				<!-- <el-table-column prop="host" label="主机" show-overflow-tooltip /> -->
+				<el-table-column prop="host" label="域名" width="150" show-overflow-tooltip />
 				<!-- <el-table-column prop="email" label="邮箱" show-overflow-tooltip /> -->
 				<el-table-column prop="tenantType" label="租户类型" width="100" align="center" show-overflow-tooltip>
 					<template #default="scope">

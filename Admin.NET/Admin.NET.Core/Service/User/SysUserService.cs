@@ -100,8 +100,11 @@ public class SysUserService : IDynamicApiController, ITransient
     [DisplayName("增加用户")]
     public virtual async Task<long> AddUser(AddUserInput input)
     {
-        var isExist = await _sysUserRep.AsQueryable().ClearFilter().AnyAsync(u => u.Account == input.Account);
+        var isExist = await _sysUserRep.AsQueryable().ClearFilter().AnyAsync(u => (u.TenantId == _userManager.TenantId || u.AccountType == AccountTypeEnum.SuperAdmin) && u.Account == input.Account);
         if (isExist) throw Oops.Oh(ErrorCodeEnum.D1003);
+
+        if (!string.IsNullOrWhiteSpace(input.Phone) && await _sysUserRep.AsQueryable().ClearFilter().AnyAsync(u => (u.TenantId == _userManager.TenantId || u.AccountType == AccountTypeEnum.SuperAdmin) && u.Phone == input.Phone))
+            throw Oops.Oh(ErrorCodeEnum.D1032);
 
         var password = await _sysConfigService.GetConfigValue<string>(ConfigConst.SysPassword);
 
@@ -132,11 +135,14 @@ public class SysUserService : IDynamicApiController, ITransient
     [DisplayName("更新用户")]
     public virtual async Task UpdateUser(UpdateUserInput input)
     {
-        if (await _sysUserRep.AsQueryable().ClearFilter().AnyAsync(u => u.Account == input.Account && u.Id != input.Id))
+        if (await _sysUserRep.AsQueryable().ClearFilter().AnyAsync(u => (u.TenantId == _userManager.TenantId || u.AccountType == AccountTypeEnum.SuperAdmin) && u.Account == input.Account && u.Id != input.Id))
             throw Oops.Oh(ErrorCodeEnum.D1003);
+        
+        if (!string.IsNullOrWhiteSpace(input.Phone) && await _sysUserRep.AsQueryable().ClearFilter().AnyAsync(u => (u.TenantId == _userManager.TenantId || u.AccountType == AccountTypeEnum.SuperAdmin) && u.Phone == input.Phone && u.Id != input.Id))
+            throw Oops.Oh(ErrorCodeEnum.D1032);
 
         await _sysUserRep.AsUpdateable(input.Adapt<SysUser>()).IgnoreColumns(true)
-            .IgnoreColumns(u => new { u.Password, u.Status }).ExecuteCommandAsync();
+            .IgnoreColumns(u => new { u.Password, u.Status, u.TenantId }).ExecuteCommandAsync();
 
         await UpdateRoleAndExtOrg(input);
 
@@ -183,13 +189,11 @@ public class SysUserService : IDynamicApiController, ITransient
 
         // 若账号为租户默认账号则禁止删除
         var isTenantUser = await _sysUserRep.ChangeRepository<SqlSugarRepository<SysTenant>>().IsAnyAsync(u => u.UserId == input.Id);
-        if (isTenantUser)
-            throw Oops.Oh(ErrorCodeEnum.D1029);
+        if (isTenantUser) throw Oops.Oh(ErrorCodeEnum.D1029);
 
         // 若账号为开放接口绑定账号则禁止删除
         var isOpenAccessUser = await _sysUserRep.ChangeRepository<SqlSugarRepository<SysOpenAccess>>().IsAnyAsync(u => u.BindUserId == input.Id);
-        if (isOpenAccessUser)
-            throw Oops.Oh(ErrorCodeEnum.D1030);
+        if (isOpenAccessUser) throw Oops.Oh(ErrorCodeEnum.D1030);
 
         // 强制下线
         await _sysOnlineUserService.ForceOffline(user.Id);
