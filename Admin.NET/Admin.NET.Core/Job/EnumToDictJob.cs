@@ -63,7 +63,7 @@ public class EnumToDictJob : IJob
                 .SplitInsert(_ => true)
                 .ToStorageAsync();
             await storageable2.BulkCopyAsync();
-            await storageable2.BulkUpdateAsync(["name", "value"]);
+            await storageable2.BulkUpdateAsync(nameof(SysDictData.Value), nameof(SysDictData.Code), nameof(SysDictData.Name));
 
             Console.WriteLine($"【{DateTime.Now}】系统枚举项转字典值数据: 插入{storageable2.InsertList.Count}条, 更新{storageable2.UpdateList.Count}条, 共{storageable2.TotalList.Count}条。");
 
