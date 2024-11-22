@@ -24,6 +24,12 @@ public class LoginInput
     /// <example>123456</example>
     [Required(ErrorMessage = "密码不能为空"), MinLength(3, ErrorMessage = "密码不能少于3个字符")]
     public string Password { get; set; }
+    
+    /// <summary>
+    /// 租户域名
+    /// </summary>
+    [Required(ErrorMessage = "租户域名不能为空")]
+    public string? Host { get; set; }
 
     /// <summary>
     /// 验证码Id
@@ -34,11 +40,6 @@ public class LoginInput
     /// 验证码
     /// </summary>
     public string Code { get; set; }
-    
-    /// <summary>
-    /// 租户域名
-    /// </summary>
-    public string? Host { get; set; }
 }
 
 public class LoginPhoneInput
@@ -61,5 +62,6 @@ public class LoginPhoneInput
     /// <summary>
     /// 租户域名
     /// </summary>
+    [Required(ErrorMessage = "租户域名不能为空")]
     public string? Host { get; set; }
 }
