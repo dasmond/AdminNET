@@ -30,7 +30,7 @@ const editDialogRef = ref();
 @:const importDataRef = ref();
 }
 const state = reactive({
-  loading: false,
+  exportLoading: false,
   tableLoading: false,
   stores: @(Model.HasDictField || Model.HasEnumField || Model.HasConstField ? "useUserInfo()" : "{}"),
   showAdvanceQueryUI: @(Model.HasLikeQuery ? "false" : "true"),
@@ -120,16 +120,29 @@ const batchDel@(Model.ClassName) = () => {
 
 @if (Model.ImportFieldList.Count > 0) {
 @:// 导出数据
-@:const export@(Model.ClassName)Data = async () => {
-  @:const params = Object.assign(state.tableQueryParams, state.tableParams, { page: 1, pageSize: 99999999 });
-  @:@(Model.LowerClassName)Api.exportData(params).then(res => downloadStreamFile(res));
+@:const export@(Model.ClassName)Data = async (type: string | undefined = undefined) => {
+  @:try {
+    @:state.exportLoading = true;
+    @:if (type === 'select') {
+      @:const params = Object.assign({}, state.tableQueryParams, state.tableParams, { selectKeyList: state.selectData.map(u => u.@(Model.PrimaryKeyFieldList.First().LowerPropertyName)) });
+      @:await @(Model.LowerClassName)Api.exportData(params).then(res => downloadStreamFile(res));
+    @:} else if (type === 'current') {
+      @:const params = Object.assign({}, state.tableQueryParams, state.tableParams);
+      @:await @(Model.LowerClassName)Api.exportData(params).then(res => downloadStreamFile(res));
+    @:} else {
+      @:const params = Object.assign({}, state.tableQueryParams, state.tableParams, { page: 1, pageSize: 99999999 });
+      @:await @(Model.LowerClassName)Api.exportData(params).then(res => downloadStreamFile(res));
+    @:}
+  @:} finally {
+    @:state.exportLoading = false;
+  @:}
 @:}
 }
 
 handleQuery();
 </script>
 <template>
-  <div class="@(Model.LowerClassName)-container">
+  <div class="@(Model.LowerClassName)-container" v-loading="state.exportLoading">
     <el-card shadow="hover" :body-style="{ paddingBottom: '0' }"> 
       <el-form :model="state.tableQueryParams" ref="queryForm" labelWidth="90">
         <el-row>
@@ -202,7 +215,16 @@ handleQuery();
                 <el-button type="danger" style="margin-left:5px;" icon="ele-Delete" @@click="batchDel@(Model.ClassName)" :disabled="state.selectData.length == 0" v-auth="'@(Model.LowerClassName):batchDelete'"> 删除 </el-button>
                 <el-button type="primary" style="margin-left:5px;" icon="ele-Plus" @@click="editDialogRef.openDialog(null, '新增@(Model.BusName)')" v-auth="'@(Model.LowerClassName):add'"> 新增 </el-button>
                 @if (Model.ImportFieldList.Count > 0) {
-                @:<el-button type="primary" style="margin-left:5px;" icon="ele-FolderOpened" @@click="export@(Model.ClassName)Data" v-reclick="20000" v-auth="'@(Model.LowerClassName):export'"> 导出 </el-button>
+                @:<el-dropdown>
+                  @:<el-button type="primary" style="margin-left:5px;" icon="ele-FolderOpened" v-reclick="20000" v-auth="'@(Model.LowerClassName):export'"> 导出 </el-button>
+                  @:<template #dropdown>
+                    @:<el-dropdown-menu>
+                      @:<el-dropdown-item @@click="export@(Model.ClassName)Data('select')" :disabled="state.selectData.length == 0">导出选中</el-dropdown-item>
+                      @:<el-dropdown-item @@click="export@(Model.ClassName)Data('current')">导出本页</el-dropdown-item>
+                      @:<el-dropdown-item @@click="export@(Model.ClassName)Data()">导出全部</el-dropdown-item>
+                    @:</el-dropdown-menu>
+                  @:</template>
+                @:</el-dropdown>
                 @:<el-button type="warning" style="margin-left:5px;" icon="ele-MostlyCloudy" @@click="importDataRef.openDialog()" v-auth="'@(Model.LowerClassName):import'"> 导入 </el-button>
                 }
               </el-button-group>
@@ -222,7 +244,7 @@ handleQuery();
     </el-card>
     <el-card class="full-table" shadow="hover" style="margin-top: 5px">
       <el-table :data="state.tableData" @@selection-change="(val: any[]) => { state.selectData = val; }" style="width: 100%" v-loading="state.tableLoading" tooltip-effect="light" row-key="@Model.PrimaryKeyFieldList.First().LowerPropertyName" @@sort-change="sortChange" border>
-        <el-table-column type="selection" width="40" align="center" v-auth="'@(Model.LowerClassName):batchDelete'" />
+        <el-table-column type="selection" width="40" align="center" v-if="auth('@(Model.LowerClassName):batchDelete') || auth('@(Model.LowerClassName):export')" />
         <el-table-column type="index" label="序号" width="55" align="center"/>
     @foreach (var column in Model.TableField.Where(u => u.WhetherTable == "Y")){
       if(column.EffectType == "DictSelector" || column.EffectType == "EnumSelector" || column.EffectType == "Upload" || @column.EffectType == "Switch") {

@@ -8,9 +8,9 @@
 				</div>
 			</template>
 			
-			<el-row :gutter="15">
+			<el-row :gutter="15" v-loading="state.loading">
 				<el-col :xs="12" :sm="12" :md="12" :lg="12" :xl="12">
-					<el-button class="ml10" type="info" icon="ele-Download" v-reclick="3000" @click="() => download()">模板</el-button>
+					<el-button class="ml10" type="info" icon="ele-Download" v-reclick="3000" @click="() => download()" :disabled="state.loading">模板</el-button>
 				</el-col>
 				<el-col :xs="12" :sm="12" :md="12" :lg="12" :xl="12">
 					<el-upload
@@ -21,7 +21,7 @@
 						ref="uploadRef"
 					>
 						<template #trigger>
-							<el-button type="primary" icon="ele-MostlyCloudy" v-reclick="3000">导入</el-button>
+							<el-button type="primary" icon="ele-MostlyCloudy" v-reclick="3000" :disabled="state.loading">导入</el-button>
 						</template>
 					</el-upload>
 				</el-col>
@@ -29,7 +29,7 @@
 
 			<template #footer>
 				<span class="dialog-footer">
-					<el-button @click="() => state.isShowDialog = false">取 消</el-button>
+					<el-button @click="() => state.isShowDialog = false" :disabled="state.loading">取 消</el-button>
 				</span>
 			</template>
 		</el-dialog>
@@ -66,21 +66,15 @@ const handleExceed: UploadProps['onExceed'] = (files) => {
 }
 
 // 数据导入
-const handleImportData = (opt: UploadRequestOptions) => {
+const handleImportData = (opt: UploadRequestOptions): any => {
   state.loading = true;
   props.import(opt.file).then((res: any) => {
-    try {
-      downloadStreamFile(res);
-	    state.isShowDialog = false;
-      emit('refresh');
-    } catch {
-      ElMessage.error(res.data.message || '上传失败');
-    }
-	  state.loading = false;
-  }).catch(() => {
-	  state.loading = false;
+    downloadStreamFile(res);
+    emit('refresh');
+    state.isShowDialog = false;
   }).finally(() => {
     uploadRef.value?.clearFiles();
+    state.loading = false;
   });
 }
 
