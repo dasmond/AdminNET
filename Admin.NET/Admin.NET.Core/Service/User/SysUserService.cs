@@ -100,11 +100,12 @@ public class SysUserService : IDynamicApiController, ITransient
     [DisplayName("增加用户")]
     public virtual async Task<long> AddUser(AddUserInput input)
     {
-        var isExist = await _sysUserRep.AsQueryable().ClearFilter().AnyAsync(u => (u.TenantId == _userManager.TenantId || u.AccountType == AccountTypeEnum.SuperAdmin) && u.Account == input.Account);
-        if (isExist) throw Oops.Oh(ErrorCodeEnum.D1003);
-
-        if (!string.IsNullOrWhiteSpace(input.Phone) && await _sysUserRep.AsQueryable().ClearFilter().AnyAsync(u => (u.TenantId == _userManager.TenantId || u.AccountType == AccountTypeEnum.SuperAdmin) && u.Phone == input.Phone))
-            throw Oops.Oh(ErrorCodeEnum.D1032);
+        // 是否租户隔离登录验证
+        var isTenantHostLogin = await _sysConfigService.GetConfigValue<bool>(ConfigConst.SysTenantHostLogin);
+        var query = _sysUserRep.AsQueryable().ClearFilter().WhereIF(isTenantHostLogin, u => u.TenantId == _userManager.TenantId || u.AccountType == AccountTypeEnum.SuperAdmin);
+        
+        if (await query.AnyAsync(u => u.Account == input.Account)) throw Oops.Oh(ErrorCodeEnum.D1003);
+        if (!string.IsNullOrWhiteSpace(input.Phone) && await query.AnyAsync(u => u.Phone == input.Phone)) throw Oops.Oh(ErrorCodeEnum.D1032);
 
         var password = await _sysConfigService.GetConfigValue<string>(ConfigConst.SysPassword);
 
@@ -135,11 +136,13 @@ public class SysUserService : IDynamicApiController, ITransient
     [DisplayName("更新用户")]
     public virtual async Task UpdateUser(UpdateUserInput input)
     {
-        if (await _sysUserRep.AsQueryable().ClearFilter().AnyAsync(u => (u.TenantId == _userManager.TenantId || u.AccountType == AccountTypeEnum.SuperAdmin) && u.Account == input.Account && u.Id != input.Id))
-            throw Oops.Oh(ErrorCodeEnum.D1003);
+        // 是否租户隔离登录验证
+        var isTenantHostLogin = await _sysConfigService.GetConfigValue<bool>(ConfigConst.SysTenantHostLogin);
+        var query = _sysUserRep.AsQueryable().ClearFilter().Where(u => u.Id != input.Id)
+            .WhereIF(isTenantHostLogin, u => u.TenantId == _userManager.TenantId || u.AccountType == AccountTypeEnum.SuperAdmin);
         
-        if (!string.IsNullOrWhiteSpace(input.Phone) && await _sysUserRep.AsQueryable().ClearFilter().AnyAsync(u => (u.TenantId == _userManager.TenantId || u.AccountType == AccountTypeEnum.SuperAdmin) && u.Phone == input.Phone && u.Id != input.Id))
-            throw Oops.Oh(ErrorCodeEnum.D1032);
+        if (await query.AnyAsync(u => u.Account == input.Account)) throw Oops.Oh(ErrorCodeEnum.D1003);
+        if (!string.IsNullOrWhiteSpace(input.Phone) && await query.AnyAsync(u => u.Phone == input.Phone)) throw Oops.Oh(ErrorCodeEnum.D1032);
 
         await _sysUserRep.AsUpdateable(input.Adapt<SysUser>()).IgnoreColumns(true)
             .IgnoreColumns(u => new { u.Password, u.Status, u.TenantId }).ExecuteCommandAsync();

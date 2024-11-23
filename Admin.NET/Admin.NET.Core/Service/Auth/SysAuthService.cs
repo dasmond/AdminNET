@@ -126,7 +126,7 @@ public class SysAuthService : IDynamicApiController, ITransient
             user = await _sysUserRep.AsQueryable().Includes(t => t.SysOrg).ClearFilter()
                 .Where(u => u.TenantId == tenant.Id || u.AccountType == AccountTypeEnum.SuperAdmin)
                 .WhereIF(!string.IsNullOrWhiteSpace(account), u => u.Account.Equals(account))
-                .WhereIF(!string.IsNullOrWhiteSpace(phone), u => u.Account.Equals(phone))
+                .WhereIF(!string.IsNullOrWhiteSpace(phone), u => u.Phone.Equals(phone))
                 .FirstAsync();
             _ = user ?? throw Oops.Oh(ErrorCodeEnum.D0009);
         }
@@ -135,7 +135,7 @@ public class SysAuthService : IDynamicApiController, ITransient
             // 根据入参类型查询登录用户
             user = await _sysUserRep.AsQueryable().Includes(t => t.SysOrg).ClearFilter()
                 .WhereIF(!string.IsNullOrWhiteSpace(account), u => u.Account.Equals(account))
-                .WhereIF(!string.IsNullOrWhiteSpace(phone), u => u.Account.Equals(phone))
+                .WhereIF(!string.IsNullOrWhiteSpace(phone), u => u.Phone.Equals(phone))
                 .FirstAsync();
             _ = user ?? throw Oops.Oh(ErrorCodeEnum.D0009);
             
