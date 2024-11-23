@@ -70,9 +70,11 @@ public class SysAuthService : IDynamicApiController, ITransient
             // 判断验证码
             if (!_captcha.Validate(input.CodeId.ToString(), input.Code)) throw Oops.Oh(ErrorCodeEnum.D0008);
         }
-        
+        // 是否开启域登录验证
+        var isDomainLogin = await _sysConfigService.GetConfigValue<bool>(ConfigConst.SysDomainLogin);
+
         // 获取租户
-        var tenant = await GetTenantByHost(input.Host);
+        var tenant = await GetTenantByHost(input.Host, isDomainLogin);
 
         // 账号是否存在
         var user = await _sysUserRep.AsQueryable().Includes(t => t.SysOrg).ClearFilter().FirstAsync(u => (u.TenantId == tenant.Id || u.AccountType == AccountTypeEnum.SuperAdmin) && u.Account.Equals(input.Account));
@@ -85,7 +87,7 @@ public class SysAuthService : IDynamicApiController, ITransient
         if (user.Status == StatusEnum.Disable) throw Oops.Oh(ErrorCodeEnum.D1017);
 
         // 是否开启域登录验证
-        if (await _sysConfigService.GetConfigValue<bool>(ConfigConst.SysDomainLogin))
+        if (isDomainLogin)
         {
             var userLdap = await _sysUserRep.ChangeRepository<SqlSugarRepository<SysUserLdap>>().GetFirstAsync(u => u.UserId == user.Id && u.TenantId == tenant.Id);
             if (userLdap == null)
@@ -111,9 +113,11 @@ public class SysAuthService : IDynamicApiController, ITransient
     /// 根据绑定域名获取租户
     /// </summary>
     /// <param name="host"></param>
+    /// <param name="isDomainLogin"></param>
     /// <returns></returns>
-    private async Task<SysTenant> GetTenantByHost(string host)
+    private async Task<SysTenant> GetTenantByHost(string host, bool isDomainLogin)
     {
+        if (!isDomainLogin) return await _sysUserRep.ChangeRepository<SqlSugarRepository<SysTenant>>().GetFirstAsync(u => u.Id == SqlSugarConst.DefaultTenantId);
         // 若租户域名为空或为本地域名，则取默认租户域名
         if (string.IsNullOrWhiteSpace(host) || host.StartsWith("localhost")) host = SqlSugarConst.DefaultTenantHost;
         
@@ -196,8 +200,11 @@ public class SysAuthService : IDynamicApiController, ITransient
         // 校验短信验证码
         App.GetRequiredService<SysSmsService>().VerifyCode(new SmsVerifyCodeInput { Phone = input.Phone, Code = input.Code });
         
+        // 是否开启域登录验证
+        var isDomainLogin = await _sysConfigService.GetConfigValue<bool>(ConfigConst.SysDomainLogin);
+
         // 获取租户
-        var tenant = await GetTenantByHost(input.Host);
+        var tenant = await GetTenantByHost(input.Host, isDomainLogin);
         
         // 账号是否存在
         var user = await _sysUserRep.AsQueryable().Includes(u => u.SysOrg).ClearFilter().FirstAsync(u => (u.TenantId == tenant.Id || u.AccountType == AccountTypeEnum.SuperAdmin) && u.Phone.Equals(input.Phone));
