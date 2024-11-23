@@ -64,30 +64,17 @@ public class SysAuthService : IDynamicApiController, ITransient
         if (passwordMaxErrorTimes < 1) passwordMaxErrorTimes = 10;
         if (passwordErrorTimes > passwordMaxErrorTimes) throw Oops.Oh(ErrorCodeEnum.D1027);
 
-        // 是否开启验证码
-        if (await _sysConfigService.GetConfigValue<bool>(ConfigConst.SysCaptcha))
-        {
-            // 判断验证码
-            if (!_captcha.Validate(input.CodeId.ToString(), input.Code)) throw Oops.Oh(ErrorCodeEnum.D0008);
-        }
-        // 是否开启域登录验证
-        var isDomainLogin = await _sysConfigService.GetConfigValue<bool>(ConfigConst.SysDomainLogin);
-
-        // 获取租户
-        var tenant = await GetTenantByHost(input.Host, isDomainLogin);
-
-        // 账号是否存在
-        var user = await _sysUserRep.AsQueryable().Includes(t => t.SysOrg).ClearFilter().FirstAsync(u => (u.TenantId == tenant.Id || u.AccountType == AccountTypeEnum.SuperAdmin) && u.Account.Equals(input.Account));
-        _ = user ?? throw Oops.Oh(ErrorCodeEnum.D0009);
+        // 判断是否开启验证码，其校验验证码
+        if (await _sysConfigService.GetConfigValue<bool>(ConfigConst.SysCaptcha) && !_captcha.Validate(input.CodeId.ToString(), input.Code)) throw Oops.Oh(ErrorCodeEnum.D0008);
         
-        // 若登录的是超级管理员，则引用当前绑定的租户，这样登陆后操作的租户数据才会与该租户关联
-        if (user.AccountType == AccountTypeEnum.SuperAdmin) user.TenantId = tenant.Id;
+        // 获取登录租户和用户
+        var (tenant, user) = await GetLoginUserAndTenant(input.Host, account: input.Account);
 
         // 账号是否被冻结
         if (user.Status == StatusEnum.Disable) throw Oops.Oh(ErrorCodeEnum.D1017);
 
         // 是否开启域登录验证
-        if (isDomainLogin)
+        if (await _sysConfigService.GetConfigValue<bool>(ConfigConst.SysDomainLogin))
         {
             var userLdap = await _sysUserRep.ChangeRepository<SqlSugarRepository<SysUserLdap>>().GetFirstAsync(u => u.UserId == user.Id && u.TenantId == tenant.Id);
             if (userLdap == null)
@@ -110,22 +97,57 @@ public class SysAuthService : IDynamicApiController, ITransient
     }
     
     /// <summary>
-    /// 根据绑定域名获取租户
+    /// 获取登录租户和用户
     /// </summary>
     /// <param name="host"></param>
-    /// <param name="isDomainLogin"></param>
+    /// <param name="account"></param>
+    /// <param name="phone"></param>
     /// <returns></returns>
-    private async Task<SysTenant> GetTenantByHost(string host, bool isDomainLogin)
+    [NonAction]
+    public async Task<(SysTenant tenant, SysUser user)> GetLoginUserAndTenant(string host, string account=null, string phone=null)
     {
-        if (!isDomainLogin) return await _sysUserRep.ChangeRepository<SqlSugarRepository<SysTenant>>().GetFirstAsync(u => u.Id == SqlSugarConst.DefaultTenantId);
-        // 若租户域名为空或为本地域名，则取默认租户域名
-        if (string.IsNullOrWhiteSpace(host) || host.StartsWith("localhost")) host = SqlSugarConst.DefaultTenantHost;
+        // 是否租户隔离登录验证
+        var isTenantHostLogin = await _sysConfigService.GetConfigValue<bool>(ConfigConst.SysTenantHostLogin);
         
-        // 租户是否存在或已禁用
-        var tenant = await _sysUserRep.ChangeRepository<SqlSugarRepository<SysTenant>>().GetFirstAsync(u => u.Host == host.ToLower());
-        if (tenant?.Status != StatusEnum.Enable) throw Oops.Oh(ErrorCodeEnum.Z1003);
+        SysUser user;
+        SysTenant tenant;
+        
+        // 租户隔离登录
+        if (isTenantHostLogin)
+        {
+            // 若租户域名为空或为本地域名，则取默认租户域名
+            if (string.IsNullOrWhiteSpace(host) || host.StartsWith("localhost")) host = SqlSugarConst.DefaultTenantHost;
+            
+            // 租户是否存在或已禁用
+            tenant = await _sysUserRep.ChangeRepository<SqlSugarRepository<SysTenant>>().GetFirstAsync(u => u.Host == host.ToLower());
+            if (tenant?.Status != StatusEnum.Enable) throw Oops.Oh(ErrorCodeEnum.Z1003);
 
-        return tenant;
+            // 根据入参类型、租户查询登录用户
+            user = await _sysUserRep.AsQueryable().Includes(t => t.SysOrg).ClearFilter()
+                .Where(u => u.TenantId == tenant.Id || u.AccountType == AccountTypeEnum.SuperAdmin)
+                .WhereIF(!string.IsNullOrWhiteSpace(account), u => u.Account.Equals(account))
+                .WhereIF(!string.IsNullOrWhiteSpace(phone), u => u.Account.Equals(phone))
+                .FirstAsync();
+            _ = user ?? throw Oops.Oh(ErrorCodeEnum.D0009);
+        }
+        else
+        {
+            // 根据入参类型查询登录用户
+            user = await _sysUserRep.AsQueryable().Includes(t => t.SysOrg).ClearFilter()
+                .WhereIF(!string.IsNullOrWhiteSpace(account), u => u.Account.Equals(account))
+                .WhereIF(!string.IsNullOrWhiteSpace(phone), u => u.Account.Equals(phone))
+                .FirstAsync();
+            _ = user ?? throw Oops.Oh(ErrorCodeEnum.D0009);
+            
+            // 租户是否存在或已禁用
+            tenant = await _sysUserRep.ChangeRepository<SqlSugarRepository<SysTenant>>().GetFirstAsync(u => u.Id == user.TenantId);
+            if (tenant?.Status != StatusEnum.Enable) throw Oops.Oh(ErrorCodeEnum.Z1003);
+        }
+        
+        // 若登录的是超级管理员，则引用当前绑定的租户，这样登陆后操作的租户数据才会与该租户关联
+        if (user.AccountType == AccountTypeEnum.SuperAdmin) user.TenantId = tenant.Id;
+
+        return (tenant, user);
     }
 
     /// <summary>
@@ -200,15 +222,8 @@ public class SysAuthService : IDynamicApiController, ITransient
         // 校验短信验证码
         App.GetRequiredService<SysSmsService>().VerifyCode(new SmsVerifyCodeInput { Phone = input.Phone, Code = input.Code });
         
-        // 是否开启域登录验证
-        var isDomainLogin = await _sysConfigService.GetConfigValue<bool>(ConfigConst.SysDomainLogin);
-
-        // 获取租户
-        var tenant = await GetTenantByHost(input.Host, isDomainLogin);
-        
-        // 账号是否存在
-        var user = await _sysUserRep.AsQueryable().Includes(u => u.SysOrg).ClearFilter().FirstAsync(u => (u.TenantId == tenant.Id || u.AccountType == AccountTypeEnum.SuperAdmin) && u.Phone.Equals(input.Phone));
-        _ = user ?? throw Oops.Oh(ErrorCodeEnum.D0009);
+        // 获取登录租户和用户
+        var (_, user) = await GetLoginUserAndTenant(input.Host, phone: input.Phone);
 
         return await CreateToken(user);
     }
