@@ -75,6 +75,7 @@ public class SysTenantService : IDynamicApiController, ITransient
                 UserId = a.Id,
                 AdminAccount = a.Account,
                 Phone = a.Phone,
+                Host = u.Host,
                 Email = a.Email,
                 TenantType = u.TenantType,
                 DbType = u.DbType,
@@ -113,8 +114,12 @@ public class SysTenantService : IDynamicApiController, ITransient
     {
         var isExist = await _sysOrgRep.IsAnyAsync(u => u.Name == input.Name);
         if (isExist) throw Oops.Oh(ErrorCodeEnum.D1300);
+        
+        input.Host = input.Host.ToLower();
+        isExist = await _sysTenantRep.IsAnyAsync(u => u.Host == input.Host);
+        if (isExist) throw Oops.Oh(ErrorCodeEnum.D1303);
 
-        isExist = await _sysUserRep.AsQueryable().ClearFilter().AnyAsync(u => u.Account == input.AdminAccount);
+        isExist = await _sysUserRep.AsQueryable().ClearFilter().AnyAsync(u => u.AccountType == AccountTypeEnum.SuperAdmin && u.Account == input.AdminAccount);
         if (isExist) throw Oops.Oh(ErrorCodeEnum.D1301);
 
         // 从库配置判断
@@ -272,8 +277,12 @@ public class SysTenantService : IDynamicApiController, ITransient
     {
         var isExist = await _sysOrgRep.IsAnyAsync(u => u.Name == input.Name && u.Id != input.OrgId);
         if (isExist) throw Oops.Oh(ErrorCodeEnum.D1300);
+
+        input.Host = input.Host.ToLower();
+        isExist = await _sysTenantRep.IsAnyAsync(u => u.Host == input.Host && u.Id != input.Id);
+        if (isExist) throw Oops.Oh(ErrorCodeEnum.D1303);
         
-        isExist = await _sysUserRep.IsAnyAsync(u => u.Account == input.AdminAccount && u.Id != input.UserId);
+        isExist = await _sysUserRep.AsQueryable().ClearFilter().AnyAsync(u => u.AccountType == AccountTypeEnum.SuperAdmin && u.Account == input.AdminAccount && u.Id != input.UserId);
         if (isExist) throw Oops.Oh(ErrorCodeEnum.D1301);
 
         // Id隔离时设置与主库一致

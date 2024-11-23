@@ -35,10 +35,11 @@
 import { reactive } from 'vue';
 import { ElMessage } from 'element-plus';
 import { verifyPhone } from '/@/utils/toolsValidate';
-
+import { useRoute } from "vue-router";
 import { getAPI } from '/@/utils/axios-utils';
 import { SysSmsApi, SysAuthApi } from '/@/api-services/api';
 
+const route = useRoute();
 const state = reactive({
 	ruleForm: {
 		phone: '',
@@ -81,7 +82,8 @@ const getSmsCode = async () => {
 
 // 登录
 const onSignIn = async () => {
-	var res = await getAPI(SysAuthApi).apiSysAuthLoginPhonePost(state.ruleForm);
+  const host = route.query.host ?? location.host;
+	var res = await getAPI(SysAuthApi).apiSysAuthLoginPhonePost({...state.ruleForm, host: host});
 	if (res.data.result?.accessToken == undefined) {
 		ElMessage.error('登录失败，请检查账号！');
 		return;

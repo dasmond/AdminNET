@@ -40,6 +40,12 @@ public class AddTenantInput : TenantOutput
     /// </summary>
     [Required(ErrorMessage = "租管账号不能为空"), MinLength(3, ErrorMessage = "租管账号不能少于3个字符")]
     public override string AdminAccount { get; set; }
+    
+    /// <summary>
+    /// 租户域名
+    /// </summary>
+    [Required(ErrorMessage = "域名不能为空"), MinLength(5, ErrorMessage = "域名不能少于5个字符")]
+    public new string Host { get; set; }
 }
 
 public class UpdateTenantInput : AddTenantInput

@@ -41,11 +41,11 @@
 							<el-input-number v-model="state.ruleForm.orderNo" placeholder="排序" class="w100" />
 						</el-form-item>
 					</el-col>
-					<!-- <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="mb20">
-						<el-form-item label="主机">
-							<el-input v-model="ruleForm.host" placeholder="主机" clearable />
+					<el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="mb20">
+						<el-form-item label="绑定域名" :rules="[{ required: true, message: '绑定域名不能为空', trigger: 'blur' }]">
+							<el-input v-model="state.ruleForm.host" placeholder="例：gitee.com" clearable />
 						</el-form-item>
-					</el-col> -->
+					</el-col>
 					<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
 						<el-form-item label="数据库类型">
 							<el-select v-model="state.ruleForm.dbType" placeholder="数据库类型" clearable class="w100" :disabled="state.ruleForm.tenantType == 0 && state.ruleForm.tenantType != undefined">
