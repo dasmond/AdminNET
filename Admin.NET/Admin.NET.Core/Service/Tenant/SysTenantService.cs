@@ -456,6 +456,7 @@ public class SysTenantService : IDynamicApiController, ITransient
             {
                 ConfigId = tenant.Id.ToString(),
                 DbType = tenant.DbType,
+                TenantType = tenant.TenantType,
                 IsAutoCloseConnection = true,
                 ConnectionString = CryptogramUtil.SM2Decrypt(tenant.Connection), // 对租户库连接进行SM2解密
                 DbSettings = new DbSettings()

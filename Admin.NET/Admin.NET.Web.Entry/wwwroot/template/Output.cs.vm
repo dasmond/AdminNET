@@ -66,6 +66,6 @@ foreach(var column in Model.ApiTreeFieldList) {
 @:{
 @:    [ImporterHeader(IsIgnore = true)]
 @:    [ExporterHeader(IsIgnore = true)]
-@:    public virtual string Error { get; set; }
+@:    public override string Error { get; set; }
 @:}
 }
