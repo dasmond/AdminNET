@@ -50,6 +50,11 @@ public sealed class DbConnectionConfig : ConnectionConfig
     /// 种子配置
     /// </summary>
     public SeedSettings SeedSettings { get; set; }
+
+    /// <summary>
+    /// 隔离方式
+    /// </summary>
+    public TenantTypeEnum TenantType { get; set; } = TenantTypeEnum.Id;
 }
 
 /// <summary>
