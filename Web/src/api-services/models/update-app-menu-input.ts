@@ -12,39 +12,21 @@
  * Do not edit the class manually.
  */
 /**
- * 用户登录参数
+ * 授权应用菜单
  * @export
- * @interface LoginInput
+ * @interface UpdateAppMenuInput
  */
-export interface LoginInput {
+export interface UpdateAppMenuInput {
     /**
-     * 账号
-     * @type {string}
-     * @memberof LoginInput
-     */
-    account: string;
-    /**
-     * 密码
-     * @type {string}
-     * @memberof LoginInput
-     */
-    password: string;
-    /**
-     * 租户域名
-     * @type {string}
-     * @memberof LoginInput
-     */
-    host: string;
-    /**
-     * 验证码Id
+     * 主键Id
      * @type {number}
-     * @memberof LoginInput
+     * @memberof UpdateAppMenuInput
      */
-    codeId?: number;
+    id: number;
     /**
-     * 验证码
-     * @type {string}
-     * @memberof LoginInput
+     * 菜单Id集合
+     * @type {Array<number>}
+     * @memberof UpdateAppMenuInput
      */
-    code?: string | null;
+    menuIdList?: Array<number> | null;
 }

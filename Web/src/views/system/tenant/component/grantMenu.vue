@@ -49,23 +49,18 @@ const state = reactive({
 	isShowDialog: false,
 	ruleForm: {
 		id: 0,
+    appId: 0,
 		menuIdList: [] as any, // 菜单集合
 	},
 	menuData: [] as any, // 菜单数据
-});
-
-onMounted(async () => {
-	state.loading = true;
-	var res = await getAPI(SysMenuApi).apiSysMenuListGet();
-	state.menuData = res.data.result;
-	state.loading = false;
 });
 
 // 打开弹窗
 const openDialog = async (row: any) => {
 	treeRef.value?.setCheckedKeys([]); // 先清空已选择节点
 	state.ruleForm = row;
-	var res = await getAPI(SysTenantApi).apiSysTenantOwnMenuListGet(row.userId);
+  state.menuData = await getAPI(SysMenuApi).apiSysMenuListGet(undefined,undefined, undefined, state.ruleForm.appId).then(res => res.data.result);
+	const res = await getAPI(SysTenantApi).apiSysTenantOwnMenuListGet(row.userId);
 	setTimeout(() => {
 		// 延迟传递数据
 		treeRef.value?.setCheckedKeys(res.data.result);

@@ -69,6 +69,12 @@ export interface TenantOutput {
      */
     isDelete?: boolean;
     /**
+     * 应用Id
+     * @type {number}
+     * @memberof TenantOutput
+     */
+    appId?: number;
+    /**
      * 用户Id
      * @type {number}
      * @memberof TenantOutput
@@ -81,7 +87,7 @@ export interface TenantOutput {
      */
     orgId?: number;
     /**
-     * 主机
+     * 域名
      * @type {string}
      * @memberof TenantOutput
      */
@@ -140,6 +146,12 @@ export interface TenantOutput {
      * @memberof TenantOutput
      */
     name?: string | null;
+    /**
+     * 关联应用名称
+     * @type {string}
+     * @memberof TenantOutput
+     */
+    appName?: string | null;
     /**
      * 管理员账号
      * @type {string}

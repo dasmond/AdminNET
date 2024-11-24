@@ -25,6 +25,11 @@ public class SqlSugarConst
     /// 默认表主键
     /// </summary>
     public const string PrimaryKey = "Id";
+    
+    /// <summary>
+    /// 默认租户Id
+    /// </summary>
+    public const long DefaultAppId = 1300000000001;
 
     /// <summary>
     /// 默认租户Id

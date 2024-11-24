@@ -240,26 +240,28 @@ public class SysConfigService : IDynamicApiController, ITransient
     [DisplayName("获取系统信息")]
     public async Task<dynamic> GetSysInfo()
     {
-        var sysLogo = await GetConfigValue<string>(ConfigConst.SysWebLogo);
-        var sysTitle = await GetConfigValue<string>(ConfigConst.SysWebTitle);
-        var sysViceTitle = await GetConfigValue<string>(ConfigConst.SysWebViceTitle);
-        var sysViceDesc = await GetConfigValue<string>(ConfigConst.SysWebViceDesc);
-        var sysWatermark = await GetConfigValue<string>(ConfigConst.SysWebWatermark);
-        var sysCopyright = await GetConfigValue<string>(ConfigConst.SysWebCopyright);
-        var sysIcp = await GetConfigValue<string>(ConfigConst.SysWebIcp);
+        // var sysLogo = await GetConfigValue<string>(ConfigConst.SysWebLogo);
+        // var sysTitle = await GetConfigValue<string>(ConfigConst.SysWebTitle);
+        // var sysViceTitle = await GetConfigValue<string>(ConfigConst.SysWebViceTitle);
+        // var sysViceDesc = await GetConfigValue<string>(ConfigConst.SysWebViceDesc);
+        // var sysWatermark = await GetConfigValue<string>(ConfigConst.SysWebWatermark);
+        // var sysCopyright = await GetConfigValue<string>(ConfigConst.SysWebCopyright);
+        // var sysIcp = await GetConfigValue<string>(ConfigConst.SysWebIcp);
+        var app = await App.GetRequiredService<SysAppService>().GetCurrentAppInfo();
+        
         var sysIcpUrl = await GetConfigValue<string>(ConfigConst.SysWebIcpUrl);
         var sysSecondVer = await GetConfigValue<bool>(ConfigConst.SysSecondVer);
         var sysCaptcha = await GetConfigValue<bool>(ConfigConst.SysCaptcha);
 
         return new
         {
-            SysLogo = sysLogo,
-            SysTitle = sysTitle,
-            SysViceTitle = sysViceTitle,
-            SysViceDesc = sysViceDesc,
-            SysWatermark = sysWatermark,
-            SysCopyright = sysCopyright,
-            SysIcp = sysIcp,
+            SysLogo = app.Logo,
+            SysTitle = app.Title,
+            SysViceTitle = app.ViceTitle,
+            SysViceDesc = app.ViceDesc,
+            SysWatermark = app.Watermark,
+            SysCopyright = app.Copyright,
+            SysIcp = app.Icp,
             SysIcpUrl = sysIcpUrl,
             SysSecondVer = sysSecondVer,
             SysCaptcha = sysCaptcha

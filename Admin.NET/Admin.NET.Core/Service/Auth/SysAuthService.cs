@@ -93,7 +93,7 @@ public class SysAuthService : IDynamicApiController, ITransient
         // 登录成功则清空密码错误次数
         _sysCacheService.Remove(keyPasswordErrorTimes);
 
-        return await CreateToken(user);
+        return await CreateToken(user, tenant.AppId);
     }
     
     /// <summary>
@@ -129,6 +129,9 @@ public class SysAuthService : IDynamicApiController, ITransient
                 .WhereIF(!string.IsNullOrWhiteSpace(phone), u => u.Phone.Equals(phone))
                 .FirstAsync();
             _ = user ?? throw Oops.Oh(ErrorCodeEnum.D0009);
+            
+            // 若登录的是超级管理员，则引用当前绑定的租户，这样登陆后操作的租户数据会与该租户关联
+            if (user.AccountType == AccountTypeEnum.SuperAdmin) user.TenantId = tenant.Id;
         }
         else
         {
@@ -143,9 +146,6 @@ public class SysAuthService : IDynamicApiController, ITransient
             tenant = await _sysUserRep.ChangeRepository<SqlSugarRepository<SysTenant>>().GetFirstAsync(u => u.Id == user.TenantId);
             if (tenant?.Status != StatusEnum.Enable) throw Oops.Oh(ErrorCodeEnum.Z1003);
         }
-        
-        // 若登录的是超级管理员，则引用当前绑定的租户，这样登陆后操作的租户数据才会与该租户关联
-        if (user.AccountType == AccountTypeEnum.SuperAdmin) user.TenantId = tenant.Id;
 
         return (tenant, user);
     }
@@ -223,18 +223,19 @@ public class SysAuthService : IDynamicApiController, ITransient
         App.GetRequiredService<SysSmsService>().VerifyCode(new SmsVerifyCodeInput { Phone = input.Phone, Code = input.Code });
         
         // 获取登录租户和用户
-        var (_, user) = await GetLoginUserAndTenant(input.Host, phone: input.Phone);
+        var (tenant, user) = await GetLoginUserAndTenant(input.Host, phone: input.Phone);
 
-        return await CreateToken(user);
+        return await CreateToken(user, tenant.AppId);
     }
 
     /// <summary>
     /// 生成Token令牌 🔖
     /// </summary>
     /// <param name="user"></param>
+    /// <param name="appId"></param>
     /// <returns></returns>
     [NonAction]
-    internal virtual async Task<LoginOutput> CreateToken(SysUser user)
+    internal virtual async Task<LoginOutput> CreateToken(SysUser user, long appId)
     {
         // 单用户登录
         await _sysOnlineUserService.SingleLogin(user.Id);
@@ -243,6 +244,7 @@ public class SysAuthService : IDynamicApiController, ITransient
         var tokenExpire = await _sysConfigService.GetTokenExpire();
         var accessToken = JWTEncryption.Encrypt(new Dictionary<string, object>
         {
+            { ClaimConst.AppId, appId },
             { ClaimConst.UserId, user.Id },
             { ClaimConst.TenantId, user.TenantId },
             { ClaimConst.Account, user.Account },
