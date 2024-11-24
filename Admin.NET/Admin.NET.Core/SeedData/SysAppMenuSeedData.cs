@@ -7,21 +7,17 @@
 namespace Admin.NET.Core;
 
 /// <summary>
-/// 系统租户表种子数据
+/// 系统应用菜单表种子数据
 /// </summary>
-public class SysTenantSeedData : ISqlSugarEntitySeedData<SysTenant>
+public class SysAppMenuSeedData : ISqlSugarEntitySeedData<SysAppMenu>
 {
     /// <summary>
     /// 种子数据
     /// </summary>
     /// <returns></returns>
-    public IEnumerable<SysTenant> HasData()
+    public IEnumerable<SysAppMenu> HasData()
     {
-        var defaultDbConfig = App.GetOptions<DbConnectionOptions>().ConnectionConfigs[0];
-
-        return new[]
-        {
-            new SysTenant{ Id=SqlSugarConst.DefaultTenantId, AppId=SqlSugarConst.DefaultAppId, OrgId=SqlSugarConst.DefaultTenantId, UserId=1300000000111, Host=SqlSugarConst.DefaultTenantHost, TenantType=TenantTypeEnum.Id, DbType=defaultDbConfig.DbType, Connection=defaultDbConfig.ConnectionString, ConfigId=SqlSugarConst.MainConfigId, Remark="系统默认", CreateTime=DateTime.Parse("2022-02-10 00:00:00") },
-        };
+        long id = 1300000000001;
+        return new SysMenuSeedData().HasData().Select(m => new SysAppMenu { Id=id++, AppId=SqlSugarConst.DefaultAppId, MenuId=m.Id });
     }
 }

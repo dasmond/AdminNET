@@ -12,39 +12,15 @@
  * Do not edit the class manually.
  */
 /**
- * 用户登录参数
+ * 主键Id输入参数
  * @export
- * @interface LoginInput
+ * @interface BaseIdInput
  */
-export interface LoginInput {
+export interface BaseIdInput {
     /**
-     * 账号
-     * @type {string}
-     * @memberof LoginInput
-     */
-    account: string;
-    /**
-     * 密码
-     * @type {string}
-     * @memberof LoginInput
-     */
-    password: string;
-    /**
-     * 租户域名
-     * @type {string}
-     * @memberof LoginInput
-     */
-    host: string;
-    /**
-     * 验证码Id
+     * 主键Id
      * @type {number}
-     * @memberof LoginInput
+     * @memberof BaseIdInput
      */
-    codeId?: number;
-    /**
-     * 验证码
-     * @type {string}
-     * @memberof LoginInput
-     */
-    code?: string | null;
+    id: number;
 }

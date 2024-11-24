@@ -12,6 +12,11 @@ namespace Admin.NET.Core;
 public class UserManager : IScoped
 {
     private readonly IHttpContextAccessor _httpContextAccessor;
+    
+    /// <summary>
+    /// 应用ID
+    /// </summary>
+    public long AppId => (_httpContextAccessor.HttpContext?.User.FindFirst(ClaimConst.AppId)?.Value).ToLong();
 
     /// <summary>
     /// 用户ID

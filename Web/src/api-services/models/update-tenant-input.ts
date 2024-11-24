@@ -69,6 +69,12 @@ export interface UpdateTenantInput {
      */
     isDelete?: boolean;
     /**
+     * 应用Id
+     * @type {number}
+     * @memberof UpdateTenantInput
+     */
+    appId: number;
+    /**
      * 用户Id
      * @type {number}
      * @memberof UpdateTenantInput
@@ -128,6 +134,12 @@ export interface UpdateTenantInput {
      * @memberof UpdateTenantInput
      */
     status?: StatusEnum;
+    /**
+     * 关联应用名称
+     * @type {string}
+     * @memberof UpdateTenantInput
+     */
+    appName?: string | null;
     /**
      * 电子邮箱
      * @type {string}

@@ -63,16 +63,19 @@ public class SysTenantService : IDynamicApiController, ITransient
         return await _sysTenantRep.AsQueryable()
             .LeftJoin<SysUser>((u, a) => u.UserId == a.Id)
             .LeftJoin<SysOrg>((u, a, b) => u.OrgId == b.Id)
+            .LeftJoin<SysApp>((u, a, b, c) => u.AppId == c.Id)
             .WhereIF(!string.IsNullOrWhiteSpace(input.Phone), (u, a) => a.Phone.Contains(input.Phone.Trim()))
             .WhereIF(!string.IsNullOrWhiteSpace(input.Name), (u, a, b) => b.Name.Contains(input.Name.Trim()))
             .Where(u => u.Id.ToString() != SqlSugarConst.MainConfigId) // 排除默认主库/主租户
             .OrderBy(u => new { u.OrderNo, u.Id })
-            .Select((u, a, b) => new TenantOutput
+            .Select((u, a, b, c) => new TenantOutput
             {
                 Id = u.Id,
                 OrgId = b.Id,
                 Name = b.Name,
                 UserId = a.Id,
+                AppId = u.AppId,
+                AppName = c.Name,
                 AdminAccount = a.Account,
                 Phone = a.Phone,
                 Host = u.Host,
@@ -306,6 +309,7 @@ public class SysTenantService : IDynamicApiController, ITransient
         if (!string.IsNullOrWhiteSpace(input.SlaveConnections) && !JSON.IsValid(input.SlaveConnections))
             throw Oops.Oh(ErrorCodeEnum.D1302);
 
+        input.AppId = null;
         await _sysTenantRep.AsUpdateable(input.Adapt<TenantOutput>()).IgnoreColumns(true).ExecuteCommandAsync();
 
         // 更新系统机构

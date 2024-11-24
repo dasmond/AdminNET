@@ -122,8 +122,8 @@ service.interceptors.response.use(
 		if (accessToken === 'invalid_token') {
 			clearAccessTokens();
 		}
-		// 判断是否存在刷新 token，如果存在则存储在本地
-		else if (refreshAccessToken && accessToken && accessToken !== 'invalid_token') {
+		// 判断是否存在刷新 token，如果存在则存储在本地, 并重新加载页面
+		else if (refreshAccessToken && accessToken) {
 			Local.set(accessTokenKey, accessToken);
 			Local.set(refreshAccessTokenKey, refreshAccessToken);
 		}

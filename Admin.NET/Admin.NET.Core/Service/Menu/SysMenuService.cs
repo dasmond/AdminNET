@@ -14,12 +14,14 @@ public class SysMenuService : IDynamicApiController, ITransient
 {
     private readonly UserManager _userManager;
     private readonly SqlSugarRepository<SysMenu> _sysMenuRep;
+    private readonly SqlSugarRepository<SysAppMenu> _sysAppMenuRep;
     private readonly SysRoleMenuService _sysRoleMenuService;
     private readonly SysUserRoleService _sysUserRoleService;
     private readonly SysUserMenuService _sysUserMenuService;
     private readonly SysCacheService _sysCacheService;
 
     public SysMenuService(UserManager userManager,
+        SqlSugarRepository<SysAppMenu> sysAppMenuRep,
         SqlSugarRepository<SysMenu> sysMenuRep,
         SysRoleMenuService sysRoleMenuService,
         SysUserRoleService sysUserRoleService,
@@ -28,6 +30,7 @@ public class SysMenuService : IDynamicApiController, ITransient
     {
         _userManager = userManager;
         _sysMenuRep = sysMenuRep;
+        _sysAppMenuRep = sysAppMenuRep;
         _sysRoleMenuService = sysRoleMenuService;
         _sysUserRoleService = sysUserRoleService;
         _sysUserMenuService = sysUserMenuService;
@@ -44,19 +47,18 @@ public class SysMenuService : IDynamicApiController, ITransient
         if (_userManager.SuperAdmin)
         {
             var menuList = await _sysMenuRep.AsQueryable()
+                .InnerJoin<SysAppMenu>((u, am) => am.AppId == _userManager.AppId && u.Id == am.MenuId)
                 .Where(u => u.Type != MenuTypeEnum.Btn && u.Status == StatusEnum.Enable)
                 .OrderBy(u => new { u.OrderNo, u.Id }).ToTreeAsync(u => u.Children, u => u.Pid, 0);
             return menuList.Adapt<List<MenuOutput>>();
         }
-        else
-        {
-            var menuIdList = await GetMenuIdList();
-            var menuTree = await _sysMenuRep.AsQueryable()
-                .Where(u => u.Status == StatusEnum.Enable)
-                .OrderBy(u => new { u.OrderNo, u.Id }).ToTreeAsync(u => u.Children, u => u.Pid, 0, menuIdList.Select(d => (object)d).ToArray());
-            DeleteBtnFromMenuTree(menuTree);
-            return menuTree.Adapt<List<MenuOutput>>();
-        }
+        var menuIdList = await GetMenuIdList();
+        var menuTree = await _sysMenuRep.AsQueryable()
+            .InnerJoin<SysAppMenu>((u, am) => am.AppId == _userManager.AppId && u.Id == am.MenuId)
+            .Where(u => u.Status == StatusEnum.Enable)
+            .OrderBy(u => new { u.OrderNo, u.Id }).ToTreeAsync(u => u.Children, u => u.Pid, 0, menuIdList.Select(d => (object)d).ToArray());
+        DeleteBtnFromMenuTree(menuTree);
+        return menuTree.Adapt<List<MenuOutput>>();
     }
 
     /// <summary>
@@ -84,20 +86,25 @@ public class SysMenuService : IDynamicApiController, ITransient
     {
         var menuIdList = _userManager.SuperAdmin ? new List<long>() : await GetMenuIdList();
 
+        // 仅超级管理员可以获取全部菜单
+        var joinApp = _userManager.SuperAdmin == false || (_userManager.SuperAdmin && !input.All);
+        // 超级管理员可根据传参获取指定应用的菜单
+        var appId = _userManager.SuperAdmin && input.AppId > 0 ? input.AppId : _userManager.AppId;
+        var query = _sysMenuRep.AsQueryable()
+            .InnerJoinIF<SysAppMenu>(joinApp, (u, am) => am.AppId == appId && u.Id == am.MenuId);
+
         // 有筛选条件时返回list列表（防止构造不出树）
         if (!string.IsNullOrWhiteSpace(input.Title) || input.Type is > 0)
         {
-            return await _sysMenuRep.AsQueryable()
-                .WhereIF(!string.IsNullOrWhiteSpace(input.Title), u => u.Title.Contains(input.Title))
+            return await query.WhereIF(!string.IsNullOrWhiteSpace(input.Title), u => u.Title.Contains(input.Title))
                 .WhereIF(input.Type is > 0, u => u.Type == input.Type)
                 .WhereIF(menuIdList.Count > 1, u => menuIdList.Contains(u.Id))
                 .OrderBy(u => new { u.OrderNo, u.Id }).ToListAsync();
         }
 
         return _userManager.SuperAdmin ?
-            await _sysMenuRep.AsQueryable().OrderBy(u => new { u.OrderNo, u.Id }).ToTreeAsync(u => u.Children, u => u.Pid, 0) :
-            await _sysMenuRep.AsQueryable()
-                .OrderBy(u => new { u.OrderNo, u.Id }).ToTreeAsync(u => u.Children, u => u.Pid, 0, menuIdList.Select(d => (object)d).ToArray()); // 角色菜单授权时
+            await query.OrderBy(u => new { u.OrderNo, u.Id }).ToTreeAsync(u => u.Children, u => u.Pid, 0) :
+            await query.OrderBy(u => new { u.OrderNo, u.Id }).ToTreeAsync(u => u.Children, u => u.Pid, 0, menuIdList.Select(d => (object)d).ToArray()); // 角色菜单授权时
     }
 
     /// <summary>
@@ -112,8 +119,7 @@ public class SysMenuService : IDynamicApiController, ITransient
         var isExist = input.Type != MenuTypeEnum.Btn
             ? await _sysMenuRep.IsAnyAsync(u => u.Title == input.Title && u.Pid == input.Pid)
             : await _sysMenuRep.IsAnyAsync(u => u.Permission == input.Permission && u.Pid == input.Pid);
-        if (isExist)
-            throw Oops.Oh(ErrorCodeEnum.D4000);
+        if (isExist) throw Oops.Oh(ErrorCodeEnum.D4000);
 
         if (!string.IsNullOrWhiteSpace(input.Name))
         {
@@ -132,6 +138,9 @@ public class SysMenuService : IDynamicApiController, ITransient
         CheckMenuParam(sysMenu);
 
         await _sysMenuRep.InsertAsync(sysMenu);
+
+        // 保存应用菜单关联
+        await _sysAppMenuRep.InsertAsync(new SysAppMenu { AppId = _userManager.AppId, MenuId = sysMenu.Id });
 
         // 清除缓存
         DeleteMenuCache();
@@ -197,6 +206,9 @@ public class SysMenuService : IDynamicApiController, ITransient
         
         // 级联删除用户收藏菜单
         await _sysUserMenuService.DeleteMenuList(menuIdList);
+        
+        // 删除应用菜单关联
+        await _sysAppMenuRep.AsDeleteable().Where(u => u.MenuId == input.Id).ExecuteCommandAsync();
 
         // 清除缓存
         DeleteMenuCache();
@@ -222,10 +234,8 @@ public class SysMenuService : IDynamicApiController, ITransient
             menu.IsAffix = false;
             menu.IsIframe = false;
 
-            if (string.IsNullOrEmpty(permission))
-                throw Oops.Oh(ErrorCodeEnum.D4003);
-            if (!permission.Contains(':'))
-                throw Oops.Oh(ErrorCodeEnum.D4004);
+            if (string.IsNullOrEmpty(permission)) throw Oops.Oh(ErrorCodeEnum.D4003);
+            if (!permission.Contains(':')) throw Oops.Oh(ErrorCodeEnum.D4004);
         }
         else
         {

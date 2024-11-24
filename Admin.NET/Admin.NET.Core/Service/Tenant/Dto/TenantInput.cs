@@ -30,6 +30,12 @@ public class PageTenantInput : BasePageInput
 public class AddTenantInput : TenantOutput
 {
     /// <summary>
+    /// 应用Id
+    /// </summary>
+    [Required(ErrorMessage = "应用不能为空")]
+    public new long? AppId { get; set; }
+    
+    /// <summary>
     /// 租户名称
     /// </summary>
     [Required(ErrorMessage = "租户名称不能为空"), MinLength(2, ErrorMessage = "租户名称不能少于2个字符")]

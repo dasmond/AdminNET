@@ -9,6 +9,13 @@
 			</template>
 			<el-form :model="state.ruleForm" ref="ruleFormRef" label-width="auto">
 				<el-row :gutter="35">
+          <el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
+            <el-form-item label="应用" prop="appId" :rules="[{ required: true, message: '应用不能为空', trigger: 'blur' }]">
+              <el-select v-model="state.ruleForm.appId" :disabled="(state.ruleForm?.id ?? 0) > 0" value-key="appId" placeholder="应用" class="w100" clearable>
+                <el-option v-for="item in state.appList" :key="item.id" :label="item.label" :value="item.id" />
+              </el-select>
+            </el-form-item>
+          </el-col>
 					<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
 						<el-form-item label="租户类型" :rules="[{ required: true, message: '租户类型不能为空', trigger: 'blur' }]">
 							<el-radio-group v-model="state.ruleForm.tenantType" :disabled="state.ruleForm.id != undefined">
@@ -120,7 +127,7 @@ import { reactive, ref } from 'vue';
 
 import {useUserInfo} from "/@/stores/userInfo";
 import { getAPI } from '/@/utils/axios-utils';
-import { SysTenantApi } from '/@/api-services/api';
+import {SysAppApi, SysTenantApi} from '/@/api-services/api';
 import { UpdateTenantInput } from '/@/api-services/models';
 
 const getDictDataByCode = useUserInfo().getDictDataByCode;
@@ -131,11 +138,13 @@ const emits = defineEmits(['handleQuery']);
 const ruleFormRef = ref();
 const state = reactive({
 	isShowDialog: false,
+  appList: [] as Array<any>,
 	ruleForm: {} as UpdateTenantInput,
 });
 
 // 打开弹窗
-const openDialog = (row: any) => {
+const openDialog = async (row: any) => {
+  if (state.appList.length == 0) state.appList = await getAPI(SysAppApi).apiSysAppChangeAppGet().then(res => res.data.result ?? []);
 	state.ruleForm = JSON.parse(JSON.stringify(row));
 	state.isShowDialog = true;
 	ruleFormRef.value?.resetFields();
