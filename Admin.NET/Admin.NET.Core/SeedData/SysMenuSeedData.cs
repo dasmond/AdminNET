@@ -91,7 +91,7 @@ public class SysMenuSeedData : ISqlSugarEntitySeedData<SysMenu>
 
             new SysMenu{ Id=1310000000301, Pid=0, Title="平台管理", Path="/platform", Name="platform", Component="Layout", Icon="ele-Menu", Type=MenuTypeEnum.Dir, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=11000 },
 
-            new SysMenu{ Id=1310000001311, Pid=1310000000301, Title="应用管理", Path="/platform/app", Name="sysApp", Component="/system/app/index", Icon="ele-School", Type=MenuTypeEnum.Menu, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=90 },
+            new SysMenu{ Id=1310000001311, Pid=1310000000301, Title="应用管理", Path="/platform/app", Name="sysApp", Component="/system/app/index", Icon="ele-Orange", Type=MenuTypeEnum.Menu, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=90 },
             new SysMenu{ Id=1310000001312, Pid=1310000001311, Title="查询", Permission="sysApp:page", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
             new SysMenu{ Id=1310000001313, Pid=1310000001311, Title="编辑", Permission="sysApp:update", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
             new SysMenu{ Id=1310000001314, Pid=1310000001311, Title="增加", Permission="sysApp:add", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
