@@ -34,5 +34,5 @@ export interface LoginPhoneInput {
      * @type {string}
      * @memberof LoginPhoneInput
      */
-    host?: string | null;
+    host: string;
 }

@@ -654,6 +654,24 @@ public enum ErrorCodeEnum
     /// </summary>
     [ErrorCodeItemMetadata("已存在同名功能或同名程序及插件")]
     D1900,
+    
+    /// <summary>
+    /// 禁止删除存在关联租户的应用
+    /// </summary>
+    [ErrorCodeItemMetadata("禁止删除存在关联租户的应用")]
+    A1001,
+    
+    /// <summary>
+    /// 禁止删除存在关联菜单的应用
+    /// </summary>
+    [ErrorCodeItemMetadata("禁止删除存在关联菜单的应用")]
+    A1002,
+    
+    /// <summary>
+    /// 找不到系统应用
+    /// </summary>
+    [ErrorCodeItemMetadata("找不到系统应用")]
+    A1000,
 
     /// <summary>
     /// 已存在同名或同编码项目

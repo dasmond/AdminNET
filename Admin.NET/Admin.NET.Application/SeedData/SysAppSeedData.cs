@@ -4,24 +4,22 @@
 //
 // 不得利用本项目从事危害国家安全、扰乱社会秩序、侵犯他人合法权益等法律法规禁止的活动！任何基于本项目二次开发而产生的一切法律纠纷和责任，我们不承担任何责任！
 
-namespace Admin.NET.Core;
+namespace Admin.NET.Application;
 
 /// <summary>
-/// 系统租户表种子数据
+/// 系统应用表种子数据
 /// </summary>
-public class SysTenantSeedData : ISqlSugarEntitySeedData<SysTenant>
+public class SysAppSeedData : ISqlSugarEntitySeedData<SysApp>
 {
     /// <summary>
     /// 种子数据
     /// </summary>
     /// <returns></returns>
-    public IEnumerable<SysTenant> HasData()
+    public IEnumerable<SysApp> HasData()
     {
-        var defaultDbConfig = App.GetOptions<DbConnectionOptions>().ConnectionConfigs[0];
-
         return new[]
         {
-            new SysTenant{ Id=SqlSugarConst.DefaultTenantId, AppId=SqlSugarConst.DefaultAppId, OrgId=SqlSugarConst.DefaultTenantId, UserId=1300000000111, Host=SqlSugarConst.DefaultTenantHost, TenantType=TenantTypeEnum.Id, DbType=defaultDbConfig.DbType, Connection=defaultDbConfig.ConnectionString, ConfigId=SqlSugarConst.MainConfigId, Remark="系统默认", CreateTime=DateTime.Parse("2022-02-10 00:00:00") },
+            new SysApp{ Id=1310000000001, Name=ApplicationConst.GroupName, Logo="/upload/logo.png", Title="Admin.App", ViceTitle="Admin.App", ViceDesc="站在巨人肩膀上的 .NET 通用权限开发框架", Watermark="Admin.App", Copyright="Copyright \u00a9 2021-present Admin.NET All rights reserved.", Icp="省ICP备12345678号", Remark=ApplicationConst.GroupName, CreateTime=DateTime.Parse("2022-02-10 00:00:00") },
         };
     }
 }

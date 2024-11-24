@@ -14,6 +14,12 @@ namespace Admin.NET.Core;
 public partial class SysTenant : EntityBase
 {
     /// <summary>
+    /// 应用Id
+    /// </summary>
+    [SugarColumn(ColumnDescription = "应用Id")]
+    public long AppId { get; set; }
+    
+    /// <summary>
     /// 用户Id
     /// </summary>
     [SugarColumn(ColumnDescription = "用户Id")]
@@ -82,4 +88,12 @@ public partial class SysTenant : EntityBase
     /// </summary>
     [SugarColumn(ColumnDescription = "状态")]
     public StatusEnum Status { get; set; } = StatusEnum.Enable;
+    
+    /// <summary>
+    /// 应用
+    /// </summary>
+    [Newtonsoft.Json.JsonIgnore]
+    [System.Text.Json.Serialization.JsonIgnore]
+    [Navigate(NavigateType.OneToOne, nameof(AppId))]
+    public SysApp SysApp { get; set; }
 }

@@ -12,39 +12,21 @@
  * Do not edit the class manually.
  */
 /**
- * 用户登录参数
+ * 租户iId
  * @export
- * @interface LoginInput
+ * @interface ChangeAppInput
  */
-export interface LoginInput {
+export interface ChangeAppInput {
     /**
-     * 账号
-     * @type {string}
-     * @memberof LoginInput
-     */
-    account: string;
-    /**
-     * 密码
-     * @type {string}
-     * @memberof LoginInput
-     */
-    password: string;
-    /**
-     * 租户域名
-     * @type {string}
-     * @memberof LoginInput
-     */
-    host: string;
-    /**
-     * 验证码Id
+     * 主键Id
      * @type {number}
-     * @memberof LoginInput
+     * @memberof ChangeAppInput
      */
-    codeId?: number;
+    id: number;
     /**
-     * 验证码
-     * @type {string}
-     * @memberof LoginInput
+     * 租户Id
+     * @type {number}
+     * @memberof ChangeAppInput
      */
-    code?: string | null;
+    tenantId: number;
 }
