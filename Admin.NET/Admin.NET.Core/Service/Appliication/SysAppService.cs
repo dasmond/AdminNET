@@ -162,4 +162,15 @@ public class SysAppService : IDynamicApiController, ITransient
         
         return await App.GetRequiredService<SysAuthService>().CreateToken(user, input.Id);
     }
+
+    /// <summary>
+    /// 获取当前应用信息
+    /// </summary>
+    /// <returns></returns>
+    [NonAction]
+    public async Task<SysApp> GetCurrentAppInfo()
+    {
+        var appId = _userManager.AppId > 0 ? _userManager.AppId : SqlSugarConst.DefaultAppId;
+        return await _sysAppRep.GetFirstAsync(u => u.Id == appId) ?? throw Oops.Oh(ErrorCodeEnum.D1002);
+    }
 }
