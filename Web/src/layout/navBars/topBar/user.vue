@@ -75,7 +75,7 @@
 					<!-- <el-dropdown-item command="/dashboard/home">{{ $t('message.user.dropdown1') }}</el-dropdown-item> -->
 					<el-dropdown-item :icon="Avatar" command="/system/userCenter">{{ $t('message.user.dropdown2') }}</el-dropdown-item>
 					<el-dropdown-item :icon="Loading" command="clearCache">{{ $t('message.user.dropdown3') }}</el-dropdown-item>
-					<el-dropdown-item :icon="Switch" divided command="changeApp" v-auth="'sysApp:changeApp'">{{ $t('message.layout.changeApp') }}</el-dropdown-item>
+					<el-dropdown-item :icon="Switch" divided command="changeApp" v-if="auth('sysApp:changeApp')">{{ $t('message.layout.changeApp') }}</el-dropdown-item>
 					<el-dropdown-item :icon="Lock" divided command="lockScreen">{{ $t('message.layout.threeIsLockScreen') }}</el-dropdown-item>
 					<el-dropdown-item :icon="CircleCloseFilled" divided command="logOut">{{ $t('message.user.dropdown5') }}</el-dropdown-item>
 				</el-dropdown-menu>
@@ -105,6 +105,7 @@ import { Avatar, CircleCloseFilled, Loading, Lock, Switch } from '@element-plus/
 
 import { clearAccessTokens, getAPI } from '/@/utils/axios-utils';
 import { SysAuthApi, SysNoticeApi } from '/@/api-services/api';
+import {auth} from "/@/utils/authFunction";
 
 // 引入组件
 const UserNews = defineAsyncComponent(() => import('/@/layout/navBars/topBar/userNews.vue'));
