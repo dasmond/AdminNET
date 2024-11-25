@@ -141,18 +141,23 @@ public class SysAppService : IDynamicApiController, ITransient
     public async Task<dynamic> GetChangeAppData()
     {
         var list = await _sysAppRep.AsQueryable().Includes(u => u.TenantList).ToListAsync();
-        return list.Where(u => u.TenantList.Count > 0).Select(u => new
+        return new
         {
-            u.Id,
-            Value = u.Id,
-            Label = u.Name,
-            Children = u.TenantList.Select(t => new
+            _userManager.AppId,
+            _userManager.TenantId,
+            SelectList = list.Where(u => u.TenantList.Count > 0).Select(u => new
             {
-                t.Id,
-                Value = t.Id,
-                Label = t.Host ?? (t.Id + ""),
+                u.Id,
+                Value = u.Id,
+                Label = u.Name,
+                Children = u.TenantList.Select(t => new
+                {
+                    t.Id,
+                    Value = t.Id,
+                    Label = t.Host ?? (t.Id + ""),
+                })
             })
-        });
+        };
     }
     
     /// <summary>
