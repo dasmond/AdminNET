@@ -49,14 +49,14 @@ public class SysMenuService : IDynamicApiController, ITransient
             var menuList = await _sysMenuRep.AsQueryable()
                 .InnerJoin<SysAppMenu>((u, am) => am.AppId == _userManager.AppId && u.Id == am.MenuId)
                 .Where(u => u.Type != MenuTypeEnum.Btn && u.Status == StatusEnum.Enable)
-                .OrderBy(u => new { u.OrderNo, u.Id }).ToTreeAsync(u => u.Children, u => u.Pid, 0);
+                .OrderBy(u => new { u.OrderNo, u.Id }).Distinct().ToTreeAsync(u => u.Children, u => u.Pid, 0);
             return menuList.Adapt<List<MenuOutput>>();
         }
         var menuIdList = await GetMenuIdList();
         var menuTree = await _sysMenuRep.AsQueryable()
             .InnerJoin<SysAppMenu>((u, am) => am.AppId == _userManager.AppId && u.Id == am.MenuId)
             .Where(u => u.Status == StatusEnum.Enable)
-            .OrderBy(u => new { u.OrderNo, u.Id }).ToTreeAsync(u => u.Children, u => u.Pid, 0, menuIdList.Select(d => (object)d).ToArray());
+            .OrderBy(u => new { u.OrderNo, u.Id }).Distinct().ToTreeAsync(u => u.Children, u => u.Pid, 0, menuIdList.Select(d => (object)d).ToArray());
         DeleteBtnFromMenuTree(menuTree);
         return menuTree.Adapt<List<MenuOutput>>();
     }
@@ -99,12 +99,12 @@ public class SysMenuService : IDynamicApiController, ITransient
             return await query.WhereIF(!string.IsNullOrWhiteSpace(input.Title), u => u.Title.Contains(input.Title))
                 .WhereIF(input.Type is > 0, u => u.Type == input.Type)
                 .WhereIF(menuIdList.Count > 1, u => menuIdList.Contains(u.Id))
-                .OrderBy(u => new { u.OrderNo, u.Id }).ToListAsync();
+                .OrderBy(u => new { u.OrderNo, u.Id }).Distinct().ToListAsync();
         }
 
         return _userManager.SuperAdmin ?
-            await query.OrderBy(u => new { u.OrderNo, u.Id }).ToTreeAsync(u => u.Children, u => u.Pid, 0) :
-            await query.OrderBy(u => new { u.OrderNo, u.Id }).ToTreeAsync(u => u.Children, u => u.Pid, 0, menuIdList.Select(d => (object)d).ToArray()); // 角色菜单授权时
+            await query.OrderBy(u => new { u.OrderNo, u.Id }).Distinct().ToTreeAsync(u => u.Children, u => u.Pid, 0) :
+            await query.OrderBy(u => new { u.OrderNo, u.Id }).Distinct().ToTreeAsync(u => u.Children, u => u.Pid, 0, menuIdList.Select(d => (object)d).ToArray()); // 角色菜单授权时
     }
 
     /// <summary>

@@ -130,7 +130,7 @@ const openDialog = async (row: any) => {
 	state.ruleForm = JSON.parse(JSON.stringify(row));
 	if (row.id && auth('sysApp:grantMenu')) {
     const res = await getAPI(SysAppApi).apiSysAppGrantMenuGet(row.id);
-    treeRef.value?.setCheckedKeys(res.data.result ?? []);
+    setTimeout(() => treeRef.value?.setCheckedKeys(res.data.result ?? []), 100);
 	}
 	state.isShowDialog = true;
 };

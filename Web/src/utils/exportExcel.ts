@@ -69,7 +69,7 @@ export function exportExcel(jsonarr: Array<EmptyObjectType>, name: string, heade
 	for (let i = 0; i < headerArr.length; i++) {
 		let row = headerArr[i];
 		for (let j = 0; j < row.length; j++) {
-			if (headerArr[i][j] == null) {
+			if (headerArr[i][j] == null && i > 0) {
 				headerArr[i][j] = headerArr[i - 1][j];
 			}
 		}
