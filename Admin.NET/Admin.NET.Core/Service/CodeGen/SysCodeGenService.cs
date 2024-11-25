@@ -19,14 +19,17 @@ public class SysCodeGenService : IDynamicApiController, ITransient
     private readonly SysCodeGenConfigService _codeGenConfigService;
     private readonly CodeGenOptions _codeGenOptions;
     private readonly IViewEngine _viewEngine;
+    private readonly UserManager _userManager;
 
     public SysCodeGenService(ISqlSugarClient db,
         SysCodeGenConfigService codeGenConfigService,
         IOptions<CodeGenOptions> codeGenOptions,
+        UserManager userManager,
         IViewEngine viewEngine)
     {
         _db = db;
         _viewEngine = viewEngine;
+        _userManager = userManager;
         _codeGenOptions = codeGenOptions.Value;
         _codeGenConfigService = codeGenConfigService;
     }
@@ -494,6 +497,9 @@ public class SysCodeGenService : IDynamicApiController, ITransient
             menuList.Add(new SysMenu { Title=$"上传{column.ColumnComment}", Permission=$"{lowerClassName}:upload{column.PropertyName}", Pid=pid, Type=MenuTypeEnum.Btn, OrderNo=orderNo+=10});
         
         await _db.Insertable(menuList).ExecuteCommandAsync();
+        
+        // 新增应用菜单关联
+        await _db.Insertable(menuList.Select(u => new SysAppMenu { AppId = _userManager.AppId, MenuId = u.Id }).ToList()).ExecuteCommandAsync();
     }
 
     /// <summary>
