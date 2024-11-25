@@ -75,22 +75,6 @@ const sortChange = async (column: any) => {
   await handleQuery();
 };
 
-// 设置状态
-const change@(Model.ClassName)Status = async (row: any) => {
-  await @(Model.LowerClassName)Api.setStatus({ @(Model.PrimaryKeysFormat(", ", "{0}: row.{0}", true)), status: row.status }).then(() => ElMessage.success('状态设置成功'));
-};
-
-// 打开打印页面
-const openPrint@(Model.ClassName) = async (row: any) => {
-@if(Model.PrintType == "custom"){
-  @:var res = await getAPI(SysPrintApi).apiSysPrintPrintNameGet('@Model.PrintName');
-  @:var printTemplate = res.data.result as SysPrint;
-  @:var template = JSON.parse(printTemplate.template);
-  @:row['printDate'] = formatDate(new Date(), 'YYYY-mm-dd HH:MM:SS')
-  @:printDialogRef.value.showDialog(new hiprint.PrintTemplate({template: template}), row, template.panels[0].width);
-  }
-}
-
 // 删除
 const del@(Model.ClassName) = (row: any) => {
   ElMessageBox.confirm(`确定要删除吗?`, "提示", {
@@ -117,8 +101,26 @@ const batchDel@(Model.ClassName) = () => {
     });
   }).catch(() => {});
 };
-
+@if(Model.PrintType == "custom") {
+@:
+@:// 打开打印页面
+@:const openPrint@(Model.ClassName) = async (row: any) => {
+  @:var res = await getAPI(SysPrintApi).apiSysPrintPrintNameGet('@Model.PrintName');
+  @:var printTemplate = res.data.result as SysPrint;
+  @:var template = JSON.parse(printTemplate.template);
+  @:row['printDate'] = formatDate(new Date(), 'YYYY-mm-dd HH:MM:SS')
+  @:printDialogRef.value.showDialog(new hiprint.PrintTemplate({template: template}), row, template.panels[0].width);
+  @:}
+}
+@if (Model.HasSetStatus) {
+@:
+@:// 设置状态
+@:const change@(Model.ClassName)Status = async (row: any) => {
+  @:await @(Model.LowerClassName)Api.setStatus({ @(Model.PrimaryKeysFormat(", ", "{0}: row.{0}", true)), status: row.status }).then(() => ElMessage.success('状态设置成功'));
+  @:};
+}
 @if (Model.ImportFieldList.Count > 0) {
+@:
 @:// 导出数据
 @:const export@(Model.ClassName)Command = async (command: string) => {
   @:try {
