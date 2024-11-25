@@ -10,7 +10,7 @@
 			<el-form :model="state.ruleForm" ref="ruleFormRef" label-width="auto">
 				<el-row :gutter="35">
 					<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
-						<el-form-item label="库定位器" prop="configId">
+						<el-form-item label="库定位器" prop="configId" :rules="[{ required: true, message: '请选择库定位器', trigger: 'blur' }]">
 							<el-select v-model="state.ruleForm.configId" placeholder="库名" filterable @change="dbChanged()" class="w100">
 								<el-option v-for="item in state.dbData" :key="item.configId" :label="item.configId" :value="item.configId" />
 							</el-select>
@@ -48,7 +48,7 @@
 						</el-form-item>
 					</el-col>
 					<el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="mb20">
-						<el-form-item label="库地址" prop="connectionString">
+						<el-form-item label="库地址" prop="connectionString" :rules="[{ required: true, message: '库地址不能为空', trigger: 'blur' }]">
 							<el-input v-model="state.ruleForm.connectionString" disabled clearable type="textarea" />
 						</el-form-item>
 					</el-col>
@@ -60,7 +60,7 @@
 						</el-form-item>
 					</el-col>
 					<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
-						<el-form-item label="业务名" prop="busName">
+						<el-form-item label="业务名" prop="busName" :rules="[{ required: true, message: '业务名不能为空', trigger: 'blur' }]">
 							<el-input v-model="state.ruleForm.busName" placeholder="请输入" clearable />
 						</el-form-item>
 					</el-col>
@@ -106,7 +106,7 @@
 						</el-form-item>
 					</el-col>
 					<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
-						<el-form-item label="前端目录" prop="pagePath">
+						<el-form-item label="前端目录" prop="pagePath" :rules="[{ required: true, message: '前端目录不能为空', trigger: 'blur' }]">
 							<el-input v-model="state.ruleForm.pagePath" clearable placeholder="请输入" />
 						</el-form-item>
 					</el-col>
