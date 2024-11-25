@@ -3,60 +3,65 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '40e2728bbd57986181100c70bae7cad3879922ae'
-    oldFile: !uuid '8469307a7899d5e300c8c765683326185a792d8e'
+    newFile: !uuid '3f6efef0b1eda7cfcee6382dcb437f5622f2b9cc'
+    oldFile: !uuid '40e2728bbd57986181100c70bae7cad3879922ae'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '4afafa1374ade09d1098f2d6c4355554421bd696'
-    oldFile: !uuid '94951ff05a739adae486c811464f7afc988f0a8f'
+    newFile: !uuid '2d7d6ea5d794f10f2eeffbea80e07b4153e97d15'
+    oldFile: !uuid '4afafa1374ade09d1098f2d6c4355554421bd696'
   /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid '2f4a82c57e733586e31e9c8b47211f0280486b4b'
-    oldFile: !uuid '9dd122a97ead30f60e4dd5c12b08f52992c2283a'
-  /Admin.NET/Admin.NET.Core/Service/CodeGen:
-    newFile: !uuid '681e0ae9f686395f576154a45d6afd3cb8c830e3'
-    oldFile: !uuid 'c39517691f0a7c50dc9b3239a445efdcf7ab1756'
-  /Admin.NET/Admin.NET.Core/Service/CodeGen/SysCodeGenService.cs:
-    newFile: !uuid '35bb49f2fae1752528b9586a9795960b59ce7ab2'
-    oldFile: !uuid '4fbe4218a69814802a1eeefa123066614fab579f'
-  /Admin.NET/Admin.NET.Core/Service/Menu:
-    newFile: !uuid '5e3a4cbd3ab93c9098551e85c36077660e3ee0ff'
-    oldFile: !uuid '8dc32ded4b626a3e89e50d698bd4498426fe5416'
-  /Admin.NET/Admin.NET.Core/Service/Menu/SysMenuService.cs:
-    newFile: !uuid '4e151ea7b1240e7a903a5e2f549685c8993bb9e4'
-    oldFile: !uuid 'c3bc78796231e3cc7970714ab90de6ad32e65569'
+    newFile: !uuid '43914c88d324a0332c697874e555fff4de98def6'
+    oldFile: !uuid '2f4a82c57e733586e31e9c8b47211f0280486b4b'
+  /Admin.NET/Admin.NET.Core/Service/Application:
+    newFile: !uuid '7565bc19766cf58865556536181dbf889b6d587a'
+    oldFile: null
+  /Admin.NET/Admin.NET.Core/Service/Application/Dto:
+    newFile: !uuid 'adc64ac0cb6840c817a831100eb38eca4d088f73'
+    oldFile: null
+  /Admin.NET/Admin.NET.Core/Service/Application/Dto/SysAppInput.cs:
+    newFile: !uuid '3aba33c54d0cdf2e188032a89051e02eb655b5b5'
+    oldFile: null
+  /Admin.NET/Admin.NET.Core/Service/Application/Dto/SysAppOutput.cs:
+    newFile: !uuid '207f8f99675441413f93419540d7237280328fb1'
+    oldFile: null
+  /Admin.NET/Admin.NET.Core/Service/Application/SysAppService.cs:
+    newFile: !uuid 'cd37ec3528de7c8fa9ddd1af8370e3206b3c3da1'
+    oldFile: null
+  /Admin.NET/Admin.NET.Core/Service/Appliication:
+    newFile: null
+    oldFile: !uuid '9771a814b3ad5e3343bb2533933d6f9a22f3743f'
+  /Admin.NET/Admin.NET.Core/Service/Appliication/Dto:
+    newFile: null
+    oldFile: !uuid 'adc64ac0cb6840c817a831100eb38eca4d088f73'
+  /Admin.NET/Admin.NET.Core/Service/Appliication/Dto/SysAppInput.cs:
+    newFile: null
+    oldFile: !uuid '3aba33c54d0cdf2e188032a89051e02eb655b5b5'
+  /Admin.NET/Admin.NET.Core/Service/Appliication/Dto/SysAppOutput.cs:
+    newFile: null
+    oldFile: !uuid '207f8f99675441413f93419540d7237280328fb1'
+  /Admin.NET/Admin.NET.Core/Service/Appliication/SysAppService.cs:
+    newFile: null
+    oldFile: !uuid 'fb27b717ff5f512b4da693eb8e192e52aedb80e8'
   /Web:
-    newFile: !uuid 'e372c26e0a362b64f9191f9e0c74d871d28f497e'
-    oldFile: !uuid 'eea97610e8d80a9c5a5b4f1640dce0427389255a'
+    newFile: !uuid '6de23fc8d32bfb748b0774d9bee7bf8cddeb3b77'
+    oldFile: !uuid 'e372c26e0a362b64f9191f9e0c74d871d28f497e'
   /Web/src:
-    newFile: !uuid '2c6329bef59024672be4da41c38c6b8a4d4afd3f'
-    oldFile: !uuid 'abcdfe27d9a994f83cf1fdca9ea2e878e455f1b7'
+    newFile: !uuid '76235ea2f3660678e0794c7752a396a8f311111e'
+    oldFile: !uuid '2c6329bef59024672be4da41c38c6b8a4d4afd3f'
   /Web/src/layout:
-    newFile: !uuid 'e29e2a6602adf6eae8debad4e47f36684be7d978'
-    oldFile: !uuid 'a4b39feb2194b2940d19599c8d3593cd92a73de7'
+    newFile: !uuid '79459461b5c253d65ab2253d1cbb5da561930570'
+    oldFile: !uuid 'e29e2a6602adf6eae8debad4e47f36684be7d978'
   /Web/src/layout/navBars:
-    newFile: !uuid '08cf08539f3b768796c76ea1cd41ed5e30f4dacb'
-    oldFile: !uuid '0344a40938ff455a1da98ab04924dbb8efdd7727'
+    newFile: !uuid '3d61c27cedae5e88bebc4ecccde45130f2a35c72'
+    oldFile: !uuid '08cf08539f3b768796c76ea1cd41ed5e30f4dacb'
   /Web/src/layout/navBars/topBar:
-    newFile: !uuid '6497abe92c88a9e4b3ec85821287c61d85c59615'
-    oldFile: !uuid '65e21892dc479a2737df82a09f29365449ff5db7'
-  /Web/src/layout/navBars/topBar/user.vue:
-    newFile: !uuid '17d11e8a9ba5102cfc484757b94ffd780159ee59'
-    oldFile: !uuid 'dee83adceebead6c763d72f83e2fdae7051041ca'
-  /Web/src/views:
-    newFile: !uuid '4bafa69eebf73c37122f3a23774ee4c84f47b7ac'
-    oldFile: !uuid '7aaf54f0ca1758b1410d72834caa41b3474d8ae2'
-  /Web/src/views/system:
-    newFile: !uuid '371b32b3f1d937a7774bd2e331a4338ee6132ef4'
-    oldFile: !uuid '50b7c40f9eb31c75ff9fa50266e546f810a7efc8'
-  /Web/src/views/system/codeGen:
-    newFile: !uuid '761fe22ea4fb3ee7e4c5b6722524ffc6d90f4362'
-    oldFile: !uuid '08717aafcff6950b9487f1aef3fd30287d0381d2'
-  /Web/src/views/system/codeGen/component:
-    newFile: !uuid '2469be660a12b60129f96351a26c49687cc8fa01'
-    oldFile: !uuid '4813a54b2dc61542b0d10fbcc58040aa4c0d0e64'
-  /Web/src/views/system/codeGen/component/editCodeGenDialog.vue:
-    newFile: !uuid '7dc723975b88d7c180c826a7075c9a03c8640121'
-    oldFile: !uuid 'bbcf93bb8e431ca96cf5a5cb1ba845869adba4a9'
-gitCommitId: !uuid '9733eedda55b71df15a91042c050e981f53c0ba4'
-renames: {
-  }
-revisionId: 2526
+    newFile: !uuid '4f3b09f496471419a07613b4195a2caf5ce63cbf'
+    oldFile: !uuid '6497abe92c88a9e4b3ec85821287c61d85c59615'
+  /Web/src/layout/navBars/topBar/changeApp.vue:
+    newFile: !uuid '99768c9addef0cb42895397e8084679ac95a8713'
+    oldFile: !uuid '8c56351401c4c01ceeaa3a111680e2fac57e6a81'
+gitCommitId: !uuid 'd0e1101fa2f864bda5d413ab3a69a46f449f9b0d'
+renames:
+  /Admin.NET/Admin.NET.Core/Service/Application/Dto/SysAppInput.cs: /Admin.NET/Admin.NET.Core/Service/Appliication/Dto/SysAppInput.cs
+  /Admin.NET/Admin.NET.Core/Service/Application/Dto/SysAppOutput.cs: /Admin.NET/Admin.NET.Core/Service/Appliication/Dto/SysAppOutput.cs
+  /Admin.NET/Admin.NET.Core/Service/Application/SysAppService.cs: /Admin.NET/Admin.NET.Core/Service/Appliication/SysAppService.cs
+revisionId: 2527
