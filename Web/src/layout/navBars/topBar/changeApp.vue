@@ -1,6 +1,6 @@
 <template>
   <div class="sys-app-container">
-    <el-dialog v-model="state.isShowDialog" draggable :close-on-click-modal="false">
+    <el-dialog v-model="state.isShowDialog" width="300" draggable :close-on-click-modal="false">
       <template #header>
         <div style="color: #fff">
           <el-icon size="16" style="margin-right: 3px; display: inline; vertical-align: middle"> <ele-Switch /> </el-icon>

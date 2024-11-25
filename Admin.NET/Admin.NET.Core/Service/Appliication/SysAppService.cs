@@ -12,13 +12,17 @@ namespace Admin.NET.Core.Service;
 [ApiDescriptionSettings(Name = "SysApp", Order = 495)]
 public class SysAppService : IDynamicApiController, ITransient
 {
+    private readonly SqlSugarRepository<SysAppMenu> _sysAppMenuRep;
     private readonly SqlSugarRepository<SysApp> _sysAppRep;
+    private readonly SysAuthService _sysAuthService;
     private readonly UserManager _userManager;
 
-    public SysAppService(SqlSugarRepository<SysApp> sysAppRep, UserManager userManager)
+    public SysAppService(SqlSugarRepository<SysApp> sysAppRep, SqlSugarRepository<SysAppMenu> sysAppMenuRep, SysAuthService sysAuthService, UserManager userManager)
     {
         _sysAppRep = sysAppRep;
         _userManager = userManager;
+        _sysAppMenuRep = sysAppMenuRep;
+        _sysAuthService = sysAuthService;
     }
 
     /// <summary>
@@ -83,7 +87,7 @@ public class SysAppService : IDynamicApiController, ITransient
         if (await _sysAppRep.Context.Queryable<SysTenant>().AnyAsync(u => u.AppId == input.Id)) throw Oops.Oh(ErrorCodeEnum.A1001);
         
         // 禁止删除存在关联菜单的应用
-        if (await _sysAppRep.Context.Queryable<SysAppMenu>().AnyAsync(u => u.AppId == input.Id)) throw Oops.Oh(ErrorCodeEnum.A1002);
+        if (await _sysAppMenuRep.AsQueryable().AnyAsync(u => u.AppId == input.Id)) throw Oops.Oh(ErrorCodeEnum.A1002);
         
         await _sysAppRep.DeleteAsync(entity);
     }
@@ -98,7 +102,7 @@ public class SysAppService : IDynamicApiController, ITransient
     [ApiDescriptionSettings(Name = "GrantMenu"), HttpGet]
     public async Task<List<long>> GrantMenu([FromQuery]long id)
     {
-         return await _sysAppRep.ChangeRepository<SqlSugarRepository<SysAppMenu>>().AsQueryable().Where(u => u.AppId == id).Select(u => u.MenuId).ToListAsync();
+         return await _sysAppMenuRep.AsQueryable().Where(u => u.AppId == id).Select(u => u.MenuId).ToListAsync();
     }
     
     /// <summary>
@@ -112,12 +116,19 @@ public class SysAppService : IDynamicApiController, ITransient
     public async Task GrantMenu(UpdateAppMenuInput input)
     {
         input.MenuIdList ??= new();
-        var rep = _sysAppRep.ChangeRepository<SqlSugarRepository<SysAppMenu>>();
         
-        await rep.DeleteAsync(u => u.AppId == input.Id);
+        await _sysAppMenuRep.DeleteAsync(u => u.AppId == input.Id);
         
         var list = input.MenuIdList.Select(id => new SysAppMenu { AppId = input.Id, MenuId = id }).ToList();
-        await rep.InsertRangeAsync(list);
+        
+        await _sysAppMenuRep.InsertRangeAsync(list);
+
+        // 清除应用下其他模块越权的授权数据，包括角色菜单，用户收藏菜单
+        var tenantIds = await _sysAppRep.Context.Queryable<SysTenant>().Where(u => u.AppId == input.Id).Select(u => u.Id).ToListAsync();
+        var roleIds = await _sysAppRep.Context.Queryable<SysRole>().Where(u => tenantIds.Contains((long)u.TenantId)).Select(u => u.Id).ToListAsync();
+        var userIds = await _sysAppRep.Context.Queryable<SysUser>().Where(u => tenantIds.Contains((long)u.TenantId)).Select(u => u.Id).ToListAsync();
+        await _sysAppRep.Context.Deleteable<SysRoleMenu>().Where(u => roleIds.Contains(u.RoleId) && !input.MenuIdList.Contains(u.MenuId)).ExecuteCommandAsync();
+        await _sysAppRep.Context.Deleteable<SysUserMenu>().Where(u => userIds.Contains(u.UserId) && !input.MenuIdList.Contains(u.MenuId)).ExecuteCommandAsync();
     }
     
     /// <summary>
@@ -160,7 +171,7 @@ public class SysAppService : IDynamicApiController, ITransient
         var user = await _sysAppRep.Context.Queryable<SysUser>().FirstAsync(u => u.Id == _userManager.UserId);
         user.TenantId = input.TenantId;
         
-        return await App.GetRequiredService<SysAuthService>().CreateToken(user, input.Id);
+        return await _sysAuthService.CreateToken(user, input.Id);
     }
 
     /// <summary>
