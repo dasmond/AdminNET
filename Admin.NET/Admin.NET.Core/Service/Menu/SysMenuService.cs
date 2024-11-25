@@ -208,7 +208,7 @@ public class SysMenuService : IDynamicApiController, ITransient
         await _sysUserMenuService.DeleteMenuList(menuIdList);
         
         // 删除应用菜单关联
-        await _sysAppMenuRep.AsDeleteable().Where(u => u.MenuId == input.Id).ExecuteCommandAsync();
+        await _sysAppMenuRep.AsDeleteable().Where(u => menuIdList.Contains(u.MenuId)).ExecuteCommandAsync();
 
         // 清除缓存
         DeleteMenuCache();
