@@ -2,66 +2,31 @@
 branches: {
   }
 fileChange:
-  /Admin.NET:
-    newFile: !uuid '3f6efef0b1eda7cfcee6382dcb437f5622f2b9cc'
-    oldFile: !uuid '40e2728bbd57986181100c70bae7cad3879922ae'
-  /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '2d7d6ea5d794f10f2eeffbea80e07b4153e97d15'
-    oldFile: !uuid '4afafa1374ade09d1098f2d6c4355554421bd696'
-  /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid '43914c88d324a0332c697874e555fff4de98def6'
-    oldFile: !uuid '2f4a82c57e733586e31e9c8b47211f0280486b4b'
-  /Admin.NET/Admin.NET.Core/Service/Application:
-    newFile: !uuid '7565bc19766cf58865556536181dbf889b6d587a'
-    oldFile: null
-  /Admin.NET/Admin.NET.Core/Service/Application/Dto:
-    newFile: !uuid 'adc64ac0cb6840c817a831100eb38eca4d088f73'
-    oldFile: null
-  /Admin.NET/Admin.NET.Core/Service/Application/Dto/SysAppInput.cs:
-    newFile: !uuid '3aba33c54d0cdf2e188032a89051e02eb655b5b5'
-    oldFile: null
-  /Admin.NET/Admin.NET.Core/Service/Application/Dto/SysAppOutput.cs:
-    newFile: !uuid '207f8f99675441413f93419540d7237280328fb1'
-    oldFile: null
-  /Admin.NET/Admin.NET.Core/Service/Application/SysAppService.cs:
-    newFile: !uuid 'cd37ec3528de7c8fa9ddd1af8370e3206b3c3da1'
-    oldFile: null
-  /Admin.NET/Admin.NET.Core/Service/Appliication:
-    newFile: null
-    oldFile: !uuid '9771a814b3ad5e3343bb2533933d6f9a22f3743f'
-  /Admin.NET/Admin.NET.Core/Service/Appliication/Dto:
-    newFile: null
-    oldFile: !uuid 'adc64ac0cb6840c817a831100eb38eca4d088f73'
-  /Admin.NET/Admin.NET.Core/Service/Appliication/Dto/SysAppInput.cs:
-    newFile: null
-    oldFile: !uuid '3aba33c54d0cdf2e188032a89051e02eb655b5b5'
-  /Admin.NET/Admin.NET.Core/Service/Appliication/Dto/SysAppOutput.cs:
-    newFile: null
-    oldFile: !uuid '207f8f99675441413f93419540d7237280328fb1'
-  /Admin.NET/Admin.NET.Core/Service/Appliication/SysAppService.cs:
-    newFile: null
-    oldFile: !uuid 'fb27b717ff5f512b4da693eb8e192e52aedb80e8'
   /Web:
-    newFile: !uuid '6de23fc8d32bfb748b0774d9bee7bf8cddeb3b77'
-    oldFile: !uuid 'e372c26e0a362b64f9191f9e0c74d871d28f497e'
+    newFile: !uuid '8469f1a2a25a023c8f4d89bbd75048ea7be5e61b'
+    oldFile: !uuid '6de23fc8d32bfb748b0774d9bee7bf8cddeb3b77'
   /Web/src:
-    newFile: !uuid '76235ea2f3660678e0794c7752a396a8f311111e'
-    oldFile: !uuid '2c6329bef59024672be4da41c38c6b8a4d4afd3f'
-  /Web/src/layout:
-    newFile: !uuid '79459461b5c253d65ab2253d1cbb5da561930570'
-    oldFile: !uuid 'e29e2a6602adf6eae8debad4e47f36684be7d978'
-  /Web/src/layout/navBars:
-    newFile: !uuid '3d61c27cedae5e88bebc4ecccde45130f2a35c72'
-    oldFile: !uuid '08cf08539f3b768796c76ea1cd41ed5e30f4dacb'
-  /Web/src/layout/navBars/topBar:
-    newFile: !uuid '4f3b09f496471419a07613b4195a2caf5ce63cbf'
-    oldFile: !uuid '6497abe92c88a9e4b3ec85821287c61d85c59615'
-  /Web/src/layout/navBars/topBar/changeApp.vue:
-    newFile: !uuid '99768c9addef0cb42895397e8084679ac95a8713'
-    oldFile: !uuid '8c56351401c4c01ceeaa3a111680e2fac57e6a81'
-gitCommitId: !uuid 'd0e1101fa2f864bda5d413ab3a69a46f449f9b0d'
-renames:
-  /Admin.NET/Admin.NET.Core/Service/Application/Dto/SysAppInput.cs: /Admin.NET/Admin.NET.Core/Service/Appliication/Dto/SysAppInput.cs
-  /Admin.NET/Admin.NET.Core/Service/Application/Dto/SysAppOutput.cs: /Admin.NET/Admin.NET.Core/Service/Appliication/Dto/SysAppOutput.cs
-  /Admin.NET/Admin.NET.Core/Service/Application/SysAppService.cs: /Admin.NET/Admin.NET.Core/Service/Appliication/SysAppService.cs
-revisionId: 2472
+    newFile: !uuid '327f2bfb06dc740293a4e57061e3867b78ee95a0'
+    oldFile: !uuid '76235ea2f3660678e0794c7752a396a8f311111e'
+  /Web/src/views:
+    newFile: !uuid '2638497ae50f2d44334bbbc9774c498b032916a7'
+    oldFile: !uuid '4bafa69eebf73c37122f3a23774ee4c84f47b7ac'
+  /Web/src/views/system:
+    newFile: !uuid '09f96a16cb30b95629e476476a86bcd7a288bd1d'
+    oldFile: !uuid '371b32b3f1d937a7774bd2e331a4338ee6132ef4'
+  /Web/src/views/system/org:
+    newFile: !uuid '32cabea9523814fa796cd4f18f1d94088e1f57dc'
+    oldFile: !uuid 'c3e994a2ba61c27837dea08bc838477d7eadb7f1'
+  /Web/src/views/system/org/index.vue:
+    newFile: !uuid '2f95937e6f769b4ce20cfcaa685fdfb1a0b74cb4'
+    oldFile: !uuid 'a545394652d935c94f5e058255e09074abb2eeb3'
+  /Web/src/views/system/user:
+    newFile: !uuid '7e558250727dd3bcebadd74de8504c6fd8940253'
+    oldFile: !uuid 'a3d9a8a6e0e27d8a61098866da236ef278f3bfec'
+  /Web/src/views/system/user/index.vue:
+    newFile: !uuid 'e0c4da32f0361356751fe7694ecb83207905a666'
+    oldFile: !uuid '0e15d6a847f7d555b2ee7fe96dca832f5ef1cab2'
+gitCommitId: !uuid '2af5e6f3003f917b86ae56ec6d38936121974a2b'
+renames: {
+  }
+revisionId: 2473
