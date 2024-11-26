@@ -4,7 +4,7 @@
 			<pane size="20">
 				<OrgTree ref="orgTreeRef" @node-click="nodeClick" />
 			</pane>
-			<pane size="80">
+			<pane size="80" style="overflow: auto;">
 				<el-card shadow="hover" :body-style="{ paddingBottom: '0' }">
 					<el-form :model="state.queryParams" ref="queryForm" :inline="true">
 						<el-form-item label="机构名称">
