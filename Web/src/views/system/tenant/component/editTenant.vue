@@ -144,7 +144,7 @@ const state = reactive({
 
 // 打开弹窗
 const openDialog = async (row: any) => {
-  if (state.appList.length == 0) state.appList = await getAPI(SysAppApi).apiSysAppChangeAppGet().then(res => res.data.result ?? []);
+  if (state.appList.length == 0) state.appList = await getAPI(SysAppApi).apiSysAppChangeAppGet().then(res => res.data.result?.selectList ?? []);
 	state.ruleForm = JSON.parse(JSON.stringify(row));
 	state.isShowDialog = true;
 	ruleFormRef.value?.resetFields();
