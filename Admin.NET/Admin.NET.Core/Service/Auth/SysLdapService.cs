@@ -216,6 +216,7 @@ public class SysLdapService : IDynamicApiController, ITransient
                 {
                     var sysUserLdap = CreateSysUserLdap(attrs, sysLdap.BindAttrAccount, sysLdap.BindAttrEmployeeId, deptCode);
                     sysUserLdap.Dn = ldapEntry.Dn;
+                    sysUserLdap.TenantId=sysLdap.TenantId;
                     userLdapList.Add(sysUserLdap);
                 }
             }
@@ -313,6 +314,7 @@ public class SysLdapService : IDynamicApiController, ITransient
             {
                 var sysUserLdap = CreateSysUserLdap(attrs, sysLdap.BindAttrAccount, sysLdap.BindAttrEmployeeId, deptCode);
                 sysUserLdap.Dn = ldapEntry.Dn;
+                sysUserLdap.TenantId = sysLdap.TenantId;
                 if (string.IsNullOrEmpty(sysUserLdap.EmployeeId)) continue;
                 userLdapList.Add(sysUserLdap);
             }
