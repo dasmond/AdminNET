@@ -13,7 +13,7 @@ namespace Admin.NET.Core;
 [SysTable]
 [SugarIndex("index_{table}_A", nameof(Account), OrderByType.Asc)]
 [SugarIndex("index_{table}_U", nameof(UserId), OrderByType.Asc)]
-public class SysUserLdap : EntityTenant
+public class SysUserLdap : EntityTenantId
 {
     /// <summary>
     /// 用户Id
