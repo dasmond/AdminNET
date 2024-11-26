@@ -19,14 +19,32 @@
 
 		<el-card class="full-table" shadow="hover" style="margin-top: 5px">
 			<el-table :data="state.logData" style="width: 100%" v-loading="state.loading" border>
+        <el-table-column type="expand">
+          <template #default="scope">
+            <el-card header="差异数据" style="width: 100%; margin: 5px">
+              <el-table :data="item.columns" v-for="item in scope.row.diffData" :key="item.tableName" style="width: 100%">
+                <el-table-column :label="item.tableName + '-' + item.tableDescription" align="center">
+                  <el-table-column prop="columnName" label="字段描述" width="300" :formatter="(row: any) => `${row.columnName} - ${row.columnDescription}`" />
+                  <el-table-column prop="beforeValue" label="修改前" />
+                  <el-table-column prop="afterValue" label="修改后" />
+                </el-table-column>
+              </el-table>
+            </el-card>
+            <el-card header="SQL" style="width: 100%; margin: 5px" class="overflow-text">{{scope.row.sql}}</el-card>
+            <el-card header="SQL参数" style="width: 100%; margin: 5px">
+              <el-table :data="scope.row.parameters" style="width: 100%"  border>
+                <el-table-column prop="parameterName" label="参数名" width="200" />
+                <el-table-column prop="typeName" label="类型" width="100" />
+                <el-table-column prop="value" label="值" />
+              </el-table>
+            </el-card>
+
+          </template>
+        </el-table-column>
 				<el-table-column type="index" label="序号" width="55" align="center" />
 				<el-table-column prop="diffType" label="差异操作" header-align="center" show-overflow-tooltip />
-				<el-table-column prop="sql" label="Sql语句" header-align="center" show-overflow-tooltip />
-				<el-table-column prop="parameters" label="参数" header-align="center" show-overflow-tooltip />
 				<el-table-column prop="elapsed" label="耗时(ms)" header-align="center" show-overflow-tooltip />
 				<el-table-column prop="message" label="日志消息" header-align="center" show-overflow-tooltip />
-				<el-table-column prop="beforeData" label="操作前记录" header-align="center" show-overflow-tooltip />
-				<el-table-column prop="afterData" label="操作后记录" header-align="center" show-overflow-tooltip />
 				<el-table-column prop="businessData" label="业务对象" header-align="center" show-overflow-tooltip />
 				<el-table-column prop="createTime" label="操作时间" align="center" show-overflow-tooltip />
 			</el-table>
@@ -79,6 +97,10 @@ const handleQuery = async () => {
 	let params = Object.assign(state.queryParams, state.tableParams);
 	var res = await getAPI(SysLogDiffApi).apiSysLogDiffPagePost(params);
 	state.logData = res.data.result?.items ?? [];
+  state.logData.forEach(e => {
+    e.diffData = JSON.parse(e.diffData ?? "[]");
+    e.parameters = JSON.parse(e.parameters ?? "[]");
+  });
 	state.tableParams.total = res.data.result?.total;
 	state.loading = false;
 };
@@ -129,5 +151,12 @@ const shortcuts = [
 <style lang="scss" scoped>
 .el-popper {
 	max-width: 60%;
+}
+:deep(.el-table__expanded-cell) {
+  margin-left: 10px !important;
+}
+.overflow-text {
+  max-width: 100%; /* 或者你希望的最大宽度 */
+  word-wrap: break-word;
 }
 </style>

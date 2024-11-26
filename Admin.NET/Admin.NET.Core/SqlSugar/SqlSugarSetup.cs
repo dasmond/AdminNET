@@ -277,33 +277,43 @@ public static class SqlSugarSetup
 
         db.Aop.OnDiffLogEvent = async u =>
         {
-            // 移除相同字段
+            // 记录差异数据
+            var diffData = new List<dynamic>();
             for (int i = 0; i < u.AfterData.Count; i++)
             {
+                var diffColumns = new List<dynamic>();
                 var afterColumns = u.AfterData[i].Columns;
                 var beforeColumns = u.BeforeData[i].Columns;
                 for (int j = 0; j < afterColumns.Count; j++)
                 {
-                    if (!afterColumns[j].Value.Equals(beforeColumns[j].Value)) continue;
-
-                    beforeColumns.Remove(beforeColumns[j]);
-                    afterColumns.Remove(afterColumns[j]);
-                    j--;
+                    if (afterColumns[j].Value.Equals(beforeColumns[j].Value)) continue;
+                    diffColumns.Add(new
+                    {
+                        afterColumns[j].IsPrimaryKey,
+                        afterColumns[j].ColumnName,
+                        afterColumns[j].ColumnDescription,
+                        BeforeValue = beforeColumns[j].Value,
+                        AfterValue = afterColumns[j].Value,
+                    });
                 }
+                diffData.Add(new
+                {
+                    u.AfterData[i].TableName,
+                    u.AfterData[i].TableDescription,
+                    Columns = diffColumns
+                });
             }
 
             var logDiff = new SysLogDiff
             {
-                // 操作后记录（字段描述、列名、值、表名、表描述）
-                AfterData = JSON.Serialize(u.AfterData),
-                // 操作前记录（字段描述、列名、值、表名、表描述）
-                BeforeData = JSON.Serialize(u.BeforeData),
+                // 差异数据（字段描述、列名、值、表名、表描述）
+                DiffData = JSON.Serialize(diffData),
                 // 传进来的对象（如果对象为空，则使用首个数据的表名作为业务对象）
                 BusinessData = u.BusinessData == null ? u.AfterData.FirstOrDefault()?.TableName : JSON.Serialize(u.BusinessData),
                 // 枚举（insert、update、delete）
                 DiffType = u.DiffType.ToString(),
-                Sql = UtilMethods.GetNativeSql(u.Sql, u.Parameters),
-                Parameters = JSON.Serialize(u.Parameters),
+                Sql = u.Sql,
+                Parameters = JSON.Serialize(u.Parameters.Select(e => new { e.ParameterName, e.Value, TypeName = e.DbType.ToString() })),
                 Elapsed = u.Time == null ? 0 : (long)u.Time.Value.TotalMilliseconds
             };
             var logDb = ITenant.IsAnyConnection(SqlSugarConst.LogConfigId) ? ITenant.GetConnectionScope(SqlSugarConst.LogConfigId) : ITenant.GetConnectionScope(SqlSugarConst.MainConfigId);
