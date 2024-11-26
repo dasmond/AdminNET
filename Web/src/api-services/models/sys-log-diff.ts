@@ -66,17 +66,11 @@ export interface SysLogDiff {
      */
     isDelete?: boolean;
     /**
-     * 操作前记录
+     * 差异数据
      * @type {string}
      * @memberof SysLogDiff
      */
-    beforeData?: string | null;
-    /**
-     * 操作后记录
-     * @type {string}
-     * @memberof SysLogDiff
-     */
-    afterData?: string | null;
+    diffData?: string | null;
     /**
      * Sql
      * @type {string}
