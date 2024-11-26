@@ -15,16 +15,10 @@ namespace Admin.NET.Core;
 public partial class SysLogDiff : EntityBase
 {
     /// <summary>
-    /// 操作前记录
+    /// 差异数据
     /// </summary>
-    [SugarColumn(ColumnDescription = "操作前记录", ColumnDataType = StaticConfig.CodeFirst_BigString)]
-    public string? BeforeData { get; set; }
-
-    /// <summary>
-    /// 操作后记录
-    /// </summary>
-    [SugarColumn(ColumnDescription = "操作后记录", ColumnDataType = StaticConfig.CodeFirst_BigString)]
-    public string? AfterData { get; set; }
+    [SugarColumn(ColumnDescription = "差异数据", ColumnDataType = StaticConfig.CodeFirst_BigString)]
+    public string? DiffData { get; set; }
 
     /// <summary>
     /// Sql
