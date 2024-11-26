@@ -2,28 +2,19 @@
 branches: {
   }
 fileChange:
-  /Web:
-    newFile: !uuid '4ea96304c8f5baa06e644b3c118c10060bd7b9f4'
-    oldFile: !uuid '8469f1a2a25a023c8f4d89bbd75048ea7be5e61b'
-  /Web/src:
-    newFile: !uuid '711f3bc5bb05f816d3f18dd47027d826122f9460'
-    oldFile: !uuid '327f2bfb06dc740293a4e57061e3867b78ee95a0'
-  /Web/src/views:
-    newFile: !uuid '819ad187202a24c0554fdb7ba068d0a8301074af'
-    oldFile: !uuid '2638497ae50f2d44334bbbc9774c498b032916a7'
-  /Web/src/views/system:
-    newFile: !uuid '21dc7cb27e3d806714f713c33b5efc614e727ff3'
-    oldFile: !uuid '09f96a16cb30b95629e476476a86bcd7a288bd1d'
-  /Web/src/views/system/tenant:
-    newFile: !uuid '9f7a25650f908a37c035fa820bc29163383a4d94'
-    oldFile: !uuid 'e0b664519167a018cc4093c25ecdcf319036b572'
-  /Web/src/views/system/tenant/component:
-    newFile: !uuid '38787403ad33058cf0d4becc8dc0b1e5ded69610'
-    oldFile: !uuid '498d4ad96c907c838be58b63a0bb6604e311d2d3'
-  /Web/src/views/system/tenant/component/editTenant.vue:
-    newFile: !uuid '657cc9dfe1d7c4a0de36e329badd584eb864c6ed'
-    oldFile: !uuid 'f56fbf1d5a84c8cf80caf6120410fcbdc0b9abea'
-gitCommitId: !uuid '017bd9e87edf32553178642b7e994f79691e7cd6'
+  /Admin.NET:
+    newFile: !uuid '497d8cc3786b2adb55829b0b86a947f02159797b'
+    oldFile: !uuid '88be54b0993bad73ab85da4f5fbec346ab67baff'
+  /Admin.NET/Admin.NET.Core:
+    newFile: !uuid '219ba58e848237efd17e2ceb8acca17a2bb81efc'
+    oldFile: !uuid 'dda54b924da77b5601e1b6fdc7b472bc113cb515'
+  /Admin.NET/Admin.NET.Core/Job:
+    newFile: !uuid '2a0165a0b7f8b78c3de400a4613c930ae79024a7'
+    oldFile: !uuid '4117d162785c7727a68abeab025786a023f9a8c8'
+  /Admin.NET/Admin.NET.Core/Job/EnumToDictJob.cs:
+    newFile: !uuid 'bd8191b7139cd941bd840ee42fdd09674017fd6e'
+    oldFile: !uuid '73c110a63dd6b339123481acbe21b9d7ea4fbe0c'
+gitCommitId: !uuid '1c2a3b6c103fb53987e59274e75754c424eb4b79'
 renames: {
   }
-revisionId: 2476
+revisionId: 2477
