@@ -292,12 +292,12 @@ public class SysConfigService : IDynamicApiController, ITransient
             var ext = string.IsNullOrWhiteSpace(input.SysLogoFileName) ? ".png" : Path.GetExtension(input.SysLogoFileName);
             // 本地图标保存路径
             var path = "upload";
-            var absoluteFilePath = Path.Combine(App.WebHostEnvironment.WebRootPath, path, $"logo{ext}");
+            var fileName = $"{app.ViceTitle}-logo{ext}".ToLower();
+            var absoluteFilePath = Path.Combine(App.WebHostEnvironment.WebRootPath, path, fileName);
 
             // 删除已存在文件
-            if (File.Exists(oldSysLogoAbsoluteFilePath))
-                File.Delete(oldSysLogoAbsoluteFilePath);
-
+            if (File.Exists(oldSysLogoAbsoluteFilePath)) File.Delete(oldSysLogoAbsoluteFilePath);
+    
             // 创建文件夹
             var absoluteFileDir = Path.GetDirectoryName(absoluteFilePath);
             if (!Directory.Exists(absoluteFileDir)) Directory.CreateDirectory(absoluteFileDir);
@@ -306,9 +306,9 @@ public class SysConfigService : IDynamicApiController, ITransient
             await File.WriteAllBytesAsync(absoluteFilePath, binData);
 
             // 保存图标配置
-            app.Logo = $"/{path}/logo-{app.ViceTitle}-{ext}";
+            app.Logo = $"/{path}/{fileName}";
         }
-        
+
         app.Title = input.SysTitle;
         app.ViceTitle = input.SysViceTitle;
         app.ViceDesc = input.SysViceDesc;

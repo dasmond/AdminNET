@@ -21,6 +21,7 @@ import { useKeepALiveNames } from '/@/stores/keepAliveNames';
 import { useThemeConfig } from '/@/stores/themeConfig';
 import { Session } from '/@/utils/storage';
 import mittBus from '/@/utils/mitt';
+import {random} from "lodash-es";
 
 // 引入组件
 const Iframes = defineAsyncComponent(() => import('/@/layout/routerView/iframes.vue'));
@@ -69,10 +70,11 @@ onBeforeMount(() => {
 		state.refreshRouterViewKey = '';
 		state.iframeRefreshKey = '';
 		nextTick(() => {
-			state.refreshRouterViewKey = fullPath;
-			state.iframeRefreshKey = fullPath;
-			state.keepAliveNameList = keepAliveNames.value;
-		});
+      fullPath = (fullPath.indexOf('?') > 0 ? '&' : '?') + '_$t=' + Math.random();
+      state.refreshRouterViewKey = fullPath;
+      state.iframeRefreshKey = fullPath;
+      state.keepAliveNameList = keepAliveNames.value;
+    })
 	});
 });
 // 页面加载时
