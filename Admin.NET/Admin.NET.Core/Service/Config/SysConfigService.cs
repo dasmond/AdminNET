@@ -308,8 +308,8 @@ public class SysConfigService : IDynamicApiController, ITransient
             // 保存图标配置
             app.Logo = $"/{path}/logo{ext}";
         }
-
-        app.Logo = input.SysTitle;
+        
+        app.Title = input.SysTitle;
         app.ViceTitle = input.SysViceTitle;
         app.ViceDesc = input.SysViceDesc;
         app.Watermark = input.SysWatermark;
