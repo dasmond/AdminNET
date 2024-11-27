@@ -3,21 +3,36 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '34064a5ad21fca03dfdbb1003970accd2df557df'
-    oldFile: !uuid '17a929612021a424e4f1c24523d3b19f3db9f494'
+    newFile: !uuid 'af51439b6ddc27f1daf53ed8bd96dc286eb02875'
+    oldFile: !uuid '34064a5ad21fca03dfdbb1003970accd2df557df'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid 'a6f4e3bcd167ce423269a20e67138658ceb4f76c'
-    oldFile: !uuid 'a531e175def589ba267a3f1e3d4e0239b7f768d5'
+    newFile: !uuid 'c17f01a07ae73e01ef75e2bb1a01859257bad110'
+    oldFile: !uuid 'a6f4e3bcd167ce423269a20e67138658ceb4f76c'
   /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid 'dd7d6a140d521d0667f8da22f7c666835346156f'
-    oldFile: !uuid '98564f4fb5aa4c583514a0ca13735737c4cde78d'
+    newFile: !uuid '7e052d849aed222569d61781c06b4f6784213bae'
+    oldFile: !uuid 'dd7d6a140d521d0667f8da22f7c666835346156f'
   /Admin.NET/Admin.NET.Core/Service/Config:
-    newFile: !uuid 'e1c4bb1b5cbf343e61d21aad045f5e72fa648f06'
-    oldFile: !uuid '25a69d94af402930fdbb59b2a4f06a2cb8e8962e'
+    newFile: !uuid '250cc42147f4a7cd1cc6f811863a5f316c71b14b'
+    oldFile: !uuid 'e1c4bb1b5cbf343e61d21aad045f5e72fa648f06'
   /Admin.NET/Admin.NET.Core/Service/Config/SysConfigService.cs:
-    newFile: !uuid '5eac91912b5524770512e9daafeddd2b335d32e8'
-    oldFile: !uuid 'd329aabddbdb1c7faa346ba8350c4c9aa4fb9069'
-gitCommitId: !uuid '67a09b3ad3c717801227785f0fb8659d5528d334'
+    newFile: !uuid '51a5d02574b9b0a4e13abab2165bfda452dc83d3'
+    oldFile: !uuid '5eac91912b5524770512e9daafeddd2b335d32e8'
+  /Web:
+    newFile: !uuid 'd2ea58471f8d40189731df70351d831b507195df'
+    oldFile: !uuid 'a1dd0570fa8951ba14debd0041d3d6c1a5038465'
+  /Web/src:
+    newFile: !uuid '194df4c070e59dff4993237b7d3b167330ca609f'
+    oldFile: !uuid '0b0169928c768e185c13772361632f58216b15f1'
+  /Web/src/layout:
+    newFile: !uuid '8e7ce021591c7569d57af41a2b95ba06fe744067'
+    oldFile: !uuid '79459461b5c253d65ab2253d1cbb5da561930570'
+  /Web/src/layout/routerView:
+    newFile: !uuid '772e8f37fcbb2719ed72a11948b432ecbb4e0e9a'
+    oldFile: !uuid '4ca64fbe0a8e0baaa06bec1c8960344187ddf3a1'
+  /Web/src/layout/routerView/parent.vue:
+    newFile: !uuid '2a679f9eaa23707b5d0f2d99dbaec4cfb858d8bb'
+    oldFile: !uuid '4124f7f8107ac9c7f897fad779a190c4b369f118'
+gitCommitId: !uuid '72f03ff1c27744103491e7fb48fa8c429b14fb40'
 renames: {
   }
-revisionId: 2539
+revisionId: 2540
