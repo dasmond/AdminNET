@@ -22,23 +22,39 @@
         <el-table-column type="expand">
           <template #default="scope">
             <el-card header="差异数据" style="width: 100%; margin: 5px">
-              <el-table :data="item.columns" v-for="item in scope.row.diffData" :key="item.tableName" style="width: 100%">
-                <el-table-column :label="item.tableName + '-' + item.tableDescription" align="center">
-                  <el-table-column prop="columnName" label="字段描述" width="300" :formatter="(row: any) => `${row.columnName} - ${row.columnDescription}`" />
-                  <el-table-column prop="beforeValue" label="修改前" />
-                  <el-table-column prop="afterValue" label="修改后" />
+              <el-table :data="item.columns" v-for="item in scope.row.diffData" :key="item.tableName" :span-method="(data: any) => diffTableSpanMethod(data, item)" border style="width: 100%">
+                <el-table-column label="表名" width="200">
+                  <template #default>
+                    {{item.tableName}}
+                    <br/>
+                    {{item.tableDescription}}
+                  </template>
+                </el-table-column>
+                <el-table-column prop="columnName" label="字段描述" width="300" :formatter="(row: any) => `${row.columnName} - ${row.columnDescription}`" />
+                <el-table-column prop="beforeValue" label="修改前" show-overflow-tooltip>
+                  <template #default="columnScope">
+                    <pre>{{columnScope.row.beforeValue}}</pre>
+                  </template>
+                </el-table-column>
+                <el-table-column prop="afterValue" label="修改后" show-overflow-tooltip>
+                  <template #default="columnScope">
+                    <pre>{{columnScope.row.afterValue}}</pre>
+                  </template>
                 </el-table-column>
               </el-table>
-            </el-card>
-            <el-card header="SQL" style="width: 100%; margin: 5px" class="overflow-text">{{scope.row.sql}}</el-card>
-            <el-card header="SQL参数" style="width: 100%; margin: 5px">
-              <el-table :data="scope.row.parameters" style="width: 100%"  border>
+              <el-table :data="[ { sql: scope.row.sql } ]" border style="width: 100%">
+                <el-table-column prop="sql" label="SQL语句">
+                  <template #default>
+                    <pre class="sql" v-html="formatSql(scope.row.sql)"></pre>
+                  </template>
+                </el-table-column>
+              </el-table>
+              <el-table :data="scope.row.parameters" border style="width: 100%">
                 <el-table-column prop="parameterName" label="参数名" width="200" />
                 <el-table-column prop="typeName" label="类型" width="100" />
                 <el-table-column prop="value" label="值" />
               </el-table>
             </el-card>
-
           </template>
         </el-table-column>
 				<el-table-column type="index" label="序号" width="55" align="center" />
@@ -124,6 +140,50 @@ const handleCurrentChange = (val: number) => {
 	handleQuery();
 };
 
+// 合并差异表格表名列
+const diffTableSpanMethod = ({columnIndex, rowIndex}: any, itme: any) => {
+  if (columnIndex === 0) {
+    if (rowIndex === 0) {
+      return {
+        rowspan: itme.columns.length,
+        colspan: 1
+      }
+    } else {
+      return {
+        rowspan: 0,
+        colspan: 0
+      }
+    }
+  }
+}
+
+const formatSql = (sql: string) => {
+  // 移除多余的空格
+  let formatted = sql.replace(/\s+/g, ' ').trim();
+
+  // 替换反引号包裹的字段
+  formatted = formatted.replace(/`([^`]+)`/g, '<span class="sql-backtick">`$1`</span>');
+
+  // 替换@参数
+  formatted = formatted.replace(/(@\w+)/g, '<span class="sql-param">$1</span>');
+
+  // 替换SQL关键字
+  formatted = formatted.replace(/\b(INSERT|DELETE|UPDATE|SELECT|FROM|SET|JOIN|ON|AND|OR|IN|NOT|IS|NULL|WHERE|TRUE|FALSE|LIKE|ORDER BY|GROUP BY|HAVING|LIMIT|AS|WITH|CASE|WHEN|THEN|ELSE|END)\b/g, '<span class="sql-keyword">$1</span>');
+
+  // 智能换行
+  // 在SET和VALUES后面添加换行
+  formatted = formatted.replace(/(SET|VALUES)(?=\s)/g, '$1\n    ');
+  // 在逗号后面添加换行，除非是最后一个逗号
+  formatted = formatted.replace(/,(?![^]*?,\s*$)(?=[^\s])/g, ',\n    ');
+  // 在WHERE前添加换行，如果WHERE前面不是逗号
+  formatted = formatted.replace(/([\s\S]+)(WHERE)/g, '$1\n$2');
+
+  // 移除由于换行添加的多余空格
+  formatted = formatted.replace(/\n\s*\n/g, '\n');
+
+  return formatted;
+};
+
 const shortcuts = [
 	{
 		text: '今天',
@@ -152,11 +212,10 @@ const shortcuts = [
 .el-popper {
 	max-width: 60%;
 }
-:deep(.el-table__expanded-cell) {
-  margin-left: 10px !important;
-}
-.overflow-text {
-  max-width: 100%; /* 或者你希望的最大宽度 */
-  word-wrap: break-word;
+:deep(pre.sql) {
+  white-space: pre-wrap;
+  .sql-param { color: green; }
+  .sql-keyword { color: blue; }
+  .sql-backtick { color: blueviolet; }
 }
 </style>
