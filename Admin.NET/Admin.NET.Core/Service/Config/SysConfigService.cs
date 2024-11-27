@@ -281,7 +281,7 @@ public class SysConfigService : IDynamicApiController, ITransient
         if (!string.IsNullOrEmpty(input.SysLogoBase64))
         {
             // 旧图标文件相对路径
-            var oldSysLogoRelativeFilePath = await GetConfigValue<string>(ConfigConst.SysWebLogo) ?? "";
+            var oldSysLogoRelativeFilePath = app.Logo ?? "";
             var oldSysLogoAbsoluteFilePath = Path.Combine(App.WebHostEnvironment.WebRootPath, oldSysLogoRelativeFilePath.TrimStart('/'));
 
             var groups = Regex.Match(input.SysLogoBase64, @"data:image/(?<type>.+?);base64,(?<data>.+)").Groups;
@@ -306,10 +306,10 @@ public class SysConfigService : IDynamicApiController, ITransient
             await File.WriteAllBytesAsync(absoluteFilePath, binData);
 
             // 保存图标配置
-            app.Logo = $"/{path}/logo{ext}";
+            app.Logo = $"/{path}/logo-{app.ViceTitle}-{ext}";
         }
-
-        app.Logo = input.SysTitle;
+        
+        app.Title = input.SysTitle;
         app.ViceTitle = input.SysViceTitle;
         app.ViceDesc = input.SysViceDesc;
         app.Watermark = input.SysWatermark;
