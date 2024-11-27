@@ -33,12 +33,12 @@
                 <el-table-column prop="columnName" label="字段描述" width="300" :formatter="(row: any) => `${row.columnName} - ${row.columnDescription}`" />
                 <el-table-column prop="beforeValue" label="修改前" show-overflow-tooltip>
                   <template #default="columnScope">
-                    <pre>{{columnScope.row.beforeValue}}</pre>
+                    <pre v-html="markDiff(columnScope.row.beforeValue, columnScope.row.afterValue, true)" />
                   </template>
                 </el-table-column>
                 <el-table-column prop="afterValue" label="修改后" show-overflow-tooltip>
                   <template #default="columnScope">
-                    <pre>{{columnScope.row.afterValue}}</pre>
+                    <pre v-html="markDiff(columnScope.row.beforeValue, columnScope.row.afterValue, false)" />
                   </template>
                 </el-table-column>
               </el-table>
@@ -184,6 +184,59 @@ const formatSql = (sql: string) => {
   return formatted;
 };
 
+function lcs(s1: string, s2: string): number[][] {
+  const m = s1.length;
+  const n = s2.length;
+  const dp = Array.from({ length: m + 1 }, () => Array(n + 1).fill(0));
+
+  for (let i = 1; i <= m; i++) {
+    for (let j = 1; j <= n; j++) {
+      if (s1[i - 1] === s2[j - 1]) {
+        dp[i][j] = dp[i - 1][j - 1] + 1;
+      } else {
+        dp[i][j] = Math.max(dp[i - 1][j], dp[i][j - 1]);
+      }
+    }
+  }
+  return dp;
+}
+
+function markDiff(oldData: any, newData: any, returnOld: boolean): string {
+  if (typeof oldData !== 'string' || typeof newData !== 'string') {
+    return `<span class="diff-${returnOld ? 'delete' : 'add'}">${returnOld ? oldData : newData}</span>`;
+  }
+
+  const dp = lcs(oldData, newData);
+  const m = oldData.length;
+  const n = newData.length;
+  let oldIndex = m, newIndex = n;
+  const diffResult: { type: string, content: string }[] = [];
+
+  while (oldIndex > 0 || newIndex > 0) {
+    if (oldIndex > 0 && newIndex > 0 && oldData[oldIndex - 1] === newData[newIndex - 1]) {
+      diffResult.push({ type: 'unchanged', content: oldData[oldIndex - 1] });
+      oldIndex--;
+      newIndex--;
+    } else if (newIndex > 0 && (oldIndex === 0 || dp[oldIndex][newIndex - 1] >= dp[oldIndex - 1][newIndex])) {
+      diffResult.push({ type: 'add', content: newData[newIndex - 1] });
+      newIndex--;
+    } else {
+      diffResult.push({ type: 'delete', content: oldData[oldIndex - 1] });
+      oldIndex--;
+    }
+  }
+
+  const result = diffResult.reverse().map(chunk => {
+    switch (chunk.type) {
+      case 'add': return `<span class="diff-add">${chunk.content}</span>`;
+      case 'delete': return `<span class="diff-delete">${chunk.content}</span>`;
+      default: return chunk.content;
+    }
+  }).join('');
+
+  return result.replace(returnOld ? /<span class="diff-add">(.*?)<\/span>/g : /<span class="diff-delete">(.*?)<\/span>/g, '');
+}
+
 const shortcuts = [
 	{
 		text: '今天',
@@ -217,5 +270,12 @@ const shortcuts = [
   .sql-param { color: green; }
   .sql-keyword { color: blue; }
   .sql-backtick { color: blueviolet; }
+  span.diff-unchanged { color: inherit; }
+  span.diff-delete { color: red; }
+  span.diff-add { color: green; }
+}
+:deep(pre) {
+  span.diff-delete { color: red; }
+  span.diff-add { color: green; }
 }
 </style>
