@@ -243,7 +243,7 @@ public class SysFileService : IDynamicApiController, ITransient
         var isExist = await _sysFileRep.IsAnyAsync(u => u.Id == input.Id);
         if (!isExist) throw Oops.Oh(ErrorCodeEnum.D8000);
 
-        await _sysFileRep.UpdateAsync(u => input.Adapt<SysFile>(), u => u.Id == input.Id);
+        await _sysFileRep.UpdateAsync(input);
     }
 
     /// <summary>
