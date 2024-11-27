@@ -115,7 +115,7 @@ export const useBaseApi = (module: string) => {
                 method: 'POST',
                 data: formData,
                 headers: {
-                    ContentType: 'multipart/form-data;charset=UTF-8',
+                    'Content-Type': 'multipart/form-data;charset=UTF-8',
                     ignoreCancelToken: true,
                 },
             }, cancel);
