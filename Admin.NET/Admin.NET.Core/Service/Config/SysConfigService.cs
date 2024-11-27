@@ -277,6 +277,7 @@ public class SysConfigService : IDynamicApiController, ITransient
     public async Task SaveSysInfo(InfoSaveInput input)
     {
         // logo 不为空才保存
+        var app = await App.GetRequiredService<SysAppService>().GetCurrentAppInfo();
         if (!string.IsNullOrEmpty(input.SysLogoBase64))
         {
             // 旧图标文件相对路径
@@ -305,16 +306,18 @@ public class SysConfigService : IDynamicApiController, ITransient
             await File.WriteAllBytesAsync(absoluteFilePath, binData);
 
             // 保存图标配置
-            var relativeUrl = $"/{path}/logo{ext}";
-            await UpdateConfigValue(ConfigConst.SysWebLogo, relativeUrl);
+            app.Logo = $"/{path}/logo{ext}";
         }
 
-        await UpdateConfigValue(ConfigConst.SysWebTitle, input.SysTitle);
-        await UpdateConfigValue(ConfigConst.SysWebViceTitle, input.SysViceTitle);
-        await UpdateConfigValue(ConfigConst.SysWebViceDesc, input.SysViceDesc);
-        await UpdateConfigValue(ConfigConst.SysWebWatermark, input.SysWatermark);
-        await UpdateConfigValue(ConfigConst.SysWebCopyright, input.SysCopyright);
-        await UpdateConfigValue(ConfigConst.SysWebIcp, input.SysIcp);
+        app.Logo = input.SysTitle;
+        app.ViceTitle = input.SysViceTitle;
+        app.ViceDesc = input.SysViceDesc;
+        app.Watermark = input.SysWatermark;
+        app.Copyright = input.SysCopyright;
+        app.Icp = input.SysIcp;
+
+        await _sysConfigRep.Context.Updateable(app).ExecuteCommandAsync();
+        
         await UpdateConfigValue(ConfigConst.SysWebIcpUrl, input.SysIcpUrl);
         await UpdateConfigValue(ConfigConst.SysSecondVer, (input.SysSecondVer ?? false).ToString());
         await UpdateConfigValue(ConfigConst.SysCaptcha, (input.SysCaptcha ?? true).ToString());
