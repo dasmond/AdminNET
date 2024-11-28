@@ -67,10 +67,12 @@ onBeforeMount(() => {
 	state.keepAliveNameList = keepAliveNames.value;
 	mittBus.on('onTagsViewRefreshRouterView', (fullPath: string) => {
 		state.keepAliveNameList = keepAliveNames.value.filter((name: string) => route.name !== name);
+    const cachedViewsTemp = cachedViews.value;
+    cachedViews.value = [];
 		state.refreshRouterViewKey = '';
 		state.iframeRefreshKey = '';
 		nextTick(() => {
-      fullPath = (fullPath.indexOf('?') > 0 ? '&' : '?') + '_$t=' + Math.random();
+      cachedViews.value = cachedViewsTemp;
       state.refreshRouterViewKey = fullPath;
       state.iframeRefreshKey = fullPath;
       state.keepAliveNameList = keepAliveNames.value;
