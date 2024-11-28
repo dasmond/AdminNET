@@ -67,16 +67,15 @@ onBeforeMount(() => {
 	state.keepAliveNameList = keepAliveNames.value;
 	mittBus.on('onTagsViewRefreshRouterView', (fullPath: string) => {
 		state.keepAliveNameList = keepAliveNames.value.filter((name: string) => route.name !== name);
-    const cachedViewsTemp = cachedViews.value;
-    cachedViews.value = [];
 		state.refreshRouterViewKey = '';
 		state.iframeRefreshKey = '';
-		nextTick(() => {
-      cachedViews.value = cachedViewsTemp;
-      state.refreshRouterViewKey = fullPath;
+    cachedViews.value = [];
+		setTimeout(() => {
       state.iframeRefreshKey = fullPath;
+      state.refreshRouterViewKey = fullPath;
+      cachedViews.value = [<string>route.name];
       state.keepAliveNameList = keepAliveNames.value;
-    })
+    }, 10);
 	});
 });
 // 页面加载时
