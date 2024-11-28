@@ -150,8 +150,9 @@ defineExpose({ openDialog });
 						} else if (column.EffectType == "DatePicker") {
 							@:<el-date-picker v-model="state.ruleForm.@(column.LowerPropertyName)" type="date" placeholder="@(column.ColumnComment)" />
 						} else {
-							var inputType = column.EffectType == "InputTextArea" ? "type=\"textarea\"" : "";
-							@:<el-input v-model="state.ruleForm.@(column.LowerPropertyName)" placeholder="请输入@(column.ColumnComment)" maxlength="@(column.ColumnLength)" @(inputType) show-word-limit clearable />
+							var inputType = column.EffectType == "InputTextArea" ? "type=\"textarea\" " : "";
+					        var maxlength = column.ColumnLength > 0 ? $"maxlength=\"{column.ColumnLength}\" " : "";
+							@:<el-input v-model="state.ruleForm.@(column.LowerPropertyName)" placeholder="请输入@(column.ColumnComment)" @(maxlength)@(inputType)show-word-limit clearable />
 						}
 						@:</el-form-item>
 					@:</el-col>
