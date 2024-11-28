@@ -2,9 +2,12 @@ import { defineStore } from 'pinia';
 import { Local, Session } from '/@/utils/storage';
 import Watermark from '/@/utils/watermark';
 import { useThemeConfig } from '/@/stores/themeConfig';
+import {i18n} from "/@/i18n";
 
 import { getAPI } from '/@/utils/axios-utils';
 import { SysAuthApi, SysConstApi, SysDictTypeApi } from '/@/api-services/api';
+
+const { t } = i18n.global;
 
 /**
  * 用户信息
@@ -39,7 +42,13 @@ export const useUserInfo = defineStore('userInfo', {
 		// 存储字典信息到浏览器缓存
 		async setDictList() {
 			this.dictList = await getAPI(SysDictTypeApi).apiSysDictTypeAllDictListGet().then(res => res.data.result ?? {});
-			for (const key in this.dictList) if (key.endsWith("Enum")) this.dictList[key].forEach((e: any) => e.code = Number(e.code));
+			for (const key in this.dictList) {
+				// 处理字典国际化
+				this.dictList[key].forEach((e: any) => setDictLangMessage(e));
+				if (key.endsWith("Enum")) {
+					this.dictList[key].forEach((e: any) => e.code = Number(e.code));
+				}
+			}
 		},
 
 		// 获取当前用户信息
@@ -114,3 +123,10 @@ export const useUserInfo = defineStore('userInfo', {
 		}
 	},
 });
+
+// 处理字典国际化, 默认显示字典中的value值
+const setDictLangMessage = (dict: any) => {
+	dict.langMessage = `message.system.dictType.${dict.typeCode}.${dict.code}`;
+	const value = t(dict.langMessage);
+	dict.value = value !== dict.langMessage ? value : dict.value;
+}
