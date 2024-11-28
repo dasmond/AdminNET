@@ -2,19 +2,19 @@
 branches: {
   }
 fileChange:
-  /Admin.NET:
-    newFile: !uuid 'c0fba2d683e20f94d2356c02c77349ab5c8834ed'
-    oldFile: !uuid 'e8ad680fe509d255cb3f82483042473be567498c'
-  /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '5eefe1afe112588104d44436815089d756f9484d'
-    oldFile: !uuid '851c653cb3cd78578f97ac3c34bb838003fbf015'
-  /Admin.NET/Admin.NET.Core/Logging:
-    newFile: !uuid 'cd74013e361319420ff57a2438641a29189eb98f'
-    oldFile: !uuid 'bff96912b12749c50b68af4546345d27706d89bc'
-  /Admin.NET/Admin.NET.Core/Logging/LoggingSetup.cs:
-    newFile: !uuid '34317eb3c5a4f9f9454a1771ebfe1adb8a20ed0b'
-    oldFile: !uuid '99e372f7afdbef3bd63155b7b1e725a46272e0db'
-gitCommitId: !uuid '01d905f5b8a179e72b6f403fd36175eaf4d95cf0'
+  /Web:
+    newFile: !uuid 'b25baf447e412523e63566afa8c6b930879104f8'
+    oldFile: !uuid 'd2ea58471f8d40189731df70351d831b507195df'
+  /Web/src:
+    newFile: !uuid '55f79c28bf6331c31f9be80d7a2d924605f1992f'
+    oldFile: !uuid '194df4c070e59dff4993237b7d3b167330ca609f'
+  /Web/src/stores:
+    newFile: !uuid '55b08db85aaedfbd8c679a66f648d20a8216fa15'
+    oldFile: !uuid '9c9dcd8fc93c67f2ff665f9d81c244bb082e5ed9'
+  /Web/src/stores/userInfo.ts:
+    newFile: !uuid '405b0a1e4ad75dd18c74b7c44c86b7d3f7db8a5b'
+    oldFile: !uuid 'eb1d30036fbb2b29d2fbe1c4b8bd8629b65df6e4'
+gitCommitId: !uuid 'faad4b771e84b047ee8914ae54720b14715e61f2'
 renames: {
   }
-revisionId: 2487
+revisionId: 2488
