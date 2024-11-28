@@ -340,7 +340,7 @@ public class @(Model.ClassName)Service : IDynamicApiController, ITransient
                         } else if(column.NetType.EndsWith('?') == true){
                         @:.SplitError(it => it.Item.@(column.PropertyName) == null, "@(column.ColumnComment)不能为空")
                         }}
-                        if (column.NetType?.TrimEnd('?') == "string"){
+                        if (column.NetType?.TrimEnd('?') == "string" && column.ColumnLength > 0){
                         @:.SplitError(it => it.Item.@(column.PropertyName)?.Length > @(column.ColumnLength), "@(column.ColumnComment)长度不能超过@(column.ColumnLength)个字符")
                         }}
                         foreach (var config in Model.TableUniqueConfigList) {

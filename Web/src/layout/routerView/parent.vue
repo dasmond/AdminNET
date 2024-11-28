@@ -69,12 +69,13 @@ onBeforeMount(() => {
 		state.keepAliveNameList = keepAliveNames.value.filter((name: string) => route.name !== name);
 		state.refreshRouterViewKey = '';
 		state.iframeRefreshKey = '';
-		nextTick(() => {
-      fullPath = (fullPath.indexOf('?') > 0 ? '&' : '?') + '_$t=' + Math.random();
-      state.refreshRouterViewKey = fullPath;
+    cachedViews.value = [];
+		setTimeout(() => {
       state.iframeRefreshKey = fullPath;
+      state.refreshRouterViewKey = fullPath;
+      cachedViews.value = [<string>route.name];
       state.keepAliveNameList = keepAliveNames.value;
-    })
+    }, 10);
 	});
 });
 // 页面加载时
