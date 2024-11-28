@@ -44,7 +44,7 @@ export const useUserInfo = defineStore('userInfo', {
 			this.dictList = await getAPI(SysDictTypeApi).apiSysDictTypeAllDictListGet().then(res => res.data.result ?? {});
 			for (const key in this.dictList) {
 				// 处理字典国际化
-				this.dictList[key].forEach((e: any) => setDictLangMessage(key, e));
+				this.dictList[key].forEach((e: any) => setDictLangMessage(e));
 				if (key.endsWith("Enum")) {
 					this.dictList[key].forEach((e: any) => e.code = Number(e.code));
 				}
@@ -125,8 +125,8 @@ export const useUserInfo = defineStore('userInfo', {
 });
 
 // 处理字典国际化, 默认显示字典中的value值
-const setDictLangMessage = (dictType: string, dict: any) => {
-	dict.langMessage = `message.system.dictType.${dictType}.${dict.code}`;
+const setDictLangMessage = (dict: any) => {
+	dict.langMessage = `message.system.dictType.${dict.typeCode}.${dict.code}`;
 	const value = t(dict.langMessage);
 	dict.value = value !== dict.langMessage ? value : dict.value;
 }
