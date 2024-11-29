@@ -9,7 +9,7 @@ const abortControllerMap: Map<string, AbortController> = new Map();
 export const service = axios.create({
 	baseURL: window.__env__.VITE_API_URL as any,
 	timeout: 50000,
-	headers: { 'Content-Type': 'application/json' },
+	//headers: { 'Content-Type': 'application/json' }, 这个会导致生成代码的上传文件 file为空
 });
 
 // token 键定义
