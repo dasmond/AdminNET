@@ -38,7 +38,7 @@ import { ElMessageBox } from 'element-plus';
 
 import LogicFlow from '@logicflow/core';
 import { BpmnElement, InsertNodeInPolyline, Menu, MiniMap, SelectionSelect, Snapshot } from '@logicflow/extension';
-import '@logicflow/core/dist/style/index.css';
+import '@logicflow/core/dist/index.css';
 import '@logicflow/extension/lib/style/index.css';
 
 import RegisterEdge from './LogicFlow/Register/RegisterEdge';
