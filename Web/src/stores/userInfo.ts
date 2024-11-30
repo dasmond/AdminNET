@@ -126,7 +126,7 @@ export const useUserInfo = defineStore('userInfo', {
 
 // 处理字典国际化, 默认显示字典中的value值
 const setDictLangMessage = (dict: any) => {
-	dict.langMessage = `message.system.dictType.${dict.typeCode}.${dict.code}`;
+	dict.langMessage = `message.dictType.${dict.typeCode}_${dict.code}`;
 	const value = t(dict.langMessage);
 	dict.value = value !== dict.langMessage ? value : dict.value;
 }
