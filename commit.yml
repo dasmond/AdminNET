@@ -2,19 +2,37 @@
 branches: {
   }
 fileChange:
+  /Admin.NET:
+    newFile: !uuid 'adb4308397aac6504ea58c944ba25cdbeeff4566'
+    oldFile: !uuid 'e6717ffa78443905348ac8d89ee576ab0f948671'
+  /Admin.NET/Admin.NET.Core:
+    newFile: !uuid '5423239cafb9ef4daaf51011bd4e0da819d935ce'
+    oldFile: !uuid '5eefe1afe112588104d44436815089d756f9484d'
+  /Admin.NET/Admin.NET.Core/Service:
+    newFile: !uuid 'a700bfa36abacd253c8aa67af6498a55acc74264'
+    oldFile: !uuid 'aa51d7b657086caa946437b0b029558f601bb8fa'
+  /Admin.NET/Admin.NET.Core/Service/Config:
+    newFile: !uuid '753cde5c788f18157309534a21187cfc3ee56489'
+    oldFile: !uuid '250cc42147f4a7cd1cc6f811863a5f316c71b14b'
+  /Admin.NET/Admin.NET.Core/Service/Config/Dto:
+    newFile: !uuid '3317ff83712a7440afaa017e3d757f215164b806'
+    oldFile: !uuid 'f071c9e954269b0bbab263667a21af8cb9d870a1'
+  /Admin.NET/Admin.NET.Core/Service/Config/Dto/InfoInput.cs:
+    newFile: !uuid '3d52e5020191fbff7bb977505efc1172d35ff841'
+    oldFile: !uuid '02834fd7a6414f3ce5265d7533ce52b6c591c041'
   /Web:
-    newFile: !uuid '3684290558a7a5cf0e9f37bde28f4c9c8f64b57f'
-    oldFile: !uuid 'ff913189893207b72911555437cb8537d504a2c3'
+    newFile: !uuid 'f963eb8a5e119bf879ea1092f4795207a8b1886c'
+    oldFile: !uuid '3684290558a7a5cf0e9f37bde28f4c9c8f64b57f'
   /Web/src:
-    newFile: !uuid '0e99da26517e2e5a3b6518455d9eebe22d249802'
-    oldFile: !uuid '75d67b40766302cec37a447c3f45eb48f2d9b50e'
-  /Web/src/utils:
-    newFile: !uuid '7e8271ca9525dd7c443ed05ebd074a87bb915a5e'
-    oldFile: !uuid '779dde8efc771ae96a5603c264a0e5cb51432aa5'
-  /Web/src/utils/request.ts:
-    newFile: !uuid '6146f4cfdbe3e78b3d914511794891f96b7cb5f3'
-    oldFile: !uuid 'ae836a6b087aae1314cb6a5e950ee399d3c44a5c'
-gitCommitId: !uuid '298b4adc91497d685ecbf4c9309f5d3e0c1cfa40'
+    newFile: !uuid 'b3ba652116d003e9b94dddbc0df3290770e96132'
+    oldFile: !uuid '0e99da26517e2e5a3b6518455d9eebe22d249802'
+  /Web/src/stores:
+    newFile: !uuid '0f4f9ff4ad95aec9133676f89fd7bd005c6d074a'
+    oldFile: !uuid '55b08db85aaedfbd8c679a66f648d20a8216fa15'
+  /Web/src/stores/userInfo.ts:
+    newFile: !uuid 'd4a5b023a7fb574191f49a2d65b5155e2fe1bae2'
+    oldFile: !uuid '405b0a1e4ad75dd18c74b7c44c86b7d3f7db8a5b'
+gitCommitId: !uuid '053c8193384a656e528294b1b998e3d5658cc5dd'
 renames: {
   }
-revisionId: 2547
+revisionId: 2548
