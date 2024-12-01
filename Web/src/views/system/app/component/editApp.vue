@@ -93,13 +93,12 @@
 </template>
 
 <script lang="ts" setup name="sysEditApp">
-import { onMounted, reactive, ref } from 'vue';
+import { reactive, ref } from 'vue';
 import type { ElTree } from 'element-plus';
-
+import { auth } from "/@/utils/authFunction";
 import { getAPI } from '/@/utils/axios-utils';
-import { SysMenuApi, SysAppApi } from '/@/api-services/api';
 import { SysMenu } from '/@/api-services/models';
-import {auth} from "/@/utils/authFunction";
+import { SysMenuApi, SysAppApi } from '/@/api-services/api';
 
 const props = defineProps({
 	title: String,
@@ -114,23 +113,15 @@ const state = reactive({
 	menuData: [] as Array<SysMenu>, // 菜单数据
 });
 
-onMounted(async () => {
-	state.loading = true;
-  if (auth('sysApp:grantMenu')) {
-    const res = await getAPI(SysMenuApi).apiSysMenuListGet(undefined, undefined, true);
-    state.menuData = res.data.result ?? [];
-  }
-	state.loading = false;
-});
-
 // 打开弹窗
 const openDialog = async (row: any) => {
 	ruleFormRef.value?.resetFields();
 	treeRef.value?.setCheckedKeys([]); // 清空选中值
 	state.ruleForm = JSON.parse(JSON.stringify(row));
 	if (row.id && auth('sysApp:grantMenu')) {
-    const res = await getAPI(SysAppApi).apiSysAppGrantMenuGet(row.id);
-    setTimeout(() => treeRef.value?.setCheckedKeys(res.data.result ?? []), 100);
+    state.menuData = await getAPI(SysMenuApi).apiSysMenuListGet(undefined, undefined, true).then(res => res.data.result ?? []);
+    const menuIds = await getAPI(SysAppApi).apiSysAppGrantMenuGet(row.id).then(res => res.data.result ?? []);
+    setTimeout(() => treeRef.value?.setCheckedKeys(menuIds), 100);
 	}
 	state.isShowDialog = true;
 };
