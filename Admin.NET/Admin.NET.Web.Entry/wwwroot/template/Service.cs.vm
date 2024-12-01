@@ -286,7 +286,7 @@ public class @(Model.ClassName)Service : IDynamicApiController, ITransient
         @:{
             var dictTableField = Model.TableField.Where(x => x.WhetherImport == "Y" && x.EffectType == "DictSelector") ?? default;
             foreach (var column in dictTableField){
-            @:var @(column.LowerPropertyName)DictMap = _sysDictTypeService.GetDataList(new GetDataDictTypeInput { Code = "@(column.DictTypeCode)" }).Result.ToDictionary(x => x.Value, x => x.Code);
+            @:var @(column.LowerPropertyName)DictMap = _sysDictTypeService.GetDataList(new GetDataDictTypeInput { Code = "@(column.DictTypeCode)" }).Result.ToDictionary(x => x.Label, x => x.Value);
             }
 
             @:var stream = ExcelHelper.ImportData<Import@(Model.ClassName)Input, @(Model.ClassName)>(file, (list, markerErrorAction) =>

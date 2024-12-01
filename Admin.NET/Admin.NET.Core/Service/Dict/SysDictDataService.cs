@@ -32,9 +32,9 @@ public class SysDictDataService : IDynamicApiController, ITransient
     {
         return await _sysDictDataRep.AsQueryable()
             .Where(u => u.DictTypeId == input.DictTypeId)
-            .WhereIF(!string.IsNullOrEmpty(input.Code?.Trim()), u => u.Code.Contains(input.Code))
-            .WhereIF(!string.IsNullOrEmpty(input.Value?.Trim()), u => u.Value.Contains(input.Value))
-            .OrderBy(u => new { u.OrderNo, u.Code })
+            .WhereIF(!string.IsNullOrEmpty(input.Code?.Trim()), u => u.Value.Contains(input.Code))
+            .WhereIF(!string.IsNullOrEmpty(input.Value?.Trim()), u => u.Label.Contains(input.Value))
+            .OrderBy(u => new { u.OrderNo, Code = u.Value })
             .ToPagedListAsync(input.Page, input.PageSize);
     }
 
@@ -57,7 +57,7 @@ public class SysDictDataService : IDynamicApiController, ITransient
     [DisplayName("增加字典值")]
     public async Task AddDictData(AddDictDataInput input)
     {
-        var isExist = await _sysDictDataRep.IsAnyAsync(u => u.Code == input.Code && u.DictTypeId == input.DictTypeId);
+        var isExist = await _sysDictDataRep.IsAnyAsync(u => u.Value == input.Value && u.DictTypeId == input.DictTypeId);
         if (isExist) throw Oops.Oh(ErrorCodeEnum.D3003);
 
         var dictTypeCode = await _sysDictDataRep.AsQueryable().Where(u => u.DictTypeId == input.DictTypeId).Select(u => u.DictType.Code).FirstAsync();
@@ -79,7 +79,7 @@ public class SysDictDataService : IDynamicApiController, ITransient
         var isExist = await _sysDictDataRep.IsAnyAsync(u => u.Id == input.Id);
         if (!isExist) throw Oops.Oh(ErrorCodeEnum.D3004);
 
-        isExist = await _sysDictDataRep.IsAnyAsync(u => u.Code == input.Code && u.DictTypeId == input.DictTypeId && u.Id != input.Id);
+        isExist = await _sysDictDataRep.IsAnyAsync(u => u.Value == input.Value && u.DictTypeId == input.DictTypeId && u.Id != input.Id);
         if (isExist) throw Oops.Oh(ErrorCodeEnum.D3003);
 
         var dictTypeCode = await _sysDictDataRep.AsQueryable().Where(u => u.DictTypeId == input.DictTypeId).Select(u => u.DictType.Code).FirstAsync();
@@ -149,7 +149,7 @@ public class SysDictDataService : IDynamicApiController, ITransient
         if (dictDataList == null)
         {
             dictDataList = await _sysDictDataRep.AsQueryable()
-                .Where(u => u.DictTypeId == dictTypeId).OrderBy(u => new { u.OrderNo, u.Code }).ToListAsync();
+                .Where(u => u.DictTypeId == dictTypeId).OrderBy(u => new { u.OrderNo, Code = u.Value }).ToListAsync();
             _sysCacheService.Set($"{CacheConst.KeyDict}{dictType.Code}", dictDataList);
         }
         return dictDataList;
@@ -169,7 +169,7 @@ public class SysDictDataService : IDynamicApiController, ITransient
             dictDataList = await _sysDictDataRep.Context.Queryable<SysDictType>()
                 .LeftJoin<SysDictData>((u, a) => u.Id == a.DictTypeId)
                 .Where((u, a) => u.Code == code && u.Status == StatusEnum.Enable && a.Status == StatusEnum.Enable)
-                .OrderBy((u, a) => new { a.OrderNo, a.Code })
+                .OrderBy((u, a) => new { a.OrderNo, Code = a.Value })
                 .Select((u, a) => a).ToListAsync();
             _sysCacheService.Set($"{CacheConst.KeyDict}{code}", dictDataList);
         }
@@ -188,7 +188,7 @@ public class SysDictDataService : IDynamicApiController, ITransient
             .LeftJoin<SysDictData>((u, a) => u.Id == a.DictTypeId)
             .Where((u, a) => u.Code == input.Code)
             .WhereIF(input.Status.HasValue, (u, a) => a.Status == (StatusEnum)input.Status.Value)
-            .OrderBy((u, a) => new { a.OrderNo, a.Code })
+            .OrderBy((u, a) => new { a.OrderNo, Code = a.Value })
             .Select((u, a) => a).ToListAsync();
     }
 

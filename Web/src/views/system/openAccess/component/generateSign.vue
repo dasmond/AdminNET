@@ -24,7 +24,7 @@
 							<el-input v-model="state.ruleForm.url" placeholder="接口请求地址" class="input-with-select" clearable>
 								<template #prepend>
 									<el-select v-model="state.ruleForm.method" placeholder="请求方法" style="width: 100px">
-                    <el-option :label="item.value" :value="item.code" v-for="(item, index) in getDictDataByCode('HttpMethodEnum')" :key="index" />
+                    <el-option :label="item.label" :value="item.value" v-for="(item, index) in getDictDataByCode('HttpMethodEnum')" :key="index" />
 									</el-select>
 								</template>
 							</el-input>

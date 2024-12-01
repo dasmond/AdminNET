@@ -375,8 +375,8 @@ public static class CommonUtil
                     .Where((u, a) => u.Status == StatusEnum.Enable && a.Status == StatusEnum.Enable)
                     .Select((u, a) => new
                     {
-                        Label = a.Value,
-                        Value = a.Code
+                        Label = a.Label,
+                        Value = a.Value
                     }).ToList()
                     .ToDictionary(u => u.Label, u => u.Value.ParseTo(targetProp.PropertyType));
                 propMappings.Add(propertyInfo.Name, new Tuple<Dictionary<string, object>, PropertyInfo, PropertyInfo>(mappingValues, propertyInfo, targetProp));
@@ -417,8 +417,8 @@ public static class CommonUtil
                     .Where((u, a) => u.Status == StatusEnum.Enable && a.Status == StatusEnum.Enable)
                     .Select((u, a) => new
                     {
-                        Label = a.Value,
-                        Value = a.Code
+                        Label = a.Label,
+                        Value = a.Value
                     }).ToList()
                     .ToDictionary(u => u.Value.ParseTo(targetProp.PropertyType), u => u.Label);
                 propMappings.Add(propertyInfo.Name, new Tuple<Dictionary<object, string>, PropertyInfo, PropertyInfo>(mappingValues, targetProp, propertyInfo));

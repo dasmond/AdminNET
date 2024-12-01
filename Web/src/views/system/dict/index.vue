@@ -70,11 +70,8 @@
 						<el-icon size="16" style="margin-right: 3px; display: inline; vertical-align: middle"><ele-Collection /></el-icon>字典值【{{ state.editDictTypeName }}】
 					</template>
 					<el-form :model="state.queryDictDataParams" ref="queryForm" :inline="true" @submit.native.prevent>
-						<!-- <el-form-item label="字典值">
-							<el-input v-model="state.queryDictDataParams.value" placeholder="字典值" />
-						</el-form-item> -->
-						<el-form-item label="编码">
-							<el-input v-model="state.queryDictDataParams.code" placeholder="编码" @keyup.enter="handleDictDataQuery" />
+						<el-form-item label="显示文本">
+							<el-input v-model="state.queryDictDataParams.label" placeholder="显示文本" @keyup.enter="handleDictDataQuery" />
 						</el-form-item>
 						<el-form-item>
 							<el-button-group>
@@ -89,12 +86,12 @@
 
 					<el-table :data="state.dictDataData" style="width: 100%" v-loading="state.loading" border>
 						<el-table-column type="index" label="序号" width="55" align="center" />
-						<el-table-column prop="value" label="字典值" header-align="center" min-width="120" show-overflow-tooltip>
+						<el-table-column prop="value" label="显示文本" header-align="center" min-width="120" show-overflow-tooltip>
 							<template #default="scope">
-								<el-tag :type="scope.row.tagType" :style="scope.row.styleSetting" :class="scope.row.classSetting">{{ scope.row.value }}</el-tag>
+								<el-tag :type="scope.row.tagType" :style="scope.row.styleSetting" :class="scope.row.classSetting">{{ scope.row.label }}</el-tag>
 							</template>
 						</el-table-column>
-						<el-table-column prop="code" label="编码" header-align="center" min-width="120" show-overflow-tooltip />
+						<el-table-column prop="value" label="字典值" header-align="center" min-width="120" show-overflow-tooltip />
 						<el-table-column prop="name" label="名称" header-align="center" min-width="120" show-overflow-tooltip />
 						<el-table-column prop="extData" label="拓展数据" width="90" align="center">
 							<template #default="scope">
@@ -177,8 +174,7 @@ const state = reactive({
 		total: 0 as any,
 	},
 	queryDictDataParams: {
-		value: undefined,
-		code: undefined,
+    label: undefined,
 		dictTypeId: 0, // 字典类型Id
 	},
 	tableDictDataParams: {
@@ -199,7 +195,7 @@ onMounted(async () => {
 const handleDictTypeQuery = async () => {
 	state.typeLoading = true;
 	let params = Object.assign(state.queryDictTypeParams, state.tableDictTypeParams);
-	var res = await getAPI(SysDictTypeApi).apiSysDictTypePagePost(params);
+	const res = await getAPI(SysDictTypeApi).apiSysDictTypePagePost(params);
 	state.dictTypeData = res.data.result?.items ?? [];
 	state.tableDictTypeParams.total = res.data.result?.total;
 	state.typeLoading = false;
@@ -209,7 +205,7 @@ const handleDictTypeQuery = async () => {
 const handleDictDataQuery = async () => {
 	state.loading = true;
 	let params = Object.assign(state.queryDictDataParams, state.tableDictDataParams);
-	var res = await getAPI(SysDictDataApi).apiSysDictDataPagePost(params);
+	const res = await getAPI(SysDictDataApi).apiSysDictDataPagePost(params);
 	state.dictDataData = res.data.result?.items ?? [];
 	state.tableDictDataParams.total = res.data.result?.total;
 	state.loading = false;
@@ -229,8 +225,7 @@ const resetDictTypeQuery = () => {
 
 // 重置字典值操作
 const resetDictDataQuery = () => {
-	state.queryDictDataParams.value = undefined;
-	state.queryDictDataParams.code = undefined;
+	state.queryDictDataParams.label = undefined;
 	handleDictDataQuery();
 };
 
@@ -246,7 +241,6 @@ const openAddDictData = () => {
 		ElMessage.warning('请选择字典');
 		return;
 	}
-
 	state.editDictDataTitle = '添加字典值';
 	editDictDataRef.value?.openDialog({ status: 1, orderNo: 100, dictTypeId: state.queryDictDataParams.dictTypeId });
 };
@@ -260,7 +254,7 @@ const openEditDictType = (row: any) => {
 // 打开复制字典值页面
 const openCopyDictData = (row: any) => {
 	state.editDictDataTitle = '复制字典值';
-	var copyRow = JSON.parse(JSON.stringify(row)) as UpdateDictDataInput;
+	const copyRow = JSON.parse(JSON.stringify(row)) as UpdateDictDataInput;
 	copyRow.id = 0;
 	editDictDataRef.value?.openDialog(copyRow);
 };
@@ -284,14 +278,12 @@ const delDictType = (row: any) => {
 		confirmButtonText: '确定',
 		cancelButtonText: '取消',
 		type: 'warning',
-	})
-		.then(async () => {
+	}).then(async () => {
 			await getAPI(SysDictTypeApi).apiSysDictTypeDeletePost({ id: row.id });
 			handleDictTypeQuery();
 			updateDictSession();
 			ElMessage.success('删除成功');
-		})
-		.catch(() => {});
+  }).catch(() => {});
 };
 
 // 删除字典值
@@ -300,14 +292,12 @@ const delDictData = (row: any) => {
 		confirmButtonText: '确定',
 		cancelButtonText: '取消',
 		type: 'warning',
-	})
-		.then(async () => {
+	}).then(async () => {
 			await getAPI(SysDictDataApi).apiSysDictDataDeletePost({ id: row.id });
 			handleDictDataQuery();
 			updateDictSession();
 			ElMessage.success('删除成功');
-		})
-		.catch(() => {});
+  }).catch(() => {});
 };
 
 // 改变字典页面容量

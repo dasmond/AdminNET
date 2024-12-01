@@ -42,9 +42,12 @@ public class DictAttribute : ValidationAttribute, ITransient
 
         var sysDictDataServiceProvider = App.GetRequiredService<SysDictDataService>();
         var dictDataList = sysDictDataServiceProvider.GetDataList(DictTypeCode).Result;
-
+        
+        // 获取枚举类型，可能存在Nullable类型，所以需要尝试获取最终类型
+        var type = value?.GetType();
+        if (type != null) type = Nullable.GetUnderlyingType(type) ?? type;
         // 使用HashSet来提高查找效率
-        var valueList = (value?.GetType().IsEnum ?? DictTypeCode.EndsWith("Enum")) ? dictDataList.Select(u => u.Name) : dictDataList.Select(u => u.Code);
+        var valueList = (type?.IsEnum ?? DictTypeCode.EndsWith("Enum")) ? dictDataList.Select(u => u.Name) : dictDataList.Select(u => u.Value);
         var dictHash = new HashSet<string>(valueList);
         
         if (!dictHash.Contains(valueAsString))

@@ -1,5 +1,5 @@
 <template>
-	<el-Tag v-if="state.dict" :type="state.dict.tagType ?? 'primary'">{{ state.dict[props.propLabel] ?? props.defaultValue }}</el-Tag>
+	<el-Tag v-if="state.dict" :type="state.dict.tagType ?? 'primary'" :style="state.dict.styleSetting" :class="state.dict.classSetting">{{ state.dict[props.propLabel] ?? props.defaultValue }}</el-Tag>
   <span v-else>{{ props.value }}</span>
 </template>
 
@@ -12,11 +12,11 @@ const props = defineProps({
 	value: null,
 	propLabel: {
 		type: String,
-		default: 'value',
+		default: 'label',
 	},
 	propValue: {
 		type: String,
-		default: 'code',
+		default: 'value',
 	},
 	defaultValue: {
 		type: String,

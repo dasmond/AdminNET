@@ -7,7 +7,7 @@
 				</el-form-item>
 				<el-form-item label="类型">
 					<el-select v-model="state.queryParams.type" placeholder="类型" clearable>
-            <el-option :value="item.value" :label="item.name" v-for="(item, index) in getDictDataByCode('MenuTypeEnum')" :key="index" />
+            <el-option :value="item.value" :label="item.label" v-for="(item, index) in getDictDataByCode('MenuTypeEnum')" :key="index" />
 					</el-select>
 				</el-form-item>
 				<el-form-item>

@@ -24,7 +24,7 @@
 							<el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="mb20">
 								<el-form-item label="创建类型">
 									<el-radio-group v-model="state.ruleForm.createType" :disabled="isEdit">
-										<el-radio :value="item.code" v-show="item.code == JobCreateTypeEnum.NUMBER_0 ? isEdit : true" v-for="(item, index) in getDictDataByCode('JobCreateTypeEnum')" :key="index">{{item.value}}</el-radio>
+										<el-radio :value="item.value" v-show="item.code == JobCreateTypeEnum.NUMBER_0 ? isEdit : true" v-for="(item, index) in getDictDataByCode('JobCreateTypeEnum')" :key="index">{{item.label}}</el-radio>
 									</el-radio-group>
 								</el-form-item>
 							</el-col>
