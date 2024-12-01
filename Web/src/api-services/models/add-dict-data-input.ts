@@ -73,17 +73,17 @@ export interface AddDictDataInput {
      */
     dictTypeId?: number;
     /**
+     * 显示文本
+     * @type {string}
+     * @memberof AddDictDataInput
+     */
+    label: string;
+    /**
      * 值
      * @type {string}
      * @memberof AddDictDataInput
      */
     value: string;
-    /**
-     * 编码
-     * @type {string}
-     * @memberof AddDictDataInput
-     */
-    code: string;
     /**
      * 名称
      * @type {string}

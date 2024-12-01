@@ -58,12 +58,12 @@ public class EnumToDictJob : IJob
             Console.WriteLine($"【{DateTime.Now}】系统枚举类转字典类型数据: 插入{storageable1.InsertList.Count}条, 更新{storageable1.UpdateList.Count}条, 共{storageable1.TotalList.Count}条。");
 
             var storageable2 = await db.Storageable(sysDictTypeList.SelectMany(x => x.Children).ToList())
-                .WhereColumns(it => new { it.DictTypeId, it.Code })
+                .WhereColumns(it => new { it.DictTypeId, Code = it.Value })
                 .SplitUpdate(it => it.Any())
                 .SplitInsert(_ => true)
                 .ToStorageAsync();
             await storageable2.BulkCopyAsync();
-            await storageable2.BulkUpdateAsync(nameof(SysDictData.Value), nameof(SysDictData.Code), nameof(SysDictData.Name));
+            await storageable2.BulkUpdateAsync(nameof(SysDictData.Label), nameof(SysDictData.Value), nameof(SysDictData.Name));
 
             Console.WriteLine($"【{DateTime.Now}】系统枚举项转字典值数据: 插入{storageable2.InsertList.Count}条, 更新{storageable2.UpdateList.Count}条, 共{storageable2.TotalList.Count}条。");
 
@@ -125,8 +125,8 @@ public class EnumToDictJob : IJob
                 Id = dictType.Id + orderNo++,
                 DictTypeId = dictType.Id,
                 Name = x.Name,
-                Value = x.Describe,
-                Code = x.Value.ToString(),
+                Label = x.Describe,
+                Value = x.Value.ToString(),
                 OrderNo = x.Value + OrderOffset,
                 TagType = x.Theme != "" ? x.Theme : DefaultTagType,
             }).ToList();

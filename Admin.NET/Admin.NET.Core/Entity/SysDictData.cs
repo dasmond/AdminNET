@@ -11,7 +11,7 @@ namespace Admin.NET.Core;
 /// </summary>
 [SugarTable(null, "系统字典值表")]
 [SysTable]
-[SugarIndex("index_{table}_C", nameof(Code), OrderByType.Asc)]
+[SugarIndex("index_{table}_C", nameof(Value), OrderByType.Asc)]
 public partial class SysDictData : EntityBase
 {
     /// <summary>
@@ -21,26 +21,18 @@ public partial class SysDictData : EntityBase
     public long DictTypeId { get; set; }
 
     /// <summary>
-    /// 字典类型
+    /// 显示文本
     /// </summary>
-    [Newtonsoft.Json.JsonIgnore]
-    [System.Text.Json.Serialization.JsonIgnore]
-    [Navigate(NavigateType.OneToOne, nameof(DictTypeId))]
-    public SysDictType DictType { get; set; }
+    [SugarColumn(ColumnDescription = "显示文本", Length = 256)]
+    [Required, MaxLength(128)]
+    public virtual string Label { get; set; }
 
     /// <summary>
     /// 值
     /// </summary>
     [SugarColumn(ColumnDescription = "值", Length = 128)]
-    [Required, MaxLength(128)]
-    public virtual string Value { get; set; }
-
-    /// <summary>
-    /// 编码
-    /// </summary>
-    [SugarColumn(ColumnDescription = "编码", Length = 256)]
     [Required, MaxLength(256)]
-    public virtual string Code { get; set; }
+    public virtual string Value { get; set; }
 
     /// <summary>
     /// 名称
@@ -94,4 +86,12 @@ public partial class SysDictData : EntityBase
     /// </summary>
     [SugarColumn(ColumnDescription = "状态")]
     public StatusEnum Status { get; set; } = StatusEnum.Enable;
+    
+    /// <summary>
+    /// 字典类型
+    /// </summary>
+    [Newtonsoft.Json.JsonIgnore]
+    [System.Text.Json.Serialization.JsonIgnore]
+    [Navigate(NavigateType.OneToOne, nameof(DictTypeId))]
+    public SysDictType DictType { get; set; }
 }

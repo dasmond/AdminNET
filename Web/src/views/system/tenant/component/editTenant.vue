@@ -19,7 +19,7 @@
 					<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
 						<el-form-item label="租户类型" :rules="[{ required: true, message: '租户类型不能为空', trigger: 'blur' }]">
 							<el-radio-group v-model="state.ruleForm.tenantType" :disabled="state.ruleForm.id != undefined">
-                <el-radio :value="item.code" v-for="(item, index) in getDictDataByCode('TenantTypeEnum')" :key="index">{{item.value}}</el-radio>
+                <el-radio :value="item.value" v-for="(item, index) in getDictDataByCode('TenantTypeEnum')" :key="index">{{item.label}}</el-radio>
 							</el-radio-group>
 						</el-form-item>
 					</el-col>

@@ -46,7 +46,7 @@ export const useUserInfo = defineStore('userInfo', {
 				// 处理字典国际化
 				this.dictList[key].forEach((e: any) => setDictLangMessage(e));
 				if (key.endsWith("Enum")) {
-					this.dictList[key].forEach((e: any) => e.code = Number(e.code));
+					this.dictList[key].forEach((e: any) => e.value = Number(e.value));
 				}
 			}
 		},
@@ -124,9 +124,9 @@ export const useUserInfo = defineStore('userInfo', {
 	},
 });
 
-// 处理字典国际化, 默认显示字典中的value值
+// 处理字典国际化, 默认显示字典中的label值
 const setDictLangMessage = (dict: any) => {
-	dict.langMessage = `message.dictType.${dict.typeCode}_${dict.code}`;
-	const value = t(dict.langMessage);
-	dict.value = value !== dict.langMessage ? value : dict.value;
+	dict.langMessage = `message.dictType.${dict.typeCode}_${dict.value}`;
+	const text = t(dict.langMessage);
+	dict.label = text !== dict.langMessage ? text : dict.label;
 }

@@ -20,7 +20,7 @@
 					<template #default="scope">
 						<div class="effect-type-container">
 							<el-select v-model="scope.row.effectType" @change="effectTypeChange(scope.row, scope.$index)" :disabled="judgeColumns(scope.row)" class="m-2">
-								<el-option v-for="item in getDictDataByCode('code_gen_effect_type')" :key="item.code" :label="item.value" :value="item.code" />
+								<el-option v-for="item in getDictDataByCode('code_gen_effect_type')" :key="item.value" :label="item.label" :value="item.value" />
 							</el-select>
               <el-button
                   v-if="['ApiTreeSelector','ForeignKey'].some(x => scope.row.effectType == x)"
@@ -75,7 +75,7 @@
 				<el-table-column prop="queryType" label="查询方式" width="110" align="center" show-overflow-tooltip>
 					<template #default="scope">
 						<el-select v-model="scope.row.queryType" class="m-2" placeholder="Select" :disabled="!scope.row.whetherQuery">
-							<el-option v-for="item in getDictDataByCode('code_gen_query_type')" :key="item.code" :label="item.value" :value="item.code" />
+							<el-option v-for="item in getDictDataByCode('code_gen_query_type')" :key="item.value" :label="item.label" :value="item.value" />
 						</el-select>
 					</template>
 				</el-table-column>

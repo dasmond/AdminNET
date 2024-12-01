@@ -22,7 +22,7 @@
 					<el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="mb20">
 						<el-form-item label="菜单类型" prop="type" :rules="[{ required: true, message: '菜单类型不能为空', trigger: 'blur' }]">
 							<el-radio-group v-model="state.ruleForm.type">
-								<el-radio :value="item.code" v-for="(item, index) in getDictDataByCode('MenuTypeEnum')" :key="index">{{item.value}}</el-radio>
+								<el-radio :value="item.value" v-for="(item, index) in getDictDataByCode('MenuTypeEnum')" :key="index">{{item.label}}</el-radio>
 							</el-radio-group>
 						</el-form-item>
 					</el-col>
