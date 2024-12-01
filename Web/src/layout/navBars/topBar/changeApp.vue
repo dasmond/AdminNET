@@ -53,14 +53,12 @@ const state = reactive({
 
 // 打开弹窗
 const openDialog = async () => {
-  if (state.appList.length == 0) {
-    const result = await getAPI(SysAppApi).apiSysAppChangeAppGet().then(res => res.data.result);
-    state.appList = result?.selectList ?? [];
-    state.tenantList = state.appList.find((u: any) => u.id === result?.appId)?.children ?? [];
+  const result = await getAPI(SysAppApi).apiSysAppChangeAppGet().then(res => res.data.result ?? {});
+  state.appList = result.selectList ?? [];
+  state.tenantList = state.appList.find((u: any) => u.id === result.appId)?.children ?? [];
+  state.ruleForm.tenantId = result.tenantId;
+  state.ruleForm.id = result.appId;
 
-    state.ruleForm.tenantId = result?.tenantId;
-    state.ruleForm.id = result?.appId;
-  }
   ruleFormRef.value?.resetFields();
   state.isShowDialog = true;
   state.loading = false;
