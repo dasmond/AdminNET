@@ -310,7 +310,7 @@ public enum ErrorCodeEnum
     /// <summary>
     /// 字典值已存在
     /// </summary>
-    [ErrorCodeItemMetadata("字典值已存在,名称或编码重复")]
+    [ErrorCodeItemMetadata("字典值已存在")]
     D3003,
 
     /// <summary>

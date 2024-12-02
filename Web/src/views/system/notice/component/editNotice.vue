@@ -17,7 +17,7 @@
 					<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
 						<el-form-item label="类型" prop="type" :rules="[{ required: true, message: '类型不能为空', trigger: 'blur' }]">
 							<el-select v-model="state.ruleForm.type" placeholder="类型" filterable allow-create default-first-option style="width: 100%">
-                <el-option :label="item.value" :value="item.code" v-for="(item, index) in getDictDataByCode('NoticeTypeEnum')" :key="index" />
+                <el-option :label="item.label" :value="item.value" v-for="(item, index) in getDictDataByCode('NoticeTypeEnum')" :key="index" />
 							</el-select>
 						</el-form-item>
 					</el-col>

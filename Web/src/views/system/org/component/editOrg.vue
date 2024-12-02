@@ -37,7 +37,7 @@
 					<el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="mb20">
 						<el-form-item label="机构类型">
 							<el-select v-model="state.ruleForm.type" filterable clearable class="w100">
-                <el-option :label="item.value" :value="item.code" v-for="(item, index) in getDictDataByCode('org_type')" :key="index" />
+                <el-option :label="item.label" :value="item.value" v-for="(item, index) in getDictDataByCode('org_type')" :key="index" />
 							</el-select>
 						</el-form-item>
 					</el-col>

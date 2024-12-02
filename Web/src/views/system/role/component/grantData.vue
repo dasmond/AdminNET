@@ -12,7 +12,7 @@
 					<el-col :xs="24" :sm="24" :md="24" :lg="24" :xl1="24" class="mb20">
 						<el-form-item label="数据范围：">
 							<el-select v-model="state.ruleForm.dataScope" placeholder="数据范围" style="width: 100%">
-                <el-option :label="item.value" :value="item.code" v-for="(item, index) in getDictDataByCode('DataScopeEnum')" :key="index" />
+                <el-option :label="item.label" :value="item.value" v-for="(item, index) in getDictDataByCode('DataScopeEnum')" :key="index" />
 							</el-select>
 						</el-form-item>
 					</el-col>

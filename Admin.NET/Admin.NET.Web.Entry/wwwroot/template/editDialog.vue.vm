@@ -127,7 +127,7 @@ defineExpose({ openDialog });
 								} else if (column.EffectType == "ConstSelector") {
 								@:<el-option v-for="(item, index) in state.stores.getConstDataByTypeCode('@column.DictTypeCode')" :key="index" :label="item.name" :value="item.code" />
 								} else if (column.EffectType == "DictSelector" || column.EffectType == "EnumSelector") {
-								@:<el-option v-for="(item, index) in state.stores.getDictDataByCode('@(column.DictTypeCode)')"  :key="index" :value="item.code" :label="`[${item.code}]${item.value}`" />
+								@:<el-option :value="item.value" :label="`[${item.value}]${item.label}`" :disabled="item.status == 2" v-if="item.status == 1 || item.value == state.ruleForm.@(column.LowerPropertyName)" v-for="(item, index) in state.stores.getDictDataByCode('@(column.DictTypeCode)')" :key="index" />
 								}
 							@:</el-select>
 							}

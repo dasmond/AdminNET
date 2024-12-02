@@ -51,7 +51,7 @@
 					<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
 						<el-form-item label="打印类型">
 							<el-radio-group v-model="state.ruleForm.printType">
-                <el-radio :value="item.code" v-for="(item, index) in getDictDataByCode('PrintTypeEnum')" :key="index">{{item.value}}</el-radio>
+                <el-radio :value="item.value" v-for="(item, index) in getDictDataByCode('PrintTypeEnum')" :key="index">{{item.label}}</el-radio>
 							</el-radio-group>
 						</el-form-item>
 					</el-col>
