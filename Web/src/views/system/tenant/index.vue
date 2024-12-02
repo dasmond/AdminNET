@@ -31,7 +31,7 @@
 				<!-- <el-table-column prop="email" label="邮箱" show-overflow-tooltip /> -->
 				<el-table-column prop="tenantType" label="租户类型" width="100" align="center" show-overflow-tooltip>
 					<template #default="scope">
-            <DictLabel :value="scope.row.status" code="TenantTypeEnum" />
+            <g-sys-dict v-model="scope.row.status" code="TenantTypeEnum" />
 					</template>
 				</el-table-column>
 				<el-table-column label="状态" width="70" align="center" show-overflow-tooltip>
@@ -118,11 +118,9 @@ import { ElMessageBox, ElMessage } from 'element-plus';
 import EditTenant from '/@/views/system/tenant/component/editTenant.vue';
 import GrantMenu from '/@/views/system/tenant/component/grantMenu.vue';
 import ModifyRecord from '/@/components/table/modifyRecord.vue';
-
 import { getAPI } from '/@/utils/axios-utils';
 import { SysTenantApi } from '/@/api-services/api';
 import { TenantOutput } from '/@/api-services/models';
-import DictLabel from "/@/components/table/dictLabel.vue";
 
 const editTenantRef = ref<InstanceType<typeof EditTenant>>();
 const grantMenuRef = ref<InstanceType<typeof GrantMenu>>();

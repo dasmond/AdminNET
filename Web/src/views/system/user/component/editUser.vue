@@ -40,14 +40,11 @@
 							</el-col>
 							<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
 								<el-form-item label="账号类型" prop="accountType" :rules="[{ required: true, message: '账号类型不能为空', trigger: 'blur' }]">
-									<el-select v-model="state.ruleForm.accountType" placeholder="账号类型" collapse-tags collapse-tags-tooltip class="w100">
-                    <el-option
-                        v-for="(item, index) in getDictDataByCode('AccountTypeEnum').filter((x:any) => x.name != 'SuperAdmin')"
-                        :disabled="item.name == 'SysAdmin' && ![888, 999].some(x => x == userInfos.accountType)"
-                        :label="item.label"
-                        :value="item.value"
-                        :key="index" />
-									</el-select>
+                  <g-sys-dict
+                      v-model="state.ruleForm.accountType"
+                      :on-item-filter="(data: any) => data.name != 'SuperAdmin' && (data.name == 'SysAdmin' ? [888, 999].includes(userInfos.accountType) : true)"
+                      code="AccountTypeEnum"
+                      render-as="select" />
 								</el-form-item>
 							</el-col>
 							<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
@@ -138,9 +135,7 @@
 						<el-row :gutter="35">
 							<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
 								<el-form-item label="证件类型" prop="cardType">
-									<el-select v-model="state.ruleForm.cardType" placeholder="证件类型" class="w100">
-                    <el-option :label="item.label" :value="item.value" v-for="(item, index) in getDictDataByCode('CardTypeEnum')" :key="index" />
-									</el-select>
+                  <g-sys-dict v-model="state.ruleForm.cardType" code="CardTypeEnum" render-as="select" placeholder="证件类型" class="w100" />
 								</el-form-item>
 							</el-col>
 							<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
@@ -155,9 +150,7 @@
 							</el-col>
 							<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
 								<el-form-item label="性别">
-									<el-radio-group v-model="state.ruleForm.sex">
-                    <el-radio :value="item.value" v-for="(item, index) in getDictDataByCode('GenderEnum').sort((a: any, b: any) => a.label.length - b.label.length)" :key="index">{{item.label}}</el-radio>
-                  </el-radio-group>
+                  <g-sys-dict v-model="state.ruleForm.sex" code="GenderEnum" render-as="radio" />
 								</el-form-item>
 							</el-col>
 							<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb5">
@@ -182,9 +175,7 @@
 							</el-col>
 							<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
 								<el-form-item label="文化程度">
-									<el-select v-model="state.ruleForm.cultureLevel" placeholder="文化程度" class="w100">
-                    <el-option :label="item.label" :value="item.value" v-for="(item, index) in getDictDataByCode('CultureLevelEnum')" :key="index" />
-									</el-select>
+                  <g-sys-dict v-model="state.ruleForm.cultureLevel" code="CultureLevelEnum" render-as="select" placeholder="文化程度" class="w100" />
 								</el-form-item>
 							</el-col>
 							<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
@@ -235,12 +226,10 @@
 import { onMounted, reactive, ref } from 'vue';
 import { storeToRefs } from 'pinia';
 import { useUserInfo } from '/@/stores/userInfo';
-
 import { getAPI } from '/@/utils/axios-utils';
 import { SysPosApi, SysRoleApi, SysUserApi } from '/@/api-services/api';
 import { RoleOutput, SysOrg, SysPos, UpdateUserInput } from '/@/api-services/models';
 
-const getDictDataByCode = useUserInfo().getDictDataByCode;
 const props = defineProps({
 	title: String,
 	orgData: Array<SysOrg>,

@@ -25,7 +25,7 @@
 				<el-table-column prop="orderNo" label="排序" width="70" align="center" show-overflow-tooltip />
 				<el-table-column label="状态" width="70" align="center" show-overflow-tooltip>
 					<template #default="scope">
-            <DictLabel :value="scope.row.status" code="StatusEnum" />
+            <g-sys-dict v-model="scope.row.status" code="StatusEnum" />
 					</template>
 				</el-table-column>
 				<el-table-column label="修改记录" width="100" align="center" show-overflow-tooltip>
@@ -62,11 +62,9 @@ import { onMounted, reactive, ref } from 'vue';
 import { ElMessageBox, ElMessage } from 'element-plus';
 import EditPlugin from '/@/views/system/plugin/component/editPlugin.vue';
 import ModifyRecord from '/@/components/table/modifyRecord.vue';
-
 import { getAPI } from '/@/utils/axios-utils';
 import { SysPluginApi } from '/@/api-services/api';
 import { SysPlugin } from '/@/api-services/models';
-import DictLabel from "/@/components/table/dictLabel.vue";
 
 const editPluginRef = ref<InstanceType<typeof EditPlugin>>();
 const state = reactive({

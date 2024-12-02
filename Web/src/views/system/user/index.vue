@@ -58,7 +58,7 @@
 						</el-table-column> -->
 						<el-table-column label="账号类型" width="110" align="center" show-overflow-tooltip>
 							<template #default="scope">
-                <DictLabel :value="scope.row.accountType" code="AccountTypeEnum" />
+                <g-sys-dict v-model="scope.row.accountType" code="AccountTypeEnum" />
 							</template>
 						</el-table-column>
 						<el-table-column prop="roleName" label="角色集合" min-width="150" align="center" show-overflow-tooltip />
@@ -113,19 +113,14 @@
 <script lang="ts" setup name="sysUser">
 import { onMounted, reactive, ref } from 'vue';
 import { ElMessageBox, ElMessage } from 'element-plus';
-// import { formatDate } from '/@/utils/formatTime';
-import { auth } from '/@/utils/authFunction';
 import OrgTree from '/@/views/system/org/component/orgTree.vue';
 import EditUser from '/@/views/system/user/component/editUser.vue';
 import ModifyRecord from '/@/components/table/modifyRecord.vue';
-
 import { Splitpanes, Pane } from 'splitpanes';
 import 'splitpanes/dist/splitpanes.css';
-
 import { getAPI } from '/@/utils/axios-utils';
 import { SysUserApi, SysOrgApi } from '/@/api-services/api';
 import { SysUser, SysOrg, UpdateUserInput } from '/@/api-services/models';
-import DictLabel from "/@/components/table/dictLabel.vue";
 
 const orgTreeRef = ref<InstanceType<typeof OrgTree>>();
 const editUserRef = ref<InstanceType<typeof EditUser>>();

@@ -23,9 +23,7 @@
 						<el-form-item label="接口请求地址" prop="url">
 							<el-input v-model="state.ruleForm.url" placeholder="接口请求地址" class="input-with-select" clearable>
 								<template #prepend>
-									<el-select v-model="state.ruleForm.method" placeholder="请求方法" style="width: 100px">
-                    <el-option :label="item.label" :value="item.value" v-for="(item, index) in getDictDataByCode('HttpMethodEnum')" :key="index" />
-									</el-select>
+                  <g-sys-dict v-model="state.ruleForm.method" code="HttpMethodEnum" render-as="select" placeholder="请求方法" style="width: 100px" />
 								</template>
 							</el-input>
 						</el-form-item>
@@ -61,16 +59,10 @@
 
 <script lang="ts" setup name="sysOpenAccessEdit">
 import { reactive, ref, watch } from 'vue';
-
-import {useUserInfo} from "/@/stores/userInfo";
 import { getAPI } from '/@/utils/axios-utils';
 import { SysOpenAccessApi } from '/@/api-services/api';
 import { GenerateSignatureInput, HttpMethodEnum } from '/@/api-services/models';
 
-const getDictDataByCode = useUserInfo().getDictDataByCode;
-const props = defineProps({
-	title: String,
-});
 const emits = defineEmits(['handleQuery']);
 const ruleFormRef = ref();
 const state = reactive({

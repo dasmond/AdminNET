@@ -117,16 +117,12 @@
 					</el-col>
 					<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
 						<el-form-item label="生成方式" prop="generateType">
-							<el-select v-model="state.ruleForm.generateType" filterable class="w100">
-								<el-option v-for="item in getDictDataByCode('code_gen_create_type')" :key="item.value" :label="item.label" :value="item.value" />
-							</el-select>
+              <g-sys-dict v-model="state.ruleForm.generateType" code="code_gen_create_type" render-as="select" class="w100" filterable />
 						</el-form-item>
 					</el-col>
 					<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
 						<el-form-item label="支持打印" prop="printType">
-							<el-select v-model="state.ruleForm.printType" filterable class="w100" @change="printTypeChanged">
-								<el-option v-for="item in getDictDataByCode('code_gen_print_type')" :key="item.value" :label="item.label" :value="item.value" />
-							</el-select>
+              <g-sys-dict v-model="state.ruleForm.printType" code="code_gen_print_type" render-as="select" @change="printTypeChanged" class="w100" filterable />
 						</el-form-item>
 					</el-col>
 					<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20" v-if="state.ruleForm.printType == 'custom'">
@@ -181,13 +177,10 @@
 import { computed, onMounted, reactive, ref } from 'vue';
 import IconSelector from '/@/components/iconSelector/index.vue';
 import other from '/@/utils/other';
-
-import {useUserInfo} from "/@/stores/userInfo";
 import { getAPI } from '/@/utils/axios-utils';
 import { SysCodeGenApi, SysMenuApi, SysPrintApi } from '/@/api-services/api';
 import { UpdateCodeGenInput, AddCodeGenInput, SysMenu, SysPrint } from '/@/api-services/models';
 
-const getDictDataByCode = useUserInfo().getDictDataByCode;
 const props = defineProps({
 	title: String,
 	applicationNamespaces: Array<String>,

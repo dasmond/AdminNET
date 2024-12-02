@@ -18,9 +18,7 @@
           </el-col>
 					<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
 						<el-form-item label="租户类型" :rules="[{ required: true, message: '租户类型不能为空', trigger: 'blur' }]">
-							<el-radio-group v-model="state.ruleForm.tenantType" :disabled="state.ruleForm.id != undefined">
-                <el-radio :value="item.value" v-for="(item, index) in getDictDataByCode('TenantTypeEnum')" :key="index">{{item.label}}</el-radio>
-							</el-radio-group>
+              <g-sys-dict v-model="state.ruleForm.tenantType" code="TenantTypeEnum" render-as="radio" :disabled="state.ruleForm.id != undefined" />
 						</el-form-item>
 					</el-col>
 					<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
@@ -124,13 +122,10 @@
 
 <script lang="ts" setup name="sysEditTenant">
 import { reactive, ref } from 'vue';
-
-import {useUserInfo} from "/@/stores/userInfo";
 import { getAPI } from '/@/utils/axios-utils';
 import {SysAppApi, SysTenantApi} from '/@/api-services/api';
 import { UpdateTenantInput } from '/@/api-services/models';
 
-const getDictDataByCode = useUserInfo().getDictDataByCode;
 const props = defineProps({
 	title: String,
 });
