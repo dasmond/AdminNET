@@ -172,7 +172,7 @@ handleQuery();
                 } else if (column.EffectType == "ConstSelector") {
                 @:<el-option v-for="(item, index) in state.stores.getConstDataByTypeCode('@column.DictTypeCode')" :key="index" :label="item.name" :value="item.code" />
                 } else {
-                @:<el-option :value="item.value" :label="`[${item.value}]${item.label}`" :disabled="item.status == 2" :key="index" v-for="(item,index) in state.stores.getDictDataByCode('@(column.DictTypeCode)')" />
+                @:<el-option :value="item.value" :label="`[${item.value}]${item.label}`" v-if="item.status == 1" :key="index" v-for="(item,index) in state.stores.getDictDataByCode('@(column.DictTypeCode)')" />
                 }
               @:</el-select>
             }else if(column.EffectType == "ApiTreeSelector"){
