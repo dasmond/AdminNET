@@ -115,3 +115,19 @@ declare interface TableType<T = any> {
 		[key: string]: T;
 	};
 }
+
+// 字典数据结构
+export interface DictItem {
+	typeCode: string;
+	label: string;
+	value: string;
+	name: string;
+	status: string;
+	orderNo: number;
+	remark?: string;
+	tagType?: string;
+	extData?: string;
+	styleSetting?: string;
+	classSetting?: string;
+	[key: string]: any;
+}

@@ -30,7 +30,7 @@
 				<el-table-column prop="authorName" label="作者姓名" align="center" show-overflow-tooltip />
 				<el-table-column prop="generateType" label="生成方式" align="center" show-overflow-tooltip>
 					<template #default="scope">
-            <DictLabel :value="scope.row.generateType" code="code_gen_create_type" />
+            <g-sys-dict v-model="scope.row.generateType" code="code_gen_create_type" />
 					</template>
 				</el-table-column>
 				<el-table-column label="操作" width="280" fixed="right" align="center" show-overflow-tooltip>
@@ -70,11 +70,9 @@ import { ElMessageBox, ElMessage } from 'element-plus';
 import EditCodeGenDialog from './component/editCodeGenDialog.vue';
 import CodeConfigDialog from './component/genConfigDialog.vue';
 import { downloadByUrl } from '/@/utils/download';
-
 import { getAPI } from '/@/utils/axios-utils';
 import { SysCodeGenApi } from '/@/api-services/api';
 import { SysCodeGen } from '/@/api-services/models';
-import DictLabel from "/@/components/table/dictLabel.vue";
 
 const PreviewDialog = defineAsyncComponent(() => import('./component/previewDialog.vue'));
 

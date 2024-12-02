@@ -21,9 +21,7 @@
 					</el-col>
 					<el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="mb20">
 						<el-form-item label="菜单类型" prop="type" :rules="[{ required: true, message: '菜单类型不能为空', trigger: 'blur' }]">
-							<el-radio-group v-model="state.ruleForm.type">
-								<el-radio :value="item.value" v-for="(item, index) in getDictDataByCode('MenuTypeEnum')" :key="index">{{item.label}}</el-radio>
-							</el-radio-group>
+              <g-sys-dict v-model="state.ruleForm.type" code="MenuTypeEnum" render-as="radio" />
 						</el-form-item>
 					</el-col>
 					<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
@@ -140,14 +138,11 @@
 <script lang="ts" setup name="sysEditMenu">
 import { computed, reactive, ref } from 'vue';
 import IconSelector from '/@/components/iconSelector/index.vue';
-
 import other from '/@/utils/other';
-import {useUserInfo} from "/@/stores/userInfo";
 import { getAPI } from '/@/utils/axios-utils';
 import { SysMenuApi } from '/@/api-services/api';
 import { SysMenu, UpdateMenuInput } from '/@/api-services/models';
 
-const getDictDataByCode = useUserInfo().getDictDataByCode;
 const props = defineProps({
 	title: String,
 	menuData: Array<SysMenu>,

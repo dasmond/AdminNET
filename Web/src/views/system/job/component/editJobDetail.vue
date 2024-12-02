@@ -23,9 +23,7 @@
 							</el-col>
 							<el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="mb20">
 								<el-form-item label="创建类型">
-									<el-radio-group v-model="state.ruleForm.createType" :disabled="isEdit">
-										<el-radio :value="item.value" v-show="item.code == JobCreateTypeEnum.NUMBER_0 ? isEdit : true" v-for="(item, index) in getDictDataByCode('JobCreateTypeEnum')" :key="index">{{item.label}}</el-radio>
-									</el-radio-group>
+                  <g-sys-dict v-model="state.ruleForm.createType" code="JobCreateTypeEnum" render-as="radio" :disabled="isEdit" />
 								</el-form-item>
 							</el-col>
 							<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
@@ -103,13 +101,10 @@
 import { reactive, ref, computed } from 'vue';
 import * as monaco from 'monaco-editor';
 import { JobScriptCode } from './JobScriptCode';
-
-import {useUserInfo} from "/@/stores/userInfo";
 import { getAPI } from '/@/utils/axios-utils';
 import { SysJobApi } from '/@/api-services/api';
 import { JobCreateTypeEnum, UpdateJobDetailInput } from '/@/api-services/models';
 
-const getDictDataByCode = useUserInfo().getDictDataByCode;
 // HttpMethod 定义，来源后端 HttpMethod 对象的序列化
 // 下面定义内容【不要】加空格，否则 getHttpJobMessage 中 JSON.stringify(httpJobMessageNet.HttpMethod) 后无法匹配
 const httpMethodDef = {

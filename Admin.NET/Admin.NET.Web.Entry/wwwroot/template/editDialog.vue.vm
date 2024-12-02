@@ -9,7 +9,7 @@ import type { FormRules } from "element-plus";
 @:import { Plus } from "@@element-plus/icons-vue";
 @:import { UploadRequestOptions } from "element-plus";
 }
-@if(Model.HasDictField || Model.HasEnumField || Model.HasConstField) {
+@if(Model.HasConstField) {
 @:import { useUserInfo } from "/@@/stores/userInfo";
 }
 import { use@(Model.ClassName)Api } from '/@@/api/@(Model.PagePath)/@(Model.LowerClassName)';
@@ -24,7 +24,7 @@ const state = reactive({
 	loading: false,
 	showDialog: false,
 	ruleForm: {} as any,
-	stores: @(Model.HasDictField || Model.HasEnumField || Model.HasConstField ? "useUserInfo()" : "{}"),
+	stores: @(Model.HasConstField ? "useUserInfo()" : "{}"),
 	dropdownData: {} as any,
 });
 
@@ -120,14 +120,14 @@ defineExpose({ openDialog });
 									@:<span v-if="!node.isLeaf"> ({{ data.children.length }}) </span>
 								@:</template>
 							@:</el-cascader>
+							} else if (column.EffectType == "DictSelector" || column.EffectType == "EnumSelector") {
+							@:<g-sys-dict v-model="state.ruleForm.@(column.LowerPropertyName)" code="@(column.DictTypeCode)" render-as="select" placeholder="请选择@(column.ColumnComment)" clearable filterable />
 							} else {
 							@:<el-select clearable filterable v-model="state.ruleForm.@(column.LowerPropertyName)" placeholder="请选择@(column.ColumnComment)">
 								if (column.EffectType == "ForeignKey") {
 								@:<el-option v-for="(item,index) in state.dropdownData.@(column.LowerPropertyName)" :key="index" :value="item.value" :label="item.label" />
 								} else if (column.EffectType == "ConstSelector") {
 								@:<el-option v-for="(item, index) in state.stores.getConstDataByTypeCode('@column.DictTypeCode')" :key="index" :label="item.name" :value="item.code" />
-								} else if (column.EffectType == "DictSelector" || column.EffectType == "EnumSelector") {
-								@:<el-option :value="item.value" :label="`[${item.value}]${item.label}`" :disabled="item.status == 2" v-if="item.status == 1 || item.value == state.ruleForm.@(column.LowerPropertyName)" v-for="(item, index) in state.stores.getDictDataByCode('@(column.DictTypeCode)')" :key="index" />
 								}
 							@:</el-select>
 							}

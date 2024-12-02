@@ -29,13 +29,13 @@
 				</el-table-column>
 				<el-table-column prop="sysNotice.type" label="类型" width="100" align="center" show-overflow-tooltip>
 					<template #default="scope">
-            <DictLabel :value="scope.row.sysNotice.type" code="NoticeTypeEnum" />
+            <g-sys-dict v-model="scope.row.sysNotice.type" code="NoticeTypeEnum"/>
 					</template>
 				</el-table-column>
 				<el-table-column prop="sysNotice.createTime" label="创建时间" align="center" show-overflow-tooltip />
 				<el-table-column prop="readStatus" label="阅读状态" width="100" align="center" show-overflow-tooltip>
 					<template #default="scope">
-            <DictLabel :value="scope.row.readStatus" code="NoticeUserStatusEnum" />
+            <g-sys-dict v-model="scope.row.readStatus" code="NoticeUserStatusEnum" />
 					</template>
 				</el-table-column>
 				<el-table-column prop="sysNotice.publicUserName" label="发布者" align="center" show-overflow-tooltip />
@@ -80,12 +80,10 @@
 <script setup lang="ts" name="notice">
 import '@wangeditor/editor/dist/css/style.css';
 import { onMounted, reactive } from 'vue';
-import commonFunction from '/@/utils/commonFunction';
-
 import { getAPI } from '/@/utils/axios-utils';
 import { SysNoticeApi } from '/@/api-services/api';
 import { SysNoticeUser } from '/@/api-services/models';
-import DictLabel from "/@/components/table/dictLabel.vue";
+import commonFunction from '/@/utils/commonFunction';
 
 const { removeHtml } = commonFunction();
 const state = reactive({

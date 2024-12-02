@@ -30,7 +30,7 @@
 						<el-table-column prop="code" label="字典编码" min-width="140" header-align="center" show-overflow-tooltip />
 						<el-table-column prop="status" label="状态" width="70" align="center" show-overflow-tooltip>
 							<template #default="scope">
-                <DictLabel :value="scope.row.status" code="StatusEnum" />
+                <g-sys-dict v-model="scope.row.status" code="StatusEnum" />
 							</template>
 						</el-table-column>
 						<el-table-column prop="orderNo" label="排序" width="60" align="center" show-overflow-tooltip />
@@ -101,7 +101,7 @@
 						</el-table-column>
 						<el-table-column prop="status" label="状态" width="70" align="center" show-overflow-tooltip>
 							<template #default="scope">
-                <DictLabel :value="scope.row.status" code="StatusEnum" />
+                <g-sys-dict v-model="scope.row.status" code="StatusEnum" />
 							</template>
 						</el-table-column>
 						<el-table-column prop="orderNo" label="排序" width="60" align="center" show-overflow-tooltip />
@@ -147,15 +147,13 @@
 <script lang="ts" setup name="sysDict">
 import { onMounted, reactive, ref } from 'vue';
 import { ElMessageBox, ElMessage } from 'element-plus';
-import EditDictType from '/@/views/system/dict/component/editDictType.vue';
-import EditDictData from '/@/views/system/dict/component/editDictData.vue';
-import ModifyRecord from '/@/components/table/modifyRecord.vue';
-
 import { getAPI } from '/@/utils/axios-utils';
 import { useUserInfo } from '/@/stores/userInfo';
 import { SysDictTypeApi, SysDictDataApi } from '/@/api-services/api';
 import { SysDictType, SysDictData, UpdateDictDataInput } from '/@/api-services/models';
-import DictLabel from "/@/components/table/dictLabel.vue";
+import EditDictType from '/@/views/system/dict/component/editDictType.vue';
+import EditDictData from '/@/views/system/dict/component/editDictData.vue';
+import ModifyRecord from '/@/components/table/modifyRecord.vue';
 
 const editDictTypeRef = ref<InstanceType<typeof EditDictType>>();
 const editDictDataRef = ref<InstanceType<typeof EditDictData>>();

@@ -19,9 +19,7 @@
 				<el-table-column prop="effectType" label="作用类型" width="150" show-overflow-tooltip>
 					<template #default="scope">
 						<div class="effect-type-container">
-							<el-select v-model="scope.row.effectType" @change="effectTypeChange(scope.row, scope.$index)" :disabled="judgeColumns(scope.row)" class="m-2">
-								<el-option v-for="item in getDictDataByCode('code_gen_effect_type')" :key="item.value" :label="item.label" :value="item.value" />
-							</el-select>
+              <g-sys-dict v-model="scope.row.effectType" code="code_gen_effect_type" render-as="select" @change="effectTypeChange(scope.row, scope.$index)" :disabled="judgeColumns(scope.row)" class="m-2" />
               <el-button
                   v-if="['ApiTreeSelector','ForeignKey'].some(x => scope.row.effectType == x)"
                   @click="effectTypeChange(scope.row, scope.$index)"
@@ -74,9 +72,7 @@
 				</el-table-column>
 				<el-table-column prop="queryType" label="查询方式" width="110" align="center" show-overflow-tooltip>
 					<template #default="scope">
-						<el-select v-model="scope.row.queryType" class="m-2" placeholder="Select" :disabled="!scope.row.whetherQuery">
-							<el-option v-for="item in getDictDataByCode('code_gen_query_type')" :key="item.value" :label="item.label" :value="item.value" />
-						</el-select>
+            <g-sys-dict v-model="scope.row.queryType" code="code_gen_query_type" render-as="select" class="m-2" placeholder="Select" :disabled="!scope.row.whetherQuery" />
 					</template>
 				</el-table-column>
 				<el-table-column prop="orderNo" label="排序" width="80" show-overflow-tooltip>
@@ -105,7 +101,6 @@ import { getAPI } from '/@/utils/axios-utils';
 import { SysCodeGenConfigApi, SysDictTypeApi } from '/@/api-services/api';
 import JoinTableDialog from '/src/views/system/codeGen/component/joinTableDialog.vue';
 
-const getDictDataByCode = useUserInfo().getDictDataByCode;
 const emits = defineEmits(['handleQuery']);
 const joinTableDialogRef = ref();
 const state = reactive({
