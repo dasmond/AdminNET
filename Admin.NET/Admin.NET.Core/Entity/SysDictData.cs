@@ -24,13 +24,13 @@ public partial class SysDictData : EntityBase
     /// 显示文本
     /// </summary>
     [SugarColumn(ColumnDescription = "显示文本", Length = 256)]
-    [Required, MaxLength(128)]
+    [Required, MaxLength(256)]
     public virtual string Label { get; set; }
 
     /// <summary>
     /// 值
     /// </summary>
-    [SugarColumn(ColumnDescription = "值", Length = 128)]
+    [SugarColumn(ColumnDescription = "值", Length = 256)]
     [Required, MaxLength(256)]
     public virtual string Value { get; set; }
 
