@@ -30,7 +30,7 @@ const props = defineProps({
     type: String,
     default: 'tag',
     validator(value: string) {
-      return ['tag', 'select', 'radio', 'switch'].includes(value);
+      return ['tag', 'select', 'radio'].includes(value);
     }
   }
 });
@@ -68,10 +68,6 @@ watch(() => props.modelValue, (newValue) => setDictValue(newValue), { immediate:
     <el-radio-group v-model="state.value" v-bind="$attrs" @change="(newValue: any) => emit('update:modelValue', newValue)">
       <el-radio :value="item[props.propValue]" v-for="(item, index) in state.dictData" :key="index">{{item[props.propLabel]}}</el-radio>
     </el-radio-group>
-  </template>
-  <!-- 渲染开关 -->
-  <template v-if="props.renderAs === 'switch'">
-    <el-switch v-model="state.value" v-bind="$attrs" @change="(newValue: any) => emit('update:modelValue', newValue)" />
   </template>
 </template>
 
