@@ -21,9 +21,7 @@
 					</el-col>
 					<el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="mb20">
 						<el-form-item label="基类" prop="baseClassName">
-							<el-select v-model="state.ruleForm.baseClassName" clearable class="w100">
-								<el-option v-for="item in getDictDataByCode('code_gen_base_class')" :key="item.value" :label="item.label" :value="item.value" />
-							</el-select>
+              <g-sys-dict v-model="state.ruleForm.baseClassName" code="code_gen_base_class" render-as="select" clearable class="w100" />
 						</el-form-item>
 					</el-col>
 					<el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="mb20">
@@ -50,11 +48,9 @@
 import { reactive, ref } from 'vue';
 import { ElMessage } from "element-plus";
 import { camelCase, upperFirst } from 'lodash-es';
-import {useUserInfo} from "/@/stores/userInfo";
 import { getAPI } from '/@/utils/axios-utils';
 import { SysDatabaseApi } from '/@/api-services/api';
 
-const getDictDataByCode = useUserInfo().getDictDataByCode;
 const emits = defineEmits(['handleQueryColumn']);
 const ruleFormRef = ref();
 const state = reactive({

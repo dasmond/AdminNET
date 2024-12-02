@@ -11,7 +11,7 @@
 					<el-button v-if="state.selectlist.length > 0" type="danger" icon="ele-Delete" @click="bacthDelete" v-auth="'sysConfig:batchDelete'"> 批量删除 </el-button>
 				</template>
 				<template #sysFlag="scope">
-          <DictLabel :value="scope.row.sysFlag" code="YesNoEnum" />
+          <g-sys-dict v-model="scope.row.sysFlag" code="YesNoEnum" />
 				</template>
 				<template #remark="scope">
 					<ModifyRecord :data="scope.row" />
@@ -28,15 +28,13 @@
 </template>
 
 <script lang="ts" setup name="sysConfig">
-import { onMounted, onUnmounted, reactive, ref, defineAsyncComponent, nextTick } from 'vue';
+import { onMounted, reactive, ref, defineAsyncComponent, nextTick } from 'vue';
 import { ElMessageBox, ElMessage } from 'element-plus';
-import EditConfig from '/@/views/system/config/component/editConfig.vue';
-import ModifyRecord from '/@/components/table/modifyRecord.vue';
-
+import { auth } from '/@/utils/authFunction';
 import { getAPI } from '/@/utils/axios-utils';
 import { SysConfigApi } from '/@/api-services/api';
-import { auth } from '/@/utils/authFunction';
-import DictLabel from "/@/components/table/dictLabel.vue";
+import ModifyRecord from '/@/components/table/modifyRecord.vue';
+import EditConfig from '/@/views/system/config/component/editConfig.vue';
 
 // 引入组件
 const Table = defineAsyncComponent(() => import('/@/components/table/index.vue'));

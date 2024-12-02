@@ -18,14 +18,9 @@ public class PageDictDataInput : BasePageInput
     public long DictTypeId { get; set; }
 
     /// <summary>
-    /// 值
+    /// 字典文本
     /// </summary>
-    public string Value { get; set; }
-
-    /// <summary>
-    /// 编码
-    /// </summary>
-    public string Code { get; set; }
+    public string Label { get; set; }
 }
 
 public class AddDictDataInput : SysDictData

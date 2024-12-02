@@ -14,9 +14,7 @@
 							<el-input v-model="state.queryParams.code" placeholder="机构编码" clearable />
 						</el-form-item> -->
 						<el-form-item label="机构类型">
-							<el-select v-model="state.queryParams.type" filterable clearable>
-                <el-option :label="item.label" :value="item.value" v-for="(item, index) in getDictDataByCode('org_type')" :key="index" />
-							</el-select>
+              <g-sys-dict v-model="state.queryParams.type" code="org_type" render-as="select" filterable clearable />
 						</el-form-item>
 						<el-form-item>
 							<el-button-group>
@@ -37,13 +35,13 @@
 						<el-table-column prop="level" label="级别" width="70" align="center" show-overflow-tooltip />
 						<el-table-column prop="type" label="机构类型" align="center" show-overflow-tooltip>
               <template #default="scope">
-                <DictLabel :value="scope.row.type" code="org_type" />
+                <g-sys-dict v-model="scope.row.type" code="org_type" />
               </template>
             </el-table-column>
 						<el-table-column prop="orderNo" label="排序" width="70" align="center" show-overflow-tooltip />
 						<el-table-column label="状态" width="70" align="center" show-overflow-tooltip>
 							<template #default="scope">
-                <DictLabel :value="scope.row.status" code="StatusEnum" />
+                <g-sys-dict v-model="scope.row.status" code="StatusEnum" />
 							</template>
 						</el-table-column>
 						<el-table-column label="修改记录" width="100" align="center" show-overflow-tooltip>
@@ -72,18 +70,13 @@ import { onMounted, reactive, ref } from 'vue';
 import { ElMessageBox, ElMessage } from 'element-plus';
 import { Splitpanes, Pane } from 'splitpanes';
 import 'splitpanes/dist/splitpanes.css';
-
+import { getAPI } from '/@/utils/axios-utils';
+import { SysOrgApi } from '/@/api-services/api';
+import { SysOrg, UpdateOrgInput } from '/@/api-services/models';
 import OrgTree from '/@/views/system/org/component/orgTree.vue';
 import EditOrg from '/@/views/system/org/component/editOrg.vue';
 import ModifyRecord from '/@/components/table/modifyRecord.vue';
 
-import {useUserInfo} from "/@/stores/userInfo";
-import { getAPI } from '/@/utils/axios-utils';
-import { SysOrgApi } from '/@/api-services/api';
-import { SysOrg, UpdateOrgInput } from '/@/api-services/models';
-import DictLabel from "/@/components/table/dictLabel.vue";
-
-const getDictDataByCode = useUserInfo().getDictDataByCode;
 const editOrgRef = ref<InstanceType<typeof EditOrg>>();
 const orgTreeRef = ref<InstanceType<typeof OrgTree>>();
 const state = reactive({

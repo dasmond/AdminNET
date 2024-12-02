@@ -24,7 +24,7 @@
 				<el-table-column prop="unionId" label="UnionId" align="center" show-overflow-tooltip />
 				<el-table-column prop="platformType" label="平台类型" width="110" align="center" show-overflow-tooltip>
 					<template #default="scope">
-            <DictLabel :value="scope.row.platformType" code="PlatformTypeEnum" default-value="其他" />
+            <g-sys-dict v-model="scope.row.platformType" code="PlatformTypeEnum" default-value="其他" />
 					</template>
 				</el-table-column>
 				<el-table-column prop="nickName" label="昵称" align="center" show-overflow-tooltip />
@@ -71,11 +71,9 @@
 import { onMounted, reactive, ref } from 'vue';
 import { ElMessageBox, ElMessage } from 'element-plus';
 import EditWeChatUser from '/@/views/system/weChatUser/component/editWeChatUser.vue';
-
 import { getAPI } from '/@/utils/axios-utils';
 import { SysWechatUserApi } from '/@/api-services/api';
 import { SysWechatUser } from '/@/api-services/models';
-import DictLabel from "/@/components/table/dictLabel.vue";
 
 const editWeChatUserRef = ref<InstanceType<typeof EditWeChatUser>>();
 const state = reactive({

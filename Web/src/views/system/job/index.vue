@@ -142,7 +142,7 @@
 				</el-table-column>
 				<el-table-column prop="jobDetail.createType" label="作业创建类型" width="110" align="center" show-overflow-tooltip>
 					<template #default="scope">
-            <DictLabel :value="(scope.row as JobDetailOutput).jobDetail?.createType ?? ''" code="JobCreateTypeEnum" />
+            <g-sys-dict v-model="scope.row.jobDetail?.createType" code="JobCreateTypeEnum" />
 					</template>
 				</el-table-column>
 				<!-- <el-table-column prop="jobDetail.includeAnnotations" label="扫描特性触发器" align="center" show-overflow-tooltip>
@@ -272,14 +272,12 @@ import { nextTick, onMounted, reactive, ref } from 'vue';
 import { ElMessageBox, ElMessage } from 'element-plus';
 import { useRouter } from 'vue-router';
 import { Timer } from '@element-plus/icons-vue';
-import EditJobDetail from '/@/views/system/job/component/editJobDetail.vue';
-import EditJobTrigger from '/@/views/system/job/component/editJobTrigger.vue';
-import JobCluster from '/@/views/system/job/component/jobCluster.vue';
-
 import { getAPI } from '/@/utils/axios-utils';
 import { SysJobApi } from '/@/api-services/api';
 import { JobCreateTypeEnum, JobDetailOutput, SysJobTrigger } from '/@/api-services/models';
-import DictLabel from "/@/components/table/dictLabel.vue";
+import EditJobDetail from '/@/views/system/job/component/editJobDetail.vue';
+import EditJobTrigger from '/@/views/system/job/component/editJobTrigger.vue';
+import JobCluster from '/@/views/system/job/component/jobCluster.vue';
 
 const router = useRouter();
 const editJobDetailRef = ref<InstanceType<typeof EditJobDetail>>();

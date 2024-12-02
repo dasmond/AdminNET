@@ -11,9 +11,7 @@
 				<el-row :gutter="35">
 					<el-col :xs="24" :sm="24" :md="24" :lg="24" :xl1="24" class="mb20">
 						<el-form-item label="数据范围：">
-							<el-select v-model="state.ruleForm.dataScope" placeholder="数据范围" style="width: 100%">
-                <el-option :label="item.label" :value="item.value" v-for="(item, index) in getDictDataByCode('DataScopeEnum')" :key="index" />
-							</el-select>
+              <g-sys-dict v-model="state.ruleForm.dataScope" code="DataScopeEnum" render-as="select" placeholder="数据范围" class="w100" />
 						</el-form-item>
 					</el-col>
 					<el-col :xs="24" :sm="24" :md="24" :lg="24" :xl1="24" v-show="state.ruleForm.dataScope === 5">
@@ -36,13 +34,10 @@
 <script lang="ts" setup name="sysGrantData">
 import { reactive, ref } from 'vue';
 import OrgTree from '/@/views/system/org/component/orgTree.vue';
-
-import {useUserInfo} from "/@/stores/userInfo";
 import { getAPI } from '/@/utils/axios-utils';
 import { SysRoleApi } from '/@/api-services/api';
 import { RoleOrgInput } from '/@/api-services/models';
 
-const getDictDataByCode = useUserInfo().getDictDataByCode;
 const emits = defineEmits(['handleQuery']);
 const orgTreeRef = ref();
 const state = reactive({

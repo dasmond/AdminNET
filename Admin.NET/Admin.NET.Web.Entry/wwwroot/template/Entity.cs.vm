@@ -13,7 +13,7 @@ namespace @(Model.NameSpace);
 /// @(Model.Description)
 /// </summary>
 [Tenant("@(Model.ConfigId)")]
-[SugarTable(null, "@(Model.Description)")]
+[SugarTable("@(Model.TableName)", "@(Model.Description)")]
 public class @(Model.EntityName) @Model.BaseClassName
 {
 @foreach (var column in Model.TableField) {

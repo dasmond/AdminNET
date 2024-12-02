@@ -12,9 +12,8 @@ import { downloadStreamFile } from "/@@/utils/download";
 @:import { formatDate } from '/@@/utils/formatTime';
 }
 import { use@(Model.ClassName)Api } from '/@@/api/@(Model.PagePath)/@(Model.LowerClassName)';
-@if(Model.HasDictField || Model.HasEnumField || Model.HasConstField) {
+@if(Model.HasConstField) {
 @:import { useUserInfo } from "/@@/stores/userInfo";
-@:import DictLabel from "/@@/components/table/dictLabel.vue";
 }
 import editDialog from '/@@/views/@(Model.PagePath)/@(Model.LowerClassName)/component/editDialog.vue'
 import printDialog from '/@@/views/system/print/component/hiprint/preview.vue'
@@ -32,7 +31,7 @@ const editDialogRef = ref();
 const state = reactive({
   exportLoading: false,
   tableLoading: false,
-  stores: @(Model.HasDictField || Model.HasEnumField || Model.HasConstField ? "useUserInfo()" : "{}"),
+  stores: @(Model.HasConstField ? "useUserInfo()" : "{}"),
   showAdvanceQueryUI: @(Model.HasLikeQuery ? "false" : "true"),
   dropdownData: {} as any,
   selectData: [] as any[],
@@ -117,7 +116,7 @@ const batchDel@(Model.ClassName) = () => {
 @:// 设置状态
 @:const change@(Model.ClassName)Status = async (row: any) => {
   @:await @(Model.LowerClassName)Api.setStatus({ @(Model.PrimaryKeysFormat(", ", "{0}: row.{0}", true)), status: row.status }).then(() => ElMessage.success('状态设置成功'));
-  @:};
+@:};
 }
 @if (Model.ImportFieldList.Count > 0) {
 @:
@@ -166,15 +165,17 @@ handleQuery();
             }else if(column.EffectType == "InputNumber"){
               @:<el-input-number v-model="state.tableQueryParams.@(column.LowerPropertyName)"  clearable placeholder="请输入@(column.ColumnComment)"/>
             }else if(column.IsSelectorEffectType || column.EffectType == "ForeignKey") {
+              if (column.EffectType == "DictSelector" || column.EffectType == "EnumSelector") {
+              @:<g-sys-dict v-model="state.tableQueryParams.@(column.LowerPropertyName)" code="@(column.DictTypeCode)" render-as="select" placeholder="请选择@(column.ColumnComment)" clearable filterable />
+              } else {
               @:<el-select clearable filterable v-model="state.tableQueryParams.@(column.LowerPropertyName)" placeholder="请选择@(column.ColumnComment)">
                 if (column.EffectType == "ForeignKey") {
                 @:<el-option v-for="(item,index) in state.dropdownData.@(column.LowerPropertyName) ?? []" :key="index" :value="item.value" :label="item.label" />
                 } else if (column.EffectType == "ConstSelector") {
                 @:<el-option v-for="(item, index) in state.stores.getConstDataByTypeCode('@column.DictTypeCode')" :key="index" :label="item.name" :value="item.code" />
-                } else {
-                @:<el-option :value="item.value" :label="`[${item.value}]${item.label}`" :disabled="item.status == 2" :key="index" v-for="(item,index) in state.stores.getDictDataByCode('@(column.DictTypeCode)')" />
                 }
               @:</el-select>
+              }
             }else if(column.EffectType == "ApiTreeSelector"){
               @:<el-cascader
                 @::options="state.dropdownData.@(column.LowerPropertyName) ?? []"
@@ -269,7 +270,7 @@ handleQuery();
         } else if (Model.IsStatus(column)) {
             @:<el-switch v-model="scope.row.@column.LowerPropertyName" :active-value="1" :inactive-value="2" size="small" @@change="change@(Model.ClassName)Status(scope.row)" />
         } else {
-            @:<DictLabel :value="scope.row.@column.LowerPropertyName" code="@column.DictTypeCode" />
+            @:<g-sys-dict v-model="scope.row.@column.LowerPropertyName" code="@(column.DictTypeCode)" />
         }
           @:</template>
         @:</el-table-column>
