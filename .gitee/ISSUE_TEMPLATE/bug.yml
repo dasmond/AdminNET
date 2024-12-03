@@ -1,52 +1,74 @@
-name: Bug 反馈
+name: 🐞 Bug 反馈
 description: 当你在代码中发现了一个 Bug，导致应用崩溃或抛出异常，或者有一个组件存在问题，或者某些地方看起来不对劲。
-title: "[Bug]: "
-labels: ["bug"]
+title: "bug: "
+labels: [bug]
+assignees:
+  - Argo
 body:
-  - type: markdown
-    attributes:
-      value: |
-        感谢对项目的支持与关注。在提出问题之前，请确保你已查看相关开发或使用文档：[http://101.43.53.74:5050/](http://101.43.53.74:5050/)
-  - type: checkboxes
-    attributes:
-      label: 这个问题是否已经存在？
-      options:
-        - label: 我已经搜索过现有的问题：[https://gitee.com/zuohuaijun/Admin.NET/issues](https://gitee.com/zuohuaijun/Admin.NET/issues?q=is%3Aall)
-          required: true
-  - type: textarea
-    attributes:
-      label: 如何复现
-      description: 请详细告诉我们如何复现你遇到的问题，如涉及代码，可提供一个最小代码示例，并使用反引号```附上它
-      placeholder: |
-        1. ...
-        2. ...
-        3. ...
-    validations:
+- type: checkboxes
+  attributes:
+    label: 这个问题是否已经存在?
+    description: 请在问题列表中搜索，可能有人已经上报这个问题 ([Admin.NET/issues](https://gitee.com/zuohuaijun/Admin.NET/issues)).
+    options:
+    - label: 我已经搜索过现在的问题
       required: true
-  - type: textarea
-    attributes:
-      label: 预期结果
-      description: 请告诉我们你预期会发生什么。
-    validations:
-      required: true
-  - type: textarea
-    attributes:
-      label: 实际结果
-      description: 请告诉我们实际发生了什么。
-    validations:
-      required: true
-  - type: textarea
-    attributes:
-      label: 截图或视频
-      description: 如果可以的话，上传任何关于 bug 的截图。
-      value: |
-        [在这里上传图片]
-  - type: dropdown
-    id: version
-    attributes:
-      label: 版本
-      description: 你当前正在使用我们软件的哪个版本/分支？
-      options:
-        - next (默认)
-    validations:
-      required: true
+- type: textarea
+  attributes:
+    label: 如何操作复现这个问题
+    description: 请详细描述如何复现你遇到的问题
+    placeholder: |
+        1. 先操作什么
+        2. 再操作什么
+        3. 然后怎么样
+  validations:
+    required: true
+- type: textarea
+  attributes:
+    label: 预期结果
+    description: 请描述你认为的正确结果是什么
+  validations:
+    required: false
+- type: textarea
+  attributes:
+    label: 实际结果
+    description: 请描述实际结果是什么
+  validations:
+    required: false
+- type: textarea
+  attributes:
+    label: 截图或者视频
+    description: 此问题相关截图或者视频，如果是截图请画框与箭头标注
+    placeholder: |
+      [在这里上传图片或视频]
+      [图片截图后此处直接粘贴即可]
+  validations:
+    required: false
+- type: textarea
+  attributes:
+    label: 复现工程或者仓库地址
+    description: 最小代码示例
+    placeholder: |
+      1. 核心代码片段。
+      2. 提供公开的仓库地址链接。
+      3. 以文件夹或者压缩包 (zip) 形式提交复现工程，请务必删除工程目录下的 bin 和 obj。
+
+      声明：请勿以其他任何方式提供复现工程，不符合要求的提交，一律视为无效问题，不予处理。
+  validations:
+    required: true
+- type: textarea
+  id: version
+  attributes:
+    label: .NET Version 
+    description: |
+      Run `dotnet --version`
+    placeholder: |
+        [这里粘贴执行结果]
+  validations:
+    required: false
+- type: input
+  attributes:
+    label: Admin.NET Version
+    description: Admin.NET 版本
+    value: next
+  validations:
+    required: false
