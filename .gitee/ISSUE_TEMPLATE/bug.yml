@@ -6,13 +6,12 @@ body:
   - type: markdown
     attributes:
       value: |
-        感谢对项目的支持与关注。在提出问题之前，请确保你已查看相关开发或使用文档：
-        - http://101.43.53.74:5050/
+        感谢对项目的支持与关注。在提出问题之前，请确保你已查看相关开发或使用文档：[http://101.43.53.74:5050/](http://101.43.53.74:5050/)
   - type: checkboxes
     attributes:
       label: 这个问题是否已经存在？
       options:
-        - label: 我已经搜索过现有的问题 (https://gitee.com/zuohuaijun/Admin.NET/issues?q=is%3Aall)
+        - label: 我已经搜索过现有的问题：[https://gitee.com/zuohuaijun/Admin.NET/issues](https://gitee.com/zuohuaijun/Admin.NET/issues?q=is%3Aall)
           required: true
   - type: textarea
     attributes:
