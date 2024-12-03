@@ -33,7 +33,7 @@
 				<el-table-column prop="orderNo" label="排序" width="70" align="center" show-overflow-tooltip />
 				<el-table-column label="状态" width="70" align="center" show-overflow-tooltip>
 					<template #default="scope">
-            <g-sys-dict v-model="scope.row.status" code="StatusEnum" />
+						<el-switch v-model="scope.row.status" :active-value="1" :inactive-value="2" size="small" @change="changeStatus(scope.row)" v-auth="'sysRole:setStatus'" />
 					</template>
 				</el-table-column>
 				<el-table-column label="修改记录" width="100" align="center" show-overflow-tooltip>
@@ -157,5 +157,17 @@ const handleSizeChange = async (val: number) => {
 const handleCurrentChange = async (val: number) => {
 	state.tableParams.page = val;
 	await handleQuery();
+};
+
+// 修改状态
+const changeStatus = async (row: any) => {
+	await getAPI(SysRoleApi)
+		.apiSysRoleSetStatusPost({ id: row.id, status: row.status })
+		.then(() => {
+			ElMessage.success('角色状态设置成功');
+		})
+		.catch(() => {
+			row.status = row.status == 1 ? 2 : 1;
+		});
 };
 </script>
