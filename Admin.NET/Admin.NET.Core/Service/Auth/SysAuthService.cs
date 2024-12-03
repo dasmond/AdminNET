@@ -259,6 +259,7 @@ public class SysAuthService : IDynamicApiController, ITransient
             { ClaimConst.OrgId, user.OrgId },
             { ClaimConst.OrgName, user.SysOrg?.Name },
             { ClaimConst.OrgType, user.SysOrg?.Type },
+            { System.IdentityModel.Tokens.Jwt.JwtRegisteredClaimNames.NameId, user.Id },
         }, tokenExpire);
 
         // 生成刷新Token令牌
