@@ -180,8 +180,15 @@ public class SysCodeGenService : IDynamicApiController, ITransient
         var entityType = provider.DbMaintenance.GetTableInfoList(false).FirstOrDefault(u => u.Name == tableName);
         if (entityType == null) return null;
         var entityBasePropertyNames = _codeGenOptions.EntityBaseColumn[nameof(EntityTenant)];
+        var properties = GetEntityInfos().Result.First(e => e.DbTableName == tableName).Type.GetProperties()
+            .Where(e => e.GetCustomAttribute<SugarColumn>()?.IsIgnore == false).Select(e => new
+            {
+                PropertyName = e.Name,
+                ColumnComment = e.GetCustomAttribute<SugarColumn>()?.ColumnDescription,
+                ColumnName = e.GetCustomAttribute<SugarColumn>()?.ColumnName ?? e.Name
+            }).ToList();
         // 按原始类型的顺序获取所有实体类型属性（不包含导航属性，会返回null）
-        return provider.DbMaintenance.GetColumnInfosByTableName(entityType.Name).Select(u => new ColumnOuput
+        var columnList = provider.DbMaintenance.GetColumnInfosByTableName(entityType.Name).Select(u => new ColumnOuput
         {
             ColumnName = config!.DbSettings.EnableUnderLine ? CodeGenUtil.CamelColumnName(u.DbColumnName, entityBasePropertyNames) : u.DbColumnName,
             ColumnKey = u.IsPrimarykey.ToString(),
@@ -189,6 +196,13 @@ public class SysCodeGenService : IDynamicApiController, ITransient
             NetType = CodeGenUtil.ConvertDataType(u, provider.CurrentConnectionConfig.DbType),
             ColumnComment = u.ColumnDescription
         }).ToList();
+        foreach (var column in columnList)
+        {
+            var property = properties.First(e => e.ColumnName == column.ColumnName);
+            column.ColumnComment ??= property?.ColumnComment;
+            column.PropertyName = property?.PropertyName;
+        }
+        return columnList;
     }
 
     /// <summary>
