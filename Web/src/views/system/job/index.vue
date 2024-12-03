@@ -142,7 +142,7 @@
 				</el-table-column>
 				<el-table-column prop="jobDetail.createType" label="作业创建类型" width="110" align="center" show-overflow-tooltip>
 					<template #default="scope">
-            <g-sys-dict v-model="scope.row.jobDetail?.createType" code="JobCreateTypeEnum" />
+						<g-sys-dict v-model="scope.row.jobDetail.createType" code="JobCreateTypeEnum" />
 					</template>
 				</el-table-column>
 				<!-- <el-table-column prop="jobDetail.includeAnnotations" label="扫描特性触发器" align="center" show-overflow-tooltip>
