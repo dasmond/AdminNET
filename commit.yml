@@ -2,22 +2,22 @@
 branches: {
   }
 fileChange:
-  /Admin.NET:
-    newFile: !uuid '0d75bcf60bec93c907058019699c3b4eb75d8304'
-    oldFile: !uuid '6d7f059b276775242da909cba36ab4d46d5ec706'
-  /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '9cea6060aa411af524f2535b1270d7492699db3b'
-    oldFile: !uuid '2e155bcce50acfff0cfdeca24512e90c114f2d56'
-  /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid '52e893fe87175d3a69b5242cfc0093ac9bbddf65'
-    oldFile: !uuid '9e3f74b892195680aabebcf0dec1467cdf3de087'
-  /Admin.NET/Admin.NET.Core/Service/Auth:
-    newFile: !uuid '0ab0793b5dd4e7d269e10c992f8c1eb88346ac39'
-    oldFile: !uuid 'f9da5ddc3dfac97cbe89e49238b5508952e1120f'
-  /Admin.NET/Admin.NET.Core/Service/Auth/SysAuthService.cs:
-    newFile: !uuid '73ee10311a387e1fe610f1493e097358e8024391'
-    oldFile: !uuid '7a1b09f8fa95a2eaedb629656ec922f18f79e547'
-gitCommitId: !uuid '733cf453d970a641e49a8dd11a8c002136d823c3'
+  /.gitee:
+    newFile: !uuid '67a3f8711e589d6f8a601e533fcb0820b3e7231b'
+    oldFile: null
+  /.gitee/ISSUE_TEMPLATE:
+    newFile: !uuid 'e08aadd08b07a2c2ff8bf39179833ede5acacdab'
+    oldFile: null
+  /.gitee/ISSUE_TEMPLATE/bug.yml:
+    newFile: !uuid '77661654758e5a8fcb93c276fbc46c53955e4e57'
+    oldFile: null
+  /.gitee/ISSUE_TEMPLATE/config.yaml:
+    newFile: !uuid 'b696f2ab0c4726f0e3d280e6086385e0a5915043'
+    oldFile: null
+  /.gitee/ISSUE_TEMPLATE/feature.yml:
+    newFile: !uuid '4d7f037eb4f34a1f632bc04be6ff8adb1b6c68fc'
+    oldFile: null
+gitCommitId: !uuid '4cea83a3b714998f3fa291e70ccfc4b209f531c3'
 renames: {
   }
-revisionId: 2560
+revisionId: 2561
