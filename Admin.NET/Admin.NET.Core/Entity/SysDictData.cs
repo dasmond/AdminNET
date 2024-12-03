@@ -25,7 +25,7 @@ public partial class SysDictData : EntityBase
     /// </summary>
     [SugarColumn(ColumnDescription = "显示文本", Length = 256)]
     [Required, MaxLength(256)]
-    public virtual string Label { get; set; }
+    public virtual string? Label { get; set; }
 
     /// <summary>
     /// 值

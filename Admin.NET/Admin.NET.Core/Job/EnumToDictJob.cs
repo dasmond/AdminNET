@@ -58,7 +58,7 @@ public class EnumToDictJob : IJob
             Console.WriteLine($"【{DateTime.Now}】系统枚举类转字典类型数据: 插入{storageable1.InsertList.Count}条, 更新{storageable1.UpdateList.Count}条, 共{storageable1.TotalList.Count}条。");
 
             var storageable2 = await db.Storageable(sysDictTypeList.SelectMany(x => x.Children).ToList())
-                .WhereColumns(it => new { it.DictTypeId, Code = it.Value })
+                .WhereColumns(it => new { it.DictTypeId, it.Value })
                 .SplitUpdate(it => it.Any())
                 .SplitInsert(_ => true)
                 .ToStorageAsync();
