@@ -159,17 +159,23 @@ public class SysAuthService : IDynamicApiController, ITransient
     /// <param name="user"></param>
     private void VerifyPassword(string password, string keyPasswordErrorTimes, int passwordErrorTimes, SysUser user)
     {
-        if (CryptogramUtil.CryptoType == CryptogramEnum.MD5.ToString())
+        try
         {
-            if (user.Password.Equals(MD5Encryption.Encrypt(password))) return;
-            
-            _sysCacheService.Set(keyPasswordErrorTimes, ++passwordErrorTimes, TimeSpan.FromMinutes(30));
-            throw Oops.Oh(ErrorCodeEnum.D1000);
+            if (CryptogramUtil.CryptoType == CryptogramEnum.MD5.ToString())
+            {
+                if (user.Password.Equals(MD5Encryption.Encrypt(password))) return;
+            }
+            else
+            {
+                // 国密SM2解密（前端密码传输SM2加密后的）
+                password = CryptogramUtil.SM2Decrypt(password);
+                if (CryptogramUtil.Decrypt(user.Password).Equals(password)) return;
+            }
         }
-
-        // 国密SM2解密（前端密码传输SM2加密后的）
-        password = CryptogramUtil.SM2Decrypt(password);
-        if (CryptogramUtil.Decrypt(user.Password).Equals(password)) return;
+        catch (Exception ex)
+        {
+            Log.Error("用户密码验证异常：", ex);
+        }
 
         _sysCacheService.Set(keyPasswordErrorTimes, ++passwordErrorTimes, TimeSpan.FromMinutes(30));
         throw Oops.Oh(ErrorCodeEnum.D1000);
