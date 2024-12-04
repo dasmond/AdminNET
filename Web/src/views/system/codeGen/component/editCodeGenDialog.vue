@@ -258,6 +258,7 @@ const getGlobalComponentSize = computed(() => {
 const openDialog = (row: any) => {
 	state.ruleForm = JSON.parse(JSON.stringify(row));
   dbChanged().then(() => getColumnInfoList());
+  state.ruleForm.tableUniqueList ??= [];
 	state.isShowDialog = true;
 	ruleFormRef.value?.resetFields();
 };
