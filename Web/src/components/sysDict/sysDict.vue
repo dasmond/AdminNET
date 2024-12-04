@@ -26,6 +26,10 @@ const props = defineProps({
 		type: Function,
 		default: (dict: any): boolean => dict,
 	},
+  onItemFormatter: {
+    type: Function as (dict: any) => (string | undefined | null),
+    default: () => undefined
+  },
 	renderAs: {
 		type: String,
 		default: 'tag',
@@ -58,19 +62,19 @@ watch(
 <template>
 	<!-- 渲染标签 -->
 	<template v-if="props.renderAs === 'tag'">
-		<el-tag v-if="state.dict" v-bind="$attrs" :type="state.dict.tagType" :style="state.dict.styleSetting" :class="state.dict.classSetting">{{ state.dict[props.propLabel] }}</el-tag>
+		<el-tag v-if="state.dict" v-bind="$attrs" :type="state.dict.tagType" :style="state.dict.styleSetting" :class="state.dict.classSetting">{{ onItemFormatter(state.dict) ?? state.dict[props.propLabel] }}</el-tag>
 		<span v-else>{{ state.value }}</span>
 	</template>
 	<!-- 渲染选择器 -->
 	<template v-if="props.renderAs === 'select'">
 		<el-select v-model="state.value" v-bind="$attrs" @change="(newValue: any) => emit('update:modelValue', newValue)">
-			<el-option :label="`[${item[props.propValue]}]${item[props.propLabel]}`" :value="item[props.propValue]" v-for="(item, index) in state.dictData" :key="index" />
+			<el-option :label="onItemFormatter(item) ?? item[props.propLabel]" :value="item[props.propValue]" v-for="(item, index) in state.dictData" :key="index" />
 		</el-select>
 	</template>
 	<!-- 渲染单选框 -->
 	<template v-if="props.renderAs === 'radio'">
 		<el-radio-group v-model="state.value" v-bind="$attrs" @change="(newValue: any) => emit('update:modelValue', newValue)">
-			<el-radio :value="item[props.propValue]" v-for="(item, index) in state.dictData" :key="index">{{ item[props.propLabel] }}</el-radio>
+			<el-radio :value="item[props.propValue]" v-for="(item, index) in state.dictData" :key="index">{{ onItemFormatter(item) ?? item[props.propLabel] }}</el-radio>
 		</el-radio-group>
 	</template>
 </template>
