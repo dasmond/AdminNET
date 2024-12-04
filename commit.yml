@@ -2,22 +2,19 @@
 branches: {
   }
 fileChange:
-  /Web:
-    newFile: !uuid 'cb5e17c197ae157b1cefab4e21ab66f808ec8ce3'
-    oldFile: !uuid 'f86107b7bfc78c4329ddd5e8142cd3f0e4e01d0c'
-  /Web/src:
-    newFile: !uuid 'ba2022035db58326f96b2834c6181ebd7d8db3be'
-    oldFile: !uuid '86aca0d59e60356ca489947e4dbd788404c73543'
-  /Web/src/components:
-    newFile: !uuid '6f5e90cd8de5abf0bd9b5da52c1b97f57dd290ac'
-    oldFile: !uuid 'd7a82985303db2798d02ab101f61c2e1b30dae05'
-  /Web/src/components/sysDict:
-    newFile: !uuid '81f8480eeeaf7725c94e1fd2e7e1bc9f7849f7b4'
-    oldFile: !uuid '189f1a9f2d2be2202583ffefca9289ee5d0eac64'
-  /Web/src/components/sysDict/sysDict.vue:
-    newFile: !uuid '69ff3e5869057f3467c2e4aea223aa0389f330c3'
-    oldFile: !uuid 'bd64739122291dbdf0ed1022c26f55ae27f96322'
-gitCommitId: !uuid '771c347974497afb52e168aadb9186de4fd44d9e'
+  /.gitee:
+    newFile: !uuid 'd5e2c44a0910ef15c2b8c17480e482efeb1aa0c3'
+    oldFile: !uuid 'abe38c8d4b4c765e543b2c809cf79408a09a8a99'
+  /.gitee/ISSUE_TEMPLATE:
+    newFile: !uuid '6055daab6ffc149290f3f36478cec8dc1c836ccc'
+    oldFile: !uuid '03440ff4f4916f3c0e190996a585abc0bc66d000'
+  /.gitee/ISSUE_TEMPLATE/bug.yml:
+    newFile: !uuid '81cd3b3bf1bc16bd7be4b5813a805e13195afde4'
+    oldFile: !uuid '7d5b952477546c481702039851e4acc9303a4673'
+  /.gitee/ISSUE_TEMPLATE/feature.yml:
+    newFile: !uuid '1e370f02dcbfd5121a8c68aa3e8011a1827764ff'
+    oldFile: !uuid '40916bcca555290c3853e4261c5cb18ee4152437'
+gitCommitId: !uuid '123d2cfa72eadd4a4436078341c3963c36002ff5'
 renames: {
   }
-revisionId: 2516
+revisionId: 2517
