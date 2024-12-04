@@ -10,8 +10,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Furion.Extras.Authentication.JwtBearer" Version="4.9.5.26" />
+    <PackageReference Include="Furion.Extras.ObjectMapper.Mapster" Version="4.9.5.26" />
+    <PackageReference Include="Furion.Pure" Version="4.9.5.26" />
     <PackageReference Include="IGeekFan.AspNetCore.Knife4jUI" Version="0.0.16" />
-    <PackageReference Include="System.Security.Cryptography.Pkcs" Version="8.0.1" />
+    <PackageReference Include="System.Security.Cryptography.Pkcs" Version="9.0.0" />
   </ItemGroup>
 
   <ItemGroup>

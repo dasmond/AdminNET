@@ -20,6 +20,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Furion.Extras.Authentication.JwtBearer" Version="4.9.5.26" />
+    <PackageReference Include="Furion.Extras.ObjectMapper.Mapster" Version="4.9.5.26" />
+    <PackageReference Include="Furion.Pure" Version="4.9.5.26" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\..\Admin.NET.Core\Admin.NET.Core.csproj" />
   </ItemGroup>
 	
