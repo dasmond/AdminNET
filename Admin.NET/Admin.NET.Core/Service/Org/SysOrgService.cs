@@ -333,6 +333,26 @@ public class SysOrgService : IDynamicApiController, ITransient
     }
 
     /// <summary>
+    /// 判定用户是否有某角色权限
+    /// </summary>
+    /// <param name="userId"></param>
+    /// <param name="role">角色代码</param>
+    /// <returns></returns>
+    [NonAction]
+    public async Task<bool> GetUserHasRole(long userId, SysRole role)
+    {
+        if (_userManager.SuperAdmin)
+            return true;
+        var userOrgId = _userManager.OrgId;
+        var roleList = await _sysUserRoleService.GetUserRoleList(userId);
+        if (roleList != null && roleList.Exists(r => r.Code == role.Code) == true)
+            return true;
+        roleList = new List<SysRole> { role };
+        var orgIds = await GetUserOrgIdList(roleList, userId, userOrgId);
+        return orgIds.Contains(userOrgId);
+    }
+
+    /// <summary>
     /// 根据角色Id集合获取机构Id集合
     /// </summary>
     /// <param name="roleList"></param>
