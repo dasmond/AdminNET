@@ -34,7 +34,7 @@ public class AddTenantInput : TenantOutput
     /// </summary>
     [Required(ErrorMessage = "应用不能为空")]
     public new long? AppId { get; set; }
-    
+
     /// <summary>
     /// 租户名称
     /// </summary>
@@ -46,7 +46,7 @@ public class AddTenantInput : TenantOutput
     /// </summary>
     [Required(ErrorMessage = "租管账号不能为空"), MinLength(3, ErrorMessage = "租管账号不能少于3个字符")]
     public override string AdminAccount { get; set; }
-    
+
     /// <summary>
     /// 租户域名
     /// </summary>

@@ -130,5 +130,5 @@ public partial class SysMenu : EntityBase
     /// 菜单子项
     /// </summary>
     [SugarColumn(IsIgnore = true)]
-    public List<SysMenu> Children { get; set; } = new ();
+    public List<SysMenu> Children { get; set; } = new();
 }

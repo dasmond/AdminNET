@@ -348,7 +348,7 @@ public class MemoryMetricsClient
         var metrics = new MemoryMetrics();
         var memory = output.Split(' ', (char)StringSplitOptions.RemoveEmptyEntries);
         if (memory.Length != 2) return metrics;
- 
+
         metrics.Total = double.Parse(memory[0]) / 1024;
         metrics.Free = double.Parse(memory[1]) / 1024;
         metrics.Used = metrics.Total - metrics.Free;

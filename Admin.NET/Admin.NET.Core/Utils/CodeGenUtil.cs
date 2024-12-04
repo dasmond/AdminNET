@@ -67,20 +67,20 @@ public static class CodeGenUtil
         switch (dataType.ToLower())
         {
             case "interval year to month": return "int";
-            
+
             case "interval day to second": return "TimeSpan";
-            
+
             case "smallint": return "Int16";
-            
+
             case "int":
             case "integer": return "int";
-            
+
             case "long": return "long";
-            
+
             case "float": return "float";
-            
+
             case "decimal": return "decimal";
-            
+
             case "number":
                 if (length == null) return "decimal";
                 return scale switch

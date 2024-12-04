@@ -342,7 +342,7 @@ public class SysDatabaseService : IDynamicApiController, ITransient
         // 再使用第一个主键排序
         query = query.OrderBy(dbColumnInfos.First(u => u.IsPrimarykey).DbColumnName);
         var records = ((IEnumerable)await query.ToListAsync()).ToDynamicList();
-        
+
         // 过滤已存在的数据
         if (input.FilterExistingData && records.Any())
         {
@@ -372,14 +372,14 @@ public class SysDatabaseService : IDynamicApiController, ITransient
                     {
                         string fullName = seedDataTypes[i].FullName;
                         if ((fullName == doNotFilterFullName1) || (fullName == doNotFilterFullName2)) continue;
-                        
+
                         // 删除重复数据
                         var instance = Activator.CreateInstance(seedDataTypes[i]);
                         var hasDataMethod = seedDataTypes[i].GetMethod("HasData");
                         var seedData = ((IEnumerable)hasDataMethod?.Invoke(instance, null))?.Cast<object>();
                         if (seedData == null) continue;
 
-                        List<object> recordsToRemove = new ();
+                        List<object> recordsToRemove = new();
                         foreach (var record in records)
                         {
                             object recordId = pkInfo.GetValue(record);
@@ -425,7 +425,7 @@ public class SysDatabaseService : IDynamicApiController, ITransient
         //         jsonIgnoreInfo.Add(record);
         //     }
         // }
-        
+
         // 获取所有字段信息
         var propertyList = entityType.GetProperties().Where(x => false == (x.GetCustomAttribute<SugarColumn>()?.IsIgnore ?? false)).ToList();
         for (var i = 0; i < propertyList.Count; i++)
@@ -480,7 +480,7 @@ public class SysDatabaseService : IDynamicApiController, ITransient
             builder.AddUsing("System.Collections.Generic");
             builder.AddUsing("System.Linq");
         });
-        
+
         var targetPath = GetSeedDataTargetPath(input);
         await File.WriteAllTextAsync(targetPath, tResult, Encoding.UTF8);
     }

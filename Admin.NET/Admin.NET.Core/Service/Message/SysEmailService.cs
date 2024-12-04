@@ -37,13 +37,13 @@ public class SysEmailService : IDynamicApiController, ITransient
         var webTitle = await _sysConfigService.GetConfigValue<string>(ConfigConst.SysWebTitle);
         title = string.IsNullOrWhiteSpace(title) ? $"{webTitle} 系统邮件" : title;
         var message = new MimeMessage();
-        
+
         message.From.Add(new MailboxAddress(_emailOptions.DefaultFromEmail, _emailOptions.DefaultFromEmail));
-        
+
         message.To.Add(string.IsNullOrWhiteSpace(toEmail)
             ? new MailboxAddress(_emailOptions.DefaultToEmail, _emailOptions.DefaultToEmail)
             : new MailboxAddress(toEmail, toEmail));
-        
+
         message.Subject = title;
         message.Body = new TextPart("html")
         {

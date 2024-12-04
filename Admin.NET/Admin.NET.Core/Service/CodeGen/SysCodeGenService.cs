@@ -15,7 +15,7 @@ namespace Admin.NET.Core.Service;
 public class SysCodeGenService : IDynamicApiController, ITransient
 {
     private readonly ISqlSugarClient _db;
-    
+
     private readonly SysCodeGenConfigService _codeGenConfigService;
     private readonly CodeGenOptions _codeGenOptions;
     private readonly IViewEngine _viewEngine;
@@ -365,14 +365,14 @@ public class SysCodeGenService : IDynamicApiController, ITransient
         }
 
         if (input.GenerateMenu) await AddMenu(input.TableName, input.BusName, input.MenuPid ?? 0, input.MenuIcon, input.PagePath, tableFieldList);
-        
+
         // 非ZIP压缩返回空
         if (!input.GenerateType.StartsWith('1')) return null;
-        
+
         // 判断是否存在同名称文件
         string downloadPath = zipPath + ".zip";
         if (File.Exists(downloadPath)) File.Delete(downloadPath);
-        
+
         // 创建zip文件并返回下载地址
         ZipFile.CreateFromDirectory(zipPath, downloadPath);
         return new { url = $"{App.HttpContext.Request.Scheme}://{App.HttpContext.Request.Host.Value}/codeGen/{input.TableName}.zip" };
@@ -383,7 +383,6 @@ public class SysCodeGenService : IDynamicApiController, ITransient
     /// </summary>
     /// <returns></returns>
     [DisplayName("获取代码生成预览")]
-    // ReSharper disable once MemberCanBePrivate.Global
     public async Task<Dictionary<string, string>> Preview(SysCodeGen input)
     {
         var (_, result) = await RenderTemplateAsync(input);
@@ -413,7 +412,7 @@ public class SysCodeGenService : IDynamicApiController, ITransient
             ProjectLastName = input.NameSpace!.Split('.').Last(),
             LowerClassName = input.TableName![..1].ToLower() + input.TableName[1..],
             TableUniqueConfigList = input.TableUniqueList ?? new(),
-            
+
             TableField = tableFieldList,
             QueryWhetherList = tableFieldList.Where(u => u.WhetherQuery == "Y").ToList(),
             ImportFieldList = tableFieldList.Where(u => u.WhetherImport == "Y").ToList(),
@@ -422,7 +421,7 @@ public class SysCodeGenService : IDynamicApiController, ITransient
             AddUpdateFieldList = tableFieldList.Where(u => u.WhetherAddUpdate == "Y").ToList(),
             ApiTreeFieldList = tableFieldList.Where(u => u.EffectType == "ApiTreeSelector").ToList(),
             DropdownFieldList = tableFieldList.Where(u => u.EffectType is "ForeignKey" or "ApiTreeSelector").ToList(),
-            
+
             HasJoinTable = joinTableList.Count > 0,
             HasDictField = tableFieldList.Any(u => u.EffectType == "DictSelector"),
             HasEnumField = tableFieldList.Any(u => u.EffectType == "EnumSelector"),
@@ -445,7 +444,7 @@ public class SysCodeGenService : IDynamicApiController, ITransient
                 builder.AddAssemblyReferenceByName("System.Text.RegularExpressions");
                 builder.AddAssemblyReferenceByName("System.Collections");
                 builder.AddAssemblyReferenceByName("System.Linq");
-                
+
                 builder.AddUsing("System.Text.RegularExpressions");
                 builder.AddUsing("System.Collections.Generic");
                 builder.AddUsing("System.Linq");
@@ -474,11 +473,11 @@ public class SysCodeGenService : IDynamicApiController, ITransient
         var parentMenuPath = "";
         var appId = _userManager.AppId;
         var appMenuList = new List<SysAppMenu>();
-        var lowerClassName =  className[..1].ToLower() + className[1..];
+        var lowerClassName = className[..1].ToLower() + className[1..];
         if (pid == 0)
         {
             // 新增目录，并记录Id
-            var dirMenu = new SysMenu { Pid=0, Title=title, Type=MenuTypeEnum.Dir, Icon="robot", Path="/" + className.ToLower(), Component="Layout" };
+            var dirMenu = new SysMenu { Pid = 0, Title = title, Type = MenuTypeEnum.Dir, Icon = "robot", Path = "/" + className.ToLower(), Component = "Layout" };
             pid = (await _db.Insertable(dirMenu).ExecuteReturnEntityAsync()).Id;
             appMenuList.Add(new SysAppMenu { AppId = appId, MenuId = pid });
         }
@@ -487,9 +486,9 @@ public class SysCodeGenService : IDynamicApiController, ITransient
             var parentMenu = await _db.Queryable<SysMenu>().FirstAsync(u => u.Id == pid) ?? throw Oops.Oh(ErrorCodeEnum.D1505);
             parentMenuPath = parentMenu.Path;
         }
-        
+
         // 新增菜单，并记录Id
-        var rootMenu = new SysMenu { Pid=pid, Title=title, Type=MenuTypeEnum.Menu, Icon=menuIcon, Path=$"{parentMenuPath}/{className.ToLower()}", Component=$"/{pagePath}/{lowerClassName}/index" };
+        var rootMenu = new SysMenu { Pid = pid, Title = title, Type = MenuTypeEnum.Menu, Icon = menuIcon, Path = $"{parentMenuPath}/{className.ToLower()}", Component = $"/{pagePath}/{lowerClassName}/index" };
         pid = (await _db.Insertable(rootMenu).ExecuteReturnEntityAsync()).Id;
         appMenuList.Add(new SysAppMenu { AppId = appId, MenuId = pid });
 
@@ -509,13 +508,13 @@ public class SysCodeGenService : IDynamicApiController, ITransient
         };
 
         if (tableFieldList.Any(u => u.EffectType is "ForeignKey" or "ApiTreeSelector" && (u.WhetherAddUpdate == "Y" || u.WhetherQuery == "Y")))
-            menuList.Add(new SysMenu { Title="下拉列表数据", Permission=$"{lowerClassName}:dropdownData", Pid=pid, Type=MenuTypeEnum.Btn, OrderNo=orderNo+=10});
-        
+            menuList.Add(new SysMenu { Title = "下拉列表数据", Permission = $"{lowerClassName}:dropdownData", Pid = pid, Type = MenuTypeEnum.Btn, OrderNo = orderNo += 10 });
+
         foreach (var column in tableFieldList.Where(u => u.EffectType == "Upload"))
-            menuList.Add(new SysMenu { Title=$"上传{column.ColumnComment}", Permission=$"{lowerClassName}:upload{column.PropertyName}", Pid=pid, Type=MenuTypeEnum.Btn, OrderNo=orderNo+=10});
-        
+            menuList.Add(new SysMenu { Title = $"上传{column.ColumnComment}", Permission = $"{lowerClassName}:upload{column.PropertyName}", Pid = pid, Type = MenuTypeEnum.Btn, OrderNo = orderNo += 10 });
+
         await _db.Insertable(menuList).ExecuteCommandAsync();
-        
+
         // 新增应用菜单关联
         appMenuList.AddRange(menuList.Select(u => new SysAppMenu { AppId = appId, MenuId = u.Id }));
         await _db.Insertable(appMenuList).ExecuteCommandAsync();

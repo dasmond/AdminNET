@@ -131,7 +131,7 @@ public class SysCodeGenConfigService : IDynamicApiController, ITransient
             codeGenConfig.QueryType = GetDefaultQueryType(codeGenConfig); // QueryTypeEnum.eq.ToString();
             codeGenConfig.OrderNo = orderNo;
             codeGenConfigs.Add(codeGenConfig);
-            
+
             if (!string.IsNullOrWhiteSpace(tableColumn.DictTypeCode))
             {
                 codeGenConfig.QueryType = "==";

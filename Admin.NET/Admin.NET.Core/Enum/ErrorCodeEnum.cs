@@ -222,7 +222,7 @@ public enum ErrorCodeEnum
     /// </summary>
     [ErrorCodeItemMetadata("开放接口绑定租户禁止删除")]
     D1031,
-    
+
     /// <summary>
     /// 手机号已存在
     /// </summary>
@@ -324,13 +324,13 @@ public enum ErrorCodeEnum
     /// </summary>
     [ErrorCodeItemMetadata("字典状态错误")]
     D3005,
-    
+
     /// <summary>
     /// 字典编码不能以Enum结尾
     /// </summary>
     [ErrorCodeItemMetadata("字典编码不能以Enum结尾")]
     D3006,
-    
+
     /// <summary>
     /// 禁止修改枚举类型的字典编码
     /// </summary>
@@ -552,7 +552,7 @@ public enum ErrorCodeEnum
     /// </summary>
     [ErrorCodeItemMetadata("租户从库配置错误")]
     D1302,
-    
+
     /// <summary>
     /// 已存在同名的租户域名
     /// </summary>
@@ -654,19 +654,19 @@ public enum ErrorCodeEnum
     /// </summary>
     [ErrorCodeItemMetadata("已存在同名功能或同名程序及插件")]
     D1900,
-    
+
     /// <summary>
     /// 禁止删除存在关联租户的应用
     /// </summary>
     [ErrorCodeItemMetadata("禁止删除存在关联租户的应用")]
     A1001,
-    
+
     /// <summary>
     /// 禁止删除存在关联菜单的应用
     /// </summary>
     [ErrorCodeItemMetadata("禁止删除存在关联菜单的应用")]
     A1002,
-    
+
     /// <summary>
     /// 找不到系统应用
     /// </summary>

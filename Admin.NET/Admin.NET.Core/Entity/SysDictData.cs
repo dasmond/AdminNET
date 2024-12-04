@@ -86,7 +86,7 @@ public partial class SysDictData : EntityBase
     /// </summary>
     [SugarColumn(ColumnDescription = "状态")]
     public StatusEnum Status { get; set; } = StatusEnum.Enable;
-    
+
     /// <summary>
     /// 字典类型
     /// </summary>

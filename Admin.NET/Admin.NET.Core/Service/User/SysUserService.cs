@@ -103,7 +103,7 @@ public class SysUserService : IDynamicApiController, ITransient
         // 是否租户隔离登录验证
         var isTenantHostLogin = await _sysConfigService.GetConfigValue<bool>(ConfigConst.SysTenantHostLogin);
         var query = _sysUserRep.AsQueryable().ClearFilter().WhereIF(isTenantHostLogin, u => u.TenantId == _userManager.TenantId || u.AccountType == AccountTypeEnum.SuperAdmin);
-        
+
         if (await query.AnyAsync(u => u.Account == input.Account)) throw Oops.Oh(ErrorCodeEnum.D1003);
         if (!string.IsNullOrWhiteSpace(input.Phone) && await query.AnyAsync(u => u.Phone == input.Phone)) throw Oops.Oh(ErrorCodeEnum.D1032);
 
@@ -140,7 +140,7 @@ public class SysUserService : IDynamicApiController, ITransient
         var isTenantHostLogin = await _sysConfigService.GetConfigValue<bool>(ConfigConst.SysTenantHostLogin);
         var query = _sysUserRep.AsQueryable().ClearFilter().Where(u => u.Id != input.Id)
             .WhereIF(isTenantHostLogin, u => u.TenantId == _userManager.TenantId || u.AccountType == AccountTypeEnum.SuperAdmin);
-        
+
         if (await query.AnyAsync(u => u.Account == input.Account)) throw Oops.Oh(ErrorCodeEnum.D1003);
         if (!string.IsNullOrWhiteSpace(input.Phone) && await query.AnyAsync(u => u.Phone == input.Phone)) throw Oops.Oh(ErrorCodeEnum.D1032);
 
@@ -211,7 +211,7 @@ public class SysUserService : IDynamicApiController, ITransient
 
         // 删除域账号
         await _sysUserLdapService.DeleteUserLdapByUserId(input.Id);
-        
+
         // 删除用户收藏菜单
         await _sysUserMenuService.DeleteUserMenuList(input.Id);
 

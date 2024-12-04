@@ -39,7 +39,7 @@ public static class CommonUtil
             return Math.Abs(hash1 + (hash2 * 1566083941));
         }
     }
-    
+
     /// <summary>
     /// 生成百分数
     /// </summary>
@@ -215,7 +215,7 @@ public static class CommonUtil
         IImporter importer = new ExcelImporter();
         var res = await importer.Import<T>(file.OpenReadStream());
         var message = string.Empty;
-        
+
         if (!res.HasError) return res.Data;
 
         if (res.Exception != null)

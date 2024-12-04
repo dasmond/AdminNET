@@ -1,7 +1,7 @@
 ﻿// Admin.NET 项目的版权、商标、专利和其他相关权利均受相应法律法规的保护。使用本项目应遵守相关法律法规和许可证的要求。
-// 
+//
 // 本项目主要遵循 MIT 许可证和 Apache 许可证（版本 2.0）进行分发和使用。许可证位于源代码树根目录中的 LICENSE-MIT 和 LICENSE-APACHE 文件。
-// 
+//
 // 不得利用本项目从事危害国家安全、扰乱社会秩序、侵犯他人合法权益等法律法规禁止的活动！任何基于本项目二次开发而产生的一切法律纠纷和责任，我们不承担任何责任！
 
 namespace Admin.NET.Core.Service;
@@ -36,12 +36,12 @@ public class SysAppService : IDynamicApiController, ITransient
     {
         input.Keyword = input.Keyword?.Trim();
         var query = _sysAppRep.AsQueryable()
-            .WhereIF(!string.IsNullOrWhiteSpace(input.Keyword), u => u.Name.Contains(input.Keyword) || 
-               u.Title.Contains(input.Keyword) || u.ViceTitle.Contains(input.Keyword) || 
+            .WhereIF(!string.IsNullOrWhiteSpace(input.Keyword), u => u.Name.Contains(input.Keyword) ||
+               u.Title.Contains(input.Keyword) || u.ViceTitle.Contains(input.Keyword) ||
                u.ViceDesc.Contains(input.Keyword) || u.Remark.Contains(input.Keyword))
             .OrderBy(u => new { u.OrderNo, u.Id })
             .Select<SysAppOutput>();
-		return await query.OrderBuilder(input).ToPagedListAsync(input.Page, input.PageSize);
+        return await query.OrderBuilder(input).ToPagedListAsync(input.Page, input.PageSize);
     }
 
     /// <summary>
@@ -67,7 +67,7 @@ public class SysAppService : IDynamicApiController, ITransient
     public async Task Update(UpdateSysAppInput input)
     {
         _ = await _sysAppRep.GetFirstAsync(u => u.Id == input.Id) ?? throw Oops.Oh(ErrorCodeEnum.D1002);
-        
+
         var entity = input.Adapt<SysApp>();
         await _sysAppRep.AsUpdateable(entity).ExecuteCommandAsync();
     }
@@ -82,16 +82,16 @@ public class SysAppService : IDynamicApiController, ITransient
     public async Task Delete(BaseIdInput input)
     {
         var entity = await _sysAppRep.GetFirstAsync(u => u.Id == input.Id) ?? throw Oops.Oh(ErrorCodeEnum.D1002);
-        
+
         // 禁止删除存在关联租户的应用
         if (await _sysAppRep.Context.Queryable<SysTenant>().AnyAsync(u => u.AppId == input.Id)) throw Oops.Oh(ErrorCodeEnum.A1001);
-        
+
         // 禁止删除存在关联菜单的应用
         if (await _sysAppMenuRep.AsQueryable().AnyAsync(u => u.AppId == input.Id)) throw Oops.Oh(ErrorCodeEnum.A1002);
-        
+
         await _sysAppRep.DeleteAsync(entity);
     }
-    
+
     /// <summary>
     /// 获取授权菜单 🔖
     /// </summary>
@@ -100,11 +100,11 @@ public class SysAppService : IDynamicApiController, ITransient
     [UnitOfWork]
     [DisplayName("获取授权菜单")]
     [ApiDescriptionSettings(Name = "GrantMenu"), HttpGet]
-    public async Task<List<long>> GrantMenu([FromQuery]long id)
+    public async Task<List<long>> GrantMenu([FromQuery] long id)
     {
-         return await _sysAppMenuRep.AsQueryable().Where(u => u.AppId == id).Select(u => u.MenuId).ToListAsync();
+        return await _sysAppMenuRep.AsQueryable().Where(u => u.AppId == id).Select(u => u.MenuId).ToListAsync();
     }
-    
+
     /// <summary>
     /// 授权菜单 🔖
     /// </summary>
@@ -116,11 +116,11 @@ public class SysAppService : IDynamicApiController, ITransient
     public async Task GrantMenu(UpdateAppMenuInput input)
     {
         input.MenuIdList ??= new();
-        
+
         await _sysAppMenuRep.DeleteAsync(u => u.AppId == input.Id);
-        
+
         var list = input.MenuIdList.Select(id => new SysAppMenu { AppId = input.Id, MenuId = id }).ToList();
-        
+
         await _sysAppMenuRep.InsertRangeAsync(list);
 
         // 清除应用下其他模块越权的授权数据，包括角色菜单，用户收藏菜单
@@ -130,7 +130,7 @@ public class SysAppService : IDynamicApiController, ITransient
         await _sysAppRep.Context.Deleteable<SysRoleMenu>().Where(u => roleIds.Contains(u.RoleId) && !input.MenuIdList.Contains(u.MenuId)).ExecuteCommandAsync();
         await _sysAppRep.Context.Deleteable<SysUserMenu>().Where(u => userIds.Contains(u.UserId) && !input.MenuIdList.Contains(u.MenuId)).ExecuteCommandAsync();
     }
-    
+
     /// <summary>
     /// 获取切换应用数据 🔖
     /// </summary>
@@ -159,7 +159,7 @@ public class SysAppService : IDynamicApiController, ITransient
             })
         };
     }
-    
+
     /// <summary>
     /// 切换应用 🔖
     /// </summary>
@@ -172,10 +172,10 @@ public class SysAppService : IDynamicApiController, ITransient
     {
         _ = await _sysAppRep.Context.Queryable<SysTenant>().FirstAsync(u => u.Id == input.TenantId) ?? throw Oops.Oh(ErrorCodeEnum.Z1003);
         _ = await _sysAppRep.GetFirstAsync(u => u.Id == input.Id) ?? throw Oops.Oh(ErrorCodeEnum.D1002);
-        
+
         var user = await _sysAppRep.Context.Queryable<SysUser>().FirstAsync(u => u.Id == _userManager.UserId);
         user.TenantId = input.TenantId;
-        
+
         return await _sysAuthService.CreateToken(user, input.Id);
     }
 

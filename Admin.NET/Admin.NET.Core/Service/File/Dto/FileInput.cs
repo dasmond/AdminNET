@@ -65,7 +65,7 @@ public class UploadFileInput
     /// 允许格式：.jpeg.jpg.png.bmp.gif.tif
     /// </summary>
     public string AllowSuffix { get; set; }
-    
+
     /// <summary>
     /// 文件类型
     /// </summary>
@@ -81,7 +81,7 @@ public class UploadFileFromBase64Input
     /// 文件名
     /// </summary>
     public string? FileName { get; set; }
-    
+
     /// <summary>
     /// 文件内容
     /// </summary>

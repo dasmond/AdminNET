@@ -94,7 +94,7 @@ public class SysConfigService : IDynamicApiController, ITransient
     public async Task DeleteConfig(DeleteConfigInput input)
     {
         var config = await _sysConfigRep.GetFirstAsync(u => u.Id == input.Id);
-        
+
         // 禁止删除系统参数
         if (config.SysFlag == YesNoEnum.Y) throw Oops.Oh(ErrorCodeEnum.D9001);
 
@@ -115,7 +115,7 @@ public class SysConfigService : IDynamicApiController, ITransient
         foreach (var id in ids)
         {
             var config = await _sysConfigRep.GetFirstAsync(u => u.Id == id);
-            
+
             // 禁止删除系统参数
             if (config.SysFlag == YesNoEnum.Y) continue;
 
@@ -225,7 +225,7 @@ public class SysConfigService : IDynamicApiController, ITransient
         {
             var info = await _sysConfigRep.GetFirstAsync(c => c.Code == Config.Code);
             if (info == null) continue;
-            
+
             await _sysConfigRep.AsUpdateable().SetColumns(u => u.Value == Config.Value).Where(u => u.Code == Config.Code).ExecuteCommandAsync();
             Remove(info);
         }
@@ -248,7 +248,7 @@ public class SysConfigService : IDynamicApiController, ITransient
         // var sysCopyright = await GetConfigValue<string>(ConfigConst.SysWebCopyright);
         // var sysIcp = await GetConfigValue<string>(ConfigConst.SysWebIcp);
         var app = await App.GetRequiredService<SysAppService>().GetCurrentAppInfo();
-        
+
         var sysIcpUrl = await GetConfigValue<string>(ConfigConst.SysWebIcpUrl);
         var sysSecondVer = await GetConfigValue<bool>(ConfigConst.SysSecondVer);
         var sysCaptcha = await GetConfigValue<bool>(ConfigConst.SysCaptcha);
@@ -297,7 +297,7 @@ public class SysConfigService : IDynamicApiController, ITransient
 
             // 删除已存在文件
             if (File.Exists(oldSysLogoAbsoluteFilePath)) File.Delete(oldSysLogoAbsoluteFilePath);
-    
+
             // 创建文件夹
             var absoluteFileDir = Path.GetDirectoryName(absoluteFilePath);
             if (!Directory.Exists(absoluteFileDir)) Directory.CreateDirectory(absoluteFileDir);
@@ -317,7 +317,7 @@ public class SysConfigService : IDynamicApiController, ITransient
         app.Icp = input.SysIcp;
 
         await _sysConfigRep.Context.Updateable(app).ExecuteCommandAsync();
-        
+
         await UpdateConfigValue(ConfigConst.SysWebIcpUrl, input.SysIcpUrl);
         await UpdateConfigValue(ConfigConst.SysSecondVer, (input.SysSecondVer ?? false).ToString());
         await UpdateConfigValue(ConfigConst.SysCaptcha, (input.SysCaptcha ?? true).ToString());
@@ -329,6 +329,5 @@ public class SysConfigService : IDynamicApiController, ITransient
         _sysCacheService.Remove($"{CacheConst.KeyConfig}Remark:{config.Code}");
         _sysCacheService.Remove($"{CacheConst.KeyConfig}{config.GroupCode}:GroupWithCache");
         _sysCacheService.Remove($"{CacheConst.KeyConfig}{config.Code}");
-
     }
 }

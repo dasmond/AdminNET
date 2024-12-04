@@ -18,49 +18,49 @@ public partial class SysApp : EntityBase
     /// </summary>
     [SugarColumn(ColumnDescription = "名称", Length = 32), Required, MaxLength(32)]
     public virtual string Name { get; set; }
-    
+
     /// <summary>
     /// 图标
     /// </summary>
     [SugarColumn(ColumnDescription = "图标", Length = 256), Required, MaxLength(256)]
     public virtual string? Logo { get; set; }
-    
+
     /// <summary>
     /// 标题
     /// </summary>
     [SugarColumn(ColumnDescription = "标题", Length = 32), MaxLength(32)]
     public string Title { get; set; }
-    
+
     /// <summary>
     /// 副标题
     /// </summary>
     [SugarColumn(ColumnDescription = "副标题", Length = 32), MaxLength(32)]
     public string ViceTitle { get; set; }
-    
+
     /// <summary>
     /// 副描述
     /// </summary>
     [SugarColumn(ColumnDescription = "副描述", Length = 64), MaxLength(64)]
     public string? ViceDesc { get; set; }
-   
+
     /// <summary>
     /// 水印
     /// </summary>
     [SugarColumn(ColumnDescription = "水印", Length = 32), MaxLength(32)]
     public string? Watermark { get; set; }
-    
+
     /// <summary>
     /// 版权信息
     /// </summary>
     [SugarColumn(ColumnDescription = "版权信息", Length = 64), MaxLength(64)]
     public string? Copyright { get; set; }
-    
+
     /// <summary>
     /// ICP备案号
     /// </summary>
     [SugarColumn(ColumnDescription = "ICP备案号", Length = 32), MaxLength(32)]
     public string? Icp { get; set; }
-    
+
     /// <summary>
     /// 排序
     /// </summary>
@@ -73,7 +73,7 @@ public partial class SysApp : EntityBase
     /// </summary>
     [SugarColumn(ColumnDescription = "备注", Length = 256), MaxLength(256)]
     public string? Remark { get; set; }
-    
+
     /// <summary>
     /// 应用租户
     /// </summary>

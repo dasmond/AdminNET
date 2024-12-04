@@ -376,18 +376,18 @@ public static class SqlSugarSetup
     /// <param name="config"></param>
     private static void InitSeedData(SqlSugarScope db, DbConnectionConfig config)
     {
-        SqlSugarScopeProvider dbProvider = db.GetConnectionScope(config.ConfigId); 
+        SqlSugarScopeProvider dbProvider = db.GetConnectionScope(config.ConfigId);
         _isHandlingSeedData = true;
-        
+
         Log.Information($"初始化种子数据 {config.DbType} - {config.ConfigId}");
         var seedDataTypes = App.EffectiveTypes.Where(u => !u.IsInterface && !u.IsAbstract && u.IsClass && u.GetInterfaces().Any(i => i.HasImplementedRawGeneric(typeof(ISqlSugarEntitySeedData<>))))
             .WhereIF(config.SeedSettings.EnableIncreSeed, u => u.IsDefined(typeof(IncreSeedAttribute), false))
             .OrderBy(u => u.GetCustomAttributes(typeof(SeedDataAttribute), false).Length > 0 ? ((SeedDataAttribute)u.GetCustomAttributes(typeof(SeedDataAttribute), false)[0]).Order : 0).ToList();
-        
-        int count = 0, sum = seedDataTypes.Count; 
-        foreach (var seedType in seedDataTypes) 
-        { 
-            var entityType = seedType.GetInterfaces().First().GetGenericArguments().First(); 
+
+        int count = 0, sum = seedDataTypes.Count;
+        foreach (var seedType in seedDataTypes)
+        {
+            var entityType = seedType.GetInterfaces().First().GetGenericArguments().First();
             if (config.ConfigId.ToString() == SqlSugarConst.MainConfigId) // 默认库（有系统表特性、没有日志表和租户表特性）
             {
                 if (entityType.GetCustomAttribute<SysTableAttribute>() == null && (entityType.GetCustomAttribute<LogTableAttribute>() != null || entityType.GetCustomAttribute<TenantAttribute>() != null)) continue;
@@ -401,17 +401,17 @@ public static class SqlSugarSetup
                 var att = entityType.GetCustomAttribute<TenantAttribute>(); // 自定义的库
                 if (att == null || att.configId.ToString() != config.ConfigId.ToString()) continue;
             }
-            
-            var instance = Activator.CreateInstance(seedType); 
-            var hasDataMethod = seedType.GetMethod("HasData"); 
-            var seedData = ((IEnumerable)hasDataMethod?.Invoke(instance, null))?.Cast<object>(); 
+
+            var instance = Activator.CreateInstance(seedType);
+            var hasDataMethod = seedType.GetMethod("HasData");
+            var seedData = ((IEnumerable)hasDataMethod?.Invoke(instance, null))?.Cast<object>();
             if (seedData == null) continue;
-            
-            var entityInfo = dbProvider.EntityMaintenance.GetEntityInfo(entityType); 
-            Console.WriteLine($"添加数据 {entityInfo.DbTableName} ({config.ConfigId} - {++count}/{sum}，数据量：{seedData.Count()})"); 
-            
+
+            var entityInfo = dbProvider.EntityMaintenance.GetEntityInfo(entityType);
+            Console.WriteLine($"添加数据 {entityInfo.DbTableName} ({config.ConfigId} - {++count}/{sum}，数据量：{seedData.Count()})");
+
             // 若实体包含Id字段，则设置为当前租户Id递增1
-            if (entityInfo.Columns.Any(u => u.PropertyName == nameof(EntityBaseId.Id))) 
+            if (entityInfo.Columns.Any(u => u.PropertyName == nameof(EntityBaseId.Id)))
             {
                 var seedId = config.ConfigId.ToLong();
                 foreach (var sd in seedData)
@@ -420,8 +420,8 @@ public static class SqlSugarSetup
                     if (id != null && (id.ToString() == "0" || string.IsNullOrWhiteSpace(id.ToString())))
                         sd.GetType().GetProperty(nameof(EntityBaseId.Id))!.SetValue(sd, ++seedId);
                 }
-            } 
-            
+            }
+
             if (entityType.GetCustomAttribute<SplitTableAttribute>(true) != null)
             {
                 //拆分表的操作需要实体类型，而通过反射很难实现
@@ -436,7 +436,7 @@ public static class SqlSugarSetup
                 {
                     // 按主键进行批量增加和更新
                     var storage = dbProvider.StorageableByObject(seedData.ToList()).ToStorage();
-                    
+
                     // 先修改再插入，否则会更新修改时间字段
                     if (seedType.GetCustomAttribute<IgnoreUpdateSeedAttribute>() == null) // 有忽略更新种子特性时则不更新
                     {

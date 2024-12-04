@@ -186,11 +186,11 @@ public class SysRegionService : IDynamicApiController, ITransient
                         Remark = item1.Href,
                         Level = 2,
                     };
-                    
+
                     // 若URL中查询的一级行政区域缺少Code则通过二级区域填充
                     if (list.Count == 1 && !string.IsNullOrEmpty(region1.Code))
                         region.Code = region1.Code.Substring(0, 2).PadRight(region1.Code.Length, '0');
-                    
+
                     // 同步层级为“1-省级”退出
                     if (syncLevel < 2) break;
 

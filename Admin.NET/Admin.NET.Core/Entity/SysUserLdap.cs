@@ -65,6 +65,7 @@ public class SysUserLdap : EntityTenantId
     /// </summary>
     [SugarColumn(ColumnDescription = "检查账户是否已过期")]
     public bool AccountExpiresFlag { get; set; } = false;
+
     /// <summary>
     /// 密码设置是否永不过期
     /// </summary>

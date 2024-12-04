@@ -25,7 +25,7 @@ public partial class SysCodeGenConfig : EntityBase
     [SugarColumn(ColumnDescription = "字段名称", Length = 128)]
     [Required, MaxLength(128)]
     public virtual string ColumnName { get; set; }
-    
+
     /// <summary>
     /// 主键
     /// </summary>
@@ -52,7 +52,7 @@ public partial class SysCodeGenConfig : EntityBase
     [SugarColumn(ColumnDescription = "字段描述", Length = 128)]
     [MaxLength(128)]
     public string? ColumnComment { get; set; }
-    
+
     /// <summary>
     /// 数据库中类型（物理类型）
     /// </summary>
@@ -115,7 +115,7 @@ public partial class SysCodeGenConfig : EntityBase
     [SugarColumn(ColumnDescription = "外键显示字段.NET类型", Length = 64)]
     [MaxLength(64)]
     public string? FkColumnNetType { get; set; }
-    
+
     /// <summary>
     /// 父级字段
     /// </summary>
@@ -129,14 +129,14 @@ public partial class SysCodeGenConfig : EntityBase
     [SugarColumn(ColumnDescription = "字典编码", Length = 64)]
     [MaxLength(64)]
     public string? DictTypeCode { get; set; }
-    
+
     /// <summary>
     /// 查询方式
     /// </summary>
     [SugarColumn(ColumnDescription = "查询方式", Length = 16)]
     [MaxLength(16)]
     public string? QueryType { get; set; }
-    
+
     /// <summary>
     /// 是否是查询条件
     /// </summary>
@@ -178,7 +178,7 @@ public partial class SysCodeGenConfig : EntityBase
     [SugarColumn(ColumnDescription = "增改", Length = 8)]
     [MaxLength(8)]
     public string? WhetherAddUpdate { get; set; }
-    
+
     /// <summary>
     /// 导入
     /// </summary>

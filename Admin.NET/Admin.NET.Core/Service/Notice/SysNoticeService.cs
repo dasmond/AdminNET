@@ -91,9 +91,9 @@ public class SysNoticeService : IDynamicApiController, ITransient
     public async Task DeleteNotice(DeleteNoticeInput input)
     {
         var sysNotice = await _sysNoticeRep.GetByIdAsync(input.Id);
-        
+
         if (sysNotice.CreateUserId != _userManager.UserId) throw Oops.Oh(ErrorCodeEnum.D7003);
-        
+
         if (sysNotice.Status == NoticeStatusEnum.PUBLIC) throw Oops.Oh(ErrorCodeEnum.D7001);
 
         await _sysNoticeRep.DeleteAsync(u => u.Id == input.Id);

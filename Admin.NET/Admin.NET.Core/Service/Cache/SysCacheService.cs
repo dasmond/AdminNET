@@ -4,7 +4,6 @@
 //
 // 不得利用本项目从事危害国家安全、扰乱社会秩序、侵犯他人合法权益等法律法规禁止的活动！任何基于本项目二次开发而产生的一切法律纠纷和责任，我们不承担任何责任！
 
-using NewLife.Reflection;
 using Newtonsoft.Json;
 
 namespace Admin.NET.Core.Service;
@@ -139,7 +138,7 @@ public class SysCacheService : IDynamicApiController, ISingleton
     private static string Key(string cacheName, object[] obs)
     {
         if (obs.OfType<TimeSpan>().Any()) throw new Exception("缓存参数类型不能能是:TimeSpan类型");
-        StringBuilder sb = new (cacheName + ":");
+        StringBuilder sb = new(cacheName + ":");
         foreach (var a in obs) sb.Append($"<{KeySingle(a)}>");
         return sb.ToString();
     }
@@ -311,6 +310,7 @@ public class SysCacheService : IDynamicApiController, ISingleton
         var hash = GetHashMap<T>(key);
         hash.Add(hashKey, value);
     }
+
     /// <summary>
     /// 添加或更新一条HASH
     /// </summary>

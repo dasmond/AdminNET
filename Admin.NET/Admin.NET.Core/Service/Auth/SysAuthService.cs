@@ -66,7 +66,7 @@ public class SysAuthService : IDynamicApiController, ITransient
 
         // 判断是否开启验证码，其校验验证码
         if (await _sysConfigService.GetConfigValue<bool>(ConfigConst.SysCaptcha) && !_captcha.Validate(input.CodeId.ToString(), input.Code)) throw Oops.Oh(ErrorCodeEnum.D0008);
-        
+
         // 获取登录租户和用户
         var (tenant, user) = await GetLoginUserAndTenant(input.Host, account: input.Account);
 
@@ -95,7 +95,7 @@ public class SysAuthService : IDynamicApiController, ITransient
 
         return await CreateToken(user, tenant.AppId);
     }
-    
+
     /// <summary>
     /// 获取登录租户和用户
     /// </summary>
@@ -104,20 +104,20 @@ public class SysAuthService : IDynamicApiController, ITransient
     /// <param name="phone"></param>
     /// <returns></returns>
     [NonAction]
-    public async Task<(SysTenant tenant, SysUser user)> GetLoginUserAndTenant(string host, string account=null, string phone=null)
+    public async Task<(SysTenant tenant, SysUser user)> GetLoginUserAndTenant(string host, string account = null, string phone = null)
     {
         // 是否租户隔离登录验证
         var isTenantHostLogin = await _sysConfigService.GetConfigValue<bool>(ConfigConst.SysTenantHostLogin);
-        
+
         SysUser user;
         SysTenant tenant;
-        
+
         // 租户隔离登录
         if (isTenantHostLogin)
         {
             // 若租户域名为空或为本地域名，则取默认租户域名
             if (string.IsNullOrWhiteSpace(host) || host.StartsWith("localhost")) host = SqlSugarConst.DefaultTenantHost;
-            
+
             // 租户是否存在或已禁用
             tenant = await _sysUserRep.ChangeRepository<SqlSugarRepository<SysTenant>>().GetFirstAsync(u => u.Host == host.ToLower());
             if (tenant?.Status != StatusEnum.Enable) throw Oops.Oh(ErrorCodeEnum.Z1003);
@@ -129,7 +129,7 @@ public class SysAuthService : IDynamicApiController, ITransient
                 .WhereIF(!string.IsNullOrWhiteSpace(phone), u => u.Phone.Equals(phone))
                 .FirstAsync();
             _ = user ?? throw Oops.Oh(ErrorCodeEnum.D0009);
-            
+
             // 若登录的是超级管理员，则引用当前绑定的租户，这样登陆后操作的租户数据会与该租户关联
             if (user.AccountType == AccountTypeEnum.SuperAdmin) user.TenantId = tenant.Id;
         }
@@ -141,7 +141,7 @@ public class SysAuthService : IDynamicApiController, ITransient
                 .WhereIF(!string.IsNullOrWhiteSpace(phone), u => u.Phone.Equals(phone))
                 .FirstAsync();
             _ = user ?? throw Oops.Oh(ErrorCodeEnum.D0009);
-            
+
             // 租户是否存在或已禁用
             tenant = await _sysUserRep.ChangeRepository<SqlSugarRepository<SysTenant>>().GetFirstAsync(u => u.Id == user.TenantId);
             if (tenant?.Status != StatusEnum.Enable) throw Oops.Oh(ErrorCodeEnum.Z1003);
@@ -227,7 +227,7 @@ public class SysAuthService : IDynamicApiController, ITransient
     {
         // 校验短信验证码
         App.GetRequiredService<SysSmsService>().VerifyCode(new SmsVerifyCodeInput { Phone = input.Phone, Code = input.Code });
-        
+
         // 获取登录租户和用户
         var (tenant, user) = await GetLoginUserAndTenant(input.Host, phone: input.Phone);
 

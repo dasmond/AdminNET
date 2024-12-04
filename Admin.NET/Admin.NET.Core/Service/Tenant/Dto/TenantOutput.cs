@@ -12,7 +12,7 @@ public class TenantOutput : SysTenant
     /// 租户名称
     /// </summary>
     public virtual string Name { get; set; }
-    
+
     /// <summary>
     /// 关联应用名称
     /// </summary>

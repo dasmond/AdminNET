@@ -70,19 +70,19 @@ public class CodeGenInput : BasePageInput
     /// 功能名（数据库表名称）
     /// </summary>
     public virtual string TableComment { get; set; }
-    
+
     /// <summary>
     /// 表唯一字段
     /// </summary>
     [Newtonsoft.Json.JsonIgnore]
     [System.Text.Json.Serialization.JsonIgnore]
     public virtual string TableUniqueConfig { get; set; }
-    
+
     /// <summary>
     /// 表唯一字段列表
     /// </summary>
     public virtual List<TableUniqueConfigItem> TableUniqueList { get; set; }
-    
+
     /// <summary>
     /// 菜单应用分类（应用编码）
     /// </summary>
@@ -144,7 +144,7 @@ public class AddCodeGenInput : CodeGenInput
     /// </summary>
     [Required(ErrorMessage = "作者姓名不能为空")]
     public override string AuthorName { get; set; }
-    
+
     ///// <summary>
     ///// 类名
     ///// </summary>

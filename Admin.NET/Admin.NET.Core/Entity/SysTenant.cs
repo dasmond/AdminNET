@@ -18,7 +18,7 @@ public partial class SysTenant : EntityBase
     /// </summary>
     [SugarColumn(ColumnDescription = "应用Id")]
     public long AppId { get; set; }
-    
+
     /// <summary>
     /// 用户Id
     /// </summary>
@@ -88,7 +88,7 @@ public partial class SysTenant : EntityBase
     /// </summary>
     [SugarColumn(ColumnDescription = "状态")]
     public StatusEnum Status { get; set; } = StatusEnum.Enable;
-    
+
     /// <summary>
     /// 应用
     /// </summary>

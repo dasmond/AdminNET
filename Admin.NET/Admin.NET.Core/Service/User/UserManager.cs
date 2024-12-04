@@ -12,7 +12,7 @@ namespace Admin.NET.Core;
 public class UserManager : IScoped
 {
     private readonly IHttpContextAccessor _httpContextAccessor;
-    
+
     /// <summary>
     /// 应用ID
     /// </summary>

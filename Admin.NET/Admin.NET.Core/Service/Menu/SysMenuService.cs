@@ -187,10 +187,10 @@ public class SysMenuService : IDynamicApiController, ITransient
 
         // 级联删除角色菜单数据
         await _sysRoleMenuService.DeleteRoleMenuByMenuIdList(menuIdList);
-        
+
         // 级联删除用户收藏菜单
         await _sysUserMenuService.DeleteMenuList(menuIdList);
-        
+
         // 删除应用菜单关联
         await _sysAppMenuRep.AsDeleteable().Where(u => menuIdList.Contains(u.MenuId)).ExecuteCommandAsync();
 

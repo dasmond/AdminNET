@@ -117,7 +117,7 @@ public class SysTenantService : IDynamicApiController, ITransient
     {
         var isExist = await _sysOrgRep.IsAnyAsync(u => u.Name == input.Name);
         if (isExist) throw Oops.Oh(ErrorCodeEnum.D1300);
-        
+
         input.Host = input.Host.ToLower();
         isExist = await _sysTenantRep.IsAnyAsync(u => u.Host == input.Host);
         if (isExist) throw Oops.Oh(ErrorCodeEnum.D1303);
@@ -180,20 +180,21 @@ public class SysTenantService : IDynamicApiController, ITransient
         var tenantName = tenant.Name;
 
         // 初始化机构
-        var newOrg = new SysOrg { TenantId=tenantId, Pid=0, Name=tenantName, Code=tenantName, Remark=tenantName, };
+        var newOrg = new SysOrg { TenantId = tenantId, Pid = 0, Name = tenantName, Code = tenantName, Remark = tenantName, };
         await _sysOrgRep.InsertAsync(newOrg);
 
         // 初始化角色
-        var newRole = new SysRole { TenantId=tenantId, Name="租管-" + tenantName, Code=CommonConst.SysAdminRole, DataScope=DataScopeEnum.All, Remark=tenantName };
+        var newRole = new SysRole { TenantId = tenantId, Name = "租管-" + tenantName, Code = CommonConst.SysAdminRole, DataScope = DataScopeEnum.All, Remark = tenantName };
         await _sysRoleRep.InsertAsync(newRole);
 
         // 初始化职位
-        var newPos = new SysPos { TenantId=tenantId, Name="租管-" + tenantName, Code=tenantName, Remark=tenantName };
+        var newPos = new SysPos { TenantId = tenantId, Name = "租管-" + tenantName, Code = tenantName, Remark = tenantName };
         await _sysPosRep.InsertAsync(newPos);
 
         // 初始化系统账号
         var password = await _sysConfigService.GetConfigValue<string>(ConfigConst.SysPassword);
-        var newUser = new SysUser {
+        var newUser = new SysUser
+        {
             TenantId = tenantId,
             Account = tenant.AdminAccount,
             Password = CryptogramUtil.Encrypt(password),
@@ -284,7 +285,7 @@ public class SysTenantService : IDynamicApiController, ITransient
         input.Host = input.Host.ToLower();
         isExist = await _sysTenantRep.IsAnyAsync(u => u.Host == input.Host && u.Id != input.Id);
         if (isExist) throw Oops.Oh(ErrorCodeEnum.D1303);
-        
+
         isExist = await _sysUserRep.AsQueryable().ClearFilter().AnyAsync(u => u.AccountType == AccountTypeEnum.SuperAdmin && u.Account == input.AdminAccount && u.Id != input.UserId);
         if (isExist) throw Oops.Oh(ErrorCodeEnum.D1301);
 
@@ -378,11 +379,11 @@ public class SysTenantService : IDynamicApiController, ITransient
             _sysTenantRep.AsTenant().RemoveConnection(tenantId);
 
         var tenantList = await _sysTenantRep.GetListAsync();
-        
+
         // 对租户库连接进行SM2加密
         foreach (var tenant in tenantList.Where(tenant => !string.IsNullOrWhiteSpace(tenant.Connection)))
             tenant.Connection = CryptogramUtil.SM2Encrypt(tenant.Connection);
-        
+
         _sysCacheService.Set(CacheConst.KeyTenant, tenantList);
     }
 

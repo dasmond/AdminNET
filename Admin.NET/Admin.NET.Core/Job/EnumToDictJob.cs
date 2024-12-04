@@ -4,8 +4,6 @@
 //
 // 不得利用本项目从事危害国家安全、扰乱社会秩序、侵犯他人合法权益等法律法规禁止的活动！任何基于本项目二次开发而产生的一切法律纠纷和责任，我们不承担任何责任！
 
-using System.Security.Cryptography;
-
 namespace Admin.NET.Core;
 
 /// <summary>
@@ -29,10 +27,10 @@ public class EnumToDictJob : IJob
         var originColor = Console.ForegroundColor;
         Console.ForegroundColor = ConsoleColor.Yellow;
         Console.WriteLine($"【{DateTime.Now}】系统枚举转换字典");
-        
+
         using var serviceScope = _scopeFactory.CreateScope();
         var db = serviceScope.ServiceProvider.GetRequiredService<ISqlSugarClient>().CopyNew();
-        
+
         var sysEnumService = serviceScope.ServiceProvider.GetRequiredService<SysEnumService>();
         var sysDictTypeList = GetDictByEnumType(sysEnumService.GetEnumTypeList());
 
@@ -43,7 +41,7 @@ public class EnumToDictJob : IJob
         sysDictTypeList = sysDictTypeList.Where(x => x.Code.EndsWith("Enum")).ToList();
 
         await SyncEnumToDictInfoAsync(db, sysDictTypeList);
-        
+
         Console.ForegroundColor = ConsoleColor.Yellow;
         try
         {
@@ -54,7 +52,7 @@ public class EnumToDictJob : IJob
                 .ToStorageAsync();
             await storageable1.BulkCopyAsync();
             await storageable1.BulkUpdateAsync();
-            
+
             Console.WriteLine($"【{DateTime.Now}】系统枚举类转字典类型数据: 插入{storageable1.InsertList.Count}条, 更新{storageable1.UpdateList.Count}条, 共{storageable1.TotalList.Count}条。");
 
             var storageable2 = await db.Storageable(sysDictTypeList.SelectMany(x => x.Children).ToList())
@@ -94,7 +92,7 @@ public class EnumToDictJob : IJob
         {
             var enumDictType = list.First(x => x.Code == dbDictType.Code);
             if (enumDictType.Id == dbDictType.Id) continue;
-            
+
             // 数据不一致则删除
             await db.Deleteable<SysDictData>().Where(x => x.DictTypeId == dbDictType.Id).ExecuteCommandAsync();
             await db.Deleteable<SysDictType>().Where(x => x.Id == dbDictType.Id).ExecuteCommandAsync();

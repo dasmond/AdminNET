@@ -15,7 +15,7 @@ public class ClaimConst
     /// 应用Id
     /// </summary>
     public const string AppId = "AppId";
-    
+
     /// <summary>
     /// 用户Id
     /// </summary>

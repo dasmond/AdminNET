@@ -192,19 +192,19 @@ public class SysRoleService : IDynamicApiController, ITransient
                 case (int)DataScopeEnum.All: throw Oops.Oh(ErrorCodeEnum.D1016);
                 // 若数据范围自定义，则判断授权数据范围是否有权限
                 case (int)DataScopeEnum.Define:
-                {
-                    var grantOrgIdList = input.OrgIdList;
-                    if (grantOrgIdList.Count > 0)
                     {
-                        var orgIdList = await _sysOrgService.GetUserOrgIdList();
-                        if (orgIdList.Count < 1)
-                            throw Oops.Oh(ErrorCodeEnum.D1016);
-                        if (!grantOrgIdList.All(u => orgIdList.Any(c => c == u)))
-                            throw Oops.Oh(ErrorCodeEnum.D1016);
-                    }
+                        var grantOrgIdList = input.OrgIdList;
+                        if (grantOrgIdList.Count > 0)
+                        {
+                            var orgIdList = await _sysOrgService.GetUserOrgIdList();
+                            if (orgIdList.Count < 1)
+                                throw Oops.Oh(ErrorCodeEnum.D1016);
+                            if (!grantOrgIdList.All(u => orgIdList.Any(c => c == u)))
+                                throw Oops.Oh(ErrorCodeEnum.D1016);
+                        }
 
-                    break;
-                }
+                        break;
+                    }
             }
         }
         role.DataScope = (DataScopeEnum)dataScope;

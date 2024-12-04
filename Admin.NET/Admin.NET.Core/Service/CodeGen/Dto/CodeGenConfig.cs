@@ -25,7 +25,7 @@ public class CodeGenConfig
     /// 数据库字段名
     /// </summary>
     public string ColumnName { get; set; }
-    
+
     /// <summary>
     /// 主外键
     /// </summary>
@@ -55,12 +55,12 @@ public class CodeGenConfig
     /// .NET类型
     /// </summary>
     public string NetType { get; set; }
-    
+
     /// <summary>
     /// 数据库中类型（物理类型）
     /// </summary>
     public string DataType { get; set; }
-    
+
     /// <summary>
     /// 可空.NET类型
     /// </summary>
@@ -95,14 +95,14 @@ public class CodeGenConfig
     /// 外键链接字段
     /// </summary>
     public string FkLinkColumnName { get; set; }
-    
+
     /// <summary>
     /// 外键显示字段
     /// </summary>
     [Newtonsoft.Json.JsonIgnore]
     [System.Text.Json.Serialization.JsonIgnore]
     public string FkDisplayColumns { get; set; }
-    
+
     /// <summary>
     /// 外键显示字段
     /// </summary>
@@ -117,17 +117,17 @@ public class CodeGenConfig
     /// 外键显示字段.NET类型
     /// </summary>
     public string FkColumnNetType { get; set; }
-    
+
     /// <summary>
     /// 父级字段
     /// </summary>
     public string PidColumn { get; set; }
-    
+
     /// <summary>
     /// 字典code
     /// </summary>
     public string DictTypeCode { get; set; }
-    
+
     /// <summary>
     /// 查询方式
     /// </summary>
@@ -162,7 +162,7 @@ public class CodeGenConfig
     /// 增改
     /// </summary>
     public string WhetherAddUpdate { get; set; }
-    
+
     /// <summary>
     /// 导入
     /// </summary>
@@ -172,7 +172,7 @@ public class CodeGenConfig
     /// 是否是通用字段
     /// </summary>
     public string WhetherCommon { get; set; }
-    
+
     /// <summary>
     /// 排序
     /// </summary>
@@ -182,7 +182,7 @@ public class CodeGenConfig
     /// 是否是选择器控件
     /// </summary>
     public bool IsSelectorEffectType => Regex.IsMatch(EffectType ?? "", "Selector$|ForeignKey", RegexOptions.IgnoreCase);
-    
+
     /// <summary>
     /// 去掉尾部Id的属性名
     /// </summary>
@@ -217,7 +217,7 @@ public class CodeGenConfig
             return displayPropertyName[..1].ToLower() + displayPropertyName[1..];
         }
     }
-    
+
     /// <summary>
     /// 获取外键显示值语句
     /// </summary>

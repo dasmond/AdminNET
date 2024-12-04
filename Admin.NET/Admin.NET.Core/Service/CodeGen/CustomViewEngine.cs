@@ -23,7 +23,7 @@ public class CustomViewEngine : ViewEngineModel
     public string NameSpace { get; set; }
 
     public string ClassName { get; set; }
-    
+
     public string LowerClassName { get; set; }
 
     public string ProjectLastName { get; set; }
@@ -33,39 +33,39 @@ public class CustomViewEngine : ViewEngineModel
     public string PrintType { get; set; }
 
     public string PrintName { get; set; }
-    
+
     public bool HasLikeQuery { get; set; }
-    
+
     public bool HasJoinTable { get; set; }
-    
+
     public bool HasEnumField { get; set; }
-    
+
     public bool HasDictField { get; set; }
-    
+
     public bool HasConstField { get; set; }
-    
+
     public bool HasSetStatus => TableField.Any(IsStatus);
-    
+
     public List<CodeGenConfig> TableField { get; set; }
-    
+
     public List<CodeGenConfig> ImportFieldList { get; set; }
-    
+
     public List<CodeGenConfig> UploadFieldList { get; set; }
 
     public List<CodeGenConfig> QueryWhetherList { get; set; }
-    
+
     public List<CodeGenConfig> ApiTreeFieldList { get; set; }
-    
+
     public List<CodeGenConfig> DropdownFieldList { get; set; }
-    
+
     public List<CodeGenConfig> AddUpdateFieldList { get; set; }
-    
+
     public List<CodeGenConfig> PrimaryKeyFieldList { get; set; }
-    
+
     public List<TableUniqueConfigItem> TableUniqueConfigList { get; set; }
 
     public List<CodeGenConfig> IgnoreUpdateFieldList => TableField.Where(u => u.WhetherAddUpdate == "N" && u.ColumnKey != "True" && u.WhetherCommon != "Y").ToList();
-    
+
     /// <summary>
     /// 格式化主键查询条件
     /// 例： PrimaryKeysFormat(" || ", "u.{0} == input.{0}")
@@ -77,12 +77,13 @@ public class CustomViewEngine : ViewEngineModel
     /// <param name="lowerFirstLetter">字段首字母小写</param>
     /// <returns></returns>
     public string PrimaryKeysFormat(string separator, string format, bool lowerFirstLetter = false) => string.Join(separator, PrimaryKeyFieldList.Select(u => string.Format(format, lowerFirstLetter ? u.LowerPropertyName : u.PropertyName)));
-    
+
     /// <summary>
     /// 注入的服务
     /// </summary>
     /// <returns></returns>
-    public Dictionary<string, string> InjectServiceMap {
+    public Dictionary<string, string> InjectServiceMap
+    {
         get
         {
             var injectMap = new Dictionary<string, string>();
@@ -92,33 +93,33 @@ public class CustomViewEngine : ViewEngineModel
             return injectMap;
         }
     }
-    
+
     /// <summary>
     /// 服务构造参数
     /// </summary>
-    public string InjectServiceArgs => InjectServiceMap.Count > 0 ? ", " +string.Join(", ", InjectServiceMap.Select(kv => $"{kv.Key} {kv.Value}")) : "";
-    
+    public string InjectServiceArgs => InjectServiceMap.Count > 0 ? ", " + string.Join(", ", InjectServiceMap.Select(kv => $"{kv.Key} {kv.Value}")) : "";
+
     /// <summary>
     /// 判断字段是否为状态字段
     /// </summary>
     /// <param name="column"></param>
     /// <returns></returns>
     public bool IsStatus(CodeGenConfig column) => column.PropertyName == nameof(SysUser.Status) && column.NetType == nameof(StatusEnum);
-    
+
     /// <summary>
     /// 获取首字母小写字符串
     /// </summary>
     /// <param name="text"></param>
     /// <returns></returns>
     public string ToLowerFirstLetter(string text) => string.IsNullOrWhiteSpace(text) ? text : text[..1].ToLower() + text[1..];
-    
+
     /// <summary>
     /// 将基本字段类型转为可空类型
     /// </summary>
     /// <param name="netType"></param>
     /// <returns></returns>
     public string GetNullableNetType(string netType) => Regex.IsMatch(netType, "(.*?Enum|bool|char|int|long|double|float|decimal)[?]?") ? netType.TrimEnd('?') + "?" : netType;
-    
+
     /// <summary>
     /// 获取前端表格列定义的属性
     /// </summary>

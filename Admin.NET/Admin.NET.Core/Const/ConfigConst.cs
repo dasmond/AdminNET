@@ -70,7 +70,7 @@ public class ConfigConst
     /// 域登录验证
     /// </summary>
     public const string SysDomainLogin = "sys_domain_login";
-    
+
     /// <summary>
     /// 租户域名隔离登录验证
     /// </summary>

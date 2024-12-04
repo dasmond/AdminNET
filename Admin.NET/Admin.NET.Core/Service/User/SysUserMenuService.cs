@@ -77,7 +77,7 @@ public class SysUserMenuService : IDynamicApiController, ITransient
         return await _sysUserMenuRep.AsQueryable()
             .Where(u => u.UserId == _userManager.UserId).Select(u => u.MenuId).ToListAsync();
     }
-    
+
     /// <summary>
     /// 删除指定用户的收藏菜单
     /// </summary>

@@ -18,6 +18,6 @@ public class SysAppMenuSeedData : ISqlSugarEntitySeedData<SysAppMenu>
     public IEnumerable<SysAppMenu> HasData()
     {
         long id = 1300000000001;
-        return new SysMenuSeedData().HasData().Select(m => new SysAppMenu { Id=id++, AppId=SqlSugarConst.DefaultAppId, MenuId=m.Id });
+        return new SysMenuSeedData().HasData().Select(m => new SysAppMenu { Id = id++, AppId = SqlSugarConst.DefaultAppId, MenuId = m.Id });
     }
 }

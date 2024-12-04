@@ -112,7 +112,7 @@ public class ExcelHelper
                     if (dict != null)
                     {// 填充字典值value为下列列表
                         dataList = App.GetService<SysDictTypeService>().GetDataList(new GetDataDictTypeInput
-                            { Code = dict.DictTypeCode }).Result?.Select(x => x.Label).ToList();
+                        { Code = dict.DictTypeCode }).Result?.Select(x => x.Label).ToList();
                     }
                 }
             }

@@ -109,7 +109,7 @@ public class SysJobService : IDynamicApiController, ITransient
                 throw new NotSupportedException();
         }
 
-        _schedulerFactory.AddJob( JobBuilder.Create(jobType).LoadFrom(input.Adapt<SysJobDetail>() ).SetJobType(jobType));
+        _schedulerFactory.AddJob(JobBuilder.Create(jobType).LoadFrom(input.Adapt<SysJobDetail>()).SetJobType(jobType));
 
         // 延迟一下等待持久化写入，再执行其他字段的更新
         await Task.Delay(500);

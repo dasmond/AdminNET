@@ -216,7 +216,7 @@ public class SysLdapService : IDynamicApiController, ITransient
                 {
                     var sysUserLdap = CreateSysUserLdap(attrs, sysLdap.BindAttrAccount, sysLdap.BindAttrEmployeeId, deptCode);
                     sysUserLdap.Dn = ldapEntry.Dn;
-                    sysUserLdap.TenantId=sysLdap.TenantId;
+                    sysUserLdap.TenantId = sysLdap.TenantId;
                     userLdapList.Add(sysUserLdap);
                 }
             }
@@ -274,7 +274,7 @@ public class SysLdapService : IDynamicApiController, ITransient
         var pwdLastSet = !attrs.ContainsKey("pwdLastSet") ? null : attrs.GetAttribute("pwdLastSet")?.StringValue;
         if (!pwdLastSet!.Equals("0")) userLdap.PwdLastSetTime = DateTime.FromFileTime(Convert.ToInt64(pwdLastSet));
         var userAccountControl = !attrs.ContainsKey("userAccountControl") ? null : attrs.GetAttribute("userAccountControl")?.StringValue;
-        if ((Convert.ToInt32(userAccountControl) & 0x2) == 0x2) // 检查账户是否已过期（通过检查userAccountControl属性的特定位）  
+        if ((Convert.ToInt32(userAccountControl) & 0x2) == 0x2) // 检查账户是否已过期（通过检查userAccountControl属性的特定位）
             userLdap.AccountExpiresFlag = true;
         if ((Convert.ToInt32(userAccountControl) & 0x10000) == 0x10000) // 检查账户密码设置是否永不过期
             userLdap.DontExpiresFlag = true;

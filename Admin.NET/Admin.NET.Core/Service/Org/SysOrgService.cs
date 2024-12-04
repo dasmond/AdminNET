@@ -300,19 +300,19 @@ public class SysOrgService : IDynamicApiController, ITransient
 
         // 本人创建机构集合
         var orgList0 = await _sysOrgRep.AsQueryable().Where(u => u.CreateUserId == userId).Select(u => u.Id).ToListAsync();
-        
+
         // 扩展机构集合
         var orgList1 = await _sysUserExtOrgService.GetUserExtOrgList(userId);
-        
+
         // 角色机构集合
         var orgList2 = await GetUserRoleOrgIdList(userId, userOrgId);
-        
+
         // 机构并集
         orgIdList = orgList1.Select(u => u.OrgId).Union(orgList2).Union(orgList0).ToList();
-        
+
         // 当前所属机构
         if (!orgIdList.Contains(userOrgId)) orgIdList.Add(userOrgId);
-        
+
         _sysCacheService.Set($"{CacheConst.KeyUserOrg}{userId}", orgIdList, TimeSpan.FromDays(7)); // 存缓存
         return orgIdList;
     }
@@ -326,7 +326,7 @@ public class SysOrgService : IDynamicApiController, ITransient
     private async Task<List<long>> GetUserRoleOrgIdList(long userId, long userOrgId)
     {
         var roleList = await _sysUserRoleService.GetUserRoleList(userId);
-        
+
         if (roleList.Count < 1) return new(); // 空机构Id集合
 
         return await GetUserOrgIdList(roleList, userId, userOrgId);

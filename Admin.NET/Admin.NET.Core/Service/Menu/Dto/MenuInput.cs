@@ -17,12 +17,12 @@ public class MenuInput
     /// 菜单类型（1目录 2菜单 3按钮）
     /// </summary>
     public MenuTypeEnum? Type { get; set; }
-    
+
     /// <summary>
     /// 获取所有菜单
     /// </summary>
     public bool All { get; set; }
-    
+
     /// <summary>
     /// 应用Id
     /// </summary>
