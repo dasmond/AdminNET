@@ -10,12 +10,14 @@
 				</el-form-item>
 				<el-form-item>
 					<el-button-group>
-						<el-button type="primary" icon="ele-Search" @click="handleQuery" v-auth="'sysTenant:page'"> 查询 </el-button>
+						<el-button type="primary" icon="ele-Search" @click="handleQuery" v-auth="'sysTenant:page'"> 查询
+						</el-button>
 						<el-button icon="ele-Refresh" @click="resetQuery"> 重置 </el-button>
 					</el-button-group>
 				</el-form-item>
 				<el-form-item>
-					<el-button type="primary" icon="ele-Plus" @click="openAddTenant" v-auth="'sysTenant:add'"> 新增 </el-button>
+					<el-button type="primary" icon="ele-Plus" @click="openAddTenant" v-auth="'sysTenant:add'"> 新增
+					</el-button>
 				</el-form-item>
 			</el-form>
 		</el-card>
@@ -24,19 +26,20 @@
 			<el-table :data="state.tenantData" style="width: 100%" v-loading="state.loading" border>
 				<el-table-column type="index" label="序号" width="55" align="center" fixed />
 				<el-table-column prop="name" label="租户名称" width="160" align="center" show-overflow-tooltip />
-        <el-table-column prop="appName" label="关联应用" width="160" align="center" show-overflow-tooltip />
+				<el-table-column prop="appName" label="关联应用" width="160" align="center" show-overflow-tooltip />
 				<el-table-column prop="adminAccount" label="租管账号" align="center" width="120" show-overflow-tooltip />
 				<el-table-column prop="phone" label="电话" width="120" align="center" show-overflow-tooltip />
 				<el-table-column prop="host" label="域名" width="150" show-overflow-tooltip />
 				<!-- <el-table-column prop="email" label="邮箱" show-overflow-tooltip /> -->
 				<el-table-column prop="tenantType" label="租户类型" width="100" align="center" show-overflow-tooltip>
 					<template #default="scope">
-            <g-sys-dict v-model="scope.row.status" code="TenantTypeEnum" />
+						<g-sys-dict v-model="scope.row.tenantType" code="TenantTypeEnum" />
 					</template>
 				</el-table-column>
 				<el-table-column label="状态" width="70" align="center" show-overflow-tooltip>
 					<template #default="scope">
-						<el-switch v-model="scope.row.status" :active-value="1" :inactive-value="2" size="small" @change="changeStatus(scope.row)" :disabled="scope.row.id == 123456780000000" />
+						<el-switch v-model="scope.row.status" :active-value="1" :inactive-value="2" size="small"
+							@change="changeStatus(scope.row)" :disabled="scope.row.id == 123456780000000" />
 					</template>
 				</el-table-column>
 				<el-table-column prop="dbType" label="数据库类型" width="120" align="center" show-overflow-tooltip>
@@ -69,8 +72,10 @@
 					</template>
 				</el-table-column>
 				<!-- <el-table-column prop="configId" label="数据库标识" show-overflow-tooltip /> -->
-				<el-table-column prop="connection" label="数据库连接" min-width="300" header-align="center" show-overflow-tooltip />
-				<el-table-column prop="slaveConnections" label="从库连接" min-width="300" header-align="center" show-overflow-tooltip />
+				<el-table-column prop="connection" label="数据库连接" min-width="300" header-align="center"
+					show-overflow-tooltip />
+				<el-table-column prop="slaveConnections" label="从库连接" min-width="300" header-align="center"
+					show-overflow-tooltip />
 				<el-table-column prop="orderNo" label="排序" width="70" align="center" show-overflow-tooltip />
 				<el-table-column label="修改记录" width="100" align="center" show-overflow-tooltip>
 					<template #default="scope">
@@ -79,32 +84,31 @@
 				</el-table-column>
 				<el-table-column label="操作" width="200" fixed="right" align="center" show-overflow-tooltip>
 					<template #default="scope">
-						<el-button icon="ele-Coin" size="small" text type="danger" @click="createTenant(scope.row)" v-auth="'sysTenant:createDb'" :disabled="scope.row.tenantType == 0"> 创建库 </el-button>
-						<el-button icon="ele-Edit" size="small" text type="primary" @click="openEditTenant(scope.row)" v-auth="'sysTenant:update'"> 编辑 </el-button>
+						<el-button icon="ele-Coin" size="small" text type="danger" @click="createTenant(scope.row)"
+							v-auth="'sysTenant:createDb'" :disabled="scope.row.tenantType == 0"> 创建库 </el-button>
+						<el-button icon="ele-Edit" size="small" text type="primary" @click="openEditTenant(scope.row)"
+							v-auth="'sysTenant:update'"> 编辑 </el-button>
 						<el-dropdown>
-							<el-button icon="ele-MoreFilled" size="small" text type="primary" style="padding-left: 12px" />
+							<el-button icon="ele-MoreFilled" size="small" text type="primary"
+								style="padding-left: 12px" />
 							<template #dropdown>
 								<el-dropdown-menu>
-									<el-dropdown-item icon="ele-OfficeBuilding" @click="openGrantMenu(scope.row)" :v-auth="'sysTenant:grantMenu'"> 授权菜单 </el-dropdown-item>
-									<el-dropdown-item icon="ele-RefreshLeft" @click="resetTenantPwd(scope.row)" :v-auth="'sysTenant:resetPwd'"> 重置密码 </el-dropdown-item>
-									<el-dropdown-item icon="ele-Delete" @click="delTenant(scope.row)" :v-auth="'sysTenant:delete'"> 删除租户 </el-dropdown-item>
+									<el-dropdown-item icon="ele-OfficeBuilding" @click="openGrantMenu(scope.row)"
+										:v-auth="'sysTenant:grantMenu'"> 授权菜单 </el-dropdown-item>
+									<el-dropdown-item icon="ele-RefreshLeft" @click="resetTenantPwd(scope.row)"
+										:v-auth="'sysTenant:resetPwd'"> 重置密码 </el-dropdown-item>
+									<el-dropdown-item icon="ele-Delete" @click="delTenant(scope.row)"
+										:v-auth="'sysTenant:delete'"> 删除租户 </el-dropdown-item>
 								</el-dropdown-menu>
 							</template>
 						</el-dropdown>
 					</template>
 				</el-table-column>
 			</el-table>
-			<el-pagination
-				v-model:currentPage="state.tableParams.page"
-				v-model:page-size="state.tableParams.pageSize"
-				:total="state.tableParams.total"
-				:page-sizes="[10, 20, 50, 100]"
-				size="small"
-				background
-				@size-change="handleSizeChange"
-				@current-change="handleCurrentChange"
-				layout="total, sizes, prev, pager, next, jumper"
-			/>
+			<el-pagination v-model:currentPage="state.tableParams.page" v-model:page-size="state.tableParams.pageSize"
+				:total="state.tableParams.total" :page-sizes="[10, 20, 50, 100]" size="small" background
+				@size-change="handleSizeChange" @current-change="handleCurrentChange"
+				layout="total, sizes, prev, pager, next, jumper" />
 		</el-card>
 
 		<EditTenant ref="editTenantRef" :title="state.editTenantTitle" @handleQuery="handleQuery" />
@@ -191,7 +195,7 @@ const resetTenantPwd = async (row: any) => {
 					ElMessage.success(`密码重置成功为：${res.data.result}`);
 				});
 		})
-		.catch(() => {});
+		.catch(() => { });
 };
 
 // 删除
@@ -206,7 +210,7 @@ const delTenant = (row: any) => {
 			handleQuery();
 			ElMessage.success('删除成功');
 		})
-		.catch(() => {});
+		.catch(() => { });
 };
 
 // 改变页面容量
@@ -232,7 +236,7 @@ const createTenant = (row: any) => {
 			await getAPI(SysTenantApi).apiSysTenantCreateDbPost({ id: row.id });
 			ElMessage.success('创建/更新租户数据库成功');
 		})
-		.catch(() => {});
+		.catch(() => { });
 };
 
 // 修改状态
