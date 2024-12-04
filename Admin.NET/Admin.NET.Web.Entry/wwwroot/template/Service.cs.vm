@@ -249,6 +249,17 @@ public class @(Model.ClassName)Service : IDynamicApiController, ITransient
     @:{
         @:var list = (await Page(input)).Items?.Adapt<List<Export@(Model.ClassName)Output>>() ?? new();
         @:if (input.SelectKeyList?.Count > 0) list = list.Where(x => input.SelectKeyList.Contains(x.@(Model.PrimaryKeyFieldList.First().PropertyName))).ToList();
+        var dictFields = Model.TableField.Where(x => x.WhetherImport == "Y" && x.EffectType == "DictSelector") ?? default;
+        foreach (var column in dictFields) {
+        @:var @(column.LowerPropertyName)DictMap = _sysDictTypeService.GetDataList(new GetDataDictTypeInput { Code = "@(column.DictTypeCode)" }).Result.ToDictionary(x => x.Value, x => x.Label);
+        }
+        if (dictFields.Count() > 0) {
+        @:list.ForEach(e => {
+        foreach (var column in dictFields) {
+            @:e.@(column.ExtendedPropertyName) = @(column.LowerPropertyName)DictMap.GetValueOrDefault(e.@(column.PropertyName) ?? "", e.@(column.PropertyName));
+        }
+        @:});
+        }
         @:return ExcelHelper.ExportTemplate(list, "@(Model.BusName)导出记录");
     @:}
     @:
@@ -312,7 +323,7 @@ public class @(Model.ClassName)Service : IDynamicApiController, ITransient
                     @:// 映射字典值
                     @:foreach(var item in pageItems) {
                         foreach (var column in dictTableField) {
-                        @:if (item.@(column.PropertyName) == null) continue;
+                        @:if (string.IsNullOrWhiteSpace(item.@(column.ExtendedPropertyName))) continue;
                         @:item.@(column.PropertyName) = @(column.LowerPropertyName)DictMap.GetValueOrDefault(item.@(column.ExtendedPropertyName));
                         @:if (item.@(column.PropertyName) == null) item.Error = "@(column.ColumnComment)字典映射失败";
                         }
