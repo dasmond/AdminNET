@@ -1,3 +1,4 @@
+<!-- 组件使用文档： https://gitee.com/zuohuaijun/Admin.NET/pulls/1559  -->
 <script setup lang="ts">
 import { reactive, watch } from 'vue';
 import { DictItem } from '/@/types/global';
