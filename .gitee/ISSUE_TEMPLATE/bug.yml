@@ -65,10 +65,12 @@ body:
         [这里粘贴执行结果]
   validations:
     required: false
-- type: input
+- type: dropdown
+  id: version
   attributes:
-    label: Admin.NET Version
-    description: Admin.NET 版本
-    value: next
-  validations:
-    required: false
+    label: 版本/分支
+    description: 你当前正在使用的版本/分支？
+    options:
+        - next (默认)
+    validations:
+      required: true
