@@ -8,6 +8,7 @@ const dictList = useUserInfo().dictList;
 const props = defineProps({
 	modelValue: {
 		type: [String, Number, Boolean, null],
+        default: null,
 		required: true,
 	},
 	code: {
