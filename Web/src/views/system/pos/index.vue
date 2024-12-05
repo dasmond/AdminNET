@@ -25,29 +25,29 @@
 				<el-table-column type="index" label="序号" width="55" align="center" />
 				<el-table-column prop="name" label="职位名称" align="center" show-overflow-tooltip />
 				<el-table-column prop="code" label="职位编码" align="center" show-overflow-tooltip />
-        <el-table-column prop="userList" label="在职人数" width="70" align="center" show-overflow-tooltip >
-          <template #default="scope">{{ scope.row.userList?.length}}</template>
-        </el-table-column>
-        <el-table-column prop="userList" label="人员明细" width="120" align="center" show-overflow-tooltip >
-          <template #default="scope">
-            <el-popover placement="bottom" width="280" trigger="hover" v-if="scope.row.userList?.length">
-              <template #reference>
-                <el-text type="primary" class="cursor-default">
-                  <el-icon><ele-InfoFilled /></el-icon>人员明细
-                </el-text>
-              </template>
-              <el-table :data="scope.row.userList" stripe border>
-                <el-table-column type="index" label="序号" width="55" align="center" />
-                <el-table-column prop="account" label="账号" />
-                <el-table-column prop="realName" label="姓名" />
-              </el-table>
-            </el-popover>
-          </template>
-        </el-table-column>
+				<el-table-column prop="userList" label="在职人数" width="70" align="center" show-overflow-tooltip >
+					<template #default="scope">{{ scope.row.userList?.length}}</template>
+				</el-table-column>
+				<el-table-column prop="userList" label="人员明细" width="120" align="center" show-overflow-tooltip >
+					<template #default="scope">
+						<el-popover placement="bottom" width="280" trigger="hover" v-if="scope.row.userList?.length">
+							<template #reference>
+								<el-text type="primary" class="cursor-default">
+									<el-icon><ele-InfoFilled /></el-icon>人员明细
+								</el-text>
+							</template>
+							<el-table :data="scope.row.userList" stripe border>
+								<el-table-column type="index" label="序号" width="55" align="center" />
+								<el-table-column prop="account" label="账号" />
+								<el-table-column prop="realName" label="姓名" />
+							</el-table>
+						</el-popover>
+					</template>
+				</el-table-column>
 				<el-table-column prop="orderNo" label="排序" width="70" align="center" show-overflow-tooltip />
 				<el-table-column label="状态" width="70" align="center" show-overflow-tooltip>
 					<template #default="scope">
-            <g-sys-dict v-model="scope.row.status" code="StatusEnum" />
+						<g-sys-dict v-model="scope.row.status" code="StatusEnum" />
 					</template>
 				</el-table-column>
 				<el-table-column label="修改记录" width="100" align="center" show-overflow-tooltip>
@@ -137,11 +137,11 @@ const delPos = (row: any) => {
 		cancelButtonText: '取消',
 		type: 'warning',
 	})
-		.then(async () => {
-			await getAPI(SysPosApi).apiSysPosDeletePost({ id: row.id });
-			handleQuery();
-			ElMessage.success('删除成功');
-		})
-		.catch(() => {});
+			.then(async () => {
+				await getAPI(SysPosApi).apiSysPosDeletePost({ id: row.id });
+				handleQuery();
+				ElMessage.success('删除成功');
+			})
+			.catch(() => {});
 };
 </script>
