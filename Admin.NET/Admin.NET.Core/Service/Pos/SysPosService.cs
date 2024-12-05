@@ -36,7 +36,15 @@ public class SysPosService : IDynamicApiController, ITransient
         return await _sysPosRep.AsQueryable()
             .WhereIF(!string.IsNullOrWhiteSpace(input.Name), u => u.Name.Contains(input.Name))
             .WhereIF(!string.IsNullOrWhiteSpace(input.Code), u => u.Code.Contains(input.Code))
-            .OrderBy(u => new { u.OrderNo, u.Id }).ToListAsync();
+            .OrderBy(u => new { u.OrderNo, u.Id })
+            .Mapper(u =>
+            {
+                u.UserList = _sysPosRep.Context.Queryable<SysUser>()
+                    .Where(a => a.PosId == u.Id || SqlFunc.Subqueryable<SysUserExtOrg>()
+                        .Where(t => a.Id == t.UserId && t.PosId == u.Id).Any())
+                    .ToList();
+            })
+            .ToListAsync();
     }
 
     /// <summary>
