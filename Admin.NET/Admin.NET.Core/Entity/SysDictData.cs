@@ -33,7 +33,7 @@ public partial class SysDictData : EntityBase
     [SugarColumn(ColumnDescription = "值", Length = 256)]
     [Required, MaxLength(256)]
     public virtual string Value { get; set; }
-    
+
     /// <summary>
     /// 编码
     /// </summary>
