@@ -32,19 +32,13 @@
 								</el-form-item>
 							</el-col>
 							<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
-								<el-form-item label="角色集合" prop="roleIdList" :rules="[{ required: true, message: '角色集合不能为空', trigger: 'blur' }]">
-									<el-select v-model="state.ruleForm.roleIdList" multiple value-key="id" clearable placeholder="角色集合" collapse-tags collapse-tags-tooltip class="w100" filterable>
-										<el-option v-for="item in state.roleData" :key="item.id" :label="item.name" :value="item.id" />
-									</el-select>
-								</el-form-item>
-							</el-col>
-							<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
 								<el-form-item label="账号类型" prop="accountType" :rules="[{ required: true, message: '账号类型不能为空', trigger: 'blur' }]">
-                  <g-sys-dict
-                      v-model="state.ruleForm.accountType"
-                      :on-item-filter="(data: any) => data.name != 'SuperAdmin' && (data.name == 'SysAdmin' ? [888, 999].includes(userInfos.accountType) : true)"
-                      code="AccountTypeEnum"
-                      render-as="select" />
+									<g-sys-dict
+										v-model="state.ruleForm.accountType"
+										:on-item-filter="(data: any) => data.name != 'SuperAdmin' && (data.name == 'SysAdmin' ? [888, 999].includes(userInfos.accountType) : true)"
+										code="AccountTypeEnum"
+										render-as="select"
+									/>
 								</el-form-item>
 							</el-col>
 							<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
@@ -130,12 +124,15 @@
 						</el-row>
 					</el-form>
 				</el-tab-pane>
+				<el-tab-pane label="角色授权" style="height: 550px; margin-left: 36px">
+					<el-transfer :data="state.roleData" :props="{ key: 'id', label: 'name' }" v-model="state.ruleForm.roleIdList" :titles="['未授权', '已授权']"></el-transfer>
+				</el-tab-pane>
 				<el-tab-pane label="档案信息" style="height: 550px; overflow-y: auto; overflow-x: hidden">
 					<el-form :model="state.ruleForm" label-width="auto">
 						<el-row :gutter="35">
 							<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
 								<el-form-item label="证件类型" prop="cardType">
-                  <g-sys-dict v-model="state.ruleForm.cardType" code="CardTypeEnum" render-as="select" placeholder="证件类型" class="w100" />
+									<g-sys-dict v-model="state.ruleForm.cardType" code="CardTypeEnum" render-as="select" placeholder="证件类型" class="w100" />
 								</el-form-item>
 							</el-col>
 							<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
@@ -150,7 +147,7 @@
 							</el-col>
 							<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
 								<el-form-item label="性别">
-                  <g-sys-dict v-model="state.ruleForm.sex" code="GenderEnum" render-as="radio" />
+									<g-sys-dict v-model="state.ruleForm.sex" code="GenderEnum" render-as="radio" />
 								</el-form-item>
 							</el-col>
 							<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb5">
@@ -175,7 +172,7 @@
 							</el-col>
 							<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
 								<el-form-item label="文化程度">
-                  <g-sys-dict v-model="state.ruleForm.cultureLevel" code="CultureLevelEnum" render-as="select" placeholder="文化程度" class="w100" />
+									<g-sys-dict v-model="state.ruleForm.cultureLevel" code="CultureLevelEnum" render-as="select" placeholder="文化程度" class="w100" />
 								</el-form-item>
 							</el-col>
 							<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
