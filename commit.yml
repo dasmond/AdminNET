@@ -2,28 +2,22 @@
 branches: {
   }
 fileChange:
-  /Web:
-    newFile: !uuid 'bd8f0a66c29f862ba8fd6f2edf9d05ae61ab95bb'
-    oldFile: !uuid 'cb5e17c197ae157b1cefab4e21ab66f808ec8ce3'
-  /Web/src:
-    newFile: !uuid '5516be61b15dbf0df1781047c2a8b444759b9ecb'
-    oldFile: !uuid 'ba2022035db58326f96b2834c6181ebd7d8db3be'
-  /Web/src/views:
-    newFile: !uuid '1b46277021f95396884629c157afa04798fb12b1'
-    oldFile: !uuid '363ac95e219c8616261226e576192a7c21af246b'
-  /Web/src/views/system:
-    newFile: !uuid '25d80d91f1ebf5a0299e36ff4631fbcd275a9566'
-    oldFile: !uuid '88847ad2255ffe46b6d7a69ea9dd26e1c8a2fc75'
-  /Web/src/views/system/user:
-    newFile: !uuid '55ce8f50e6a64d514627c1c5659751b4f712244e'
-    oldFile: !uuid '29b7adcd3b58d985753b7010408d60d5c3438f11'
-  /Web/src/views/system/user/component:
-    newFile: !uuid '66cdf5ff37307310cc8e6f7bdd378f8a04a40b20'
-    oldFile: !uuid '8eef46b8da45f8a5f55fd6703e009ad369424e55'
-  /Web/src/views/system/user/component/editUser.vue:
-    newFile: !uuid 'd4469f12356b366437122deddc7d6834b9c5c199'
-    oldFile: !uuid '3f9e263a0cf490e2a99bf8048fd825df83174ed7'
-gitCommitId: !uuid '5835d0d011487acaeb27ecda27ba7fd00c53301b'
+  /Admin.NET:
+    newFile: !uuid '3c724b303049c9a62f40863659e2a1a137a9a844'
+    oldFile: !uuid 'd6f5930b2f02dafb6f72c22a74f5b633ca8a83ad'
+  /Admin.NET/Admin.NET.Core:
+    newFile: !uuid '5e06090b9d732b2b10f8c7ab6ad26e810d2bd74c'
+    oldFile: !uuid '6d5acd47e141a7a88aa7655abfdd0a304962b53d'
+  /Admin.NET/Admin.NET.Core/Service:
+    newFile: !uuid '5da7316869cb9edaaed739fabe23fb951fbf50bc'
+    oldFile: !uuid 'fe6fc67e061ab8f5c9ce1c34aa795b5017194dd5'
+  /Admin.NET/Admin.NET.Core/Service/Tenant:
+    newFile: !uuid 'e4b2d1ca0c257e8816ce750528fa40dc378d59da'
+    oldFile: !uuid '94a5a703593f9a14394c63d9e45872cb93e9d075'
+  /Admin.NET/Admin.NET.Core/Service/Tenant/SysTenantService.cs:
+    newFile: !uuid 'fc7cb4e976a39561b4bce047db7140fdf48a087a'
+    oldFile: !uuid '45e4dd3e562a46aff77f02993e9f72f49a030f29'
+gitCommitId: !uuid 'bae1bc4d2e6267114031403ee8d229a79be14137'
 renames: {
   }
-revisionId: 2578
+revisionId: 2579
