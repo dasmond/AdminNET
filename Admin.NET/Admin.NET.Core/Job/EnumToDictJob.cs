@@ -91,7 +91,13 @@ public class EnumToDictJob : IJob
         foreach (var dbDictType in await db.Queryable<SysDictType>().Where(x => codeList.Contains(x.Code)).ToListAsync() ?? new())
         {
             var enumDictType = list.First(x => x.Code == dbDictType.Code);
-            if (enumDictType.Id == dbDictType.Id) continue;
+            if (enumDictType.Id == dbDictType.Id)
+            {
+                // 字典值表字段改变后每条字典值记录会多出一条，此处用于删除多余的字典值数据
+                var dataValueList = enumDictType.Children.Select(e => e.Value).ToList();
+                await db.Deleteable<SysDictData>().Where(x => x.DictTypeId == dbDictType.Id && !dataValueList.Contains(x.Value)).ExecuteCommandAsync();
+                continue;
+            }
 
             // 数据不一致则删除
             await db.Deleteable<SysDictData>().Where(x => x.DictTypeId == dbDictType.Id).ExecuteCommandAsync();
