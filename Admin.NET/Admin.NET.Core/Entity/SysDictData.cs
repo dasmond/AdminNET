@@ -33,6 +33,16 @@ public partial class SysDictData : EntityBase
     [SugarColumn(ColumnDescription = "值", Length = 256)]
     [Required, MaxLength(256)]
     public virtual string Value { get; set; }
+    
+    /// <summary>
+    /// 编码
+    /// </summary>
+    /// <remarks>
+    /// 即将移除的字段，直接移除该字段并不会从数据库中删除，且该字段之前是必填的，容易导致不能为null的异常，建议先保留，后期再移除
+    /// </remarks>
+    [Obsolete("即将移除的字段, 已引用的建议尽快移除")]
+    [SugarColumn(ColumnDescription = "编码", Length = 256)]
+    public virtual string? Code { get; set; }
 
     /// <summary>
     /// 名称
