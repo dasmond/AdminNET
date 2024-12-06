@@ -52,13 +52,29 @@ public class SysMenuService : IDynamicApiController, ITransient
                 .OrderBy(u => new { u.OrderNo, u.Id }).Distinct().ToTreeAsync(u => u.Children, u => u.Pid, 0);
             return menuList.Adapt<List<MenuOutput>>();
         }
-
         var menuIdList = await GetMenuIdList();
         var menuTree = await _sysMenuRep.AsQueryable()
             .InnerJoin<SysAppMenu>((u, am) => am.AppId == _userManager.AppId && u.Id == am.MenuId)
-            .Where(u => u.Type != MenuTypeEnum.Btn && u.Status == StatusEnum.Enable)
+            .Where(u => u.Status == StatusEnum.Enable)
             .OrderBy(u => new { u.OrderNo, u.Id }).Distinct().ToTreeAsync(u => u.Children, u => u.Pid, 0, menuIdList.Select(d => (object)d).ToArray());
+        DeleteBtnFromMenuTree(menuTree);
         return menuTree.Adapt<List<MenuOutput>>();
+    }
+
+    /// <summary>
+    /// 删除登录菜单树里面的按钮
+    /// </summary>
+    private static void DeleteBtnFromMenuTree(List<SysMenu> menuList)
+    {
+        if (menuList == null) return;
+        for (var i = menuList.Count - 1; i >= 0; i--)
+        {
+            var menu = menuList[i];
+            if (menu.Type == MenuTypeEnum.Btn)
+                menuList.Remove(menu);
+            else if (menu.Children.Count > 0)
+                DeleteBtnFromMenuTree(menu.Children);
+        }
     }
 
     /// <summary>
