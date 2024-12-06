@@ -152,6 +152,10 @@ public class SysCodeGenService : IDynamicApiController, ITransient
         var tableOutputList = new List<TableOutput>();
         foreach (var item in entityInfos)
         {
+            var tbConfigId = item.Type.GetCustomAttribute<TenantAttribute>()?.configId as string ?? SqlSugarConst.MainConfigId ;
+            if (item.Type.IsDefined(typeof(LogTableAttribute))) tbConfigId = SqlSugarConst.LogConfigId;
+            if (tbConfigId != configId) continue;
+            
             var table = dbTableInfos.FirstOrDefault(u => string.Equals(u.Name, (config!.DbSettings.EnableUnderLine ? UtilMethods.ToUnderLine(item.DbTableName) : item.DbTableName), StringComparison.CurrentCultureIgnoreCase));
             if (table == null) continue;
             tableOutputList.Add(new TableOutput
