@@ -1,6 +1,6 @@
 name: 🐞 Bug 反馈
 description: 当你在代码中发现了一个 Bug，导致应用崩溃或抛出异常，或者有模块/组件存在问题、某些地方看起来不对劲。
-title: "🐞 bug: "
+title: "🐞  "
 labels: [bug]
 assignees:
   - Argo
@@ -55,14 +55,14 @@ body:
       声明：请勿以其他任何方式提供复现工程，不符合要求的提交，一律视为无效问题，不予处理。
   validations:
     required: true
-- type: textarea
-  id: version
+- type: dropdown
+  id: netVersion
   attributes:
-    label: .NET Version 
-    description: |
-      Run `dotnet --version`
-    placeholder: |
-        [这里粘贴执行结果]
+    label: .NET Version
+    description: Run `dotnet --version`
+    options:
+        - .NET 6.0
+        - .NET 8.0
   validations:
     required: true
 - type: dropdown
