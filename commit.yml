@@ -2,16 +2,22 @@
 branches: {
   }
 fileChange:
-  /.gitee:
-    newFile: !uuid '91cdf55f22bd36fd0f6125e9831ff5268bedfd1b'
-    oldFile: !uuid 'd5e2c44a0910ef15c2b8c17480e482efeb1aa0c3'
-  /.gitee/ISSUE_TEMPLATE:
-    newFile: !uuid '2d6f85587a95fe1f5fb6db1238d69bff673846f0'
-    oldFile: !uuid '6055daab6ffc149290f3f36478cec8dc1c836ccc'
-  /.gitee/ISSUE_TEMPLATE/bug.yml:
-    newFile: !uuid 'b213862d341cc073968c78d1521d9344c09bcd3a'
-    oldFile: !uuid '81cd3b3bf1bc16bd7be4b5813a805e13195afde4'
-gitCommitId: !uuid '6457a23eb3e01dccdfd0d85ff9c105942830bb84'
+  /Admin.NET:
+    newFile: !uuid '61180b836b5c891b73f84dbc59d9340dae9c3818'
+    oldFile: !uuid '3512013d07557033e863e9cc76e2a4599dade21b'
+  /Admin.NET/Admin.NET.Core:
+    newFile: !uuid '82a938bf3e8e152345e3797fdaa97661a5ecef8f'
+    oldFile: !uuid 'e77257acb66ee7a1fd325b6f95ccef12b9257af6'
+  /Admin.NET/Admin.NET.Core/Service:
+    newFile: !uuid '68e8ee6b7fddc404759559604cfcc70ead10bcf5'
+    oldFile: !uuid '17e0aae7efa2c1e7a25e092b905ea610eb0247d2'
+  /Admin.NET/Admin.NET.Core/Service/Dict:
+    newFile: !uuid 'e544d729a92a5cafbd5964c43424258b3851b9d4'
+    oldFile: !uuid '35429efd32bd7dad0049824214e743234e8fe691'
+  /Admin.NET/Admin.NET.Core/Service/Dict/SysDictTypeService.cs:
+    newFile: !uuid 'f0f3ac744eaa3fd356dc40acfd21fdb4d59d36bd'
+    oldFile: !uuid 'c333b7f3f5668e4557de4fbdb1f6404f398140aa'
+gitCommitId: !uuid '99b47afee6e367e2a8da064270aa4ca50c976ede'
 renames: {
   }
-revisionId: 2585
+revisionId: 2586
