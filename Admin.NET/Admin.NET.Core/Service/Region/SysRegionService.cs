@@ -145,11 +145,11 @@ public class SysRegionService : IDynamicApiController, ITransient
     {
         var syncLevel = await _sysConfigService.GetConfigValue<int>(ConfigConst.SysRegionSyncLevel);
         if (syncLevel is < 1 or > 5) syncLevel = 3;//默认区县级
-        
+
         await _sysRegionRep.DeleteAsync(u => u.Id > 0);
-        
+
         await SyncByMap(syncLevel);
-        
+
         // var context = BrowsingContext.New(AngleSharp.Configuration.Default.WithDefaultLoader());
         // var dom = await context.OpenAsync(_url);
         //
@@ -265,7 +265,7 @@ public class SysRegionService : IDynamicApiController, ITransient
         //     await _sysRegionRep.Context.Fastest<SysRegion>().BulkCopyAsync(list);
         // }
     }
-    
+
     /// <summary>
     /// 从统计局地图页面同步
     /// </summary>
@@ -291,11 +291,11 @@ public class SysRegionService : IDynamicApiController, ITransient
                 Level = 1,
                 Pid = 0,
             };
-            if (municipalityList.Any(m => province.Name.StartsWith(m))) province.Name +=  "(省)";
+            if (municipalityList.Any(m => province.Name.StartsWith(m))) province.Name += "(省)";
             list.Add(province);
 
             if (syncLevel <= 1) continue;
-            
+
             var prefList = await GetSelectList(provName);
             foreach (var dict2 in prefList)
             {
@@ -309,11 +309,11 @@ public class SysRegionService : IDynamicApiController, ITransient
                     Name = prefName,
                     Level = 2
                 };
-                if (municipalityList.Any(m => city.Name.StartsWith(m))) city.Name +=  "(地)";
+                if (municipalityList.Any(m => city.Name.StartsWith(m))) city.Name += "(地)";
                 list.Add(city);
-                
+
                 if (syncLevel <= 2) continue;
-                
+
                 var countyList = await GetSelectList(provName, prefName);
                 foreach (var dict3 in countyList)
                 {
@@ -335,7 +335,7 @@ public class SysRegionService : IDynamicApiController, ITransient
         }
 
         // 获取选择数据
-        async Task<List<Dictionary<string, string>>> GetSelectList(string prov, string prefecture=null)
+        async Task<List<Dictionary<string, string>>> GetSelectList(string prov, string prefecture = null)
         {
             var data = "";
             if (!string.IsNullOrWhiteSpace(prov)) data += $"shengji={prov}";
