@@ -155,7 +155,7 @@ public class SysDictTypeService : IDynamicApiController, ITransient
     {
         var ds = await _sysDictTypeRep.AsQueryable()
             .InnerJoin<SysDictData>((u, a) => u.Id == a.DictTypeId)
-            .Where((u, a) => u.IsDelete == false && a.IsDelete == false)
+            .Where((u, a) => u.IsDelete == false && a.Status == StatusEnum.Enable)
             .Select((u, a) => new { TypeCode = u.Code, a.Label, a.Value, a.Name, a.TagType, a.StyleSetting, a.ClassSetting, a.ExtData, a.Remark, a.OrderNo, a.Status })
             .ToListAsync();
         return ds.OrderBy(u => u.OrderNo).GroupBy(u => u.TypeCode).ToDictionary(u => u.Key, u => u);
