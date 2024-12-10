@@ -75,6 +75,7 @@
 					<!-- <el-dropdown-item command="/dashboard/home">{{ $t('message.user.dropdown1') }}</el-dropdown-item> -->
 					<el-dropdown-item :icon="Avatar" command="/system/userCenter">{{ $t('message.user.dropdown2') }}</el-dropdown-item>
 					<el-dropdown-item :icon="Loading" command="clearCache">{{ $t('message.user.dropdown3') }}</el-dropdown-item>
+					<el-dropdown-item :icon="Switch" divided command="changeTenant" v-if="auth('sysTenant:changeTenant')">{{ $t('message.layout.changeTenant') }}</el-dropdown-item>
 					<el-dropdown-item :icon="Lock" divided command="lockScreen">{{ $t('message.layout.threeIsLockScreen') }}</el-dropdown-item>
 					<el-dropdown-item :icon="CircleCloseFilled" divided command="logOut">{{ $t('message.user.dropdown5') }}</el-dropdown-item>
 				</el-dropdown-menu>
@@ -82,6 +83,7 @@
 		</el-dropdown>
 		<Search ref="searchRef" />
 		<OnlineUser ref="onlineUserRef" />
+		<ChangeTenant ref="changeTenantRef" />
 	</div>
 </template>
 
@@ -100,14 +102,15 @@ import { Local, Session } from '/@/utils/storage';
 import Push from 'push.js';
 import { signalR } from '/@/views/system/onlineUser/signalR';
 import { Avatar, CircleCloseFilled, Loading, Lock, Switch } from '@element-plus/icons-vue';
-
 import { clearAccessTokens, getAPI } from '/@/utils/axios-utils';
 import { SysAuthApi, SysNoticeApi } from '/@/api-services/api';
+import { auth } from "/@/utils/authFunction";
 
 // 引入组件
 const UserNews = defineAsyncComponent(() => import('/@/layout/navBars/topBar/userNews.vue'));
 const Search = defineAsyncComponent(() => import('/@/layout/navBars/topBar/search.vue'));
 const OnlineUser = defineAsyncComponent(() => import('/@/views/system/onlineUser/index.vue'));
+const ChangeTenant = defineAsyncComponent(() => import('./changeTenant.vue'));
 
 // 定义变量内容
 const { locale, t } = useI18n();
@@ -118,6 +121,7 @@ const { userInfos } = storeToRefs(stores);
 const { themeConfig } = storeToRefs(storesThemeConfig);
 const searchRef = ref();
 const onlineUserRef = ref();
+const changeTenantRef = ref();
 const state = reactive({
 	isScreenfull: false,
 	disabledI18n: 'zh-cn',
@@ -191,6 +195,8 @@ const onHandleCommandClick = (path: string) => {
 				clearAccessTokens();
 			})
 			.catch(() => {});
+	} else if (path === 'changeTenant') {
+		changeTenantRef.value?.openDialog();
 	} else {
 		router.push(path);
 	}

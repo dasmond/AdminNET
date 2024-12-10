@@ -20,9 +20,11 @@ import { AddTenantInput } from '../models';
 import { AdminResultInt32 } from '../models';
 import { AdminResultListInt64 } from '../models';
 import { AdminResultListSysUser } from '../models';
+import { AdminResultLoginOutput } from '../models';
 import { AdminResultObject } from '../models';
 import { AdminResultSqlSugarPagedListTenantOutput } from '../models';
 import { AdminResultString } from '../models';
+import { BaseIdInput } from '../models';
 import { DeleteTenantInput } from '../models';
 import { PageTenantInput } from '../models';
 import { TenantIdInput } from '../models';
@@ -45,6 +47,54 @@ export const SysTenantApiAxiosParamCreator = function (configuration?: Configura
          */
         apiSysTenantAddPost: async (body?: AddTenantInput, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/sysTenant/add`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions :AxiosRequestConfig = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication Bearer required
+            // http bearer authentication required
+            if (configuration && configuration.accessToken) {
+                const accessToken = typeof configuration.accessToken === 'function'
+                    ? await configuration.accessToken()
+                    : await configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
+            }
+
+            localVarHeaderParameter['Content-Type'] = 'application/json-patch+json';
+
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.params) {
+                query.set(key, options.params[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            const needsSerialization = (typeof body !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(body !== undefined ? body : {}) : (body || "");
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary 切换租户 🔖
+         * @param {BaseIdInput} [body] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiSysTenantChangeTenantPost: async (body?: BaseIdInput, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/sysTenant/changeTenant`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
             let baseOptions;
@@ -141,6 +191,54 @@ export const SysTenantApiAxiosParamCreator = function (configuration?: Configura
          */
         apiSysTenantDeletePost: async (body?: DeleteTenantInput, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/sysTenant/delete`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions :AxiosRequestConfig = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication Bearer required
+            // http bearer authentication required
+            if (configuration && configuration.accessToken) {
+                const accessToken = typeof configuration.accessToken === 'function'
+                    ? await configuration.accessToken()
+                    : await configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
+            }
+
+            localVarHeaderParameter['Content-Type'] = 'application/json-patch+json';
+
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.params) {
+                query.set(key, options.params[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            const needsSerialization = (typeof body !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(body !== undefined ? body : {}) : (body || "");
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary 进入租管端 🔖
+         * @param {BaseIdInput} [body] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiSysTenantGoTenantPost: async (body?: BaseIdInput, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/sysTenant/goTenant`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
             let baseOptions;
@@ -588,6 +686,20 @@ export const SysTenantApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @summary 切换租户 🔖
+         * @param {BaseIdInput} [body] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiSysTenantChangeTenantPost(body?: BaseIdInput, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<AdminResultLoginOutput>>> {
+            const localVarAxiosArgs = await SysTenantApiAxiosParamCreator(configuration).apiSysTenantChangeTenantPost(body, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
+         * 
          * @summary 创建租户数据库 🔖
          * @param {TenantInput} [body] 
          * @param {*} [options] Override http request option.
@@ -609,6 +721,20 @@ export const SysTenantApiFp = function(configuration?: Configuration) {
          */
         async apiSysTenantDeletePost(body?: DeleteTenantInput, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<void>>> {
             const localVarAxiosArgs = await SysTenantApiAxiosParamCreator(configuration).apiSysTenantDeletePost(body, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
+         * 
+         * @summary 进入租管端 🔖
+         * @param {BaseIdInput} [body] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiSysTenantGoTenantPost(body?: BaseIdInput, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<AdminResultLoginOutput>>> {
+            const localVarAxiosArgs = await SysTenantApiAxiosParamCreator(configuration).apiSysTenantGoTenantPost(body, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -746,6 +872,16 @@ export const SysTenantApiFactory = function (configuration?: Configuration, base
         },
         /**
          * 
+         * @summary 切换租户 🔖
+         * @param {BaseIdInput} [body] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiSysTenantChangeTenantPost(body?: BaseIdInput, options?: AxiosRequestConfig): Promise<AxiosResponse<AdminResultLoginOutput>> {
+            return SysTenantApiFp(configuration).apiSysTenantChangeTenantPost(body, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
          * @summary 创建租户数据库 🔖
          * @param {TenantInput} [body] 
          * @param {*} [options] Override http request option.
@@ -763,6 +899,16 @@ export const SysTenantApiFactory = function (configuration?: Configuration, base
          */
         async apiSysTenantDeletePost(body?: DeleteTenantInput, options?: AxiosRequestConfig): Promise<AxiosResponse<void>> {
             return SysTenantApiFp(configuration).apiSysTenantDeletePost(body, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary 进入租管端 🔖
+         * @param {BaseIdInput} [body] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiSysTenantGoTenantPost(body?: BaseIdInput, options?: AxiosRequestConfig): Promise<AxiosResponse<AdminResultLoginOutput>> {
+            return SysTenantApiFp(configuration).apiSysTenantGoTenantPost(body, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -866,6 +1012,17 @@ export class SysTenantApi extends BaseAPI {
     }
     /**
      * 
+     * @summary 切换租户 🔖
+     * @param {BaseIdInput} [body] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SysTenantApi
+     */
+    public async apiSysTenantChangeTenantPost(body?: BaseIdInput, options?: AxiosRequestConfig) : Promise<AxiosResponse<AdminResultLoginOutput>> {
+        return SysTenantApiFp(this.configuration).apiSysTenantChangeTenantPost(body, options).then((request) => request(this.axios, this.basePath));
+    }
+    /**
+     * 
      * @summary 创建租户数据库 🔖
      * @param {TenantInput} [body] 
      * @param {*} [options] Override http request option.
@@ -885,6 +1042,17 @@ export class SysTenantApi extends BaseAPI {
      */
     public async apiSysTenantDeletePost(body?: DeleteTenantInput, options?: AxiosRequestConfig) : Promise<AxiosResponse<void>> {
         return SysTenantApiFp(this.configuration).apiSysTenantDeletePost(body, options).then((request) => request(this.axios, this.basePath));
+    }
+    /**
+     * 
+     * @summary 进入租管端 🔖
+     * @param {BaseIdInput} [body] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SysTenantApi
+     */
+    public async apiSysTenantGoTenantPost(body?: BaseIdInput, options?: AxiosRequestConfig) : Promise<AxiosResponse<AdminResultLoginOutput>> {
+        return SysTenantApiFp(this.configuration).apiSysTenantGoTenantPost(body, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * 
