@@ -283,10 +283,6 @@ public class SysTenantService : IDynamicApiController, ITransient
         };
         await _sysUserRep.InsertAsync(newUser);
 
-        // 关联用户及角色
-        var newUserRole = new SysUserRole { RoleId = newRole.Id, UserId = newUser.Id };
-        await _userRoleRep.InsertAsync(newUserRole);
-
         // 关联租户组织机构和管理员用户
         await _sysTenantRep.UpdateAsync(u => new SysTenant { UserId = newUser.Id, OrgId = newOrg.Id }, u => u.Id == tenantId);
 
