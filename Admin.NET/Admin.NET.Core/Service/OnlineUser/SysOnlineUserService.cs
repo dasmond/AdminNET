@@ -14,14 +14,17 @@ namespace Admin.NET.Core.Service;
 [ApiDescriptionSettings(Order = 300)]
 public class SysOnlineUserService : IDynamicApiController, ITransient
 {
+    private readonly UserManager _userManager;
     private readonly SysConfigService _sysConfigService;
     private readonly IHubContext<OnlineUserHub, IOnlineUserHub> _onlineUserHubContext;
     private readonly SqlSugarRepository<SysOnlineUser> _sysOnlineUerRep;
 
     public SysOnlineUserService(SysConfigService sysConfigService,
         IHubContext<OnlineUserHub, IOnlineUserHub> onlineUserHubContext,
-        SqlSugarRepository<SysOnlineUser> sysOnlineUerRep)
+        SqlSugarRepository<SysOnlineUser> sysOnlineUerRep,
+        UserManager userManager)
     {
+        _userManager = userManager;
         _sysConfigService = sysConfigService;
         _onlineUserHubContext = onlineUserHubContext;
         _sysOnlineUerRep = sysOnlineUerRep;
@@ -35,6 +38,7 @@ public class SysOnlineUserService : IDynamicApiController, ITransient
     public async Task<SqlSugarPagedList<SysOnlineUser>> Page(PageOnlineUserInput input)
     {
         return await _sysOnlineUerRep.AsQueryable()
+            .WhereIF(_userManager.SuperAdmin && input.TenantId > 0, u => u.TenantId == input.TenantId)
             .WhereIF(!string.IsNullOrWhiteSpace(input.UserName), u => u.UserName.Contains(input.UserName))
             .WhereIF(!string.IsNullOrWhiteSpace(input.RealName), u => u.RealName.Contains(input.RealName))
             .ToPagedListAsync(input.Page, input.PageSize);

@@ -50,6 +50,7 @@ public class SysFileService : IDynamicApiController, ITransient
         var privateList = _sysFileRep.AsQueryable().Where(u => u.IsPublic == false);
         // 合并公开和私有附件并分页
         return await _sysFileRep.Context.UnionAll(publicList, privateList)
+            .WhereIF(_userManager.SuperAdmin && input.TenantId > 0, u => u.TenantId == input.TenantId)
             .WhereIF(!string.IsNullOrWhiteSpace(input.FileName), u => u.FileName.Contains(input.FileName.Trim()))
             .WhereIF(!string.IsNullOrWhiteSpace(input.StartTime.ToString()) && !string.IsNullOrWhiteSpace(input.EndTime.ToString()),
                 u => u.CreateTime >= input.StartTime && u.CreateTime <= input.EndTime)

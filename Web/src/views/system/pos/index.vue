@@ -2,6 +2,11 @@
 	<div class="sys-pos-container">
 		<el-card shadow="hover" :body-style="{ paddingBottom: '0' }">
 			<el-form :model="state.queryParams" ref="queryForm" :inline="true">
+				<el-form-item label="租户" v-if="userStore.userInfos.accountType == 999">
+					<el-select v-model="state.queryParams.tenantId" placeholder="租户" style="width: 100%">
+						<el-option :value="item.value" :label="`${item.label} (${item.host})`" v-for="(item, index) in state.tenantList" :key="index" />
+					</el-select>
+				</el-form-item>
 				<el-form-item label="职位名称">
 					<el-input v-model="state.queryParams.name" placeholder="职位名称" clearable />
 				</el-form-item>
@@ -76,14 +81,17 @@ import EditPos from '/@/views/system/pos/component/editPos.vue';
 import ModifyRecord from '/@/components/table/modifyRecord.vue';
 
 import { getAPI } from '/@/utils/axios-utils';
-import { SysPosApi } from '/@/api-services/api';
+import {SysPosApi, SysTenantApi} from '/@/api-services/api';
 import { SysPos, UpdatePosInput } from '/@/api-services/models';
+import { useUserInfo } from "/@/stores/userInfo";
 
+const userStore = useUserInfo();
 const editPosRef = ref<InstanceType<typeof EditPos>>();
 const state = reactive({
 	loading: false,
 	posData: [] as Array<SysPos>,
 	queryParams: {
+		tenantId: undefined,
 		name: undefined,
 		code: undefined,
 	},
@@ -91,13 +99,17 @@ const state = reactive({
 });
 
 onMounted(async () => {
+	if (userStore.userInfos.accountType == 999) {
+		state.tenantList = await getAPI(SysTenantApi).apiSysTenantListGet().then(res => res.data.result ?? []);
+		state.queryParams.tenantId = state.tenantList[0].value;
+	}
 	handleQuery();
 });
 
 // 查询操作
 const handleQuery = async () => {
 	state.loading = true;
-	var res = await getAPI(SysPosApi).apiSysPosListGet(state.queryParams.name, state.queryParams.code);
+	var res = await getAPI(SysPosApi).apiSysPosListGet(state.queryParams.name, state.queryParams.code, state.queryParams.tenantId);
 	state.posData = res.data.result ?? [];
 	state.loading = false;
 };
@@ -112,7 +124,7 @@ const resetQuery = () => {
 // 打开新增页面
 const openAddPos = () => {
 	state.editPosTitle = '添加职位';
-	editPosRef.value?.openDialog({ status: 1, orderNo: 100 });
+	editPosRef.value?.openDialog({ status: 1, tenantId: state.queryParams.tenantId, orderNo: 100 });
 };
 
 // 打开编辑页面

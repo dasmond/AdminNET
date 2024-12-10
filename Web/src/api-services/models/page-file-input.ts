@@ -91,4 +91,10 @@ export interface PageFileInput {
      * @memberof PageFileInput
      */
     endTime?: Date | null;
+    /**
+     * 租户Id
+     * @type {number}
+     * @memberof PageFileInput
+     */
+    tenantId?: number;
 }

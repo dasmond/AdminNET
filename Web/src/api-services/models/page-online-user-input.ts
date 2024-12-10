@@ -79,4 +79,10 @@ export interface PageOnlineUserInput {
      * @memberof PageOnlineUserInput
      */
     realName?: string | null;
+    /**
+     * 租户Id
+     * @type {number}
+     * @memberof PageOnlineUserInput
+     */
+    tenantId?: number;
 }

@@ -125,7 +125,6 @@ const openAddMenu = () => {
 // 打开编辑页面
 const openEditMenu = (row: any) => {
 	state.editMenuTitle = '编辑菜单';
-	if (userStore.userInfos.accountType == 999) row.tenantId = state.queryParams.tenantId;
 	editMenuRef.value?.openDialog(row);
 };
 

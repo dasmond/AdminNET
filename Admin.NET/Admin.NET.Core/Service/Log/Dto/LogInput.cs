@@ -57,6 +57,11 @@ public class PageLogInput : BasePageInput
     /// IP地址
     /// </summary>
     public string? RemoteIp { get; set; }
+    
+    /// <summary>
+    /// 租户Id
+    /// </summary>
+    public long TenantId { get; set; }
 }
 
 public class LogInput
