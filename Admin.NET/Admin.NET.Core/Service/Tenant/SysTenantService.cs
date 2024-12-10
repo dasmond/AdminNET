@@ -454,6 +454,58 @@ public class SysTenantService : IDynamicApiController, ITransient
         await _sysUserRep.UpdateAsync(u => new SysUser { Password = encryptPassword }, u => u.Id == input.UserId);
         return password;
     }
+    
+    /// <summary>
+    /// 切换租户 🔖
+    /// </summary>
+    /// <param name="input"></param>
+    /// <returns></returns>
+    [UnitOfWork]
+    [DisplayName("切换租户")]
+    public async Task<LoginOutput> ChangeTenant(BaseIdInput input)
+    {
+        var userManager = App.GetService<UserManager>();
+
+        _ = await _sysTenantRep.GetFirstAsync(u => u.Id == input.Id) ?? throw Oops.Oh(ErrorCodeEnum.D1002);
+        var user = await _sysUserRep.GetFirstAsync(u => u.Id == userManager.UserId) ?? throw Oops.Oh(ErrorCodeEnum.D1002);
+        user.TenantId = input.Id;
+
+        return await GetAccessTokenInNotSingleLogin(user);
+    }
+    
+    /// <summary>
+    /// 进入租管端 🔖
+    /// </summary>
+    /// <param name="input"></param>
+    /// <returns></returns>
+    [DisplayName("进入租管端")]
+    public async Task<LoginOutput> GoTenant(BaseIdInput input)
+    {
+        var tenant = await _sysTenantRep.GetFirstAsync(u => u.Id == input.Id) ?? throw Oops.Oh(ErrorCodeEnum.D1002);
+        var user = await _sysUserRep.GetFirstAsync(u => u.Id == tenant.UserId) ?? throw Oops.Oh(ErrorCodeEnum.D1002);
+        return await GetAccessTokenInNotSingleLogin(user);
+    }
+    
+    /// <summary>
+    /// 在非单用户登录模式下获取登录令牌
+    /// </summary>
+    /// <param name="user"></param>
+    /// <returns></returns>
+    [NonAction]
+    public async Task<LoginOutput> GetAccessTokenInNotSingleLogin(SysUser user)
+    {
+        // 使用非单用户模式登录
+        var singleLogin = _sysCacheService.Get<bool>($"{CacheConst.KeyConfig}{ConfigConst.SysSingleLogin}");
+        try
+        {
+            return await App.GetService<SysAuthService>().CreateToken(user);
+        }
+        finally
+        {
+            // 恢复单用户登录参数
+            if (singleLogin) _sysCacheService.Set($"{CacheConst.KeyConfig}{ConfigConst.SysSingleLogin}", true);
+        }
+    }
 
     /// <summary>
     /// 缓存所有租户
