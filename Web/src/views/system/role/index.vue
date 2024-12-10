@@ -2,6 +2,11 @@
 	<div class="sys-role-container">
 		<el-card shadow="hover" :body-style="{ paddingBottom: '0' }">
 			<el-form :model="state.queryParams" ref="queryForm" :inline="true">
+				<el-form-item label="租户" v-if="userStore.userInfos.accountType == 999">
+					<el-select v-model="state.queryParams.tenantId" placeholder="租户" style="width: 100%">
+						<el-option :value="item.value" :label="`${item.label} (${item.host})`" v-for="(item, index) in state.tenantList" :key="index" />
+					</el-select>
+				</el-form-item>
 				<el-form-item label="角色名称">
 					<el-input v-model="state.queryParams.name" placeholder="角色名称" clearable />
 				</el-form-item>
@@ -74,15 +79,18 @@ import EditRole from '/@/views/system/role/component/editRole.vue';
 import GrantData from '/@/views/system/role/component/grantData.vue';
 import ModifyRecord from '/@/components/table/modifyRecord.vue';
 import { getAPI } from '/@/utils/axios-utils';
-import { SysRoleApi } from '/@/api-services/api';
+import { SysRoleApi, SysTenantApi } from '/@/api-services/api';
 import { SysRole } from '/@/api-services/models';
+import { useUserInfo } from "/@/stores/userInfo";
 
+const userStore = useUserInfo();
 const editRoleRef = ref<InstanceType<typeof EditRole>>();
 const grantDataRef = ref<InstanceType<typeof GrantData>>();
 const state = reactive({
 	loading: false,
 	roleData: [] as Array<SysRole>,
 	queryParams: {
+		tenantId: undefined,
 		name: undefined,
 		code: undefined,
 	},
@@ -95,6 +103,10 @@ const state = reactive({
 });
 
 onMounted(async () => {
+	if (userStore.userInfos.accountType == 999) {
+		state.tenantList = await getAPI(SysTenantApi).apiSysTenantListGet().then(res => res.data.result ?? []);
+		state.queryParams.tenantId = state.tenantList[0].value;
+	}
 	await handleQuery();
 });
 
@@ -118,7 +130,7 @@ const resetQuery = async () => {
 // 打开新增页面
 const openAddRole = () => {
 	state.editRoleTitle = '添加角色';
-	editRoleRef.value?.openDialog({ id: undefined, status: 1, orderNo: 100 });
+	editRoleRef.value?.openDialog({ id: undefined, status: 1, tenantId: state.queryParams.tenantId, orderNo: 100 });
 };
 
 // 打开编辑页面

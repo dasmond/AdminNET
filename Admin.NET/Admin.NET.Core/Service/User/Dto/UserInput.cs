@@ -19,6 +19,11 @@ public class UserInput : BaseStatusInput
 public class PageUserInput : BasePageInput
 {
     /// <summary>
+    /// 租户Id
+    /// </summary>
+    public long TenantId { get; set; }
+    
+    /// <summary>
     /// 账号
     /// </summary>
     public string Account { get; set; }

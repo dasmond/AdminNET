@@ -15,10 +15,12 @@ namespace Admin.NET.Core;
 public class SysLdapService : IDynamicApiController, ITransient
 {
     private readonly SqlSugarRepository<SysLdap> _sysLdapRep;
+    private readonly UserManager _userManager;
 
-    public SysLdapService(SqlSugarRepository<SysLdap> sysLdapRep)
+    public SysLdapService(SqlSugarRepository<SysLdap> sysLdapRep, UserManager userManager)
     {
         _sysLdapRep = sysLdapRep;
+        _userManager = userManager;
     }
 
     /// <summary>
@@ -30,6 +32,7 @@ public class SysLdapService : IDynamicApiController, ITransient
     public async Task<SqlSugarPagedList<SysLdap>> Page(SysLdapInput input)
     {
         return await _sysLdapRep.AsQueryable()
+            .WhereIF(_userManager.SuperAdmin && input.TenantId > 0, u => u.TenantId == input.TenantId)
             .WhereIF(!string.IsNullOrWhiteSpace(input.Keyword), u => u.Host.Contains(input.Keyword.Trim()))
             .WhereIF(!string.IsNullOrWhiteSpace(input.Host), u => u.Host.Contains(input.Host.Trim()))
             .OrderBy(u => u.CreateTime, OrderByType.Desc)

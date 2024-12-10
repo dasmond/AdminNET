@@ -13,10 +13,12 @@ namespace Admin.NET.Core.Service;
 public class SysPrintService : IDynamicApiController, ITransient
 {
     private readonly SqlSugarRepository<SysPrint> _sysPrintRep;
+    private readonly UserManager _userManager;
 
-    public SysPrintService(SqlSugarRepository<SysPrint> sysPrintRep)
+    public SysPrintService(SqlSugarRepository<SysPrint> sysPrintRep, UserManager userManager)
     {
         _sysPrintRep = sysPrintRep;
+        _userManager = userManager;
     }
 
     /// <summary>
@@ -28,6 +30,7 @@ public class SysPrintService : IDynamicApiController, ITransient
     public async Task<SqlSugarPagedList<SysPrint>> Page(PagePrintInput input)
     {
         return await _sysPrintRep.AsQueryable()
+            .WhereIF(_userManager.SuperAdmin && input.TenantId > 0, u => u.TenantId == input.TenantId)
             .WhereIF(!string.IsNullOrWhiteSpace(input.Name), u => u.Name.Contains(input.Name))
             .OrderBy(u => new { u.OrderNo, u.Id })
             .ToPagedListAsync(input.Page, input.PageSize);
