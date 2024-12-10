@@ -1,5 +1,13 @@
 <template>
 	<el-form size="large" class="login-content-form">
+		<el-form-item class="login-animation1" v-if="!tenantInfo.list.some(e => e.host === tenantInfo.host)">
+			<el-select v-model="state.ruleForm.tenantId" :placeholder="$t('message.mobile.placeholder1')" clearable style="width: 100%">
+				<template #prefix>
+					<i class="iconfont icon-shuxingtu el-input__icon"></i>
+				</template>
+				<el-option :value="item.value" :label="`${item.label} (${item.host})`" v-for="(item, index) in tenantInfo.list" :key="index" />
+			</el-select>
+		</el-form-item>
 		<el-form-item class="login-animation1">
 			<el-input text :placeholder="$t('message.mobile.placeholder1')" v-model="state.ruleForm.phone" clearable autocomplete="off">
 				<template #prefix>
@@ -39,9 +47,14 @@ import { useRoute } from "vue-router";
 import { getAPI } from '/@/utils/axios-utils';
 import { SysSmsApi, SysAuthApi } from '/@/api-services/api';
 
+const props = defineProps({
+	tenantInfo: {},
+});
+
 const route = useRoute();
 const state = reactive({
 	ruleForm: {
+		tenantId: props.tenantInfo.id,
 		phone: '',
 		code: '',
 	},

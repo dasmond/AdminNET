@@ -41,9 +41,9 @@ public class AppEventSubscriber : IEventSubscriber, ISingleton, IDisposable
         //var mailTempPath = Path.Combine(App.WebHostEnvironment.WebRootPath, "Temp\\ErrorMail.tp");
         //var mailTemp = File.ReadAllText(mailTempPath);
         //var mail = await _serviceScope.ServiceProvider.GetRequiredService<IViewEngine>().RunCompileFromCachedAsync(mailTemp, );
-
-        var webTitle = await _serviceScope.ServiceProvider.GetRequiredService<SysConfigService>().GetConfigValue<string>(ConfigConst.SysWebTitle);
-        var title = $"{webTitle} 系统异常";
+        var tenantId = App.GetService<UserManager>()?.TenantId ?? SqlSugarConst.DefaultTenantId;
+        var tenant = await App.GetService<ISqlSugarClient>().Queryable<SysTenant>().FirstAsync(t => t.Id == tenantId);
+        var title = $"{tenant?.Title} 系统异常";
         await _serviceScope.ServiceProvider.GetRequiredService<SysEmailService>().SendEmail(JSON.Serialize(context.Source.Payload), title);
     }
 

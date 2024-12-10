@@ -142,6 +142,7 @@ public class SysRoleService : IDynamicApiController, ITransient
         var userIds = await _sysUserRoleService.GetUserIdList(input.Id);
         if (userIds != null && userIds.Count > 0) throw Oops.Oh(ErrorCodeEnum.D1025);
 
+        var sysRole = await _sysRoleRep.GetFirstAsync(u => u.Id == input.Id) ?? throw Oops.Oh(ErrorCodeEnum.D1002);
         await _sysRoleRep.DeleteAsync(sysRole);
 
         // 级联删除角色机构数据

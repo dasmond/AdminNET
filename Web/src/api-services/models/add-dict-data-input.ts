@@ -85,6 +85,12 @@ export interface AddDictDataInput {
      */
     value: string;
     /**
+     * 编码
+     * @type {string}
+     * @memberof AddDictDataInput
+     */
+    code?: string | null;
+    /**
      * 名称
      * @type {string}
      * @memberof AddDictDataInput

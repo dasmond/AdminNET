@@ -113,7 +113,7 @@ public class SysOAuthService : IDynamicApiController, ITransient
         }
 
         // 构建Token令牌
-        var token = await App.GetRequiredService<SysAuthService>().CreateToken(wechatUser.SysUser, SqlSugarConst.DefaultAppId);
+        var token = await App.GetRequiredService<SysAuthService>().CreateToken(wechatUser.SysUser);
 
         return new RedirectResult($"{redirectUrl}/#/login?token={token.AccessToken}");
     }

@@ -39,14 +39,14 @@
 				</el-descriptions-item>
 				<el-descriptions-item label="登录二次验证">
 					<el-radio-group v-model="state.formData.sysSecondVer">
-						<el-radio :value="true">启用</el-radio>
-						<el-radio :value="false">禁用</el-radio>
+						<el-radio :value="1">启用</el-radio>
+						<el-radio :value="2">禁用</el-radio>
 					</el-radio-group>
 				</el-descriptions-item>
 				<el-descriptions-item label="图形验证码">
 					<el-radio-group v-model="state.formData.sysCaptcha">
-						<el-radio :value="true">启用</el-radio>
-						<el-radio :value="false">禁用</el-radio>
+						<el-radio :value="1">启用</el-radio>
+						<el-radio :value="2">禁用</el-radio>
 					</el-radio-group>
 				</el-descriptions-item>
 
