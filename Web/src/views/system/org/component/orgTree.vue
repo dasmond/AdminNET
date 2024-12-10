@@ -85,10 +85,15 @@ const initTreeData = async () => {
 };
 
 // 设置默认选择
-const setCheckedKeys = (orgData: any) => {
-	state.isShowCheckbox = true;
+const setCheckedKeys = (data: any) => {
+	const isArray = Array.isArray(data);
 	treeRef.value!.setCheckedKeys([]);
-	state.ownOrgData = orgData;
+	if (!isArray) {
+		treeRef.value!.setCurrentNode(data);
+		nodeClick(data);
+	}
+	state.ownOrgData = isArray ? data : [data];
+	state.isShowCheckbox = isArray;
 };
 
 // 获取已经选择
