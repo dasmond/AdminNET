@@ -13,11 +13,6 @@ namespace Admin.NET.Core;
 public class CommonConst
 {
     /// <summary>
-    /// 系统管理员角色编码
-    /// </summary>
-    public const string SysAdminRole = "sys_admin";
-
-    /// <summary>
     /// 日志分组名称
     /// </summary>
     public const string SysLogCategoryName = "System.Logging.LoggingMonitor";
