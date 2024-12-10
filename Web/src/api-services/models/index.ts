@@ -113,6 +113,7 @@ export * from './admin-result-wx-open-id-output';
 export * from './admin-result-wx-phone-output';
 export * from './api-output';
 export * from './assembly';
+export * from './base-id-input';
 export * from './base-proc-input';
 export * from './batch-config-input';
 export * from './calendar';

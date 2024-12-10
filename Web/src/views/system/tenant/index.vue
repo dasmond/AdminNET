@@ -104,6 +104,10 @@
 								style="padding-left: 12px" />
 							<template #dropdown>
 								<el-dropdown-menu>
+									<el-dropdown-item icon="ele-OfficeBuilding" @click="goTenant(scope.row)"
+									                  :v-auth="'sysTenant:goTenant'"> 进入租管端 </el-dropdown-item>
+									<el-dropdown-item icon="ele-OfficeBuilding" @click="changeTenant(scope.row)"
+									                  :v-auth="'sysTenant:changeTenant'"> 切换租户 </el-dropdown-item>
 									<el-dropdown-item icon="ele-OfficeBuilding" @click="openGrantMenu(scope.row)"
 										:v-auth="'sysTenant:grantMenu'"> 授权菜单 </el-dropdown-item>
 									<el-dropdown-item icon="ele-RefreshLeft" @click="resetTenantPwd(scope.row)"
@@ -136,6 +140,8 @@ import ModifyRecord from '/@/components/table/modifyRecord.vue';
 import { getAPI } from '/@/utils/axios-utils';
 import { SysTenantApi } from '/@/api-services/api';
 import { TenantOutput } from '/@/api-services/models';
+import {Local} from "/@/utils/storage";
+import {accessTokenKey, refreshAccessTokenKey} from "/@/utils/request";
 
 const editTenantRef = ref<InstanceType<typeof EditTenant>>();
 const grantMenuRef = ref<InstanceType<typeof GrantMenu>>();
@@ -167,6 +173,42 @@ const handleQuery = async () => {
 	state.tableParams.total = res.data.result?.total;
 	state.loading = false;
 };
+
+// 进入租管端
+const goTenant = (row: any) => {
+	ElMessageBox.confirm(`确定要进入【${row.name}】租管端?`, '提示', {
+		confirmButtonText: '确定',
+		cancelButtonText: '取消',
+		type: 'warning',
+	}).then(async () => {
+		await getAPI(SysTenantApi).apiSysTenantGoTenantPost({ id: row.id }).then(res => {
+			const newToken = res.data.result;
+			if (newToken) {
+				Local.set(accessTokenKey, newToken.accessToken);
+				Local.set(refreshAccessTokenKey, newToken.refreshToken);
+				location.href = "/";
+			}
+		});
+	});
+}
+
+// 切换租户
+const changeTenant = (row: any) => {
+	ElMessageBox.confirm(`确定要将当前用户切换到【${row.name}】?`, '提示', {
+		confirmButtonText: '确定',
+		cancelButtonText: '取消',
+		type: 'warning',
+	}).then(async () => {
+		await getAPI(SysTenantApi).apiSysTenantChangeTenantPost({ id: row.id }).then(res => {
+			const newToken = res.data.result;
+			if (newToken) {
+				Local.set(accessTokenKey, newToken.accessToken);
+				Local.set(refreshAccessTokenKey, newToken.refreshToken);
+				location.href = "/";
+			}
+		});
+	});
+}
 
 // 重置操作
 const resetQuery = () => {
