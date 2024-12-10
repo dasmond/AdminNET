@@ -2,6 +2,11 @@
 	<div class="sys-print-container">
 		<el-card shadow="hover" :body-style="{ paddingBottom: '0' }">
 			<el-form :model="state.queryParams" ref="queryForm" :inline="true">
+				<el-form-item label="租户" v-if="userStore.userInfos.accountType == 999">
+					<el-select v-model="state.queryParams.tenantId" placeholder="租户" style="width: 100%">
+						<el-option :value="item.value" :label="`${item.label} (${item.host})`" v-for="(item, index) in state.tenantList" :key="index" />
+					</el-select>
+				</el-form-item>
 				<el-form-item label="模板名称">
 					<el-input v-model="state.queryParams.name" placeholder="模板名称" clearable />
 				</el-form-item>
@@ -63,14 +68,17 @@ import { ElMessageBox, ElMessage } from 'element-plus';
 import EditPrint from '/@/views/system/print/component/editPrint.vue';
 import ModifyRecord from '/@/components/table/modifyRecord.vue';
 import { getAPI } from '/@/utils/axios-utils';
-import { SysPrintApi } from '/@/api-services/api';
+import {SysPrintApi, SysTenantApi} from '/@/api-services/api';
 import { SysPrint } from '/@/api-services/models';
+import { useUserInfo } from "/@/stores/userInfo";
 
+const userStore = useUserInfo();
 const editPrintRef = ref<InstanceType<typeof EditPrint>>();
 const state = reactive({
 	loading: false,
 	printData: [] as Array<SysPrint>,
 	queryParams: {
+		tenantId: undefined,
 		name: undefined,
 	},
 	tableParams: {
@@ -82,6 +90,10 @@ const state = reactive({
 });
 
 onMounted(async () => {
+	if (userStore.userInfos.accountType == 999) {
+		state.tenantList = await getAPI(SysTenantApi).apiSysTenantListGet().then(res => res.data.result ?? []);
+		state.queryParams.tenantId = state.tenantList[0].value;
+	}
 	handleQuery();
 });
 
@@ -104,7 +116,7 @@ const resetQuery = () => {
 // 打开新增页面
 const openAddPrint = () => {
 	state.editPrintTitle = '添加打印模板';
-	editPrintRef.value?.openDialog({});
+	editPrintRef.value?.openDialog({ tenantId: state.queryParams.tenantId });
 };
 
 // 打开编辑页面

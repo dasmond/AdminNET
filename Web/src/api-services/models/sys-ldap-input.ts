@@ -73,4 +73,10 @@ export interface SysLdapInput {
      * @memberof SysLdapInput
      */
     host?: string | null;
+    /**
+     * 租户Id
+     * @type {number}
+     * @memberof SysLdapInput
+     */
+    tenantId?: number;
 }

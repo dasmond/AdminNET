@@ -34,6 +34,7 @@ public class SysPosService : IDynamicApiController, ITransient
     public async Task<List<SysPos>> GetList([FromQuery] PosInput input)
     {
         return await _sysPosRep.AsQueryable()
+            .WhereIF(_userManager.SuperAdmin && input.TenantId > 0, u => u.TenantId == input.TenantId)
             .WhereIF(!string.IsNullOrWhiteSpace(input.Name), u => u.Name.Contains(input.Name))
             .WhereIF(!string.IsNullOrWhiteSpace(input.Code), u => u.Code.Contains(input.Code))
             .OrderBy(u => new { u.OrderNo, u.Id })

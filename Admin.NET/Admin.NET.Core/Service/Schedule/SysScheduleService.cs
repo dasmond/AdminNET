@@ -31,6 +31,7 @@ public class SysScheduleService : IDynamicApiController, ITransient
     {
         return await _sysSchedule.AsQueryable()
             .Where(u => u.UserId == _userManager.UserId)
+            .WhereIF(_userManager.SuperAdmin && input.TenantId > 0, u => u.TenantId == input.TenantId)
             .WhereIF(!string.IsNullOrWhiteSpace(input.StartTime.ToString()), u => u.ScheduleTime >= input.StartTime)
             .WhereIF(!string.IsNullOrWhiteSpace(input.EndTime.ToString()), u => u.ScheduleTime <= input.EndTime)
             .OrderBy(u => u.StartTime, OrderByType.Asc)
