@@ -4,44 +4,24 @@
 //
 // 不得利用本项目从事危害国家安全、扰乱社会秩序、侵犯他人合法权益等法律法规禁止的活动！任何基于本项目二次开发而产生的一切法律纠纷和责任，我们不承担任何责任！
 
-namespace Admin.NET.Core.Service;
+namespace Admin.NET.Core;
 
-public class MenuInput
+/// <summary>
+/// 系统租户菜单表
+/// </summary>
+[SugarTable(null, "系统租户菜单表")]
+[SysTable]
+public class SysTenantMenu : EntityBaseId
 {
-    /// <summary>
-    /// 标题
-    /// </summary>
-    public string Title { get; set; }
-
-    /// <summary>
-    /// 菜单类型（1目录 2菜单 3按钮）
-    /// </summary>
-    public MenuTypeEnum? Type { get; set; }
-    
     /// <summary>
     /// 租户Id
     /// </summary>
-    public virtual long TenantId { get; set; }
-}
-
-public class AddMenuInput : SysMenu
-{
-    /// <summary>
-    /// 名称
-    /// </summary>
-    [Required(ErrorMessage = "菜单名称不能为空")]
-    public override string Title { get; set; }
-    
-    /// <summary>
-    /// 租户Id
-    /// </summary>
+    [SugarColumn(ColumnDescription = "租户Id")]
     public long TenantId { get; set; }
-}
 
-public class UpdateMenuInput : AddMenuInput
-{
-}
-
-public class DeleteMenuInput : BaseIdInput
-{
+    /// <summary>
+    /// 菜单Id
+    /// </summary>
+    [SugarColumn(ColumnDescription = "菜单Id")]
+    public long MenuId { get; set; }
 }

@@ -66,6 +66,12 @@ export interface SysLogDiff {
      */
     isDelete?: boolean;
     /**
+     * 租户Id
+     * @type {number}
+     * @memberof SysLogDiff
+     */
+    tenantId?: number | null;
+    /**
      * 差异数据
      * @type {string}
      * @memberof SysLogDiff

@@ -12,21 +12,21 @@
  * Do not edit the class manually.
  */
 /**
- * 授权应用菜单
+ * 租户菜单
  * @export
- * @interface UpdateAppMenuInput
+ * @interface TenantMenuInput
  */
-export interface UpdateAppMenuInput {
+export interface TenantMenuInput {
     /**
      * 主键Id
      * @type {number}
-     * @memberof UpdateAppMenuInput
+     * @memberof TenantMenuInput
      */
     id: number;
     /**
      * 菜单Id集合
      * @type {Array<number>}
-     * @memberof UpdateAppMenuInput
+     * @memberof TenantMenuInput
      */
     menuIdList?: Array<number> | null;
 }

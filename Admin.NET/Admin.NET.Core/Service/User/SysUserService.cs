@@ -101,8 +101,7 @@ public class SysUserService : IDynamicApiController, ITransient
     public virtual async Task<long> AddUser(AddUserInput input)
     {
         // 是否租户隔离登录验证
-        var isTenantHostLogin = await _sysConfigService.GetConfigValue<bool>(ConfigConst.SysTenantHostLogin);
-        var query = _sysUserRep.AsQueryable().ClearFilter().WhereIF(isTenantHostLogin, u => u.TenantId == _userManager.TenantId || u.AccountType == AccountTypeEnum.SuperAdmin);
+        var query = _sysUserRep.AsQueryable().ClearFilter().Where(u => u.TenantId == _userManager.TenantId || u.AccountType == AccountTypeEnum.SuperAdmin);
 
         if (await query.AnyAsync(u => u.Account == input.Account)) throw Oops.Oh(ErrorCodeEnum.D1003);
         if (!string.IsNullOrWhiteSpace(input.Phone) && await query.AnyAsync(u => u.Phone == input.Phone)) throw Oops.Oh(ErrorCodeEnum.D1032);
@@ -137,9 +136,8 @@ public class SysUserService : IDynamicApiController, ITransient
     public virtual async Task UpdateUser(UpdateUserInput input)
     {
         // 是否租户隔离登录验证
-        var isTenantHostLogin = await _sysConfigService.GetConfigValue<bool>(ConfigConst.SysTenantHostLogin);
         var query = _sysUserRep.AsQueryable().ClearFilter().Where(u => u.Id != input.Id)
-            .WhereIF(isTenantHostLogin, u => u.TenantId == _userManager.TenantId || u.AccountType == AccountTypeEnum.SuperAdmin);
+            .Where(u => u.TenantId == _userManager.TenantId || u.AccountType == AccountTypeEnum.SuperAdmin);
 
         if (await query.AnyAsync(u => u.Account == input.Account)) throw Oops.Oh(ErrorCodeEnum.D1003);
         if (!string.IsNullOrWhiteSpace(input.Phone) && await query.AnyAsync(u => u.Phone == input.Phone)) throw Oops.Oh(ErrorCodeEnum.D1032);

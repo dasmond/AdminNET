@@ -4,22 +4,23 @@
 //
 // 不得利用本项目从事危害国家安全、扰乱社会秩序、侵犯他人合法权益等法律法规禁止的活动！任何基于本项目二次开发而产生的一切法律纠纷和责任，我们不承担任何责任！
 
-namespace Admin.NET.Application;
+namespace Admin.NET.Core;
 
 /// <summary>
-/// 系统应用表种子数据
+/// 系统租户菜单表种子数据
 /// </summary>
-public class SysAppSeedData : ISqlSugarEntitySeedData<SysApp>
+[IgnoreUpdateSeed]
+public class SysTenantMenuSeedData : ISqlSugarEntitySeedData<SysTenantMenu>
 {
     /// <summary>
     /// 种子数据
     /// </summary>
     /// <returns></returns>
-    public IEnumerable<SysApp> HasData()
+    public IEnumerable<SysTenantMenu> HasData()
     {
-        return new[]
-        {
-            new SysApp{ Id=1310000000001, Name=ApplicationConst.GroupName, Logo="/upload/logo.png", Title="Admin.App", ViceTitle="Admin.App", ViceDesc="站在巨人肩膀上的 .NET 通用权限开发框架", Watermark="Admin.App", Copyright="Copyright \u00a9 2021-present Admin.NET All rights reserved.", Icp="省ICP备12345678号", Remark=ApplicationConst.GroupName, CreateTime=DateTime.Parse("2022-02-10 00:00:00") },
-        };
+        var id = 1300000000101;
+        var tenant = new SysTenantSeedData().HasData().First();
+        var menuList = new SysMenuSeedData().HasData().ToList();
+        return menuList.Select(u => new SysTenantMenu { Id = id++, TenantId = tenant.Id, MenuId = u.Id });
     }
 }

@@ -11,7 +11,6 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */export * from './apis/apijsonapi';
-export * from './apis/sys-app-api';
 export * from './apis/sys-auth-api';
 export * from './apis/sys-cache-api';
 export * from './apis/sys-code-gen-api';

@@ -24,48 +24,6 @@ export interface SysUserLdap {
      */
     id?: number;
     /**
-     * 创建时间
-     * @type {Date}
-     * @memberof SysUserLdap
-     */
-    createTime?: Date;
-    /**
-     * 更新时间
-     * @type {Date}
-     * @memberof SysUserLdap
-     */
-    updateTime?: Date | null;
-    /**
-     * 创建者Id
-     * @type {number}
-     * @memberof SysUserLdap
-     */
-    createUserId?: number | null;
-    /**
-     * 创建者姓名
-     * @type {string}
-     * @memberof SysUserLdap
-     */
-    createUserName?: string | null;
-    /**
-     * 修改者Id
-     * @type {number}
-     * @memberof SysUserLdap
-     */
-    updateUserId?: number | null;
-    /**
-     * 修改者姓名
-     * @type {string}
-     * @memberof SysUserLdap
-     */
-    updateUserName?: string | null;
-    /**
-     * 软删除
-     * @type {boolean}
-     * @memberof SysUserLdap
-     */
-    isDelete?: boolean;
-    /**
      * 租户Id
      * @type {number}
      * @memberof SysUserLdap

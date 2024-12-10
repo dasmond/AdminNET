@@ -176,4 +176,10 @@ export interface AddMenuInput {
      * @memberof AddMenuInput
      */
     title: string;
+    /**
+     * 租户Id
+     * @type {number}
+     * @memberof AddMenuInput
+     */
+    tenantId?: number;
 }
