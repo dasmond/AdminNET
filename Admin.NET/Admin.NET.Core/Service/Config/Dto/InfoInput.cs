@@ -66,10 +66,10 @@ public class InfoSaveInput
     /// <summary>
     /// 登录二次验证
     /// </summary>
-    public bool? SysSecondVer { get; set; }
+    public bool SysSecondVer { get; set; }
 
     /// <summary>
     /// 图形验证码
     /// </summary>
-    public bool? SysCaptcha { get; set; }
+    public bool SysCaptcha { get; set; }
 }

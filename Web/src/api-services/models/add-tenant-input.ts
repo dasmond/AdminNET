@@ -73,9 +73,9 @@ export interface AddTenantInput {
      * @type {number}
      * @memberof AddTenantInput
      */
-    appId: number;
+    appId?: number | null;
     /**
-     * 用户Id
+     * 租管用户Id
      * @type {number}
      * @memberof AddTenantInput
      */
@@ -117,6 +117,12 @@ export interface AddTenantInput {
      */
     slaveConnections?: string | null;
     /**
+     * 图标
+     * @type {string}
+     * @memberof AddTenantInput
+     */
+    logo: string;
+    /**
      * 排序
      * @type {number}
      * @memberof AddTenantInput
@@ -134,12 +140,6 @@ export interface AddTenantInput {
      * @memberof AddTenantInput
      */
     status?: StatusEnum;
-    /**
-     * 关联应用名称
-     * @type {string}
-     * @memberof AddTenantInput
-     */
-    appName?: string | null;
     /**
      * 电子邮箱
      * @type {string}
@@ -170,4 +170,58 @@ export interface AddTenantInput {
      * @memberof AddTenantInput
      */
     host: string;
+    /**
+     * 系统主标题
+     * @type {string}
+     * @memberof AddTenantInput
+     */
+    title: string;
+    /**
+     * 系统副标题
+     * @type {string}
+     * @memberof AddTenantInput
+     */
+    viceTitle: string;
+    /**
+     * 系统描述
+     * @type {string}
+     * @memberof AddTenantInput
+     */
+    viceDesc: string;
+    /**
+     * 水印内容
+     * @type {string}
+     * @memberof AddTenantInput
+     */
+    watermark: string;
+    /**
+     * 版权说明
+     * @type {string}
+     * @memberof AddTenantInput
+     */
+    copyright: string;
+    /**
+     * ICP备案号
+     * @type {string}
+     * @memberof AddTenantInput
+     */
+    icp: string;
+    /**
+     * ICP地址
+     * @type {string}
+     * @memberof AddTenantInput
+     */
+    icpUrl: string;
+    /**
+     * Logo图片Base64码
+     * @type {string}
+     * @memberof AddTenantInput
+     */
+    logoBase64: string;
+    /**
+     * Logo文件名
+     * @type {string}
+     * @memberof AddTenantInput
+     */
+    logoFileName?: string | null;
 }

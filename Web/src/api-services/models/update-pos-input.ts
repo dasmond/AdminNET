@@ -98,7 +98,7 @@ export interface UpdatePosInput {
      */
     status?: StatusEnum;
     /**
-     * 在职人员
+     * 在职人数
      * @type {Array<SysUser>}
      * @memberof UpdatePosInput
      */

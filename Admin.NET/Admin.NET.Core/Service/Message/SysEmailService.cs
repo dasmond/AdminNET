@@ -15,13 +15,13 @@ namespace Admin.NET.Core.Service;
 [ApiDescriptionSettings(Order = 370)]
 public class SysEmailService : IDynamicApiController, ITransient
 {
+    private readonly SqlSugarRepository<SysTenant> _sysTenantRep;
     private readonly EmailOptions _emailOptions;
-    private readonly SysConfigService _sysConfigService;
 
-    public SysEmailService(IOptions<EmailOptions> emailOptions, SysConfigService sysConfigService)
+    public SysEmailService(IOptions<EmailOptions> emailOptions, SqlSugarRepository<SysTenant> sysTenantRep)
     {
         _emailOptions = emailOptions.Value;
-        _sysConfigService = sysConfigService;
+        _sysTenantRep = sysTenantRep;
     }
 
     /// <summary>
@@ -34,7 +34,8 @@ public class SysEmailService : IDynamicApiController, ITransient
     [DisplayName("发送邮件")]
     public async Task SendEmail([Required] string content, string title = "", string toEmail = "")
     {
-        var webTitle = await _sysConfigService.GetConfigValue<string>(ConfigConst.SysWebTitle);
+        long.TryParse(App.User?.FindFirst(ClaimConst.TenantId)?.Value ?? SqlSugarConst.DefaultTenantId.ToString(), out var tenantId);
+        var webTitle = (await _sysTenantRep.GetFirstAsync(u => u.Id == tenantId))?.Title;
         title = string.IsNullOrWhiteSpace(title) ? $"{webTitle} 系统邮件" : title;
         var message = new MimeMessage();
 

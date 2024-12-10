@@ -68,7 +68,7 @@ public class SysAuthService : IDynamicApiController, ITransient
         if (await _sysConfigService.GetConfigValue<bool>(ConfigConst.SysCaptcha) && !_captcha.Validate(input.CodeId.ToString(), input.Code)) throw Oops.Oh(ErrorCodeEnum.D0008);
 
         // 获取登录租户和用户
-        var (tenant, user) = await GetLoginUserAndTenant(input.Host, account: input.Account);
+        var (tenant, user) = await GetLoginUserAndTenant(input.TenantId, account: input.Account);
 
         // 账号是否被冻结
         if (user.Status == StatusEnum.Disable) throw Oops.Oh(ErrorCodeEnum.D1017);
@@ -93,59 +93,30 @@ public class SysAuthService : IDynamicApiController, ITransient
         // 登录成功则清空密码错误次数
         _sysCacheService.Remove(keyPasswordErrorTimes);
 
-        return await CreateToken(user, tenant.AppId);
+        return await CreateToken(user);
     }
 
     /// <summary>
     /// 获取登录租户和用户
     /// </summary>
-    /// <param name="host"></param>
+    /// <param name="tenantId"></param>
     /// <param name="account"></param>
     /// <param name="phone"></param>
     /// <returns></returns>
     [NonAction]
-    public async Task<(SysTenant tenant, SysUser user)> GetLoginUserAndTenant(string host, string account = null, string phone = null)
+    public async Task<(SysTenant tenant, SysUser user)> GetLoginUserAndTenant(long tenantId, string account = null, string phone = null)
     {
-        // 是否租户隔离登录验证
-        var isTenantHostLogin = await _sysConfigService.GetConfigValue<bool>(ConfigConst.SysTenantHostLogin);
-
-        SysUser user;
-        SysTenant tenant;
-
-        // 租户隔离登录
-        if (isTenantHostLogin)
-        {
-            // 若租户域名为空或为本地域名，则取默认租户域名
-            if (string.IsNullOrWhiteSpace(host) || host.StartsWith("localhost")) host = SqlSugarConst.DefaultTenantHost;
-
-            // 租户是否存在或已禁用
-            tenant = await _sysUserRep.ChangeRepository<SqlSugarRepository<SysTenant>>().GetFirstAsync(u => u.Host == host.ToLower());
-            if (tenant?.Status != StatusEnum.Enable) throw Oops.Oh(ErrorCodeEnum.Z1003);
-
-            // 根据入参类型、租户查询登录用户
-            user = await _sysUserRep.AsQueryable().Includes(t => t.SysOrg).ClearFilter()
-                .Where(u => u.TenantId == tenant.Id || u.AccountType == AccountTypeEnum.SuperAdmin)
-                .WhereIF(!string.IsNullOrWhiteSpace(account), u => u.Account.Equals(account))
-                .WhereIF(!string.IsNullOrWhiteSpace(phone), u => u.Phone.Equals(phone))
-                .FirstAsync();
-            _ = user ?? throw Oops.Oh(ErrorCodeEnum.D0009);
-
-            // 若登录的是超级管理员，则引用当前绑定的租户，这样登陆后操作的租户数据会与该租户关联
-            if (user.AccountType == AccountTypeEnum.SuperAdmin) user.TenantId = tenant.Id;
-        }
-        else
-        {
-            // 根据入参类型查询登录用户
-            user = await _sysUserRep.AsQueryable().Includes(t => t.SysOrg).ClearFilter()
-                .WhereIF(!string.IsNullOrWhiteSpace(account), u => u.Account.Equals(account))
-                .WhereIF(!string.IsNullOrWhiteSpace(phone), u => u.Phone.Equals(phone))
-                .FirstAsync();
-            _ = user ?? throw Oops.Oh(ErrorCodeEnum.D0009);
-
-            // 租户是否存在或已禁用
-            tenant = await _sysUserRep.ChangeRepository<SqlSugarRepository<SysTenant>>().GetFirstAsync(u => u.Id == user.TenantId);
-            if (tenant?.Status != StatusEnum.Enable) throw Oops.Oh(ErrorCodeEnum.Z1003);
-        }
+        // 租户是否存在或已禁用
+        var tenant = await _sysUserRep.ChangeRepository<SqlSugarRepository<SysTenant>>().GetFirstAsync(u => u.Id == tenantId);
+        if (tenant?.Status != StatusEnum.Enable) throw Oops.Oh(ErrorCodeEnum.Z1003);
+        
+        // 判断账号是否存在
+        var user = await _sysUserRep.AsQueryable().Includes(t => t.SysOrg).ClearFilter()
+            .Where(u => u.AccountType == AccountTypeEnum.SuperAdmin || u.TenantId == tenantId)
+            .WhereIF(!string.IsNullOrWhiteSpace(account), u => u.Account.Equals(account))
+            .WhereIF(!string.IsNullOrWhiteSpace(phone), u => u.Phone.Equals(phone))
+            .FirstAsync();
+        _ = user ?? throw Oops.Oh(ErrorCodeEnum.D0009);
 
         return (tenant, user);
     }
@@ -229,9 +200,9 @@ public class SysAuthService : IDynamicApiController, ITransient
         App.GetRequiredService<SysSmsService>().VerifyCode(new SmsVerifyCodeInput { Phone = input.Phone, Code = input.Code });
 
         // 获取登录租户和用户
-        var (tenant, user) = await GetLoginUserAndTenant(input.Host, phone: input.Phone);
+        var (_, user) = await GetLoginUserAndTenant(input.TenantId, phone: input.Phone);
 
-        return await CreateToken(user, tenant.AppId);
+        return await CreateToken(user);
     }
 
     /// <summary>
@@ -241,7 +212,7 @@ public class SysAuthService : IDynamicApiController, ITransient
     /// <param name="appId"></param>
     /// <returns></returns>
     [NonAction]
-    internal virtual async Task<LoginOutput> CreateToken(SysUser user, long appId)
+    internal virtual async Task<LoginOutput> CreateToken(SysUser user)
     {
         // 单用户登录
         await _sysOnlineUserService.SingleLogin(user.Id);
@@ -250,7 +221,6 @@ public class SysAuthService : IDynamicApiController, ITransient
         var tokenExpire = await _sysConfigService.GetTokenExpire();
         var accessToken = JWTEncryption.Encrypt(new Dictionary<string, object>
         {
-            { ClaimConst.AppId, appId },
             { ClaimConst.UserId, user.Id },
             { ClaimConst.TenantId, user.TenantId },
             { ClaimConst.Account, user.Account },
@@ -309,7 +279,7 @@ public class SysAuthService : IDynamicApiController, ITransient
         var roleIds = await _sysUserRep.ChangeRepository<SqlSugarRepository<SysUserRole>>().AsQueryable()
             .Where(u => u.UserId == user.Id).Select(u => u.RoleId).ToListAsync();
         // 获取水印文字（若系统水印为空则全局为空）
-        var watermarkText = await _sysConfigService.GetConfigValue<string>(ConfigConst.SysWebWatermark);
+        var watermarkText = (await _sysUserRep.Context.Queryable<SysTenant>().FirstAsync(u => u.Id == user.TenantId))?.Watermark;
         if (!string.IsNullOrWhiteSpace(watermarkText))
             watermarkText += $"-{user.RealName}"; // $"-{user.RealName}-{_httpContextAccessor.HttpContext.GetRemoteIpAddressToIPv4(true)}-{DateTime.Now}";
         return new LoginUserOutput
@@ -399,11 +369,13 @@ public class SysAuthService : IDynamicApiController, ITransient
         {
             _sysCacheService.Set($"{CacheConst.KeyConfig}{ConfigConst.SysCaptcha}", false);
 
+            // 尝试从发起请求页的地址栏中获取租户id
+            var tenantId = Regex.Match(App.HttpContext.Request.Headers.Referer.ToString() ?? "", @"(?<=t=)(\d+)").Value;
             await Login(new LoginInput
             {
                 Account = auth.UserName,
                 Password = CryptogramUtil.SM2Encrypt(auth.Password),
-                Host = SqlSugarConst.DefaultTenantHost
+                TenantId = string.IsNullOrWhiteSpace(tenantId) ? SqlSugarConst.DefaultTenantId : long.Parse(tenantId)
             });
 
             _sysCacheService.Remove($"{CacheConst.KeyConfig}{ConfigConst.SysCaptcha}");

@@ -25,8 +25,12 @@
 		<el-card class="full-table" shadow="hover" style="margin-top: 5px">
 			<el-table :data="state.tenantData" style="width: 100%" v-loading="state.loading" border>
 				<el-table-column type="index" label="序号" width="55" align="center" fixed />
-				<el-table-column prop="name" label="租户名称" width="160" align="center" show-overflow-tooltip />
-				<el-table-column prop="appName" label="关联应用" width="160" align="center" show-overflow-tooltip />
+				<el-table-column prop="logo" label="图标" width="55" align="center" show-overflow-tooltip>
+					<template #default="scope">
+						<el-avatar shape="square" :src="scope.row.logo" size="small" />
+					</template>
+				</el-table-column>
+				<el-table-column prop="name" label="名称" width="180" align="center" show-overflow-tooltip />
 				<el-table-column prop="adminAccount" label="租管账号" align="center" width="120" show-overflow-tooltip />
 				<el-table-column prop="phone" label="电话" width="120" align="center" show-overflow-tooltip />
 				<el-table-column prop="host" label="域名" width="150" show-overflow-tooltip />
@@ -76,7 +80,14 @@
 					show-overflow-tooltip />
 				<el-table-column prop="slaveConnections" label="从库连接" min-width="300" header-align="center"
 					show-overflow-tooltip />
-				<el-table-column prop="orderNo" label="排序" width="70" align="center" show-overflow-tooltip />
+				<el-table-column prop="title" label="标题" width="180" show-overflow-tooltip />
+				<el-table-column prop="viceTitle" label="副标题" width="180" show-overflow-tooltip />
+				<el-table-column prop="viceDesc" label="描述" width="300" show-overflow-tooltip />
+				<el-table-column prop="watermark" label="水印" width="130" show-overflow-tooltip />
+				<el-table-column prop="copyright" label="版权信息" width="350" show-overflow-tooltip />
+				<el-table-column prop="icp" label="备案号" width="130" show-overflow-tooltip />
+				<el-table-column prop="icpUrl" label="icp地址" width="280" show-overflow-tooltip />
+				<el-table-column prop="orderNo" label="排序" width="70" show-overflow-tooltip />
 				<el-table-column label="修改记录" width="100" align="center" show-overflow-tooltip>
 					<template #default="scope">
 						<ModifyRecord :data="scope.row" />

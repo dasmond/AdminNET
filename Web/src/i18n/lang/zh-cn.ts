@@ -152,7 +152,6 @@ export default {
 		threeIsFixedHeader: '固定 Header',
 		threeIsClassicSplitMenu: '经典布局分割菜单',
 		threeIsLockScreen: '开启锁屏',
-		changeApp: '切换应用',
 		threeLockScreenTime: '自动锁屏(s/秒)',
 		fourTitle: '界面显示',
 		fourIsShowLogo: '侧边栏 Logo',

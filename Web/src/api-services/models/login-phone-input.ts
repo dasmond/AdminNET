@@ -30,9 +30,9 @@ export interface LoginPhoneInput {
      */
     code: string;
     /**
-     * 租户域名
-     * @type {string}
+     * 租户
+     * @type {number}
      * @memberof LoginPhoneInput
      */
-    host: string;
+    tenantId: number;
 }

@@ -76,11 +76,11 @@ export interface InfoSaveInput {
      * @type {boolean}
      * @memberof InfoSaveInput
      */
-    sysSecondVer?: boolean | null;
+    sysSecondVer?: boolean;
     /**
      * 图形验证码
      * @type {boolean}
      * @memberof InfoSaveInput
      */
-    sysCaptcha?: boolean | null;
+    sysCaptcha?: boolean;
 }

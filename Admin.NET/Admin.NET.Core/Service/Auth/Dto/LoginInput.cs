@@ -26,10 +26,10 @@ public class LoginInput
     public string Password { get; set; }
 
     /// <summary>
-    /// 租户域名
+    /// 租户
     /// </summary>
-    [Required(ErrorMessage = "租户域名不能为空")]
-    public string? Host { get; set; }
+    [Required(ErrorMessage = "租户不能为空")]
+    public long TenantId { get; set; }
 
     /// <summary>
     /// 验证码Id
@@ -60,8 +60,8 @@ public class LoginPhoneInput
     public string Code { get; set; }
 
     /// <summary>
-    /// 租户域名
+    /// 租户
     /// </summary>
-    [Required(ErrorMessage = "租户域名不能为空")]
-    public string? Host { get; set; }
+    [Required(ErrorMessage = "租户不能为空")]
+    public long TenantId { get; set; }
 }
