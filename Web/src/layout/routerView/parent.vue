@@ -66,16 +66,17 @@ const getIframeListRoutes = async () => {
 onBeforeMount(() => {
 	state.keepAliveNameList = keepAliveNames.value;
 	mittBus.on('onTagsViewRefreshRouterView', (fullPath: string) => {
+		const cacheList = cachedViews.value;
+		if (route.meta.isKeepAlive) cachedViews.value = cachedViews.value?.filter((name: string) => route.name !== name);
 		state.keepAliveNameList = keepAliveNames.value.filter((name: string) => route.name !== name);
 		state.refreshRouterViewKey = '';
 		state.iframeRefreshKey = '';
-    cachedViews.value = [];
-		setTimeout(() => {
-      state.iframeRefreshKey = fullPath;
-      state.refreshRouterViewKey = fullPath;
-      cachedViews.value = [<string>route.name];
-      state.keepAliveNameList = keepAliveNames.value;
-    }, 10);
+		nextTick(() => {
+			if (route.meta.isKeepAlive) cachedViews.value = cacheList;
+			state.keepAliveNameList = keepAliveNames.value;
+			state.refreshRouterViewKey = fullPath;
+			state.iframeRefreshKey = fullPath;
+		});
 	});
 });
 // 页面加载时
