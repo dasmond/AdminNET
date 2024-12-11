@@ -2,10 +2,22 @@
 branches: {
   }
 fileChange:
-  /.gitattributes:
-    newFile: !uuid '94f480de94e1d767531580401cbf13844868e82b'
-    oldFile: null
-gitCommitId: !uuid '00c907e52631b8057fd1a59a315b5da96d308421'
+  /Web:
+    newFile: !uuid '31d855b955534cf3890d4743238e401691825301'
+    oldFile: !uuid '1677b00b0c9be0925d00099673920dc9f43ff915'
+  /Web/src:
+    newFile: !uuid 'b063f918cff193494e824b3c9b1996e31f110ac5'
+    oldFile: !uuid 'b694759cd65a07ea53cbd3b060f24bd65a5e3338'
+  /Web/src/layout:
+    newFile: !uuid '649e4b5e84ed95ac0bba21902d570b65bd193d69'
+    oldFile: !uuid '1f41622015297effdf2d4928c65e8e840314fd65'
+  /Web/src/layout/routerView:
+    newFile: !uuid 'f6d8bbd7262aadf30f2217104d9377a5dba83fdc'
+    oldFile: !uuid 'cda10a5e4c2458ba3f6298a0915ad5d89339705f'
+  /Web/src/layout/routerView/parent.vue:
+    newFile: !uuid '7430f84df8b48a3a3024570713e122626f388459'
+    oldFile: !uuid '8894e3e9e34d1906af405eadb7aa4baf89f549f7'
+gitCommitId: !uuid 'db53d1fa6a428624c884cd910d66f2d86ab62fed'
 renames: {
   }
-revisionId: 2588
+revisionId: 2589
