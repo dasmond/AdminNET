@@ -76,7 +76,7 @@ const { themeConfig } = storeToRefs(storesThemeConfig);
 const state = reactive({
 	tabsActiveName: 'account',
 	tenantInfo: {
-		host: location.hostname.toLowerCase(),
+		host: location.host.toLowerCase(),
 		id: undefined,
 		list: [],
 	},
