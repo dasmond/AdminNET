@@ -44,7 +44,9 @@ public class SysOrgService : IDynamicApiController, ITransient
         // 获取拥有的机构Id集合
         var userOrgIdList = await GetUserOrgIdList();
 
-        var iSugarQueryable = _sysOrgRep.AsQueryable().OrderBy(u => new { u.OrderNo, u.Id });
+        var iSugarQueryable = _sysOrgRep.AsQueryable()
+            .WhereIF(_userManager.SuperAdmin && input.TenantId > 0, u => u.TenantId == input.TenantId)
+            .OrderBy(u => new { u.OrderNo, u.Id });
 
         // 带条件筛选时返回列表数据
         if (!string.IsNullOrWhiteSpace(input.Name) || !string.IsNullOrWhiteSpace(input.Code) || !string.IsNullOrWhiteSpace(input.Type))

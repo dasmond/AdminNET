@@ -18,12 +18,12 @@ public class SysTenantService : IDynamicApiController, ITransient
     private readonly SqlSugarRepository<SysPos> _sysPosRep;
     private readonly SqlSugarRepository<SysUser> _sysUserRep;
     private readonly SqlSugarRepository<SysUserExtOrg> _sysUserExtOrgRep;
+    private readonly SqlSugarRepository<SysTenantMenu> _sysTenantMenuRep;
     private readonly SqlSugarRepository<SysRoleMenu> _sysRoleMenuRep;
     private readonly SqlSugarRepository<SysUserRole> _userRoleRep;
-    private readonly SysUserRoleService _sysUserRoleService;
-    private readonly SysRoleMenuService _sysRoleMenuService;
     private readonly SysConfigService _sysConfigService;
     private readonly SysCacheService _sysCacheService;
+    private readonly UploadOptions _uploadOptions;
 
     public SysTenantService(SqlSugarRepository<SysTenant> sysTenantRep,
         SqlSugarRepository<SysOrg> sysOrgRep,
@@ -31,10 +31,10 @@ public class SysTenantService : IDynamicApiController, ITransient
         SqlSugarRepository<SysPos> sysPosRep,
         SqlSugarRepository<SysUser> sysUserRep,
         SqlSugarRepository<SysUserExtOrg> sysUserExtOrgRep,
+        SqlSugarRepository<SysTenantMenu> sysTenantMenuRep,
         SqlSugarRepository<SysRoleMenu> sysRoleMenuRep,
         SqlSugarRepository<SysUserRole> userRoleRep,
-        SysUserRoleService sysUserRoleService,
-        SysRoleMenuService sysRoleMenuService,
+        IOptions<UploadOptions> uploadOptions,
         SysConfigService sysConfigService,
         SysCacheService sysCacheService)
     {
@@ -43,11 +43,11 @@ public class SysTenantService : IDynamicApiController, ITransient
         _sysRoleRep = sysRoleRep;
         _sysPosRep = sysPosRep;
         _sysUserRep = sysUserRep;
+        _sysTenantMenuRep = sysTenantMenuRep;
         _sysUserExtOrgRep = sysUserExtOrgRep;
         _sysRoleMenuRep = sysRoleMenuRep;
         _userRoleRep = userRoleRep;
-        _sysUserRoleService = sysUserRoleService;
-        _sysRoleMenuService = sysRoleMenuService;
+        _uploadOptions = uploadOptions.Value;
         _sysConfigService = sysConfigService;
         _sysCacheService = sysCacheService;
     }
@@ -63,19 +63,16 @@ public class SysTenantService : IDynamicApiController, ITransient
         return await _sysTenantRep.AsQueryable()
             .LeftJoin<SysUser>((u, a) => u.UserId == a.Id)
             .LeftJoin<SysOrg>((u, a, b) => u.OrgId == b.Id)
-            .LeftJoin<SysApp>((u, a, b, c) => u.AppId == c.Id)
             .WhereIF(!string.IsNullOrWhiteSpace(input.Phone), (u, a) => a.Phone.Contains(input.Phone.Trim()))
             .WhereIF(!string.IsNullOrWhiteSpace(input.Name), (u, a, b) => b.Name.Contains(input.Name.Trim()))
             .Where(u => u.Id.ToString() != SqlSugarConst.MainConfigId) // 排除默认主库/主租户
             .OrderBy(u => new { u.OrderNo, u.Id })
-            .Select((u, a, b, c) => new TenantOutput
+            .Select((u, a, b) => new TenantOutput
             {
                 Id = u.Id,
                 OrgId = b.Id,
                 Name = b.Name,
                 UserId = a.Id,
-                AppId = u.AppId,
-                AppName = c.Name,
                 AdminAccount = a.Account,
                 Phone = a.Phone,
                 Host = u.Host,
@@ -91,8 +88,42 @@ public class SysTenantService : IDynamicApiController, ITransient
                 CreateUserName = u.CreateUserName,
                 UpdateTime = u.UpdateTime,
                 UpdateUserName = u.UpdateUserName,
-            })
+            }, true)
             .ToPagedListAsync(input.Page, input.PageSize);
+    }
+    
+    /// <summary>
+    /// 获取租户列表
+    /// </summary>
+    /// <returns></returns>
+    [AllowAnonymous]
+    [DisplayName("获取租户列表"), HttpGet]
+    public async Task<dynamic> GetList()
+    {
+        return await _sysTenantRep.AsQueryable()
+            .LeftJoin<SysOrg>((u, a) => u.OrgId == a.Id)
+            .Where(u => u.Status == StatusEnum.Enable)
+            .Select((u, a) => new
+            {
+                Label = a.Name,
+                Value = u.Id,
+                Host = u.Host.ToLower()
+            }).ToListAsync();
+    }
+    
+    /// <summary>
+    /// 获取当前租户
+    /// </summary>
+    /// <returns></returns>
+    [NonAction]
+    public async Task<SysTenant> GetCurrentTenant()
+    {
+        var tenantId = long.Parse(App.User?.FindFirst(ClaimConst.TenantId)?.Value ?? "0");
+        var host = App.HttpContext.Request.Host.Host.ToLower();
+        return await _sysTenantRep.AsQueryable()
+            .WhereIF(tenantId > 0, u => u.Id == tenantId)
+            .WhereIF(tenantId <= 0, u => SqlFunc.ToLower(u.Host).Equals(host))
+            .FirstAsync();
     }
 
     /// <summary>
@@ -147,10 +178,56 @@ public class SysTenantService : IDynamicApiController, ITransient
         }
 
         var tenant = input.Adapt<TenantOutput>();
+        
+        // 设置logo
+        SetLogoUrl(tenant, input.LogoBase64, input.LogoFileName);
+        
         await _sysTenantRep.InsertAsync(tenant);
         await InitNewTenant(tenant);
 
         await CacheTenant();
+    }
+
+    /// <summary>
+    /// 设置logo
+    /// </summary>
+    /// <param name="tenant"></param>
+    /// <param name="logoBase64"></param>
+    /// <param name="logoFileName"></param>
+    [NonAction]
+    public void SetLogoUrl(SysTenant tenant, string logoBase64, string logoFileName)
+    {
+        // 旧图标文件相对路径
+        var oldSysLogoRelativeFilePath = tenant.Logo ?? "";
+        var oldSysLogoAbsoluteFilePath = Path.Combine(App.WebHostEnvironment.WebRootPath, oldSysLogoRelativeFilePath.TrimStart('/'));
+
+        var groups = Regex.Match(logoBase64, @"data:image/(?<type>.+?);base64,(?<data>.+)").Groups;
+        
+        //var type = groups["type"].Value;
+        var base64Data = groups["data"].Value;
+        var binData = Convert.FromBase64String(base64Data);
+        
+        // 根据文件名取扩展名
+        var ext = string.IsNullOrWhiteSpace(logoFileName) ? ".png" : Path.GetExtension(logoFileName);
+        
+        // 本地图标保存路径
+        var fileName = $"{tenant.ViceTitle}-logo{ext}".ToLower();
+        var path = _uploadOptions.Path.Replace("/{yyyy}/{MM}/{dd}", "");
+        path = path.StartsWith("/") || Regex.IsMatch(path, "^[A-Z|a-z]:") ? path : Path.Combine(App.WebHostEnvironment.WebRootPath, path);
+        var absoluteFilePath = Path.Combine(path, fileName);
+
+        // 删除已存在文件
+        if (File.Exists(oldSysLogoAbsoluteFilePath)) File.Delete(oldSysLogoAbsoluteFilePath);
+
+        // 创建文件夹
+        var absoluteFileDir = Path.GetDirectoryName(absoluteFilePath);
+        if (!Directory.Exists(absoluteFileDir)) Directory.CreateDirectory(absoluteFileDir);
+
+        // 保存图标文件
+        File.WriteAllBytesAsync(absoluteFilePath, binData);
+
+        // 保存图标配置
+        tenant.Logo = $"/upload/{fileName}";
     }
 
     /// <summary>
@@ -183,51 +260,42 @@ public class SysTenantService : IDynamicApiController, ITransient
         var newOrg = new SysOrg { TenantId = tenantId, Pid = 0, Name = tenantName, Code = tenantName, Remark = tenantName, };
         await _sysOrgRep.InsertAsync(newOrg);
 
-        // 初始化角色
-        var newRole = new SysRole { TenantId = tenantId, Name = "租管-" + tenantName, Code = CommonConst.SysAdminRole, DataScope = DataScopeEnum.All, Remark = tenantName };
-        await _sysRoleRep.InsertAsync(newRole);
-
         // 初始化职位
-        var newPos = new SysPos { TenantId = tenantId, Name = "租管-" + tenantName, Code = tenantName, Remark = tenantName };
+        var newPos = new SysPos { TenantId = tenantId, Name = "管理员-" + tenantName, Code = tenantName, Remark = tenantName };
         await _sysPosRep.InsertAsync(newPos);
 
-        // 初始化系统账号
+        // 初始化租户管理员账号
         var password = await _sysConfigService.GetConfigValue<string>(ConfigConst.SysPassword);
         var newUser = new SysUser
         {
             TenantId = tenantId,
             Account = tenant.AdminAccount,
             Password = CryptogramUtil.Encrypt(password),
-            NickName = "租管",
+            NickName = "系统管理员",
             Email = tenant.Email,
             Phone = tenant.Phone,
             AccountType = AccountTypeEnum.SysAdmin,
             OrgId = newOrg.Id,
             PosId = newPos.Id,
             Birthday = DateTime.Parse("2000-01-01"),
-            RealName = "租管",
-            Remark = "租管" + tenantName,
+            RealName = "系统管理员",
+            Remark = "系统管理员" + tenantName,
         };
         await _sysUserRep.InsertAsync(newUser);
-
-        // 关联用户及角色
-        var newUserRole = new SysUserRole { RoleId = newRole.Id, UserId = newUser.Id };
-        await _userRoleRep.InsertAsync(newUserRole);
 
         // 关联租户组织机构和管理员用户
         await _sysTenantRep.UpdateAsync(u => new SysTenant { UserId = newUser.Id, OrgId = newOrg.Id }, u => u.Id == tenantId);
 
         // 默认租户管理员角色菜单集合
-        var menuIdList = new List<long> { 1300000000111,1300000000121, // 工作台
-            1310000000111,1310000000112,1310000000113,1310000000114,1310000000115,1310000000116,1310000000117,1310000000118,1310000000119,1310000000120,1310000000121, // 账号
-            1310000000131,1310000000132,1310000000133,1310000000134,1310000000135,1310000000136,1310000000137,1310000000138, 1310000000322, // 角色
-            1310000000141,1310000000142,1310000000143,1310000000144,1310000000145, // 机构
-            1310000000151,1310000000152,1310000000153,1310000000154,1310000000155,1310000000156, // 职位
-            1310000000161,1310000000162,1310000000163,1310000000164,1310000000165, // 个人中心
-            1310000000171,1310000000172,1310000000173,1310000000174,1310000000175,1310000000176, // 通知公告
-            1310000000801  // 关于项目
-        };
-        await _sysRoleMenuService.GrantRoleMenu(new RoleMenuInput() { Id = newRole.Id, MenuIdList = menuIdList });
+        var menuList = new List<SysMenu>();
+        var allMenuList = new SysMenuSeedData().HasData().ToList();
+        var titleList = new List<string> { "工作台", "系统管理", "账号管理", "角色管理", "机构管理", "职位管理", "个人中心", "通知公告", "平台管理", "菜单管理","系统配置", "关于项目" };
+        foreach (var menu in allMenuList.Where(u => titleList.Contains(u.Title)))
+        {
+            menuList.Add(menu);
+            if (menu.Type == MenuTypeEnum.Menu) menuList.AddRange(allMenuList.Where(u => u.Pid == menu.Id));
+        }
+        await GrantMenu(new TenantMenuInput { Id = tenantId, MenuIdList = menuList.Select(u => u.Id).ToList() });
     }
 
     /// <summary>
@@ -235,6 +303,7 @@ public class SysTenantService : IDynamicApiController, ITransient
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
+    [UnitOfWork]
     [ApiDescriptionSettings(Name = "Delete"), HttpPost]
     [DisplayName("删除租户")]
     public async Task DeleteTenant(DeleteTenantInput input)
@@ -251,6 +320,12 @@ public class SysTenantService : IDynamicApiController, ITransient
         await CacheTenant(input.Id);
 
         // 删除与租户相关的表数据
+        await _sysTenantMenuRep.AsDeleteable().Where(u => u.TenantId == input.Id).ExecuteCommandAsync();
+        var menuIds = await _sysTenantRep.Context.Queryable<SysMenu>().Select(u => u.Id).ToListAsync();
+        await _sysTenantRep.Context.Deleteable<SysRoleMenu>().Where(u => menuIds.Contains(u.Id)).ExecuteCommandAsync();
+        await _sysTenantRep.Context.Deleteable<SysUserMenu>().Where(u => menuIds.Contains(u.Id)).ExecuteCommandAsync();
+        await _sysTenantRep.Context.Deleteable<SysMenu>().Where(u => menuIds.Contains(u.Id)).ExecuteCommandAsync();
+        
         var users = await _sysUserRep.AsQueryable().ClearFilter().Where(u => u.TenantId == input.Id).ToListAsync();
         var userIds = users.Select(u => u.Id).ToList();
         await _sysUserRep.AsDeleteable().Where(u => userIds.Contains(u.Id)).ExecuteCommandAsync();
@@ -310,8 +385,12 @@ public class SysTenantService : IDynamicApiController, ITransient
         if (!string.IsNullOrWhiteSpace(input.SlaveConnections) && !JSON.IsValid(input.SlaveConnections))
             throw Oops.Oh(ErrorCodeEnum.D1302);
 
-        input.AppId = null;
-        await _sysTenantRep.AsUpdateable(input.Adapt<TenantOutput>()).IgnoreColumns(true).ExecuteCommandAsync();
+        // 设置logo
+        var tenant = input.Adapt<SysTenant>();
+        if (!string.IsNullOrWhiteSpace(input.LogoBase64)) SetLogoUrl(tenant, input.LogoBase64, input.LogoFileName);
+
+        // 更新租户信息
+        await _sysTenantRep.AsUpdateable(tenant).IgnoreColumns(true).ExecuteCommandAsync();
 
         // 更新系统机构
         await _sysOrgRep.UpdateAsync(u => new SysOrg() { Name = input.Name }, u => u.Id == input.OrgId);
@@ -323,33 +402,43 @@ public class SysTenantService : IDynamicApiController, ITransient
     }
 
     /// <summary>
-    /// 授权租户管理员角色菜单 🔖
+    /// 授权租户菜单 🔖
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
     [UnitOfWork]
-    [DisplayName("授权租户管理员角色菜单")]
-    public async Task GrantMenu(RoleMenuInput input)
+    [DisplayName("授权租户菜单")]
+    public async Task GrantMenu(TenantMenuInput input)
     {
-        // 获取租户管理员角色【sys_admin】
-        var adminRole = await _sysRoleRep.AsQueryable().ClearFilter()
-            .FirstAsync(u => u.Code == CommonConst.SysAdminRole && u.TenantId == input.Id && u.IsDelete == false);
-        if (adminRole == null) return;
+        // 获取需要授权的菜单列表
+        var menuList = await _sysTenantRep.Context.Queryable<SysMenu>().ClearFilter()
+            .Where(u => input.MenuIdList.Contains(u.Id))
+            .InnerJoin<SysTenantMenu>((u, t) => t.TenantId == input.Id && u.Id == t.MenuId)
+            .ToListAsync();
 
-        input.Id = adminRole.Id; // 重置租户管理员角色Id
-        await _sysRoleMenuService.GrantRoleMenu(input);
+        // 检查是否存在重复菜单
+        if (menuList.Where(u => u.Type != MenuTypeEnum.Btn).GroupBy(u => new { u.Pid, u.Title }).Any(u => u.Count() > 1) ||
+            menuList.Where(u => u.Type == MenuTypeEnum.Btn).GroupBy(u => u.Permission).Any(u => u.Count() > 1))
+            throw Oops.Oh(ErrorCodeEnum.D1304);
+        
+        // 检查路由是否重复
+        if (menuList.Where(u => !string.IsNullOrWhiteSpace(u.Name)).GroupBy(u => u.Name).Any(u => u.Count() > 1)) 
+            throw Oops.Oh(ErrorCodeEnum.D4009);
+        
+        await _sysTenantMenuRep.AsDeleteable().Where(u => u.TenantId == input.Id).ExecuteCommandAsync();
+        var sysTenantMenuList = input.MenuIdList.Select(menuId => new SysTenantMenu { TenantId = input.Id, MenuId = menuId }).ToList();
+        await _sysTenantMenuRep.InsertRangeAsync(sysTenantMenuList);
     }
 
     /// <summary>
-    /// 获取租户管理员角色拥有菜单Id集合 🔖
+    /// 获取租户菜单Id集合 🔖
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
-    [DisplayName("获取租户管理员角色拥有菜单Id集合")]
-    public async Task<List<long>> GetOwnMenuList([FromQuery] TenantUserInput input)
+    [DisplayName("获取租户菜单Id集合")]
+    public async Task<List<long>> GetTenantMenuList([FromQuery] BaseIdInput input)
     {
-        var roleIds = await _sysUserRoleService.GetUserRoleIdList(input.UserId);
-        return await _sysRoleMenuService.GetRoleMenuIdList(new List<long> { roleIds[0] });
+        return await _sysTenantMenuRep.AsQueryable().Where(u => u.TenantId == input.Id).Select(u => u.MenuId).ToListAsync();
     }
 
     /// <summary>
@@ -362,8 +451,60 @@ public class SysTenantService : IDynamicApiController, ITransient
     {
         var password = await _sysConfigService.GetConfigValue<string>(ConfigConst.SysPassword);
         var encryptPassword = CryptogramUtil.Encrypt(password);
-        await _sysUserRep.UpdateAsync(u => new SysUser() { Password = encryptPassword }, u => u.Id == input.UserId);
+        await _sysUserRep.UpdateAsync(u => new SysUser { Password = encryptPassword }, u => u.Id == input.UserId);
         return password;
+    }
+    
+    /// <summary>
+    /// 切换租户 🔖
+    /// </summary>
+    /// <param name="input"></param>
+    /// <returns></returns>
+    [UnitOfWork]
+    [DisplayName("切换租户")]
+    public async Task<LoginOutput> ChangeTenant(BaseIdInput input)
+    {
+        var userManager = App.GetService<UserManager>();
+
+        _ = await _sysTenantRep.GetFirstAsync(u => u.Id == input.Id) ?? throw Oops.Oh(ErrorCodeEnum.D1002);
+        var user = await _sysUserRep.GetFirstAsync(u => u.Id == userManager.UserId) ?? throw Oops.Oh(ErrorCodeEnum.D1002);
+        user.TenantId = input.Id;
+
+        return await GetAccessTokenInNotSingleLogin(user);
+    }
+    
+    /// <summary>
+    /// 进入租管端 🔖
+    /// </summary>
+    /// <param name="input"></param>
+    /// <returns></returns>
+    [DisplayName("进入租管端")]
+    public async Task<LoginOutput> GoTenant(BaseIdInput input)
+    {
+        var tenant = await _sysTenantRep.GetFirstAsync(u => u.Id == input.Id) ?? throw Oops.Oh(ErrorCodeEnum.D1002);
+        var user = await _sysUserRep.GetFirstAsync(u => u.Id == tenant.UserId) ?? throw Oops.Oh(ErrorCodeEnum.D1002);
+        return await GetAccessTokenInNotSingleLogin(user);
+    }
+    
+    /// <summary>
+    /// 在非单用户登录模式下获取登录令牌
+    /// </summary>
+    /// <param name="user"></param>
+    /// <returns></returns>
+    [NonAction]
+    public async Task<LoginOutput> GetAccessTokenInNotSingleLogin(SysUser user)
+    {
+        // 使用非单用户模式登录
+        var singleLogin = _sysCacheService.Get<bool>($"{CacheConst.KeyConfig}{ConfigConst.SysSingleLogin}");
+        try
+        {
+            return await App.GetService<SysAuthService>().CreateToken(user);
+        }
+        finally
+        {
+            // 恢复单用户登录参数
+            if (singleLogin) _sysCacheService.Set($"{CacheConst.KeyConfig}{ConfigConst.SysSingleLogin}", true);
+        }
     }
 
     /// <summary>

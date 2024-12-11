@@ -402,6 +402,12 @@ public enum ErrorCodeEnum
     /// </summary>
     [ErrorCodeItemMetadata("父节点不能为按钮类型")]
     D4010,
+    
+    /// <summary>
+    /// 租户不能为空
+    /// </summary>
+    [ErrorCodeItemMetadata("租户不能为空")]
+    D4011,
 
     /// <summary>
     /// 已存在同名或同编码应用
@@ -558,6 +564,12 @@ public enum ErrorCodeEnum
     /// </summary>
     [ErrorCodeItemMetadata("已存在同名的租户域名")]
     D1303,
+    
+    /// <summary>
+    /// 授权菜单存在重复项
+    /// </summary>
+    [ErrorCodeItemMetadata("授权菜单存在重复项")]
+    D1304,
 
     /// <summary>
     /// 该表代码模板已经生成过

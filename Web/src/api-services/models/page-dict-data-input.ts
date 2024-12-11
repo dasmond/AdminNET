@@ -74,15 +74,9 @@ export interface PageDictDataInput {
      */
     dictTypeId?: number;
     /**
-     * 值
+     * 字典文本
      * @type {string}
      * @memberof PageDictDataInput
      */
-    value?: string | null;
-    /**
-     * 编码
-     * @type {string}
-     * @memberof PageDictDataInput
-     */
-    code?: string | null;
+    label?: string | null;
 }

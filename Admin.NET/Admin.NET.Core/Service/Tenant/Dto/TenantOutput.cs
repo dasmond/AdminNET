@@ -14,11 +14,6 @@ public class TenantOutput : SysTenant
     public virtual string Name { get; set; }
 
     /// <summary>
-    /// 关联应用名称
-    /// </summary>
-    public virtual string AppName { get; set; }
-
-    /// <summary>
     /// 管理员账号
     /// </summary>
     public virtual string AdminAccount { get; set; }
@@ -26,10 +21,10 @@ public class TenantOutput : SysTenant
     /// <summary>
     /// 电子邮箱
     /// </summary>
-    public string Email { get; set; }
+    public virtual string Email { get; set; }
 
     /// <summary>
     /// 电话
     /// </summary>
-    public string Phone { get; set; }
+    public virtual string Phone { get; set; }
 }

@@ -29,15 +29,5 @@ public class SqlSugarConst
     /// <summary>
     /// 默认租户Id
     /// </summary>
-    public const long DefaultAppId = 1300000000001;
-
-    /// <summary>
-    /// 默认租户Id
-    /// </summary>
     public const long DefaultTenantId = 1300000000001;
-
-    /// <summary>
-    /// 默认租户域名
-    /// </summary>
-    public const string DefaultTenantHost = "gitee.com";
 }

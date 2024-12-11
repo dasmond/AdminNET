@@ -4,6 +4,8 @@
 //
 // 不得利用本项目从事危害国家安全、扰乱社会秩序、侵犯他人合法权益等法律法规禁止的活动！任何基于本项目二次开发而产生的一切法律纠纷和责任，我们不承担任何责任！
 
+using OfficeOpenXml.FormulaParsing.Excel.Functions.Text;
+
 namespace Admin.NET.Core.Service;
 
 /// <summary>
@@ -12,28 +14,29 @@ namespace Admin.NET.Core.Service;
 [ApiDescriptionSettings(Order = 450)]
 public class SysMenuService : IDynamicApiController, ITransient
 {
-    private readonly UserManager _userManager;
+    private readonly SqlSugarRepository<SysTenantMenu> _sysTenantMenuRep;
     private readonly SqlSugarRepository<SysMenu> _sysMenuRep;
-    private readonly SqlSugarRepository<SysAppMenu> _sysAppMenuRep;
     private readonly SysRoleMenuService _sysRoleMenuService;
     private readonly SysUserRoleService _sysUserRoleService;
     private readonly SysUserMenuService _sysUserMenuService;
     private readonly SysCacheService _sysCacheService;
+    private readonly UserManager _userManager;
 
-    public SysMenuService(UserManager userManager,
-        SqlSugarRepository<SysAppMenu> sysAppMenuRep,
+    public SysMenuService(
+        SqlSugarRepository<SysTenantMenu> sysTenantMenuRep,
         SqlSugarRepository<SysMenu> sysMenuRep,
         SysRoleMenuService sysRoleMenuService,
         SysUserRoleService sysUserRoleService,
         SysUserMenuService sysUserMenuService,
-        SysCacheService sysCacheService)
+        SysCacheService sysCacheService,
+        UserManager userManager)
     {
         _userManager = userManager;
         _sysMenuRep = sysMenuRep;
-        _sysAppMenuRep = sysAppMenuRep;
         _sysRoleMenuService = sysRoleMenuService;
         _sysUserRoleService = sysUserRoleService;
         _sysUserMenuService = sysUserMenuService;
+        _sysTenantMenuRep = sysTenantMenuRep;
         _sysCacheService = sysCacheService;
     }
 
@@ -44,37 +47,19 @@ public class SysMenuService : IDynamicApiController, ITransient
     [DisplayName("获取登录菜单树")]
     public async Task<List<MenuOutput>> GetLoginMenuTree()
     {
-        if (_userManager.SuperAdmin)
+        var (query, _) = GetSugarQueryableAndTenantId(_userManager.TenantId);
+        if (_userManager.SuperAdmin || _userManager.SysAdmin)
         {
-            var menuList = await _sysMenuRep.AsQueryable()
-                .InnerJoin<SysAppMenu>((u, am) => am.AppId == _userManager.AppId && u.Id == am.MenuId)
-                .Where(u => u.Type != MenuTypeEnum.Btn && u.Status == StatusEnum.Enable)
-                .OrderBy(u => new { u.OrderNo, u.Id }).Distinct().ToTreeAsync(u => u.Children, u => u.Pid, 0);
+            var menuList = await query.Where(u => u.Type != MenuTypeEnum.Btn && u.Status == StatusEnum.Enable)
+                .OrderBy(u => new { u.OrderNo, u.Id })
+                .ToTreeAsync(u => u.Children, u => u.Pid, 0);
             return menuList.Adapt<List<MenuOutput>>();
         }
-        var menuIdList = await GetMenuIdList();
-        var menuTree = await _sysMenuRep.AsQueryable()
-            .InnerJoin<SysAppMenu>((u, am) => am.AppId == _userManager.AppId && u.Id == am.MenuId)
-            .Where(u => u.Status == StatusEnum.Enable)
-            .OrderBy(u => new { u.OrderNo, u.Id }).Distinct().ToTreeAsync(u => u.Children, u => u.Pid, 0, menuIdList.Select(d => (object)d).ToArray());
-        DeleteBtnFromMenuTree(menuTree);
-        return menuTree.Adapt<List<MenuOutput>>();
-    }
 
-    /// <summary>
-    /// 删除登录菜单树里面的按钮
-    /// </summary>
-    private static void DeleteBtnFromMenuTree(List<SysMenu> menuList)
-    {
-        if (menuList == null) return;
-        for (var i = menuList.Count - 1; i >= 0; i--)
-        {
-            var menu = menuList[i];
-            if (menu.Type == MenuTypeEnum.Btn)
-                menuList.Remove(menu);
-            else if (menu.Children.Count > 0)
-                DeleteBtnFromMenuTree(menu.Children);
-        }
+        var menuIdList = await GetMenuIdList();
+        var menuTree = await query.Where(u => u.Type != MenuTypeEnum.Btn && u.Status == StatusEnum.Enable)
+            .OrderBy(u => new { u.OrderNo, u.Id }).ToTreeAsync(u => u.Children, u => u.Pid, 0, menuIdList.Select(d => (object)d).ToArray());
+        return menuTree.Adapt<List<MenuOutput>>();
     }
 
     /// <summary>
@@ -85,14 +70,8 @@ public class SysMenuService : IDynamicApiController, ITransient
     public async Task<List<SysMenu>> GetList([FromQuery] MenuInput input)
     {
         var menuIdList = _userManager.SuperAdmin ? new List<long>() : await GetMenuIdList();
-
-        // 仅超级管理员可以获取全部菜单
-        var joinApp = _userManager.SuperAdmin == false || (_userManager.SuperAdmin && !input.All);
-        // 超级管理员可根据传参获取指定应用的菜单
-        var appId = _userManager.SuperAdmin && input.AppId > 0 ? input.AppId : _userManager.AppId;
-        var query = _sysMenuRep.AsQueryable()
-            .InnerJoinIF<SysAppMenu>(joinApp, (u, am) => am.AppId == appId && u.Id == am.MenuId);
-
+        var (query, _) = GetSugarQueryableAndTenantId(input.TenantId);
+        
         // 有筛选条件时返回list列表（防止构造不出树）
         if (!string.IsNullOrWhiteSpace(input.Title) || input.Type is > 0)
         {
@@ -116,31 +95,24 @@ public class SysMenuService : IDynamicApiController, ITransient
     [DisplayName("增加菜单")]
     public async Task AddMenu(AddMenuInput input)
     {
+        var (query, tenantId) = GetSugarQueryableAndTenantId(input.TenantId);
+        
         var isExist = input.Type != MenuTypeEnum.Btn
-            ? await _sysMenuRep.IsAnyAsync(u => u.Title == input.Title && u.Pid == input.Pid)
-            : await _sysMenuRep.IsAnyAsync(u => u.Permission == input.Permission);
+            ? await query.AnyAsync(u => u.Title == input.Title && u.Pid == input.Pid)
+            : await query.AnyAsync(u => u.Permission == input.Permission);
         if (isExist) throw Oops.Oh(ErrorCodeEnum.D4000);
 
-        if (!string.IsNullOrWhiteSpace(input.Name))
-        {
-            if (await _sysMenuRep.IsAnyAsync(u => u.Name == input.Name))
-                throw Oops.Oh(ErrorCodeEnum.D4009);
-        }
+        if (!string.IsNullOrWhiteSpace(input.Name) && await query.AnyAsync(u => u.Name == input.Name)) throw Oops.Oh(ErrorCodeEnum.D4009);
 
-        if (input.Pid != 0)
-        {
-            if (await _sysMenuRep.IsAnyAsync(u => u.Id == input.Pid && u.Type == MenuTypeEnum.Btn))
-                throw Oops.Oh(ErrorCodeEnum.D4010);
-        }
+        if (input.Pid != 0 && await query.AnyAsync(u => u.Id == input.Pid && u.Type == MenuTypeEnum.Btn)) throw Oops.Oh(ErrorCodeEnum.D4010);
 
         // 校验菜单参数
         var sysMenu = input.Adapt<SysMenu>();
         CheckMenuParam(sysMenu);
 
+        // 保存菜单和租户菜单关联数据
         await _sysMenuRep.InsertAsync(sysMenu);
-
-        // 保存应用菜单关联
-        await _sysAppMenuRep.InsertAsync(new SysAppMenu { AppId = _userManager.AppId, MenuId = sysMenu.Id });
+        await _sysTenantMenuRep.InsertAsync(new SysTenantMenu { TenantId = tenantId, MenuId = sysMenu.Id });
 
         // 清除缓存
         DeleteMenuCache();
@@ -155,26 +127,17 @@ public class SysMenuService : IDynamicApiController, ITransient
     [DisplayName("更新菜单")]
     public async Task UpdateMenu(UpdateMenuInput input)
     {
-        if (input.Id == input.Pid)
-            throw Oops.Oh(ErrorCodeEnum.D4008);
+        if (input.Id == input.Pid) throw Oops.Oh(ErrorCodeEnum.D4008);
+        var (query, _) = GetSugarQueryableAndTenantId(input.TenantId);
 
         var isExist = input.Type != MenuTypeEnum.Btn
-            ? await _sysMenuRep.IsAnyAsync(u => u.Title == input.Title && u.Type == input.Type && u.Pid == input.Pid && u.Id != input.Id)
-            : await _sysMenuRep.IsAnyAsync(u => u.Permission == input.Permission && u.Id != input.Id);
-        if (isExist)
-            throw Oops.Oh(ErrorCodeEnum.D4000);
+            ? await query.AnyAsync(u => u.Title == input.Title && u.Type == input.Type && u.Pid == input.Pid && u.Id != input.Id)
+            : await query.AnyAsync(u => u.Permission == input.Permission && u.Id != input.Id);
+        if (isExist) throw Oops.Oh(ErrorCodeEnum.D4000);
 
-        if (!string.IsNullOrWhiteSpace(input.Name))
-        {
-            if (await _sysMenuRep.IsAnyAsync(u => u.Id != input.Id && u.Name == input.Name))
-                throw Oops.Oh(ErrorCodeEnum.D4009);
-        }
+        if (!string.IsNullOrWhiteSpace(input.Name) && await query.AnyAsync(u => u.Id != input.Id && u.Name == input.Name)) throw Oops.Oh(ErrorCodeEnum.D4009);
 
-        if (input.Pid != 0)
-        {
-            if (await _sysMenuRep.IsAnyAsync(u => u.Id == input.Pid && u.Type == MenuTypeEnum.Btn))
-                throw Oops.Oh(ErrorCodeEnum.D4010);
-        }
+        if (input.Pid != 0 && await query.AnyAsync(u => u.Id == input.Pid && u.Type == MenuTypeEnum.Btn)) throw Oops.Oh(ErrorCodeEnum.D4010);
 
         // 校验菜单参数
         var sysMenu = input.Adapt<SysMenu>();
@@ -196,19 +159,19 @@ public class SysMenuService : IDynamicApiController, ITransient
     [DisplayName("删除菜单")]
     public async Task DeleteMenu(DeleteMenuInput input)
     {
-        var menuTreeList = await _sysMenuRep.AsQueryable().ToChildListAsync(u => u.Pid, input.Id, true);
+        var menuTreeList = await _sysMenuRep.AsQueryable().ToChildListAsync(u => u.Pid, input.Id);
         var menuIdList = menuTreeList.Select(u => u.Id).ToList();
 
         await _sysMenuRep.DeleteAsync(u => menuIdList.Contains(u.Id));
+        
+        // 级联删除租户菜单数据
+        await _sysTenantMenuRep.AsDeleteable().Where(u => menuIdList.Contains(u.MenuId)).ExecuteCommandAsync();
 
         // 级联删除角色菜单数据
         await _sysRoleMenuService.DeleteRoleMenuByMenuIdList(menuIdList);
 
         // 级联删除用户收藏菜单
         await _sysUserMenuService.DeleteMenuList(menuIdList);
-
-        // 删除应用菜单关联
-        await _sysAppMenuRep.AsDeleteable().Where(u => menuIdList.Contains(u.MenuId)).ExecuteCommandAsync();
 
         // 清除缓存
         DeleteMenuCache();
@@ -253,14 +216,14 @@ public class SysMenuService : IDynamicApiController, ITransient
         var userId = _userManager.UserId;
         var permissions = _sysCacheService.Get<List<string>>(CacheConst.KeyUserButton + userId);
         if (permissions != null) return permissions;
-
-        var menuIdList = _userManager.SuperAdmin ? new() : await GetMenuIdList();
-        permissions = menuIdList.Count > 0 || _userManager.SuperAdmin
-            ? await _sysMenuRep.AsQueryable()
-                .Where(u => u.Type == MenuTypeEnum.Btn)
-                .WhereIF(menuIdList.Count > 0, u => menuIdList.Contains(u.Id))
-                .Select(u => u.Permission).ToListAsync()
-            : new();
+        
+        var menuIdList = _userManager.SuperAdmin || _userManager.SysAdmin ? new() : await GetMenuIdList();
+        
+        permissions = await _sysMenuRep.AsQueryable().Where(u => u.Type == MenuTypeEnum.Btn)
+            .WhereIF(menuIdList.Count > 0, u => menuIdList.Contains(u.Id))
+            .InnerJoinIF<SysTenantMenu>(!_userManager.SuperAdmin, (u, t) => t.TenantId == _userManager.TenantId && u.Id == t.MenuId)
+            .Select(u => u.Permission).ToListAsync();
+        
         _sysCacheService.Set(CacheConst.KeyUserButton + userId, permissions, TimeSpan.FromDays(7));
 
         return permissions;
@@ -282,6 +245,19 @@ public class SysMenuService : IDynamicApiController, ITransient
         _sysCacheService.Set(CacheConst.KeyUserButton + 0, permissions);
 
         return permissions;
+    }
+    
+    /// <summary>
+    /// 根据租户id获取构建菜单联表查询实例
+    /// </summary>
+    /// <returns></returns>
+    [NonAction]
+    public (ISugarQueryable<SysMenu, SysTenantMenu> query, long tenantId) GetSugarQueryableAndTenantId(long tenantId)
+    {
+        if (!_userManager.SuperAdmin) tenantId = _userManager.TenantId;
+        var query = _sysMenuRep.AsQueryable().ClearFilter()
+            .InnerJoinIF<SysTenantMenu>(tenantId > 0, (u, t) => t.TenantId == tenantId && u.Id == t.MenuId);
+        return (query, tenantId);
     }
 
     /// <summary>

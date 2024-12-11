@@ -85,6 +85,12 @@ export interface UpdateDictDataInput {
      */
     value: string;
     /**
+     * 编码
+     * @type {string}
+     * @memberof UpdateDictDataInput
+     */
+    code?: string | null;
+    /**
      * 名称
      * @type {string}
      * @memberof UpdateDictDataInput

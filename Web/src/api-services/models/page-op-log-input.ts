@@ -104,6 +104,12 @@ export interface PageOpLogInput {
      */
     remoteIp?: string | null;
     /**
+     * 租户Id
+     * @type {number}
+     * @memberof PageOpLogInput
+     */
+    tenantId?: number;
+    /**
      * 方法名称
      * @type {string}
      * @memberof PageOpLogInput

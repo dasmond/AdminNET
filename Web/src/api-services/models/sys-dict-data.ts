@@ -73,6 +73,12 @@ export interface SysDictData {
      */
     dictTypeId?: number;
     /**
+     * 显示文本
+     * @type {string}
+     * @memberof SysDictData
+     */
+    label: string;
+    /**
      * 值
      * @type {string}
      * @memberof SysDictData
@@ -83,7 +89,7 @@ export interface SysDictData {
      * @type {string}
      * @memberof SysDictData
      */
-    code: string;
+    code?: string | null;
     /**
      * 名称
      * @type {string}

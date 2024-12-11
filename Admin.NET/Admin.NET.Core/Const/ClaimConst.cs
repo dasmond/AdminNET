@@ -12,11 +12,6 @@ namespace Admin.NET.Core;
 public class ClaimConst
 {
     /// <summary>
-    /// 应用Id
-    /// </summary>
-    public const string AppId = "AppId";
-
-    /// <summary>
     /// 用户Id
     /// </summary>
     public const string UserId = "UserId";

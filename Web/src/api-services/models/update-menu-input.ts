@@ -176,4 +176,10 @@ export interface UpdateMenuInput {
      * @memberof UpdateMenuInput
      */
     title: string;
+    /**
+     * 租户Id
+     * @type {number}
+     * @memberof UpdateMenuInput
+     */
+    tenantId?: number;
 }

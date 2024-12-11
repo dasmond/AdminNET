@@ -30,14 +30,14 @@
 						<div v-if="!state.isScan">
 							<el-tabs v-model="state.tabsActiveName">
 								<el-tab-pane :label="$t('message.label.one1')" name="account">
-									<Account />
+									<Account :tenant-info="state.tenantInfo" />
 								</el-tab-pane>
 								<el-tab-pane :label="$t('message.label.two2')" name="mobile">
-									<Mobile />
+									<Mobile :tenant-info="state.tenantInfo" />
 								</el-tab-pane>
 							</el-tabs>
 						</div>
-						<Scan v-if="state.isScan" />
+						<Scan v-if="state.isScan" :tenant-info="state.tenantInfo" />
 						<div class="login-content-main-scan" @click="state.isScan = !state.isScan">
 							<i class="iconfont" :class="state.isScan ? 'icon-diannao1' : 'icon-barcode-qr'"></i>
 							<div class="login-content-main-scan-delta"></div>
@@ -58,20 +58,28 @@ import { defineAsyncComponent, onMounted, reactive, computed } from 'vue';
 import { storeToRefs } from 'pinia';
 import { useThemeConfig } from '/@/stores/themeConfig';
 import { NextLoading } from '/@/utils/loading';
-// import logoMini from '/@/assets/logo-mini.svg';
 import loginIconTwo from '/@/assets/login-icon-two.svg';
 import loginIconTwo1 from '/@/assets/login-icon-two1.svg';
 import loginIconTwo2 from '/@/assets/login-icon-two2.svg';
+import {getAPI} from "/@/utils/axios-utils";
+import {SysTenantApi} from "/@/api-services";
+import {useRoute} from "vue-router";
 
 // 引入组件
 const Account = defineAsyncComponent(() => import('/@/views/login/component/account.vue'));
 const Mobile = defineAsyncComponent(() => import('/@/views/login/component/mobile.vue'));
 const Scan = defineAsyncComponent(() => import('/@/views/login/component/scan.vue'));
 
+const route = useRoute();
 const storesThemeConfig = useThemeConfig();
 const { themeConfig } = storeToRefs(storesThemeConfig);
 const state = reactive({
 	tabsActiveName: 'account',
+	tenantInfo: {
+		host: location.host.toLowerCase(),
+		id: undefined,
+		list: [],
+	},
 	isScan: false,
 });
 // 获取布局配置信息
@@ -81,7 +89,17 @@ const getThemeConfig = computed(() => {
 // 页面加载时
 onMounted(() => {
 	NextLoading.done();
+	getTenantInfo();
 });
+
+// 处理租户信息
+const getTenantInfo = async () => {
+	const list = await getAPI(SysTenantApi).apiSysTenantListGet().then(res => res.data.result ?? []);
+	const tenant = list.find((item) => item.host === state.host);
+	state.tenantInfo.id = parseInt(route.query.t ?? (tenant ?? list[0])?.value);
+	state.tenantInfo.list = list;
+	return state.tenantInfo;
+}
 </script>
 
 <style scoped lang="scss">
@@ -147,7 +165,7 @@ onMounted(() => {
 		.login-right-warp {
 			border: 1px solid var(--el-color-primary-light-3);
 			border-radius: 3px;
-			height: 550px;
+			height: 600px;
 			position: relative;
 			overflow: hidden;
 			background-color: var(--el-color-white);

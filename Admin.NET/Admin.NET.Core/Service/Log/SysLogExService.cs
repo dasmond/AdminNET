@@ -13,10 +13,12 @@ namespace Admin.NET.Core.Service;
 public class SysLogExService : IDynamicApiController, ITransient
 {
     private readonly SqlSugarRepository<SysLogEx> _sysLogExRep;
+    private readonly UserManager _userManager;
 
-    public SysLogExService(SqlSugarRepository<SysLogEx> sysLogExRep)
+    public SysLogExService(UserManager userManager, SqlSugarRepository<SysLogEx> sysLogExRep)
     {
         _sysLogExRep = sysLogExRep;
+        _userManager = userManager;
     }
 
     /// <summary>
@@ -28,6 +30,7 @@ public class SysLogExService : IDynamicApiController, ITransient
     public async Task<SqlSugarPagedList<SysLogEx>> Page(PageExLogInput input)
     {
         return await _sysLogExRep.AsQueryable()
+            .WhereIF(_userManager.SuperAdmin && input.TenantId > 0, u => u.TenantId == input.TenantId)
             .WhereIF(!string.IsNullOrWhiteSpace(input.StartTime.ToString()), u => u.CreateTime >= input.StartTime)
             .WhereIF(!string.IsNullOrWhiteSpace(input.EndTime.ToString()), u => u.CreateTime <= input.EndTime)
             .WhereIF(!string.IsNullOrWhiteSpace(input.Account), u => u.Account == input.Account)

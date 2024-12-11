@@ -3,6 +3,11 @@
 		<template #header>
 			<div class="card-header">
 				<div class="tree-h-flex">
+					<el-select v-model="state.tenantId" @change="initTreeData()" placeholder="请选择租户" class="w100 mb10">
+						<el-option :value="item.value" :label="`${item.label} (${item.host})`" v-for="(item, index) in state.tenantList" :key="index" />
+					</el-select>
+				</div>
+				<div class="tree-h-flex">
 					<div class="tree-h-left">
 						<el-input :prefix-icon="Search" v-model="filterText" placeholder="机构名称" />
 					</div>
@@ -57,19 +62,27 @@ import type { ElTree } from 'element-plus';
 import { Search, MoreFilled } from '@element-plus/icons-vue';
 
 import { getAPI } from '/@/utils/axios-utils';
-import { SysOrgApi } from '/@/api-services/api';
+import {SysOrgApi, SysTenantApi} from '/@/api-services/api';
 import { SysOrg } from '/@/api-services/models';
+import { useUserInfo } from "/@/stores/userInfo";
 
+const userStore = useUserInfo();
 const filterText = ref('');
 const treeRef = ref<InstanceType<typeof ElTree>>();
 const state = reactive({
 	loading: false,
+	tenantList: [],
+	tenantId: undefined as Number,
 	orgData: [] as Array<SysOrg>,
 	isShowCheckbox: false,
 	ownOrgData: [],
 });
 
-onMounted(() => {
+onMounted( async () => {
+	if (userStore.userInfos.accountType == 999) {
+		state.tenantList = await getAPI(SysTenantApi).apiSysTenantListGet().then(res => res.data.result ?? []);
+		state.tenantId = state.tenantList[0].value;
+	}
 	initTreeData();
 });
 
@@ -79,16 +92,21 @@ watch(filterText, (val) => {
 
 const initTreeData = async () => {
 	state.loading = true;
-	var res = await getAPI(SysOrgApi).apiSysOrgListGet(0);
+	const res = await getAPI(SysOrgApi).apiSysOrgListGet(0, undefined, undefined, undefined, state.tenantId);
 	state.orgData = res.data.result ?? [];
 	state.loading = false;
 };
 
 // 设置默认选择
-const setCheckedKeys = (orgData: any) => {
-	state.isShowCheckbox = true;
+const setCheckedKeys = (data: any) => {
+	const isArray = Array.isArray(data);
 	treeRef.value!.setCheckedKeys([]);
-	state.ownOrgData = orgData;
+	if (!isArray) {
+		treeRef.value!.setCurrentNode(data);
+		nodeClick(data);
+	}
+	state.ownOrgData = isArray ? data : [data];
+	state.isShowCheckbox = isArray;
 };
 
 // 获取已经选择

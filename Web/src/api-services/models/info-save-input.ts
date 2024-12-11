@@ -34,53 +34,53 @@ export interface InfoSaveInput {
      * @type {string}
      * @memberof InfoSaveInput
      */
-    sysTitle?: string | null;
+    sysTitle: string;
     /**
      * 系统副标题
      * @type {string}
      * @memberof InfoSaveInput
      */
-    sysViceTitle?: string | null;
+    sysViceTitle: string;
     /**
      * 系统描述
      * @type {string}
      * @memberof InfoSaveInput
      */
-    sysViceDesc?: string | null;
+    sysViceDesc: string;
     /**
      * 水印内容
      * @type {string}
      * @memberof InfoSaveInput
      */
-    sysWatermark?: string | null;
+    sysWatermark: string;
     /**
      * 版权说明
      * @type {string}
      * @memberof InfoSaveInput
      */
-    sysCopyright?: string | null;
+    sysCopyright: string;
     /**
      * ICP备案号
      * @type {string}
      * @memberof InfoSaveInput
      */
-    sysIcp?: string | null;
+    sysIcp: string;
     /**
      * ICP地址
      * @type {string}
      * @memberof InfoSaveInput
      */
-    sysIcpUrl?: string | null;
+    sysIcpUrl: string;
     /**
      * 登录二次验证
      * @type {boolean}
      * @memberof InfoSaveInput
      */
-    sysSecondVer?: boolean | null;
+    sysSecondVer?: boolean;
     /**
      * 图形验证码
      * @type {boolean}
      * @memberof InfoSaveInput
      */
-    sysCaptcha?: boolean | null;
+    sysCaptcha?: boolean;
 }

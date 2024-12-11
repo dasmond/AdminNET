@@ -3,6 +3,11 @@
 		<el-drawer v-model="state.isVisible" title="在线用户列表" size="45%">
 			<el-card shadow="hover" :body-style="{ paddingBottom: '0' }" style="margin: 8px">
 				<el-form :model="state.queryParams" ref="queryForm" :inline="true">
+					<el-form-item label="租户" v-if="userStore.userInfos.accountType == 999">
+						<el-select v-model="state.queryParams.tenantId" placeholder="租户" style="width: 100%">
+							<el-option :value="item.value" :label="`${item.label} (${item.host})`" v-for="(item, index) in state.tenantList" :key="index" />
+						</el-select>
+					</el-form-item>
 					<el-form-item label="账号" prop="userName">
 						<el-input placeholder="账号" clearable @keyup.enter="handleQuery" v-model="state.queryParams.userName" />
 					</el-form-item>
@@ -55,17 +60,19 @@ import { ElMessageBox, ElNotification } from 'element-plus';
 import { throttle } from 'lodash-es';
 
 import { getAPI, clearAccessTokens } from '/@/utils/axios-utils';
-import { SysOnlineUserApi, SysAuthApi } from '/@/api-services/api';
+import {SysOnlineUserApi, SysAuthApi, SysTenantApi} from '/@/api-services/api';
 import { SysOnlineUser } from '/@/api-services/models';
-
+import { useUserInfo } from "/@/stores/userInfo";
 import { signalR } from './signalR';
 
+const userStore = useUserInfo();
 const state = reactive({
 	loading: false,
 	isVisible: false,
 	queryParams: {
 		userName: undefined,
 		realName: undefined,
+		tenantId: undefined,
 	},
 	tableParams: {
 		page: 1,
@@ -80,6 +87,10 @@ const state = reactive({
 });
 
 onMounted(async () => {
+	if (userStore.userInfos.accountType == 999) {
+		state.tenantList = await getAPI(SysTenantApi).apiSysTenantListGet().then(res => res.data.result ?? []);
+		state.queryParams.tenantId = state.tenantList[0].value;
+	}
 	// 在线用户列表
 	signalR.off('OnlineUserList');
 	signalR.on('OnlineUserList', (data: any) => {
