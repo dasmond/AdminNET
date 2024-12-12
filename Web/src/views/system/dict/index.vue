@@ -7,6 +7,11 @@
 						<el-icon size="16" style="margin-right: 3px; display: inline; vertical-align: middle"><ele-Collection /></el-icon>字典
 					</template>
 					<el-form :model="state.queryDictTypeParams" ref="queryForm" :inline="true" @submit.native.prevent>
+						<el-form-item label="租户" v-if="userStore.userInfos.accountType == 999">
+							<el-select v-model="state.queryDictTypeParams.tenantId" placeholder="租户" clearable style="width: 100%">
+								<el-option :value="item.value" :label="`${item.label} (${item.host})`" v-for="(item, index) in state.tenantList" :key="index" />
+							</el-select>
+						</el-form-item>
 						<el-form-item label="名称">
 							<el-input v-model="state.queryDictTypeParams.name" @keyup.enter.native="handleDictTypeQuery" placeholder="字典名称" clearable />
 						</el-form-item>
@@ -70,6 +75,11 @@
 						<el-icon size="16" style="margin-right: 3px; display: inline; vertical-align: middle"><ele-Collection /></el-icon>字典值【{{ state.editDictTypeName }}】
 					</template>
 					<el-form :model="state.queryDictDataParams" ref="queryForm" :inline="true" @submit.native.prevent>
+						<el-form-item label="租户" v-if="userStore.userInfos.accountType == 999">
+							<el-select v-model="state.queryDictDataParams.tenantId" placeholder="租户" clearable style="width: 100%">
+								<el-option :value="item.value" :label="`${item.label} (${item.host})`" v-for="(item, index) in state.tenantList" :key="index" />
+							</el-select>
+						</el-form-item>
 						<el-form-item label="显示文本">
 							<el-input v-model="state.queryDictDataParams.label" placeholder="显示文本" @keyup.enter="handleDictDataQuery" />
 						</el-form-item>
@@ -149,20 +159,23 @@ import { onMounted, reactive, ref } from 'vue';
 import { ElMessageBox, ElMessage } from 'element-plus';
 import { getAPI } from '/@/utils/axios-utils';
 import { useUserInfo } from '/@/stores/userInfo';
-import { SysDictTypeApi, SysDictDataApi } from '/@/api-services/api';
+import {SysDictTypeApi, SysDictDataApi, SysTenantApi} from '/@/api-services/api';
 import { SysDictType, SysDictData, UpdateDictDataInput } from '/@/api-services/models';
 import EditDictType from '/@/views/system/dict/component/editDictType.vue';
 import EditDictData from '/@/views/system/dict/component/editDictData.vue';
 import ModifyRecord from '/@/components/table/modifyRecord.vue';
 
+const userStore = useUserInfo();
 const editDictTypeRef = ref<InstanceType<typeof EditDictType>>();
 const editDictDataRef = ref<InstanceType<typeof EditDictData>>();
 const state = reactive({
 	loading: false,
 	typeLoading: false,
+	tenantList: [] as Array<any>,
 	dictTypeData: [] as Array<SysDictType>,
 	dictDataData: [] as Array<SysDictData>,
 	queryDictTypeParams: {
+		tenantId: undefined,
 		name: undefined,
 		code: undefined,
 	},
@@ -172,6 +185,7 @@ const state = reactive({
 		total: 0 as any,
 	},
 	queryDictDataParams: {
+		tenantId: undefined,
     label: undefined,
 		dictTypeId: 0, // 字典类型Id
 	},
@@ -186,6 +200,10 @@ const state = reactive({
 });
 
 onMounted(async () => {
+	if (userStore.userInfos.accountType == 999) {
+		state.tenantList = await getAPI(SysTenantApi).apiSysTenantListGet().then(res => res.data.result ?? []);
+		state.queryDictDataParams.tenantId = state.tenantList[0].value;
+	}
 	handleDictTypeQuery();
 });
 
