@@ -431,6 +431,9 @@ public class SysTenantService : IDynamicApiController, ITransient
         await _sysTenantMenuRep.AsDeleteable().Where(u => u.TenantId == input.Id).ExecuteCommandAsync();
         var sysTenantMenuList = input.MenuIdList.Select(menuId => new SysTenantMenu { TenantId = input.Id, MenuId = menuId }).ToList();
         await _sysTenantMenuRep.InsertRangeAsync(sysTenantMenuList);
+        
+        // 清除菜单权限缓存
+        App.GetService<SysMenuService>().DeleteMenuCache();
     }
 
     /// <summary>
