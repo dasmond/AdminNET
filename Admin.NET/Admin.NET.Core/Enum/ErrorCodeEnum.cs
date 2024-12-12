@@ -152,24 +152,6 @@ public enum ErrorCodeEnum
     D1019,
 
     /// <summary>
-    /// 禁止修改系统管理员角色
-    /// </summary>
-    [ErrorCodeItemMetadata("禁止修改系统管理员角色")]
-    D1020,
-
-    /// <summary>
-    /// 禁止为系统管理员角色分配权限
-    /// </summary>
-    [ErrorCodeItemMetadata("禁止为系统管理员角色分配权限")]
-    D1021,
-
-    /// <summary>
-    /// 禁止为超级管理员分配角色
-    /// </summary>
-    [ErrorCodeItemMetadata("禁止为超级管理员分配角色")]
-    D1022,
-
-    /// <summary>
     /// 禁止删除默认租户
     /// </summary>
     [ErrorCodeItemMetadata("禁止删除默认租户")]
