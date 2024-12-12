@@ -68,6 +68,12 @@ export interface UpdateDictTypeInput {
      */
     isDelete?: boolean;
     /**
+     * 租户Id
+     * @type {number}
+     * @memberof UpdateDictTypeInput
+     */
+    tenantId?: number | null;
+    /**
      * 名称
      * @type {string}
      * @memberof UpdateDictTypeInput

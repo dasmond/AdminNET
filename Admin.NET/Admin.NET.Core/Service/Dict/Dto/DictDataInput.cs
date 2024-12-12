@@ -21,6 +21,11 @@ public class PageDictDataInput : BasePageInput
     /// 字典文本
     /// </summary>
     public string Label { get; set; }
+    
+    /// <summary>
+    /// 租户Id
+    /// </summary>
+    public long TenantId { get; set; }
 }
 
 public class AddDictDataInput : SysDictData

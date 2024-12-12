@@ -68,6 +68,12 @@ export interface AddDictTypeInput {
      */
     isDelete?: boolean;
     /**
+     * 租户Id
+     * @type {number}
+     * @memberof AddDictTypeInput
+     */
+    tenantId?: number | null;
+    /**
      * 名称
      * @type {string}
      * @memberof AddDictTypeInput

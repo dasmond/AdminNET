@@ -67,6 +67,12 @@ export interface SysDictData {
      */
     isDelete?: boolean;
     /**
+     * 租户Id
+     * @type {number}
+     * @memberof SysDictData
+     */
+    tenantId?: number | null;
+    /**
      * 字典类型Id
      * @type {number}
      * @memberof SysDictData

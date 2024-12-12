@@ -79,4 +79,10 @@ export interface PageDictTypeInput {
      * @memberof PageDictTypeInput
      */
     code?: string | null;
+    /**
+     * 租户Id
+     * @type {number}
+     * @memberof PageDictTypeInput
+     */
+    tenantId?: number;
 }

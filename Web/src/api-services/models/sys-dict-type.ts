@@ -68,6 +68,12 @@ export interface SysDictType {
      */
     isDelete?: boolean;
     /**
+     * 租户Id
+     * @type {number}
+     * @memberof SysDictType
+     */
+    tenantId?: number | null;
+    /**
      * 名称
      * @type {string}
      * @memberof SysDictType

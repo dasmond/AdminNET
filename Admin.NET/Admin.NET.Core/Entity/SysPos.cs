@@ -49,7 +49,7 @@ public partial class SysPos : EntityTenant
     public StatusEnum Status { get; set; } = StatusEnum.Enable;
 
     /// <summary>
-    /// 在职人数
+    /// 在职人员
     /// </summary>
     [SugarColumn(IsIgnore = true)]
     public List<SysUser> UserList { get; set; }

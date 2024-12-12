@@ -61,7 +61,7 @@ public class EnumToDictJob : IJob
                 .SplitInsert(_ => true)
                 .ToStorageAsync();
             await storageable2.BulkCopyAsync();
-            await storageable2.BulkUpdateAsync(nameof(SysDictData.Label), nameof(SysDictData.Value), nameof(SysDictData.Name));
+            await storageable2.BulkUpdateAsync(nameof(SysDictData.Label), nameof(SysDictData.Value), nameof(SysDictData.Name), nameof(SysDictData.TenantId));
 
             Console.WriteLine($"【{DateTime.Now}】系统枚举项转字典值数据: 插入{storageable2.InsertList.Count}条, 更新{storageable2.UpdateList.Count}条, 共{storageable2.TotalList.Count}条。");
 
@@ -80,15 +80,14 @@ public class EnumToDictJob : IJob
     }
 
     /// <summary>
-    /// 用于同步枚举转字典旧数据, 后期可删除
+    /// 用于同步枚举转字典数据
     /// </summary>
     /// <param name="db"></param>
     /// <param name="list"></param>
-    [Obsolete]
     private async Task SyncEnumToDictInfoAsync(SqlSugarClient db, List<SysDictType> list)
     {
         var codeList = list.Select(x => x.Code).ToList();
-        foreach (var dbDictType in await db.Queryable<SysDictType>().Where(x => codeList.Contains(x.Code)).ToListAsync() ?? new())
+        foreach (var dbDictType in await db.Queryable<SysDictType>().ClearFilter().Where(x => codeList.Contains(x.Code)).ToListAsync() ?? new())
         {
             var enumDictType = list.First(x => x.Code == dbDictType.Code);
             if (enumDictType.Id == dbDictType.Id)
@@ -122,7 +121,8 @@ public class EnumToDictJob : IJob
                 Id = 900000000000 + CommonUtil.GetFixedHashCode(type.TypeName),
                 Code = type.TypeName,
                 Name = type.TypeDescribe,
-                Remark = type.TypeRemark
+                Remark = type.TypeRemark,
+                TenantId = SqlSugarConst.DefaultTenantId
             };
             dictType.Children = type.EnumEntities.Select(x => new SysDictData
             {
@@ -133,6 +133,7 @@ public class EnumToDictJob : IJob
                 Value = x.Value.ToString(),
                 OrderNo = x.Value + OrderOffset,
                 TagType = x.Theme != "" ? x.Theme : DefaultTagType,
+                TenantId = SqlSugarConst.DefaultTenantId
             }).ToList();
             list.Add(dictType);
         }

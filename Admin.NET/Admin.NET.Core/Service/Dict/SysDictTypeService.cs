@@ -15,14 +15,17 @@ public class SysDictTypeService : IDynamicApiController, ITransient
     private readonly SqlSugarRepository<SysDictType> _sysDictTypeRep;
     private readonly SysDictDataService _sysDictDataService;
     private readonly SysCacheService _sysCacheService;
+    private readonly UserManager _userManager;
 
     public SysDictTypeService(SqlSugarRepository<SysDictType> sysDictTypeRep,
         SysDictDataService sysDictDataService,
-        SysCacheService sysCacheService)
+        SysCacheService sysCacheService,
+        UserManager userManager)
     {
         _sysDictTypeRep = sysDictTypeRep;
         _sysDictDataService = sysDictDataService;
         _sysCacheService = sysCacheService;
+        _userManager = userManager;
     }
 
     /// <summary>
@@ -33,6 +36,8 @@ public class SysDictTypeService : IDynamicApiController, ITransient
     public async Task<SqlSugarPagedList<SysDictType>> Page(PageDictTypeInput input)
     {
         return await _sysDictTypeRep.AsQueryable()
+            .WhereIF(!_userManager.SuperAdmin, u => !SqlFunc.EndsWith(SqlFunc.ToLower(u.Code), nameof(Enum).ToLower()))
+            .WhereIF(_userManager.SuperAdmin && input.TenantId > 0, u => u.TenantId ==  input.TenantId)
             .WhereIF(!string.IsNullOrEmpty(input.Code?.Trim()), u => u.Code.Contains(input.Code))
             .WhereIF(!string.IsNullOrEmpty(input.Name?.Trim()), u => u.Name.Contains(input.Name))
             .OrderBy(u => new { u.OrderNo, u.Code })
@@ -46,7 +51,7 @@ public class SysDictTypeService : IDynamicApiController, ITransient
     [DisplayName("获取字典类型列表")]
     public async Task<List<SysDictType>> GetList()
     {
-        return await _sysDictTypeRep.AsQueryable().OrderBy(u => new { u.OrderNo, u.Code }).ToListAsync();
+        return await GetSysDictDataQueryable().OrderBy(u => new { u.OrderNo, u.Code }).ToListAsync();
     }
 
     /// <summary>
@@ -54,11 +59,10 @@ public class SysDictTypeService : IDynamicApiController, ITransient
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
-    [UnitOfWork]
     [DisplayName("获取字典类型-值列表")]
     public async Task<List<SysDictData>> GetDataList([FromQuery] GetDataDictTypeInput input)
     {
-        var dictType = await _sysDictTypeRep.GetFirstAsync(u => u.Code == input.Code) ?? throw Oops.Oh(ErrorCodeEnum.D3000);
+        var dictType = await GetSysDictDataQueryable().FirstAsync(u => u.Code == input.Code) ?? throw Oops.Oh(ErrorCodeEnum.D3000);
         return await _sysDictDataService.GetDictDataListByDictTypeId(dictType.Id);
     }
 
@@ -71,9 +75,9 @@ public class SysDictTypeService : IDynamicApiController, ITransient
     [DisplayName("添加字典类型")]
     public async Task AddDictType(AddDictTypeInput input)
     {
-        if (input.Code.ToLower().EndsWith("enum")) throw Oops.Oh(ErrorCodeEnum.D3006);
+        if (input.Code.ToLower().EndsWith(nameof(Enum).ToLower())) throw Oops.Oh(ErrorCodeEnum.D3006);
 
-        var isExist = await _sysDictTypeRep.IsAnyAsync(u => u.Code == input.Code);
+        var isExist = await _sysDictTypeRep.AsQueryable().ClearFilter().AnyAsync(u => u.Code == input.Code);
         if (isExist) throw Oops.Oh(ErrorCodeEnum.D3001);
 
         await _sysDictTypeRep.InsertAsync(input.Adapt<SysDictType>());
@@ -92,9 +96,9 @@ public class SysDictTypeService : IDynamicApiController, ITransient
         var dict = await _sysDictTypeRep.GetFirstAsync(x => x.Id == input.Id);
         if (dict == null) throw Oops.Oh(ErrorCodeEnum.D3000);
 
-        if (dict.Code.ToLower().EndsWith("enum") && input.Code != dict.Code) throw Oops.Oh(ErrorCodeEnum.D3007);
+        if (dict.Code.ToLower().EndsWith(nameof(Enum).ToLower()) && input.Code != dict.Code) throw Oops.Oh(ErrorCodeEnum.D3007);
 
-        var isExist = await _sysDictTypeRep.IsAnyAsync(u => u.Code == input.Code && u.Id != input.Id);
+        var isExist = await _sysDictTypeRep.AsQueryable().ClearFilter().AnyAsync(u => u.Code == input.Code && u.Id != input.Id);
         if (isExist) throw Oops.Oh(ErrorCodeEnum.D3001);
 
         _sysCacheService.Remove($"{CacheConst.KeyDict}{input.Code}");
@@ -153,11 +157,34 @@ public class SysDictTypeService : IDynamicApiController, ITransient
     [DisplayName("获取所有字典集合")]
     public async Task<dynamic> GetAllDictList()
     {
-        var ds = await _sysDictTypeRep.AsQueryable()
+        var ds = await GetSysDictDataQueryable()
             .InnerJoin<SysDictData>((u, a) => u.Id == a.DictTypeId)
             .Where((u, a) => u.IsDelete == false && a.Status == StatusEnum.Enable)
             .Select((u, a) => new { TypeCode = u.Code, a.Label, a.Value, a.Name, a.TagType, a.StyleSetting, a.ClassSetting, a.ExtData, a.Remark, a.OrderNo, a.Status })
             .ToListAsync();
         return ds.OrderBy(u => u.OrderNo).GroupBy(u => u.TypeCode).ToDictionary(u => u.Key, u => u);
+    }
+    
+    /// <summary>
+    /// 获取SysDictData表查询实例
+    /// </summary>
+    /// <returns></returns>
+    [NonAction]
+    public ISugarQueryable<SysDictType> GetSysDictDataQueryable()
+    {
+        var ids = GetTenantIdList();
+        return _sysDictTypeRep.AsQueryable().WhereIF(!_userManager.SuperAdmin, u => ids.Contains(u.TenantId.Value));
+    }
+    
+    /// <summary>
+    /// 获取租户Id列表
+    /// </summary>
+    /// <returns></returns>
+    [NonAction]
+    public List<long> GetTenantIdList()
+    {
+        List<long> tenantIdList = new() { SqlSugarConst.DefaultTenantId };
+        if (_userManager.TenantId > 0) tenantIdList.Add(_userManager.TenantId);
+        return tenantIdList;
     }
 }
