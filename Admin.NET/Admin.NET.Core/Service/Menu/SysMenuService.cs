@@ -110,7 +110,7 @@ public class SysMenuService : IDynamicApiController, ITransient
         var sysMenu = input.Adapt<SysMenu>();
         CheckMenuParam(sysMenu);
 
-        // 保存菜单和租户菜单关联数据
+        // 保存租户菜单权限
         await _sysMenuRep.InsertAsync(sysMenu);
         await _sysTenantMenuRep.InsertAsync(new SysTenantMenu { TenantId = tenantId, MenuId = sysMenu.Id });
 
