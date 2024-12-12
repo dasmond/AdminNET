@@ -74,15 +74,15 @@ export interface PageDictDataInput {
      */
     dictTypeId?: number;
     /**
-     * 值
+     * 字典文本
      * @type {string}
      * @memberof PageDictDataInput
      */
-    value?: string | null;
+    label?: string | null;
     /**
-     * 编码
-     * @type {string}
+     * 租户Id
+     * @type {number}
      * @memberof PageDictDataInput
      */
-    code?: string | null;
+    tenantId?: number;
 }

@@ -67,6 +67,12 @@ export interface UpdateDictDataInput {
      */
     isDelete?: boolean;
     /**
+     * 租户Id
+     * @type {number}
+     * @memberof UpdateDictDataInput
+     */
+    tenantId?: number | null;
+    /**
      * 字典类型Id
      * @type {number}
      * @memberof UpdateDictDataInput
@@ -84,6 +90,12 @@ export interface UpdateDictDataInput {
      * @memberof UpdateDictDataInput
      */
     value: string;
+    /**
+     * 编码
+     * @type {string}
+     * @memberof UpdateDictDataInput
+     */
+    code?: string | null;
     /**
      * 名称
      * @type {string}

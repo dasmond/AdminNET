@@ -67,11 +67,23 @@ export interface SysDictData {
      */
     isDelete?: boolean;
     /**
+     * 租户Id
+     * @type {number}
+     * @memberof SysDictData
+     */
+    tenantId?: number | null;
+    /**
      * 字典类型Id
      * @type {number}
      * @memberof SysDictData
      */
     dictTypeId?: number;
+    /**
+     * 显示文本
+     * @type {string}
+     * @memberof SysDictData
+     */
+    label: string;
     /**
      * 值
      * @type {string}
@@ -83,7 +95,7 @@ export interface SysDictData {
      * @type {string}
      * @memberof SysDictData
      */
-    code: string;
+    code?: string | null;
     /**
      * 名称
      * @type {string}
