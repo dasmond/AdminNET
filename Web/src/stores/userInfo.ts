@@ -2,7 +2,7 @@ import { defineStore } from 'pinia';
 import { Local, Session } from '/@/utils/storage';
 import Watermark from '/@/utils/watermark';
 import { useThemeConfig } from '/@/stores/themeConfig';
-import {i18n} from "/@/i18n";
+import { i18n } from "/@/i18n";
 
 import { getAPI } from '/@/utils/axios-utils';
 import { SysAuthApi, SysConstApi, SysDictTypeApi } from '/@/api-services/api';
@@ -41,14 +41,19 @@ export const useUserInfo = defineStore('userInfo', {
 
 		// 存储字典信息到浏览器缓存
 		async setDictList() {
-			this.dictList = await getAPI(SysDictTypeApi).apiSysDictTypeAllDictListGet().then(res => res.data.result ?? {});
-			for (const key in this.dictList) {
-				// 处理字典国际化
-				this.dictList[key].forEach((e: any) => setDictLangMessage(e));
+			var dictList = await getAPI(SysDictTypeApi).apiSysDictTypeAllDictListGet().then(res => res.data.result ?? {});
+			var dictListTemp = JSON.parse(JSON.stringify(dictList));
+
+			await Promise.all(Object.keys(dictList).map(async (key) => {
+				dictList[key].forEach((da: any, index: any) => {
+					setDictLangMessageAsync(dictListTemp[key][index]);
+				});
+				// 如果 key 以 "Enum" 结尾，则转换 value 为数字
 				if (key.endsWith("Enum")) {
-					this.dictList[key].forEach((e: any) => e.value = Number(e.value));
+					dictListTemp[key].forEach((e: any) => e.value = Number(e.value));
 				}
-			}
+			}))
+			this.dictList = dictListTemp;
 		},
 
 		// 获取当前用户信息
@@ -125,7 +130,7 @@ export const useUserInfo = defineStore('userInfo', {
 });
 
 // 处理字典国际化, 默认显示字典中的label值
-const setDictLangMessage = (dict: any) => {
+const setDictLangMessageAsync = async (dict: any) => {
 	dict.langMessage = `message.dictType.${dict.typeCode}_${dict.value}`;
 	const text = t(dict.langMessage);
 	dict.label = text !== dict.langMessage ? text : dict.label;
