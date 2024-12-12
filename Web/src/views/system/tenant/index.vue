@@ -110,6 +110,8 @@
 									                  :v-auth="'sysTenant:changeTenant'"> 切换租户 </el-dropdown-item>
 									<el-dropdown-item icon="ele-OfficeBuilding" @click="openGrantMenu(scope.row)"
 										:v-auth="'sysTenant:grantMenu'"> 授权菜单 </el-dropdown-item>
+									<el-dropdown-item icon="ele-OfficeBuilding" @click="syncGrantMenu(scope.row)"
+									                  :v-auth="'sysTenant:syncGrantMenu'" title="用于版本更新后，同步授权数据"> 同步授权 </el-dropdown-item>
 									<el-dropdown-item icon="ele-RefreshLeft" @click="resetTenantPwd(scope.row)"
 										:v-auth="'sysTenant:resetPwd'"> 重置密码 </el-dropdown-item>
 									<el-dropdown-item icon="ele-Delete" @click="delTenant(scope.row)"
@@ -207,6 +209,17 @@ const changeTenant = (row: any) => {
 				location.href = "/";
 			}
 		});
+	});
+}
+
+const syncGrantMenu = (row: any) => {
+	ElMessageBox.confirm(`确定要将同步【${row.name}】的授权数据?`, '提示', {
+		confirmButtonText: '确定',
+		cancelButtonText: '取消',
+		type: 'warning',
+	}).then(async () => {
+		await getAPI(SysTenantApi).apiSysTenantSyncGrantMenuPost({ id: row.id });
+		ElMessage.success('同步授权成功');
 	});
 }
 

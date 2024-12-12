@@ -140,15 +140,9 @@ public enum ErrorCodeEnum
     D1017,
 
     /// <summary>
-    /// 禁止删除管理员
+    /// 该租户下角色菜单权限集为空
     /// </summary>
-    [ErrorCodeItemMetadata("禁止删除管理员")]
-    D1018,
-
-    /// <summary>
-    /// 禁止删除系统管理员角色
-    /// </summary>
-    [ErrorCodeItemMetadata("禁止删除系统管理员角色")]
+    [ErrorCodeItemMetadata("该租户下角色菜单权限集为空")]
     D1019,
 
     /// <summary>
