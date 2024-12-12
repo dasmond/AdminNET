@@ -125,6 +125,7 @@ const userStore = useUserInfo();
 const state = reactive({
 	loading: false,
 	loadingDetail: false,
+	tenantList: [] as Array<any>,
 	queryParams: {
 		tenantId: undefined,
 		startTime: undefined,

@@ -77,7 +77,7 @@ const state = reactive({
 	tabsActiveName: 'account',
 	tenantInfo: {
 		host: location.host.toLowerCase(),
-		id: undefined,
+		id: undefined as number | undefined,
 		list: [],
 	},
 	isScan: false,
@@ -95,7 +95,7 @@ onMounted(() => {
 // 处理租户信息
 const getTenantInfo = async () => {
 	const list = await getAPI(SysTenantApi).apiSysTenantListGet().then(res => res.data.result ?? []);
-	const tenant = list.find((item) => item.host === state.host);
+	const tenant = list.find((item: any) => item.host === state.tenantInfo.host);
 	state.tenantInfo.id = parseInt(route.query.t ?? (tenant ?? list[0])?.value);
 	state.tenantInfo.list = list;
 	return state.tenantInfo;

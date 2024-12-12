@@ -91,6 +91,7 @@ import { SysLogVisApi, SysTenantApi } from '/@/api-services/api';
 const userStore = useUserInfo();
 const state = reactive({
 	loading: false,
+	tenantList: [] as Array<any>,
 	queryParams: {
 		tenantId: undefined,
 		startTime: undefined,

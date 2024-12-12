@@ -76,6 +76,7 @@ const userStore = useUserInfo();
 const editPrintRef = ref<InstanceType<typeof EditPrint>>();
 const state = reactive({
 	loading: false,
+	tenantList: [] as Array<any>,
 	printData: [] as Array<SysPrint>,
 	queryParams: {
 		tenantId: undefined,

@@ -90,6 +90,7 @@ const editPosRef = ref<InstanceType<typeof EditPos>>();
 const state = reactive({
 	loading: false,
 	posData: [] as Array<SysPos>,
+	tenantList: [] as Array<any>,
 	queryParams: {
 		tenantId: undefined,
 		name: undefined,

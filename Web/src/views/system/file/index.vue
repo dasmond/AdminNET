@@ -169,6 +169,7 @@ const uploadRef = ref<UploadInstance>();
 const editSysFileRef = ref<InstanceType<typeof EditSysFile>>();
 const state = reactive({
 	loading: false,
+	tenantList: [] as Array<any>,
 	fileData: [] as Array<SysFile>,
 	queryParams: {
 		tenantId: undefined,

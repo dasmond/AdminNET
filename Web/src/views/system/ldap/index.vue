@@ -85,6 +85,7 @@ const userStore = useUserInfo();
 const editLdapRef = ref<InstanceType<typeof EditLdap>>();
 const state = reactive({
 	loading: false,
+	tenantList: [] as Array<any>,
 	tableData: [] as any,
 	queryParams: {
 		tenantId: undefined,

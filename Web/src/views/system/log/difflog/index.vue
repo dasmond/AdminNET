@@ -95,6 +95,7 @@ import { useUserInfo } from "/@/stores/userInfo";
 const userStore = useUserInfo();
 const state = reactive({
 	loading: false,
+	tenantList: [] as Array<any>,
 	queryParams: {
 		tenantId: undefined,
 		startTime: undefined,

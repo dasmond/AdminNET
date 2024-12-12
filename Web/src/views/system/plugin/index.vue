@@ -76,6 +76,7 @@ const userStore = useUserInfo();
 const editPluginRef = ref<InstanceType<typeof EditPlugin>>();
 const state = reactive({
 	loading: false,
+	tenantList: [] as Array<any>,
 	pluginData: [] as Array<SysPlugin>,
 	queryParams: {
 		tenantId: undefined,
