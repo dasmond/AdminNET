@@ -2,19 +2,118 @@
 branches: {
   }
 fileChange:
+  /Admin.NET:
+    newFile: !uuid 'a3eb3a4760160e6c09ec778fa7a8fe92ac76c214'
+    oldFile: !uuid 'fa5bf0a6f484168124b84de7deb2af9e4b29f058'
+  /Admin.NET/Admin.NET.Core:
+    newFile: !uuid 'a69ae7e768f61634437c124d7a67dbf589975f96'
+    oldFile: !uuid '8399e92c880669e2657f8a2b7e3ee559c4230a9e'
+  /Admin.NET/Admin.NET.Core/Entity:
+    newFile: !uuid '36a8ae6b415bc2467aaf66742a99a18b0e21817b'
+    oldFile: !uuid 'b26ff86f550b4180560429c9fc92cfd0e14a7563'
+  /Admin.NET/Admin.NET.Core/Entity/SysDictData.cs:
+    newFile: !uuid 'e587154862ec2484c399ecab6bf0220e66632ed1'
+    oldFile: !uuid '11297f007d5215574774e6c3411d06cd9a460f33'
+  /Admin.NET/Admin.NET.Core/Entity/SysDictType.cs:
+    newFile: !uuid 'd79ed611a0f489c08a7e67aad3a8c8f203dfb01b'
+    oldFile: !uuid 'df1d3d2ae5eab66d5cfcb6fff44feacb1cd24ee0'
+  /Admin.NET/Admin.NET.Core/Entity/SysPos.cs:
+    newFile: !uuid '1712688bc6f5891dfba34cf507a50d12499fe8c3'
+    oldFile: !uuid '3986ed0eae0192c4e729b3afb66cbddb64a20c4b'
+  /Admin.NET/Admin.NET.Core/Job:
+    newFile: !uuid '190438a6cdb9c631c3e62ab69af5015030fc856d'
+    oldFile: !uuid '9332cd785bbf5999d5c1833a259ec2ac63de29e5'
+  /Admin.NET/Admin.NET.Core/Job/EnumToDictJob.cs:
+    newFile: !uuid '8264eecfe8dbcdb5e51dad8f49b194e515e1958d'
+    oldFile: !uuid 'e90e38caca976884c27cbe583dddfb809a9faf6d'
+  /Admin.NET/Admin.NET.Core/SeedData:
+    newFile: !uuid '23bce7315ae8f668eeea0b631cec4e9ba5b754e7'
+    oldFile: !uuid '8e7ba748f8edfd74f8d46555097ddec005cbc9f7'
+  /Admin.NET/Admin.NET.Core/SeedData/SysDictDataSeedData.cs:
+    newFile: !uuid '1920d24a94f9b8c67e7f514b17d87e698ff079fd'
+    oldFile: !uuid '9fa2dbe67eab22a12c48673b3a9695c40cfa66ec'
+  /Admin.NET/Admin.NET.Core/SeedData/SysDictTypeSeedData.cs:
+    newFile: !uuid '837fb99599ed1852f1792f9e1a3bed84063e5e6e'
+    oldFile: !uuid '9117084d7e74a886c5818576f346219246e5b706'
+  /Admin.NET/Admin.NET.Core/Service:
+    newFile: !uuid '67c52b0d0bfcbc000b5c70069018f14b9a3c6ad3'
+    oldFile: !uuid '204e7e43d7fa8476c813028f4504e9ac8e5df0a8'
+  /Admin.NET/Admin.NET.Core/Service/Dict:
+    newFile: !uuid 'd74b8b29b9d7118b818dd5b5831b0eccb01295db'
+    oldFile: !uuid 'e544d729a92a5cafbd5964c43424258b3851b9d4'
+  /Admin.NET/Admin.NET.Core/Service/Dict/Dto:
+    newFile: !uuid '65a195813d74fcd85756c42230e4193cd2b3fea0'
+    oldFile: !uuid '8e90be4ec97ed76821a4675e091bfaabaf5c4e90'
+  /Admin.NET/Admin.NET.Core/Service/Dict/Dto/DictDataInput.cs:
+    newFile: !uuid '85af95d51ba764a2e2a3758f758c1515af69b0b7'
+    oldFile: !uuid '74d08326af521dd0343cab155d42b438369c80cd'
+  /Admin.NET/Admin.NET.Core/Service/Dict/Dto/DictTypeInput.cs:
+    newFile: !uuid '6b80584a0c586ec09dd6bdb3740a062ab3b8bf98'
+    oldFile: !uuid 'f311da170767327b1dd0ceab6bb447e0fabd4132'
+  /Admin.NET/Admin.NET.Core/Service/Dict/SysDictDataService.cs:
+    newFile: !uuid 'f33f11cb184a83160c1d958abf28cd8b0abc5886'
+    oldFile: !uuid '10554b95c5c474da8314a96513044b116e210f82'
+  /Admin.NET/Admin.NET.Core/Service/Dict/SysDictTypeService.cs:
+    newFile: !uuid '81869eb0c476ec49b5a6c7dbf18dd965ad1a349e'
+    oldFile: !uuid 'f0f3ac744eaa3fd356dc40acfd21fdb4d59d36bd'
   /Web:
-    newFile: !uuid '478a2016484a4143e56432096d81140686fc444f'
-    oldFile: !uuid '90ac3fb1bc84f7a623c0f64ebe9c546c9efae23b'
+    newFile: !uuid 'e1c345993f89256590ddbda92ffff1db6f4f9902'
+    oldFile: !uuid '478a2016484a4143e56432096d81140686fc444f'
   /Web/src:
-    newFile: !uuid '9ede830a631de544b3ff79a44433a1cfa0e9f727'
-    oldFile: !uuid 'bce832d8b4ebb7607efed2e4747ce7bba393b385'
-  /Web/src/stores:
-    newFile: !uuid '22af4585d69e218ec85e07b18db37c78304b1018'
-    oldFile: !uuid 'cd9e7783cb0a9b5c59489c1abe77761d810559fc'
-  /Web/src/stores/userInfo.ts:
-    newFile: !uuid '2ec35c5923a07362a2c11c7477ff804a744674f6'
-    oldFile: !uuid '90297897e50de2e3f453ee39302f0910abee06eb'
-gitCommitId: !uuid 'b1e01e0ea1c390edf639b88d9b8b53841d2fc239'
+    newFile: !uuid 'e816f8da66ac2d0430b2b21c7c6c1c455ebb2373'
+    oldFile: !uuid '9ede830a631de544b3ff79a44433a1cfa0e9f727'
+  /Web/src/api-services:
+    newFile: !uuid 'b5700f3fa79012e86fee05f4725c81f491a6c5b5'
+    oldFile: !uuid '34e8095fbc80deafd49d44a0ccd3757efd45dce9'
+  /Web/src/api-services/models:
+    newFile: !uuid 'f78d8a48ea5c59ef5b5682c9d471dafae7d3f87f'
+    oldFile: !uuid 'e4d5ca4499a2b0e7cfb43418df0cee8fe9721264'
+  /Web/src/api-services/models/add-dict-data-input.ts:
+    newFile: !uuid '0b332c8b6e4d7ee3e9ccabcceee821de7156350d'
+    oldFile: !uuid '51b5ce8580f9223bf15aae3b35dd2fdadbd73a5a'
+  /Web/src/api-services/models/add-dict-type-input.ts:
+    newFile: !uuid '663a0d9b846a48ffc8cf1bf7ca38225da99a4947'
+    oldFile: !uuid 'bcff48a934e86174a4dc0020646a3e1896fea981'
+  /Web/src/api-services/models/add-pos-input.ts:
+    newFile: !uuid 'ff5fd0176c8af0e8c0e60d3630bf0f799ebcaa03'
+    oldFile: !uuid '88a1fa225cacba89751ca4ca5bde9bb6e1b0e7ef'
+  /Web/src/api-services/models/db-type.ts:
+    newFile: !uuid '91349794504662c4afe1356cab08d92d6b97c029'
+    oldFile: !uuid '9aeafe77e2f9b3c9dcb9bdd31f9462e9cba9c8c2'
+  /Web/src/api-services/models/info-save-input.ts:
+    newFile: !uuid 'e7367556fd6cb6c701eb3306595bdc96797b8e71'
+    oldFile: !uuid 'c8a8c70af30cad68f8f67db473de005956fb5e58'
+  /Web/src/api-services/models/page-dict-data-input.ts:
+    newFile: !uuid '24d095db001ec131a56d6a4c2832aa4dd87127e1'
+    oldFile: !uuid '92b1ddc7082ad6d4e251198223c28539c0c764a0'
+  /Web/src/api-services/models/page-dict-type-input.ts:
+    newFile: !uuid '44d77b3a600eb0f9f2e72ccf828ce3db324429d7'
+    oldFile: !uuid 'ea5db24400363a215a46fda5bea89234bce09896'
+  /Web/src/api-services/models/sys-dict-data.ts:
+    newFile: !uuid 'e19f56d2244f06c7210f271cc807a88b80b71621'
+    oldFile: !uuid '6ecab2428c4efcebe168d5a3036c83c22a095c50'
+  /Web/src/api-services/models/sys-dict-type.ts:
+    newFile: !uuid '703078fb5474099044e81b3c8fe21e8938d46a8a'
+    oldFile: !uuid '25ecd91cd8ed039d61a20d8913d784e242a90451'
+  /Web/src/api-services/models/sys-log-diff.ts:
+    newFile: !uuid 'bd5a7a3690fddb804980721439104fb61f4da2b2'
+    oldFile: !uuid '562788b777a6c239b304f447e4108063fc15b516'
+  /Web/src/api-services/models/sys-pos.ts:
+    newFile: !uuid 'f88ce2b49029a04ebc9d9cc76269bc6adbde05ab'
+    oldFile: !uuid '36492687e01e32cd933b2f402e6e34b7515de87a'
+  /Web/src/api-services/models/sys-user-ldap.ts:
+    newFile: !uuid '32872b784f6dbe32b8d538b6b62723fe00c42c8a'
+    oldFile: !uuid 'eb5ba0bb7b899924644da3fa0ab9d98f66d08287'
+  /Web/src/api-services/models/update-dict-data-input.ts:
+    newFile: !uuid '384361eac25b7b9e4f011af9a16b7771c07760fe'
+    oldFile: !uuid '1f43bbd9a63343885e6d769320f6754025ea5ded'
+  /Web/src/api-services/models/update-dict-type-input.ts:
+    newFile: !uuid '27446cb6b4bc060010acfd5190db466619f85896'
+    oldFile: !uuid '25755dd6ad1e46a4fe44b349ba34148744ae8ecb'
+  /Web/src/api-services/models/update-pos-input.ts:
+    newFile: !uuid '7264488093e1a1c9e97eff1bef003dc832cf39be'
+    oldFile: !uuid '5064ea5a5771ce1ec02ee60b06db935903a1e9ba'
+gitCommitId: !uuid 'eecb56d34567894f6b5c67d52ea679ef191007f1'
 renames: {
   }
-revisionId: 2539
+revisionId: 2540
