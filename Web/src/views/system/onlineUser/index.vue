@@ -69,6 +69,7 @@ const userStore = useUserInfo();
 const state = reactive({
 	loading: false,
 	isVisible: false,
+	tenantList: [] as Array<any>,
 	queryParams: {
 		userName: undefined,
 		realName: undefined,

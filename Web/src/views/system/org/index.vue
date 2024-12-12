@@ -81,6 +81,7 @@ const editOrgRef = ref<InstanceType<typeof EditOrg>>();
 const orgTreeRef = ref<InstanceType<typeof OrgTree>>();
 const state = reactive({
 	loading: false,
+	tenantList: [] as Array<any>,
 	orgData: [] as Array<SysOrg>, // 机构列表数据
 	orgTreeData: [] as Array<SysOrg>, // 机构树所有数据
 	queryParams: {

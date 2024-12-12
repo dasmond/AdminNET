@@ -88,6 +88,7 @@ const editRoleRef = ref<InstanceType<typeof EditRole>>();
 const grantDataRef = ref<InstanceType<typeof GrantData>>();
 const state = reactive({
 	loading: false,
+	tenantList: [] as Array<any>,
 	roleData: [] as Array<SysRole>,
 	queryParams: {
 		tenantId: undefined,

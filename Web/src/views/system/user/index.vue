@@ -126,6 +126,7 @@ const orgTreeRef = ref<InstanceType<typeof OrgTree>>();
 const editUserRef = ref<InstanceType<typeof EditUser>>();
 const state = reactive({
 	loading: false,
+	tenantList: [] as Array<any>,
 	userData: [] as Array<SysUser>,
 	orgTreeData: [] as Array<SysOrg>,
 	queryParams: {
@@ -134,6 +135,7 @@ const state = reactive({
 		realName: undefined,
 		phone: undefined,
 		posName: undefined,
+		tenantId: undefined,
 	},
 	tableParams: {
 		page: 1,
