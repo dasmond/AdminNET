@@ -24,6 +24,7 @@ public class SysTenantService : IDynamicApiController, ITransient
     private readonly SysConfigService _sysConfigService;
     private readonly SysCacheService _sysCacheService;
     private readonly UploadOptions _uploadOptions;
+    private readonly UserManager _userManager;
 
     public SysTenantService(SqlSugarRepository<SysTenant> sysTenantRep,
         SqlSugarRepository<SysOrg> sysOrgRep,
@@ -36,7 +37,8 @@ public class SysTenantService : IDynamicApiController, ITransient
         SqlSugarRepository<SysUserRole> userRoleRep,
         IOptions<UploadOptions> uploadOptions,
         SysConfigService sysConfigService,
-        SysCacheService sysCacheService)
+        SysCacheService sysCacheService,
+        UserManager userManager)
     {
         _sysTenantRep = sysTenantRep;
         _sysOrgRep = sysOrgRep;
@@ -50,6 +52,7 @@ public class SysTenantService : IDynamicApiController, ITransient
         _uploadOptions = uploadOptions.Value;
         _sysConfigService = sysConfigService;
         _sysCacheService = sysCacheService;
+        _userManager = userManager;
     }
 
     /// <summary>
@@ -484,6 +487,32 @@ public class SysTenantService : IDynamicApiController, ITransient
         var tenant = await _sysTenantRep.GetFirstAsync(u => u.Id == input.Id) ?? throw Oops.Oh(ErrorCodeEnum.D1002);
         var user = await _sysUserRep.GetFirstAsync(u => u.Id == tenant.UserId) ?? throw Oops.Oh(ErrorCodeEnum.D1002);
         return await GetAccessTokenInNotSingleLogin(user);
+    }
+    
+    /// <summary>
+    /// 同步授权菜单(用于版本更新后，同步授权数据) 🔖
+    /// </summary>
+    /// <param name="input"></param>
+    /// <returns></returns>
+    [UnitOfWork]
+    [DisplayName("同步授权菜单")]
+    public async Task SyncGrantMenu(BaseIdInput input)
+    {
+        var menuIdList = input.Id == SqlSugarConst.DefaultTenantId
+            ? new SysMenuSeedData().HasData().Select(u => u.Id).ToList()
+            : await _sysRoleRep.AsQueryable().ClearFilter()
+              .InnerJoin<SysTenant>((u , t) => t.Id == input.Id && u.TenantId == t.Id)
+              .InnerJoin<SysRoleMenu>((u, t, rm) => u.Id == rm.RoleId)
+              .Select((u, t, rm) => rm.MenuId)
+              .Distinct()
+              .ToListAsync() ?? throw Oops.Oh(ErrorCodeEnum.D1019);
+        var adminRole = await _sysRoleRep.AsQueryable().ClearFilter().FirstAsync(u => u.TenantId == input.Id && u.Code == "sys_admin");
+        if (adminRole != null)
+        {
+            await _sysRoleRep.Context.Deleteable<SysUserRole>().Where(u => u.RoleId == adminRole.Id).ExecuteCommandAsync();
+            await App.GetService<SysRoleService>().DeleteRole(new DeleteRoleInput { Id = adminRole.Id });
+        }
+        await GrantMenu(new TenantMenuInput { Id = input.Id, MenuIdList = menuIdList });
     }
     
     /// <summary>
