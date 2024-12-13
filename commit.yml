@@ -2,22 +2,28 @@
 branches: {
   }
 fileChange:
-  /Admin.NET:
-    newFile: !uuid '9b4340e51eb11b107a2e1ef736b4a1eb32de3de2'
-    oldFile: !uuid 'a3eb3a4760160e6c09ec778fa7a8fe92ac76c214'
-  /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '8b2d6e85ed3656f8a3b372c3eb2b6e6cc63c1471'
-    oldFile: !uuid 'a69ae7e768f61634437c124d7a67dbf589975f96'
-  /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid '817dd68e9996707534cae829d99944900ee5ccc2'
-    oldFile: !uuid '67c52b0d0bfcbc000b5c70069018f14b9a3c6ad3'
-  /Admin.NET/Admin.NET.Core/Service/Auth:
-    newFile: !uuid 'fc571a2dece3f78b1a63d3e985e0fca45e9d5308'
-    oldFile: !uuid '19941790c92955ac0675fc44804832fa51ef7a5b'
-  /Admin.NET/Admin.NET.Core/Service/Auth/SysLdapService.cs:
-    newFile: !uuid 'cd044c923b8e32b610edbc42779db99bd813f741'
-    oldFile: !uuid '54188faf39201288234eef45a610ed10886db5e7'
-gitCommitId: !uuid '596add5816bebf3691ae545205dae639cbc72d22'
+  /Web:
+    newFile: !uuid 'cd5c01d98304239f13cd99986c277e33fe2024a9'
+    oldFile: !uuid 'e1c345993f89256590ddbda92ffff1db6f4f9902'
+  /Web/src:
+    newFile: !uuid '24f015f738c46325cbe3b0bccb498ff6c5e567bc'
+    oldFile: !uuid 'e816f8da66ac2d0430b2b21c7c6c1c455ebb2373'
+  /Web/src/views:
+    newFile: !uuid '195ebb303a1a456dec1de2ef52283f8dcc40ad72'
+    oldFile: !uuid 'ec7f52997c1cf334397e52e5df28dcffde6764a0'
+  /Web/src/views/system:
+    newFile: !uuid 'dcdecbc5af733938936afc9067a9aa9abf467994'
+    oldFile: !uuid 'd78783e51a1fa940b50c6b95accc6ff6bcb70258'
+  /Web/src/views/system/ldap:
+    newFile: !uuid 'd8eb7333c9f98d3a0925562f7a54a0931eb46dc4'
+    oldFile: !uuid 'c740c28312d9f6a88336c98b72c0776baab21134'
+  /Web/src/views/system/ldap/component:
+    newFile: !uuid '2fc0a4f1a864c0504165438fc16be3b1d28f4c47'
+    oldFile: !uuid 'f10625c10de6e78df28e5e0e02a91eab5cbb5cb5'
+  /Web/src/views/system/ldap/component/editLdap.vue:
+    newFile: !uuid 'd8bdd8139b26404f35d17def35525bdad11d9fd7'
+    oldFile: !uuid '682092a5128acddb543f154449979d7e93b22c18'
+gitCommitId: !uuid '646fabca5d5c783ad759b235aab22d9737930d68'
 renames: {
   }
-revisionId: 2541
+revisionId: 2542
