@@ -1,6 +1,6 @@
 <template>
 	<el-form size="large" class="login-content-form">
-		<el-form-item class="login-animation1" v-if="!tenantInfo.list.some(e => e.host === tenantInfo.host)">
+		<el-form-item class="login-animation1" v-if="!tenantInfo.list.some((e: any) => e.host === tenantInfo.host)">
 			<el-select v-model="state.ruleForm.tenantId" :placeholder="$t('message.mobile.placeholder1')" clearable style="width: 100%">
 				<template #prefix>
 					<i class="iconfont icon-shuxingtu el-input__icon"></i>
@@ -48,7 +48,10 @@ import { getAPI } from '/@/utils/axios-utils';
 import { SysSmsApi, SysAuthApi } from '/@/api-services/api';
 
 const props = defineProps({
-	tenantInfo: {},
+	tenantInfo: {
+		required: true,
+		type: Object,
+	},
 });
 
 const route = useRoute();

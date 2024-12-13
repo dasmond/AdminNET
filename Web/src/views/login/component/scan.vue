@@ -1,6 +1,6 @@
 <template>
 	<div class="login-scan-container">
-		<el-select v-model="state.tenantId" v-if="!tenantInfo.list.some(e => e.host === tenantInfo.host)" :placeholder="$t('message.scan.placeholder1')" clearable class="mb30" style="width: 260px; align-self: center;">
+		<el-select v-model="state.tenantId" v-if="!tenantInfo.list.some((e: any) => e.host === tenantInfo.host)" :placeholder="$t('message.scan.placeholder1')" clearable class="mb30" style="width: 260px; align-self: center;">
 			<template #prefix>
 				<i class="iconfont icon-shuxingtu el-input__icon"></i>
 			</template>
@@ -19,7 +19,10 @@ import {ref, onMounted, nextTick, reactive} from 'vue';
 import QRCode from 'qrcodejs2-fixes';
 
 const props = defineProps({
-	tenantInfo: {},
+	tenantInfo: {
+		required: true,
+		type: Object,
+	},
 });
 
 const state = reactive({
