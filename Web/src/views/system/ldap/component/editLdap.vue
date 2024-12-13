@@ -1,4 +1,4 @@
-﻿<template>
+<template>
 	<div class="sysLdap-container">
 		<el-dialog v-model="state.isShowDialog" draggable :close-on-click-modal="false" width="900px">
 			<template #header>
@@ -31,7 +31,7 @@
 					</el-col>
 					<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
 						<el-form-item label="绑定DN" prop="bindDn">
-							<el-input v-model="state.ruleForm.bindDn" placeholder="请输入有域管理权限的账户" maxlength="32" show-word-limit clearable />
+							<el-input v-model="state.ruleForm.bindDn" placeholder="请输入有域管理权限的账户" maxlength="128" show-word-limit clearable />
 						</el-form-item>
 					</el-col>
 					<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
