@@ -3,7 +3,7 @@
 		<template #header>
 			<div class="card-header">
 				<div class="tree-h-flex">
-					<el-select v-model="state.tenantId" @change="initTreeData()" placeholder="请选择租户" class="w100 mb10">
+					<el-select v-if="userStore.userInfos.accountType == 999" v-model="state.tenantId" @change="initTreeData()" placeholder="请选择租户" class="w100 mb10">
 						<el-option :value="item.value" :label="`${item.label} (${item.host})`" v-for="(item, index) in state.tenantList" :key="index" />
 					</el-select>
 				</div>
