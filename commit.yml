@@ -2,28 +2,19 @@
 branches: {
   }
 fileChange:
-  /Web:
-    newFile: !uuid 'cd5c01d98304239f13cd99986c277e33fe2024a9'
-    oldFile: !uuid 'e1c345993f89256590ddbda92ffff1db6f4f9902'
-  /Web/src:
-    newFile: !uuid '24f015f738c46325cbe3b0bccb498ff6c5e567bc'
-    oldFile: !uuid 'e816f8da66ac2d0430b2b21c7c6c1c455ebb2373'
-  /Web/src/views:
-    newFile: !uuid '195ebb303a1a456dec1de2ef52283f8dcc40ad72'
-    oldFile: !uuid 'ec7f52997c1cf334397e52e5df28dcffde6764a0'
-  /Web/src/views/system:
-    newFile: !uuid 'dcdecbc5af733938936afc9067a9aa9abf467994'
-    oldFile: !uuid 'd78783e51a1fa940b50c6b95accc6ff6bcb70258'
-  /Web/src/views/system/ldap:
-    newFile: !uuid 'd8eb7333c9f98d3a0925562f7a54a0931eb46dc4'
-    oldFile: !uuid 'c740c28312d9f6a88336c98b72c0776baab21134'
-  /Web/src/views/system/ldap/component:
-    newFile: !uuid '2fc0a4f1a864c0504165438fc16be3b1d28f4c47'
-    oldFile: !uuid 'f10625c10de6e78df28e5e0e02a91eab5cbb5cb5'
-  /Web/src/views/system/ldap/component/editLdap.vue:
-    newFile: !uuid 'd8bdd8139b26404f35d17def35525bdad11d9fd7'
-    oldFile: !uuid '682092a5128acddb543f154449979d7e93b22c18'
-gitCommitId: !uuid '646fabca5d5c783ad759b235aab22d9737930d68'
+  /Admin.NET:
+    newFile: !uuid '1f1908c2d159b109659114e35dc4b0f34bd2321c'
+    oldFile: !uuid '9b4340e51eb11b107a2e1ef736b4a1eb32de3de2'
+  /Admin.NET/Admin.NET.Core:
+    newFile: !uuid '5510b45388a311f70e09535f4dc777a5862549a5'
+    oldFile: !uuid '8b2d6e85ed3656f8a3b372c3eb2b6e6cc63c1471'
+  /Admin.NET/Admin.NET.Core/Entity:
+    newFile: !uuid '189cac8f587567cc1a82b8461977b46c0818f01a'
+    oldFile: !uuid '36a8ae6b415bc2467aaf66742a99a18b0e21817b'
+  /Admin.NET/Admin.NET.Core/Entity/SysLdap.cs:
+    newFile: !uuid '0b6ce8f4752416a61ced4b67989db8c799b01f61'
+    oldFile: !uuid 'a8d629b70c94bc73131a050b946dc82a412e59a7'
+gitCommitId: !uuid '726fff60d23dd7fca85db1377e23b6cb6c7dd97c'
 renames: {
   }
-revisionId: 2542
+revisionId: 2543
