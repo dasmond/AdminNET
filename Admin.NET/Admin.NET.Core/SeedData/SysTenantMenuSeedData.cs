@@ -18,9 +18,8 @@ public class SysTenantMenuSeedData : ISqlSugarEntitySeedData<SysTenantMenu>
     /// <returns></returns>
     public IEnumerable<SysTenantMenu> HasData()
     {
-        var id = 1300000000101;
         var tenant = new SysTenantSeedData().HasData().First();
         var menuList = new SysMenuSeedData().HasData().ToList();
-        return menuList.Select(u => new SysTenantMenu { Id = id++, TenantId = tenant.Id, MenuId = u.Id });
+        return menuList.Select(u => new SysTenantMenu { Id = CommonUtil.GetFixedHashCode((tenant.Id + u.Id).ToString(), 1000000000000), TenantId = tenant.Id, MenuId = u.Id });
     }
 }

@@ -21,22 +21,22 @@ public static class CommonUtil
     /// 根据字符串获取固定整型哈希值
     /// </summary>
     /// <param name="str"></param>
+    /// <param name="startNumber"></param>
     /// <returns></returns>
-    public static int GetFixedHashCode(string str)
+    public static long GetFixedHashCode(string str, long startNumber=0)
     {
         if (string.IsNullOrWhiteSpace(str)) return 0;
         unchecked
         {
-            int hash1 = (5381 << 16) + 5381;
-            int hash2 = hash1;
+            long hash1 = (5381 << 16) + 5381;
+            long hash2 = hash1;
             for (int i = 0; i < str.Length; i += 2)
             {
                 hash1 = ((hash1 << 5) + hash1) ^ str[i];
-                if (i == str.Length - 1)
-                    break;
+                if (i == str.Length - 1) break;
                 hash2 = ((hash2 << 5) + hash2) ^ str[i + 1];
             }
-            return Math.Abs(hash1 + (hash2 * 1566083941));
+            return startNumber + Math.Abs(hash1 + (hash2 * 1566083941));
         }
     }
 
