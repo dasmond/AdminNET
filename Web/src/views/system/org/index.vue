@@ -4,7 +4,7 @@
 			<pane size="20">
 				<OrgTree ref="orgTreeRef" @node-click="nodeClick" />
 			</pane>
-			<pane size="80" style="overflow: auto;">
+			<pane size="80" style="overflow: auto">
 				<el-card shadow="hover" :body-style="{ paddingBottom: '0' }">
 					<el-form :model="state.queryParams" ref="queryForm" :inline="true">
 						<el-form-item label="机构名称">
@@ -14,7 +14,7 @@
 							<el-input v-model="state.queryParams.code" placeholder="机构编码" clearable />
 						</el-form-item> -->
 						<el-form-item label="机构类型">
-              <g-sys-dict v-model="state.queryParams.type" code="org_type" render-as="select" filterable clearable />
+							<g-sys-dict v-model="state.queryParams.type" code="org_type" render-as="select" filterable clearable />
 						</el-form-item>
 						<el-form-item>
 							<el-button-group>
@@ -34,14 +34,14 @@
 						<el-table-column prop="code" label="机构编码" align="center" show-overflow-tooltip />
 						<el-table-column prop="level" label="级别" width="70" align="center" show-overflow-tooltip />
 						<el-table-column prop="type" label="机构类型" align="center" show-overflow-tooltip>
-              <template #default="scope">
-                <g-sys-dict v-model="scope.row.type" code="org_type" />
-              </template>
-            </el-table-column>
+							<template #default="scope">
+								<g-sys-dict v-model="scope.row.type" code="org_type" />
+							</template>
+						</el-table-column>
 						<el-table-column prop="orderNo" label="排序" width="70" align="center" show-overflow-tooltip />
 						<el-table-column label="状态" width="70" align="center" show-overflow-tooltip>
 							<template #default="scope">
-                <g-sys-dict v-model="scope.row.status" code="StatusEnum" />
+								<g-sys-dict v-model="scope.row.status" code="StatusEnum" />
 							</template>
 						</el-table-column>
 						<el-table-column label="修改记录" width="100" align="center" show-overflow-tooltip>
@@ -90,7 +90,7 @@ const state = reactive({
 		code: undefined,
 		type: undefined,
 	},
-	editOrgTitle: ''
+	editOrgTitle: '',
 });
 
 onMounted(async () => {
@@ -112,8 +112,7 @@ const handleQuery = async (updateTree: boolean = false) => {
 	}
 
 	// 若无选择节点并且查询条件为空时，更新编辑页面机构列表树
-	if (state.queryParams.id == 0 && state.queryParams.name == undefined && state.queryParams.code == undefined && state.queryParams.type == undefined && !updateTree)
-		state.orgTreeData = state.orgData;
+	if (state.queryParams.id == 0 && state.queryParams.name == undefined && state.queryParams.code == undefined && state.queryParams.type == undefined && !updateTree) state.orgTreeData = state.orgData;
 };
 
 // 重置操作

@@ -32,7 +32,7 @@
 				<el-table-column prop="code" label="角色编码" align="center" show-overflow-tooltip />
 				<el-table-column label="数据范围" align="center" show-overflow-tooltip>
 					<template #default="scope">
-            <g-sys-dict v-model="scope.row.dataScope" code="DataScopeEnum" />
+						<g-sys-dict v-model="scope.row.dataScope" code="DataScopeEnum" />
 					</template>
 				</el-table-column>
 				<el-table-column prop="orderNo" label="排序" width="70" align="center" show-overflow-tooltip />
@@ -81,7 +81,7 @@ import ModifyRecord from '/@/components/table/modifyRecord.vue';
 import { getAPI } from '/@/utils/axios-utils';
 import { SysRoleApi, SysTenantApi } from '/@/api-services/api';
 import { SysRole } from '/@/api-services/models';
-import { useUserInfo } from "/@/stores/userInfo";
+import { useUserInfo } from '/@/stores/userInfo';
 
 const userStore = useUserInfo();
 const editRoleRef = ref<InstanceType<typeof EditRole>>();
@@ -105,7 +105,9 @@ const state = reactive({
 
 onMounted(async () => {
 	if (userStore.userInfos.accountType == 999) {
-		state.tenantList = await getAPI(SysTenantApi).apiSysTenantListGet().then(res => res.data.result ?? []);
+		state.tenantList = await getAPI(SysTenantApi)
+			.apiSysTenantListGet()
+			.then((res) => res.data.result ?? []);
 		state.queryParams.tenantId = state.tenantList[0].value;
 	}
 	await handleQuery();

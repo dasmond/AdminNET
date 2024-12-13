@@ -4,7 +4,7 @@
 			<pane size="20">
 				<OrgTree ref="orgTreeRef" @node-click="nodeClick" />
 			</pane>
-			<pane size="80" style="overflow: auto;">
+			<pane size="80" style="overflow: auto">
 				<el-card shadow="hover" :body-style="{ paddingBottom: '0' }">
 					<el-form :model="state.queryParams" ref="queryForm" :inline="true">
 						<el-form-item label="账号">
@@ -58,7 +58,7 @@
 						</el-table-column> -->
 						<el-table-column label="账号类型" width="110" align="center" show-overflow-tooltip>
 							<template #default="scope">
-                <g-sys-dict v-model="scope.row.accountType" code="AccountTypeEnum" />
+								<g-sys-dict v-model="scope.row.accountType" code="AccountTypeEnum" />
 							</template>
 						</el-table-column>
 						<el-table-column prop="roleName" label="角色集合" min-width="150" align="center" show-overflow-tooltip />

@@ -30,7 +30,7 @@
 				<el-table-column prop="authorName" label="作者姓名" align="center" show-overflow-tooltip />
 				<el-table-column prop="generateType" label="生成方式" align="center" show-overflow-tooltip>
 					<template #default="scope">
-            <g-sys-dict v-model="scope.row.generateType" code="code_gen_create_type" />
+						<g-sys-dict v-model="scope.row.generateType" code="code_gen_create_type" />
 					</template>
 				</el-table-column>
 				<el-table-column label="操作" width="280" fixed="right" align="center" show-overflow-tooltip>
@@ -167,7 +167,7 @@ const openCopyDialog = (row: any) => {
 	copyRow.id = 0;
 	copyRow.busName = '';
 	copyRow.tableName = '';
-  copyRow.tableUniqueList = undefined;
+	copyRow.tableUniqueList = undefined;
 	EditCodeGenRef.value?.openDialog(copyRow);
 };
 
@@ -177,27 +177,31 @@ const deleConfig = (row: any) => {
 		confirmButtonText: '确定',
 		cancelButtonText: '取消',
 		type: 'warning',
-	}).then(async () => {
+	})
+		.then(async () => {
 			await getAPI(SysCodeGenApi).apiSysCodeGenDeletePost([{ id: row.id }]);
 			handleQuery();
 			ElMessage.success('操作成功');
-	}).catch(() => {});
+		})
+		.catch(() => {});
 };
 
 // 同步生成
 const syncCodeGen = async (row: any) => {
-  ElMessageBox.confirm(`确定要同步吗?`, '提示', {
-    confirmButtonText: '确定',
-    cancelButtonText: '取消',
-    type: 'warning',
-  }).then(async () => {
-    await getAPI(SysCodeGenApi).apiSysCodeGenDeletePost([{ id: row.id }]);
-    row.id = undefined;
-    await getAPI(SysCodeGenApi).apiSysCodeGenAddPost(row);
-    handleQuery();
-    ElMessage.success('同步成功');
-  }).catch(() => {});
-}
+	ElMessageBox.confirm(`确定要同步吗?`, '提示', {
+		confirmButtonText: '确定',
+		cancelButtonText: '取消',
+		type: 'warning',
+	})
+		.then(async () => {
+			await getAPI(SysCodeGenApi).apiSysCodeGenDeletePost([{ id: row.id }]);
+			row.id = undefined;
+			await getAPI(SysCodeGenApi).apiSysCodeGenAddPost(row);
+			handleQuery();
+			ElMessage.success('同步成功');
+		})
+		.catch(() => {});
+};
 
 // 开始生成代码
 const handleGenerate = (row: any) => {

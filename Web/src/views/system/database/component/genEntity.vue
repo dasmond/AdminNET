@@ -21,7 +21,7 @@
 					</el-col>
 					<el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="mb20">
 						<el-form-item label="基类" prop="baseClassName">
-              <g-sys-dict v-model="state.ruleForm.baseClassName" code="code_gen_base_class" render-as="select" clearable class="w100" />
+							<g-sys-dict v-model="state.ruleForm.baseClassName" code="code_gen_base_class" render-as="select" clearable class="w100" />
 						</el-form-item>
 					</el-col>
 					<el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="mb20">
@@ -46,7 +46,7 @@
 
 <script lang="ts" setup name="sysGenEntity">
 import { reactive, ref } from 'vue';
-import { ElMessage } from "element-plus";
+import { ElMessage } from 'element-plus';
 import { camelCase, upperFirst } from 'lodash-es';
 import { getAPI } from '/@/utils/axios-utils';
 import { SysDatabaseApi } from '/@/api-services/api';
@@ -56,7 +56,7 @@ const ruleFormRef = ref();
 const state = reactive({
 	isShowDialog: false,
 	ruleForm: {} as any,
-  loading: false
+	loading: false,
 });
 
 const props = defineProps({
@@ -88,13 +88,15 @@ const cancel = () => {
 const submit = () => {
 	ruleFormRef.value.validate(async (valid: boolean) => {
 		if (!valid) return;
-    state.loading = true;
-    try {
-      await getAPI(SysDatabaseApi).apiSysDatabaseCreateEntityPost(state.ruleForm);
-      closeDialog();
-      ElMessage.success('生成成功');
-    } catch (e) { /* empty */ }
-    state.loading = false;
+		state.loading = true;
+		try {
+			await getAPI(SysDatabaseApi).apiSysDatabaseCreateEntityPost(state.ruleForm);
+			closeDialog();
+			ElMessage.success('生成成功');
+		} catch (e) {
+			/* empty */
+		}
+		state.loading = false;
 	});
 };
 

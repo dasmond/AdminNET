@@ -11,7 +11,7 @@
 					<el-input v-model="state.queryParams.title" placeholder="菜单名称" clearable />
 				</el-form-item>
 				<el-form-item label="类型">
-          <g-sys-dict v-model="state.queryParams.type" code="MenuTypeEnum" render-as="select" placeholder="类型" clearable />
+					<g-sys-dict v-model="state.queryParams.type" code="MenuTypeEnum" render-as="select" placeholder="类型" clearable />
 				</el-form-item>
 				<el-form-item>
 					<el-button-group>
@@ -35,7 +35,7 @@
 				</el-table-column>
 				<el-table-column label="类型" width="70" align="center" show-overflow-tooltip>
 					<template #default="scope">
-            <g-sys-dict v-model="scope.row.type" code="MenuTypeEnum" />
+						<g-sys-dict v-model="scope.row.type" code="MenuTypeEnum" />
 					</template>
 				</el-table-column>
 				<el-table-column prop="path" label="路由路径" header-align="center" show-overflow-tooltip />
@@ -44,7 +44,7 @@
 				<el-table-column prop="orderNo" label="排序" width="70" align="center" show-overflow-tooltip />
 				<el-table-column label="状态" width="80" align="center" show-overflow-tooltip>
 					<template #default="scope">
-            <g-sys-dict v-model="scope.row.status" code="StatusEnum" />
+						<g-sys-dict v-model="scope.row.status" code="StatusEnum" />
 					</template>
 				</el-table-column>
 				<el-table-column label="修改记录" width="100" align="center" show-overflow-tooltip>
@@ -73,9 +73,9 @@ import EditMenu from '/@/views/system/menu/component/editMenu.vue';
 import ModifyRecord from '/@/components/table/modifyRecord.vue';
 
 import { getAPI } from '/@/utils/axios-utils';
-import {SysMenuApi, SysTenantApi} from '/@/api-services/api';
+import { SysMenuApi, SysTenantApi } from '/@/api-services/api';
 import { SysMenu, UpdateMenuInput } from '/@/api-services/models';
-import {useUserInfo} from "/@/stores/userInfo";
+import { useUserInfo } from '/@/stores/userInfo';
 
 const userStore = useUserInfo();
 const editMenuRef = ref<InstanceType<typeof EditMenu>>();
@@ -93,7 +93,9 @@ const state = reactive({
 
 onMounted(async () => {
 	if (userStore.userInfos.accountType == 999) {
-		state.tenantList = await getAPI(SysTenantApi).apiSysTenantListGet().then(res => res.data.result ?? []);
+		state.tenantList = await getAPI(SysTenantApi)
+			.apiSysTenantListGet()
+			.then((res) => res.data.result ?? []);
 		state.queryParams.tenantId = state.tenantList[0].value;
 	}
 	handleQuery();

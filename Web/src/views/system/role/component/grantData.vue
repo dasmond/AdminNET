@@ -11,7 +11,7 @@
 				<el-row :gutter="35">
 					<el-col :xs="24" :sm="24" :md="24" :lg="24" :xl1="24" class="mb20">
 						<el-form-item label="数据范围：">
-              <g-sys-dict v-model="state.ruleForm.dataScope" code="DataScopeEnum" render-as="select" placeholder="数据范围" class="w100" />
+							<g-sys-dict v-model="state.ruleForm.dataScope" code="DataScopeEnum" render-as="select" placeholder="数据范围" class="w100" />
 						</el-form-item>
 					</el-col>
 					<el-col :xs="24" :sm="24" :md="24" :lg="24" :xl1="24" v-show="state.ruleForm.dataScope === 5">
@@ -42,7 +42,7 @@ const emits = defineEmits(['handleQuery']);
 const orgTreeRef = ref();
 const state = reactive({
 	isShowDialog: false,
-	ruleForm: {} as RoleOrgInput
+	ruleForm: {} as RoleOrgInput,
 });
 
 // 打开弹窗

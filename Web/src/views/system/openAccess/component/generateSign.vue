@@ -23,7 +23,7 @@
 						<el-form-item label="接口请求地址" prop="url">
 							<el-input v-model="state.ruleForm.url" placeholder="接口请求地址" class="input-with-select" clearable>
 								<template #prepend>
-                  <g-sys-dict v-model="state.ruleForm.method" code="HttpMethodEnum" render-as="select" placeholder="请求方法" style="width: 100px" />
+									<g-sys-dict v-model="state.ruleForm.method" code="HttpMethodEnum" render-as="select" placeholder="请求方法" style="width: 100px" />
 								</template>
 							</el-input>
 						</el-form-item>
