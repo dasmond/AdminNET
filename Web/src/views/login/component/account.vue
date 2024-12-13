@@ -23,7 +23,7 @@
 					</template>
 				</el-input>
 			</el-form-item>
-			<el-form-item class="login-animation2" prop="tenantId" clearable v-if="!tenantInfo.list.some(e => e.host === tenantInfo.host)">
+			<el-form-item class="login-animation2" prop="tenantId" clearable v-if="!tenantInfo.list.some((e: any) => e.host === tenantInfo.host)">
 				<el-select v-model="state.ruleForm.tenantId" :placeholder="$t('message.account.accountPlaceholder3')" style="width: 100%">
 					<template #prefix>
 						<i class="iconfont icon-shuxingtu el-input__icon"></i>
@@ -99,7 +99,10 @@ import { accessTokenKey, clearTokens, feature, getAPI } from '/@/utils/axios-uti
 import { SysAuthApi } from '/@/api-services/api';
 
 const props = defineProps({
-	tenantInfo: {},
+	tenantInfo: {
+		required: true,
+		type: Object,
+	},
 });
 
 // 旋转图片滑块组件

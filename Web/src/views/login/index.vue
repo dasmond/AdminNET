@@ -87,12 +87,12 @@ const getThemeConfig = computed(() => {
 	return themeConfig.value;
 });
 // 页面加载时
-onMounted(() => {
+onMounted(async () => {
+	await getTenantInfo();
 	NextLoading.done();
-	getTenantInfo();
 });
 
-// 处理租户信息
+// 获取租户信息
 const getTenantInfo = async () => {
 	const list = await getAPI(SysTenantApi).apiSysTenantListGet().then(res => res.data.result ?? []);
 	const tenant = list.find((item: any) => item.host === state.tenantInfo.host);
