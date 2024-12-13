@@ -190,7 +190,8 @@ public class SysLdapService : IDynamicApiController, ITransient
         try
         {
             ldapConn.Connect(sysLdap.Host, sysLdap.Port);
-            ldapConn.Bind(sysLdap.Version, sysLdap.BindDn, sysLdap.BindPass);
+            string bindPass = CryptogramUtil.Decrypt(sysLdap.BindPass);
+            ldapConn.Bind(sysLdap.Version, sysLdap.BindDn, bindPass);
             var ldapSearchResults = ldapConn.Search(sysLdap.BaseDn, LdapConnection.ScopeOne, "(objectClass=*)", null, false);
             var userLdapList = new List<SysUserLdap>();
             while (ldapSearchResults.HasMore())
