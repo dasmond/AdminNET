@@ -23,7 +23,7 @@
 					</template>
 				</el-input>
 			</el-form-item>
-			<el-form-item class="login-animation2" prop="tenantId" clearable v-if="!tenantInfo.list.some((e: any) => e.host === tenantInfo.host)">
+			<el-form-item class="login-animation2" prop="tenantId" clearable v-if="!props.tenantInfo.id">
 				<el-select v-model="state.ruleForm.tenantId" :placeholder="$t('message.account.accountPlaceholder3')" style="width: 100%">
 					<template #prefix>
 						<i class="iconfont icon-shuxingtu el-input__icon"></i>
@@ -97,7 +97,6 @@ import { storeToRefs } from 'pinia';
 
 import { accessTokenKey, clearTokens, feature, getAPI } from '/@/utils/axios-utils';
 import { SysAuthApi } from '/@/api-services/api';
-import {useUserInfo} from "/@/stores/userInfo";
 
 const props = defineProps({
 	tenantInfo: {
@@ -225,9 +224,10 @@ const onSignIn = async () => {
 
 			// SM2加密密码
 			// const keys = SM2.generateKeyPair();
-			state.ruleForm.tenantId ??= props.tenantInfo.id;
 			const publicKey = window.__env__.VITE_SM_PUBLIC_KEY;
 			const password = sm2.doEncrypt(state.ruleForm.password, publicKey, 1);
+
+			state.ruleForm.tenantId ??= props.tenantInfo.id ?? props.tenantInfo.list[0]?.value;
 			const [err, res] = await feature(getAPI(SysAuthApi).apiSysAuthLoginPost({ ...state.ruleForm, password: password } as any));
 			if (err) {
 				getCaptcha(); // 重新获取验证码
@@ -309,11 +309,6 @@ const handleSignIn = () => {
 		state.secondVerEnabled ? openRotateVerify() : onSignIn();
 	}
 };
-
-// // 微信登录
-// const weixinSignIn = () => {
-// 	window.open('http://localhost:5005/api/sysoauth/signin?provider=Gitee&redirectUrl=http://localhost:8888');
-// };
 
 // 导出对象
 defineExpose({ saveTokenAndInitRoutes });

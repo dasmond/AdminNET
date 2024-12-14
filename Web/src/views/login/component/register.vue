@@ -1,7 +1,7 @@
 <template>
 	<el-tooltip :visible="state.capsLockVisible" effect="light" content="大写锁定已打开" placement="top">
 		<el-form ref="ruleFormRef" :model="state.ruleForm" size="large" :rules="state.rules" class="login-content-form">
-			<el-form-item class="login-animation2" prop="tenantId" clearable v-if="!tenantInfo.list.some((e: any) => e.host === tenantInfo.host)">
+			<el-form-item class="login-animation2" prop="tenantId" clearable v-if="!props.tenantInfo.id">
 				<el-select v-model="state.ruleForm.tenantId" :placeholder="$t('message.register.placeholder1')" style="width: 100%">
 					<template #prefix>
 						<i class="iconfont icon-shuxingtu el-input__icon"></i>
@@ -85,7 +85,7 @@
 </template>
 
 <script lang="ts" setup name="loginAccount">
-import {reactive, ref, onMounted, defineAsyncComponent, onUnmounted, watch } from 'vue';
+import {reactive, ref, onMounted, defineAsyncComponent, onUnmounted, watch, nextTick} from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { ElMessage, InputInstance } from 'element-plus';
 import { useI18n } from 'vue-i18n';
@@ -209,9 +209,10 @@ const onRegister = async () => {
 		try {
 			state.loading.register = true;
 
-			state.ruleForm.tenantId ??= props.tenantInfo.id;
 			const publicKey = window.__env__.VITE_SM_PUBLIC_KEY;
 			const password = state.ruleForm.password ? sm2.doEncrypt(state.ruleForm.password, publicKey, 1) : undefined;
+
+			state.ruleForm.tenantId ??= props.tenantInfo.id ?? props.tenantInfo.list[0]?.value;
 			const [err, res] = await feature(getAPI(SysAuthApi).apiSysAuthUserRegistrationPost({...state.ruleForm, password: password } as any));
 
 			if (res?.data?.code === 200) {

@@ -30,17 +30,17 @@
 						<div v-if="!state.isScan">
 							<el-tabs v-model="state.tabsActiveName">
 								<el-tab-pane :label="$t('message.label.one1')" name="account" v-if="state.tabsActiveName != 'register'">
-									<Account :tenant-info="state.tenantInfo" />
+									<Account :tenant-info="tenantInfo" />
 								</el-tab-pane>
 								<el-tab-pane :label="$t('message.label.two2')" name="mobile" v-if="state.tabsActiveName != 'register'">
-									<Mobile :tenant-info="state.tenantInfo" />
+									<Mobile :tenant-info="tenantInfo" />
 								</el-tab-pane>
 								<el-tab-pane :label="$t('message.label.two3')" name="register" v-if="state.tabsActiveName == 'register'">
-									<Register :tenant-info="state.tenantInfo" @goLogin="() => state.tabsActiveName = 'account'" />
+									<Register :tenant-info="tenantInfo" @goLogin="() => state.tabsActiveName = 'account'" />
 								</el-tab-pane>
 							</el-tabs>
 						</div>
-						<Scan v-if="state.isScan" :tenant-info="state.tenantInfo" />
+						<Scan v-if="state.isScan" :tenant-info="tenantInfo" />
 						<div class="login-content-main-scan" @click="state.isScan = !state.isScan">
 							<i class="iconfont" :class="state.isScan ? 'icon-diannao1' : 'icon-barcode-qr'"></i>
 							<div class="login-content-main-scan-delta"></div>
@@ -65,7 +65,7 @@
 </template>
 
 <script setup lang="ts" name="loginIndex">
-import {defineAsyncComponent, onMounted, reactive, computed} from 'vue';
+import {defineAsyncComponent, onMounted, reactive, computed, ref} from 'vue';
 import { storeToRefs } from 'pinia';
 import { useThemeConfig } from '/@/stores/themeConfig';
 import { NextLoading } from '/@/utils/loading';
@@ -85,19 +85,21 @@ const Scan = defineAsyncComponent(() => import('/@/views/login/component/scan.vu
 const route = useRoute();
 const storesThemeConfig = useThemeConfig();
 const { themeConfig } = storeToRefs(storesThemeConfig);
+const tenantInfo = ref({
+	id: undefined as number | undefined,
+	list: [],
+});
+
 const state = reactive({
 	tabsActiveName: 'account',
-	tenantInfo: {
-		host: location.host.toLowerCase(),
-		id: undefined as number | undefined,
-		list: [],
-	},
 	isScan: false,
 });
+
 // 获取布局配置信息
 const getThemeConfig = computed(() => {
 	return themeConfig.value;
 });
+
 // 页面加载时
 onMounted(async () => {
 	// 地址栏存在wayid参数时，默认切换到注册界面
@@ -108,11 +110,11 @@ onMounted(async () => {
 
 // 获取租户信息
 const getTenantInfo = async () => {
-	const list = await getAPI(SysTenantApi).apiSysTenantListGet().then(res => res.data.result ?? []);
-	const tenant = list.find((item: any) => item.host === state.tenantInfo.host);
-	state.tenantInfo.id = parseInt(route.query.t ?? (tenant ?? list[0])?.value);
-	state.tenantInfo.list = list;
-	return state.tenantInfo;
+	const host = location.host.toLowerCase();
+	tenantInfo.value.list = await getAPI(SysTenantApi).apiSysTenantListGet().then(res => res.data.result ?? []);
+	const tenant = tenantInfo.value.list.find((item: any) => item.value == route.query.t || item.host === host);
+	if (tenant?.value) tenantInfo.value.id = parseInt(tenant?.value);
+	return tenantInfo.value;
 }
 </script>
 
