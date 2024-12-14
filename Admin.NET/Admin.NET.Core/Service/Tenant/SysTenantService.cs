@@ -296,6 +296,9 @@ public class SysTenantService : IDynamicApiController, ITransient
             menuList.Add(menu);
             if (menu.Type == MenuTypeEnum.Menu) menuList.AddRange(allMenuList.Where(u => u.Pid == menu.Id));
         }
+        // 默认系统管理员禁止删除字典类型
+        var dict = allMenuList.First(u => u.Title == "字典管理");
+        menuList = menuList.Where(u => u.Pid != dict.Id || u.Title != "删除").ToList();
         await GrantMenu(new TenantMenuInput { Id = tenantId, MenuIdList = menuList.Select(u => u.Id).ToList() });
     }
 
