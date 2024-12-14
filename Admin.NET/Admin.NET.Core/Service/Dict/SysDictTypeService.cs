@@ -173,7 +173,7 @@ public class SysDictTypeService : IDynamicApiController, ITransient
     public ISugarQueryable<SysDictType> GetSysDictDataQueryable()
     {
         var ids = GetTenantIdList();
-        return _sysDictTypeRep.AsQueryable().WhereIF(!_userManager.SuperAdmin, u => ids.Contains(u.TenantId.Value));
+        return _sysDictTypeRep.AsQueryable().ClearFilter().WhereIF(!_userManager.SuperAdmin, u => ids.Contains(u.TenantId.Value));
     }
     
     /// <summary>
