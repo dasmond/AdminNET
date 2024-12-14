@@ -9,22 +9,6 @@ namespace Admin.NET.Core.Common;
 /// <summary>
 /// 通用接口参数验证特性类
 /// </summary>
-/// <example>
-/// <code lang="C">
-/// public class ModelInput {
-///
-/// 
-///     public string A { get; set; }
-///
-/// 
-///     [CommonValidation(
-///         "A == 1 <value>&amp;&amp;</value> B == null", "当 A == 1时，B不能为空",
-///         "C == 2 <value>&amp;&amp;</value> B == null", "当 C == 2时，B不能为空"
-///     )]
-///     public string B { get; set; }
-/// }
-/// </code>
-/// </example>
 [AttributeUsage(AttributeTargets.Property)]
 public class CommonValidationAttribute : ValidationAttribute
 {
@@ -33,7 +17,26 @@ public class CommonValidationAttribute : ValidationAttribute
     
     /// <summary>
     /// </summary>
-
+    /// <param name="conditionPairs">条件对参数，长度必须为偶数<br/>
+    /// 奇数字符串参数：动态条件<br/>
+    /// 偶数字符串参数：提示消息
+    /// </param>
+    /// <example>
+    /// <code lang="C">
+    /// public class ModelInput {
+    ///
+    /// 
+    ///     public string A { get; set; }
+    ///
+    /// 
+    ///     [CommonValidation(
+    ///         "A == 1 <value>&amp;&amp;</value> B == null", "当 A == 1时，B不能为空",
+    ///         "C == 2 <value>&amp;&amp;</value> B == null", "当 C == 2时，B不能为空"
+    ///     )]
+    ///     public string B { get; set; }
+    /// }
+    /// </code>
+    /// </example>
     public CommonValidationAttribute(params string[] conditionPairs)
     {
         if (conditionPairs.Length % 2 != 0) throw new ArgumentException("条件对必须以偶数个字符串的形式提供。");
@@ -47,6 +50,7 @@ public class CommonValidationAttribute : ValidationAttribute
 
     protected override ValidationResult IsValid(object value, ValidationContext validationContext)
     {
+        
         foreach (var (expr, errorMessage) in _conditions)
         {
             var conditionKey = $"{validationContext.ObjectType.FullName}.{expr}";
