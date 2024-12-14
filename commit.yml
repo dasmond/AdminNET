@@ -3,18 +3,21 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid 'd4275b4e86e6683a38fb5650b99812e01a73074e'
-    oldFile: !uuid '4f1f0c29e8fd025a23c594dadaab1365a587adf1'
+    newFile: !uuid '8f2cf795cec3fbc34d0a4d12dd38f4bf33d517d4'
+    oldFile: !uuid 'd4275b4e86e6683a38fb5650b99812e01a73074e'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '4ea37c68a4b38827519956e4b893cdf30ff6f4cb'
-    oldFile: !uuid '9c0efc585922b5f437947ff4a1629536eb51bb07'
-  /Admin.NET/Admin.NET.Core/Common:
-    newFile: !uuid '951e47a53650f3e60c964c932e5c7ef21c2c4b72'
-    oldFile: null
-  /Admin.NET/Admin.NET.Core/Common/CommonValidationAttribute.cs:
-    newFile: !uuid 'd284631e62c5c3100f82cd8ec396e306f5802233'
-    oldFile: null
-gitCommitId: !uuid '65257263033e4f1d2221a1dd7db0dc55b244e29f'
+    newFile: !uuid '71ed796cbdc0f51446e033f09ba251c863ca2a63'
+    oldFile: !uuid '4ea37c68a4b38827519956e4b893cdf30ff6f4cb'
+  /Admin.NET/Admin.NET.Core/Service:
+    newFile: !uuid 'f2709f7ba8871d41f904d7866a9aaafa1cb50e48'
+    oldFile: !uuid '65d6414a73bc67f6b0c5b05d43fe8e89a503872e'
+  /Admin.NET/Admin.NET.Core/Service/Dict:
+    newFile: !uuid 'd97bafb6ee0906ebfa809774a89ca83091ba0a5e'
+    oldFile: !uuid 'd74b8b29b9d7118b818dd5b5831b0eccb01295db'
+  /Admin.NET/Admin.NET.Core/Service/Dict/SysDictTypeService.cs:
+    newFile: !uuid 'b26d9bf9873c3ea32300940c48c080fd2f669e66'
+    oldFile: !uuid '81869eb0c476ec49b5a6c7dbf18dd965ad1a349e'
+gitCommitId: !uuid 'df1188601d2f8e3a0cc13186b149f89934a7d15d'
 renames: {
   }
-revisionId: 2600
+revisionId: 2601
