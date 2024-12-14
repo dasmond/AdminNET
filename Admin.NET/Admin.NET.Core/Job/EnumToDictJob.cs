@@ -54,14 +54,15 @@ public class EnumToDictJob : IJob
             await storageable1.BulkUpdateAsync();
 
             Console.WriteLine($"【{DateTime.Now}】系统枚举类转字典类型数据: 插入{storageable1.InsertList.Count}条, 更新{storageable1.UpdateList.Count}条, 共{storageable1.TotalList.Count}条。");
-
+            
+            var config = App.GetOptions<DbConnectionOptions>().ConnectionConfigs.FirstOrDefault(u => SqlSugarConst.MainConfigId.Equals(u.ConfigId));
             var storageable2 = await db.Storageable(sysDictTypeList.SelectMany(x => x.Children).ToList())
                 .WhereColumns(it => new { it.DictTypeId, it.Value })
                 .SplitUpdate(it => it.Any())
                 .SplitInsert(_ => true)
                 .ToStorageAsync();
             await storageable2.BulkCopyAsync();
-            await storageable2.BulkUpdateAsync(nameof(SysDictData.Label), nameof(SysDictData.Value), nameof(SysDictData.Name), nameof(SysDictData.TenantId));
+            await storageable2.BulkUpdateAsync(nameof(SysDictData.Label), nameof(SysDictData.Value), nameof(SysDictData.Name), (config!.DbSettings.EnableUnderLine ? UtilMethods.ToUnderLine(nameof(SysDictData.TenantId)) : nameof(SysDictData.TenantId)));
 
             Console.WriteLine($"【{DateTime.Now}】系统枚举项转字典值数据: 插入{storageable2.InsertList.Count}条, 更新{storageable2.UpdateList.Count}条, 共{storageable2.TotalList.Count}条。");
 
