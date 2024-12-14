@@ -28,8 +28,8 @@ public static class CommonUtil
         if (string.IsNullOrWhiteSpace(str)) return 0;
         unchecked
         {
-            long hash1 = (5381 << 16) + 5381;
-            long hash2 = hash1;
+            int hash1 = (5381 << 16) + 5381;
+            int hash2 = hash1;
             for (int i = 0; i < str.Length; i += 2)
             {
                 hash1 = ((hash1 << 5) + hash1) ^ str[i];
