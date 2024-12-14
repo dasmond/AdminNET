@@ -69,7 +69,7 @@ public class SysMenuService : IDynamicApiController, ITransient
     [DisplayName("获取菜单列表")]
     public async Task<List<SysMenu>> GetList([FromQuery] MenuInput input)
     {
-        var menuIdList = _userManager.SuperAdmin ? new List<long>() : await GetMenuIdList();
+        var menuIdList = _userManager.SuperAdmin || _userManager.SysAdmin ? new List<long>() : await GetMenuIdList();
         var (query, _) = GetSugarQueryableAndTenantId(input.TenantId);
         
         // 有筛选条件时返回list列表（防止构造不出树）
@@ -81,7 +81,7 @@ public class SysMenuService : IDynamicApiController, ITransient
                 .OrderBy(u => new { u.OrderNo, u.Id }).Distinct().ToListAsync();
         }
 
-        return _userManager.SuperAdmin ?
+        return _userManager.SuperAdmin || _userManager.SysAdmin ?
             await query.OrderBy(u => new { u.OrderNo, u.Id }).Distinct().ToTreeAsync(u => u.Children, u => u.Pid, 0) :
             await query.OrderBy(u => new { u.OrderNo, u.Id }).Distinct().ToTreeAsync(u => u.Children, u => u.Pid, 0, menuIdList.Select(d => (object)d).ToArray()); // 角色菜单授权时
     }
