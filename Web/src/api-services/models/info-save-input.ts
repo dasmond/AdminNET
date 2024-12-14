@@ -72,6 +72,12 @@ export interface InfoSaveInput {
      */
     sysIcpUrl: string;
     /**
+     * 启用注册功能
+     * @type {boolean}
+     * @memberof InfoSaveInput
+     */
+    sysRegistration?: boolean;
+    /**
      * 登录二次验证
      * @type {boolean}
      * @memberof InfoSaveInput
@@ -83,4 +89,10 @@ export interface InfoSaveInput {
      * @memberof InfoSaveInput
      */
     sysCaptcha?: boolean;
+    /**
+     * 默认注册方案Id
+     * @type {number}
+     * @memberof InfoSaveInput
+     */
+    sysRegWayId?: number;
 }

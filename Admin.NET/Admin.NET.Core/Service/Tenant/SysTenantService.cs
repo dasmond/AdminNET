@@ -24,7 +24,6 @@ public class SysTenantService : IDynamicApiController, ITransient
     private readonly SysConfigService _sysConfigService;
     private readonly SysCacheService _sysCacheService;
     private readonly UploadOptions _uploadOptions;
-    private readonly UserManager _userManager;
 
     public SysTenantService(SqlSugarRepository<SysTenant> sysTenantRep,
         SqlSugarRepository<SysOrg> sysOrgRep,
@@ -37,8 +36,7 @@ public class SysTenantService : IDynamicApiController, ITransient
         SqlSugarRepository<SysUserRole> userRoleRep,
         IOptions<UploadOptions> uploadOptions,
         SysConfigService sysConfigService,
-        SysCacheService sysCacheService,
-        UserManager userManager)
+        SysCacheService sysCacheService)
     {
         _sysTenantRep = sysTenantRep;
         _sysOrgRep = sysOrgRep;
@@ -52,7 +50,6 @@ public class SysTenantService : IDynamicApiController, ITransient
         _uploadOptions = uploadOptions.Value;
         _sysConfigService = sysConfigService;
         _sysCacheService = sysCacheService;
-        _userManager = userManager;
     }
 
     /// <summary>
@@ -152,7 +149,7 @@ public class SysTenantService : IDynamicApiController, ITransient
         var isExist = await _sysOrgRep.IsAnyAsync(u => u.Name == input.Name);
         if (isExist) throw Oops.Oh(ErrorCodeEnum.D1300);
 
-        input.Host = input.Host.ToLower();
+        input.Host = input.Host?.ToLower();
         isExist = await _sysTenantRep.IsAnyAsync(u => u.Host == input.Host);
         if (isExist) throw Oops.Oh(ErrorCodeEnum.D1303);
 
@@ -179,7 +176,7 @@ public class SysTenantService : IDynamicApiController, ITransient
             default:
                 throw Oops.Oh(ErrorCodeEnum.D3004);
         }
-
+        if (input.EnableReg == YesNoEnum.N) input.RegWayId = null;
         var tenant = input.Adapt<TenantOutput>();
         
         // 设置logo
@@ -360,7 +357,7 @@ public class SysTenantService : IDynamicApiController, ITransient
         var isExist = await _sysOrgRep.IsAnyAsync(u => u.Name == input.Name && u.Id != input.OrgId);
         if (isExist) throw Oops.Oh(ErrorCodeEnum.D1300);
 
-        input.Host = input.Host.ToLower();
+        input.Host = input.Host?.ToLower();
         isExist = await _sysTenantRep.IsAnyAsync(u => u.Host == input.Host && u.Id != input.Id);
         if (isExist) throw Oops.Oh(ErrorCodeEnum.D1303);
 

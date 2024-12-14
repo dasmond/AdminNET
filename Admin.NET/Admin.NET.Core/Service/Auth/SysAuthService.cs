@@ -6,6 +6,7 @@
 
 using Furion.SpecificationDocument;
 using Lazy.Captcha.Core;
+using NewLife.Reflection;
 
 namespace Admin.NET.Core.Service;
 
@@ -341,6 +342,41 @@ public class SysAuthService : IDynamicApiController, ITransient
         var captcha = _captcha.Generate(codeId);
         var expirySeconds = App.GetOptions<CaptchaOptions>()?.ExpirySeconds ?? 60;
         return new { Id = codeId, Img = captcha.Base64, ExpirySeconds = expirySeconds };
+    }
+
+    /// <summary>
+    /// 用户注册 🔖
+    /// </summary>
+    /// <param name="input"></param>
+    /// <returns></returns>
+    [UnitOfWork]
+    [AllowAnonymous]
+    [HttpPost, ApiDescriptionSettings(Description = "用户注册", DisableInherite = true)]
+    public async Task UserRegistration(UserRegistrationInput input)
+    {
+        // 校验验证码
+        if (!_captcha.Validate(input.CodeId.ToString(), input.Code)) throw Oops.Oh(ErrorCodeEnum.D0008);
+        _captcha.Generate(input.CodeId.ToString());
+        
+        // 判断租户是否有效且启用注册功能
+        var tenant = await _sysUserRep.Context.Queryable<SysTenant>().FirstAsync(u => u.Id == input.TenantId && u.Status == StatusEnum.Enable);
+        if (tenant?.EnableReg != YesNoEnum.Y) throw Oops.Oh(ErrorCodeEnum.D1034);
+        
+        // 查找注册方案
+        var wayId = input.WayId <= 0 ? tenant.RegWayId : input.WayId;
+        var regWay = await _sysUserRep.Context.Queryable<SysUserRegWay>().FirstAsync(u => u.Id == wayId) ?? throw Oops.Oh(ErrorCodeEnum.D1035);
+
+        var addUserInput = new AddUserInput
+        {
+            AccountType = regWay.AccountType,
+            NickName = "注册用户-" + input.Account,
+            OrgId = regWay.OrgId,
+            PosId = regWay.PosId,
+            TenantId = input.TenantId,
+            RoleIdList = new List<long> { regWay.RoleId },
+        };
+        addUserInput.Copy(input);
+        await App.GetService<SysUserService>().RegisterUser(addUserInput);
     }
 
     /// <summary>

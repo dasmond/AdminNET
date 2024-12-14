@@ -98,8 +98,8 @@ const getSmsCode = async () => {
 
 // 登录
 const onSignIn = async () => {
-  const host = route.query.host ?? location.host;
-	var res = await getAPI(SysAuthApi).apiSysAuthLoginPhonePost({...state.ruleForm, host: host});
+	state.ruleForm.tenantId ??= props.tenantInfo.id;
+	const res = await getAPI(SysAuthApi).apiSysAuthLoginPhonePost({...state.ruleForm, host: host});
 	if (res.data.result?.accessToken == undefined) {
 		ElMessage.error('登录失败，请检查账号！');
 		return;

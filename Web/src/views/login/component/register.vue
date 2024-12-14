@@ -1,8 +1,23 @@
 <template>
 	<el-tooltip :visible="state.capsLockVisible" effect="light" content="大写锁定已打开" placement="top">
 		<el-form ref="ruleFormRef" :model="state.ruleForm" size="large" :rules="state.rules" class="login-content-form">
-			<el-form-item class="login-animation1" prop="account">
-				<el-input ref="accountRef" text :placeholder="$t('message.account.accountPlaceholder1')" v-model="state.ruleForm.account" clearable autocomplete="off" @keyup.enter.native="handleSignIn">
+			<el-form-item class="login-animation2" prop="tenantId" clearable v-if="!tenantInfo.list.some((e: any) => e.host === tenantInfo.host)">
+				<el-select v-model="state.ruleForm.tenantId" :placeholder="$t('message.register.placeholder1')" style="width: 100%">
+					<template #prefix>
+						<i class="iconfont icon-shuxingtu el-input__icon"></i>
+					</template>
+					<el-option :value="item.value" :label="`${item.label} (${item.host})`" v-for="(item, index) in tenantInfo.list" :key="index" />
+				</el-select>
+			</el-form-item>
+			<el-form-item class="login-animation1" prop="phone" clearable>
+				<el-input text :placeholder="$t('message.register.placeholder2')" v-model="state.ruleForm.phone" clearable autocomplete="off">
+					<template #prefix>
+						<i class="iconfont icon-dianhua el-input__icon"></i>
+					</template>
+				</el-input>
+			</el-form-item>
+			<el-form-item class="login-animation1" prop="account" clearable>
+				<el-input ref="accountRef" text :placeholder="$t('message.register.placeholder3')" v-model="state.ruleForm.account" clearable autocomplete="off" @keyup.enter.native="handleRegister">
 					<template #prefix>
 						<el-icon>
 							<ele-User />
@@ -10,38 +25,26 @@
 					</template>
 				</el-input>
 			</el-form-item>
-			<el-form-item class="login-animation2" prop="password">
-				<el-input ref="passwordRef" :type="state.isShowPassword ? 'text' : 'password'" :placeholder="$t('message.account.accountPlaceholder2')" v-model="state.ruleForm.password" autocomplete="off" @keyup.enter.native="handleSignIn">
+			<el-form-item class="login-animation1" prop="realName" clearable>
+				<el-input ref="accountRef" text :placeholder="$t('message.register.placeholder4')" v-model="state.ruleForm.realName" clearable autocomplete="off" @keyup.enter.native="handleRegister">
 					<template #prefix>
 						<el-icon>
-							<ele-Unlock />
+							<ele-User />
 						</el-icon>
-					</template>
-					<template #suffix>
-						<i class="iconfont el-input__icon login-content-password" :class="state.isShowPassword ? 'icon-yincangmima' : 'icon-xianshimima'" @click="state.isShowPassword = !state.isShowPassword">
-						</i>
 					</template>
 				</el-input>
 			</el-form-item>
-			<el-form-item class="login-animation2" prop="tenantId" clearable v-if="!tenantInfo.list.some((e: any) => e.host === tenantInfo.host)">
-				<el-select v-model="state.ruleForm.tenantId" :placeholder="$t('message.account.accountPlaceholder3')" style="width: 100%">
-					<template #prefix>
-						<i class="iconfont icon-shuxingtu el-input__icon"></i>
-					</template>
-					<el-option :value="item.value" :label="`${item.label} (${item.host})`" v-for="(item, index) in tenantInfo.list" :key="index" />
-				</el-select>
-			</el-form-item>
-			<el-form-item class="login-animation3" prop="captcha" v-if="state.captchaEnabled">
+			<el-form-item class="login-animation3" prop="code">
 				<el-col :span="15">
 					<el-input
 						ref="codeRef"
 						text
 						maxlength="4"
-						:placeholder="$t('message.account.accountPlaceholder4')"
+						:placeholder="$t('message.register.placeholder5')"
 						v-model="state.ruleForm.code"
 						clearable
 						autocomplete="off"
-						@keyup.enter.native="handleSignIn"
+						@keyup.enter.native="handleRegister"
 					>
 						<template #prefix>
 							<el-icon>
@@ -58,12 +61,11 @@
 				</el-col>
 			</el-form-item>
 			<el-form-item class="login-animation4">
-				<el-button type="primary" class="login-content-submit" round v-waves @click="handleSignIn" :loading="state.loading.signIn">
-					<span>{{ $t('message.account.accountBtnText') }}</span>
+				<el-button type="primary" class="login-content-submit" round v-waves @click="handleRegister" :loading="state.loading.register">
+					<span>{{ $t('message.register.btnText') }}</span>
 				</el-button>
 			</el-form-item>
 			<div class="font12 mt30 login-animation4 login-msg">{{ $t('message.mobile.msgText') }}</div>
-			<!-- <el-button type="primary" round v-waves @click="weixinSignIn" :loading="state.loading.signIn"></el-button> -->
 		</el-form>
 	</el-tooltip>
 	<div class="dialog-header">
@@ -83,21 +85,15 @@
 </template>
 
 <script lang="ts" setup name="loginAccount">
-import {reactive, computed, ref, onMounted, defineAsyncComponent, onUnmounted, watch } from 'vue';
+import {reactive, ref, onMounted, defineAsyncComponent, onUnmounted, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { ElMessage, InputInstance } from 'element-plus';
 import { useI18n } from 'vue-i18n';
-import { initBackEndControlRoutes } from '/@/router/backEnd';
-import { Local, Session } from '/@/utils/storage';
-import { formatAxis } from '/@/utils/formatTime';
-import { NextLoading } from '/@/utils/loading';
-import { sm2 } from 'sm-crypto-v2';
-import { useThemeConfig } from '/@/stores/themeConfig';
 import { storeToRefs } from 'pinia';
-
-import { accessTokenKey, clearTokens, feature, getAPI } from '/@/utils/axios-utils';
+import { feature, getAPI } from '/@/utils/axios-utils';
 import { SysAuthApi } from '/@/api-services/api';
-import {useUserInfo} from "/@/stores/userInfo";
+import { useThemeConfig } from '/@/stores/themeConfig';
+import {sm2} from "sm-crypto-v2";
 
 const props = defineProps({
 	tenantInfo: {
@@ -119,33 +115,34 @@ const router = useRouter();
 
 const ruleFormRef = ref();
 const accountRef = ref<InputInstance>();
-const passwordRef = ref<InputInstance>();
 const codeRef = ref<InputInstance>();
 
+const emits = defineEmits(['reload']);
 const dragRef: any = ref(null);
 const state = reactive({
-	isShowPassword: false,
 	ruleForm: {
-		account: window.__env__.VITE_DEFAULT_USER,
-		password: window.__env__.VITE_DEFAULT_USER_PASSWORD,
 		tenantId: props.tenantInfo.id,
+		account: undefined,
+		password: undefined,
+		realName: undefined,
+		phone: undefined,
+		wayId: undefined,
 		code: '',
 		codeId: 0,
 	},
 	rules: {
 		account: [{ required: true, message: '请输入用户名', trigger: 'blur' }],
-		password: [{ required: true, message: '请输入密码', trigger: 'blur' }],
-		// code: [{ required: true, message: '请输入验证码', trigger: 'blur' }],
+		realName: [{ required: true, message: '请输入姓名', trigger: 'blur' }],
+		phone: [{ required: true, message: '请输入手机号', trigger: 'blur' }],
+		code: [{ required: true, message: '请输入验证码', trigger: 'blur' }],
 	},
 	loading: {
-		signIn: false,
+		register: false,
 	},
 	captchaImage: '',
 	rotateVerifyVisible: false,
-	// rotateVerifyImg: verifyImg,
 	rotateVerifyImg: themeConfig.value.logoUrl,
 	secondVerEnabled: false,
-	captchaEnabled: false,
 	isPassRotate: false,
 	capsLockVisible: false,
 	expirySeconds: 60, // 验证码过期时间
@@ -156,26 +153,22 @@ let timer: any = null;
 
 // 页面初始化
 onMounted(async () => {
-	// 若URL带有Token参数（第三方登录）
-	const accessToken = route.query.token;
-	if (accessToken) await saveTokenAndInitRoutes(accessToken);
+	// 默认尝试从地址栏获取wayid注册方案id
+	if (route.query.wayid) state.ruleForm.wayId = route.query.wayid;
 	watch(
 		() => themeConfig.value.isLoaded,
 		(isLoaded) => {
 			if (isLoaded) {
 				// 获取登录配置
 				state.secondVerEnabled = themeConfig.value.secondVer ?? true;
-				state.captchaEnabled = themeConfig.value.captcha ?? true;
 
 				// 获取验证码
 				getCaptcha();
 
 				// 注册验证码过期计时器
-				if (state.captchaEnabled) {
-					timer = setInterval(() => {
-						if (state.expirySeconds > 0) state.expirySeconds -= 1;
-					}, 1000);
-				}
+				timer = setInterval(() => {
+					if (state.expirySeconds > 0) state.expirySeconds -= 1;
+				}, 1000);
 			}
 		},
 		{ immediate: true }
@@ -201,8 +194,6 @@ const handleKeyPress = (e: KeyboardEvent) => {
 
 // 获取验证码
 const getCaptcha = async () => {
-	if (!state.captchaEnabled) return;
-
 	state.ruleForm.code = '';
 	const res = await getAPI(SysAuthApi).apiSysAuthCaptchaGet().then(res => res.data.result);
 	state.captchaImage = 'data:text/html;base64,' + res?.img;
@@ -210,77 +201,36 @@ const getCaptcha = async () => {
   state.ruleForm.codeId = res?.id;
 };
 
-// 获取时间
-const currentTime = computed(() => {
-	return formatAxis(new Date());
-});
-
-// 登录
-const onSignIn = async () => {
+// 注册
+const onRegister = async () => {
 	ruleFormRef.value.validate(async (valid: boolean) => {
 		if (!valid) return false;
 
 		try {
-			state.loading.signIn = true;
+			state.loading.register = true;
 
-			// SM2加密密码
-			// const keys = SM2.generateKeyPair();
 			state.ruleForm.tenantId ??= props.tenantInfo.id;
 			const publicKey = window.__env__.VITE_SM_PUBLIC_KEY;
-			const password = sm2.doEncrypt(state.ruleForm.password, publicKey, 1);
-			const [err, res] = await feature(getAPI(SysAuthApi).apiSysAuthLoginPost({ ...state.ruleForm, password: password } as any));
+			const password = state.ruleForm.password ? sm2.doEncrypt(state.ruleForm.password, publicKey, 1) : undefined;
+			const [err, res] = await feature(getAPI(SysAuthApi).apiSysAuthUserRegistrationPost({...state.ruleForm, password: password } as any));
+
+			if (res?.data?.code === 200) {
+				const registerText = t('message.registerText');
+				ElMessage.success(registerText);
+				emits('goLogin');
+				return;
+			}
+
 			if (err) {
 				getCaptcha(); // 重新获取验证码
-				return;
-			}
-			if (res.data.result?.accessToken == undefined) {
+			} else if (res.data.type != 'success') {
 				getCaptcha(); // 重新获取验证码
-				ElMessage.error('登录失败，请检查账号！');
-				return;
+				ElMessage.error('注册失败！');
 			}
-			await saveTokenAndInitRoutes(res.data.result?.accessToken);
 		} finally {
-			state.loading.signIn = false;
+			state.loading.register = false;
 		}
 	});
-};
-
-// 保持Token并初始化路由
-const saveTokenAndInitRoutes = async (accessToken: string | any) => {
-	// 缓存token
-	Local.set(accessTokenKey, accessToken);
-	// Local.set(refreshAccessTokenKey, refreshAccessToken);
-	Session.set('token', accessToken);
-
-	// 添加完动态路由再进行router跳转，否则可能报错 No match found for location with path "/"
-	const isNoPower = await initBackEndControlRoutes();
-	signInSuccess(isNoPower); // 再执行 signInSuccess
-};
-
-// 登录成功后的跳转
-const signInSuccess = (isNoPower: boolean | undefined) => {
-	if (isNoPower) {
-		ElMessage.warning('抱歉，您没有登录权限');
-		clearTokens(); // 清空Token缓存
-	} else {
-		// 初始化登录成功时间问候语
-		let currentTimeInfo = currentTime.value;
-		// 登录成功，跳到转首页 如果是复制粘贴的路径，非首页/登录页，那么登录成功后重定向到对应的路径中
-		if (route.query?.redirect) {
-			router.push({
-				path: <string>route.query?.redirect,
-				query: Object.keys(<string>route.query?.params).length > 0 ? JSON.parse(<string>route.query?.params) : '',
-			});
-		} else {
-			router.push('/');
-		}
-
-		// 登录成功提示
-		const signInText = t('message.signInText');
-		ElMessage.success(`${currentTimeInfo}，${signInText}`);
-		// 添加 loading，防止第一次进入界面时出现短暂空白
-		NextLoading.start();
-	}
 };
 
 // 打开旋转验证
@@ -297,26 +247,13 @@ const passRotateVerify = () => {
 	onSignIn();
 };
 
-// 登录处理
-const handleSignIn = () => {
-	if (!state.ruleForm.account) {
-		accountRef.value?.focus();
-	} else if (!state.ruleForm.password) {
-		passwordRef.value?.focus();
-	} else if (state.captchaEnabled && !state.ruleForm.code) {
-		codeRef.value?.focus();
-	} else {
-		state.secondVerEnabled ? openRotateVerify() : onSignIn();
-	}
+// 注册处理
+const handleRegister = () => {
+	ruleFormRef.value.validate(async (valid: boolean) => {
+		if (!valid) return false;
+		state.secondVerEnabled ? openRotateVerify() : onRegister();
+	});
 };
-
-// // 微信登录
-// const weixinSignIn = () => {
-// 	window.open('http://localhost:5005/api/sysoauth/signin?provider=Gitee&redirectUrl=http://localhost:8888');
-// };
-
-// 导出对象
-defineExpose({ saveTokenAndInitRoutes });
 </script>
 
 <style lang="scss" scoped>

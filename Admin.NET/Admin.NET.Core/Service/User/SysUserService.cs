@@ -102,7 +102,6 @@ public class SysUserService : IDynamicApiController, ITransient
     [DisplayName("增加用户")]
     public virtual async Task<long> AddUser(AddUserInput input)
     {
-        // 是否租户隔离登录验证
         var query = _sysUserRep.AsQueryable().ClearFilter().Where(u => u.TenantId == _userManager.TenantId || u.AccountType == AccountTypeEnum.SuperAdmin);
 
         if (await query.AnyAsync(u => u.Account == input.Account)) throw Oops.Oh(ErrorCodeEnum.D1003);
@@ -123,6 +122,41 @@ public class SysUserService : IDynamicApiController, ITransient
 
         // 执行订阅事件
         _sysUserEventHandler.OnEvent(this, SysUserEventTypeEnum.Add, input);
+
+        return newUser.Id;
+    }
+    
+    /// <summary>
+    /// 增加用户 🔖
+    /// </summary>
+    /// <param name="input"></param>
+    /// <returns></returns>
+    [NonAction]
+    public virtual async Task<long> RegisterUser(AddUserInput input)
+    {
+        var query = _sysUserRep.AsQueryable().ClearFilter().Where(u => u.TenantId == input.TenantId || u.AccountType == AccountTypeEnum.SuperAdmin);
+
+        if (await query.AnyAsync(u => u.Account == input.Account)) throw Oops.Oh(ErrorCodeEnum.D1003);
+        if (!string.IsNullOrWhiteSpace(input.Phone) && await query.AnyAsync(u => u.Phone == input.Phone)) throw Oops.Oh(ErrorCodeEnum.D1032);
+
+        if (string.IsNullOrWhiteSpace(input.Password))
+        {
+            var password = await _sysConfigService.GetConfigValue<string>(ConfigConst.SysPassword);
+            input.Password = CryptogramUtil.Encrypt(password);
+        }
+
+        var user = input.Adapt<SysUser>();
+        var newUser = await _sysUserRep.AsInsertable(user).ExecuteReturnEntityAsync();
+
+        input.Id = newUser.Id;
+        await UpdateRoleAndExtOrg(input);
+
+        // 增加域账号
+        if (!string.IsNullOrWhiteSpace(input.DomainAccount))
+            await _sysUserLdapService.AddUserLdap(newUser.TenantId!.Value, newUser.Id, newUser.Account, input.DomainAccount);
+
+        // 执行订阅事件
+        _sysUserEventHandler.OnEvent(this, SysUserEventTypeEnum.Register, input);
 
         return newUser.Id;
     }

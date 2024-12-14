@@ -98,6 +98,7 @@ declare interface ThemeConfigState {
 		icp: string; // Icp备案号
 		icpUrl: string; // Icp地址
 		secondVer: boolean; // 是否开启二级验证
+		registration: boolean; // 是否开启注册功能
 		captcha: boolean; // 是否开启验证码
 		isLoaded: boolean; // 是否加载完成
 	};

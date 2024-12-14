@@ -238,8 +238,11 @@ public class SysOrgService : IDynamicApiController, ITransient
         // 若子机构有用户则禁止删除
         var cOrgHasEmp = await _sysOrgRep.ChangeRepository<SqlSugarRepository<SysUser>>()
             .IsAnyAsync(u => childOrgIdList.Contains(u.OrgId));
-        if (cOrgHasEmp)
-            throw Oops.Oh(ErrorCodeEnum.D2007);
+        if (cOrgHasEmp) throw Oops.Oh(ErrorCodeEnum.D2007);
+        
+        // 若有绑定注册方案则禁止删除
+        var hasUserRegWay = await _sysOrgRep.Context.Queryable<SysUserRegWay>().AnyAsync(u => u.OrgId == input.Id);
+        if (hasUserRegWay) throw Oops.Oh(ErrorCodeEnum.D2010);
 
         // 删除与此机构、父机构有关的用户机构缓存
         DeleteAllUserOrgCache(sysOrg.Id, sysOrg.Pid);

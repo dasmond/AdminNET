@@ -145,6 +145,25 @@
 									<el-input v-model="state.ruleForm.watermark" placeholder="应用水印" maxlength="32" clearable />
 								</el-form-item>
 							</el-col>
+							<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
+								<el-form-item label="启用注册" prop="watermark">
+									<el-switch
+											v-model="state.ruleForm.enableReg"
+											inline-prompt
+											:active-value="1"
+											:inactive-value="2"
+											active-text="开启"
+											inactive-text="关闭"
+									/>
+								</el-form-item>
+							</el-col>
+							<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20" v-if="state.ruleForm.enableReg == 1">
+								<el-form-item label="注册方案" prop="regWayId" :rules="[{ required: true, message: '职位不能为空', trigger: 'blur' }]">
+									<el-select v-model="state.ruleForm.regWayId" placeholder="注册方案" clearable class="w100">
+										<el-option :label="item.name" :value="item.id" v-for="(item, index) in state.regWayData" :key="index" />
+									</el-select>
+								</el-form-item>
+							</el-col>
 						</el-row>
 					</el-tab-pane>
 				</el-tabs>
@@ -160,12 +179,13 @@
 </template>
 
 <script lang="ts" setup name="sysEditTenant">
-import { reactive, ref } from 'vue';
+import {onMounted, reactive, ref} from 'vue';
 import { getAPI } from '/@/utils/axios-utils';
-import { SysTenantApi } from '/@/api-services/api';
+import {SysTenantApi, SysUserRegWayApi} from '/@/api-services/api';
 import { UpdateTenantInput } from '/@/api-services/models';
 import {UploadInstance} from "element-plus";
 import {fileToBase64} from "/@/utils/base64Conver";
+import GSysDict from "/@/components/sysDict/sysDict.vue";
 
 const props = defineProps({
 	title: String,
@@ -178,13 +198,17 @@ const state = reactive({
 	selectedTabName: '0',
 	isShowDialog: false,
 	file: undefined as any,
+	regWayData: [] as Array<any>,
 	ruleForm: {} as UpdateTenantInput,
+});
+
+onMounted(async () => {
+	state.regWayData = await getAPI(SysUserRegWayApi).apiSysUserRegWayListPost({}).then((res) => res.data.result ?? []);
 });
 
 // 通过onChange方法获得文件列表
 const handleUploadChange = (file: any) => {
 	uploadRef.value!.clearFiles();
-
 	state.file = file;
 	state.ruleForm.logo = URL.createObjectURL(state.file.raw); // 显示预览logo
 };
@@ -214,14 +238,13 @@ const cancel = () => {
 // 提交
 const submit = async () => {
 	// 如果有选择图标，则转换为 base64
-	let sysLogoBase64 = '';
-	let sysLogoFileName = '';
 	if (state.file) {
 		state.ruleForm.logoBase64 = (await fileToBase64(state.file.raw)) as string;
 		state.ruleForm.logoFileName = state.file.raw.name;
 	}
 	ruleFormRef.value.validate(async (valid: boolean) => {
 		if (!valid) return;
+		if (state.ruleForm.enableReg != 1) state.ruleForm.regWayId = undefined;
 		if (state.ruleForm.id != undefined && state.ruleForm.id > 0) {
 			await getAPI(SysTenantApi).apiSysTenantUpdatePost(state.ruleForm);
 		} else {

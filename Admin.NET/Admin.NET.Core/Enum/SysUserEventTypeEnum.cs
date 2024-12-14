@@ -59,5 +59,11 @@ public enum SysUserEventTypeEnum
     /// 解除登录锁定
     /// </summary>
     [Description("解除登录锁定")]
-    UnlockLogin = 888
+    UnlockLogin = 888,
+    
+    /// <summary>
+    /// 注册用户
+    /// </summary>
+    [Description("注册用户")]
+    Register = 999,
 }
