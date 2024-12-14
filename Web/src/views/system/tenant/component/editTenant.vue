@@ -179,12 +179,12 @@
 </template>
 
 <script lang="ts" setup name="sysEditTenant">
-import {onMounted, reactive, ref} from 'vue';
+import { reactive, ref } from 'vue';
 import { getAPI } from '/@/utils/axios-utils';
-import {SysTenantApi, SysUserRegWayApi} from '/@/api-services/api';
+import { SysTenantApi, SysUserRegWayApi } from '/@/api-services/api';
 import { UpdateTenantInput } from '/@/api-services/models';
-import {UploadInstance} from "element-plus";
-import {fileToBase64} from "/@/utils/base64Conver";
+import { UploadInstance } from "element-plus";
+import { fileToBase64 } from "/@/utils/base64Conver";
 import GSysDict from "/@/components/sysDict/sysDict.vue";
 
 const props = defineProps({
@@ -202,10 +202,6 @@ const state = reactive({
 	ruleForm: {} as UpdateTenantInput,
 });
 
-onMounted(async () => {
-	state.regWayData = await getAPI(SysUserRegWayApi).apiSysUserRegWayListPost({}).then((res) => res.data.result ?? []);
-});
-
 // 通过onChange方法获得文件列表
 const handleUploadChange = (file: any) => {
 	uploadRef.value!.clearFiles();
@@ -221,6 +217,7 @@ const openDialog = async (row: any) => {
 	state.ruleForm.icpUrl ??= 'https://beian.miit.gov.cn';
 	state.ruleForm.copyright ??= 'Copyright \u00a9 2024-present xxxxx All rights reserved.';
 	state.isShowDialog = true;
+	state.regWayData = await getAPI(SysUserRegWayApi).apiSysUserRegWayListPost({}).then((res) => res.data.result ?? []);
 	ruleFormRef.value?.resetFields();
 };
 
