@@ -95,7 +95,7 @@ public class AddTenantInput : TenantOutput
     /// Logo图片Base64码
     /// </summary>
     [CommonValidation(
-        $"string.{nameof(string.IsNullOrWhiteSpace)}(Logo) && string.{nameof(string.IsNullOrWhiteSpace)}(LogoBase64)", "图标不能为空"
+        "string.IsNullOrWhiteSpace(Logo) && string.IsNullOrWhiteSpace(LogoBase64)", "图标不能为空"
     )]
     public virtual string LogoBase64 { get; set; }
     
@@ -107,10 +107,6 @@ public class AddTenantInput : TenantOutput
 
 public class UpdateTenantInput : AddTenantInput
 {
-    /// <summary>
-    /// Logo图片Base64码
-    /// </summary>
-    public override string LogoBase64 { get; set; }
 }
 
 public class DeleteTenantInput : BaseIdInput
