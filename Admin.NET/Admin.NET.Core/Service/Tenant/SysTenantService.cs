@@ -289,7 +289,7 @@ public class SysTenantService : IDynamicApiController, ITransient
         // 默认租户管理员角色菜单集合
         var menuList = new List<SysMenu>();
         var allMenuList = new SysMenuSeedData().HasData().ToList();
-        var titleList = new List<string> { "工作台", "系统管理", "账号管理", "角色管理", "机构管理", "职位管理", "个人中心", "通知公告", "平台管理", "菜单管理","系统配置", "关于项目" };
+        var titleList = new List<string> { "工作台", "系统管理", "账号管理", "角色管理", "机构管理", "职位管理", "个人中心", "通知公告", "平台管理", "菜单管理", "字典管理", "系统配置", "关于项目" };
         foreach (var menu in allMenuList.Where(u => titleList.Contains(u.Title)))
         {
             menuList.Add(menu);
