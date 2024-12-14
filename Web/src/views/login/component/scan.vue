@@ -1,6 +1,6 @@
 <template>
 	<div class="login-scan-container">
-		<el-select v-model="state.tenantId" v-if="!tenantInfo.list.some((e: any) => e.host === tenantInfo.host)" :placeholder="$t('message.scan.placeholder1')" clearable class="mb30" style="width: 260px; align-self: center;">
+		<el-select v-model="state.tenantId" v-if="!props.tenantInfo.id" :placeholder="$t('message.scan.placeholder1')" clearable class="mb30" style="width: 260px; align-self: center;">
 			<template #prefix>
 				<i class="iconfont icon-shuxingtu el-input__icon"></i>
 			</template>

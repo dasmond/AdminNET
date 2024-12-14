@@ -1,6 +1,6 @@
 <template>
 	<el-form size="large" class="login-content-form">
-		<el-form-item class="login-animation1" v-if="!tenantInfo.list.some((e: any) => e.host === tenantInfo.host)">
+		<el-form-item class="login-animation1" v-if="!props.tenantInfo.id">
 			<el-select v-model="state.ruleForm.tenantId" :placeholder="$t('message.mobile.placeholder1')" clearable style="width: 100%">
 				<template #prefix>
 					<i class="iconfont icon-shuxingtu el-input__icon"></i>
@@ -98,7 +98,7 @@ const getSmsCode = async () => {
 
 // 登录
 const onSignIn = async () => {
-	state.ruleForm.tenantId ??= props.tenantInfo.id;
+	state.ruleForm.tenantId ??= props.tenantInfo.id ?? props.tenantInfo.list[0]?.value;
 	const res = await getAPI(SysAuthApi).apiSysAuthLoginPhonePost({...state.ruleForm, host: host});
 	if (res.data.result?.accessToken == undefined) {
 		ElMessage.error('登录失败，请检查账号！');
