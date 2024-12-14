@@ -193,7 +193,8 @@ public class SysLdapService : IDynamicApiController, ITransient
         try
         {
             ldapConn.Connect(sysLdap.Host, sysLdap.Port);
-            ldapConn.Bind(sysLdap.Version, sysLdap.BindDn, sysLdap.BindPass);
+            string bindPass = CryptogramUtil.Decrypt(sysLdap.BindPass);
+            ldapConn.Bind(sysLdap.Version, sysLdap.BindDn, bindPass);
             var ldapSearchResults = ldapConn.Search(sysLdap.BaseDn, LdapConnection.ScopeOne, "(objectClass=*)", null, false);
             var userLdapList = new List<SysUserLdap>();
             while (ldapSearchResults.HasMore())
@@ -268,15 +269,15 @@ public class SysLdapService : IDynamicApiController, ITransient
     {
         var userLdap = new SysUserLdap
         {
-            Account = !attrs.ContainsKey(bindAttrAccount) ? null : attrs.GetAttribute(bindAttrAccount)?.StringValue,
-            EmployeeId = !attrs.ContainsKey(bindAttrEmployeeId) ? null : attrs.GetAttribute(bindAttrEmployeeId)?.StringValue,
+            Account = attrs.ContainsKey(bindAttrAccount) ? attrs.GetAttribute(bindAttrAccount)?.StringValue : null,
+            EmployeeId = attrs.ContainsKey(bindAttrEmployeeId) ? attrs.GetAttribute(bindAttrEmployeeId)?.StringValue : null,
             DeptCode = deptCode,
-            UserName = !attrs.ContainsKey("name") ? null : attrs.GetAttribute("name")?.StringValue,
-            Mail = !attrs.ContainsKey("mail") ? null : attrs.GetAttribute("mail")?.StringValue
+            UserName = attrs.ContainsKey("name") ? attrs.GetAttribute("name")?.StringValue : null,
+            Mail = attrs.ContainsKey("mail") ? attrs.GetAttribute("mail")?.StringValue : null
         };
-        var pwdLastSet = !attrs.ContainsKey("pwdLastSet") ? null : attrs.GetAttribute("pwdLastSet")?.StringValue;
-        if (!pwdLastSet!.Equals("0")) userLdap.PwdLastSetTime = DateTime.FromFileTime(Convert.ToInt64(pwdLastSet));
-        var userAccountControl = !attrs.ContainsKey("userAccountControl") ? null : attrs.GetAttribute("userAccountControl")?.StringValue;
+        var pwdLastSet = attrs.ContainsKey("pwdLastSet") ? attrs.GetAttribute("pwdLastSet")?.StringValue : null;
+        if (pwdLastSet != null && !pwdLastSet.Equals("0")) userLdap.PwdLastSetTime = DateTime.FromFileTime(Convert.ToInt64(pwdLastSet));
+        var userAccountControl = attrs.ContainsKey("userAccountControl") ? attrs.GetAttribute("userAccountControl")?.StringValue : null;
         if ((Convert.ToInt32(userAccountControl) & 0x2) == 0x2) // 检查账户是否已过期（通过检查userAccountControl属性的特定位）
             userLdap.AccountExpiresFlag = true;
         if ((Convert.ToInt32(userAccountControl) & 0x10000) == 0x10000) // 检查账户密码设置是否永不过期
@@ -430,9 +431,9 @@ public class SysLdapService : IDynamicApiController, ITransient
         {
             Pid = org.Id,
             Id = YitIdHelper.NextId(),
-            Code = !attrs.ContainsKey(sysLdap.BindAttrCode) ? null : new Guid(attrs.GetAttribute(sysLdap.BindAttrCode)?.ByteValue).ToString(),
+            Code = attrs.ContainsKey(sysLdap.BindAttrCode) ? new Guid(attrs.GetAttribute(sysLdap.BindAttrCode)?.ByteValue).ToString() : null,
             Level = org.Level + 1,
-            Name = !attrs.ContainsKey(sysLdap.BindAttrAccount) ? null : attrs.GetAttribute(sysLdap.BindAttrAccount)?.StringValue,
+            Name = attrs.ContainsKey(sysLdap.BindAttrAccount) ? attrs.GetAttribute(sysLdap.BindAttrAccount)?.StringValue : null,
             OrderNo = listOrgs.Count + 1,
         };
     }
