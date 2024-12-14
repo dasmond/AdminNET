@@ -37,7 +37,7 @@
 				<el-table-column prop="version" label="Ldap版本" show-overflow-tooltip />
 				<el-table-column prop="status" label="状态" width="80" align="center" show-overflow-tooltip>
 					<template #default="scope">
-            <g-sys-dict v-model="scope.row.status" code="StatusEnum" />
+						<g-sys-dict v-model="scope.row.status" code="StatusEnum" />
 					</template>
 				</el-table-column>
 				<el-table-column label="修改记录" width="100" align="center" show-overflow-tooltip>
@@ -45,7 +45,14 @@
 						<ModifyRecord :data="scope.row" />
 					</template>
 				</el-table-column>
-				<el-table-column label="操作" width="300" align="center" fixed="right" show-overflow-tooltip v-if="auth('sysLdap:update') || auth('sysLdap:delete') || auth('sysLdap:syncUser') || auth('sysLdap:syncOrg')">
+				<el-table-column
+					label="操作"
+					width="300"
+					align="center"
+					fixed="right"
+					show-overflow-tooltip
+					v-if="auth('sysLdap:update') || auth('sysLdap:delete') || auth('sysLdap:syncUser') || auth('sysLdap:syncOrg')"
+				>
 					<template #default="scope">
 						<el-button icon="ele-Edit" size="small" text type="primary" @click="openEditSysLdap(scope.row)" v-auth="'sysLdap:update'"> 编辑 </el-button>
 						<el-button icon="ele-Delete" size="small" text type="danger" @click="delSysLdap(scope.row)" v-auth="'sysLdap:delete'"> 删除 </el-button>
@@ -76,10 +83,10 @@ import { onMounted, reactive, ref } from 'vue';
 import { ElMessageBox, ElMessage } from 'element-plus';
 import { auth } from '/@/utils/authFunction';
 import { getAPI } from '/@/utils/axios-utils';
-import {SysLdapApi, SysTenantApi} from '/@/api-services/api';
+import { SysLdapApi, SysTenantApi } from '/@/api-services/api';
 import ModifyRecord from '/@/components/table/modifyRecord.vue';
 import EditLdap from './component/editLdap.vue';
-import { useUserInfo } from "/@/stores/userInfo";
+import { useUserInfo } from '/@/stores/userInfo';
 
 const userStore = useUserInfo();
 const editLdapRef = ref<InstanceType<typeof EditLdap>>();
@@ -102,7 +109,9 @@ const state = reactive({
 
 onMounted(async () => {
 	if (userStore.userInfos.accountType == 999) {
-		state.tenantList = await getAPI(SysTenantApi).apiSysTenantListGet().then(res => res.data.result ?? []);
+		state.tenantList = await getAPI(SysTenantApi)
+			.apiSysTenantListGet()
+			.then((res) => res.data.result ?? []);
 		state.queryParams.tenantId = state.tenantList[0].value;
 	}
 	handleQuery();

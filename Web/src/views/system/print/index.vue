@@ -30,7 +30,7 @@
 				<el-table-column prop="orderNo" label="排序" align="center" show-overflow-tooltip />
 				<el-table-column label="状态" align="center" show-overflow-tooltip>
 					<template #default="scope">
-            <g-sys-dict v-model="scope.row.status" code="StatusEnum" />
+						<g-sys-dict v-model="scope.row.status" code="StatusEnum" />
 					</template>
 				</el-table-column>
 				<el-table-column label="修改记录" width="100" align="center" show-overflow-tooltip>
@@ -68,9 +68,9 @@ import { ElMessageBox, ElMessage } from 'element-plus';
 import EditPrint from '/@/views/system/print/component/editPrint.vue';
 import ModifyRecord from '/@/components/table/modifyRecord.vue';
 import { getAPI } from '/@/utils/axios-utils';
-import {SysPrintApi, SysTenantApi} from '/@/api-services/api';
+import { SysPrintApi, SysTenantApi } from '/@/api-services/api';
 import { SysPrint } from '/@/api-services/models';
-import { useUserInfo } from "/@/stores/userInfo";
+import { useUserInfo } from '/@/stores/userInfo';
 
 const userStore = useUserInfo();
 const editPrintRef = ref<InstanceType<typeof EditPrint>>();
@@ -92,7 +92,9 @@ const state = reactive({
 
 onMounted(async () => {
 	if (userStore.userInfos.accountType == 999) {
-		state.tenantList = await getAPI(SysTenantApi).apiSysTenantListGet().then(res => res.data.result ?? []);
+		state.tenantList = await getAPI(SysTenantApi)
+			.apiSysTenantListGet()
+			.then((res) => res.data.result ?? []);
 		state.queryParams.tenantId = state.tenantList[0].value;
 	}
 	handleQuery();

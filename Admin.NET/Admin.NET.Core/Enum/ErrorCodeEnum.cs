@@ -540,12 +540,18 @@ public enum ErrorCodeEnum
     /// </summary>
     [ErrorCodeItemMetadata("已存在同名的租户域名")]
     D1303,
-    
+
     /// <summary>
     /// 授权菜单存在重复项
     /// </summary>
     [ErrorCodeItemMetadata("授权菜单存在重复项")]
     D1304,
+
+    /// <summary>
+    /// 仅允许超级管理员或系统管理员添加菜单
+    /// </summary>
+    [ErrorCodeItemMetadata("仅允许超级管理员或系统管理员添加菜单")]
+    D1305,
 
     /// <summary>
     /// 该表代码模板已经生成过

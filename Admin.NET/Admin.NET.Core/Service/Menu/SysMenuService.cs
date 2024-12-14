@@ -4,8 +4,6 @@
 //
 // 不得利用本项目从事危害国家安全、扰乱社会秩序、侵犯他人合法权益等法律法规禁止的活动！任何基于本项目二次开发而产生的一切法律纠纷和责任，我们不承担任何责任！
 
-using OfficeOpenXml.FormulaParsing.Excel.Functions.Text;
-
 namespace Admin.NET.Core.Service;
 
 /// <summary>
@@ -69,9 +67,9 @@ public class SysMenuService : IDynamicApiController, ITransient
     [DisplayName("获取菜单列表")]
     public async Task<List<SysMenu>> GetList([FromQuery] MenuInput input)
     {
-        var menuIdList = _userManager.SuperAdmin ? new List<long>() : await GetMenuIdList();
+        var menuIdList = _userManager.SuperAdmin || _userManager.SysAdmin ? new List<long>() : await GetMenuIdList();
         var (query, _) = GetSugarQueryableAndTenantId(input.TenantId);
-        
+
         // 有筛选条件时返回list列表（防止构造不出树）
         if (!string.IsNullOrWhiteSpace(input.Title) || input.Type is > 0)
         {
@@ -81,7 +79,7 @@ public class SysMenuService : IDynamicApiController, ITransient
                 .OrderBy(u => new { u.OrderNo, u.Id }).Distinct().ToListAsync();
         }
 
-        return _userManager.SuperAdmin ?
+        return _userManager.SuperAdmin || _userManager.SysAdmin ?
             await query.OrderBy(u => new { u.OrderNo, u.Id }).Distinct().ToTreeAsync(u => u.Children, u => u.Pid, 0) :
             await query.OrderBy(u => new { u.OrderNo, u.Id }).Distinct().ToTreeAsync(u => u.Children, u => u.Pid, 0, menuIdList.Select(d => (object)d).ToArray()); // 角色菜单授权时
     }
@@ -95,8 +93,10 @@ public class SysMenuService : IDynamicApiController, ITransient
     [DisplayName("增加菜单")]
     public async Task AddMenu(AddMenuInput input)
     {
+        if (!_userManager.SuperAdmin && !_userManager.SysAdmin) throw Oops.Oh(ErrorCodeEnum.D1305);
+
         var (query, tenantId) = GetSugarQueryableAndTenantId(input.TenantId);
-        
+
         var isExist = input.Type != MenuTypeEnum.Btn
             ? await query.AnyAsync(u => u.Title == input.Title && u.Pid == input.Pid)
             : await query.AnyAsync(u => u.Permission == input.Permission);
@@ -163,7 +163,7 @@ public class SysMenuService : IDynamicApiController, ITransient
         var menuIdList = menuTreeList.Select(u => u.Id).ToList();
 
         await _sysMenuRep.DeleteAsync(u => menuIdList.Contains(u.Id));
-        
+
         // 级联删除租户菜单数据
         await _sysTenantMenuRep.AsDeleteable().Where(u => menuIdList.Contains(u.MenuId)).ExecuteCommandAsync();
 
@@ -216,14 +216,14 @@ public class SysMenuService : IDynamicApiController, ITransient
         var userId = _userManager.UserId;
         var permissions = _sysCacheService.Get<List<string>>(CacheConst.KeyUserButton + userId);
         if (permissions != null) return permissions;
-        
+
         var menuIdList = _userManager.SuperAdmin || _userManager.SysAdmin ? new() : await GetMenuIdList();
-        
+
         permissions = await _sysMenuRep.AsQueryable().Where(u => u.Type == MenuTypeEnum.Btn)
             .WhereIF(menuIdList.Count > 0, u => menuIdList.Contains(u.Id))
             .InnerJoinIF<SysTenantMenu>(!_userManager.SuperAdmin, (u, t) => t.TenantId == _userManager.TenantId && u.Id == t.MenuId)
             .Select(u => u.Permission).ToListAsync();
-        
+
         _sysCacheService.Set(CacheConst.KeyUserButton + userId, permissions, TimeSpan.FromDays(7));
 
         return permissions;
@@ -246,7 +246,7 @@ public class SysMenuService : IDynamicApiController, ITransient
 
         return permissions;
     }
-    
+
     /// <summary>
     /// 根据租户id获取构建菜单联表查询实例
     /// </summary>

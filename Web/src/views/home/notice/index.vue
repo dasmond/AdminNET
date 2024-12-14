@@ -29,13 +29,13 @@
 				</el-table-column>
 				<el-table-column prop="sysNotice.type" label="类型" width="100" align="center" show-overflow-tooltip>
 					<template #default="scope">
-            <g-sys-dict v-model="scope.row.sysNotice.type" code="NoticeTypeEnum"/>
+						<g-sys-dict v-model="scope.row.sysNotice.type" code="NoticeTypeEnum" />
 					</template>
 				</el-table-column>
 				<el-table-column prop="sysNotice.createTime" label="创建时间" align="center" show-overflow-tooltip />
 				<el-table-column prop="readStatus" label="阅读状态" width="100" align="center" show-overflow-tooltip>
 					<template #default="scope">
-            <g-sys-dict v-model="scope.row.readStatus" code="NoticeUserStatusEnum" />
+						<g-sys-dict v-model="scope.row.readStatus" code="NoticeUserStatusEnum" />
 					</template>
 				</el-table-column>
 				<el-table-column prop="sysNotice.publicUserName" label="发布者" align="center" show-overflow-tooltip />
@@ -113,7 +113,7 @@ const handleQuery = async () => {
 		title: state.queryParams.title,
 		type: state.queryParams.type,
 		page: state.tableParams.page,
-		pageSize: state.tableParams.pageSize
+		pageSize: state.tableParams.pageSize,
 	};
 	var res = await getAPI(SysNoticeApi).apiSysNoticePageReceivedPost(pageNoticeInput);
 	state.noticeData = res.data.result?.items ?? [];

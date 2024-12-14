@@ -30,10 +30,10 @@
 				<el-table-column type="index" label="序号" width="55" align="center" />
 				<el-table-column prop="name" label="职位名称" align="center" show-overflow-tooltip />
 				<el-table-column prop="code" label="职位编码" align="center" show-overflow-tooltip />
-				<el-table-column prop="userList" label="在职人数" width="70" align="center" show-overflow-tooltip >
-					<template #default="scope">{{ scope.row.userList?.length}}</template>
+				<el-table-column prop="userList" label="在职人数" width="70" align="center" show-overflow-tooltip>
+					<template #default="scope">{{ scope.row.userList?.length }}</template>
 				</el-table-column>
-				<el-table-column prop="userList" label="人员明细" width="120" align="center" show-overflow-tooltip >
+				<el-table-column prop="userList" label="人员明细" width="120" align="center" show-overflow-tooltip>
 					<template #default="scope">
 						<el-popover placement="bottom" width="280" trigger="hover" v-if="scope.row.userList?.length">
 							<template #reference>
@@ -81,9 +81,9 @@ import EditPos from '/@/views/system/pos/component/editPos.vue';
 import ModifyRecord from '/@/components/table/modifyRecord.vue';
 
 import { getAPI } from '/@/utils/axios-utils';
-import {SysPosApi, SysTenantApi} from '/@/api-services/api';
+import { SysPosApi, SysTenantApi } from '/@/api-services/api';
 import { SysPos, UpdatePosInput } from '/@/api-services/models';
-import { useUserInfo } from "/@/stores/userInfo";
+import { useUserInfo } from '/@/stores/userInfo';
 
 const userStore = useUserInfo();
 const editPosRef = ref<InstanceType<typeof EditPos>>();
@@ -101,7 +101,9 @@ const state = reactive({
 
 onMounted(async () => {
 	if (userStore.userInfos.accountType == 999) {
-		state.tenantList = await getAPI(SysTenantApi).apiSysTenantListGet().then(res => res.data.result ?? []);
+		state.tenantList = await getAPI(SysTenantApi)
+			.apiSysTenantListGet()
+			.then((res) => res.data.result ?? []);
 		state.queryParams.tenantId = state.tenantList[0].value;
 	}
 	handleQuery();
@@ -150,11 +152,11 @@ const delPos = (row: any) => {
 		cancelButtonText: '取消',
 		type: 'warning',
 	})
-			.then(async () => {
-				await getAPI(SysPosApi).apiSysPosDeletePost({ id: row.id });
-				handleQuery();
-				ElMessage.success('删除成功');
-			})
-			.catch(() => {});
+		.then(async () => {
+			await getAPI(SysPosApi).apiSysPosDeletePost({ id: row.id });
+			handleQuery();
+			ElMessage.success('删除成功');
+		})
+		.catch(() => {});
 };
 </script>

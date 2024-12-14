@@ -36,7 +36,7 @@
 					</el-col>
 					<el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="mb20">
 						<el-form-item label="机构类型">
-              <g-sys-dict v-model="state.ruleForm.type" code="org_type" render-as="select" class="w100" filterable clearable />
+							<g-sys-dict v-model="state.ruleForm.type" code="org_type" render-as="select" class="w100" filterable clearable />
 						</el-form-item>
 					</el-col>
 					<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">

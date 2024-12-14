@@ -6,7 +6,7 @@
 					<el-input v-model="state.queryParams.title" placeholder="标题" clearable />
 				</el-form-item>
 				<el-form-item label="类型">
-          <g-sys-dict v-model="state.queryParams.type" code="NoticeTypeEnum" render-as="select" clearable />
+					<g-sys-dict v-model="state.queryParams.type" code="NoticeTypeEnum" render-as="select" clearable />
 				</el-form-item>
 				<el-form-item>
 					<el-button-group>
@@ -29,13 +29,13 @@
 				</el-table-column>
 				<el-table-column prop="type" label="类型" width="100" align="center" show-overflow-tooltip>
 					<template #default="scope">
-            <g-sys-dict v-model="scope.row.type" code="NoticeTypeEnum" />
+						<g-sys-dict v-model="scope.row.type" code="NoticeTypeEnum" />
 					</template>
 				</el-table-column>
 				<el-table-column prop="createTime" label="创建时间" align="center" show-overflow-tooltip />
 				<el-table-column prop="status" label="状态" width="100" align="center" show-overflow-tooltip>
 					<template #default="scope">
-            <g-sys-dict v-model="scope.row.status" code="NoticeStatusEnum" />
+						<g-sys-dict v-model="scope.row.status" code="NoticeStatusEnum" />
 					</template>
 				</el-table-column>
 				<el-table-column prop="publicUserName" label="发布者" align="center" show-overflow-tooltip />

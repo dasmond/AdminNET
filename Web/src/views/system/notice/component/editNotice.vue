@@ -16,7 +16,7 @@
 					</el-col>
 					<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
 						<el-form-item label="类型" prop="type" :rules="[{ required: true, message: '类型不能为空', trigger: 'blur' }]">
-              <g-sys-dict v-model="state.ruleForm.type" code="NoticeTypeEnum" render-as="select" class="w100" filterable allow-create default-first-option />
+							<g-sys-dict v-model="state.ruleForm.type" code="NoticeTypeEnum" render-as="select" class="w100" filterable allow-create default-first-option />
 						</el-form-item>
 					</el-col>
 					<el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="mb20">

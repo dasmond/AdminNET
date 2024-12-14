@@ -117,12 +117,12 @@
 					</el-col>
 					<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
 						<el-form-item label="生成方式" prop="generateType">
-              <g-sys-dict v-model="state.ruleForm.generateType" code="code_gen_create_type" render-as="select" class="w100" filterable />
+							<g-sys-dict v-model="state.ruleForm.generateType" code="code_gen_create_type" render-as="select" class="w100" filterable />
 						</el-form-item>
 					</el-col>
 					<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
 						<el-form-item label="支持打印" prop="printType">
-              <g-sys-dict v-model="state.ruleForm.printType" code="code_gen_print_type" render-as="select" @change="printTypeChanged" class="w100" filterable />
+							<g-sys-dict v-model="state.ruleForm.printType" code="code_gen_print_type" render-as="select" @change="printTypeChanged" class="w100" filterable />
 						</el-form-item>
 					</el-col>
 					<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20" v-if="state.ruleForm.printType == 'custom'">
@@ -148,7 +148,16 @@
 											<el-button icon="ele-Delete" type="danger" circle plain size="small" @click="() => state.ruleForm.tableUniqueList?.splice(k, 1)" />
 											<span class="ml5">字段</span>
 										</template>
-										<el-select v-model="state.ruleForm.tableUniqueList[k].columns" @change="(val: any) => changeTableUniqueColumn(val, k)" multiple filterable clearable collapse-tags collapse-tags-tooltip class="w100">
+										<el-select
+											v-model="state.ruleForm.tableUniqueList[k].columns"
+											@change="(val: any) => changeTableUniqueColumn(val, k)"
+											multiple
+											filterable
+											clearable
+											collapse-tags
+											collapse-tags-tooltip
+											class="w100"
+										>
 											<el-option v-for="item in state.columnData" :key="item.propertyName" :label="item.propertyName + ' [' + item.columnComment + ']'" :value="item.propertyName" />
 										</el-select>
 									</el-form-item>
@@ -200,15 +209,23 @@ const state = reactive({
 const cascaderProps = { checkStrictly: true, emitPath: false, value: 'id', label: 'title' };
 
 onMounted(async () => {
-  state.dbData = await getAPI(SysCodeGenApi).apiSysCodeGenDatabaseListGet().then(res => res.data.result ?? []);
-  state.printList = await getAPI(SysPrintApi).apiSysPrintPagePost().then(res => res.data.result?.items ?? []);
-  state.menuData = await getAPI(SysMenuApi).apiSysMenuListGet().then(res => res.data.result ?? []);
+	state.dbData = await getAPI(SysCodeGenApi)
+		.apiSysCodeGenDatabaseListGet()
+		.then((res) => res.data.result ?? []);
+	state.printList = await getAPI(SysPrintApi)
+		.apiSysPrintPagePost()
+		.then((res) => res.data.result?.items ?? []);
+	state.menuData = await getAPI(SysMenuApi)
+		.apiSysMenuListGet()
+		.then((res) => res.data.result ?? []);
 });
 
 // db改变
 const dbChanged = async () => {
 	if (state.ruleForm.configId === '') return;
-  state.tableData = await getAPI(SysCodeGenApi).apiSysCodeGenTableListConfigIdGet(state.ruleForm.configId as string).then(res => res.data.result ?? []);
+	state.tableData = await getAPI(SysCodeGenApi)
+		.apiSysCodeGenTableListConfigIdGet(state.ruleForm.configId as string)
+		.then((res) => res.data.result ?? []);
 
 	let db = state.dbData.filter((u: any) => u.configId == state.ruleForm.configId);
 	state.ruleForm.connectionString = db[0].connectionString;
@@ -219,23 +236,23 @@ const dbChanged = async () => {
 const tableChanged = (item: any) => {
 	state.ruleForm.tableName = item.entityName;
 	state.ruleForm.busName = item.tableComment;
-  state.ruleForm.tableUniqueList = [];
+	state.ruleForm.tableUniqueList = [];
 	getColumnInfoList();
 };
 
 // 表唯一约束配置项字段改变事件
 const changeTableUniqueColumn = (value: any, index: number) => {
-  if (value?.length === 1 && !state.ruleForm.tableUniqueList[index].message) {
-    state.ruleForm.tableUniqueList[index].message = state.columnData.find((u: any) => u.propertyName === value[0])?.columnComment;
-  }
-}
+	if (value?.length === 1 && !state.ruleForm.tableUniqueList[index].message) {
+		state.ruleForm.tableUniqueList[index].message = state.columnData.find((u: any) => u.propertyName === value[0])?.columnComment;
+	}
+};
 
 const getColumnInfoList = async () => {
 	if (state.ruleForm.configId == '' || state.ruleForm.tableName == '') return;
-  state.columnData = await getAPI(SysCodeGenApi)
-      .apiSysCodeGenColumnListByTableNameTableNameConfigIdGet(state.ruleForm.tableName, state.ruleForm.configId)
-      .then(res => res.data.result)
-      ?? [];
+	state.columnData =
+		(await getAPI(SysCodeGenApi)
+			.apiSysCodeGenColumnListByTableNameTableNameConfigIdGet(state.ruleForm.tableName, state.ruleForm.configId)
+			.then((res) => res.data.result)) ?? [];
 };
 
 // 菜单改变
@@ -257,8 +274,8 @@ const getGlobalComponentSize = computed(() => {
 // 打开弹窗
 const openDialog = (row: any) => {
 	state.ruleForm = JSON.parse(JSON.stringify(row));
-  dbChanged().then(() => getColumnInfoList());
-  state.ruleForm.tableUniqueList ??= [];
+	dbChanged().then(() => getColumnInfoList());
+	state.ruleForm.tableUniqueList ??= [];
 	state.isShowDialog = true;
 	ruleFormRef.value?.resetFields();
 };
@@ -278,7 +295,7 @@ const cancel = () => {
 const submit = () => {
 	ruleFormRef.value.validate(async (valid: boolean) => {
 		if (!valid) return;
-    if (state.ruleForm.tableUniqueList?.length === 0) state.ruleForm.tableUniqueList = null;
+		if (state.ruleForm.tableUniqueList?.length === 0) state.ruleForm.tableUniqueList = null;
 		if (state.ruleForm.id != undefined && state.ruleForm.id > 0) {
 			await getAPI(SysCodeGenApi).apiSysCodeGenUpdatePost(state.ruleForm as UpdateCodeGenInput);
 		} else {

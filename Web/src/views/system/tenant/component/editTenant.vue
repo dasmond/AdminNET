@@ -69,17 +69,23 @@
 							</el-col>
 							<el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="mb20">
 								<el-form-item label="连接字符串">
-									<el-input v-model="state.ruleForm.connection" placeholder="连接字符串" clearable type="textarea" :disabled="state.ruleForm.tenantType == 0 && state.ruleForm.tenantType != undefined" />
+									<el-input
+										v-model="state.ruleForm.connection"
+										placeholder="连接字符串"
+										clearable
+										type="textarea"
+										:disabled="state.ruleForm.tenantType == 0 && state.ruleForm.tenantType != undefined"
+									/>
 								</el-form-item>
 							</el-col>
 							<el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="mb20">
 								<el-form-item label="从库连接串">
 									<el-input
-											v-model="state.ruleForm.slaveConnections"
-											placeholder="格式：[{'HitRate':10, 'ConnectionString':'xxx'},{'HitRate':10, 'ConnectionString':'xxx'}]"
-											clearable
-											type="textarea"
-											:disabled="state.ruleForm.tenantType == 0 && state.ruleForm.tenantType != undefined"
+										v-model="state.ruleForm.slaveConnections"
+										placeholder="格式：[{'HitRate':10, 'ConnectionString':'xxx'},{'HitRate':10, 'ConnectionString':'xxx'}]"
+										clearable
+										type="textarea"
+										:disabled="state.ruleForm.tenantType == 0 && state.ruleForm.tenantType != undefined"
 									/>
 								</el-form-item>
 							</el-col>
@@ -100,7 +106,7 @@
 							</el-col>
 						</el-row>
 					</el-tab-pane>
-					<el-tab-pane label="站点信息" style="height: 550px; overflow: auto; overflow-x: hidden;">
+					<el-tab-pane label="站点信息" style="height: 550px; overflow: auto; overflow-x: hidden">
 						<el-row :gutter="35">
 							<el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="mb20">
 								<el-form-item label="Logo" prop="logo" :rules="[{ required: true, message: '应用Logo不能为空', trigger: 'blur' }]">
@@ -164,8 +170,8 @@ import { reactive, ref } from 'vue';
 import { getAPI } from '/@/utils/axios-utils';
 import { SysTenantApi } from '/@/api-services/api';
 import { UpdateTenantInput } from '/@/api-services/models';
-import {UploadInstance} from "element-plus";
-import {fileToBase64} from "/@/utils/base64Conver";
+import { UploadInstance } from 'element-plus';
+import { fileToBase64 } from '/@/utils/base64Conver';
 
 const props = defineProps({
 	title: String,
