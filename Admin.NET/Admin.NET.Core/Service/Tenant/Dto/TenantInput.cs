@@ -4,6 +4,8 @@
 //
 // 不得利用本项目从事危害国家安全、扰乱社会秩序、侵犯他人合法权益等法律法规禁止的活动！任何基于本项目二次开发而产生的一切法律纠纷和责任，我们不承担任何责任！
 
+using Admin.NET.Core.Common;
+
 namespace Admin.NET.Core.Service;
 
 public class TenantInput : BaseIdInput
@@ -92,7 +94,9 @@ public class AddTenantInput : TenantOutput
     /// <summary>
     /// Logo图片Base64码
     /// </summary>
-    [Required(ErrorMessage = "Logo图片不能为空"), MinLength(5, ErrorMessage = "Logo图片不能少于5个字符")]
+    [CommonValidation(
+        $"string.{nameof(string.IsNullOrWhiteSpace)}(Logo) && string.{nameof(string.IsNullOrWhiteSpace)}(LogoBase64)", "图标不能为空"
+    )]
     public virtual string LogoBase64 { get; set; }
     
     /// <summary>
