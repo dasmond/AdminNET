@@ -62,6 +62,11 @@ public class InfoSaveInput
     /// </summary>
     [Required(ErrorMessage = "ICP地址不能为空")]
     public string SysIcpUrl { get; set; }
+    
+    /// <summary>
+    /// 启用注册功能
+    /// </summary>
+    public bool SysRegistration { get; set; }
 
     /// <summary>
     /// 登录二次验证
@@ -72,4 +77,9 @@ public class InfoSaveInput
     /// 图形验证码
     /// </summary>
     public bool SysCaptcha { get; set; }
+    
+    /// <summary>
+    /// 默认注册方案Id
+    /// </summary>
+    public virtual long SysRegWayId { get; set; }
 }

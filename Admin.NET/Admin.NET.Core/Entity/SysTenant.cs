@@ -72,6 +72,18 @@ public partial class SysTenant : EntityBase
     /// </summary>
     [SugarColumn(ColumnDescription = "从库连接/读写分离", ColumnDataType = StaticConfig.CodeFirst_BigString)]
     public virtual string? SlaveConnections { get; set; }
+    
+    /// <summary>
+    /// 启用注册功能
+    /// </summary>
+    [SugarColumn(ColumnDescription = "启用注册功能")]
+    public virtual YesNoEnum? EnableReg { get; set; } = YesNoEnum.N;
+    
+    /// <summary>
+    /// 默认注册方案Id
+    /// </summary>
+    [SugarColumn(ColumnDescription = "默认注册方案")]
+    public virtual long? RegWayId { get; set; }
 
     /// <summary>
     /// 图标

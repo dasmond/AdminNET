@@ -14,6 +14,7 @@
 import { DbType } from './db-type';
 import { StatusEnum } from './status-enum';
 import { TenantTypeEnum } from './tenant-type-enum';
+import { YesNoEnum } from './yes-no-enum';
 /**
  * 
  * @export
@@ -117,6 +118,18 @@ export interface AddTenantInput {
      */
     slaveConnections?: string | null;
     /**
+     * 
+     * @type {YesNoEnum}
+     * @memberof AddTenantInput
+     */
+    enableReg?: YesNoEnum;
+    /**
+     * 默认注册方案Id
+     * @type {number}
+     * @memberof AddTenantInput
+     */
+    regWayId?: number | null;
+    /**
      * 图标
      * @type {string}
      * @memberof AddTenantInput
@@ -217,7 +230,7 @@ export interface AddTenantInput {
      * @type {string}
      * @memberof AddTenantInput
      */
-    logoBase64: string;
+    logoBase64?: string | null;
     /**
      * Logo文件名
      * @type {string}

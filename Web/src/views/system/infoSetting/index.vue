@@ -39,17 +39,27 @@
 				</el-descriptions-item>
 				<el-descriptions-item label="登录二次验证">
 					<el-radio-group v-model="state.formData.sysSecondVer">
-						<el-radio :value="1">启用</el-radio>
-						<el-radio :value="2">禁用</el-radio>
+						<el-radio :value="true">启用</el-radio>
+						<el-radio :value="false">禁用</el-radio>
 					</el-radio-group>
 				</el-descriptions-item>
 				<el-descriptions-item label="图形验证码">
 					<el-radio-group v-model="state.formData.sysCaptcha">
-						<el-radio :value="1">启用</el-radio>
-						<el-radio :value="2">禁用</el-radio>
+						<el-radio :value="true">启用</el-radio>
+						<el-radio :value="false">禁用</el-radio>
 					</el-radio-group>
 				</el-descriptions-item>
-
+				<el-descriptions-item label="用户注册">
+					<el-radio-group v-model="state.formData.sysRegistration">
+						<el-radio :value="true">启用</el-radio>
+						<el-radio :value="false">禁用</el-radio>
+					</el-radio-group>
+				</el-descriptions-item>
+				<el-descriptions-item label="注册方案" v-if="state.formData.sysRegistration">
+					<el-select v-model="state.formData.regWayId" placeholder="注册方案" clearable class="w100">
+						<el-option :label="item.name" :value="item.id" v-for="(item, index) in state.regWayData" :key="index" />
+					</el-select>
+				</el-descriptions-item>
 				<template #extra>
 					<el-button type="primary" icon="ele-SuccessFilled" @click="onSave">保存</el-button>
 				</template>
@@ -59,17 +69,18 @@
 </template>
 
 <script setup lang="ts" name="sysInfoSetting">
-import { nextTick, reactive, ref } from 'vue';
+import {nextTick, onMounted, reactive, ref} from 'vue';
 import { ElMessage, UploadInstance } from 'element-plus';
 import { fileToBase64 } from '/@/utils/base64Conver';
 
 import { getAPI } from '/@/utils/axios-utils';
-import { SysConfigApi } from '/@/api-services';
+import {SysConfigApi, SysUserRegWayApi} from '/@/api-services';
 
 const uploadRef = ref<UploadInstance>();
 const state = reactive({
 	isLoading: false,
 	file: undefined as any,
+	regWayData: [] as Array<any>,
 	formData: {
 		sysLogoBlob: undefined,
 		sysLogo: '',
@@ -81,9 +92,15 @@ const state = reactive({
 		sysCopyright: '',
 		sysIcp: '',
 		sysIcpUrl: '',
+		regWayId: undefined,
+		sysRegistration: undefined,
 		sysSecondVer: undefined,
 		sysCaptcha: undefined,
 	},
+});
+
+onMounted(async () => {
+	state.regWayData = await getAPI(SysUserRegWayApi).apiSysUserRegWayListPost({}).then((res) => res.data.result ?? []);
 });
 
 // 通过onChange方法获得文件列表
@@ -106,6 +123,12 @@ const onSave = async () => {
 
 	try {
 		state.isLoading = true;
+		if (!state.formData.sysRegistration) {
+			state.formData.regWayId = undefined;
+		} else if (!state.formData.regWayId) {
+			ElMessage.error('注册方案不能为空');
+			return;
+		}
 		const res = await getAPI(SysConfigApi).apiSysConfigSaveSysInfoPost({
 			sysLogoBase64: sysLogoBase64,
 			sysLogoFileName: sysLogoFileName,
@@ -115,9 +138,11 @@ const onSave = async () => {
 			sysWatermark: state.formData.sysWatermark,
 			sysCopyright: state.formData.sysCopyright,
 			sysIcp: state.formData.sysIcp,
+			sysRegWayId: state.formData.regWayId,
 			sysIcpUrl: state.formData.sysIcpUrl,
 			sysSecondVer: state.formData.sysSecondVer,
 			sysCaptcha: state.formData.sysCaptcha,
+			sysRegistration: state.formData.sysRegistration,
 		});
 		if (res.data!.type !== 'success') return;
 
@@ -153,6 +178,8 @@ const loadData = async () => {
 			sysIcpUrl: result.sysIcpUrl,
 			sysSecondVer: result.sysSecondVer,
 			sysCaptcha: result.sysCaptcha,
+			regWayId: result.sysRegWayId,
+			sysRegistration: result.sysRegistration,
 		};
 	} finally {
 		nextTick(() => {

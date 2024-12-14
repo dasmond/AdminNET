@@ -32,6 +32,11 @@ public class UserManager : IScoped
     /// 真实姓名
     /// </summary>
     public string RealName => _httpContextAccessor.HttpContext?.User.FindFirst(ClaimConst.RealName)?.Value;
+    
+    /// <summary>
+    /// 是否超级管理员
+    /// </summary>
+    public AccountTypeEnum? AccountType => int.TryParse(_httpContextAccessor.HttpContext?.User.FindFirst(ClaimConst.AccountType)?.Value, out var val) ? (AccountTypeEnum?)val : null;
 
     /// <summary>
     /// 是否超级管理员

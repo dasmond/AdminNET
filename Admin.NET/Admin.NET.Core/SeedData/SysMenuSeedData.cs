@@ -176,6 +176,12 @@ public class SysMenuSeedData : ISqlSugarEntitySeedData<SysMenu>
             new SysMenu{ Id=1310000000445, Pid=1310000000441, Title="获取支付订单详情(微信接口)", Permission="sysWechatPay:payInfoFromWechat", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
             new SysMenu{ Id=1310000000446, Pid=1310000000441, Title="退款申请", Permission="sysWechatPay:refundDomestic", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
 
+            new SysMenu{ Id=1310000000451, Pid=1310000000301, Title="注册方案", Path="/platform/regWay", Name="sysUserRegWay", Component="/system/userRegWay/index", Icon="ele-Menu", Type=MenuTypeEnum.Menu, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=105 },
+            new SysMenu{ Id=1310000000452, Pid=1310000000451, Title="查询", Permission="sysUserRegWay:list", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
+            new SysMenu{ Id=1310000000453, Pid=1310000000451, Title="编辑", Permission="sysUserRegWay:update", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
+            new SysMenu{ Id=1310000000454, Pid=1310000000451, Title="增加", Permission="sysUserRegWay:add", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
+            new SysMenu{ Id=1310000000455, Pid=1310000000451, Title="删除", Permission="sysUserRegWay:delete", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
+
             new SysMenu{ Id=1310000000501, Pid=0, Title="日志管理", Path="/log", Name="log", Component="Layout", Icon="ele-DocumentCopy", Type=MenuTypeEnum.Dir, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=12000 },
             new SysMenu{ Id=1310000000511, Pid=1310000000501, Title="访问日志", Path="/log/vislog", Name="sysVisLog", Component="/system/log/vislog/index", Icon="ele-Document", Type=MenuTypeEnum.Menu, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
             new SysMenu{ Id=1310000000512, Pid=1310000000511, Title="查询", Permission="sysVislog:page", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },

@@ -136,6 +136,8 @@ const loadSysInfo = () => {
 			// 登录验证
 			themeConfig.value.secondVer = data.sysSecondVer;
 			themeConfig.value.captcha = data.sysCaptcha;
+			// 注册功能
+			themeConfig.value.registration = data.sysRegistration;
 			// 更新配置加载状态
 			themeConfig.value.isLoaded = true;
 

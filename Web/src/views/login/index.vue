@@ -29,11 +29,14 @@
 					<div class="login-right-warp-main-form">
 						<div v-if="!state.isScan">
 							<el-tabs v-model="state.tabsActiveName">
-								<el-tab-pane :label="$t('message.label.one1')" name="account">
+								<el-tab-pane :label="$t('message.label.one1')" name="account" v-if="state.tabsActiveName != 'register'">
 									<Account :tenant-info="state.tenantInfo" />
 								</el-tab-pane>
-								<el-tab-pane :label="$t('message.label.two2')" name="mobile">
+								<el-tab-pane :label="$t('message.label.two2')" name="mobile" v-if="state.tabsActiveName != 'register'">
 									<Mobile :tenant-info="state.tenantInfo" />
+								</el-tab-pane>
+								<el-tab-pane :label="$t('message.label.two3')" name="register" v-if="state.tabsActiveName == 'register'">
+									<Register :tenant-info="state.tenantInfo" @goLogin="() => state.tabsActiveName = 'account'" />
 								</el-tab-pane>
 							</el-tabs>
 						</div>
@@ -42,19 +45,27 @@
 							<i class="iconfont" :class="state.isScan ? 'icon-diannao1' : 'icon-barcode-qr'"></i>
 							<div class="login-content-main-scan-delta"></div>
 						</div>
+						<div class="login-content-main-left" v-if="getThemeConfig.registration">
+							<template v-if="state.tabsActiveName != 'register'">
+								没有账号? 去<el-link class="login-content-main-left-register" @click="() => state.tabsActiveName = 'register'">注册账号</el-link>
+							</template>
+							<template v-else>
+								已有账户? 去<el-link class="login-content-main-left-register" @click="() => state.tabsActiveName = 'account'">登录账号</el-link>
+							</template>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 		<div class="copyright" :class="[getThemeConfig.icp ? 'mb25' : 'mt5']">{{ getThemeConfig.copyright }}</div>
-		<div v-if="getThemeConfig.icp" class="icp mt5">
+		<div v-if="getThemeConfig.icp" class="icp mt5" onselect="false">
 			<el-link :href="getThemeConfig.icpUrl" target="_blank">{{ getThemeConfig.icp }}</el-link>
 		</div>
 	</div>
 </template>
 
 <script setup lang="ts" name="loginIndex">
-import { defineAsyncComponent, onMounted, reactive, computed } from 'vue';
+import {defineAsyncComponent, onMounted, reactive, computed} from 'vue';
 import { storeToRefs } from 'pinia';
 import { useThemeConfig } from '/@/stores/themeConfig';
 import { NextLoading } from '/@/utils/loading';
@@ -66,6 +77,7 @@ import {SysTenantApi} from "/@/api-services";
 import {useRoute} from "vue-router";
 
 // 引入组件
+const Register = defineAsyncComponent(() => import('/@/views/login/component/register.vue'));
 const Account = defineAsyncComponent(() => import('/@/views/login/component/account.vue'));
 const Mobile = defineAsyncComponent(() => import('/@/views/login/component/mobile.vue'));
 const Scan = defineAsyncComponent(() => import('/@/views/login/component/scan.vue'));
@@ -88,6 +100,8 @@ const getThemeConfig = computed(() => {
 });
 // 页面加载时
 onMounted(async () => {
+	// 地址栏存在wayid参数时，默认切换到注册界面
+	if (route.query.wayid != undefined) state.tabsActiveName = 'register';
 	await getTenantInfo();
 	NextLoading.done();
 });
@@ -239,6 +253,7 @@ const getTenantInfo = async () => {
 					animation: logoAnimation 0.3s ease;
 					animation-delay: 0.3s;
 					color: var(--el-color-primary);
+					user-select: none;
 				}
 				.login-right-warp-main-form {
 					flex: 1;
@@ -276,6 +291,21 @@ const getTenantInfo = async () => {
 							position: absolute;
 							right: 1px;
 							top: 0px;
+						}
+					}
+					.login-content-main-left {
+						position: absolute;
+						top: 10px;
+						left: 10px;
+						width: 150px;
+						height: 50px;
+						overflow: hidden;
+						cursor: pointer;
+						transition: all ease 0.3s;
+						user-select: none;
+						.login-content-main-left-register {
+							top: -1.5px;
+							color: var(--el-color-primary);
 						}
 					}
 				}

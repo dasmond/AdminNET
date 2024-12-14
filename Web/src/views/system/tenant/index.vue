@@ -87,6 +87,11 @@
 				<el-table-column prop="copyright" label="版权信息" width="350" show-overflow-tooltip />
 				<el-table-column prop="icp" label="备案号" width="130" show-overflow-tooltip />
 				<el-table-column prop="icpUrl" label="icp地址" width="280" show-overflow-tooltip />
+				<el-table-column prop="enableReg" label="启用注册" width="280" show-overflow-tooltip>
+					<template #default="scope">
+						<g-sys-dict v-model="scope.row.enableReg" code="YesNoEnum" />
+					</template>
+				</el-table-column>
 				<el-table-column prop="orderNo" label="排序" width="70" show-overflow-tooltip />
 				<el-table-column label="修改记录" width="100" align="center" show-overflow-tooltip>
 					<template #default="scope">
@@ -144,6 +149,7 @@ import { SysTenantApi } from '/@/api-services/api';
 import { TenantOutput } from '/@/api-services/models';
 import {Local} from "/@/utils/storage";
 import {accessTokenKey, refreshAccessTokenKey} from "/@/utils/request";
+import GSysDict from "/@/components/sysDict/sysDict.vue";
 
 const editTenantRef = ref<InstanceType<typeof EditTenant>>();
 const grantMenuRef = ref<InstanceType<typeof GrantMenu>>();

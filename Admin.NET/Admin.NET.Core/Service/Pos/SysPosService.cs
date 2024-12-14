@@ -100,6 +100,10 @@ public class SysPosService : IDynamicApiController, ITransient
         // 若附属职位有用户则禁止删除
         var hasExtPosEmp = await _sysUserExtOrgService.HasUserPos(input.Id);
         if (hasExtPosEmp) throw Oops.Oh(ErrorCodeEnum.D6001);
+        
+        // 若有绑定注册方案则禁止删除
+        var hasUserRegWay = await _sysPosRep.Context.Queryable<SysUserRegWay>().AnyAsync(u => u.PosId == input.Id);
+        if (hasUserRegWay) throw Oops.Oh(ErrorCodeEnum.D6004);
 
         await _sysPosRep.DeleteAsync(u => u.Id == input.Id);
     }

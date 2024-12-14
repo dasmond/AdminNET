@@ -256,8 +256,10 @@ public class SysConfigService : IDynamicApiController, ITransient
             SysCopyright = tenant.Copyright,
             SysIcp = tenant.Icp,
             SysIcpUrl = tenant.IcpUrl,
+            SysRegWayId = tenant.RegWayId,
+            SysRegistration = tenant.EnableReg == YesNoEnum.Y,
             SysSecondVer = sysSecondVer,
-            SysCaptcha = sysCaptcha
+            SysCaptcha = sysCaptcha,
         };
     }
 
@@ -279,10 +281,12 @@ public class SysConfigService : IDynamicApiController, ITransient
         tenant.Copyright = input.SysCopyright;
         tenant.IcpUrl = input.SysIcpUrl;
         tenant.Icp = input.SysIcp;
+        tenant.RegWayId = input.SysRegistration ? input.SysRegWayId : null;
+        tenant.EnableReg = input.SysRegistration ? YesNoEnum.Y : YesNoEnum.N;
 
         await _sysConfigRep.Context.Updateable(tenant).ExecuteCommandAsync();
         await UpdateConfigValue(ConfigConst.SysSecondVer, input.SysSecondVer.ToString());
-        await UpdateConfigValue(ConfigConst.SysCaptcha, input.SysSecondVer.ToString());
+        await UpdateConfigValue(ConfigConst.SysCaptcha, input.SysCaptcha.ToString());
     }
 
     private void Remove(SysConfig config)
