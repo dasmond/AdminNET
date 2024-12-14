@@ -14,6 +14,7 @@
 							<el-tree
 								ref="treeRef"
 								:data="state.menuData"
+								check-strictly
 								node-key="id"
 								show-checkbox
 								:props="{ children: 'children', label: 'title', class: treeNodeClass }"
