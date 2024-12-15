@@ -161,7 +161,7 @@ public class SysMenuService : IDynamicApiController, ITransient
     [DisplayName("删除菜单")]
     public async Task DeleteMenu(DeleteMenuInput input)
     {
-        if (!_userManager.SuperAdmin && SysMenuSeedData().HasData().Any(u => u.Id == input.Id)) throw Oops.Oh(ErrorCodeEnum.D4013);
+        if (!_userManager.SuperAdmin && new SysMenuSeedData().HasData().Any(u => u.Id == input.Id)) throw Oops.Oh(ErrorCodeEnum.D4013);
 
         var menuTreeList = await _sysMenuRep.AsQueryable().ToChildListAsync(u => u.Pid, input.Id);
         var menuIdList = menuTreeList.Select(u => u.Id).ToList();
