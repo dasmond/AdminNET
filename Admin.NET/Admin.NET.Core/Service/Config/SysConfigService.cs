@@ -249,7 +249,7 @@ public class SysConfigService : IDynamicApiController, ITransient
         var sysSecondVer = await GetConfigValue<bool>(ConfigConst.SysSecondVer);
         var sysCaptcha = await GetConfigValue<bool>(ConfigConst.SysCaptcha);
 
-        var wayList = await _sysConfigRep.Context.Queryable<SysUserRegWay>().Select(u => new { Label = u.Name, Value = u.Id }).ToListAsunc();
+        var wayList = await _sysConfigRep.Context.Queryable<SysUserRegWay>().Select(u => new { Label = u.Name, Value = u.Id }).ToListAsync();
         return new
         {
             SysLogo = tenant.Logo,
