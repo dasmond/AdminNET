@@ -428,6 +428,18 @@ public enum ErrorCodeEnum
     D4011,
 
     /// <summary>
+    /// 系统菜单禁止修改
+    /// </summary>
+    [ErrorCodeItemMetadata("系统菜单禁止修改")]
+    D4012,
+
+    /// <summary>
+    /// 系统菜单禁止删除
+    /// </summary>
+    [ErrorCodeItemMetadata("系统菜单禁止删除")]
+    D4013,
+
+    /// <summary>
     /// 已存在同名或同编码应用
     /// </summary>
     [ErrorCodeItemMetadata("已存在同名或同编码应用")]
