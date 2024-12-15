@@ -112,12 +112,6 @@ const cascaderConfig = {
 // 打开弹窗
 const openDialog = async (row: any) => {
 	state.ruleForm = JSON.parse(JSON.stringify(row));
-	if (!state.ruleForm?.id) {
-		state.ruleForm.accountType = AccountTypeEnum.NUMBER_666;
-		state.ruleForm.roleId = <number>state.roleData[0].id;
-		state.ruleForm.orgId = <number>state.orgData[0].id;
-		state.ruleForm.posId = <number>state.posData[0].id;
-	}
 	state.isShowDialog = true;
 	ruleFormRef.value?.resetFields();
 };
