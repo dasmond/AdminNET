@@ -44,7 +44,7 @@
 								<ModifyRecord :data="scope.row" />
 							</template>
 						</el-table-column>
-						<el-table-column label="操作" width="80" fixed="right" align="center">
+						<el-table-column label="操作" width="80" fixed="right" align="center" v-if="auths(['sysDictType:update', 'sysDictType:delete'])">
 							<template #default="scope">
 								<el-tooltip content="编辑">
 									<el-button icon="ele-Edit" size="small" text type="primary" @click="openEditDictType(scope.row)" v-auth="'sysDictType:update'"> </el-button>
@@ -90,7 +90,7 @@
 							</el-button-group>
 						</el-form-item>
 						<el-form-item>
-							<el-button type="primary" icon="ele-Plus" @click="openAddDictData"> 新增 </el-button>
+							<el-button type="primary" icon="ele-Plus" @click="openAddDictData" v-auth="'sysDictData:add'"> 新增 </el-button>
 						</el-form-item>
 					</el-form>
 
@@ -120,16 +120,16 @@
 								<ModifyRecord :data="scope.row" />
 							</template>
 						</el-table-column>
-						<el-table-column label="操作" width="120" fixed="right" align="center" show-overflow-tooltip>
+						<el-table-column label="操作" width="120" fixed="right" align="center" show-overflow-tooltip v-if="auths(['sysDictData:add', 'sysDictData:update', 'sysDictData:delete'])">
 							<template #default="scope">
 								<el-tooltip content="编辑">
-									<el-button icon="ele-Edit" size="small" text type="primary" @click="openEditDictData(scope.row)"> </el-button>
+									<el-button icon="ele-Edit" size="small" text type="primary" @click="openEditDictData(scope.row)" v-auth="'sysDictData:update'"> </el-button>
 								</el-tooltip>
 								<el-tooltip content="删除">
-									<el-button icon="ele-Delete" size="small" text type="danger" @click="delDictData(scope.row)"> </el-button>
+									<el-button icon="ele-Delete" size="small" text type="danger" @click="delDictData(scope.row)" v-auth="'sysDictData:delete'"> </el-button>
 								</el-tooltip>
 								<el-tooltip content="复制">
-									<el-button icon="ele-CopyDocument" size="small" text type="primary" @click="openCopyDictData(scope.row)"> </el-button>
+									<el-button icon="ele-CopyDocument" size="small" text type="primary" @click="openCopyDictData(scope.row)" v-auth="'sysDictData:add'"> </el-button>
 								</el-tooltip>
 							</template>
 						</el-table-column>
@@ -164,6 +164,7 @@ import { SysDictType, SysDictData, UpdateDictDataInput } from '/@/api-services/m
 import EditDictType from '/@/views/system/dict/component/editDictType.vue';
 import EditDictData from '/@/views/system/dict/component/editDictData.vue';
 import ModifyRecord from '/@/components/table/modifyRecord.vue';
+import {auths} from "/@/utils/authFunction";
 
 const userStore = useUserInfo();
 const editDictTypeRef = ref<InstanceType<typeof EditDictType>>();
