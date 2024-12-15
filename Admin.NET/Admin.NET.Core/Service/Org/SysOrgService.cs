@@ -44,14 +44,14 @@ public class SysOrgService : IDynamicApiController, ITransient
         // 获取拥有的机构Id集合
         var userOrgIdList = await GetUserOrgIdList();
 
-        var iSugarQueryable = _sysOrgRep.AsQueryable()
+        var queryable = _sysOrgRep.AsQueryable()
             .WhereIF(_userManager.SuperAdmin && input.TenantId > 0, u => u.TenantId == input.TenantId)
             .OrderBy(u => new { u.OrderNo, u.Id });
 
         // 带条件筛选时返回列表数据
         if (!string.IsNullOrWhiteSpace(input.Name) || !string.IsNullOrWhiteSpace(input.Code) || !string.IsNullOrWhiteSpace(input.Type))
         {
-            return await iSugarQueryable.WhereIF(userOrgIdList.Count > 0, u => userOrgIdList.Contains(u.Id))
+            return await queryable.WhereIF(userOrgIdList.Count > 0, u => userOrgIdList.Contains(u.Id))
                 .WhereIF(!string.IsNullOrWhiteSpace(input.Name), u => u.Name.Contains(input.Name))
                 .WhereIF(!string.IsNullOrWhiteSpace(input.Code), u => u.Code == input.Code)
                 .WhereIF(!string.IsNullOrWhiteSpace(input.Type), u => u.Type == input.Type)
@@ -61,11 +61,11 @@ public class SysOrgService : IDynamicApiController, ITransient
         List<SysOrg> orgTree;
         if (_userManager.SuperAdmin)
         {
-            orgTree = await iSugarQueryable.ToTreeAsync(u => u.Children, u => u.Pid, input.Id);
+            orgTree = await queryable.ToTreeAsync(u => u.Children, u => u.Pid, input.Id);
         }
         else
         {
-            orgTree = await iSugarQueryable.ToTreeAsync(u => u.Children, u => u.Pid, input.Id, userOrgIdList.Select(d => (object)d).ToArray());
+            orgTree = await queryable.ToTreeAsync(u => u.Children, u => u.Pid, input.Id, userOrgIdList.Select(d => (object)d).ToArray());
             // 递归禁用没权限的机构（防止用户修改或创建无权的机构和用户）
             HandlerOrgTree(orgTree, userOrgIdList);
         }
