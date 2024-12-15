@@ -18,8 +18,31 @@ public class SysTenantMenuSeedData : ISqlSugarEntitySeedData<SysTenantMenu>
     /// <returns></returns>
     public IEnumerable<SysTenantMenu> HasData()
     {
-        var tenant = new SysTenantSeedData().HasData().First();
-        var menuList = new SysMenuSeedData().HasData().ToList();
-        return menuList.Select(u => new SysTenantMenu { Id = CommonUtil.GetFixedHashCode((tenant.Id + u.Id).ToString(), 1000000000000), TenantId = tenant.Id, MenuId = u.Id });
+        var id = 1300000000000;
+
+        var menuList = new List<SysMenu>();
+        var allMenuList = new SysMenuSeedData().HasData().ToList();
+
+        var dashboardMenu = allMenuList.First(u => u.Type == MenuTypeEnum.Dir && u.Title == "工作台");
+        menuList.AddRange(allMenuList.ToChildList(u => u.Id, u => u.Pid, dashboardMenu.Id));
+
+        var systemMenu = allMenuList.First(u => u.Type == MenuTypeEnum.Dir && u.Title == "系统管理");
+        menuList.Add(systemMenu);
+        menuList.AddRange(allMenuList.ToChildList(u => u.Id, u => u.Pid, u => u.Pid == systemMenu.Id && new[]{ "账号管理", "角色管理", "机构管理", "职位管理", "个人中心", "通知公告" }.Contains(u.Title)));
+
+        var platformMenu = allMenuList.First(u => u.Type == MenuTypeEnum.Dir && u.Title == "平台管理");
+        menuList.Add(platformMenu);
+        menuList.AddRange(allMenuList.ToChildList(u => u.Id, u => u.Pid, u => u.Pid == platformMenu.Id && new[]{ "菜单管理", "字典管理", "系统配置"}.Contains(u.Title)));
+        var dictMenu = menuList.First(u => u.Type == MenuTypeEnum.Menu && u.Title == "字典管理");
+        menuList = menuList.Where(u => u.Pid != dictMenu.Id || !new[]{"增加", "编辑", "删除"}.Contains(u.Title)).ToList();
+
+        var logMenu = allMenuList.First(u => u.Type == MenuTypeEnum.Dir && u.Title == "日志管理");
+        menuList.Add(logMenu);
+        menuList.AddRange(allMenuList.ToChildList(u => u.Id, u => u.Pid, u => u.Pid == logMenu.Id && new[]{ "访问日志", "操作日志" }.Contains(u.Title)));
+
+        menuList.Add(allMenuList.First(u => u.Type == MenuTypeEnum.Dir && u.Title == "帮助文档"));
+        menuList.Add(allMenuList.First(u => u.Type == MenuTypeEnum.Menu && u.Title == "关于项目"));
+
+        return menuList.Select(u => new SysTenantMenu { Id=id+=100, TenantId=SqlSugarConst.DefaultTenantId, MenuId=u.Id });
     }
 }
