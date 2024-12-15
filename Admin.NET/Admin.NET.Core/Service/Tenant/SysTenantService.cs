@@ -287,19 +287,8 @@ public class SysTenantService : IDynamicApiController, ITransient
         await _sysTenantRep.UpdateAsync(u => new SysTenant { UserId = newUser.Id, OrgId = newOrg.Id }, u => u.Id == tenantId);
 
         // 默认租户管理员角色菜单集合
-        var menuList = new List<SysMenu>();
-        var allMenuList = new SysMenuSeedData().HasData().ToList();
-        var titleList = new List<string> { "工作台", "系统管理", "账号管理", "角色管理", "机构管理", "职位管理", "个人中心", "通知公告",
-            "平台管理", "注册方案", "菜单管理", "字典管理", "系统配置", "日志管理","访问日志", "操作日志", "帮助文档", "关于项目" };
-        foreach (var menu in allMenuList.Where(u => titleList.Contains(u.Title)))
-        {
-            menuList.Add(menu);
-            if (menu.Type == MenuTypeEnum.Menu) menuList.AddRange(allMenuList.Where(u => u.Pid == menu.Id));
-        }
-        // 默认系统管理员禁止删除字典类型
-        var dict = allMenuList.First(u => u.Title == "字典管理");
-        menuList = menuList.Where(u => u.Pid != dict.Id || u.Title != "删除").ToList();
-        await GrantMenu(new TenantMenuInput { Id = tenantId, MenuIdList = menuList.Select(u => u.Id).ToList() });
+        var menuList = new SysTenantMenuSeedData().HasData().ToList();
+        await GrantMenu(new TenantMenuInput { Id = tenantId, MenuIdList = menuList.Select(u => u.MenuId).ToList() });
     }
 
     /// <summary>
