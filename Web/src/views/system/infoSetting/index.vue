@@ -57,7 +57,7 @@
 				</el-descriptions-item>
 				<el-descriptions-item label="注册方案" v-if="state.formData.sysRegistration">
 					<el-select v-model="state.formData.regWayId" placeholder="注册方案" clearable class="w100">
-						<el-option :label="item.name" :value="item.id" v-for="(item, index) in state.regWayData" :key="index" />
+						<el-option :label="item.label" :value="item.value" v-for="(item, index) in state.regWayData" :key="index" />
 					</el-select>
 				</el-descriptions-item>
 				<template #extra>
@@ -69,12 +69,12 @@
 </template>
 
 <script setup lang="ts" name="sysInfoSetting">
-import {nextTick, onMounted, reactive, ref} from 'vue';
+import {nextTick, reactive, ref} from 'vue';
 import { ElMessage, UploadInstance } from 'element-plus';
 import { fileToBase64 } from '/@/utils/base64Conver';
 
 import { getAPI } from '/@/utils/axios-utils';
-import {SysConfigApi, SysUserRegWayApi} from '/@/api-services';
+import {SysConfigApi} from '/@/api-services';
 
 const uploadRef = ref<UploadInstance>();
 const state = reactive({
@@ -97,10 +97,6 @@ const state = reactive({
 		sysSecondVer: undefined,
 		sysCaptcha: undefined,
 	},
-});
-
-onMounted(async () => {
-	state.regWayData = await getAPI(SysUserRegWayApi).apiSysUserRegWayListPost({}).then((res) => res.data.result ?? []);
 });
 
 // 通过onChange方法获得文件列表
@@ -181,6 +177,7 @@ const loadData = async () => {
 			regWayId: result.sysRegWayId,
 			sysRegistration: result.sysRegistration,
 		};
+		state.regWayData = result.sysUserRegWayList ?? [];
 	} finally {
 		nextTick(() => {
 			state.isLoading = false;
