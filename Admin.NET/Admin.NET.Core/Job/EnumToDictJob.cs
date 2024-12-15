@@ -54,7 +54,7 @@ public class EnumToDictJob : IJob
             await storageable1.BulkUpdateAsync();
 
             Console.WriteLine($"【{DateTime.Now}】系统枚举类转字典类型数据: 插入{storageable1.InsertList.Count}条, 更新{storageable1.UpdateList.Count}条, 共{storageable1.TotalList.Count}条。");
-            
+
             var config = App.GetOptions<DbConnectionOptions>().ConnectionConfigs.FirstOrDefault(u => SqlSugarConst.MainConfigId.Equals(u.ConfigId));
             var storageable2 = await db.Storageable(sysDictTypeList.SelectMany(x => x.Children).ToList())
                 .WhereColumns(it => new { it.DictTypeId, it.Value })
