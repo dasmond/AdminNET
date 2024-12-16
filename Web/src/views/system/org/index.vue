@@ -90,6 +90,7 @@ const state = reactive({
 		code: undefined,
 		type: undefined,
 	},
+	tenantId: undefined,
 	editOrgTitle: ''
 });
 
@@ -128,7 +129,7 @@ const resetQuery = () => {
 // 打开新增页面
 const openAddOrg = () => {
 	state.editOrgTitle = '添加机构';
-	editOrgRef.value?.openDialog({ status: 1, tenantId: state.queryParams.tenantId, orderNo: 100 });
+	editOrgRef.value?.openDialog({ status: 1, orderNo: 100, tenantId: state.tenantId });
 };
 
 // 打开编辑页面
@@ -167,6 +168,8 @@ const nodeClick = async (node: any) => {
 	state.queryParams.name = undefined;
 	state.queryParams.code = undefined;
 	state.queryParams.type = undefined;
+	state.tenantId = node.tenantId;
+	console.log(node)
 	handleQuery();
 };
 </script>

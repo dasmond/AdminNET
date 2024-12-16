@@ -137,7 +137,7 @@ const handleCommand = async (command: string | number | object) => {
 // 与父组件的交互逻辑
 const emits = defineEmits(['node-click']);
 const nodeClick = (node: any) => {
-	emits('node-click', { id: node.id, name: node.name });
+	emits('node-click', node);
 };
 
 // 导出对象
