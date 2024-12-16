@@ -75,11 +75,6 @@
 						<el-icon size="16" style="margin-right: 3px; display: inline; vertical-align: middle"><ele-Collection /></el-icon>字典值【{{ state.editDictTypeName }}】
 					</template>
 					<el-form :model="state.queryDictDataParams" ref="queryForm" :inline="true" @submit.native.prevent>
-						<el-form-item label="租户" v-if="userStore.userInfos.accountType == 999">
-							<el-select v-model="state.queryDictDataParams.tenantId" placeholder="租户" clearable style="width: 100%">
-								<el-option :value="item.value" :label="`${item.label} (${item.host})`" v-for="(item, index) in state.tenantList" :key="index" />
-							</el-select>
-						</el-form-item>
 						<el-form-item label="显示文本">
 							<el-input v-model="state.queryDictDataParams.label" placeholder="显示文本" @keyup.enter="handleDictDataQuery" />
 						</el-form-item>
@@ -221,6 +216,7 @@ const handleDictTypeQuery = async () => {
 // 查询字典值操作
 const handleDictDataQuery = async () => {
 	state.loading = true;
+	state.queryDictDataParams.tenantId = state.queryDictTypeParams.tenantId;
 	let params = Object.assign(state.queryDictDataParams, state.tableDictDataParams);
 	const res = await getAPI(SysDictDataApi).apiSysDictDataPagePost(params);
 	state.dictDataData = res.data.result?.items ?? [];
@@ -249,7 +245,7 @@ const resetDictDataQuery = () => {
 // 打开新增字典页面
 const openAddDictType = () => {
 	state.editDictTypeTitle = '添加字典';
-	editDictTypeRef.value?.openDialog({ status: 1, orderNo: 100 });
+	editDictTypeRef.value?.openDialog({ status: 1, orderNo: 100, tenantId: state.queryDictTypeParams.tenantId });
 };
 
 // 打开新增字典值页面
@@ -259,7 +255,7 @@ const openAddDictData = () => {
 		return;
 	}
 	state.editDictDataTitle = '添加字典值';
-	editDictDataRef.value?.openDialog({ status: 1, orderNo: 100, dictTypeId: state.queryDictDataParams.dictTypeId });
+	editDictDataRef.value?.openDialog({ status: 1, orderNo: 100, dictTypeId: state.queryDictDataParams.dictTypeId, tenantId: state.queryDictTypeParams.tenantId });
 };
 
 // 打开编辑字典页面
