@@ -2,7 +2,7 @@
 	<el-card class="box-card" shadow="hover" style="height: 100%" body-style="height:100%; overflow:auto">
 		<template #header>
 			<div class="card-header">
-				<div class="tree-h-flex">
+				<div class="tree-h-flex" v-if="!props.tenantId">
 					<el-select v-if="userStore.userInfos.accountType == 999" v-model="state.tenantId" @change="initTreeData()" placeholder="请选择租户" class="w100 mb10">
 						<el-option :value="item.value" :label="`${item.label} (${item.host})`" v-for="(item, index) in state.tenantList" :key="index" />
 					</el-select>
@@ -66,16 +66,19 @@ import {SysOrgApi, SysTenantApi} from '/@/api-services/api';
 import { SysOrg } from '/@/api-services/models';
 import { useUserInfo } from "/@/stores/userInfo";
 
+const props = defineProps({
+	tenantId: Number,
+});
 const userStore = useUserInfo();
 const filterText = ref('');
 const treeRef = ref<InstanceType<typeof ElTree>>();
 const state = reactive({
 	loading: false,
-	tenantList: [],
-	tenantId: undefined as Number,
+	tenantList: [] as Array<any>,
+	tenantId: props.tenantId as number,
 	orgData: [] as Array<SysOrg>,
 	isShowCheckbox: false,
-	ownOrgData: [],
+	ownOrgData: [] as Array<SysOrg>,
 });
 
 onMounted( async () => {
