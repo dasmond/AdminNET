@@ -105,7 +105,7 @@
 							<el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="mb20">
 								<el-form-item label="Logo" prop="logo" :rules="[{ required: true, message: '应用Logo不能为空', trigger: 'blur' }]">
 									<el-upload ref="uploadRef" class="avatar-uploader" :showFileList="false" :autoUpload="false" accept=".jpg,.png,.svg" action :limit="1" :onChange="handleUploadChange">
-										<img v-if="state.ruleForm.logo" :src="state.ruleForm.logo" class="avatar" />
+										<img v-if="state.ruleForm.logo" :src="state.ruleForm.logo" class="avatar" style="max-width: 100px; max-height: 100px; object-fit: contain" />
 										<SvgIcon v-else class="avatar-uploader-icon" name="ele-Plus" :size="28" />
 									</el-upload>
 								</el-form-item>
