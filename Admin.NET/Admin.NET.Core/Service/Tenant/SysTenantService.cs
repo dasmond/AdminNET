@@ -294,9 +294,10 @@ public class SysTenantService : IDynamicApiController, ITransient
     /// <summary>
     /// 获取租户默认菜单
     /// </summary>
+    /// <param name="ignoreHome">如果某租户需要定制主页，可以忽略</param>
     /// <returns></returns>
     [NonAction]
-    public IEnumerable<SysTenantMenu> GetTenantDefaultMenuList()
+    public IEnumerable<SysTenantMenu> GetTenantDefaultMenuList(bool ignoreHome = false)
     {
         var id = 1300000000000;
 
@@ -305,6 +306,7 @@ public class SysTenantService : IDynamicApiController, ITransient
 
         var dashboardMenu = allMenuList.First(u => u.Type == MenuTypeEnum.Dir && u.Title == "工作台");
         menuList.AddRange(allMenuList.ToChildList(u => u.Id, u => u.Pid, dashboardMenu.Id));
+        if (ignoreHome) menuList = menuList.Where(u => !(u.Type == MenuTypeEnum.Menu && u.Name == "home")).ToList();
 
         var systemMenu = allMenuList.First(u => u.Type == MenuTypeEnum.Dir && u.Title == "系统管理");
         menuList.Add(systemMenu);
