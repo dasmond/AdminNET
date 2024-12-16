@@ -111,6 +111,9 @@ const cascaderConfig = {
 
 // 打开弹窗
 const openDialog = async (row: any) => {
+	state.roleData = (row?.tenantId ? state.roleData?.filter((e) => e.tenantId === row.tenantId) : state.roleData) ?? [];
+	state.posData = (row?.tenantId ? state.posData?.filter((e) => e.tenantId === row.tenantId) : state.posData) ?? [];
+	state.orgData = (row?.tenantId ? state.orgData?.filter((e) => e.tenantId === row.tenantId) : state.orgData) ?? [];
 	state.ruleForm = JSON.parse(JSON.stringify(row));
 	state.isShowDialog = true;
 	ruleFormRef.value?.resetFields();
