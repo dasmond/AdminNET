@@ -134,9 +134,9 @@ const state = reactive({
 		account: undefined,
 		realName: undefined,
 		phone: undefined,
-		posName: undefined,
-		tenantId: undefined,
+		posName: undefined
 	},
+	tenantId: undefined,
 	tableParams: {
 		page: 1,
 		pageSize: 50,
@@ -181,7 +181,7 @@ const resetQuery = async () => {
 // 打开新增页面
 const openAddUser = () => {
 	state.editUserTitle = '添加账号';
-	editUserRef.value?.openDialog({ id: undefined, birthday: '2000-01-01', sex: 1, tenantId: state.queryParams.tenantId, orderNo: 100, cardType: 0, cultureLevel: 5 });
+	editUserRef.value?.openDialog({ id: undefined, birthday: '2000-01-01', sex: 1, tenantId: state.tenantId, orderNo: 100, cardType: 0, cultureLevel: 5 });
 };
 
 // 打开编辑页面
@@ -278,6 +278,7 @@ const nodeClick = async (node: any) => {
 	state.queryParams.account = undefined;
 	state.queryParams.realName = undefined;
 	state.queryParams.phone = undefined;
+	state.tenantId = node.tenantId;
 	await handleQuery();
 };
 </script>

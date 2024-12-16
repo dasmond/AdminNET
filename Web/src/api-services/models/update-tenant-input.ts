@@ -226,15 +226,15 @@ export interface UpdateTenantInput {
      */
     icpUrl: string;
     /**
-     * Logo文件名
-     * @type {string}
-     * @memberof UpdateTenantInput
-     */
-    logoFileName?: string | null;
-    /**
      * Logo图片Base64码
      * @type {string}
      * @memberof UpdateTenantInput
      */
     logoBase64?: string | null;
+    /**
+     * Logo文件名
+     * @type {string}
+     * @memberof UpdateTenantInput
+     */
+    logoFileName?: string | null;
 }

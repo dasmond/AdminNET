@@ -11,7 +11,7 @@
 				<el-row :gutter="35">
 					<el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="mb20">
 						<el-form-item label="上级机构">
-							<el-cascader :options="props.orgData" :props="cascaderProps" placeholder="请选择上级机构" clearable filterable class="w100" v-model="state.ruleForm.pid">
+							<el-cascader :options="state.orgData" :props="cascaderProps" placeholder="请选择上级机构" clearable filterable class="w100" v-model="state.ruleForm.pid">
 								<template #default="{ node, data }">
 									<span>{{ data.name }}</span>
 									<span v-if="!node.isLeaf"> ({{ data.children.length }}) </span>
@@ -83,6 +83,7 @@ const emits = defineEmits(['reload']);
 const ruleFormRef = ref();
 const state = reactive({
 	isShowDialog: false,
+	orgData: [] as Array<SysOrg>,
 	ruleForm: {} as UpdateOrgInput,
 	orgTypeList: [] as any,
 });
@@ -91,6 +92,7 @@ const cascaderProps = { checkStrictly: true, emitPath: false, value: 'id', label
 
 // 打开弹窗
 const openDialog = (row: any) => {
+	state.orgData = (row?.tenantId ? props.orgData?.filter((e) => e.tenantId === row.tenantId) : props.orgData) ?? [];
 	state.ruleForm = JSON.parse(JSON.stringify(row));
 	state.isShowDialog = true;
 	ruleFormRef.value?.resetFields();
