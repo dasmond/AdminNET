@@ -30,10 +30,9 @@
 
 <script lang="ts" setup name="sysEditApp">
 import { reactive, ref } from 'vue';
-import { Local } from "/@/utils/storage";
 import { getAPI } from '/@/utils/axios-utils';
 import { SysTenantApi } from "/@/api-services";
-import { accessTokenKey, refreshAccessTokenKey } from "/@/utils/request";
+import { reLoadLoginAccessToken } from "/@/utils/request";
 
 const ruleFormRef = ref();
 const state = reactive({
@@ -58,12 +57,7 @@ const submit = () => {
 	ruleFormRef.value.validate(async (valid: boolean) => {
 		if (!valid) return;
 		state.loading = true;
-		const newToken = await getAPI(SysTenantApi).apiSysTenantChangeTenantPost(state.ruleForm).then(res => res.data.result);
-		if (newToken) {
-			Local.set(accessTokenKey, newToken.accessToken);
-			Local.set(refreshAccessTokenKey, newToken.refreshToken);
-			location.href = "/";
-		}
+		getAPI(SysTenantApi).apiSysTenantChangeTenantPost(state.ruleForm).then(res => reLoadLoginAccessToken(res.data.result));
 		state.loading = false;
 		state.isShowDialog = false;
 	});
