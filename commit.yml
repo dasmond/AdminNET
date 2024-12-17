@@ -3,33 +3,33 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid 'fb9f6773f7c9fb4850ba017bf1850fa0d9ee4507'
-    oldFile: !uuid 'c01a0cd76015dbc6e02281b7195af052ea494d20'
+    newFile: !uuid 'f222b2c88af26044ae16fa2ada12199333ca699b'
+    oldFile: !uuid 'fb9f6773f7c9fb4850ba017bf1850fa0d9ee4507'
+  /Admin.NET/Admin.NET.Application:
+    newFile: !uuid '660865193b71019fa959f8bc6b017f717f7a505a'
+    oldFile: !uuid 'a9ca2ed4ff65a92a7314ffd0382920629d667b3b'
+  /Admin.NET/Admin.NET.Application/GlobalUsings.cs:
+    newFile: !uuid '6723b34b2bbc6cbfce693d446132568b7058631f'
+    oldFile: !uuid 'c7663610393e0338d317cc2bf631b88f49bc948f'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '8bf01c3fb6cef85ebf9b11ca12ca17c1be2a8a0d'
-    oldFile: !uuid '4116c07713a5e2e1626703ab082ea23f8510807b'
+    newFile: !uuid '87d832c1ebf7d2c2e9c09c450e5dd8fbb6309710'
+    oldFile: !uuid '8bf01c3fb6cef85ebf9b11ca12ca17c1be2a8a0d'
   /Admin.NET/Admin.NET.Core/Job:
-    newFile: !uuid '0fc39111ff92df20c1275b069acf5f25fd4e23b7'
-    oldFile: !uuid 'e592ea0f680dec9563aceb0c1e66a7466c5c6f8a'
+    newFile: !uuid '975e1cdab88d71745f003a6e82b2880b5c141ece'
+    oldFile: !uuid '0fc39111ff92df20c1275b069acf5f25fd4e23b7'
   /Admin.NET/Admin.NET.Core/Job/EnumToDictJob.cs:
-    newFile: !uuid '46be30ccd63c6adb1f8e6a1ab48c9d8d0ea1f33c'
-    oldFile: !uuid '24eddd541a98d2734d21b80e9c4570a3bdb11220'
+    newFile: !uuid 'ebbcc3a4590d10751c196c99d093705987657c93'
+    oldFile: !uuid '46be30ccd63c6adb1f8e6a1ab48c9d8d0ea1f33c'
   /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid 'be2964d3120575e7d61d12370630d80557d6a51f'
-    oldFile: !uuid 'c0911dcd7df0c2835612e0784c2588851c6a90a8'
+    newFile: !uuid 'e7f901f9d1d3f71b21d668d23b67bd37ee28e64c'
+    oldFile: !uuid 'be2964d3120575e7d61d12370630d80557d6a51f'
   /Admin.NET/Admin.NET.Core/Service/Enum:
-    newFile: !uuid 'a3f24e56fa4bd9f7d2c664712902a13c9ea3d119'
-    oldFile: !uuid '12aef79d97a9171f8467f72150a84590a978250c'
-  /Admin.NET/Admin.NET.Core/Service/Enum/Dto:
-    newFile: !uuid 'a64c9b99092c2bb8dca7c2fcd77965acdcdab550'
-    oldFile: !uuid '0808a752cb431483333b97439e47c75507b8e4b3'
-  /Admin.NET/Admin.NET.Core/Service/Enum/Dto/EnumOutput.cs:
-    newFile: !uuid '396149ab4d83f2b6e6dccbe1c9b8f49a4c7eeb7b'
-    oldFile: !uuid 'f7b9006624259a2a3f3c45b6e0f0dee2e7c45877'
+    newFile: !uuid '7e6111799400320d88614467fb736216027226fb'
+    oldFile: !uuid 'a3f24e56fa4bd9f7d2c664712902a13c9ea3d119'
   /Admin.NET/Admin.NET.Core/Service/Enum/SysEnumService.cs:
-    newFile: !uuid 'e268db49461b1af68967b143bcb6703bc72f57c9'
-    oldFile: !uuid '04d04e0e7ed2d030bade0181f2a0c6e598a1f4cd'
-gitCommitId: !uuid '0f03503d6820fa90b235824b80647dd7802eb7b4'
+    newFile: !uuid 'cdff7b0641aaf385b5253d376b026c689152dad3'
+    oldFile: !uuid 'e268db49461b1af68967b143bcb6703bc72f57c9'
+gitCommitId: !uuid '1d3b1dda8226192d92425de1705ab57554e8176f'
 renames: {
   }
-revisionId: 2607
+revisionId: 2608
