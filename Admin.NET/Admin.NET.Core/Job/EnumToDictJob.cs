@@ -36,9 +36,23 @@ public class EnumToDictJob : IJob
 
         // 校验枚举类命名规范，字典相关功能中需要通过后缀判断是否为枚举类型
         Console.ForegroundColor = ConsoleColor.Red;
-        foreach (var dictType in sysDictTypeList.Where(x => !x.Code.EndsWith("Enum")))
-            Console.WriteLine($"【{DateTime.Now}】系统枚举转换字典的枚举类名称必须以Enum结尾: {dictType.Code} ({dictType.Name})");
-        sysDictTypeList = sysDictTypeList.Where(x => x.Code.EndsWith("Enum")).ToList();
+        var hashSet = new HashSet<string>();
+        foreach (var dictType in sysDictTypeList)
+        {
+            if(sysDictTypeList.Count(x => x.Code == dictType.Code) > 1)
+            {
+                Console.WriteLine($"【{DateTime.Now}】系统枚举转换字典的枚举类名称必须全局唯一: {dictType.Code} ({dictType.Name})");
+                hashSet.Add(dictType.Code);
+            }
+            if(!dictType.Code.EndsWith("Enum"))
+            {
+                Console.WriteLine($"【{DateTime.Now}】系统枚举转换字典的枚举类名称必须以Enum结尾: {dictType.Code} ({dictType.Name})");
+                hashSet.Add(dictType.Code);
+            }
+        }
+        sysDictTypeList = sysDictTypeList
+            .Where(x => !hashSet.Contains(x.Code))
+            .ToList();
 
         await SyncEnumToDictInfoAsync(db, sysDictTypeList);
 
