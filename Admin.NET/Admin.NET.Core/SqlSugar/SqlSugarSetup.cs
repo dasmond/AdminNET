@@ -149,34 +149,35 @@ public static class SqlSugarSetup
                 Console.ForegroundColor = originColor;
                 App.PrintToMiniProfiler("SqlSugar", "Info", log);
             };
-            db.Aop.OnError = ex =>
-            {
-                if (ex.Parametres == null) return;
-                var log = $"【{DateTime.Now}——错误SQL】\r\n{UtilMethods.GetNativeSql(ex.Sql, (SugarParameter[])ex.Parametres)}\r\n";
-                Log.Error(log, ex);
-                App.PrintToMiniProfiler("SqlSugar", "Error", log);
-            };
-            db.Aop.OnLogExecuted = (sql, pars) =>
-            {
-                //// 若参数值超过100个字符则进行截取
-                //foreach (var par in pars)
-                //{
-                //    if (par.DbType != System.Data.DbType.String || par.Value == null) continue;
-                //    if (par.Value.ToString().Length > 100)
-                //        par.Value = string.Concat(par.Value.ToString()[..100], "......");
-                //}
-
-                // 执行时间超过5秒时
-                if (!(db.Ado.SqlExecutionTime.TotalSeconds > 5)) return;
-
-                var fileName = db.Ado.SqlStackTrace.FirstFileName; // 文件名
-                var fileLine = db.Ado.SqlStackTrace.FirstLine; // 行号
-                var firstMethodName = db.Ado.SqlStackTrace.FirstMethodName; // 方法名
-                var log = $"【{DateTime.Now}——超时SQL】\r\n【所在文件名】：{fileName}\r\n【代码行数】：{fileLine}\r\n【方法名】：{firstMethodName}\r\n" + $"【SQL语句】：{UtilMethods.GetNativeSql(sql, pars)}";
-                Log.Warning(log);
-                App.PrintToMiniProfiler("SqlSugar", "Slow", log);
-            };
         }
+        db.Aop.OnError = ex =>
+        {
+            if (ex.Parametres == null) return;
+            var log = $"【{DateTime.Now}——错误SQL】\r\n{UtilMethods.GetNativeSql(ex.Sql, (SugarParameter[])ex.Parametres)}\r\n";
+            Log.Error(log, ex);
+            App.PrintToMiniProfiler("SqlSugar", "Error", log);
+        };
+        db.Aop.OnLogExecuted = (sql, pars) =>
+        {
+            //// 若参数值超过100个字符则进行截取
+            //foreach (var par in pars)
+            //{
+            //    if (par.DbType != System.Data.DbType.String || par.Value == null) continue;
+            //    if (par.Value.ToString().Length > 100)
+            //        par.Value = string.Concat(par.Value.ToString()[..100], "......");
+            //}
+
+            // 执行时间超过5秒时
+            if (!(db.Ado.SqlExecutionTime.TotalSeconds > 5)) return;
+
+            var fileName = db.Ado.SqlStackTrace.FirstFileName; // 文件名
+            var fileLine = db.Ado.SqlStackTrace.FirstLine; // 行号
+            var firstMethodName = db.Ado.SqlStackTrace.FirstMethodName; // 方法名
+            var log = $"【{DateTime.Now}——超时SQL】\r\n【所在文件名】：{fileName}\r\n【代码行数】：{fileLine}\r\n【方法名】：{firstMethodName}\r\n" + $"【SQL语句】：{UtilMethods.GetNativeSql(sql, pars)}";
+            Log.Warning(log);
+            App.PrintToMiniProfiler("SqlSugar", "Slow", log);
+        };
+
         // 数据审计
         db.Aop.DataExecuting = (_, entityInfo) =>
         {

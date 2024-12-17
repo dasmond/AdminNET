@@ -37,7 +37,7 @@ public class SysDictTypeService : IDynamicApiController, ITransient
     {
         return await _sysDictTypeRep.AsQueryable()
             .WhereIF(!_userManager.SuperAdmin, u => !SqlFunc.EndsWith(SqlFunc.ToLower(u.Code), nameof(Enum).ToLower()))
-            .WhereIF(_userManager.SuperAdmin && input.TenantId > 0, u => u.TenantId ==  input.TenantId)
+            .WhereIF(_userManager.SuperAdmin && input.TenantId > 0, u => u.TenantId == input.TenantId)
             .WhereIF(!string.IsNullOrEmpty(input.Code?.Trim()), u => u.Code.Contains(input.Code))
             .WhereIF(!string.IsNullOrEmpty(input.Name?.Trim()), u => u.Name.Contains(input.Name))
             .OrderBy(u => new { u.OrderNo, u.Code })
@@ -164,7 +164,7 @@ public class SysDictTypeService : IDynamicApiController, ITransient
             .ToListAsync();
         return ds.OrderBy(u => u.OrderNo).GroupBy(u => u.TypeCode).ToDictionary(u => u.Key, u => u);
     }
-    
+
     /// <summary>
     /// 获取SysDictData表查询实例
     /// </summary>
@@ -175,7 +175,7 @@ public class SysDictTypeService : IDynamicApiController, ITransient
         var ids = GetTenantIdList();
         return _sysDictTypeRep.AsQueryable().ClearFilter().WhereIF(!_userManager.SuperAdmin, u => ids.Contains(u.TenantId.Value));
     }
-    
+
     /// <summary>
     /// 获取租户Id列表
     /// </summary>

@@ -38,7 +38,7 @@ public class SysDictDataService : IDynamicApiController, ITransient
             .Where(u => u.DictTypeId == input.DictTypeId)
             .WhereIF(!_userManager.SuperAdmin, u => ids.Contains(u.TenantId.Value))
             .WhereIF(!string.IsNullOrEmpty(input.Label?.Trim()), u => u.Value.Contains(input.Label))
-            .WhereIF(_userManager.SuperAdmin && input.TenantId > 0, u => u.TenantId ==  input.TenantId)
+            .WhereIF(_userManager.SuperAdmin && input.TenantId > 0, u => u.TenantId == input.TenantId)
             .OrderBy(u => new { u.OrderNo, Code = u.Value })
             .ToPagedListAsync(input.Page, input.PageSize);
     }
@@ -148,7 +148,7 @@ public class SysDictDataService : IDynamicApiController, ITransient
     [NonAction]
     public async Task<List<SysDictData>> GetDictDataListByDictTypeId(long dictTypeId)
     {
-        var dictType = await App.GetService<SysDictTypeService>().GetDetail(new DictTypeInput { Id= dictTypeId });
+        var dictType = await App.GetService<SysDictTypeService>().GetDetail(new DictTypeInput { Id = dictTypeId });
         var dictDataList = _sysCacheService.Get<List<SysDictData>>($"{CacheConst.KeyDict}{dictTypeId}");
 
         if (dictDataList == null)
@@ -199,7 +199,7 @@ public class SysDictDataService : IDynamicApiController, ITransient
             .OrderBy((u, a) => new { a.OrderNo, Code = a.Value })
             .Select((u, a) => a).ToListAsync();
     }
-    
+
     /// <summary>
     /// 获取租户Id列表
     /// </summary>
@@ -214,7 +214,7 @@ public class SysDictDataService : IDynamicApiController, ITransient
     [NonAction]
     public ISugarQueryable<SysDictData> GetSysDictDataQueryable()
     {
-        var ids = GetTenantIdList(); 
+        var ids = GetTenantIdList();
         return _sysDictDataRep.AsQueryable().ClearFilter().WhereIF(!_userManager.SuperAdmin, u => ids.Contains(u.TenantId.Value));
     }
 
