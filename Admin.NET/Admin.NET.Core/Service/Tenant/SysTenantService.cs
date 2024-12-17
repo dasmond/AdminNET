@@ -101,8 +101,8 @@ public class SysTenantService : IDynamicApiController, ITransient
     public async Task<dynamic> GetList()
     {
         return await _sysTenantRep.AsQueryable()
-            .LeftJoin<SysOrg>((u, a) => u.OrgId == a.Id)
-            .Where(u => u.Status == StatusEnum.Enable)
+           .LeftJoin<SysOrg>((u, a) => u.OrgId == a.Id).ClearFilter()
+           .Where(u => u.Status == StatusEnum.Enable && u.IsDelete == false)
             .Select((u, a) => new
             {
                 Label = a.Name,
