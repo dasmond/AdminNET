@@ -27,12 +27,19 @@ public class SysEnumService : IDynamicApiController, ITransient
     public List<EnumTypeOutput> GetEnumTypeList()
     {
         var enumTypeList = App.EffectiveTypes.Where(t => t.IsEnum)
-            .Where(t => _enumOptions.EntityAssemblyNames.Contains(t.Assembly.GetName().Name) || _enumOptions.EntityAssemblyNames.Any(name => t.Assembly.GetName().Name.Contains(name)))
+            .Where(t => _enumOptions.EntityAssemblyNames.Contains(t.Assembly.GetName().Name) || _enumOptions.EntityAssemblyNames.Any(name => t.Assembly.GetName().Name!.Contains(name)))
             .Where(t => t.GetCustomAttributes(typeof(ErrorCodeTypeAttribute), false).Length == 0) // 排除错误代码类型
             .OrderBy(u => u.Name).ThenBy(u => u.FullName)
             .ToList();
 
-        return enumTypeList.Select(GetEnumDescription).ToList();
+        // 如果存在同名枚举类，则依次增加 "_序号" 后缀
+        var list = enumTypeList.Select(GetEnumDescription).ToList();
+        foreach (var enumType in list.GroupBy(u => u.TypeName).Where(g => g.Count() > 1))
+        {
+            int i = 1;
+            foreach (var item in list.Where(u => u.TypeName == enumType.Key).Skip(1)) item.TypeName = $"{item.TypeName}_{i++}";
+        }
+        return list;
     }
 
     /// <summary>
@@ -55,6 +62,7 @@ public class SysEnumService : IDynamicApiController, ITransient
             TypeDescribe = description,
             TypeName = type.Name,
             TypeRemark = description,
+            TypeFullName = type.FullName,
             EnumEntities = (enumType ?? type).EnumToList()
         };
     }
