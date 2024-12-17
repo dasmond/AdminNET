@@ -3,69 +3,18 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '7982cc1809d11ed8e112cf24838f1f340f75002f'
-    oldFile: !uuid '0fb39c049d013bf00ee6974f2456098c3d9c1e5b'
+    newFile: !uuid 'c0c64d977e276db44c30518bf5c333f67c287fc4'
+    oldFile: !uuid '7982cc1809d11ed8e112cf24838f1f340f75002f'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '70600bb1ef59c3aa8f3c83d93b479aa1c7b38b38'
-    oldFile: !uuid '10b1dfb210daf2045ec07bd45f9686fd859722e3'
-  /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
-    newFile: !uuid '565a3e4fa80f382a260dad2652a18b52e6a26703'
-    oldFile: !uuid '2b96f484f15b8600e1d4318509811bfbe63b74ac'
-  /Admin.NET/Admin.NET.Core/Attribute:
-    newFile: !uuid '7a432775b3ad0e65ec61eca14881ce1f430a2dda'
-    oldFile: !uuid '6346b8675c070ac5255e1019747a85f8deb15793'
-  /Admin.NET/Admin.NET.Core/Attribute/CommonValidationAttribute.cs:
-    newFile: !uuid 'e58d08a45da7f88ddf33846f0996a0b7f78b8070'
-    oldFile: null
-  /Admin.NET/Admin.NET.Core/Common:
-    newFile: null
-    oldFile: !uuid '951e47a53650f3e60c964c932e5c7ef21c2c4b72'
-  /Admin.NET/Admin.NET.Core/Common/CommonValidationAttribute.cs:
-    newFile: null
-    oldFile: !uuid 'd284631e62c5c3100f82cd8ec396e306f5802233'
+    newFile: !uuid '2c813e9e469d0079c23e2557d5746453d5baccda'
+    oldFile: !uuid '70600bb1ef59c3aa8f3c83d93b479aa1c7b38b38'
   /Admin.NET/Admin.NET.Core/Job:
-    newFile: !uuid 'c65cf56b6ed6f46ab743eb614e538de178ea15ed'
-    oldFile: !uuid '2c0c3cfde9975b5346f0f39766f388ec84752f7e'
+    newFile: !uuid '5e7528a09dce4da6947a4a93bb0358e7526d76ba'
+    oldFile: !uuid 'c65cf56b6ed6f46ab743eb614e538de178ea15ed'
   /Admin.NET/Admin.NET.Core/Job/EnumToDictJob.cs:
-    newFile: !uuid '407bbde5cf3b988bce50429ae81093019571487f'
-    oldFile: !uuid '74c3d763e91f9d26dc1f492429312456dc881131'
-  /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid 'c0911dcd7df0c2835612e0784c2588851c6a90a8'
-    oldFile: !uuid 'f2709f7ba8871d41f904d7866a9aaafa1cb50e48'
-  /Admin.NET/Admin.NET.Core/Service/Dict:
-    newFile: !uuid 'ef76ae724a4227216f792936e8c76074c97b8f6d'
-    oldFile: !uuid 'd97bafb6ee0906ebfa809774a89ca83091ba0a5e'
-  /Admin.NET/Admin.NET.Core/Service/Dict/Dto:
-    newFile: !uuid '3bba3701479441735a2b36b0e36e4feeb68090dc'
-    oldFile: !uuid '65a195813d74fcd85756c42230e4193cd2b3fea0'
-  /Admin.NET/Admin.NET.Core/Service/Dict/Dto/DictDataInput.cs:
-    newFile: !uuid '59c266c226f55e50d9ca324f1e01019d265a42c7'
-    oldFile: !uuid '85af95d51ba764a2e2a3758f758c1515af69b0b7'
-  /Admin.NET/Admin.NET.Core/Service/Dict/Dto/DictTypeInput.cs:
-    newFile: !uuid '93a7c0a7499eb9935a4b0b1612519ec4e95c28f4'
-    oldFile: !uuid '6b80584a0c586ec09dd6bdb3740a062ab3b8bf98'
-  /Admin.NET/Admin.NET.Core/Service/Dict/SysDictDataService.cs:
-    newFile: !uuid '5e337582d6aad9d6858b1a91f63d0fd0c72d3e19'
-    oldFile: !uuid 'f33f11cb184a83160c1d958abf28cd8b0abc5886'
-  /Admin.NET/Admin.NET.Core/Service/Dict/SysDictTypeService.cs:
-    newFile: !uuid 'e33b2a0792f5902db465b4f47297ad729733cc98'
-    oldFile: !uuid 'b26d9bf9873c3ea32300940c48c080fd2f669e66'
-  /Admin.NET/Admin.NET.Core/SqlSugar:
-    newFile: !uuid '4d73e9a60097e5e9911a3ed0125cb16193ef37b4'
-    oldFile: !uuid '27e42c64e9bfede82ee5b4f70682181f3f139941'
-  /Admin.NET/Admin.NET.Core/SqlSugar/SqlSugarSetup.cs:
-    newFile: !uuid 'ffe5d4bef5b848a0f8d953b7a06357b4c49242ef'
-    oldFile: !uuid 'dfc03d54f5443c97393c1476975169bec091a9f3'
-  /Admin.NET/Plugins:
-    newFile: !uuid '2757d50eef484ae83d9ac296d728c1ee19074a6f'
-    oldFile: !uuid '6329c227fe3656f9df6b016c97458041b6dd9a42'
-  /Admin.NET/Plugins/Admin.NET.Plugin.ReZero:
-    newFile: !uuid 'f4537b81305b5cb056b50fd565d193417a3a9146'
-    oldFile: !uuid '88c1b6f740dcd44dd8179e024424bc6d9b70f122'
-  /Admin.NET/Plugins/Admin.NET.Plugin.ReZero/Admin.NET.Plugin.ReZero.csproj:
-    newFile: !uuid 'd3def6fc6233a7c7bb8a43d691f39aada6e14200'
-    oldFile: !uuid '29612777e157978ab28883ec2f34cdd5df47b00c'
-gitCommitId: !uuid 'df39728f1b547eb0b2e36f9f20e09e9746393976'
-renames:
-  /Admin.NET/Admin.NET.Core/Attribute/CommonValidationAttribute.cs: /Admin.NET/Admin.NET.Core/Common/CommonValidationAttribute.cs
-revisionId: 2549
+    newFile: !uuid '516de4b5ef0a0deb693ae5adb6f116062bed63f9'
+    oldFile: !uuid '407bbde5cf3b988bce50429ae81093019571487f'
+gitCommitId: !uuid '46ffbede1f12ce56e51a6af3ccf541e8ee4e35c4'
+renames: {
+  }
+revisionId: 2550
