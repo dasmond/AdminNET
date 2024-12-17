@@ -54,9 +54,6 @@ public class SysAuthService : IDynamicApiController, ITransient
     [DisplayName("账号密码登录")]
     public virtual async Task<LoginOutput> Login([Required] LoginInput input)
     {
-        //// 可以根据域名获取具体租户
-        //var host = _httpContextAccessor.HttpContext.Request.Host;
-
         // 判断密码错误次数（缓存30分钟）
         var keyPasswordErrorTimes = $"{CacheConst.KeyPasswordErrorTimes}{input.Account}";
         var passwordErrorTimes = _sysCacheService.Get<int>(keyPasswordErrorTimes);
@@ -65,11 +62,8 @@ public class SysAuthService : IDynamicApiController, ITransient
         if (passwordMaxErrorTimes < 1) passwordMaxErrorTimes = 10;
         if (passwordErrorTimes > passwordMaxErrorTimes) throw Oops.Oh(ErrorCodeEnum.D1027);
 
-        // 判断是否开启验证码，其校验验证码
-        if (await _sysConfigService.GetConfigValue<bool>(ConfigConst.SysCaptcha) && !_captcha.Validate(input.CodeId.ToString(), input.Code)) throw Oops.Oh(ErrorCodeEnum.D0008);
-
         // 获取登录租户和用户
-        var (tenant, user) = await GetLoginUserAndTenant(input.TenantId, account: input.Account);
+        var (tenant, user) = await GetLoginUserAndTenant(input.TenantId, codeId: input.CodeId, code: input.Code, account: input.Account);
 
         // 账号是否被冻结
         if (user.Status == StatusEnum.Disable) throw Oops.Oh(ErrorCodeEnum.D1017);
@@ -101,14 +95,22 @@ public class SysAuthService : IDynamicApiController, ITransient
     /// 获取登录租户和用户
     /// </summary>
     /// <param name="tenantId"></param>
+    /// <param name="codeId"></param>
+    /// <param name="code"></param>
     /// <param name="account"></param>
     /// <param name="phone"></param>
     /// <returns></returns>
     [NonAction]
-    public async Task<(SysTenant tenant, SysUser user)> GetLoginUserAndTenant(long tenantId, string account = null, string phone = null)
+    public async Task<(SysTenant tenant, SysUser user)> GetLoginUserAndTenant(long? tenantId, long codeId = 0, string code = null, string account = null, string phone = null)
     {
-        // 租户是否存在或已禁用
+        // 如果租户为空，使用默认租户
+        tenantId ??= SqlSugarConst.DefaultTenantId;
         var tenant = await _sysUserRep.ChangeRepository<SqlSugarRepository<SysTenant>>().GetFirstAsync(u => u.Id == tenantId);
+
+        // 校验验证码
+        if (tenant?.Captcha == YesNoEnum.Y && !_captcha.Validate(codeId.ToString(), code)) throw Oops.Oh(ErrorCodeEnum.D0008);
+
+        // 租户是否存在或已禁用
         if (tenant?.Status != StatusEnum.Enable) throw Oops.Oh(ErrorCodeEnum.Z1003);
         
         // 判断账号是否存在
@@ -403,26 +405,41 @@ public class SysAuthService : IDynamicApiController, ITransient
     [ApiDescriptionSettings(Description = "Swagger登录提交", DisableInherite = true)]
     public async Task<int> SwaggerSubmitUrl([FromForm] SpecificationAuth auth)
     {
+        // 尝试从发起请求页的地址栏中获取租户id，为空则使用默认租户
+        var tenantIdStr = Regex.Match(App.HttpContext.Request.Headers.Referer.ToString() ?? "", @"(?<=t=)(\d+)").Value;
+        var tenantId = string.IsNullOrWhiteSpace(tenantIdStr)
+            ? SqlSugarConst.DefaultTenantId
+            : long.Parse(tenantIdStr);
         try
         {
-            _sysCacheService.Set($"{CacheConst.KeyConfig}{ConfigConst.SysCaptcha}", false);
+            // 关闭验证码验证
+            await _sysUserRep.Context
+                .Updateable(new SysTenant { Captcha = YesNoEnum.N })
+                .UpdateColumns(u => u.Captcha)
+                .Where(u => u.Id == tenantId)
+                .ExecuteCommandAsync();
 
-            // 尝试从发起请求页的地址栏中获取租户id
-            var tenantId = Regex.Match(App.HttpContext.Request.Headers.Referer.ToString() ?? "", @"(?<=t=)(\d+)").Value;
             await Login(new LoginInput
             {
                 Account = auth.UserName,
                 Password = CryptogramUtil.SM2Encrypt(auth.Password),
-                TenantId = string.IsNullOrWhiteSpace(tenantId) ? SqlSugarConst.DefaultTenantId : long.Parse(tenantId)
+                TenantId = tenantId
             });
-
-            _sysCacheService.Remove($"{CacheConst.KeyConfig}{ConfigConst.SysCaptcha}");
 
             return 200;
         }
         catch (Exception)
         {
             return 401;
+        }
+        finally
+        {
+            // 开启验证码验证
+            await _sysUserRep.Context
+                .Updateable(new SysTenant { Captcha = YesNoEnum.N })
+                .UpdateColumns(u => u.Captcha)
+                .Where(u => u.Id == tenantId)
+                .ExecuteCommandAsync();
         }
     }
 }

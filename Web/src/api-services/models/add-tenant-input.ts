@@ -130,6 +130,18 @@ export interface AddTenantInput {
      */
     regWayId?: number | null;
     /**
+     * 
+     * @type {YesNoEnum}
+     * @memberof AddTenantInput
+     */
+    captcha?: YesNoEnum;
+    /**
+     * 
+     * @type {YesNoEnum}
+     * @memberof AddTenantInput
+     */
+    secondVer?: YesNoEnum;
+    /**
      * 图标
      * @type {string}
      * @memberof AddTenantInput

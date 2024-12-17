@@ -86,6 +86,18 @@ public partial class SysTenant : EntityBase
     public virtual long? RegWayId { get; set; }
 
     /// <summary>
+    /// 启用验证码
+    /// </summary>
+    [SugarColumn(ColumnDescription = "启用验证码")]
+    public virtual YesNoEnum? Captcha { get; set; } = YesNoEnum.Y;
+
+    /// <summary>
+    /// 启用二次验证
+    /// </summary>
+    [SugarColumn(ColumnDescription = "启用二次验证")]
+    public virtual YesNoEnum? SecondVer { get; set; } = YesNoEnum.N;
+
+    /// <summary>
     /// 图标
     /// </summary>
     [SugarColumn(ColumnDescription = "图标", Length = 256), Required, MaxLength(256)]

@@ -146,7 +146,31 @@
 								</el-form-item>
 							</el-col>
 							<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
-								<el-form-item label="启用注册" prop="watermark">
+								<el-form-item label="启用验证码" prop="captcha">
+									<el-switch
+											v-model="state.ruleForm.captcha"
+											inline-prompt
+											:active-value="1"
+											:inactive-value="2"
+											active-text="开启"
+											inactive-text="关闭"
+									/>
+								</el-form-item>
+							</el-col>
+							<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
+								<el-form-item label="启用二次验证" prop="secondVer">
+									<el-switch
+											v-model="state.ruleForm.secondVer"
+											inline-prompt
+											:active-value="1"
+											:inactive-value="2"
+											active-text="开启"
+											inactive-text="关闭"
+									/>
+								</el-form-item>
+							</el-col>
+							<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
+								<el-form-item label="启用注册" prop="enableReg">
 									<el-switch
 											v-model="state.ruleForm.enableReg"
 											inline-prompt
@@ -212,13 +236,13 @@ const handleUploadChange = (file: any) => {
 // 打开弹窗
 const openDialog = async (row: any) => {
 	state.selectedTabName = '0';
+	ruleFormRef.value?.resetFields();
 	state.ruleForm = JSON.parse(JSON.stringify(row));
 	state.ruleForm.icp ??= '省ICP备12345678号';
 	state.ruleForm.icpUrl ??= 'https://beian.miit.gov.cn';
 	state.ruleForm.copyright ??= 'Copyright \u00a9 2024-present xxxxx All rights reserved.';
 	state.isShowDialog = true;
-	state.regWayData = await getAPI(SysUserRegWayApi).apiSysUserRegWayListPost({}).then((res) => res.data.result ?? []);
-	ruleFormRef.value?.resetFields();
+	state.regWayData = await getAPI(SysUserRegWayApi).apiSysUserRegWayListPost({ tenantId: row.id }).then((res) => res.data.result ?? []);
 };
 
 // 关闭弹窗

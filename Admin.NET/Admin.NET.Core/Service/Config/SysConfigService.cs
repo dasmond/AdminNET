@@ -5,6 +5,7 @@
 // 不得利用本项目从事危害国家安全、扰乱社会秩序、侵犯他人合法权益等法律法规禁止的活动！任何基于本项目二次开发而产生的一切法律纠纷和责任，我们不承担任何责任！
 
 using Microsoft.AspNetCore.Mvc.Rendering;
+using NewLife.Reflection;
 
 namespace Admin.NET.Core.Service;
 
@@ -245,26 +246,26 @@ public class SysConfigService : IDynamicApiController, ITransient
         var tenant = await App.GetService<SysTenantService>().GetCurrentTenant();
         tenant ??= await _sysConfigRep.Context.Queryable<SysTenant>().FirstAsync(u => u.Id == SqlSugarConst.DefaultTenantId);
         _ = tenant ?? throw Oops.Oh(ErrorCodeEnum.D1002);
-        
-        var sysSecondVer = await GetConfigValue<bool>(ConfigConst.SysSecondVer);
-        var sysCaptcha = await GetConfigValue<bool>(ConfigConst.SysCaptcha);
 
-        var wayList = await _sysConfigRep.Context.Queryable<SysUserRegWay>().Select(u => new { Label = u.Name, Value = u.Id }).ToListAsync();
+        var wayList = await _sysConfigRep.Context.Queryable<SysUserRegWay>().ClearFilter()
+            .Where(u => u.TenantId == tenant.Id)
+            .Select(u => new { Label = u.Name, Value = u.Id })
+            .ToListAsync();
         return new
         {
-            SysLogo = tenant.Logo,
-            SysTitle = tenant.Title,
-            SysViceTitle = tenant.ViceTitle,
-            SysViceDesc = tenant.ViceDesc,
-            SysWatermark = tenant.Watermark,
-            SysCopyright = tenant.Copyright,
-            SysIcp = tenant.Icp,
-            SysIcpUrl = tenant.IcpUrl,
-            SysRegWayId = tenant.RegWayId,
-            SysRegistration = tenant.EnableReg == YesNoEnum.Y,
-            SysSecondVer = sysSecondVer,
-            SysCaptcha = sysCaptcha,
-            SysUserRegWayList = wayList
+            tenant.Logo,
+            tenant.Title,
+            tenant.ViceTitle,
+            tenant.ViceDesc,
+            tenant.Watermark,
+            tenant.Copyright,
+            tenant.Icp,
+            tenant.IcpUrl,
+            tenant.RegWayId,
+            tenant.EnableReg,
+            tenant.SecondVer,
+            tenant.Captcha,
+            WayList = wayList
         };
     }
 
@@ -277,21 +278,11 @@ public class SysConfigService : IDynamicApiController, ITransient
     public async Task SaveSysInfo(InfoSaveInput input)
     {
         var tenant = await App.GetService<SysTenantService>().GetCurrentTenant() ?? throw Oops.Oh(ErrorCodeEnum.D1002);
-        if (!string.IsNullOrEmpty(input.SysLogoBase64)) App.GetService<SysTenantService>().SetLogoUrl(tenant, input.SysLogoBase64, input.SysLogoFileName);
+        if (!string.IsNullOrEmpty(input.LogoBase64)) App.GetService<SysTenantService>().SetLogoUrl(tenant, input.LogoBase64, input.LogoFileName);
 
-        tenant.Title = input.SysTitle;
-        tenant.ViceTitle = input.SysViceTitle;
-        tenant.ViceDesc = input.SysViceDesc;
-        tenant.Watermark = input.SysWatermark;
-        tenant.Copyright = input.SysCopyright;
-        tenant.IcpUrl = input.SysIcpUrl;
-        tenant.Icp = input.SysIcp;
-        tenant.RegWayId = input.SysRegistration ? input.SysRegWayId : null;
-        tenant.EnableReg = input.SysRegistration ? YesNoEnum.Y : YesNoEnum.N;
-
+        tenant.Copy(input);
+        tenant.RegWayId = input.EnableReg == YesNoEnum.Y ? input.RegWayId : null;
         await _sysConfigRep.Context.Updateable(tenant).ExecuteCommandAsync();
-        await UpdateConfigValue(ConfigConst.SysSecondVer, input.SysSecondVer.ToString());
-        await UpdateConfigValue(ConfigConst.SysCaptcha, input.SysCaptcha.ToString());
     }
 
     private void Remove(SysConfig config)
