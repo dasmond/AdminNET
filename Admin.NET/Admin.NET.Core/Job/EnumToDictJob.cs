@@ -50,8 +50,8 @@ public class EnumToDictJob : IJob
                 .SplitUpdate(it => it.Any())
                 .SplitInsert(_ => true)
                 .ToStorageAsync();
-            await storageable1.AsInsertable.ExecuteCommandAsync();
-            await storageable1.AsUpdateable.ExecuteCommandAsync();
+            await storageable1.AsInsertable.ExecuteCommandAsync(stoppingToken);
+            await storageable1.AsUpdateable.ExecuteCommandAsync(stoppingToken);
 
             Console.WriteLine($"【{DateTime.Now}】系统枚举类转字典类型数据: 插入{storageable1.InsertList.Count}条, 更新{storageable1.UpdateList.Count}条, 共{storageable1.TotalList.Count}条。");
 
@@ -60,8 +60,14 @@ public class EnumToDictJob : IJob
                 .SplitUpdate(it => it.Any())
                 .SplitInsert(_ => true)
                 .ToStorageAsync();
-            await storageable2.AsInsertable.ExecuteCommandAsync();
-            await storageable2.AsUpdateable.ExecuteCommandAsync();
+            await storageable2.AsInsertable.ExecuteCommandAsync(stoppingToken);
+            await storageable2.AsUpdateable.UpdateColumns(u => new
+            {
+                u.Label,
+                u.Name,
+                u.Value,
+                u.TenantId
+            }).ExecuteCommandAsync(stoppingToken);
 
             Console.WriteLine($"【{DateTime.Now}】系统枚举项转字典值数据: 插入{storageable2.InsertList.Count}条, 更新{storageable2.UpdateList.Count}条, 共{storageable2.TotalList.Count}条。");
 
