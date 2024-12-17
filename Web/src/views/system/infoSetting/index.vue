@@ -32,25 +32,16 @@
 				<el-descriptions-item label="ICP地址">
 					<el-input v-model="state.formData.icpUrl" />
 				</el-descriptions-item>
-				<el-descriptions-item label="登录二次验证">
-					<el-radio-group v-model="state.formData.secondVer">
-						<el-radio :value="1">启用</el-radio>
-						<el-radio :value="2">禁用</el-radio>
-					</el-radio-group>
-				</el-descriptions-item>
 				<el-descriptions-item label="图形验证码">
-					<el-radio-group v-model="state.formData.captcha">
-						<el-radio :value="1">启用</el-radio>
-						<el-radio :value="2">禁用</el-radio>
-					</el-radio-group>
+					<g-sys-dict v-model="state.formData.captcha" code="YesNoEnum" render-as="radio" />
+				</el-descriptions-item>
+				<el-descriptions-item label="登录二次验证">
+					<g-sys-dict v-model="state.formData.secondVer" code="YesNoEnum" render-as="radio" />
 				</el-descriptions-item>
 				<el-descriptions-item label="用户注册">
-					<el-radio-group v-model="state.formData.enableReg">
-						<el-radio :value="1">启用</el-radio>
-						<el-radio :value="2">禁用</el-radio>
-					</el-radio-group>
+					<g-sys-dict v-model="state.formData.enableReg" code="YesNoEnum" render-as="radio" />
 				</el-descriptions-item>
-				<el-descriptions-item label="注册方案" v-if="state.formData.enableReg">
+				<el-descriptions-item label="注册方案" v-if="state.formData.enableReg == 1">
 					<el-select v-model="state.formData.regWayId" placeholder="注册方案" clearable class="w100">
 						<el-option :label="item.label" :value="item.value" v-for="(item, index) in state.wayList" :key="index" />
 					</el-select>
@@ -70,6 +61,7 @@ import { fileToBase64 } from '/@/utils/base64Conver';
 
 import { getAPI } from '/@/utils/axios-utils';
 import {SysConfigApi} from '/@/api-services';
+import GSysDict from "/@/components/sysDict/sysDict.vue";
 
 const uploadRef = ref<UploadInstance>();
 const state = reactive({

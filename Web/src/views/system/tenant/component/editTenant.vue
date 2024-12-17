@@ -145,6 +145,10 @@
 									<el-input v-model="state.ruleForm.watermark" placeholder="应用水印" maxlength="32" clearable />
 								</el-form-item>
 							</el-col>
+						</el-row>
+					</el-tab-pane>
+					<el-tab-pane label="配置开关" style="height: 550px; overflow: auto; overflow-x: hidden;">
+						<el-row :gutter="35">
 							<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
 								<el-form-item label="启用验证码" prop="captcha">
 									<el-switch
@@ -167,25 +171,6 @@
 											active-text="开启"
 											inactive-text="关闭"
 									/>
-								</el-form-item>
-							</el-col>
-							<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
-								<el-form-item label="启用注册" prop="enableReg">
-									<el-switch
-											v-model="state.ruleForm.enableReg"
-											inline-prompt
-											:active-value="1"
-											:inactive-value="2"
-											active-text="开启"
-											inactive-text="关闭"
-									/>
-								</el-form-item>
-							</el-col>
-							<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20" v-if="state.ruleForm.enableReg == 1">
-								<el-form-item label="注册方案" prop="regWayId" :rules="[{ required: true, message: '职位不能为空', trigger: 'blur' }]">
-									<el-select v-model="state.ruleForm.regWayId" placeholder="注册方案" clearable class="w100">
-										<el-option :label="item.name" :value="item.id" v-for="(item, index) in state.regWayData" :key="index" />
-									</el-select>
 								</el-form-item>
 							</el-col>
 						</el-row>
@@ -238,6 +223,8 @@ const openDialog = async (row: any) => {
 	state.selectedTabName = '0';
 	ruleFormRef.value?.resetFields();
 	state.ruleForm = JSON.parse(JSON.stringify(row));
+	state.ruleForm.enableReg = undefined;
+	state.ruleForm.regWayId = undefined;
 	state.ruleForm.icp ??= '省ICP备12345678号';
 	state.ruleForm.icpUrl ??= 'https://beian.miit.gov.cn';
 	state.ruleForm.copyright ??= 'Copyright \u00a9 2024-present xxxxx All rights reserved.';
