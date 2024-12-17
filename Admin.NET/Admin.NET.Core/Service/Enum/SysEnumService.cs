@@ -34,12 +34,12 @@ public class SysEnumService : IDynamicApiController, ITransient
 
         // 如果存在同名枚举类，则依次增加 "_序号" 前缀
         var list = enumTypeList.Select(GetEnumDescription).ToList();
+        var appEnumList = list.Where(u => !u.TypeFullName.StartsWith(typeof(AccountTypeEnum).Namespace!));
         foreach (var enumType in list.GroupBy(u => u.TypeName).Where(g => g.Count() > 1))
         {
             int i = 1;
             // 过滤框架中的枚举
-            var repList = list.Where(u => u.TypeName == enumType.Key).Where(u => !u.TypeFullName.StartsWith(typeof(AccountTypeEnum).Namespace!));
-            foreach (var item in repList) item.TypeName = $"{i++}_{item.TypeName}";
+            foreach (var item in appEnumList.Where(u => u.TypeName == enumType.Key)) item.TypeName = $"{i++}_{item.TypeName}";
         }
         return list;
     }
