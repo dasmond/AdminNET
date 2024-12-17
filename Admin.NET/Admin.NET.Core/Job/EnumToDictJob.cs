@@ -124,10 +124,10 @@ public class EnumToDictJob : IJob
         {
             var dictType = new SysDictType
             {
-                Id = 900000000000 + CommonUtil.GetFixedHashCode(type.TypeName),
+                Id = 900000000000 + CommonUtil.GetFixedHashCode(type.TypeFullName),
                 Code = type.TypeName,
                 Name = type.TypeDescribe,
-                Remark = type.TypeRemark,
+                Remark = type.TypeFullName,
                 TenantId = SqlSugarConst.DefaultTenantId
             };
             dictType.Children = type.EnumEntities.Select(x => new SysDictData
