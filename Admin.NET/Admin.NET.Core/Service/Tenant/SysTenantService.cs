@@ -122,7 +122,7 @@ public class SysTenantService : IDynamicApiController, ITransient
         var host = App.HttpContext.Request.Host.Host.ToLower();
         return await _sysTenantRep.AsQueryable()
             .WhereIF(tenantId > 0, u => u.Id == tenantId)
-            .WhereIF(tenantId <= 0, u => SqlFunc.ToLower(u.Host).Equals(host))
+            .WhereIF(!(tenantId > 0), u => SqlFunc.ToLower(u.Host).Equals(host))
             .FirstAsync();
     }
 
@@ -557,6 +557,7 @@ public class SysTenantService : IDynamicApiController, ITransient
         var singleLogin = _sysCacheService.Get<bool>($"{CacheConst.KeyConfig}{ConfigConst.SysSingleLogin}");
         try
         {
+            _sysCacheService.Set($"{CacheConst.KeyConfig}{ConfigConst.SysSingleLogin}", false);
             return await App.GetService<SysAuthService>().CreateToken(user);
         }
         finally

@@ -6,58 +6,53 @@
 					<el-icon size="16" style="margin-right: 3px; display: inline; vertical-align: middle"> <ele-Setting /> </el-icon> 系统信息配置
 				</template>
 				<el-descriptions-item label="系统图标" :span="2">
-					<!-- <template #label>
-						<div class="cell-item">
-							<el-icon><ele-PictureRounded /></el-icon> 系统图标
-						</div>
-					</template> -->
 					<el-upload ref="uploadRef" class="avatar-uploader" :showFileList="false" :autoUpload="false" accept=".jpg,.png,.svg" action :limit="1" :onChange="handleUploadChange">
-						<img v-if="state.formData.sysLogo" :src="state.formData.sysLogo" class="avatar" />
+						<img v-if="state.formData.logo" :src="state.formData.logo" class="avatar" />
 						<SvgIcon v-else class="avatar-uploader-icon" name="ele-Plus" :size="28" />
 					</el-upload>
 				</el-descriptions-item>
 				<el-descriptions-item label="系统主标题">
-					<el-input v-model="state.formData.sysTitle" />
+					<el-input v-model="state.formData.title" />
 				</el-descriptions-item>
 				<el-descriptions-item label="系统副标题">
-					<el-input v-model="state.formData.sysViceTitle" />
+					<el-input v-model="state.formData.viceTitle" />
 				</el-descriptions-item>
 				<el-descriptions-item label="系统描述" :span="2">
-					<el-input v-model="state.formData.sysViceDesc" />
+					<el-input v-model="state.formData.viceDesc" />
 				</el-descriptions-item>
 				<el-descriptions-item label="水印内容" :span="2">
-					<el-input v-model="state.formData.sysWatermark" />
+					<el-input v-model="state.formData.watermark" />
 				</el-descriptions-item>
 				<el-descriptions-item label="版权说明" :span="2">
-					<el-input v-model="state.formData.sysCopyright" />
+					<el-input v-model="state.formData.copyright" />
 				</el-descriptions-item>
 				<el-descriptions-item label="ICP备案号">
-					<el-input v-model="state.formData.sysIcp" />
+					<el-input v-model="state.formData.icp" />
 				</el-descriptions-item>
 				<el-descriptions-item label="ICP地址">
-					<el-input v-model="state.formData.sysIcpUrl" />
+					<el-input v-model="state.formData.icpUrl" />
 				</el-descriptions-item>
 				<el-descriptions-item label="登录二次验证">
-					<el-radio-group v-model="state.formData.sysSecondVer">
-						<el-radio :value="true">启用</el-radio>
-						<el-radio :value="false">禁用</el-radio>
+					<el-radio-group v-model="state.formData.secondVer">
+						<el-radio :value="1">启用</el-radio>
+						<el-radio :value="2">禁用</el-radio>
 					</el-radio-group>
 				</el-descriptions-item>
 				<el-descriptions-item label="图形验证码">
-					<el-radio-group v-model="state.formData.sysCaptcha">
-						<el-radio :value="true">启用</el-radio>
-						<el-radio :value="false">禁用</el-radio>
+					<el-radio-group v-model="state.formData.captcha">
+						<el-radio :value="1">启用</el-radio>
+						<el-radio :value="2">禁用</el-radio>
 					</el-radio-group>
 				</el-descriptions-item>
 				<el-descriptions-item label="用户注册">
-					<el-radio-group v-model="state.formData.sysRegistration">
-						<el-radio :value="true">启用</el-radio>
-						<el-radio :value="false">禁用</el-radio>
+					<el-radio-group v-model="state.formData.enableReg">
+						<el-radio :value="1">启用</el-radio>
+						<el-radio :value="2">禁用</el-radio>
 					</el-radio-group>
 				</el-descriptions-item>
-				<el-descriptions-item label="注册方案" v-if="state.formData.sysRegistration">
+				<el-descriptions-item label="注册方案" v-if="state.formData.enableReg">
 					<el-select v-model="state.formData.regWayId" placeholder="注册方案" clearable class="w100">
-						<el-option :label="item.label" :value="item.value" v-for="(item, index) in state.regWayData" :key="index" />
+						<el-option :label="item.label" :value="item.value" v-for="(item, index) in state.wayList" :key="index" />
 					</el-select>
 				</el-descriptions-item>
 				<template #extra>
@@ -80,67 +75,49 @@ const uploadRef = ref<UploadInstance>();
 const state = reactive({
 	isLoading: false,
 	file: undefined as any,
-	regWayData: [] as Array<any>,
+	wayList: [] as Array<any>,
 	formData: {
-		sysLogoBlob: undefined,
-		sysLogo: '',
-		sysLogoFileName: '',
-		sysTitle: '',
-		sysViceTitle: '',
-		sysViceDesc: '',
-		sysWatermark: '',
-		sysCopyright: '',
-		sysIcp: '',
-		sysIcpUrl: '',
+		logo: '',
+		logoBase64: '',
+		logoFileName: '',
+		title: '',
+		viceTitle: '',
+		viceDesc: '',
+		watermark: '',
+		copyright: '',
+		icp: '',
+		icpUrl: '',
 		regWayId: undefined,
-		sysRegistration: undefined,
-		sysSecondVer: undefined,
-		sysCaptcha: undefined,
+		enableReg: undefined,
+		secondVer: undefined,
+		captcha: undefined,
 	},
 });
 
 // 通过onChange方法获得文件列表
 const handleUploadChange = (file: any) => {
 	uploadRef.value!.clearFiles();
-
 	state.file = file;
-	state.formData.sysLogo = URL.createObjectURL(state.file.raw); // 显示预览logo
+	state.formData.logo = URL.createObjectURL(state.file.raw); // 显示预览logo
 };
 
 // 保存
 const onSave = async () => {
 	// 如果有选择图标，则转换为 base64
-	let sysLogoBase64 = '';
-	let sysLogoFileName = '';
 	if (state.file) {
-		sysLogoBase64 = (await fileToBase64(state.file.raw)) as string;
-		sysLogoFileName = state.file.raw.name;
+		state.formData.logoBase64 = (await fileToBase64(state.file.raw)) as string;
+		state.formData.logoFileName = state.file.raw.name;
 	}
 
 	try {
 		state.isLoading = true;
-		if (!state.formData.sysRegistration) {
+		if (!state.formData.enableReg) {
 			state.formData.regWayId = undefined;
 		} else if (!state.formData.regWayId) {
 			ElMessage.error('注册方案不能为空');
 			return;
 		}
-		const res = await getAPI(SysConfigApi).apiSysConfigSaveSysInfoPost({
-			sysLogoBase64: sysLogoBase64,
-			sysLogoFileName: sysLogoFileName,
-			sysTitle: state.formData.sysTitle,
-			sysViceTitle: state.formData.sysViceTitle,
-			sysViceDesc: state.formData.sysViceDesc,
-			sysWatermark: state.formData.sysWatermark,
-			sysCopyright: state.formData.sysCopyright,
-			sysIcp: state.formData.sysIcp,
-			sysRegWayId: state.formData.regWayId,
-			sysIcpUrl: state.formData.sysIcpUrl,
-			sysSecondVer: state.formData.sysSecondVer,
-			sysCaptcha: state.formData.sysCaptcha,
-			sysRegistration: state.formData.sysRegistration,
-		});
-		if (res.data!.type !== 'success') return;
+		await getAPI(SysConfigApi).apiSysConfigSaveSysInfoPost(state.formData);
 
 		// 清空 file 变量
 		state.file = undefined;
@@ -161,23 +138,9 @@ const loadData = async () => {
 		if (res.data!.type !== 'success') return;
 
 		const result = res.data.result;
-		state.formData = {
-			sysLogoBlob: undefined,
-			sysLogo: result.sysLogo,
-			sysLogoFileName: '',
-			sysTitle: result.sysTitle,
-			sysViceTitle: result.sysViceTitle,
-			sysViceDesc: result.sysViceDesc,
-			sysWatermark: result.sysWatermark,
-			sysCopyright: result.sysCopyright,
-			sysIcp: result.sysIcp,
-			sysIcpUrl: result.sysIcpUrl,
-			sysSecondVer: result.sysSecondVer,
-			sysCaptcha: result.sysCaptcha,
-			regWayId: result.sysRegWayId,
-			sysRegistration: result.sysRegistration,
-		};
-		state.regWayData = result.sysUserRegWayList ?? [];
+		state.wayList = result.wayList ?? [];
+		result.wayList = undefined;
+		state.formData = res.data.result;
 	} finally {
 		nextTick(() => {
 			state.isLoading = false;

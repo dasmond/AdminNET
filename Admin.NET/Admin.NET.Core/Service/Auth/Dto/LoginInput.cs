@@ -29,7 +29,7 @@ public class LoginInput
     /// 租户
     /// </summary>
     [Required(ErrorMessage = "租户不能为空")]
-    public long TenantId { get; set; }
+    public long? TenantId { get; set; }
 
     /// <summary>
     /// 验证码Id
@@ -63,7 +63,7 @@ public class LoginPhoneInput
     /// 租户
     /// </summary>
     [Required(ErrorMessage = "租户不能为空")]
-    public long TenantId { get; set; }
+    public long? TenantId { get; set; }
 }
 
 /// <summary>
