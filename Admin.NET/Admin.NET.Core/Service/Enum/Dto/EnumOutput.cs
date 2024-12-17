@@ -22,6 +22,11 @@ public class EnumTypeOutput
     public string TypeName { get; set; }
 
     /// <summary>
+    /// 枚举类型全名称
+    /// </summary>
+    public string TypeFullName { get; set; }
+
+    /// <summary>
     /// 枚举类型备注
     /// </summary>
     public string TypeRemark { get; set; }
