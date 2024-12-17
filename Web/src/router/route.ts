@@ -22,6 +22,7 @@ declare module 'vue-router' {
 		title?: string;
 		isLink?: string;
 		isHide?: boolean;
+		isPublic?: boolean;
 		isKeepAlive?: boolean;
 		isAffix?: boolean;
 		isIframe?: boolean;
@@ -115,6 +116,7 @@ export const staticRoutes: Array<RouteRecordRaw> = [
 		component: () => import('/@/views/login/index.vue'),
 		meta: {
 			title: '登录',
+			isPublic: true,
 		},
 	},
 	/**
