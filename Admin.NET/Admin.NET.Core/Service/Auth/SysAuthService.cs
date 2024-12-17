@@ -119,6 +119,9 @@ public class SysAuthService : IDynamicApiController, ITransient
             .FirstAsync();
         _ = user ?? throw Oops.Oh(ErrorCodeEnum.D0009);
 
+        // 如果是超级管理员，则引用登录选择的租户进入系统
+        if (user.AccountType == AccountTypeEnum.SuperAdmin) user.TenantId = tenantId;
+
         return (tenant, user);
     }
 
@@ -209,8 +212,7 @@ public class SysAuthService : IDynamicApiController, ITransient
     /// <summary>
     /// 生成Token令牌 🔖
     /// </summary>
-    /// <param name="user"></param>
-    /// <param name="appId"></param>
+    /// <param name="user"></param>\
     /// <returns></returns>
     [NonAction]
     internal virtual async Task<LoginOutput> CreateToken(SysUser user)

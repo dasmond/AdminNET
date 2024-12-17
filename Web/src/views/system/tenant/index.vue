@@ -31,6 +31,18 @@
 					</template>
 				</el-table-column>
 				<el-table-column prop="name" label="名称" width="180" align="center" show-overflow-tooltip />
+				<el-table-column prop="title" label="标题" width="180" show-overflow-tooltip />
+				<el-table-column prop="viceTitle" label="副标题" width="180" show-overflow-tooltip />
+				<el-table-column prop="viceDesc" label="描述" width="300" show-overflow-tooltip />
+				<el-table-column prop="watermark" label="水印" width="130" show-overflow-tooltip />
+				<el-table-column prop="copyright" label="版权信息" width="350" show-overflow-tooltip />
+				<el-table-column prop="icp" label="备案号" width="130" show-overflow-tooltip />
+				<el-table-column prop="icpUrl" label="icp地址" width="280" show-overflow-tooltip />
+				<el-table-column prop="enableReg" label="启用注册" width="280" show-overflow-tooltip>
+					<template #default="scope">
+						<g-sys-dict v-model="scope.row.enableReg" code="YesNoEnum" />
+					</template>
+				</el-table-column>
 				<el-table-column prop="adminAccount" label="租管账号" align="center" width="120" show-overflow-tooltip />
 				<el-table-column prop="phone" label="电话" width="120" align="center" show-overflow-tooltip />
 				<el-table-column prop="host" label="域名" width="150" show-overflow-tooltip />
@@ -80,18 +92,6 @@
 					show-overflow-tooltip />
 				<el-table-column prop="slaveConnections" label="从库连接" min-width="300" header-align="center"
 					show-overflow-tooltip />
-				<el-table-column prop="title" label="标题" width="180" show-overflow-tooltip />
-				<el-table-column prop="viceTitle" label="副标题" width="180" show-overflow-tooltip />
-				<el-table-column prop="viceDesc" label="描述" width="300" show-overflow-tooltip />
-				<el-table-column prop="watermark" label="水印" width="130" show-overflow-tooltip />
-				<el-table-column prop="copyright" label="版权信息" width="350" show-overflow-tooltip />
-				<el-table-column prop="icp" label="备案号" width="130" show-overflow-tooltip />
-				<el-table-column prop="icpUrl" label="icp地址" width="280" show-overflow-tooltip />
-				<el-table-column prop="enableReg" label="启用注册" width="280" show-overflow-tooltip>
-					<template #default="scope">
-						<g-sys-dict v-model="scope.row.enableReg" code="YesNoEnum" />
-					</template>
-				</el-table-column>
 				<el-table-column prop="orderNo" label="排序" width="70" show-overflow-tooltip />
 				<el-table-column label="修改记录" width="100" align="center" show-overflow-tooltip>
 					<template #default="scope">
@@ -147,8 +147,7 @@ import ModifyRecord from '/@/components/table/modifyRecord.vue';
 import { getAPI } from '/@/utils/axios-utils';
 import { SysTenantApi } from '/@/api-services/api';
 import { TenantOutput } from '/@/api-services/models';
-import {Local} from "/@/utils/storage";
-import {accessTokenKey, refreshAccessTokenKey} from "/@/utils/request";
+import { reLoadLoginAccessToken } from "/@/utils/request";
 import GSysDict from "/@/components/sysDict/sysDict.vue";
 
 const editTenantRef = ref<InstanceType<typeof EditTenant>>();
@@ -188,16 +187,11 @@ const goTenant = (row: any) => {
 		confirmButtonText: '确定',
 		cancelButtonText: '取消',
 		type: 'warning',
-	}).then(async () => {
-		await getAPI(SysTenantApi).apiSysTenantGoTenantPost({ id: row.id }).then(res => {
-			const newToken = res.data.result;
-			if (newToken) {
-				Local.set(accessTokenKey, newToken.accessToken);
-				Local.set(refreshAccessTokenKey, newToken.refreshToken);
-				location.href = "/";
-			}
-		});
-	});
+	}).then(() =>
+			getAPI(SysTenantApi)
+			.apiSysTenantGoTenantPost({ id: row.id })
+			.then(res => reLoadLoginAccessToken(res.data.result))
+	);
 }
 
 // 切换租户
@@ -206,16 +200,11 @@ const changeTenant = (row: any) => {
 		confirmButtonText: '确定',
 		cancelButtonText: '取消',
 		type: 'warning',
-	}).then(async () => {
-		await getAPI(SysTenantApi).apiSysTenantChangeTenantPost({ id: row.id }).then(res => {
-			const newToken = res.data.result;
-			if (newToken) {
-				Local.set(accessTokenKey, newToken.accessToken);
-				Local.set(refreshAccessTokenKey, newToken.refreshToken);
-				location.href = "/";
-			}
-		});
-	});
+	}).then(() =>
+			getAPI(SysTenantApi)
+			.apiSysTenantChangeTenantPost({ id: row.id })
+			.then(res => reLoadLoginAccessToken(res.data.result))
+	);
 }
 
 const syncGrantMenu = (row: any) => {
