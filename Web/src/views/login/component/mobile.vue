@@ -9,7 +9,7 @@
 			</el-select>
 		</el-form-item>
 		<el-form-item class="login-animation1">
-			<el-input text :placeholder="$t('message.mobile.placeholder1')" v-model="state.ruleForm.phone" clearable autocomplete="off">
+			<el-input text :placeholder="$t('message.mobile.placeholder2')" v-model="state.ruleForm.phone" clearable autocomplete="off">
 				<template #prefix>
 					<i class="iconfont icon-dianhua el-input__icon"></i>
 				</template>
@@ -17,7 +17,7 @@
 		</el-form-item>
 		<el-form-item class="login-animation2">
 			<el-col :span="15">
-				<el-input text maxlength="6" :placeholder="$t('message.mobile.placeholder2')" v-model="state.ruleForm.code" clearable autocomplete="off">
+				<el-input text maxlength="6" :placeholder="$t('message.mobile.placeholder3')" v-model="state.ruleForm.code" clearable autocomplete="off">
 					<template #prefix>
 						<el-icon class="el-input__icon"><ele-Position /></el-icon>
 					</template>
