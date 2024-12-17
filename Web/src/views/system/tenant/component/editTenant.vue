@@ -223,8 +223,6 @@ const openDialog = async (row: any) => {
 	state.selectedTabName = '0';
 	ruleFormRef.value?.resetFields();
 	state.ruleForm = JSON.parse(JSON.stringify(row));
-	state.ruleForm.enableReg = undefined;
-	state.ruleForm.regWayId = undefined;
 	state.ruleForm.icp ??= '省ICP备12345678号';
 	state.ruleForm.icpUrl ??= 'https://beian.miit.gov.cn';
 	state.ruleForm.copyright ??= 'Copyright \u00a9 2024-present xxxxx All rights reserved.';
