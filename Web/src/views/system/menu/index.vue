@@ -62,7 +62,7 @@
 			</el-table>
 		</el-card>
 
-		<EditMenu ref="editMenuRef" :title="state.editMenuTitle" :menuData="state.menuData" @handleQuery="handleQuery" />
+		<EditMenu ref="editMenuRef" :title="state.editMenuTitle" :menuData="state.allMenuData" @handleQuery="handleQuery" />
 	</div>
 </template>
 
@@ -83,6 +83,7 @@ const state = reactive({
 	loading: false,
 	tenantList: [] as Array<any>,
 	menuData: [] as Array<SysMenu>,
+	allMenuData: [] as Array<SysMenu>,
 	queryParams: {
 		tenantId: undefined,
 		title: undefined,
@@ -116,6 +117,7 @@ const resetQuery = () => {
 
 // 打开新增页面
 const openAddMenu = () => {
+	getAPI(SysMenuApi).apiSysMenuListGet(undefined, undefined, state.queryParams.tenantId).then(({data}) => state.allMenuData = data.result ?? []);
 	const data = { type: 2, isHide: false, isKeepAlive: true, isAffix: false, isIframe: false, tenantId: undefined, status: 1, orderNo: 100 };
 	if (userStore.userInfos.accountType == 999) data.tenantId = state.queryParams.tenantId;
 	state.editMenuTitle = '添加菜单';
