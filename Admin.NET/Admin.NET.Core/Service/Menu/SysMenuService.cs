@@ -50,6 +50,9 @@ public class SysMenuService : IDynamicApiController, ITransient
         var (query, _) = GetSugarQueryableAndTenantId(_userManager.TenantId);
         if (_userManager.SuperAdmin || _userManager.SysAdmin)
         {
+            // 超管用户且是默认租户，则获取全部默认菜单
+            if (_userManager.SuperAdmin && _userManager.TenantId == SqlSugarConst.DefaultTenantId)
+                query = _sysMenuRep.AsQueryable().ClearFilter().InnerJoinIF<SysTenantMenu>(false, (u, t) => true);
             var menuList = await query.Where(u => u.Type != MenuTypeEnum.Btn && u.Status == StatusEnum.Enable)
                 .OrderBy(u => new { u.OrderNo, u.Id })
                 .ToTreeAsync(u => u.Children, u => u.Pid, 0);
