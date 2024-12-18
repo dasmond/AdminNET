@@ -118,10 +118,12 @@ const openDialog = async (row: any) => {
 	ruleFormRef.value?.resetFields();
 	treeRef.value?.setCheckedKeys([]); // 清空选中值
 	state.ruleForm = JSON.parse(JSON.stringify(row));
-	if (row.id && auth('sysApp:grantMenu')) {
-    state.menuData = await getAPI(SysMenuApi).apiSysMenuListGet(undefined, undefined, true).then(res => res.data.result ?? []);
-    const menuIds = await getAPI(SysAppApi).apiSysAppGrantMenuGet(row.id).then(res => res.data.result ?? []);
-    setTimeout(() => treeRef.value?.setCheckedKeys(menuIds), 100);
+	if (auth('sysApp:grantMenu')) {
+		state.menuData = await getAPI(SysMenuApi).apiSysMenuListGet(undefined, undefined, true).then(res => res.data.result ?? []);
+		if (row.id) {
+			const menuIds = await getAPI(SysAppApi).apiSysAppGrantMenuGet(row.id).then(res => res.data.result ?? []);
+			setTimeout(() => treeRef.value?.setCheckedKeys(menuIds), 100);
+		}
 	}
 	state.isShowDialog = true;
 };
