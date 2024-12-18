@@ -52,8 +52,8 @@ public static class SqlSugarFilter
         var maxDataScope = SetDataScopeFilter(db);
         if (maxDataScope == 0 || maxDataScope == (int)DataScopeEnum.Self) return;
 
-        var userId = App.User?.FindFirst(ClaimConst.UserId)?.Value;
-        if (string.IsNullOrWhiteSpace(userId)) return;
+        var userId = App.GetService<UserManager>()?.UserId;
+        if (userId == null) return;
 
         // 配置用户机构集合缓存
         var cacheKey = $"db:{db.CurrentConnectionConfig.ConfigId}:orgList:{userId}";
@@ -108,8 +108,8 @@ public static class SqlSugarFilter
     {
         var maxDataScope = (int)DataScopeEnum.All;
 
-        var userId = App.User?.FindFirst(ClaimConst.UserId)?.Value;
-        if (string.IsNullOrWhiteSpace(userId)) return maxDataScope;
+        var userId = App.GetService<UserManager>().UserId;
+        if (userId <= 0) return maxDataScope;
 
         // 获取用户最大数据范围---仅本人数据
         maxDataScope = App.GetRequiredService<SysCacheService>().Get<int>(CacheConst.KeyRoleMaxDataScope + userId);
@@ -146,7 +146,7 @@ public static class SqlSugarFilter
 
                 //var lambda = DynamicExpressionParser.ParseLambda(new[] {
                 //    Expression.Parameter(entityType, "u") }, typeof(bool), $"u.{nameof(EntityBaseData.CreateUserId)}=@0", userId);
-                var lambda = entityType.GetConditionExpression<OwnerUserAttribute>(new List<long> { long.Parse(userId) });
+                var lambda = entityType.GetConditionExpression<OwnerUserAttribute>(new List<long> { userId });
 
                 db.QueryFilter.AddTableFilter(entityType, lambda);
                 dataScopeFilter.TryAdd(entityType, lambda);

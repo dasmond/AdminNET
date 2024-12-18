@@ -2,6 +2,11 @@
 	<div class="sys-file-container">
 		<el-card shadow="hover" :body-style="{ paddingBottom: '0' }">
 			<el-form :model="state.queryParams" ref="queryForm" :inline="true">
+				<el-form-item label="租户" v-if="userStore.userInfos.accountType == 999">
+					<el-select v-model="state.queryParams.tenantId" placeholder="租户" style="width: 100%">
+						<el-option :value="item.value" :label="`${item.label} (${item.host})`" v-for="(item, index) in state.tenantList" :key="index" />
+					</el-select>
+				</el-form-item>
 				<el-form-item label="文件名称" prop="fileName">
 					<el-input v-model="state.queryParams.fileName" placeholder="文件名称" clearable />
 				</el-form-item>
@@ -154,16 +159,20 @@ import ModifyRecord from '/@/components/table/modifyRecord.vue';
 
 import { downloadByUrl } from '/@/utils/download';
 import { getAPI } from '/@/utils/axios-utils';
-import { SysFileApi } from '/@/api-services/api';
+import {SysFileApi, SysTenantApi} from '/@/api-services/api';
 import { SysFile } from '/@/api-services/models';
+import { useUserInfo } from "/@/stores/userInfo";
 
 // const baseUrl = window.__env__.VITE_API_URL;
+const userStore = useUserInfo();
 const uploadRef = ref<UploadInstance>();
 const editSysFileRef = ref<InstanceType<typeof EditSysFile>>();
 const state = reactive({
 	loading: false,
+	tenantList: [] as Array<any>,
 	fileData: [] as Array<SysFile>,
 	queryParams: {
+		tenantId: undefined,
 		fileName: undefined,
 		startTime: undefined,
 		endTime: undefined,
@@ -190,6 +199,10 @@ const state = reactive({
 });
 
 onMounted(async () => {
+	if (userStore.userInfos.accountType == 999) {
+		state.tenantList = await getAPI(SysTenantApi).apiSysTenantListGet().then(res => res.data.result ?? []);
+		state.queryParams.tenantId = state.tenantList[0].value;
+	}
 	handleQuery();
 });
 

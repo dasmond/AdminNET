@@ -16,7 +16,7 @@
 					</el-col>
 					<el-col :xs="24" :sm="24" :md="24" :lg="24" :xl1="24" v-show="state.ruleForm.dataScope === 5">
 						<el-form-item label="机构列表：">
-							<OrgTree ref="orgTreeRef" class="w100" />
+							<OrgTree ref="orgTreeRef" class="w100" :tenant-id="state.ruleForm.tenantId" />
 						</el-form-item>
 					</el-col>
 				</el-row>
@@ -36,13 +36,12 @@ import { reactive, ref } from 'vue';
 import OrgTree from '/@/views/system/org/component/orgTree.vue';
 import { getAPI } from '/@/utils/axios-utils';
 import { SysRoleApi } from '/@/api-services/api';
-import { RoleOrgInput } from '/@/api-services/models';
 
 const emits = defineEmits(['handleQuery']);
 const orgTreeRef = ref();
 const state = reactive({
 	isShowDialog: false,
-	ruleForm: {} as RoleOrgInput
+	ruleForm: {} as any
 });
 
 // 打开弹窗

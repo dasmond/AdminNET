@@ -11,6 +11,7 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+import { YesNoEnum } from './yes-no-enum';
 /**
  * 系统信息保存输入参数
  * @export
@@ -22,65 +23,77 @@ export interface InfoSaveInput {
      * @type {string}
      * @memberof InfoSaveInput
      */
-    sysLogoBase64?: string | null;
+    logoBase64?: string | null;
     /**
      * 系统图标文件名
      * @type {string}
      * @memberof InfoSaveInput
      */
-    sysLogoFileName?: string | null;
+    logoFileName?: string | null;
     /**
      * 系统主标题
      * @type {string}
      * @memberof InfoSaveInput
      */
-    sysTitle: string;
+    title: string;
     /**
      * 系统副标题
      * @type {string}
      * @memberof InfoSaveInput
      */
-    sysViceTitle: string;
+    viceTitle: string;
     /**
      * 系统描述
      * @type {string}
      * @memberof InfoSaveInput
      */
-    sysViceDesc: string;
+    viceDesc: string;
     /**
      * 水印内容
      * @type {string}
      * @memberof InfoSaveInput
      */
-    sysWatermark: string;
+    watermark: string;
     /**
      * 版权说明
      * @type {string}
      * @memberof InfoSaveInput
      */
-    sysCopyright: string;
+    copyright: string;
     /**
      * ICP备案号
      * @type {string}
      * @memberof InfoSaveInput
      */
-    sysIcp: string;
+    icp: string;
     /**
      * ICP地址
      * @type {string}
      * @memberof InfoSaveInput
      */
-    sysIcpUrl: string;
+    icpUrl: string;
     /**
-     * 登录二次验证
-     * @type {boolean}
+     * 
+     * @type {YesNoEnum}
      * @memberof InfoSaveInput
      */
-    sysSecondVer?: boolean | null;
+    enableReg?: YesNoEnum;
     /**
-     * 图形验证码
-     * @type {boolean}
+     * 
+     * @type {YesNoEnum}
      * @memberof InfoSaveInput
      */
-    sysCaptcha?: boolean | null;
+    secondVer?: YesNoEnum;
+    /**
+     * 
+     * @type {YesNoEnum}
+     * @memberof InfoSaveInput
+     */
+    captcha?: YesNoEnum;
+    /**
+     * 默认注册方案Id
+     * @type {number}
+     * @memberof InfoSaveInput
+     */
+    regWayId?: number;
 }

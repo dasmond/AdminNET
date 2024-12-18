@@ -45,6 +45,7 @@ public class SysRoleService : IDynamicApiController, ITransient
         // 当前用户已拥有的角色集合
         var roleIdList = _userManager.SuperAdmin ? new List<long>() : await _sysUserRoleService.GetUserRoleIdList(_userManager.UserId);
         return await _sysRoleRep.AsQueryable()
+            .WhereIF(_userManager.SuperAdmin && input.TenantId > 0, u => u.TenantId == input.TenantId)
             .WhereIF(!_userManager.SuperAdmin, u => u.TenantId == _userManager.TenantId) // 若非超管，则只能操作本租户的角色
             .WhereIF(!_userManager.SuperAdmin && !_userManager.SysAdmin, u => u.CreateUserId == _userManager.UserId || roleIdList.Contains(u.Id)) // 若非超管且非系统管理员，则只能操作自己创建的角色|自己拥有的角色
             .WhereIF(!string.IsNullOrWhiteSpace(input.Name), u => u.Name.Contains(input.Name))
@@ -134,14 +135,15 @@ public class SysRoleService : IDynamicApiController, ITransient
     [DisplayName("删除角色")]
     public async Task DeleteRole(DeleteRoleInput input)
     {
-        // 禁止删除系统管理员角色
-        var sysRole = await _sysRoleRep.GetFirstAsync(u => u.Id == input.Id) ?? throw Oops.Oh(ErrorCodeEnum.D1002);
-        if (sysRole.Code == CommonConst.SysAdminRole) throw Oops.Oh(ErrorCodeEnum.D1019);
-
         // 若角色有用户则禁止删除
         var userIds = await _sysUserRoleService.GetUserIdList(input.Id);
         if (userIds != null && userIds.Count > 0) throw Oops.Oh(ErrorCodeEnum.D1025);
+        
+        // 若有绑定注册方案则禁止删除
+        var hasUserRegWay = await _sysRoleRep.Context.Queryable<SysUserRegWay>().AnyAsync(u => u.RoleId == input.Id);
+        if (hasUserRegWay) throw Oops.Oh(ErrorCodeEnum.D1033);
 
+        var sysRole = await _sysRoleRep.GetFirstAsync(u => u.Id == input.Id) ?? throw Oops.Oh(ErrorCodeEnum.D1002);
         await _sysRoleRep.DeleteAsync(sysRole);
 
         // 级联删除角色机构数据

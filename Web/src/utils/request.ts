@@ -261,5 +261,18 @@ export function request2(config: AxiosRequestConfig<any>): any {
 			});
 	});
 }
+
+/**
+ * 使用新的令牌登录
+ * @param accessInfo
+ */
+export function reLoadLoginAccessToken(accessInfo: any) {
+	if (accessInfo?.accessToken && accessInfo?.refreshToken) {
+		Local.set(accessTokenKey, accessInfo.accessToken);
+		Local.set(refreshAccessTokenKey, accessInfo.refreshToken);
+		setTimeout(() => location.href = "/", 300);
+	}
+}
+
 // 导出 axios 实例
 export default service;

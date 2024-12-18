@@ -116,6 +116,7 @@ import { ElMessageBox, ElMessage } from 'element-plus';
 import OrgTree from '/@/views/system/org/component/orgTree.vue';
 import EditUser from '/@/views/system/user/component/editUser.vue';
 import ModifyRecord from '/@/components/table/modifyRecord.vue';
+import CallBar from '/@/components/callTel/callBar.vue';
 import { Splitpanes, Pane } from 'splitpanes';
 import 'splitpanes/dist/splitpanes.css';
 import { getAPI } from '/@/utils/axios-utils';
@@ -126,6 +127,7 @@ const orgTreeRef = ref<InstanceType<typeof OrgTree>>();
 const editUserRef = ref<InstanceType<typeof EditUser>>();
 const state = reactive({
 	loading: false,
+	tenantList: [] as Array<any>,
 	userData: [] as Array<SysUser>,
 	orgTreeData: [] as Array<SysOrg>,
 	queryParams: {
@@ -133,8 +135,9 @@ const state = reactive({
 		account: undefined,
 		realName: undefined,
 		phone: undefined,
-		posName: undefined,
+		posName: undefined
 	},
+	tenantId: undefined,
 	tableParams: {
 		page: 1,
 		pageSize: 50,
@@ -179,7 +182,7 @@ const resetQuery = async () => {
 // 打开新增页面
 const openAddUser = () => {
 	state.editUserTitle = '添加账号';
-	editUserRef.value?.openDialog({ id: undefined, birthday: '2000-01-01', sex: 1, orderNo: 100, cardType: 0, cultureLevel: 5 });
+	editUserRef.value?.openDialog({ id: undefined, birthday: '2000-01-01', sex: 1, tenantId: state.tenantId, orderNo: 100, cardType: 0, cultureLevel: 5 });
 };
 
 // 打开编辑页面
@@ -276,6 +279,7 @@ const nodeClick = async (node: any) => {
 	state.queryParams.account = undefined;
 	state.queryParams.realName = undefined;
 	state.queryParams.phone = undefined;
+	state.tenantId = node.tenantId;
 	await handleQuery();
 };
 </script>

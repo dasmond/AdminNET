@@ -81,6 +81,7 @@ const editOrgRef = ref<InstanceType<typeof EditOrg>>();
 const orgTreeRef = ref<InstanceType<typeof OrgTree>>();
 const state = reactive({
 	loading: false,
+	tenantList: [] as Array<any>,
 	orgData: [] as Array<SysOrg>, // 机构列表数据
 	orgTreeData: [] as Array<SysOrg>, // 机构树所有数据
 	queryParams: {
@@ -89,6 +90,7 @@ const state = reactive({
 		code: undefined,
 		type: undefined,
 	},
+	tenantId: undefined,
 	editOrgTitle: ''
 });
 
@@ -99,19 +101,19 @@ onMounted(async () => {
 // 查询操作
 const handleQuery = async (updateTree: boolean = false) => {
 	state.loading = true;
-	var res = await getAPI(SysOrgApi).apiSysOrgListGet(state.queryParams.id, state.queryParams.name, state.queryParams.code, state.queryParams.type);
+	let res = await getAPI(SysOrgApi).apiSysOrgListGet(state.queryParams.id, state.queryParams.name, state.queryParams.code, state.queryParams.type);
 	state.orgData = res.data.result ?? [];
 	state.loading = false;
 	// 是否更新左侧机构列表树
-	if (updateTree == true) {
+	if (updateTree) {
 		orgTreeRef.value?.initTreeData();
 		// 更新编辑页面机构列表树
-		var res = await getAPI(SysOrgApi).apiSysOrgListGet(0);
+		res = await getAPI(SysOrgApi).apiSysOrgListGet(0);
 		state.orgTreeData = res.data.result ?? [];
 	}
 
 	// 若无选择节点并且查询条件为空时，更新编辑页面机构列表树
-	if (state.queryParams.id == 0 && state.queryParams.name == undefined && state.queryParams.code == undefined && state.queryParams.type == undefined && updateTree == false)
+	if (state.queryParams.id == 0 && state.queryParams.name == undefined && state.queryParams.code == undefined && state.queryParams.type == undefined && !updateTree)
 		state.orgTreeData = state.orgData;
 };
 
@@ -127,7 +129,7 @@ const resetQuery = () => {
 // 打开新增页面
 const openAddOrg = () => {
 	state.editOrgTitle = '添加机构';
-	editOrgRef.value?.openDialog({ status: 1, orderNo: 100 });
+	editOrgRef.value?.openDialog({ status: 1, orderNo: 100, tenantId: state.tenantId });
 };
 
 // 打开编辑页面
@@ -166,6 +168,8 @@ const nodeClick = async (node: any) => {
 	state.queryParams.name = undefined;
 	state.queryParams.code = undefined;
 	state.queryParams.type = undefined;
+	state.tenantId = node.tenantId;
+	console.log(node)
 	handleQuery();
 };
 </script>

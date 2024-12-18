@@ -19,6 +19,11 @@ public class ListScheduleInput
     public DateTime? StartTime { get; set; }
 
     public DateTime? EndTime { get; set; }
+    
+    /// <summary>
+    /// 租户Id
+    /// </summary>
+    public long TenantId { get; set; }
 }
 
 public class AddScheduleInput : SysSchedule

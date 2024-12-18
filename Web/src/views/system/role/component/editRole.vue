@@ -43,6 +43,7 @@
 								ref="treeRef"
 								:data="state.menuData"
 								node-key="id"
+								check-strictly
 								show-checkbox
 								:props="{ children: 'children', label: 'title', class: treeNodeClass }"
 								icon="ele-Menu"
@@ -65,7 +66,7 @@
 </template>
 
 <script lang="ts" setup name="sysEditRole">
-import { onMounted, reactive, ref } from 'vue';
+import { reactive, ref } from 'vue';
 import type { ElTree } from 'element-plus';
 
 import { getAPI } from '/@/utils/axios-utils';
@@ -85,15 +86,9 @@ const state = reactive({
 	menuData: [] as Array<SysMenu>, // 菜单数据
 });
 
-onMounted(async () => {
-	state.loading = true;
-	var res = await getAPI(SysMenuApi).apiSysMenuListGet();
-	state.menuData = res.data.result ?? [];
-	state.loading = false;
-});
-
 // 打开弹窗
 const openDialog = async (row: any) => {
+	state.menuData = await getAPI(SysMenuApi).apiSysMenuListGet(undefined, undefined, row?.tenantId).then((res) => res.data.result ?? []);
 	ruleFormRef.value?.resetFields();
 	treeRef.value?.setCheckedKeys([]); // 清空选中值
 	state.ruleForm = JSON.parse(JSON.stringify(row));

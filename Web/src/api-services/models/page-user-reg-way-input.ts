@@ -14,57 +14,69 @@
 import { Filter } from './filter';
 import { Search } from './search';
 /**
- * 全局分页查询输入参数
+ * 注册方案分页查询输入参数
  * @export
- * @interface BasePageInput
+ * @interface PageUserRegWayInput
  */
-export interface BasePageInput {
+export interface PageUserRegWayInput {
     /**
      * 
      * @type {Search}
-     * @memberof BasePageInput
+     * @memberof PageUserRegWayInput
      */
     search?: Search;
     /**
      * 模糊查询关键字
      * @type {string}
-     * @memberof BasePageInput
+     * @memberof PageUserRegWayInput
      */
     keyword?: string | null;
     /**
      * 
      * @type {Filter}
-     * @memberof BasePageInput
+     * @memberof PageUserRegWayInput
      */
     filter?: Filter;
     /**
      * 当前页码
      * @type {number}
-     * @memberof BasePageInput
+     * @memberof PageUserRegWayInput
      */
     page?: number;
     /**
      * 页码容量
      * @type {number}
-     * @memberof BasePageInput
+     * @memberof PageUserRegWayInput
      */
     pageSize?: number;
     /**
      * 排序字段
      * @type {string}
-     * @memberof BasePageInput
+     * @memberof PageUserRegWayInput
      */
     field?: string | null;
     /**
      * 排序方向
      * @type {string}
-     * @memberof BasePageInput
+     * @memberof PageUserRegWayInput
      */
     order?: string | null;
     /**
      * 降序排序
      * @type {string}
-     * @memberof BasePageInput
+     * @memberof PageUserRegWayInput
      */
     descStr?: string | null;
+    /**
+     * 方案名称
+     * @type {string}
+     * @memberof PageUserRegWayInput
+     */
+    name?: string | null;
+    /**
+     * 租户Id
+     * @type {number}
+     * @memberof PageUserRegWayInput
+     */
+    tenantId?: number;
 }

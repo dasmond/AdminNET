@@ -130,10 +130,11 @@ export const SysOrgApiAxiosParamCreator = function (configuration?: Configuratio
          * @param {string} [name] 名称
          * @param {string} [code] 编码
          * @param {string} [type] 机构类型
+         * @param {number} [tenantId] 租户Id
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiSysOrgListGet: async (id: number, name?: string, code?: string, type?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        apiSysOrgListGet: async (id: number, name?: string, code?: string, type?: string, tenantId?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             if (id === null || id === undefined) {
                 throw new RequiredError('id','Required parameter id was null or undefined when calling apiSysOrgListGet.');
@@ -168,6 +169,10 @@ export const SysOrgApiAxiosParamCreator = function (configuration?: Configuratio
 
             if (type !== undefined) {
                 localVarQueryParameter['Type'] = type;
+            }
+
+            if (tenantId !== undefined) {
+                localVarQueryParameter['TenantId'] = tenantId;
             }
 
             if (id !== undefined) {
@@ -282,11 +287,12 @@ export const SysOrgApiFp = function(configuration?: Configuration) {
          * @param {string} [name] 名称
          * @param {string} [code] 编码
          * @param {string} [type] 机构类型
+         * @param {number} [tenantId] 租户Id
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiSysOrgListGet(id: number, name?: string, code?: string, type?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<AdminResultListSysOrg>>> {
-            const localVarAxiosArgs = await SysOrgApiAxiosParamCreator(configuration).apiSysOrgListGet(id, name, code, type, options);
+        async apiSysOrgListGet(id: number, name?: string, code?: string, type?: string, tenantId?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<AdminResultListSysOrg>>> {
+            const localVarAxiosArgs = await SysOrgApiAxiosParamCreator(configuration).apiSysOrgListGet(id, name, code, type, tenantId, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -342,11 +348,12 @@ export const SysOrgApiFactory = function (configuration?: Configuration, basePat
          * @param {string} [name] 名称
          * @param {string} [code] 编码
          * @param {string} [type] 机构类型
+         * @param {number} [tenantId] 租户Id
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiSysOrgListGet(id: number, name?: string, code?: string, type?: string, options?: AxiosRequestConfig): Promise<AxiosResponse<AdminResultListSysOrg>> {
-            return SysOrgApiFp(configuration).apiSysOrgListGet(id, name, code, type, options).then((request) => request(axios, basePath));
+        async apiSysOrgListGet(id: number, name?: string, code?: string, type?: string, tenantId?: number, options?: AxiosRequestConfig): Promise<AxiosResponse<AdminResultListSysOrg>> {
+            return SysOrgApiFp(configuration).apiSysOrgListGet(id, name, code, type, tenantId, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -397,12 +404,13 @@ export class SysOrgApi extends BaseAPI {
      * @param {string} [name] 名称
      * @param {string} [code] 编码
      * @param {string} [type] 机构类型
+     * @param {number} [tenantId] 租户Id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof SysOrgApi
      */
-    public async apiSysOrgListGet(id: number, name?: string, code?: string, type?: string, options?: AxiosRequestConfig) : Promise<AxiosResponse<AdminResultListSysOrg>> {
-        return SysOrgApiFp(this.configuration).apiSysOrgListGet(id, name, code, type, options).then((request) => request(this.axios, this.basePath));
+    public async apiSysOrgListGet(id: number, name?: string, code?: string, type?: string, tenantId?: number, options?: AxiosRequestConfig) : Promise<AxiosResponse<AdminResultListSysOrg>> {
+        return SysOrgApiFp(this.configuration).apiSysOrgListGet(id, name, code, type, tenantId, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * 

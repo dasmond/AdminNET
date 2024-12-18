@@ -42,16 +42,6 @@ public class ConfigConst
     public const string SysSingleLogin = "sys_single_login";
 
     /// <summary>
-    /// 登录二次验证
-    /// </summary>
-    public const string SysSecondVer = "sys_second_ver";
-
-    /// <summary>
-    /// 图形验证码
-    /// </summary>
-    public const string SysCaptcha = "sys_captcha";
-
-    /// <summary>
     /// Token过期时间
     /// </summary>
     public const string SysTokenExpire = "sys_token_expire";
@@ -71,10 +61,10 @@ public class ConfigConst
     /// </summary>
     public const string SysDomainLogin = "sys_domain_login";
 
-    /// <summary>
-    /// 租户域名隔离登录验证
-    /// </summary>
-    public const string SysTenantHostLogin = "sys_tenant_host_login";
+    // /// <summary>
+    // /// 租户域名隔离登录验证
+    // /// </summary>
+    // public const string SysTenantHostLogin = "sys_tenant_host_login";
 
     /// <summary>
     /// 数据校验日志
@@ -96,43 +86,43 @@ public class ConfigConst
     /// </summary>
     public const string SysWebConfigGroup = "WebConfig";
 
-    /// <summary>
-    /// 系统图标
-    /// </summary>
-    public const string SysWebLogo = "sys_web_logo";
-
-    /// <summary>
-    /// 系统主标题
-    /// </summary>
-    public const string SysWebTitle = "sys_web_title";
-
-    /// <summary>
-    /// 系统副标题
-    /// </summary>
-    public const string SysWebViceTitle = "sys_web_viceTitle";
-
-    /// <summary>
-    /// 系统描述
-    /// </summary>
-    public const string SysWebViceDesc = "sys_web_viceDesc";
-
-    /// <summary>
-    /// 水印内容
-    /// </summary>
-    public const string SysWebWatermark = "sys_web_watermark";
-
-    /// <summary>
-    /// 版权说明
-    /// </summary>
-    public const string SysWebCopyright = "sys_web_copyright";
-
-    /// <summary>
-    /// ICP备案号
-    /// </summary>
-    public const string SysWebIcp = "sys_web_icp";
-
-    /// <summary>
-    /// ICP地址
-    /// </summary>
-    public const string SysWebIcpUrl = "sys_web_icpUrl";
+    // /// <summary>
+    // /// 系统图标
+    // /// </summary>
+    // public const string SysWebLogo = "sys_web_logo";
+    //
+    // /// <summary>
+    // /// 系统主标题
+    // /// </summary>
+    // public const string SysWebTitle = "sys_web_title";
+    //
+    // /// <summary>
+    // /// 系统副标题
+    // /// </summary>
+    // public const string SysWebViceTitle = "sys_web_viceTitle";
+    //
+    // /// <summary>
+    // /// 系统描述
+    // /// </summary>
+    // public const string SysWebViceDesc = "sys_web_viceDesc";
+    //
+    // /// <summary>
+    // /// 水印内容
+    // /// </summary>
+    // public const string SysWebWatermark = "sys_web_watermark";
+    //
+    // /// <summary>
+    // /// 版权说明
+    // /// </summary>
+    // public const string SysWebCopyright = "sys_web_copyright";
+    //
+    // /// <summary>
+    // /// ICP备案号
+    // /// </summary>
+    // public const string SysWebIcp = "sys_web_icp";
+    //
+    // /// <summary>
+    // /// ICP地址
+    // /// </summary>
+    // public const string SysWebIcpUrl = "sys_web_icpUrl";
 }

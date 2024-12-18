@@ -17,16 +17,11 @@ public class MenuInput
     /// 菜单类型（1目录 2菜单 3按钮）
     /// </summary>
     public MenuTypeEnum? Type { get; set; }
-
+    
     /// <summary>
-    /// 获取所有菜单
+    /// 租户Id
     /// </summary>
-    public bool All { get; set; }
-
-    /// <summary>
-    /// 应用Id
-    /// </summary>
-    public long AppId { get; set; }
+    public virtual long TenantId { get; set; }
 }
 
 public class AddMenuInput : SysMenu
@@ -36,6 +31,11 @@ public class AddMenuInput : SysMenu
     /// </summary>
     [Required(ErrorMessage = "菜单名称不能为空")]
     public override string Title { get; set; }
+    
+    /// <summary>
+    /// 租户Id
+    /// </summary>
+    public long TenantId { get; set; }
 }
 
 public class UpdateMenuInput : AddMenuInput

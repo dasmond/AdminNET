@@ -14,13 +14,20 @@
 							<el-tree
 								ref="treeRef"
 								:data="state.menuData"
+								check-strictly
 								node-key="id"
 								show-checkbox
 								:props="{ children: 'children', label: 'title', class: treeNodeClass }"
 								icon="ele-Menu"
 								highlight-current
-								default-expand-all
-							/>
+								default-expand-all>
+								<template #default="{ node, data }">
+									<span>{{ node.label }}</span>
+									<span v-if="data.path" style="margin-left: 5px!important;">
+                    <el-tag effect="plain" type="warning">{{data.path}}</el-tag>
+                  </span>
+								</template>
+							</el-tree>
 						</el-form-item>
 					</el-col>
 				</el-row>
@@ -59,11 +66,11 @@ const state = reactive({
 const openDialog = async (row: any) => {
 	treeRef.value?.setCheckedKeys([]); // 先清空已选择节点
 	state.ruleForm = row;
-  state.menuData = await getAPI(SysMenuApi).apiSysMenuListGet(undefined,undefined, undefined, state.ruleForm.appId).then(res => res.data.result);
-	const res = await getAPI(SysTenantApi).apiSysTenantOwnMenuListGet(row.userId);
+  state.menuData = await getAPI(SysMenuApi).apiSysMenuListGet().then(res => res.data.result);
+	const menuIds = await getAPI(SysTenantApi).apiSysTenantTenantMenuListGet(row.id).then(res => res.data.result);
 	setTimeout(() => {
 		// 延迟传递数据
-		treeRef.value?.setCheckedKeys(res.data.result);
+		treeRef.value?.setCheckedKeys(menuIds ?? []);
 	}, 100);
 	state.isShowDialog = true;
 };

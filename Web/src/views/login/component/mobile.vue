@@ -1,7 +1,15 @@
 <template>
 	<el-form size="large" class="login-content-form">
+		<el-form-item class="login-animation1" v-if="!props.tenantInfo.id">
+			<el-select v-model="state.ruleForm.tenantId" :placeholder="$t('message.mobile.placeholder1')" clearable style="width: 100%">
+				<template #prefix>
+					<i class="iconfont icon-shuxingtu el-input__icon"></i>
+				</template>
+				<el-option :value="item.value" :label="`${item.label} (${item.host})`" v-for="(item, index) in tenantInfo.list" :key="index" />
+			</el-select>
+		</el-form-item>
 		<el-form-item class="login-animation1">
-			<el-input text :placeholder="$t('message.mobile.placeholder1')" v-model="state.ruleForm.phone" clearable autocomplete="off">
+			<el-input text :placeholder="$t('message.mobile.placeholder2')" v-model="state.ruleForm.phone" clearable autocomplete="off">
 				<template #prefix>
 					<i class="iconfont icon-dianhua el-input__icon"></i>
 				</template>
@@ -9,7 +17,7 @@
 		</el-form-item>
 		<el-form-item class="login-animation2">
 			<el-col :span="15">
-				<el-input text maxlength="6" :placeholder="$t('message.mobile.placeholder2')" v-model="state.ruleForm.code" clearable autocomplete="off">
+				<el-input text maxlength="6" :placeholder="$t('message.mobile.placeholder3')" v-model="state.ruleForm.code" clearable autocomplete="off">
 					<template #prefix>
 						<el-icon class="el-input__icon"><ele-Position /></el-icon>
 					</template>
@@ -39,9 +47,17 @@ import { useRoute } from "vue-router";
 import { getAPI } from '/@/utils/axios-utils';
 import { SysSmsApi, SysAuthApi } from '/@/api-services/api';
 
+const props = defineProps({
+	tenantInfo: {
+		required: true,
+		type: Object,
+	},
+});
+
 const route = useRoute();
 const state = reactive({
 	ruleForm: {
+		tenantId: props.tenantInfo.id,
 		phone: '',
 		code: '',
 	},
@@ -82,8 +98,8 @@ const getSmsCode = async () => {
 
 // 登录
 const onSignIn = async () => {
-  const host = route.query.host ?? location.host;
-	var res = await getAPI(SysAuthApi).apiSysAuthLoginPhonePost({...state.ruleForm, host: host});
+	state.ruleForm.tenantId ??= props.tenantInfo.id ?? props.tenantInfo.list[0]?.value;
+	const res = await getAPI(SysAuthApi).apiSysAuthLoginPhonePost({...state.ruleForm, host: host});
 	if (res.data.result?.accessToken == undefined) {
 		ElMessage.error('登录失败，请检查账号！');
 		return;

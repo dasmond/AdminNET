@@ -12,69 +12,57 @@
  * Do not edit the class manually.
  */
 /**
- * 应用增加输入参数
+ * 用户注册输入参数
  * @export
- * @interface AddSysAppInput
+ * @interface UserRegistrationInput
  */
-export interface AddSysAppInput {
+export interface UserRegistrationInput {
     /**
-     * 图标
+     * 真实姓名
      * @type {string}
-     * @memberof AddSysAppInput
+     * @memberof UserRegistrationInput
      */
-    logo: string;
+    realName: string;
     /**
-     * 名称
+     * 账号
      * @type {string}
-     * @memberof AddSysAppInput
+     * @memberof UserRegistrationInput
      */
-    name: string;
+    account: string;
     /**
-     * 标题
+     * 手机号码
      * @type {string}
-     * @memberof AddSysAppInput
+     * @memberof UserRegistrationInput
      */
-    title: string;
+    phone: string;
     /**
-     * 副标题
+     * 验证码
      * @type {string}
-     * @memberof AddSysAppInput
+     * @memberof UserRegistrationInput
      */
-    viceTitle: string;
+    code: string;
     /**
-     * 副描述
-     * @type {string}
-     * @memberof AddSysAppInput
-     */
-    viceDesc: string;
-    /**
-     * 水印
-     * @type {string}
-     * @memberof AddSysAppInput
-     */
-    watermark: string;
-    /**
-     * 版权信息
-     * @type {string}
-     * @memberof AddSysAppInput
-     */
-    copyright: string;
-    /**
-     * ICP备案号
-     * @type {string}
-     * @memberof AddSysAppInput
-     */
-    icp: string;
-    /**
-     * 排序
+     * 验证码Id
      * @type {number}
-     * @memberof AddSysAppInput
+     * @memberof UserRegistrationInput
      */
-    orderNo: number;
+    codeId?: number;
     /**
-     * 备注
-     * @type {string}
-     * @memberof AddSysAppInput
+     * 租户
+     * @type {number}
+     * @memberof UserRegistrationInput
      */
-    remark?: string | null;
+    tenantId: number;
+    /**
+     * 密码
+     * @type {string}
+     * @memberof UserRegistrationInput
+     */
+    password?: string | null;
+    /**
+     * 注册方案
+     * @type {number}
+     * @memberof UserRegistrationInput
+     */
+    wayId?: number;
 }

@@ -11,47 +11,47 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-import { SqlSugarPagedListSysAppOutput } from './sql-sugar-paged-list-sys-app-output';
+import { UserRegWayOutput } from './user-reg-way-output';
 /**
  * 全局返回结果
  * @export
- * @interface AdminResultSqlSugarPagedListSysAppOutput
+ * @interface AdminResultListUserRegWayOutput
  */
-export interface AdminResultSqlSugarPagedListSysAppOutput {
+export interface AdminResultListUserRegWayOutput {
     /**
      * 状态码
      * @type {number}
-     * @memberof AdminResultSqlSugarPagedListSysAppOutput
+     * @memberof AdminResultListUserRegWayOutput
      */
     code?: number;
     /**
      * 类型success、warning、error
      * @type {string}
-     * @memberof AdminResultSqlSugarPagedListSysAppOutput
+     * @memberof AdminResultListUserRegWayOutput
      */
     type?: string | null;
     /**
      * 错误信息
      * @type {string}
-     * @memberof AdminResultSqlSugarPagedListSysAppOutput
+     * @memberof AdminResultListUserRegWayOutput
      */
     message?: string | null;
     /**
-     * 
-     * @type {SqlSugarPagedListSysAppOutput}
-     * @memberof AdminResultSqlSugarPagedListSysAppOutput
+     * 数据
+     * @type {Array<UserRegWayOutput>}
+     * @memberof AdminResultListUserRegWayOutput
      */
-    result?: SqlSugarPagedListSysAppOutput;
+    result?: Array<UserRegWayOutput> | null;
     /**
      * 附加数据
      * @type {any}
-     * @memberof AdminResultSqlSugarPagedListSysAppOutput
+     * @memberof AdminResultListUserRegWayOutput
      */
     extras?: any | null;
     /**
      * 时间
      * @type {Date}
-     * @memberof AdminResultSqlSugarPagedListSysAppOutput
+     * @memberof AdminResultListUserRegWayOutput
      */
     time?: Date;
 }
