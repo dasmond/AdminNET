@@ -48,7 +48,7 @@ onMounted(() => {
 </script>
 
 <template>
-	<el-popover placement="bottom" width="300" trigger="hover">
+	<el-popover placement="bottom" width="300" trigger="click">
 		<template #reference>
 			<i class="iconfont icon-dianhua" v-bind="$attrs" />
 		</template>
