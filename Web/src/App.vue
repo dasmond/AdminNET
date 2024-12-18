@@ -118,31 +118,31 @@ const loadSysInfo = () => {
 
 			const data = res.data.result;
 			// 系统logo
-			themeConfig.value.logoUrl = data.sysLogo;
+			themeConfig.value.logoUrl = data.logo;
 			// 主标题
-			themeConfig.value.globalTitle = data.sysTitle;
+			themeConfig.value.globalTitle = data.title;
 			// 副标题
-			themeConfig.value.globalViceTitle = data.sysViceTitle;
+			themeConfig.value.globalViceTitle = data.viceTitle;
 			// 系统说明
-			themeConfig.value.globalViceTitleMsg = data.sysViceDesc;
+			themeConfig.value.globalViceTitleMsg = data.viceDesc;
 			// Icp备案信息
-			themeConfig.value.icp = data.sysIcp;
-			themeConfig.value.icpUrl = data.sysIcpUrl;
+			themeConfig.value.icp = data.icp;
+			themeConfig.value.icpUrl = data.icpUrl;
 			// 水印
-			themeConfig.value.isWatermark = data.sysWatermark != null;
-			themeConfig.value.watermarkText = data.sysWatermark;
+			themeConfig.value.isWatermark = data.watermark != null;
+			themeConfig.value.watermarkText = data.watermark;
 			// 版权说明
-			themeConfig.value.copyright = data.sysCopyright;
+			themeConfig.value.copyright = data.copyright;
 			// 登录验证
-			themeConfig.value.secondVer = data.sysSecondVer;
-			themeConfig.value.captcha = data.sysCaptcha;
+			themeConfig.value.secondVer = data.secondVer;
+			themeConfig.value.captcha = data.captcha;
 			// 注册功能
-			themeConfig.value.registration = data.sysRegistration;
+			themeConfig.value.registration = data.registration;
 			// 更新配置加载状态
 			themeConfig.value.isLoaded = true;
 
 			// 更新 favicon
-			updateFavicon(data.sysLogo);
+			updateFavicon(data.logo);
 
 			// 保存配置
 			Local.remove('themeConfig');
