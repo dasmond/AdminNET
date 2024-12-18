@@ -42,7 +42,11 @@
 						<el-table-column prop="account" label="账号" width="120" align="center" show-overflow-tooltip />
 						<!-- <el-table-column prop="nickName" label="昵称" width="120" align="center" show-overflow-tooltip /> -->
 						<el-table-column prop="realName" label="姓名" width="120" align="center" show-overflow-tooltip />
-						<el-table-column prop="phone" label="手机号码" width="120" align="center" show-overflow-tooltip />
+						<el-table-column prop="phone" label="手机号码" width="120" align="center" show-overflow-tooltip>
+							<template #default="scope">
+								{{scope.row.phone}} <call-bar :real-name="scope.row.realName" :number="scope.row.phone" :callback-url="'123'" />
+							</template>
+						</el-table-column>
 						<!-- <el-table-column label="出生日期" width="100" align="center" show-overflow-tooltip>
 							<template #default="scope">
 								{{ formatDate(new Date(scope.row.birthday), 'YYYY-mm-dd') }}
@@ -116,6 +120,7 @@ import { ElMessageBox, ElMessage } from 'element-plus';
 import OrgTree from '/@/views/system/org/component/orgTree.vue';
 import EditUser from '/@/views/system/user/component/editUser.vue';
 import ModifyRecord from '/@/components/table/modifyRecord.vue';
+import CallBar from '/@/components/callTel/callBar.vue';
 import { Splitpanes, Pane } from 'splitpanes';
 import 'splitpanes/dist/splitpanes.css';
 import { getAPI } from '/@/utils/axios-utils';
