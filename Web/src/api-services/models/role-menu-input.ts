@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 /**
- * 授权角色菜单
+ * 系统角色菜单
  * @export
  * @interface RoleMenuInput
  */

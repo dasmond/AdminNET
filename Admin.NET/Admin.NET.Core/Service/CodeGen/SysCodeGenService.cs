@@ -475,15 +475,12 @@ public class SysCodeGenService : IDynamicApiController, ITransient
         await DeleteMenuTree(title, pid == 0 ? MenuTypeEnum.Dir : MenuTypeEnum.Menu);
 
         var parentMenuPath = "";
-        var appId = _userManager.AppId;
-        var appMenuList = new List<SysAppMenu>();
         var lowerClassName = className[..1].ToLower() + className[1..];
         if (pid == 0)
         {
             // 新增目录，并记录Id
             var dirMenu = new SysMenu { Pid = 0, Title = title, Type = MenuTypeEnum.Dir, Icon = "robot", Path = "/" + className.ToLower(), Component = "Layout" };
             pid = (await _db.Insertable(dirMenu).ExecuteReturnEntityAsync()).Id;
-            appMenuList.Add(new SysAppMenu { AppId = appId, MenuId = pid });
         }
         else
         {
@@ -494,7 +491,6 @@ public class SysCodeGenService : IDynamicApiController, ITransient
         // 新增菜单，并记录Id
         var rootMenu = new SysMenu { Pid = pid, Title = title, Type = MenuTypeEnum.Menu, Icon = menuIcon, Path = $"{parentMenuPath}/{className.ToLower()}", Component = $"/{pagePath}/{lowerClassName}/index" };
         pid = (await _db.Insertable(rootMenu).ExecuteReturnEntityAsync()).Id;
-        appMenuList.Add(new SysAppMenu { AppId = appId, MenuId = pid });
 
         var orderNo = 100;
         var menuList = new List<SysMenu>
@@ -518,10 +514,6 @@ public class SysCodeGenService : IDynamicApiController, ITransient
             menuList.Add(new SysMenu { Title = $"上传{column.ColumnComment}", Permission = $"{lowerClassName}:upload{column.PropertyName}", Pid = pid, Type = MenuTypeEnum.Btn, OrderNo = orderNo += 10 });
 
         await _db.Insertable(menuList).ExecuteCommandAsync();
-
-        // 新增应用菜单关联
-        appMenuList.AddRange(menuList.Select(u => new SysAppMenu { AppId = appId, MenuId = u.Id }));
-        await _db.Insertable(appMenuList).ExecuteCommandAsync();
     }
 
     /// <summary>

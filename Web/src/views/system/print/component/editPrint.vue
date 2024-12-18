@@ -106,7 +106,7 @@ onMounted(async () => {});
 // 打开弹窗
 const openDialog = (row: any) => {
 	state.ruleForm = JSON.parse(JSON.stringify(row));
-	if (JSON.stringify(state.ruleForm) !== '{}') {
+	if (state.ruleForm?.template) {
 		let templateJson = JSON.parse(state.ruleForm.template);
 		mode.value = templateJson.panels[0].index;
 	}

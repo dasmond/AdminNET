@@ -30,11 +30,14 @@ public class GoViewSysService : IDynamicApiController
     /// GoView 登录 🔖
     /// </summary>
     /// <returns></returns>
+    [UnitOfWork]
     [AllowAnonymous]
     [DisplayName("GoView 登录")]
     public async Task<GoViewLoginOutput> Login(GoViewLoginInput input)
     {
-        _sysCacheService.Set($"{CacheConst.KeyConfig}{ConfigConst.SysCaptcha}", false);
+        // 关闭验证码验证
+        var tenant = await _sysUserRep.Context.Queryable<SysTenant>().FirstAsync(u => u.Id == input.TenantId) ?? throw Oops.Oh(ErrorCodeEnum.Z1003);
+        if (tenant.Captcha == YesNoEnum.Y) await _sysUserRep.Context.Updateable(new SysTenant{ Captcha = YesNoEnum.N }).UpdateColumns(u => u.Captcha).ExecuteCommandAsync();
 
         input.Password = CryptogramUtil.SM2Encrypt(input.Password);
         var loginResult = await _sysAuthService.Login(new LoginInput()
@@ -43,7 +46,8 @@ public class GoViewSysService : IDynamicApiController
             Password = input.Password,
         });
 
-        _sysCacheService.Remove($"{CacheConst.KeyConfig}{ConfigConst.SysCaptcha}");
+        // 启用验证码
+        if (tenant.Captcha == YesNoEnum.Y) await _sysUserRep.Context.Updateable(new SysTenant{ Captcha = YesNoEnum.Y }).UpdateColumns(u => u.Captcha).ExecuteCommandAsync();
 
         var sysUser = await _sysUserRep.AsQueryable().ClearFilter().FirstAsync(u => u.Account.Equals(input.Username));
         return new GoViewLoginOutput()

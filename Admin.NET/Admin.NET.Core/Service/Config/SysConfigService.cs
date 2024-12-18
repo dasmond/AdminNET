@@ -4,6 +4,9 @@
 //
 // 不得利用本项目从事危害国家安全、扰乱社会秩序、侵犯他人合法权益等法律法规禁止的活动！任何基于本项目二次开发而产生的一切法律纠纷和责任，我们不承担任何责任！
 
+using Microsoft.AspNetCore.Mvc.Rendering;
+using NewLife.Reflection;
+
 namespace Admin.NET.Core.Service;
 
 /// <summary>
@@ -221,12 +224,12 @@ public class SysConfigService : IDynamicApiController, ITransient
     [DisplayName("批量更新参数配置值")]
     public async Task BatchUpdateConfig(List<BatchConfigInput> input)
     {
-        foreach (var Config in input)
+        foreach (var config in input)
         {
-            var info = await _sysConfigRep.GetFirstAsync(c => c.Code == Config.Code);
+            var info = await _sysConfigRep.GetFirstAsync(c => c.Code == config.Code);
             if (info == null) continue;
 
-            await _sysConfigRep.AsUpdateable().SetColumns(u => u.Value == Config.Value).Where(u => u.Code == Config.Code).ExecuteCommandAsync();
+            await _sysConfigRep.AsUpdateable().SetColumns(u => u.Value == config.Value).Where(u => u.Code == config.Code).ExecuteCommandAsync();
             Remove(info);
         }
     }
@@ -240,31 +243,29 @@ public class SysConfigService : IDynamicApiController, ITransient
     [DisplayName("获取系统信息")]
     public async Task<dynamic> GetSysInfo()
     {
-        // var sysLogo = await GetConfigValue<string>(ConfigConst.SysWebLogo);
-        // var sysTitle = await GetConfigValue<string>(ConfigConst.SysWebTitle);
-        // var sysViceTitle = await GetConfigValue<string>(ConfigConst.SysWebViceTitle);
-        // var sysViceDesc = await GetConfigValue<string>(ConfigConst.SysWebViceDesc);
-        // var sysWatermark = await GetConfigValue<string>(ConfigConst.SysWebWatermark);
-        // var sysCopyright = await GetConfigValue<string>(ConfigConst.SysWebCopyright);
-        // var sysIcp = await GetConfigValue<string>(ConfigConst.SysWebIcp);
-        var app = await App.GetRequiredService<SysAppService>().GetCurrentAppInfo();
+        var tenant = await App.GetService<SysTenantService>().GetCurrentTenant();
+        tenant ??= await _sysConfigRep.Context.Queryable<SysTenant>().FirstAsync(u => u.Id == SqlSugarConst.DefaultTenantId);
+        _ = tenant ?? throw Oops.Oh(ErrorCodeEnum.D1002);
 
-        var sysIcpUrl = await GetConfigValue<string>(ConfigConst.SysWebIcpUrl);
-        var sysSecondVer = await GetConfigValue<bool>(ConfigConst.SysSecondVer);
-        var sysCaptcha = await GetConfigValue<bool>(ConfigConst.SysCaptcha);
-
+        var wayList = await _sysConfigRep.Context.Queryable<SysUserRegWay>().ClearFilter()
+            .Where(u => u.TenantId == tenant.Id)
+            .Select(u => new { Label = u.Name, Value = u.Id })
+            .ToListAsync();
         return new
         {
-            SysLogo = app.Logo,
-            SysTitle = app.Title,
-            SysViceTitle = app.ViceTitle,
-            SysViceDesc = app.ViceDesc,
-            SysWatermark = app.Watermark,
-            SysCopyright = app.Copyright,
-            SysIcp = app.Icp,
-            SysIcpUrl = sysIcpUrl,
-            SysSecondVer = sysSecondVer,
-            SysCaptcha = sysCaptcha
+            tenant.Logo,
+            tenant.Title,
+            tenant.ViceTitle,
+            tenant.ViceDesc,
+            tenant.Watermark,
+            tenant.Copyright,
+            tenant.Icp,
+            tenant.IcpUrl,
+            tenant.RegWayId,
+            tenant.EnableReg,
+            tenant.SecondVer,
+            tenant.Captcha,
+            WayList = wayList
         };
     }
 
@@ -276,51 +277,12 @@ public class SysConfigService : IDynamicApiController, ITransient
     [DisplayName("保存系统信息")]
     public async Task SaveSysInfo(InfoSaveInput input)
     {
-        // logo 不为空才保存
-        var app = await App.GetRequiredService<SysAppService>().GetCurrentAppInfo();
-        if (!string.IsNullOrEmpty(input.SysLogoBase64))
-        {
-            // 旧图标文件相对路径
-            var oldSysLogoRelativeFilePath = app.Logo ?? "";
-            var oldSysLogoAbsoluteFilePath = Path.Combine(App.WebHostEnvironment.WebRootPath, oldSysLogoRelativeFilePath.TrimStart('/'));
+        var tenant = await App.GetService<SysTenantService>().GetCurrentTenant() ?? throw Oops.Oh(ErrorCodeEnum.D1002);
+        if (!string.IsNullOrEmpty(input.LogoBase64)) App.GetService<SysTenantService>().SetLogoUrl(tenant, input.LogoBase64, input.LogoFileName);
 
-            var groups = Regex.Match(input.SysLogoBase64, @"data:image/(?<type>.+?);base64,(?<data>.+)").Groups;
-            //var type = groups["type"].Value;
-            var base64Data = groups["data"].Value;
-            var binData = Convert.FromBase64String(base64Data);
-            // 根据文件名取扩展名
-            var ext = string.IsNullOrWhiteSpace(input.SysLogoFileName) ? ".png" : Path.GetExtension(input.SysLogoFileName);
-            // 本地图标保存路径
-            var path = "upload";
-            var fileName = $"{app.ViceTitle}-logo{ext}".ToLower();
-            var absoluteFilePath = Path.Combine(App.WebHostEnvironment.WebRootPath, path, fileName);
-
-            // 删除已存在文件
-            if (File.Exists(oldSysLogoAbsoluteFilePath)) File.Delete(oldSysLogoAbsoluteFilePath);
-
-            // 创建文件夹
-            var absoluteFileDir = Path.GetDirectoryName(absoluteFilePath);
-            if (!Directory.Exists(absoluteFileDir)) Directory.CreateDirectory(absoluteFileDir);
-
-            // 保存图标文件
-            await File.WriteAllBytesAsync(absoluteFilePath, binData);
-
-            // 保存图标配置
-            app.Logo = $"/{path}/{fileName}";
-        }
-
-        app.Title = input.SysTitle;
-        app.ViceTitle = input.SysViceTitle;
-        app.ViceDesc = input.SysViceDesc;
-        app.Watermark = input.SysWatermark;
-        app.Copyright = input.SysCopyright;
-        app.Icp = input.SysIcp;
-
-        await _sysConfigRep.Context.Updateable(app).ExecuteCommandAsync();
-
-        await UpdateConfigValue(ConfigConst.SysWebIcpUrl, input.SysIcpUrl);
-        await UpdateConfigValue(ConfigConst.SysSecondVer, (input.SysSecondVer ?? false).ToString());
-        await UpdateConfigValue(ConfigConst.SysCaptcha, (input.SysCaptcha ?? true).ToString());
+        tenant.Copy(input);
+        tenant.RegWayId = input.EnableReg == YesNoEnum.Y ? input.RegWayId : null;
+        await _sysConfigRep.Context.Updateable(tenant).ExecuteCommandAsync();
     }
 
     private void Remove(SysConfig config)

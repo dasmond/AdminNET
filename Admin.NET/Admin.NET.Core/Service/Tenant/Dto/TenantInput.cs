@@ -30,12 +30,6 @@ public class PageTenantInput : BasePageInput
 public class AddTenantInput : TenantOutput
 {
     /// <summary>
-    /// 应用Id
-    /// </summary>
-    [Required(ErrorMessage = "应用不能为空")]
-    public new long? AppId { get; set; }
-
-    /// <summary>
     /// 租户名称
     /// </summary>
     [Required(ErrorMessage = "租户名称不能为空"), MinLength(2, ErrorMessage = "租户名称不能少于2个字符")]
@@ -51,7 +45,62 @@ public class AddTenantInput : TenantOutput
     /// 租户域名
     /// </summary>
     [Required(ErrorMessage = "域名不能为空"), MinLength(5, ErrorMessage = "域名不能少于5个字符")]
-    public new string Host { get; set; }
+    public override string Host { get; set; }
+    
+    /// <summary>
+    /// 系统主标题
+    /// </summary>
+    [Required(ErrorMessage = "系统主标题不能为空")]
+    public override string Title { get; set; }
+
+    /// <summary>
+    /// 系统副标题
+    /// </summary>
+    [Required(ErrorMessage = "系统副标题不能为空")]
+    public override string ViceTitle { get; set; }
+
+    /// <summary>
+    /// 系统描述
+    /// </summary>
+    [Required(ErrorMessage = "系统描述不能为空")]
+    public override string ViceDesc { get; set; }
+
+    /// <summary>
+    /// 水印内容
+    /// </summary>
+    [Required(ErrorMessage = "水印内容不能为空")]
+    public override string Watermark { get; set; }
+
+    /// <summary>
+    /// 版权说明
+    /// </summary>
+    [Required(ErrorMessage = "版权说明不能为空")]
+    public override string Copyright { get; set; }
+
+    /// <summary>
+    /// ICP备案号
+    /// </summary>
+    [Required(ErrorMessage = "ICP备案号不能为空")]
+    public override string Icp { get; set; }
+
+    /// <summary>
+    /// ICP地址
+    /// </summary>
+    [Required(ErrorMessage = "ICP地址不能为空")]
+    public override string IcpUrl { get; set; }
+    
+    /// <summary>
+    /// Logo图片Base64码
+    /// </summary>
+    [CommonValidation(
+        "string.IsNullOrWhiteSpace(Logo) && string.IsNullOrWhiteSpace(LogoBase64)", "图标不能为空"
+    )]
+    public virtual string LogoBase64 { get; set; }
+    
+    /// <summary>
+    /// Logo文件名
+    /// </summary>
+    public virtual string LogoFileName { get; set; }
 }
 
 public class UpdateTenantInput : AddTenantInput
@@ -60,6 +109,17 @@ public class UpdateTenantInput : AddTenantInput
 
 public class DeleteTenantInput : BaseIdInput
 {
+}
+
+/// <summary>
+/// 租户菜单
+/// </summary>
+public class TenantMenuInput : BaseIdInput
+{
+    /// <summary>
+    /// 菜单Id集合
+    /// </summary>
+    public List<long> MenuIdList { get; set; }
 }
 
 public class TenantUserInput

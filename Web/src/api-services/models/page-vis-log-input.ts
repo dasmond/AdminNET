@@ -104,6 +104,12 @@ export interface PageVisLogInput {
      */
     remoteIp?: string | null;
     /**
+     * 租户Id
+     * @type {number}
+     * @memberof PageVisLogInput
+     */
+    tenantId?: number;
+    /**
      * 方法名称
      * @type {string}
      * @memberof PageVisLogInput

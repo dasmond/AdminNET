@@ -14,6 +14,7 @@
 import { DbType } from './db-type';
 import { StatusEnum } from './status-enum';
 import { TenantTypeEnum } from './tenant-type-enum';
+import { YesNoEnum } from './yes-no-enum';
 /**
  * 
  * @export
@@ -73,9 +74,9 @@ export interface TenantOutput {
      * @type {number}
      * @memberof TenantOutput
      */
-    appId?: number;
+    appId?: number | null;
     /**
-     * 用户Id
+     * 租管用户Id
      * @type {number}
      * @memberof TenantOutput
      */
@@ -123,6 +124,78 @@ export interface TenantOutput {
      */
     slaveConnections?: string | null;
     /**
+     * 
+     * @type {YesNoEnum}
+     * @memberof TenantOutput
+     */
+    enableReg?: YesNoEnum;
+    /**
+     * 默认注册方案Id
+     * @type {number}
+     * @memberof TenantOutput
+     */
+    regWayId?: number | null;
+    /**
+     * 
+     * @type {YesNoEnum}
+     * @memberof TenantOutput
+     */
+    captcha?: YesNoEnum;
+    /**
+     * 
+     * @type {YesNoEnum}
+     * @memberof TenantOutput
+     */
+    secondVer?: YesNoEnum;
+    /**
+     * 图标
+     * @type {string}
+     * @memberof TenantOutput
+     */
+    logo: string;
+    /**
+     * 标题
+     * @type {string}
+     * @memberof TenantOutput
+     */
+    title?: string | null;
+    /**
+     * 副标题
+     * @type {string}
+     * @memberof TenantOutput
+     */
+    viceTitle?: string | null;
+    /**
+     * 副描述
+     * @type {string}
+     * @memberof TenantOutput
+     */
+    viceDesc?: string | null;
+    /**
+     * 水印
+     * @type {string}
+     * @memberof TenantOutput
+     */
+    watermark?: string | null;
+    /**
+     * 版权信息
+     * @type {string}
+     * @memberof TenantOutput
+     */
+    copyright?: string | null;
+    /**
+     * ICP备案号
+     * @type {string}
+     * @memberof TenantOutput
+     */
+    icp?: string | null;
+    /**
+     * ICP地址
+     * @type {string}
+     * @memberof TenantOutput
+     */
+    icpUrl?: string | null;
+    /**
      * 排序
      * @type {number}
      * @memberof TenantOutput
@@ -146,12 +219,6 @@ export interface TenantOutput {
      * @memberof TenantOutput
      */
     name?: string | null;
-    /**
-     * 关联应用名称
-     * @type {string}
-     * @memberof TenantOutput
-     */
-    appName?: string | null;
     /**
      * 管理员账号
      * @type {string}

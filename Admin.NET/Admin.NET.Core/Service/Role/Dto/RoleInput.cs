@@ -17,6 +17,11 @@ public class RoleInput : BaseIdInput
 public class PageRoleInput : BasePageInput
 {
     /// <summary>
+    /// 租户Id
+    /// </summary>
+    public long TenantId { get; set; }
+    
+    /// <summary>
     /// 名称
     /// </summary>
     public virtual string Name { get; set; }

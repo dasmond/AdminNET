@@ -2,6 +2,11 @@
 	<div class="sys-exlog-container" v-loading="state.loading">
 		<el-card shadow="hover" :body-style="{ paddingBottom: '0' }">
 			<el-form :model="state.queryParams" ref="queryForm" :inline="true">
+				<el-form-item label="租户" v-if="userStore.userInfos.accountType == 999">
+					<el-select v-model="state.queryParams.tenantId" placeholder="租户" style="width: 100%">
+						<el-option :value="item.value" :label="`${item.label} (${item.host})`" v-for="(item, index) in state.tenantList" :key="index" />
+					</el-select>
+				</el-form-item>
 				<el-form-item label="开始时间">
 					<el-date-picker v-model="state.queryParams.startTime" type="datetime" placeholder="开始时间" value-format="YYYY-MM-DD HH:mm:ss" :shortcuts="shortcuts" />
 				</el-form-item>
@@ -118,13 +123,17 @@ import { ElMessage } from 'element-plus';
 import { downloadByData, getFileName } from '/@/utils/download';
 
 import { getAPI } from '/@/utils/axios-utils';
-import { SysLogExApi } from '/@/api-services/api';
+import { SysLogExApi, SysTenantApi } from '/@/api-services/api';
 import { SysLogEx } from '/@/api-services/models';
+import { useUserInfo } from "/@/stores/userInfo";
 
+const userStore = useUserInfo();
 const state = reactive({
 	loading: false,
 	loadingDetail: false,
+	tenantList: [] as Array<any>,
 	queryParams: {
+		tenantId: undefined,
 		startTime: undefined,
 		endTime: undefined,
 		status: undefined,
@@ -148,6 +157,10 @@ const state = reactive({
 });
 
 onMounted(async () => {
+	if (userStore.userInfos.accountType == 999) {
+		state.tenantList = await getAPI(SysTenantApi).apiSysTenantListGet().then(res => res.data.result ?? []);
+		state.queryParams.tenantId = state.tenantList[0].value;
+	}
 	handleQuery();
 });
 

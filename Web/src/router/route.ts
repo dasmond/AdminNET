@@ -118,6 +118,14 @@ export const staticRoutes: Array<RouteRecordRaw> = [
 			title: '登录',
 			isPublic: true,
 		},
+	},{
+		path: '/$callTel',
+		name: '$callTel',
+		component: () => import('/@/components/callTel/index.vue'),
+		meta: {
+			title: '拨号',
+			isPublic: true,
+		},
 	},
 	/**
 	 * 提示：写在这里的为全屏界面，不建议写在这里

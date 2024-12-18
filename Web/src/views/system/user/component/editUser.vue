@@ -56,7 +56,7 @@
 							</el-divider>
 							<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
 								<el-form-item label="所属机构" prop="orgId" :rules="[{ required: true, message: '所属机构不能为空', trigger: 'blur' }]">
-									<el-cascader :options="props.orgData" :props="cascaderProps" placeholder="所属机构" clearable filterable class="w100" v-model="state.ruleForm.orgId">
+									<el-cascader :options="state.orgData" :props="cascaderProps" placeholder="所属机构" clearable filterable class="w100" v-model="state.ruleForm.orgId">
 										<template #default="{ node, data }">
 											<span>{{ data.name }}</span>
 											<span v-if="!node.isLeaf"> ({{ data.children.length }}) </span>
@@ -239,6 +239,7 @@ const state = reactive({
 	loading: false,
 	isShowDialog: false,
 	selectedTabName: '0', // 选中的 tab 页
+	orgData: [] as Array<SysOrg>,
 	ruleForm: {} as UpdateUserInput,
 	posData: [] as Array<SysPos>, // 职位数据
 	roleData: [] as Array<RoleOutput>, // 角色数据
@@ -257,8 +258,10 @@ onMounted(async () => {
 
 // 打开弹窗
 const openDialog = async (row: any) => {
+	state.orgData = (row.tenantId ? props.orgData?.filter((e) => e.tenantId === row.tenantId) : props.orgData) ?? [];
+	state.posData = (row.tenantId ? state.posData?.filter((e) => e.tenantId === row.tenantId) : state.posData) ?? [];
+	state.roleData = (row.tenantId ? state.roleData?.filter((e) => e.tenantId === row.tenantId) : state.roleData) ?? [];
 	ruleFormRef.value?.resetFields();
-
 	state.selectedTabName = '0'; // 重置为第一个 tab 页
 	state.ruleForm = JSON.parse(JSON.stringify(row));
 	if (row.id != undefined) {

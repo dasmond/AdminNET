@@ -2,6 +2,11 @@
 	<div class="sys-menu-container">
 		<el-card shadow="hover" :body-style="{ paddingBottom: '0' }">
 			<el-form :model="state.queryParams" ref="queryForm" :inline="true">
+				<el-form-item label="租户" v-if="userStore.userInfos.accountType == 999">
+					<el-select v-model="state.queryParams.tenantId" placeholder="租户" style="width: 100%">
+						<el-option :value="item.value" :label="`${item.label} (${item.host})`" v-for="(item, index) in state.tenantList" :key="index" />
+					</el-select>
+				</el-form-item>
 				<el-form-item label="菜单名称">
 					<el-input v-model="state.queryParams.title" placeholder="菜单名称" clearable />
 				</el-form-item>
@@ -57,7 +62,7 @@
 			</el-table>
 		</el-card>
 
-		<EditMenu ref="editMenuRef" :title="state.editMenuTitle" :menuData="state.menuData" @handleQuery="handleQuery" />
+		<EditMenu ref="editMenuRef" :title="state.editMenuTitle" :menuData="state.allMenuData" @handleQuery="handleQuery" />
 	</div>
 </template>
 
@@ -68,14 +73,19 @@ import EditMenu from '/@/views/system/menu/component/editMenu.vue';
 import ModifyRecord from '/@/components/table/modifyRecord.vue';
 
 import { getAPI } from '/@/utils/axios-utils';
-import { SysMenuApi } from '/@/api-services/api';
+import {SysMenuApi, SysTenantApi} from '/@/api-services/api';
 import { SysMenu, UpdateMenuInput } from '/@/api-services/models';
+import {useUserInfo} from "/@/stores/userInfo";
 
+const userStore = useUserInfo();
 const editMenuRef = ref<InstanceType<typeof EditMenu>>();
 const state = reactive({
 	loading: false,
+	tenantList: [] as Array<any>,
 	menuData: [] as Array<SysMenu>,
+	allMenuData: [] as Array<SysMenu>,
 	queryParams: {
+		tenantId: undefined,
 		title: undefined,
 		type: undefined,
 	},
@@ -83,13 +93,17 @@ const state = reactive({
 });
 
 onMounted(async () => {
+	if (userStore.userInfos.accountType == 999) {
+		state.tenantList = await getAPI(SysTenantApi).apiSysTenantListGet().then(res => res.data.result ?? []);
+		state.queryParams.tenantId = state.tenantList[0].value;
+	}
 	handleQuery();
 });
 
 // 查询操作
 const handleQuery = async () => {
 	state.loading = true;
-	var res = await getAPI(SysMenuApi).apiSysMenuListGet(state.queryParams.title, state.queryParams.type);
+	var res = await getAPI(SysMenuApi).apiSysMenuListGet(state.queryParams.title, state.queryParams.type, state.queryParams.tenantId);
 	state.menuData = res.data.result ?? [];
 	state.loading = false;
 };
@@ -103,8 +117,11 @@ const resetQuery = () => {
 
 // 打开新增页面
 const openAddMenu = () => {
+	getAPI(SysMenuApi).apiSysMenuListGet(undefined, undefined, state.queryParams.tenantId).then(({data}) => state.allMenuData = data.result ?? []);
+	const data = { type: 2, isHide: false, isKeepAlive: true, isAffix: false, isIframe: false, tenantId: undefined, status: 1, orderNo: 100 };
+	if (userStore.userInfos.accountType == 999) data.tenantId = state.queryParams.tenantId;
 	state.editMenuTitle = '添加菜单';
-	editMenuRef.value?.openDialog({ type: 2, isHide: false, isKeepAlive: true, isAffix: false, isIframe: false, status: 1, orderNo: 100 });
+	editMenuRef.value?.openDialog(data);
 };
 
 // 打开编辑页面

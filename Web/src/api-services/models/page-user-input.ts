@@ -68,6 +68,12 @@ export interface PageUserInput {
      */
     descStr?: string | null;
     /**
+     * 租户Id
+     * @type {number}
+     * @memberof PageUserInput
+     */
+    tenantId?: number;
+    /**
      * 账号
      * @type {string}
      * @memberof PageUserInput

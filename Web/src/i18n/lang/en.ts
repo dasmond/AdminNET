@@ -151,6 +151,7 @@ export default {
 		threeIsUniqueOpened: 'Menu accordion',
 		threeIsFixedHeader: 'Fixed header',
 		threeIsClassicSplitMenu: 'Classic layout split menu',
+		changeTenant: 'Change tenant',
 		threeIsLockScreen: 'Open the lock screen',
 		threeLockScreenTime: 'screen locking(s/s)',
 		fourTitle: 'Interface display',

@@ -37,7 +37,7 @@ public class EnumToDictJob : IJob
         // 校验枚举类命名规范，字典相关功能中需要通过后缀判断是否为枚举类型
         Console.ForegroundColor = ConsoleColor.Red;
         foreach (var dictType in sysDictTypeList.Where(x => !x.Code.EndsWith("Enum")))
-            Console.WriteLine($"【{DateTime.Now}】系统枚举转换字典的枚举类名称必须以Enum结尾: {dictType.Code} ({dictType.Name}-{dictType.Remark})");
+            Console.WriteLine($"【{DateTime.Now}】系统枚举转换字典的枚举类名称必须以Enum结尾: {dictType.Code} ({dictType.Name})");
         sysDictTypeList = sysDictTypeList.Where(x => x.Code.EndsWith("Enum")).ToList();
 
         await SyncEnumToDictInfoAsync(db, sysDictTypeList);

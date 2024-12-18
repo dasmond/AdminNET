@@ -30,11 +30,11 @@ export interface LoginInput {
      */
     password: string;
     /**
-     * 租户域名
-     * @type {string}
+     * 租户
+     * @type {number}
      * @memberof LoginInput
      */
-    host: string;
+    tenantId: number;
     /**
      * 验证码Id
      * @type {number}

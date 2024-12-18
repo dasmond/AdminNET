@@ -7,7 +7,7 @@
 namespace Admin.NET.Core.Service;
 
 /// <summary>
-/// 授权角色菜单
+/// 系统角色菜单
 /// </summary>
 public class RoleMenuInput : BaseIdInput
 {

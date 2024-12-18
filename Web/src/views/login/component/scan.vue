@@ -1,5 +1,11 @@
 <template>
 	<div class="login-scan-container">
+		<el-select v-model="state.tenantId" v-if="!props.tenantInfo.id" :placeholder="$t('message.scan.placeholder1')" clearable class="mb30" style="width: 260px; align-self: center;">
+			<template #prefix>
+				<i class="iconfont icon-shuxingtu el-input__icon"></i>
+			</template>
+			<el-option :value="item.value" :label="`${item.label} (${item.host})`" v-for="(item, index) in tenantInfo.list" :key="index" />
+		</el-select>
 		<div ref="qrcodeRef"></div>
 		<div class="font12 mt20 login-msg">
 			<i class="iconfont icon-saoyisao mr5"></i>
@@ -9,8 +15,19 @@
 </template>
 
 <script setup lang="ts" name="loginScan">
-import { ref, onMounted, nextTick } from 'vue';
+import {ref, onMounted, nextTick, reactive} from 'vue';
 import QRCode from 'qrcodejs2-fixes';
+
+const props = defineProps({
+	tenantInfo: {
+		required: true,
+		type: Object,
+	},
+});
+
+const state = reactive({
+	tenantId: props.tenantInfo.id,
+});
 
 // 定义变量内容
 const qrcodeRef = ref<HTMLElement | null>(null);
