@@ -153,11 +153,8 @@
 								<el-form-item label="启用验证码" prop="captcha">
 									<el-switch
 											v-model="state.ruleForm.captcha"
-											inline-prompt
 											:active-value="1"
 											:inactive-value="2"
-											active-text="开启"
-											inactive-text="关闭"
 									/>
 								</el-form-item>
 							</el-col>
@@ -165,11 +162,8 @@
 								<el-form-item label="启用二次验证" prop="secondVer">
 									<el-switch
 											v-model="state.ruleForm.secondVer"
-											inline-prompt
 											:active-value="1"
 											:inactive-value="2"
-											active-text="开启"
-											inactive-text="关闭"
 									/>
 								</el-form-item>
 							</el-col>
@@ -250,13 +244,18 @@ const submit = async () => {
 	}
 	ruleFormRef.value.validate(async (valid: boolean) => {
 		if (!valid) return;
-		if (state.ruleForm.enableReg != 1) state.ruleForm.regWayId = undefined;
-		if (state.ruleForm.id != undefined && state.ruleForm.id > 0) {
-			await getAPI(SysTenantApi).apiSysTenantUpdatePost(state.ruleForm);
-		} else {
-			await getAPI(SysTenantApi).apiSysTenantAddPost(state.ruleForm);
+		state.loading = true;
+		try {
+			if (state.ruleForm.enableReg != 1) state.ruleForm.regWayId = undefined;
+			if (state.ruleForm.id != undefined && state.ruleForm.id > 0) {
+				await getAPI(SysTenantApi).apiSysTenantUpdatePost(state.ruleForm);
+			} else {
+				await getAPI(SysTenantApi).apiSysTenantAddPost(state.ruleForm);
+			}
+			closeDialog();
+		} finally {
+			state.loading = false;
 		}
-		closeDialog();
 	});
 };
 

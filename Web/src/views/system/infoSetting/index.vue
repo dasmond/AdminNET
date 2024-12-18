@@ -103,7 +103,7 @@ const onSave = async () => {
 
 	try {
 		state.isLoading = true;
-		if (!state.formData.enableReg) {
+		if (state.formData.enableReg == 2) {
 			state.formData.regWayId = undefined;
 		} else if (!state.formData.regWayId) {
 			ElMessage.error('注册方案不能为空');
