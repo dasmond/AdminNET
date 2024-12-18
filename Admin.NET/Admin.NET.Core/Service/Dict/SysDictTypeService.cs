@@ -157,8 +157,8 @@ public class SysDictTypeService : IDynamicApiController, ITransient
     [DisplayName("获取所有字典集合")]
     public async Task<dynamic> GetAllDictList()
     {
-        var ds = await GetSysDictDataQueryable().ClearFilter()
-            .InnerJoin<SysDictData>((u, a) => u.Id == a.DictTypeId)
+        var ds = await GetSysDictDataQueryable()
+            .InnerJoin<SysDictData>((u, a) => u.Id == a.DictTypeId).ClearFilter()
             .Where((u, a) => u.IsDelete == false && u.Status == StatusEnum.Enable && a.IsDelete == false && a.Status == StatusEnum.Enable)
             .Select((u, a) => new { TypeCode = u.Code, a.Label, a.Value, a.Name, a.TagType, a.StyleSetting, a.ClassSetting, a.ExtData, a.Remark, a.OrderNo, a.Status })
             .ToListAsync();
