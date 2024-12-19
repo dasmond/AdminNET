@@ -45,7 +45,7 @@ public static class SqlSugarSetup
             dbOptions.ConnectionConfigs.ForEach(config =>
             {
                 var dbProvider = db.GetConnectionScope(config.ConfigId);
-                SetDbAop(dbProvider, dbOptions.EnableConsoleSql);
+                SetDbAop(dbProvider, dbOptions.EnableConsoleSql, dbOptions.SuperAdminIgnoreIDeletedFilter);
                 SetDbDiffLog(dbProvider, config);
             });
         });
@@ -119,7 +119,8 @@ public static class SqlSugarSetup
     /// </summary>
     /// <param name="db"></param>
     /// <param name="enableConsoleSql"></param>
-    public static void SetDbAop(SqlSugarScopeProvider db, bool enableConsoleSql)
+    /// <param name="superAdminIgnoreIDeletedFilter"></param>
+    public static void SetDbAop(SqlSugarScopeProvider db, bool enableConsoleSql, bool superAdminIgnoreIDeletedFilter)
     {
         // 设置超时时间
         db.Ado.CommandTimeOut = 30;
@@ -248,12 +249,15 @@ public static class SqlSugarSetup
             }
         };
 
-        // 超管排除其他过滤器
-        if (App.User?.FindFirst(ClaimConst.AccountType)?.Value == ((int)AccountTypeEnum.SuperAdmin).ToString())
-            return;
+        // 是否为超级管理员
+        var isSuperAdmin = App.User?.FindFirst(ClaimConst.AccountType)?.Value == ((int)AccountTypeEnum.SuperAdmin).ToString();
 
-        // 配置假删除过滤器
-        db.QueryFilter.AddTableFilter<IDeletedFilter>(u => u.IsDelete == false);
+        // 配置假删除过滤器，如果当前用户是超级管理员并且允许忽略软删除过滤器则不会应用
+        if (!isSuperAdmin || !superAdminIgnoreIDeletedFilter)
+            db.QueryFilter.AddTableFilter<IDeletedFilter>(u => u.IsDelete == false);
+
+        // 超管排除其他过滤器
+        if (isSuperAdmin) return;
 
         // 配置租户过滤器
         var tenantId = App.User?.FindFirst(ClaimConst.TenantId)?.Value;

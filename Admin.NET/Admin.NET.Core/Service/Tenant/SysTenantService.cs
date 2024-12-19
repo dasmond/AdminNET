@@ -676,7 +676,7 @@ public class SysTenantService : IDynamicApiController, ITransient
 
             var sqlSugarScopeProvider = iTenant.GetConnectionScope(tenantId.ToString());
             SqlSugarSetup.SetDbConfig(tenantConnConfig);
-            SqlSugarSetup.SetDbAop(sqlSugarScopeProvider, dbOptions.EnableConsoleSql);
+            SqlSugarSetup.SetDbAop(sqlSugarScopeProvider, dbOptions.EnableConsoleSql, dbOptions.SuperAdminIgnoreIDeletedFilter);
 
             return sqlSugarScopeProvider;
         }
