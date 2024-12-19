@@ -50,9 +50,6 @@ public class SysMenuService : IDynamicApiController, ITransient
         var (query, _) = GetSugarQueryableAndTenantId(_userManager.TenantId);
         if (_userManager.SuperAdmin || _userManager.SysAdmin)
         {
-            // 超管用户且是默认租户，则获取全部默认菜单
-            if (_userManager.SuperAdmin && _userManager.TenantId == SqlSugarConst.DefaultTenantId)
-                query = _sysMenuRep.AsQueryable().ClearFilter().InnerJoinIF<SysTenantMenu>(false, (u, t) => true);
             var menuList = await query.Where(u => u.Type != MenuTypeEnum.Btn && u.Status == StatusEnum.Enable)
                 .OrderBy(u => new { u.OrderNo, u.Id })
                 .ToTreeAsync(u => u.Children, u => u.Pid, 0);
@@ -262,8 +259,30 @@ public class SysMenuService : IDynamicApiController, ITransient
     public (ISugarQueryable<SysMenu, SysTenantMenu> query, long tenantId) GetSugarQueryableAndTenantId(long tenantId)
     {
         if (!_userManager.SuperAdmin) tenantId = _userManager.TenantId;
-        var query = _sysMenuRep.AsQueryable().ClearFilter()
-            .InnerJoinIF<SysTenantMenu>(tenantId > 0, (u, t) => t.TenantId == tenantId && u.Id == t.MenuId);
+
+        // 超管用户且是默认租户，则获取全部菜单
+        ISugarQueryable<SysMenu, SysTenantMenu> query;
+        if (_userManager.SuperAdmin && _userManager.TenantId == SqlSugarConst.DefaultTenantId)
+        {
+            var ids = _sysCacheService.GetOrAdd(CacheConst.KeyDefaultMenuIds, _ =>
+            {
+                var menuIds = new SysMenuSeedData().HasData().Select(u => u.Id).ToList();
+                var ids = _sysMenuRep.AsQueryable().IgnoreTenant()
+                    .InnerJoin<SysTenantMenu>((u, t) => t.TenantId == _userManager.TenantId && u.Id == t.MenuId)
+                    .Select(u => u.Id)
+                    .ToList();
+                if (ids.Count > 0) menuIds.AddRange(ids);
+                return menuIds.Distinct().ToList();
+            });
+            query = _sysMenuRep.AsQueryable().ClearFilter()
+                .InnerJoinIF<SysTenantMenu>(false, (u, t) => true)
+                .Where(u => ids.Contains(u.Id));
+        }
+        else
+        {
+            query = _sysMenuRep.AsQueryable().IgnoreTenant().InnerJoinIF<SysTenantMenu>(tenantId > 0, (u, t) => t.TenantId == tenantId && u.Id == t.MenuId);
+        }
+
         return (query, tenantId);
     }
 
@@ -275,6 +294,7 @@ public class SysMenuService : IDynamicApiController, ITransient
     {
         // _sysCacheService.RemoveByPrefixKey(CacheConst.KeyUserMenu);
         _sysCacheService.RemoveByPrefixKey(CacheConst.KeyUserButton);
+        _sysCacheService.RemoveByPrefixKey(CacheConst.KeyDefaultMenuIds);
     }
 
     /// <summary>
