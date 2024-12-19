@@ -99,6 +99,7 @@ declare interface ThemeConfigState {
 		icpUrl: string; // Icp地址
 		secondVer: boolean; // 是否开启二级验证
 		registration: boolean; // 是否开启注册功能
+		hideTenantForLogin: boolean; // 登陆时隐藏租户
 		captcha: boolean; // 是否开启验证码
 		isLoaded: boolean; // 是否加载完成
 	};

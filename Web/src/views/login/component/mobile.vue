@@ -1,6 +1,6 @@
 <template>
 	<el-form size="large" class="login-content-form">
-		<el-form-item class="login-animation1" v-if="!props.tenantInfo.id">
+		<el-form-item class="login-animation1" v-if="!props.tenantInfo.id && !themeConfig.hideTenantForLogin">
 			<el-select v-model="state.ruleForm.tenantId" :placeholder="$t('message.mobile.placeholder1')" clearable style="width: 100%">
 				<template #prefix>
 					<i class="iconfont icon-shuxingtu el-input__icon"></i>
@@ -43,9 +43,11 @@
 import { reactive } from 'vue';
 import { ElMessage } from 'element-plus';
 import { verifyPhone } from '/@/utils/toolsValidate';
-import { useRoute } from "vue-router";
 import { getAPI } from '/@/utils/axios-utils';
 import { SysSmsApi, SysAuthApi } from '/@/api-services/api';
+import {storeToRefs} from "pinia";
+import {useThemeConfig} from "/@/stores/themeConfig";
+
 
 const props = defineProps({
 	tenantInfo: {
@@ -53,8 +55,8 @@ const props = defineProps({
 		type: Object,
 	},
 });
-
-const route = useRoute();
+const storesThemeConfig = useThemeConfig();
+const { themeConfig } = storeToRefs(storesThemeConfig);
 const state = reactive({
 	ruleForm: {
 		tenantId: props.tenantInfo.id,

@@ -23,7 +23,7 @@
 					</template>
 				</el-input>
 			</el-form-item>
-			<el-form-item class="login-animation2" prop="tenantId" clearable v-if="!props.tenantInfo.id">
+			<el-form-item class="login-animation2" prop="tenantId" clearable v-if="!props.tenantInfo.id && !state.hideTenantForLogin">
 				<el-select v-model="state.ruleForm.tenantId" :placeholder="$t('message.account.accountPlaceholder3')" style="width: 100%">
 					<template #prefix>
 						<i class="iconfont icon-shuxingtu el-input__icon"></i>
@@ -147,6 +147,7 @@ const state = reactive({
 	captchaEnabled: false,
 	isPassRotate: false,
 	capsLockVisible: false,
+	hideTenantForLogin: false,
 	expirySeconds: 60, // 验证码过期时间
 });
 
@@ -163,6 +164,7 @@ onMounted(async () => {
 		(isLoaded) => {
 			if (isLoaded) {
 				// 获取登录配置
+				state.hideTenantForLogin = themeConfig.value.hideTenantForLogin ?? true;
 				state.secondVerEnabled = themeConfig.value.secondVer ?? true;
 				state.captchaEnabled = themeConfig.value.captcha ?? true;
 

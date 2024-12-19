@@ -136,6 +136,8 @@ const loadSysInfo = () => {
 			// 登录验证
 			themeConfig.value.secondVer = data.secondVer == 1;
 			themeConfig.value.captcha = data.captcha == 1;
+			// 登陆时隐藏租户
+			themeConfig.value.hideTenantForLogin = data.hideTenantForLogin;
 			// 注册功能
 			themeConfig.value.registration = data.enableReg == 1;
 			// 更新配置加载状态

@@ -75,6 +75,7 @@ import loginIconTwo2 from '/@/assets/login-icon-two2.svg';
 import {getAPI} from "/@/utils/axios-utils";
 import {SysTenantApi} from "/@/api-services";
 import {useRoute} from "vue-router";
+import router from "/@/router";
 
 // 引入组件
 const Register = defineAsyncComponent(() => import('/@/views/login/component/register.vue'));
@@ -110,6 +111,18 @@ onMounted(async () => {
 
 // 获取租户信息
 const getTenantInfo = async () => {
+	if (themeConfig.value.hideTenantForLogin) {
+		if (!route.query.t) {
+			const query = Object.assign({}, route.query?.params, { t: '1300000000001' });
+			router.push({
+				path: route.path,
+				query: query as any,
+			});
+		}
+		tenantInfo.value.id = parseInt(<string>route.query.t);
+		tenantInfo.value.list = [];
+		return tenantInfo.value;
+	}
 	const host = location.host.toLowerCase();
 	tenantInfo.value.list = await getAPI(SysTenantApi).apiSysTenantListGet().then(res => res.data.result ?? []);
 	const tenant = tenantInfo.value.list.find((item: any) => item.value == route.query.t || item.host === host);

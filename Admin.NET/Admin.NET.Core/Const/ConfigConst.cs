@@ -42,6 +42,11 @@ public class ConfigConst
     public const string SysSingleLogin = "sys_single_login";
 
     /// <summary>
+    /// 登陆时隐藏租户
+    /// </summary>
+    public const string SysHideTenantLogin = "sys_hide_tenant_login";
+
+    /// <summary>
     /// Token过期时间
     /// </summary>
     public const string SysTokenExpire = "sys_token_expire";

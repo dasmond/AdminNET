@@ -1,6 +1,6 @@
 <template>
 	<div class="login-scan-container">
-		<el-select v-model="state.tenantId" v-if="!props.tenantInfo.id" :placeholder="$t('message.scan.placeholder1')" clearable class="mb30" style="width: 260px; align-self: center;">
+		<el-select v-model="state.tenantId" v-if="!props.tenantInfo.id && !themeConfig.hideTenantForLogin" :placeholder="$t('message.scan.placeholder1')" clearable class="mb30" style="width: 260px; align-self: center;">
 			<template #prefix>
 				<i class="iconfont icon-shuxingtu el-input__icon"></i>
 			</template>
@@ -17,7 +17,11 @@
 <script setup lang="ts" name="loginScan">
 import {ref, onMounted, nextTick, reactive} from 'vue';
 import QRCode from 'qrcodejs2-fixes';
+import {useThemeConfig} from "/@/stores/themeConfig";
+import {storeToRefs} from "pinia";
 
+const storesThemeConfig = useThemeConfig();
+const { themeConfig } = storeToRefs(storesThemeConfig);
 const props = defineProps({
 	tenantInfo: {
 		required: true,

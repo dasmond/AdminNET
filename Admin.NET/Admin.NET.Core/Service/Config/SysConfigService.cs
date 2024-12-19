@@ -251,6 +251,8 @@ public class SysConfigService : IDynamicApiController, ITransient
             .Where(u => u.TenantId == tenant.Id)
             .Select(u => new { Label = u.Name, Value = u.Id })
             .ToListAsync();
+
+        var hideTenantForLogin = await GetConfigValue<bool>(ConfigConst.SysHideTenantLogin);
         return new
         {
             tenant.Logo,
@@ -265,7 +267,8 @@ public class SysConfigService : IDynamicApiController, ITransient
             tenant.EnableReg,
             tenant.SecondVer,
             tenant.Captcha,
-            WayList = wayList
+            WayList = wayList,
+            HideTenantForLogin = hideTenantForLogin
         };
     }
 

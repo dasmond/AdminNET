@@ -1,7 +1,7 @@
 <template>
 	<el-tooltip :visible="state.capsLockVisible" effect="light" content="大写锁定已打开" placement="top">
 		<el-form ref="ruleFormRef" :model="state.ruleForm" size="large" :rules="state.rules" class="login-content-form">
-			<el-form-item class="login-animation2" prop="tenantId" clearable v-if="!props.tenantInfo.id">
+			<el-form-item class="login-animation2" prop="tenantId" clearable v-if="!props.tenantInfo.id && !themeConfig.hideTenantForLogin">
 				<el-select v-model="state.ruleForm.tenantId" :placeholder="$t('message.register.placeholder1')" style="width: 100%">
 					<template #prefix>
 						<i class="iconfont icon-shuxingtu el-input__icon"></i>
@@ -85,7 +85,7 @@
 </template>
 
 <script lang="ts" setup name="loginAccount">
-import {reactive, ref, onMounted, defineAsyncComponent, onUnmounted, watch, nextTick} from 'vue';
+import {reactive, ref, onMounted, defineAsyncComponent, onUnmounted, watch} from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { ElMessage, InputInstance } from 'element-plus';
 import { useI18n } from 'vue-i18n';
