@@ -513,7 +513,8 @@ public class SysCodeGenService : IDynamicApiController, ITransient
         foreach (var column in tableFieldList.Where(u => u.EffectType == "Upload"))
             menuList.Add(new SysMenu { Title = $"上传{column.ColumnComment}", Permission = $"{lowerClassName}:upload{column.PropertyName}", Pid = pid, Type = MenuTypeEnum.Btn, OrderNo = orderNo += 10 });
 
-        await _db.Insertable(menuList).ExecuteCommandAsync();
+        var service = App.GetService<SysMenuService>();
+        foreach (var menu in menuList) await service.AddMenu(menu.Adapt<AddMenuInput>());
     }
 
     /// <summary>

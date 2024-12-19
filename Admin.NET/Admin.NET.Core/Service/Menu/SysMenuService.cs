@@ -262,7 +262,7 @@ public class SysMenuService : IDynamicApiController, ITransient
 
         // 超管用户且是默认租户，则获取全部菜单
         ISugarQueryable<SysMenu, SysTenantMenu> query;
-        if (_userManager.SuperAdmin && _userManager.TenantId == SqlSugarConst.DefaultTenantId)
+        if (_userManager.SuperAdmin)
         {
             var ids = _sysCacheService.GetOrAdd(CacheConst.KeyDefaultMenuIds, _ =>
             {
