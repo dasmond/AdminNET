@@ -62,6 +62,9 @@ public class SysAuthService : IDynamicApiController, ITransient
         if (passwordMaxErrorTimes < 1) passwordMaxErrorTimes = 10;
         if (passwordErrorTimes > passwordMaxErrorTimes) throw Oops.Oh(ErrorCodeEnum.D1027);
 
+        // 判断是否开启验证码，其校验验证码
+        if (await _sysConfigService.GetConfigValue<bool>(ConfigConst.SysCaptcha) && !_captcha.Validate(input.CodeId.ToString(), input.Code)) throw Oops.Oh(ErrorCodeEnum.D0008);
+
         // 获取登录租户和用户
         var (tenant, user) = await GetLoginUserAndTenant(input.TenantId, codeId: input.CodeId, code: input.Code, account: input.Account);
 
@@ -105,12 +108,9 @@ public class SysAuthService : IDynamicApiController, ITransient
     {
         // 如果租户为空，使用默认租户
         tenantId ??= SqlSugarConst.DefaultTenantId;
-        var tenant = await _sysUserRep.ChangeRepository<SqlSugarRepository<SysTenant>>().GetFirstAsync(u => u.Id == tenantId);
-
-        // 校验验证码
-        if (tenant?.Captcha == YesNoEnum.Y && !_captcha.Validate(codeId.ToString(), code)) throw Oops.Oh(ErrorCodeEnum.D0008);
 
         // 租户是否存在或已禁用
+        var tenant = await _sysUserRep.ChangeRepository<SqlSugarRepository<SysTenant>>().GetFirstAsync(u => u.Id == tenantId);
         if (tenant?.Status != StatusEnum.Enable) throw Oops.Oh(ErrorCodeEnum.Z1003);
         
         // 判断账号是否存在
@@ -412,12 +412,7 @@ public class SysAuthService : IDynamicApiController, ITransient
             : long.Parse(tenantIdStr);
         try
         {
-            // 关闭验证码验证
-            await _sysUserRep.Context
-                .Updateable(new SysTenant { Captcha = YesNoEnum.N })
-                .UpdateColumns(u => u.Captcha)
-                .Where(u => u.Id == tenantId)
-                .ExecuteCommandAsync();
+            _sysCacheService.Set($"{CacheConst.KeyConfig}{ConfigConst.SysCaptcha}", false);
 
             await Login(new LoginInput
             {
@@ -426,20 +421,13 @@ public class SysAuthService : IDynamicApiController, ITransient
                 TenantId = tenantId
             });
 
+            _sysCacheService.Remove($"{CacheConst.KeyConfig}{ConfigConst.SysCaptcha}");
+
             return 200;
         }
         catch (Exception)
         {
             return 401;
-        }
-        finally
-        {
-            // 开启验证码验证
-            await _sysUserRep.Context
-                .Updateable(new SysTenant { Captcha = YesNoEnum.N })
-                .UpdateColumns(u => u.Captcha)
-                .Where(u => u.Id == tenantId)
-                .ExecuteCommandAsync();
         }
     }
 }

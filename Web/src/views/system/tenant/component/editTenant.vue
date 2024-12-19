@@ -147,28 +147,28 @@
 							</el-col>
 						</el-row>
 					</el-tab-pane>
-					<el-tab-pane label="配置开关" style="height: 550px; overflow: auto; overflow-x: hidden;">
-						<el-row :gutter="35">
-							<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
-								<el-form-item label="启用验证码" prop="captcha">
-									<el-switch
-											v-model="state.ruleForm.captcha"
-											:active-value="1"
-											:inactive-value="2"
-									/>
-								</el-form-item>
-							</el-col>
-							<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
-								<el-form-item label="启用二次验证" prop="secondVer">
-									<el-switch
-											v-model="state.ruleForm.secondVer"
-											:active-value="1"
-											:inactive-value="2"
-									/>
-								</el-form-item>
-							</el-col>
-						</el-row>
-					</el-tab-pane>
+<!--					<el-tab-pane label="配置开关" style="height: 550px; overflow: auto; overflow-x: hidden;">-->
+<!--						<el-row :gutter="35">-->
+<!--							<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">-->
+<!--								<el-form-item label="启用验证码" prop="captcha">-->
+<!--									<el-switch-->
+<!--											v-model="state.ruleForm.captcha"-->
+<!--											:active-value="1"-->
+<!--											:inactive-value="2"-->
+<!--									/>-->
+<!--								</el-form-item>-->
+<!--							</el-col>-->
+<!--							<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">-->
+<!--								<el-form-item label="启用二次验证" prop="secondVer">-->
+<!--									<el-switch-->
+<!--											v-model="state.ruleForm.secondVer"-->
+<!--											:active-value="1"-->
+<!--											:inactive-value="2"-->
+<!--									/>-->
+<!--								</el-form-item>-->
+<!--							</el-col>-->
+<!--						</el-row>-->
+<!--					</el-tab-pane>-->
 				</el-tabs>
 			</el-form>
 			<template #footer>

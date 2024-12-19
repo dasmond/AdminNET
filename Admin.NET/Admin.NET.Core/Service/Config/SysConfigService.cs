@@ -252,6 +252,8 @@ public class SysConfigService : IDynamicApiController, ITransient
             .Select(u => new { Label = u.Name, Value = u.Id })
             .ToListAsync();
 
+        var captcha = await GetConfigValue<bool>(ConfigConst.SysCaptcha);
+        var secondVer = await GetConfigValue<bool>(ConfigConst.SysSecondVer);
         var hideTenantForLogin = await GetConfigValue<bool>(ConfigConst.SysHideTenantLogin);
         return new
         {
@@ -265,8 +267,8 @@ public class SysConfigService : IDynamicApiController, ITransient
             tenant.IcpUrl,
             tenant.RegWayId,
             tenant.EnableReg,
-            tenant.SecondVer,
-            tenant.Captcha,
+            SecondVer = secondVer,
+            Captcha = captcha,
             WayList = wayList,
             HideTenantForLogin = hideTenantForLogin
         };
@@ -282,6 +284,8 @@ public class SysConfigService : IDynamicApiController, ITransient
     {
         var tenant = await App.GetService<SysTenantService>().GetCurrentTenant() ?? throw Oops.Oh(ErrorCodeEnum.D1002);
         if (!string.IsNullOrEmpty(input.LogoBase64)) App.GetService<SysTenantService>().SetLogoUrl(tenant, input.LogoBase64, input.LogoFileName);
+        await UpdateConfigValue(ConfigConst.SysCaptcha, (input.Captcha == YesNoEnum.Y).ToString());
+        await UpdateConfigValue(ConfigConst.SysSecondVer, (input.SecondVer == YesNoEnum.Y).ToString());
 
         tenant.Copy(input);
         tenant.RegWayId = input.EnableReg == YesNoEnum.Y ? input.RegWayId : null;

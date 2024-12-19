@@ -47,6 +47,16 @@ public class ConfigConst
     public const string SysHideTenantLogin = "sys_hide_tenant_login";
 
     /// <summary>
+    /// 登录二次验证
+    /// </summary>
+    public const string SysSecondVer = "sys_second_ver";
+
+    /// <summary>
+    /// 图形验证码
+    /// </summary>
+    public const string SysCaptcha = "sys_captcha";
+
+    /// <summary>
     /// Token过期时间
     /// </summary>
     public const string SysTokenExpire = "sys_token_expire";

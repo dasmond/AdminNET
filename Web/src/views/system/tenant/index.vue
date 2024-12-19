@@ -43,16 +43,6 @@
 						<g-sys-dict v-model="scope.row.enableReg" code="YesNoEnum" />
 					</template>
 				</el-table-column>
-				<el-table-column prop="captcha" label="启用验证码" width="280" show-overflow-tooltip>
-					<template #default="scope">
-						<g-sys-dict v-model="scope.row.captcha" code="YesNoEnum" />
-					</template>
-				</el-table-column>
-				<el-table-column prop="secondVer" label="启用二次验证" width="280" show-overflow-tooltip>
-					<template #default="scope">
-						<g-sys-dict v-model="scope.row.secondVer" code="YesNoEnum" />
-					</template>
-				</el-table-column>
 				<el-table-column prop="adminAccount" label="租管账号" align="center" width="120" show-overflow-tooltip />
 				<el-table-column prop="phone" label="电话" width="120" align="center" show-overflow-tooltip />
 				<el-table-column prop="host" label="域名" width="150" show-overflow-tooltip />

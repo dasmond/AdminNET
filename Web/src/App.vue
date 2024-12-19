@@ -134,8 +134,8 @@ const loadSysInfo = () => {
 			// 版权说明
 			themeConfig.value.copyright = data.copyright;
 			// 登录验证
-			themeConfig.value.secondVer = data.secondVer == 1;
-			themeConfig.value.captcha = data.captcha == 1;
+			themeConfig.value.secondVer = data.secondVer;
+			themeConfig.value.captcha = data.captcha;
 			// 登陆时隐藏租户
 			themeConfig.value.hideTenantForLogin = data.hideTenantForLogin;
 			// 注册功能
