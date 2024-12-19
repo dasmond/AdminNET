@@ -6,7 +6,7 @@
 					<template #prefix>
 						<i class="iconfont icon-shuxingtu el-input__icon"></i>
 					</template>
-					<el-option :value="item.value" :label="`${item.label} (${item.host})`" v-for="(item, index) in tenantInfo.list" :key="index" />
+					<el-option :value="item.value" :label="item.label" v-for="(item, index) in tenantInfo.list" :key="index" />
 				</el-select>
 			</el-form-item>
 			<el-form-item class="login-animation1" prop="phone" clearable>
@@ -111,7 +111,6 @@ const { themeConfig } = storeToRefs(storesThemeConfig);
 
 const { t } = useI18n();
 const route = useRoute();
-const router = useRouter();
 
 const ruleFormRef = ref();
 const accountRef = ref<InputInstance>();
@@ -154,7 +153,7 @@ let timer: any = null;
 // 页面初始化
 onMounted(async () => {
 	// 默认尝试从地址栏获取wayid注册方案id
-	if (route.query.wayid) state.ruleForm.wayId = route.query.wayid;
+	if (route.query.wayid) state.ruleForm.wayId = route.query.wayid as any;
 	watch(
 		() => themeConfig.value.isLoaded,
 		(isLoaded) => {

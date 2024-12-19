@@ -5,7 +5,7 @@
 				<template #prefix>
 					<i class="iconfont icon-shuxingtu el-input__icon"></i>
 				</template>
-				<el-option :value="item.value" :label="`${item.label} (${item.host})`" v-for="(item, index) in tenantInfo.list" :key="index" />
+				<el-option :value="item.value" :label="item.label" v-for="(item, index) in tenantInfo.list" :key="index" />
 			</el-select>
 		</el-form-item>
 		<el-form-item class="login-animation1">

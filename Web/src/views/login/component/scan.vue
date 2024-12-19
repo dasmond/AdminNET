@@ -4,7 +4,7 @@
 			<template #prefix>
 				<i class="iconfont icon-shuxingtu el-input__icon"></i>
 			</template>
-			<el-option :value="item.value" :label="`${item.label} (${item.host})`" v-for="(item, index) in tenantInfo.list" :key="index" />
+			<el-option :value="item.value" :label="item.label" v-for="(item, index) in tenantInfo.list" :key="index" />
 		</el-select>
 		<div ref="qrcodeRef"></div>
 		<div class="font12 mt20 login-msg">

@@ -66,7 +66,7 @@ public class SysAuthService : IDynamicApiController, ITransient
         if (await _sysConfigService.GetConfigValue<bool>(ConfigConst.SysCaptcha) && !_captcha.Validate(input.CodeId.ToString(), input.Code)) throw Oops.Oh(ErrorCodeEnum.D0008);
 
         // 获取登录租户和用户
-        var (tenant, user) = await GetLoginUserAndTenant(input.TenantId, codeId: input.CodeId, code: input.Code, account: input.Account);
+        var (tenant, user) = await GetLoginUserAndTenant(input.TenantId, account: input.Account);
 
         // 账号是否被冻结
         if (user.Status == StatusEnum.Disable) throw Oops.Oh(ErrorCodeEnum.D1017);
@@ -98,16 +98,14 @@ public class SysAuthService : IDynamicApiController, ITransient
     /// 获取登录租户和用户
     /// </summary>
     /// <param name="tenantId"></param>
-    /// <param name="codeId"></param>
-    /// <param name="code"></param>
     /// <param name="account"></param>
     /// <param name="phone"></param>
     /// <returns></returns>
     [NonAction]
-    public async Task<(SysTenant tenant, SysUser user)> GetLoginUserAndTenant(long? tenantId, long codeId = 0, string code = null, string account = null, string phone = null)
+    public async Task<(SysTenant tenant, SysUser user)> GetLoginUserAndTenant(long? tenantId, string account = null, string phone = null)
     {
-        // 如果租户为空，使用默认租户
-        tenantId ??= SqlSugarConst.DefaultTenantId;
+        // 如果租户为空或为-1，则使用默认租户
+        if (tenantId is null or -1) tenantId = SqlSugarConst.DefaultTenantId;
 
         // 租户是否存在或已禁用
         var tenant = await _sysUserRep.ChangeRepository<SqlSugarRepository<SysTenant>>().GetFirstAsync(u => u.Id == tenantId);

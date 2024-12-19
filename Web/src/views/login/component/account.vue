@@ -28,7 +28,7 @@
 					<template #prefix>
 						<i class="iconfont icon-shuxingtu el-input__icon"></i>
 					</template>
-					<el-option :value="item.value" :label="`${item.label} (${item.host})`" v-for="(item, index) in tenantInfo.list" :key="index" />
+					<el-option :value="item.value" :label="item.label" v-for="(item, index) in tenantInfo.list" :key="index" />
 				</el-select>
 			</el-form-item>
 			<el-form-item class="login-animation3" prop="captcha" v-if="state.captchaEnabled">
@@ -230,6 +230,7 @@ const onSignIn = async () => {
 			const password = sm2.doEncrypt(state.ruleForm.password, publicKey, 1);
 
 			state.ruleForm.tenantId ??= props.tenantInfo.id ?? props.tenantInfo.list[0]?.value;
+			console.log(state.ruleForm.tenantId)
 			const [err, res] = await feature(getAPI(SysAuthApi).apiSysAuthLoginPost({ ...state.ruleForm, password: password } as any));
 			if (err) {
 				getCaptcha(); // 重新获取验证码

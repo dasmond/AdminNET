@@ -113,7 +113,7 @@ onMounted(async () => {
 const getTenantInfo = async () => {
 	if (themeConfig.value.hideTenantForLogin) {
 		if (!route.query.t) {
-			const query = Object.assign({}, route.query?.params, { t: '1300000000001' });
+			const query = Object.assign({}, route.query?.params, { t: '-1' });
 			router.push({
 				path: route.path,
 				query: query as any,
@@ -125,7 +125,7 @@ const getTenantInfo = async () => {
 	}
 	const host = location.host.toLowerCase();
 	tenantInfo.value.list = await getAPI(SysTenantApi).apiSysTenantListGet().then(res => res.data.result ?? []);
-	const tenant = tenantInfo.value.list.find((item: any) => item.value == route.query.t || item.host === host);
+	const tenant = tenantInfo.value.list.find((item: any) => item.value == route.query.t || (!item.host && item.host === host)) as any;
 	if (tenant?.value) tenantInfo.value.id = parseInt(tenant?.value);
 	return tenantInfo.value;
 }
