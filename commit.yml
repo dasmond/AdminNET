@@ -3,75 +3,42 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '8c52860f5b6f93d8292b9ea00835267d29870e56'
-    oldFile: !uuid '097c94f9534d59f0ae6d93effbc0ad98ada59298'
+    newFile: !uuid '57ad6df0ff66814ca90a5358cd2c998e55768d58'
+    oldFile: !uuid '8c52860f5b6f93d8292b9ea00835267d29870e56'
+  /Admin.NET/Admin.NET.Application:
+    newFile: !uuid '7014766b28b0f6aa56cb9054cd900d7d43563383'
+    oldFile: !uuid '7ed839fb229456ebe6f0590c50df929e31fa96d2'
+  /Admin.NET/Admin.NET.Application/Configuration:
+    newFile: !uuid '41957a81837168ad4e79e78236bdaa8c25962c35'
+    oldFile: !uuid 'cb2b4d8433220aca01ba62196836206fcebbcc2e'
+  /Admin.NET/Admin.NET.Application/Configuration/Database.json:
+    newFile: !uuid '2a87bcf000af37411f17379bb13f846487a69d76'
+    oldFile: !uuid 'e56e469698f34e9a9e6aae465b327053e975049c'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '1f374c5633fac9b85f7bdfac8566c2294e073986'
-    oldFile: !uuid 'eac527fc3ace4e5087eb7db7f78ed5c3bcc06091'
+    newFile: !uuid '09b98efc58f48e95afe753a026ba1a4dfd03f844'
+    oldFile: !uuid '1f374c5633fac9b85f7bdfac8566c2294e073986'
+  /Admin.NET/Admin.NET.Core/Option:
+    newFile: !uuid '798d37958a42f6f635c710d554096b1b2e9af027'
+    oldFile: !uuid '9ff20fb22e09332a4df477ae98ad92770cb09093'
+  /Admin.NET/Admin.NET.Core/Option/DbConnectionOptions.cs:
+    newFile: !uuid 'f1781555d9d4d53d7ded9156a4692068f075828b'
+    oldFile: !uuid '7774fe218ac7bcd006a64f7a5dc2914f174c98c1'
   /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid 'caa0ea12e858624941da726c8a6a6b331f46a8fa'
-    oldFile: !uuid '3db8e06dce6487fbbd2c8035293e82276ab4efe3'
+    newFile: !uuid '6ee1efaadd780eb477bdc29394f302306f9b7f8e'
+    oldFile: !uuid 'caa0ea12e858624941da726c8a6a6b331f46a8fa'
   /Admin.NET/Admin.NET.Core/Service/Tenant:
-    newFile: !uuid '2d104614958a9b4f45cd543b357979a16ae70929'
-    oldFile: !uuid 'b20af57f9320599c7146c2d8bf43a55bf1585cd7'
+    newFile: !uuid '80fde5c05cd6fc5b1ba6e364cc094b82c32bb581'
+    oldFile: !uuid '2d104614958a9b4f45cd543b357979a16ae70929'
   /Admin.NET/Admin.NET.Core/Service/Tenant/SysTenantService.cs:
-    newFile: !uuid '4e6f9dd49ac61c0bae93d0174967caafefced73b'
-    oldFile: !uuid '4620541e054d4b5a543148696082155f2b984076'
-  /Admin.NET/Plugins:
-    newFile: !uuid 'f54299fe1616eb7ea53788861978b91935e38d7a'
-    oldFile: !uuid 'cc359b9f4e6d75d31faf8ad4177c9cdc519406f9'
-  /Admin.NET/Plugins/Admin.NET.Plugin.ApprovalFlow:
-    newFile: !uuid '71163a4a9d564fb05607f3e23155f1fbcf9e1661'
-    oldFile: !uuid '173641907af2b83414cd29bc30e0c2a1d7a56dec'
-  /Admin.NET/Plugins/Admin.NET.Plugin.ApprovalFlow/Entity:
-    newFile: !uuid 'a73eeb13144fb89ea9b473b9c33ac9dcb83b35b3'
-    oldFile: !uuid 'd9524eda5e491df843221f03a279f8435ee3bc29'
-  /Admin.NET/Plugins/Admin.NET.Plugin.ApprovalFlow/Entity/ApprovalFlow.cs:
-    newFile: !uuid '842e6e3236f52224eecb0f38ddc31e075f94821f'
-    oldFile: !uuid '7ef66ca015b3e80d82c85f94713943e03449513b'
-  /Admin.NET/Plugins/Admin.NET.Plugin.ApprovalFlow/SeedData:
-    newFile: !uuid 'ddd128dd0ef68131c3ca628bd7ddb1079291c512'
-    oldFile: !uuid 'fa8545be0255291e12d3cc2aeda8a7ab384a2ff5'
-  /Admin.NET/Plugins/Admin.NET.Plugin.ApprovalFlow/SeedData/SysMenuSeedData.cs:
-    newFile: !uuid '47ac22ac417759f46f53fbef026ccc870074bffe'
-    oldFile: !uuid '7688a96a88d1e69201229316d19d778f9584d647'
-  /Admin.NET/Plugins/Admin.NET.Plugin.ApprovalFlow/SeedData/SysTenantMenuSeedData.cs:
-    newFile: !uuid '28b16eca910ad9affc40c998cd6a4f49b698ac91'
-    oldFile: null
-  /Admin.NET/Plugins/Admin.NET.Plugin.ApprovalFlow/Service:
-    newFile: !uuid '32ef7f9ae5936e1adb9a8aa43a7963e964bb3b1b'
-    oldFile: !uuid '7e1b2105e61b74817fd1a0f4e6505d517de6047e'
-  /Admin.NET/Plugins/Admin.NET.Plugin.ApprovalFlow/Service/ApprovalFlow:
-    newFile: !uuid '02bcd2ac777614962d8b2e86aae3cf9b08e1df99'
-    oldFile: !uuid '44953d82f519bc2ca0c56db1e603d34919468a9a'
-  /Admin.NET/Plugins/Admin.NET.Plugin.ApprovalFlow/Service/ApprovalFlow/ApprovalFlowService.cs:
-    newFile: !uuid '141bb5304d2328600772acb76d1032bbbca6896a'
-    oldFile: !uuid 'ce54186e07c35bed53df0c51875cb8d712bc6806'
-  /Admin.NET/Plugins/Admin.NET.Plugin.ApprovalFlow/Service/ApprovalFlow/Dto:
-    newFile: !uuid 'd68eb2ff3b8b67c78044d589b97ca50de5e3e3b1'
-    oldFile: !uuid 'ec137a1154d6668b8d97f1776ab6d3e679286b78'
-  /Admin.NET/Plugins/Admin.NET.Plugin.ApprovalFlow/Service/ApprovalFlow/Dto/ApprovalFlowInput.cs:
-    newFile: !uuid '232630c4b523a281ce9e229cae3fa4dee74e461a'
-    oldFile: !uuid 'dc9328f2e98e762b1bb7d8312b5f4e3251af9be7'
-  /Web:
-    newFile: !uuid 'b75b01dd1fd89e088c9431a919fada9b9fbeddc4'
-    oldFile: !uuid '2fb1ccd278047257b2f7916686dc7324295f3209'
-  /Web/src:
-    newFile: !uuid '55c16b643db35dafccf079002125063c9f0210c8'
-    oldFile: !uuid '796eb75908e8b89bb57ada2f332735ff30cfe3d0'
-  /Web/src/views:
-    newFile: !uuid 'feedf1a76695e19fc790130512f39e9786e3c000'
-    oldFile: !uuid 'ee12fa5c09a6e434230a0b32b3c51fae46270371'
-  /Web/src/views/approvalFlow:
-    newFile: !uuid '1f625fee0d8bdbebc9788c281cd73e1238457901'
-    oldFile: !uuid '2b9a47b6dd2079ac70e756ec9a404a53998a879b'
-  /Web/src/views/approvalFlow/component:
-    newFile: !uuid '64ddf4301c2604130712c8ca062785188d8e79a4'
-    oldFile: !uuid '67ca4ebbfe4ddcd8d52be3e570212b666599fb1c'
-  /Web/src/views/approvalFlow/component/editDialog.vue:
-    newFile: !uuid 'd0d2f5a341b656b2ab7f0f13553802df3722fd82'
-    oldFile: !uuid '278bc4ec15efd26d70bb966c7be542f97b2e7fa0'
-gitCommitId: !uuid '7db7565d433d65dd8095564e068f3b60990e720a'
+    newFile: !uuid '765fe77dcb6d8e28536975ca3f94ac286e331310'
+    oldFile: !uuid '4e6f9dd49ac61c0bae93d0174967caafefced73b'
+  /Admin.NET/Admin.NET.Core/SqlSugar:
+    newFile: !uuid '79d489b44eb1b471c96a3579b96af47834ccb417'
+    oldFile: !uuid '58de4a36fc55c0c0148ebc818621d95e0d84fc02'
+  /Admin.NET/Admin.NET.Core/SqlSugar/SqlSugarSetup.cs:
+    newFile: !uuid 'a2242c7f689dcf3b2bb9f484ef9d5af12962be47'
+    oldFile: !uuid 'ffe5d4bef5b848a0f8d953b7a06357b4c49242ef'
+gitCommitId: !uuid 'c76109888fd16a93ee708c087aa0ebf4ef60ea6e'
 renames: {
   }
-revisionId: 2612
+revisionId: 2613
