@@ -321,8 +321,10 @@ public class SysTenantService : IDynamicApiController, ITransient
         menuList.Add(logMenu);
         menuList.AddRange(allMenuList.ToChildList(u => u.Id, u => u.Pid, u => u.Pid == logMenu.Id && new[]{ "访问日志", "操作日志" }.Contains(u.Title)));
 
+        var flow = _sysTenantRep.Context.Queryable<SysMenu>().First(u => u.Type == MenuTypeEnum.Menu && u.Title == "审批流程");
         menuList.Add(allMenuList.First(u => u.Type == MenuTypeEnum.Dir && u.Title == "帮助文档"));
         menuList.Add(allMenuList.First(u => u.Type == MenuTypeEnum.Menu && u.Title == "关于项目"));
+        menuList.Add(flow);
 
         return menuList.Select(u => new SysTenantMenu { Id=id+=100, TenantId=SqlSugarConst.DefaultTenantId, MenuId=u.Id });
     }

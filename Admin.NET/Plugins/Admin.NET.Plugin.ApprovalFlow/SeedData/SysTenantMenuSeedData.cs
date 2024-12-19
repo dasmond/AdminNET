@@ -7,20 +7,18 @@
 namespace Admin.NET.Plugin.ApprovalFlow;
 
 /// <summary>
-/// 审批流程菜单表种子数据
+/// 系统租户菜单表种子数据
 /// </summary>
-public class SysMenuSeedData : ISqlSugarEntitySeedData<SysMenu>
+[IgnoreUpdateSeed]
+public class SysTenantMenuSeedData : ISqlSugarEntitySeedData<SysTenantMenu>
 {
     /// <summary>
     /// 种子数据
     /// </summary>
     /// <returns></returns>
-    public IEnumerable<SysMenu> HasData()
+    public IEnumerable<SysTenantMenu> HasData()
     {
-        var system = new Admin.NET.Core.SysMenuSeedData().HasData().First(u => u.Type == MenuTypeEnum.Dir && u.Title == "系统管理");
-        return new[]
-        {
-            new SysMenu{ Id=1309000000001, Pid=system.Id, Title="审批流程", Path="/platform/approvalFlow", Name="approvalFlow", Component="/approvalFlow/index", Icon="ele-Help", Type=MenuTypeEnum.Menu, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=2000 },
-        };
+        var id = 1309000000000;
+        return new SysMenuSeedData().HasData().Select(u => new SysTenantMenu { Id=id+=100, TenantId=SqlSugarConst.DefaultTenantId, MenuId=u.Id });
     }
 }

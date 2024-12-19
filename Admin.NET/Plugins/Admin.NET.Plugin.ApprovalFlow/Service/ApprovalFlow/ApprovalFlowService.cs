@@ -31,10 +31,10 @@ public class ApprovalFlowService : IDynamicApiController, ITransient
     public async Task<SqlSugarPagedList<ApprovalFlowOutput>> Page(ApprovalFlowInput input)
     {
         return await _approvalFlowRep.AsQueryable()
-            .WhereIF(!string.IsNullOrWhiteSpace(input.Keyword), u => u.Code.Contains(input.Keyword.Trim()) || u.Name.Contains(input.Keyword.Trim()) || u.Remark.Contains(input.Keyword.Trim()))
             .WhereIF(!string.IsNullOrWhiteSpace(input.Code), u => u.Code.Contains(input.Code.Trim()))
             .WhereIF(!string.IsNullOrWhiteSpace(input.Name), u => u.Name.Contains(input.Name.Trim()))
             .WhereIF(!string.IsNullOrWhiteSpace(input.Remark), u => u.Remark.Contains(input.Remark.Trim()))
+            .WhereIF(!string.IsNullOrWhiteSpace(input.Keyword), u => u.Code.Contains(input.Keyword.Trim()) || u.Name.Contains(input.Keyword.Trim()) || u.Remark.Contains(input.Keyword.Trim()))
             .Select<ApprovalFlowOutput>()
             .ToPagedListAsync(input.Page, input.PageSize);
     }
@@ -48,10 +48,7 @@ public class ApprovalFlowService : IDynamicApiController, ITransient
     public async Task<long> Add(AddApprovalFlowInput input)
     {
         var entity = input.Adapt<ApprovalFlow>();
-        if (input.Code == null)
-        {
-            entity.Code = await LastCode("");
-        }
+        if (input.Code == null) entity.Code = await LastCode("");
         await _approvalFlowRep.InsertAsync(entity);
         return entity.Id;
     }
@@ -74,7 +71,7 @@ public class ApprovalFlowService : IDynamicApiController, ITransient
     /// <param name="input"></param>
     /// <returns></returns>
     [ApiDescriptionSettings(Name = "Delete"), HttpPost]
-    public async Task Delete(DeleteApprovalFlowInput input)
+    public async Task Delete(BaseIdInput input)
     {
         var entity = await _approvalFlowRep.GetFirstAsync(u => u.Id == input.Id) ?? throw Oops.Oh(ErrorCodeEnum.D1002);
         await _approvalFlowRep.FakeDeleteAsync(entity);  // 假删除
@@ -85,7 +82,7 @@ public class ApprovalFlowService : IDynamicApiController, ITransient
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
-    public async Task<ApprovalFlow> GetDetail([FromQuery] QueryByIdApprovalFlowInput input)
+    public async Task<ApprovalFlow> GetDetail([FromQuery] BaseIdInput input)
     {
         return await _approvalFlowRep.GetFirstAsync(u => u.Id == input.Id);
     }
@@ -119,7 +116,7 @@ public class ApprovalFlowService : IDynamicApiController, ITransient
     {
         var today = DateTime.Now.Date;
         var count = await _approvalFlowRep.AsQueryable().Where(u => u.CreateTime >= today).CountAsync();
-        return prefix + DateTime.Now.ToString("yyMMdd") + string.Format("{0:d2}", count + 1);
+        return prefix + DateTime.Now.ToString("yyMMdd") + $"{count + 1:d2}";
     }
 
     /// <summary>
@@ -136,9 +133,9 @@ public class ApprovalFlowService : IDynamicApiController, ITransient
         var path = request.Path.ToString().Split("/");
 
         var method = request.Method;
-        var qs = request.QueryString;
-        var h = request.Headers;
-        var b = request.Body;
+        var query = request.QueryString;
+        var header = request.Headers;
+        var body = request.Body;
 
         var requestHeaders = request.Headers;
         var responseHeaders = response.Headers;
