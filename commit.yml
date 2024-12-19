@@ -3,18 +3,60 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid 'eac0db5686f494f340ad6ff5fabdf405a793d794'
-    oldFile: !uuid '57ad6df0ff66814ca90a5358cd2c998e55768d58'
+    newFile: !uuid '7ca3fd140438d31f79f4fba50e2b5d3b38c6a136'
+    oldFile: !uuid 'eac0db5686f494f340ad6ff5fabdf405a793d794'
+  /Admin.NET/Admin.NET.Application:
+    newFile: !uuid 'bec440b3d09843cefdda63acb453b1ec119df121'
+    oldFile: !uuid '7014766b28b0f6aa56cb9054cd900d7d43563383'
+  /Admin.NET/Admin.NET.Application/Configuration:
+    newFile: !uuid 'fe72dc38faf9b2dbe896331c365f7aae524fb486'
+    oldFile: !uuid '41957a81837168ad4e79e78236bdaa8c25962c35'
+  /Admin.NET/Admin.NET.Application/Configuration/Gitee.json:
+    newFile: !uuid '671bef7526004aa92c83f243eb8169324ce9f9c5'
+    oldFile: null
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid 'e829369e17c25041d69ae539fcf419cf32fc5961'
-    oldFile: !uuid '09b98efc58f48e95afe753a026ba1a4dfd03f844'
-  /Admin.NET/Admin.NET.Core/Common:
-    newFile: null
-    oldFile: !uuid '951e47a53650f3e60c964c932e5c7ef21c2c4b72'
-  /Admin.NET/Admin.NET.Core/Common/CommonValidationAttribute.cs:
-    newFile: null
-    oldFile: !uuid 'd284631e62c5c3100f82cd8ec396e306f5802233'
-gitCommitId: !uuid '4433b5e8bf44b100da5d8ea8a631feab745c6c68'
+    newFile: !uuid '8e6b57da74405efe591202bff30caa4a9907819c'
+    oldFile: !uuid 'e829369e17c25041d69ae539fcf419cf32fc5961'
+  /Admin.NET/Admin.NET.Core/Const:
+    newFile: !uuid '3be8cd099af585a836ecbd6f308580383646a482'
+    oldFile: !uuid '32dc56d2ce7fa0129513faed851d856379189665'
+  /Admin.NET/Admin.NET.Core/Const/CacheConst.cs:
+    newFile: !uuid 'ac103db50a137ddc52590bdeeb641da5fc85bd10'
+    oldFile: !uuid '37723855a587a13d6eec2bf9633a2ee636ff4c40'
+  /Admin.NET/Admin.NET.Core/Option:
+    newFile: !uuid '9d9c4496e4cf9c8a90b4334631d47fe1584a9fa5'
+    oldFile: !uuid '798d37958a42f6f635c710d554096b1b2e9af027'
+  /Admin.NET/Admin.NET.Core/Option/GiteeOptions.cs:
+    newFile: !uuid 'ccbaaf348d0d005729f1cfd5cf29d8eee8825ca2'
+    oldFile: null
+  /Admin.NET/Admin.NET.Core/Service:
+    newFile: !uuid 'a82a9211b8086691a17981ee07c127686162399c'
+    oldFile: !uuid '6ee1efaadd780eb477bdc29394f302306f9b7f8e'
+  /Admin.NET/Admin.NET.Core/Service/Common:
+    newFile: !uuid '10fc391f6a0553b069c7ec0af759a99f73f50733'
+    oldFile: !uuid '9cf0cebd3f24266ebba0a0f1ec986e4956e61afc'
+  /Admin.NET/Admin.NET.Core/Service/Common/SysCommonService.cs:
+    newFile: !uuid '8fa936ef0742880032ca7b07744bcbcef4e8452f'
+    oldFile: !uuid '8730784ca3c04cc4af7019fee853e0c4d09ebeff'
+  /Admin.NET/Admin.NET.Core/Service/Update:
+    newFile: !uuid 'd284f3f5b24b74e6ea85f9703585931d4509e715'
+    oldFile: null
+  /Admin.NET/Admin.NET.Core/Service/Update/SysUpdateService.cs:
+    newFile: !uuid '7bc02cbc40fe0c9c2398c29d039254fdac6e8a2e'
+    oldFile: null
+  /Admin.NET/Admin.NET.Core/Utils:
+    newFile: !uuid '0b2b3402579ffb3f01c6e3b9f6630186b41b1d94'
+    oldFile: !uuid 'a594bf799b85fd41048edf870470de6f51f8a2a1'
+  /Admin.NET/Admin.NET.Core/Utils/GiteeHelper.cs:
+    newFile: !uuid '81e8125f2d63d07d5acadbf187ed9dda0a004151'
+    oldFile: null
+  /Admin.NET/Admin.NET.Web.Core:
+    newFile: !uuid '443474de4dfe1d85dc70b70c33789943e10cd4de'
+    oldFile: !uuid 'abe99faf1f5adf970a2dc0edf9f9d204301f93ea'
+  /Admin.NET/Admin.NET.Web.Core/ProjectOptions.cs:
+    newFile: !uuid '5c299552ffa5a63641a18d2e17d3a081d22c09ed'
+    oldFile: !uuid 'd0fb0b536ad99962d13b719289fc77d7f3a7ba4b'
+gitCommitId: !uuid '217ad9348642431b92c1f38e67386725fceb8ead'
 renames: {
   }
-revisionId: 2614
+revisionId: 2615
