@@ -340,6 +340,7 @@ public class SysCodeGenService : IDynamicApiController, ITransient
     /// 代码生成到本地 🔖
     /// </summary>
     /// <returns></returns>
+    [UnitOfWork]
     [DisplayName("代码生成到本地")]
     public async Task<dynamic> RunLocal(SysCodeGen input)
     {
@@ -470,6 +471,8 @@ public class SysCodeGenService : IDynamicApiController, ITransient
     /// <returns></returns>
     private async Task AddMenu(string className, string busName, long pid, string menuIcon, string pagePath, List<CodeGenConfig> tableFieldList)
     {
+        var service = App.GetService<SysMenuService>();
+
         // 删除已存在的菜单
         var title = $"{busName}管理";
         await DeleteMenuTree(title, pid == 0 ? MenuTypeEnum.Dir : MenuTypeEnum.Menu);
@@ -480,7 +483,7 @@ public class SysCodeGenService : IDynamicApiController, ITransient
         {
             // 新增目录，并记录Id
             var dirMenu = new SysMenu { Pid = 0, Title = title, Type = MenuTypeEnum.Dir, Icon = "robot", Path = "/" + className.ToLower(), Component = "Layout" };
-            pid = (await _db.Insertable(dirMenu).ExecuteReturnEntityAsync()).Id;
+            pid = await service.AddMenu(dirMenu.Adapt<AddMenuInput>());
         }
         else
         {
@@ -490,7 +493,7 @@ public class SysCodeGenService : IDynamicApiController, ITransient
 
         // 新增菜单，并记录Id
         var rootMenu = new SysMenu { Pid = pid, Title = title, Type = MenuTypeEnum.Menu, Icon = menuIcon, Path = $"{parentMenuPath}/{className.ToLower()}", Component = $"/{pagePath}/{lowerClassName}/index" };
-        pid = (await _db.Insertable(rootMenu).ExecuteReturnEntityAsync()).Id;
+        pid = await service.AddMenu(rootMenu.Adapt<AddMenuInput>());
 
         var orderNo = 100;
         var menuList = new List<SysMenu>
@@ -513,7 +516,6 @@ public class SysCodeGenService : IDynamicApiController, ITransient
         foreach (var column in tableFieldList.Where(u => u.EffectType == "Upload"))
             menuList.Add(new SysMenu { Title = $"上传{column.ColumnComment}", Permission = $"{lowerClassName}:upload{column.PropertyName}", Pid = pid, Type = MenuTypeEnum.Btn, OrderNo = orderNo += 10 });
 
-        var service = App.GetService<SysMenuService>();
         foreach (var menu in menuList) await service.AddMenu(menu.Adapt<AddMenuInput>());
     }
 

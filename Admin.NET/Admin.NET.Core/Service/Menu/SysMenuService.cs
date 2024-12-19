@@ -94,7 +94,7 @@ public class SysMenuService : IDynamicApiController, ITransient
     /// <returns></returns>
     [ApiDescriptionSettings(Name = "Add"), HttpPost]
     [DisplayName("增加菜单")]
-    public async Task AddMenu(AddMenuInput input)
+    public async Task<long> AddMenu(AddMenuInput input)
     {
         var (query, tenantId) = GetSugarQueryableAndTenantId(input.TenantId);
         
@@ -117,6 +117,8 @@ public class SysMenuService : IDynamicApiController, ITransient
 
         // 清除缓存
         DeleteMenuCache();
+
+        return sysMenu.Id;
     }
 
     /// <summary>
