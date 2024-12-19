@@ -17,19 +17,19 @@ public class SysUpdateService : IDynamicApiController, ITransient
     private readonly SqlSugarRepository<SysUser> _sysUserRep;
     private readonly SysOnlineUserService _onlineUserService;
     private readonly SysCacheService _sysCacheService;
-    private readonly GiteeOptions _giteeOptions;
+    private readonly CDConfigOptions _cdConfigOptions;
     private readonly UserManager _userManager;
 
     public SysUpdateService(
         SqlSugarRepository<SysUser> sysUserRep,
         SysOnlineUserService onlineUserService,
-        IOptions<GiteeOptions> giteeOptions,
+        IOptions<CDConfigOptions> giteeOptions,
         SysCacheService sysCacheService,
         UserManager userManager)
     {
         _sysUserRep = sysUserRep;
         _userManager = userManager;
-        _giteeOptions = giteeOptions.Value;
+        _cdConfigOptions = giteeOptions.Value;
         _sysCacheService = sysCacheService;
         _onlineUserService = onlineUserService;
     }
@@ -46,22 +46,24 @@ public class SysUpdateService : IDynamicApiController, ITransient
         try
         {
             await SendMessage("----------------------------从远端仓库部署项目-开始----------------------------");
-            await SendMessage($"仓库地址：https://gitee.com/{_giteeOptions.Owner}/{_giteeOptions.Repo}.git");
-            await SendMessage($"仓库分支：{_giteeOptions.Branch}");
+            await SendMessage($"客户端host：{App.HttpContext.Request.Host}");
+            await SendMessage($"客户端IP：{App.HttpContext.GetRemoteIpAddressToIPv4(true)}");
+            await SendMessage($"仓库地址：https://gitee.com/{_cdConfigOptions.Owner}/{_cdConfigOptions.Repo}.git");
+            await SendMessage($"仓库分支：{_cdConfigOptions.Branch}");
 
             await SendMessage("项目备份...");
             // TODO 备份项目
 
             // 获取解压后的根目录
-            var rootPath = Path.GetFullPath(Path.Combine(_giteeOptions.OutputDir.BackEnd, ".."));
-            var tempDir = Path.Combine(rootPath, $"{_giteeOptions.Repo}-{_giteeOptions.Branch}");
+            var rootPath = Path.GetFullPath(Path.Combine(_cdConfigOptions.BackendOutput, ".."));
+            var tempDir = Path.Combine(rootPath, $"{_cdConfigOptions.Repo}-{_cdConfigOptions.Branch}");
 
             await SendMessage("清理旧文件...");
-            TryDeleteFileOrDir(tempDir);
+            FileHelper.TryDelete(tempDir);
 
             await SendMessage("拉取远端代码...");
-            var stream = await GiteeHelper.DownloadRepoZip(_giteeOptions.Owner, _giteeOptions.Repo,
-                _giteeOptions.AccessToken, _giteeOptions.Branch);
+            var stream = await GiteeHelper.DownloadRepoZip(_cdConfigOptions.Owner, _cdConfigOptions.Repo,
+                _cdConfigOptions.AccessToken, _cdConfigOptions.Branch);
 
             await SendMessage("文件包解压...");
             using ZipArchive archive = new(stream, ZipArchiveMode.Read, leaveOpen: false);
@@ -70,19 +72,31 @@ public class SysUpdateService : IDynamicApiController, ITransient
             // 项目目录
             var backendDir = "Admin.NET";
             var entryProjectName = "Admin.NET.Web.Entry";
+            var tempOutput = Path.Combine(_cdConfigOptions.BackendOutput, "temp");
 
             await SendMessage("编译项目...");
-            await SendMessage($"发布版本：{_giteeOptions.Publish.Configuration}");
-            await SendMessage($"目标框架：{_giteeOptions.Publish.TargetFramework}");
-            await SendMessage($"运行环境：{_giteeOptions.Publish.RuntimeIdentifier}");
-            var option = _giteeOptions.Publish;
+            await SendMessage($"发布版本：{_cdConfigOptions.Publish.Configuration}");
+            await SendMessage($"目标框架：{_cdConfigOptions.Publish.TargetFramework}");
+            await SendMessage($"运行环境：{_cdConfigOptions.Publish.RuntimeIdentifier}");
+            var option = _cdConfigOptions.Publish;
             var adminNetDir = Path.Combine(tempDir, backendDir);
-            var args =
-                $"publish \"{entryProjectName}\" -c {option.Configuration} -f {option.TargetFramework} -r {option.RuntimeIdentifier} --output \"{_giteeOptions.OutputDir.BackEnd}\"";
+            var args = $"publish \"{entryProjectName}\" -c {option.Configuration} -f {option.TargetFramework} -r {option.RuntimeIdentifier} --output \"{tempOutput}\"";
             await RunCommandAsync("dotnet", args, adminNetDir);
 
+            await SendMessage("移动wwwroot目录...");
+            var wwwrootDir = Path.Combine(adminNetDir, entryProjectName, "wwwroot");
+            FileHelper.CopyDirectory(wwwrootDir, Path.Combine(tempOutput, "wwwroot"), true);
+
+            // 删除排除文件
+            await SendMessage("删除排除文件...");
+            foreach (var file in _cdConfigOptions.ExcludeFiles ?? new()) FileHelper.TryDelete(Path.Combine(tempOutput, file));
+
+            // 将临时文件移动到正式目录
+            FileHelper.CopyDirectory(tempOutput, _cdConfigOptions.BackendOutput, true);
+
             await SendMessage("清理文件...");
-            TryDeleteFileOrDir(tempDir);
+            FileHelper.TryDelete(tempOutput);
+            FileHelper.TryDelete(tempDir);
 
             await SendMessage("----------------------------从远端仓库部署项目-结束----------------------------");
         }
@@ -148,24 +162,5 @@ public class SysUpdateService : IDynamicApiController, ITransient
             await SendMessage(line.Trim());
         }
         await process.WaitForExitAsync();
-    }
-
-    /// <summary>
-    /// 尝试删除文件/目录
-    /// </summary>
-    /// <param name="path"></param>
-    /// <returns></returns>
-    private void TryDeleteFileOrDir(string path)
-    {
-        try
-        {
-            if (string.IsNullOrEmpty(path)) return;
-            if (Directory.Exists(path)) Directory.Delete(path, recursive: true);
-            else File.Delete(path);
-        }
-        catch (Exception)
-        {
-            // ignored
-        }
     }
 }

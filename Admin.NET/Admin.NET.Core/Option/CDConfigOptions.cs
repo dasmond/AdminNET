@@ -7,9 +7,9 @@
 namespace Admin.NET.Core;
 
 /// <summary>
-/// Gitee CI/CD 配置选项
+/// CI/CD 配置选项
 /// </summary>
-public class GiteeOptions : IConfigurableOptions
+public class CDConfigOptions : IConfigurableOptions
 {
     /// <summary>
     /// 用户名
@@ -31,10 +31,7 @@ public class GiteeOptions : IConfigurableOptions
     /// </summary>
     public string AccessToken { get; set; }
     
-    /// <summary>
-    /// 输出目录配置
-    /// </summary>
-    public OutputDirOptions OutputDir { get; set; }
+
 
     /// <summary>
     /// 更新间隔限制（分钟）-1 不限制
@@ -47,52 +44,25 @@ public class GiteeOptions : IConfigurableOptions
     public int BackupCount { get; set; }
 
     /// <summary>
+    /// 输出目录配置
+    /// </summary>
+    public string BackendOutput { get; set; }
+
+    /// <summary>
     /// 发布配置选项
     /// </summary>
-    public GiteePublishOptions Publish { get; set; }
+    public PublishOptions Publish { get; set; }
+
+    /// <summary>
+    /// 排除文件列表
+    /// </summary>
+    public List<string> ExcludeFiles { get; set; }
 }
 
 /// <summary>
-/// 项目目录
+/// 编译发布配置选项
 /// </summary>
-public class ProjectDirOptions
-{
-    /// <summary>
-    /// 后端目录
-    /// </summary>
-    public string BackEnd { get; set; }
-    
-    /// <summary>
-    /// 前端目录
-    /// </summary>
-    public string FrontEnd { get; set; }
-    
-    /// <summary>
-    /// 后端入口项目目录
-    /// </summary>
-    public string EntryDir { get; set; }
-}
-
-/// <summary>
-/// 输出目录
-/// </summary>
-public class OutputDirOptions
-{
-    /// <summary>
-    /// 后端目录
-    /// </summary>
-    public string BackEnd { get; set; }
-    
-    /// <summary>
-    /// 前端目录
-    /// </summary>
-    public string FrontEnd { get; set; }
-}
-
-/// <summary>
-/// Gitee发布配置选项
-/// </summary>
-public class GiteePublishOptions
+public class PublishOptions
 {
     /// <summary>
     /// 发布环境配置

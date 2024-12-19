@@ -21,15 +21,15 @@ public class SysCommonService : IDynamicApiController, ITransient
 {
     private readonly IApiDescriptionGroupCollectionProvider _apiProvider;
     private readonly SqlSugarRepository<SysUser> _sysUserRep;
-    private readonly GiteeOptions _giteeOptions;
+    private readonly CDConfigOptions _cdConfigOptions;
 
     public SysCommonService(IApiDescriptionGroupCollectionProvider apiProvider,
         SqlSugarRepository<SysUser> sysUserRep,
-        IOptions<GiteeOptions> giteeOptions)
+        IOptions<CDConfigOptions> giteeOptions)
     {
         _sysUserRep = sysUserRep;
         _apiProvider = apiProvider;
-        _giteeOptions = giteeOptions.Value;
+        _cdConfigOptions = giteeOptions.Value;
     }
 
     /// <summary>
