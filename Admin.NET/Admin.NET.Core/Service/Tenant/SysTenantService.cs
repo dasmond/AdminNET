@@ -298,8 +298,6 @@ public class SysTenantService : IDynamicApiController, ITransient
     [NonAction]
     public IEnumerable<SysTenantMenu> GetTenantDefaultMenuList(bool ignoreHome = false)
     {
-        var id = 1300000000000;
-
         var menuList = new List<SysMenu>();
         var allMenuList = new SysMenuSeedData().HasData().ToList();
 
@@ -324,9 +322,14 @@ public class SysTenantService : IDynamicApiController, ITransient
         var flow = _sysTenantRep.Context.Queryable<SysMenu>().First(u => u.Type == MenuTypeEnum.Menu && u.Title == "审批流程");
         menuList.Add(allMenuList.First(u => u.Type == MenuTypeEnum.Dir && u.Title == "帮助文档"));
         menuList.Add(allMenuList.First(u => u.Type == MenuTypeEnum.Menu && u.Title == "关于项目"));
-        menuList.Add(flow);
+        if (flow != null) menuList.Add(flow);
 
-        return menuList.Select(u => new SysTenantMenu { Id=id+=100, TenantId=SqlSugarConst.DefaultTenantId, MenuId=u.Id });
+        return menuList.Select(u => new SysTenantMenu
+        {
+            Id = u.Id + (SqlSugarConst.DefaultTenantId % 1300000000000),
+            TenantId = SqlSugarConst.DefaultTenantId,
+            MenuId = u.Id
+        });
     }
 
     /// <summary>

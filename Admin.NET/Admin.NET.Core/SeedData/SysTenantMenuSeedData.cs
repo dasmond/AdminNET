@@ -18,7 +18,12 @@ public class SysTenantMenuSeedData : ISqlSugarEntitySeedData<SysTenantMenu>
     /// <returns></returns>
     public IEnumerable<SysTenantMenu> HasData()
     {
-        var id = 1300000000000;
-        return App.GetService<SysTenantService>().GetTenantDefaultMenuList().Select(u => new SysTenantMenu { Id=id+=100, TenantId=SqlSugarConst.DefaultTenantId, MenuId=u.MenuId });
+        return App.GetService<SysTenantService>().GetTenantDefaultMenuList()
+            .Select(u => new SysTenantMenu
+            {
+                Id = u.MenuId + (SqlSugarConst.DefaultTenantId % 1300000000000),
+                TenantId = SqlSugarConst.DefaultTenantId,
+                MenuId = u.MenuId
+            });
     }
 }
