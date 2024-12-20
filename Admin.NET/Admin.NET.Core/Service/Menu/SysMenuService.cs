@@ -4,6 +4,7 @@
 //
 // 不得利用本项目从事危害国家安全、扰乱社会秩序、侵犯他人合法权益等法律法规禁止的活动！任何基于本项目二次开发而产生的一切法律纠纷和责任，我们不承担任何责任！
 
+using DocumentFormat.OpenXml.Office2010.ExcelAc;
 using OfficeOpenXml.FormulaParsing.Excel.Functions.Text;
 
 namespace Admin.NET.Core.Service;
@@ -306,5 +307,33 @@ public class SysMenuService : IDynamicApiController, ITransient
     {
         var roleIdList = await _sysUserRoleService.GetUserRoleIdList(_userManager.UserId);
         return await _sysRoleMenuService.GetRoleMenuIdList(roleIdList);
+    }
+
+    /// <summary>
+    /// 排除前端存在全选的父级菜单
+    /// </summary>
+    /// <returns></returns>
+    [NonAction]
+    public async Task<List<long>> ExcludeParentMenuOfFullySelected(List<long> menuIds)
+    {
+        // 获取当前用户菜单
+        var (query, _) = App.GetService<SysMenuService>().GetSugarQueryableAndTenantId(0);
+        var menuList = await query.ToListAsync();
+
+        // 排除列表，防止前端全选问题
+        var exceptList = new List<long>();
+        foreach (var id in menuIds)
+        {
+            // 排除按钮菜单
+            if (menuList.Any(u => u.Id == id && u.Type == MenuTypeEnum.Btn)) continue;
+
+            // 如果没有子集或有全部子集权限
+            var children = menuList.ToChildList(u => u.Id, u => u.Pid, id, false).ToList();
+            if (children.Count == 0 || children.All(u => menuIds.Contains(u.Id))) continue;
+
+            // 排除没有全部子集权限的菜单
+            exceptList.Add(id);
+        }
+        return menuIds.Except(exceptList).ToList();
     }
 }

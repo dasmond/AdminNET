@@ -112,14 +112,7 @@ onMounted(async () => {
 // 获取租户信息
 const getTenantInfo = async () => {
 	if (themeConfig.value.hideTenantForLogin) {
-		if (!route.query.t) {
-			const query = Object.assign({}, route.query?.params, { t: '-1' });
-			router.push({
-				path: route.path,
-				query: query as any,
-			});
-		}
-		tenantInfo.value.id = parseInt(<string>route.query.t);
+		tenantInfo.value.id = -1;
 		tenantInfo.value.list = [];
 		return tenantInfo.value;
 	}

@@ -43,7 +43,6 @@
 								ref="treeRef"
 								:data="state.menuData"
 								node-key="id"
-								check-strictly
 								show-checkbox
 								:props="{ children: 'children', label: 'title', class: treeNodeClass }"
 								icon="ele-Menu"

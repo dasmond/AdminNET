@@ -96,14 +96,10 @@ public class SysRoleService : IDynamicApiController, ITransient
     private async Task UpdateRoleMenu(AddRoleInput input)
     {
         if (input.MenuIdList == null || input.MenuIdList.Count < 1) return;
-
-        // 将父节点为0的菜单排除，防止前端全选异常
-        var pMenuIds = await _sysRoleRep.ChangeRepository<SqlSugarRepository<SysMenu>>().AsQueryable().Where(u => input.MenuIdList.Contains(u.Id) && u.Pid == 0).ToListAsync(u => u.Id);
-        var menuIds = input.MenuIdList.Except(pMenuIds); // 差集
         await GrantMenu(new RoleMenuInput()
         {
             Id = input.Id,
-            MenuIdList = menuIds.ToList()
+            MenuIdList = input.MenuIdList.ToList()
         });
     }
 
@@ -222,7 +218,8 @@ public class SysRoleService : IDynamicApiController, ITransient
     [DisplayName("根据角色Id获取菜单Id集合")]
     public async Task<List<long>> GetOwnMenuList([FromQuery] RoleInput input)
     {
-        return await _sysRoleMenuService.GetRoleMenuIdList(new List<long> { input.Id });
+        var menuIds = await _sysRoleMenuService.GetRoleMenuIdList(new List<long> { input.Id });
+        return await App.GetService<SysMenuService>().ExcludeParentMenuOfFullySelected(menuIds);
     }
 
     /// <summary>

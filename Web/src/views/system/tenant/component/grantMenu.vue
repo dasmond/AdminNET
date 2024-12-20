@@ -14,7 +14,6 @@
 							<el-tree
 								ref="treeRef"
 								:data="state.menuData"
-								check-strictly
 								node-key="id"
 								show-checkbox
 								:props="{ children: 'children', label: 'title', class: treeNodeClass }"
@@ -43,7 +42,7 @@
 </template>
 
 <script lang="ts" setup name="sysGrantMenu">
-import { onMounted, reactive, ref } from 'vue';
+import { reactive, ref } from 'vue';
 import type { ElTree } from 'element-plus';
 
 import { getAPI } from '/@/utils/axios-utils';

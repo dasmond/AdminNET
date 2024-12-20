@@ -183,8 +183,8 @@ public class SysDictTypeService : IDynamicApiController, ITransient
     [NonAction]
     public List<long> GetTenantIdList()
     {
-        List<long> tenantIdList = new() { SqlSugarConst.DefaultTenantId };
-        if (_userManager.TenantId > 0) tenantIdList.Add(_userManager.TenantId);
-        return tenantIdList;
+        return SqlSugarConst.DefaultTenantId != _userManager.TenantId
+            ? new() { SqlSugarConst.DefaultTenantId, _userManager.TenantId }
+            : new() { SqlSugarConst.DefaultTenantId };
     }
 }

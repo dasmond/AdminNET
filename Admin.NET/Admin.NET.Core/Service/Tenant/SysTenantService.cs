@@ -313,7 +313,7 @@ public class SysTenantService : IDynamicApiController, ITransient
         menuList.Add(platformMenu);
         menuList.AddRange(allMenuList.ToChildList(u => u.Id, u => u.Pid, u => u.Pid == platformMenu.Id && new[]{ "菜单管理", "字典管理", "系统配置"}.Contains(u.Title)));
         var dictMenu = menuList.First(u => u.Type == MenuTypeEnum.Menu && u.Title == "字典管理");
-        menuList = menuList.Where(u => u.Pid != dictMenu.Id || !new[]{"增加", "编辑", "删除"}.Contains(u.Title)).ToList();
+        menuList = menuList.Where(u => u.Pid != dictMenu.Id || !new[]{"编辑", "删除"}.Contains(u.Title)).ToList();
 
         var logMenu = allMenuList.First(u => u.Type == MenuTypeEnum.Dir && u.Title == "日志管理");
         menuList.Add(logMenu);
@@ -458,9 +458,11 @@ public class SysTenantService : IDynamicApiController, ITransient
         // 检查路由是否重复
         if (menuList.Where(u => !string.IsNullOrWhiteSpace(u.Name)).GroupBy(u => u.Name).Any(u => u.Count() > 1)) 
             throw Oops.Oh(ErrorCodeEnum.D4009);
-        
+
+        // 删除旧记录
         await _sysTenantMenuRep.AsDeleteable().Where(u => u.TenantId == input.Id).ExecuteCommandAsync();
         var sysTenantMenuList = input.MenuIdList.Select(menuId => new SysTenantMenu { TenantId = input.Id, MenuId = menuId }).ToList();
+
         await _sysTenantMenuRep.InsertRangeAsync(sysTenantMenuList);
         
         // 清除菜单权限缓存
@@ -475,7 +477,8 @@ public class SysTenantService : IDynamicApiController, ITransient
     [DisplayName("获取租户菜单Id集合")]
     public async Task<List<long>> GetTenantMenuList([FromQuery] BaseIdInput input)
     {
-        return await _sysTenantMenuRep.AsQueryable().Where(u => u.TenantId == input.Id).Select(u => u.MenuId).ToListAsync();
+        var menuIds = await _sysTenantMenuRep.AsQueryable().Where(u => u.TenantId == input.Id).Select(u => u.MenuId).ToListAsync();
+        return await App.GetService<SysMenuService>().ExcludeParentMenuOfFullySelected(menuIds);
     }
 
     /// <summary>
