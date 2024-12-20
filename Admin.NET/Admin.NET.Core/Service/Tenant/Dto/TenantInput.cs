@@ -60,12 +60,6 @@ public class AddTenantInput : TenantOutput
     public override string ViceDesc { get; set; }
 
     /// <summary>
-    /// 水印内容
-    /// </summary>
-    [Required(ErrorMessage = "水印内容不能为空")]
-    public override string Watermark { get; set; }
-
-    /// <summary>
     /// 版权说明
     /// </summary>
     [Required(ErrorMessage = "版权说明不能为空")]

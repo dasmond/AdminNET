@@ -22,6 +22,11 @@ public class InfoSaveInput
     public string LogoFileName { get; set; }
 
     /// <summary>
+    /// 水印内容
+    /// </summary>
+    public string Watermark { get; set; }
+
+    /// <summary>
     /// 系统主标题
     /// </summary>
     [Required(ErrorMessage = "系统主标题不能为空")]
@@ -38,12 +43,6 @@ public class InfoSaveInput
     /// </summary>
     [Required(ErrorMessage = "系统描述不能为空")]
     public string ViceDesc { get; set; }
-
-    /// <summary>
-    /// 水印内容
-    /// </summary>
-    [Required(ErrorMessage = "水印内容不能为空")]
-    public string Watermark { get; set; }
 
     /// <summary>
     /// 版权说明

@@ -141,7 +141,7 @@
 								</el-form-item>
 							</el-col>
 							<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
-								<el-form-item label="水印" prop="watermark" :rules="[{ required: true, message: '水印不能为空', trigger: 'blur' }]">
+								<el-form-item label="水印" prop="watermark">
 									<el-input v-model="state.ruleForm.watermark" placeholder="应用水印" maxlength="32" clearable />
 								</el-form-item>
 							</el-col>
