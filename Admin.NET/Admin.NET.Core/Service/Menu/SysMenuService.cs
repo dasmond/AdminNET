@@ -264,7 +264,7 @@ public class SysMenuService : IDynamicApiController, ITransient
     {
         if (!_userManager.SuperAdmin) tenantId = _userManager.TenantId;
 
-        // 超管用户菜单范围：种子菜单 + 租户id菜单 + 未分配菜单
+        // 超管用户菜单范围：种子菜单 + 租户id菜单
         ISugarQueryable<SysMenu, SysTenantMenu> query;
         if (_userManager.SuperAdmin)
         {
