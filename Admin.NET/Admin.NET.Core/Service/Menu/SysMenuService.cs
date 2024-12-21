@@ -268,20 +268,21 @@ public class SysMenuService : IDynamicApiController, ITransient
         ISugarQueryable<SysMenu, SysTenantMenu> query;
         if (_userManager.SuperAdmin)
         {
-            // 未被分配的菜单
-            var unMenuIds = _sysMenuRep.AsQueryable()
-                .Where(u => !SqlFunc.Subqueryable<SysTenantMenu>().Where(t => t.MenuId == u.Id).Any())
-                .Select(u => u.Id).ToList();
+            if (tenantId <= 0)
+            {
+                query = _sysMenuRep.AsQueryable().InnerJoinIF<SysTenantMenu>(false, (u, t) => true);
+            }
+            else
+            {
+                // 指定租户的菜单
+                var menuIds = _sysTenantMenuRep.AsQueryable().Where(u => u.TenantId == tenantId).ToList(u => u.MenuId) ?? new();
 
-            // 指定租户的菜单
-            var menuIds = _sysTenantMenuRep.AsQueryable().WhereIF(tenantId > 0, u => u.TenantId == tenantId).ToList(u => u.MenuId) ?? new();
+                // 种子菜单
+                menuIds.AddRange(new SysMenuSeedData().HasData().Select(u => u.Id).ToList());
 
-            // 种子菜单
-            menuIds.AddRange(new SysMenuSeedData().HasData().Select(u => u.Id).ToList());
-            menuIds.AddRange(unMenuIds);
-
-            menuIds = menuIds.Distinct().ToList();
-            query = _sysMenuRep.AsQueryable().InnerJoinIF<SysTenantMenu>(false, (u, t) => true).Where(u => menuIds.Contains(u.Id));
+                menuIds = menuIds.Distinct().ToList();
+                query = _sysMenuRep.AsQueryable().InnerJoinIF<SysTenantMenu>(false, (u, t) => true).Where(u => menuIds.Contains(u.Id));
+            }
         }
         else
         {
