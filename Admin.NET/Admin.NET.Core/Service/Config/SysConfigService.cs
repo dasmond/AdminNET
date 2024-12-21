@@ -267,10 +267,10 @@ public class SysConfigService : IDynamicApiController, ITransient
             tenant.IcpUrl,
             tenant.RegWayId,
             tenant.EnableReg,
-            SecondVer = secondVer,
-            Captcha = captcha,
-            WayList = wayList,
-            HideTenantForLogin = hideTenantForLogin
+            SecondVer = secondVer ? YesNoEnum.Y : YesNoEnum.N,
+            Captcha = captcha ? YesNoEnum.Y : YesNoEnum.N,
+            HideTenantForLogin = hideTenantForLogin,
+            WayList = wayList
         };
     }
 
