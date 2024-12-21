@@ -11,41 +11,16 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-import { EnumEntity } from './enum-entity';
 /**
- * 枚举类型输出参数
+ * WebHook输入参数
  * @export
- * @interface EnumTypeOutput
+ * @interface WebHookInput
  */
-export interface EnumTypeOutput {
+export interface WebHookInput {
     /**
-     * 枚举类型描述
+     * 密钥
      * @type {string}
-     * @memberof EnumTypeOutput
+     * @memberof WebHookInput
      */
-    typeDescribe?: string | null;
-    /**
-     * 枚举类型名称
-     * @type {string}
-     * @memberof EnumTypeOutput
-     */
-    typeName?: string | null;
-    /**
-     * 枚举类型全名称
-     * @type {string}
-     * @memberof EnumTypeOutput
-     */
-    typeFullName?: string | null;
-    /**
-     * 枚举类型备注
-     * @type {string}
-     * @memberof EnumTypeOutput
-     */
-    typeRemark?: string | null;
-    /**
-     * 枚举实体
-     * @type {Array<EnumEntity>}
-     * @memberof EnumTypeOutput
-     */
-    enumEntities?: Array<EnumEntity> | null;
+    key: string;
 }

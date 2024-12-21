@@ -16,29 +16,155 @@ import { Configuration } from '../configuration';
 // Some imports not used depending on template conditions
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base';
-import { AddMenuInput } from '../models';
-import { AdminResultInt64 } from '../models';
-import { AdminResultListMenuOutput } from '../models';
+import { AdminResultListBackupOutput } from '../models';
 import { AdminResultListString } from '../models';
-import { AdminResultListSysMenu } from '../models';
-import { DeleteMenuInput } from '../models';
-import { MenuTypeEnum } from '../models';
-import { UpdateMenuInput } from '../models';
+import { AdminResultString } from '../models';
+import { RestoreInput } from '../models';
+import { WebHookInput } from '../models';
 /**
- * SysMenuApi - axios parameter creator
+ * SysUpdateApi - axios parameter creator
  * @export
  */
-export const SysMenuApiAxiosParamCreator = function (configuration?: Configuration) {
+export const SysUpdateApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
          * 
-         * @summary 增加菜单 🔖
-         * @param {AddMenuInput} [body] 
+         * @summary 清空日志
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiSysMenuAddPost: async (body?: AddMenuInput, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/api/sysMenu/add`;
+        apiSysUpdateClearGet: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/sysUpdate/clear`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions :AxiosRequestConfig = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication Bearer required
+            // http bearer authentication required
+            if (configuration && configuration.accessToken) {
+                const accessToken = typeof configuration.accessToken === 'function'
+                    ? await configuration.accessToken()
+                    : await configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
+            }
+
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.params) {
+                query.set(key, options.params[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary 备份列表
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiSysUpdateListPost: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/sysUpdate/list`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions :AxiosRequestConfig = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication Bearer required
+            // http bearer authentication required
+            if (configuration && configuration.accessToken) {
+                const accessToken = typeof configuration.accessToken === 'function'
+                    ? await configuration.accessToken()
+                    : await configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
+            }
+
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.params) {
+                query.set(key, options.params[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary 获取日志列表
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiSysUpdateLogsGet: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/sysUpdate/logs`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions :AxiosRequestConfig = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication Bearer required
+            // http bearer authentication required
+            if (configuration && configuration.accessToken) {
+                const accessToken = typeof configuration.accessToken === 'function'
+                    ? await configuration.accessToken()
+                    : await configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
+            }
+
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.params) {
+                query.set(key, options.params[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary 还原
+         * @param {RestoreInput} [body] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiSysUpdateRestorePost: async (body?: RestoreInput, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/sysUpdate/restore`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
             let baseOptions;
@@ -80,13 +206,12 @@ export const SysMenuApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
-         * @summary 删除菜单 🔖
-         * @param {DeleteMenuInput} [body] 
+         * @summary 从远端更新系统
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiSysMenuDeletePost: async (body?: DeleteMenuInput, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/api/sysMenu/delete`;
+        apiSysUpdateUpdatePost: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/sysUpdate/update`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
             let baseOptions;
@@ -106,68 +231,6 @@ export const SysMenuApiAxiosParamCreator = function (configuration?: Configurati
                 localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
             }
 
-            localVarHeaderParameter['Content-Type'] = 'application/json-patch+json';
-
-            const query = new URLSearchParams(localVarUrlObj.search);
-            for (const key in localVarQueryParameter) {
-                query.set(key, localVarQueryParameter[key]);
-            }
-            for (const key in options.params) {
-                query.set(key, options.params[key]);
-            }
-            localVarUrlObj.search = (new URLSearchParams(query)).toString();
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            const needsSerialization = (typeof body !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(body !== undefined ? body : {}) : (body || "");
-
-            return {
-                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @summary 获取菜单列表 🔖
-         * @param {string} [title] 标题
-         * @param {MenuTypeEnum} [type] 菜单类型（1目录 2菜单 3按钮）
-         * @param {number} [tenantId] 租户Id
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        apiSysMenuListGet: async (title?: string, type?: MenuTypeEnum, tenantId?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/api/sysMenu/list`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-            const localVarRequestOptions :AxiosRequestConfig = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication Bearer required
-            // http bearer authentication required
-            if (configuration && configuration.accessToken) {
-                const accessToken = typeof configuration.accessToken === 'function'
-                    ? await configuration.accessToken()
-                    : await configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
-            }
-
-            if (title !== undefined) {
-                localVarQueryParameter['Title'] = title;
-            }
-
-            if (type !== undefined) {
-                localVarQueryParameter['Type'] = type;
-            }
-
-            if (tenantId !== undefined) {
-                localVarQueryParameter['TenantId'] = tenantId;
-            }
-
             const query = new URLSearchParams(localVarUrlObj.search);
             for (const key in localVarQueryParameter) {
                 query.set(key, localVarQueryParameter[key]);
@@ -186,12 +249,12 @@ export const SysMenuApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
-         * @summary 获取登录菜单树 🔖
+         * @summary 获取WebHook接口密钥
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiSysMenuLoginMenuTreeGet: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/api/sysMenu/loginMenuTree`;
+        apiSysUpdateWebHookKeyGet: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/sysUpdate/webHookKey`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
             let baseOptions;
@@ -229,56 +292,13 @@ export const SysMenuApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
-         * @summary 获取用户拥有按钮权限集合（缓存） 🔖
+         * @summary 仓库WebHook接口
+         * @param {WebHookInput} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiSysMenuOwnBtnPermListGet: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/api/sysMenu/ownBtnPermList`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-            const localVarRequestOptions :AxiosRequestConfig = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication Bearer required
-            // http bearer authentication required
-            if (configuration && configuration.accessToken) {
-                const accessToken = typeof configuration.accessToken === 'function'
-                    ? await configuration.accessToken()
-                    : await configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
-            }
-
-            const query = new URLSearchParams(localVarUrlObj.search);
-            for (const key in localVarQueryParameter) {
-                query.set(key, localVarQueryParameter[key]);
-            }
-            for (const key in options.params) {
-                query.set(key, options.params[key]);
-            }
-            localVarUrlObj.search = (new URLSearchParams(query)).toString();
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @summary 更新菜单 🔖
-         * @param {UpdateMenuInput} [body] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        apiSysMenuUpdatePost: async (body?: UpdateMenuInput, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/api/sysMenu/update`;
+        apiSysUpdateWebHookPost: async (body?: WebHookInput, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/sysUpdate/webHook`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
             let baseOptions;
@@ -322,20 +342,19 @@ export const SysMenuApiAxiosParamCreator = function (configuration?: Configurati
 };
 
 /**
- * SysMenuApi - functional programming interface
+ * SysUpdateApi - functional programming interface
  * @export
  */
-export const SysMenuApiFp = function(configuration?: Configuration) {
+export const SysUpdateApiFp = function(configuration?: Configuration) {
     return {
         /**
          * 
-         * @summary 增加菜单 🔖
-         * @param {AddMenuInput} [body] 
+         * @summary 清空日志
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiSysMenuAddPost(body?: AddMenuInput, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<AdminResultInt64>>> {
-            const localVarAxiosArgs = await SysMenuApiAxiosParamCreator(configuration).apiSysMenuAddPost(body, options);
+        async apiSysUpdateClearGet(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<void>>> {
+            const localVarAxiosArgs = await SysUpdateApiAxiosParamCreator(configuration).apiSysUpdateClearGet(options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -343,13 +362,12 @@ export const SysMenuApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @summary 删除菜单 🔖
-         * @param {DeleteMenuInput} [body] 
+         * @summary 备份列表
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiSysMenuDeletePost(body?: DeleteMenuInput, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<void>>> {
-            const localVarAxiosArgs = await SysMenuApiAxiosParamCreator(configuration).apiSysMenuDeletePost(body, options);
+        async apiSysUpdateListPost(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<AdminResultListBackupOutput>>> {
+            const localVarAxiosArgs = await SysUpdateApiAxiosParamCreator(configuration).apiSysUpdateListPost(options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -357,15 +375,12 @@ export const SysMenuApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @summary 获取菜单列表 🔖
-         * @param {string} [title] 标题
-         * @param {MenuTypeEnum} [type] 菜单类型（1目录 2菜单 3按钮）
-         * @param {number} [tenantId] 租户Id
+         * @summary 获取日志列表
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiSysMenuListGet(title?: string, type?: MenuTypeEnum, tenantId?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<AdminResultListSysMenu>>> {
-            const localVarAxiosArgs = await SysMenuApiAxiosParamCreator(configuration).apiSysMenuListGet(title, type, tenantId, options);
+        async apiSysUpdateLogsGet(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<AdminResultListString>>> {
+            const localVarAxiosArgs = await SysUpdateApiAxiosParamCreator(configuration).apiSysUpdateLogsGet(options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -373,12 +388,13 @@ export const SysMenuApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @summary 获取登录菜单树 🔖
+         * @summary 还原
+         * @param {RestoreInput} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiSysMenuLoginMenuTreeGet(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<AdminResultListMenuOutput>>> {
-            const localVarAxiosArgs = await SysMenuApiAxiosParamCreator(configuration).apiSysMenuLoginMenuTreeGet(options);
+        async apiSysUpdateRestorePost(body?: RestoreInput, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<void>>> {
+            const localVarAxiosArgs = await SysUpdateApiAxiosParamCreator(configuration).apiSysUpdateRestorePost(body, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -386,12 +402,12 @@ export const SysMenuApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @summary 获取用户拥有按钮权限集合（缓存） 🔖
+         * @summary 从远端更新系统
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiSysMenuOwnBtnPermListGet(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<AdminResultListString>>> {
-            const localVarAxiosArgs = await SysMenuApiAxiosParamCreator(configuration).apiSysMenuOwnBtnPermListGet(options);
+        async apiSysUpdateUpdatePost(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<void>>> {
+            const localVarAxiosArgs = await SysUpdateApiAxiosParamCreator(configuration).apiSysUpdateUpdatePost(options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -399,13 +415,26 @@ export const SysMenuApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @summary 更新菜单 🔖
-         * @param {UpdateMenuInput} [body] 
+         * @summary 获取WebHook接口密钥
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiSysMenuUpdatePost(body?: UpdateMenuInput, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<void>>> {
-            const localVarAxiosArgs = await SysMenuApiAxiosParamCreator(configuration).apiSysMenuUpdatePost(body, options);
+        async apiSysUpdateWebHookKeyGet(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<AdminResultString>>> {
+            const localVarAxiosArgs = await SysUpdateApiAxiosParamCreator(configuration).apiSysUpdateWebHookKeyGet(options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
+         * 
+         * @summary 仓库WebHook接口
+         * @param {WebHookInput} [body] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiSysUpdateWebHookPost(body?: WebHookInput, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<void>>> {
+            const localVarAxiosArgs = await SysUpdateApiAxiosParamCreator(configuration).apiSysUpdateWebHookPost(body, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -415,145 +444,156 @@ export const SysMenuApiFp = function(configuration?: Configuration) {
 };
 
 /**
- * SysMenuApi - factory interface
+ * SysUpdateApi - factory interface
  * @export
  */
-export const SysMenuApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+export const SysUpdateApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
     return {
         /**
          * 
-         * @summary 增加菜单 🔖
-         * @param {AddMenuInput} [body] 
+         * @summary 清空日志
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiSysMenuAddPost(body?: AddMenuInput, options?: AxiosRequestConfig): Promise<AxiosResponse<AdminResultInt64>> {
-            return SysMenuApiFp(configuration).apiSysMenuAddPost(body, options).then((request) => request(axios, basePath));
+        async apiSysUpdateClearGet(options?: AxiosRequestConfig): Promise<AxiosResponse<void>> {
+            return SysUpdateApiFp(configuration).apiSysUpdateClearGet(options).then((request) => request(axios, basePath));
         },
         /**
          * 
-         * @summary 删除菜单 🔖
-         * @param {DeleteMenuInput} [body] 
+         * @summary 备份列表
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiSysMenuDeletePost(body?: DeleteMenuInput, options?: AxiosRequestConfig): Promise<AxiosResponse<void>> {
-            return SysMenuApiFp(configuration).apiSysMenuDeletePost(body, options).then((request) => request(axios, basePath));
+        async apiSysUpdateListPost(options?: AxiosRequestConfig): Promise<AxiosResponse<AdminResultListBackupOutput>> {
+            return SysUpdateApiFp(configuration).apiSysUpdateListPost(options).then((request) => request(axios, basePath));
         },
         /**
          * 
-         * @summary 获取菜单列表 🔖
-         * @param {string} [title] 标题
-         * @param {MenuTypeEnum} [type] 菜单类型（1目录 2菜单 3按钮）
-         * @param {number} [tenantId] 租户Id
+         * @summary 获取日志列表
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiSysMenuListGet(title?: string, type?: MenuTypeEnum, tenantId?: number, options?: AxiosRequestConfig): Promise<AxiosResponse<AdminResultListSysMenu>> {
-            return SysMenuApiFp(configuration).apiSysMenuListGet(title, type, tenantId, options).then((request) => request(axios, basePath));
+        async apiSysUpdateLogsGet(options?: AxiosRequestConfig): Promise<AxiosResponse<AdminResultListString>> {
+            return SysUpdateApiFp(configuration).apiSysUpdateLogsGet(options).then((request) => request(axios, basePath));
         },
         /**
          * 
-         * @summary 获取登录菜单树 🔖
+         * @summary 还原
+         * @param {RestoreInput} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiSysMenuLoginMenuTreeGet(options?: AxiosRequestConfig): Promise<AxiosResponse<AdminResultListMenuOutput>> {
-            return SysMenuApiFp(configuration).apiSysMenuLoginMenuTreeGet(options).then((request) => request(axios, basePath));
+        async apiSysUpdateRestorePost(body?: RestoreInput, options?: AxiosRequestConfig): Promise<AxiosResponse<void>> {
+            return SysUpdateApiFp(configuration).apiSysUpdateRestorePost(body, options).then((request) => request(axios, basePath));
         },
         /**
          * 
-         * @summary 获取用户拥有按钮权限集合（缓存） 🔖
+         * @summary 从远端更新系统
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiSysMenuOwnBtnPermListGet(options?: AxiosRequestConfig): Promise<AxiosResponse<AdminResultListString>> {
-            return SysMenuApiFp(configuration).apiSysMenuOwnBtnPermListGet(options).then((request) => request(axios, basePath));
+        async apiSysUpdateUpdatePost(options?: AxiosRequestConfig): Promise<AxiosResponse<void>> {
+            return SysUpdateApiFp(configuration).apiSysUpdateUpdatePost(options).then((request) => request(axios, basePath));
         },
         /**
          * 
-         * @summary 更新菜单 🔖
-         * @param {UpdateMenuInput} [body] 
+         * @summary 获取WebHook接口密钥
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiSysMenuUpdatePost(body?: UpdateMenuInput, options?: AxiosRequestConfig): Promise<AxiosResponse<void>> {
-            return SysMenuApiFp(configuration).apiSysMenuUpdatePost(body, options).then((request) => request(axios, basePath));
+        async apiSysUpdateWebHookKeyGet(options?: AxiosRequestConfig): Promise<AxiosResponse<AdminResultString>> {
+            return SysUpdateApiFp(configuration).apiSysUpdateWebHookKeyGet(options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary 仓库WebHook接口
+         * @param {WebHookInput} [body] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiSysUpdateWebHookPost(body?: WebHookInput, options?: AxiosRequestConfig): Promise<AxiosResponse<void>> {
+            return SysUpdateApiFp(configuration).apiSysUpdateWebHookPost(body, options).then((request) => request(axios, basePath));
         },
     };
 };
 
 /**
- * SysMenuApi - object-oriented interface
+ * SysUpdateApi - object-oriented interface
  * @export
- * @class SysMenuApi
+ * @class SysUpdateApi
  * @extends {BaseAPI}
  */
-export class SysMenuApi extends BaseAPI {
+export class SysUpdateApi extends BaseAPI {
     /**
      * 
-     * @summary 增加菜单 🔖
-     * @param {AddMenuInput} [body] 
+     * @summary 清空日志
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof SysMenuApi
+     * @memberof SysUpdateApi
      */
-    public async apiSysMenuAddPost(body?: AddMenuInput, options?: AxiosRequestConfig) : Promise<AxiosResponse<AdminResultInt64>> {
-        return SysMenuApiFp(this.configuration).apiSysMenuAddPost(body, options).then((request) => request(this.axios, this.basePath));
+    public async apiSysUpdateClearGet(options?: AxiosRequestConfig) : Promise<AxiosResponse<void>> {
+        return SysUpdateApiFp(this.configuration).apiSysUpdateClearGet(options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * 
-     * @summary 删除菜单 🔖
-     * @param {DeleteMenuInput} [body] 
+     * @summary 备份列表
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof SysMenuApi
+     * @memberof SysUpdateApi
      */
-    public async apiSysMenuDeletePost(body?: DeleteMenuInput, options?: AxiosRequestConfig) : Promise<AxiosResponse<void>> {
-        return SysMenuApiFp(this.configuration).apiSysMenuDeletePost(body, options).then((request) => request(this.axios, this.basePath));
+    public async apiSysUpdateListPost(options?: AxiosRequestConfig) : Promise<AxiosResponse<AdminResultListBackupOutput>> {
+        return SysUpdateApiFp(this.configuration).apiSysUpdateListPost(options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * 
-     * @summary 获取菜单列表 🔖
-     * @param {string} [title] 标题
-     * @param {MenuTypeEnum} [type] 菜单类型（1目录 2菜单 3按钮）
-     * @param {number} [tenantId] 租户Id
+     * @summary 获取日志列表
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof SysMenuApi
+     * @memberof SysUpdateApi
      */
-    public async apiSysMenuListGet(title?: string, type?: MenuTypeEnum, tenantId?: number, options?: AxiosRequestConfig) : Promise<AxiosResponse<AdminResultListSysMenu>> {
-        return SysMenuApiFp(this.configuration).apiSysMenuListGet(title, type, tenantId, options).then((request) => request(this.axios, this.basePath));
+    public async apiSysUpdateLogsGet(options?: AxiosRequestConfig) : Promise<AxiosResponse<AdminResultListString>> {
+        return SysUpdateApiFp(this.configuration).apiSysUpdateLogsGet(options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * 
-     * @summary 获取登录菜单树 🔖
+     * @summary 还原
+     * @param {RestoreInput} [body] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof SysMenuApi
+     * @memberof SysUpdateApi
      */
-    public async apiSysMenuLoginMenuTreeGet(options?: AxiosRequestConfig) : Promise<AxiosResponse<AdminResultListMenuOutput>> {
-        return SysMenuApiFp(this.configuration).apiSysMenuLoginMenuTreeGet(options).then((request) => request(this.axios, this.basePath));
+    public async apiSysUpdateRestorePost(body?: RestoreInput, options?: AxiosRequestConfig) : Promise<AxiosResponse<void>> {
+        return SysUpdateApiFp(this.configuration).apiSysUpdateRestorePost(body, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * 
-     * @summary 获取用户拥有按钮权限集合（缓存） 🔖
+     * @summary 从远端更新系统
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof SysMenuApi
+     * @memberof SysUpdateApi
      */
-    public async apiSysMenuOwnBtnPermListGet(options?: AxiosRequestConfig) : Promise<AxiosResponse<AdminResultListString>> {
-        return SysMenuApiFp(this.configuration).apiSysMenuOwnBtnPermListGet(options).then((request) => request(this.axios, this.basePath));
+    public async apiSysUpdateUpdatePost(options?: AxiosRequestConfig) : Promise<AxiosResponse<void>> {
+        return SysUpdateApiFp(this.configuration).apiSysUpdateUpdatePost(options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * 
-     * @summary 更新菜单 🔖
-     * @param {UpdateMenuInput} [body] 
+     * @summary 获取WebHook接口密钥
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof SysMenuApi
+     * @memberof SysUpdateApi
      */
-    public async apiSysMenuUpdatePost(body?: UpdateMenuInput, options?: AxiosRequestConfig) : Promise<AxiosResponse<void>> {
-        return SysMenuApiFp(this.configuration).apiSysMenuUpdatePost(body, options).then((request) => request(this.axios, this.basePath));
+    public async apiSysUpdateWebHookKeyGet(options?: AxiosRequestConfig) : Promise<AxiosResponse<AdminResultString>> {
+        return SysUpdateApiFp(this.configuration).apiSysUpdateWebHookKeyGet(options).then((request) => request(this.axios, this.basePath));
+    }
+    /**
+     * 
+     * @summary 仓库WebHook接口
+     * @param {WebHookInput} [body] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SysUpdateApi
+     */
+    public async apiSysUpdateWebHookPost(body?: WebHookInput, options?: AxiosRequestConfig) : Promise<AxiosResponse<void>> {
+        return SysUpdateApiFp(this.configuration).apiSysUpdateWebHookPost(body, options).then((request) => request(this.axios, this.basePath));
     }
 }

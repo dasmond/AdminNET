@@ -47,6 +47,7 @@ export * from './apis/sys-schedule-api';
 export * from './apis/sys-server-api';
 export * from './apis/sys-sms-api';
 export * from './apis/sys-tenant-api';
+export * from './apis/sys-update-api';
 export * from './apis/sys-user-api';
 export * from './apis/sys-user-menu-api';
 export * from './apis/sys-user-reg-way-api';

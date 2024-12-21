@@ -88,6 +88,12 @@ export interface AddTenantInput {
      */
     orgId?: number;
     /**
+     * 域名
+     * @type {string}
+     * @memberof AddTenantInput
+     */
+    host?: string | null;
+    /**
      * 
      * @type {TenantTypeEnum}
      * @memberof AddTenantInput
@@ -130,23 +136,17 @@ export interface AddTenantInput {
      */
     regWayId?: number | null;
     /**
-     * 
-     * @type {YesNoEnum}
-     * @memberof AddTenantInput
-     */
-    captcha?: YesNoEnum;
-    /**
-     * 
-     * @type {YesNoEnum}
-     * @memberof AddTenantInput
-     */
-    secondVer?: YesNoEnum;
-    /**
      * 图标
      * @type {string}
      * @memberof AddTenantInput
      */
     logo: string;
+    /**
+     * 水印
+     * @type {string}
+     * @memberof AddTenantInput
+     */
+    watermark?: string | null;
     /**
      * 排序
      * @type {number}
@@ -190,12 +190,6 @@ export interface AddTenantInput {
      */
     adminAccount: string;
     /**
-     * 租户域名
-     * @type {string}
-     * @memberof AddTenantInput
-     */
-    host: string;
-    /**
      * 系统主标题
      * @type {string}
      * @memberof AddTenantInput
@@ -213,12 +207,6 @@ export interface AddTenantInput {
      * @memberof AddTenantInput
      */
     viceDesc: string;
-    /**
-     * 水印内容
-     * @type {string}
-     * @memberof AddTenantInput
-     */
-    watermark: string;
     /**
      * 版权说明
      * @type {string}

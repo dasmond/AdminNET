@@ -31,6 +31,12 @@ export interface InfoSaveInput {
      */
     logoFileName?: string | null;
     /**
+     * 水印内容
+     * @type {string}
+     * @memberof InfoSaveInput
+     */
+    watermark?: string | null;
+    /**
      * 系统主标题
      * @type {string}
      * @memberof InfoSaveInput
@@ -48,12 +54,6 @@ export interface InfoSaveInput {
      * @memberof InfoSaveInput
      */
     viceDesc: string;
-    /**
-     * 水印内容
-     * @type {string}
-     * @memberof InfoSaveInput
-     */
-    watermark: string;
     /**
      * 版权说明
      * @type {string}

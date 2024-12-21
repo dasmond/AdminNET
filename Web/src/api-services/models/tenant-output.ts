@@ -136,18 +136,6 @@ export interface TenantOutput {
      */
     regWayId?: number | null;
     /**
-     * 
-     * @type {YesNoEnum}
-     * @memberof TenantOutput
-     */
-    captcha?: YesNoEnum;
-    /**
-     * 
-     * @type {YesNoEnum}
-     * @memberof TenantOutput
-     */
-    secondVer?: YesNoEnum;
-    /**
      * 图标
      * @type {string}
      * @memberof TenantOutput

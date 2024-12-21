@@ -11,41 +11,47 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-import { EnumEntity } from './enum-entity';
+import { BackupOutput } from './backup-output';
 /**
- * 枚举类型输出参数
+ * 全局返回结果
  * @export
- * @interface EnumTypeOutput
+ * @interface AdminResultListBackupOutput
  */
-export interface EnumTypeOutput {
+export interface AdminResultListBackupOutput {
     /**
-     * 枚举类型描述
+     * 状态码
+     * @type {number}
+     * @memberof AdminResultListBackupOutput
+     */
+    code?: number;
+    /**
+     * 类型success、warning、error
      * @type {string}
-     * @memberof EnumTypeOutput
+     * @memberof AdminResultListBackupOutput
      */
-    typeDescribe?: string | null;
+    type?: string | null;
     /**
-     * 枚举类型名称
+     * 错误信息
      * @type {string}
-     * @memberof EnumTypeOutput
+     * @memberof AdminResultListBackupOutput
      */
-    typeName?: string | null;
+    message?: string | null;
     /**
-     * 枚举类型全名称
-     * @type {string}
-     * @memberof EnumTypeOutput
+     * 数据
+     * @type {Array<BackupOutput>}
+     * @memberof AdminResultListBackupOutput
      */
-    typeFullName?: string | null;
+    result?: Array<BackupOutput> | null;
     /**
-     * 枚举类型备注
-     * @type {string}
-     * @memberof EnumTypeOutput
+     * 附加数据
+     * @type {any}
+     * @memberof AdminResultListBackupOutput
      */
-    typeRemark?: string | null;
+    extras?: any | null;
     /**
-     * 枚举实体
-     * @type {Array<EnumEntity>}
-     * @memberof EnumTypeOutput
+     * 时间
+     * @type {Date}
+     * @memberof AdminResultListBackupOutput
      */
-    enumEntities?: Array<EnumEntity> | null;
+    time?: Date;
 }

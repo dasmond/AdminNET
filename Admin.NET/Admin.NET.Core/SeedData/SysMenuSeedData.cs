@@ -184,6 +184,14 @@ public class SysMenuSeedData : ISqlSugarEntitySeedData<SysMenu>
             new SysMenu{ Id=1300300150501, Pid=1300300150101, Title="获取支付订单详情(微信接口)", Permission="sysWechatPay:payInfoFromWechat", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
             new SysMenu{ Id=1300300150601, Pid=1300300150101, Title="退款申请", Permission="sysWechatPay:refundDomestic", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
 
+            new SysMenu{ Id=1300300160101, Pid=1300300000101, Title="系统更新", Path="/platform/update", Name="sysUpdate", Component="/system/update/index", Icon="ele-Coin", Type=MenuTypeEnum.Menu, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=240 },
+            new SysMenu{ Id=1300300160201, Pid=1300300160101, Title="更新", Permission="sysUpdate:update", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
+            new SysMenu{ Id=1300300160301, Pid=1300300160101, Title="还原", Permission="sysUpdate:restore", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
+            new SysMenu{ Id=1300300160401, Pid=1300300160101, Title="备份列表", Permission="sysUpdate:list", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
+            new SysMenu{ Id=1300300160501, Pid=1300300160101, Title="日志列表", Permission="sysUpdate:logs", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
+            new SysMenu{ Id=1300300160601, Pid=1300300160101, Title="清除日志", Permission="sysUpdate:clear", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
+            new SysMenu{ Id=1300300160701, Pid=1300300160101, Title="获取密钥", Permission="sysUpdate:webHookKey", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
+
             new SysMenu{ Id=1300400000101, Pid=0, Title="日志管理", Path="/log", Name="log", Component="Layout", Icon="ele-DocumentCopy", Type=MenuTypeEnum.Dir, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=12000 },
             new SysMenu{ Id=1300400010101, Pid=1300400000101, Title="访问日志", Path="/log/vislog", Name="sysVisLog", Component="/system/log/vislog/index", Icon="ele-Document", Type=MenuTypeEnum.Menu, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
             new SysMenu{ Id=1300400010201, Pid=1300400010101, Title="查询", Permission="sysVislog:page", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },

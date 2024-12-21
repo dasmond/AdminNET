@@ -104,5 +104,10 @@ public class CacheConst
     /// <summary>
     /// 系统更新命令日志缓存
     /// </summary>
-    public const string KeySysUpdateLog = "sys_update_log:";
+    public const string KeySysUpdateLog = "sys_update_log";
+
+    /// <summary>
+    /// 系统更新间隔标记缓存
+    /// </summary>
+    public const string KeySysUpdateInterval = "sys_update_interval";
 }

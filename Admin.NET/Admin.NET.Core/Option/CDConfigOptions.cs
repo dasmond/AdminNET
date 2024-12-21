@@ -30,16 +30,14 @@ public class CDConfigOptions : IConfigurableOptions
     /// 用户授权码
     /// </summary>
     public string AccessToken { get; set; }
-    
-
 
     /// <summary>
-    /// 更新间隔限制（分钟）-1 不限制
+    /// 更新间隔限制（分钟）0 不限制
     /// </summary>
     public int UpdateInterval { get; set; }
     
     /// <summary>
-    /// 保留备份文件的数量
+    /// 保留备份文件的数量, 0 不限制
     /// </summary>
     public int BackupCount { get; set; }
 
