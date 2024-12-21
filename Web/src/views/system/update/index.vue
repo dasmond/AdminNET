@@ -16,10 +16,10 @@
 			<el-main v-auth="'sysUpdate:logs'" class="log-terminal-container">
 				<div class="toolbar">
 					<el-button-group>
-						<el-button v-auth="'sysUpdate:update'" :disabled="state.isUpdating" @click="handleAction('update')">更新</el-button>
-						<el-button v-auth="'sysUpdate:restore'" :disabled="!canRestore || state.isUpdating || !state.selectedBackup" @click="handleAction('restore')">还原</el-button>
-						<el-button v-auth="'sysUpdate:clear'" :disabled="state.isUpdating" @click="clearLogs">清空</el-button>
-						<el-button v-auth="'sysUpdate:webHookKey'" @click="getWebHookKey">获取密钥</el-button>
+						<el-button v-auth="'sysUpdate:update'" v-reclick="5000" :disabled="state.isUpdating" @click="handleAction('update')">更新</el-button>
+						<el-button v-auth="'sysUpdate:restore'" v-reclick="5000" :disabled="!canRestore || state.isUpdating || !state.selectedBackup" @click="handleAction('restore')">还原</el-button>
+						<el-button v-auth="'sysUpdate:clear'" v-reclick="5000" :disabled="state.isUpdating" @click="clearLogs">清空</el-button>
+						<el-button v-auth="'sysUpdate:webHookKey'" v-reclick="5000" @click="getWebHookKey">获取密钥</el-button>
 					</el-button-group>
 				</div>
 				<div class="log-terminal">
