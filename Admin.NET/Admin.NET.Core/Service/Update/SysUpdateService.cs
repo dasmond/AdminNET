@@ -5,6 +5,8 @@
 // 不得利用本项目从事危害国家安全、扰乱社会秩序、侵犯他人合法权益等法律法规禁止的活动！任何基于本项目二次开发而产生的一切法律纠纷和责任，我们不承担任何责任！
 
 using System.IO.Compression;
+using System.Net;
+using System.Security.Cryptography;
 
 namespace Admin.NET.Core.Service;
 
@@ -195,19 +197,109 @@ public class SysUpdateService : IDynamicApiController, ITransient
     [AllowAnonymous]
     [DisplayName("仓库WebHook接口")]
     [ApiDescriptionSettings(Name = "WebHook"), HttpPost]
-    public async Task WebHook(WebHookInput input)
+    public async Task WebHook(Dictionary<string, object> input)
     {
         if (!_cdConfigOptions.Enabled) throw Oops.Oh("未启用持续部署功能");
-        if (CryptogramUtil.Decrypt(input.Key) != GetWebHookKeyPlainText()) throw Oops.Oh("非法密钥");
-        var updateInterval = _cdConfigOptions.UpdateInterval;
+        PrintfLog("----------------------------收到WebHook请求-开始----------------------------");
+
         try
         {
-            _cdConfigOptions.UpdateInterval = 0;
-            await Update();
+            // 获取请求头信息
+            var even = App.HttpContext.Request.Headers.FirstOrDefault(u => u.Key == "X-Gitee-Event").Value
+                .FirstOrDefault();
+            var ua = App.HttpContext.Request.Headers.FirstOrDefault(u => u.Key == "User-Agent").Value.FirstOrDefault();
+
+            var timestamp = input.GetValueOrDefault("timestamp")?.ToString();
+            var token = input.GetValueOrDefault("sign")?.ToString();
+            PrintfLog("User-Agent：" + ua);
+            PrintfLog("Gitee-Event：" + even);
+            PrintfLog("Gitee-Token：" + token);
+            PrintfLog("Gitee-Timestamp：" + timestamp);
+
+            PrintfLog("开始验签...");
+            var secret = GetWebHookKey();
+            var stringToSign = $"{timestamp}\n{secret}";
+            using var mac = new HMACSHA256(Encoding.UTF8.GetBytes(secret));
+            var signData = mac.ComputeHash(Encoding.UTF8.GetBytes(stringToSign));
+            var encodedSignData = Convert.ToBase64String(signData);
+            var calculatedSignature = WebUtility.UrlEncode(encodedSignData);
+
+            if (calculatedSignature != token) throw Oops.Oh("非法签名");
+            PrintfLog("验签成功...");
+
+            var hookName = input.GetValueOrDefault("hook_name") as string;
+            PrintfLog("Hook-Name：" + hookName);
+
+            switch (hookName)
+            {
+                // 提交修改
+                case "push_hooks":
+                {
+                    var commitList = input.GetValueOrDefault("commits")?.Adapt<List<Dictionary<string, object>>>() ?? new();
+                    foreach (var commit in commitList)
+                    {
+                        var author = commit.GetValueOrDefault("author")?.Adapt<Dictionary<string, object>>();
+                        PrintfLog("Commit-Message：" + commit.GetValueOrDefault("message"));
+                        PrintfLog("Commit-Time：" + commit.GetValueOrDefault("timestamp"));
+                        PrintfLog("Commit-Author：" + author?.GetValueOrDefault("username"));
+                        PrintfLog("Modified-List：" + author?.GetValueOrDefault("modified")?.Adapt<List<string>>().Join());
+                        PrintfLog("----------------------------------------------------------");
+                    }
+
+                    break;
+                }
+                // 合并 Pull Request
+                case "merge_request_hooks":
+                {
+                    var pull = input.GetValueOrDefault("pull_request")?.Adapt<Dictionary<string, object>>();
+                    var user = pull?.GetValueOrDefault("user")?.Adapt<Dictionary<string, object>>();
+                    PrintfLog("Pull-Request-Title：" + pull?.GetValueOrDefault("message"));
+                    PrintfLog("Pull-Request-Time：" + pull?.GetValueOrDefault("created_at"));
+                    PrintfLog("Pull-Request-Author：" + user?.GetValueOrDefault("username"));
+                    PrintfLog("Pull-Request-Body：" + pull?.GetValueOrDefault("body"));
+                    break;
+                }
+                // 新的issue
+                case "issue_hooks":
+                {
+                    var issue = input.GetValueOrDefault("issue")?.Adapt<Dictionary<string, object>>();
+                    var user = issue?.GetValueOrDefault("user")?.Adapt<Dictionary<string, object>>();
+                    var labelList = issue?.GetValueOrDefault("labels")?.Adapt<List<Dictionary<string, object>>>();
+                    PrintfLog("Issue-UserName：" + user?.GetValueOrDefault("username"));
+                    PrintfLog("Issue-Labels：" + labelList?.Select(u => u.GetValueOrDefault("name")).Join());
+                    PrintfLog("Issue-Title：" + issue?.GetValueOrDefault("title"));
+                    PrintfLog("Issue-Time：" + issue?.GetValueOrDefault("created_at"));
+                    PrintfLog("Issue-Body：" + issue?.GetValueOrDefault("body"));
+                    return;
+                }
+                // 评论
+                case "note_hooks":
+                {
+                    var comment = input.GetValueOrDefault("comment")?.Adapt<Dictionary<string, object>>();
+                    var user = input.GetValueOrDefault("user")?.Adapt<Dictionary<string, object>>();
+                    PrintfLog("comment-UserName：" + user?.GetValueOrDefault("username"));
+                    PrintfLog("comment-Time：" + comment?.GetValueOrDefault("created_at"));
+                    PrintfLog("comment-Content：" + comment?.GetValueOrDefault("body"));
+                    return;
+                }
+                default:
+                    return;
+            }
+
+            var updateInterval = _cdConfigOptions.UpdateInterval;
+            try
+            {
+                _cdConfigOptions.UpdateInterval = 0;
+                await Update();
+            }
+            finally
+            {
+                _cdConfigOptions.UpdateInterval = updateInterval;
+            }
         }
         finally
         {
-            _cdConfigOptions.UpdateInterval = updateInterval;
+            PrintfLog("----------------------------收到WebHook请求-结束----------------------------");
         }
     }
 
@@ -219,7 +311,7 @@ public class SysUpdateService : IDynamicApiController, ITransient
     [ApiDescriptionSettings(Name = "WebHookKey"), HttpGet]
     public string GetWebHookKey()
     {
-        return CryptogramUtil.Encrypt(GetWebHookKeyPlainText());
+        return CryptogramUtil.Encrypt(_cdConfigOptions.AccessToken);
     }
 
     /// <summary>
@@ -242,15 +334,6 @@ public class SysUpdateService : IDynamicApiController, ITransient
     public void ClearLog()
     {
         _sysCacheService.Remove(CacheConst.KeySysUpdateLog);
-    }
-
-    /// <summary>
-    /// 获取密钥明文
-    /// </summary>
-    /// <returns></returns>
-    private string GetWebHookKeyPlainText()
-    {
-        return $"https://gitee.com/{_cdConfigOptions.Owner}/{_cdConfigOptions.Repo}.git-{_cdConfigOptions.Branch}-{_cdConfigOptions.AccessToken}";
     }
 
     /// <summary>
