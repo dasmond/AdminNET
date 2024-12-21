@@ -17,11 +17,6 @@ public class CacheConst
     public const string KeyUserButton = "sys_user_button:";
 
     /// <summary>
-    /// 默认菜单id集合缓存
-    /// </summary>
-    public const string KeyDefaultMenuIds = "sys_default_menu_ids";
-
-    /// <summary>
     /// 用户机构缓存
     /// </summary>
     public const string KeyUserOrg = "sys_user_org:";
