@@ -12,10 +12,15 @@ namespace Admin.NET.Core;
 public class CDConfigOptions : IConfigurableOptions
 {
     /// <summary>
+    /// 是否启用
+    /// </summary>
+    public bool Enabled { get; set; }
+
+    /// <summary>
     /// 用户名
     /// </summary>
     public string Owner { get; set; }
-    
+
     /// <summary>
     /// 仓库名
     /// </summary>

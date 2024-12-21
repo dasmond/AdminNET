@@ -5,7 +5,6 @@
 // 不得利用本项目从事危害国家安全、扰乱社会秩序、侵犯他人合法权益等法律法规禁止的活动！任何基于本项目二次开发而产生的一切法律纠纷和责任，我们不承担任何责任！
 
 using System.IO.Compression;
-using DocumentFormat.OpenXml.Office2010.ExcelAc;
 
 namespace Admin.NET.Core.Service;
 
@@ -15,24 +14,13 @@ namespace Admin.NET.Core.Service;
 [ApiDescriptionSettings(Order = 390)]
 public class SysUpdateService : IDynamicApiController, ITransient
 {
-    private readonly SqlSugarRepository<SysUser> _sysUserRep;
-    private readonly SysOnlineUserService _onlineUserService;
     private readonly SysCacheService _sysCacheService;
     private readonly CDConfigOptions _cdConfigOptions;
-    private readonly UserManager _userManager;
 
-    public SysUpdateService(
-        SqlSugarRepository<SysUser> sysUserRep,
-        SysOnlineUserService onlineUserService,
-        IOptions<CDConfigOptions> giteeOptions,
-        SysCacheService sysCacheService,
-        UserManager userManager)
+    public SysUpdateService(IOptions<CDConfigOptions> giteeOptions, SysCacheService sysCacheService)
     {
-        _sysUserRep = sysUserRep;
-        _userManager = userManager;
         _cdConfigOptions = giteeOptions.Value;
         _sysCacheService = sysCacheService;
-        _onlineUserService = onlineUserService;
     }
 
     /// <summary>
@@ -75,18 +63,18 @@ public class SysUpdateService : IDynamicApiController, ITransient
             var file = (await List()).FirstOrDefault(u => u.FileName.EqualIgnoreCase(input.FileName));
             if (file == null)
             {
-                await PrintfLog("文件不存在...");
+                PrintfLog("文件不存在...");
                 return;
             }
 
-            await PrintfLog("正在还原...");
+            PrintfLog("正在还原...");
             using ZipArchive archive = new(File.OpenRead(file.FilePath), ZipArchiveMode.Read, leaveOpen: false);
             archive.ExtractToDirectory(_cdConfigOptions.BackendOutput, true);
-            await PrintfLog("还原成功...");
+            PrintfLog("还原成功...");
         }
         catch (Exception ex)
         {
-            await PrintfLog("发生异常：" + ex.Message);
+            PrintfLog("发生异常：" + ex.Message);
             throw;
         }
     }
@@ -104,10 +92,9 @@ public class SysUpdateService : IDynamicApiController, ITransient
         Console.WriteLine($"【{DateTime.Now}】从远端仓库部署项目");
         try
         {
-            await PrintfLog("----------------------------从远端仓库部署项目-开始----------------------------");
+            PrintfLog("----------------------------从远端仓库部署项目-开始----------------------------");
 
             // 检查参数
-            await PrintfLog("检查参数...");
             CheckConfig();
 
             // 检查操作间隔
@@ -117,23 +104,23 @@ public class SysUpdateService : IDynamicApiController, ITransient
                 _sysCacheService.Set(CacheConst.KeySysUpdateInterval, true, TimeSpan.FromMinutes(_cdConfigOptions.UpdateInterval));
             }
 
-            await PrintfLog($"客户端host：{App.HttpContext.Request.Host}");
-            await PrintfLog($"客户端IP：{App.HttpContext.GetRemoteIpAddressToIPv4(true)}");
-            await PrintfLog($"仓库地址：https://gitee.com/{_cdConfigOptions.Owner}/{_cdConfigOptions.Repo}.git");
-            await PrintfLog($"仓库分支：{_cdConfigOptions.Branch}");
+            PrintfLog($"客户端host：{App.HttpContext.Request.Host}");
+            PrintfLog($"客户端IP：{App.HttpContext.GetRemoteIpAddressToIPv4(true)}");
+            PrintfLog($"仓库地址：https://gitee.com/{_cdConfigOptions.Owner}/{_cdConfigOptions.Repo}.git");
+            PrintfLog($"仓库分支：{_cdConfigOptions.Branch}");
 
             // 获取解压后的根目录
             var rootPath = Path.GetFullPath(Path.Combine(_cdConfigOptions.BackendOutput, ".."));
             var tempDir = Path.Combine(rootPath, $"{_cdConfigOptions.Repo}-{_cdConfigOptions.Branch}");
 
-            await PrintfLog("清理旧文件...");
+            PrintfLog("清理旧文件...");
             FileHelper.TryDelete(tempDir);
 
-            await PrintfLog("拉取远端代码...");
+            PrintfLog("拉取远端代码...");
             var stream = await GiteeHelper.DownloadRepoZip(_cdConfigOptions.Owner, _cdConfigOptions.Repo,
                 _cdConfigOptions.AccessToken, _cdConfigOptions.Branch);
 
-            await PrintfLog("文件包解压...");
+            PrintfLog("文件包解压...");
             using ZipArchive archive = new(stream, ZipArchiveMode.Read, leaveOpen: false);
             archive.ExtractToDirectory(rootPath);
 
@@ -142,27 +129,27 @@ public class SysUpdateService : IDynamicApiController, ITransient
             var entryProjectName = "Admin.NET.Web.Entry"; // 启动项目目录
             var tempOutput = Path.Combine(rootPath, $"{_cdConfigOptions.Repo}_temp");
 
-            await PrintfLog("编译项目...");
-            await PrintfLog($"发布版本：{_cdConfigOptions.Publish.Configuration}");
-            await PrintfLog($"目标框架：{_cdConfigOptions.Publish.TargetFramework}");
-            await PrintfLog($"运行环境：{_cdConfigOptions.Publish.RuntimeIdentifier}");
+            PrintfLog("编译项目...");
+            PrintfLog($"发布版本：{_cdConfigOptions.Publish.Configuration}");
+            PrintfLog($"目标框架：{_cdConfigOptions.Publish.TargetFramework}");
+            PrintfLog($"运行环境：{_cdConfigOptions.Publish.RuntimeIdentifier}");
             var option = _cdConfigOptions.Publish;
             var adminNetDir = Path.Combine(tempDir, backendDir);
             var args = $"publish \"{entryProjectName}\" -c {option.Configuration} -f {option.TargetFramework} -r {option.RuntimeIdentifier} --output \"{tempOutput}\"";
             await RunCommandAsync("dotnet", args, adminNetDir);
 
-            await PrintfLog("复制 wwwroot 目录...");
+            PrintfLog("复制 wwwroot 目录...");
             var wwwrootDir = Path.Combine(adminNetDir, entryProjectName, "wwwroot");
             FileHelper.CopyDirectory(wwwrootDir, Path.Combine(tempOutput, "wwwroot"), true);
 
             // 删除排除文件
             foreach (var filePath in (_cdConfigOptions.ExcludeFiles ?? new()).SelectMany(file => Directory.GetFiles(tempOutput, file, SearchOption.TopDirectoryOnly)))
             {
-                await PrintfLog($"排除文件：{filePath}");
+                PrintfLog($"排除文件：{filePath}");
                 FileHelper.TryDelete(filePath);
             }
 
-            await PrintfLog("备份原项目文件...");
+            PrintfLog("备份原项目文件...");
             string backupPath = Path.Combine(rootPath, $"{_cdConfigOptions.Repo}_{DateTime.Now:yyyy_MM_dd}.zip") ;
             if (File.Exists(backupPath)) File.Delete(backupPath);
             ZipFile.CreateFromDirectory(_cdConfigOptions.BackendOutput, backupPath);
@@ -170,7 +157,7 @@ public class SysUpdateService : IDynamicApiController, ITransient
             // 将临时文件移动到正式目录
             FileHelper.CopyDirectory(tempOutput, _cdConfigOptions.BackendOutput, true);
 
-            await PrintfLog("清理文件...");
+            PrintfLog("清理文件...");
             FileHelper.TryDelete(tempOutput);
             FileHelper.TryDelete(tempDir);
 
@@ -178,7 +165,7 @@ public class SysUpdateService : IDynamicApiController, ITransient
             {
                 var fileList = await List();
                 if (fileList.Count > _cdConfigOptions.BackupCount)
-                    await PrintfLog("清除多余的备份文件...");
+                    PrintfLog("清除多余的备份文件...");
                 while (fileList.Count > _cdConfigOptions.BackupCount)
                 {
                     var last = fileList.Last();
@@ -187,16 +174,16 @@ public class SysUpdateService : IDynamicApiController, ITransient
                 }
             }
 
-            await PrintfLog("重启项目后生效...");
-            await PrintfLog("----------------------------从远端仓库部署项目-结束----------------------------");
+            PrintfLog("重启项目后生效...");
         }
         catch (Exception ex)
         {
-            await PrintfLog("发生异常：" + ex.Message);
+            PrintfLog("发生异常：" + ex.Message);
             throw;
         }
         finally
         {
+            PrintfLog("----------------------------从远端仓库部署项目-结束----------------------------");
             Console.ForegroundColor = originColor;
         }
     }
@@ -210,6 +197,7 @@ public class SysUpdateService : IDynamicApiController, ITransient
     [ApiDescriptionSettings(Name = "WebHook"), HttpPost]
     public async Task WebHook(WebHookInput input)
     {
+        if (!_cdConfigOptions.Enabled) throw Oops.Oh("未启用持续部署功能");
         if (CryptogramUtil.Decrypt(input.Key) != GetWebHookKeyPlainText()) throw Oops.Oh("非法密钥");
         var updateInterval = _cdConfigOptions.UpdateInterval;
         try
@@ -271,6 +259,8 @@ public class SysUpdateService : IDynamicApiController, ITransient
     /// <returns></returns>
     private void CheckConfig()
     {
+        PrintfLog("检查CD配置参数...");
+
         if (_cdConfigOptions == null) throw Oops.Oh("CDConfig配置不能为空");
 
         if (string.IsNullOrWhiteSpace(_cdConfigOptions.Owner)) throw Oops.Oh("仓库用户名不能为空");
@@ -296,7 +286,7 @@ public class SysUpdateService : IDynamicApiController, ITransient
     /// 打印日志
     /// </summary>
     /// <param name="message"></param>
-    private Task PrintfLog(string message)
+    private void PrintfLog(string message)
     {
         var logList = _sysCacheService.Get<List<string>>(CacheConst.KeySysUpdateLog) ?? new();
 
@@ -307,8 +297,6 @@ public class SysUpdateService : IDynamicApiController, ITransient
         logList.Add(content);
 
         _sysCacheService.Set(CacheConst.KeySysUpdateLog, logList);
-
-        return Task.CompletedTask;
     }
 
     /// <summary>
@@ -340,7 +328,7 @@ public class SysUpdateService : IDynamicApiController, ITransient
         {
             string line = await process.StandardOutput.ReadLineAsync();
             if (string.IsNullOrEmpty(line)) continue;
-            await PrintfLog(line.Trim());
+            PrintfLog(line.Trim());
         }
         await process.WaitForExitAsync();
     }
