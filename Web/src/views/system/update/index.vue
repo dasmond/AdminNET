@@ -1,5 +1,8 @@
 <template>
 	<div class="sys-update-container">
+		<div>
+			<NoticeBar text="系统更新管理，请慎重操作！" style="margin: 4px" />
+		</div>
 		<el-container style="height: calc(100vh - 150px);">
 			<el-aside v-auth="'sysUpdate:list'" width="220px" class="backup-list">
 				<p class="backup-list-description">备份列表</p>
@@ -39,6 +42,7 @@ import { getAPI } from "/@/utils/axios-utils";
 import { authAll } from "/@/utils/authFunction";
 import { BackupOutput, SysUpdateApi } from "/@/api-services";
 import commonFunction from "/@/utils/commonFunction";
+import NoticeBar from "/@/components/noticeBar/index.vue";
 
 const { copyText } = commonFunction();
 const state = reactive({
