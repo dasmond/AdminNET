@@ -3,21 +3,30 @@ branches: {
   }
 fileChange:
   /Web:
-    newFile: !uuid '5523e51140f900d1cb24a927187d26f55b9e333e'
-    oldFile: !uuid 'e5ec83f77e1675bad6927f39377da6bc3b9ef83f'
+    newFile: !uuid 'bfeb682edf38e028220b1e04e0c0f60e0411c52c'
+    oldFile: !uuid '5523e51140f900d1cb24a927187d26f55b9e333e'
   /Web/src:
-    newFile: !uuid 'ed20db49fa1431b67f22616d7e7338fe450e1bd3'
-    oldFile: !uuid '528579d0abab19afa03c4012978f574f7bf2acb8'
-  /Web/src/components:
-    newFile: !uuid 'fe9a8066c451b61efae6510ff781994a75c5b7c7'
-    oldFile: !uuid '1f7f00d1e63d0234ef586d91cb19aad19cc2a60a'
-  /Web/src/components/table:
-    newFile: !uuid '0badd4d916e4533ef68d6a9853a3b50741ceb898'
-    oldFile: !uuid '0bd67c604c491f0027602fb703f4f84ac297923f'
-  /Web/src/components/table/index.vue:
-    newFile: !uuid 'b4feb53444de067bcab9a2c3569164c311ae87d4'
-    oldFile: !uuid 'fe3f0898f6b4adab054433800c2a61a3b9dfb79a'
-gitCommitId: !uuid '74c5037539ecc4b4b5c5ec5248f18ac2ebd87b74'
+    newFile: !uuid 'f57353e74eff8ca9bccea7a2b4fcb46d3c89bf00'
+    oldFile: !uuid 'ed20db49fa1431b67f22616d7e7338fe450e1bd3'
+  /Web/src/views:
+    newFile: !uuid '31840a8422f8c6106432018a68f3afe7700329be'
+    oldFile: !uuid '7659a1763dcf4b053af8c1620ec1c56c8eb727a7'
+  /Web/src/views/system:
+    newFile: !uuid 'e6aae13c8547a0a9daf42cabd1c799ed9a845c62'
+    oldFile: !uuid '391f2a6fba6103fa28596fa48cf0e0677333fcfb'
+  /Web/src/views/system/config:
+    newFile: !uuid '9525d69e963d77194e815be598f7f3cf88e656f7'
+    oldFile: !uuid 'af4105d00cbc69daa9736637511b3d315ceb61d9'
+  /Web/src/views/system/config/index.vue:
+    newFile: !uuid '4fb85f72ed1d604b323382475eb59c9f3d9741f3'
+    oldFile: !uuid 'eec04852ee4156955cc04f72cbf48ea814a400e0'
+  /Web/src/views/system/update:
+    newFile: !uuid '249b6de4012efb74e1ff329f9200b652cae7ff21'
+    oldFile: !uuid '8bdf1e716c80af4423a7cd8088e98d79a4b70d85'
+  /Web/src/views/system/update/index.vue:
+    newFile: !uuid '67b1a07f366d638bd0280e517cf75a19309cdb97'
+    oldFile: !uuid '367366df4834a23e3842ddb352c9ea8ac4ee8fc4'
+gitCommitId: !uuid '4f54cf5e35e7e039ea4c020996e060716a87fc0b'
 renames: {
   }
-revisionId: 2581
+revisionId: 2582
