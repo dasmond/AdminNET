@@ -239,7 +239,7 @@ public class SysOrgService : IDynamicApiController, ITransient
         var cOrgHasEmp = await _sysOrgRep.ChangeRepository<SqlSugarRepository<SysUser>>()
             .IsAnyAsync(u => childOrgIdList.Contains(u.OrgId));
         if (cOrgHasEmp) throw Oops.Oh(ErrorCodeEnum.D2007);
-        
+
         // 若有绑定注册方案则禁止删除
         var hasUserRegWay = await _sysOrgRep.Context.Queryable<SysUserRegWay>().AnyAsync(u => u.OrgId == input.Id);
         if (hasUserRegWay) throw Oops.Oh(ErrorCodeEnum.D2010);

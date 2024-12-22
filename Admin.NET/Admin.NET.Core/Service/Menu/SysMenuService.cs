@@ -69,7 +69,7 @@ public class SysMenuService : IDynamicApiController, ITransient
     {
         var menuIdList = _userManager.SuperAdmin || _userManager.SysAdmin ? new List<long>() : await GetMenuIdList();
         var (query, _) = GetSugarQueryableAndTenantId(input.TenantId);
-        
+
         // 有筛选条件时返回list列表（防止构造不出树）
         if (!string.IsNullOrWhiteSpace(input.Title) || input.Type is > 0)
         {
@@ -94,7 +94,7 @@ public class SysMenuService : IDynamicApiController, ITransient
     public async Task<long> AddMenu(AddMenuInput input)
     {
         var (query, tenantId) = GetSugarQueryableAndTenantId(input.TenantId);
-        
+
         var isExist = input.Type != MenuTypeEnum.Btn
             ? await query.AnyAsync(u => u.Title == input.Title && u.Pid == input.Pid)
             : await query.AnyAsync(u => u.Permission == input.Permission);
@@ -167,7 +167,7 @@ public class SysMenuService : IDynamicApiController, ITransient
         var menuIdList = menuTreeList.Select(u => u.Id).ToList();
 
         await _sysMenuRep.DeleteAsync(u => menuIdList.Contains(u.Id));
-        
+
         // 级联删除租户菜单数据
         await _sysTenantMenuRep.AsDeleteable().Where(u => menuIdList.Contains(u.MenuId)).ExecuteCommandAsync();
 
@@ -220,14 +220,14 @@ public class SysMenuService : IDynamicApiController, ITransient
         var userId = _userManager.UserId;
         var permissions = _sysCacheService.Get<List<string>>(CacheConst.KeyUserButton + userId);
         if (permissions != null) return permissions;
-        
+
         var menuIdList = _userManager.SuperAdmin || _userManager.SysAdmin ? new() : await GetMenuIdList();
-        
+
         permissions = await _sysMenuRep.AsQueryable().Where(u => u.Type == MenuTypeEnum.Btn)
             .WhereIF(menuIdList.Count > 0, u => menuIdList.Contains(u.Id))
             .InnerJoinIF<SysTenantMenu>(!_userManager.SuperAdmin, (u, t) => t.TenantId == _userManager.TenantId && u.Id == t.MenuId)
             .Select(u => u.Permission).ToListAsync();
-        
+
         _sysCacheService.Set(CacheConst.KeyUserButton + userId, permissions, TimeSpan.FromDays(7));
 
         return permissions;
@@ -250,7 +250,7 @@ public class SysMenuService : IDynamicApiController, ITransient
 
         return permissions;
     }
-    
+
     /// <summary>
     /// 根据租户id获取构建菜单联表查询实例
     /// </summary>

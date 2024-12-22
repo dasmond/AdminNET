@@ -17,7 +17,7 @@ public class MenuInput
     /// 菜单类型（1目录 2菜单 3按钮）
     /// </summary>
     public MenuTypeEnum? Type { get; set; }
-    
+
     /// <summary>
     /// 租户Id
     /// </summary>
@@ -31,7 +31,7 @@ public class AddMenuInput : SysMenu
     /// </summary>
     [Required(ErrorMessage = "菜单名称不能为空")]
     public override string Title { get; set; }
-    
+
     /// <summary>
     /// 租户Id
     /// </summary>

@@ -40,7 +40,7 @@ public class AddTenantInput : TenantOutput
     /// </summary>
     [Required(ErrorMessage = "租管账号不能为空"), MinLength(3, ErrorMessage = "租管账号不能少于3个字符")]
     public override string AdminAccount { get; set; }
-    
+
     /// <summary>
     /// 系统主标题
     /// </summary>
@@ -76,7 +76,7 @@ public class AddTenantInput : TenantOutput
     /// </summary>
     [Required(ErrorMessage = "ICP地址不能为空")]
     public override string IcpUrl { get; set; }
-    
+
     /// <summary>
     /// Logo图片Base64码
     /// </summary>
@@ -84,7 +84,7 @@ public class AddTenantInput : TenantOutput
         "string.IsNullOrWhiteSpace(Logo) && string.IsNullOrWhiteSpace(LogoBase64)", "图标不能为空"
     )]
     public virtual string LogoBase64 { get; set; }
-    
+
     /// <summary>
     /// Logo文件名
     /// </summary>

@@ -17,7 +17,7 @@ public class PageOnlineUserInput : BasePageInput
     /// 真实姓名
     /// </summary>
     public string RealName { get; set; }
-    
+
     /// <summary>
     /// 租户Id
     /// </summary>

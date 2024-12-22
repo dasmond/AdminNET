@@ -204,37 +204,37 @@ public enum ErrorCodeEnum
     /// </summary>
     [ErrorCodeItemMetadata("手机号已存在")]
     D1032,
-    
+
     /// <summary>
     /// 此角色下存在注册方案禁止删除
     /// </summary>
     [ErrorCodeItemMetadata("此角色下存在注册方案禁止删除")]
     D1033,
-    
+
     /// <summary>
     /// 注册功能未开启禁止注册
     /// </summary>
     [ErrorCodeItemMetadata("注册功能未开启禁止注册")]
     D1034,
-    
+
     /// <summary>
     /// 注册方案不存在
     /// </summary>
     [ErrorCodeItemMetadata("注册方案不存在")]
     D1035,
-    
+
     /// <summary>
     /// 角色不存在
     /// </summary>
     [ErrorCodeItemMetadata("角色不存在")]
     D1036,
-    
+
     /// <summary>
     /// 禁止注册超级管理员和系统管理员
     /// </summary>
     [ErrorCodeItemMetadata("禁止注册超级管理员和系统管理员")]
     D1037,
-    
+
     /// <summary>
     /// 父机构不存在
     /// </summary>
@@ -294,13 +294,13 @@ public enum ErrorCodeEnum
     /// </summary>
     [ErrorCodeItemMetadata("禁止增加根节点机构")]
     D2009,
-    
+
     /// <summary>
     /// 此机构下存在注册方案禁止删除
     /// </summary>
     [ErrorCodeItemMetadata("此机构下存在注册方案禁止删除")]
     D2010,
-    
+
     /// <summary>
     /// 机构不存在
     /// </summary>
@@ -420,7 +420,7 @@ public enum ErrorCodeEnum
     /// </summary>
     [ErrorCodeItemMetadata("父节点不能为按钮类型")]
     D4010,
-    
+
     /// <summary>
     /// 租户不能为空
     /// </summary>
@@ -486,7 +486,7 @@ public enum ErrorCodeEnum
     /// </summary>
     [ErrorCodeItemMetadata("职位不存在")]
     D6003,
-    
+
     /// <summary>
     /// 此职位下存在注册方案禁止删除
     /// </summary>
@@ -600,7 +600,7 @@ public enum ErrorCodeEnum
     /// </summary>
     [ErrorCodeItemMetadata("已存在同名的租户域名")]
     D1303,
-    
+
     /// <summary>
     /// 授权菜单存在重复项
     /// </summary>
@@ -702,7 +702,7 @@ public enum ErrorCodeEnum
     /// </summary>
     [ErrorCodeItemMetadata("已存在同名功能或同名程序及插件")]
     D1900,
-    
+
     /// <summary>
     /// 注册方案名称已存在
     /// </summary>

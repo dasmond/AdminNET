@@ -61,7 +61,7 @@ public class InfoSaveInput
     /// </summary>
     [Required(ErrorMessage = "ICP地址不能为空")]
     public string IcpUrl { get; set; }
-    
+
     /// <summary>
     /// 启用注册功能
     /// </summary>
@@ -76,7 +76,7 @@ public class InfoSaveInput
     /// 图形验证码
     /// </summary>
     public YesNoEnum Captcha { get; set; }
-    
+
     /// <summary>
     /// 默认注册方案Id
     /// </summary>

@@ -15,7 +15,7 @@ public class SysLdapInput : BasePageInput
     /// 主机
     /// </summary>
     public string? Host { get; set; }
-    
+
     /// <summary>
     /// 租户Id
     /// </summary>

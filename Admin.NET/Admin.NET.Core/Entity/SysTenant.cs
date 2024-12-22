@@ -4,8 +4,6 @@
 //
 // 不得利用本项目从事危害国家安全、扰乱社会秩序、侵犯他人合法权益等法律法规禁止的活动！任何基于本项目二次开发而产生的一切法律纠纷和责任，我们不承担任何责任！
 
-using Tea.Utils;
-
 namespace Admin.NET.Core;
 
 /// <summary>
@@ -21,7 +19,7 @@ public partial class SysTenant : EntityBase
     [Obsolete("废弃字段, 请勿使用")]
     [SugarColumn(ColumnDescription = "应用Id")]
     public virtual long? AppId { get; set; }
-    
+
     /// <summary>
     /// 租管用户Id
     /// </summary>
@@ -72,13 +70,13 @@ public partial class SysTenant : EntityBase
     /// </summary>
     [SugarColumn(ColumnDescription = "从库连接/读写分离", ColumnDataType = StaticConfig.CodeFirst_BigString)]
     public virtual string? SlaveConnections { get; set; }
-    
+
     /// <summary>
     /// 启用注册功能
     /// </summary>
     [SugarColumn(ColumnDescription = "启用注册功能")]
     public virtual YesNoEnum? EnableReg { get; set; } = YesNoEnum.N;
-    
+
     /// <summary>
     /// 默认注册方案Id
     /// </summary>
@@ -126,7 +124,7 @@ public partial class SysTenant : EntityBase
     /// </summary>
     [SugarColumn(ColumnDescription = "ICP备案号", Length = 32), MaxLength(32)]
     public virtual string? Icp { get; set; }
-    
+
     /// <summary>
     /// ICP地址
     /// </summary>

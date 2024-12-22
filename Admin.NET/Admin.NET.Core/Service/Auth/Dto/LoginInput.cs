@@ -76,13 +76,13 @@ public class UserRegistrationInput
     /// </summary>
     [Required(ErrorMessage = "真实姓名不能为空"), MinLength(2, ErrorMessage = "真实姓名不能少于2个字符")]
     public string RealName { get; set; }
-    
+
     /// <summary>
     /// 账号
     /// </summary>
     [Required(ErrorMessage = "账号不能为空"), MinLength(6, ErrorMessage = "账号不能少于6个字符")]
     public string Account { get; set; }
-    
+
     /// <summary>
     /// 手机号码
     /// </summary>
@@ -90,30 +90,30 @@ public class UserRegistrationInput
     [Required(ErrorMessage = "手机号码不能为空")]
     [DataValidation(ValidationTypes.PhoneNumber, ErrorMessage = "手机号码不正确")]
     public string Phone { get; set; }
-    
+
     /// <summary>
     /// 验证码
     /// </summary>
     /// <example>123456</example>
     [Required(ErrorMessage = "验证码不能为空")]
     public string Code { get; set; }
-    
+
     /// <summary>
     /// 验证码Id
     /// </summary>
     public long CodeId { get; set; }
-    
+
     /// <summary>
     /// 租户
     /// </summary>
     [Required(ErrorMessage = "租户不能为空")]
     public long TenantId { get; set; }
-    
+
     /// <summary>
     /// 密码
     /// </summary>
     public string Password { get; set; }
-    
+
     /// <summary>
     /// 注册方案
     /// </summary>

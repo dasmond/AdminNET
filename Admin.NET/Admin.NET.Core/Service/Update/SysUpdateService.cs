@@ -152,7 +152,7 @@ public class SysUpdateService : IDynamicApiController, ITransient
             }
 
             PrintfLog("备份原项目文件...");
-            string backupPath = Path.Combine(rootPath, $"{_cdConfigOptions.Repo}_{DateTime.Now:yyyy_MM_dd}.zip") ;
+            string backupPath = Path.Combine(rootPath, $"{_cdConfigOptions.Repo}_{DateTime.Now:yyyy_MM_dd}.zip");
             if (File.Exists(backupPath)) File.Delete(backupPath);
             ZipFile.CreateFromDirectory(_cdConfigOptions.BackendOutput, backupPath);
 
@@ -234,54 +234,54 @@ public class SysUpdateService : IDynamicApiController, ITransient
             {
                 // 提交修改
                 case "push_hooks":
-                {
-                    var commitList = input.GetValueOrDefault("commits")?.Adapt<List<Dictionary<string, object>>>() ?? new();
-                    foreach (var commit in commitList)
                     {
-                        var author = commit.GetValueOrDefault("author")?.Adapt<Dictionary<string, object>>();
-                        PrintfLog("Commit-Message：" + commit.GetValueOrDefault("message"));
-                        PrintfLog("Commit-Time：" + commit.GetValueOrDefault("timestamp"));
-                        PrintfLog("Commit-Author：" + author?.GetValueOrDefault("username"));
-                        PrintfLog("Modified-List：" + author?.GetValueOrDefault("modified")?.Adapt<List<string>>().Join());
-                        PrintfLog("----------------------------------------------------------");
-                    }
+                        var commitList = input.GetValueOrDefault("commits")?.Adapt<List<Dictionary<string, object>>>() ?? new();
+                        foreach (var commit in commitList)
+                        {
+                            var author = commit.GetValueOrDefault("author")?.Adapt<Dictionary<string, object>>();
+                            PrintfLog("Commit-Message：" + commit.GetValueOrDefault("message"));
+                            PrintfLog("Commit-Time：" + commit.GetValueOrDefault("timestamp"));
+                            PrintfLog("Commit-Author：" + author?.GetValueOrDefault("username"));
+                            PrintfLog("Modified-List：" + author?.GetValueOrDefault("modified")?.Adapt<List<string>>().Join());
+                            PrintfLog("----------------------------------------------------------");
+                        }
 
-                    break;
-                }
+                        break;
+                    }
                 // 合并 Pull Request
                 case "merge_request_hooks":
-                {
-                    var pull = input.GetValueOrDefault("pull_request")?.Adapt<Dictionary<string, object>>();
-                    var user = pull?.GetValueOrDefault("user")?.Adapt<Dictionary<string, object>>();
-                    PrintfLog("Pull-Request-Title：" + pull?.GetValueOrDefault("message"));
-                    PrintfLog("Pull-Request-Time：" + pull?.GetValueOrDefault("created_at"));
-                    PrintfLog("Pull-Request-Author：" + user?.GetValueOrDefault("username"));
-                    PrintfLog("Pull-Request-Body：" + pull?.GetValueOrDefault("body"));
-                    break;
-                }
+                    {
+                        var pull = input.GetValueOrDefault("pull_request")?.Adapt<Dictionary<string, object>>();
+                        var user = pull?.GetValueOrDefault("user")?.Adapt<Dictionary<string, object>>();
+                        PrintfLog("Pull-Request-Title：" + pull?.GetValueOrDefault("message"));
+                        PrintfLog("Pull-Request-Time：" + pull?.GetValueOrDefault("created_at"));
+                        PrintfLog("Pull-Request-Author：" + user?.GetValueOrDefault("username"));
+                        PrintfLog("Pull-Request-Body：" + pull?.GetValueOrDefault("body"));
+                        break;
+                    }
                 // 新的issue
                 case "issue_hooks":
-                {
-                    var issue = input.GetValueOrDefault("issue")?.Adapt<Dictionary<string, object>>();
-                    var user = issue?.GetValueOrDefault("user")?.Adapt<Dictionary<string, object>>();
-                    var labelList = issue?.GetValueOrDefault("labels")?.Adapt<List<Dictionary<string, object>>>();
-                    PrintfLog("Issue-UserName：" + user?.GetValueOrDefault("username"));
-                    PrintfLog("Issue-Labels：" + labelList?.Select(u => u.GetValueOrDefault("name")).Join());
-                    PrintfLog("Issue-Title：" + issue?.GetValueOrDefault("title"));
-                    PrintfLog("Issue-Time：" + issue?.GetValueOrDefault("created_at"));
-                    PrintfLog("Issue-Body：" + issue?.GetValueOrDefault("body"));
-                    return;
-                }
+                    {
+                        var issue = input.GetValueOrDefault("issue")?.Adapt<Dictionary<string, object>>();
+                        var user = issue?.GetValueOrDefault("user")?.Adapt<Dictionary<string, object>>();
+                        var labelList = issue?.GetValueOrDefault("labels")?.Adapt<List<Dictionary<string, object>>>();
+                        PrintfLog("Issue-UserName：" + user?.GetValueOrDefault("username"));
+                        PrintfLog("Issue-Labels：" + labelList?.Select(u => u.GetValueOrDefault("name")).Join());
+                        PrintfLog("Issue-Title：" + issue?.GetValueOrDefault("title"));
+                        PrintfLog("Issue-Time：" + issue?.GetValueOrDefault("created_at"));
+                        PrintfLog("Issue-Body：" + issue?.GetValueOrDefault("body"));
+                        return;
+                    }
                 // 评论
                 case "note_hooks":
-                {
-                    var comment = input.GetValueOrDefault("comment")?.Adapt<Dictionary<string, object>>();
-                    var user = input.GetValueOrDefault("user")?.Adapt<Dictionary<string, object>>();
-                    PrintfLog("comment-UserName：" + user?.GetValueOrDefault("username"));
-                    PrintfLog("comment-Time：" + comment?.GetValueOrDefault("created_at"));
-                    PrintfLog("comment-Content：" + comment?.GetValueOrDefault("body"));
-                    return;
-                }
+                    {
+                        var comment = input.GetValueOrDefault("comment")?.Adapt<Dictionary<string, object>>();
+                        var user = input.GetValueOrDefault("user")?.Adapt<Dictionary<string, object>>();
+                        PrintfLog("comment-UserName：" + user?.GetValueOrDefault("username"));
+                        PrintfLog("comment-Time：" + comment?.GetValueOrDefault("created_at"));
+                        PrintfLog("comment-Content：" + comment?.GetValueOrDefault("body"));
+                        return;
+                    }
                 default:
                     return;
             }

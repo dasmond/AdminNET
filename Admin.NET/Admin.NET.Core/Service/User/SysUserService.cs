@@ -125,7 +125,7 @@ public class SysUserService : IDynamicApiController, ITransient
 
         return newUser.Id;
     }
-    
+
     /// <summary>
     /// 增加用户 🔖
     /// </summary>

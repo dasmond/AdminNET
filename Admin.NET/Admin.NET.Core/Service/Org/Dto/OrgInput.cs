@@ -22,7 +22,7 @@ public class OrgInput : BaseIdInput
     /// 机构类型
     /// </summary>
     public string Type { get; set; }
-    
+
     /// <summary>
     /// 租户Id
     /// </summary>

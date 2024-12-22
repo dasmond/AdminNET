@@ -20,7 +20,7 @@ public class PageRoleInput : BasePageInput
     /// 租户Id
     /// </summary>
     public long TenantId { get; set; }
-    
+
     /// <summary>
     /// 名称
     /// </summary>

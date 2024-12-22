@@ -19,7 +19,7 @@ public class ListScheduleInput
     public DateTime? StartTime { get; set; }
 
     public DateTime? EndTime { get; set; }
-    
+
     /// <summary>
     /// 租户Id
     /// </summary>

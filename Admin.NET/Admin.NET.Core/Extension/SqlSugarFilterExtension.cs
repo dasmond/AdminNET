@@ -32,7 +32,7 @@ public static class SqlSugarFilterExtension
     {
         var fieldNames = type.GetPropertyNames<T>();
         ParameterExpression parameter = Expression.Parameter(type, "c");
-        
+
         Expression right = Expression.Constant(false);
         ConstantExpression ownersCollection = Expression.Constant(owners);
         foreach (var fieldName in fieldNames)

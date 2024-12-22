@@ -15,6 +15,6 @@
       "TargetFramework": "net8.0", // 发布.NET版本
       "RuntimeIdentifier": "linux-x64" // 运行平台
     },
-    "ExcludeFiles": ["Configuration\\*.json"] // 排除文件
+    "ExcludeFiles": [ "Configuration\\*.json" ] // 排除文件
   }
 }

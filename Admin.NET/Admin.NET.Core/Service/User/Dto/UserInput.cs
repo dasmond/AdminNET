@@ -22,7 +22,7 @@ public class PageUserInput : BasePageInput
     /// 租户Id
     /// </summary>
     public long TenantId { get; set; }
-    
+
     /// <summary>
     /// 账号
     /// </summary>

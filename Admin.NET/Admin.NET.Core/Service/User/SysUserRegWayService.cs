@@ -20,7 +20,7 @@ public class SysUserRegWayService : IDynamicApiController, ITransient
         _sysUserRegWayRep = sysUserRegWayRep;
         _userManager = userManager;
     }
-    
+
     /// <summary>
     /// 查询注册方案列表 🔖
     /// </summary>
@@ -58,7 +58,7 @@ public class SysUserRegWayService : IDynamicApiController, ITransient
     {
         var entity = input.Adapt<SysUserRegWay>();
         if (await _sysUserRegWayRep.IsAnyAsync(u => u.Name == input.Name)) throw Oops.Oh(ErrorCodeEnum.D2101);
-        
+
         await CheckData(input);
         return await _sysUserRegWayRep.InsertAsync(entity) ? entity.Id : 0;
     }
@@ -89,7 +89,7 @@ public class SysUserRegWayService : IDynamicApiController, ITransient
         if (!await _sysUserRegWayRep.Context.Queryable<SysRole>().AnyAsync(u => u.Id == input.RoleId)) throw Oops.Oh(ErrorCodeEnum.D1036);
         if (!await _sysUserRegWayRep.Context.Queryable<SysOrg>().AnyAsync(u => u.Id == input.OrgId)) throw Oops.Oh(ErrorCodeEnum.D2011);
         if (!await _sysUserRegWayRep.Context.Queryable<SysPos>().AnyAsync(u => u.Id == input.PosId)) throw Oops.Oh(ErrorCodeEnum.D6003);
-        
+
         // 禁止注册超级管理员和系统管理员
         if (input.AccountType is AccountTypeEnum.SysAdmin or AccountTypeEnum.SuperAdmin) throw Oops.Oh(ErrorCodeEnum.D1037);
     }
@@ -105,13 +105,13 @@ public class SysUserRegWayService : IDynamicApiController, ITransient
     public async Task Delete(BaseIdInput input)
     {
         var entity = await _sysUserRegWayRep.GetFirstAsync(u => u.Id == input.Id) ?? throw Oops.Oh(ErrorCodeEnum.D1002);
-        
+
         // 关闭相关租户注册功能
-        await _sysUserRegWayRep.Context.Updateable(new SysTenant{ EnableReg = YesNoEnum.N, RegWayId = null })
+        await _sysUserRegWayRep.Context.Updateable(new SysTenant { EnableReg = YesNoEnum.N, RegWayId = null })
             .UpdateColumns(u => new { u.EnableReg, u.RegWayId })
             .Where(u => u.RegWayId == input.Id)
             .ExecuteCommandAsync();
-        
+
         // 删除方案
         await _sysUserRegWayRep.DeleteAsync(entity);
     }

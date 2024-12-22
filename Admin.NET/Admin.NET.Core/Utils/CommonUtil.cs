@@ -23,7 +23,7 @@ public static class CommonUtil
     /// <param name="str"></param>
     /// <param name="startNumber"></param>
     /// <returns></returns>
-    public static long GetFixedHashCode(string str, long startNumber=0)
+    public static long GetFixedHashCode(string str, long startNumber = 0)
     {
         if (string.IsNullOrWhiteSpace(str)) return 0;
         unchecked

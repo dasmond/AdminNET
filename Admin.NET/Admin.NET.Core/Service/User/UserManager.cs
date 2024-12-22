@@ -12,7 +12,7 @@ namespace Admin.NET.Core;
 public class UserManager : IScoped
 {
     private readonly IHttpContextAccessor _httpContextAccessor;
-    
+
     /// <summary>
     /// 用户ID
     /// </summary>
@@ -32,7 +32,7 @@ public class UserManager : IScoped
     /// 真实姓名
     /// </summary>
     public string RealName => _httpContextAccessor.HttpContext?.User.FindFirst(ClaimConst.RealName)?.Value;
-    
+
     /// <summary>
     /// 是否超级管理员
     /// </summary>

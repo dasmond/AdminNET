@@ -134,7 +134,7 @@ public class SysRoleService : IDynamicApiController, ITransient
         // 若角色有用户则禁止删除
         var userIds = await _sysUserRoleService.GetUserIdList(input.Id);
         if (userIds != null && userIds.Count > 0) throw Oops.Oh(ErrorCodeEnum.D1025);
-        
+
         // 若有绑定注册方案则禁止删除
         var hasUserRegWay = await _sysRoleRep.Context.Queryable<SysUserRegWay>().AnyAsync(u => u.RoleId == input.Id);
         if (hasUserRegWay) throw Oops.Oh(ErrorCodeEnum.D1033);

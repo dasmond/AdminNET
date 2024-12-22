@@ -110,7 +110,7 @@ public class SysAuthService : IDynamicApiController, ITransient
         // 租户是否存在或已禁用
         var tenant = await _sysUserRep.ChangeRepository<SqlSugarRepository<SysTenant>>().GetFirstAsync(u => u.Id == tenantId);
         if (tenant?.Status != StatusEnum.Enable) throw Oops.Oh(ErrorCodeEnum.Z1003);
-        
+
         // 判断账号是否存在
         var user = await _sysUserRep.AsQueryable().Includes(t => t.SysOrg).ClearFilter()
             .Where(u => u.AccountType == AccountTypeEnum.SuperAdmin || u.TenantId == tenantId)
@@ -359,11 +359,11 @@ public class SysAuthService : IDynamicApiController, ITransient
         // 校验验证码
         if (!_captcha.Validate(input.CodeId.ToString(), input.Code)) throw Oops.Oh(ErrorCodeEnum.D0008);
         _captcha.Generate(input.CodeId.ToString());
-        
+
         // 判断租户是否有效且启用注册功能
         var tenant = await _sysUserRep.Context.Queryable<SysTenant>().FirstAsync(u => u.Id == input.TenantId && u.Status == StatusEnum.Enable);
         if (tenant?.EnableReg != YesNoEnum.Y) throw Oops.Oh(ErrorCodeEnum.D1034);
-        
+
         // 查找注册方案
         var wayId = input.WayId <= 0 ? tenant.RegWayId : input.WayId;
         var regWay = await _sysUserRep.Context.Queryable<SysUserRegWay>().FirstAsync(u => u.Id == wayId) ?? throw Oops.Oh(ErrorCodeEnum.D1035);

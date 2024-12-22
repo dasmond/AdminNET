@@ -17,7 +17,7 @@ public class PagePrintInput : BasePageInput
     /// 编码
     /// </summary>
     public string Code { get; set; }
-    
+
     /// <summary>
     /// 租户Id
     /// </summary>

@@ -30,7 +30,7 @@ public class PageFileInput : BasePageInput
     /// 结束时间
     /// </summary>
     public DateTime? EndTime { get; set; }
-    
+
     /// <summary>
     /// 租户Id
     /// </summary>

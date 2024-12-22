@@ -19,31 +19,31 @@ public partial class SysUserRegWay : EntityTenant
     [MaxLength(32)]
     [SugarColumn(ColumnDescription = "方案名称", Length = 32)]
     public virtual string Name { get; set; }
-    
+
     /// <summary>
     /// 账号类型
     /// </summary>
     [SugarColumn(ColumnDescription = "账号类型")]
     public virtual AccountTypeEnum AccountType { get; set; } = AccountTypeEnum.NormalUser;
-    
+
     /// <summary>
     /// 注册用户默认角色
     /// </summary>
     [SugarColumn(ColumnDescription = "角色")]
     public virtual long RoleId { get; set; }
-    
+
     /// <summary>
     /// 注册用户默认机构
     /// </summary>
     [SugarColumn(ColumnDescription = "机构")]
     public virtual long OrgId { get; set; }
-    
+
     /// <summary>
     /// 注册用户默认职位
     /// </summary>
     [SugarColumn(ColumnDescription = "职位")]
     public virtual long PosId { get; set; }
-    
+
     /// <summary>
     /// 排序
     /// </summary>

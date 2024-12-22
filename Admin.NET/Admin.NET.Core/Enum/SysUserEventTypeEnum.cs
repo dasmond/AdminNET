@@ -60,7 +60,7 @@ public enum SysUserEventTypeEnum
     /// </summary>
     [Description("解除登录锁定")]
     UnlockLogin = 888,
-    
+
     /// <summary>
     /// 注册用户
     /// </summary>
