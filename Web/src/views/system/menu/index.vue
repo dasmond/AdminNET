@@ -103,7 +103,7 @@ onMounted(async () => {
 // 查询操作
 const handleQuery = async () => {
 	state.loading = true;
-	var res = await getAPI(SysMenuApi).apiSysMenuListGet(state.queryParams.title, state.queryParams.type, state.queryParams.tenantId);
+	const res = await getAPI(SysMenuApi).apiSysMenuListGet(state.queryParams.title, state.queryParams.type, state.queryParams.tenantId);
 	state.menuData = res.data.result ?? [];
 	state.loading = false;
 };
@@ -115,17 +115,25 @@ const resetQuery = () => {
 	handleQuery();
 };
 
+// 获取菜单树数据
+const getMenuTreeData = async () => {
+	const res = await getAPI(SysMenuApi).apiSysMenuListGet(undefined, undefined, state.queryParams.tenantId);
+	state.allMenuData = res.data.result ?? [];
+	return state.menuData;
+}
+
 // 打开新增页面
 const openAddMenu = () => {
-	getAPI(SysMenuApi).apiSysMenuListGet(undefined, undefined, state.queryParams.tenantId).then(({data}) => state.allMenuData = data.result ?? []);
+	getMenuTreeData();
 	const data = { type: 2, isHide: false, isKeepAlive: true, isAffix: false, isIframe: false, tenantId: undefined, status: 1, orderNo: 100 };
-	if (userStore.userInfos.accountType == 999) data.tenantId = state.queryParams.tenantId;
+	data.tenantId = state.queryParams.tenantId;
 	state.editMenuTitle = '添加菜单';
 	editMenuRef.value?.openDialog(data);
 };
 
 // 打开编辑页面
 const openEditMenu = (row: any) => {
+	getMenuTreeData();
 	state.editMenuTitle = '编辑菜单';
 	editMenuRef.value?.openDialog(row);
 };
