@@ -53,7 +53,7 @@ var typeMap = new Dictionary<string, string>() {
 };
 foreach (var column in Model.TableField) {
 	@:// @(column.ColumnComment)
-	@:@(column.LowerPropertyName)@(column.WhetherRequired == "Y" ? "?" : ""): @(Regex.IsMatch("@(column.DataType.Trim('?'))", ".*?Enum") ? "number" : typeMap.GetValueOrDefault(column.DataType.ToLower(), "string"));
+	@:@(column.LowerPropertyName)@(column.WhetherRequired == "Y" ? "?" : ""): @(Regex.IsMatch("@(column.DataType.Trim('?'))", ".*?Enum") ? "number" : typeMap.GetValueOrDefault(column.DataType.Trim('?').ToLower(), "string"));
 }
 }
 }
