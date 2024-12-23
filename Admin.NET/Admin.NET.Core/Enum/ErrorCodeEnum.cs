@@ -833,5 +833,11 @@ public enum ErrorCodeEnum
     /// 身份标识已存在
     /// </summary>
     [ErrorCodeItemMetadata("身份标识已存在")]
-    O1000
+    O1000,
+
+    /// <summary>
+    /// 禁止非超级管理员操作
+    /// </summary>
+    [ErrorCodeItemMetadata("禁止非超级管理员操作")]
+    SA001
 }

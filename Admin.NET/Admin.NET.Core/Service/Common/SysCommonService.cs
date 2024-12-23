@@ -21,14 +21,20 @@ public class SysCommonService : IDynamicApiController, ITransient
     private readonly IApiDescriptionGroupCollectionProvider _apiProvider;
     private readonly SqlSugarRepository<SysUser> _sysUserRep;
     private readonly CDConfigOptions _cdConfigOptions;
+    private readonly UserManager _userManager;
+    private readonly HttpClient _httpClient;
 
     public SysCommonService(IApiDescriptionGroupCollectionProvider apiProvider,
         SqlSugarRepository<SysUser> sysUserRep,
-        IOptions<CDConfigOptions> giteeOptions)
+        IOptions<CDConfigOptions> giteeOptions,
+        IHttpClientFactory httpClientFactory,
+        UserManager userManager)
     {
         _sysUserRep = sysUserRep;
         _apiProvider = apiProvider;
+        _userManager = userManager;
         _cdConfigOptions = giteeOptions.Value;
+        _httpClient = httpClientFactory.CreateClient();
     }
 
     /// <summary>
@@ -101,5 +107,122 @@ public class SysCommonService : IDynamicApiController, ITransient
     public dynamic EncryptPlainText([Required] string plainText)
     {
         return CryptogramUtil.Encrypt(plainText);
+    }
+
+    /// <summary>
+    /// 接口压测 🔖
+    /// </summary>
+    /// <returns></returns>
+    [DisplayName("接口压测")]
+    public async Task<StressTestOutput> StressTest(StressTestInput input)
+    {
+        // 限制仅超管用户才能使用此功能
+        if (!_userManager.SuperAdmin) throw Oops.Oh(ErrorCodeEnum.SA001);
+
+        var stopwatch = new Stopwatch();
+        var responseTimes = new List<double>();
+        long totalRequests = 0, successfulRequests = 0, failedRequests = 0;
+
+        stopwatch.Start();
+        var semaphore = new SemaphoreSlim(input.MaxDegreeOfParallelism!.Value > 0 ? input.MaxDegreeOfParallelism.Value : Environment.ProcessorCount);
+
+        var tasks = Enumerable.Range(0, input.NumberOfRounds!.Value * input.NumberOfRequests!.Value).Select(async _ =>
+        {
+            await semaphore.WaitAsync();
+            try
+            {
+                var requestStopwatch = new Stopwatch();
+                requestStopwatch.Start();
+
+                // 构建完整的请求URI，包括路径参数和查询参数
+                var uriBuilder = new UriBuilder(input.RequestUri);
+                var queryString = HttpUtility.ParseQueryString(uriBuilder.Query);
+
+                foreach (var param in input.PathParameters)
+                {
+                    uriBuilder.Path = uriBuilder.Path.Replace($"{{{param.Key}}}", param.Value, StringComparison.OrdinalIgnoreCase);
+                }
+
+                foreach (var param in input.QueryParameters)
+                {
+                    queryString[param.Key] = param.Value;
+                }
+
+                uriBuilder.Query = queryString.ToString() ?? string.Empty;
+                var fullUri = uriBuilder.Uri.ToString();
+
+                HttpRequestMessage request = new(input.RequestMethod!, fullUri);
+
+                // 设置请求头
+                foreach (var header in input.Headers)
+                {
+                    request.Headers.Add(header.Key, header.Value);
+                }
+
+                if (input.RequestMethod != HttpMethod.Get && input.RequestParameters.Any())
+                {
+                    var content = new FormUrlEncodedContent(input.RequestParameters);
+                    request.Content = content;
+                }
+
+                var response = await _httpClient.SendAsync(request);
+                response.EnsureSuccessStatusCode(); // 抛出错误状态码异常
+
+                requestStopwatch.Stop();
+                responseTimes.Add(requestStopwatch.Elapsed.TotalMilliseconds);
+                Interlocked.Increment(ref successfulRequests);
+            }
+            catch
+            {
+                Interlocked.Increment(ref failedRequests);
+            }
+            finally
+            {
+                Interlocked.Increment(ref totalRequests);
+                semaphore.Release();
+            }
+        });
+
+        await Task.WhenAll(tasks);
+        stopwatch.Stop();
+
+        var totalTimeInSeconds = stopwatch.Elapsed.TotalSeconds;
+        var qps = totalTimeInSeconds > 0 ? totalRequests / totalTimeInSeconds : 0;
+        var averageResponseTime = responseTimes.Any() ? responseTimes.Average() : 0;
+        var minResponseTime = responseTimes.Any() ? responseTimes.Min() : 0;
+        var maxResponseTime = responseTimes.Any() ? responseTimes.Max() : 0;
+
+        return new StressTestOutput
+        {
+            TotalRequests = totalRequests,
+            TotalTimeInSeconds = totalTimeInSeconds,
+            SuccessfulRequests = successfulRequests,
+            FailedRequests = failedRequests,
+            QueriesPerSecond = qps,
+            MinResponseTime = minResponseTime,
+            MaxResponseTime = maxResponseTime,
+            AverageResponseTime = averageResponseTime,
+            Percentile10ResponseTime = CalculatePercentile(responseTimes, 0.1),
+            Percentile25ResponseTime = CalculatePercentile(responseTimes, 0.25),
+            Percentile50ResponseTime = CalculatePercentile(responseTimes, 0.5),
+            Percentile75ResponseTime = CalculatePercentile(responseTimes, 0.75),
+            Percentile90ResponseTime = CalculatePercentile(responseTimes, 0.9),
+            Percentile99ResponseTime = CalculatePercentile(responseTimes, 0.99),
+            Percentile999ResponseTime = CalculatePercentile(responseTimes, 0.999)
+        };
+    }
+
+    /// <summary>
+    /// 计算百分位请求耗时
+    /// </summary>
+    /// <param name="times">请求耗时列表</param>
+    /// <param name="percentile">百分位</param>
+    /// <returns></returns>
+    private double CalculatePercentile(List<double> times, double percentile)
+    {
+        if (!times.Any()) return 0;
+        var sortedTimes = times.OrderBy(t => t).ToList();
+        var index = (int)Math.Ceiling(percentile * sortedTimes.Count) - 1;
+        return sortedTimes[index < sortedTimes.Count ? index : sortedTimes.Count - 1];
     }
 }
