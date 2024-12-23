@@ -38,3 +38,22 @@ export const use@(Model.ClassName)Api = () => {
 		}
 	}
 }
+
+// @(Model.BusName)实体
+export interface @(Model.ClassName) {
+@{
+var typeMap = new Dictionary<string, string>() {
+	{ "bool", "boolean" },
+	{ "int", "number" },
+	{ "long", "number" },
+	{ "double", "number" },
+	{ "float", "number" },
+	{ "decimal", "number" },
+	{ "byte", "number" }
+};
+foreach (var column in Model.TableField) {
+	@:// @(column.ColumnComment)
+	@:@(column.LowerPropertyName)@(column.WhetherRequired == "Y" ? "?" : ""): @(Regex.IsMatch("@(column.DataType.Trim('?'))", ".*?Enum") ? "number" : typeMap.GetValueOrDefault(column.DataType.ToLower(), "string"));
+}
+}
+}
