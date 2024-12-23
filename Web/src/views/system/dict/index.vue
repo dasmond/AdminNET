@@ -5,6 +5,7 @@
 				<el-card class="full-table" shadow="hover" :body-style="{ height: 'calc(100% - 51px)' }">
 					<template #header>
 						<el-icon size="16" style="margin-right: 3px; display: inline; vertical-align: middle"><ele-Collection /></el-icon>字典
+						<NoticeBar text="枚举字典对非超管用户不可见，前端获取字典数据范围：默认租户字典 + 当前租户字典。" v-if="userStore.userInfos.accountType == 999" class="ml20" />
 					</template>
 					<el-form :model="state.queryDictTypeParams" ref="queryForm" :inline="true" @submit.native.prevent>
 						<el-form-item label="租户" v-if="userStore.userInfos.accountType == 999">
@@ -160,6 +161,7 @@ import EditDictType from '/@/views/system/dict/component/editDictType.vue';
 import EditDictData from '/@/views/system/dict/component/editDictData.vue';
 import ModifyRecord from '/@/components/table/modifyRecord.vue';
 import {auths} from "/@/utils/authFunction";
+import NoticeBar from "/@/components/noticeBar/index.vue";
 
 const userStore = useUserInfo();
 const editDictTypeRef = ref<InstanceType<typeof EditDictType>>();
@@ -346,3 +348,16 @@ const updateDictSession = async () => {
 	await useUserInfo().setDictList();
 };
 </script>
+
+<style scoped>
+:deep(.notice-bar) {
+	position: absolute;
+	display: inline-flex;
+	height: 25px !important;
+	width: calc(100vh - 210px);
+	overflow: hidden !important;
+	div[data-slate-editor] {
+		text-wrap-mode: nowrap;
+	}
+}
+</style>
