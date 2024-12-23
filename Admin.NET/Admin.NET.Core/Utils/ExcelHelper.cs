@@ -21,6 +21,7 @@ public class ExcelHelper
         try
         {
             var result = CommonUtil.ImportExcelDataAsync<IN>(file).Result ?? throw Oops.Oh("有效数据为空");
+            result.ForEach(u => u.Id = YitIdHelper.NextId());
 
             var tasks = new List<Task>();
             action.Invoke(result, (storageable, pageItems, rows) =>
@@ -30,8 +31,6 @@ public class ExcelHelper
                 {
                     if (storageable.TotalList.Any())
                     {
-                        for (int i = 0; i < rows.Count; i++) pageItems[i].Id = rows[i].Id;
-
                         for (int i = 0; i < storageable.TotalList.Count; i++)
                             pageItems[i].Error ??= storageable.TotalList[i].StorageMessage;
                     }
