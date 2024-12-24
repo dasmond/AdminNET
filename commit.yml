@@ -3,24 +3,272 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '92bb31f3b865fbef63c0720d8a93fd2b5f69c330'
-    oldFile: !uuid '8bafde5151e244ddc3cd4483dc75f1f07ee38fd1'
+    newFile: !uuid '4dbf4d5cb79dee246a5415f6a565f8239623a4da'
+    oldFile: !uuid '92bb31f3b865fbef63c0720d8a93fd2b5f69c330'
+  /Admin.NET/.editorconfig:
+    newFile: !uuid '989c7025d6429ab05d5b78d2599f28b346d61b9f'
+    oldFile: !uuid 'aab71a9f8368ff71a991e385035be40a3e08acb6'
   /Admin.NET/Plugins:
-    newFile: !uuid '7c3f20849bf222d82fbc6b6ca268a8cdc5c25a4d'
-    oldFile: !uuid '0b1b5e2b3cb5586289317d22016ba2a3aa825e0c'
+    newFile: !uuid '537865f737d7af90042e9087dc086a2610c1e189'
+    oldFile: !uuid '7c3f20849bf222d82fbc6b6ca268a8cdc5c25a4d'
   /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk:
-    newFile: !uuid '274f9d3714a28b38d27bcff0415253e2fe430a4a'
-    oldFile: !uuid 'e9cbf30b5c5b06d4549c500403a3a29c887bc51b'
+    newFile: !uuid '83636c28b5419c67e8a9336da9fcf310f624f0ca'
+    oldFile: !uuid '274f9d3714a28b38d27bcff0415253e2fe430a4a'
+  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/Job:
+    newFile: !uuid 'c562cbdd2878fbe0d2bc52d4f2223719c400fb99'
+    oldFile: !uuid '853dcb7850acdcdab5364afac89229486ff75a07'
+  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/Job/SyncDingTalkUserJob.cs:
+    newFile: !uuid '8173a6d17a8c6cd61b1a674fa99db25888f00cf4'
+    oldFile: !uuid 'e4f7599d1b597ccafa00780e78ec5d2e68d82e1b'
   /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/RequestProxy:
-    newFile: !uuid '08e19d224d3cd035e679b2a3c72f3f0ad75d73ca'
-    oldFile: !uuid 'a4ef06741825369d625d2a43de84c70015d33151'
+    newFile: !uuid '6a1738294ee669a037c787c2042a27637a0e3821'
+    oldFile: !uuid '08e19d224d3cd035e679b2a3c72f3f0ad75d73ca'
+  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/RequestProxy/AliTrip:
+    newFile: !uuid '41cdf26ea53de9e8ebae3343374305c61db65977'
+    oldFile: !uuid '01e35208fd0d478a40aa43f4ca4c1020c11b37d7'
+  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/RequestProxy/AliTrip/AliTripRequest.cs:
+    newFile: !uuid '66fb76e996924a0d788e99b8c10fdaee73436bce'
+    oldFile: !uuid '52dee73ffbfd155edd553b8a7820e7a05f0f3eaa'
+  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/RequestProxy/AliTrip/DTO:
+    newFile: !uuid '717fab37450588a82f374d3d632610a35008cb21'
+    oldFile: !uuid '48d7a048757ef72d490ceeef0c5db37c8c172c59'
+  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/RequestProxy/AliTrip/DTO/GetAlitripAddressRequest.cs:
+    newFile: !uuid '1c0c8683253fb785a262f4a0486f5f7632cf7f8d'
+    oldFile: !uuid '25afcbca1a6a0bdd41bae7094824f61cc48f1df5'
+  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/RequestProxy/AliTrip/DTO/GetAlitripAddressResponse.cs:
+    newFile: !uuid '242cd71d4ae9f366e4f47accee76900b95ebf75c'
+    oldFile: !uuid 'aa3f21dfd49045e88fd5e9c28379a2f05b58c429'
+  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/RequestProxy/AliTrip/DTO/GetAlitripFlightOrdersRequest.cs:
+    newFile: !uuid '3a332112a959bdfd71994d45153dc6ead8047d14'
+    oldFile: !uuid 'dfe37c40838c586288119a6a72e2dc754aead383'
+  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/RequestProxy/AliTrip/DTO/GetAlitripFlightOrdersResponse.cs:
+    newFile: !uuid 'cb13c0846e42be8cf7cb95bf05bb5baf888d34fb'
+    oldFile: !uuid '64931d14a1bdd1286ded628967823e34fb1b0a8d'
+  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/RequestProxy/AliTrip/DTO/GetAlitripTrainOrdersRequest.cs:
+    newFile: !uuid '38e1a8475a89abbccea36a0de1422ecd690ba5e5'
+    oldFile: !uuid '8c488af3b62749da3392b436a72d32473d5b264f'
+  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/RequestProxy/AliTrip/DTO/GetAlitripTrainOrdersResponse.cs:
+    newFile: !uuid 'e4fdc402638af3f2e59a5a8fa85abb6107ef1932'
+    oldFile: !uuid '99fcc14177bed71b95f56d611588ba1de7038d55'
+  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/RequestProxy/AliTrip/IAliTripRequestProxy.cs:
+    newFile: !uuid '0bd3ac5390fdf244f3a09e29c7b6090795f059d2'
+    oldFile: !uuid '360e667917329ee45adcbd30aedc578cfa6703d3'
+  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/RequestProxy/Attendance:
+    newFile: !uuid '49ca7bfc8333de395674a86d89195353e127863d'
+    oldFile: !uuid '61c0fb8ebbcd715c9342e4961a06f1a0e9748d10'
+  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/RequestProxy/Attendance/AttendanceRequest.cs:
+    newFile: !uuid '77875c28d8dd8774032e2e481c40a4e4dbf1c22d'
+    oldFile: !uuid '686de9cfe59e465b837d5a7e5280b8f4cd673ac8'
+  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/RequestProxy/Attendance/DTO:
+    newFile: !uuid '33745aa1a65ed862213b55fa6d6915ff79b63966'
+    oldFile: !uuid 'd757f6892f74bc46a30311c472c2e774e88289e6'
+  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/RequestProxy/Attendance/DTO/AttdendanceApprovalsFinishRequest.cs:
+    newFile: !uuid '481a82b4377e87f2e6e79cd222583b2a2e09d453'
+    oldFile: !uuid '748c7dc95167bdb7d9a052ff026cd59a6052e93a'
+  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/RequestProxy/Attendance/DTO/AttendanceApprovalsFinishResponse.cs:
+    newFile: !uuid '21fa2b721efb3dae37f5a2ef91308457d1dc2427'
+    oldFile: !uuid '221f48f95fe24238f2f1c287b80774b2db087649'
+  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/RequestProxy/Attendance/DTO/AttendanceApprovelsCancelResponse.cs:
+    newFile: !uuid '134e34a5a95a76601672cc73c7411204b3d1f8c0'
+    oldFile: !uuid '0ec8c5c20d6220e430caa9084b14b91260ede9b3'
+  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/RequestProxy/Attendance/DTO/Enums.cs:
+    newFile: !uuid '63c5bc9d8f90427891dcb5b838c77bee4cfe1e68'
+    oldFile: !uuid '16fa9b5a1a6b0388c4ab14ac5bd5eac31c20fdaf'
+  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/RequestProxy/Attendance/DTO/GetLeaveStatusResponse.cs:
+    newFile: !uuid '005451a9725c802827ab88f2c45a06b183935198'
+    oldFile: !uuid '350c628e9b59f5a7642690786c760f04a411a094'
+  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/RequestProxy/Attendance/IAttendanceRequestProxy.cs:
+    newFile: !uuid '111c1b0529709d5c37d8fa946d64d9f446be618d'
+    oldFile: !uuid 'c6549dbb9cc82b9b1d0f8f658df540bbf9a62373'
+  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/RequestProxy/BaseTypes:
+    newFile: !uuid '36d1122d1c65ee6ea78712b1c045b121d578846b'
+    oldFile: !uuid 'c47371ab190051463322882d62d73a83943dd925'
+  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/RequestProxy/BaseTypes/DingtalkResponseErrorRequestId.cs:
+    newFile: !uuid 'a7a1e53138b7142f8f6b7cb6f7ebbfdd0649c76d'
+    oldFile: !uuid 'a4a53a511e9821b6f7eb8d30fef8c342f6d94237'
+  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/RequestProxy/BaseTypes/DingtalkResponseErrorResult.cs:
+    newFile: !uuid '3e180fc9269c2645d805f023848604e733cef6f1'
+    oldFile: !uuid '4d6e1a56c376447e2b0e606911c625020c39bdae'
+  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/RequestProxy/BaseTypes/DingtalkResponseErrorResultRequestId.cs:
+    newFile: !uuid 'c0ff23b03255c29df5509e97914e428334f4de6d'
+    oldFile: null
+  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/RequestProxy/BaseTypes/DingtalkResponseErrorResultRequestid.cs:
+    newFile: null
+    oldFile: !uuid '3dcbd7f9d0de6d734dccf9a44f4d4bd7a0ae2473'
+  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/RequestProxy/BaseTypes/DingtalkResponseErrorSuccess.cs:
+    newFile: !uuid '08c9bdd6683de2cbb0a7a587baa8358de0b909e2'
+    oldFile: !uuid '6feb644892a0ca5eddfa60d616e4277c4d1b95a1'
+  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/RequestProxy/BaseTypes/DingtalkResponseSuccess.cs:
+    newFile: !uuid '0590d91e801f2f68f735e93632bc238d664c6a4d'
+    oldFile: !uuid '0df80021e12c66bd4b8c5c8ae961f1e64edbb422'
+  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/RequestProxy/BaseTypes/DingtalkResponseSuccessResult.cs:
+    newFile: !uuid '438f6db114fc68fba3be7b183fcee69c6b748b3c'
+    oldFile: !uuid '62cb20076be55201892aad7f78605ac8feb25395'
+  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/RequestProxy/Checkin:
+    newFile: !uuid 'be5dc4f712f4cbd75570e8ab40a54b5c0d4bfed4'
+    oldFile: !uuid '8eb50cecb98bf7a98831eaf0a5c56fc8a755e8a3'
+  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/RequestProxy/Checkin/CheckinRequest.cs:
+    newFile: !uuid '3bced24ce8c9b8aed3002b0d7bfee2cc64d16fe2'
+    oldFile: !uuid '619c53baedabae82ca212a661e31d7ac9391abcd'
+  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/RequestProxy/Checkin/DTO:
+    newFile: !uuid '35a9d16669a81c8feb12c975dc54c455741f8765'
+    oldFile: !uuid '4226d68267a2a9075452235de471d1c196de91f3'
+  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/RequestProxy/Checkin/DTO/GetDeptRecordResponse.cs:
+    newFile: !uuid 'a4047ffe9b8a0e99bfbc22d8af73f02f43dab0ae'
+    oldFile: !uuid '53d6bb6691bb08cb91136cbade4535d5a359210d'
+  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/RequestProxy/Checkin/DTO/GetUserRecordResponse.cs:
+    newFile: !uuid 'e9b1e40140951cac8640be2b86918ab8783f9d0b'
+    oldFile: !uuid '4993a9162a8daaf7fabb00a6549841f183a5d05a'
+  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/RequestProxy/Checkin/ICheckinRequestProxy.cs:
+    newFile: !uuid 'd15e3d5630e35c07d0310815ef8e6a9c22b4b23c'
+    oldFile: !uuid '02c97a70b1c87acf3fe74c9d5d020cc8fd269a4a'
+  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/RequestProxy/Department:
+    newFile: !uuid '8913063621c2a7b165f51cc0d3ac809c4e5c8a4f'
+    oldFile: !uuid '89b21bc0a864dcbe810fbb3028644940989711a3'
+  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/RequestProxy/Department/DTO:
+    newFile: !uuid 'f448dd9737faaaa6d265d25e74aa05fd78890b32'
+    oldFile: !uuid '2f4bb6ae0b3d88c52a0542130dfcee979d81420d'
+  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/RequestProxy/Department/DTO/GetDeptInfoResponse.cs:
+    newFile: !uuid '5c99923c7cbabdc3e5d8580bdcebd97f9b74d63e'
+    oldFile: !uuid '61f81ccfda4d5c5cb3705b379556239d3d76b55a'
+  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/RequestProxy/Department/DTO/ListSubIdResponse.cs:
+    newFile: !uuid 'bcfde177efbe0d5ce9e2d87f82585fab59399397'
+    oldFile: !uuid 'fe82402264f6785af574130be19dc1050385510c'
+  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/RequestProxy/Department/DTO/ListSubResponse.cs:
+    newFile: !uuid '4895f26eb48082a3bee325a1e31bf6df9f20e496'
+    oldFile: !uuid '094a25bd57f0b9a08c0e6654b9400b7d315e79f3'
+  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/RequestProxy/Department/DepartmentRequest.cs:
+    newFile: !uuid 'b5e38e4671ab4490d1ae4360c6f79a931963b33c'
+    oldFile: !uuid '477993b7a6d5be698ecf2c7d53b79c49fb13fdc2'
+  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/RequestProxy/Department/IDepartmentRequestProxy.cs:
+    newFile: !uuid 'aac62b3697440ed46ad7b073c06fe10da838f76e'
+    oldFile: !uuid 'b8667cec47493c0bd0aca011f87b8b401c671355'
   /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/RequestProxy/HRM:
-    newFile: !uuid 'e09d18ad49133bd67a05b2cbe89f434862ad2ad6'
-    oldFile: !uuid '58f377e7b534ace0f144ca674835298ccf5364f9'
+    newFile: !uuid 'd230c8b7c3960a90dbcba362675faeed51d8b381'
+    oldFile: !uuid 'e09d18ad49133bd67a05b2cbe89f434862ad2ad6'
+  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/RequestProxy/HRM/DTO:
+    newFile: !uuid '8b5117288ea036d06d3fda8316db673e40b3a266'
+    oldFile: !uuid '83d902ca6979ac769df4afdb66e89ad55f63ddfd'
+  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/RequestProxy/HRM/DTO/EmployeeQueryOnJobRequest.cs:
+    newFile: !uuid 'd241a28c2b4f957128046005422d68ae0d5c92d6'
+    oldFile: null
+  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/RequestProxy/HRM/DTO/EmployeeQueryOnJobResponse.cs:
+    newFile: !uuid 'c245bcebe214e11c3a0fbbac316d100a14e8e703'
+    oldFile: null
+  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/RequestProxy/HRM/DTO/EmployeeQueryonjobRequest.cs:
+    newFile: null
+    oldFile: !uuid '3a34d1868dee088bb84e4a105c9cb88d485d19e9'
+  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/RequestProxy/HRM/DTO/EmployeeQueryonjobResponse.cs:
+    newFile: null
+    oldFile: !uuid '6731d4894a82054bb7a7f6b8fdf09db4d45b063d'
+  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/RequestProxy/HRM/DTO/RosterListsQueryResponse.cs:
+    newFile: !uuid 'ece79f855c88d0e3031e940701ecca0e9286331d'
+    oldFile: !uuid '921710c8c673d385ca9d15562b45c0bd755a2571'
   /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/RequestProxy/HRM/HrmRequest.cs:
-    newFile: !uuid 'a973c9bf7be2d7366880890346ebf385ca54f416'
-    oldFile: !uuid '84c9aceb84510d62f8017d91f97c74d4c6526128'
-gitCommitId: !uuid '942fdd4d65e2ac803a7b0a44ca1b6ed193ff0ed4'
-renames: {
-  }
-revisionId: 2650
+    newFile: !uuid '96e993c2289847e3a12fcea69d19d1f30a8ab0b1'
+    oldFile: !uuid 'a973c9bf7be2d7366880890346ebf385ca54f416'
+  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/RequestProxy/HRM/IHrmRequestProxy.cs:
+    newFile: !uuid 'bb0c5a2bbaa994f038deea6c095dc3a1a81744ce'
+    oldFile: !uuid '8173350a65e9e9f14431e944e85dc1257db6d1c9'
+  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/RequestProxy/Message:
+    newFile: !uuid '218b7f8ca989003c2735a29b8099ca0f5c4a3a45'
+    oldFile: !uuid 'd5da5e197ca62f21f781651f101ec812fac87559'
+  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/RequestProxy/Message/DTO:
+    newFile: !uuid '72b7a97a2aa75e6eb513971921a2859410c0b919'
+    oldFile: !uuid '940cdd4f81c4624567f1ef52145f173b3e27da22'
+  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/RequestProxy/Message/DTO/SendCorpConversationRequest.cs:
+    newFile: !uuid '66f06f2fc37827c520c352e178d751af03c7c602'
+    oldFile: !uuid '6367f2992055f8f93f14abe36bf0dd385fe7830f'
+  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/RequestProxy/Message/IMessageRequestProxy.cs:
+    newFile: !uuid '8fa1d71dc2a0129ed239f6395482e08385c8213f'
+    oldFile: !uuid 'd6c77da52d272327c86065b6ae5d648a3c09f121'
+  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/RequestProxy/Message/MessageRequest.cs:
+    newFile: !uuid 'f86758b5ed052154a43d44bd98ec1b28f165eec4'
+    oldFile: !uuid 'bf2e38605292840e76ac0bd8639618bed7ad05c2'
+  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/RequestProxy/Top:
+    newFile: !uuid '64f9070bca100e4262a85c7d5adbbef0f57fd7d2'
+    oldFile: !uuid '3ca4611b4f7f478ec692f77270bd8608f8e46276'
+  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/RequestProxy/Top/DTO:
+    newFile: !uuid '027341030c2bce129af1ae5101dcff1de3d7ec78'
+    oldFile: !uuid '9ff91ec5629db0ef100c7b1e5777cf1b93b75d78'
+  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/RequestProxy/Top/DTO/GetUserInfoResponse.cs:
+    newFile: !uuid 'c3d781ad4b0f569f205d7e9e4659609f3e8a93f0'
+    oldFile: !uuid 'c534b7b748de59f08fd61efc6fbaf2fd309dc607'
+  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/RequestProxy/Top/ITopRequestProxy.cs:
+    newFile: !uuid '8a552824fb444d6acad0f9e4f3e0afba6b8273d1'
+    oldFile: !uuid '0bfb36cf93cc19066c459295f368900fc54a2e30'
+  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/RequestProxy/Top/TopRequest.cs:
+    newFile: !uuid '4e6112d80abc5cb03b51c03d2b39fa738d20da81'
+    oldFile: !uuid '9a7854a3b718efc1a6bb3605bd96e1d872c0f8fb'
+  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/RequestProxy/User:
+    newFile: !uuid '69c5f8d70a78f7e98090e5365222d289a4bd0db4'
+    oldFile: !uuid 'bf057271948021a4bf34519d8f71c53ee9fd9072'
+  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/RequestProxy/User/DTO:
+    newFile: !uuid '739e21d13008e7fc0e7ce04f75e077e53cef4a50'
+    oldFile: !uuid '96ab2a533007edc52aa1f044d745cff865f2c633'
+  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/RequestProxy/User/DTO/RoleListResponse.cs:
+    newFile: !uuid 'a3a5bca76993f29b85c7bdb0e54478fc8213c924'
+    oldFile: !uuid '48af6c3d4ec4a489edee92240fee62c0984c8c51'
+  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/RequestProxy/User/DTO/UserDetailResponse.cs:
+    newFile: !uuid 'a7891c220a37aaca6d9ee491ecb2f0955ea66efd'
+    oldFile: !uuid '96f91b325ff5ff845a7257dc0e8c9284b6fc78a6'
+  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/RequestProxy/User/DTO/UserListIdResponse.cs:
+    newFile: !uuid 'aa6e114c1a21a68ac6d94a2b5266a5469eedeb21'
+    oldFile: !uuid 'b03f4691932812e3556e3c2700b5648d39446029'
+  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/RequestProxy/User/DTO/UserListSimpleResponse.cs:
+    newFile: !uuid '61411be08f09f4fc45f18ed6844d93e01b75ae40'
+    oldFile: !uuid 'ae558ddba178936adb70d157e6baa5a9abe67016'
+  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/RequestProxy/User/IUserRequestProxy.cs:
+    newFile: !uuid '029920bacc77c36a07111e8847e39a89a7273bb5'
+    oldFile: !uuid '70dcc3b5e67f6ba56a7db16684d95fe91079ad9c'
+  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/RequestProxy/User/UserRequest.cs:
+    newFile: !uuid '42613953d619a6234caa7e1291c177d38f3b2267'
+    oldFile: !uuid '218d41efcc39329fad9d1a67199185ca49e4b658'
+  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/Service:
+    newFile: !uuid 'cf59930f7588abb98801500d716e79bd71f59851'
+    oldFile: !uuid 'ab97c6b0f901c8cf5511e7eac8175c2e981dcd87'
+  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/Service/DingTalkService.cs:
+    newFile: !uuid '4819e8bfa0d29b1f35214b000fa7fe74b0ebc712'
+    oldFile: !uuid 'c6f96bb72a38054f9f270bb1c67b38fe4414fb39'
+  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/Service/Dto:
+    newFile: !uuid '941f2a766978a93bb3a1e9f4896a611f6d416444'
+    oldFile: !uuid '2fe2aaa9cfdcddf992063267fdc32da97c517e2d'
+  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/Service/Dto/DingTalkBaseResponse.cs:
+    newFile: !uuid 'ebe127df882a1ad855465d515e10f6f778a8ae2c'
+    oldFile: !uuid '70189a31db85ebfc351296029791c8ab293108bf'
+  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/Service/Dto/DingTalkCardData.cs:
+    newFile: !uuid '0e4394d4b6e66904be6f17dee8411e7e6796854a'
+    oldFile: !uuid 'e683c5d5e330b942eec71d56906247550bf618f3'
+  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/Service/Dto/DingTalkEmpFieldDataVo.cs:
+    newFile: !uuid 'a5bfa929b18035ab9f52e0ee6d43c0eb383aa85e'
+    oldFile: !uuid '478a489f04f8040fd0825d6178af85fa91061e5a'
+  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/Service/Dto/DingTalkEmpRosterFieldVo.cs:
+    newFile: !uuid 'fd69b187ae1ac588467a73ad439ca7905b4ab776'
+    oldFile: !uuid '46979f6f864eb4282ab34ee51f4cacc530030f12'
+  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/Service/Dto/DingTalkFieldValueVo.cs:
+    newFile: !uuid '9cac06adba9e19938cbdaf720e9b4453abb476aa'
+    oldFile: !uuid '2b9accba101deca039edd41f9cb4c1ec59a06ecd'
+  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/Service/Dto/DingTalkSendInteractiveCardsInput.cs:
+    newFile: !uuid 'ed793ea71724b42b03e222a7c4dfe9c3c089975c'
+    oldFile: !uuid '9f17d02b4728a3493ee59d284a81da12cab05457'
+  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/Service/Dto/GetDingTalkCurrentEmployeesListInput.cs:
+    newFile: !uuid 'f9228d9f8bfba1cf25525dce739182fbc0460cc4'
+    oldFile: !uuid '138604d1c17abf3a330f38fcb0378bc8106cdb1b'
+  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/Service/Dto/GetDingTalkCurrentEmployeesListOutput.cs:
+    newFile: !uuid 'e8400ede2688aa87c4746308f3cdfa75d58df4aa'
+    oldFile: !uuid '9bbd0222165cd8c21703733296a1d432a892d55f'
+  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/Service/Dto/GetDingTalkCurrentEmployeesRosterListInput.cs:
+    newFile: !uuid '302f0d0faea9d5217398849a2f3089c53aa3f462'
+    oldFile: !uuid 'ce81388cdf1f99b8054a5e240cd3c5c6cfab2565'
+  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/Service/Dto/GetDingTalkToken.cs:
+    newFile: !uuid '7da2716eddaeeca5eb92b4aff0ca9e98737514f5'
+    oldFile: !uuid '94567bd977aaf8177297513d8729a96c5a670944'
+  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/Service/IDingTalkApi.cs:
+    newFile: !uuid '4d9dc4c1858a9b634926845b433518428162a9b4'
+    oldFile: !uuid 'ee0d50bddafac831ce01c7b64dce3fe15ba04d02'
+gitCommitId: !uuid 'b5bdbb94eb78f4628536cb24ab323b82ede519cf'
+renames:
+  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/RequestProxy/BaseTypes/DingtalkResponseErrorResultRequestId.cs: /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/RequestProxy/BaseTypes/DingtalkResponseErrorResultRequestid.cs
+  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/RequestProxy/HRM/DTO/EmployeeQueryOnJobRequest.cs: /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/RequestProxy/HRM/DTO/EmployeeQueryonjobRequest.cs
+  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/RequestProxy/HRM/DTO/EmployeeQueryOnJobResponse.cs: /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/RequestProxy/HRM/DTO/EmployeeQueryonjobResponse.cs
+revisionId: 2651
