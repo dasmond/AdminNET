@@ -3,18 +3,96 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '18b64a7820f5c43f2ac8fd55513a00a480d817f4'
-    oldFile: !uuid '385a858cbd2af3e3243c46b4f15aa2cb470b98d2'
+    newFile: !uuid 'b9676f90c3ea56105eb9d8b6c08c3f8db44e2f08'
+    oldFile: !uuid '18b64a7820f5c43f2ac8fd55513a00a480d817f4'
+  /Admin.NET/Admin.NET.Application:
+    newFile: !uuid 'd008c0183fc8ea7a8470774c65a55d3ce3ef1e65'
+    oldFile: !uuid '3e4132bc9d928704238d8a12c122d5f19de5e02d'
+  /Admin.NET/Admin.NET.Application/Configuration:
+    newFile: !uuid '7b2f78629b0cc0e18efaf89cffdf76ac60549f1f'
+    oldFile: !uuid 'b114d625d0c78566145061cae329f0a27246f0d3'
+  /Admin.NET/Admin.NET.Application/Configuration/Alipay.json:
+    newFile: !uuid '385e193ca6a7f07eb116adb1e0a1cd0fc6844c17'
+    oldFile: null
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid 'bd67cd00c03210d43828712da353296c8c7712d9'
-    oldFile: !uuid 'd181c0098b3ef87a9657eba8a7227fd2d533e26d'
-  /Admin.NET/Admin.NET.Core/Utils:
-    newFile: !uuid '603cf662ac0a65d786d3fa250d15436150079b49'
-    oldFile: !uuid '5a09039417ecaa7732024e242fa2edc0b3a2baf0'
-  /Admin.NET/Admin.NET.Core/Utils/ExcelHelper.cs:
-    newFile: !uuid '591be7819d5da820f03b0772745ac2769a6c1598'
-    oldFile: !uuid 'de2d9540af7f67242b6e1de4b86737e5a08775db'
-gitCommitId: !uuid '0a7464140a8bc59ad503f497a174dfcdc68b9c70'
+    newFile: !uuid 'b2a854b84bfdd0705e6ab278202d309510c0e8c5'
+    oldFile: !uuid 'bd67cd00c03210d43828712da353296c8c7712d9'
+  /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
+    newFile: !uuid 'addf46d95ecd593ef1a518a764960d4a68ad2d61'
+    oldFile: !uuid '892fc61669f7e3d8e8b9607171e235f1fe218579'
+  /Admin.NET/Admin.NET.Core/Const:
+    newFile: !uuid 'e1e7e81b6c8dfac0eb5383d81d7c77d0113528bb'
+    oldFile: !uuid '612a0c9a31cb9f67870c548f57753fa1a5ccfac4'
+  /Admin.NET/Admin.NET.Core/Const/AlipayConst.cs:
+    newFile: !uuid '20ef17345b4a2dc6ed96187eab350e65e3a89d1f'
+    oldFile: null
+  /Admin.NET/Admin.NET.Core/Const/ConfigConst.cs:
+    newFile: !uuid '33f6e9ee83f3e9876fd96f0df94f3632ae3c54d7'
+    oldFile: !uuid '2bca58471efb2cf8c863e98b82199118c2d85abd'
+  /Admin.NET/Admin.NET.Core/Enum:
+    newFile: !uuid 'af5ad7805bee715307ac38ce6d60735820755810'
+    oldFile: !uuid '0277aa5c53ac144e36b481944a3ed4ef3efa551f'
+  /Admin.NET/Admin.NET.Core/Enum/AlipayCertTypeEnum.cs:
+    newFile: !uuid 'e9aa7f1ca047e9b9801f89d7a7f0c7e6814bc34c'
+    oldFile: null
+  /Admin.NET/Admin.NET.Core/Enum/AlipayIdentityTypeEnum.cs:
+    newFile: !uuid '4264a5bd7734a3e3fdf5ad7dd97f52f3b6a5b532'
+    oldFile: null
+  /Admin.NET/Admin.NET.Core/Extension:
+    newFile: !uuid '0e4a64c0fbb9a0b9b266419ab3db19140dc0dae7'
+    oldFile: !uuid '44db67709741c60dd3a6e20e7f508ab9ebf4350e'
+  /Admin.NET/Admin.NET.Core/Extension/RequestExtension.cs:
+    newFile: !uuid '2570e01336b501937f35190db9932468fc0268d5'
+    oldFile: null
+  /Admin.NET/Admin.NET.Core/Option:
+    newFile: !uuid '3ef1ed93777237284b5e1aebd6159d25b0323ed0'
+    oldFile: !uuid 'a3f92fd94220d3cb90bf531638bc9f89952b1bac'
+  /Admin.NET/Admin.NET.Core/Option/AlipayOptions.cs:
+    newFile: !uuid '2ece6bb66d43c4bcf1e41d6316c3165fd5935afe'
+    oldFile: null
+  /Admin.NET/Admin.NET.Core/Service:
+    newFile: !uuid '0ae01f896d034a727d2a9edc53c1d2023b46afe7'
+    oldFile: !uuid '72b58db428ea36467f42cd5a0f2b92ae7722ed7d'
+  /Admin.NET/Admin.NET.Core/Service/Alipay:
+    newFile: !uuid '5c4189f8729e75b733433a937325ae4e76ea2277'
+    oldFile: null
+  /Admin.NET/Admin.NET.Core/Service/Alipay/AlipayErrorCodes.cs:
+    newFile: !uuid '7e434ff9ea93b7700beb335dc5e1a5b802bd8b51'
+    oldFile: null
+  /Admin.NET/Admin.NET.Core/Service/Alipay/AlipayService.cs:
+    newFile: !uuid '89ccb9148ea5b00b8bb2754345104995e4f2b615'
+    oldFile: null
+  /Admin.NET/Admin.NET.Core/Service/Alipay/Dto:
+    newFile: !uuid 'ae32c24e12a3233954f5e4f148694b65996a944d'
+    oldFile: null
+  /Admin.NET/Admin.NET.Core/Service/Alipay/Dto/AlipayInput.cs:
+    newFile: !uuid 'bebe75fa736a74d633f84c9003bdbe0c3d12a1e8'
+    oldFile: null
+  /Admin.NET/Admin.NET.Core/Service/Alipay/IAlipayNotify.cs:
+    newFile: !uuid '8da7697582a4ce805318d07d3d30ce051130d9d0'
+    oldFile: null
+  /Admin.NET/Admin.NET.Web.Core:
+    newFile: !uuid '7cf0799f5b6c06d351f8dc42cef417abed13cc64'
+    oldFile: !uuid '8245df7f2056f7a0a3c44578fc39cf9c6a194af2'
+  /Admin.NET/Admin.NET.Web.Core/ProjectOptions.cs:
+    newFile: !uuid '4d505af9ca94fecc5656457667550806bc8da439'
+    oldFile: !uuid 'fd67e9e218bbf44d6d722db51415bf49ab6c599c'
+  /Admin.NET/Admin.NET.Web.Entry:
+    newFile: !uuid '64fb9e02e64023d66c6688e6ec14e991678f39c7'
+    oldFile: !uuid 'd2a9a8aa14b43c2d6306fb9285004c4283fdaccf'
+  /Admin.NET/Admin.NET.Web.Entry/AlipayCrt:
+    newFile: !uuid '13d29b4c329178eb98dd371ebfb83f27bfe6902c'
+    oldFile: null
+  /Admin.NET/Admin.NET.Web.Entry/AlipayCrt/alipayPublicCert.crt:
+    newFile: !uuid 'e69de29bb2d1d6434b8b29ae775ad8c2e48c5391'
+    oldFile: null
+  /Admin.NET/Admin.NET.Web.Entry/AlipayCrt/alipayRootCert.crt:
+    newFile: !uuid 'e69de29bb2d1d6434b8b29ae775ad8c2e48c5391'
+    oldFile: null
+  /Admin.NET/Admin.NET.Web.Entry/AlipayCrt/appPublicCert.crt:
+    newFile: !uuid 'e69de29bb2d1d6434b8b29ae775ad8c2e48c5391'
+    oldFile: null
+gitCommitId: !uuid '653f056c4ca2ce9d19e785c348bf9f211e395482'
 renames: {
   }
-revisionId: 2678
+revisionId: 2679
