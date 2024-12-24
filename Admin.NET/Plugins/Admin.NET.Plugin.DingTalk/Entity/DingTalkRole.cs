@@ -4,42 +4,28 @@
 //
 // 不得利用本项目从事危害国家安全、扰乱社会秩序、侵犯他人合法权益等法律法规禁止的活动！任何基于本项目二次开发而产生的一切法律纠纷和责任，我们不承担任何责任！
 
-namespace Admin.NET.Plugin.DingTalk;
+namespace Admin.NET.Plugin.DingTalk.Entity;
 
-public sealed class DingTalkOptions : IConfigurableOptions
+[SugarTable("", "钉钉角色表")]
+public class DingTalkRole : EntityTenant
 {
     /// <summary>
-    /// AppId
+    /// 角色ID
     /// </summary>
-    public string AppId { get; set; }
+    public long RoleId { get; set; }
 
     /// <summary>
-    /// 应用名称
+    /// 角色名称
     /// </summary>
-    public string AppName {  get; set; }
+    public string Name { get; set; }
 
     /// <summary>
-    /// AgentId
+    /// 角色组ID
     /// </summary>
-    public string AgentId { get; set; }
+    public long GroupId { get; set; }
 
     /// <summary>
-    /// 原 AppKey 和 SuiteKey
+    /// 角色组名称
     /// </summary>
-    public string ClientId { get; set; }
-
-    /// <summary>
-    /// 原 AppSecret 和 SuiteSecret
-    /// </summary>
-    public string ClientSecret { get; set; }
-
-    /// <summary>
-    /// 所属企业的CorpId
-    /// </summary>
-    public string CorpId {  get; set; }
-
-    /// <summary>
-    /// 租户id
-    /// </summary>
-    public long TenantId {  get; set; }
+    public string GroupName { get; set; }
 }

@@ -6,7 +6,7 @@
 
 using System.Text.Json.Serialization;
 
-namespace Admin.Net.Plugin.DingTalk.RequestProxy.AliTrip.DTO;
+namespace Admin.NET.Plugin.DingTalk.RequestProxy.AliTrip.DTO;
 public class GetAlitripFlightOrdersRequest
 {
     public GetAlitripFlightOrdersRequestDomain rq;

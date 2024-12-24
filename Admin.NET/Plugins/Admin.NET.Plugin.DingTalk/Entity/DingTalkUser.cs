@@ -10,7 +10,7 @@ namespace Admin.NET.Plugin.DingTalk;
 /// 钉钉用户表
 /// </summary>
 [SugarTable(null, "钉钉用户表")]
-public class DingTalkUser : EntityBase
+public class DingTalkUser : EntityTenant
 {
     /// <summary>
     /// 系统用户Id
@@ -23,7 +23,6 @@ public class DingTalkUser : EntityBase
     /// </summary>
     [SugarColumn(IsIgnore = true)]
     [Navigate(NavigateType.OneToOne, nameof(SysUserId))]
-    [JsonIgnore]
     public SysUser SysUser { get; set; }
 
     /// <summary>
@@ -39,6 +38,11 @@ public class DingTalkUser : EntityBase
     [SugarColumn(ColumnDescription = "UnionId", Length = 64)]
     [MaxLength(64)]
     public string? UnionId { get; set; }
+
+    /// <summary>
+    /// 头像
+    /// </summary>
+    public string Avatar { get; set; }
 
     /// <summary>
     /// 用户名
@@ -59,13 +63,6 @@ public class DingTalkUser : EntityBase
     /// </summary>
     [SugarColumn(ColumnDescription = "性别")]
     public int? Sex { get; set; }
-
-    /// <summary>
-    /// 头像
-    /// </summary>
-    [SugarColumn(ColumnDescription = "头像", Length = 256)]
-    [MaxLength(256)]
-    public string? Avatar { get; set; }
 
     /// <summary>
     /// 工号
@@ -94,4 +91,89 @@ public class DingTalkUser : EntityBase
     [SugarColumn(ColumnDescription = "职位", Length = 16)]
     [MaxLength(16)]
     public string? Position { get; set; }
+
+    /// <summary>
+    /// 国际电话区号
+    /// </summary>
+    public string StateCode { get; set; }
+
+    /// <summary>
+    /// 员工的直属主管
+    /// </summary>
+    public string ManagerUserId { get; set; }
+
+    /// <summary>
+    /// 是否号码隐藏
+    /// </summary>
+    public bool HideMobile { get; set; }
+
+    /// <summary>
+    /// 分机号
+    /// </summary>
+    public string Telephone { get; set; }
+
+    /// <summary>
+    /// 职位
+    /// </summary>
+    public string Title { get; set; }
+
+    /// <summary>
+    /// 员工邮箱
+    /// </summary>
+    public string Email { get; set; }
+
+    /// <summary>
+    /// 办公地点
+    /// </summary>
+    public string WorkPlace { get; set; }
+
+    /// <summary>
+    /// 备注
+    /// </summary>
+    public string Remark { get; set; }
+
+    /// <summary>
+    /// 是否为企业账号
+    /// </summary>
+    public bool ExclusiveAccount { get; set; }
+
+    /// <summary>
+    /// 员工的企业邮箱。如果员工的企业邮箱没有开通，返回信息中不包含该数据
+    /// </summary>
+    public string OrgEmail { get; set; }
+
+    /// <summary>
+    /// 扩展属性，最大长度2000个字符
+    /// </summary>
+    public string Extension { get; set; }
+
+    /// <summary>
+    /// 入职时间，Unix时间戳，单位毫秒
+    /// </summary>
+    public long HiredDate { get; set; }
+
+    /// <summary>
+    /// 是否激活了钉钉
+    /// </summary>
+    public bool Active { get; set; }
+
+    /// <summary>
+    /// 是否完成了实名认证
+    /// </summary>
+    public bool RealAuthed { get; set; }
+
+    /// <summary>
+    /// 是否为企业的高管
+    /// </summary>
+    public bool Senior { get; set; }
+
+    /// <summary>
+    /// 是否为企业的管理员
+    /// </summary>
+    public bool Admin { get; set; }
+
+    /// <summary>
+    /// 是否为企业的老板
+    /// </summary>
+    public bool Boss { get; set; }
 }

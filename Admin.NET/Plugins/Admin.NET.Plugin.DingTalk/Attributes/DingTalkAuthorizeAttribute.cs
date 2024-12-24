@@ -4,16 +4,29 @@
 //
 // 不得利用本项目从事危害国家安全、扰乱社会秩序、侵犯他人合法权益等法律法规禁止的活动！任何基于本项目二次开发而产生的一切法律纠纷和责任，我们不承担任何责任！
 
-using System.Text.Json.Serialization;
+namespace Admin.NET.Plugin.DingTalk.Attributes;
 
-namespace Admin.NET.Plugin.DingTalk.RequestProxy.BaseTypes;
-
-public class DingtalkResponseErrorResultRequestid<T> : DingtalkResponseErrorResult<T>
+/// <summary>
+/// 基于钉钉的角色授权
+/// </summary>
+[AttributeUsage(AttributeTargets.Method, AllowMultiple = true)]
+public class DingTalkAuthorizeAttribute : Attribute
 {
     /// <summary>
-    /// 请求ID
+    /// 角色名称
     /// </summary>
-    [JsonProperty("request_id")]
-    [JsonPropertyName("request_id")]
-    public string RequestId { get; set; }
+    public string RoleName { get; set; } = string.Empty;
+
+    /// <summary>
+    /// 角色组名称
+    /// </summary>
+    public string GroupName { get; set; } = string.Empty;
+
+    public DingTalkAuthorizeAttribute(string RoleName, string GroupName)
+    {
+        this.RoleName = RoleName; this.GroupName = GroupName;
+    }
+
+    public DingTalkAuthorizeAttribute()
+    { }
 }

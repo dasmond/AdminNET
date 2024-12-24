@@ -22,5 +22,8 @@
 	<ItemGroup>
 		<Folder Include="..\RequestProxy" />
 	</ItemGroup>
+	<ItemGroup>
+	  <PackageReference Include="Jusoft.DingtalkStream.Core" Version="0.1.8" />
+	</ItemGroup>
 
 </Project>

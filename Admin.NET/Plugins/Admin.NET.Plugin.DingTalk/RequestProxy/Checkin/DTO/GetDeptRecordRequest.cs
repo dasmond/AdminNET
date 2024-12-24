@@ -6,7 +6,7 @@
 
 using System.Text.Json.Serialization;
 
-namespace Admin.Net.Plugin.DingTalk.RequestProxy.Checkin.DTO;
+namespace Admin.NET.Plugin.DingTalk.RequestProxy.Checkin.DTO;
 
 public class GetDeptRecordRequest
 {

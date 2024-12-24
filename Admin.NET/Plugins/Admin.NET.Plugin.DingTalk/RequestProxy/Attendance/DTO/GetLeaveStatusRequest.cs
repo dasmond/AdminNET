@@ -6,7 +6,7 @@
 
 using System.Text.Json.Serialization;
 
-namespace Admin.Net.Plugin.DingTalk.RequestProxy.Attendance.DTO;
+namespace Admin.NET.Plugin.DingTalk.RequestProxy.Attendance.DTO;
 public class GetLeaveStatusRequest
 {
     /// <summary>
