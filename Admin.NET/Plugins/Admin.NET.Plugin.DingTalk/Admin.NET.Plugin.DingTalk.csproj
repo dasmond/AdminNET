@@ -19,5 +19,8 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Admin.NET.Core\Admin.NET.Core.csproj" />
   </ItemGroup>
+	<ItemGroup>
+		<Folder Include="..\RequestProxy" />
+	</ItemGroup>
 
 </Project>
