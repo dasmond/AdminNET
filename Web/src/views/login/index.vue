@@ -65,7 +65,7 @@
 </template>
 
 <script setup lang="ts" name="loginIndex">
-import {defineAsyncComponent, onMounted, reactive, computed, ref} from 'vue';
+import { defineAsyncComponent, onMounted, reactive, computed, ref } from 'vue';
 import { storeToRefs } from 'pinia';
 import { useThemeConfig } from '/@/stores/themeConfig';
 import { NextLoading } from '/@/utils/loading';
@@ -75,7 +75,6 @@ import loginIconTwo2 from '/@/assets/login-icon-two2.svg';
 import {getAPI} from "/@/utils/axios-utils";
 import {SysTenantApi} from "/@/api-services";
 import {useRoute} from "vue-router";
-import router from "/@/router";
 
 // 引入组件
 const Register = defineAsyncComponent(() => import('/@/views/login/component/register.vue'));
@@ -112,7 +111,7 @@ onMounted(async () => {
 // 获取租户信息
 const getTenantInfo = async () => {
 	if (themeConfig.value.hideTenantForLogin) {
-		tenantInfo.value.id = -1;
+		tenantInfo.value.id = route.query.t ? parseInt(<string>route.query.t) : -1;
 		tenantInfo.value.list = [];
 		return tenantInfo.value;
 	}
