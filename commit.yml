@@ -3,18 +3,105 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '8477e4311abc413f7189d0297fd95b4a8d508199'
-    oldFile: !uuid 'cd41850324d4f38dd9de27f950ed06305c4bc27a'
-  /Admin.NET/Admin.NET.Test:
-    newFile: !uuid 'ea39050934d4af5cf8ea7f44505f91e51ff08d92'
-    oldFile: !uuid '8246a73c0f37a946ba3d29321bb7ea0ea13ddf95'
-  /Admin.NET/Admin.NET.Test/User:
-    newFile: !uuid '4f358b1c488b068a419761a614722180fb32bedd'
-    oldFile: !uuid '91610ddcbd45065eeffba6212297237b330ed474'
-  /Admin.NET/Admin.NET.Test/User/UserTest.cs:
-    newFile: !uuid '7294b99b7cba36da1e69fe427a128fe56ec243ca'
-    oldFile: !uuid '46dc6d1aef43c4a4866a0b28ad5ff51e7e51b5d8'
-gitCommitId: !uuid '93513667717da45d8ca6314e2ef861b0913d0169'
+    newFile: !uuid '8275513c2869e4af0a1d845e8c1170b49998105e'
+    oldFile: !uuid '8477e4311abc413f7189d0297fd95b4a8d508199'
+  /Admin.NET/Admin.NET.sln:
+    newFile: !uuid '6fd2fa73e522b39fedeac31da500b516893b9507'
+    oldFile: !uuid 'cd8607b13bb2f063edd2e66e38cb6d052bac826f'
+  /Admin.NET/Plugins:
+    newFile: !uuid '87e5b28b3f760f657253b65e3c4153023078f5a5'
+    oldFile: !uuid 'adac9861160e88374f1ede7eabe0a3039a5a4673'
+  /Admin.NET/Plugins/Admin.NET.Plugin.WorkWeixin:
+    newFile: !uuid 'fe49b4230b2a0ed93d33f298013fa87c5b970529'
+    oldFile: null
+  /Admin.NET/Plugins/Admin.NET.Plugin.WorkWeixin/Admin.NET.Plugin.WorkWeixin.csproj:
+    newFile: !uuid '681b132200dfdfa734ae143687bdbcdd78d80dc8'
+    oldFile: null
+  /Admin.NET/Plugins/Admin.NET.Plugin.WorkWeixin/Configuration:
+    newFile: !uuid '63ca52b6fe0e1fc5ec1a4febc21eda474ca7d3e3'
+    oldFile: null
+  /Admin.NET/Plugins/Admin.NET.Plugin.WorkWeixin/Configuration/WorkWeixin.json:
+    newFile: !uuid '349015f537495e5b788e2969d4a1bf70b1adc39d'
+    oldFile: null
+  /Admin.NET/Plugins/Admin.NET.Plugin.WorkWeixin/GlobalUsings.cs:
+    newFile: !uuid '3c9a1476bf302f725bdb1ff10654bcea8c205072'
+    oldFile: null
+  /Admin.NET/Plugins/Admin.NET.Plugin.WorkWeixin/Option:
+    newFile: !uuid '93fa90dbf7173a2b656e0d65900128cd97e2031b'
+    oldFile: null
+  /Admin.NET/Plugins/Admin.NET.Plugin.WorkWeixin/Option/WorkWeixinOptions.cs:
+    newFile: !uuid 'af6f85576346313c81fb60dc2c508b523881ac98'
+    oldFile: null
+  /Admin.NET/Plugins/Admin.NET.Plugin.WorkWeixin/Proxy:
+    newFile: !uuid 'e6bb15df29598d400185fab17a2e61aa7d6d5f69'
+    oldFile: null
+  /Admin.NET/Plugins/Admin.NET.Plugin.WorkWeixin/Proxy/AppChat:
+    newFile: !uuid '014861039ef452dd362b9ae75c79002c5e77cf06'
+    oldFile: null
+  /Admin.NET/Plugins/Admin.NET.Plugin.WorkWeixin/Proxy/AppChat/Dto:
+    newFile: !uuid '28486e0df87b4e5925100606b7d7961c80ba9d79'
+    oldFile: null
+  /Admin.NET/Plugins/Admin.NET.Plugin.WorkWeixin/Proxy/AppChat/Dto/AppChatHttpInput.cs:
+    newFile: !uuid 'f053ac63e9399f0fe1798027b6e58033e189736d'
+    oldFile: null
+  /Admin.NET/Plugins/Admin.NET.Plugin.WorkWeixin/Proxy/AppChat/Dto/AppChatHttpOutput.cs:
+    newFile: !uuid '5a1aab0f74e618539902a9116c0ce03b9f7e5ff3'
+    oldFile: null
+  /Admin.NET/Plugins/Admin.NET.Plugin.WorkWeixin/Proxy/AppChat/IWorkWeixinAppChatHttp.cs:
+    newFile: !uuid '057e7fad6afe087e2a3d513cf6885cbf3d5b6dae'
+    oldFile: null
+  /Admin.NET/Plugins/Admin.NET.Plugin.WorkWeixin/Proxy/Auth:
+    newFile: !uuid '64c956671bf22189bb0b8a3eed639c7ba292a2f2'
+    oldFile: null
+  /Admin.NET/Plugins/Admin.NET.Plugin.WorkWeixin/Proxy/Auth/Dto:
+    newFile: !uuid '1ac363746e2c908f25b70d2cc90d9c7c3b442733'
+    oldFile: null
+  /Admin.NET/Plugins/Admin.NET.Plugin.WorkWeixin/Proxy/Auth/Dto/WorkWeixinAuthHttpOutput.cs:
+    newFile: !uuid 'b4c9d895abadb8bb087aedbc0f74cb00f45dc236'
+    oldFile: null
+  /Admin.NET/Plugins/Admin.NET.Plugin.WorkWeixin/Proxy/Auth/IWorkWeixinAuthHttp.cs:
+    newFile: !uuid 'cca07a69fa87226709ea034ca6e695d384cdbabd'
+    oldFile: null
+  /Admin.NET/Plugins/Admin.NET.Plugin.WorkWeixin/Proxy/Department:
+    newFile: !uuid 'fb70647017065b901316ee396926e343d172f944'
+    oldFile: null
+  /Admin.NET/Plugins/Admin.NET.Plugin.WorkWeixin/Proxy/Department/Dto:
+    newFile: !uuid 'c0d5df40138df40b867501974f809c2a91bf0812'
+    oldFile: null
+  /Admin.NET/Plugins/Admin.NET.Plugin.WorkWeixin/Proxy/Department/Dto/DepartmentHttpInput.cs:
+    newFile: !uuid '0c9283983f57e0f60b9d703d46bb30862f16afa5'
+    oldFile: null
+  /Admin.NET/Plugins/Admin.NET.Plugin.WorkWeixin/Proxy/Department/Dto/DepartmentHttpOutput.cs:
+    newFile: !uuid 'c6a94fbe671a0b266d20a9f9ee62ab1db6f9b9f9'
+    oldFile: null
+  /Admin.NET/Plugins/Admin.NET.Plugin.WorkWeixin/Proxy/Department/IDepartmentHttp.cs:
+    newFile: !uuid 'f04a1b59321c469dd750fdfa1dcfc898a4e5fc59'
+    oldFile: null
+  /Admin.NET/Plugins/Admin.NET.Plugin.WorkWeixin/Proxy/Tag:
+    newFile: !uuid 'dcdb8dc0b0d982f553caa32a8454dba8017450a7'
+    oldFile: null
+  /Admin.NET/Plugins/Admin.NET.Plugin.WorkWeixin/Proxy/Tag/Dto:
+    newFile: !uuid '94d3a64af7c51099508bfe7f5e054c0b0c62584d'
+    oldFile: null
+  /Admin.NET/Plugins/Admin.NET.Plugin.WorkWeixin/Proxy/Tag/Dto/TagHttpInput.cs:
+    newFile: !uuid 'e5abcdb8e7461d29adc06352c4b40abf1e5c7792'
+    oldFile: null
+  /Admin.NET/Plugins/Admin.NET.Plugin.WorkWeixin/Proxy/Tag/Dto/TagHttpOutput.cs:
+    newFile: !uuid 'a389c64167490ee404fb7e85021a23b12412bf82'
+    oldFile: null
+  /Admin.NET/Plugins/Admin.NET.Plugin.WorkWeixin/Proxy/Tag/ITagHttp.cs:
+    newFile: !uuid 'f42ace850cf68830f6dbde4743b61d36357c3400'
+    oldFile: null
+  /Admin.NET/Plugins/Admin.NET.Plugin.WorkWeixin/Startup.cs:
+    newFile: !uuid '7b6a39a7098de9539a4740f861c5c05592948892'
+    oldFile: null
+  /Admin.NET/Plugins/Admin.NET.Plugin.WorkWeixin/Utils:
+    newFile: !uuid '4079374141e48dbb6cc02b5b87590318a268353d'
+    oldFile: null
+  /Admin.NET/Plugins/Admin.NET.Plugin.WorkWeixin/Utils/BaseHttpOutput.cs:
+    newFile: !uuid 'ee8a02e47676afbb8c2c8ed54ff2c77176c8b4ef'
+    oldFile: null
+gitCommitId: !uuid 'b06aa6aae13075c1b593175f7c2fd71c33a9c1cd'
 renames: {
   }
-revisionId: 2701
+revisionId: 2702
