@@ -4,6 +4,11 @@
 //
 // 不得利用本项目从事危害国家安全、扰乱社会秩序、侵犯他人合法权益等法律法规禁止的活动！任何基于本项目二次开发而产生的一切法律纠纷和责任，我们不承担任何责任！
 
+using Admin.Net.Plugin.DingTalk.RequestProxy.Top;
+using Admin.Net.Plugin.DingTalk.RequestProxy.Top.DTO;
+using Admin.NET.Plugin.DingTalk.RequestProxy.HRM;
+using Admin.NET.Plugin.DingTalk.RequestProxy.HRM.DTO;
+
 namespace Admin.NET.Plugin.DingTalk.Service;
 
 /// <summary>
@@ -14,12 +19,18 @@ public class DingTalkService : IDynamicApiController, IScoped
 {
     private readonly IDingTalkApi _dingTalkApi;
     private readonly DingTalkOptions _dingTalkOptions;
+    private readonly TopRequest _topRequest;
+    private readonly HrmRequest _hrmRequest;
 
     public DingTalkService(IDingTalkApi dingTalkApi,
-        IOptions<DingTalkOptions> dingTalkOptions)
+        IOptions<DingTalkOptions> dingTalkOptions,
+        TopRequest topRequest,
+        HrmRequest hrmRequest)
     {
         _dingTalkApi = dingTalkApi;
         _dingTalkOptions = dingTalkOptions.Value;
+        _topRequest = topRequest;
+        _hrmRequest = hrmRequest;
     }
 
     /// <summary>
@@ -27,13 +38,9 @@ public class DingTalkService : IDynamicApiController, IScoped
     /// </summary>
     /// <returns></returns>
     [DisplayName("获取企业内部应用的access_token")]
-    public async Task<GetDingTalkTokenOutput> GetDingTalkToken()
+    public async Task<GetAccessTokenResponse> GetDingTalkToken()
     {
-        var tokenRes = await _dingTalkApi.GetDingTalkToken(_dingTalkOptions.ClientId, _dingTalkOptions.ClientSecret);
-        if (tokenRes.ErrCode != 0)
-        {
-            throw Oops.Oh(tokenRes.ErrMsg);
-        }
+        var tokenRes = await _topRequest.GetAccessToken(_dingTalkOptions.ClientId, _dingTalkOptions.ClientSecret);
         return tokenRes;
     }
 
@@ -41,12 +48,14 @@ public class DingTalkService : IDynamicApiController, IScoped
     /// 获取在职员工列表 🔖
     /// </summary>
     /// <param name="access_token"></param>
-    /// <param name="input"></param>
+    /// <param name="statusList"></param>
+    /// <param name="size"></param>
+    /// <param name="offset"></param>
     /// <returns></returns>
     [HttpPost, DisplayName("获取在职员工列表")]
-    public async Task<DingTalkBaseResponse<GetDingTalkCurrentEmployeesListOutput>> GetDingTalkCurrentEmployeesList(string access_token, [Required] GetDingTalkCurrentEmployeesListInput input)
+    public async Task<EmployeeQueryonjobResponse> GetDingTalkCurrentEmployeesList(string access_token,List<string> statusList,int size,int offset)
     {
-        return await _dingTalkApi.GetDingTalkCurrentEmployeesList(access_token, input);
+        return await _hrmRequest.EmployeeQueryonjob(access_token, statusList, size, offset);
     }
 
     /// <summary>
@@ -56,9 +65,9 @@ public class DingTalkService : IDynamicApiController, IScoped
     /// <param name="input"></param>
     /// <returns></returns>
     [HttpPost, DisplayName("获取员工花名册字段信息")]
-    public async Task<DingTalkBaseResponse<List<DingTalkEmpRosterFieldVo>>> GetDingTalkCurrentEmployeesRosterList(string access_token, [Required] GetDingTalkCurrentEmployeesRosterListInput input)
+    public async Task<RosterListsQueryResponse> GetDingTalkCurrentEmployeesRosterList(string access_token, List<string> useridList,List<string> fieldFilterList,long appAgentId)
     {
-        return await _dingTalkApi.GetDingTalkCurrentEmployeesRosterList(access_token, input);
+        return await _hrmRequest.RosterListsQuery(access_token,useridList,fieldFilterList,appAgentId);
     }
 
     /// <summary>
