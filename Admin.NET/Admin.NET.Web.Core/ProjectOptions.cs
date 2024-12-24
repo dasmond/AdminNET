@@ -37,6 +37,7 @@ public static class ProjectOptions
         services.AddConfigurableOptions<CryptogramOptions>();
         services.AddConfigurableOptions<SMSOptions>();
         services.AddConfigurableOptions<EventBusOptions>();
+        services.AddConfigurableOptions<AlipayOptions>();
         services.AddConfigurableOptions<CDConfigOptions>();
         services.Configure<IpRateLimitOptions>(App.Configuration.GetSection("IpRateLimiting"));
         services.Configure<IpRateLimitPolicies>(App.Configuration.GetSection("IpRateLimitPolicies"));
