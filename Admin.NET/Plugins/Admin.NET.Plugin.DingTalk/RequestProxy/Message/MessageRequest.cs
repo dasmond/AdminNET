@@ -4,13 +4,13 @@
 //
 // 不得利用本项目从事危害国家安全、扰乱社会秩序、侵犯他人合法权益等法律法规禁止的活动！任何基于本项目二次开发而产生的一切法律纠纷和责任，我们不承担任何责任！
 
-using Admin.Net.Plugin.DingTalk.RequestProxy.Message.DTO;
+using Admin.NET.Plugin.DingTalk.RequestProxy.Message.DTO;
 
 using NewLife;
 
-using static Admin.Net.Plugin.DingTalk.RequestProxy.Message.DTO.MsgActionCardDomain;
+using static Admin.NET.Plugin.DingTalk.RequestProxy.Message.DTO.MsgActionCardDomain;
 
-namespace Admin.Net.Plugin.DingTalk.RequestProxy.Message;
+namespace Admin.NET.Plugin.DingTalk.RequestProxy.Message;
 
 public class MessageRequest : IScoped
 {

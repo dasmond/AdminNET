@@ -6,7 +6,7 @@
 
 using System.Text.Json.Serialization;
 
-namespace Admin.Net.Plugin.DingTalk.RequestProxy.Department.DTO;
+namespace Admin.NET.Plugin.DingTalk.RequestProxy.Department.DTO;
 
 public class GetDeptInfoRequest
 {

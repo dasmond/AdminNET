@@ -97,7 +97,7 @@ public class SyncDingTalkUserJob : IJob
             JobNumber = res.FieldDataList.Where(u => u.FieldCode == DingTalkConst.JobNumberField).Select(u => u.FieldValueList.Select(m => m.Value).FirstOrDefault()).FirstOrDefault(),
             DeptId = res.FieldDataList.Where(u => u.FieldCode == DingTalkConst.DeptId).Select(u => u.FieldValueList.Select(m => m.Value).FirstOrDefault()).FirstOrDefault(),
             Dept = res.FieldDataList.Where(u => u.FieldCode == DingTalkConst.Dept).Select(u => u.FieldValueList.Select(m => m.Value).FirstOrDefault()).FirstOrDefault(),
-            Position = res.FieldDataList.Where(u => u.FieldCode == DingTalkConst.Position).Select(u => u.FieldValueList.Select(m => m.Value).FirstOrDefault()).FirstOrDefault(),
+            Title = res.FieldDataList.Where(u => u.FieldCode == DingTalkConst.Position).Select(u => u.FieldValueList.Select(m => m.Value).FirstOrDefault()).FirstOrDefault(),
         }).ToList();
         if (iUser.Count > 0)
         {
@@ -114,7 +114,7 @@ public class SyncDingTalkUserJob : IJob
             JobNumber = res.FieldDataList.Where(u => u.FieldCode == DingTalkConst.JobNumberField).Select(u => u.FieldValueList.Select(m => m.Value).FirstOrDefault()).FirstOrDefault(),
             DeptId = res.FieldDataList.Where(u => u.FieldCode == DingTalkConst.DeptId).Select(u => u.FieldValueList.Select(m => m.Value).FirstOrDefault()).FirstOrDefault(),
             Dept = res.FieldDataList.Where(u => u.FieldCode == DingTalkConst.Dept).Select(u => u.FieldValueList.Select(m => m.Value).FirstOrDefault()).FirstOrDefault(),
-            Position = res.FieldDataList.Where(u => u.FieldCode == DingTalkConst.Position).Select(u => u.FieldValueList.Select(m => m.Value).FirstOrDefault()).FirstOrDefault(),
+            Title = res.FieldDataList.Where(u => u.FieldCode == DingTalkConst.Position).Select(u => u.FieldValueList.Select(m => m.Value).FirstOrDefault()).FirstOrDefault(),
         }).ToList();
         if (uUser.Count > 0)
         {
@@ -126,7 +126,7 @@ public class SyncDingTalkUserJob : IJob
                 u.JobNumber,
                 u.DeptId,
                 u.Dept,
-                u.Position,
+                u.Title,
                 u.UpdateTime,
                 u.UpdateUserName,
                 u.UpdateUserId,
@@ -149,7 +149,7 @@ public class SyncDingTalkUserJob : IJob
                 u.Mobile,
                 u.DeptId,
                 u.Dept,
-                u.Position
+                u.Title
             }).ToListAsync();
         var uSysDingTalkUser = sysDingTalkUser.Select(u => new DingTalkUser
         {

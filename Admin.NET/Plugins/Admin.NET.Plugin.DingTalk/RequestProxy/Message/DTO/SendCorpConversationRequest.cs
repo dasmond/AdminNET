@@ -8,7 +8,7 @@ using Newtonsoft.Json.Converters;
 
 using System.Text.Json.Serialization;
 
-namespace Admin.Net.Plugin.DingTalk.RequestProxy.Message.DTO;
+namespace Admin.NET.Plugin.DingTalk.RequestProxy.Message.DTO;
 
 public class SendCorpConversationRequest
 {

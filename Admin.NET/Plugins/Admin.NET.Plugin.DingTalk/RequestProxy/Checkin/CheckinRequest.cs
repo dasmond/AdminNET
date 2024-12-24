@@ -6,7 +6,7 @@
 
 using NewLife;
 
-namespace Admin.Net.Plugin.DingTalk.RequestProxy.Checkin;
+namespace Admin.NET.Plugin.DingTalk.RequestProxy.Checkin;
 
 public class CheckinRequest : IScoped
 {

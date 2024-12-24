@@ -15,7 +15,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Admin.NET.Plugin.DingTalk.RequestProxy.HRM;
-public class HrmRequest
+public class HrmRequest:IScoped
 {
     private readonly IHrmRequestProxy request;
     public HrmRequest(IHrmRequestProxy _request)
