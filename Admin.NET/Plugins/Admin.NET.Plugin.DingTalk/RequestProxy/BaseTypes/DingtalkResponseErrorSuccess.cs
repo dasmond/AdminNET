@@ -7,7 +7,7 @@
 using System.Text.Json.Serialization;
 
 namespace Admin.Net.Plugin.DingTalk.RequestProxy.BaseTypes;
-public abstract class DingtalkResponseErrorSuccess:DingtalkResponseError
+public abstract class DingtalkResponseErrorSuccess : DingtalkResponseError
 {
     /// <summary>
     /// 接口调用是否成功

@@ -10,23 +10,23 @@ namespace Admin.Net.Plugin.DingTalk.RequestProxy.Department;
 
 public class DepartmentRequest : IScoped
 {
-    private readonly IDepartmentRequestProxy request;
+    private readonly IDepartmentRequestProxy _request;
 
-    public DepartmentRequest(IDepartmentRequestProxy _request)
+    public DepartmentRequest(IDepartmentRequestProxy request)
     {
-        this.request = _request;
+        _request = request;
     }
 
     /// <summary>
     /// 获取部门详情
     /// </summary>
-    /// <param name="AccessToken"></param>
+    /// <param name="accessToken"></param>
     /// <param name="deptId">部门ID，根部门ID为1</param>
     /// <param name="language">通讯录语言：zh_CN（默认）：中文，en_US：英文</param>
     /// <returns></returns>
-    public async Task<GetDeptInfoResponse> GetDeptInfo(string AccessToken, long deptId = 1, string language = "zh_CN")
+    public async Task<GetDeptInfoResponse> GetDeptInfo(string accessToken, long deptId = 1, string language = "zh_CN")
     {
-        var resStr = await request.GetDeptInfo(AccessToken, new DTO.GetDeptInfoRequest
+        var resStr = await _request.GetDeptInfo(accessToken, new DTO.GetDeptInfoRequest
         {
             DeptId = deptId,
             Language = language
@@ -38,12 +38,12 @@ public class DepartmentRequest : IScoped
     /// <summary>
     /// 获取子部门ID列表
     /// </summary>
-    /// <param name="AccessToken"></param>
+    /// <param name="accessToken"></param>
     /// <param name="deptId">父部门ID，根部门传1</param>
     /// <returns></returns>
-    public async Task<ListSubIdResponse> ListSubId(string AccessToken, long deptId = 1)
+    public async Task<ListSubIdResponse> ListSubId(string accessToken, long deptId = 1)
     {
-        var resStr = await request.ListSubId(AccessToken, new DTO.ListSubIdRequest
+        var resStr = await _request.ListSubId(accessToken, new DTO.ListSubIdRequest
         {
             DeptId = deptId
         });
@@ -54,13 +54,13 @@ public class DepartmentRequest : IScoped
     /// <summary>
     /// 获取部门列表
     /// </summary>
-    /// <param name="AccessToken"></param>
+    /// <param name="accessToken"></param>
     /// <param name="deptId">父部门ID</param>
     /// <param name="language">通讯录语言：，zh_CN（默认）：中文，en_US：英文</param>
     /// <returns></returns>
-    public async Task<ListSubResponse> ListSub(string AccessToken, long deptId = 1, string language = "zh_CN")
+    public async Task<ListSubResponse> ListSub(string accessToken, long deptId = 1, string language = "zh_CN")
     {
-        var resStr = await request.ListSub(AccessToken, new ListSubRequest
+        var resStr = await _request.ListSub(accessToken, new ListSubRequest
         {
             DeptId = deptId,
             Language = language

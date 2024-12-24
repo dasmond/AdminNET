@@ -8,7 +8,7 @@ using System.Text.Json.Serialization;
 
 namespace Admin.Net.Plugin.DingTalk.RequestProxy.BaseTypes;
 
-public abstract class DingtalkResponseErrorResult<T>:DingtalkResponseError
+public abstract class DingtalkResponseErrorResult<T> : DingtalkResponseError
 {
     /// <summary>
     /// 返回结果

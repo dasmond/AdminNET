@@ -9,11 +9,11 @@ namespace Admin.Net.Plugin.DingTalk.RequestProxy.Department;
 public interface IDepartmentRequestProxy : IHttpDispatchProxy
 {
     [Post("https://oapi.dingtalk.com/topapi/v2/department/get"), JsonSerialization(typeof(NewtonsoftJsonSerializerProvider))]
-    Task<string> GetDeptInfo([QueryString("access_token")] string AccessToken, [Body] DTO.GetDeptInfoRequest request);
+    Task<string> GetDeptInfo([QueryString("access_token")] string accessToken, [Body] DTO.GetDeptInfoRequest request);
 
     [Post("https://oapi.dingtalk.com/topapi/v2/department/listsubid"), JsonSerialization(typeof(NewtonsoftJsonSerializerProvider))]
-    Task<string> ListSubId([QueryString("access_token")] string AccessToken, [Body] DTO.ListSubIdRequest request);
+    Task<string> ListSubId([QueryString("access_token")] string accessToken, [Body] DTO.ListSubIdRequest request);
 
     [Post("https://oapi.dingtalk.com/topapi/v2/department/listsub"), JsonSerialization(typeof(NewtonsoftJsonSerializerProvider))]
-    Task<string> ListSub([QueryString("access_token")] string AccessToken, [Body] DTO.ListSubRequest request);
+    Task<string> ListSub([QueryString("access_token")] string accessToken, [Body] DTO.ListSubRequest request);
 }

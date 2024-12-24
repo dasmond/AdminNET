@@ -15,9 +15,9 @@ public enum BizTypeEnum
 
 public enum DurationUnitEnum
 {
-    day,
-    halfDay,
-    hour
+    Day,
+    HalfDay,
+    Hour
 }
 
 public enum CalculateModelEnum

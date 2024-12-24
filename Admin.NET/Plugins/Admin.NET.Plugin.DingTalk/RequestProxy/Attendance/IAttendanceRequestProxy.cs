@@ -11,17 +11,17 @@ namespace Admin.Net.Plugin.DingTalk.RequestProxy.Attendance;
 public interface IAttendanceRequestProxy : IHttpDispatchProxy
 {
     [Post("https://oapi.dingtalk.com/attendance/listRecord"), JsonSerialization(typeof(NewtonsoftJsonSerializerProvider))]
-    Task<string> ListRecord([QueryString("access_token")] string AccessToken, [Body] ListRecordRequest request);
+    Task<string> ListRecord([QueryString("access_token")] string accessToken, [Body] ListRecordRequest request);
 
     [Post("https://api.dingtalk.com/v1.0/attendance/approvals/finish"), JsonSerialization(typeof(NewtonsoftJsonSerializerProvider))]
-    Task<string> ApprovalsFinish([QueryString] string userId, [Headers("x-acs-dingtalk-access-token")] string AccessToken
+    Task<string> ApprovalsFinish([QueryString] string userId, [Headers("x-acs-dingtalk-access-token")] string accessToken
         , [Body] AttdendanceApprovalsFinishRequest request);
 
-    [Post("https://oapi.dingtalk.com/topapi/attendance/approve/cancel?access_token={AccessToken}"), JsonSerialization(typeof(NewtonsoftJsonSerializerProvider))]
-    Task<string> ApprovalsCancel(string AccessToken, [Body] AttendanceApprovelsCancelRequest request);
+    [Post("https://oapi.dingtalk.com/topapi/attendance/approve/cancel?access_token={accessToken}"), JsonSerialization(typeof(NewtonsoftJsonSerializerProvider))]
+    Task<string> ApprovalsCancel(string accessToken, [Body] AttendanceApprovelsCancelRequest request);
 
-    [Post("https://oapi.dingtalk.com/topapi/attendance/getleavestatus?access_token={AccessToken}"), JsonSerialization(typeof(NewtonsoftJsonSerializerProvider))]
+    [Post("https://oapi.dingtalk.com/topapi/attendance/getleavestatus?access_token={accessToken}"), JsonSerialization(typeof(NewtonsoftJsonSerializerProvider))]
     
-    Task<string> GetLeaveStatus(string AccessToken, [Body]GetLeaveStatusRequest request);
+    Task<string> GetLeaveStatus(string accessToken, [Body]GetLeaveStatusRequest request);
 
 }

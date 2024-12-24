@@ -32,12 +32,12 @@ public class SyncDingTalkUserJob : IJob
     public async Task ExecuteAsync(JobExecutingContext context, CancellationToken stoppingToken)
     {
         using var serviceScope = _scopeFactory.CreateScope();
-        var _sysUserRep = serviceScope.ServiceProvider.GetRequiredService<SqlSugarRepository<SysUser>>();
-        var _dingTalkUserRepo = serviceScope.ServiceProvider.GetRequiredService<SqlSugarRepository<DingTalkUser>>();
-        var _dingTalkOptions = serviceScope.ServiceProvider.GetRequiredService<IOptions<DingTalkOptions>>();
+        var sysUserRep = serviceScope.ServiceProvider.GetRequiredService<SqlSugarRepository<SysUser>>();
+        var dingTalkUserRepo = serviceScope.ServiceProvider.GetRequiredService<SqlSugarRepository<DingTalkUser>>();
+        var dingTalkOptions = serviceScope.ServiceProvider.GetRequiredService<IOptions<DingTalkOptions>>();
 
         // 获取Token
-        var tokenRes = await _dingTalkApi.GetDingTalkToken(_dingTalkOptions.Value.ClientId, _dingTalkOptions.Value.ClientSecret);
+        var tokenRes = await _dingTalkApi.GetDingTalkToken(dingTalkOptions.Value.ClientId, dingTalkOptions.Value.ClientSecret);
         if (tokenRes.ErrCode != 0)
             throw Oops.Oh(tokenRes.ErrMsg);
 
@@ -62,7 +62,7 @@ public class SyncDingTalkUserJob : IJob
             {
                 UserIdList = string.Join(",", userIdsRes.Result.DataList),
                 FieldFilterList = $"{DingTalkConst.NameField},{DingTalkConst.JobNumberField},{DingTalkConst.MobileField}",
-                AgentId = _dingTalkOptions.Value.AgentId
+                AgentId = dingTalkOptions.Value.AgentId
             });
             if (!rosterRes.Success)
             {
@@ -79,14 +79,14 @@ public class SyncDingTalkUserJob : IJob
         }
 
         // 判断新增还是更新
-        var sysDingTalkUserIdList = await _dingTalkUserRepo.AsQueryable().Select(u => new
+        var sysDingTalkUserIdList = await dingTalkUserRepo.AsQueryable().Select(u => new
         {
             u.Id,
             u.DingTalkUserId
         }).ToListAsync();
 
         var uDingTalkUser = dingTalkUserList.Where(u => sysDingTalkUserIdList.Any(m => m.DingTalkUserId == u.UserId)); // 需要更新的用户Id
-        var iDingTalkUser = dingTalkUserList.Where(u => !sysDingTalkUserIdList.Any(m => m.DingTalkUserId == u.UserId)); // 需要新增的用户Id
+        var iDingTalkUser = dingTalkUserList.Where(u => sysDingTalkUserIdList.All(m => m.DingTalkUserId != u.UserId)); // 需要新增的用户Id
 
         // 新增钉钉用户
         var iUser = iDingTalkUser.Select(res => new DingTalkUser
@@ -101,7 +101,7 @@ public class SyncDingTalkUserJob : IJob
         }).ToList();
         if (iUser.Count > 0)
         {
-            await _dingTalkUserRepo.CopyNew().AsInsertable(iUser).ExecuteCommandAsync();
+            await dingTalkUserRepo.CopyNew().AsInsertable(iUser).ExecuteCommandAsync();
         }
 
         // 更新钉钉用户
@@ -118,7 +118,7 @@ public class SyncDingTalkUserJob : IJob
         }).ToList();
         if (uUser.Count > 0)
         {
-            await _dingTalkUserRepo.CopyNew().AsUpdateable(uUser).UpdateColumns(u => new
+            await dingTalkUserRepo.CopyNew().AsUpdateable(uUser).UpdateColumns(u => new
             {
                 u.DingTalkUserId,
                 u.Name,
@@ -134,13 +134,13 @@ public class SyncDingTalkUserJob : IJob
         }
 
         // 通过系统用户账号(工号)，更新钉钉用户表里面的系统用户Id
-        var sysUser = await _sysUserRep.AsQueryable()
+        var sysUser = await sysUserRep.AsQueryable()
             .Select(u => new
             {
                 u.Id,
                 u.Account
             }).ToListAsync();
-        var sysDingTalkUser = await _dingTalkUserRepo.AsQueryable()
+        var sysDingTalkUser = await dingTalkUserRepo.AsQueryable()
             .Where(u => sysUser.Any(m => m.Account == u.JobNumber))
             .Select(u => new
             {
@@ -157,7 +157,7 @@ public class SyncDingTalkUserJob : IJob
             SysUserId = sysUser.Where(m => m.Account == u.JobNumber).Select(u => u.Id).FirstOrDefault(),
         }).ToList();
 
-        await _dingTalkUserRepo.CopyNew().AsUpdateable(uSysDingTalkUser).UpdateColumns(u => new
+        await dingTalkUserRepo.CopyNew().AsUpdateable(uSysDingTalkUser).UpdateColumns(u => new
         {
             u.SysUserId,
             u.UpdateTime,

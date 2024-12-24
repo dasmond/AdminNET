@@ -9,15 +9,15 @@ namespace Admin.Net.Plugin.DingTalk.RequestProxy.Checkin;
 public interface ICheckinRequestProxy : IHttpDispatchProxy
 {
     [Post("https://oapi.dingtalk.com/topapi/checkin/record/get"), JsonSerialization(typeof(NewtonsoftJsonSerializerProvider))]
-    Task<string> GetUserRecord([QueryString("access_token")] string AccessToken, [Body] DTO.GetUserRecordRequest request);
+    Task<string> GetUserRecord([QueryString("access_token")] string accessToken, [Body] DTO.GetUserRecordRequest request);
 
     [Get(("https://oapi.dingtalk.com/checkin/record")), JsonSerialization(typeof(NewtonsoftJsonSerializerProvider))]
-    Task<string> GetDeptRecord([QueryString("access_token")] string AccessToken,
-        [QueryString("department_id")] string DepartmentId,
-        [QueryString("start_time")] long StartTime,
-        [QueryString("end_time")] long EndTime,
-        [QueryString("offset")] long Offset,
-        [QueryString("size")] long Size,
-        [QueryString("order")] string Order
+    Task<string> GetDeptRecord([QueryString("access_token")] string accessToken,
+        [QueryString("department_id")] string departmentId,
+        [QueryString("start_time")] long startTime,
+        [QueryString("end_time")] long endTime,
+        [QueryString("offset")] long offset,
+        [QueryString("size")] long size,
+        [QueryString("order")] string order
         );
 }

@@ -4,8 +4,6 @@
 //
 // 不得利用本项目从事危害国家安全、扰乱社会秩序、侵犯他人合法权益等法律法规禁止的活动！任何基于本项目二次开发而产生的一切法律纠纷和责任，我们不承担任何责任！
 
-using System.Text.Json.Serialization;
-
 namespace Admin.NET.Plugin.DingTalk.RequestProxy.HRM.DTO;
 
 public class RosterListsQueryResponse
@@ -35,9 +33,9 @@ public class RosterListsQueryResponse
         /// <summary>
         /// 返回的字段信息列表
         /// </summary>
-        public List<FielddataDomain> FieldDataList { get; set; }
+        public List<FieldDataDomain> FieldDataList { get; set; }
 
-        public class FielddataDomain
+        public class FieldDataDomain
         {
             /// <summary>
             /// 字段标识
@@ -57,9 +55,9 @@ public class RosterListsQueryResponse
             /// <summary>
             /// 字段值列表
             /// </summary>
-            public List<FieldvalueDomain> FieldValueList { get; set; }
+            public List<FieldValueDomain> FieldValueList { get; set; }
 
-            public class FieldvalueDomain
+            public class FieldValueDomain
             {
                 /// <summary>
                 /// 字段取值，选项类型字段对应选项的key

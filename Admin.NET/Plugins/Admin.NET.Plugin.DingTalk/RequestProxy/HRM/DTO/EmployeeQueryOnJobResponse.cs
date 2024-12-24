@@ -4,26 +4,35 @@
 //
 // 不得利用本项目从事危害国家安全、扰乱社会秩序、侵犯他人合法权益等法律法规禁止的活动！任何基于本项目二次开发而产生的一切法律纠纷和责任，我们不承担任何责任！
 
+using Admin.Net.Plugin.DingTalk.RequestProxy.BaseTypes;
+
 using System.Text.Json.Serialization;
 
 namespace Admin.NET.Plugin.DingTalk.RequestProxy.HRM.DTO;
 
-public class EmployeeQueryonjobRequest
+public class EmployeeQueryOnJobResponse: DingtalkResponseErrorSuccess
+{
+    [JsonProperty("request_id")]
+    [JsonPropertyName("request_id")]
+    public string RequestId { get; set; }
+
+
+    public EmployeeQueryOnJobResponseResultDomain Result { get; set; }
+}
+
+public class EmployeeQueryOnJobResponseResultDomain
 {
     /// <summary>
-    /// 在职员工状态筛选，可以查询多个状态。不同状态之间使用英文逗号分隔。2：试用期、3：正式、5：待离职、-1：无状态
+    /// 查询到的员工userId列表
     /// </summary>
-    [JsonProperty("status_list")]
-    [JsonPropertyName("status_list")]
-    public string StatusList { get; set; }
+    [JsonProperty("data_list")]
+    [JsonPropertyName("data_list")]
+    public List<string> DataList { get; set; }
 
     /// <summary>
-    /// 分页游标，从0开始。根据返回结果里的next_cursor是否为空来判断是否还有下一页，且再次调用时offset设置成next_cursor的值。
+    /// 下一次分页调用的offset值，当返回结果里没有next_cursor时，表示分页结束。
     /// </summary>
-    public int Offset { get; set; }
-
-    /// <summary>
-    /// 分页大小，最大50。
-    /// </summary>
-    public int Size { get; set; }
+    [JsonProperty("next_cursor")]
+    [JsonPropertyName("next_cursor")]
+    public int? NextCursor { get; set; }
 }

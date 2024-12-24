@@ -10,6 +10,6 @@ using System.Text.Json.Serialization;
 
 namespace Admin.Net.Plugin.DingTalk.RequestProxy.Attendance.DTO;
 
-public class AttendanceApprovelsCancelResponse:DingtalkResponseError
+public class AttendanceApprovelsCancelResponse : DingtalkResponseError
 {
 }

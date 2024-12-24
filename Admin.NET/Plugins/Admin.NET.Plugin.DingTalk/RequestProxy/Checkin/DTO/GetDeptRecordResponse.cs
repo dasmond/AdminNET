@@ -10,7 +10,7 @@ using System.Text.Json.Serialization;
 
 namespace Admin.Net.Plugin.DingTalk.RequestProxy.Checkin.DTO;
 
-public class GetDeptRecordResponse:DingtalkResponseError
+public class GetDeptRecordResponse : DingtalkResponseError
 {
     /// <summary>
     /// 返回结果

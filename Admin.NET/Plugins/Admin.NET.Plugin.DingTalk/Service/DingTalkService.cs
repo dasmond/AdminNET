@@ -47,38 +47,40 @@ public class DingTalkService : IDynamicApiController, IScoped
     /// <summary>
     /// 获取在职员工列表 🔖
     /// </summary>
-    /// <param name="access_token"></param>
+    /// <param name="accessToken"></param>
     /// <param name="statusList"></param>
     /// <param name="size"></param>
     /// <param name="offset"></param>
     /// <returns></returns>
     [HttpPost, DisplayName("获取在职员工列表")]
-    public async Task<EmployeeQueryonjobResponse> GetDingTalkCurrentEmployeesList(string access_token,List<string> statusList,int size,int offset)
+    public async Task<EmployeeQueryOnJobResponse> GetDingTalkCurrentEmployeesList(string accessToken, List<string> statusList, int size, int offset)
     {
-        return await _hrmRequest.EmployeeQueryonjob(access_token, statusList, size, offset);
+        return await _hrmRequest.EmployeeQueryOnJob(accessToken, statusList, size, offset);
     }
 
     /// <summary>
     /// 获取员工花名册字段信息 🔖
     /// </summary>
-    /// <param name="access_token"></param>
-    /// <param name="input"></param>
+    /// <param name="accessToken"></param>
+    /// <param name="userIdList"></param>
+    /// <param name="fieldFilterList"></param>
+    /// <param name="appAgentId"></param>
     /// <returns></returns>
     [HttpPost, DisplayName("获取员工花名册字段信息")]
-    public async Task<RosterListsQueryResponse> GetDingTalkCurrentEmployeesRosterList(string access_token, List<string> useridList,List<string> fieldFilterList,long appAgentId)
+    public async Task<RosterListsQueryResponse> GetDingTalkCurrentEmployeesRosterList(string accessToken, List<string> userIdList, List<string> fieldFilterList, long appAgentId)
     {
-        return await _hrmRequest.RosterListsQuery(access_token,useridList,fieldFilterList,appAgentId);
+        return await _hrmRequest.RosterListsQuery(accessToken,userIdList,fieldFilterList,appAgentId);
     }
 
     /// <summary>
     /// 发送钉钉互动卡片 🔖
     /// </summary>
-    /// <param name="token"></param>
+    /// <param name="accessToken"></param>
     /// <param name="input"></param>
     /// <returns></returns>
     [DisplayName("给指定用户发送钉钉互动卡片")]
-    public async Task<DingTalkSendInteractiveCardsOutput> DingTalkSendInteractiveCards(string token, DingTalkSendInteractiveCardsInput input)
+    public async Task<DingTalkSendInteractiveCardsOutput> DingTalkSendInteractiveCards(string accessToken, DingTalkSendInteractiveCardsInput input)
     {
-        return await _dingTalkApi.DingTalkSendInteractiveCards(token, input);
+        return await _dingTalkApi.DingTalkSendInteractiveCards(accessToken, input);
     }
 }

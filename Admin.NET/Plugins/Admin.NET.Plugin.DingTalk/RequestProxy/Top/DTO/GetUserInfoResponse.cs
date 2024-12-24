@@ -9,7 +9,7 @@ using System.Text.Json.Serialization;
 
 namespace Admin.Net.Plugin.DingTalk.RequestProxy.Top.DTO;
 
-public class GetUserInfoResponse : DingtalkResponseErrorResultRequestid<UserGetByCodeResponse>
+public class GetUserInfoResponse : DingtalkResponseErrorResultRequestId<UserGetByCodeResponse>
 {
 }
 

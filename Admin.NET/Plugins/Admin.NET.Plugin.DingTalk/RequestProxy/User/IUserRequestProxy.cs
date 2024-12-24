@@ -9,18 +9,18 @@ namespace Admin.Net.Plugin.DingTalk.RequestProxy.User;
 public interface IUserRequestProxy : IHttpDispatchProxy
 {
     [Post("https://oapi.dingtalk.com/topapi/v2/user/get"), JsonSerialization(typeof(NewtonsoftJsonSerializerProvider))]
-    Task<string> UserDetail([QueryString("access_token")] string AccessToken, [Body] DTO.UserDetailRequest request);
+    Task<string> UserDetail([QueryString("access_token")] string accessToken, [Body] DTO.UserDetailRequest request);
 
     [Post("https://oapi.dingtalk.com/topapi/user/listsimple"), JsonSerialization(typeof(NewtonsoftJsonSerializerProvider))]
-    Task<string> UserListSimple([QueryString("access_token")] string AccessToken, [Body] DTO.UserListSimpleRequest request);
+    Task<string> UserListSimple([QueryString("access_token")] string accessToken, [Body] DTO.UserListSimpleRequest request);
 
     [Post("https://oapi.dingtalk.com/topapi/user/listid"), JsonSerialization(typeof(NewtonsoftJsonSerializerProvider))]
-    Task<string> UserListId([QueryString("access_token")] string AccessToken, [Body] DTO.UserListIdRequest request);
+    Task<string> UserListId([QueryString("access_token")] string accessToken, [Body] DTO.UserListIdRequest request);
 
     [Post("https://oapi.dingtalk.com/topapi/v2/user/list"), JsonSerialization(typeof(NewtonsoftJsonSerializerProvider))]
-    Task<string> UserList([QueryString("access_token")] string AccessToken, [Body] DTO.UserListRequest request);
+    Task<string> UserList([QueryString("access_token")] string accessToken, [Body] DTO.UserListRequest request);
 
 
     [Post("https://oapi.dingtalk.com/topapi/role/list"), JsonSerialization(typeof(NewtonsoftJsonSerializerProvider))]
-    Task<string> RoleList([QueryString("access_token")] string AccessToken, [Body] DTO.RoleListRequest request);
+    Task<string> RoleList([QueryString("access_token")] string accessToken, [Body] DTO.RoleListRequest request);
 }

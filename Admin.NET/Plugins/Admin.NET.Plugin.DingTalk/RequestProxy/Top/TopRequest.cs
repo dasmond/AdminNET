@@ -11,22 +11,22 @@ namespace Admin.Net.Plugin.DingTalk.RequestProxy.Top;
 
 public class TopRequest : IScoped
 {
-    private ITopRequestProxy request;
+    private readonly ITopRequestProxy _request;
 
     public TopRequest(ITopRequestProxy request)
     {
-        this.request = request;
+        _request = request;
     }
 
     /// <summary>
     /// 通过免登码获取用户信息
     /// </summary>
-    /// <param name="AccessToken"></param>
+    /// <param name="accessToken"></param>
     /// <param name="code">免登授权码</param>
     /// <returns></returns>
-    public async Task<GetUserInfoResponse> GetUserInfo(string AccessToken, string code)
+    public async Task<GetUserInfoResponse> GetUserInfo(string accessToken, string code)
     {
-        var resStr = await request.GetUserInfo(AccessToken, new GetUserInfoRequest { Code = code });
+        var resStr = await _request.GetUserInfo(accessToken, new GetUserInfoRequest { Code = code });
         var res = resStr.ToObject<GetUserInfoResponse>();
         return res;
     }
@@ -39,7 +39,7 @@ public class TopRequest : IScoped
     /// <returns></returns>
     public async Task<GetAccessTokenResponse> GetAccessToken(string appKey, string appSecret)
     {
-        var resStr = await request.GetAccessToken(new GetAccessTokenRequest
+        var resStr = await _request.GetAccessToken(new GetAccessTokenRequest
         {
             AppKey = appKey,
             AppSecret = appSecret
@@ -51,11 +51,11 @@ public class TopRequest : IScoped
     /// <summary>
     /// 获取jsapiTicket
     /// </summary>
-    /// <param name="AccessToken"></param>
+    /// <param name="accessToken"></param>
     /// <returns></returns>
-    public async Task<GetApiTicketResponse> GetJsApiTicket(string AccessToken)
+    public async Task<GetApiTicketResponse> GetJsApiTicket(string accessToken)
     {
-        var resStr = await request.GetApiTickets(AccessToken);
+        var resStr = await _request.GetApiTickets(accessToken);
         var res = resStr.ToObject<GetApiTicketResponse>();
         return res;
     }

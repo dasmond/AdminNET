@@ -7,12 +7,12 @@
 using System.Text.Json.Serialization;
 
 namespace Admin.Net.Plugin.DingTalk.RequestProxy.AliTrip.DTO;
-public class GetAlitripFlightOrdersRequest
+public class GetAliTripFlightOrdersRequest
 {
-    public GetAlitripFlightOrdersRequestDomain rq;
+    public GetAliTripFlightOrdersRequestDomain rq;
 }
 
-public class GetAlitripFlightOrdersRequestDomain
+public class GetAliTripFlightOrdersRequestDomain
 {
     /// <summary>
     /// 开始时间 2017-05-01 00:00:00

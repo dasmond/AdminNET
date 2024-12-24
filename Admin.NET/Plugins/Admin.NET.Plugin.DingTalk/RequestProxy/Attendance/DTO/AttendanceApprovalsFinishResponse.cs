@@ -10,11 +10,16 @@ using System.Text.Json.Serialization;
 
 namespace Admin.Net.Plugin.DingTalk.RequestProxy.Attendance.DTO;
 
-public class AttendanceApprovalsFinishResponse:DingtalkResponseSuccessResult<AttendanceApprovalsFinishResponseResult>
+/// <summary>
+/// 出勤批准完成响应
+/// </summary>
+public class AttendanceApprovalsFinishResponse : DingtalkResponseSuccessResult<AttendanceApprovalsFinishResponseResult>
 {
 }
 
-
+/// <summary>
+/// 考勤批准完成响应结果
+/// </summary>
 public class AttendanceApprovalsFinishResponseResult
 {
     /// <summary>
@@ -27,6 +32,7 @@ public class AttendanceApprovalsFinishResponseResult
     /// </summary>
     public List<DurationDetailDomain> DurationDetail;
 }
+
 public class DurationDetailDomain
 {
     /// <summary>

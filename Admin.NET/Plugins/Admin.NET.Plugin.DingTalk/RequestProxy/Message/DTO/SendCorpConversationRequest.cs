@@ -257,7 +257,7 @@ public class MsgOaDomain
         /// </summary>
         [JsonProperty("bgcolor")]
         [JsonPropertyName("bgcolor")]
-        public string Bgcolor { get; set; }
+        public string BgColor { get; set; }
 
         /// <summary>
         /// 消息的头部标题

@@ -4,6 +4,8 @@
 //
 // 不得利用本项目从事危害国家安全、扰乱社会秩序、侵犯他人合法权益等法律法规禁止的活动！任何基于本项目二次开发而产生的一切法律纠纷和责任，我们不承担任何责任！
 
+using System.Text.Json.Serialization;
+
 namespace Admin.NET.Plugin.DingTalk;
 
 public class DingTalkFieldValueVo
@@ -11,21 +13,21 @@ public class DingTalkFieldValueVo
     /// <summary>
     /// 第几条的明细标识，下标从0开始
     /// </summary>
-    [Newtonsoft.Json.JsonProperty("item_index")]
-    [System.Text.Json.Serialization.JsonPropertyName("item_index")]
+    [JsonProperty("item_index")]
+    [JsonPropertyName("item_index")]
     public int ItemIndex { get; set; }
 
     /// <summary>
     /// 字段展示值，选项类型字段对应选项的value
     /// </summary>
-    [Newtonsoft.Json.JsonProperty("label")]
-    [System.Text.Json.Serialization.JsonPropertyName("label")]
+    [JsonProperty("label")]
+    [JsonPropertyName("label")]
     public string Label { get; set; }
 
     /// <summary>
     /// 字段取值，选项类型字段对应选项的key
     /// </summary>
-    [Newtonsoft.Json.JsonProperty("value")]
-    [System.Text.Json.Serialization.JsonPropertyName("value")]
+    [JsonProperty("value")]
+    [JsonPropertyName("value")]
     public string Value { get; set; }
 }

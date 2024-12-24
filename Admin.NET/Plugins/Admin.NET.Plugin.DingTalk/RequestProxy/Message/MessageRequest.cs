@@ -14,21 +14,21 @@ namespace Admin.Net.Plugin.DingTalk.RequestProxy.Message;
 
 public class MessageRequest : IScoped
 {
-    private IMessageRequestProxy request;
+    private readonly IMessageRequestProxy _request;
 
     public MessageRequest(IMessageRequestProxy request)
     {
-        this.request = request;
+        _request = request;
     }
 
-    public async Task<SendCorpConversationResponse> SendCorpMarkdown(string AccessToken, long agentId, List<string>? useridList, List<long> deptidList
+    public async Task<SendCorpConversationResponse> SendCorpMarkdown(string accessToken, long agentId, List<string>? useridList, List<long> deptIdList
         , string mdTitle, string mdText, bool toAllUser = false)
     {
-        var resStr = await request.SendCorpConversation(AccessToken, new SendCorpConversationRequest
+        var resStr = await _request.SendCorpConversation(accessToken, new SendCorpConversationRequest
         {
             AgentId = agentId,
             UserIdList = useridList?.ToArray().Join(),
-            DeptIdList = deptidList?.ToArray().Join(),
+            DeptIdList = deptIdList?.ToArray().Join(),
             ToAllUser = toAllUser,
             Msg = new MsgDomain
             {
@@ -44,16 +44,16 @@ public class MessageRequest : IScoped
         return res;
     }
 
-    public async Task<SendCorpConversationResponse> SendCorpActionCard(string AccessToken, long agentId, List<string>? useridList, List<long>? deptidList
+    public async Task<SendCorpConversationResponse> SendCorpActionCard(string accessToken, long agentId, List<string>? useridList, List<long>? deptIdList
         , string markdown, string? title = null, string? singleTitle = null, string? singleUrl = null
         , BenOrientationEnum? btnOrientation = null, MsgActionCardBtnJsonListDomain[]? btnJsonList = null
         , bool toAllUser = false)
     {
-        var resStr = await request.SendCorpConversation(AccessToken, new SendCorpConversationRequest
+        var resStr = await _request.SendCorpConversation(accessToken, new SendCorpConversationRequest
         {
             AgentId = agentId,
             UserIdList = useridList?.ToArray().Join(),
-            DeptIdList = deptidList?.ToArray().Join(),
+            DeptIdList = deptIdList?.ToArray().Join(),
             ToAllUser = toAllUser,
             Msg = new MsgDomain
             {

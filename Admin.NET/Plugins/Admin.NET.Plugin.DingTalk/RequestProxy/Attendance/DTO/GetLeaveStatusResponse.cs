@@ -10,7 +10,7 @@ using System.Text.Json.Serialization;
 
 namespace Admin.Net.Plugin.DingTalk.RequestProxy.Attendance.DTO;
 
-public class GetLeaveStatusResponse:DingtalkResponseErrorResultRequestid<GetLeaveStatusResult>
+public class GetLeaveStatusResponse:DingtalkResponseErrorResultRequestId<GetLeaveStatusResult>
 {
     /// <summary>
     /// 请求是否成功。true：成功, false：失败

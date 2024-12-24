@@ -10,13 +10,13 @@ namespace Admin.Net.Plugin.DingTalk.RequestProxy.AliTrip;
 public interface IAliTripRequestProxy: IHttpDispatchProxy
 {
     [Post("https://oapi.dingtalk.com/topapi/alitrip/btrip/address/get"), JsonSerialization(typeof(NewtonsoftJsonSerializerProvider))]
-    Task<string> GetAlitripAddress([QueryString("access_token")] string AccessToken, [Body] GetAlitripAddressRequest request);
+    Task<string> GetAliTripAddress([QueryString("access_token")] string accessToken, [Body] GetAliTripAddressRequest request);
 
     [Post("https://oapi.dingtalk.com/topapi/alitrip/btrip/flight/order/search"), JsonSerialization(typeof(NewtonsoftJsonSerializerProvider))]
 
-    Task<string> GetAlitripFlightOrders([QueryString("access_token")] string AccessToken, GetAlitripFlightOrdersRequest rq);
+    Task<string> GetAliTripFlightOrders([QueryString("access_token")] string accessToken, GetAliTripFlightOrdersRequest rq);
 
     [Post("https://oapi.dingtalk.com/topapi/alitrip/btrip/train/order/search"), JsonSerialization(typeof(NewtonsoftJsonSerializerProvider))]
-    Task<string> GetAlitripTrainOrders([QueryString("access_token")] string AccessToken, GetAlitripTrainOrdersRequest rq);
+    Task<string> GetAliTripTrainOrders([QueryString("access_token")] string accessToken, GetAliTripTrainOrdersRequest rq);
 
 }

@@ -10,46 +10,46 @@ using NewLife;
 namespace Admin.NET.Plugin.DingTalk.RequestProxy.HRM;
 public class HrmRequest : IScoped
 {
-    private readonly IHrmRequestProxy request;
-    public HrmRequest(IHrmRequestProxy _request)
+    private readonly IHrmRequestProxy _request;
+    public HrmRequest(IHrmRequestProxy request)
     {
-        request = _request;
+        _request = request;
     }
 
     /// <summary>
     /// 获取在职员工列表
     /// </summary>
-    /// <param name="AccessToken"></param>
-    /// <param name="StatusList">在职员工状态筛选，可以查询多个状态。不同状态之间使用英文逗号分隔。2：试用期、3：正式、5：待离职、-1：无状态</param>
+    /// <param name="accessToken"></param>
+    /// <param name="statusList">在职员工状态筛选，可以查询多个状态。不同状态之间使用英文逗号分隔。2：试用期、3：正式、5：待离职、-1：无状态</param>
     /// <param name="size">分页大小，最大50</param>
     /// <param name="offset">分页游标，从0开始。根据返回结果里的next_cursor是否为空来判断是否还有下一页，且再次调用时offset设置成next_cursor的值</param>
     /// <returns></returns>
-    public async Task<EmployeeQueryonjobResponse> EmployeeQueryonjob(string AccessToken, List<string> StatusList, int size = 50, int offset = 0)
+    public async Task<EmployeeQueryOnJobResponse> EmployeeQueryOnJob(string accessToken, List<string> statusList, int size = 50, int offset = 0)
     {
-        var resStr = await request.EmployeeQueryonjob(AccessToken, new EmployeeQueryonjobRequest
+        var resStr = await _request.EmployeeQueryonjob(accessToken, new EmployeeQueryOnJobRequest
         {
-            StatusList = StatusList.Join(),
+            StatusList = statusList.Join(),
             Size = size,
             Offset = offset
         });
-        return resStr.ToObject<EmployeeQueryonjobResponse>();
+        return resStr.ToObject<EmployeeQueryOnJobResponse>();
     }
 
     /// <summary>
     /// 获取员工花名册字段信息
     /// </summary>
-    /// <param name="AccessToken"></param>
-    /// <param name="UseridList">员工的 userId 列表，一次最多支持传100个值</param>
-    /// <param name="FieldFilterList">需要获取的花名册字段field_code值列表，一次最多支持传100个值</param>
-    /// <param name="AgentId">应用的AgentId</param>
+    /// <param name="accessToken"></param>
+    /// <param name="useridList">员工的 userId 列表，一次最多支持传100个值</param>
+    /// <param name="fieldFilterList">需要获取的花名册字段field_code值列表，一次最多支持传100个值</param>
+    /// <param name="agentId">应用的AgentId</param>
     /// <returns></returns>
-    public async Task<RosterListsQueryResponse> RosterListsQuery(string AccessToken, List<string> UseridList, List<string> FieldFilterList, long AgentId)
+    public async Task<RosterListsQueryResponse> RosterListsQuery(string accessToken, List<string> useridList, List<string> fieldFilterList, long agentId)
     {
-        var resStr = await request.RosterListsQuery(AccessToken, new RosterListsQueryRequest
+        var resStr = await _request.RosterListsQuery(accessToken, new RosterListsQueryRequest
         {
-            UserIdList = UseridList.Join(),
-            FieldFilterList = FieldFilterList.Join(),
-            AgentId = AgentId
+            UserIdList = useridList.Join(),
+            FieldFilterList = fieldFilterList.Join(),
+            AgentId = agentId
         });
         return resStr.ToObject<RosterListsQueryResponse>();
     }

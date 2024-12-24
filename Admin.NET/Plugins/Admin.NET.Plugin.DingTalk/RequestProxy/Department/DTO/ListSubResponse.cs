@@ -10,7 +10,7 @@ using System.Text.Json.Serialization;
 
 namespace Admin.Net.Plugin.DingTalk.RequestProxy.Department.DTO;
 
-public class ListSubResponse : DingtalkResponseErrorResultRequestid<List<ListSubResponseResultDomain>>
+public class ListSubResponse : DingtalkResponseErrorResultRequestId<List<ListSubResponseResultDomain>>
 {
 }
 

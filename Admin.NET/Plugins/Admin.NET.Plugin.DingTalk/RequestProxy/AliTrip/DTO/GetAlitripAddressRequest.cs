@@ -8,7 +8,7 @@ using System.Text.Json.Serialization;
 
 namespace Admin.Net.Plugin.DingTalk.RequestProxy.AliTrip.DTO;
 
-public class GetAlitripAddressRequest
+public class GetAliTripAddressRequest
 {
     [JsonProperty("request")]
     [JsonPropertyName("request")]

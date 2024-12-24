@@ -10,23 +10,23 @@ namespace Admin.Net.Plugin.DingTalk.RequestProxy.User;
 
 public class UserRequest : IScoped
 {
-    private readonly IUserRequestProxy request;
+    private readonly IUserRequestProxy _request;
 
-    public UserRequest(IUserRequestProxy _request)
+    public UserRequest(IUserRequestProxy request)
     {
-        this.request = _request;
+        _request = request;
     }
 
     /// <summary>
     /// 查询用户详情
     /// </summary>
-    /// <param name="AccessToken"></param>
+    /// <param name="accessToken"></param>
     /// <param name="userid">用户的userId</param>
     /// <param name="language">通讯录语言。zh_CN：中文（默认值），en_US：英文</param>
     /// <returns></returns>
-    public async Task<UserDetailResponse> UserDetail(string AccessToken, string userid, string language = "zh_CN")
+    public async Task<UserDetailResponse> UserDetail(string accessToken, string userid, string language = "zh_CN")
     {
-        var res = await request.UserDetail(AccessToken, new UserDetailRequest
+        var res = await _request.UserDetail(accessToken, new UserDetailRequest
         {
             UserId = userid,
             Language = language
@@ -37,7 +37,7 @@ public class UserRequest : IScoped
     /// <summary>
     /// 获取部门用户基础信息
     /// </summary>
-    /// <param name="AccessToken"></param>
+    /// <param name="accessToken"></param>
     /// <param name="deptId">部门ID，如果是根部门，该参数传1</param>
     /// <param name="cursor">分页查询的游标，最开始传0，后续传返回参数中的next_cursor值</param>
     /// <param name="size">分页长度，最大值100</param>
@@ -45,9 +45,9 @@ public class UserRequest : IScoped
     /// <param name="containAccessLimit">是否返回访问受限的员工</param>
     /// <param name="language">通讯录语言，取值。 zh_CN：中文（默认值）。 en_US：英文。</param>
     /// <returns></returns>
-    public async Task<UserListSimpleResponse> UserListSimple(string AccessToken, long deptId = 1, long cursor = 0, long size = 100, string orderField = "custom", bool containAccessLimit = false, string language = "zh_CN")
+    public async Task<UserListSimpleResponse> UserListSimple(string accessToken, long deptId = 1, long cursor = 0, long size = 100, string orderField = "custom", bool containAccessLimit = false, string language = "zh_CN")
     {
-        var resStr = await request.UserListSimple(AccessToken, new UserListSimpleRequest
+        var resStr = await _request.UserListSimple(accessToken, new UserListSimpleRequest
         {
             DeptId = deptId,
             Cursor = cursor,
@@ -63,12 +63,12 @@ public class UserRequest : IScoped
     /// <summary>
     /// 获取部门用户userid列表
     /// </summary>
-    /// <param name="AccessToken"></param>
+    /// <param name="accessToken"></param>
     /// <param name="deptId">部门deptId</param>
     /// <returns></returns>
-    public async Task<UserListIdResponse> UserListId(string AccessToken, long deptId = 1)
+    public async Task<UserListIdResponse> UserListId(string accessToken, long deptId = 1)
     {
-        var resStr = await request.UserListId(AccessToken, new UserListIdRequest
+        var resStr = await _request.UserListId(accessToken, new UserListIdRequest
         {
             DeptId = deptId
         });
@@ -78,7 +78,7 @@ public class UserRequest : IScoped
     /// <summary>
     /// 获取部门用户详情
     /// </summary>
-    /// <param name="AccessToken"></param>
+    /// <param name="accessToken"></param>
     /// <param name="deptId">部门ID，如果是根部门，该参数传1</param>
     /// <param name="cursor">分页查询的游标，最开始传0，后续传返回参数中的next_cursor值</param>
     /// <param name="size">分页大小</param>
@@ -86,9 +86,9 @@ public class UserRequest : IScoped
     /// <param name="containAccessLimit">是否返回访问受限的员工</param>
     /// <param name="language">通讯录语言，取值。zh_CN：中文（默认值）。en_US：英文。</param>
     /// <returns></returns>
-    public async Task<UserListResponse> UserList(string AccessToken, long deptId = 1, long cursor = 0, long size = 100, string orderField = "custom", bool containAccessLimit = false, string language = "zh_CN")
+    public async Task<UserListResponse> UserList(string accessToken, long deptId = 1, long cursor = 0, long size = 100, string orderField = "custom", bool containAccessLimit = false, string language = "zh_CN")
     {
-        var resStr = await request.UserList(AccessToken, new UserListRequest
+        var resStr = await _request.UserList(accessToken, new UserListRequest
         {
             DeptId = deptId,
             Cursor = cursor,
@@ -101,9 +101,9 @@ public class UserRequest : IScoped
         return res;
     }
 
-    public async Task<RoleListResponse> RoleList(string AccessToken, int size=20, int offset=0)
+    public async Task<RoleListResponse> RoleList(string accessToken, int size=20, int offset=0)
     {
-        var resStr = await request.RoleList(AccessToken, new RoleListRequest { Offset = offset, Size = size });
+        var resStr = await _request.RoleList(accessToken, new RoleListRequest { Offset = offset, Size = size });
         var res = resStr.ToObject<RoleListResponse>();
         return res;
     }

@@ -4,6 +4,8 @@
 //
 // 不得利用本项目从事危害国家安全、扰乱社会秩序、侵犯他人合法权益等法律法规禁止的活动！任何基于本项目二次开发而产生的一切法律纠纷和责任，我们不承担任何责任！
 
+using System.Text.Json.Serialization;
+
 namespace Admin.NET.Plugin.DingTalk;
 
 public class GetDingTalkTokenOutput
@@ -11,15 +13,15 @@ public class GetDingTalkTokenOutput
     /// <summary>
     /// 生成的access_token
     /// </summary>
-    [Newtonsoft.Json.JsonProperty("access_token")]
-    [System.Text.Json.Serialization.JsonPropertyName("access_token")]
+    [JsonProperty("access_token")]
+    [JsonPropertyName("access_token")]
     public string AccessToken { get; set; }
 
     /// <summary>
     /// access_token的过期时间，单位秒
     /// </summary>
-    [Newtonsoft.Json.JsonProperty("expires_in")]
-    [System.Text.Json.Serialization.JsonPropertyName("expires_in")]
+    [JsonProperty("expires_in")]
+    [JsonPropertyName("expires_in")]
     public int ExpiresIn { get; set; }
 
     /// <summary>

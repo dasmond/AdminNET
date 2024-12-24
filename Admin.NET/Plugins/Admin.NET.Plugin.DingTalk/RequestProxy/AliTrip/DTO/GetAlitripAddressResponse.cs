@@ -9,7 +9,7 @@ using Admin.Net.Plugin.DingTalk.RequestProxy.BaseTypes;
 using System.Text.Json.Serialization;
 
 namespace Admin.Net.Plugin.DingTalk.RequestProxy.AliTrip.DTO;
-public class GetAlitripAddressResponse : DingtalkResponseErrorResult<OpenApiJumpInfoRs>
+public class GetAliTripAddressResponse : DingtalkResponseErrorResult<OpenApiJumpInfoRs>
 {
 }
 

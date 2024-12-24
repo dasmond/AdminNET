@@ -11,5 +11,5 @@ namespace Admin.Net.Plugin.DingTalk.RequestProxy.Message;
 public interface IMessageRequestProxy : IHttpDispatchProxy
 {
     [Post("https://oapi.dingtalk.com/topapi/message/corpconversation/asyncsend_v2"), JsonSerialization(typeof(NewtonsoftJsonSerializerProvider))]
-    Task<string> SendCorpConversation([QueryString("access_token")] string AccessToken, [Body] SendCorpConversationRequest request);
+    Task<string> SendCorpConversation([QueryString("access_token")] string accessToken, [Body] SendCorpConversationRequest request);
 }

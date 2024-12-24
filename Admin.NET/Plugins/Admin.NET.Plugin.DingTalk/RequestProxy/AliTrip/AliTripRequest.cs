@@ -9,46 +9,46 @@ using Admin.Net.Plugin.DingTalk.RequestProxy.AliTrip.DTO;
 namespace Admin.Net.Plugin.DingTalk.RequestProxy.AliTrip;
 public class AliTripRequest
 {
-    private IAliTripRequestProxy request;
+    private readonly IAliTripRequestProxy _request;
 
     public AliTripRequest(IAliTripRequestProxy request)
     {
-        this.request = request;
+        _request = request;
     }
 
     /// <summary>
     /// 获取阿里商旅访问地址
     /// </summary>
-    /// <param name="AccessToken"></param>
+    /// <param name="accessToken"></param>
     /// <param name="req"></param>
     /// <returns></returns>
-    public async Task<GetAlitripAddressResponse> GetAlitripAddress(string AccessToken, OpenApiJumpInfoRq req)
+    public async Task<GetAliTripAddressResponse> GetAliTripAddress(string accessToken, OpenApiJumpInfoRq req)
     {
-        var resStr = await request.GetAlitripAddress(AccessToken, new GetAlitripAddressRequest
+        var resStr = await _request.GetAliTripAddress(accessToken, new GetAliTripAddressRequest
         {
             Request = req
         });
-        var res = resStr.ToObject<GetAlitripAddressResponse>();
+        var res = resStr.ToObject<GetAliTripAddressResponse>();
         return res;
     }
 
     /// <summary>
     /// 获取企业机票订单数据
     /// </summary>
-    /// <param name="AccessToken"></param>
+    /// <param name="accessToken"></param>
     /// <param name="rq"></param>
     /// <returns></returns>
-    public async Task<GetAlitripFlightOrdersResponse> GetAlitripFlightOrders(string AccessToken, GetAlitripFlightOrdersRequest rq)
+    public async Task<GetAliTripFlightOrdersResponse> GetAliTripFlightOrders(string accessToken, GetAliTripFlightOrdersRequest rq)
     {
-        var resStr = await request.GetAlitripFlightOrders(AccessToken, rq);
-        var res = resStr.ToObject<GetAlitripFlightOrdersResponse>();
+        var resStr = await _request.GetAliTripFlightOrders(accessToken, rq);
+        var res = resStr.ToObject<GetAliTripFlightOrdersResponse>();
         return res;
     }
 
-    public async Task<GetAlitripTrainOrdersResponse> GetAlitripTrainOrders(string AccessToken, GetAlitripTrainOrdersRequest rq)
+    public async Task<GetAliTripTrainOrdersResponse> GetAliTripTrainOrders(string accessToken, GetAliTripTrainOrdersRequest rq)
     {
-        var resStr = await request.GetAlitripTrainOrders(AccessToken, rq);
-        var res = resStr.ToObject<GetAlitripTrainOrdersResponse>();
+        var resStr = await _request.GetAliTripTrainOrders(accessToken, rq);
+        var res = resStr.ToObject<GetAliTripTrainOrdersResponse>();
         return res;
     }
 }

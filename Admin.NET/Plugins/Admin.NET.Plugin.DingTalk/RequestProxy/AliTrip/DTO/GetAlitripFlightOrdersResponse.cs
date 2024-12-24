@@ -10,7 +10,7 @@ using System.Text.Json.Serialization;
 
 namespace Admin.Net.Plugin.DingTalk.RequestProxy.AliTrip.DTO;
 
-public class GetAlitripFlightOrdersResponse : DingtalkResponseErrorSuccess
+public class GetAliTripFlightOrdersResponse : DingtalkResponseErrorSuccess
 {
     /// <summary>
     /// 机票列表

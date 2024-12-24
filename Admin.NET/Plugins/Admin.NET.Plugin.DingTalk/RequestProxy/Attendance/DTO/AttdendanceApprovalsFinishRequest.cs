@@ -8,6 +8,9 @@ using System.Text.Json.Serialization;
 
 namespace Admin.Net.Plugin.DingTalk.RequestProxy.Attendance.DTO;
 
+/// <summary>
+/// 出勤审批完成请求入参
+/// </summary>
 public class AttdendanceApprovalsFinishRequest
 {
     /// <summary>
