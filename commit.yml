@@ -2,22 +2,25 @@
 branches: {
   }
 fileChange:
-  /Web:
-    newFile: !uuid 'aca5b4252d73573a72690e58919a2fd2e529d9a3'
-    oldFile: !uuid '5de0e9ff4b56c8803436a243b73a6bc8b2591edf'
-  /Web/src:
-    newFile: !uuid '334d7b9becdaff08752a3906d7cfe79d6d9613fc'
-    oldFile: !uuid 'f66aacf65396caaed678425af108a09c0863ad37'
-  /Web/src/views:
-    newFile: !uuid 'ea5086610b38cb674f21561ca665ae5bea56d675'
-    oldFile: !uuid '57fdb2ad2a2864bcb77c80c588fa2140b3f3aa98'
-  /Web/src/views/login:
-    newFile: !uuid '6f4f31f35591a9f492508fa2eaf560384519f3d4'
-    oldFile: !uuid 'd3bef21a46c31d2973de55c4bb0934e557766919'
-  /Web/src/views/login/index.vue:
-    newFile: !uuid '3ae74454fb5dd93763f317b03d42eede2cb9f9af'
-    oldFile: !uuid '4007596730d2239316abb69ab31858f6ab84e034'
-gitCommitId: !uuid '1c4495bfe1d0b1acf1e6a8f6070d3013f0f8c688'
+  /Admin.NET:
+    newFile: !uuid '92bb31f3b865fbef63c0720d8a93fd2b5f69c330'
+    oldFile: !uuid '8bafde5151e244ddc3cd4483dc75f1f07ee38fd1'
+  /Admin.NET/Plugins:
+    newFile: !uuid '7c3f20849bf222d82fbc6b6ca268a8cdc5c25a4d'
+    oldFile: !uuid '0b1b5e2b3cb5586289317d22016ba2a3aa825e0c'
+  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk:
+    newFile: !uuid '274f9d3714a28b38d27bcff0415253e2fe430a4a'
+    oldFile: !uuid 'e9cbf30b5c5b06d4549c500403a3a29c887bc51b'
+  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/RequestProxy:
+    newFile: !uuid '08e19d224d3cd035e679b2a3c72f3f0ad75d73ca'
+    oldFile: !uuid 'a4ef06741825369d625d2a43de84c70015d33151'
+  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/RequestProxy/HRM:
+    newFile: !uuid 'e09d18ad49133bd67a05b2cbe89f434862ad2ad6'
+    oldFile: !uuid '58f377e7b534ace0f144ca674835298ccf5364f9'
+  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/RequestProxy/HRM/HrmRequest.cs:
+    newFile: !uuid 'a973c9bf7be2d7366880890346ebf385ca54f416'
+    oldFile: !uuid '84c9aceb84510d62f8017d91f97c74d4c6526128'
+gitCommitId: !uuid '942fdd4d65e2ac803a7b0a44ca1b6ed193ff0ed4'
 renames: {
   }
-revisionId: 2594
+revisionId: 2595
