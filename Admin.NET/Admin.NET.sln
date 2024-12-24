@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Admin.NET.Web.Core", "Admin
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Admin.NET.Web.Entry", "Admin.NET.Web.Entry\Admin.NET.Web.Entry.csproj", "{11EA630B-4600-4236-A117-CE6C6CD67586}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Admin.NET.Test", "Admin.NET.Test\Admin.NET.Test.csproj", "{57350E6A-B5A0-452C-9FD4-C69617C6DA30}"
+EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{662E0B8E-F23E-4C7D-80BD-CAA5707503CC}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
@@ -28,7 +30,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Admin.NET.Plugin.ApprovalFl
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Admin.NET.Plugin.K3Cloud", "Plugins\Admin.NET.Plugin.K3Cloud\Admin.NET.Plugin.K3Cloud.csproj", "{72EB89AB-15F7-4F85-88DB-7C2EF7C3D588}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Admin.NET.Test", "Admin.NET.Test\Admin.NET.Test.csproj", "{57350E6A-B5A0-452C-9FD4-C69617C6DA30}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Admin.NET.Plugin.WorkWeixin", "Plugins\Admin.NET.Plugin.WorkWeixin\Admin.NET.Plugin.WorkWeixin.csproj", "{BFE4764F-1FF8-47A7-B4AD-085F7D8CD6C4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -72,10 +74,6 @@ Global
 		{72EB89AB-15F7-4F85-88DB-7C2EF7C3D588}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{72EB89AB-15F7-4F85-88DB-7C2EF7C3D588}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{72EB89AB-15F7-4F85-88DB-7C2EF7C3D588}.Release|Any CPU.Build.0 = Release|Any CPU
-		{57350E6A-B5A0-452C-9FD4-C69617C6DA30}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{57350E6A-B5A0-452C-9FD4-C69617C6DA30}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{57350E6A-B5A0-452C-9FD4-C69617C6DA30}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{57350E6A-B5A0-452C-9FD4-C69617C6DA30}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -86,6 +84,7 @@ Global
 		{04AB2E76-DE8B-4EFD-9F48-F8D4C0993106} = {76F70D22-8D53-468E-A3B6-1704666A1D71}
 		{902A91A7-5EF0-4A63-BC2C-9B783DC00880} = {76F70D22-8D53-468E-A3B6-1704666A1D71}
 		{72EB89AB-15F7-4F85-88DB-7C2EF7C3D588} = {76F70D22-8D53-468E-A3B6-1704666A1D71}
+		{BFE4764F-1FF8-47A7-B4AD-085F7D8CD6C4} = {76F70D22-8D53-468E-A3B6-1704666A1D71}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5CD801D7-984A-4F5C-8FA2-211B7A5EA9F3}
