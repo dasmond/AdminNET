@@ -1,21 +1,14 @@
-﻿// Admin.NET 项目的版权、商标、专利和其他相关权利均受相应法律法规的保护。使用本项目应遵守相关法律法规和许可证的要求。
+// Admin.NET 项目的版权、商标、专利和其他相关权利均受相应法律法规的保护。使用本项目应遵守相关法律法规和许可证的要求。
 //
 // 本项目主要遵循 MIT 许可证和 Apache 许可证（版本 2.0）进行分发和使用。许可证位于源代码树根目录中的 LICENSE-MIT 和 LICENSE-APACHE 文件。
 //
 // 不得利用本项目从事危害国家安全、扰乱社会秩序、侵犯他人合法权益等法律法规禁止的活动！任何基于本项目二次开发而产生的一切法律纠纷和责任，我们不承担任何责任！
 
 using Admin.NET.Plugin.DingTalk.RequestProxy.HRM.DTO;
-
 using NewLife;
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace Admin.NET.Plugin.DingTalk.RequestProxy.HRM;
-public class HrmRequest:IScoped
+public class HrmRequest : IScoped
 {
     private readonly IHrmRequestProxy request;
     public HrmRequest(IHrmRequestProxy _request)
@@ -31,7 +24,7 @@ public class HrmRequest:IScoped
     /// <param name="size">分页大小，最大50</param>
     /// <param name="offset">分页游标，从0开始。根据返回结果里的next_cursor是否为空来判断是否还有下一页，且再次调用时offset设置成next_cursor的值</param>
     /// <returns></returns>
-    public async Task<EmployeeQueryonjobResponse> EmployeeQueryonjob(string AccessToken,List<string> StatusList,int size=50,int offset=0)
+    public async Task<EmployeeQueryonjobResponse> EmployeeQueryonjob(string AccessToken, List<string> StatusList, int size = 50, int offset = 0)
     {
         var resStr = await request.EmployeeQueryonjob(AccessToken, new EmployeeQueryonjobRequest
         {
@@ -50,7 +43,7 @@ public class HrmRequest:IScoped
     /// <param name="FieldFilterList">需要获取的花名册字段field_code值列表，一次最多支持传100个值</param>
     /// <param name="AgentId">应用的AgentId</param>
     /// <returns></returns>
-    public async Task<RosterListsQueryResponse> RosterListsQuery(string AccessToken,List<string> UseridList,List<string> FieldFilterList,long AgentId)
+    public async Task<RosterListsQueryResponse> RosterListsQuery(string AccessToken, List<string> UseridList, List<string> FieldFilterList, long AgentId)
     {
         var resStr = await request.RosterListsQuery(AccessToken, new RosterListsQueryRequest
         {
