@@ -326,7 +326,7 @@ public class SysTenantService : IDynamicApiController, ITransient
 
         return menuList.Select(u => new SysTenantMenu
         {
-            Id = u.Id + (SqlSugarConst.DefaultTenantId % 1300000000000),
+            Id = CommonUtil.GetFixedHashCode("" + SqlSugarConst.DefaultTenantId + u.Id, 1300000000000),
             TenantId = SqlSugarConst.DefaultTenantId,
             MenuId = u.Id
         });
