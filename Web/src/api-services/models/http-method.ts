@@ -12,15 +12,15 @@
  * Do not edit the class manually.
  */
 /**
- * WebHook输入参数
+ * 
  * @export
- * @interface WebHookInput
+ * @interface HttpMethod
  */
-export interface WebHookInput {
+export interface HttpMethod {
     /**
-     * 密钥
+     * 
      * @type {string}
-     * @memberof WebHookInput
+     * @memberof HttpMethod
      */
-    key: string;
+    method?: string | null;
 }

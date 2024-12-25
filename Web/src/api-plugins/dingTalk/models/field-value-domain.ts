@@ -14,31 +14,25 @@
 /**
  * 
  * @export
- * @interface GetDingTalkTokenOutput
+ * @interface FieldValueDomain
  */
-export interface GetDingTalkTokenOutput {
+export interface FieldValueDomain {
     /**
-     * 生成的access_token
+     * 字段取值，选项类型字段对应选项的key
      * @type {string}
-     * @memberof GetDingTalkTokenOutput
+     * @memberof FieldValueDomain
      */
-    accessToken?: string | null;
+    value?: string | null;
     /**
-     * access_token的过期时间，单位秒
-     * @type {number}
-     * @memberof GetDingTalkTokenOutput
-     */
-    expiresIn?: number;
-    /**
-     * 返回码描述
+     * 字段展示值，选项类型字段对应选项的value
      * @type {string}
-     * @memberof GetDingTalkTokenOutput
+     * @memberof FieldValueDomain
      */
-    errMsg?: string | null;
+    label?: string | null;
     /**
-     * 返回码
+     * 第几条的明细标识，下标从0开始
      * @type {number}
-     * @memberof GetDingTalkTokenOutput
+     * @memberof FieldValueDomain
      */
-    errCode?: number;
+    itemIndex?: number;
 }

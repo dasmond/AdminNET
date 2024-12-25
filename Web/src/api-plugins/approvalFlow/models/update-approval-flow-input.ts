@@ -18,41 +18,11 @@
  */
 export interface UpdateApprovalFlowInput {
     /**
-     * 编号
-     * @type {string}
-     * @memberof UpdateApprovalFlowInput
-     */
-    code?: string | null;
-    /**
-     * 名称
-     * @type {string}
-     * @memberof UpdateApprovalFlowInput
-     */
-    name?: string | null;
-    /**
-     * 表单
-     * @type {string}
-     * @memberof UpdateApprovalFlowInput
-     */
-    formJson?: string | null;
-    /**
-     * 流程
-     * @type {string}
-     * @memberof UpdateApprovalFlowInput
-     */
-    flowJson?: string | null;
-    /**
-     * 备注
-     * @type {string}
-     * @memberof UpdateApprovalFlowInput
-     */
-    remark?: string | null;
-    /**
      * 创建时间
      * @type {Date}
      * @memberof UpdateApprovalFlowInput
      */
-    createTime?: Date | null;
+    createTime?: Date;
     /**
      * 更新时间
      * @type {Date}
@@ -84,6 +54,12 @@ export interface UpdateApprovalFlowInput {
      */
     updateUserName?: string | null;
     /**
+     * 软删除
+     * @type {boolean}
+     * @memberof UpdateApprovalFlowInput
+     */
+    isDelete?: boolean;
+    /**
      * 创建者部门Id
      * @type {number}
      * @memberof UpdateApprovalFlowInput
@@ -96,11 +72,41 @@ export interface UpdateApprovalFlowInput {
      */
     createOrgName?: string | null;
     /**
-     * 软删除
-     * @type {boolean}
+     * 编号
+     * @type {string}
      * @memberof UpdateApprovalFlowInput
      */
-    isDelete?: boolean;
+    code?: string | null;
+    /**
+     * 名称
+     * @type {string}
+     * @memberof UpdateApprovalFlowInput
+     */
+    name?: string | null;
+    /**
+     * 表单
+     * @type {string}
+     * @memberof UpdateApprovalFlowInput
+     */
+    formJson?: string | null;
+    /**
+     * 流程
+     * @type {string}
+     * @memberof UpdateApprovalFlowInput
+     */
+    flowJson?: string | null;
+    /**
+     * 状态
+     * @type {number}
+     * @memberof UpdateApprovalFlowInput
+     */
+    status?: number | null;
+    /**
+     * 备注
+     * @type {string}
+     * @memberof UpdateApprovalFlowInput
+     */
+    remark?: string | null;
     /**
      * 主键Id
      * @type {number}

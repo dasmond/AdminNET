@@ -11,28 +11,35 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+import { FieldValueDomain } from './field-value-domain';
 /**
  * 
  * @export
- * @interface DingTalkFieldValueVo
+ * @interface FieldDataDomain
  */
-export interface DingTalkFieldValueVo {
+export interface FieldDataDomain {
     /**
-     * 第几条的明细标识，下标从0开始
-     * @type {number}
-     * @memberof DingTalkFieldValueVo
-     */
-    itemIndex?: number;
-    /**
-     * 字段展示值，选项类型字段对应选项的value
+     * 字段标识
      * @type {string}
-     * @memberof DingTalkFieldValueVo
+     * @memberof FieldDataDomain
      */
-    label?: string | null;
+    fieldCode?: string | null;
     /**
-     * 字段取值，选项类型字段对应选项的key
+     * 字段名称
      * @type {string}
-     * @memberof DingTalkFieldValueVo
+     * @memberof FieldDataDomain
      */
-    value?: string | null;
+    fieldName?: string | null;
+    /**
+     * 分组标识
+     * @type {string}
+     * @memberof FieldDataDomain
+     */
+    groupId?: string | null;
+    /**
+     * 字段值列表
+     * @type {Array<FieldValueDomain>}
+     * @memberof FieldDataDomain
+     */
+    fieldValueList?: Array<FieldValueDomain> | null;
 }

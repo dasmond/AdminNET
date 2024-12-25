@@ -11,29 +11,17 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-import { DingTalkEmpFieldDataVo } from './ding-talk-emp-field-data-vo';
+import { ResultDomain } from './result-domain';
 /**
  * 
  * @export
- * @interface DingTalkEmpRosterFieldVo
+ * @interface RosterListsQueryResponse
  */
-export interface DingTalkEmpRosterFieldVo {
+export interface RosterListsQueryResponse {
     /**
-     * 企业的corpid
-     * @type {string}
-     * @memberof DingTalkEmpRosterFieldVo
+     * 结果列表
+     * @type {Array<ResultDomain>}
+     * @memberof RosterListsQueryResponse
      */
-    corpId?: string | null;
-    /**
-     * 返回的字段信息列表
-     * @type {Array<DingTalkEmpFieldDataVo>}
-     * @memberof DingTalkEmpRosterFieldVo
-     */
-    fieldDataList?: Array<DingTalkEmpFieldDataVo> | null;
-    /**
-     * 员工的userid
-     * @type {string}
-     * @memberof DingTalkEmpRosterFieldVo
-     */
-    userid?: string | null;
+    result?: Array<ResultDomain> | null;
 }

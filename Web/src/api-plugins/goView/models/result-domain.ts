@@ -11,28 +11,35 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+import { FieldDataDomain } from './field-data-domain';
 /**
  * 
  * @export
- * @interface GetDingTalkCurrentEmployeesRosterListInput
+ * @interface ResultDomain
  */
-export interface GetDingTalkCurrentEmployeesRosterListInput {
+export interface ResultDomain {
     /**
-     * 员工的userId列表，多个userid之间使用逗号分隔，一次最多支持传100个值。
+     * 企业的corpId
      * @type {string}
-     * @memberof GetDingTalkCurrentEmployeesRosterListInput
+     * @memberof ResultDomain
      */
-    useridList?: string | null;
+    corpId?: string | null;
     /**
-     * 需要获取的花名册字段field_code值列表，多个字段之间使用逗号分隔，一次最多支持传100个值。
+     * 员工的userId
      * @type {string}
-     * @memberof GetDingTalkCurrentEmployeesRosterListInput
+     * @memberof ResultDomain
      */
-    fieldFilterList?: string | null;
+    userId?: string | null;
     /**
-     * 应用的AgentId
+     * 暂未开放
      * @type {string}
-     * @memberof GetDingTalkCurrentEmployeesRosterListInput
+     * @memberof ResultDomain
      */
-    agentid?: string | null;
+    unionId?: string | null;
+    /**
+     * 返回的字段信息列表
+     * @type {Array<FieldDataDomain>}
+     * @memberof ResultDomain
+     */
+    fieldDataList?: Array<FieldDataDomain> | null;
 }

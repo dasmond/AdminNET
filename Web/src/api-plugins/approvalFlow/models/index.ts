@@ -6,7 +6,7 @@ export * from './admin-result-sql-sugar-paged-list-approval-flow-output';
 export * from './approval-flow';
 export * from './approval-flow-input';
 export * from './approval-flow-output';
-export * from './delete-approval-flow-input';
+export * from './base-id-input';
 export * from './filter';
 export * from './filter-logic-enum';
 export * from './filter-operator-enum';

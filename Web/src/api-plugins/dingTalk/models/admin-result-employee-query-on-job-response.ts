@@ -11,47 +11,47 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-import { GetDingTalkTokenOutput } from './get-ding-talk-token-output';
+import { EmployeeQueryOnJobResponse } from './employee-query-on-job-response';
 /**
  * 全局返回结果
  * @export
- * @interface AdminResultGetDingTalkTokenOutput
+ * @interface AdminResultEmployeeQueryOnJobResponse
  */
-export interface AdminResultGetDingTalkTokenOutput {
+export interface AdminResultEmployeeQueryOnJobResponse {
     /**
      * 状态码
      * @type {number}
-     * @memberof AdminResultGetDingTalkTokenOutput
+     * @memberof AdminResultEmployeeQueryOnJobResponse
      */
     code?: number;
     /**
      * 类型success、warning、error
      * @type {string}
-     * @memberof AdminResultGetDingTalkTokenOutput
+     * @memberof AdminResultEmployeeQueryOnJobResponse
      */
     type?: string | null;
     /**
      * 错误信息
      * @type {string}
-     * @memberof AdminResultGetDingTalkTokenOutput
+     * @memberof AdminResultEmployeeQueryOnJobResponse
      */
     message?: string | null;
     /**
      * 
-     * @type {GetDingTalkTokenOutput}
-     * @memberof AdminResultGetDingTalkTokenOutput
+     * @type {EmployeeQueryOnJobResponse}
+     * @memberof AdminResultEmployeeQueryOnJobResponse
      */
-    result?: GetDingTalkTokenOutput;
+    result?: EmployeeQueryOnJobResponse;
     /**
      * 附加数据
      * @type {any}
-     * @memberof AdminResultGetDingTalkTokenOutput
+     * @memberof AdminResultEmployeeQueryOnJobResponse
      */
     extras?: any | null;
     /**
      * 时间
      * @type {Date}
-     * @memberof AdminResultGetDingTalkTokenOutput
+     * @memberof AdminResultEmployeeQueryOnJobResponse
      */
     time?: Date;
 }

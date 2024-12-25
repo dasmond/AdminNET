@@ -14,19 +14,19 @@
 /**
  * 
  * @export
- * @interface GetDingTalkCurrentEmployeesListOutput
+ * @interface EmployeeQueryOnJobResponseResultDomain
  */
-export interface GetDingTalkCurrentEmployeesListOutput {
+export interface EmployeeQueryOnJobResponseResultDomain {
     /**
      * 查询到的员工userId列表
      * @type {Array<string>}
-     * @memberof GetDingTalkCurrentEmployeesListOutput
+     * @memberof EmployeeQueryOnJobResponseResultDomain
      */
     dataList?: Array<string> | null;
     /**
      * 下一次分页调用的offset值，当返回结果里没有next_cursor时，表示分页结束。
      * @type {number}
-     * @memberof GetDingTalkCurrentEmployeesListOutput
+     * @memberof EmployeeQueryOnJobResponseResultDomain
      */
     nextCursor?: number | null;
 }

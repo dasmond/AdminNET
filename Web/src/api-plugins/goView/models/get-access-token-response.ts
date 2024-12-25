@@ -11,35 +11,22 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-import { DingTalkFieldValueVo } from './ding-talk-field-value-vo';
 /**
  * 
  * @export
- * @interface DingTalkEmpFieldDataVo
+ * @interface GetAccessTokenResponse
  */
-export interface DingTalkEmpFieldDataVo {
+export interface GetAccessTokenResponse {
     /**
-     * 字段名称
+     * 生成的accessToken
      * @type {string}
-     * @memberof DingTalkEmpFieldDataVo
+     * @memberof GetAccessTokenResponse
      */
-    fieldName?: string | null;
+    accessToken?: string | null;
     /**
-     * 字段标识
-     * @type {string}
-     * @memberof DingTalkEmpFieldDataVo
+     * accessToken的过期时间，单位秒
+     * @type {number}
+     * @memberof GetAccessTokenResponse
      */
-    fieldCode?: string | null;
-    /**
-     * 分组标识
-     * @type {string}
-     * @memberof DingTalkEmpFieldDataVo
-     */
-    groupId?: string | null;
-    /**
-     * 
-     * @type {Array<DingTalkFieldValueVo>}
-     * @memberof DingTalkEmpFieldDataVo
-     */
-    fieldValueList?: Array<DingTalkFieldValueVo> | null;
+    expireIn?: number;
 }

@@ -18,41 +18,17 @@
  */
 export interface AddApprovalFlowInput {
     /**
-     * 编号
-     * @type {string}
+     * 雪花Id
+     * @type {number}
      * @memberof AddApprovalFlowInput
      */
-    code?: string | null;
-    /**
-     * 名称
-     * @type {string}
-     * @memberof AddApprovalFlowInput
-     */
-    name?: string | null;
-    /**
-     * 表单
-     * @type {string}
-     * @memberof AddApprovalFlowInput
-     */
-    formJson?: string | null;
-    /**
-     * 流程
-     * @type {string}
-     * @memberof AddApprovalFlowInput
-     */
-    flowJson?: string | null;
-    /**
-     * 备注
-     * @type {string}
-     * @memberof AddApprovalFlowInput
-     */
-    remark?: string | null;
+    id?: number;
     /**
      * 创建时间
      * @type {Date}
      * @memberof AddApprovalFlowInput
      */
-    createTime?: Date | null;
+    createTime?: Date;
     /**
      * 更新时间
      * @type {Date}
@@ -84,6 +60,12 @@ export interface AddApprovalFlowInput {
      */
     updateUserName?: string | null;
     /**
+     * 软删除
+     * @type {boolean}
+     * @memberof AddApprovalFlowInput
+     */
+    isDelete?: boolean;
+    /**
      * 创建者部门Id
      * @type {number}
      * @memberof AddApprovalFlowInput
@@ -96,9 +78,39 @@ export interface AddApprovalFlowInput {
      */
     createOrgName?: string | null;
     /**
-     * 软删除
-     * @type {boolean}
+     * 编号
+     * @type {string}
      * @memberof AddApprovalFlowInput
      */
-    isDelete: boolean;
+    code?: string | null;
+    /**
+     * 表单
+     * @type {string}
+     * @memberof AddApprovalFlowInput
+     */
+    formJson?: string | null;
+    /**
+     * 流程
+     * @type {string}
+     * @memberof AddApprovalFlowInput
+     */
+    flowJson?: string | null;
+    /**
+     * 备注
+     * @type {string}
+     * @memberof AddApprovalFlowInput
+     */
+    remark?: string | null;
+    /**
+     * 名称
+     * @type {string}
+     * @memberof AddApprovalFlowInput
+     */
+    name: string;
+    /**
+     * 状态
+     * @type {number}
+     * @memberof AddApprovalFlowInput
+     */
+    status: number;
 }

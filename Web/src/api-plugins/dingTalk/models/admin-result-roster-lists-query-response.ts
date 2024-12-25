@@ -11,47 +11,47 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-import { DingTalkBaseResponseListDingTalkEmpRosterFieldVo } from './ding-talk-base-response-list-ding-talk-emp-roster-field-vo';
+import { RosterListsQueryResponse } from './roster-lists-query-response';
 /**
  * 全局返回结果
  * @export
- * @interface AdminResultDingTalkBaseResponseListDingTalkEmpRosterFieldVo
+ * @interface AdminResultRosterListsQueryResponse
  */
-export interface AdminResultDingTalkBaseResponseListDingTalkEmpRosterFieldVo {
+export interface AdminResultRosterListsQueryResponse {
     /**
      * 状态码
      * @type {number}
-     * @memberof AdminResultDingTalkBaseResponseListDingTalkEmpRosterFieldVo
+     * @memberof AdminResultRosterListsQueryResponse
      */
     code?: number;
     /**
      * 类型success、warning、error
      * @type {string}
-     * @memberof AdminResultDingTalkBaseResponseListDingTalkEmpRosterFieldVo
+     * @memberof AdminResultRosterListsQueryResponse
      */
     type?: string | null;
     /**
      * 错误信息
      * @type {string}
-     * @memberof AdminResultDingTalkBaseResponseListDingTalkEmpRosterFieldVo
+     * @memberof AdminResultRosterListsQueryResponse
      */
     message?: string | null;
     /**
      * 
-     * @type {DingTalkBaseResponseListDingTalkEmpRosterFieldVo}
-     * @memberof AdminResultDingTalkBaseResponseListDingTalkEmpRosterFieldVo
+     * @type {RosterListsQueryResponse}
+     * @memberof AdminResultRosterListsQueryResponse
      */
-    result?: DingTalkBaseResponseListDingTalkEmpRosterFieldVo;
+    result?: RosterListsQueryResponse;
     /**
      * 附加数据
      * @type {any}
-     * @memberof AdminResultDingTalkBaseResponseListDingTalkEmpRosterFieldVo
+     * @memberof AdminResultRosterListsQueryResponse
      */
     extras?: any | null;
     /**
      * 时间
      * @type {Date}
-     * @memberof AdminResultDingTalkBaseResponseListDingTalkEmpRosterFieldVo
+     * @memberof AdminResultRosterListsQueryResponse
      */
     time?: Date;
 }

@@ -20,7 +20,6 @@ import { AdminResultListBackupOutput } from '../models';
 import { AdminResultListString } from '../models';
 import { AdminResultString } from '../models';
 import { RestoreInput } from '../models';
-import { WebHookInput } from '../models';
 /**
  * SysUpdateApi - axios parameter creator
  * @export
@@ -293,11 +292,11 @@ export const SysUpdateApiAxiosParamCreator = function (configuration?: Configura
         /**
          * 
          * @summary 仓库WebHook接口
-         * @param {WebHookInput} [body] 
+         * @param {{ [key: string]: any; }} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiSysUpdateWebHookPost: async (body?: WebHookInput, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        apiSysUpdateWebHookPost: async (body?: { [key: string]: any; }, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/sysUpdate/webHook`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
@@ -429,11 +428,11 @@ export const SysUpdateApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @summary 仓库WebHook接口
-         * @param {WebHookInput} [body] 
+         * @param {{ [key: string]: any; }} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiSysUpdateWebHookPost(body?: WebHookInput, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<void>>> {
+        async apiSysUpdateWebHookPost(body?: { [key: string]: any; }, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<void>>> {
             const localVarAxiosArgs = await SysUpdateApiAxiosParamCreator(configuration).apiSysUpdateWebHookPost(body, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -507,11 +506,11 @@ export const SysUpdateApiFactory = function (configuration?: Configuration, base
         /**
          * 
          * @summary 仓库WebHook接口
-         * @param {WebHookInput} [body] 
+         * @param {{ [key: string]: any; }} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiSysUpdateWebHookPost(body?: WebHookInput, options?: AxiosRequestConfig): Promise<AxiosResponse<void>> {
+        async apiSysUpdateWebHookPost(body?: { [key: string]: any; }, options?: AxiosRequestConfig): Promise<AxiosResponse<void>> {
             return SysUpdateApiFp(configuration).apiSysUpdateWebHookPost(body, options).then((request) => request(axios, basePath));
         },
     };
@@ -588,12 +587,12 @@ export class SysUpdateApi extends BaseAPI {
     /**
      * 
      * @summary 仓库WebHook接口
-     * @param {WebHookInput} [body] 
+     * @param {{ [key: string]: any; }} [body] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof SysUpdateApi
      */
-    public async apiSysUpdateWebHookPost(body?: WebHookInput, options?: AxiosRequestConfig) : Promise<AxiosResponse<void>> {
+    public async apiSysUpdateWebHookPost(body?: { [key: string]: any; }, options?: AxiosRequestConfig) : Promise<AxiosResponse<void>> {
         return SysUpdateApiFp(this.configuration).apiSysUpdateWebHookPost(body, options).then((request) => request(this.axios, this.basePath));
     }
 }

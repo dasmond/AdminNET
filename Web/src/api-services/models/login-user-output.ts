@@ -126,4 +126,10 @@ export interface LoginUserOutput {
      * @memberof LoginUserOutput
      */
     watermarkText?: string | null;
+    /**
+     * 租户Id
+     * @type {number}
+     * @memberof LoginUserOutput
+     */
+    tenantId?: number | null;
 }

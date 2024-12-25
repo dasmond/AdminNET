@@ -11,47 +11,47 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-import { DingTalkBaseResponseGetDingTalkCurrentEmployeesListOutput } from './ding-talk-base-response-get-ding-talk-current-employees-list-output';
+import { GetAccessTokenResponse } from './get-access-token-response';
 /**
  * 全局返回结果
  * @export
- * @interface AdminResultDingTalkBaseResponseGetDingTalkCurrentEmployeesListOutput
+ * @interface AdminResultGetAccessTokenResponse
  */
-export interface AdminResultDingTalkBaseResponseGetDingTalkCurrentEmployeesListOutput {
+export interface AdminResultGetAccessTokenResponse {
     /**
      * 状态码
      * @type {number}
-     * @memberof AdminResultDingTalkBaseResponseGetDingTalkCurrentEmployeesListOutput
+     * @memberof AdminResultGetAccessTokenResponse
      */
     code?: number;
     /**
      * 类型success、warning、error
      * @type {string}
-     * @memberof AdminResultDingTalkBaseResponseGetDingTalkCurrentEmployeesListOutput
+     * @memberof AdminResultGetAccessTokenResponse
      */
     type?: string | null;
     /**
      * 错误信息
      * @type {string}
-     * @memberof AdminResultDingTalkBaseResponseGetDingTalkCurrentEmployeesListOutput
+     * @memberof AdminResultGetAccessTokenResponse
      */
     message?: string | null;
     /**
      * 
-     * @type {DingTalkBaseResponseGetDingTalkCurrentEmployeesListOutput}
-     * @memberof AdminResultDingTalkBaseResponseGetDingTalkCurrentEmployeesListOutput
+     * @type {GetAccessTokenResponse}
+     * @memberof AdminResultGetAccessTokenResponse
      */
-    result?: DingTalkBaseResponseGetDingTalkCurrentEmployeesListOutput;
+    result?: GetAccessTokenResponse;
     /**
      * 附加数据
      * @type {any}
-     * @memberof AdminResultDingTalkBaseResponseGetDingTalkCurrentEmployeesListOutput
+     * @memberof AdminResultGetAccessTokenResponse
      */
     extras?: any | null;
     /**
      * 时间
      * @type {Date}
-     * @memberof AdminResultDingTalkBaseResponseGetDingTalkCurrentEmployeesListOutput
+     * @memberof AdminResultGetAccessTokenResponse
      */
     time?: Date;
 }

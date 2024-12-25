@@ -12,15 +12,15 @@
  * Do not edit the class manually.
  */
 /**
- * 审批流删除输入参数
+ * 主键Id输入参数
  * @export
- * @interface DeleteApprovalFlowInput
+ * @interface BaseIdInput
  */
-export interface DeleteApprovalFlowInput {
+export interface BaseIdInput {
     /**
      * 主键Id
      * @type {number}
-     * @memberof DeleteApprovalFlowInput
+     * @memberof BaseIdInput
      */
     id: number;
 }

@@ -22,7 +22,7 @@ import { AdminResultInt64 } from '../models';
 import { AdminResultListApprovalFlowOutput } from '../models';
 import { AdminResultSqlSugarPagedListApprovalFlowOutput } from '../models';
 import { ApprovalFlowInput } from '../models';
-import { DeleteApprovalFlowInput } from '../models';
+import { BaseIdInput } from '../models';
 import { Filter } from '../models';
 import { FilterLogicEnum } from '../models';
 import { FilterOperatorEnum } from '../models';
@@ -84,11 +84,11 @@ export const ApprovalFlowApiAxiosParamCreator = function (configuration?: Config
         /**
          * 
          * @summary 删除审批流
-         * @param {DeleteApprovalFlowInput} [body] 
+         * @param {BaseIdInput} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiApprovalFlowDeletePost: async (body?: DeleteApprovalFlowInput, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        apiApprovalFlowDeletePost: async (body?: BaseIdInput, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/approvalFlow/delete`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
@@ -474,11 +474,11 @@ export const ApprovalFlowApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @summary 删除审批流
-         * @param {DeleteApprovalFlowInput} [body] 
+         * @param {BaseIdInput} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiApprovalFlowDeletePost(body?: DeleteApprovalFlowInput, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<void>>> {
+        async apiApprovalFlowDeletePost(body?: BaseIdInput, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<void>>> {
             const localVarAxiosArgs = await ApprovalFlowApiAxiosParamCreator(configuration).apiApprovalFlowDeletePost(body, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -592,11 +592,11 @@ export const ApprovalFlowApiFactory = function (configuration?: Configuration, b
         /**
          * 
          * @summary 删除审批流
-         * @param {DeleteApprovalFlowInput} [body] 
+         * @param {BaseIdInput} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiApprovalFlowDeletePost(body?: DeleteApprovalFlowInput, options?: AxiosRequestConfig): Promise<AxiosResponse<void>> {
+        async apiApprovalFlowDeletePost(body?: BaseIdInput, options?: AxiosRequestConfig): Promise<AxiosResponse<void>> {
             return ApprovalFlowApiFp(configuration).apiApprovalFlowDeletePost(body, options).then((request) => request(axios, basePath));
         },
         /**
@@ -688,12 +688,12 @@ export class ApprovalFlowApi extends BaseAPI {
     /**
      * 
      * @summary 删除审批流
-     * @param {DeleteApprovalFlowInput} [body] 
+     * @param {BaseIdInput} [body] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ApprovalFlowApi
      */
-    public async apiApprovalFlowDeletePost(body?: DeleteApprovalFlowInput, options?: AxiosRequestConfig) : Promise<AxiosResponse<void>> {
+    public async apiApprovalFlowDeletePost(body?: BaseIdInput, options?: AxiosRequestConfig) : Promise<AxiosResponse<void>> {
         return ApprovalFlowApiFp(this.configuration).apiApprovalFlowDeletePost(body, options).then((request) => request(this.axios, this.basePath));
     }
     /**
