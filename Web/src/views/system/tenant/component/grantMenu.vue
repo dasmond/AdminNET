@@ -21,9 +21,9 @@
 								highlight-current
 								default-expand-all>
 								<template #default="{ node, data }">
-									<span>{{ node.label }}</span>
+									<span :title="node.label+data.id">{{ node.label }}</span>
 									<span v-if="data.path" style="margin-left: 5px!important;">
-                    <el-tag effect="plain" type="warning">{{data.path}}</el-tag>
+                    <el-tag effect="plain" type="warning" :title="data.component">{{data.path}}</el-tag>
                   </span>
 								</template>
 							</el-tree>
