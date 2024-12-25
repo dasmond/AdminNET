@@ -3,24 +3,27 @@ branches: {
   }
 fileChange:
   /Web:
-    newFile: !uuid 'a29fecbe97d4cb0abfb18d95aa5aa3209b96242f'
-    oldFile: !uuid '79229690a4f723613dcc7c8bfdfda51fad096a50'
+    newFile: !uuid '0c87cd34444298384f25dbf3eeebfcdf8f5fd961'
+    oldFile: !uuid 'a29fecbe97d4cb0abfb18d95aa5aa3209b96242f'
   /Web/src:
-    newFile: !uuid 'b3dcdf4fbf76430451bb379280bca7381a954bdf'
-    oldFile: !uuid '19f8cd9b76b0f9e9416d027db5cf4bd88805dcd9'
+    newFile: !uuid 'da6ffee535b9f255c7cacf399c284a17f04a4213'
+    oldFile: !uuid 'b3dcdf4fbf76430451bb379280bca7381a954bdf'
   /Web/src/views:
-    newFile: !uuid '4c5826c9130c7018b1c78119759f802df6588b53'
-    oldFile: !uuid '09c5340cd029143e2f7aaa2c0636b0f113cbbe7d'
+    newFile: !uuid 'f362192a6ce02e476f904e3528833d8225a1d8c0'
+    oldFile: !uuid '4c5826c9130c7018b1c78119759f802df6588b53'
   /Web/src/views/system:
-    newFile: !uuid '0250c81d36e4460a8e1e9889692923ad08f0d8b5'
-    oldFile: !uuid 'a222c5e618e5c492a901e6b15d70c9ac1cf0acf5'
-  /Web/src/views/system/dict:
-    newFile: !uuid 'c58d5e01ff0b69d44c048356ef1dc06b8924bf63'
-    oldFile: !uuid 'aafcb29f5b4333bdda0414db9fffef017d8809e1'
-  /Web/src/views/system/dict/index.vue:
-    newFile: !uuid 'f9345e49749a8fb4bbffd361aadfbf46ad392ecb'
-    oldFile: !uuid 'db6664374a30eef605c0b5acc759017fa7ae0e65'
-gitCommitId: !uuid 'e047f49a544a8f93e4a7f0b959f89b08a9ebc9e2'
+    newFile: !uuid '0ab03f5a70c42beb425c8868804fe465876509b2'
+    oldFile: !uuid '0250c81d36e4460a8e1e9889692923ad08f0d8b5'
+  /Web/src/views/system/tenant:
+    newFile: !uuid '1dc1183aaffea28badb03d405e99a2a998d36e84'
+    oldFile: !uuid '0d0b76f6077af7d94b90f4b335f708ed1f8f9a68'
+  /Web/src/views/system/tenant/component:
+    newFile: !uuid 'de8a0ea9bedfd802ae51d239d48392e624db14a1'
+    oldFile: !uuid '922f5cf151d9ff8eab16453838c1185080fee9f6'
+  /Web/src/views/system/tenant/component/grantMenu.vue:
+    newFile: !uuid '709ce1e27daa96beca25ffe98c55a3bf0d28e1cb'
+    oldFile: !uuid '65f3f971262a84187785ecbea5f252ced3170771'
+gitCommitId: !uuid '4137a1f3d0df18d3ea3aefb1194cc2af1937c60a'
 renames: {
   }
-revisionId: 2601
+revisionId: 2602
