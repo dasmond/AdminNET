@@ -445,7 +445,7 @@ public class SysTenantService : IDynamicApiController, ITransient
     public async Task GrantMenu(TenantMenuInput input)
     {
         // 获取需要授权的菜单列表
-        var menuList = await _sysTenantRep.Context.Queryable<SysMenu>().ClearFilter()
+        var menuList = await _sysTenantRep.Context.Queryable<SysMenu>()
             .Where(u => input.MenuIdList.Contains(u.Id))
             .InnerJoin<SysTenantMenu>((u, t) => t.TenantId == input.Id && u.Id == t.MenuId)
             .ToListAsync();
@@ -461,8 +461,14 @@ public class SysTenantService : IDynamicApiController, ITransient
 
         // 删除旧记录
         await _sysTenantMenuRep.AsDeleteable().Where(u => u.TenantId == input.Id).ExecuteCommandAsync();
-        var sysTenantMenuList = input.MenuIdList.Select(menuId => new SysTenantMenu { TenantId = input.Id, MenuId = menuId }).ToList();
 
+        // 追加父级菜单
+        var allIdList = await _sysTenantRep.Context.Queryable<SysMenu>().Select(u => new { u.Id, u.Pid }).ToListAsync();
+        var pIdList = allIdList.ToChildList(u => u.Pid, u => u.Id, u => input.MenuIdList.Contains(u.Id)).Select(u => u.Pid).Distinct().ToList();
+        input.MenuIdList = input.MenuIdList.Concat(pIdList).Distinct().Where(u => u != 0).ToList();
+
+        // 保存租户菜单
+        var sysTenantMenuList = input.MenuIdList.Select(menuId => new SysTenantMenu { TenantId = input.Id, MenuId = menuId }).ToList();
         await _sysTenantMenuRep.InsertRangeAsync(sysTenantMenuList);
 
         // 清除菜单权限缓存
