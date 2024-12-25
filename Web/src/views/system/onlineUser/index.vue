@@ -59,7 +59,7 @@ import { onMounted, reactive } from 'vue';
 import { ElMessageBox, ElNotification } from 'element-plus';
 import { throttle } from 'lodash-es';
 
-import { getAPI, clearAccessTokens } from '/@/utils/axios-utils';
+import { getAPI, clearAccessAfterReload } from '/@/utils/axios-utils';
 import {SysOnlineUserApi, SysAuthApi, SysTenantApi} from '/@/api-services/api';
 import { SysOnlineUser } from '/@/api-services/models';
 import { useUserInfo } from "/@/stores/userInfo";
@@ -109,7 +109,7 @@ onMounted(async () => {
 		await signalR.stop();
 
 		await getAPI(SysAuthApi).apiSysAuthLogoutPost();
-		clearAccessTokens();
+		clearAccessAfterReload();
 	});
 });
 

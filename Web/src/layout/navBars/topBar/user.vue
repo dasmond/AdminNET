@@ -102,7 +102,7 @@ import { Local, Session } from '/@/utils/storage';
 import Push from 'push.js';
 import { signalR } from '/@/views/system/onlineUser/signalR';
 import { Avatar, CircleCloseFilled, Loading, Lock, Switch } from '@element-plus/icons-vue';
-import { clearAccessTokens, getAPI } from '/@/utils/axios-utils';
+import { clearAccessAfterReload, getAPI } from '/@/utils/axios-utils';
 import { SysAuthApi, SysNoticeApi } from '/@/api-services/api';
 import { auth } from "/@/utils/authFunction";
 
@@ -192,7 +192,7 @@ const onHandleCommandClick = (path: string) => {
 			},
 		})
 			.then(async () => {
-				clearAccessTokens();
+				clearAccessAfterReload();
 			})
 			.catch(() => {});
 	} else if (path === 'changeTenant') {

@@ -303,6 +303,7 @@ public class SysAuthService : IDynamicApiController, ITransient
             PosName = pos?.Name,
             Buttons = buttons,
             RoleIds = roleIds,
+            TenantId = user.TenantId,
             WatermarkText = watermarkText
         };
     }

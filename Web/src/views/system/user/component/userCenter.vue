@@ -170,7 +170,7 @@ import OrgTree from '/@/views/system/user/component/orgTree.vue';
 import CropperDialog from '/@/components/cropper/index.vue';
 import VueGridLayout from 'vue-grid-layout';
 import { sm2 } from 'sm-crypto-v2';
-import { clearAccessTokens, getAPI } from '/@/utils/axios-utils';
+import { clearAccessAfterReload, getAPI } from '/@/utils/axios-utils';
 import { SysFileApi, SysUserApi } from '/@/api-services/api';
 import { ChangePwdInput, SysUser, SysFile } from '/@/api-services/models';
 
@@ -309,7 +309,7 @@ const submitPassword = () => {
 			cancelButtonText: '取消',
 			type: 'warning',
 		}).then(async () => {
-			clearAccessTokens();
+			clearAccessAfterReload();
 		});
 	});
 };

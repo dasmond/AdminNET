@@ -7,10 +7,12 @@
 
 import globalAxios, { AxiosInstance } from 'axios';
 import { Configuration } from '../api-services';
-import { BaseAPI, BASE_PATH } from '../api-services/base';
+import { BASE_PATH } from '../api-services/base';
 
 import { ElMessage } from 'element-plus';
 import { Local, Session } from '../utils/storage';
+import { useUserInfo } from "/@/stores/userInfo";
+import {useRoute, useRouter} from "vue-router";
 
 // 接口服务器配置
 export const serveConfig = new Configuration({
@@ -32,8 +34,11 @@ export const getHeader = () => {
 };
 
 // 清除 token
-export const clearAccessTokens = () => {
+export const clearAccessAfterReload = () => {
+	const tenantId = useUserInfo().userInfos.tenantId;
+
 	clearTokens();
+	Local.set('t', tenantId);
 
 	// 刷新浏览器
 	window.location.reload();
@@ -109,7 +114,7 @@ axiosInstance.interceptors.response.use(
 
 		// 处理 401
 		if (status === 401) {
-			clearAccessTokens();
+			clearAccessAfterReload();
 		}
 
 		// 处理未进行规范化处理的
@@ -128,7 +133,7 @@ axiosInstance.interceptors.response.use(
 
 		// 判断是否是无效 token
 		if (accessToken === 'invalid_token') {
-			clearAccessTokens();
+			clearAccessAfterReload();
 		}
 		// 判断是否存在刷新 token，如果存在则存储在本地
 		else if (refreshAccessToken && accessToken && accessToken !== 'invalid_token') {
@@ -138,7 +143,7 @@ axiosInstance.interceptors.response.use(
 
 		// 响应拦截及自定义处理
 		if (serve.code === 401) {
-			clearAccessTokens();
+			clearAccessAfterReload();
 		} else if (serve.code === undefined) {
 			return Promise.resolve(res);
 		} else if (serve.code !== 200) {
@@ -162,7 +167,7 @@ axiosInstance.interceptors.response.use(
 		// 处理响应错误
 		if (error.response) {
 			if (error.response.status === 401) {
-				clearAccessTokens();
+				clearAccessAfterReload();
 			}
 		}
 

@@ -1,6 +1,7 @@
 import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
 import { ElMessage } from 'element-plus';
-import { Local, Session } from '/@/utils/storage';
+import { Local, } from '/@/utils/storage';
+import {clearAccessAfterReload} from "/@/utils/axios-utils";
 
 // 定义请求中止控制器映射表
 const abortControllerMap: Map<string, AbortController> = new Map();
@@ -19,18 +20,6 @@ export const refreshAccessTokenKey = `x-${accessTokenKey}`;
 // 获取 token
 export const getToken = () => {
 	return Local.get(accessTokenKey);
-};
-
-// 清除 token
-export const clearAccessTokens = () => {
-	Local.remove(accessTokenKey);
-	Local.remove(refreshAccessTokenKey);
-
-	// 清除其他
-	Session.clear();
-
-	// 刷新浏览器
-	window.location.reload();
 };
 
 // axios 默认实例
@@ -101,7 +90,7 @@ service.interceptors.response.use(
 
 		// 处理 401
 		if (status === 401) {
-			clearAccessTokens();
+			clearAccessAfterReload();
 		}
 
 		// 处理未进行规范化处理的
@@ -120,7 +109,7 @@ service.interceptors.response.use(
 
 		// 判断是否是无效 token
 		if (accessToken === 'invalid_token') {
-			clearAccessTokens();
+			clearAccessAfterReload();
 		}
 		// 判断是否存在刷新 token，如果存在则存储在本地, 并重新加载页面
 		else if (refreshAccessToken && accessToken) {
@@ -130,7 +119,7 @@ service.interceptors.response.use(
 
 		// 响应拦截及自定义处理
 		if (serve.code === 401) {
-			clearAccessTokens();
+			clearAccessAfterReload();
 		} else if (serve.code === undefined) {
 			return Promise.resolve(res);
 		} else if (serve.code !== 200) {
@@ -155,7 +144,7 @@ service.interceptors.response.use(
 		// 处理响应错误
 		if (error.response) {
 			if (error.response.status === 401) {
-				clearAccessTokens();
+				clearAccessAfterReload();
 			}
 		}
 

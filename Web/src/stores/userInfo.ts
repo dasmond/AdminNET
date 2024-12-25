@@ -80,6 +80,7 @@ export const useUserInfo = defineStore('userInfo', {
 							posName: d.posName,
 							roles: d.roleIds,
 							authBtnList: d.buttons,
+							tenantId: d.tenantId,
 							time: new Date().getTime(),
 						};
 						// vue-next-admin 提交Id：225bce7 提交消息：admin-23.03.26:发布v2.4.32版本
