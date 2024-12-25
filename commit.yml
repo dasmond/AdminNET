@@ -2,46 +2,25 @@
 branches: {
   }
 fileChange:
-  /Admin.NET:
-    newFile: !uuid '2a809c7ad2d6b657e06abf9a0556228b561c5250'
-    oldFile: !uuid '8fe86026dfbe6a9db1bf89b9745f6eebfb64eea2'
-  /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '1d10f664b909d3ef4ea62fa4a5b681b3000102f9'
-    oldFile: !uuid 'a6210338aa2da0bfa29c3083cf17f5c9a0b209a9'
-  /Admin.NET/Admin.NET.Core/Entity:
-    newFile: !uuid '03aa92f0439a2d517c9c0da00783b9ede64d00fd'
-    oldFile: !uuid '54aa1cd5ff08544ae6a2405ad12902119e2c46d2'
-  /Admin.NET/Admin.NET.Core/Entity/SysTenantMenu.cs:
-    newFile: !uuid '74ed1dcda767d62f1c17a8b71e904c2e67d1f39e'
-    oldFile: !uuid 'ce0014e87caca85ad3c4cf320d375b82f8d495c0'
-  /Admin.NET/Admin.NET.Core/SeedData:
-    newFile: !uuid '4b5e4c87dc93caa3c84018b13c979fd5bfea4292'
-    oldFile: !uuid '3c8fdcfbf8faab2fb7a43a2baa3b5546979b2599'
-  /Admin.NET/Admin.NET.Core/SeedData/SysTenantMenuSeedData.cs:
-    newFile: !uuid '50fad12e7e49f249c9409c5aa0a0cedd5017d977'
-    oldFile: !uuid 'e5a4c1898710ec8313008d4c8b023c162cc313dc'
-  /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid 'e2bd18661248048688f29a50487e7b7e33494621'
-    oldFile: !uuid '2df9df6914c3228f1e3977e9a60f9f4831456a8c'
-  /Admin.NET/Admin.NET.Core/Service/Tenant:
-    newFile: !uuid '51572673d2e6ec9f5ad23555adf939f91b615dcd'
-    oldFile: !uuid 'ccdebe3a571e75f9621ece496eb9fa55e57dec17'
-  /Admin.NET/Admin.NET.Core/Service/Tenant/SysTenantService.cs:
-    newFile: !uuid 'ded81097307d4273b9bd264393eaa638638f6a0d'
-    oldFile: !uuid '4960ee8c554a1ef3e2ad16854e1bc6c6bb6ec788'
-  /Admin.NET/Plugins:
-    newFile: !uuid 'f6424373a86b90d1ced872cd9c14f0ae55c5bf44'
-    oldFile: !uuid '537865f737d7af90042e9087dc086a2610c1e189'
-  /Admin.NET/Plugins/Admin.NET.Plugin.ApprovalFlow:
-    newFile: !uuid '64bf05ffba4db002e5f10388b1dabf62eb99351d'
-    oldFile: !uuid 'fd55d2b313edd399ac9fafe00e44b75c13769ebf'
-  /Admin.NET/Plugins/Admin.NET.Plugin.ApprovalFlow/SeedData:
-    newFile: !uuid '98a59a64d4f11e79f9ee1d2cc11b925cf8819eb6'
-    oldFile: !uuid '3345521cd29afed186cbf7d2265b0ce12cf18ee8'
-  /Admin.NET/Plugins/Admin.NET.Plugin.ApprovalFlow/SeedData/SysTenantMenuSeedData.cs:
-    newFile: !uuid 'a3adca1fddca13d9893e48afeb44b069bf32585c'
-    oldFile: !uuid 'e412f7618f666a700761c81a582c26b5b2d6e029'
-gitCommitId: !uuid 'c541d0cc969fb5a8e3d43ff0a08e4747056a9307'
+  /Web:
+    newFile: !uuid 'a29fecbe97d4cb0abfb18d95aa5aa3209b96242f'
+    oldFile: !uuid '79229690a4f723613dcc7c8bfdfda51fad096a50'
+  /Web/src:
+    newFile: !uuid 'b3dcdf4fbf76430451bb379280bca7381a954bdf'
+    oldFile: !uuid '19f8cd9b76b0f9e9416d027db5cf4bd88805dcd9'
+  /Web/src/views:
+    newFile: !uuid '4c5826c9130c7018b1c78119759f802df6588b53'
+    oldFile: !uuid '09c5340cd029143e2f7aaa2c0636b0f113cbbe7d'
+  /Web/src/views/system:
+    newFile: !uuid '0250c81d36e4460a8e1e9889692923ad08f0d8b5'
+    oldFile: !uuid 'a222c5e618e5c492a901e6b15d70c9ac1cf0acf5'
+  /Web/src/views/system/dict:
+    newFile: !uuid 'c58d5e01ff0b69d44c048356ef1dc06b8924bf63'
+    oldFile: !uuid 'aafcb29f5b4333bdda0414db9fffef017d8809e1'
+  /Web/src/views/system/dict/index.vue:
+    newFile: !uuid 'f9345e49749a8fb4bbffd361aadfbf46ad392ecb'
+    oldFile: !uuid 'db6664374a30eef605c0b5acc759017fa7ae0e65'
+gitCommitId: !uuid 'e047f49a544a8f93e4a7f0b959f89b08a9ebc9e2'
 renames: {
   }
-revisionId: 2600
+revisionId: 2601
