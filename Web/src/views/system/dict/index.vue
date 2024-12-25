@@ -40,7 +40,7 @@
 							</template>
 						</el-table-column>
 						<el-table-column prop="orderNo" label="排序" width="60" align="center" show-overflow-tooltip />
-						<el-table-column label="修改记录" width="80" align="center" show-overflow-tooltip>
+						<el-table-column label="修改记录" width="100" align="center" show-overflow-tooltip>
 							<template #default="scope">
 								<ModifyRecord :data="scope.row" />
 							</template>
@@ -354,7 +354,7 @@ const updateDictSession = async () => {
 	position: absolute;
 	display: inline-flex;
 	height: 25px !important;
-	width: calc(100vh - 210px);
+	width: 500px;
 	overflow: hidden !important;
 	div[data-slate-editor] {
 		text-wrap-mode: nowrap;
