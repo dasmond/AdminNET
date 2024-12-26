@@ -181,6 +181,9 @@ public class SysTenantService : IDynamicApiController, ITransient
         // 设置logo
         SetLogoUrl(tenant, input.LogoBase64, input.LogoFileName);
 
+        // 取最大`id + 100` 为新租户`id`，方便数据维护
+        tenant.Id = await _sysTenantRep.AsQueryable().MaxAsync(u => u.Id) + 100;
+
         await _sysTenantRep.InsertAsync(tenant);
         await InitNewTenant(tenant);
 
