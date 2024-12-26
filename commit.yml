@@ -3,24 +3,18 @@ branches: {
   }
 fileChange:
   /Web:
-    newFile: !uuid '1c651c3a6faf4500220c436181578a1117b93ddb'
-    oldFile: !uuid '36e018ceeb2cf09c67c3c878eae6a0f3b2aa0c7a'
+    newFile: !uuid 'aa8ce173bde34529600982c770ecff40893697a6'
+    oldFile: !uuid '1c651c3a6faf4500220c436181578a1117b93ddb'
   /Web/src:
-    newFile: !uuid '6ed9afe722038b9155112d3f00ce3f05b426b109'
-    oldFile: !uuid '9ad8fdb644f27200b869aaba9415ce3f33b550e9'
-  /Web/src/views:
-    newFile: !uuid '2b86711a18b427ebcadcd150bcedbf3d5cf00f64'
-    oldFile: !uuid 'a99395c894775210a1301d168167d21fa10db929'
-  /Web/src/views/system:
-    newFile: !uuid '8de788c427cb52e061258ced48134a175193b834'
-    oldFile: !uuid 'bd3d82b7df32844d07c1ad37faa229aab99a48b8'
-  /Web/src/views/system/stressTest:
-    newFile: !uuid 'ba9e0e8b62abac3604d38607af485fadf37c13ec'
-    oldFile: !uuid '5fb8393b9871b2d9872f866eb1646309a587abd1'
-  /Web/src/views/system/stressTest/index.vue:
-    newFile: !uuid '568193393473744371ae954eff4f2ebb10523650'
-    oldFile: !uuid '64978146d78e72a1a2599459e8aa0ad2829eba8b'
-gitCommitId: !uuid '0f976c2aca80a6592084cc9e6653d6b54bd42b29'
+    newFile: !uuid '9e3391acd3c2659082c7cb777ce2fbdee28726bc'
+    oldFile: !uuid '6ed9afe722038b9155112d3f00ce3f05b426b109'
+  /Web/src/router:
+    newFile: !uuid '7db625f3d78e1e268d06b7ce3e692153f860f2ad'
+    oldFile: !uuid '4a35fc67f465feba4f3b97b8107047454cb4982d'
+  /Web/src/router/index.ts:
+    newFile: !uuid '03e7ece496afda136708731f2f7162423f015e23'
+    oldFile: !uuid '240a2b78c0686cc41e88fd9b344cf93a8b73aaf2'
+gitCommitId: !uuid 'bf1f193f023997c47600b58fc4241715c692a796'
 renames: {
   }
-revisionId: 2606
+revisionId: 2607
