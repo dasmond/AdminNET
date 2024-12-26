@@ -22,7 +22,7 @@ public class StressTestInput
     /// 请求方式
     /// </summary>
     [Required(ErrorMessage = "请求方式不能为空")]
-    public HttpMethod? RequestMethod { get; set; } = HttpMethod.Get;
+    public string RequestMethod { get; set; } = nameof(HttpMethod.Get);
 
     /// <summary>
     /// 每轮请求量

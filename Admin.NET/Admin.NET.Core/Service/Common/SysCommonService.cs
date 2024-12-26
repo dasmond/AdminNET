@@ -4,6 +4,7 @@
 //
 // 不得利用本项目从事危害国家安全、扰乱社会秩序、侵犯他人合法权益等法律法规禁止的活动！任何基于本项目二次开发而产生的一切法律纠纷和责任，我们不承担任何责任！
 
+using Azure.Core;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Org.BouncyCastle.Crypto.Parameters;
 using Org.BouncyCastle.Utilities.Encoders;
@@ -151,7 +152,14 @@ public class SysCommonService : IDynamicApiController, ITransient
                 uriBuilder.Query = queryString.ToString() ?? string.Empty;
                 var fullUri = uriBuilder.Uri.ToString();
 
-                HttpRequestMessage request = new(input.RequestMethod!, fullUri);
+                HttpRequestMessage request = input.RequestMethod.ToUpper() switch
+                {
+                    "GET" => new HttpRequestMessage(HttpMethod.Get, fullUri),
+                    "PUT" => new HttpRequestMessage(HttpMethod.Put, fullUri),
+                    "POST" => new HttpRequestMessage(HttpMethod.Post, fullUri),
+                    "DELETE" => new HttpRequestMessage(HttpMethod.Delete, fullUri),
+                    _ => throw Oops.Bah("请求方式异常")
+                };
 
                 // 设置请求头
                 foreach (var header in input.Headers)
@@ -159,7 +167,7 @@ public class SysCommonService : IDynamicApiController, ITransient
                     request.Headers.Add(header.Key, header.Value);
                 }
 
-                if (input.RequestMethod != HttpMethod.Get && input.RequestParameters.Any())
+                if (nameof(HttpMethod.Get).EqualIgnoreCase(input.RequestMethod) && input.RequestParameters.Any())
                 {
                     var content = new FormUrlEncodedContent(input.RequestParameters);
                     request.Content = content;
