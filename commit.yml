@@ -3,81 +3,48 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '4f2b69194dfcbe79ceb8445953d7f0ee758380f9'
-    oldFile: !uuid '21c4faa4d77551d675187067dae8d72393d61412'
-  /Admin.NET/Admin.NET.Core:
-    newFile: !uuid 'df379dd1429261f034c4f2a3c3fe8a8f90121385'
-    oldFile: !uuid '0046a02db4c96ed0099d7fb478afd5588c45605c'
-  /Admin.NET/Admin.NET.Core/Enum:
-    newFile: !uuid '0277aa5c53ac144e36b481944a3ed4ef3efa551f'
-    oldFile: !uuid 'fe229de5b8c89b70c4873cc92f03736bf6228cb1'
-  /Admin.NET/Admin.NET.Core/Enum/ErrorCodeEnum.cs:
-    newFile: !uuid '3f26d0032662cdee2f56cd27cc5b184702132cd9'
-    oldFile: !uuid 'e6039ad40c2519817be651b7dc3e75e2106cd413'
-  /Admin.NET/Admin.NET.Core/SeedData:
-    newFile: !uuid 'e6778548e1a4c5da1aed854a7e4c428a0af397c3'
-    oldFile: !uuid '2c3472e401867f6eab10111ebd9bbe58f1715323'
-  /Admin.NET/Admin.NET.Core/SeedData/SysMenuSeedData.cs:
-    newFile: !uuid '259ffe4dfa456e686d742d93df74125f9eb27898'
-    oldFile: !uuid '053405cdf35efd2ff95c58e0f943f088ef12143a'
-  /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid 'e19bb64e1b9e9ae223fa155b5f866ce168c1085c'
-    oldFile: !uuid '2467f3c19c8cd6f85402bcf6f844d01a52e1d682'
-  /Admin.NET/Admin.NET.Core/Service/Dict:
-    newFile: !uuid '0ab13ab6bb021a1f4da1b2b0167afb38aafb3abc'
-    oldFile: !uuid '5ae3e55960df19095841a8549cbb170c7e67c39c'
-  /Admin.NET/Admin.NET.Core/Service/Dict/Dto:
-    newFile: !uuid 'b9739f1cf0ccfd3d6954cb372c7cd506996a1850'
-    oldFile: !uuid '3bba3701479441735a2b36b0e36e4feeb68090dc'
-  /Admin.NET/Admin.NET.Core/Service/Dict/Dto/DictTypeInput.cs:
-    newFile: !uuid '49dde79cb2ffb1be04df2d2ce296205e4f388cd5'
-    oldFile: !uuid '93a7c0a7499eb9935a4b0b1612519ec4e95c28f4'
-  /Admin.NET/Admin.NET.Core/Service/Dict/SysDictTypeService.cs:
-    newFile: !uuid '46886dedd99e04971c724f5c99a05ad57747cfe5'
-    oldFile: !uuid '4ffc847a2ed0a7768c4bc16d09ea26b71277a3a7'
+    newFile: !uuid '59f3a5dc9f7f1376337f8d5db5e8e0483e1072c4'
+    oldFile: !uuid '4f2b69194dfcbe79ceb8445953d7f0ee758380f9'
+  /Admin.NET/Admin.NET.Web.Entry:
+    newFile: !uuid 'd2a9a8aa14b43c2d6306fb9285004c4283fdaccf'
+    oldFile: !uuid '75e44d38ca28d6c8a0476245fde99d31ccbf753c'
+  /Admin.NET/Admin.NET.Web.Entry/wwwroot:
+    newFile: !uuid 'c9af131592aa6df64969a9fcbc11d477e9ceb8e9'
+    oldFile: !uuid 'c4c6b512d5ebc0326cd1c6376647a54c84128fd9'
+  /Admin.NET/Admin.NET.Web.Entry/wwwroot/template:
+    newFile: !uuid '18acd4e611d4eb319dbd289d51930c7d701a0674'
+    oldFile: !uuid 'b0d70a45356041f96410a2a097bf49ebde5f049e'
+  /Admin.NET/Admin.NET.Web.Entry/wwwroot/template/editDialog.vue.vm:
+    newFile: !uuid 'fd086d4a890d0bdf8f75900d33a11e5cda20806f'
+    oldFile: !uuid '811c2507f046dc927c1592771559163b64e37063'
+  /Admin.NET/Admin.NET.Web.Entry/wwwroot/template/index.vue.vm:
+    newFile: !uuid 'b9b08213729e7d2272a5ecf918ddd3dad722cabe'
+    oldFile: !uuid 'cd033c9076e0c7af6cdf48ddfc0fdb504ea4e948'
   /Web:
-    newFile: !uuid '3d10034f8da4ccbab292fa882347eb35d5aee4a6'
-    oldFile: !uuid 'aa8ce173bde34529600982c770ecff40893697a6'
+    newFile: !uuid 'cf4ae37517f96c7b52fa5f5bed7e28dc861c8021'
+    oldFile: !uuid '3d10034f8da4ccbab292fa882347eb35d5aee4a6'
   /Web/src:
-    newFile: !uuid '523e946c23dbbd97b5cacd41bf743b4b4b69a61f'
-    oldFile: !uuid '9e3391acd3c2659082c7cb777ce2fbdee28726bc'
-  /Web/src/api-services:
-    newFile: !uuid '8d14c0f0bc7afa518b2ccbf01dc49db90a10df4e'
-    oldFile: !uuid 'c475310eb854ca890a6c63d4005469ba6ae5fef3'
-  /Web/src/api-services/apis:
-    newFile: !uuid '624455dceb21530a9bafcb6a42a9b84cef0073fb'
-    oldFile: !uuid '8a862225d5458a1825004a94b95bed58413c5a5d'
-  /Web/src/api-services/apis/sys-dict-type-api.ts:
-    newFile: !uuid 'cbd874f394f2f96fac8bc0842bea123aa88349bf'
-    oldFile: !uuid 'a144d574414ad843290fb8b75a60d2576f742a69'
-  /Web/src/api-services/models:
-    newFile: !uuid '5369cda0e6921bcbe8eaa6eb6b5be5550ff15fe6'
-    oldFile: !uuid 'dd98762fa4f9da48e96c07f3a3f3ce9cb3277f8f'
-  /Web/src/api-services/models/dict-type-move-input.ts:
-    newFile: !uuid '1a85f68d876320b82f9f602e0416c48f52e17e02'
-    oldFile: null
-  /Web/src/api-services/models/http-method.ts:
-    newFile: null
-    oldFile: !uuid '3e81c90d6927fab6a9508ec49b038c55bebb98db'
-  /Web/src/api-services/models/index.ts:
-    newFile: !uuid 'e0fd365d5b18a6444a6e55958a280d288df6f0a3'
-    oldFile: !uuid '99a2675cda13bf113ea2899db125631eb8fe036f'
-  /Web/src/api-services/models/stress-test-input.ts:
-    newFile: !uuid 'dfaf92a09d8bf98e5306ef04fc4651f84703e6c4'
-    oldFile: !uuid '73fd3e12fb3f1b903694c13481cda12eee0bdfe5'
+    newFile: !uuid '236fd1238309953853228fa56dcb7a3140999b08'
+    oldFile: !uuid '523e946c23dbbd97b5cacd41bf743b4b4b69a61f'
   /Web/src/views:
-    newFile: !uuid '7fcfa6ec1b681bfb43c5d245033dec1f4e01c6ab'
-    oldFile: !uuid '2b86711a18b427ebcadcd150bcedbf3d5cf00f64'
+    newFile: !uuid '19acca5c828d1ed70c1fca5bbf142c5ff722b553'
+    oldFile: !uuid '7fcfa6ec1b681bfb43c5d245033dec1f4e01c6ab'
   /Web/src/views/system:
-    newFile: !uuid '65bfa475a1b2f857bc1c07e8bd2290c185e6b568'
-    oldFile: !uuid '8de788c427cb52e061258ced48134a175193b834'
-  /Web/src/views/system/dict:
-    newFile: !uuid '5a76c722ad81051d1a38c1e9191d78f601b68c63'
-    oldFile: !uuid 'c58d5e01ff0b69d44c048356ef1dc06b8924bf63'
-  /Web/src/views/system/dict/index.vue:
-    newFile: !uuid '65f948beffbb10735b81b0b2ef4c2d686827325e'
-    oldFile: !uuid 'f9345e49749a8fb4bbffd361aadfbf46ad392ecb'
-gitCommitId: !uuid '07f7819b91028cb5c941ac616d8b785518836c89'
-renames:
-  /Web/src/api-services/models/dict-type-move-input.ts: /Web/src/api-services/models/http-method.ts
-revisionId: 2610
+    newFile: !uuid '17a67297bb170084504afd201f827d0480b65466'
+    oldFile: !uuid '65bfa475a1b2f857bc1c07e8bd2290c185e6b568'
+  /Web/src/views/system/stressTest:
+    newFile: !uuid '1dbfb52a9fa4d89f8ac8f8163fc65f6cc856e95c'
+    oldFile: !uuid 'ba9e0e8b62abac3604d38607af485fadf37c13ec'
+  /Web/src/views/system/stressTest/component:
+    newFile: !uuid 'f17214c52aae0ce5841daae7bb459990af717447'
+    oldFile: !uuid '3906f9920a2d1a2d8fa2e4e1847802c58794586b'
+  /Web/src/views/system/stressTest/component/editStressTest.vue:
+    newFile: !uuid 'fca97d429cb16d05e1c0f25689ff7c61da682cc6'
+    oldFile: !uuid '1d6d101b215a121a3ed9964bfa98f22af18bee54'
+  /Web/src/views/system/stressTest/index.vue:
+    newFile: !uuid '0926cfad3d2ea14f7149d43c9cd70727588784b1'
+    oldFile: !uuid '568193393473744371ae954eff4f2ebb10523650'
+gitCommitId: !uuid 'd501a77b52353032d981a1700c2fdcc5a671a843'
+renames: {
+  }
+revisionId: 2611
