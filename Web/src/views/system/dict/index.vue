@@ -16,9 +16,6 @@
 						<el-form-item label="名称">
 							<el-input v-model="state.queryDictTypeParams.name" @keyup.enter.native="handleDictTypeQuery" placeholder="字典名称" clearable />
 						</el-form-item>
-						<!-- <el-form-item label="字典编码">
-							<el-input v-model="state.queryDictTypeParams.code" placeholder="字典编码" clearable />
-						</el-form-item> -->
 						<el-form-item>
 							<el-button-group>
 								<el-button type="primary" icon="ele-Search" @click="handleDictTypeQuery" v-auth="'sysDictType:page'"> 查询 </el-button>
@@ -45,8 +42,11 @@
 								<ModifyRecord :data="scope.row" />
 							</template>
 						</el-table-column>
-						<el-table-column label="操作" width="80" fixed="right" align="center" v-if="auths(['sysDictType:update', 'sysDictType:delete'])">
+						<el-table-column label="操作" width="120" fixed="right" align="center" v-if="auths(['sysDictType:update', 'sysDictType:delete'])">
 							<template #default="scope">
+								<el-tooltip content="迁移">
+									<el-button icon="ele-Switch" size="small" text type="primary" @click="openMoveDictType(scope.row)" v-auth="'sysDictType:move'"> </el-button>
+								</el-tooltip>
 								<el-tooltip content="编辑">
 									<el-button icon="ele-Edit" size="small" text type="primary" @click="openEditDictType(scope.row)" v-auth="'sysDictType:update'"> </el-button>
 								</el-tooltip>
@@ -145,6 +145,42 @@
 			</el-col>
 		</el-row>
 
+		<el-dialog v-model="state.showMoveDictDialog" draggable :close-on-click-modal="false" width="700px">
+			<template #header>
+				<div style="color: #fff">
+					<el-icon size="16" style="margin-right: 3px; display: inline; vertical-align: middle"> <ele-Edit /> </el-icon>
+					<span> 迁移字典租户 </span>
+				</div>
+			</template>
+			<el-form :model="state.selectDict" ref="moveDictTypeFormRef" label-width="auto">
+				<el-row :gutter="35">
+					<el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="mb20">
+						<el-form-item label="字典名称" prop="name" :rules="[{ required: true, message: '字典名称不能为空', trigger: 'blur' }]">
+							<el-input v-model="state.selectDict.name" :disabled="true" placeholder="字典名称" clearable />
+						</el-form-item>
+					</el-col>
+					<el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="mb20">
+						<el-form-item label="字典编码" prop="code" :rules="[{ required: true, message: '字典名称不能为空', trigger: 'blur' }]">
+							<el-input v-model="state.selectDict.code" :disabled="true" placeholder="字典名称" clearable />
+						</el-form-item>
+					</el-col>
+					<el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="mb20">
+						<el-form-item label="租户" prop="tenantId" :rules="[{ required: true, message: '租户不能为空', trigger: 'blur' }]">
+							<el-select v-model="state.selectDict.tenantId" placeholder="租户" class="w100">
+								<el-option :value="item.value" :label="`${item.label} (${item.host})`" v-for="(item, index) in state.tenantList" :key="index" />
+							</el-select>
+						</el-form-item>
+					</el-col>
+				</el-row>
+			</el-form>
+			<template #footer>
+				<span class="dialog-footer">
+					<el-button @click="() => state.showMoveDictDialog = false">取 消</el-button>
+					<el-button type="primary" @click="moveDictTypeSubmit" v-reclick="1000">确 定</el-button>
+				</span>
+			</template>
+		</el-dialog>
+
 		<EditDictType ref="editDictTypeRef" :title="state.editDictTypeTitle" @handleQuery="handleDictTypeQuery" @handleUpdate="updateDictSession" />
 		<EditDictData ref="editDictDataRef" :title="state.editDictDataTitle" @handleQuery="handleDictDataQuery" @handleUpdate="updateDictSession" />
 	</div>
@@ -152,24 +188,27 @@
 
 <script lang="ts" setup name="sysDict">
 import { onMounted, reactive, ref } from 'vue';
-import { ElMessageBox, ElMessage } from 'element-plus';
 import { getAPI } from '/@/utils/axios-utils';
 import { useUserInfo } from '/@/stores/userInfo';
-import {SysDictTypeApi, SysDictDataApi, SysTenantApi} from '/@/api-services/api';
+import { ElMessageBox, ElMessage } from 'element-plus';
 import { SysDictType, SysDictData, UpdateDictDataInput } from '/@/api-services/models';
+import { SysDictTypeApi, SysDictDataApi, SysTenantApi } from '/@/api-services/api';
 import EditDictType from '/@/views/system/dict/component/editDictType.vue';
 import EditDictData from '/@/views/system/dict/component/editDictData.vue';
 import ModifyRecord from '/@/components/table/modifyRecord.vue';
-import {auths} from "/@/utils/authFunction";
 import NoticeBar from "/@/components/noticeBar/index.vue";
+import { auths } from "/@/utils/authFunction";
 
 const userStore = useUserInfo();
+const moveDictTypeFormRef = ref();
 const editDictTypeRef = ref<InstanceType<typeof EditDictType>>();
 const editDictDataRef = ref<InstanceType<typeof EditDictData>>();
 const state = reactive({
 	loading: false,
 	typeLoading: false,
+	showMoveDictDialog: false,
 	tenantList: [] as Array<any>,
+	selectDict: {} as SysDictType,
 	dictTypeData: [] as Array<SysDictType>,
 	dictDataData: [] as Array<SysDictData>,
 	queryDictTypeParams: {
@@ -231,6 +270,11 @@ const handleDictType = (row: any, event: any, column: any) => {
 	openDictDataDialog(row);
 };
 
+// 刷新字典类型和字典值表格
+const handleAllDictQuery = () => {
+	handleDictTypeQuery().then(() => handleDictDataQuery());
+}
+
 // 重置字典操作
 const resetDictTypeQuery = () => {
 	state.queryDictTypeParams.name = undefined;
@@ -259,6 +303,21 @@ const openAddDictData = () => {
 	state.editDictDataTitle = '添加字典值';
 	editDictDataRef.value?.openDialog({ status: 1, orderNo: 100, dictTypeId: state.queryDictDataParams.dictTypeId, tenantId: state.queryDictTypeParams.tenantId });
 };
+
+const moveDictTypeSubmit = async () => {
+	moveDictTypeFormRef.value.validate(async (valid: boolean) => {
+		if (!valid) return;
+		await getAPI(SysDictTypeApi).apiSysDictTypeMovePost({ id: state.selectDict.id, tenantId: state.selectDict.tenantId });
+		handleAllDictQuery();
+		state.showMoveDictDialog = false;
+	});
+}
+
+// 打开迁移字典租户
+const openMoveDictType = (row: any) => {
+	state.selectDict = row;
+	state.showMoveDictDialog = true;
+}
 
 // 打开编辑字典页面
 const openEditDictType = (row: any) => {
@@ -341,10 +400,6 @@ const handleDictDataCurrentChange = (val: number) => {
 
 // 更新前端字典缓存
 const updateDictSession = async () => {
-	// if (Session.get('dictList')) {
-	// 	const dictList = await useUserInfo().getAllDictList();
-	// 	Session.set('dictList', dictList);
-	// }
 	await useUserInfo().setDictList();
 };
 </script>

@@ -11,7 +11,6 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-import { HttpMethod } from './http-method';
 import { KeyValuePairStringString } from './key-value-pair-string-string';
 /**
  * 接口压测输入参数
@@ -26,11 +25,11 @@ export interface StressTestInput {
      */
     requestUri: string;
     /**
-     * 
-     * @type {HttpMethod}
+     * 请求方式
+     * @type {string}
      * @memberof StressTestInput
      */
-    requestMethod: HttpMethod;
+    requestMethod: string;
     /**
      * 每轮请求量
      * @type {number}

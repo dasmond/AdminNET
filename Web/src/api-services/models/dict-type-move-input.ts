@@ -14,13 +14,19 @@
 /**
  * 
  * @export
- * @interface HttpMethod
+ * @interface DictTypeMoveInput
  */
-export interface HttpMethod {
+export interface DictTypeMoveInput {
     /**
-     * 
-     * @type {string}
-     * @memberof HttpMethod
+     * 主键Id
+     * @type {number}
+     * @memberof DictTypeMoveInput
      */
-    method?: string | null;
+    id: number;
+    /**
+     * 租户
+     * @type {number}
+     * @memberof DictTypeMoveInput
+     */
+    tenantId: number;
 }

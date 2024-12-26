@@ -151,6 +151,34 @@ public class SysDictTypeService : IDynamicApiController, ITransient
     }
 
     /// <summary>
+    /// 迁移字典租户 🔖
+    /// </summary>
+    /// <param name="input"></param>
+    /// <returns></returns>
+    [UnitOfWork]
+    [DisplayName("迁移字典租户")]
+    public async Task Move(DictTypeMoveInput input)
+    {
+        var dictType = await _sysDictTypeRep.GetByIdAsync(input.Id) ?? throw Oops.Oh(ErrorCodeEnum.D3000);
+        if (dictType.TenantId == input.TenantId) throw Oops.Oh(ErrorCodeEnum.D3009);
+        if (dictType.Code.EndsWith("Enum")) throw Oops.Oh(ErrorCodeEnum.D3008);
+
+        dictType.TenantId = input.TenantId;
+
+        var list = await _sysDictTypeRep.Context.Queryable<SysDictData>().Where(u => u.DictTypeId == input.Id).ToListAsync();
+        list?.ForEach(e => e.TenantId = input.TenantId);
+
+        await _sysDictTypeRep.DeleteAsync(dictType);
+        await _sysDictTypeRep.InsertAsync(dictType);
+
+        if (list != null)
+        {
+            await _sysDictTypeRep.Context.Deleteable(list).ExecuteCommandAsync();
+            await _sysDictTypeRep.Context.Insertable(list).ExecuteCommandAsync();
+        }
+    }
+
+    /// <summary>
     /// 获取所有字典集合 🔖
     /// </summary>
     /// <returns></returns>

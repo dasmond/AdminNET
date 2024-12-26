@@ -356,6 +356,18 @@ public enum ErrorCodeEnum
     D3007,
 
     /// <summary>
+    /// 禁止迁移枚举字典
+    /// </summary>
+    [ErrorCodeItemMetadata("禁止迁移枚举字典")]
+    D3008,
+
+    /// <summary>
+    /// 字典已在该租户禁止迁移
+    /// </summary>
+    [ErrorCodeItemMetadata("字典已在该租户禁止迁移")]
+    D3009,
+
+    /// <summary>
     /// 菜单已存在
     /// </summary>
     [ErrorCodeItemMetadata("菜单已存在")]
