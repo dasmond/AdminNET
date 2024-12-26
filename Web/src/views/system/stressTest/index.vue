@@ -17,7 +17,7 @@
 							<el-input v-model="state.keywords" size="small" placeholder="关键字" clearable />
 						</el-col>
 						<el-col :xs="24" :sm="6" :md="6" :lg="6" :xl="6" class="mb10">
-							<el-button size="small" icon="ele-Search" @click="queryTreeNode()" />
+							<el-button size="small" icon="ele-Search" v-reclick="1000" @click="queryTreeNode()" />
 						</el-col>
 					</el-row>
 					<el-tree

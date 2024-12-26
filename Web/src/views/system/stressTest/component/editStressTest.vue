@@ -108,7 +108,7 @@
 			<template #footer>
 				<span class="dialog-footer" v-loading="state.loading">
 					<el-button @click="() => state.isShowDialog = false">取 消</el-button>
-					<el-button type="primary" @click="submit">确 定</el-button>
+					<el-button type="primary" @click="submit" v-reclick="1000">确 定</el-button>
 				</span>
 			</template>
 		</el-dialog>

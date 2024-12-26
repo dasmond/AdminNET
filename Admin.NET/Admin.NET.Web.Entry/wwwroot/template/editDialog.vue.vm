@@ -162,7 +162,7 @@ defineExpose({ openDialog });
 			<template #footer>
 				<span class="dialog-footer">
 					<el-button @@click="() => state.showDialog = false">取 消</el-button>
-					<el-button @@click="submit" type="primary">确 定</el-button>
+					<el-button @@click="submit" type="primary" v-reclick="1000">确 定</el-button>
 				</span>
 			</template>
 		</el-dialog>
