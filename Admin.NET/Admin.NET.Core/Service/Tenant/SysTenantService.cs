@@ -20,6 +20,7 @@ public class SysTenantService : IDynamicApiController, ITransient
     private readonly SqlSugarRepository<SysUserExtOrg> _sysUserExtOrgRep;
     private readonly SqlSugarRepository<SysTenantMenu> _sysTenantMenuRep;
     private readonly SqlSugarRepository<SysRoleMenu> _sysRoleMenuRep;
+    private readonly SysRoleMenuService _sysRoleMenuService;
     private readonly SqlSugarRepository<SysUserRole> _userRoleRep;
     private readonly SysConfigService _sysConfigService;
     private readonly SysCacheService _sysCacheService;
@@ -36,7 +37,8 @@ public class SysTenantService : IDynamicApiController, ITransient
         SqlSugarRepository<SysUserRole> userRoleRep,
         IOptions<UploadOptions> uploadOptions,
         SysConfigService sysConfigService,
-        SysCacheService sysCacheService)
+        SysCacheService sysCacheService,
+        SysRoleMenuService sysRoleMenuService)
     {
         _sysTenantRep = sysTenantRep;
         _sysOrgRep = sysOrgRep;
@@ -50,6 +52,8 @@ public class SysTenantService : IDynamicApiController, ITransient
         _uploadOptions = uploadOptions.Value;
         _sysConfigService = sysConfigService;
         _sysCacheService = sysCacheService;
+        _sysRoleMenuService = sysRoleMenuService;
+
     }
 
     /// <summary>
@@ -262,6 +266,12 @@ public class SysTenantService : IDynamicApiController, ITransient
         var newOrg = new SysOrg { TenantId = tenantId, Pid = 0, Name = tenantName, Code = tenantName, Remark = tenantName, };
         await _sysOrgRep.InsertAsync(newOrg);
 
+        // 初始化默认角色
+        var newRole = new SysRole { TenantId = tenantId, Name = CommonConst.DefaultBaseRoleName, Code = CommonConst.DefaultBaseRoleCode, DataScope = DataScopeEnum.Self, Remark = "此角色为系统自动创建角色" };
+        var baseRole = await _sysRoleRep.InsertReturnEntityAsync(newRole);
+        var baseRoleMenuIdList = GetBaseRoleMenuIdList().ToList();
+        await _sysRoleMenuService.GrantRoleMenu(new RoleMenuInput { Id = baseRole.Id, MenuIdList = baseRoleMenuIdList.Select(u => u.MenuId).ToList() });
+
         // 初始化职位
         var newPos = new SysPos { TenantId = tenantId, Name = "管理员-" + tenantName, Code = tenantName, Remark = tenantName };
         await _sysPosRep.InsertAsync(newPos);
@@ -326,6 +336,32 @@ public class SysTenantService : IDynamicApiController, ITransient
         menuList.Add(allMenuList.First(u => u.Type == MenuTypeEnum.Dir && u.Title == "帮助文档"));
         menuList.Add(allMenuList.First(u => u.Type == MenuTypeEnum.Menu && u.Title == "关于项目"));
         if (flow != null) menuList.Add(flow);
+
+        return menuList.Select(u => new SysTenantMenu
+        {
+            Id = CommonUtil.GetFixedHashCode("" + SqlSugarConst.DefaultTenantId + u.Id, 1300000000000),
+            TenantId = SqlSugarConst.DefaultTenantId,
+            MenuId = u.Id
+        });
+    }
+
+    /// <summary>
+    /// 获取租户默认菜单
+    /// </summary>
+    /// <returns></returns>
+    [NonAction]
+    public IEnumerable<SysTenantMenu> GetBaseRoleMenuIdList()
+    {
+        var menuList = new List<SysMenu>();
+        var allMenuList = new SysMenuSeedData().HasData().ToList();
+
+        var dashboardMenu = allMenuList.First(u => u.Type == MenuTypeEnum.Dir && u.Title == "工作台");
+        menuList.AddRange(allMenuList.ToChildList(u => u.Id, u => u.Pid, dashboardMenu.Id));
+
+        var systemMenu = allMenuList.First(u => u.Type == MenuTypeEnum.Dir && u.Title == "系统管理");
+        menuList.Add(systemMenu);
+        menuList.AddRange(allMenuList.ToChildList(u => u.Id, u => u.Pid, u => u.Pid == systemMenu.Id && new[] { "机构管理", "个人中心" }.Contains(u.Title)));
+        menuList = menuList.Where(u => !new[] { "增加", "编辑", "删除" }.Contains(u.Title)).ToList();
 
         return menuList.Select(u => new SysTenantMenu
         {
