@@ -4,17 +4,22 @@
 //
 // 不得利用本项目从事危害国家安全、扰乱社会秩序、侵犯他人合法权益等法律法规禁止的活动！任何基于本项目二次开发而产生的一切法律纠纷和责任，我们不承担任何责任！
 
-using Admin.Net.Plugin.DingTalk.RequestProxy.BaseTypes;
+using Admin.NET.Plugin.DingTalk.RequestProxy.BaseTypes;
 
 using System.Text.Json.Serialization;
 
-namespace Admin.Net.Plugin.DingTalk.RequestProxy.Attendance.DTO;
+namespace Admin.NET.Plugin.DingTalk.RequestProxy.Attendance.DTO;
 
+/// <summary>
+/// 查询请假状态
+/// </summary>
 public class GetLeaveStatusResponse:DingtalkResponseErrorResultRequestId<GetLeaveStatusResult>
 {
     /// <summary>
-    /// 请求是否成功。true：成功, false：失败
+    /// 请求是否成功。
     /// </summary>
+    [JsonProperty("success")]
+    [JsonPropertyName("success")]
     public bool Success { get; set; }
 }
 
@@ -68,6 +73,8 @@ public class LeaveStatusDomain
     /// <summary>
     /// 用户ID。
     /// </summary>
+    [JsonProperty("userid")]
+    [JsonPropertyName("userid")]
     public string UserId {  get; set; }
 
 }

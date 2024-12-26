@@ -4,10 +4,11 @@
 //
 // 不得利用本项目从事危害国家安全、扰乱社会秩序、侵犯他人合法权益等法律法规禁止的活动！任何基于本项目二次开发而产生的一切法律纠纷和责任，我们不承担任何责任！
 
-using Admin.Net.Plugin.DingTalk.RequestProxy.AliTrip.DTO;
+using Admin.NET.Plugin.DingTalk.RequestProxy.AliTrip.DTO;
 
-namespace Admin.Net.Plugin.DingTalk.RequestProxy.AliTrip;
-public class AliTripRequest
+namespace Admin.NET.Plugin.DingTalk.RequestProxy.AliTrip;
+
+public class AliTripRequest : IScoped
 {
     private readonly IAliTripRequestProxy _request;
 
@@ -22,14 +23,13 @@ public class AliTripRequest
     /// <param name="accessToken"></param>
     /// <param name="req"></param>
     /// <returns></returns>
-    public async Task<GetAliTripAddressResponse> GetAliTripAddress(string accessToken, OpenApiJumpInfoRq req)
+    public async Task<GetAliTripAddressResponse> GetAliTripAddress(string accessToken, AliTripAddressRequestDomain req)
     {
         var resStr = await _request.GetAliTripAddress(accessToken, new GetAliTripAddressRequest
         {
             Request = req
         });
-        var res = resStr.ToObject<GetAliTripAddressResponse>();
-        return res;
+        return resStr.ToObject<GetAliTripAddressResponse>();
     }
 
     /// <summary>
@@ -41,14 +41,18 @@ public class AliTripRequest
     public async Task<GetAliTripFlightOrdersResponse> GetAliTripFlightOrders(string accessToken, GetAliTripFlightOrdersRequest rq)
     {
         var resStr = await _request.GetAliTripFlightOrders(accessToken, rq);
-        var res = resStr.ToObject<GetAliTripFlightOrdersResponse>();
-        return res;
+        return resStr.ToObject<GetAliTripFlightOrdersResponse>();
     }
 
+    /// <summary>
+    /// 获取企业火车票订单数据
+    /// </summary>
+    /// <param name="accessToken"></param>
+    /// <param name="rq"></param>
+    /// <returns></returns>
     public async Task<GetAliTripTrainOrdersResponse> GetAliTripTrainOrders(string accessToken, GetAliTripTrainOrdersRequest rq)
     {
         var resStr = await _request.GetAliTripTrainOrders(accessToken, rq);
-        var res = resStr.ToObject<GetAliTripTrainOrdersResponse>();
-        return res;
+        return resStr.ToObject<GetAliTripTrainOrdersResponse>();
     }
 }

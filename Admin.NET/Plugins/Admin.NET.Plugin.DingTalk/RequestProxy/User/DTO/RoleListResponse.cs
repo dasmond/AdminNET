@@ -4,12 +4,15 @@
 //
 // 不得利用本项目从事危害国家安全、扰乱社会秩序、侵犯他人合法权益等法律法规禁止的活动！任何基于本项目二次开发而产生的一切法律纠纷和责任，我们不承担任何责任！
 
-using Admin.Net.Plugin.DingTalk.RequestProxy.BaseTypes;
+using Admin.NET.Plugin.DingTalk.RequestProxy.BaseTypes;
 
 using System.Text.Json.Serialization;
 
-namespace Admin.Net.Plugin.DingTalk.RequestProxy.User.DTO;
+namespace Admin.NET.Plugin.DingTalk.RequestProxy.User.DTO;
 
+/// <summary>
+/// 获取角色列表
+/// </summary>
 public class RoleListResponse : DingtalkResponseErrorResultRequestId<RoleListResultDomain>
 {
 }
@@ -19,41 +22,55 @@ public class RoleListResultDomain
     /// <summary>
     /// 是否还有更多数据
     /// </summary>
+    [JsonProperty("hasMore")]
+    [JsonPropertyName("hasMore")]
     public bool HasMore { get; set; }
 
     /// <summary>
     /// 角色组列表
     /// </summary>
+    [JsonProperty("list")]
+    [JsonPropertyName("list")]
     public List<OpenRoleGroup> List { get; set; }
+}
 
-    public class OpenRoleGroup
-    {
-        /// <summary>
-        /// 角色组ID
-        /// </summary>
-        public long GroupId { get; set; }
+public class OpenRoleGroup
+{
+    /// <summary>
+    /// 角色组ID
+    /// </summary>
+    [JsonProperty("groupId")]
+    [JsonPropertyName("groupId")]
+    public long GroupId { get; set; }
 
-        /// <summary>
-        /// 角色组名称
-        /// </summary>
-        public string Name { get; set; }
+    /// <summary>
+    /// 角色组名称
+    /// </summary>
+    [JsonProperty("name")]
+    [JsonPropertyName("name")]
+    public string Name { get; set; }
 
-        /// <summary>
-        /// 角色列表
-        /// </summary>
-        public List<OpenRole> Roles { get; set; }
+    /// <summary>
+    /// 角色列表
+    /// </summary>
+    [JsonProperty("roles")]
+    [JsonPropertyName("roles")]
+    public List<OpenRole> Roles { get; set; }
+}
 
-        public class OpenRole
-        {
-            /// <summary>
-            /// 角色ID
-            /// </summary>
-            public long Id { get; set; }
+public class OpenRole
+{
+    /// <summary>
+    /// 角色ID
+    /// </summary>
+    [JsonProperty("id")]
+    [JsonPropertyName("id")]
+    public long Id { get; set; }
 
-            /// <summary>
-            /// 角色名称
-            /// </summary>
-            public string Name { get; set; }
-        }
-    }
+    /// <summary>
+    /// 角色名称
+    /// </summary>
+    [JsonProperty("name")]
+    [JsonPropertyName("name")]
+    public string Name { get; set; }
 }

@@ -4,9 +4,9 @@
 //
 // 不得利用本项目从事危害国家安全、扰乱社会秩序、侵犯他人合法权益等法律法规禁止的活动！任何基于本项目二次开发而产生的一切法律纠纷和责任，我们不承担任何责任！
 
-using Admin.Net.Plugin.DingTalk.RequestProxy.User.DTO;
+using Admin.NET.Plugin.DingTalk.RequestProxy.User.DTO;
 
-namespace Admin.Net.Plugin.DingTalk.RequestProxy.User;
+namespace Admin.NET.Plugin.DingTalk.RequestProxy.User;
 
 public class UserRequest : IScoped
 {
@@ -101,7 +101,14 @@ public class UserRequest : IScoped
         return res;
     }
 
-    public async Task<RoleListResponse> RoleList(string accessToken, int size=20, int offset=0)
+    /// <summary>
+    /// 获取角色列表
+    /// </summary>
+    /// <param name="accessToken"></param>
+    /// <param name="size">支持分页查询，与offset参数同时设置时才生效，此参数代表分页大小，默认值20，最大值200</param>
+    /// <param name="offset">支持分页查询，与size参数同时设置时才生效，此参数代表偏移量，偏移量从0开始</param>
+    /// <returns></returns>
+    public async Task<RoleListResponse> RoleList(string accessToken, int size = 20, int offset = 0)
     {
         var resStr = await _request.RoleList(accessToken, new RoleListRequest { Offset = offset, Size = size });
         var res = resStr.ToObject<RoleListResponse>();

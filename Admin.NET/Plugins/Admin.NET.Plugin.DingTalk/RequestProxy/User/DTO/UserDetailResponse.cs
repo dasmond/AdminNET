@@ -4,12 +4,15 @@
 //
 // 不得利用本项目从事危害国家安全、扰乱社会秩序、侵犯他人合法权益等法律法规禁止的活动！任何基于本项目二次开发而产生的一切法律纠纷和责任，我们不承担任何责任！
 
-using Admin.Net.Plugin.DingTalk.RequestProxy.BaseTypes;
+using Admin.NET.Plugin.DingTalk.RequestProxy.BaseTypes;
 
 using System.Text.Json.Serialization;
 
-namespace Admin.Net.Plugin.DingTalk.RequestProxy.User.DTO;
+namespace Admin.NET.Plugin.DingTalk.RequestProxy.User.DTO;
 
+/// <summary>
+/// 查询用户详情
+/// </summary>
 public class UserDetailResponse : DingtalkResponseErrorResultRequestId<UserDetailResponseResultDomain>
 {
 }
@@ -19,21 +22,29 @@ public class UserDetailResponseResultDomain
     /// <summary>
     /// 员工的userId
     /// </summary>
+    [JsonProperty("userid")]
+    [JsonPropertyName("userid")]
     public string UserId { get; set; }
 
     /// <summary>
     /// 员工在当前开发者企业账号范围内的唯一标识
     /// </summary>
+    [JsonProperty("unionid")]
+    [JsonPropertyName("unionid")]
     public string Unionid { get; set; }
 
     /// <summary>
     /// 员工姓名
     /// </summary>
+    [JsonProperty("name")]
+    [JsonPropertyName("name")]
     public string Name { get; set; }
 
     /// <summary>
     /// 头像
     /// </summary>
+    [JsonProperty("avatar")]
+    [JsonPropertyName("avatar")]
     public string Avatar { get; set; }
 
     /// <summary>
@@ -53,6 +64,8 @@ public class UserDetailResponseResultDomain
     /// <summary>
     /// 手机号码
     /// </summary>
+    [JsonProperty("mobile")]
+    [JsonPropertyName("mobile")]
     public string Mobile { get; set; }
 
     /// <summary>
@@ -65,6 +78,8 @@ public class UserDetailResponseResultDomain
     /// <summary>
     /// 分机号
     /// </summary>
+    [JsonProperty("telephone")]
+    [JsonPropertyName("telephone")]
     public string Telephone { get; set; }
 
     /// <summary>
@@ -77,11 +92,15 @@ public class UserDetailResponseResultDomain
     /// <summary>
     /// 职位
     /// </summary>
+    [JsonProperty("title")]
+    [JsonPropertyName("title")]
     public string Title { get; set; }
 
     /// <summary>
     /// 员工邮箱
     /// </summary>
+    [JsonProperty("email")]
+    [JsonPropertyName("email")]
     public string Email { get; set; }
 
     /// <summary>
@@ -94,6 +113,8 @@ public class UserDetailResponseResultDomain
     /// <summary>
     /// 备注
     /// </summary>
+    [JsonProperty("remark")]
+    [JsonPropertyName("remark")]
     public string Remark { get; set; }
 
     /// <summary>
@@ -127,6 +148,8 @@ public class UserDetailResponseResultDomain
     /// <summary>
     /// 扩展属性，最大长度2000个字符
     /// </summary>
+    [JsonProperty("extension")]
+    [JsonPropertyName("extension")]
     public string Extension { get; set; }
 
     /// <summary>
@@ -139,6 +162,8 @@ public class UserDetailResponseResultDomain
     /// <summary>
     /// 是否激活了钉钉
     /// </summary>
+    [JsonProperty("active")]
+    [JsonPropertyName("active")]
     public bool Active { get; set; }
 
     /// <summary>
@@ -151,16 +176,22 @@ public class UserDetailResponseResultDomain
     /// <summary>
     /// 是否为企业的高管
     /// </summary>
+    [JsonProperty("senior")]
+    [JsonPropertyName("senior")]
     public bool Senior { get; set; }
 
     /// <summary>
     /// 是否为企业的管理员
     /// </summary>
+    [JsonProperty("admin")]
+    [JsonPropertyName("admin")]
     public bool Admin { get; set; }
 
     /// <summary>
     /// 是否为企业的老板
     /// </summary>
+    [JsonProperty("boss")]
+    [JsonPropertyName("boss")]
     public bool Boss { get; set; }
 
     /// <summary>
@@ -184,7 +215,6 @@ public class UserDetailResponseResultDomain
     [JsonPropertyName("union_emp_ext")]
     public UnionEmpExtDomain UnionEmpExt { get; set; }
 }
-
 
 public class DeptOrderDomain
 {

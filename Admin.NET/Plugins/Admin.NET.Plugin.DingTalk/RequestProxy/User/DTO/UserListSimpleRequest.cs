@@ -6,8 +6,11 @@
 
 using System.Text.Json.Serialization;
 
-namespace Admin.Net.Plugin.DingTalk.RequestProxy.User.DTO;
+namespace Admin.NET.Plugin.DingTalk.RequestProxy.User.DTO;
 
+/// <summary>
+/// 获取部门用户基础信息
+/// </summary>
 public class UserListSimpleRequest
 {
     /// <summary>

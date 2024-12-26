@@ -6,11 +6,13 @@
 
 using System.Text.Json.Serialization;
 
-namespace Admin.Net.Plugin.DingTalk.RequestProxy.BaseTypes;
+namespace Admin.NET.Plugin.DingTalk.RequestProxy.BaseTypes;
 public abstract class DingtalkResponseErrorSuccess : DingtalkResponseError
 {
     /// <summary>
     /// 接口调用是否成功
     /// </summary>
+    [JsonProperty("success")]
+    [JsonPropertyName("success")]
     public virtual bool Success { get; set; }
 }

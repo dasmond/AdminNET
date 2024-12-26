@@ -6,7 +6,7 @@
 
 using System.Text.Json.Serialization;
 
-namespace Admin.Net.Plugin.DingTalk.RequestProxy.Attendance.DTO;
+namespace Admin.NET.Plugin.DingTalk.RequestProxy.Attendance.DTO;
 
 /// <summary>
 /// 出勤审批完成请求入参
@@ -70,7 +70,7 @@ public class TopCalculateApproveDurationParamDomain
     /// </summary>
     [JsonProperty("bizType")]
     [JsonPropertyName("bizType")]
-    public BizTypeEnum BizType;
+    public AttendanceBizTypeEnum BizType;
 
     /// <summary>
     /// 开始时间。开始时间不能早于当前时间前31天。 支持以下格式：2019-08-15,2019-08-15 AM,2019-08-15 12:43

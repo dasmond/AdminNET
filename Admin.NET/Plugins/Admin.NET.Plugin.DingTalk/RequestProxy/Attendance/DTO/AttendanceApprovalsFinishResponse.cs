@@ -4,11 +4,11 @@
 //
 // 不得利用本项目从事危害国家安全、扰乱社会秩序、侵犯他人合法权益等法律法规禁止的活动！任何基于本项目二次开发而产生的一切法律纠纷和责任，我们不承担任何责任！
 
-using Admin.Net.Plugin.DingTalk.RequestProxy.BaseTypes;
+using Admin.NET.Plugin.DingTalk.RequestProxy.BaseTypes;
 
 using System.Text.Json.Serialization;
 
-namespace Admin.Net.Plugin.DingTalk.RequestProxy.Attendance.DTO;
+namespace Admin.NET.Plugin.DingTalk.RequestProxy.Attendance.DTO;
 
 /// <summary>
 /// 出勤批准完成响应
@@ -25,11 +25,15 @@ public class AttendanceApprovalsFinishResponseResult
     /// <summary>
     /// 总时长，该字段的单位与本企业内对应审批单设置的单位一致
     /// </summary>
+    [JsonProperty("duration")]
+    [JsonPropertyName("duration")]
     public double Duration;
 
     /// <summary>
     /// 详细信息
     /// </summary>
+    [JsonProperty("durationDetail")]
+    [JsonPropertyName("durationDetail")]
     public List<DurationDetailDomain> DurationDetail;
 }
 
@@ -38,10 +42,14 @@ public class DurationDetailDomain
     /// <summary>
     /// 审批通过日期
     /// </summary>
+    [JsonProperty("date")]
+    [JsonPropertyName("date")]
     public string Date;
 
     /// <summary>
     /// 每日时长
     /// </summary>
+    [JsonProperty("duration")]
+    [JsonPropertyName("duration")]
     public double Duration;
 }

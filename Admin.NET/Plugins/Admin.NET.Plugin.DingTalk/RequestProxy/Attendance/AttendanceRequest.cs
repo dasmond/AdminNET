@@ -4,11 +4,11 @@
 //
 // 不得利用本项目从事危害国家安全、扰乱社会秩序、侵犯他人合法权益等法律法规禁止的活动！任何基于本项目二次开发而产生的一切法律纠纷和责任，我们不承担任何责任！
 
-using Admin.Net.Plugin.DingTalk.RequestProxy.Attendance.DTO;
+using Admin.NET.Plugin.DingTalk.RequestProxy.Attendance.DTO;
 
 using NewLife;
 
-namespace Admin.Net.Plugin.DingTalk.RequestProxy.Attendance;
+namespace Admin.NET.Plugin.DingTalk.RequestProxy.Attendance;
 
 public class AttendanceRequest : IScoped
 {
@@ -28,7 +28,7 @@ public class AttendanceRequest : IScoped
     /// <param name="to">查询考勤打卡记录的结束工作日</param>
     /// <param name="isI18N">是否为海外企业使用</param>
     /// <returns></returns>
-    public async Task<ListRecordResponse> ListRecord(string accessToken, List<string> useridList, DateTime from, DateTime to,bool isI18N=false)
+    public async Task<ListRecordResponse> ListRecord(string accessToken, List<string> useridList, DateTime from, DateTime to, bool isI18N = false)
     {
         var requestBody = new ListRecordRequest
         {
@@ -53,7 +53,7 @@ public class AttendanceRequest : IScoped
     /// <param name="bizType">审批单类型，可取值：1：加班，2：出差、外出，3：请假</param>
     /// <param name="fromTime">开始时间。开始时间不能早于当前时间前31天</param>
     /// <param name="toTime">结束时间</param>
-    /// <param name="durationUnit">时长单位，支持格式如下：day，halfDay，hour：biz_type为1时仅支持hou</param>
+    /// <param name="durationUnit">时长单位，支持格式如下：day，halfDay，hour：biz_type为1时仅支持hour</param>
     /// <param name="calculateModel">计算方法：0：按自然日计算，1：按工作日计算</param>
     /// <param name="leaveCode">假期规则唯一标识。选填。仅支持bizType=3 请假时传不为空，可以支持根据假期类型设置的取整规则进行时长取整</param>
     /// <param name="subType">子类型名称，最大长度20个字符。审批单类型biz_type=3时，该参数必传。</param>
@@ -61,28 +61,28 @@ public class AttendanceRequest : IScoped
     /// <param name="overTimeToMore">biz_type为1时必传：1：加班转调休，2：加班转工资</param>
     /// <returns></returns>
     public async Task<AttendanceApprovalsFinishResponse> ApproveFinish(string accessToken, string userid, string approveId, string tagName, string jumpUrl,
-        BizTypeEnum bizType, DateTime fromTime, DateTime toTime, DurationUnitEnum durationUnit, CalculateModelEnum calculateModel, string? leaveCode = null,
+        AttendanceBizTypeEnum bizType, DateTime fromTime, DateTime toTime, AttendanceDurationUnitEnum durationUnit, AttendanceCalculateModelEnum calculateModel, string? leaveCode = null,
         string? subType = null, string? overTimeDuration = null, long? overTimeToMore = null)
     {
-        if (bizType == BizTypeEnum.请假 && string.IsNullOrEmpty(subType))
+        if (bizType == AttendanceBizTypeEnum.请假 && string.IsNullOrEmpty(subType))
             throw Oops.Oh("审批单类型biz_type=3时，subType必传。");
-        if (bizType == BizTypeEnum.加班 && (string.IsNullOrEmpty(overTimeDuration) || !overTimeToMore.HasValue))
+        if (bizType == AttendanceBizTypeEnum.加班 && (string.IsNullOrEmpty(overTimeDuration) || !overTimeToMore.HasValue))
             throw Oops.Oh("biz_type为1时,overTimeDuration和overTimeToMore必传");
         var fromTimeStr = "";
         var toTimeStr = "";
         switch (durationUnit)
         {
-            case DurationUnitEnum.Day:
+            case AttendanceDurationUnitEnum.Day:
                 fromTimeStr = fromTime.ToString("yyyy-MM-dd");
                 toTimeStr = toTime.ToString("yyyy-MM-dd");
                 break;
 
-            case DurationUnitEnum.HalfDay:
+            case AttendanceDurationUnitEnum.HalfDay:
                 fromTimeStr = TimeToHalfDay(fromTime);
                 toTimeStr = TimeToHalfDay(toTime);
                 break;
 
-            case DurationUnitEnum.Hour:
+            case AttendanceDurationUnitEnum.Hour:
                 fromTimeStr = fromTime.ToString("yyyy-MM-dd HH:mm");
                 toTimeStr = toTime.ToString("yyyy-MM-dd HH:mm");
                 break;
@@ -134,6 +134,16 @@ public class AttendanceRequest : IScoped
         return resStr.ToObject<AttendanceApprovelsCancelResponse>();
     }
 
+    /// <summary>
+    /// 查询请假状态
+    /// </summary>
+    /// <param name="accessToken"></param>
+    /// <param name="userIdList">待查询用户的ID列表，每次最多100个</param>
+    /// <param name="startTime">开始时间 ，支持最多180天的查询</param>
+    /// <param name="endTime">结束时间，支持最多180天的查询</param>
+    /// <param name="offset">支持分页查询，与size参数同时设置时才生效，此参数代表偏移量，偏移量从0开始</param>
+    /// <param name="size">支持分页查询，与offset参数同时设置时才生效，此参数代表分页大小，最大20</param>
+    /// <returns></returns>
     public async Task<GetLeaveStatusResponse> GetLeaveStatus(string accessToken, List<string> userIdList, DateTime startTime, DateTime endTime, int offset = 0, int size = 10)
     {
         var resStr = await _request.GetLeaveStatus(accessToken, new GetLeaveStatusRequest

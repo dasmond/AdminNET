@@ -6,13 +6,20 @@
 
 using System.Text.Json.Serialization;
 
-namespace Admin.Net.Plugin.DingTalk.RequestProxy.BaseTypes;
-public abstract class DingtalkResponseRequestId
+namespace Admin.NET.Plugin.DingTalk.RequestProxy.BaseTypes;
+public abstract class DingtalkRequestOffsetSize
 {
     /// <summary>
-    /// 请求ID
+    /// 支持分页查询，与offset参数同时设置时才生效，此参数代表分页大小。
     /// </summary>
-    [JsonProperty("request_id")]
-    [JsonPropertyName("request_id")]
-    public virtual string RequestId { get; set; }
+    [JsonProperty("size")]
+    [JsonPropertyName("size")]
+    public virtual int Size { get; set; }
+
+    /// <summary>
+    /// 支持分页查询，与size参数同时设置时才生效，此参数代表偏移量，偏移量从0开始。
+    /// </summary>
+    [JsonProperty("offset")]
+    [JsonPropertyName("offset")]
+    public virtual int Offset { get; set; } = 0;
 }

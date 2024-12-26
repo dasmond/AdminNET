@@ -4,19 +4,29 @@
 //
 // 不得利用本项目从事危害国家安全、扰乱社会秩序、侵犯他人合法权益等法律法规禁止的活动！任何基于本项目二次开发而产生的一切法律纠纷和责任，我们不承担任何责任！
 
-using Admin.Net.Plugin.DingTalk.RequestProxy.BaseTypes;
+using Admin.NET.Plugin.DingTalk.RequestProxy.BaseTypes;
 
 using System.Text.Json.Serialization;
 
 namespace Admin.NET.Plugin.DingTalk.RequestProxy.HRM.DTO;
 
+/// <summary>
+/// 获取在职员工列表
+/// </summary>
 public class EmployeeQueryOnJobResponse: DingtalkResponseErrorSuccess
 {
+    /// <summary>
+    /// 请求ID
+    /// </summary>
     [JsonProperty("request_id")]
     [JsonPropertyName("request_id")]
     public string RequestId { get; set; }
 
-
+    /// <summary>
+    /// 返回结果
+    /// </summary>
+    [JsonProperty("result")]
+    [JsonPropertyName("result")]
     public EmployeeQueryOnJobResponseResultDomain Result { get; set; }
 }
 

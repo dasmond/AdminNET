@@ -4,9 +4,9 @@
 //
 // 不得利用本项目从事危害国家安全、扰乱社会秩序、侵犯他人合法权益等法律法规禁止的活动！任何基于本项目二次开发而产生的一切法律纠纷和责任，我们不承担任何责任！
 
-using Admin.Net.Plugin.DingTalk.RequestProxy.Department.DTO;
+using Admin.NET.Plugin.DingTalk.RequestProxy.Department.DTO;
 
-namespace Admin.Net.Plugin.DingTalk.RequestProxy.Department;
+namespace Admin.NET.Plugin.DingTalk.RequestProxy.Department;
 
 public class DepartmentRequest : IScoped
 {
@@ -43,11 +43,11 @@ public class DepartmentRequest : IScoped
     /// <returns></returns>
     public async Task<ListSubIdResponse> ListSubId(string accessToken, long deptId = 1)
     {
-        var resStr = await _request.ListSubId(accessToken, new DTO.ListSubIdRequest
+        var resStr = await _request.ListSubId(accessToken, new ListSubIdRequest
         {
             DeptId = deptId
         });
-        var res = resStr.ToObject<DTO.ListSubIdResponse>();
+        var res = resStr.ToObject<ListSubIdResponse>();
         return res;
     }
 

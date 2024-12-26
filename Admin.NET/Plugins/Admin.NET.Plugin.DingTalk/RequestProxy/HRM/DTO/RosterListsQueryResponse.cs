@@ -4,76 +4,105 @@
 //
 // 不得利用本项目从事危害国家安全、扰乱社会秩序、侵犯他人合法权益等法律法规禁止的活动！任何基于本项目二次开发而产生的一切法律纠纷和责任，我们不承担任何责任！
 
+using System.Text.Json.Serialization;
+
 namespace Admin.NET.Plugin.DingTalk.RequestProxy.HRM.DTO;
 
+/// <summary>
+/// 获取员工花名册字段信息
+/// </summary>
 public class RosterListsQueryResponse
 {
     /// <summary>
     /// 结果列表
     /// </summary>
+    [JsonProperty("result")]
+    [JsonPropertyName("result")]
     public List<ResultDomain> Result { get; set; }
+}
 
-    public class ResultDomain
-    {
-        /// <summary>
-        /// 企业的corpId
-        /// </summary>
-        public string CorpId { get; set; }
+public class ResultDomain
+{
+    /// <summary>
+    /// 企业的corpId
+    /// </summary>
+    [JsonProperty("corpId")]
+    [JsonPropertyName("corpId")]
+    public string CorpId { get; set; }
 
-        /// <summary>
-        /// 员工的userId
-        /// </summary>
-        public string UserId { get; set; }
+    /// <summary>
+    /// 员工的userId
+    /// </summary>
+    [JsonProperty("userId")]
+    [JsonPropertyName("userId")]
+    public string UserId { get; set; }
 
-        /// <summary>
-        /// 暂未开放
-        /// </summary>
-        public string UnionId { get; set; }
+    /// <summary>
+    /// 暂未开放
+    /// </summary>
+    [JsonProperty("unionId")]
+    [JsonPropertyName("unionId")]
+    public string UnionId { get; set; }
 
-        /// <summary>
-        /// 返回的字段信息列表
-        /// </summary>
-        public List<FieldDataDomain> FieldDataList { get; set; }
+    /// <summary>
+    /// 返回的字段信息列表
+    /// </summary>
+    [JsonProperty("fieldDataList")]
+    [JsonPropertyName("fieldDataList")]
+    public List<FieldDataDomain> FieldDataList { get; set; }
+}
 
-        public class FieldDataDomain
-        {
-            /// <summary>
-            /// 字段标识
-            /// </summary>
-            public string FieldCode { get; set; }
+public class FieldDataDomain
+{
+    /// <summary>
+    /// 字段标识
+    /// </summary>
+    [JsonProperty("fieldCode")]
+    [JsonPropertyName("fieldCode")]
+    public string FieldCode { get; set; }
 
-            /// <summary>
-            /// 字段名称
-            /// </summary>
-            public string FieldName { get; set; }
+    /// <summary>
+    /// 字段名称
+    /// </summary>
+    [JsonProperty("fieldName")]
+    [JsonPropertyName("fieldName")]
+    public string FieldName { get; set; }
 
-            /// <summary>
-            /// 分组标识
-            /// </summary>
-            public string GroupId { get; set; }
+    /// <summary>
+    /// 分组标识
+    /// </summary>
+    [JsonProperty("groupId")]
+    [JsonPropertyName("groupId")]
+    public string GroupId { get; set; }
 
-            /// <summary>
-            /// 字段值列表
-            /// </summary>
-            public List<FieldValueDomain> FieldValueList { get; set; }
+    /// <summary>
+    /// 字段值列表
+    /// </summary>
+    [JsonProperty("fieldValueList")]
+    [JsonPropertyName("fieldValueList")]
+    public List<FieldValueDomain> FieldValueList { get; set; }
+}
 
-            public class FieldValueDomain
-            {
-                /// <summary>
-                /// 字段取值，选项类型字段对应选项的key
-                /// </summary>
-                public string Value { get; set; }
+public class FieldValueDomain
+{
+    /// <summary>
+    /// 字段取值，选项类型字段对应选项的key
+    /// </summary>
+    [JsonProperty("value")]
+    [JsonPropertyName("value")]
+    public string Value { get; set; }
 
-                /// <summary>
-                /// 字段展示值，选项类型字段对应选项的value
-                /// </summary>
-                public string Label { get; set; }
+    /// <summary>
+    /// 字段展示值，选项类型字段对应选项的value
+    /// </summary>
+    [JsonProperty("label")]
+    [JsonPropertyName("label")]
+    public string Label { get; set; }
 
-                /// <summary>
-                /// 第几条的明细标识，下标从0开始
-                /// </summary>
-                public int ItemIndex { get; set; }
-            }
-        }
-    }
+    /// <summary>
+    /// 第几条的明细标识，下标从0开始
+    /// </summary>
+    [JsonProperty("itemIndex")]
+    [JsonPropertyName("itemIndex")]
+    public int ItemIndex { get; set; }
 }

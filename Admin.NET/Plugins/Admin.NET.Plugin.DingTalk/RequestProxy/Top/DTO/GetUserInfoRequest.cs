@@ -6,8 +6,11 @@
 
 using System.Text.Json.Serialization;
 
-namespace Admin.Net.Plugin.DingTalk.RequestProxy.Top.DTO;
+namespace Admin.NET.Plugin.DingTalk.RequestProxy.Top.DTO;
 
+/// <summary>
+/// 通过免登码获取用户信息
+/// </summary>
 public class GetUserInfoRequest
 {
     /// <summary>
