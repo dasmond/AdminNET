@@ -2,19 +2,22 @@
 branches: {
   }
 fileChange:
-  /Web:
-    newFile: !uuid 'aa8ce173bde34529600982c770ecff40893697a6'
-    oldFile: !uuid '1c651c3a6faf4500220c436181578a1117b93ddb'
-  /Web/src:
-    newFile: !uuid '9e3391acd3c2659082c7cb777ce2fbdee28726bc'
-    oldFile: !uuid '6ed9afe722038b9155112d3f00ce3f05b426b109'
-  /Web/src/router:
-    newFile: !uuid '7db625f3d78e1e268d06b7ce3e692153f860f2ad'
-    oldFile: !uuid '4a35fc67f465feba4f3b97b8107047454cb4982d'
-  /Web/src/router/index.ts:
-    newFile: !uuid '03e7ece496afda136708731f2f7162423f015e23'
-    oldFile: !uuid '240a2b78c0686cc41e88fd9b344cf93a8b73aaf2'
-gitCommitId: !uuid 'bf1f193f023997c47600b58fc4241715c692a796'
+  /Admin.NET:
+    newFile: !uuid '759100a748077d9766d7b8de00c8269f3b78e5e4'
+    oldFile: !uuid '75f5f1e33e14c7a2f6f9d81c1e331efe499b55dd'
+  /Admin.NET/Admin.NET.Core:
+    newFile: !uuid 'c260c5fb924d56c27149872c5d703d2d58a1fe07'
+    oldFile: !uuid 'a0deeaf32579a6903c3457b8b0947819ce4ac25a'
+  /Admin.NET/Admin.NET.Core/Service:
+    newFile: !uuid '7a5218d8a806df060ce21fa98d46a3bb9226bfbf'
+    oldFile: !uuid 'bc360319d01ae20eae6806e3ba2dfdd32ce576c5'
+  /Admin.NET/Admin.NET.Core/Service/Tenant:
+    newFile: !uuid '94aef63c2ed7f01e6d6b744a66e56a30cd98cc9d'
+    oldFile: !uuid '51572673d2e6ec9f5ad23555adf939f91b615dcd'
+  /Admin.NET/Admin.NET.Core/Service/Tenant/SysTenantService.cs:
+    newFile: !uuid 'd4bc142714d8ac2a9477e012a9f9fcb8464d8103'
+    oldFile: !uuid 'ded81097307d4273b9bd264393eaa638638f6a0d'
+gitCommitId: !uuid 'a75605d5989409a40d70f784b291125c67f55eff'
 renames: {
   }
-revisionId: 2607
+revisionId: 2608
