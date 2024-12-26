@@ -6,7 +6,7 @@ import { storeToRefs } from 'pinia';
 import { useKeepALiveNames } from '/@/stores/keepAliveNames';
 import { useRoutesList } from '/@/stores/routesList';
 import { useThemeConfig } from '/@/stores/themeConfig';
-import { Session } from '/@/utils/storage';
+import {Local, Session} from '/@/utils/storage';
 import { staticRoutes, notFoundAndNoPower } from '/@/router/route';
 import { initFrontEndControlRoutes } from '/@/router/frontEnd';
 import { initBackEndControlRoutes } from '/@/router/backEnd';
@@ -102,7 +102,8 @@ router.beforeEach(async (to, from, next) => {
 		NProgress.done();
 	} else {
 		if (!token) {
-			next(`/login?redirect=${to.path}&params=${JSON.stringify(to.query ? to.query : to.params)}`);
+			const addQuery = Local.get('t') ? `&t=${Local.get('t')}` : '';
+			next(`/login?redirect=${to.path}&params=${JSON.stringify(to.query ? to.query : to.params)}${addQuery}`);
 			Session.clear();
 			NProgress.done();
 		} else if (token && to.path === '/login') {
