@@ -1,7 +1,7 @@
 <template>
 	<div class="sys-stress-test h100 overlay-none">
 		<div>
-			<NoticeBar text="接口压测会占用大量的内存资源，请慎重操作！" style="margin: 4px" />
+			<NoticeBar text="接口压测会占用服务器大量的内存资源，请慎重操作！" style="margin: 4px" />
 		</div>
 
 		<splitpanes class="default-theme overlay-hidden">
