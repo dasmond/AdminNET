@@ -6,7 +6,7 @@
 
 using System.Text.Json.Serialization;
 
-namespace Admin.Net.Plugin.DingTalk.RequestProxy.BaseTypes;
+namespace Admin.NET.Plugin.DingTalk.RequestProxy.BaseTypes;
 public abstract class DingtalkResponseErrorRequestId : DingtalkResponseError
 {
     /// <summary>

@@ -6,8 +6,11 @@
 
 using System.Text.Json.Serialization;
 
-namespace Admin.Net.Plugin.DingTalk.RequestProxy.Attendance.DTO;
+namespace Admin.NET.Plugin.DingTalk.RequestProxy.Attendance.DTO;
 
+/// <summary>
+/// 获取打卡详情
+/// </summary>
 public class ListRecordRequest
 {
     /// <summary>

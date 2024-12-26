@@ -4,11 +4,15 @@
 //
 // 不得利用本项目从事危害国家安全、扰乱社会秩序、侵犯他人合法权益等法律法规禁止的活动！任何基于本项目二次开发而产生的一切法律纠纷和责任，我们不承担任何责任！
 
-using Admin.Net.Plugin.DingTalk.RequestProxy.BaseTypes;
+using Admin.NET.Plugin.DingTalk.RequestProxy.BaseTypes;
+
 using System.Text.Json.Serialization;
 
-namespace Admin.Net.Plugin.DingTalk.RequestProxy.Top.DTO;
+namespace Admin.NET.Plugin.DingTalk.RequestProxy.Top.DTO;
 
+/// <summary>
+/// 通过免登码获取用户信息
+/// </summary>
 public class GetUserInfoResponse : DingtalkResponseErrorResultRequestId<UserGetByCodeResponse>
 {
 }
@@ -32,6 +36,8 @@ public class UserGetByCodeResponse
     /// <summary>
     /// 是否是管理员
     /// </summary>
+    [JsonProperty("sys")]
+    [JsonPropertyName("sys")]
     public bool Sys { get; set; }
 
     /// <summary>
@@ -51,10 +57,14 @@ public class UserGetByCodeResponse
     /// <summary>
     /// 用户unionId
     /// </summary>
+    [JsonProperty("unionid")]
+    [JsonPropertyName("unionid")]
     public string Unionid { get; set; }
 
     /// <summary>
     /// 用户名字
     /// </summary>
+    [JsonProperty("name")]
+    [JsonPropertyName("name")]
     public string Name { get; set; }
 }

@@ -6,17 +6,21 @@
 
 using System.Text.Json.Serialization;
 
-namespace Admin.Net.Plugin.DingTalk.RequestProxy.Top.DTO;
+namespace Admin.NET.Plugin.DingTalk.RequestProxy.Top.DTO;
 
+/// <summary>
+/// 获取企业内部应用的accessToken
+/// </summary>
 public class GetAccessTokenResponse
 {
-    /// <summary>
-    /// 生成的accessToken
-    /// </summary>
+    [JsonProperty("accessToken")]
+    [JsonPropertyName("accessToken")]
     public string AccessToken { get; set; }
 
     /// <summary>
     /// accessToken的过期时间，单位秒
     /// </summary>
+    [JsonProperty("expireIn")]
+    [JsonPropertyName("expireIn")]
     public long ExpireIn { get; set; }
 }

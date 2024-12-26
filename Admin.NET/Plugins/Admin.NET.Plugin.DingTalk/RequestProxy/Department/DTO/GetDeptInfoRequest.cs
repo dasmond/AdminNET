@@ -6,8 +6,11 @@
 
 using System.Text.Json.Serialization;
 
-namespace Admin.Net.Plugin.DingTalk.RequestProxy.Department.DTO;
+namespace Admin.NET.Plugin.DingTalk.RequestProxy.Department.DTO;
 
+/// <summary>
+/// 获取部门详情
+/// </summary>
 public class GetDeptInfoRequest
 {
     /// <summary>

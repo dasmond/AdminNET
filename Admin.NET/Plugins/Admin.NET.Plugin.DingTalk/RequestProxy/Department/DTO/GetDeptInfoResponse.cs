@@ -4,12 +4,15 @@
 //
 // 不得利用本项目从事危害国家安全、扰乱社会秩序、侵犯他人合法权益等法律法规禁止的活动！任何基于本项目二次开发而产生的一切法律纠纷和责任，我们不承担任何责任！
 
-using Admin.Net.Plugin.DingTalk.RequestProxy.BaseTypes;
+using Admin.NET.Plugin.DingTalk.RequestProxy.BaseTypes;
 
 using System.Text.Json.Serialization;
 
-namespace Admin.Net.Plugin.DingTalk.RequestProxy.Department.DTO;
+namespace Admin.NET.Plugin.DingTalk.RequestProxy.Department.DTO;
 
+/// <summary>
+/// 获取部门详情
+/// </summary>
 public class GetDeptInfoResponse : DingtalkResponseErrorResultRequestId<GetDeptInfoResponseResultDomain>
 {
 }
@@ -26,6 +29,8 @@ public class GetDeptInfoResponseResultDomain
     /// <summary>
     /// 部门名称
     /// </summary>
+    [JsonProperty("name")]
+    [JsonPropertyName("name")]
     public string Name { get; set; }
 
     /// <summary>
@@ -73,11 +78,15 @@ public class GetDeptInfoResponseResultDomain
     /// <summary>
     /// 教育部门标签： campus：校区，period：学段，grade：年级，class：班级
     /// </summary>
+    [JsonProperty("tags")]
+    [JsonPropertyName("tags")]
     public string Tags { get; set; }
 
     /// <summary>
     /// 在父部门中的次序值
     /// </summary>
+    [JsonProperty("order")]
+    [JsonPropertyName("order")]
     public long Order { get; set; }
 
     /// <summary>

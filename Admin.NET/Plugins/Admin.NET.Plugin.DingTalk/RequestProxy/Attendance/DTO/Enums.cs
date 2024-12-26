@@ -4,23 +4,35 @@
 //
 // 不得利用本项目从事危害国家安全、扰乱社会秩序、侵犯他人合法权益等法律法规禁止的活动！任何基于本项目二次开发而产生的一切法律纠纷和责任，我们不承担任何责任！
 
-namespace Admin.Net.Plugin.DingTalk.RequestProxy.Attendance.DTO;
+namespace Admin.NET.Plugin.DingTalk.RequestProxy.Attendance.DTO;
 
-public enum BizTypeEnum
+/// <summary>
+/// 考勤审批单类型，可取值：1：加班，2：出差、外出，3：请假
+/// </summary>
+[SuppressSniffer]
+public enum AttendanceBizTypeEnum
 {
     加班 = 1,
     出差 = 2,
     请假 = 3
 }
 
-public enum DurationUnitEnum
+/// <summary>
+/// 考勤审批单时长单位，支持格式如下：day，halfDay，hour：biz_type为1时仅支持hour
+/// </summary>
+[SuppressSniffer]
+public enum AttendanceDurationUnitEnum
 {
     Day,
     HalfDay,
     Hour
 }
 
-public enum CalculateModelEnum
+/// <summary>
+/// 考勤审批单计算方法：0：按自然日计算，1：按工作日计算
+/// </summary>
+[SuppressSniffer]
+public enum AttendanceCalculateModelEnum
 {
     按自然日计算 = 0,
     按工作日计算 = 1

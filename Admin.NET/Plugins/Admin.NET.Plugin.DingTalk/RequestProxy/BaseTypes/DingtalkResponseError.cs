@@ -6,16 +6,20 @@
 
 using System.Text.Json.Serialization;
 
-namespace Admin.Net.Plugin.DingTalk.RequestProxy.BaseTypes;
+namespace Admin.NET.Plugin.DingTalk.RequestProxy.BaseTypes;
 public abstract class DingtalkResponseError
 {
     /// <summary>
     /// 返回码描述=ok
     /// </summary>
-    public virtual string ErrMsg { get; set; }
+    [JsonProperty("errmsg")]
+    [JsonPropertyName("errmsg")]
+    public virtual string? ErrMsg { get; set; }
 
     /// <summary>
     /// 返回码=0
     /// </summary>
+    [JsonProperty("errcode")]
+    [JsonPropertyName("errcode")]
     public virtual long ErrCode { get; set; }
 }

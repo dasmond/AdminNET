@@ -4,19 +4,18 @@
 //
 // 不得利用本项目从事危害国家安全、扰乱社会秩序、侵犯他人合法权益等法律法规禁止的活动！任何基于本项目二次开发而产生的一切法律纠纷和责任，我们不承担任何责任！
 
-using Admin.Net.Plugin.DingTalk.RequestProxy.AliTrip.DTO;
+using Admin.NET.Plugin.DingTalk.RequestProxy.AliTrip.DTO;
 
-namespace Admin.Net.Plugin.DingTalk.RequestProxy.AliTrip;
-public interface IAliTripRequestProxy: IHttpDispatchProxy
+namespace Admin.NET.Plugin.DingTalk.RequestProxy.AliTrip;
+
+public interface IAliTripRequestProxy : IHttpDispatchProxy
 {
     [Post("https://oapi.dingtalk.com/topapi/alitrip/btrip/address/get"), JsonSerialization(typeof(NewtonsoftJsonSerializerProvider))]
     Task<string> GetAliTripAddress([QueryString("access_token")] string accessToken, [Body] GetAliTripAddressRequest request);
 
     [Post("https://oapi.dingtalk.com/topapi/alitrip/btrip/flight/order/search"), JsonSerialization(typeof(NewtonsoftJsonSerializerProvider))]
-
     Task<string> GetAliTripFlightOrders([QueryString("access_token")] string accessToken, GetAliTripFlightOrdersRequest rq);
 
     [Post("https://oapi.dingtalk.com/topapi/alitrip/btrip/train/order/search"), JsonSerialization(typeof(NewtonsoftJsonSerializerProvider))]
     Task<string> GetAliTripTrainOrders([QueryString("access_token")] string accessToken, GetAliTripTrainOrdersRequest rq);
-
 }

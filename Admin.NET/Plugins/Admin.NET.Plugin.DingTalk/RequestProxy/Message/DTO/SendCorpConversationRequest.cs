@@ -8,8 +8,11 @@ using Newtonsoft.Json.Converters;
 
 using System.Text.Json.Serialization;
 
-namespace Admin.Net.Plugin.DingTalk.RequestProxy.Message.DTO;
+namespace Admin.NET.Plugin.DingTalk.RequestProxy.Message.DTO;
 
+/// <summary>
+/// 发送工作通知
+/// </summary>
 public class SendCorpConversationRequest
 {
     /// <summary>
@@ -56,7 +59,7 @@ public class MsgDomain
     [JsonProperty("msgtype")]
     [JsonPropertyName("msgtype")]
     [Newtonsoft.Json.JsonConverter(typeof(StringEnumConverter))]
-    public MsgTypeEnum MsgType { get; set; }
+    public SendCorpConversationMsgTypeEnum MsgType { get; set; }
 
     /// <summary>
     /// 文本消息
@@ -115,7 +118,12 @@ public class MsgDomain
     public MsgActionCardDomain? ActionCard { get; set; }
 }
 
-public enum MsgTypeEnum
+/// <summary>
+/// 消息类型
+/// </summary>
+[SuppressSniffer]
+[System.Text.Json.Serialization.JsonConverter(typeof(JsonStringEnumConverter))]
+public enum SendCorpConversationMsgTypeEnum
 {
     text, image, voice, file, link, oa, markdown, action_card
 }
@@ -249,126 +257,126 @@ public class MsgOaDomain
     [JsonProperty("status_bar")]
     [JsonPropertyName("status_bar")]
     public MsgOaStatusBarDomain? StatusBar { get; set; }
+}
 
-    public class MsgOaHeadDomain
-    {
-        /// <summary>
-        /// 消息头部的背景颜色。长度限制为8个英文字符，其中前2为表示透明度，后6位表示颜色值。不要添加0x。
-        /// </summary>
-        [JsonProperty("bgcolor")]
-        [JsonPropertyName("bgcolor")]
-        public string BgColor { get; set; }
+public class MsgOaHeadDomain
+{
+    /// <summary>
+    /// 消息头部的背景颜色。长度限制为8个英文字符，其中前2为表示透明度，后6位表示颜色值。不要添加0x。
+    /// </summary>
+    [JsonProperty("bgcolor")]
+    [JsonPropertyName("bgcolor")]
+    public string BgColor { get; set; }
 
-        /// <summary>
-        /// 消息的头部标题
-        /// </summary>
-        [JsonProperty("text")]
-        [JsonPropertyName("text")]
-        public string Text { get; set; }
-    }
+    /// <summary>
+    /// 消息的头部标题
+    /// </summary>
+    [JsonProperty("text")]
+    [JsonPropertyName("text")]
+    public string Text { get; set; }
+}
 
-    public class MsgOaStatusBarDomain
-    {
-        /// <summary>
-        /// 状态栏文案
-        /// </summary>
-        [JsonProperty("status_value")]
-        [JsonPropertyName("status_value")]
-        public string StatusValue { get; set; }
+public class MsgOaStatusBarDomain
+{
+    /// <summary>
+    /// 状态栏文案
+    /// </summary>
+    [JsonProperty("status_value")]
+    [JsonPropertyName("status_value")]
+    public string StatusValue { get; set; }
 
-        /// <summary>
-        /// 状态栏背景色，默认为黑色，推荐0xFF加六位颜色值
-        /// </summary>
-        [JsonProperty("status_bg")]
-        [JsonPropertyName("status_bg")]
-        public string StatusBg { get; set; }
-    }
+    /// <summary>
+    /// 状态栏背景色，默认为黑色，推荐0xFF加六位颜色值
+    /// </summary>
+    [JsonProperty("status_bg")]
+    [JsonPropertyName("status_bg")]
+    public string StatusBg { get; set; }
+}
 
-    public class MsgOaBodyDomain
-    {
-        /// <summary>
-        /// 消息体的标题，建议50个字符以内
-        /// </summary>
-        [JsonProperty("title")]
-        [JsonPropertyName("title")]
-        public string? Title { get; set; }
+public class MsgOaBodyDomain
+{
+    /// <summary>
+    /// 消息体的标题，建议50个字符以内
+    /// </summary>
+    [JsonProperty("title")]
+    [JsonPropertyName("title")]
+    public string? Title { get; set; }
 
-        /// <summary>
-        /// 消息体的表单，最多显示6个，超过会被隐藏
-        /// </summary>
-        [JsonProperty("form")]
-        [JsonPropertyName("form")]
-        public MsgOaBodyFormDomain[]? Form { get; set; }
+    /// <summary>
+    /// 消息体的表单，最多显示6个，超过会被隐藏
+    /// </summary>
+    [JsonProperty("form")]
+    [JsonPropertyName("form")]
+    public MsgOaBodyFormDomain[]? Form { get; set; }
 
-        /// <summary>
-        /// 单行富文本信息
-        /// </summary>
-        [JsonProperty("rich")]
-        [JsonPropertyName("rich")]
-        public MsgOaBodyRichDomain? Rich { get; set; }
+    /// <summary>
+    /// 单行富文本信息
+    /// </summary>
+    [JsonProperty("rich")]
+    [JsonPropertyName("rich")]
+    public MsgOaBodyRichDomain? Rich { get; set; }
 
-        /// <summary>
-        /// 消息体的内容，最多显示3行
-        /// </summary>
-        [JsonProperty("content")]
-        [JsonPropertyName("content")]
-        public string? Content { get; set; }
+    /// <summary>
+    /// 消息体的内容，最多显示3行
+    /// </summary>
+    [JsonProperty("content")]
+    [JsonPropertyName("content")]
+    public string? Content { get; set; }
 
-        /// <summary>
-        /// 消息体中的图片，支持图片资源@mediaId。建议宽600像素 x 400像素，宽高比3 : 2
-        /// </summary>
-        [JsonProperty("image")]
-        [JsonPropertyName("image")]
-        public string? Image { get; set; }
+    /// <summary>
+    /// 消息体中的图片，支持图片资源@mediaId。建议宽600像素 x 400像素，宽高比3 : 2
+    /// </summary>
+    [JsonProperty("image")]
+    [JsonPropertyName("image")]
+    public string? Image { get; set; }
 
-        /// <summary>
-        /// 自定义的附件数目。此数字仅供显示，钉钉不作验证
-        /// </summary>
-        [JsonProperty("file_count")]
-        [JsonPropertyName("file_count")]
-        public string? FileCount { get; set; }
+    /// <summary>
+    /// 自定义的附件数目。此数字仅供显示，钉钉不作验证
+    /// </summary>
+    [JsonProperty("file_count")]
+    [JsonPropertyName("file_count")]
+    public string? FileCount { get; set; }
 
-        /// <summary>
-        /// 自定义的作者名字
-        /// </summary>
-        [JsonProperty("author")]
-        [JsonPropertyName("author")]
-        public string? Author { get; set; }
-    }
+    /// <summary>
+    /// 自定义的作者名字
+    /// </summary>
+    [JsonProperty("author")]
+    [JsonPropertyName("author")]
+    public string? Author { get; set; }
+}
 
-    public class MsgOaBodyRichDomain
-    {
-        /// <summary>
-        /// 单行富文本信息的数目
-        /// </summary>
-        [JsonProperty("num")]
-        [JsonPropertyName("num")]
-        public string? Num { get; set; }
+public class MsgOaBodyRichDomain
+{
+    /// <summary>
+    /// 单行富文本信息的数目
+    /// </summary>
+    [JsonProperty("num")]
+    [JsonPropertyName("num")]
+    public string? Num { get; set; }
 
-        /// <summary>
-        /// 单行富文本信息的单位
-        /// </summary>
-        [JsonProperty("unit")]
-        [JsonPropertyName("unit")]
-        public string? Unit { get; set; }
-    }
+    /// <summary>
+    /// 单行富文本信息的单位
+    /// </summary>
+    [JsonProperty("unit")]
+    [JsonPropertyName("unit")]
+    public string? Unit { get; set; }
+}
 
-    public class MsgOaBodyFormDomain
-    {
-        /// <summary>
-        /// 消息体的关键字
-        /// </summary>
-        [JsonProperty("key")]
-        [JsonPropertyName("key")]
-        public string? Key { get; set; }
+public class MsgOaBodyFormDomain
+{
+    /// <summary>
+    /// 消息体的关键字
+    /// </summary>
+    [JsonProperty("key")]
+    [JsonPropertyName("key")]
+    public string? Key { get; set; }
 
-        /// <summary>
-        /// 消息体的关键字对应的值
-        /// </summary>
-        [JsonProperty("value")]
-        [JsonPropertyName("value")]
-        public string? Value { get; set; }
-    }
+    /// <summary>
+    /// 消息体的关键字对应的值
+    /// </summary>
+    [JsonProperty("value")]
+    [JsonPropertyName("value")]
+    public string? Value { get; set; }
 }
 
 /// <summary>
@@ -429,13 +437,7 @@ public class MsgActionCardDomain
     /// </summary>
     [JsonProperty("btn_orientation")]
     [JsonPropertyName("btn_orientation")]
-    public BenOrientationEnum? BtnOrientation { get; set; }
-
-    public enum BenOrientationEnum
-    {
-        竖直排列,
-        横向排列
-    }
+    public ActionCardBtnOrientationEnum? BtnOrientation { get; set; }
 
     /// <summary>
     /// 使用独立跳转ActionCard样式时的按钮列表；必须与btn_orientation同时设置，且长度不超过1000字符
@@ -443,21 +445,31 @@ public class MsgActionCardDomain
     [JsonProperty("btn_json_list")]
     [JsonPropertyName("btn_json_list")]
     public MsgActionCardBtnJsonListDomain[]? BtnJsonList { get; set; }
+}
 
-    public class MsgActionCardBtnJsonListDomain
-    {
-        /// <summary>
-        /// 使用独立跳转ActionCard样式时的按钮的标题，最长20个字符
-        /// </summary>
-        [JsonProperty("title")]
-        [JsonPropertyName("title")]
-        public string Title { get; set; }
+/// <summary>
+/// 使用独立跳转ActionCard样式时的按钮排列方式
+/// </summary>
+[SuppressSniffer]
+public enum ActionCardBtnOrientationEnum
+{
+    竖直排列 = 0,
+    横向排列 = 1
+}
 
-        /// <summary>
-        /// 使用独立跳转ActionCard样式时的跳转链接，最长700个字符
-        /// </summary>
-        [JsonProperty("action_url")]
-        [JsonPropertyName("action_url")]
-        public string ActionUrl { get; set; }
-    }
+public class MsgActionCardBtnJsonListDomain
+{
+    /// <summary>
+    /// 使用独立跳转ActionCard样式时的按钮的标题，最长20个字符
+    /// </summary>
+    [JsonProperty("title")]
+    [JsonPropertyName("title")]
+    public string Title { get; set; }
+
+    /// <summary>
+    /// 使用独立跳转ActionCard样式时的跳转链接，最长700个字符
+    /// </summary>
+    [JsonProperty("action_url")]
+    [JsonPropertyName("action_url")]
+    public string ActionUrl { get; set; }
 }

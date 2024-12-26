@@ -7,6 +7,10 @@
 using System.Text.Json.Serialization;
 
 namespace Admin.NET.Plugin.DingTalk.RequestProxy.HRM.DTO;
+
+/// <summary>
+/// 获取员工花名册字段信息
+/// </summary>
 public class RosterListsQueryRequest
 {
     /// <summary>

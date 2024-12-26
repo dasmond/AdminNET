@@ -4,22 +4,13 @@
 //
 // 不得利用本项目从事危害国家安全、扰乱社会秩序、侵犯他人合法权益等法律法规禁止的活动！任何基于本项目二次开发而产生的一切法律纠纷和责任，我们不承担任何责任！
 
-using System.Text.Json.Serialization;
+using Admin.NET.Plugin.DingTalk.RequestProxy.BaseTypes;
 
-namespace Admin.Net.Plugin.DingTalk.RequestProxy.User.DTO;
-public  class RoleListRequest
+namespace Admin.NET.Plugin.DingTalk.RequestProxy.User.DTO;
+
+/// <summary>
+/// 获取角色列表
+/// </summary>
+public class RoleListRequest : DingtalkRequestOffsetSize
 {
-    /// <summary>
-    /// 支持分页查询，与offset参数同时设置时才生效，此参数代表分页大小，默认值20，最大值200。
-    /// </summary>
-    [JsonProperty("size")]
-    [JsonPropertyName("size")]
-    public int Size {  get; set; }
-
-    /// <summary>
-    /// 支持分页查询，与size参数同时设置时才生效，此参数代表偏移量，偏移量从0开始。
-    /// </summary>
-    [JsonProperty("offset")]
-    [JsonPropertyName("offset")]
-    public int Offset {  get; set; }
 }
