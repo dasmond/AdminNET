@@ -149,7 +149,7 @@ public class SysTenantService : IDynamicApiController, ITransient
         if (isExist) throw Oops.Oh(ErrorCodeEnum.D1300);
 
         input.Host = input.Host?.ToLower();
-        isExist = await _sysTenantRep.IsAnyAsync(u => u.Host == input.Host);
+        isExist = await _sysTenantRep.IsAnyAsync(u => !string.IsNullOrWhiteSpace(u.Host) && u.Host == input.Host);
         if (isExist) throw Oops.Oh(ErrorCodeEnum.D1303);
 
         isExist = await _sysUserRep.AsQueryable().ClearFilter().AnyAsync(u => u.AccountType == AccountTypeEnum.SuperAdmin && u.Account == input.AdminAccount);
@@ -395,7 +395,7 @@ public class SysTenantService : IDynamicApiController, ITransient
         if (isExist) throw Oops.Oh(ErrorCodeEnum.D1300);
 
         input.Host = input.Host?.ToLower();
-        isExist = await _sysTenantRep.IsAnyAsync(u => u.Host == input.Host && u.Id != input.Id);
+        isExist = await _sysTenantRep.IsAnyAsync(u => !string.IsNullOrWhiteSpace(u.Host) && u.Host == input.Host && u.Id != input.Id);
         if (isExist) throw Oops.Oh(ErrorCodeEnum.D1303);
 
         isExist = await _sysUserRep.AsQueryable().ClearFilter().AnyAsync(u => u.AccountType == AccountTypeEnum.SuperAdmin && u.Account == input.AdminAccount && u.Id != input.UserId);
