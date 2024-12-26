@@ -6,16 +6,19 @@
 
 using System.Text.Json.Serialization;
 
-namespace Admin.Net.Plugin.DingTalk.RequestProxy.AliTrip.DTO;
+namespace Admin.NET.Plugin.DingTalk.RequestProxy.AliTrip.DTO;
 
+/// <summary>
+/// 获取阿里商旅访问地址
+/// </summary>
 public class GetAliTripAddressRequest
 {
     [JsonProperty("request")]
     [JsonPropertyName("request")]
-    public OpenApiJumpInfoRq Request { get; set; }
+    public AliTripAddressRequestDomain Request { get; set; }
 }
 
-public class OpenApiJumpInfoRq
+public class AliTripAddressRequestDomain
 {
     /// <summary>
     /// 用户id
@@ -31,13 +34,20 @@ public class OpenApiJumpInfoRq
     /// <summary>
     /// 类目类型：1：机票,2：火车票,3：酒店,4：用车
     /// </summary>
-
     [JsonProperty("type")]
     [JsonPropertyName("type")]
-    public TypeEnum Type { get; set; }
-    public enum TypeEnum
+    public AliTripTypeEnum Type { get; set; }
+
+    /// <summary>
+    /// 类目类型
+    /// </summary>
+    [SuppressSniffer]
+    public enum AliTripTypeEnum
     {
-        机票 = 1, 火车票, 酒店, 用车
+        机票 = 1,
+        火车票 = 2,
+        酒店 = 3,
+        用车 = 4
     }
 
     /// <summary>
@@ -45,10 +55,18 @@ public class OpenApiJumpInfoRq
     /// </summary>
     [JsonProperty("action_type")]
     [JsonPropertyName("action_type")]
-    public ActionTypeEnum ActionType { get; set; }
-    public enum ActionTypeEnum
+    public AliTripActionTypeEnum ActionType { get; set; }
+
+    /// <summary>
+    /// 操作类型
+    /// </summary>
+    [SuppressSniffer]
+    public enum AliTripActionTypeEnum
     {
-        预订 = 1, 我的订单列表, 商旅管理后台, 商旅h5主页
+        预订 = 1,
+        我的订单列表 = 2,
+        商旅管理后台 = 3,
+        商旅h5主页 = 4
     }
 
     /// <summary>
@@ -65,4 +83,3 @@ public class OpenApiJumpInfoRq
     [JsonPropertyName("phone")]
     public string Phone { get; set; }
 }
-

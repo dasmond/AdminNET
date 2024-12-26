@@ -6,11 +6,16 @@
 
 using System.Text.Json.Serialization;
 
-namespace Admin.Net.Plugin.DingTalk.RequestProxy.AliTrip.DTO;
+namespace Admin.NET.Plugin.DingTalk.RequestProxy.AliTrip.DTO;
+
+/// <summary>
+/// 获取企业火车票订单数据
+/// </summary>
 public class GetAliTripTrainOrdersRequest
 {
     public GetAliTripTrainOrdersRequestDomain rq { get; set; }
 }
+
 public class GetAliTripTrainOrdersRequestDomain
 {
     /// <summary>
@@ -96,5 +101,4 @@ public class GetAliTripTrainOrdersRequestDomain
     [JsonProperty("thirdpart_apply_id")]
     [JsonPropertyName("thirdpart_apply_id")]
     public string? ThirdpartApplyId { get; set; }
-
 }

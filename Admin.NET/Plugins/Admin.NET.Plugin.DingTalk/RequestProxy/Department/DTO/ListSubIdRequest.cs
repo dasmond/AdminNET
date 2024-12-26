@@ -6,8 +6,11 @@
 
 using System.Text.Json.Serialization;
 
-namespace Admin.Net.Plugin.DingTalk.RequestProxy.Department.DTO;
+namespace Admin.NET.Plugin.DingTalk.RequestProxy.Department.DTO;
 
+/// <summary>
+/// 获取子部门ID列表
+/// </summary>
 public class ListSubIdRequest
 {
     /// <summary>

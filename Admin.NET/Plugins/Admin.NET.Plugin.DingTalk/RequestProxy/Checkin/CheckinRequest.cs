@@ -6,7 +6,7 @@
 
 using NewLife;
 
-namespace Admin.Net.Plugin.DingTalk.RequestProxy.Checkin;
+namespace Admin.NET.Plugin.DingTalk.RequestProxy.Checkin;
 
 public class CheckinRequest : IScoped
 {
@@ -52,9 +52,9 @@ public class CheckinRequest : IScoped
     /// <param name="size">支持分页查询，与offset 参数同时设置时才生效，此参数代表分页大小，最大100</param>
     /// <param name="order">排序。asc：正序，desc：倒序</param>
     /// <returns></returns>
-    public async Task<DTO.GetDeptRecordResponse> GetDeptRecord(string accessToken, long deptId, DateTime startTime, DateTime endTime, long offset = 1, long size = 100, string order = "asc")
+    public async Task<DTO.GetDeptRecordResponse> GetDeptRecord(string accessToken, long deptId, DateTime startTime, DateTime endTime, long offset = 0, long size = 100, string order = "asc")
     {
-        var resStr = await _request.GetDeptRecord(accessToken, deptId.ToString(),new DateTimeOffset(startTime).ToUnixTimeMilliseconds(),new DateTimeOffset(endTime).ToUnixTimeMilliseconds(), offset, size, order);
+        var resStr = await _request.GetDeptRecord(accessToken, deptId.ToString(), new DateTimeOffset(startTime).ToUnixTimeMilliseconds(), new DateTimeOffset(endTime).ToUnixTimeMilliseconds(), offset, size, order);
         var res = resStr.ToObject<DTO.GetDeptRecordResponse>();
         return res;
     }

@@ -4,12 +4,15 @@
 //
 // 不得利用本项目从事危害国家安全、扰乱社会秩序、侵犯他人合法权益等法律法规禁止的活动！任何基于本项目二次开发而产生的一切法律纠纷和责任，我们不承担任何责任！
 
-using Admin.Net.Plugin.DingTalk.RequestProxy.BaseTypes;
+using Admin.NET.Plugin.DingTalk.RequestProxy.BaseTypes;
 
 using System.Text.Json.Serialization;
 
-namespace Admin.Net.Plugin.DingTalk.RequestProxy.Checkin.DTO;
+namespace Admin.NET.Plugin.DingTalk.RequestProxy.Checkin.DTO;
 
+/// <summary>
+/// 获取用户签到记录
+/// </summary>
 public class GetUserRecordResponse : DingtalkResponseErrorResultRequestId<GetUserRecordResponseResultDomain>
 {
 }
@@ -57,26 +60,36 @@ public class GetUserRecordResponsePageDomain
     /// <summary>
     /// 签到备注
     /// </summary>
+    [JsonProperty("remark")]
+    [JsonPropertyName("remark")]
     public string Remark { get; set; }
 
     /// <summary>
     /// 签到用户userId
     /// </summary>
+    [JsonProperty("userid")]
+    [JsonPropertyName("userid")]
     public string UserId { get; set; }
 
     /// <summary>
     /// 签到地址
     /// </summary>
+    [JsonProperty("place")]
+    [JsonPropertyName("place")]
     public string Place { get; set; }
 
     /// <summary>
     /// 签到位置经度（暂未开放）
     /// </summary>
+    [JsonProperty("longitude")]
+    [JsonPropertyName("longitude")]
     public string Longitude { get; set; }
 
     /// <summary>
     /// 签到位置维度（暂未开放）
     /// </summary>
+    [JsonProperty("latitude")]
+    [JsonPropertyName("latitude")]
     public string Latitude { get; set; }
 
     /// <summary>

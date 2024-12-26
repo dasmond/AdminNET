@@ -4,12 +4,15 @@
 //
 // 不得利用本项目从事危害国家安全、扰乱社会秩序、侵犯他人合法权益等法律法规禁止的活动！任何基于本项目二次开发而产生的一切法律纠纷和责任，我们不承担任何责任！
 
-using Admin.Net.Plugin.DingTalk.RequestProxy.BaseTypes;
+using Admin.NET.Plugin.DingTalk.RequestProxy.BaseTypes;
 
 using System.Text.Json.Serialization;
 
-namespace Admin.Net.Plugin.DingTalk.RequestProxy.AliTrip.DTO;
+namespace Admin.NET.Plugin.DingTalk.RequestProxy.AliTrip.DTO;
 
+/// <summary>
+/// 获取企业机票订单数据
+/// </summary>
 public class GetAliTripFlightOrdersResponse : DingtalkResponseErrorSuccess
 {
     /// <summary>
@@ -32,6 +35,8 @@ public class FlightOrderDomain
     /// <summary>
     /// 机票订单id
     /// </summary>
+    [JsonProperty("id")]
+    [JsonPropertyName("id")]
     public long Id { get; set; }
 
     /// <summary>
@@ -44,6 +49,8 @@ public class FlightOrderDomain
     /// <summary>
     /// 用户id
     /// </summary>
+    [JsonProperty("userid")]
+    [JsonPropertyName("userid")]
     public string UserId { get; set; }
 
     /// <summary>
@@ -56,6 +63,8 @@ public class FlightOrderDomain
     /// <summary>
     /// 企业id
     /// </summary>
+    [JsonProperty("corpid")]
+    [JsonPropertyName("corpid")]
     public string CorpId { get; set; }
 
     /// <summary>
@@ -75,6 +84,8 @@ public class FlightOrderDomain
     /// <summary>
     /// 部门id
     /// </summary>
+    [JsonProperty("deptid")]
+    [JsonPropertyName("deptid")]
     public string DeptId { get; set; }
 
     /// <summary>
@@ -131,12 +142,7 @@ public class FlightOrderDomain
     /// </summary>
     [JsonProperty("trip_type")]
     [JsonPropertyName("trip_type")]
-    public TripTypeEnum TripType { get; set; }
-
-    public enum TripTypeEnum
-    {
-        单程 = 0, 往返 = 1, 中转 = 2
-    }
+    public AliTripFlightOrdersTripTypeEnum TripType { get; set; }
 
     /// <summary>
     /// 乘机人数量
@@ -155,11 +161,15 @@ public class FlightOrderDomain
     /// <summary>
     /// 订单状态：0待支付,1出票中,2已关闭,3有改签单,4有退票单,5出票成功,6退票申请中,7改签申请中
     /// </summary>
+    [JsonProperty("status")]
+    [JsonPropertyName("status")]
     public int Status { get; set; }
 
     /// <summary>
     /// 折扣
     /// </summary>
+    [JsonProperty("discount")]
+    [JsonPropertyName("discount")]
     public string Discount { get; set; }
 
     /// <summary>
@@ -193,6 +203,8 @@ public class FlightOrderDomain
     /// <summary>
     /// 发票信息对象
     /// </summary>
+    [JsonProperty("invoice")]
+    [JsonPropertyName("invoice")]
     public InvoiceDomain Invoice { get; set; }
 
     /// <summary>
@@ -281,11 +293,15 @@ public class InvoiceDomain
     /// <summary>
     /// 商旅发票id
     /// </summary>
+    [JsonProperty("id")]
+    [JsonPropertyName("id")]
     public long Id { get; set; }
 
     /// <summary>
     /// 发票抬头
     /// </summary>
+    [JsonProperty("title")]
+    [JsonPropertyName("title")]
     public string Title { get; set; }
 }
 
@@ -297,21 +313,29 @@ public class CostCenterDomain
     /// <summary>
     /// 商旅成本中心id
     /// </summary>
+    [JsonProperty("id")]
+    [JsonPropertyName("id")]
     public long Id { get; set; }
 
     /// <summary>
     /// 企业id
     /// </summary>
+    [JsonProperty("corpid")]
+    [JsonPropertyName("corpid")]
     public string CorpId { get; set; }
 
     /// <summary>
     /// 成本中心编号
     /// </summary>
+    [JsonProperty("number")]
+    [JsonPropertyName("number")]
     public string Number { get; set; }
 
     /// <summary>
     /// 成本中心名称
     /// </summary>
+    [JsonProperty("name")]
+    [JsonPropertyName("name")]
     public string Name { get; set; }
 }
 
@@ -323,21 +347,22 @@ public class PriceInfoDomain
     /// <summary>
     /// 价格
     /// </summary>
+    [JsonProperty("price")]
+    [JsonPropertyName("price")]
     public decimal Price { get; set; }
 
     /// <summary>
     /// 资金流向:1:支出，2:收入
     /// </summary>
-    public TypeEnum Type { get; set; }
-
-    public enum TypeEnum
-    {
-        支出 = 1, 收入 = 2
-    }
+    [JsonProperty("type")]
+    [JsonPropertyName("type")]
+    public AliTripPriceTypeEnum Type { get; set; }
 
     /// <summary>
     /// 交易类目
     /// </summary>
+    [JsonProperty("category")]
+    [JsonPropertyName("category")]
     public string Category { get; set; }
 
     /// <summary>
@@ -345,12 +370,7 @@ public class PriceInfoDomain
     /// </summary>
     [JsonProperty("pay_type")]
     [JsonPropertyName("pay_type")]
-    public PayTypeEnum PayType { get; set; }
-
-    public enum PayTypeEnum
-    {
-        个人现付 = 1, 企业现付 = 2, 企业月结 = 4, 企业预存 = 8
-    }
+    public AliTripPricePayTypeEnum PayType { get; set; }
 
     /// <summary>
     /// 流水创建时间
@@ -369,6 +389,8 @@ public class PriceInfoDomain
     /// <summary>
     /// 流水单号
     /// </summary>
+    [JsonProperty("tradeId")]
+    [JsonPropertyName("tradeId")]
     public string TradeId { get; set; }
 
     /// <summary>
@@ -395,16 +417,22 @@ public class PriceInfoDomain
     /// <summary>
     /// 改签折扣
     /// </summary>
+    [JsonProperty("discount")]
+    [JsonPropertyName("discount")]
     public string Discount { get; set; }
 
     /// <summary>
     /// 改签航班起飞时间
     /// </summary>
+    [JsonProperty("startTime")]
+    [JsonPropertyName("startTime")]
     public DateTime StartTime { get; set; }
 
     /// <summary>
     /// 改签航班到达时间
     /// </summary>
+    [JsonProperty("endTime")]
+    [JsonPropertyName("endTime")]
     public DateTime EndTime { get; set; }
 }
 
@@ -423,16 +451,15 @@ public class InsureInfoDomain
     /// <summary>
     /// 状态：1已出保 2已退保
     /// </summary>
-    public StatusEnum Status { get; set; }
-
-    public enum StatusEnum
-    {
-        已出保 = 1, 已退保 = 2
-    }
+    [JsonProperty("status")]
+    [JsonPropertyName("status")]
+    public AliTripFlightOrdersInsureInfoStatusEnum Status { get; set; }
 
     /// <summary>
     /// 乘机人(保险人)姓名
     /// </summary>
+    [JsonProperty("name")]
+    [JsonPropertyName("name")]
     public string Name { get; set; }
 }
 
@@ -444,6 +471,8 @@ public class UserAffiliateDomain
     /// <summary>
     /// 出行人ID
     /// </summary>
+    [JsonProperty("userid")]
+    [JsonPropertyName("userid")]
     public string UserId { get; set; }
 
     /// <summary>
@@ -454,11 +483,16 @@ public class UserAffiliateDomain
     public string UserName { get; set; }
 }
 
+/// <summary>
+/// 分页相关信息
+/// </summary>
 public class PageInfoDomain
 {
     /// <summary>
     /// 当前页
     /// </summary>
+    [JsonProperty("page")]
+    [JsonPropertyName("page")]
     public string Page { get; set; }
 
     /// <summary>

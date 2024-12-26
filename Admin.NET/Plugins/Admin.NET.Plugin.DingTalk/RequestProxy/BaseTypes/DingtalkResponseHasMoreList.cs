@@ -6,7 +6,7 @@
 
 using System.Text.Json.Serialization;
 
-namespace Admin.Net.Plugin.DingTalk.RequestProxy.BaseTypes;
+namespace Admin.NET.Plugin.DingTalk.RequestProxy.BaseTypes;
 
 public abstract class DingtalkResponseHasMoreList<T>
 {
@@ -27,5 +27,7 @@ public abstract class DingtalkResponseHasMoreList<T>
     /// <summary>
     /// 数据列表
     /// </summary>
+    [JsonProperty("list")]
+    [JsonPropertyName("list")]
     public virtual List<T> List { get; set; }
 }

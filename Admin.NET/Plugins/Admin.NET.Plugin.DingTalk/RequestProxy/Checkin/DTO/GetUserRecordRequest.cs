@@ -6,8 +6,11 @@
 
 using System.Text.Json.Serialization;
 
-namespace Admin.Net.Plugin.DingTalk.RequestProxy.Checkin.DTO;
+namespace Admin.NET.Plugin.DingTalk.RequestProxy.Checkin.DTO;
 
+/// <summary>
+/// 获取用户签到记录
+/// </summary>
 public class GetUserRecordRequest
 {
     /// <summary>

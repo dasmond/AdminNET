@@ -4,10 +4,15 @@
 //
 // 不得利用本项目从事危害国家安全、扰乱社会秩序、侵犯他人合法权益等法律法规禁止的活动！任何基于本项目二次开发而产生的一切法律纠纷和责任，我们不承担任何责任！
 
-using Admin.Net.Plugin.DingTalk.RequestProxy.BaseTypes;
+using Admin.NET.Plugin.DingTalk.RequestProxy.BaseTypes;
+
 using System.Text.Json.Serialization;
 
-namespace Admin.Net.Plugin.DingTalk.RequestProxy.AliTrip.DTO;
+namespace Admin.NET.Plugin.DingTalk.RequestProxy.AliTrip.DTO;
+
+/// <summary>
+/// 获取企业火车票订单数据
+/// </summary>
 public class GetAliTripTrainOrdersResponse : DingtalkResponseErrorSuccess
 {
     /// <summary>
@@ -23,6 +28,8 @@ public class TrainOrder
     /// <summary>
     /// 机票订单id
     /// </summary>
+    [JsonProperty("id")]
+    [JsonPropertyName("id")]
     public long Id { get; set; }
 
     /// <summary>
@@ -42,6 +49,8 @@ public class TrainOrder
     /// <summary>
     /// 企业id
     /// </summary>
+    [JsonProperty("corpid")]
+    [JsonPropertyName("corpid")]
     public string CorpId { get; set; }
 
     /// <summary>
@@ -54,6 +63,8 @@ public class TrainOrder
     /// <summary>
     /// 用户id
     /// </summary>
+    [JsonProperty("userid")]
+    [JsonPropertyName("userid")]
     public string UserId { get; set; }
 
     /// <summary>
@@ -66,6 +77,8 @@ public class TrainOrder
     /// <summary>
     /// 部门id
     /// </summary>
+    [JsonProperty("deptid")]
+    [JsonPropertyName("deptid")]
     public string DeptId { get; set; }
 
     /// <summary>
@@ -183,16 +196,15 @@ public class TrainOrder
     /// <summary>
     /// 订单状态：0：待支付,1：出票中,2：已关闭,3：改签成功,4：退票成功,5：出票完成,6：退票申请中,7：改签申请中,8：已出票/已发货,9：出票失败,10：改签失败,11：退票失败
     /// </summary>
-    public StatusEnum Status { get; set; }
-
-    public enum StatusEnum
-    {
-        待支付 = 0, 出票中, 已关闭, 改签成功, 退票成功, 出票完成, 退票申请中, 改签申请中, 已出票or已发货, 出票失败, 改签失败, 退票失败
-    }
+    [JsonProperty("status")]
+    [JsonPropertyName("status")]
+    public AliTripTrainOrdersStatusEnum Status { get; set; }
 
     /// <summary>
     /// 发票信息对象
     /// </summary>
+    [JsonProperty("invoice")]
+    [JsonPropertyName("invoice")]
     public InvoiceDomain Invoice { get; set; }
 
     /// <summary>
@@ -246,21 +258,22 @@ public class TrainPriceInfo
     /// <summary>
     /// 价格
     /// </summary>
+    [JsonProperty("price")]
+    [JsonPropertyName("price")]
     public decimal Price { get; set; }
 
     /// <summary>
     /// 资金流向:1:支出，2:收入
     /// </summary>
-    public TrainPriceTypeEnum Type { get; set; }
-
-    public enum TrainPriceTypeEnum
-    {
-        支出 = 1, 收入
-    }
+    [JsonProperty("type")]
+    [JsonPropertyName("type")]
+    public AliTripPriceTypeEnum Type { get; set; }
 
     /// <summary>
     /// 交易类目
     /// </summary>
+    [JsonProperty("category")]
+    [JsonPropertyName("category")]
     public string Category { get; set; }
 
     /// <summary>
@@ -268,12 +281,7 @@ public class TrainPriceInfo
     /// </summary>
     [JsonProperty("pay_type")]
     [JsonPropertyName("pay_type")]
-    public int PayType { get; set; }
-
-    public enum TrainPricePayTypeEnum
-    {
-        个人现付 = 1, 企业现付 = 2, 企业月结 = 4, 企业预存 = 8
-    }
+    public AliTripPricePayTypeEnum PayType { get; set; }
 
     /// <summary>
     /// 流水创建时间
