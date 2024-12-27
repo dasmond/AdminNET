@@ -2,10 +2,28 @@
 branches: {
   }
 fileChange:
-  /README.md:
-    newFile: !uuid '67a4b025007d3100b6a294ce3a3e75f3b751e199'
-    oldFile: !uuid '185b09637dc2f88486a3d15e83d1ff7f2eb868e3'
-gitCommitId: !uuid 'd9642d6231d4f3682329318a9f3e3c016882ba9b'
+  /Web:
+    newFile: !uuid '6a1bf2bc7a29922e9f7682550826a54e9aa7d838'
+    oldFile: !uuid '421308862539d69f3beee3b024d5b76850e69116'
+  /Web/src:
+    newFile: !uuid '5a870c365a6bd70ea16ce6345683392c024522a2'
+    oldFile: !uuid '1bef683d1f9fdb17f64bef7251440f6dfd604369'
+  /Web/src/views:
+    newFile: !uuid '3635e226cdf46aaaa9be560e6db5cc253fca33ca'
+    oldFile: !uuid '2364100ce926f702a474ef13bd8e50827ed04124'
+  /Web/src/views/system:
+    newFile: !uuid '025e410467784e89b572432106ef2eeda450a49b'
+    oldFile: !uuid '17a67297bb170084504afd201f827d0480b65466'
+  /Web/src/views/system/user:
+    newFile: !uuid '7bd19c1cde9bcfcc2e74c6138bdcc799c79d00eb'
+    oldFile: !uuid 'fa9b8ecf50040fc72754a2e661d1f7f74d1db37c'
+  /Web/src/views/system/user/component:
+    newFile: !uuid 'e9e5604144343e3d8d8eb1ac9b3a2d03b877c694'
+    oldFile: !uuid '7eb37cfbcc815c3065a7ffffd0e38cbb13749c88'
+  /Web/src/views/system/user/component/editUser.vue:
+    newFile: !uuid '1ce9e0eeedd8708a82340d85116c663c3642d83d'
+    oldFile: !uuid '437e0bfbc722fa8ea0396d628e8ee30e30aaeeac'
+gitCommitId: !uuid '9df917af3db1117c289e7c6f9ce63f0a7352e0e8'
 renames: {
   }
-revisionId: 2671
+revisionId: 2672
