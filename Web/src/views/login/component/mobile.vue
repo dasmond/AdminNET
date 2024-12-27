@@ -1,7 +1,7 @@
 <template>
 	<el-form size="large" class="login-content-form">
 		<el-form-item class="login-animation1" v-if="!props.tenantInfo.id && !themeConfig.hideTenantForLogin">
-			<el-select v-model="state.ruleForm.tenantId" :placeholder="$t('message.mobile.placeholder1')" clearable style="width: 100%">
+			<el-select v-model="state.ruleForm.tenantId" :placeholder="$t('message.mobile.placeholder1')" clearable style="width: 100%" filterable>
 				<template #prefix>
 					<i class="iconfont icon-shuxingtu el-input__icon"></i>
 				</template>
@@ -45,9 +45,8 @@ import { ElMessage } from 'element-plus';
 import { verifyPhone } from '/@/utils/toolsValidate';
 import { getAPI } from '/@/utils/axios-utils';
 import { SysSmsApi, SysAuthApi } from '/@/api-services/api';
-import {storeToRefs} from "pinia";
-import {useThemeConfig} from "/@/stores/themeConfig";
-
+import { storeToRefs } from 'pinia';
+import { useThemeConfig } from '/@/stores/themeConfig';
 
 const props = defineProps({
 	tenantInfo: {
