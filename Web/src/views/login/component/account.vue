@@ -24,7 +24,7 @@
 				</el-input>
 			</el-form-item>
 			<el-form-item class="login-animation2" prop="tenantId" clearable v-if="!props.tenantInfo.id && !state.hideTenantForLogin">
-				<el-select v-model="state.ruleForm.tenantId" :placeholder="$t('message.account.accountPlaceholder3')" style="width: 100%">
+				<el-select v-model="state.ruleForm.tenantId" :placeholder="$t('message.account.accountPlaceholder3')" style="width: 100%" filterable>
 					<template #prefix>
 						<i class="iconfont icon-shuxingtu el-input__icon"></i>
 					</template>

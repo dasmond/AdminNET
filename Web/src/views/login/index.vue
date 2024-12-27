@@ -72,10 +72,10 @@ import { NextLoading } from '/@/utils/loading';
 import loginIconTwo from '/@/assets/login-icon-two.svg';
 import loginIconTwo1 from '/@/assets/login-icon-two1.svg';
 import loginIconTwo2 from '/@/assets/login-icon-two2.svg';
-import {getAPI} from "/@/utils/axios-utils";
-import {SysTenantApi} from "/@/api-services";
-import {useRoute} from "vue-router";
-import {Local} from "/@/utils/storage";
+import {getAPI} from '/@/utils/axios-utils';
+import {SysTenantApi} from '/@/api-services';
+import {useRoute} from 'vue-router';
+import {Local} from '/@/utils/storage';
 
 // 引入组件
 const Register = defineAsyncComponent(() => import('/@/views/login/component/register.vue'));
