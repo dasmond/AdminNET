@@ -157,7 +157,7 @@
 							</el-col>
 							<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
 								<el-form-item label="民族">
-									<el-input v-model="state.ruleForm.nation" placeholder="民族" clearable />
+									<g-sys-dict v-model="state.ruleForm.nation" code="NationEnum" render-as="select" placeholder="民族" class="w100" clearable/>
 								</el-form-item>
 							</el-col>
 							<el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="mb20">
