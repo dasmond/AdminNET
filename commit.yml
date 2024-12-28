@@ -3,39 +3,18 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '385a858cbd2af3e3243c46b4f15aa2cb470b98d2'
-    oldFile: !uuid '89b39b5094d7b6905c751e1b61c44a16d495985a'
-  /Admin.NET/Plugins:
-    newFile: !uuid '37bb570df79a2b1429858204dcc641bf8448b235'
-    oldFile: !uuid '43e0a164c6a62474ca8cc4b623fcd733fc9c4bf7'
-  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk:
-    newFile: !uuid 'ec2deb84c40bea56c0d8529f349d95b6080b76b9'
-    oldFile: !uuid 'ce3e3f3734012ec9038973d6e298b896d2778abe'
-  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/Configuration:
-    newFile: !uuid '7b5e2f620b421be94c9e641f695ff5a33d7e7d08'
-    oldFile: !uuid 'af934901ab4706cef43056b5c894b96df76b6503'
-  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/Configuration/DingTalk.json:
-    newFile: !uuid 'd1ed5162981b14c59ccc538de7ec3cb8ff209d6c'
-    oldFile: !uuid '57825eca6fad362527e16f4a37f9948c8ec9ed32'
-  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/Entity:
-    newFile: !uuid '57b5e1fc53d150822c6660989b2acbf8056178ef'
-    oldFile: !uuid '8958039a0d26d127f46adf31611ad852761c5e99'
-  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/Entity/DingTalkUser.cs:
-    newFile: !uuid '51e1ae8d16eeac020a6b139f5c20517e373b5f2b'
-    oldFile: !uuid 'fe2f0137842950348223899496f350def05eb053'
-  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/Job:
-    newFile: !uuid '43900a4c67984f6f44c6ea6ca695373591209539'
-    oldFile: !uuid 'c84381ae501f7e176f728fdca64d73440c6635e3'
-  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/Job/SyncDingTalkUserJob.cs:
-    newFile: !uuid '70efb9e3ef144f776ca11c513c40a7bcf460b8f2'
-    oldFile: !uuid 'ea85ac2565c2abf3d5e904e6380df9320a63ddc5'
-  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/Option:
-    newFile: !uuid '4ebad944f00dbd94b8648ae7cfbd09034c686cab'
-    oldFile: !uuid '5a478a00e2823e184b9f117c70f5209838d595ac'
-  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/Option/DingTalkOptions.cs:
-    newFile: !uuid 'cd5413ca58c956d0dfea471a388dbee85a29f24e'
-    oldFile: !uuid 'fcc7ed1d27f0d9d0b0a04afbac94457eb2013f2b'
-gitCommitId: !uuid '62e1d39685c00662db9b13d852b484c63e39aaa8'
+    newFile: !uuid '18b64a7820f5c43f2ac8fd55513a00a480d817f4'
+    oldFile: !uuid '385a858cbd2af3e3243c46b4f15aa2cb470b98d2'
+  /Admin.NET/Admin.NET.Core:
+    newFile: !uuid 'bd67cd00c03210d43828712da353296c8c7712d9'
+    oldFile: !uuid 'd181c0098b3ef87a9657eba8a7227fd2d533e26d'
+  /Admin.NET/Admin.NET.Core/Utils:
+    newFile: !uuid '603cf662ac0a65d786d3fa250d15436150079b49'
+    oldFile: !uuid '5a09039417ecaa7732024e242fa2edc0b3a2baf0'
+  /Admin.NET/Admin.NET.Core/Utils/ExcelHelper.cs:
+    newFile: !uuid '591be7819d5da820f03b0772745ac2769a6c1598'
+    oldFile: !uuid 'de2d9540af7f67242b6e1de4b86737e5a08775db'
+gitCommitId: !uuid '0a7464140a8bc59ad503f497a174dfcdc68b9c70'
 renames: {
   }
-revisionId: 2677
+revisionId: 2678
