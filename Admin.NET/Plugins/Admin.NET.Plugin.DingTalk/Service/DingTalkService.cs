@@ -38,11 +38,19 @@ public class DingTalkService : IDynamicApiController, IScoped
         _accessTokenKey = DingTalkConst.AccessTokenKeyPrefix + _dingTalkOptions.ClientId;
     }
 
+    [HttpGet, DisplayName("获取花名册元数据")]
+    public async Task<GetRosterMetaResponse> GetRosterMeta()
+    {
+        var token = await GetDingTalkToken();
+        var res = await _hrmRequest.GetRosterMeta(token, _dingTalkOptions.AgentId);
+        return res;
+    }
+
     /// <summary>
     /// 获取企业内部应用的access_token
     /// </summary>
     /// <returns></returns>
-    [HttpGet,DisplayName("获取企业内部应用的access_token")]
+    [HttpGet, DisplayName("获取企业内部应用的access_token")]
     public async Task<string> GetDingTalkToken()
     {
         var token = _sysCacheService.Get<string>(_accessTokenKey);

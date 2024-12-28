@@ -4,6 +4,8 @@
 //
 // 不得利用本项目从事危害国家安全、扰乱社会秩序、侵犯他人合法权益等法律法规禁止的活动！任何基于本项目二次开发而产生的一切法律纠纷和责任，我们不承担任何责任！
 
+using Admin.NET.Plugin.DingTalk.RequestProxy.BaseTypes;
+
 using System.Text.Json.Serialization;
 
 namespace Admin.NET.Plugin.DingTalk.RequestProxy.HRM.DTO;
@@ -11,44 +13,31 @@ namespace Admin.NET.Plugin.DingTalk.RequestProxy.HRM.DTO;
 /// <summary>
 /// 获取员工花名册字段信息
 /// </summary>
-public class RosterListsQueryResponse
+public class RosterListsQueryResponse : DingTalkResponseAll<RosterListResultDomain[]>
 {
-    /// <summary>
-    /// 结果列表
-    /// </summary>
-    [JsonProperty("result")]
-    [JsonPropertyName("result")]
-    public List<ResultDomain> Result { get; set; }
 }
 
-public class ResultDomain
+public class RosterListResultDomain
 {
     /// <summary>
     /// 企业的corpId
     /// </summary>
-    [JsonProperty("corpId")]
-    [JsonPropertyName("corpId")]
+    [JsonProperty("corp_id")]
+    [JsonPropertyName("corp_id")]
     public string CorpId { get; set; }
 
     /// <summary>
     /// 员工的userId
     /// </summary>
-    [JsonProperty("userId")]
-    [JsonPropertyName("userId")]
+    [JsonProperty("userid")]
+    [JsonPropertyName("userid")]
     public string UserId { get; set; }
-
-    /// <summary>
-    /// 暂未开放
-    /// </summary>
-    [JsonProperty("unionId")]
-    [JsonPropertyName("unionId")]
-    public string UnionId { get; set; }
 
     /// <summary>
     /// 返回的字段信息列表
     /// </summary>
-    [JsonProperty("fieldDataList")]
-    [JsonPropertyName("fieldDataList")]
+    [JsonProperty("field_data_list")]
+    [JsonPropertyName("field_data_list")]
     public List<FieldDataDomain> FieldDataList { get; set; }
 }
 
@@ -57,29 +46,29 @@ public class FieldDataDomain
     /// <summary>
     /// 字段标识
     /// </summary>
-    [JsonProperty("fieldCode")]
-    [JsonPropertyName("fieldCode")]
+    [JsonProperty("field_code")]
+    [JsonPropertyName("field_code")]
     public string FieldCode { get; set; }
 
     /// <summary>
     /// 字段名称
     /// </summary>
-    [JsonProperty("fieldName")]
-    [JsonPropertyName("fieldName")]
+    [JsonProperty("field_name")]
+    [JsonPropertyName("field_name")]
     public string FieldName { get; set; }
 
     /// <summary>
     /// 分组标识
     /// </summary>
-    [JsonProperty("groupId")]
-    [JsonPropertyName("groupId")]
+    [JsonProperty("group_id")]
+    [JsonPropertyName("group_id")]
     public string GroupId { get; set; }
 
     /// <summary>
     /// 字段值列表
     /// </summary>
-    [JsonProperty("fieldValueList")]
-    [JsonPropertyName("fieldValueList")]
+    [JsonProperty("field_value_list")]
+    [JsonPropertyName("field_value_list")]
     public List<FieldValueDomain> FieldValueList { get; set; }
 }
 
@@ -102,7 +91,7 @@ public class FieldValueDomain
     /// <summary>
     /// 第几条的明细标识，下标从0开始
     /// </summary>
-    [JsonProperty("itemIndex")]
-    [JsonPropertyName("itemIndex")]
+    [JsonProperty("item_index")]
+    [JsonPropertyName("item_index")]
     public int ItemIndex { get; set; }
 }
