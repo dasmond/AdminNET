@@ -2,31 +2,25 @@
 branches: {
   }
 fileChange:
-  /Admin.NET:
-    newFile: !uuid '7ec0fe37bdf80567dc29816d4a0c90a5605634e2'
-    oldFile: !uuid '75f576eff9f471b5934f403fd1d59fa4b1381d89'
-  /Admin.NET/Plugins:
-    newFile: !uuid '545fa8fbe1b15ab6d6ec6e3ba1a46c506b02648e'
-    oldFile: !uuid 'd026342e923fef2464767200a20104d7c6eb8512'
-  /Admin.NET/Plugins/Admin.NET.Plugin.ApprovalFlow:
-    newFile: !uuid 'a971132dc006be555ba77e3b1ee8d60e4c4a40ba'
-    oldFile: !uuid '64bf05ffba4db002e5f10388b1dabf62eb99351d'
-  /Admin.NET/Plugins/Admin.NET.Plugin.ApprovalFlow/Enum:
-    newFile: !uuid '7eab350e2c1a560d679621f56b3b0adf76b030a0'
-    oldFile: !uuid '03b46f01da48bb6901122051c6e40ee90f0f5726'
-  /Admin.NET/Plugins/Admin.NET.Plugin.ApprovalFlow/Enum/FlowTypeEnum.cs:
-    newFile: !uuid 'a92ac84041704643d06c58bee7ecf3760582a3db'
-    oldFile: !uuid '5b5470b224999274b2b021d15482475333306b1a'
-  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk:
-    newFile: !uuid '129956af17d74dde14db7efb3ec93f79d4cb0e6f'
-    oldFile: !uuid '26ada30f6ad82faae90dbcaf37160f3958e81b9b'
-  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/Service:
-    newFile: !uuid '51559251b893c643e71ff527dec8858c3fdded8f'
-    oldFile: !uuid '219fa46da2d1a78cb33f3197a5daa880dd3ec205'
-  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/Service/DingTalkService.cs:
-    newFile: !uuid '7d3bdcf32938b448f81a64d0bc72f2272960431b'
-    oldFile: !uuid '759c7f3fd59e37c63345cde05df0bdb8b5721a90'
-gitCommitId: !uuid '442cdb211341fa4479c723eabbe094af5238d480'
+  /Web:
+    newFile: !uuid '59fd0efd9b15f2d6bf986a8e7ff5465124c0b707'
+    oldFile: !uuid '6a1bf2bc7a29922e9f7682550826a54e9aa7d838'
+  /Web/src:
+    newFile: !uuid '3b7d280d85ca640b5ad81e2c3aaada38da3b7572'
+    oldFile: !uuid '5a870c365a6bd70ea16ce6345683392c024522a2'
+  /Web/src/views:
+    newFile: !uuid 'fb55f05495fdae1c1640bbe4c9ee371fe3d50e65'
+    oldFile: !uuid '3635e226cdf46aaaa9be560e6db5cc253fca33ca'
+  /Web/src/views/system:
+    newFile: !uuid 'af0f9df7404db122df560200548fef68be6a1896'
+    oldFile: !uuid '025e410467784e89b572432106ef2eeda450a49b'
+  /Web/src/views/system/stressTest:
+    newFile: !uuid '9fc84f9d95a2c515710ded16deb7c54e22d433ab'
+    oldFile: !uuid '1dbfb52a9fa4d89f8ac8f8163fc65f6cc856e95c'
+  /Web/src/views/system/stressTest/index.vue:
+    newFile: !uuid 'eb818b6d7c79da6d69a5aa69f01f12c04f64ae31'
+    oldFile: !uuid '0926cfad3d2ea14f7149d43c9cd70727588784b1'
+gitCommitId: !uuid 'f5da8628c1f8c8c7e75dd5e693b4a9734c5f0d1f'
 renames: {
   }
-revisionId: 2618
+revisionId: 2619
