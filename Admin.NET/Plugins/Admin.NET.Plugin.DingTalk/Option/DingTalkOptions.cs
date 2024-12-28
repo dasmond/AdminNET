@@ -32,4 +32,9 @@ public sealed class DingTalkOptions : IConfigurableOptions
     /// 所属企业的CorpId
     /// </summary>
     public string CorpId { get; set; }
+
+    /// <summary>
+    /// 租户Id
+    /// </summary>
+    public long TenantId { get; set; }
 }
