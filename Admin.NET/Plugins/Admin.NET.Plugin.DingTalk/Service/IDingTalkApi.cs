@@ -24,7 +24,7 @@ public interface IDingTalkApi : IHttpDispatchProxy
     /// <param name="input"></param>
     /// <returns></returns>
     [Post("https://oapi.dingtalk.com/topapi/smartwork/hrm/employee/queryonjob")]
-    Task<DingTalkBaseResponse<GetDingTalkCurrentEmployeesListOutput>> GetDingTalkCurrentEmployeesList([QueryString] string accessToken,
+    Task<DingTalkBaseResponse<GetDingTalkCurrentEmployeesListOutput>> GetDingTalkCurrentEmployeesList([QueryString("access_token")] string accessToken,
         [Body, Required] GetDingTalkCurrentEmployeesListInput input);
 
     /// <summary>
@@ -34,7 +34,7 @@ public interface IDingTalkApi : IHttpDispatchProxy
     /// <param name="input"></param>
     /// <returns></returns>
     [Post("https://oapi.dingtalk.com/topapi/smartwork/hrm/employee/v2/list")]
-    Task<DingTalkBaseResponse<List<DingTalkEmpRosterFieldVo>>> GetDingTalkCurrentEmployeesRosterList([QueryString] string accessToken,
+    Task<DingTalkBaseResponse<List<DingTalkEmpRosterFieldVo>>> GetDingTalkCurrentEmployeesRosterList([QueryString("access_token")] string accessToken,
         [Body, Required] GetDingTalkCurrentEmployeesRosterListInput input);
 
     /// <summary>

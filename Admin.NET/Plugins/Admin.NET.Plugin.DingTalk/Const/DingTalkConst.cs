@@ -40,15 +40,20 @@ public class DingTalkConst
     /// <summary>
     /// 主部门Id
     /// </summary>
-    public const string DeptId = "sys00-mainDeptId";
+    public const string DeptIdField = "sys00-mainDeptId";
 
     /// <summary>
     /// 主部门
     /// </summary>
-    public const string Dept = "sys00-mainDept";
+    public const string DeptField = "sys00-mainDept";
 
     /// <summary>
     /// 职位
     /// </summary>
-    public const string Position = "sys00-position";
+    public const string PositionField = "sys00-position";
+
+    /// <summary>
+    /// 邮箱
+    /// </summary>
+    public const string EmailField = "sys00-email";
 }
