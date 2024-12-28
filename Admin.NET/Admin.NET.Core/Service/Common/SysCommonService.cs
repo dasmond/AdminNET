@@ -121,11 +121,38 @@ public class SysCommonService : IDynamicApiController, ITransient
         if (!_userManager.SuperAdmin) throw Oops.Oh(ErrorCodeEnum.SA001);
 
         var stopwatch = new Stopwatch();
-        var responseTimes = new List<double>();
+        var responseTimes = new List<double>();  //响应时间集合
+        input.RequestMethod = input.RequestMethod.ToUpper();
         long totalRequests = 0, successfulRequests = 0, failedRequests = 0;
 
         stopwatch.Start();
         var semaphore = new SemaphoreSlim(input.MaxDegreeOfParallelism!.Value > 0 ? input.MaxDegreeOfParallelism.Value : Environment.ProcessorCount);
+
+        #region 参数构建
+
+        // 构建基础URI（不包括路径和查询参数）
+        var baseUriBuilder = new UriBuilder(input.RequestUri);
+        var queryString = HttpUtility.ParseQueryString(baseUriBuilder.Query);
+
+        // 替换路径参数到baseUriBuilder.Path
+        foreach (var param in input.PathParameters)
+        {
+            baseUriBuilder.Path = baseUriBuilder.Path.Replace($"{{{param.Key}}}", param.Value, StringComparison.OrdinalIgnoreCase);
+        }
+
+        // 构建Query参数
+        foreach (var param in input.QueryParameters)
+        {
+            queryString[param.Key] = param.Value;
+        }
+
+        baseUriBuilder.Query = queryString.ToString() ?? string.Empty;
+        var fullUri = baseUriBuilder.Uri;
+
+        // 创建一次性的HttpRequestMessage模板
+        HttpRequestMessage requestTemplate = CreateRequestMessage(input, fullUri);
+
+        #endregion
 
         var tasks = Enumerable.Range(0, input.NumberOfRounds!.Value * input.NumberOfRequests!.Value).Select(async _ =>
         {
@@ -135,50 +162,23 @@ public class SysCommonService : IDynamicApiController, ITransient
                 var requestStopwatch = new Stopwatch();
                 requestStopwatch.Start();
 
-                // 构建完整的请求URI，包括路径参数和查询参数
-                var uriBuilder = new UriBuilder(input.RequestUri);
-                var queryString = HttpUtility.ParseQueryString(uriBuilder.Query);
-
-                foreach (var param in input.PathParameters)
+                using (var request = requestTemplate.DeepCopy())
                 {
-                    uriBuilder.Path = uriBuilder.Path.Replace($"{{{param.Key}}}", param.Value, StringComparison.OrdinalIgnoreCase);
+                    if (!string.Equals(input.RequestMethod, "GET", StringComparison.OrdinalIgnoreCase) && input.RequestParameters.Any())
+                    {
+                        var content = new FormUrlEncodedContent(input.RequestParameters);
+                        request.Content = content;
+                    }
+
+                    using (var response = await _httpClient.SendAsync(request))
+                    {
+                        response.EnsureSuccessStatusCode(); // 抛出错误状态码异常
+
+                        requestStopwatch.Stop();
+                        responseTimes.Add(requestStopwatch.Elapsed.TotalMilliseconds);
+                        Interlocked.Increment(ref successfulRequests);
+                    }
                 }
-
-                foreach (var param in input.QueryParameters)
-                {
-                    queryString[param.Key] = param.Value;
-                }
-
-                uriBuilder.Query = queryString.ToString() ?? string.Empty;
-                var fullUri = uriBuilder.Uri.ToString();
-
-                HttpRequestMessage request = input.RequestMethod.ToUpper() switch
-                {
-                    "GET" => new HttpRequestMessage(HttpMethod.Get, fullUri),
-                    "PUT" => new HttpRequestMessage(HttpMethod.Put, fullUri),
-                    "POST" => new HttpRequestMessage(HttpMethod.Post, fullUri),
-                    "DELETE" => new HttpRequestMessage(HttpMethod.Delete, fullUri),
-                    _ => throw Oops.Bah("请求方式异常")
-                };
-
-                // 设置请求头
-                foreach (var header in input.Headers)
-                {
-                    request.Headers.Add(header.Key, header.Value);
-                }
-
-                if (nameof(HttpMethod.Get).EqualIgnoreCase(input.RequestMethod) && input.RequestParameters.Any())
-                {
-                    var content = new FormUrlEncodedContent(input.RequestParameters);
-                    request.Content = content;
-                }
-
-                var response = await _httpClient.SendAsync(request);
-                response.EnsureSuccessStatusCode(); // 抛出错误状态码异常
-
-                requestStopwatch.Stop();
-                responseTimes.Add(requestStopwatch.Elapsed.TotalMilliseconds);
-                Interlocked.Increment(ref successfulRequests);
             }
             catch
             {
@@ -196,6 +196,7 @@ public class SysCommonService : IDynamicApiController, ITransient
 
         var totalTimeInSeconds = stopwatch.Elapsed.TotalSeconds;
         var qps = totalTimeInSeconds > 0 ? totalRequests / totalTimeInSeconds : 0;
+        var orderResponseTimes = responseTimes.OrderBy(t => t).ToList();
         var averageResponseTime = responseTimes.Any() ? responseTimes.Average() : 0;
         var minResponseTime = responseTimes.Any() ? responseTimes.Min() : 0;
         var maxResponseTime = responseTimes.Any() ? responseTimes.Max() : 0;
@@ -210,14 +211,39 @@ public class SysCommonService : IDynamicApiController, ITransient
             MinResponseTime = minResponseTime,
             MaxResponseTime = maxResponseTime,
             AverageResponseTime = averageResponseTime,
-            Percentile10ResponseTime = CalculatePercentile(responseTimes, 0.1),
-            Percentile25ResponseTime = CalculatePercentile(responseTimes, 0.25),
-            Percentile50ResponseTime = CalculatePercentile(responseTimes, 0.5),
-            Percentile75ResponseTime = CalculatePercentile(responseTimes, 0.75),
-            Percentile90ResponseTime = CalculatePercentile(responseTimes, 0.9),
-            Percentile99ResponseTime = CalculatePercentile(responseTimes, 0.99),
-            Percentile999ResponseTime = CalculatePercentile(responseTimes, 0.999)
+            Percentile10ResponseTime = CalculatePercentile(orderResponseTimes, 0.1),
+            Percentile25ResponseTime = CalculatePercentile(orderResponseTimes, 0.25),
+            Percentile50ResponseTime = CalculatePercentile(orderResponseTimes, 0.5),
+            Percentile75ResponseTime = CalculatePercentile(orderResponseTimes, 0.75),
+            Percentile90ResponseTime = CalculatePercentile(orderResponseTimes, 0.9),
+            Percentile99ResponseTime = CalculatePercentile(orderResponseTimes, 0.99),
+            Percentile999ResponseTime = CalculatePercentile(orderResponseTimes, 0.999)
         };
+    }
+
+    /// <summary>
+    /// 创建请求消息
+    /// </summary>
+    /// <param name="input">输入参数</param>
+    /// <param name="fullUri">url</param>
+    /// <returns></returns>
+    private HttpRequestMessage CreateRequestMessage(StressTestInput input, Uri fullUri)
+    {
+        HttpRequestMessage request = input.RequestMethod switch
+        {
+            "GET" => new HttpRequestMessage(HttpMethod.Get, fullUri),
+            "PUT" => new HttpRequestMessage(HttpMethod.Put, fullUri),
+            "POST" => new HttpRequestMessage(HttpMethod.Post, fullUri),
+            "DELETE" => new HttpRequestMessage(HttpMethod.Delete, fullUri),
+            _ => throw Oops.Bah("请求方式异常")
+        };
+
+        // 设置请求头
+        foreach (var header in input.Headers)
+        {
+            request.Headers.Add(header.Key, header.Value);
+        }
+        return request;
     }
 
     /// <summary>
@@ -229,8 +255,7 @@ public class SysCommonService : IDynamicApiController, ITransient
     private double CalculatePercentile(List<double> times, double percentile)
     {
         if (!times.Any()) return 0;
-        var sortedTimes = times.OrderBy(t => t).ToList();
-        var index = (int)Math.Ceiling(percentile * sortedTimes.Count) - 1;
-        return sortedTimes[index < sortedTimes.Count ? index : sortedTimes.Count - 1];
+        var index = (int)Math.Ceiling(percentile * times.Count) - 1;
+        return times[index < times.Count ? index : times.Count - 1];
     }
 }
