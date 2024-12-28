@@ -3,7 +3,6 @@
 		<div>
 			<NoticeBar text="接口压测会占用服务器大量的内存资源，请慎重操作！" style="margin: 4px" />
 		</div>
-
 		<splitpanes class="default-theme overlay-hidden">
 			<pane size="20" class="vh100">
 				<el-card class="vh80" shadow="hover" header="接口列表" v-loading="state.loading">
@@ -108,8 +107,8 @@
 				</el-card>
 			</pane>
 		</splitpanes>
+		<EditStressTest ref="editStressTestRef" @refreshData="refreshData" />
 	</div>
-	<EditStressTest ref="editStressTestRef" @refreshData="refreshData" />
 </template>
 
 <script lang="ts" setup name="sysStressTest">
