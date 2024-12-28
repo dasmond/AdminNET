@@ -13,14 +13,8 @@ namespace Admin.NET.Plugin.DingTalk.RequestProxy.Attendance.DTO;
 /// <summary>
 /// 查询请假状态
 /// </summary>
-public class GetLeaveStatusResponse:DingtalkResponseErrorResultRequestId<GetLeaveStatusResult>
+public class GetLeaveStatusResponse : DingTalkResponseAll<GetLeaveStatusResult>
 {
-    /// <summary>
-    /// 请求是否成功。
-    /// </summary>
-    [JsonProperty("success")]
-    [JsonPropertyName("success")]
-    public bool Success { get; set; }
 }
 
 public class GetLeaveStatusResult
@@ -47,7 +41,7 @@ public class LeaveStatusDomain
     /// </summary>
     [JsonProperty("duration_unit")]
     [JsonPropertyName("duration_unit")]
-    public string DurationUnit {  get; set; }
+    public string DurationUnit { get; set; }
 
     /// <summary>
     /// 假期时长*100，例如用户请假时长为1天，该值就等于100。
@@ -68,13 +62,12 @@ public class LeaveStatusDomain
     /// </summary>
     [JsonProperty("start_time")]
     [JsonPropertyName("start_time")]
-    public long StartTime {  get; set; }
+    public long StartTime { get; set; }
 
     /// <summary>
     /// 用户ID。
     /// </summary>
     [JsonProperty("userid")]
     [JsonPropertyName("userid")]
-    public string UserId {  get; set; }
-
+    public string UserId { get; set; }
 }

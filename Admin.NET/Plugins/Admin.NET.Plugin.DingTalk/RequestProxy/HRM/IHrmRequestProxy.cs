@@ -14,6 +14,9 @@ public interface IHrmRequestProxy : IHttpDispatchProxy
     Task<string> EmployeeQueryonjob([QueryString("access_token")] string accessToken, [Body] DTO.EmployeeQueryOnJobRequest request);
 
     [Post("https://oapi.dingtalk.com/topapi/smartwork/hrm/employee/v2/list")]
-    Task<string> RosterListsQuery([Headers("x-acs-dingtalk-access-token")] string accessToken,
+    Task<string> RosterListsQuery([QueryString("access_token")] string accessToken,
     [Body] RosterListsQueryRequest request);
+
+    [Post("https://oapi.dingtalk.com/topapi/smartwork/hrm/roster/meta/get")]
+    Task<string> GetRosterMeta([QueryString("access_token")] string accessToken, [Body] GetRosterMetaRequest request);
 }

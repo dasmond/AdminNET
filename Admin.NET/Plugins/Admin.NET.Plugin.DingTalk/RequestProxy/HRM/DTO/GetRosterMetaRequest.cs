@@ -6,26 +6,15 @@
 
 using System.Text.Json.Serialization;
 
-namespace Admin.NET.Plugin.DingTalk;
+namespace Admin.NET.Plugin.DingTalk.RequestProxy.HRM.DTO;
 
-public class GetDingTalkCurrentEmployeesRosterListInput
+/// <summary>
+/// 获取花名册元数据
+/// </summary>
+public class GetRosterMetaRequest
 {
     /// <summary>
-    /// 员工的userId列表，多个userid之间使用逗号分隔，一次最多支持传100个值。
-    /// </summary>
-    [JsonProperty("userid_list")]
-    [JsonPropertyName("userid_list")]
-    public string UserIdList { get; set; }
-
-    /// <summary>
-    /// 需要获取的花名册字段field_code值列表，多个字段之间使用逗号分隔，一次最多支持传100个值。
-    /// </summary>
-    [JsonProperty("field_filter_list")]
-    [JsonPropertyName("field_filter_list")]
-    public string FieldFilterList { get; set; }
-
-    /// <summary>
-    /// 应用的AgentId
+    /// 应用的AgentID
     /// </summary>
     [JsonProperty("agentid")]
     [JsonPropertyName("agentid")]
