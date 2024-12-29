@@ -3,18 +3,27 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '40212cd8af0ce64b2f29864f8f234c9bc6cebab9'
-    oldFile: !uuid '4f1e6ad0c5f860d0659d8a93a0079abdfbb7bc7d'
-  /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '64cbd9fdbb614c2684397e34f62fa2674576fe26'
-    oldFile: !uuid '9d9bf7110948f22b74372a9f20ab936d01b6a059'
-  /Admin.NET/Admin.NET.Core/Utils:
-    newFile: !uuid '18dd1bd39798dca1178bffcb3bdb6a60252eb5d0'
-    oldFile: !uuid 'f1e040110b9c8b02a0681ecc44169890023450f3'
-  /Admin.NET/Admin.NET.Core/Utils/ExcelHelper.cs:
-    newFile: !uuid '3343838872b52ca4869c979f1b8846dcb05f8338'
-    oldFile: !uuid '591be7819d5da820f03b0772745ac2769a6c1598'
-gitCommitId: !uuid 'd540a8a5ead3b69689fa21a29ff8a45f6b2bdca6'
+    newFile: !uuid 'e1c6a03a266f729972ceeda4eba10aaa4eeb8f68'
+    oldFile: !uuid '40212cd8af0ce64b2f29864f8f234c9bc6cebab9'
+  /Admin.NET/Admin.NET.Test:
+    newFile: !uuid '7370dfed580be7cc05a6c393980f2a99dbd11eac'
+    oldFile: null
+  /Admin.NET/Admin.NET.Test/Admin.NET.Test.csproj:
+    newFile: !uuid '377a2a85bb138416bf1ecb556170df235df53a0b'
+    oldFile: null
+  /Admin.NET/Admin.NET.Test/BaseTest.cs:
+    newFile: !uuid '4d88e11914ebcd35d15c4c25915a1aaf8ae09458'
+    oldFile: null
+  /Admin.NET/Admin.NET.Test/User:
+    newFile: !uuid '91610ddcbd45065eeffba6212297237b330ed474'
+    oldFile: null
+  /Admin.NET/Admin.NET.Test/User/UserTest.cs:
+    newFile: !uuid '46dc6d1aef43c4a4866a0b28ad5ff51e7e51b5d8'
+    oldFile: null
+  /Admin.NET/Admin.NET.sln:
+    newFile: !uuid 'cd8607b13bb2f063edd2e66e38cb6d052bac826f'
+    oldFile: !uuid '838d1032fcc828e2e58d6540da3368d7512454f1'
+gitCommitId: !uuid '678806bf8203bc3e39dd705cd5083b861a291dfb'
 renames: {
   }
-revisionId: 2627
+revisionId: 2628
