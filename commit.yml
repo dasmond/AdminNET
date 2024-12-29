@@ -3,21 +3,18 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '9a8a17b0747ca1d1f32aa806664d51ae7076146e'
-    oldFile: !uuid 'b9676f90c3ea56105eb9d8b6c08c3f8db44e2f08'
+    newFile: !uuid '4f1e6ad0c5f860d0659d8a93a0079abdfbb7bc7d'
+    oldFile: !uuid '9a8a17b0747ca1d1f32aa806664d51ae7076146e'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid 'dd5563be368fc8964886bee2fa53629bb907aaf2'
-    oldFile: !uuid 'b2a854b84bfdd0705e6ab278202d309510c0e8c5'
-  /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid '212f33479967fd5565aa2323a25dbd8d9fe66570'
-    oldFile: !uuid '0ae01f896d034a727d2a9edc53c1d2023b46afe7'
-  /Admin.NET/Admin.NET.Core/Service/Alipay:
-    newFile: !uuid '5b068c60b5b8a6ee3f2df54c0bfc9cf54a341a06'
-    oldFile: !uuid '5c4189f8729e75b733433a937325ae4e76ea2277'
-  /Admin.NET/Admin.NET.Core/Service/Alipay/AlipayService.cs:
-    newFile: !uuid 'ccd5739d0c13d985aa55692ad058bf3c28f26cc6'
-    oldFile: !uuid '89ccb9148ea5b00b8bb2754345104995e4f2b615'
-gitCommitId: !uuid 'df96e98db9dd824955b93b0ae8f0c0edaec46083'
+    newFile: !uuid '9d9bf7110948f22b74372a9f20ab936d01b6a059'
+    oldFile: !uuid 'dd5563be368fc8964886bee2fa53629bb907aaf2'
+  /Admin.NET/Admin.NET.Core/Utils:
+    newFile: !uuid 'f1e040110b9c8b02a0681ecc44169890023450f3'
+    oldFile: !uuid '603cf662ac0a65d786d3fa250d15436150079b49'
+  /Admin.NET/Admin.NET.Core/Utils/AdminResultProvider.cs:
+    newFile: !uuid '5e6f06a7d57ed8e960a8ce34b7e92e4b52ee5c8e'
+    oldFile: !uuid '0a555b823b3299a853195693421c77df7f37fe1c'
+gitCommitId: !uuid 'd37a896d5c927d333da1bef2f0dd778d6d8390bd'
 renames: {
   }
-revisionId: 2680
+revisionId: 2681
