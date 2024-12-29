@@ -20,7 +20,7 @@ public class AdminResultProvider : IUnifyResultProvider
     /// <returns></returns>
     public IActionResult OnAuthorizeException(DefaultHttpContext context, ExceptionMetadata metadata)
     {
-        return new JsonResult(RESTfulResult(metadata.StatusCode, data: metadata.Data, errors: metadata.Errors), UnifyContext.GetSerializerSettings(context));
+        return new JsonResult(RESTfulResult(metadata.StatusCode, data: metadata.Data, msg: metadata.Errors), UnifyContext.GetSerializerSettings(context));
     }
 
     /// <summary>
@@ -31,7 +31,7 @@ public class AdminResultProvider : IUnifyResultProvider
     /// <returns></returns>
     public IActionResult OnException(ExceptionContext context, ExceptionMetadata metadata)
     {
-        return new JsonResult(RESTfulResult(metadata.StatusCode, data: metadata.Data, errors: metadata.Errors), UnifyContext.GetSerializerSettings(context));
+        return new JsonResult(RESTfulResult(metadata.StatusCode, data: metadata.Data, msg: metadata.Errors), UnifyContext.GetSerializerSettings(context));
     }
 
     /// <summary>
@@ -53,7 +53,7 @@ public class AdminResultProvider : IUnifyResultProvider
     /// <returns></returns>
     public IActionResult OnValidateFailed(ActionExecutingContext context, ValidationMetadata metadata)
     {
-        return new JsonResult(RESTfulResult(metadata.StatusCode ?? StatusCodes.Status400BadRequest, data: metadata.Data, errors: metadata.ValidationResult), UnifyContext.GetSerializerSettings(context));
+        return new JsonResult(RESTfulResult(metadata.StatusCode ?? StatusCodes.Status400BadRequest, data: metadata.Data, msg: metadata.ValidationResult), UnifyContext.GetSerializerSettings(context));
     }
 
     /// <summary>
@@ -76,12 +76,12 @@ public class AdminResultProvider : IUnifyResultProvider
                 // 若存在身份验证失败消息，则返回消息内容
                 if (context.Items.TryGetValue(SignatureAuthenticationDefaults.AuthenticateFailMsgKey, out var authFailMsg))
                     msg = authFailMsg + "";
-                await context.Response.WriteAsJsonAsync(RESTfulResult(statusCode, errors: msg),
+                await context.Response.WriteAsJsonAsync(RESTfulResult(statusCode, msg: msg),
                     App.GetOptions<JsonOptions>()?.JsonSerializerOptions);
                 break;
             // 处理 403 状态码
             case StatusCodes.Status403Forbidden:
-                await context.Response.WriteAsJsonAsync(RESTfulResult(statusCode, errors: "403 禁止访问，没有权限"),
+                await context.Response.WriteAsJsonAsync(RESTfulResult(statusCode, msg: "403 禁止访问，没有权限"),
                     App.GetOptions<JsonOptions>()?.JsonSerializerOptions);
                 break;
             // 处理 302 状态码
@@ -93,7 +93,7 @@ public class AdminResultProvider : IUnifyResultProvider
                 else
                 {
                     var errorMessage = "302 跳转失败，没有提供 Location 头信息";
-                    await context.Response.WriteAsJsonAsync(RESTfulResult(statusCode, errors: errorMessage),
+                    await context.Response.WriteAsJsonAsync(RESTfulResult(statusCode, msg: errorMessage),
                         App.GetOptions<JsonOptions>()?.JsonSerializerOptions);
                 }
                 break;
@@ -108,9 +108,9 @@ public class AdminResultProvider : IUnifyResultProvider
     /// <param name="statusCode"></param>
     /// <param name="succeeded"></param>
     /// <param name="data"></param>
-    /// <param name="errors"></param>
+    /// <param name="msg"></param>
     /// <returns></returns>
-    private static AdminResult<object> RESTfulResult(int statusCode, bool succeeded = default, object data = default, object errors = default)
+    private static AdminResult<object> RESTfulResult(int statusCode, bool succeeded = default, object data = default, object msg = default)
     {
         //// 统一返回值脱敏处理
         //if (data?.GetType() == typeof(String))
@@ -125,7 +125,7 @@ public class AdminResultProvider : IUnifyResultProvider
         return new AdminResult<object>
         {
             Code = statusCode,
-            Message = errors is null or string ? (errors + "") : JSON.Serialize(errors),
+            Message = msg is null or string ? (msg + "") : JSON.Serialize(msg),
             Result = data,
             Type = succeeded ? "success" : "error",
             Extras = UnifyContext.Take(),
