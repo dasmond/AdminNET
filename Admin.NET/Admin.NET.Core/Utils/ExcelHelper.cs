@@ -46,7 +46,7 @@ public class ExcelHelper
 
             // 仅导出错误记录
             var errorList = result.Where(u => !string.IsNullOrWhiteSpace(u.Error));
-            return errorList.Any() ? ExportData(errorList) : null;
+            return ExportData(errorList.Any() ? errorList : new List<IN>());
         }
         catch (Exception ex)
         {
