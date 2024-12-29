@@ -44,7 +44,9 @@ public class ExcelHelper
             // 等待所有标记验证信息任务完成
             Task.WhenAll(tasks).GetAwaiter().GetResult();
 
-            return ExportData(result);
+            // 仅导出错误记录
+            var errorList = result.Where(u => !string.IsNullOrWhiteSpace(u.Error));
+            return errorList.Any() ? ExportData(errorList) : null;
         }
         catch (Exception ex)
         {
