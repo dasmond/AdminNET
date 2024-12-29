@@ -16,9 +16,9 @@ using Microsoft.AspNetCore.Hosting;
 namespace Admin.NET.Core.Service;
 
 /// <summary>
-/// 系统登录授权服务 🧩
+/// 支付宝支付服务 🧩
 /// </summary>
-[ApiDescriptionSettings(Order = 500)]
+[ApiDescriptionSettings(Order = 240)]
 public class AlipayService : IDynamicApiController, ITransient
 {
     private readonly IWebHostEnvironment _webHostEnvironment;
