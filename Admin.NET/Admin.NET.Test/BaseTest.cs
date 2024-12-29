@@ -80,9 +80,10 @@ public class BaseTest : IDisposable
     /// <summary>
     /// 登录用户敲回车
     /// </summary>
-    protected void WaitEnter()
+    /// <param name="text">提示词</param>
+    protected void WaitEnter(string text = "登录用户敲回车继续...")
     {
-        Console.WriteLine("登录用户敲回车继续...");
+        Console.WriteLine(text);
         Console.ReadLine();
     }
 
