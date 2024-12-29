@@ -36,24 +36,24 @@ public class BaseTest : IDisposable
         await Task.Delay(6000);
 
         var inputList = Driver.FindElements(By.CssSelector("#pane-account input"));
-        var button = Driver.FindElement(By.CssSelector("#pane-account button"));
-        var accountInput = inputList.First();
-        var passwordInput = inputList.Skip(1).First();
-        var captchaInput = inputList.Skip(2).First();
 
         // 输入用户名
+        var accountInput = inputList.First();
         accountInput.Clear();
         accountInput.SendKeys(account);
 
         // 输入密码
+        var passwordInput = inputList.Skip(1).First();
         passwordInput.Clear();
         passwordInput.SendKeys(password);
 
         // 输入验证码
+        var captchaInput = inputList.Skip(2).First();
         captchaInput.Clear();
         captchaInput.SendKeys("0");
 
         // 提交
+        var button = Driver.FindElement(By.CssSelector("#pane-account button"));
         button.Click();
     }
 
