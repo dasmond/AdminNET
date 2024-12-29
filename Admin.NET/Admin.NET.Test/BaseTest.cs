@@ -6,6 +6,7 @@
 
 using OpenQA.Selenium;
 using OpenQA.Selenium.Edge;
+using OpenQA.Selenium.Support.UI;
 
 namespace Admin.NET.Test;
 
@@ -26,15 +27,23 @@ public class BaseTest : IDisposable
     }
 
     /// <summary>
+    /// 等待网页加载完成
+    /// </summary>
+    protected async Task WaitExecutorCompleteAsync()
+    {
+        var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(30));
+        wait.Until(driver => ((IJavaScriptExecutor)driver).ExecuteScript("return document.readyState").Equals("complete"));
+        await Task.Delay(1000);
+    }
+
+    /// <summary>
     /// 用户登录
     /// </summary>
     /// <param name="account"></param>
     /// <param name="password"></param>
     protected async Task Login(string account = "superadmin", string password = "123456")
     {
-        await Driver.Navigate().RefreshAsync();
-        await Task.Delay(6000);
-
+        await GoToUrlAsync("/#/login");
         var inputList = Driver.FindElements(By.CssSelector("#pane-account input"));
 
         // 输入用户名
@@ -61,10 +70,11 @@ public class BaseTest : IDisposable
     /// 打开指定页面
     /// </summary>
     /// <param name="url"></param>
-    protected async Task GoToUrl(string url)
+    protected async Task GoToUrlAsync(string url)
     {
         if (url.StartsWith("http")) await Driver.Navigate().GoToUrlAsync(url);
         else await Driver.Navigate().GoToUrlAsync(_baseUrl + "/" + url.TrimStart('/'));
+        await WaitExecutorCompleteAsync();
     }
 
     /// <summary>
