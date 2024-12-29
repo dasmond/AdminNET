@@ -218,6 +218,7 @@ public class AlipayService : IDynamicApiController, ITransient
     /// 单笔转账到支付宝账户
     ///  https://opendocs.alipay.com/open/62987723_alipay.fund.trans.uni.transfer
     /// </summary>
+    [NonAction]
     public Task<AlipayFundTransUniTransferResponse> Transfer(AlipayFundTransUniTransferInput input)
     {
         // 构造请求参数以调用接口
