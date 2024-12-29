@@ -17,10 +17,12 @@ public class BaseTest : IDisposable
     private readonly string _baseUrl = "http://localhost:8888";
     protected readonly EdgeDriver Driver = new ();
 
-    protected BaseTest()
+    protected BaseTest(string token = null)
     {
+        var url = _baseUrl;
+        if (!string.IsNullOrWhiteSpace(token)) url += $"/#/login?token={token}";
         Driver.Manage().Window.Maximize();
-        Driver.Navigate().GoToUrl(_baseUrl);
+        Driver.Navigate().GoToUrl(url);
     }
 
     /// <summary>
