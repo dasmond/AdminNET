@@ -24,6 +24,9 @@ public class BaseTest : IDisposable
         if (!string.IsNullOrWhiteSpace(token)) url += $"/#/login?token={token}";
         Driver.Manage().Window.Maximize();
         Driver.Navigate().GoToUrl(url);
+
+        // 隐式等待2秒（隐式等待是元素未被呈现出来，才会等待）
+        Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(3);
     }
 
     /// <summary>
