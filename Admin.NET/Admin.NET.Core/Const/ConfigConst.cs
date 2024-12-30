@@ -99,7 +99,7 @@ public class ConfigConst
     /// <summary>
     /// WebConfig 分组
     /// </summary>
-    public const string SysWebConfigGroup = "WebConfig";
+    // public const string SysWebConfigGroup = "WebConfig";
 
     /// <summary>
     /// 支付宝授权页面地址

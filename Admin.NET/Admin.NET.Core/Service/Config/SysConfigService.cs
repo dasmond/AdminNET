@@ -33,7 +33,7 @@ public class SysConfigService : IDynamicApiController, ITransient
     public async Task<SqlSugarPagedList<SysConfig>> Page(PageConfigInput input)
     {
         return await _sysConfigRep.AsQueryable()
-            .Where(u => u.GroupCode != ConfigConst.SysWebConfigGroup || u.GroupCode == null) // 不显示 WebConfig 分组
+            // .Where(u => u.GroupCode != ConfigConst.SysWebConfigGroup || u.GroupCode == null) // 不显示 WebConfig 分组
             .WhereIF(!string.IsNullOrWhiteSpace(input.Name?.Trim()), u => u.Name.Contains(input.Name))
             .WhereIF(!string.IsNullOrWhiteSpace(input.Code?.Trim()), u => u.Code.Contains(input.Code))
             .WhereIF(!string.IsNullOrWhiteSpace(input.GroupCode?.Trim()), u => u.GroupCode.Equals(input.GroupCode))
@@ -185,7 +185,7 @@ public class SysConfigService : IDynamicApiController, ITransient
     public async Task<List<string>> GetGroupList()
     {
         return await _sysConfigRep.AsQueryable()
-            .Where(u => u.GroupCode != ConfigConst.SysWebConfigGroup || u.GroupCode == null) // 不显示 WebConfig 分组
+            // .Where(u => u.GroupCode != ConfigConst.SysWebConfigGroup || u.GroupCode == null) // 不显示 WebConfig 分组
             .GroupBy(u => u.GroupCode)
             .Select(u => u.GroupCode).ToListAsync();
     }
@@ -283,8 +283,8 @@ public class SysConfigService : IDynamicApiController, ITransient
     {
         var tenant = await App.GetService<SysTenantService>().GetCurrentTenant() ?? throw Oops.Oh(ErrorCodeEnum.D1002);
         if (!string.IsNullOrEmpty(input.LogoBase64)) App.GetService<SysTenantService>().SetLogoUrl(tenant, input.LogoBase64, input.LogoFileName);
-        await UpdateConfigValue(ConfigConst.SysCaptcha, (input.Captcha == YesNoEnum.Y).ToString());
-        await UpdateConfigValue(ConfigConst.SysSecondVer, (input.SecondVer == YesNoEnum.Y).ToString());
+        // await UpdateConfigValue(ConfigConst.SysCaptcha, (input.Captcha == YesNoEnum.Y).ToString());
+        // await UpdateConfigValue(ConfigConst.SysSecondVer, (input.SecondVer == YesNoEnum.Y).ToString());
 
         tenant.Copy(input);
         tenant.RegWayId = input.EnableReg == YesNoEnum.Y ? input.RegWayId : null;

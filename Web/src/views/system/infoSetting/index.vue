@@ -32,12 +32,12 @@
 				<el-descriptions-item label="ICP地址">
 					<el-input v-model="state.formData.icpUrl" />
 				</el-descriptions-item>
-				<el-descriptions-item label="图形验证码">
+				<!-- <el-descriptions-item label="图形验证码">
 					<g-sys-dict v-model="state.formData.captcha" code="YesNoEnum" render-as="radio" />
 				</el-descriptions-item>
 				<el-descriptions-item label="登录二次验证">
 					<g-sys-dict v-model="state.formData.secondVer" code="YesNoEnum" render-as="radio" />
-				</el-descriptions-item>
+				</el-descriptions-item> -->
 				<el-descriptions-item label="用户注册">
 					<g-sys-dict v-model="state.formData.enableReg" code="YesNoEnum" render-as="radio" />
 				</el-descriptions-item>
@@ -55,13 +55,13 @@
 </template>
 
 <script setup lang="ts" name="sysInfoSetting">
-import {nextTick, reactive, ref} from 'vue';
+import { nextTick, reactive, ref } from 'vue';
 import { ElMessage, UploadInstance } from 'element-plus';
 import { fileToBase64 } from '/@/utils/base64Conver';
 
 import { getAPI } from '/@/utils/axios-utils';
-import {SysConfigApi} from '/@/api-services';
-import GSysDict from "/@/components/sysDict/sysDict.vue";
+import { SysConfigApi } from '/@/api-services';
+import GSysDict from '/@/components/sysDict/sysDict.vue';
 
 const uploadRef = ref<UploadInstance>();
 const state = reactive({
