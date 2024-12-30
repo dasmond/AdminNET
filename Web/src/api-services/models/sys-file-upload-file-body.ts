@@ -11,44 +11,40 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-
- /**
+/**
  * 
- *
  * @export
  * @interface SysFileUploadFileBody
  */
 export interface SysFileUploadFileBody {
-
     /**
      * 文件
-     *
      * @type {Blob}
      * @memberof SysFileUploadFileBody
      */
     file: Blob;
-
-    /**
-     * 文件类型
-     *
-     * @type {string}
-     * @memberof SysFileUploadFileBody
-     */
-    fileType?: string;
-
-    /**
-     * 是否公开  若为true则所有人都可以查看，默认只有自己或有权限的可以查看
-     *
-     * @type {boolean}
-     * @memberof SysFileUploadFileBody
-     */
-    isPublic?: boolean;
-
     /**
      * 文件路径
-     *
      * @type {string}
      * @memberof SysFileUploadFileBody
      */
     path?: string;
+    /**
+     * 文件保存路径
+     * @type {string}
+     * @memberof SysFileUploadFileBody
+     */
+    savePath?: string;
+    /**
+     * 允许格式：.jpeg.jpg.png.bmp.gif.tif
+     * @type {string}
+     * @memberof SysFileUploadFileBody
+     */
+    allowSuffix?: string;
+    /**
+     * 文件类型
+     * @type {string}
+     * @memberof SysFileUploadFileBody
+     */
+    fileType?: string;
 }

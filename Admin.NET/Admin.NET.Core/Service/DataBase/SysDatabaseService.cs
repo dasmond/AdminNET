@@ -1,11 +1,9 @@
-﻿// Admin.NET 项目的版权、商标、专利和其他相关权利均受相应法律法规的保护。使用本项目应遵守相关法律法规和许可证的要求。
+// Admin.NET 项目的版权、商标、专利和其他相关权利均受相应法律法规的保护。使用本项目应遵守相关法律法规和许可证的要求。
 //
 // 本项目主要遵循 MIT 许可证和 Apache 许可证（版本 2.0）进行分发和使用。许可证位于源代码树根目录中的 LICENSE-MIT 和 LICENSE-APACHE 文件。
 //
 // 不得利用本项目从事危害国家安全、扰乱社会秩序、侵犯他人合法权益等法律法规禁止的活动！任何基于本项目二次开发而产生的一切法律纠纷和责任，我们不承担任何责任！
 
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 using Npgsql;
 
 namespace Admin.NET.Core.Service;
@@ -49,6 +47,7 @@ public class SysDatabaseService : IDynamicApiController, ITransient
         var visualTableList = new List<VisualTable>();
         var visualColumnList = new List<VisualColumn>();
         var columnRelationList = new List<ColumnRelation>();
+        var dbOptions = App.GetOptions<DbConnectionOptions>().ConnectionConfigs.First(u => u.ConfigId.ToString() == SqlSugarConst.MainConfigId);
 
         // 遍历所有实体获取所有库表结构
         var random = new Random();
@@ -71,7 +70,7 @@ public class SysDatabaseService : IDynamicApiController, ITransient
                 var visualColumn = new VisualColumn
                 {
                     TableName = columnInfo.DbTableName,
-                    ColumnName = columnInfo.DbColumnName,
+                    ColumnName = dbOptions.DbSettings.EnableUnderLine ? UtilMethods.ToUnderLine(columnInfo.DbColumnName) : columnInfo.DbColumnName,
                     DataType = columnInfo.PropertyInfo.PropertyType.Name,
                     DataLength = columnInfo.Length.ToString(),
                     ColumnDescription = columnInfo.ColumnDescription,
@@ -83,13 +82,14 @@ public class SysDatabaseService : IDynamicApiController, ITransient
                 {
                     var name1 = columnInfo.Navigat.GetName();
                     var name2 = columnInfo.Navigat.GetName2();
+                    var targetColumnName = string.IsNullOrEmpty(name2) ? "Id" : name2;
                     var relation = new ColumnRelation
                     {
                         SourceTableName = columnInfo.DbTableName,
-                        SourceColumnName = name1,
+                        SourceColumnName = dbOptions.DbSettings.EnableUnderLine ? UtilMethods.ToUnderLine(name1) : name1,
                         Type = columnInfo.Navigat.GetNavigateType() == NavigateType.OneToOne ? "ONE_TO_ONE" : "ONE_TO_MANY",
-                        TargetTableName = columnInfo.DbColumnName,
-                        TargetColumnName = string.IsNullOrEmpty(name2) ? "Id" : name2
+                        TargetTableName = dbOptions.DbSettings.EnableUnderLine ? UtilMethods.ToUnderLine(columnInfo.DbColumnName) : columnInfo.DbColumnName,
+                        TargetColumnName = dbOptions.DbSettings.EnableUnderLine ? UtilMethods.ToUnderLine(targetColumnName) : targetColumnName
                     };
                     columnRelationList.Add(relation);
                 }
@@ -109,10 +109,7 @@ public class SysDatabaseService : IDynamicApiController, ITransient
     public List<DbColumnOutput> GetColumnList(string tableName, string configId = SqlSugarConst.MainConfigId)
     {
         var db = _db.AsTenant().GetConnectionScope(configId);
-        if (string.IsNullOrWhiteSpace(tableName))
-            return new List<DbColumnOutput>();
-
-        return db.DbMaintenance.GetColumnInfosByTableName(tableName, false).Adapt<List<DbColumnOutput>>();
+        return string.IsNullOrWhiteSpace(tableName) ? new List<DbColumnOutput>() : db.DbMaintenance.GetColumnInfosByTableName(tableName, false).Adapt<List<DbColumnOutput>>();
     }
 
     /// <summary>
@@ -149,8 +146,7 @@ public class SysDatabaseService : IDynamicApiController, ITransient
         var db = _db.AsTenant().GetConnectionScope(input.ConfigId);
         db.DbMaintenance.AddColumn(input.TableName, column);
         db.DbMaintenance.AddColumnRemark(input.DbColumnName, input.TableName, input.ColumnDescription);
-        if (column.IsPrimarykey)
-            db.DbMaintenance.AddPrimaryKey(input.TableName, input.DbColumnName);
+        if (column.IsPrimarykey) db.DbMaintenance.AddPrimaryKey(input.TableName, input.DbColumnName);
     }
 
     /// <summary>
@@ -211,7 +207,7 @@ public class SysDatabaseService : IDynamicApiController, ITransient
         var typeBuilder = db.DynamicBuilder().CreateClass(input.TableName, new SugarTable() { TableName = input.TableName, TableDescription = input.Description });
         input.DbColumnInfoList.ForEach(u =>
         {
-            var dbColumnName = config.DbSettings.EnableUnderLine ? UtilMethods.ToUnderLine(u.DbColumnName.Trim()) : u.DbColumnName.Trim();
+            var dbColumnName = config!.DbSettings.EnableUnderLine ? UtilMethods.ToUnderLine(u.DbColumnName.Trim()) : u.DbColumnName.Trim();
             // 虚拟类都默认string类型，具体以列数据类型为准
             typeBuilder.CreateProperty(dbColumnName, typeof(string), new SugarColumn()
             {
@@ -301,7 +297,7 @@ public class SysDatabaseService : IDynamicApiController, ITransient
             NameSpace = $"{input.Position}.Entity",
             input.TableName,
             input.EntityName,
-            BaseClassName = string.IsNullOrWhiteSpace(input.BaseClassName) ? "" : $" : {input.BaseClassName}",
+            BaseClassName = string.IsNullOrWhiteSpace(input.BaseClassName) ? "" : $": {input.BaseClassName}",
             input.ConfigId,
             dbTableInfo.Description,
             TableField = dbColumnInfos
@@ -336,55 +332,135 @@ public class SysDatabaseService : IDynamicApiController, ITransient
 
         input.EntityName = entityType.Name;
         input.SeedDataName = entityType.Name + "SeedData";
-        if (!string.IsNullOrWhiteSpace(input.Suffix))
-            input.SeedDataName += input.Suffix;
-        var targetPath = GetSeedDataTargetPath(input);
+        if (!string.IsNullOrWhiteSpace(input.Suffix)) input.SeedDataName += input.Suffix;
 
         // 查询所有数据
         var query = db.QueryableByObject(entityType);
-        DbColumnInfo orderField = null; // 排序字段
         // 优先用创建时间排序
-        orderField = dbColumnInfos.Where(u => u.DbColumnName.ToLower() == "create_time" || u.DbColumnName.ToLower() == "createtime").FirstOrDefault();
-        if (orderField != null)
-            query.OrderBy(orderField.DbColumnName);
-        // 其次用Id排序
-        orderField = dbColumnInfos.Where(u => u.DbColumnName.ToLower() == "id").FirstOrDefault();
-        if (orderField != null)
-            query.OrderBy(orderField.DbColumnName);
-        object records = query.ToList();
-        var timeConverter = new IsoDateTimeConverter { DateTimeFormat = "yyyy-MM-dd HH:mm:ss" };
-        var recordsJSON = JsonConvert.SerializeObject(records, Formatting.Indented, timeConverter);
+        DbColumnInfo orderField = dbColumnInfos.FirstOrDefault(u => u.DbColumnName.ToLower() == "create_time" || u.DbColumnName.ToLower() == "createtime");
+        if (orderField != null) query = query.OrderBy(orderField.DbColumnName);
+        // 再使用第一个主键排序
+        query = query.OrderBy(dbColumnInfos.First(u => u.IsPrimarykey).DbColumnName);
+        var records = ((IEnumerable)await query.ToListAsync()).ToDynamicList();
 
-        // 检查有没有 System.Text.Json.Serialization.JsonIgnore 的属性
-        var jsonIgnoreProperties = entityType.GetProperties().Where(p => (p.GetAttribute<System.Text.Json.Serialization.JsonIgnoreAttribute>() != null ||
-            p.GetAttribute<JsonIgnoreAttribute>() != null) && p.GetAttribute<SugarColumn>() != null).ToList();
-        var jsonIgnoreInfo = new List<List<JsonIgnoredPropertyData>>();
-        if (jsonIgnoreProperties.Count > 0)
+        // 过滤已存在的数据
+        if (input.FilterExistingData && records.Any())
         {
-            int recordIndex = 0;
-            foreach (var r in (IEnumerable)records)
+            // 获取实体类型-所有种数据数据类型
+            var entityTypes = App.EffectiveTypes.Where(u => !u.IsInterface && !u.IsAbstract && u.IsClass && u.IsDefined(typeof(SugarTable), false) && u.FullName.EndsWith("." + input.EntityName))
+                .Where(u => !u.GetCustomAttributes<IgnoreTableAttribute>().Any())
+                .ToList();
+            if (entityTypes.Count == 1) // 只有一个实体匹配才能过滤
             {
-                List<JsonIgnoredPropertyData> record = new();
-                foreach (var item in jsonIgnoreProperties)
+                // 获取实体的主键对应的属性名称
+                var pkInfo = entityTypes[0].GetProperties().FirstOrDefault(u => u.GetCustomAttribute<SugarColumn>()?.IsPrimaryKey == true);
+                if (pkInfo != null)
                 {
-                    object v = item.GetValue(r);
-                    string strValue = "null";
-                    if (v != null)
+                    var seedDataTypes = App.EffectiveTypes
+                        .Where(u => !u.IsInterface && !u.IsAbstract && u.IsClass && u.GetInterfaces().Any(
+                            i => i.HasImplementedRawGeneric(typeof(ISqlSugarEntitySeedData<>)) && i.GenericTypeArguments[0] == entityTypes[0]
+                            )
+                        )
+                        .ToList();
+                    // 可能会重名的种子数据不作为过滤项
+                    string doNotFilterFullName1 = $"{input.Position}.SeedData.{input.SeedDataName}";
+                    string doNotFilterFullName2 = $"{input.Position}.{input.SeedDataName}"; // Core中的命名空间没有SeedData
+
+                    PropertyInfo idPropertySeedData = records[0].GetType().GetProperty("Id");
+
+                    for (int i = seedDataTypes.Count - 1; i >= 0; i--)
                     {
-                        strValue = v.ToString();
-                        if (v.GetType() == typeof(string))
-                            strValue = "\"" + strValue + "\"";
-                        else if (v.GetType() == typeof(DateTime))
-                            strValue = "DateTime.Parse(\"" + ((DateTime)v).ToString("yyyy-MM-dd HH:mm:ss") + "\")";
+                        string fullName = seedDataTypes[i].FullName;
+                        if ((fullName == doNotFilterFullName1) || (fullName == doNotFilterFullName2)) continue;
+
+                        // 删除重复数据
+                        var instance = Activator.CreateInstance(seedDataTypes[i]);
+                        var hasDataMethod = seedDataTypes[i].GetMethod("HasData");
+                        var seedData = ((IEnumerable)hasDataMethod?.Invoke(instance, null))?.Cast<object>();
+                        if (seedData == null) continue;
+
+                        List<object> recordsToRemove = new();
+                        foreach (var record in records)
+                        {
+                            object recordId = pkInfo.GetValue(record);
+                            if (seedData.Select(d1 => idPropertySeedData.GetValue(d1)).Any(dataId => recordId != null && dataId != null && recordId.Equals(dataId)))
+                            {
+                                recordsToRemove.Add(record);
+                            }
+                        }
+                        foreach (var itemToRemove in recordsToRemove)
+                        {
+                            records.Remove(itemToRemove);
+                        }
                     }
-                    record.Add(new JsonIgnoredPropertyData { RecordIndex = recordIndex, Name = item.Name, Value = strValue });
                 }
-                recordIndex++;
-                jsonIgnoreInfo.Add(record);
             }
         }
 
-        var tContent = File.ReadAllText(templatePath);
+        // 检查有没有 System.Text.Json.Serialization.JsonIgnore 的属性
+        // var jsonIgnoreProperties = entityType.GetProperties().Where(p => (p.GetAttribute<System.Text.Json.Serialization.JsonIgnoreAttribute>() != null ||
+        //     p.GetAttribute<JsonIgnoreAttribute>() != null) && p.GetAttribute<SugarColumn>() != null).ToList();
+        // var jsonIgnoreInfo = new List<List<JsonIgnoredPropertyData>>();
+        // if (jsonIgnoreProperties.Count > 0)
+        // {
+        //     int recordIndex = 0;
+        //     foreach (var r in (IEnumerable)records)
+        //     {
+        //         List<JsonIgnoredPropertyData> record = new();
+        //         foreach (var item in jsonIgnoreProperties)
+        //         {
+        //             object v = item.GetValue(r);
+        //             string strValue = "null";
+        //             if (v != null)
+        //             {
+        //                 strValue = v.ToString();
+        //                 if (v.GetType() == typeof(string))
+        //                     strValue = "\"" + strValue + "\"";
+        //                 else if (v.GetType() == typeof(DateTime))
+        //                     strValue = "DateTime.Parse(\"" + ((DateTime)v).ToString("yyyy-MM-dd HH:mm:ss") + "\")";
+        //             }
+        //             record.Add(new JsonIgnoredPropertyData { RecordIndex = recordIndex, Name = item.Name, Value = strValue });
+        //         }
+        //         recordIndex++;
+        //         jsonIgnoreInfo.Add(record);
+        //     }
+        // }
+
+        // 获取所有字段信息
+        var propertyList = entityType.GetProperties().Where(x => false == (x.GetCustomAttribute<SugarColumn>()?.IsIgnore ?? false)).ToList();
+        for (var i = 0; i < propertyList.Count; i++)
+        {
+            if (propertyList[i].Name != nameof(EntityBaseId.Id) || !(propertyList[i].GetCustomAttribute<SugarColumn>()?.IsPrimaryKey ?? true)) continue;
+            var temp = propertyList[i];
+            for (var j = i; j > 0; j--) propertyList[j] = propertyList[j - 1];
+            propertyList[0] = temp;
+        }
+        // 拼接数据
+        var recordList = records.Select(obj => string.Join(", ", propertyList.Select(prop =>
+        {
+            var propType = Nullable.GetUnderlyingType(prop.PropertyType) ?? prop.PropertyType;
+            object value = prop.GetValue(obj);
+            if (value == null) value = "null";
+            else if (propType == typeof(string))
+            {
+                value = $"\"{value}\"";
+            }
+            else if (propType.IsEnum)
+            {
+                value = $"{propType.Name}.{value}";
+            }
+            else if (propType == typeof(bool))
+            {
+                value = (bool)value ? "true" : "false";
+            }
+            else if (propType == typeof(DateTime))
+            {
+                value = $"DateTime.Parse(\"{((DateTime)value):yyyy-MM-dd HH:mm:ss.fff}\")";
+            }
+            return $"{prop.Name}={value}";
+        }))).ToList();
+
+        var tContent = await File.ReadAllTextAsync(templatePath);
         var data = new
         {
             NameSpace = $"{input.Position}.SeedData",
@@ -394,17 +470,19 @@ public class SysDatabaseService : IDynamicApiController, ITransient
             input.SeedDataName,
             input.ConfigId,
             tableInfo.Description,
-            JsonIgnoreInfo = jsonIgnoreInfo,
-            RecordsJSON = recordsJSON
+            // JsonIgnoreInfo = jsonIgnoreInfo,
+            RecordList = recordList
         };
-        var tResult = _viewEngine.RunCompile(tContent, data, builderAction: builder =>
+        var tResult = await _viewEngine.RunCompileAsync(tContent, data, builderAction: builder =>
         {
             builder.AddAssemblyReferenceByName("System.Linq");
             builder.AddAssemblyReferenceByName("System.Collections");
             builder.AddUsing("System.Collections.Generic");
             builder.AddUsing("System.Linq");
         });
-        File.WriteAllText(targetPath, tResult, Encoding.UTF8);
+
+        var targetPath = GetSeedDataTargetPath(input);
+        await File.WriteAllTextAsync(targetPath, tResult, Encoding.UTF8);
     }
 
     /// <summary>
@@ -419,26 +497,13 @@ public class SysDatabaseService : IDynamicApiController, ITransient
         var types = new List<Type>();
         if (_codeGenOptions.EntityAssemblyNames != null)
         {
-            foreach (var assemblyName in _codeGenOptions.EntityAssemblyNames)
+            foreach (var asm in _codeGenOptions.EntityAssemblyNames.Select(Assembly.Load))
             {
-                Assembly asm = Assembly.Load(assemblyName);
                 types.AddRange(asm.GetExportedTypes().ToList());
             }
         }
-        bool IsMyAttribute(Attribute[] o)
-        {
-            foreach (Attribute a in o)
-            {
-                if (a.GetType() == type)
-                    return true;
-            }
-            return false;
-        }
-        Type[] cosType = types.Where(o =>
-        {
-            return IsMyAttribute(Attribute.GetCustomAttributes(o, true));
-        }
-        ).ToArray();
+
+        Type[] cosType = types.Where(o => IsMyAttribute(Attribute.GetCustomAttributes(o, true))).ToArray();
 
         foreach (var c in cosType)
         {
@@ -459,6 +524,11 @@ public class SysDatabaseService : IDynamicApiController, ITransient
             });
         }
         return await Task.FromResult(entityInfos);
+
+        bool IsMyAttribute(Attribute[] o)
+        {
+            return o.Any(a => a.GetType() == type);
+        }
     }
 
     /// <summary>

@@ -4,7 +4,7 @@
 			<pane size="20">
 				<OrgTree ref="orgTreeRef" @node-click="nodeClick" />
 			</pane>
-			<pane size="80">
+			<pane size="80" style="overflow: auto;">
 				<el-card shadow="hover" :body-style="{ paddingBottom: '0' }">
 					<el-form :model="state.queryParams" ref="queryForm" :inline="true">
 						<el-form-item label="账号">
@@ -50,17 +50,15 @@
 						</el-table-column>
 						<el-table-column label="性别" width="70" align="center" show-overflow-tooltip>
 							<template #default="scope">
-								<el-tag type="success" v-if="scope.row.sex === 1"> 男 </el-tag>
-								<el-tag type="danger" v-else-if="scope.row.sex === 2"> 女 </el-tag>
-								<el-tag type="info" v-else> 其他 </el-tag>
+								<el-tag v-if="scope.row.sex === 1" type="success">男</el-tag>
+								<el-tag v-else-if="scope.row.sex === 2" type="danger">女</el-tag>
+								<el-tag v-else-if="scope.row.sex === 0" type="info">未知</el-tag>
+								<el-tag v-else-if="scope.row.sex === 9" type="info">未说明</el-tag>
 							</template>
 						</el-table-column> -->
 						<el-table-column label="账号类型" width="110" align="center" show-overflow-tooltip>
 							<template #default="scope">
-								<el-tag v-if="scope.row.accountType === 888"> 系统管理员 </el-tag>
-								<el-tag v-else-if="scope.row.accountType === 777"> 普通账号 </el-tag>
-								<el-tag v-else-if="scope.row.accountType === 666"> 会员 </el-tag>
-								<el-tag v-else> 其他 </el-tag>
+                <g-sys-dict v-model="scope.row.accountType" code="AccountTypeEnum" />
 							</template>
 						</el-table-column>
 						<el-table-column prop="roleName" label="角色集合" min-width="150" align="center" show-overflow-tooltip />
@@ -115,15 +113,12 @@
 <script lang="ts" setup name="sysUser">
 import { onMounted, reactive, ref } from 'vue';
 import { ElMessageBox, ElMessage } from 'element-plus';
-// import { formatDate } from '/@/utils/formatTime';
-import { auth } from '/@/utils/authFunction';
 import OrgTree from '/@/views/system/org/component/orgTree.vue';
 import EditUser from '/@/views/system/user/component/editUser.vue';
 import ModifyRecord from '/@/components/table/modifyRecord.vue';
-
+import CallBar from '/@/components/callTel/callBar.vue';
 import { Splitpanes, Pane } from 'splitpanes';
 import 'splitpanes/dist/splitpanes.css';
-
 import { getAPI } from '/@/utils/axios-utils';
 import { SysUserApi, SysOrgApi } from '/@/api-services/api';
 import { SysUser, SysOrg, UpdateUserInput } from '/@/api-services/models';
@@ -132,6 +127,7 @@ const orgTreeRef = ref<InstanceType<typeof OrgTree>>();
 const editUserRef = ref<InstanceType<typeof EditUser>>();
 const state = reactive({
 	loading: false,
+	tenantList: [] as Array<any>,
 	userData: [] as Array<SysUser>,
 	orgTreeData: [] as Array<SysOrg>,
 	queryParams: {
@@ -139,11 +135,12 @@ const state = reactive({
 		account: undefined,
 		realName: undefined,
 		phone: undefined,
-		posName: undefined,
+		posName: undefined
 	},
+	tenantId: undefined,
 	tableParams: {
 		page: 1,
-		pageSize: 20,
+		pageSize: 50,
 		total: 0 as any,
 	},
 	editUserTitle: '',
@@ -185,7 +182,7 @@ const resetQuery = async () => {
 // 打开新增页面
 const openAddUser = () => {
 	state.editUserTitle = '添加账号';
-	editUserRef.value?.openDialog({ id: undefined, birthday: '2000-01-01', sex: 1, orderNo: 100, cardType: 0, cultureLevel: 5 });
+	editUserRef.value?.openDialog({ id: undefined, birthday: '2000-01-01', sex: 1, tenantId: state.tenantId, orderNo: 100, cardType: 0, cultureLevel: 5 });
 };
 
 // 打开编辑页面
@@ -282,6 +279,7 @@ const nodeClick = async (node: any) => {
 	state.queryParams.account = undefined;
 	state.queryParams.realName = undefined;
 	state.queryParams.phone = undefined;
+	state.tenantId = node.tenantId;
 	await handleQuery();
 };
 </script>

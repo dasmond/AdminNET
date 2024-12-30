@@ -4,6 +4,8 @@
 //
 // 不得利用本项目从事危害国家安全、扰乱社会秩序、侵犯他人合法权益等法律法规禁止的活动！任何基于本项目二次开发而产生的一切法律纠纷和责任，我们不承担任何责任！
 
+using NewLife.Reflection;
+
 namespace Admin.NET.Core.Service;
 
 /// <summary>
@@ -31,7 +33,7 @@ public class SysConfigService : IDynamicApiController, ITransient
     public async Task<SqlSugarPagedList<SysConfig>> Page(PageConfigInput input)
     {
         return await _sysConfigRep.AsQueryable()
-            .Where(u => u.GroupCode != ConfigConst.SysWebConfigGroup) // 不显示 WebConfig 分组
+            .Where(u => u.GroupCode != ConfigConst.SysWebConfigGroup || u.GroupCode == null) // 不显示 WebConfig 分组
             .WhereIF(!string.IsNullOrWhiteSpace(input.Name?.Trim()), u => u.Name.Contains(input.Name))
             .WhereIF(!string.IsNullOrWhiteSpace(input.Code?.Trim()), u => u.Code.Contains(input.Code))
             .WhereIF(!string.IsNullOrWhiteSpace(input.GroupCode?.Trim()), u => u.GroupCode.Equals(input.GroupCode))
@@ -61,8 +63,7 @@ public class SysConfigService : IDynamicApiController, ITransient
     public async Task AddConfig(AddConfigInput input)
     {
         var isExist = await _sysConfigRep.IsAnyAsync(u => u.Name == input.Name || u.Code == input.Code);
-        if (isExist)
-            throw Oops.Oh(ErrorCodeEnum.D9000);
+        if (isExist) throw Oops.Oh(ErrorCodeEnum.D9000);
 
         await _sysConfigRep.InsertAsync(input.Adapt<SysConfig>());
     }
@@ -77,13 +78,12 @@ public class SysConfigService : IDynamicApiController, ITransient
     public async Task UpdateConfig(UpdateConfigInput input)
     {
         var isExist = await _sysConfigRep.IsAnyAsync(u => (u.Name == input.Name || u.Code == input.Code) && u.Id != input.Id);
-        if (isExist)
-            throw Oops.Oh(ErrorCodeEnum.D9000);
+        if (isExist) throw Oops.Oh(ErrorCodeEnum.D9000);
 
         var config = input.Adapt<SysConfig>();
         await _sysConfigRep.AsUpdateable(config).IgnoreColumns(true).ExecuteCommandAsync();
 
-        _sysCacheService.Remove($"{CacheConst.KeyConfig}{config.Code}");
+        Remove(config);
     }
 
     /// <summary>
@@ -96,12 +96,13 @@ public class SysConfigService : IDynamicApiController, ITransient
     public async Task DeleteConfig(DeleteConfigInput input)
     {
         var config = await _sysConfigRep.GetFirstAsync(u => u.Id == input.Id);
-        if (config.SysFlag == YesNoEnum.Y) // 禁止删除系统参数
-            throw Oops.Oh(ErrorCodeEnum.D9001);
+
+        // 禁止删除系统参数
+        if (config.SysFlag == YesNoEnum.Y) throw Oops.Oh(ErrorCodeEnum.D9001);
 
         await _sysConfigRep.DeleteAsync(config);
 
-        _sysCacheService.Remove($"{CacheConst.KeyConfig}{config.Code}");
+        Remove(config);
     }
 
     /// <summary>
@@ -116,12 +117,13 @@ public class SysConfigService : IDynamicApiController, ITransient
         foreach (var id in ids)
         {
             var config = await _sysConfigRep.GetFirstAsync(u => u.Id == id);
-            if (config.SysFlag == YesNoEnum.Y) // 禁止删除系统参数
-                continue;
+
+            // 禁止删除系统参数
+            if (config.SysFlag == YesNoEnum.Y) continue;
 
             await _sysConfigRep.DeleteAsync(config);
 
-            _sysCacheService.Remove($"{CacheConst.KeyConfig}{config.Code}");
+            Remove(config);
         }
     }
 
@@ -172,7 +174,7 @@ public class SysConfigService : IDynamicApiController, ITransient
         config.Value = value;
         await _sysConfigRep.AsUpdateable(config).ExecuteCommandAsync();
 
-        _sysCacheService.Remove($"{CacheConst.KeyConfig}{config.Code}");
+        Remove(config);
     }
 
     /// <summary>
@@ -183,7 +185,7 @@ public class SysConfigService : IDynamicApiController, ITransient
     public async Task<List<string>> GetGroupList()
     {
         return await _sysConfigRep.AsQueryable()
-            .Where(u => u.GroupCode != ConfigConst.SysWebConfigGroup) // 不显示 WebConfig 分组
+            .Where(u => u.GroupCode != ConfigConst.SysWebConfigGroup || u.GroupCode == null) // 不显示 WebConfig 分组
             .GroupBy(u => u.GroupCode)
             .Select(u => u.GroupCode).ToListAsync();
     }
@@ -221,10 +223,13 @@ public class SysConfigService : IDynamicApiController, ITransient
     [DisplayName("批量更新参数配置值")]
     public async Task BatchUpdateConfig(List<BatchConfigInput> input)
     {
-        foreach (var Config in input)
+        foreach (var config in input)
         {
-            await _sysConfigRep.AsUpdateable().SetColumns(u => u.Value == Config.Value).Where(u => u.Code == Config.Code).ExecuteCommandAsync();
-            _sysCacheService.Remove($"{CacheConst.KeyConfig}{Config.Code}");
+            var info = await _sysConfigRep.GetFirstAsync(c => c.Code == config.Code);
+            if (info == null) continue;
+
+            await _sysConfigRep.AsUpdateable().SetColumns(u => u.Value == config.Value).Where(u => u.Code == config.Code).ExecuteCommandAsync();
+            Remove(info);
         }
     }
 
@@ -237,29 +242,34 @@ public class SysConfigService : IDynamicApiController, ITransient
     [DisplayName("获取系统信息")]
     public async Task<dynamic> GetSysInfo()
     {
-        var sysLogo = await GetConfigValue<string>(ConfigConst.SysWebLogo);
-        var sysTitle = await GetConfigValue<string>(ConfigConst.SysWebTitle);
-        var sysViceTitle = await GetConfigValue<string>(ConfigConst.SysWebViceTitle);
-        var sysViceDesc = await GetConfigValue<string>(ConfigConst.SysWebViceDesc);
-        var sysWatermark = await GetConfigValue<string>(ConfigConst.SysWebWatermark);
-        var sysCopyright = await GetConfigValue<string>(ConfigConst.SysWebCopyright);
-        var sysIcp = await GetConfigValue<string>(ConfigConst.SysWebIcp);
-        var sysIcpUrl = await GetConfigValue<string>(ConfigConst.SysWebIcpUrl);
-        var sysSecondVer = await GetConfigValue<bool>(ConfigConst.SysSecondVer);
-        var sysCaptcha = await GetConfigValue<bool>(ConfigConst.SysCaptcha);
+        var tenant = await App.GetService<SysTenantService>().GetCurrentTenant();
+        tenant ??= await _sysConfigRep.Context.Queryable<SysTenant>().FirstAsync(u => u.Id == SqlSugarConst.DefaultTenantId);
+        _ = tenant ?? throw Oops.Oh(ErrorCodeEnum.D1002);
 
+        var wayList = await _sysConfigRep.Context.Queryable<SysUserRegWay>().ClearFilter()
+            .Where(u => u.TenantId == tenant.Id)
+            .Select(u => new { Label = u.Name, Value = u.Id })
+            .ToListAsync();
+
+        var captcha = await GetConfigValue<bool>(ConfigConst.SysCaptcha);
+        var secondVer = await GetConfigValue<bool>(ConfigConst.SysSecondVer);
+        var hideTenantForLogin = await GetConfigValue<bool>(ConfigConst.SysHideTenantLogin);
         return new
         {
-            SysLogo = sysLogo,
-            SysTitle = sysTitle,
-            SysViceTitle = sysViceTitle,
-            SysViceDesc = sysViceDesc,
-            SysWatermark = sysWatermark,
-            SysCopyright = sysCopyright,
-            SysIcp = sysIcp,
-            SysIcpUrl = sysIcpUrl,
-            SysSecondVer = sysSecondVer,
-            SysCaptcha = sysCaptcha
+            tenant.Logo,
+            tenant.Title,
+            tenant.ViceTitle,
+            tenant.ViceDesc,
+            tenant.Watermark,
+            tenant.Copyright,
+            tenant.Icp,
+            tenant.IcpUrl,
+            tenant.RegWayId,
+            tenant.EnableReg,
+            SecondVer = secondVer ? YesNoEnum.Y : YesNoEnum.N,
+            Captcha = captcha ? YesNoEnum.Y : YesNoEnum.N,
+            HideTenantForLogin = hideTenantForLogin,
+            WayList = wayList
         };
     }
 
@@ -271,48 +281,21 @@ public class SysConfigService : IDynamicApiController, ITransient
     [DisplayName("保存系统信息")]
     public async Task SaveSysInfo(InfoSaveInput input)
     {
-        // logo 不为空才保存
-        if (!string.IsNullOrEmpty(input.SysLogoBase64))
-        {
-            // 旧图标文件相对路径
-            var oldSysLogoRelativeFilePath = await GetConfigValue<string>(ConfigConst.SysWebLogo) ?? "";
-            var oldSysLogoAbsoluteFilePath = Path.Combine(App.WebHostEnvironment.WebRootPath, oldSysLogoRelativeFilePath.TrimStart('/'));
+        var tenant = await App.GetService<SysTenantService>().GetCurrentTenant() ?? throw Oops.Oh(ErrorCodeEnum.D1002);
+        if (!string.IsNullOrEmpty(input.LogoBase64)) App.GetService<SysTenantService>().SetLogoUrl(tenant, input.LogoBase64, input.LogoFileName);
+        await UpdateConfigValue(ConfigConst.SysCaptcha, (input.Captcha == YesNoEnum.Y).ToString());
+        await UpdateConfigValue(ConfigConst.SysSecondVer, (input.SecondVer == YesNoEnum.Y).ToString());
 
-            var groups = Regex.Match(input.SysLogoBase64, @"data:image/(?<type>.+?);base64,(?<data>.+)").Groups;
-            //var type = groups["type"].Value;
-            var base64Data = groups["data"].Value;
-            var binData = Convert.FromBase64String(base64Data);
-            // 根据文件名取扩展名
-            var ext = string.IsNullOrWhiteSpace(input.SysLogoFileName) ? ".png" : Path.GetExtension(input.SysLogoFileName);
-            // 本地图标保存路径
-            var path = "upload";
-            var absoluteFilePath = Path.Combine(App.WebHostEnvironment.WebRootPath, path, $"logo{ext}");
+        tenant.Copy(input);
+        tenant.RegWayId = input.EnableReg == YesNoEnum.Y ? input.RegWayId : null;
+        await _sysConfigRep.Context.Updateable(tenant).ExecuteCommandAsync();
+    }
 
-            // 删除已存在文件
-            if (File.Exists(oldSysLogoAbsoluteFilePath))
-                File.Delete(oldSysLogoAbsoluteFilePath);
-
-            // 创建文件夹
-            var absoluteFileDir = Path.GetDirectoryName(absoluteFilePath);
-            if (!Directory.Exists(absoluteFileDir))
-                Directory.CreateDirectory(absoluteFileDir);
-
-            // 保存图标文件
-            await File.WriteAllBytesAsync(absoluteFilePath, binData);
-
-            // 保存图标配置
-            var relativeUrl = $"/{path}/logo{ext}";
-            await UpdateConfigValue(ConfigConst.SysWebLogo, relativeUrl);
-        }
-
-        await UpdateConfigValue(ConfigConst.SysWebTitle, input.SysTitle);
-        await UpdateConfigValue(ConfigConst.SysWebViceTitle, input.SysViceTitle);
-        await UpdateConfigValue(ConfigConst.SysWebViceDesc, input.SysViceDesc);
-        await UpdateConfigValue(ConfigConst.SysWebWatermark, input.SysWatermark);
-        await UpdateConfigValue(ConfigConst.SysWebCopyright, input.SysCopyright);
-        await UpdateConfigValue(ConfigConst.SysWebIcp, input.SysIcp);
-        await UpdateConfigValue(ConfigConst.SysWebIcpUrl, input.SysIcpUrl);
-        await UpdateConfigValue(ConfigConst.SysSecondVer, (input.SysSecondVer ?? false).ToString());
-        await UpdateConfigValue(ConfigConst.SysCaptcha, (input.SysCaptcha ?? true).ToString());
+    private void Remove(SysConfig config)
+    {
+        _sysCacheService.Remove($"{CacheConst.KeyConfig}Value:{config.Code}");
+        _sysCacheService.Remove($"{CacheConst.KeyConfig}Remark:{config.Code}");
+        _sysCacheService.Remove($"{CacheConst.KeyConfig}{config.GroupCode}:GroupWithCache");
+        _sysCacheService.Remove($"{CacheConst.KeyConfig}{config.Code}");
     }
 }

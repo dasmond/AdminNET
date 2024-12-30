@@ -39,8 +39,8 @@ public abstract class EntityBase : EntityBaseId, IDeletedFilter
     /// <summary>
     /// 创建者Id
     /// </summary>
-    [SugarColumn(ColumnDescription = "创建者Id", IsOnlyIgnoreUpdate = true)]
     [OwnerUser]
+    [SugarColumn(ColumnDescription = "创建者Id", IsOnlyIgnoreUpdate = true)]
     public virtual long? CreateUserId { get; set; }
 
     ///// <summary>
@@ -92,8 +92,8 @@ public abstract class EntityBaseData : EntityBase, IOrgIdFilter
     /// <summary>
     /// 创建者部门Id
     /// </summary>
-    [SugarColumn(ColumnDescription = "创建者部门Id", IsOnlyIgnoreUpdate = true)]
     [OwnerOrg]
+    [SugarColumn(ColumnDescription = "创建者部门Id", IsOnlyIgnoreUpdate = true)]
     public virtual long? CreateOrgId { get; set; }
 
     /// <summary>

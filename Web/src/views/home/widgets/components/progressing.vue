@@ -2,7 +2,7 @@
 	<el-card shadow="hover" header="项目进度">
 		<template #header>
 			<el-icon style="display: inline; vertical-align: middle"> <ele-Odometer /> </el-icon>
-			<span style=""> 项目进度 </span>
+			<span> 项目进度 </span>
 		</template>
 		<div class="progress">
 			<el-progress type="dashboard" :percentage="99.9" :width="160" color="var(--el-color-primary)">

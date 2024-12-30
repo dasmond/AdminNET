@@ -29,59 +29,99 @@
 					<div class="login-right-warp-main-form">
 						<div v-if="!state.isScan">
 							<el-tabs v-model="state.tabsActiveName">
-								<el-tab-pane :label="$t('message.label.one1')" name="account">
-									<Account />
+								<el-tab-pane :label="$t('message.label.one1')" name="account" v-if="state.tabsActiveName != 'register'">
+									<Account :tenant-info="tenantInfo" />
 								</el-tab-pane>
-								<el-tab-pane :label="$t('message.label.two2')" name="mobile">
-									<Mobile />
+								<el-tab-pane :label="$t('message.label.two2')" name="mobile" v-if="state.tabsActiveName != 'register'">
+									<Mobile :tenant-info="tenantInfo" />
+								</el-tab-pane>
+								<el-tab-pane :label="$t('message.label.two3')" name="register" v-if="state.tabsActiveName == 'register'">
+									<Register :tenant-info="tenantInfo" @goLogin="() => state.tabsActiveName = 'account'" />
 								</el-tab-pane>
 							</el-tabs>
 						</div>
-						<Scan v-if="state.isScan" />
+						<Scan v-if="state.isScan" :tenant-info="tenantInfo" />
 						<div class="login-content-main-scan" @click="state.isScan = !state.isScan">
 							<i class="iconfont" :class="state.isScan ? 'icon-diannao1' : 'icon-barcode-qr'"></i>
 							<div class="login-content-main-scan-delta"></div>
+						</div>
+						<div class="login-content-main-left" v-if="getThemeConfig.registration">
+							<template v-if="state.tabsActiveName != 'register'">
+								没有账号? 去<el-link class="login-content-main-left-register" @click="() => state.tabsActiveName = 'register'">注册账号</el-link>
+							</template>
+							<template v-else>
+								已有账户? 去<el-link class="login-content-main-left-register" @click="() => state.tabsActiveName = 'account'">登录账号</el-link>
+							</template>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 		<div class="copyright" :class="[getThemeConfig.icp ? 'mb25' : 'mt5']">{{ getThemeConfig.copyright }}</div>
-		<div v-if="getThemeConfig.icp" class="icp mt5">
+		<div v-if="getThemeConfig.icp" class="icp mt5" onselect="false">
 			<el-link :href="getThemeConfig.icpUrl" target="_blank">{{ getThemeConfig.icp }}</el-link>
 		</div>
 	</div>
 </template>
 
 <script setup lang="ts" name="loginIndex">
-import { defineAsyncComponent, onMounted, reactive, computed } from 'vue';
+import { defineAsyncComponent, onMounted, reactive, computed, ref } from 'vue';
 import { storeToRefs } from 'pinia';
 import { useThemeConfig } from '/@/stores/themeConfig';
 import { NextLoading } from '/@/utils/loading';
-// import logoMini from '/@/assets/logo-mini.svg';
 import loginIconTwo from '/@/assets/login-icon-two.svg';
 import loginIconTwo1 from '/@/assets/login-icon-two1.svg';
 import loginIconTwo2 from '/@/assets/login-icon-two2.svg';
+import {getAPI} from '/@/utils/axios-utils';
+import {SysTenantApi} from '/@/api-services';
+import {useRoute} from 'vue-router';
+import {Local} from '/@/utils/storage';
 
 // 引入组件
+const Register = defineAsyncComponent(() => import('/@/views/login/component/register.vue'));
 const Account = defineAsyncComponent(() => import('/@/views/login/component/account.vue'));
 const Mobile = defineAsyncComponent(() => import('/@/views/login/component/mobile.vue'));
 const Scan = defineAsyncComponent(() => import('/@/views/login/component/scan.vue'));
 
+const route = useRoute();
 const storesThemeConfig = useThemeConfig();
 const { themeConfig } = storeToRefs(storesThemeConfig);
+const tenantInfo = ref({
+	id: undefined as number | undefined,
+	list: [],
+});
+
 const state = reactive({
 	tabsActiveName: 'account',
 	isScan: false,
 });
+
 // 获取布局配置信息
 const getThemeConfig = computed(() => {
 	return themeConfig.value;
 });
+
 // 页面加载时
-onMounted(() => {
+onMounted(async () => {
+	// 地址栏存在wayid参数时，默认切换到注册界面
+	if (route.query.wayid != undefined) state.tabsActiveName = 'register';
+	await getTenantInfo();
 	NextLoading.done();
 });
+
+// 获取租户信息
+const getTenantInfo = async () => {
+	if (themeConfig.value.hideTenantForLogin) {
+		tenantInfo.value.id = parseInt(route.query.t ? <string>route.query.t : (Local.get('t') ?? '-1'));
+		tenantInfo.value.list = [];
+		return tenantInfo.value;
+	}
+	const host = location.host.toLowerCase();
+	tenantInfo.value.list = await getAPI(SysTenantApi).apiSysTenantListGet().then(res => res.data.result ?? []);
+	const tenant = tenantInfo.value.list.find((item: any) => item.value == route.query.t || (!item.host && item.host === host)) as any;
+	if (tenant?.value) tenantInfo.value.id = parseInt(tenant?.value);
+	return tenantInfo.value;
+}
 </script>
 
 <style scoped lang="scss">
@@ -147,7 +187,7 @@ onMounted(() => {
 		.login-right-warp {
 			border: 1px solid var(--el-color-primary-light-3);
 			border-radius: 3px;
-			height: 550px;
+			height: 600px;
 			position: relative;
 			overflow: hidden;
 			background-color: var(--el-color-white);
@@ -221,6 +261,7 @@ onMounted(() => {
 					animation: logoAnimation 0.3s ease;
 					animation-delay: 0.3s;
 					color: var(--el-color-primary);
+					user-select: none;
 				}
 				.login-right-warp-main-form {
 					flex: 1;
@@ -258,6 +299,21 @@ onMounted(() => {
 							position: absolute;
 							right: 1px;
 							top: 0px;
+						}
+					}
+					.login-content-main-left {
+						position: absolute;
+						top: 10px;
+						left: 10px;
+						width: 150px;
+						height: 50px;
+						overflow: hidden;
+						cursor: pointer;
+						transition: all ease 0.3s;
+						user-select: none;
+						.login-content-main-left-register {
+							top: -1.5px;
+							color: var(--el-color-primary);
 						}
 					}
 				}

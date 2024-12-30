@@ -1,6 +1,6 @@
 <template>
 	<div class="sys-dbEntity-container">
-		<el-dialog v-model="state.isShowDialog" draggable :close-on-click-modal="false" width="700px">
+		<el-dialog v-model="state.isShowDialog" draggable :close-on-click-modal="false" width="700px" v-loading="state.loading">
 			<template #header>
 				<div style="color: #fff">
 					<el-icon size="16" style="margin-right: 3px; display: inline; vertical-align: middle"> <ele-Cpu /> </el-icon>
@@ -27,12 +27,17 @@
 							</el-select>
 						</el-form-item>
 					</el-col>
+					<el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="mb20">
+						<el-form-item label="过滤重复数据" prop="filterExistingData">
+							<el-switch v-model="state.ruleForm.filterExistingData"></el-switch>
+						</el-form-item>
+					</el-col>
 				</el-row>
 			</el-form>
 			<template #footer>
 				<span class="dialog-footer">
-					<el-button @click="cancel">取 消</el-button>
-					<el-button type="primary" @click="submit">确 定</el-button>
+					<el-button @click="cancel" :disabled="state.loading">取 消</el-button>
+					<el-button type="primary" v-reclick="3000" @click="submit" :disabled="state.loading">确 定</el-button>
 				</span>
 			</template>
 		</el-dialog>
@@ -40,10 +45,10 @@
 </template>
 
 <script lang="ts" setup name="sysGenEntity">
-import { onMounted, reactive, ref } from 'vue';
-
+import { reactive, ref } from 'vue';
+import { ElMessage } from "element-plus";
 import { getAPI } from '/@/utils/axios-utils';
-import { SysDatabaseApi, SysDictTypeApi } from '/@/api-services/api';
+import { SysDatabaseApi } from '/@/api-services/api';
 
 const emits = defineEmits(['handleQueryColumn']);
 
@@ -53,15 +58,10 @@ const props = defineProps({
 
 const ruleFormRef = ref();
 const state = reactive({
+  loading: false,
 	isShowDialog: false,
 	ruleForm: {} as any,
-	codeGenBaseClassName: [] as any,
 	rules: { position: [{ required: true, message: '请选择存放位置', trigger: 'blur' }] },
-});
-
-onMounted(async () => {
-	let resDicData = await getAPI(SysDictTypeApi).apiSysDictTypeDataListGet('code_gen_base_class');
-	state.codeGenBaseClassName = resDicData.data.result;
 });
 
 // 打开弹窗
@@ -69,6 +69,7 @@ const openDialog = (row: any) => {
 	state.ruleForm.configId = row.configId;
 	state.ruleForm.tableName = row.tableName;
 	state.ruleForm.position = row.position;
+	state.ruleForm.filterExistingData = false;
 	state.isShowDialog = true;
 };
 
@@ -87,8 +88,13 @@ const cancel = () => {
 const submit = () => {
 	ruleFormRef.value.validate(async (valid: boolean) => {
 		if (!valid) return;
-		await getAPI(SysDatabaseApi).apiSysDatabaseCreateSeedDataPost(state.ruleForm);
-		closeDialog();
+    state.loading = true;
+		try {
+      await getAPI(SysDatabaseApi).apiSysDatabaseCreateSeedDataPost(state.ruleForm);
+      closeDialog();
+      ElMessage.success('生成成功');
+    } catch (e) { /* empty */ }
+    state.loading = false;
 	});
 };
 

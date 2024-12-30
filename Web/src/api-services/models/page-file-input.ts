@@ -11,98 +11,90 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-
 import { Filter } from './filter';
 import { Search } from './search';
- /**
- * 
- *
+/**
+ * 文件分页查询
  * @export
  * @interface PageFileInput
  */
 export interface PageFileInput {
-
     /**
+     * 
      * @type {Search}
      * @memberof PageFileInput
      */
     search?: Search;
-
     /**
      * 模糊查询关键字
-     *
      * @type {string}
      * @memberof PageFileInput
      */
     keyword?: string | null;
-
     /**
+     * 
      * @type {Filter}
      * @memberof PageFileInput
      */
     filter?: Filter;
-
     /**
      * 当前页码
-     *
      * @type {number}
      * @memberof PageFileInput
      */
     page?: number;
-
     /**
      * 页码容量
-     *
      * @type {number}
      * @memberof PageFileInput
      */
     pageSize?: number;
-
     /**
      * 排序字段
-     *
      * @type {string}
      * @memberof PageFileInput
      */
     field?: string | null;
-
     /**
      * 排序方向
-     *
      * @type {string}
      * @memberof PageFileInput
      */
     order?: string | null;
-
     /**
      * 降序排序
-     *
      * @type {string}
      * @memberof PageFileInput
      */
     descStr?: string | null;
-
     /**
      * 文件名称
-     *
      * @type {string}
      * @memberof PageFileInput
      */
     fileName?: string | null;
-
+    /**
+     * 文件后缀
+     * @type {string}
+     * @memberof PageFileInput
+     */
+    suffix?: string | null;
     /**
      * 开始时间
-     *
      * @type {Date}
      * @memberof PageFileInput
      */
     startTime?: Date | null;
-
     /**
      * 结束时间
-     *
      * @type {Date}
      * @memberof PageFileInput
      */
     endTime?: Date | null;
+    /**
+     * 租户Id
+     * @type {number}
+     * @memberof PageFileInput
+     */
+    tenantId?: number;
 }

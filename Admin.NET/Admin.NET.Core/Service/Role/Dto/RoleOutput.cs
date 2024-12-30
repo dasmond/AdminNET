@@ -25,4 +25,9 @@ public class RoleOutput
     /// 编码
     /// </summary>
     public string Code { get; set; }
+
+    /// <summary>
+    /// 租户Id
+    /// </summary>
+    public long tenantId { get; set; }
 }

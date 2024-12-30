@@ -86,6 +86,13 @@ public partial class SysCodeGen : EntityBase
     public string? BusName { get; set; }
 
     /// <summary>
+    /// 表唯一字段配置
+    /// </summary>
+    [SugarColumn(ColumnDescription = "表唯一字段配置", Length = 512)]
+    [MaxLength(128)]
+    public string? TableUniqueConfig { get; set; }
+
+    /// <summary>
     /// 是否生成菜单
     /// </summary>
     [SugarColumn(ColumnDescription = "是否生成菜单")]
@@ -122,4 +129,10 @@ public partial class SysCodeGen : EntityBase
     [SugarColumn(ColumnDescription = "打印模版名称", Length = 32)]
     [MaxLength(32)]
     public string? PrintName { get; set; }
+
+    /// <summary>
+    /// 表唯一字段列表
+    /// </summary>
+    [SugarColumn(IsIgnore = true)]
+    public virtual List<TableUniqueConfigItem> TableUniqueList => string.IsNullOrWhiteSpace(TableUniqueConfig) ? null : JSON.Deserialize<List<TableUniqueConfigItem>>(TableUniqueConfig);
 }

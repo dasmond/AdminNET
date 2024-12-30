@@ -11,60 +11,34 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-
- /**
- * 
- *
+/**
+ * 上传文件Base64
  * @export
  * @interface UploadFileFromBase64Input
  */
 export interface UploadFileFromBase64Input {
-
     /**
-     * 文件内容
-     *
-     * @type {string}
-     * @memberof UploadFileFromBase64Input
-     */
-    fileDataBase64?: string | null;
-
-    /**
-     * 文件类型( \"image/jpeg\",)
-     *
-     * @type {string}
-     * @memberof UploadFileFromBase64Input
-     */
-    contentType?: string | null;
-
-    /**
-     * 文件名称
-     *
+     * 文件名
      * @type {string}
      * @memberof UploadFileFromBase64Input
      */
     fileName?: string | null;
-
+    /**
+     * 文件内容
+     * @type {string}
+     * @memberof UploadFileFromBase64Input
+     */
+    fileDataBase64?: string | null;
+    /**
+     * 文件类型( \"image/jpeg\",)
+     * @type {string}
+     * @memberof UploadFileFromBase64Input
+     */
+    contentType?: string | null;
     /**
      * 保存路径
-     *
      * @type {string}
      * @memberof UploadFileFromBase64Input
      */
     path?: string | null;
-
-    /**
-     * 文件类型
-     *
-     * @type {string}
-     * @memberof UploadFileFromBase64Input
-     */
-    fileType?: string | null;
-
-    /**
-     * 是否公开  若为true则所有人都可以查看，默认只有自己或有权限的可以查看
-     *
-     * @type {boolean}
-     * @memberof UploadFileFromBase64Input
-     */
-    isPublic?: boolean;
 }

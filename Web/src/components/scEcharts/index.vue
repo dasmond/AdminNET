@@ -31,7 +31,9 @@ export default {
 		option: {
 			deep: true,
 			handler(v) {
-				unwarp(this.myChart).setOption(v);
+				this.$nextTick(() => {
+					unwarp(this.myChart).setOption(v);
+				});
 			},
 		},
 	},

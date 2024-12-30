@@ -12,14 +12,13 @@ namespace Admin.NET.Core.Service;
 public class JobMonitor : IJobMonitor
 {
     private readonly IEventPublisher _eventPublisher;
-    private readonly IServiceScope _serviceScope;
     private readonly SysConfigService _sysConfigService;
 
     public JobMonitor(IServiceScopeFactory scopeFactory)
     {
-        _serviceScope = scopeFactory.CreateScope();
-        _sysConfigService = _serviceScope.ServiceProvider.GetRequiredService<SysConfigService>();
-        _eventPublisher = _serviceScope.ServiceProvider.GetRequiredService<IEventPublisher>(); ;
+        var serviceScope = scopeFactory.CreateScope();
+        _sysConfigService = serviceScope.ServiceProvider.GetRequiredService<SysConfigService>();
+        _eventPublisher = serviceScope.ServiceProvider.GetRequiredService<IEventPublisher>(); ;
     }
 
     public Task OnExecutingAsync(JobExecutingContext context, CancellationToken stoppingToken)

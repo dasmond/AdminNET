@@ -9,71 +9,73 @@
 			</template>
 			<el-table :data="state.tableData" style="width: 100%" v-loading="state.loading" border>
 				<el-table-column type="index" label="序号" width="55" align="center" />
-				<el-table-column prop="propertyName" label="实体属性" width="180" show-overflow-tooltip />
-				<el-table-column prop="columnComment" label="描述" width="180" show-overflow-tooltip>
+				<el-table-column prop="propertyName" label="实体属性" show-overflow-tooltip />
+				<el-table-column prop="columnComment" label="描述" show-overflow-tooltip>
 					<template #default="scope">
 						<el-input v-model="scope.row.columnComment" autocomplete="off" />
 					</template>
 				</el-table-column>
-				<el-table-column prop="netType" label="数据类型" min-width="90" show-overflow-tooltip />
-				<el-table-column prop="effectType" label="作用类型" width="140" show-overflow-tooltip>
+				<el-table-column prop="netType" label="数据类型" width="130" show-overflow-tooltip />
+				<el-table-column prop="effectType" label="作用类型" width="150" show-overflow-tooltip>
 					<template #default="scope">
 						<div class="effect-type-container">
-							<el-select v-model="scope.row.effectType" class="m-2" placeholder="Select" :disabled="judgeColumns(scope.row)" @change="effectTypeChange(scope.row, scope.$index)">
-								<el-option v-for="item in state.effectTypeList" :key="item.code" :label="item.value" :value="item.code" />
-							</el-select>
-							<el-button
-								v-if="scope.row.effectType === 'ApiTreeSelect' || scope.row.effectType === 'fk'"
-								:icon="Edit"
-								type="dashed"
-								title="修改"
-								link
-								@click="effectTypeChange(scope.row, scope.$index)"
-							/>
+              <g-sys-dict v-model="scope.row.effectType" code="code_gen_effect_type" render-as="select" @change="effectTypeChange(scope.row, scope.$index)" :disabled="judgeColumns(scope.row)" class="m-2" />
+              <el-button
+                  v-if="['ApiTreeSelector','ForeignKey'].some(x => scope.row.effectType == x)"
+                  @click="effectTypeChange(scope.row, scope.$index)"
+                  type="warning"
+                  :icon="Edit"
+                  link />
 						</div>
 					</template>
 				</el-table-column>
-				<el-table-column prop="dictTypeCode" label="字典" width="180" show-overflow-tooltip>
+				<el-table-column prop="dictTypeCode" label="字典" width="150" show-overflow-tooltip>
 					<template #default="scope">
-						<el-select v-model="scope.row.dictTypeCode" class="m-2" :disabled="effectTypeEnable(scope.row)">
-							<el-option v-for="item in state.dictTypeCodeList" :key="item.code" :label="item.name" :value="item.code" />
+						<el-select v-model="scope.row.dictTypeCode" :disabled="effectTypeEnable(scope.row)" class="m-2">
+							<el-option
+							v-for="item in state.selectDataMap[scope.row.effectType] ?? []"
+							:key="item.code"
+							:label="item.name"
+							:value="item.code" />
 						</el-select>
 					</template>
 				</el-table-column>
-
-				<el-table-column prop="whetherTable" label="列表显示" width="85" align="center" show-overflow-tooltip>
+				<el-table-column prop="whetherTable" label="列表显示" width="70" align="center" show-overflow-tooltip>
 					<template #default="scope">
-						<el-checkbox v-model="scope.row.whetherTable" />
+						<el-checkbox v-model="scope.row.whetherTable" true-value="Y" false-value="N" />
 					</template>
 				</el-table-column>
-				<el-table-column prop="whetherAddUpdate" label="增改" width="80" align="center" show-overflow-tooltip>
+				<el-table-column prop="whetherAddUpdate" label="增改" width="70" align="center" show-overflow-tooltip>
 					<template #default="scope">
-						<el-checkbox v-model="scope.row.whetherAddUpdate" :disabled="judgeColumns(scope.row)" />
+						<el-checkbox v-model="scope.row.whetherAddUpdate" true-value="Y" false-value="N" :disabled="judgeColumns(scope.row)" />
 					</template>
 				</el-table-column>
-				<el-table-column prop="whetherRequired" label="必填" width="80" align="center" show-overflow-tooltip>
+				<el-table-column prop="whetherImport" label="导入" width="70" align="center" show-overflow-tooltip>
 					<template #default="scope">
-						<el-checkbox v-model="scope.row.whetherRequired" :disabled="judgeColumns(scope.row)" />
+						<el-checkbox v-model="scope.row.whetherImport" true-value="Y" false-value="N" :disabled="judgeColumns(scope.row)" />
 					</template>
 				</el-table-column>
-				<el-table-column prop="whetherSortable" label="可排序" width="80" align="center" show-overflow-tooltip>
+				<el-table-column prop="whetherRequired" label="必填" width="70" align="center" show-overflow-tooltip>
 					<template #default="scope">
-						<el-checkbox v-model="scope.row.whetherSortable" />
+						<el-checkbox v-model="scope.row.whetherRequired" true-value="Y" false-value="N" :disabled="judgeColumns(scope.row)" />
 					</template>
 				</el-table-column>
-				<el-table-column prop="queryWhether" label="是否是查询" min-width="80" align="center" show-overflow-tooltip>
+				<el-table-column prop="whetherSortable" label="可排序" width="70" align="center" show-overflow-tooltip>
 					<template #default="scope">
-						<el-switch v-model="scope.row.queryWhether" :active-value="true" :inactive-value="false" />
+						<el-checkbox v-model="scope.row.whetherSortable" true-value="Y" false-value="N" />
 					</template>
 				</el-table-column>
-				<el-table-column prop="queryType" label="查询方式" min-width="120" align="center" show-overflow-tooltip>
+				<el-table-column prop="whetherQuery" label="查询" width="70" align="center" show-overflow-tooltip>
 					<template #default="scope">
-						<el-select v-model="scope.row.queryType" class="m-2" placeholder="Select" :disabled="!scope.row.queryWhether">
-							<el-option v-for="item in state.queryTypeList" :key="item.code" :label="item.value" :value="item.code" />
-						</el-select>
+						<el-switch v-model="scope.row.whetherQuery" active-value="Y" inactive-value="N" />
 					</template>
 				</el-table-column>
-				<el-table-column prop="orderNo" label="排序" width="100" show-overflow-tooltip>
+				<el-table-column prop="queryType" label="查询方式" width="110" align="center" show-overflow-tooltip>
+					<template #default="scope">
+            <g-sys-dict v-model="scope.row.queryType" code="code_gen_query_type" render-as="select" class="m-2" placeholder="Select" :disabled="!scope.row.whetherQuery" />
+					</template>
+				</el-table-column>
+				<el-table-column prop="orderNo" label="排序" width="80" show-overflow-tooltip>
 					<template #default="scope">
 						<el-input v-model="scope.row.orderNo" autocomplete="off" type="number" />
 					</template>
@@ -87,59 +89,33 @@
 			</template>
 		</el-dialog>
 
-		<fkDialog ref="fkDialogRef" @submitRefreshFk="submitRefreshFk" />
-		<treeDialog ref="treeDialogRef" @submitRefreshFk="submitRefreshFk" />
+		<JoinTableDialog ref="joinTableDialogRef" @submitRefreshFk="submitRefreshFk" />
 	</div>
 </template>
 
 <script lang="ts" setup name="sysCodeGenConfig">
-import { onMounted, onUnmounted, reactive, ref } from 'vue';
-import mittBus from '/@/utils/mitt';
+import { onMounted, reactive, ref } from 'vue';
 import { Edit } from '@element-plus/icons-vue';
-
-import fkDialog from '/@/views/system/codeGen/component/fkDialog.vue';
-import treeDialog from '/@/views/system/codeGen/component/treeDialog.vue';
-
+import { useUserInfo } from "/@/stores/userInfo";
 import { getAPI } from '/@/utils/axios-utils';
-import { SysCodeGenConfigApi, SysConstApi, SysDictDataApi, SysDictTypeApi, SysEnumApi } from '/@/api-services/api';
-import { CodeGenConfig } from '/@/api-services/models/code-gen-config';
+import { SysCodeGenConfigApi, SysDictTypeApi } from '/@/api-services/api';
+import JoinTableDialog from '/src/views/system/codeGen/component/joinTableDialog.vue';
 
 const emits = defineEmits(['handleQuery']);
-const fkDialogRef = ref();
-const treeDialogRef = ref();
+const joinTableDialogRef = ref();
 const state = reactive({
 	isShowDialog: false,
 	loading: false,
-	tableData: [] as CodeGenConfig[],
-	dbData: [] as any,
-	effectTypeList: [] as any,
-	dictTypeCodeList: [] as any,
-	dictDataAll: [] as any,
-	queryTypeList: [] as any,
-	allConstSelector: [] as any,
-	allEnumSelector: [] as any,
+  selectDataMap: {} as any,
+  tableData: [] as any[]
 });
 
 onMounted(async () => {
-	var res = await getAPI(SysDictDataApi).apiSysDictDataDataListCodeGet('code_gen_effect_type');
-	state.effectTypeList = res.data.result;
-
-	var res1 = await getAPI(SysDictTypeApi).apiSysDictTypeListGet();
-	state.dictTypeCodeList = res1.data.result;
-	state.dictDataAll = res1.data.result;
-
-	var res2 = await getAPI(SysDictDataApi).apiSysDictDataDataListCodeGet('code_gen_query_type');
-	state.queryTypeList = res2.data.result;
-
-	var res3 = await getAPI(SysConstApi).apiSysConstListGet();
-	state.allConstSelector = res3.data.result;
-
-	let resEnum = await getAPI(SysEnumApi).apiSysEnumEnumTypeListGet();
-	state.allEnumSelector = resEnum.data.result?.map((item) => ({ ...item, name: `${item.typeDescribe} [${item.typeName?.replace('Enum', '')}]`, code: item.typeName }));
-
-	mittBus.on('submitRefreshFk', (data: any) => {
-		state.tableData[data.index] = data;
-	});
+  state.selectDataMap.DictSelector = [];
+  state.selectDataMap.EnumSelector = [];
+  state.selectDataMap.ConstSelector = useUserInfo().constList;
+  const dictList = await getAPI(SysDictTypeApi).apiSysDictTypeListGet().then(res => res.data.result ?? []);
+  for (const item of dictList) state.selectDataMap[item.code?.endsWith('Enum') ? 'EnumSelector' : 'DictSelector'].push(item);
 });
 
 // 更新主键
@@ -147,74 +123,41 @@ const submitRefreshFk = (data: any) => {
 	state.tableData[data.index] = data;
 };
 
-onUnmounted(() => {
-	mittBus.off('submitRefresh', () => {});
-	mittBus.off('submitRefreshFk', () => {});
-});
 // 控件类型改变
 const effectTypeChange = (data: any, index: number) => {
-	let value = data.effectType;
-	if (value === 'fk') {
-		openFkDialog(data, index);
-	} else if (value === 'ApiTreeSelect') {
-		openTreeDialog(data, index);
-	} else if (value === 'Select') {
+	if (['ForeignKey', 'ApiTreeSelector'].some(type => data.effectType == type)) {
+    openJoinTableDialog(data, 'ForeignKey' === data.effectType ? '外键配置' : '树选择器配置', index);
+	} else if (['DictSelector', 'ConstSelector', 'EnumSelector'].some(type => data.effectType === type)) {
 		data.dictTypeCode = '';
-		state.dictTypeCodeList = state.dictDataAll;
-	} else if (value === 'ConstSelector') {
-		data.dictTypeCode = '';
-		state.dictTypeCodeList = state.allConstSelector;
-	} else if (value == 'EnumSelector') {
-		data.dictTypeCode = '';
-		state.dictTypeCodeList = state.allEnumSelector;
 	}
 };
 
 // 查询操作
 const handleQuery = async (row: any) => {
 	state.loading = true;
-	var res = await getAPI(SysCodeGenConfigApi).apiSysCodeGenConfigListGet(undefined, row.id);
-	var data = res.data.result ?? [];
-	let lstWhetherColumn = ['whetherTable', 'whetherAddUpdate', 'whetherRequired', 'whetherSortable']; //列表显示的checkbox
-	data.forEach((item: any) => {
-		for (const key in item) {
-			if (item[key] === 'Y') {
-				item[key] = true;
-			}
-			if (item[key] === 'N' || (lstWhetherColumn.includes(key) && item[key] === null)) {
-				item[key] = false;
-			}
-		}
-	});
-	state.tableData = data;
+	state.tableData = await getAPI(SysCodeGenConfigApi).apiSysCodeGenConfigListGet(undefined, row.id).then(res => res.data.result ?? []);
 	state.loading = false;
 };
 
 // 判断是否（用于是否能选择或输入等）
 function judgeColumns(data: any) {
-	return data.whetherCommon == true || data.columnKey === 'True';
+	return data.whetherCommon == "Y" || data.columnKey === 'True';
 }
 
 function effectTypeEnable(data: any) {
-	var lst = ['Radio', 'Select', 'Checkbox', 'ConstSelector', 'EnumSelector'];
-	return lst.indexOf(data.effectType) === -1;
+  return !['Radio', 'Checkbox', 'DictSelector', 'ConstSelector', 'EnumSelector'].some((e: any) => e === data.effectType)
 }
 
 // 打开弹窗
-const openDialog = (addRow: any) => {
-	handleQuery(addRow);
+const openDialog = (row: any) => {
+	handleQuery(row);
 	state.isShowDialog = true;
 };
 
 // 打开弹窗
-const openFkDialog = (addRow: any, index: number) => {
-	addRow.index = index;
-	fkDialogRef.value.openDialog(addRow);
-};
-
-const openTreeDialog = (addRow: any, index: number) => {
-	addRow.index = index;
-	treeDialogRef.value.openDialog(addRow);
+const openJoinTableDialog = (row: any, title: string, index: number) => {
+  row.index = index;
+  joinTableDialogRef.value.openDialog(row, title);
 };
 
 // 关闭弹窗
@@ -231,74 +174,9 @@ const cancel = () => {
 // 提交
 const submit = async () => {
 	state.loading = true;
-	var lst = state.tableData;
-	lst.forEach((item: CodeGenConfig) => {
-		// 必填那一项转换
-		for (var key in item) {
-			if (item[key] === true) {
-				item[key] = 'Y';
-			}
-			if (item[key] === false) {
-				item[key] = 'N';
-			}
-		}
-	});
-	await getAPI(SysCodeGenConfigApi).apiSysCodeGenConfigUpdatePost(lst);
+	await getAPI(SysCodeGenConfigApi).apiSysCodeGenConfigUpdatePost(state.tableData);
 	state.loading = false;
 	closeDialog();
-};
-
-const convertDbType = (dbType: number) => {
-	let result = '';
-	switch (dbType) {
-		case 0:
-			result = 'MySql';
-			break;
-		case 1:
-			result = 'SqlServer';
-			break;
-		case 2:
-			result = 'Sqlite';
-			break;
-		case 3:
-			result = 'Oracle';
-			break;
-		case 4:
-			result = 'PostgreSql';
-			break;
-		case 5:
-			result = 'Dm';
-			break;
-		case 6:
-			result = 'Kdbndp';
-			break;
-		case 7:
-			result = 'Oscar';
-			break;
-		case 8:
-			result = 'MySqlConnector';
-			break;
-		case 9:
-			result = 'Access';
-			break;
-		default:
-			result = 'Custom';
-			break;
-	}
-	return result;
-};
-
-const isOrNotSelect = () => {
-	return [
-		{
-			label: '是',
-			value: 1,
-		},
-		{
-			label: '否',
-			value: 0,
-		},
-	];
 };
 
 // 导出对象

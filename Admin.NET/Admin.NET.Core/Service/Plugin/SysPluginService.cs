@@ -14,11 +14,14 @@ public class SysPluginService : IDynamicApiController, ITransient
 {
     private readonly IDynamicApiRuntimeChangeProvider _provider;
     private readonly SqlSugarRepository<SysPlugin> _sysPluginRep;
+    private readonly UserManager _userManager;
 
     public SysPluginService(IDynamicApiRuntimeChangeProvider provider,
-        SqlSugarRepository<SysPlugin> sysPluginRep)
+        SqlSugarRepository<SysPlugin> sysPluginRep,
+        UserManager userManager)
     {
         _provider = provider;
+        _userManager = userManager;
         _sysPluginRep = sysPluginRep;
     }
 
@@ -31,6 +34,7 @@ public class SysPluginService : IDynamicApiController, ITransient
     public async Task<SqlSugarPagedList<SysPlugin>> Page(PagePluginInput input)
     {
         return await _sysPluginRep.AsQueryable()
+            .WhereIF(_userManager.SuperAdmin && input.TenantId > 0, u => u.TenantId == input.TenantId)
             .WhereIF(!string.IsNullOrWhiteSpace(input.Name), u => u.Name.Contains(input.Name))
             .OrderBy(u => new { u.OrderNo, u.Id })
             .ToPagedListAsync(input.Page, input.PageSize);
@@ -46,8 +50,7 @@ public class SysPluginService : IDynamicApiController, ITransient
     public async Task AddPlugin(AddPluginInput input)
     {
         var isExist = await _sysPluginRep.IsAnyAsync(u => u.Name == input.Name || u.AssemblyName == input.AssemblyName);
-        if (isExist)
-            throw Oops.Oh(ErrorCodeEnum.D1900);
+        if (isExist) throw Oops.Oh(ErrorCodeEnum.D1900);
 
         // 添加动态程序集/接口
         input.AssemblyName = CompileAssembly(input.CsharpCode, input.AssemblyName);
@@ -65,8 +68,7 @@ public class SysPluginService : IDynamicApiController, ITransient
     public async Task UpdatePlugin(UpdatePluginInput input)
     {
         var isExist = await _sysPluginRep.IsAnyAsync(u => (u.Name == input.Name || u.AssemblyName == input.AssemblyName) && u.Id != input.Id);
-        if (isExist)
-            throw Oops.Oh(ErrorCodeEnum.D1900);
+        if (isExist) throw Oops.Oh(ErrorCodeEnum.D1900);
 
         // 先移除再添加动态程序集/接口
         RemoveAssembly(input.AssemblyName);

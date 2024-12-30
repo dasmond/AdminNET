@@ -65,7 +65,7 @@ public class SysWechatPayService : IDynamicApiController, ITransient
     public async Task<SqlSugarPagedList<SysWechatPay>> Page(WechatPayPageInput input)
     {
         var query = _sysWechatPayRep.AsQueryable()
-            .WhereIF(!string.IsNullOrWhiteSpace(input.SearchKey), u => u.OutTradeNumber == input.SearchKey || u.TransactionId == input.SearchKey)
+            .WhereIF(!string.IsNullOrWhiteSpace(input.Keyword), u => u.OutTradeNumber == input.Keyword || u.TransactionId == input.Keyword)
             .WhereIF(input.CreateTimeRange != null && input.CreateTimeRange.Count > 0 && input.CreateTimeRange[0].HasValue, x => x.CreateTime >= input.CreateTimeRange[0])
             .WhereIF(input.CreateTimeRange != null && input.CreateTimeRange.Count > 1 && input.CreateTimeRange[1].HasValue, x => x.CreateTime < ((DateTime)input.CreateTimeRange[1]).AddDays(1));
         return await query.OrderBuilder(input).ToPagedListAsync(input.Page, input.PageSize);
@@ -332,7 +332,7 @@ public class SysWechatPayService : IDynamicApiController, ITransient
 
             OutTradeNumber = input.TradeId,
             OutRefundNumber = "R" + DateTimeOffset.Now.ToString("yyyyMMddHHmmssfff") + (new Random()).Next(100, 1000), // 订单号
-            NotifyUrl = _payCallBackOptions.WechatPayUrl,
+            NotifyUrl = _payCallBackOptions.WechatRefundUrl, // 应采用WechatRefundUrl参数，如与WechatPayUrl入口相同，也应分开设置参数
             Reason = input.Reason,
         };
         var response = await _wechatTenpayClient.ExecuteCreateRefundDomesticRefundAsync(request);

@@ -21,10 +21,10 @@ public class TenantOutput : SysTenant
     /// <summary>
     /// 电子邮箱
     /// </summary>
-    public string Email { get; set; }
+    public virtual string Email { get; set; }
 
     /// <summary>
     /// 电话
     /// </summary>
-    public string Phone { get; set; }
+    public virtual string Phone { get; set; }
 }

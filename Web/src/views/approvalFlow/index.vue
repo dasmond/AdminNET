@@ -5,7 +5,7 @@
 				<el-row :gutter="35">
 					<el-col :xs="24" :sm="12" :md="12" :lg="8" :xl="4" class="mb10">
 						<el-form-item label="关键字">
-							<el-input v-model="state.queryParams.searchKey" placeholder="请输入模糊查询关键字" clearable />
+							<el-input v-model="state.queryParams.keyword" placeholder="请输入模糊查询关键字" clearable />
 						</el-form-item>
 					</el-col>
 					<el-col :xs="24" :sm="12" :md="12" :lg="8" :xl="4" class="mb10" v-if="showAdvanceQueryUI">
@@ -38,18 +38,18 @@
 			</el-form>
 		</el-card>
 		<el-card class="full-table" shadow="hover" style="margin-top: 5px">
-			<el-table :data="state.tableData" style="width: 100%" v-loading="state.loading" row-key="id" border="">
+			<el-table :data="state.tableData" style="width: 100%" v-loading="state.loading" row-key="id" border>
 				<el-table-column type="index" label="序号" width="55" align="center" />
-				<el-table-column prop="code" label="编号" width="140" show-overflow-tooltip="" />
-				<el-table-column prop="name" label="名称" show-overflow-tooltip="" />
-				<el-table-column prop="formJson" label="表单" align="center" show-overflow-tooltip="">
+				<el-table-column prop="code" label="编号" width="140" show-overflow-tooltip />
+				<el-table-column prop="name" label="名称" show-overflow-tooltip />
+				<el-table-column prop="formJson" label="表单" align="center" show-overflow-tooltip>
 					<template #default="scope">
-						<el-button icon="ele-Edit" size="small" text="" type="primary" @click="openEditFormDialog(scope.row)"> 表单 </el-button>
+						<el-button icon="ele-Edit" size="small" text type="primary" @click="openEditFormDialog(scope.row)"> 表单 </el-button>
 					</template>
 				</el-table-column>
-				<el-table-column prop="flowJson" label="流程" align="center" show-overflow-tooltip="">
+				<el-table-column prop="flowJson" label="流程" align="center" show-overflow-tooltip>
 					<template #default="scope">
-						<el-button icon="ele-Edit" size="small" text="" type="primary" @click="openEditFlowDialog(scope.row)"> 流程 </el-button>
+						<el-button icon="ele-Edit" size="small" text type="primary" @click="openEditFlowDialog(scope.row)"> 流程 </el-button>
 					</template>
 				</el-table-column>
 				<el-table-column label="修改记录" width="100" align="center" show-overflow-tooltip>
@@ -57,24 +57,24 @@
 						<ModifyRecord :data="scope.row" />
 					</template>
 				</el-table-column>
-				<el-table-column label="操作" width="200" align="center" fixed="right" show-overflow-tooltip="">
+				<el-table-column label="操作" width="200" align="center" fixed="right" show-overflow-tooltip>
 					<template #default="scope">
-						<el-button icon="ele-View" size="small" text="" type="primary" @click="openDetailDialog(scope.row)"> 查看 </el-button>
-						<el-button icon="ele-Edit" size="small" text="" type="primary" @click="openEditApprovalFlow(scope.row)"> 编辑 </el-button>
-						<el-button icon="ele-Delete" size="small" text="" type="primary" @click="delApprovalFlow(scope.row)"> 删除 </el-button>
+						<el-button icon="ele-View" size="small" text type="primary" @click="openDetailDialog(scope.row)"> 查看 </el-button>
+						<el-button icon="ele-Edit" size="small" text type="primary" @click="openEditApprovalFlow(scope.row)"> 编辑 </el-button>
+						<el-button icon="ele-Delete" size="small" text type="primary" @click="delApprovalFlow(scope.row)"> 删除 </el-button>
 					</template>
 				</el-table-column>
 			</el-table>
 			<el-pagination
-				v-model:currentPage="state.tableParams.page"
 				v-model:page-size="state.tableParams.pageSize"
-				:total="state.tableParams.total"
+        v-model:currentPage="state.tableParams.page"
 				:page-sizes="[10, 20, 50, 100, 200, 500]"
-				small=""
-				background=""
-				@size-change="handleSizeChange"
-				@current-change="handleCurrentChange"
-				layout="total, sizes, prev, pager, next, jumper"
+        :total="state.tableParams.total"
+        @current-change="handleCurrentChange"
+        @size-change="handleSizeChange"
+        layout="total, sizes, prev, pager, next, jumper"
+				background
+        small
 			/>
 		</el-card>
 
@@ -86,7 +86,7 @@
 	</div>
 </template>
 
-<script lang="ts" setup="" name="approvalFlow">
+<script lang="ts" setup name="approvalFlow">
 import { onMounted, reactive, ref } from 'vue';
 import { ElMessageBox, ElMessage } from 'element-plus';
 // import { auth } from '/@/utils/authFunction';
@@ -99,8 +99,8 @@ import editDialog from './component/editDialog.vue';
 import ModifyRecord from '/@/components/table/modifyRecord.vue';
 
 import { getAPI } from '/@/utils/axios-utils';
-import { ApprovalFlowApi } from '/@/api-services/_approvalFlow/api';
-import { ApprovalFlowInput, ApprovalFlowOutput } from '/@/api-services/_approvalFlow/models';
+import { ApprovalFlowApi } from '/@/api-plugins/approvalFlow/api';
+import { ApprovalFlowInput, ApprovalFlowOutput } from '/@/api-plugins/approvalFlow/models';
 
 const showAdvanceQueryUI = ref(false);
 
@@ -116,7 +116,7 @@ const state = reactive({
 	queryParams: {} as ApprovalFlowInput,
 	tableParams: {
 		page: 1,
-		pageSize: 20,
+		pageSize: 50,
 		total: 0 as any,
 	},
 	dialogTitle: '',

@@ -6,13 +6,8 @@
 
 namespace Admin.NET.Core.Service;
 
-public class DictDataInput : BaseIdInput
+public class DictDataInput : BaseStatusInput
 {
-    /// <summary>
-    /// 状态
-    /// </summary>
-    [Dict("StatusEnum")]
-    public StatusEnum Status { get; set; }
 }
 
 public class PageDictDataInput : BasePageInput
@@ -23,14 +18,14 @@ public class PageDictDataInput : BasePageInput
     public long DictTypeId { get; set; }
 
     /// <summary>
-    /// 值
+    /// 字典文本
     /// </summary>
-    public string Value { get; set; }
+    public string Label { get; set; }
 
     /// <summary>
-    /// 编码
+    /// 租户Id
     /// </summary>
-    public string Code { get; set; }
+    public long TenantId { get; set; }
 }
 
 public class AddDictDataInput : SysDictData

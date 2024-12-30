@@ -151,6 +151,7 @@ export default {
 		threeIsUniqueOpened: '選單手風琴',
 		threeIsFixedHeader: '固定 Header',
 		threeIsClassicSplitMenu: '經典佈局分割選單',
+		changeTenant: '切換租戶',
 		threeIsLockScreen: '開啟鎖屏',
 		threeLockScreenTime: '自動鎖屏(s/秒)',
 		fourTitle: '介面顯示',

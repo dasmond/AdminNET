@@ -2,6 +2,11 @@
 	<div class="sys-plugin-container">
 		<el-card shadow="hover" :body-style="{ paddingBottom: '0' }">
 			<el-form :model="state.queryParams" ref="queryForm" :inline="true">
+				<el-form-item label="租户" v-if="userStore.userInfos.accountType == 999">
+					<el-select v-model="state.queryParams.tenantId" placeholder="租户" style="width: 100%">
+						<el-option :value="item.value" :label="`${item.label} (${item.host})`" v-for="(item, index) in state.tenantList" :key="index" />
+					</el-select>
+				</el-form-item>
 				<el-form-item label="功能名称">
 					<el-input v-model="state.queryParams.name" placeholder="功能名称" clearable />
 				</el-form-item>
@@ -25,8 +30,7 @@
 				<el-table-column prop="orderNo" label="排序" width="70" align="center" show-overflow-tooltip />
 				<el-table-column label="状态" width="70" align="center" show-overflow-tooltip>
 					<template #default="scope">
-						<el-tag type="success" v-if="scope.row.status === 1">启用</el-tag>
-						<el-tag type="danger" v-else>禁用</el-tag>
+            <g-sys-dict v-model="scope.row.status" code="StatusEnum" />
 					</template>
 				</el-table-column>
 				<el-table-column label="修改记录" width="100" align="center" show-overflow-tooltip>
@@ -63,27 +67,34 @@ import { onMounted, reactive, ref } from 'vue';
 import { ElMessageBox, ElMessage } from 'element-plus';
 import EditPlugin from '/@/views/system/plugin/component/editPlugin.vue';
 import ModifyRecord from '/@/components/table/modifyRecord.vue';
-
 import { getAPI } from '/@/utils/axios-utils';
-import { SysPluginApi } from '/@/api-services/api';
+import { SysPluginApi, SysTenantApi } from '/@/api-services/api';
 import { SysPlugin } from '/@/api-services/models';
+import { useUserInfo } from "/@/stores/userInfo";
 
+const userStore = useUserInfo();
 const editPluginRef = ref<InstanceType<typeof EditPlugin>>();
 const state = reactive({
 	loading: false,
+	tenantList: [] as Array<any>,
 	pluginData: [] as Array<SysPlugin>,
 	queryParams: {
+		tenantId: undefined,
 		name: undefined,
 	},
 	tableParams: {
 		page: 1,
-		pageSize: 20,
+		pageSize: 50,
 		total: 0 as any,
 	},
 	editPluginTitle: '',
 });
 
 onMounted(async () => {
+	if (userStore.userInfos.accountType == 999) {
+		state.tenantList = await getAPI(SysTenantApi).apiSysTenantListGet().then(res => res.data.result ?? []);
+		state.queryParams.tenantId = state.tenantList[0].value;
+	}
 	handleQuery();
 });
 
@@ -106,7 +117,7 @@ const resetQuery = () => {
 // 打开新增页面
 const openAddPlugin = () => {
 	state.editPluginTitle = '添加动态插件';
-	editPluginRef.value?.openDialog({ orderNo: 100, status: 1 });
+	editPluginRef.value?.openDialog({ orderNo: 100, tenantId: state.queryParams.tenantId, status: 1 });
 };
 
 // 打开编辑页面

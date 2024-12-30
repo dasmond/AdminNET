@@ -2,7 +2,7 @@
 	<el-tooltip :visible="state.capsLockVisible" effect="light" content="大写锁定已打开" placement="top">
 		<el-form ref="ruleFormRef" :model="state.ruleForm" size="large" :rules="state.rules" class="login-content-form">
 			<el-form-item class="login-animation1" prop="account">
-				<el-input ref="accountRef" text placeholder="请输入账号" v-model="state.ruleForm.account" clearable autocomplete="off" @keyup.enter.native="handleSignIn">
+				<el-input ref="accountRef" text :placeholder="$t('message.account.accountPlaceholder1')" v-model="state.ruleForm.account" clearable autocomplete="off" @keyup.enter.native="handleSignIn">
 					<template #prefix>
 						<el-icon>
 							<ele-User />
@@ -11,7 +11,7 @@
 				</el-input>
 			</el-form-item>
 			<el-form-item class="login-animation2" prop="password">
-				<el-input ref="passwordRef" :type="state.isShowPassword ? 'text' : 'password'" placeholder="请输入密码" v-model="state.ruleForm.password" autocomplete="off" @keyup.enter.native="handleSignIn">
+				<el-input ref="passwordRef" :type="state.isShowPassword ? 'text' : 'password'" :placeholder="$t('message.account.accountPlaceholder2')" v-model="state.ruleForm.password" autocomplete="off" @keyup.enter.native="handleSignIn">
 					<template #prefix>
 						<el-icon>
 							<ele-Unlock />
@@ -23,13 +23,21 @@
 					</template>
 				</el-input>
 			</el-form-item>
+			<el-form-item class="login-animation2" prop="tenantId" clearable v-if="!props.tenantInfo.id && !state.hideTenantForLogin">
+				<el-select v-model="state.ruleForm.tenantId" :placeholder="$t('message.account.accountPlaceholder3')" style="width: 100%" filterable>
+					<template #prefix>
+						<i class="iconfont icon-shuxingtu el-input__icon"></i>
+					</template>
+					<el-option :value="item.value" :label="item.label" v-for="(item, index) in tenantInfo.list" :key="index" />
+				</el-select>
+			</el-form-item>
 			<el-form-item class="login-animation3" prop="captcha" v-if="state.captchaEnabled">
 				<el-col :span="15">
 					<el-input
 						ref="codeRef"
 						text
 						maxlength="4"
-						:placeholder="$t('message.account.accountPlaceholder3')"
+						:placeholder="$t('message.account.accountPlaceholder4')"
 						v-model="state.ruleForm.code"
 						clearable
 						autocomplete="off"
@@ -75,7 +83,7 @@
 </template>
 
 <script lang="ts" setup name="loginAccount">
-import { reactive, computed, ref, onMounted, defineAsyncComponent, onUnmounted } from 'vue';
+import {reactive, computed, ref, onMounted, defineAsyncComponent, onUnmounted, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { ElMessage, InputInstance } from 'element-plus';
 import { useI18n } from 'vue-i18n';
@@ -89,6 +97,13 @@ import { storeToRefs } from 'pinia';
 
 import { accessTokenKey, clearTokens, feature, getAPI } from '/@/utils/axios-utils';
 import { SysAuthApi } from '/@/api-services/api';
+
+const props = defineProps({
+	tenantInfo: {
+		required: true,
+		type: Object,
+	},
+});
 
 // 旋转图片滑块组件
 // import verifyImg from '/@/assets/logo-mini.svg';
@@ -112,6 +127,7 @@ const state = reactive({
 	ruleForm: {
 		account: window.__env__.VITE_DEFAULT_USER,
 		password: window.__env__.VITE_DEFAULT_USER_PASSWORD,
+		tenantId: props.tenantInfo.id,
 		code: '',
 		codeId: 0,
 	},
@@ -131,6 +147,7 @@ const state = reactive({
 	captchaEnabled: false,
 	isPassRotate: false,
 	capsLockVisible: false,
+	hideTenantForLogin: false,
 	expirySeconds: 60, // 验证码过期时间
 });
 
@@ -140,24 +157,30 @@ let timer: any = null;
 // 页面初始化
 onMounted(async () => {
 	// 若URL带有Token参数（第三方登录）
-	var accessToken = route.query.token;
-	if (accessToken != null && accessToken != undefined) {
-		await saveTokenAndInitRoutes(accessToken);
-	}
+	const accessToken = route.query.token;
+	if (accessToken) await saveTokenAndInitRoutes(accessToken);
+	watch(
+		() => themeConfig.value.isLoaded,
+		(isLoaded) => {
+			if (isLoaded) {
+				// 获取登录配置
+				state.hideTenantForLogin = themeConfig.value.hideTenantForLogin ?? true;
+				state.secondVerEnabled = themeConfig.value.secondVer ?? true;
+				state.captchaEnabled = themeConfig.value.captcha ?? true;
 
-	// 获取登录配置
-	state.secondVerEnabled = themeConfig.value.secondVer ?? true;
-	state.captchaEnabled = themeConfig.value.captcha ?? true;
+				// 获取验证码
+				getCaptcha();
 
-	// 获取验证码
-	getCaptcha();
-
-	// 注册验证码过期计时器
-	if (state.captchaEnabled) {
-		timer = setInterval(() => {
-			if (state.expirySeconds > 0) state.expirySeconds -= 1;
-		}, 1000);
-	}
+				// 注册验证码过期计时器
+				if (state.captchaEnabled) {
+					timer = setInterval(() => {
+						if (state.expirySeconds > 0) state.expirySeconds -= 1;
+					}, 1000);
+				}
+			}
+		},
+		{ immediate: true }
+	);
 
 	// 检测大小写按键/CapsLK
 	document.addEventListener('keyup', handleKeyPress);
@@ -174,8 +197,7 @@ onUnmounted(() => {
 
 // 检测大小写按键
 const handleKeyPress = (e: KeyboardEvent) => {
-	const isCapsLockOn = e.getModifierState('CapsLock');
-	state.capsLockVisible = isCapsLockOn;
+	state.capsLockVisible = e.getModifierState('CapsLock');
 };
 
 // 获取验证码
@@ -183,10 +205,10 @@ const getCaptcha = async () => {
 	if (!state.captchaEnabled) return;
 
 	state.ruleForm.code = '';
-	var res = await getAPI(SysAuthApi).apiSysAuthCaptchaGet();
-	state.captchaImage = 'data:text/html;base64,' + res.data.result?.img;
-	state.ruleForm.codeId = res.data.result?.id;
-	state.expirySeconds = res.data.result?.expirySeconds;
+	const res = await getAPI(SysAuthApi).apiSysAuthCaptchaGet().then(res => res.data.result);
+	state.captchaImage = 'data:text/html;base64,' + res?.img;
+	state.expirySeconds = res?.expirySeconds;
+  state.ruleForm.codeId = res?.id;
 };
 
 // 获取时间
@@ -207,7 +229,9 @@ const onSignIn = async () => {
 			const publicKey = window.__env__.VITE_SM_PUBLIC_KEY;
 			const password = sm2.doEncrypt(state.ruleForm.password, publicKey, 1);
 
-			const [err, res] = await feature(getAPI(SysAuthApi).apiSysAuthLoginPost({ ...state.ruleForm, password: password }));
+			state.ruleForm.tenantId ??= props.tenantInfo.id ?? props.tenantInfo.list[0]?.value ?? -1;
+			console.log(state.ruleForm.tenantId)
+			const [err, res] = await feature(getAPI(SysAuthApi).apiSysAuthLoginPost({ ...state.ruleForm, password: password } as any));
 			if (err) {
 				getCaptcha(); // 重新获取验证码
 				return;
@@ -288,11 +312,6 @@ const handleSignIn = () => {
 		state.secondVerEnabled ? openRotateVerify() : onSignIn();
 	}
 };
-
-// // 微信登录
-// const weixinSignIn = () => {
-// 	window.open('http://localhost:5005/api/sysoauth/signin?provider=Gitee&redirectUrl=http://localhost:8888');
-// };
 
 // 导出对象
 defineExpose({ saveTokenAndInitRoutes });

@@ -11,121 +11,100 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-
 import { StatusEnum } from './status-enum';
- /**
+import { SysUser } from './sys-user';
+/**
  * 
- *
  * @export
  * @interface UpdatePosInput
  */
 export interface UpdatePosInput {
-
     /**
      * 雪花Id
-     *
      * @type {number}
      * @memberof UpdatePosInput
      */
     id?: number;
-
     /**
      * 创建时间
-     *
      * @type {Date}
      * @memberof UpdatePosInput
      */
     createTime?: Date;
-
     /**
      * 更新时间
-     *
      * @type {Date}
      * @memberof UpdatePosInput
      */
     updateTime?: Date | null;
-
     /**
      * 创建者Id
-     *
      * @type {number}
      * @memberof UpdatePosInput
      */
     createUserId?: number | null;
-
     /**
      * 创建者姓名
-     *
      * @type {string}
      * @memberof UpdatePosInput
      */
     createUserName?: string | null;
-
     /**
      * 修改者Id
-     *
      * @type {number}
      * @memberof UpdatePosInput
      */
     updateUserId?: number | null;
-
     /**
      * 修改者姓名
-     *
      * @type {string}
      * @memberof UpdatePosInput
      */
     updateUserName?: string | null;
-
     /**
      * 软删除
-     *
      * @type {boolean}
      * @memberof UpdatePosInput
      */
     isDelete?: boolean;
-
     /**
      * 租户Id
-     *
      * @type {number}
      * @memberof UpdatePosInput
      */
     tenantId?: number | null;
-
     /**
      * 编码
-     *
      * @type {string}
      * @memberof UpdatePosInput
      */
     code?: string | null;
-
     /**
      * 排序
-     *
      * @type {number}
      * @memberof UpdatePosInput
      */
     orderNo?: number;
-
     /**
      * 备注
-     *
      * @type {string}
      * @memberof UpdatePosInput
      */
     remark?: string | null;
-
     /**
+     * 
      * @type {StatusEnum}
      * @memberof UpdatePosInput
      */
     status?: StatusEnum;
-
+    /**
+     * 在职人员
+     * @type {Array<SysUser>}
+     * @memberof UpdatePosInput
+     */
+    userList?: Array<SysUser> | null;
     /**
      * 名称
-     *
      * @type {string}
      * @memberof UpdatePosInput
      */

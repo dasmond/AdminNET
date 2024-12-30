@@ -14,14 +14,11 @@ public static class SqlSugarFilterExtension
     /// <typeparam name="T"></typeparam>
     /// <param name="type"></param>
     /// <returns></returns>
-    private static List<string> GetPropertyNames<T>(this Type type)
-        where T : Attribute
+    private static List<string> GetPropertyNames<T>(this Type type) where T : Attribute
     {
-        var allProperties = type.GetProperties();
-
-        var properties = allProperties.Where(x => x.CustomAttributes.Any(a => a.AttributeType == typeof(T)));
-
-        return properties.Select(x => x.Name).ToList();
+        return type.GetProperties()
+            .Where(p => p.CustomAttributes.Any(x => x.AttributeType == typeof(T)))
+            .Select(x => x.Name).ToList();
     }
 
     /// <summary>
@@ -34,28 +31,28 @@ public static class SqlSugarFilterExtension
     public static LambdaExpression GetConditionExpression<T>(this Type type, List<long> owners) where T : Attribute
     {
         var fieldNames = type.GetPropertyNames<T>();
-
         ParameterExpression parameter = Expression.Parameter(type, "c");
+
         Expression right = Expression.Constant(false);
-        fieldNames.ForEach(fieldName =>
+        ConstantExpression ownersCollection = Expression.Constant(owners);
+        foreach (var fieldName in fieldNames)
         {
-            owners.ForEach(owner =>
-            {
-                var property = type.GetProperty(fieldName);
-                Expression temp = Expression.Property(parameter, property);
+            var property = type.GetProperty(fieldName);
+            Expression memberExp = Expression.Property(parameter, property!);
 
-                // 如果属性是可为空的类型，则转换为其基础类型
-                var propertyType = property.PropertyType;
-                if (Nullable.GetUnderlyingType(propertyType) != null)
-                {
-                    temp = Expression.Convert(temp, Nullable.GetUnderlyingType(propertyType));
-                }
+            // 如果属性是可为空的类型，则转换为其基础类型
+            var baseType = Nullable.GetUnderlyingType(property.PropertyType);
+            if (baseType != null) memberExp = Expression.Convert(memberExp, baseType);
 
-                Expression left = Expression.Equal(temp, Expression.Constant(owner));
-                right = Expression.OrElse(left, right);
-            });
-        });
-        var finalExpression = Expression.Lambda(right, new ParameterExpression[] { parameter });
-        return finalExpression;
+            // 调用ownersCollection.Contains方法，检查是否包含属性值
+            right = Expression.OrElse(Expression.Call(
+                typeof(Enumerable),
+                nameof(Enumerable.Contains),
+                new[] { memberExp.Type },
+                ownersCollection,
+                memberExp
+            ), right);
+        }
+        return Expression.Lambda(right, parameter);
     }
 }

@@ -4,61 +4,68 @@
 //
 // 不得利用本项目从事危害国家安全、扰乱社会秩序、侵犯他人合法权益等法律法规禁止的活动！任何基于本项目二次开发而产生的一切法律纠纷和责任，我们不承担任何责任！
 
-namespace @Model.NameSpace;
+namespace @(Model.NameSpace);
 
 /// <summary>
-/// @(@Model.BusName)输出参数
+/// @(Model.BusName)输出参数
 /// </summary>
-public class @(@Model.ClassName)Output
+public class @(Model.ClassName)Output
 {
-@foreach (var column in Model.TableField){
+    @foreach (var column in Model.TableField){
     @:/// <summary>
     @:/// @column.ColumnComment
     @:/// </summary>
-if(column.EffectType == "fk")
-{
-    @:public @column.NetType @column.PropertyName { get; set; } 
+    @:public @column.NetType @(column.PropertyName) { get; set; }    
+    if(column.EffectType == "ForeignKey" || column.EffectType == "ApiTreeSelector") {
     @:
     @:/// <summary>
     @:/// @(column.ColumnComment) 描述
     @:/// </summary>
-    @:public @(@column.FkColumnNetType) @(@column.PropertyName)@(@column.FkColumnName) { get; set; } 
-
-}else if(column.EffectType == "Upload"){
-    @:public @column.NetType @column.PropertyName { get; set; }
-    @:public SysFile @(@column.PropertyName)Attachment { get; set; }
-}else if(column.EffectType == "ApiTreeSelect"){
-    @:public @column.NetType @column.PropertyName { get; set; } 
+    @:public string @(column.ExtendedPropertyName) { get; set; } 
+    }else if(column.EffectType == "Upload"){
     @:
     @:/// <summary>
-    @:/// @(column.ColumnComment) 描述 
+    @:/// @(column.ColumnComment) 附件信息
     @:/// </summary>
-    @:public string? @(@column.PropertyName)@(@column.DisplayColumn) { get; set; } 
-}else{
-    @:public @column.NetType @(@column.PropertyName) { get; set; }
-}
-    @:
-}
+    @:public SysFile @(column.ExtendedPropertyName) { get; set; }
     }
- 
-
-@foreach (var column in Model.TableField){
-if (@column.EffectType == "ApiTreeSelect"){
-    @:// 使用实际实体@(@column.FkTableName),所以这里就删了
-    @:/*
-    @:[SugarTable("@(@column.FkTableName)")]
-    @:public class @(@column.FkEntityName)TreeOutput: EntityBaseId
-    @:{
-        @:[SugarColumn(ColumnName = "@(@column.DisplayColumn)")]
-        @:public @(@Model.GetColumnNetType(@column.FkTableName,@column.DisplayColumn)) Label { get; set; }
-
-        @:[SugarColumn(ColumnName = "@(@column.ValueColumn)", IsPrimaryKey = true, IsIdentity = false)]
-        @:public @(@Model.GetColumnNetType(@column.FkTableName,@column.ValueColumn))  Value { get; set; }
-
-        @:public @(@Model.GetColumnNetType(@column.FkTableName,@column.PidColumn)) @column.PidColumn { get; set; }
-        @:[SugarColumn(IsIgnore = true)]
-        @:public List<@(@column.FkEntityName)TreeOutput> Children { get; set; }
-    @:}
-    @:*/
+    @:
+    }
 }
+@if (Model.ApiTreeFieldList.Count > 0) {
+foreach(var column in Model.ApiTreeFieldList) {
+@:/// <summary>
+@:/// @column.ColumnComment 树选择器输出参数
+@:/// </summary>
+@:public class Tree@(column.PropertyNameTrimEndId)Output : @(Model.ClassName)
+@:{
+    @:/// <summary>
+    @:/// 节点值
+    @:/// </summary>
+    @:public @column.NetType Value { get; set; }
+    @:
+    @:/// <summary>
+    @:/// 节点文本
+    @:/// </summary>
+    @:public string Label { get; set; }
+    @:
+    @:/// <summary>
+    @:/// 子集数据
+    @:/// </summary>
+    @:public List<Tree@(column.PropertyNameTrimEndId)Output> Children { get; set; }
+@:}
+@:
+}
+}
+@if (Model.ImportFieldList.Count > 0) {
+@:
+@:/// <summary>
+@:/// @(Model.BusName)数据导入模板实体
+@:/// </summary>
+@:public class Export@(Model.ClassName)Output : Import@(Model.ClassName)Input
+@:{
+@:    [ImporterHeader(IsIgnore = true)]
+@:    [ExporterHeader(IsIgnore = true)]
+@:    public override string Error { get; set; }
+@:}
 }

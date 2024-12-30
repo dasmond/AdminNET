@@ -41,6 +41,13 @@ public class SysRoleMenuService : ITransient
     public async Task GrantRoleMenu(RoleMenuInput input)
     {
         await _sysRoleMenuRep.DeleteAsync(u => u.RoleId == input.Id);
+
+        // 追加父级菜单
+        var allIdList = await _sysRoleMenuRep.Context.Queryable<SysMenu>().Select(u => new { u.Id, u.Pid }).ToListAsync();
+        var pIdList = allIdList.ToChildList(u => u.Pid, u => u.Id, u => input.MenuIdList.Contains(u.Id)).Select(u => u.Pid).Distinct().ToList();
+        input.MenuIdList = input.MenuIdList.Concat(pIdList).Distinct().Where(u => u != 0).ToList();
+
+        // 保存授权数据
         var menus = input.MenuIdList.Select(u => new SysRoleMenu
         {
             RoleId = input.Id,

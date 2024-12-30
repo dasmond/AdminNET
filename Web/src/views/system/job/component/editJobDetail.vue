@@ -23,11 +23,7 @@
 							</el-col>
 							<el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="mb20">
 								<el-form-item label="创建类型">
-									<el-radio-group v-model="state.ruleForm.createType" :disabled="isEdit">
-										<el-radio :value="JobCreateTypeEnum.NUMBER_0" v-show="isEdit">内置</el-radio>
-										<el-radio :value="JobCreateTypeEnum.NUMBER_1">脚本</el-radio>
-										<el-radio :value="JobCreateTypeEnum.NUMBER_2">Http请求</el-radio>
-									</el-radio-group>
+                  <g-sys-dict v-model="state.ruleForm.createType" code="JobCreateTypeEnum" render-as="radio" :disabled="isEdit" />
 								</el-form-item>
 							</el-col>
 							<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
@@ -105,7 +101,6 @@
 import { reactive, ref, computed } from 'vue';
 import * as monaco from 'monaco-editor';
 import { JobScriptCode } from './JobScriptCode';
-
 import { getAPI } from '/@/utils/axios-utils';
 import { SysJobApi } from '/@/api-services/api';
 import { JobCreateTypeEnum, UpdateJobDetailInput } from '/@/api-services/models';

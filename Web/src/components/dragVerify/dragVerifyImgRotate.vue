@@ -1,8 +1,7 @@
 <template>
 	<div class="drag-verify-container">
 		<div :style="dragVerifyImgStyle" style="background-color: var(--el-color-primary)">
-			<img ref="checkImg" :src="imgsrc" class="check-img" :class="{goOrigin:isOk}" @load="checkimgLoaded"
-				:style="imgStyle" alt="">
+			<img ref="checkImg" :src="imgsrc" class="check-img" :class="{goOrigin:isOk}" @load="checkimgLoaded" :style="imgStyle">
 			<div class="tips success" v-if="showTips && isPassing">{{successTip}}</div>
 			<div class="tips danger" v-if="showTips && !isPassing && showErrorTip">{{failTip}}</div>
 		</div>

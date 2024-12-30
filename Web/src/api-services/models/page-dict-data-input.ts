@@ -11,98 +11,78 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-
 import { Filter } from './filter';
 import { Search } from './search';
- /**
+/**
  * 
- *
  * @export
  * @interface PageDictDataInput
  */
 export interface PageDictDataInput {
-
     /**
+     * 
      * @type {Search}
      * @memberof PageDictDataInput
      */
     search?: Search;
-
     /**
      * 模糊查询关键字
-     *
      * @type {string}
      * @memberof PageDictDataInput
      */
     keyword?: string | null;
-
     /**
+     * 
      * @type {Filter}
      * @memberof PageDictDataInput
      */
     filter?: Filter;
-
     /**
      * 当前页码
-     *
      * @type {number}
      * @memberof PageDictDataInput
      */
     page?: number;
-
     /**
      * 页码容量
-     *
      * @type {number}
      * @memberof PageDictDataInput
      */
     pageSize?: number;
-
     /**
      * 排序字段
-     *
      * @type {string}
      * @memberof PageDictDataInput
      */
     field?: string | null;
-
     /**
      * 排序方向
-     *
      * @type {string}
      * @memberof PageDictDataInput
      */
     order?: string | null;
-
     /**
      * 降序排序
-     *
      * @type {string}
      * @memberof PageDictDataInput
      */
     descStr?: string | null;
-
     /**
      * 字典类型Id
-     *
      * @type {number}
      * @memberof PageDictDataInput
      */
     dictTypeId?: number;
-
     /**
-     * 值
-     *
+     * 字典文本
      * @type {string}
      * @memberof PageDictDataInput
      */
-    value?: string | null;
-
+    label?: string | null;
     /**
-     * 编码
-     *
-     * @type {string}
+     * 租户Id
+     * @type {number}
      * @memberof PageDictDataInput
      */
-    code?: string | null;
+    tenantId?: number;
 }

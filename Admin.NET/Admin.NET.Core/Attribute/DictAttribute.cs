@@ -14,6 +14,21 @@ namespace Admin.NET.Core;
 public class DictAttribute : ValidationAttribute, ITransient
 {
     /// <summary>
+    /// 字典编码
+    /// </summary>
+    public string DictTypeCode { get; }
+
+    /// <summary>
+    /// 是否允许空字符串
+    /// </summary>
+    public bool AllowEmptyStrings { get; set; } = false;
+
+    /// <summary>
+    /// 允许空值，有值才验证，默认 false
+    /// </summary>
+    public bool AllowNullValue { get; set; } = false;
+
+    /// <summary>
     /// 字典值合规性校验特性
     /// </summary>
     /// <param name="dictTypeCode"></param>
@@ -43,27 +58,16 @@ public class DictAttribute : ValidationAttribute, ITransient
         var sysDictDataServiceProvider = App.GetRequiredService<SysDictDataService>();
         var dictDataList = sysDictDataServiceProvider.GetDataList(DictTypeCode).Result;
 
+        // 获取枚举类型，可能存在Nullable类型，所以需要尝试获取最终类型
+        var type = value?.GetType();
+        type = type != null ? Nullable.GetUnderlyingType(type) ?? type : null;
+
         // 使用HashSet来提高查找效率
-        var dictCodes = new HashSet<string>(dictDataList.Select(u => u.Code));
+        var valueList = (type?.IsEnum ?? DictTypeCode.EndsWith("Enum")) ? dictDataList.Select(u => u.Name) : dictDataList.Select(u => u.Value);
+        var dictHash = new HashSet<string>(valueList);
 
-        if (!dictCodes.Contains(valueAsString))
+        if (!dictHash.Contains(valueAsString))
             return new ValidationResult($"提示：{ErrorMessage}|字典【{DictTypeCode}】不包含【{valueAsString}】！");
-        else
-            return ValidationResult.Success;
+        return ValidationResult.Success;
     }
-
-    /// <summary>
-    /// 字典编码
-    /// </summary>
-    public string DictTypeCode { get; set; }
-
-    /// <summary>
-    /// 是否允许空字符串
-    /// </summary>
-    public bool AllowEmptyStrings { get; set; } = false;
-
-    /// <summary>
-    /// 允许空值，有值才验证，默认 false
-    /// </summary>
-    public bool AllowNullValue { get; set; } = false;
 }

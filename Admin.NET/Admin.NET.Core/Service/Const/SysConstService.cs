@@ -27,19 +27,19 @@ public class SysConstService : IDynamicApiController, ITransient
     public async Task<List<ConstOutput>> GetList()
     {
         var key = $"{CacheConst.KeyConst}list";
-        var constlist = _sysCacheService.Get<List<ConstOutput>>(key);
-        if (constlist == null)
+        var constList = _sysCacheService.Get<List<ConstOutput>>(key);
+        if (constList == null)
         {
             var typeList = GetConstAttributeList();
-            constlist = typeList.Select(u => new ConstOutput
+            constList = typeList.Select(u => new ConstOutput
             {
                 Name = u.CustomAttributes.ToList().FirstOrDefault()?.ConstructorArguments.ToList().FirstOrDefault().Value?.ToString() ?? u.Name,
                 Code = u.Name,
                 Data = GetData(Convert.ToString(u.Name))
             }).ToList();
-            _sysCacheService.Set(key, constlist);
+            _sysCacheService.Set(key, constList);
         }
-        return await Task.FromResult(constlist);
+        return await Task.FromResult(constList);
     }
 
     /// <summary>
@@ -51,26 +51,25 @@ public class SysConstService : IDynamicApiController, ITransient
     public async Task<List<ConstOutput>> GetData([Required] string typeName)
     {
         var key = $"{CacheConst.KeyConst}{typeName.ToUpper()}";
-        var constlist = _sysCacheService.Get<List<ConstOutput>>(key);
-        if (constlist == null)
+        var constList = _sysCacheService.Get<List<ConstOutput>>(key);
+        if (constList == null)
         {
             var typeList = GetConstAttributeList();
             var type = typeList.FirstOrDefault(u => u.Name == typeName);
-
             if (type != null)
             {
-                var isEnum = type.BaseType.Name == "Enum";
-                constlist = type.GetFields()?
+                var isEnum = type.BaseType!.Name == "Enum";
+                constList = type.GetFields()?
                     .Where(isEnum, u => u.FieldType.Name == typeName)
                     .Select(u => new ConstOutput
                     {
                         Name = u.Name,
-                        Code = isEnum ? (int)u.GetValue(BindingFlags.Instance) : u.GetValue(BindingFlags.Instance)
+                        Code = isEnum ? (int)u.GetValue(BindingFlags.Instance)! : u.GetValue(BindingFlags.Instance)
                     }).ToList();
-                _sysCacheService.Set(key, constlist);
+                _sysCacheService.Set(key, constList);
             }
         }
-        return await Task.FromResult(constlist);
+        return await Task.FromResult(constList);
     }
 
     /// <summary>

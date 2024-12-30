@@ -10,7 +10,7 @@
 			<el-form :model="state.ruleForm" v-loading="state.loading">
 				<el-row :gutter="35">
 					<el-col :xs="24" :sm="24" :md="24" :lg="24" :xl1="24">
-						<el-form-item prop="orgIdList" label="">
+						<el-form-item prop="orgIdList">
 							<el-tree
 								ref="treeRef"
 								:data="state.menuData"
@@ -19,8 +19,14 @@
 								:props="{ children: 'children', label: 'title', class: treeNodeClass }"
 								icon="ele-Menu"
 								highlight-current
-								default-expand-all
-							/>
+								default-expand-all>
+								<template #default="{ node, data }">
+									<span :title="node.label+data.id">{{ node.label }}</span>
+									<span v-if="data.path" style="margin-left: 5px!important;">
+                    <el-tag effect="plain" type="warning" :title="data.component">{{data.path}}</el-tag>
+                  </span>
+								</template>
+							</el-tree>
 						</el-form-item>
 					</el-col>
 				</el-row>
@@ -36,7 +42,7 @@
 </template>
 
 <script lang="ts" setup name="sysGrantMenu">
-import { onMounted, reactive, ref } from 'vue';
+import { reactive, ref } from 'vue';
 import type { ElTree } from 'element-plus';
 
 import { getAPI } from '/@/utils/axios-utils';
@@ -49,26 +55,21 @@ const state = reactive({
 	isShowDialog: false,
 	ruleForm: {
 		id: 0,
+    appId: 0,
 		menuIdList: [] as any, // 菜单集合
 	},
 	menuData: [] as any, // 菜单数据
-});
-
-onMounted(async () => {
-	state.loading = true;
-	var res = await getAPI(SysMenuApi).apiSysMenuListGet();
-	state.menuData = res.data.result;
-	state.loading = false;
 });
 
 // 打开弹窗
 const openDialog = async (row: any) => {
 	treeRef.value?.setCheckedKeys([]); // 先清空已选择节点
 	state.ruleForm = row;
-	var res = await getAPI(SysTenantApi).apiSysTenantOwnMenuListGet(row.userId);
+  state.menuData = await getAPI(SysMenuApi).apiSysMenuListGet().then(res => res.data.result);
+	const menuIds = await getAPI(SysTenantApi).apiSysTenantTenantMenuListGet(row.id).then(res => res.data.result);
 	setTimeout(() => {
 		// 延迟传递数据
-		treeRef.value?.setCheckedKeys(res.data.result);
+		treeRef.value?.setCheckedKeys(menuIds ?? []);
 	}, 100);
 	state.isShowDialog = true;
 };

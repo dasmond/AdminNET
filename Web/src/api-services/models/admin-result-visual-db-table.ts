@@ -11,57 +11,45 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-
 import { VisualDbTable } from './visual-db-table';
- /**
+/**
  * 全局返回结果
- *
  * @export
  * @interface AdminResultVisualDbTable
  */
 export interface AdminResultVisualDbTable {
-
     /**
      * 状态码
-     *
      * @type {number}
      * @memberof AdminResultVisualDbTable
      */
     code?: number;
-
     /**
      * 类型success、warning、error
-     *
      * @type {string}
      * @memberof AdminResultVisualDbTable
      */
     type?: string | null;
-
     /**
      * 错误信息
-     *
      * @type {string}
      * @memberof AdminResultVisualDbTable
      */
     message?: string | null;
-
     /**
+     * 
      * @type {VisualDbTable}
      * @memberof AdminResultVisualDbTable
      */
     result?: VisualDbTable;
-
     /**
      * 附加数据
-     *
      * @type {any}
      * @memberof AdminResultVisualDbTable
      */
     extras?: any | null;
-
     /**
      * 时间
-     *
      * @type {Date}
      * @memberof AdminResultVisualDbTable
      */

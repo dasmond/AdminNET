@@ -4,7 +4,7 @@
 			<pane size="20">
 				<OrgTree ref="orgTreeRef" @node-click="nodeClick" />
 			</pane>
-			<pane size="80">
+			<pane size="80" style="overflow: auto;">
 				<el-card shadow="hover" :body-style="{ paddingBottom: '0' }">
 					<el-form :model="state.queryParams" ref="queryForm" :inline="true">
 						<el-form-item label="机构名称">
@@ -14,9 +14,7 @@
 							<el-input v-model="state.queryParams.code" placeholder="机构编码" clearable />
 						</el-form-item> -->
 						<el-form-item label="机构类型">
-							<el-select v-model="state.queryParams.type" filterable clearable>
-								<el-option v-for="item in state.orgTypeList" :key="item.value" :label="item.value" :value="item.code" />
-							</el-select>
+              <g-sys-dict v-model="state.queryParams.type" code="org_type" render-as="select" filterable clearable />
 						</el-form-item>
 						<el-form-item>
 							<el-button-group>
@@ -35,12 +33,15 @@
 						<el-table-column prop="name" label="机构名称" min-width="160" header-align="center" show-overflow-tooltip />
 						<el-table-column prop="code" label="机构编码" align="center" show-overflow-tooltip />
 						<el-table-column prop="level" label="级别" width="70" align="center" show-overflow-tooltip />
-						<el-table-column prop="type" label="机构类型" align="center" :formatter="dictFormatter" show-overflow-tooltip />
+						<el-table-column prop="type" label="机构类型" align="center" show-overflow-tooltip>
+              <template #default="scope">
+                <g-sys-dict v-model="scope.row.type" code="org_type" />
+              </template>
+            </el-table-column>
 						<el-table-column prop="orderNo" label="排序" width="70" align="center" show-overflow-tooltip />
 						<el-table-column label="状态" width="70" align="center" show-overflow-tooltip>
 							<template #default="scope">
-								<el-tag type="success" v-if="scope.row.status === 1">启用</el-tag>
-								<el-tag type="danger" v-else>禁用</el-tag>
+                <g-sys-dict v-model="scope.row.status" code="StatusEnum" />
 							</template>
 						</el-table-column>
 						<el-table-column label="修改记录" width="100" align="center" show-overflow-tooltip>
@@ -69,19 +70,18 @@ import { onMounted, reactive, ref } from 'vue';
 import { ElMessageBox, ElMessage } from 'element-plus';
 import { Splitpanes, Pane } from 'splitpanes';
 import 'splitpanes/dist/splitpanes.css';
-
+import { getAPI } from '/@/utils/axios-utils';
+import { SysOrgApi } from '/@/api-services/api';
+import { SysOrg, UpdateOrgInput } from '/@/api-services/models';
 import OrgTree from '/@/views/system/org/component/orgTree.vue';
 import EditOrg from '/@/views/system/org/component/editOrg.vue';
 import ModifyRecord from '/@/components/table/modifyRecord.vue';
-
-import { getAPI } from '/@/utils/axios-utils';
-import { SysOrgApi, SysDictDataApi } from '/@/api-services/api';
-import { SysOrg, UpdateOrgInput } from '/@/api-services/models';
 
 const editOrgRef = ref<InstanceType<typeof EditOrg>>();
 const orgTreeRef = ref<InstanceType<typeof OrgTree>>();
 const state = reactive({
 	loading: false,
+	tenantList: [] as Array<any>,
 	orgData: [] as Array<SysOrg>, // 机构列表数据
 	orgTreeData: [] as Array<SysOrg>, // 机构树所有数据
 	queryParams: {
@@ -90,33 +90,30 @@ const state = reactive({
 		code: undefined,
 		type: undefined,
 	},
-	editOrgTitle: '',
-	orgTypeList: [] as any,
+	tenantId: undefined,
+	editOrgTitle: ''
 });
 
 onMounted(async () => {
 	handleQuery();
-
-	let resDicData = await getAPI(SysDictDataApi).apiSysDictDataDataListCodeGet('org_type');
-	state.orgTypeList = resDicData.data.result;
 });
 
 // 查询操作
 const handleQuery = async (updateTree: boolean = false) => {
 	state.loading = true;
-	var res = await getAPI(SysOrgApi).apiSysOrgListGet(state.queryParams.id, state.queryParams.name, state.queryParams.code, state.queryParams.type);
+	let res = await getAPI(SysOrgApi).apiSysOrgListGet(state.queryParams.id, state.queryParams.name, state.queryParams.code, state.queryParams.type);
 	state.orgData = res.data.result ?? [];
 	state.loading = false;
 	// 是否更新左侧机构列表树
-	if (updateTree == true) {
+	if (updateTree) {
 		orgTreeRef.value?.initTreeData();
 		// 更新编辑页面机构列表树
-		var res = await getAPI(SysOrgApi).apiSysOrgListGet(0);
+		res = await getAPI(SysOrgApi).apiSysOrgListGet(0);
 		state.orgTreeData = res.data.result ?? [];
 	}
 
 	// 若无选择节点并且查询条件为空时，更新编辑页面机构列表树
-	if (state.queryParams.id == 0 && state.queryParams.name == undefined && state.queryParams.code == undefined && state.queryParams.type == undefined && updateTree == false)
+	if (state.queryParams.id == 0 && state.queryParams.name == undefined && state.queryParams.code == undefined && state.queryParams.type == undefined && !updateTree)
 		state.orgTreeData = state.orgData;
 };
 
@@ -132,7 +129,7 @@ const resetQuery = () => {
 // 打开新增页面
 const openAddOrg = () => {
 	state.editOrgTitle = '添加机构';
-	editOrgRef.value?.openDialog({ status: 1, orderNo: 100 });
+	editOrgRef.value?.openDialog({ status: 1, orderNo: 100, tenantId: state.tenantId });
 };
 
 // 打开编辑页面
@@ -171,11 +168,8 @@ const nodeClick = async (node: any) => {
 	state.queryParams.name = undefined;
 	state.queryParams.code = undefined;
 	state.queryParams.type = undefined;
+	state.tenantId = node.tenantId;
+	console.log(node)
 	handleQuery();
-};
-
-// 字典转换
-const dictFormatter = (row: any, column: any, cellValue: any) => {
-	return state.orgTypeList.find((u: any) => u.code == cellValue)?.value;
 };
 </script>

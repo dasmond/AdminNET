@@ -88,7 +88,7 @@ public class GoViewProService : IDynamicApiController
         await _goViewProRep.AsUpdateable()
             .SetColumns(u => new GoViewPro
             {
-                State = input.State
+                StateEnum = input.StateEnum
             })
             .Where(u => u.Id == input.Id)
             .ExecuteCommandAsync();

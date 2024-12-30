@@ -11,14 +11,12 @@
 				<el-row :gutter="35">
 					<el-col :xs="24" :sm="24" :md="24" :lg="24" :xl1="24" class="mb20">
 						<el-form-item label="数据范围：">
-							<el-select v-model="state.ruleForm.dataScope" placeholder="数据范围" style="width: 100%">
-								<el-option v-for="d in state.dataScopeType" :key="d.value" :label="d.label" :value="d.value" />
-							</el-select>
+              <g-sys-dict v-model="state.ruleForm.dataScope" code="DataScopeEnum" render-as="select" placeholder="数据范围" class="w100" />
 						</el-form-item>
 					</el-col>
 					<el-col :xs="24" :sm="24" :md="24" :lg="24" :xl1="24" v-show="state.ruleForm.dataScope === 5">
 						<el-form-item label="机构列表：">
-							<OrgTree ref="orgTreeRef" class="w100" />
+							<OrgTree ref="orgTreeRef" class="w100" :tenant-id="state.ruleForm.tenantId" />
 						</el-form-item>
 					</el-col>
 				</el-row>
@@ -36,23 +34,14 @@
 <script lang="ts" setup name="sysGrantData">
 import { reactive, ref } from 'vue';
 import OrgTree from '/@/views/system/org/component/orgTree.vue';
-
 import { getAPI } from '/@/utils/axios-utils';
 import { SysRoleApi } from '/@/api-services/api';
-import { RoleOrgInput } from '/@/api-services/models';
 
 const emits = defineEmits(['handleQuery']);
 const orgTreeRef = ref();
 const state = reactive({
 	isShowDialog: false,
-	ruleForm: {} as RoleOrgInput,
-	dataScopeType: [
-		{ value: 1, label: '全部数据' },
-		{ value: 2, label: '本部门及以下数据' },
-		{ value: 3, label: '本部门数据' },
-		{ value: 4, label: '仅本人数据' },
-		{ value: 5, label: '自定义数据' },
-	],
+	ruleForm: {} as any
 });
 
 // 打开弹窗

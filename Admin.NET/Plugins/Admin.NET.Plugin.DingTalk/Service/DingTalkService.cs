@@ -4,6 +4,11 @@
 //
 // 不得利用本项目从事危害国家安全、扰乱社会秩序、侵犯他人合法权益等法律法规禁止的活动！任何基于本项目二次开发而产生的一切法律纠纷和责任，我们不承担任何责任！
 
+using Admin.NET.Plugin.DingTalk.RequestProxy.Top;
+using Admin.NET.Plugin.DingTalk.RequestProxy.HRM;
+using Admin.NET.Plugin.DingTalk.RequestProxy.HRM.DTO;
+using Admin.NET.Core.Service;
+
 namespace Admin.NET.Plugin.DingTalk.Service;
 
 /// <summary>
@@ -14,62 +19,77 @@ public class DingTalkService : IDynamicApiController, IScoped
 {
     private readonly IDingTalkApi _dingTalkApi;
     private readonly DingTalkOptions _dingTalkOptions;
+    private readonly SysCacheService _sysCacheService;
+    private readonly TopRequest _topRequest;
+    private readonly HrmRequest _hrmRequest;
+    private readonly string AccessTokenKey;
 
     public DingTalkService(IDingTalkApi dingTalkApi,
-        IOptions<DingTalkOptions> dingTalkOptions)
+        IOptions<DingTalkOptions> dingTalkOptions,
+        TopRequest topRequest,
+        HrmRequest hrmRequest,
+        SysCacheService sysCacheService)
     {
         _dingTalkApi = dingTalkApi;
         _dingTalkOptions = dingTalkOptions.Value;
+        _sysCacheService = sysCacheService;
+        _topRequest = topRequest;
+        _hrmRequest = hrmRequest;
+        AccessTokenKey = DingTalkConst.AccessTokenKeyPrefix + _dingTalkOptions.ClientId;
     }
 
     /// <summary>
     /// 获取企业内部应用的access_token
     /// </summary>
     /// <returns></returns>
-    [DisplayName("获取企业内部应用的access_token")]
-    public async Task<GetDingTalkTokenOutput> GetDingTalkToken()
+    [HttpGet,DisplayName("获取企业内部应用的access_token")]
+    public async Task<string> GetDingTalkToken()
     {
-        var tokenRes = await _dingTalkApi.GetDingTalkToken(_dingTalkOptions.ClientId, _dingTalkOptions.ClientSecret);
-        if (tokenRes.ErrCode != 0)
-        {
-            throw Oops.Oh(tokenRes.ErrMsg);
-        }
-        return tokenRes;
+        var token = _sysCacheService.Get<string>(AccessTokenKey);
+        if (token != null) return token;
+
+        var tokenRes = await _topRequest.GetAccessToken(_dingTalkOptions.ClientId, _dingTalkOptions.ClientSecret);
+        _sysCacheService.Set(AccessTokenKey, tokenRes.AccessToken, TimeSpan.FromSeconds(tokenRes.ExpireIn));
+        return tokenRes.AccessToken;
     }
 
     /// <summary>
     /// 获取在职员工列表 🔖
     /// </summary>
-    /// <param name="access_token"></param>
-    /// <param name="input"></param>
+    /// <param name="accessToken"></param>
+    /// <param name="statusList"></param>
+    /// <param name="size"></param>
+    /// <param name="offset"></param>
     /// <returns></returns>
     [HttpPost, DisplayName("获取在职员工列表")]
-    public async Task<DingTalkBaseResponse<GetDingTalkCurrentEmployeesListOutput>> GetDingTalkCurrentEmployeesList(string access_token, [Required] GetDingTalkCurrentEmployeesListInput input)
+    public async Task<EmployeeQueryOnJobResponse> GetDingTalkCurrentEmployeesList(string accessToken, List<string> statusList, int size, int offset)
     {
-        return await _dingTalkApi.GetDingTalkCurrentEmployeesList(access_token, input);
+        return await _hrmRequest.EmployeeQueryOnJob(accessToken, statusList, size, offset);
     }
 
     /// <summary>
     /// 获取员工花名册字段信息 🔖
     /// </summary>
-    /// <param name="access_token"></param>
-    /// <param name="input"></param>
+    /// <param name="accessToken"></param>
+    /// <param name="userIdList"></param>
+    /// <param name="fieldFilterList"></param>
+    /// <param name="appAgentId"></param>
     /// <returns></returns>
     [HttpPost, DisplayName("获取员工花名册字段信息")]
-    public async Task<DingTalkBaseResponse<List<DingTalkEmpRosterFieldVo>>> GetDingTalkCurrentEmployeesRosterList(string access_token, [Required] GetDingTalkCurrentEmployeesRosterListInput input)
+    public async Task<RosterListsQueryResponse> GetDingTalkCurrentEmployeesRosterList(string accessToken, List<string> userIdList, List<string> fieldFilterList, long appAgentId)
     {
-        return await _dingTalkApi.GetDingTalkCurrentEmployeesRosterList(access_token, input);
+        return await _hrmRequest.RosterListsQuery(accessToken, userIdList, fieldFilterList, appAgentId);
     }
 
     /// <summary>
     /// 发送钉钉互动卡片 🔖
     /// </summary>
-    /// <param name="token"></param>
+    /// <param name="accessToken"></param>
     /// <param name="input"></param>
     /// <returns></returns>
     [DisplayName("给指定用户发送钉钉互动卡片")]
-    public async Task<DingTalkSendInteractiveCardsOutput> DingTalkSendInteractiveCards(string token, DingTalkSendInteractiveCardsInput input)
+    public async Task<DingTalkSendInteractiveCardsOutput> DingTalkSendInteractiveCards(string accessToken, DingTalkSendInteractiveCardsInput input)
     {
-        return await _dingTalkApi.DingTalkSendInteractiveCards(token, input);
+        return await _dingTalkApi.DingTalkSendInteractiveCards(accessToken, input);
     }
 }

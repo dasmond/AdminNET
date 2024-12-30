@@ -16,10 +16,10 @@ public class SysScheduleService : IDynamicApiController, ITransient
     private readonly SqlSugarRepository<SysSchedule> _sysSchedule;
 
     public SysScheduleService(UserManager userManager,
-        SqlSugarRepository<SysSchedule> sysSchedle)
+        SqlSugarRepository<SysSchedule> sysSchedule)
     {
         _userManager = userManager;
-        _sysSchedule = sysSchedle;
+        _sysSchedule = sysSchedule;
     }
 
     /// <summary>
@@ -31,6 +31,7 @@ public class SysScheduleService : IDynamicApiController, ITransient
     {
         return await _sysSchedule.AsQueryable()
             .Where(u => u.UserId == _userManager.UserId)
+            .WhereIF(_userManager.SuperAdmin && input.TenantId > 0, u => u.TenantId == input.TenantId)
             .WhereIF(!string.IsNullOrWhiteSpace(input.StartTime.ToString()), u => u.ScheduleTime >= input.StartTime)
             .WhereIF(!string.IsNullOrWhiteSpace(input.EndTime.ToString()), u => u.ScheduleTime <= input.EndTime)
             .OrderBy(u => u.StartTime, OrderByType.Asc)
@@ -93,8 +94,7 @@ public class SysScheduleService : IDynamicApiController, ITransient
     [DisplayName("设置日程状态")]
     public async Task<int> SetStatus(ScheduleInput input)
     {
-        if (!Enum.IsDefined(typeof(FinishStatusEnum), input.Status))
-            throw Oops.Oh(ErrorCodeEnum.D3005);
+        if (!Enum.IsDefined(typeof(FinishStatusEnum), input.Status)) throw Oops.Oh(ErrorCodeEnum.D3005);
 
         return await _sysSchedule.AsUpdateable()
             .SetColumns(u => u.Status == input.Status)

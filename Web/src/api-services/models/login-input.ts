@@ -11,44 +11,38 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-
- /**
+/**
  * 用户登录参数
- *
  * @export
  * @interface LoginInput
  */
 export interface LoginInput {
-
     /**
      * 账号
-     *
      * @type {string}
      * @memberof LoginInput
-     * @example admin
      */
     account: string;
-
     /**
      * 密码
-     *
      * @type {string}
      * @memberof LoginInput
-     * @example 123456
      */
     password: string;
-
+    /**
+     * 租户
+     * @type {number}
+     * @memberof LoginInput
+     */
+    tenantId: number;
     /**
      * 验证码Id
-     *
      * @type {number}
      * @memberof LoginInput
      */
     codeId?: number;
-
     /**
      * 验证码
-     *
      * @type {string}
      * @memberof LoginInput
      */

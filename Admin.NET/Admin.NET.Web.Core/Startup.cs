@@ -1,4 +1,4 @@
-﻿// Admin.NET 项目的版权、商标、专利和其他相关权利均受相应法律法规的保护。使用本项目应遵守相关法律法规和许可证的要求。
+// Admin.NET 项目的版权、商标、专利和其他相关权利均受相应法律法规的保护。使用本项目应遵守相关法律法规和许可证的要求。
 //
 // 本项目主要遵循 MIT 许可证和 Apache 许可证（版本 2.0）进行分发和使用。许可证位于源代码树根目录中的 LICENSE-MIT 和 LICENSE-APACHE 文件。
 //
@@ -18,16 +18,21 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpOverrides;
+using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json;
 using OnceMi.AspNetCore.OSS;
 using SixLabors.ImageSharp.Web.DependencyInjection;
 using System;
+using System.Linq;
+using System.Text.Encodings.Web;
+using System.Text.Unicode;
 using System.Threading.Tasks;
 
 namespace Admin.NET.Web.Core;
 
+[AppStartup(int.MaxValue)]
 public class Startup : AppStartup
 {
     public void ConfigureServices(IServiceCollection services)
@@ -95,7 +100,11 @@ public class Startup : AppStartup
             .AddNewtonsoftJson(options => SetNewtonsoftJsonSetting(options.SerializerSettings))
             //.AddXmlSerializerFormatters()
             //.AddXmlDataContractSerializerFormatters()
-            .AddInjectWithUnifyResult<AdminResultProvider>();
+            .AddInjectWithUnifyResult<AdminResultProvider>()
+            .AddJsonOptions(options =>
+            {
+                options.JsonSerializerOptions.Encoder = JavaScriptEncoder.Create(UnicodeRanges.All); // 禁止Unicode转码
+            });
 
         // 三方授权登录OAuth
         services.AddOAuth();
@@ -184,7 +193,10 @@ public class Startup : AppStartup
         // 即时通讯
         services.AddSignalR(options =>
         {
-            options.KeepAliveInterval = TimeSpan.FromSeconds(5);
+            options.EnableDetailedErrors = true;
+            options.KeepAliveInterval = TimeSpan.FromSeconds(15); // 服务器端向客户端ping的间隔
+            options.ClientTimeoutInterval = TimeSpan.FromSeconds(30); // 客户端向服务器端ping的间隔
+            options.MaximumReceiveMessageSize = 1024 * 1014 * 10; // 数据包大小10M，默认最大为32K
         }).AddNewtonsoftJsonProtocol(options => SetNewtonsoftJsonSetting(options.PayloadSerializerSettings));
 
         // 系统日志
@@ -201,10 +213,40 @@ public class Startup : AppStartup
         // 设置默认查询器China和International
         //IpToolSettings.DefalutSearcherType = IpSearcherType.China;
         IpToolSettings.DefalutSearcherType = IpSearcherType.International;
+
+        // 配置gzip与br的压缩等级为最优
+        //services.Configure<BrotliCompressionProviderOptions>(options =>
+        //{
+        //    options.Level = CompressionLevel.Optimal;
+        //});
+        //services.Configure<GzipCompressionProviderOptions>(options =>
+        //{
+        //    options.Level = CompressionLevel.Optimal;
+        //});
+        // 注册压缩响应
+        services.AddResponseCompression((options) =>
+        {
+            options.EnableForHttps = true;
+            options.Providers.Add<BrotliCompressionProvider>();
+            options.Providers.Add<GzipCompressionProvider>();
+            options.MimeTypes = ResponseCompressionDefaults.MimeTypes.Concat(new[]
+            {
+                    "text/html; charset=utf-8",
+                    "application/xhtml+xml",
+                    "application/atom+xml",
+                    "image/svg+xml"
+             });
+        });
+
+        // 注册虚拟文件系统服务
+        services.AddVirtualFileServer();
     }
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
     {
+        // 响应压缩
+        app.UseResponseCompression();
+
         app.UseForwardedHeaders();
 
         if (env.IsDevelopment())
@@ -259,6 +301,7 @@ public class Startup : AppStartup
         // 限流组件（在跨域之后）
         app.UseIpRateLimiting();
         app.UseClientRateLimiting();
+        app.UsePolicyRateLimit();
 
         // 任务调度看板
         app.UseScheduleUI(options =>

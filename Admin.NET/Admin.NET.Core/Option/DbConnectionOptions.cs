@@ -17,6 +17,11 @@ public sealed class DbConnectionOptions : IConfigurableOptions<DbConnectionOptio
     public bool EnableConsoleSql { get; set; }
 
     /// <summary>
+    /// 超级管理员是否忽略逻辑删除过滤器
+    /// </summary>
+    public bool SuperAdminIgnoreIDeletedFilter { get; set; }
+
+    /// <summary>
     /// 数据库集合
     /// </summary>
     public List<DbConnectionConfig> ConnectionConfigs { get; set; }
@@ -50,6 +55,11 @@ public sealed class DbConnectionConfig : ConnectionConfig
     /// 种子配置
     /// </summary>
     public SeedSettings SeedSettings { get; set; }
+
+    /// <summary>
+    /// 隔离方式
+    /// </summary>
+    public TenantTypeEnum TenantType { get; set; } = TenantTypeEnum.Id;
 }
 
 /// <summary>
@@ -71,6 +81,11 @@ public sealed class DbSettings
     /// 启用驼峰转下划线
     /// </summary>
     public bool EnableUnderLine { get; set; }
+
+    /// <summary>
+    /// 启用数据库连接串加密策略
+    /// </summary>
+    public bool EnableConnStringEncrypt { get; set; }
 }
 
 /// <summary>

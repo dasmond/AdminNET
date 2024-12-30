@@ -1,12 +1,16 @@
 import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
 import { ElMessage } from 'element-plus';
-import { Local, Session } from '/@/utils/storage';
+import { Local, } from '/@/utils/storage';
+import {clearAccessAfterReload} from "/@/utils/axios-utils";
+
+// 定义请求中止控制器映射表
+const abortControllerMap: Map<string, AbortController> = new Map();
 
 // 配置新建一个 axios 实例
 export const service = axios.create({
 	baseURL: window.__env__.VITE_API_URL as any,
 	timeout: 50000,
-	headers: { 'Content-Type': 'application/json' },
+	//headers: { 'Content-Type': 'application/json' }, 这个会导致生成代码的上传文件 file为空
 });
 
 // token 键定义
@@ -16,18 +20,6 @@ export const refreshAccessTokenKey = `x-${accessTokenKey}`;
 // 获取 token
 export const getToken = () => {
 	return Local.get(accessTokenKey);
-};
-
-// 清除 token
-export const clearAccessTokens = () => {
-	Local.remove(accessTokenKey);
-	Local.remove(refreshAccessTokenKey);
-
-	// 清除其他
-	Session.clear();
-
-	// 刷新浏览器
-	window.location.reload();
 };
 
 // axios 默认实例
@@ -40,6 +32,12 @@ service.interceptors.request.use(
 		// if (Session.get('token')) {
 		// 	(<any>config.headers).common['Authorization'] = `${Session.get('token')}`;
 		// }
+
+		// 记录中止控制信息
+		const controller = new AbortController();
+		config.signal = controller.signal;
+		const url = config.url || '';
+		abortControllerMap.set(url, controller);
 
 		// 获取本地的 token
 		const accessToken = Local.get(accessTokenKey);
@@ -81,13 +79,18 @@ service.interceptors.request.use(
 // 添加响应拦截器
 service.interceptors.response.use(
 	(res) => {
+
+		// 请求结束后清除中止控制项
+		const url = res.config.url || '';
+		abortControllerMap.delete(url);
+
 		// 获取状态码和返回数据
 		var status = res.status;
 		var serve = res.data;
 
 		// 处理 401
 		if (status === 401) {
-			clearAccessTokens();
+			clearAccessAfterReload();
 		}
 
 		// 处理未进行规范化处理的
@@ -106,17 +109,17 @@ service.interceptors.response.use(
 
 		// 判断是否是无效 token
 		if (accessToken === 'invalid_token') {
-			clearAccessTokens();
+			clearAccessAfterReload();
 		}
-		// 判断是否存在刷新 token，如果存在则存储在本地
-		else if (refreshAccessToken && accessToken && accessToken !== 'invalid_token') {
+		// 判断是否存在刷新 token，如果存在则存储在本地, 并重新加载页面
+		else if (refreshAccessToken && accessToken) {
 			Local.set(accessTokenKey, accessToken);
 			Local.set(refreshAccessTokenKey, refreshAccessToken);
 		}
 
 		// 响应拦截及自定义处理
 		if (serve.code === 401) {
-			clearAccessTokens();
+			clearAccessAfterReload();
 		} else if (serve.code === undefined) {
 			return Promise.resolve(res);
 		} else if (serve.code !== 200) {
@@ -141,7 +144,7 @@ service.interceptors.response.use(
 		// 处理响应错误
 		if (error.response) {
 			if (error.response.status === 401) {
-				clearAccessTokens();
+				clearAccessAfterReload();
 			}
 		}
 
@@ -158,6 +161,23 @@ service.interceptors.response.use(
 		return Promise.reject(error);
 	}
 );
+
+// 取消指定请求
+export const cancelRequest = (url: string | string[]) => {
+	const urlList = Array.isArray(url) ? url : [url];
+	for (const _url of urlList) {
+		abortControllerMap.get(_url)?.abort();
+		abortControllerMap.delete(_url);
+	}
+}
+
+// 取消全部请求
+export const cancelAllRequest = () => {
+	for (const [_, controller] of abortControllerMap) {
+		controller.abort();
+	}
+	abortControllerMap.clear();
+}
 
 /**
  *  参数处理
@@ -230,5 +250,18 @@ export function request2(config: AxiosRequestConfig<any>): any {
 			});
 	});
 }
+
+/**
+ * 使用新的令牌登录
+ * @param accessInfo
+ */
+export function reLoadLoginAccessToken(accessInfo: any) {
+	if (accessInfo?.accessToken && accessInfo?.refreshToken) {
+		Local.set(accessTokenKey, accessInfo.accessToken);
+		Local.set(refreshAccessTokenKey, accessInfo.refreshToken);
+		setTimeout(() => location.href = "/", 300);
+	}
+}
+
 // 导出 axios 实例
 export default service;

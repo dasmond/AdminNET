@@ -11,7 +11,6 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-
 /**
  * 
  * @export
@@ -44,6 +43,9 @@ export enum DbType {
     NUMBER_23 = 23,
     NUMBER_24 = 24,
     NUMBER_25 = 25,
+    NUMBER_26 = 26,
+    NUMBER_27 = 27,
+    NUMBER_28 = 28,
     NUMBER_900 = 900
 }
 

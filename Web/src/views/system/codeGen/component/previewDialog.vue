@@ -17,7 +17,7 @@
 					</template>
 				</el-segmented>
 			</div>
-			<div ref="monacoEditorRef" style="width: 100%; height: 700px;"></div>
+			<div ref="monacoEditorRef" style="width: 100%; height: 700px;" v-loading="state.loading"></div>
 			<template #footer>
 				<span class="dialog-footer">
 					<el-button icon="ele-Close" @click="cancel">关 闭</el-button>
@@ -48,6 +48,7 @@ const state = reactive({
 	options: [] as any, // 分段器的选项
 	current: '', // 选中的分段
 	codes: [] as any, // 预览的代码
+  loading: true
 });
 
 // 防止 monaco 报黄
@@ -86,14 +87,18 @@ const initMonacoEditor = () => {
 
 // 打开弹窗
 const openDialog = async (row: any) => {
-	state.isShowDialog = true;
-	const { data } = await getAPI(SysCodeGenApi).apiSysCodeGenPreviewPost(row);
-	state.codes = data.result ?? [];
-	state.options = Object.keys(data.result).map((fileName: string) => ({
-		value: fileName,
-		icon: fileName?.endsWith('.cs') ? 'fa fa-hashtag' : fileName?.endsWith('.vue') ? 'fa fa-vimeo' : 'fa fa-file-code-o',
-	}));
-	state.current = state.options?.[0]?.value ?? '';
+  state.loading = true;
+  try {
+    state.isShowDialog = true;
+    const { data } = await getAPI(SysCodeGenApi).apiSysCodeGenPreviewPost(row);
+    state.codes = data.result ?? [];
+    state.options = Object.keys(data.result ?? []).map((fileName: string) => ({
+      value: fileName,
+      icon: fileName?.endsWith('.cs') ? 'fa fa-hashtag' : fileName?.endsWith('.vue') ? 'fa fa-vimeo' : 'fa fa-file-code-o',
+    }));
+    state.current = state.options?.[0]?.value ?? '';
+  }  catch (e) { /* empty */ }
+  state.loading = false;
 	if (monacoEditor == null) initMonacoEditor();
 	// 防止取不到
 	nextTick(() => {

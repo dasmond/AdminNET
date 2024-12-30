@@ -11,14 +11,7 @@
 				<el-row :gutter="35">
 					<el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="mb20">
 						<el-form-item label="上级菜单">
-							<el-cascader
-								:options="props.menuData"
-								:props="{ checkStrictly: true, emitPath: false, value: 'id', label: 'title' }"
-								placeholder="请选择上级菜单"
-								clearable
-								class="w100"
-								v-model="state.ruleForm.pid"
-							>
+							<el-cascader :options="props.menuData" :props="cascaderProps" placeholder="请选择上级菜单" clearable filterable class="w100" v-model="state.ruleForm.pid">
 								<template #default="{ node, data }">
 									<span>{{ data.title }}</span>
 									<span v-if="!node.isLeaf"> ({{ data.children.length }}) </span>
@@ -28,11 +21,7 @@
 					</el-col>
 					<el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="mb20">
 						<el-form-item label="菜单类型" prop="type" :rules="[{ required: true, message: '菜单类型不能为空', trigger: 'blur' }]">
-							<el-radio-group v-model="state.ruleForm.type">
-								<el-radio :value="1">目录</el-radio>
-								<el-radio :value="2">菜单</el-radio>
-								<el-radio :value="3">按钮</el-radio>
-							</el-radio-group>
+              <g-sys-dict v-model="state.ruleForm.type" code="MenuTypeEnum" render-as="radio" />
 						</el-form-item>
 					</el-col>
 					<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
@@ -149,9 +138,8 @@
 <script lang="ts" setup name="sysEditMenu">
 import { computed, reactive, ref } from 'vue';
 import IconSelector from '/@/components/iconSelector/index.vue';
-
-import { getAPI } from '/@/utils/axios-utils';
 import other from '/@/utils/other';
+import { getAPI } from '/@/utils/axios-utils';
 import { SysMenuApi } from '/@/api-services/api';
 import { SysMenu, UpdateMenuInput } from '/@/api-services/models';
 
@@ -165,6 +153,8 @@ const state = reactive({
 	isShowDialog: false,
 	ruleForm: {} as UpdateMenuInput,
 });
+// 级联选择器配置选项
+const cascaderProps = { checkStrictly: true, emitPath: false, value: 'id', label: 'title' };
 
 // 获取全局组件大小
 const getGlobalComponentSize = computed(() => {

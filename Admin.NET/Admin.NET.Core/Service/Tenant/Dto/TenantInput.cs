@@ -40,6 +40,55 @@ public class AddTenantInput : TenantOutput
     /// </summary>
     [Required(ErrorMessage = "租管账号不能为空"), MinLength(3, ErrorMessage = "租管账号不能少于3个字符")]
     public override string AdminAccount { get; set; }
+
+    /// <summary>
+    /// 系统主标题
+    /// </summary>
+    [Required(ErrorMessage = "系统主标题不能为空")]
+    public override string Title { get; set; }
+
+    /// <summary>
+    /// 系统副标题
+    /// </summary>
+    [Required(ErrorMessage = "系统副标题不能为空")]
+    public override string ViceTitle { get; set; }
+
+    /// <summary>
+    /// 系统描述
+    /// </summary>
+    [Required(ErrorMessage = "系统描述不能为空")]
+    public override string ViceDesc { get; set; }
+
+    /// <summary>
+    /// 版权说明
+    /// </summary>
+    [Required(ErrorMessage = "版权说明不能为空")]
+    public override string Copyright { get; set; }
+
+    /// <summary>
+    /// ICP备案号
+    /// </summary>
+    [Required(ErrorMessage = "ICP备案号不能为空")]
+    public override string Icp { get; set; }
+
+    /// <summary>
+    /// ICP地址
+    /// </summary>
+    [Required(ErrorMessage = "ICP地址不能为空")]
+    public override string IcpUrl { get; set; }
+
+    /// <summary>
+    /// Logo图片Base64码
+    /// </summary>
+    [CommonValidation(
+        "string.IsNullOrWhiteSpace(Logo) && string.IsNullOrWhiteSpace(LogoBase64)", "图标不能为空"
+    )]
+    public virtual string LogoBase64 { get; set; }
+
+    /// <summary>
+    /// Logo文件名
+    /// </summary>
+    public virtual string LogoFileName { get; set; }
 }
 
 public class UpdateTenantInput : AddTenantInput
@@ -48,6 +97,17 @@ public class UpdateTenantInput : AddTenantInput
 
 public class DeleteTenantInput : BaseIdInput
 {
+}
+
+/// <summary>
+/// 租户菜单
+/// </summary>
+public class TenantMenuInput : BaseIdInput
+{
+    /// <summary>
+    /// 菜单Id集合
+    /// </summary>
+    public List<long> MenuIdList { get; set; }
 }
 
 public class TenantUserInput

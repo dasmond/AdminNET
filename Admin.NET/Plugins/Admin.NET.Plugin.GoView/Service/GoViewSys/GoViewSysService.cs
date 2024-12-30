@@ -30,6 +30,7 @@ public class GoViewSysService : IDynamicApiController
     /// GoView 登录 🔖
     /// </summary>
     /// <returns></returns>
+    [UnitOfWork]
     [AllowAnonymous]
     [DisplayName("GoView 登录")]
     public async Task<GoViewLoginOutput> Login(GoViewLoginInput input)
@@ -41,6 +42,7 @@ public class GoViewSysService : IDynamicApiController
         {
             Account = input.Username,
             Password = input.Password,
+            TenantId = input.TenantId
         });
 
         _sysCacheService.Remove($"{CacheConst.KeyConfig}{ConfigConst.SysCaptcha}");

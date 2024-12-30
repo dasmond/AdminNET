@@ -11,18 +11,14 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-
- /**
+/**
  * 
- *
  * @export
  * @interface DeleteSysLdapInput
  */
 export interface DeleteSysLdapInput {
-
     /**
      * 主键Id
-     *
      * @type {number}
      * @memberof DeleteSysLdapInput
      */

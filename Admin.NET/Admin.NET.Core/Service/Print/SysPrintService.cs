@@ -13,10 +13,12 @@ namespace Admin.NET.Core.Service;
 public class SysPrintService : IDynamicApiController, ITransient
 {
     private readonly SqlSugarRepository<SysPrint> _sysPrintRep;
+    private readonly UserManager _userManager;
 
-    public SysPrintService(SqlSugarRepository<SysPrint> sysPrintRep)
+    public SysPrintService(SqlSugarRepository<SysPrint> sysPrintRep, UserManager userManager)
     {
         _sysPrintRep = sysPrintRep;
+        _userManager = userManager;
     }
 
     /// <summary>
@@ -28,6 +30,7 @@ public class SysPrintService : IDynamicApiController, ITransient
     public async Task<SqlSugarPagedList<SysPrint>> Page(PagePrintInput input)
     {
         return await _sysPrintRep.AsQueryable()
+            .WhereIF(_userManager.SuperAdmin && input.TenantId > 0, u => u.TenantId == input.TenantId)
             .WhereIF(!string.IsNullOrWhiteSpace(input.Name), u => u.Name.Contains(input.Name))
             .OrderBy(u => new { u.OrderNo, u.Id })
             .ToPagedListAsync(input.Page, input.PageSize);
@@ -54,8 +57,7 @@ public class SysPrintService : IDynamicApiController, ITransient
     public async Task AddPrint(AddPrintInput input)
     {
         var isExist = await _sysPrintRep.IsAnyAsync(u => u.Name == input.Name);
-        if (isExist)
-            throw Oops.Oh(ErrorCodeEnum.D1800);
+        if (isExist) throw Oops.Oh(ErrorCodeEnum.D1800);
 
         await _sysPrintRep.InsertAsync(input.Adapt<SysPrint>());
     }
@@ -70,8 +72,7 @@ public class SysPrintService : IDynamicApiController, ITransient
     public async Task UpdatePrint(UpdatePrintInput input)
     {
         var isExist = await _sysPrintRep.IsAnyAsync(u => u.Name == input.Name && u.Id != input.Id);
-        if (isExist)
-            throw Oops.Oh(ErrorCodeEnum.D1800);
+        if (isExist) throw Oops.Oh(ErrorCodeEnum.D1800);
 
         await _sysPrintRep.AsUpdateable(input.Adapt<SysPrint>()).IgnoreColumns(true).ExecuteCommandAsync();
     }

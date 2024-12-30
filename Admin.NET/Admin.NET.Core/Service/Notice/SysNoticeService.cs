@@ -9,7 +9,7 @@ namespace Admin.NET.Core.Service;
 /// <summary>
 /// 系统通知公告服务 🧩
 /// </summary>
-[ApiDescriptionSettings(Order = 380)]
+[ApiDescriptionSettings(Order = 380, Description = "通知公告")]
 public class SysNoticeService : IDynamicApiController, ITransient
 {
     private readonly UserManager _userManager;
@@ -72,6 +72,9 @@ public class SysNoticeService : IDynamicApiController, ITransient
     [DisplayName("更新通知公告")]
     public async Task UpdateNotice(UpdateNoticeInput input)
     {
+        if (input.CreateUserId != _userManager.UserId)
+            throw Oops.Oh(ErrorCodeEnum.D7003);
+
         var notice = input.Adapt<SysNotice>();
         InitNoticeInfo(notice);
         await _sysNoticeRep.UpdateAsync(notice);
@@ -87,6 +90,12 @@ public class SysNoticeService : IDynamicApiController, ITransient
     [DisplayName("删除通知公告")]
     public async Task DeleteNotice(DeleteNoticeInput input)
     {
+        var sysNotice = await _sysNoticeRep.GetByIdAsync(input.Id);
+
+        if (sysNotice.CreateUserId != _userManager.UserId) throw Oops.Oh(ErrorCodeEnum.D7003);
+
+        if (sysNotice.Status == NoticeStatusEnum.PUBLIC) throw Oops.Oh(ErrorCodeEnum.D7001);
+
         await _sysNoticeRep.DeleteAsync(u => u.Id == input.Id);
 
         await _sysNoticeUserRep.DeleteAsync(u => u.NoticeId == input.Id);
@@ -100,10 +109,13 @@ public class SysNoticeService : IDynamicApiController, ITransient
     [DisplayName("发布通知公告")]
     public async Task Public(NoticeInput input)
     {
+        if (!(await _sysNoticeRep.IsAnyAsync(u => u.Id == input.Id && u.CreateUserId == _userManager.UserId)))
+            throw Oops.Oh(ErrorCodeEnum.D7003);
+
         // 更新发布状态和时间
         await _sysNoticeRep.UpdateAsync(u => new SysNotice() { Status = NoticeStatusEnum.PUBLIC, PublicTime = DateTime.Now }, u => u.Id == input.Id);
 
-        var notice = await _sysNoticeRep.GetFirstAsync(u => u.Id == input.Id);
+        var notice = await _sysNoticeRep.GetByIdAsync(input.Id);
 
         // 通知到的人(所有账号)
         var userIdList = await _sysUserRep.AsQueryable().Select(u => u.Id).ToListAsync();
@@ -141,7 +153,7 @@ public class SysNoticeService : IDynamicApiController, ITransient
     /// <param name="input"></param>
     /// <returns></returns>
     [DisplayName("获取接收的通知公告")]
-    public async Task<SqlSugarPagedList<SysNoticeUser>> GetPageReceived([FromQuery] PageNoticeInput input)
+    public async Task<SqlSugarPagedList<SysNoticeUser>> PageReceived(PageNoticeInput input)
     {
         return await _sysNoticeUserRep.AsQueryable().Includes(u => u.SysNotice)
             .Where(u => u.UserId == _userManager.UserId)

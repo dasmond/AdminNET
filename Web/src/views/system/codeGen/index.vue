@@ -30,21 +30,18 @@
 				<el-table-column prop="authorName" label="作者姓名" align="center" show-overflow-tooltip />
 				<el-table-column prop="generateType" label="生成方式" align="center" show-overflow-tooltip>
 					<template #default="scope">
-						<el-tag v-if="scope.row.generateType == 100"> 下载压缩包 </el-tag>
-						<el-tag v-else-if="scope.row.generateType == 111"> 下载压缩包(前端) </el-tag>
-						<el-tag v-else-if="scope.row.generateType == 121"> 下载压缩包(后端) </el-tag>
-						<el-tag v-else-if="scope.row.generateType == 211"> 生成到本项目(前端) </el-tag>
-						<el-tag v-else-if="scope.row.generateType == 221"> 生成到本项目(后端) </el-tag>
-						<el-tag type="danger" v-else> 生成到本项目 </el-tag>
+            <g-sys-dict v-model="scope.row.generateType" code="code_gen_create_type" />
 					</template>
 				</el-table-column>
-				<el-table-column label="操作" width="350" fixed="right" align="center" show-overflow-tooltip>
+				<el-table-column label="操作" width="280" fixed="right" align="center" show-overflow-tooltip>
 					<template #default="scope">
-						<el-button icon="ele-Position" size="small" text type="primary" @click="handleGenerate(scope.row)">开始生成</el-button>
-						<el-button icon="ele-View" size="small" text type="primary" @click="handlePreview(scope.row)">预览</el-button>
-						<el-button icon="ele-Setting" size="small" text type="primary" @click="openConfigDialog(scope.row)">配置</el-button>
-						<el-button icon="ele-Edit" size="small" text type="primary" @click="openEditDialog(scope.row)">编辑</el-button>
-						<el-button icon="ele-Delete" size="small" text type="danger" @click="deleConfig(scope.row)">删除</el-button>
+						<el-button icon="ele-Delete" size="small" text type="danger" title="删除" @click="deleConfig(scope.row)" />
+						<el-button icon="ele-Edit" size="small" text type="primary" title="编辑" @click="openEditDialog(scope.row)" />
+						<el-button icon="ele-CopyDocument" size="small" text type="primary" title="复制" @click="openCopyDialog(scope.row)" />
+						<el-button icon="ele-View" size="small" text type="primary" title="预览" @click="handlePreview(scope.row)" />
+						<el-button icon="ele-Setting" size="small" text type="primary" title="配置" @click="openConfigDialog(scope.row)" />
+						<el-button icon="ele-Refresh" size="small" text type="primary" title="同步" @click="syncCodeGen(scope.row)" />
+						<el-button icon="ele-Position" size="small" text type="primary" @click="handleGenerate(scope.row)">生成</el-button>
 					</template>
 				</el-table-column>
 			</el-table>
@@ -61,9 +58,9 @@
 			/>
 		</el-card>
 
-		<EditCodeGenDialog :title="state.editMenuTitle" ref="EditCodeGenRef" @handleQuery="handleQuery" :application-namespaces="state.applicationNamespaces" />
+		<EditCodeGenDialog :title="state.editTitle" ref="EditCodeGenRef" @handleQuery="handleQuery" :application-namespaces="state.applicationNamespaces" />
 		<CodeConfigDialog ref="CodeConfigRef" @handleQuery="handleQuery" />
-		<PreviewDialog :title="state.editMenuTitle" ref="PreviewRef" />
+		<PreviewDialog :title="state.editTitle" ref="PreviewRef" />
 	</div>
 </template>
 
@@ -73,7 +70,6 @@ import { ElMessageBox, ElMessage } from 'element-plus';
 import EditCodeGenDialog from './component/editCodeGenDialog.vue';
 import CodeConfigDialog from './component/genConfigDialog.vue';
 import { downloadByUrl } from '/@/utils/download';
-
 import { getAPI } from '/@/utils/axios-utils';
 import { SysCodeGenApi } from '/@/api-services/api';
 import { SysCodeGen } from '/@/api-services/models';
@@ -98,16 +94,15 @@ const state = reactive({
 	},
 	tableParams: {
 		page: 1,
-		pageSize: 10,
+		pageSize: 50,
 		total: 0 as any,
 	},
-	editMenuTitle: '',
+	editTitle: '',
 	applicationNamespaces: [] as Array<string>,
 });
 
 onMounted(async () => {
 	handleQuery();
-
 	let res = await getAPI(SysCodeGenApi).apiSysCodeGenApplicationNamespacesGet();
 	state.applicationNamespaces = res.data.result as Array<string>;
 });
@@ -147,7 +142,7 @@ const handleCurrentChange = (val: number) => {
 
 // 打开表增加页面
 const openAddDialog = () => {
-	state.editMenuTitle = '增加';
+	state.editTitle = '增加';
 	EditCodeGenRef.value?.openDialog({
 		authorName: 'Admin.NET',
 		generateType: '200',
@@ -161,8 +156,19 @@ const openAddDialog = () => {
 
 // 打开表编辑页面
 const openEditDialog = (row: any) => {
-	state.editMenuTitle = '编辑';
+	state.editTitle = '编辑';
 	EditCodeGenRef.value?.openDialog(row);
+};
+
+// 打开复制页面
+const openCopyDialog = (row: any) => {
+	state.editTitle = '复制';
+	var copyRow = JSON.parse(JSON.stringify(row));
+	copyRow.id = 0;
+	copyRow.busName = '';
+	copyRow.tableName = '';
+  copyRow.tableUniqueList = undefined;
+	EditCodeGenRef.value?.openDialog(copyRow);
 };
 
 // 删除表
@@ -171,14 +177,27 @@ const deleConfig = (row: any) => {
 		confirmButtonText: '确定',
 		cancelButtonText: '取消',
 		type: 'warning',
-	})
-		.then(async () => {
+	}).then(async () => {
 			await getAPI(SysCodeGenApi).apiSysCodeGenDeletePost([{ id: row.id }]);
 			handleQuery();
 			ElMessage.success('操作成功');
-		})
-		.catch(() => {});
+	}).catch(() => {});
 };
+
+// 同步生成
+const syncCodeGen = async (row: any) => {
+  ElMessageBox.confirm(`确定要同步吗?`, '提示', {
+    confirmButtonText: '确定',
+    cancelButtonText: '取消',
+    type: 'warning',
+  }).then(async () => {
+    await getAPI(SysCodeGenApi).apiSysCodeGenDeletePost([{ id: row.id }]);
+    row.id = undefined;
+    await getAPI(SysCodeGenApi).apiSysCodeGenAddPost(row);
+    handleQuery();
+    ElMessage.success('同步成功');
+  }).catch(() => {});
+}
 
 // 开始生成代码
 const handleGenerate = (row: any) => {
@@ -198,7 +217,7 @@ const handleGenerate = (row: any) => {
 
 // 预览代码
 const handlePreview = (row: any) => {
-	state.editMenuTitle = '预览代码';
+	state.editTitle = '预览代码';
 	PreviewRef.value?.openDialog(row);
 };
 </script>

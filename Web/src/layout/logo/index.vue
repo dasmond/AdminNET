@@ -36,11 +36,11 @@ const onThemeConfigChange = () => {
 
 <style scoped lang="scss">
 .layout-logo {
-	width: 220px;
+	width: 300px;
 	height: 50px;
 	display: flex;
 	align-items: center;
-	justify-content: center;
+  margin-left: 15px;
 	box-shadow: rgb(0 21 41 / 2%) 0px 1px 4px;
 	color: var(--el-color-primary);
 	font-size: 16px;
@@ -58,8 +58,9 @@ const onThemeConfigChange = () => {
 		}
 	}
 	&-medium-img {
-		width: 15%;
+		width: 12%;
 		margin-right: 5px;
+		padding:3px;
 	}
 }
 .layout-logo-size {

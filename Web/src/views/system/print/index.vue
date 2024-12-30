@@ -2,6 +2,11 @@
 	<div class="sys-print-container">
 		<el-card shadow="hover" :body-style="{ paddingBottom: '0' }">
 			<el-form :model="state.queryParams" ref="queryForm" :inline="true">
+				<el-form-item label="租户" v-if="userStore.userInfos.accountType == 999">
+					<el-select v-model="state.queryParams.tenantId" placeholder="租户" style="width: 100%">
+						<el-option :value="item.value" :label="`${item.label} (${item.host})`" v-for="(item, index) in state.tenantList" :key="index" />
+					</el-select>
+				</el-form-item>
 				<el-form-item label="模板名称">
 					<el-input v-model="state.queryParams.name" placeholder="模板名称" clearable />
 				</el-form-item>
@@ -25,8 +30,7 @@
 				<el-table-column prop="orderNo" label="排序" align="center" show-overflow-tooltip />
 				<el-table-column label="状态" align="center" show-overflow-tooltip>
 					<template #default="scope">
-						<el-tag type="success" v-if="scope.row.status === 1">启用</el-tag>
-						<el-tag type="danger" v-else>禁用</el-tag>
+            <g-sys-dict v-model="scope.row.status" code="StatusEnum" />
 					</template>
 				</el-table-column>
 				<el-table-column label="修改记录" width="100" align="center" show-overflow-tooltip>
@@ -63,27 +67,34 @@ import { onMounted, reactive, ref } from 'vue';
 import { ElMessageBox, ElMessage } from 'element-plus';
 import EditPrint from '/@/views/system/print/component/editPrint.vue';
 import ModifyRecord from '/@/components/table/modifyRecord.vue';
-
 import { getAPI } from '/@/utils/axios-utils';
-import { SysPrintApi } from '/@/api-services/api';
+import {SysPrintApi, SysTenantApi} from '/@/api-services/api';
 import { SysPrint } from '/@/api-services/models';
+import { useUserInfo } from "/@/stores/userInfo";
 
+const userStore = useUserInfo();
 const editPrintRef = ref<InstanceType<typeof EditPrint>>();
 const state = reactive({
 	loading: false,
+	tenantList: [] as Array<any>,
 	printData: [] as Array<SysPrint>,
 	queryParams: {
+		tenantId: undefined,
 		name: undefined,
 	},
 	tableParams: {
 		page: 1,
-		pageSize: 10,
+		pageSize: 50,
 		total: 0 as any,
 	},
 	editPrintTitle: '',
 });
 
 onMounted(async () => {
+	if (userStore.userInfos.accountType == 999) {
+		state.tenantList = await getAPI(SysTenantApi).apiSysTenantListGet().then(res => res.data.result ?? []);
+		state.queryParams.tenantId = state.tenantList[0].value;
+	}
 	handleQuery();
 });
 
@@ -106,7 +117,7 @@ const resetQuery = () => {
 // 打开新增页面
 const openAddPrint = () => {
 	state.editPrintTitle = '添加打印模板';
-	editPrintRef.value?.openDialog({});
+	editPrintRef.value?.openDialog({ tenantId: state.queryParams.tenantId });
 };
 
 // 打开编辑页面

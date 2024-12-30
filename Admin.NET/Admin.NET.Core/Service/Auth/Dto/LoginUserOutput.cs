@@ -100,4 +100,9 @@ public class LoginUserOutput
     /// 水印文字
     /// </summary>
     public string WatermarkText { get; set; }
+
+    /// <summary>
+    /// 租户Id
+    /// </summary>
+    public long? TenantId { get; set; }
 }

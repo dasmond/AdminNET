@@ -4,27 +4,27 @@
 //
 // 不得利用本项目从事危害国家安全、扰乱社会秩序、侵犯他人合法权益等法律法规禁止的活动！任何基于本项目二次开发而产生的一切法律纠纷和责任，我们不承担任何责任！
 
-namespace @Model.NameSpace;
+namespace @(Model.NameSpace);
 
-    /// <summary>
-    /// @(@Model.BusName)输出参数
-    /// </summary>
-    public class @(@Model.ClassName)Dto
-    {
+/// <summary>
+/// @(Model.BusName)输出参数
+/// </summary>
+public class @(Model.ClassName)Dto
+{
 @foreach (var column in Model.TableField){
-if(@column.EffectType == "fk" && @column.FkEntityName != "" && @column.FkColumnName != ""){
-        @:/// <summary>
-        @:/// @column.ColumnComment
-        @:/// </summary>
-        @:public @(@column.FkColumnNetType) @(@column.PropertyName)@(@column.FkColumnName) { get; set; }
-        @:
+if(column.EffectType == "ForeignKey"){
+    @:/// <summary>
+    @:/// @column.ColumnComment
+    @:/// </summary>
+    @:public string @(column.PropertyName)FkColumn { get; set; }
+    @:
 }
 }
 @foreach (var column in Model.TableField){
-        @:/// <summary>
-        @:/// @column.ColumnComment
-        @:/// </summary>
-        @:public @column.NetType @column.PropertyName { get; set; }
-        @:
+    @:/// <summary>
+    @:/// @column.ColumnComment
+    @:/// </summary>
+    @:public @column.NetType @column.PropertyName { get; set; }
+    @:
 }
-    }
+}

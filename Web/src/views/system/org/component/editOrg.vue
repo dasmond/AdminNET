@@ -11,14 +11,7 @@
 				<el-row :gutter="35">
 					<el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="mb20">
 						<el-form-item label="上级机构">
-							<el-cascader
-								:options="props.orgData"
-								:props="{ checkStrictly: true, emitPath: false, value: 'id', label: 'name' }"
-								placeholder="请选择上级机构"
-								clearable
-								class="w100"
-								v-model="state.ruleForm.pid"
-							>
+							<el-cascader :options="state.orgData" :props="cascaderProps" placeholder="请选择上级机构" clearable filterable class="w100" v-model="state.ruleForm.pid">
 								<template #default="{ node, data }">
 									<span>{{ data.name }}</span>
 									<span v-if="!node.isLeaf"> ({{ data.children.length }}) </span>
@@ -43,9 +36,7 @@
 					</el-col>
 					<el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="mb20">
 						<el-form-item label="机构类型">
-							<el-select v-model="state.ruleForm.type" filterable clearable class="w100">
-								<el-option v-for="item in state.orgTypeList" :key="item.value" :label="item.value" :value="item.code" />
-							</el-select>
+              <g-sys-dict v-model="state.ruleForm.type" code="org_type" render-as="select" class="w100" filterable clearable />
 						</el-form-item>
 					</el-col>
 					<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
@@ -79,10 +70,9 @@
 </template>
 
 <script lang="ts" setup name="sysEditOrg">
-import { onMounted, reactive, ref } from 'vue';
-
+import { reactive, ref } from 'vue';
 import { getAPI } from '/@/utils/axios-utils';
-import { SysOrgApi, SysDictDataApi } from '/@/api-services/api';
+import { SysOrgApi } from '/@/api-services/api';
 import { SysOrg, UpdateOrgInput } from '/@/api-services/models';
 
 const props = defineProps({
@@ -93,17 +83,16 @@ const emits = defineEmits(['reload']);
 const ruleFormRef = ref();
 const state = reactive({
 	isShowDialog: false,
+	orgData: [] as Array<SysOrg>,
 	ruleForm: {} as UpdateOrgInput,
 	orgTypeList: [] as any,
 });
-
-onMounted(async () => {
-	let resDicData = await getAPI(SysDictDataApi).apiSysDictDataDataListCodeGet('org_type');
-	state.orgTypeList = resDicData.data.result;
-});
+// 级联选择器配置选项
+const cascaderProps = { checkStrictly: true, emitPath: false, value: 'id', label: 'name' };
 
 // 打开弹窗
 const openDialog = (row: any) => {
+	state.orgData = (row?.tenantId ? props.orgData?.filter((e) => e.tenantId === row.tenantId) : props.orgData) ?? [];
 	state.ruleForm = JSON.parse(JSON.stringify(row));
 	state.isShowDialog = true;
 	ruleFormRef.value?.resetFields();

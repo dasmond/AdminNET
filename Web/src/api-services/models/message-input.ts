@@ -11,51 +11,65 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-
 import { MessageTypeEnum } from './message-type-enum';
- /**
+/**
  * 
- *
  * @export
  * @interface MessageInput
  */
 export interface MessageInput {
-
     /**
-     * 用户ID
-     *
+     * 接收者用户Id
      * @type {number}
      * @memberof MessageInput
      */
-    userId?: number;
-
+    receiveUserId?: number;
+    /**
+     * 接收者名称
+     * @type {string}
+     * @memberof MessageInput
+     */
+    receiveUserName?: string | null;
     /**
      * 用户ID列表
-     *
      * @type {Array<number>}
      * @memberof MessageInput
      */
     userIds?: Array<number> | null;
-
     /**
      * 消息标题
-     *
      * @type {string}
      * @memberof MessageInput
      */
     title?: string | null;
-
     /**
+     * 
      * @type {MessageTypeEnum}
      * @memberof MessageInput
      */
     messageType?: MessageTypeEnum;
-
     /**
      * 消息内容
-     *
      * @type {string}
      * @memberof MessageInput
      */
     message?: string | null;
+    /**
+     * 发送者Id
+     * @type {string}
+     * @memberof MessageInput
+     */
+    sendUserId?: string | null;
+    /**
+     * 发送者名称
+     * @type {string}
+     * @memberof MessageInput
+     */
+    sendUserName?: string | null;
+    /**
+     * 发送时间
+     * @type {Date}
+     * @memberof MessageInput
+     */
+    sendTime?: Date;
 }

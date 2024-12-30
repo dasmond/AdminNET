@@ -11,7 +11,6 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-
 import globalAxios, { AxiosResponse, AxiosInstance, AxiosRequestConfig } from 'axios';
 import { Configuration } from '../configuration';
 // Some imports not used depending on template conditions
@@ -128,10 +127,11 @@ export const SysPosApiAxiosParamCreator = function (configuration?: Configuratio
          * @summary 获取职位列表 🔖
          * @param {string} [name] 名称
          * @param {string} [code] 编码
+         * @param {number} [tenantId] 租户Id
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiSysPosListGet: async (name?: string, code?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        apiSysPosListGet: async (name?: string, code?: string, tenantId?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/sysPos/list`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
@@ -158,6 +158,10 @@ export const SysPosApiAxiosParamCreator = function (configuration?: Configuratio
 
             if (code !== undefined) {
                 localVarQueryParameter['Code'] = code;
+            }
+
+            if (tenantId !== undefined) {
+                localVarQueryParameter['TenantId'] = tenantId;
             }
 
             const query = new URLSearchParams(localVarUrlObj.search);
@@ -266,11 +270,12 @@ export const SysPosApiFp = function(configuration?: Configuration) {
          * @summary 获取职位列表 🔖
          * @param {string} [name] 名称
          * @param {string} [code] 编码
+         * @param {number} [tenantId] 租户Id
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiSysPosListGet(name?: string, code?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<AdminResultListSysPos>>> {
-            const localVarAxiosArgs = await SysPosApiAxiosParamCreator(configuration).apiSysPosListGet(name, code, options);
+        async apiSysPosListGet(name?: string, code?: string, tenantId?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<AdminResultListSysPos>>> {
+            const localVarAxiosArgs = await SysPosApiAxiosParamCreator(configuration).apiSysPosListGet(name, code, tenantId, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -324,11 +329,12 @@ export const SysPosApiFactory = function (configuration?: Configuration, basePat
          * @summary 获取职位列表 🔖
          * @param {string} [name] 名称
          * @param {string} [code] 编码
+         * @param {number} [tenantId] 租户Id
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiSysPosListGet(name?: string, code?: string, options?: AxiosRequestConfig): Promise<AxiosResponse<AdminResultListSysPos>> {
-            return SysPosApiFp(configuration).apiSysPosListGet(name, code, options).then((request) => request(axios, basePath));
+        async apiSysPosListGet(name?: string, code?: string, tenantId?: number, options?: AxiosRequestConfig): Promise<AxiosResponse<AdminResultListSysPos>> {
+            return SysPosApiFp(configuration).apiSysPosListGet(name, code, tenantId, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -377,12 +383,13 @@ export class SysPosApi extends BaseAPI {
      * @summary 获取职位列表 🔖
      * @param {string} [name] 名称
      * @param {string} [code] 编码
+     * @param {number} [tenantId] 租户Id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof SysPosApi
      */
-    public async apiSysPosListGet(name?: string, code?: string, options?: AxiosRequestConfig) : Promise<AxiosResponse<AdminResultListSysPos>> {
-        return SysPosApiFp(this.configuration).apiSysPosListGet(name, code, options).then((request) => request(this.axios, this.basePath));
+    public async apiSysPosListGet(name?: string, code?: string, tenantId?: number, options?: AxiosRequestConfig) : Promise<AxiosResponse<AdminResultListSysPos>> {
+        return SysPosApiFp(this.configuration).apiSysPosListGet(name, code, tenantId, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * 

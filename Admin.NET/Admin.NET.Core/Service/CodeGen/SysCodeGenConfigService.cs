@@ -32,7 +32,8 @@ public class SysCodeGenConfigService : IDynamicApiController, ITransient
             .Select<CodeGenConfig>()
             .Mapper(u =>
             {
-                u.NetType = (u.EffectType == "EnumSelector" || u.EffectType == "ConstSelector" ? u.DictTypeCode : u.NetType);
+                u.NetType = (u.EffectType == "EnumSelector" ? u.DictTypeCode : u.NetType);
+                u.FkDisplayColumnList = u.FkDisplayColumns?.Split(",").ToList();
             })
             .OrderBy(u => new { u.OrderNo, u.Id })
             .ToListAsync();
@@ -48,6 +49,10 @@ public class SysCodeGenConfigService : IDynamicApiController, ITransient
     public async Task UpdateCodeGenConfig(List<CodeGenConfig> inputList)
     {
         if (inputList == null || inputList.Count < 1) return;
+        inputList.ForEach(e =>
+        {
+            e.FkDisplayColumns = e.FkDisplayColumnList?.Count > 0 ? string.Join(",", e.FkDisplayColumnList) : null;
+        });
         await _db.Updateable(inputList.Adapt<List<SysCodeGenConfig>>())
             .IgnoreColumns(u => new { u.ColumnLength, u.ColumnName, u.PropertyName })
             .ExecuteCommandAsync();
@@ -91,16 +96,13 @@ public class SysCodeGenConfigService : IDynamicApiController, ITransient
         {
             var codeGenConfig = new SysCodeGenConfig();
 
-            var YesOrNo = YesNoEnum.Y.ToString();
-            if (Convert.ToBoolean(tableColumn.ColumnKey))
-            {
-                YesOrNo = YesNoEnum.N.ToString();
-            }
+            var yesOrNo = YesNoEnum.Y.ToString();
+            if (Convert.ToBoolean(tableColumn.ColumnKey)) yesOrNo = YesNoEnum.N.ToString();
 
             if (CodeGenUtil.IsCommonColumn(tableColumn.PropertyName))
             {
                 codeGenConfig.WhetherCommon = YesNoEnum.Y.ToString();
-                YesOrNo = YesNoEnum.N.ToString();
+                yesOrNo = YesNoEnum.N.ToString();
             }
             else
             {
@@ -117,9 +119,10 @@ public class SysCodeGenConfigService : IDynamicApiController, ITransient
 
             // 生成代码时，主键并不是必要输入项，故一定要排除主键字段
             codeGenConfig.WhetherRequired = (tableColumn.IsNullable || tableColumn.IsPrimarykey) ? YesNoEnum.N.ToString() : YesNoEnum.Y.ToString();
-            codeGenConfig.QueryWhether = YesOrNo;
-            codeGenConfig.WhetherAddUpdate = YesOrNo;
-            codeGenConfig.WhetherTable = YesOrNo;
+            codeGenConfig.WhetherQuery = yesOrNo;
+            codeGenConfig.WhetherImport = yesOrNo;
+            codeGenConfig.WhetherAddUpdate = yesOrNo;
+            codeGenConfig.WhetherTable = yesOrNo;
 
             codeGenConfig.ColumnKey = tableColumn.ColumnKey;
 
@@ -128,6 +131,13 @@ public class SysCodeGenConfigService : IDynamicApiController, ITransient
             codeGenConfig.QueryType = GetDefaultQueryType(codeGenConfig); // QueryTypeEnum.eq.ToString();
             codeGenConfig.OrderNo = orderNo;
             codeGenConfigs.Add(codeGenConfig);
+
+            if (!string.IsNullOrWhiteSpace(tableColumn.DictTypeCode))
+            {
+                codeGenConfig.QueryType = "==";
+                codeGenConfig.DictTypeCode = tableColumn.DictTypeCode;
+                codeGenConfig.EffectType = tableColumn.DictTypeCode.EndsWith("Enum") ? "EnumSelector" : "DictSelector";
+            }
 
             orderNo += 10; // 每个配置排序间隔10
         }

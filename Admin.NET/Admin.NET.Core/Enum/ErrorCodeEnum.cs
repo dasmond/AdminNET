@@ -140,34 +140,10 @@ public enum ErrorCodeEnum
     D1017,
 
     /// <summary>
-    /// 禁止删除管理员
+    /// 该租户下角色菜单权限集为空
     /// </summary>
-    [ErrorCodeItemMetadata("禁止删除管理员")]
-    D1018,
-
-    /// <summary>
-    /// 禁止删除系统管理员角色
-    /// </summary>
-    [ErrorCodeItemMetadata("禁止删除系统管理员角色")]
+    [ErrorCodeItemMetadata("该租户下角色菜单权限集为空")]
     D1019,
-
-    /// <summary>
-    /// 禁止修改系统管理员角色
-    /// </summary>
-    [ErrorCodeItemMetadata("禁止修改系统管理员角色")]
-    D1020,
-
-    /// <summary>
-    /// 禁止为系统管理员角色分配权限
-    /// </summary>
-    [ErrorCodeItemMetadata("禁止为系统管理员角色分配权限")]
-    D1021,
-
-    /// <summary>
-    /// 禁止为超级管理员分配角色
-    /// </summary>
-    [ErrorCodeItemMetadata("禁止为超级管理员分配角色")]
-    D1022,
 
     /// <summary>
     /// 禁止删除默认租户
@@ -222,6 +198,42 @@ public enum ErrorCodeEnum
     /// </summary>
     [ErrorCodeItemMetadata("开放接口绑定租户禁止删除")]
     D1031,
+
+    /// <summary>
+    /// 手机号已存在
+    /// </summary>
+    [ErrorCodeItemMetadata("手机号已存在")]
+    D1032,
+
+    /// <summary>
+    /// 此角色下存在注册方案禁止删除
+    /// </summary>
+    [ErrorCodeItemMetadata("此角色下存在注册方案禁止删除")]
+    D1033,
+
+    /// <summary>
+    /// 注册功能未开启禁止注册
+    /// </summary>
+    [ErrorCodeItemMetadata("注册功能未开启禁止注册")]
+    D1034,
+
+    /// <summary>
+    /// 注册方案不存在
+    /// </summary>
+    [ErrorCodeItemMetadata("注册方案不存在")]
+    D1035,
+
+    /// <summary>
+    /// 角色不存在
+    /// </summary>
+    [ErrorCodeItemMetadata("角色不存在")]
+    D1036,
+
+    /// <summary>
+    /// 禁止注册超级管理员和系统管理员
+    /// </summary>
+    [ErrorCodeItemMetadata("禁止注册超级管理员和系统管理员")]
+    D1037,
 
     /// <summary>
     /// 父机构不存在
@@ -284,6 +296,18 @@ public enum ErrorCodeEnum
     D2009,
 
     /// <summary>
+    /// 此机构下存在注册方案禁止删除
+    /// </summary>
+    [ErrorCodeItemMetadata("此机构下存在注册方案禁止删除")]
+    D2010,
+
+    /// <summary>
+    /// 机构不存在
+    /// </summary>
+    [ErrorCodeItemMetadata("机构不存在")]
+    D2011,
+
+    /// <summary>
     /// 字典类型不存在
     /// </summary>
     [ErrorCodeItemMetadata("字典类型不存在")]
@@ -304,7 +328,7 @@ public enum ErrorCodeEnum
     /// <summary>
     /// 字典值已存在
     /// </summary>
-    [ErrorCodeItemMetadata("字典值已存在,名称或编码重复")]
+    [ErrorCodeItemMetadata("字典值已存在")]
     D3003,
 
     /// <summary>
@@ -318,6 +342,30 @@ public enum ErrorCodeEnum
     /// </summary>
     [ErrorCodeItemMetadata("字典状态错误")]
     D3005,
+
+    /// <summary>
+    /// 字典编码不能以Enum结尾
+    /// </summary>
+    [ErrorCodeItemMetadata("字典编码不能以Enum结尾")]
+    D3006,
+
+    /// <summary>
+    /// 禁止修改枚举类型的字典编码
+    /// </summary>
+    [ErrorCodeItemMetadata("禁止修改枚举类型的字典编码")]
+    D3007,
+
+    /// <summary>
+    /// 禁止迁移枚举字典
+    /// </summary>
+    [ErrorCodeItemMetadata("禁止迁移枚举字典")]
+    D3008,
+
+    /// <summary>
+    /// 字典已在该租户禁止迁移
+    /// </summary>
+    [ErrorCodeItemMetadata("字典已在该租户禁止迁移")]
+    D3009,
 
     /// <summary>
     /// 菜单已存在
@@ -386,6 +434,24 @@ public enum ErrorCodeEnum
     D4010,
 
     /// <summary>
+    /// 租户不能为空
+    /// </summary>
+    [ErrorCodeItemMetadata("租户不能为空")]
+    D4011,
+
+    /// <summary>
+    /// 系统菜单禁止修改
+    /// </summary>
+    [ErrorCodeItemMetadata("系统菜单禁止修改")]
+    D4012,
+
+    /// <summary>
+    /// 系统菜单禁止删除
+    /// </summary>
+    [ErrorCodeItemMetadata("系统菜单禁止删除")]
+    D4013,
+
+    /// <summary>
     /// 已存在同名或同编码应用
     /// </summary>
     [ErrorCodeItemMetadata("已存在同名或同编码应用")]
@@ -432,6 +498,12 @@ public enum ErrorCodeEnum
     /// </summary>
     [ErrorCodeItemMetadata("职位不存在")]
     D6003,
+
+    /// <summary>
+    /// 此职位下存在注册方案禁止删除
+    /// </summary>
+    [ErrorCodeItemMetadata("此职位下存在注册方案禁止删除")]
+    D6004,
 
     /// <summary>
     /// 通知公告状态错误
@@ -536,6 +608,18 @@ public enum ErrorCodeEnum
     D1302,
 
     /// <summary>
+    /// 已存在同名的租户域名
+    /// </summary>
+    [ErrorCodeItemMetadata("已存在同名的租户域名")]
+    D1303,
+
+    /// <summary>
+    /// 授权菜单存在重复项
+    /// </summary>
+    [ErrorCodeItemMetadata("授权菜单存在重复项")]
+    D1304,
+
+    /// <summary>
     /// 该表代码模板已经生成过
     /// </summary>
     [ErrorCodeItemMetadata("该表代码模板已经生成过")]
@@ -632,6 +716,30 @@ public enum ErrorCodeEnum
     D1900,
 
     /// <summary>
+    /// 注册方案名称已存在
+    /// </summary>
+    [ErrorCodeItemMetadata("注册方案名称已存在")]
+    D2101,
+
+    /// <summary>
+    /// 禁止删除存在关联租户的应用
+    /// </summary>
+    [ErrorCodeItemMetadata("禁止删除存在关联租户的应用")]
+    A1001,
+
+    /// <summary>
+    /// 禁止删除存在关联菜单的应用
+    /// </summary>
+    [ErrorCodeItemMetadata("禁止删除存在关联菜单的应用")]
+    A1002,
+
+    /// <summary>
+    /// 找不到系统应用
+    /// </summary>
+    [ErrorCodeItemMetadata("找不到系统应用")]
+    A1000,
+
+    /// <summary>
     /// 已存在同名或同编码项目
     /// </summary>
     [ErrorCodeItemMetadata("已存在同名或同编码项目")]
@@ -722,9 +830,9 @@ public enum ErrorCodeEnum
     Z1002,
 
     /// <summary>
-    /// 租户已禁用
+    /// 租户不存在或已禁用
     /// </summary>
-    [ErrorCodeItemMetadata("租户已禁用")]
+    [ErrorCodeItemMetadata("租户不存在或已禁用")]
     Z1003,
 
     /// <summary>
@@ -738,4 +846,10 @@ public enum ErrorCodeEnum
     /// </summary>
     [ErrorCodeItemMetadata("身份标识已存在")]
     O1000,
+
+    /// <summary>
+    /// 禁止非超级管理员操作
+    /// </summary>
+    [ErrorCodeItemMetadata("禁止非超级管理员操作")]
+    SA001
 }

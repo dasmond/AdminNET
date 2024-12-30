@@ -2,15 +2,16 @@
 	<div class="sys-menu-container">
 		<el-card shadow="hover" :body-style="{ paddingBottom: '0' }">
 			<el-form :model="state.queryParams" ref="queryForm" :inline="true">
+				<el-form-item label="租户" v-if="userStore.userInfos.accountType == 999">
+					<el-select v-model="state.queryParams.tenantId" placeholder="租户" style="width: 100%">
+						<el-option :value="item.value" :label="`${item.label} (${item.host})`" v-for="(item, index) in state.tenantList" :key="index" />
+					</el-select>
+				</el-form-item>
 				<el-form-item label="菜单名称">
 					<el-input v-model="state.queryParams.title" placeholder="菜单名称" clearable />
 				</el-form-item>
 				<el-form-item label="类型">
-					<el-select v-model="state.queryParams.type" placeholder="类型" clearable>
-						<el-option label="目录" :value="1" />
-						<el-option label="菜单" :value="2" />
-						<el-option label="按钮" :value="3" />
-					</el-select>
+          <g-sys-dict v-model="state.queryParams.type" code="MenuTypeEnum" render-as="select" placeholder="类型" clearable />
 				</el-form-item>
 				<el-form-item>
 					<el-button-group>
@@ -34,9 +35,7 @@
 				</el-table-column>
 				<el-table-column label="类型" width="70" align="center" show-overflow-tooltip>
 					<template #default="scope">
-						<el-tag type="warning" v-if="scope.row.type === 1">目录</el-tag>
-						<el-tag v-else-if="scope.row.type === 2">菜单</el-tag>
-						<el-tag type="info" v-else>按钮</el-tag>
+            <g-sys-dict v-model="scope.row.type" code="MenuTypeEnum" />
 					</template>
 				</el-table-column>
 				<el-table-column prop="path" label="路由路径" header-align="center" show-overflow-tooltip />
@@ -45,8 +44,7 @@
 				<el-table-column prop="orderNo" label="排序" width="70" align="center" show-overflow-tooltip />
 				<el-table-column label="状态" width="80" align="center" show-overflow-tooltip>
 					<template #default="scope">
-						<el-tag type="success" v-if="scope.row.status === 1">启用</el-tag>
-						<el-tag type="danger" v-else>禁用</el-tag>
+            <g-sys-dict v-model="scope.row.status" code="StatusEnum" />
 					</template>
 				</el-table-column>
 				<el-table-column label="修改记录" width="100" align="center" show-overflow-tooltip>
@@ -64,7 +62,7 @@
 			</el-table>
 		</el-card>
 
-		<EditMenu ref="editMenuRef" :title="state.editMenuTitle" :menuData="state.menuData" @handleQuery="handleQuery" />
+		<EditMenu ref="editMenuRef" :title="state.editMenuTitle" :menuData="state.allMenuData" @handleQuery="handleQuery" />
 	</div>
 </template>
 
@@ -75,14 +73,19 @@ import EditMenu from '/@/views/system/menu/component/editMenu.vue';
 import ModifyRecord from '/@/components/table/modifyRecord.vue';
 
 import { getAPI } from '/@/utils/axios-utils';
-import { SysMenuApi } from '/@/api-services/api';
+import {SysMenuApi, SysTenantApi} from '/@/api-services/api';
 import { SysMenu, UpdateMenuInput } from '/@/api-services/models';
+import {useUserInfo} from "/@/stores/userInfo";
 
+const userStore = useUserInfo();
 const editMenuRef = ref<InstanceType<typeof EditMenu>>();
 const state = reactive({
 	loading: false,
+	tenantList: [] as Array<any>,
 	menuData: [] as Array<SysMenu>,
+	allMenuData: [] as Array<SysMenu>,
 	queryParams: {
+		tenantId: undefined,
 		title: undefined,
 		type: undefined,
 	},
@@ -90,13 +93,17 @@ const state = reactive({
 });
 
 onMounted(async () => {
+	if (userStore.userInfos.accountType == 999) {
+		state.tenantList = await getAPI(SysTenantApi).apiSysTenantListGet().then(res => res.data.result ?? []);
+		state.queryParams.tenantId = state.tenantList[0].value;
+	}
 	handleQuery();
 });
 
 // 查询操作
 const handleQuery = async () => {
 	state.loading = true;
-	var res = await getAPI(SysMenuApi).apiSysMenuListGet(state.queryParams.title, state.queryParams.type);
+	const res = await getAPI(SysMenuApi).apiSysMenuListGet(state.queryParams.title, state.queryParams.type, state.queryParams.tenantId);
 	state.menuData = res.data.result ?? [];
 	state.loading = false;
 };
@@ -108,14 +115,25 @@ const resetQuery = () => {
 	handleQuery();
 };
 
+// 获取菜单树数据
+const getMenuTreeData = async () => {
+	const res = await getAPI(SysMenuApi).apiSysMenuListGet(undefined, undefined, state.queryParams.tenantId);
+	state.allMenuData = res.data.result ?? [];
+	return state.menuData;
+}
+
 // 打开新增页面
 const openAddMenu = () => {
+	getMenuTreeData();
+	const data = { type: 2, isHide: false, isKeepAlive: true, isAffix: false, isIframe: false, tenantId: undefined, status: 1, orderNo: 100 };
+	data.tenantId = state.queryParams.tenantId;
 	state.editMenuTitle = '添加菜单';
-	editMenuRef.value?.openDialog({ type: 2, isHide: false, isKeepAlive: true, isAffix: false, isIframe: false, status: 1, orderNo: 100 });
+	editMenuRef.value?.openDialog(data);
 };
 
 // 打开编辑页面
 const openEditMenu = (row: any) => {
+	getMenuTreeData();
 	state.editMenuTitle = '编辑菜单';
 	editMenuRef.value?.openDialog(row);
 };

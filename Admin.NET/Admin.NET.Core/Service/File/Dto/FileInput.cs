@@ -6,36 +6,20 @@
 
 namespace Admin.NET.Core.Service;
 
-public class FileInput : BaseIdInput
-{
-    /// <summary>
-    /// 文件名称
-    /// </summary>
-    public string FileName { get; set; }
-
-    /// <summary>
-    /// 文件类型
-    /// </summary>
-    public string FileType { get; set; }
-
-    /// <summary>
-    /// 是否公开
-    /// 若为true则所有人都可以查看，默认只有自己或有权限的可以查看
-    /// </summary>
-    public bool IsPublic { get; set; }
-
-    /// <summary>
-    /// 文件Url
-    /// </summary>
-    public string? Url { get; set; }
-}
-
+/// <summary>
+/// 文件分页查询
+/// </summary>
 public class PageFileInput : BasePageInput
 {
     /// <summary>
     /// 文件名称
     /// </summary>
     public string FileName { get; set; }
+
+    /// <summary>
+    /// 文件后缀
+    /// </summary>
+    public string? Suffix { get; set; }
 
     /// <summary>
     /// 开始时间
@@ -46,14 +30,63 @@ public class PageFileInput : BasePageInput
     /// 结束时间
     /// </summary>
     public DateTime? EndTime { get; set; }
+
+    /// <summary>
+    /// 租户Id
+    /// </summary>
+    public long TenantId { get; set; }
+}
+
+public class FileInput : BaseIdInput
+{
 }
 
 public class DeleteFileInput : BaseIdInput
 {
 }
 
+/// <summary>
+/// 上传文件
+/// </summary>
+public class UploadFileInput
+{
+    /// <summary>
+    /// 文件
+    /// </summary>
+    [Required]
+    public IFormFile File { get; set; }
+
+    /// <summary>
+    /// 文件路径
+    /// </summary>
+    public string Path { get; set; }
+
+    /// <summary>
+    /// 文件保存路径
+    /// </summary>
+    public string SavePath { get; set; }
+
+    /// <summary>
+    /// 允许格式：.jpeg.jpg.png.bmp.gif.tif
+    /// </summary>
+    public string AllowSuffix { get; set; }
+
+    /// <summary>
+    /// 文件类型
+    /// </summary>
+    public string FileType { get; set; }
+}
+
+/// <summary>
+/// 上传文件Base64
+/// </summary>
 public class UploadFileFromBase64Input
 {
+    /// <summary>
+    /// 文件名
+    /// </summary>
+    public string? FileName { get; set; }
+
     /// <summary>
     /// 文件内容
     /// </summary>
@@ -65,51 +98,7 @@ public class UploadFileFromBase64Input
     public string ContentType { get; set; }
 
     /// <summary>
-    /// 文件名称
-    /// </summary>
-    public string FileName { get; set; }
-
-    /// <summary>
     /// 保存路径
-    /// </summary>
-    public string Path { get; set; }
-
-    /// <summary>
-    /// 文件类型
-    /// </summary>
-    public string FileType { get; set; }
-
-    /// <summary>
-    /// 是否公开
-    /// 若为true则所有人都可以查看，默认只有自己或有权限的可以查看
-    /// </summary>
-    public bool IsPublic { get; set; }
-}
-
-/// <summary>
-/// 上传文件
-/// </summary>
-public class FileUploadInput
-{
-    /// <summary>
-    /// 文件
-    /// </summary>
-    [Required]
-    public IFormFile File { get; set; }
-
-    /// <summary>
-    /// 文件类型
-    /// </summary>
-    public string FileType { get; set; }
-
-    /// <summary>
-    /// 是否公开
-    /// 若为true则所有人都可以查看，默认只有自己或有权限的可以查看
-    /// </summary>
-    public bool IsPublic { get; set; }
-
-    /// <summary>
-    /// 文件路径
     /// </summary>
     public string Path { get; set; }
 }
@@ -130,7 +119,7 @@ public class RelationQueryInput
     public long? RelationId { get; set; }
 
     /// <summary>
-    /// 文件，多个以","分割
+    /// 文件类型：多个以","分割
     /// </summary>
     public string FileTypes { get; set; }
 
@@ -140,80 +129,11 @@ public class RelationQueryInput
     public long? BelongId { get; set; }
 
     /// <summary>
-    ///
+    /// 文件类型分割
     /// </summary>
     /// <returns></returns>
     public string[] GetFileTypeBS()
     {
         return FileTypes.Split(',');
     }
-}
-
-public class FileOutput
-{
-    /// <summary>
-    /// Id
-    /// </summary>
-    public long Id { get; set; }
-
-    /// <summary>
-    /// 名称
-    /// </summary>
-    public string Name { get; set; }
-
-    /// <summary>
-    /// URL
-    /// </summary>
-    public string Url { get; set; }
-
-    /// <summary>
-    /// 大小
-    /// </summary>
-    public long SizeKb { get; set; }
-
-    /// <summary>
-    /// 后缀
-    /// </summary>
-    public string Suffix { get; set; }
-
-    /// <summary>
-    /// 路径
-    /// </summary>
-    public string FilePath { get; set; }
-
-    /// <summary>
-    /// 文件类别
-    /// </summary>
-    public string FileType { get; set; }
-
-    /// <summary>
-    /// 是否公开
-    /// 若为true则所有人都可以查看，默认只有自己或有权限的可以查看
-    /// </summary>
-    public bool IsPublic { get; set; }
-
-    /// <summary>
-    /// 上传人
-    /// </summary>
-    public string CreateUserName { get; set; }
-
-    /// <summary>
-    /// 上传时间
-    /// </summary>
-    public DateTime? CreateTime { get; set; }
-
-    /// <summary>
-    /// 关联对象名称
-    /// </summary>
-    public string RelationName { get; set; }
-
-    /// <summary>
-    /// 关联对象Id
-    /// </summary>
-    public long? RelationId { get; set; }
-
-    /// <summary>
-    /// 所属Id
-    /// </summary>
-    public long? BelongId { get; set; }
 }

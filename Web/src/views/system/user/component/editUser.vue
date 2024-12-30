@@ -32,19 +32,13 @@
 								</el-form-item>
 							</el-col>
 							<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
-								<el-form-item label="角色集合" prop="roleIdList" :rules="[{ required: true, message: '角色集合不能为空', trigger: 'blur' }]">
-									<el-select v-model="state.ruleForm.roleIdList" multiple value-key="id" clearable placeholder="角色集合" collapse-tags collapse-tags-tooltip class="w100" filterable>
-										<el-option v-for="item in state.roleData" :key="item.id" :label="item.name" :value="item.id" />
-									</el-select>
-								</el-form-item>
-							</el-col>
-							<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
 								<el-form-item label="账号类型" prop="accountType" :rules="[{ required: true, message: '账号类型不能为空', trigger: 'blur' }]">
-									<el-select v-model="state.ruleForm.accountType" placeholder="账号类型" collapse-tags collapse-tags-tooltip class="w100">
-										<el-option label="系统管理员" :value="888" :disabled="userInfos.accountType != 888 && userInfos.accountType != 999" />
-										<el-option label="普通账号" :value="777" />
-										<el-option label="会员" :value="666" />
-									</el-select>
+									<g-sys-dict
+										v-model="state.ruleForm.accountType"
+										:on-item-filter="(data: any) => data.name != 'SuperAdmin' && (data.name == 'SysAdmin' ? [888, 999].includes(userInfos.accountType) : true)"
+										code="AccountTypeEnum"
+										render-as="select"
+									/>
 								</el-form-item>
 							</el-col>
 							<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
@@ -62,14 +56,7 @@
 							</el-divider>
 							<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
 								<el-form-item label="所属机构" prop="orgId" :rules="[{ required: true, message: '所属机构不能为空', trigger: 'blur' }]">
-									<el-cascader
-										:options="props.orgData"
-										:props="{ checkStrictly: true, emitPath: false, value: 'id', label: 'name', expandTrigger: 'hover' }"
-										placeholder="所属机构"
-										clearable
-										class="w100"
-										v-model="state.ruleForm.orgId"
-									>
+									<el-cascader :options="state.orgData" :props="cascaderProps" placeholder="所属机构" clearable filterable class="w100" v-model="state.ruleForm.orgId">
 										<template #default="{ node, data }">
 											<span>{{ data.name }}</span>
 											<span v-if="!node.isLeaf"> ({{ data.children.length }}) </span>
@@ -115,14 +102,7 @@
 													<el-button icon="ele-Delete" type="danger" circle plain size="small" @click="deleteExtOrgRow(k)" />
 													<span class="ml5">机构</span>
 												</template>
-												<el-cascader
-													:options="props.orgData"
-													:props="{ checkStrictly: true, emitPath: false, value: 'id', label: 'name', expandTrigger: 'hover' }"
-													placeholder="机构组织"
-													clearable
-													class="w100"
-													v-model="state.ruleForm.extOrgIdList[k].orgId"
-												>
+												<el-cascader :options="props.orgData" :props="cascaderProps" placeholder="机构组织" clearable filterable class="w100" v-model="state.ruleForm.extOrgIdList[k].orgId">
 													<template #default="{ node, data }">
 														<span>{{ data.name }}</span>
 														<span v-if="!node.isLeaf"> ({{ data.children.length }}) </span>
@@ -144,18 +124,15 @@
 						</el-row>
 					</el-form>
 				</el-tab-pane>
+				<el-tab-pane label="角色授权" style="height: 550px; margin-left: 36px">
+					<el-transfer :data="state.roleData" :props="{ key: 'id', label: 'name' }" v-model="state.ruleForm.roleIdList" :titles="['未授权', '已授权']"></el-transfer>
+				</el-tab-pane>
 				<el-tab-pane label="档案信息" style="height: 550px; overflow-y: auto; overflow-x: hidden">
 					<el-form :model="state.ruleForm" label-width="auto">
 						<el-row :gutter="35">
 							<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
 								<el-form-item label="证件类型" prop="cardType">
-									<el-select v-model="state.ruleForm.cardType" placeholder="证件类型" class="w100">
-										<el-option label="身份证" :value="0" />
-										<el-option label="护照" :value="1" />
-										<el-option label="出生证" :value="2" />
-										<el-option label="港澳台通行证" :value="3" />
-										<el-option label="外国人居留证" :value="4" />
-									</el-select>
+									<g-sys-dict v-model="state.ruleForm.cardType" code="CardTypeEnum" render-as="select" placeholder="证件类型" class="w100" />
 								</el-form-item>
 							</el-col>
 							<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
@@ -170,11 +147,7 @@
 							</el-col>
 							<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
 								<el-form-item label="性别">
-									<el-radio-group v-model="state.ruleForm.sex">
-										<el-radio :value="1">男</el-radio>
-										<el-radio :value="2">女</el-radio>
-										<el-radio :value="3">其他</el-radio>
-									</el-radio-group>
+									<g-sys-dict v-model="state.ruleForm.sex" code="GenderEnum" render-as="radio" />
 								</el-form-item>
 							</el-col>
 							<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb5">
@@ -199,20 +172,7 @@
 							</el-col>
 							<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
 								<el-form-item label="文化程度">
-									<el-select v-model="state.ruleForm.cultureLevel" placeholder="文化程度" class="w100">
-										<el-option label="其他" :value="0" />
-										<el-option label="小学" :value="1" />
-										<el-option label="初中" :value="2" />
-										<el-option label="普通高中" :value="3" />
-										<el-option label="技工学校" :value="4" />
-										<el-option label="职业教育" :value="5" />
-										<el-option label="职业高中" :value="6" />
-										<el-option label="中等专科" :value="7" />
-										<el-option label="大学专科" :value="8" />
-										<el-option label="大学本科" :value="9" />
-										<el-option label="硕士研究生" :value="10" />
-										<el-option label="博士研究生" :value="11" />
-									</el-select>
+									<g-sys-dict v-model="state.ruleForm.cultureLevel" code="CultureLevelEnum" render-as="select" placeholder="文化程度" class="w100" />
 								</el-form-item>
 							</el-col>
 							<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
@@ -263,7 +223,6 @@
 import { onMounted, reactive, ref } from 'vue';
 import { storeToRefs } from 'pinia';
 import { useUserInfo } from '/@/stores/userInfo';
-
 import { getAPI } from '/@/utils/axios-utils';
 import { SysPosApi, SysRoleApi, SysUserApi } from '/@/api-services/api';
 import { RoleOutput, SysOrg, SysPos, UpdateUserInput } from '/@/api-services/models';
@@ -280,10 +239,13 @@ const state = reactive({
 	loading: false,
 	isShowDialog: false,
 	selectedTabName: '0', // 选中的 tab 页
+	orgData: [] as Array<SysOrg>,
 	ruleForm: {} as UpdateUserInput,
 	posData: [] as Array<SysPos>, // 职位数据
 	roleData: [] as Array<RoleOutput>, // 角色数据
 });
+// 级联选择器配置选项
+const cascaderProps = { checkStrictly: true, emitPath: false, value: 'id', label: 'name', expandTrigger: 'hover' };
 
 onMounted(async () => {
 	state.loading = true;
@@ -296,8 +258,10 @@ onMounted(async () => {
 
 // 打开弹窗
 const openDialog = async (row: any) => {
+	state.orgData = (row.tenantId ? props.orgData?.filter((e) => e.tenantId === row.tenantId) : props.orgData) ?? [];
+	state.posData = (row.tenantId ? state.posData?.filter((e) => e.tenantId === row.tenantId) : state.posData) ?? [];
+	state.roleData = (row.tenantId ? state.roleData?.filter((e) => e.tenantId === row.tenantId) : state.roleData) ?? [];
 	ruleFormRef.value?.resetFields();
-
 	state.selectedTabName = '0'; // 重置为第一个 tab 页
 	state.ruleForm = JSON.parse(JSON.stringify(row));
 	if (row.id != undefined) {

@@ -14,137 +14,135 @@ namespace Admin.NET.Core;
 public class EnumToDictJob : IJob
 {
     private readonly IServiceScopeFactory _scopeFactory;
-    private readonly IJsonSerializerProvider _jsonSerializer;
+    private const string DefaultTagType = null;
+    private const int OrderOffset = 10;
 
-    public EnumToDictJob(IServiceScopeFactory scopeFactory, IJsonSerializerProvider jsonSerializer)
+    public EnumToDictJob(IServiceScopeFactory scopeFactory)
     {
         _scopeFactory = scopeFactory;
-        _jsonSerializer = jsonSerializer;
     }
 
     public async Task ExecuteAsync(JobExecutingContext context, CancellationToken stoppingToken)
     {
+        var originColor = Console.ForegroundColor;
+        Console.ForegroundColor = ConsoleColor.Yellow;
+        Console.WriteLine($"【{DateTime.Now}】系统枚举转换字典");
+
         using var serviceScope = _scopeFactory.CreateScope();
-        var sysEnumService = serviceScope.ServiceProvider.GetRequiredService<SysEnumService>();
         var db = serviceScope.ServiceProvider.GetRequiredService<ISqlSugarClient>().CopyNew();
 
-        var enumTypeList = sysEnumService.GetEnumTypeList();
-        var enumCodeList = enumTypeList.Select(u => u.TypeName);
-        var sysDictTypeCodeList = await db.Queryable<SysDictType>().Where(u => enumCodeList.Contains(u.Code)).Select(u => u.Code).ToListAsync(stoppingToken);
+        var sysEnumService = serviceScope.ServiceProvider.GetRequiredService<SysEnumService>();
+        var sysDictTypeList = GetDictByEnumType(sysEnumService.GetEnumTypeList());
 
-        // 更新的枚举转换字典
-        var uEnumType = enumTypeList.Where(u => sysDictTypeCodeList.Contains(u.TypeName)).ToList();
-        var waitUpdateSysDictType = await db.Queryable<SysDictType>().Where(u => uEnumType.Any(a => a.TypeName == u.Code)).ToListAsync(stoppingToken);
-        var waitUpdateSysDictTypeDict = waitUpdateSysDictType.ToDictionary(u => u.Code, u => u);
-        var waitUpdateSysDictData = await db.Queryable<SysDictData>().Where(u => uEnumType.Any(a => a.TypeName == u.DictType.Code)).ToListAsync(stoppingToken);
-        var uSysDictType = new List<SysDictType>();
-        var uSysDictData = new List<SysDictData>();
-        if (uEnumType.Count > 0)
+        // 校验枚举类命名规范，字典相关功能中需要通过后缀判断是否为枚举类型
+        Console.ForegroundColor = ConsoleColor.Red;
+        foreach (var dictType in sysDictTypeList.Where(x => !x.Code.EndsWith("Enum")))
+            Console.WriteLine($"【{DateTime.Now}】系统枚举转换字典的枚举类名称必须以Enum结尾: {dictType.Code} ({dictType.Name})");
+        sysDictTypeList = sysDictTypeList.Where(x => x.Code.EndsWith("Enum")).ToList();
+
+        await SyncEnumToDictInfoAsync(db, sysDictTypeList);
+
+        Console.ForegroundColor = ConsoleColor.Yellow;
+        try
         {
-            uEnumType.ForEach(e =>
-            {
-                if (waitUpdateSysDictTypeDict.TryGetValue(e.TypeName, out SysDictType value))
-                {
-                    var uDictType = value;
-                    uDictType.Name = e.TypeDescribe;
-                    uDictType.Remark = e.TypeRemark;
-                    var uDictData = waitUpdateSysDictData.Where(u => u.DictTypeId == uDictType.Id).ToList();
-                    if (uDictData.Count > 0)
-                    {
-                        uDictData.ForEach(dictData =>
-                        {
-                            var enumData = e.EnumEntities.Where(u => dictData.Code == u.Name).FirstOrDefault();
-                            if (enumData != null)
-                            {
-                                dictData.Value = enumData.Value.ToString();
-                                dictData.Code = enumData.Name;
-                                dictData.OrderNo = enumData.Value + 10;
-                                dictData.Name = enumData.Describe;
-                                dictData.TagType = enumData.Theme != "" ? enumData.Theme : dictData.TagType != "" ? dictData.TagType : "info";
-                                uSysDictData.Add(dictData);
-                            }
-                        });
-                    }
-                    if (!uSysDictType.Any(u => u.Id == uDictType.Id))
-                        uSysDictType.Add(uDictType);
-                }
-            });
-            try
-            {
-                db.BeginTran();
+            await db.BeginTranAsync();
+            var storageable1 = await db.Storageable(sysDictTypeList)
+                .SplitUpdate(it => it.Any())
+                .SplitInsert(_ => true)
+                .ToStorageAsync();
+            await storageable1.AsInsertable.ExecuteCommandAsync(stoppingToken);
+            await storageable1.AsUpdateable.ExecuteCommandAsync(stoppingToken);
 
-                if (uSysDictType.Count > 0)
-                    await db.Updateable(uSysDictType).ExecuteCommandAsync(stoppingToken);
+            Console.WriteLine($"【{DateTime.Now}】系统枚举类转字典类型数据: 插入{storageable1.InsertList.Count}条, 更新{storageable1.UpdateList.Count}条, 共{storageable1.TotalList.Count}条。");
 
-                if (uSysDictData.Count > 0)
-                    await db.Updateable(uSysDictData).ExecuteCommandAsync(stoppingToken);
-
-                db.CommitTran();
-            }
-            catch (Exception error)
+            var storageable2 = await db.Storageable(sysDictTypeList.SelectMany(x => x.Children).ToList())
+                .WhereColumns(it => new { it.DictTypeId, it.Value })
+                .SplitUpdate(it => it.Any())
+                .SplitInsert(_ => true)
+                .ToStorageAsync();
+            await storageable2.AsInsertable.ExecuteCommandAsync(stoppingToken);
+            await storageable2.AsUpdateable.UpdateColumns(u => new
             {
-                db.RollbackTran();
-                Log.Error($"{context.Trigger.Description}更新枚举转换字典入库错误：" + _jsonSerializer.Serialize(error));
-                throw new Exception($"{context.Trigger.Description}更新枚举转换字典入库错误");
-            }
+                u.Label,
+                u.Name,
+                u.Value,
+                u.TenantId
+            }).ExecuteCommandAsync(stoppingToken);
+
+            Console.WriteLine($"【{DateTime.Now}】系统枚举项转字典值数据: 插入{storageable2.InsertList.Count}条, 更新{storageable2.UpdateList.Count}条, 共{storageable2.TotalList.Count}条。");
+
+            await db.CommitTranAsync();
         }
-
-        // 新增的枚举转换字典
-        var iEnumType = enumTypeList.Where(u => !sysDictTypeCodeList.Contains(u.TypeName)).ToList();
-        if (iEnumType.Count > 0)
+        catch (Exception error)
         {
-            // 新增字典类型
-            var iDictType = iEnumType.Select(u => new SysDictType
-            {
-                Id = YitIdHelper.NextId(),
-                Code = u.TypeName,
-                Name = u.TypeDescribe,
-                Remark = u.TypeRemark,
-                Status = StatusEnum.Enable
-            }).ToList();
-            // 新增字典数据
-            var dictData = iEnumType.Join(iDictType, t1 => t1.TypeName, t2 => t2.Code, (t1, t2) => new
-            {
-                data = t1.EnumEntities.Select(u => new SysDictData
-                {
-                    Id = YitIdHelper.NextId(), // 性能优化，使用BulkCopyAsync必须手动获取Id
-                    DictTypeId = t2.Id,
-                    Name = u.Describe,
-                    Value = u.Value.ToString(),
-                    Code = u.Name,
-                    Remark = t2.Remark,
-                    OrderNo = u.Value + 10,
-                    TagType = u.Theme != "" ? u.Theme : "info",
-                }).ToList()
-            }).ToList();
-            var iDictData = new List<SysDictData>();
-            dictData.ForEach(item =>
-            {
-                iDictData.AddRange(item.data);
-            });
-            try
-            {
-                db.BeginTran();
-
-                if (iDictType.Count > 0)
-                    await db.Insertable(iDictType).ExecuteCommandAsync(stoppingToken);
-
-                if (iDictData.Count > 0)
-                    await db.Insertable(iDictData).ExecuteCommandAsync(stoppingToken);
-
-                db.CommitTran();
-            }
-            catch (Exception error)
-            {
-                db.RollbackTran();
-                Log.Error($"{context.Trigger.Description}新增枚举转换字典入库错误：" + _jsonSerializer.Serialize(error));
-                throw new Exception($"{context.Trigger.Description}新增枚举转换字典入库错误");
-            }
+            await db.RollbackTranAsync();
+            Log.Error($"系统枚举转换字典操作错误：{error.Message}\n堆栈跟踪：{error.StackTrace}", error);
+            throw;
         }
+        finally
+        {
+            Console.ForegroundColor = originColor;
+        }
+    }
 
-        var originColor = Console.ForegroundColor;
-        Console.ForegroundColor = ConsoleColor.Green;
-        Console.WriteLine($"【{DateTime.Now}】系统枚举转换字典");
-        Console.ForegroundColor = originColor;
+    /// <summary>
+    /// 用于同步枚举转字典数据
+    /// </summary>
+    /// <param name="db"></param>
+    /// <param name="list"></param>
+    private async Task SyncEnumToDictInfoAsync(SqlSugarClient db, List<SysDictType> list)
+    {
+        var codeList = list.Select(x => x.Code).ToList();
+        foreach (var dbDictType in await db.Queryable<SysDictType>().ClearFilter().Where(x => codeList.Contains(x.Code)).ToListAsync() ?? new())
+        {
+            var enumDictType = list.First(x => x.Code == dbDictType.Code);
+            if (enumDictType.Id == dbDictType.Id)
+            {
+                // 字典值表字段改变后每条字典值记录会多出一条，此处用于删除多余的字典值数据
+                var dataValueList = enumDictType.Children.Select(e => e.Value).ToList();
+                await db.Deleteable<SysDictData>().Where(x => x.DictTypeId == dbDictType.Id && !dataValueList.Contains(x.Value)).ExecuteCommandAsync();
+                continue;
+            }
+
+            // 数据不一致则删除
+            await db.Deleteable<SysDictData>().Where(x => x.DictTypeId == dbDictType.Id).ExecuteCommandAsync();
+            await db.Deleteable<SysDictType>().Where(x => x.Id == dbDictType.Id).ExecuteCommandAsync();
+            Console.WriteLine($"【{DateTime.Now}】删除字典数据: {dbDictType.Name}-{dbDictType.Code}");
+        }
+    }
+
+    /// <summary>
+    /// 枚举信息转字典
+    /// </summary>
+    /// <param name="enumTypeList"></param>
+    /// <returns></returns>
+    private List<SysDictType> GetDictByEnumType(List<EnumTypeOutput> enumTypeList)
+    {
+        var orderNo = 1;
+        var list = new List<SysDictType>();
+        foreach (var type in enumTypeList)
+        {
+            var dictType = new SysDictType
+            {
+                Id = 900000000000 + CommonUtil.GetFixedHashCode(type.TypeFullName),
+                Code = type.TypeName,
+                Name = type.TypeDescribe,
+                Remark = type.TypeFullName,
+                TenantId = SqlSugarConst.DefaultTenantId
+            };
+            dictType.Children = type.EnumEntities.Select(x => new SysDictData
+            {
+                Id = dictType.Id + orderNo++,
+                DictTypeId = dictType.Id,
+                Name = x.Name,
+                Label = x.Describe,
+                Value = x.Value.ToString(),
+                OrderNo = x.Value + OrderOffset,
+                TagType = x.Theme != "" ? x.Theme : DefaultTagType,
+                TenantId = SqlSugarConst.DefaultTenantId
+            }).ToList();
+            list.Add(dictType);
+        }
+        return list;
     }
 }

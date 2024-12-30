@@ -29,15 +29,13 @@
 				</el-table-column>
 				<el-table-column prop="sysNotice.type" label="类型" width="100" align="center" show-overflow-tooltip>
 					<template #default="scope">
-						<el-tag v-if="scope.row.sysNotice.type === 1"> 通知 </el-tag>
-						<el-tag type="warning" v-else> 公告 </el-tag>
+            <g-sys-dict v-model="scope.row.sysNotice.type" code="NoticeTypeEnum"/>
 					</template>
 				</el-table-column>
 				<el-table-column prop="sysNotice.createTime" label="创建时间" align="center" show-overflow-tooltip />
 				<el-table-column prop="readStatus" label="阅读状态" width="100" align="center" show-overflow-tooltip>
 					<template #default="scope">
-						<el-tag type="info" v-if="scope.row.readStatus === 1"> 已读 </el-tag>
-						<el-tag type="danger" v-else> 未读 </el-tag>
+            <g-sys-dict v-model="scope.row.readStatus" code="NoticeUserStatusEnum" />
 					</template>
 				</el-table-column>
 				<el-table-column prop="sysNotice.publicUserName" label="发布者" align="center" show-overflow-tooltip />
@@ -82,11 +80,10 @@
 <script setup lang="ts" name="notice">
 import '@wangeditor/editor/dist/css/style.css';
 import { onMounted, reactive } from 'vue';
-import commonFunction from '/@/utils/commonFunction';
-
 import { getAPI } from '/@/utils/axios-utils';
 import { SysNoticeApi } from '/@/api-services/api';
 import { SysNoticeUser } from '/@/api-services/models';
+import commonFunction from '/@/utils/commonFunction';
 
 const { removeHtml } = commonFunction();
 const state = reactive({
@@ -98,7 +95,7 @@ const state = reactive({
 	},
 	tableParams: {
 		page: 1,
-		pageSize: 20,
+		pageSize: 50,
 		total: 0 as any,
 	},
 	editNoticeTitle: '',
@@ -112,7 +109,13 @@ onMounted(async () => {
 // 查询操作
 const handleQuery = async () => {
 	state.loading = true;
-	var res = await getAPI(SysNoticeApi).apiSysNoticePageReceivedGet(state.queryParams.title, state.queryParams.type, state.tableParams.page, state.tableParams.pageSize);
+	const pageNoticeInput = {
+		title: state.queryParams.title,
+		type: state.queryParams.type,
+		page: state.tableParams.page,
+		pageSize: state.tableParams.pageSize
+	};
+	var res = await getAPI(SysNoticeApi).apiSysNoticePageReceivedPost(pageNoticeInput);
 	state.noticeData = res.data.result?.items ?? [];
 	state.tableParams.total = res.data.result?.total;
 	state.loading = false;

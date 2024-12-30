@@ -38,7 +38,7 @@ import { ElMessageBox } from 'element-plus';
 
 import LogicFlow from '@logicflow/core';
 import { BpmnElement, InsertNodeInPolyline, Menu, MiniMap, SelectionSelect, Snapshot } from '@logicflow/extension';
-import '@logicflow/core/dist/style/index.css';
+import '@logicflow/core/dist/index.css';
 import '@logicflow/extension/lib/style/index.css';
 
 import RegisterEdge from './LogicFlow/Register/RegisterEdge';
@@ -49,8 +49,8 @@ import PanelDataDialog from './LogicFlow/Panel/PanelDataDialog.vue';
 import PropertyDialog from './LogicFlow/Property/PropertyDialog.vue';
 
 import { getAPI } from '/@/utils/axios-utils';
-import { ApprovalFlowApi } from '/@/api-services/_approvalFlow/api';
-import { ApprovalFlowOutput, UpdateApprovalFlowInput } from '/@/api-services/_approvalFlow/models';
+import { ApprovalFlowApi } from '/@/api-plugins/approvalFlow/api';
+import { ApprovalFlowOutput, UpdateApprovalFlowInput } from '/@/api-plugins/approvalFlow/models';
 
 var props = defineProps({
 	title: {

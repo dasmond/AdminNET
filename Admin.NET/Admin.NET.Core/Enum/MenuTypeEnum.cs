@@ -15,7 +15,8 @@ public enum MenuTypeEnum
     /// <summary>
     /// 目录
     /// </summary>
-    [Description("目录")]
+
+    [Description("目录"), Theme("warning")]
     Dir = 1,
 
     /// <summary>
@@ -27,6 +28,6 @@ public enum MenuTypeEnum
     /// <summary>
     /// 按钮
     /// </summary>
-    [Description("按钮")]
+    [Description("按钮"), Theme("info")]
     Btn = 3
 }

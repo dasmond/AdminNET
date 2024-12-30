@@ -11,18 +11,14 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-
- /**
+/**
  * 删除消息模板
- *
  * @export
  * @interface DeleteMessageTemplateInput
  */
 export interface DeleteMessageTemplateInput {
-
     /**
      * 订阅模板Id
-     *
      * @type {string}
      * @memberof DeleteMessageTemplateInput
      */

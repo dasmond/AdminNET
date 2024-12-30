@@ -4,7 +4,7 @@
 //
 // 不得利用本项目从事危害国家安全、扰乱社会秩序、侵犯他人合法权益等法律法规禁止的活动！任何基于本项目二次开发而产生的一切法律纠纷和责任，我们不承担任何责任！
 
-using NewLife.Caching.Models;
+using Newtonsoft.Json;
 
 namespace Admin.NET.Core.Service;
 
@@ -31,6 +31,7 @@ public class SysCacheService : IDynamicApiController, ISingleton
     /// <param name="msExpire">锁过期时间，超过该时间没有主动是放则自动是放，必须整数秒，单位毫秒</param>
     /// <param name="throwOnFailure">失败时是否抛出异常,如不抛出异常，可通过判断返回null得知申请锁失败</param>
     /// <returns></returns>
+    [DisplayName("申请分布式锁")]
     public IDisposable? BeginCacheLock(string key, int msTimeout = 500, int msExpire = 10000, bool throwOnFailure = true)
     {
         try
@@ -64,8 +65,7 @@ public class SysCacheService : IDynamicApiController, ISingleton
     [NonAction]
     public bool Set(string key, object value)
     {
-        if (string.IsNullOrWhiteSpace(key)) return false;
-        return _cacheProvider.Cache.Set($"{_cacheOptions.Prefix}{key}", value);
+        return !string.IsNullOrWhiteSpace(key) && _cacheProvider.Cache.Set($"{_cacheOptions.Prefix}{key}", value);
     }
 
     /// <summary>
@@ -78,8 +78,85 @@ public class SysCacheService : IDynamicApiController, ISingleton
     [NonAction]
     public bool Set(string key, object value, TimeSpan expire)
     {
-        if (string.IsNullOrWhiteSpace(key)) return false;
-        return _cacheProvider.Cache.Set($"{_cacheOptions.Prefix}{key}", value, expire);
+        return !string.IsNullOrWhiteSpace(key) && _cacheProvider.Cache.Set($"{_cacheOptions.Prefix}{key}", value, expire);
+    }
+
+    public async Task<TR> AdGetAsync<TR>(String cacheName, Func<Task<TR>> del, TimeSpan? expiry = default(TimeSpan?)) where TR : class
+    {
+        return await AdGetAsync<TR>(cacheName, del, new object[] { }, expiry);
+    }
+
+    public async Task<TR> AdGetAsync<TR, T1>(String cacheName, Func<T1, Task<TR>> del, T1 t1, TimeSpan? expiry = default(TimeSpan?)) where TR : class
+    {
+        return await AdGetAsync<TR>(cacheName, del, new object[] { t1 }, expiry);
+    }
+
+    public async Task<TR> AdGetAsync<TR, T1, T2>(String cacheName, Func<T1, T2, Task<TR>> del, T1 t1, T2 t2, TimeSpan? expiry = default(TimeSpan?)) where TR : class
+    {
+        return await AdGetAsync<TR>(cacheName, del, new object[] { t1, t2 }, expiry);
+    }
+
+    public async Task<TR> AdGetAsync<TR, T1, T2, T3>(String cacheName, Func<T1, T2, T3, Task<TR>> del, T1 t1, T2 t2, T3 t3, TimeSpan? expiry = default(TimeSpan?)) where TR : class
+    {
+        return await AdGetAsync<TR>(cacheName, del, new object[] { t1, t2, t3 }, expiry);
+    }
+
+    private async Task<T> AdGetAsync<T>(string cacheName, Delegate del, Object[] obs, TimeSpan? expiry) where T : class
+    {
+        var key = Key(cacheName, obs);
+        // 使用分布式锁
+        using (_cacheProvider.Cache.AcquireLock($@"lock:AdGetAsync:{cacheName}", 1000))
+        {
+            var value = Get<T>(key);
+            value ??= await ((dynamic)del).DynamicInvokeAsync(obs);
+            Set(key, value);
+            return value;
+        }
+    }
+
+    public T Get<T>(String cacheName, object t1)
+    {
+        return Get<T>(cacheName, new object[] { t1 });
+    }
+
+    public T Get<T>(String cacheName, object t1, object t2)
+    {
+        return Get<T>(cacheName, new object[] { t1, t2 });
+    }
+
+    public T Get<T>(String cacheName, object t1, object t2, object t3)
+    {
+        return Get<T>(cacheName, new object[] { t1, t2, t3 });
+    }
+
+    private T Get<T>(String cacheName, Object[] obs)
+    {
+        var key = cacheName + ":" + obs.Aggregate(string.Empty, (current, o) => current + $"<{o}>");
+        return Get<T>(key);
+    }
+
+    private static string Key(string cacheName, object[] obs)
+    {
+        if (obs.OfType<TimeSpan>().Any()) throw new Exception("缓存参数类型不能能是:TimeSpan类型");
+        StringBuilder sb = new(cacheName + ":");
+        foreach (var a in obs) sb.Append($"<{KeySingle(a)}>");
+        return sb.ToString();
+    }
+
+    private static string KeySingle(object t)
+    {
+        return t.GetType().IsClass && !t.GetType().IsPrimitive ? JsonConvert.SerializeObject(t) : t.ToString();
+    }
+
+    /// <summary>
+    /// 获取缓存的剩余生存时间
+    /// </summary>
+    /// <param name="key"></param>
+    /// <returns></returns>
+    [NonAction]
+    public TimeSpan GetExpire(string key)
+    {
+        return _cacheProvider.Cache.GetExpire(key);
     }
 
     /// <summary>
@@ -197,9 +274,9 @@ public class SysCacheService : IDynamicApiController, ISingleton
     /// <param name="key"></param>
     /// <returns></returns>
     [NonAction]
-    public RedisHash<string, T> GetHashMap<T>(string key)
+    public IDictionary<String, T> GetHashMap<T>(string key)
     {
-        return _cacheProvider.Cache.GetDictionary<T>(key) as RedisHash<string, T>;
+        return _cacheProvider.Cache.GetDictionary<T>(key);
     }
 
     /// <summary>
@@ -213,7 +290,11 @@ public class SysCacheService : IDynamicApiController, ISingleton
     public bool HashSet<T>(string key, Dictionary<string, T> dic)
     {
         var hash = GetHashMap<T>(key);
-        return hash.HMSet(dic);
+        foreach (var v in dic)
+        {
+            hash.Add(v);
+        }
+        return true;
     }
 
     /// <summary>
@@ -231,6 +312,25 @@ public class SysCacheService : IDynamicApiController, ISingleton
     }
 
     /// <summary>
+    /// 添加或更新一条HASH
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="key"></param>
+    /// <param name="hashKey"></param>
+    /// <param name="value"></param>
+    [NonAction]
+    public void HashAddOrUpdate<T>(string key, string hashKey, T value)
+    {
+        var hash = GetHashMap<T>(key);
+        if (hash.ContainsKey(hashKey))
+        {
+            hash[hashKey] = value;
+        }
+        else
+            hash.Add(hashKey, value);
+    }
+
+    /// <summary>
     /// 获取多条HASH
     /// </summary>
     /// <typeparam name="T"></typeparam>
@@ -241,8 +341,7 @@ public class SysCacheService : IDynamicApiController, ISingleton
     public List<T> HashGet<T>(string key, params string[] fields)
     {
         var hash = GetHashMap<T>(key);
-        var result = hash.HMGet(fields);
-        return result.ToList();
+        return hash.Where(t => fields.Any(c => t.Key == c)).Select(t => t.Value).ToList();
     }
 
     /// <summary>
@@ -256,8 +355,7 @@ public class SysCacheService : IDynamicApiController, ISingleton
     public T HashGetOne<T>(string key, string field)
     {
         var hash = GetHashMap<T>(key);
-        var result = hash.HMGet(new string[] { field });
-        return result[0];
+        return hash.ContainsKey(field) ? hash[field] : default(T);
     }
 
     /// <summary>
@@ -270,7 +368,7 @@ public class SysCacheService : IDynamicApiController, ISingleton
     public IDictionary<string, T> HashGetAll<T>(string key)
     {
         var hash = GetHashMap<T>(key);
-        return hash.GetAll();
+        return hash;
     }
 
     /// <summary>
@@ -284,35 +382,36 @@ public class SysCacheService : IDynamicApiController, ISingleton
     public int HashDel<T>(string key, params string[] fields)
     {
         var hash = GetHashMap<T>(key);
-        return hash.HDel(fields);
+        fields.ToList().ForEach(t => hash.Remove(t));
+        return fields.Length;
     }
 
-    /// <summary>
-    /// 搜索HASH
-    /// </summary>
-    /// <typeparam name="T"></typeparam>
-    /// <param name="key"></param>
-    /// <param name="searchModel"></param>
-    /// <returns></returns>
-    [NonAction]
-    public List<KeyValuePair<string, T>> HashSearch<T>(string key, SearchModel searchModel)
-    {
-        var hash = GetHashMap<T>(key);
-        return hash.Search(searchModel).ToList();
-    }
+    ///// <summary>
+    ///// 搜索HASH
+    ///// </summary>
+    ///// <typeparam name="T"></typeparam>
+    ///// <param name="key"></param>
+    ///// <param name="searchModel"></param>
+    ///// <returns></returns>
+    //[NonAction]
+    //public List<KeyValuePair<string, T>> HashSearch<T>(string key, SearchModel searchModel)
+    //{
+    //    var hash = GetHashMap<T>(key);
+    //    return hash.Search(searchModel).ToList();
+    //}
 
-    /// <summary>
-    /// 搜索HASH
-    /// </summary>
-    /// <typeparam name="T"></typeparam>
-    /// <param name="key"></param>
-    /// <param name="pattern"></param>
-    /// <param name="count"></param>
-    /// <returns></returns>
-    [NonAction]
-    public List<KeyValuePair<string, T>> HashSearch<T>(string key, string pattern, int count)
-    {
-        var hash = GetHashMap<T>(key);
-        return hash.Search(pattern, count).ToList();
-    }
+    ///// <summary>
+    ///// 搜索HASH
+    ///// </summary>
+    ///// <typeparam name="T"></typeparam>
+    ///// <param name="key"></param>
+    ///// <param name="pattern"></param>
+    ///// <param name="count"></param>
+    ///// <returns></returns>
+    //[NonAction]
+    //public List<KeyValuePair<string, T>> HashSearch<T>(string key, string pattern, int count)
+    //{
+    //    var hash = GetHashMap<T>(key);
+    //    return hash.Search(pattern, count).ToList();
+    //}
 }

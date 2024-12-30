@@ -21,6 +21,7 @@ import { useKeepALiveNames } from '/@/stores/keepAliveNames';
 import { useThemeConfig } from '/@/stores/themeConfig';
 import { Session } from '/@/utils/storage';
 import mittBus from '/@/utils/mitt';
+import {random} from "lodash-es";
 
 // 引入组件
 const Iframes = defineAsyncComponent(() => import('/@/layout/routerView/iframes.vue'));
@@ -65,13 +66,16 @@ const getIframeListRoutes = async () => {
 onBeforeMount(() => {
 	state.keepAliveNameList = keepAliveNames.value;
 	mittBus.on('onTagsViewRefreshRouterView', (fullPath: string) => {
+		const cacheList = cachedViews.value;
+		if (route.meta.isKeepAlive) cachedViews.value = cachedViews.value?.filter((name: string) => route.name !== name);
 		state.keepAliveNameList = keepAliveNames.value.filter((name: string) => route.name !== name);
 		state.refreshRouterViewKey = '';
 		state.iframeRefreshKey = '';
 		nextTick(() => {
+			if (route.meta.isKeepAlive) cachedViews.value = cacheList;
+			state.keepAliveNameList = keepAliveNames.value;
 			state.refreshRouterViewKey = fullPath;
 			state.iframeRefreshKey = fullPath;
-			state.keepAliveNameList = keepAliveNames.value;
 		});
 	});
 });

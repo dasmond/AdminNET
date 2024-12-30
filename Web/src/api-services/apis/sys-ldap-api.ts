@@ -11,7 +11,6 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-
 import globalAxios, { AxiosResponse, AxiosInstance, AxiosRequestConfig } from 'axios';
 import { Configuration } from '../configuration';
 // Some imports not used depending on template conditions
@@ -20,6 +19,7 @@ import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } fr
 import { AddSysLdapInput } from '../models';
 import { AdminResultInt64 } from '../models';
 import { AdminResultListSysLdap } from '../models';
+import { AdminResultListSysUserLdap } from '../models';
 import { AdminResultSqlSugarPagedListSysLdap } from '../models';
 import { AdminResultSysLdap } from '../models';
 import { DeleteSysLdapInput } from '../models';
@@ -514,7 +514,7 @@ export const SysLdapApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiSysLdapSyncUserPost(body?: SyncSysLdapInput, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<void>>> {
+        async apiSysLdapSyncUserPost(body?: SyncSysLdapInput, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<AdminResultListSysUserLdap>>> {
             const localVarAxiosArgs = await SysLdapApiAxiosParamCreator(configuration).apiSysLdapSyncUserPost(body, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -610,7 +610,7 @@ export const SysLdapApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiSysLdapSyncUserPost(body?: SyncSysLdapInput, options?: AxiosRequestConfig): Promise<AxiosResponse<void>> {
+        async apiSysLdapSyncUserPost(body?: SyncSysLdapInput, options?: AxiosRequestConfig): Promise<AxiosResponse<AdminResultListSysUserLdap>> {
             return SysLdapApiFp(configuration).apiSysLdapSyncUserPost(body, options).then((request) => request(axios, basePath));
         },
         /**
@@ -706,7 +706,7 @@ export class SysLdapApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof SysLdapApi
      */
-    public async apiSysLdapSyncUserPost(body?: SyncSysLdapInput, options?: AxiosRequestConfig) : Promise<AxiosResponse<void>> {
+    public async apiSysLdapSyncUserPost(body?: SyncSysLdapInput, options?: AxiosRequestConfig) : Promise<AxiosResponse<AdminResultListSysUserLdap>> {
         return SysLdapApiFp(this.configuration).apiSysLdapSyncUserPost(body, options).then((request) => request(this.axios, this.basePath));
     }
     /**

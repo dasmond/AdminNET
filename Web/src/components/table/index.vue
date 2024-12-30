@@ -5,12 +5,12 @@
 				<slot name="command"></slot>
 			</div>
 			<div v-loading="state.exportLoading" class="table-footer-tool">
-				<SvgIcon v-if="!config.hideRefresh" name="iconfont icon-shuaxin" :size="22" title="刷新" @click="onRefreshTable" />
-				<el-tooltip effect="light" :content="state.switchFixedContent" placement="bottom-start" :show-after="200" v-if="state.haveFixed">
-					<el-icon :style="{ color: state.fixedIconColor }" @click="switchFixed"><ele-Switch /></el-icon>
+				<SvgIcon v-if="!config.hideRefresh" name="iconfont icon-shuaxin" :size="22" title="刷新" @click="() => onRefreshTable()" class="tool-icon" />
+				<el-tooltip effect="light" :content="state.switchFixedContent" placement="bottom-start" :show-after="200" v-if="state.haveFixed" >
+					<el-icon :style="{ color: state.fixedIconColor }" @click="switchFixed" class="tool-icon"><ele-Switch /></el-icon>
 				</el-tooltip>
 				<el-dropdown v-if="!config.hideExport" trigger="click">
-					<SvgIcon name="iconfont icon-yunxiazai_o" :size="22" title="导出" />
+					<SvgIcon name="iconfont icon-yunxiazai_o" :size="22" title="导出" class="tool-icon" />
 					<template #dropdown>
 						<el-dropdown-menu>
 							<el-dropdown-item @click="onExportTable">导出本页数据</el-dropdown-item>
@@ -18,20 +18,21 @@
 						</el-dropdown-menu>
 					</template>
 				</el-dropdown>
-				<SvgIcon v-if="!config.hidePrint" name="iconfont icon-dayin" :size="19" title="打印" @click="onPrintTable" />
-				<el-popover v-if="!config.hideSet" placement="bottom-end" trigger="click" transition="el-zoom-in-top" popper-class="table-tool-popper" :width="300" :persistent="false" @show="onSetTable">
+				<SvgIcon v-if="!config.hidePrint" name="iconfont icon-dayin" :size="19" title="打印" @click="onPrintTable" class="tool-icon" />
+				<el-popover v-if="!config.hideSet" placement="bottom-end" trigger="click" transition="el-zoom-in-top" popper-class="table-tool-popper" :width="180" :persistent="false" @show="onSetTable">
 					<template #reference>
-						<SvgIcon name="iconfont icon-quanjushezhi_o" :size="22" title="设置" />
+						<SvgIcon name="iconfont icon-quanjushezhi_o" class="tool-icon" :size="22" title="设置" />
 					</template>
 					<template #default>
 						<div class="tool-box">
-							<el-tooltip content="拖动进行排序" placement="top-start">
-								<SvgIcon name="fa fa-question-circle-o" :size="17" class="ml11" color="#909399" />
-							</el-tooltip>
 							<el-checkbox v-model="state.checkListAll" :indeterminate="state.checkListIndeterminate" class="ml10 mr1" label="列显示" @change="onCheckAllChange" />
 							<el-checkbox v-model="getConfig.isSerialNo" class="ml12 mr1" label="序号" />
 							<el-checkbox v-if="getConfig.showSelection" v-model="getConfig.isSelection" class="ml12 mr1" label="多选" />
+							<el-tooltip content="拖动进行排序" placement="top-start">
+								<SvgIcon style="float: right; margin-right: 5px; margin-top: 2px" name="fa fa-question-circle-o" :size="17" class="ml11" color="#909399" />
+							</el-tooltip>
 						</div>
+						<el-divider style="margin: 10px 0 10px -5px" />
 						<el-scrollbar>
 							<div ref="toolSetRef" class="tool-sortable">
 								<div class="tool-sortable-item" v-for="v in columns" :key="v.prop" v-show="!v.hideCheck" :data-key="v.prop">
@@ -45,18 +46,18 @@
 			</div>
 		</div>
 		<el-table
-			ref="tableRef"
-			:data="state.data"
-			:border="setBorder"
-			:stripe="setStripe"
-			v-bind="$attrs"
-			row-key="id"
-			default-expand-all
-			style="width: 100%"
-			v-loading="state.loading"
-			:default-sort="defaultSort"
-			@selection-change="onSelectionChange"
-			@sort-change="sortChange"
+				ref="tableRef"
+				:data="state.data"
+				:border="setBorder"
+				:stripe="setStripe"
+				v-bind="$attrs"
+				row-key="id"
+				default-expand-all
+				style="width: 100%"
+				v-loading="state.loading"
+				:default-sort="defaultSort"
+				@selection-change="onSelectionChange"
+				@sort-change="sortChange"
 		>
 			<el-table-column type="selection" :reserve-selection="true" :width="30" v-if="config.isSelection && config.showSelection" />
 			<el-table-column type="index" :fixed="state.currentFixed && state.serialNoFixed" label="序号" align="center" :width="60" v-if="config.isSerialNo" />
@@ -73,12 +74,12 @@
 					<formatter v-if="item.formatter" :fn="item.formatter(scope.row, scope.column, scope.cellValue, scope.index)"> </formatter>
 					<template v-else-if="item.type === 'image'">
 						<el-image
-							:style="{ width: `${item.width}px`, height: `${item.height}px` }"
-							:src="scope.row[item.prop]"
-							:zoom-rate="1.2"
-							:preview-src-list="[scope.row[item.prop]]"
-							preview-teleported
-							fit="cover"
+								:style="{ width: `${item.width}px`, height: `${item.height}px` }"
+								:src="scope.row[item.prop]"
+								:zoom-rate="1.2"
+								:preview-src-list="[scope.row[item.prop]]"
+								preview-teleported
+								fit="cover"
 						/>
 					</template>
 					<template v-else>
@@ -95,12 +96,12 @@
 						<formatter v-if="childrenItem.formatter" :fn="childrenItem.formatter(scope.row, scope.column, scope.cellValue, scope.index)"> </formatter>
 						<template v-else-if="childrenItem.type === 'image'">
 							<el-image
-								:style="{ width: `${childrenItem.width}px`, height: `${childrenItem.height}px` }"
-								:src="scope.row[childrenItem.prop]"
-								:zoom-rate="1.2"
-								:preview-src-list="[scope.row[childrenItem.prop]]"
-								preview-teleported
-								fit="cover"
+									:style="{ width: `${childrenItem.width}px`, height: `${childrenItem.height}px` }"
+									:src="scope.row[childrenItem.prop]"
+									:zoom-rate="1.2"
+									:preview-src-list="[scope.row[childrenItem.prop]]"
+									preview-teleported
+									fit="cover"
 							/>
 						</template>
 						<template v-else>
@@ -115,16 +116,16 @@
 		</el-table>
 		<div v-if="!config.hidePagination && state.showPagination" class="table-footer mt15">
 			<el-pagination
-				v-model:current-page="state.page.page"
-				v-model:page-size="state.page.pageSize"
-				size="small"
-				:pager-count="5"
-				:page-sizes="config.pageSizes"
-				:total="state.total"
-				layout="total, sizes, prev, pager, next, jumper"
-				background
-				@size-change="onHandleSizeChange"
-				@current-change="onHandleCurrentChange"
+					v-model:current-page="state.page.page"
+					v-model:page-size="state.page.pageSize"
+					size="small"
+					:pager-count="5"
+					:page-sizes="config.pageSizes"
+					:total="state.total"
+					layout="total, sizes, prev, pager, next, jumper"
+					background
+					@size-change="onHandleSizeChange"
+					@current-change="onHandleCurrentChange"
 			>
 			</el-pagination>
 		</div>
@@ -136,11 +137,11 @@ import { reactive, computed, nextTick, ref, onMounted } from 'vue';
 import { ElMessage } from 'element-plus';
 import Sortable from 'sortablejs';
 import { storeToRefs } from 'pinia';
+import printJs from 'print-js';
+import { EmptyObjectType } from "/@/types/global";
+import formatter from '/@/components/table/formatter.vue';
 import { useThemeConfig } from '/@/stores/themeConfig';
 import { exportExcel } from '/@/utils/exportExcel';
-// import '/@/theme/tableTool.scss';
-import printJs from 'print-js';
-import formatter from '/@/components/table/formatter.vue';
 
 // 定义父组件传过来的值
 const props = defineProps({
@@ -195,7 +196,7 @@ const state = reactive({
 	total: 0,
 	page: {
 		page: 1,
-		pageSize: 10,
+		pageSize: 50,
 		field: '',
 		order: '',
 	},
@@ -261,26 +262,26 @@ const onSelectionChange = (val: EmptyObjectType[]) => {
 // 分页改变
 const onHandleSizeChange = (val: number) => {
 	state.page.pageSize = val;
-	handleList();
+	onRefreshTable();
 	emit('pageChange', state.page);
 };
 // 改变当前页
 const onHandleCurrentChange = (val: number) => {
 	state.page.page = val;
-	handleList();
+	onRefreshTable();
 	emit('pageChange', state.page);
 };
 // 列排序
 const sortChange = (column: any) => {
 	state.page.field = column.prop;
 	state.page.order = column.order;
-	handleList();
+	onRefreshTable();
 };
 // 重置列表
 const pageReset = () => {
 	tableRef.value.clearSelection();
 	state.page.page = 1;
-	handleList();
+	onRefreshTable();
 };
 // 导出当前页
 const onExportTable = () => {
@@ -306,12 +307,12 @@ const exportData = (data: Array<EmptyObjectType>) => {
 		exportData = props.exportChangeData(exportData);
 	}
 	exportExcel(
-		exportData,
-		`${props.config.exportFileName ? props.config.exportFileName : themeConfig.value.globalTitle}_${new Date().toLocaleString()}`,
-		setHeader.value.filter((item) => {
-			return item.type != 'action';
-		}),
-		'导出数据'
+			exportData,
+			`${props.config.exportFileName ? props.config.exportFileName : themeConfig.value.globalTitle}_${new Date().toLocaleString()}`,
+			setHeader.value.filter((item) => {
+				return item.type != 'action';
+			}),
+			'导出数据'
 	);
 	state.exportLoading = false;
 };
@@ -354,11 +355,7 @@ const onPrintTable = () => {
 		style: `@media print{.mb15{margin-bottom:15px;}.el-button--small i.iconfont{font-size: 12px !important;margin-right: 5px;}}; .table-th{word-break: break-all;white-space: pre-wrap;}.table-center{text-align: center;}`,
 	});
 };
-// 刷新
-const onRefreshTable = () => {
-	handleList();
-	// emit('pageChange', state.page);
-};
+
 // 拖拽设置
 const onSetTable = () => {
 	nextTick(() => {
@@ -379,10 +376,9 @@ const onSetTable = () => {
 	});
 };
 
-const handleList = async () => {
+const onRefreshTable = async () => {
 	state.loading = true;
 	let param = Object.assign({}, props.param, { ...state.page });
-	// Object.keys(param).forEach((key) => !param[key] && delete param[key]);
 	Object.keys(param).forEach((key) => param[key] === undefined && delete param[key]);
 	const res = await props.getData(param);
 	state.loading = false;
@@ -406,8 +402,7 @@ const getTableData = () => {
 
 const setTableData = (data: Array<EmptyObjectType>, add: boolean = false) => {
 	if (add) {
-		// 追加
-		//去重
+		// 追加, 去重
 		var repeat = false;
 		for (let newItem of data) {
 			repeat = false;
@@ -427,9 +422,7 @@ const setTableData = (data: Array<EmptyObjectType>, add: boolean = false) => {
 };
 
 const clearFixed = () => {
-	for (let item of state.columns) {
-		delete item['fixed'];
-	}
+	for (let item of state.columns) delete item['fixed'];
 };
 
 const switchFixed = () => {
@@ -466,8 +459,10 @@ onMounted(() => {
 	}
 	state.page.pageSize = props.config.pageSize ?? 10;
 	refreshColumns();
-	handleList();
+	onRefreshTable();
 });
+
+const handleList = onRefreshTable;
 
 // 暴露变量
 defineExpose({
@@ -505,7 +500,7 @@ defineExpose({
 			justify-content: flex-end;
 
 			i {
-				margin-right: 10px;
+				margin-right: 5px !important;
 				cursor: pointer;
 				color: var(--el-text-color-regular);
 
@@ -519,6 +514,21 @@ defineExpose({
 					margin-right: 10px;
 					color: var(--el-text-color-regular);
 				}
+			}
+
+			.tool-icon {
+				border: 1px solid #a7a7a7;
+				border-radius: 20%;
+				padding: 1px;
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+			}
+
+			.el-icon.tool-icon {
+				font-size: 25px;
+				border: 1px solid #a7a7a7;
+				padding: 4px;
 			}
 		}
 	}

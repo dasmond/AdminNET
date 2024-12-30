@@ -14,21 +14,19 @@
 							<el-form-item v-show="false">
 								<el-input v-model="state.ruleForm.id" />
 							</el-form-item>
-							<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
+							<el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="mb20">
 								<el-form-item label="编号" prop="code">
 									<el-input v-model="state.ruleForm.code" placeholder="请输入编号" maxlength="32" show-word-limit clearable />
 								</el-form-item>
 							</el-col>
-							<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
+							<el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="mb20">
 								<el-form-item label="名称" prop="name" :rules="[{ required: true, message: '名称不能为空', trigger: 'blur' }]">
 									<el-input v-model="state.ruleForm.name" placeholder="请输入名称" maxlength="32" show-word-limit clearable />
 								</el-form-item>
 							</el-col>
-							<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
+							<el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="mb20">
 								<el-form-item label="状态" prop="status" :rules="[{ required: true, message: '状态不能为空', trigger: 'blur' }]">
-									<el-select clearable v-model="state.ruleForm.status" placeholder="请选择状态">
-										<el-option v-for="(item, index) in getEnumStatusData" :key="index" :value="item.value" :label="`${item.describe} [${item.value}]`"></el-option>
-									</el-select>
+									<g-sys-dict code="LabStatusEnum" v-model="state.ruleForm.status" render-as="select" />
 								</el-form-item>
 							</el-col>
 							<el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="mb20">
@@ -42,12 +40,12 @@
 						<el-row :gutter="35">
 							<el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="mb20">
 								<el-form-item label="表单" prop="formJson">
-									<el-input v-model="state.ruleForm.formJson" placeholder="请输入表单" type="textarea" maxlength="0" show-word-limit clearable />
+									<el-input v-model="state.ruleForm.formJson" placeholder="请输入表单" type="textarea" maxlength="4096" show-word-limit clearable />
 								</el-form-item>
 							</el-col>
 							<el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="mb20">
 								<el-form-item label="流程" prop="flowJson">
-									<el-input v-model="state.ruleForm.flowJson" placeholder="请输入流程" type="textarea" maxlength="0" show-word-limit clearable />
+									<el-input v-model="state.ruleForm.flowJson" placeholder="请输入流程" type="textarea" maxlength="4096" show-word-limit clearable />
 								</el-form-item>
 							</el-col>
 						</el-row>
@@ -65,15 +63,11 @@
 </template>
 
 <script setup lang="ts">
-import { reactive, ref, onMounted } from 'vue';
+import { reactive, ref } from 'vue';
 import { ElMessage } from 'element-plus';
 import type { FormRules } from 'element-plus';
-
 import { getAPI } from '/@/utils/axios-utils';
-import { ApprovalFlowApi } from '/@/api-services/_approvalFlow/api';
-import { SysEnumApi } from '/@/api-services/api';
-
-const getEnumStatusData = ref<any>([]);
+import { ApprovalFlowApi } from '/@/api-plugins/approvalFlow/api';
 
 // 父级传递来的参数
 var props = defineProps({
@@ -106,11 +100,6 @@ const rules = ref<FormRules>({
 			trigger: 'blur',
 		},
 	],
-});
-
-// 页面加载时
-onMounted(async () => {
-	// getEnumStatusData.value = (await getAPI(SysEnumApi).apiSysEnumEnumDataListGet('LabStatusEnum')).data.result ?? [];
 });
 
 // 打开弹窗

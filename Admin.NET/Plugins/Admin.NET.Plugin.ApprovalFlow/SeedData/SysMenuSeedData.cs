@@ -17,9 +17,10 @@ public class SysMenuSeedData : ISqlSugarEntitySeedData<SysMenu>
     /// <returns></returns>
     public IEnumerable<SysMenu> HasData()
     {
+        var system = new Admin.NET.Core.SysMenuSeedData().HasData().First(u => u.Type == MenuTypeEnum.Dir && u.Title == "系统管理");
         return new[]
         {
-            new SysMenu{ Id=1320000000001, Pid=1310000000301, Title="审批流程", Path="/platform/approvalFlow", Name="approvalFlow", Component="/approvalFlow/index", Icon="ele-Help", Type=MenuTypeEnum.Menu, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=2000 },
+            new SysMenu{ Id=1309000000001, Pid=system.Id, Title="审批流程", Path="/platform/approvalFlow", Name="approvalFlow", Component="/approvalFlow/index", Icon="ele-Help", Type=MenuTypeEnum.Menu, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=2000 },
         };
     }
 }

@@ -47,6 +47,11 @@ public class ColumnOuput
     public string NetType { get; set; }
 
     /// <summary>
+    /// 字典编码
+    /// </summary>
+    public string DictTypeCode { get; set; }
+
+    /// <summary>
     /// 字段描述
     /// </summary>
     public string ColumnComment { get; set; }

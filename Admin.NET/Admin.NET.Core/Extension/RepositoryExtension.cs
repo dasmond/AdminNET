@@ -405,4 +405,50 @@ public static class RepositoryExtension
         }
         return updateable;
     }
+
+    /// <summary>
+    /// 批量列表in查询
+    /// </summary>
+    /// <typeparam name="T1"></typeparam>
+    /// <typeparam name="T2"></typeparam>
+    /// <param name="queryable"></param>
+    /// <param name="exp"></param>
+    /// <param name="queryList"></param>
+    /// <param name="stoppingToken"></param>
+    /// <returns></returns>
+    public static async Task<List<T1>> BulkListQuery<T1, T2>(this ISugarQueryable<T1> queryable,
+            Expression<Func<T1, SingleColumnEntity<T2>, bool>> exp,
+            IEnumerable<T2> queryList,
+            CancellationToken stoppingToken) where T1 : class, new()
+    {
+        // 创建临时表 (用真表兼容性好，表名随机)
+        var tableName = "Temp" + SnowFlakeSingle.Instance.NextId();
+        try
+        {
+            var type = queryable.Context.DynamicBuilder().CreateClass(tableName, new SugarTable())
+                .CreateProperty("ColumnName", typeof(string), new SugarColumn() { IsPrimaryKey = true }) // 主键不要自增
+                .BuilderType();
+            // 创建表
+            queryable.Context.CodeFirst.InitTables(type);
+            var insertData = queryList.Select(it => new SingleColumnEntity<T2>() { ColumnName = it }).ToList();
+            // 插入临时表
+            queryable.Context.Fastest<SingleColumnEntity<T2>>()
+                .AS(tableName)
+                .BulkCopy(insertData);
+            var queryTemp = queryable.Context.Queryable<SingleColumnEntity<T2>>()
+                .AS(tableName);
+
+            var systemData = await queryable
+                .InnerJoin(queryTemp, exp)
+                .ToListAsync(stoppingToken);
+
+            queryable.Context.DbMaintenance.DropTable(tableName);
+            return systemData;
+        }
+        catch (Exception error)
+        {
+            queryable.Context.DbMaintenance.DropTable(tableName);
+            throw Oops.Oh(error);
+        }
+    }
 }

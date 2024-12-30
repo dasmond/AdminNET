@@ -17,37 +17,37 @@ public class ApprovalFlow : EntityBaseData
     /// </summary>
     [SugarColumn(ColumnDescription = "编号", Length = 32)]
     [MaxLength(32)]
-    public string? Code { get; set; }
+    public virtual string? Code { get; set; }
 
     /// <summary>
     /// 名称
     /// </summary>
     [SugarColumn(ColumnDescription = "名称", Length = 32)]
     [MaxLength(32)]
-    public string Name { get; set; }
+    public virtual string Name { get; set; }
 
     /// <summary>
     /// 表单
     /// </summary>
     [SugarColumn(ColumnDescription = "表单", ColumnDataType = StaticConfig.CodeFirst_BigString)]
-    public string? FormJson { get; set; }
+    public virtual string? FormJson { get; set; }
 
     /// <summary>
     /// 流程
     /// </summary>
     [SugarColumn(ColumnDescription = "流程", ColumnDataType = StaticConfig.CodeFirst_BigString)]
-    public string? FlowJson { get; set; }
+    public virtual string? FlowJson { get; set; }
 
     /// <summary>
     /// 状态
     /// </summary>
     [SugarColumn(ColumnDescription = "状态")]
-    public int? Status { get; set; }
+    public virtual int? Status { get; set; }
 
     /// <summary>
     /// 备注
     /// </summary>
     [SugarColumn(ColumnDescription = "备注", Length = 256)]
     [MaxLength(256)]
-    public string? Remark { get; set; }
+    public virtual string? Remark { get; set; }
 }

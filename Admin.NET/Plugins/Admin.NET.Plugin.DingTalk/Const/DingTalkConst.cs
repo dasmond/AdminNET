@@ -18,6 +18,11 @@ public class DingTalkConst
     public const string GroupName = "DingTalk";
 
     /// <summary>
+    /// AccessToken的缓存键
+    /// </summary>
+    public const string AccessTokenKeyPrefix = "DingTalkAccessToken:";
+
+    /// <summary>
     /// 姓名
     /// </summary>
     public const string NameField = "sys00-name";
@@ -36,10 +41,12 @@ public class DingTalkConst
     /// 主部门Id
     /// </summary>
     public const string DeptId = "sys00-mainDeptId";
+
     /// <summary>
     /// 主部门
     /// </summary>
     public const string Dept = "sys00-mainDept";
+
     /// <summary>
     /// 职位
     /// </summary>

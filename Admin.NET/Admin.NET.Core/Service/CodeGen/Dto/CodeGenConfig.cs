@@ -27,6 +27,11 @@ public class CodeGenConfig
     public string ColumnName { get; set; }
 
     /// <summary>
+    /// 主外键
+    /// </summary>
+    public string ColumnKey { get; set; }
+
+    /// <summary>
     /// 实体属性名
     /// </summary>
     public string PropertyName { get; set; }
@@ -52,6 +57,16 @@ public class CodeGenConfig
     public string NetType { get; set; }
 
     /// <summary>
+    /// 数据库中类型（物理类型）
+    /// </summary>
+    public string DataType { get; set; }
+
+    /// <summary>
+    /// 可空.NET类型
+    /// </summary>
+    public string NullableNetType => Regex.IsMatch(NetType ?? "", "(.*?Enum|bool|char|int|long|double|float|decimal)[?]?") ? NetType.TrimEnd('?') + "?" : NetType;
+
+    /// <summary>
     /// 作用类型（字典）
     /// </summary>
     public string EffectType { get; set; }
@@ -74,13 +89,7 @@ public class CodeGenConfig
     /// <summary>
     /// 外键实体名称(首字母小写)
     /// </summary>
-    public string LowerFkEntityName =>
-        string.IsNullOrWhiteSpace(FkEntityName) ? null : FkEntityName[..1].ToLower() + FkEntityName[1..];
-
-    /// <summary>
-    /// 外键显示字段
-    /// </summary>
-    public string FkColumnName { get; set; }
+    public string LowerFkEntityName => string.IsNullOrWhiteSpace(FkEntityName) ? null : FkEntityName[..1].ToLower() + FkEntityName[1..];
 
     /// <summary>
     /// 外键链接字段
@@ -88,10 +97,21 @@ public class CodeGenConfig
     public string FkLinkColumnName { get; set; }
 
     /// <summary>
+    /// 外键显示字段
+    /// </summary>
+    [Newtonsoft.Json.JsonIgnore]
+    [System.Text.Json.Serialization.JsonIgnore]
+    public string FkDisplayColumns { get; set; }
+
+    /// <summary>
+    /// 外键显示字段
+    /// </summary>
+    public List<string> FkDisplayColumnList { get; set; }
+
+    /// <summary>
     /// 外键显示字段(首字母小写)
     /// </summary>
-    public string LowerFkColumnName =>
-        string.IsNullOrWhiteSpace(FkColumnName) ? null : FkColumnName[..1].ToLower() + FkColumnName[1..];
+    public List<string> LowerFkDisplayColumnsList => FkDisplayColumnList?.Select(name => name[..1].ToLower() + name[1..]).ToList();
 
     /// <summary>
     /// 外键显示字段.NET类型
@@ -99,9 +119,24 @@ public class CodeGenConfig
     public string FkColumnNetType { get; set; }
 
     /// <summary>
+    /// 父级字段
+    /// </summary>
+    public string PidColumn { get; set; }
+
+    /// <summary>
     /// 字典code
     /// </summary>
     public string DictTypeCode { get; set; }
+
+    /// <summary>
+    /// 查询方式
+    /// </summary>
+    public string QueryType { get; set; }
+
+    /// <summary>
+    /// 是否是查询条件
+    /// </summary>
+    public string WhetherQuery { get; set; }
 
     /// <summary>
     /// 列表是否缩进（字典）
@@ -119,16 +154,6 @@ public class CodeGenConfig
     public string WhetherSortable { get; set; }
 
     /// <summary>
-    /// 是否是查询条件
-    /// </summary>
-    public string QueryWhether { get; set; }
-
-    /// <summary>
-    /// 查询方式
-    /// </summary>
-    public string QueryType { get; set; }
-
-    /// <summary>
     /// 列表显示
     /// </summary>
     public string WhetherTable { get; set; }
@@ -139,14 +164,9 @@ public class CodeGenConfig
     public string WhetherAddUpdate { get; set; }
 
     /// <summary>
-    /// 主外键
+    /// 导入
     /// </summary>
-    public string ColumnKey { get; set; }
-
-    /// <summary>
-    /// 数据库中类型（物理类型）
-    /// </summary>
-    public string DataType { get; set; }
+    public string WhetherImport { get; set; }
 
     /// <summary>
     /// 是否是通用字段
@@ -154,42 +174,55 @@ public class CodeGenConfig
     public string WhetherCommon { get; set; }
 
     /// <summary>
-    /// 表的别名 Table as XXX
+    /// 排序
     /// </summary>
-    public string TableNickName
+    public int OrderNo { get; set; }
+
+    /// <summary>
+    /// 是否是选择器控件
+    /// </summary>
+    public bool IsSelectorEffectType => Regex.IsMatch(EffectType ?? "", "Selector$|ForeignKey", RegexOptions.IgnoreCase);
+
+    /// <summary>
+    /// 去掉尾部Id的属性名
+    /// </summary>
+    public string PropertyNameTrimEndId => PropertyName.TrimEnd("Id");
+
+    /// <summary>
+    /// 去掉尾部Id的属性名
+    /// </summary>
+    public string LowerPropertyNameTrimEndId => LowerPropertyName.TrimEnd("Id");
+
+    /// <summary>
+    /// 扩展属性名称
+    /// </summary>
+    public string ExtendedPropertyName => EffectType switch
+    {
+        "ForeignKey" => $"{PropertyName.TrimEnd("Id")}FkDisplayName",
+        "ApiTreeSelector" => $"{PropertyName.TrimEnd("Id")}DisplayName",
+        "DictSelector" => $"{PropertyName.TrimEnd("Id")}DictLabel",
+        "Upload" => $"{PropertyName.TrimEnd("Id")}Attachment",
+        _ => PropertyName
+    };
+
+    /// <summary>
+    /// 首字母小写的扩展属性名称
+    /// </summary>
+    public string LowerExtendedPropertyName
     {
         get
         {
-            string str = "";
-            if (EffectType == "fk")
-            {
-                str = LowerFkEntityName + "_FK_" + LowerFkColumnName;
-            }
-            else if (EffectType == "Upload")
-            {
-                str = "sysFile_FK_" + LowerPropertyName;
-            }
-            return str;
+            var displayPropertyName = ExtendedPropertyName;
+            if (string.IsNullOrWhiteSpace(displayPropertyName)) return null;
+            return displayPropertyName[..1].ToLower() + displayPropertyName[1..];
         }
     }
 
     /// <summary>
-    /// 显示文本字段
+    /// 获取外键显示值语句
     /// </summary>
-    public string DisplayColumn { get; set; }
-
-    /// <summary>
-    /// 选中值字段
-    /// </summary>
-    public string ValueColumn { get; set; }
-
-    /// <summary>
-    /// 父级字段
-    /// </summary>
-    public string PidColumn { get; set; }
-
-    /// <summary>
-    /// 排序
-    /// </summary>
-    public int OrderNo { get; set; }
+    /// <param name="tableAlias">表别名</param>
+    /// <param name="separator">多字段时的连接符</param>
+    /// <returns></returns>
+    public string GetDisplayColumn(string tableAlias, string separator = "-") => "$\"" + string.Join(separator, FkDisplayColumnList?.Select(name => $"{{{tableAlias}.{name}}}") ?? new List<string>()) + "\"";
 }

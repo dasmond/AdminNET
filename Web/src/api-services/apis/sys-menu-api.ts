@@ -11,13 +11,13 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-
 import globalAxios, { AxiosResponse, AxiosInstance, AxiosRequestConfig } from 'axios';
 import { Configuration } from '../configuration';
 // Some imports not used depending on template conditions
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base';
 import { AddMenuInput } from '../models';
+import { AdminResultInt64 } from '../models';
 import { AdminResultListMenuOutput } from '../models';
 import { AdminResultListString } from '../models';
 import { AdminResultListSysMenu } from '../models';
@@ -131,10 +131,11 @@ export const SysMenuApiAxiosParamCreator = function (configuration?: Configurati
          * @summary 获取菜单列表 🔖
          * @param {string} [title] 标题
          * @param {MenuTypeEnum} [type] 菜单类型（1目录 2菜单 3按钮）
+         * @param {number} [tenantId] 租户Id
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiSysMenuListGet: async (title?: string, type?: MenuTypeEnum, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        apiSysMenuListGet: async (title?: string, type?: MenuTypeEnum, tenantId?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/sysMenu/list`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
@@ -161,6 +162,10 @@ export const SysMenuApiAxiosParamCreator = function (configuration?: Configurati
 
             if (type !== undefined) {
                 localVarQueryParameter['Type'] = type;
+            }
+
+            if (tenantId !== undefined) {
+                localVarQueryParameter['TenantId'] = tenantId;
             }
 
             const query = new URLSearchParams(localVarUrlObj.search);
@@ -329,7 +334,7 @@ export const SysMenuApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiSysMenuAddPost(body?: AddMenuInput, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<void>>> {
+        async apiSysMenuAddPost(body?: AddMenuInput, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<AdminResultInt64>>> {
             const localVarAxiosArgs = await SysMenuApiAxiosParamCreator(configuration).apiSysMenuAddPost(body, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -355,11 +360,12 @@ export const SysMenuApiFp = function(configuration?: Configuration) {
          * @summary 获取菜单列表 🔖
          * @param {string} [title] 标题
          * @param {MenuTypeEnum} [type] 菜单类型（1目录 2菜单 3按钮）
+         * @param {number} [tenantId] 租户Id
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiSysMenuListGet(title?: string, type?: MenuTypeEnum, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<AdminResultListSysMenu>>> {
-            const localVarAxiosArgs = await SysMenuApiAxiosParamCreator(configuration).apiSysMenuListGet(title, type, options);
+        async apiSysMenuListGet(title?: string, type?: MenuTypeEnum, tenantId?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<AdminResultListSysMenu>>> {
+            const localVarAxiosArgs = await SysMenuApiAxiosParamCreator(configuration).apiSysMenuListGet(title, type, tenantId, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -421,7 +427,7 @@ export const SysMenuApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiSysMenuAddPost(body?: AddMenuInput, options?: AxiosRequestConfig): Promise<AxiosResponse<void>> {
+        async apiSysMenuAddPost(body?: AddMenuInput, options?: AxiosRequestConfig): Promise<AxiosResponse<AdminResultInt64>> {
             return SysMenuApiFp(configuration).apiSysMenuAddPost(body, options).then((request) => request(axios, basePath));
         },
         /**
@@ -439,11 +445,12 @@ export const SysMenuApiFactory = function (configuration?: Configuration, basePa
          * @summary 获取菜单列表 🔖
          * @param {string} [title] 标题
          * @param {MenuTypeEnum} [type] 菜单类型（1目录 2菜单 3按钮）
+         * @param {number} [tenantId] 租户Id
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiSysMenuListGet(title?: string, type?: MenuTypeEnum, options?: AxiosRequestConfig): Promise<AxiosResponse<AdminResultListSysMenu>> {
-            return SysMenuApiFp(configuration).apiSysMenuListGet(title, type, options).then((request) => request(axios, basePath));
+        async apiSysMenuListGet(title?: string, type?: MenuTypeEnum, tenantId?: number, options?: AxiosRequestConfig): Promise<AxiosResponse<AdminResultListSysMenu>> {
+            return SysMenuApiFp(configuration).apiSysMenuListGet(title, type, tenantId, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -491,7 +498,7 @@ export class SysMenuApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof SysMenuApi
      */
-    public async apiSysMenuAddPost(body?: AddMenuInput, options?: AxiosRequestConfig) : Promise<AxiosResponse<void>> {
+    public async apiSysMenuAddPost(body?: AddMenuInput, options?: AxiosRequestConfig) : Promise<AxiosResponse<AdminResultInt64>> {
         return SysMenuApiFp(this.configuration).apiSysMenuAddPost(body, options).then((request) => request(this.axios, this.basePath));
     }
     /**
@@ -510,12 +517,13 @@ export class SysMenuApi extends BaseAPI {
      * @summary 获取菜单列表 🔖
      * @param {string} [title] 标题
      * @param {MenuTypeEnum} [type] 菜单类型（1目录 2菜单 3按钮）
+     * @param {number} [tenantId] 租户Id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof SysMenuApi
      */
-    public async apiSysMenuListGet(title?: string, type?: MenuTypeEnum, options?: AxiosRequestConfig) : Promise<AxiosResponse<AdminResultListSysMenu>> {
-        return SysMenuApiFp(this.configuration).apiSysMenuListGet(title, type, options).then((request) => request(this.axios, this.basePath));
+    public async apiSysMenuListGet(title?: string, type?: MenuTypeEnum, tenantId?: number, options?: AxiosRequestConfig) : Promise<AxiosResponse<AdminResultListSysMenu>> {
+        return SysMenuApiFp(this.configuration).apiSysMenuListGet(title, type, tenantId, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * 

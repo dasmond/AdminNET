@@ -11,67 +11,51 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-
 import { SysPlugin } from './sys-plugin';
- /**
+/**
  * 分页泛型集合
- *
  * @export
  * @interface SqlSugarPagedListSysPlugin
  */
 export interface SqlSugarPagedListSysPlugin {
-
     /**
      * 页码
-     *
      * @type {number}
      * @memberof SqlSugarPagedListSysPlugin
      */
     page?: number;
-
     /**
      * 页容量
-     *
      * @type {number}
      * @memberof SqlSugarPagedListSysPlugin
      */
     pageSize?: number;
-
     /**
      * 总条数
-     *
      * @type {number}
      * @memberof SqlSugarPagedListSysPlugin
      */
     total?: number;
-
     /**
      * 总页数
-     *
      * @type {number}
      * @memberof SqlSugarPagedListSysPlugin
      */
     totalPages?: number;
-
     /**
      * 当前页集合
-     *
      * @type {Array<SysPlugin>}
      * @memberof SqlSugarPagedListSysPlugin
      */
     items?: Array<SysPlugin> | null;
-
     /**
      * 是否有上一页
-     *
      * @type {boolean}
      * @memberof SqlSugarPagedListSysPlugin
      */
     hasPrevPage?: boolean;
-
     /**
      * 是否有下一页
-     *
      * @type {boolean}
      * @memberof SqlSugarPagedListSysPlugin
      */

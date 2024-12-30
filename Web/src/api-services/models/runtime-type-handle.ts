@@ -11,17 +11,15 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-
 import { IntPtr } from './int-ptr';
- /**
+/**
  * 
- *
  * @export
  * @interface RuntimeTypeHandle
  */
 export interface RuntimeTypeHandle {
-
     /**
+     * 
      * @type {IntPtr}
      * @memberof RuntimeTypeHandle
      */

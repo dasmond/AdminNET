@@ -5,14 +5,17 @@
 				<el-card class="full-table" shadow="hover" :body-style="{ height: 'calc(100% - 51px)' }">
 					<template #header>
 						<el-icon size="16" style="margin-right: 3px; display: inline; vertical-align: middle"><ele-Collection /></el-icon>字典
+						<NoticeBar text="枚举字典对非超管用户不可见，前端获取字典数据范围：默认租户字典 + 当前租户字典。" v-if="userStore.userInfos.accountType == 999" class="ml20" />
 					</template>
 					<el-form :model="state.queryDictTypeParams" ref="queryForm" :inline="true" @submit.native.prevent>
+						<el-form-item label="租户" v-if="userStore.userInfos.accountType == 999">
+							<el-select v-model="state.queryDictTypeParams.tenantId" placeholder="租户" clearable style="width: 100%">
+								<el-option :value="item.value" :label="`${item.label} (${item.host})`" v-for="(item, index) in state.tenantList" :key="index" />
+							</el-select>
+						</el-form-item>
 						<el-form-item label="名称">
 							<el-input v-model="state.queryDictTypeParams.name" @keyup.enter.native="handleDictTypeQuery" placeholder="字典名称" clearable />
 						</el-form-item>
-						<!-- <el-form-item label="字典编码">
-							<el-input v-model="state.queryDictTypeParams.code" placeholder="字典编码" clearable />
-						</el-form-item> -->
 						<el-form-item>
 							<el-button-group>
 								<el-button type="primary" icon="ele-Search" @click="handleDictTypeQuery" v-auth="'sysDictType:page'"> 查询 </el-button>
@@ -30,8 +33,7 @@
 						<el-table-column prop="code" label="字典编码" min-width="140" header-align="center" show-overflow-tooltip />
 						<el-table-column prop="status" label="状态" width="70" align="center" show-overflow-tooltip>
 							<template #default="scope">
-								<el-tag type="success" v-if="scope.row.status === 1">启用</el-tag>
-								<el-tag type="danger" v-else>禁用</el-tag>
+                <g-sys-dict v-model="scope.row.status" code="StatusEnum" />
 							</template>
 						</el-table-column>
 						<el-table-column prop="orderNo" label="排序" width="60" align="center" show-overflow-tooltip />
@@ -40,10 +42,10 @@
 								<ModifyRecord :data="scope.row" />
 							</template>
 						</el-table-column>
-						<el-table-column label="操作" width="110" fixed="right" align="center">
+						<el-table-column label="操作" width="120" fixed="right" align="center" v-if="auths(['sysDictType:update', 'sysDictType:delete'])">
 							<template #default="scope">
-								<el-tooltip content="字典值">
-									<el-button icon="ele-Memo" size="small" text type="primary" @click="openDictDataDialog(scope.row)" v-auth="'sysDictType:page'"> </el-button>
+								<el-tooltip content="迁移">
+									<el-button icon="ele-Switch" size="small" text type="primary" @click="openMoveDictType(scope.row)" v-auth="'sysDictType:move'"> </el-button>
 								</el-tooltip>
 								<el-tooltip content="编辑">
 									<el-button icon="ele-Edit" size="small" text type="primary" @click="openEditDictType(scope.row)" v-auth="'sysDictType:update'"> </el-button>
@@ -74,11 +76,8 @@
 						<el-icon size="16" style="margin-right: 3px; display: inline; vertical-align: middle"><ele-Collection /></el-icon>字典值【{{ state.editDictTypeName }}】
 					</template>
 					<el-form :model="state.queryDictDataParams" ref="queryForm" :inline="true" @submit.native.prevent>
-						<!-- <el-form-item label="字典值">
-							<el-input v-model="state.queryDictDataParams.value" placeholder="字典值" />
-						</el-form-item> -->
-						<el-form-item label="编码">
-							<el-input v-model="state.queryDictDataParams.code" placeholder="编码" @keyup.enter="handleDictDataQuery" />
+						<el-form-item label="显示文本">
+							<el-input v-model="state.queryDictDataParams.label" placeholder="显示文本" @keyup.enter="handleDictDataQuery" />
 						</el-form-item>
 						<el-form-item>
 							<el-button-group>
@@ -87,18 +86,18 @@
 							</el-button-group>
 						</el-form-item>
 						<el-form-item>
-							<el-button type="primary" icon="ele-Plus" @click="openAddDictData"> 新增 </el-button>
+							<el-button type="primary" icon="ele-Plus" @click="openAddDictData" v-auth="'sysDictData:add'"> 新增 </el-button>
 						</el-form-item>
 					</el-form>
 
 					<el-table :data="state.dictDataData" style="width: 100%" v-loading="state.loading" border>
 						<el-table-column type="index" label="序号" width="55" align="center" />
-						<el-table-column prop="value" label="字典值" header-align="center" min-width="120" show-overflow-tooltip>
+						<el-table-column prop="value" label="显示文本" header-align="center" min-width="120" show-overflow-tooltip>
 							<template #default="scope">
-								<el-tag :type="scope.row.tagType" :style="scope.row.styleSetting" :class="scope.row.classSetting">{{ scope.row.value }}</el-tag>
+								<el-tag :type="scope.row.tagType" :style="scope.row.styleSetting" :class="scope.row.classSetting">{{ scope.row.label }}</el-tag>
 							</template>
 						</el-table-column>
-						<el-table-column prop="code" label="编码" header-align="center" min-width="120" show-overflow-tooltip />
+						<el-table-column prop="value" label="字典值" header-align="center" min-width="120" show-overflow-tooltip />
 						<el-table-column prop="name" label="名称" header-align="center" min-width="120" show-overflow-tooltip />
 						<el-table-column prop="extData" label="拓展数据" width="90" align="center">
 							<template #default="scope">
@@ -108,8 +107,7 @@
 						</el-table-column>
 						<el-table-column prop="status" label="状态" width="70" align="center" show-overflow-tooltip>
 							<template #default="scope">
-								<el-tag type="success" v-if="scope.row.status === 1">启用</el-tag>
-								<el-tag type="danger" v-else>禁用</el-tag>
+                <g-sys-dict v-model="scope.row.status" code="StatusEnum" />
 							</template>
 						</el-table-column>
 						<el-table-column prop="orderNo" label="排序" width="60" align="center" show-overflow-tooltip />
@@ -118,16 +116,16 @@
 								<ModifyRecord :data="scope.row" />
 							</template>
 						</el-table-column>
-						<el-table-column label="操作" width="120" fixed="right" align="center" show-overflow-tooltip>
+						<el-table-column label="操作" width="120" fixed="right" align="center" show-overflow-tooltip v-if="auths(['sysDictData:add', 'sysDictData:update', 'sysDictData:delete'])">
 							<template #default="scope">
 								<el-tooltip content="编辑">
-									<el-button icon="ele-Edit" size="small" text type="primary" @click="openEditDictData(scope.row)"> </el-button>
+									<el-button icon="ele-Edit" size="small" text type="primary" @click="openEditDictData(scope.row)" v-auth="'sysDictData:update'"> </el-button>
 								</el-tooltip>
 								<el-tooltip content="删除">
-									<el-button icon="ele-Delete" size="small" text type="danger" @click="delDictData(scope.row)"> </el-button>
+									<el-button icon="ele-Delete" size="small" text type="danger" @click="delDictData(scope.row)" v-auth="'sysDictData:delete'"> </el-button>
 								</el-tooltip>
 								<el-tooltip content="复制">
-									<el-button icon="ele-CopyDocument" size="small" text type="primary" @click="openCopyDictData(scope.row)"> </el-button>
+									<el-button icon="ele-CopyDocument" size="small" text type="primary" @click="openCopyDictData(scope.row)" v-auth="'sysDictData:add'"> </el-button>
 								</el-tooltip>
 							</template>
 						</el-table-column>
@@ -147,6 +145,42 @@
 			</el-col>
 		</el-row>
 
+		<el-dialog v-model="state.showMoveDictDialog" draggable :close-on-click-modal="false" width="700px">
+			<template #header>
+				<div style="color: #fff">
+					<el-icon size="16" style="margin-right: 3px; display: inline; vertical-align: middle"> <ele-Edit /> </el-icon>
+					<span> 迁移字典租户 </span>
+				</div>
+			</template>
+			<el-form :model="state.selectDict" ref="moveDictTypeFormRef" label-width="auto">
+				<el-row :gutter="35">
+					<el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="mb20">
+						<el-form-item label="字典名称" prop="name" :rules="[{ required: true, message: '字典名称不能为空', trigger: 'blur' }]">
+							<el-input v-model="state.selectDict.name" :disabled="true" placeholder="字典名称" clearable />
+						</el-form-item>
+					</el-col>
+					<el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="mb20">
+						<el-form-item label="字典编码" prop="code" :rules="[{ required: true, message: '字典名称不能为空', trigger: 'blur' }]">
+							<el-input v-model="state.selectDict.code" :disabled="true" placeholder="字典名称" clearable />
+						</el-form-item>
+					</el-col>
+					<el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="mb20">
+						<el-form-item label="租户" prop="tenantId" :rules="[{ required: true, message: '租户不能为空', trigger: 'blur' }]">
+							<el-select v-model="state.selectDict.tenantId" placeholder="租户" class="w100">
+								<el-option :value="item.value" :label="`${item.label} (${item.host})`" v-for="(item, index) in state.tenantList" :key="index" />
+							</el-select>
+						</el-form-item>
+					</el-col>
+				</el-row>
+			</el-form>
+			<template #footer>
+				<span class="dialog-footer">
+					<el-button @click="() => state.showMoveDictDialog = false">取 消</el-button>
+					<el-button type="primary" @click="moveDictTypeSubmit" v-reclick="1000">确 定</el-button>
+				</span>
+			</template>
+		</el-dialog>
+
 		<EditDictType ref="editDictTypeRef" :title="state.editDictTypeTitle" @handleQuery="handleDictTypeQuery" @handleUpdate="updateDictSession" />
 		<EditDictData ref="editDictDataRef" :title="state.editDictDataTitle" @handleQuery="handleDictDataQuery" @handleUpdate="updateDictSession" />
 	</div>
@@ -154,41 +188,47 @@
 
 <script lang="ts" setup name="sysDict">
 import { onMounted, reactive, ref } from 'vue';
+import { getAPI } from '/@/utils/axios-utils';
+import { useUserInfo } from '/@/stores/userInfo';
 import { ElMessageBox, ElMessage } from 'element-plus';
+import { SysDictType, SysDictData, UpdateDictDataInput } from '/@/api-services/models';
+import { SysDictTypeApi, SysDictDataApi, SysTenantApi } from '/@/api-services/api';
 import EditDictType from '/@/views/system/dict/component/editDictType.vue';
 import EditDictData from '/@/views/system/dict/component/editDictData.vue';
 import ModifyRecord from '/@/components/table/modifyRecord.vue';
+import NoticeBar from "/@/components/noticeBar/index.vue";
+import { auths } from "/@/utils/authFunction";
 
-import { getAPI } from '/@/utils/axios-utils';
-import { Session } from '/@/utils/storage';
-import { useUserInfo } from '/@/stores/userInfo';
-import { SysDictTypeApi, SysDictDataApi } from '/@/api-services/api';
-import { SysDictType, SysDictData, UpdateDictDataInput } from '/@/api-services/models';
-
+const userStore = useUserInfo();
+const moveDictTypeFormRef = ref();
 const editDictTypeRef = ref<InstanceType<typeof EditDictType>>();
 const editDictDataRef = ref<InstanceType<typeof EditDictData>>();
 const state = reactive({
 	loading: false,
 	typeLoading: false,
+	showMoveDictDialog: false,
+	tenantList: [] as Array<any>,
+	selectDict: {} as SysDictType,
 	dictTypeData: [] as Array<SysDictType>,
 	dictDataData: [] as Array<SysDictData>,
 	queryDictTypeParams: {
+		tenantId: undefined,
 		name: undefined,
 		code: undefined,
 	},
 	tableDictTypeParams: {
 		page: 1,
-		pageSize: 20,
+		pageSize: 50,
 		total: 0 as any,
 	},
 	queryDictDataParams: {
-		value: undefined,
-		code: undefined,
+		tenantId: undefined,
+    label: undefined,
 		dictTypeId: 0, // 字典类型Id
 	},
 	tableDictDataParams: {
 		page: 1,
-		pageSize: 20,
+		pageSize: 50,
 		total: 0 as any,
 	},
 	editDictTypeTitle: '',
@@ -197,6 +237,10 @@ const state = reactive({
 });
 
 onMounted(async () => {
+	if (userStore.userInfos.accountType == 999) {
+		state.tenantList = await getAPI(SysTenantApi).apiSysTenantListGet().then(res => res.data.result ?? []);
+		state.queryDictDataParams.tenantId = state.tenantList[0].value;
+	}
 	handleDictTypeQuery();
 });
 
@@ -204,7 +248,7 @@ onMounted(async () => {
 const handleDictTypeQuery = async () => {
 	state.typeLoading = true;
 	let params = Object.assign(state.queryDictTypeParams, state.tableDictTypeParams);
-	var res = await getAPI(SysDictTypeApi).apiSysDictTypePagePost(params);
+	const res = await getAPI(SysDictTypeApi).apiSysDictTypePagePost(params);
 	state.dictTypeData = res.data.result?.items ?? [];
 	state.tableDictTypeParams.total = res.data.result?.total;
 	state.typeLoading = false;
@@ -213,8 +257,9 @@ const handleDictTypeQuery = async () => {
 // 查询字典值操作
 const handleDictDataQuery = async () => {
 	state.loading = true;
+	state.queryDictDataParams.tenantId = state.queryDictTypeParams.tenantId;
 	let params = Object.assign(state.queryDictDataParams, state.tableDictDataParams);
-	var res = await getAPI(SysDictDataApi).apiSysDictDataPagePost(params);
+	const res = await getAPI(SysDictDataApi).apiSysDictDataPagePost(params);
 	state.dictDataData = res.data.result?.items ?? [];
 	state.tableDictDataParams.total = res.data.result?.total;
 	state.loading = false;
@@ -225,6 +270,11 @@ const handleDictType = (row: any, event: any, column: any) => {
 	openDictDataDialog(row);
 };
 
+// 刷新字典类型和字典值表格
+const handleAllDictQuery = () => {
+	handleDictTypeQuery().then(() => handleDictDataQuery());
+}
+
 // 重置字典操作
 const resetDictTypeQuery = () => {
 	state.queryDictTypeParams.name = undefined;
@@ -234,15 +284,14 @@ const resetDictTypeQuery = () => {
 
 // 重置字典值操作
 const resetDictDataQuery = () => {
-	state.queryDictDataParams.value = undefined;
-	state.queryDictDataParams.code = undefined;
+	state.queryDictDataParams.label = undefined;
 	handleDictDataQuery();
 };
 
 // 打开新增字典页面
 const openAddDictType = () => {
 	state.editDictTypeTitle = '添加字典';
-	editDictTypeRef.value?.openDialog({ status: 1, orderNo: 100 });
+	editDictTypeRef.value?.openDialog({ status: 1, orderNo: 100, tenantId: state.queryDictTypeParams.tenantId });
 };
 
 // 打开新增字典值页面
@@ -251,10 +300,24 @@ const openAddDictData = () => {
 		ElMessage.warning('请选择字典');
 		return;
 	}
-
 	state.editDictDataTitle = '添加字典值';
-	editDictDataRef.value?.openDialog({ status: 1, orderNo: 100, dictTypeId: state.queryDictDataParams.dictTypeId });
+	editDictDataRef.value?.openDialog({ status: 1, orderNo: 100, dictTypeId: state.queryDictDataParams.dictTypeId, tenantId: state.queryDictTypeParams.tenantId });
 };
+
+const moveDictTypeSubmit = async () => {
+	moveDictTypeFormRef.value.validate(async (valid: boolean) => {
+		if (!valid) return;
+		await getAPI(SysDictTypeApi).apiSysDictTypeMovePost({ id: state.selectDict.id, tenantId: state.selectDict.tenantId });
+		handleAllDictQuery();
+		state.showMoveDictDialog = false;
+	});
+}
+
+// 打开迁移字典租户
+const openMoveDictType = (row: any) => {
+	state.selectDict = row;
+	state.showMoveDictDialog = true;
+}
 
 // 打开编辑字典页面
 const openEditDictType = (row: any) => {
@@ -265,7 +328,7 @@ const openEditDictType = (row: any) => {
 // 打开复制字典值页面
 const openCopyDictData = (row: any) => {
 	state.editDictDataTitle = '复制字典值';
-	var copyRow = JSON.parse(JSON.stringify(row)) as UpdateDictDataInput;
+	const copyRow = JSON.parse(JSON.stringify(row)) as UpdateDictDataInput;
 	copyRow.id = 0;
 	editDictDataRef.value?.openDialog(copyRow);
 };
@@ -289,14 +352,12 @@ const delDictType = (row: any) => {
 		confirmButtonText: '确定',
 		cancelButtonText: '取消',
 		type: 'warning',
-	})
-		.then(async () => {
+	}).then(async () => {
 			await getAPI(SysDictTypeApi).apiSysDictTypeDeletePost({ id: row.id });
 			handleDictTypeQuery();
 			updateDictSession();
 			ElMessage.success('删除成功');
-		})
-		.catch(() => {});
+  }).catch(() => {});
 };
 
 // 删除字典值
@@ -305,14 +366,12 @@ const delDictData = (row: any) => {
 		confirmButtonText: '确定',
 		cancelButtonText: '取消',
 		type: 'warning',
-	})
-		.then(async () => {
+	}).then(async () => {
 			await getAPI(SysDictDataApi).apiSysDictDataDeletePost({ id: row.id });
 			handleDictDataQuery();
 			updateDictSession();
 			ElMessage.success('删除成功');
-		})
-		.catch(() => {});
+  }).catch(() => {});
 };
 
 // 改变字典页面容量
@@ -341,10 +400,19 @@ const handleDictDataCurrentChange = (val: number) => {
 
 // 更新前端字典缓存
 const updateDictSession = async () => {
-	// if (Session.get('dictList')) {
-	// 	const dictList = await useUserInfo().getAllDictList();
-	// 	Session.set('dictList', dictList);
-	// }
 	await useUserInfo().setDictList();
 };
 </script>
+
+<style scoped>
+:deep(.notice-bar) {
+	position: absolute;
+	display: inline-flex;
+	height: 25px !important;
+	width: 500px;
+	overflow: hidden !important;
+	div[data-slate-editor] {
+		text-wrap-mode: nowrap;
+	}
+}
+</style>

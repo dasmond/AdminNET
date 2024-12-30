@@ -11,7 +11,7 @@ public static class SqlSugarFilter
     /// <summary>
     /// 缓存全局查询过滤器（内存缓存）
     /// </summary>
-    private static readonly ICache _cache = Cache.Default;
+    private static readonly ICache Cache = NewLife.Caching.Cache.Default;
 
     /// <summary>
     /// 删除用户机构缓存
@@ -26,8 +26,21 @@ public static class SqlSugarFilter
         sysCacheService.Remove($"{CacheConst.KeyUserOrg}{userId}");
         // 删除最大数据权限缓存
         sysCacheService.Remove($"{CacheConst.KeyRoleMaxDataScope}{userId}");
+        // 用户权限缓存（按钮集合）
+        sysCacheService.Remove($"{CacheConst.KeyUserButton}{userId}");
         // 删除用户机构（数据范围）缓存——过滤器
-        _cache.Remove($"db:{dbConfigId}:orgList:{userId}");
+        Cache.Remove($"db:{dbConfigId}:orgList:{userId}");
+    }
+
+    /// <summary>
+    /// 删除自定义过滤器缓存
+    /// </summary>
+    /// <param name="userId"></param>
+    /// <param name="dbConfigId"></param>
+    public static void DeleteCustomCache(long userId, string dbConfigId)
+    {
+        // 删除自定义缓存——过滤器
+        Cache.Remove($"db:{dbConfigId}:custom:{userId}");
     }
 
     /// <summary>
@@ -39,12 +52,12 @@ public static class SqlSugarFilter
         var maxDataScope = SetDataScopeFilter(db);
         if (maxDataScope == 0 || maxDataScope == (int)DataScopeEnum.Self) return;
 
-        var userId = App.User?.FindFirst(ClaimConst.UserId)?.Value;
-        if (string.IsNullOrWhiteSpace(userId)) return;
+        var userId = App.GetService<UserManager>()?.UserId;
+        if (userId == null) return;
 
         // 配置用户机构集合缓存
         var cacheKey = $"db:{db.CurrentConnectionConfig.ConfigId}:orgList:{userId}";
-        var orgFilter = _cache.Get<ConcurrentDictionary<Type, LambdaExpression>>(cacheKey);
+        var orgFilter = Cache.Get<ConcurrentDictionary<Type, LambdaExpression>>(cacheKey);
         if (orgFilter == null)
         {
             // 获取用户最大数据范围，如果是全部数据，则跳过
@@ -79,7 +92,7 @@ public static class SqlSugarFilter
                 db.QueryFilter.AddTableFilter(entityType, lambda);
                 orgFilter.TryAdd(entityType, lambda);
             }
-            _cache.Add(cacheKey, orgFilter);
+            Cache.Add(cacheKey, orgFilter);
         }
         else
         {
@@ -95,8 +108,8 @@ public static class SqlSugarFilter
     {
         var maxDataScope = (int)DataScopeEnum.All;
 
-        var userId = App.User?.FindFirst(ClaimConst.UserId)?.Value;
-        if (string.IsNullOrWhiteSpace(userId)) return maxDataScope;
+        var userId = App.GetService<UserManager>().UserId;
+        if (userId <= 0) return maxDataScope;
 
         // 获取用户最大数据范围---仅本人数据
         maxDataScope = App.GetRequiredService<SysCacheService>().Get<int>(CacheConst.KeyRoleMaxDataScope + userId);
@@ -115,7 +128,7 @@ public static class SqlSugarFilter
 
         // 配置用户数据范围缓存
         var cacheKey = $"db:{db.CurrentConnectionConfig.ConfigId}:dataScope:{userId}";
-        var dataScopeFilter = _cache.Get<ConcurrentDictionary<Type, LambdaExpression>>(cacheKey);
+        var dataScopeFilter = Cache.Get<ConcurrentDictionary<Type, LambdaExpression>>(cacheKey);
         if (dataScopeFilter == null)
         {
             // 获取业务实体数据表
@@ -133,12 +146,12 @@ public static class SqlSugarFilter
 
                 //var lambda = DynamicExpressionParser.ParseLambda(new[] {
                 //    Expression.Parameter(entityType, "u") }, typeof(bool), $"u.{nameof(EntityBaseData.CreateUserId)}=@0", userId);
-                var lambda = entityType.GetConditionExpression<OwnerUserAttribute>(new List<long> { long.Parse(userId) });
+                var lambda = entityType.GetConditionExpression<OwnerUserAttribute>(new List<long> { userId });
 
                 db.QueryFilter.AddTableFilter(entityType, lambda);
                 dataScopeFilter.TryAdd(entityType, lambda);
             }
-            _cache.Add(cacheKey, dataScopeFilter);
+            Cache.Add(cacheKey, dataScopeFilter);
         }
         else
         {
@@ -156,7 +169,7 @@ public static class SqlSugarFilter
         // 配置自定义缓存
         var userId = App.User?.FindFirst(ClaimConst.UserId)?.Value;
         var cacheKey = $"db:{db.CurrentConnectionConfig.ConfigId}:custom:{userId}";
-        var tableFilterItemList = _cache.Get<List<TableFilterItem<object>>>(cacheKey);
+        var tableFilterItemList = Cache.Get<List<TableFilterItem<object>>>(cacheKey);
         if (tableFilterItemList == null)
         {
             // 获取自定义实体过滤器
@@ -186,7 +199,7 @@ public static class SqlSugarFilter
                     db.QueryFilter.Add(tableFilterItem);
                 }
             }
-            _cache.Add(cacheKey, tableFilterItems);
+            Cache.Add(cacheKey, tableFilterItems);
         }
         else
         {

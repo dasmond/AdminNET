@@ -5,6 +5,11 @@
 				<el-form-item label="作业编号">
 					<el-input v-model="state.queryParams.jobId" placeholder="作业编号" clearable />
 				</el-form-item>
+				<el-form-item label="组名称">
+					<el-select v-model="state.queryParams.groupName" placeholder="组名称" clearable>
+						<el-option v-for="item in state.groupsData" :key="item" :label="item" :value="item" />
+					</el-select>
+				</el-form-item>
 				<el-form-item label="描述信息">
 					<el-input v-model="state.queryParams.description" placeholder="描述信息" clearable />
 				</el-form-item>
@@ -54,11 +59,11 @@
 							<el-table-column prop="status" label="状态" width="120" align="center" show-overflow-tooltip>
 								<template #default="scope">
 									<el-tag type="warning" effect="plain" v-if="(scope.row as SysJobTrigger).status == 0"> 积压 </el-tag>
-									<el-tag type="" effect="plain" v-if="(scope.row as SysJobTrigger).status == 1"> 就绪 </el-tag>
+									<el-tag effect="plain" v-if="(scope.row as SysJobTrigger).status == 1"> 就绪 </el-tag>
 									<el-tag type="success" effect="plain" v-if="(scope.row as SysJobTrigger).status == 2"> 正在运行 </el-tag>
 									<el-tag type="danger" effect="plain" v-if="(scope.row as SysJobTrigger).status == 3"> 暂停 </el-tag>
 									<el-tag type="danger" effect="plain" v-if="(scope.row as SysJobTrigger).status == 4"> 阻塞 </el-tag>
-									<el-tag type="" effect="plain" v-if="(scope.row as SysJobTrigger).status == 5"> 由失败进入就绪 </el-tag>
+									<el-tag effect="plain" v-if="(scope.row as SysJobTrigger).status == 5"> 由失败进入就绪 </el-tag>
 									<el-tag type="danger" effect="plain" v-if="(scope.row as SysJobTrigger).status == 6"> 归档 </el-tag>
 									<el-tag type="danger" effect="plain" v-if="(scope.row as SysJobTrigger).status == 7"> 崩溃 </el-tag>
 									<el-tag type="danger" effect="plain" v-if="(scope.row as SysJobTrigger).status == 8"> 超限 </el-tag>
@@ -137,9 +142,7 @@
 				</el-table-column>
 				<el-table-column prop="jobDetail.createType" label="作业创建类型" width="110" align="center" show-overflow-tooltip>
 					<template #default="scope">
-						<el-tag type="info" v-if="(scope.row as JobDetailOutput).jobDetail?.createType == JobCreateTypeEnum.NUMBER_0"> 内置 </el-tag>
-						<el-tag type="warning" v-if="(scope.row as JobDetailOutput).jobDetail?.createType == JobCreateTypeEnum.NUMBER_1"> 脚本 </el-tag>
-						<el-tag type="success" v-if="(scope.row as JobDetailOutput).jobDetail?.createType == JobCreateTypeEnum.NUMBER_2"> HTTP请求 </el-tag>
+						<g-sys-dict v-model="scope.row.jobDetail.createType" code="JobCreateTypeEnum" />
 					</template>
 				</el-table-column>
 				<!-- <el-table-column prop="jobDetail.includeAnnotations" label="扫描特性触发器" align="center" show-overflow-tooltip>
@@ -226,11 +229,11 @@
 					<el-table-column prop="status" label="触发器状态" align="center" show-overflow-tooltip>
 						<template #default="scope">
 							<el-tag type="warning" effect="plain" v-if="(scope.row as SysJobTrigger).status == 0"> 积压 </el-tag>
-							<el-tag type="" effect="plain" v-if="(scope.row as SysJobTrigger).status == 1"> 就绪 </el-tag>
+							<el-tag effect="plain" v-if="(scope.row as SysJobTrigger).status == 1"> 就绪 </el-tag>
 							<el-tag type="success" effect="plain" v-if="(scope.row as SysJobTrigger).status == 2"> 正在运行 </el-tag>
 							<el-tag type="danger" effect="plain" v-if="(scope.row as SysJobTrigger).status == 3"> 暂停 </el-tag>
 							<el-tag type="danger" effect="plain" v-if="(scope.row as SysJobTrigger).status == 4"> 阻塞 </el-tag>
-							<el-tag type="" effect="plain" v-if="(scope.row as SysJobTrigger).status == 5"> 由失败进入就绪 </el-tag>
+							<el-tag effect="plain" v-if="(scope.row as SysJobTrigger).status == 5"> 由失败进入就绪 </el-tag>
 							<el-tag type="danger" effect="plain" v-if="(scope.row as SysJobTrigger).status == 6"> 归档 </el-tag>
 							<el-tag type="danger" effect="plain" v-if="(scope.row as SysJobTrigger).status == 7"> 崩溃 </el-tag>
 							<el-tag type="danger" effect="plain" v-if="(scope.row as SysJobTrigger).status == 8"> 超限 </el-tag>
@@ -265,17 +268,16 @@
 </template>
 
 <script lang="ts" setup name="sysJob">
-import { onMounted, reactive, ref } from 'vue';
+import { nextTick, onMounted, reactive, ref } from 'vue';
 import { ElMessageBox, ElMessage } from 'element-plus';
 import { useRouter } from 'vue-router';
 import { Timer } from '@element-plus/icons-vue';
-import EditJobDetail from '/@/views/system/job/component/editJobDetail.vue';
-import EditJobTrigger from '/@/views/system/job/component/editJobTrigger.vue';
-import JobCluster from '/@/views/system/job/component/jobCluster.vue';
-
 import { getAPI } from '/@/utils/axios-utils';
 import { SysJobApi } from '/@/api-services/api';
 import { JobCreateTypeEnum, JobDetailOutput, SysJobTrigger } from '/@/api-services/models';
+import EditJobDetail from '/@/views/system/job/component/editJobDetail.vue';
+import EditJobTrigger from '/@/views/system/job/component/editJobTrigger.vue';
+import JobCluster from '/@/views/system/job/component/jobCluster.vue';
 
 const router = useRouter();
 const editJobDetailRef = ref<InstanceType<typeof EditJobDetail>>();
@@ -286,16 +288,17 @@ const state = reactive({
 	jobData: [] as Array<JobDetailOutput>,
 	queryParams: {
 		jobId: undefined,
+		groupName: undefined,
 		description: undefined,
 	},
 	tableParams: {
 		page: 1,
-		pageSize: 20,
+		pageSize: 50,
 		total: 0 as any,
 	},
 	tableParams2: {
 		page: 1,
-		pageSize: 20,
+		pageSize: 50,
 		total: 0 as any,
 	},
 	editJobDetailTitle: '',
@@ -304,10 +307,16 @@ const state = reactive({
 	isVisibleDrawer: false,
 	triggerRecordData: [] as any,
 	currentJob: {} as any,
+	groupsData: [] as Array<string>,
 });
 
 onMounted(async () => {
-	handleQuery();
+	await handleQuery();
+	// 获取组名称下拉集合
+	nextTick(async () => {
+		const { data } = await getAPI(SysJobApi).apiSysJobListJobGroupPost();
+		state.groupsData = data.result ?? [];
+	});
 });
 
 // 查询操作
@@ -321,10 +330,11 @@ const handleQuery = async () => {
 };
 
 // 重置操作
-const resetQuery = () => {
+const resetQuery = async () => {
 	state.queryParams.jobId = undefined;
+	state.queryParams.groupName = undefined;
 	state.queryParams.description = undefined;
-	handleQuery();
+	await handleQuery();
 };
 
 // 打开新增作业页面
@@ -348,7 +358,7 @@ const delJobDetail = (row: JobDetailOutput) => {
 	})
 		.then(async () => {
 			await getAPI(SysJobApi).apiSysJobDeleteJobDetailPost({ jobId: row.jobDetail?.jobId });
-			handleQuery();
+			await handleQuery();
 			ElMessage.success('删除成功');
 		})
 		.catch(() => {});
@@ -382,22 +392,22 @@ const delJobTrigger = (row: SysJobTrigger) => {
 	})
 		.then(async () => {
 			await getAPI(SysJobApi).apiSysJobDeleteJobTriggerPost({ jobId: row.jobId, triggerId: row.triggerId });
-			handleQuery();
+			await handleQuery();
 			ElMessage.success('删除成功');
 		})
 		.catch(() => {});
 };
 
 // 改变页面容量
-const handleSizeChange = (val: number) => {
+const handleSizeChange = async (val: number) => {
 	state.tableParams.pageSize = val;
-	handleQuery();
+	await handleQuery();
 };
 
 // 改变页码序号
-const handleCurrentChange = (val: number) => {
+const handleCurrentChange = async (val: number) => {
 	state.tableParams.page = val;
-	handleQuery();
+	await handleQuery();
 };
 
 // 启动所有作业
@@ -497,10 +507,10 @@ const getHttpMethodDesc = (httpMethodStr: string | undefined | null): string => 
 };
 
 // 打开作业触发器运行记录
-const openJobTriggerRecord = (row: any) => {
+const openJobTriggerRecord = async (row: any) => {
 	state.currentJob = row;
 	state.isVisibleDrawer = true;
-	handleQuery2();
+	await handleQuery2();
 };
 
 // 作业触发器运行记录查询操作
@@ -514,15 +524,15 @@ const handleQuery2 = async () => {
 };
 
 // 作业触发器运行记录-改变页面容量
-const handleSizeChange2 = (val: number) => {
+const handleSizeChange2 = async (val: number) => {
 	state.tableParams2.pageSize = val;
-	handleQuery2();
+	await handleQuery2();
 };
 
 // 作业触发器运行记录-改变页码序号
-const handleCurrentChange2 = (val: number) => {
+const handleCurrentChange2 = async (val: number) => {
 	state.tableParams2.page = val;
-	handleQuery2();
+	await handleQuery2();
 };
 </script>
 

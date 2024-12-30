@@ -34,9 +34,18 @@ public class SysPosService : IDynamicApiController, ITransient
     public async Task<List<SysPos>> GetList([FromQuery] PosInput input)
     {
         return await _sysPosRep.AsQueryable()
+            .WhereIF(_userManager.SuperAdmin && input.TenantId > 0, u => u.TenantId == input.TenantId)
             .WhereIF(!string.IsNullOrWhiteSpace(input.Name), u => u.Name.Contains(input.Name))
             .WhereIF(!string.IsNullOrWhiteSpace(input.Code), u => u.Code.Contains(input.Code))
-            .OrderBy(u => new { u.OrderNo, u.Id }).ToListAsync();
+            .OrderBy(u => new { u.OrderNo, u.Id })
+            .Mapper(u =>
+            {
+                u.UserList = _sysPosRep.Context.Queryable<SysUser>()
+                    .Where(a => a.PosId == u.Id || SqlFunc.Subqueryable<SysUserExtOrg>()
+                        .Where(t => a.Id == t.UserId && t.PosId == u.Id).Any())
+                    .ToList();
+            })
+            .ToListAsync();
     }
 
     /// <summary>
@@ -48,8 +57,7 @@ public class SysPosService : IDynamicApiController, ITransient
     [DisplayName("增加职位")]
     public async Task AddPos(AddPosInput input)
     {
-        if (await _sysPosRep.IsAnyAsync(u => u.Name == input.Name && u.Code == input.Code))
-            throw Oops.Oh(ErrorCodeEnum.D6000);
+        if (await _sysPosRep.IsAnyAsync(u => u.Name == input.Name && u.Code == input.Code)) throw Oops.Oh(ErrorCodeEnum.D6000);
 
         await _sysPosRep.InsertAsync(input.Adapt<SysPos>());
     }
@@ -67,8 +75,7 @@ public class SysPosService : IDynamicApiController, ITransient
             throw Oops.Oh(ErrorCodeEnum.D6000);
 
         var sysPos = await _sysPosRep.GetByIdAsync(input.Id) ?? throw Oops.Oh(ErrorCodeEnum.D6003);
-        if (!_userManager.SuperAdmin && sysPos.CreateUserId != _userManager.UserId)
-            throw Oops.Oh(ErrorCodeEnum.D6002);
+        if (!_userManager.SuperAdmin && sysPos.CreateUserId != _userManager.UserId) throw Oops.Oh(ErrorCodeEnum.D6002);
 
         await _sysPosRep.AsUpdateable(input.Adapt<SysPos>()).IgnoreColumns(true).ExecuteCommandAsync();
     }
@@ -83,19 +90,20 @@ public class SysPosService : IDynamicApiController, ITransient
     public async Task DeletePos(DeletePosInput input)
     {
         var sysPos = await _sysPosRep.GetFirstAsync(u => u.Id == input.Id) ?? throw Oops.Oh(ErrorCodeEnum.D6003);
-        if (!_userManager.SuperAdmin && sysPos.CreateUserId != _userManager.UserId)
-            throw Oops.Oh(ErrorCodeEnum.D6002);
+        if (!_userManager.SuperAdmin && sysPos.CreateUserId != _userManager.UserId) throw Oops.Oh(ErrorCodeEnum.D6002);
 
         // 若职位有用户则禁止删除
         var hasPosEmp = await _sysPosRep.ChangeRepository<SqlSugarRepository<SysUser>>()
             .IsAnyAsync(u => u.PosId == input.Id);
-        if (hasPosEmp)
-            throw Oops.Oh(ErrorCodeEnum.D6001);
+        if (hasPosEmp) throw Oops.Oh(ErrorCodeEnum.D6001);
 
         // 若附属职位有用户则禁止删除
         var hasExtPosEmp = await _sysUserExtOrgService.HasUserPos(input.Id);
-        if (hasExtPosEmp)
-            throw Oops.Oh(ErrorCodeEnum.D6001);
+        if (hasExtPosEmp) throw Oops.Oh(ErrorCodeEnum.D6001);
+
+        // 若有绑定注册方案则禁止删除
+        var hasUserRegWay = await _sysPosRep.Context.Queryable<SysUserRegWay>().AnyAsync(u => u.PosId == input.Id);
+        if (hasUserRegWay) throw Oops.Oh(ErrorCodeEnum.D6004);
 
         await _sysPosRep.DeleteAsync(u => u.Id == input.Id);
     }

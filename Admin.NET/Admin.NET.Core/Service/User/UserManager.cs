@@ -36,6 +36,11 @@ public class UserManager : IScoped
     /// <summary>
     /// 是否超级管理员
     /// </summary>
+    public AccountTypeEnum? AccountType => int.TryParse(_httpContextAccessor.HttpContext?.User.FindFirst(ClaimConst.AccountType)?.Value, out var val) ? (AccountTypeEnum?)val : null;
+
+    /// <summary>
+    /// 是否超级管理员
+    /// </summary>
     public bool SuperAdmin => _httpContextAccessor.HttpContext?.User.FindFirst(ClaimConst.AccountType)?.Value == ((int)AccountTypeEnum.SuperAdmin).ToString();
 
     /// <summary>

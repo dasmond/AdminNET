@@ -11,67 +11,65 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-
 import { Assembly } from './assembly';
 import { CustomAttributeData } from './custom-attribute-data';
 import { ModuleHandle } from './module-handle';
- /**
+/**
  * 
- *
  * @export
  * @interface Module
  */
 export interface Module {
-
     /**
+     * 
      * @type {Assembly}
      * @memberof Module
      */
     assembly?: Assembly;
-
     /**
+     * 
      * @type {string}
      * @memberof Module
      */
     fullyQualifiedName?: string | null;
-
     /**
+     * 
      * @type {string}
      * @memberof Module
      */
     name?: string | null;
-
     /**
+     * 
      * @type {number}
      * @memberof Module
      */
     mdStreamVersion?: number;
-
     /**
+     * 
      * @type {string}
      * @memberof Module
      */
     moduleVersionId?: string;
-
     /**
+     * 
      * @type {string}
      * @memberof Module
      */
     scopeName?: string | null;
-
     /**
+     * 
      * @type {ModuleHandle}
      * @memberof Module
      */
     moduleHandle?: ModuleHandle;
-
     /**
+     * 
      * @type {Array<CustomAttributeData>}
      * @memberof Module
      */
     customAttributes?: Array<CustomAttributeData> | null;
-
     /**
+     * 
      * @type {number}
      * @memberof Module
      */

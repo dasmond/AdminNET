@@ -11,7 +11,6 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-
 import globalAxios, { AxiosResponse, AxiosInstance, AxiosRequestConfig } from 'axios';
 import { Configuration } from '../configuration';
 // Some imports not used depending on template conditions
@@ -76,62 +75,13 @@ export const SysUserMenuApiAxiosParamCreator = function (configuration?: Configu
         },
         /**
          * 
-         * @summary 根据用户Id删除收藏菜单 🔖
-         * @param {number} userId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        apiSysUserMenuDeleteByUserIdUserIdPost: async (userId: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'userId' is not null or undefined
-            if (userId === null || userId === undefined) {
-                throw new RequiredError('userId','Required parameter userId was null or undefined when calling apiSysUserMenuDeleteByUserIdUserIdPost.');
-            }
-            const localVarPath = `/api/sysUserMenu/deleteByUserId/{userId}`
-                .replace(`{${"userId"}}`, encodeURIComponent(String(userId)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-            const localVarRequestOptions :AxiosRequestConfig = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication Bearer required
-            // http bearer authentication required
-            if (configuration && configuration.accessToken) {
-                const accessToken = typeof configuration.accessToken === 'function'
-                    ? await configuration.accessToken()
-                    : await configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
-            }
-
-            const query = new URLSearchParams(localVarUrlObj.search);
-            for (const key in localVarQueryParameter) {
-                query.set(key, localVarQueryParameter[key]);
-            }
-            for (const key in options.params) {
-                query.set(key, options.params[key]);
-            }
-            localVarUrlObj.search = (new URLSearchParams(query)).toString();
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
          * @summary 取消收藏菜单 🔖
          * @param {UserMenuInput} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiSysUserMenuDeletePost: async (body?: UserMenuInput, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/api/sysUserMenu/delete`;
+        apiSysUserMenuDeleteUserMenuPost: async (body?: UserMenuInput, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/sysUserMenu/deleteUserMenu`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
             let baseOptions;
@@ -173,18 +123,12 @@ export const SysUserMenuApiAxiosParamCreator = function (configuration?: Configu
         },
         /**
          * 
-         * @summary 根据用户Id获取收藏菜单Id集合 🔖
-         * @param {number} userId 
+         * @summary 获取当前用户收藏的菜单Id集合 🔖
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiSysUserMenuUserMenuIdListUserIdGet: async (userId: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'userId' is not null or undefined
-            if (userId === null || userId === undefined) {
-                throw new RequiredError('userId','Required parameter userId was null or undefined when calling apiSysUserMenuUserMenuIdListUserIdGet.');
-            }
-            const localVarPath = `/api/sysUserMenu/userMenuIdList/{userId}`
-                .replace(`{${"userId"}}`, encodeURIComponent(String(userId)));
+        apiSysUserMenuUserMenuIdListGet: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/sysUserMenu/userMenuIdList`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
             let baseOptions;
@@ -222,18 +166,12 @@ export const SysUserMenuApiAxiosParamCreator = function (configuration?: Configu
         },
         /**
          * 
-         * @summary 根据用户Id获取收藏菜单集合 🔖
-         * @param {number} userId 
+         * @summary 获取当前用户收藏的菜单集合 🔖
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiSysUserMenuUserMenuListUserIdGet: async (userId: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'userId' is not null or undefined
-            if (userId === null || userId === undefined) {
-                throw new RequiredError('userId','Required parameter userId was null or undefined when calling apiSysUserMenuUserMenuListUserIdGet.');
-            }
-            const localVarPath = `/api/sysUserMenu/userMenuList/{userId}`
-                .replace(`{${"userId"}}`, encodeURIComponent(String(userId)));
+        apiSysUserMenuUserMenuListGet: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/sysUserMenu/userMenuList`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
             let baseOptions;
@@ -294,27 +232,13 @@ export const SysUserMenuApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @summary 根据用户Id删除收藏菜单 🔖
-         * @param {number} userId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async apiSysUserMenuDeleteByUserIdUserIdPost(userId: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<void>>> {
-            const localVarAxiosArgs = await SysUserMenuApiAxiosParamCreator(configuration).apiSysUserMenuDeleteByUserIdUserIdPost(userId, options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
-        },
-        /**
-         * 
          * @summary 取消收藏菜单 🔖
          * @param {UserMenuInput} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiSysUserMenuDeletePost(body?: UserMenuInput, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<void>>> {
-            const localVarAxiosArgs = await SysUserMenuApiAxiosParamCreator(configuration).apiSysUserMenuDeletePost(body, options);
+        async apiSysUserMenuDeleteUserMenuPost(body?: UserMenuInput, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<void>>> {
+            const localVarAxiosArgs = await SysUserMenuApiAxiosParamCreator(configuration).apiSysUserMenuDeleteUserMenuPost(body, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -322,13 +246,12 @@ export const SysUserMenuApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @summary 根据用户Id获取收藏菜单Id集合 🔖
-         * @param {number} userId 
+         * @summary 获取当前用户收藏的菜单Id集合 🔖
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiSysUserMenuUserMenuIdListUserIdGet(userId: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<AdminResultListInt64>>> {
-            const localVarAxiosArgs = await SysUserMenuApiAxiosParamCreator(configuration).apiSysUserMenuUserMenuIdListUserIdGet(userId, options);
+        async apiSysUserMenuUserMenuIdListGet(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<AdminResultListInt64>>> {
+            const localVarAxiosArgs = await SysUserMenuApiAxiosParamCreator(configuration).apiSysUserMenuUserMenuIdListGet(options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -336,13 +259,12 @@ export const SysUserMenuApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @summary 根据用户Id获取收藏菜单集合 🔖
-         * @param {number} userId 
+         * @summary 获取当前用户收藏的菜单集合 🔖
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiSysUserMenuUserMenuListUserIdGet(userId: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<AdminResultListMenuOutput>>> {
-            const localVarAxiosArgs = await SysUserMenuApiAxiosParamCreator(configuration).apiSysUserMenuUserMenuListUserIdGet(userId, options);
+        async apiSysUserMenuUserMenuListGet(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<AdminResultListMenuOutput>>> {
+            const localVarAxiosArgs = await SysUserMenuApiAxiosParamCreator(configuration).apiSysUserMenuUserMenuListGet(options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -369,43 +291,31 @@ export const SysUserMenuApiFactory = function (configuration?: Configuration, ba
         },
         /**
          * 
-         * @summary 根据用户Id删除收藏菜单 🔖
-         * @param {number} userId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async apiSysUserMenuDeleteByUserIdUserIdPost(userId: number, options?: AxiosRequestConfig): Promise<AxiosResponse<void>> {
-            return SysUserMenuApiFp(configuration).apiSysUserMenuDeleteByUserIdUserIdPost(userId, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
          * @summary 取消收藏菜单 🔖
          * @param {UserMenuInput} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiSysUserMenuDeletePost(body?: UserMenuInput, options?: AxiosRequestConfig): Promise<AxiosResponse<void>> {
-            return SysUserMenuApiFp(configuration).apiSysUserMenuDeletePost(body, options).then((request) => request(axios, basePath));
+        async apiSysUserMenuDeleteUserMenuPost(body?: UserMenuInput, options?: AxiosRequestConfig): Promise<AxiosResponse<void>> {
+            return SysUserMenuApiFp(configuration).apiSysUserMenuDeleteUserMenuPost(body, options).then((request) => request(axios, basePath));
         },
         /**
          * 
-         * @summary 根据用户Id获取收藏菜单Id集合 🔖
-         * @param {number} userId 
+         * @summary 获取当前用户收藏的菜单Id集合 🔖
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiSysUserMenuUserMenuIdListUserIdGet(userId: number, options?: AxiosRequestConfig): Promise<AxiosResponse<AdminResultListInt64>> {
-            return SysUserMenuApiFp(configuration).apiSysUserMenuUserMenuIdListUserIdGet(userId, options).then((request) => request(axios, basePath));
+        async apiSysUserMenuUserMenuIdListGet(options?: AxiosRequestConfig): Promise<AxiosResponse<AdminResultListInt64>> {
+            return SysUserMenuApiFp(configuration).apiSysUserMenuUserMenuIdListGet(options).then((request) => request(axios, basePath));
         },
         /**
          * 
-         * @summary 根据用户Id获取收藏菜单集合 🔖
-         * @param {number} userId 
+         * @summary 获取当前用户收藏的菜单集合 🔖
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiSysUserMenuUserMenuListUserIdGet(userId: number, options?: AxiosRequestConfig): Promise<AxiosResponse<AdminResultListMenuOutput>> {
-            return SysUserMenuApiFp(configuration).apiSysUserMenuUserMenuListUserIdGet(userId, options).then((request) => request(axios, basePath));
+        async apiSysUserMenuUserMenuListGet(options?: AxiosRequestConfig): Promise<AxiosResponse<AdminResultListMenuOutput>> {
+            return SysUserMenuApiFp(configuration).apiSysUserMenuUserMenuListGet(options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -430,46 +340,33 @@ export class SysUserMenuApi extends BaseAPI {
     }
     /**
      * 
-     * @summary 根据用户Id删除收藏菜单 🔖
-     * @param {number} userId 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof SysUserMenuApi
-     */
-    public async apiSysUserMenuDeleteByUserIdUserIdPost(userId: number, options?: AxiosRequestConfig) : Promise<AxiosResponse<void>> {
-        return SysUserMenuApiFp(this.configuration).apiSysUserMenuDeleteByUserIdUserIdPost(userId, options).then((request) => request(this.axios, this.basePath));
-    }
-    /**
-     * 
      * @summary 取消收藏菜单 🔖
      * @param {UserMenuInput} [body] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof SysUserMenuApi
      */
-    public async apiSysUserMenuDeletePost(body?: UserMenuInput, options?: AxiosRequestConfig) : Promise<AxiosResponse<void>> {
-        return SysUserMenuApiFp(this.configuration).apiSysUserMenuDeletePost(body, options).then((request) => request(this.axios, this.basePath));
+    public async apiSysUserMenuDeleteUserMenuPost(body?: UserMenuInput, options?: AxiosRequestConfig) : Promise<AxiosResponse<void>> {
+        return SysUserMenuApiFp(this.configuration).apiSysUserMenuDeleteUserMenuPost(body, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * 
-     * @summary 根据用户Id获取收藏菜单Id集合 🔖
-     * @param {number} userId 
+     * @summary 获取当前用户收藏的菜单Id集合 🔖
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof SysUserMenuApi
      */
-    public async apiSysUserMenuUserMenuIdListUserIdGet(userId: number, options?: AxiosRequestConfig) : Promise<AxiosResponse<AdminResultListInt64>> {
-        return SysUserMenuApiFp(this.configuration).apiSysUserMenuUserMenuIdListUserIdGet(userId, options).then((request) => request(this.axios, this.basePath));
+    public async apiSysUserMenuUserMenuIdListGet(options?: AxiosRequestConfig) : Promise<AxiosResponse<AdminResultListInt64>> {
+        return SysUserMenuApiFp(this.configuration).apiSysUserMenuUserMenuIdListGet(options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * 
-     * @summary 根据用户Id获取收藏菜单集合 🔖
-     * @param {number} userId 
+     * @summary 获取当前用户收藏的菜单集合 🔖
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof SysUserMenuApi
      */
-    public async apiSysUserMenuUserMenuListUserIdGet(userId: number, options?: AxiosRequestConfig) : Promise<AxiosResponse<AdminResultListMenuOutput>> {
-        return SysUserMenuApiFp(this.configuration).apiSysUserMenuUserMenuListUserIdGet(userId, options).then((request) => request(this.axios, this.basePath));
+    public async apiSysUserMenuUserMenuListGet(options?: AxiosRequestConfig) : Promise<AxiosResponse<AdminResultListMenuOutput>> {
+        return SysUserMenuApiFp(this.configuration).apiSysUserMenuUserMenuListGet(options).then((request) => request(this.axios, this.basePath));
     }
 }

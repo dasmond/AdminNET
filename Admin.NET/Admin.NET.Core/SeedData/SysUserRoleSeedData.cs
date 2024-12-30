@@ -17,13 +17,14 @@ public class SysUserRoleSeedData : ISqlSugarEntitySeedData<SysUserRole>
     /// <returns></returns>
     public IEnumerable<SysUserRole> HasData()
     {
+        var userList = new SysUserSeedData().HasData().ToList();
+        var roleList = new SysRoleSeedData().HasData().ToList();
         return new[]
         {
-            new SysUserRole{ Id=1300000000101, UserId=1300000000111, RoleId=1300000000101 },
-            new SysUserRole{ Id=1300000000102, UserId=1300000000112, RoleId=1300000000102 },
-            new SysUserRole{ Id=1300000000103, UserId=1300000000113, RoleId=1300000000103 },
-            new SysUserRole{ Id=1300000000104, UserId=1300000000114, RoleId=1300000000104 },
-            new SysUserRole{ Id=1300000000105, UserId=1300000000115, RoleId=1300000000105 },
+            new SysUserRole{ Id=1300000000101, UserId=userList.First(u => u.Account == "user1").Id, RoleId=roleList.First(u => u.Code == "sys_deptChild").Id },
+            new SysUserRole{ Id=1300000000102, UserId=userList.First(u => u.Account == "user2").Id, RoleId=roleList.First(u => u.Code == "sys_dept").Id },
+            new SysUserRole{ Id=1300000000103, UserId=userList.First(u => u.Account == "user3").Id, RoleId=roleList.First(u => u.Code == "sys_self").Id },
+            new SysUserRole{ Id=1300000000104, UserId=userList.First(u => u.Account == "user4").Id, RoleId=roleList.First(u => u.Code == "sys_define").Id },
         };
     }
 }

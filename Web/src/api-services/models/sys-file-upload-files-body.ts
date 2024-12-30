@@ -11,16 +11,14 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-
- /**
+/**
  * 
- *
  * @export
  * @interface SysFileUploadFilesBody
  */
 export interface SysFileUploadFilesBody {
-
     /**
+     * 
      * @type {Array<Blob>}
      * @memberof SysFileUploadFilesBody
      */

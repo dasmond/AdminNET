@@ -11,122 +11,100 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-
 import { StatusEnum } from './status-enum';
 import { SysDictData } from './sys-dict-data';
- /**
+/**
  * 系统字典类型表
- *
  * @export
  * @interface SysDictType
  */
 export interface SysDictType {
-
     /**
      * 雪花Id
-     *
      * @type {number}
      * @memberof SysDictType
      */
     id?: number;
-
     /**
      * 创建时间
-     *
      * @type {Date}
      * @memberof SysDictType
      */
     createTime?: Date;
-
     /**
      * 更新时间
-     *
      * @type {Date}
      * @memberof SysDictType
      */
     updateTime?: Date | null;
-
     /**
      * 创建者Id
-     *
      * @type {number}
      * @memberof SysDictType
      */
     createUserId?: number | null;
-
     /**
      * 创建者姓名
-     *
      * @type {string}
      * @memberof SysDictType
      */
     createUserName?: string | null;
-
     /**
      * 修改者Id
-     *
      * @type {number}
      * @memberof SysDictType
      */
     updateUserId?: number | null;
-
     /**
      * 修改者姓名
-     *
      * @type {string}
      * @memberof SysDictType
      */
     updateUserName?: string | null;
-
     /**
      * 软删除
-     *
      * @type {boolean}
      * @memberof SysDictType
      */
     isDelete?: boolean;
-
+    /**
+     * 租户Id
+     * @type {number}
+     * @memberof SysDictType
+     */
+    tenantId?: number | null;
     /**
      * 名称
-     *
      * @type {string}
      * @memberof SysDictType
      */
     name: string;
-
     /**
      * 编码
-     *
      * @type {string}
      * @memberof SysDictType
      */
     code: string;
-
     /**
      * 排序
-     *
      * @type {number}
      * @memberof SysDictType
      */
     orderNo?: number;
-
     /**
      * 备注
-     *
      * @type {string}
      * @memberof SysDictType
      */
     remark?: string | null;
-
     /**
+     * 
      * @type {StatusEnum}
      * @memberof SysDictType
      */
     status?: StatusEnum;
-
     /**
      * 字典值集合
-     *
      * @type {Array<SysDictData>}
      * @memberof SysDictType
      */

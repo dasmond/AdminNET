@@ -5,7 +5,7 @@
 				<RegionTree ref="regionTreeRef" @node-click="nodeClick" />
 			</pane>
 			<pane size="80">
-				<el-card shadow="hover" :body-style="{ paddingBottom: '0' }">
+				<el-card class="full-table" shadow="hover">
 					<el-form :model="state.queryParams" ref="queryForm" :inline="true">
 						<el-form-item label="行政名称">
 							<el-input v-model="state.queryParams.name" placeholder="行政名称" clearable />
@@ -24,9 +24,6 @@
 							<el-button type="danger" icon="ele-Lightning" @click="handlSync" v-auth="'sysRegion:sync'"> 同步统计局 </el-button>
 						</el-form-item>
 					</el-form>
-				</el-card>
-
-				<el-card class="full-table" shadow="hover" style="margin-top: 5px">
 					<el-table :data="state.regionData" style="width: 100%" v-loading="state.loading" row-key="id" default-expand-all :tree-props="{ children: 'children', hasChildren: 'hasChildren' }" border>
 						<el-table-column prop="name" label="行政名称" align="center" show-overflow-tooltip />
 						<el-table-column prop="code" label="行政代码" align="center" show-overflow-tooltip />
@@ -85,7 +82,7 @@ const state = reactive({
 	},
 	tableParams: {
 		page: 1,
-		pageSize: 20,
+		pageSize: 50,
 		total: 0 as any,
 	},
 	editRegionTitle: '',

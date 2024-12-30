@@ -6,7 +6,6 @@
 
 using Admin.NET.Core;
 using Admin.NET.Plugin.ReZero.Service;
-using Furion.Localization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;

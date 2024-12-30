@@ -2,11 +2,16 @@
 	<div class="sysLdap-container">
 		<el-card shadow="hover" :body-style="{ paddingBottom: '0' }">
 			<el-form :model="state.queryParams" ref="queryForm" :inline="true">
+				<el-form-item label="租户" v-if="userStore.userInfos.accountType == 999">
+					<el-select v-model="state.queryParams.tenantId" placeholder="租户" style="width: 100%">
+						<el-option :value="item.value" :label="`${item.label} (${item.host})`" v-for="(item, index) in state.tenantList" :key="index" />
+					</el-select>
+				</el-form-item>
 				<el-form-item label="关键字">
-					<el-input v-model="state.queryParams.searchKey" clearable="" placeholder="请输入模糊查询关键字" />
+					<el-input v-model="state.queryParams.keyword" clearable placeholder="请输入模糊查询关键字" />
 				</el-form-item>
 				<el-form-item label="主机">
-					<el-input v-model="state.queryParams.host" clearable="" placeholder="请输入主机" />
+					<el-input v-model="state.queryParams.host" clearable placeholder="请输入主机" />
 				</el-form-item>
 				<el-form-item>
 					<el-button-group>
@@ -21,19 +26,18 @@
 		</el-card>
 
 		<el-card class="full-table" shadow="hover" style="margin-top: 5px">
-			<el-table :data="state.tableData" style="width: 100%" v-loading="state.loading" border="">
+			<el-table :data="state.tableData" style="width: 100%" v-loading="state.loading" border>
 				<el-table-column type="index" label="序号" width="55" align="center" />
-				<el-table-column prop="host" label="主机" min-width="150" show-overflow-tooltip="" />
-				<el-table-column prop="port" label="端口" show-overflow-tooltip="" />
-				<el-table-column prop="baseDn" label="用户搜索基准" show-overflow-tooltip="" />
-				<el-table-column prop="bindDn" label="绑定DN" show-overflow-tooltip="" />
-				<el-table-column prop="bindPass" label="绑定密码" min-width="200" show-overflow-tooltip="" />
-				<el-table-column prop="authFilter" label="用户过滤规则" show-overflow-tooltip="" />
-				<el-table-column prop="version" label="Ldap版本" show-overflow-tooltip="" />
-				<el-table-column prop="status" label="状态" width="80" align="center" show-overflow-tooltip="">
+				<el-table-column prop="host" label="主机" min-width="150" show-overflow-tooltip />
+				<el-table-column prop="port" label="端口" show-overflow-tooltip />
+				<el-table-column prop="baseDn" label="用户搜索基准" show-overflow-tooltip />
+				<el-table-column prop="bindDn" label="绑定DN" show-overflow-tooltip />
+				<el-table-column prop="bindPass" label="绑定密码" min-width="200" show-overflow-tooltip />
+				<el-table-column prop="authFilter" label="用户过滤规则" show-overflow-tooltip />
+				<el-table-column prop="version" label="Ldap版本" show-overflow-tooltip />
+				<el-table-column prop="status" label="状态" width="80" align="center" show-overflow-tooltip>
 					<template #default="scope">
-						<el-tag v-if="scope.row.status"> 是 </el-tag>
-						<el-tag type="danger" v-else> 否 </el-tag>
+            <g-sys-dict v-model="scope.row.status" code="StatusEnum" />
 					</template>
 				</el-table-column>
 				<el-table-column label="修改记录" width="100" align="center" show-overflow-tooltip>
@@ -41,9 +45,9 @@
 						<ModifyRecord :data="scope.row" />
 					</template>
 				</el-table-column>
-				<el-table-column label="操作" width="300" align="center" fixed="right" show-overflow-tooltip="" v-if="auth('sysLdap:update') || auth('sysLdap:delete') || auth('sysLdap:syncUser') || auth('sysLdap:syncOrg')">
+				<el-table-column label="操作" width="300" align="center" fixed="right" show-overflow-tooltip v-if="auth('sysLdap:update') || auth('sysLdap:delete') || auth('sysLdap:syncUser') || auth('sysLdap:syncOrg')">
 					<template #default="scope">
-						<el-button icon="ele-Edit" size="small" text="" type="primary" @click="openEditSysLdap(scope.row)" v-auth="'sysLdap:update'"> 编辑 </el-button>
+						<el-button icon="ele-Edit" size="small" text type="primary" @click="openEditSysLdap(scope.row)" v-auth="'sysLdap:update'"> 编辑 </el-button>
 						<el-button icon="ele-Delete" size="small" text type="danger" @click="delSysLdap(scope.row)" v-auth="'sysLdap:delete'"> 删除 </el-button>
 						<el-button icon="ele-Refresh" size="small" text type="primary" @click="syncDomainUser(scope.row)" v-auth="'sysLdap:syncUser'"> 同步域账户 </el-button>
 						<el-button icon="ele-Refresh" size="small" text type="primary" @click="syncDomainOrg(scope.row)" v-auth="'sysLdap:syncOrg'"> 同步域组织 </el-button>
@@ -56,7 +60,7 @@
 				:total="state.tableParams.total"
 				:page-sizes="[10, 20, 50, 100, 200, 500]"
 				size="small"
-				background=""
+				background
 				@size-change="handleSizeChange"
 				@current-change="handleCurrentChange"
 				layout="total, sizes, prev, pager, next, jumper"
@@ -67,33 +71,40 @@
 	</div>
 </template>
 
-<script lang="ts" setup="" name="sysLdap">
+<script lang="ts" setup name="sysLdap">
 import { onMounted, reactive, ref } from 'vue';
 import { ElMessageBox, ElMessage } from 'element-plus';
 import { auth } from '/@/utils/authFunction';
+import { getAPI } from '/@/utils/axios-utils';
+import {SysLdapApi, SysTenantApi} from '/@/api-services/api';
 import ModifyRecord from '/@/components/table/modifyRecord.vue';
 import EditLdap from './component/editLdap.vue';
+import { useUserInfo } from "/@/stores/userInfo";
 
-import { getAPI } from '/@/utils/axios-utils';
-import { SysLdapApi } from '/@/api-services/api';
-
+const userStore = useUserInfo();
 const editLdapRef = ref<InstanceType<typeof EditLdap>>();
 const state = reactive({
 	loading: false,
+	tenantList: [] as Array<any>,
 	tableData: [] as any,
 	queryParams: {
-		searchKey: undefined,
+		tenantId: undefined,
+		keyword: undefined,
 		host: undefined,
 	},
 	tableParams: {
 		page: 1,
-		pageSize: 20,
+		pageSize: 50,
 		total: 0 as any,
 	},
 	dialogTitle: '',
 });
 
 onMounted(async () => {
+	if (userStore.userInfos.accountType == 999) {
+		state.tenantList = await getAPI(SysTenantApi).apiSysTenantListGet().then(res => res.data.result ?? []);
+		state.queryParams.tenantId = state.tenantList[0].value;
+	}
 	handleQuery();
 });
 
@@ -109,7 +120,7 @@ const handleQuery = async () => {
 
 // 重置操作
 const resetQuery = () => {
-	state.queryParams.searchKey = undefined;
+	state.queryParams.keyword = undefined;
 	state.queryParams.host = undefined;
 	handleQuery();
 };
@@ -117,7 +128,7 @@ const resetQuery = () => {
 // 打开新增页面
 const openAddSysLdap = () => {
 	state.dialogTitle = '添加系统域登录信息配置';
-	editLdapRef.value?.openDialog({});
+	editLdapRef.value?.openDialog({ tenantId: state.queryParams.tenantId });
 };
 
 // 打开编辑页面

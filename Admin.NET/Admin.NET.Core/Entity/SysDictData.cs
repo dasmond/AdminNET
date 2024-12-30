@@ -11,8 +11,8 @@ namespace Admin.NET.Core;
 /// </summary>
 [SugarTable(null, "系统字典值表")]
 [SysTable]
-[SugarIndex("index_{table}_C", nameof(Code), OrderByType.Asc)]
-public partial class SysDictData : EntityBase
+[SugarIndex("index_{table}_C", nameof(Value), OrderByType.Asc)]
+public partial class SysDictData : EntityTenant
 {
     /// <summary>
     /// 字典类型Id
@@ -21,26 +21,28 @@ public partial class SysDictData : EntityBase
     public long DictTypeId { get; set; }
 
     /// <summary>
-    /// 字典类型
+    /// 显示文本
     /// </summary>
-    [Newtonsoft.Json.JsonIgnore]
-    [System.Text.Json.Serialization.JsonIgnore]
-    [Navigate(NavigateType.OneToOne, nameof(DictTypeId))]
-    public SysDictType DictType { get; set; }
+    [SugarColumn(ColumnDescription = "显示文本", Length = 256)]
+    [Required, MaxLength(256)]
+    public virtual string? Label { get; set; }
 
     /// <summary>
     /// 值
     /// </summary>
-    [SugarColumn(ColumnDescription = "值", Length = 128)]
-    [Required, MaxLength(128)]
+    [SugarColumn(ColumnDescription = "值", Length = 256)]
+    [Required, MaxLength(256)]
     public virtual string Value { get; set; }
 
     /// <summary>
     /// 编码
     /// </summary>
+    /// <remarks>
+    /// 即将移除的字段，直接移除该字段并不会从数据库中删除，且该字段之前是必填的，容易导致不能为null的异常，建议先保留，后期再移除
+    /// </remarks>
+    [Obsolete("即将移除的字段, 已引用的建议尽快移除")]
     [SugarColumn(ColumnDescription = "编码", Length = 256)]
-    [Required, MaxLength(256)]
-    public virtual string Code { get; set; }
+    public virtual string? Code { get; set; }
 
     /// <summary>
     /// 名称
@@ -94,4 +96,12 @@ public partial class SysDictData : EntityBase
     /// </summary>
     [SugarColumn(ColumnDescription = "状态")]
     public StatusEnum Status { get; set; } = StatusEnum.Enable;
+
+    /// <summary>
+    /// 字典类型
+    /// </summary>
+    [Newtonsoft.Json.JsonIgnore]
+    [System.Text.Json.Serialization.JsonIgnore]
+    [Navigate(NavigateType.OneToOne, nameof(DictTypeId))]
+    public SysDictType DictType { get; set; }
 }

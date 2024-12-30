@@ -245,6 +245,25 @@ body,
 	}
 }
 
+/* 滚动条样式
+------------------------------- */
+// 隐藏
+.overlay-hidden {
+	overflow: hidden;
+}
+// 默认滚动条
+.overlay-auto {
+	overflow: auto;
+}
+// 水平滚动条
+.overlay-x {
+	overflow-x: scroll;
+}
+// 垂直滚动条
+.overlay-y {
+	overflow-y: scroll;
+}
+
 /* cursor 鼠标形状
 ------------------------------- */
 // 默认
@@ -264,22 +283,24 @@ body,
 	cursor: move !important;
 }
 
-/* 宽高 100%
+/* 宽高
 ------------------------------- */
-.w100 {
-	width: 100% !important;
-}
-.h100 {
-	height: 100% !important;
-}
-.vh100 {
-	height: 100vh !important;
-}
-.max100vh {
-	max-height: 100vh !important;
-}
-.min100vh {
-	min-height: 100vh !important;
+@for $i from 1 through 100 {
+	.w#{$i} {
+		width: #{$i + '%'} !important;
+	}
+	.h#{$i} {
+		height: #{$i + '%'} !important;
+	}
+	.vh#{$i} {
+		height: #{$i}vh !important;
+	}
+	.max#{$i}vh {
+		max-height: #{$i}vh !important;
+	}
+	.min#{$i}vh {
+		min-height: #{$i}vh !important;
+	}
 }
 
 /* 颜色值

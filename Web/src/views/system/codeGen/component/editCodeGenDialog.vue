@@ -10,7 +10,7 @@
 			<el-form :model="state.ruleForm" ref="ruleFormRef" label-width="auto">
 				<el-row :gutter="35">
 					<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
-						<el-form-item label="库定位器" prop="configId">
+						<el-form-item label="库定位器" prop="configId" :rules="[{ required: true, message: '请选择库定位器', trigger: 'blur' }]">
 							<el-select v-model="state.ruleForm.configId" placeholder="库名" filterable @change="dbChanged()" class="w100">
 								<el-option v-for="item in state.dbData" :key="item.configId" :label="item.configId" :value="item.configId" />
 							</el-select>
@@ -48,7 +48,7 @@
 						</el-form-item>
 					</el-col>
 					<el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="mb20">
-						<el-form-item label="库地址" prop="connectionString">
+						<el-form-item label="库地址" prop="connectionString" :rules="[{ required: true, message: '库地址不能为空', trigger: 'blur' }]">
 							<el-input v-model="state.ruleForm.connectionString" disabled clearable type="textarea" />
 						</el-form-item>
 					</el-col>
@@ -60,7 +60,7 @@
 						</el-form-item>
 					</el-col>
 					<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
-						<el-form-item label="业务名" prop="busName">
+						<el-form-item label="业务名" prop="busName" :rules="[{ required: true, message: '业务名不能为空', trigger: 'blur' }]">
 							<el-input v-model="state.ruleForm.busName" placeholder="请输入" clearable />
 						</el-form-item>
 					</el-col>
@@ -81,9 +81,10 @@
 						<el-form-item label="父级菜单" prop="menuPid">
 							<el-cascader
 								:options="state.menuData"
-								:props="{ checkStrictly: true, emitPath: false, value: 'id', label: 'title' }"
+								:props="cascaderProps"
 								placeholder="请选择上级菜单"
 								:disabled="!state.ruleForm.generateMenu"
+								filterable
 								clearable
 								class="w100"
 								v-model="state.ruleForm.menuPid"
@@ -105,7 +106,7 @@
 						</el-form-item>
 					</el-col>
 					<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
-						<el-form-item label="前端目录" prop="pagePath">
+						<el-form-item label="前端目录" prop="pagePath" :rules="[{ required: true, message: '前端目录不能为空', trigger: 'blur' }]">
 							<el-input v-model="state.ruleForm.pagePath" clearable placeholder="请输入" />
 						</el-form-item>
 					</el-col>
@@ -116,16 +117,12 @@
 					</el-col>
 					<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
 						<el-form-item label="生成方式" prop="generateType">
-							<el-select v-model="state.ruleForm.generateType" filterable class="w100">
-								<el-option v-for="item in state.codeGenTypeList" :key="item.value" :label="item.value" :value="item.code" />
-							</el-select>
+              <g-sys-dict v-model="state.ruleForm.generateType" code="code_gen_create_type" render-as="select" class="w100" filterable />
 						</el-form-item>
 					</el-col>
 					<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
 						<el-form-item label="支持打印" prop="printType">
-							<el-select v-model="state.ruleForm.printType" filterable class="w100" @change="printTypeChanged">
-								<el-option v-for="item in state.printTypeList" :key="item.value" :label="item.value" :value="item.code" />
-							</el-select>
+              <g-sys-dict v-model="state.ruleForm.printType" code="code_gen_print_type" render-as="select" @change="printTypeChanged" class="w100" filterable />
 						</el-form-item>
 					</el-col>
 					<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20" v-if="state.ruleForm.printType == 'custom'">
@@ -134,6 +131,35 @@
 								<el-option v-for="item in state.printList" :key="item.id" :label="item.name" :value="item.name" />
 							</el-select>
 						</el-form-item>
+					</el-col>
+					<el-divider border-style="dashed" content-position="center">
+						<div style="color: #b1b3b8">数据唯一性配置</div>
+					</el-divider>
+					<el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="mb20">
+						<el-button icon="ele-Plus" type="primary" plain @click="() => state.ruleForm.tableUniqueList?.push({})"> 增加配置 </el-button>
+						<span style="font-size: 12px; color: gray; padding-left: 5px"> 保证字段值的唯一性，排除null值 </span>
+					</el-col>
+					<el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="mb20">
+						<template v-if="state.ruleForm.tableUniqueList != undefined && state.ruleForm.tableUniqueList.length > 0">
+							<el-row :gutter="35" v-for="(v, k) in state.ruleForm.tableUniqueList" :key="k">
+								<el-col :xs="24" :sm="14" :md="14" :lg="14" :xl="14" class="mb20">
+									<el-form-item label="字段" :prop="`tableUniqueList[${k}].columns`" :rules="[{ required: true, message: `字段不能为空`, trigger: 'blur' }]">
+										<template #label>
+											<el-button icon="ele-Delete" type="danger" circle plain size="small" @click="() => state.ruleForm.tableUniqueList?.splice(k, 1)" />
+											<span class="ml5">字段</span>
+										</template>
+										<el-select v-model="state.ruleForm.tableUniqueList[k].columns" @change="(val: any) => changeTableUniqueColumn(val, k)" multiple filterable clearable collapse-tags collapse-tags-tooltip class="w100">
+											<el-option v-for="item in state.columnData" :key="item.propertyName" :label="item.propertyName + ' [' + item.columnComment + ']'" :value="item.propertyName" />
+										</el-select>
+									</el-form-item>
+								</el-col>
+								<el-col :xs="24" :sm="10" :md="10" :lg="10" :xl="10" class="mb20">
+									<el-form-item label="描述信息" :prop="`tableUniqueList[${k}].message`" :rules="[{ required: true, message: `描述信息不能为空`, trigger: 'blur' }]">
+										<el-input v-model="state.ruleForm.tableUniqueList[k].message" clearable placeholder="请输入" />
+									</el-form-item>
+								</el-col>
+							</el-row>
+						</template>
 					</el-col>
 				</el-row>
 			</el-form>
@@ -151,9 +177,8 @@
 import { computed, onMounted, reactive, ref } from 'vue';
 import IconSelector from '/@/components/iconSelector/index.vue';
 import other from '/@/utils/other';
-
 import { getAPI } from '/@/utils/axios-utils';
-import { SysCodeGenApi, SysDictDataApi, SysMenuApi, SysPrintApi } from '/@/api-services/api';
+import { SysCodeGenApi, SysMenuApi, SysPrintApi } from '/@/api-services/api';
 import { UpdateCodeGenInput, AddCodeGenInput, SysMenu, SysPrint } from '/@/api-services/models';
 
 const props = defineProps({
@@ -164,41 +189,26 @@ const emits = defineEmits(['handleQuery']);
 const ruleFormRef = ref();
 const state = reactive({
 	isShowDialog: false,
-	ruleForm: {} as UpdateCodeGenInput,
+	ruleForm: {} as any,
 	tableData: [] as any,
 	dbData: [] as any,
+	columnData: [] as any,
 	menuData: [] as Array<SysMenu>,
-	codeGenTypeList: [] as any,
-	printTypeList: [] as any,
 	printList: [] as Array<SysPrint>,
 });
+// 级联选择器配置选项
+const cascaderProps = { checkStrictly: true, emitPath: false, value: 'id', label: 'title' };
 
 onMounted(async () => {
-	var resDb = await getAPI(SysCodeGenApi).apiSysCodeGenDatabaseListGet();
-	state.dbData = resDb.data.result;
-
-	let resMenu = await getAPI(SysMenuApi).apiSysMenuListGet();
-	state.menuData = resMenu.data.result ?? [];
-
-	let resDicData = await getAPI(SysDictDataApi).apiSysDictDataDataListCodeGet('code_gen_create_type');
-	state.codeGenTypeList = resDicData.data.result;
-
-	let printTypeResDicData = await getAPI(SysDictDataApi).apiSysDictDataDataListCodeGet('code_gen_print_type');
-	state.printTypeList = printTypeResDicData.data.result;
-
-	let resPrintIdData = await getAPI(SysPrintApi).apiSysPrintPagePost();
-	state.printList = resPrintIdData.data.result?.items ?? [];
-
-	// 默认使用第一个库
-	//state.ruleForm.configId = state.dbData[0].configId;
-	//await dbChanged();
+  state.dbData = await getAPI(SysCodeGenApi).apiSysCodeGenDatabaseListGet().then(res => res.data.result ?? []);
+  state.printList = await getAPI(SysPrintApi).apiSysPrintPagePost().then(res => res.data.result?.items ?? []);
+  state.menuData = await getAPI(SysMenuApi).apiSysMenuListGet().then(res => res.data.result ?? []);
 });
 
 // db改变
 const dbChanged = async () => {
 	if (state.ruleForm.configId === '') return;
-	let res = await getAPI(SysCodeGenApi).apiSysCodeGenTableListConfigIdGet(state.ruleForm.configId as string);
-	state.tableData = res.data.result ?? [];
+  state.tableData = await getAPI(SysCodeGenApi).apiSysCodeGenTableListConfigIdGet(state.ruleForm.configId as string).then(res => res.data.result ?? []);
 
 	let db = state.dbData.filter((u: any) => u.configId == state.ruleForm.configId);
 	state.ruleForm.connectionString = db[0].connectionString;
@@ -209,6 +219,23 @@ const dbChanged = async () => {
 const tableChanged = (item: any) => {
 	state.ruleForm.tableName = item.entityName;
 	state.ruleForm.busName = item.tableComment;
+  state.ruleForm.tableUniqueList = [];
+	getColumnInfoList();
+};
+
+// 表唯一约束配置项字段改变事件
+const changeTableUniqueColumn = (value: any, index: number) => {
+  if (value?.length === 1 && !state.ruleForm.tableUniqueList[index].message) {
+    state.ruleForm.tableUniqueList[index].message = state.columnData.find((u: any) => u.propertyName === value[0])?.columnComment;
+  }
+}
+
+const getColumnInfoList = async () => {
+	if (state.ruleForm.configId == '' || state.ruleForm.tableName == '') return;
+  state.columnData = await getAPI(SysCodeGenApi)
+      .apiSysCodeGenColumnListByTableNameTableNameConfigIdGet(state.ruleForm.tableName, state.ruleForm.configId)
+      .then(res => res.data.result)
+      ?? [];
 };
 
 // 菜单改变
@@ -230,6 +257,8 @@ const getGlobalComponentSize = computed(() => {
 // 打开弹窗
 const openDialog = (row: any) => {
 	state.ruleForm = JSON.parse(JSON.stringify(row));
+  dbChanged().then(() => getColumnInfoList());
+  state.ruleForm.tableUniqueList ??= [];
 	state.isShowDialog = true;
 	ruleFormRef.value?.resetFields();
 };
@@ -249,6 +278,7 @@ const cancel = () => {
 const submit = () => {
 	ruleFormRef.value.validate(async (valid: boolean) => {
 		if (!valid) return;
+    if (state.ruleForm.tableUniqueList?.length === 0) state.ruleForm.tableUniqueList = null;
 		if (state.ruleForm.id != undefined && state.ruleForm.id > 0) {
 			await getAPI(SysCodeGenApi).apiSysCodeGenUpdatePost(state.ruleForm as UpdateCodeGenInput);
 		} else {

@@ -11,40 +11,38 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-
- /**
+/**
  * 
- *
  * @export
  * @interface VisualColumn
  */
 export interface VisualColumn {
-
     /**
+     * 
      * @type {string}
      * @memberof VisualColumn
      */
     tableName?: string | null;
-
     /**
+     * 
      * @type {string}
      * @memberof VisualColumn
      */
     columnName?: string | null;
-
     /**
+     * 
      * @type {string}
      * @memberof VisualColumn
      */
     dataType?: string | null;
-
     /**
+     * 
      * @type {string}
      * @memberof VisualColumn
      */
     dataLength?: string | null;
-
     /**
+     * 
      * @type {string}
      * @memberof VisualColumn
      */

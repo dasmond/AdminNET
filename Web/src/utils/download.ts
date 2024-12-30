@@ -1,5 +1,6 @@
 import { AxiosResponseHeaders, RawAxiosResponseHeaders } from 'axios';
 import { dataURLtoBlob, urlToBase64 } from './base64Conver';
+import * as url from "node:url";
 
 /**
  * Download online pictures
@@ -55,7 +56,7 @@ export function downloadByData(data: BlobPart, filename: string, mime?: string, 
  * Download file according to file address
  * @param {*} sUrl
  */
-export function downloadByUrl({ url, target = '_blank', fileName }: { url: string; target?: TargetContext; fileName?: string }): boolean {
+export function downloadByUrl({ url, target = '_blank', fileName }: { url: string; target?: string; fileName?: string }): boolean {
 	const isChrome = window.navigator.userAgent.toLowerCase().indexOf('chrome') > -1;
 	const isSafari = window.navigator.userAgent.toLowerCase().indexOf('safari') > -1;
 
@@ -87,7 +88,7 @@ export function downloadByUrl({ url, target = '_blank', fileName }: { url: strin
 	return true;
 }
 
-export function openWindow(url: string, opt?: { target?: TargetContext | string; noopener?: boolean; noreferrer?: boolean }) {
+export function openWindow(url: string, opt?: { target?: string; noopener?: boolean; noreferrer?: boolean }) {
 	const { target = '__blank', noopener = true, noreferrer = true } = opt || {};
 	const feature: string[] = [];
 
@@ -100,9 +101,22 @@ export function openWindow(url: string, opt?: { target?: TargetContext | string;
 export function getFileName(headers: RawAxiosResponseHeaders | AxiosResponseHeaders) {
 	var fileName = headers['content-disposition'].split(';')[1].split('filename=')[1];
 	var fileNameUnicode = headers['content-disposition'].split('filename*=')[1];
+	if (fileName?.includes("%")) fileName = decodeURIComponent(fileName);
 	if (fileNameUnicode) {
 		//当存在 filename* 时，取filename* 并进行解码（为了解决中文乱码问题）
 		fileName = decodeURIComponent(fileNameUnicode.split("''")[1]);
 	}
 	return fileName;
+}
+
+/**
+ * 文件流下载
+ * @param res
+ * @param fileName 文件名
+ */
+export function downloadStreamFile(res: any, fileName: string | undefined = undefined) {
+	const contentType = res.headers['content-type'];
+	fileName = fileName || getFileName(res.headers);
+	const blob = res.data instanceof Blob ? res.data : new Blob([res.data], { type: contentType });
+	downloadByUrl({ url: window.URL.createObjectURL(blob), fileName });
 }

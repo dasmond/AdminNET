@@ -194,9 +194,9 @@ const onLockScreenSubmit = async () => {
 	if (state.lockScreenPassword) {
 		try {
 			// 用户信息不存在时直接解锁（清理缓存后）
-			if (userInfos.account === void 0) {
+			if (userInfos.value.account === void 0) {
 				themeConfig.value.isLockScreen = false;
-				themeConfig.value.lockScreenTime = 30;
+				themeConfig.value.lockScreenTime = 300;
 				setLocalThemeConfig();
 				return;
 			}
@@ -205,16 +205,14 @@ const onLockScreenSubmit = async () => {
 			const password = sm2.doEncrypt(state.lockScreenPassword, publicKey, 1);
 			const [err, res] = await feature(getAPI(SysAuthApi).apiSysAuthUnLockScreenPost(password));
 			if (err) {
-				console.log(err);
 				state.message = err.message;
 				state.showMessage = true;
 				state.lockScreenPassword = '';
-
 				return;
 			}
 			if (res.data.result) {
 				themeConfig.value.isLockScreen = false;
-				themeConfig.value.lockScreenTime = 30;
+				themeConfig.value.lockScreenTime = 300;
 				setLocalThemeConfig();
 			}
 		} catch (ex: any) {
@@ -235,20 +233,21 @@ onMounted(() => {
 	initGetElement();
 	initSetTime();
 	initLockScreen();
-	//侦听ENTER按钮事件
+
+	// 侦听ENTER按钮事件
 	document.onkeydown = (e) => {
 		if (e.key === 'Enter') {
-			//当显示锁屏页时，按ENTER切到密码输入
+			// 当显示锁屏页时，按ENTER切到密码输入
 			if (state.isShowLoockLogin == false) {
 				const moveInterval = setInterval(() => {
 					state.isFlags = true;
 					state.moveDifference = state.moveDifference - 10;
 					onMove();
-					//超过600像素则结束
-					if (state.moveDifference < -600) clearInterval(moveInterval);
+					// 超过410像素则结束
+					if (state.moveDifference < -410) clearInterval(moveInterval);
 				}, 5);
 			}
-			//当显示消息时，按ENTER切到密码输入
+			// 当显示消息时，按ENTER切到密码输入
 			if (state.showMessage == true) hideMessage();
 		}
 	};
@@ -278,7 +277,7 @@ onUnmounted(() => {
 }
 .layout-lock-screen-img {
 	@extend .layout-lock-screen-fixed;
-	background-image: url('https://i.hd-r.cn/e4a19d84364f185266666765ac21a5db.jpg');
+	background-image: url('/@/assets/lockscreen.img');
 	background-size: 100% 100%;
 	z-index: 9999991;
 }
@@ -418,7 +417,7 @@ onUnmounted(() => {
 	padding: 0px 15px;
 }
 :deep(.el-input__wrapper.is-focus) {
-	box-shadow: unset !important;
+	box-shadow: 0 0 0 1px var(--el-input-border-color, var(--el-border-color)) inset !important;
 }
 :deep(.el-input__inner) {
 	border-right-color: var(--el-border-color-extra-light);

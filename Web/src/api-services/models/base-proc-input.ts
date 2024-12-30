@@ -11,37 +11,28 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-
- /**
+/**
  * 基础存储过程输入类
- *
  * @export
  * @interface BaseProcInput
  */
 export interface BaseProcInput {
-
     /**
      * ProcId
-     *
      * @type {string}
      * @memberof BaseProcInput
      */
     procId?: string | null;
-
     /**
      * 数据库配置Id
-     *
      * @type {string}
      * @memberof BaseProcInput
      */
     configId?: string | null;
-
     /**
      * 存储过程输入参数
-     *
      * @type {{ [key: string]: any; }}
      * @memberof BaseProcInput
-     * @example {"id":"351060822794565"}
      */
     procParams?: { [key: string]: any; } | null;
 }

@@ -18,9 +18,11 @@ public class SysUserService : IDynamicApiController, ITransient
     private readonly SysUserRoleService _sysUserRoleService;
     private readonly SysConfigService _sysConfigService;
     private readonly SysOnlineUserService _sysOnlineUserService;
+    private readonly SysUserMenuService _sysUserMenuService;
     private readonly SysCacheService _sysCacheService;
     private readonly SysUserLdapService _sysUserLdapService;
     private readonly SqlSugarRepository<SysUser> _sysUserRep;
+    private readonly SysUserEventHandler _sysUserEventHandler;
 
     public SysUserService(UserManager userManager,
         SysOrgService sysOrgService,
@@ -30,7 +32,9 @@ public class SysUserService : IDynamicApiController, ITransient
         SysOnlineUserService sysOnlineUserService,
         SysCacheService sysCacheService,
         SysUserLdapService sysUserLdapService,
-        SqlSugarRepository<SysUser> sysUserRep)
+        SqlSugarRepository<SysUser> sysUserRep,
+        SysUserMenuService sysUserMenuService,
+        SysUserEventHandler sysUserEventHandler)
     {
         _userManager = userManager;
         _sysOrgService = sysOrgService;
@@ -40,7 +44,9 @@ public class SysUserService : IDynamicApiController, ITransient
         _sysOnlineUserService = sysOnlineUserService;
         _sysCacheService = sysCacheService;
         _sysUserLdapService = sysUserLdapService;
+        _sysUserMenuService = sysUserMenuService;
         _sysUserRep = sysUserRep;
+        _sysUserEventHandler = sysUserEventHandler;
     }
 
     /// <summary>
@@ -69,6 +75,8 @@ public class SysUserService : IDynamicApiController, ITransient
             .LeftJoin<SysPos>((u, a, b) => u.PosId == b.Id)
             .Where(u => u.AccountType != AccountTypeEnum.SuperAdmin)
             .WhereIF(orgList != null, u => orgList.Contains(u.OrgId))
+            .WhereIF(!_userManager.SuperAdmin, u => u.AccountType != AccountTypeEnum.SysAdmin)
+            .WhereIF(_userManager.SuperAdmin && input.TenantId > 0, u => u.TenantId == input.TenantId)
             .WhereIF(!string.IsNullOrWhiteSpace(input.Account), u => u.Account.Contains(input.Account))
             .WhereIF(!string.IsNullOrWhiteSpace(input.RealName), u => u.RealName.Contains(input.RealName))
             .WhereIF(!string.IsNullOrWhiteSpace(input.PosName), (u, a, b) => b.Name.Contains(input.PosName))
@@ -94,8 +102,10 @@ public class SysUserService : IDynamicApiController, ITransient
     [DisplayName("增加用户")]
     public virtual async Task<long> AddUser(AddUserInput input)
     {
-        var isExist = await _sysUserRep.AsQueryable().ClearFilter().AnyAsync(u => u.Account == input.Account);
-        if (isExist) throw Oops.Oh(ErrorCodeEnum.D1003);
+        var query = _sysUserRep.AsQueryable().ClearFilter().Where(u => u.TenantId == _userManager.TenantId || u.AccountType == AccountTypeEnum.SuperAdmin);
+
+        if (await query.AnyAsync(u => u.Account == input.Account)) throw Oops.Oh(ErrorCodeEnum.D1003);
+        if (!string.IsNullOrWhiteSpace(input.Phone) && await query.AnyAsync(u => u.Phone == input.Phone)) throw Oops.Oh(ErrorCodeEnum.D1032);
 
         var password = await _sysConfigService.GetConfigValue<string>(ConfigConst.SysPassword);
 
@@ -108,7 +118,45 @@ public class SysUserService : IDynamicApiController, ITransient
 
         // 增加域账号
         if (!string.IsNullOrWhiteSpace(input.DomainAccount))
-            await _sysUserLdapService.AddUserLdap(newUser.TenantId.Value, newUser.Id, newUser.Account, input.DomainAccount);
+            await _sysUserLdapService.AddUserLdap(newUser.TenantId!.Value, newUser.Id, newUser.Account, input.DomainAccount);
+
+        // 执行订阅事件
+        _sysUserEventHandler.OnEvent(this, SysUserEventTypeEnum.Add, input);
+
+        return newUser.Id;
+    }
+
+    /// <summary>
+    /// 增加用户 🔖
+    /// </summary>
+    /// <param name="input"></param>
+    /// <returns></returns>
+    [NonAction]
+    public virtual async Task<long> RegisterUser(AddUserInput input)
+    {
+        var query = _sysUserRep.AsQueryable().ClearFilter().Where(u => u.TenantId == input.TenantId || u.AccountType == AccountTypeEnum.SuperAdmin);
+
+        if (await query.AnyAsync(u => u.Account == input.Account)) throw Oops.Oh(ErrorCodeEnum.D1003);
+        if (!string.IsNullOrWhiteSpace(input.Phone) && await query.AnyAsync(u => u.Phone == input.Phone)) throw Oops.Oh(ErrorCodeEnum.D1032);
+
+        if (string.IsNullOrWhiteSpace(input.Password))
+        {
+            var password = await _sysConfigService.GetConfigValue<string>(ConfigConst.SysPassword);
+            input.Password = CryptogramUtil.Encrypt(password);
+        }
+
+        var user = input.Adapt<SysUser>();
+        var newUser = await _sysUserRep.AsInsertable(user).ExecuteReturnEntityAsync();
+
+        input.Id = newUser.Id;
+        await UpdateRoleAndExtOrg(input);
+
+        // 增加域账号
+        if (!string.IsNullOrWhiteSpace(input.DomainAccount))
+            await _sysUserLdapService.AddUserLdap(newUser.TenantId!.Value, newUser.Id, newUser.Account, input.DomainAccount);
+
+        // 执行订阅事件
+        _sysUserEventHandler.OnEvent(this, SysUserEventTypeEnum.Register, input);
 
         return newUser.Id;
     }
@@ -123,11 +171,15 @@ public class SysUserService : IDynamicApiController, ITransient
     [DisplayName("更新用户")]
     public virtual async Task UpdateUser(UpdateUserInput input)
     {
-        if (await _sysUserRep.AsQueryable().ClearFilter().AnyAsync(u => u.Account == input.Account && u.Id != input.Id))
-            throw Oops.Oh(ErrorCodeEnum.D1003);
+        // 是否租户隔离登录验证
+        var query = _sysUserRep.AsQueryable().ClearFilter().Where(u => u.Id != input.Id)
+            .Where(u => u.TenantId == _userManager.TenantId || u.AccountType == AccountTypeEnum.SuperAdmin);
+
+        if (await query.AnyAsync(u => u.Account == input.Account)) throw Oops.Oh(ErrorCodeEnum.D1003);
+        if (!string.IsNullOrWhiteSpace(input.Phone) && await query.AnyAsync(u => u.Phone == input.Phone)) throw Oops.Oh(ErrorCodeEnum.D1032);
 
         await _sysUserRep.AsUpdateable(input.Adapt<SysUser>()).IgnoreColumns(true)
-            .IgnoreColumns(u => new { u.Password, u.Status }).ExecuteCommandAsync();
+            .IgnoreColumns(u => new { u.Password, u.Status, u.TenantId }).ExecuteCommandAsync();
 
         await UpdateRoleAndExtOrg(input);
 
@@ -140,7 +192,10 @@ public class SysUserService : IDynamicApiController, ITransient
         if (input.OrgId != user.OrgId || !input.RoleIdList.OrderBy(u => u).SequenceEqual(roleIds.OrderBy(u => u)))
             await _sysOnlineUserService.ForceOffline(input.Id);
         // 更新域账号
-        await _sysUserLdapService.AddUserLdap(user.TenantId.Value, user.Id, user.Account, input.DomainAccount);
+        await _sysUserLdapService.AddUserLdap(user.TenantId!.Value, user.Id, user.Account, input.DomainAccount);
+
+        // 执行订阅事件
+        _sysUserEventHandler.OnEvent(this, SysUserEventTypeEnum.Update, input);
     }
 
     /// <summary>
@@ -165,21 +220,17 @@ public class SysUserService : IDynamicApiController, ITransient
     [DisplayName("删除用户")]
     public virtual async Task DeleteUser(DeleteUserInput input)
     {
-        var user = await _sysUserRep.GetFirstAsync(u => u.Id == input.Id) ?? throw Oops.Oh(ErrorCodeEnum.D0009);
-        if (user.AccountType == AccountTypeEnum.SuperAdmin)
-            throw Oops.Oh(ErrorCodeEnum.D1014);
-        if (user.Id == _userManager.UserId)
-            throw Oops.Oh(ErrorCodeEnum.D1001);
+        var user = await _sysUserRep.GetByIdAsync(input.Id) ?? throw Oops.Oh(ErrorCodeEnum.D0009);
+        user.ValidateIsSuperAdminAccountType();
+        user.ValidateIsUserId(_userManager.UserId);
 
         // 若账号为租户默认账号则禁止删除
         var isTenantUser = await _sysUserRep.ChangeRepository<SqlSugarRepository<SysTenant>>().IsAnyAsync(u => u.UserId == input.Id);
-        if (isTenantUser)
-            throw Oops.Oh(ErrorCodeEnum.D1029);
+        if (isTenantUser) throw Oops.Oh(ErrorCodeEnum.D1029);
 
         // 若账号为开放接口绑定账号则禁止删除
         var isOpenAccessUser = await _sysUserRep.ChangeRepository<SqlSugarRepository<SysOpenAccess>>().IsAnyAsync(u => u.BindUserId == input.Id);
-        if (isOpenAccessUser)
-            throw Oops.Oh(ErrorCodeEnum.D1030);
+        if (isOpenAccessUser) throw Oops.Oh(ErrorCodeEnum.D1030);
 
         // 强制下线
         await _sysOnlineUserService.ForceOffline(user.Id);
@@ -194,6 +245,12 @@ public class SysUserService : IDynamicApiController, ITransient
 
         // 删除域账号
         await _sysUserLdapService.DeleteUserLdapByUserId(input.Id);
+
+        // 删除用户收藏菜单
+        await _sysUserMenuService.DeleteUserMenuList(input.Id);
+
+        // 执行订阅事件
+        _sysUserEventHandler.OnEvent(this, SysUserEventTypeEnum.Delete, input);
     }
 
     /// <summary>
@@ -203,7 +260,7 @@ public class SysUserService : IDynamicApiController, ITransient
     [DisplayName("查看用户基本信息")]
     public virtual async Task<SysUser> GetBaseInfo()
     {
-        return await _sysUserRep.GetFirstAsync(u => u.Id == _userManager.UserId);
+        return await _sysUserRep.GetByIdAsync(_userManager.UserId);
     }
 
     /// <summary>
@@ -223,16 +280,15 @@ public class SysUserService : IDynamicApiController, ITransient
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
+    [UnitOfWork]
     [DisplayName("设置用户状态")]
     public virtual async Task<int> SetStatus(UserInput input)
     {
         if (_userManager.UserId == input.Id)
             throw Oops.Oh(ErrorCodeEnum.D1026);
 
-        var user = await _sysUserRep.GetFirstAsync(u => u.Id == input.Id) ?? throw Oops.Oh(ErrorCodeEnum.D0009);
-        if (user.AccountType == AccountTypeEnum.SuperAdmin)
-            throw Oops.Oh(ErrorCodeEnum.D1015);
-
+        var user = await _sysUserRep.GetByIdAsync(input.Id) ?? throw Oops.Oh(ErrorCodeEnum.D0009);
+        user.ValidateIsSuperAdminAccountType(ErrorCodeEnum.D1015);
         if (!Enum.IsDefined(typeof(StatusEnum), input.Status))
             throw Oops.Oh(ErrorCodeEnum.D3005);
 
@@ -251,7 +307,12 @@ public class SysUserService : IDynamicApiController, ITransient
         }
 
         user.Status = input.Status;
-        return await _sysUserRep.AsUpdateable(user).UpdateColumns(u => new { u.Status }).ExecuteCommandAsync();
+        var rows = await _sysUserRep.AsUpdateable(user).UpdateColumns(u => new { u.Status }).ExecuteCommandAsync();
+
+        // 执行订阅事件
+        if (rows > 0) _sysUserEventHandler.OnEvent(this, SysUserEventTypeEnum.SetStatus, input);
+
+        return rows;
     }
 
     /// <summary>
@@ -268,6 +329,9 @@ public class SysUserService : IDynamicApiController, ITransient
         //    throw Oops.Oh(ErrorCodeEnum.D1022);
 
         await _sysUserRoleService.GrantUserRole(input);
+
+        // 执行订阅事件
+        _sysUserEventHandler.OnEvent(this, SysUserEventTypeEnum.UpdateRole, input);
     }
 
     /// <summary>
@@ -282,7 +346,7 @@ public class SysUserService : IDynamicApiController, ITransient
         input.PasswordOld = CryptogramUtil.SM2Decrypt(input.PasswordOld);
         input.PasswordNew = CryptogramUtil.SM2Decrypt(input.PasswordNew);
 
-        var user = await _sysUserRep.GetFirstAsync(u => u.Id == _userManager.UserId) ?? throw Oops.Oh(ErrorCodeEnum.D0009);
+        var user = await _sysUserRep.GetByIdAsync(_userManager.UserId) ?? throw Oops.Oh(ErrorCodeEnum.D0009);
         if (CryptogramUtil.CryptoType == CryptogramEnum.MD5.ToString())
         {
             if (user.Password != MD5Encryption.Encrypt(input.PasswordOld))
@@ -309,7 +373,12 @@ public class SysUserService : IDynamicApiController, ITransient
             user.Password = CryptogramUtil.Encrypt(input.PasswordNew);
         }
 
-        return await _sysUserRep.AsUpdateable(user).UpdateColumns(u => u.Password).ExecuteCommandAsync();
+        var rows = await _sysUserRep.AsUpdateable(user).UpdateColumns(u => u.Password).ExecuteCommandAsync();
+
+        // 执行订阅事件
+        if (rows > 0) _sysUserEventHandler.OnEvent(this, SysUserEventTypeEnum.ChangePwd, input);
+
+        return rows;
     }
 
     /// <summary>
@@ -320,7 +389,7 @@ public class SysUserService : IDynamicApiController, ITransient
     [DisplayName("重置用户密码")]
     public virtual async Task<string> ResetPwd(ResetPwdUserInput input)
     {
-        var user = await _sysUserRep.GetFirstAsync(u => u.Id == input.Id) ?? throw Oops.Oh(ErrorCodeEnum.D0009);
+        var user = await _sysUserRep.GetByIdAsync(input.Id) ?? throw Oops.Oh(ErrorCodeEnum.D0009);
         var password = await _sysConfigService.GetConfigValue<string>(ConfigConst.SysPassword);
         user.Password = CryptogramUtil.Encrypt(password);
         await _sysUserRep.AsUpdateable(user).UpdateColumns(u => u.Password).ExecuteCommandAsync();
@@ -328,6 +397,9 @@ public class SysUserService : IDynamicApiController, ITransient
         // 清空密码错误次数
         var keyErrorPasswordCount = $"{CacheConst.KeyPasswordErrorTimes}{user.Account}";
         _sysCacheService.Remove(keyErrorPasswordCount);
+
+        // 执行订阅事件
+        _sysUserEventHandler.OnEvent(this, SysUserEventTypeEnum.ResetPwd, input);
 
         return password;
     }
@@ -340,11 +412,14 @@ public class SysUserService : IDynamicApiController, ITransient
     [DisplayName("解除登录锁定")]
     public virtual async Task UnlockLogin(UnlockLoginInput input)
     {
-        var user = await _sysUserRep.GetFirstAsync(u => u.Id == input.Id) ?? throw Oops.Oh(ErrorCodeEnum.D0009);
+        var user = await _sysUserRep.GetByIdAsync(input.Id) ?? throw Oops.Oh(ErrorCodeEnum.D0009);
 
         // 清空密码错误次数
         var keyPasswordErrorTimes = $"{CacheConst.KeyPasswordErrorTimes}{user.Account}";
         _sysCacheService.Remove(keyPasswordErrorTimes);
+
+        // 执行订阅事件
+        _sysUserEventHandler.OnEvent(this, SysUserEventTypeEnum.UnlockLogin, input);
     }
 
     /// <summary>

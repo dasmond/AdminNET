@@ -11,42 +11,32 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-
- /**
+/**
  * 
- *
  * @export
  * @interface WechatPayRefundDomesticInput
  */
 export interface WechatPayRefundDomesticInput {
-
     /**
      * 商户端生成的业务流水号
-     *
      * @type {string}
      * @memberof WechatPayRefundDomesticInput
      */
     tradeId: string;
-
     /**
      * 退款原因
-     *
      * @type {string}
      * @memberof WechatPayRefundDomesticInput
      */
     reason?: string | null;
-
     /**
      * 退款金额
-     *
      * @type {number}
      * @memberof WechatPayRefundDomesticInput
      */
     refund: number;
-
     /**
      * 原订单金额
-     *
      * @type {number}
      * @memberof WechatPayRefundDomesticInput
      */

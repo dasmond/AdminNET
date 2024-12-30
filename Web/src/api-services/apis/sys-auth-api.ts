@@ -11,7 +11,6 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-
 import globalAxios, { AxiosResponse, AxiosInstance, AxiosRequestConfig } from 'axios';
 import { Configuration } from '../configuration';
 // Some imports not used depending on template conditions
@@ -24,6 +23,7 @@ import { AdminResultObject } from '../models';
 import { AdminResultString } from '../models';
 import { LoginInput } from '../models';
 import { LoginPhoneInput } from '../models';
+import { UserRegistrationInput } from '../models';
 /**
  * SysAuthApi - axios parameter creator
  * @export
@@ -31,7 +31,7 @@ import { LoginPhoneInput } from '../models';
 export const SysAuthApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
-         * 
+         * Swagger登录检查
          * @summary Swagger登录检查 🔖
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -74,7 +74,7 @@ export const SysAuthApiAxiosParamCreator = function (configuration?: Configurati
             };
         },
         /**
-         * 
+         * Swagger登录提交
          * @summary Swagger登录提交 🔖
          * @param {string} [userName] 
          * @param {string} [password] 
@@ -463,6 +463,54 @@ export const SysAuthApiAxiosParamCreator = function (configuration?: Configurati
                 options: localVarRequestOptions,
             };
         },
+        /**
+         * 用户注册
+         * @summary 用户注册 🔖
+         * @param {UserRegistrationInput} [body] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiSysAuthUserRegistrationPost: async (body?: UserRegistrationInput, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/sysAuth/userRegistration`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions :AxiosRequestConfig = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication Bearer required
+            // http bearer authentication required
+            if (configuration && configuration.accessToken) {
+                const accessToken = typeof configuration.accessToken === 'function'
+                    ? await configuration.accessToken()
+                    : await configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
+            }
+
+            localVarHeaderParameter['Content-Type'] = 'application/json-patch+json';
+
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.params) {
+                query.set(key, options.params[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            const needsSerialization = (typeof body !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(body !== undefined ? body : {}) : (body || "");
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
     }
 };
 
@@ -473,7 +521,7 @@ export const SysAuthApiAxiosParamCreator = function (configuration?: Configurati
 export const SysAuthApiFp = function(configuration?: Configuration) {
     return {
         /**
-         * 
+         * Swagger登录检查
          * @summary Swagger登录检查 🔖
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -486,7 +534,7 @@ export const SysAuthApiFp = function(configuration?: Configuration) {
             };
         },
         /**
-         * 
+         * Swagger登录提交
          * @summary Swagger登录提交 🔖
          * @param {string} [userName] 
          * @param {string} [password] 
@@ -595,6 +643,20 @@ export const SysAuthApiFp = function(configuration?: Configuration) {
                 return axios.request(axiosRequestArgs);
             };
         },
+        /**
+         * 用户注册
+         * @summary 用户注册 🔖
+         * @param {UserRegistrationInput} [body] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiSysAuthUserRegistrationPost(body?: UserRegistrationInput, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<void>>> {
+            const localVarAxiosArgs = await SysAuthApiAxiosParamCreator(configuration).apiSysAuthUserRegistrationPost(body, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
     }
 };
 
@@ -605,7 +667,7 @@ export const SysAuthApiFp = function(configuration?: Configuration) {
 export const SysAuthApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
     return {
         /**
-         * 
+         * Swagger登录检查
          * @summary Swagger登录检查 🔖
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -614,7 +676,7 @@ export const SysAuthApiFactory = function (configuration?: Configuration, basePa
             return SysAuthApiFp(configuration).apiSwaggerCheckUrlPost(options).then((request) => request(axios, basePath));
         },
         /**
-         * 
+         * Swagger登录提交
          * @summary Swagger登录提交 🔖
          * @param {string} [userName] 
          * @param {string} [password] 
@@ -691,6 +753,16 @@ export const SysAuthApiFactory = function (configuration?: Configuration, basePa
         async apiSysAuthUserInfoGet(options?: AxiosRequestConfig): Promise<AxiosResponse<AdminResultLoginUserOutput>> {
             return SysAuthApiFp(configuration).apiSysAuthUserInfoGet(options).then((request) => request(axios, basePath));
         },
+        /**
+         * 用户注册
+         * @summary 用户注册 🔖
+         * @param {UserRegistrationInput} [body] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiSysAuthUserRegistrationPost(body?: UserRegistrationInput, options?: AxiosRequestConfig): Promise<AxiosResponse<void>> {
+            return SysAuthApiFp(configuration).apiSysAuthUserRegistrationPost(body, options).then((request) => request(axios, basePath));
+        },
     };
 };
 
@@ -702,7 +774,7 @@ export const SysAuthApiFactory = function (configuration?: Configuration, basePa
  */
 export class SysAuthApi extends BaseAPI {
     /**
-     * 
+     * Swagger登录检查
      * @summary Swagger登录检查 🔖
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -712,7 +784,7 @@ export class SysAuthApi extends BaseAPI {
         return SysAuthApiFp(this.configuration).apiSwaggerCheckUrlPost(options).then((request) => request(this.axios, this.basePath));
     }
     /**
-     * 
+     * Swagger登录提交
      * @summary Swagger登录提交 🔖
      * @param {string} [userName] 
      * @param {string} [password] 
@@ -796,5 +868,16 @@ export class SysAuthApi extends BaseAPI {
      */
     public async apiSysAuthUserInfoGet(options?: AxiosRequestConfig) : Promise<AxiosResponse<AdminResultLoginUserOutput>> {
         return SysAuthApiFp(this.configuration).apiSysAuthUserInfoGet(options).then((request) => request(this.axios, this.basePath));
+    }
+    /**
+     * 用户注册
+     * @summary 用户注册 🔖
+     * @param {UserRegistrationInput} [body] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SysAuthApi
+     */
+    public async apiSysAuthUserRegistrationPost(body?: UserRegistrationInput, options?: AxiosRequestConfig) : Promise<AxiosResponse<void>> {
+        return SysAuthApiFp(this.configuration).apiSysAuthUserRegistrationPost(body, options).then((request) => request(this.axios, this.basePath));
     }
 }

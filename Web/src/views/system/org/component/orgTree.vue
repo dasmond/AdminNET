@@ -2,6 +2,11 @@
 	<el-card class="box-card" shadow="hover" style="height: 100%" body-style="height:100%; overflow:auto">
 		<template #header>
 			<div class="card-header">
+				<div class="tree-h-flex" v-if="!props.tenantId">
+					<el-select v-if="userStore.userInfos.accountType == 999" v-model="state.tenantId" @change="initTreeData()" placeholder="请选择租户" class="w100 mb10">
+						<el-option :value="item.value" :label="`${item.label} (${item.host})`" v-for="(item, index) in state.tenantList" :key="index" />
+					</el-select>
+				</div>
 				<div class="tree-h-flex">
 					<div class="tree-h-left">
 						<el-input :prefix-icon="Search" v-model="filterText" placeholder="机构名称" />
@@ -57,19 +62,29 @@ import type { ElTree } from 'element-plus';
 import { Search, MoreFilled } from '@element-plus/icons-vue';
 
 import { getAPI } from '/@/utils/axios-utils';
-import { SysOrgApi } from '/@/api-services/api';
+import {SysOrgApi, SysTenantApi} from '/@/api-services/api';
 import { SysOrg } from '/@/api-services/models';
+import { useUserInfo } from "/@/stores/userInfo";
 
+const props = defineProps({
+	tenantId: Number,
+});
+const userStore = useUserInfo();
 const filterText = ref('');
 const treeRef = ref<InstanceType<typeof ElTree>>();
 const state = reactive({
 	loading: false,
+	tenantList: [] as Array<any>,
+	tenantId: props.tenantId as number,
 	orgData: [] as Array<SysOrg>,
 	isShowCheckbox: false,
-	ownOrgData: [],
+	ownOrgData: [] as Array<SysOrg>,
 });
 
-onMounted(() => {
+onMounted( async () => {
+	if (userStore.userInfos.accountType == 999) {
+		state.tenantList = await getAPI(SysTenantApi).apiSysTenantListGet().then(res => res.data.result ?? []);
+	}
 	initTreeData();
 });
 
@@ -79,16 +94,21 @@ watch(filterText, (val) => {
 
 const initTreeData = async () => {
 	state.loading = true;
-	var res = await getAPI(SysOrgApi).apiSysOrgListGet(0);
+	const res = await getAPI(SysOrgApi).apiSysOrgListGet(0, undefined, undefined, undefined, state.tenantId);
 	state.orgData = res.data.result ?? [];
 	state.loading = false;
 };
 
 // 设置默认选择
-const setCheckedKeys = (orgData: any) => {
-	state.isShowCheckbox = true;
+const setCheckedKeys = (data: any) => {
+	const isArray = Array.isArray(data);
 	treeRef.value!.setCheckedKeys([]);
-	state.ownOrgData = orgData;
+	if (!isArray) {
+		treeRef.value!.setCurrentNode(data);
+		nodeClick(data);
+	}
+	state.ownOrgData = isArray ? data : [data];
+	state.isShowCheckbox = isArray;
 };
 
 // 获取已经选择
@@ -120,7 +140,7 @@ const handleCommand = async (command: string | number | object) => {
 // 与父组件的交互逻辑
 const emits = defineEmits(['node-click']);
 const nodeClick = (node: any) => {
-	emits('node-click', { id: node.id, name: node.name });
+	emits('node-click', node);
 };
 
 // 导出对象

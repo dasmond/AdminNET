@@ -15,7 +15,6 @@ declare interface UserInfosState {
 	userInfos: UserInfos;
 	constList: T[];
 	dictList: T;
-	dictListInt: T;
 }
 
 // 路由缓存列表
@@ -99,6 +98,9 @@ declare interface ThemeConfigState {
 		icp: string; // Icp备案号
 		icpUrl: string; // Icp地址
 		secondVer: boolean; // 是否开启二级验证
+		registration: boolean; // 是否开启注册功能
+		hideTenantForLogin: boolean; // 登陆时隐藏租户
 		captcha: boolean; // 是否开启验证码
+		isLoaded: boolean; // 是否加载完成
 	};
 }

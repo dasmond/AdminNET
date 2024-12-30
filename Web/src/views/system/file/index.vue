@@ -2,6 +2,11 @@
 	<div class="sys-file-container">
 		<el-card shadow="hover" :body-style="{ paddingBottom: '0' }">
 			<el-form :model="state.queryParams" ref="queryForm" :inline="true">
+				<el-form-item label="租户" v-if="userStore.userInfos.accountType == 999">
+					<el-select v-model="state.queryParams.tenantId" placeholder="租户" style="width: 100%">
+						<el-option :value="item.value" :label="`${item.label} (${item.host})`" v-for="(item, index) in state.tenantList" :key="index" />
+					</el-select>
+				</el-form-item>
 				<el-form-item label="文件名称" prop="fileName">
 					<el-input v-model="state.queryParams.fileName" placeholder="文件名称" clearable />
 				</el-form-item>
@@ -59,9 +64,9 @@
 						<el-tag v-else type="danger">否</el-tag>
 					</template>
 				</el-table-column>
-				<el-table-column type="relationName" label="关联对象名称" min-width="150" align="center" />
-				<el-table-column type="relationId" label="关联对象Id" align="center" />
-				<el-table-column type="belongId" label="所属Id" align="center" />
+				<el-table-column prop="relationName" label="关联对象名称" min-width="150" align="center" />
+				<el-table-column prop="relationId" label="关联对象Id" align="center" />
+				<el-table-column prop="belongId" label="所属Id" align="center" />
 				<el-table-column label="修改记录" width="100" align="center" show-overflow-tooltip>
 					<template #default="scope">
 						<ModifyRecord :data="scope.row" />
@@ -69,10 +74,12 @@
 				</el-table-column>
 				<el-table-column label="操作" width="260" fixed="right" align="center" show-overflow-tooltip>
 					<template #default="scope">
-						<el-button icon="ele-View" size="small" text type="primary" @click="openFilePreviewDialog(scope.row)" v-auth="'sysFile:delete'"> 预览 </el-button>
-						<el-button icon="ele-Download" size="small" text type="primary" @click="downloadFile(scope.row)" v-auth="'sysFile:downloadFile'"> 下载 </el-button>
-						<el-button icon="ele-Delete" size="small" text type="danger" @click="delFile(scope.row)" v-auth="'sysFile:delete'"> 删除 </el-button>
-						<el-button icon="ele-Edit" size="small" text type="primary" @click="openEditSysFile(scope.row)" v-auth="'sysFile:update'"> 编辑 </el-button>
+						<el-button-group>
+							<el-button icon="ele-View" size="small" type="primary" @click="openFilePreviewDialog(scope.row)" v-auth="'sysFile:delete'"></el-button>
+							<el-button icon="ele-Download" size="small" type="primary" @click="downloadFile(scope.row)" v-auth="'sysFile:downloadFile'"></el-button>
+							<el-button icon="ele-Delete" size="small" type="danger" @click="delFile(scope.row)" v-auth="'sysFile:delete'"></el-button>
+							<el-button icon="ele-Edit" size="small" type="primary" @click="openEditSysFile(scope.row)" v-auth="'sysFile:update'"></el-button>
+						</el-button-group>
 					</template>
 				</el-table-column>
 			</el-table>
@@ -106,7 +113,7 @@
 					<el-radio :value="false">否</el-radio>
 					<el-radio :value="true">是</el-radio>
 				</el-radio-group>
-				<el-upload ref="uploadRef" drag :auto-upload="false" :limit="1" :file-list="state.fileList" action="" :on-change="handleChange" accept=".jpg,.png,.bmp,.gif,.txt,.pdf,.xlsx,.docx">
+				<el-upload ref="uploadRef" drag :auto-upload="false" :limit="1" :file-list="state.fileList" action :on-change="handleChange" accept=".jpg,.png,.bmp,.gif,.txt,.pdf,.xlsx,.docx">
 					<el-icon class="el-icon--upload">
 						<ele-UploadFilled />
 					</el-icon>
@@ -152,23 +159,27 @@ import ModifyRecord from '/@/components/table/modifyRecord.vue';
 
 import { downloadByUrl } from '/@/utils/download';
 import { getAPI } from '/@/utils/axios-utils';
-import { SysFileApi } from '/@/api-services/api';
+import {SysFileApi, SysTenantApi} from '/@/api-services/api';
 import { SysFile } from '/@/api-services/models';
+import { useUserInfo } from "/@/stores/userInfo";
 
 // const baseUrl = window.__env__.VITE_API_URL;
+const userStore = useUserInfo();
 const uploadRef = ref<UploadInstance>();
 const editSysFileRef = ref<InstanceType<typeof EditSysFile>>();
 const state = reactive({
 	loading: false,
+	tenantList: [] as Array<any>,
 	fileData: [] as Array<SysFile>,
 	queryParams: {
+		tenantId: undefined,
 		fileName: undefined,
 		startTime: undefined,
 		endTime: undefined,
 	},
 	tableParams: {
 		page: 1,
-		pageSize: 10,
+		pageSize: 50,
 		total: 0 as any,
 	},
 	dialogUploadVisible: false,
@@ -188,6 +199,10 @@ const state = reactive({
 });
 
 onMounted(async () => {
+	if (userStore.userInfos.accountType == 999) {
+		state.tenantList = await getAPI(SysTenantApi).apiSysTenantListGet().then(res => res.data.result ?? []);
+		state.queryParams.tenantId = state.tenantList[0].value;
+	}
 	handleQuery();
 });
 
@@ -199,6 +214,7 @@ const handleQuery = async () => {
 	state.loading = true;
 	let params = Object.assign(state.queryParams, state.tableParams);
 	var res = await getAPI(SysFileApi).apiSysFilePagePost(params);
+	console.log(res);
 	state.fileData = res.data.result?.items ?? [];
 	state.tableParams.total = res.data.result?.total;
 	state.loading = false;

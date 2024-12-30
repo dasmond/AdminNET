@@ -11,34 +11,26 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-
- /**
+/**
  * 接口/动态API输出
- *
  * @export
  * @interface ApiOutput
  */
 export interface ApiOutput {
-
     /**
      * 组名称
-     *
      * @type {string}
      * @memberof ApiOutput
      */
     groupName?: string | null;
-
     /**
      * 接口名称
-     *
      * @type {string}
      * @memberof ApiOutput
      */
     displayName?: string | null;
-
     /**
      * 路由名称
-     *
      * @type {string}
      * @memberof ApiOutput
      */

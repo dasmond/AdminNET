@@ -12,7 +12,7 @@ namespace Admin.NET.Core.Service;
 /// <summary>
 /// 系统文件服务 🧩
 /// </summary>
-[ApiDescriptionSettings(Order = 410)]
+[ApiDescriptionSettings(Order = 410, Description = "系统文件")]
 public class SysFileService : IDynamicApiController, ITransient
 {
     private readonly UserManager _userManager;
@@ -32,7 +32,7 @@ public class SysFileService : IDynamicApiController, ITransient
         _sysFileRep = sysFileRep;
         _OSSProviderOptions = oSSProviderOptions.Value;
         _uploadOptions = uploadOptions.Value;
-        if (_OSSProviderOptions.IsEnable)
+        if (_OSSProviderOptions.Enabled)
             _OSSService = ossServiceFactory.Create(Enum.GetName(_OSSProviderOptions.Provider));
     }
 
@@ -44,27 +44,18 @@ public class SysFileService : IDynamicApiController, ITransient
     [DisplayName("获取文件分页列表")]
     public async Task<SqlSugarPagedList<SysFile>> Page(PageFileInput input)
     {
-        //获取所有公开附件
+        // 获取所有公开附件
         var publicList = _sysFileRep.AsQueryable().ClearFilter().Where(u => u.IsPublic == true);
-        //获取私有附件
+        // 获取私有附件
         var privateList = _sysFileRep.AsQueryable().Where(u => u.IsPublic == false);
-        //合并公开和私有附件并分页
-        return await _sysFileRep.Context.UnionAll(publicList, privateList).WhereIF(!string.IsNullOrWhiteSpace(input.FileName), u => u.FileName.Contains(input.FileName.Trim()))
-             .WhereIF(!string.IsNullOrWhiteSpace(input.StartTime.ToString()) && !string.IsNullOrWhiteSpace(input.EndTime.ToString()),
-                         u => u.CreateTime >= input.StartTime && u.CreateTime <= input.EndTime)
-             .OrderBy(u => u.CreateTime, OrderByType.Desc)
-             .ToPagedListAsync(input.Page, input.PageSize);
-    }
-
-    /// <summary>
-    /// 上传文件 🔖
-    /// </summary>
-    /// <param name="input"></param>
-    /// <returns></returns>
-    [DisplayName("上传文件")]
-    public async Task<SysFile> UploadFile([FromForm] FileUploadInput input)
-    {
-        return await HandleUploadFile(input.File, input.Path, fileType: input.FileType, isPublic: input.IsPublic);
+        // 合并公开和私有附件并分页
+        return await _sysFileRep.Context.UnionAll(publicList, privateList)
+            .WhereIF(_userManager.SuperAdmin && input.TenantId > 0, u => u.TenantId == input.TenantId)
+            .WhereIF(!string.IsNullOrWhiteSpace(input.FileName), u => u.FileName.Contains(input.FileName.Trim()))
+            .WhereIF(!string.IsNullOrWhiteSpace(input.StartTime.ToString()) && !string.IsNullOrWhiteSpace(input.EndTime.ToString()),
+                u => u.CreateTime >= input.StartTime && u.CreateTime <= input.EndTime)
+            .OrderBy(u => u.CreateTime, OrderByType.Desc)
+            .ToPagedListAsync(input.Page, input.PageSize);
     }
 
     /// <summary>
@@ -75,20 +66,26 @@ public class SysFileService : IDynamicApiController, ITransient
     [DisplayName("上传文件Base64")]
     public async Task<SysFile> UploadFileFromBase64(UploadFileFromBase64Input input)
     {
-        byte[] fileData = Convert.FromBase64String(input.FileDataBase64);
+        var pattern = @"data:(?<type>.+?);base64,(?<data>[^""]+)";
+        var regex = new Regex(pattern, RegexOptions.Compiled);
+        var match = regex.Match(input.FileDataBase64);
+
+        byte[] fileData = Convert.FromBase64String(match.Groups["data"].Value);
+        var contentType = match.Groups["type"].Value;
+        if (string.IsNullOrEmpty(input.FileName))
+            input.FileName = $"{YitIdHelper.NextId()}.{contentType.AsSpan(contentType.LastIndexOf('/') + 1)}";
+
         var ms = new MemoryStream();
         ms.Write(fileData);
         ms.Seek(0, SeekOrigin.Begin);
-        if (string.IsNullOrEmpty(input.FileName))
-            input.FileName = $"{YitIdHelper.NextId()}.jpg";
-        if (string.IsNullOrEmpty(input.ContentType))
-            input.ContentType = "image/jpg";
         IFormFile formFile = new FormFile(ms, 0, fileData.Length, "file", input.FileName)
         {
             Headers = new HeaderDictionary(),
-            ContentType = input.ContentType
+            ContentType = contentType
         };
-        return await UploadFile(new FileUploadInput { File = formFile, Path = input.Path, FileType = input.FileType, IsPublic = input.IsPublic });
+        var uploadFileInput = input.Adapt<UploadFileInput>();
+        uploadFileInput.File = formFile;
+        return await UploadFile(uploadFileInput);
     }
 
     /// <summary>
@@ -97,14 +94,11 @@ public class SysFileService : IDynamicApiController, ITransient
     /// <param name="files"></param>
     /// <returns></returns>
     [DisplayName("上传多文件")]
-    public async Task<List<SysFile>> UploadFiles([Required] List<IFormFile> files)
+    public List<SysFile> UploadFiles([Required] List<IFormFile> files)
     {
-        var filelist = new List<SysFile>();
-        foreach (var file in files)
-        {
-            filelist.Add(await UploadFile(new FileUploadInput { File = file }));
-        }
-        return filelist;
+        var fileList = new List<SysFile>();
+        files.ForEach(file => fileList.Add(UploadFile(new UploadFileInput { File = file }).Result));
+        return fileList;
     }
 
     /// <summary>
@@ -113,62 +107,50 @@ public class SysFileService : IDynamicApiController, ITransient
     /// <param name="input"></param>
     /// <returns></returns>
     [DisplayName("根据文件Id或Url下载")]
-    public async Task<IActionResult> DownloadFile(FileInput input)
+    public async Task<IActionResult> DownloadFile(SysFile input)
     {
-        var file = input.Id > 0 ? await GetFile(input) : await _sysFileRep.CopyNew().GetFirstAsync(u => u.Url == input.Url);
+        var file = input.Id > 0 ? await GetFile(input.Id) : await _sysFileRep.CopyNew().GetFirstAsync(u => u.Url == input.Url);
         var fileName = HttpUtility.UrlEncode(file.FileName, Encoding.GetEncoding("UTF-8"));
-        var filePath = Path.Combine(file.FilePath, file.Id.ToString() + file.Suffix);
-
-        if (_OSSProviderOptions.IsEnable)
-        {
-            var stream = await (await _OSSService.PresignedGetObjectAsync(file.BucketName.ToString(), filePath, 5)).GetAsStreamAsync();
-            return new FileStreamResult(stream.Stream, "application/octet-stream") { FileDownloadName = fileName + file.Suffix };
-        }
-        else if (App.Configuration["SSHProvider:IsEnable"].ToBoolean())
-        {
-            using (SSHHelper helper = new SSHHelper(App.Configuration["SSHProvider:Host"],
-               App.Configuration["SSHProvider:Port"].ToInt(), App.Configuration["SSHProvider:Username"], App.Configuration["SSHProvider:Password"]))
-            {
-                return new FileStreamResult(helper.OpenRead(filePath), "application/octet-stream") { FileDownloadName = fileName + file.Suffix };
-            }
-        }
-        else
-        {
-            var path = Path.Combine(App.WebHostEnvironment.WebRootPath, filePath);
-            return new FileStreamResult(new FileStream(path, FileMode.Open), "application/octet-stream") { FileDownloadName = fileName + file.Suffix };
-        }
+        return await GetFileStreamResult(file, fileName);
     }
 
     /// <summary>
     /// 文件预览 🔖
     /// </summary>
-    /// <param name="Id"></param>
+    /// <param name="id"></param>
     /// <returns></returns>
     [DisplayName("文件预览")]
-    public async Task<IActionResult> GetPreview([FromRoute] long Id)
+    public async Task<IActionResult> GetPreview([FromRoute] long id)
     {
-        var file = await GetFile(new FileInput { Id = Id });
-        //var fileName = HttpUtility.UrlEncode(file.FileName, Encoding.GetEncoding("UTF-8"));
-        var filePath = Path.Combine(file.FilePath, file.Id.ToString() + file.Suffix);
+        var file = await GetFile(id);
+        return await GetFileStreamResult(file, file.Id + "");
+    }
 
-        if (_OSSProviderOptions.IsEnable)
+    /// <summary>
+    /// 获取文件流
+    /// </summary>
+    /// <param name="file"></param>
+    /// <param name="fileName"></param>
+    /// <returns></returns>
+    [NonAction]
+    public async Task<IActionResult> GetFileStreamResult(SysFile file, string fileName)
+    {
+        var filePath = Path.Combine(file.FilePath ?? "", file.Id + file.Suffix);
+        if (_OSSProviderOptions.Enabled)
         {
-            var stream = await (await _OSSService.PresignedGetObjectAsync(file.BucketName.ToString(), filePath, 5)).GetAsStreamAsync();
-            return new FileStreamResult(stream.Stream, "application/octet-stream");
+            var stream = await (await _OSSService.PresignedGetObjectAsync(file.BucketName, filePath, 5)).GetAsStreamAsync();
+            return new FileStreamResult(stream.Stream, "application/octet-stream") { FileDownloadName = fileName + file.Suffix };
         }
-        else if (App.Configuration["SSHProvider:IsEnable"].ToBoolean())
+
+        if (App.Configuration["SSHProvider:Enabled"].ToBoolean())
         {
-            using (SSHHelper helper = new SSHHelper(App.Configuration["SSHProvider:Host"],
-               App.Configuration["SSHProvider:Port"].ToInt(), App.Configuration["SSHProvider:Username"], App.Configuration["SSHProvider:Password"]))
-            {
-                return new FileStreamResult(helper.OpenRead(filePath), "application/octet-stream");
-            }
+            using SSHHelper helper = new(App.Configuration["SSHProvider:Host"],
+                App.Configuration["SSHProvider:Port"].ToInt(), App.Configuration["SSHProvider:Username"], App.Configuration["SSHProvider:Password"]);
+            return new FileStreamResult(helper.OpenRead(filePath), "application/octet-stream") { FileDownloadName = fileName + file.Suffix };
         }
-        else
-        {
-            var path = Path.Combine(App.WebHostEnvironment.WebRootPath, filePath);
-            return new FileStreamResult(new FileStream(path, FileMode.Open), "application/octet-stream");
-        }
+
+        var path = Path.Combine(App.WebHostEnvironment.WebRootPath, filePath);
+        return new FileStreamResult(new FileStream(path, FileMode.Open), "application/octet-stream") { FileDownloadName = fileName + file.Suffix };
     }
 
     /// <summary>
@@ -179,7 +161,7 @@ public class SysFileService : IDynamicApiController, ITransient
     [DisplayName("下载指定文件Base64格式")]
     public async Task<string> DownloadFileBase64([FromBody] string url)
     {
-        if (_OSSProviderOptions.IsEnable)
+        if (_OSSProviderOptions.Enabled)
         {
             using var httpClient = new HttpClient();
             HttpResponseMessage response = await httpClient.GetAsync(url);
@@ -189,19 +171,15 @@ public class SysFileService : IDynamicApiController, ITransient
                 byte[] fileBytes = await response.Content.ReadAsByteArrayAsync();
                 return Convert.ToBase64String(fileBytes);
             }
-            else
-            {
-                throw new HttpRequestException($"Request failed with status code: {response.StatusCode}");
-            }
+            throw new HttpRequestException($"Request failed with status code: {response.StatusCode}");
         }
-        else if (App.Configuration["SSHProvider:IsEnable"].ToBoolean())
+
+        if (App.Configuration["SSHProvider:Enabled"].ToBoolean())
         {
             var sysFile = await _sysFileRep.CopyNew().GetFirstAsync(u => u.Url == url) ?? throw Oops.Oh($"文件不存在");
-            using (SSHHelper helper = new SSHHelper(App.Configuration["SSHProvider:Host"],
-               App.Configuration["SSHProvider:Port"].ToInt(), App.Configuration["SSHProvider:Username"], App.Configuration["SSHProvider:Password"]))
-            {
-                return Convert.ToBase64String(helper.ReadAllBytes(sysFile.FilePath));
-            }
+            using SSHHelper helper = new SSHHelper(App.Configuration["SSHProvider:Host"],
+                App.Configuration["SSHProvider:Port"].ToInt(), App.Configuration["SSHProvider:Username"], App.Configuration["SSHProvider:Password"]);
+            return Convert.ToBase64String(helper.ReadAllBytes(sysFile.FilePath));
         }
         else
         {
@@ -216,7 +194,7 @@ public class SysFileService : IDynamicApiController, ITransient
                 Log.Error($"DownloadFileBase64:文件[{realFile}]不存在");
                 throw Oops.Oh($"文件[{sysFile.FilePath}]不存在");
             }
-            byte[] fileBytes = File.ReadAllBytes(realFile);
+            byte[] fileBytes = await File.ReadAllBytesAsync(realFile);
             return Convert.ToBase64String(fileBytes);
         }
     }
@@ -230,29 +208,26 @@ public class SysFileService : IDynamicApiController, ITransient
     [DisplayName("删除文件")]
     public async Task DeleteFile(DeleteFileInput input)
     {
-        var file = await _sysFileRep.GetFirstAsync(u => u.Id == input.Id);
+        var file = await _sysFileRep.GetByIdAsync(input.Id);
         if (file != null)
         {
             await _sysFileRep.DeleteAsync(file);
 
-            if (_OSSProviderOptions.IsEnable)
+            if (_OSSProviderOptions.Enabled)
             {
-                await _OSSService.RemoveObjectAsync(file.BucketName.ToString(), string.Concat(file.FilePath, "/", $"{input.Id}{file.Suffix}"));
+                await _OSSService.RemoveObjectAsync(file.BucketName, string.Concat(file.FilePath, "/", $"{input.Id}{file.Suffix}"));
             }
-            else if (App.Configuration["SSHProvider:IsEnable"].ToBoolean())
+            else if (App.Configuration["SSHProvider:Enabled"].ToBoolean())
             {
                 var fullPath = string.Concat(file.FilePath, "/", file.Id + file.Suffix);
-                using (SSHHelper helper = new SSHHelper(App.Configuration["SSHProvider:Host"],
-                   App.Configuration["SSHProvider:Port"].ToInt(), App.Configuration["SSHProvider:Username"], App.Configuration["SSHProvider:Password"]))
-                {
-                    helper.DeleteFile(fullPath);
-                }
+                using SSHHelper helper = new(App.Configuration["SSHProvider:Host"],
+                    App.Configuration["SSHProvider:Port"].ToInt(), App.Configuration["SSHProvider:Username"], App.Configuration["SSHProvider:Password"]);
+                helper.DeleteFile(fullPath);
             }
             else
             {
-                var filePath = Path.Combine(App.WebHostEnvironment.WebRootPath, file.FilePath, input.Id.ToString() + file.Suffix);
-                if (File.Exists(filePath))
-                    File.Delete(filePath);
+                var filePath = Path.Combine(App.WebHostEnvironment.WebRootPath, file.FilePath ?? "", input.Id + file.Suffix);
+                if (File.Exists(filePath)) File.Delete(filePath);
             }
         }
     }
@@ -264,68 +239,61 @@ public class SysFileService : IDynamicApiController, ITransient
     /// <returns></returns>
     [ApiDescriptionSettings(Name = "Update"), HttpPost]
     [DisplayName("更新文件")]
-    public async Task UpdateFile(FileInput input)
+    public async Task UpdateFile(SysFile input)
     {
         var isExist = await _sysFileRep.IsAnyAsync(u => u.Id == input.Id);
         if (!isExist) throw Oops.Oh(ErrorCodeEnum.D8000);
 
-        await _sysFileRep.UpdateAsync(u => new SysFile() { FileName = input.FileName, FileType = input.FileType, IsPublic = input.IsPublic }, u => u.Id == input.Id);
+        await _sysFileRep.UpdateAsync(input);
     }
 
     /// <summary>
     /// 获取文件 🔖
     /// </summary>
-    /// <param name="input"></param>
+    /// <param name="id"></param>
     /// <returns></returns>
     [DisplayName("获取文件")]
-    public async Task<SysFile> GetFile([FromQuery] FileInput input)
+    public async Task<SysFile> GetFile([FromQuery] long id)
     {
-        var file = await _sysFileRep.CopyNew().GetFirstAsync(u => u.Id == input.Id);
+        var file = await _sysFileRep.CopyNew().GetByIdAsync(id);
         return file ?? throw Oops.Oh(ErrorCodeEnum.D8000);
     }
 
     /// <summary>
-    /// 上传文件
+    /// 上传文件 🔖
     /// </summary>
-    /// <param name="file">文件</param>
-    /// <param name="savePath">路径</param>
-    /// <param name="allowSuffix">允许格式：.jpg.png.gif.tif.bmp</param>
-    /// <param name="fileType">类型</param>
-    /// <param name="isPublic">是否公开</param>
+    /// <param name="input"></param>
     /// <returns></returns>
-    private async Task<SysFile> HandleUploadFile(IFormFile file, string savePath, string allowSuffix = "", string fileType = "", bool isPublic = false)
+    [DisplayName("上传文件")]
+    public async Task<SysFile> UploadFile([FromForm] UploadFileInput input)
     {
-        if (file == null) throw Oops.Oh(ErrorCodeEnum.D8000);
+        if (input.File == null) throw Oops.Oh(ErrorCodeEnum.D8000);
 
         // 判断是否重复上传的文件
-        var sizeKb = file.Length / 1024; // 大小KB
+        var sizeKb = input.File.Length / 1024; // 大小KB
         var fileMd5 = string.Empty;
         if (_uploadOptions.EnableMd5)
         {
-            using (var fileStream = file.OpenReadStream())
+            await using (var fileStream = input.File.OpenReadStream())
             {
                 fileMd5 = OssUtils.ComputeContentMd5(fileStream, fileStream.Length);
             }
-            /*
-             * Mysql8 中如果使用了 utf8mb4_general_ci 之外的编码会出错，尽量避免在条件里使用.ToString()
-             * 因为 Squsugar 并不是把变量转换为字符串来构造SQL语句，而是构造了CAST(123 AS CHAR)这样的语句，这样这个返回值是utf8mb4_general_ci，所以容易出错。
-             */
+            // Mysql8 中如果使用了 utf8mb4_general_ci 之外的编码会出错，尽量避免在条件里使用.ToString()
+            // 因为 Squsugar 并不是把变量转换为字符串来构造SQL语句，而是构造了CAST(123 AS CHAR)这样的语句，这样这个返回值是utf8mb4_general_ci，所以容易出错。
             var sysFile = await _sysFileRep.GetFirstAsync(u => u.FileMd5 == fileMd5 && u.SizeKb == sizeKb);
             if (sysFile != null) return sysFile;
         }
 
         // 验证文件类型
-        if (!_uploadOptions.ContentType.Contains(file.ContentType))
-            throw Oops.Oh($"{ErrorCodeEnum.D8001}:{file.ContentType}");
+        if (!_uploadOptions.ContentType.Contains(input.File.ContentType)) throw Oops.Oh($"{ErrorCodeEnum.D8001}:{input.File.ContentType}");
 
         // 验证文件大小
-        if (sizeKb > _uploadOptions.MaxSize)
-            throw Oops.Oh($"{ErrorCodeEnum.D8002}，允许最大：{_uploadOptions.MaxSize}KB");
+        if (sizeKb > _uploadOptions.MaxSize) throw Oops.Oh($"{ErrorCodeEnum.D8002}，允许最大：{_uploadOptions.MaxSize}KB");
 
         // 获取文件后缀
-        var suffix = Path.GetExtension(file.FileName).ToLower(); // 后缀
+        var suffix = Path.GetExtension(input.File.FileName).ToLower(); // 后缀
         if (string.IsNullOrWhiteSpace(suffix))
-            suffix = string.Concat(".", file.ContentType.AsSpan(file.ContentType.LastIndexOf('/') + 1));
+            suffix = string.Concat(".", input.File.ContentType.AsSpan(input.File.ContentType.LastIndexOf('/') + 1));
         if (!string.IsNullOrWhiteSpace(suffix))
         {
             //var contentTypeProvider = FS.GetFileExtensionContentTypeProvider();
@@ -334,39 +302,32 @@ public class SysFileService : IDynamicApiController, ITransient
             if (suffix == ".jpeg" || suffix == ".jpe")
                 suffix = ".jpg";
         }
-        if (string.IsNullOrWhiteSpace(suffix))
-            throw Oops.Oh(ErrorCodeEnum.D8003);
+        if (string.IsNullOrWhiteSpace(suffix)) throw Oops.Oh(ErrorCodeEnum.D8003);
 
         // 防止客户端伪造文件类型
-        if (!string.IsNullOrWhiteSpace(allowSuffix) && !allowSuffix.Contains(suffix))
-            throw Oops.Oh(ErrorCodeEnum.D8003);
+        if (!string.IsNullOrWhiteSpace(input.AllowSuffix) && !input.AllowSuffix.Contains(suffix)) throw Oops.Oh(ErrorCodeEnum.D8003);
         //if (!VerifyFileExtensionName.IsSameType(file.OpenReadStream(), suffix))
         //    throw Oops.Oh(ErrorCodeEnum.D8001);
 
-        var path = string.IsNullOrWhiteSpace(savePath) ? _uploadOptions.Path : savePath;
+        // 文件存储位置
+        var path = string.IsNullOrWhiteSpace(input.SavePath) ? _uploadOptions.Path : input.SavePath;
         path = path.ParseToDateTimeForRep();
-        var newFile = new SysFile
-        {
-            Id = YitIdHelper.NextId(),
-            // BucketName = _OSSProviderOptions.IsEnable ? _OSSProviderOptions.Provider.ToString() : "Local",
-            // 阿里云对bucket名称有要求，1.只能包括小写字母，数字，短横线（-）2.必须以小写字母或者数字开头  3.长度必须在3-63字节之间
-            // 无法使用Provider
-            BucketName = _OSSProviderOptions.IsEnable ? _OSSProviderOptions.Bucket : "Local",
-            FileName = Path.GetFileNameWithoutExtension(file.FileName),
-            Suffix = suffix,
-            SizeKb = sizeKb,
-            FilePath = path,
-            FileMd5 = fileMd5,
-            FileType = fileType,
-            IsPublic = isPublic,
-        };
+
+        var newFile = input.Adapt<SysFile>();
+        newFile.Id = YitIdHelper.NextId();
+        newFile.BucketName = _OSSProviderOptions.Enabled ? _OSSProviderOptions.Bucket : "Local"; // 阿里云对bucket名称有要求，1.只能包括小写字母，数字，短横线（-）2.必须以小写字母或者数字开头  3.长度必须在3-63字节之间
+        newFile.FileName = Path.GetFileNameWithoutExtension(input.File.FileName);
+        newFile.Suffix = suffix;
+        newFile.SizeKb = sizeKb;
+        newFile.FilePath = path;
+        newFile.FileMd5 = fileMd5;
 
         var finalName = newFile.Id + suffix; // 文件最终名称
-        if (_OSSProviderOptions.IsEnable)
+        if (_OSSProviderOptions.Enabled)
         {
             newFile.Provider = Enum.GetName(_OSSProviderOptions.Provider);
             var filePath = string.Concat(path, "/", finalName);
-            await _OSSService.PutObjectAsync(newFile.BucketName, filePath, file.OpenReadStream());
+            await _OSSService.PutObjectAsync(newFile.BucketName, filePath, input.File.OpenReadStream());
             //  http://<你的bucket名字>.oss.aliyuncs.com/<你的object名字>
             //  生成外链地址 方便前端预览
             switch (_OSSProviderOptions.Provider)
@@ -383,18 +344,19 @@ public class SysFileService : IDynamicApiController, ITransient
                     // 获取Minio文件的下载或者预览地址
                     // newFile.Url = await GetMinioPreviewFileUrl(newFile.BucketName, filePath);// 这种方法生成的Url是有7天有效期的，不能这样使用
                     // 需要在MinIO中的Buckets开通对 Anonymous 的readonly权限
-                    newFile.Url = $"{(_OSSProviderOptions.IsEnableHttps ? "https" : "http")}://{_OSSProviderOptions.Endpoint}/{newFile.BucketName}/{filePath}";
+                    var customHost = _OSSProviderOptions.CustomHost;
+                    if (string.IsNullOrWhiteSpace(customHost))
+                        customHost = _OSSProviderOptions.Endpoint;
+                    newFile.Url = $"{(_OSSProviderOptions.IsEnableHttps ? "https" : "http")}://{customHost}/{newFile.BucketName}/{filePath}";
                     break;
             }
         }
-        else if (App.Configuration["SSHProvider:IsEnable"].ToBoolean())
+        else if (App.Configuration["SSHProvider:Enabled"].ToBoolean())
         {
             var fullPath = string.Concat(path.StartsWith('/') ? path : "/" + path, "/", finalName);
-            using (SSHHelper helper = new SSHHelper(App.Configuration["SSHProvider:Host"],
-               App.Configuration["SSHProvider:Port"].ToInt(), App.Configuration["SSHProvider:Username"], App.Configuration["SSHProvider:Password"]))
-            {
-                helper.UploadFile(file.OpenReadStream(), fullPath);
-            }
+            using SSHHelper helper = new(App.Configuration["SSHProvider:Host"],
+                App.Configuration["SSHProvider:Port"].ToInt(), App.Configuration["SSHProvider:Username"], App.Configuration["SSHProvider:Password"]);
+            helper.UploadFile(input.File.OpenReadStream(), fullPath);
         }
         else
         {
@@ -404,16 +366,12 @@ public class SysFileService : IDynamicApiController, ITransient
                 Directory.CreateDirectory(filePath);
 
             var realFile = Path.Combine(filePath, finalName);
-            using (var stream = File.Create(realFile))
+            await using (var stream = File.Create(realFile))
             {
-                await file.CopyToAsync(stream);
+                await input.File.CopyToAsync(stream);
             }
 
-            // 生成外链
-            var host = CommonUtil.GetLocalhost();
-            if (!host.EndsWith('/'))
-                host += "/";
-            newFile.Url = $"{host}{newFile.FilePath}/{newFile.Id + newFile.Suffix}";
+            newFile.Url = $"{newFile.FilePath}/{newFile.Id + newFile.Suffix}";
         }
         await _sysFileRep.AsInsertable(newFile).ExecuteCommandAsync();
         return newFile;
@@ -427,10 +385,10 @@ public class SysFileService : IDynamicApiController, ITransient
     [DisplayName("上传头像")]
     public async Task<SysFile> UploadAvatar([Required] IFormFile file)
     {
-        var sysFile = await HandleUploadFile(file, "upload/avatar", _imageType);
+        var sysFile = await UploadFile(new UploadFileInput { File = file, AllowSuffix = _imageType, SavePath = "upload/avatar" });
 
         var sysUserRep = _sysFileRep.ChangeRepository<SqlSugarRepository<SysUser>>();
-        var user = sysUserRep.GetFirst(u => u.Id == _userManager.UserId);
+        var user = await sysUserRep.GetByIdAsync(_userManager.UserId);
         // 删除已有头像文件
         if (!string.IsNullOrWhiteSpace(user.Avatar))
         {
@@ -449,10 +407,10 @@ public class SysFileService : IDynamicApiController, ITransient
     [DisplayName("上传电子签名")]
     public async Task<SysFile> UploadSignature([Required] IFormFile file)
     {
-        var sysFile = await HandleUploadFile(file, "upload/signature", _imageType);
+        var sysFile = await UploadFile(new UploadFileInput { File = file, AllowSuffix = _imageType, SavePath = "upload/signature" });
 
         var sysUserRep = _sysFileRep.ChangeRepository<SqlSugarRepository<SysUser>>();
-        var user = sysUserRep.GetFirst(u => u.Id == _userManager.UserId);
+        var user = await sysUserRep.GetByIdAsync(_userManager.UserId);
         // 删除已有电子签名文件
         if (!string.IsNullOrWhiteSpace(user.Signature) && user.Signature.EndsWith(".png"))
         {
@@ -477,10 +435,10 @@ public class SysFileService : IDynamicApiController, ITransient
         if (ids == null || ids.Count == 0)
             return 0;
         return await _sysFileRep.AsUpdateable()
-            .SetColumns(m => m.RelationName == relationName)
-            .SetColumns(m => m.RelationId == relationId)
-            .SetColumns(m => m.BelongId == belongId)
-            .Where(m => ids.Contains(m.Id))
+            .SetColumns(u => u.RelationName == relationName)
+            .SetColumns(u => u.RelationId == relationId)
+            .SetColumns(u => u.BelongId == belongId)
+            .Where(u => ids.Contains(u.Id))
             .ExecuteCommandAsync();
     }
 
@@ -491,29 +449,17 @@ public class SysFileService : IDynamicApiController, ITransient
     /// <returns></returns>
     /// <exception cref="ArgumentNullException"></exception>
     [DisplayName("根据关联查询附件")]
-    public async Task<List<FileOutput>> GetRelationFiles([FromQuery] RelationQueryInput input)
+    public async Task<List<SysFile>> GetRelationFiles([FromQuery] RelationQueryInput input)
     {
         return await _sysFileRep.AsQueryable()
-            .Where(m => !m.IsDelete)
-            .WhereIF(input.RelationId.HasValue && input.RelationId > 0, m => m.RelationId == input.RelationId)
-            .WhereIF(input.BelongId.HasValue && input.BelongId > 0, m => m.BelongId == input.BelongId.Value)
-            .WhereIF(!string.IsNullOrWhiteSpace(input.RelationName), m => m.RelationName == input.RelationName)
-            .WhereIF(!string.IsNullOrWhiteSpace(input.FileTypes), m => input.GetFileTypeBS().Contains(m.FileType))
-            .Select(m => new FileOutput
+            .WhereIF(input.RelationId is > 0, u => u.RelationId == input.RelationId)
+            .WhereIF(input.BelongId is > 0, u => u.BelongId == input.BelongId.Value)
+            .WhereIF(!string.IsNullOrWhiteSpace(input.RelationName), u => u.RelationName == input.RelationName)
+            .WhereIF(!string.IsNullOrWhiteSpace(input.FileTypes), u => input.GetFileTypeBS().Contains(u.FileType))
+            .Select(u => new SysFile
             {
-                Id = m.Id,
-                FileType = m.FileType,
-                Name = m.FileName,
-                RelationId = m.RelationId,
-                BelongId = m.BelongId,
-                FilePath = m.FilePath,
-                SizeKb = m.SizeKb,
-                Suffix = m.Suffix,
-                RelationName = m.RelationName,
-                Url = SqlFunc.MergeString("/api/sysFile/Preview/", m.Id.ToString()),
-                CreateUserName = m.CreateUserName,
-                CreateTime = m.CreateTime,
-            })
+                Url = SqlFunc.MergeString("/api/sysFile/Preview/", u.Id.ToString()),
+            }, true)
            .ToListAsync();
     }
 }

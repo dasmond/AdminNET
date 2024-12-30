@@ -13,27 +13,27 @@ namespace Admin.NET.Core;
 /// <summary>
 /// RabbitMQ自定义事件源存储器
 /// </summary>
-public class RabbitMQEventSourceStore : IEventSourceStorer
+public class RabbitMQEventSourceStore : IEventSourceStorer, IDisposable
 {
     /// <summary>
     /// 内存通道事件源存储器
     /// </summary>
-    private readonly Channel<IEventSource> _channel;
-
-    /// <summary>
-    /// 通道对象
-    /// </summary>
-    private readonly IModel _model;
-
-    /// <summary>
-    /// 连接对象
-    /// </summary>
-    private readonly IConnection _connection;
+    private Channel<IEventSource> _channelEventSource;
 
     /// <summary>
     /// 路由键
     /// </summary>
-    private readonly string _routeKey;
+    private string _routeKey;
+
+    /// <summary>
+    /// 连接对象
+    /// </summary>
+    private IConnection _connection;
+
+    /// <summary>
+    /// 通道对象
+    /// </summary>
+    private IChannel _channel;
 
     /// <summary>
     /// 构造函数
@@ -43,30 +43,41 @@ public class RabbitMQEventSourceStore : IEventSourceStorer
     /// <param name="capacity">存储器最多能够处理多少消息，超过该容量进入等待写入</param>
     public RabbitMQEventSourceStore(ConnectionFactory factory, string routeKey, int capacity)
     {
-        // 配置通道，设置超出默认容量后进入等待
+        InitEventSourceStore(factory, routeKey, capacity).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// 初始化事件源存储器
+    /// </summary>
+    /// <param name="factory">连接工厂</param>
+    /// <param name="routeKey">路由键</param>
+    /// <param name="capacity">存储器最多能够处理多少消息，超过该容量进入等待写入</param>
+    private async Task InitEventSourceStore(ConnectionFactory factory, string routeKey, int capacity)
+    {
+        // 配置通道（超出默认容量后进入等待）
         var boundedChannelOptions = new BoundedChannelOptions(capacity)
         {
             FullMode = BoundedChannelFullMode.Wait
         };
-
         // 创建有限容量通道
-        _channel = Channel.CreateBounded<IEventSource>(boundedChannelOptions);
+        _channelEventSource = Channel.CreateBounded<IEventSource>(boundedChannelOptions);
 
         // 创建连接
-        _connection = factory.CreateConnection();
+        _connection = await factory.CreateConnectionAsync();
+        // 路由键名
         _routeKey = routeKey;
 
         // 创建通道
-        _model = _connection.CreateModel();
+        _channel = await _connection.CreateChannelAsync();
 
         // 声明路由队列
-        _model.QueueDeclare(routeKey, false, false, false, null);
+        await _channel.QueueDeclareAsync(routeKey, false, false, false, null);
 
         // 创建消息订阅者
-        var consumer = new EventingBasicConsumer(_model);
+        var consumer = new AsyncEventingBasicConsumer(_channel);
 
         // 订阅消息并写入内存 Channel
-        consumer.Received += (ch, ea) =>
+        consumer.ReceivedAsync += async (ch, ea) =>
         {
             // 读取原始消息
             var stringEventSource = Encoding.UTF8.GetString(ea.Body.ToArray());
@@ -75,14 +86,14 @@ public class RabbitMQEventSourceStore : IEventSourceStorer
             var eventSource = JSON.Deserialize<ChannelEventSource>(stringEventSource);
 
             // 写入内存管道存储器
-            _channel.Writer.WriteAsync(eventSource);
+            await _channelEventSource.Writer.WriteAsync(eventSource);
 
             // 确认该消息已被消费
-            _model.BasicAck(ea.DeliveryTag, false);
+            await _channel.BasicAckAsync(ea.DeliveryTag, false);
         };
 
         // 启动消费者且设置为手动应答消息
-        _model.BasicConsume(routeKey, false, consumer);
+        await _channel.BasicConsumeAsync(routeKey, false, consumer);
     }
 
     /// <summary>
@@ -101,12 +112,15 @@ public class RabbitMQEventSourceStore : IEventSourceStorer
         {
             // 序列化及发布
             var data = Encoding.UTF8.GetBytes(JSON.Serialize(source));
-            _model.BasicPublish("", _routeKey, null, data);
+            var props = new BasicProperties();
+            props.ContentType = "text/plain";
+            props.DeliveryMode = DeliveryModes.Persistent;
+            await _channel.BasicPublishAsync("", _routeKey, false, props, data);
         }
         else
         {
             // 处理动态订阅
-            await _channel.Writer.WriteAsync(eventSource, cancellationToken);
+            await _channelEventSource.Writer.WriteAsync(eventSource, cancellationToken);
         }
     }
 
@@ -117,7 +131,7 @@ public class RabbitMQEventSourceStore : IEventSourceStorer
     /// <returns>事件源对象</returns>
     public async ValueTask<IEventSource> ReadAsync(CancellationToken cancellationToken)
     {
-        var eventSource = await _channel.Reader.ReadAsync(cancellationToken);
+        var eventSource = await _channelEventSource.Reader.ReadAsync(cancellationToken);
         return eventSource;
     }
 
@@ -126,7 +140,7 @@ public class RabbitMQEventSourceStore : IEventSourceStorer
     /// </summary>
     public void Dispose()
     {
-        _model.Dispose();
+        _channel.Dispose();
         _connection.Dispose();
     }
 }

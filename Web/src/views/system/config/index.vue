@@ -11,8 +11,7 @@
 					<el-button v-if="state.selectlist.length > 0" type="danger" icon="ele-Delete" @click="bacthDelete" v-auth="'sysConfig:batchDelete'"> 批量删除 </el-button>
 				</template>
 				<template #sysFlag="scope">
-					<el-tag v-if="scope.row.sysFlag === 1"> 是 </el-tag>
-					<el-tag type="danger" v-else> 否 </el-tag>
+          <g-sys-dict v-model="scope.row.sysFlag" code="YesNoEnum" />
 				</template>
 				<template #remark="scope">
 					<ModifyRecord :data="scope.row" />
@@ -23,20 +22,19 @@
 				</template>
 			</Table>
 		</el-card>
-
 		<EditConfig ref="editConfigRef" :title="state.editConfigTitle" :groupList="state.groupList" @updateData="updateData" />
 	</div>
 </template>
 
 <script lang="ts" setup name="sysConfig">
-import { onMounted, onUnmounted, reactive, ref, defineAsyncComponent, nextTick } from 'vue';
+import { onMounted, reactive, ref, defineAsyncComponent, nextTick } from 'vue';
 import { ElMessageBox, ElMessage } from 'element-plus';
-import EditConfig from '/@/views/system/config/component/editConfig.vue';
-import ModifyRecord from '/@/components/table/modifyRecord.vue';
-
+import { auth } from '/@/utils/authFunction';
 import { getAPI } from '/@/utils/axios-utils';
 import { SysConfigApi } from '/@/api-services/api';
-import { auth } from '/@/utils/authFunction';
+import ModifyRecord from '/@/components/table/modifyRecord.vue';
+import EditConfig from '/@/views/system/config/component/editConfig.vue';
+import { EmptyObjectType, RefType } from "/@/types/global";
 
 // 引入组件
 const Table = defineAsyncComponent(() => import('/@/components/table/index.vue'));
@@ -70,7 +68,7 @@ const tb = reactive<TableDemoState>({
 			isSerialNo: true, // 是否显示表格序号
 			isSelection: true, // 是否勾选表格多选
 			showSelection: auth('sysConfig:batchDelete'), //是否显示表格多选
-			pageSize: 20, // 每页条数
+			pageSize: 50, // 每页条数
 			hideExport: false, //是否隐藏导出按钮
 			exportFileName: '系统参数', //导出报表的文件名，不填写取应用名称
 		},

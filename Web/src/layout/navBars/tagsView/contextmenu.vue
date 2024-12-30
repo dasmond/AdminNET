@@ -1,7 +1,7 @@
 <template>
 	<transition name="el-zoom-in-center">
 		<div
-			aria-hidden="true"
+			:aria-hidden="state.isShow ? false : true"
 			class="el-dropdown__popper el-popper is-light is-pure custom-contextmenu"
 			role="tooltip"
 			data-popper-placement="bottom"

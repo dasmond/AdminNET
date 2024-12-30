@@ -11,24 +11,28 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-
- /**
+/**
  * 
- *
  * @export
  * @interface ListScheduleInput
  */
 export interface ListScheduleInput {
-
     /**
+     * 
      * @type {Date}
      * @memberof ListScheduleInput
      */
     startTime?: Date | null;
-
     /**
+     * 
      * @type {Date}
      * @memberof ListScheduleInput
      */
     endTime?: Date | null;
+    /**
+     * 租户Id
+     * @type {number}
+     * @memberof ListScheduleInput
+     */
+    tenantId?: number;
 }

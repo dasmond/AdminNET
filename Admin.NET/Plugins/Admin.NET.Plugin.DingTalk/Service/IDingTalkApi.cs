@@ -11,30 +11,30 @@ public interface IDingTalkApi : IHttpDispatchProxy
     /// <summary>
     /// 获取企业内部应用的access_token
     /// </summary>
-    /// <param name="appkey">应用的唯一标识key</param>
+    /// <param name="appKey">应用的唯一标识key</param>
     /// <param name="appsecret"> 应用的密钥。AppKey和AppSecret可在钉钉开发者后台的应用详情页面获取。</param>
     /// <returns></returns>
     [Get("https://oapi.dingtalk.com/gettoken")]
-    Task<GetDingTalkTokenOutput> GetDingTalkToken([QueryString] string appkey, [QueryString] string appsecret);
+    Task<GetDingTalkTokenOutput> GetDingTalkToken([QueryString] string appKey, [QueryString] string appsecret);
 
     /// <summary>
     /// 获取在职员工列表
     /// </summary>
-    /// <param name="access_token">调用该接口的应用凭证</param>
+    /// <param name="accessToken">调用该接口的应用凭证</param>
     /// <param name="input"></param>
     /// <returns></returns>
     [Post("https://oapi.dingtalk.com/topapi/smartwork/hrm/employee/queryonjob")]
-    Task<DingTalkBaseResponse<GetDingTalkCurrentEmployeesListOutput>> GetDingTalkCurrentEmployeesList([QueryString] string access_token,
+    Task<DingTalkBaseResponse<GetDingTalkCurrentEmployeesListOutput>> GetDingTalkCurrentEmployeesList([QueryString] string accessToken,
         [Body, Required] GetDingTalkCurrentEmployeesListInput input);
 
     /// <summary>
     /// 获取员工花名册字段信息
     /// </summary>
-    /// <param name="access_token">调用该接口的应用凭证</param>
+    /// <param name="accessToken">调用该接口的应用凭证</param>
     /// <param name="input"></param>
     /// <returns></returns>
     [Post("https://oapi.dingtalk.com/topapi/smartwork/hrm/employee/v2/list")]
-    Task<DingTalkBaseResponse<List<DingTalkEmpRosterFieldVo>>> GetDingTalkCurrentEmployeesRosterList([QueryString] string access_token,
+    Task<DingTalkBaseResponse<List<DingTalkEmpRosterFieldVo>>> GetDingTalkCurrentEmployeesRosterList([QueryString] string accessToken,
         [Body, Required] GetDingTalkCurrentEmployeesRosterListInput input);
 
     /// <summary>

@@ -1,4 +1,4 @@
-<template lang="">
+<template>
 	<div class="flow-container">
 		<el-dialog v-model="state.isShowDialog" :width="800" draggable :close-on-click-modal="false">
 			<template #header>
@@ -47,8 +47,8 @@ import { reactive, ref, onMounted } from 'vue';
 import type { FormRules } from 'element-plus';
 
 import { getAPI } from '/@/utils/axios-utils';
-import { ApprovalFlowApi } from '/@/api-services/_approvalFlow/api';
-import { ApprovalFlowOutput, UpdateApprovalFlowInput } from '/@/api-services/_approvalFlow/models';
+import { ApprovalFlowApi } from '/@/api-plugins/approvalFlow/api';
+import { ApprovalFlowOutput, UpdateApprovalFlowInput } from '/@/api-plugins/approvalFlow/models';
 import { SysDatabaseApi, SysCodeGenApi } from '/@/api-services/api';
 import { DbTableInfo } from '/@/api-services/models';
 

@@ -13,10 +13,12 @@ namespace Admin.NET.Core.Service;
 public class SysLogVisService : IDynamicApiController, ITransient
 {
     private readonly SqlSugarRepository<SysLogVis> _sysLogVisRep;
+    private readonly UserManager _userManager;
 
-    public SysLogVisService(SqlSugarRepository<SysLogVis> sysLogVisRep)
+    public SysLogVisService(UserManager userManager, SqlSugarRepository<SysLogVis> sysLogVisRep)
     {
         _sysLogVisRep = sysLogVisRep;
+        _userManager = userManager;
     }
 
     /// <summary>
@@ -28,14 +30,15 @@ public class SysLogVisService : IDynamicApiController, ITransient
     public async Task<SqlSugarPagedList<SysLogVis>> Page(PageVisLogInput input)
     {
         return await _sysLogVisRep.AsQueryable()
+            .WhereIF(_userManager.SuperAdmin && input.TenantId > 0, u => u.TenantId == input.TenantId)
             .WhereIF(!string.IsNullOrWhiteSpace(input.StartTime.ToString()), u => u.CreateTime >= input.StartTime)
             .WhereIF(!string.IsNullOrWhiteSpace(input.EndTime.ToString()), u => u.CreateTime <= input.EndTime)
             .WhereIF(!string.IsNullOrWhiteSpace(input.Account), u => u.Account == input.Account)
             .WhereIF(!string.IsNullOrWhiteSpace(input.ActionName), u => u.ActionName == input.ActionName)
             .WhereIF(!string.IsNullOrWhiteSpace(input.RemoteIp), u => u.RemoteIp == input.RemoteIp)
             .WhereIF(!string.IsNullOrWhiteSpace(input.Elapsed.ToString()), u => u.Elapsed >= input.Elapsed)
-            .WhereIF(!string.IsNullOrWhiteSpace(input.Status) && input.Status == "200", u => u.Status == input.Status)
-            .WhereIF(!string.IsNullOrWhiteSpace(input.Status) && input.Status != "200", u => u.Status != input.Status)
+            .WhereIF(!string.IsNullOrWhiteSpace(input.Status) && input.Status == "200", u => u.Status == "200")
+            .WhereIF(!string.IsNullOrWhiteSpace(input.Status) && input.Status != "200", u => u.Status != "200")
             .OrderBy(u => u.CreateTime, OrderByType.Desc)
             .ToPagedListAsync(input.Page, input.PageSize);
     }

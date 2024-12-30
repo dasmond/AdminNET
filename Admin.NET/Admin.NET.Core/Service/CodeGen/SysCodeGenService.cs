@@ -17,18 +17,21 @@ public class SysCodeGenService : IDynamicApiController, ITransient
     private readonly ISqlSugarClient _db;
 
     private readonly SysCodeGenConfigService _codeGenConfigService;
-    private readonly IViewEngine _viewEngine;
     private readonly CodeGenOptions _codeGenOptions;
+    private readonly IViewEngine _viewEngine;
+    private readonly UserManager _userManager;
 
     public SysCodeGenService(ISqlSugarClient db,
         SysCodeGenConfigService codeGenConfigService,
-        IViewEngine viewEngine,
-        IOptions<CodeGenOptions> codeGenOptions)
+        IOptions<CodeGenOptions> codeGenOptions,
+        UserManager userManager,
+        IViewEngine viewEngine)
     {
         _db = db;
-        _codeGenConfigService = codeGenConfigService;
         _viewEngine = viewEngine;
+        _userManager = userManager;
         _codeGenOptions = codeGenOptions.Value;
+        _codeGenConfigService = codeGenConfigService;
     }
 
     /// <summary>
@@ -55,8 +58,9 @@ public class SysCodeGenService : IDynamicApiController, ITransient
     public async Task AddCodeGen(AddCodeGenInput input)
     {
         var isExist = await _db.Queryable<SysCodeGen>().Where(u => u.TableName == input.TableName).AnyAsync();
-        if (isExist)
-            throw Oops.Oh(ErrorCodeEnum.D1400);
+        if (isExist) throw Oops.Oh(ErrorCodeEnum.D1400);
+
+        if (input.TableUniqueList?.Count > 0) input.TableUniqueConfig = JSON.Serialize(input.TableUniqueList);
 
         var codeGen = input.Adapt<SysCodeGen>();
         var newCodeGen = await _db.Insertable(codeGen).ExecuteReturnEntityAsync();
@@ -75,9 +79,9 @@ public class SysCodeGenService : IDynamicApiController, ITransient
     public async Task UpdateCodeGen(UpdateCodeGenInput input)
     {
         var isExist = await _db.Queryable<SysCodeGen>().AnyAsync(u => u.TableName == input.TableName && u.Id != input.Id);
-        if (isExist)
-            throw Oops.Oh(ErrorCodeEnum.D1400);
+        if (isExist) throw Oops.Oh(ErrorCodeEnum.D1400);
 
+        if (input.TableUniqueList?.Count > 0) input.TableUniqueConfig = JSON.Serialize(input.TableUniqueList);
         var codeGen = input.Adapt<SysCodeGen>();
         await _db.Updateable(codeGen).ExecuteCommandAsync();
 
@@ -142,13 +146,17 @@ public class SysCodeGenService : IDynamicApiController, ITransient
 
         var config = App.GetOptions<DbConnectionOptions>().ConnectionConfigs.FirstOrDefault(u => configId.Equals(u.ConfigId));
 
-        var dbTableNames = dbTableInfos.Select(u => u.Name.ToLower()).ToList();
+        // var dbTableNames = dbTableInfos.Select(u => u.Name.ToLower()).ToList();
         IEnumerable<EntityInfo> entityInfos = await GetEntityInfos();
 
         var tableOutputList = new List<TableOutput>();
         foreach (var item in entityInfos)
         {
-            var table = dbTableInfos.FirstOrDefault(u => u.Name.ToLower() == (config.DbSettings.EnableUnderLine ? UtilMethods.ToUnderLine(item.DbTableName) : item.DbTableName).ToLower());
+            var tbConfigId = item.Type.GetCustomAttribute<TenantAttribute>()?.configId as string ?? SqlSugarConst.MainConfigId;
+            if (item.Type.IsDefined(typeof(LogTableAttribute))) tbConfigId = SqlSugarConst.LogConfigId;
+            if (tbConfigId != configId) continue;
+
+            var table = dbTableInfos.FirstOrDefault(u => string.Equals(u.Name, (config!.DbSettings.EnableUnderLine ? UtilMethods.ToUnderLine(item.DbTableName) : item.DbTableName), StringComparison.CurrentCultureIgnoreCase));
             if (table == null) continue;
             tableOutputList.Add(new TableOutput
             {
@@ -176,15 +184,29 @@ public class SysCodeGenService : IDynamicApiController, ITransient
         var entityType = provider.DbMaintenance.GetTableInfoList(false).FirstOrDefault(u => u.Name == tableName);
         if (entityType == null) return null;
         var entityBasePropertyNames = _codeGenOptions.EntityBaseColumn[nameof(EntityTenant)];
+        var properties = GetEntityInfos().Result.First(e => e.DbTableName == tableName).Type.GetProperties()
+            .Where(e => e.GetCustomAttribute<SugarColumn>()?.IsIgnore == false).Select(e => new
+            {
+                PropertyName = e.Name,
+                ColumnComment = e.GetCustomAttribute<SugarColumn>()?.ColumnDescription,
+                ColumnName = e.GetCustomAttribute<SugarColumn>()?.ColumnName ?? e.Name
+            }).ToList();
         // 按原始类型的顺序获取所有实体类型属性（不包含导航属性，会返回null）
-        return provider.DbMaintenance.GetColumnInfosByTableName(entityType.Name).Select(u => new ColumnOuput
+        var columnList = provider.DbMaintenance.GetColumnInfosByTableName(entityType.Name).Select(u => new ColumnOuput
         {
-            ColumnName = config.DbSettings.EnableUnderLine ? CodeGenUtil.CamelColumnName(u.DbColumnName, entityBasePropertyNames) : u.DbColumnName,
+            ColumnName = config!.DbSettings.EnableUnderLine ? CodeGenUtil.CamelColumnName(u.DbColumnName, entityBasePropertyNames) : u.DbColumnName,
             ColumnKey = u.IsPrimarykey.ToString(),
             DataType = u.DataType.ToString(),
             NetType = CodeGenUtil.ConvertDataType(u, provider.CurrentConnectionConfig.DbType),
             ColumnComment = u.ColumnDescription
         }).ToList();
+        foreach (var column in columnList)
+        {
+            var property = properties.First(e => e.ColumnName == column.ColumnName);
+            column.ColumnComment ??= property?.ColumnComment;
+            column.PropertyName = property?.PropertyName;
+        }
+        return columnList;
     }
 
     /// <summary>
@@ -197,7 +219,7 @@ public class SysCodeGenService : IDynamicApiController, ITransient
         if (entityType == null)
             return null;
         var config = App.GetOptions<DbConnectionOptions>().ConnectionConfigs.FirstOrDefault(u => u.ConfigId.ToString() == input.ConfigId);
-        var dbTableName = config.DbSettings.EnableUnderLine ? UtilMethods.ToUnderLine(entityType.DbTableName) : entityType.DbTableName;
+        var dbTableName = config!.DbSettings.EnableUnderLine ? UtilMethods.ToUnderLine(entityType.DbTableName) : entityType.DbTableName;
 
         // 切库---多库代码生成用
         var provider = _db.AsTenant().GetConnectionScope(!string.IsNullOrEmpty(input.ConfigId) ? input.ConfigId : SqlSugarConst.MainConfigId);
@@ -225,14 +247,24 @@ public class SysCodeGenService : IDynamicApiController, ITransient
         {
             var columnOutput = result[i];
             // 先找自定义字段名的，如果找不到就再找自动生成字段名的(并且过滤掉没有SugarColumn的属性)
-            var propertyInfo = entityProperties.FirstOrDefault(u => (u.GetCustomAttribute<SugarColumn>()?.ColumnName ?? "").ToLower() == columnOutput.ColumnName.ToLower()) ??
+            var propertyInfo = entityProperties.FirstOrDefault(u => string.Equals((u.GetCustomAttribute<SugarColumn>()?.ColumnName ?? ""), columnOutput.ColumnName, StringComparison.CurrentCultureIgnoreCase)) ??
                 entityProperties.FirstOrDefault(u => u.GetCustomAttribute<SugarColumn>() != null && u.Name.ToLower() == (config.DbSettings.EnableUnderLine
                 ? CodeGenUtil.CamelColumnName(columnOutput.ColumnName, entityBasePropertyNames).ToLower()
                 : columnOutput.ColumnName.ToLower()));
             if (propertyInfo != null)
             {
                 columnOutput.PropertyName = propertyInfo.Name;
-                columnOutput.ColumnComment = propertyInfo.GetCustomAttribute<SugarColumn>().ColumnDescription;
+                columnOutput.ColumnComment = propertyInfo.GetCustomAttribute<SugarColumn>()!.ColumnDescription;
+                var propertyType = Nullable.GetUnderlyingType(propertyInfo.PropertyType);
+                if (propertyInfo.PropertyType.IsEnum || (propertyType?.IsEnum ?? false))
+                {
+                    columnOutput.DictTypeCode = (propertyType ?? propertyInfo.PropertyType).Name;
+                }
+                else
+                {
+                    var dict = propertyInfo.GetCustomAttribute<DictAttribute>();
+                    if (dict != null) columnOutput.DictTypeCode = dict.DictTypeCode;
+                }
             }
             else
             {
@@ -258,31 +290,22 @@ public class SysCodeGenService : IDynamicApiController, ITransient
             foreach (var assembly in assemblies)
             {
                 var assemblyName = assembly.GetName().Name;
-                if (_codeGenOptions.EntityAssemblyNames.Contains(assemblyName) || _codeGenOptions.EntityAssemblyNames.Any(name => assemblyName.Contains(name)))
+                if (!_codeGenOptions.EntityAssemblyNames.Contains(assemblyName) &&
+                    !_codeGenOptions.EntityAssemblyNames.Any(name => assemblyName!.Contains(name)))
                 {
-                    Assembly asm = Assembly.Load(assemblyName);
-                    types.AddRange(asm.GetExportedTypes().ToList());
+                    continue;
                 }
+
+                Assembly asm = Assembly.Load(assemblyName!);
+                types.AddRange(asm.GetExportedTypes().ToList());
             }
         }
-        bool IsMyAttribute(Attribute[] o)
-        {
-            foreach (Attribute a in o)
-            {
-                if (a.GetType() == type)
-                    return true;
-            }
-            return false;
-        }
-        Type[] cosType = types.Where(o =>
-        {
-            return IsMyAttribute(Attribute.GetCustomAttributes(o, true));
-        }
-        ).ToArray();
+
+        Type[] cosType = types.Where(o => IsMyAttribute(Attribute.GetCustomAttributes(o, true))).ToArray();
 
         foreach (var ct in cosType)
         {
-            var sugarAttribute = ct.GetCustomAttributes(type, true)?.FirstOrDefault();
+            var sugarAttribute = ct.GetCustomAttributes(type, true).FirstOrDefault();
 
             var des = ct.GetCustomAttributes(typeof(DescriptionAttribute), true);
             var description = "";
@@ -299,6 +322,8 @@ public class SysCodeGenService : IDynamicApiController, ITransient
             });
         }
         return await Task.FromResult(entityInfos);
+
+        bool IsMyAttribute(Attribute[] o) => o.Any(a => a.GetType() == type);
     }
 
     /// <summary>
@@ -315,6 +340,7 @@ public class SysCodeGenService : IDynamicApiController, ITransient
     /// 代码生成到本地 🔖
     /// </summary>
     /// <returns></returns>
+    [UnitOfWork]
     [DisplayName("代码生成到本地")]
     public async Task<dynamic> RunLocal(SysCodeGen input)
     {
@@ -323,72 +349,38 @@ public class SysCodeGenService : IDynamicApiController, ITransient
 
         // 先删除该表已生成的菜单列表
         List<string> targetPathList;
-        var zipPath = Path.Combine(App.WebHostEnvironment.WebRootPath, "CodeGen", input.TableName);
+        var zipPath = Path.Combine(App.WebHostEnvironment.WebRootPath, "CodeGen", input.TableName!);
         if (input.GenerateType.StartsWith('1'))
         {
             targetPathList = GetZipPathList(input);
-            if (Directory.Exists(zipPath))
-                Directory.Delete(zipPath, true);
+            if (Directory.Exists(zipPath)) Directory.Delete(zipPath, true);
         }
         else
             targetPathList = GetTargetPathList(input);
 
-        var tableFieldList = await _codeGenConfigService.GetList(new CodeGenConfig() { CodeGenId = input.Id }); // 字段集合
-        var queryWhetherList = tableFieldList.Where(u => u.QueryWhether == YesNoEnum.Y.ToString()).ToList(); // 前端查询集合
-        var joinTableList = tableFieldList.Where(u => u.EffectType == "Upload" || u.EffectType == "fk" || u.EffectType == "ApiTreeSelect").ToList(); // 需要连表查询的字段
-        (string joinTableNames, string lowerJoinTableNames) = GetJoinTableStr(joinTableList); // 获取连表的实体名和别名
-
-        var data = new CustomViewEngine(_db)
-        {
-            ConfigId = input.ConfigId,
-            AuthorName = input.AuthorName,
-            BusName = input.BusName,
-            NameSpace = input.NameSpace,
-            ClassName = input.TableName,
-            PagePath = input.PagePath,
-            ProjectLastName = input.NameSpace.Split('.').Last(),
-            QueryWhetherList = queryWhetherList,
-            TableField = tableFieldList,
-            IsJoinTable = joinTableList.Count > 0,
-            IsUpload = joinTableList.Where(u => u.EffectType == "Upload").Any(),
-            PrintType = input.PrintType,
-            PrintName = input.PrintName,
-        };
-        // 模板目录
+        var (tableFieldList, result) = await RenderTemplateAsync(input);
         var templatePathList = GetTemplatePathList(input);
-        var templatePath = Path.Combine(App.WebHostEnvironment.WebRootPath, "template");
-
         for (var i = 0; i < templatePathList.Count; i++)
         {
-            var templateFilePath = Path.Combine(templatePath, templatePathList[i]);
-            if (!File.Exists(templateFilePath)) continue;
-            var tContent = File.ReadAllText(templateFilePath);
-            var tResult = await _viewEngine.RunCompileFromCachedAsync(tContent, data, builderAction: builder =>
-            {
-                builder.AddAssemblyReferenceByName("System.Linq");
-                builder.AddAssemblyReferenceByName("System.Collections");
-                builder.AddUsing("System.Collections.Generic");
-                builder.AddUsing("System.Linq");
-            });
-            var dirPath = new DirectoryInfo(targetPathList[i]).Parent.FullName;
-            if (!Directory.Exists(dirPath))
-                Directory.CreateDirectory(dirPath);
-            File.WriteAllText(targetPathList[i], tResult, Encoding.UTF8);
+            var content = result.GetValueOrDefault(templatePathList[i]?.TrimEnd(".vm"));
+            if (string.IsNullOrWhiteSpace(content)) continue;
+            var dirPath = new DirectoryInfo(targetPathList[i]).Parent!.FullName;
+            if (!Directory.Exists(dirPath)) Directory.CreateDirectory(dirPath);
+            _ = File.WriteAllTextAsync(targetPathList[i], content, Encoding.UTF8);
         }
-        if (input.GenerateMenu)
-            await AddMenu(input.TableName, input.BusName, input.MenuPid ?? 0, input.MenuIcon, input.PagePath, tableFieldList);
+
+        if (input.GenerateMenu) await AddMenu(input.TableName, input.BusName, input.MenuPid ?? 0, input.MenuIcon, input.PagePath, tableFieldList);
+
         // 非ZIP压缩返回空
-        if (!input.GenerateType.StartsWith('1'))
-            return null;
-        else
-        {
-            string downloadPath = zipPath + ".zip";
-            // 判断是否存在同名称文件
-            if (File.Exists(downloadPath))
-                File.Delete(downloadPath);
-            ZipFile.CreateFromDirectory(zipPath, downloadPath);
-            return new { url = $"{App.HttpContext.Request.Scheme}://{App.HttpContext.Request.Host.Value}/CodeGen/{input.TableName}.zip" };
-        }
+        if (!input.GenerateType.StartsWith('1')) return null;
+
+        // 判断是否存在同名称文件
+        string downloadPath = zipPath + ".zip";
+        if (File.Exists(downloadPath)) File.Delete(downloadPath);
+
+        // 创建zip文件并返回下载地址
+        ZipFile.CreateFromDirectory(zipPath, downloadPath);
+        return new { url = $"{App.HttpContext.Request.Scheme}://{App.HttpContext.Request.Host.Value}/codeGen/{input.TableName}.zip" };
     }
 
     /// <summary>
@@ -398,26 +390,48 @@ public class SysCodeGenService : IDynamicApiController, ITransient
     [DisplayName("获取代码生成预览")]
     public async Task<Dictionary<string, string>> Preview(SysCodeGen input)
     {
-        var tableFieldList = await _codeGenConfigService.GetList(new CodeGenConfig() { CodeGenId = input.Id }); // 字段集合
-        var queryWhetherList = tableFieldList.Where(u => u.QueryWhether == YesNoEnum.Y.ToString()).ToList(); // 前端查询集合
-        var joinTableList = tableFieldList.Where(u => u.EffectType == "Upload" || u.EffectType == "fk" || u.EffectType == "ApiTreeSelect").ToList(); // 需要连表查询的字段
-        (string joinTableNames, string lowerJoinTableNames) = GetJoinTableStr(joinTableList); // 获取连表的实体名和别名
+        var (_, result) = await RenderTemplateAsync(input);
+        return result;
+    }
 
-        var data = new CustomViewEngine(_db)
+    /// <summary>
+    /// 渲染模板
+    /// </summary>
+    /// <param name="input"></param>
+    /// <returns></returns>
+    private async Task<(List<CodeGenConfig> tableFieldList, Dictionary<string, string> result)> RenderTemplateAsync(SysCodeGen input)
+    {
+        var tableFieldList = await _codeGenConfigService.GetList(new CodeGenConfig { CodeGenId = input.Id }); // 字段集合
+        var joinTableList = tableFieldList.Where(u => u.EffectType is "Upload" or "ForeignKey" or "ApiTreeSelector").ToList(); // 需要连表查询的字段
+
+        var data = new CustomViewEngine
         {
             ConfigId = input.ConfigId,
-            AuthorName = input.AuthorName,
             BusName = input.BusName,
+            PagePath = input.PagePath,
             NameSpace = input.NameSpace,
             ClassName = input.TableName,
-            PagePath = input.PagePath,
-            ProjectLastName = input.NameSpace.Split('.').Last(),
-            QueryWhetherList = queryWhetherList,
-            TableField = tableFieldList,
-            IsJoinTable = joinTableList.Count > 0,
-            IsUpload = joinTableList.Where(u => u.EffectType == "Upload").Any(),
             PrintType = input.PrintType,
             PrintName = input.PrintName,
+            AuthorName = input.AuthorName,
+            ProjectLastName = input.NameSpace!.Split('.').Last(),
+            LowerClassName = input.TableName![..1].ToLower() + input.TableName[1..],
+            TableUniqueConfigList = input.TableUniqueList ?? new(),
+
+            TableField = tableFieldList,
+            QueryWhetherList = tableFieldList.Where(u => u.WhetherQuery == "Y").ToList(),
+            ImportFieldList = tableFieldList.Where(u => u.WhetherImport == "Y").ToList(),
+            UploadFieldList = tableFieldList.Where(u => u.EffectType == "Upload").ToList(),
+            PrimaryKeyFieldList = tableFieldList.Where(c => c.ColumnKey == "True").ToList(),
+            AddUpdateFieldList = tableFieldList.Where(u => u.WhetherAddUpdate == "Y").ToList(),
+            ApiTreeFieldList = tableFieldList.Where(u => u.EffectType == "ApiTreeSelector").ToList(),
+            DropdownFieldList = tableFieldList.Where(u => u.EffectType is "ForeignKey" or "ApiTreeSelector").ToList(),
+
+            HasJoinTable = joinTableList.Count > 0,
+            HasDictField = tableFieldList.Any(u => u.EffectType == "DictSelector"),
+            HasEnumField = tableFieldList.Any(u => u.EffectType == "EnumSelector"),
+            HasConstField = tableFieldList.Any(u => u.EffectType == "ConstSelector"),
+            HasLikeQuery = tableFieldList.Any(c => c.WhetherQuery == "Y" && c.QueryType == "like")
         };
 
         // 获取模板文件并替换
@@ -425,46 +439,24 @@ public class SysCodeGenService : IDynamicApiController, ITransient
         var templatePath = Path.Combine(App.WebHostEnvironment.WebRootPath, "template");
 
         var result = new Dictionary<string, string>();
-        for (var i = 0; i < templatePathList.Count; i++)
+        foreach (var path in templatePathList)
         {
-            var templateFilePath = Path.Combine(templatePath, templatePathList[i]);
+            var templateFilePath = Path.Combine(templatePath, path);
             if (!File.Exists(templateFilePath)) continue;
-            var tContent = File.ReadAllText(templateFilePath);
+            var tContent = await File.ReadAllTextAsync(templateFilePath);
             var tResult = await _viewEngine.RunCompileFromCachedAsync(tContent, data, builderAction: builder =>
             {
-                builder.AddAssemblyReferenceByName("System.Linq");
+                builder.AddAssemblyReferenceByName("System.Text.RegularExpressions");
                 builder.AddAssemblyReferenceByName("System.Collections");
+                builder.AddAssemblyReferenceByName("System.Linq");
+
+                builder.AddUsing("System.Text.RegularExpressions");
                 builder.AddUsing("System.Collections.Generic");
                 builder.AddUsing("System.Linq");
             });
-            result.Add(templatePathList[i]?.TrimEnd(".vm"), tResult);
+            result.Add(path?.TrimEnd(".vm"), tResult);
         }
-
-        return result;
-    }
-
-    /// <summary>
-    /// 获取连表的实体名和别名
-    /// </summary>
-    /// <param name="configs"></param>
-    /// <returns></returns>
-    private static (string, string) GetJoinTableStr(List<CodeGenConfig> configs)
-    {
-        var uploads = configs.Where(u => u.EffectType == "Upload").ToList();
-        var fks = configs.Where(u => u.EffectType == "fk").ToList();
-        string str = ""; // <Order, OrderItem, Custom>
-        string lowerStr = ""; // (o, i, c)
-        foreach (var item in uploads)
-        {
-            lowerStr += "sysFile_FK_" + item.LowerPropertyName + ",";
-            str += "SysFile,";
-        }
-        foreach (var item in fks)
-        {
-            lowerStr += item.LowerFkEntityName + "_FK_" + item.LowerFkColumnName + ",";
-            str += item.FkEntityName + ",";
-        }
-        return (str.TrimEnd(','), lowerStr.TrimEnd(','));
+        return (tableFieldList, result);
     }
 
     /// <summary>
@@ -479,206 +471,63 @@ public class SysCodeGenService : IDynamicApiController, ITransient
     /// <returns></returns>
     private async Task AddMenu(string className, string busName, long pid, string menuIcon, string pagePath, List<CodeGenConfig> tableFieldList)
     {
-        var pPath = string.Empty;
-        // 若 pid=0 为顶级则创建菜单目录
+        var service = App.GetService<SysMenuService>();
+
+        // 删除已存在的菜单
+        var title = $"{busName}管理";
+        await DeleteMenuTree(title, pid == 0 ? MenuTypeEnum.Dir : MenuTypeEnum.Menu);
+
+        var parentMenuPath = "";
+        var lowerClassName = className[..1].ToLower() + className[1..];
         if (pid == 0)
         {
-            // 目录
-            var menuType0 = new SysMenu
-            {
-                Pid = 0,
-                Title = busName + "管理",
-                Type = MenuTypeEnum.Dir,
-                Icon = "robot",
-                Path = "/" + className.ToLower(),
-                Component = "Layout",
-            };
-            // 若先前存在则删除本级和下级
-            var menuList0 = await _db.Queryable<SysMenu>().Where(u => u.Title == menuType0.Title && u.Type == menuType0.Type).ToListAsync();
-            if (menuList0.Count > 0)
-            {
-                var listIds = menuList0.Select(u => u.Id).ToList();
-                var childlistIds = new List<long>();
-                foreach (var item in listIds)
-                {
-                    var childlist = await _db.Queryable<SysMenu>().ToChildListAsync(u => u.Pid, item);
-                    childlistIds.AddRange(childlist.Select(u => u.Id).ToList());
-                }
-                listIds.AddRange(childlistIds);
-                await _db.Deleteable<SysMenu>().Where(u => listIds.Contains(u.Id)).ExecuteCommandAsync();
-                await _db.Deleteable<SysRoleMenu>().Where(u => listIds.Contains(u.MenuId)).ExecuteCommandAsync();
-            }
-            pid = (await _db.Insertable(menuType0).ExecuteReturnEntityAsync()).Id;
+            // 新增目录，并记录Id
+            var dirMenu = new SysMenu { Pid = 0, Title = title, Type = MenuTypeEnum.Dir, Icon = "robot", Path = "/" + className.ToLower(), Component = "Layout" };
+            pid = await service.AddMenu(dirMenu.Adapt<AddMenuInput>());
         }
         else
         {
-            var pMenu = await _db.Queryable<SysMenu>().FirstAsync(u => u.Id == pid) ?? throw Oops.Oh(ErrorCodeEnum.D1505);
-            pPath = pMenu.Path;
+            var parentMenu = await _db.Queryable<SysMenu>().FirstAsync(u => u.Id == pid) ?? throw Oops.Oh(ErrorCodeEnum.D1505);
+            parentMenuPath = parentMenu.Path;
         }
 
-        // 菜单
-        var menuType = new SysMenu
-        {
-            Pid = pid,
-            Title = busName + "管理",
-            Name = className[..1].ToLower() + className[1..],
-            Type = MenuTypeEnum.Menu,
-            Icon = menuIcon,
-            Path = pPath + "/" + className.ToLower(),
-            Component = "/" + pagePath + "/" + className[..1].ToLower() + className[1..] + "/index",
-        };
-        // 若先前存在则删除本级和下级
-        var menuListCurrent = await _db.Queryable<SysMenu>().Where(u => u.Title == menuType.Title && u.Type == menuType.Type).ToListAsync();
-        if (menuListCurrent.Count > 0)
-        {
-            var listIds = menuListCurrent.Select(u => u.Id).ToList();
-            var childListIds = new List<long>();
-            foreach (var item in listIds)
-            {
-                var childList = await _db.Queryable<SysMenu>().ToChildListAsync(u => u.Pid, item);
-                childListIds.AddRange(childList.Select(u => u.Id).ToList());
-            }
-            listIds.AddRange(childListIds);
-            await _db.Deleteable<SysMenu>().Where(u => listIds.Contains(u.Id)).ExecuteCommandAsync();
-            await _db.Deleteable<SysRoleMenu>().Where(u => listIds.Contains(u.MenuId)).ExecuteCommandAsync();
-        }
+        // 新增菜单，并记录Id
+        var rootMenu = new SysMenu { Pid = pid, Title = title, Type = MenuTypeEnum.Menu, Icon = menuIcon, Path = $"{parentMenuPath}/{className.ToLower()}", Component = $"/{pagePath}/{lowerClassName}/index" };
+        pid = await service.AddMenu(rootMenu.Adapt<AddMenuInput>());
 
-        var menuPid = (await _db.Insertable(menuType).ExecuteReturnEntityAsync()).Id;
-        int menuOrder = 100;
-        // 按钮-page
-        var menuTypePage = new SysMenu
+        var orderNo = 100;
+        var menuList = new List<SysMenu>
         {
-            Pid = menuPid,
-            Title = "查询",
-            Type = MenuTypeEnum.Btn,
-            Permission = className[..1].ToLower() + className[1..] + ":page",
-            OrderNo = menuOrder
+            new() { Title="查询", Permission=$"{lowerClassName}:page", Pid=pid, Type=MenuTypeEnum.Btn, OrderNo=orderNo+=10},
+            new() { Title="详情", Permission=$"{lowerClassName}:detail", Pid=pid, Type=MenuTypeEnum.Btn, OrderNo=orderNo+=10},
+            new() { Title="增加", Permission=$"{lowerClassName}:add", Pid=pid, Type=MenuTypeEnum.Btn, OrderNo=orderNo+=10},
+            new() { Title="编辑", Permission=$"{lowerClassName}:update", Pid=pid, Type=MenuTypeEnum.Btn, OrderNo=orderNo+=10},
+            new() { Title="删除", Permission=$"{lowerClassName}:delete", Pid=pid, Type=MenuTypeEnum.Btn, OrderNo=orderNo+=10},
+            new() { Title="批量删除", Permission=$"{lowerClassName}:batchDelete", Pid=pid, Type=MenuTypeEnum.Btn, OrderNo=orderNo+=10},
+            new() { Title="设置状态", Permission=$"{lowerClassName}:setStatus", Pid=pid, Type=MenuTypeEnum.Btn, OrderNo=orderNo+=10},
+            new() { Title="打印", Permission=$"{lowerClassName}:print", Pid=pid, Type=MenuTypeEnum.Btn, OrderNo=orderNo+=10},
+            new() { Title="导入", Permission=$"{lowerClassName}:import", Pid=pid, Type=MenuTypeEnum.Btn, OrderNo=orderNo+=10},
+            new() { Title="导出", Permission=$"{lowerClassName}:export", Pid=pid, Type=MenuTypeEnum.Btn, OrderNo=orderNo+=10}
         };
-        menuOrder += 10;
 
-        // 按钮-detail
-        var menuTypeDetail = new SysMenu
-        {
-            Pid = menuPid,
-            Title = "详情",
-            Type = MenuTypeEnum.Btn,
-            Permission = className[..1].ToLower() + className[1..] + ":detail",
-            OrderNo = menuOrder
-        };
-        menuOrder += 10;
+        if (tableFieldList.Any(u => u.EffectType is "ForeignKey" or "ApiTreeSelector" && (u.WhetherAddUpdate == "Y" || u.WhetherQuery == "Y")))
+            menuList.Add(new SysMenu { Title = "下拉列表数据", Permission = $"{lowerClassName}:dropdownData", Pid = pid, Type = MenuTypeEnum.Btn, OrderNo = orderNo += 10 });
 
-        // 按钮-add
-        var menuTypeAdd = new SysMenu
-        {
-            Pid = menuPid,
-            Title = "增加",
-            Type = MenuTypeEnum.Btn,
-            Permission = className[..1].ToLower() + className[1..] + ":add",
-            OrderNo = menuOrder
-        };
-        menuOrder += 10;
+        foreach (var column in tableFieldList.Where(u => u.EffectType == "Upload"))
+            menuList.Add(new SysMenu { Title = $"上传{column.ColumnComment}", Permission = $"{lowerClassName}:upload{column.PropertyName}", Pid = pid, Type = MenuTypeEnum.Btn, OrderNo = orderNo += 10 });
 
-        // 按钮-delete
-        var menuTypeDelete = new SysMenu
-        {
-            Pid = menuPid,
-            Title = "删除",
-            Type = MenuTypeEnum.Btn,
-            Permission = className[..1].ToLower() + className[1..] + ":delete",
-            OrderNo = menuOrder
-        };
-        menuOrder += 10;
+        foreach (var menu in menuList) await service.AddMenu(menu.Adapt<AddMenuInput>());
+    }
 
-        // 按钮-update
-        var menuTypeUpdate = new SysMenu
-        {
-            Pid = menuPid,
-            Title = "编辑",
-            Type = MenuTypeEnum.Btn,
-            Permission = className[..1].ToLower() + className[1..] + ":update",
-            OrderNo = menuOrder
-        };
-        menuOrder += 10;
-
-        // 按钮-print
-        var menuTypePrint = new SysMenu
-        {
-            Pid = menuPid,
-            Title = "打印",
-            Type = MenuTypeEnum.Btn,
-            Permission = className[..1].ToLower() + className[1..] + ":print",
-            OrderNo = menuOrder
-        };
-        menuOrder += 10;
-
-        // 按钮-import
-        var menuTypeImport = new SysMenu
-        {
-            Pid = menuPid,
-            Title = "导入",
-            Type = MenuTypeEnum.Btn,
-            Permission = className[..1].ToLower() + className[1..] + ":import",
-            OrderNo = menuOrder
-        };
-        menuOrder += 10;
-
-        // 按钮-export
-        var menuTypeExport = new SysMenu
-        {
-            Pid = menuPid,
-            Title = "导出",
-            Type = MenuTypeEnum.Btn,
-            Permission = className[..1].ToLower() + className[1..] + ":export",
-            OrderNo = menuOrder
-        };
-        menuOrder += 10;
-
-        var menuList = new List<SysMenu>() { menuTypePage, menuTypeDetail, menuTypeAdd, menuTypeDelete, menuTypeUpdate, menuTypePrint, menuTypeImport, menuTypeExport };
-        // 加入fk、Upload、ApiTreeSelect 等接口的权限
-        // 在生成表格时，有些字段只是查询时显示，不需要填写（WhetherAddUpdate），所以这些字段没必要生成相应接口
-        var fkTableList = tableFieldList.Where(u => u.EffectType == "fk" && (u.WhetherAddUpdate == "Y" || u.QueryWhether == "Y")).ToList();
-        foreach (var @column in fkTableList)
-        {
-            var menuType1 = new SysMenu
-            {
-                Pid = menuPid,
-                Title = "外键" + @column.ColumnName,
-                Type = MenuTypeEnum.Btn,
-                Permission = className[..1].ToLower() + className[1..] + ":" + column.FkEntityName + column.ColumnName + "Dropdown",
-                OrderNo = menuOrder
-            };
-            menuOrder += 10;
-            menuList.Add(menuType1);
-        }
-        var treeSelectTableList = tableFieldList.Where(u => u.EffectType == "ApiTreeSelect").ToList();
-        foreach (var @column in treeSelectTableList)
-        {
-            var menuType1 = new SysMenu
-            {
-                Pid = menuPid,
-                Title = "树型" + @column.ColumnName,
-                Type = MenuTypeEnum.Btn,
-                Permission = className[..1].ToLower() + className[1..] + ":" + column.FkEntityName + "Tree",
-                OrderNo = menuOrder
-            };
-            menuOrder += 10;
-            menuList.Add(menuType1);
-        }
-        var uploadTableList = tableFieldList.Where(u => u.EffectType == "Upload").ToList();
-        foreach (var @column in uploadTableList)
-        {
-            var menuType1 = new SysMenu
-            {
-                Pid = menuPid,
-                Title = "上传" + @column.ColumnName,
-                Type = MenuTypeEnum.Btn,
-                Permission = className[..1].ToLower() + className[1..] + ":Upload" + column.ColumnName,
-                OrderNo = menuOrder
-            };
-            menuOrder += 10;
-            menuList.Add(menuType1);
-        }
-        await _db.Insertable(menuList).ExecuteCommandAsync();
+    /// <summary>
+    /// 根据菜单名称和类型删除关联的菜单树
+    /// </summary>
+    /// <param name="title"></param>
+    /// <param name="type"></param>
+    private async Task DeleteMenuTree(string title, MenuTypeEnum type)
+    {
+        var menuList = await _db.Queryable<SysMenu>().Where(u => u.Title == title && u.Type == type).ToListAsync() ?? new();
+        foreach (var menu in menuList) await App.GetService<SysMenuService>().DeleteMenu(new DeleteMenuInput { Id = menu.Id });
     }
 
     /// <summary>
@@ -687,25 +536,16 @@ public class SysCodeGenService : IDynamicApiController, ITransient
     /// <returns></returns>
     private static List<string> GetTemplatePathList(SysCodeGen input)
     {
-        if (input.GenerateType.Substring(1, 1).Contains('1'))
-        {
-            return new() { "index.vue.vm", "editDialog.vue.vm", "manage.js.vm" };
-        }
-        else if (input.GenerateType.Substring(1, 1).Contains('2'))
-        {
-            return new() { "Service.cs.vm", "Input.cs.vm", "Output.cs.vm", "Dto.cs.vm" };
-        }
-        else
-        {
-            return new() { "Service.cs.vm", "Input.cs.vm", "Output.cs.vm", "Dto.cs.vm", "index.vue.vm", "editDialog.vue.vm", "manage.js.vm" };
-        }
+        if (input.GenerateType!.Substring(1, 1).Contains('1')) return new() { "index.vue.vm", "editDialog.vue.vm", "api.ts.vm" };
+        if (input.GenerateType.Substring(1, 1).Contains('2')) return new() { "Service.cs.vm", "Input.cs.vm", "Output.cs.vm", "Dto.cs.vm" };
+        return new() { "Service.cs.vm", "Input.cs.vm", "Output.cs.vm", "Dto.cs.vm", "index.vue.vm", "editDialog.vue.vm", "api.ts.vm" };
     }
 
     /// <summary>
     /// 获取模板文件路径集合
     /// </summary>
     /// <returns></returns>
-    private static List<string> GetTemplatePathList() => new() { "Service.cs.vm", "Input.cs.vm", "Output.cs.vm", "Dto.cs.vm", "index.vue.vm", "editDialog.vue.vm", "manage.js.vm" };
+    private static List<string> GetTemplatePathList() => new() { "Service.cs.vm", "Input.cs.vm", "Output.cs.vm", "Dto.cs.vm", "index.vue.vm", "editDialog.vue.vm", "api.ts.vm" };
 
     /// <summary>
     /// 设置生成文件路径
@@ -715,30 +555,31 @@ public class SysCodeGenService : IDynamicApiController, ITransient
     private List<string> GetTargetPathList(SysCodeGen input)
     {
         //var backendPath = Path.Combine(new DirectoryInfo(App.WebHostEnvironment.ContentRootPath).Parent.FullName, _codeGenOptions.BackendApplicationNamespace, "Service", input.TableName);
-        var backendPath = Path.Combine(new DirectoryInfo(App.WebHostEnvironment.ContentRootPath).Parent.FullName, input.NameSpace, "Service", input.TableName);
+        var backendPath = Path.Combine(new DirectoryInfo(App.WebHostEnvironment.ContentRootPath).Parent!.FullName, input.NameSpace!, "Service", input.TableName!);
         var servicePath = Path.Combine(backendPath, input.TableName + "Service.cs");
         var inputPath = Path.Combine(backendPath, "Dto", input.TableName + "Input.cs");
         var outputPath = Path.Combine(backendPath, "Dto", input.TableName + "Output.cs");
         var viewPath = Path.Combine(backendPath, "Dto", input.TableName + "Dto.cs");
-        var frontendPath = Path.Combine(new DirectoryInfo(App.WebHostEnvironment.ContentRootPath).Parent.Parent.FullName, _codeGenOptions.FrontRootPath, "src", "views", input.PagePath);
+        var frontendPath = Path.Combine(new DirectoryInfo(App.WebHostEnvironment.ContentRootPath).Parent!.Parent!.FullName, _codeGenOptions.FrontRootPath, "src", "views", input.PagePath!);
         var indexPath = Path.Combine(frontendPath, input.TableName[..1].ToLower() + input.TableName[1..], "index.vue");//
         var formModalPath = Path.Combine(frontendPath, input.TableName[..1].ToLower() + input.TableName[1..], "component", "editDialog.vue");
-        var apiJsPath = Path.Combine(new DirectoryInfo(App.WebHostEnvironment.ContentRootPath).Parent.Parent.FullName, _codeGenOptions.FrontRootPath, "src", "api", input.PagePath, input.TableName[..1].ToLower() + input.TableName[1..] + ".ts");
+        var apiJsPath = Path.Combine(new DirectoryInfo(App.WebHostEnvironment.ContentRootPath).Parent!.Parent!.FullName, _codeGenOptions.FrontRootPath, "src", "api", input.PagePath, input.TableName[..1].ToLower() + input.TableName[1..] + ".ts");
 
-        if (input.GenerateType.Substring(1, 1).Contains('1'))
+        if (input.GenerateType!.Substring(1, 1).Contains('1'))
         {
             // 生成到本项目(前端)
-            return new List<string>()
+            return new List<string>
             {
                 indexPath,
                 formModalPath,
                 apiJsPath
             };
         }
-        else if (input.GenerateType.Substring(1, 1).Contains('2'))
+
+        if (input.GenerateType.Substring(1, 1).Contains('2'))
         {
             // 生成到本项目(后端)
-            return new List<string>()
+            return new List<string>
             {
                 servicePath,
                 inputPath,
@@ -746,20 +587,17 @@ public class SysCodeGenService : IDynamicApiController, ITransient
                 viewPath,
             };
         }
-        else
+        // 前后端同时生成到本项目
+        return new List<string>
         {
-            // 前后端同时生成到本项目
-            return new List<string>()
-            {
-                servicePath,
-                inputPath,
-                outputPath,
-                viewPath,
-                indexPath,
-                formModalPath,
-                apiJsPath
-            };
-        }
+            servicePath,
+            inputPath,
+            outputPath,
+            viewPath,
+            indexPath,
+            formModalPath,
+            apiJsPath
+        };
     }
 
     /// <summary>
@@ -769,30 +607,31 @@ public class SysCodeGenService : IDynamicApiController, ITransient
     /// <returns></returns>
     private List<string> GetZipPathList(SysCodeGen input)
     {
-        var zipPath = Path.Combine(App.WebHostEnvironment.WebRootPath, "CodeGen", input.TableName);
+        var zipPath = Path.Combine(App.WebHostEnvironment.WebRootPath, "CodeGen", input.TableName!);
 
         //var backendPath = Path.Combine(zipPath, _codeGenOptions.BackendApplicationNamespace, "Service", input.TableName);
-        var backendPath = Path.Combine(zipPath, input.NameSpace, "Service", input.TableName);
+        var backendPath = Path.Combine(zipPath, input.NameSpace!, "Service", input.TableName);
         var servicePath = Path.Combine(backendPath, input.TableName + "Service.cs");
         var inputPath = Path.Combine(backendPath, "Dto", input.TableName + "Input.cs");
         var outputPath = Path.Combine(backendPath, "Dto", input.TableName + "Output.cs");
         var viewPath = Path.Combine(backendPath, "Dto", input.TableName + "Dto.cs");
-        var frontendPath = Path.Combine(zipPath, _codeGenOptions.FrontRootPath, "src", "views", input.PagePath);
+        var frontendPath = Path.Combine(zipPath, _codeGenOptions.FrontRootPath, "src", "views", input.PagePath!);
         var indexPath = Path.Combine(frontendPath, input.TableName[..1].ToLower() + input.TableName[1..], "index.vue");
         var formModalPath = Path.Combine(frontendPath, input.TableName[..1].ToLower() + input.TableName[1..], "component", "editDialog.vue");
         var apiJsPath = Path.Combine(zipPath, _codeGenOptions.FrontRootPath, "src", "api", input.PagePath, input.TableName[..1].ToLower() + input.TableName[1..] + ".ts");
-        if (input.GenerateType.StartsWith("11"))
+        if (input.GenerateType!.StartsWith("11"))
         {
-            return new List<string>()
+            return new List<string>
             {
                 indexPath,
                 formModalPath,
                 apiJsPath
             };
         }
-        else if (input.GenerateType.StartsWith("12"))
+
+        if (input.GenerateType.StartsWith("12"))
         {
-            return new List<string>()
+            return new List<string>
             {
                 servicePath,
                 inputPath,
@@ -800,18 +639,16 @@ public class SysCodeGenService : IDynamicApiController, ITransient
                 viewPath
             };
         }
-        else
+
+        return new List<string>
         {
-            return new List<string>()
-            {
-                servicePath,
-                inputPath,
-                outputPath,
-                viewPath,
-                indexPath,
-                formModalPath,
-                apiJsPath
-            };
-        }
+            servicePath,
+            inputPath,
+            outputPath,
+            viewPath,
+            indexPath,
+            formModalPath,
+            apiJsPath
+        };
     }
 }

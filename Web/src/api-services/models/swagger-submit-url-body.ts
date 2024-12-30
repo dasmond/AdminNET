@@ -11,22 +11,20 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-
- /**
+/**
  * 
- *
  * @export
  * @interface SwaggerSubmitUrlBody
  */
 export interface SwaggerSubmitUrlBody {
-
     /**
+     * 
      * @type {string}
      * @memberof SwaggerSubmitUrlBody
      */
     userName?: string;
-
     /**
+     * 
      * @type {string}
      * @memberof SwaggerSubmitUrlBody
      */

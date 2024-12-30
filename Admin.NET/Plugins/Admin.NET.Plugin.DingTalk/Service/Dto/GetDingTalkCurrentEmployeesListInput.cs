@@ -4,6 +4,8 @@
 //
 // 不得利用本项目从事危害国家安全、扰乱社会秩序、侵犯他人合法权益等法律法规禁止的活动！任何基于本项目二次开发而产生的一切法律纠纷和责任，我们不承担任何责任！
 
+using System.Text.Json.Serialization;
+
 namespace Admin.NET.Plugin.DingTalk;
 
 /// <summary>
@@ -14,8 +16,8 @@ public class GetDingTalkCurrentEmployeesListInput
     /// <summary>
     /// 在职员工状态筛选，可以查询多个状态。不同状态之间使用英文逗号分隔。2：试用期、3：正式、5：待离职、-1：无状态
     /// </summary>
-    [Newtonsoft.Json.JsonProperty("status_list")]
-    [System.Text.Json.Serialization.JsonPropertyName("status_list")]
+    [JsonProperty("status_list")]
+    [JsonPropertyName("status_list")]
     public string StatusList { get; set; }
 
     /// <summary>

@@ -15,10 +15,12 @@ namespace Admin.NET.Core;
 public class SysLdapService : IDynamicApiController, ITransient
 {
     private readonly SqlSugarRepository<SysLdap> _sysLdapRep;
+    private readonly UserManager _userManager;
 
-    public SysLdapService(SqlSugarRepository<SysLdap> sysLdapRep)
+    public SysLdapService(SqlSugarRepository<SysLdap> sysLdapRep, UserManager userManager)
     {
         _sysLdapRep = sysLdapRep;
+        _userManager = userManager;
     }
 
     /// <summary>
@@ -30,7 +32,8 @@ public class SysLdapService : IDynamicApiController, ITransient
     public async Task<SqlSugarPagedList<SysLdap>> Page(SysLdapInput input)
     {
         return await _sysLdapRep.AsQueryable()
-            .WhereIF(!string.IsNullOrWhiteSpace(input.SearchKey), u => u.Host.Contains(input.SearchKey.Trim()))
+            .WhereIF(_userManager.SuperAdmin && input.TenantId > 0, u => u.TenantId == input.TenantId)
+            .WhereIF(!string.IsNullOrWhiteSpace(input.Keyword), u => u.Host.Contains(input.Keyword.Trim()))
             .WhereIF(!string.IsNullOrWhiteSpace(input.Host), u => u.Host.Contains(input.Host.Trim()))
             .OrderBy(u => u.CreateTime, OrderByType.Desc)
             .ToPagedListAsync(input.Page, input.PageSize);
@@ -119,18 +122,17 @@ public class SysLdapService : IDynamicApiController, ITransient
         try
         {
             ldapConn.Connect(sysLdap.Host, sysLdap.Port);
-            ldapConn.Bind(sysLdap.Version, sysLdap.BindDn, sysLdap.BindPass);
-            var ldapSearchResults = ldapConn.Search(sysLdap.BaseDn, LdapConnection.ScopeSub, sysLdap.AuthFilter.Replace("$s", account), null, false);
+            string bindPass = CryptogramUtil.Decrypt(sysLdap.BindPass);
+            ldapConn.Bind(sysLdap.Version, sysLdap.BindDn, bindPass);
+            var ldapSearchResults = ldapConn.Search(sysLdap.BaseDn, LdapConnection.ScopeSub, sysLdap.AuthFilter.Replace("%s", account), null, false);
             string dn = string.Empty;
             while (ldapSearchResults.HasMore())
             {
                 var ldapEntry = ldapSearchResults.Next();
-                var sAMAccountName = ldapEntry.GetAttribute(sysLdap.AuthFilter)?.StringValue;
-                if (!string.IsNullOrEmpty(sAMAccountName))
-                {
-                    dn = ldapEntry.Dn;
-                    break;
-                }
+                var sAmAccountName = ldapEntry.GetAttribute(sysLdap.BindAttrAccount)?.StringValue;
+                if (string.IsNullOrEmpty(sAmAccountName)) continue;
+                dn = ldapEntry.Dn;
+                break;
             }
 
             if (string.IsNullOrEmpty(dn)) throw Oops.Oh(ErrorCodeEnum.D1002);
@@ -157,17 +159,42 @@ public class SysLdapService : IDynamicApiController, ITransient
     /// <summary>
     /// 同步域用户 🔖
     /// </summary>
+    /// <param name="tenantId"></param>
+    /// <returns></returns>
+    [DisplayName("同步域用户")]
+    [NonAction]
+    public async Task<List<SysUserLdap>> SyncUserTenant(long tenantId)
+    {
+        var sysLdap = await _sysLdapRep.GetFirstAsync(c => c.TenantId == tenantId && c.IsDelete == false && c.Status == StatusEnum.Enable) ?? throw Oops.Oh(ErrorCodeEnum.D1002);
+        return await SyncUser(sysLdap);
+    }
+
+    /// <summary>
+    /// 同步域用户 🔖
+    /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
     [DisplayName("同步域用户")]
-    public async Task SyncUser(SyncSysLdapInput input)
+    public async Task<List<SysUserLdap>> SyncUser(SyncSysLdapInput input)
     {
-        var sysLdap = await _sysLdapRep.GetFirstAsync(u => u.Id == input.Id) ?? throw Oops.Oh(ErrorCodeEnum.D1002);
+        var sysLdap = await _sysLdapRep.GetByIdAsync(input.Id) ?? throw Oops.Oh(ErrorCodeEnum.D1002);
+        return await SyncUser(sysLdap);
+    }
+
+    /// <summary>
+    /// 同步域用户 🔖
+    /// </summary>
+    /// <param name="sysLdap"></param>
+    /// <returns></returns>
+    private async Task<List<SysUserLdap>> SyncUser(SysLdap sysLdap)
+    {
+        if (sysLdap == null) throw Oops.Oh(ErrorCodeEnum.D1002);
         var ldapConn = new LdapConnection();
         try
         {
             ldapConn.Connect(sysLdap.Host, sysLdap.Port);
-            ldapConn.Bind(sysLdap.Version, sysLdap.BindDn, sysLdap.BindPass);
+            string bindPass = CryptogramUtil.Decrypt(sysLdap.BindPass);
+            ldapConn.Bind(sysLdap.Version, sysLdap.BindDn, bindPass);
             var ldapSearchResults = ldapConn.Search(sysLdap.BaseDn, LdapConnection.ScopeOne, "(objectClass=*)", null, false);
             var userLdapList = new List<SysUserLdap>();
             while (ldapSearchResults.HasMore())
@@ -192,15 +219,16 @@ public class SysLdapService : IDynamicApiController, ITransient
                 else
                 {
                     var sysUserLdap = CreateSysUserLdap(attrs, sysLdap.BindAttrAccount, sysLdap.BindAttrEmployeeId, deptCode);
-                    if (string.IsNullOrEmpty(sysUserLdap.EmployeeId)) continue;
+                    sysUserLdap.Dn = ldapEntry.Dn;
+                    sysUserLdap.TenantId = sysLdap.TenantId;
                     userLdapList.Add(sysUserLdap);
                 }
             }
 
-            if (userLdapList.Count == 0)
-                return;
+            if (userLdapList.Count == 0) return null;
 
-            await App.GetRequiredService<SysUserLdapService>().InsertUserLdaps(sysLdap.TenantId!.Value, userLdapList);
+            await App.GetRequiredService<SysUserLdapService>().InsertUserLdapList(sysLdap.TenantId!.Value, userLdapList);
+            return userLdapList;
         }
         catch (LdapException e)
         {
@@ -225,7 +253,7 @@ public class SysLdapService : IDynamicApiController, ITransient
     private static string GetDepartmentCode(LdapAttributeSet attrs, string bindAttrCode)
     {
         return bindAttrCode == "objectGUID"
-            ? new Guid(attrs.GetAttribute(bindAttrCode)?.ByteValue).ToString()
+            ? new Guid(attrs.GetAttribute(bindAttrCode)?.ByteValue!).ToString()
             : attrs.GetAttribute(bindAttrCode)?.StringValue ?? "0";
     }
 
@@ -239,12 +267,22 @@ public class SysLdapService : IDynamicApiController, ITransient
     /// <returns></returns>
     private static SysUserLdap CreateSysUserLdap(LdapAttributeSet attrs, string bindAttrAccount, string bindAttrEmployeeId, string deptCode)
     {
-        return new SysUserLdap
+        var userLdap = new SysUserLdap
         {
-            Account = !attrs.ContainsKey(bindAttrAccount) ? null : attrs.GetAttribute(bindAttrAccount)?.StringValue,
-            EmployeeId = !attrs.ContainsKey(bindAttrEmployeeId) ? null : attrs.GetAttribute(bindAttrEmployeeId)?.StringValue,
-            DeptCode = deptCode
+            Account = attrs.ContainsKey(bindAttrAccount) ? attrs.GetAttribute(bindAttrAccount)?.StringValue : null,
+            EmployeeId = attrs.ContainsKey(bindAttrEmployeeId) ? attrs.GetAttribute(bindAttrEmployeeId)?.StringValue : null,
+            DeptCode = deptCode,
+            UserName = attrs.ContainsKey("name") ? attrs.GetAttribute("name")?.StringValue : null,
+            Mail = attrs.ContainsKey("mail") ? attrs.GetAttribute("mail")?.StringValue : null
         };
+        var pwdLastSet = attrs.ContainsKey("pwdLastSet") ? attrs.GetAttribute("pwdLastSet")?.StringValue : null;
+        if (pwdLastSet != null && !pwdLastSet.Equals("0")) userLdap.PwdLastSetTime = DateTime.FromFileTime(Convert.ToInt64(pwdLastSet));
+        var userAccountControl = attrs.ContainsKey("userAccountControl") ? attrs.GetAttribute("userAccountControl")?.StringValue : null;
+        if ((Convert.ToInt32(userAccountControl) & 0x2) == 0x2) // 检查账户是否已过期（通过检查userAccountControl属性的特定位）
+            userLdap.AccountExpiresFlag = true;
+        if ((Convert.ToInt32(userAccountControl) & 0x10000) == 0x10000) // 检查账户密码设置是否永不过期
+            userLdap.DontExpiresFlag = true;
+        return userLdap;
     }
 
     /// <summary>
@@ -279,7 +317,8 @@ public class SysLdapService : IDynamicApiController, ITransient
             else
             {
                 var sysUserLdap = CreateSysUserLdap(attrs, sysLdap.BindAttrAccount, sysLdap.BindAttrEmployeeId, deptCode);
-
+                sysUserLdap.Dn = ldapEntry.Dn;
+                sysUserLdap.TenantId = sysLdap.TenantId;
                 if (string.IsNullOrEmpty(sysUserLdap.EmployeeId)) continue;
                 userLdapList.Add(sysUserLdap);
             }
@@ -299,7 +338,8 @@ public class SysLdapService : IDynamicApiController, ITransient
         try
         {
             ldapConn.Connect(sysLdap.Host, sysLdap.Port);
-            ldapConn.Bind(sysLdap.Version, sysLdap.BindDn, sysLdap.BindPass);
+            string bindPass = CryptogramUtil.Decrypt(sysLdap.BindPass);
+            ldapConn.Bind(sysLdap.Version, sysLdap.BindDn, bindPass);
             var ldapSearchResults = ldapConn.Search(sysLdap.BaseDn, LdapConnection.ScopeOne, "(objectClass=*)", null, false);
             var orgList = new List<SysOrg>();
             while (ldapSearchResults.HasMore())
@@ -316,13 +356,12 @@ public class SysLdapService : IDynamicApiController, ITransient
                 }
 
                 var attrs = ldapEntry.GetAttributeSet();
-                if (attrs.Count == 0 || attrs.ContainsKey("OU"))
-                {
-                    var sysOrg = CreateSysOrg(attrs, sysLdap, orgList, new SysOrg { Id = 0, Level = 0 });
-                    orgList.Add(sysOrg);
+                if (attrs.Count != 0 && !attrs.ContainsKey("OU")) continue;
 
-                    SearchDnLdapDept(ldapConn, sysLdap, orgList, ldapEntry.Dn, sysOrg);
-                }
+                var sysOrg = CreateSysOrg(attrs, sysLdap, orgList, new SysOrg { Id = 0, Level = 0 });
+                orgList.Add(sysOrg);
+
+                SearchDnLdapDept(ldapConn, sysLdap, orgList, ldapEntry.Dn, sysOrg);
             }
 
             if (orgList.Count == 0)
@@ -369,13 +408,12 @@ public class SysLdapService : IDynamicApiController, ITransient
             }
 
             var attrs = ldapEntry.GetAttributeSet();
-            if (attrs.Count == 0 || attrs.ContainsKey("OU"))
-            {
-                var sysOrg = CreateSysOrg(attrs, sysLdap, listOrgs, org);
-                listOrgs.Add(sysOrg);
+            if (attrs.Count != 0 && !attrs.ContainsKey("OU")) continue;
 
-                SearchDnLdapDept(ldapConn, sysLdap, listOrgs, ldapEntry.Dn, sysOrg);
-            }
+            var sysOrg = CreateSysOrg(attrs, sysLdap, listOrgs, org);
+            listOrgs.Add(sysOrg);
+
+            SearchDnLdapDept(ldapConn, sysLdap, listOrgs, ldapEntry.Dn, sysOrg);
         }
     }
 
@@ -393,9 +431,9 @@ public class SysLdapService : IDynamicApiController, ITransient
         {
             Pid = org.Id,
             Id = YitIdHelper.NextId(),
-            Code = !attrs.ContainsKey(sysLdap.BindAttrCode) ? null : new Guid(attrs.GetAttribute(sysLdap.BindAttrCode)?.ByteValue).ToString(),
+            Code = attrs.ContainsKey(sysLdap.BindAttrCode) ? new Guid(attrs.GetAttribute(sysLdap.BindAttrCode)?.ByteValue).ToString() : null,
             Level = org.Level + 1,
-            Name = !attrs.ContainsKey(sysLdap.BindAttrAccount) ? null : attrs.GetAttribute(sysLdap.BindAttrAccount)?.StringValue,
+            Name = attrs.ContainsKey(sysLdap.BindAttrAccount) ? attrs.GetAttribute(sysLdap.BindAttrAccount)?.StringValue : null,
             OrderNo = listOrgs.Count + 1,
         };
     }

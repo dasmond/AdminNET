@@ -12,14 +12,14 @@ namespace Admin.NET.Core.Service;
 public class SysLdapInput : BasePageInput
 {
     /// <summary>
-    /// 关键字查询
-    /// </summary>
-    public string? SearchKey { get; set; }
-
-    /// <summary>
     /// 主机
     /// </summary>
     public string? Host { get; set; }
+
+    /// <summary>
+    /// 租户Id
+    /// </summary>
+    public long TenantId { get; set; }
 }
 
 public class AddSysLdapInput : SysLdap
