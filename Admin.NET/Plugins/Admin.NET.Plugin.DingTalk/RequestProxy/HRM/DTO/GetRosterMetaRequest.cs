@@ -4,14 +4,19 @@
 //
 // 不得利用本项目从事危害国家安全、扰乱社会秩序、侵犯他人合法权益等法律法规禁止的活动！任何基于本项目二次开发而产生的一切法律纠纷和责任，我们不承担任何责任！
 
-using System.ComponentModel;
+using System.Text.Json.Serialization;
 
-namespace Admin.NET.Plugin.ApprovalFlow;
+namespace Admin.NET.Plugin.DingTalk.RequestProxy.HRM.DTO;
 
 /// <summary>
-/// 流程类型枚举
+/// 获取花名册元数据
 /// </summary>
-[Description("流程类型枚举")]
-public enum FlowTypeEnum
+public class GetRosterMetaRequest
 {
+    /// <summary>
+    /// 应用的AgentID
+    /// </summary>
+    [JsonProperty("agentid")]
+    [JsonPropertyName("agentid")]
+    public long AgentId { get; set; }
 }

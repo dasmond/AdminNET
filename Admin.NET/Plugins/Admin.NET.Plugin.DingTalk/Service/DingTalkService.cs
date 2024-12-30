@@ -22,7 +22,7 @@ public class DingTalkService : IDynamicApiController, IScoped
     private readonly SysCacheService _sysCacheService;
     private readonly TopRequest _topRequest;
     private readonly HrmRequest _hrmRequest;
-    private readonly string AccessTokenKey;
+    private readonly string _accessTokenKey;
 
     public DingTalkService(IDingTalkApi dingTalkApi,
         IOptions<DingTalkOptions> dingTalkOptions,
@@ -35,21 +35,29 @@ public class DingTalkService : IDynamicApiController, IScoped
         _sysCacheService = sysCacheService;
         _topRequest = topRequest;
         _hrmRequest = hrmRequest;
-        AccessTokenKey = DingTalkConst.AccessTokenKeyPrefix + _dingTalkOptions.ClientId;
+        _accessTokenKey = DingTalkConst.AccessTokenKeyPrefix + _dingTalkOptions.ClientId;
+    }
+
+    [HttpGet, DisplayName("获取花名册元数据")]
+    public async Task<GetRosterMetaResponse> GetRosterMeta()
+    {
+        var token = await GetDingTalkToken();
+        var res = await _hrmRequest.GetRosterMeta(token, _dingTalkOptions.AgentId);
+        return res;
     }
 
     /// <summary>
     /// 获取企业内部应用的access_token
     /// </summary>
     /// <returns></returns>
-    [HttpGet,DisplayName("获取企业内部应用的access_token")]
+    [HttpGet, DisplayName("获取企业内部应用的access_token")]
     public async Task<string> GetDingTalkToken()
     {
-        var token = _sysCacheService.Get<string>(AccessTokenKey);
+        var token = _sysCacheService.Get<string>(_accessTokenKey);
         if (token != null) return token;
 
         var tokenRes = await _topRequest.GetAccessToken(_dingTalkOptions.ClientId, _dingTalkOptions.ClientSecret);
-        _sysCacheService.Set(AccessTokenKey, tokenRes.AccessToken, TimeSpan.FromSeconds(tokenRes.ExpireIn));
+        _sysCacheService.Set(_accessTokenKey, tokenRes.AccessToken, TimeSpan.FromSeconds(tokenRes.ExpireIn));
         return tokenRes.AccessToken;
     }
 

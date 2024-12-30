@@ -30,6 +30,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Admin.NET.Plugin.K3Cloud", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Business.Application", "Business.Application\Business.Application.csproj", "{599D839F-4324-4D51-A756-C024BB910915}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Admin.NET.Test", "Admin.NET.Test\Admin.NET.Test.csproj", "{57350E6A-B5A0-452C-9FD4-C69617C6DA30}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -76,6 +78,10 @@ Global
 		{599D839F-4324-4D51-A756-C024BB910915}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{599D839F-4324-4D51-A756-C024BB910915}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{599D839F-4324-4D51-A756-C024BB910915}.Release|Any CPU.Build.0 = Release|Any CPU
+		{57350E6A-B5A0-452C-9FD4-C69617C6DA30}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{57350E6A-B5A0-452C-9FD4-C69617C6DA30}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{57350E6A-B5A0-452C-9FD4-C69617C6DA30}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{57350E6A-B5A0-452C-9FD4-C69617C6DA30}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

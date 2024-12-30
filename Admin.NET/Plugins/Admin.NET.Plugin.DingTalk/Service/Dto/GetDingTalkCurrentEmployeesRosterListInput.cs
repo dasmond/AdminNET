@@ -29,5 +29,5 @@ public class GetDingTalkCurrentEmployeesRosterListInput
     /// </summary>
     [JsonProperty("agentid")]
     [JsonPropertyName("agentid")]
-    public string AgentId { get; set; }
+    public long AgentId { get; set; }
 }

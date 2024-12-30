@@ -4,14 +4,16 @@
 //
 // 不得利用本项目从事危害国家安全、扰乱社会秩序、侵犯他人合法权益等法律法规禁止的活动！任何基于本项目二次开发而产生的一切法律纠纷和责任，我们不承担任何责任！
 
-using System.ComponentModel;
+using Xunit;
 
-namespace Admin.NET.Plugin.ApprovalFlow;
+namespace Admin.NET.Test.User;
 
-/// <summary>
-/// 流程类型枚举
-/// </summary>
-[Description("流程类型枚举")]
-public enum FlowTypeEnum
+public class UserTest : BaseTest
 {
+    [Fact]
+    public async Task Login()
+    {
+        await base.Login();
+        WaitEnter();
+    }
 }

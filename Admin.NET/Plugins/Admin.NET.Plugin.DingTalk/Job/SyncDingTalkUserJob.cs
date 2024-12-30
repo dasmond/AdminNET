@@ -5,7 +5,12 @@
 // 不得利用本项目从事危害国家安全、扰乱社会秩序、侵犯他人合法权益等法律法规禁止的活动！任何基于本项目二次开发而产生的一切法律纠纷和责任，我们不承担任何责任！
 
 using Admin.NET.Plugin.DingTalk;
+using Admin.NET.Plugin.DingTalk.RequestProxy.HRM;
+using Admin.NET.Plugin.DingTalk.RequestProxy.HRM.DTO;
+using Admin.NET.Plugin.DingTalk.Service;
+
 using Furion.Schedule;
+
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
@@ -19,51 +24,44 @@ namespace Admin.NET.Plugin.Job;
 public class SyncDingTalkUserJob : IJob
 {
     private readonly IServiceScopeFactory _scopeFactory;
-    private readonly IDingTalkApi _dingTalkApi;
     private readonly ILogger _logger;
 
-    public SyncDingTalkUserJob(IServiceScopeFactory scopeFactory, IDingTalkApi dingTalkApi, ILoggerFactory loggerFactory)
+    public SyncDingTalkUserJob(IServiceScopeFactory scopeFactory, ILoggerFactory loggerFactory)
     {
         _scopeFactory = scopeFactory;
-        _dingTalkApi = dingTalkApi;
         _logger = loggerFactory.CreateLogger(CommonConst.SysLogCategoryName);
     }
 
     public async Task ExecuteAsync(JobExecutingContext context, CancellationToken stoppingToken)
     {
         using var serviceScope = _scopeFactory.CreateScope();
-        var sysUserRep = serviceScope.ServiceProvider.GetRequiredService<SqlSugarRepository<SysUser>>();
+        var sysUserRepo = serviceScope.ServiceProvider.GetRequiredService<SqlSugarRepository<SysUser>>();
         var dingTalkUserRepo = serviceScope.ServiceProvider.GetRequiredService<SqlSugarRepository<DingTalkUser>>();
-        var dingTalkOptions = serviceScope.ServiceProvider.GetRequiredService<IOptions<DingTalkOptions>>();
+        var dingTalkOptions = serviceScope.ServiceProvider.GetRequiredService<IOptions<DingTalkOptions>>().Value;
+        var dingTalkService = serviceScope.ServiceProvider.GetRequiredService<DingTalkService>();
+        var hrmRequest = serviceScope.ServiceProvider.GetRequiredService<HrmRequest>();
 
         // 获取Token
-        var tokenRes = await _dingTalkApi.GetDingTalkToken(dingTalkOptions.Value.ClientId, dingTalkOptions.Value.ClientSecret);
-        if (tokenRes.ErrCode != 0)
-            throw Oops.Oh(tokenRes.ErrMsg);
+        var token = await dingTalkService.GetDingTalkToken();
+        ArgumentNullException.ThrowIfNull(token);
 
-        var dingTalkUserList = new List<DingTalkEmpRosterFieldVo>();
+        var dingTalkUserList = new List<RosterListResultDomain>();
         var offset = 0;
         while (offset >= 0)
         {
             // 获取用户Id列表
-            var userIdsRes = await _dingTalkApi.GetDingTalkCurrentEmployeesList(tokenRes.AccessToken, new GetDingTalkCurrentEmployeesListInput
-            {
-                StatusList = "2,3,5,-1",
-                Size = 50,
-                Offset = offset
-            });
+            var userIdsRes = await hrmRequest.EmployeeQueryOnJob(token,
+                new List<string> { "2", "3", "5", "-1" }, 50, offset);
             if (!userIdsRes.Success)
             {
                 _logger.LogError(userIdsRes.ErrMsg);
                 break;
             }
             // 根据用户Id获取花名册
-            var rosterRes = await _dingTalkApi.GetDingTalkCurrentEmployeesRosterList(tokenRes.AccessToken, new GetDingTalkCurrentEmployeesRosterListInput()
-            {
-                UserIdList = string.Join(",", userIdsRes.Result.DataList),
-                FieldFilterList = $"{DingTalkConst.NameField},{DingTalkConst.JobNumberField},{DingTalkConst.MobileField}",
-                AgentId = dingTalkOptions.Value.AgentId
-            });
+            var rosterRes = await hrmRequest.RosterListsQuery(token,
+                userIdsRes.Result.DataList,
+                new List<string> { DingTalkConst.NameField, DingTalkConst.JobNumberField, DingTalkConst.MobileField, DingTalkConst.DeptField, DingTalkConst.DeptIdField, DingTalkConst.PositionField },
+                dingTalkOptions.AgentId);
             if (!rosterRes.Success)
             {
                 _logger.LogError(rosterRes.ErrMsg);
@@ -95,9 +93,10 @@ public class SyncDingTalkUserJob : IJob
             Name = res.FieldDataList.Where(u => u.FieldCode == DingTalkConst.NameField).Select(u => u.FieldValueList.Select(m => m.Value).FirstOrDefault()).FirstOrDefault(),
             Mobile = res.FieldDataList.Where(u => u.FieldCode == DingTalkConst.MobileField).Select(u => u.FieldValueList.Select(m => m.Value).FirstOrDefault()).FirstOrDefault(),
             JobNumber = res.FieldDataList.Where(u => u.FieldCode == DingTalkConst.JobNumberField).Select(u => u.FieldValueList.Select(m => m.Value).FirstOrDefault()).FirstOrDefault(),
-            DeptId = res.FieldDataList.Where(u => u.FieldCode == DingTalkConst.DeptId).Select(u => u.FieldValueList.Select(m => m.Value).FirstOrDefault()).FirstOrDefault(),
-            Dept = res.FieldDataList.Where(u => u.FieldCode == DingTalkConst.Dept).Select(u => u.FieldValueList.Select(m => m.Value).FirstOrDefault()).FirstOrDefault(),
-            Position = res.FieldDataList.Where(u => u.FieldCode == DingTalkConst.Position).Select(u => u.FieldValueList.Select(m => m.Value).FirstOrDefault()).FirstOrDefault(),
+            DeptId = res.FieldDataList.Where(u => u.FieldCode == DingTalkConst.DeptIdField).Select(u => u.FieldValueList.Select(m => m.Value).FirstOrDefault()).FirstOrDefault(),
+            Dept = res.FieldDataList.Where(u => u.FieldCode == DingTalkConst.DeptField).Select(u => u.FieldValueList.Select(m => m.Value).FirstOrDefault()).FirstOrDefault(),
+            Position = res.FieldDataList.Where(u => u.FieldCode == DingTalkConst.PositionField).Select(u => u.FieldValueList.Select(m => m.Value).FirstOrDefault()).FirstOrDefault(),
+            TenantId = dingTalkOptions.TenantId
         }).ToList();
         if (iUser.Count > 0)
         {
@@ -112,9 +111,10 @@ public class SyncDingTalkUserJob : IJob
             Name = res.FieldDataList.Where(u => u.FieldCode == DingTalkConst.NameField).Select(u => u.FieldValueList.Select(m => m.Value).FirstOrDefault()).FirstOrDefault(),
             Mobile = res.FieldDataList.Where(u => u.FieldCode == DingTalkConst.MobileField).Select(u => u.FieldValueList.Select(m => m.Value).FirstOrDefault()).FirstOrDefault(),
             JobNumber = res.FieldDataList.Where(u => u.FieldCode == DingTalkConst.JobNumberField).Select(u => u.FieldValueList.Select(m => m.Value).FirstOrDefault()).FirstOrDefault(),
-            DeptId = res.FieldDataList.Where(u => u.FieldCode == DingTalkConst.DeptId).Select(u => u.FieldValueList.Select(m => m.Value).FirstOrDefault()).FirstOrDefault(),
-            Dept = res.FieldDataList.Where(u => u.FieldCode == DingTalkConst.Dept).Select(u => u.FieldValueList.Select(m => m.Value).FirstOrDefault()).FirstOrDefault(),
-            Position = res.FieldDataList.Where(u => u.FieldCode == DingTalkConst.Position).Select(u => u.FieldValueList.Select(m => m.Value).FirstOrDefault()).FirstOrDefault(),
+            DeptId = res.FieldDataList.Where(u => u.FieldCode == DingTalkConst.DeptIdField).Select(u => u.FieldValueList.Select(m => m.Value).FirstOrDefault()).FirstOrDefault(),
+            Dept = res.FieldDataList.Where(u => u.FieldCode == DingTalkConst.DeptField).Select(u => u.FieldValueList.Select(m => m.Value).FirstOrDefault()).FirstOrDefault(),
+            Position = res.FieldDataList.Where(u => u.FieldCode == DingTalkConst.PositionField).Select(u => u.FieldValueList.Select(m => m.Value).FirstOrDefault()).FirstOrDefault(),
+            TenantId = dingTalkOptions.TenantId,
         }).ToList();
         if (uUser.Count > 0)
         {
@@ -130,40 +130,40 @@ public class SyncDingTalkUserJob : IJob
                 u.UpdateTime,
                 u.UpdateUserName,
                 u.UpdateUserId,
+                u.TenantId
             }).ExecuteCommandAsync();
         }
 
-        // 通过系统用户账号(工号)，更新钉钉用户表里面的系统用户Id
-        var sysUser = await sysUserRep.AsQueryable()
-            .Select(u => new
-            {
-                u.Id,
-                u.Account
-            }).ToListAsync();
-        var sysDingTalkUser = await dingTalkUserRepo.AsQueryable()
-            .Where(u => sysUser.Any(m => m.Account == u.JobNumber))
-            .Select(u => new
-            {
-                u.Id,
-                u.JobNumber,
-                u.Mobile,
-                u.DeptId,
-                u.Dept,
-                u.Position
-            }).ToListAsync();
-        var uSysDingTalkUser = sysDingTalkUser.Select(u => new DingTalkUser
-        {
-            Id = u.Id,
-            SysUserId = sysUser.Where(m => m.Account == u.JobNumber).Select(u => u.Id).FirstOrDefault(),
-        }).ToList();
+        //获取没有对应SysUser的DingTalkUser
+        var dingTalkWithoutSysuser = await dingTalkUserRepo.AsQueryable()
+           .LeftJoin<SysUser>((dUser, sUser) => dUser.DingTalkUserId == sUser.Account)
+           .GroupBy((dUser, sUser) => dUser.Id)
+           .Having((dUser, sUser) => SqlFunc.AggregateCount(sUser.Id) == 0)
+           .Select((dUser, sUser) => dUser)
+           .ToListAsync();
 
-        await dingTalkUserRepo.CopyNew().AsUpdateable(uSysDingTalkUser).UpdateColumns(u => new
+        //插入对应的SysUser
+        if (dingTalkWithoutSysuser.Count > 0)
         {
-            u.SysUserId,
-            u.UpdateTime,
-            u.UpdateUserName,
-            u.UpdateUserId,
-        }).ExecuteCommandAsync();
+            var iSysUser = dingTalkWithoutSysuser.Select(dUser => new SysUser
+            {
+                Account = dUser.DingTalkUserId,
+                Password = CryptogramUtil.Encrypt(dUser.DingTalkUserId),
+                RealName = dUser.Name ?? "",
+                TenantId = dingTalkOptions.TenantId,
+            }).ToList();
+            await sysUserRepo.InsertRangeAsync(iSysUser);
+        }
+
+        //将SysUser.Id回填到对应DingTalkUser.SysUserId
+        await dingTalkUserRepo.AsUpdateable()
+            .SetColumns(dUser => new DingTalkUser
+            {
+                SysUserId = SqlFunc.Subqueryable<SysUser>()
+                                    .Where(sUser => sUser.Account == dUser.DingTalkUserId)
+                                    .Select(sUser => sUser.Id)
+            })
+            .ExecuteCommandAsync();
 
         var originColor = Console.ForegroundColor;
         Console.ForegroundColor = ConsoleColor.Blue;

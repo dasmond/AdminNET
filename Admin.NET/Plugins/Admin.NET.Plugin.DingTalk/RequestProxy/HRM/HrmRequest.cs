@@ -23,7 +23,7 @@ public class HrmRequest : IScoped
     /// 获取在职员工列表
     /// </summary>
     /// <param name="accessToken"></param>
-    /// <param name="statusList">在职员工状态筛选，可以查询多个状态。不同状态之间使用英文逗号分隔。2：试用期、3：正式、5：待离职、-1：无状态</param>
+    /// <param name="statusList">在职员工状态筛选，可以查询多个状态。2：试用期、3：正式、5：待离职、-1：无状态</param>
     /// <param name="size">分页大小，最大50</param>
     /// <param name="offset">分页游标，从0开始。根据返回结果里的next_cursor是否为空来判断是否还有下一页，且再次调用时offset设置成next_cursor的值</param>
     /// <returns></returns>
@@ -55,5 +55,17 @@ public class HrmRequest : IScoped
             AgentId = agentId
         });
         return resStr.ToObject<RosterListsQueryResponse>();
+    }
+
+    /// <summary>
+    /// 获取花名册元数据
+    /// </summary>
+    /// <param name="accessToken"></param>
+    /// <param name="agentId"></param>
+    /// <returns></returns>
+    public async Task<GetRosterMetaResponse> GetRosterMeta(string accessToken, long agentId)
+    {
+        var resStr = await _request.GetRosterMeta(accessToken, new GetRosterMetaRequest { AgentId = agentId });
+        return resStr.ToObject<GetRosterMetaResponse>();
     }
 }

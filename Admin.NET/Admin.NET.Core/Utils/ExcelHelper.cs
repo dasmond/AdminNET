@@ -29,10 +29,14 @@ public class ExcelHelper
                 // 标记校验信息
                 tasks.Add(Task.Run(() =>
                 {
-                    if (storageable.TotalList.Any())
+                    if (!storageable.TotalList.Any()) return;
+
+                    // 通过Id标记校验信息
+                    var itemMap = pageItems.ToDictionary(u => u.Id, u => u);
+                    foreach (var item in storageable.TotalList)
                     {
-                        for (int i = 0; i < storageable.TotalList.Count; i++)
-                            pageItems[i].Error ??= storageable.TotalList[i].StorageMessage;
+                        var temp = itemMap.GetValueOrDefault(item.Item.Id);
+                        if (temp != null) temp.Error ??= item.StorageMessage;
                     }
                 }));
             });
@@ -40,7 +44,9 @@ public class ExcelHelper
             // 等待所有标记验证信息任务完成
             Task.WhenAll(tasks).GetAwaiter().GetResult();
 
-            return ExportData(result);
+            // 仅导出错误记录
+            var errorList = result.Where(u => !string.IsNullOrWhiteSpace(u.Error));
+            return ExportData(errorList.Any() ? errorList : new List<IN>());
         }
         catch (Exception ex)
         {
