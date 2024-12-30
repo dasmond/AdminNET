@@ -37,7 +37,7 @@
 						ref="codeRef"
 						text
 						maxlength="4"
-						:placeholder="$t('message.account.accountPlaceholder4')"
+						:placeholder="$t('message.account.accountPlaceholder3')"
 						v-model="state.ruleForm.code"
 						clearable
 						autocomplete="off"
