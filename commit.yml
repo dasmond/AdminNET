@@ -2,19 +2,25 @@
 branches: {
   }
 fileChange:
-  /Admin.NET:
-    newFile: !uuid '9f5ba3ab26fb1722bdca5a91f2ee3a2af540597a'
-    oldFile: !uuid '346e9d8ec67b16ae8bad33cc27c82a9d2377b5a2'
-  /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '6a08091e4ea282574a3e074e7aef645d5f47c7c0'
-    oldFile: !uuid 'f6e77f2442fff38d68d9c41dca78df8fdfe6f52f'
-  /Admin.NET/Admin.NET.Core/Utils:
-    newFile: !uuid 'eae6b1752e5f5cf4eb289ebfc1a3775309d3ad67'
-    oldFile: !uuid '18dd1bd39798dca1178bffcb3bdb6a60252eb5d0'
-  /Admin.NET/Admin.NET.Core/Utils/ExcelHelper.cs:
-    newFile: !uuid '7214c1170a70acc4ba4a028474857691f2f5d3f1'
-    oldFile: !uuid '3343838872b52ca4869c979f1b8846dcb05f8338'
-gitCommitId: !uuid '4269850b604c465f2bf0136236d03b30639e2f53'
+  /Web:
+    newFile: !uuid 'aa420976294bf95d722823c2c9c9464122676d51'
+    oldFile: !uuid '59fd0efd9b15f2d6bf986a8e7ff5465124c0b707'
+  /Web/src:
+    newFile: !uuid '9ab0b6affe6a679ce3e7042edaea369ac636e613'
+    oldFile: !uuid '3b7d280d85ca640b5ad81e2c3aaada38da3b7572'
+  /Web/src/views:
+    newFile: !uuid 'ca4a16746b7a44ec9bb716291087a12f44aa11d2'
+    oldFile: !uuid 'fb55f05495fdae1c1640bbe4c9ee371fe3d50e65'
+  /Web/src/views/login:
+    newFile: !uuid 'fd51942f11430679b4aaba41148439a9c02de912'
+    oldFile: !uuid 'c449b6e71a3e37f8f84960964660df8e4c2b541c'
+  /Web/src/views/login/component:
+    newFile: !uuid 'da67c6c4c351300321b713c11bb1f5a8386b241b'
+    oldFile: !uuid 'ec64f4571cfe4e0bbac140d1b85c1d00b5cfe0ff'
+  /Web/src/views/login/component/account.vue:
+    newFile: !uuid '169255b284aa12a9ec8fae9e1cdee3cf8da66860'
+    oldFile: !uuid 'd053808d57af7bc327815e32c88faa0464022c36'
+gitCommitId: !uuid '47795af048bf771f6a1f1db1523a7ca21b5b5243'
 renames: {
   }
-revisionId: 2634
+revisionId: 2635
