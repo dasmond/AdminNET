@@ -331,6 +331,7 @@ public class SysTenantService : IDynamicApiController, ITransient
         var logMenu = allMenuList.First(u => u.Type == MenuTypeEnum.Dir && u.Title == "日志管理");
         menuList.Add(logMenu);
         menuList.AddRange(allMenuList.ToChildList(u => u.Id, u => u.Pid, u => u.Pid == logMenu.Id && new[] { "访问日志", "操作日志" }.Contains(u.Title)));
+        menuList = menuList.Where(u => !new[] { "清空" }.Contains(u.Title)).ToList();
 
         var flow = _sysTenantRep.Context.Queryable<SysMenu>().First(u => u.Type == MenuTypeEnum.Menu && u.Title == "审批流程");
         menuList.Add(allMenuList.First(u => u.Type == MenuTypeEnum.Dir && u.Title == "帮助文档"));
