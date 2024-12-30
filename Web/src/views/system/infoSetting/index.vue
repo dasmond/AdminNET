@@ -21,7 +21,7 @@
 					<el-input v-model="state.formData.viceDesc" />
 				</el-descriptions-item>
 				<el-descriptions-item label="水印内容" :span="2">
-					<el-input v-model="state.formData.watermark" />
+					<el-input v-model="state.formData.watermark" placeholder="如果此处留空，则水印功能将被禁用"/>
 				</el-descriptions-item>
 				<el-descriptions-item label="版权说明" :span="2">
 					<el-input v-model="state.formData.copyright" />

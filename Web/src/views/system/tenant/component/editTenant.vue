@@ -9,7 +9,7 @@
 			</template>
 			<el-form :model="state.ruleForm" ref="ruleFormRef" label-width="auto">
 				<el-tabs v-loading="state.loading" v-model="state.selectedTabName">
-					<el-tab-pane label="基本信息" style="height: 550px; overflow-y: auto; overflow-x: hidden">
+					<el-tab-pane label="基本信息" style="height: 400px; overflow-y: auto; overflow-x: hidden">
 						<el-row :gutter="35">
 							<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
 								<el-form-item label="租户类型" :rules="[{ required: true, message: '租户类型不能为空', trigger: 'blur' }]">
@@ -69,17 +69,23 @@
 							</el-col>
 							<el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="mb20">
 								<el-form-item label="连接字符串">
-									<el-input v-model="state.ruleForm.connection" placeholder="连接字符串" clearable type="textarea" :disabled="state.ruleForm.tenantType == 0 && state.ruleForm.tenantType != undefined" />
+									<el-input
+										v-model="state.ruleForm.connection"
+										placeholder="连接字符串"
+										clearable
+										type="textarea"
+										:disabled="state.ruleForm.tenantType == 0 && state.ruleForm.tenantType != undefined"
+									/>
 								</el-form-item>
 							</el-col>
 							<el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="mb20">
 								<el-form-item label="从库连接串">
 									<el-input
-											v-model="state.ruleForm.slaveConnections"
-											placeholder="格式：[{'HitRate':10, 'ConnectionString':'xxx'},{'HitRate':10, 'ConnectionString':'xxx'}]"
-											clearable
-											type="textarea"
-											:disabled="state.ruleForm.tenantType == 0 && state.ruleForm.tenantType != undefined"
+										v-model="state.ruleForm.slaveConnections"
+										placeholder="格式：[{'HitRate':10, 'ConnectionString':'xxx'},{'HitRate':10, 'ConnectionString':'xxx'}]"
+										clearable
+										type="textarea"
+										:disabled="state.ruleForm.tenantType == 0 && state.ruleForm.tenantType != undefined"
 									/>
 								</el-form-item>
 							</el-col>
@@ -100,7 +106,7 @@
 							</el-col>
 						</el-row>
 					</el-tab-pane>
-					<el-tab-pane label="站点信息" style="height: 550px; overflow: auto; overflow-x: hidden;">
+					<el-tab-pane label="站点信息" style="height: 400px; overflow: auto; overflow-x: hidden">
 						<el-row :gutter="35">
 							<el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="mb20">
 								<el-form-item label="Logo" prop="logo" :rules="[{ required: true, message: '应用Logo不能为空', trigger: 'blur' }]">
@@ -142,7 +148,7 @@
 							</el-col>
 							<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
 								<el-form-item label="水印" prop="watermark">
-									<el-input v-model="state.ruleForm.watermark" placeholder="应用水印" maxlength="32" clearable />
+									<el-input v-model="state.ruleForm.watermark" placeholder="如果此处留空，则水印功能将被禁用" maxlength="32" clearable />
 								</el-form-item>
 							</el-col>
 						</el-row>
@@ -164,9 +170,9 @@ import { reactive, ref } from 'vue';
 import { getAPI } from '/@/utils/axios-utils';
 import { SysTenantApi, SysUserRegWayApi } from '/@/api-services/api';
 import { UpdateTenantInput } from '/@/api-services/models';
-import { UploadInstance } from "element-plus";
-import { fileToBase64 } from "/@/utils/base64Conver";
-import GSysDict from "/@/components/sysDict/sysDict.vue";
+import { UploadInstance } from 'element-plus';
+import { fileToBase64 } from '/@/utils/base64Conver';
+import GSysDict from '/@/components/sysDict/sysDict.vue';
 
 const props = defineProps({
 	title: String,
@@ -197,7 +203,7 @@ const openDialog = async (row: any) => {
 	state.ruleForm = JSON.parse(JSON.stringify(row));
 	state.ruleForm.icp ??= '省ICP备12345678号';
 	state.ruleForm.icpUrl ??= 'https://beian.miit.gov.cn';
-	state.ruleForm.copyright ??= 'Copyright \u00a9 2024-present xxxxx All rights reserved.';
+	state.ruleForm.copyright ??= `Copyright \u00a9 ${new Date().getFullYear()}-present xxxxx All rights reserved.`;
 	state.isShowDialog = true;
 	state.regWayData = await getAPI(SysUserRegWayApi).apiSysUserRegWayListPost({ tenantId: row.id }).then((res) => res.data.result ?? []);
 };
