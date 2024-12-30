@@ -25,7 +25,7 @@ public class BaseTest : IDisposable
         Driver.Manage().Window.Maximize();
         Driver.Navigate().GoToUrl(url);
 
-        // 隐式等待2秒（隐式等待是元素未被呈现出来，才会等待）
+        // 隐式等待3秒（隐式等待是元素未被呈现出来，才会等待）
         Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(3);
     }
 
@@ -81,10 +81,10 @@ public class BaseTest : IDisposable
     }
 
     /// <summary>
-    /// 登录用户敲回车
+    /// 等待用户按回车键继续
     /// </summary>
     /// <param name="text">提示词</param>
-    protected void WaitEnter(string text = "登录用户敲回车继续...")
+    protected void WaitEnter(string text = "等待用户按回车键继续...")
     {
         Console.WriteLine(text);
         Console.ReadLine();
