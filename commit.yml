@@ -3,30 +3,15 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '6a61652ed5d3d2c5efc79b05971a58faf3f8e6f7'
-    oldFile: !uuid '93d304128b678b1cfc9b3749e65647b2a9059b12'
-  /Admin.NET/Plugins:
-    newFile: !uuid 'adac9861160e88374f1ede7eabe0a3039a5a4673'
-    oldFile: !uuid '37bb570df79a2b1429858204dcc641bf8448b235'
-  /Admin.NET/Plugins/Admin.NET.Plugin.GoView:
-    newFile: !uuid '443a91b6752de9d33b99c14b42f878873525f938'
-    oldFile: !uuid 'b12e1c66c30004b5ca4620362d35a62807034cf9'
-  /Admin.NET/Plugins/Admin.NET.Plugin.GoView/Service:
-    newFile: !uuid '6a0819cc194ed41a7641dfaa7a1a57932d51e684'
-    oldFile: !uuid 'c2c63ae6b1feb6a4214a4bb2446cb7ea360f36ff'
-  /Admin.NET/Plugins/Admin.NET.Plugin.GoView/Service/GoViewSys:
-    newFile: !uuid '90d4d8c526613f8a4270d0e9ba07ebfdfc2eee1c'
-    oldFile: !uuid 'fa78becbf0502343f78a2402e308c8cec75d5a02'
-  /Admin.NET/Plugins/Admin.NET.Plugin.GoView/Service/GoViewSys/Dto:
-    newFile: !uuid 'b9b44f016366b56c00e2c50964108a699c6f1f55'
-    oldFile: !uuid '57667c9d5c5bc2f7bbc042186e7e783fefdcd275'
-  /Admin.NET/Plugins/Admin.NET.Plugin.GoView/Service/GoViewSys/Dto/GoViewLoginInput.cs:
-    newFile: !uuid 'b7776971d565c94a6faffad0ae4f539ada9ca213'
-    oldFile: !uuid 'db0adcd6c63cf6cd5adfb2060a880116f3394468'
-  /Admin.NET/Plugins/Admin.NET.Plugin.GoView/Service/GoViewSys/GoViewSysService.cs:
-    newFile: !uuid '4c9f4393f5e7a47ea275f5083569f6a54bc75e2a'
-    oldFile: !uuid 'c99688529e9ebf468c0832ddc14b883e15693817'
-gitCommitId: !uuid '20c49633b1474ddea1222e3f98d8504ffaa2c870'
+    newFile: !uuid 'cd41850324d4f38dd9de27f950ed06305c4bc27a'
+    oldFile: !uuid '6a61652ed5d3d2c5efc79b05971a58faf3f8e6f7'
+  /Admin.NET/Admin.NET.Test:
+    newFile: !uuid '8246a73c0f37a946ba3d29321bb7ea0ea13ddf95'
+    oldFile: !uuid '5ae8d87b8d26fc568d1a982b95d1be4b5d66dac5'
+  /Admin.NET/Admin.NET.Test/Admin.NET.Test.csproj:
+    newFile: !uuid 'cfdb6d9bb272044dbea9c1a7e104295744b5804a'
+    oldFile: !uuid '377a2a85bb138416bf1ecb556170df235df53a0b'
+gitCommitId: !uuid '9b68f947a6c66e3e24d353c313bbf53a4b39b7f5'
 renames: {
   }
-revisionId: 2699
+revisionId: 2700
