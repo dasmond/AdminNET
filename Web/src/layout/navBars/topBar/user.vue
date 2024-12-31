@@ -104,7 +104,7 @@ import { signalR } from '/@/views/system/onlineUser/signalR';
 import { Avatar, CircleCloseFilled, Loading, Lock, Switch } from '@element-plus/icons-vue';
 import { clearAccessAfterReload, getAPI } from '/@/utils/axios-utils';
 import { SysAuthApi, SysNoticeApi } from '/@/api-services/api';
-import { auth } from "/@/utils/authFunction";
+import { auth } from '/@/utils/authFunction';
 
 // 引入组件
 const UserNews = defineAsyncComponent(() => import('/@/layout/navBars/topBar/userNews.vue'));
