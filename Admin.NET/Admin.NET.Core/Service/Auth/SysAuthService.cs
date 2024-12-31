@@ -22,26 +22,30 @@ public class SysAuthService : IDynamicApiController, ITransient
     private readonly SysMenuService _sysMenuService;
     private readonly SysOnlineUserService _sysOnlineUserService;
     private readonly SysConfigService _sysConfigService;
+    private readonly SysUserService _sysUserService;
     private readonly ICaptcha _captcha;
     private readonly SysCacheService _sysCacheService;
 
-    public SysAuthService(UserManager userManager,
+    public SysAuthService(
         SqlSugarRepository<SysUser> sysUserRep,
         IHttpContextAccessor httpContextAccessor,
-        SysMenuService sysMenuService,
         SysOnlineUserService sysOnlineUserService,
         SysConfigService sysConfigService,
-        ICaptcha captcha,
-        SysCacheService sysCacheService)
+        SysCacheService sysCacheService,
+        SysMenuService sysMenuService,
+        SysUserService sysUserService,
+        UserManager userManager,
+        ICaptcha captcha)
     {
-        _userManager = userManager;
-        _sysUserRep = sysUserRep;
-        _httpContextAccessor = httpContextAccessor;
-        _sysMenuService = sysMenuService;
-        _sysOnlineUserService = sysOnlineUserService;
-        _sysConfigService = sysConfigService;
         _captcha = captcha;
+        _sysUserRep = sysUserRep;
+        _userManager = userManager;
+        _sysUserService = sysUserService;
+        _sysMenuService = sysMenuService;
         _sysCacheService = sysCacheService;
+        _sysConfigService = sysConfigService;
+        _httpContextAccessor = httpContextAccessor;
+        _sysOnlineUserService = sysOnlineUserService;
     }
 
     /// <summary>
@@ -379,7 +383,7 @@ public class SysAuthService : IDynamicApiController, ITransient
             RoleIdList = new List<long> { regWay.RoleId },
         };
         addUserInput.Copy(input);
-        await App.GetService<SysUserService>().RegisterUser(addUserInput);
+        await _sysUserService.RegisterUser(addUserInput);
     }
 
     /// <summary>

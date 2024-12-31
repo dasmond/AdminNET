@@ -12,17 +12,19 @@ namespace Admin.NET.Core.Service;
 [ApiDescriptionSettings(Order = 420)]
 public class SysDictDataService : IDynamicApiController, ITransient
 {
+    private static readonly SysDictTypeService SysDictTypeService = App.GetService<SysDictTypeService>();
     private readonly SqlSugarRepository<SysDictData> _sysDictDataRep;
     private readonly SysCacheService _sysCacheService;
     private readonly UserManager _userManager;
 
-    public SysDictDataService(SqlSugarRepository<SysDictData> sysDictDataRep,
+    public SysDictDataService(
+        SqlSugarRepository<SysDictData> sysDictDataRep,
         SysCacheService sysCacheService,
         UserManager userManager)
     {
+        _userManager = userManager;
         _sysDictDataRep = sysDictDataRep;
         _sysCacheService = sysCacheService;
-        _userManager = userManager;
     }
 
     /// <summary>
@@ -148,7 +150,7 @@ public class SysDictDataService : IDynamicApiController, ITransient
     [NonAction]
     public async Task<List<SysDictData>> GetDictDataListByDictTypeId(long dictTypeId)
     {
-        var dictType = await App.GetService<SysDictTypeService>().GetDetail(new DictTypeInput { Id = dictTypeId });
+        var dictType = await SysDictTypeService.GetDetail(new DictTypeInput { Id = dictTypeId });
         var dictDataList = _sysCacheService.Get<List<SysDictData>>($"{CacheConst.KeyDict}{dictTypeId}");
 
         if (dictDataList == null)
@@ -205,7 +207,7 @@ public class SysDictDataService : IDynamicApiController, ITransient
     /// </summary>
     /// <returns></returns>
     [NonAction]
-    public List<long> GetTenantIdList() => App.GetService<SysDictTypeService>().GetTenantIdList();
+    public List<long> GetTenantIdList() => SysDictTypeService.GetTenantIdList();
 
     /// <summary>
     /// 获取SysDictData表查询实例

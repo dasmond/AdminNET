@@ -14,23 +14,26 @@ public class SysRoleService : IDynamicApiController, ITransient
 {
     private readonly UserManager _userManager;
     private readonly SqlSugarRepository<SysRole> _sysRoleRep;
-    private readonly SysRoleOrgService _sysRoleOrgService;
     private readonly SysRoleMenuService _sysRoleMenuService;
-    private readonly SysOrgService _sysOrgService;
     private readonly SysUserRoleService _sysUserRoleService;
+    private readonly SysRoleOrgService _sysRoleOrgService;
+    private readonly SysMenuService _sysMenuService;
+    private readonly SysOrgService _sysOrgService;
 
     public SysRoleService(UserManager userManager,
-        SqlSugarRepository<SysRole> sysRoleRep,
-        SysRoleOrgService sysRoleOrgService,
-        SysRoleMenuService sysRoleMenuService,
         SysOrgService sysOrgService,
+        SysMenuService sysMenuService,
+        SysRoleOrgService sysRoleOrgService,
+        SqlSugarRepository<SysRole> sysRoleRep,
+        SysRoleMenuService sysRoleMenuService,
         SysUserRoleService sysUserRoleService)
     {
         _userManager = userManager;
         _sysRoleRep = sysRoleRep;
+        _sysOrgService = sysOrgService;
+        _sysMenuService = sysMenuService;
         _sysRoleOrgService = sysRoleOrgService;
         _sysRoleMenuService = sysRoleMenuService;
-        _sysOrgService = sysOrgService;
         _sysUserRoleService = sysUserRoleService;
     }
 
@@ -219,7 +222,7 @@ public class SysRoleService : IDynamicApiController, ITransient
     public async Task<List<long>> GetOwnMenuList([FromQuery] RoleInput input)
     {
         var menuIds = await _sysRoleMenuService.GetRoleMenuIdList(new List<long> { input.Id });
-        return await App.GetService<SysMenuService>().ExcludeParentMenuOfFullySelected(menuIds);
+        return await _sysMenuService.ExcludeParentMenuOfFullySelected(menuIds);
     }
 
     /// <summary>

@@ -318,7 +318,7 @@ public class SysMenuService : IDynamicApiController, ITransient
     public async Task<List<long>> ExcludeParentMenuOfFullySelected(List<long> menuIds)
     {
         // 获取当前用户菜单
-        var (query, _) = App.GetService<SysMenuService>().GetSugarQueryableAndTenantId(0);
+        var (query, _) = GetSugarQueryableAndTenantId(0);
         var menuList = await query.ToListAsync();
 
         // 排除列表，防止前端全选问题

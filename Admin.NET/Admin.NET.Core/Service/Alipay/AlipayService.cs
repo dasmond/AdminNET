@@ -21,6 +21,7 @@ namespace Admin.NET.Core.Service;
 [ApiDescriptionSettings(Order = 240)]
 public class AlipayService : IDynamicApiController, ITransient
 {
+    private readonly IEnumerable<IAlipayNotify> _alipayNotifyList;
     private readonly IWebHostEnvironment _webHostEnvironment;
     private readonly SysConfigService _sysConfigService;
     private readonly IHttpContextAccessor _httpContext;
@@ -30,8 +31,8 @@ public class AlipayService : IDynamicApiController, ITransient
 
     public AlipayService(
         UserManager userManager,
-        SysConfigService sysConfigService,
         IHttpContextAccessor httpContext,
+        SysConfigService sysConfigService,
         IWebHostEnvironment webHostEnvironment,
         IOptions<AlipayOptions> alipayOptions)
     {
@@ -40,6 +41,7 @@ public class AlipayService : IDynamicApiController, ITransient
         _sysConfigService = sysConfigService;
         _alipayOptions = alipayOptions.Value;
         _webHostEnvironment = webHostEnvironment;
+        _alipayNotifyList = App.GetServices<IAlipayNotify>();
 
         // 初始化支付宝客户端
         string path = App.WebHostEnvironment.ContentRootPath;
@@ -95,7 +97,7 @@ public class AlipayService : IDynamicApiController, ITransient
 
         // 循环执行扫码后需要执行的业务逻辑，需要至少一个继承方法返回true，否则抛出异常
         var pass = false;
-        foreach (var notify in App.GetServices<IAlipayNotify>())
+        foreach (var notify in _alipayNotifyList)
             if (notify.ScanCallback(type, userId, info)) pass = true;
         if (!pass) throw Oops.Oh("未处理的授权逻辑");
 
@@ -147,7 +149,7 @@ public class AlipayService : IDynamicApiController, ITransient
 
             // 循环执行业务逻辑，若都未处理(回调全部返回false)则交易失败
             var isError = true;
-            foreach (var notify in App.GetServices<IAlipayNotify>())
+            foreach (var notify in _alipayNotifyList)
                 if (notify.TopUpCallback(type, tradeNo)) isError = false;
             if (isError) throw Oops.Oh("交易失败");
         }

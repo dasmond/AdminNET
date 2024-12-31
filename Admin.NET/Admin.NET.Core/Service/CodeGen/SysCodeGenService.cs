@@ -18,18 +18,21 @@ public class SysCodeGenService : IDynamicApiController, ITransient
 
     private readonly SysCodeGenConfigService _codeGenConfigService;
     private readonly CodeGenOptions _codeGenOptions;
+    private readonly SysMenuService _sysMenuService;
     private readonly IViewEngine _viewEngine;
     private readonly UserManager _userManager;
 
     public SysCodeGenService(ISqlSugarClient db,
         SysCodeGenConfigService codeGenConfigService,
         IOptions<CodeGenOptions> codeGenOptions,
+        SysMenuService sysMenuService,
         UserManager userManager,
         IViewEngine viewEngine)
     {
         _db = db;
         _viewEngine = viewEngine;
         _userManager = userManager;
+        _sysMenuService = sysMenuService;
         _codeGenOptions = codeGenOptions.Value;
         _codeGenConfigService = codeGenConfigService;
     }
@@ -471,8 +474,6 @@ public class SysCodeGenService : IDynamicApiController, ITransient
     /// <returns></returns>
     private async Task AddMenu(string className, string busName, long pid, string menuIcon, string pagePath, List<CodeGenConfig> tableFieldList)
     {
-        var service = App.GetService<SysMenuService>();
-
         // 删除已存在的菜单
         var title = $"{busName}管理";
         await DeleteMenuTree(title, pid == 0 ? MenuTypeEnum.Dir : MenuTypeEnum.Menu);
@@ -483,7 +484,7 @@ public class SysCodeGenService : IDynamicApiController, ITransient
         {
             // 新增目录，并记录Id
             var dirMenu = new SysMenu { Pid = 0, Title = title, Type = MenuTypeEnum.Dir, Icon = "robot", Path = "/" + className.ToLower(), Component = "Layout" };
-            pid = await service.AddMenu(dirMenu.Adapt<AddMenuInput>());
+            pid = await _sysMenuService.AddMenu(dirMenu.Adapt<AddMenuInput>());
         }
         else
         {
@@ -493,7 +494,7 @@ public class SysCodeGenService : IDynamicApiController, ITransient
 
         // 新增菜单，并记录Id
         var rootMenu = new SysMenu { Pid = pid, Title = title, Type = MenuTypeEnum.Menu, Icon = menuIcon, Path = $"{parentMenuPath}/{className.ToLower()}", Component = $"/{pagePath}/{lowerClassName}/index" };
-        pid = await service.AddMenu(rootMenu.Adapt<AddMenuInput>());
+        pid = await _sysMenuService.AddMenu(rootMenu.Adapt<AddMenuInput>());
 
         var orderNo = 100;
         var menuList = new List<SysMenu>
@@ -516,7 +517,7 @@ public class SysCodeGenService : IDynamicApiController, ITransient
         foreach (var column in tableFieldList.Where(u => u.EffectType == "Upload"))
             menuList.Add(new SysMenu { Title = $"上传{column.ColumnComment}", Permission = $"{lowerClassName}:upload{column.PropertyName}", Pid = pid, Type = MenuTypeEnum.Btn, OrderNo = orderNo += 10 });
 
-        foreach (var menu in menuList) await service.AddMenu(menu.Adapt<AddMenuInput>());
+        foreach (var menu in menuList) await _sysMenuService.AddMenu(menu.Adapt<AddMenuInput>());
     }
 
     /// <summary>
@@ -527,7 +528,7 @@ public class SysCodeGenService : IDynamicApiController, ITransient
     private async Task DeleteMenuTree(string title, MenuTypeEnum type)
     {
         var menuList = await _db.Queryable<SysMenu>().Where(u => u.Title == title && u.Type == type).ToListAsync() ?? new();
-        foreach (var menu in menuList) await App.GetService<SysMenuService>().DeleteMenu(new DeleteMenuInput { Id = menu.Id });
+        foreach (var menu in menuList) await _sysMenuService.DeleteMenu(new DeleteMenuInput { Id = menu.Id });
     }
 
     /// <summary>

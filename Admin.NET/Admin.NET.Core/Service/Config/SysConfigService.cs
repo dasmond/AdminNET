@@ -14,14 +14,19 @@ namespace Admin.NET.Core.Service;
 [ApiDescriptionSettings(Order = 440)]
 public class SysConfigService : IDynamicApiController, ITransient
 {
-    private readonly SysCacheService _sysCacheService;
+    private static readonly SysTenantService SysTenantService = App.GetService<SysTenantService>();
     private readonly SqlSugarRepository<SysConfig> _sysConfigRep;
+    private readonly SqlSugarRepository<SysTenant> _sysTenantRep;
+    private readonly SysCacheService _sysCacheService;
 
-    public SysConfigService(SysCacheService sysCacheService,
-        SqlSugarRepository<SysConfig> sysConfigRep)
+    public SysConfigService(
+        SqlSugarRepository<SysTenant> sysTenantRep,
+        SqlSugarRepository<SysConfig> sysConfigRep,
+        SysCacheService sysCacheService)
     {
         _sysCacheService = sysCacheService;
         _sysConfigRep = sysConfigRep;
+        _sysTenantRep = sysTenantRep;
     }
 
     /// <summary>
@@ -242,8 +247,8 @@ public class SysConfigService : IDynamicApiController, ITransient
     [DisplayName("获取系统信息")]
     public async Task<dynamic> GetSysInfo()
     {
-        var tenant = await App.GetService<SysTenantService>().GetCurrentTenant();
-        tenant ??= await _sysConfigRep.Context.Queryable<SysTenant>().FirstAsync(u => u.Id == SqlSugarConst.DefaultTenantId);
+        var tenant = await SysTenantService.GetCurrentTenant();
+        tenant ??= await _sysTenantRep.GetFirstAsync(u => u.Id == SqlSugarConst.DefaultTenantId);
         _ = tenant ?? throw Oops.Oh(ErrorCodeEnum.D1002);
 
         var wayList = await _sysConfigRep.Context.Queryable<SysUserRegWay>().ClearFilter()
@@ -281,8 +286,8 @@ public class SysConfigService : IDynamicApiController, ITransient
     [DisplayName("保存系统信息")]
     public async Task SaveSysInfo(InfoSaveInput input)
     {
-        var tenant = await App.GetService<SysTenantService>().GetCurrentTenant() ?? throw Oops.Oh(ErrorCodeEnum.D1002);
-        if (!string.IsNullOrEmpty(input.LogoBase64)) App.GetService<SysTenantService>().SetLogoUrl(tenant, input.LogoBase64, input.LogoFileName);
+        var tenant = await SysTenantService.GetCurrentTenant() ?? throw Oops.Oh(ErrorCodeEnum.D1002);
+        if (!string.IsNullOrEmpty(input.LogoBase64)) SysTenantService.SetLogoUrl(tenant, input.LogoBase64, input.LogoFileName);
         // await UpdateConfigValue(ConfigConst.SysCaptcha, (input.Captcha == YesNoEnum.Y).ToString());
         // await UpdateConfigValue(ConfigConst.SysSecondVer, (input.SecondVer == YesNoEnum.Y).ToString());
 

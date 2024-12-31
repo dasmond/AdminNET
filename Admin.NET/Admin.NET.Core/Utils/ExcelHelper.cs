@@ -88,6 +88,7 @@ public class ExcelHelper
         using var package = new ExcelPackage((ExportData(list, filename) as XlsxFileResult)!.Stream);
         var worksheet = package.Workbook.Worksheets[0];
 
+        var sysDictTypeService = App.GetService<SysDictTypeService>();
         foreach (var prop in typeof(T).GetProperties())
         {
             var propType = prop.PropertyType;
@@ -116,7 +117,7 @@ public class ExcelHelper
                     var dict = prop.GetCustomAttribute<DictAttribute>();
                     if (dict != null)
                     {// 填充字典值value为下列列表
-                        dataList = App.GetService<SysDictTypeService>().GetDataList(new GetDataDictTypeInput
+                        dataList = sysDictTypeService.GetDataList(new GetDataDictTypeInput
                         { Code = dict.DictTypeCode }).Result?.Select(x => x.Label).ToList();
                     }
                 }
