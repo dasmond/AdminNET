@@ -57,17 +57,12 @@ public class DatabaseLoggingWriter : IDatabaseLoggingWriter, IDisposable
         string account = "", realName = "", userId = "", tenantId = "";
         if (loggingMonitor.authorizationClaims != null)
         {
-            foreach (var item in loggingMonitor.authorizationClaims)
-            {
-                if (item.type == ClaimConst.Account)
-                    account = item.value;
-                if (item.type == ClaimConst.RealName)
-                    realName = item.value;
-                if (item.type == ClaimConst.TenantId)
-                    tenantId = item.value;
-                if (item.type == ClaimConst.UserId)
-                    userId = item.value;
-            }
+            var map = (loggingMonitor.authorizationClaims as IEnumerable<dynamic>)
+                !.ToDictionary(u => u.type.ToString(), u => u.value.ToString());
+            account = map.GetValueOrDefault(ClaimConst.Account);
+            realName = map.GetValueOrDefault(ClaimConst.RealName);
+            tenantId = map.GetValueOrDefault(ClaimConst.TenantId);
+            userId = map.GetValueOrDefault(ClaimConst.UserId);
         }
 
         // 优先获取 X-Forwarded-For 头部信息携带的IP地址（如nginx代理配置转发）
