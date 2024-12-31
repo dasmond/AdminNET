@@ -3,39 +3,18 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '3ed9f2e311b13ae7e7e76bd25d1a5bab4d7be2d9'
-    oldFile: !uuid '31f1bf7723c9df7c2e5c09c9a9d1a819354dd95a'
+    newFile: !uuid '43e516dbebc9db56a18f9ce50a33daac0eae89b8'
+    oldFile: !uuid '3ed9f2e311b13ae7e7e76bd25d1a5bab4d7be2d9'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '6f102a9ca7fbbb072e745f7dc4eb150e184232e6'
-    oldFile: !uuid '42b2dfc1cf050828d1eac6af827cd0d683343f8e'
-  /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid '4b7ddc51e74cacdde5ae3fda5d8608c06aa27e30'
-    oldFile: !uuid '1662a525150921049b7800c5fa86ac8f7de42970'
-  /Admin.NET/Admin.NET.Core/Service/Tenant:
-    newFile: !uuid '20c014a775b4952d7af5b47f3adf7e4c0b4ab422'
-    oldFile: !uuid '54d9be1e088e452ebc1f6264fd26d9c263f7da6b'
-  /Admin.NET/Admin.NET.Core/Service/Tenant/SysTenantService.cs:
-    newFile: !uuid '54861723127000bdef85b4f48666b2674d1687de'
-    oldFile: !uuid 'dcc8f4e70eddc5db36dbb1432eab9a0cfdf307a1'
-  /Web:
-    newFile: !uuid '1cc7dc9f0d189b626ab3d91d6396b2e6655d8662'
-    oldFile: !uuid '8e8668ac9aeabfa7885a2706a517f215543d0c92'
-  /Web/src:
-    newFile: !uuid '64d65eb4311bc130f22350edc4f1a15a218c86ae'
-    oldFile: !uuid 'afcadde84e09846762cbd93543c11b4488de68e1'
-  /Web/src/views:
-    newFile: !uuid 'dba71fbf6bdc7b9c3945c82c00c3d629375a62bf'
-    oldFile: !uuid 'b4562a9e4240b067fbdeb8adebc542a909a4edc0'
-  /Web/src/views/login:
-    newFile: !uuid '9a5a87557ce868252fa1d77b2630149a779936e5'
-    oldFile: !uuid 'fd51942f11430679b4aaba41148439a9c02de912'
-  /Web/src/views/login/component:
-    newFile: !uuid 'f485447a37fae123b914586e25c28a4a5f958a42'
-    oldFile: !uuid 'da67c6c4c351300321b713c11bb1f5a8386b241b'
-  /Web/src/views/login/component/account.vue:
-    newFile: !uuid '5ad87591c4abab2c47ec57fc478b9298e6c454f5'
-    oldFile: !uuid '169255b284aa12a9ec8fae9e1cdee3cf8da66860'
-gitCommitId: !uuid 'a0de30e89d312a01211f004f1eba76000e66b9e6'
+    newFile: !uuid 'f45096c389fc96eacc1701508efbdb262507db45'
+    oldFile: !uuid '6f102a9ca7fbbb072e745f7dc4eb150e184232e6'
+  /Admin.NET/Admin.NET.Core/Logging:
+    newFile: !uuid 'f961269982c5a95261650542b668e801e9628635'
+    oldFile: !uuid 'cd74013e361319420ff57a2438641a29189eb98f'
+  /Admin.NET/Admin.NET.Core/Logging/DatabaseLoggingWriter.cs:
+    newFile: !uuid '75134bbeb2569b65f6d8f7fdf5d68e7dc19b7f78'
+    oldFile: !uuid '54617af48a27e356be65cf6f0696e068e3a9fc70'
+gitCommitId: !uuid '995538674a3e4d13597dc69b53635951a02f7e52'
 renames: {
   }
-revisionId: 2640
+revisionId: 2641
