@@ -37,7 +37,7 @@
 												<ZoomIn />
 											</el-icon>
 										</div>
-										<div class="message-time">{{ msg.time }}</div>
+										<div class="message-time">{{ msg.sendTime }}</div>
 									</div>
 								</div>
 							</div>
@@ -85,15 +85,15 @@ const currentUser = ref<SysOnlineUser | null>(null);
 const messageInput = ref('');
 const chatMessages = ref<
 	Array<{
-		sendUserId: string;
-		userId: string;
+		sendUserId: number; // 修改为 number 类型
+		receiveUserId: number; // 修改为 number 类型
 		title: string;
-		messageType: Number;
+		messageType: number;
 		message: string;
-		time: string;
+		sendTime: string;
 	}>
 >([]);
-const myUserId = ref('current-user-id'); // 这里需要设置为当前登录用户的ID
+const myUserId = ref<number>(0); // 修改为 number 类型
 const chatContent = ref<HTMLElement | null>(null);
 const dialogVisible = ref(false);
 const currentMessage = ref('');
@@ -102,12 +102,10 @@ const messageScrollbar = ref();
 const selectUser = async (user: SysOnlineUser) => {
 	currentUser.value = user;
 	chatMessages.value = []; // 清空聊天记录
-	// TODO: 这里可以加载与该用户的历史聊天记录
 	var msgs = await getMessage(user.userId);
 	chatMessages.value = msgs.data.result ?? [];
 
 	console.log(chatMessages.value);
-	// 滚动到底部
 	setTimeout(() => {
 		const scrollbar = chatContent.value?.querySelector('.el-scrollbar__wrap');
 		if (scrollbar) {
@@ -126,19 +124,17 @@ const sendMessage = async () => {
 	}
 	const newMessage = {
 		sendUserId: myUserId.value,
-		userId: currentUser.value.userId,
+		receiveUserId: currentUser.value?.userId || 0, // 确保 receiveUserId 不为 undefined
 		title: '',
 		messageType: 0,
 		message: messageInput.value,
-		time: new Date().toLocaleString(),
+		sendTime: new Date().toLocaleString(),
 	};
 
-	// TODO: 这里需要通过SignalR发送消息给对方
 	await sendUser(newMessage);
-	if (currentUser.value.userId != myUserId.value) {
+	if (currentUser.value?.userId !== myUserId.value) {
 		chatMessages.value.push(newMessage);
 		console.log(chatMessages.value);
-		// 滚动到底部
 		setTimeout(() => {
 			const scrollbar = chatContent.value?.querySelector('.el-scrollbar__wrap');
 			if (scrollbar) {
@@ -150,45 +146,42 @@ const sendMessage = async () => {
 	messageInput.value = '';
 };
 
-/**
- * 异步处理查询在线用户的功能
- * 此函数通过调用API获取当前在线用户的列表，并将其保存在onlineUser对象的onlineUserList属性中
- */
 const handleQuery = async () => {
-	// 调用SysOnlineUserApi的apiSysOnlineUserPagePost方法获取在线用户数据
 	var res = await getAPI(SysOnlineUserApi).apiSysOnlineUserPagePost();
-	// 将获取的在线用户列表存储在onlineUser对象的onlineUserList属性中，如果没有数据，则设置为空数组
 	onlineUser.onlineUserList = res.data.result?.items ?? [];
-	// 打印获取的响应数据，用于调试目的
 	console.log(res);
 };
+
 const showFullMessage = (msg: string) => {
 	currentMessage.value = msg;
 	dialogVisible.value = true;
 };
 
 onMounted(async () => {
-	// 页面加载时获取在线用户列表
 	await handleQuery();
-
 	myUserId.value = userInfos.value.id;
 
-	// 监听实时更新
 	signalR.off('OnlineUserList');
 	signalR.on('OnlineUserList', (data: any) => {
 		console.log('在线用户列表', data);
 		onlineUser.onlineUserList = data.userList;
+		// // 判断当前选择的用户是否在线
+		// if (currentUser.value && !onlineUser.onlineUserList.some((user) => user.userId === currentUser.value?.userId)) {
+		// 	currentUser.value = null;
+		// 	ElMessageBox.alert('当前聊天对象已离线，请选择其他用户继续聊天', '提示', {
+		// 		confirmButtonText: '确定',
+		// 		type: 'warning',
+		// 	});
+		// }
 	});
 
-	// 监听接收消息
 	signalR.off('ReceiveMessage');
 	signalR.on('ReceiveMessage', (data: any) => {
 		console.log(data);
-		data.sendUserId = currentUser.value?.userId;
+		data.sendUserId = currentUser.value?.userId || 0; // 确保 sendUserId 不为 undefined
 		data.time = new Date().toLocaleString();
 		chatMessages.value.push(data);
 		console.log(chatMessages.value);
-		// 滚动到底部
 		setTimeout(() => {
 			const scrollbar = chatContent.value?.querySelector('.el-scrollbar__wrap');
 			if (scrollbar) {

@@ -100,9 +100,9 @@ export const useThemeConfig = defineStore('themeConfig', {
 			// 是否开启色弱模式
 			isInvert: false,
 			// 是否开启水印
-			isWatermark: true,
+			isWatermark: false,
 			// 水印文案
-			watermarkText: 'Admin.NET',
+			watermarkText: '',
 
 			/**
 			 * 其它设置

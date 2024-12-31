@@ -49,7 +49,7 @@ public class MessageService : IDynamicApiController, ITransient
         var message = new TMessage()
         {
             F_SendUserId = _userManager.UserId,
-            F_ReceiveUserId = entity.UserId,
+            F_ReceiveUserId = entity.ReceiveUserId,
             F_Message = entity.Message,
             F_SendTime = DateTime.Now
         };
@@ -71,9 +71,9 @@ public class MessageService : IDynamicApiController, ITransient
             .Select(x=>new MessageOutDto
             {
                 SendUserId = x.F_SendUserId,
-                UserId = x.F_SendUserId,
+                ReceiveUserId = x.F_SendUserId,
                 Message = x.F_Message,
-                Time = x.F_SendTime
+                SendTime = x.F_SendTime
             })
             .ToPagedListAsync(input.Page, input.PageSize);
     }
@@ -93,9 +93,9 @@ public class MessageService : IDynamicApiController, ITransient
              .Select(x => new MessageOutDto
              {
                  SendUserId = x.F_SendUserId,
-                 UserId = x.F_SendUserId,
+                 ReceiveUserId = x.F_SendUserId,
                  Message = x.F_Message,
-                 Time = x.F_SendTime
+                 SendTime = x.F_SendTime
              })
             .ToListAsync();
     }
