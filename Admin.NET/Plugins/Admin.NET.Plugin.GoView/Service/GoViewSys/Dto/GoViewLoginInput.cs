@@ -26,6 +26,5 @@ public class GoViewLoginInput
     /// <summary>
     /// 租户
     /// </summary>
-    [Required(ErrorMessage = "租户不能为空")]
     public long? TenantId { get; set; }
 }
