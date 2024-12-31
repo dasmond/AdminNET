@@ -29,7 +29,7 @@
 				<ele-Search />
 			</el-icon>
 		</div>
-		<div class="layout-navbars-breadcrumb-user-icon" @click="onLayoutSetingClick">
+		<div v-if="userInfos.accountType == 999" class="layout-navbars-breadcrumb-user-icon" @click="onLayoutSetingClick">
 			<i class="icon-skin iconfont" :title="$t('message.user.title3')"></i>
 		</div>
 		<div class="layout-navbars-breadcrumb-user-icon">
@@ -104,7 +104,7 @@ import { signalR } from '/@/views/system/onlineUser/signalR';
 import { Avatar, CircleCloseFilled, Loading, Lock, Switch } from '@element-plus/icons-vue';
 import { clearAccessAfterReload, getAPI } from '/@/utils/axios-utils';
 import { SysAuthApi, SysNoticeApi } from '/@/api-services/api';
-import { auth } from "/@/utils/authFunction";
+import { auth } from '/@/utils/authFunction';
 
 // 引入组件
 const UserNews = defineAsyncComponent(() => import('/@/layout/navBars/topBar/userNews.vue'));
