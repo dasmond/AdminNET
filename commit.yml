@@ -3,30 +3,147 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid 'e4f151b92de2ac861a8ec42689b753cb7d694ea7'
-    oldFile: !uuid '8275513c2869e4af0a1d845e8c1170b49998105e'
+    newFile: !uuid 'd1218a09d14e546de437a1df2549ddfbe30cbadf'
+    oldFile: !uuid 'e4f151b92de2ac861a8ec42689b753cb7d694ea7'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid 'e94f69409cfacde1f993748baf2b4020de2d99e2'
-    oldFile: !uuid '06eda013fcd97e5fce3bb2b3ddb3165bf2615520'
+    newFile: !uuid 'e856118ab55d16bf8d01007629539e700e721c73'
+    oldFile: !uuid 'e94f69409cfacde1f993748baf2b4020de2d99e2'
+  /Admin.NET/Admin.NET.Core/Entity:
+    newFile: !uuid '795401dba4c6b9db580dc2de8295bcdc6c202fe0'
+    oldFile: !uuid '03aa92f0439a2d517c9c0da00783b9ede64d00fd'
+  /Admin.NET/Admin.NET.Core/Entity/SysTemplate.cs:
+    newFile: !uuid '68e1268796d906a81dca39588dfc4c177413837a'
+    oldFile: null
+  /Admin.NET/Admin.NET.Core/Enum:
+    newFile: !uuid 'e930c758ac277267e241db4927042ab4134a3f17'
+    oldFile: !uuid 'af5ad7805bee715307ac38ce6d60735820755810'
+  /Admin.NET/Admin.NET.Core/Enum/ErrorCodeEnum.cs:
+    newFile: !uuid '5cdcf683689af5c08b77780acad5a41a0a785a88'
+    oldFile: !uuid '3f26d0032662cdee2f56cd27cc5b184702132cd9'
+  /Admin.NET/Admin.NET.Core/SeedData:
+    newFile: !uuid '173736be24ce04cd85e0e46ab8e616cc5a4e5d28'
+    oldFile: !uuid 'f5a4f6e4a159b0038fce5371a51b79f3eb10d928'
+  /Admin.NET/Admin.NET.Core/SeedData/SysMenuSeedData.cs:
+    newFile: !uuid '3587efe94f84d35cf4ab2f0514abbab4629004b4'
+    oldFile: !uuid '259ffe4dfa456e686d742d93df74125f9eb27898'
   /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid '9a34a18e635fa79c1129cbc226e229ae0b1bae4d'
-    oldFile: !uuid '800eaf127d4b86ad84addb78c2308b68eb39a4d8'
-  /Admin.NET/Admin.NET.Core/Service/Alipay:
-    newFile: !uuid 'c9a45b8aeb57f12fc939fae3529d9fa7eece4b71'
-    oldFile: !uuid '6d3e5cebe41be99635245fa9d77778df64cee190'
-  /Admin.NET/Admin.NET.Core/Service/Alipay/AlipayService.cs:
-    newFile: !uuid 'c967aa3307ea0945cb82f534f107f45b4485dead'
-    oldFile: !uuid '5ef5d7e3038535bce1efc78a7e248581ff549f7b'
-  /Admin.NET/Admin.NET.Core/Service/Alipay/Dto:
-    newFile: !uuid '4ee8942b2067f48877ac3bf6cd8e83afef4e8b99'
-    oldFile: !uuid 'ae32c24e12a3233954f5e4f148694b65996a944d'
-  /Admin.NET/Admin.NET.Core/Service/Alipay/Dto/AlipayInput.cs:
-    newFile: !uuid 'a1cb52fb70a87ff8755174d9d4ffaac1a29db085'
-    oldFile: !uuid 'bebe75fa736a74d633f84c9003bdbe0c3d12a1e8'
-  /Admin.NET/Admin.NET.Core/Service/Alipay/IAlipayNotify.cs:
-    newFile: !uuid '41a0628197daaf89e243fad95d25d464277623fc'
-    oldFile: !uuid '8da7697582a4ce805318d07d3d30ce051130d9d0'
-gitCommitId: !uuid '9a663a01f367c97c656ed961c05d94d61c19489f'
+    newFile: !uuid '2f9ceda22ca45cc19712b9e41504b003c5ade7e6'
+    oldFile: !uuid '9a34a18e635fa79c1129cbc226e229ae0b1bae4d'
+  /Admin.NET/Admin.NET.Core/Service/Template:
+    newFile: !uuid '8de049aff22b4e99d563784299fe508f15c8e5ea'
+    oldFile: null
+  /Admin.NET/Admin.NET.Core/Service/Template/Dto:
+    newFile: !uuid '3238b8e0ed5dc637bc337fa3661270d69e043d46'
+    oldFile: null
+  /Admin.NET/Admin.NET.Core/Service/Template/Dto/SysTemplateInput.cs:
+    newFile: !uuid '05cd791bad72664d049a029910175fe3dd605a1b'
+    oldFile: null
+  /Admin.NET/Admin.NET.Core/Service/Template/Dto/SysTemplateOutput.cs:
+    newFile: !uuid 'b667bceb00d1cf747a378f606ad4c2e74ebe6546'
+    oldFile: null
+  /Admin.NET/Admin.NET.Core/Service/Template/SysTemplateService.cs:
+    newFile: !uuid 'd6fcea47bbcb7429a6318558eb6a4e10ab57a7d7'
+    oldFile: null
+  /Admin.NET/Admin.NET.Core/Service/Tenant:
+    newFile: !uuid '255a49c10ce46a06c98a834ceac8f8c2ca2a107b'
+    oldFile: !uuid '8202cfa7e3879aac8ac47ee0ed45ae805c53d6d3'
+  /Admin.NET/Admin.NET.Core/Service/Tenant/SysTenantService.cs:
+    newFile: !uuid '990dacf5eab6db31ec969e4798e2c8840eb7e146'
+    oldFile: !uuid '3f3c98d02e643ec4aa367e61141099a5e2d672d8'
+  /Web:
+    newFile: !uuid '35c64cc069fa369fa980d7d76ff4e6c4adc81428'
+    oldFile: !uuid '1d263b5bd330dd6924c8aba32017d8e19696851a'
+  /Web/src:
+    newFile: !uuid '01d7134fb832e39e2a75fbbb52d1a14d24108afa'
+    oldFile: !uuid '10ee0674d0c94e037be5c597b888766ef3a8760d'
+  /Web/src/api-services:
+    newFile: !uuid '97634f1512eb22691811bfb674d34ab19604018d'
+    oldFile: !uuid '8d14c0f0bc7afa518b2ccbf01dc49db90a10df4e'
+  /Web/src/api-services/api.ts:
+    newFile: !uuid '39f01c73f2e473ed75280645e42c5b8eb92925a0'
+    oldFile: !uuid '27be6ade8b91088fdba8148e61e1a61346ae8387'
+  /Web/src/api-services/apis:
+    newFile: !uuid '2fcc34532a3190592113c1c6f5729693166639b7'
+    oldFile: !uuid '624455dceb21530a9bafcb6a42a9b84cef0073fb'
+  /Web/src/api-services/apis/alipay-api.ts:
+    newFile: !uuid '106adaa9ba8b1b1f947cadb9a89bf1e0aaff7887'
+    oldFile: null
+  /Web/src/api-services/apis/sys-template-api.ts:
+    newFile: !uuid '393784528d50b3ca7a87a72312f62c7679e0f9fc'
+    oldFile: null
+  /Web/src/api-services/models:
+    newFile: !uuid '4ae411200253e724a3dbb129a65f4e14cd096270'
+    oldFile: !uuid '5369cda0e6921bcbe8eaa6eb6b5be5550ff15fe6'
+  /Web/src/api-services/models/add-template-input.ts:
+    newFile: !uuid '73c61f2dda7006dd2c152d476340680ee8198c0f'
+    oldFile: null
+  /Web/src/api-services/models/admin-result-sql-sugar-paged-list-sys-template.ts:
+    newFile: !uuid '2d8245cb6ac3e4205293ed1c4a39fe498e5778db'
+    oldFile: null
+  /Web/src/api-services/models/admin-result-sys-template.ts:
+    newFile: !uuid '03c1d5d2023bbb9c3675cc651f1a35fa62cba893'
+    oldFile: null
+  /Web/src/api-services/models/alipay-pre-create-input.ts:
+    newFile: !uuid 'c0179958fa0cc7622f9c9ee50bb4a4226aa14c34'
+    oldFile: null
+  /Web/src/api-services/models/alipay-trade-page-pay-input.ts:
+    newFile: !uuid '6059c89968b314d93821905e9621edc2f9c412c8'
+    oldFile: null
+  /Web/src/api-services/models/ext-user-info.ts:
+    newFile: !uuid 'c4f833bf6ea9871de1084f938237bb78d27808a2'
+    oldFile: null
+  /Web/src/api-services/models/extend-params.ts:
+    newFile: !uuid '330a43e5cf94ef4c617b918632eedb9a10d57cc5'
+    oldFile: null
+  /Web/src/api-services/models/index.ts:
+    newFile: !uuid 'f520f01763810f821f02e83c6c26140c266d13a0'
+    oldFile: !uuid 'e0fd365d5b18a6444a6e55958a280d288df6f0a3'
+  /Web/src/api-services/models/invoice-info.ts:
+    newFile: !uuid 'cb5c0143febf121a578ce67760743e83bfab55f6'
+    oldFile: null
+  /Web/src/api-services/models/invoice-key-info.ts:
+    newFile: !uuid '2374912944c21aa2f416a7b56e400e261186a35d'
+    oldFile: null
+  /Web/src/api-services/models/page-template-input.ts:
+    newFile: !uuid '49ffcf55bf30f22f5cd38f8cf8ff4e9ed119fa80'
+    oldFile: null
+  /Web/src/api-services/models/pro-view-template-input.ts:
+    newFile: !uuid 'd982892cce8de59c903c058047e85610f4830e7e'
+    oldFile: null
+  /Web/src/api-services/models/render-template-input.ts:
+    newFile: !uuid 'c2694961f415e455ce68a8872f580acab4d706fb'
+    oldFile: null
+  /Web/src/api-services/models/sql-sugar-paged-list-sys-template.ts:
+    newFile: !uuid '0750420e6f3719b8609021164fd406e281099fa1'
+    oldFile: null
+  /Web/src/api-services/models/sys-template.ts:
+    newFile: !uuid '32921a1a22933cfcb3965364402a759a47cbe9a9'
+    oldFile: null
+  /Web/src/api-services/models/update-template-input.ts:
+    newFile: !uuid '3777857cbd89a1e2b3e88e71e39b0e0d4d397cd6'
+    oldFile: null
+  /Web/src/views:
+    newFile: !uuid 'a27e6edce6b4b1eff660faaed03827b51a4dafff'
+    oldFile: !uuid 'dba71fbf6bdc7b9c3945c82c00c3d629375a62bf'
+  /Web/src/views/system:
+    newFile: !uuid '7c3e44c64282b41a9e2cdfbcf243bd997d06d8dd'
+    oldFile: !uuid 'a6ce2a64dd425ae916b1f4a6c455f278ed1aa713'
+  /Web/src/views/system/template:
+    newFile: !uuid '80c2fc335980728ded043e83fb92efe9aed52fb1'
+    oldFile: null
+  /Web/src/views/system/template/component:
+    newFile: !uuid '4610aad8c7fd4ac08507e145da29f6cb7ded5fbd'
+    oldFile: null
+  /Web/src/views/system/template/component/editTemplate.vue:
+    newFile: !uuid '83813cd0a075b90942ca8e86de241e2c114b4569'
+    oldFile: null
+  /Web/src/views/system/template/component/previewDialog.vue:
+    newFile: !uuid '4ec65887caa94386bfe99d57153834abbbba15cd'
+    oldFile: null
+  /Web/src/views/system/template/index.vue:
+    newFile: !uuid '12f22c2f67700e5fc8b9ae8507ce5a3df1958410'
+    oldFile: null
+gitCommitId: !uuid '6b79b54da5fa556f00398ffc73c5802f3ca82367'
 renames: {
   }
-revisionId: 2648
+revisionId: 2649
