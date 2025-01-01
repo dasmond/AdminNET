@@ -6,7 +6,7 @@
 
 using Aop.Api.Response;
 
-namespace Admin.NET.Core.Service.Alipay;
+namespace Admin.NET.Core.Service;
 
 /// <summary>
 /// 支付宝回调接口
