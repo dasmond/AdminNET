@@ -2,28 +2,22 @@
 branches: {
   }
 fileChange:
-  /Web:
-    newFile: !uuid 'ea1eca03bfb2b5cd20d318dc279cf1c8fc8275e4'
-    oldFile: !uuid '4e7707fc84bf044d71a87d0ed1952c13882d46e1'
-  /Web/src:
-    newFile: !uuid 'c1f99aec399db5ba283b4afdde5a64ed33c32210'
-    oldFile: !uuid 'f04d24cfa6d6213646fc7d2853149fa9169847f6'
-  /Web/src/views:
-    newFile: !uuid 'a702816569a4a4f6b733d3bde57e1a7b4be0383f'
-    oldFile: !uuid '6fb1f7274b68201a84c01742b154f26eb70445a9'
-  /Web/src/views/system:
-    newFile: !uuid 'dd0bdf2b1b6808609b7686124b7af0fd5ec0f101'
-    oldFile: !uuid 'dd9b30c0ba69e5acc87e93088b05c9c536591e77'
-  /Web/src/views/system/template:
-    newFile: !uuid '22219b456a72d83f3bd3d71ec6812fbafb7d1e49'
-    oldFile: !uuid '48dd562eb5d2df0caf9ce77855fd8c051e7dd6b7'
-  /Web/src/views/system/template/component:
-    newFile: !uuid 'f5a89375afc7360e82612d09f0b5aca499c481d5'
-    oldFile: !uuid 'd0d5bb638a4d838dbed3507e581d131e3271a2f1'
-  /Web/src/views/system/template/component/editTemplate.vue:
-    newFile: !uuid 'f4f29eb831f6b2efb4a3cd8f32803d7f182bd0e7'
-    oldFile: !uuid '7b0ef90c89e713c887753145609dc1209672232f'
-gitCommitId: !uuid 'd8b517c6a78a614b279f7359573f2dc725d0f1a4'
+  /Admin.NET:
+    newFile: !uuid '19d674b5a4f678dd0fb5ca23bac01cf8727327d1'
+    oldFile: !uuid 'd1218a09d14e546de437a1df2549ddfbe30cbadf'
+  /Admin.NET/Plugins:
+    newFile: !uuid '301ff4cef3fd335233750778714f02149861c047'
+    oldFile: !uuid '87e5b28b3f760f657253b65e3c4153023078f5a5'
+  /Admin.NET/Plugins/Admin.NET.Plugin.WorkWeixin:
+    newFile: !uuid '36e9cc15481107876351c42fbc78b9cac246a170'
+    oldFile: !uuid 'fe49b4230b2a0ed93d33f298013fa87c5b970529'
+  /Admin.NET/Plugins/Admin.NET.Plugin.WorkWeixin/Const:
+    newFile: !uuid 'c99e8d7abb5ac84cb6acc0b8a2bd3c7fcb3d0012'
+    oldFile: null
+  /Admin.NET/Plugins/Admin.NET.Plugin.WorkWeixin/Const/WorkWeixinConst.cs:
+    newFile: !uuid '4db6aeef3d1a9a398ffe436842e0691f17a2f04f'
+    oldFile: null
+gitCommitId: !uuid 'bdd99da48419ebcf30d9704cd1723d80171fc45b'
 renames: {
   }
-revisionId: 2706
+revisionId: 2707
