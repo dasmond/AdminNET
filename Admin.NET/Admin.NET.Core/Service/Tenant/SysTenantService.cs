@@ -325,7 +325,7 @@ public class SysTenantService : IDynamicApiController, ITransient
 
         var platformMenu = allMenuList.First(u => u.Type == MenuTypeEnum.Dir && u.Title == "平台管理");
         menuList.Add(platformMenu);
-        menuList.AddRange(allMenuList.ToChildList(u => u.Id, u => u.Pid, u => u.Pid == platformMenu.Id && new[] { "菜单管理", "字典管理", "系统配置" }.Contains(u.Title)));
+        menuList.AddRange(allMenuList.ToChildList(u => u.Id, u => u.Pid, u => u.Pid == platformMenu.Id && new[] { "菜单管理", "字典管理", "模板管理", "系统配置" }.Contains(u.Title)));
         var dictMenu = menuList.First(u => u.Type == MenuTypeEnum.Menu && u.Title == "字典管理");
         menuList = menuList.Where(u => u.Pid != dictMenu.Id || !new[] { "编辑", "删除" }.Contains(u.Title)).ToList();
 

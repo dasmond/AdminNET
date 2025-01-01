@@ -722,6 +722,18 @@ public enum ErrorCodeEnum
     D2101,
 
     /// <summary>
+    /// 已存在同名模板
+    /// </summary>
+    [ErrorCodeItemMetadata("已存在同名模板")]
+    T1000,
+
+    /// <summary>
+    /// 已存在相同编码模板
+    /// </summary>
+    [ErrorCodeItemMetadata("已存在相同编码模板")]
+    T1001,
+
+    /// <summary>
     /// 禁止删除存在关联租户的应用
     /// </summary>
     [ErrorCodeItemMetadata("禁止删除存在关联租户的应用")]
