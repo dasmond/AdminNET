@@ -51,7 +51,7 @@
 							<el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="mb20">
 								<el-form-item label="内容" prop="content" :rules="[{ required: true, message: '内容不能为空', trigger: 'blur' }]">
 									<Editor v-model:get-html="state.ruleForm.content" v-if="state.contentType == 1" height="150px" />
-									<el-input v-model="state.ruleForm.content" v-else type="textarea" rows="15" show-word-limit></el-input>
+									<el-input v-model="state.ruleForm.content" v-else type="textarea" rows="15" show-word-limit clearable></el-input>
 								</el-form-item>
 							</el-col>
 							<el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="mb20" style="user-select: none;">
