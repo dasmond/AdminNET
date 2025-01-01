@@ -41,7 +41,7 @@
 					<el-tab-pane label="模板内容" name="2" style="height: 550px; overflow-y: auto; overflow-x: hidden">
 						<el-row :gutter="5">
 							<el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="mb20">
-								<el-form-item label="内容" prop="content" :rules="[{ required: true, message: '内容不能为空', trigger: 'blur' }]">
+								<el-form-item label="内容类型">
 									<el-radio-group v-model="state.contentType">
 										<el-radio :value="1">富文本</el-radio>
 										<el-radio :value="2">纯文本</el-radio>
