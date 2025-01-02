@@ -11,6 +11,7 @@ namespace Admin.NET.Core;
 /// </summary>
 public class AppEventSubscriber : IEventSubscriber, ISingleton, IDisposable
 {
+    private readonly static ISugarQueryable<SysTenant> SysTenantQueryable = App.GetService<ISqlSugarClient>().Queryable<SysTenant>();
     private readonly IServiceScope _serviceScope;
 
     public AppEventSubscriber(IServiceScopeFactory scopeFactory)
@@ -38,11 +39,8 @@ public class AppEventSubscriber : IEventSubscriber, ISingleton, IDisposable
     [EventSubscribe(CommonConst.SendErrorMail)]
     public async Task SendOrderErrorMail(EventHandlerExecutingContext context)
     {
-        //var mailTempPath = Path.Combine(App.WebHostEnvironment.WebRootPath, "Temp\\ErrorMail.tp");
-        //var mailTemp = File.ReadAllText(mailTempPath);
-        //var mail = await _serviceScope.ServiceProvider.GetRequiredService<IViewEngine>().RunCompileFromCachedAsync(mailTemp, );
-        var tenantId = App.GetService<UserManager>()?.TenantId ?? SqlSugarConst.DefaultTenantId;
-        var tenant = await App.GetService<ISqlSugarClient>().Queryable<SysTenant>().FirstAsync(t => t.Id == tenantId);
+        long.TryParse(App.HttpContext?.User.FindFirst(ClaimConst.TenantId)?.Value, out var tenantId);
+        var tenant = await SysTenantQueryable.FirstAsync(t => t.Id == tenantId);
         var title = $"{tenant?.Title} 系统异常";
         await _serviceScope.ServiceProvider.GetRequiredService<SysEmailService>().SendEmail(JSON.Serialize(context.Source.Payload), title);
     }

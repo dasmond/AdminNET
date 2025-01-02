@@ -131,6 +131,13 @@ public class SysMenuSeedData : ISqlSugarEntitySeedData<SysMenu>
             new SysMenu{ Id=1300300050801, Pid=1300300050101, Title="编辑字典值", Permission="sysDictData:update", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
             new SysMenu{ Id=1300300050901, Pid=1300300050101, Title="字典迁移", Permission="sysDictType:move", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
 
+            new SysMenu{ Id=1300300051101, Pid=1300300000101, Title="模板管理", Path="/platform/template", Name="sysTemplate", Component="/system/template/index", Icon="ele-Collection", Type=MenuTypeEnum.Menu, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=135 },
+            new SysMenu{ Id=1300300051201, Pid=1300300051101, Title="查询", Permission="sysTemplate:page", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
+            new SysMenu{ Id=1300300051301, Pid=1300300051101, Title="编辑", Permission="sysTemplate:update", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
+            new SysMenu{ Id=1300300051401, Pid=1300300051101, Title="增加", Permission="sysTemplate:add", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
+            new SysMenu{ Id=1300300051501, Pid=1300300051101, Title="删除", Permission="sysTemplate:delete", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
+            new SysMenu{ Id=1300300051601, Pid=1300300051101, Title="预览", Permission="sysTemplate:delete", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
+
             new SysMenu{ Id=1300300060101, Pid=1300300000101, Title="任务调度", Path="/platform/job", Name="sysJob", Component="/system/job/index", Icon="ele-AlarmClock", Type=MenuTypeEnum.Menu, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=140 },
             new SysMenu{ Id=1300300060201, Pid=1300300060101, Title="查询", Permission="sysJob:pageJobDetail", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
             new SysMenu{ Id=1300300060301, Pid=1300300060101, Title="编辑", Permission="sysJob:updateJobDetail", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },

@@ -50,10 +50,10 @@ public static class SqlSugarFilter
     {
         // 若仅本人数据，则直接返回
         var maxDataScope = SetDataScopeFilter(db);
-        if (maxDataScope == 0 || maxDataScope == (int)DataScopeEnum.Self) return;
+        if (maxDataScope is 0 or (int)DataScopeEnum.Self) return;
 
-        var userId = App.GetService<UserManager>()?.UserId;
-        if (userId == null) return;
+        long.TryParse(App.HttpContext?.User.FindFirst(ClaimConst.UserId)?.Value, out var userId);
+        if (userId <= 0) return;
 
         // 配置用户机构集合缓存
         var cacheKey = $"db:{db.CurrentConnectionConfig.ConfigId}:orgList:{userId}";
@@ -108,7 +108,7 @@ public static class SqlSugarFilter
     {
         var maxDataScope = (int)DataScopeEnum.All;
 
-        var userId = App.GetService<UserManager>().UserId;
+        long.TryParse(App.HttpContext?.User.FindFirst(ClaimConst.UserId)?.Value, out var userId);
         if (userId <= 0) return maxDataScope;
 
         // 获取用户最大数据范围---仅本人数据

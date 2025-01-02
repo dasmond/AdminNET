@@ -35,6 +35,9 @@ public class GoViewSysService : IDynamicApiController
     [DisplayName("GoView 登录")]
     public async Task<GoViewLoginOutput> Login(GoViewLoginInput input)
     {
+        // 设置默认租户
+        input.TenantId ??= SqlSugarConst.DefaultTenantId;
+
         _sysCacheService.Set($"{CacheConst.KeyConfig}{ConfigConst.SysCaptcha}", false);
 
         input.Password = CryptogramUtil.SM2Encrypt(input.Password);

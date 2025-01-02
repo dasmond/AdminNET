@@ -12,48 +12,49 @@ namespace Admin.NET.Core.Service;
 [ApiDescriptionSettings(Order = 390)]
 public class SysTenantService : IDynamicApiController, ITransient
 {
-    private readonly SqlSugarRepository<SysTenant> _sysTenantRep;
-    private readonly SqlSugarRepository<SysOrg> _sysOrgRep;
-    private readonly SqlSugarRepository<SysRole> _sysRoleRep;
-    private readonly SqlSugarRepository<SysPos> _sysPosRep;
-    private readonly SqlSugarRepository<SysUser> _sysUserRep;
+    private static readonly SysMenuService SysMenuService = App.GetService<SysMenuService>();
     private readonly SqlSugarRepository<SysUserExtOrg> _sysUserExtOrgRep;
     private readonly SqlSugarRepository<SysTenantMenu> _sysTenantMenuRep;
     private readonly SqlSugarRepository<SysRoleMenu> _sysRoleMenuRep;
-    private readonly SysRoleMenuService _sysRoleMenuService;
     private readonly SqlSugarRepository<SysUserRole> _userRoleRep;
+    private readonly SqlSugarRepository<SysTenant> _sysTenantRep;
+    private readonly SqlSugarRepository<SysRole> _sysRoleRep;
+    private readonly SqlSugarRepository<SysUser> _sysUserRep;
+    private readonly SqlSugarRepository<SysOrg> _sysOrgRep;
+    private readonly SqlSugarRepository<SysPos> _sysPosRep;
+    private readonly SysRoleMenuService _sysRoleMenuService;
     private readonly SysConfigService _sysConfigService;
     private readonly SysCacheService _sysCacheService;
     private readonly UploadOptions _uploadOptions;
 
-    public SysTenantService(SqlSugarRepository<SysTenant> sysTenantRep,
-        SqlSugarRepository<SysOrg> sysOrgRep,
-        SqlSugarRepository<SysRole> sysRoleRep,
-        SqlSugarRepository<SysPos> sysPosRep,
-        SqlSugarRepository<SysUser> sysUserRep,
+    public SysTenantService(
         SqlSugarRepository<SysUserExtOrg> sysUserExtOrgRep,
         SqlSugarRepository<SysTenantMenu> sysTenantMenuRep,
         SqlSugarRepository<SysRoleMenu> sysRoleMenuRep,
         SqlSugarRepository<SysUserRole> userRoleRep,
+        SqlSugarRepository<SysTenant> sysTenantRep,
+        SqlSugarRepository<SysUser> sysUserRep,
+        SqlSugarRepository<SysRole> sysRoleRep,
+        SqlSugarRepository<SysOrg> sysOrgRep,
+        SqlSugarRepository<SysPos> sysPosRep,
         IOptions<UploadOptions> uploadOptions,
+        SysRoleMenuService sysRoleMenuService,
         SysConfigService sysConfigService,
-        SysCacheService sysCacheService,
-        SysRoleMenuService sysRoleMenuService)
+        SysCacheService sysCacheService)
     {
         _sysTenantRep = sysTenantRep;
         _sysOrgRep = sysOrgRep;
         _sysRoleRep = sysRoleRep;
         _sysPosRep = sysPosRep;
         _sysUserRep = sysUserRep;
-        _sysTenantMenuRep = sysTenantMenuRep;
-        _sysUserExtOrgRep = sysUserExtOrgRep;
-        _sysRoleMenuRep = sysRoleMenuRep;
         _userRoleRep = userRoleRep;
+        _sysRoleMenuRep = sysRoleMenuRep;
+        _sysCacheService = sysCacheService;
         _uploadOptions = uploadOptions.Value;
         _sysConfigService = sysConfigService;
-        _sysCacheService = sysCacheService;
+        _sysTenantMenuRep = sysTenantMenuRep;
+        _sysUserExtOrgRep = sysUserExtOrgRep;
         _sysRoleMenuService = sysRoleMenuService;
-
     }
 
     /// <summary>
@@ -324,13 +325,15 @@ public class SysTenantService : IDynamicApiController, ITransient
 
         var platformMenu = allMenuList.First(u => u.Type == MenuTypeEnum.Dir && u.Title == "平台管理");
         menuList.Add(platformMenu);
-        menuList.AddRange(allMenuList.ToChildList(u => u.Id, u => u.Pid, u => u.Pid == platformMenu.Id && new[] { "菜单管理", "字典管理", "系统配置" }.Contains(u.Title)));
+        menuList.AddRange(allMenuList.ToChildList(u => u.Id, u => u.Pid, u => u.Pid == platformMenu.Id && new[] { "菜单管理", "字典管理", "模板管理", "系统配置" }.Contains(u.Title)));
         var dictMenu = menuList.First(u => u.Type == MenuTypeEnum.Menu && u.Title == "字典管理");
         menuList = menuList.Where(u => u.Pid != dictMenu.Id || !new[] { "编辑", "删除" }.Contains(u.Title)).ToList();
 
         var logMenu = allMenuList.First(u => u.Type == MenuTypeEnum.Dir && u.Title == "日志管理");
         menuList.Add(logMenu);
         menuList.AddRange(allMenuList.ToChildList(u => u.Id, u => u.Pid, u => u.Pid == logMenu.Id && new[] { "访问日志", "操作日志" }.Contains(u.Title)));
+        var logMenuIds = menuList.Where(u => u.Type == MenuTypeEnum.Menu && new[] { "访问日志", "操作日志" }.Contains(u.Title)).Select(u => u.Id).ToList();
+        menuList = menuList.Where(u => !logMenuIds.Contains(u.Pid) || !new[] { "清空" }.Contains(u.Title)).ToList();
 
         var flow = _sysTenantRep.Context.Queryable<SysMenu>().First(u => u.Type == MenuTypeEnum.Menu && u.Title == "审批流程");
         menuList.Add(allMenuList.First(u => u.Type == MenuTypeEnum.Dir && u.Title == "帮助文档"));
@@ -511,7 +514,7 @@ public class SysTenantService : IDynamicApiController, ITransient
         await _sysTenantMenuRep.InsertRangeAsync(sysTenantMenuList);
 
         // 清除菜单权限缓存
-        App.GetService<SysMenuService>().DeleteMenuCache();
+        SysMenuService.DeleteMenuCache();
     }
 
     /// <summary>
@@ -523,7 +526,7 @@ public class SysTenantService : IDynamicApiController, ITransient
     public async Task<List<long>> GetTenantMenuList([FromQuery] BaseIdInput input)
     {
         var menuIds = await _sysTenantMenuRep.AsQueryable().Where(u => u.TenantId == input.Id).Select(u => u.MenuId).ToListAsync();
-        return await App.GetService<SysMenuService>().ExcludeParentMenuOfFullySelected(menuIds);
+        return await SysMenuService.ExcludeParentMenuOfFullySelected(menuIds);
     }
 
     /// <summary>
@@ -549,10 +552,9 @@ public class SysTenantService : IDynamicApiController, ITransient
     [DisplayName("切换租户")]
     public async Task<LoginOutput> ChangeTenant(BaseIdInput input)
     {
-        var userManager = App.GetService<UserManager>();
-
+        var userId = (App.HttpContext?.User.FindFirst(ClaimConst.UserId)?.Value)?.ToLong();
         _ = await _sysTenantRep.GetFirstAsync(u => u.Id == input.Id) ?? throw Oops.Oh(ErrorCodeEnum.D1002);
-        var user = await _sysUserRep.GetFirstAsync(u => u.Id == userManager.UserId) ?? throw Oops.Oh(ErrorCodeEnum.D1002);
+        var user = await _sysUserRep.GetFirstAsync(u => u.Id == userId) ?? throw Oops.Oh(ErrorCodeEnum.D1002);
         user.TenantId = input.Id;
 
         return await GetAccessTokenInNotSingleLogin(user);

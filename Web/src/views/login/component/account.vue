@@ -83,7 +83,7 @@
 </template>
 
 <script lang="ts" setup name="loginAccount">
-import {reactive, computed, ref, onMounted, defineAsyncComponent, onUnmounted, watch } from 'vue';
+import { reactive, computed, ref, onMounted, defineAsyncComponent, onUnmounted, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { ElMessage, InputInstance } from 'element-plus';
 import { useI18n } from 'vue-i18n';
@@ -208,7 +208,7 @@ const getCaptcha = async () => {
 	const res = await getAPI(SysAuthApi).apiSysAuthCaptchaGet().then(res => res.data.result);
 	state.captchaImage = 'data:text/html;base64,' + res?.img;
 	state.expirySeconds = res?.expirySeconds;
-  state.ruleForm.codeId = res?.id;
+	state.ruleForm.codeId = res?.id;
 };
 
 // 获取时间
@@ -230,7 +230,7 @@ const onSignIn = async () => {
 			const password = sm2.doEncrypt(state.ruleForm.password, publicKey, 1);
 
 			state.ruleForm.tenantId ??= props.tenantInfo.id ?? props.tenantInfo.list[0]?.value ?? -1;
-			console.log(state.ruleForm.tenantId)
+			// console.log(state.ruleForm.tenantId);
 			const [err, res] = await feature(getAPI(SysAuthApi).apiSysAuthLoginPost({ ...state.ruleForm, password: password } as any));
 			if (err) {
 				getCaptcha(); // 重新获取验证码
