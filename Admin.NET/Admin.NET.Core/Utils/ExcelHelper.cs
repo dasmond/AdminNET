@@ -132,6 +132,7 @@ public class ExcelHelper
 
             if (dataList != null)
             {
+                // 添加下拉列表
                 AddListValidation(columnIndex, dataList);
                 dropdownSheet.Cells[1, columnIndex, dataList.Count, columnIndex].LoadFromCollection(dataList);
             }
