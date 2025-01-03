@@ -78,7 +78,7 @@ public static class CommonUtil
             result = $"{App.HttpContext.Request.Headers["X-Original"]}";
         else if (App.HttpContext.Request.Headers.ContainsKey("X-Original-Host"))
             result = $"{App.HttpContext.Request.Scheme}://{App.HttpContext.Request.Headers["X-Original-Host"]}";
-        return result;
+        return result + (string.IsNullOrWhiteSpace(App.Settings.VirtualPath) ? "" : App.Settings.VirtualPath);
     }
 
     /// <summary>
