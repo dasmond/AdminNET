@@ -38,25 +38,25 @@ public class AddTemplateInput : SysTemplate
     /// 名称
     /// </summary>
     [Required(ErrorMessage = "名称不能为空")]
-    public string Name { get; set; }
+    public override string Name { get; set; }
 
     /// <summary>
     /// 编码
     /// </summary>
     [Required(ErrorMessage = "编码不能为空")]
-    public string Code { get; set; }
+    public override string Code { get; set; }
 
     /// <summary>
     /// 分组名称
     /// </summary>
     [Required(ErrorMessage = "分组名称不能为空")]
-    public string GroupName { get; set; }
+    public override string GroupName { get; set; }
 
     /// <summary>
     /// 模板内容
     /// </summary>
     [Required(ErrorMessage = "内容名称不能为空")]
-    public string Content { get; set; }
+    public override string Content { get; set; }
 }
 
 /// <summary>
@@ -69,7 +69,7 @@ public class UpdateTemplateInput : AddTemplateInput
     /// </summary>
     [Required(ErrorMessage = "Id不能为空")]
     [DataValidation(ValidationTypes.Numeric)]
-    public virtual long Id { get; set; }
+    public override long Id { get; set; }
 }
 
 /// <summary>
