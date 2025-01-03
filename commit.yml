@@ -3,18 +3,36 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '6eff620ce86ac1085dbfe02a3ab25b42ea8e6d3a'
-    oldFile: !uuid 'c2a2ff13306eb5ad54c6dfab7e61f778f1bd2b1d'
+    newFile: !uuid '061753d3f23a85cbd4aa6f7657578213075b41db'
+    oldFile: !uuid '6eff620ce86ac1085dbfe02a3ab25b42ea8e6d3a'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid 'e28a912333579d3127debbaab726c39a3c6bac09'
-    oldFile: !uuid '0bc8f66d0e131f6de32220eb3339d881d80f1289'
-  /Admin.NET/Admin.NET.Core/SqlSugar:
-    newFile: !uuid '4759b3718b899d2da65afc85ea2820aa281b6acd'
-    oldFile: !uuid '05d332d929e648213346721bb68dc6091005be83'
-  /Admin.NET/Admin.NET.Core/SqlSugar/SqlSugarSetup.cs:
-    newFile: !uuid 'a7b84414df518cc5436db5038a049b0e1791e1be'
-    oldFile: !uuid 'a2242c7f689dcf3b2bb9f484ef9d5af12962be47'
-gitCommitId: !uuid '8c3af6ac2ab8fc9c8019ee54256573f969fb74c3'
+    newFile: !uuid '25c97c8d8bf88ba47058201606f707e2e9753178'
+    oldFile: !uuid 'e28a912333579d3127debbaab726c39a3c6bac09'
+  /Admin.NET/Admin.NET.Core/Const:
+    newFile: !uuid '3b11a687b057fff8b90f04a46721bb2a8618f7b3'
+    oldFile: !uuid '83e272369af60d3db5ed3572a39d34652fb598ed'
+  /Admin.NET/Admin.NET.Core/Const/ConfigConst.cs:
+    newFile: !uuid '144bfd49232e86edc8597cea828a0f482898415e'
+    oldFile: !uuid '9ec6328a2b51146ca560173684cf4ad413d2c6ec'
+  /Admin.NET/Admin.NET.Core/Entity:
+    newFile: !uuid '5dce5fb4aaf884aa8399f8293949d42b5df5fb7f'
+    oldFile: !uuid '795401dba4c6b9db580dc2de8295bcdc6c202fe0'
+  /Admin.NET/Admin.NET.Core/Entity/SysTemplate.cs:
+    newFile: !uuid '3ec675b1b48e7842b4f7792521f3195c836669ba'
+    oldFile: !uuid '68e1268796d906a81dca39588dfc4c177413837a'
+  /Admin.NET/Admin.NET.Core/Service:
+    newFile: !uuid 'a42ecb3d2fdb9a9f23c04a7b433eca036a0e3300'
+    oldFile: !uuid '2f9ceda22ca45cc19712b9e41504b003c5ade7e6'
+  /Admin.NET/Admin.NET.Core/Service/Template:
+    newFile: !uuid '14ab0b87d963664266d85fe0ca70dc886bd80955'
+    oldFile: !uuid '8de049aff22b4e99d563784299fe508f15c8e5ea'
+  /Admin.NET/Admin.NET.Core/Service/Template/Dto:
+    newFile: !uuid '4eb8edf0ccb020ad48cde28819ec865e596cec31'
+    oldFile: !uuid '3238b8e0ed5dc637bc337fa3661270d69e043d46'
+  /Admin.NET/Admin.NET.Core/Service/Template/Dto/SysTemplateInput.cs:
+    newFile: !uuid '38d70a5d041fad2fd7bb50e3046aa8cc51d85945'
+    oldFile: !uuid '05cd791bad72664d049a029910175fe3dd605a1b'
+gitCommitId: !uuid '2f83d6f841abdfb51e4d5c372a8b2b1ed2663a1d'
 renames: {
   }
-revisionId: 2661
+revisionId: 2662
