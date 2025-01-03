@@ -360,14 +360,15 @@ public static class SqlSugarSetup
                 entityTypes = entityTypes.Where(u => u.GetCustomAttribute<TenantAttribute>()?.configId.ToString() == config.ConfigId.ToString()).ToList(); // 自定义的库
 
             int count = 0, sum = entityTypes.Count;
-            foreach (var entityType in entityTypes)
+            var taskList = entityTypes.Select(entityType => Task.Run(() =>
             {
-                Console.WriteLine($"创建表 {entityType} ({config.ConfigId} - {++count}/{sum})");
+                Console.WriteLine($"创建表 {entityType, -64} ({config.ConfigId} - {Interlocked.Increment(ref count):D003}/{sum:D003})");
                 if (entityType.GetCustomAttribute<SplitTableAttribute>() == null)
                     dbProvider.CodeFirst.InitTables(entityType);
                 else
                     dbProvider.CodeFirst.SplitTables().InitTables(entityType);
-            }
+            }));
+            Task.WhenAll(taskList).GetAwaiter().GetResult();
         }
 
         // 初始化种子数据
@@ -390,32 +391,32 @@ public static class SqlSugarSetup
             .OrderBy(u => u.GetCustomAttributes(typeof(SeedDataAttribute), false).Length > 0 ? ((SeedDataAttribute)u.GetCustomAttributes(typeof(SeedDataAttribute), false)[0]).Order : 0).ToList();
 
         int count = 0, sum = seedDataTypes.Count;
-        foreach (var seedType in seedDataTypes)
+        var taskList = seedDataTypes.Select(seedType => Task.Run(() =>
         {
             var entityType = seedType.GetInterfaces().First().GetGenericArguments().First();
             if (config.ConfigId.ToString() == SqlSugarConst.MainConfigId) // 默认库（有系统表特性、没有日志表和租户表特性）
             {
-                if (entityType.GetCustomAttribute<SysTableAttribute>() == null && (entityType.GetCustomAttribute<LogTableAttribute>() != null || entityType.GetCustomAttribute<TenantAttribute>() != null)) continue;
+                if (entityType.GetCustomAttribute<SysTableAttribute>() == null &&
+                    (entityType.GetCustomAttribute<LogTableAttribute>() != null ||
+                     entityType.GetCustomAttribute<TenantAttribute>() != null)) return;
             }
             else if (config.ConfigId.ToString() == SqlSugarConst.LogConfigId) // 日志库
             {
-                if (entityType.GetCustomAttribute<LogTableAttribute>() == null) continue;
+                if (entityType.GetCustomAttribute<LogTableAttribute>() == null) return;
             }
             else
             {
                 var att = entityType.GetCustomAttribute<TenantAttribute>(); // 自定义的库
-                if (att == null || att.configId.ToString() != config.ConfigId.ToString()) continue;
+                if (att == null || att.configId.ToString() != config.ConfigId.ToString()) return;
             }
 
             var instance = Activator.CreateInstance(seedType);
             var hasDataMethod = seedType.GetMethod("HasData");
             var seedData = ((IEnumerable)hasDataMethod?.Invoke(instance, null))?.Cast<object>();
-            if (seedData == null) continue;
-
-            var entityInfo = dbProvider.EntityMaintenance.GetEntityInfo(entityType);
-            Console.WriteLine($"添加数据 {entityInfo.DbTableName} ({config.ConfigId} - {++count}/{sum}，数据量：{seedData.Count()})");
+            if (seedData == null) return;
 
             // 若实体包含Id字段，则设置为当前租户Id递增1
+            var entityInfo = dbProvider.EntityMaintenance.GetEntityInfo(entityType);
             if (entityInfo.Columns.Any(u => u.PropertyName == nameof(EntityBaseId.Id)))
             {
                 var seedId = config.ConfigId.ToLong();
@@ -437,28 +438,35 @@ public static class SqlSugarSetup
             }
             else
             {
+                var dataList = seedData.ToList();
+                int updateCount = 0, insertCount = 0;
                 if (entityInfo.Columns.Any(u => u.IsPrimarykey))
                 {
                     // 按主键进行批量增加和更新
-                    var storage = dbProvider.StorageableByObject(seedData.ToList()).ToStorage();
+                    var storage = dbProvider.StorageableByObject(dataList).ToStorage();
 
                     // 先修改再插入，否则会更新修改时间字段
                     if (seedType.GetCustomAttribute<IgnoreUpdateSeedAttribute>() == null) // 有忽略更新种子特性时则不更新
                     {
-                        int updateCount = storage.AsUpdateable.IgnoreColumns(entityInfo.Columns.Where(u => u.PropertyInfo.GetCustomAttribute<IgnoreUpdateSeedColumnAttribute>() != null).Select(u => u.PropertyName).ToArray()).ExecuteCommand();
-                        Console.WriteLine($"  修改 {updateCount}/{seedData.Count()} 条记录");
+                        updateCount = storage.AsUpdateable.IgnoreColumns(entityInfo.Columns
+                            .Where(u => u.PropertyInfo.GetCustomAttribute<IgnoreUpdateSeedColumnAttribute>() != null)
+                            .Select(u => u.PropertyName).ToArray()).ExecuteCommand();
                     }
-                    int insertCount = storage.AsInsertable.ExecuteCommand();
-                    Console.WriteLine($"  插入 {insertCount}/{seedData.Count()} 条记录");
+                    insertCount = storage.AsInsertable.ExecuteCommand();
                 }
                 else
                 {
                     // 无主键则只进行插入
                     if (!dbProvider.Queryable(entityInfo.DbTableName, entityInfo.DbTableName).Any())
-                        dbProvider.InsertableByObject(seedData.ToList()).ExecuteCommand();
+                    {
+                        insertCount = dataList.Count;
+                        dbProvider.InsertableByObject(dataList).ExecuteCommand();
+                    }
                 }
+                Console.WriteLine($"添加数据 {entityInfo.DbTableName, -32} ({config.ConfigId} - {Interlocked.Increment(ref count):D003}/{sum:D003}，数据量：{dataList.Count:D003}，插入 {insertCount:D003} 条记录，修改 {updateCount:D003} 条记录)");
             }
-        }
+        }));
+        Task.WhenAll(taskList).GetAwaiter().GetResult();
         _isHandlingSeedData = false;
     }
 
