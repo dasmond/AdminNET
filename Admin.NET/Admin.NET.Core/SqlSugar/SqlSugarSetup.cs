@@ -363,6 +363,16 @@ public static class SqlSugarSetup
             var taskList = entityTypes.Select(entityType => Task.Run(() =>
             {
                 Console.WriteLine($"创建表 {entityType, -64} ({config.ConfigId} - {Interlocked.Increment(ref count):D003}/{sum:D003})");
+
+                // 将不存在实体中的字段改为可空
+                var entityInfo = dbProvider.EntityMaintenance.GetEntityInfo(entityType);
+                var dbColumnInfos = dbProvider.DbMaintenance.GetColumnInfosByTableName(entityInfo.DbTableName) ?? new();
+                foreach (var dbColumnInfo in dbColumnInfos.Where(dbColumnInfo => entityInfo.Columns.All(u => u.DbColumnName != dbColumnInfo.DbColumnName)))
+                {
+                    dbColumnInfo.IsNullable = true;
+                    dbProvider.DbMaintenance.UpdateColumn(entityInfo.DbTableName, dbColumnInfo);
+                }
+
                 if (entityType.GetCustomAttribute<SplitTableAttribute>() == null)
                     dbProvider.CodeFirst.InitTables(entityType);
                 else
