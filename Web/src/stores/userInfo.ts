@@ -83,6 +83,8 @@ export const useUserInfo = defineStore('userInfo', {
 							tenantId: d.tenantId,
 							time: new Date().getTime(),
 						};
+						Local.set('t', userInfos.tenantId);
+
 						// vue-next-admin 提交Id：225bce7 提交消息：admin-23.03.26:发布v2.4.32版本
 						// 增加了下面代码，引起当前会话的用户信息不会刷新，如：重新提交的头像不更新，需要新开一个页面才能正确显示
 						// Session.set('userInfo', userInfos);
