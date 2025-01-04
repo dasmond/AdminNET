@@ -83,6 +83,7 @@ export const useUserInfo = defineStore('userInfo', {
 							tenantId: d.tenantId,
 							time: new Date().getTime(),
 						};
+						Local.remove('t');
 						Local.set('t', userInfos.tenantId);
 
 						// vue-next-admin 提交Id：225bce7 提交消息：admin-23.03.26:发布v2.4.32版本
