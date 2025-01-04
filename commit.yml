@@ -3,18 +3,60 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '696954d3cb0d87a252e95491f6ab095f95d5074a'
-    oldFile: !uuid 'a0af62dba77d7f00a228cbbae2c49d74e733d349'
+    newFile: !uuid '8a5c5f8783e533a1090918cb1106ad6b4162280f'
+    oldFile: !uuid '696954d3cb0d87a252e95491f6ab095f95d5074a'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '8b61bc474bac2302b292db20af0b899aaaf9d522'
-    oldFile: !uuid '25c97c8d8bf88ba47058201606f707e2e9753178'
+    newFile: !uuid '64bb87c2ba4739f371ca34b02a0fdbfc46f9d90a'
+    oldFile: !uuid '8b61bc474bac2302b292db20af0b899aaaf9d522'
+  /Admin.NET/Admin.NET.Core/Attribute:
+    newFile: !uuid 'b56279045549f422011a11910d54470d09df2afa'
+    oldFile: !uuid '7a432775b3ad0e65ec61eca14881ce1f430a2dda'
+  /Admin.NET/Admin.NET.Core/Attribute/DictAttribute.cs:
+    newFile: !uuid 'bcdeb3a2ddc105f0a1beb1574f6c32c36136a09c'
+    oldFile: !uuid '04d98be216adc23fe221c1f3f483b927492d6cf8'
+  /Admin.NET/Admin.NET.Core/Attribute/IdempotentAttribute.cs:
+    newFile: !uuid '288530932b6c9b3f03d767afb96d11bdb327d44d'
+    oldFile: !uuid 'd9664b62a159aa3851b0dd1910607fbd8739aa6f'
+  /Admin.NET/Admin.NET.Core/Service:
+    newFile: !uuid '1f0e1fc41406ba561a555ec76b7c60d1ee772dc4'
+    oldFile: !uuid 'a42ecb3d2fdb9a9f23c04a7b433eca036a0e3300'
+  /Admin.NET/Admin.NET.Core/Service/Auth:
+    newFile: !uuid '07f31ebdec6c0d1404468ff966d888bc3c4aab13'
+    oldFile: !uuid '2dbd640477da3d158c7757b5c28936b3f2cf62b2'
+  /Admin.NET/Admin.NET.Core/Service/Auth/SysAuthService.cs:
+    newFile: !uuid '5a507d870e85123a73ae8bd41da165a904952d4e'
+    oldFile: !uuid 'e52ecf6ca92cdf38eae36e72ff93da3cac49be60'
+  /Admin.NET/Admin.NET.Core/Service/Auth/SysLdapService.cs:
+    newFile: !uuid '3e305686d77a052b9bb9facedc9a819039daa73c'
+    oldFile: !uuid 'd1090fb4edc4b0e20b6cdc4e8110aba66230efd8'
+  /Admin.NET/Admin.NET.Core/SignatureAuth:
+    newFile: !uuid 'a9e7cd64b3516d3a3014e3f5fc83c8af65832fb0'
+    oldFile: !uuid 'e4f4f436c44a7ed5ee1694b55ccad087b69f4004'
+  /Admin.NET/Admin.NET.Core/SignatureAuth/SignatureAuthenticationHandler.cs:
+    newFile: !uuid '59ee385cc407b62109e850e7084c064e334d72f8'
+    oldFile: !uuid '753c2f82b68acaa5fc147050c0b901fef863d06f'
   /Admin.NET/Admin.NET.Core/SqlSugar:
-    newFile: !uuid '77ef03907342aca35f61fc10f767e676160cc23d'
-    oldFile: !uuid '4759b3718b899d2da65afc85ea2820aa281b6acd'
-  /Admin.NET/Admin.NET.Core/SqlSugar/SqlSugarSetup.cs:
-    newFile: !uuid '4d01aa3f7c4438b114215ebf3a1f92c3237daad5'
-    oldFile: !uuid 'a7b84414df518cc5436db5038a049b0e1791e1be'
-gitCommitId: !uuid '2c8ea01593b06397db0d09007ec35d5ae81ffa29'
+    newFile: !uuid '6127e50609b43999fbb8924cd6a46927c770eabe'
+    oldFile: !uuid '77ef03907342aca35f61fc10f767e676160cc23d'
+  /Admin.NET/Admin.NET.Core/SqlSugar/SqlSugarFilter.cs:
+    newFile: !uuid '937894975d50efb0315cac2e3b804e7fbfeb3308'
+    oldFile: !uuid '07cc1a33d149830c810df4fe583cc0cb9c415a1c'
+  /Admin.NET/Admin.NET.Core/Utils:
+    newFile: !uuid 'df0e0c3d3afdb69a460e17f40f02699e8b741715'
+    oldFile: !uuid 'e75ea349df1fb1255188e7858b8c485f32ed60ca'
+  /Admin.NET/Admin.NET.Core/Utils/CommonUtil.cs:
+    newFile: !uuid 'e9ea0f78f84b416d3cbb7d3c199a76ef4847c4cd'
+    oldFile: !uuid '2e32da499dedfc5ff056db17fe65b2133e5484e2'
+  /Admin.NET/Admin.NET.Web.Core:
+    newFile: !uuid '54d28f02d1dc3da9af2cbd1f1f2b6aa994500eea'
+    oldFile: !uuid '7cf0799f5b6c06d351f8dc42cef417abed13cc64'
+  /Admin.NET/Admin.NET.Web.Core/Handlers:
+    newFile: !uuid 'b280af3ceadeb157ad044f1d4b17d9b72aacfc41'
+    oldFile: !uuid 'c437d7f5388031b598eec27355e073ab97b92c15'
+  /Admin.NET/Admin.NET.Web.Core/Handlers/JwtHandler.cs:
+    newFile: !uuid 'bcd2bd60f3cfadacc998232e30cf095a5c177eaf'
+    oldFile: !uuid 'd79488ad29123c307cc364860c2b17a0d9061fd1'
+gitCommitId: !uuid '1bffd19bb6f2f4c844d32b068430ea1533abfa48'
 renames: {
   }
-revisionId: 2720
+revisionId: 2721
