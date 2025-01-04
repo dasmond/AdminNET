@@ -38,7 +38,7 @@ export const clearAccessAfterReload = () => {
 	const tenantId = useUserInfo().userInfos.tenantId;
 
 	clearTokens();
-	Local.set('t', tenantId);
+	if (tenantId) Local.set('t', tenantId);
 
 	// 刷新浏览器
 	window.location.reload();
