@@ -35,6 +35,11 @@ public class IdempotentAttribute : Attribute, IAsyncActionFilter
     /// </summary>
     public bool ThrowBah { get; set; }
 
+    /// <summary>
+    /// 缓存服务
+    /// </summary>
+    private readonly SysCacheService _sysCacheService = App.GetRequiredService<SysCacheService>();
+
     public IdempotentAttribute()
     {
     }
@@ -54,14 +59,13 @@ public class IdempotentAttribute : Attribute, IAsyncActionFilter
         }
 
         var cacheKey = MD5Encryption.Encrypt($"{CacheKey}{path}{userId}{parameters}");
-        var sysCacheService = App.GetRequiredService<SysCacheService>();
-        if (sysCacheService.ExistKey(cacheKey))
+        if (_sysCacheService.ExistKey(cacheKey))
         {
             if (ThrowBah) throw Oops.Oh(Message);
 
             try
             {
-                var cachedResult = sysCacheService.Get<ResponseData>(cacheKey);
+                var cachedResult = _sysCacheService.Get<ResponseData>(cacheKey);
                 context.Result = new ObjectResult(cachedResult.Value);
             }
             catch (Exception ex)
@@ -72,7 +76,7 @@ public class IdempotentAttribute : Attribute, IAsyncActionFilter
         else
         {
             // 先加入一个空缓存，防止第一次请求结果没回来导致连续请求
-            sysCacheService.Set(cacheKey, "", cacheExpireTime);
+            _sysCacheService.Set(cacheKey, "", cacheExpireTime);
             var resultContext = await next();
             if (resultContext.Result is ObjectResult objectResult)
             {
@@ -82,7 +86,7 @@ public class IdempotentAttribute : Attribute, IAsyncActionFilter
                     Type = valueType.Name,
                     Value = objectResult.Value
                 };
-                sysCacheService.Set(cacheKey, responseData, cacheExpireTime);
+                _sysCacheService.Set(cacheKey, responseData, cacheExpireTime);
             }
         }
     }

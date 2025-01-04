@@ -29,6 +29,11 @@ public class DictAttribute : ValidationAttribute, ITransient
     public bool AllowNullValue { get; set; } = false;
 
     /// <summary>
+    /// 字典值服务
+    /// </summary>
+    private readonly SysDictDataService _sysDictDataService = App.GetRequiredService<SysDictDataService>();
+
+    /// <summary>
     /// 字典值合规性校验特性
     /// </summary>
     /// <param name="dictTypeCode"></param>
@@ -55,8 +60,8 @@ public class DictAttribute : ValidationAttribute, ITransient
         // 是否忽略空字符串
         if (AllowEmptyStrings && string.IsNullOrEmpty(valueAsString)) return ValidationResult.Success;
 
-        var sysDictDataServiceProvider = App.GetRequiredService<SysDictDataService>();
-        var dictDataList = sysDictDataServiceProvider.GetDataList(DictTypeCode).Result;
+        // 获取字典值列表
+        var dictDataList = _sysDictDataService.GetDataList(DictTypeCode).Result;
 
         // 获取枚举类型，可能存在Nullable类型，所以需要尝试获取最终类型
         var type = value?.GetType();

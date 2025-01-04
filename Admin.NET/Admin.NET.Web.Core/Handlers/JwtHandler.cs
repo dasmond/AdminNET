@@ -11,98 +11,84 @@ using Furion.Authorization;
 using Furion.DataEncryption;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Threading.Tasks;
 
-namespace Admin.NET.Web.Core
+namespace Admin.NET.Web.Core;
+
+public class JwtHandler : AppAuthorizeHandler
 {
-    public class JwtHandler : AppAuthorizeHandler
+    private readonly SysCacheService _sysCacheService = App.GetRequiredService<SysCacheService>();
+    private readonly SysConfigService _sysConfigService = App.GetRequiredService<SysConfigService>();
+    private static readonly SysMenuService SysMenuService = App.GetRequiredService<SysMenuService>();
+
+    /// <summary>
+    /// 自动刷新Token
+    /// </summary>
+    /// <param name="context"></param>
+    /// <param name="httpContext"></param>
+    /// <returns></returns>
+    public override async Task HandleAsync(AuthorizationHandlerContext context, DefaultHttpContext httpContext)
     {
-        private readonly IServiceProvider _serviceProvider;
-
-        public JwtHandler(IServiceProvider serviceProvider)
+        // 若当前账号存在黑名单中则授权失败
+        if (_sysCacheService.ExistKey($"{CacheConst.KeyBlacklist}{context.User.FindFirst(ClaimConst.UserId)?.Value}"))
         {
-            _serviceProvider = serviceProvider;
+            context.Fail();
+            context.GetCurrentHttpContext().SignoutToSwagger();
+            return;
         }
 
-        /// <summary>
-        /// 自动刷新Token
-        /// </summary>
-        /// <param name="context"></param>
-        /// <param name="httpContext"></param>
-        /// <returns></returns>
-        public override async Task HandleAsync(AuthorizationHandlerContext context, DefaultHttpContext httpContext)
+        var tokenExpire = await _sysConfigService.GetTokenExpire();
+        var refreshTokenExpire = await _sysConfigService.GetRefreshTokenExpire();
+        if (JWTEncryption.AutoRefreshToken(context, context.GetCurrentHttpContext(), tokenExpire, refreshTokenExpire))
         {
-            // var serviceProvider = context.GetCurrentHttpContext().RequestServices;
-            using var serviceScope = _serviceProvider.CreateScope();
-
-            // 若当前账号存在黑名单中则授权失败
-            var sysCacheService = serviceScope.ServiceProvider.GetRequiredService<SysCacheService>();
-            if (sysCacheService.ExistKey($"{CacheConst.KeyBlacklist}{context.User.FindFirst(ClaimConst.UserId)?.Value}"))
-            {
-                context.Fail();
-                context.GetCurrentHttpContext().SignoutToSwagger();
-                return;
-            }
-
-            var sysConfigService = serviceScope.ServiceProvider.GetRequiredService<SysConfigService>();
-            var tokenExpire = await sysConfigService.GetTokenExpire();
-            var refreshTokenExpire = await sysConfigService.GetRefreshTokenExpire();
-            if (JWTEncryption.AutoRefreshToken(context, context.GetCurrentHttpContext(), tokenExpire, refreshTokenExpire))
-            {
-                await AuthorizeHandleAsync(context);
-            }
-            else
-            {
-                context.Fail(); // 授权失败
-                var currentHttpContext = context.GetCurrentHttpContext();
-                if (currentHttpContext == null)
-                    return;
-                // 跳过由于 SignatureAuthentication 引发的失败
-                if (currentHttpContext.Items.ContainsKey(SignatureAuthenticationDefaults.AuthenticateFailMsgKey))
-                    return;
-                currentHttpContext.SignoutToSwagger();
-            }
+            await AuthorizeHandleAsync(context);
         }
-
-        public override async Task<bool> PipelineAsync(AuthorizationHandlerContext context, DefaultHttpContext httpContext)
+        else
         {
-            // 已自动验证 Jwt Token 有效性
-            return await CheckAuthorizeAsync(httpContext);
+            context.Fail(); // 授权失败
+            var currentHttpContext = context.GetCurrentHttpContext();
+            if (currentHttpContext == null) return;
+
+            // 跳过由于 SignatureAuthentication 引发的失败
+            if (currentHttpContext.Items.ContainsKey(SignatureAuthenticationDefaults.AuthenticateFailMsgKey)) return;
+            currentHttpContext.SignoutToSwagger();
         }
+    }
 
-        /// <summary>
-        /// 权限校验核心逻辑
-        /// </summary>
-        /// <param name="httpContext"></param>
-        /// <returns></returns>
-        private static async Task<bool> CheckAuthorizeAsync(DefaultHttpContext httpContext)
-        {
-            // 登录模式判断PC、APP
-            if (App.User.FindFirst(ClaimConst.LoginMode)?.Value == ((int)LoginModeEnum.APP).ToString())
-                return true;
+    public override async Task<bool> PipelineAsync(AuthorizationHandlerContext context, DefaultHttpContext httpContext)
+    {
+        // 已自动验证 Jwt Token 有效性
+        return await CheckAuthorizeAsync(httpContext);
+    }
 
-            // 排除超管
-            if (App.User.FindFirst(ClaimConst.AccountType)?.Value == ((int)AccountTypeEnum.SuperAdmin).ToString())
-                return true;
+    /// <summary>
+    /// 权限校验核心逻辑
+    /// </summary>
+    /// <param name="httpContext"></param>
+    /// <returns></returns>
+    private static async Task<bool> CheckAuthorizeAsync(DefaultHttpContext httpContext)
+    {
+        // 登录模式判断PC、APP
+        if (App.User.FindFirst(ClaimConst.LoginMode)?.Value == ((int)LoginModeEnum.APP).ToString())
+            return true;
 
-            // 路由名称
-            var routeName = httpContext.Request.Path.StartsWithSegments("/api")
-                ? httpContext.Request.Path.Value[5..].Replace("/", ":")
-                : httpContext.Request.Path.Value[1..].Replace("/", ":");
+        // 排除超管
+        if (App.User.FindFirst(ClaimConst.AccountType)?.Value == ((int)AccountTypeEnum.SuperAdmin).ToString())
+            return true;
 
-            var serviceScope = httpContext.RequestServices.CreateScope();
-            var sysMenuService = serviceScope.ServiceProvider.GetRequiredService<SysMenuService>();
+        // 路由名称
+        var routeName = httpContext.Request.Path.StartsWithSegments("/api")
+            ? httpContext.Request.Path.Value![5..].Replace("/", ":")
+            : httpContext.Request.Path.Value![1..].Replace("/", ":");
 
-            // 获取用户拥有按钮权限集合
-            var ownBtnPermList = await sysMenuService.GetOwnBtnPermList();
-            if (ownBtnPermList.Exists(u => routeName.Equals(u, StringComparison.CurrentCultureIgnoreCase)))
-                return true;
+        // 获取用户拥有按钮权限集合
+        var ownBtnPermList = await SysMenuService.GetOwnBtnPermList();
+        if (ownBtnPermList.Exists(u => routeName.Equals(u, StringComparison.CurrentCultureIgnoreCase)))
+            return true;
 
-            // 获取系统所有按钮权限集合
-            var allBtnPermList = await sysMenuService.GetAllBtnPermList();
-            return allBtnPermList.TrueForAll(u => !routeName.Equals(u, StringComparison.CurrentCultureIgnoreCase));
-        }
+        // 获取系统所有按钮权限集合
+        var allBtnPermList = await SysMenuService.GetAllBtnPermList();
+        return allBtnPermList.TrueForAll(u => !routeName.Equals(u, StringComparison.CurrentCultureIgnoreCase));
     }
 }

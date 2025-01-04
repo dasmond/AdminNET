@@ -23,6 +23,8 @@ public class SysAuthService : IDynamicApiController, ITransient
     private readonly SysOnlineUserService _sysOnlineUserService;
     private readonly SysConfigService _sysConfigService;
     private readonly SysUserService _sysUserService;
+    private readonly SysSmsService _sysSmsService;
+    private readonly SysLdapService _sysLdapService;
     private readonly ICaptcha _captcha;
     private readonly SysCacheService _sysCacheService;
 
@@ -31,6 +33,8 @@ public class SysAuthService : IDynamicApiController, ITransient
         IHttpContextAccessor httpContextAccessor,
         SysOnlineUserService sysOnlineUserService,
         SysConfigService sysConfigService,
+        SysLdapService sysLdapService,
+        SysSmsService sysSmsService,
         SysCacheService sysCacheService,
         SysMenuService sysMenuService,
         SysUserService sysUserService,
@@ -40,6 +44,7 @@ public class SysAuthService : IDynamicApiController, ITransient
         _captcha = captcha;
         _sysUserRep = sysUserRep;
         _userManager = userManager;
+        _sysSmsService = sysSmsService;
         _sysUserService = sysUserService;
         _sysMenuService = sysMenuService;
         _sysCacheService = sysCacheService;
@@ -183,7 +188,7 @@ public class SysAuthService : IDynamicApiController, ITransient
             {
                 VerifyPassword(password, keyPasswordErrorTimes, passwordErrorTimes, user);
             }
-            else if (!await App.GetRequiredService<SysLdapService>().AuthAccount(user.TenantId.Value, userLdap.Account, CryptogramUtil.Decrypt(password)))
+            else if (!await _sysLdapService.AuthAccount(user.TenantId!.Value, userLdap.Account, CryptogramUtil.Decrypt(password)))
             {
                 _sysCacheService.Set(keyPasswordErrorTimes, ++passwordErrorTimes, TimeSpan.FromMinutes(30));
                 throw Oops.Oh(ErrorCodeEnum.D1000);
@@ -205,7 +210,7 @@ public class SysAuthService : IDynamicApiController, ITransient
     public virtual async Task<LoginOutput> LoginPhone([Required] LoginPhoneInput input)
     {
         // 校验短信验证码
-        App.GetRequiredService<SysSmsService>().VerifyCode(new SmsVerifyCodeInput { Phone = input.Phone, Code = input.Code });
+        _sysSmsService.VerifyCode(new SmsVerifyCodeInput { Phone = input.Phone, Code = input.Code });
 
         // 获取登录租户和用户
         var (_, user) = await GetLoginUserAndTenant(input.TenantId, phone: input.Phone);

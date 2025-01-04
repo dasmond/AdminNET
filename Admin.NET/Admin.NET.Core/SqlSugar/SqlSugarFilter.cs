@@ -12,6 +12,8 @@ public static class SqlSugarFilter
     /// 缓存全局查询过滤器（内存缓存）
     /// </summary>
     private static readonly ICache Cache = NewLife.Caching.Cache.Default;
+    private static readonly SysOrgService SysOrgService = App.GetRequiredService<SysOrgService>();
+    private static readonly SysCacheService SysCacheService = App.GetRequiredService<SysCacheService>();
 
     /// <summary>
     /// 删除用户机构缓存
@@ -20,14 +22,12 @@ public static class SqlSugarFilter
     /// <param name="dbConfigId"></param>
     public static void DeleteUserOrgCache(long userId, string dbConfigId)
     {
-        var sysCacheService = App.GetRequiredService<SysCacheService>();
-
         // 删除用户机构集合缓存
-        sysCacheService.Remove($"{CacheConst.KeyUserOrg}{userId}");
+        SysCacheService.Remove($"{CacheConst.KeyUserOrg}{userId}");
         // 删除最大数据权限缓存
-        sysCacheService.Remove($"{CacheConst.KeyRoleMaxDataScope}{userId}");
+        SysCacheService.Remove($"{CacheConst.KeyRoleMaxDataScope}{userId}");
         // 用户权限缓存（按钮集合）
-        sysCacheService.Remove($"{CacheConst.KeyUserButton}{userId}");
+        SysCacheService.Remove($"{CacheConst.KeyUserButton}{userId}");
         // 删除用户机构（数据范围）缓存——过滤器
         Cache.Remove($"db:{dbConfigId}:orgList:{userId}");
     }
@@ -119,9 +119,8 @@ public static class SqlSugarFilter
             // 获取用户所属机构，保证同一作用域
             Scoped.Create((factory, scope) =>
             {
-                var services = scope.ServiceProvider;
-                services.GetRequiredService<SysOrgService>().GetUserOrgIdList().GetAwaiter().GetResult();
-                maxDataScope = services.GetRequiredService<SysCacheService>().Get<int>(CacheConst.KeyRoleMaxDataScope + userId);
+                SysOrgService.GetUserOrgIdList().GetAwaiter().GetResult();
+                maxDataScope = SysCacheService.Get<int>(CacheConst.KeyRoleMaxDataScope + userId);
             });
         }
         if (maxDataScope != (int)DataScopeEnum.Self) return maxDataScope;

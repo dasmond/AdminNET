@@ -15,12 +15,20 @@ namespace Admin.NET.Core;
 public class SysLdapService : IDynamicApiController, ITransient
 {
     private readonly SqlSugarRepository<SysLdap> _sysLdapRep;
+    private readonly SysUserLdapService _sysUserLdapService;
+    private readonly SysOrgService _sysOrgService;
     private readonly UserManager _userManager;
 
-    public SysLdapService(SqlSugarRepository<SysLdap> sysLdapRep, UserManager userManager)
+    public SysLdapService(
+        SqlSugarRepository<SysLdap> sysLdapRep,
+        SysUserLdapService sysUserLdapService,
+        SysOrgService sysOrgService,
+        UserManager userManager)
     {
         _sysLdapRep = sysLdapRep;
         _userManager = userManager;
+        _sysOrgService = sysOrgService;
+        _sysUserLdapService = sysUserLdapService;
     }
 
     /// <summary>
@@ -227,7 +235,7 @@ public class SysLdapService : IDynamicApiController, ITransient
 
             if (userLdapList.Count == 0) return null;
 
-            await App.GetRequiredService<SysUserLdapService>().InsertUserLdapList(sysLdap.TenantId!.Value, userLdapList);
+            await _sysUserLdapService.InsertUserLdapList(sysLdap.TenantId!.Value, userLdapList);
             return userLdapList;
         }
         catch (LdapException e)
@@ -367,7 +375,7 @@ public class SysLdapService : IDynamicApiController, ITransient
             if (orgList.Count == 0)
                 return;
 
-            await App.GetRequiredService<SysOrgService>().BatchAddOrgs(orgList);
+            await _sysOrgService.BatchAddOrgs(orgList);
         }
         catch (LdapException e)
         {

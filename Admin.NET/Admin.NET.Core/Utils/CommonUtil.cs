@@ -17,6 +17,10 @@ namespace Admin.NET.Core;
 /// </summary>
 public static class CommonUtil
 {
+    private static readonly SysCacheService SysCacheService = App.GetRequiredService<SysCacheService>();
+    private static readonly SysFileService SysFileService = App.GetRequiredService<SysFileService>();
+    private static readonly SqlSugarRepository<SysDictData> SysDictDataRep = App.GetRequiredService<SqlSugarRepository<SysDictData>>();
+
     /// <summary>
     /// 根据字符串获取固定整型哈希值
     /// </summary>
@@ -245,8 +249,8 @@ public static class CommonUtil
         resultStream.Seek(0, SeekOrigin.Begin);
         var userId = App.User?.FindFirst(ClaimConst.UserId)?.Value;
 
-        App.GetRequiredService<SysCacheService>().Remove(CacheConst.KeyExcelTemp + userId);
-        App.GetRequiredService<SysCacheService>().Set(CacheConst.KeyExcelTemp + userId, resultStream, TimeSpan.FromMinutes(5));
+        SysCacheService.Remove(CacheConst.KeyExcelTemp + userId);
+        SysCacheService.Set(CacheConst.KeyExcelTemp + userId, resultStream, TimeSpan.FromMinutes(5));
 
         var message = string.Empty;
         if (!res.HasError) return res.Data;
@@ -273,15 +277,14 @@ public static class CommonUtil
     /// <returns></returns>
     public static async Task<List<T>> ImportExcelDataAsync<T>([Required] IFormFile file) where T : class, new()
     {
-        var sysFileService = App.GetRequiredService<SysFileService>();
-        var newFile = await sysFileService.UploadFile(new UploadFileInput { File = file });
+        var newFile = await SysFileService.UploadFile(new UploadFileInput { File = file });
         var filePath = Path.Combine(App.WebHostEnvironment.WebRootPath, newFile.FilePath!, newFile.Id + newFile.Suffix);
 
         IImporter importer = new ExcelImporter();
         var res = await importer.Import<T>(filePath);
 
         // 删除文件
-        _ = sysFileService.DeleteFile(new DeleteFileInput { Id = newFile.Id });
+        _ = SysFileService.DeleteFile(new DeleteFileInput { Id = newFile.Id });
 
         if (res == null)
             throw Oops.Oh("导入数据为空");
@@ -402,7 +405,6 @@ public static class CommonUtil
         // 整理导入对象的属性名称，<字典数据，原属性信息，目标属性信息>
         var propMappings = new Dictionary<string, Tuple<Dictionary<object, string>, PropertyInfo, PropertyInfo>>();
 
-        var dictService = App.GetRequiredService<SqlSugarRepository<SysDictData>>();
         var targetProps = typeof(TTarget).GetProperties().ToList();
         var sourceProps = typeof(TSource).GetProperties().ToDictionary(u => u.Name);
         foreach (var propertyInfo in targetProps)
@@ -411,14 +413,13 @@ public static class CommonUtil
             if (attrs != null && !string.IsNullOrWhiteSpace(attrs.TypeCode))
             {
                 var targetProp = sourceProps[attrs.TargetPropName];
-                var mappingValues = dictService.Context.Queryable<SysDictType, SysDictData>((u, a) =>
+                var mappingValues = SysDictDataRep.Context.Queryable<SysDictType, SysDictData>((u, a) =>
                     new JoinQueryInfos(JoinType.Inner, u.Id == a.DictTypeId))
                     .Where(u => u.Code == attrs.TypeCode)
                     .Where((u, a) => u.Status == StatusEnum.Enable && a.Status == StatusEnum.Enable)
                     .Select((u, a) => new
                     {
-                        Label = a.Label,
-                        Value = a.Value
+                        a.Label, a.Value
                     }).ToList()
                     .ToDictionary(u => u.Value.ParseTo(targetProp.PropertyType), u => u.Label);
                 propMappings.Add(propertyInfo.Name, new Tuple<Dictionary<object, string>, PropertyInfo, PropertyInfo>(mappingValues, targetProp, propertyInfo));
