@@ -4,6 +4,7 @@
 //
 // 不得利用本项目从事危害国家安全、扰乱社会秩序、侵犯他人合法权益等法律法规禁止的活动！任何基于本项目二次开发而产生的一切法律纠纷和责任，我们不承担任何责任！
 
+using System.ComponentModel;
 using Admin.NET.Core;
 using Admin.NET.Core.Service;
 using Business.Core.BuinessServive.Message.Dto;
@@ -11,21 +12,18 @@ using Business.Core.Entity;
 using Furion.DependencyInjection;
 using Furion.DynamicApiController;
 using Microsoft.AspNetCore.Mvc;
-using SqlSugar;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Business.Core.BuinessServive.Message;
 
+/// <summary>
+///     消息服务类
+/// </summary>
 public class MessageService : IDynamicApiController, ITransient
 {
     private readonly SqlSugarRepository<TMessage> _messageRep;
     private readonly SysMessageService _sysMessageService;
     private readonly UserManager _userManager;
+
     public MessageService(SqlSugarRepository<TMessage> messageRep,
         SysCacheService sysCacheService,
         SysMessageService sysMessageService,
@@ -37,16 +35,17 @@ public class MessageService : IDynamicApiController, ITransient
     }
 
     /// <summary>
-    /// 发送消息
+    ///     发送消息
     /// </summary>
     /// <param name="entity"></param>
     /// <returns></returns>
-    [ApiDescriptionSettings(Name = "SendMessage"), HttpPost]
+    [ApiDescriptionSettings(Name = "SendMessage")]
+    [HttpPost]
     [DisplayName("发送消息")]
     public async Task<bool> Add(MessageInput entity)
     {
         await _sysMessageService.SendUser(entity);
-        var message = new TMessage()
+        TMessage message = new()
         {
             F_SendUserId = _userManager.UserId,
             F_ReceiveUserId = entity.ReceiveUserId,
@@ -57,46 +56,53 @@ public class MessageService : IDynamicApiController, ITransient
     }
 
     /// <summary>
-    /// 获取与对应用户的消息
+    ///     获取与对应用户的消息
     /// </summary>
     /// <param name="userId"></param>
+    /// <param name="page"></param>
     /// <returns></returns>
-    [ApiDescriptionSettings(Name = "GetMessagePage"), HttpGet]
+    [ApiDescriptionSettings(Name = "GetMessagePage")]
+    [HttpGet]
+    [Route("{userId:long}/{page:int}")]
     [DisplayName("获取对应用户的消息")]
-    public async Task<SqlSugarPagedList<MessageOutDto>> GetMessage(MessagePageDto input)
+    public async Task<SqlSugarPagedList<MessageOutDto>> GetMessagePage(long userId, int page)
     {
         return await _messageRep.AsQueryable()
-            .Where(x => (x.F_ReceiveUserId == input.UserId && x.F_SendUserId == _userManager.UserId) || (x.F_ReceiveUserId == _userManager.UserId && x.F_SendUserId ==input.UserId))
-            .OrderBy(x => x.F_SendTime, OrderByType.Asc)
-            .Select(x=>new MessageOutDto
+            .Where(x => (x.F_ReceiveUserId == userId && x.F_SendUserId == _userManager.UserId) ||
+                        (x.F_ReceiveUserId == _userManager.UserId && x.F_SendUserId == userId))
+            .OrderBy(x => x.F_SendTime)
+            .Select(x => new MessageOutDto
             {
                 SendUserId = x.F_SendUserId,
                 ReceiveUserId = x.F_SendUserId,
                 Message = x.F_Message,
                 SendTime = x.F_SendTime
             })
-            .ToPagedListAsync(input.Page, input.PageSize);
+            .ToPagedListAsync(page, 10);
     }
+
     /// <summary>
-    /// 获取与对应用户的消息
+    ///     获取与对应用户的消息
     /// </summary>
     /// <param name="userId"></param>
     /// <returns></returns>
-    [ApiDescriptionSettings(Name = "GetMessage"), HttpGet]
+    [ApiDescriptionSettings(Name = "GetMessage")]
+    [HttpGet]
     [DisplayName("获取对应用户的消息")]
     public async Task<List<MessageOutDto>> GetMessage(long userId)
     {
-        var thisUser = _userManager.UserId;
+        long thisUser = _userManager.UserId;
         return await _messageRep.AsQueryable()
-            .Where(x => (x.F_ReceiveUserId == userId&& x.F_SendUserId == _userManager.UserId) || (x.F_ReceiveUserId == _userManager.UserId && x.F_SendUserId == userId))
-            .OrderBy(x => x.F_SendTime, OrderByType.Asc)
-             .Select(x => new MessageOutDto
-             {
-                 SendUserId = x.F_SendUserId,
-                 ReceiveUserId = x.F_SendUserId,
-                 Message = x.F_Message,
-                 SendTime = x.F_SendTime
-             })
+            .Where(x => (x.F_ReceiveUserId == userId && x.F_SendUserId == _userManager.UserId) ||
+                        (x.F_ReceiveUserId == _userManager.UserId && x.F_SendUserId == userId))
+            .OrderBy(x => x.F_SendTime)
+            .Select(x => new MessageOutDto
+            {
+                SendUserId = x.F_SendUserId,
+                ReceiveUserId = x.F_SendUserId,
+                Message = x.F_Message,
+                SendTime = x.F_SendTime
+            })
             .ToListAsync();
     }
 }

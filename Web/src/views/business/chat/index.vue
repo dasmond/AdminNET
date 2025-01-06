@@ -44,6 +44,20 @@
 						</el-scrollbar>
 					</div>
 					<div class="chat-input">
+						<el-popover placement="top" :width="300" trigger="click" popper-class="emoji-popover">
+							<template #reference>
+								<div class="emoji-button">
+									<el-button :icon="ChatDotSquare" text>表情</el-button>
+								</div>
+							</template>
+							<div class="emoji-container">
+								<div class="emoji-grid">
+									<span v-for="(emoji, index) in emojiList" :key="index" class="emoji-item" @click="insertEmoji(emoji)">
+										{{ emoji }}
+									</span>
+								</div>
+							</div>
+						</el-popover>
 						<el-input v-model="messageInput" type="textarea" :rows="3" placeholder="请输入消息..." @keyup.enter.native="sendMessage" maxlength="500" />
 						<el-button type="primary" @click="sendMessage">发送</el-button>
 					</div>
@@ -63,134 +77,164 @@
 </template>
 
 <script lang="ts" setup>
-import { reactive, onMounted, ref } from 'vue';
+import { reactive, onMounted, ref, nextTick } from 'vue';
 import { signalR } from '/@/views/system/onlineUser/signalR';
 import { getAPI } from '/@/utils/axios-utils';
 import { SysOnlineUserApi } from '/@/api-services/api';
 import { SysOnlineUser } from '/@/api-services/models';
-import { Refresh, ZoomIn } from '@element-plus/icons-vue';
-import { ElMessageBox } from 'element-plus';
+import { Refresh, ZoomIn, ChatDotSquare } from '@element-plus/icons-vue';
 import { sendUser, getMessage } from '/@/api/business/chat/chat';
 import { useUserInfo } from '/@/stores/userInfo';
 import { storeToRefs } from 'pinia';
+import emoji from '/@/assets/emoji.json';
+import { ElMessageBox, ElNotification } from 'element-plus';
 
 const stores = useUserInfo();
 const { userInfos } = storeToRefs(stores);
 
 const onlineUser = reactive({
-	onlineUserList: [] as Array<SysOnlineUser>,
+    onlineUserList: [] as Array<SysOnlineUser>,
 });
 
 const currentUser = ref<SysOnlineUser | null>(null);
 const messageInput = ref('');
-const chatMessages = ref<
-	Array<{
-		sendUserId: number; // 修改为 number 类型
-		receiveUserId: number; // 修改为 number 类型
-		title: string;
-		messageType: number;
-		message: string;
-		sendTime: string;
-	}>
->([]);
-const myUserId = ref<number>(0); // 修改为 number 类型
+const chatMessages = ref<Array<{
+    sendUserId: number;
+    receiveUserId: number;
+    title: string;
+    messageType: number;
+    message: string;
+    sendTime: string;
+}>> ([]);
+const myUserId = ref<number>(0);
 const chatContent = ref<HTMLElement | null>(null);
 const dialogVisible = ref(false);
 const currentMessage = ref('');
-const messageScrollbar = ref();
+const emojiList = ref<string[]>([]);
 
+// 插入表情的方法
+const insertEmoji = (emoji: string) => {
+    messageInput.value += emoji;
+};
+
+// 滚动到聊天记录底部
+const scrollToBottom = () => {
+    setTimeout(() => {
+        const scrollbar = chatContent.value?.querySelector('.el-scrollbar__wrap');
+        if (scrollbar) {
+            scrollbar.scrollTop = scrollbar.scrollHeight;
+        }
+    }, 100); // 延时100毫秒
+};
+
+
+/**
+ * 选择用户以初始化聊天消息
+ * @param user {SysOnlineUser} - 被选中的用户信息
+ */
 const selectUser = async (user: SysOnlineUser) => {
-	currentUser.value = user;
-	chatMessages.value = []; // 清空聊天记录
-	var msgs = await getMessage(user.userId);
-	chatMessages.value = msgs.data.result ?? [];
-
-	console.log(chatMessages.value);
-	setTimeout(() => {
-		const scrollbar = chatContent.value?.querySelector('.el-scrollbar__wrap');
-		if (scrollbar) {
-			scrollbar.scrollTop = scrollbar.scrollHeight;
-		}
-	}, 100);
+    currentUser.value = user;
+    chatMessages.value = [];
+    try {
+        const msgs = await getMessage(user.userId);
+        chatMessages.value = msgs.data.result ?? [];
+        console.log(chatMessages.value);
+        nextTick(scrollToBottom);
+    } catch (error) {
+        console.error('获取聊天记录时发生错误:', error);
+        ElNotification({
+            title: '错误',
+            message: '无法加载聊天记录，请稍后重试。',
+            type: 'error',
+        });
+    }
 };
 
+/**
+ * 发送消息函数
+ */
 const sendMessage = async () => {
-	if (!messageInput.value.trim() || !currentUser.value) {
-		ElMessageBox.alert('请输入消息内容', '提示', {
-			confirmButtonText: '确定',
-			type: 'warning',
-		});
-		return;
-	}
-	const newMessage = {
-		sendUserId: myUserId.value,
-		receiveUserId: currentUser.value?.userId || 0, // 确保 receiveUserId 不为 undefined
-		title: '',
-		messageType: 0,
-		message: messageInput.value,
-		sendTime: new Date().toLocaleString(),
-	};
+    if (!messageInput.value.trim() || !currentUser.value) {
+        await ElMessageBox.alert('请输入消息内容', '提示', {
+            confirmButtonText: '确定',
+            type: 'warning',
+        });
+        return;
+    }
 
-	await sendUser(newMessage);
-	if (currentUser.value?.userId !== myUserId.value) {
-		chatMessages.value.push(newMessage);
-		console.log(chatMessages.value);
-		setTimeout(() => {
-			const scrollbar = chatContent.value?.querySelector('.el-scrollbar__wrap');
-			if (scrollbar) {
-				scrollbar.scrollTop = scrollbar.scrollHeight;
-			}
-		}, 100);
-	}
+    const newMessage = {
+        sendUserId: myUserId.value,
+        receiveUserId: currentUser.value?.userId ?? -1,
+        title: '',
+        messageType: 0,
+        message: messageInput.value,
+        sendTime: new Date().toLocaleString(),
+    };
 
-	messageInput.value = '';
+    try {
+        await sendUser(newMessage);
+        if (currentUser.value.userId !== myUserId.value) {
+            chatMessages.value.push(newMessage);
+        }
+        nextTick(scrollToBottom);
+        messageInput.value = '';
+    } catch (error) {
+        console.error('发送消息时发生错误:', error);
+        ElNotification({
+            title: '错误',
+            message: '发送消息失败，请稍后重试。',
+            type: 'error',
+        });
+    }
 };
 
+/**
+ * 查询在线用户的功能
+ */
 const handleQuery = async () => {
-	var res = await getAPI(SysOnlineUserApi).apiSysOnlineUserPagePost();
-	onlineUser.onlineUserList = res.data.result?.items ?? [];
-	console.log(res);
+    try {
+        const res = await getAPI(SysOnlineUserApi).apiSysOnlineUserPagePost();
+        onlineUser.onlineUserList = res.data.result?.items ?? [];
+        console.log(res);
+    } catch (error) {
+        console.error('获取在线用户列表时发生错误:', error);
+        ElNotification({
+            title: '错误',
+            message: '无法加载在线用户列表，请稍后重试。',
+            type: 'error',
+        });
+    }
 };
 
+/**
+ * 显示完整消息
+ * @param {string} msg - 需要显示的消息内容
+ */
 const showFullMessage = (msg: string) => {
-	currentMessage.value = msg;
-	dialogVisible.value = true;
+    currentMessage.value = msg;
+    dialogVisible.value = true;
 };
 
 onMounted(async () => {
-	await handleQuery();
-	myUserId.value = userInfos.value.id;
+    emojiList.value = emoji;
+    await handleQuery();
+    myUserId.value = userInfos.value.id;
 
-	signalR.off('OnlineUserList');
-	signalR.on('OnlineUserList', (data: any) => {
-		console.log('在线用户列表', data);
-		onlineUser.onlineUserList = data.userList;
-		// // 判断当前选择的用户是否在线
-		// if (currentUser.value && !onlineUser.onlineUserList.some((user) => user.userId === currentUser.value?.userId)) {
-		// 	currentUser.value = null;
-		// 	ElMessageBox.alert('当前聊天对象已离线，请选择其他用户继续聊天', '提示', {
-		// 		confirmButtonText: '确定',
-		// 		type: 'warning',
-		// 	});
-		// }
-	});
+    signalR.off('OnlineUserList');
+    signalR.on('OnlineUserList', (data: any) => {
+        onlineUser.onlineUserList = data.userList;
+    });
 
-	signalR.off('ReceiveMessage');
-	signalR.on('ReceiveMessage', (data: any) => {
-		console.log(data);
-		data.sendUserId = currentUser.value?.userId || 0; // 确保 sendUserId 不为 undefined
-		data.time = new Date().toLocaleString();
-		chatMessages.value.push(data);
-		console.log(chatMessages.value);
-		setTimeout(() => {
-			const scrollbar = chatContent.value?.querySelector('.el-scrollbar__wrap');
-			if (scrollbar) {
-				scrollbar.scrollTop = scrollbar.scrollHeight;
-			}
-		}, 100);
-	});
+    signalR.off('ReceiveMessage');
+    signalR.on('ReceiveMessage', (data: any) => {
+        if (data.receiveUserId === myUserId.value && data.sendUserId === currentUser.value?.userId) {
+            chatMessages.value.push(data);
+            nextTick(scrollToBottom);
+        }
+    });
 });
 </script>
+
 
 <style lang="scss" scoped>
 .common-layout {
@@ -346,9 +390,13 @@ onMounted(async () => {
 		padding: 20px;
 		border-top: 1px solid #eee;
 		display: flex;
-		align-items: flex-end;
+		flex-direction: column;
 		gap: 10px;
 		flex-shrink: 0;
+
+		.emoji-button {
+			align-self: flex-start;
+		}
 
 		:deep(.el-textarea) {
 			.el-textarea__inner {
@@ -360,7 +408,9 @@ onMounted(async () => {
 		}
 
 		.el-button {
-			height: 78px;
+			align-self: flex-end;
+			width: 80px;
+			margin-left: auto;
 		}
 	}
 }
@@ -382,5 +432,65 @@ onMounted(async () => {
 	word-break: break-all;
 	font-size: 14px;
 	line-height: 1.6;
+}
+
+.input-toolbar {
+	margin-bottom: 10px;
+}
+
+.emoji-container {
+	padding: 8px;
+	margin: 0 auto;
+	max-height: 200px;
+	overflow-y: auto;
+
+	.emoji-grid {
+		display: grid;
+		grid-template-columns: repeat(7, 1fr);
+
+		.emoji-item {
+			cursor: pointer;
+			font-size: 20px;
+			padding: 4px;
+			text-align: center;
+			border-radius: 4px;
+			transition: all 0.2s;
+
+			&:hover {
+				background-color: #f5f7fa;
+				transform: scale(1.1);
+			}
+		}
+	}
+}
+
+.emoji-popover {
+	padding: 0;
+}
+
+:deep(.el-popover.el-popper) {
+	width: 280px !important;
+	min-width: 280px !important;
+	max-width: 280px !important;
+}
+
+:deep(.el-dropdown-menu) {
+	min-width: 120px;
+	border-radius: 4px;
+	box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+	background-color: #fff;
+	border: 1px solid #ebeef5;
+}
+
+:deep(.el-dropdown-item) {
+	padding: 8px 20px;
+	font-size: 14px;
+	color: #333;
+	cursor: pointer;
+	transition: background-color 0.3s;
+
+	&:hover {
+		background-color: #f5f7fa;
+	}
 }
 </style>

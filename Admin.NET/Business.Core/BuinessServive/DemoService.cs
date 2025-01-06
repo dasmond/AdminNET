@@ -30,7 +30,7 @@ public class DemoService : IDynamicApiController, ITransient
         var content = await response.Content.ReadAsStringAsync();
         var result = JsonConvert.DeserializeObject<Weather>(content)?.forecasts.FirstOrDefault();
         var data = result.ToJson();
-        var contentTemp = string.Format(emailTemp, data);
+        var contentTemp = emailTemp.Replace("{0}", data);
         var message = new MimeMessage();
         message.From.Add(new MailboxAddress(_emailOptions.DefaultFromEmail, _emailOptions.DefaultFromEmail));
         message.To.Add(new MailboxAddress(_emailOptions.DefaultToEmail, _emailOptions.DefaultToEmail));
@@ -40,10 +40,10 @@ public class DemoService : IDynamicApiController, ITransient
         };
 
         using var stmpClient = new SmtpClient();
-        stmpClient.Connect(_emailOptions.Host, _emailOptions.Port, _emailOptions.EnableSsl);
-        stmpClient.Authenticate(_emailOptions.UserName, _emailOptions.Password);
-        stmpClient.Send(message);
-        stmpClient.Disconnect(true);
+        await stmpClient.ConnectAsync(_emailOptions.Host, _emailOptions.Port, _emailOptions.EnableSsl);
+        await stmpClient.AuthenticateAsync(_emailOptions.UserName, _emailOptions.Password);
+        await stmpClient.SendAsync(message);
+        await stmpClient.DisconnectAsync(true);
 
         await Task.CompletedTask;
     }

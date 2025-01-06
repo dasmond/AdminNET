@@ -2,6 +2,7 @@ import request from '/@/utils/request';
 enum Api {
     SendUser = '/api/message/sendMessage',
     GetMessage = '/api/message/getMessage/{userId}',
+    GetMessagePage = '/api/message/{userId}/{page}',
 }/**
  * 发送用户消息
  * @param data - 包含用户消息的对象
@@ -19,4 +20,15 @@ export function sendUser(data: any) {
 export function getMessage(userId: any) {
     // 使用 request 库的 get 方法发送 GET 请求到 Api.GetMessage 接口，并传入 userId 参数
     return request.get(Api.GetMessage.replace('{userId}', userId.toString()));
+}
+
+/**
+ * 获取用户消息分页
+ * @param userId - 用户 ID
+ * @param page - 页码
+ * @returns 返回获取结果的 Promise 对象
+ */
+export function getMessagePage(userId: number, page: number) {
+    // 使用 request 库的 get 方法发送 GET 请求到 Api.GetMessagePage 接口，并传入 userId 和 page 参数
+    return request.get(Api.GetMessagePage.replace('{userId}', userId.toString()).replace('{page}', page.toString()));
 }
