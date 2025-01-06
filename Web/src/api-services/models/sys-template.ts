@@ -11,6 +11,7 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+import { TemplateTypeEnum } from './template-type-enum';
 /**
  * 系统模板表
  * @export
@@ -77,6 +78,12 @@ export interface SysTemplate {
      * @memberof SysTemplate
      */
     name?: string | null;
+    /**
+     * 
+     * @type {TemplateTypeEnum}
+     * @memberof SysTemplate
+     */
+    type?: TemplateTypeEnum;
     /**
      * 编码
      * @type {string}

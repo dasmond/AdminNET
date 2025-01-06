@@ -23,6 +23,12 @@ public partial class SysTemplate : EntityTenant
     public virtual string Name { get; set; }
 
     /// <summary>
+    /// 分组名称
+    /// </summary>
+    [SugarColumn(ColumnDescription = "分组名称")]
+    public virtual TemplateTypeEnum Type { get; set; }
+
+    /// <summary>
     /// 编码
     /// </summary>
     [MaxLength(128)]

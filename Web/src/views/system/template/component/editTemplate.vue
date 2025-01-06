@@ -26,6 +26,11 @@
 									<el-input v-model="state.ruleForm.groupName" placeholder="分组" clearable />
 								</el-form-item>
 							</el-col>
+							<el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="mb20">
+								<el-form-item label="类型" prop="type" :rules="[{ required: true, message: '类型不能为空', trigger: 'blur' }]">
+									<g-sys-dict v-model="state.ruleForm.type" code="TemplateTypeEnum" render-as="select"/>
+								</el-form-item>
+							</el-col>
 							<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
 								<el-form-item label="排序">
 									<el-input-number v-model="state.ruleForm.orderNo" placeholder="排序" class="w100" />
@@ -46,12 +51,13 @@
 										<el-radio :value="1">富文本</el-radio>
 										<el-radio :value="2">纯文本</el-radio>
 									</el-radio-group>
+									<el-button class="ml35" @click="() => editorRef?.ref?.insertNode({ text: '@(name)' })">插入参数</el-button>
 								</el-form-item>
 							</el-col>
 							<el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="mb20">
 								<el-form-item label="内容" prop="content" :rules="[{ required: true, message: '内容不能为空', trigger: 'blur' }]">
-									<Editor v-model:get-html="state.ruleForm.content" v-if="state.contentType == 1" />
-									<el-input v-model="state.ruleForm.content" v-else type="textarea" rows="15" show-word-limit clearable></el-input>
+									<Editor v-model:get-html="state.ruleForm.content" ref="editorRef" height="200px" v-if="state.contentType == 1" />
+									<el-input v-model="state.ruleForm.content" v-else type="textarea" rows="15" show-word-limit clearable />
 								</el-form-item>
 							</el-col>
 							<el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="mb20" style="user-select: none;">
@@ -95,15 +101,17 @@
 </template>
 
 <script lang="ts" setup name="sysEditConfig">
-import { reactive, ref } from 'vue';
+import {reactive, ref, watch} from 'vue';
 import { getAPI } from '/@/utils/axios-utils';
 import { SysTemplateApi } from '/@/api-services/api';
 import { UpdateTemplateInput } from '/@/api-services/models';
 import Editor from "/@/components/editor/index.vue";
+import GSysDict from "/@/components/sysDict/sysDict.vue";
 
 const props = defineProps({
 	title: String,
 });
+const editorRef = ref();
 const ruleFormRef = ref();
 const emits = defineEmits(['updateData']);
 const state = reactive({
@@ -162,6 +170,18 @@ const submit = () => {
 		closeDialog();
 	});
 };
+
+watch(
+		() => state.ruleForm.content,
+		() => {
+			state.ruleForm.content.match(/@\((.*?)\)/g)?.forEach((pa: string, index) => {
+				const key = pa.substring(2, pa.length - 1);
+				if (!state.renderData.find((e: [string, string]) => e[0] === key)) {
+					state.renderData.push([key, '参数' + (index + 1)]);
+				}
+			});
+		}
+)
 
 // 导出对象
 defineExpose({ openDialog });

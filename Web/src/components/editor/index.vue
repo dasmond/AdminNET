@@ -117,6 +117,11 @@ watch(
 		deep: true,
 	}
 );
+
+// 暴露 editorRef
+defineExpose({
+	ref: editorRef,
+});
 </script>
 <style lang="less">
 .editor-container {

@@ -379,6 +379,7 @@ export * from './sys-wechat-user';
 export * from './sys-wx-open-upload-avatar-body';
 export * from './table-output';
 export * from './table-unique-config-item';
+export * from './template-type-enum';
 export * from './tenant-id-input';
 export * from './tenant-input';
 export * from './tenant-menu-input';

@@ -8,6 +8,9 @@
 				<template #command>
 					<el-button type="primary" icon="ele-Plus" @click="openAddTemplate" v-auth="'sysConfig:add'"> 新增 </el-button>
 				</template>
+				<template #type="scope">
+					<g-sys-dict v-model="scope.row.type" code="TemplateTypeEnum" />
+				</template>
 				<template #remark="scope">
 					<ModifyRecord :data="scope.row" />
 				</template>
@@ -29,6 +32,7 @@ import { SysTemplateApi } from "/@/api-services";
 import { EmptyObjectType, RefType } from '/@/types/global';
 import ModifyRecord from '/@/components/table/modifyRecord.vue';
 import EditTemplate from './component/editTemplate.vue';
+import GSysDict from "/@/components/sysDict/sysDict.vue";
 
 // 引入组件
 const TableSearch = defineAsyncComponent(() => import('/@/components/table/search.vue'));
@@ -38,7 +42,7 @@ const tableRef = ref<RefType>();
 
 const state = reactive({
 	editTemplateTitle: '',
-	selectlist: [] as EmptyObjectType[],
+	selectList: [] as EmptyObjectType[],
 	groupList: [] as Array<String>,
 });
 
@@ -48,6 +52,7 @@ const tb = reactive<TableDemoState>({
 		columns: [
 			{ prop: 'name', minWidth: 150, label: '模板名称', headerAlign: 'center', sortable: 'custom', isCheck: true, hideCheck: true },
 			{ prop: 'code', minWidth: 150, label: '模板编码', headerAlign: 'center', toolTip: true, sortable: 'custom', isCheck: true },
+			{ prop: 'type', width: 120, label: '模板类型', align: 'center', sortable: 'custom', isCheck: true },
 			{ prop: 'groupName', width: 120, label: '分组编码', align: 'center', sortable: 'custom', isCheck: true },
 			{ prop: 'orderNo', width: 80, label: '排序', align: 'center', sortable: 'custom', isCheck: true },
 			{ prop: 'remark', width: 100, label: '修改记录', align: 'center', headerAlign: 'center', showOverflowTooltip: true, isCheck: true },
@@ -67,6 +72,7 @@ const tb = reactive<TableDemoState>({
 		search: [
 			{ label: '名称', prop: 'name', placeholder: '搜索模板名称', required: false, type: 'input' },
 			{ label: '编码', prop: 'code', placeholder: '搜索模板编码', required: false, type: 'input' },
+			{ label: '类型', prop: 'type', placeholder: '搜索模板类型', required: false, type: 'select', dictCode: 'TemplateTypeEnum' },
 		],
 		param: {},
 		defaultSort: {
@@ -134,7 +140,7 @@ const updateData = () => {
 // 打开新增页面
 const openAddTemplate = () => {
 	state.editTemplateTitle = '添加模板';
-	editTemplateRef.value?.openDialog({ sysFlag: 2, orderNo: 100 });
+	editTemplateRef.value?.openDialog({ type: 1, orderNo: 100 });
 };
 
 // 打开编辑页面

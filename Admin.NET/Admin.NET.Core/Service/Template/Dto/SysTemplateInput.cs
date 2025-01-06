@@ -24,6 +24,11 @@ public class PageTemplateInput : BasePageInput
     public string GroupName { get; set; }
 
     /// <summary>
+    /// 模板类型
+    /// </summary>
+    public TemplateTypeEnum? Type { get; set; }
+
+    /// <summary>
     /// 租户Id
     /// </summary>
     public long TenantId { get; set; }
@@ -39,6 +44,12 @@ public class AddTemplateInput : SysTemplate
     /// </summary>
     [Required(ErrorMessage = "名称不能为空")]
     public override string Name { get; set; }
+
+    /// <summary>
+    /// 模板类型
+    /// </summary>
+    [Dict(nameof(TemplateTypeEnum))]
+    public override TemplateTypeEnum Type { get; set; }
 
     /// <summary>
     /// 编码

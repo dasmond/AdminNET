@@ -13,6 +13,7 @@
  */
 import { Filter } from './filter';
 import { Search } from './search';
+import { TemplateTypeEnum } from './template-type-enum';
 /**
  * 
  * @export
@@ -85,6 +86,12 @@ export interface PageTemplateInput {
      * @memberof PageTemplateInput
      */
     groupName?: string | null;
+    /**
+     * 
+     * @type {TemplateTypeEnum}
+     * @memberof PageTemplateInput
+     */
+    type?: TemplateTypeEnum;
     /**
      * 租户Id
      * @type {number}

@@ -7,7 +7,7 @@
 namespace Admin.NET.Core.Service;
 
 /// <summary>
-/// 系统模板服务 🧩
+/// 系统消息模板服务 🧩
 /// </summary>
 [ApiDescriptionSettings(Order = 305)]
 public class SysTemplateService : IDynamicApiController, ITransient
@@ -40,6 +40,7 @@ public class SysTemplateService : IDynamicApiController, ITransient
             .WhereIF(_userManager.SuperAdmin && input.TenantId > 0, u => u.TenantId == input.TenantId)
             .WhereIF(!string.IsNullOrWhiteSpace(input.Name), u => u.Name.Contains(input.Name))
             .WhereIF(!string.IsNullOrWhiteSpace(input.Code), u => u.Code.Contains(input.Code))
+            .WhereIF(input.Type.HasValue, u => u.Type == input.Type)
             .OrderBy(u => new { u.OrderNo, u.Id })
             .ToPagedListAsync(input.Page, input.PageSize);
     }
