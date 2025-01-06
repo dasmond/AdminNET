@@ -367,7 +367,7 @@ public static class SqlSugarSetup
                 // 将不存在实体中的字段改为可空
                 var entityInfo = dbProvider.EntityMaintenance.GetEntityInfo(entityType);
                 var dbColumnInfos = dbProvider.DbMaintenance.GetColumnInfosByTableName(entityInfo.DbTableName) ?? new();
-                foreach (var dbColumnInfo in dbColumnInfos.Where(dbColumnInfo => entityInfo.Columns.All(u => u.DbColumnName != dbColumnInfo.DbColumnName)))
+                foreach (var dbColumnInfo in dbColumnInfos.Where(dbColumnInfo => !dbColumnInfo.IsPrimarykey && entityInfo.Columns.All(u => u.DbColumnName != dbColumnInfo.DbColumnName)))
                 {
                     dbColumnInfo.IsNullable = true;
                     dbProvider.DbMaintenance.UpdateColumn(entityInfo.DbTableName, dbColumnInfo);
