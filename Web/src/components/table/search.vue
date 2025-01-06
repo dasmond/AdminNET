@@ -66,7 +66,7 @@
 								@change="val.change"
 								class="w100"
 							>
-								<el-option v-for="item in val.options" :key="item.value" :label="item.label" :value="item.value"> </el-option>
+								<el-option v-for="item in getSelectOptions(val)" :key="item.value" :label="item.label" :value="item.value" />
 							</el-select>
 							<el-cascader
 								v-else-if="val.type === 'cascader' && val.cascaderData"
@@ -107,6 +107,7 @@
 import { reactive, ref, watch } from 'vue';
 import type { FormInstance } from 'element-plus';
 import { dayjs } from 'element-plus';
+import {useUserInfo} from "/@/stores/userInfo";
 
 // 定义父组件传过来的值
 const props = defineProps({
@@ -167,6 +168,13 @@ const onReset = (formEl: FormInstance | undefined) => {
 	if (!formEl) return;
 	formEl.resetFields();
 	emit('reset', state.innerModelValue);
+};
+
+const userStore = useUserInfo();
+const getSelectOptions = (val: TableSearchType) => {
+	if (val.options) return val.options;
+	if (val.dictCode) return userStore.getDictDataByCode('TemplateTypeEnum');
+	return [];
 };
 
 /** 时间范围默认时间 */
