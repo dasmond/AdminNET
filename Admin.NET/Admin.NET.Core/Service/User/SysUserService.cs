@@ -22,7 +22,7 @@ public class SysUserService : IDynamicApiController, ITransient
     private readonly SysCacheService _sysCacheService;
     private readonly SysUserLdapService _sysUserLdapService;
     private readonly SqlSugarRepository<SysUser> _sysUserRep;
-    private readonly SysUserEventHandler _sysUserEventHandler;
+    private readonly IEventPublisher _eventPublisher;
 
     public SysUserService(UserManager userManager,
         SysOrgService sysOrgService,
@@ -34,7 +34,7 @@ public class SysUserService : IDynamicApiController, ITransient
         SysUserLdapService sysUserLdapService,
         SqlSugarRepository<SysUser> sysUserRep,
         SysUserMenuService sysUserMenuService,
-        SysUserEventHandler sysUserEventHandler)
+        IEventPublisher eventPublisher)
     {
         _userManager = userManager;
         _sysOrgService = sysOrgService;
@@ -46,7 +46,7 @@ public class SysUserService : IDynamicApiController, ITransient
         _sysUserLdapService = sysUserLdapService;
         _sysUserMenuService = sysUserMenuService;
         _sysUserRep = sysUserRep;
-        _sysUserEventHandler = sysUserEventHandler;
+        _eventPublisher = eventPublisher;
     }
 
     /// <summary>
@@ -59,7 +59,7 @@ public class SysUserService : IDynamicApiController, ITransient
     {
         // 获取用户拥有的机构集合
         var userOrgIdList = await _sysOrgService.GetUserOrgIdList();
-        List<long> orgList = null;
+        List<long> orgList;
         if (input.OrgId > 0) // 指定机构查询时
         {
             orgList = await _sysOrgService.GetChildIdListWithSelfById(input.OrgId);
@@ -120,8 +120,12 @@ public class SysUserService : IDynamicApiController, ITransient
         if (!string.IsNullOrWhiteSpace(input.DomainAccount))
             await _sysUserLdapService.AddUserLdap(newUser.TenantId!.Value, newUser.Id, newUser.Account, input.DomainAccount);
 
-        // 执行订阅事件
-        _sysUserEventHandler.OnEvent(this, SysUserEventTypeEnum.Add, input);
+        // 发布系统用户操作事件
+        await _eventPublisher.PublishAsync(SysUserEventTypeEnum.Add, new
+        {
+            Entity = newUser,
+            Input = input
+        });
 
         return newUser.Id;
     }
@@ -155,8 +159,12 @@ public class SysUserService : IDynamicApiController, ITransient
         if (!string.IsNullOrWhiteSpace(input.DomainAccount))
             await _sysUserLdapService.AddUserLdap(newUser.TenantId!.Value, newUser.Id, newUser.Account, input.DomainAccount);
 
-        // 执行订阅事件
-        _sysUserEventHandler.OnEvent(this, SysUserEventTypeEnum.Register, input);
+        // 发布系统用户操作事件
+        await _eventPublisher.PublishAsync(SysUserEventTypeEnum.Register, new
+        {
+            Entity = newUser,
+            Input = input
+        });
 
         return newUser.Id;
     }
@@ -194,8 +202,12 @@ public class SysUserService : IDynamicApiController, ITransient
         // 更新域账号
         await _sysUserLdapService.AddUserLdap(user.TenantId!.Value, user.Id, user.Account, input.DomainAccount);
 
-        // 执行订阅事件
-        _sysUserEventHandler.OnEvent(this, SysUserEventTypeEnum.Update, input);
+        // 发布系统用户操作事件
+        await _eventPublisher.PublishAsync(SysUserEventTypeEnum.Update, new
+        {
+            Entity = user,
+            Input = input
+        });
     }
 
     /// <summary>
@@ -249,8 +261,12 @@ public class SysUserService : IDynamicApiController, ITransient
         // 删除用户收藏菜单
         await _sysUserMenuService.DeleteUserMenuList(input.Id);
 
-        // 执行订阅事件
-        _sysUserEventHandler.OnEvent(this, SysUserEventTypeEnum.Delete, input);
+        // 发布系统用户操作事件
+        await _eventPublisher.PublishAsync(SysUserEventTypeEnum.Delete, new
+        {
+            Entity = user,
+            Input = input
+        });
     }
 
     /// <summary>
@@ -309,8 +325,13 @@ public class SysUserService : IDynamicApiController, ITransient
         user.Status = input.Status;
         var rows = await _sysUserRep.AsUpdateable(user).UpdateColumns(u => new { u.Status }).ExecuteCommandAsync();
 
-        // 执行订阅事件
-        if (rows > 0) _sysUserEventHandler.OnEvent(this, SysUserEventTypeEnum.SetStatus, input);
+        // 发布系统用户操作事件
+        if (rows > 0)
+            await _eventPublisher.PublishAsync(SysUserEventTypeEnum.SetStatus, new
+            {
+                Entity = user,
+                Input = input
+            });
 
         return rows;
     }
@@ -330,8 +351,8 @@ public class SysUserService : IDynamicApiController, ITransient
 
         await _sysUserRoleService.GrantUserRole(input);
 
-        // 执行订阅事件
-        _sysUserEventHandler.OnEvent(this, SysUserEventTypeEnum.UpdateRole, input);
+        // 发布系统用户操作事件
+        await _eventPublisher.PublishAsync(SysUserEventTypeEnum.UpdateRole, input);
     }
 
     /// <summary>
@@ -375,8 +396,13 @@ public class SysUserService : IDynamicApiController, ITransient
 
         var rows = await _sysUserRep.AsUpdateable(user).UpdateColumns(u => u.Password).ExecuteCommandAsync();
 
-        // 执行订阅事件
-        if (rows > 0) _sysUserEventHandler.OnEvent(this, SysUserEventTypeEnum.ChangePwd, input);
+        // 发布系统用户操作事件
+        if (rows > 0)
+            await _eventPublisher.PublishAsync(SysUserEventTypeEnum.ChangePwd, new
+            {
+                Entity = user,
+                Input = input
+            });
 
         return rows;
     }
@@ -398,8 +424,12 @@ public class SysUserService : IDynamicApiController, ITransient
         var keyErrorPasswordCount = $"{CacheConst.KeyPasswordErrorTimes}{user.Account}";
         _sysCacheService.Remove(keyErrorPasswordCount);
 
-        // 执行订阅事件
-        _sysUserEventHandler.OnEvent(this, SysUserEventTypeEnum.ResetPwd, input);
+        // 发布系统用户操作事件
+        await _eventPublisher.PublishAsync(SysUserEventTypeEnum.ResetPwd, new
+        {
+            Entity = user,
+            Input = input
+        });
 
         return password;
     }
@@ -418,8 +448,12 @@ public class SysUserService : IDynamicApiController, ITransient
         var keyPasswordErrorTimes = $"{CacheConst.KeyPasswordErrorTimes}{user.Account}";
         _sysCacheService.Remove(keyPasswordErrorTimes);
 
-        // 执行订阅事件
-        _sysUserEventHandler.OnEvent(this, SysUserEventTypeEnum.UnlockLogin, input);
+        // 发布系统用户操作事件
+        await _eventPublisher.PublishAsync(SysUserEventTypeEnum.UnlockLogin, new
+        {
+            Entity = user,
+            Input = input
+        });
     }
 
     /// <summary>

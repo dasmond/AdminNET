@@ -18,37 +18,5 @@ public class Startup : AppStartup
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
     {
-        // 订阅用户操作事件
-        App.GetRequiredService<SysUserEventHandler>().Subscribe(OnEvent);
-    }
-
-    // 用户操作事件
-    private void OnEvent(object sender, EventArgs e)
-    {
-        // 用户操作事件处理
-        var args = e as SysUserEventArgs;
-        switch (args.EventType)
-        {
-            case SysUserEventTypeEnum.Add:
-                // TODO 新增用户
-                // xxxService.AddUserEvent(args.Input);
-                break;
-            case SysUserEventTypeEnum.Delete:
-                // TODO 删除用户
-                // xxxService.DeleteUserEvent(args.Input);
-                break;
-            case SysUserEventTypeEnum.Update:
-                // TODO 更新用户
-                // xxxService.UpdateUserEvent(args.Input);
-                break;
-            case SysUserEventTypeEnum.ChangePwd:
-                // TODO 用户修改密码
-                // xxxService.ChangePwdUserEvent(args.Input);
-                break;
-            case SysUserEventTypeEnum.ResetPwd:
-                // TODO 重置用户密码
-                // xxxService.ResetPwdUserEvent(args.Input);
-                break;
-        }
     }
 }
