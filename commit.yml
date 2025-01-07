@@ -3,18 +3,42 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '9fa1db5dea119a4f52d4ff67eca9ad49159ce843'
-    oldFile: !uuid '13fed63c00e0d36243d7269ee862791bda163cb6'
+    newFile: !uuid 'bde11a7835c5fd1275f83cc2e8347b0387a6fb7b'
+    oldFile: !uuid '9fa1db5dea119a4f52d4ff67eca9ad49159ce843'
   /Admin.NET/Admin.NET.Application:
-    newFile: !uuid 'faa1da9637b783bfffd43c75048cd6f9f5561637'
-    oldFile: !uuid 'd008c0183fc8ea7a8470774c65a55d3ce3ef1e65'
-  /Admin.NET/Admin.NET.Application/GlobalUsings.cs:
-    newFile: !uuid '5e33ab2366e419eb71fb25d11be5b267ea8bef28'
-    oldFile: !uuid '801b99d3d1340b2dc121bcf18b5310fb3509b731'
+    newFile: !uuid '336d815bb17d2e3d897380c1c52e5d51d9206348'
+    oldFile: !uuid 'faa1da9637b783bfffd43c75048cd6f9f5561637'
+  /Admin.NET/Admin.NET.Application/EventBus:
+    newFile: !uuid '0fffc6693718fea046c3a61c7b4b605f3854ea93'
+    oldFile: null
+  /Admin.NET/Admin.NET.Application/EventBus/SysUserEventSubscriber.cs:
+    newFile: !uuid 'c9a727fffd1a8aa199440493572bb3b36a1267b0'
+    oldFile: null
   /Admin.NET/Admin.NET.Application/Startup.cs:
-    newFile: !uuid '756249ef33dbe166b22ee3b256789d66c060e7a4'
-    oldFile: !uuid '29aa3182927fd93183df557799eb1836136c0590'
-gitCommitId: !uuid '3d75e270fc6c967d09bb716edd4f6fdd4542fd92'
+    newFile: !uuid '29aa3182927fd93183df557799eb1836136c0590'
+    oldFile: !uuid '756249ef33dbe166b22ee3b256789d66c060e7a4'
+  /Admin.NET/Admin.NET.Core:
+    newFile: !uuid 'a6bd6a8fee5905e2afdd02a7fbd65a5facb0d2e8'
+    oldFile: !uuid '37a8d5574e7b70cfb682c57637fd19ad8620b815'
+  /Admin.NET/Admin.NET.Core/Service:
+    newFile: !uuid '7f3bea0f19d9101a600fd64aa12ed2116ebda04f'
+    oldFile: !uuid '07e263b24a5049df4c78a00075b8857b165c4f7e'
+  /Admin.NET/Admin.NET.Core/Service/User:
+    newFile: !uuid '5006edf69d2169e844663064d32d4092a01991f7'
+    oldFile: !uuid '0f75204dfc0edaf3ce5d6a5ef6a2ec08d2d66a44'
+  /Admin.NET/Admin.NET.Core/Service/User/Dto:
+    newFile: !uuid '1985e684b923757bdffa3d24b9d05114af9a5c0b'
+    oldFile: !uuid '3fd7abd54d7e8cde697a2a5a6bbed0acfe435899'
+  /Admin.NET/Admin.NET.Core/Service/User/Dto/SysUserEventArgs.cs:
+    newFile: null
+    oldFile: !uuid '35c4c0f56c2c83056998a585a59be44db10a4a1e'
+  /Admin.NET/Admin.NET.Core/Service/User/SysUserEventHandler.cs:
+    newFile: null
+    oldFile: !uuid '7544ad21256c261b645ab4b01638727c3a4d3c90'
+  /Admin.NET/Admin.NET.Core/Service/User/SysUserService.cs:
+    newFile: !uuid '09a51ce8819f0a1ad7e3e171992cc7f150f27ef8'
+    oldFile: !uuid 'c5da84adb8ab418e6d598bec3671d4340c8fc89a'
+gitCommitId: !uuid '0d524a14caaaa6ad4a8d33717c3022a14ebe88d2'
 renames: {
   }
-revisionId: 2729
+revisionId: 2730
