@@ -132,6 +132,45 @@ public class AdminResultProvider : IUnifyResultProvider
             Time = DateTime.Now
         };
     }
+
+    /// <summary>
+    /// 返回成功结果集
+    /// </summary>
+    /// <param name="message"></param>
+    /// <param name="data"></param>
+    /// <returns></returns>
+    public static AdminResult<object> Ok(string message, object data = default)
+    {
+        return new AdminResult<object>
+        {
+            Code = StatusCodes.Status200OK,
+            Message = message,
+            Result = data,
+            Type = "success",
+            Extras = UnifyContext.Take(),
+            Time = DateTime.Now
+        };
+    }
+
+    /// <summary>
+    /// 返回失败结果集
+    /// </summary>
+    /// <param name="message"></param>
+    /// <param name="code"></param>
+    /// <param name="data"></param>
+    /// <returns></returns>
+    public static AdminResult<object> Error(string message, int code = StatusCodes.Status400BadRequest, object data = default)
+    {
+        return new AdminResult<object>
+        {
+            Code = code,
+            Message = message,
+            Result = data,
+            Type = "error",
+            Extras = UnifyContext.Take(),
+            Time = DateTime.Now
+        };
+    }
 }
 
 /// <summary>
