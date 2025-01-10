@@ -6,8 +6,28 @@
 
 namespace Admin.NET.Core;
 
+/// <summary>
+/// 时间帮助类
+/// </summary>
 public class DateTimeUtil
 {
+    public readonly DateTime Date;
+
+    private DateTimeUtil(TimeSpan timeSpan = default)
+    {
+        Date = DateTime.Now.AddTicks(timeSpan.Ticks);
+    }
+
+    /// <summary>
+    /// 实例化时间帮助类
+    /// </summary>
+    /// <param name="timeSpan"></param>
+    /// <returns></returns>
+    public static DateTimeUtil Init(TimeSpan timeSpan = default)
+    {
+        return new DateTimeUtil(timeSpan);
+    }
+
     /// <summary>
     /// 根据unix时间戳的长度自动判断是秒还是以毫秒为单位
     /// </summary>
@@ -183,5 +203,180 @@ public class DateTimeUtil
         diffday = diffday > 0 ? diffday : 1;
         // 当前是第几周，若整除7就减一天
         return ((diffday % 7) == 0 ? (diffday / 7 - 1) : (diffday / 7)) + 1 + (dayInMonth > firstWeekEndDay ? 1 : 0);
+    }
+
+    /// <summary>
+    /// 获取今天的时间范围
+    /// </summary>
+    /// <returns>返回包含开始时间和结束时间的元组</returns>
+    public (DateTime Start, DateTime End) GetTodayRange()
+    {
+        var start = Date.Date; // 当天开始时间
+        var end = start.AddDays(1).AddSeconds(-1); // 当天结束时间
+        return (start, end);
+    }
+
+    /// <summary>
+    /// 获取本月的时间范围
+    /// </summary>
+    /// <returns>返回包含开始时间和结束时间的元组</returns>
+    public (DateTime Start, DateTime End) GetMonthRange()
+    {
+        return (GetFirstDayOfMonth(), GetLastDayOfMonth());
+    }
+
+    /// <summary>
+    /// 获取本月的第一天开始时间
+    /// </summary>
+    /// <returns>返回当月的第一天</returns>
+    public DateTime GetFirstDayOfMonth()
+    {
+        return new DateTime(Date.Year, Date.Month, 1);
+    }
+
+    /// <summary>
+    /// 获取本月的最后一天截至时间
+    /// </summary>
+    /// <returns>返回当月的最后一天</returns>
+    public DateTime GetLastDayOfMonth()
+    {
+        var firstDayOfNextMonth = new DateTime(Date.Year, Date.Month, 1).AddMonths(1);
+        return firstDayOfNextMonth.AddSeconds(-1);
+    }
+
+    /// <summary>
+    /// 获取今年的时间范围
+    /// </summary>
+    public (DateTime Start, DateTime End) GetYearRange()
+    {
+        return (GetFirstDayOfYear(), GetLastDayOfYear());
+    }
+
+    /// <summary>
+    /// 获取今年的第一天时间范围
+    /// </summary>
+    public DateTime GetFirstDayOfYear()
+    {
+        return new DateTime(Date.Year, 1, 1);
+    }
+
+    /// <summary>
+    /// 获取今年的最后一天时间范围
+    /// </summary>
+    public DateTime GetLastDayOfYear()
+    {
+        return new DateTime(Date.Year, 12, 31, 23, 59, 59);
+    }
+
+    /// <summary>
+    /// 获取前天时间范围
+    /// </summary>
+    public (DateTime Start, DateTime End) GetDayBeforeYesterdayRange()
+    {
+        var start = Date.Date.AddDays(-2); // 前天开始时间
+        var end = start.AddDays(1).AddSeconds(-1); // 前天结束时间
+        return (start, end);
+    }
+
+    /// <summary>
+    /// 获取昨天时间范围
+    /// </summary>
+    public (DateTime Start, DateTime End) GetYesterdayRange()
+    {
+        var start = Date.Date.AddDays(-1); // 昨天开始时间
+        var end = start.AddDays(1).AddSeconds(-1); // 昨天结束时间
+        return (start, end);
+    }
+
+    /// <summary>
+    /// 获取上一周时间范围
+    /// </summary>
+    public (DateTime Start, DateTime End) GetLastWeekRange()
+    {
+        var daysToSubtract = (int)Date.DayOfWeek + 6; // 计算上周的天数差
+        var start = Date.Date.AddDays(-daysToSubtract); // 上周第一天
+        var end = start.AddDays(7).AddSeconds(-1); // 上周最后一天
+        return (start, end);
+    }
+
+    /// <summary>
+    /// 获取本周时间范围
+    /// </summary>
+    public (DateTime Start, DateTime End) GetThisWeekRange()
+    {
+        var daysToSubtract = (int)Date.DayOfWeek; // 计算本周的天数差
+        var start = Date.Date.AddDays(-daysToSubtract); // 本周第一天
+        var end = start.AddDays(7).AddSeconds(-1); // 本周最后一天
+        return (start, end);
+    }
+
+    /// <summary>
+    /// 获取上月时间范围
+    /// </summary>
+    public (DateTime Start, DateTime End) GetLastMonthRange()
+    {
+        var firstDayOfLastMonth = new DateTime(Date.Year, Date.Month, 1).AddMonths(-1); // 上月第一天
+        var lastDayOfLastMonth = firstDayOfLastMonth.AddMonths(1).AddSeconds(-1); // 上月最后一天
+        return (firstDayOfLastMonth, lastDayOfLastMonth);
+    }
+
+    /// <summary>
+    /// 获取近3天的时间范围
+    /// </summary>
+    public (DateTime Start, DateTime End) GetLast3DaysRange()
+    {
+        var start = Date.Date.AddDays(-2); // 3天前的开始时间
+        var end = Date.Date.AddDays(1).AddSeconds(-1); // 当前日期的结束时间
+        return (start, end);
+    }
+
+    /// <summary>
+    /// 获取近7天的时间范围
+    /// </summary>
+    public (DateTime Start, DateTime End) GetLast7DaysRange()
+    {
+        var start = Date.Date.AddDays(-6); // 7天前的开始时间
+        var end = Date.Date.AddDays(1).AddSeconds(-1); // 当前日期的结束时间
+        return (start, end);
+    }
+
+    /// <summary>
+    /// 获取近15天的时间范围
+    /// </summary>
+    public (DateTime Start, DateTime End) GetLast15DaysRange()
+    {
+        var start = Date.Date.AddDays(-14); // 15天前的开始时间
+        var end = Date.Date.AddDays(1).AddSeconds(-1); // 当前日期的结束时间
+        return (start, end);
+    }
+
+    /// <summary>
+    /// 获取近3个月的时间范围
+    /// </summary>
+    public (DateTime Start, DateTime End) GetLast3MonthsRange()
+    {
+        var start = Date.Date.AddMonths(-3); // 3个月前的开始时间
+        var end = Date.Date.AddDays(1).AddSeconds(-1); // 当前日期的结束时间
+        return (start, end);
+    }
+
+    /// <summary>
+    /// 获取上半年的时间范围
+    /// </summary>
+    public (DateTime Start, DateTime End) GetFirstHalfYearRange()
+    {
+        var start = new DateTime(Date.Year, 1, 1); // 上半年开始时间
+        var end = new DateTime(Date.Year, 6, 30, 23, 59, 59); // 上半年结束时间
+        return (start, end);
+    }
+
+    /// <summary>
+    /// 获取下半年的时间范围
+    /// </summary>
+    public (DateTime Start, DateTime End) GetSecondHalfYearRange()
+    {
+        var start = new DateTime(Date.Year, 7, 1); // 下半年开始时间
+        var end = new DateTime(Date.Year, 12, 31, 23, 59, 59); // 下半年结束时间
+        return (start, end);
     }
 }
