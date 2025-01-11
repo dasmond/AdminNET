@@ -131,7 +131,7 @@ public class DateTimeUtil
     }
 
     /// <summary>
-    /// 获取日期天的最大时间
+    /// 根据日期是否在当前年份来格式化日期
     /// </summary>
     /// <param name="dt"></param>
     /// <returns></returns>
@@ -141,7 +141,7 @@ public class DateTimeUtil
     }
 
     /// <summary>
-    /// 获取今天日期范围00:00:00 - 23:59:59
+    /// 获取日期范围00:00:00 - 23:59:59
     /// </summary>
     /// <returns></returns>
     public static List<DateTime> GetTodayTimeList(DateTime time)
