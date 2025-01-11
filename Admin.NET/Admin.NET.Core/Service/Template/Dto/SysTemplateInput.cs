@@ -48,7 +48,7 @@ public class AddTemplateInput : SysTemplate
     /// <summary>
     /// 模板类型
     /// </summary>
-    [Dict(nameof(TemplateTypeEnum))]
+    [Enum]
     public override TemplateTypeEnum Type { get; set; }
 
     /// <summary>
