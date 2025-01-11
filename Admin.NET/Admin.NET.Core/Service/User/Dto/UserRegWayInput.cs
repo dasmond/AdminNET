@@ -37,8 +37,7 @@ public class AddUserRegWayInput : SysUserRegWay
     /// <summary>
     /// 账号类型
     /// </summary>
-    [Dict(nameof(AccountTypeEnum), AllowNullValue = true)]
-    [Required(ErrorMessage = "账号类型不能为空")]
+    [Enum(ErrorMessage = "账号类型不正确")]
     public override AccountTypeEnum AccountType { get; set; }
 
     /// <summary>
