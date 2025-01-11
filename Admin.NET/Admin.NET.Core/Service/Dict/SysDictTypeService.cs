@@ -101,7 +101,7 @@ public class SysDictTypeService : IDynamicApiController, ITransient
         var isExist = await _sysDictTypeRep.AsQueryable().ClearFilter().AnyAsync(u => u.Code == input.Code && u.Id != input.Id);
         if (isExist) throw Oops.Oh(ErrorCodeEnum.D3001);
 
-        _sysCacheService.Remove($"{CacheConst.KeyDict}{input.Code}");
+        _sysCacheService.RemoveByPrefixKey($"{CacheConst.KeyDict}{input.Code}");
         await _sysDictTypeRep.UpdateAsync(input.Adapt<SysDictType>());
     }
 
@@ -144,7 +144,7 @@ public class SysDictTypeService : IDynamicApiController, ITransient
     {
         var dictType = await _sysDictTypeRep.GetByIdAsync(input.Id) ?? throw Oops.Oh(ErrorCodeEnum.D3000);
 
-        _sysCacheService.Remove($"{CacheConst.KeyDict}{dictType.Code}");
+        _sysCacheService.RemoveByPrefixKey($"{CacheConst.KeyDict}{dictType.Code}");
 
         dictType.Status = input.Status;
         await _sysDictTypeRep.AsUpdateable(dictType).UpdateColumns(u => new { u.Status }, true).ExecuteCommandAsync();
@@ -187,7 +187,7 @@ public class SysDictTypeService : IDynamicApiController, ITransient
     {
         var ds = await GetSysDictDataQueryable()
             .InnerJoin<SysDictData>((u, a) => u.Id == a.DictTypeId).ClearFilter()
-            .Where((u, a) => u.IsDelete == false && u.Status == StatusEnum.Enable && a.IsDelete == false && a.Status == StatusEnum.Enable)
+            .Where((u, a) => u.Status == StatusEnum.Enable && a.Status == StatusEnum.Enable && a.IsDelete == false)
             .Select((u, a) => new { TypeCode = u.Code, a.Label, a.Value, a.Name, a.TagType, a.StyleSetting, a.ClassSetting, a.ExtData, a.Remark, a.OrderNo, a.Status })
             .ToListAsync();
         return ds.OrderBy(u => u.OrderNo).GroupBy(u => u.TypeCode).ToDictionary(u => u.Key, u => u);
@@ -201,7 +201,8 @@ public class SysDictTypeService : IDynamicApiController, ITransient
     public ISugarQueryable<SysDictType> GetSysDictDataQueryable()
     {
         var ids = GetTenantIdList();
-        return _sysDictTypeRep.AsQueryable().ClearFilter().WhereIF(!_userManager.SuperAdmin, u => ids.Contains(u.TenantId.Value));
+        return _sysDictTypeRep.AsQueryable().ClearFilter()
+            .Where(u => u.IsDelete == false).WhereIF(!_userManager.SuperAdmin, u => ids.Contains(u.TenantId.Value));
     }
 
     /// <summary>
