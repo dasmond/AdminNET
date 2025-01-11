@@ -7,14 +7,14 @@
 namespace Admin.NET.Core;
 
 /// <summary>
-/// 字典值合规性校验特性
+/// 枚举值合规性校验特性
 /// </summary>
 [SuppressSniffer]
 [AttributeUsage( AttributeTargets.Property | AttributeTargets.Enum | AttributeTargets.Field, AllowMultiple = true)]
 public class EnumAttribute : ValidationAttribute, ITransient
 {
     /// <summary>
-    /// 字典值合规性校验特性
+    /// 枚举值合规性校验特性
     /// </summary>
     /// <param name="errorMessage"></param>
     public EnumAttribute(string errorMessage = "枚举值不合法！")
@@ -23,7 +23,7 @@ public class EnumAttribute : ValidationAttribute, ITransient
     }
 
     /// <summary>
-    /// 字典值合规性校验
+    /// 枚举值合规性校验
     /// </summary>
     /// <param name="value"></param>
     /// <param name="validationContext"></param>
