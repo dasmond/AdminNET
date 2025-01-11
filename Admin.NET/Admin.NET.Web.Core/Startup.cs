@@ -275,7 +275,13 @@ public class Startup : AppStartup
         {
             ContentTypeProvider = contentTypeProvider
         });
-
+        // 二级目录文件路径解析
+        if (!string.IsNullOrEmpty(App.Settings.VirtualPath))
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                RequestPath = App.Settings.VirtualPath,
+                FileProvider = App.WebHostEnvironment.WebRootFileProvider
+            });
         //// 启用HTTPS
         //app.UseHttpsRedirection();
 
