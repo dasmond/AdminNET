@@ -17,12 +17,14 @@ public class SysCodeGenService : IDynamicApiController, ITransient
     private readonly ISqlSugarClient _db;
 
     private readonly SysCodeGenConfigService _codeGenConfigService;
+    private readonly DbConnectionOptions _dbConnectionOptions;
     private readonly CodeGenOptions _codeGenOptions;
     private readonly SysMenuService _sysMenuService;
     private readonly IViewEngine _viewEngine;
     private readonly UserManager _userManager;
 
     public SysCodeGenService(ISqlSugarClient db,
+        IOptions<DbConnectionOptions> dbConnectionOptions,
         SysCodeGenConfigService codeGenConfigService,
         IOptions<CodeGenOptions> codeGenOptions,
         SysMenuService sysMenuService,
@@ -35,6 +37,7 @@ public class SysCodeGenService : IDynamicApiController, ITransient
         _sysMenuService = sysMenuService;
         _codeGenOptions = codeGenOptions.Value;
         _codeGenConfigService = codeGenConfigService;
+        _dbConnectionOptions = dbConnectionOptions.Value;
     }
 
     /// <summary>
@@ -133,7 +136,7 @@ public class SysCodeGenService : IDynamicApiController, ITransient
     [DisplayName("获取数据库库集合")]
     public async Task<List<DatabaseOutput>> GetDatabaseList()
     {
-        var dbConfigs = App.GetOptions<DbConnectionOptions>().ConnectionConfigs;
+        var dbConfigs = _dbConnectionOptions.ConnectionConfigs;
         return await Task.FromResult(dbConfigs.Adapt<List<DatabaseOutput>>());
     }
 
@@ -146,11 +149,10 @@ public class SysCodeGenService : IDynamicApiController, ITransient
     {
         var provider = _db.AsTenant().GetConnectionScope(configId);
         var dbTableInfos = provider.DbMaintenance.GetTableInfoList(false); // 不能走缓存,否则切库不起作用
-
-        var config = App.GetOptions<DbConnectionOptions>().ConnectionConfigs.FirstOrDefault(u => configId.Equals(u.ConfigId));
+        var config = _dbConnectionOptions.ConnectionConfigs.FirstOrDefault(u => configId.Equals(u.ConfigId));
 
         // var dbTableNames = dbTableInfos.Select(u => u.Name.ToLower()).ToList();
-        IEnumerable<EntityInfo> entityInfos = await GetEntityInfos();
+        IEnumerable<EntityInfo> entityInfos = await GetEntityInfos(configId);
 
         var tableOutputList = new List<TableOutput>();
         foreach (var item in entityInfos)
@@ -181,13 +183,13 @@ public class SysCodeGenService : IDynamicApiController, ITransient
     {
         // 切库---多库代码生成用
         var provider = _db.AsTenant().GetConnectionScope(configId);
-
-        var config = App.GetOptions<DbConnectionOptions>().ConnectionConfigs.FirstOrDefault(u => u.ConfigId.ToString() == configId);
+        var config = _dbConnectionOptions.ConnectionConfigs.FirstOrDefault(u => u.ConfigId.ToString() == configId) ?? throw Oops.Oh(ErrorCodeEnum.D1401);
+        if (config.DbSettings.EnableUnderLine) tableName = UtilMethods.ToUnderLine(tableName);
         // 获取实体类型属性
         var entityType = provider.DbMaintenance.GetTableInfoList(false).FirstOrDefault(u => u.Name == tableName);
         if (entityType == null) return null;
         var entityBasePropertyNames = _codeGenOptions.EntityBaseColumn[nameof(EntityTenant)];
-        var properties = GetEntityInfos().Result.First(e => e.DbTableName == tableName).Type.GetProperties()
+        var properties = GetEntityInfos(configId).Result.First(e => e.DbTableName == tableName).Type.GetProperties()
             .Where(e => e.GetCustomAttribute<SugarColumn>()?.IsIgnore == false).Select(e => new
             {
                 PropertyName = e.Name,
@@ -195,9 +197,9 @@ public class SysCodeGenService : IDynamicApiController, ITransient
                 ColumnName = e.GetCustomAttribute<SugarColumn>()?.ColumnName ?? e.Name
             }).ToList();
         // 按原始类型的顺序获取所有实体类型属性（不包含导航属性，会返回null）
-        var columnList = provider.DbMaintenance.GetColumnInfosByTableName(entityType.Name).Select(u => new ColumnOuput
+        var columnList = provider.DbMaintenance.GetColumnInfosByTableName(tableName).Select(u => new ColumnOuput
         {
-            ColumnName = config!.DbSettings.EnableUnderLine ? CodeGenUtil.CamelColumnName(u.DbColumnName, entityBasePropertyNames) : u.DbColumnName,
+            ColumnName = config!.DbSettings.EnableUnderLine ? UtilMethods.ToUnderLine(u.DbColumnName) : u.DbColumnName,
             ColumnKey = u.IsPrimarykey.ToString(),
             DataType = u.DataType.ToString(),
             NetType = CodeGenUtil.ConvertDataType(u, provider.CurrentConnectionConfig.DbType),
@@ -205,7 +207,7 @@ public class SysCodeGenService : IDynamicApiController, ITransient
         }).ToList();
         foreach (var column in columnList)
         {
-            var property = properties.First(e => e.ColumnName == column.ColumnName);
+            var property = properties.First(e => (config!.DbSettings.EnableUnderLine ? UtilMethods.ToUnderLine(e.ColumnName) : e.ColumnName) == column.ColumnName);
             column.ColumnComment ??= property?.ColumnComment;
             column.PropertyName = property?.PropertyName;
         }
@@ -218,10 +220,10 @@ public class SysCodeGenService : IDynamicApiController, ITransient
     /// <returns></returns>
     private List<ColumnOuput> GetColumnList([FromQuery] AddCodeGenInput input)
     {
-        var entityType = GetEntityInfos().GetAwaiter().GetResult().FirstOrDefault(u => u.EntityName == input.TableName);
-        if (entityType == null)
-            return null;
-        var config = App.GetOptions<DbConnectionOptions>().ConnectionConfigs.FirstOrDefault(u => u.ConfigId.ToString() == input.ConfigId);
+        var entityType = GetEntityInfos(input.ConfigId).GetAwaiter().GetResult().FirstOrDefault(u => u.EntityName == input.TableName);
+        if (entityType == null) return null;
+
+        var config = _dbConnectionOptions.ConnectionConfigs.FirstOrDefault(u => u.ConfigId.ToString() == input.ConfigId);
         var dbTableName = config!.DbSettings.EnableUnderLine ? UtilMethods.ToUnderLine(entityType.DbTableName) : entityType.DbTableName;
 
         // 切库---多库代码生成用
@@ -281,8 +283,9 @@ public class SysCodeGenService : IDynamicApiController, ITransient
     /// 获取库表信息
     /// </summary>
     /// <returns></returns>
-    private async Task<IEnumerable<EntityInfo>> GetEntityInfos()
+    private async Task<IEnumerable<EntityInfo>> GetEntityInfos(string configId)
     {
+        var config = _dbConnectionOptions.ConnectionConfigs.FirstOrDefault(u => u.ConfigId.ToString() == configId) ?? throw Oops.Oh(ErrorCodeEnum.D1401);
         var entityInfos = new List<EntityInfo>();
 
         var type = typeof(SugarTable);
@@ -293,11 +296,7 @@ public class SysCodeGenService : IDynamicApiController, ITransient
             foreach (var assembly in assemblies)
             {
                 var assemblyName = assembly.GetName().Name;
-                if (!_codeGenOptions.EntityAssemblyNames.Contains(assemblyName) &&
-                    !_codeGenOptions.EntityAssemblyNames.Any(name => assemblyName!.Contains(name)))
-                {
-                    continue;
-                }
+                if (!_codeGenOptions.EntityAssemblyNames.Contains(assemblyName) && !_codeGenOptions.EntityAssemblyNames.Any(name => assemblyName!.Contains(name))) continue;
 
                 Assembly asm = Assembly.Load(assemblyName!);
                 types.AddRange(asm.GetExportedTypes().ToList());
@@ -310,16 +309,17 @@ public class SysCodeGenService : IDynamicApiController, ITransient
         {
             var sugarAttribute = ct.GetCustomAttributes(type, true).FirstOrDefault();
 
-            var des = ct.GetCustomAttributes(typeof(DescriptionAttribute), true);
             var description = "";
-            if (des.Length > 0)
-            {
-                description = ((DescriptionAttribute)des[0]).Description;
-            }
-            entityInfos.Add(new EntityInfo()
+            var des = ct.GetCustomAttributes(typeof(DescriptionAttribute), true);
+            if (des.Length > 0) description = ((DescriptionAttribute)des[0]).Description;
+
+            var dbTableName = sugarAttribute == null || string.IsNullOrWhiteSpace(((SugarTable)sugarAttribute).TableName) ? ct.Name : ((SugarTable)sugarAttribute).TableName;
+            if (config.DbSettings.EnableUnderLine) dbTableName = UtilMethods.ToUnderLine(dbTableName);
+
+            entityInfos.Add(new EntityInfo
             {
                 EntityName = ct.Name,
-                DbTableName = sugarAttribute == null ? ct.Name : ((SugarTable)sugarAttribute).TableName,
+                DbTableName = dbTableName,
                 TableDescription = sugarAttribute == null ? description : ((SugarTable)sugarAttribute).TableDescription,
                 Type = ct
             });

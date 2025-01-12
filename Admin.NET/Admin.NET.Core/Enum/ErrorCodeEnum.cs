@@ -626,6 +626,12 @@ public enum ErrorCodeEnum
     D1400,
 
     /// <summary>
+    /// 数据库配置不存在
+    /// </summary>
+    [ErrorCodeItemMetadata("数据库配置不存在")]
+    D1401,
+
+    /// <summary>
     /// 该类型不存在
     /// </summary>
     [ErrorCodeItemMetadata("该类型不存在")]
