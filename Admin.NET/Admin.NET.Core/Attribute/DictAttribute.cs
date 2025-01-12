@@ -48,28 +48,23 @@ public class DictAttribute : ValidationAttribute, ITransient
     protected override ValidationResult IsValid(object? value, ValidationContext validationContext)
     {
         // 判断是否允许空值
-        if (AllowNullValue && value == null)
-            return ValidationResult.Success;
+        if (AllowNullValue && value == null) return ValidationResult.Success;
 
         var valueAsString = value?.ToString();
 
         // 是否忽略空字符串
-        if (AllowEmptyStrings && string.IsNullOrEmpty(valueAsString))
-            return ValidationResult.Success;
+        if (AllowEmptyStrings && string.IsNullOrEmpty(valueAsString)) return ValidationResult.Success;
 
         // 获取属性的类型
-        var property = validationContext.ObjectType.GetProperty(validationContext.MemberName);
-        if (property == null)
-            return new ValidationResult($"未知属性: {validationContext.MemberName}");
+        var property = validationContext.ObjectType.GetProperty(validationContext.MemberName!);
+        if (property == null) return new ValidationResult($"未知属性: {validationContext.MemberName}");
 
         var propertyType = Nullable.GetUnderlyingType(property.PropertyType) ?? property.PropertyType;
 
         // 枚举类型验证
         if (propertyType.IsEnum)
         {
-            if (!Enum.IsDefined(propertyType, value))
-                return new ValidationResult($"提示：{ErrorMessage}|枚举值【{value}】不是有效的【{propertyType.Name}】枚举类型值！");
-
+            if (!Enum.IsDefined(propertyType, value!)) return new ValidationResult($"提示：{ErrorMessage}|枚举值【{value}】不是有效的【{propertyType.Name}】枚举类型值！");
             return ValidationResult.Success;
         }
 
@@ -83,8 +78,7 @@ public class DictAttribute : ValidationAttribute, ITransient
         // 使用 HashSet 来提高查找效率
         var dictHash = new HashSet<string>(dictDataList.Select(u => u.Value));
 
-        if (!dictHash.Contains(valueAsString))
-            return new ValidationResult($"提示：{ErrorMessage}|字典【{DictTypeCode}】不包含【{valueAsString}】！");
+        if (!dictHash.Contains(valueAsString)) return new ValidationResult($"提示：{ErrorMessage}|字典【{DictTypeCode}】不包含【{valueAsString}】！");
 
         return ValidationResult.Success;
     }
