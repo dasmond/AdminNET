@@ -89,7 +89,7 @@ public class SafeMathTests
         int right = 0;
 
         // Act
-        int result = SafeMath.Div(left, right, defaultValue: -1);
+        int result = SafeMath.Div(left, right, defaultValue: -1, throwOnDivideByZero: false);
 
         // Assert
         Assert.Equal(-1, result); // 除数为 0，返回默认值 -1
@@ -277,10 +277,12 @@ public class SafeMathTests
         object right = null;
 
         // Act
-        int result = SafeMath.Div<int>(left, right, defaultValue: -1);
-
-        // Assert
-        Assert.Equal(-1, result); // 右操作数为 null，返回默认值 -1
+        Assert.Throws<DivideByZeroException>(() =>
+        {
+            int result = SafeMath.Div<int>(left, right);
+            // Assert
+            Assert.Equal(-1, result); // 右操作数为 null，返回默认值 -1
+        });
     }
 
     [Fact]
