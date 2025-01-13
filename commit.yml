@@ -3,27 +3,30 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid 'd813013b1d1e08e549749671161b200e8de60e70'
-    oldFile: !uuid 'eb869cdc9c2d93fa473c16863bba7caed28b8766'
+    newFile: !uuid '88c3e358e75124a84ce756528df5192f69748a4d'
+    oldFile: !uuid 'd813013b1d1e08e549749671161b200e8de60e70'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid 'e669caae8404042e6c995e44fe8ea7260d8111eb'
-    oldFile: !uuid 'fb22ac5d72d6ef7672ecf7d1463ffbbd54d3aa38'
-  /Admin.NET/Admin.NET.Core/Enum:
-    newFile: !uuid '958dadb6bc504609d653fe034f6efdaaa3537f45'
-    oldFile: !uuid 'f557bb0ea3caf04d974b4142e974b213332c5e74'
-  /Admin.NET/Admin.NET.Core/Enum/ErrorCodeEnum.cs:
-    newFile: !uuid '170b782260b5936985853858eae86db84e810cef'
-    oldFile: !uuid '5cdcf683689af5c08b77780acad5a41a0a785a88'
-  /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid 'aaf755ce22c47b69a123f7da6a810ad0fa0187a0'
-    oldFile: !uuid 'f55565dc53f2bb7b278454e86ad53103bc9b3860'
-  /Admin.NET/Admin.NET.Core/Service/CodeGen:
-    newFile: !uuid '982906e3a77d1e64eb099b9a23a7379c3f58adcc'
-    oldFile: !uuid 'e2155e4380a28192358df746caee79fc5d489b80'
-  /Admin.NET/Admin.NET.Core/Service/CodeGen/SysCodeGenService.cs:
-    newFile: !uuid 'e40c836d968d2c100b0d6c4228358009ad6137c3'
-    oldFile: !uuid 'd87b7fd17d31c964ae51ae058a10c9e12101f246'
-gitCommitId: !uuid '29152650df09cdaba50cac1572d8a6bbbcf4cd6a'
+    newFile: !uuid 'f23d2aece754890d86442f58d1020a63f3bd1418'
+    oldFile: !uuid 'e669caae8404042e6c995e44fe8ea7260d8111eb'
+  /Admin.NET/Admin.NET.Core/Utils:
+    newFile: !uuid 'a531d254daf466e4aa848768441055fa8b8d15ed'
+    oldFile: !uuid '37246de975a64b07dd7cdbef09bc417bda1e1be7'
+  /Admin.NET/Admin.NET.Core/Utils/SafeMath.cs:
+    newFile: !uuid '19b70d1b70177b5561eb1cf465cdf636dd8b56f0'
+    oldFile: null
+  /Admin.NET/Admin.NET.Test:
+    newFile: !uuid '40a851a48e105d49a2d0ae24afc4e8351e54f201'
+    oldFile: !uuid 'ea39050934d4af5cf8ea7f44505f91e51ff08d92'
+  /Admin.NET/Admin.NET.Test/Admin.NET.Test.csproj:
+    newFile: !uuid 'e365761e666a5367f5072c68deddb903e9baa62a'
+    oldFile: !uuid 'cfdb6d9bb272044dbea9c1a7e104295744b5804a'
+  /Admin.NET/Admin.NET.Test/Utils:
+    newFile: !uuid 'ce74d4f97a6556f07c4eac37fd60e7663898df5a'
+    oldFile: null
+  /Admin.NET/Admin.NET.Test/Utils/SafeMathTests.cs:
+    newFile: !uuid '46e22b54740a753f67922372878fb06c0dedc47a'
+    oldFile: null
+gitCommitId: !uuid '2ba05c4e92baae12847146d0127c3dbdf17d5f09'
 renames: {
   }
-revisionId: 2743
+revisionId: 2744
