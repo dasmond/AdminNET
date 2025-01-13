@@ -18,14 +18,29 @@ public class DateTimeUtil
         Date = DateTime.Now.AddTicks(timeSpan.Ticks);
     }
 
+    private DateTimeUtil(DateTime time)
+    {
+        Date = time;
+    }
+
     /// <summary>
-    /// 实例化时间帮助类
+    /// 实例化类
     /// </summary>
     /// <param name="timeSpan"></param>
     /// <returns></returns>
     public static DateTimeUtil Init(TimeSpan timeSpan = default)
     {
         return new DateTimeUtil(timeSpan);
+    }
+
+    /// <summary>
+    /// 实例化类
+    /// </summary>
+    /// <param name="time"></param>
+    /// <returns></returns>
+    public static DateTimeUtil Init(DateTime time)
+    {
+        return new DateTimeUtil(time);
     }
 
     /// <summary>
