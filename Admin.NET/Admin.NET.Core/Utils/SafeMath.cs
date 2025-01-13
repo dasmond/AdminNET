@@ -18,7 +18,13 @@ public static class SafeMath
     /// <summary>
     /// 安全加法
     /// </summary>
-    public static T Add<T>(object left, object right, int precision = 2, T defaultValue = default, bool throwOnError = false) where T : struct, IComparable, IConvertible, IFormattable
+    /// <param name="left">左操作数</param>
+    /// <param name="right">右操作数</param>
+    /// <param name="precision">保留小数位数</param>
+    /// <param name="defaultValue">默认值</param>
+    /// <param name="throwOnError">是否抛出异常</param>
+    /// <returns></returns>
+    public static T Add<T>(object left, object right, int precision = 2, T defaultValue = default, bool throwOnError = true) where T : struct, IComparable, IConvertible, IFormattable
     {
         return PerformOperation(left, right, (a, b) => a + b, precision, defaultValue, throwOnError);
     }
@@ -26,7 +32,12 @@ public static class SafeMath
     /// <summary>
     /// 安全减法
     /// </summary>
-    public static T Sub<T>(object left, object right, int precision = 2, T defaultValue = default, bool throwOnError = false) where T : struct, IComparable, IConvertible, IFormattable
+    /// <param name="left">左操作数</param>
+    /// <param name="right">右操作数</param>
+    /// <param name="precision">保留小数位数</param>
+    /// <param name="defaultValue">默认值</param>
+    /// <param name="throwOnError">是否抛出异常</param>
+    public static T Sub<T>(object left, object right, int precision = 2, T defaultValue = default, bool throwOnError = true) where T : struct, IComparable, IConvertible, IFormattable
     {
         return PerformOperation(left, right, (a, b) => a - b, precision, defaultValue, throwOnError);
     }
@@ -34,7 +45,12 @@ public static class SafeMath
     /// <summary>
     /// 安全乘法
     /// </summary>
-    public static T Mult<T>(object left, object right, int precision = 2, T defaultValue = default, bool throwOnError = false) where T : struct, IComparable, IConvertible, IFormattable
+    /// <param name="left">左操作数</param>
+    /// <param name="right">右操作数</param>
+    /// <param name="precision">保留小数位数</param>
+    /// <param name="defaultValue">默认值</param>
+    /// <param name="throwOnError">是否抛出异常</param>
+    public static T Mult<T>(object left, object right, int precision = 2, T defaultValue = default, bool throwOnError = true) where T : struct, IComparable, IConvertible, IFormattable
     {
         return PerformOperation(left, right, (a, b) => a * b, precision, defaultValue, throwOnError);
     }
@@ -42,7 +58,12 @@ public static class SafeMath
     /// <summary>
     /// 安全除法
     /// </summary>
-    public static T Div<T>(object left, object right, int precision = 2, T defaultValue = default, bool throwOnDivideByZero = false) where T : struct, IComparable, IConvertible, IFormattable
+    /// <param name="left">左操作数</param>
+    /// <param name="right">右操作数</param>
+    /// <param name="precision">保留小数位数</param>
+    /// <param name="defaultValue">默认值</param>
+    /// <param name="throwOnDivideByZero">是否抛出除以零异常</param>
+    public static T Div<T>(object left, object right, int precision = 2, T defaultValue = default, bool throwOnDivideByZero = true) where T : struct, IComparable, IConvertible, IFormattable
     {
         return PerformOperation(left, right, (a, b) =>
         {
@@ -55,6 +76,8 @@ public static class SafeMath
     /// <summary>
     /// 安全类型转换
     /// </summary>
+    /// <param name="value">数据源</param>
+    /// <param name="defaultValue">默认值</param>
     public static T SafeConvert<T>(object value, T defaultValue = default) where T : struct, IComparable, IConvertible, IFormattable
     {
         if (value == null) return defaultValue;
