@@ -1,6 +1,6 @@
 <template>
 	<div class="sys-region-container">
-		<splitpanes>
+		<splitpanes class="default-theme">
 			<pane size="20">
 				<RegionTree ref="regionTreeRef" @node-click="nodeClick" />
 			</pane>

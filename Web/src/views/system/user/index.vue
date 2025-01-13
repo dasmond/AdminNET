@@ -1,6 +1,6 @@
 <template>
 	<div class="sys-user-container">
-		<splitpanes>
+		<splitpanes class="default-theme">
 			<pane size="20">
 				<OrgTree ref="orgTreeRef" @node-click="nodeClick" />
 			</pane>
