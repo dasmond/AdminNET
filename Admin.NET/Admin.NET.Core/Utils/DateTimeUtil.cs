@@ -308,7 +308,8 @@ public class DateTimeUtil
     /// </summary>
     public (DateTime Start, DateTime End) GetLastWeekRange()
     {
-        var daysToSubtract = (int)Date.DayOfWeek + 6; // 计算上周的天数差
+        // 计算上周的天数差
+        var daysToSubtract = (int)Date.DayOfWeek + 7; // 确保周日也能正确计算
         var start = Date.Date.AddDays(-daysToSubtract); // 上周第一天
         var end = start.AddDays(7).AddSeconds(-1); // 上周最后一天
         return (start, end);
@@ -319,7 +320,8 @@ public class DateTimeUtil
     /// </summary>
     public (DateTime Start, DateTime End) GetThisWeekRange()
     {
-        var daysToSubtract = (int)Date.DayOfWeek; // 计算本周的天数差
+        // 计算本周的天数差
+        var daysToSubtract = (int)Date.DayOfWeek;
         var start = Date.Date.AddDays(-daysToSubtract); // 本周第一天
         var end = start.AddDays(7).AddSeconds(-1); // 本周最后一天
         return (start, end);
