@@ -3,18 +3,18 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '8bcf3265d0d9747e6ffda1f921d9cc286324e32f'
-    oldFile: !uuid 'f0746e11be32da98aa35cfe1214807c926265e7f'
-  /Admin.NET/Admin.NET.Core:
-    newFile: !uuid 'd9fd82a3e00c3ed30247c6fbc77f285595501528'
-    oldFile: !uuid '1808a61c4a3e002f6085545c6ddfd600f5802230'
-  /Admin.NET/Admin.NET.Core/Utils:
-    newFile: !uuid '4f9896a15791b1c726774efcf7c3edbf546ed89d'
-    oldFile: !uuid '3431e3889d60c13d0890321b499e6de6c756f92d'
-  /Admin.NET/Admin.NET.Core/Utils/DateTimeUtil.cs:
-    newFile: !uuid '0f5d473f941b6f41ae85f5d301c52a7ecf16cce0'
-    oldFile: !uuid '1165cafd61ac6d9292c1cf2a670bd29f0f4860da'
-gitCommitId: !uuid '8dc2752423aee045b3c5130eb81d044b0d754586'
+    newFile: !uuid 'b9748c04cdf642e000cb09ef5926308b785e21a3'
+    oldFile: !uuid '8bcf3265d0d9747e6ffda1f921d9cc286324e32f'
+  /Admin.NET/Admin.NET.Test:
+    newFile: !uuid 'c50e0c965e58ae3d38bdf160f936c107d48be4ed'
+    oldFile: !uuid '17f0481ee96ca3681fbb1be8b4183d4fdef280bf'
+  /Admin.NET/Admin.NET.Test/Utils:
+    newFile: !uuid '3126967249bf9fa01e62ba197bc5190708a981f4'
+    oldFile: !uuid 'eb546d15706b511ff93a092bebe3e20fbcc1ba60'
+  /Admin.NET/Admin.NET.Test/Utils/DateTimeUtilTests.cs:
+    newFile: !uuid '3ee55d646cd18cd4ca55e8486298f42145a478b1'
+    oldFile: null
+gitCommitId: !uuid 'fb443670817686a09b5eb9e26f68d66e876d43fa'
 renames: {
   }
-revisionId: 2747
+revisionId: 2748
