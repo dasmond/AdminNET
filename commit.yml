@@ -3,18 +3,18 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '9618ec488b0ed696dc99366857976dffb92b5cf4'
-    oldFile: !uuid '88c3e358e75124a84ce756528df5192f69748a4d'
-  /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '1808a61c4a3e002f6085545c6ddfd600f5802230'
-    oldFile: !uuid 'f23d2aece754890d86442f58d1020a63f3bd1418'
-  /Admin.NET/Admin.NET.Core/Utils:
-    newFile: !uuid '3431e3889d60c13d0890321b499e6de6c756f92d'
-    oldFile: !uuid 'a531d254daf466e4aa848768441055fa8b8d15ed'
-  /Admin.NET/Admin.NET.Core/Utils/SafeMath.cs:
-    newFile: !uuid '546f4eb29b8d6e9449458cc18052485ef1c9ecd0'
-    oldFile: !uuid '19b70d1b70177b5561eb1cf465cdf636dd8b56f0'
-gitCommitId: !uuid '41793dfe228e2507f9771254bbf049378f3d1a14'
+    newFile: !uuid 'f0746e11be32da98aa35cfe1214807c926265e7f'
+    oldFile: !uuid '9618ec488b0ed696dc99366857976dffb92b5cf4'
+  /Admin.NET/Admin.NET.Test:
+    newFile: !uuid '17f0481ee96ca3681fbb1be8b4183d4fdef280bf'
+    oldFile: !uuid '40a851a48e105d49a2d0ae24afc4e8351e54f201'
+  /Admin.NET/Admin.NET.Test/Utils:
+    newFile: !uuid 'eb546d15706b511ff93a092bebe3e20fbcc1ba60'
+    oldFile: !uuid 'ce74d4f97a6556f07c4eac37fd60e7663898df5a'
+  /Admin.NET/Admin.NET.Test/Utils/SafeMathTests.cs:
+    newFile: !uuid 'b01485529e2e1bb7eb874333a7bb8ae23dc6940c'
+    oldFile: !uuid '46e22b54740a753f67922372878fb06c0dedc47a'
+gitCommitId: !uuid '6e0141cb225dbdaf4382704a5736facc6381d17f'
 renames: {
   }
-revisionId: 2745
+revisionId: 2746
