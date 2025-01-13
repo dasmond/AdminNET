@@ -4,12 +4,13 @@
 //
 // 不得利用本项目从事危害国家安全、扰乱社会秩序、侵犯他人合法权益等法律法规禁止的活动！任何基于本项目二次开发而产生的一切法律纠纷和责任，我们不承担任何责任！
 
+using Newtonsoft.Json;
 using System.Security.Claims;
 
 namespace Admin.NET.Core;
 
 /// <summary>
-/// 防止重复请求过滤器特性
+/// 防止重复请求过滤器特性(此特性使用了分布式锁，需确保系统支持分布式锁)
 /// </summary>
 [SuppressSniffer]
 [AttributeUsage(AttributeTargets.All, AllowMultiple = true, Inherited = true)]
@@ -28,7 +29,7 @@ public class IdempotentAttribute : Attribute, IAsyncActionFilter
     /// <summary>
     /// 缓存前缀: Key+请求路由+用户Id+请求参数
     /// </summary>
-    public string CacheKey { get; set; }
+    public string CacheKey { get; set; } = CacheConst.KeyIdempotent;
 
     /// <summary>
     /// 是否直接抛出异常：Ture是，False返回上次请求结果
@@ -36,9 +37,9 @@ public class IdempotentAttribute : Attribute, IAsyncActionFilter
     public bool ThrowBah { get; set; }
 
     /// <summary>
-    /// 缓存服务
+    /// 锁前缀
     /// </summary>
-    private readonly SysCacheService _sysCacheService = App.GetRequiredService<SysCacheService>();
+    public string LockPrefix { get; set; } = "lock_";
 
     public IdempotentAttribute()
     {
@@ -51,43 +52,45 @@ public class IdempotentAttribute : Attribute, IAsyncActionFilter
         var userId = httpContext.User?.FindFirstValue(ClaimConst.UserId);
         var cacheExpireTime = TimeSpan.FromSeconds(IntervalTime);
 
-        var parameters = "";
-        foreach (var parameter in context.ActionDescriptor.Parameters)
+        var parameters = JsonConvert.SerializeObject(context.ActionArguments, Formatting.None, new JsonSerializerSettings
         {
-            parameters += parameter.Name;
-            parameters += context.ActionArguments[parameter.Name].ToJson();
-        }
+            NullValueHandling = NullValueHandling.Include,
+            DefaultValueHandling = DefaultValueHandling.Include
+        });
 
-        var cacheKey = MD5Encryption.Encrypt($"{CacheKey}{path}{userId}{parameters}");
-        if (_sysCacheService.ExistKey(cacheKey))
+        var cacheKey = CacheKey + MD5Encryption.Encrypt($"{path}{userId}{parameters}");
+        var sysCacheService = httpContext.RequestServices.GetService<SysCacheService>();
+        try
         {
-            if (ThrowBah) throw Oops.Oh(Message);
+            // 分布式锁
+            using var distributedLock = sysCacheService.BeginCacheLock($"{LockPrefix}{cacheKey}") ?? throw Oops.Oh(Message);
 
-            try
+            var cacheValue = sysCacheService.Get<ResponseData>(cacheKey);
+            if (cacheValue != null)
             {
-                var cachedResult = _sysCacheService.Get<ResponseData>(cacheKey);
-                context.Result = new ObjectResult(cachedResult.Value);
+                if (ThrowBah) throw Oops.Oh(Message);
+                context.Result = new ObjectResult(cacheValue.Value);
+                return;
             }
-            catch (Exception ex)
+            else
             {
-                throw Oops.Oh($"{Message}-{ex}");
-            }
-        }
-        else
-        {
-            // 先加入一个空缓存，防止第一次请求结果没回来导致连续请求
-            _sysCacheService.Set(cacheKey, "", cacheExpireTime);
-            var resultContext = await next();
-            if (resultContext.Result is ObjectResult objectResult)
-            {
-                var valueType = objectResult.Value.GetType();
-                var responseData = new ResponseData
+                var resultContext = await next();
+                // 缓存请求结果,null值不缓存
+                if (resultContext.Result is ObjectResult { Value: { } } objectResult)
                 {
-                    Type = valueType.Name,
-                    Value = objectResult.Value
-                };
-                _sysCacheService.Set(cacheKey, responseData, cacheExpireTime);
+                    var typeName = objectResult.Value.GetType().Name;
+                    var responseData = new ResponseData
+                    {
+                        Type = typeName,
+                        Value = objectResult.Value
+                    };
+                    sysCacheService.Set(cacheKey, responseData, cacheExpireTime);
+                }
             }
+        }
+        catch (Exception ex)
+        {
+            throw Oops.Oh($"{Message}-{ex}");
         }
     }
 

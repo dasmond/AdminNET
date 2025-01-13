@@ -92,6 +92,11 @@ public class CacheConst
     public const string KeyDict = "sys_dict:";
 
     /// <summary>
+    /// 重复请求(幂等)字典缓存
+    /// </summary>
+    public const string KeyIdempotent = "sys_idempotent:";
+
+    /// <summary>
     /// Excel临时文件缓存
     /// </summary>
     public const string KeyExcelTemp = "sys_excel_temp:";
