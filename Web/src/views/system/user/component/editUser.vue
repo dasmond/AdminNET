@@ -13,7 +13,7 @@
 						<el-row :gutter="35">
 							<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
 								<el-form-item label="账号名称" prop="account" :rules="[{ required: true, message: '账号名称不能为空', trigger: 'blur' }]">
-									<el-input v-model="state.ruleForm.account" placeholder="账号名称" clearable />
+									<el-input v-model="state.ruleForm.account" placeholder="账号名称" :disabled="state.ruleForm.id > 0" clearable />
 								</el-form-item>
 							</el-col>
 							<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
