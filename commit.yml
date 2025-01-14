@@ -3,27 +3,21 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '318b10d751e2a27c5375eafea4639c8e5c826944'
-    oldFile: !uuid '772993f602b83585ad81351afe17201809c577da'
+    newFile: !uuid '5bb5aeec0279fbf766ccc04a8455f37c83ea5379'
+    oldFile: !uuid '318b10d751e2a27c5375eafea4639c8e5c826944'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid 'b7521cf35427e0cdcef6103104c17caae5c84da1'
-    oldFile: !uuid '147b924cc91ec940cf9f0398603be444ea0195d6'
-  /Admin.NET/Admin.NET.Core/Enum:
-    newFile: !uuid '9fe31a0051c71f865c15caf462db29d83129a927'
-    oldFile: !uuid '3c408be56cbe6b744ae5abe7b91b883579dcab9c'
-  /Admin.NET/Admin.NET.Core/Enum/SysUserEventTypeEnum.cs:
-    newFile: !uuid '2442b22703edaaee7a7b75bae005690884ee06b5'
-    oldFile: !uuid '0e38fab00f7ccf5a04165d8f72fe6893ad3692a5'
+    newFile: !uuid 'a0e5360c07a14f67b1bee5c0990f04dd1effc694'
+    oldFile: !uuid 'b7521cf35427e0cdcef6103104c17caae5c84da1'
   /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid '3be1ecbce0b6d8a0bf29ec4687521981b0879f41'
-    oldFile: !uuid '7bed27d487988c1e5548dddd73dbcbc5dea17ce6'
-  /Admin.NET/Admin.NET.Core/Service/Auth:
-    newFile: !uuid '89a886aab579e833dfd0bc77a67b33811a615a9c'
-    oldFile: !uuid '07f31ebdec6c0d1404468ff966d888bc3c4aab13'
-  /Admin.NET/Admin.NET.Core/Service/Auth/SysAuthService.cs:
-    newFile: !uuid 'b1e9897f0a21f8d0d28dfb70be9ebde4fd084a4c'
-    oldFile: !uuid '5a507d870e85123a73ae8bd41da165a904952d4e'
-gitCommitId: !uuid 'd52270e7bc0be4fbd41d99926b9bafb26b4dcdfc'
+    newFile: !uuid '709f52e8814bb0893f193e86280bde0149397d31'
+    oldFile: !uuid '3be1ecbce0b6d8a0bf29ec4687521981b0879f41'
+  /Admin.NET/Admin.NET.Core/Service/User:
+    newFile: !uuid '5a41df97c5fc1a0092024ead0ed56aa1cc43a948'
+    oldFile: !uuid 'a3e6683ab8462271331fa410ae3698b95ba9d52d'
+  /Admin.NET/Admin.NET.Core/Service/User/SysUserService.cs:
+    newFile: !uuid '5b8b110ff27fd74ae5b205570ab1d54c4d2c7182'
+    oldFile: !uuid '5ba8b9d084988846ea507ba25a83eb2935c44ffe'
+gitCommitId: !uuid '94633ad4f20e424b5716f9093a456f8b8a890a98'
 renames: {
   }
-revisionId: 2702
+revisionId: 2703
