@@ -101,7 +101,7 @@ const state = reactive({
 
 // 打开弹窗
 const openDialog = (row: any) => {
-	state.isSysFlag = row.dictType.sysFlag !== 2;
+	if (row.dictType?.sysFlag) state.isSysFlag = row.dictType.sysFlag !== 2;
 	state.ruleForm = JSON.parse(JSON.stringify(row));
 	if (JSON.stringify(row) == '{}') {
 		state.ruleForm.dictTypeId = props.dictTypeId;

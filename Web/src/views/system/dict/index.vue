@@ -82,7 +82,7 @@
 							</el-button-group>
 						</el-form-item>
 						<el-form-item>
-							<el-button type="primary" icon="ele-Plus" @click="openAddDictData" v-auth="'sysDictData:add'"> 新增 </el-button>
+							<el-button type="primary" icon="ele-Plus" @click="openAddDictData" :disabled="!hasPermission(state.selectDict)" v-auth="'sysDictData:add'"> 新增 </el-button>
 						</el-form-item>
 					</el-form>
 
@@ -222,8 +222,8 @@ const handleDictType = (row: any, event: any, column: any) => {
 
 // 判断是否有权限操作
 const hasPermission = (row: any) => {
-	if (row.code.toLowerCase().endsWith('enum')) return false;
-	return row.sysFlag === 2 || userInfo.accountType === AccountTypeEnum.NUMBER_999;
+	if (row.code?.toLowerCase().endsWith('enum')) return false;
+	return row?.sysFlag === 2 || userInfo.accountType === AccountTypeEnum.NUMBER_999;
 };
 
 // 重置字典操作
