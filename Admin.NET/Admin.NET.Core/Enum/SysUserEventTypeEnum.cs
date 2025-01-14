@@ -66,4 +66,16 @@ public enum SysUserEventTypeEnum
     /// </summary>
     [Description("注册用户")]
     Register = 999,
+
+    /// <summary>
+    /// 用户登录
+    /// </summary>
+    [Description("用户登录")]
+    Login = 1000,
+
+    /// <summary>
+    /// 用户退出
+    /// </summary>
+    [Description("用户退出")]
+    LoginOut = 1001,
 }
