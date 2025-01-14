@@ -157,7 +157,7 @@ public class SysTenantService : IDynamicApiController, ITransient
         isExist = await _sysTenantRep.IsAnyAsync(u => !string.IsNullOrWhiteSpace(u.Host) && u.Host == input.Host);
         if (isExist) throw Oops.Oh(ErrorCodeEnum.D1303);
 
-        isExist = await _sysUserRep.AsQueryable().ClearFilter().AnyAsync(u => u.AccountType == AccountTypeEnum.SuperAdmin && u.Account == input.AdminAccount);
+        isExist = await _sysUserRep.AsQueryable().ClearFilter().AnyAsync(u => u.Account == input.AdminAccount);
         if (isExist) throw Oops.Oh(ErrorCodeEnum.D1301);
 
         // 从库配置判断
@@ -437,7 +437,7 @@ public class SysTenantService : IDynamicApiController, ITransient
         isExist = await _sysTenantRep.IsAnyAsync(u => !string.IsNullOrWhiteSpace(u.Host) && u.Host == input.Host && u.Id != input.Id);
         if (isExist) throw Oops.Oh(ErrorCodeEnum.D1303);
 
-        isExist = await _sysUserRep.AsQueryable().ClearFilter().AnyAsync(u => u.AccountType == AccountTypeEnum.SuperAdmin && u.Account == input.AdminAccount && u.Id != input.UserId);
+        isExist = await _sysUserRep.AsQueryable().ClearFilter().AnyAsync(u => u.Account == input.AdminAccount && u.Id != input.UserId);
         if (isExist) throw Oops.Oh(ErrorCodeEnum.D1301);
 
         // Id隔离时设置与主库一致
