@@ -3,21 +3,144 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '848edb54fa506eb266f1e3dbb0b6c61eb2ff15f1'
-    oldFile: !uuid '5bb5aeec0279fbf766ccc04a8455f37c83ea5379'
+    newFile: !uuid '78a2e2751393c66127a54755922950272f00a552'
+    oldFile: !uuid '848edb54fa506eb266f1e3dbb0b6c61eb2ff15f1'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '100cdd777166e850d573d7c3416003bd34058bcc'
-    oldFile: !uuid 'a0e5360c07a14f67b1bee5c0990f04dd1effc694'
+    newFile: !uuid '4f2ff6abbadf706a399823fce0ad8e1712d5ebfd'
+    oldFile: !uuid '100cdd777166e850d573d7c3416003bd34058bcc'
+  /Admin.NET/Admin.NET.Core/Attribute:
+    newFile: !uuid '80e8e132ef75487d3fc33a217122f67198068862'
+    oldFile: !uuid 'c10ecd1c46e8a9fe277bcc34d3f99fcb3d52e84d'
+  /Admin.NET/Admin.NET.Core/Attribute/DictAttribute.cs:
+    newFile: !uuid '05139f567464fbc36e011a9276e83a48b22c164a'
+    oldFile: !uuid 'ba4d45e1bbc73db5d2807f80cc9cc19c69320c3c'
+  /Admin.NET/Admin.NET.Core/Entity:
+    newFile: !uuid 'e96f00688b0cec295dae9e9f51413d118f928361'
+    oldFile: !uuid 'd07dc40c5442fdd9278d645f04f82376a31dbb7f'
+  /Admin.NET/Admin.NET.Core/Entity/SysDictData.cs:
+    newFile: !uuid '11adffc9543b21285cd675489f81ecfa85214501'
+    oldFile: !uuid 'e587154862ec2484c399ecab6bf0220e66632ed1'
+  /Admin.NET/Admin.NET.Core/Entity/SysDictType.cs:
+    newFile: !uuid 'cb80783010e8c30cf71d77312f413e7d0b5bc96c'
+    oldFile: !uuid 'd79ed611a0f489c08a7e67aad3a8c8f203dfb01b'
+  /Admin.NET/Admin.NET.Core/Job:
+    newFile: !uuid '98c201da7fb0f16b10108124115045e90f5cd3da'
+    oldFile: !uuid '0fc39111ff92df20c1275b069acf5f25fd4e23b7'
+  /Admin.NET/Admin.NET.Core/Job/EnumToDictJob.cs:
+    newFile: !uuid '200d7a8b3bfdb49c15b5143d2fc9235c780c61dc'
+    oldFile: !uuid '46be30ccd63c6adb1f8e6a1ab48c9d8d0ea1f33c'
+  /Admin.NET/Admin.NET.Core/SeedData:
+    newFile: !uuid '602b022f9eba5a3bb7bfe723e203dd41370a22e8'
+    oldFile: !uuid '4ab61719e8c0372a91f460914da2f81209983df4'
+  /Admin.NET/Admin.NET.Core/SeedData/SysDictDataSeedData.cs:
+    newFile: !uuid '0287497568a9b597591b28ec4e66ba10102002a6'
+    oldFile: !uuid '21f7d247906f7fce7b496c98db50891892f71988'
+  /Admin.NET/Admin.NET.Core/SeedData/SysDictTypeSeedData.cs:
+    newFile: !uuid '47b6def36d5691fcf265af816e509c2514c469dd'
+    oldFile: !uuid '875de41914c2a6ab3d5123a6820dbc99424af30e'
   /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid '5c6cfae91bf1d373ff1c29d20af24b85d556bed4'
-    oldFile: !uuid '709f52e8814bb0893f193e86280bde0149397d31'
-  /Admin.NET/Admin.NET.Core/Service/User:
-    newFile: !uuid '995da1d54c64420b54938b4865dc0fb78853371b'
-    oldFile: !uuid '5a41df97c5fc1a0092024ead0ed56aa1cc43a948'
-  /Admin.NET/Admin.NET.Core/Service/User/SysUserService.cs:
-    newFile: !uuid 'd1de4015d075e108c445016ab231555bc1878ce7'
-    oldFile: !uuid '5b8b110ff27fd74ae5b205570ab1d54c4d2c7182'
-gitCommitId: !uuid '352d91b99f74ad58cae774cbb9d5a5f5799e96c0'
+    newFile: !uuid 'a33b16bb048a2bc1a53f0d438787b8c76693df3f'
+    oldFile: !uuid '5c6cfae91bf1d373ff1c29d20af24b85d556bed4'
+  /Admin.NET/Admin.NET.Core/Service/Dict:
+    newFile: !uuid 'd4d0ab4dc80ac4daae5ee258ab9eeff602170211'
+    oldFile: !uuid 'b3f4364d09f27a0f5c58c29d55025713e4a940d3'
+  /Admin.NET/Admin.NET.Core/Service/Dict/Dto:
+    newFile: !uuid 'c555306cee78afd19cde04aad743b5d84cbd1427'
+    oldFile: !uuid 'b9739f1cf0ccfd3d6954cb372c7cd506996a1850'
+  /Admin.NET/Admin.NET.Core/Service/Dict/Dto/DictDataInput.cs:
+    newFile: !uuid '74d08326af521dd0343cab155d42b438369c80cd'
+    oldFile: !uuid '59c266c226f55e50d9ca324f1e01019d265a42c7'
+  /Admin.NET/Admin.NET.Core/Service/Dict/Dto/DictTypeInput.cs:
+    newFile: !uuid '1a629e70a009be98034d6978944519173ed01a3d'
+    oldFile: !uuid '49dde79cb2ffb1be04df2d2ce296205e4f388cd5'
+  /Admin.NET/Admin.NET.Core/Service/Dict/SysDictDataService.cs:
+    newFile: !uuid 'cfcc721a519d3bcb8ca8c88305ed7e0aedc7e771'
+    oldFile: !uuid '4b76636a1df40d51954933227b29e2c3a2bacac8'
+  /Admin.NET/Admin.NET.Core/Service/Dict/SysDictTypeService.cs:
+    newFile: !uuid 'f1bfd1c8eba2022e64c9308d6961fa430c9866ad'
+    oldFile: !uuid '622ef5ac4221a6dc7b4861f5aa10cfd85a7732fc'
+  /Web:
+    newFile: !uuid '717949995dcd2f94fae456d7b24f20140f24e632'
+    oldFile: !uuid 'eb828e14c7b0c83470daad9b358ad3927a64bdc9'
+  /Web/src:
+    newFile: !uuid 'cd9649dcd333c779924aa74baaaa46a7487e12fc'
+    oldFile: !uuid '4bd3d524627c2c3af2423526ac788c11646d379a'
+  /Web/src/api-services:
+    newFile: !uuid '8659d2847427cce965d6ce0b74f066df65ced742'
+    oldFile: !uuid '5ad27581110fe0b671e99e74c88a30c9c4a61ba3'
+  /Web/src/api-services/apis:
+    newFile: !uuid '49fcd71b4e116e18cbbd90d18d00f8f4729eebef'
+    oldFile: !uuid '2fcc34532a3190592113c1c6f5729693166639b7'
+  /Web/src/api-services/apis/sys-dict-type-api.ts:
+    newFile: !uuid 'a144d574414ad843290fb8b75a60d2576f742a69'
+    oldFile: !uuid 'cbd874f394f2f96fac8bc0842bea123aa88349bf'
+  /Web/src/api-services/models:
+    newFile: !uuid '018a686bf5f69d6938333f1508522dfb0349acf5'
+    oldFile: !uuid '1cc9b222f6e56f79dd5e6a612305ef4538fc7847'
+  /Web/src/api-services/models/add-dict-data-input.ts:
+    newFile: !uuid '70735f3304202830695c7b5833ac6d0d926162e6'
+    oldFile: !uuid '0b332c8b6e4d7ee3e9ccabcceee821de7156350d'
+  /Web/src/api-services/models/add-dict-type-input.ts:
+    newFile: !uuid '823c3d9b7c9ef0e0ce3beba7485256e5b4f0aeba'
+    oldFile: !uuid '663a0d9b846a48ffc8cf1bf7ca38225da99a4947'
+  /Web/src/api-services/models/add-user-reg-way-input.ts:
+    newFile: !uuid '8ecbcfe6c0f6471e71286c05aa1b70a68896546a'
+    oldFile: !uuid '3b97e6cb6aebbdc20dc0dfd39ffe77f715b71305'
+  /Web/src/api-services/models/dict-type-move-input.ts:
+    newFile: null
+    oldFile: !uuid '1a85f68d876320b82f9f602e0416c48f52e17e02'
+  /Web/src/api-services/models/index.ts:
+    newFile: !uuid 'd098b83226c24780a84e371012270060f96f9e13'
+    oldFile: !uuid '3e32698b2d11def0a3f90821836a26e9079e9708'
+  /Web/src/api-services/models/page-dict-data-input.ts:
+    newFile: !uuid '5ae832d7b343550b47be681b2305accba70705cd'
+    oldFile: !uuid '24d095db001ec131a56d6a4c2832aa4dd87127e1'
+  /Web/src/api-services/models/page-dict-type-input.ts:
+    newFile: !uuid 'ea5db24400363a215a46fda5bea89234bce09896'
+    oldFile: !uuid '44d77b3a600eb0f9f2e72ccf828ce3db324429d7'
+  /Web/src/api-services/models/sys-dict-data.ts:
+    newFile: !uuid '6fa4216f5c8c4929e9192b700f368f0cc41fffa3'
+    oldFile: !uuid 'e19f56d2244f06c7210f271cc807a88b80b71621'
+  /Web/src/api-services/models/sys-dict-type.ts:
+    newFile: !uuid 'f61362e18dc738ec2284ea61b4653c197ea839de'
+    oldFile: !uuid '703078fb5474099044e81b3c8fe21e8938d46a8a'
+  /Web/src/api-services/models/update-dict-data-input.ts:
+    newFile: !uuid '60bc537038191fdf5c17f8945a6a4011fad26d74'
+    oldFile: !uuid '384361eac25b7b9e4f011af9a16b7771c07760fe'
+  /Web/src/api-services/models/update-dict-type-input.ts:
+    newFile: !uuid 'bde3860c94f1e536839f37bea790f579ac77d12d'
+    oldFile: !uuid '27446cb6b4bc060010acfd5190db466619f85896'
+  /Web/src/api-services/models/update-user-reg-way-input.ts:
+    newFile: !uuid '9fd0de7c843e62aedfa634a799c4e6554945294a'
+    oldFile: !uuid 'ff98965b39500b44787b602d6af34a7bf8b8a93a'
+  /Web/src/views:
+    newFile: !uuid 'f59606041f1c645f4ea49980af5f3da58c8baab5'
+    oldFile: !uuid 'fa7899d8dccd859ba55c7e934ebdffcd36efc342'
+  /Web/src/views/system:
+    newFile: !uuid 'a0fdb8e55bb38f04b22d99e4c450766475f3b891'
+    oldFile: !uuid 'c934c67d70eefaf41049ab27e3b541e3ccd3db18'
+  /Web/src/views/system/dict:
+    newFile: !uuid '8ae73a7bb8542d878d647e02c4653bafb0a1b8ea'
+    oldFile: !uuid '5a76c722ad81051d1a38c1e9191d78f601b68c63'
+  /Web/src/views/system/dict/component:
+    newFile: !uuid '287ed01518ffe47cb2f203fc46062c0c5bc6d0bf'
+    oldFile: !uuid 'bd0e5bc8c0310e2f0ae2748afc0863dff361a6ce'
+  /Web/src/views/system/dict/component/editDictData.vue:
+    newFile: !uuid '42580cf5ebda7de536e8581e678203dce011f3a2'
+    oldFile: !uuid '5e2c96f6a2ceffe8159cb745ccf1f364b19a7dcb'
+  /Web/src/views/system/dict/index.vue:
+    newFile: !uuid '9910fb08cb1ea98556c1aaba907138dff0aa38e5'
+    oldFile: !uuid '65f948beffbb10735b81b0b2ef4c2d686827325e'
+  /Web/src/views/system/user:
+    newFile: !uuid '8c2ae18eb228b76bde0024c7a8d4193a9ca74e28'
+    oldFile: !uuid '2197ea357d6e166d7bfe6166c76ba90892bcde93'
+  /Web/src/views/system/user/component:
+    newFile: !uuid '6a1348b968c8bed515f0ba9d87501e4a82663b69'
+    oldFile: !uuid 'd30b5e65bda10e8c41516c66e43008e0789bf3f6'
+  /Web/src/views/system/user/component/editUser.vue:
+    newFile: !uuid '95ebe3ede2a16de8f0cba761812a2b4d9ca411a4'
+    oldFile: !uuid 'e795eddcea635c63cccdea8f7a76398a204756d1'
+gitCommitId: !uuid 'bf2bf684fb90d5207bf106d7ed0c2355195e2fbd'
 renames: {
   }
-revisionId: 2759
+revisionId: 2760
