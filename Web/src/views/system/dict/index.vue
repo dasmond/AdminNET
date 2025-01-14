@@ -47,7 +47,7 @@
 									<el-button icon="ele-Edit" size="small" text type="primary" :disabled="!hasPermission(scope.row)" @click="openEditDictType(scope.row)" v-auth="'sysDictType:update'"> </el-button>
 								</el-tooltip>
 								<el-tooltip content="删除">
-									<el-button icon="ele-Delete" size="small" text type="danger" :disabled="!hasPermission(scope.row)" @click="delDictType(scope.row)" v-auth="'sysDictType:delete'"> </el-button>
+									<el-button icon="ele-Delete" size="small" text type="danger" :disabled="scope.row?.sysFlag === 1 || !hasPermission(scope.row)" @click="delDictType(scope.row)" v-auth="'sysDictType:delete'"> </el-button>
 								</el-tooltip>
 							</template>
 						</el-table-column>
@@ -242,7 +242,7 @@ const resetDictDataQuery = () => {
 // 打开新增字典页面
 const openAddDictType = () => {
 	state.editDictTypeTitle = '添加字典';
-	editDictTypeRef.value?.openDialog({ status: 1, orderNo: 100 });
+	editDictTypeRef.value?.openDialog({ sysFlag: 2, status: 1, orderNo: 100 });
 };
 
 // 打开新增字典值页面
