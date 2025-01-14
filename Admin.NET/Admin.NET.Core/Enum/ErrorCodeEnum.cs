@@ -374,9 +374,9 @@ public enum ErrorCodeEnum
     D3009,
 
     /// <summary>
-    /// 非超管用户禁止操作系统字典
+    /// 非超管用户禁止操作系统内置数据
     /// </summary>
-    [ErrorCodeItemMetadata("非超管用户禁止操作系统字典")]
+    [ErrorCodeItemMetadata("非超管用户禁止操作系统内置数据")]
     D3010,
 
     /// <summary>

@@ -18,15 +18,18 @@ public class SysConfigService : IDynamicApiController, ITransient
     private readonly SqlSugarRepository<SysConfig> _sysConfigRep;
     private readonly SqlSugarRepository<SysTenant> _sysTenantRep;
     private readonly SysCacheService _sysCacheService;
+    private readonly UserManager _userManager;
 
     public SysConfigService(
         SqlSugarRepository<SysTenant> sysTenantRep,
         SqlSugarRepository<SysConfig> sysConfigRep,
-        SysCacheService sysCacheService)
+        SysCacheService sysCacheService,
+        UserManager userManager)
     {
         _sysCacheService = sysCacheService;
         _sysConfigRep = sysConfigRep;
         _sysTenantRep = sysTenantRep;
+        _userManager = userManager;
     }
 
     /// <summary>
@@ -39,6 +42,7 @@ public class SysConfigService : IDynamicApiController, ITransient
     {
         return await _sysConfigRep.AsQueryable()
             // .Where(u => u.GroupCode != ConfigConst.SysWebConfigGroup || u.GroupCode == null) // 不显示 WebConfig 分组
+            .WhereIF(!_userManager.SuperAdmin, u => u.TenantId == _userManager.TenantId)
             .WhereIF(!string.IsNullOrWhiteSpace(input.Name?.Trim()), u => u.Name.Contains(input.Name))
             .WhereIF(!string.IsNullOrWhiteSpace(input.Code?.Trim()), u => u.Code.Contains(input.Code))
             .WhereIF(!string.IsNullOrWhiteSpace(input.GroupCode?.Trim()), u => u.GroupCode.Equals(input.GroupCode))
@@ -53,7 +57,8 @@ public class SysConfigService : IDynamicApiController, ITransient
     [DisplayName("获取参数配置列表")]
     public async Task<List<SysConfig>> List(PageConfigInput input)
     {
-        return await _sysConfigRep.AsQueryable()
+        var configQueryable = await GetConfigQueryable();
+        return await configQueryable
             .WhereIF(!string.IsNullOrWhiteSpace(input.GroupCode?.Trim()), u => u.GroupCode.Equals(input.GroupCode))
             .ToListAsync();
     }
@@ -67,6 +72,8 @@ public class SysConfigService : IDynamicApiController, ITransient
     [DisplayName("增加参数配置")]
     public async Task AddConfig(AddConfigInput input)
     {
+        if (input.SysFlag == YesNoEnum.Y && !_userManager.SuperAdmin) throw Oops.Oh(ErrorCodeEnum.D3010);
+
         var isExist = await _sysConfigRep.IsAnyAsync(u => u.Name == input.Name || u.Code == input.Code);
         if (isExist) throw Oops.Oh(ErrorCodeEnum.D9000);
 
@@ -82,6 +89,8 @@ public class SysConfigService : IDynamicApiController, ITransient
     [DisplayName("更新参数配置")]
     public async Task UpdateConfig(UpdateConfigInput input)
     {
+        if (input.SysFlag == YesNoEnum.Y && !_userManager.SuperAdmin) throw Oops.Oh(ErrorCodeEnum.D3010);
+
         var isExist = await _sysConfigRep.IsAnyAsync(u => (u.Name == input.Name || u.Code == input.Code) && u.Id != input.Id);
         if (isExist) throw Oops.Oh(ErrorCodeEnum.D9000);
 
@@ -156,12 +165,23 @@ public class SysConfigService : IDynamicApiController, ITransient
         var value = _sysCacheService.Get<string>($"{CacheConst.KeyConfig}{code}");
         if (string.IsNullOrEmpty(value))
         {
-            var config = await _sysConfigRep.CopyNew().GetFirstAsync(u => u.Code == code);
-            value = config != null ? config.Value : default;
+            var configQueryable = await GetConfigQueryable();
+            var config = await configQueryable.FirstAsync(u => u.Code == code);
+            value = config?.Value;
             _sysCacheService.Set($"{CacheConst.KeyConfig}{code}", value);
         }
         if (string.IsNullOrWhiteSpace(value)) return default;
         return (T)Convert.ChangeType(value, typeof(T));
+    }
+
+    /// <summary>
+    /// 获取参数配置查询器
+    /// </summary>
+    /// <returns></returns>
+    [NonAction]
+    public Task<ISugarQueryable<SysConfig>> GetConfigQueryable()
+    {
+        return Task.FromResult(_sysConfigRep.AsQueryable().ClearFilter().Where(u => u.SysFlag == YesNoEnum.Y || u.SysFlag == YesNoEnum.N && u.TenantId == _userManager.TenantId));
     }
 
     /// <summary>
@@ -173,7 +193,8 @@ public class SysConfigService : IDynamicApiController, ITransient
     [NonAction]
     public async Task UpdateConfigValue(string code, string value)
     {
-        var config = await _sysConfigRep.GetFirstAsync(u => u.Code == code);
+        var configQueryable = await GetConfigQueryable();
+        var config = await configQueryable.FirstAsync(u => u.Code == code);
         if (config == null) return;
 
         config.Value = value;
@@ -189,7 +210,8 @@ public class SysConfigService : IDynamicApiController, ITransient
     [DisplayName("获取分组列表")]
     public async Task<List<string>> GetGroupList()
     {
-        return await _sysConfigRep.AsQueryable()
+        var configQueryable = await GetConfigQueryable();
+        return await configQueryable
             // .Where(u => u.GroupCode != ConfigConst.SysWebConfigGroup || u.GroupCode == null) // 不显示 WebConfig 分组
             .GroupBy(u => u.GroupCode)
             .Select(u => u.GroupCode).ToListAsync();
@@ -228,10 +250,11 @@ public class SysConfigService : IDynamicApiController, ITransient
     [DisplayName("批量更新参数配置值")]
     public async Task BatchUpdateConfig(List<BatchConfigInput> input)
     {
+        var configQueryable = await GetConfigQueryable();
         foreach (var config in input)
         {
-            var info = await _sysConfigRep.GetFirstAsync(c => c.Code == config.Code);
-            if (info == null) continue;
+            var info = await configQueryable.FirstAsync(c => c.Code == config.Code);
+            if (info == null || info.SysFlag == YesNoEnum.Y) continue;
 
             await _sysConfigRep.AsUpdateable().SetColumns(u => u.Value == config.Value).Where(u => u.Code == config.Code).ExecuteCommandAsync();
             Remove(info);

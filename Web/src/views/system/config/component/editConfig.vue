@@ -46,7 +46,7 @@
 							</el-input>
 						</el-form-item>
 					</el-col>
-					<el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="mb20">
+					<el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="mb20" v-if="userInfo.accountType === AccountTypeEnum.NUMBER_999">
 						<el-form-item label="内置参数" prop="sysFlag" :rules="[{ required: true, message: '内置参数不能为空', trigger: 'blur' }]">
 							<el-radio-group v-model="state.ruleForm.sysFlag" :disabled="state.ruleForm.sysFlag == 1 && state.ruleForm.id != undefined">
 								<el-radio :value="1">是</el-radio>
@@ -86,8 +86,10 @@ import { reactive, ref } from 'vue';
 
 import { getAPI } from '/@/utils/axios-utils';
 import { SysConfigApi } from '/@/api-services/api';
-import { UpdateConfigInput } from '/@/api-services/models';
+import {AccountTypeEnum, UpdateConfigInput} from '/@/api-services/models';
+import {useUserInfo} from "/@/stores/userInfo";
 
+const userInfo = useUserInfo().userInfos;
 const props = defineProps({
 	title: String,
 });
