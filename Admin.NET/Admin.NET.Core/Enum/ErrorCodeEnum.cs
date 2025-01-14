@@ -236,6 +236,12 @@ public enum ErrorCodeEnum
     D1037,
 
     /// <summary>
+    /// 禁止越权操作系统账户
+    /// </summary>
+    [ErrorCodeItemMetadata("禁止越权操作系统账户")]
+    D1038,
+
+    /// <summary>
     /// 父机构不存在
     /// </summary>
     [ErrorCodeItemMetadata("父机构不存在")]

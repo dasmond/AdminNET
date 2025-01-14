@@ -107,6 +107,9 @@ public class SysUserService : IDynamicApiController, ITransient
         if (await query.AnyAsync(u => u.Account == input.Account)) throw Oops.Oh(ErrorCodeEnum.D1003);
         if (!string.IsNullOrWhiteSpace(input.Phone) && await query.AnyAsync(u => u.Phone == input.Phone)) throw Oops.Oh(ErrorCodeEnum.D1032);
 
+        // 禁止越权新增超级管理员和系统管理员
+        if (_userManager.AccountType != AccountTypeEnum.SuperAdmin && input.AccountType is AccountTypeEnum.SuperAdmin or AccountTypeEnum.SysAdmin) throw Oops.Oh(ErrorCodeEnum.D1038);
+
         var password = await _sysConfigService.GetConfigValue<string>(ConfigConst.SysPassword);
 
         var user = input.Adapt<SysUser>();
@@ -142,6 +145,9 @@ public class SysUserService : IDynamicApiController, ITransient
 
         if (await query.AnyAsync(u => u.Account == input.Account)) throw Oops.Oh(ErrorCodeEnum.D1003);
         if (!string.IsNullOrWhiteSpace(input.Phone) && await query.AnyAsync(u => u.Phone == input.Phone)) throw Oops.Oh(ErrorCodeEnum.D1032);
+
+        // 禁止越权注册
+        if (input.AccountType is AccountTypeEnum.SuperAdmin or AccountTypeEnum.SysAdmin) throw Oops.Oh(ErrorCodeEnum.D1038);
 
         if (string.IsNullOrWhiteSpace(input.Password))
         {
@@ -185,6 +191,9 @@ public class SysUserService : IDynamicApiController, ITransient
 
         if (await query.AnyAsync(u => u.Account == input.Account)) throw Oops.Oh(ErrorCodeEnum.D1003);
         if (!string.IsNullOrWhiteSpace(input.Phone) && await query.AnyAsync(u => u.Phone == input.Phone)) throw Oops.Oh(ErrorCodeEnum.D1032);
+
+        // 禁止越权更新超级管理员或系统管理员信息
+        if (_userManager.AccountType != AccountTypeEnum.SuperAdmin && input.AccountType is AccountTypeEnum.SuperAdmin or AccountTypeEnum.SysAdmin) throw Oops.Oh(ErrorCodeEnum.D1038);
 
         await _sysUserRep.AsUpdateable(input.Adapt<SysUser>()).IgnoreColumns(true)
             .IgnoreColumns(u => new { u.Password, u.Status, u.TenantId }).ExecuteCommandAsync();

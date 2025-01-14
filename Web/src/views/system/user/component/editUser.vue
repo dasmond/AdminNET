@@ -35,7 +35,7 @@
 								<el-form-item label="账号类型" prop="accountType" :rules="[{ required: true, message: '账号类型不能为空', trigger: 'blur' }]">
 									<g-sys-dict
 										v-model="state.ruleForm.accountType"
-										:on-item-filter="(data: any) => data.name != 'SuperAdmin' && (data.name == 'SysAdmin' ? [888, 999].includes(userInfos.accountType) : true)"
+										:on-item-filter="(data: any) => data.name != 'SuperAdmin' && (data.name == 'SysAdmin' ? AccountTypeEnum.NUMBER_999 == userInfos.accountType : true)"
 										code="AccountTypeEnum"
 										render-as="select"
 									/>
@@ -225,7 +225,7 @@ import { storeToRefs } from 'pinia';
 import { useUserInfo } from '/@/stores/userInfo';
 import { getAPI } from '/@/utils/axios-utils';
 import { SysPosApi, SysRoleApi, SysUserApi } from '/@/api-services/api';
-import { RoleOutput, SysOrg, SysPos, UpdateUserInput } from '/@/api-services/models';
+import {AccountTypeEnum, RoleOutput, SysOrg, SysPos, UpdateUserInput} from '/@/api-services/models';
 
 const props = defineProps({
 	title: String,
