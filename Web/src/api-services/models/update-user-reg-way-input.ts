@@ -89,7 +89,7 @@ export interface UpdateUserRegWayInput {
      * @type {AccountTypeEnum}
      * @memberof UpdateUserRegWayInput
      */
-    accountType: AccountTypeEnum;
+    accountType?: AccountTypeEnum;
     /**
      * 角色
      * @type {number}

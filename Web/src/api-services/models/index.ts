@@ -189,7 +189,6 @@ export * from './delete-user-input';
 export * from './delete-wechat-user-input';
 export * from './dict-data-input';
 export * from './dict-type-input';
-export * from './dict-type-move-input';
 export * from './digit-shapes';
 export * from './enum-entity';
 export * from './enum-type-output';

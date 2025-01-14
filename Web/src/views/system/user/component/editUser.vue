@@ -35,7 +35,7 @@
 								<el-form-item label="账号类型" prop="accountType" :rules="[{ required: true, message: '账号类型不能为空', trigger: 'blur' }]">
 									<g-sys-dict
 										v-model="state.ruleForm.accountType"
-										:on-item-filter="(data: any) => data.name != 'SuperAdmin' && (data.name == 'SysAdmin' ? AccountTypeEnum.NUMBER_999 == userInfos.accountType : true)"
+										:on-item-filter="(data: any) => data.code != 'SuperAdmin' && (data.code == 'SysAdmin' ? AccountTypeEnum.NUMBER_999 == userInfos.accountType : true)"
 										code="AccountTypeEnum"
 										render-as="select"
 									/>

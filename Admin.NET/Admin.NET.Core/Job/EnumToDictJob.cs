@@ -64,9 +64,8 @@ public class EnumToDictJob : IJob
             await storageable2.AsUpdateable.UpdateColumns(u => new
             {
                 u.Label,
-                u.Name,
-                u.Value,
-                u.TenantId
+                u.Code,
+                u.Value
             }).ExecuteCommandAsync(stoppingToken);
 
             Console.WriteLine($"【{DateTime.Now}】系统枚举项转字典值数据: 插入{storageable2.InsertList.Count}条, 更新{storageable2.UpdateList.Count}条, 共{storageable2.TotalList.Count}条。");
@@ -125,16 +124,16 @@ public class EnumToDictJob : IJob
             var dictType = new SysDictType
             {
                 Id = 900000000000 + CommonUtil.GetFixedHashCode(type.TypeFullName),
+                SysFlag = YesNoEnum.Y,
                 Code = type.TypeName,
                 Name = type.TypeDescribe,
-                Remark = type.TypeFullName,
-                TenantId = SqlSugarConst.DefaultTenantId
+                Remark = type.TypeFullName
             };
             dictType.Children = type.EnumEntities.Select(x => new SysDictData
             {
                 Id = dictType.Id + orderNo++,
                 DictTypeId = dictType.Id,
-                Name = x.Name,
+                Code = x.Name,
                 Label = x.Describe,
                 Value = x.Value.ToString(),
                 OrderNo = x.Value + OrderOffset,
