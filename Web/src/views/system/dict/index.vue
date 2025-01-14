@@ -25,6 +25,11 @@
 						<el-table-column type="index" label="序号" width="55" align="center" />
 						<el-table-column prop="name" label="字典名称" min-width="120" header-align="center" show-overflow-tooltip />
 						<el-table-column prop="code" label="字典编码" min-width="140" header-align="center" show-overflow-tooltip />
+						<el-table-column prop="sysFlag" label="系统内置" min-width="70" align="center" show-overflow-tooltip v-if="userInfo.accountType === AccountTypeEnum.NUMBER_999">
+							<template #default="scope">
+                <g-sys-dict v-model="scope.row.sysFlag" code="YesNoEnum" />
+							</template>
+						</el-table-column>
 						<el-table-column prop="status" label="状态" width="70" align="center" show-overflow-tooltip>
 							<template #default="scope">
                 <g-sys-dict v-model="scope.row.status" code="StatusEnum" />
