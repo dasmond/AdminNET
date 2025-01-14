@@ -78,6 +78,8 @@ public class SysDictTypeService : IDynamicApiController, ITransient
     [DisplayName("添加字典类型")]
     public async Task AddDictType(AddDictTypeInput input)
     {
+        if (input.SysFlag == YesNoEnum.Y && !_userManager.SuperAdmin) throw Oops.Oh(ErrorCodeEnum.D3010);
+
         if (input.Code.ToLower().EndsWith("enum")) throw Oops.Oh(ErrorCodeEnum.D3006);
 
         var isExist = await _sysDictTypeRep.IsAnyAsync(u => u.Code == input.Code);
@@ -96,6 +98,8 @@ public class SysDictTypeService : IDynamicApiController, ITransient
     [DisplayName("更新字典类型")]
     public async Task UpdateDictType(UpdateDictTypeInput input)
     {
+        if (input.SysFlag == YesNoEnum.Y && !_userManager.SuperAdmin) throw Oops.Oh(ErrorCodeEnum.D3010);
+
         var dict = await _sysDictTypeRep.GetFirstAsync(x => x.Id == input.Id);
         if (dict == null) throw Oops.Oh(ErrorCodeEnum.D3000);
 
@@ -119,6 +123,7 @@ public class SysDictTypeService : IDynamicApiController, ITransient
     public async Task DeleteDictType(DeleteDictTypeInput input)
     {
         var dictType = await _sysDictTypeRep.GetByIdAsync(input.Id) ?? throw Oops.Oh(ErrorCodeEnum.D3000);
+        if (dictType.SysFlag == YesNoEnum.Y && !_userManager.SuperAdmin) throw Oops.Oh(ErrorCodeEnum.D3010);
 
         // 删除字典值
         await _sysDictTypeRep.DeleteAsync(dictType);

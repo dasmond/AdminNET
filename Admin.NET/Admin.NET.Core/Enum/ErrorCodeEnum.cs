@@ -374,6 +374,12 @@ public enum ErrorCodeEnum
     D3009,
 
     /// <summary>
+    /// 非超管用户禁止操作系统字典
+    /// </summary>
+    [ErrorCodeItemMetadata("非超管用户禁止操作系统字典")]
+    D3010,
+
+    /// <summary>
     /// 菜单已存在
     /// </summary>
     [ErrorCodeItemMetadata("菜单已存在")]
