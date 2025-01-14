@@ -141,7 +141,8 @@ public class SysUserService : IDynamicApiController, ITransient
     [NonAction]
     public virtual async Task<long> RegisterUser(AddUserInput input)
     {
-        var query = _sysUserRep.AsQueryable().ClearFilter();
+        var query = _sysUserRep.AsQueryable().ClearFilter()
+            .Where(u => u.Id != input.Id && (u.TenantId == _userManager.TenantId || u.AccountType == AccountTypeEnum.SuperAdmin));
 
         if (await query.AnyAsync(u => u.Account == input.Account)) throw Oops.Oh(ErrorCodeEnum.D1003);
         if (!string.IsNullOrWhiteSpace(input.Phone) && await query.AnyAsync(u => u.Phone == input.Phone)) throw Oops.Oh(ErrorCodeEnum.D1032);
