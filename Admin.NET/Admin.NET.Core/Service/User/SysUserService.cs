@@ -425,8 +425,8 @@ public class SysUserService : IDynamicApiController, ITransient
     public virtual async Task<string> ResetPwd(ResetPwdUserInput input)
     {
         var user = await _sysUserRep.GetByIdAsync(input.Id) ?? throw Oops.Oh(ErrorCodeEnum.D0009);
-        var password = await _sysConfigService.GetConfigValue<string>(ConfigConst.SysPassword);
-        user.Password = CryptogramUtil.Encrypt(password);
+        string randomPassword = new(Enumerable.Repeat("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789", 6).Select(s => s[Random.Shared.Next(s.Length)]).ToArray());
+        user.Password = CryptogramUtil.Encrypt(randomPassword);
         await _sysUserRep.AsUpdateable(user).UpdateColumns(u => u.Password).ExecuteCommandAsync();
 
         // 清空密码错误次数
@@ -440,7 +440,7 @@ public class SysUserService : IDynamicApiController, ITransient
             Input = input
         });
 
-        return password;
+        return randomPassword;
     }
 
     /// <summary>
