@@ -21,18 +21,18 @@ public enum GenderEnum
     /// <summary>
     /// 男性
     /// </summary>
-    [Description("男性")]
+    [Description("男性"), Theme("success")]
     Male = 1,
 
     /// <summary>
     /// 女性
     /// </summary>
-    [Description("女性")]
+    [Description("女性"), Theme("danger")]
     Female = 2,
 
     /// <summary>
     /// 未说明的性别
     /// </summary>
-    [Description("未说明的性别"), Theme("info")]
+    [Description("未说明的性别"), Theme("warning")]
     Unspecified = 9
 }
