@@ -131,7 +131,7 @@ public class SysUserService : IDynamicApiController, ITransient
     }
 
     /// <summary>
-    /// 增加用户 🔖
+    /// 注册用户 🔖
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
