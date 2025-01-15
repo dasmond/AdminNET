@@ -2,31 +2,31 @@
 branches: {
   }
 fileChange:
-  /Web:
-    newFile: !uuid 'd02585e15a62e592bd825f2b0be8daedde6c0d1e'
-    oldFile: !uuid 'dd6f497cf85c663b490a487ca280a83744044b93'
-  /Web/src:
-    newFile: !uuid 'ccea006d796941e02def3b4d89422977df10581b'
-    oldFile: !uuid 'b676636f7dc6022a7633b5999b884ae6c313691c'
-  /Web/src/views:
-    newFile: !uuid '08238de0a85d8275b132baabfa71c78701291103'
-    oldFile: !uuid 'cd839bdda5ec235f6fea09b783f0215284a4f0a5'
-  /Web/src/views/system:
-    newFile: !uuid '01cb748cc700aa9fff3a2eada484bac43c643efe'
-    oldFile: !uuid 'd67bdc060c0afcf88f44fa7f7c20c9e598c2a761'
-  /Web/src/views/system/dict:
-    newFile: !uuid 'a21dfd7e7ab31c5572063f556169e8537f955c1a'
-    oldFile: !uuid '5d3ccb6d083b3c702e675fd1b24cc2c1ee26cc2b'
-  /Web/src/views/system/dict/component:
-    newFile: !uuid '1789d73d3cb1bf1ba4ca6f20ee001fb9a97c1975'
-    oldFile: !uuid '0734bf2c8d4e49b12e08fe5d3356836c46b9bf18'
-  /Web/src/views/system/dict/component/editDictType.vue:
-    newFile: !uuid '1617fb94f7a4e62caa0741ae12286db59a2da2ac'
-    oldFile: !uuid 'd976d36750e2de5903fc055181c1c25890979c1d'
-  /Web/src/views/system/dict/index.vue:
-    newFile: !uuid '947b6671b421364d838e75de09d8fad185dbeec2'
-    oldFile: !uuid '1580035e35009e11a131e7ff4c890b6f39289794'
-gitCommitId: !uuid 'f6a5e176e698a34e3a2bf8b75d5e3ddf2180ff26'
+  /Admin.NET:
+    newFile: !uuid '8249d983c55729d500a641f9fa5979a55047ce90'
+    oldFile: !uuid '6f0b203917342b5a1ceae488d4dd3df27c17607f'
+  /Admin.NET/Admin.NET.Core:
+    newFile: !uuid 'b7fed1796d112a0dffe66ca8c23eef05231f847f'
+    oldFile: !uuid 'cf607d689402fd9bcaae6d43ca775425bda5a792'
+  /Admin.NET/Admin.NET.Core/Attribute:
+    newFile: !uuid 'c10ecd1c46e8a9fe277bcc34d3f99fcb3d52e84d'
+    oldFile: !uuid '80e8e132ef75487d3fc33a217122f67198068862'
+  /Admin.NET/Admin.NET.Core/Attribute/DictAttribute.cs:
+    newFile: !uuid 'ba4d45e1bbc73db5d2807f80cc9cc19c69320c3c'
+    oldFile: !uuid '05139f567464fbc36e011a9276e83a48b22c164a'
+  /Admin.NET/Admin.NET.Core/Service:
+    newFile: !uuid 'ec6851070eb141fdbc26762597bf2b8ca26b3f7a'
+    oldFile: !uuid 'ace10b45f795528b583343ddef97c087b0995b39'
+  /Admin.NET/Admin.NET.Core/Service/Dict:
+    newFile: !uuid '625344874ef5d14c00ee062308c281d00f8cba9e'
+    oldFile: !uuid 'edb49860e7332e3a836e14f343a3a1203c7f71c5'
+  /Admin.NET/Admin.NET.Core/Service/Dict/SysDictDataService.cs:
+    newFile: !uuid '8b3de02dd902f7be3687526e8940826020bdcd5b'
+    oldFile: !uuid '93de0aa91daf0568941c5a9c3f8e2ec99778d9a1'
+  /Admin.NET/Admin.NET.Core/Service/Dict/SysDictTypeService.cs:
+    newFile: !uuid '93510c1a184873d8fee3b03977e54c9e3646c196'
+    oldFile: !uuid '41b0c8de03075131b01e4968eec1f57b4ddd4b3a'
+gitCommitId: !uuid '8d0c840f201d2923795c88fcddf8b2751b0c9424'
 renames: {
   }
-revisionId: 2711
+revisionId: 2712
