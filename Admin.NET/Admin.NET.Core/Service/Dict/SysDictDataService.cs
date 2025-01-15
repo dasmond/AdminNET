@@ -12,7 +12,6 @@ namespace Admin.NET.Core.Service;
 [ApiDescriptionSettings(Order = 420)]
 public class SysDictDataService : IDynamicApiController, ITransient
 {
-    private static readonly SysDictTypeService SysDictTypeService = App.GetService<SysDictTypeService>();
     private readonly SqlSugarRepository<SysDictData> _sysDictDataRep;
     private readonly SysCacheService _sysCacheService;
     private readonly UserManager _userManager;
@@ -68,7 +67,7 @@ public class SysDictDataService : IDynamicApiController, ITransient
         if (dictType.SysFlag == YesNoEnum.Y && !_userManager.SuperAdmin) throw Oops.Oh(ErrorCodeEnum.D3010);
 
         var dictTypeCode = await _sysDictDataRep.AsQueryable().Where(u => u.DictTypeId == input.DictTypeId).Select(u => u.DictType.Code).FirstAsync();
-        _sysCacheService.RemoveByPrefixKey($"{CacheConst.KeyDict}{dictTypeCode}");
+        _sysCacheService.Remove($"{CacheConst.KeyDict}{dictTypeCode}");
 
         await _sysDictDataRep.InsertAsync(input.Adapt<SysDictData>());
     }
@@ -93,7 +92,7 @@ public class SysDictDataService : IDynamicApiController, ITransient
         if (dictType.SysFlag == YesNoEnum.Y && !_userManager.SuperAdmin) throw Oops.Oh(ErrorCodeEnum.D3010);
 
         var dictTypeCode = await _sysDictDataRep.AsQueryable().Where(u => u.DictTypeId == input.DictTypeId).Select(u => u.DictType.Code).FirstAsync();
-        _sysCacheService.RemoveByPrefixKey($"{CacheConst.KeyDict}{dictTypeCode}");
+        _sysCacheService.Remove($"{CacheConst.KeyDict}{dictTypeCode}");
 
         await _sysDictDataRep.UpdateAsync(input.Adapt<SysDictData>());
     }
@@ -111,7 +110,7 @@ public class SysDictDataService : IDynamicApiController, ITransient
         var dictData = await _sysDictDataRep.AsQueryable().FirstAsync(u => u.Id == input.Id) ?? throw Oops.Oh(ErrorCodeEnum.D3004);
 
         var dictTypeCode = await _sysDictDataRep.AsQueryable().Where(u => u.DictTypeId == dictData.Id).Select(u => u.DictType.Code).FirstAsync();
-        _sysCacheService.RemoveByPrefixKey($"{CacheConst.KeyDict}{dictTypeCode}");
+        _sysCacheService.Remove($"{CacheConst.KeyDict}{dictTypeCode}");
 
         var dictType = await _sysDictDataRep.Change<SysDictType>().GetByIdAsync(dictData.DictTypeId);
         if (dictType.SysFlag == YesNoEnum.Y && !_userManager.SuperAdmin) throw Oops.Oh(ErrorCodeEnum.D3010);
@@ -142,7 +141,7 @@ public class SysDictDataService : IDynamicApiController, ITransient
         var dictData = await _sysDictDataRep.AsQueryable().FirstAsync(u => u.Id == input.Id) ?? throw Oops.Oh(ErrorCodeEnum.D3004);
 
         var dictTypeCode = await _sysDictDataRep.AsQueryable().ClearFilter().Where(u => u.DictTypeId == dictData.Id).Select(u => u.DictType.Code).FirstAsync();
-        _sysCacheService.RemoveByPrefixKey($"{CacheConst.KeyDict}{dictTypeCode}");
+        _sysCacheService.Remove($"{CacheConst.KeyDict}{dictTypeCode}");
 
         dictData.Status = input.Status;
         await _sysDictDataRep.AsUpdateable(dictData).UpdateColumns(u => new { u.Status }, true).ExecuteCommandAsync();
@@ -160,7 +159,7 @@ public class SysDictDataService : IDynamicApiController, ITransient
         var dictDataList = _sysCacheService.Get<List<SysDictData>>(cacheKey);
         if (dictDataList != null) return dictDataList;
 
-        dictDataList = await _sysDictDataRep.AsQueryable().Includes(u => u.DictType).Where(u => u.DictType.Code == code).ToListAsync();
+        dictDataList = await _sysDictDataRep.AsQueryable().Where(u => u.DictType.Code == code && u.Status == StatusEnum.Enable && u.DictType.Status == StatusEnum.Enable).ToListAsync();
         _sysCacheService.Set(cacheKey, dictDataList);
         return dictDataList;
     }
@@ -189,7 +188,7 @@ public class SysDictDataService : IDynamicApiController, ITransient
     public async Task DeleteDictData(long dictTypeId)
     {
         var dictTypeCode = await _sysDictDataRep.AsQueryable().Where(u => u.DictTypeId == dictTypeId).Select(u => u.DictType.Code).FirstAsync();
-        _sysCacheService.RemoveByPrefixKey($"{CacheConst.KeyDict}{dictTypeCode}");
+        _sysCacheService.Remove($"{CacheConst.KeyDict}{dictTypeCode}");
         await _sysDictDataRep.DeleteAsync(u => u.DictTypeId == dictTypeId);
     }
 }

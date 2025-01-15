@@ -58,7 +58,6 @@ public class SysDictTypeService : IDynamicApiController, ITransient
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
-    [UnitOfWork]
     [DisplayName("获取字典类型-值列表")]
     public async Task<List<SysDictData>> GetDataList([FromQuery] GetDataDictTypeInput input)
     {
@@ -108,7 +107,7 @@ public class SysDictTypeService : IDynamicApiController, ITransient
         var isExist = await _sysDictTypeRep.IsAnyAsync(u => u.Code == input.Code && u.Id != input.Id);
         if (isExist) throw Oops.Oh(ErrorCodeEnum.D3001);
 
-        _sysCacheService.RemoveByPrefixKey($"{CacheConst.KeyDict}{input.Code}");
+        _sysCacheService.Remove($"{CacheConst.KeyDict}{input.Code}");
         await _sysDictTypeRep.UpdateAsync(input.Adapt<SysDictType>());
     }
 
@@ -152,7 +151,7 @@ public class SysDictTypeService : IDynamicApiController, ITransient
     {
         var dictType = await _sysDictTypeRep.GetByIdAsync(input.Id) ?? throw Oops.Oh(ErrorCodeEnum.D3000);
 
-        _sysCacheService.RemoveByPrefixKey($"{CacheConst.KeyDict}{dictType.Code}");
+        _sysCacheService.Remove($"{CacheConst.KeyDict}{dictType.Code}");
 
         dictType.Status = input.Status;
         await _sysDictTypeRep.AsUpdateable(dictType).UpdateColumns(u => new { u.Status }, true).ExecuteCommandAsync();
