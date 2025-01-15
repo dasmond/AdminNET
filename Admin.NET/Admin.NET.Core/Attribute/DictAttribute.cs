@@ -69,11 +69,11 @@ public class DictAttribute : ValidationAttribute, ITransient
         }
 
         // 先尝试从 ValidationContext 的依赖注入容器中拿服务，拿不到或类型不匹配时，再从全局的 App 容器中获取
-        if (validationContext.GetService(typeof(SysDictTypeService)) is not SysDictTypeService sysDictDataService)
-            sysDictDataService = App.GetRequiredService<SysDictTypeService>();
+        if (validationContext.GetService(typeof(SysDictDataService)) is not SysDictDataService sysDictDataService)
+            sysDictDataService = App.GetRequiredService<SysDictDataService>();
 
         // 获取字典值列表
-        var dictDataList = sysDictDataService.GetDataList(new GetDataDictTypeInput { Code = DictTypeCode}).GetAwaiter().GetResult();
+        var dictDataList = sysDictDataService.GetDataList(DictTypeCode).GetAwaiter().GetResult();
 
         // 使用 HashSet 来提高查找效率
         var dictHash = new HashSet<string>(dictDataList.Select(u => u.Value));
