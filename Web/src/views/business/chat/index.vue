@@ -66,7 +66,6 @@
 												fit="cover"
 												style="width: 100px; height: 100px; border-radius: 8px; cursor: pointer;"
 												@click="showImagePreview(msg.message)"
-												:initial-index="0"
 											></el-image>
 											<div class="message-footer">
 												<span class="message-time">{{ msg.sendTime }}</span>
@@ -154,11 +153,41 @@
 		>
 			<img :src="previewImageUrl" alt="Image Preview" style="width: 100%;" />
 		</el-dialog>
+		<el-dialog v-model="forwardDialogVisible" title="选择用户转发" width="50%">
+			<div class="forward-content">
+				<div class="preview-message">
+					<div v-if="selectedMessage?.msgType === MessageType.Text" class="message-text">
+						{{ selectedMessage.message }}
+					</div>
+					<el-image
+						v-else-if="selectedMessage?.msgType === MessageType.Image"
+						:src="selectedMessage.message"
+						class="message-image"
+						fit="cover"
+						style="width: 100px; height: 100px; border-radius: 8px; cursor: pointer;"
+						@click="showImagePreview(selectedMessage.message)"
+					></el-image>
+				</div>
+				<el-divider>选择转发用户</el-divider>
+				<el-checkbox-group v-model="selectedForwardUsers" v-if="availableUsers.length > 0">
+					<el-checkbox v-for="user in availableUsers" :label="user.userId" :key="user.userId">
+						{{ user.userName }}
+					</el-checkbox>
+				</el-checkbox-group>
+				<el-empty v-else description="当前没有可转发的在线用户" />
+			</div>
+			<template #footer>
+				<span class="dialog-footer">
+					<el-button @click="forwardDialogVisible = false">取消</el-button>
+					<el-button type="primary" @click="handleForwardConfirm" :disabled="availableUsers.length === 0">确定</el-button>
+				</span>
+			</template>
+		</el-dialog>
 	</div>
 </template>
 
 <script lang="ts" setup>
-import { reactive, onMounted, ref, nextTick, onUnmounted } from 'vue';
+import { reactive, onMounted, ref, nextTick, onUnmounted, computed } from 'vue';
 import { signalR } from '/@/views/system/onlineUser/signalR';
 import { getAPI } from '/@/utils/axios-utils';
 import { SysOnlineUserApi } from '/@/api-services/api';
@@ -216,6 +245,8 @@ const showContextMenu = ref(false);
 const contextMenuPosition = ref({ x: 0, y: 0 });
 const selectedMessage = ref<ChatMessage | null>(null);
 const messageScrollbar = ref<any>(null);
+const forwardDialogVisible = ref(false);
+const selectedForwardUsers = ref<number[]>([]);
 
 // 添加消息缓存
 const CACHE_KEY = 'chat_messages_cache';
@@ -450,8 +481,54 @@ const handleCopyMessage = () => {
 };
 
 const handleForwardMessage = () => {
-    // TODO: 实现转发功能
-    showContextMenu.value = false;
+    if (!selectedMessage.value) {
+        ElMessage({
+            message: '请选择一条消息进行转发',
+            type: 'warning',
+        });
+        return;
+    }
+    showContextMenu.value = false;  // 关闭右键菜单
+    forwardDialogVisible.value = true;
+};
+
+const handleForwardConfirm = async () => {
+    if (!selectedForwardUsers.value.length) {
+        ElMessage({
+            message: '请选择至少一个用户',
+            type: 'warning',
+        });
+        return;
+    }
+
+    const messageToForward = selectedMessage.value;
+    if (!messageToForward) return;
+
+    try {
+        for (const userId of selectedForwardUsers.value) {
+            const newMessage = { ...messageToForward, receiveUserId: userId, sendUserId: myUserId.value };
+			newMessage.sendTime = new Date().toLocaleString();
+            await sendUser(newMessage);
+            if (currentUser.value?.userId === userId) {
+                chatMessages.value.push(newMessage);
+                nextTick(scrollToBottom);
+            }
+        }
+        ElMessage({
+            message: '消息已转发',
+            type: 'success',
+        });
+    } catch (error) {
+        console.error('转发消息时发生错误:', error);
+        ElNotification({
+            title: '错误',
+            message: '转发消息失败，请稍后重试。',
+            type: 'error',
+        });
+    } finally {
+        forwardDialogVisible.value = false;
+        selectedForwardUsers.value = [];
+    }
 };
 
 const handleDeleteMessage = () => {
@@ -511,6 +588,13 @@ const handleGlobalContextMenu = (event: MouseEvent) => {
         showContextMenu.value = false;
     }
 };
+
+const availableUsers = computed(() => 
+    onlineUser.onlineUserList.filter(u => 
+        currentUser.value?.userId !== u.userId && 
+        u.userId !== myUserId.value
+    )
+);
 
 // 优化 onMounted 和 onUnmounted
 onMounted(async () => {
@@ -1339,6 +1423,39 @@ onUnmounted(() => {
 
     &[lazy].el-image__inner--loaded {
         opacity: 1;
+    }
+}
+
+.forward-content {
+    padding: 20px;
+    
+    .preview-message {
+        background-color: #f5f7fa;
+        padding: 15px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        
+        .message-text {
+            word-break: break-all;
+            line-height: 1.5;
+        }
+        
+        .message-image {
+            display: block;
+            margin: 0 auto;
+        }
+    }
+}
+
+.dark-mode {
+    .forward-content {
+        .preview-message {
+            background-color: #363636;
+            
+            .message-text {
+                color: #fff;
+            }
+        }
     }
 }
 </style>
