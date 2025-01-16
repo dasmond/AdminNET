@@ -174,7 +174,7 @@ const submit = () => {
 watch(
 		() => state.ruleForm.content,
 		() => {
-			state.ruleForm.content.match(/@\((.*?)\)/g)?.forEach((pa: string, index) => {
+			state.ruleForm.content?.match(/@\((.*?)\)/g)?.forEach((pa: string, index) => {
 				const key = pa.substring(2, pa.length - 1);
 				if (!state.renderData.find((e: [string, string]) => e[0] === key)) {
 					state.renderData.push([key, '参数' + (index + 1)]);
