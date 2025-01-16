@@ -5,12 +5,14 @@
 // 不得利用本项目从事危害国家安全、扰乱社会秩序、侵犯他人合法权益等法律法规禁止的活动！任何基于本项目二次开发而产生的一切法律纠纷和责任，我们不承担任何责任！
 
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using Admin.NET.Core;
 using Admin.NET.Core.Service;
 using Business.Core.BuinessServive.Message.Dto;
 using Business.Core.Entity;
 using Furion.DependencyInjection;
 using Furion.DynamicApiController;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Business.Core.BuinessServive.Message;
@@ -23,15 +25,18 @@ public class MessageService : IDynamicApiController, ITransient
     private readonly SqlSugarRepository<TMessage> _messageRep;
     private readonly SysMessageService _sysMessageService;
     private readonly UserManager _userManager;
+    private readonly SysFileService _sysFileService;
 
     public MessageService(SqlSugarRepository<TMessage> messageRep,
         SysCacheService sysCacheService,
         SysMessageService sysMessageService,
-        UserManager userManager)
+        UserManager userManager,
+        SysFileService sysFileService)
     {
         _messageRep = messageRep;
         _sysMessageService = sysMessageService;
         _userManager = userManager;
+        _sysFileService = sysFileService;
     }
 
     /// <summary>
@@ -42,7 +47,7 @@ public class MessageService : IDynamicApiController, ITransient
     [ApiDescriptionSettings(Name = "SendMessage")]
     [HttpPost]
     [DisplayName("发送消息")]
-    public async Task<bool> Add(MessageInput entity)
+    public async Task<bool> Add(MessageInDto entity)
     {
         await _sysMessageService.SendUser(entity);
         TMessage message = new()
@@ -50,7 +55,8 @@ public class MessageService : IDynamicApiController, ITransient
             F_SendUserId = _userManager.UserId,
             F_ReceiveUserId = entity.ReceiveUserId,
             F_Message = entity.Message,
-            F_SendTime = DateTime.Now
+            F_SendTime = DateTime.Now,
+            F_MessageType = entity.MsgType
         };
         return await _messageRep.InsertAsync(message);
     }
@@ -101,8 +107,20 @@ public class MessageService : IDynamicApiController, ITransient
                 SendUserId = x.F_SendUserId,
                 ReceiveUserId = x.F_SendUserId,
                 Message = x.F_Message,
-                SendTime = x.F_SendTime
+                SendTime = x.F_SendTime,
+                msgType = x.F_MessageType
             })
             .ToListAsync();
+    }
+
+    /// <summary>
+    /// 上传聊天文件 🔖
+    /// </summary>
+    /// <param name="file"></param>
+    /// <returns></returns>
+    [DisplayName("上传聊天文件")]
+    public async Task<SysFile> UploadMessageFile([Required] IFormFile file)
+    {
+        return await _sysFileService.UploadFile(new UploadFileInput { File = file, Path = "Message" });
     }
 }

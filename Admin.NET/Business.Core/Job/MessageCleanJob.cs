@@ -10,9 +10,8 @@ using Business.Core.Entity;
 using Furion.Schedule;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using SqlSugar;
 
-namespace Business.Core.BuinessEntity;
+namespace Business.Core.Job;
 [JobDetail("job_cleanMsg", Description = "清理消息记录", GroupName = "default", Concurrent = false)]
 [Daily(TriggerId = "trigger_cleanMsg", Description = "清理消息记录")]
 public class MessageCleanJob: IJob

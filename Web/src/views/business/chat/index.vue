@@ -31,12 +31,20 @@
 								<div v-for="(msg, index) in chatMessages" :key="index" class="message-item" :class="{ 'message-right': msg.sendUserId === myUserId }">
 									<el-avatar :size="30" src="https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png" />
 									<div class="message-content">
-										<div class="message-text">
+										<div v-if="msg.msgType === MessageType.Text" class="message-text">
 											{{ msg.message }}
 											<el-icon v-if="msg.message.length > 50" class="zoom-icon" @click="showFullMessage(msg.message)">
 												<ZoomIn />
 											</el-icon>
 										</div>
+										<el-image
+											v-else-if="msg.msgType === MessageType.Image"
+											:src="msg.message"
+											class="message-image"
+											fit="cover"
+											style="width: 100px; height: 100px; border-radius: 8px; cursor: pointer;"
+											@click="showImagePreview(msg.message)"
+										></el-image>
 										<div class="message-time">{{ msg.sendTime }}</div>
 									</div>
 								</div>
@@ -44,22 +52,28 @@
 						</el-scrollbar>
 					</div>
 					<div class="chat-input">
-						<el-popover placement="top" :width="300" trigger="click" popper-class="emoji-popover">
-							<template #reference>
-								<div class="emoji-button">
-									<el-button :icon="ChatDotSquare" text>表情</el-button>
+						<div class="input-toolbar">
+							<el-popover placement="top" :width="300" trigger="click" popper-class="emoji-popover">
+								<template #reference>
+									<div class="emoji-button">
+										<el-button :icon="ChatDotSquare" text>表情</el-button>
+									</div>
+								</template>
+								<div class="emoji-container">
+									<div class="emoji-grid">
+										<span v-for="(emoji, index) in emojiList" :key="index" class="emoji-item" @click="insertEmoji(emoji)">
+											{{ emoji }}
+										</span>
+									</div>
 								</div>
-							</template>
-							<div class="emoji-container">
-								<div class="emoji-grid">
-									<span v-for="(emoji, index) in emojiList" :key="index" class="emoji-item" @click="insertEmoji(emoji)">
-										{{ emoji }}
-									</span>
-								</div>
+							</el-popover>
+							<div class="image-upload-button">
+								<el-button :icon="Picture" text @click="selectImage">图片</el-button>
+								<input type="file" ref="imageInput" @change="handleImageUpload" accept="image/*" style="display: none;" />
 							</div>
-						</el-popover>
+						</div>
 						<el-input v-model="messageInput" type="textarea" :rows="3" placeholder="请输入消息..." @keyup.enter.native="sendMessage" maxlength="500" />
-						<el-button type="primary" @click="sendMessage">发送</el-button>
+						<el-button type="primary" @click="sendMessage" class="send-button">发送</el-button>
 					</div>
 				</div>
 				<div v-else class="chat-placeholder">
@@ -73,6 +87,15 @@
 				{{ currentMessage }}
 			</div>
 		</el-dialog>
+		<el-dialog
+			title="图片预览"
+			v-model="imageDialogVisible"
+			width="80%"
+			:close-on-click-modal="true"
+			:close-on-press-escape="true"
+		>
+			<img :src="previewImageUrl" alt="Image Preview" style="width: 100%;" />
+		</el-dialog>
 	</div>
 </template>
 
@@ -82,13 +105,13 @@ import { signalR } from '/@/views/system/onlineUser/signalR';
 import { getAPI } from '/@/utils/axios-utils';
 import { SysOnlineUserApi } from '/@/api-services/api';
 import { SysOnlineUser } from '/@/api-services/models';
-import { Refresh, ZoomIn, ChatDotSquare } from '@element-plus/icons-vue';
-import { sendUser, getMessage } from '/@/api/business/chat/chat';
+import { Refresh, ZoomIn, ChatDotSquare, Picture } from '@element-plus/icons-vue';
+import { sendUser, getMessage, uploadImage } from '/@/api/business/chat/chat';
 import { useUserInfo } from '/@/stores/userInfo';
 import { storeToRefs } from 'pinia';
 import emoji from '/@/assets/emoji.json';
 import { ElMessageBox, ElNotification } from 'element-plus';
-
+import { MessageType } from '/@/enums/messageType';
 const stores = useUserInfo();
 const { userInfos } = storeToRefs(stores);
 
@@ -102,7 +125,7 @@ const chatMessages = ref<Array<{
     sendUserId: number;
     receiveUserId: number;
     title: string;
-    messageType: number;
+    msgType: number;
     message: string;
     sendTime: string;
 }>> ([]);
@@ -111,6 +134,9 @@ const chatContent = ref<HTMLElement | null>(null);
 const dialogVisible = ref(false);
 const currentMessage = ref('');
 const emojiList = ref<string[]>([]);
+const imageInput = ref<HTMLInputElement | null>(null);
+const imageDialogVisible = ref(false);
+const previewImageUrl = ref('');
 
 // 插入表情的方法
 const insertEmoji = (emoji: string) => {
@@ -166,14 +192,14 @@ const sendMessage = async () => {
         sendUserId: myUserId.value,
         receiveUserId: currentUser.value?.userId ?? -1,
         title: '',
-        messageType: 0,
+        msgType: MessageType.Text,
         message: messageInput.value,
         sendTime: new Date().toLocaleString(),
     };
 
     try {
         await sendUser(newMessage);
-        if (currentUser.value.userId !== myUserId.value) {
+        if (currentUser.value && currentUser.value.userId !== myUserId.value) {
             chatMessages.value.push(newMessage);
         }
         nextTick(scrollToBottom);
@@ -215,6 +241,52 @@ const showFullMessage = (msg: string) => {
     dialogVisible.value = true;
 };
 
+const selectImage = () => {
+    imageInput.value?.click();
+};
+
+const handleImageUpload = async (event: Event) => {
+    const files = (event.target as HTMLInputElement).files;
+    if (files && files[0]) {
+        const formData = new FormData();
+        formData.append('file', files[0]);
+
+        try {
+            // 假设有一个上传图片的API
+            const response = await uploadImage(formData);
+            const imageUrl = response.data.result.url;
+			console.log(imageUrl);
+
+            const newMessage = {
+                sendUserId: myUserId.value,
+                receiveUserId: currentUser.value?.userId ?? -1,
+                title: '',
+                msgType: MessageType.Image,
+                message: imageUrl,
+                sendTime: new Date().toLocaleString(),
+            };
+
+            await sendUser(newMessage);
+            if (currentUser.value && currentUser.value.userId !== myUserId.value) {
+                chatMessages.value.push(newMessage);
+            }
+            nextTick(scrollToBottom);
+        } catch (error) {
+            console.error('上传图片时发生错误:', error);
+            ElNotification({
+                title: '错误',
+                message: '上传图片失败，请稍后重试。',
+                type: 'error',
+            });
+        }
+    }
+};
+
+const showImagePreview = (url: string) => {
+    previewImageUrl.value = url;
+    imageDialogVisible.value = true;
+};
+
 onMounted(async () => {
     emojiList.value = emoji;
     await handleQuery();
@@ -254,12 +326,14 @@ onMounted(async () => {
 
 	.chat-list-header {
 		padding: 15px;
-		border-bottom: 1px solid #eee;
+		border-bottom: 1px solid #ddd;
 		font-weight: bold;
 		flex-shrink: 0;
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
+		background-color: #f7f9fc;
+		color: #333;
 	}
 
 	:deep(.el-scrollbar__wrap) {
@@ -272,16 +346,23 @@ onMounted(async () => {
 			align-items: center;
 			padding: 10px 15px;
 			cursor: pointer;
+			transition: background-color 0.3s, transform 0.3s;
 
 			&:hover {
-				background-color: #f5f7fa;
+				background-color: #e6f7ff;
+				transform: scale(1.02);
+			}
+
+			&.active {
+				background-color: #cceeff;
 			}
 
 			.chat-info {
 				margin-left: 10px;
 
 				.chat-name {
-					font-size: 14px;
+					font-size: 16px;
+					font-weight: 500;
 				}
 
 				.chat-status {
@@ -315,7 +396,7 @@ onMounted(async () => {
 		flex: 1;
 		padding: 0;
 		position: relative;
-		min-height: 200px;
+		min-height: 150px;
 		overflow: hidden;
 
 		:deep(.el-scrollbar) {
@@ -331,9 +412,10 @@ onMounted(async () => {
 				display: flex;
 				align-items: flex-start;
 				margin-bottom: 20px;
+				transition: transform 0.3s;
 
-				&:last-child {
-					margin-bottom: 0;
+				&:hover {
+					transform: translateX(5px);
 				}
 
 				.message-content {
@@ -343,11 +425,12 @@ onMounted(async () => {
 					.message-text {
 						background-color: #f4f4f5;
 						padding: 10px;
-						border-radius: 4px;
+						border-radius: 8px;
 						word-break: break-all;
 						position: relative;
 						padding-right: 30px;
 						border: 1px solid #e4e7ed;
+						box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 
 						.zoom-icon {
 							position: absolute;
@@ -387,30 +470,48 @@ onMounted(async () => {
 	}
 
 	.chat-input {
-		padding: 20px;
+		padding: 10px;
 		border-top: 1px solid #eee;
 		display: flex;
 		flex-direction: column;
 		gap: 10px;
 		flex-shrink: 0;
+		background-color: #f7f9fc;
+		position: relative;
 
-		.emoji-button {
+		.input-toolbar {
+			display: flex;
+			gap: 10px;
+			align-items: center;
+		}
+
+		.emoji-button,
+		.image-upload-button {
 			align-self: flex-start;
 		}
 
 		:deep(.el-textarea) {
+			flex: 1;
 			.el-textarea__inner {
 				resize: none;
-				height: 78px !important;
-				min-height: 78px !important;
-				max-height: 78px !important;
+				height: 60px !important;
+				min-height: 60px !important;
+				max-height: 60px !important;
+				border-radius: 8px;
+				border: 1px solid #dcdfe6;
+				box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
 			}
 		}
-
-		.el-button {
-			align-self: flex-end;
+		.send-button {
 			width: 80px;
-			margin-left: auto;
+			background-color: #409eff;
+			color: #fff;
+			border-radius: 8px;
+			transition: background-color 0.3s;
+
+			&:hover {
+				background-color: #66b1ff;
+			}
 		}
 	}
 }
@@ -493,4 +594,27 @@ onMounted(async () => {
 		background-color: #f5f7fa;
 	}
 }
+
+.message-image {
+	max-width: 100%;
+	border-radius: 8px;
+	margin-top: 5px;
+	border: 1px solid #e4e7ed;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.el-dialog__wrapper {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.el-dialog {
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.el-dialog img {
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
 </style>
+

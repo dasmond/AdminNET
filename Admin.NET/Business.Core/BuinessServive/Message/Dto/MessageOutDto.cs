@@ -5,6 +5,7 @@
 // 不得利用本项目从事危害国家安全、扰乱社会秩序、侵犯他人合法权益等法律法规禁止的活动！任何基于本项目二次开发而产生的一切法律纠纷和责任，我们不承担任何责任！
 
 using Admin.NET.Core;
+using Business.Core.Enum;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,4 +23,9 @@ public class MessageOutDto: MessageInput
     /// 发送时间
     /// </summary>
     public DateTime Time { get; set; }
+    /// <summary>
+    /// 信息类型
+    /// </summary>
+    public MsgType msgType { get; set; }
+
 }
