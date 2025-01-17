@@ -51,15 +51,7 @@ public class ExcelHelper
         catch (Exception ex)
         {
             App.HttpContext.Response.Headers["Content-Type"] = "application/json; charset=utf-8";
-            throw Oops.Oh(new AdminResult<object>
-            {
-                Code = 500,
-                Message = ex.Message,
-                Result = null,
-                Type = "error",
-                Extras = UnifyContext.Take(),
-                Time = DateTime.Now
-            }.ToJson());
+            throw Oops.Oh(AdminResultProvider.Error(ex.Message, 500).ToJson());
         }
     }
 
