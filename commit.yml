@@ -3,18 +3,21 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid 'bd1be37ce3df877c176e249218c51c4d6251b2c5'
-    oldFile: !uuid '3a5d5468d75910a5b484cdc9f12f17041f725c47'
+    newFile: !uuid '8ff7395ce042a9ff131c9b7645d25d8e9f33a40e'
+    oldFile: !uuid 'bd1be37ce3df877c176e249218c51c4d6251b2c5'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '5cdb992082bf512bdb0db4d1089bd3dda6cd6002'
-    oldFile: !uuid '164cab6d0bb5883ec04f64cc057f0becfc4fe0c3'
-  /Admin.NET/Admin.NET.Core/Utils:
-    newFile: !uuid 'bbbb48ef778295096e2dbe716dd985dcc60a8cb5'
-    oldFile: !uuid 'd19eef8c7565edfed072e9adedb10dc1797a4d84'
-  /Admin.NET/Admin.NET.Core/Utils/ExcelHelper.cs:
-    newFile: !uuid '9f951a5337f56ba3309551c44e67471cedc67a0b'
-    oldFile: !uuid '25bf08524e30ea74c7707bd059f0eb3dd4dfb59f'
-gitCommitId: !uuid 'c6436b491d73c726ebec87978e1cb7e7afd5b525'
+    newFile: !uuid 'b3a37fd8de5b846438e32528c14f3502c6197848'
+    oldFile: !uuid '5cdb992082bf512bdb0db4d1089bd3dda6cd6002'
+  /Admin.NET/Admin.NET.Core/Service:
+    newFile: !uuid 'cca5bad23fac2d6fa616eb1edc370e72ac88c8de'
+    oldFile: !uuid '4cfe27ff4c01bac5e8c3889a50e6414919574365'
+  /Admin.NET/Admin.NET.Core/Service/CodeGen:
+    newFile: !uuid '026eb38903e41be353a6ada2ca5ca37ebbf7cec6'
+    oldFile: !uuid '982906e3a77d1e64eb099b9a23a7379c3f58adcc'
+  /Admin.NET/Admin.NET.Core/Service/CodeGen/SysCodeGenService.cs:
+    newFile: !uuid 'e3cd7ea1b3d0e0553f3f7dfee0ccdf36ce08eefb'
+    oldFile: !uuid 'e40c836d968d2c100b0d6c4228358009ad6137c3'
+gitCommitId: !uuid '9327cd980bc7d0a8f9aa2381089559b26c4e9ee8'
 renames: {
   }
-revisionId: 2720
+revisionId: 2721
