@@ -109,7 +109,7 @@ public class SysDictDataService : IDynamicApiController, ITransient
     {
         var dictData = await _sysDictDataRep.AsQueryable().FirstAsync(u => u.Id == input.Id) ?? throw Oops.Oh(ErrorCodeEnum.D3004);
 
-        var dictTypeCode = await _sysDictDataRep.AsQueryable().Where(u => u.DictTypeId == dictData.Id).Select(u => u.DictType.Code).FirstAsync();
+        var dictTypeCode = await _sysDictDataRep.AsQueryable().Where(u => u.DictTypeId == dictData.DictTypeId).Select(u => u.DictType.Code).FirstAsync();
         _sysCacheService.Remove($"{CacheConst.KeyDict}{dictTypeCode}");
 
         var dictType = await _sysDictDataRep.Change<SysDictType>().GetByIdAsync(dictData.DictTypeId);
