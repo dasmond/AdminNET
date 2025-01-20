@@ -313,6 +313,7 @@ declare type TableSearchType = {
 	required: boolean;
 	type: 'input' | 'date' | 'daterange' | 'monthrange' | 'select' | 'cascader'; // vxe-next-admin 原定义是 string
 	options?: SelectOptionType[];
+	dictCode?: string;
 	cascaderData?: object[];
 	cascaderProps?: object;
 	comProps?: object;

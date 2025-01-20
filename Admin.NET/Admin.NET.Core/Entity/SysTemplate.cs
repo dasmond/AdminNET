@@ -20,27 +20,33 @@ public partial class SysTemplate : EntityTenant
     /// </summary>
     [MaxLength(128)]
     [SugarColumn(ColumnDescription = "名称", Length = 128)]
-    public string Name { get; set; }
+    public virtual string Name { get; set; }
+
+    /// <summary>
+    /// 分组名称
+    /// </summary>
+    [SugarColumn(ColumnDescription = "分组名称")]
+    public virtual TemplateTypeEnum Type { get; set; }
 
     /// <summary>
     /// 编码
     /// </summary>
     [MaxLength(128)]
     [SugarColumn(ColumnDescription = "编码", Length = 128)]
-    public string Code { get; set; }
+    public virtual string Code { get; set; }
 
     /// <summary>
     /// 分组名称
     /// </summary>
     [MaxLength(32)]
     [SugarColumn(ColumnDescription = "分组名称", Length = 32)]
-    public string GroupName { get; set; }
+    public virtual string GroupName { get; set; }
 
     /// <summary>
     /// 模板内容
     /// </summary>
     [SugarColumn(ColumnDescription = "模板内容", ColumnDataType = StaticConfig.CodeFirst_BigString)]
-    public string Content { get; set; }
+    public virtual string Content { get; set; }
 
     /// <summary>
     /// 备注

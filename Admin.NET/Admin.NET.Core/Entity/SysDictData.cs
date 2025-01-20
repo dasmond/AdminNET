@@ -25,7 +25,7 @@ public partial class SysDictData : EntityTenant
     /// </summary>
     [SugarColumn(ColumnDescription = "显示文本", Length = 256)]
     [Required, MaxLength(256)]
-    public virtual string? Label { get; set; }
+    public virtual string Label { get; set; }
 
     /// <summary>
     /// 值
@@ -38,18 +38,9 @@ public partial class SysDictData : EntityTenant
     /// 编码
     /// </summary>
     /// <remarks>
-    /// 即将移除的字段，直接移除该字段并不会从数据库中删除，且该字段之前是必填的，容易导致不能为null的异常，建议先保留，后期再移除
     /// </remarks>
-    [Obsolete("即将移除的字段, 已引用的建议尽快移除")]
     [SugarColumn(ColumnDescription = "编码", Length = 256)]
     public virtual string? Code { get; set; }
-
-    /// <summary>
-    /// 名称
-    /// </summary>
-    [SugarColumn(ColumnDescription = "名称", Length = 256)]
-    [MaxLength(256)]
-    public virtual string? Name { get; set; }
 
     /// <summary>
     /// 显示样式-标签颜色

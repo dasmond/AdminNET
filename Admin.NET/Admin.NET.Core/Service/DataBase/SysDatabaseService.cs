@@ -443,7 +443,7 @@ public class SysDatabaseService : IDynamicApiController, ITransient
             if (value == null) value = "null";
             else if (propType == typeof(string))
             {
-                value = $"\"{value}\"";
+                value = $"@\"{value}\"";
             }
             else if (propType.IsEnum)
             {

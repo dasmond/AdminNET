@@ -97,11 +97,6 @@ public class ConfigConst
     public const string SysDefaultGroup = "Default";
 
     /// <summary>
-    /// WebConfig 分组
-    /// </summary>
-    // public const string SysWebConfigGroup = "WebConfig";
-
-    /// <summary>
     /// 支付宝授权页面地址
     /// </summary>
     public const string AlipayAuthPageUrl = "alipay_auth_page_url_";

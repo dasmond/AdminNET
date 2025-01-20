@@ -13,6 +13,7 @@
  */
 import { StatusEnum } from './status-enum';
 import { SysDictData } from './sys-dict-data';
+import { YesNoEnum } from './yes-no-enum';
 /**
  * 
  * @export
@@ -68,12 +69,6 @@ export interface AddDictTypeInput {
      */
     isDelete?: boolean;
     /**
-     * 租户Id
-     * @type {number}
-     * @memberof AddDictTypeInput
-     */
-    tenantId?: number | null;
-    /**
      * 名称
      * @type {string}
      * @memberof AddDictTypeInput
@@ -97,6 +92,12 @@ export interface AddDictTypeInput {
      * @memberof AddDictTypeInput
      */
     remark?: string | null;
+    /**
+     * 
+     * @type {YesNoEnum}
+     * @memberof AddDictTypeInput
+     */
+    sysFlag?: YesNoEnum;
     /**
      * 
      * @type {StatusEnum}

@@ -35,6 +35,8 @@ public sealed class SignatureAuthenticationHandler : AuthenticationHandler<Signa
     }
 #endif
 
+    private readonly SysCacheService _sysCacheService = App.GetRequiredService<SysCacheService>();
+
     private new SignatureAuthenticationEvent Events
     {
         get => (SignatureAuthenticationEvent)base.Events;
@@ -91,11 +93,9 @@ public sealed class SignatureAuthenticationHandler : AuthenticationHandler<Signa
             return await AuthenticateResultFailAsync("sign 无效的签名");
 
         // 重放检测
-        var cache = App.GetRequiredService<SysCacheService>();
         var cacheKey = $"{CacheConst.KeyOpenAccessNonce}{accessKey}|{nonce}";
-        if (cache.ExistKey(cacheKey))
-            return await AuthenticateResultFailAsync("重复的请求");
-        cache.Set(cacheKey, null, Options.AllowedDateDrift * 2); // 缓存过期时间为偏差范围时间的2倍
+        if (_sysCacheService.ExistKey(cacheKey)) return await AuthenticateResultFailAsync("重复的请求");
+        _sysCacheService.Set(cacheKey, null, Options.AllowedDateDrift * 2); // 缓存过期时间为偏差范围时间的2倍
 
         // 已验证成功
         var signatureValidatedContext = new SignatureValidatedContext(Context, Scheme, Options)

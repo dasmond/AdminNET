@@ -236,6 +236,12 @@ public enum ErrorCodeEnum
     D1037,
 
     /// <summary>
+    /// 禁止越权操作系统账户
+    /// </summary>
+    [ErrorCodeItemMetadata("禁止越权操作系统账户")]
+    D1038,
+
+    /// <summary>
     /// 父机构不存在
     /// </summary>
     [ErrorCodeItemMetadata("父机构不存在")]
@@ -366,6 +372,12 @@ public enum ErrorCodeEnum
     /// </summary>
     [ErrorCodeItemMetadata("字典已在该租户禁止迁移")]
     D3009,
+
+    /// <summary>
+    /// 非超管用户禁止操作系统内置数据
+    /// </summary>
+    [ErrorCodeItemMetadata("非超管用户禁止操作系统内置数据")]
+    D3010,
 
     /// <summary>
     /// 菜单已存在
@@ -624,6 +636,12 @@ public enum ErrorCodeEnum
     /// </summary>
     [ErrorCodeItemMetadata("该表代码模板已经生成过")]
     D1400,
+
+    /// <summary>
+    /// 数据库配置不存在
+    /// </summary>
+    [ErrorCodeItemMetadata("数据库配置不存在")]
+    D1401,
 
     /// <summary>
     /// 该类型不存在

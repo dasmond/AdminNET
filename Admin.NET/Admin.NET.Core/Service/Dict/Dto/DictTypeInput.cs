@@ -21,11 +21,6 @@ public class PageDictTypeInput : BasePageInput
     /// 编码
     /// </summary>
     public string Code { get; set; }
-
-    /// <summary>
-    /// 租户Id
-    /// </summary>
-    public long TenantId { get; set; }
 }
 
 public class AddDictTypeInput : SysDictType

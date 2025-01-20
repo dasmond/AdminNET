@@ -13,7 +13,7 @@
 						<el-row :gutter="35">
 							<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
 								<el-form-item label="账号名称" prop="account" :rules="[{ required: true, message: '账号名称不能为空', trigger: 'blur' }]">
-									<el-input v-model="state.ruleForm.account" placeholder="账号名称" clearable />
+									<el-input v-model="state.ruleForm.account" placeholder="账号名称" :disabled="state.ruleForm.id > 0" clearable />
 								</el-form-item>
 							</el-col>
 							<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
@@ -35,7 +35,7 @@
 								<el-form-item label="账号类型" prop="accountType" :rules="[{ required: true, message: '账号类型不能为空', trigger: 'blur' }]">
 									<g-sys-dict
 										v-model="state.ruleForm.accountType"
-										:on-item-filter="(data: any) => data.name != 'SuperAdmin' && (data.name == 'SysAdmin' ? [888, 999].includes(userInfos.accountType) : true)"
+										:on-item-filter="(data: any) => data.code != 'SuperAdmin' && (data.code == 'SysAdmin' ? AccountTypeEnum.NUMBER_999 == userInfos.accountType : true)"
 										code="AccountTypeEnum"
 										render-as="select"
 									/>
@@ -225,7 +225,7 @@ import { storeToRefs } from 'pinia';
 import { useUserInfo } from '/@/stores/userInfo';
 import { getAPI } from '/@/utils/axios-utils';
 import { SysPosApi, SysRoleApi, SysUserApi } from '/@/api-services/api';
-import { RoleOutput, SysOrg, SysPos, UpdateUserInput } from '/@/api-services/models';
+import {AccountTypeEnum, RoleOutput, SysOrg, SysPos, UpdateUserInput} from '/@/api-services/models';
 
 const props = defineProps({
 	title: String,

@@ -19,6 +19,14 @@
 							<el-input v-model="state.ruleForm.code" placeholder="字典编码" clearable />
 						</el-form-item>
 					</el-col>
+					<el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="mb20" v-if="userInfo.accountType === AccountTypeEnum.NUMBER_999">
+						<el-form-item label="内置参数" prop="sysFlag" :rules="[{ required: true, message: '内置参数不能为空', trigger: 'blur' }]">
+							<el-radio-group v-model="state.ruleForm.sysFlag" :disabled="state.ruleForm.sysFlag == 1 && state.ruleForm.id != undefined">
+								<el-radio :value="1">是</el-radio>
+								<el-radio :value="2">否</el-radio>
+							</el-radio-group>
+						</el-form-item>
+					</el-col>
 					<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
 						<el-form-item label="状态">
 							<el-radio-group v-model="state.ruleForm.status">
@@ -54,11 +62,13 @@ import { reactive, ref } from 'vue';
 
 import { getAPI } from '/@/utils/axios-utils';
 import { SysDictTypeApi } from '/@/api-services/api';
-import { UpdateDictTypeInput } from '/@/api-services/models';
+import {AccountTypeEnum, UpdateDictTypeInput} from '/@/api-services/models';
+import {useUserInfo} from "/@/stores/userInfo";
 
 const props = defineProps({
 	title: String,
 });
+const userInfo = useUserInfo().userInfos;
 const emits = defineEmits(['handleQuery', 'handleUpdate']);
 const ruleFormRef = ref();
 const state = reactive({

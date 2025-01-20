@@ -23,7 +23,10 @@ public class SysAuthService : IDynamicApiController, ITransient
     private readonly SysOnlineUserService _sysOnlineUserService;
     private readonly SysConfigService _sysConfigService;
     private readonly SysUserService _sysUserService;
+    private readonly SysSmsService _sysSmsService;
+    private readonly SysLdapService _sysLdapService;
     private readonly ICaptcha _captcha;
+    private readonly IEventPublisher _eventPublisher;
     private readonly SysCacheService _sysCacheService;
 
     public SysAuthService(
@@ -31,6 +34,9 @@ public class SysAuthService : IDynamicApiController, ITransient
         IHttpContextAccessor httpContextAccessor,
         SysOnlineUserService sysOnlineUserService,
         SysConfigService sysConfigService,
+        SysLdapService sysLdapService,
+        IEventPublisher eventPublisher,
+        SysSmsService sysSmsService,
         SysCacheService sysCacheService,
         SysMenuService sysMenuService,
         SysUserService sysUserService,
@@ -40,6 +46,8 @@ public class SysAuthService : IDynamicApiController, ITransient
         _captcha = captcha;
         _sysUserRep = sysUserRep;
         _userManager = userManager;
+        _sysSmsService = sysSmsService;
+        _eventPublisher = eventPublisher;
         _sysUserService = sysUserService;
         _sysMenuService = sysMenuService;
         _sysCacheService = sysCacheService;
@@ -183,7 +191,7 @@ public class SysAuthService : IDynamicApiController, ITransient
             {
                 VerifyPassword(password, keyPasswordErrorTimes, passwordErrorTimes, user);
             }
-            else if (!await App.GetRequiredService<SysLdapService>().AuthAccount(user.TenantId.Value, userLdap.Account, CryptogramUtil.Decrypt(password)))
+            else if (!await _sysLdapService.AuthAccount(user.TenantId!.Value, userLdap.Account, CryptogramUtil.Decrypt(password)))
             {
                 _sysCacheService.Set(keyPasswordErrorTimes, ++passwordErrorTimes, TimeSpan.FromMinutes(30));
                 throw Oops.Oh(ErrorCodeEnum.D1000);
@@ -205,7 +213,7 @@ public class SysAuthService : IDynamicApiController, ITransient
     public virtual async Task<LoginOutput> LoginPhone([Required] LoginPhoneInput input)
     {
         // 校验短信验证码
-        App.GetRequiredService<SysSmsService>().VerifyCode(new SmsVerifyCodeInput { Phone = input.Phone, Code = input.Code });
+        _sysSmsService.VerifyCode(new SmsVerifyCodeInput { Phone = input.Phone, Code = input.Code });
 
         // 获取登录租户和用户
         var (_, user) = await GetLoginUserAndTenant(input.TenantId, phone: input.Phone);
@@ -261,11 +269,19 @@ public class SysAuthService : IDynamicApiController, ITransient
             u.LastLoginDevice,
         }).ExecuteCommandAsync();
 
-        return new LoginOutput
+        var payload = new
         {
-            AccessToken = accessToken,
-            RefreshToken = refreshToken
+            Entity = user,
+            Output = new LoginOutput
+            {
+                AccessToken = accessToken,
+                RefreshToken = refreshToken
+            }
         };
+
+        // 发布系统用户操作事件
+        await _eventPublisher.PublishAsync(SysUserEventTypeEnum.Login, payload);
+        return payload.Output;
     }
 
     /// <summary>
@@ -287,8 +303,7 @@ public class SysAuthService : IDynamicApiController, ITransient
             .Where(u => u.UserId == user.Id).Select(u => u.RoleId).ToListAsync();
         // 获取水印文字（若系统水印为空则全局为空）
         var watermarkText = (await _sysUserRep.Context.Queryable<SysTenant>().FirstAsync(u => u.Id == user.TenantId))?.Watermark;
-        if (!string.IsNullOrWhiteSpace(watermarkText))
-            watermarkText += $"-{user.RealName}"; // $"-{user.RealName}-{_httpContextAccessor.HttpContext.GetRemoteIpAddressToIPv4(true)}-{DateTime.Now}";
+        if (!string.IsNullOrWhiteSpace(watermarkText)) watermarkText += $"-{user.RealName}";
         return new LoginUserOutput
         {
             Id = user.Id,
@@ -330,9 +345,9 @@ public class SysAuthService : IDynamicApiController, ITransient
     [DisplayName("退出系统")]
     public void Logout()
     {
-        if (string.IsNullOrWhiteSpace(_userManager.Account))
-            throw Oops.Oh(ErrorCodeEnum.D1011);
-
+        // 发布系统用户操作事件
+        _ = _eventPublisher.PublishAsync(SysUserEventTypeEnum.LoginOut, new { Entity = _sysUserRep.GetById(_userManager.UserId) });
+        if (string.IsNullOrWhiteSpace(_userManager.Account)) throw Oops.Oh(ErrorCodeEnum.D1011);
         _httpContextAccessor.HttpContext.SignoutToSwagger();
     }
 

@@ -11,17 +11,17 @@
 				<el-row :gutter="35">
 					<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
 						<el-form-item label="显示文本" prop="label" :rules="[{ required: true, message: '显示文本不能为空', trigger: 'blur' }]">
-							<el-input v-model="state.ruleForm.label" placeholder="字典值" clearable />
+							<el-input v-model="state.ruleForm.label" placeholder="字典值" :disabled="state.isSysFlag" clearable />
 						</el-form-item>
 					</el-col>
 					<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
 						<el-form-item label="字典值" prop="value" :rules="[{ required: true, message: '字典值不能为空', trigger: 'blur' }]">
-							<el-input v-model="state.ruleForm.value" placeholder="编码" clearable />
+							<el-input v-model="state.ruleForm.value" placeholder="字典值" :disabled="state.isSysFlag" clearable />
 						</el-form-item>
 					</el-col>
 					<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
-						<el-form-item label="名称" prop="name">
-							<el-input v-model="state.ruleForm.name" placeholder="名称" clearable />
+						<el-form-item label="编码" prop="code">
+							<el-input v-model="state.ruleForm.code" placeholder="编码" :disabled="state.isSysFlag" clearable />
 						</el-form-item>
 					</el-col>
 					<el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="mb20">
@@ -47,7 +47,7 @@
 					</el-col>
 					<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
 						<el-form-item label="状态">
-							<el-radio-group v-model="state.ruleForm.status">
+							<el-radio-group v-model="state.ruleForm.status" :disabled="state.isSysFlag">
 								<el-radio :value="1">启用</el-radio>
 								<el-radio :value="2">禁用</el-radio>
 							</el-radio-group>
@@ -94,12 +94,14 @@ const props = defineProps({
 const emits = defineEmits(['handleQuery', 'handleUpdate']);
 const ruleFormRef = ref();
 const state = reactive({
+	isSysFlag: false,
 	isShowDialog: false,
 	ruleForm: {} as UpdateDictDataInput,
 });
 
 // 打开弹窗
 const openDialog = (row: any) => {
+	if (row.dictType?.sysFlag) state.isSysFlag = row.dictType.sysFlag !== 2;
 	state.ruleForm = JSON.parse(JSON.stringify(row));
 	if (JSON.stringify(row) == '{}') {
 		state.ruleForm.dictTypeId = props.dictTypeId;

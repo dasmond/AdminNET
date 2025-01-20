@@ -51,15 +51,7 @@ public class ExcelHelper
         catch (Exception ex)
         {
             App.HttpContext.Response.Headers["Content-Type"] = "application/json; charset=utf-8";
-            throw Oops.Oh(new AdminResult<object>
-            {
-                Code = 500,
-                Message = ex.Message,
-                Result = null,
-                Type = "error",
-                Extras = UnifyContext.Take(),
-                Time = DateTime.Now
-            }.ToJson());
+            throw Oops.Oh(AdminResultProvider.Error(ex.Message, 500).ToJson());
         }
     }
 
@@ -88,6 +80,10 @@ public class ExcelHelper
         using var package = new ExcelPackage((ExportData(list, filename) as XlsxFileResult)!.Stream);
         var worksheet = package.Workbook.Worksheets[0];
 
+        // 创建一个隐藏的sheet，用于添加下拉列表
+        var dropdownSheet = package.Workbook.Worksheets.Add("下拉数据");
+        dropdownSheet.Hidden = eWorkSheetHidden.Hidden;
+
         var sysDictTypeService = App.GetService<SysDictTypeService>();
         foreach (var prop in typeof(T).GetProperties())
         {
@@ -108,34 +104,43 @@ public class ExcelHelper
             var dataList = addListValidationFun?.Invoke(worksheet, prop)?.ToList();
             if (dataList == null)
             {
+                // 填充枚举项为下列列表
                 if (propType.IsEnum())
-                {// 填充枚举项为下列列表
+                {
                     dataList = propType.EnumToList()?.Select(it => it.Describe).ToList();
                 }
                 else
-                {// 获取字段上的字典特性
+                {
+                    // 获取字段上的字典特性
                     var dict = prop.GetCustomAttribute<DictAttribute>();
                     if (dict != null)
-                    {// 填充字典值value为下列列表
-                        dataList = sysDictTypeService.GetDataList(new GetDataDictTypeInput
-                        { Code = dict.DictTypeCode }).Result?.Select(x => x.Label).ToList();
+                    {
+                        // 填充字典值value为下列列表
+                        dataList = sysDictTypeService.GetDataList(new GetDataDictTypeInput { Code = dict.DictTypeCode })
+                            .Result?.Select(x => x.Label).ToList();
                     }
                 }
             }
-            if (dataList != null) AddListValidation(columnIndex, dataList);
-        }
 
-        void AddListValidation(int columnIndex, List<string> dataList)
-        {
-            var validation = worksheet.DataValidations.AddListValidation(worksheet.Cells[2, columnIndex, 99999, columnIndex].Address);
-            dataList.ForEach(e => validation!.Formula.Values.Add(e));
-            validation.ShowErrorMessage = true;
-            validation.ErrorTitle = "无效输入";
-            validation.Error = "请从列表中选择一个有效的选项";
+            if (dataList != null)
+            {
+                // 添加下拉列表
+                AddListValidation(columnIndex, dataList);
+                dropdownSheet.Cells[1, columnIndex, dataList.Count, columnIndex].LoadFromCollection(dataList);
+            }
         }
 
         package.Save();
         package.Stream.Position = 0;
         return new XlsxFileResult(stream: package.Stream, fileDownloadName: $"{filename}-{DateTime.Now:yyyy-MM-dd_HHmmss}");
+
+        void AddListValidation(int columnIndex, List<string> dataList)
+        {
+            var validation = worksheet.DataValidations.AddListValidation(worksheet.Cells[2, columnIndex, 999999, columnIndex].Address);
+            validation!.Formula.ExcelFormula = "=下拉数据!" + worksheet.Cells[1, columnIndex, dataList.Count, columnIndex].Address;
+            validation.ShowErrorMessage = true;
+            validation.ErrorTitle = "无效输入";
+            validation.Error = "请从列表中选择一个有效的选项";
+        }
     }
 }

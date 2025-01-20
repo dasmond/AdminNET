@@ -4,6 +4,8 @@
 //
 // 不得利用本项目从事危害国家安全、扰乱社会秩序、侵犯他人合法权益等法律法规禁止的活动！任何基于本项目二次开发而产生的一切法律纠纷和责任，我们不承担任何责任！
 
+using DbType = SqlSugar.DbType;
+
 namespace Admin.NET.Core;
 
 public static class SqlSugarSetup
@@ -106,11 +108,11 @@ public static class SqlSugarSetup
         };
 
         // 若库类型是人大金仓则默认设置PG模式
-        if (config.DbType == SqlSugar.DbType.Kdbndp)
-            config.MoreSettings.DatabaseModel = SqlSugar.DbType.PostgreSQL; // 配置PG模式主要是兼容系统表差异
+        if (config.DbType == DbType.Kdbndp)
+            config.MoreSettings.DatabaseModel = DbType.PostgreSQL; // 配置PG模式主要是兼容系统表差异
 
         // 若库类型是Oracle则默认主键名字和参数名字最大长度
-        if (config.DbType == SqlSugar.DbType.Oracle)
+        if (config.DbType == DbType.Oracle)
             config.MoreSettings.MaxParameterNameLength = 30;
     }
 
@@ -280,7 +282,7 @@ public static class SqlSugarSetup
     {
         if (!config.DbSettings.EnableDiffLog) return;
 
-        db.Aop.OnDiffLogEvent = async u =>
+        async void AopOnDiffLogEvent(DiffLogModel u)
         {
             // 记录差异数据
             var diffData = new List<dynamic>();
@@ -301,12 +303,8 @@ public static class SqlSugarSetup
                         AfterValue = afterColumns[j].Value,
                     });
                 }
-                diffData.Add(new
-                {
-                    u.AfterData[i].TableName,
-                    u.AfterData[i].TableDescription,
-                    Columns = diffColumns
-                });
+
+                diffData.Add(new { u.AfterData[i].TableName, u.AfterData[i].TableDescription, Columns = diffColumns });
             }
 
             var logDiff = new SysLogDiff
@@ -325,49 +323,33 @@ public static class SqlSugarSetup
             await logDb.CopyNew().Insertable(logDiff).ExecuteCommandAsync();
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine(DateTime.Now + $"\r\n*****开始差异日志*****\r\n{Environment.NewLine}{JSON.Serialize(logDiff)}{Environment.NewLine}*****结束差异日志*****\r\n");
-        };
+        }
+
+        db.Aop.OnDiffLogEvent = AopOnDiffLogEvent;
     }
 
     /// <summary>
     /// 初始化数据库
     /// </summary>
-    /// <param name="db"></param>
-    /// <param name="config"></param>
+    /// <param name="db">SqlSugarScope 实例</param>
+    /// <param name="config">数据库连接配置</param>
     private static void InitDatabase(SqlSugarScope db, DbConnectionConfig config)
     {
-        SqlSugarScopeProvider dbProvider = db.GetConnectionScope(config.ConfigId);
+        var dbProvider = db.GetConnectionScope(config.ConfigId);
 
-        // 初始化/创建数据库
+        // 初始化数据库
         if (config.DbSettings.EnableInitDb)
         {
             Log.Information($"初始化数据库 {config.DbType} - {config.ConfigId} - {config.ConnectionString}");
-            if (config.DbType != SqlSugar.DbType.Oracle) dbProvider.DbMaintenance.CreateDatabase();
+            if (config.DbType != DbType.Oracle) dbProvider.DbMaintenance.CreateDatabase();
         }
 
         // 初始化表结构
         if (config.TableSettings.EnableInitTable)
         {
             Log.Information($"初始化表结构 {config.DbType} - {config.ConfigId}");
-            var entityTypes = App.EffectiveTypes.Where(u => !u.IsInterface && !u.IsAbstract && u.IsClass && u.IsDefined(typeof(SugarTable), false))
-                .Where(u => !u.GetCustomAttributes<IgnoreTableAttribute>().Any())
-                .WhereIF(config.TableSettings.EnableIncreTable, u => u.IsDefined(typeof(IncreTableAttribute), false)).ToList();
-
-            if (config.ConfigId.ToString() == SqlSugarConst.MainConfigId) // 默认库（有系统表特性、没有日志表和租户表特性）
-                entityTypes = entityTypes.Where(u => u.GetCustomAttributes<SysTableAttribute>().Any() || (!u.GetCustomAttributes<LogTableAttribute>().Any() && !u.GetCustomAttributes<TenantAttribute>().Any())).ToList();
-            else if (config.ConfigId.ToString() == SqlSugarConst.LogConfigId) // 日志库
-                entityTypes = entityTypes.Where(u => u.GetCustomAttributes<LogTableAttribute>().Any()).ToList();
-            else
-                entityTypes = entityTypes.Where(u => u.GetCustomAttribute<TenantAttribute>()?.configId.ToString() == config.ConfigId.ToString()).ToList(); // 自定义的库
-
-            int count = 0, sum = entityTypes.Count;
-            foreach (var entityType in entityTypes)
-            {
-                Console.WriteLine($"创建表 {entityType} ({config.ConfigId} - {++count}/{sum})");
-                if (entityType.GetCustomAttribute<SplitTableAttribute>() == null)
-                    dbProvider.CodeFirst.InitTables(entityType);
-                else
-                    dbProvider.CodeFirst.SplitTables().InitTables(entityType);
-            }
+            var entityTypes = GetEntityTypesForInit(config);
+            InitializeTables(dbProvider, entityTypes, config);
         }
 
         // 初始化种子数据
@@ -375,91 +357,220 @@ public static class SqlSugarSetup
     }
 
     /// <summary>
+    /// 获取需要初始化的实体类型
+    /// </summary>
+    /// <param name="config">数据库连接配置</param>
+    /// <returns>实体类型列表</returns>
+    private static List<Type> GetEntityTypesForInit(DbConnectionConfig config)
+    {
+        return App.EffectiveTypes
+            .Where(u => !u.IsInterface && !u.IsAbstract && u.IsClass && u.IsDefined(typeof(SugarTable), false))
+            .Where(u => !u.GetCustomAttributes<IgnoreTableAttribute>().Any())
+            .WhereIF(config.TableSettings.EnableIncreTable, u => u.IsDefined(typeof(IncreTableAttribute), false))
+            .Where(u => IsEntityForConfig(u, config))
+            .ToList();
+    }
+
+    /// <summary>
+    /// 判断实体是否属于当前配置
+    /// </summary>
+    /// <param name="entityType">实体类型</param>
+    /// <param name="config">数据库连接配置</param>
+    /// <returns>是否属于当前配置</returns>
+    private static bool IsEntityForConfig(Type entityType, DbConnectionConfig config)
+    {
+        switch (config.ConfigId.ToString())
+        {
+            case SqlSugarConst.MainConfigId:
+                return entityType.GetCustomAttributes<SysTableAttribute>().Any() ||
+                       (!entityType.GetCustomAttributes<LogTableAttribute>().Any() &&
+                        !entityType.GetCustomAttributes<TenantAttribute>().Any());
+            case SqlSugarConst.LogConfigId:
+                return entityType.GetCustomAttributes<LogTableAttribute>().Any();
+            default:
+            {
+                var tenantAttribute = entityType.GetCustomAttribute<TenantAttribute>();
+                return tenantAttribute != null && tenantAttribute.configId.ToString() == config.ConfigId.ToString();
+            }
+        }
+    }
+
+    /// <summary>
+    /// 初始化表结构
+    /// </summary>
+    /// <param name="dbProvider">SqlSugarScopeProvider 实例</param>
+    /// <param name="entityTypes">实体类型列表</param>
+    /// <param name="config">数据库连接配置</param>
+    private static void InitializeTables(SqlSugarScopeProvider dbProvider, List<Type> entityTypes, DbConnectionConfig config)
+    {
+        int count = 0, sum = entityTypes.Count;
+        var tasks = entityTypes.Select(entityType => Task.Run(() =>
+        {
+            Console.WriteLine($"初始化表结构 {entityType.FullName, -64} ({config.ConfigId} - {Interlocked.Increment(ref count):D003}/{sum:D003})");
+            UpdateNullableColumns(dbProvider, entityType);
+            InitializeTable(dbProvider, entityType);
+        }));
+
+        Task.WhenAll(tasks).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// 更新表中不存在于实体的字段为可空
+    /// </summary>
+    /// <param name="dbProvider">SqlSugarScopeProvider 实例</param>
+    /// <param name="entityType">实体类型</param>
+    private static void UpdateNullableColumns(SqlSugarScopeProvider dbProvider, Type entityType)
+    {
+        var entityInfo = dbProvider.EntityMaintenance.GetEntityInfo(entityType);
+        var dbColumns = dbProvider.DbMaintenance.GetColumnInfosByTableName(entityInfo.DbTableName) ?? new List<DbColumnInfo>();
+
+        foreach (var dbColumn in dbColumns.Where(c => !c.IsPrimarykey && entityInfo.Columns.All(u => u.DbColumnName != c.DbColumnName)))
+        {
+            dbColumn.IsNullable = true;
+            dbProvider.DbMaintenance.UpdateColumn(entityInfo.DbTableName, dbColumn);
+        }
+    }
+
+    /// <summary>
+    /// 初始化表
+    /// </summary>
+    /// <param name="dbProvider">SqlSugarScopeProvider 实例</param>
+    /// <param name="entityType">实体类型</param>
+    private static void InitializeTable(SqlSugarScopeProvider dbProvider, Type entityType)
+    {
+        if (entityType.GetCustomAttribute<SplitTableAttribute>() == null)
+        {
+            dbProvider.CodeFirst.InitTables(entityType);
+        }
+        else
+        {
+            dbProvider.CodeFirst.SplitTables().InitTables(entityType);
+        }
+    }
+
+    /// <summary>
     /// 初始化种子数据
     /// </summary>
-    /// <param name="db"></param>
-    /// <param name="config"></param>
+    /// <param name="db">SqlSugarScope 实例</param>
+    /// <param name="config">数据库连接配置</param>
     private static void InitSeedData(SqlSugarScope db, DbConnectionConfig config)
     {
-        SqlSugarScopeProvider dbProvider = db.GetConnectionScope(config.ConfigId);
+        var dbProvider = db.GetConnectionScope(config.ConfigId);
         _isHandlingSeedData = true;
 
         Log.Information($"初始化种子数据 {config.DbType} - {config.ConfigId}");
-        var seedDataTypes = App.EffectiveTypes.Where(u => !u.IsInterface && !u.IsAbstract && u.IsClass && u.GetInterfaces().Any(i => i.HasImplementedRawGeneric(typeof(ISqlSugarEntitySeedData<>))))
-            .WhereIF(config.SeedSettings.EnableIncreSeed, u => u.IsDefined(typeof(IncreSeedAttribute), false))
-            .OrderBy(u => u.GetCustomAttributes(typeof(SeedDataAttribute), false).Length > 0 ? ((SeedDataAttribute)u.GetCustomAttributes(typeof(SeedDataAttribute), false)[0]).Order : 0).ToList();
+        var seedDataTypes = GetSeedDataTypes(config);
 
         int count = 0, sum = seedDataTypes.Count;
-        foreach (var seedType in seedDataTypes)
+        var tasks = seedDataTypes.Select(seedType => Task.Run(() =>
         {
             var entityType = seedType.GetInterfaces().First().GetGenericArguments().First();
-            if (config.ConfigId.ToString() == SqlSugarConst.MainConfigId) // 默认库（有系统表特性、没有日志表和租户表特性）
-            {
-                if (entityType.GetCustomAttribute<SysTableAttribute>() == null && (entityType.GetCustomAttribute<LogTableAttribute>() != null || entityType.GetCustomAttribute<TenantAttribute>() != null)) continue;
-            }
-            else if (config.ConfigId.ToString() == SqlSugarConst.LogConfigId) // 日志库
-            {
-                if (entityType.GetCustomAttribute<LogTableAttribute>() == null) continue;
-            }
-            else
-            {
-                var att = entityType.GetCustomAttribute<TenantAttribute>(); // 自定义的库
-                if (att == null || att.configId.ToString() != config.ConfigId.ToString()) continue;
-            }
+            if (!IsEntityForConfig(entityType, config)) return;
 
-            var instance = Activator.CreateInstance(seedType);
-            var hasDataMethod = seedType.GetMethod("HasData");
-            var seedData = ((IEnumerable)hasDataMethod?.Invoke(instance, null))?.Cast<object>();
-            if (seedData == null) continue;
+            var seedData = GetSeedData(seedType);
+            if (seedData == null) return;
 
-            var entityInfo = dbProvider.EntityMaintenance.GetEntityInfo(entityType);
-            Console.WriteLine($"添加数据 {entityInfo.DbTableName} ({config.ConfigId} - {++count}/{sum}，数据量：{seedData.Count()})");
+            AdjustSeedDataIds(seedData, config);
+            InsertOrUpdateSeedData(dbProvider, seedType, entityType, seedData, config, ref count, sum);
+        }));
 
-            // 若实体包含Id字段，则设置为当前租户Id递增1
-            if (entityInfo.Columns.Any(u => u.PropertyName == nameof(EntityBaseId.Id)))
+        Task.WhenAll(tasks).GetAwaiter().GetResult();
+        _isHandlingSeedData = false;
+    }
+
+    /// <summary>
+    /// 获取种子数据类型
+    /// </summary>
+    /// <param name="config">数据库连接配置</param>
+    /// <returns>种子数据类型列表</returns>
+    private static List<Type> GetSeedDataTypes(DbConnectionConfig config)
+    {
+        return App.EffectiveTypes
+            .Where(u => !u.IsInterface && !u.IsAbstract && u.IsClass && u.GetInterfaces().Any(i => i.HasImplementedRawGeneric(typeof(ISqlSugarEntitySeedData<>))))
+            .WhereIF(config.SeedSettings.EnableIncreSeed, u => u.IsDefined(typeof(IncreSeedAttribute), false))
+            .OrderBy(u => u.GetCustomAttributes(typeof(SeedDataAttribute), false).Length > 0 ? ((SeedDataAttribute)u.GetCustomAttributes(typeof(SeedDataAttribute), false)[0]).Order : 0)
+            .ToList();
+    }
+
+    /// <summary>
+    /// 获取种子数据
+    /// </summary>
+    /// <param name="seedType">种子数据类型</param>
+    /// <returns>种子数据列表</returns>
+    private static IEnumerable<object> GetSeedData(Type seedType)
+    {
+        var instance = Activator.CreateInstance(seedType);
+        var hasDataMethod = seedType.GetMethod("HasData");
+        return ((IEnumerable)hasDataMethod?.Invoke(instance, null))?.Cast<object>();
+    }
+
+    /// <summary>
+    /// 调整种子数据的 ID
+    /// </summary>
+    /// <param name="seedData">种子数据列表</param>
+    /// <param name="config">数据库连接配置</param>
+    private static void AdjustSeedDataIds(IEnumerable<object> seedData, DbConnectionConfig config)
+    {
+        var seedId = config.ConfigId.ToLong();
+        foreach (var data in seedData)
+        {
+            var idProperty = data.GetType().GetProperty(nameof(EntityBaseId.Id));
+            if (idProperty == null) continue;
+
+            var idValue = idProperty.GetValue(data);
+            if (idValue == null || idValue.ToString() == "0" || string.IsNullOrWhiteSpace(idValue.ToString()))
             {
-                var seedId = config.ConfigId.ToLong();
-                foreach (var sd in seedData)
-                {
-                    var id = sd.GetType().GetProperty(nameof(EntityBaseId.Id))!.GetValue(sd, null);
-                    if (id != null && (id.ToString() == "0" || string.IsNullOrWhiteSpace(id.ToString())))
-                        sd.GetType().GetProperty(nameof(EntityBaseId.Id))!.SetValue(sd, ++seedId);
-                }
-            }
-
-            if (entityType.GetCustomAttribute<SplitTableAttribute>(true) != null)
-            {
-                //拆分表的操作需要实体类型，而通过反射很难实现
-                //所以，这里将Init方法写在“种子数据类”内部，再传入 db 反射调用
-                var hasInitMethod = seedType.GetMethod("Init");
-                var parameters = new object[] { db };
-                hasInitMethod?.Invoke(instance, parameters);
-            }
-            else
-            {
-                if (entityInfo.Columns.Any(u => u.IsPrimarykey))
-                {
-                    // 按主键进行批量增加和更新
-                    var storage = dbProvider.StorageableByObject(seedData.ToList()).ToStorage();
-
-                    // 先修改再插入，否则会更新修改时间字段
-                    if (seedType.GetCustomAttribute<IgnoreUpdateSeedAttribute>() == null) // 有忽略更新种子特性时则不更新
-                    {
-                        int updateCount = storage.AsUpdateable.IgnoreColumns(entityInfo.Columns.Where(u => u.PropertyInfo.GetCustomAttribute<IgnoreUpdateSeedColumnAttribute>() != null).Select(u => u.PropertyName).ToArray()).ExecuteCommand();
-                        Console.WriteLine($"  修改 {updateCount}/{seedData.Count()} 条记录");
-                    }
-                    int insertCount = storage.AsInsertable.ExecuteCommand();
-                    Console.WriteLine($"  插入 {insertCount}/{seedData.Count()} 条记录");
-                }
-                else
-                {
-                    // 无主键则只进行插入
-                    if (!dbProvider.Queryable(entityInfo.DbTableName, entityInfo.DbTableName).Any())
-                        dbProvider.InsertableByObject(seedData.ToList()).ExecuteCommand();
-                }
+                idProperty.SetValue(data, ++seedId);
             }
         }
-        _isHandlingSeedData = false;
+    }
+
+    /// <summary>
+    /// 插入或更新种子数据
+    /// </summary>
+    /// <param name="dbProvider">SqlSugarScopeProvider 实例</param>
+    /// <param name="seedType">种子数据类型</param>
+    /// <param name="entityType">实体类型</param>
+    /// <param name="seedData">种子数据列表</param>
+    /// <param name="config">数据库连接配置</param>
+    /// <param name="count">当前处理的数量</param>
+    /// <param name="sum">总数量</param>
+    private static void InsertOrUpdateSeedData(SqlSugarScopeProvider dbProvider, Type seedType, Type entityType, IEnumerable<object> seedData, DbConnectionConfig config, ref int count, int sum)
+    {
+        var entityInfo = dbProvider.EntityMaintenance.GetEntityInfo(entityType);
+        var dataList = seedData.ToList();
+
+        if (entityType.GetCustomAttribute<SplitTableAttribute>(true) != null)
+        {
+            var initMethod = seedType.GetMethod("Init");
+            initMethod?.Invoke(Activator.CreateInstance(seedType), new object[] { dbProvider });
+        }
+        else
+        {
+            int updateCount = 0, insertCount = 0;
+            if (entityInfo.Columns.Any(u => u.IsPrimarykey))
+            {
+                var storage = dbProvider.StorageableByObject(dataList).ToStorage();
+                if (seedType.GetCustomAttribute<IgnoreUpdateSeedAttribute>() == null)
+                {
+                    updateCount = storage.AsUpdateable
+                        .IgnoreColumns(entityInfo.Columns
+                            .Where(u => u.PropertyInfo.GetCustomAttribute<IgnoreUpdateSeedColumnAttribute>() != null)
+                            .Select(u => u.PropertyName).ToArray())
+                        .ExecuteCommand();
+                }
+                insertCount = storage.AsInsertable.ExecuteCommand();
+            }
+            else
+            {
+                if (!dbProvider.Queryable(entityInfo.DbTableName, entityInfo.DbTableName).Any())
+                {
+                    insertCount = dataList.Count;
+                    dbProvider.InsertableByObject(dataList).ExecuteCommand();
+                }
+            }
+            Console.WriteLine($"添加数据 {entityInfo.DbTableName, -32} ({config.ConfigId} - {Interlocked.Increment(ref count):D003}/{sum:D003}，数据量：{dataList.Count:D003}，插入 {insertCount:D003} 条记录，修改 {updateCount:D003} 条记录)");
+        }
     }
 
     /// <summary>

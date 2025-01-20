@@ -97,12 +97,6 @@ export interface SysDictData {
      */
     code?: string | null;
     /**
-     * 名称
-     * @type {string}
-     * @memberof SysDictData
-     */
-    name?: string | null;
-    /**
      * 显示样式-标签颜色
      * @type {string}
      * @memberof SysDictData

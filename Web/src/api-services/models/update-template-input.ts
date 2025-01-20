@@ -11,6 +11,7 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+import { TemplateTypeEnum } from './template-type-enum';
 /**
  * 更新模板输入参数
  * @export
@@ -83,6 +84,12 @@ export interface UpdateTemplateInput {
      * @memberof UpdateTemplateInput
      */
     name: string;
+    /**
+     * 
+     * @type {TemplateTypeEnum}
+     * @memberof UpdateTemplateInput
+     */
+    type?: TemplateTypeEnum;
     /**
      * 编码
      * @type {string}

@@ -7,9 +7,9 @@
 namespace Admin.NET.Core;
 
 /// <summary>
-/// 系统参数配置表
+/// 系统配置参数表
 /// </summary>
-[SugarTable(null, "系统参数配置表")]
+[SugarTable(null, "系统配置参数表")]
 [SysTable]
 [SugarIndex("index_{table}_N", nameof(Name), OrderByType.Asc)]
 [SugarIndex("index_{table}_C", nameof(Code), OrderByType.Asc, IsUnique = true)]
@@ -30,9 +30,9 @@ public partial class SysConfig : EntityBase
     public string? Code { get; set; }
 
     /// <summary>
-    /// 属性值
+    /// 属性默认值
     /// </summary>
-    [SugarColumn(ColumnDescription = "属性值", Length = 64)]
+    [SugarColumn(ColumnDescription = "属性默认值", Length = -1)]
     [MaxLength(64)]
     [IgnoreUpdateSeedColumn]
     public string? Value { get; set; }

@@ -178,6 +178,9 @@ public class QueryById@(Model.ClassName)Input : Delete@(Model.ClassName)Input
     @:/// <summary>
     @:/// @column.ColumnComment 文本
     @:/// </summary>
+    if (column.EffectType == "DictSelector") {
+    @:[Dict(@($"\"{column.DictTypeCode}\""))]
+    }
     @:[ImporterHeader(Name = "@(headerName)")]
     @:[ExporterHeader("@(headerName)", Format = "@", Width = 25, IsBold = true)]
     @:public string @column.ExtendedPropertyName { get; set; }

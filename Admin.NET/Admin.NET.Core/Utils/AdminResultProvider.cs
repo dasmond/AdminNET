@@ -97,9 +97,30 @@ public class AdminResultProvider : IUnifyResultProvider
                         App.GetOptions<JsonOptions>()?.JsonSerializerOptions);
                 }
                 break;
-
-            default: break;
         }
+    }
+
+    /// <summary>
+    /// 返回成功结果集
+    /// </summary>
+    /// <param name="message"></param>
+    /// <param name="data"></param>
+    /// <returns></returns>
+    public static AdminResult<object> Ok(string message, object data = default)
+    {
+        return RESTfulResult(StatusCodes.Status200OK, true, data, message);
+    }
+
+    /// <summary>
+    /// 返回失败结果集
+    /// </summary>
+    /// <param name="message"></param>
+    /// <param name="code"></param>
+    /// <param name="data"></param>
+    /// <returns></returns>
+    public static AdminResult<object> Error(string message, int code = StatusCodes.Status400BadRequest, object data = default)
+    {
+        return RESTfulResult(code, false, data, message);
     }
 
     /// <summary>

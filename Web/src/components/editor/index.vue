@@ -56,17 +56,14 @@ const state = reactive({
 		MENU_CONF: {
 			uploadImage: {
 				fieldName: 'file',
-				customUpload(file, insertFn) {
-					// console.log('customUpload', file);
-					const uploadFun = async () => {
-						const rps = await getAPI(SysFileApi).apiSysFileUploadFilePostForm(file);
-						if (rps.data.type == 'success' && rps.data.result != null) {
-							insertFn(rps.data.result.url, rps.data.result.name, rps.data.result.url);
+				customUpload(file: File, insertFn: any) {
+					getAPI(SysFileApi).apiSysFileUploadFilePostForm(file).then(({data}) => {
+						if (data.type == 'success' && data.result) {
+							editorRef.value.insertNode({ type: 'image', src: data.result.url, alt: data.result.fileName, href: data.result.url, children: [{ text: '' }] })
 						} else {
-							ElMessage.error('上传失败！');
+							ElMessage.error('上传失败！')
 						}
-					};
-					uploadFun();
+					})
 				},
 			},
 			insertImage: {
@@ -120,6 +117,11 @@ watch(
 		deep: true,
 	}
 );
+
+// 暴露 editorRef
+defineExpose({
+	ref: editorRef,
+});
 </script>
 <style lang="less">
 .editor-container {

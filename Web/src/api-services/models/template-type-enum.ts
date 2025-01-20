@@ -12,21 +12,16 @@
  * Do not edit the class manually.
  */
 /**
- * 
+ * 消息模板类型枚举<br />&nbsp;通知 Notice = 1<br />&nbsp;短信 SMS = 2<br />&nbsp;邮件 Email = 3<br />&nbsp;微信 Wechat = 4<br />&nbsp;钉钉 DingTalk = 5<br />&nbsp;企业微信 WeChatWork = 7<br />
  * @export
- * @interface DictTypeMoveInput
+ * @enum {string}
  */
-export interface DictTypeMoveInput {
-    /**
-     * 主键Id
-     * @type {number}
-     * @memberof DictTypeMoveInput
-     */
-    id: number;
-    /**
-     * 租户
-     * @type {number}
-     * @memberof DictTypeMoveInput
-     */
-    tenantId: number;
+export enum TemplateTypeEnum {
+    NUMBER_1 = 1,
+    NUMBER_2 = 2,
+    NUMBER_3 = 3,
+    NUMBER_4 = 4,
+    NUMBER_5 = 5,
+    NUMBER_7 = 7
 }
+

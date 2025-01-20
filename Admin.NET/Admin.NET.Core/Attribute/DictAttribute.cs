@@ -33,7 +33,7 @@ public class DictAttribute : ValidationAttribute, ITransient
     /// </summary>
     /// <param name="dictTypeCode"></param>
     /// <param name="errorMessage"></param>
-    public DictAttribute(string dictTypeCode, string errorMessage = "字典值不合法！")
+    public DictAttribute(string dictTypeCode = "", string errorMessage = "字典值不合法！")
     {
         DictTypeCode = dictTypeCode;
         ErrorMessage = errorMessage;
@@ -47,27 +47,39 @@ public class DictAttribute : ValidationAttribute, ITransient
     /// <returns></returns>
     protected override ValidationResult IsValid(object? value, ValidationContext validationContext)
     {
-        var valueAsString = value?.ToString();
-
         // 判断是否允许空值
         if (AllowNullValue && value == null) return ValidationResult.Success;
+
+        var valueAsString = value?.ToString();
 
         // 是否忽略空字符串
         if (AllowEmptyStrings && string.IsNullOrEmpty(valueAsString)) return ValidationResult.Success;
 
-        var sysDictDataServiceProvider = App.GetRequiredService<SysDictDataService>();
-        var dictDataList = sysDictDataServiceProvider.GetDataList(DictTypeCode).Result;
+        // 获取属性的类型
+        var property = validationContext.ObjectType.GetProperty(validationContext.MemberName!);
+        if (property == null) return new ValidationResult($"未知属性: {validationContext.MemberName}");
 
-        // 获取枚举类型，可能存在Nullable类型，所以需要尝试获取最终类型
-        var type = value?.GetType();
-        type = type != null ? Nullable.GetUnderlyingType(type) ?? type : null;
+        var propertyType = Nullable.GetUnderlyingType(property.PropertyType) ?? property.PropertyType;
 
-        // 使用HashSet来提高查找效率
-        var valueList = (type?.IsEnum ?? DictTypeCode.EndsWith("Enum")) ? dictDataList.Select(u => u.Name) : dictDataList.Select(u => u.Value);
-        var dictHash = new HashSet<string>(valueList);
+        // 枚举类型验证
+        if (propertyType.IsEnum)
+        {
+            if (!Enum.IsDefined(propertyType, value!)) return new ValidationResult($"提示：{ErrorMessage}|枚举值【{value}】不是有效的【{propertyType.Name}】枚举类型值！");
+            return ValidationResult.Success;
+        }
 
-        if (!dictHash.Contains(valueAsString))
-            return new ValidationResult($"提示：{ErrorMessage}|字典【{DictTypeCode}】不包含【{valueAsString}】！");
+        // 先尝试从 ValidationContext 的依赖注入容器中拿服务，拿不到或类型不匹配时，再从全局的 App 容器中获取
+        if (validationContext.GetService(typeof(SysDictDataService)) is not SysDictDataService sysDictDataService)
+            sysDictDataService = App.GetRequiredService<SysDictDataService>();
+
+        // 获取字典值列表
+        var dictDataList = sysDictDataService.GetDataList(DictTypeCode).GetAwaiter().GetResult();
+
+        // 使用 HashSet 来提高查找效率
+        var dictHash = new HashSet<string>(dictDataList.Select(u => u.Value));
+
+        if (!dictHash.Contains(valueAsString)) return new ValidationResult($"提示：{ErrorMessage}|字典【{DictTypeCode}】不包含【{valueAsString}】！");
+
         return ValidationResult.Success;
     }
 }

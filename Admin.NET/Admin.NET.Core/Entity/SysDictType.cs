@@ -13,7 +13,7 @@ namespace Admin.NET.Core;
 [SysTable]
 [SugarIndex("index_{table}_N", nameof(Name), OrderByType.Asc)]
 [SugarIndex("index_{table}_C", nameof(Code), OrderByType.Asc)]
-public partial class SysDictType : EntityTenant
+public partial class SysDictType : EntityBase
 {
     /// <summary>
     /// 名称
@@ -41,6 +41,12 @@ public partial class SysDictType : EntityTenant
     [SugarColumn(ColumnDescription = "备注", Length = 256)]
     [MaxLength(256)]
     public string? Remark { get; set; }
+
+    /// <summary>
+    /// 系统内置
+    /// </summary>
+    [SugarColumn(ColumnDescription = "系统内置")]
+    public YesNoEnum SysFlag { get; set; } = YesNoEnum.N;
 
     /// <summary>
     /// 状态

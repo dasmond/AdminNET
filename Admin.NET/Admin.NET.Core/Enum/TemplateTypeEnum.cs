@@ -4,27 +4,47 @@
 //
 // 不得利用本项目从事危害国家安全、扰乱社会秩序、侵犯他人合法权益等法律法规禁止的活动！任何基于本项目二次开发而产生的一切法律纠纷和责任，我们不承担任何责任！
 
-namespace Admin.NET.Core.Service;
+namespace Admin.NET.Core;
 
 /// <summary>
-/// 系统用户操作事件参数
+/// 消息模板类型枚举
 /// </summary>
-public class SysUserEventArgs : EventArgs
+[Description("消息模板类型枚举")]
+public enum TemplateTypeEnum
 {
     /// <summary>
-    /// 事件类型
+    /// 通知公告
     /// </summary>
-    [Required]
-    public SysUserEventTypeEnum EventType { get; set; }
+    [Description("通知")]
+    Notice = 1,
 
     /// <summary>
-    /// 接口输入参数
+    /// 短信
     /// </summary>
-    public object Input { get; set; }
+    [Description("短信")]
+    SMS = 2,
 
-    public SysUserEventArgs(SysUserEventTypeEnum eventType, object input)
-    {
-        this.EventType = eventType;
-        this.Input = input;
-    }
+    /// <summary>
+    /// 邮件
+    /// </summary>
+    [Description("邮件")]
+    Email = 3,
+
+    /// <summary>
+    /// 微信
+    /// </summary>
+    [Description("微信")]
+    Wechat = 4,
+
+    /// <summary>
+    /// 钉钉
+    /// </summary>
+    [Description("钉钉")]
+    DingTalk = 5,
+
+    /// <summary>
+    /// 企业微信
+    /// </summary>
+    [Description("企业微信")]
+    WeChatWork = 7
 }
