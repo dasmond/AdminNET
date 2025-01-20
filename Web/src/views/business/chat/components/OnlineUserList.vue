@@ -160,4 +160,11 @@ const toggleCollapse = () => {
     }
   }
 }
+
+.infinite-list {
+  height: calc(100vh - 100px);
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
 </style> 

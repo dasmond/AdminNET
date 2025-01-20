@@ -422,11 +422,15 @@ const scrollToBottom = () => {
 };
 
 // 生命周期钩子
+let handleGlobalClick: (event: MouseEvent) => void;
+let handleGlobalContextMenu: (event: MouseEvent) => void;
+let handleWheel: () => void;
+
 onMounted(async () => {
 	await handleQuery();
 	myUserId.value = userInfos.value.id;
 
-	const handleGlobalClick = (event: MouseEvent) => {
+	handleGlobalClick = (event: MouseEvent) => {
 		const target = event.target as HTMLElement;
 		const isContextMenu = target.closest('.context-menu');
 		if (!isContextMenu) {
@@ -434,7 +438,7 @@ onMounted(async () => {
 		}
 	};
 
-	const handleGlobalContextMenu = (event: MouseEvent) => {
+	handleGlobalContextMenu = (event: MouseEvent) => {
 		const target = event.target as HTMLElement;
 		const isMessageItem = target.closest('.message-item');
 		if (!isMessageItem) {
@@ -443,7 +447,7 @@ onMounted(async () => {
 		}
 	};
 
-	const handleWheel = () => {
+	handleWheel = () => {
 		if (showContextMenu.value) {
 			showContextMenu.value = false;
 		}
@@ -475,12 +479,12 @@ onMounted(async () => {
 			}
 		}
 	});
+});
 
-	onUnmounted(() => {
-		document.removeEventListener('click', handleGlobalClick);
-		document.removeEventListener('contextmenu', handleGlobalContextMenu);
-		document.removeEventListener('wheel', handleWheel);
-	});
+onUnmounted(() => {
+	document.removeEventListener('click', handleGlobalClick);
+	document.removeEventListener('contextmenu', handleGlobalContextMenu);
+	document.removeEventListener('wheel', handleWheel);
 });
 </script>
 

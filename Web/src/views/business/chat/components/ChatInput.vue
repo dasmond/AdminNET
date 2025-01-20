@@ -16,7 +16,7 @@
         </div>
       </el-popover>
       <div class="image-upload-button">
-        <el-button :icon="Picture" text @click="handleImageButtonClick">图片</el-button>
+        <el-button :icon="Picture" text @click="handleImageButtonClick" :disabled="isUploading">图片</el-button>
         <input type="file" ref="imageInput" @change="handleImageUpload" accept="image/*" style="display: none;" />
       </div>
     </div>
@@ -25,19 +25,22 @@
       type="textarea"
       :rows="inputRows"
       placeholder="请输入消息..."
-      @keyup.enter.native="handleSend"
+      @keyup.enter.native="debouncedSend"
       maxlength="500"
+      :show-word-limit="true"
       resize="vertical"
       class="resizable-input"
     />
-    <el-button type="primary" @click="handleSend" class="send-button">发送</el-button>
+    <el-button type="primary" @click="debouncedSend" class="send-button" :disabled="!messageInput.trim() || isSending">发送</el-button>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue';
+import { ref, onUnmounted } from 'vue';
 import { ChatDotSquare, Picture } from '@element-plus/icons-vue';
+import { ElMessage } from 'element-plus';
 import emoji from '/@/assets/emoji.json';
+import { useDebounceFn } from '@vueuse/core';
 
 const { inputRows = 3 } = defineProps<{
   inputRows?: number;
@@ -48,32 +51,64 @@ const emit = defineEmits(['send', 'imageUpload']);
 const messageInput = ref('');
 const imageInput = ref<HTMLInputElement | null>(null);
 const emojiList = ref<string[]>(emoji);
+const isUploading = ref(false);
+const isSending = ref(false);
 
-const insertEmoji = (emoji: string) => {
-  messageInput.value += emoji;
-};
-
-const handleSend = () => {
-  if (messageInput.value.trim()) {
+// 使用防抖函数包装发送消息
+const debouncedSend = useDebounceFn(() => {
+  if (messageInput.value.trim() && !isSending.value) {
+    isSending.value = true;
     emit('send', messageInput.value);
     messageInput.value = '';
+    setTimeout(() => {
+      isSending.value = false;
+    }, 500);
+  }
+}, 300);
+
+const insertEmoji = (emoji: string) => {
+  if (messageInput.value.length + emoji.length <= 500) {
+    messageInput.value += emoji;
   }
 };
 
 const handleImageButtonClick = () => {
-  imageInput.value?.click();
+  if (!isUploading.value) {
+    imageInput.value?.click();
+  }
 };
 
-const handleImageUpload = (event: Event) => {
+const handleImageUpload = async (event: Event) => {
   const files = (event.target as HTMLInputElement).files;
   if (files && files[0]) {
-    emit('imageUpload', files[0]);
+    const file = files[0];
+    // 检查文件大小（限制为5MB）
+    if (file.size > 5 * 1024 * 1024) {
+      ElMessage.error('图片大小不能超过5MB');
+      return;
+    }
+    
+    // 检查文件类型
+    if (!file.type.startsWith('image/')) {
+      ElMessage.error('只能上传图片文件');
+      return;
+    }
+
+    isUploading.value = true;
+    try {
+      await emit('imageUpload', file);
+    } finally {
+      isUploading.value = false;
+    }
   }
   // 清空input的value，确保可以重复选择同一文件
   if (imageInput.value) {
     imageInput.value.value = '';
   }
 };
+onUnmounted(() => {
+  messageInput.value = '';
+});
 </script>
 
 <style lang="scss" scoped>
@@ -103,42 +138,6 @@ const handleImageUpload = (event: Event) => {
           }
         }
       }
-    }
-
-    .resizable-input {
-      :deep(.el-textarea__inner) {
-        background-color: #2c2c2c;
-        border: 1px solid #444;
-        color: #fff;
-        box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3);
-
-        &::placeholder {
-          color: #909399;
-        }
-
-        &:focus {
-          border-color: #409eff;
-        }
-      }
-    }
-
-    .emoji-container {
-      background-color: #1a1a1a;
-      border: 1px solid #333;
-
-      .emoji-grid {
-        .emoji-item {
-          &:hover {
-            background-color: #2c2c2c;
-          }
-        }
-      }
-    }
-
-    .el-popover {
-      background-color: #1a1a1a;
-      border-color: #333;
-      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
     }
   }
 
@@ -191,6 +190,11 @@ const handleImageUpload = (event: Event) => {
     font-size: 14px;
     padding: 0 20px;
     border-radius: 18px;
+
+    &:disabled {
+      cursor: not-allowed;
+      opacity: 0.6;
+    }
   }
 }
 
