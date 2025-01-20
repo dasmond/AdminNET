@@ -97,9 +97,30 @@ public class AdminResultProvider : IUnifyResultProvider
                         App.GetOptions<JsonOptions>()?.JsonSerializerOptions);
                 }
                 break;
-
-            default: break;
         }
+    }
+
+    /// <summary>
+    /// 返回成功结果集
+    /// </summary>
+    /// <param name="message"></param>
+    /// <param name="data"></param>
+    /// <returns></returns>
+    public static AdminResult<object> Ok(string message, object data = default)
+    {
+        return RESTfulResult(StatusCodes.Status200OK, true, data, message);
+    }
+
+    /// <summary>
+    /// 返回失败结果集
+    /// </summary>
+    /// <param name="message"></param>
+    /// <param name="code"></param>
+    /// <param name="data"></param>
+    /// <returns></returns>
+    public static AdminResult<object> Error(string message, int code = StatusCodes.Status400BadRequest, object data = default)
+    {
+        return RESTfulResult(code, false, data, message);
     }
 
     /// <summary>
@@ -128,45 +149,6 @@ public class AdminResultProvider : IUnifyResultProvider
             Message = msg is null or string ? (msg + "") : JSON.Serialize(msg),
             Result = data,
             Type = succeeded ? "success" : "error",
-            Extras = UnifyContext.Take(),
-            Time = DateTime.Now
-        };
-    }
-
-    /// <summary>
-    /// 返回成功结果集
-    /// </summary>
-    /// <param name="message"></param>
-    /// <param name="data"></param>
-    /// <returns></returns>
-    public static AdminResult<object> Ok(string message, object data = default)
-    {
-        return new AdminResult<object>
-        {
-            Code = StatusCodes.Status200OK,
-            Message = message,
-            Result = data,
-            Type = "success",
-            Extras = UnifyContext.Take(),
-            Time = DateTime.Now
-        };
-    }
-
-    /// <summary>
-    /// 返回失败结果集
-    /// </summary>
-    /// <param name="message"></param>
-    /// <param name="code"></param>
-    /// <param name="data"></param>
-    /// <returns></returns>
-    public static AdminResult<object> Error(string message, int code = StatusCodes.Status400BadRequest, object data = default)
-    {
-        return new AdminResult<object>
-        {
-            Code = code,
-            Message = message,
-            Result = data,
-            Type = "error",
             Extras = UnifyContext.Take(),
             Time = DateTime.Now
         };

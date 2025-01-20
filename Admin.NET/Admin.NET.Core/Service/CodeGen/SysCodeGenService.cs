@@ -418,7 +418,7 @@ public class SysCodeGenService : IDynamicApiController, ITransient
             PrintName = input.PrintName,
             AuthorName = input.AuthorName,
             ProjectLastName = input.NameSpace!.Split('.').Last(),
-            LowerClassName = input.TableName![..1].ToLower() + input.TableName[1..],
+            LowerClassName = input.TableName!.ToFirstLetterLowerCase(),
             TableUniqueConfigList = input.TableUniqueList ?? new(),
 
             TableField = tableFieldList,
@@ -479,7 +479,7 @@ public class SysCodeGenService : IDynamicApiController, ITransient
         await DeleteMenuTree(title, pid == 0 ? MenuTypeEnum.Dir : MenuTypeEnum.Menu);
 
         var parentMenuPath = "";
-        var lowerClassName = className[..1].ToLower() + className[1..];
+        var lowerClassName = className!.ToFirstLetterLowerCase();
         if (pid == 0)
         {
             // 新增目录，并记录Id
@@ -610,6 +610,7 @@ public class SysCodeGenService : IDynamicApiController, ITransient
     {
         var zipPath = Path.Combine(App.WebHostEnvironment.WebRootPath, "CodeGen", input.TableName!);
 
+        var firstLowerTableName = input.TableName!.ToFirstLetterLowerCase();
         //var backendPath = Path.Combine(zipPath, _codeGenOptions.BackendApplicationNamespace, "Service", input.TableName);
         var backendPath = Path.Combine(zipPath, input.NameSpace!, "Service", input.TableName);
         var servicePath = Path.Combine(backendPath, input.TableName + "Service.cs");
@@ -617,9 +618,9 @@ public class SysCodeGenService : IDynamicApiController, ITransient
         var outputPath = Path.Combine(backendPath, "Dto", input.TableName + "Output.cs");
         var viewPath = Path.Combine(backendPath, "Dto", input.TableName + "Dto.cs");
         var frontendPath = Path.Combine(zipPath, _codeGenOptions.FrontRootPath, "src", "views", input.PagePath!);
-        var indexPath = Path.Combine(frontendPath, input.TableName[..1].ToLower() + input.TableName[1..], "index.vue");
-        var formModalPath = Path.Combine(frontendPath, input.TableName[..1].ToLower() + input.TableName[1..], "component", "editDialog.vue");
-        var apiJsPath = Path.Combine(zipPath, _codeGenOptions.FrontRootPath, "src", "api", input.PagePath, input.TableName[..1].ToLower() + input.TableName[1..] + ".ts");
+        var indexPath = Path.Combine(frontendPath, firstLowerTableName, "index.vue");
+        var formModalPath = Path.Combine(frontendPath, firstLowerTableName, "component", "editDialog.vue");
+        var apiJsPath = Path.Combine(zipPath, _codeGenOptions.FrontRootPath, "src", "api", input.PagePath, firstLowerTableName + ".ts");
         if (input.GenerateType!.StartsWith("11"))
         {
             return new List<string>
