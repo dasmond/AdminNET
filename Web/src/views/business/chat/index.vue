@@ -134,6 +134,7 @@ interface ChatMessage {
 	message: string;
 	sendTime: string;
 	status?: 'sending' | 'sent' | 'error';
+	avatar: string;
 }
 
 const stores = useUserInfo();
@@ -202,7 +203,8 @@ const selectUser = async (user: SysOnlineUser) => {
 		const msgs = await getMessage(user.userId);
 		chatMessages.value = (msgs.data.result ?? []).map((msg: ChatMessage) => ({
 			...msg,
-			status: 'sent' as const
+			status: 'sent' as const,
+			avatar: msg.sendUserId === myUserId.value ? userInfos.value.avatar : currentUser.value?.avatar
 		}));
 		nextTick(scrollToBottom);
 	} catch (error) {
@@ -225,7 +227,8 @@ const handleSendMessage = async (message: string) => {
 		msgType: MessageType.Text,
 		message: message,
 		sendTime: new Date().toLocaleString(),
-		status: 'sending'
+		status: 'sending',
+		avatar: userInfos.value.avatar
 	};
 
 	chatMessages.value.push(newMessage);
@@ -277,7 +280,8 @@ const handleImageUpload = async (file: File) => {
 			msgType: MessageType.Image,
 			message: imageUrl,
 			sendTime: new Date().toLocaleString(),
-			status: 'sending'
+			status: 'sending',
+			avatar: userInfos.value.avatar
 		};
 
 		chatMessages.value.push(newMessage);
@@ -458,10 +462,11 @@ onMounted(async () => {
 	signalR.on('ReceiveMessage', (data: any) => {
 		console.log('收到消息:', data);
 		if (data.receiveUserId === myUserId.value) {
-			if (currentUser.value?.userId === data.sendUserId && data.sendUserId !== myUserId.value) {
+			if (currentUser.value?.userId === data.sendUserId && data.sendUserId !== myUserId.value && currentUser.value) {
 				const messageWithStatus = {
 					...data,
-					status: 'sent' as const
+					status: 'sent' as const,
+					avatar: currentUser.value.avatar
 				};
 				chatMessages.value.push(messageWithStatus);
 				nextTick(scrollToBottom);

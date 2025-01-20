@@ -22,7 +22,7 @@
           @click="$emit('selectUser', user)"
         >
           <el-badge :value="unreadMessages[user.userId??-1] || 0" :hidden="!unreadMessages[user.userId??-1]" class="user-badge">
-            <el-avatar :size="isCollapse ? 30 : 40" src="https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png" />
+            <el-avatar :size="isCollapse ? 30 : 40" :src="user.avatar" />
           </el-badge>
           <div class="chat-info" v-if="!isCollapse">
             <div class="chat-name">{{ user.userName }}</div>

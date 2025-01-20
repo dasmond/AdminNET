@@ -97,4 +97,12 @@ export interface SysOnlineUser {
      * @memberof SysOnlineUser
      */
     os?: string | null;
+
+    /**
+     * 头像
+     *
+     * @type {string}
+     * @memberof SysOnlineUser
+     */
+    avatar?: string | null;
 }

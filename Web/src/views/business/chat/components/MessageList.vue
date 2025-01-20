@@ -5,7 +5,9 @@
         <span class="date-text">{{ formatDate(msg.sendTime) }}</span>
       </div>
       <div class="message-item" :class="{ 'message-right': msg.sendUserId === myUserId }">
-        <el-avatar :size="30" src="https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png" />
+        <el-avatar :size="30" :src="msg.avatar" :fallback="'https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png'">
+          {{ msg.sendUserId }}
+        </el-avatar>
         <div class="message-content" @contextmenu="handleContextMenu($event, msg)">
           <div v-if="msg.msgType === MessageType.Text" class="message-text">
             {{ msg.message }}
@@ -48,6 +50,7 @@ interface Props {
     message: string;
     sendTime: string;
     status?: 'sending' | 'sent' | 'error';
+    avatar?: string;
   }>;
   myUserId: number;
 }

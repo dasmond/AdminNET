@@ -23,17 +23,21 @@ public class OnlineUserHub : Hub<IOnlineUserHub>
     private readonly SysCacheService _sysCacheService;
     private readonly SysConfigService _sysConfigService;
 
+    private readonly SysUserService _sysUserService;
+
     public OnlineUserHub(SqlSugarRepository<SysOnlineUser> sysOnlineUerRep,
         SysMessageService sysMessageService,
         IHubContext<OnlineUserHub, IOnlineUserHub> onlineUserHubContext,
         SysCacheService sysCacheService,
-        SysConfigService sysConfigService)
+        SysConfigService sysConfigService,
+        SysUserService sysUserService)
     {
         _sysOnlineUerRep = sysOnlineUerRep;
         _sysMessageService = sysMessageService;
         _onlineUserHubContext = onlineUserHubContext;
         _sysCacheService = sysCacheService;
         _sysConfigService = sysConfigService;
+        _sysUserService = sysUserService;
     }
 
     /// <summary>
@@ -47,6 +51,9 @@ public class OnlineUserHub : Hub<IOnlineUserHub>
         var account = httpContext.User.FindFirst(ClaimConst.Account)?.Value;
         var realName = httpContext.User.FindFirst(ClaimConst.RealName)?.Value;
         var tenantId = (httpContext.User.FindFirst(ClaimConst.TenantId)?.Value).ToLong();
+        // 头像
+        var sysUserRep = _sysOnlineUerRep.ChangeRepository<SqlSugarRepository<SysUser>>();
+        var avatar = (await sysUserRep.GetByIdAsync(userId)).Avatar;
         //var device = httpContext.GetClientDeviceInfo().Trim();
 
         if (userId < 0 || string.IsNullOrWhiteSpace(account)) return;
@@ -61,6 +68,7 @@ public class OnlineUserHub : Hub<IOnlineUserHub>
             Browser = httpContext.GetClientBrowser(),
             Os = httpContext.GetClientOs(),
             TenantId = tenantId,
+            Avatar = avatar,
         };
         await _sysOnlineUerRep.InsertAsync(user);
 
