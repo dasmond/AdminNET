@@ -83,7 +83,11 @@ export const setRequestConfig = (vm) => {
       const accessTokenKey = "access-token";
       const refreshAccessTokenKey = `x-${accessTokenKey}`;
       //判断headers是否有accessTokenKey属性
-      if (accessTokenKey in res.header && refreshAccessTokenKey in res.header) {
+      if (
+        res.header &&
+        accessTokenKey in res.header &&
+        refreshAccessTokenKey in res.header
+      ) {
         // 读取响应报文头 token 信息
         var accessToken = res.header[accessTokenKey];
         var refreshAccessToken = res.header[refreshAccessTokenKey];
@@ -98,7 +102,7 @@ export const setRequestConfig = (vm) => {
           accessToken &&
           accessToken !== "invalid_token"
         ) {
-          TokenStore().SetToken(accessToken, refreshAccessToken);
+          TokenStore().setToken(accessToken, refreshAccessToken);
         }
       }
       // 响应拦截及自定义处理
@@ -107,10 +111,10 @@ export const setRequestConfig = (vm) => {
         uni.$showMsg("请先登录!");
         TokenStore().clearUserInfo;
         setTimeout(() => {
-         uni.$route({
-         	url: '/pages/login/login',
-         	type: 'reLaunch'
-         })
+          uni.$route({
+            url: "/pages/login/login",
+            type: "reLaunch",
+          });
         }, 1000);
         return Promise.reject(res);
       } else if (serve.code != 200) {
