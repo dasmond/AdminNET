@@ -65,4 +65,11 @@ public partial class SysOnlineUser : EntityTenantId
     [SugarColumn(ColumnDescription = "操作系统", Length = 128)]
     [MaxLength(128)]
     public string? Os { get; set; }
+
+    /// <summary>
+    /// 头像
+    /// </summary>
+    [SugarColumn(ColumnDescription = "头像", Length = 512)]
+    [MaxLength(512)]
+    public string? Avatar { get; set; }
 }

@@ -41,7 +41,7 @@ public class MessageInput
     /// <summary>
     /// 发送者Id
     /// </summary>
-    public string SendUserId { get; set; }
+    public long SendUserId { get; set; }
 
     /// <summary>
     /// 发送者名称
