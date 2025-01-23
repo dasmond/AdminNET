@@ -1,19 +1,19 @@
 // utils/jwt.js
 
 /**
- * 解密 JWT
- * @param {string} token - JWT token
- * @returns {Object} 解密后的 JSON 对象
+ * 解密 JWT token 的信息
+ * @param {string} token - jwt token 字符串
+ * @returns {Object} 解密后的对象
  */
 export function decryptJWT(token) {
-  try {
-    token = token.replace(/_/g, "/").replace(/-/g, "+");
-    const json = decodeURIComponent(escape(window.atob(token.split(".")[1])));
-    return JSON.parse(json);
-  } catch (error) {
-    console.error("Failed to decrypt JWT:", error);
-    return null;
-  }
+	try {
+		token = token.replace(/_/g, '/').replace(/-/g, '+');
+		const json = decodeURIComponent(escape(window.atob(token.split('.')[1])));
+		return JSON.parse(json);
+	} catch (error) {
+		console.error('Failed to decrypt JWT:', error);
+		return null;
+	}
 }
 
 /**
@@ -22,7 +22,7 @@ export function decryptJWT(token) {
  * @returns {Date} Date 对象
  */
 export function getJWTDate(timestamp) {
-  return new Date(timestamp * 1000);
+	return new Date(timestamp * 1000);
 }
 
 /**
@@ -31,27 +31,16 @@ export function getJWTDate(timestamp) {
  * @returns {string} 编码后的参数字符串
  */
 export function transParams(params) {
-  let result = "";
-  for (const propName in params) {
-    const value = params[propName];
-    const part = encodeURIComponent(propName) + "=";
-    if (value !== null && value !== "" && typeof value !== "undefined") {
-      if (typeof value === "object") {
-        for (const key in value) {
-          if (
-            value[key] !== null &&
-            value[key] !== "" &&
-            typeof value[key] !== "undefined"
-          ) {
-            const paramKey = `${propName}[${key}]`;
-            const subPart = encodeURIComponent(paramKey) + "=";
-            result += subPart + encodeURIComponent(value[key]) + "&";
-          }
-        }
-      } else {
-        result += part + encodeURIComponent(value) + "&";
-      }
-    }
-  }
-  return result.slice(0, -1); // 去掉最后一个 '&'
+	return Object.entries(params)
+		.filter(([_, value]) => value !== null && value !== "" && typeof value !== "undefined")
+		.map(([key, value]) => {
+			if (typeof value === "object") {
+				return Object.entries(value)
+					.filter(([_, v]) => v !== null && v !== "" && typeof v !== "undefined")
+					.map(([k, v]) => `${encodeURIComponent(`${key}[${k}]`)}=${encodeURIComponent(v)}`)
+					.join('&');
+			}
+			return `${encodeURIComponent(key)}=${encodeURIComponent(value)}`;
+		})
+		.join('&');
 }

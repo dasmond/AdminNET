@@ -65,6 +65,7 @@ import { ref } from "vue";
 import { sm2 } from "miniprogram-sm-crypto";
 import { TabberStore } from "@/store/tabber.js";
 import { UserInfoStore } from "@/store/userInfo.js";
+
 const userInfoStore = UserInfoStore();
 
 const tokenStore = TokenStore();
@@ -125,16 +126,12 @@ const clearCode = () => {
 
 // 获取验证码
 const getCode = async () => {
-  try {
     let codeInfo = await requestCode();
     console.log(codeInfo);
     info.value.codeId = codeInfo.result.id;
     imgUrl.value = codeInfo.result.img;
     info.value.expirySeconds = codeInfo.result.expirySeconds;
     startExpiryTimer();
-  } catch (error) {
-    console.error("获取验证码失败:", error);
-  }
 };
 
 // 启动验证码过期计时器
@@ -150,9 +147,9 @@ const throttleToken = () => {
   uni.$throttle(getCode, 500);
 };
 
-onShow(() => {
-  TabberStore().$reset();
-  getCode();
+onShow( () => {
+    TabberStore().$reset();
+    getCode();
 });
 
 // 设置token
@@ -167,12 +164,8 @@ const UserLogin = async () => {
     return;
   }
   const infoData = prepareLoginData();
-  try {
     let loginInfo = await requestLogin(infoData);
     handleLoginResponse(loginInfo);
-  } catch (error) {
-    console.error("登录失败:", error);
-  }
 };
 
 // 准备登录数据
@@ -202,15 +195,11 @@ const handleLoginResponse = (loginInfo) => {
 
 // 获取用户信息
 const fetchUserInfo = async () => {
-  try {
     var userInfo = await getUserInfo();
     console.log(userInfo);
     userInfoStore.setUserInfo(userInfo.result);
     uni.$u.toast("登录成功！");
     navigateToHome();
-  } catch (error) {
-    console.error("获取用户信息失败:", error);
-  }
 };
 
 // 导航到主页

@@ -5,4 +5,5 @@ export const requestLogin = (data) =>
 export const requestCode = () =>
   uni.$http.get("/api/sysAuth/captcha", { custom: { loading: false } });
 //退出登录
-export const requestLogout = () => uni.$http.post("/api/sysAuth/logout");
+export const requestLogout = () => 
+  uni.$http.post("/api/sysAuth/logout");

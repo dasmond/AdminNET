@@ -1,16 +1,28 @@
 import { BASE_URL } from "./env.js"; //引入接口共用地址
 import { TokenStore } from "@/store/token.js"; //引入仓库，使用的是pinia
 import { decryptJWT, getJWTDate, transParams } from "@/utils/jwt.js";
+
+// Define constants for repeated strings
+const AUTHORIZATION = "Authorization";
+const BEARER = "Bearer ";
+const CONTENT_TYPE = "Content-Type";
+const APPLICATION_JSON = "application/json";
+const X_REQUESTED_WITH = "X-Requested-With";
+const XML_HTTP_REQUEST = "XMLHttpRequest";
+const ACCESS_TOKEN_KEY = "access-token";
+const REFRESH_ACCESS_TOKEN_KEY = `x-${ACCESS_TOKEN_KEY}`;
+const TIMEOUT = 60000;
+
 export const setRequestConfig = (vm) => {
   uni.$http.setConfig((config) => {
     /* config 为默认全局配置*/
     config.baseURL = BASE_URL;
-    config.timeout = 60000; //超时时间
+    config.timeout = TIMEOUT; //超时时间
     config.header = {
       /* 设置全局请求头*/
-      "Content-Type": "application/json",
-      "X-Requested-With": "XMLHttpRequest",
-      Authorization: "Bearer " + TokenStore().getToken,
+      [CONTENT_TYPE]: APPLICATION_JSON,
+      [X_REQUESTED_WITH]: XML_HTTP_REQUEST,
+      [AUTHORIZATION]: BEARER + TokenStore().getToken,
     };
     config.custom = {
       /* 设置全局自定义配置*/
@@ -27,7 +39,7 @@ export const setRequestConfig = (vm) => {
       let token = TokenStore().getToken;
       if (token) {
         // 将 token 添加到请求报文头中
-        config.header["Authorization"] = `Bearer ${token}`;
+        config.header[AUTHORIZATION] = `${BEARER}${token}`;
 
         // 判断 accessToken 是否过期
         const jwt = decryptJWT(token);
@@ -39,7 +51,7 @@ export const setRequestConfig = (vm) => {
           const refreshAccessToken = TokenStore().getRefreshToken;
           // 携带刷新 token
           if (refreshAccessToken) {
-            config.header["X-Authorization"] = `Bearer ${refreshAccessToken}`;
+            config.header["X-Authorization"] = `${BEARER}${refreshAccessToken}`;
           }
         }
       }
@@ -66,9 +78,12 @@ export const setRequestConfig = (vm) => {
       // 获取状态码和返回数据
       var status = res.statusCode;
       var serve = res.data;
+
+      console.log("serve", serve);
       // 处理 401
-      if (status === 401) {
-        TokenStore().Clear();
+      if (status === 401 || serve.code === 401) {
+        handleUnauthorized();
+        return Promise.reject(res);
       }
 
       // 处理未进行规范化处理的
@@ -80,44 +95,18 @@ export const setRequestConfig = (vm) => {
       if (serve && serve.hasOwnProperty("errors") && serve.errors) {
         throw new Error(JSON.stringify(serve.errors || "Request Error."));
       }
-      const accessTokenKey = "access-token";
-      const refreshAccessTokenKey = `x-${accessTokenKey}`;
-      //判断headers是否有accessTokenKey属性
-      if (
-        res.header &&
-        accessTokenKey in res.header &&
-        refreshAccessTokenKey in res.header
-      ) {
-        // 读取响应报文头 token 信息
-        var accessToken = res.header[accessTokenKey];
-        var refreshAccessToken = res.header[refreshAccessTokenKey];
+      if (res.header && ACCESS_TOKEN_KEY in res.header && REFRESH_ACCESS_TOKEN_KEY in res.header) {
+        const accessToken = res.header[ACCESS_TOKEN_KEY];
+        const refreshAccessToken = res.header[REFRESH_ACCESS_TOKEN_KEY];
 
-        // 判断是否是无效 token
         if (accessToken === "invalid_token") {
-          TokenStore().Clear();
-        }
-        // 判断是否存在刷新 token，如果存在则存储在本地
-        else if (
-          refreshAccessToken &&
-          accessToken &&
-          accessToken !== "invalid_token"
-        ) {
+          TokenStore().clear();
+        } else if (refreshAccessToken && accessToken && accessToken !== "invalid_token") {
           TokenStore().setToken(accessToken, refreshAccessToken);
         }
       }
       // 响应拦截及自定义处理
-      if (serve.code === 401) {
-        TokenStore().Clear();
-        uni.$showMsg("请先登录!");
-        TokenStore().clearUserInfo;
-        setTimeout(() => {
-          uni.$route({
-            url: "/pages/login/login",
-            type: "reLaunch",
-          });
-        }, 1000);
-        return Promise.reject(res);
-      } else if (serve.code != 200) {
+      if (serve.code != 200) {
         uni.$showMsg(serve.message);
       }
 
@@ -128,15 +117,7 @@ export const setRequestConfig = (vm) => {
       // 处理响应错误
       if (error.response) {
         if (error.response.status === 401) {
-          TokenStore().Clear();
-          uni.$showMsg("请登录!");
-          TokenStore().clearUserInfo;
-          setTimeout(() => {
-            uni.$router({
-              url: "/pages/login/login",
-              type: "reLaunch",
-            });
-          }, 1000);
+          handleUnauthorized();
         }
       }
 
@@ -146,3 +127,15 @@ export const setRequestConfig = (vm) => {
     }
   );
 };
+
+function handleUnauthorized() {
+  TokenStore().clear();
+  uni.$showMsg("登录过期，请重新登录!");
+  TokenStore().clearUserInfo;
+  setTimeout(() => {
+    uni.$route({
+      url: "/pages/login/login",
+      type: "reLaunch",
+    });
+  }, 1000);
+}

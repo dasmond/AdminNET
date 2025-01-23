@@ -103,7 +103,6 @@ const updateUserInfo = (info) => {
 
 // 获取并设置用户信息
 const fetchAndSetUserInfo = async () => {
-  try {
     const fetchedUserInfo = await getUserInfo();
     console.log(fetchedUserInfo);
     if (fetchedUserInfo.code === 200) {
@@ -112,10 +111,6 @@ const fetchAndSetUserInfo = async () => {
     } else {
       showErrorToast("获取用户信息失败");
     }
-  } catch (error) {
-    console.error("获取用户信息时出错:", error);
-    showErrorToast("获取用户信息失败");
-  }
 };
 
 // 显示错误提示
@@ -169,7 +164,6 @@ const logout = async () => {
             });
           }, 500);
         } catch (err) {
-          console.error("退出登录失败:", err);
           uni.showToast({
             title: "退出登录失败",
             icon: "none",

@@ -202,7 +202,6 @@ const validateInput = (type, value) => {
 
 // 更新用户信息
 const updateUserInfoData = async (updateData, successMessage, popupRef) => {
-  try {
     await uni.showLoading({
       title: "保存中...",
       mask: true,
@@ -228,14 +227,6 @@ const updateUserInfoData = async (updateData, successMessage, popupRef) => {
     } else {
       throw new Error(res.message || "修改失败");
     }
-  } catch (error) {
-    console.error("修改失败:", error);
-    await uni.hideLoading();
-    await uni.showToast({
-      title: "修改失败，请重试",
-      icon: "none",
-    });
-  }
 };
 
 // 确认编辑
@@ -286,7 +277,6 @@ const changeAvatar = () => {
     sizeType: ["compressed"], // 压缩图片
     sourceType: ["album", "camera"], // 可以从相册或相机选择
     success: async (res) => {
-      try {
         await uni.showLoading({
           title: "上传中...",
           mask: true,
@@ -315,15 +305,6 @@ const changeAvatar = () => {
         } else {
           throw new Error(uploadResult.message || "上传失败");
         }
-      } catch (error) {
-        console.error("上传头像失败:", error);
-        await uni.hideLoading();
-        await uni.showToast({
-          title: error.message || "上传失败，请重试",
-          icon: "none",
-          duration: 2000,
-        });
-      }
     },
     fail: (error) => {
       console.error("选择图片失败:", error);
