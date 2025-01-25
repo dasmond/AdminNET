@@ -113,6 +113,11 @@ public class SysMenuMeta
     public string Icon { get; set; }
 
     /// <summary>
+    /// 是否为公共路由（类似登录页）
+    /// </summary>
+    public bool IsPublic { get; set; }
+
+    /// <summary>
     /// 是否内嵌
     /// </summary>
     public bool IsIframe { get; set; }
@@ -148,6 +153,7 @@ public class SysMenuMapper : IRegister
         config.ForType<SysMenu, MenuOutput>()
             .Map(t => t.Meta.Title, o => o.Title)
             .Map(t => t.Meta.Icon, o => o.Icon)
+            .Map(t => t.Meta.IsPublic, o => o.IsPublic)
             .Map(t => t.Meta.IsIframe, o => o.IsIframe)
             .Map(t => t.Meta.IsLink, o => o.OutLink)
             .Map(t => t.Meta.IsHide, o => o.IsHide)

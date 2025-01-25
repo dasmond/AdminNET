@@ -125,7 +125,7 @@ const getMenuTreeData = async () => {
 // 打开新增页面
 const openAddMenu = () => {
 	getMenuTreeData();
-	const data = { type: 2, isHide: false, isKeepAlive: true, isAffix: false, isIframe: false, tenantId: undefined, status: 1, orderNo: 100 };
+	const data = { type: 2, isHide: false, isPublic: false, isKeepAlive: true, isAffix: false, isIframe: false, tenantId: undefined, status: 1, orderNo: 100 };
 	data.tenantId = state.queryParams.tenantId;
 	state.editMenuTitle = '添加菜单';
 	editMenuRef.value?.openDialog(data);
