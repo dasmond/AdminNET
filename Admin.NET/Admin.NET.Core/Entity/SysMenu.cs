@@ -108,12 +108,6 @@ public partial class SysMenu : EntityBase
     public bool IsAffix { get; set; }
 
     /// <summary>
-    /// 是否为公共路由（类似登录页）
-    /// </summary>
-    [SugarColumn(ColumnDescription = "是否为公共路由")]
-    public bool IsPublic { get; set; } = false;
-
-    /// <summary>
     /// 排序
     /// </summary>
     [SugarColumn(ColumnDescription = "排序")]

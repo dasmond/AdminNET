@@ -123,12 +123,6 @@ export interface UpdateMenuInput {
      */
     isIframe?: boolean;
     /**
-     * 是否为公共路由（类似登录页）
-     * @type {boolean}
-     * @memberof UpdateMenuInput
-     */
-    isPublic?: boolean;
-    /**
      * 外链链接
      * @type {string}
      * @memberof UpdateMenuInput
