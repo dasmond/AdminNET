@@ -337,7 +337,10 @@ public class SysFileService : IDynamicApiController, ITransient
                     break;
 
                 case OSSProvider.QCloud:
-                    newFile.Url = $"{(_OSSProviderOptions.IsEnableHttps ? "https" : "http")}://{newFile.BucketName}-{_OSSProviderOptions.Endpoint}.cos.{_OSSProviderOptions.Region}.myqcloud.com/{filePath}";
+                    var protocol = _OSSProviderOptions.IsEnableHttps ? "https" : "http";
+                    newFile.Url = !string.IsNullOrWhiteSpace(_OSSProviderOptions.CustomHost)
+                        ? $"{protocol}://{_OSSProviderOptions.CustomHost}/{filePath}"
+                        : $"{protocol}://{newFile.BucketName}-{_OSSProviderOptions.Endpoint}.cos.{_OSSProviderOptions.Region}.myqcloud.com/{filePath}";
                     break;
 
                 case OSSProvider.Minio:
