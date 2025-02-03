@@ -24,15 +24,17 @@ public static class CacheSetup
             {
                 Configuration = cacheOptions.Redis.Configuration,
                 Prefix = cacheOptions.Redis.Prefix
-            });
-            // 自动检测集群节点
-            redis.AutoDetect = App.GetConfig<bool>("Cache:Redis:AutoDetect", true);
+            })
+            {
+                // 自动检测集群节点
+                AutoDetect = App.GetConfig<bool>("Cache:Redis:AutoDetect", true)
+            };
             // 最大消息大小
             if (cacheOptions.Redis.MaxMessageSize > 0)
                 redis.MaxMessageSize = cacheOptions.Redis.MaxMessageSize;
 
             // 注入 Redis 缓存提供者
-            services.AddSingleton<ICacheProvider>(p => new RedisCacheProvider(p) { Cache = redis });
+            services.AddSingleton<ICacheProvider>(u => new RedisCacheProvider(u) { Cache = redis });
         }
 
         // 内存缓存兜底。在没有配置Redis时，使用内存缓存，逻辑代码无需修改

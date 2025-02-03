@@ -11,7 +11,7 @@ namespace Admin.NET.Core.Service;
 /// <summary>
 /// 系统缓存服务 🧩
 /// </summary>
-[ApiDescriptionSettings(Order = 400)]
+[ApiDescriptionSettings(Order = 400, Description = "系统缓存")]
 public class SysCacheService : IDynamicApiController, ISingleton
 {
     private static ICacheProvider _cacheProvider;
@@ -24,7 +24,7 @@ public class SysCacheService : IDynamicApiController, ISingleton
     }
 
     /// <summary>
-    /// 申请分布式锁
+    /// 申请分布式锁 🔖
     /// </summary>
     /// <param name="key">要锁定的key</param>
     /// <param name="msTimeout">申请锁等待的时间，单位毫秒</param>
@@ -52,8 +52,8 @@ public class SysCacheService : IDynamicApiController, ISingleton
     public List<string> GetKeyList()
     {
         return _cacheProvider.Cache == Cache.Default
-            ? _cacheProvider.Cache.Keys.Where(u => u.StartsWith(_cacheOptions.Prefix)).Select(u => u[_cacheOptions.Prefix.Length..]).OrderBy(u => u).ToList()
-            : ((FullRedis)_cacheProvider.Cache).Search($"{_cacheOptions.Prefix}*", int.MaxValue).Select(u => u[_cacheOptions.Prefix.Length..]).OrderBy(u => u).ToList();
+            ? [.. _cacheProvider.Cache.Keys.Where(u => u.StartsWith(_cacheOptions.Prefix)).Select(u => u[_cacheOptions.Prefix.Length..]).OrderBy(u => u)]
+            : [.. ((FullRedis)_cacheProvider.Cache).Search($"{_cacheOptions.Prefix}*", int.MaxValue).Select(u => u[_cacheOptions.Prefix.Length..]).OrderBy(u => u)];
     }
 
     /// <summary>
@@ -81,24 +81,24 @@ public class SysCacheService : IDynamicApiController, ISingleton
         return !string.IsNullOrWhiteSpace(key) && _cacheProvider.Cache.Set($"{_cacheOptions.Prefix}{key}", value, expire);
     }
 
-    public async Task<TR> AdGetAsync<TR>(String cacheName, Func<Task<TR>> del, TimeSpan? expiry = default(TimeSpan?)) where TR : class
+    public async Task<TR> AdGetAsync<TR>(String cacheName, Func<Task<TR>> del, TimeSpan? expiry = default) where TR : class
     {
-        return await AdGetAsync<TR>(cacheName, del, new object[] { }, expiry);
+        return await AdGetAsync<TR>(cacheName, del, [], expiry);
     }
 
-    public async Task<TR> AdGetAsync<TR, T1>(String cacheName, Func<T1, Task<TR>> del, T1 t1, TimeSpan? expiry = default(TimeSpan?)) where TR : class
+    public async Task<TR> AdGetAsync<TR, T1>(String cacheName, Func<T1, Task<TR>> del, T1 t1, TimeSpan? expiry = default) where TR : class
     {
-        return await AdGetAsync<TR>(cacheName, del, new object[] { t1 }, expiry);
+        return await AdGetAsync<TR>(cacheName, del, [t1], expiry);
     }
 
-    public async Task<TR> AdGetAsync<TR, T1, T2>(String cacheName, Func<T1, T2, Task<TR>> del, T1 t1, T2 t2, TimeSpan? expiry = default(TimeSpan?)) where TR : class
+    public async Task<TR> AdGetAsync<TR, T1, T2>(String cacheName, Func<T1, T2, Task<TR>> del, T1 t1, T2 t2, TimeSpan? expiry = default) where TR : class
     {
-        return await AdGetAsync<TR>(cacheName, del, new object[] { t1, t2 }, expiry);
+        return await AdGetAsync<TR>(cacheName, del, [t1, t2], expiry);
     }
 
-    public async Task<TR> AdGetAsync<TR, T1, T2, T3>(String cacheName, Func<T1, T2, T3, Task<TR>> del, T1 t1, T2 t2, T3 t3, TimeSpan? expiry = default(TimeSpan?)) where TR : class
+    public async Task<TR> AdGetAsync<TR, T1, T2, T3>(String cacheName, Func<T1, T2, T3, Task<TR>> del, T1 t1, T2 t2, T3 t3, TimeSpan? expiry = default) where TR : class
     {
-        return await AdGetAsync<TR>(cacheName, del, new object[] { t1, t2, t3 }, expiry);
+        return await AdGetAsync<TR>(cacheName, del, [t1, t2, t3], expiry);
     }
 
     private async Task<T> AdGetAsync<T>(string cacheName, Delegate del, Object[] obs, TimeSpan? expiry) where T : class
@@ -116,17 +116,17 @@ public class SysCacheService : IDynamicApiController, ISingleton
 
     public T Get<T>(String cacheName, object t1)
     {
-        return Get<T>(cacheName, new object[] { t1 });
+        return Get<T>(cacheName, [t1]);
     }
 
     public T Get<T>(String cacheName, object t1, object t2)
     {
-        return Get<T>(cacheName, new object[] { t1, t2 });
+        return Get<T>(cacheName, [t1, t2]);
     }
 
     public T Get<T>(String cacheName, object t1, object t2, object t3)
     {
-        return Get<T>(cacheName, new object[] { t1, t2, t3 });
+        return Get<T>(cacheName, [t1, t2, t3]);
     }
 
     private T Get<T>(String cacheName, Object[] obs)
@@ -323,9 +323,7 @@ public class SysCacheService : IDynamicApiController, ISingleton
     {
         var hash = GetHashMap<T>(key);
         if (hash.ContainsKey(hashKey))
-        {
             hash[hashKey] = value;
-        }
         else
             hash.Add(hashKey, value);
     }
@@ -355,7 +353,7 @@ public class SysCacheService : IDynamicApiController, ISingleton
     public T HashGetOne<T>(string key, string field)
     {
         var hash = GetHashMap<T>(key);
-        return hash.ContainsKey(field) ? hash[field] : default(T);
+        return hash.TryGetValue(field, out T value) ? value : default;
     }
 
     /// <summary>
