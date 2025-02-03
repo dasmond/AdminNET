@@ -11,7 +11,7 @@ namespace Admin.NET.Core;
 /// </summary>
 public class AppEventSubscriber : IEventSubscriber, ISingleton, IDisposable
 {
-    private readonly static ISugarQueryable<SysTenant> SysTenantQueryable = App.GetService<ISqlSugarClient>().Queryable<SysTenant>();
+    private static readonly ISugarQueryable<SysTenant> SysTenantQueryable = App.GetService<ISqlSugarClient>().Queryable<SysTenant>();
     private readonly IServiceScope _serviceScope;
 
     public AppEventSubscriber(IServiceScopeFactory scopeFactory)

@@ -11,22 +11,30 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-/**
+
+ /**
  * 
+ *
  * @export
  * @interface SmsVerifyCodeInput
  */
 export interface SmsVerifyCodeInput {
+
     /**
      * 手机号码
+     *
      * @type {string}
      * @memberof SmsVerifyCodeInput
+     * @example admin
      */
     phone: string;
+
     /**
      * 验证码
+     *
      * @type {string}
      * @memberof SmsVerifyCodeInput
+     * @example 123456
      */
     code: string;
 }

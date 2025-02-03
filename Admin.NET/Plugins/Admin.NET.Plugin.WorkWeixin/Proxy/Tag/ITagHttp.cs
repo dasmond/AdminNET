@@ -9,7 +9,7 @@ namespace Admin.NET.Plugin.WorkWeixin.Proxy;
 /// <summary>
 /// 标签远程调用服务
 /// </summary>
-public interface ITagHttp : IHttpDispatchProxy
+public interface ITagHttp : IHttpDeclarative
 {
     /// <summary>
     /// 创建标签
@@ -18,8 +18,8 @@ public interface ITagHttp : IHttpDispatchProxy
     /// <param name="accessToken"></param>
     /// <param name="body"></param>
     /// <returns></returns>
-    [Post("https://qyapi.weixin.qq.com/cgi-bin/tag/create"), JsonSerialization(typeof(NewtonsoftJsonSerializerProvider))]
-    Task<BaseWorkIdOutput> Create([QueryString("access_token")] string accessToken, [Body] TagHttpInput body);
+    [Post("https://qyapi.weixin.qq.com/cgi-bin/tag/create")]
+    Task<BaseWorkIdOutput> Create([Query("access_token")] string accessToken, [Body] TagHttpInput body);
 
     /// <summary>
     /// 更新标签名字
@@ -28,8 +28,8 @@ public interface ITagHttp : IHttpDispatchProxy
     /// <param name="accessToken"></param>
     /// <param name="body"></param>
     /// <returns></returns>
-    [Post("https://qyapi.weixin.qq.com/cgi-bin/tag/update"), JsonSerialization(typeof(NewtonsoftJsonSerializerProvider))]
-    Task<TagIdHttpOutput> Update([QueryString("access_token")] string accessToken, [Body] TagHttpInput body);
+    [Post("https://qyapi.weixin.qq.com/cgi-bin/tag/update")]
+    Task<TagIdHttpOutput> Update([Query("access_token")] string accessToken, [Body] TagHttpInput body);
 
     /// <summary>
     /// 删除标签
@@ -38,8 +38,8 @@ public interface ITagHttp : IHttpDispatchProxy
     /// <param name="accessToken"></param>
     /// <param name="tagId"></param>
     /// <returns></returns>
-    [Get("https://qyapi.weixin.qq.com/cgi-bin/tag/delete"), JsonSerialization(typeof(NewtonsoftJsonSerializerProvider))]
-    Task<BaseWorkOutput> Delete([QueryString("access_token")] string accessToken, [QueryString("tagid")] long tagId);
+    [Get("https://qyapi.weixin.qq.com/cgi-bin/tag/delete")]
+    Task<BaseWorkOutput> Delete([Query("access_token")] string accessToken, [Query("tagid")] long tagId);
 
     /// <summary>
     /// 获取标签详情
@@ -48,8 +48,8 @@ public interface ITagHttp : IHttpDispatchProxy
     /// <param name="accessToken"></param>
     /// <param name="tagId"></param>
     /// <returns></returns>
-    [Get("https://qyapi.weixin.qq.com/cgi-bin/tag/get"), JsonSerialization(typeof(NewtonsoftJsonSerializerProvider))]
-    Task<DepartmentOutput> Get([QueryString("access_token")] string accessToken, [QueryString("tagid")] long tagId);
+    [Get("https://qyapi.weixin.qq.com/cgi-bin/tag/get")]
+    Task<DepartmentOutput> Get([Query("access_token")] string accessToken, [Query("tagid")] long tagId);
 
     /// <summary>
     /// 增加标签成员
@@ -58,8 +58,8 @@ public interface ITagHttp : IHttpDispatchProxy
     /// <param name="accessToken"></param>
     /// <param name="body"></param>
     /// <returns></returns>
-    [Post("https://qyapi.weixin.qq.com/cgi-bin/tag/addtagusers"), JsonSerialization(typeof(NewtonsoftJsonSerializerProvider))]
-    Task<DepartmentOutput> AddTagUsers([QueryString("access_token")] string accessToken, [Body] TagUsersTagInput body);
+    [Post("https://qyapi.weixin.qq.com/cgi-bin/tag/addtagusers")]
+    Task<DepartmentOutput> AddTagUsers([Query("access_token")] string accessToken, [Body] TagUsersTagInput body);
 
     /// <summary>
     /// 删除标签成员
@@ -68,16 +68,15 @@ public interface ITagHttp : IHttpDispatchProxy
     /// <param name="accessToken"></param>
     /// <param name="body"></param>
     /// <returns></returns>
-    [Post("https://qyapi.weixin.qq.com/cgi-bin/tag/deltagusers"), JsonSerialization(typeof(NewtonsoftJsonSerializerProvider))]
-    Task<DepartmentOutput> DelTagUsers([QueryString("access_token")] string accessToken, [Body] TagUsersTagInput body);
+    [Post("https://qyapi.weixin.qq.com/cgi-bin/tag/deltagusers")]
+    Task<DepartmentOutput> DelTagUsers([Query("access_token")] string accessToken, [Body] TagUsersTagInput body);
 
     /// <summary>
     /// 获取标签列表
     /// https://developer.work.weixin.qq.com/document/path/90216
     /// </summary>
     /// <param name="accessToken"></param>
-    /// <param name="body"></param>
     /// <returns></returns>
-    [Get("https://qyapi.weixin.qq.com/cgi-bin/tag/list"), JsonSerialization(typeof(NewtonsoftJsonSerializerProvider))]
-    Task<TagListHttpOutput> List([QueryString("access_token")] string accessToken);
+    [Get("https://qyapi.weixin.qq.com/cgi-bin/tag/list")]
+    Task<TagListHttpOutput> List([Query("access_token")] string accessToken);
 }

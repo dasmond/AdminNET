@@ -12,6 +12,7 @@ public static class SqlSugarFilter
     /// 缓存全局查询过滤器（内存缓存）
     /// </summary>
     private static readonly ICache Cache = NewLife.Caching.Cache.Default;
+
     private static readonly SysOrgService SysOrgService = App.GetRequiredService<SysOrgService>();
     private static readonly SysCacheService SysCacheService = App.GetRequiredService<SysCacheService>();
 

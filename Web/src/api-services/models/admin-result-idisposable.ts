@@ -11,45 +11,57 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+
 import { IDisposable } from './idisposable';
-/**
+ /**
  * 全局返回结果
+ *
  * @export
  * @interface AdminResultIDisposable
  */
 export interface AdminResultIDisposable {
+
     /**
      * 状态码
+     *
      * @type {number}
      * @memberof AdminResultIDisposable
      */
     code?: number;
+
     /**
      * 类型success、warning、error
+     *
      * @type {string}
      * @memberof AdminResultIDisposable
      */
     type?: string | null;
+
     /**
      * 错误信息
+     *
      * @type {string}
      * @memberof AdminResultIDisposable
      */
     message?: string | null;
+
     /**
-     * 
      * @type {IDisposable}
      * @memberof AdminResultIDisposable
      */
     result?: IDisposable;
+
     /**
      * 附加数据
+     *
      * @type {any}
      * @memberof AdminResultIDisposable
      */
     extras?: any | null;
+
     /**
      * 时间
+     *
      * @type {Date}
      * @memberof AdminResultIDisposable
      */

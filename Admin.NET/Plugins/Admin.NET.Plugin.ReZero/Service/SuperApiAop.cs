@@ -5,7 +5,6 @@
 // 不得利用本项目从事危害国家安全、扰乱社会秩序、侵犯他人合法权益等法律法规禁止的活动！任何基于本项目二次开发而产生的一切法律纠纷和责任，我们不承担任何责任！
 
 using Admin.NET.Core;
-using Furion.ClayObject;
 using Furion.DataEncryption;
 using Furion.FriendlyException;
 using Furion.JsonSerialization;
@@ -73,7 +72,7 @@ public class SuperApiAop : DefaultSuperApiAop
         var paths = api.Url.Split('/');
         var actionName = paths[paths.Length - 1];
 
-        var apiInfo = Clay.Object(new
+        var apiInfo = new
         {
             requestUrl = api.Url,
             httpMethod = api.HttpMethod,
@@ -100,11 +99,11 @@ public class SuperApiAop : DefaultSuperApiAop
                 },
             },
             exception = aopContext.Exception == null ? null : JSON.Serialize(aopContext.Exception)
-        });
+        };
 
         var logger = App.GetRequiredService<ILoggerFactory>().CreateLogger(CommonConst.SysLogCategoryName);
         using var scope = logger.ScopeContext(new Dictionary<object, object> {
-            { "loggingMonitor", apiInfo.ToString() }
+            { "loggingMonitor", apiInfo.ToJson() }
         });
         logger.Log(logLevel, "ReZero超级API接口日志");
     }

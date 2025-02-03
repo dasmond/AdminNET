@@ -11,20 +11,26 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-/**
+
+ /**
  * 租户菜单
+ *
  * @export
  * @interface TenantMenuInput
  */
 export interface TenantMenuInput {
+
     /**
      * 主键Id
+     *
      * @type {number}
      * @memberof TenantMenuInput
      */
     id: number;
+
     /**
      * 菜单Id集合
+     *
      * @type {Array<number>}
      * @memberof TenantMenuInput
      */

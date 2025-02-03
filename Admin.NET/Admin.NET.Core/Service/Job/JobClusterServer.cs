@@ -11,7 +11,7 @@ namespace Admin.NET.Core.Service;
 /// </summary>
 public class JobClusterServer : IJobClusterServer
 {
-    private static readonly SqlSugarRepository<SysJobCluster> SysJobClusterRep = App.GetRequiredService<SqlSugarRepository<SysJobCluster>>();
+    private static readonly SqlSugarRepository<SysJobCluster> _sysJobClusterRep = App.GetRequiredService<SqlSugarRepository<SysJobCluster>>();
     private readonly Random _random = new(DateTime.Now.Millisecond);
 
     /// <summary>
@@ -21,13 +21,13 @@ public class JobClusterServer : IJobClusterServer
     public async void Start(JobClusterContext context)
     {
         // 在作业集群表中，如果 clusterId 不存在，则新增一条（否则更新一条），并设置 status 为 ClusterStatus.Waiting
-        if (await SysJobClusterRep.IsAnyAsync(u => u.ClusterId == context.ClusterId))
+        if (await _sysJobClusterRep.IsAnyAsync(u => u.ClusterId == context.ClusterId))
         {
-            await SysJobClusterRep.AsUpdateable().SetColumns(u => u.Status == ClusterStatus.Waiting).Where(u => u.ClusterId == context.ClusterId).ExecuteCommandAsync();
+            await _sysJobClusterRep.AsUpdateable().SetColumns(u => u.Status == ClusterStatus.Waiting).Where(u => u.ClusterId == context.ClusterId).ExecuteCommandAsync();
         }
         else
         {
-            await SysJobClusterRep.AsInsertable(new SysJobCluster { ClusterId = context.ClusterId, Status = ClusterStatus.Waiting }).ExecuteCommandAsync();
+            await _sysJobClusterRep.AsInsertable(new SysJobCluster { ClusterId = context.ClusterId, Status = ClusterStatus.Waiting }).ExecuteCommandAsync();
         }
     }
 
@@ -55,7 +55,7 @@ public class JobClusterServer : IJobClusterServer
                     // 1) 如果作业集群表已有 status 为 ClusterStatus.Working 则继续循环
                     // 2) 如果作业集群表中还没有其他服务或只有自己，则插入一条集群服务或调用 await WorkNowAsync(clusterId); 之后 return;
                     // 3) 如果作业集群表中没有 status 为 ClusterStatus.Working 的，调用 await WorkNowAsync(clusterId); 之后 return;
-                    if (await SysJobClusterRep.IsAnyAsync(u => u.Status == ClusterStatus.Working)) continue;
+                    if (await _sysJobClusterRep.IsAnyAsync(u => u.Status == ClusterStatus.Working)) continue;
 
                     await WorkNowAsync(clusterId);
                     return;
@@ -72,7 +72,7 @@ public class JobClusterServer : IJobClusterServer
     public async void Stop(JobClusterContext context)
     {
         // 在作业集群表中，更新 clusterId 的 status 为 ClusterStatus.Crashed
-        await SysJobClusterRep.UpdateAsync(u => new SysJobCluster { Status = ClusterStatus.Crashed }, u => u.ClusterId == context.ClusterId);
+        await _sysJobClusterRep.UpdateAsync(u => new SysJobCluster { Status = ClusterStatus.Crashed }, u => u.ClusterId == context.ClusterId);
     }
 
     /// <summary>
@@ -82,7 +82,7 @@ public class JobClusterServer : IJobClusterServer
     public async void Crash(JobClusterContext context)
     {
         // 在作业集群表中，更新 clusterId 的 status 为 ClusterStatus.Crashed
-        await SysJobClusterRep.UpdateAsync(u => new SysJobCluster { Status = ClusterStatus.Crashed }, u => u.ClusterId == context.ClusterId);
+        await _sysJobClusterRep.UpdateAsync(u => new SysJobCluster { Status = ClusterStatus.Crashed }, u => u.ClusterId == context.ClusterId);
     }
 
     /// <summary>
@@ -93,6 +93,6 @@ public class JobClusterServer : IJobClusterServer
     private static async Task WorkNowAsync(string clusterId)
     {
         // 在作业集群表中，更新 clusterId 的 status 为 ClusterStatus.Working
-        await SysJobClusterRep.UpdateAsync(u => new SysJobCluster { Status = ClusterStatus.Working }, u => u.ClusterId == clusterId);
+        await _sysJobClusterRep.UpdateAsync(u => new SysJobCluster { Status = ClusterStatus.Working }, u => u.ClusterId == clusterId);
     }
 }

@@ -385,13 +385,15 @@ public static class SqlSugarSetup
                 return entityType.GetCustomAttributes<SysTableAttribute>().Any() ||
                        (!entityType.GetCustomAttributes<LogTableAttribute>().Any() &&
                         !entityType.GetCustomAttributes<TenantAttribute>().Any());
+
             case SqlSugarConst.LogConfigId:
                 return entityType.GetCustomAttributes<LogTableAttribute>().Any();
+
             default:
-            {
-                var tenantAttribute = entityType.GetCustomAttribute<TenantAttribute>();
-                return tenantAttribute != null && tenantAttribute.configId.ToString() == config.ConfigId.ToString();
-            }
+                {
+                    var tenantAttribute = entityType.GetCustomAttribute<TenantAttribute>();
+                    return tenantAttribute != null && tenantAttribute.configId.ToString() == config.ConfigId.ToString();
+                }
         }
     }
 
@@ -406,7 +408,7 @@ public static class SqlSugarSetup
         int count = 0, sum = entityTypes.Count;
         var tasks = entityTypes.Select(entityType => Task.Run(() =>
         {
-            Console.WriteLine($"初始化表结构 {entityType.FullName, -64} ({config.ConfigId} - {Interlocked.Increment(ref count):D003}/{sum:D003})");
+            Console.WriteLine($"初始化表结构 {entityType.FullName,-64} ({config.ConfigId} - {Interlocked.Increment(ref count):D003}/{sum:D003})");
             UpdateNullableColumns(dbProvider, entityType);
             InitializeTable(dbProvider, entityType);
         }));
@@ -569,7 +571,7 @@ public static class SqlSugarSetup
                     dbProvider.InsertableByObject(dataList).ExecuteCommand();
                 }
             }
-            Console.WriteLine($"添加数据 {entityInfo.DbTableName, -32} ({config.ConfigId} - {Interlocked.Increment(ref count):D003}/{sum:D003}，数据量：{dataList.Count:D003}，插入 {insertCount:D003} 条记录，修改 {updateCount:D003} 条记录)");
+            Console.WriteLine($"添加数据 {entityInfo.DbTableName,-32} ({config.ConfigId} - {Interlocked.Increment(ref count):D003}/{sum:D003}，数据量：{dataList.Count:D003}，插入 {insertCount:D003} 条记录，修改 {updateCount:D003} 条记录)");
         }
     }
 

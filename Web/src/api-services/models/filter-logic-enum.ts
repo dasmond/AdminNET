@@ -11,6 +11,7 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+
 /**
  * 过滤条件<br />&nbsp;并且 And = 0<br />&nbsp;或者 Or = 1<br />&nbsp;异或 Xor = 2<br />
  * @export

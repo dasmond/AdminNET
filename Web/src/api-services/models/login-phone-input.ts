@@ -11,26 +11,36 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-/**
+
+ /**
  * 
+ *
  * @export
  * @interface LoginPhoneInput
  */
 export interface LoginPhoneInput {
+
     /**
      * 手机号码
+     *
      * @type {string}
      * @memberof LoginPhoneInput
+     * @example admin
      */
     phone: string;
+
     /**
      * 验证码
+     *
      * @type {string}
      * @memberof LoginPhoneInput
+     * @example 123456
      */
     code: string;
+
     /**
      * 租户
+     *
      * @type {number}
      * @memberof LoginPhoneInput
      */

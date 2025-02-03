@@ -11,45 +11,57 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+
 import { StressTestOutput } from './stress-test-output';
-/**
+ /**
  * 全局返回结果
+ *
  * @export
  * @interface AdminResultStressTestOutput
  */
 export interface AdminResultStressTestOutput {
+
     /**
      * 状态码
+     *
      * @type {number}
      * @memberof AdminResultStressTestOutput
      */
     code?: number;
+
     /**
      * 类型success、warning、error
+     *
      * @type {string}
      * @memberof AdminResultStressTestOutput
      */
     type?: string | null;
+
     /**
      * 错误信息
+     *
      * @type {string}
      * @memberof AdminResultStressTestOutput
      */
     message?: string | null;
+
     /**
-     * 
      * @type {StressTestOutput}
      * @memberof AdminResultStressTestOutput
      */
     result?: StressTestOutput;
+
     /**
      * 附加数据
+     *
      * @type {any}
      * @memberof AdminResultStressTestOutput
      */
     extras?: any | null;
+
     /**
      * 时间
+     *
      * @type {Date}
      * @memberof AdminResultStressTestOutput
      */

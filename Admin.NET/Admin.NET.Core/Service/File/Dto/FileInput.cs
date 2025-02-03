@@ -17,6 +17,11 @@ public class PageFileInput : BasePageInput
     public string FileName { get; set; }
 
     /// <summary>
+    /// 文件路径
+    /// </summary>
+    public string FilePath { get; set; }
+
+    /// <summary>
     /// 文件后缀
     /// </summary>
     public string? Suffix { get; set; }
@@ -30,11 +35,6 @@ public class PageFileInput : BasePageInput
     /// 结束时间
     /// </summary>
     public DateTime? EndTime { get; set; }
-
-    /// <summary>
-    /// 租户Id
-    /// </summary>
-    public long TenantId { get; set; }
 }
 
 public class FileInput : BaseIdInput
@@ -57,6 +57,16 @@ public class UploadFileInput
     public IFormFile File { get; set; }
 
     /// <summary>
+    /// 文件类别
+    /// </summary>
+    public string FileType { get; set; }
+
+    /// <summary>
+    /// 是否公开
+    /// </summary>
+    public bool IsPublic { get; set; } = false;
+
+    /// <summary>
     /// 文件路径
     /// </summary>
     public string Path { get; set; }
@@ -70,11 +80,6 @@ public class UploadFileInput
     /// 允许格式：.jpeg.jpg.png.bmp.gif.tif
     /// </summary>
     public string AllowSuffix { get; set; }
-
-    /// <summary>
-    /// 文件类型
-    /// </summary>
-    public string FileType { get; set; }
 }
 
 /// <summary>
@@ -85,7 +90,7 @@ public class UploadFileFromBase64Input
     /// <summary>
     /// 文件名
     /// </summary>
-    public string? FileName { get; set; }
+    public string FileName { get; set; }
 
     /// <summary>
     /// 文件内容

@@ -11,6 +11,7 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+
 /**
  * 消息模板类型枚举<br />&nbsp;通知 Notice = 1<br />&nbsp;短信 SMS = 2<br />&nbsp;邮件 Email = 3<br />&nbsp;微信 Wechat = 4<br />&nbsp;钉钉 DingTalk = 5<br />&nbsp;企业微信 WeChatWork = 7<br />
  * @export

@@ -11,130 +11,170 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+
 import { StatusEnum } from './status-enum';
 import { SysOrg } from './sys-org';
-/**
+ /**
  * 
+ *
  * @export
  * @interface UpdateOrgInput
  */
 export interface UpdateOrgInput {
+
     /**
      * 雪花Id
+     *
      * @type {number}
      * @memberof UpdateOrgInput
      */
     id?: number;
+
     /**
      * 创建时间
+     *
      * @type {Date}
      * @memberof UpdateOrgInput
      */
     createTime?: Date;
+
     /**
      * 更新时间
+     *
      * @type {Date}
      * @memberof UpdateOrgInput
      */
     updateTime?: Date | null;
+
     /**
      * 创建者Id
+     *
      * @type {number}
      * @memberof UpdateOrgInput
      */
     createUserId?: number | null;
+
     /**
      * 创建者姓名
+     *
      * @type {string}
      * @memberof UpdateOrgInput
      */
     createUserName?: string | null;
+
     /**
      * 修改者Id
+     *
      * @type {number}
      * @memberof UpdateOrgInput
      */
     updateUserId?: number | null;
+
     /**
      * 修改者姓名
+     *
      * @type {string}
      * @memberof UpdateOrgInput
      */
     updateUserName?: string | null;
+
     /**
      * 软删除
+     *
      * @type {boolean}
      * @memberof UpdateOrgInput
      */
     isDelete?: boolean;
+
     /**
      * 租户Id
+     *
      * @type {number}
      * @memberof UpdateOrgInput
      */
     tenantId?: number | null;
+
     /**
      * 父Id
+     *
      * @type {number}
      * @memberof UpdateOrgInput
      */
     pid?: number;
+
     /**
      * 编码
+     *
      * @type {string}
      * @memberof UpdateOrgInput
      */
     code?: string | null;
+
     /**
      * 级别
+     *
      * @type {number}
      * @memberof UpdateOrgInput
      */
     level?: number | null;
+
     /**
      * 负责人Id
+     *
      * @type {number}
      * @memberof UpdateOrgInput
      */
     directorId?: number | null;
+
     /**
      * 排序
+     *
      * @type {number}
      * @memberof UpdateOrgInput
      */
     orderNo?: number;
+
     /**
-     * 
      * @type {StatusEnum}
      * @memberof UpdateOrgInput
      */
     status?: StatusEnum;
+
     /**
      * 备注
+     *
      * @type {string}
      * @memberof UpdateOrgInput
      */
     remark?: string | null;
+
     /**
      * 机构子项
+     *
      * @type {Array<SysOrg>}
      * @memberof UpdateOrgInput
      */
     children?: Array<SysOrg> | null;
+
     /**
      * 是否禁止选中
+     *
      * @type {boolean}
      * @memberof UpdateOrgInput
      */
     disabled?: boolean;
+
     /**
      * 名称
+     *
      * @type {string}
      * @memberof UpdateOrgInput
      */
     name: string;
+
     /**
      * 机构类型
+     *
      * @type {string}
      * @memberof UpdateOrgInput
      */

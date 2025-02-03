@@ -11,6 +11,7 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+
 /**
  * <br />&nbsp; Crashed = 0<br />&nbsp; Working = 1<br />&nbsp; Waiting = 2<br />
  * @export

@@ -11,20 +11,26 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-/**
+
+ /**
  * 
+ *
  * @export
  * @interface BackupOutput
  */
 export interface BackupOutput {
+
     /**
      * 文件名
+     *
      * @type {string}
      * @memberof BackupOutput
      */
     fileName?: string | null;
+
     /**
      * 创建时间
+     *
      * @type {Date}
      * @memberof BackupOutput
      */

@@ -4,6 +4,7 @@
 //
 // 不得利用本项目从事危害国家安全、扰乱社会秩序、侵犯他人合法权益等法律法规禁止的活动！任何基于本项目二次开发而产生的一切法律纠纷和责任，我们不承担任何责任！
 
+using Admin.NET.Plugin.ApprovalFlow.Service;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 
@@ -31,16 +32,19 @@ public static class ApprovalFlowMiddlewareExtensions
 public class ApprovalFlowMiddleware
 {
     private readonly RequestDelegate _next;
+    private readonly SysApprovalService _sysApprovalService;
 
     public ApprovalFlowMiddleware(RequestDelegate next)
     {
         _next = next;
+        _sysApprovalService = App.GetRequiredService<SysApprovalService>();
     }
 
-    public async Task Invoke(HttpContext context)
+    public async Task InvokeAsync(HttpContext context)
     {
-        // await App.GetRequiredService<SysApprovalService>().MatchApproval(context);
+        await _sysApprovalService.MatchApproval(context);
 
-        await _next.Invoke(context);
+        // 调用下一个中间件
+        await _next(context);
     }
 }

@@ -11,6 +11,7 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+
 /**
  * 系统菜单类型枚举<br />&nbsp;目录 Dir = 1<br />&nbsp;菜单 Menu = 2<br />&nbsp;按钮 Btn = 3<br />
  * @export

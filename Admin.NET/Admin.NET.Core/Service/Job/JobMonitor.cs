@@ -11,14 +11,16 @@ namespace Admin.NET.Core.Service;
 /// </summary>
 public class JobMonitor : IJobMonitor
 {
-    private readonly IEventPublisher _eventPublisher;
     private readonly SysConfigService _sysConfigService;
+    private readonly IEventPublisher _eventPublisher;
+    private readonly ILogger<JobMonitor> _logger;
 
-    public JobMonitor(IServiceScopeFactory scopeFactory)
+    public JobMonitor(IServiceScopeFactory serviceScopeFactory, IEventPublisher eventPublisher, ILogger<JobMonitor> logger)
     {
-        var serviceScope = scopeFactory.CreateScope();
+        var serviceScope = serviceScopeFactory.CreateScope();
         _sysConfigService = serviceScope.ServiceProvider.GetRequiredService<SysConfigService>();
-        _eventPublisher = serviceScope.ServiceProvider.GetRequiredService<IEventPublisher>(); ;
+        _eventPublisher = eventPublisher;
+        _logger = logger;
     }
 
     public Task OnExecutingAsync(JobExecutingContext context, CancellationToken stoppingToken)
@@ -28,11 +30,16 @@ public class JobMonitor : IJobMonitor
 
     public async Task OnExecutedAsync(JobExecutedContext context, CancellationToken stoppingToken)
     {
-        // 将异常作业发送到邮件
-        if (await _sysConfigService.GetConfigValue<bool>(ConfigConst.SysErrorMail) && context.Exception != null)
+        if (context.Exception == null) return;
+
+        var exception = $"定时任务【{context.Trigger.Description}】错误：{context.Exception}";
+        // 将作业异常信息记录到本地
+        _logger.LogError(exception);
+
+        if (await _sysConfigService.GetConfigValue<bool>(ConfigConst.SysErrorMail))
         {
-            var errorInfo = $"【{context.Trigger.Description}】定时任务错误：{context.Exception}";
-            await _eventPublisher.PublishAsync(CommonConst.SendErrorMail, errorInfo, stoppingToken);
+            // 将作业异常信息发送到邮件
+            await _eventPublisher.PublishAsync(CommonConst.SendErrorMail, exception, stoppingToken);
         }
     }
 }

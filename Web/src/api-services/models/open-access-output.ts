@@ -11,99 +11,129 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+
 import { SysUser } from './sys-user';
-/**
+ /**
  * 
+ *
  * @export
  * @interface OpenAccessOutput
  */
 export interface OpenAccessOutput {
+
     /**
      * 雪花Id
+     *
      * @type {number}
      * @memberof OpenAccessOutput
      */
     id?: number;
+
     /**
      * 创建时间
+     *
      * @type {Date}
      * @memberof OpenAccessOutput
      */
     createTime?: Date;
+
     /**
      * 更新时间
+     *
      * @type {Date}
      * @memberof OpenAccessOutput
      */
     updateTime?: Date | null;
+
     /**
      * 创建者Id
+     *
      * @type {number}
      * @memberof OpenAccessOutput
      */
     createUserId?: number | null;
+
     /**
      * 创建者姓名
+     *
      * @type {string}
      * @memberof OpenAccessOutput
      */
     createUserName?: string | null;
+
     /**
      * 修改者Id
+     *
      * @type {number}
      * @memberof OpenAccessOutput
      */
     updateUserId?: number | null;
+
     /**
      * 修改者姓名
+     *
      * @type {string}
      * @memberof OpenAccessOutput
      */
     updateUserName?: string | null;
+
     /**
      * 软删除
+     *
      * @type {boolean}
      * @memberof OpenAccessOutput
      */
     isDelete?: boolean;
+
     /**
      * 身份标识
+     *
      * @type {string}
      * @memberof OpenAccessOutput
      */
     accessKey: string;
+
     /**
      * 密钥
+     *
      * @type {string}
      * @memberof OpenAccessOutput
      */
     accessSecret: string;
+
     /**
      * 绑定租户Id
+     *
      * @type {number}
      * @memberof OpenAccessOutput
      */
     bindTenantId?: number;
+
     /**
      * 绑定用户Id
+     *
      * @type {number}
      * @memberof OpenAccessOutput
      */
     bindUserId?: number;
+
     /**
-     * 
      * @type {SysUser}
      * @memberof OpenAccessOutput
      */
     bindUser?: SysUser;
+
     /**
      * 绑定用户账号
+     *
      * @type {string}
      * @memberof OpenAccessOutput
      */
     bindUserAccount?: string | null;
+
     /**
      * 绑定租户名称
+     *
      * @type {string}
      * @memberof OpenAccessOutput
      */

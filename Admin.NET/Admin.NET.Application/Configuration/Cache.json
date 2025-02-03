@@ -1,6 +1,7 @@
 ﻿{
   "$schema": "https://gitee.com/dotnetchina/Furion/raw/v4/schemas/v4/furion-schema.json",
 
+  // 缓存配置
   "Cache": {
     "Prefix": "adminnet_", // 全局缓存前缀
     "CacheType": "Memory", // Memory、Redis
@@ -11,7 +12,8 @@
       "AutoDetect": false // 自动检测集群节点 阿里云的Redis分布式集群使用代理模式，需要设置为false关闭自动检测；如果不用代理地址，就配置多个节点地址并打开自动检测
     }
   },
-  "Cluster": { // 集群配置
+  // 集群配置
+  "Cluster": {
     "Enabled": false, // 启用集群：前提开启Redis缓存模式
     "ServerId": "adminnet", // 服务器标识
     "ServerIp": "", // 服务器IP

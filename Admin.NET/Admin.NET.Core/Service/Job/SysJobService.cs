@@ -9,7 +9,7 @@ namespace Admin.NET.Core.Service;
 /// <summary>
 /// 系统作业任务服务 🧩
 /// </summary>
-[ApiDescriptionSettings(Order = 320)]
+[ApiDescriptionSettings(Order = 320, Description = "作业任务")]
 public class SysJobService : IDynamicApiController, ITransient
 {
     private readonly SqlSugarRepository<SysJobDetail> _sysJobDetailRep;
@@ -355,5 +355,16 @@ public class SysJobService : IDynamicApiController, ITransient
             .WhereIF(!string.IsNullOrWhiteSpace(input.TriggerId), u => u.TriggerId.Contains(input.TriggerId))
             .OrderByDescending(u => u.Id)
             .ToPagedListAsync(input.Page, input.PageSize);
+    }
+
+    /// <summary>
+    /// 清空作业触发器运行记录 🔖
+    /// </summary>
+    /// <returns></returns>
+    [ApiDescriptionSettings(Name = "ClearJobTriggerRecord"), HttpPost]
+    [DisplayName("清空作业触发器运行记录")]
+    public void ClearJobTriggerRecord()
+    {
+        _sysJobTriggerRecordRep.AsSugarClient().DbMaintenance.TruncateTable<SysJobTriggerRecord>();
     }
 }

@@ -11,32 +11,34 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-/**
+
+ /**
  * 
+ *
  * @export
  * @interface UpdateDbTableInput
  */
 export interface UpdateDbTableInput {
+
     /**
-     * 
      * @type {string}
      * @memberof UpdateDbTableInput
      */
     configId?: string | null;
+
     /**
-     * 
      * @type {string}
      * @memberof UpdateDbTableInput
      */
     tableName?: string | null;
+
     /**
-     * 
      * @type {string}
      * @memberof UpdateDbTableInput
      */
     oldTableName?: string | null;
+
     /**
-     * 
      * @type {string}
      * @memberof UpdateDbTableInput
      */

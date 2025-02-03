@@ -11,146 +11,148 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+
 import { DataSetDateTime } from './data-set-date-time';
 import { DataTable } from './data-table';
 import { IContainer } from './icontainer';
 import { ISite } from './isite';
 import { MappingType } from './mapping-type';
 import { Type } from './type';
-/**
+ /**
  * 
+ *
  * @export
  * @interface DataColumn
  */
 export interface DataColumn {
+
     /**
-     * 
      * @type {ISite}
      * @memberof DataColumn
      */
     site?: ISite;
+
     /**
-     * 
      * @type {IContainer}
      * @memberof DataColumn
      */
     container?: IContainer;
+
     /**
-     * 
      * @type {boolean}
      * @memberof DataColumn
      */
     designMode?: boolean;
+
     /**
-     * 
      * @type {boolean}
      * @memberof DataColumn
      */
     allowDBNull?: boolean;
+
     /**
-     * 
      * @type {boolean}
      * @memberof DataColumn
      */
     autoIncrement?: boolean;
+
     /**
-     * 
      * @type {number}
      * @memberof DataColumn
      */
     autoIncrementSeed?: number;
+
     /**
-     * 
      * @type {number}
      * @memberof DataColumn
      */
     autoIncrementStep?: number;
+
     /**
-     * 
      * @type {string}
      * @memberof DataColumn
      */
     caption?: string | null;
+
     /**
-     * 
      * @type {string}
      * @memberof DataColumn
      */
     columnName?: string | null;
+
     /**
-     * 
      * @type {string}
      * @memberof DataColumn
      */
     prefix?: string | null;
+
     /**
-     * 
      * @type {Type}
      * @memberof DataColumn
      */
     dataType?: Type;
+
     /**
-     * 
      * @type {DataSetDateTime}
      * @memberof DataColumn
      */
     dateTimeMode?: DataSetDateTime;
+
     /**
-     * 
      * @type {any}
      * @memberof DataColumn
      */
     defaultValue?: any | null;
+
     /**
-     * 
      * @type {string}
      * @memberof DataColumn
      */
     expression?: string | null;
+
     /**
-     * 
      * @type {{ [key: string]: any; }}
      * @memberof DataColumn
      */
     extendedProperties?: { [key: string]: any; } | null;
+
     /**
-     * 
      * @type {number}
      * @memberof DataColumn
      */
     maxLength?: number;
+
     /**
-     * 
      * @type {string}
      * @memberof DataColumn
      */
     namespace?: string | null;
+
     /**
-     * 
      * @type {number}
      * @memberof DataColumn
      */
     ordinal?: number;
+
     /**
-     * 
      * @type {boolean}
      * @memberof DataColumn
      */
     readOnly?: boolean;
+
     /**
-     * 
      * @type {DataTable}
      * @memberof DataColumn
      */
     table?: DataTable;
+
     /**
-     * 
      * @type {boolean}
      * @memberof DataColumn
      */
     unique?: boolean;
+
     /**
-     * 
      * @type {MappingType}
      * @memberof DataColumn
      */

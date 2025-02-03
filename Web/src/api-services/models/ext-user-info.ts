@@ -11,56 +11,58 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-/**
+
+ /**
  * 
+ *
  * @export
  * @interface ExtUserInfo
  */
 export interface ExtUserInfo {
+
     /**
-     * 
      * @type {string}
      * @memberof ExtUserInfo
      */
     certNo?: string | null;
+
     /**
-     * 
      * @type {string}
      * @memberof ExtUserInfo
      */
     certType?: string | null;
+
     /**
-     * 
      * @type {string}
      * @memberof ExtUserInfo
      */
     fixBuyer?: string | null;
+
     /**
-     * 
      * @type {string}
      * @memberof ExtUserInfo
      */
     identityHash?: string | null;
+
     /**
-     * 
      * @type {string}
      * @memberof ExtUserInfo
      */
     minAge?: string | null;
+
     /**
-     * 
      * @type {string}
      * @memberof ExtUserInfo
      */
     mobile?: string | null;
+
     /**
-     * 
      * @type {string}
      * @memberof ExtUserInfo
      */
     name?: string | null;
+
     /**
-     * 
      * @type {string}
      * @memberof ExtUserInfo
      */

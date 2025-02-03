@@ -11,32 +11,42 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-/**
+
+ /**
  * 
+ *
  * @export
  * @interface AlipayPreCreateInput
  */
 export interface AlipayPreCreateInput {
+
     /**
      * 商户订单号
+     *
      * @type {string}
      * @memberof AlipayPreCreateInput
      */
     outTradeNo: string;
+
     /**
      * 订单总金额
+     *
      * @type {string}
      * @memberof AlipayPreCreateInput
      */
     totalAmount: string;
+
     /**
      * 订单标题
+     *
      * @type {string}
      * @memberof AlipayPreCreateInput
      */
     subject: string;
+
     /**
      * 超时时间
+     *
      * @type {string}
      * @memberof AlipayPreCreateInput
      */

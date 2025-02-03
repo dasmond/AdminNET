@@ -50,8 +50,8 @@ public class SysFileService : IDynamicApiController, ITransient
         var privateList = _sysFileRep.AsQueryable().Where(u => u.IsPublic == false);
         // 合并公开和私有附件并分页
         return await _sysFileRep.Context.UnionAll(publicList, privateList)
-            .WhereIF(_userManager.SuperAdmin && input.TenantId > 0, u => u.TenantId == input.TenantId)
             .WhereIF(!string.IsNullOrWhiteSpace(input.FileName), u => u.FileName.Contains(input.FileName.Trim()))
+            .WhereIF(!string.IsNullOrWhiteSpace(input.FilePath), u => u.FilePath.Contains(input.FilePath.Trim()))
             .WhereIF(!string.IsNullOrWhiteSpace(input.StartTime.ToString()) && !string.IsNullOrWhiteSpace(input.EndTime.ToString()),
                 u => u.CreateTime >= input.StartTime && u.CreateTime <= input.EndTime)
             .OrderBy(u => u.CreateTime, OrderByType.Desc)
@@ -123,6 +123,7 @@ public class SysFileService : IDynamicApiController, ITransient
     public async Task<IActionResult> GetPreview([FromRoute] long id)
     {
         var file = await GetFile(id);
+        //var fileName = HttpUtility.UrlEncode(file.FileName, Encoding.GetEncoding("UTF-8"));
         return await GetFileStreamResult(file, file.Id + "");
     }
 
@@ -132,14 +133,14 @@ public class SysFileService : IDynamicApiController, ITransient
     /// <param name="file"></param>
     /// <param name="fileName"></param>
     /// <returns></returns>
-    [NonAction]
-    public async Task<IActionResult> GetFileStreamResult(SysFile file, string fileName)
+    private async Task<IActionResult> GetFileStreamResult(SysFile file, string fileName)
     {
         var filePath = Path.Combine(file.FilePath ?? "", file.Id + file.Suffix);
         if (_OSSProviderOptions.Enabled)
         {
-            var stream = await (await _OSSService.PresignedGetObjectAsync(file.BucketName, filePath, 5)).GetAsStreamAsync();
-            return new FileStreamResult(stream.Stream, "application/octet-stream") { FileDownloadName = fileName + file.Suffix };
+            var httpRemoteService = App.GetRequiredService<IHttpRemoteService>();
+            var stream = await httpRemoteService.GetAsStreamAsync(await _OSSService.PresignedGetObjectAsync(file.BucketName, filePath, 5));
+            return new FileStreamResult(stream, "application/octet-stream") { FileDownloadName = fileName + file.Suffix };
         }
 
         if (App.Configuration["SSHProvider:Enabled"].ToBoolean())
@@ -177,7 +178,7 @@ public class SysFileService : IDynamicApiController, ITransient
         if (App.Configuration["SSHProvider:Enabled"].ToBoolean())
         {
             var sysFile = await _sysFileRep.CopyNew().GetFirstAsync(u => u.Url == url) ?? throw Oops.Oh($"文件不存在");
-            using SSHHelper helper = new SSHHelper(App.Configuration["SSHProvider:Host"],
+            using SSHHelper helper = new(App.Configuration["SSHProvider:Host"],
                 App.Configuration["SSHProvider:Port"].ToInt(), App.Configuration["SSHProvider:Username"], App.Configuration["SSHProvider:Password"]);
             return Convert.ToBase64String(helper.ReadAllBytes(sysFile.FilePath));
         }
@@ -260,6 +261,21 @@ public class SysFileService : IDynamicApiController, ITransient
     }
 
     /// <summary>
+    /// 获取文件路径 🔖
+    /// </summary>
+    /// <returns></returns>
+    [DisplayName("获取文件路径")]
+    public async Task<List<TreeNode>> GetFolder()
+    {
+        var files = await _sysFileRep.AsQueryable().ToListAsync();
+        var folders = files.GroupBy(u => u.FilePath).Select(u => u.First().FilePath).ToList();
+
+        var pathTreeBuilder = new PathTreeBuilder();
+        var tree = pathTreeBuilder.BuildTree(folders);
+        return tree.Children;
+    }
+
+    /// <summary>
     /// 上传文件 🔖
     /// </summary>
     /// <param name="input"></param>
@@ -306,8 +322,7 @@ public class SysFileService : IDynamicApiController, ITransient
 
         // 防止客户端伪造文件类型
         if (!string.IsNullOrWhiteSpace(input.AllowSuffix) && !input.AllowSuffix.Contains(suffix)) throw Oops.Oh(ErrorCodeEnum.D8003);
-        //if (!VerifyFileExtensionName.IsSameType(file.OpenReadStream(), suffix))
-        //    throw Oops.Oh(ErrorCodeEnum.D8001);
+        //if (!VerifyFileExtensionName.IsSameType(file.OpenReadStream(), suffix)) throw Oops.Oh(ErrorCodeEnum.D8001);
 
         // 文件存储位置
         var path = string.IsNullOrWhiteSpace(input.SavePath) ? _uploadOptions.Path : input.SavePath;
@@ -446,7 +461,7 @@ public class SysFileService : IDynamicApiController, ITransient
     }
 
     /// <summary>
-    /// 根据关联查询附件
+    /// 根据关联查询附件 🔖
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>

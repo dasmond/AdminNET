@@ -11,14 +11,18 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-/**
+
+ /**
  * 
+ *
  * @export
  * @interface DeleteFileInput
  */
 export interface DeleteFileInput {
+
     /**
      * 主键Id
+     *
      * @type {number}
      * @memberof DeleteFileInput
      */

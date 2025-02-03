@@ -11,228 +11,294 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+
 import { DbType } from './db-type';
 import { StatusEnum } from './status-enum';
 import { TenantTypeEnum } from './tenant-type-enum';
 import { YesNoEnum } from './yes-no-enum';
-/**
+ /**
  * 
+ *
  * @export
  * @interface UpdateTenantInput
  */
 export interface UpdateTenantInput {
+
     /**
      * 雪花Id
+     *
      * @type {number}
      * @memberof UpdateTenantInput
      */
     id?: number;
+
     /**
      * 创建时间
+     *
      * @type {Date}
      * @memberof UpdateTenantInput
      */
     createTime?: Date;
+
     /**
      * 更新时间
+     *
      * @type {Date}
      * @memberof UpdateTenantInput
      */
     updateTime?: Date | null;
+
     /**
      * 创建者Id
+     *
      * @type {number}
      * @memberof UpdateTenantInput
      */
     createUserId?: number | null;
+
     /**
      * 创建者姓名
+     *
      * @type {string}
      * @memberof UpdateTenantInput
      */
     createUserName?: string | null;
+
     /**
      * 修改者Id
+     *
      * @type {number}
      * @memberof UpdateTenantInput
      */
     updateUserId?: number | null;
+
     /**
      * 修改者姓名
+     *
      * @type {string}
      * @memberof UpdateTenantInput
      */
     updateUserName?: string | null;
+
     /**
      * 软删除
+     *
      * @type {boolean}
      * @memberof UpdateTenantInput
      */
     isDelete?: boolean;
+
     /**
      * 应用Id
+     *
      * @type {number}
      * @memberof UpdateTenantInput
      */
     appId?: number | null;
+
     /**
      * 租管用户Id
+     *
      * @type {number}
      * @memberof UpdateTenantInput
      */
     userId?: number;
+
     /**
      * 机构Id
+     *
      * @type {number}
      * @memberof UpdateTenantInput
      */
     orgId?: number;
+
     /**
      * 域名
+     *
      * @type {string}
      * @memberof UpdateTenantInput
      */
     host?: string | null;
+
     /**
-     * 
      * @type {TenantTypeEnum}
      * @memberof UpdateTenantInput
      */
     tenantType?: TenantTypeEnum;
+
     /**
-     * 
      * @type {DbType}
      * @memberof UpdateTenantInput
      */
     dbType?: DbType;
+
     /**
      * 数据库连接
+     *
      * @type {string}
      * @memberof UpdateTenantInput
      */
     connection?: string | null;
+
     /**
      * 数据库标识
+     *
      * @type {string}
      * @memberof UpdateTenantInput
      */
     configId?: string | null;
+
     /**
      * 从库连接/读写分离
+     *
      * @type {string}
      * @memberof UpdateTenantInput
      */
     slaveConnections?: string | null;
+
     /**
-     * 
      * @type {YesNoEnum}
      * @memberof UpdateTenantInput
      */
     enableReg?: YesNoEnum;
+
     /**
      * 默认注册方案Id
+     *
      * @type {number}
      * @memberof UpdateTenantInput
      */
     regWayId?: number | null;
+
     /**
      * 图标
+     *
      * @type {string}
      * @memberof UpdateTenantInput
      */
     logo: string;
+
     /**
      * 水印
+     *
      * @type {string}
      * @memberof UpdateTenantInput
      */
     watermark?: string | null;
+
     /**
      * 排序
+     *
      * @type {number}
      * @memberof UpdateTenantInput
      */
     orderNo?: number;
+
     /**
      * 备注
+     *
      * @type {string}
      * @memberof UpdateTenantInput
      */
     remark?: string | null;
+
     /**
-     * 
      * @type {StatusEnum}
      * @memberof UpdateTenantInput
      */
     status?: StatusEnum;
+
     /**
      * 电子邮箱
+     *
      * @type {string}
      * @memberof UpdateTenantInput
      */
     email?: string | null;
+
     /**
      * 电话
+     *
      * @type {string}
      * @memberof UpdateTenantInput
      */
     phone?: string | null;
+
     /**
      * 租户名称
+     *
      * @type {string}
      * @memberof UpdateTenantInput
      */
     name: string;
+
     /**
      * 租管账号
+     *
      * @type {string}
      * @memberof UpdateTenantInput
      */
     adminAccount: string;
+
     /**
      * 系统主标题
+     *
      * @type {string}
      * @memberof UpdateTenantInput
      */
     title: string;
+
     /**
      * 系统副标题
+     *
      * @type {string}
      * @memberof UpdateTenantInput
      */
     viceTitle: string;
+
     /**
      * 系统描述
+     *
      * @type {string}
      * @memberof UpdateTenantInput
      */
     viceDesc: string;
+
     /**
      * 版权说明
+     *
      * @type {string}
      * @memberof UpdateTenantInput
      */
     copyright: string;
+
     /**
      * ICP备案号
+     *
      * @type {string}
      * @memberof UpdateTenantInput
      */
     icp: string;
+
     /**
      * ICP地址
+     *
      * @type {string}
      * @memberof UpdateTenantInput
      */
     icpUrl: string;
+
     /**
      * Logo图片Base64码
+     *
      * @type {string}
      * @memberof UpdateTenantInput
      */
     logoBase64?: string | null;
+
     /**
      * Logo文件名
+     *
      * @type {string}
      * @memberof UpdateTenantInput
      */

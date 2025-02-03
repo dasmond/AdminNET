@@ -11,45 +11,57 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+
 import { SysSchedule } from './sys-schedule';
-/**
+ /**
  * 全局返回结果
+ *
  * @export
  * @interface AdminResultSysSchedule
  */
 export interface AdminResultSysSchedule {
+
     /**
      * 状态码
+     *
      * @type {number}
      * @memberof AdminResultSysSchedule
      */
     code?: number;
+
     /**
      * 类型success、warning、error
+     *
      * @type {string}
      * @memberof AdminResultSysSchedule
      */
     type?: string | null;
+
     /**
      * 错误信息
+     *
      * @type {string}
      * @memberof AdminResultSysSchedule
      */
     message?: string | null;
+
     /**
-     * 
      * @type {SysSchedule}
      * @memberof AdminResultSysSchedule
      */
     result?: SysSchedule;
+
     /**
      * 附加数据
+     *
      * @type {any}
      * @memberof AdminResultSysSchedule
      */
     extras?: any | null;
+
     /**
      * 时间
+     *
      * @type {Date}
      * @memberof AdminResultSysSchedule
      */

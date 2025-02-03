@@ -11,26 +11,34 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-/**
+
+ /**
  * 
+ *
  * @export
  * @interface ConstOutput
  */
 export interface ConstOutput {
+
     /**
      * 名称
+     *
      * @type {string}
      * @memberof ConstOutput
      */
     name?: string | null;
+
     /**
      * 编码
+     *
      * @type {any}
      * @memberof ConstOutput
      */
     code?: any | null;
+
     /**
      * 扩展字段
+     *
      * @type {any}
      * @memberof ConstOutput
      */

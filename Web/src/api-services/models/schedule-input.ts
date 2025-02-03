@@ -11,21 +11,25 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+
 import { FinishStatusEnum } from './finish-status-enum';
-/**
+ /**
  * 
+ *
  * @export
  * @interface ScheduleInput
  */
 export interface ScheduleInput {
+
     /**
      * 主键Id
+     *
      * @type {number}
      * @memberof ScheduleInput
      */
     id: number;
+
     /**
-     * 
      * @type {FinishStatusEnum}
      * @memberof ScheduleInput
      */

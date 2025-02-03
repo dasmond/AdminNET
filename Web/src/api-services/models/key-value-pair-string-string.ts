@@ -11,20 +11,22 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-/**
+
+ /**
  * 
+ *
  * @export
  * @interface KeyValuePairStringString
  */
 export interface KeyValuePairStringString {
+
     /**
-     * 
      * @type {string}
      * @memberof KeyValuePairStringString
      */
     key?: string | null;
+
     /**
-     * 
      * @type {string}
      * @memberof KeyValuePairStringString
      */

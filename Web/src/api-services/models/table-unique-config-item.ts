@@ -11,20 +11,26 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-/**
+
+ /**
  * 表唯一配置项
+ *
  * @export
  * @interface TableUniqueConfigItem
  */
 export interface TableUniqueConfigItem {
+
     /**
      * 字段列表
+     *
      * @type {Array<string>}
      * @memberof TableUniqueConfigItem
      */
     columns?: Array<string> | null;
+
     /**
      * 描述信息
+     *
      * @type {string}
      * @memberof TableUniqueConfigItem
      */

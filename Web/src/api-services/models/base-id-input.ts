@@ -11,14 +11,18 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-/**
+
+ /**
  * 主键Id输入参数
+ *
  * @export
  * @interface BaseIdInput
  */
 export interface BaseIdInput {
+
     /**
      * 主键Id
+     *
      * @type {number}
      * @memberof BaseIdInput
      */

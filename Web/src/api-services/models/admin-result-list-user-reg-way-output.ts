@@ -11,45 +11,59 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+
 import { UserRegWayOutput } from './user-reg-way-output';
-/**
+ /**
  * 全局返回结果
+ *
  * @export
  * @interface AdminResultListUserRegWayOutput
  */
 export interface AdminResultListUserRegWayOutput {
+
     /**
      * 状态码
+     *
      * @type {number}
      * @memberof AdminResultListUserRegWayOutput
      */
     code?: number;
+
     /**
      * 类型success、warning、error
+     *
      * @type {string}
      * @memberof AdminResultListUserRegWayOutput
      */
     type?: string | null;
+
     /**
      * 错误信息
+     *
      * @type {string}
      * @memberof AdminResultListUserRegWayOutput
      */
     message?: string | null;
+
     /**
      * 数据
+     *
      * @type {Array<UserRegWayOutput>}
      * @memberof AdminResultListUserRegWayOutput
      */
     result?: Array<UserRegWayOutput> | null;
+
     /**
      * 附加数据
+     *
      * @type {any}
      * @memberof AdminResultListUserRegWayOutput
      */
     extras?: any | null;
+
     /**
      * 时间
+     *
      * @type {Date}
      * @memberof AdminResultListUserRegWayOutput
      */

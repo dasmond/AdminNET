@@ -11,45 +11,59 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+
 import { BackupOutput } from './backup-output';
-/**
+ /**
  * 全局返回结果
+ *
  * @export
  * @interface AdminResultListBackupOutput
  */
 export interface AdminResultListBackupOutput {
+
     /**
      * 状态码
+     *
      * @type {number}
      * @memberof AdminResultListBackupOutput
      */
     code?: number;
+
     /**
      * 类型success、warning、error
+     *
      * @type {string}
      * @memberof AdminResultListBackupOutput
      */
     type?: string | null;
+
     /**
      * 错误信息
+     *
      * @type {string}
      * @memberof AdminResultListBackupOutput
      */
     message?: string | null;
+
     /**
      * 数据
+     *
      * @type {Array<BackupOutput>}
      * @memberof AdminResultListBackupOutput
      */
     result?: Array<BackupOutput> | null;
+
     /**
      * 附加数据
+     *
      * @type {any}
      * @memberof AdminResultListBackupOutput
      */
     extras?: any | null;
+
     /**
      * 时间
+     *
      * @type {Date}
      * @memberof AdminResultListBackupOutput
      */

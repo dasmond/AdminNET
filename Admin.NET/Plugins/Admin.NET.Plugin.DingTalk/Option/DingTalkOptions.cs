@@ -16,7 +16,7 @@ public sealed class DingTalkOptions : IConfigurableOptions
     /// <summary>
     /// AgentId
     /// </summary>
-    public long AgentId { get; set; }
+    public string AgentId { get; set; }
 
     /// <summary>
     /// 原 AppKey 和 SuiteKey
@@ -27,14 +27,4 @@ public sealed class DingTalkOptions : IConfigurableOptions
     /// 原 AppSecret 和 SuiteSecret
     /// </summary>
     public string ClientSecret { get; set; }
-
-    /// <summary>
-    /// 所属企业的CorpId
-    /// </summary>
-    public string CorpId { get; set; }
-
-    /// <summary>
-    /// 租户Id
-    /// </summary>
-    public long TenantId { get; set; }
 }

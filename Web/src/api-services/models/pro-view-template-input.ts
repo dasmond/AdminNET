@@ -11,20 +11,26 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-/**
+
+ /**
  * 预览模板输入参数
+ *
  * @export
  * @interface ProViewTemplateInput
  */
 export interface ProViewTemplateInput {
+
     /**
      * 主键Id
+     *
      * @type {number}
      * @memberof ProViewTemplateInput
      */
     id: number;
+
     /**
      * 渲染参数
+     *
      * @type {any}
      * @memberof ProViewTemplateInput
      */

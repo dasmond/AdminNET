@@ -27,12 +27,14 @@ public sealed class SignatureAuthenticationHandler : AuthenticationHandler<Signa
     }
 
 #else
+
     public SignatureAuthenticationHandler(IOptionsMonitor<SignatureAuthenticationOptions> options,
         ILoggerFactory logger,
         UrlEncoder encoder)
         : base(options, logger, encoder)
     {
     }
+
 #endif
 
     private readonly SysCacheService _sysCacheService = App.GetRequiredService<SysCacheService>();

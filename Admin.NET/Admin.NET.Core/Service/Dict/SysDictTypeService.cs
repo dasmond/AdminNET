@@ -171,8 +171,10 @@ public class SysDictTypeService : IDynamicApiController, ITransient
             .Select((u, w) => new
             {
                 TypeCode = u.Code,
-                w.Label, w.Value,
-                w.Code, w.TagType,
+                w.Label,
+                w.Value,
+                w.Code,
+                w.TagType,
                 w.StyleSetting,
                 w.ClassSetting,
                 w.ExtData,

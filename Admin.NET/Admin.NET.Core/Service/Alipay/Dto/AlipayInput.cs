@@ -1,31 +1,40 @@
 ﻿// Admin.NET 项目的版权、商标、专利和其他相关权利均受相应法律法规的保护。使用本项目应遵守相关法律法规和许可证的要求。
-// 
+//
 // 本项目主要遵循 MIT 许可证和 Apache 许可证（版本 2.0）进行分发和使用。许可证位于源代码树根目录中的 LICENSE-MIT 和 LICENSE-APACHE 文件。
-// 
+//
 // 不得利用本项目从事危害国家安全、扰乱社会秩序、侵犯他人合法权益等法律法规禁止的活动！任何基于本项目二次开发而产生的一切法律纠纷和责任，我们不承担任何责任！
 
 using Aop.Api.Domain;
+using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace Admin.NET.Core.Service;
 
 public class AlipayFundTransUniTransferInput
 {
     /// <summary>
-    /// 商家侧唯一订单号
+    /// 用户ID
     /// </summary>
-    [Required(ErrorMessage = "订单号不能为空")]
+    public long UserId { get; set; }
+
+    /// <summary>
+    /// 商户AppId
+    /// </summary>
+    public string AppId { get; set; }
+
+    /// <summary>
+    /// 商家订单号
+    /// </summary>
     public string OutBizNo { get; set; }
 
     /// <summary>
     /// 转账金额
     /// </summary>
-    [Required(ErrorMessage = "转账金额不能为空")]
-    public decimal? TransAmount { get; set; }
+    public decimal TransAmount { get; set; }
 
     /// <summary>
-    /// 转账业务标题
+    /// 业务标题
     /// </summary>
-    [Required(ErrorMessage = "业务标题不能为空")]
     public string OrderTitle { get; set; }
 
     /// <summary>
@@ -46,25 +55,21 @@ public class AlipayFundTransUniTransferInput
     /// <summary>
     /// 收款方证件号码，条件必填
     /// </summary>
-    [CommonValidation($"{nameof(CertType)} != null && string.IsNullOrWhiteSpace({nameof(CertNo)})", "", ErrorMessage = "证件号码不能为空")]
     public string CertNo { get; set; }
 
     /// <summary>
     /// 收款方身份标识
     /// </summary>
-    [Required(ErrorMessage = "身份标识不能为空")]
     public string Identity { get; set; }
 
     /// <summary>
     /// 收款方真实姓名
     /// </summary>
-    [Required(ErrorMessage = "真实姓名不能为空")]
     public string Name { get; set; }
 
     /// <summary>
     /// 收款方身份标识类型
     /// </summary>
-    [Required(ErrorMessage = "身份标识类型不能为空")]
     public AlipayIdentityTypeEnum? IdentityType { get; set; }
 }
 
@@ -159,10 +164,17 @@ public class AlipayAuthInfoInput
     /// <summary>
     /// 用户Id
     /// </summary>
+
+    [JsonProperty("user_id")]
+    [JsonPropertyName("user_id")]
+    [FromQuery(Name = "user_id")]
     public string UserId { get; set; }
 
     /// <summary>
     /// 授权码
     /// </summary>
+    [JsonProperty("auth_code")]
+    [JsonPropertyName("auth_code")]
+    [FromQuery(Name = "auth_code")]
     public string AuthCode { get; set; }
 }

@@ -11,26 +11,28 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-/**
+
+ /**
  * 
+ *
  * @export
  * @interface InvoiceKeyInfo
  */
 export interface InvoiceKeyInfo {
+
     /**
-     * 
      * @type {string}
      * @memberof InvoiceKeyInfo
      */
     invoiceMerchantName?: string | null;
+
     /**
-     * 
      * @type {boolean}
      * @memberof InvoiceKeyInfo
      */
     isSupportInvoice?: boolean;
+
     /**
-     * 
      * @type {string}
      * @memberof InvoiceKeyInfo
      */

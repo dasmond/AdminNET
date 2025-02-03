@@ -11,167 +11,169 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+
 import { Calendar } from './calendar';
 import { CalendarWeekRule } from './calendar-week-rule';
 import { DayOfWeek } from './day-of-week';
-/**
+ /**
  * 
+ *
  * @export
  * @interface DateTimeFormatInfo
  */
 export interface DateTimeFormatInfo {
+
     /**
-     * 
      * @type {string}
      * @memberof DateTimeFormatInfo
      */
     amDesignator?: string | null;
+
     /**
-     * 
      * @type {Calendar}
      * @memberof DateTimeFormatInfo
      */
     calendar?: Calendar;
+
     /**
-     * 
      * @type {string}
      * @memberof DateTimeFormatInfo
      */
     dateSeparator?: string | null;
+
     /**
-     * 
      * @type {DayOfWeek}
      * @memberof DateTimeFormatInfo
      */
     firstDayOfWeek?: DayOfWeek;
+
     /**
-     * 
      * @type {CalendarWeekRule}
      * @memberof DateTimeFormatInfo
      */
     calendarWeekRule?: CalendarWeekRule;
+
     /**
-     * 
      * @type {string}
      * @memberof DateTimeFormatInfo
      */
     fullDateTimePattern?: string | null;
+
     /**
-     * 
      * @type {string}
      * @memberof DateTimeFormatInfo
      */
     longDatePattern?: string | null;
+
     /**
-     * 
      * @type {string}
      * @memberof DateTimeFormatInfo
      */
     longTimePattern?: string | null;
+
     /**
-     * 
      * @type {string}
      * @memberof DateTimeFormatInfo
      */
     monthDayPattern?: string | null;
+
     /**
-     * 
      * @type {string}
      * @memberof DateTimeFormatInfo
      */
     pmDesignator?: string | null;
+
     /**
-     * 
      * @type {string}
      * @memberof DateTimeFormatInfo
      */
     rfC1123Pattern?: string | null;
+
     /**
-     * 
      * @type {string}
      * @memberof DateTimeFormatInfo
      */
     shortDatePattern?: string | null;
+
     /**
-     * 
      * @type {string}
      * @memberof DateTimeFormatInfo
      */
     shortTimePattern?: string | null;
+
     /**
-     * 
      * @type {string}
      * @memberof DateTimeFormatInfo
      */
     sortableDateTimePattern?: string | null;
+
     /**
-     * 
      * @type {string}
      * @memberof DateTimeFormatInfo
      */
     timeSeparator?: string | null;
+
     /**
-     * 
      * @type {string}
      * @memberof DateTimeFormatInfo
      */
     universalSortableDateTimePattern?: string | null;
+
     /**
-     * 
      * @type {string}
      * @memberof DateTimeFormatInfo
      */
     yearMonthPattern?: string | null;
+
     /**
-     * 
      * @type {Array<string>}
      * @memberof DateTimeFormatInfo
      */
     abbreviatedDayNames?: Array<string> | null;
+
     /**
-     * 
      * @type {Array<string>}
      * @memberof DateTimeFormatInfo
      */
     shortestDayNames?: Array<string> | null;
+
     /**
-     * 
      * @type {Array<string>}
      * @memberof DateTimeFormatInfo
      */
     dayNames?: Array<string> | null;
+
     /**
-     * 
      * @type {Array<string>}
      * @memberof DateTimeFormatInfo
      */
     abbreviatedMonthNames?: Array<string> | null;
+
     /**
-     * 
      * @type {Array<string>}
      * @memberof DateTimeFormatInfo
      */
     monthNames?: Array<string> | null;
+
     /**
-     * 
      * @type {boolean}
      * @memberof DateTimeFormatInfo
      */
     isReadOnly?: boolean;
+
     /**
-     * 
      * @type {string}
      * @memberof DateTimeFormatInfo
      */
     nativeCalendarName?: string | null;
+
     /**
-     * 
      * @type {Array<string>}
      * @memberof DateTimeFormatInfo
      */
     abbreviatedMonthGenitiveNames?: Array<string> | null;
+
     /**
-     * 
      * @type {Array<string>}
      * @memberof DateTimeFormatInfo
      */

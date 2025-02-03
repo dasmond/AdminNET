@@ -11,36 +11,38 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+
 import { ConstructorInfo } from './constructor-info';
 import { CustomAttributeNamedArgument } from './custom-attribute-named-argument';
 import { CustomAttributeTypedArgument } from './custom-attribute-typed-argument';
 import { Type } from './type';
-/**
+ /**
  * 
+ *
  * @export
  * @interface CustomAttributeData
  */
 export interface CustomAttributeData {
+
     /**
-     * 
      * @type {Type}
      * @memberof CustomAttributeData
      */
     attributeType?: Type;
+
     /**
-     * 
      * @type {ConstructorInfo}
      * @memberof CustomAttributeData
      */
     constructor?: ConstructorInfo;
+
     /**
-     * 
      * @type {Array<CustomAttributeTypedArgument>}
      * @memberof CustomAttributeData
      */
     constructorArguments?: Array<CustomAttributeTypedArgument> | null;
+
     /**
-     * 
      * @type {Array<CustomAttributeNamedArgument>}
      * @memberof CustomAttributeData
      */

@@ -10,7 +10,7 @@ namespace Admin.NET.Plugin.GoView.Service;
 /// 系统登录服务 🧩
 /// </summary>
 [UnifyProvider("GoView")]
-[ApiDescriptionSettings(GoViewConst.GroupName, Module = "goview", Name = "sys", Order = 100)]
+[ApiDescriptionSettings(GoViewConst.GroupName, Module = "goview", Name = "sys", Order = 100, Description = "系统登录")]
 public class GoViewSysService : IDynamicApiController
 {
     private readonly SysAuthService _sysAuthService;
@@ -30,7 +30,6 @@ public class GoViewSysService : IDynamicApiController
     /// GoView 登录 🔖
     /// </summary>
     /// <returns></returns>
-    [UnitOfWork]
     [AllowAnonymous]
     [DisplayName("GoView 登录")]
     public async Task<GoViewLoginOutput> Login(GoViewLoginInput input)
@@ -45,7 +44,6 @@ public class GoViewSysService : IDynamicApiController
         {
             Account = input.Username,
             Password = input.Password,
-            TenantId = input.TenantId
         });
 
         _sysCacheService.Remove($"{CacheConst.KeyConfig}{ConfigConst.SysCaptcha}");

@@ -11,71 +11,87 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+
 import { Filter } from './filter';
 import { NoticeTypeEnum } from './notice-type-enum';
 import { Search } from './search';
-/**
+ /**
  * 
+ *
  * @export
  * @interface PageNoticeInput
  */
 export interface PageNoticeInput {
+
     /**
-     * 
      * @type {Search}
      * @memberof PageNoticeInput
      */
     search?: Search;
+
     /**
      * 模糊查询关键字
+     *
      * @type {string}
      * @memberof PageNoticeInput
      */
     keyword?: string | null;
+
     /**
-     * 
      * @type {Filter}
      * @memberof PageNoticeInput
      */
     filter?: Filter;
+
     /**
      * 当前页码
+     *
      * @type {number}
      * @memberof PageNoticeInput
      */
     page?: number;
+
     /**
      * 页码容量
+     *
      * @type {number}
      * @memberof PageNoticeInput
      */
     pageSize?: number;
+
     /**
      * 排序字段
+     *
      * @type {string}
      * @memberof PageNoticeInput
      */
     field?: string | null;
+
     /**
      * 排序方向
+     *
      * @type {string}
      * @memberof PageNoticeInput
      */
     order?: string | null;
+
     /**
      * 降序排序
+     *
      * @type {string}
      * @memberof PageNoticeInput
      */
     descStr?: string | null;
+
     /**
      * 标题
+     *
      * @type {string}
      * @memberof PageNoticeInput
      */
     title?: string | null;
+
     /**
-     * 
      * @type {NoticeTypeEnum}
      * @memberof PageNoticeInput
      */

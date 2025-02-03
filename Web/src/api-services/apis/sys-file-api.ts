@@ -11,6 +11,7 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+
 import globalAxios, { AxiosResponse, AxiosInstance, AxiosRequestConfig } from 'axios';
 import { Configuration } from '../configuration';
 // Some imports not used depending on template conditions
@@ -18,6 +19,7 @@ import { Configuration } from '../configuration';
 import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base';
 import { AdminResultIActionResult } from '../models';
 import { AdminResultListSysFile } from '../models';
+import { AdminResultListTreeNode } from '../models';
 import { AdminResultSqlSugarPagedListSysFile } from '../models';
 import { AdminResultString } from '../models';
 import { AdminResultSysFile } from '../models';
@@ -225,6 +227,49 @@ export const SysFileApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
+         * @summary 获取文件路径 🔖
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiSysFileFolderGet: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/sysFile/folder`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions :AxiosRequestConfig = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication Bearer required
+            // http bearer authentication required
+            if (configuration && configuration.accessToken) {
+                const accessToken = typeof configuration.accessToken === 'function'
+                    ? await configuration.accessToken()
+                    : await configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
+            }
+
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.params) {
+                query.set(key, options.params[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @summary 获取文件分页列表 🔖
          * @param {PageFileInput} [body] 
          * @param {*} [options] Override http request option.
@@ -322,7 +367,7 @@ export const SysFileApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
-         * @summary 根据关联查询附件
+         * @summary 根据关联查询附件 🔖
          * @param {string} [relationName] 关联对象名称
          * @param {number} [relationId] 关联对象Id
          * @param {string} [fileTypes] 文件类型：多个以\&quot;,\&quot;分割
@@ -535,14 +580,15 @@ export const SysFileApiAxiosParamCreator = function (configuration?: Configurati
          * 
          * @summary 上传文件 🔖
          * @param {Blob} [file] 
+         * @param {string} [fileType] 
+         * @param {boolean} [isPublic] 
          * @param {string} [path] 
          * @param {string} [savePath] 
          * @param {string} [allowSuffix] 
-         * @param {string} [fileType] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiSysFileUploadFilePostForm: async (file?: Blob, path?: string, savePath?: string, allowSuffix?: string, fileType?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        apiSysFileUploadFilePostForm: async (file?: Blob, fileType?: string, isPublic?: boolean, path?: string, savePath?: string, allowSuffix?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/sysFile/uploadFile`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
@@ -569,6 +615,14 @@ export const SysFileApiAxiosParamCreator = function (configuration?: Configurati
                 localVarFormParams.append('File', file as any);
             }
 
+            if (fileType !== undefined) { 
+                localVarFormParams.append('FileType', fileType as any);
+            }
+
+            if (isPublic !== undefined) { 
+                localVarFormParams.append('IsPublic', isPublic as any);
+            }
+
             if (path !== undefined) { 
                 localVarFormParams.append('Path', path as any);
             }
@@ -579,10 +633,6 @@ export const SysFileApiAxiosParamCreator = function (configuration?: Configurati
 
             if (allowSuffix !== undefined) { 
                 localVarFormParams.append('AllowSuffix', allowSuffix as any);
-            }
-
-            if (fileType !== undefined) { 
-                localVarFormParams.append('FileType', fileType as any);
             }
 
             localVarHeaderParameter['Content-Type'] = 'multipart/form-data';
@@ -775,6 +825,19 @@ export const SysFileApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @summary 获取文件路径 🔖
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiSysFileFolderGet(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<AdminResultListTreeNode>>> {
+            const localVarAxiosArgs = await SysFileApiAxiosParamCreator(configuration).apiSysFileFolderGet(options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
+         * 
          * @summary 获取文件分页列表 🔖
          * @param {PageFileInput} [body] 
          * @param {*} [options] Override http request option.
@@ -803,7 +866,7 @@ export const SysFileApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @summary 根据关联查询附件
+         * @summary 根据关联查询附件 🔖
          * @param {string} [relationName] 关联对象名称
          * @param {number} [relationId] 关联对象Id
          * @param {string} [fileTypes] 文件类型：多个以\&quot;,\&quot;分割
@@ -864,15 +927,16 @@ export const SysFileApiFp = function(configuration?: Configuration) {
          * 
          * @summary 上传文件 🔖
          * @param {Blob} [file] 
+         * @param {string} [fileType] 
+         * @param {boolean} [isPublic] 
          * @param {string} [path] 
          * @param {string} [savePath] 
          * @param {string} [allowSuffix] 
-         * @param {string} [fileType] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiSysFileUploadFilePostForm(file?: Blob, path?: string, savePath?: string, allowSuffix?: string, fileType?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<AdminResultSysFile>>> {
-            const localVarAxiosArgs = await SysFileApiAxiosParamCreator(configuration).apiSysFileUploadFilePostForm(file, path, savePath, allowSuffix, fileType, options);
+        async apiSysFileUploadFilePostForm(file?: Blob, fileType?: string, isPublic?: boolean, path?: string, savePath?: string, allowSuffix?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<AdminResultSysFile>>> {
+            const localVarAxiosArgs = await SysFileApiAxiosParamCreator(configuration).apiSysFileUploadFilePostForm(file, fileType, isPublic, path, savePath, allowSuffix, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -957,6 +1021,15 @@ export const SysFileApiFactory = function (configuration?: Configuration, basePa
         },
         /**
          * 
+         * @summary 获取文件路径 🔖
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiSysFileFolderGet(options?: AxiosRequestConfig): Promise<AxiosResponse<AdminResultListTreeNode>> {
+            return SysFileApiFp(configuration).apiSysFileFolderGet(options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
          * @summary 获取文件分页列表 🔖
          * @param {PageFileInput} [body] 
          * @param {*} [options] Override http request option.
@@ -977,7 +1050,7 @@ export const SysFileApiFactory = function (configuration?: Configuration, basePa
         },
         /**
          * 
-         * @summary 根据关联查询附件
+         * @summary 根据关联查询附件 🔖
          * @param {string} [relationName] 关联对象名称
          * @param {number} [relationId] 关联对象Id
          * @param {string} [fileTypes] 文件类型：多个以\&quot;,\&quot;分割
@@ -1022,15 +1095,16 @@ export const SysFileApiFactory = function (configuration?: Configuration, basePa
          * 
          * @summary 上传文件 🔖
          * @param {Blob} [file] 
+         * @param {string} [fileType] 
+         * @param {boolean} [isPublic] 
          * @param {string} [path] 
          * @param {string} [savePath] 
          * @param {string} [allowSuffix] 
-         * @param {string} [fileType] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiSysFileUploadFilePostForm(file?: Blob, path?: string, savePath?: string, allowSuffix?: string, fileType?: string, options?: AxiosRequestConfig): Promise<AxiosResponse<AdminResultSysFile>> {
-            return SysFileApiFp(configuration).apiSysFileUploadFilePostForm(file, path, savePath, allowSuffix, fileType, options).then((request) => request(axios, basePath));
+        async apiSysFileUploadFilePostForm(file?: Blob, fileType?: string, isPublic?: boolean, path?: string, savePath?: string, allowSuffix?: string, options?: AxiosRequestConfig): Promise<AxiosResponse<AdminResultSysFile>> {
+            return SysFileApiFp(configuration).apiSysFileUploadFilePostForm(file, fileType, isPublic, path, savePath, allowSuffix, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -1108,6 +1182,16 @@ export class SysFileApi extends BaseAPI {
     }
     /**
      * 
+     * @summary 获取文件路径 🔖
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SysFileApi
+     */
+    public async apiSysFileFolderGet(options?: AxiosRequestConfig) : Promise<AxiosResponse<AdminResultListTreeNode>> {
+        return SysFileApiFp(this.configuration).apiSysFileFolderGet(options).then((request) => request(this.axios, this.basePath));
+    }
+    /**
+     * 
      * @summary 获取文件分页列表 🔖
      * @param {PageFileInput} [body] 
      * @param {*} [options] Override http request option.
@@ -1130,7 +1214,7 @@ export class SysFileApi extends BaseAPI {
     }
     /**
      * 
-     * @summary 根据关联查询附件
+     * @summary 根据关联查询附件 🔖
      * @param {string} [relationName] 关联对象名称
      * @param {number} [relationId] 关联对象Id
      * @param {string} [fileTypes] 文件类型：多个以\&quot;,\&quot;分割
@@ -1179,16 +1263,17 @@ export class SysFileApi extends BaseAPI {
      * 
      * @summary 上传文件 🔖
      * @param {Blob} [file] 
+     * @param {string} [fileType] 
+     * @param {boolean} [isPublic] 
      * @param {string} [path] 
      * @param {string} [savePath] 
      * @param {string} [allowSuffix] 
-     * @param {string} [fileType] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof SysFileApi
      */
-    public async apiSysFileUploadFilePostForm(file?: Blob, path?: string, savePath?: string, allowSuffix?: string, fileType?: string, options?: AxiosRequestConfig) : Promise<AxiosResponse<AdminResultSysFile>> {
-        return SysFileApiFp(this.configuration).apiSysFileUploadFilePostForm(file, path, savePath, allowSuffix, fileType, options).then((request) => request(this.axios, this.basePath));
+    public async apiSysFileUploadFilePostForm(file?: Blob, fileType?: string, isPublic?: boolean, path?: string, savePath?: string, allowSuffix?: string, options?: AxiosRequestConfig) : Promise<AxiosResponse<AdminResultSysFile>> {
+        return SysFileApiFp(this.configuration).apiSysFileUploadFilePostForm(file, fileType, isPublic, path, savePath, allowSuffix, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * 

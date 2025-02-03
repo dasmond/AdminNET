@@ -11,20 +11,26 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-/**
+
+ /**
  * 国密公钥私钥对输出
+ *
  * @export
  * @interface SmKeyPairOutput
  */
 export interface SmKeyPairOutput {
+
     /**
      * 私匙
+     *
      * @type {string}
      * @memberof SmKeyPairOutput
      */
     privateKey?: string | null;
+
     /**
      * 公匙
+     *
      * @type {string}
      * @memberof SmKeyPairOutput
      */

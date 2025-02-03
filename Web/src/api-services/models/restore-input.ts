@@ -11,14 +11,18 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-/**
+
+ /**
  * 还原输入参数
+ *
  * @export
  * @interface RestoreInput
  */
 export interface RestoreInput {
+
     /**
      * 文件名
+     *
      * @type {string}
      * @memberof RestoreInput
      */

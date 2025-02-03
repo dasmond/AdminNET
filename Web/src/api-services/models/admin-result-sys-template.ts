@@ -11,45 +11,57 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+
 import { SysTemplate } from './sys-template';
-/**
+ /**
  * 全局返回结果
+ *
  * @export
  * @interface AdminResultSysTemplate
  */
 export interface AdminResultSysTemplate {
+
     /**
      * 状态码
+     *
      * @type {number}
      * @memberof AdminResultSysTemplate
      */
     code?: number;
+
     /**
      * 类型success、warning、error
+     *
      * @type {string}
      * @memberof AdminResultSysTemplate
      */
     type?: string | null;
+
     /**
      * 错误信息
+     *
      * @type {string}
      * @memberof AdminResultSysTemplate
      */
     message?: string | null;
+
     /**
-     * 
      * @type {SysTemplate}
      * @memberof AdminResultSysTemplate
      */
     result?: SysTemplate;
+
     /**
      * 附加数据
+     *
      * @type {any}
      * @memberof AdminResultSysTemplate
      */
     extras?: any | null;
+
     /**
      * 时间
+     *
      * @type {Date}
      * @memberof AdminResultSysTemplate
      */

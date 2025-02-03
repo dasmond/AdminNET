@@ -11,105 +11,137 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+
 import { AccountTypeEnum } from './account-type-enum';
-/**
+ /**
  * 注册方案增加输入参数
+ *
  * @export
  * @interface AddUserRegWayInput
  */
 export interface AddUserRegWayInput {
+
     /**
      * 雪花Id
+     *
      * @type {number}
      * @memberof AddUserRegWayInput
      */
     id?: number;
+
     /**
      * 创建时间
+     *
      * @type {Date}
      * @memberof AddUserRegWayInput
      */
     createTime?: Date;
+
     /**
      * 更新时间
+     *
      * @type {Date}
      * @memberof AddUserRegWayInput
      */
     updateTime?: Date | null;
+
     /**
      * 创建者Id
+     *
      * @type {number}
      * @memberof AddUserRegWayInput
      */
     createUserId?: number | null;
+
     /**
      * 创建者姓名
+     *
      * @type {string}
      * @memberof AddUserRegWayInput
      */
     createUserName?: string | null;
+
     /**
      * 修改者Id
+     *
      * @type {number}
      * @memberof AddUserRegWayInput
      */
     updateUserId?: number | null;
+
     /**
      * 修改者姓名
+     *
      * @type {string}
      * @memberof AddUserRegWayInput
      */
     updateUserName?: string | null;
+
     /**
      * 软删除
+     *
      * @type {boolean}
      * @memberof AddUserRegWayInput
      */
     isDelete?: boolean;
+
     /**
      * 租户Id
+     *
      * @type {number}
      * @memberof AddUserRegWayInput
      */
     tenantId?: number | null;
+
     /**
      * 排序
+     *
      * @type {number}
      * @memberof AddUserRegWayInput
      */
     orderNo?: number;
+
     /**
      * 备注
+     *
      * @type {string}
      * @memberof AddUserRegWayInput
      */
     remark?: string | null;
+
     /**
      * 方案名称
+     *
      * @type {string}
      * @memberof AddUserRegWayInput
      */
     name: string;
+
     /**
-     * 
      * @type {AccountTypeEnum}
      * @memberof AddUserRegWayInput
      */
     accountType?: AccountTypeEnum;
+
     /**
      * 角色
+     *
      * @type {number}
      * @memberof AddUserRegWayInput
      */
     roleId: number;
+
     /**
      * 机构
+     *
      * @type {number}
      * @memberof AddUserRegWayInput
      */
     orgId: number;
+
     /**
      * 职位
+     *
      * @type {number}
      * @memberof AddUserRegWayInput
      */

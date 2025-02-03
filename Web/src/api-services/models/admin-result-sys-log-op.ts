@@ -11,45 +11,57 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+
 import { SysLogOp } from './sys-log-op';
-/**
+ /**
  * 全局返回结果
+ *
  * @export
  * @interface AdminResultSysLogOp
  */
 export interface AdminResultSysLogOp {
+
     /**
      * 状态码
+     *
      * @type {number}
      * @memberof AdminResultSysLogOp
      */
     code?: number;
+
     /**
      * 类型success、warning、error
+     *
      * @type {string}
      * @memberof AdminResultSysLogOp
      */
     type?: string | null;
+
     /**
      * 错误信息
+     *
      * @type {string}
      * @memberof AdminResultSysLogOp
      */
     message?: string | null;
+
     /**
-     * 
      * @type {SysLogOp}
      * @memberof AdminResultSysLogOp
      */
     result?: SysLogOp;
+
     /**
      * 附加数据
+     *
      * @type {any}
      * @memberof AdminResultSysLogOp
      */
     extras?: any | null;
+
     /**
      * 时间
+     *
      * @type {Date}
      * @memberof AdminResultSysLogOp
      */

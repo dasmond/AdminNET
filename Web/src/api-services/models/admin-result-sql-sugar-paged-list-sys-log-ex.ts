@@ -11,45 +11,57 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+
 import { SqlSugarPagedListSysLogEx } from './sql-sugar-paged-list-sys-log-ex';
-/**
+ /**
  * 全局返回结果
+ *
  * @export
  * @interface AdminResultSqlSugarPagedListSysLogEx
  */
 export interface AdminResultSqlSugarPagedListSysLogEx {
+
     /**
      * 状态码
+     *
      * @type {number}
      * @memberof AdminResultSqlSugarPagedListSysLogEx
      */
     code?: number;
+
     /**
      * 类型success、warning、error
+     *
      * @type {string}
      * @memberof AdminResultSqlSugarPagedListSysLogEx
      */
     type?: string | null;
+
     /**
      * 错误信息
+     *
      * @type {string}
      * @memberof AdminResultSqlSugarPagedListSysLogEx
      */
     message?: string | null;
+
     /**
-     * 
      * @type {SqlSugarPagedListSysLogEx}
      * @memberof AdminResultSqlSugarPagedListSysLogEx
      */
     result?: SqlSugarPagedListSysLogEx;
+
     /**
      * 附加数据
+     *
      * @type {any}
      * @memberof AdminResultSqlSugarPagedListSysLogEx
      */
     extras?: any | null;
+
     /**
      * 时间
+     *
      * @type {Date}
      * @memberof AdminResultSqlSugarPagedListSysLogEx
      */

@@ -11,6 +11,7 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+
 /**
  * 账号类型枚举<br />&nbsp;会员 Member = 666<br />&nbsp;普通账号 NormalUser = 777<br />&nbsp;系统管理员 SysAdmin = 888<br />&nbsp;超级管理员 SuperAdmin = 999<br />
  * @export

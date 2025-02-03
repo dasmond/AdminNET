@@ -11,129 +11,169 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+
 import { StatusEnum } from './status-enum';
-/**
+ /**
  * 系统字典值表
+ *
  * @export
  * @interface SysDictData
  */
 export interface SysDictData {
+
     /**
      * 雪花Id
+     *
      * @type {number}
      * @memberof SysDictData
      */
     id?: number;
+
     /**
      * 创建时间
+     *
      * @type {Date}
      * @memberof SysDictData
      */
     createTime?: Date;
+
     /**
      * 更新时间
+     *
      * @type {Date}
      * @memberof SysDictData
      */
     updateTime?: Date | null;
+
     /**
      * 创建者Id
+     *
      * @type {number}
      * @memberof SysDictData
      */
     createUserId?: number | null;
+
     /**
      * 创建者姓名
+     *
      * @type {string}
      * @memberof SysDictData
      */
     createUserName?: string | null;
+
     /**
      * 修改者Id
+     *
      * @type {number}
      * @memberof SysDictData
      */
     updateUserId?: number | null;
+
     /**
      * 修改者姓名
+     *
      * @type {string}
      * @memberof SysDictData
      */
     updateUserName?: string | null;
+
     /**
      * 软删除
+     *
      * @type {boolean}
      * @memberof SysDictData
      */
     isDelete?: boolean;
+
     /**
      * 租户Id
+     *
      * @type {number}
      * @memberof SysDictData
      */
     tenantId?: number | null;
+
     /**
      * 字典类型Id
+     *
      * @type {number}
      * @memberof SysDictData
      */
     dictTypeId?: number;
+
     /**
      * 显示文本
+     *
      * @type {string}
      * @memberof SysDictData
      */
     label: string;
+
     /**
      * 值
+     *
      * @type {string}
      * @memberof SysDictData
      */
     value: string;
+
     /**
      * 编码
+     *
      * @type {string}
      * @memberof SysDictData
      */
     code?: string | null;
+
     /**
      * 显示样式-标签颜色
+     *
      * @type {string}
      * @memberof SysDictData
      */
     tagType?: string | null;
+
     /**
      * 显示样式-Style(控制显示样式)
+     *
      * @type {string}
      * @memberof SysDictData
      */
     styleSetting?: string | null;
+
     /**
      * 显示样式-Class(控制显示样式)
+     *
      * @type {string}
      * @memberof SysDictData
      */
     classSetting?: string | null;
+
     /**
      * 排序
+     *
      * @type {number}
      * @memberof SysDictData
      */
     orderNo?: number;
+
     /**
      * 备注
+     *
      * @type {string}
      * @memberof SysDictData
      */
     remark?: string | null;
+
     /**
      * 拓展数据(保存业务功能的配置项)
+     *
      * @type {string}
      * @memberof SysDictData
      */
     extData?: string | null;
+
     /**
-     * 
      * @type {StatusEnum}
      * @memberof SysDictData
      */

@@ -11,51 +11,67 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+
 import { OpenAccessOutput } from './open-access-output';
-/**
+ /**
  * 分页泛型集合
+ *
  * @export
  * @interface SqlSugarPagedListOpenAccessOutput
  */
 export interface SqlSugarPagedListOpenAccessOutput {
+
     /**
      * 页码
+     *
      * @type {number}
      * @memberof SqlSugarPagedListOpenAccessOutput
      */
     page?: number;
+
     /**
      * 页容量
+     *
      * @type {number}
      * @memberof SqlSugarPagedListOpenAccessOutput
      */
     pageSize?: number;
+
     /**
      * 总条数
+     *
      * @type {number}
      * @memberof SqlSugarPagedListOpenAccessOutput
      */
     total?: number;
+
     /**
      * 总页数
+     *
      * @type {number}
      * @memberof SqlSugarPagedListOpenAccessOutput
      */
     totalPages?: number;
+
     /**
      * 当前页集合
+     *
      * @type {Array<OpenAccessOutput>}
      * @memberof SqlSugarPagedListOpenAccessOutput
      */
     items?: Array<OpenAccessOutput> | null;
+
     /**
      * 是否有上一页
+     *
      * @type {boolean}
      * @memberof SqlSugarPagedListOpenAccessOutput
      */
     hasPrevPage?: boolean;
+
     /**
      * 是否有下一页
+     *
      * @type {boolean}
      * @memberof SqlSugarPagedListOpenAccessOutput
      */

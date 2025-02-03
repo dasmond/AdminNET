@@ -11,45 +11,47 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+
 import { CalendarAlgorithmType } from './calendar-algorithm-type';
-/**
+ /**
  * 
+ *
  * @export
  * @interface Calendar
  */
 export interface Calendar {
+
     /**
-     * 
      * @type {Date}
      * @memberof Calendar
      */
     minSupportedDateTime?: Date;
+
     /**
-     * 
      * @type {Date}
      * @memberof Calendar
      */
     maxSupportedDateTime?: Date;
+
     /**
-     * 
      * @type {CalendarAlgorithmType}
      * @memberof Calendar
      */
     algorithmType?: CalendarAlgorithmType;
+
     /**
-     * 
      * @type {boolean}
      * @memberof Calendar
      */
     isReadOnly?: boolean;
+
     /**
-     * 
      * @type {Array<number>}
      * @memberof Calendar
      */
     eras?: Array<number> | null;
+
     /**
-     * 
      * @type {number}
      * @memberof Calendar
      */

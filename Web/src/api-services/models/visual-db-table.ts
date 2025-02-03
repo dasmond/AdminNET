@@ -11,29 +11,31 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+
 import { ColumnRelation } from './column-relation';
 import { VisualColumn } from './visual-column';
 import { VisualTable } from './visual-table';
-/**
+ /**
  * 库表可视化
+ *
  * @export
  * @interface VisualDbTable
  */
 export interface VisualDbTable {
+
     /**
-     * 
      * @type {Array<VisualTable>}
      * @memberof VisualDbTable
      */
     visualTableList?: Array<VisualTable> | null;
+
     /**
-     * 
      * @type {Array<VisualColumn>}
      * @memberof VisualDbTable
      */
     visualColumnList?: Array<VisualColumn> | null;
+
     /**
-     * 
      * @type {Array<ColumnRelation>}
      * @memberof VisualDbTable
      */

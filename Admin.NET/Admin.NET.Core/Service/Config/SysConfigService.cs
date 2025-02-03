@@ -45,7 +45,7 @@ public class SysConfigService : IDynamicApiController, ITransient
     {
         var queryable = await GetConfigQueryable();
         return await queryable
-            .WhereIF(!_userManager.SuperAdmin,  u => u.SysFlag == YesNoEnum.N)
+            .WhereIF(!_userManager.SuperAdmin, u => u.SysFlag == YesNoEnum.N)
             .WhereIF(!string.IsNullOrWhiteSpace(input.Name?.Trim()), u => u.Name.Contains(input.Name))
             .WhereIF(!string.IsNullOrWhiteSpace(input.Code?.Trim()), u => u.Code.Contains(input.Code))
             .WhereIF(!string.IsNullOrWhiteSpace(input.GroupCode?.Trim()), u => u.GroupCode.Equals(input.GroupCode))

@@ -11,94 +11,120 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+
 import { Filter } from './filter';
 import { Search } from './search';
-/**
+ /**
  * 获取用户分页列表输入参数
+ *
  * @export
  * @interface PageUserInput
  */
 export interface PageUserInput {
+
     /**
-     * 
      * @type {Search}
      * @memberof PageUserInput
      */
     search?: Search;
+
     /**
      * 模糊查询关键字
+     *
      * @type {string}
      * @memberof PageUserInput
      */
     keyword?: string | null;
+
     /**
-     * 
      * @type {Filter}
      * @memberof PageUserInput
      */
     filter?: Filter;
+
     /**
      * 当前页码
+     *
      * @type {number}
      * @memberof PageUserInput
      */
     page?: number;
+
     /**
      * 页码容量
+     *
      * @type {number}
      * @memberof PageUserInput
      */
     pageSize?: number;
+
     /**
      * 排序字段
+     *
      * @type {string}
      * @memberof PageUserInput
      */
     field?: string | null;
+
     /**
      * 排序方向
+     *
      * @type {string}
      * @memberof PageUserInput
      */
     order?: string | null;
+
     /**
      * 降序排序
+     *
      * @type {string}
      * @memberof PageUserInput
      */
     descStr?: string | null;
+
     /**
      * 租户Id
+     *
      * @type {number}
      * @memberof PageUserInput
      */
     tenantId?: number;
+
     /**
      * 账号
+     *
      * @type {string}
      * @memberof PageUserInput
      */
     account?: string | null;
+
     /**
      * 姓名
+     *
      * @type {string}
      * @memberof PageUserInput
      */
     realName?: string | null;
+
     /**
      * 职位名称
+     *
      * @type {string}
      * @memberof PageUserInput
      */
     posName?: string | null;
+
     /**
      * 手机号
+     *
      * @type {string}
      * @memberof PageUserInput
      */
     phone?: string | null;
+
     /**
      * 查询时所选机构Id
+     *
      * @type {number}
      * @memberof PageUserInput
      */

@@ -67,4 +67,3 @@ public class StressTestInput
     /// </summary>
     public Dictionary<string, string> QueryParameters { get; set; } = new();
 }
-

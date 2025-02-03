@@ -11,45 +11,57 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+
 import { SqlSugarPagedListSysJobTriggerRecord } from './sql-sugar-paged-list-sys-job-trigger-record';
-/**
+ /**
  * 全局返回结果
+ *
  * @export
  * @interface AdminResultSqlSugarPagedListSysJobTriggerRecord
  */
 export interface AdminResultSqlSugarPagedListSysJobTriggerRecord {
+
     /**
      * 状态码
+     *
      * @type {number}
      * @memberof AdminResultSqlSugarPagedListSysJobTriggerRecord
      */
     code?: number;
+
     /**
      * 类型success、warning、error
+     *
      * @type {string}
      * @memberof AdminResultSqlSugarPagedListSysJobTriggerRecord
      */
     type?: string | null;
+
     /**
      * 错误信息
+     *
      * @type {string}
      * @memberof AdminResultSqlSugarPagedListSysJobTriggerRecord
      */
     message?: string | null;
+
     /**
-     * 
      * @type {SqlSugarPagedListSysJobTriggerRecord}
      * @memberof AdminResultSqlSugarPagedListSysJobTriggerRecord
      */
     result?: SqlSugarPagedListSysJobTriggerRecord;
+
     /**
      * 附加数据
+     *
      * @type {any}
      * @memberof AdminResultSqlSugarPagedListSysJobTriggerRecord
      */
     extras?: any | null;
+
     /**
      * 时间
+     *
      * @type {Date}
      * @memberof AdminResultSqlSugarPagedListSysJobTriggerRecord
      */

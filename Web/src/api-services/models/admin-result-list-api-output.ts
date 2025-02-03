@@ -11,45 +11,59 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+
 import { ApiOutput } from './api-output';
-/**
+ /**
  * 全局返回结果
+ *
  * @export
  * @interface AdminResultListApiOutput
  */
 export interface AdminResultListApiOutput {
+
     /**
      * 状态码
+     *
      * @type {number}
      * @memberof AdminResultListApiOutput
      */
     code?: number;
+
     /**
      * 类型success、warning、error
+     *
      * @type {string}
      * @memberof AdminResultListApiOutput
      */
     type?: string | null;
+
     /**
      * 错误信息
+     *
      * @type {string}
      * @memberof AdminResultListApiOutput
      */
     message?: string | null;
+
     /**
      * 数据
+     *
      * @type {Array<ApiOutput>}
      * @memberof AdminResultListApiOutput
      */
     result?: Array<ApiOutput> | null;
+
     /**
      * 附加数据
+     *
      * @type {any}
      * @memberof AdminResultListApiOutput
      */
     extras?: any | null;
+
     /**
      * 时间
+     *
      * @type {Date}
      * @memberof AdminResultListApiOutput
      */

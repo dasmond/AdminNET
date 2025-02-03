@@ -11,102 +11,104 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+
 import { CustomAttributeData } from './custom-attribute-data';
 import { MemberInfo } from './member-info';
 import { ParameterAttributes } from './parameter-attributes';
 import { Type } from './type';
-/**
+ /**
  * 
+ *
  * @export
  * @interface ParameterInfo
  */
 export interface ParameterInfo {
+
     /**
-     * 
      * @type {ParameterAttributes}
      * @memberof ParameterInfo
      */
     attributes?: ParameterAttributes;
+
     /**
-     * 
      * @type {MemberInfo}
      * @memberof ParameterInfo
      */
     member?: MemberInfo;
+
     /**
-     * 
      * @type {string}
      * @memberof ParameterInfo
      */
     name?: string | null;
+
     /**
-     * 
      * @type {Type}
      * @memberof ParameterInfo
      */
     parameterType?: Type;
+
     /**
-     * 
      * @type {number}
      * @memberof ParameterInfo
      */
     position?: number;
+
     /**
-     * 
      * @type {boolean}
      * @memberof ParameterInfo
      */
     isIn?: boolean;
+
     /**
-     * 
      * @type {boolean}
      * @memberof ParameterInfo
      */
     isLcid?: boolean;
+
     /**
-     * 
      * @type {boolean}
      * @memberof ParameterInfo
      */
     isOptional?: boolean;
+
     /**
-     * 
      * @type {boolean}
      * @memberof ParameterInfo
      */
     isOut?: boolean;
+
     /**
-     * 
      * @type {boolean}
      * @memberof ParameterInfo
      */
     isRetval?: boolean;
+
     /**
-     * 
      * @type {any}
      * @memberof ParameterInfo
      */
     defaultValue?: any | null;
+
     /**
-     * 
      * @type {any}
      * @memberof ParameterInfo
      */
     rawDefaultValue?: any | null;
+
     /**
-     * 
      * @type {boolean}
      * @memberof ParameterInfo
      */
     hasDefaultValue?: boolean;
+
     /**
-     * 
      * @type {Array<CustomAttributeData>}
      * @memberof ParameterInfo
      */
     customAttributes?: Array<CustomAttributeData> | null;
+
     /**
-     * 
      * @type {number}
      * @memberof ParameterInfo
      */
