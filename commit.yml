@@ -2,43 +2,25 @@
 branches: {
   }
 fileChange:
-  /Admin.NET:
-    newFile: !uuid 'da4011c93e010b4bf7097479cbe369a399e86142'
-    oldFile: !uuid 'f137842ba6ea7cfabb072489212fc53e472da1ef'
-  /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '6e94919e638d07f682ccd6e9b74d062cb3fb43a4'
-    oldFile: !uuid 'e7009bde85a2205241178384c9b7fa8ede1e77ca'
-  /Admin.NET/Admin.NET.Core/Cache:
-    newFile: !uuid '9b51ba927e4ad83010e07ab5e9bd3c4ec6d806c6'
-    oldFile: !uuid 'a943995b00cd592dd7253ca6cbb9242f9b483710'
-  /Admin.NET/Admin.NET.Core/Cache/CacheSetup.cs:
-    newFile: !uuid '98536e9d544a448ba8c4dc84933f422c9ace3ae6'
-    oldFile: !uuid '132b23eec137e05ebbaf4eda75b25ba30d3daa1d'
-  /Admin.NET/Admin.NET.Core/Hub:
-    newFile: !uuid 'c097cc710097e7fa2f036f8afc33373fb57ff8c3'
-    oldFile: !uuid '4a3e64e4ce193739b1d41c52c207b891f5465a23'
-  /Admin.NET/Admin.NET.Core/Hub/OnlineUserHub.cs:
-    newFile: !uuid '819b93066375f01c656e672f8cd9f681ff187485'
-    oldFile: !uuid '56bb99ad279b8b2b554dc524ef75cc99be78ae0b'
-  /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid 'e471032a5da157e5aa5026b4857b3e482483b83b'
-    oldFile: !uuid 'e7dc00ff5aa244508c0097234eab357857e50c95'
-  /Admin.NET/Admin.NET.Core/Service/Cache:
-    newFile: !uuid 'b6e46742dc619a9418cf0deb00c382bed401a768'
-    oldFile: !uuid 'f6380225de18a6682054bfc277ed7b32ea8dbc98'
-  /Admin.NET/Admin.NET.Core/Service/Cache/SysCacheService.cs:
-    newFile: !uuid '5cc1acb6b864542e2cb3a8e76b6e5985c051dc37'
-    oldFile: !uuid '52dbbe2a3ff6ba6e7acc31c6a82703932410e87b'
-  /Admin.NET/Plugins:
-    newFile: !uuid 'f46b378764eb69ecb16d603648929c606fe47ea5'
-    oldFile: !uuid '6f42e231cccd4e681fd55b70eb40700fff14deab'
-  /Admin.NET/Plugins/Admin.NET.Plugin.WorkWeixin:
-    newFile: !uuid '2cdd3b8d6b9e512dd41b59544a31529d6949d8b0'
-    oldFile: !uuid 'c8325618df661e7526a6b6617716e69d29a8d015'
-  /Admin.NET/Plugins/Admin.NET.Plugin.WorkWeixin/Admin.NET.Plugin.WorkWeixin.csproj:
-    newFile: !uuid 'ff2c7bab7b216908b332b6fc11ee2cfd97b3cf3b'
-    oldFile: !uuid 'ff26e9545be12449666c7d8bdd2ba839f9bf9bae'
-gitCommitId: !uuid '1c45fa319deb02e4c4a71e57fbd7bc10bcfe5b49'
+  /Web:
+    newFile: !uuid '0be2587e145a5d0dd94f9a6711f61133bf02a007'
+    oldFile: !uuid '40f02711061760297b612fad99ac127b887106ba'
+  /Web/src:
+    newFile: !uuid 'f2c4a21983ae9dd2b72e07877f06ed90bf0c6a0c'
+    oldFile: !uuid '1ba77459c6cff135cbb2c75392d3720a4e898aa9'
+  /Web/src/i18n:
+    newFile: !uuid '602647ffcab1430c645c2c19b616e32daa064060'
+    oldFile: !uuid 'e1781868b9e5c0c5280dac1bf384443de241a1dd'
+  /Web/src/i18n/pages:
+    newFile: !uuid 'f581398f9f4eee36f69fede795df30ed1e2c5cbf'
+    oldFile: !uuid '939b2d9448599b6c3f744064a31179174831e73b'
+  /Web/src/i18n/pages/login:
+    newFile: !uuid '6fc6fcf4ce4c21c99922779efff121df5d39f11e'
+    oldFile: !uuid 'bc6f6bb7ba90a7e90fb406466ac355cc26b09364'
+  /Web/src/i18n/pages/login/zh-tw.ts:
+    newFile: !uuid '2fbab54a744af2dac73f30d68b6a01e3957dae04'
+    oldFile: !uuid '5085d74342ebf8487131d318bc74baae5f11f677'
+gitCommitId: !uuid '4254a362672c83f87c724864959366b7b4feffbd'
 renames: {
   }
-revisionId: 2727
+revisionId: 2728
