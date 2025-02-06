@@ -137,8 +137,7 @@ public class EnumToDictJob : IJob
                 Label = x.Describe,
                 Value = x.Value.ToString(),
                 OrderNo = x.Value + OrderOffset,
-                TagType = x.Theme != "" ? x.Theme : DefaultTagType,
-                TenantId = SqlSugarConst.DefaultTenantId
+                TagType = x.Theme != "" ? x.Theme : DefaultTagType
             }).ToList();
             list.Add(dictType);
         }
