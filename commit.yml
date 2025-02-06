@@ -2,25 +2,19 @@
 branches: {
   }
 fileChange:
-  /Web:
-    newFile: !uuid '734abd8a1d8996323b374a10e6116737f85d8136'
-    oldFile: !uuid '4bd37e5069ba5be6538196c4ba98ed6064d3e2ca'
-  /Web/src:
-    newFile: !uuid 'e06356dcbabd57ecd3670904fa5b4e2f406382ba'
-    oldFile: !uuid '25556fb69234db2a49d9c23870b7a5115a896c1d'
-  /Web/src/i18n:
-    newFile: !uuid 'a41318c6b78f6c598f699c5b0ab9cd3548e55e3c'
-    oldFile: !uuid '2adf5b52898aa55873ca92a5c8558ee7537e644a'
-  /Web/src/i18n/pages:
-    newFile: !uuid 'c80553e57342bc1e152e41fd1dd3ea7b07b18819'
-    oldFile: !uuid 'b8b5a1d0a003672744821c72964e110b2c3e1a39'
-  /Web/src/i18n/pages/login:
-    newFile: !uuid '18bd3cd79945b8b2888bb66e04352a3e26691a8c'
-    oldFile: !uuid '358c8d71b9256721e948b3a1e342395dde33dc57'
-  /Web/src/i18n/pages/login/zh-cn.ts:
-    newFile: !uuid 'e461a5e017eabb908bee7aba5fc4526dc4f6c94e'
-    oldFile: !uuid '35e32272ac5a397bfae5ba10fa1d707428d8760f'
-gitCommitId: !uuid '20b49d6ae1e4e930fc896b245682bc01b9beb6ce'
+  /Admin.NET:
+    newFile: !uuid '17dbfbfe93a15006731d05b4eb974abdc1ce1fec'
+    oldFile: !uuid 'da4011c93e010b4bf7097479cbe369a399e86142'
+  /Admin.NET/Admin.NET.Core:
+    newFile: !uuid 'a426d0400f914120678aba09d9390a2281790115'
+    oldFile: !uuid '6e94919e638d07f682ccd6e9b74d062cb3fb43a4'
+  /Admin.NET/Admin.NET.Core/Job:
+    newFile: !uuid '795309bb4ddb2bbafc2511b6e03bb1bba75f0b5c'
+    oldFile: !uuid '98c201da7fb0f16b10108124115045e90f5cd3da'
+  /Admin.NET/Admin.NET.Core/Job/EnumToDictJob.cs:
+    newFile: !uuid '4b849038fcaddf387301c678da37c608b8bf7efb'
+    oldFile: !uuid '200d7a8b3bfdb49c15b5143d2fc9235c780c61dc'
+gitCommitId: !uuid '6a369ad63824a5e04e933bd7ed8f347c138cb114'
 renames: {
   }
-revisionId: 2730
+revisionId: 2731
