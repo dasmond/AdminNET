@@ -36,13 +36,28 @@
 							<el-button style="max-width: 80px; margin-top: 20px" size="default" @click="hideMessage"> 确认 </el-button>
 						</div>
 						<div v-else class="layout-lock-screen-login-box-value">
-							<el-input placeholder="请输入密码" type="password" ref="layoutLockScreenInputRef" size="default" v-model="state.lockScreenPassword" @keyup.enter.native.stop="onLockScreenSubmit()">
+							<el-input
+								placeholder="请输入密码"
+								:type="state.isShowPassword ? 'text' : 'password'"
+								ref="layoutLockScreenInputRef"
+								size="default"
+								v-model="state.lockScreenPassword"
+								@keyup.enter.native.stop="onLockScreenSubmit()"
+							>
 								<template #append>
 									<el-button @click="onLockScreenSubmit">
 										<el-icon class="el-input__icon">
 											<ele-Right />
 										</el-icon>
 									</el-button>
+								</template>
+								<template #suffix>
+									<i
+										class="iconfont el-input__icon login-content-password"
+										:class="state.isShowPassword ? 'icon-yincangmima' : 'icon-xianshimima'"
+										@click="state.isShowPassword = !state.isShowPassword"
+									>
+									</i>
 								</template>
 							</el-input>
 						</div>
@@ -68,7 +83,8 @@ import { useUserInfo } from '/@/stores/userInfo';
 import { sm2 } from 'sm-crypto-v2';
 import { feature, getAPI } from '/@/utils/axios-utils';
 import { SysAuthApi } from '/@/api-services';
-
+import { useRoute } from 'vue-router';
+import { loadSysInfo } from '/@/utils/sysInfo';
 // 定义变量内容
 const layoutLockScreenDateRef = ref<HtmlType>();
 const layoutLockScreenInputRef = ref();
@@ -94,8 +110,9 @@ const state = reactive({
 	lockScreenPassword: '',
 	message: '',
 	showMessage: false,
+	isShowPassword: false,
 });
-
+const route = useRoute();
 // 鼠标按下 pc
 const onDownPc = (down: MouseEvent) => {
 	state.isFlags = true;
@@ -200,8 +217,10 @@ const onLockScreenSubmit = async () => {
 				setLocalThemeConfig();
 				return;
 			}
+			console.log('userInfos', userInfos);
 			// SM2加密密码
 			const publicKey = window.__env__.VITE_SM_PUBLIC_KEY;
+			console.log('publicKey', publicKey);
 			const password = sm2.doEncrypt(state.lockScreenPassword, publicKey, 1);
 			const [err, res] = await feature(getAPI(SysAuthApi).apiSysAuthUnLockScreenPost(password));
 			if (err) {
@@ -229,11 +248,18 @@ const hideMessage = () => {
 	});
 };
 // 页面加载时
-onMounted(() => {
+onMounted(async() => {
 	initGetElement();
 	initSetTime();
 	initLockScreen();
-
+	// 获取租户Id标识
+	var tenantid = Number(route.query.tid);
+	if (isNaN(tenantid)) {
+		tenantid = 0;
+	} else if (tenantid > 99999) {
+		Local.set('tid', tenantid);
+	}
+	await loadSysInfo(tenantid);
 	// 侦听ENTER按钮事件
 	document.onkeydown = (e) => {
 		if (e.key === 'Enter') {
@@ -244,7 +270,7 @@ onMounted(() => {
 					state.moveDifference = state.moveDifference - 10;
 					onMove();
 					// 超过410像素则结束
-					if (state.moveDifference < -410) clearInterval(moveInterval);
+					if (state.moveDifference < -410 && moveInterval) clearInterval(moveInterval);
 				}, 5);
 			}
 			// 当显示消息时，按ENTER切到密码输入
