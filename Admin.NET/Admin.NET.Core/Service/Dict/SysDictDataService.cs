@@ -48,7 +48,7 @@ public class SysDictDataService : IDynamicApiController, ITransient
     [DisplayName("获取字典值列表")]
     public async Task<List<SysDictData>> GetList([FromQuery] GetDataDictDataInput input)
     {
-        return await _sysDictDataRep.AsQueryable().Where(u => u.DictTypeId == input.DictTypeId).ToListAsync();
+        return await GetDictValueQueryable().Where(u => u.DictTypeId == input.DictTypeId).ToListAsync();
     }
 
     /// <summary>
@@ -60,13 +60,13 @@ public class SysDictDataService : IDynamicApiController, ITransient
     [DisplayName("增加字典值")]
     public async Task AddDictData(AddDictDataInput input)
     {
-        var isExist = await _sysDictDataRep.IsAnyAsync(u => u.Value == input.Value && u.DictTypeId == input.DictTypeId);
+        var isExist = await GetDictValueQueryable().AnyAsync(u => u.Value == input.Value && u.DictTypeId == input.DictTypeId);
         if (isExist) throw Oops.Oh(ErrorCodeEnum.D3003);
 
         var dictType = await _sysDictDataRep.Change<SysDictType>().GetByIdAsync(input.DictTypeId);
         if (dictType.SysFlag == YesNoEnum.Y && !_userManager.SuperAdmin) throw Oops.Oh(ErrorCodeEnum.D3010);
 
-        var dictTypeCode = await _sysDictDataRep.AsQueryable().Where(u => u.DictTypeId == input.DictTypeId).Select(u => u.DictType.Code).FirstAsync();
+        var dictTypeCode = await _sysDictDataRep.AsQueryable().ClearFilter().Where(u => u.DictTypeId == input.DictTypeId).Select(u => u.DictType.Code).FirstAsync();
         _sysCacheService.Remove($"{CacheConst.KeyDict}{dictTypeCode}");
 
         await _sysDictDataRep.InsertAsync(input.Adapt<SysDictData>());
@@ -82,16 +82,18 @@ public class SysDictDataService : IDynamicApiController, ITransient
     [DisplayName("更新字典值")]
     public async Task UpdateDictData(UpdateDictDataInput input)
     {
-        var isExist = await _sysDictDataRep.IsAnyAsync(u => u.Id == input.Id);
+        var isExist = await GetDictValueQueryable().AnyAsync(u => u.Id == input.Id);
         if (!isExist) throw Oops.Oh(ErrorCodeEnum.D3004);
 
-        isExist = await _sysDictDataRep.IsAnyAsync(u => u.Value == input.Value && u.DictTypeId == input.DictTypeId && u.Id != input.Id);
+        isExist = await GetDictValueQueryable().AnyAsync(u => u.Value == input.Value && u.DictTypeId == input.DictTypeId && u.Id != input.Id);
         if (isExist) throw Oops.Oh(ErrorCodeEnum.D3003);
 
         var dictType = await _sysDictDataRep.Change<SysDictType>().GetByIdAsync(input.DictTypeId);
         if (dictType.SysFlag == YesNoEnum.Y && !_userManager.SuperAdmin) throw Oops.Oh(ErrorCodeEnum.D3010);
 
-        var dictTypeCode = await _sysDictDataRep.AsQueryable().Where(u => u.DictTypeId == input.DictTypeId).Select(u => u.DictType.Code).FirstAsync();
+        var dictTypeCode = await _sysDictDataRep.AsQueryable().ClearFilter()
+            .Where(u => u.DictTypeId == input.DictTypeId).Select(u => u.DictType.Code)
+            .FirstAsync();
         _sysCacheService.Remove($"{CacheConst.KeyDict}{dictTypeCode}");
 
         await _sysDictDataRep.UpdateAsync(input.Adapt<SysDictData>());
@@ -107,9 +109,11 @@ public class SysDictDataService : IDynamicApiController, ITransient
     [DisplayName("删除字典值")]
     public async Task DeleteDictData(DeleteDictDataInput input)
     {
-        var dictData = await _sysDictDataRep.AsQueryable().FirstAsync(u => u.Id == input.Id) ?? throw Oops.Oh(ErrorCodeEnum.D3004);
+        var dictData = await _sysDictDataRep.GetByIdAsync(input.Id) ?? throw Oops.Oh(ErrorCodeEnum.D3004);
 
-        var dictTypeCode = await _sysDictDataRep.AsQueryable().Where(u => u.DictTypeId == dictData.DictTypeId).Select(u => u.DictType.Code).FirstAsync();
+        var dictTypeCode = await _sysDictDataRep.AsQueryable().ClearFilter()
+            .Where(u => u.DictTypeId == dictData.DictTypeId).Select(u => u.DictType.Code)
+            .FirstAsync();
         _sysCacheService.Remove($"{CacheConst.KeyDict}{dictTypeCode}");
 
         var dictType = await _sysDictDataRep.Change<SysDictType>().GetByIdAsync(dictData.DictTypeId);
@@ -140,7 +144,9 @@ public class SysDictDataService : IDynamicApiController, ITransient
     {
         var dictData = await _sysDictDataRep.AsQueryable().FirstAsync(u => u.Id == input.Id) ?? throw Oops.Oh(ErrorCodeEnum.D3004);
 
-        var dictTypeCode = await _sysDictDataRep.AsQueryable().ClearFilter().Where(u => u.DictTypeId == dictData.Id).Select(u => u.DictType.Code).FirstAsync();
+        var dictTypeCode = await _sysDictDataRep.AsQueryable().ClearFilter()
+            .Where(u => u.DictTypeId == dictData.Id).Select(u => u.DictType.Code)
+            .FirstAsync();
         _sysCacheService.Remove($"{CacheConst.KeyDict}{dictTypeCode}");
 
         dictData.Status = input.Status;
@@ -159,7 +165,7 @@ public class SysDictDataService : IDynamicApiController, ITransient
         var dictDataList = _sysCacheService.Get<List<SysDictData>>(cacheKey);
         if (dictDataList != null) return dictDataList;
 
-        dictDataList = await _sysDictDataRep.AsQueryable().Where(u => u.DictType.Code == code && u.Status == StatusEnum.Enable && u.DictType.Status == StatusEnum.Enable).ToListAsync();
+        dictDataList = await GetDictValueQueryable().Where(u => u.DictType.Code == code && u.Status == StatusEnum.Enable && u.DictType.Status == StatusEnum.Enable).ToListAsync();
         _sysCacheService.Set(cacheKey, dictDataList);
         return dictDataList;
     }
@@ -172,7 +178,7 @@ public class SysDictDataService : IDynamicApiController, ITransient
     [DisplayName("根据查询条件获取字典值集合")]
     public async Task<List<SysDictData>> GetDataList([FromQuery] QueryDictDataInput input)
     {
-        return await _sysDictDataRep.AsQueryable().Includes(u => u.DictType)
+        return await GetDictValueQueryable()
             .Where(u => u.DictType.Code == input.Code)
             .WhereIF(input.Status > 0, u => u.Status == (StatusEnum)input.Status)
             .ToListAsync();
@@ -186,8 +192,21 @@ public class SysDictDataService : IDynamicApiController, ITransient
     [NonAction]
     public async Task DeleteDictData(long dictTypeId)
     {
-        var dictTypeCode = await _sysDictDataRep.AsQueryable().Where(u => u.DictTypeId == dictTypeId).Select(u => u.DictType.Code).FirstAsync();
+        var dictTypeCode = await _sysDictDataRep.AsQueryable().ClearFilter()
+            .Where(u => u.DictTypeId == dictTypeId).Select(u => u.DictType.Code)
+            .FirstAsync();
         _sysCacheService.Remove($"{CacheConst.KeyDict}{dictTypeCode}");
         await _sysDictDataRep.DeleteAsync(u => u.DictTypeId == dictTypeId);
+    }
+
+    /// <summary>
+    /// 获取字典值查询器
+    /// </summary>
+    /// <returns></returns>
+    [NonAction]
+    public ISugarQueryable<SysDictData> GetDictValueQueryable()
+    {
+        return _sysDictDataRep.AsQueryable().ClearFilter()
+            .Where(u => u.DictType.SysFlag == YesNoEnum.Y || u.TenantId == _userManager.TenantId);
     }
 }
