@@ -34,7 +34,8 @@ public class SysDictDataService : IDynamicApiController, ITransient
     [DisplayName("获取字典值分页列表")]
     public async Task<SqlSugarPagedList<SysDictData>> Page(PageDictDataInput input)
     {
-        return await _sysDictDataRep.AsQueryable()
+        return await _sysDictDataRep.AsQueryable().ClearFilter()
+            .Where(u => u.TenantId == null || u.TenantId == _userManager.TenantId)
             .Where(u => u.DictTypeId == input.DictTypeId)
             .WhereIF(!string.IsNullOrEmpty(input.Label?.Trim()), u => u.Value.Contains(input.Label))
             .OrderBy(u => new { u.OrderNo, Code = u.Value })
@@ -48,7 +49,7 @@ public class SysDictDataService : IDynamicApiController, ITransient
     [DisplayName("获取字典值列表")]
     public async Task<List<SysDictData>> GetList([FromQuery] GetDataDictDataInput input)
     {
-        return await _sysDictDataRep.AsQueryable().Where(u => u.DictTypeId == input.DictTypeId).ToListAsync();
+        return await _sysDictDataRep.AsQueryable().ClearFilter().Where(u => u.TenantId == null || u.TenantId == _userManager.TenantId).Where(u => u.DictTypeId == input.DictTypeId).ToListAsync();
     }
 
     /// <summary>
