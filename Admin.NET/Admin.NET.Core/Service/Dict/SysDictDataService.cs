@@ -159,7 +159,10 @@ public class SysDictDataService : IDynamicApiController, ITransient
         var dictDataList = _sysCacheService.Get<List<SysDictData>>(cacheKey);
         if (dictDataList != null) return dictDataList;
 
-        dictDataList = await _sysDictDataRep.AsQueryable().Where(u => u.DictType.Code == code && u.Status == StatusEnum.Enable && u.DictType.Status == StatusEnum.Enable).ToListAsync();
+        dictDataList = await _sysDictDataRep.AsQueryable().ClearFilter()
+            .Where(u => u.DictType.Code == code && u.Status == StatusEnum.Enable && u.DictType.Status == StatusEnum.Enable)
+            .Where(u => u.DictType.SysFlag == YesNoEnum.Y || u.TenantId == _userManager.TenantId)
+            .ToListAsync();
         _sysCacheService.Set(cacheKey, dictDataList);
         return dictDataList;
     }
@@ -172,8 +175,10 @@ public class SysDictDataService : IDynamicApiController, ITransient
     [DisplayName("根据查询条件获取字典值集合")]
     public async Task<List<SysDictData>> GetDataList([FromQuery] QueryDictDataInput input)
     {
-        return await _sysDictDataRep.AsQueryable().Includes(u => u.DictType)
+        return await _sysDictDataRep.AsQueryable().ClearFilter()
+            .Includes(u => u.DictType)
             .Where(u => u.DictType.Code == input.Code)
+            .Where(u => u.DictType.SysFlag == YesNoEnum.Y || u.TenantId == _userManager.TenantId)
             .WhereIF(input.Status > 0, u => u.Status == (StatusEnum)input.Status)
             .ToListAsync();
     }
