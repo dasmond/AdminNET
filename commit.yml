@@ -3,27 +3,21 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid 'c16c5c744b1ffc118942a9e95bf90109fb051ab0'
-    oldFile: !uuid '86a8095d602878498a2bae466889f919381c7092'
+    newFile: !uuid 'e4bbcea70e14e7791aadfa854016f44b5e161624'
+    oldFile: !uuid 'c16c5c744b1ffc118942a9e95bf90109fb051ab0'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '6b5680f70608d2b8965fe3d34b6baf4318b17315'
-    oldFile: !uuid 'f8a4ffcb9c7ab99f4d2797840c364ab3f9ddf5ae'
-  /Admin.NET/Admin.NET.Core/Enum:
-    newFile: !uuid 'befc5ad77ae128a6081f604688cafa5803566412'
-    oldFile: !uuid '57105d90f1acbcb3614e9c51e535cac49cae657f'
-  /Admin.NET/Admin.NET.Core/Enum/ErrorCodeEnum.cs:
-    newFile: !uuid '115d8a8b28b4862f341c0ae3269f3553ddf495a4'
-    oldFile: !uuid '8330a975405e795799e7cd6ba95f70af6c09b3fc'
+    newFile: !uuid 'af94c10f2309de2bfaeea9e659c38487ea623100'
+    oldFile: !uuid '6b5680f70608d2b8965fe3d34b6baf4318b17315'
   /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid '6caa6a6143d53318e1a57b922c59c4a8b9a5d068'
-    oldFile: !uuid 'bafca41de8179e5a4f194607f39df6319be0c6d1'
-  /Admin.NET/Admin.NET.Core/Service/Org:
-    newFile: !uuid 'f60fb0c6867a364d7d2f716b2d27460088b7a651'
-    oldFile: !uuid '6224b203ee5b23f07dd5ad305c15eac5c0fe214c'
-  /Admin.NET/Admin.NET.Core/Service/Org/SysOrgService.cs:
-    newFile: !uuid '30c46e2b98bd2258e113194dea24406e5828fa65'
-    oldFile: !uuid 'afc38c6300c649b57b79aff81684804fde3bd51a'
-gitCommitId: !uuid '6fa975ba6d8debe593fccda1c07e73ebe76ae979'
+    newFile: !uuid '0ad544ce9d1fa2c762f943c6da42ce20e1a8cdca'
+    oldFile: !uuid '6caa6a6143d53318e1a57b922c59c4a8b9a5d068'
+  /Admin.NET/Admin.NET.Core/Service/Dict:
+    newFile: !uuid 'a74efa6aef7c59bbfe7061f5501a7db4d95579a8'
+    oldFile: !uuid '4cca6538043bab1c2cd8afaccfc405ac32cd0af9'
+  /Admin.NET/Admin.NET.Core/Service/Dict/SysDictDataService.cs:
+    newFile: !uuid 'e12a0445020f5fedcf7fd56241e9f20903842a29'
+    oldFile: !uuid '81000703787638ca48a9333e04b94f9b0618bd77'
+gitCommitId: !uuid 'c778f4302b2daf83498683114f916bada791c81c'
 renames: {
   }
-revisionId: 2734
+revisionId: 2735
