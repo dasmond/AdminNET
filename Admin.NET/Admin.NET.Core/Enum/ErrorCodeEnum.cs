@@ -314,6 +314,12 @@ public enum ErrorCodeEnum
     D2011,
 
     /// <summary>
+    /// 系统默认机构禁止修改
+    /// </summary>
+    [ErrorCodeItemMetadata("系统默认机构禁止修改")]
+    D2012,
+
+    /// <summary>
     /// 字典类型不存在
     /// </summary>
     [ErrorCodeItemMetadata("字典类型不存在")]
