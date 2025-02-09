@@ -3,21 +3,36 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid 'e4bbcea70e14e7791aadfa854016f44b5e161624'
-    oldFile: !uuid 'c16c5c744b1ffc118942a9e95bf90109fb051ab0'
+    newFile: !uuid '8768d5b02853195f7005209ca5bf3687ae17efae'
+    oldFile: !uuid 'e4bbcea70e14e7791aadfa854016f44b5e161624'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid 'af94c10f2309de2bfaeea9e659c38487ea623100'
-    oldFile: !uuid '6b5680f70608d2b8965fe3d34b6baf4318b17315'
+    newFile: !uuid '0651c5504f6274aa1f23e91001bab0c9df30f101'
+    oldFile: !uuid 'af94c10f2309de2bfaeea9e659c38487ea623100'
   /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid '0ad544ce9d1fa2c762f943c6da42ce20e1a8cdca'
-    oldFile: !uuid '6caa6a6143d53318e1a57b922c59c4a8b9a5d068'
-  /Admin.NET/Admin.NET.Core/Service/Dict:
-    newFile: !uuid 'a74efa6aef7c59bbfe7061f5501a7db4d95579a8'
-    oldFile: !uuid '4cca6538043bab1c2cd8afaccfc405ac32cd0af9'
-  /Admin.NET/Admin.NET.Core/Service/Dict/SysDictDataService.cs:
-    newFile: !uuid 'e12a0445020f5fedcf7fd56241e9f20903842a29'
-    oldFile: !uuid '81000703787638ca48a9333e04b94f9b0618bd77'
-gitCommitId: !uuid 'c778f4302b2daf83498683114f916bada791c81c'
+    newFile: !uuid 'b82ec9dec33cd12fe9abbc8169de1959eea8734b'
+    oldFile: !uuid '0ad544ce9d1fa2c762f943c6da42ce20e1a8cdca'
+  /Admin.NET/Admin.NET.Core/Service/File:
+    newFile: !uuid '97cfddb067196aaffd8ecd2f178edab62594cb6e'
+    oldFile: !uuid '0d03922e73c5764314e67cf56b85c418e3dbad7a'
+  /Admin.NET/Admin.NET.Core/Service/File/FileProvider:
+    newFile: !uuid '938967591a1c1763a7cb3053f2d9ad7caa7305cd'
+    oldFile: null
+  /Admin.NET/Admin.NET.Core/Service/File/FileProvider/DefaultFileProvider.cs:
+    newFile: !uuid '3663b80e7cbe8008364643005d6999c3e7dad2b4'
+    oldFile: null
+  /Admin.NET/Admin.NET.Core/Service/File/FileProvider/ICustomFileProvider.cs:
+    newFile: !uuid 'b60026107cd1b2e64315b2a0eac358ae172ffc98'
+    oldFile: null
+  /Admin.NET/Admin.NET.Core/Service/File/FileProvider/OSSFileProvider.cs:
+    newFile: !uuid 'ba7fe612464a2f75db893f98df0a6e97aaa8dbcf'
+    oldFile: null
+  /Admin.NET/Admin.NET.Core/Service/File/FileProvider/SSHFileProvider.cs:
+    newFile: !uuid 'f087ca0d3e601d23aff87011432959ec94adc934'
+    oldFile: null
+  /Admin.NET/Admin.NET.Core/Service/File/SysFileService.cs:
+    newFile: !uuid '9cc2c219c455b1289d61e6c87d523cacef7d092f'
+    oldFile: !uuid '40051838bf6117174be5418f8e270758a679934a'
+gitCommitId: !uuid 'c6be73aecf22ae2ed4eb6827a8ae34f1374bb2c2'
 renames: {
   }
-revisionId: 2735
+revisionId: 2736
