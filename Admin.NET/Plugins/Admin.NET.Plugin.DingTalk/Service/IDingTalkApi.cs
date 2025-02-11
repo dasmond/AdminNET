@@ -58,4 +58,24 @@ public interface IDingTalkApi : IHttpDeclarative
     Task<GetDingTalkCardMessageReadStatusOutput> GetDingTalkCardMessageReadStatus(
         [Header("x-acs-dingtalk-access-token")] string token,
         [Query] GetDingTalkCardMessageReadStatusInput input);
+
+    /// <summary>
+    /// 获取角色列表
+    /// </summary>
+    /// <param name="access_token">调用该接口的应用凭证</param>
+    /// <param name="input"></param>
+    /// <returns></returns>
+    [Post("https://oapi.dingtalk.com/topapi/role/list")]
+    Task<DingTalkBaseResponse<DingTalkRoleListOutput>> GetDingTalkRoleList([Query] string access_token,
+        [Body, Required] GetDingTalkCurrentRoleListInput input);
+
+    /// <summary>
+    /// 获取指定角色的员工列表
+    /// </summary>
+    /// <param name="access_token">调用该接口的应用凭证</param>
+    /// <param name="input"></param>
+    /// <returns></returns>
+    [Post("https://oapi.dingtalk.com/topapi/role/simplelist")]
+    Task<DingTalkBaseResponse<DingTalkRoleSimplelistOutput>> GetDingTalkRoleSimplelist([Query] string access_token,
+        [Body, Required] GetDingTalkCurrentRoleSimplelistInput input);
 }
