@@ -58,12 +58,16 @@ public class SyncDingTalkUserJob : IJob
                 break;
             }
             // 根据用户Id获取花名册
-            var rosterRes = await _dingTalkApi.GetDingTalkCurrentEmployeesRosterList(tokenRes.AccessToken, new GetDingTalkCurrentEmployeesRosterListInput()
-            {
-                UserIdList = string.Join(",", userIdsRes.Result.DataList),
-                FieldFilterList = $"{DingTalkConst.NameField},{DingTalkConst.JobNumberField},{DingTalkConst.MobileField}",
-                AgentId = _dingTalkOptions.Value.AgentId
-            });
+            var rosterRes = await _dingTalkApi.GetDingTalkCurrentEmployeesRosterList(
+                tokenRes.AccessToken,
+                new GetDingTalkCurrentEmployeesRosterListInput()
+                {
+                    UserIdList = string.Join(",", userIdsRes.Result.DataList),
+                    FieldFilterList =
+                        $"{DingTalkConst.NameField},{DingTalkConst.JobNumberField},{DingTalkConst.MobileField},{DingTalkConst.DeptId},{DingTalkConst.Dept},{DingTalkConst.Position}",
+                    AgentId = _dingTalkOptions.Value.AgentId
+                }
+            );
             if (!rosterRes.Success)
             {
                 _logger.LogError(rosterRes.ErrMsg);
