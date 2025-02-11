@@ -1,4 +1,5 @@
 ﻿namespace Admin.NET.Plugin.DingTalk;
+
 /// <summary>
 /// 钉钉角色信息
 /// </summary>
@@ -11,6 +12,7 @@ public class DingTalkRoleUser : EntityBase
     [SugarColumn(ColumnDescription = "钉钉用户id", Length = 64)]
     [Required, MaxLength(64)]
     public virtual string? DingTalkUserId { get; set; }
+
     /// <summary>
     /// 角色组id
     /// </summary>
@@ -24,6 +26,7 @@ public class DingTalkRoleUser : EntityBase
     [SugarColumn(ColumnDescription = "角色组名", Length = 64)]
     [MaxLength(64)]
     public string? groupName { get; set; }
+
     /// <summary>
     /// 角色id
     /// </summary>

@@ -4,6 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
 namespace Admin.NET.Plugin.Job;
+
 /// <summary>
 /// 同步钉钉角色job,自动同步触发器请在web页面按需求设置
 /// </summary>
@@ -13,12 +14,14 @@ public class SyncDingTalkRoleJob : IJob
     private readonly IServiceScopeFactory _scopeFactory;
     private readonly IDingTalkApi _dingTalkApi;
     private readonly ILogger _logger;
+
     public SyncDingTalkRoleJob(IServiceScopeFactory scopeFactory, IDingTalkApi dingTalkApi, ILoggerFactory loggerFactory)
     {
         _scopeFactory = scopeFactory;
         _dingTalkApi = dingTalkApi;
         _logger = loggerFactory.CreateLogger(CommonConst.SysLogCategoryName);
     }
+
     public async Task ExecuteAsync(JobExecutingContext context, CancellationToken stoppingToken)
     {
         using var serviceScope = _scopeFactory.CreateScope();
@@ -69,11 +72,8 @@ public class SyncDingTalkRoleJob : IJob
                 {
                     dingTalkRoleUserList.AddRange(tempList);
                 }
-
-
             }
         }
-
 
         // 判断新增还是更新
         var sysDingTalkRoleList = await _dingTalkRoleRepo.AsQueryable().ToListAsync();

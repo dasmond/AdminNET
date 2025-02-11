@@ -158,7 +158,7 @@ public class SysOrgService : IDynamicApiController, ITransient
     {
         if (!_userManager.SuperAdmin && input.Pid == 0)
             throw Oops.Oh(ErrorCodeEnum.D2012);
-            
+
         if (input.Pid != 0)
         {
             //var pOrg = await _sysOrgRep.GetFirstAsync(u => u.Id == input.Pid);

@@ -1,5 +1,5 @@
-﻿
-namespace Admin.NET.Plugin.DingTalk;
+﻿namespace Admin.NET.Plugin.DingTalk;
+
 public class GetDingTalkCurrentRoleListInput
 {
     /// <summary>

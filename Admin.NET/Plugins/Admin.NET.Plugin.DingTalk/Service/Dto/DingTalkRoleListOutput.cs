@@ -1,4 +1,5 @@
 ﻿namespace Admin.NET.Plugin.DingTalk;
+
 public class DingTalkRoleListOutput
 {
     /// <summary>
@@ -7,6 +8,7 @@ public class DingTalkRoleListOutput
     [JsonProperty("hasMore")]
     [System.Text.Json.Serialization.JsonPropertyName("hasMore")]
     public bool hasMore { get; set; }
+
     /// <summary>
     /// 角色组列表
     /// </summary>

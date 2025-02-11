@@ -8,15 +8,18 @@ using OnceMi.AspNetCore.OSS;
 
 namespace Admin.NET.Core.Service;
 
-public class OSSFileProvider : ICustomFileProvider,ITransient
+public class OSSFileProvider : ICustomFileProvider, ITransient
 {
     private readonly IOSSService _OSSService;
     private readonly OSSProviderOptions _OSSProviderOptions;
-    public OSSFileProvider(IOptions<OSSProviderOptions> oSSProviderOptions, IOSSServiceFactory ossServiceFactory) {
+
+    public OSSFileProvider(IOptions<OSSProviderOptions> oSSProviderOptions, IOSSServiceFactory ossServiceFactory)
+    {
         _OSSProviderOptions = oSSProviderOptions.Value;
         if (_OSSProviderOptions.Enabled)
             _OSSService = ossServiceFactory.Create(Enum.GetName(_OSSProviderOptions.Provider));
     }
+
     public async Task DeleteFileAsync(SysFile file)
     {
         await _OSSService.RemoveObjectAsync(file.BucketName, string.Concat(file.FilePath, "/", $"{file.Id}{file.Suffix}"));
@@ -43,7 +46,7 @@ public class OSSFileProvider : ICustomFileProvider,ITransient
         return new FileStreamResult(stream, "application/octet-stream") { FileDownloadName = fileName + file.Suffix };
     }
 
-    public async Task<SysFile> UploadFileAsync(IFormFile file,SysFile sysFile,string path,string finalName)
+    public async Task<SysFile> UploadFileAsync(IFormFile file, SysFile sysFile, string path, string finalName)
     {
         sysFile.Provider = Enum.GetName(_OSSProviderOptions.Provider);
         var filePath = string.Concat(path, "/", finalName);

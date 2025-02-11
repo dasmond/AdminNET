@@ -197,7 +197,6 @@ public class SysDictDataService : IDynamicApiController, ITransient
         var dictDataList = _sysCacheService.Get<List<SysDictData>>($"{CacheConst.KeyDict}{dictType.Code}");
         if (dictDataList == null)
         {
-
             dictDataList = await VSysDictData.InnerJoin<SysDictType>((u, a) => u.DictTypeId == a.Id)
                 .Where(u => u.DictTypeId == dictType.Id)
                 .Select((u, a) => new SysDictData
