@@ -6,11 +6,9 @@
 
 namespace Admin.NET.Core.Service;
 
-public class DictTypeInput : BaseStatusInput
-{
-}
+public class ConfigTenantInput : BaseIdInput;
 
-public class PageDictTypeInput : BasePageInput
+public class PageConfigTenantInput : BasePageInput
 {
     /// <summary>
     /// 名称
@@ -21,29 +19,31 @@ public class PageDictTypeInput : BasePageInput
     /// 编码
     /// </summary>
     public string Code { get; set; }
-}
 
-public class AddDictTypeInput : SysDictType
-{
     /// <summary>
-    /// 是否是内置字典（Y-是，N-否）
+    /// 分组编码
     /// </summary>
-    public override YesNoEnum SysFlag { get; set; } = YesNoEnum.N;
+    public string GroupCode { get; set; }
 }
 
-public class UpdateDictTypeInput : AddDictTypeInput
-{
-}
+public class AddConfigTenantInput : SysConfigTenant;
 
-public class DeleteDictTypeInput : BaseIdInput
-{
-}
+public class UpdateConfigTenantInput : AddConfigTenantInput;
 
-public class GetDataDictTypeInput
+public class DeleteConfigTenantInput : BaseIdInput;
+
+/// <summary>
+/// 批量配置参数输入
+/// </summary>
+public class BatchConfigTenantInput
 {
     /// <summary>
     /// 编码
     /// </summary>
-    [Required(ErrorMessage = "字典类型编码不能为空")]
     public string Code { get; set; }
+
+    /// <summary>
+    /// 属性值
+    /// </summary>
+    public string Value { get; set; }
 }

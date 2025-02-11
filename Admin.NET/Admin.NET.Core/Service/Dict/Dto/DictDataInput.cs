@@ -18,9 +18,14 @@ public class PageDictDataInput : BasePageInput
     public long DictTypeId { get; set; }
 
     /// <summary>
-    /// 字典文本
+    /// 文本
     /// </summary>
-    public string Label { get; set; }
+    public string Lable { get; set; }
+
+    /// <summary>
+    /// 编码
+    /// </summary>
+    public string Code { get; set; }
 }
 
 public class AddDictDataInput : SysDictData
@@ -47,10 +52,10 @@ public class GetDataDictDataInput
 public class QueryDictDataInput
 {
     /// <summary>
-    /// 编码
+    /// 字典值
     /// </summary>
-    [Required(ErrorMessage = "字典唯一编码不能为空")]
-    public string Code { get; set; }
+    [Required(ErrorMessage = "字典值不能为空")]
+    public string Value { get; set; }
 
     /// <summary>
     /// 状态
