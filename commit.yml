@@ -3,96 +3,60 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '459bba27977db044418b32d7fe6d69ac8ef8242c'
-    oldFile: !uuid '8768d5b02853195f7005209ca5bf3687ae17efae'
-  /Admin.NET/Admin.NET.Core:
-    newFile: !uuid 'ff9dd41d821422a68eccd5bf61a64228a44e9e8c'
-    oldFile: !uuid '0651c5504f6274aa1f23e91001bab0c9df30f101'
-  /Admin.NET/Admin.NET.Core/Entity:
-    newFile: !uuid '8e44c6ffb6dd38671a2ec829195425d1d5722019'
-    oldFile: !uuid '7515cd5c20248b5413f50afe1e62c1aa141029eb'
-  /Admin.NET/Admin.NET.Core/Entity/SysConfig.cs:
-    newFile: !uuid '23e84c53c17a7ff8087b3ed14b0ad12adf1498d4'
-    oldFile: !uuid '4af838d49f4f8c62e6d72cdb5c7dd79d8210ea5f'
-  /Admin.NET/Admin.NET.Core/Entity/SysConfigTenant.cs:
-    newFile: !uuid '00630d2d6dca1edc9a34b1575f4f873704b11479'
+    newFile: !uuid '95c074065a45e3faa471c2880b5698bc90ff945a'
+    oldFile: !uuid '459bba27977db044418b32d7fe6d69ac8ef8242c'
+  /Admin.NET/Plugins:
+    newFile: !uuid '89d933fb652be9726e4d3b1cedbb4ea23a9527a0'
+    oldFile: !uuid 'f46b378764eb69ecb16d603648929c606fe47ea5'
+  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk:
+    newFile: !uuid '443762269bb6c26f83d9c852d21d66a39a00e8e0'
+    oldFile: !uuid '77bdd7134f9f1d5cb555b4e5a97742641fa3e802'
+  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/Entity:
+    newFile: !uuid '842b56ea13cc9e1891b5c78847d66a6743cbbe92'
+    oldFile: !uuid '8958039a0d26d127f46adf31611ad852761c5e99'
+  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/Entity/DingTalkRoleUser.cs:
+    newFile: !uuid 'b8b5902c37afc00fcf5aaf4ca574289cc684fe48'
     oldFile: null
-  /Admin.NET/Admin.NET.Core/Entity/SysDictData.cs:
-    newFile: !uuid '9ac5bfeab576198a8f9d02e4d6fc586b6659fd97'
-    oldFile: !uuid '11adffc9543b21285cd675489f81ecfa85214501'
-  /Admin.NET/Admin.NET.Core/Entity/SysDictDataTenant.cs:
-    newFile: !uuid '2ec35c769b02a688cb46c4f35e97eda69da42991'
+  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/Job:
+    newFile: !uuid '4918a6021e9a968cb66056f0fce39e478f06b3ba'
+    oldFile: !uuid '853dcb7850acdcdab5364afac89229486ff75a07'
+  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/Job/SyncDingTalkRoleJob.cs:
+    newFile: !uuid 'f250c1dc3b165bce7510896db9cc128de8835347'
     oldFile: null
-  /Admin.NET/Admin.NET.Core/Entity/SysDictType.cs:
-    newFile: !uuid 'b9d0f9f93f26d6ed1539e3b082d39a6c07c28177'
-    oldFile: !uuid 'cb80783010e8c30cf71d77312f413e7d0b5bc96c'
-  /Admin.NET/Admin.NET.Core/Enum:
-    newFile: !uuid '5baec5290d3df9fd4d75592cc8d1d320eac0c648'
-    oldFile: !uuid 'befc5ad77ae128a6081f604688cafa5803566412'
-  /Admin.NET/Admin.NET.Core/Enum/ErrorCodeEnum.cs:
-    newFile: !uuid 'c1882c6975788300058f434dcc2715aabe3b380e'
-    oldFile: !uuid '115d8a8b28b4862f341c0ae3269f3553ddf495a4'
-  /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid 'dc39766c26b0ac7f48cfd6c08d16e6ffb078abde'
-    oldFile: !uuid 'b82ec9dec33cd12fe9abbc8169de1959eea8734b'
-  /Admin.NET/Admin.NET.Core/Service/Config:
-    newFile: !uuid 'ef5392b875798593a060f2acd79ce5a8e484cf91'
-    oldFile: !uuid '4bc15ff4272c29dc0f9cf66e357771db93d19803'
-  /Admin.NET/Admin.NET.Core/Service/Config/Dto:
-    newFile: !uuid 'ad92649a7bba01e1bee7844c8a9fe6ede289809f'
-    oldFile: !uuid '6a8cb1f458d189b3f6c43233fbbf89c8dea8d1ee'
-  /Admin.NET/Admin.NET.Core/Service/Config/Dto/TenantConfigInput.cs:
-    newFile: !uuid '1464ef84b32efc10e9a573dc363e80023e480235'
+  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/Job/SyncDingTalkUserJob.cs:
+    newFile: !uuid '650e2631f9449c2464e99df31c6adb4b194114fd'
+    oldFile: !uuid 'e4f7599d1b597ccafa00780e78ec5d2e68d82e1b'
+  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/Service:
+    newFile: !uuid '996ecebec47629b040be846ac2e08f4e242ada09'
+    oldFile: !uuid '913939323724887b3518704206a52f5dd758c865'
+  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/Service/Dto:
+    newFile: !uuid 'e77ffa9fe96200674c622e8234fc66d4e628f460'
+    oldFile: !uuid '2fe2aaa9cfdcddf992063267fdc32da97c517e2d'
+  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/Service/Dto/DingTalkRoleListOutput.cs:
+    newFile: !uuid '4f902a4b1b45cdc24048f2903a26b33b488dbd53'
     oldFile: null
-  /Admin.NET/Admin.NET.Core/Service/Config/SysConfigService.cs:
-    newFile: !uuid '693b9d528203f24bb2e3fd9b358a2860a05acfed'
-    oldFile: !uuid 'e5d78b14fc43b75130de9276cae90529f2f3cbdc'
-  /Admin.NET/Admin.NET.Core/Service/Config/SysTenantConfigService.cs:
-    newFile: !uuid 'da4f4b8c0aab6edd1df970a86ff41890e76bc350'
+  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/Service/Dto/DingTalkRoleListResult.cs:
+    newFile: !uuid 'e0e2d52983fbf3f01a99516c8193282b5bd5f04a'
     oldFile: null
-  /Admin.NET/Admin.NET.Core/Service/Dict:
-    newFile: !uuid '82b9176b589cf52fd63f58c3b40ae882c2f4d107'
-    oldFile: !uuid 'a74efa6aef7c59bbfe7061f5501a7db4d95579a8'
-  /Admin.NET/Admin.NET.Core/Service/Dict/Dto:
-    newFile: !uuid '168fcc604341802c44ac185a3930ee905254fa91'
-    oldFile: !uuid 'c555306cee78afd19cde04aad743b5d84cbd1427'
-  /Admin.NET/Admin.NET.Core/Service/Dict/Dto/DictDataInput.cs:
-    newFile: !uuid '9dc88a94b53adaa4f7e333b897ff836a555cbe63'
-    oldFile: !uuid '74d08326af521dd0343cab155d42b438369c80cd'
-  /Admin.NET/Admin.NET.Core/Service/Dict/Dto/DictTypeInput.cs:
-    newFile: !uuid '10682d5dcf6d0260762b053583bbbd0f98cb89cb'
-    oldFile: !uuid '1a629e70a009be98034d6978944519173ed01a3d'
-  /Admin.NET/Admin.NET.Core/Service/Dict/SysDictDataService.cs:
-    newFile: !uuid '858624e1864187ebde8e21dbb38ba5107a430c08'
-    oldFile: !uuid 'e12a0445020f5fedcf7fd56241e9f20903842a29'
-  /Admin.NET/Admin.NET.Core/Service/Dict/SysDictTypeService.cs:
-    newFile: !uuid '210f5b977e242e07bf06abddf737969ecd19e401'
-    oldFile: !uuid 'e6a8ade6163ed6f76a3d2bcba2fe7e32b3fda7a2'
-  /Web:
-    newFile: !uuid '796c59c44984bae099d8066a46ac50449399d0fd'
-    oldFile: !uuid 'c4474e1303a6d9aa0ef7e27857a3c3bb7dcea4df'
-  /Web/src:
-    newFile: !uuid '5b7075e8c8c86a8817c87a3f3deb025f1d2d19a4'
-    oldFile: !uuid 'c6d87262e77ca1d2307f6e61701acdc7ece1447d'
-  /Web/src/views:
-    newFile: !uuid 'f4d66e6fff7dc20c8f9576be47810a3ec470a73c'
-    oldFile: !uuid '78f4807ec9a12c422c80196a58486d16d254174c'
-  /Web/src/views/system:
-    newFile: !uuid 'e1172ff048636fc81076f7fd35a89f1629469375'
-    oldFile: !uuid '00dfc604d7fbce60beb92ee1feb4fadb6cbfda3f'
-  /Web/src/views/system/dict:
-    newFile: !uuid '212f5821dcc81ea21d8e6b6796bcabc9336fda72'
-    oldFile: !uuid 'a21dfd7e7ab31c5572063f556169e8537f955c1a'
-  /Web/src/views/system/dict/component:
-    newFile: !uuid '4992485fa86f25a5c6cea9ddd348259b258a1a70'
-    oldFile: !uuid '1789d73d3cb1bf1ba4ca6f20ee001fb9a97c1975'
-  /Web/src/views/system/dict/component/editDictType.vue:
-    newFile: !uuid '63025524a2be4f6653e36cf6e00d8d46b4ad3e91'
-    oldFile: !uuid '1617fb94f7a4e62caa0741ae12286db59a2da2ac'
-  /Web/src/views/system/dict/index.vue:
-    newFile: !uuid '30f43591805e3378ceea1a4152214f9a07367871'
-    oldFile: !uuid '947b6671b421364d838e75de09d8fad185dbeec2'
-gitCommitId: !uuid '13b0facd20348006edaa305892d6231ae1037ff2'
+  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/Service/Dto/DingTalkRoleResult.cs:
+    newFile: !uuid 'ca3aa0c4fccb6fc303e0d6089fb4cba11bb323d7'
+    oldFile: null
+  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/Service/Dto/DingTalkRoleSimplelistOutput.cs:
+    newFile: !uuid '0b9a28ddcac9d3e96b09acaa31bffaf61c642f8e'
+    oldFile: null
+  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/Service/Dto/DingTalkRoleSimplelistResult.cs:
+    newFile: !uuid '5cd7a65f5a284dcba19447bb651dffd874ab72fd'
+    oldFile: null
+  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/Service/Dto/GetDingTalkCurrentRoleListInput.cs:
+    newFile: !uuid '2fdb0954acbd5313b26d18c257acb6a8e1949853'
+    oldFile: null
+  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/Service/Dto/GetDingTalkCurrentRoleSimplelistInput.cs:
+    newFile: !uuid '3e8fb099620ae9ed8db45b046d0921106a84e45f'
+    oldFile: null
+  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/Service/IDingTalkApi.cs:
+    newFile: !uuid '6fde3fa985e292df3a14712641eec6d0c0377cf4'
+    oldFile: !uuid '0db3c320a2121c5448f791cfd15e8232a4262a73'
+gitCommitId: !uuid '9e887ff1b1d5449a7ae5b9d0b13b6993d46552eb'
 renames: {
   }
-revisionId: 2737
+revisionId: 2738
