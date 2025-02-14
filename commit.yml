@@ -3,33 +3,21 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid 'c43725dd9b22f525fc670aa6e4109ccd7a24a914'
-    oldFile: !uuid '42f75eeff2e545d13381a5f1f7a390c4d5370091'
-  /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '1b3c957bc1d13275f76dcbfcea46360fe25eaf0e'
-    oldFile: !uuid '9310121b3b5cc38fd06334f5bc18cf218e11bfbe'
-  /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
-    newFile: !uuid '899b016e0742c552cd96d092aadbf99c7ab64aea'
-    oldFile: !uuid 'ae7e1942bc94ff610f26a6aee694329115d05809'
-  /Admin.NET/Admin.NET.Test:
-    newFile: !uuid 'b61bbdebadb124e13ad69626ad539beefe29863a'
-    oldFile: !uuid '212c88131149bc62cf8544993ec7707f9fe09ef4'
-  /Admin.NET/Admin.NET.Test/Admin.NET.Test.csproj:
-    newFile: !uuid 'ec6283521b71434473a78a1441c83639bd0511c0'
-    oldFile: !uuid '2f427ec3394876c3b026ea3783d3750ec133f615'
-  /Admin.NET/Admin.NET.Web.Core:
-    newFile: !uuid '17bbb581af7da7953d41b0a0dca71be3378d9f45'
-    oldFile: !uuid '96c0c5e682f2364de66a9150c2c4c43ea107195a'
-  /Admin.NET/Admin.NET.Web.Core/Admin.NET.Web.Core.csproj:
-    newFile: !uuid '9a5475c5c19a569a99a1e18e2b521aa55cc8bc71'
-    oldFile: !uuid '423443c61f3e57199d99f89e536d6fdad52e4c88'
-  /Web:
-    newFile: !uuid 'd4c7b84d43582ffdf0994c19ef319320b79ec4a6'
-    oldFile: !uuid '32ee463547598a418b85a6f09b54ff4381597335'
-  /Web/package.json:
-    newFile: !uuid 'd751afa9d7a6b09de4345221384d05ca6c570fbb'
-    oldFile: !uuid 'f6a4fce1b42ec0890b0917686b192746a4b8cff4'
-gitCommitId: !uuid '027b6607fe70d0ba73a518c5d25212358895d8e8'
+    newFile: !uuid '62ee5c4695cdad700a3da9d31f5d44147614ccab'
+    oldFile: !uuid 'c43725dd9b22f525fc670aa6e4109ccd7a24a914'
+  /Admin.NET/Plugins:
+    newFile: !uuid 'e999dbcd0dec80447246852695c2345424ee26dd'
+    oldFile: !uuid '7dbdad3c889ea86371245821b1c5597ecb331a7a'
+  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk:
+    newFile: !uuid '8847a53ce6eb05320193316a33d5c4614930010b'
+    oldFile: !uuid '6c2243cb0287cfdead22cb59585d400a484701d3'
+  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/Service:
+    newFile: !uuid 'bbdc3673962920fd2d6d7e9bf432e06fec0a1987'
+    oldFile: !uuid '2e2549e7de8644294251e883000b0af68f83709f'
+  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/Service/IDingTalkApi.cs:
+    newFile: !uuid '3c753ebda2e95ce036a809fd15bd9dd495bbc69e'
+    oldFile: !uuid '6fde3fa985e292df3a14712641eec6d0c0377cf4'
+gitCommitId: !uuid 'e78c01aa68259e8731afa26c6a63aa3ff4d3cecf'
 renames: {
   }
-revisionId: 2740
+revisionId: 2741
