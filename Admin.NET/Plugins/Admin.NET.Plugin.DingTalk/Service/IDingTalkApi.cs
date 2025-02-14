@@ -43,7 +43,12 @@ public interface IDingTalkApi : IHttpDeclarative
     /// <param name="token">调用该接口的访问凭证</param>
     /// <param name="input"></param>
     /// <returns></returns>
+    /// <remarks>
+    /// 钉钉官方文档显示接口不再支持新应用接入, 已接入的应用可继续调用
+    /// 推荐更新接口https://open.dingtalk.com/document/orgapp/create-and-deliver-cards?spm=ding_open_doc.document.0.0.67fc50988Pf0mc
+    /// </remarks>
     [Post("https://api.dingtalk.com/v1.0/im/interactiveCards/send")]
+    [Obsolete]
     Task<DingTalkSendInteractiveCardsOutput> DingTalkSendInteractiveCards(
         [Header("x-acs-dingtalk-access-token")] string token,
         [Body] DingTalkSendInteractiveCardsInput input);
