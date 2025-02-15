@@ -3,21 +3,21 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '62ee5c4695cdad700a3da9d31f5d44147614ccab'
-    oldFile: !uuid 'c43725dd9b22f525fc670aa6e4109ccd7a24a914'
-  /Admin.NET/Plugins:
-    newFile: !uuid 'e999dbcd0dec80447246852695c2345424ee26dd'
-    oldFile: !uuid '7dbdad3c889ea86371245821b1c5597ecb331a7a'
-  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk:
-    newFile: !uuid '8847a53ce6eb05320193316a33d5c4614930010b'
-    oldFile: !uuid '6c2243cb0287cfdead22cb59585d400a484701d3'
-  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/Service:
-    newFile: !uuid 'bbdc3673962920fd2d6d7e9bf432e06fec0a1987'
-    oldFile: !uuid '2e2549e7de8644294251e883000b0af68f83709f'
-  /Admin.NET/Plugins/Admin.NET.Plugin.DingTalk/Service/IDingTalkApi.cs:
-    newFile: !uuid '3c753ebda2e95ce036a809fd15bd9dd495bbc69e'
-    oldFile: !uuid '6fde3fa985e292df3a14712641eec6d0c0377cf4'
-gitCommitId: !uuid 'e78c01aa68259e8731afa26c6a63aa3ff4d3cecf'
+    newFile: !uuid '96d8ae979939b95829aab15d2f1f8a5904b6d9e4'
+    oldFile: !uuid '62ee5c4695cdad700a3da9d31f5d44147614ccab'
+  /Admin.NET/Admin.NET.Core:
+    newFile: !uuid 'adda1b81a1f9e345cb50a2f40e0673c9a4bd6e9b'
+    oldFile: !uuid '1b3c957bc1d13275f76dcbfcea46360fe25eaf0e'
+  /Admin.NET/Admin.NET.Core/Service:
+    newFile: !uuid '943907d441619f4c79bb1daf62de6527633c1332'
+    oldFile: !uuid 'de3710cf5ed1903a641ac0e383fecc46c259fe33'
+  /Admin.NET/Admin.NET.Core/Service/Dict:
+    newFile: !uuid 'cabd24f5ac75764cb56b7efbb488d212463e5386'
+    oldFile: !uuid '2717a78e7870455ab7e088df4d9aad081bf1c424'
+  /Admin.NET/Admin.NET.Core/Service/Dict/SysDictDataService.cs:
+    newFile: !uuid '8a6fa1394dc9b5a73f69756f21559c92e3c3e41c'
+    oldFile: !uuid '752aeef0a27cd6c082074c0753d7c9e54c227804'
+gitCommitId: !uuid '0759cc3238b59f7cc9e6915282d9af5bf8933d8c'
 renames: {
   }
-revisionId: 2741
+revisionId: 2742
