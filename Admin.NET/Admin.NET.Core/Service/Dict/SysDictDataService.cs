@@ -26,8 +26,7 @@ public class SysDictDataService : IDynamicApiController, ITransient
         _sysCacheService = sysCacheService;
         VSysDictData = _sysDictDataRep.Context.UnionAll(
             _sysDictDataRep.AsQueryable(),
-            _sysDictDataRep.Change<SysDictDataTenant>().AsQueryable()
-                .Select<SysDictData>());
+            _sysDictDataRep.Change<SysDictDataTenant>().AsQueryable().WhereIF(_userManager.SuperAdmin, d => d.TenantId == _userManager.TenantId).Select<SysDictData>());
     }
 
     /// <summary>
