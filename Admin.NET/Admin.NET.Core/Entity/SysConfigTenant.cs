@@ -7,13 +7,13 @@
 namespace Admin.NET.Core;
 
 /// <summary>
-/// 系统配置参数表
+/// 系统租户配置参数表
 /// </summary>
-[SugarTable(null, "系统配置参数表")]
+[SugarTable(null, "系统租户配置参数表")]
 [SysTable]
 [SugarIndex("index_{table}_N", nameof(Name), OrderByType.Asc)]
 [SugarIndex("index_{table}_C", nameof(Code), OrderByType.Asc, IsUnique = true)]
-public partial class SysConfig : EntityBase
+public partial class SysConfigTenant : EntityTenant
 {
     /// <summary>
     /// 名称

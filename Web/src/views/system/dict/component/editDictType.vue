@@ -19,9 +19,17 @@
 							<el-input v-model="state.ruleForm.code" placeholder="字典编码" clearable />
 						</el-form-item>
 					</el-col>
-					<el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="mb20" v-if="userInfo.accountType === AccountTypeEnum.NUMBER_999">
+					<el-col :xs="12" :sm="12" :md="12" :lg="12" :xl="12" class="mb20" v-if="userInfo.accountType === AccountTypeEnum.NUMBER_999">
 						<el-form-item label="内置参数" prop="sysFlag" :rules="[{ required: true, message: '内置参数不能为空', trigger: 'blur' }]">
 							<el-radio-group v-model="state.ruleForm.sysFlag" :disabled="state.ruleForm.sysFlag == 1 && state.ruleForm.id != undefined">
+								<el-radio :value="1">是</el-radio>
+								<el-radio :value="2">否</el-radio>
+							</el-radio-group>
+						</el-form-item>
+					</el-col>
+					<el-col :xs="12" :sm="12" :md="12" :lg="12" :xl="12" class="mb20" v-if="userInfo.accountType === AccountTypeEnum.NUMBER_999">
+						<el-form-item label="租户字典" prop="isTenant" :rules="[{ required: true, message: '租户字典不能为空', trigger: 'blur' }]">
+							<el-radio-group v-model="state.ruleForm.isTenant" :disabled="state.ruleForm.id">
 								<el-radio :value="1">是</el-radio>
 								<el-radio :value="2">否</el-radio>
 							</el-radio-group>

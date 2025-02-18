@@ -30,6 +30,11 @@
                 <g-sys-dict v-model="scope.row.sysFlag" code="YesNoEnum" />
 							</template>
 						</el-table-column>
+						<el-table-column prop="isTenant" label="租户字典" min-width="70" align="center" show-overflow-tooltip v-if="userInfo.accountType === AccountTypeEnum.NUMBER_999">
+							<template #default="scope">
+                <g-sys-dict v-model="scope.row.isTenant" code="YesNoEnum" />
+							</template>
+						</el-table-column>
 						<el-table-column prop="status" label="状态" width="70" align="center" show-overflow-tooltip>
 							<template #default="scope">
                 <g-sys-dict v-model="scope.row.status" code="StatusEnum" />

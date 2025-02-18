@@ -386,6 +386,18 @@ public enum ErrorCodeEnum
     D3010,
 
     /// <summary>
+    /// 获取字典值集合入参有误
+    /// </summary>
+    [ErrorCodeItemMetadata("获取字典值集合入参有误")]
+    D3011,
+
+    /// <summary>
+    /// 禁止修改租户字典状态
+    /// </summary>
+    [ErrorCodeItemMetadata("禁止修改租户字典状态")]
+    D3012,
+
+    /// <summary>
     /// 菜单已存在
     /// </summary>
     [ErrorCodeItemMetadata("菜单已存在")]

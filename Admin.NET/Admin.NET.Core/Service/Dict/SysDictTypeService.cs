@@ -9,7 +9,7 @@ namespace Admin.NET.Core.Service;
 /// <summary>
 /// 系统字典类型服务 🧩
 /// </summary>
-[ApiDescriptionSettings(Order = 430)]
+[ApiDescriptionSettings(Order = 430, Description = "系统字典类型")]
 public class SysDictTypeService : IDynamicApiController, ITransient
 {
     private readonly SqlSugarRepository<SysDictType> _sysDictTypeRep;
@@ -36,7 +36,7 @@ public class SysDictTypeService : IDynamicApiController, ITransient
     public async Task<SqlSugarPagedList<SysDictType>> Page(PageDictTypeInput input)
     {
         return await _sysDictTypeRep.AsQueryable()
-            .WhereIF(!_userManager.SuperAdmin, u => u.SysFlag == YesNoEnum.N)
+            .WhereIF(!_userManager.SuperAdmin, u => u.IsTenant == YesNoEnum.Y)
             .WhereIF(!string.IsNullOrEmpty(input.Code?.Trim()), u => u.Code.Contains(input.Code))
             .WhereIF(!string.IsNullOrEmpty(input.Name?.Trim()), u => u.Name.Contains(input.Name))
             .OrderBy(u => new { u.OrderNo, u.Code })
@@ -61,11 +61,8 @@ public class SysDictTypeService : IDynamicApiController, ITransient
     [DisplayName("获取字典类型-值列表")]
     public async Task<List<SysDictData>> GetDataList([FromQuery] GetDataDictTypeInput input)
     {
-        return await _sysDictTypeRep.AsQueryable()
-            .Where(u => u.Code == input.Code)
-            .InnerJoin<SysDictData>((u, w) => u.Id == w.DictTypeId)
-            .Select((u, w) => w)
-            .ToListAsync() ?? throw Oops.Oh(ErrorCodeEnum.D3000);
+        var dictType = await _sysDictTypeRep.GetFirstAsync(u => u.Code == input.Code) ?? throw Oops.Oh(ErrorCodeEnum.D3000);
+        return await _sysDictDataService.GetDictDataListByDictTypeId(dictType.Id);
     }
 
     /// <summary>
@@ -77,9 +74,8 @@ public class SysDictTypeService : IDynamicApiController, ITransient
     [DisplayName("添加字典类型")]
     public async Task AddDictType(AddDictTypeInput input)
     {
-        if (input.SysFlag == YesNoEnum.Y && !_userManager.SuperAdmin) throw Oops.Oh(ErrorCodeEnum.D3010);
-
         if (input.Code.ToLower().EndsWith("enum")) throw Oops.Oh(ErrorCodeEnum.D3006);
+        if (input.SysFlag == YesNoEnum.Y && !_userManager.SuperAdmin) throw Oops.Oh(ErrorCodeEnum.D3008);
 
         var isExist = await _sysDictTypeRep.IsAnyAsync(u => u.Code == input.Code);
         if (isExist) throw Oops.Oh(ErrorCodeEnum.D3001);
@@ -97,12 +93,12 @@ public class SysDictTypeService : IDynamicApiController, ITransient
     [DisplayName("更新字典类型")]
     public async Task UpdateDictType(UpdateDictTypeInput input)
     {
-        if (input.SysFlag == YesNoEnum.Y && !_userManager.SuperAdmin) throw Oops.Oh(ErrorCodeEnum.D3010);
-
         var dict = await _sysDictTypeRep.GetFirstAsync(x => x.Id == input.Id);
+        if (dict.IsTenant != input.IsTenant) throw Oops.Oh(ErrorCodeEnum.D3012);
         if (dict == null) throw Oops.Oh(ErrorCodeEnum.D3000);
 
         if (dict.Code.ToLower().EndsWith("enum") && input.Code != dict.Code) throw Oops.Oh(ErrorCodeEnum.D3007);
+        if (input.SysFlag == YesNoEnum.Y && !_userManager.SuperAdmin) throw Oops.Oh(ErrorCodeEnum.D3009);
 
         var isExist = await _sysDictTypeRep.IsAnyAsync(u => u.Code == input.Code && u.Id != input.Id);
         if (isExist) throw Oops.Oh(ErrorCodeEnum.D3001);
@@ -150,6 +146,7 @@ public class SysDictTypeService : IDynamicApiController, ITransient
     public async Task SetStatus(DictTypeInput input)
     {
         var dictType = await _sysDictTypeRep.GetByIdAsync(input.Id) ?? throw Oops.Oh(ErrorCodeEnum.D3000);
+        if (dictType.SysFlag == YesNoEnum.Y && !_userManager.SuperAdmin) throw Oops.Oh(ErrorCodeEnum.D3009);
 
         _sysCacheService.Remove($"{CacheConst.KeyDict}{dictType.Code}");
 
@@ -165,9 +162,7 @@ public class SysDictTypeService : IDynamicApiController, ITransient
     public async Task<dynamic> GetAllDictList()
     {
         var ds = await _sysDictTypeRep.AsQueryable()
-            .InnerJoin<SysDictData>((u, w) => u.Id == w.DictTypeId).ClearFilter()
-            .Where((u, w) => !string.IsNullOrWhiteSpace(w.Value))
-            .Where((u, w) => u.SysFlag == YesNoEnum.Y || (u.SysFlag == YesNoEnum.N && w.TenantId == _userManager.TenantId))
+            .InnerJoin(_sysDictDataService.VSysDictData, (u, w) => u.Id == w.DictTypeId)
             .Select((u, w) => new
             {
                 TypeCode = u.Code,

@@ -18,18 +18,21 @@ public interface ICustomFileProvider
     /// <param name="fileName"></param>
     /// <returns></returns>
     public Task<FileStreamResult> GetFileStreamResultAsync(SysFile sysFile, string fileName);
+
     /// <summary>
     /// 下载指定文件Base64格式
     /// </summary>
     /// <param name="sysFile"></param>
     /// <returns></returns>
     public Task<string> DownloadFileBase64Async(SysFile sysFile);
+
     /// <summary>
     /// 删除文件
     /// </summary>
     /// <param name="sysFile"></param>
     /// <returns></returns>
     public Task DeleteFileAsync(SysFile sysFile);
+
     /// <summary>
     /// 上传文件
     /// </summary>
