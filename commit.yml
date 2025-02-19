@@ -3,27 +3,24 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '109f6401c9ae47bdcec49b514576c7d097a8ef2f'
-    oldFile: !uuid '739c90b8831bc49fe1cd6c019e6d209fbd9d8f47'
+    newFile: !uuid '54721f22b387144c889b5d3e864842fc43eb45ee'
+    oldFile: !uuid '109f6401c9ae47bdcec49b514576c7d097a8ef2f'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid 'eb78eef562ee7f137dd107ea87fe886a0a86e47a'
-    oldFile: !uuid 'cfb7dd381e67fa96cffecc23f1d0b402d68f580a'
+    newFile: !uuid '98eb0a060c966c078168467129d63e2640bceb18'
+    oldFile: !uuid 'eb78eef562ee7f137dd107ea87fe886a0a86e47a'
   /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid 'bd0d40527dcc6ef6109a76b070f3ff74ebaffbbe'
-    oldFile: !uuid 'afa43a79904ceb15b652c840258f7375e0db6397'
+    newFile: !uuid '1d1c6339a962c982ef2e58503f2cc9924550ece9'
+    oldFile: !uuid 'bd0d40527dcc6ef6109a76b070f3ff74ebaffbbe'
   /Admin.NET/Admin.NET.Core/Service/Auth:
-    newFile: !uuid '1e55ede18bac01b3d528bd313db97edc82f548e9'
-    oldFile: !uuid '89a886aab579e833dfd0bc77a67b33811a615a9c'
-  /Admin.NET/Admin.NET.Core/Service/Auth/SysAuthService.cs:
-    newFile: !uuid '58297b8da75433b590f4639dca8e98003bdabd15'
-    oldFile: !uuid 'b1e9897f0a21f8d0d28dfb70be9ebde4fd084a4c'
-  /Admin.NET/Admin.NET.Core/Service/User:
-    newFile: !uuid '739f1f28b849acf8065433d5b16409c0b9ab3699'
-    oldFile: !uuid '339c1d37a96702631ada19d0a00be193a73641b3'
-  /Admin.NET/Admin.NET.Core/Service/User/SysUserService.cs:
-    newFile: !uuid '2508c20be4d74876e2f033b8809a0edcdf2e94a8'
-    oldFile: !uuid 'eeb1d295ca9844874a98fe99a39ed8831873b0bd'
-gitCommitId: !uuid 'd5be87c586f21b2bd88a311ff3fae2cd1079eb65'
+    newFile: !uuid '8b929b682667183b42ed1b6503f57a41c56512ba'
+    oldFile: !uuid '1e55ede18bac01b3d528bd313db97edc82f548e9'
+  /Admin.NET/Admin.NET.Core/Service/Auth/Dto:
+    newFile: !uuid '3478640754a7ec30da45b521750b38c0356ea81b'
+    oldFile: !uuid '125843586f343d27fcadde381421d0223d93b0f5'
+  /Admin.NET/Admin.NET.Core/Service/Auth/Dto/LoginInput.cs:
+    newFile: !uuid 'c8076047eb93d0bec37cc3b48c5f25b1fa7a4676'
+    oldFile: !uuid '96c274d6b05d67ee3ec89e52dcfd2f7c9aaae3b3'
+gitCommitId: !uuid '3b020a9e3d6a192af438163147f989050644671d'
 renames: {
   }
-revisionId: 2747
+revisionId: 2748
