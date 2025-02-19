@@ -9,17 +9,26 @@ namespace Admin.NET.Core.Service;
 /// <summary>
 /// 系统租户配置参数服务 🧩
 /// </summary>
-[ApiDescriptionSettings(Order = 440, Description = "租户配置参数")]
-public class SysConfigTenantService : IDynamicApiController, ITransient
+[ApiDescriptionSettings(Order = 440)]
+public class SysTenantConfigService : IDynamicApiController, ITransient
 {
     private readonly SysCacheService _sysCacheService;
-    private readonly SqlSugarRepository<SysConfigTenant> _sysConfigRep;
+    private readonly SqlSugarRepository<SysTenantConfig> _sysConfigRep;
+    private readonly SqlSugarRepository<SysTenantConfigData> _sysConfigDataRep;
+    public readonly ISugarQueryable<SysConfig> VSysConfig;
+    private readonly UserManager _userManager;
 
-    public SysConfigTenantService(SysCacheService sysCacheService,
-        SqlSugarRepository<SysConfigTenant> sysConfigRep)
+    public SysTenantConfigService(SysCacheService sysCacheService,
+        SqlSugarRepository<SysTenantConfig> sysConfigRep,
+        SqlSugarRepository<SysTenantConfigData> sysConfigDataRep,
+       UserManager userManager)
     {
+        _userManager = userManager;
         _sysCacheService = sysCacheService;
         _sysConfigRep = sysConfigRep;
+        _sysConfigDataRep = sysConfigDataRep;
+        VSysConfig = _sysConfigRep.AsQueryable().LeftJoin(_sysConfigDataRep.AsQueryable().WhereIF(_userManager.SuperAdmin, cv => cv.TenantId == _userManager.TenantId),
+            (c, cv) => c.Id == cv.ConfigId).Select<SysConfig>();
     }
 
     /// <summary>
@@ -28,9 +37,9 @@ public class SysConfigTenantService : IDynamicApiController, ITransient
     /// <param name="input"></param>
     /// <returns></returns>
     [DisplayName("获取配置参数分页列表")]
-    public async Task<SqlSugarPagedList<SysConfigTenant>> Page(PageConfigTenantInput input)
+    public async Task<SqlSugarPagedList<SysConfig>> Page(PageConfigInput input)
     {
-        return await _sysConfigRep.AsQueryable()
+        return await VSysConfig
             .WhereIF(!string.IsNullOrWhiteSpace(input.Name?.Trim()), u => u.Name.Contains(input.Name))
             .WhereIF(!string.IsNullOrWhiteSpace(input.Code?.Trim()), u => u.Code.Contains(input.Code))
             .WhereIF(!string.IsNullOrWhiteSpace(input.GroupCode?.Trim()), u => u.GroupCode.Equals(input.GroupCode))
@@ -43,9 +52,9 @@ public class SysConfigTenantService : IDynamicApiController, ITransient
     /// </summary>
     /// <returns></returns>
     [DisplayName("获取配置参数列表")]
-    public async Task<List<SysConfigTenant>> List(PageConfigTenantInput input)
+    public async Task<List<SysConfig>> List(PageConfigInput input)
     {
-        return await _sysConfigRep.AsQueryable()
+        return await VSysConfig
             .WhereIF(!string.IsNullOrWhiteSpace(input.GroupCode?.Trim()), u => u.GroupCode.Equals(input.GroupCode))
             .ToListAsync();
     }
@@ -57,12 +66,17 @@ public class SysConfigTenantService : IDynamicApiController, ITransient
     /// <returns></returns>
     [ApiDescriptionSettings(Name = "Add"), HttpPost]
     [DisplayName("增加配置参数")]
-    public async Task AddConfig(AddConfigTenantInput input)
+    public async Task AddConfig(AddConfigInput input)
     {
         var isExist = await _sysConfigRep.IsAnyAsync(u => u.Name == input.Name || u.Code == input.Code);
         if (isExist) throw Oops.Oh(ErrorCodeEnum.D9000);
 
-        await _sysConfigRep.InsertAsync(input.Adapt<SysConfigTenant>());
+        var config = await _sysConfigRep.InsertReturnEntityAsync(input.Adapt<SysTenantConfig>());
+        await _sysConfigDataRep.InsertAsync(new SysTenantConfigData()
+        {
+            ConfigId = input.Id,
+            Value = input.Value
+        });
     }
 
     /// <summary>
@@ -73,25 +87,18 @@ public class SysConfigTenantService : IDynamicApiController, ITransient
     [ApiDescriptionSettings(Name = "Update"), HttpPost]
     [DisplayName("更新配置参数")]
     [UnitOfWork]
-    public async Task UpdateConfig(UpdateConfigTenantInput input)
+    public async Task UpdateConfig(UpdateConfigInput input)
     {
         var isExist = await _sysConfigRep.IsAnyAsync(u => (u.Name == input.Name || u.Code == input.Code) && u.Id != input.Id);
         if (isExist) throw Oops.Oh(ErrorCodeEnum.D9000);
 
-        //// 若修改国密SM2密匙则密码重新加密
-        //if (input.Code == ConfigConst.SysSM2Key && CryptogramUtil.CryptoType == CryptogramEnum.SM2.ToString())
-        //{
-        //    var sysUserRep = _sysConfigRep.ChangeRepository<SqlSugarRepository<SysUser>>();
-        //    var sysUsers = await sysUserRep.AsQueryable().Select(u => new { u.Id, u.Password }).ToListAsync();
-        //    foreach(var user in sysUsers)
-        //    {
-        //        user.Password = CryptogramUtil.Encrypt(CryptogramUtil.Decrypt(user.Password));
-        //    }
-        //    await sysUserRep.AsUpdateable(sysUsers).UpdateColumns(u => new { u.Password }).ExecuteCommandAsync();
-        //}
-
-        var config = input.Adapt<SysConfigTenant>();
+        var config = input.Adapt<SysTenantConfig>();
         await _sysConfigRep.AsUpdateable(config).IgnoreColumns(true).ExecuteCommandAsync();
+        var configData = await _sysConfigDataRep.GetFirstAsync(cv => cv.ConfigId == input.Id);
+        if (configData == null)
+            await _sysConfigDataRep.AsInsertable(new SysTenantConfigData() { ConfigId = input.Id, Value = input.Value }).ExecuteCommandAsync();
+        else
+            await _sysConfigDataRep.AsUpdateable(configData).IgnoreColumns(true).ExecuteCommandAsync();
 
         RemoveConfigCache(config);
     }
@@ -103,13 +110,14 @@ public class SysConfigTenantService : IDynamicApiController, ITransient
     /// <returns></returns>
     [ApiDescriptionSettings(Name = "Delete"), HttpPost]
     [DisplayName("删除配置参数")]
-    public async Task DeleteConfig(DeleteConfigTenantInput input)
+    public async Task DeleteConfig(DeleteConfigInput input)
     {
         var config = await _sysConfigRep.GetByIdAsync(input.Id);
         // 禁止删除系统参数
         if (config.SysFlag == YesNoEnum.Y) throw Oops.Oh(ErrorCodeEnum.D9001);
 
         await _sysConfigRep.DeleteAsync(config);
+        await _sysConfigDataRep.DeleteAsync(it => it.ConfigId == config.Id);
 
         RemoveConfigCache(config);
     }
@@ -130,6 +138,7 @@ public class SysConfigTenantService : IDynamicApiController, ITransient
             if (config.SysFlag == YesNoEnum.Y) continue;
 
             await _sysConfigRep.DeleteAsync(config);
+            await _sysConfigDataRep.DeleteAsync(it => it.ConfigId == config.Id);
 
             RemoveConfigCache(config);
         }
@@ -141,9 +150,9 @@ public class SysConfigTenantService : IDynamicApiController, ITransient
     /// <param name="input"></param>
     /// <returns></returns>
     [DisplayName("获取配置参数详情")]
-    public async Task<SysConfigTenant> GetDetail([FromQuery] ConfigTenantInput input)
+    public async Task<SysConfig> GetDetail([FromQuery] ConfigInput input)
     {
-        return await _sysConfigRep.GetByIdAsync(input.Id);
+        return await VSysConfig.FirstAsync(u => u.Id == input.Id);
     }
 
     /// <summary>
@@ -152,9 +161,9 @@ public class SysConfigTenantService : IDynamicApiController, ITransient
     /// <param name="code"></param>
     /// <returns></returns>
     [NonAction]
-    public async Task<SysConfigTenant> GetConfig(string code)
+    public async Task<SysConfig> GetConfig(string code)
     {
-        return await _sysConfigRep.GetFirstAsync(u => u.Code == code);
+        return await VSysConfig.FirstAsync(u => u.Code == code);
     }
 
     /// <summary>
@@ -178,11 +187,11 @@ public class SysConfigTenantService : IDynamicApiController, ITransient
     {
         if (string.IsNullOrWhiteSpace(code)) return default;
 
-        var value = _sysCacheService.Get<string>($"{CacheConst.KeyConfig}{code}");
+        var value = _sysCacheService.Get<string>($"{CacheConst.KeyConfig}{_userManager.TenantId}{code}");
         if (string.IsNullOrEmpty(value))
         {
-            value = (await _sysConfigRep.CopyNew().GetFirstAsync(u => u.Code == code))?.Value;
-            _sysCacheService.Set($"{CacheConst.KeyConfig}{code}", value);
+            value = (await VSysConfig.FirstAsync(u => u.Code == code))?.Value;
+            _sysCacheService.Set($"{CacheConst.KeyConfig}{_userManager.TenantId}{code}", value);
         }
         if (string.IsNullOrWhiteSpace(value)) return default;
         return (T)Convert.ChangeType(value, typeof(T));
@@ -200,8 +209,7 @@ public class SysConfigTenantService : IDynamicApiController, ITransient
         var config = await _sysConfigRep.GetFirstAsync(u => u.Code == code);
         if (config == null) return;
 
-        config.Value = value;
-        await _sysConfigRep.AsUpdateable(config).ExecuteCommandAsync();
+        await _sysConfigDataRep.AsUpdateable().SetColumns(it => it.Value == value).Where(it => it.ConfigId == config.Id).ExecuteCommandAsync();
 
         RemoveConfigCache(config);
     }
@@ -225,15 +233,15 @@ public class SysConfigTenantService : IDynamicApiController, ITransient
     /// <returns></returns>
     [ApiDescriptionSettings(Name = "BatchUpdate"), HttpPost]
     [DisplayName("批量更新配置参数值")]
-    public async Task BatchUpdateConfig(List<BatchConfigTenantInput> input)
+    public async Task BatchUpdateConfig(List<BatchConfigInput> input)
     {
         foreach (var config in input)
         {
-            var configInfo = await _sysConfigRep.GetFirstAsync(u => u.Code == config.Code);
-            if (configInfo == null) continue;
+            var info = await _sysConfigRep.GetFirstAsync(u => u.Code == config.Code);
+            if (info == null) continue;
 
-            await _sysConfigRep.AsUpdateable().SetColumns(u => u.Value == config.Value).Where(u => u.Code == config.Code).ExecuteCommandAsync();
-            RemoveConfigCache(configInfo);
+            await _sysConfigDataRep.AsUpdateable().SetColumns(u => u.Value == config.Value).Where(u => u.ConfigId == info.Id).ExecuteCommandAsync();
+            RemoveConfigCache(info);
         }
     }
 
@@ -241,11 +249,8 @@ public class SysConfigTenantService : IDynamicApiController, ITransient
     /// 清除配置缓存
     /// </summary>
     /// <param name="config"></param>
-    private void RemoveConfigCache(SysConfigTenant config)
+    private void RemoveConfigCache(SysTenantConfig config)
     {
-        _sysCacheService.Remove($"{CacheConst.KeyConfig}Value:{config.Code}");
-        _sysCacheService.Remove($"{CacheConst.KeyConfig}Remark:{config.Code}");
-        _sysCacheService.Remove($"{CacheConst.KeyConfig}{config.GroupCode}:GroupWithCache");
-        _sysCacheService.Remove($"{CacheConst.KeyConfig}{config.Code}");
+        _sysCacheService.Remove($"{CacheConst.KeyConfig}{_userManager.TenantId}{config.Code}");
     }
 }
