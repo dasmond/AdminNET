@@ -76,10 +76,10 @@ public class SysSmsService : IDynamicApiController, ITransient
         var random = new Random();
         var verifyCode = random.Next(100000, 999999);
 
-        var templateParam = Clay.Object(new
+        var templateParam = new
         {
             code = verifyCode
-        });
+        };
 
         var client = CreateAliyunClient();
         var template = _smsOptions.Aliyun.GetTemplate();
@@ -88,7 +88,7 @@ public class SysSmsService : IDynamicApiController, ITransient
             PhoneNumbers = phoneNumber, // 待发送手机号, 多个以逗号分隔
             SignName = template.SignName, // 短信签名
             TemplateCode = template.TemplateCode, // 短信模板
-            TemplateParam = templateParam.ToString(), // 模板中的变量替换JSON串
+            TemplateParam = templateParam.ToJson(), // 模板中的变量替换JSON串
             OutId = YitIdHelper.NextId().ToString()
         };
         var sendSmsResponse = await client.SendSmsAsync(sendSmsRequest);

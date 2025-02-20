@@ -11,51 +11,67 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+
 import { SysJobTriggerRecord } from './sys-job-trigger-record';
-/**
+ /**
  * 分页泛型集合
+ *
  * @export
  * @interface SqlSugarPagedListSysJobTriggerRecord
  */
 export interface SqlSugarPagedListSysJobTriggerRecord {
+
     /**
      * 页码
+     *
      * @type {number}
      * @memberof SqlSugarPagedListSysJobTriggerRecord
      */
     page?: number;
+
     /**
      * 页容量
+     *
      * @type {number}
      * @memberof SqlSugarPagedListSysJobTriggerRecord
      */
     pageSize?: number;
+
     /**
      * 总条数
+     *
      * @type {number}
      * @memberof SqlSugarPagedListSysJobTriggerRecord
      */
     total?: number;
+
     /**
      * 总页数
+     *
      * @type {number}
      * @memberof SqlSugarPagedListSysJobTriggerRecord
      */
     totalPages?: number;
+
     /**
      * 当前页集合
+     *
      * @type {Array<SysJobTriggerRecord>}
      * @memberof SqlSugarPagedListSysJobTriggerRecord
      */
     items?: Array<SysJobTriggerRecord> | null;
+
     /**
      * 是否有上一页
+     *
      * @type {boolean}
      * @memberof SqlSugarPagedListSysJobTriggerRecord
      */
     hasPrevPage?: boolean;
+
     /**
      * 是否有下一页
+     *
      * @type {boolean}
      * @memberof SqlSugarPagedListSysJobTriggerRecord
      */

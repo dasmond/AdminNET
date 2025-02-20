@@ -11,64 +11,80 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+
 import { Filter } from './filter';
 import { Search } from './search';
-/**
+ /**
  * 开放接口身份输入参数
+ *
  * @export
  * @interface OpenAccessInput
  */
 export interface OpenAccessInput {
+
     /**
-     * 
      * @type {Search}
      * @memberof OpenAccessInput
      */
     search?: Search;
+
     /**
      * 模糊查询关键字
+     *
      * @type {string}
      * @memberof OpenAccessInput
      */
     keyword?: string | null;
+
     /**
-     * 
      * @type {Filter}
      * @memberof OpenAccessInput
      */
     filter?: Filter;
+
     /**
      * 当前页码
+     *
      * @type {number}
      * @memberof OpenAccessInput
      */
     page?: number;
+
     /**
      * 页码容量
+     *
      * @type {number}
      * @memberof OpenAccessInput
      */
     pageSize?: number;
+
     /**
      * 排序字段
+     *
      * @type {string}
      * @memberof OpenAccessInput
      */
     field?: string | null;
+
     /**
      * 排序方向
+     *
      * @type {string}
      * @memberof OpenAccessInput
      */
     order?: string | null;
+
     /**
      * 降序排序
+     *
      * @type {string}
      * @memberof OpenAccessInput
      */
     descStr?: string | null;
+
     /**
      * 身份标识
+     *
      * @type {string}
      * @memberof OpenAccessInput
      */

@@ -4,15 +4,13 @@
 //
 // 不得利用本项目从事危害国家安全、扰乱社会秩序、侵犯他人合法权益等法律法规禁止的活动！任何基于本项目二次开发而产生的一切法律纠纷和责任，我们不承担任何责任！
 
-using Furion.RemoteRequest;
-
 namespace Admin.NET.Plugin.K3Cloud.Service;
 
 /// <summary>
 /// 金蝶云星空ERP接口
 /// </summary>
-[Client("K3Cloud")]
-public interface IK3CloudApi : IHttpDispatchProxy
+[HttpClientName("K3Cloud")]
+public interface IK3CloudApi : IHttpDeclarative
 {
     /// <summary>
     /// 验证用户
@@ -21,7 +19,7 @@ public interface IK3CloudApi : IHttpDispatchProxy
     /// <param name="action"></param>
     /// <returns></returns>
     [Post("Kingdee.BOS.WebApi.ServicesStub.AuthService.ValidateUser.common.kdsvc")]
-    Task<K3CloudLoginOutput> ValidateUser([Body] K3CloudLoginInput input, [Interceptor(InterceptorTypes.Response)] Action<HttpClient, HttpResponseMessage> action = default);
+    Task<K3CloudLoginOutput> ValidateUser([Body] K3CloudLoginInput input, Action<HttpClient, HttpResponseMessage> action = default);
 
     /// <summary>
     /// 保存表单
@@ -30,7 +28,7 @@ public interface IK3CloudApi : IHttpDispatchProxy
     /// <param name="action"></param>
     /// <returns></returns>
     [Post("Kingdee.BOS.WebApi.ServicesStub.DynamicFormService.Save.common.kdsvc")]
-    Task<K3CloudPushResultOutput> Save<T>([Body] K3CloudBaeInput<T> input, [Interceptor(InterceptorTypes.Request)] Action<HttpClient, HttpRequestMessage> action = default);
+    Task<K3CloudPushResultOutput> Save<T>([Body] K3CloudBaeInput<T> input, Action<HttpClient, HttpRequestMessage> action = default);
 
     /// <summary>
     /// 提交表单
@@ -39,7 +37,7 @@ public interface IK3CloudApi : IHttpDispatchProxy
     /// <param name="action"></param>
     /// <returns></returns>
     [Post("Kingdee.BOS.WebApi.ServicesStub.DynamicFormService.Submit.common.kdsvc")]
-    Task<K3CloudPushResultOutput> Submit<T>([Body] K3CloudBaeInput<T> input, [Interceptor(InterceptorTypes.Request)] Action<HttpClient, HttpRequestMessage> action = default);
+    Task<K3CloudPushResultOutput> Submit<T>([Body] K3CloudBaeInput<T> input, Action<HttpClient, HttpRequestMessage> action = default);
 
     /// <summary>
     /// 审核表单
@@ -48,5 +46,5 @@ public interface IK3CloudApi : IHttpDispatchProxy
     /// <param name="action"></param>
     /// <returns></returns>
     [Post("Kingdee.BOS.WebApi.ServicesStub.DynamicFormService.Audit.common.kdsvc")]
-    Task<K3CloudPushResultOutput> Audit<T>([Body] K3CloudBaeInput<T> input, [Interceptor(InterceptorTypes.Request)] Action<HttpClient, HttpRequestMessage> action = default);
+    Task<K3CloudPushResultOutput> Audit<T>([Body] K3CloudBaeInput<T> input, Action<HttpClient, HttpRequestMessage> action = default);
 }

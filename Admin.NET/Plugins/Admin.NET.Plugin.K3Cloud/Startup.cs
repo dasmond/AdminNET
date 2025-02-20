@@ -16,12 +16,10 @@ public class Startup : AppStartup
     public void ConfigureServices(IServiceCollection services)
     {
         services.AddConfigurableOptions<K3CloudOptions>();
-        services.AddRemoteRequest(options =>
+
+        services.AddHttpClient("K3Cloud", client =>
         {
-            options.AddHttpClient("K3Cloud", u =>
-            {
-                u.BaseAddress = new Uri(App.GetConfig<K3CloudOptions>("K3Cloud", true).Url);
-            });
+            client.BaseAddress = new Uri(App.GetConfig<K3CloudOptions>("K3Cloud", true).Url);
         });
     }
 

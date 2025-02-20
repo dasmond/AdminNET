@@ -102,10 +102,11 @@ public class SysUserService : IDynamicApiController, ITransient
     [DisplayName("增加用户")]
     public virtual async Task<long> AddUser(AddUserInput input)
     {
-        var query = _sysUserRep.AsQueryable().ClearFilter().Where(u => u.TenantId == _userManager.TenantId || u.AccountType == AccountTypeEnum.SuperAdmin);
+        var isExist = await _sysUserRep.AsQueryable().ClearFilter().AnyAsync(u => u.Account == input.Account);
+        if (isExist) throw Oops.Oh(ErrorCodeEnum.D1003);
 
-        if (await query.AnyAsync(u => u.Account == input.Account)) throw Oops.Oh(ErrorCodeEnum.D1003);
-        if (!string.IsNullOrWhiteSpace(input.Phone) && await query.AnyAsync(u => u.Phone == input.Phone)) throw Oops.Oh(ErrorCodeEnum.D1032);
+        if (!string.IsNullOrWhiteSpace(input.Phone) && await _sysUserRep.AsQueryable().ClearFilter().AnyAsync(u => u.Phone == input.Phone))
+            throw Oops.Oh(ErrorCodeEnum.D1032);
 
         // 禁止越权新增超级管理员和系统管理员
         if (_userManager.AccountType != AccountTypeEnum.SuperAdmin && input.AccountType is AccountTypeEnum.SuperAdmin or AccountTypeEnum.SysAdmin) throw Oops.Oh(ErrorCodeEnum.D1038);
@@ -141,10 +142,11 @@ public class SysUserService : IDynamicApiController, ITransient
     [NonAction]
     public virtual async Task<long> RegisterUser(AddUserInput input)
     {
-        var query = _sysUserRep.AsQueryable().ClearFilter().Where(u => u.TenantId == _userManager.TenantId || u.AccountType == AccountTypeEnum.SuperAdmin);
+        var isExist = await _sysUserRep.AsQueryable().ClearFilter().AnyAsync(u => u.Account == input.Account);
+        if (isExist) throw Oops.Oh(ErrorCodeEnum.D1003);
 
-        if (await query.AnyAsync(u => u.Account == input.Account)) throw Oops.Oh(ErrorCodeEnum.D1003);
-        if (!string.IsNullOrWhiteSpace(input.Phone) && await query.AnyAsync(u => u.Phone == input.Phone)) throw Oops.Oh(ErrorCodeEnum.D1032);
+        if (!string.IsNullOrWhiteSpace(input.Phone) && await _sysUserRep.AsQueryable().ClearFilter().AnyAsync(u => u.Phone == input.Phone))
+            throw Oops.Oh(ErrorCodeEnum.D1032);
 
         // 禁止越权注册
         if (input.AccountType is AccountTypeEnum.SuperAdmin or AccountTypeEnum.SysAdmin) throw Oops.Oh(ErrorCodeEnum.D1038);
@@ -185,12 +187,11 @@ public class SysUserService : IDynamicApiController, ITransient
     [DisplayName("更新用户")]
     public virtual async Task UpdateUser(UpdateUserInput input)
     {
-        // 是否租户隔离登录验证
-        var query = _sysUserRep.AsQueryable().ClearFilter()
-            .Where(u => u.Id != input.Id && (u.TenantId == _userManager.TenantId || u.AccountType == AccountTypeEnum.SuperAdmin));
+        if (await _sysUserRep.AsQueryable().ClearFilter().AnyAsync(u => u.Account == input.Account && u.Id != input.Id))
+            throw Oops.Oh(ErrorCodeEnum.D1003);
 
-        if (await query.AnyAsync(u => u.Account == input.Account)) throw Oops.Oh(ErrorCodeEnum.D1003);
-        if (!string.IsNullOrWhiteSpace(input.Phone) && await query.AnyAsync(u => u.Phone == input.Phone)) throw Oops.Oh(ErrorCodeEnum.D1032);
+        if (!string.IsNullOrWhiteSpace(input.Phone) && await _sysUserRep.AsQueryable().ClearFilter().AnyAsync(u => u.Phone == input.Phone && u.Id != input.Id))
+            throw Oops.Oh(ErrorCodeEnum.D1032);
 
         // 禁止越权更新超级管理员或系统管理员信息
         if (_userManager.AccountType != AccountTypeEnum.SuperAdmin && input.AccountType is AccountTypeEnum.SuperAdmin or AccountTypeEnum.SysAdmin) throw Oops.Oh(ErrorCodeEnum.D1038);

@@ -11,20 +11,22 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-/**
+
+ /**
  * 
+ *
  * @export
  * @interface SortVersion
  */
 export interface SortVersion {
+
     /**
-     * 
      * @type {number}
      * @memberof SortVersion
      */
     fullVersion?: number;
+
     /**
-     * 
      * @type {string}
      * @memberof SortVersion
      */

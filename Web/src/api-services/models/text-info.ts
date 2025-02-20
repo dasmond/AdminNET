@@ -11,62 +11,64 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-/**
+
+ /**
  * 
+ *
  * @export
  * @interface TextInfo
  */
 export interface TextInfo {
+
     /**
-     * 
      * @type {number}
      * @memberof TextInfo
      */
     ansiCodePage?: number;
+
     /**
-     * 
      * @type {number}
      * @memberof TextInfo
      */
     oemCodePage?: number;
+
     /**
-     * 
      * @type {number}
      * @memberof TextInfo
      */
     macCodePage?: number;
+
     /**
-     * 
      * @type {number}
      * @memberof TextInfo
      */
     ebcdicCodePage?: number;
+
     /**
-     * 
      * @type {number}
      * @memberof TextInfo
      */
     lcid?: number;
+
     /**
-     * 
      * @type {string}
      * @memberof TextInfo
      */
     cultureName?: string | null;
+
     /**
-     * 
      * @type {boolean}
      * @memberof TextInfo
      */
     isReadOnly?: boolean;
+
     /**
-     * 
      * @type {string}
      * @memberof TextInfo
      */
     listSeparator?: string | null;
+
     /**
-     * 
      * @type {boolean}
      * @memberof TextInfo
      */

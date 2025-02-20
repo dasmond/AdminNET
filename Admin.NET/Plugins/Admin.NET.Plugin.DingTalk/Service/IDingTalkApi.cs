@@ -6,35 +6,35 @@
 
 namespace Admin.NET.Plugin.DingTalk;
 
-public interface IDingTalkApi : IHttpDispatchProxy
+public interface IDingTalkApi : IHttpDeclarative
 {
     /// <summary>
     /// 获取企业内部应用的access_token
     /// </summary>
-    /// <param name="appKey">应用的唯一标识key</param>
+    /// <param name="appkey">应用的唯一标识key</param>
     /// <param name="appsecret"> 应用的密钥。AppKey和AppSecret可在钉钉开发者后台的应用详情页面获取。</param>
     /// <returns></returns>
     [Get("https://oapi.dingtalk.com/gettoken")]
-    Task<GetDingTalkTokenOutput> GetDingTalkToken([QueryString] string appKey, [QueryString] string appsecret);
+    Task<GetDingTalkTokenOutput> GetDingTalkToken([Query] string appkey, [Query] string appsecret);
 
     /// <summary>
     /// 获取在职员工列表
     /// </summary>
-    /// <param name="accessToken">调用该接口的应用凭证</param>
+    /// <param name="access_token">调用该接口的应用凭证</param>
     /// <param name="input"></param>
     /// <returns></returns>
     [Post("https://oapi.dingtalk.com/topapi/smartwork/hrm/employee/queryonjob")]
-    Task<DingTalkBaseResponse<GetDingTalkCurrentEmployeesListOutput>> GetDingTalkCurrentEmployeesList([QueryString("access_token")] string accessToken,
+    Task<DingTalkBaseResponse<GetDingTalkCurrentEmployeesListOutput>> GetDingTalkCurrentEmployeesList([Query] string access_token,
         [Body, Required] GetDingTalkCurrentEmployeesListInput input);
 
     /// <summary>
     /// 获取员工花名册字段信息
     /// </summary>
-    /// <param name="accessToken">调用该接口的应用凭证</param>
+    /// <param name="access_token">调用该接口的应用凭证</param>
     /// <param name="input"></param>
     /// <returns></returns>
     [Post("https://oapi.dingtalk.com/topapi/smartwork/hrm/employee/v2/list")]
-    Task<DingTalkBaseResponse<List<DingTalkEmpRosterFieldVo>>> GetDingTalkCurrentEmployeesRosterList([QueryString("access_token")] string accessToken,
+    Task<DingTalkBaseResponse<List<DingTalkEmpRosterFieldVo>>> GetDingTalkCurrentEmployeesRosterList([Query] string access_token,
         [Body, Required] GetDingTalkCurrentEmployeesRosterListInput input);
 
     /// <summary>
@@ -43,9 +43,14 @@ public interface IDingTalkApi : IHttpDispatchProxy
     /// <param name="token">调用该接口的访问凭证</param>
     /// <param name="input"></param>
     /// <returns></returns>
+    /// <remarks>
+    /// 钉钉官方文档显示接口不再支持新应用接入, 已接入的应用可继续调用
+    /// 推荐更新接口https://open.dingtalk.com/document/orgapp/create-and-deliver-cards?spm=ding_open_doc.document.0.0.67fc50988Pf0mc
+    /// </remarks>
     [Post("https://api.dingtalk.com/v1.0/im/interactiveCards/send")]
+    [Obsolete]
     Task<DingTalkSendInteractiveCardsOutput> DingTalkSendInteractiveCards(
-        [Headers("x-acs-dingtalk-access-token")] string token,
+        [Header("x-acs-dingtalk-access-token")] string token,
         [Body] DingTalkSendInteractiveCardsInput input);
 
     /// <summary>
@@ -56,6 +61,26 @@ public interface IDingTalkApi : IHttpDispatchProxy
     /// <returns></returns>
     [Get("https://api.dingtalk.com/v1.0/robot/oToMessages/readStatus")]
     Task<GetDingTalkCardMessageReadStatusOutput> GetDingTalkCardMessageReadStatus(
-    [Headers("x-acs-dingtalk-access-token")] string token,
-    [QueryString] GetDingTalkCardMessageReadStatusInput input);
+        [Header("x-acs-dingtalk-access-token")] string token,
+        [Query] GetDingTalkCardMessageReadStatusInput input);
+
+    /// <summary>
+    /// 获取角色列表
+    /// </summary>
+    /// <param name="access_token">调用该接口的应用凭证</param>
+    /// <param name="input"></param>
+    /// <returns></returns>
+    [Post("https://oapi.dingtalk.com/topapi/role/list")]
+    Task<DingTalkBaseResponse<DingTalkRoleListOutput>> GetDingTalkRoleList([Query] string access_token,
+        [Body, Required] GetDingTalkCurrentRoleListInput input);
+
+    /// <summary>
+    /// 获取指定角色的员工列表
+    /// </summary>
+    /// <param name="access_token">调用该接口的应用凭证</param>
+    /// <param name="input"></param>
+    /// <returns></returns>
+    [Post("https://oapi.dingtalk.com/topapi/role/simplelist")]
+    Task<DingTalkBaseResponse<DingTalkRoleSimplelistOutput>> GetDingTalkRoleSimplelist([Query] string access_token,
+        [Body, Required] GetDingTalkCurrentRoleSimplelistInput input);
 }

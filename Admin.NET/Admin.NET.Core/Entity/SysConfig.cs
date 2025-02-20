@@ -1,4 +1,4 @@
-// Admin.NET 项目的版权、商标、专利和其他相关权利均受相应法律法规的保护。使用本项目应遵守相关法律法规和许可证的要求。
+﻿// Admin.NET 项目的版权、商标、专利和其他相关权利均受相应法律法规的保护。使用本项目应遵守相关法律法规和许可证的要求。
 //
 // 本项目主要遵循 MIT 许可证和 Apache 许可证（版本 2.0）进行分发和使用。许可证位于源代码树根目录中的 LICENSE-MIT 和 LICENSE-APACHE 文件。
 //
@@ -30,18 +30,17 @@ public partial class SysConfig : EntityBase
     public string? Code { get; set; }
 
     /// <summary>
-    /// 属性默认值
+    /// 参数值
     /// </summary>
-    [SugarColumn(ColumnDescription = "属性默认值", Length = -1)]
-    [MaxLength(64)]
-    [IgnoreUpdateSeedColumn]
+    [SugarColumn(ColumnDescription = "参数值", Length = 512)]
+    [MaxLength(512)]
     public string? Value { get; set; }
 
     /// <summary>
     /// 是否是内置参数（Y-是，N-否）
     /// </summary>
-    [SugarColumn(ColumnDescription = "是否是内置参数")]
-    public YesNoEnum SysFlag { get; set; }
+    [SugarColumn(ColumnDescription = "是否是内置参数", DefaultValue = "1")]
+    public YesNoEnum SysFlag { get; set; } = YesNoEnum.Y;
 
     /// <summary>
     /// 分组编码
@@ -53,7 +52,7 @@ public partial class SysConfig : EntityBase
     /// <summary>
     /// 排序
     /// </summary>
-    [SugarColumn(ColumnDescription = "排序")]
+    [SugarColumn(ColumnDescription = "排序", DefaultValue = "100")]
     public int OrderNo { get; set; } = 100;
 
     /// <summary>

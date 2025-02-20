@@ -11,177 +11,179 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+
 import { DigitShapes } from './digit-shapes';
-/**
+ /**
  * 
+ *
  * @export
  * @interface NumberFormatInfo
  */
 export interface NumberFormatInfo {
+
     /**
-     * 
      * @type {number}
      * @memberof NumberFormatInfo
      */
     currencyDecimalDigits?: number;
+
     /**
-     * 
      * @type {string}
      * @memberof NumberFormatInfo
      */
     currencyDecimalSeparator?: string | null;
+
     /**
-     * 
      * @type {boolean}
      * @memberof NumberFormatInfo
      */
     isReadOnly?: boolean;
+
     /**
-     * 
      * @type {Array<number>}
      * @memberof NumberFormatInfo
      */
     currencyGroupSizes?: Array<number> | null;
+
     /**
-     * 
      * @type {Array<number>}
      * @memberof NumberFormatInfo
      */
     numberGroupSizes?: Array<number> | null;
+
     /**
-     * 
      * @type {Array<number>}
      * @memberof NumberFormatInfo
      */
     percentGroupSizes?: Array<number> | null;
+
     /**
-     * 
      * @type {string}
      * @memberof NumberFormatInfo
      */
     currencyGroupSeparator?: string | null;
+
     /**
-     * 
      * @type {string}
      * @memberof NumberFormatInfo
      */
     currencySymbol?: string | null;
+
     /**
-     * 
      * @type {string}
      * @memberof NumberFormatInfo
      */
     naNSymbol?: string | null;
+
     /**
-     * 
      * @type {number}
      * @memberof NumberFormatInfo
      */
     currencyNegativePattern?: number;
+
     /**
-     * 
      * @type {number}
      * @memberof NumberFormatInfo
      */
     numberNegativePattern?: number;
+
     /**
-     * 
      * @type {number}
      * @memberof NumberFormatInfo
      */
     percentPositivePattern?: number;
+
     /**
-     * 
      * @type {number}
      * @memberof NumberFormatInfo
      */
     percentNegativePattern?: number;
+
     /**
-     * 
      * @type {string}
      * @memberof NumberFormatInfo
      */
     negativeInfinitySymbol?: string | null;
+
     /**
-     * 
      * @type {string}
      * @memberof NumberFormatInfo
      */
     negativeSign?: string | null;
+
     /**
-     * 
      * @type {number}
      * @memberof NumberFormatInfo
      */
     numberDecimalDigits?: number;
+
     /**
-     * 
      * @type {string}
      * @memberof NumberFormatInfo
      */
     numberDecimalSeparator?: string | null;
+
     /**
-     * 
      * @type {string}
      * @memberof NumberFormatInfo
      */
     numberGroupSeparator?: string | null;
+
     /**
-     * 
      * @type {number}
      * @memberof NumberFormatInfo
      */
     currencyPositivePattern?: number;
+
     /**
-     * 
      * @type {string}
      * @memberof NumberFormatInfo
      */
     positiveInfinitySymbol?: string | null;
+
     /**
-     * 
      * @type {string}
      * @memberof NumberFormatInfo
      */
     positiveSign?: string | null;
+
     /**
-     * 
      * @type {number}
      * @memberof NumberFormatInfo
      */
     percentDecimalDigits?: number;
+
     /**
-     * 
      * @type {string}
      * @memberof NumberFormatInfo
      */
     percentDecimalSeparator?: string | null;
+
     /**
-     * 
      * @type {string}
      * @memberof NumberFormatInfo
      */
     percentGroupSeparator?: string | null;
+
     /**
-     * 
      * @type {string}
      * @memberof NumberFormatInfo
      */
     percentSymbol?: string | null;
+
     /**
-     * 
      * @type {string}
      * @memberof NumberFormatInfo
      */
     perMilleSymbol?: string | null;
+
     /**
-     * 
      * @type {Array<string>}
      * @memberof NumberFormatInfo
      */
     nativeDigits?: Array<string> | null;
+
     /**
-     * 
      * @type {DigitShapes}
      * @memberof NumberFormatInfo
      */

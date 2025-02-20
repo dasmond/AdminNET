@@ -10,7 +10,7 @@ namespace Admin.NET.Plugin.DingTalk;
 /// 钉钉用户表
 /// </summary>
 [SugarTable(null, "钉钉用户表")]
-public class DingTalkUser : EntityTenant
+public class DingTalkUser : EntityBase
 {
     /// <summary>
     /// 系统用户Id
@@ -31,7 +31,7 @@ public class DingTalkUser : EntityTenant
     /// </summary>
     [SugarColumn(ColumnDescription = "钉钉用户id", Length = 64)]
     [Required, MaxLength(64)]
-    public virtual string DingTalkUserId { get; set; }
+    public virtual string? DingTalkUserId { get; set; }
 
     /// <summary>
     /// UnionId

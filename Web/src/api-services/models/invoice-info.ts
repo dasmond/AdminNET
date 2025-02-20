@@ -11,21 +11,23 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+
 import { InvoiceKeyInfo } from './invoice-key-info';
-/**
+ /**
  * 
+ *
  * @export
  * @interface InvoiceInfo
  */
 export interface InvoiceInfo {
+
     /**
-     * 
      * @type {string}
      * @memberof InvoiceInfo
      */
     details?: string | null;
+
     /**
-     * 
      * @type {InvoiceKeyInfo}
      * @memberof InvoiceInfo
      */

@@ -47,7 +47,6 @@ public class OnlineUserHub : Hub<IOnlineUserHub>
         var account = httpContext.User.FindFirst(ClaimConst.Account)?.Value;
         var realName = httpContext.User.FindFirst(ClaimConst.RealName)?.Value;
         var tenantId = (httpContext.User.FindFirst(ClaimConst.TenantId)?.Value).ToLong();
-        //var device = httpContext.GetClientDeviceInfo().Trim();
 
         if (userId < 0 || string.IsNullOrWhiteSpace(account)) return;
         var user = new SysOnlineUser
@@ -69,7 +68,7 @@ public class OnlineUserHub : Hub<IOnlineUserHub>
         {
             _sysCacheService.HashAdd(CacheConst.KeyUserOnline, "" + user.UserId, user);
         }
-        else  // 非单用户登录则绑定用户连接信息
+        else  // 非单用户登录则绑定用户连接Id
         {
             _sysCacheService.HashAdd(CacheConst.KeyUserOnline, user.UserId + Context.ConnectionId, user);
         }

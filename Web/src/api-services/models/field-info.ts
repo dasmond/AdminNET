@@ -11,170 +11,172 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+
 import { CustomAttributeData } from './custom-attribute-data';
 import { FieldAttributes } from './field-attributes';
 import { MemberTypes } from './member-types';
 import { Module } from './module';
 import { RuntimeFieldHandle } from './runtime-field-handle';
 import { Type } from './type';
-/**
+ /**
  * 
+ *
  * @export
  * @interface FieldInfo
  */
 export interface FieldInfo {
+
     /**
-     * 
      * @type {string}
      * @memberof FieldInfo
      */
     name?: string | null;
+
     /**
-     * 
      * @type {Type}
      * @memberof FieldInfo
      */
     declaringType?: Type;
+
     /**
-     * 
      * @type {Type}
      * @memberof FieldInfo
      */
     reflectedType?: Type;
+
     /**
-     * 
      * @type {Module}
      * @memberof FieldInfo
      */
     module?: Module;
+
     /**
-     * 
      * @type {Array<CustomAttributeData>}
      * @memberof FieldInfo
      */
     customAttributes?: Array<CustomAttributeData> | null;
+
     /**
-     * 
      * @type {boolean}
      * @memberof FieldInfo
      */
     isCollectible?: boolean;
+
     /**
-     * 
      * @type {number}
      * @memberof FieldInfo
      */
     metadataToken?: number;
+
     /**
-     * 
      * @type {MemberTypes}
      * @memberof FieldInfo
      */
     memberType?: MemberTypes;
+
     /**
-     * 
      * @type {FieldAttributes}
      * @memberof FieldInfo
      */
     attributes?: FieldAttributes;
+
     /**
-     * 
      * @type {Type}
      * @memberof FieldInfo
      */
     fieldType?: Type;
+
     /**
-     * 
      * @type {boolean}
      * @memberof FieldInfo
      */
     isInitOnly?: boolean;
+
     /**
-     * 
      * @type {boolean}
      * @memberof FieldInfo
      */
     isLiteral?: boolean;
+
     /**
-     * 
      * @type {boolean}
      * @memberof FieldInfo
      */
     isNotSerialized?: boolean;
+
     /**
-     * 
      * @type {boolean}
      * @memberof FieldInfo
      */
     isPinvokeImpl?: boolean;
+
     /**
-     * 
      * @type {boolean}
      * @memberof FieldInfo
      */
     isSpecialName?: boolean;
+
     /**
-     * 
      * @type {boolean}
      * @memberof FieldInfo
      */
     isStatic?: boolean;
+
     /**
-     * 
      * @type {boolean}
      * @memberof FieldInfo
      */
     isAssembly?: boolean;
+
     /**
-     * 
      * @type {boolean}
      * @memberof FieldInfo
      */
     isFamily?: boolean;
+
     /**
-     * 
      * @type {boolean}
      * @memberof FieldInfo
      */
     isFamilyAndAssembly?: boolean;
+
     /**
-     * 
      * @type {boolean}
      * @memberof FieldInfo
      */
     isFamilyOrAssembly?: boolean;
+
     /**
-     * 
      * @type {boolean}
      * @memberof FieldInfo
      */
     isPrivate?: boolean;
+
     /**
-     * 
      * @type {boolean}
      * @memberof FieldInfo
      */
     isPublic?: boolean;
+
     /**
-     * 
      * @type {boolean}
      * @memberof FieldInfo
      */
     isSecurityCritical?: boolean;
+
     /**
-     * 
      * @type {boolean}
      * @memberof FieldInfo
      */
     isSecuritySafeCritical?: boolean;
+
     /**
-     * 
      * @type {boolean}
      * @memberof FieldInfo
      */
     isSecurityTransparent?: boolean;
+
     /**
-     * 
      * @type {RuntimeFieldHandle}
      * @memberof FieldInfo
      */

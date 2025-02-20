@@ -11,60 +11,62 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+
 import { CustomAttributeData } from './custom-attribute-data';
 import { MemberTypes } from './member-types';
 import { Module } from './module';
 import { Type } from './type';
-/**
+ /**
  * 
+ *
  * @export
  * @interface MemberInfo
  */
 export interface MemberInfo {
+
     /**
-     * 
      * @type {MemberTypes}
      * @memberof MemberInfo
      */
     memberType?: MemberTypes;
+
     /**
-     * 
      * @type {string}
      * @memberof MemberInfo
      */
     name?: string | null;
+
     /**
-     * 
      * @type {Type}
      * @memberof MemberInfo
      */
     declaringType?: Type;
+
     /**
-     * 
      * @type {Type}
      * @memberof MemberInfo
      */
     reflectedType?: Type;
+
     /**
-     * 
      * @type {Module}
      * @memberof MemberInfo
      */
     module?: Module;
+
     /**
-     * 
      * @type {Array<CustomAttributeData>}
      * @memberof MemberInfo
      */
     customAttributes?: Array<CustomAttributeData> | null;
+
     /**
-     * 
      * @type {boolean}
      * @memberof MemberInfo
      */
     isCollectible?: boolean;
+
     /**
-     * 
      * @type {number}
      * @memberof MemberInfo
      */

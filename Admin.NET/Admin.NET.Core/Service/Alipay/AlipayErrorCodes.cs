@@ -1,7 +1,7 @@
 ﻿// Admin.NET 项目的版权、商标、专利和其他相关权利均受相应法律法规的保护。使用本项目应遵守相关法律法规和许可证的要求。
-// 
+//
 // 本项目主要遵循 MIT 许可证和 Apache 许可证（版本 2.0）进行分发和使用。许可证位于源代码树根目录中的 LICENSE-MIT 和 LICENSE-APACHE 文件。
-// 
+//
 // 不得利用本项目从事危害国家安全、扰乱社会秩序、侵犯他人合法权益等法律法规禁止的活动！任何基于本项目二次开发而产生的一切法律纠纷和责任，我们不承担任何责任！
 
 namespace Admin.NET.Core.Service;
@@ -29,8 +29,8 @@ public class AlipayErrorCode
     /// <summary>
     /// 错误码集
     /// </summary>
-    private static readonly List<AlipayErrorCode> StatusCodes = new()
-    {
+    private static readonly List<AlipayErrorCode> StatusCodes =
+    [
         new AlipayErrorCode { Code="SYSTEM_ERROR", Message="系统繁忙", Solution="可能是由于网络或者系统故障，请与技术人员联系以解决该问题。" },
         new AlipayErrorCode { Code="INVALID_PARAMETER", Message="参数有误或没有参数", Solution="请检查并确认查询请求参数合法性。" },
         new AlipayErrorCode { Code="AUTHORISE_NOT_MATCH", Message="授权失败，无法获取用户信息", Solution="检查账户与支付方关系主表关系，确认是否正确配置。" },
@@ -129,7 +129,7 @@ public class AlipayErrorCode
         new AlipayErrorCode { Code="USER_AGREEMENT_VERIFY_FAIL", Message="用户协议校验失败", Solution="确认入参中协议号是否正确" },
         new AlipayErrorCode { Code="USER_NOT_EXIST", Message="用户不存在（仅用于WorldFirst）", Solution="用户不存在，请检查收付款方信息" },
         new AlipayErrorCode { Code="USER_RISK_FREEZE", Message="账户异常被冻结，无法付款，请咨询支付宝客服95188", Solution="账户异常被冻结，无法付款，请咨询支付宝客服95188" }
-    };
+    ];
 
     /// <summary>
     /// 根据错误码获取错误信息

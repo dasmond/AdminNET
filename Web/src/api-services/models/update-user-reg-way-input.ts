@@ -11,105 +11,137 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+
 import { AccountTypeEnum } from './account-type-enum';
-/**
+ /**
  * 注册方案更新输入参数
+ *
  * @export
  * @interface UpdateUserRegWayInput
  */
 export interface UpdateUserRegWayInput {
+
     /**
      * 创建时间
+     *
      * @type {Date}
      * @memberof UpdateUserRegWayInput
      */
     createTime?: Date;
+
     /**
      * 更新时间
+     *
      * @type {Date}
      * @memberof UpdateUserRegWayInput
      */
     updateTime?: Date | null;
+
     /**
      * 创建者Id
+     *
      * @type {number}
      * @memberof UpdateUserRegWayInput
      */
     createUserId?: number | null;
+
     /**
      * 创建者姓名
+     *
      * @type {string}
      * @memberof UpdateUserRegWayInput
      */
     createUserName?: string | null;
+
     /**
      * 修改者Id
+     *
      * @type {number}
      * @memberof UpdateUserRegWayInput
      */
     updateUserId?: number | null;
+
     /**
      * 修改者姓名
+     *
      * @type {string}
      * @memberof UpdateUserRegWayInput
      */
     updateUserName?: string | null;
+
     /**
      * 软删除
+     *
      * @type {boolean}
      * @memberof UpdateUserRegWayInput
      */
     isDelete?: boolean;
+
     /**
      * 租户Id
+     *
      * @type {number}
      * @memberof UpdateUserRegWayInput
      */
     tenantId?: number | null;
+
     /**
      * 排序
+     *
      * @type {number}
      * @memberof UpdateUserRegWayInput
      */
     orderNo?: number;
+
     /**
      * 备注
+     *
      * @type {string}
      * @memberof UpdateUserRegWayInput
      */
     remark?: string | null;
+
     /**
      * 方案名称
+     *
      * @type {string}
      * @memberof UpdateUserRegWayInput
      */
     name: string;
+
     /**
-     * 
      * @type {AccountTypeEnum}
      * @memberof UpdateUserRegWayInput
      */
     accountType?: AccountTypeEnum;
+
     /**
      * 角色
+     *
      * @type {number}
      * @memberof UpdateUserRegWayInput
      */
     roleId: number;
+
     /**
      * 机构
+     *
      * @type {number}
      * @memberof UpdateUserRegWayInput
      */
     orgId: number;
+
     /**
      * 职位
+     *
      * @type {number}
      * @memberof UpdateUserRegWayInput
      */
     posId: number;
+
     /**
      * 主键Id
+     *
      * @type {number}
      * @memberof UpdateUserRegWayInput
      */

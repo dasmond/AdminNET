@@ -11,45 +11,57 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+
 import { SqlSugarPagedListSysTemplate } from './sql-sugar-paged-list-sys-template';
-/**
+ /**
  * 全局返回结果
+ *
  * @export
  * @interface AdminResultSqlSugarPagedListSysTemplate
  */
 export interface AdminResultSqlSugarPagedListSysTemplate {
+
     /**
      * 状态码
+     *
      * @type {number}
      * @memberof AdminResultSqlSugarPagedListSysTemplate
      */
     code?: number;
+
     /**
      * 类型success、warning、error
+     *
      * @type {string}
      * @memberof AdminResultSqlSugarPagedListSysTemplate
      */
     type?: string | null;
+
     /**
      * 错误信息
+     *
      * @type {string}
      * @memberof AdminResultSqlSugarPagedListSysTemplate
      */
     message?: string | null;
+
     /**
-     * 
      * @type {SqlSugarPagedListSysTemplate}
      * @memberof AdminResultSqlSugarPagedListSysTemplate
      */
     result?: SqlSugarPagedListSysTemplate;
+
     /**
      * 附加数据
+     *
      * @type {any}
      * @memberof AdminResultSqlSugarPagedListSysTemplate
      */
     extras?: any | null;
+
     /**
      * 时间
+     *
      * @type {Date}
      * @memberof AdminResultSqlSugarPagedListSysTemplate
      */

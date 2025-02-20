@@ -11,6 +11,7 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+
 /**
  * 租户类型枚举<br />&nbsp;Id隔离 Id = 0<br />&nbsp;库隔离 Db = 1<br />
  * @export

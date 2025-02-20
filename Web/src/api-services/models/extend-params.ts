@@ -11,68 +11,70 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-/**
+
+ /**
  * 
+ *
  * @export
  * @interface ExtendParams
  */
 export interface ExtendParams {
+
     /**
-     * 
      * @type {string}
      * @memberof ExtendParams
      */
     cardType?: string | null;
+
     /**
-     * 
      * @type {string}
      * @memberof ExtendParams
      */
     creditExtInfo?: string | null;
+
     /**
-     * 
      * @type {string}
      * @memberof ExtendParams
      */
     hbFqNum?: string | null;
+
     /**
-     * 
      * @type {string}
      * @memberof ExtendParams
      */
     hbFqSellerPercent?: string | null;
+
     /**
-     * 
      * @type {string}
      * @memberof ExtendParams
      */
     industryRefluxInfo?: string | null;
+
     /**
-     * 
      * @type {string}
      * @memberof ExtendParams
      */
     royaltyFreeze?: string | null;
+
     /**
-     * 
      * @type {string}
      * @memberof ExtendParams
      */
     specifiedSellerName?: string | null;
+
     /**
-     * 
      * @type {string}
      * @memberof ExtendParams
      */
     sysServiceProviderId?: string | null;
+
     /**
-     * 
      * @type {string}
      * @memberof ExtendParams
      */
     tcInstallmentOrderId?: string | null;
+
     /**
-     * 
      * @type {string}
      * @memberof ExtendParams
      */

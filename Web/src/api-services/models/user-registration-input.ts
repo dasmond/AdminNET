@@ -11,56 +11,76 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-/**
+
+ /**
  * 用户注册输入参数
+ *
  * @export
  * @interface UserRegistrationInput
  */
 export interface UserRegistrationInput {
+
     /**
      * 真实姓名
+     *
      * @type {string}
      * @memberof UserRegistrationInput
      */
     realName: string;
+
     /**
      * 账号
+     *
      * @type {string}
      * @memberof UserRegistrationInput
      */
     account: string;
+
     /**
      * 手机号码
+     *
      * @type {string}
      * @memberof UserRegistrationInput
+     * @example admin
      */
     phone: string;
+
     /**
      * 验证码
+     *
      * @type {string}
      * @memberof UserRegistrationInput
+     * @example 123456
      */
     code: string;
+
     /**
      * 验证码Id
+     *
      * @type {number}
      * @memberof UserRegistrationInput
      */
     codeId?: number;
+
     /**
      * 租户
+     *
      * @type {number}
      * @memberof UserRegistrationInput
      */
     tenantId: number;
+
     /**
      * 密码
+     *
      * @type {string}
      * @memberof UserRegistrationInput
      */
     password?: string | null;
+
     /**
      * 注册方案
+     *
      * @type {number}
      * @memberof UserRegistrationInput
      */

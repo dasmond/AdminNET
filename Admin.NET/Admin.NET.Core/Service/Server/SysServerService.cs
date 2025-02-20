@@ -9,7 +9,7 @@ namespace Admin.NET.Core.Service;
 /// <summary>
 /// 系统服务器监控服务 🧩
 /// </summary>
-[ApiDescriptionSettings(Order = 290)]
+[ApiDescriptionSettings(Order = 290, Description = "服务器监控")]
 public class SysServerService : IDynamicApiController, ITransient
 {
     public SysServerService()
@@ -31,8 +31,8 @@ public class SysServerService : IDynamicApiController, ITransient
             ProcessorCount = Environment.ProcessorCount + " 核", // CPU核心数
             SysRunTime = ComputerUtil.GetRunTime(), // 系统运行时间
             RemoteIp = ComputerUtil.GetIpFromOnline(), // 外网地址
-            LocalIp = App.HttpContext?.Connection.LocalIpAddress!.MapToIPv4().ToString(), // 本地地址
-            RuntimeInformation.FrameworkDescription, // NET框架
+            LocalIp = App.HttpContext?.Connection?.LocalIpAddress!.MapToIPv4().ToString(), // 本地地址
+            FrameworkDescription = RuntimeInformation.FrameworkDescription + " / " + App.GetOptions<DbConnectionOptions>().ConnectionConfigs[0].DbType.ToString(), // NET框架 + 数据库类型
             Environment = App.HostEnvironment.IsDevelopment() ? "Development" : "Production",
             Wwwroot = App.WebHostEnvironment.WebRootPath, // 网站根目录
             Stage = App.HostEnvironment.IsStaging() ? "Stage环境" : "非Stage环境", // 是否Stage环境
@@ -58,7 +58,7 @@ public class SysServerService : IDynamicApiController, ITransient
             memoryMetrics.UsedRam, // 已用内存
             memoryMetrics.TotalRam, // 总内存
             memoryMetrics.RamRate, // 内存使用率
-            memoryMetrics.CpuRate, // Cpu使用率
+            memoryMetrics.CpuRates, // Cpu使用率
             StartTime = programStartTime.ToString("yyyy-MM-dd HH:mm:ss"), // 服务启动时间
             RunTime = programRunTime, // 服务运行时间
         };
@@ -109,6 +109,7 @@ public class SysServerService : IDynamicApiController, ITransient
         var giteeAuthenticationOptionsAssembly = typeof(AspNet.Security.OAuth.Gitee.GiteeAuthenticationOptions).Assembly.GetName();
         var hashidsAssembly = typeof(HashidsNet.Hashids).Assembly.GetName();
         var sftpClientAssembly = typeof(Renci.SshNet.SftpClient).Assembly.GetName();
+        var hardwareInfoAssembly = typeof(Hardware.Info.HardwareInfo).Assembly.GetName();
 
         return new[]
         {
@@ -140,6 +141,7 @@ public class SysServerService : IDynamicApiController, ITransient
             new { giteeAuthenticationOptionsAssembly.Name, giteeAuthenticationOptionsAssembly.Version },
             new { hashidsAssembly.Name, hashidsAssembly.Version },
             new { sftpClientAssembly.Name, sftpClientAssembly.Version },
+            new { hardwareInfoAssembly.Name, hardwareInfoAssembly.Version },
         };
     }
 }

@@ -11,20 +11,26 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-/**
+
+ /**
  * 模板渲染输入参数
+ *
  * @export
  * @interface RenderTemplateInput
  */
 export interface RenderTemplateInput {
+
     /**
      * 模板内容
+     *
      * @type {string}
      * @memberof RenderTemplateInput
      */
     content: string;
+
     /**
      * 渲染参数
+     *
      * @type {any}
      * @memberof RenderTemplateInput
      */

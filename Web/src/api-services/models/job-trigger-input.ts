@@ -11,20 +11,26 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-/**
+
+ /**
  * 
+ *
  * @export
  * @interface JobTriggerInput
  */
 export interface JobTriggerInput {
+
     /**
      * 作业Id
+     *
      * @type {string}
      * @memberof JobTriggerInput
      */
     jobId?: string | null;
+
     /**
      * 触发器Id
+     *
      * @type {string}
      * @memberof JobTriggerInput
      */

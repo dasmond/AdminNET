@@ -11,99 +11,129 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+
 import { StatusEnum } from './status-enum';
-/**
+ /**
  * 
+ *
  * @export
  * @interface AddPluginInput
  */
 export interface AddPluginInput {
+
     /**
      * 雪花Id
+     *
      * @type {number}
      * @memberof AddPluginInput
      */
     id?: number;
+
     /**
      * 创建时间
+     *
      * @type {Date}
      * @memberof AddPluginInput
      */
     createTime?: Date;
+
     /**
      * 更新时间
+     *
      * @type {Date}
      * @memberof AddPluginInput
      */
     updateTime?: Date | null;
+
     /**
      * 创建者Id
+     *
      * @type {number}
      * @memberof AddPluginInput
      */
     createUserId?: number | null;
+
     /**
      * 创建者姓名
+     *
      * @type {string}
      * @memberof AddPluginInput
      */
     createUserName?: string | null;
+
     /**
      * 修改者Id
+     *
      * @type {number}
      * @memberof AddPluginInput
      */
     updateUserId?: number | null;
+
     /**
      * 修改者姓名
+     *
      * @type {string}
      * @memberof AddPluginInput
      */
     updateUserName?: string | null;
+
     /**
      * 软删除
+     *
      * @type {boolean}
      * @memberof AddPluginInput
      */
     isDelete?: boolean;
+
     /**
      * 租户Id
+     *
      * @type {number}
      * @memberof AddPluginInput
      */
     tenantId?: number | null;
+
     /**
      * C#代码
+     *
      * @type {string}
      * @memberof AddPluginInput
      */
     csharpCode: string;
+
     /**
      * 程序集名称
+     *
      * @type {string}
      * @memberof AddPluginInput
      */
     assemblyName?: string | null;
+
     /**
      * 排序
+     *
      * @type {number}
      * @memberof AddPluginInput
      */
     orderNo?: number;
+
     /**
-     * 
      * @type {StatusEnum}
      * @memberof AddPluginInput
      */
     status?: StatusEnum;
+
     /**
      * 备注
+     *
      * @type {string}
      * @memberof AddPluginInput
      */
     remark?: string | null;
+
     /**
      * 名称
+     *
      * @type {string}
      * @memberof AddPluginInput
      */

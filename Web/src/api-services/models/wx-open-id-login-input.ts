@@ -11,14 +11,18 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-/**
+
+ /**
  * 微信小程序登录
+ *
  * @export
  * @interface WxOpenIdLoginInput
  */
 export interface WxOpenIdLoginInput {
+
     /**
      * OpenId
+     *
      * @type {string}
      * @memberof WxOpenIdLoginInput
      */

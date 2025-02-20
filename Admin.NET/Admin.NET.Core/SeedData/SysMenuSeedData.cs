@@ -88,6 +88,12 @@ public class SysMenuSeedData : ISqlSugarEntitySeedData<SysMenu>
             new SysMenu{ Id=1300200080701, Pid=1300200080101, Title="同步域账户", Permission="sysLdap:syncUser", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=150 },
             new SysMenu{ Id=1300200080801, Pid=1300200080101, Title="同步域组织", Permission="sysLdap:syncOrg", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=160 },
 
+            new SysMenu{ Id=1300200090101, Pid=1300200000101, Title="系统参数", Path="/system/tenantConfig", Name="sysTenantConfig", Component="/system/tenantConfig/index", Icon="ele-DocumentCopy", Type=MenuTypeEnum.Menu, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=180 },
+            new SysMenu{ Id=1300200090201, Pid=1300200090101, Title="查询", Permission="sysTenantConfig:page", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
+            new SysMenu{ Id=1300200090301, Pid=1300200090101, Title="编辑", Permission="sysTenantConfig:update", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
+            new SysMenu{ Id=1300200090401, Pid=1300200090101, Title="增加", Permission="sysTenantConfig:add", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
+            new SysMenu{ Id=1300200090501, Pid=1300200090101, Title="删除", Permission="sysTenantConfig:delete", Type=MenuTypeEnum.Btn, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },
+
             new SysMenu{ Id=1300300000101, Pid=0, Title="平台管理", Path="/platform", Name="platform", Component="Layout", Icon="ele-Operation", Type=MenuTypeEnum.Dir, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=11000 },
 
             new SysMenu{ Id=1300300010101, Pid=1300300000101, Title="租户管理", Path="/platform/tenant", Name="sysTenant", Component="/system/tenant/index", Icon="ele-School", Type=MenuTypeEnum.Menu, CreateTime=DateTime.Parse("2022-02-10 00:00:00"), OrderNo=100 },

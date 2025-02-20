@@ -11,70 +11,88 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+
 import { Filter } from './filter';
 import { Search } from './search';
-/**
+ /**
  * 注册方案分页查询输入参数
+ *
  * @export
  * @interface PageUserRegWayInput
  */
 export interface PageUserRegWayInput {
+
     /**
-     * 
      * @type {Search}
      * @memberof PageUserRegWayInput
      */
     search?: Search;
+
     /**
      * 模糊查询关键字
+     *
      * @type {string}
      * @memberof PageUserRegWayInput
      */
     keyword?: string | null;
+
     /**
-     * 
      * @type {Filter}
      * @memberof PageUserRegWayInput
      */
     filter?: Filter;
+
     /**
      * 当前页码
+     *
      * @type {number}
      * @memberof PageUserRegWayInput
      */
     page?: number;
+
     /**
      * 页码容量
+     *
      * @type {number}
      * @memberof PageUserRegWayInput
      */
     pageSize?: number;
+
     /**
      * 排序字段
+     *
      * @type {string}
      * @memberof PageUserRegWayInput
      */
     field?: string | null;
+
     /**
      * 排序方向
+     *
      * @type {string}
      * @memberof PageUserRegWayInput
      */
     order?: string | null;
+
     /**
      * 降序排序
+     *
      * @type {string}
      * @memberof PageUserRegWayInput
      */
     descStr?: string | null;
+
     /**
      * 方案名称
+     *
      * @type {string}
      * @memberof PageUserRegWayInput
      */
     name?: string | null;
+
     /**
      * 租户Id
+     *
      * @type {number}
      * @memberof PageUserRegWayInput
      */

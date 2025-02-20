@@ -5,12 +5,7 @@
 // 不得利用本项目从事危害国家安全、扰乱社会秩序、侵犯他人合法权益等法律法规禁止的活动！任何基于本项目二次开发而产生的一切法律纠纷和责任，我们不承担任何责任！
 
 using Admin.NET.Plugin.DingTalk;
-using Admin.NET.Plugin.DingTalk.RequestProxy.HRM;
-using Admin.NET.Plugin.DingTalk.RequestProxy.HRM.DTO;
-using Admin.NET.Plugin.DingTalk.Service;
-
 using Furion.Schedule;
-
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
@@ -24,44 +19,55 @@ namespace Admin.NET.Plugin.Job;
 public class SyncDingTalkUserJob : IJob
 {
     private readonly IServiceScopeFactory _scopeFactory;
+    private readonly IDingTalkApi _dingTalkApi;
     private readonly ILogger _logger;
 
-    public SyncDingTalkUserJob(IServiceScopeFactory scopeFactory, ILoggerFactory loggerFactory)
+    public SyncDingTalkUserJob(IServiceScopeFactory scopeFactory, IDingTalkApi dingTalkApi, ILoggerFactory loggerFactory)
     {
         _scopeFactory = scopeFactory;
+        _dingTalkApi = dingTalkApi;
         _logger = loggerFactory.CreateLogger(CommonConst.SysLogCategoryName);
     }
 
     public async Task ExecuteAsync(JobExecutingContext context, CancellationToken stoppingToken)
     {
         using var serviceScope = _scopeFactory.CreateScope();
-        var sysUserRepo = serviceScope.ServiceProvider.GetRequiredService<SqlSugarRepository<SysUser>>();
-        var dingTalkUserRepo = serviceScope.ServiceProvider.GetRequiredService<SqlSugarRepository<DingTalkUser>>();
-        var dingTalkOptions = serviceScope.ServiceProvider.GetRequiredService<IOptions<DingTalkOptions>>().Value;
-        var dingTalkService = serviceScope.ServiceProvider.GetRequiredService<DingTalkService>();
-        var hrmRequest = serviceScope.ServiceProvider.GetRequiredService<HrmRequest>();
+        var _sysUserRep = serviceScope.ServiceProvider.GetRequiredService<SqlSugarRepository<SysUser>>();
+        var _dingTalkUserRepo = serviceScope.ServiceProvider.GetRequiredService<SqlSugarRepository<DingTalkUser>>();
+        var _dingTalkOptions = serviceScope.ServiceProvider.GetRequiredService<IOptions<DingTalkOptions>>();
 
         // 获取Token
-        var token = await dingTalkService.GetDingTalkToken();
-        ArgumentNullException.ThrowIfNull(token);
+        var tokenRes = await _dingTalkApi.GetDingTalkToken(_dingTalkOptions.Value.ClientId, _dingTalkOptions.Value.ClientSecret);
+        if (tokenRes.ErrCode != 0)
+            throw Oops.Oh(tokenRes.ErrMsg);
 
-        var dingTalkUserList = new List<RosterListResultDomain>();
+        var dingTalkUserList = new List<DingTalkEmpRosterFieldVo>();
         var offset = 0;
         while (offset >= 0)
         {
             // 获取用户Id列表
-            var userIdsRes = await hrmRequest.EmployeeQueryOnJob(token,
-                new List<string> { "2", "3", "5", "-1" }, 50, offset);
+            var userIdsRes = await _dingTalkApi.GetDingTalkCurrentEmployeesList(tokenRes.AccessToken, new GetDingTalkCurrentEmployeesListInput
+            {
+                StatusList = "2,3,5,-1",
+                Size = 50,
+                Offset = offset
+            });
             if (!userIdsRes.Success)
             {
                 _logger.LogError(userIdsRes.ErrMsg);
                 break;
             }
             // 根据用户Id获取花名册
-            var rosterRes = await hrmRequest.RosterListsQuery(token,
-                userIdsRes.Result.DataList,
-                new List<string> { DingTalkConst.NameField, DingTalkConst.JobNumberField, DingTalkConst.MobileField, DingTalkConst.DeptField, DingTalkConst.DeptIdField, DingTalkConst.PositionField },
-                dingTalkOptions.AgentId);
+            var rosterRes = await _dingTalkApi.GetDingTalkCurrentEmployeesRosterList(
+                tokenRes.AccessToken,
+                new GetDingTalkCurrentEmployeesRosterListInput()
+                {
+                    UserIdList = string.Join(",", userIdsRes.Result.DataList),
+                    FieldFilterList =
+                        $"{DingTalkConst.NameField},{DingTalkConst.JobNumberField},{DingTalkConst.MobileField},{DingTalkConst.DeptId},{DingTalkConst.Dept},{DingTalkConst.Position}",
+                    AgentId = _dingTalkOptions.Value.AgentId
+                }
+            );
             if (!rosterRes.Success)
             {
                 _logger.LogError(rosterRes.ErrMsg);
@@ -77,14 +83,14 @@ public class SyncDingTalkUserJob : IJob
         }
 
         // 判断新增还是更新
-        var sysDingTalkUserIdList = await dingTalkUserRepo.AsQueryable().Select(u => new
+        var sysDingTalkUserIdList = await _dingTalkUserRepo.AsQueryable().Select(u => new
         {
             u.Id,
             u.DingTalkUserId
         }).ToListAsync();
 
         var uDingTalkUser = dingTalkUserList.Where(u => sysDingTalkUserIdList.Any(m => m.DingTalkUserId == u.UserId)); // 需要更新的用户Id
-        var iDingTalkUser = dingTalkUserList.Where(u => sysDingTalkUserIdList.All(m => m.DingTalkUserId != u.UserId)); // 需要新增的用户Id
+        var iDingTalkUser = dingTalkUserList.Where(u => !sysDingTalkUserIdList.Any(m => m.DingTalkUserId == u.UserId)); // 需要新增的用户Id
 
         // 新增钉钉用户
         var iUser = iDingTalkUser.Select(res => new DingTalkUser
@@ -93,14 +99,13 @@ public class SyncDingTalkUserJob : IJob
             Name = res.FieldDataList.Where(u => u.FieldCode == DingTalkConst.NameField).Select(u => u.FieldValueList.Select(m => m.Value).FirstOrDefault()).FirstOrDefault(),
             Mobile = res.FieldDataList.Where(u => u.FieldCode == DingTalkConst.MobileField).Select(u => u.FieldValueList.Select(m => m.Value).FirstOrDefault()).FirstOrDefault(),
             JobNumber = res.FieldDataList.Where(u => u.FieldCode == DingTalkConst.JobNumberField).Select(u => u.FieldValueList.Select(m => m.Value).FirstOrDefault()).FirstOrDefault(),
-            DeptId = res.FieldDataList.Where(u => u.FieldCode == DingTalkConst.DeptIdField).Select(u => u.FieldValueList.Select(m => m.Value).FirstOrDefault()).FirstOrDefault(),
-            Dept = res.FieldDataList.Where(u => u.FieldCode == DingTalkConst.DeptField).Select(u => u.FieldValueList.Select(m => m.Value).FirstOrDefault()).FirstOrDefault(),
-            Position = res.FieldDataList.Where(u => u.FieldCode == DingTalkConst.PositionField).Select(u => u.FieldValueList.Select(m => m.Value).FirstOrDefault()).FirstOrDefault(),
-            TenantId = dingTalkOptions.TenantId
+            DeptId = res.FieldDataList.Where(u => u.FieldCode == DingTalkConst.DeptId).Select(u => u.FieldValueList.Select(m => m.Value).FirstOrDefault()).FirstOrDefault(),
+            Dept = res.FieldDataList.Where(u => u.FieldCode == DingTalkConst.Dept).Select(u => u.FieldValueList.Select(m => m.Value).FirstOrDefault()).FirstOrDefault(),
+            Position = res.FieldDataList.Where(u => u.FieldCode == DingTalkConst.Position).Select(u => u.FieldValueList.Select(m => m.Value).FirstOrDefault()).FirstOrDefault(),
         }).ToList();
         if (iUser.Count > 0)
         {
-            await dingTalkUserRepo.CopyNew().AsInsertable(iUser).ExecuteCommandAsync();
+            await _dingTalkUserRepo.CopyNew().AsInsertable(iUser).ExecuteCommandAsync();
         }
 
         // 更新钉钉用户
@@ -111,14 +116,13 @@ public class SyncDingTalkUserJob : IJob
             Name = res.FieldDataList.Where(u => u.FieldCode == DingTalkConst.NameField).Select(u => u.FieldValueList.Select(m => m.Value).FirstOrDefault()).FirstOrDefault(),
             Mobile = res.FieldDataList.Where(u => u.FieldCode == DingTalkConst.MobileField).Select(u => u.FieldValueList.Select(m => m.Value).FirstOrDefault()).FirstOrDefault(),
             JobNumber = res.FieldDataList.Where(u => u.FieldCode == DingTalkConst.JobNumberField).Select(u => u.FieldValueList.Select(m => m.Value).FirstOrDefault()).FirstOrDefault(),
-            DeptId = res.FieldDataList.Where(u => u.FieldCode == DingTalkConst.DeptIdField).Select(u => u.FieldValueList.Select(m => m.Value).FirstOrDefault()).FirstOrDefault(),
-            Dept = res.FieldDataList.Where(u => u.FieldCode == DingTalkConst.DeptField).Select(u => u.FieldValueList.Select(m => m.Value).FirstOrDefault()).FirstOrDefault(),
-            Position = res.FieldDataList.Where(u => u.FieldCode == DingTalkConst.PositionField).Select(u => u.FieldValueList.Select(m => m.Value).FirstOrDefault()).FirstOrDefault(),
-            TenantId = dingTalkOptions.TenantId,
+            DeptId = res.FieldDataList.Where(u => u.FieldCode == DingTalkConst.DeptId).Select(u => u.FieldValueList.Select(m => m.Value).FirstOrDefault()).FirstOrDefault(),
+            Dept = res.FieldDataList.Where(u => u.FieldCode == DingTalkConst.Dept).Select(u => u.FieldValueList.Select(m => m.Value).FirstOrDefault()).FirstOrDefault(),
+            Position = res.FieldDataList.Where(u => u.FieldCode == DingTalkConst.Position).Select(u => u.FieldValueList.Select(m => m.Value).FirstOrDefault()).FirstOrDefault(),
         }).ToList();
         if (uUser.Count > 0)
         {
-            await dingTalkUserRepo.CopyNew().AsUpdateable(uUser).UpdateColumns(u => new
+            await _dingTalkUserRepo.CopyNew().AsUpdateable(uUser).UpdateColumns(u => new
             {
                 u.DingTalkUserId,
                 u.Name,
@@ -130,40 +134,40 @@ public class SyncDingTalkUserJob : IJob
                 u.UpdateTime,
                 u.UpdateUserName,
                 u.UpdateUserId,
-                u.TenantId
             }).ExecuteCommandAsync();
         }
 
-        //获取没有对应SysUser的DingTalkUser
-        var dingTalkWithoutSysuser = await dingTalkUserRepo.AsQueryable()
-           .LeftJoin<SysUser>((dUser, sUser) => dUser.DingTalkUserId == sUser.Account)
-           .GroupBy((dUser, sUser) => dUser.Id)
-           .Having((dUser, sUser) => SqlFunc.AggregateCount(sUser.Id) == 0)
-           .Select((dUser, sUser) => dUser)
-           .ToListAsync();
-
-        //插入对应的SysUser
-        if (dingTalkWithoutSysuser.Count > 0)
+        // 通过系统用户账号(工号)，更新钉钉用户表里面的系统用户Id
+        var sysUser = await _sysUserRep.AsQueryable()
+            .Select(u => new
+            {
+                u.Id,
+                u.Account
+            }).ToListAsync();
+        var sysDingTalkUser = await _dingTalkUserRepo.AsQueryable()
+            .Where(u => sysUser.Any(m => m.Account == u.JobNumber))
+            .Select(u => new
+            {
+                u.Id,
+                u.JobNumber,
+                u.Mobile,
+                u.DeptId,
+                u.Dept,
+                u.Position
+            }).ToListAsync();
+        var uSysDingTalkUser = sysDingTalkUser.Select(u => new DingTalkUser
         {
-            var iSysUser = dingTalkWithoutSysuser.Select(dUser => new SysUser
-            {
-                Account = dUser.DingTalkUserId,
-                Password = CryptogramUtil.Encrypt(dUser.DingTalkUserId),
-                RealName = dUser.Name ?? "",
-                TenantId = dingTalkOptions.TenantId,
-            }).ToList();
-            await sysUserRepo.InsertRangeAsync(iSysUser);
-        }
+            Id = u.Id,
+            SysUserId = sysUser.Where(m => m.Account == u.JobNumber).Select(u => u.Id).FirstOrDefault(),
+        }).ToList();
 
-        //将SysUser.Id回填到对应DingTalkUser.SysUserId
-        await dingTalkUserRepo.AsUpdateable()
-            .SetColumns(dUser => new DingTalkUser
-            {
-                SysUserId = SqlFunc.Subqueryable<SysUser>()
-                                    .Where(sUser => sUser.Account == dUser.DingTalkUserId)
-                                    .Select(sUser => sUser.Id)
-            })
-            .ExecuteCommandAsync();
+        await _dingTalkUserRepo.CopyNew().AsUpdateable(uSysDingTalkUser).UpdateColumns(u => new
+        {
+            u.SysUserId,
+            u.UpdateTime,
+            u.UpdateUserName,
+            u.UpdateUserId,
+        }).ExecuteCommandAsync();
 
         var originColor = Console.ForegroundColor;
         Console.ForegroundColor = ConsoleColor.Blue;

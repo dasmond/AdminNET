@@ -11,6 +11,7 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+
 /**
  * 通用状态枚举<br />&nbsp;启用 Enable = 1<br />&nbsp;停用 Disable = 2<br />
  * @export

@@ -6,7 +6,6 @@
 
 global using Admin.NET.Core.Service;
 global using Furion;
-global using Furion.ClayObject;
 global using Furion.ConfigurableOptions;
 global using Furion.DatabaseAccessor;
 global using Furion.DataEncryption;
@@ -15,9 +14,9 @@ global using Furion.DependencyInjection;
 global using Furion.DynamicApiController;
 global using Furion.EventBus;
 global using Furion.FriendlyException;
+global using Furion.HttpRemote;
 global using Furion.JsonSerialization;
 global using Furion.Logging;
-global using Furion.RemoteRequest.Extensions;
 global using Furion.Schedule;
 global using Furion.UnifyResult;
 global using Furion.ViewEngine;

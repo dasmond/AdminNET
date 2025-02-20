@@ -11,76 +11,96 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+
 import { Filter } from './filter';
 import { Search } from './search';
-/**
+ /**
  * 
+ *
  * @export
  * @interface PagePluginInput
  */
 export interface PagePluginInput {
+
     /**
-     * 
      * @type {Search}
      * @memberof PagePluginInput
      */
     search?: Search;
+
     /**
      * 模糊查询关键字
+     *
      * @type {string}
      * @memberof PagePluginInput
      */
     keyword?: string | null;
+
     /**
-     * 
      * @type {Filter}
      * @memberof PagePluginInput
      */
     filter?: Filter;
+
     /**
      * 当前页码
+     *
      * @type {number}
      * @memberof PagePluginInput
      */
     page?: number;
+
     /**
      * 页码容量
+     *
      * @type {number}
      * @memberof PagePluginInput
      */
     pageSize?: number;
+
     /**
      * 排序字段
+     *
      * @type {string}
      * @memberof PagePluginInput
      */
     field?: string | null;
+
     /**
      * 排序方向
+     *
      * @type {string}
      * @memberof PagePluginInput
      */
     order?: string | null;
+
     /**
      * 降序排序
+     *
      * @type {string}
      * @memberof PagePluginInput
      */
     descStr?: string | null;
+
     /**
      * 名称
+     *
      * @type {string}
      * @memberof PagePluginInput
      */
     name?: string | null;
+
     /**
      * 编码
+     *
      * @type {string}
      * @memberof PagePluginInput
      */
     code?: string | null;
+
     /**
      * 租户Id
+     *
      * @type {number}
      * @memberof PagePluginInput
      */

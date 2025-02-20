@@ -11,87 +11,109 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+
 import { YesNoEnum } from './yes-no-enum';
-/**
+ /**
  * 系统信息保存输入参数
+ *
  * @export
  * @interface InfoSaveInput
  */
 export interface InfoSaveInput {
+
     /**
      * 系统图标（Data URI scheme base64 编码）
+     *
      * @type {string}
      * @memberof InfoSaveInput
      */
     logoBase64?: string | null;
+
     /**
      * 系统图标文件名
+     *
      * @type {string}
      * @memberof InfoSaveInput
      */
     logoFileName?: string | null;
+
     /**
      * 水印内容
+     *
      * @type {string}
      * @memberof InfoSaveInput
      */
     watermark?: string | null;
+
     /**
      * 系统主标题
+     *
      * @type {string}
      * @memberof InfoSaveInput
      */
     title: string;
+
     /**
      * 系统副标题
+     *
      * @type {string}
      * @memberof InfoSaveInput
      */
     viceTitle: string;
+
     /**
      * 系统描述
+     *
      * @type {string}
      * @memberof InfoSaveInput
      */
     viceDesc: string;
+
     /**
      * 版权说明
+     *
      * @type {string}
      * @memberof InfoSaveInput
      */
     copyright: string;
+
     /**
      * ICP备案号
+     *
      * @type {string}
      * @memberof InfoSaveInput
      */
     icp: string;
+
     /**
      * ICP地址
+     *
      * @type {string}
      * @memberof InfoSaveInput
      */
     icpUrl: string;
+
     /**
-     * 
      * @type {YesNoEnum}
      * @memberof InfoSaveInput
      */
     enableReg?: YesNoEnum;
+
     /**
-     * 
      * @type {YesNoEnum}
      * @memberof InfoSaveInput
      */
     secondVer?: YesNoEnum;
+
     /**
-     * 
      * @type {YesNoEnum}
      * @memberof InfoSaveInput
      */
     captcha?: YesNoEnum;
+
     /**
      * 默认注册方案Id
+     *
      * @type {number}
      * @memberof InfoSaveInput
      */

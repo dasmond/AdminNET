@@ -11,70 +11,88 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+
 import { Filter } from './filter';
 import { Search } from './search';
-/**
+ /**
  * 
+ *
  * @export
  * @interface WechatUserInput
  */
 export interface WechatUserInput {
+
     /**
-     * 
      * @type {Search}
      * @memberof WechatUserInput
      */
     search?: Search;
+
     /**
      * 模糊查询关键字
+     *
      * @type {string}
      * @memberof WechatUserInput
      */
     keyword?: string | null;
+
     /**
-     * 
      * @type {Filter}
      * @memberof WechatUserInput
      */
     filter?: Filter;
+
     /**
      * 当前页码
+     *
      * @type {number}
      * @memberof WechatUserInput
      */
     page?: number;
+
     /**
      * 页码容量
+     *
      * @type {number}
      * @memberof WechatUserInput
      */
     pageSize?: number;
+
     /**
      * 排序字段
+     *
      * @type {string}
      * @memberof WechatUserInput
      */
     field?: string | null;
+
     /**
      * 排序方向
+     *
      * @type {string}
      * @memberof WechatUserInput
      */
     order?: string | null;
+
     /**
      * 降序排序
+     *
      * @type {string}
      * @memberof WechatUserInput
      */
     descStr?: string | null;
+
     /**
      * 昵称
+     *
      * @type {string}
      * @memberof WechatUserInput
      */
     nickName?: string | null;
+
     /**
      * 手机号码
+     *
      * @type {string}
      * @memberof WechatUserInput
      */

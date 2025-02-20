@@ -67,7 +67,7 @@ public class Startup : AppStartup
         // 允许跨域
         services.AddCorsAccessor();
         // 远程请求
-        services.AddRemoteRequest();
+        services.AddHttpRemote();
         // 任务队列
         services.AddTaskQueue();
         // 任务调度

@@ -86,4 +86,3 @@ public class StressTestOutput
     /// </summary>
     public double Percentile999ResponseTime { get; set; }
 }
-

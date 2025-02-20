@@ -11,14 +11,18 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-/**
+
+ /**
  * 重置用户密码输入参数
+ *
  * @export
  * @interface ResetPwdUserInput
  */
 export interface ResetPwdUserInput {
+
     /**
      * 主键Id
+     *
      * @type {number}
      * @memberof ResetPwdUserInput
      */

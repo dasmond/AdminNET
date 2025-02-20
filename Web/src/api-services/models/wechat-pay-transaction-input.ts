@@ -11,50 +11,66 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-/**
+
+ /**
  * 
+ *
  * @export
  * @interface WechatPayTransactionInput
  */
 export interface WechatPayTransactionInput {
+
     /**
      * OpenId
+     *
      * @type {string}
      * @memberof WechatPayTransactionInput
      */
     openId?: string | null;
+
     /**
      * 订单金额
+     *
      * @type {number}
      * @memberof WechatPayTransactionInput
      */
     total?: number;
+
     /**
      * 商品描述
+     *
      * @type {string}
      * @memberof WechatPayTransactionInput
      */
     description?: string | null;
+
     /**
      * 附加数据
+     *
      * @type {string}
      * @memberof WechatPayTransactionInput
      */
     attachment?: string | null;
+
     /**
      * 优惠标记
+     *
      * @type {string}
      * @memberof WechatPayTransactionInput
      */
     goodsTag?: string | null;
+
     /**
      * 业务标签，用来区分做什么业务
+     *
      * @type {string}
      * @memberof WechatPayTransactionInput
      */
     tags?: string | null;
+
     /**
      * 对应业务的主键
+     *
      * @type {number}
      * @memberof WechatPayTransactionInput
      */

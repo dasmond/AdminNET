@@ -11,45 +11,57 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+
 import { SysFile } from './sys-file';
-/**
+ /**
  * 全局返回结果
+ *
  * @export
  * @interface AdminResultSysFile
  */
 export interface AdminResultSysFile {
+
     /**
      * 状态码
+     *
      * @type {number}
      * @memberof AdminResultSysFile
      */
     code?: number;
+
     /**
      * 类型success、warning、error
+     *
      * @type {string}
      * @memberof AdminResultSysFile
      */
     type?: string | null;
+
     /**
      * 错误信息
+     *
      * @type {string}
      * @memberof AdminResultSysFile
      */
     message?: string | null;
+
     /**
-     * 
      * @type {SysFile}
      * @memberof AdminResultSysFile
      */
     result?: SysFile;
+
     /**
      * 附加数据
+     *
      * @type {any}
      * @memberof AdminResultSysFile
      */
     extras?: any | null;
+
     /**
      * 时间
+     *
      * @type {Date}
      * @memberof AdminResultSysFile
      */

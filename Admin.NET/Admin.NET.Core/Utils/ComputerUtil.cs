@@ -31,7 +31,11 @@ public static class ComputerUtil
         memoryMetrics.UsedRam = Math.Round(memoryMetrics.Used / 1024, 2) + "GB";
         memoryMetrics.TotalRam = Math.Round(memoryMetrics.Total / 1024, 2) + "GB";
         memoryMetrics.RamRate = Math.Ceiling(100 * memoryMetrics.Used / memoryMetrics.Total) + "%";
-        memoryMetrics.CpuRate = Math.Ceiling(GetCPURate().ParseToDouble()) + "%";
+        var cpuRates = GetCPURates();
+        if (cpuRates != null)
+        {
+            memoryMetrics.CpuRates = cpuRates.Select(u => Math.Ceiling(u.ParseToDouble()) + "%").ToList();
+        }
         return memoryMetrics;
     }
 
@@ -124,16 +128,16 @@ public static class ComputerUtil
             foreach (var item in driveList)
             {
                 if (item.DriveType == DriveType.CDRom) continue;
-                var obj = new DiskInfo()
+                var diskInfo = new DiskInfo()
                 {
                     DiskName = item.Name,
                     TypeName = item.DriveType.ToString(),
                     TotalSize = Math.Round(item.TotalSize / 1024 / 1024 / 1024.0m, 2, MidpointRounding.AwayFromZero),
                     AvailableFreeSpace = Math.Round(item.AvailableFreeSpace / 1024 / 1024 / 1024.0m, 2, MidpointRounding.AwayFromZero),
                 };
-                obj.Used = obj.TotalSize - obj.AvailableFreeSpace;
-                obj.AvailablePercent = decimal.Ceiling(obj.Used / (decimal)obj.TotalSize * 100);
-                diskInfos.Add(obj);
+                diskInfo.Used = diskInfo.TotalSize - diskInfo.AvailableFreeSpace;
+                diskInfo.AvailablePercent = decimal.Ceiling(diskInfo.Used / (decimal)diskInfo.TotalSize * 100);
+                diskInfos.Add(diskInfo);
             }
         }
         return diskInfos;
@@ -148,7 +152,8 @@ public static class ComputerUtil
         try
         {
             var url = "https://www.ip.cn/api/index?ip&type=0";
-            var str = url.GetAsStringAsync().GetAwaiter().GetResult();
+            var httpRemoteService = App.GetRequiredService<IHttpRemoteService>();
+            var str = httpRemoteService.GetAsStringAsync(url).GetAwaiter().GetResult();
             var resp = JSON.Deserialize<IpCnResp>(str);
             return resp.Ip + " " + resp.Address;
         }
@@ -168,25 +173,25 @@ public static class ComputerUtil
         return RuntimeInformation.IsOSPlatform(OSPlatform.OSX);
     }
 
-    public static string GetCPURate()
+    public static List<string> GetCPURates()
     {
-        string cpuRate;
+        var cpuRates = new List<string>();
         if (IsMacOS())
         {
             string output = ShellUtil.Bash("top -l 1 | grep \"CPU usage\" | awk '{print $3 + $5}'");
-            cpuRate = output.Trim();
+            cpuRates.Add(output.Trim());
         }
         else if (IsUnix())
         {
             string output = ShellUtil.Bash("awk '{u=$2+$4; t=$2+$4+$5; if (NR==1){u1=u; t1=t;} else print ($2+$4-u1) * 100 / (t-t1); }' <(grep 'cpu ' /proc/stat) <(sleep 1;grep 'cpu ' /proc/stat)");
-            cpuRate = output.Trim();
+            cpuRates.Add(output.Trim());
         }
         else
         {
             string output = ShellUtil.Cmd("wmic", "cpu get LoadPercentage");
-            cpuRate = output.Replace("LoadPercentage", string.Empty).Trim();
+            cpuRates.AddRange(output.Replace("LoadPercentage", string.Empty).Trim().Split("\r\r\n"));
         }
-        return cpuRate;
+        return cpuRates;
     }
 
     /// <summary>
@@ -198,10 +203,10 @@ public static class ComputerUtil
         string runTime = string.Empty;
         if (IsMacOS())
         {
-            //macOS 获取系统启动时间：
-            //sysctl -n kern.boottime | awk '{print $4}' | tr -d ','
-            //返回：1705379131
-            //使用date格式化即可
+            // macOS 获取系统启动时间：
+            // sysctl -n kern.boottime | awk '{print $4}' | tr -d ','
+            // 返回：1705379131
+            // 使用date格式化即可
             string output = ShellUtil.Bash("date -r $(sysctl -n kern.boottime | awk '{print $4}' | tr -d ',') +\"%Y-%m-%d %H:%M:%S\"").Trim();
             runTime = DateTimeUtil.FormatTime((DateTime.Now - output.ParseToDateTime()).TotalMilliseconds.ToString().Split('.')[0].ParseToLong());
         }
@@ -256,7 +261,7 @@ public class MemoryMetrics
     /// <summary>
     /// CPU使用率%
     /// </summary>
-    public string CpuRate { get; set; }
+    public List<string> CpuRates { get; set; }
 
     /// <summary>
     /// 总内存 GB
@@ -326,7 +331,7 @@ public class MemoryMetricsClient
         string output = ShellUtil.Cmd("wmic", "OS get FreePhysicalMemory,TotalVisibleMemorySize /Value");
         var metrics = new MemoryMetrics();
         var lines = output.Trim().Split('\n', (char)StringSplitOptions.RemoveEmptyEntries);
-        if (lines.Length <= 0) return metrics;
+        if (lines.Length <= 1) return metrics;
 
         var freeMemoryParts = lines[0].Split('=', (char)StringSplitOptions.RemoveEmptyEntries);
         var totalMemoryParts = lines[1].Split('=', (char)StringSplitOptions.RemoveEmptyEntries);
@@ -352,7 +357,6 @@ public class MemoryMetricsClient
         metrics.Total = double.Parse(memory[0]) / 1024;
         metrics.Free = double.Parse(memory[1]) / 1024;
         metrics.Used = metrics.Total - metrics.Free;
-
         return metrics;
     }
 
@@ -403,7 +407,7 @@ public class ShellUtil
     }
 
     /// <summary>
-    /// windows系统命令
+    /// windows CMD 系统命令
     /// </summary>
     /// <param name="fileName"></param>
     /// <param name="args"></param>
@@ -423,5 +427,95 @@ public class ShellUtil
             output = process.StandardOutput.ReadToEnd();
         }
         return output;
+    }
+
+    /// <summary>
+    /// Windows POWERSHELL 系统命令
+    /// </summary>
+    /// <param name="script"></param>
+    /// <returns></returns>
+    public static string PowerShell(string script)
+    {
+        using var PowerShellInstance = System.Management.Automation.PowerShell.Create();
+        PowerShellInstance.AddScript(script);
+        var PSOutput = PowerShellInstance.Invoke();
+
+        var output = new StringBuilder();
+        foreach (var outputItem in PSOutput)
+        {
+            output.AppendLine(outputItem.BaseObject.ToString());
+        }
+        return output.ToString();
+    }
+}
+
+public class ShellHelper
+{
+    /// <summary>
+    /// Linux 系统命令
+    /// </summary>
+    /// <param name="command"></param>
+    /// <returns></returns>
+    public static string Bash(string command)
+    {
+        var escapedArgs = command.Replace("\"", "\\\"");
+        var process = new Process()
+        {
+            StartInfo = new ProcessStartInfo
+            {
+                FileName = "/bin/bash",
+                Arguments = $"-c \"{escapedArgs}\"",
+                RedirectStandardOutput = true,
+                UseShellExecute = false,
+                CreateNoWindow = true,
+            }
+        };
+        process.Start();
+        string result = process.StandardOutput.ReadToEnd();
+        process.WaitForExit();
+        process.Dispose();
+        return result;
+    }
+
+    /// <summary>
+    /// Windows CMD 系统命令
+    /// </summary>
+    /// <param name="fileName"></param>
+    /// <param name="args"></param>
+    /// <returns></returns>
+    public static string Cmd(string fileName, string args)
+    {
+        var info = new ProcessStartInfo
+        {
+            FileName = fileName,
+            Arguments = args,
+            RedirectStandardOutput = true
+        };
+
+        var output = string.Empty;
+        using (var process = Process.Start(info))
+        {
+            output = process.StandardOutput.ReadToEnd();
+        }
+        return output;
+    }
+
+    /// <summary>
+    /// Windows POWERSHELL 系统命令
+    /// </summary>
+    /// <param name="script"></param>
+    /// <returns></returns>
+    public static string PowerShell(string script)
+    {
+        using var PowerShellInstance = System.Management.Automation.PowerShell.Create();
+        PowerShellInstance.AddScript(script);
+        var PSOutput = PowerShellInstance.Invoke();
+
+        var output = new StringBuilder();
+        foreach (var outputItem in PSOutput)
+        {
+            output.AppendLine(outputItem.BaseObject.ToString());
+        }
+        return output.ToString();
     }
 }

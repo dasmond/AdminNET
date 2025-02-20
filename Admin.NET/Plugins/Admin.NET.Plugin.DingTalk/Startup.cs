@@ -16,6 +16,11 @@ public class Startup : AppStartup
     public void ConfigureServices(IServiceCollection services)
     {
         services.AddConfigurableOptions<DingTalkOptions>();
+
+        services.AddHttpRemote(builder =>
+        {
+            builder.AddHttpDeclarative<IDingTalkApi>();
+        });
     }
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

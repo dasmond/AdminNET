@@ -9,7 +9,7 @@ namespace Admin.NET.Plugin.WorkWeixin.Proxy.AppChat;
 /// <summary>
 /// 部门远程调用服务
 /// </summary>
-public interface IDepartmentHttp : IHttpDispatchProxy
+public interface IDepartmentHttp : IHttpDeclarative
 {
     /// <summary>
     /// 创建部门
@@ -18,8 +18,8 @@ public interface IDepartmentHttp : IHttpDispatchProxy
     /// <param name="accessToken"></param>
     /// <param name="body"></param>
     /// <returns></returns>
-    [Post("https://qyapi.weixin.qq.com/cgi-bin/department/create"), JsonSerialization(typeof(NewtonsoftJsonSerializerProvider))]
-    Task<BaseWorkIdOutput> Create([QueryString("access_token")] string accessToken, [Body] DepartmentHttpInput body);
+    [Post("https://qyapi.weixin.qq.com/cgi-bin/department/create")]
+    Task<BaseWorkIdOutput> Create([Query("access_token")] string accessToken, [Body] DepartmentHttpInput body);
 
     /// <summary>
     /// 修改部门
@@ -28,8 +28,8 @@ public interface IDepartmentHttp : IHttpDispatchProxy
     /// <param name="accessToken"></param>
     /// <param name="body"></param>
     /// <returns></returns>
-    [Post("https://qyapi.weixin.qq.com/cgi-bin/department/update"), JsonSerialization(typeof(NewtonsoftJsonSerializerProvider))]
-    Task<BaseWorkOutput> Update([QueryString("access_token")] string accessToken, [Body] DepartmentHttpInput body);
+    [Post("https://qyapi.weixin.qq.com/cgi-bin/department/update")]
+    Task<BaseWorkOutput> Update([Query("access_token")] string accessToken, [Body] DepartmentHttpInput body);
 
     /// <summary>
     /// 删除部门
@@ -38,8 +38,8 @@ public interface IDepartmentHttp : IHttpDispatchProxy
     /// <param name="accessToken"></param>
     /// <param name="id"></param>
     /// <returns></returns>
-    [Get("https://qyapi.weixin.qq.com/cgi-bin/department/delete"), JsonSerialization(typeof(NewtonsoftJsonSerializerProvider))]
-    Task<BaseWorkOutput> Delete([QueryString("access_token")] string accessToken, [QueryString] long id);
+    [Get("https://qyapi.weixin.qq.com/cgi-bin/department/delete")]
+    Task<BaseWorkOutput> Delete([Query("access_token")] string accessToken, [Query] long id);
 
     /// <summary>
     /// 获取部门Id列表
@@ -48,8 +48,8 @@ public interface IDepartmentHttp : IHttpDispatchProxy
     /// <param name="accessToken"></param>
     /// <param name="id"></param>
     /// <returns></returns>
-    [Get("https://qyapi.weixin.qq.com/cgi-bin/department/simplelist"), JsonSerialization(typeof(NewtonsoftJsonSerializerProvider))]
-    Task<DepartmentIdOutput> SimpleList([QueryString("access_token")] string accessToken, [QueryString] long id);
+    [Get("https://qyapi.weixin.qq.com/cgi-bin/department/simplelist")]
+    Task<DepartmentIdOutput> SimpleList([Query("access_token")] string accessToken, [Query] long id);
 
     /// <summary>
     /// 获取部门详情
@@ -58,6 +58,6 @@ public interface IDepartmentHttp : IHttpDispatchProxy
     /// <param name="accessToken"></param>
     /// <param name="id"></param>
     /// <returns></returns>
-    [Get("https://qyapi.weixin.qq.com/cgi-bin/department/get"), JsonSerialization(typeof(NewtonsoftJsonSerializerProvider))]
-    Task<DepartmentOutput> Get([QueryString("access_token")] string accessToken, [QueryString] long id);
+    [Get("https://qyapi.weixin.qq.com/cgi-bin/department/get")]
+    Task<DepartmentOutput> Get([Query("access_token")] string accessToken, [Query] long id);
 }

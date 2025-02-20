@@ -11,41 +11,49 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+
 import { Filter } from './filter';
 import { FilterLogicEnum } from './filter-logic-enum';
 import { FilterOperatorEnum } from './filter-operator-enum';
-/**
+ /**
  * 筛选过滤条件
+ *
  * @export
  * @interface Filter
  */
 export interface Filter {
+
     /**
-     * 
      * @type {FilterLogicEnum}
      * @memberof Filter
      */
     logic?: FilterLogicEnum;
+
     /**
      * 筛选过滤条件子项
+     *
      * @type {Array<Filter>}
      * @memberof Filter
      */
     filters?: Array<Filter> | null;
+
     /**
      * 字段名称
+     *
      * @type {string}
      * @memberof Filter
      */
     field?: string | null;
+
     /**
-     * 
      * @type {FilterOperatorEnum}
      * @memberof Filter
      */
     operator?: FilterOperatorEnum;
+
     /**
      * 字段值
+     *
      * @type {any}
      * @memberof Filter
      */

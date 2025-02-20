@@ -11,14 +11,22 @@ namespace Admin.NET.Core;
 /// </summary>
 [SugarTable(null, "系统字典值表")]
 [SysTable]
-[SugarIndex("index_{table}_C", nameof(Value), OrderByType.Asc)]
-public partial class SysDictData : EntityTenant
+[SugarIndex("index_{table}_C", nameof(Code), OrderByType.Asc)]
+public partial class SysDictData : EntityBase
 {
     /// <summary>
     /// 字典类型Id
     /// </summary>
     [SugarColumn(ColumnDescription = "字典类型Id")]
     public long DictTypeId { get; set; }
+
+    /// <summary>
+    /// 字典类型
+    /// </summary>
+    [Newtonsoft.Json.JsonIgnore]
+    [System.Text.Json.Serialization.JsonIgnore]
+    [Navigate(NavigateType.OneToOne, nameof(DictTypeId))]
+    public SysDictType DictType { get; set; }
 
     /// <summary>
     /// 显示文本
@@ -41,6 +49,13 @@ public partial class SysDictData : EntityTenant
     /// </remarks>
     [SugarColumn(ColumnDescription = "编码", Length = 256)]
     public virtual string? Code { get; set; }
+
+    /// <summary>
+    /// 名称
+    /// </summary>
+    [SugarColumn(ColumnDescription = "名称", Length = 256)]
+    [MaxLength(256)]
+    public virtual string? Name { get; set; }
 
     /// <summary>
     /// 显示样式-标签颜色
@@ -66,7 +81,7 @@ public partial class SysDictData : EntityTenant
     /// <summary>
     /// 排序
     /// </summary>
-    [SugarColumn(ColumnDescription = "排序")]
+    [SugarColumn(ColumnDescription = "排序", DefaultValue = "100")]
     public int OrderNo { get; set; } = 100;
 
     /// <summary>
@@ -85,14 +100,6 @@ public partial class SysDictData : EntityTenant
     /// <summary>
     /// 状态
     /// </summary>
-    [SugarColumn(ColumnDescription = "状态")]
+    [SugarColumn(ColumnDescription = "状态", DefaultValue = "1")]
     public StatusEnum Status { get; set; } = StatusEnum.Enable;
-
-    /// <summary>
-    /// 字典类型
-    /// </summary>
-    [Newtonsoft.Json.JsonIgnore]
-    [System.Text.Json.Serialization.JsonIgnore]
-    [Navigate(NavigateType.OneToOne, nameof(DictTypeId))]
-    public SysDictType DictType { get; set; }
 }

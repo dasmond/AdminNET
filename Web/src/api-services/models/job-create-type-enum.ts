@@ -11,6 +11,7 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+
 /**
  * 作业创建类型枚举<br />&nbsp;内置 BuiltIn = 0<br />&nbsp;脚本 Script = 1<br />&nbsp;HTTP请求 Http = 2<br />
  * @export

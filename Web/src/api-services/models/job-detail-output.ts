@@ -11,22 +11,26 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+
 import { SysJobDetail } from './sys-job-detail';
 import { SysJobTrigger } from './sys-job-trigger';
-/**
+ /**
  * 
+ *
  * @export
  * @interface JobDetailOutput
  */
 export interface JobDetailOutput {
+
     /**
-     * 
      * @type {SysJobDetail}
      * @memberof JobDetailOutput
      */
     jobDetail?: SysJobDetail;
+
     /**
      * 触发器集合
+     *
      * @type {Array<SysJobTrigger>}
      * @memberof JobDetailOutput
      */

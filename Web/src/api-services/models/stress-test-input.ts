@@ -11,63 +11,87 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+
 import { KeyValuePairStringString } from './key-value-pair-string-string';
-/**
+ /**
  * 接口压测输入参数
+ *
  * @export
  * @interface StressTestInput
  */
 export interface StressTestInput {
+
     /**
      * 接口请求地址
+     *
      * @type {string}
      * @memberof StressTestInput
+     * @example https://gitee.com/zuohuaijun/Admin.NET
      */
     requestUri: string;
+
     /**
      * 请求方式
+     *
      * @type {string}
      * @memberof StressTestInput
      */
     requestMethod: string;
+
     /**
      * 每轮请求量
+     *
      * @type {number}
      * @memberof StressTestInput
+     * @example 100
      */
     numberOfRequests: number;
+
     /**
      * 压测轮数
+     *
      * @type {number}
      * @memberof StressTestInput
+     * @example 5
      */
     numberOfRounds: number;
+
     /**
      * 最大并行量（默认为当前主机逻辑处理器的数量）
+     *
      * @type {number}
      * @memberof StressTestInput
+     * @example 500
      */
     maxDegreeOfParallelism?: number | null;
+
     /**
      * 请求参数
+     *
      * @type {Array<KeyValuePairStringString>}
      * @memberof StressTestInput
      */
     requestParameters?: Array<KeyValuePairStringString> | null;
+
     /**
      * 请求头参数
+     *
      * @type {{ [key: string]: string; }}
      * @memberof StressTestInput
      */
     headers?: { [key: string]: string; } | null;
+
     /**
      * 路径参数
+     *
      * @type {{ [key: string]: string; }}
      * @memberof StressTestInput
      */
     pathParameters?: { [key: string]: string; } | null;
+
     /**
      * Query参数
+     *
      * @type {{ [key: string]: string; }}
      * @memberof StressTestInput
      */

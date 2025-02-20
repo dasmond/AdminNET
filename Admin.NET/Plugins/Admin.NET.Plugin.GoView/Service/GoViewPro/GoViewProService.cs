@@ -10,7 +10,7 @@ namespace Admin.NET.Plugin.GoView.Service;
 /// 项目管理服务 🧩
 /// </summary>
 [UnifyProvider("GoView")]
-[ApiDescriptionSettings(GoViewConst.GroupName, Module = "goview", Name = "project", Order = 100)]
+[ApiDescriptionSettings(GoViewConst.GroupName, Module = "goview", Name = "project", Order = 100, Description = "项目管理")]
 public class GoViewProService : IDynamicApiController
 {
     private readonly SqlSugarRepository<GoViewPro> _goViewProRep;
@@ -104,10 +104,10 @@ public class GoViewProService : IDynamicApiController
     [DisplayName("获取项目数据")]
     public async Task<GoViewProDetailOutput> GetData([FromQuery] long projectId)
     {
-        var projectData = await _goViewProDataRep.GetFirstAsync(u => u.Id == projectId);
+        var projectData = await _goViewProDataRep.GetByIdAsync(projectId);
         if (projectData == null) return null;
 
-        var project = await _goViewProRep.GetFirstAsync(u => u.Id == projectId);
+        var project = await _goViewProRep.GetByIdAsync(projectId);
         var projectDetail = project.Adapt<GoViewProDetailOutput>();
         projectDetail.Content = projectData.Content;
 
@@ -207,7 +207,7 @@ public class GoViewProService : IDynamicApiController
 
         ////保存预览图
         //var result = await _fileService.UploadFile(@object, "");
-        //var file = await _fileRep.GetFirstAsync(u => u.Id == result.Id);
+        //var file = await _fileRep.GetByIdAsync(result.Id);
         //int.TryParse(file.SizeKb, out var size);
 
         ////本地存储，使用拼接的地址

@@ -11,38 +11,40 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-/**
+
+ /**
  * 
+ *
  * @export
  * @interface ColumnRelation
  */
 export interface ColumnRelation {
+
     /**
-     * 
      * @type {string}
      * @memberof ColumnRelation
      */
     sourceTableName?: string | null;
+
     /**
-     * 
      * @type {string}
      * @memberof ColumnRelation
      */
     sourceColumnName?: string | null;
+
     /**
-     * 
      * @type {string}
      * @memberof ColumnRelation
      */
     type?: string | null;
+
     /**
-     * 
      * @type {string}
      * @memberof ColumnRelation
      */
     targetTableName?: string | null;
+
     /**
-     * 
      * @type {string}
      * @memberof ColumnRelation
      */

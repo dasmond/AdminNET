@@ -4,6 +4,8 @@
 //
 // 不得利用本项目从事危害国家安全、扰乱社会秩序、侵犯他人合法权益等法律法规禁止的活动！任何基于本项目二次开发而产生的一切法律纠纷和责任，我们不承担任何责任！
 
+using Aop.Api;
+
 namespace Admin.NET.Core;
 
 /// <summary>
@@ -12,57 +14,106 @@ namespace Admin.NET.Core;
 public sealed class AlipayOptions : IConfigurableOptions
 {
     /// <summary>
-    /// 支付宝 APPID（必填）
+    /// 支付宝网关地址
     /// </summary>
-    public string AppId { get; set; }
+    public string ServerUrl { get; init; }
 
     /// <summary>
-    /// 支付宝 websocket 服务地址 （必填）
+    /// 支付宝授权回调地址
     /// </summary>
-    public string AlipayWebsocketUrl { get; set; }
+    public string AuthUrl { get; init; }
 
     /// <summary>
-    /// 支付宝网关地址 （必填）
+    /// 应用授权回调地址
     /// </summary>
-    public string ServerUrl { get; set; }
+    public string AppAuthUrl { get; init; }
 
     /// <summary>
-    /// 支付宝授权回调地址 （必填）
+    /// 支付宝 websocket 服务地址
     /// </summary>
-    public string AuthUrl { get; set; }
+    public string WebsocketUrl { get; init; }
 
     /// <summary>
     /// 应用回调地址
     /// </summary>
-    public string NotifyUrl { get; set; }
+    public string NotifyUrl { get; init; }
 
     /// <summary>
-    /// 加密算法（必填）
+    /// 支付宝根证书存放路径
     /// </summary>
-    public string SignType { get; set; }
+    public string RootCertPath { get; init; }
+
+    /// <summary>
+    /// 支付宝商户账号列表
+    /// </summary>
+    public List<AlipayMerchantAccount> AccountList { get; init; }
+
+    /// <summary>
+    /// 获取支付宝客户端
+    /// </summary>
+    /// <param name="account"></param>
+    public DefaultAopClient GetClient(AlipayMerchantAccount account)
+    {
+        account = account ?? throw new Exception("未找到支付宝商户账号");
+        string path = App.WebHostEnvironment.ContentRootPath;
+        return new DefaultAopClient(new AlipayConfig
+        {
+            Format = "json",
+            Charset = "UTF-8",
+            ServerUrl = ServerUrl,
+            AppId = account.AppId,
+            SignType = account.SignType,
+            PrivateKey = account.PrivateKey,
+            EncryptKey = account.EncryptKey,
+            RootCertPath = Path.Combine(path, RootCertPath),
+            AppCertPath = Path.Combine(path, account.AppCertPath),
+            AlipayPublicCertPath = Path.Combine(path, account.AlipayPublicCertPath)
+        });
+    }
+}
+
+/// <summary>
+/// 支付宝商户账号信息
+/// </summary>
+public class AlipayMerchantAccount
+{
+    /// <summary>
+    /// 配置Id
+    /// </summary>
+    public long Id { get; init; }
+
+    /// <summary>
+    /// 商户名称
+    /// </summary>
+    public string Name { get; init; }
+
+    /// <summary>
+    /// 商户AppId
+    /// </summary>
+    public string AppId { get; init; }
+
+    /// <summary>
+    /// 应用私钥
+    /// </summary>
+    public string PrivateKey { get; init; }
 
     /// <summary>
     /// 从支付宝获取敏感信息时的加密密钥（可选）
     /// </summary>
-    public string EncryptKey { get; set; }
+    public string EncryptKey { get; init; }
 
     /// <summary>
-    /// 应用私钥 （必填）
+    /// 加密算法
     /// </summary>
-    public string PrivateKey { get; set; }
+    public string SignType { get; init; }
 
     /// <summary>
-    /// 支付宝公钥证书存放路径（证书加签方式必填）
+    /// 应用公钥证书路径
     /// </summary>
-    public string AlipayPublicCertPath { get; set; }
+    public string AppCertPath { get; init; }
 
     /// <summary>
-    /// 支付宝根证书存放路径（证书加签方式必填）
+    /// 支付宝公钥证书路径
     /// </summary>
-    public string RootCertPath { get; set; }
-
-    /// <summary>
-    /// 应用公钥证书存放路径（证书加签方式必填）
-    /// </summary>
-    public string AppCertPath { get; set; }
+    public string AlipayPublicCertPath { get; init; }
 }

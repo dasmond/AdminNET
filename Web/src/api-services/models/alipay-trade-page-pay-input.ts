@@ -11,71 +11,85 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+
 import { ExtUserInfo } from './ext-user-info';
 import { ExtendParams } from './extend-params';
 import { InvoiceInfo } from './invoice-info';
-/**
+ /**
  * 统一收单下单并支付页面接口输入参数
+ *
  * @export
  * @interface AlipayTradePagePayInput
  */
 export interface AlipayTradePagePayInput {
+
     /**
      * 商户订单号
+     *
      * @type {string}
      * @memberof AlipayTradePagePayInput
      */
     outTradeNo: string;
+
     /**
      * 订单总金额
+     *
      * @type {string}
      * @memberof AlipayTradePagePayInput
      */
     totalAmount: string;
+
     /**
      * 订单标题
+     *
      * @type {string}
      * @memberof AlipayTradePagePayInput
      */
     subject: string;
+
     /**
-     * 
      * @type {string}
      * @memberof AlipayTradePagePayInput
      */
     body?: string | null;
+
     /**
      * 超时时间
+     *
      * @type {string}
      * @memberof AlipayTradePagePayInput
      */
     timeoutExpress?: string | null;
+
     /**
      * 二维码宽度
+     *
      * @type {number}
      * @memberof AlipayTradePagePayInput
      */
     qrcodeWidth: number;
+
     /**
-     * 
      * @type {ExtendParams}
      * @memberof AlipayTradePagePayInput
      */
     extendParams?: ExtendParams;
+
     /**
      * 商户业务数据
+     *
      * @type {{ [key: string]: any; }}
      * @memberof AlipayTradePagePayInput
      */
     businessParams?: { [key: string]: any; } | null;
+
     /**
-     * 
      * @type {InvoiceInfo}
      * @memberof AlipayTradePagePayInput
      */
     invoiceInfo?: InvoiceInfo;
+
     /**
-     * 
      * @type {ExtUserInfo}
      * @memberof AlipayTradePagePayInput
      */

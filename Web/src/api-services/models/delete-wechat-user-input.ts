@@ -11,14 +11,18 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-/**
+
+ /**
  * 
+ *
  * @export
  * @interface DeleteWechatUserInput
  */
 export interface DeleteWechatUserInput {
+
     /**
      * 主键Id
+     *
      * @type {number}
      * @memberof DeleteWechatUserInput
      */

@@ -11,45 +11,57 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+
 import { SysPrint } from './sys-print';
-/**
+ /**
  * 全局返回结果
+ *
  * @export
  * @interface AdminResultSysPrint
  */
 export interface AdminResultSysPrint {
+
     /**
      * 状态码
+     *
      * @type {number}
      * @memberof AdminResultSysPrint
      */
     code?: number;
+
     /**
      * 类型success、warning、error
+     *
      * @type {string}
      * @memberof AdminResultSysPrint
      */
     type?: string | null;
+
     /**
      * 错误信息
+     *
      * @type {string}
      * @memberof AdminResultSysPrint
      */
     message?: string | null;
+
     /**
-     * 
      * @type {SysPrint}
      * @memberof AdminResultSysPrint
      */
     result?: SysPrint;
+
     /**
      * 附加数据
+     *
      * @type {any}
      * @memberof AdminResultSysPrint
      */
     extras?: any | null;
+
     /**
      * 时间
+     *
      * @type {Date}
      * @memberof AdminResultSysPrint
      */

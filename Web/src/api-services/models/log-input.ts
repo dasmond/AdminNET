@@ -11,20 +11,26 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-/**
+
+ /**
  * 
+ *
  * @export
  * @interface LogInput
  */
 export interface LogInput {
+
     /**
      * 开始时间
+     *
      * @type {Date}
      * @memberof LogInput
      */
     startTime?: Date | null;
+
     /**
      * 结束时间
+     *
      * @type {Date}
      * @memberof LogInput
      */

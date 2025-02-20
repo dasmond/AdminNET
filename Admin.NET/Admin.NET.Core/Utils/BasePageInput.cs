@@ -39,3 +39,19 @@ public class BasePageInput : BaseFilter
     /// </summary>
     public virtual string DescStr { get; set; } = "descending";
 }
+
+/// <summary>
+/// 全局分页查询输入参数(带时间)
+/// </summary>
+public class BasePageTimeInput : BasePageInput
+{
+    /// <summary>
+    /// 开始时间
+    /// </summary>
+    public DateTime? StartTime { get; set; }
+
+    /// <summary>
+    /// 结束时间
+    /// </summary>
+    public DateTime? EndTime { get; set; }
+}

@@ -38,7 +38,6 @@ public class UserTest : BaseTest
         await Task.Delay(1000);
         Driver.FindElement(By.Id("tab-0")).Click();
 
-
         var tab = Driver.FindElement(By.Id("pane-0"));
         var formItemList = tab.FindElements(By.CssSelector("input"));
 

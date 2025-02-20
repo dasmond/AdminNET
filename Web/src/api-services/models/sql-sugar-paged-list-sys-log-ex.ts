@@ -11,51 +11,67 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+
 import { SysLogEx } from './sys-log-ex';
-/**
+ /**
  * 分页泛型集合
+ *
  * @export
  * @interface SqlSugarPagedListSysLogEx
  */
 export interface SqlSugarPagedListSysLogEx {
+
     /**
      * 页码
+     *
      * @type {number}
      * @memberof SqlSugarPagedListSysLogEx
      */
     page?: number;
+
     /**
      * 页容量
+     *
      * @type {number}
      * @memberof SqlSugarPagedListSysLogEx
      */
     pageSize?: number;
+
     /**
      * 总条数
+     *
      * @type {number}
      * @memberof SqlSugarPagedListSysLogEx
      */
     total?: number;
+
     /**
      * 总页数
+     *
      * @type {number}
      * @memberof SqlSugarPagedListSysLogEx
      */
     totalPages?: number;
+
     /**
      * 当前页集合
+     *
      * @type {Array<SysLogEx>}
      * @memberof SqlSugarPagedListSysLogEx
      */
     items?: Array<SysLogEx> | null;
+
     /**
      * 是否有上一页
+     *
      * @type {boolean}
      * @memberof SqlSugarPagedListSysLogEx
      */
     hasPrevPage?: boolean;
+
     /**
      * 是否有下一页
+     *
      * @type {boolean}
      * @memberof SqlSugarPagedListSysLogEx
      */

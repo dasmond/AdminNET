@@ -25,6 +25,10 @@ public class PageDictTypeInput : BasePageInput
 
 public class AddDictTypeInput : SysDictType
 {
+    /// <summary>
+    /// 是否是内置字典（Y-是，N-否）
+    /// </summary>
+    public override YesNoEnum SysFlag { get; set; } = YesNoEnum.N;
 }
 
 public class UpdateDictTypeInput : AddDictTypeInput
@@ -33,15 +37,6 @@ public class UpdateDictTypeInput : AddDictTypeInput
 
 public class DeleteDictTypeInput : BaseIdInput
 {
-}
-
-public class DictTypeMoveInput : BaseIdInput
-{
-    /// <summary>
-    /// 租户
-    /// </summary>
-    [Required(ErrorMessage = "租户不能为空")]
-    public long? TenantId { get; set; }
 }
 
 public class GetDataDictTypeInput

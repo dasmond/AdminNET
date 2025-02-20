@@ -11,21 +11,25 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+
 import { StatusEnum } from './status-enum';
-/**
+ /**
  * 设置用户状态输入参数
+ *
  * @export
  * @interface UserInput
  */
 export interface UserInput {
+
     /**
      * 主键Id
+     *
      * @type {number}
      * @memberof UserInput
      */
     id: number;
+
     /**
-     * 
      * @type {StatusEnum}
      * @memberof UserInput
      */

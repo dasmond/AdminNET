@@ -11,81 +11,105 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+
 import { JobCreateTypeEnum } from './job-create-type-enum';
-/**
+ /**
  * 系统作业信息表
+ *
  * @export
  * @interface SysJobDetail
  */
 export interface SysJobDetail {
+
     /**
      * 雪花Id
+     *
      * @type {number}
      * @memberof SysJobDetail
      */
     id?: number;
+
     /**
      * 作业Id
+     *
      * @type {string}
      * @memberof SysJobDetail
      */
     jobId: string;
+
     /**
      * 组名称
+     *
      * @type {string}
      * @memberof SysJobDetail
      */
     groupName?: string | null;
+
     /**
      * 作业类型FullName
+     *
      * @type {string}
      * @memberof SysJobDetail
      */
     jobType?: string | null;
+
     /**
      * 程序集Name
+     *
      * @type {string}
      * @memberof SysJobDetail
      */
     assemblyName?: string | null;
+
     /**
      * 描述信息
+     *
      * @type {string}
      * @memberof SysJobDetail
      */
     description?: string | null;
+
     /**
      * 是否并行执行
+     *
      * @type {boolean}
      * @memberof SysJobDetail
      */
     concurrent?: boolean;
+
     /**
      * 是否扫描特性触发器
+     *
      * @type {boolean}
      * @memberof SysJobDetail
      */
     includeAnnotation?: boolean;
+
     /**
      * 额外数据
+     *
      * @type {string}
      * @memberof SysJobDetail
      */
     properties?: string | null;
+
     /**
      * 更新时间
+     *
      * @type {Date}
      * @memberof SysJobDetail
      */
     updatedTime?: Date | null;
+
     /**
-     * 
      * @type {JobCreateTypeEnum}
      * @memberof SysJobDetail
      */
     createType?: JobCreateTypeEnum;
+
     /**
      * 脚本代码
+     *
      * @type {string}
      * @memberof SysJobDetail
      */

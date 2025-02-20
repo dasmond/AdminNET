@@ -314,6 +314,12 @@ public enum ErrorCodeEnum
     D2011,
 
     /// <summary>
+    /// 系统默认机构禁止修改
+    /// </summary>
+    [ErrorCodeItemMetadata("系统默认机构禁止修改")]
+    D2012,
+
+    /// <summary>
     /// 字典类型不存在
     /// </summary>
     [ErrorCodeItemMetadata("字典类型不存在")]
@@ -374,10 +380,22 @@ public enum ErrorCodeEnum
     D3009,
 
     /// <summary>
-    /// 非超管用户禁止操作系统内置数据
+    /// 非超管用户禁止操作系统字典
     /// </summary>
-    [ErrorCodeItemMetadata("非超管用户禁止操作系统内置数据")]
+    [ErrorCodeItemMetadata("非超管用户禁止操作系统字典")]
     D3010,
+
+    /// <summary>
+    /// 获取字典值集合入参有误
+    /// </summary>
+    [ErrorCodeItemMetadata("获取字典值集合入参有误")]
+    D3011,
+
+    /// <summary>
+    /// 禁止修改租户字典状态
+    /// </summary>
+    [ErrorCodeItemMetadata("禁止修改租户字典状态")]
+    D3012,
 
     /// <summary>
     /// 菜单已存在

@@ -86,7 +86,7 @@ public class GetDingTalkCardMessageReadStatusOutput
     public string SendStatus { get; set; }
 
     /// <summary>
-    /// 卡片信息列表
+    ///
     /// </summary>
     public DingTalkCardMessageReadInfoList MessageReadInfoList { get; set; }
 }

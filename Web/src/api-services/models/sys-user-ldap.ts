@@ -11,80 +11,106 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-/**
+
+ /**
  * 系统用户域配置表
+ *
  * @export
  * @interface SysUserLdap
  */
 export interface SysUserLdap {
+
     /**
      * 雪花Id
+     *
      * @type {number}
      * @memberof SysUserLdap
      */
     id?: number;
+
     /**
      * 租户Id
+     *
      * @type {number}
      * @memberof SysUserLdap
      */
     tenantId?: number | null;
+
     /**
      * 用户Id
+     *
      * @type {number}
      * @memberof SysUserLdap
      */
     userId?: number;
+
     /**
      * 域账号  AD域对应sAMAccountName  Ldap对应uid
+     *
      * @type {string}
      * @memberof SysUserLdap
      */
     account: string;
+
     /**
      * 域用户名
+     *
      * @type {string}
      * @memberof SysUserLdap
      */
     userName?: string | null;
+
     /**
      * 对应EmployeeId(用于数据导入对照)
+     *
      * @type {string}
      * @memberof SysUserLdap
      */
     employeeId?: string | null;
+
     /**
      * 组织代码
+     *
      * @type {string}
      * @memberof SysUserLdap
      */
     deptCode?: string | null;
+
     /**
      * 最后设置密码时间
+     *
      * @type {Date}
      * @memberof SysUserLdap
      */
     pwdLastSetTime?: Date | null;
+
     /**
      * 邮箱
+     *
      * @type {string}
      * @memberof SysUserLdap
      */
     mail?: string | null;
+
     /**
      * 检查账户是否已过期
+     *
      * @type {boolean}
      * @memberof SysUserLdap
      */
     accountExpiresFlag?: boolean;
+
     /**
      * 密码设置是否永不过期
+     *
      * @type {boolean}
      * @memberof SysUserLdap
      */
     dontExpiresFlag?: boolean;
+
     /**
      * DN
+     *
      * @type {string}
      * @memberof SysUserLdap
      */

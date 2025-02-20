@@ -32,7 +32,7 @@ public partial class SysDictType : EntityBase
     /// <summary>
     /// 排序
     /// </summary>
-    [SugarColumn(ColumnDescription = "排序")]
+    [SugarColumn(ColumnDescription = "排序", DefaultValue = "100")]
     public int OrderNo { get; set; } = 100;
 
     /// <summary>
@@ -43,16 +43,22 @@ public partial class SysDictType : EntityBase
     public string? Remark { get; set; }
 
     /// <summary>
-    /// 系统内置
-    /// </summary>
-    [SugarColumn(ColumnDescription = "系统内置")]
-    public YesNoEnum SysFlag { get; set; } = YesNoEnum.N;
-
-    /// <summary>
     /// 状态
     /// </summary>
-    [SugarColumn(ColumnDescription = "状态")]
+    [SugarColumn(ColumnDescription = "状态", DefaultValue = "1")]
     public StatusEnum Status { get; set; } = StatusEnum.Enable;
+
+    /// <summary>
+    /// 是否是内置字典（Y-是，N-否）
+    /// </summary>
+    [SugarColumn(ColumnDescription = "是否是内置字典", DefaultValue = "1")]
+    public virtual YesNoEnum SysFlag { get; set; } = YesNoEnum.Y;
+
+    /// <summary>
+    /// 是否是租户字典（Y-是，N-否）
+    /// </summary>
+    [SugarColumn(ColumnDescription = "是否是租户字典", DefaultValue = "2")]
+    public virtual YesNoEnum IsTenant { get; set; } = YesNoEnum.N;
 
     /// <summary>
     /// 字典值集合

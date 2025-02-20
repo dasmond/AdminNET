@@ -11,26 +11,28 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-/**
+
+ /**
  * 
+ *
  * @export
  * @interface DeleteDbColumnInput
  */
 export interface DeleteDbColumnInput {
+
     /**
-     * 
      * @type {string}
      * @memberof DeleteDbColumnInput
      */
     configId?: string | null;
+
     /**
-     * 
      * @type {string}
      * @memberof DeleteDbColumnInput
      */
     tableName?: string | null;
+
     /**
-     * 
      * @type {string}
      * @memberof DeleteDbColumnInput
      */

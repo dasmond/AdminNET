@@ -4,14 +4,14 @@
 //
 // 不得利用本项目从事危害国家安全、扰乱社会秩序、侵犯他人合法权益等法律法规禁止的活动！任何基于本项目二次开发而产生的一切法律纠纷和责任，我们不承担任何责任！
 
-using Microsoft.AspNetCore.Http;
+using System.Text.Json;
 
 namespace Admin.NET.Plugin.ApprovalFlow.Service;
 
 /// <summary>
 /// 审批流程服务
 /// </summary>
-[ApiDescriptionSettings(ApprovalFlowConst.GroupName, Order = 100)]
+[ApiDescriptionSettings(ApprovalFlowConst.GroupName, Order = 100, Description = "审批流程")]
 public class ApprovalFlowService : IDynamicApiController, ITransient
 {
     private readonly SqlSugarRepository<ApprovalFlow> _approvalFlowRep;
@@ -31,10 +31,10 @@ public class ApprovalFlowService : IDynamicApiController, ITransient
     public async Task<SqlSugarPagedList<ApprovalFlowOutput>> Page(ApprovalFlowInput input)
     {
         return await _approvalFlowRep.AsQueryable()
+            .WhereIF(!string.IsNullOrWhiteSpace(input.Keyword), u => u.Code.Contains(input.Keyword.Trim()) || u.Name.Contains(input.Keyword.Trim()) || u.Remark.Contains(input.Keyword.Trim()))
             .WhereIF(!string.IsNullOrWhiteSpace(input.Code), u => u.Code.Contains(input.Code.Trim()))
             .WhereIF(!string.IsNullOrWhiteSpace(input.Name), u => u.Name.Contains(input.Name.Trim()))
             .WhereIF(!string.IsNullOrWhiteSpace(input.Remark), u => u.Remark.Contains(input.Remark.Trim()))
-            .WhereIF(!string.IsNullOrWhiteSpace(input.Keyword), u => u.Code.Contains(input.Keyword.Trim()) || u.Name.Contains(input.Keyword.Trim()) || u.Remark.Contains(input.Keyword.Trim()))
             .Select<ApprovalFlowOutput>()
             .ToPagedListAsync(input.Page, input.PageSize);
     }
@@ -48,7 +48,10 @@ public class ApprovalFlowService : IDynamicApiController, ITransient
     public async Task<long> Add(AddApprovalFlowInput input)
     {
         var entity = input.Adapt<ApprovalFlow>();
-        if (input.Code == null) entity.Code = await LastCode("");
+        if (input.Code == null)
+        {
+            entity.Code = await LastCode("");
+        }
         await _approvalFlowRep.InsertAsync(entity);
         return entity.Id;
     }
@@ -71,9 +74,9 @@ public class ApprovalFlowService : IDynamicApiController, ITransient
     /// <param name="input"></param>
     /// <returns></returns>
     [ApiDescriptionSettings(Name = "Delete"), HttpPost]
-    public async Task Delete(BaseIdInput input)
+    public async Task Delete(DeleteApprovalFlowInput input)
     {
-        var entity = await _approvalFlowRep.GetFirstAsync(u => u.Id == input.Id) ?? throw Oops.Oh(ErrorCodeEnum.D1002);
+        var entity = await _approvalFlowRep.GetByIdAsync(input.Id) ?? throw Oops.Oh(ErrorCodeEnum.D1002);
         await _approvalFlowRep.FakeDeleteAsync(entity);  // 假删除
     }
 
@@ -82,9 +85,9 @@ public class ApprovalFlowService : IDynamicApiController, ITransient
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
-    public async Task<ApprovalFlow> GetDetail([FromQuery] BaseIdInput input)
+    public async Task<ApprovalFlow> GetDetail([FromQuery] QueryByIdApprovalFlowInput input)
     {
-        return await _approvalFlowRep.GetFirstAsync(u => u.Id == input.Id);
+        return await _approvalFlowRep.GetByIdAsync(input.Id);
     }
 
     /// <summary>
@@ -116,30 +119,36 @@ public class ApprovalFlowService : IDynamicApiController, ITransient
     {
         var today = DateTime.Now.Date;
         var count = await _approvalFlowRep.AsQueryable().Where(u => u.CreateTime >= today).CountAsync();
-        return prefix + DateTime.Now.ToString("yyMMdd") + $"{count + 1:d2}";
+        return prefix + DateTime.Now.ToString("yyMMdd") + string.Format("{0:d2}", count + 1);
     }
 
-    /// <summary>
-    /// 匹配审批流程
-    /// </summary>
-    /// <param name="context"></param>
-    /// <returns></returns>
-    [NonAction]
-    public async Task MatchApproval(HttpContext context)
+    [HttpGet]
+    [ApiDescriptionSettings(Name = "FlowList")]
+    [DisplayName("获取审批流结构")]
+    public async Task<dynamic> FlowList([FromQuery] string code)
     {
-        var request = context.Request;
-        var response = context.Response;
+        var result = await _approvalFlowRep.AsQueryable().Where(u => u.Code == code).Select<ApprovalFlowOutput>().FirstAsync();
+        var FlowJson = result.FlowJson != null ? JsonSerializer.Deserialize<ApprovalFlowItem>(result.FlowJson) : new ApprovalFlowItem();
+        var FormJson = result.FormJson != null ? JsonSerializer.Deserialize<ApprovalFormItem>(result.FormJson) : new ApprovalFormItem();
+        return new
+        {
+            FlowJson,
+            FormJson
+        };
+    }
 
-        var path = request.Path.ToString().Split("/");
-
-        var method = request.Method;
-        var query = request.QueryString;
-        var header = request.Headers;
-        var body = request.Body;
-
-        var requestHeaders = request.Headers;
-        var responseHeaders = response.Headers;
-
-        await Task.CompletedTask;
+    [HttpGet]
+    [ApiDescriptionSettings(Name = "FormRoutes")]
+    [DisplayName("获取审批流规则")]
+    public async Task<List<string>> FormRoutes()
+    {
+        var results = await _approvalFlowRep.AsQueryable().Select<ApprovalFlowOutput>().ToListAsync();
+        var list = new List<string>();
+        foreach (var item in results)
+        {
+            var FormJson = item.FormJson != null ? JsonSerializer.Deserialize<ApprovalFormItem>(item.FormJson) : new ApprovalFormItem();
+            if (item.FormJson != null) list.Add(FormJson.Route);
+        }
+        return list;
     }
 }
