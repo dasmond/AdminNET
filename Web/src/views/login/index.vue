@@ -112,13 +112,11 @@ onMounted(async () => {
 // 获取租户信息
 const getTenantInfo = async () => {
 	if (themeConfig.value.hideTenantForLogin) {
-		tenantInfo.value.id = parseInt(route.query.t ? <string>route.query.t : (Local.get('t') ?? '-1'));
-		tenantInfo.value.list = [];
 		return tenantInfo.value;
 	}
 	const host = location.host.toLowerCase();
-	tenantInfo.value.list = await getAPI(SysTenantApi).apiSysTenantListGet().then(res => res.data.result ?? []);
-	const tenant = tenantInfo.value.list.find((item: any) => item.value == route.query.t || (!item.host && item.host === host)) as any;
+	tenantInfo.value.list = await getAPI(SysTenantApi).apiSysTenantListGet().then(res => res.data.result ?? null);
+	const tenant = tenantInfo.value.list.find((item: any) => !item.host && item.host === host) as any;
 	if (tenant?.value) tenantInfo.value.id = parseInt(tenant?.value);
 	return tenantInfo.value;
 }
