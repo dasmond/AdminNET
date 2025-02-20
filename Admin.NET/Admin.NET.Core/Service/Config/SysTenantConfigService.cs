@@ -190,11 +190,11 @@ public class SysTenantConfigService : IDynamicApiController, ITransient
     {
         if (string.IsNullOrWhiteSpace(code)) return default;
 
-        var value = _sysCacheService.Get<string>($"{CacheConst.KeyConfig}{_userManager.TenantId}{code}");
+        var value = _sysCacheService.Get<string>($"{CacheConst.KeyTenantConfig}{_userManager.TenantId}{code}");
         if (string.IsNullOrEmpty(value))
         {
             value = (await VSysConfig.FirstAsync(u => u.Code == code))?.Value;
-            _sysCacheService.Set($"{CacheConst.KeyConfig}{_userManager.TenantId}{code}", value);
+            _sysCacheService.Set($"{CacheConst.KeyTenantConfig}{_userManager.TenantId}{code}", value);
         }
         if (string.IsNullOrWhiteSpace(value)) return default;
         return (T)Convert.ChangeType(value, typeof(T));
@@ -250,6 +250,6 @@ public class SysTenantConfigService : IDynamicApiController, ITransient
     /// <param name="config"></param>
     private void RemoveConfigCache(SysTenantConfig config)
     {
-        _sysCacheService.Remove($"{CacheConst.KeyConfig}{_userManager.TenantId}{config.Code}");
+        _sysCacheService.Remove($"{CacheConst.KeyTenantConfig}{_userManager.TenantId}{config.Code}");
     }
 }
