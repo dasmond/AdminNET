@@ -211,7 +211,7 @@ const onRegister = async () => {
 			const publicKey = window.__env__.VITE_SM_PUBLIC_KEY;
 			const password = state.ruleForm.password ? sm2.doEncrypt(state.ruleForm.password, publicKey, 1) : undefined;
 
-			state.ruleForm.tenantId ??= props.tenantInfo.id ?? props.tenantInfo.list[0]?.value ?? -1;
+			state.ruleForm.tenantId ??= props.tenantInfo.id ?? props.tenantInfo.list[0]?.value ?? undefined;
 			const [err, res] = await feature(getAPI(SysAuthApi).apiSysAuthUserRegistrationPost({...state.ruleForm, password: password } as any));
 
 			if (res?.data?.code === 200) {

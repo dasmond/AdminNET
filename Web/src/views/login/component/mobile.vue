@@ -99,7 +99,7 @@ const getSmsCode = async () => {
 
 // 登录
 const onSignIn = async () => {
-	state.ruleForm.tenantId ??= props.tenantInfo.id ?? props.tenantInfo.list[0]?.value ?? -1;
+	state.ruleForm.tenantId ??= props.tenantInfo.id ?? props.tenantInfo.list[0]?.value ?? undefined;
 	const res = await getAPI(SysAuthApi).apiSysAuthLoginPhonePost(state.ruleForm);
 	if (res.data.result?.accessToken == undefined) {
 		ElMessage.error('登录失败，请检查账号！');
