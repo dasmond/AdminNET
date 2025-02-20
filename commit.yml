@@ -3,48 +3,27 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '39de26c44cce19f715b580c3a176d363daa693d3'
-    oldFile: !uuid '54721f22b387144c889b5d3e864842fc43eb45ee'
+    newFile: !uuid '32eed395453cb08d1ef8f42a72a279c3ccb4c64a'
+    oldFile: !uuid '39de26c44cce19f715b580c3a176d363daa693d3'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '3f393b60df33f0a355be5f7fd219193cb6eb9415'
-    oldFile: !uuid '98eb0a060c966c078168467129d63e2640bceb18'
-  /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
-    newFile: !uuid 'eb83332a9a16cb6a80508b6bf7f68b0c57634312'
-    oldFile: !uuid '899b016e0742c552cd96d092aadbf99c7ab64aea'
+    newFile: !uuid '01e458683882eded94b66edb46879daf67fe86c6'
+    oldFile: !uuid '3f393b60df33f0a355be5f7fd219193cb6eb9415'
   /Admin.NET/Admin.NET.Core/Entity:
-    newFile: !uuid '5ae9a291676c089bc49d61c9c12fcacb98158bc1'
-    oldFile: !uuid '60a553bfbc99cc0cba3c0378d51c11bbb0e90a97'
-  /Admin.NET/Admin.NET.Core/Entity/SysConfigTenant.cs:
-    newFile: null
-    oldFile: !uuid '00630d2d6dca1edc9a34b1575f4f873704b11479'
+    newFile: !uuid 'ddb10a7bc24a76b9c34f7e28d8b799ba6a21fbfb'
+    oldFile: !uuid '5ae9a291676c089bc49d61c9c12fcacb98158bc1'
+  /Admin.NET/Admin.NET.Core/Entity/SysTenantConfigData.cs:
+    newFile: !uuid '688fd68b775857c3c6974b8b5982390d5bfed4bf'
+    oldFile: !uuid 'c0bba6e8dd5a044eaf866ae1fb709d55c5ec6de7'
   /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid '16eb909898c0865f9c94f4245477b05aa978c5db'
-    oldFile: !uuid '1d1c6339a962c982ef2e58503f2cc9924550ece9'
+    newFile: !uuid '72e82495355f5adeab03f89b956c1eb44660a570'
+    oldFile: !uuid '16eb909898c0865f9c94f4245477b05aa978c5db'
   /Admin.NET/Admin.NET.Core/Service/Config:
-    newFile: !uuid '093b039db1ba667eb784723a7267aacdfe66c92c'
-    oldFile: !uuid '94af3ca24b0dcd1888f562f966bc8f527af304d8'
-  /Admin.NET/Admin.NET.Core/Service/Config/Dto:
-    newFile: !uuid '6a8cb1f458d189b3f6c43233fbbf89c8dea8d1ee'
-    oldFile: !uuid 'bae1b4cb652f139d29f461a510162cbac86703f8'
-  /Admin.NET/Admin.NET.Core/Service/Config/Dto/TenantConfigInput.cs:
-    newFile: null
-    oldFile: !uuid '96de2313a2e9dec6b10ea728f4673de599d7afa7'
-  /Admin.NET/Admin.NET.Test:
-    newFile: !uuid '49a7b5d0c9470942ff5313466b3760a72809f465'
-    oldFile: !uuid 'b61bbdebadb124e13ad69626ad539beefe29863a'
-  /Admin.NET/Admin.NET.Test/Admin.NET.Test.csproj:
-    newFile: !uuid '7664c8b4e3482965d082e1e916487a30850a99df'
-    oldFile: !uuid 'ec6283521b71434473a78a1441c83639bd0511c0'
-  /Admin.NET/Plugins:
-    newFile: !uuid 'fddaf5f20c8692d607e634a9c7c3b6cccbab1ac4'
-    oldFile: !uuid 'e999dbcd0dec80447246852695c2345424ee26dd'
-  /Admin.NET/Plugins/Admin.NET.Plugin.ReZero:
-    newFile: !uuid 'f53213937e1df787dff9d448afae7dc24a6bf100'
-    oldFile: !uuid 'a700bd2f27636947132cdeec2c84edcdd59a6ff6'
-  /Admin.NET/Plugins/Admin.NET.Plugin.ReZero/Admin.NET.Plugin.ReZero.csproj:
-    newFile: !uuid '8dd211d337b898b330ab9b6f318bff252d503751'
-    oldFile: !uuid '6cf10507e636a5a57c5f99bb004918c3bd469e06'
-gitCommitId: !uuid '53790086a2893f2cf741e2dad9000b22e2312e3a'
+    newFile: !uuid 'f7933dd7b37bc692cc1c52d02a8b95b9858cb772'
+    oldFile: !uuid '093b039db1ba667eb784723a7267aacdfe66c92c'
+  /Admin.NET/Admin.NET.Core/Service/Config/SysTenantConfigService.cs:
+    newFile: !uuid 'e6e9562d3c7e4c551dea28c1b07ef3dd82d0a3bb'
+    oldFile: !uuid 'a25d757b82c676433fe325b326798284d6562038'
+gitCommitId: !uuid '8e5f292cc1121f656d02d5de776ef5de23385b44'
 renames: {
   }
-revisionId: 2749
+revisionId: 2750
