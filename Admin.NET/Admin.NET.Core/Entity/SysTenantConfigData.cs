@@ -12,7 +12,7 @@ namespace Admin.NET.Core;
 [SugarTable(null, "系统租户配置参数值表")]
 [SysTable]
 [SugarIndex("index_{table}_TC", nameof(TenantId), OrderByType.Asc, nameof(ConfigId), OrderByType.Asc)]
-public class SysTenantConfigData : EntityTenant
+public class SysTenantConfigData : EntityTenantId
 {
     /// <summary>
     /// 配置项Id
