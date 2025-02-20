@@ -71,10 +71,10 @@ public class SysTenantConfigService : IDynamicApiController, ITransient
         var isExist = await _sysConfigRep.IsAnyAsync(u => u.Name == input.Name || u.Code == input.Code);
         if (isExist) throw Oops.Oh(ErrorCodeEnum.D9000);
 
-        var config = await _sysConfigRep.InsertReturnEntityAsync(input.Adapt<SysTenantConfig>());
+        var configId = _sysConfigRep.InsertReturnSnowflakeId(input.Adapt<SysTenantConfig>());
         await _sysConfigDataRep.InsertAsync(new SysTenantConfigData()
         {
-            ConfigId = input.Id,
+            ConfigId = configId,
             Value = input.Value
         });
     }
@@ -98,7 +98,10 @@ public class SysTenantConfigService : IDynamicApiController, ITransient
         if (configData == null)
             await _sysConfigDataRep.AsInsertable(new SysTenantConfigData() { ConfigId = input.Id, Value = input.Value }).ExecuteCommandAsync();
         else
+        {
+            configData.Value = input.Value;
             await _sysConfigDataRep.AsUpdateable(configData).IgnoreColumns(true).ExecuteCommandAsync();
+        }
 
         RemoveConfigCache(config);
     }
@@ -117,7 +120,7 @@ public class SysTenantConfigService : IDynamicApiController, ITransient
         if (config.SysFlag == YesNoEnum.Y) throw Oops.Oh(ErrorCodeEnum.D9001);
 
         await _sysConfigRep.DeleteAsync(config);
-        await _sysConfigDataRep.DeleteAsync(it => it.ConfigId == config.Id);
+        await _sysConfigDataRep.DeleteAsync(it => it.TenantId == _userManager.TenantId && it.ConfigId == config.Id);
 
         RemoveConfigCache(config);
     }
@@ -138,7 +141,7 @@ public class SysTenantConfigService : IDynamicApiController, ITransient
             if (config.SysFlag == YesNoEnum.Y) continue;
 
             await _sysConfigRep.DeleteAsync(config);
-            await _sysConfigDataRep.DeleteAsync(it => it.ConfigId == config.Id);
+            await _sysConfigDataRep.DeleteAsync(it => it.TenantId == _userManager.TenantId && it.ConfigId == config.Id);
 
             RemoveConfigCache(config);
         }
@@ -209,7 +212,7 @@ public class SysTenantConfigService : IDynamicApiController, ITransient
         var config = await _sysConfigRep.GetFirstAsync(u => u.Code == code);
         if (config == null) return;
 
-        await _sysConfigDataRep.AsUpdateable().SetColumns(it => it.Value == value).Where(it => it.ConfigId == config.Id).ExecuteCommandAsync();
+        await _sysConfigDataRep.AsUpdateable().SetColumns(it => it.Value == value).Where(it => it.TenantId == _userManager.TenantId && it.ConfigId == config.Id).ExecuteCommandAsync();
 
         RemoveConfigCache(config);
     }
@@ -237,11 +240,7 @@ public class SysTenantConfigService : IDynamicApiController, ITransient
     {
         foreach (var config in input)
         {
-            var info = await _sysConfigRep.GetFirstAsync(u => u.Code == config.Code);
-            if (info == null) continue;
-
-            await _sysConfigDataRep.AsUpdateable().SetColumns(u => u.Value == config.Value).Where(u => u.ConfigId == info.Id).ExecuteCommandAsync();
-            RemoveConfigCache(info);
+            await UpdateConfigValue(config.Code, config.Value);
         }
     }
 
