@@ -53,6 +53,7 @@ export * from './apis/sys-tenant-api';
 export * from './apis/sys-tenant-config-api';
 export * from './apis/sys-update-api';
 export * from './apis/sys-user-api';
+export * from './apis/sys-user-config-api';
 export * from './apis/sys-user-menu-api';
 export * from './apis/sys-user-reg-way-api';
 export * from './apis/sys-wechat-api';
