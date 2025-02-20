@@ -117,18 +117,20 @@ public class SysAuthService : IDynamicApiController, ITransient
     public async Task<(SysTenant tenant, SysUser user)> GetLoginUserAndTenant(long? tenantId, string account = null, string phone = null)
     {
         // 账号是否存在
-        var user = await _sysUserRep.AsQueryable().Includes(t => t.SysOrg).ClearFilter()
+        var user = await _sysUserRep.AsQueryable().Includes(u => u.SysOrg).ClearFilter()
+            .WhereIF(tenantId > 0, u => (u.AccountType == AccountTypeEnum.SuperAdmin || u.TenantId == tenantId))
             .WhereIF(!string.IsNullOrWhiteSpace(account), u => u.Account.Equals(account))
             .WhereIF(!string.IsNullOrWhiteSpace(phone), u => u.Phone.Equals(phone)).FirstAsync();
         _ = user ?? throw Oops.Oh(ErrorCodeEnum.D0009);
 
         // 租户是否存在或已禁用
-        var tenant = await _sysUserRep.ChangeRepository<SqlSugarRepository<SysTenant>>().GetFirstAsync(u => u.Id == user.TenantId);
+        var tenant = await _sysUserRep.ChangeRepository<SqlSugarRepository<SysTenant>>().AsQueryable()
+            .WhereIF(tenantId > 0, u => u.Id == tenantId).WhereIF(tenantId.ToLong() == 0, u => u.Id == user.TenantId).FirstAsync();
         if (tenant?.Status != StatusEnum.Enable) throw Oops.Oh(ErrorCodeEnum.Z1003);
 
         // 如果是超级管理员，则引用登录选择的租户进入系统
-        if (tenantId > 0)
-            if (user.AccountType == AccountTypeEnum.SuperAdmin) user.TenantId = tenantId;
+        if (tenantId > 0 && user.AccountType == AccountTypeEnum.SuperAdmin)
+            user.TenantId = tenantId;
 
         return (tenant, user);
     }

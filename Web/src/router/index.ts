@@ -102,8 +102,7 @@ router.beforeEach(async (to, from, next) => {
 		NProgress.done();
 	} else {
 		if (!token) {
-			const addQuery = Local.get('t') ? `&t=${Local.get('t')}` : '';
-			next(`/login?redirect=${to.path}&params=${JSON.stringify(to.query ? to.query : to.params)}${addQuery}`);
+			next(`/login?redirect=${to.path}&params=${JSON.stringify(to.query ? to.query : to.params)}`);
 			Session.clear();
 			NProgress.done();
 		} else if (token && to.path === '/login') {
