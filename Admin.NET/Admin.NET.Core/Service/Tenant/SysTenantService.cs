@@ -186,10 +186,7 @@ public class SysTenantService : IDynamicApiController, ITransient
         // 设置logo
         SetLogoUrl(tenant, input.LogoBase64, input.LogoFileName);
 
-        // 取最大`id + 100` 为新租户`id`，方便数据维护
-        tenant.Id = await _sysTenantRep.AsQueryable().MaxAsync(u => u.Id) + 100;
-
-        await _sysTenantRep.InsertAsync(tenant);
+        tenant.Id = _sysTenantRep.InsertReturnEntity(tenant).Id;
         await InitNewTenant(tenant);
 
         await CacheTenant();
@@ -397,24 +394,20 @@ public class SysTenantService : IDynamicApiController, ITransient
 
         // 删除与租户相关的表数据
         await _sysTenantMenuRep.AsDeleteable().Where(u => u.TenantId == input.Id).ExecuteCommandAsync();
-        var menuIds = await _sysTenantRep.Context.Queryable<SysMenu>().Select(u => u.Id).ToListAsync();
-        await _sysTenantRep.Context.Deleteable<SysRoleMenu>().Where(u => menuIds.Contains(u.Id)).ExecuteCommandAsync();
-        await _sysTenantRep.Context.Deleteable<SysUserMenu>().Where(u => menuIds.Contains(u.Id)).ExecuteCommandAsync();
-        await _sysTenantRep.Context.Deleteable<SysMenu>().Where(u => menuIds.Contains(u.Id)).ExecuteCommandAsync();
+        await _sysTenantRep.Context.Deleteable<SysTenantConfigData>().Where(u => u.TenantId == input.Id).ExecuteCommandAsync();
 
         var users = await _sysUserRep.AsQueryable().ClearFilter().Where(u => u.TenantId == input.Id).ToListAsync();
         var userIds = users.Select(u => u.Id).ToList();
         await _sysUserRep.AsDeleteable().Where(u => userIds.Contains(u.Id)).ExecuteCommandAsync();
-
         await _userRoleRep.AsDeleteable().Where(u => userIds.Contains(u.UserId)).ExecuteCommandAsync();
-
         await _sysUserExtOrgRep.AsDeleteable().Where(u => userIds.Contains(u.UserId)).ExecuteCommandAsync();
+        await _sysTenantRep.Context.Deleteable<SysUserMenu>().Where(u => userIds.Contains(u.UserId)).ExecuteCommandAsync();
+        await _sysTenantRep.Context.Deleteable<SysUserConfigData>().Where(u => userIds.Contains(u.UserId)).ExecuteCommandAsync();
 
+        var roleIds = await _sysRoleRep.AsQueryable().ClearFilter().Where(u => u.TenantId == input.Id).Select(u => u.Id).ToListAsync();
         await _sysRoleRep.AsDeleteable().Where(u => u.TenantId == input.Id).ExecuteCommandAsync();
-
-        var roleIds = await _sysRoleRep.AsQueryable().ClearFilter()
-            .Where(u => u.TenantId == input.Id).Select(u => u.Id).ToListAsync();
         await _sysRoleMenuRep.AsDeleteable().Where(u => roleIds.Contains(u.RoleId)).ExecuteCommandAsync();
+        await _sysTenantRep.Context.Deleteable<SysRoleOrg>().Where(u => roleIds.Contains(u.RoleId)).ExecuteCommandAsync();
 
         await _sysOrgRep.AsDeleteable().Where(u => u.TenantId == input.Id).ExecuteCommandAsync();
 
