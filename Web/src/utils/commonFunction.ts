@@ -45,6 +45,24 @@ export default function () {
 			maximumFractionDigits: 2,
 		});
 	};
+
+	/**
+	 * 删除字符串首尾指定字符
+	 * @param Str 源字符
+	 * @param char 去除的指定字符
+	 * @param type 类型，右边或左边，为空是替换首尾
+	 */
+	const trimChar =(Str:string,char:string, type:string) =>{
+		if (char) {
+			if (type == 'left') {
+				return Str.replace(new RegExp('^\\'+char+'+', 'g'), '');
+			} else if (type == 'right') {
+				return Str.replace(new RegExp('\\'+char+'+$', 'g'), '');
+			}
+			return Str.replace(new RegExp('^\\'+char+'+|\\'+char+'+$', 'g'), '');
+		}
+		return Str.replace(/^\s+|\s+$/g, '');
+	}
 	// 点击复制文本
 	const copyText = (text: string) => {
 		return new Promise((resolve, reject) => {
@@ -93,6 +111,7 @@ export default function () {
 		removeHtmlSub,
 		removeHtml,
 		getEnumDesc,
-		appendQueryParams
+		appendQueryParams,
+		trimChar,
 	};
 }
