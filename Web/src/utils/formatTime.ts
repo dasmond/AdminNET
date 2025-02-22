@@ -134,3 +134,48 @@ export function formatAxis(param: Date): string {
 	else if (hour < 22) return '晚上好';
 	else return '夜里好';
 }
+
+/**
+ * 获取两个时间相差的秒数
+ * @dateBegin 开始时间，new Date() 格式
+ * @dateEnd 结束时间，new Date() 格式
+ * @returns 返回秒数
+ */
+export function getTimeDiff(dateBegin: Date, dateEnd: Date,) {
+	var dateDiff = dateEnd.getTime() - dateBegin.getTime();
+	return dateDiff / 1000;
+}
+
+/**
+ * 格式化两个时间差
+ * @dateBegin 开始时间，new Date() 格式
+ * @dateEnd 结束时间，new Date() 格式
+ * @description dateBegin 2025-1-1，dateEnd 2025-1-2 10:10:10 ：   1天10时10分10秒
+ * @returns 返回拼接后的时间字符串
+ */
+export function formatTimeDiff(dateBegin: Date, dateEnd: Date,) {
+	var dateDiff = dateEnd.getTime() - dateBegin.getTime();//时间差的毫秒数
+	var dayDiff = Math.floor(dateDiff / (24 * 3600 * 1000));//计算出相差天数
+	var leave1 = dateDiff % (24 * 3600 * 1000)    //计算天数后剩余的毫秒数
+	var hours = Math.floor(leave1 / (3600 * 1000))//计算出小时数
+	//计算相差分钟数
+	var leave2 = leave1 % (3600 * 1000)    //计算小时数后剩余的毫秒数
+	var minutes = Math.floor(leave2 / (60 * 1000))//计算相差分钟数
+	//计算相差秒数
+	var leave3 = leave2 % (60 * 1000)      //计算分钟数后剩余的毫秒数
+	var seconds = Math.round(leave3 / 1000);
+	var result = "";
+	if (dayDiff > 0) {
+		result += dayDiff + "天";
+	}
+	if (hours > 0) {
+		result += hours + "时";
+	}
+	if (minutes > 0) {
+		result += minutes + "分";
+	}
+	if (seconds >= 0) {
+		result += seconds + "秒";
+	}
+	return result;
+}
