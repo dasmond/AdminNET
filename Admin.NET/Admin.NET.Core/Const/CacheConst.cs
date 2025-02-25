@@ -102,6 +102,11 @@ public class CacheConst
     public const string KeyDict = "sys_dict:";
 
     /// <summary>
+    /// 系统租户字典缓存
+    /// </summary>
+    public const string KeyTenantDict = "sys_tenant_dict:";
+
+    /// <summary>
     /// 重复请求(幂等)字典缓存
     /// </summary>
     public const string KeyIdempotent = "sys_idempotent:";
