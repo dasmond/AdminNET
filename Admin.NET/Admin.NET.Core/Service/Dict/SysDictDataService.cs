@@ -246,6 +246,36 @@ public class SysDictDataService : IDynamicApiController, ITransient
     }
 
     /// <summary>
+    /// 通过字典数据Value查询显示文本Label
+    /// 适用于列表中根据字典数据值找文本的子查询 _sysDictDataService.MapDictValueToLabel(() =>obj.Type, "org_type",obj);
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="mappingFiled"></param>
+    /// <param name="dictTypeCode"></param>
+    /// <param name="parameter"></param>
+    /// <returns></returns>
+    public string MapDictValueToLabel<T>(Expression<Func<object>> mappingFiled, string dictTypeCode, T parameter)
+    {
+        return VSysDictData.InnerJoin<SysDictType>((d, dt) => d.DictTypeId.Equals(dt.Id) && dt.Code == dictTypeCode)
+            .SetContext(d => d.Value, mappingFiled, parameter).FirstOrDefault()?.Label;
+    }
+
+    /// <summary>
+    /// 通过字典数据显示文本Label查询Value
+    /// 适用于列表数据导入根据字典数据文本找值的子查询 _sysDictDataService.MapDictLabelToValue(() => obj.Type, "org_type",obj);
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="mappingFiled"></param>
+    /// <param name="dictTypeCode"></param>
+    /// <param name="parameter"></param>
+    /// <returns></returns>
+    public string MapDictLabelToValue<T>(Expression<Func<object>> mappingFiled, string dictTypeCode, T parameter)
+    {
+        return VSysDictData.InnerJoin<SysDictType>((d, dt) => d.DictTypeId.Equals(dt.Id) && dt.Code == dictTypeCode)
+            .SetContext(d => d.Label, mappingFiled, parameter).FirstOrDefault()?.Value;
+    }
+
+    /// <summary>
     /// 清理字典数据缓存
     /// </summary>
     /// <param name="dictType"></param>
