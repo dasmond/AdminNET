@@ -310,32 +310,37 @@ public class SysTenantService : IDynamicApiController, ITransient
     public IEnumerable<SysTenantMenu> GetTenantDefaultMenuList(bool ignoreHome = false)
     {
         var menuList = new List<SysMenu>();
-        var allMenuList = new SysMenuSeedData().HasData().ToList();
 
-        var dashboardMenu = allMenuList.First(u => u.Type == MenuTypeEnum.Dir && u.Title == "工作台");
-        menuList.AddRange(allMenuList.ToChildList(u => u.Id, u => u.Pid, dashboardMenu.Id));
+        // 默认数据库配置
+        var defaultConfig = App.GetOptions<DbConnectionOptions>().ConnectionConfigs.FirstOrDefault();
+        //从程序集中获取种子菜单数据，种子菜单存在于其他类库中，需要动态加载
+        var menuSeedDataTypeList = GetSeedDataTypes(defaultConfig, nameof(SysMenuSeedData));
+        var allMenuList = new List<SysMenu>();
+        foreach (var menu in menuSeedDataTypeList)
+        {
+            var menuSeedDataList = ((IEnumerable)menu.GetMethod("HasData")?.Invoke(Activator.CreateInstance(menu), null))?.Cast<SysMenu>();
+            if (menuSeedDataList != null)
+            {
+                allMenuList.AddRange(menuSeedDataList);
+            }
+        }
+
+        //实现三个层级的菜单
+        var topMenuList = allMenuList.Where(u => u.Pid == 0 && u.Type == MenuTypeEnum.Dir).ToList();
+        menuList.AddRange(topMenuList);
+
+        var childMenuList = allMenuList.ToChildList(u => u.Id, u => u.Pid, u => topMenuList.Select(p => p.Id).Contains(u.Pid));
+        menuList.AddRange(childMenuList);
+
+        var endMenuList = allMenuList.ToChildList(u => u.Id, u => u.Pid, u => childMenuList.Select(p => p.Id).Contains(u.Pid));
+        if (endMenuList != null)
+        {
+            menuList.AddRange(endMenuList);
+        }
+        //是否需要排除首页菜单
         if (ignoreHome) menuList = menuList.Where(u => !(u.Type == MenuTypeEnum.Menu && u.Name == "home")).ToList();
 
-        var systemMenu = allMenuList.First(u => u.Type == MenuTypeEnum.Dir && u.Title == "系统管理");
-        menuList.Add(systemMenu);
-        menuList.AddRange(allMenuList.ToChildList(u => u.Id, u => u.Pid, u => u.Pid == systemMenu.Id && new[] { "账号管理", "角色管理", "机构管理", "职位管理", "个人中心", "通知公告" }.Contains(u.Title)));
-
-        var platformMenu = allMenuList.First(u => u.Type == MenuTypeEnum.Dir && u.Title == "平台管理");
-        menuList.Add(platformMenu);
-        menuList.AddRange(allMenuList.ToChildList(u => u.Id, u => u.Pid, u => u.Pid == platformMenu.Id && new[] { "菜单管理", "字典管理", "模板管理", "系统配置" }.Contains(u.Title)));
-        var dictMenu = menuList.First(u => u.Type == MenuTypeEnum.Menu && u.Title == "字典管理");
-        menuList = menuList.Where(u => u.Pid != dictMenu.Id || !new[] { "编辑", "删除" }.Contains(u.Title)).ToList();
-
-        var logMenu = allMenuList.First(u => u.Type == MenuTypeEnum.Dir && u.Title == "日志管理");
-        menuList.Add(logMenu);
-        menuList.AddRange(allMenuList.ToChildList(u => u.Id, u => u.Pid, u => u.Pid == logMenu.Id && new[] { "访问日志", "操作日志" }.Contains(u.Title)));
-        var logMenuIds = menuList.Where(u => u.Type == MenuTypeEnum.Menu && new[] { "访问日志", "操作日志" }.Contains(u.Title)).Select(u => u.Id).ToList();
-        menuList = menuList.Where(u => !logMenuIds.Contains(u.Pid) || !new[] { "清空" }.Contains(u.Title)).ToList();
-
-        var flow = _sysTenantRep.Context.Queryable<SysMenu>().First(u => u.Type == MenuTypeEnum.Menu && u.Title == "审批流程");
-        menuList.Add(allMenuList.First(u => u.Type == MenuTypeEnum.Dir && u.Title == "帮助文档"));
-        menuList.Add(allMenuList.First(u => u.Type == MenuTypeEnum.Menu && u.Title == "关于项目"));
-        if (flow != null) menuList.Add(flow);
+        menuList = menuList.Distinct().ToList();
 
         return menuList.Select(u => new SysTenantMenu
         {
@@ -343,6 +348,21 @@ public class SysTenantService : IDynamicApiController, ITransient
             TenantId = SqlSugarConst.DefaultTenantId,
             MenuId = u.Id
         });
+    }
+
+    /// <summary>
+    /// 获取种子数据类型
+    /// </summary>
+    /// <param name="config">数据库连接配置</param>
+    /// <returns>种子数据类型列表</returns>
+    [NonAction]
+    private List<Type> GetSeedDataTypes(DbConnectionConfig config, string typeName)
+    {
+        return App.EffectiveTypes
+            .Where(u => !u.IsInterface && !u.IsAbstract && u.IsClass && u.Name == typeName && u.GetInterfaces().Any(i => i.HasImplementedRawGeneric(typeof(ISqlSugarEntitySeedData<>))))
+            .WhereIF(config.SeedSettings.EnableIncreSeed, u => u.IsDefined(typeof(IncreSeedAttribute), false))
+            .OrderBy(u => u.GetCustomAttributes(typeof(SeedDataAttribute), false).Length > 0 ? ((SeedDataAttribute)u.GetCustomAttributes(typeof(SeedDataAttribute), false)[0]).Order : 0)
+            .ToList();
     }
 
     /// <summary>
