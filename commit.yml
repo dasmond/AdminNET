@@ -3,21 +3,27 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '737624ac4a66e892560c60da8fb5f6a8549b7e5b'
-    oldFile: !uuid '78c0c177cda504f888dcb2728867ed83454af0fd'
+    newFile: !uuid '7d9b245b842e7851a3b6130bd2394f6288da7ae5'
+    oldFile: !uuid '737624ac4a66e892560c60da8fb5f6a8549b7e5b'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '9e09e1ec97dca5e2914101ca84894839af1b2655'
-    oldFile: !uuid '4fbb47fb1ec82dc532d84c5124d269f30228d975'
+    newFile: !uuid 'a8eb38ceac240611b388d3ddb070dc7baa226386'
+    oldFile: !uuid '9e09e1ec97dca5e2914101ca84894839af1b2655'
   /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid 'ec60909468b09b57223730958d99519463b108a7'
-    oldFile: !uuid 'f842c4033f9d650d1f9f4a4842f248e2ebf325df'
-  /Admin.NET/Admin.NET.Core/Service/Dict:
-    newFile: !uuid 'e539f4d804582d854ab76a3af16822b70ba31a7b'
-    oldFile: !uuid 'dc2e48c0c9192d760ca23d975a48658e4f03c0ed'
-  /Admin.NET/Admin.NET.Core/Service/Dict/SysDictDataService.cs:
-    newFile: !uuid '822034907ee6a1ef306594b1cc4487b73de2590d'
-    oldFile: !uuid '91358f3910ed953897943b0ff9c45da9743348c0'
-gitCommitId: !uuid '065def77a18a740e83fb968bdb1eb896f6b49b19'
+    newFile: !uuid 'edfefc6782205b968ad371116c5b814c6fa4c776'
+    oldFile: !uuid 'ec60909468b09b57223730958d99519463b108a7'
+  /Admin.NET/Admin.NET.Core/Service/Menu:
+    newFile: !uuid 'debd50f449a1cd2b15e3dfaeeafa7ec7b9f4e45d'
+    oldFile: !uuid 'cbf850d35f4113138c7bf228a46626d1578e425e'
+  /Admin.NET/Admin.NET.Core/Service/Menu/SysMenuService.cs:
+    newFile: !uuid '0e884c82db70f3d152fddb19b0274fce48dc5a52'
+    oldFile: !uuid '8277d9fb32806c32ea5d072c96346a67601e5662'
+  /Admin.NET/Admin.NET.Core/Service/Tenant:
+    newFile: !uuid '7bd9e014669119986a1dd5b6a9193747618f2fa0'
+    oldFile: !uuid '33e1267fe5b0b32b967f07fb1168e2f827ac4e83'
+  /Admin.NET/Admin.NET.Core/Service/Tenant/SysTenantService.cs:
+    newFile: !uuid 'b0a90864ae9003b8e6d5339f11b61ac3c7bf4f78'
+    oldFile: !uuid '4fb56ce9b0be62284e2e4d8038b7277120c7b591'
+gitCommitId: !uuid '3e71092d94bc2e7109533a0013ed67274e0c4b01'
 renames: {
   }
-revisionId: 2760
+revisionId: 2761
