@@ -57,24 +57,14 @@ public class SysUserService : IDynamicApiController, ITransient
     [DisplayName("获取用户分页列表")]
     public virtual async Task<SqlSugarPagedList<UserOutput>> Page(PageUserInput input)
     {
-        // 获取用户拥有的机构集合
-        var userOrgIdList = await _sysOrgService.GetUserOrgIdList();
-        List<long> orgList;
-        if (input.OrgId > 0) // 指定机构查询时
-        {
-            orgList = await _sysOrgService.GetChildIdListWithSelfById(input.OrgId);
-            orgList = _userManager.SuperAdmin ? orgList : orgList.Where(u => userOrgIdList.Contains(u)).ToList();
-        }
-        else // 各管理员只能看到自己机构下的用户列表
-        {
-            orgList = _userManager.SuperAdmin ? null : userOrgIdList;
-        }
+        //获取子节点Id集合(包含自己)
+        var orgList = await _sysOrgService.GetChildIdListWithSelfById(input.OrgId);
 
         return await _sysUserRep.AsQueryable()
             .LeftJoin<SysOrg>((u, a) => u.OrgId == a.Id)
             .LeftJoin<SysPos>((u, a, b) => u.PosId == b.Id)
             .Where(u => u.AccountType != AccountTypeEnum.SuperAdmin)
-            .WhereIF(orgList != null, u => orgList.Contains(u.OrgId))
+            .WhereIF(input.OrgId > 0, u => orgList.Contains(u.OrgId))
             .WhereIF(!_userManager.SuperAdmin, u => u.AccountType != AccountTypeEnum.SysAdmin)
             .WhereIF(_userManager.SuperAdmin && input.TenantId > 0, u => u.TenantId == input.TenantId)
             .WhereIF(!string.IsNullOrWhiteSpace(input.Account), u => u.Account.Contains(input.Account))
