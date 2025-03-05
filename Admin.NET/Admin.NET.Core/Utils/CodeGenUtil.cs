@@ -256,8 +256,7 @@ public static class CodeGenUtil
     {
         var columnList = new List<string>()
         {
-            nameof(EntityBaseData.CreateOrgId),
-            nameof(EntityBaseData.CreateOrgName),
+            nameof(EntityBaseData.OrgId),
             nameof(EntityTenant.TenantId),
             nameof(EntityBase.CreateTime),
             nameof(EntityBase.UpdateTime),

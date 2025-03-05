@@ -13,7 +13,7 @@ namespace Admin.NET.Core;
 [SysTable]
 [SugarIndex("index_{table}_A", nameof(Account), OrderByType.Asc)]
 [SugarIndex("index_{table}_P", nameof(Phone), OrderByType.Asc)]
-public partial class SysUser : EntityTenant
+public partial class SysUser : EntityTenantBaseData
 {
     /// <summary>
     /// 账号
@@ -191,11 +191,11 @@ public partial class SysUser : EntityTenant
     [SugarColumn(ColumnDescription = "账号类型")]
     public AccountTypeEnum AccountType { get; set; } = AccountTypeEnum.NormalUser;
 
-    /// <summary>
-    /// 直属机构Id
-    /// </summary>
-    [SugarColumn(ColumnDescription = "直属机构Id")]
-    public long OrgId { get; set; }
+    ///// <summary>
+    ///// 直属机构Id
+    ///// </summary>
+    //[SugarColumn(ColumnDescription = "直属机构Id")]
+    //public long OrgId { get; set; }
 
     /// <summary>
     /// 直属机构

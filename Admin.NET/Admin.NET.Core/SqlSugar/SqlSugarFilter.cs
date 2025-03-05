@@ -29,8 +29,6 @@ public static class SqlSugarFilter
         SysCacheService.Remove($"{CacheConst.KeyRoleMaxDataScope}{userId}");
         // 用户权限缓存（按钮集合）
         SysCacheService.Remove($"{CacheConst.KeyUserButton}{userId}");
-        // 删除用户机构（数据范围）缓存——过滤器
-        Cache.Remove($"db:{dbConfigId}:orgList:{userId}");
     }
 
     /// <summary>
@@ -51,55 +49,20 @@ public static class SqlSugarFilter
     {
         // 若仅本人数据，则直接返回
         var maxDataScope = SetDataScopeFilter(db);
-        if (maxDataScope is 0 or (int)DataScopeEnum.Self) return;
+        // 获取用户最大数据范围，如果是全部数据、仅本人，则跳过
+        if (maxDataScope is 0 or (int)DataScopeEnum.Self or (int)DataScopeEnum.All) return;
 
-        long.TryParse(App.HttpContext?.User.FindFirst(ClaimConst.UserId)?.Value, out var userId);
-        if (userId <= 0) return;
-
-        // 配置用户机构集合缓存
-        var cacheKey = $"db:{db.CurrentConnectionConfig.ConfigId}:orgList:{userId}";
-        var orgFilter = Cache.Get<ConcurrentDictionary<Type, LambdaExpression>>(cacheKey);
-        if (orgFilter == null)
+        // 获取用户所属机构，保证同一作用域
+        var orgIds = new List<long>();
+        Scoped.Create((factory, scope) =>
         {
-            // 获取用户最大数据范围，如果是全部数据，则跳过
-            if (maxDataScope == (int)DataScopeEnum.All) return;
+            var services = scope.ServiceProvider;
+            orgIds = services.GetRequiredService<SysOrgService>().GetUserOrgIdList().GetAwaiter().GetResult();
+        });
+        if (orgIds == null || orgIds.Count == 0) return;
 
-            // 获取用户所属机构，保证同一作用域
-            var orgIds = new List<long>();
-            Scoped.Create((factory, scope) =>
-            {
-                var services = scope.ServiceProvider;
-                orgIds = services.GetRequiredService<SysOrgService>().GetUserOrgIdList().GetAwaiter().GetResult();
-            });
-            if (orgIds == null || orgIds.Count == 0) return;
-
-            // 获取业务实体数据表
-            var entityTypes = App.EffectiveTypes.Where(u => !u.IsInterface && !u.IsAbstract && u.IsClass
-                && u.IsSubclassOf(typeof(EntityBaseData)));
-            if (!entityTypes.Any()) return;
-
-            orgFilter = new ConcurrentDictionary<Type, LambdaExpression>();
-            foreach (var entityType in entityTypes)
-            {
-                // 排除非当前数据库实体
-                var tAtt = entityType.GetCustomAttribute<TenantAttribute>();
-                if ((tAtt != null && db.CurrentConnectionConfig.ConfigId.ToString() != tAtt.configId.ToString()))
-                    continue;
-
-                //var lambda = DynamicExpressionParser.ParseLambda(new[] {
-                //    Expression.Parameter(entityType, "u") }, typeof(bool), $"@0.Contains(u.{nameof(EntityBaseData.CreateOrgId)}??{default(long)})", orgIds);
-                var lambda = entityType.GetConditionExpression<OwnerOrgAttribute>(orgIds);
-
-                db.QueryFilter.AddTableFilter(entityType, lambda);
-                orgFilter.TryAdd(entityType, lambda);
-            }
-            Cache.Add(cacheKey, orgFilter);
-        }
-        else
-        {
-            foreach (var filter in orgFilter)
-                db.QueryFilter.AddTableFilter(filter.Key, filter.Value);
-        }
+        //配置机构Id过滤器
+        db.QueryFilter.AddTableFilter<IOrgIdFilter>(o => SqlFunc.ContainsArray(orgIds, o.OrgId));
     }
 
     /// <summary>

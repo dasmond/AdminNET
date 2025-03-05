@@ -244,17 +244,6 @@ function addBaseColumn() {
 			length: 64,
 		},
 		{
-			dataType: 'bigint',
-			name: 'CreateOrgId',
-			desc: '创建者部门Id',
-		},
-		{
-			dataType: 'varchar',
-			name: 'CreateOrgName',
-			desc: '创建者部门名称',
-			length: 64,
-		},
-		{
 			dataType: 'bit',
 			name: 'IsDelete',
 			desc: '软删除',

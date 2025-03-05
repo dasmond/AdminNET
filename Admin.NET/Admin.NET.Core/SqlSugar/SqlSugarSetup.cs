@@ -226,13 +226,13 @@ public static class SqlSugarSetup
                     if (string.IsNullOrEmpty(createUserName))
                         entityInfo.SetValue(App.User.FindFirst(ClaimConst.RealName)?.Value);
                 }
-                else if (entityInfo.PropertyName == nameof(EntityBaseData.CreateOrgId))
+                else if (entityInfo.PropertyName == "CreateOrgId")
                 {
                     var createOrgId = entityValue.CreateOrgId;
                     if (createOrgId == 0 || createOrgId == null)
                         entityInfo.SetValue(App.User.FindFirst(ClaimConst.OrgId)?.Value);
                 }
-                else if (entityInfo.PropertyName == nameof(EntityBaseData.CreateOrgName))
+                else if (entityInfo.PropertyName == "CreateOrgName")
                 {
                     var createOrgName = entityValue.CreateOrgName;
                     if (string.IsNullOrEmpty(createOrgName))
