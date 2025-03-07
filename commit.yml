@@ -2,19 +2,22 @@
 branches: {
   }
 fileChange:
-  /Admin.NET:
-    newFile: !uuid 'ea132bbe4396afb199eaaa0e340b73574d8ede5c'
-    oldFile: !uuid '0940d5649c27d10831da24a43b7e1aebf10ce9a0'
-  /Admin.NET/Admin.NET.Core:
-    newFile: !uuid 'cdded2f3abc1cd23593129fdbe1700c10472e947'
-    oldFile: !uuid '4c7928acaf7dbd8490575b36e70a50ddd499425b'
-  /Admin.NET/Admin.NET.Core/SeedData:
-    newFile: !uuid '9f5ea2e143d8aa2b9ac5516cc28b4460613aafea'
-    oldFile: !uuid 'e4221f70e89e405785ce4768bfc9fb3e54b4e2f1'
-  /Admin.NET/Admin.NET.Core/SeedData/SysRoleSeedData.cs:
-    newFile: !uuid '5dc8c8fe5a1ae6514bace2f0b5e554721bdc6883'
-    oldFile: !uuid 'e277b5607e7a5259c92961c55f472267a402cc23'
-gitCommitId: !uuid 'ec55b4ff61e0d2236628cd159bdeb2c312f7d53c'
+  /Web:
+    newFile: !uuid 'e81878cbff66e89a0d0793dfa4217411dd3f1556'
+    oldFile: !uuid 'eb720da88d8573c9cff81bfe3485cd553766b78e'
+  /Web/src:
+    newFile: !uuid '9eac88f49707a56406532f12c960fe2265dec426'
+    oldFile: !uuid '9c03f23ca8050cdba16d069b16c3dfcbbc8b3635'
+  /Web/src/components:
+    newFile: !uuid 'b6b42a72d317464e83d629b35c57ff815a4dac37'
+    oldFile: !uuid 'd13affeea65f0417a5c56171ef855a550ff79ca7'
+  /Web/src/components/dropdownTable:
+    newFile: !uuid 'd99a992308330ecc40b40aa7cbaf3f650d77c411'
+    oldFile: null
+  /Web/src/components/dropdownTable/index.vue:
+    newFile: !uuid 'bbc87400cc82e9fd0c607daee8e02bc2879459a0'
+    oldFile: null
+gitCommitId: !uuid '95218cbf888bc332398cd4727c77f1a0c678b00b'
 renames: {
   }
-revisionId: 2766
+revisionId: 2767
