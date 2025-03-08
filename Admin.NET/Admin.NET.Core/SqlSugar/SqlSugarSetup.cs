@@ -208,7 +208,7 @@ public static class SqlSugarSetup
                 if (App.User == null) return;
 
                 dynamic entityValue = entityInfo.EntityValue;
-                if (entityInfo.PropertyName == nameof(EntityTenantId.TenantId))
+                if (entityInfo.PropertyName == nameof(EntityBaseTenantId.TenantId))
                 {
                     var tenantId = entityValue.TenantId;
                     if (tenantId == null || tenantId == 0)

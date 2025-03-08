@@ -13,7 +13,7 @@ namespace Admin.NET.Core;
 [SugarTable(null, "系统模板表")]
 [SugarIndex("index_{table}_C", nameof(Code), OrderByType.Asc, IsUnique = true)]
 [SugarIndex("index_{table}_G", nameof(GroupName), OrderByType.Asc)]
-public partial class SysTemplate : EntityTenant
+public partial class SysTemplate : EntityBaseTenant
 {
     /// <summary>
     /// 名称

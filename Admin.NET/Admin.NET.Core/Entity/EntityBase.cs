@@ -85,9 +85,9 @@ public abstract class EntityBase : EntityBaseId, IDeletedFilter
 }
 
 /// <summary>
-/// 业务数据实体基类（数据权限）
+/// 机构实体基类（数据权限）
 /// </summary>
-public abstract class EntityBaseData : EntityBase, IOrgIdFilter
+public abstract class EntityBaseOrg : EntityBase, IOrgIdFilter
 {
     /// <summary>
     /// 机构Id
@@ -119,7 +119,7 @@ public abstract class EntityBaseData : EntityBase, IOrgIdFilter
 /// <summary>
 /// 租户实体基类
 /// </summary>
-public abstract class EntityTenant : EntityBase, ITenantIdFilter
+public abstract class EntityBaseTenant : EntityBase, ITenantIdFilter
 {
     /// <summary>
     /// 租户Id
@@ -131,7 +131,7 @@ public abstract class EntityTenant : EntityBase, ITenantIdFilter
 /// <summary>
 /// 租户实体基类Id
 /// </summary>
-public abstract class EntityTenantId : EntityBaseId, ITenantIdFilter
+public abstract class EntityBaseTenantId : EntityBaseId, ITenantIdFilter
 {
     /// <summary>
     /// 租户Id
@@ -141,9 +141,9 @@ public abstract class EntityTenantId : EntityBaseId, ITenantIdFilter
 }
 
 /// <summary>
-/// 租户实体基类 + 业务数据（数据权限）
+/// 租户机构实体基类（数据权限）
 /// </summary>
-public abstract class EntityTenantBaseData : EntityBaseData, ITenantIdFilter
+public abstract class EntityBaseTenantOrg : EntityBaseOrg, ITenantIdFilter
 {
     /// <summary>
     /// 租户Id
