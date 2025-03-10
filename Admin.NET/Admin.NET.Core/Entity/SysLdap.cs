@@ -11,7 +11,7 @@ namespace Admin.NET.Core;
 /// </summary>
 [SugarTable(null, "系统域登录信息配置表")]
 [SysTable]
-public class SysLdap : EntityTenant
+public class SysLdap : EntityBaseTenant
 {
     /// <summary>
     /// 主机
