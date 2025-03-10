@@ -3,21 +3,21 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '6f5e7912c66d783cd1de7b30a9af2e43a0a673b4'
-    oldFile: !uuid 'ea132bbe4396afb199eaaa0e340b73574d8ede5c'
+    newFile: !uuid 'fd5b5ade407be8e68bd916fdff7196e353a06395'
+    oldFile: !uuid '6f5e7912c66d783cd1de7b30a9af2e43a0a673b4'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '9f8f40f6bc51b4ea0b6d6da37d393f5757c07706'
-    oldFile: !uuid 'cdded2f3abc1cd23593129fdbe1700c10472e947'
+    newFile: !uuid '533ff4fe6360f2d7f78974b02cd7a7ac214b4295'
+    oldFile: !uuid '9f8f40f6bc51b4ea0b6d6da37d393f5757c07706'
   /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid '2712716839cc0ebd0f9bbf22129520ea1f45a0bd'
-    oldFile: !uuid '77454bb0b8e5debf11768b3e0746d40c2e200ab2'
+    newFile: !uuid 'b339cf2abd4fc08cf6764c6893e511c768c99647'
+    oldFile: !uuid '2712716839cc0ebd0f9bbf22129520ea1f45a0bd'
   /Admin.NET/Admin.NET.Core/Service/Config:
-    newFile: !uuid '1c24e09ae72b0aa891009afcb2beac53103c4137'
-    oldFile: !uuid '26904f96273d2074505bb7b9980b1ca2e353aa0d'
-  /Admin.NET/Admin.NET.Core/Service/Config/SysUserConfigService.cs:
-    newFile: !uuid 'b792dcbd414efb4c85b3b6e0c2280766a22f2a0e'
-    oldFile: !uuid '2f052c7f9ccfb2d9fb5884561b4ba0c85984e77b'
-gitCommitId: !uuid '5ec6c3afdaaf5dd3332b9648443685976e86a926'
+    newFile: !uuid '538ee9aba44ce77d99ee3e5baff31f134380864d'
+    oldFile: !uuid '1c24e09ae72b0aa891009afcb2beac53103c4137'
+  /Admin.NET/Admin.NET.Core/Service/Config/SysTenantConfigService.cs:
+    newFile: !uuid '709ab7b0b3fa01a57e85410c37ea7f6546e6dd23'
+    oldFile: !uuid '8f39ea698a0b5a2216eff2289fc0ddb4abd53a1c'
+gitCommitId: !uuid '40eb54b1f952252555ac8b345af4eb893579b75f'
 renames: {
   }
-revisionId: 2768
+revisionId: 2769
