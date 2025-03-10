@@ -188,7 +188,7 @@ public class SysCodeGenService : IDynamicApiController, ITransient
         // 获取实体类型属性
         var entityType = provider.DbMaintenance.GetTableInfoList(false).FirstOrDefault(u => u.Name == tableName);
         if (entityType == null) return null;
-        var entityBasePropertyNames = _codeGenOptions.EntityBaseColumn[nameof(EntityTenant)];
+        var entityBasePropertyNames = _codeGenOptions.EntityBaseColumn[nameof(EntityBaseTenant)];
         var properties = GetEntityInfos(configId).Result.First(e => e.DbTableName == tableName).Type.GetProperties()
             .Where(e => e.GetCustomAttribute<SugarColumn>()?.IsIgnore == false).Select(e => new
             {
@@ -229,7 +229,7 @@ public class SysCodeGenService : IDynamicApiController, ITransient
         // 切库---多库代码生成用
         var provider = _db.AsTenant().GetConnectionScope(!string.IsNullOrEmpty(input.ConfigId) ? input.ConfigId : SqlSugarConst.MainConfigId);
 
-        var entityBasePropertyNames = _codeGenOptions.EntityBaseColumn[nameof(EntityTenant)];
+        var entityBasePropertyNames = _codeGenOptions.EntityBaseColumn[nameof(EntityBaseTenant)];
         var columnInfos = provider.DbMaintenance.GetColumnInfosByTableName(dbTableName, false);
         var result = columnInfos.Select(u => new ColumnOuput
         {
