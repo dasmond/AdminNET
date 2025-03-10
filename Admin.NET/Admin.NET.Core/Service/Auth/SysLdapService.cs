@@ -11,24 +11,14 @@ namespace Admin.NET.Core;
 /// <summary>
 /// 系统域登录配置服务 🧩
 /// </summary>
-[ApiDescriptionSettings(Order = 496)]
+[ApiDescriptionSettings(Order = 496, Description = "域登录配置")]
 public class SysLdapService : IDynamicApiController, ITransient
 {
     private readonly SqlSugarRepository<SysLdap> _sysLdapRep;
-    private readonly SysUserLdapService _sysUserLdapService;
-    private readonly SysOrgService _sysOrgService;
-    private readonly UserManager _userManager;
 
-    public SysLdapService(
-        SqlSugarRepository<SysLdap> sysLdapRep,
-        SysUserLdapService sysUserLdapService,
-        SysOrgService sysOrgService,
-        UserManager userManager)
+    public SysLdapService(SqlSugarRepository<SysLdap> sysLdapRep)
     {
         _sysLdapRep = sysLdapRep;
-        _userManager = userManager;
-        _sysOrgService = sysOrgService;
-        _sysUserLdapService = sysUserLdapService;
     }
 
     /// <summary>
@@ -40,7 +30,6 @@ public class SysLdapService : IDynamicApiController, ITransient
     public async Task<SqlSugarPagedList<SysLdap>> Page(SysLdapInput input)
     {
         return await _sysLdapRep.AsQueryable()
-            .WhereIF(_userManager.SuperAdmin && input.TenantId > 0, u => u.TenantId == input.TenantId)
             .WhereIF(!string.IsNullOrWhiteSpace(input.Keyword), u => u.Host.Contains(input.Keyword.Trim()))
             .WhereIF(!string.IsNullOrWhiteSpace(input.Host), u => u.Host.Contains(input.Host.Trim()))
             .OrderBy(u => u.CreateTime, OrderByType.Desc)
@@ -123,21 +112,21 @@ public class SysLdapService : IDynamicApiController, ITransient
     /// <param name="tenantId">租户</param>
     /// <returns></returns>
     [NonAction]
-    public async Task<bool> AuthAccount(long tenantId, string account, string password)
+    public async Task<bool> AuthAccount(long? tenantId, string account, string password)
     {
         var sysLdap = await _sysLdapRep.GetFirstAsync(u => u.TenantId == tenantId) ?? throw Oops.Oh(ErrorCodeEnum.D1002);
         var ldapConn = new LdapConnection();
         try
         {
-            ldapConn.Connect(sysLdap.Host, sysLdap.Port);
+            await ldapConn.ConnectAsync(sysLdap.Host, sysLdap.Port);
             string bindPass = CryptogramUtil.Decrypt(sysLdap.BindPass);
-            ldapConn.Bind(sysLdap.Version, sysLdap.BindDn, bindPass);
-            var ldapSearchResults = ldapConn.Search(sysLdap.BaseDn, LdapConnection.ScopeSub, sysLdap.AuthFilter.Replace("%s", account), null, false);
+            await ldapConn.BindAsync(sysLdap.Version, sysLdap.BindDn, bindPass);
+            var ldapSearchResults = await ldapConn.SearchAsync(sysLdap.BaseDn, LdapConnection.ScopeSub, sysLdap.AuthFilter.Replace("%s", account), null, false);
             string dn = string.Empty;
-            while (ldapSearchResults.HasMore())
+            while (await ldapSearchResults.HasMoreAsync())
             {
-                var ldapEntry = ldapSearchResults.Next();
-                var sAmAccountName = ldapEntry.GetAttribute(sysLdap.BindAttrAccount)?.StringValue;
+                var ldapEntry = await ldapSearchResults.NextAsync();
+                var sAmAccountName = ldapEntry.GetAttributeSet().GetAttribute(sysLdap.BindAttrAccount)?.StringValue;
                 if (string.IsNullOrEmpty(sAmAccountName)) continue;
                 dn = ldapEntry.Dn;
                 break;
@@ -145,7 +134,7 @@ public class SysLdapService : IDynamicApiController, ITransient
 
             if (string.IsNullOrEmpty(dn)) throw Oops.Oh(ErrorCodeEnum.D1002);
             // var attr = new LdapAttribute("userPassword", password);
-            ldapConn.Bind(dn, password);
+            await ldapConn.BindAsync(dn, password);
         }
         catch (LdapException e)
         {
@@ -174,7 +163,7 @@ public class SysLdapService : IDynamicApiController, ITransient
     public async Task<List<SysUserLdap>> SyncUserTenant(long tenantId)
     {
         var sysLdap = await _sysLdapRep.GetFirstAsync(c => c.TenantId == tenantId && c.IsDelete == false && c.Status == StatusEnum.Enable) ?? throw Oops.Oh(ErrorCodeEnum.D1002);
-        return await SyncUser(sysLdap);
+        return await SysLdapService.SyncUser(sysLdap);
     }
 
     /// <summary>
@@ -186,7 +175,7 @@ public class SysLdapService : IDynamicApiController, ITransient
     public async Task<List<SysUserLdap>> SyncUser(SyncSysLdapInput input)
     {
         var sysLdap = await _sysLdapRep.GetByIdAsync(input.Id) ?? throw Oops.Oh(ErrorCodeEnum.D1002);
-        return await SyncUser(sysLdap);
+        return await SysLdapService.SyncUser(sysLdap);
     }
 
     /// <summary>
@@ -194,23 +183,23 @@ public class SysLdapService : IDynamicApiController, ITransient
     /// </summary>
     /// <param name="sysLdap"></param>
     /// <returns></returns>
-    private async Task<List<SysUserLdap>> SyncUser(SysLdap sysLdap)
+    private static async Task<List<SysUserLdap>> SyncUser(SysLdap sysLdap)
     {
         if (sysLdap == null) throw Oops.Oh(ErrorCodeEnum.D1002);
         var ldapConn = new LdapConnection();
         try
         {
-            ldapConn.Connect(sysLdap.Host, sysLdap.Port);
+            await ldapConn.ConnectAsync(sysLdap.Host, sysLdap.Port);
             string bindPass = CryptogramUtil.Decrypt(sysLdap.BindPass);
-            ldapConn.Bind(sysLdap.Version, sysLdap.BindDn, bindPass);
-            var ldapSearchResults = ldapConn.Search(sysLdap.BaseDn, LdapConnection.ScopeOne, "(objectClass=*)", null, false);
+            await ldapConn.BindAsync(sysLdap.Version, sysLdap.BindDn, bindPass);
+            var ldapSearchResults = await ldapConn.SearchAsync(sysLdap.BaseDn, LdapConnection.ScopeOne, "(objectClass=*)", null, false);
             var userLdapList = new List<SysUserLdap>();
-            while (ldapSearchResults.HasMore())
+            while (await ldapSearchResults.HasMoreAsync())
             {
                 LdapEntry ldapEntry;
                 try
                 {
-                    ldapEntry = ldapSearchResults.Next();
+                    ldapEntry = await ldapSearchResults.NextAsync();
                     if (ldapEntry == null) continue;
                 }
                 catch (LdapException)
@@ -222,7 +211,7 @@ public class SysLdapService : IDynamicApiController, ITransient
                 var deptCode = GetDepartmentCode(attrs, sysLdap.BindAttrCode);
                 if (attrs.Count == 0 || attrs.ContainsKey("OU"))
                 {
-                    SearchDnLdapUser(ldapConn, sysLdap, userLdapList, ldapEntry.Dn, deptCode);
+                    await SearchDnLdapUser(ldapConn, sysLdap, userLdapList, ldapEntry.Dn, deptCode);
                 }
                 else
                 {
@@ -235,7 +224,7 @@ public class SysLdapService : IDynamicApiController, ITransient
 
             if (userLdapList.Count == 0) return null;
 
-            await _sysUserLdapService.InsertUserLdapList(sysLdap.TenantId!.Value, userLdapList);
+            await App.GetRequiredService<SysUserLdapService>().InsertUserLdapList(sysLdap.TenantId!.Value, userLdapList);
             return userLdapList;
         }
         catch (LdapException e)
@@ -301,15 +290,15 @@ public class SysLdapService : IDynamicApiController, ITransient
     /// <param name="userLdapList"></param>
     /// <param name="baseDn"></param>
     /// <param name="deptCode"></param>
-    private static void SearchDnLdapUser(LdapConnection ldapConn, SysLdap sysLdap, List<SysUserLdap> userLdapList, string baseDn, string deptCode)
+    private static async Task SearchDnLdapUser(LdapConnection ldapConn, SysLdap sysLdap, List<SysUserLdap> userLdapList, string baseDn, string deptCode)
     {
-        var ldapSearchResults = ldapConn.Search(baseDn, LdapConnection.ScopeOne, "(objectClass=*)", null, false);
-        while (ldapSearchResults.HasMore())
+        var ldapSearchResults = await ldapConn.SearchAsync(baseDn, LdapConnection.ScopeOne, "(objectClass=*)", null, false);
+        while (await ldapSearchResults.HasMoreAsync())
         {
             LdapEntry ldapEntry;
             try
             {
-                ldapEntry = ldapSearchResults.Next();
+                ldapEntry = await ldapSearchResults.NextAsync();
                 if (ldapEntry == null) continue;
             }
             catch (LdapException)
@@ -321,7 +310,7 @@ public class SysLdapService : IDynamicApiController, ITransient
             deptCode = GetDepartmentCode(attrs, sysLdap.BindAttrCode);
 
             if (attrs.Count == 0 || attrs.ContainsKey("OU"))
-                SearchDnLdapUser(ldapConn, sysLdap, userLdapList, ldapEntry.Dn, deptCode);
+                await SearchDnLdapUser(ldapConn, sysLdap, userLdapList, ldapEntry.Dn, deptCode);
             else
             {
                 var sysUserLdap = CreateSysUserLdap(attrs, sysLdap.BindAttrAccount, sysLdap.BindAttrEmployeeId, deptCode);
@@ -345,17 +334,17 @@ public class SysLdapService : IDynamicApiController, ITransient
         var ldapConn = new LdapConnection();
         try
         {
-            ldapConn.Connect(sysLdap.Host, sysLdap.Port);
+            await ldapConn.ConnectAsync(sysLdap.Host, sysLdap.Port);
             string bindPass = CryptogramUtil.Decrypt(sysLdap.BindPass);
-            ldapConn.Bind(sysLdap.Version, sysLdap.BindDn, bindPass);
-            var ldapSearchResults = ldapConn.Search(sysLdap.BaseDn, LdapConnection.ScopeOne, "(objectClass=*)", null, false);
+            await ldapConn.BindAsync(sysLdap.Version, sysLdap.BindDn, bindPass);
+            var ldapSearchResults = await ldapConn.SearchAsync(sysLdap.BaseDn, LdapConnection.ScopeOne, "(objectClass=*)", null, false);
             var orgList = new List<SysOrg>();
-            while (ldapSearchResults.HasMore())
+            while (await ldapSearchResults.HasMoreAsync())
             {
                 LdapEntry ldapEntry;
                 try
                 {
-                    ldapEntry = ldapSearchResults.Next();
+                    ldapEntry = await ldapSearchResults.NextAsync();
                     if (ldapEntry == null) continue;
                 }
                 catch (LdapException)
@@ -369,13 +358,13 @@ public class SysLdapService : IDynamicApiController, ITransient
                 var sysOrg = CreateSysOrg(attrs, sysLdap, orgList, new SysOrg { Id = 0, Level = 0 });
                 orgList.Add(sysOrg);
 
-                SearchDnLdapDept(ldapConn, sysLdap, orgList, ldapEntry.Dn, sysOrg);
+                await SearchDnLdapDept(ldapConn, sysLdap, orgList, ldapEntry.Dn, sysOrg);
             }
 
             if (orgList.Count == 0)
                 return;
 
-            await _sysOrgService.BatchAddOrgs(orgList);
+            await App.GetRequiredService<SysOrgService>().BatchAddOrgs(orgList);
         }
         catch (LdapException e)
         {
@@ -399,15 +388,15 @@ public class SysLdapService : IDynamicApiController, ITransient
     /// <param name="listOrgs"></param>
     /// <param name="baseDn"></param>
     /// <param name="org"></param>
-    private static void SearchDnLdapDept(LdapConnection ldapConn, SysLdap sysLdap, List<SysOrg> listOrgs, string baseDn, SysOrg org)
+    private static async Task SearchDnLdapDept(LdapConnection ldapConn, SysLdap sysLdap, List<SysOrg> listOrgs, string baseDn, SysOrg org)
     {
-        var ldapSearchResults = ldapConn.Search(baseDn, LdapConnection.ScopeOne, "(objectClass=*)", null, false);
-        while (ldapSearchResults.HasMore())
+        var ldapSearchResults = await ldapConn.SearchAsync(baseDn, LdapConnection.ScopeOne, "(objectClass=*)", null, false);
+        while (await ldapSearchResults.HasMoreAsync())
         {
             LdapEntry ldapEntry;
             try
             {
-                ldapEntry = ldapSearchResults.Next();
+                ldapEntry = await ldapSearchResults.NextAsync();
                 if (ldapEntry == null) continue;
             }
             catch (LdapException)
@@ -421,7 +410,7 @@ public class SysLdapService : IDynamicApiController, ITransient
             var sysOrg = CreateSysOrg(attrs, sysLdap, listOrgs, org);
             listOrgs.Add(sysOrg);
 
-            SearchDnLdapDept(ldapConn, sysLdap, listOrgs, ldapEntry.Dn, sysOrg);
+            await SearchDnLdapDept(ldapConn, sysLdap, listOrgs, ldapEntry.Dn, sysOrg);
         }
     }
 
