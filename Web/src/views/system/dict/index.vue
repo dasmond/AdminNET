@@ -269,8 +269,9 @@ const openEditDictType = (row: any) => {
 // 打开复制字典值页面
 const openCopyDictData = (row: any) => {
 	state.editDictDataTitle = '复制字典值';
-	const copyRow = JSON.parse(JSON.stringify(row)) as UpdateDictDataInput;
+	const copyRow = JSON.parse(JSON.stringify(row));
 	copyRow.id = 0;
+	copyRow.dictType = null;
 	editDictDataRef.value?.openDialog(copyRow);
 };
 
