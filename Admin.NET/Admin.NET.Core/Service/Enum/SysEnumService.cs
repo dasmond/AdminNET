@@ -1,4 +1,4 @@
-﻿// Admin.NET 项目的版权、商标、专利和其他相关权利均受相应法律法规的保护。使用本项目应遵守相关法律法规和许可证的要求。
+// Admin.NET 项目的版权、商标、专利和其他相关权利均受相应法律法规的保护。使用本项目应遵守相关法律法规和许可证的要求。
 //
 // 本项目主要遵循 MIT 许可证和 Apache 许可证（版本 2.0）进行分发和使用。许可证位于源代码树根目录中的 LICENSE-MIT 和 LICENSE-APACHE 文件。
 //
@@ -28,6 +28,7 @@ public class SysEnumService : IDynamicApiController, ITransient
     {
         var enumTypeList = App.EffectiveTypes.Where(t => t.IsEnum)
             .Where(t => _enumOptions.EntityAssemblyNames.Contains(t.Assembly.GetName().Name) || _enumOptions.EntityAssemblyNames.Any(name => t.Assembly.GetName().Name!.Contains(name)))
+            .Where(t => t.GetCustomAttributes(typeof(IgnoreEnumToDictAttribute), false).Length == 0) // 排除有忽略转字典特性类型
             .Where(t => t.GetCustomAttributes(typeof(ErrorCodeTypeAttribute), false).Length == 0) // 排除错误代码类型
             .OrderBy(u => u.Name).ThenBy(u => u.FullName)
             .ToList();
