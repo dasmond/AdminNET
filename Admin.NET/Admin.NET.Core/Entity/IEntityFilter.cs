@@ -9,7 +9,7 @@ namespace Admin.NET.Core;
 /// <summary>
 /// 假删除接口过滤器
 /// </summary>
-internal interface IDeletedFilter
+public interface IDeletedFilter
 {
     /// <summary>
     /// 软删除
@@ -20,7 +20,7 @@ internal interface IDeletedFilter
 /// <summary>
 /// 租户Id接口过滤器
 /// </summary>
-internal interface ITenantIdFilter
+public interface ITenantIdFilter
 {
     /// <summary>
     /// 租户Id
@@ -31,7 +31,7 @@ internal interface ITenantIdFilter
 /// <summary>
 /// 机构Id接口过滤器
 /// </summary>
-internal interface IOrgIdFilter
+public interface IOrgIdFilter
 {
     /// <summary>
     /// 机构Id
