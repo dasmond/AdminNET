@@ -4,12 +4,12 @@
   // 代码生成配置项-程序集名称集合
   "CodeGen": {
     "EntityAssemblyNames": [ "Admin.NET.Core", "Admin.NET.Application" ], // 实体所在程序集（自行添加新建程序集名称）
-    "BaseEntityNames": [ "EntityTenantId", "EntityTenant", "EntityTenantBaseData", "EntityBaseData", "EntityBase", "EntityBaseId" ], // 实体基类名称
+    "BaseEntityNames": [ "EntityBaseTenantId", "EntityBaseTenant", "EntityBaseTenantOrg", "EntityBaseOrg", "EntityBase", "EntityBaseId" ], // 实体基类名称
     "EntityBaseColumn": {
-      "EntityTenantId": [ "Id", "TenantId" ],
-      "EntityTenant": [ "Id", "CreateTime", "UpdateTime", "CreateUserId", "UpdateUserId", "CreateUserName", "UpdateUserName", "IsDelete", "TenantId" ],
-      "EntityTenantBaseData": [ "Id", "CreateTime", "UpdateTime", "CreateUserId", "UpdateUserId", "CreateUserName", "UpdateUserName", "IsDelete", "CreateOrgId", "CreateOrgName", "TenantId" ],
-      "EntityBaseData": [ "Id", "CreateTime", "UpdateTime", "CreateUserId", "UpdateUserId", "CreateUserName", "UpdateUserName", "IsDelete", "CreateOrgId", "CreateOrgName" ],
+      "EntityBaseTenantId": [ "Id", "TenantId" ],
+      "EntityBaseTenant": [ "Id", "CreateTime", "UpdateTime", "CreateUserId", "UpdateUserId", "CreateUserName", "UpdateUserName", "IsDelete", "TenantId" ],
+      "EntityBaseTenantOrg": [ "Id", "CreateTime", "UpdateTime", "CreateUserId", "UpdateUserId", "CreateUserName", "UpdateUserName", "IsDelete", "OrgId", "TenantId" ],
+      "EntityBaseOrg": [ "Id", "CreateTime", "UpdateTime", "CreateUserId", "UpdateUserId", "CreateUserName", "UpdateUserName", "IsDelete", "OrgId" ],
       "EntityBase": [ "Id", "CreateTime", "UpdateTime", "CreateUserId", "UpdateUserId", "CreateUserName", "UpdateUserName", "IsDelete" ],
       "EntityBaseId": [ "Id" ]
     },
