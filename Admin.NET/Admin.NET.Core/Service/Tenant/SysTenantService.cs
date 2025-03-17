@@ -106,7 +106,7 @@ public class SysTenantService : IDynamicApiController, ITransient
     {
         return await _sysTenantRep.AsQueryable()
            .LeftJoin<SysOrg>((u, a) => u.OrgId == a.Id).ClearFilter()
-           .Where(u => u.Status == StatusEnum.Enable && u.IsDelete == false)
+           .Where(u => u.Status == StatusEnum.Enable)
            .Select((u, a) => new
            {
                Label = $"{u.Title}-{a.Name}",
