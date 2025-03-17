@@ -10,7 +10,7 @@ namespace Admin.NET.Plugin.ApprovalFlow;
 /// 审批流程信息表
 /// </summary>
 [SugarTable(null, "审批流程信息表")]
-public class ApprovalFlow : EntityBaseOrg
+public class ApprovalFlow : EntityBaseOrgDel
 {
     /// <summary>
     /// 编号

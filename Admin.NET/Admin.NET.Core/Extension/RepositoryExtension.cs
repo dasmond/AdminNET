@@ -17,7 +17,7 @@ public static class RepositoryExtension
     /// <param name="repository"></param>
     /// <param name="entity"></param>
     /// <returns></returns>
-    public static int FakeDelete<T>(this ISugarRepository repository, T entity) where T : EntityBase, new()
+    public static int FakeDelete<T>(this ISugarRepository repository, T entity) where T : EntityBaseDel, new()
     {
         return repository.Context.FakeDelete(entity);
     }
@@ -29,7 +29,7 @@ public static class RepositoryExtension
     /// <param name="db"></param>
     /// <param name="entity"></param>
     /// <returns></returns>
-    public static int FakeDelete<T>(this ISqlSugarClient db, T entity) where T : EntityBase, new()
+    public static int FakeDelete<T>(this ISqlSugarClient db, T entity) where T : EntityBaseDel, new()
     {
         return db.Updateable(entity).AS().ReSetValue(x => { x.IsDelete = true; })
             .IgnoreColumns(ignoreAllNullColumns: true)
@@ -45,7 +45,7 @@ public static class RepositoryExtension
     /// <param name="repository"></param>
     /// <param name="entity"></param>
     /// <returns></returns>
-    public static int FakeDelete<T>(this ISugarRepository repository, List<T> entity) where T : EntityBase, new()
+    public static int FakeDelete<T>(this ISugarRepository repository, List<T> entity) where T : EntityBaseDel, new()
     {
         return repository.Context.FakeDelete(entity);
     }
@@ -57,7 +57,7 @@ public static class RepositoryExtension
     /// <param name="db"></param>
     /// <param name="entity"></param>
     /// <returns></returns>
-    public static int FakeDelete<T>(this ISqlSugarClient db, List<T> entity) where T : EntityBase, new()
+    public static int FakeDelete<T>(this ISqlSugarClient db, List<T> entity) where T : EntityBaseDel, new()
     {
         return db.Updateable(entity).AS().ReSetValue(x => { x.IsDelete = true; })
             .IgnoreColumns(ignoreAllNullColumns: true)
@@ -73,7 +73,7 @@ public static class RepositoryExtension
     /// <param name="repository"></param>
     /// <param name="entity"></param>
     /// <returns></returns>
-    public static Task<int> FakeDeleteAsync<T>(this ISugarRepository repository, T entity) where T : EntityBase, new()
+    public static Task<int> FakeDeleteAsync<T>(this ISugarRepository repository, T entity) where T : EntityBaseDel, new()
     {
         return repository.Context.FakeDeleteAsync(entity);
     }
@@ -85,7 +85,7 @@ public static class RepositoryExtension
     /// <param name="db"></param>
     /// <param name="entity"></param>
     /// <returns></returns>
-    public static Task<int> FakeDeleteAsync<T>(this ISqlSugarClient db, T entity) where T : EntityBase, new()
+    public static Task<int> FakeDeleteAsync<T>(this ISqlSugarClient db, T entity) where T : EntityBaseDel, new()
     {
         return db.Updateable(entity).AS().ReSetValue(x => { x.IsDelete = true; })
             .IgnoreColumns(ignoreAllNullColumns: true)
@@ -101,7 +101,7 @@ public static class RepositoryExtension
     /// <param name="repository"></param>
     /// <param name="entity"></param>
     /// <returns></returns>
-    public static Task<int> FakeDeleteAsync<T>(this ISugarRepository repository, List<T> entity) where T : EntityBase, new()
+    public static Task<int> FakeDeleteAsync<T>(this ISugarRepository repository, List<T> entity) where T : EntityBaseDel, new()
     {
         return repository.Context.FakeDeleteAsync(entity);
     }
@@ -113,7 +113,7 @@ public static class RepositoryExtension
     /// <param name="db"></param>
     /// <param name="entity"></param>
     /// <returns></returns>
-    public static Task<int> FakeDeleteAsync<T>(this ISqlSugarClient db, List<T> entity) where T : EntityBase, new()
+    public static Task<int> FakeDeleteAsync<T>(this ISqlSugarClient db, List<T> entity) where T : EntityBaseDel, new()
     {
         return db.Updateable(entity).AS().ReSetValue(x => { x.IsDelete = true; })
             .IgnoreColumns(ignoreAllNullColumns: true)
