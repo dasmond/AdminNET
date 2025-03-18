@@ -22,7 +22,7 @@ public abstract class EntityBaseId
 /// 框架实体基类
 /// </summary>
 [SugarIndex("index_{table}_CT", nameof(CreateTime), OrderByType.Asc)]
-public abstract class EntityBase : EntityBaseId, IDeletedFilter
+public abstract class EntityBase : EntityBaseId
 {
     /// <summary>
     /// 创建时间
@@ -76,7 +76,14 @@ public abstract class EntityBase : EntityBaseId, IDeletedFilter
     /// </summary>
     [SugarColumn(ColumnDescription = "修改者姓名", Length = 64)]
     public virtual string? UpdateUserName { get; set; }
+}
 
+/// <summary>
+/// 框架实体基类（删除标志）
+/// </summary>
+[SugarIndex("index_{table}_D", nameof(IsDelete), OrderByType.Asc)]
+public abstract class EntityBaseDel : EntityBase, IDeletedFilter
+{
     /// <summary>
     /// 软删除
     /// </summary>
@@ -117,9 +124,33 @@ public abstract class EntityBaseOrg : EntityBase, IOrgIdFilter
 }
 
 /// <summary>
+/// 机构实体基类（数据权限、删除标志）
+/// </summary>
+public abstract class EntityBaseOrgDel : EntityBaseDel, IOrgIdFilter
+{
+    /// <summary>
+    /// 机构Id
+    /// </summary>
+    [SugarColumn(ColumnDescription = "机构Id", IsNullable = true)]
+    public virtual long OrgId { get; set; }
+}
+
+/// <summary>
 /// 租户实体基类
 /// </summary>
 public abstract class EntityBaseTenant : EntityBase, ITenantIdFilter
+{
+    /// <summary>
+    /// 租户Id
+    /// </summary>
+    [SugarColumn(ColumnDescription = "租户Id", IsOnlyIgnoreUpdate = true)]
+    public virtual long? TenantId { get; set; }
+}
+
+/// <summary>
+/// 租户实体基类（删除标志）
+/// </summary>
+public abstract class EntityBaseTenantDel : EntityBaseDel, ITenantIdFilter
 {
     /// <summary>
     /// 租户Id
@@ -144,6 +175,18 @@ public abstract class EntityBaseTenantId : EntityBaseId, ITenantIdFilter
 /// 租户机构实体基类（数据权限）
 /// </summary>
 public abstract class EntityBaseTenantOrg : EntityBaseOrg, ITenantIdFilter
+{
+    /// <summary>
+    /// 租户Id
+    /// </summary>
+    [SugarColumn(ColumnDescription = "租户Id", IsOnlyIgnoreUpdate = true)]
+    public virtual long? TenantId { get; set; }
+}
+
+/// <summary>
+/// 租户机构实体基类（数据权限、删除标志）
+/// </summary>
+public abstract class EntityBaseTenantOrgDel: EntityBaseOrgDel, ITenantIdFilter
 {
     /// <summary>
     /// 租户Id

@@ -264,7 +264,7 @@ public static class CodeGenUtil
             nameof(EntityBase.UpdateUserId),
             nameof(EntityBase.CreateUserName),
             nameof(EntityBase.UpdateUserName),
-            nameof(EntityBase.IsDelete)
+            nameof(EntityBaseDel.IsDelete)
         };
         return columnList.Contains(columnName);
     }
