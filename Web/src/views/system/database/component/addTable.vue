@@ -84,7 +84,9 @@
 				<el-button icon="ele-Plus" @click="addPrimaryColumn">新增主键字段</el-button>
 				<el-button icon="ele-Plus" @click="addColumn">新增普通字段</el-button>
 				<el-button icon="ele-Plus" @click="addTenantColumn">新增租户字段</el-button>
+				<el-button icon="ele-Plus" @click="addOrgColumn">新增机构字段</el-button>
 				<el-button icon="ele-Plus" @click="addBaseColumn">新增基础字段</el-button>
+				<el-button icon="ele-Plus" @click="addDeleteColumn">新增软删除字段</el-button>
 			</div>
 
 			<template #footer>
@@ -208,6 +210,24 @@ function addTenantColumn() {
 	colIndex++;
 }
 
+// 增加机构列
+function addOrgColumn() {
+	state.tableData.push({
+		columnDescription: '机构Id',
+		dataType: 'bigint',
+		dbColumnName: 'OrgId',
+		decimalDigits: 0,
+		isIdentity: 0,
+		isNullable: 1,
+		isPrimarykey: 0,
+		length: 0,
+		key: colIndex,
+		editable: true,
+		isNew: true,
+	});
+	colIndex++;
+}
+
 // 增加通用基础列
 function addBaseColumn() {
 	const fileds = [
@@ -243,12 +263,6 @@ function addBaseColumn() {
 			desc: '修改者姓名',
 			length: 64,
 		},
-		{
-			dataType: 'bit',
-			name: 'IsDelete',
-			desc: '软删除',
-			isNullable: 0,
-		},
 	];
 
 	fileds.forEach((m: any) => {
@@ -267,6 +281,24 @@ function addBaseColumn() {
 		});
 		colIndex++;
 	});
+}
+
+// 增加软删除列
+function addDeleteColumn() {
+	state.tableData.push({
+		columnDescription: '软删除',
+		dataType: 'bit',
+		dbColumnName: 'IsDelete',
+		decimalDigits: 0,
+		isIdentity: 0,
+		isNullable: 0,
+		isPrimarykey: 0,
+		length: 0,
+		key: colIndex,
+		editable: true,
+		isNew: true,
+	});
+	colIndex++;
 }
 
 function handleColDelete(index: number) {
