@@ -4,15 +4,7 @@
   // 代码生成配置项-程序集名称集合
   "CodeGen": {
     "EntityAssemblyNames": [ "Admin.NET.Core", "Admin.NET.Application" ], // 实体所在程序集（自行添加新建程序集名称）
-    "BaseEntityNames": [ "EntityBaseTenantId", "EntityBaseTenant", "EntityBaseTenantOrg", "EntityBaseOrg", "EntityBase", "EntityBaseId" ], // 实体基类名称
-    "EntityBaseColumn": {
-      "EntityBaseTenantId": [ "Id", "TenantId" ],
-      "EntityBaseTenant": [ "Id", "CreateTime", "UpdateTime", "CreateUserId", "UpdateUserId", "CreateUserName", "UpdateUserName", "IsDelete", "TenantId" ],
-      "EntityBaseTenantOrg": [ "Id", "CreateTime", "UpdateTime", "CreateUserId", "UpdateUserId", "CreateUserName", "UpdateUserName", "IsDelete", "OrgId", "TenantId" ],
-      "EntityBaseOrg": [ "Id", "CreateTime", "UpdateTime", "CreateUserId", "UpdateUserId", "CreateUserName", "UpdateUserName", "IsDelete", "OrgId" ],
-      "EntityBase": [ "Id", "CreateTime", "UpdateTime", "CreateUserId", "UpdateUserId", "CreateUserName", "UpdateUserName", "IsDelete" ],
-      "EntityBaseId": [ "Id" ]
-    },
+    "BaseEntityNames": [ "EntityBaseId", "EntityBase", "EntityBaseDel", "EntityBaseOrg", "EntityBaseOrgDel", "EntityBaseTenant", "EntityBaseTenantDel", "EntityBaseTenantId", "EntityBaseTenantOrg", "EntityBaseTenantOrgDel" ], // 实体基类名称
     "FrontRootPath": "Web", // 前端项目根目录
     "BackendApplicationNamespaces": [ "Admin.NET.Application", "Admin.NET.Application2" ] // 后端生成到的项目（自行添加新建命名空间）
   }
