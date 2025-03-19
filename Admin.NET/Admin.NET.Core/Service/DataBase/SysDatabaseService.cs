@@ -274,9 +274,13 @@ public class SysDatabaseService : IDynamicApiController, ITransient
         // Entity.cs.vm中是允许创建没有基类的实体的，所以这里也要做出相同的判断
         if (!string.IsNullOrWhiteSpace(input.BaseClassName))
         {
-            _codeGenOptions.EntityBaseColumn.TryGetValue(input.BaseClassName, out dbColumnNames);
+            Assembly assembly = Assembly.Load("Admin.NET.Core");
+            Type type = assembly.GetType($"Admin.NET.Core.{input.BaseClassName}");
+            if (type is null)
+                throw Oops.Oh("基类集合配置不存在此类型");
+            dbColumnNames = CodeGenUtil.GetPropertyInfoArray(type)?.Select(p => p.Name).ToArray();
             if (dbColumnNames is null || dbColumnNames is { Length: 0 })
-                throw Oops.Oh("基类配置文件不存在此类型");
+                throw Oops.Oh("基类中不存在任何字段");
         }
         var templatePath = GetEntityTemplatePath();
         var targetPath = GetEntityTargetPath(input);
