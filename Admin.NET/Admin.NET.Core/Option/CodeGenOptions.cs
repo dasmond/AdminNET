@@ -17,14 +17,9 @@ public sealed class CodeGenOptions : IConfigurableOptions
     public List<string> EntityAssemblyNames { get; set; }
 
     /// <summary>
-    /// 数据库基础实体名称集合
+    /// 数据库实体基类名称集合
     /// </summary>
     public List<string> BaseEntityNames { get; set; }
-
-    /// <summary>
-    /// 基础实体名
-    /// </summary>
-    public Dictionary<string, string[]> EntityBaseColumn { get; set; }
 
     /// <summary>
     /// 前端文件根目录
