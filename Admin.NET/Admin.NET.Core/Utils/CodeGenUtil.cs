@@ -268,4 +268,21 @@ public static class CodeGenUtil
         };
         return columnList.Contains(columnName);
     }
+
+    /// <summary>
+    /// 获取类型的PropertyInfo列表
+    /// </summary>
+    /// <param name="type"></param>
+    /// <returns></returns>
+    public static PropertyInfo[] GetPropertyInfoArray(Type type)
+    {
+        PropertyInfo[] props = null;
+        try
+        {
+            props = type.GetProperties(BindingFlags.Public | BindingFlags.Instance);
+        }
+        catch
+        { }
+        return props;
+    }
 }
