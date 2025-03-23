@@ -282,6 +282,7 @@ public class SysWxOpenService : IDynamicApiController, ITransient
         if (response.IsSuccessful())
         {
             var QRImagePath = App.GetConfig<string>("Wechat:QRImagePath");
+            QRImagePath = string.IsNullOrEmpty(QRImagePath) ? Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "upload", "QRImage") : QRImagePath;
             //判断文件存放路径是否存在
             if (!Directory.Exists(QRImagePath))
             {
