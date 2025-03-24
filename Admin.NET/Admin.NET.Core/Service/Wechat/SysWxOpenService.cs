@@ -259,8 +259,6 @@ public class SysWxOpenService : IDynamicApiController, ITransient
         GenerateQRImageOutput generateQRImageOutInput = new GenerateQRImageOutput();
         if (input.PagePath.IsNullOrEmpty())
         {
-            generateQRImageOutInput.Success = false;
-            generateQRImageOutInput.ImgPath = "";
             generateQRImageOutInput.Message = $"生成失败 页面路径不能为空";
             return generateQRImageOutInput;
         }
@@ -282,14 +280,25 @@ public class SysWxOpenService : IDynamicApiController, ITransient
         if (response.IsSuccessful())
         {
             var QRImagePath = App.GetConfig<string>("Wechat:QRImagePath");
-            QRImagePath = string.IsNullOrEmpty(QRImagePath) ? Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "upload", "QRImage") : QRImagePath;
+            var relativeImgPath = string.Empty;
+
+            // 判断路径是绝对路径还是相对路径
+            var isPathRooted = Path.IsPathRooted(QRImagePath);
+            if (!isPathRooted)
+            {
+                // 相对路径
+                relativeImgPath = string.IsNullOrEmpty(QRImagePath) ? Path.Combine("upload", "QRImage") : QRImagePath;
+                QRImagePath = Path.Combine(App.WebHostEnvironment.WebRootPath, relativeImgPath);
+            }
+
             //判断文件存放路径是否存在
             if (!Directory.Exists(QRImagePath))
             {
                 Directory.CreateDirectory(QRImagePath);
             }
             // 将二维码图片数据保存为文件
-            var filePath = QRImagePath + $"\\{input.ImageName.ToUpper()}.png";
+            var fileName = $"{input.ImageName.ToUpper()}.png";
+            var filePath = Path.Combine(QRImagePath, fileName);
             if (File.Exists(filePath))
             {
                 File.Delete(filePath);
@@ -298,13 +307,12 @@ public class SysWxOpenService : IDynamicApiController, ITransient
 
             generateQRImageOutInput.Success = true;
             generateQRImageOutInput.ImgPath = filePath;
+            generateQRImageOutInput.RelativeImgPath = Path.Combine(relativeImgPath, fileName);
             generateQRImageOutInput.Message = "生成成功";
         }
         else
         {
             // 处理错误情况
-            generateQRImageOutInput.Success = false;
-            generateQRImageOutInput.ImgPath = "";
             generateQRImageOutInput.Message = $"生成失败 错误代码：{response.ErrorCode}  错误描述：{response.ErrorMessage}";
         }
         return generateQRImageOutInput;
