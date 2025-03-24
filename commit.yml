@@ -3,27 +3,36 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid 'f42f54b11e8634dd72ae0c028d0c12a9606e3539'
-    oldFile: !uuid '234a779b8a10ef41531f416c655a0bc69de8c6ce'
+    newFile: !uuid '1452fa242180feb66b0c5511afa756d966cf6ad3'
+    oldFile: !uuid 'f42f54b11e8634dd72ae0c028d0c12a9606e3539'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid 'ba0407a6d3455a0606e47648732078eee73d6b11'
-    oldFile: !uuid 'cd72d614c60b053a3da6ff8c03e3e57acd546d4f'
-  /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid '5b66d8f739318df12424a34248ea7aa45dd69601'
-    oldFile: !uuid '3ddbf35069003a7dc59af69b862ca54256a380bd'
-  /Admin.NET/Admin.NET.Core/Service/Wechat:
-    newFile: !uuid '99bb7d1fe810702d84399afacf842d5dd4112ed4'
-    oldFile: !uuid '7dcd8c0d25359aa41baaf5d61891c633ee10e703'
-  /Admin.NET/Admin.NET.Core/Service/Wechat/Dto:
-    newFile: !uuid 'bd329489fe2d7e09d09e3d335e98da6eff3b8057'
-    oldFile: !uuid 'cf3919d023f337be3fb5210a4069c1063c221164'
-  /Admin.NET/Admin.NET.Core/Service/Wechat/Dto/WxOpenOutput.cs:
-    newFile: !uuid '6b83bb38ad8dd40f7b24b375cb7a64656a5a00aa'
-    oldFile: !uuid '6df207c30853e752b5f4dd5c18985701e95958de'
-  /Admin.NET/Admin.NET.Core/Service/Wechat/SysWxOpenService.cs:
-    newFile: !uuid '92ca4b6cd36d8be93311b9eaea39d2a59719857f'
-    oldFile: !uuid '0e43a684a48be8725881309ce6e0c9696fc79a22'
-gitCommitId: !uuid 'cba2cad640223c362da8ebf7a6b1241695fb0d8f'
+    newFile: !uuid '7d958fd3f51be8d9406dac1b265810eca5754384'
+    oldFile: !uuid 'ba0407a6d3455a0606e47648732078eee73d6b11'
+  /Admin.NET/Admin.NET.Core/Admin.NET.Core.csproj:
+    newFile: !uuid 'aad969cb04a9127a5033a11157087a85afffa117'
+    oldFile: !uuid '106aa351a3a84c7680e8b6b0a84c8aa350f1e31f'
+  /Admin.NET/Admin.NET.Test:
+    newFile: !uuid '34f2fd04f17e16d12c026240a1e54b3dcde38bc0'
+    oldFile: !uuid '038071ea344be55cf246e4da2c3939eb93e3e951'
+  /Admin.NET/Admin.NET.Test/Admin.NET.Test.csproj:
+    newFile: !uuid '41bd0f8d1b933f3a83ee979d3adaf0623c7dd183'
+    oldFile: !uuid '9bea90148e708b7d80ca7aa73dbd26323e1aaef8'
+  /Admin.NET/Plugins:
+    newFile: !uuid '6000f2e89d2bf8450365f385de00bc02ee8b7eca'
+    oldFile: !uuid '7d869d149c954414a27e2dd5b0c1e1d3f07e49f3'
+  /Admin.NET/Plugins/Admin.NET.Plugin.ReZero:
+    newFile: !uuid '601ae0ea99c9875099f908a7df1d0f683e2e6ce7'
+    oldFile: !uuid '510ef2ac2d7ed1dfed68e74b23ae88713feb9a91'
+  /Admin.NET/Plugins/Admin.NET.Plugin.ReZero/Admin.NET.Plugin.ReZero.csproj:
+    newFile: !uuid '99d214119a804ceb39005081c306ecce211d4987'
+    oldFile: !uuid '3ea6e33c64c2fb0e2b09bf8b1875e8068a2533d3'
+  /Web:
+    newFile: !uuid '1b90c3fc169fe34e4bbad42c68370e0ae033d90b'
+    oldFile: !uuid '9ec0d33c32171cee6466acd7a39eef8c9be2efba'
+  /Web/package.json:
+    newFile: !uuid '7981de9301e747b59906ab7c54d37c59ad6edb4f'
+    oldFile: !uuid '1d39c90f76c8071eec6613ea0d675f9db78e3eee'
+gitCommitId: !uuid '147c898e6e1b8f55efaeb64a0d1db870da8f9593'
 renames: {
   }
-revisionId: 2788
+revisionId: 2789
