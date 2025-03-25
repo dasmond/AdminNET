@@ -149,7 +149,7 @@ public static class EnumExtension
     /// </summary>
     /// <param name="value"></param>
     /// <returns></returns>
-    public static string GetDescription(this Enum value)
+    public static string GetEnumDescription(this Enum value)
     {
         return value.GetType().GetField(value.ToString())?.GetCustomAttribute<DescriptionAttribute>()?.Description;
     }
@@ -159,7 +159,7 @@ public static class EnumExtension
     /// </summary>
     /// <param name="value"></param>
     /// <returns></returns>
-    public static string GetDescription(this object value)
+    public static string GetEnumDescription(this object value)
     {
         return value.GetType().GetField(value.ToString()!)?.GetCustomAttribute<DescriptionAttribute>()?.Description;
     }
@@ -190,7 +190,7 @@ public static class EnumExtension
             return new EnumEntity
             {
                 Name = item.ToString(),
-                Describe = item.GetDescription() ?? item.ToString(),
+                Describe = item.GetEnumDescription() ?? item.ToString(),
                 Theme = item.GetTheme() ?? string.Empty,
                 Value = item.GetHashCode()
             };
