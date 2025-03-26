@@ -248,7 +248,7 @@ public class SysWxOpenService : IDynamicApiController, ITransient
     }
 
     /// <summary>
-    /// 生成二维码
+    /// 生成带参数小程序二维码(总共生成的码数量限制为 100,000)
     /// </summary>
     /// <param name="input"> 扫码进入的小程序页面路径，最大长度 128 个字符，不能为空； eg: pages / index ? id = AY000001 </param>
     /// <returns></returns>
@@ -288,6 +288,85 @@ public class SysWxOpenService : IDynamicApiController, ITransient
             {
                 // 相对路径
                 relativeImgPath = string.IsNullOrEmpty(QRImagePath) ? Path.Combine("upload", "QRImage") : QRImagePath;
+                QRImagePath = Path.Combine(App.WebHostEnvironment.WebRootPath, relativeImgPath);
+            }
+
+            //判断文件存放路径是否存在
+            if (!Directory.Exists(QRImagePath))
+            {
+                Directory.CreateDirectory(QRImagePath);
+            }
+            // 将二维码图片数据保存为文件
+            var fileName = $"{input.ImageName.ToUpper()}.png";
+            var filePath = Path.Combine(QRImagePath, fileName);
+            if (File.Exists(filePath))
+            {
+                File.Delete(filePath);
+            }
+            File.WriteAllBytes(filePath, response.GetRawBytes());
+
+            generateQRImageOutInput.Success = true;
+            generateQRImageOutInput.ImgPath = filePath;
+            generateQRImageOutInput.RelativeImgPath = Path.Combine(relativeImgPath, fileName);
+            generateQRImageOutInput.Message = "生成成功";
+        }
+        else
+        {
+            // 处理错误情况
+            generateQRImageOutInput.Message = $"生成失败 错误代码：{response.ErrorCode}  错误描述：{response.ErrorMessage}";
+        }
+        return generateQRImageOutInput;
+    }
+
+    /// <summary>
+    /// 生成二维码(获取不受限制的小程序码)
+    /// </summary>
+    /// <param name="input">入参</param>
+    /// <returns></returns>
+    [DisplayName("生成小程序二维码")]
+    [ApiDescriptionSettings(Name = "GenerateQRImageUnlimit")]
+    public async Task<GenerateQRImageOutput> GenerateQRImageUnlimitAsync(GenerateQRImageUnLimitInput input)
+    {
+        GenerateQRImageOutput generateQRImageOutInput = new GenerateQRImageOutput();
+        if (input.PagePath.IsNullOrEmpty())
+        {
+            generateQRImageOutInput.Message = $"生成失败，页面路径不能为空";
+            return generateQRImageOutInput;
+        }
+
+        if (input.Scene.Length > 32)
+        {
+            generateQRImageOutInput.Message = $"生成失败，携带的参数长度超过限制";
+            return generateQRImageOutInput;
+        }
+
+        if (input.ImageName.IsNullOrEmpty())
+        {
+            input.ImageName = DateTime.Now.ToString("yyyyMMddHHmmss");
+        }
+
+        var accessToken = await GetCgibinToken();
+        var request = new WxaGetWxaCodeRequest
+        {
+            AccessToken = accessToken,
+            Width = input.Width,
+            PagePath = input.PagePath,
+
+
+        };
+        var response = await _wechatApiClient.ExecuteWxaGetWxaCodeAsync(request);
+
+        if (response.IsSuccessful())
+        {
+            var QRImagePath = App.GetConfig<string>("Wechat:QRImagePath");
+            var relativeImgPath = string.Empty;
+
+            // 判断路径是绝对路径还是相对路径
+            var isPathRooted = Path.IsPathRooted(QRImagePath);
+            if (!isPathRooted)
+            {
+                // 相对路径
+                relativeImgPath = string.IsNullOrEmpty(QRImagePath) ? Path.Combine("upload", "QRImageUnLimit") : QRImagePath;
                 QRImagePath = Path.Combine(App.WebHostEnvironment.WebRootPath, relativeImgPath);
             }
 
