@@ -118,7 +118,7 @@ public class AddSubscribeMessageTemplateInput
 }
 
 /// <summary>
-/// 生成带参数小程序二维码
+/// 生成带参数小程序二维码(总共生成的码数量限制为 100,000)
 /// </summary>
 public class GenerateQRImageInput
 {
@@ -136,4 +136,15 @@ public class GenerateQRImageInput
     /// 图片宽度 默认430
     /// </summary>
     public int Width { get; set; } = 430;
+}
+
+/// <summary>
+/// 生成带参数小程序二维码(获取不受限制的小程序码)
+/// </summary>
+public class GenerateQRImageUnLimitInput : GenerateQRImageInput
+{
+    /// <summary>
+    /// 二维码携带的参数 eg:a=1（最大32个可见字符，只支持数字，大小写英文以及部分特殊字符：!#$&'()*+,/:;=?@-._~）
+    /// </summary>
+    public string Scene { get; set; }
 }
