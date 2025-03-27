@@ -421,11 +421,6 @@ public class SysAuthService : IDynamicApiController, ITransient
     [ApiDescriptionSettings(Description = "Swagger登录提交", DisableInherite = true)]
     public async Task<int> SwaggerSubmitUrl([FromForm] SpecificationAuth auth)
     {
-        // 尝试从发起请求页的地址栏中获取租户id，为空则使用默认租户
-        var tenantIdStr = Regex.Match(App.HttpContext.Request.Headers.Referer.ToString() ?? "", @"(?<=t=)(\d+)").Value;
-        var tenantId = string.IsNullOrWhiteSpace(tenantIdStr)
-            ? SqlSugarConst.DefaultTenantId
-            : long.Parse(tenantIdStr);
         try
         {
             _sysCacheService.Set($"{CacheConst.KeyConfig}{ConfigConst.SysCaptcha}", false);
@@ -433,8 +428,7 @@ public class SysAuthService : IDynamicApiController, ITransient
             await Login(new LoginInput
             {
                 Account = auth.UserName,
-                Password = CryptogramUtil.SM2Encrypt(auth.Password),
-                TenantId = tenantId
+                Password = CryptogramUtil.SM2Encrypt(auth.Password)
             });
 
             _sysCacheService.Remove($"{CacheConst.KeyConfig}{ConfigConst.SysCaptcha}");
