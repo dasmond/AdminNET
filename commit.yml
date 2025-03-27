@@ -3,18 +3,24 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '4d15fd400128226aca9da090fefd767f34cfb794'
-    oldFile: !uuid '53d8dca8ceb45dacf672980adfb87b53a4d401f4'
+    newFile: !uuid '87d13f57467045a81e284ab5ec76e19679e5fffb'
+    oldFile: !uuid '4d15fd400128226aca9da090fefd767f34cfb794'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid 'be92082b0a5379f317d4a4c68d9e5d489d93d9c1'
-    oldFile: !uuid '8e3605eede7041542cf566f7db20764e89f39a33'
-  /Admin.NET/Admin.NET.Core/Utils:
-    newFile: !uuid 'b8e7b18d72bec7482032fdee1beb54f2be9c74d4'
-    oldFile: !uuid 'c2593c7b870fba84a2f72b52b2fadca9ac5d59e5'
-  /Admin.NET/Admin.NET.Core/Utils/FileHelper.cs:
-    newFile: !uuid '6da17dc6f0abf3b14720e4a36c73ba3067ca2bb0'
-    oldFile: !uuid '29dd1a2c8cee459480563f72d471650739251b0b'
-gitCommitId: !uuid '6786cc291a873eed3d3e4a411b368745bda7a025'
+    newFile: !uuid '7518d82b8957dad163081dc38bd05db0a2f736cd'
+    oldFile: !uuid 'be92082b0a5379f317d4a4c68d9e5d489d93d9c1'
+  /Admin.NET/Admin.NET.Core/Service:
+    newFile: !uuid 'f22eea07e135b29f7b22b14c1152113acd075eec'
+    oldFile: !uuid 'd1c9d3f0eab7dd71d0c35f08340561f1ca7532ce'
+  /Admin.NET/Admin.NET.Core/Service/ExtendService:
+    newFile: !uuid '460b7cac258cbfd5f7a2ae9cf78101231a53bed1'
+    oldFile: null
+  /Admin.NET/Admin.NET.Core/Service/ExtendService/Models:
+    newFile: !uuid '99df04f12cb824c1e5fdf5738a258f25e82d2ebe'
+    oldFile: null
+  /Admin.NET/Admin.NET.Core/Service/ExtendService/Models/BaiDuMapResult.cs:
+    newFile: !uuid '36ab189eab18f5111cf2051d6bba579290e4b27a'
+    oldFile: null
+gitCommitId: !uuid 'cebd7a192a9f836df8db63c88c403ef4f42ef30e'
 renames: {
   }
-revisionId: 2793
+revisionId: 2794
