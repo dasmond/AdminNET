@@ -181,11 +181,28 @@ public class BaiDuTranslationService : IDynamicApiController, ITransient
 
                         var result = await Translation("zh", targetLang, $"{gen.Value}");
 
-                        if (result.error_code.Equals("0"))
+
+                        if (!result.error_code.Equals("0"))
                         {
-                            LogTranslationProgress(gen.Key, gen.Value, result.trans_result[0].Dst, ConsoleColor.DarkMagenta);
-                            str += ($"        {gen.Key}: '{result.trans_result[0].Dst}',{Environment.NewLine}");
+                            continue;
                         }
+
+                        var translationValue = result.trans_result[0].Dst;
+                        LogTranslationProgress(gen.Key, gen.Value, translationValue, ConsoleColor.DarkMagenta);
+
+                        // 如果翻译结果为空字符串不追加
+                        if (string.IsNullOrEmpty(translationValue))
+                        {
+                            continue;
+                        }
+
+                        // 如果翻译结果包含"'" 法语意大利语常出现  在"'"前加转义符
+                        if (translationValue.Contains("'"))
+                        {
+                            translationValue = translationValue.Replace("'", "\\'");
+                        }
+                        
+                        str += ($"        {gen.Key}: '{translationValue}',{Environment.NewLine}");
                     }
                     catch (Exception e)
                     {
@@ -270,11 +287,28 @@ public class BaiDuTranslationService : IDynamicApiController, ITransient
 
                         var result = await Translation("zh", targetLang, $"{gen.Value}");
 
-                        if (result.error_code.Equals("0"))
+                        
+                        if (!result.error_code.Equals("0"))
                         {
-                            LogTranslationProgress(gen.Key, gen.Value, result.trans_result[0].Dst, ConsoleColor.DarkMagenta);
-                            str += ($"        {gen.Key}: '{result.trans_result[0].Dst}',{Environment.NewLine}");
+                            continue;
                         }
+
+                        var translationValue = result.trans_result[0].Dst;
+                        LogTranslationProgress(gen.Key, gen.Value, translationValue, ConsoleColor.DarkMagenta);
+
+                        // 如果翻译结果为空字符串不追加
+                        if (string.IsNullOrEmpty(translationValue))
+                        {
+                            continue;
+                        }
+
+                        // 如果翻译结果包含"'" 法语意大利语常出现  在"'"前加转义符
+                        if (translationValue.Contains("'"))
+                        {
+                            translationValue = translationValue.Replace("'", "\\'");
+                        }
+
+                        str += ($"        {gen.Key}: '{translationValue}',{Environment.NewLine}");
                     }
                     catch (Exception e)
                     {
