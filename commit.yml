@@ -3,21 +3,21 @@ branches: {
   }
 fileChange:
   /Admin.NET:
-    newFile: !uuid '75cbb227a4c30c518915fd2fc3d44251db66d067'
-    oldFile: !uuid '080f9b8419b091406ebf371e1b6eeccd428c2b1e'
+    newFile: !uuid 'eb777259d0e151772efd2f85231950c9d03ca451'
+    oldFile: !uuid '75cbb227a4c30c518915fd2fc3d44251db66d067'
   /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '31a1bef0ceb661278503e78e200240494924e061'
-    oldFile: !uuid '33f02fdfed9ebb25915328d98f65c845677aca5e'
+    newFile: !uuid '480d2e86507e495e25aa8bc5adff9c8805670a34'
+    oldFile: !uuid '31a1bef0ceb661278503e78e200240494924e061'
   /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid 'edf2f400955f3428d1a21e748c77e9008845ba12'
-    oldFile: !uuid '020e56a5b57fd90779857ee99b4730239f87d601'
-  /Admin.NET/Admin.NET.Core/Service/ExtendService:
-    newFile: !uuid '4a0deba4ab568a540961578768129553a816555c'
-    oldFile: !uuid '23aa20b12d19c3f6cb3783d36a0bebb4e718529b'
-  /Admin.NET/Admin.NET.Core/Service/ExtendService/BaiDuTranslationService.cs:
-    newFile: !uuid 'c559d92298f4a72f61a91887631bf5f56fd75319'
-    oldFile: !uuid '4e4d79452c175e41464b4e46c038d9510111419b'
-gitCommitId: !uuid '46753af8f30b710000a3670175fa9ad2e75e4f83'
+    newFile: !uuid '97ced076756635ea02088820c9abab785023095f'
+    oldFile: !uuid 'edf2f400955f3428d1a21e748c77e9008845ba12'
+  /Admin.NET/Admin.NET.Core/Service/Auth:
+    newFile: !uuid 'c699983696e322de5c3d422426f93476f747a37c'
+    oldFile: !uuid '29e84fd05d7ae244fd0791651037e52a9799cba9'
+  /Admin.NET/Admin.NET.Core/Service/Auth/SysAuthService.cs:
+    newFile: !uuid '5a21f1726347ef45da560793cc698293dd77f7a9'
+    oldFile: !uuid '48d867f5ab5752398d8dbfe510d9441a2af0f1b3'
+gitCommitId: !uuid '3e6ce109a8bb69afbdef2cdb759e428d182fd734'
 renames: {
   }
-revisionId: 2796
+revisionId: 2797
