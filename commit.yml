@@ -2,22 +2,13 @@
 branches: {
   }
 fileChange:
-  /Admin.NET:
-    newFile: !uuid 'eb777259d0e151772efd2f85231950c9d03ca451'
-    oldFile: !uuid '75cbb227a4c30c518915fd2fc3d44251db66d067'
-  /Admin.NET/Admin.NET.Core:
-    newFile: !uuid '480d2e86507e495e25aa8bc5adff9c8805670a34'
-    oldFile: !uuid '31a1bef0ceb661278503e78e200240494924e061'
-  /Admin.NET/Admin.NET.Core/Service:
-    newFile: !uuid '97ced076756635ea02088820c9abab785023095f'
-    oldFile: !uuid 'edf2f400955f3428d1a21e748c77e9008845ba12'
-  /Admin.NET/Admin.NET.Core/Service/Auth:
-    newFile: !uuid 'c699983696e322de5c3d422426f93476f747a37c'
-    oldFile: !uuid '29e84fd05d7ae244fd0791651037e52a9799cba9'
-  /Admin.NET/Admin.NET.Core/Service/Auth/SysAuthService.cs:
-    newFile: !uuid '5a21f1726347ef45da560793cc698293dd77f7a9'
-    oldFile: !uuid '48d867f5ab5752398d8dbfe510d9441a2af0f1b3'
-gitCommitId: !uuid '3e6ce109a8bb69afbdef2cdb759e428d182fd734'
+  /docker:
+    newFile: !uuid 'f69a8f38063edb57aacadcd624acb3cd05003afc'
+    oldFile: !uuid 'd19fcbc4418ddfeaf8ebe85a1f7b13b152f72314'
+  /docker/docker-compose.yml:
+    newFile: !uuid '4cca2adfa9a38045538fb805fef06e975b8f4dfc'
+    oldFile: !uuid '2924da9f6459434cacd7eb24ac7920bef73512e0'
+gitCommitId: !uuid '6301978bddde5620e4d6c0c91754d32ea6620f5d'
 renames: {
   }
-revisionId: 2797
+revisionId: 2798
