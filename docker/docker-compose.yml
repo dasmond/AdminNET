@@ -60,7 +60,7 @@ services:
     volumes:
       - "./app:/app"
     working_dir: /app
-    command: ["/app/wait-for-it.sh", "mysql:3306", "-t", "120", "--","dotnet", "Admin.NET.Web.Entry.dll"]
+    command: ["/app/wait-for-it.sh", "mysql:3306", "-t", "120", "--","dotnet", "Admin.NET.Web.Entry.dll", "--content-root", "/app/wwwroot"]
     depends_on:
       - mysql
       - redis
